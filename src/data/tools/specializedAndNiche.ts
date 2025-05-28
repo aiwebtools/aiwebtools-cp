@@ -3,7 +3,8 @@ import {
   Atom, Microscope, FlaskConical, Calculator, Mountain, 
   Rocket, Telescope, Leaf, Fish, TreePine, 
   Waves, Wind, Sun, Zap, Globe,
-  Shield, Eye, Search
+  Shield, Eye, Search, Pill, Syringe,
+  Beaker, TestTube, Activity, Heart, Brain
 } from "lucide-react";
 
 export const specializedAndNiche: Tool[] = [
@@ -192,5 +193,18 @@ export const specializedAndNiche: Tool[] = [
     tags: ["probability", "statistics", "mathematics", "analysis", "data science"],
     rating: 4.3,
     totalVotes: 2567
+  },
+  {
+    icon: Pill,
+    title: "Pharmaceutical Assistant GPT",
+    description: "Professional pharmaceutical guidance and medication information assistant. Get expert help with drug interactions, dosage information, and pharmaceutical knowledge.",
+    emoji: "💊",
+    color: "from-blue-500 to-green-600",
+    category: "Specialized & Niche",
+    directUrl: "https://rxai.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-professional-looking-pharmaceutical-assistan.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["pharmaceutical", "medication", "drug interactions", "healthcare", "pharmacy"],
+    rating: 4.3,
+    totalVotes: 2890
   }
 ];

@@ -1,9 +1,11 @@
 import { Tool } from "@/types/tools";
 import { 
-  Briefcase, Calculator, TrendingUp, FileText, Users, 
-  DollarSign, BarChart, PieChart, Building, Globe,
-  Scale, Shield, Home, Hammer, BookOpen, Youtube,
-  Lightbulb, Phone
+  Briefcase, TrendingUp, BarChart3, Users, Building, 
+  Target, Award, Calculator, FileText, Mail,
+  Calendar, Clock, DollarSign, PieChart, LineChart,
+  Handshake, Shield, Scale, UserCheck, Activity,
+  Presentation, Globe, Zap, Lightbulb, Rocket,
+  Camera, Video, Mic, Edit, Palette
 } from "lucide-react";
 
 export const businessAndProductivity: Tool[] = [
@@ -293,6 +295,32 @@ export const businessAndProductivity: Tool[] = [
     directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-humanoid-robot-fixing-a-bathroom-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     tags: ["renovation", "home improvement", "DIY", "construction", "remodeling"],
+    rating: 4.2,
+    totalVotes: 2567
+  },
+  {
+    icon: Presentation,
+    title: "Gamma Presentation & Website Maker",
+    description: "AI-powered presentation and website creation platform. Create stunning presentations, websites, and documents with intelligent design assistance and automated formatting.",
+    emoji: "📊",
+    color: "from-purple-500 to-blue-600",
+    category: "Business & Productivity",
+    directUrl: "https://try.gamma.app/aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=sy9ZIQlzk3Q",
+    tags: ["presentations", "websites", "design", "automation", "productivity"],
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: FileText,
+    title: "Restaurant Menu Maker GPT",
+    description: "Professional restaurant menu design and creation assistant. Create attractive menus, optimize pricing strategies, and design layouts that enhance customer experience.",
+    emoji: "🍽️",
+    color: "from-orange-500 to-red-600",
+    category: "Business & Productivity",
+    directUrl: "https://restaurantmenumakergpt.lovable.app/",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-restaurant-menu-with-a-vari__Oji1.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["restaurant", "menu design", "pricing", "layout", "hospitality"],
     rating: 4.2,
     totalVotes: 2567
   }

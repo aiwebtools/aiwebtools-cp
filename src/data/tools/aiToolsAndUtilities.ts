@@ -1,7 +1,10 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Zap, Search, MessageSquare, Lightbulb
+  Settings, Wrench, Code, Terminal, Database, 
+  Search, Filter, Download, Upload, Zap,
+  Cpu, HardDrive, Monitor, Wifi, Bluetooth,
+  FileText, ImageIcon as Image, Video, Music, Archive,
+  Binary, Calculator, Clock, Globe, Shield
 } from "lucide-react";
 
 export const aiToolsAndUtilities: Tool[] = [
@@ -43,5 +46,31 @@ export const aiToolsAndUtilities: Tool[] = [
     tags: ["clarity", "analysis", "problem solving", "insights", "comprehensive"],
     rating: 4.2,
     totalVotes: 2789
+  },
+  {
+    icon: Binary,
+    title: "Binary-Text-Image Converter GPT",
+    description: "Advanced conversion tool for binary, text, and image formats. Convert between different data formats, encode/decode information, and handle various file conversions.",
+    emoji: "🔄",
+    color: "from-green-500 to-blue-600",
+    category: "AI Tools & Utilities",
+    directUrl: "https://binarytoconvertergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-sophisticated-and-futuristic-advertisement-.jpeg/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
+    tags: ["binary conversion", "text conversion", "image conversion", "data formats", "encoding"],
+    rating: 4.2,
+    totalVotes: 2345
+  },
+  {
+    icon: Database,
+    title: "ANYTHING LLM",
+    description: "Full-stack application for creating private ChatGPT with any documents. Build your own knowledge base and AI assistant with complete privacy and control.",
+    emoji: "🤖",
+    color: "from-purple-500 to-blue-600",
+    category: "AI Tools & Utilities",
+    directUrl: "https://anythingllm.com/",
+    videoUrl: "https://www.youtube.com/watch?v=gd4xkmzLWSQ",
+    tags: ["private AI", "knowledge base", "documents", "chatbot", "privacy"],
+    rating: 4.5,
+    totalVotes: 3456
   }
 ];
