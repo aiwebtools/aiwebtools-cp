@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Menu, Phone, ChevronDown } from "lucide-react";
 import {
@@ -35,13 +34,13 @@ const Header = () => {
   return (
     <header className="bg-gray-900/95 backdrop-blur-md border-b border-purple-500/30 sticky top-0 z-50 shadow-lg shadow-purple-500/10">
       <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center space-x-4 flex-shrink-0">
             <div className="text-center">
-              <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+              <div className="text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                 AITOOLS.STUDIO
               </div>
-              <div className="text-sm text-gray-400">
+              <div className="text-xs md:text-sm text-gray-400">
                 Presented by{" "}
                 <a 
                   href="https://www.aiwebtools.ai" 
@@ -55,16 +54,16 @@ const Header = () => {
             </div>
           </div>
           
-          {/* Global Search Bar */}
-          <div className="hidden md:flex flex-1 justify-center max-w-md mx-8">
+          {/* Global Search Bar - Enhanced for better visibility */}
+          <div className="hidden md:flex flex-1 justify-center max-w-2xl mx-4">
             <GlobalSearchBar />
           </div>
           
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-cyan-100 hover:text-cyan-400 transition-colors">Home</a>
+          <nav className="hidden lg:flex items-center space-x-6 flex-shrink-0">
+            <a href="#home" className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap">Home</a>
             
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center space-x-1 text-cyan-100 hover:text-cyan-400 transition-colors">
+              <DropdownMenuTrigger className="flex items-center space-x-1 text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap">
                 <span>🆓Industry Specific AI</span>
                 <ChevronDown className="w-4 h-4" />
               </DropdownMenuTrigger>
@@ -94,8 +93,8 @@ const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <a href="#services" className="text-cyan-100 hover:text-cyan-400 transition-colors">More</a>
-            <div className="flex items-center space-x-2 text-cyan-100">
+            <a href="#services" className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap">More</a>
+            <div className="flex items-center space-x-2 text-cyan-100 whitespace-nowrap">
               <Phone className="w-4 h-4" />
               <a 
                 href="tel:+14758008096" 
@@ -107,10 +106,50 @@ const Header = () => {
           </nav>
           
           {/* Mobile Menu */}
-          <div className="md:hidden flex items-center space-x-4">
-            <div className="flex-1 max-w-xs">
+          <div className="md:hidden flex items-center space-x-2">
+            <div className="flex-1 min-w-0 max-w-xs">
               <GlobalSearchBar />
             </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="border-purple-500/30 bg-gray-900/80 text-cyan-100 hover:bg-purple-500/20 flex-shrink-0">
+                  <Menu className="w-4 h-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-80 max-h-96 overflow-y-auto bg-gray-900/95 shadow-lg border border-purple-500/30 backdrop-blur-md">
+                <div className="p-2">
+                  <DropdownMenuItem onClick={() => window.location.href = '#home'} className="text-cyan-100 hover:bg-purple-500/20">
+                    Home
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator className="border-gray-700" />
+                  <div className="font-semibold text-cyan-400 mb-2 px-2">AI Tool Categories</div>
+                  {Object.entries(categoriesWithCounts).map(([category, count]) => (
+                    <DropdownMenuItem
+                      key={category}
+                      onClick={() => scrollToCategory(category)}
+                      className="flex justify-between items-center text-cyan-100 hover:bg-purple-500/20"
+                    >
+                      <span className="text-sm">{category}</span>
+                      <span className="text-xs bg-gradient-to-r from-cyan-400 to-purple-500 text-black px-2 py-1 rounded-full font-bold">
+                        {count}
+                      </span>
+                    </DropdownMenuItem>
+                  ))}
+                  <DropdownMenuSeparator className="border-gray-700" />
+                  <DropdownMenuItem onClick={() => window.location.href = '#services'} className="text-cyan-100 hover:bg-purple-500/20">
+                    More Services
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="text-cyan-100 hover:bg-purple-500/20">
+                    <Phone className="w-4 h-4 mr-2" />
+                    <a href="tel:+14758008096">475-800-8096</a>
+                  </DropdownMenuItem>
+                </div>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          {/* Tablet Menu */}
+          <div className="hidden md:flex lg:hidden">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm" className="border-purple-500/30 bg-gray-900/80 text-cyan-100 hover:bg-purple-500/20">

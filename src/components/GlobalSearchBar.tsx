@@ -38,16 +38,16 @@ const GlobalSearchBar = () => {
   };
 
   return (
-    <div className="relative max-w-md w-full">
+    <div className="relative w-full max-w-lg">
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-cyan-400 w-4 h-4" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-cyan-400 w-5 h-5 z-10" />
         <Input
           type="text"
           placeholder="Search AI tools..."
           value={searchTerm}
           onChange={(e) => handleSearchChange(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="pl-10 pr-4 py-2 bg-gray-900/80 border-2 border-purple-500/30 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 text-cyan-100 placeholder-gray-400 rounded-lg backdrop-blur-sm neon-border glow-effect"
+          className="pl-12 pr-4 py-3 w-full bg-gray-900/90 border-2 border-purple-500/40 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 transition-all duration-300 text-cyan-100 placeholder-gray-400 rounded-lg backdrop-blur-sm neon-border glow-effect text-base"
         />
       </div>
       
@@ -60,14 +60,14 @@ const GlobalSearchBar = () => {
                 key={index}
                 to={`/tool/${toolIndex}`}
                 onClick={handleResultClick}
-                className="flex items-center space-x-3 p-3 hover:bg-purple-500/20 transition-all duration-300 border-b border-gray-800 last:border-b-0 interactive-button"
+                className="flex items-center space-x-3 p-4 hover:bg-purple-500/20 transition-all duration-300 border-b border-gray-800 last:border-b-0 interactive-button"
               >
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 flex items-center justify-center text-white text-sm flex-shrink-0 glow-effect">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 flex items-center justify-center text-white text-lg flex-shrink-0 glow-effect">
                   {tool.emoji}
                 </div>
                 <div className="flex-grow min-w-0">
-                  <div className="text-cyan-100 font-medium truncate cyber-glow">{tool.title}</div>
-                  <div className="text-gray-400 text-xs truncate">{tool.category}</div>
+                  <div className="text-cyan-100 font-medium truncate cyber-glow text-base">{tool.title}</div>
+                  <div className="text-gray-400 text-sm truncate">{tool.category}</div>
                 </div>
               </Link>
             );
