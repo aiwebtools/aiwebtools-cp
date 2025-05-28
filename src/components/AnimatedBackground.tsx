@@ -5,14 +5,15 @@ const AnimatedBackground = () => {
   const starsRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
   const shootingStarsRef = useRef<HTMLDivElement>(null);
+  const cometsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Create stars - increased to 500 for maximum starfield effect
+    // Create stars - increased to 800 for maximum starfield effect with movement
     const createStars = () => {
       const starsContainer = starsRef.current;
       if (!starsContainer) return;
 
-      for (let i = 0; i < 500; i++) {
+      for (let i = 0; i < 800; i++) {
         const star = document.createElement('div');
         star.className = 'star';
         star.style.left = Math.random() * 100 + '%';
@@ -25,12 +26,12 @@ const AnimatedBackground = () => {
       }
     };
 
-    // Create floating particles - increased to 60
+    // Create floating particles - increased to 80
     const createParticles = () => {
       const particlesContainer = particlesRef.current;
       if (!particlesContainer) return;
 
-      for (let i = 0; i < 60; i++) {
+      for (let i = 0; i < 80; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * 100 + '%';
@@ -42,30 +43,48 @@ const AnimatedBackground = () => {
       }
     };
 
-    // Create shooting stars - increased to 25 for more frequent shooting stars
+    // Create shooting stars - increased to 35 for more frequent shooting stars
     const createShootingStars = () => {
       const shootingStarsContainer = shootingStarsRef.current;
       if (!shootingStarsContainer) return;
 
-      for (let i = 0; i < 25; i++) {
+      for (let i = 0; i < 35; i++) {
         const shootingStar = document.createElement('div');
         shootingStar.className = 'shooting-star';
         shootingStar.style.left = Math.random() * 100 + '%';
         shootingStar.style.top = Math.random() * 50 + '%';
-        shootingStar.style.animationDelay = Math.random() * 15 + 's';
-        shootingStar.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        shootingStar.style.animationDelay = Math.random() * 8 + 's';
+        shootingStar.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
         shootingStarsContainer.appendChild(shootingStar);
+      }
+    };
+
+    // Create deep space comets - new addition for streaking effects
+    const createComets = () => {
+      const cometsContainer = cometsRef.current;
+      if (!cometsContainer) return;
+
+      for (let i = 0; i < 20; i++) {
+        const comet = document.createElement('div');
+        comet.className = 'comet';
+        comet.style.left = Math.random() * 100 + '%';
+        comet.style.top = Math.random() * 60 + '%';
+        comet.style.animationDelay = Math.random() * 12 + 's';
+        comet.style.animationDuration = (Math.random() * 4 + 3) + 's';
+        cometsContainer.appendChild(comet);
       }
     };
 
     createStars();
     createParticles();
     createShootingStars();
+    createComets();
 
     return () => {
       if (starsRef.current) starsRef.current.innerHTML = '';
       if (particlesRef.current) particlesRef.current.innerHTML = '';
       if (shootingStarsRef.current) shootingStarsRef.current.innerHTML = '';
+      if (cometsRef.current) cometsRef.current.innerHTML = '';
     };
   }, []);
 
@@ -74,6 +93,7 @@ const AnimatedBackground = () => {
       <div ref={starsRef} className="moving-stars" />
       <div ref={particlesRef} className="floating-particles" />
       <div ref={shootingStarsRef} className="shooting-stars-container" />
+      <div ref={cometsRef} className="comets-container" />
     </>
   );
 };
