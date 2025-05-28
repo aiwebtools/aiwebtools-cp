@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Menu, Phone, ChevronDown } from "lucide-react";
+import { Menu, Phone, ChevronDown, Home } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,6 +13,10 @@ import GlobalSearchBar from "./GlobalSearchBar";
 
 const Header = () => {
   const categoriesWithCounts = getCategoriesWithCounts();
+
+  const scrollToHome = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const scrollToTools = () => {
     const toolsSection = document.getElementById('tools-section');
@@ -57,6 +61,13 @@ const Header = () => {
                 </a>
               </div>
             </div>
+            <button
+              onClick={scrollToHome}
+              className="p-2 rounded-full bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-400 hover:to-cyan-500 transition-all duration-300 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40"
+              title="Go to Home"
+            >
+              <Home className="w-5 h-5 text-white" />
+            </button>
           </div>
           
           {/* Global Search Bar - Enhanced for better visibility */}
