@@ -1,4 +1,3 @@
-
 // Re-export all tool categories
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
@@ -45,3 +44,8 @@ export { aiInferencePlatforms } from './aiInferencePlatforms';
 export { imageGenerationPlatforms } from './imageGenerationPlatforms';
 export { aiProductivityTools } from './aiProductivityTools';
 export { openSourceAIModels } from './openSourceAIModels';
+
+// New categories for the requested tools
+export { timeAndHistory } from './timeAndHistory';
+export { creativeSuites } from './creativeSuites';
+export { advancedAITools } from './advancedAITools';

@@ -1,9 +1,10 @@
 
 import { Tool } from "@/types/tools";
+import { Image } from "lucide-react";
 
 export const imageGenerationPlatforms: Tool[] = [
   {
-    icon: "image",
+    icon: Image,
     title: "Leonardo AI",
     description: "Advanced AI image generation platform with fine-tuned models, creative controls, and professional-grade image creation capabilities.",
     emoji: "🎨",

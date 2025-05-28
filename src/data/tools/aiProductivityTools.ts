@@ -1,9 +1,10 @@
 
 import { Tool } from "@/types/tools";
+import { Brain } from "lucide-react";
 
 export const aiProductivityTools: Tool[] = [
   {
-    icon: "brain",
+    icon: Brain,
     title: "MicroSaaS GPT",
     description: "AI-powered micro-SaaS business development assistant. Get guidance on building, launching, and scaling small software-as-a-service businesses.",
     emoji: "🚀",

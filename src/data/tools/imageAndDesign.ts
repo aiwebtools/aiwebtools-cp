@@ -1,9 +1,10 @@
 
 import { Tool } from "@/types/tools";
+import { Palette } from "lucide-react";
 
 export const imageAndDesign: Tool[] = [
   {
-    icon: "palette",
+    icon: Palette,
     title: "Graphic & Cover Design GPT",
     description: "Professional graphic design and cover creation assistant. Create stunning graphics, book covers, marketing materials, and visual designs with AI guidance.",
     emoji: "🎨",

@@ -1,9 +1,10 @@
 
 import { Tool } from "@/types/tools";
+import { Code, Heart } from "lucide-react";
 
 export const aiDevelopmentTools: Tool[] = [
   {
-    icon: "code",
+    icon: Code,
     title: "BOLT.NEW",
     description: "Advanced AI-powered full-stack web development platform. Build, deploy, and iterate on web applications with AI assistance and instant deployment.",
     emoji: "⚡",
@@ -16,7 +17,7 @@ export const aiDevelopmentTools: Tool[] = [
     totalVotes: 3456
   },
   {
-    icon: "heart",
+    icon: Heart,
     title: "Lovable.dev",
     description: "AI-powered web application builder and development platform. Create modern web apps with AI assistance, real-time collaboration, and instant deployment.",
     emoji: "💖",

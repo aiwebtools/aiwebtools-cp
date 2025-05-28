@@ -1,9 +1,10 @@
 
 import { Tool } from "@/types/tools";
+import { Star } from "lucide-react";
 
 export const aiChatPlatforms: Tool[] = [
   {
-    icon: "star",
+    icon: Star,
     title: "GEMINI/GOOGLE AI STUDIO",
     description: "Google's advanced AI chat platform and development studio. Access powerful multimodal AI capabilities, real-time processing, and integrated development tools.",
     emoji: "♊",

@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import {
   businessTools,
@@ -29,11 +30,17 @@ import {
   aiInferencePlatforms,
   imageGenerationPlatforms,
   aiProductivityTools,
-  openSourceAIModels
+  openSourceAIModels,
+  timeAndHistory,
+  creativeSuites,
+  advancedAITools
 } from './tools';
 
 // Combine all tools from different categories with enhanced categorization
 export const allTools: Tool[] = [
+  ...timeAndHistory,
+  ...creativeSuites,
+  ...advancedAITools,
   ...aiChatPlatforms,
   ...aiDevelopmentTools,
   ...localAISolutions,

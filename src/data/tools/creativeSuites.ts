@@ -1,0 +1,162 @@
+
+import { Tool } from "@/types/tools";
+import { Film, Theater, Heart, FileText, Globe, Zap, Plane, Shield, BookOpen, Users, Gamepad2 } from "lucide-react";
+
+export const creativeSuites: Tool[] = [
+  {
+    icon: Film,
+    title: "Movie Maker Studio AI SUITE",
+    description: "Complete movie production suite with AI assistance. Create professional films, manage production workflows, and access comprehensive filmmaking tools.",
+    emoji: "🎬",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://moviemakerstudio.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E&list=TLGGyT65jYe0o6cyODA1MjAyNQ&t",
+    tags: ["movie production", "filmmaking", "video editing", "AI suite", "creative tools"],
+    category: "Creative Suites",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
+    icon: Theater,
+    title: "STAGEMASTER AI SUITE FOR THE Performing Arts",
+    description: "Comprehensive performing arts management suite. Plan productions, manage performances, coordinate stage activities, and enhance theatrical experiences.",
+    emoji: "🎭",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://stagemasterai.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=-QIxYSlcRWM",
+    tags: ["performing arts", "theater", "stage management", "productions", "entertainment"],
+    category: "Creative Suites",
+    rating: 4.3,
+    totalVotes: 2567
+  },
+  {
+    icon: Heart,
+    title: "ImmortalizeME",
+    description: "Personal legacy and memory preservation platform. Create lasting digital memorials, preserve memories, and immortalize personal stories for future generations.",
+    emoji: "💖",
+    color: "from-pink-500 to-red-600",
+    directUrl: "https://immortalizeme.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=JXLqPMfw49Y",
+    tags: ["legacy", "memories", "preservation", "digital memorial", "storytelling"],
+    category: "Creative Suites",
+    rating: 4.2,
+    totalVotes: 2123
+  },
+  {
+    icon: FileText,
+    title: "Movie Script Writer GPT",
+    description: "Professional screenplay and script writing assistant. Create compelling movie scripts, develop characters, structure narratives, and format screenplays professionally.",
+    emoji: "📝",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://moviescriptwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=4e3Rkurt3-c&list=TLGGtoG6kc0vED4yODA1MjAyNQ",
+    tags: ["screenplay", "script writing", "movie scripts", "storytelling", "creative writing"],
+    category: "Creative Suites",
+    rating: 4.4,
+    totalVotes: 2876
+  },
+  {
+    icon: Globe,
+    title: "Illuminous World Data Explorer GPT",
+    description: "Advanced global data exploration and analysis platform. Discover worldwide patterns, analyze international data, and explore global insights across various domains.",
+    emoji: "🌍",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://illuminous.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=Nd1Ui2-VLMU",
+    tags: ["data exploration", "global analysis", "world data", "insights", "analytics"],
+    category: "Creative Suites",
+    rating: 4.3,
+    totalVotes: 2345
+  },
+  {
+    icon: Zap,
+    title: "GODMODE GPT",
+    description: "Ultimate AI assistant with advanced capabilities. Access powerful AI features, enhanced processing, and comprehensive tools for complex tasks and problem-solving.",
+    emoji: "⚡",
+    color: "from-yellow-500 to-red-600",
+    directUrl: "https://godmodegpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=or3JtZsq6Bc",
+    tags: ["advanced AI", "power tools", "comprehensive", "problem solving", "enhanced features"],
+    category: "Creative Suites",
+    rating: 4.6,
+    totalVotes: 4123
+  },
+  {
+    icon: BookOpen,
+    title: "BOOK WRITER GPT",
+    description: "Professional book writing and publishing assistant. Create novels, non-fiction books, manage writing projects, and guide through the publishing process.",
+    emoji: "📚",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
+    tags: ["book writing", "publishing", "novels", "writing assistance", "literature"],
+    category: "Creative Suites",
+    rating: 4.4,
+    totalVotes: 3124
+  },
+  {
+    icon: Plane,
+    title: "Stellaris: 🚀AI Space Explorer",
+    description: "Advanced space exploration and astronomy assistant. Explore the cosmos, learn about celestial bodies, plan space missions, and discover the wonders of the universe.",
+    emoji: "🚀",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://stellaris.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=tJwhDOE3mUM",
+    tags: ["space exploration", "astronomy", "cosmos", "space missions", "universe"],
+    category: "Creative Suites",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
+    icon: Shield,
+    title: "Survivalist GPT",
+    description: "Comprehensive survival skills and emergency preparedness assistant. Learn survival techniques, emergency planning, wilderness skills, and disaster preparedness strategies.",
+    emoji: "🏕️",
+    color: "from-green-500 to-brown-600",
+    directUrl: "https://survivalistgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=RX6W8KC0y18&list=TLGGkaSLRgubL1gyODA1MjAyNQ",
+    tags: ["survival skills", "emergency preparedness", "wilderness", "disaster planning", "outdoor skills"],
+    category: "Creative Suites",
+    rating: 4.2,
+    totalVotes: 2234
+  },
+  {
+    icon: Users,
+    title: "Criminologist GPT",
+    description: "Criminal justice and criminology expertise assistant. Analyze criminal behavior, study crime patterns, forensic analysis, and criminal justice system insights.",
+    emoji: "🔍",
+    color: "from-red-500 to-gray-600",
+    directUrl: "https://criminologistgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=jgvqpqmRJi8",
+    tags: ["criminology", "criminal justice", "forensics", "crime analysis", "law enforcement"],
+    category: "Creative Suites",
+    rating: 4.1,
+    totalVotes: 1987
+  },
+  {
+    icon: Heart,
+    title: "Social Safety Net GPT",
+    description: "Social services and welfare assistance navigator. Find social programs, understand benefits, access community resources, and navigate social safety networks.",
+    emoji: "🤝",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
+    tags: ["social services", "welfare", "community resources", "benefits", "social support"],
+    category: "Creative Suites",
+    rating: 4.3,
+    totalVotes: 2456
+  },
+  {
+    icon: Gamepad2,
+    title: "Resurrection GPT",
+    description: "Digital restoration and revival assistant. Restore old files, recover lost data, revive discontinued projects, and bring back digital content from the past.",
+    emoji: "🔄",
+    color: "from-purple-500 to-cyan-600",
+    directUrl: "https://resurrectiongpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=nEuxdGO-RZ4&t=4s",
+    tags: ["restoration", "data recovery", "digital revival", "file recovery", "content restoration"],
+    category: "Creative Suites",
+    rating: 4.0,
+    totalVotes: 1765
+  }
+];
