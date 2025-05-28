@@ -1,8 +1,10 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Heart, Users, Home, Baby, PawPrint,
   Scissors, Wrench, Car, Briefcase, Shield,
-  UserCheck, Calendar, MessageCircle, Phone, Smile
+  UserCheck, Calendar, MessageCircle, Phone, Smile,
+  Utensils, Shirt
 } from "lucide-react";
 
 export const personalServices: Tool[] = [
@@ -31,7 +33,7 @@ export const personalServices: Tool[] = [
     totalVotes: 2876
   },
   {
-    icon: Wine,
+    icon: Utensils,
     title: "Mixologist GPT",
     description: "Professional bartending AI assistant specializing in cocktail recipes, drink recommendations, and mixology techniques for bartenders and cocktail enthusiasts.",
     emoji: "🍸",
@@ -44,7 +46,7 @@ export const personalServices: Tool[] = [
     totalVotes: 2543
   },
   {
-    icon: ChefHat,
+    icon: Utensils,
     title: "Chef 'Sizzle' AI Culinary Assistant",
     description: "Professional culinary AI assistant providing recipes, cooking techniques, meal planning, and culinary expertise for chefs and cooking enthusiasts.",
     emoji: "👨‍🍳",

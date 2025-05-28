@@ -7,7 +7,8 @@ import {
   Plane, MapPin, Gamepad2, BookOpen, Calculator as Calc,
   Briefcase, HeartHandshake, Baby, PawPrint,
   Leaf, Recycle, Droplets, Fuel, Search,
-  Heart, Palette, Target, Shield, Crosshair
+  Heart, Palette, Target, Shield, Crosshair,
+  Clock
 } from "lucide-react";
 
 export const specializedAndNiche: Tool[] = [
