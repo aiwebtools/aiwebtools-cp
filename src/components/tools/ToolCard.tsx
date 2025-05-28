@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tool } from "@/types/tools";
@@ -65,11 +66,11 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
     return `${baseDescription}${categoryInfo}${featureInfo} Perfect for professionals and enthusiasts looking to leverage cutting-edge AI technology.`;
   };
 
-  // Optimized image component with lazy loading and error handling
+  // Optimized image component with proper aspect ratio and no cropping
   const MediaComponent = () => {
     if (tool.imageUrl && !imageError) {
       return (
-        <div className="relative w-full h-full overflow-hidden">
+        <div className="relative w-full overflow-hidden rounded-lg bg-gray-800" style={{ height: imageHeight, aspectRatio: '16/9' }}>
           {!imageLoaded && (
             <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center animate-pulse">
               <ImageIcon className="w-8 h-8 text-gray-500" />
@@ -78,10 +79,9 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
           <img
             src={tool.imageUrl}
             alt={`${tool.title} Preview`}
-            className={`w-full h-full object-cover transition-all duration-500 ${
-              imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
-            } group-hover:scale-105`}
-            style={{ height: imageHeight }}
+            className={`w-full h-full object-contain transition-all duration-500 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
             loading="lazy"
             decoding="async"
             onLoad={() => setImageLoaded(true)}
@@ -93,17 +93,16 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
     
     if (tool.videoUrl && !videoError) {
       return (
-        <div className="relative w-full h-full overflow-hidden">
+        <div className="relative w-full overflow-hidden rounded-lg bg-gray-800" style={{ height: imageHeight, aspectRatio: '16/9' }}>
           <iframe
             width="100%"
-            height={imageHeight}
+            height="100%"
             src={getOptimizedEmbedUrl(tool.videoUrl)}
             title={`${tool.title} Demo`}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
-            className="w-full h-full rounded-lg"
-            style={{ aspectRatio: '16/9' }}
+            className="w-full h-full"
             loading="lazy"
             onError={() => setVideoError(true)}
           />
@@ -117,7 +116,7 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
     // Fallback when no media or error occurred
     return (
       <div 
-        className="w-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center text-gray-400 border border-gray-600 group-hover:from-gray-600 group-hover:to-gray-700 transition-all duration-300"
+        className="w-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center text-gray-400 border border-gray-600 group-hover:from-gray-600 group-hover:to-gray-700 transition-all duration-300 rounded-lg"
         style={{ height: imageHeight, aspectRatio: '16/9' }}
       >
         <span className="text-4xl group-hover:scale-110 transition-transform duration-300">{tool.emoji}</span>
@@ -149,7 +148,7 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
       </CardHeader>
       
       <CardContent className="text-center flex-grow flex flex-col relative z-10">
-        <div className="mb-4 rounded-lg overflow-hidden border border-gray-600 bg-gray-800" style={{ aspectRatio: '16/9' }}>
+        <div className="mb-4 border border-gray-600">
           <MediaComponent />
         </div>
         
@@ -157,26 +156,15 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
           {getDescription()}
         </CardDescription>
         
-        {/* Optimized button with better performance */}
-        {tool.directUrl ? (
+        {/* Always link to individual tool page first, then external if available */}
+        <Link to={`/tool/${toolIndex}`} className="mt-auto">
           <Button 
             size={buttonSize as any}
-            onClick={handleButtonClick}
-            className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30 mt-auto"
+            className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30"
           >
-            <ExternalLink className="w-4 h-4 mr-2" />
-            USE IT NOW
+            View Details
           </Button>
-        ) : (
-          <Link to={`/tool/${toolIndex}`} className="mt-auto">
-            <Button 
-              size={buttonSize as any}
-              className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30"
-            >
-              Learn More
-            </Button>
-          </Link>
-        )}
+        </Link>
       </CardContent>
     </Card>
   );

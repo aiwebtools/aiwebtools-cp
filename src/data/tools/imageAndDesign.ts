@@ -3,7 +3,7 @@ import { Tool } from "@/types/tools";
 import { aiImageGeneration } from "./aiImageGeneration";
 import { imageEditingTools } from "./imageEditingTools";
 import { designAndGraphicsTools } from "./designAndGraphicsTools";
-import { Box, Cube } from "lucide-react";
+import { Box } from "lucide-react";
 
 // Additional tools specific to imageAndDesign category
 const additionalImageDesignTools: Tool[] = [

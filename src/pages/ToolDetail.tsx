@@ -93,11 +93,11 @@ const ToolDetail = () => {
     return description;
   };
 
-  // Optimized media component for detail page
+  // Fixed media component for detail page with proper aspect ratio
   const DetailMediaComponent = () => {
     if (tool.imageUrl && !imageError) {
       return (
-        <div className="relative w-full h-80 overflow-hidden">
+        <div className="relative w-full h-80 overflow-hidden rounded-xl bg-gray-800">
           {!imageLoaded && (
             <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center animate-pulse">
               <ImageIcon className="w-12 h-12 text-gray-500" />
@@ -106,7 +106,7 @@ const ToolDetail = () => {
           <img
             src={tool.imageUrl}
             alt={`${tool.title} Preview`}
-            className={`w-full h-full object-cover transition-all duration-500 ${
+            className={`w-full h-full object-contain transition-all duration-500 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             loading="eager"
@@ -120,7 +120,7 @@ const ToolDetail = () => {
     
     if (tool.videoUrl && !videoError) {
       return (
-        <div className="relative w-full h-80">
+        <div className="relative w-full h-80 overflow-hidden rounded-xl bg-gray-800">
           <iframe
             width="100%"
             height="320"
@@ -129,7 +129,7 @@ const ToolDetail = () => {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
-            className="w-full h-full"
+            className="w-full h-full rounded-xl"
             loading="eager"
             onError={() => setVideoError(true)}
           />
@@ -141,7 +141,7 @@ const ToolDetail = () => {
     }
     
     return (
-      <div className="w-full h-80 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-cyan-500/30 neon-border">
+      <div className="w-full h-80 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-cyan-500/30 neon-border rounded-xl">
         <span className="text-6xl glow-effect">{tool.emoji}</span>
       </div>
     );
@@ -196,7 +196,7 @@ const ToolDetail = () => {
                 {/* Media Section */}
                 <div className="mb-8">
                   <h3 className="text-2xl font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-4 cyber-glow">Preview</h3>
-                  <div className="rounded-xl overflow-hidden shadow-lg border border-cyan-500/30 neon-border">
+                  <div className="shadow-lg border border-cyan-500/30 neon-border rounded-xl overflow-hidden">
                     <DetailMediaComponent />
                   </div>
                 </div>
