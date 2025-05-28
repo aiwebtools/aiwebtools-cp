@@ -1,4 +1,4 @@
-import { BookOpen, Film, Clock, Car, GraduationCap, Shield, Leaf, Zap, Search, Home, Fish, Sprout, Gem, Eye, Brain, Heart, Scale, Calculator, Code, Gamepad2, CreditCard, Users, Palette, Video, History, FileText, Settings, Globe, Rocket, Cpu, Building, Headphones, UserSearch, Presentation, DollarSign, HandHeart, Paintbrush, Target, PenTool, Camera, Star, MessageSquare, Mountain, Brush, Phone, Bot, Database, Play, Radio, Layers, Gavel, Activity, Link, Music, Clapperboard, Mic, Monitor, Smartphone, Tablet, TrendingUp, TrendingDown, BarChart, PieChart, LineChart, Package, Truck, ShoppingBag, ShoppingCart, Banknote, Coins, Wallet, Receipt, FileSpreadsheet, Calculator as Calc, Briefcase, HardHat, Wrench, Hammer, Cog, Thermometer, Gauge, Ruler, Weight, Dumbbell, Apple, Utensils, Pizza, Coffee, Wine, Cake, Sandwich, Trees, Sun, Cloud, CloudRain, CloudSnow, Wind, Rainbow, Snowflake, Droplets, Waves, Plane, Ship, Bike, Bus, Ambulance, Fuel, Construction, Train, Lightbulb, Battery, Microscope, TestTube, Beaker, Atom, Magnet, Speaker, Mic as Microphone, Tv, Piano, Guitar, Music as Violin, Drum, Music as Trumpet } from "lucide-react";
+import { BookOpen, Film, Clock, Car, GraduationCap, Shield, Leaf, Zap, Search, Home, Fish, Sprout, Gem, Eye, Brain, Heart, Scale, Calculator, Code, Gamepad2, CreditCard, Users, Palette, Video, History, FileText, Settings, Globe, Rocket, Cpu, Building, Headphones, UserSearch, Presentation, DollarSign, HandHeart, Paintbrush, Target, PenTool, Camera, Star, MessageSquare, Mountain, Brush, Phone, Bot, Database, Play, Radio, Layers, Gavel, Activity, Link, Music, Clapperboard, Mic, Monitor, Smartphone, Tablet, TrendingUp, TrendingDown, BarChart, PieChart, LineChart, Package, Truck, ShoppingBag, ShoppingCart, Banknote, Coins, Wallet, Receipt, FileSpreadsheet, Calculator as Calc, Briefcase, HardHat, Wrench, Hammer, Cog, Thermometer, Gauge, Ruler, Weight, Dumbbell, Apple, Utensils, Pizza, Coffee, Wine, Cake, Sandwich, Trees, Sun, Cloud, CloudRain, CloudSnow, Wind, Rainbow, Snowflake, Droplets, Waves, Plane, Ship, Bike, Bus, Ambulance, Fuel, Construction, Train, Lightbulb, Battery, Microscope, TestTube, Beaker, Atom, Magnet, Speaker, Mic as Microphone, Tv, Piano, Guitar, Music as Violin, Drum, Music as Trumpet, Stethoscope, PillBottle, Syringe, FlaskConical, BookOpenCheck, Briefcase as BusinessCase, Coins as Money, ShieldCheck, Cannabis, Crown, Flame, MapPin, TreePine, Sparkles, Wand2, Palette as Art, Camera as Photo, Gamepad, Hash, CheckCircle2, AlertTriangle, FileImage, Scissors, Newspaper, Megaphone, Award } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 // Tool categories for organization
@@ -16,7 +16,8 @@ export const toolCategories = {
   "Science & Research": ["science", "research", "data", "analysis", "scientific", "innovation", "discovery"],
   "Entertainment & Gaming": ["entertainment", "gaming", "fun", "recreation", "games", "media", "streaming"],
   "Communication & Social": ["communication", "social", "messaging", "networking", "collaboration", "chat"],
-  "Tools & Utilities": ["tools", "utilities", "practical", "helper", "generator", "converter", "calculator"]
+  "Tools & Utilities": ["tools", "utilities", "practical", "helper", "generator", "converter", "calculator"],
+  "Specialized Services": ["specialized", "professional", "expert", "consultation", "advisory", "guidance"]
 };
 
 export const featuredTools: Tool[] = [
@@ -84,6 +85,907 @@ export const featuredTools: Tool[] = [
 
 export const allTools: Tool[] = [
   ...featuredTools,
+  // New AI Tools from your comprehensive list
+  {
+    icon: Bot,
+    title: "AI Tools Expert GPT",
+    description: "Master AI specialist providing expert guidance on all AI tools and technologies",
+    emoji: "🤖",
+    color: "from-blue-600 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["AI", "expert", "tools", "guidance", "technology", "specialist", "consultation"],
+    category: "AI Assistants & Chatbots"
+  },
+  {
+    icon: Video,
+    title: "Movie Maker AI Studio",
+    description: "Professional AI-powered movie creation studio for filmmakers and content creators",
+    emoji: "🎬",
+    color: "from-red-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["movie", "studio", "filmmaking", "video", "production", "AI", "cinema"],
+    category: "Video Generation & Editing"
+  },
+  {
+    icon: FileText,
+    title: "Insurance Claims GPT",
+    description: "AI assistant for insurance claim processing, documentation, and professional guidance",
+    emoji: "📋",
+    color: "from-blue-500 to-indigo-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["insurance", "claims", "documentation", "legal", "finance", "professional"],
+    category: "Legal & Finance"
+  },
+  {
+    icon: Heart,
+    title: "Veterinarian GPT",
+    description: "Professional veterinary assistant for animal health, care guidance, and medical advice",
+    emoji: "🐾",
+    color: "from-green-600 to-emerald-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["veterinary", "animals", "pets", "health", "medical", "care", "advice"],
+    category: "Health & Wellness"
+  },
+  {
+    icon: Plane,
+    title: "Travel Advisor GPT",
+    description: "Expert travel planning assistant for destinations, itineraries, and travel optimization",
+    emoji: "✈️",
+    color: "from-cyan-500 to-blue-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["travel", "vacation", "planning", "destinations", "tourism", "advisor", "trip"],
+    category: "Tools & Utilities"
+  },
+  {
+    icon: Users,
+    title: "Social Services GPT",
+    description: "Community support assistant for social services, welfare, and public assistance guidance",
+    emoji: "🤝",
+    color: "from-purple-500 to-indigo-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["social", "services", "community", "support", "welfare", "assistance", "public"],
+    category: "Communication & Social"
+  },
+  {
+    icon: Cannabis,
+    title: "Cannabis GPT",
+    description: "Comprehensive cannabis education, cultivation, and industry guidance assistant",
+    emoji: "🌿",
+    color: "from-green-500 to-emerald-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["cannabis", "marijuana", "cultivation", "medical", "industry", "education"],
+    category: "Health & Wellness"
+  },
+  {
+    icon: ShieldCheck,
+    title: "CyberSecurity GPT",
+    description: "Advanced cybersecurity expert for threat analysis, protection strategies, and security audits",
+    emoji: "🔒",
+    color: "from-red-600 to-orange-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["cybersecurity", "security", "hacking", "protection", "privacy", "digital", "safety"],
+    category: "Technology & Development"
+  },
+  {
+    icon: Home,
+    title: "Home Renovator GPT",
+    description: "Professional home renovation guidance for construction, design, and improvement projects",
+    emoji: "🏠",
+    color: "from-yellow-500 to-orange-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["home", "renovation", "construction", "design", "improvement", "building", "DIY"],
+    category: "Tools & Utilities"
+  },
+  {
+    icon: Scale,
+    title: "Public Defender GPT",
+    description: "Legal assistance for public defense cases, criminal law guidance, and court preparation",
+    emoji: "⚖️",
+    color: "from-gray-600 to-slate-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["legal", "defense", "criminal", "law", "court", "justice", "attorney"],
+    category: "Legal & Finance"
+  },
+  {
+    icon: Stethoscope,
+    title: "Doctor GPT",
+    description: "Medical consultation assistant for health guidance, symptoms analysis, and wellness advice",
+    emoji: "👩‍⚕️",
+    color: "from-blue-500 to-cyan-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["medical", "doctor", "health", "diagnosis", "symptoms", "healthcare", "consultation"],
+    category: "Health & Wellness"
+  },
+  {
+    icon: Wine,
+    title: "Mixologist GPT",
+    description: "Professional bartending assistant for cocktails, drinks, and mixology expertise",
+    emoji: "🍸",
+    color: "from-purple-500 to-pink-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["cocktails", "bartending", "drinks", "mixology", "recipes", "alcohol", "bar"],
+    category: "Entertainment & Gaming"
+  },
+  {
+    icon: TrendingUp,
+    title: "Trader GPT",
+    description: "Financial trading assistant for market analysis, investment strategies, and trading guidance",
+    emoji: "📈",
+    color: "from-green-600 to-emerald-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["trading", "finance", "stocks", "investment", "market", "cryptocurrency", "analysis"],
+    category: "Legal & Finance"
+  },
+  {
+    icon: PillBottle,
+    title: "Pharmaceutical Assistant",
+    description: "Medication guidance, drug interactions, and pharmaceutical knowledge assistant",
+    emoji: "💊",
+    color: "from-blue-600 to-indigo-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["pharmaceutical", "medication", "drugs", "health", "pharmacy", "medicine"],
+    category: "Health & Wellness"
+  },
+  {
+    icon: Rocket,
+    title: "Stellaris AI Space GPT",
+    description: "Space exploration and strategy gaming assistant for Stellaris and space simulations",
+    emoji: "🚀",
+    color: "from-purple-600 to-indigo-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["space", "gaming", "strategy", "stellaris", "exploration", "simulation"],
+    category: "Entertainment & Gaming"
+  },
+  {
+    icon: Target,
+    title: "Firearms Safety GPT",
+    description: "Comprehensive firearms safety education, training, and responsible ownership guidance",
+    emoji: "🎯",
+    color: "from-red-500 to-orange-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["firearms", "safety", "training", "education", "responsibility", "security"],
+    category: "Education & Learning"
+  },
+  {
+    icon: Flame,
+    title: "Firefighter's GPT",
+    description: "Professional firefighting guidance, emergency response, and safety protocol assistant",
+    emoji: "🚒",
+    color: "from-red-600 to-yellow-500",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["firefighting", "emergency", "safety", "rescue", "response", "professional"],
+    category: "Specialized Services"
+  },
+  {
+    icon: Search,
+    title: "Criminologist GPT",
+    description: "Criminal investigation analysis, forensics guidance, and criminology expertise",
+    emoji: "🔍",
+    color: "from-gray-600 to-slate-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["criminology", "investigation", "forensics", "crime", "analysis", "detective"],
+    category: "Legal & Finance"
+  },
+  {
+    icon: Calculator,
+    title: "Taxes GPT",
+    description: "Tax preparation assistance, deductions guidance, and financial tax planning",
+    emoji: "💰",
+    color: "from-green-500 to-blue-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["taxes", "finance", "accounting", "deductions", "IRS", "preparation"],
+    category: "Legal & Finance"
+  },
+  {
+    icon: Sun,
+    title: "Solar Land Assessor GPT",
+    description: "Solar energy assessment for land evaluation, renewable energy planning, and sustainability",
+    emoji: "☀️",
+    color: "from-yellow-500 to-orange-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["solar", "renewable", "energy", "assessment", "sustainability", "green"],
+    category: "Science & Research"
+  },
+  {
+    icon: Brain,
+    title: "EMDR Therapy Assistant",
+    description: "Eye Movement Desensitization and Reprocessing therapy guidance and trauma support",
+    emoji: "👁️",
+    color: "from-purple-500 to-indigo-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["EMDR", "therapy", "trauma", "psychology", "healing", "mental health"],
+    category: "Health & Wellness"
+  },
+  {
+    icon: Eye,
+    title: "Truth Seeker - Oraculum",
+    description: "Truth analysis, fact verification, and wisdom guidance for seeking authentic information",
+    emoji: "🔮",
+    color: "from-cyan-500 to-purple-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["truth", "wisdom", "oracle", "verification", "analysis", "insight"],
+    category: "Tools & Utilities"
+  },
+  {
+    icon: Heart,
+    title: "Marriage Mender GPT",
+    description: "Relationship counseling and marriage guidance for couples therapy and communication",
+    emoji: "💕",
+    color: "from-pink-500 to-red-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["marriage", "relationships", "counseling", "therapy", "couples", "communication"],
+    category: "Health & Wellness"
+  },
+  {
+    icon: Sprout,
+    title: "AI Farming Expert",
+    description: "Agricultural expertise for farming optimization, crop management, and sustainable agriculture",
+    emoji: "🌱",
+    color: "from-green-600 to-emerald-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["farming", "agriculture", "crops", "sustainable", "optimization", "cultivation"],
+    category: "Science & Research"
+  },
+  {
+    icon: Fish,
+    title: "Fisherman's GPT",
+    description: "Fishing expertise, techniques, locations, and equipment guidance for anglers",
+    emoji: "🎣",
+    color: "from-blue-500 to-cyan-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["fishing", "angling", "outdoor", "techniques", "equipment", "locations"],
+    category: "Entertainment & Gaming"
+  },
+  {
+    icon: Gem,
+    title: "Collectible Appraisal GPT",
+    description: "Professional appraisal service for collectibles, antiques, and valuable items",
+    emoji: "💎",
+    color: "from-purple-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["collectibles", "appraisal", "antiques", "valuation", "assessment", "expert"],
+    category: "Specialized Services"
+  },
+  {
+    icon: Weight,
+    title: "Material Valuation GPT",
+    description: "Professional material assessment and valuation for industrial and commercial purposes",
+    emoji: "⚖️",
+    color: "from-gray-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["materials", "valuation", "assessment", "industrial", "commercial", "analysis"],
+    category: "Specialized Services"
+  },
+  {
+    icon: Cog,
+    title: "Engineering GPTs",
+    description: "Comprehensive engineering solutions for mechanical, electrical, and civil engineering",
+    emoji: "⚙️",
+    color: "from-orange-600 to-red-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["engineering", "mechanical", "electrical", "civil", "technical", "design"],
+    category: "Technology & Development"
+  },
+  {
+    icon: Fuel,
+    title: "Oil & Gas AI Tools Suite",
+    description: "Comprehensive oil and gas industry tools for exploration, production, and analysis",
+    emoji: "🛢️",
+    color: "from-black to-gray-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["oil", "gas", "energy", "petroleum", "industry", "exploration", "production"],
+    category: "Science & Research"
+  },
+  {
+    icon: Paintbrush,
+    title: "Tattoo GPT",
+    description: "Tattoo design creation, art consultation, and tattoo culture guidance",
+    emoji: "🎨",
+    color: "from-purple-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["tattoo", "art", "design", "body art", "ink", "creative", "culture"],
+    category: "Creative & Design"
+  },
+  {
+    icon: Search,
+    title: "Phenomenon Exploration AI",
+    description: "Scientific phenomenon investigation and unexplained mysteries exploration",
+    emoji: "🔬",
+    color: "from-cyan-600 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["phenomenon", "science", "exploration", "mysteries", "investigation", "research"],
+    category: "Science & Research"
+  },
+  {
+    icon: Star,
+    title: "Performing Arts AI Tools",
+    description: "Comprehensive performing arts guidance for theater, dance, and stage performance",
+    emoji: "⭐",
+    color: "from-yellow-500 to-orange-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["performing arts", "theater", "dance", "stage", "performance", "drama"],
+    category: "Entertainment & Gaming"
+  },
+  {
+    icon: Utensils,
+    title: "Restaurant Menu Maker GPT",
+    description: "Professional restaurant menu creation, pricing, and culinary design assistance",
+    emoji: "🍽️",
+    color: "from-red-500 to-yellow-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["restaurant", "menu", "culinary", "food", "design", "pricing", "hospitality"],
+    category: "Business & Productivity"
+  },
+  {
+    icon: FlaskConical,
+    title: "Apothecary GPT",
+    description: "Traditional herbal medicine, natural remedies, and apothecary knowledge",
+    emoji: "🧪",
+    color: "from-green-600 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["apothecary", "herbal", "medicine", "natural", "remedies", "traditional"],
+    category: "Health & Wellness"
+  },
+  {
+    icon: Globe,
+    title: "World Peace GPT",
+    description: "Global harmony initiatives, conflict resolution, and peace-building strategies",
+    emoji: "🕊️",
+    color: "from-blue-500 to-green-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["peace", "harmony", "conflict resolution", "global", "diplomacy", "unity"],
+    category: "Communication & Social"
+  },
+  {
+    icon: Briefcase,
+    title: "Jobs & Resume Assistance",
+    description: "Professional career guidance, resume optimization, and job search assistance",
+    emoji: "💼",
+    color: "from-blue-600 to-indigo-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["jobs", "resume", "career", "employment", "professional", "hiring"],
+    category: "Business & Productivity"
+  },
+  {
+    icon: Code,
+    title: "MicroSaaS Developer GPT",
+    description: "Micro-SaaS development guidance for small software businesses and entrepreneurs",
+    emoji: "💻",
+    color: "from-green-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["SaaS", "development", "entrepreneur", "software", "business", "startup"],
+    category: "Technology & Development"
+  },
+  {
+    icon: Crown,
+    title: "ImmortalizeMe™ Services",
+    description: "Digital legacy creation and personal immortalization through AI technology",
+    emoji: "👑",
+    color: "from-yellow-500 to-purple-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["legacy", "immortalization", "digital", "AI", "personal", "memory"],
+    category: "Specialized Services"
+  },
+  {
+    icon: Coffee,
+    title: "Culinary & Mixology GPTs",
+    description: "Professional cooking and mixology expertise for chefs and bartenders",
+    emoji: "👨‍🍳",
+    color: "from-orange-500 to-red-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["culinary", "cooking", "mixology", "chef", "bartender", "recipes"],
+    category: "Entertainment & Gaming"
+  },
+  {
+    icon: Sparkles,
+    title: "Skin-Care & Spa GPT",
+    description: "Professional skincare guidance, spa treatments, and beauty consultation",
+    emoji: "✨",
+    color: "from-pink-500 to-purple-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["skincare", "spa", "beauty", "wellness", "treatment", "cosmetics"],
+    category: "Health & Wellness"
+  },
+  {
+    icon: Palette,
+    title: "Logo & Ad Design",
+    description: "Professional logo creation and advertising design for businesses and brands",
+    emoji: "🎨",
+    color: "from-blue-600 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["logo", "design", "advertising", "branding", "graphics", "marketing"],
+    category: "Creative & Design"
+  },
+  {
+    icon: BookOpenCheck,
+    title: "Comic Book Maker GPT",
+    description: "Comic book creation, storytelling, and illustration guidance for graphic novels",
+    emoji: "📚",
+    color: "from-red-600 to-yellow-500",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["comic", "graphic novel", "illustration", "storytelling", "art", "creative"],
+    category: "Creative & Design"
+  },
+  {
+    icon: Wand2,
+    title: "Meme Generator GPT",
+    description: "Viral meme creation, social media content, and humor generation",
+    emoji: "😂",
+    color: "from-purple-500 to-pink-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["memes", "social media", "humor", "viral", "content", "entertainment"],
+    category: "Entertainment & Gaming"
+  },
+  {
+    icon: Shirt,
+    title: "Virtual Stylist GPT",
+    description: "Personal fashion styling, wardrobe consultation, and style guidance",
+    emoji: "👗",
+    color: "from-pink-500 to-purple-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["fashion", "styling", "wardrobe", "clothes", "style", "personal"],
+    category: "Creative & Design"
+  },
+  {
+    icon: FileImage,
+    title: "Graphic & Cover Design GPT",
+    description: "Professional graphic design and book cover creation for publications",
+    emoji: "📖",
+    color: "from-blue-600 to-green-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["graphic design", "cover", "books", "publications", "visual", "design"],
+    category: "Creative & Design"
+  },
+  {
+    icon: Camera,
+    title: "Product Photography GPT",
+    description: "Professional product photography guidance, lighting, and e-commerce optimization",
+    emoji: "📸",
+    color: "from-gray-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["photography", "product", "e-commerce", "lighting", "professional", "visual"],
+    category: "Creative & Design"
+  },
+  {
+    icon: ShoppingBag,
+    title: "Shopping GPT",
+    description: "Smart shopping assistant for deals, comparisons, and purchase recommendations",
+    emoji: "🛍️",
+    color: "from-green-500 to-blue-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["shopping", "deals", "comparison", "recommendations", "e-commerce", "retail"],
+    category: "Tools & Utilities"
+  },
+  {
+    icon: Layers,
+    title: "3D Print GPT",
+    description: "3D printing guidance, modeling assistance, and manufacturing optimization",
+    emoji: "🖨️",
+    color: "from-orange-600 to-red-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["3D printing", "modeling", "manufacturing", "design", "prototyping", "technology"],
+    category: "Technology & Development"
+  },
+  {
+    icon: Video,
+    title: "Commercial Scene Maker",
+    description: "Professional commercial and advertisement scene creation for marketing",
+    emoji: "📺",
+    color: "from-purple-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["commercial", "advertising", "marketing", "video", "scenes", "production"],
+    category: "Video Generation & Editing"
+  },
+  {
+    icon: Scissors,
+    title: "Playwright GPT",
+    description: "Professional playwriting assistance for theater scripts and dramatic works",
+    emoji: "🎭",
+    color: "from-red-600 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["playwright", "theater", "drama", "scripts", "stage", "performance"],
+    category: "Writing & Content"
+  },
+  {
+    icon: BookOpenCheck,
+    title: "Training Manual Generator",
+    description: "Professional training manual creation for corporate and educational purposes",
+    emoji: "📋",
+    color: "from-blue-600 to-green-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["training", "manual", "education", "corporate", "documentation", "learning"],
+    category: "Education & Learning"
+  },
+  {
+    icon: Film,
+    title: "ScreenPlay Writer GPT",
+    description: "Professional screenplay writing for movies, TV shows, and film productions",
+    emoji: "🎬",
+    color: "from-red-500 to-orange-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["screenplay", "film", "movies", "TV", "script", "writing", "production"],
+    category: "Writing & Content"
+  },
+  {
+    icon: Gamepad,
+    title: "Game Design Document GPT",
+    description: "Comprehensive game design documentation and development planning",
+    emoji: "🎮",
+    color: "from-purple-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["game design", "documentation", "development", "gaming", "planning", "creative"],
+    category: "Entertainment & Gaming"
+  },
+  {
+    icon: BusinessCase,
+    title: "Business Plan Generator",
+    description: "Professional business plan creation and startup strategy development",
+    emoji: "📊",
+    color: "from-green-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["business plan", "startup", "strategy", "entrepreneur", "planning", "finance"],
+    category: "Business & Productivity"
+  },
+  {
+    icon: Presentation,
+    title: "Quick PowerPoint PPTx GPT",
+    description: "Rapid PowerPoint presentation creation and professional slide design",
+    emoji: "📽️",
+    color: "from-orange-500 to-red-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["PowerPoint", "presentations", "slides", "business", "professional", "design"],
+    category: "Business & Productivity"
+  },
+  {
+    icon: Video,
+    title: "Text to Video Prompt GPT",
+    description: "Optimized prompts for text-to-video AI generation and content creation",
+    emoji: "📝",
+    color: "from-blue-600 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["text to video", "prompts", "AI", "video generation", "content", "optimization"],
+    category: "Video Generation & Editing"
+  },
+  {
+    icon: Paintbrush,
+    title: "Coloring Book Generator",
+    description: "Custom coloring book creation for children and adults with artistic designs",
+    emoji: "🎨",
+    color: "from-purple-500 to-pink-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["coloring book", "art", "children", "creative", "design", "education"],
+    category: "Creative & Design"
+  },
+  {
+    icon: Scale,
+    title: "Legislation Writer GPT",
+    description: "Professional legislative document drafting and policy writing assistance",
+    emoji: "📜",
+    color: "from-blue-700 to-gray-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["legislation", "policy", "government", "law", "drafting", "legal"],
+    category: "Legal & Finance"
+  },
+  {
+    icon: Gavel,
+    title: "Writing Lawmakers Tools",
+    description: "Tools for communicating with legislators and government officials",
+    emoji: "✍️",
+    color: "from-blue-600 to-indigo-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["lawmakers", "government", "communication", "advocacy", "politics", "writing"],
+    category: "Communication & Social"
+  },
+  {
+    icon: Microphone,
+    title: "Podcast Script Writer GPT",
+    description: "Professional podcast script creation and audio content planning",
+    emoji: "🎙️",
+    color: "from-purple-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["podcast", "script", "audio", "content", "broadcasting", "media"],
+    category: "Music & Audio"
+  },
+  {
+    icon: FileText,
+    title: "Grant Writer GPT",
+    description: "Professional grant writing assistance for funding applications and proposals",
+    emoji: "💰",
+    color: "from-green-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["grant writing", "funding", "proposals", "applications", "nonprofit", "research"],
+    category: "Business & Productivity"
+  },
+  {
+    icon: Newspaper,
+    title: "Newsletter Writer GPT",
+    description: "Professional newsletter creation and email marketing content development",
+    emoji: "📰",
+    color: "from-blue-500 to-cyan-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["newsletter", "email marketing", "content", "communication", "marketing"],
+    category: "Business & Productivity"
+  },
+  {
+    icon: Megaphone,
+    title: "Public Testimony Writer",
+    description: "Professional public testimony and speech writing for government hearings",
+    emoji: "📢",
+    color: "from-red-600 to-orange-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["testimony", "public speaking", "government", "advocacy", "speech", "civic"],
+    category: "Communication & Social"
+  },
+  {
+    icon: BookOpen,
+    title: "Learn Any Course GPT",
+    description: "Comprehensive learning assistant for any subject or course curriculum",
+    emoji: "📚",
+    color: "from-green-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["learning", "education", "courses", "curriculum", "study", "knowledge"],
+    category: "Education & Learning"
+  },
+  {
+    icon: Award,
+    title: "Learn Any Skill GPT",
+    description: "Skill development assistant for learning any practical or professional skill",
+    emoji: "🏆",
+    color: "from-yellow-500 to-orange-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["skills", "learning", "development", "training", "practical", "professional"],
+    category: "Education & Learning"
+  },
+  {
+    icon: History,
+    title: "Talk to History GPT",
+    description: "Interactive historical conversations with famous figures and historical events",
+    emoji: "🏛️",
+    color: "from-brown-600 to-yellow-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["history", "historical figures", "conversation", "education", "interactive"],
+    category: "Education & Learning"
+  },
+  {
+    icon: Calculator,
+    title: "Math Inventor GPT",
+    description: "Advanced mathematics problem solving and mathematical concept development",
+    emoji: "🔢",
+    color: "from-blue-600 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["mathematics", "problem solving", "concepts", "invention", "education"],
+    category: "Education & Learning"
+  },
+  {
+    icon: GraduationCap,
+    title: "Course Creator GPT",
+    description: "Educational course development and curriculum design for instructors",
+    emoji: "👨‍🏫",
+    color: "from-green-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["course creation", "curriculum", "education", "instructor", "teaching"],
+    category: "Education & Learning"
+  },
+  {
+    icon: Home,
+    title: "HomeSchool Assistant GPT",
+    description: "Comprehensive homeschooling support and educational guidance for families",
+    emoji: "🏠",
+    color: "from-yellow-500 to-green-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["homeschool", "education", "family", "teaching", "learning", "children"],
+    category: "Education & Learning"
+  },
+  {
+    icon: Star,
+    title: "Celebrity Chat Line GPT",
+    description: "Interactive conversations with AI versions of celebrities and famous personalities",
+    emoji: "⭐",
+    color: "from-gold-500 to-yellow-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["celebrity", "entertainment", "conversation", "famous", "personality", "chat"],
+    category: "Entertainment & Gaming"
+  },
+  {
+    icon: Bot,
+    title: "Matrix-Neo GPT",
+    description: "Matrix-inspired AI assistant with philosophical insights and reality questioning",
+    emoji: "🕶️",
+    color: "from-green-500 to-black",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["matrix", "philosophy", "reality", "AI", "consciousness", "simulation"],
+    category: "Entertainment & Gaming"
+  },
+  {
+    icon: CheckCircle2,
+    title: "Quiz & Test Maker/Grader",
+    description: "Educational quiz creation and automated grading system for educators",
+    emoji: "✅",
+    color: "from-blue-600 to-green-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["quiz", "test", "grading", "education", "assessment", "teaching"],
+    category: "Education & Learning"
+  },
+  {
+    icon: GraduationCap,
+    title: "Personal Educator GPT",
+    description: "Personalized learning assistant adapted to individual learning styles and needs",
+    emoji: "👨‍🎓",
+    color: "from-purple-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["personal", "education", "learning", "individualized", "tutor", "adaptive"],
+    category: "Education & Learning"
+  },
+  {
+    icon: Hash,
+    title: "Binary to Text Converter",
+    description: "Convert binary code to text and vice versa for programming and data analysis",
+    emoji: "💻",
+    color: "from-green-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["binary", "converter", "programming", "data", "coding", "technology"],
+    category: "Technology & Development"
+  },
+  {
+    icon: Crown,
+    title: "Project Blueberry GPT👑🫐",
+    description: "Premium AI project management and creative development suite",
+    emoji: "🫐",
+    color: "from-blue-600 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["project management", "creative", "premium", "development", "productivity"],
+    category: "Business & Productivity"
+  },
+  {
+    icon: Users,
+    title: "Roleplay Companion GPT",
+    description: "Interactive roleplay scenarios and character development for entertainment",
+    emoji: "🎭",
+    color: "from-purple-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["roleplay", "entertainment", "character", "interactive", "scenarios"],
+    category: "Entertainment & Gaming"
+  },
+  {
+    icon: Users,
+    title: "Team GPT",
+    description: "Collaborative team management and group project coordination assistant",
+    emoji: "👥",
+    color: "from-blue-600 to-green-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["team", "collaboration", "management", "project", "coordination", "group"],
+    category: "Business & Productivity"
+  },
+  {
+    icon: Brain,
+    title: "Albert Einstein GPT",
+    description: "Scientific discussions and physics insights from the perspective of Albert Einstein",
+    emoji: "🧠",
+    color: "from-gray-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["Einstein", "physics", "science", "relativity", "genius", "education"],
+    category: "Education & Learning"
+  },
+  {
+    icon: Gamepad,
+    title: "Trivia Night GPT",
+    description: "Interactive trivia games and quiz hosting for entertainment and learning",
+    emoji: "🧩",
+    color: "from-purple-600 to-yellow-500",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["trivia", "quiz", "games", "entertainment", "knowledge", "interactive"],
+    category: "Entertainment & Gaming"
+  },
+  {
+    icon: Search,
+    title: "Etymological Decoder GPT",
+    description: "Word origins, etymology, and linguistic analysis for language enthusiasts",
+    emoji: "📝",
+    color: "from-brown-600 to-orange-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["etymology", "language", "linguistics", "words", "origins", "analysis"],
+    category: "Education & Learning"
+  },
+  {
+    icon: Crystal,
+    title: "Fortune Teller GPT",
+    description: "Entertainment fortune telling and mystical guidance for fun and insight",
+    emoji: "🔮",
+    color: "from-purple-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["fortune telling", "mystical", "entertainment", "predictions", "fun"],
+    category: "Entertainment & Gaming"
+  },
+  {
+    icon: Mountain,
+    title: "Imagination Traveler GPT",
+    description: "Creative journey guidance for imaginative exploration and storytelling",
+    emoji: "🗻",
+    color: "from-blue-600 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["imagination", "creativity", "travel", "storytelling", "exploration"],
+    category: "Creative & Design"
+  },
+  {
+    icon: Ship,
+    title: "Titanic Resurrections GPT",
+    description: "Historical recreation and alternative history scenarios of the Titanic",
+    emoji: "🚢",
+    color: "from-blue-700 to-gray-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["Titanic", "history", "alternative", "recreation", "historical", "simulation"],
+    category: "Education & Learning"
+  },
+  {
+    icon: FlaskConical,
+    title: "Alchemical Scientist GPT",
+    description: "Historical alchemy and modern chemistry fusion for scientific exploration",
+    emoji: "⚗️",
+    color: "from-purple-600 to-gold-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["alchemy", "chemistry", "science", "historical", "exploration", "mystical"],
+    category: "Science & Research"
+  },
+  {
+    icon: TreePine,
+    title: "Native American History AI",
+    description: "Indigenous American history, culture, and traditional knowledge preservation",
+    emoji: "🪶",
+    color: "from-brown-600 to-green-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["Native American", "indigenous", "history", "culture", "traditional", "heritage"],
+    category: "Education & Learning"
+  },
+  {
+    icon: Settings,
+    title: "Multi-Tasker GPT",
+    description: "Advanced multi-task coordination and productivity optimization assistant",
+    emoji: "⚡",
+    color: "from-orange-600 to-red-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["multitasking", "productivity", "coordination", "efficiency", "organization"],
+    category: "Business & Productivity"
+  },
+  {
+    icon: Bot,
+    title: "Customizable GPT Maker👑",
+    description: "Create and customize your own GPT assistants for specific needs",
+    emoji: "🛠️",
+    color: "from-blue-600 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["customizable", "GPT maker", "AI", "creation", "personalization"],
+    category: "Technology & Development"
+  },
+  {
+    icon: Crown,
+    title: "Blueberry Method GPT🫐",
+    description: "Premium methodology and systematic approach to problem-solving",
+    emoji: "🫐",
+    color: "from-blue-600 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["methodology", "problem solving", "systematic", "premium", "approach"],
+    category: "Business & Productivity"
+  },
+  {
+    icon: Zap,
+    title: "GodMode GPT",
+    description: "Advanced AI capabilities with enhanced reasoning and problem-solving power",
+    emoji: "⚡",
+    color: "from-gold-500 to-red-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["advanced", "god mode", "enhanced", "reasoning", "powerful", "AI"],
+    category: "AI Assistants & Chatbots"
+  },
+  {
+    icon: Globe,
+    title: "Prompt 2 AI Page Builder",
+    description: "Convert text prompts into complete web pages and applications",
+    emoji: "🌐",
+    color: "from-blue-600 to-green-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    tags: ["page builder", "web development", "prompts", "AI", "applications"],
+    category: "Technology & Development"
+  },
   {
     icon: Activity,
     title: "Mental Wellness GPT (CBT)",
@@ -93,346 +995,6 @@ export const allTools: Tool[] = [
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     tags: ["mental health", "wellness", "therapy", "CBT", "emotional support", "psychology", "mindfulness", "stress", "anxiety", "depression", "counseling", "self-care"],
     category: "Health & Wellness"
-  },
-  {
-    icon: Link,
-    title: "Legislator Link GPT",
-    description: "AI tool to help you easily connect with legislators in your state or country and get involved in local legislative efforts",
-    emoji: "🏛️",
-    color: "from-blue-600 to-indigo-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["politics", "government", "legislation", "democracy", "civic engagement", "voting", "policy", "advocacy", "representatives", "congress", "senate"],
-    category: "Communication & Social"
-  },
-  {
-    icon: Music,
-    title: "MiniMax Video & Music Generator",
-    description: "Creating Music Videos for your promotions has never been easier with AI-powered generation",
-    emoji: "🎵",
-    color: "from-purple-600 to-pink-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["music", "video", "generation", "promotion", "creative", "marketing", "advertising", "content", "social media"],
-    category: "Music & Audio"
-  },
-  {
-    icon: Clapperboard,
-    title: "KLING (Chinese Sora) Video Generator",
-    description: "China's version of OpenAI's Sora, generates high-quality videos up to two minutes long from text prompts",
-    emoji: "🎬",
-    color: "from-red-600 to-orange-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["video", "generation", "AI", "text-to-video", "sora", "creative", "chinese", "kuaishou", "cinematic"],
-    category: "Video Generation & Editing"
-  },
-  {
-    icon: Video,
-    title: "RunwayML Text to Video Generator",
-    description: "Gen 3 is our personal favorite text-to-video generation platform for professional content",
-    emoji: "🎥",
-    color: "from-green-600 to-blue-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["video", "generation", "AI", "text-to-video", "runway", "creative", "professional", "gen3", "machine learning"],
-    category: "Video Generation & Editing"
-  },
-  {
-    icon: Zap,
-    title: "Luma Dream Machine - Text to Video",
-    description: "A mirror and a map leaves the soul intact - advanced text to video generation with artistic flair",
-    emoji: "⚡",
-    color: "from-yellow-600 to-orange-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["video", "generation", "AI", "text-to-video", "creative", "dreams", "artistic", "luma", "imagination"],
-    category: "Video Generation & Editing"
-  },
-  {
-    icon: Video,
-    title: "HotShot Text-to-Video Generator",
-    description: "Cutting-edge AI-powered text-to-video generation tool designed to streamline content creation",
-    emoji: "🔥",
-    color: "from-red-600 to-pink-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["video", "generation", "AI", "text-to-video", "content creation", "creative", "streamlined", "efficient"],
-    category: "Video Generation & Editing"
-  },
-  {
-    icon: Leaf,
-    title: "Sustainable Futures GPT",
-    description: "Assist governments and communities in making data-driven decisions for environmental sustainability",
-    emoji: "🌍",
-    color: "from-green-600 to-emerald-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["environment", "sustainability", "government", "data", "green", "ecology", "climate", "renewable", "conservation"],
-    category: "Science & Research"
-  },
-  {
-    icon: Zap,
-    title: "Nikola Tesla GPT",
-    description: "Investigate scientific mysteries and craft groundbreaking theories with innovative brilliance",
-    emoji: "⚡",
-    color: "from-purple-600 to-indigo-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["science", "invention", "electricity", "innovation", "research", "genius", "physics", "engineering", "discovery"],
-    category: "Science & Research"
-  },
-  {
-    icon: Search,
-    title: "Food Quality Inspector GPT",
-    description: "Smart companion for grocery shopping, assessing food quality and safety with expert guidance",
-    emoji: "🛒",
-    color: "from-yellow-500 to-orange-600",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["food", "quality", "safety", "inspection", "grocery", "health", "nutrition", "shopping", "organic"],
-    category: "Health & Wellness"
-  },
-  {
-    icon: Eye,
-    title: "Snoop Image AI",
-    description: "Tool for verifying image authenticity, analyzing whether images are likely real or AI-generated with Snoop Dogg style",
-    emoji: "👁️",
-    color: "from-purple-600 to-indigo-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["image", "verification", "authenticity", "AI detection", "analysis", "security", "deepfake", "fake", "real"],
-    category: "Technology & Development"
-  },
-  {
-    icon: Gavel,
-    title: "Legal Draftsmith GPT",
-    description: "Specializes in the precise drafting of legal documents with expert AI assistance for professionals",
-    emoji: "⚖️",
-    color: "from-gray-700 to-slate-800",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["legal", "law", "documents", "drafting", "contracts", "justice", "attorney", "lawyer", "compliance"],
-    category: "Legal & Finance"
-  },
-  {
-    icon: Video,
-    title: "InVideo AI",
-    description: "Ultimate video creation tool for crafting professional videos accessible to everyone",
-    emoji: "🎥",
-    color: "from-red-600 to-pink-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["video", "creation", "professional", "editing", "marketing", "content", "social media", "youtube"],
-    category: "Video Generation & Editing"
-  },
-  {
-    icon: Bot,
-    title: "Grok 3",
-    description: "Advanced AI developed by X.AI with enhanced conversational capabilities and real-time information",
-    emoji: "🤖",
-    color: "from-blue-600 to-cyan-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["AI", "chatbot", "conversation", "advanced", "X.AI", "communication", "elon musk", "twitter", "real-time"],
-    category: "AI Assistants & Chatbots"
-  },
-  {
-    icon: Cpu,
-    title: "BIG-AGI",
-    description: "Innovative AI suite making cutting-edge artificial intelligence accessible to professionals and developers",
-    emoji: "💻",
-    color: "from-purple-700 to-indigo-800",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["AI", "development", "professional", "suite", "cutting-edge", "technology", "developers", "programming"],
-    category: "Technology & Development"
-  },
-  {
-    icon: MessageSquare,
-    title: "ChatRTX by NVIDIA",
-    description: "Personalize a GPT model with your own content, requires RTX 30/40 series GPU with 8GB+ VRAM",
-    emoji: "💬",
-    color: "from-green-600 to-emerald-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["AI", "chatbot", "NVIDIA", "GPU", "personalization", "local", "RTX", "hardware", "custom"],
-    category: "AI Assistants & Chatbots"
-  },
-  {
-    icon: Brain,
-    title: "GPT Ideas Assistant",
-    description: "AI assistant for generating and organizing creative GPT ideas and instructions for custom models",
-    emoji: "💡",
-    color: "from-yellow-600 to-orange-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["AI", "ideas", "creativity", "brainstorming", "organization", "GPT", "prompts", "instructions"],
-    category: "Creative & Design"
-  },
-  {
-    icon: Phone,
-    title: "Freedom GPT (Phone Call GPT)",
-    description: "Deploy AI phone agents with advanced conversational capabilities for business automation",
-    emoji: "📞",
-    color: "from-blue-700 to-indigo-800",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["AI", "phone", "automation", "business", "conversation", "agents", "voice", "calling", "customer service"],
-    category: "Business & Productivity"
-  },
-  {
-    icon: Rocket,
-    title: "Cheatlayer Project Atlas (BETA)",
-    description: "Advanced automation platform for creating complex workflows and business processes efficiently",
-    emoji: "🚀",
-    color: "from-orange-600 to-red-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["automation", "workflow", "business", "processes", "productivity", "beta", "advanced", "efficiency"],
-    category: "Business & Productivity"
-  },
-  {
-    icon: Users,
-    title: "Hugging Face Chat",
-    description: "Access various large language models without paid membership and deploy specialized AI assistants",
-    emoji: "🤗",
-    color: "from-cyan-600 to-blue-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["AI", "language models", "chat", "free", "community", "assistants", "open source", "models"],
-    category: "AI Assistants & Chatbots"
-  },
-  {
-    icon: Heart,
-    title: "Music Melodies & Lessons GPT",
-    description: "Ultimate musical companion for learning instruments, vocals, songwriting with step-by-step guidance",
-    emoji: "🎵",
-    color: "from-purple-600 to-pink-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["music", "learning", "instruments", "vocals", "education", "songwriting", "lessons", "teaching"],
-    category: "Education & Learning"
-  },
-  {
-    icon: Star,
-    title: "Sophia Aeterna",
-    description: "Embodies timeless wisdom, guiding seekers through philosophy, mysticism, and esotericism",
-    emoji: "⭐",
-    color: "from-yellow-500 to-amber-600",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["wisdom", "philosophy", "mysticism", "spirituality", "guidance", "enlightenment", "esoteric", "ancient"],
-    category: "Education & Learning"
-  },
-  {
-    icon: Zap,
-    title: "Groq",
-    description: "Choose between Mistral and Llama LLMs - free, fast and efficient, comparable to GPT 3.5 Turbo",
-    emoji: "⚡",
-    color: "from-green-700 to-emerald-800",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["AI", "language models", "fast", "efficient", "free", "LLM", "mistral", "llama", "speed"],
-    category: "AI Assistants & Chatbots"
-  },
-  {
-    icon: Radio,
-    title: "Suno AI Music Generator",
-    description: "Top text-to-music generator - provide a theme and create amazing songs instantly with AI",
-    emoji: "🎧",
-    color: "from-purple-700 to-indigo-800",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["music", "generation", "AI", "text-to-music", "songs", "creative", "composer", "melody", "beats"],
-    category: "Music & Audio"
-  },
-  {
-    icon: Layers,
-    title: "Meshy AI",
-    description: "Turn text and images into captivating 3D assets in under a minute for games and design",
-    emoji: "🎲",
-    color: "from-orange-600 to-red-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["3D", "modeling", "assets", "text-to-3D", "images", "design", "games", "graphics", "mesh"],
-    category: "Creative & Design"
-  },
-  {
-    icon: Bot,
-    title: "BotSonic",
-    description: "Build and deploy your own bots for your website effortlessly - no coding knowledge needed",
-    emoji: "🤖",
-    color: "from-cyan-600 to-blue-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["bots", "website", "no-code", "deployment", "automation", "chatbots", "customer service", "support"],
-    category: "Business & Productivity"
-  },
-  {
-    icon: MessageSquare,
-    title: "Mistral",
-    description: "Comparable to GPT-4 and Claude 2, powerful free chatbot with advanced capabilities",
-    emoji: "💬",
-    color: "from-blue-600 to-purple-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["AI", "chatbot", "free", "advanced", "conversation", "language model", "GPT", "claude"],
-    category: "AI Assistants & Chatbots"
-  },
-  {
-    icon: Video,
-    title: "Music Video Maker Studio",
-    description: "Full-blown music video & production creative suite - transform yourself into a cinematic star",
-    emoji: "🎬",
-    color: "from-red-600 to-pink-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["music video", "production", "creative", "cinematic", "video editing", "entertainment", "studio"],
-    category: "Video Generation & Editing"
-  },
-  {
-    icon: Play,
-    title: "PixVerse AI",
-    description: "Create animations from images - bring any image to life effortlessly and for free",
-    emoji: "▶️",
-    color: "from-green-600 to-teal-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["animation", "images", "AI", "free", "video", "creative", "image-to-video", "motion"],
-    category: "Video Generation & Editing"
-  },
-  {
-    icon: Database,
-    title: "Labs.Google",
-    description: "Expansive suite of AI-powered tools for creativity, learning, and productivity from Google",
-    emoji: "🧪",
-    color: "from-blue-700 to-indigo-800",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["Google", "AI tools", "creativity", "learning", "productivity", "experimental", "labs", "suite"],
-    category: "Technology & Development"
-  },
-  {
-    icon: Users,
-    title: "Hey Gen",
-    description: "AI video generation with Avatar customization, talking photos, and text-to-image capabilities",
-    emoji: "👋",
-    color: "from-purple-600 to-pink-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["AI", "video generation", "avatar", "photos", "text-to-image", "personalization", "deepfake", "talking"],
-    category: "Video Generation & Editing"
-  },
-  {
-    icon: Video,
-    title: "Sora",
-    description: "Groundbreaking AI model by OpenAI that transforms text into highly realistic videos",
-    emoji: "🎥",
-    color: "from-orange-600 to-red-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["AI", "video generation", "OpenAI", "text-to-video", "realistic", "groundbreaking", "revolutionary"],
-    category: "Video Generation & Editing"
-  },
-  {
-    icon: Building,
-    title: "Build AI",
-    description: "Build your own AI enhanced applications effortlessly by simply describing them",
-    emoji: "🏗️",
-    color: "from-cyan-600 to-blue-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["AI", "applications", "building", "development", "no-code", "description", "custom", "apps"],
-    category: "Technology & Development"
-  },
-  {
-    icon: BookOpen,
-    title: "Children's Picture Book Maker",
-    description: "Create magical picture books for children with AI-powered illustrations and narratives",
-    emoji: "📚",
-    color: "from-green-600 to-emerald-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["children", "books", "illustrations", "storytelling", "education", "creative", "kids", "learning"],
-    category: "Education & Learning"
-  },
-  {
-    icon: Film,
-    title: "Movie Scene Maker GPT",
-    description: "Transform yourself into a movie star and create stunning personalized movie scenes",
-    emoji: "🎬",
-    color: "from-red-600 to-pink-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    tags: ["movies", "scenes", "personalization", "entertainment", "creative", "video", "actor", "star"],
-    category: "Video Generation & Editing"
   }
 ];
 
