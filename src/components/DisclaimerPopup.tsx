@@ -28,19 +28,19 @@ const DisclaimerPopup = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={() => {}}>
-      <DialogContent className="max-w-2xl bg-gray-900 border-cyan-500/30 text-white">
+      <DialogContent className="max-w-[95vw] sm:max-w-2xl max-h-[95vh] bg-gray-900 border-cyan-500/30 text-white p-4 sm:p-6">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-xl text-cyan-400">
-            <AlertTriangle className="w-6 h-6" />
+          <DialogTitle className="flex items-center gap-2 text-lg sm:text-xl text-cyan-400">
+            <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6" />
             Important Legal Disclaimer
           </DialogTitle>
-          <DialogDescription className="text-gray-300">
+          <DialogDescription className="text-gray-300 text-sm sm:text-base">
             Please read and accept our terms before proceeding
           </DialogDescription>
         </DialogHeader>
         
-        <ScrollArea className="max-h-96 pr-4">
-          <div className="space-y-4 text-sm text-gray-300">
+        <ScrollArea className="max-h-[60vh] sm:max-h-96 pr-2 sm:pr-4">
+          <div className="space-y-3 sm:space-y-4 text-xs sm:text-sm text-gray-300">
             <div>
               <h4 className="font-semibold text-cyan-400 mb-2">Terms of Use and Liability Disclaimer</h4>
               <p>
@@ -88,7 +88,7 @@ const DisclaimerPopup = () => {
         <div className="flex justify-center pt-4 border-t border-cyan-500/30">
           <Button 
             onClick={handleAccept}
-            className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 px-8"
+            className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 px-6 sm:px-8 text-sm sm:text-base"
           >
             I Understand and Agree
           </Button>

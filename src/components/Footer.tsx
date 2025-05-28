@@ -1,10 +1,18 @@
-
 import { Separator } from "@/components/ui/separator";
 import { Globe, Mail, Phone, Home } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   const scrollToHome = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // If we're already on the home page, just scroll to top
+    if (window.location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // Navigate to home page
+      navigate('/');
+    }
   };
 
   return (
