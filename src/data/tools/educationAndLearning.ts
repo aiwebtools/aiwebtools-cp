@@ -3,7 +3,7 @@ import { Tool } from "@/types/tools";
 import { 
   BookOpen, GraduationCap, Brain, Users, Lightbulb, 
   Calculator, Globe, Search, Trophy, Target,
-  Home, Crown, HelpCircle, Clipboard
+  Home, Crown, HelpCircle, Clipboard, Zap
 } from "lucide-react";
 
 export const educationAndLearning: Tool[] = [
@@ -94,5 +94,29 @@ export const educationAndLearning: Tool[] = [
     category: "Education & Learning",
     rating: 4.4,
     totalVotes: 3234
+  },
+  {
+    icon: Zap,
+    title: "Learn Any Skill GPT",
+    description: "Comprehensive AI learning assistant that helps you master any skill through personalized learning paths, structured lessons, and adaptive training methods.",
+    emoji: "⚡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
+    tags: ["skill learning", "personalized learning", "training", "skill development", "education"],
+    category: "Education & Learning",
+    rating: 4.3,
+    totalVotes: 2987
+  },
+  {
+    icon: BookOpen,
+    title: "Learn Any Course GPT",
+    description: "Advanced AI educational assistant that creates customized course content and learning experiences for any subject, adapting to your learning pace and style.",
+    emoji: "📖",
+    color: "from-teal-500 to-blue-600",
+    directUrl: "https://learnanycoursegpt.lovable.app/?via=aiwebtools",
+    tags: ["course learning", "custom courses", "educational content", "adaptive learning", "online education"],
+    category: "Education & Learning",
+    rating: 4.5,
+    totalVotes: 3456
   }
 ];

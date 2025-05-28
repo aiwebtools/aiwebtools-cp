@@ -110,6 +110,14 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     
     // Enhanced special matches with comprehensive coverage for all newly added tools
     const specialMatches = [
+      // Learning & Education specific searches
+      (searchTerm.includes('learn') && (lowerTitle.includes('learn') || lowerCategory.includes('education'))),
+      (searchTerm.includes('skill') && lowerTitle.includes('skill')),
+      (searchTerm.includes('course') && lowerTitle.includes('course')),
+      (searchTerm.includes('any') && lowerTitle.includes('any')),
+      (searchTerm.includes('education') && lowerCategory.includes('education')),
+      (searchTerm.includes('training') && (lowerTitle.includes('training') || lowerTags.some(tag => tag.includes('training')))),
+      
       // Medical & Healthcare
       (searchTerm.includes('doctor') && (lowerTitle.includes('doctor') || lowerTitle.includes('dr.'))),
       (searchTerm.includes('medical') && (lowerTitle.includes('medical') || lowerCategory.includes('healthcare'))),
@@ -121,8 +129,6 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       // Education & Training
       (searchTerm.includes('homeschool') && lowerTitle.includes('homeschool')),
       (searchTerm.includes('home-school') && lowerTitle.includes('homeschool')),
-      (searchTerm.includes('training') && lowerTitle.includes('training')),
-      (searchTerm.includes('course') && lowerTitle.includes('course')),
       (searchTerm.includes('quiz') && lowerTitle.includes('quiz')),
       
       // Legal & Professional
@@ -230,8 +236,6 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       (searchTerm.includes('custom') && lowerTitle.includes('custom')),
       
       // All existing matches from previous version
-      (searchTerm.includes('learn') && (lowerTitle.includes('learn') || lowerCategory.includes('education'))),
-      (searchTerm.includes('skill') && lowerTitle.includes('skill')),
       (searchTerm.includes('business') && (lowerTitle.includes('business') || lowerCategory.includes('business'))),
       (searchTerm.includes('ai') && lowerTitle.includes('ai')),
       (searchTerm.includes('chat') && lowerTitle.includes('chat')),
