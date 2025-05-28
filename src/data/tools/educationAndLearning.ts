@@ -1,10 +1,11 @@
+
 import { Tool } from "@/types/tools";
 import { 
   GraduationCap, BookOpen, Brain, Users, Target, 
   Globe, Lightbulb, Award, FileText, Calculator,
   Map, Clock, Microscope, Palette, Music, Code,
   Rocket, Trophy, Star, Heart, Camera, PenTool,
-  Gamepad2, Zap, Timer
+  Gamepad2, Zap, Timer, FlaskConical, Atom, Home
 } from "lucide-react";
 
 export const educationAndLearning: Tool[] = [

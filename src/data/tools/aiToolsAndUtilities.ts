@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Cpu, Bot, Zap, Code, Database, Cloud, 
@@ -8,7 +9,7 @@ import {
   Heart, Smile, Coffee, Gift, Cake, PartyPopper,
   Camera, Music, Palette, Brush, PenTool, Scissors,
   Wand2, Video, ImageIcon, Gamepad2, Sparkles,
-  Microscope, Shield
+  Microscope, Shield, MessageSquare, Binary
 } from "lucide-react";
 
 export const aiToolsAndUtilities: Tool[] = [
