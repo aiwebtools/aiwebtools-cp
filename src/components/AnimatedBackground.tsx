@@ -7,12 +7,12 @@ const AnimatedBackground = () => {
   const shootingStarsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Create stars
+    // Create stars - increased from 100 to 300
     const createStars = () => {
       const starsContainer = starsRef.current;
       if (!starsContainer) return;
 
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 300; i++) {
         const star = document.createElement('div');
         star.className = 'star';
         star.style.left = Math.random() * 100 + '%';
@@ -24,12 +24,12 @@ const AnimatedBackground = () => {
       }
     };
 
-    // Create floating particles
+    // Create floating particles - increased from 20 to 40
     const createParticles = () => {
       const particlesContainer = particlesRef.current;
       if (!particlesContainer) return;
 
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 40; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * 100 + '%';
@@ -41,12 +41,12 @@ const AnimatedBackground = () => {
       }
     };
 
-    // Create shooting stars
+    // Create shooting stars - increased from 8 to 15
     const createShootingStars = () => {
       const shootingStarsContainer = shootingStarsRef.current;
       if (!shootingStarsContainer) return;
 
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < 15; i++) {
         const shootingStar = document.createElement('div');
         shootingStar.className = 'shooting-star';
         shootingStar.style.left = Math.random() * 100 + '%';
