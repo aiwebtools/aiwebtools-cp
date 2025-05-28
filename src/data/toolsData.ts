@@ -1,107 +1,18 @@
-
 import { Tool } from "@/types/tools";
+import {
+  businessTools,
+  aiAssistants,
+  videoTools,
+  aiArtTools,
+  audioMusicTools,
+  contentCreationTools,
+  aiToolsAndDevelopment,
+  specializedTools
+} from './tools';
 import { BookOpen, Youtube } from "lucide-react";
 
-export const allTools: Tool[] = [
-  {
-    icon: BookOpen,
-    title: "Business Plan Generator GPT💼",
-    description: "Generate comprehensive business plans with AI assistance. Create professional business strategies, financial projections, and market analysis documents.",
-    emoji: "💼",
-    color: "from-blue-500 to-green-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-logo-design-with-the-text-business-plan-gene.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
-    directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
-    tags: ["business", "planning", "strategy", "entrepreneurship"],
-    category: "Business Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "Fungus GPT – AI Mushroom Specialist",
-    description: "Expert AI mushroom identification and mycology assistance. Learn about mushroom varieties, cultivation, and safety with AI expertise.",
-    emoji: "🍄",
-    color: "from-green-500 to-yellow-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-man-with-a-beard-holding-a-_9DLLj.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
-    directUrl: "https://fungusgpt.lovable.app/?via=aiwebtools",
-    tags: ["biology", "mushrooms", "identification", "mycology"],
-    category: "Science & Research"
-  },
-  {
-    icon: BookOpen,
-    title: "Drill Baby Drill Ai Suite For Oil & Gas",
-    description: "Comprehensive AI suite for oil and gas industry operations. Analyze drilling data, optimize extraction processes, and manage energy resources.",
-    emoji: "⛽",
-    color: "from-black-500 to-yellow-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cartoon-illustration-of-a-man-with-a-h_lmQ_X.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
-    directUrl: "https://drillbabydrillaisuite.lovable.app/?via=aiwebtools",
-    tags: ["oil", "gas", "energy", "drilling", "industrial"],
-    category: "Industrial"
-  },
-  {
-    icon: BookOpen,
-    title: "Dream Interpreter GPT",
-    description: "Analyze and interpret your dreams with AI insights. Understand dream symbolism, patterns, and psychological meanings with expert analysis.",
-    emoji: "🌙",
-    color: "from-purple-500 to-blue-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-ad-for-an-ai-tool-called-dream-interp_5LG7D.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
-    directUrl: "https://dreaminterpreter.lovable.app/?via=aiwebtools",
-    tags: ["dreams", "psychology", "interpretation", "symbolism"],
-    category: "Psychology & Wellness"
-  },
-  {
-    icon: BookOpen,
-    title: "Podcast Script Writer GPT",
-    description: "Create engaging podcast scripts with AI assistance. Generate compelling content, episode outlines, and conversation starters for your podcast.",
-    emoji: "🎙️",
-    color: "from-red-500 to-orange-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-illustration-of-a-podcast-host-with-a_HnlUN.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
-    directUrl: "https://podcastwritergpt.lovable.app/?via=aiwebtools",
-    tags: ["podcast", "writing", "scripts", "content creation"],
-    category: "Content Creation"
-  },
-  {
-    icon: BookOpen,
-    title: "Person Information Finder GPT",
-    description: "Research and find information about people using AI-powered search capabilities. Locate contact details, social profiles, and public information.",
-    emoji: "🔍",
-    color: "from-blue-500 to-purple-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-p_gHXnM.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
-    directUrl: "https://personfindergpt.lovable.app/?via=aiwebtools",
-    tags: ["research", "people search", "investigation", "information"],
-    category: "Research Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "PPTx Powerpoint Maker GPT",
-    description: "Create professional PowerPoint presentations with AI assistance. Generate slides, content, and visual layouts automatically.",
-    emoji: "📊",
-    color: "from-orange-500 to-red-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-banner-ad-for-an-ai-tool-called-ppt-pr_RY7nJ.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
-    directUrl: "https://pptmakergpt.lovable.app/?via=aiwebtools",
-    tags: ["presentations", "powerpoint", "slides", "business"],
-    category: "Business Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "Grant Writer GPT",
-    description: "Write compelling grant proposals with AI assistance. Create professional funding applications, research proposals, and grant documentation.",
-    emoji: "💰",
-    color: "from-green-500 to-blue-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-illustration-of-an-advertiseme_7T7dn.png/:/cr=t:10.87%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
-    directUrl: "https://grantwritergpt.lovable.app/?via=aiwebtools",
-    tags: ["grants", "funding", "proposals", "nonprofit"],
-    category: "Business Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "Universal Basic Income Strategist GPT",
-    description: "Analyze and strategize Universal Basic Income implementations. Research UBI policies, economic impacts, and social welfare strategies.",
-    emoji: "🏛️",
-    color: "from-blue-500 to-green-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-the-ai-tool-ubi-str_22t4n.png/:/rs=w:600,cg:true,m/qt=q:30",
-    directUrl: "https://ubigpt.lovable.app/?via=aiwebtools",
-    tags: ["UBI", "economics", "policy", "social welfare"],
-    category: "Government & Policy"
-  },
+// Additional tools that don't fit into specific categories yet
+const additionalTools: Tool[] = [
   {
     icon: Youtube,
     title: "\"IF AI RULED THE WORLD\" - AI SIMULATION GPT",
@@ -115,6 +26,17 @@ export const allTools: Tool[] = [
   },
   {
     icon: BookOpen,
+    title: "Universal Basic Income Strategist GPT",
+    description: "Analyze and strategize Universal Basic Income implementations. Research UBI policies, economic impacts, and social welfare strategies.",
+    emoji: "🏛️",
+    color: "from-blue-500 to-green-500",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-the-ai-tool-ubi-str_22t4n.png/:/rs=w:600,cg:true,m/qt=q:30",
+    directUrl: "https://ubigpt.lovable.app/?via=aiwebtools",
+    tags: ["UBI", "economics", "policy", "social welfare"],
+    category: "Government & Policy"
+  },
+  {
+    icon: BookOpen,
     title: "Global Peace Restoration Strategist GPT",
     description: "Develop strategies for global peace and conflict resolution. Analyze international relations, peace-building processes, and diplomatic solutions.",
     emoji: "🕊️",
@@ -123,105 +45,6 @@ export const allTools: Tool[] = [
     directUrl: "https://worldpeacegpt.lovable.app/?via=aiwebtools",
     tags: ["peace", "diplomacy", "conflict resolution", "international"],
     category: "Government & Policy"
-  },
-  {
-    icon: BookOpen,
-    title: "Artwork & Vintage Appraisal GPT",
-    description: "Appraise and evaluate artwork and vintage items with AI expertise. Get professional assessments of art pieces, antiques, and collectibles.",
-    emoji: "🎨",
-    color: "from-yellow-500 to-orange-500",
-    imageUrl: "https://ideogram.ai/assets/image/lossless/response/Gyn0RfDSR_SHRDWC7neQaw",
-    directUrl: "https://artandvintagegpt.lovable.app/?via=aiwebtools",
-    tags: ["art", "appraisal", "vintage", "collectibles"],
-    category: "Art & Culture"
-  },
-  {
-    icon: BookOpen,
-    title: "Uncovering Hidden Historical Patterns GPT",
-    description: "Discover hidden patterns and connections in historical events. Analyze historical data, trends, and uncover overlooked historical insights.",
-    emoji: "🔍",
-    color: "from-brown-500 to-yellow-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-advertisement-with-the-eye_C64dU.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
-    directUrl: "https://historicalpatternsgpt.lovable.app/?via=aiwebtools",
-    tags: ["history", "patterns", "analysis", "research"],
-    category: "Education & Research"
-  },
-  {
-    icon: BookOpen,
-    title: "Sketch Artist GPT",
-    description: "Create detailed sketches and drawings with AI assistance. Generate artistic sketches, character designs, and illustration concepts.",
-    emoji: "✏️",
-    color: "from-gray-500 to-black-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-s_CPSIx.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    directUrl: "https://sketchartistgpt.lovable.app/?via=aiwebtools",
-    tags: ["sketching", "drawing", "art", "illustration"],
-    category: "Art & Design"
-  },
-  {
-    icon: Youtube,
-    title: "AI Tools Finder GPT",
-    description: "Discover and find the perfect AI tools for your needs. Search through comprehensive databases of AI applications and services.",
-    emoji: "🛠️",
-    color: "from-blue-500 to-purple-500",
-    videoUrl: "https://www.youtube.com/watch?v=IrKKi3SX89g",
-    directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
-    tags: ["AI tools", "discovery", "search", "productivity"],
-    category: "AI Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "Article and Blog Rewriter GPT",
-    description: "Rewrite and improve articles and blog posts with AI assistance. Transform existing content into fresh, engaging, and original material.",
-    emoji: "📝",
-    color: "from-green-500 to-blue-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005696.jpg/:/cr=t:9.9%25,l:0%25,w:100%25,h:80.21%25/rs=w:600,h:300,cg:true/qt=q:98",
-    directUrl: "https://rewritergpt.lovable.app/?via=aiwebtools",
-    tags: ["writing", "rewriting", "content", "blogging"],
-    category: "Content Creation"
-  },
-  {
-    icon: Youtube,
-    title: "Midjourney – Image Generation Platform",
-    description: "Create stunning AI-generated images and artwork. Transform text prompts into beautiful, high-quality visual content.",
-    emoji: "🎨",
-    color: "from-purple-500 to-pink-500",
-    videoUrl: "https://www.youtube.com/watch?v=5deYUaqwreo",
-    directUrl: "https://www.midjourney.com/home",
-    tags: ["image generation", "AI art", "creativity", "visual"],
-    category: "AI Art"
-  },
-  {
-    icon: Youtube,
-    title: "Claude",
-    description: "Advanced AI assistant by Anthropic for conversations, writing, analysis, and complex reasoning tasks.",
-    emoji: "🤖",
-    color: "from-orange-500 to-red-500",
-    videoUrl: "https://www.youtube.com/watch?v=oqUclC3gqKs",
-    directUrl: "https://claude.ai/",
-    tags: ["AI assistant", "conversation", "analysis", "reasoning"],
-    category: "AI Assistants"
-  },
-  {
-    icon: BookOpen,
-    title: "Video Second-by-Second Analysis GPT",
-    description: "Analyze videos frame by frame with detailed AI insights. Break down video content, scenes, and visual elements with precision.",
-    emoji: "🎬",
-    color: "from-red-500 to-blue-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-banner-ad-with-the-text-video-second-b_764zv.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    directUrl: "https://videoanalysisgpt.lovable.app/?via=aiwebtools",
-    tags: ["video analysis", "frame analysis", "media", "content"],
-    category: "Video Tools"
-  },
-  {
-    icon: Youtube,
-    title: "Ideogram – Image Generator",
-    description: "Generate high-quality images and graphics with AI. Create professional visuals, logos, and artistic content from text descriptions.",
-    emoji: "🖼️",
-    color: "from-blue-500 to-green-500",
-    videoUrl: "https://www.youtube.com/watch?v=USSpwbe3Rxk",
-    directUrl: "https://ideogram.ai/",
-    tags: ["image generation", "graphics", "AI art", "design"],
-    category: "AI Art"
   },
   {
     icon: Youtube,
@@ -236,17 +59,6 @@ export const allTools: Tool[] = [
   },
   {
     icon: Youtube,
-    title: "LM STUDIO – Run AI Locally & Download Models",
-    description: "Run AI models locally on your computer. Download, manage, and execute various AI models without cloud dependency.",
-    emoji: "💻",
-    color: "from-black-500 to-gray-500",
-    videoUrl: "https://www.youtube.com/watch?v=yBI1nPep72Q",
-    directUrl: "https://lmstudio.ai/",
-    tags: ["local AI", "models", "desktop", "privacy"],
-    category: "AI Tools"
-  },
-  {
-    icon: Youtube,
     title: "Merlin Ai",
     description: "AI-powered browser extension and productivity tool. Enhance your browsing experience with AI assistance for research and content creation.",
     emoji: "🧙‍♂️",
@@ -258,138 +70,6 @@ export const allTools: Tool[] = [
   },
   {
     icon: BookOpen,
-    title: "LMSYS CHATBOT ARENA",
-    description: "Compare and battle different AI chatbots. Test various AI models side-by-side to find the best performer for your needs.",
-    emoji: "⚔️",
-    color: "from-red-500 to-orange-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-and-electrifying-advertisement-fe.png/:/rs=w:600,cg:true,m/qt=q:98",
-    directUrl: "https://arena.lmsys.org/",
-    tags: ["AI comparison", "chatbots", "testing", "evaluation"],
-    category: "AI Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "Llama by META",
-    description: "Meta's open-source large language model for various AI applications. Access powerful language AI capabilities for research and development.",
-    emoji: "🦙",
-    color: "from-blue-500 to-purple-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/converted_image.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    directUrl: "https://llama.meta.com/",
-    tags: ["open source", "language model", "META", "AI development"],
-    category: "AI Development"
-  },
-  {
-    icon: BookOpen,
-    title: "\"MiddleJourney\" Midjourney Prompting Assistant",
-    description: "Optimize your Midjourney prompts for better AI art generation. Create more effective prompts and improve your AI art results.",
-    emoji: "🎨",
-    color: "from-purple-500 to-pink-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-visually-captivating-advertisement-for-the-.jpeg/:/cr=t:0.11%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:300,cg:true/qt=q:98",
-    directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
-    tags: ["midjourney", "prompts", "AI art", "optimization"],
-    category: "AI Art"
-  },
-  {
-    icon: Youtube,
-    title: "🕊️Mary Magdalene GPT",
-    description: "Explore spiritual and historical insights through AI conversations with Mary Magdalene persona. Discuss faith, history, and spirituality.",
-    emoji: "🕊️",
-    color: "from-white-500 to-gold-500",
-    videoUrl: "https://www.youtube.com/watch?v=7qxEnBR2BwQ",
-    directUrl: "https://marymagdalenegpt.lovable.app/?via=aiwebtools",
-    tags: ["spirituality", "history", "religion", "biblical"],
-    category: "Spirituality & Religion"
-  },
-  {
-    icon: BookOpen,
-    title: "Snoop Image Ai - Experimental AI Image Generation Detector",
-    description: "Detect AI-generated images with advanced analysis. Identify whether images were created by AI or are authentic photographs.",
-    emoji: "🔍",
-    color: "from-blue-500 to-green-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-snoop-image-ai-presented-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
-    directUrl: "https://snoopimageai.lovable.app/?via=aiwebtools",
-    tags: ["image detection", "AI detection", "verification", "authenticity"],
-    category: "Security & Verification"
-  },
-  {
-    icon: BookOpen,
-    title: "Legal Draftsmith GPT",
-    description: "Draft legal documents and contracts with AI assistance. Create professional legal content, contracts, and documentation.",
-    emoji: "⚖️",
-    color: "from-blue-500 to-black-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-humanoid-robot-dressed-like-a.png/:/cr=t:12.29%25,l:9.16%25,w:89.29%25,h:79.58%25/rs=w:600,h:300,cg:true,m/qt=q:98",
-    directUrl: "https://publicdefendergpt.lovable.app/?via=aiwebtools",
-    tags: ["legal", "contracts", "law", "documentation"],
-    category: "Legal"
-  },
-  {
-    icon: BookOpen,
-    title: "InVideo Ai",
-    description: "Create professional videos with AI assistance. Transform text into engaging video content with automated editing and production.",
-    emoji: "🎥",
-    color: "from-red-500 to-purple-500",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377349795445739520/image.png?ex=6838a475&is=683752f5&hm=4e72fe93f1d3e8f1641da970546dbad34b8b2726a7e0fb9022dfcee4c612e4a8&=&format=webp&quality=lossless&width=2848&height=1206",
-    directUrl: "https://invideo.sjv.io/k0kMbn",
-    tags: ["video creation", "AI video", "editing", "content"],
-    category: "Video Tools"
-  },
-  {
-    icon: Youtube,
-    title: "GROK",
-    description: "Advanced AI assistant by xAI with real-time information access and conversational capabilities.",
-    emoji: "🤖",
-    color: "from-black-500 to-blue-500",
-    videoUrl: "https://www.youtube.com/watch?v=LTE8js7y-ss",
-    directUrl: "https://grok.com/",
-    tags: ["AI assistant", "real-time", "conversation", "xAI"],
-    category: "AI Assistants"
-  },
-  {
-    icon: BookOpen,
-    title: "BIG-AGI",
-    description: "Advanced AI interface and model management platform. Access multiple AI models and manage AI workflows efficiently.",
-    emoji: "🧠",
-    color: "from-purple-500 to-blue-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000003211.jpg/:/cr=t:5.56%25,l:0%25,w:100%25,h:88.89%25/rs=w:600,h:300,cg:true/qt=q:98",
-    directUrl: "https://get.big-agi.com/",
-    tags: ["AI interface", "model management", "workflow", "productivity"],
-    category: "AI Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "ChatRTX by NVIDIA",
-    description: "Local AI chatbot powered by NVIDIA RTX graphics cards. Run AI conversations locally with enhanced privacy and performance.",
-    emoji: "💬",
-    color: "from-green-500 to-black-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/rtxchat%20pic.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    directUrl: "https://www.nvidia.com/en-us/ai-on-rtx/chatrtx/",
-    tags: ["local AI", "NVIDIA", "RTX", "chatbot"],
-    category: "AI Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "Custom GPT Ideas & Brainstorming Assistant",
-    description: "Generate creative ideas for custom GPT applications. Brainstorm unique AI use cases and implementation strategies.",
-    emoji: "💡",
-    color: "from-yellow-500 to-orange-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000002880.jpg/:/cr=t:22.21%25,l:0%25,w:100%25,h:55.58%25/rs=w:600,h:451,cg:true/qt=q:98",
-    directUrl: "https://customgptmaker.lovable.app/?via=aiwebtools",
-    tags: ["brainstorming", "ideas", "custom GPT", "creativity"],
-    category: "AI Development"
-  },
-  {
-    icon: BookOpen,
-    title: "TheFreedomGPT – Uncensored & Decentralized Chat Tool",
-    description: "Access uncensored AI conversations with decentralized technology. Experience free and open AI communication without restrictions.",
-    emoji: "🆓",
-    color: "from-red-500 to-black-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377352651477614672/image.png?ex=6838a71e&is=6837559e&hm=b0dc0aa8fe73a8d3efe08a0bc3e4ac5f04c4bc743d1310505f53e80e933e573a&",
-    directUrl: "http://shrsl.com/2meh1-3brt-1iyev",
-    tags: ["uncensored", "decentralized", "freedom", "chat"],
-    category: "AI Assistants"
-  },
-  {
-    icon: BookOpen,
     title: "Cheatlayer Project Atlas (SWARM BETA)",
     description: "Automate complex workflows with AI-powered automation. Create sophisticated automation sequences without coding.",
     emoji: "🤖",
@@ -398,61 +78,6 @@ export const allTools: Tool[] = [
     directUrl: "https://cheatlayer.com/?ref=zta2nth",
     tags: ["automation", "workflow", "no-code", "AI agents"],
     category: "Automation"
-  },
-  {
-    icon: BookOpen,
-    title: "Hugging Face Chat",
-    description: "Access open-source AI models through Hugging Face's chat interface. Experiment with various language models and AI capabilities.",
-    emoji: "🤗",
-    color: "from-yellow-500 to-orange-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005663.jpg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    directUrl: "https://huggingface.co/chat/",
-    tags: ["open source", "models", "chat", "research"],
-    category: "AI Development"
-  },
-  {
-    icon: BookOpen,
-    title: "Music Melodies & Lessons GPT",
-    description: "Learn music theory, composition, and get personalized music lessons with AI guidance. Explore melodies, harmony, and musical concepts.",
-    emoji: "🎵",
-    color: "from-purple-500 to-pink-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-music-melodi_LBv7r.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
-    directUrl: "https://musicmelodiesandlessonsgpt.lovable.app/?via=aiwebtools",
-    tags: ["music", "lessons", "theory", "composition"],
-    category: "Education & Learning"
-  },
-  {
-    icon: BookOpen,
-    title: "Sophia Aeterna AI",
-    description: "Engage with eternal wisdom through AI conversations. Explore philosophical concepts, ancient wisdom, and spiritual insights.",
-    emoji: "🔮",
-    color: "from-gold-500 to-yellow-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
-    directUrl: "https://sophiaaeterna.lovable.app/?via=aiwebtools",
-    tags: ["wisdom", "philosophy", "spirituality", "ancient"],
-    category: "Philosophy & Wisdom"
-  },
-  {
-    icon: BookOpen,
-    title: "Groq",
-    description: "Ultra-fast AI inference platform for lightning-quick responses. Experience high-speed AI processing and real-time interactions.",
-    emoji: "⚡",
-    color: "from-blue-500 to-green-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377356378594873427/image.png?ex=6838aa96&is=68375916&hm=6055b10a7b77314902941a3c85bc62fca7c4dbc8419cb2a038c69cf5f9c74026&",
-    directUrl: "https://groq.com/",
-    tags: ["fast inference", "AI processing", "speed", "performance"],
-    category: "AI Infrastructure"
-  },
-  {
-    icon: BookOpen,
-    title: "SUNO AI MUSIC GENERATOR",
-    description: "Generate original music and songs with AI technology. Create custom tracks, melodies, and full compositions automatically.",
-    emoji: "🎶",
-    color: "from-purple-500 to-blue-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377357075260244098/image.png?ex=6838ab3c&is=683759bc&hm=1aa91ac7fb3fe0b9ff7844bc8e7de4121e2aaafac7b474707398367c99068b55&",
-    directUrl: "https://suno.com/invite/@aiwebtools",
-    tags: ["music generation", "AI music", "composition", "songs"],
-    category: "Audio & Music"
   },
   {
     icon: BookOpen,
@@ -478,197 +103,56 @@ export const allTools: Tool[] = [
   },
   {
     icon: BookOpen,
-    title: "Mistral",
-    description: "Advanced AI language model with strong reasoning capabilities. Access sophisticated AI for complex tasks and conversations.",
-    emoji: "🌟",
+    title: "Restaurant Menu Maker GPT",
+    description: "Create professional restaurant menus with AI assistance. Design appealing menu layouts, descriptions, and pricing strategies.",
+    emoji: "🍽️",
     color: "from-orange-500 to-red-500",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377358724829810719/image.png?ex=6838acc6&is=68375b46&hm=ab683553ec132d326caf50834883a32cdf8e3230bfa35299cf360227757a75fc&=&format=webp&quality=lossless&width=2848&height=1002",
-    directUrl: "https://chat.mistral.ai/chat",
-    tags: ["language model", "reasoning", "AI assistant", "advanced"],
-    category: "AI Assistants"
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-restaurant-menu-with-a-vari__Oji1.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    directUrl: "https://restaurantmenumakergpt.lovable.app/",
+    tags: ["restaurant", "menu", "food", "hospitality", "design", "culinary"],
+    category: "Business Tools"
   },
   {
     icon: BookOpen,
-    title: "Music Video Maker AI Studio",
-    description: "Create professional music videos with AI assistance. Generate visual content synchronized with audio tracks and musical elements.",
-    emoji: "🎬",
-    color: "from-purple-500 to-pink-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-dynamic-product-advertisement-showcase_TiaF.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
-    tags: ["music videos", "video creation", "AI production", "multimedia"],
-    category: "Video Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "PixVerse Ai",
-    description: "Generate and edit videos with AI-powered tools. Create dynamic video content with automated editing and visual effects.",
-    emoji: "📹",
-    color: "from-blue-500 to-purple-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377359320823500861/image.png?ex=6838ad54&is=68375bd4&hm=ceee738c816c8c0266ae87d3e2a23a67a23510b1bec01bea948744dfc3149612&",
-    directUrl: "https://pixverse.ai/",
-    tags: ["video generation", "AI video", "editing", "effects"],
-    category: "Video Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "GOOGLE LABS & GOOGLE FLOW",
-    description: "Explore experimental Google AI technologies and research projects. Access cutting-edge AI tools and experimental features.",
-    emoji: "🔬",
-    color: "from-blue-500 to-red-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377359942578864258/image.png?ex=6838ade8&is=68375c68&hm=2c5d8dca1bb48660d84d1b8c6152d535a0b3ee3b8efb6f162286901003896fc4&",
-    directUrl: "https://labs.google/",
-    tags: ["Google", "experimental", "research", "AI labs"],
-    category: "AI Research"
-  },
-  {
-    icon: BookOpen,
-    title: "Hey Gen – Interactive Avatar Creation Hub",
-    description: "Create interactive AI avatars for presentations and communication. Generate realistic digital personas with voice and movement.",
-    emoji: "👨‍💼",
-    color: "from-blue-500 to-green-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377360265238155334/image.png?ex=6838ae35&is=68375cb5&hm=0707c33ddc6e2d86638158d89c26611517049cd508cd73468072bfec6fda488c&",
-    directUrl: "https://app.heygen.com/guest/home?sid=rewardful&via=aiwebtools",
-    tags: ["avatars", "interactive", "presentations", "AI personas"],
-    category: "Avatar Creation"
-  },
-  {
-    icon: BookOpen,
-    title: "SORA – OPENAI's Video Generation Model",
-    description: "Generate high-quality videos from text descriptions using OpenAI's advanced video AI model.",
-    emoji: "🎥",
-    color: "from-green-500 to-blue-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377360868613820609/image.png?ex=6838aec5&is=68375d45&hm=b944d49b82b4779a88a1e4cd5d895f84867b12d9ce9fc12fa3641b32f6828117&",
-    directUrl: "http://www.sora.com/",
-    tags: ["video generation", "OpenAI", "text to video", "AI video"],
-    category: "Video Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "BuildAI.Space",
-    description: "Platform for building and deploying AI applications. Create custom AI solutions and tools with no-code interfaces.",
-    emoji: "🏗️",
-    color: "from-purple-500 to-blue-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377361060364816444/image.png?ex=6838aef2&is=68375d72&hm=5decaed233bbd7a01789666a0883196d15fb739e6f223406db095f63d424f7c7&",
-    directUrl: "https://gumroad.com/a/815886803/cahfki",
-    tags: ["AI building", "no-code", "deployment", "platform"],
-    category: "AI Development"
-  },
-  {
-    icon: Youtube,
-    title: "Children's Picture Book Maker GPT",
-    description: "Create engaging children's picture books with AI assistance. Generate stories, illustrations, and interactive content for young readers.",
-    emoji: "📚",
+    title: "Coloring Book Generator GPT",
+    description: "Create engaging coloring books with AI assistance. Generate line art, themes, and educational coloring content for all ages.",
+    emoji: "🎨",
     color: "from-yellow-500 to-pink-500",
-    videoUrl: "https://www.youtube.com/watch?v=MryAyvg_N0U",
-    directUrl: "https://childrensbookmaker.lovable.app/?via=aiwebtools",
-    tags: ["children's books", "storytelling", "illustrations", "education"],
-    category: "Education & Learning"
-  },
-  {
-    icon: Youtube,
-    title: "Movie Scene Maker GPT",
-    description: "Create compelling movie scenes and screenplays with AI assistance. Generate dialogue, action sequences, and cinematic content.",
-    emoji: "🎬",
-    color: "from-red-500 to-purple-500",
-    videoUrl: "https://www.youtube.com/watch?v=9fpWIE20z7s&t",
-    directUrl: "https://moviescenemakergpt.lovable.app/?via=aiwebtools",
-    tags: ["movie scenes", "screenplay", "cinema", "creative writing"],
-    category: "Content Creation"
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-coloring-page-of-a-robot-with-a-human-like-b.png/:/cr=t:4.3%25,l:0.78%25,w:94.34%25,h:84.09%25/rs=w:1200,h:600,cg:true,m",
+    directUrl: "https://coloringbookmaker.lovable.app/?via=aiwebtools",
+    tags: ["coloring books", "children", "art", "creativity", "education", "drawing"],
+    category: "Art & Design"
   },
   {
     icon: BookOpen,
-    title: "Mental Wellness GPT",
-    description: "Support mental health and wellness with AI guidance. Access resources, coping strategies, and wellness advice for better mental health.",
-    emoji: "🧘‍♀️",
-    color: "from-green-500 to-blue-500",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377362789097803786/image.png?ex=6838b08f&is=68375f0f&hm=f63e1ae446523dd9eff4aa0f95166aa8a5e6119c506b44ab1656322ea4ca47b7&=&format=webp&quality=lossless&width=2646&height=1392",
-    directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
-    tags: ["mental health", "wellness", "therapy", "self-care"],
-    category: "Health & Wellness"
-  },
-  {
-    icon: Youtube,
-    title: "Legislator Link GPT",
-    description: "Connect with legislators and understand political processes. Get information about representatives, legislation, and civic engagement.",
-    emoji: "🏛️",
-    color: "from-blue-500 to-red-500",
-    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4&list=TLGGczTnMbeNmL0yODA1MjAyNQ",
-    directUrl: "https://legislatorlink.lovable.app/",
-    tags: ["politics", "legislation", "government", "civic"],
-    category: "Government & Policy"
-  },
-  {
-    icon: BookOpen,
-    title: "UDIO MUSIC Generator",
-    description: "Generate high-quality music tracks and compositions with AI. Create original songs, instrumentals, and audio content automatically.",
-    emoji: "🎵",
-    color: "from-purple-500 to-blue-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377364206441070592/image.png?ex=6838b1e1&is=68376061&hm=4872d401aedf46706d1213c2a93ce9ca260725cec15f98b2186eb25746fda56f&",
-    directUrl: "https://www.udio.com/home",
-    tags: ["music generation", "audio", "composition", "AI music"],
-    category: "Audio & Music"
-  },
-  {
-    icon: BookOpen,
-    title: "MiniMax Video & Music Generator",
-    description: "Create videos and music content with AI-powered generation tools. Produce multimedia content with automated creation capabilities.",
-    emoji: "🎬",
-    color: "from-red-500 to-blue-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377364574084399265/image.png?ex=6838b238&is=683760b8&hm=20d61dcb4ae8f474612c5f535cc50ed50eb70eacac600ffd40866e30475f67de&",
-    directUrl: "https://hailuoai.video/",
-    tags: ["video generation", "music generation", "multimedia", "AI creation"],
-    category: "Multimedia Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "KLING Video Generator",
-    description: "Generate professional videos with advanced AI technology. Create high-quality video content from text descriptions and prompts.",
-    emoji: "📹",
+    title: "PINOKIO.COMPUTER",
+    description: "Run AI applications locally with easy installation and management. Access various AI tools through a unified desktop interface.",
+    emoji: "🖥️",
     color: "from-blue-500 to-purple-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377365031859130488/image.png?ex=6838b2a5&is=68376125&hm=87457ee910dab0a591c01ce0eece6a413e9cdd1e2505aa961250315823ddb490&",
-    directUrl: "https://klingai.com/",
-    tags: ["video generation", "AI video", "professional", "content"],
-    category: "Video Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "LUMA DREAM MACHINE - TEXT TO VIDEO GENERATOR",
-    description: "Transform text descriptions into stunning videos with Luma's Dream Machine AI technology.",
-    emoji: "🌟",
-    color: "from-purple-500 to-pink-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377366717532999710/image.png?ex=6838b437&is=683762b7&hm=7637a7614ee14474abe314383e91481e3d5c43dc9445d0085e8c042f7bdbed35&",
-    directUrl: "https://lumalabs.ai/dream-machine",
-    tags: ["text to video", "AI video", "dream machine", "generation"],
-    category: "Video Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "GOOGLE VEO 3 Video & FX Generator – Video with Sound Generation",
-    description: "Create videos with sound effects and audio using Google's advanced VEO 3 AI technology for comprehensive multimedia generation.",
-    emoji: "🎥",
-    color: "from-red-500 to-blue-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377367549376729088/image.png?ex=6838b4fe&is=6837637e&hm=5e0adb734d3dfd56244543427ec52bd8fb031ff6962424935198ce1e977b22e9&",
-    directUrl: "https://labs.google/fx/tools/flow",
-    tags: ["video generation", "sound effects", "Google", "multimedia"],
-    category: "Video Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "Eleven Labs Text to Speech & Sound Effect Generation Platform",
-    description: "Generate realistic voice synthesis and sound effects with advanced AI technology. Create professional audio content and voiceovers.",
-    emoji: "🗣️",
-    color: "from-blue-500 to-green-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377368060364849193/image.png?ex=6838b577&is=683763f7&hm=5d7af47618e4e284baa269ee596a3b68f2ee26e23dd13ed84be94a092aff4f44&",
-    directUrl: "https://elevenlabs.io/?from=kennybastian5304",
-    tags: ["text to speech", "voice synthesis", "audio", "sound effects"],
-    category: "Audio & Music"
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/blob.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1152,cg:true",
+    directUrl: "https://pinokio.computer/",
+    tags: ["local AI", "desktop", "installation", "management", "interface"],
+    category: "AI Tools"
   }
+];
+
+// Combine all tools from different categories
+export const allTools: Tool[] = [
+  ...businessTools,
+  ...aiAssistants,
+  ...videoTools,
+  ...aiArtTools,
+  ...audioMusicTools,
+  ...contentCreationTools,
+  ...aiToolsAndDevelopment,
+  ...specializedTools,
+  ...additionalTools
 ];
 
 // Create featured tools by selecting the first 6 tools
 export const featuredTools: Tool[] = allTools.slice(0, 6);
 
-// Helper function to search tools
+// Helper function to search tools with enhanced keywords
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) return tools;
   
@@ -677,7 +161,21 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     tool.title.toLowerCase().includes(term) ||
     tool.description.toLowerCase().includes(term) ||
     tool.category?.toLowerCase().includes(term) ||
-    tool.tags?.some(tag => tag.toLowerCase().includes(term))
+    tool.tags?.some(tag => tag.toLowerCase().includes(term)) ||
+    // Enhanced search keywords
+    (term.includes('video') && (tool.title.toLowerCase().includes('video') || tool.description.toLowerCase().includes('video') || tool.category === 'Video Tools')) ||
+    (term.includes('music') && (tool.title.toLowerCase().includes('music') || tool.description.toLowerCase().includes('music') || tool.category === 'Audio & Music')) ||
+    (term.includes('ai') && tool.title.toLowerCase().includes('ai')) ||
+    (term.includes('gpt') && tool.title.toLowerCase().includes('gpt')) ||
+    (term.includes('image') && (tool.title.toLowerCase().includes('image') || tool.description.toLowerCase().includes('image'))) ||
+    (term.includes('business') && (tool.title.toLowerCase().includes('business') || tool.category === 'Business Tools')) ||
+    (term.includes('art') && (tool.title.toLowerCase().includes('art') || tool.category === 'AI Art')) ||
+    (term.includes('chat') && tool.title.toLowerCase().includes('chat')) ||
+    (term.includes('legal') && (tool.title.toLowerCase().includes('legal') || tool.category === 'Legal')) ||
+    (term.includes('audio') && (tool.category === 'Audio & Music' || tool.description.toLowerCase().includes('audio'))) ||
+    (term.includes('writing') && tool.tags?.some(tag => tag.toLowerCase().includes('writing'))) ||
+    (term.includes('content') && tool.tags?.some(tag => tag.toLowerCase().includes('content'))) ||
+    (term.includes('generation') && tool.tags?.some(tag => tag.toLowerCase().includes('generation')))
   );
 };
 
