@@ -108,9 +108,16 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     
     if (allWordsMatch) return true;
     
-    // Enhanced special matches with comprehensive coverage for all newly added tools
+    // Enhanced special matches with focus on the user's provided tools
     const specialMatches = [
-      // New tools from the latest additions
+      // Learning tools - prioritize these since they were specifically requested
+      (searchTerm.includes('l') && lowerTitle.includes('learn')),
+      (searchTerm.includes('learn') && lowerTitle.includes('learn')),
+      (searchTerm.includes('skill') && lowerTitle.includes('skill')),
+      (searchTerm.includes('course') && lowerTitle.includes('course')),
+      (searchTerm.includes('any') && lowerTitle.includes('any')),
+      
+      // All the user's provided tools
       (searchTerm.includes('phenomenon') && lowerTitle.includes('phenomenon')),
       (searchTerm.includes('explorer') && lowerTitle.includes('explorer')),
       (searchTerm.includes('ufo') && lowerTitle.includes('phenomenon')),
@@ -172,132 +179,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       (searchTerm.includes('saas') && lowerTitle.includes('microsaas')),
       (searchTerm.includes('micro') && lowerTitle.includes('microsaas')),
       
-      // Learning & Education specific searches
-      (searchTerm.includes('learn') && (lowerTitle.includes('learn') || lowerCategory.includes('education'))),
-      (searchTerm.includes('skill') && lowerTitle.includes('skill')),
-      (searchTerm.includes('course') && lowerTitle.includes('course')),
-      (searchTerm.includes('any') && lowerTitle.includes('any')),
-      (searchTerm.includes('education') && lowerCategory.includes('education')),
-      (searchTerm.includes('training') && (lowerTitle.includes('training') || lowerTags.some(tag => tag.includes('training')))),
-      
-      // Medical & Healthcare
-      (searchTerm.includes('doctor') && (lowerTitle.includes('doctor') || lowerTitle.includes('dr.'))),
-      (searchTerm.includes('medical') && (lowerTitle.includes('medical') || lowerCategory.includes('healthcare'))),
-      (searchTerm.includes('pharmaceutical') && lowerTitle.includes('pharmaceutical')),
-      (searchTerm.includes('pharmacy') && (lowerTitle.includes('pharmaceutical') || lowerTitle.includes('pharma'))),
-      (searchTerm.includes('apothecary') && lowerTitle.includes('apothecary')),
-      (searchTerm.includes('research') && lowerTitle.includes('research')),
-      
-      // Education & Training
-      (searchTerm.includes('homeschool') && lowerTitle.includes('homeschool')),
-      (searchTerm.includes('home-school') && lowerTitle.includes('homeschool')),
-      (searchTerm.includes('quiz') && lowerTitle.includes('quiz')),
-      
-      // Legal & Professional
-      (searchTerm.includes('contract') && lowerTitle.includes('contract')),
-      (searchTerm.includes('legal') && lowerTitle.includes('legal')),
-      (searchTerm.includes('bot') && lowerTitle.includes('bot')),
-      
-      // Creative & Entertainment
-      (searchTerm.includes('tattoo') && lowerTitle.includes('tattoo')),
-      (searchTerm.includes('designer') && lowerTitle.includes('designer')),
-      (searchTerm.includes('celebrity') && lowerTitle.includes('celebrity')),
-      (searchTerm.includes('playwriter') && lowerTitle.includes('playwriter')),
-      (searchTerm.includes('playwright') && lowerTitle.includes('playwriter')),
-      
-      // Specialized & Safety
-      (searchTerm.includes('firearms') && lowerTitle.includes('firearms')),
-      (searchTerm.includes('gun') && lowerTitle.includes('firearms')),
-      (searchTerm.includes('safety') && lowerTitle.includes('safety')),
-      (searchTerm.includes('instructor') && lowerTitle.includes('instructor')),
-      
-      // AI & Technology
-      (searchTerm.includes('sora') && lowerTitle.includes('sora')),
-      (searchTerm.includes('prompt') && lowerTitle.includes('prompt')),
-      (searchTerm.includes('assistant') && lowerTitle.includes('assistant')),
-      (searchTerm.includes('anything') && lowerTitle.includes('anything')),
-      (searchTerm.includes('llm') && lowerTitle.includes('llm')),
-      (searchTerm.includes('nucleus') && lowerTitle.includes('nucleus')),
-      (searchTerm.includes('call') && lowerTitle.includes('call')),
-      (searchTerm.includes('agents') && lowerTitle.includes('agents')),
-      
-      // Historical & Cultural
-      (searchTerm.includes('einstein') && lowerTitle.includes('einstein')),
-      (searchTerm.includes('albert') && lowerTitle.includes('albert')),
-      (searchTerm.includes('interpretis') && lowerTitle.includes('interpretis')),
-      (searchTerm.includes('historical') && lowerTitle.includes('historical')),
-      (searchTerm.includes('titanic') && lowerTitle.includes('titanic')),
-      (searchTerm.includes('headlines') && lowerTitle.includes('headlines')),
-      (searchTerm.includes('alchemist') && lowerTitle.includes('alchemist')),
-      (searchTerm.includes('scientist') && lowerTitle.includes('scientist')),
-      (searchTerm.includes('archaeology') && lowerTitle.includes('archaeology')),
-      (searchTerm.includes('indiana') && lowerTitle.includes('indiana')),
-      (searchTerm.includes('archaeologist') && lowerTitle.includes('archaeologist')),
-      (searchTerm.includes('time') && lowerTitle.includes('time')),
-      
-      // Travel & Exploration
-      (searchTerm.includes('imagination') && lowerTitle.includes('imagination')),
-      (searchTerm.includes('traveler') && lowerTitle.includes('traveler')),
-      (searchTerm.includes('travel') && lowerTitle.includes('travel')),
-      
-      // Business & Finance
-      (searchTerm.includes('trader') && lowerTitle.includes('trader')),
-      (searchTerm.includes('trading') && lowerTitle.includes('trader')),
-      (searchTerm.includes('manual') && lowerTitle.includes('manual')),
-      (searchTerm.includes('generator') && lowerTitle.includes('generator')),
-      (searchTerm.includes('resume') && lowerTitle.includes('resume')),
-      (searchTerm.includes('job') && lowerTitle.includes('job')),
-      (searchTerm.includes('finder') && lowerTitle.includes('finder')),
-      (searchTerm.includes('data') && lowerTitle.includes('data')),
-      (searchTerm.includes('analysis') && lowerTitle.includes('analysis')),
-      (searchTerm.includes('report') && lowerTitle.includes('report')),
-      
-      // Personal & Relationship
-      (searchTerm.includes('marriage') && lowerTitle.includes('marriage')),
-      (searchTerm.includes('mender') && lowerTitle.includes('mender')),
-      (searchTerm.includes('relationship') && lowerTitle.includes('marriage')),
-      (searchTerm.includes('alan') && lowerTitle.includes('alan')),
-      (searchTerm.includes('watts') && lowerTitle.includes('watts')),
-      (searchTerm.includes('philosophy') && lowerTitle.includes('watts')),
-      
-      // Energy & Environment
-      (searchTerm.includes('solar') && lowerTitle.includes('solar')),
-      (searchTerm.includes('land') && lowerTitle.includes('land')),
-      (searchTerm.includes('assessor') && lowerTitle.includes('assessor')),
-      (searchTerm.includes('energy') && lowerTitle.includes('solar')),
-      
-      // Emergency Services
-      (searchTerm.includes('firefighter') && lowerTitle.includes('firefighter')),
-      (searchTerm.includes('fire') && lowerTitle.includes('firefighter')),
-      (searchTerm.includes('emergency') && lowerCategory.includes('emergency')),
-      
-      // Technology & Conversion
-      (searchTerm.includes('binary') && lowerTitle.includes('binary')),
-      (searchTerm.includes('text') && lowerTitle.includes('text')),
-      (searchTerm.includes('image') && lowerTitle.includes('image')),
-      (searchTerm.includes('converter') && lowerTitle.includes('converter')),
-      (searchTerm.includes('convert') && lowerTitle.includes('converter')),
-      
-      // Presentation & Design
-      (searchTerm.includes('gamma') && lowerTitle.includes('gamma')),
-      (searchTerm.includes('presentation') && lowerTitle.includes('presentation')),
-      (searchTerm.includes('website') && lowerTitle.includes('website')),
-      (searchTerm.includes('maker') && lowerTitle.includes('maker')),
-      (searchTerm.includes('luma') && lowerTitle.includes('luma')),
-      (searchTerm.includes('dream') && lowerTitle.includes('dream')),
-      (searchTerm.includes('machine') && lowerTitle.includes('machine')),
-      
-      // Food & Restaurant
-      (searchTerm.includes('restaurant') && lowerTitle.includes('restaurant')),
-      (searchTerm.includes('menu') && lowerTitle.includes('menu')),
-      
-      // GPT Creation
-      (searchTerm.includes('customizable') && lowerTitle.includes('customizable')),
-      (searchTerm.includes('gpt') && lowerTitle.includes('gpt')),
-      (searchTerm.includes('maker') && lowerTitle.includes('maker')),
-      (searchTerm.includes('custom') && lowerTitle.includes('custom')),
-      
-      // All existing matches from previous version
+      // Existing comprehensive matches for other tools
       (searchTerm.includes('business') && (lowerTitle.includes('business') || lowerCategory.includes('business'))),
       (searchTerm.includes('ai') && lowerTitle.includes('ai')),
       (searchTerm.includes('chat') && lowerTitle.includes('chat')),
@@ -306,11 +188,9 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       (searchTerm.includes('design') && (lowerTitle.includes('design') || lowerCategory.includes('design'))),
       (searchTerm.includes('art') && (lowerTitle.includes('art') || lowerCategory.includes('art'))),
       (searchTerm.includes('health') && lowerTags.some(tag => tag.includes('health'))),
-      (searchTerm.includes('cannabis') && lowerTitle.includes('cannabis')),
       (searchTerm.includes('automotive') && lowerTags.some(tag => tag.includes('automotive'))),
       (searchTerm.includes('fungus') && lowerTitle.includes('fungus')),
       (searchTerm.includes('mushroom') && lowerTitle.includes('fungus')),
-      (searchTerm.includes('food') && (lowerTitle.includes('food') || lowerCategory.includes('food'))),
       (searchTerm.includes('recipe') && lowerTags.some(tag => tag.includes('recipe'))),
       (searchTerm.includes('cooking') && lowerTags.some(tag => tag.includes('cooking'))),
       (searchTerm.includes('chef') && lowerTitle.includes('chef')),
@@ -325,7 +205,6 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       (searchTerm.includes('peace') && lowerTitle.includes('peace')),
       (searchTerm.includes('wisdom') && lowerTags.some(tag => tag.includes('wisdom'))),
       (searchTerm.includes('claude') && lowerTitle.includes('claude')),
-      (searchTerm.includes('gemini') && lowerTitle.includes('gemini')),
       (searchTerm.includes('midjourney') && lowerTitle.includes('midjourney')),
       (searchTerm.includes('ideogram') && lowerTitle.includes('ideogram')),
       (searchTerm.includes('fun') && lowerCategory.includes('fun')),

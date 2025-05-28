@@ -9,7 +9,7 @@ import {
   Heart, Palette, Target, Shield, Crosshair,
   Clock, Eye, Gavel, Palette as Design, CheckCircle,
   Sprout, Factory, Fish, FileText, Users,
-  TrendingUp, Crystal, Gamepad, Beaker, Target as Aim,
+  TrendingUp, Gamepad, Beaker, Target as Aim,
   Hammer, Utensils, Globe
 } from "lucide-react";
 
@@ -664,7 +664,7 @@ export const specializedAndNiche: Tool[] = [
     totalVotes: 2456
   },
   {
-    icon: Crystal,
+    icon: Search,
     title: "Fortune Teller GPT",
     description: "Mystical fortune telling and divination assistant. Explore tarot readings, astrology insights, and spiritual guidance for entertainment and reflection.",
     emoji: "🔮",
