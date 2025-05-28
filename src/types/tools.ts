@@ -7,7 +7,8 @@ export interface Tool {
   description: string;
   emoji: string;
   color: string;
-  videoUrl: string;
+  videoUrl?: string;
+  imageUrl?: string;
   tags?: string[];
   category?: string;
 }
