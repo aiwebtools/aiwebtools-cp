@@ -1,6 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Film, Clock, Car, GraduationCap, Shield, Theater, Heart, Music, Beaker, Gavel, Palette, Search, Leaf, Zap, Brain, Home, Fish, Sprout, Gem, Camera, Gamepad2, Calculator, Globe, TrendingUp, Stethoscope, Scale, Briefcase, PenTool, Code, Utensils, Brush, Phone, DollarSign, Dna, Binary, Star, Eye, FileText, Hammer, Award, CreditCard, Users, Palette as PaletteIcon, Video, Rocket, Cpu, Settings, Target, Building, Headphones, UserSearch, Presentation, HandHeart, History, PaintBucket, Microscope, Mountain } from "lucide-react";
+import { BookOpen, Film, Clock, Car, GraduationCap, Shield, Theater, Heart, Music, Beaker, Gavel, Palette, Search, Leaf, Zap, Brain, Home, Fish, Sprout, Gem, Camera, Gamepad2, Calculator, Globe, TrendingUp, Stethoscope, Scale, Briefcase, PenTool, Code, Utensils, Brush, Phone, DollarSign, Dna, Binary, Star, Eye, FileText, Hammer, Award, CreditCard, Users, Palette as PaletteIcon, Video, Rocket, Cpu, Settings, Target, Building, Headphones, UserSearch, Presentation, HandHeart, History, PaintBucket, Microscope, Mountain, Mic, Play, Bot, Radio, Headphones as HeadphonesIcon, MessageSquare, Wand2, Layers, Database, Sparkles } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
 const featuredTools = [
   {
@@ -113,10 +115,10 @@ const allTools = [
   },
   {
     icon: Eye,
-    title: "Oraculum",
-    description: "Reveals hidden systems, symbols, and histories shaping our world",
+    title: "Snoop Image AI",
+    description: "Tool for verifying image authenticity, analyzing whether images are likely real or AI-generated with Snoop Dogg style",
     emoji: "👁️",
-    color: "from-gray-700 to-purple-800",
+    color: "from-purple-600 to-indigo-700",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
   },
   {
@@ -526,10 +528,201 @@ const allTools = [
     emoji: "🕊️",
     color: "from-gold-500 to-amber-600",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Bot,
+    title: "Grok 3",
+    description: "Advanced AI developed by X.AI with enhanced conversational capabilities",
+    emoji: "🤖",
+    color: "from-blue-600 to-cyan-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Cpu,
+    title: "BIG-AGI",
+    description: "Innovative AI suite making cutting-edge artificial intelligence accessible to professionals and developers",
+    emoji: "💻",
+    color: "from-purple-700 to-indigo-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: MessageSquare,
+    title: "ChatRTX by NVIDIA",
+    description: "Personalize a GPT model with your own content, requires RTX 30/40 series GPU with 8GB+ VRAM",
+    emoji: "💬",
+    color: "from-green-600 to-emerald-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Brain,
+    title: "GPT Ideas Assistant",
+    description: "AI assistant for generating and organizing creative GPT ideas and instructions",
+    emoji: "💡",
+    color: "from-yellow-600 to-orange-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Phone,
+    title: "Freedom GPT (Phone Call GPT)",
+    description: "Deploy AI phone agents with advanced conversational capabilities for business automation",
+    emoji: "📞",
+    color: "from-blue-700 to-indigo-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Rocket,
+    title: "Cheatlayer Project Atlas (BETA)",
+    description: "Advanced automation platform for creating complex workflows and business processes",
+    emoji: "🚀",
+    color: "from-orange-600 to-red-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Users,
+    title: "Hugging Face Chat",
+    description: "Access various large language models without paid membership and deploy specialized AI assistants",
+    emoji: "🤗",
+    color: "from-cyan-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Music,
+    title: "Music Melodies & Lessons GPT",
+    description: "Ultimate musical companion for learning instruments, vocals, songwriting with step-by-step guidance",
+    emoji: "🎵",
+    color: "from-purple-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Star,
+    title: "Sophia Aeterna",
+    description: "Embodies timeless wisdom, guiding seekers through philosophy, mysticism, and esotericism",
+    emoji: "⭐",
+    color: "from-gold-500 to-amber-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Zap,
+    title: "Groq",
+    description: "Choose between Mistral and Llama LLMs - free, fast and efficient, comparable to GPT 3.5 Turbo",
+    emoji: "⚡",
+    color: "from-green-700 to-emerald-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Radio,
+    title: "Suno AI Music Generator",
+    description: "Top text-to-music generator - provide a theme and create amazing songs instantly",
+    emoji: "🎧",
+    color: "from-purple-700 to-indigo-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Layers,
+    title: "Meshy AI",
+    description: "Turn text and images into captivating 3D assets in under a minute",
+    emoji: "🎲",
+    color: "from-orange-600 to-red-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Bot,
+    title: "BotSonic",
+    description: "Build and deploy your own bots for your website effortlessly - no coding knowledge needed",
+    emoji: "🤖",
+    color: "from-cyan-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: MessageSquare,
+    title: "Mistral",
+    description: "Comparable to GPT-4 and Claude 2, powerful free chatbot with advanced capabilities",
+    emoji: "💬",
+    color: "from-blue-600 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Video,
+    title: "Music Video Maker Studio",
+    description: "Full-blown music video & production creative suite - transform yourself into a cinematic star",
+    emoji: "🎬",
+    color: "from-red-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Play,
+    title: "PixVerse AI",
+    description: "Create animations from images - bring any image to life effortlessly and for free",
+    emoji: "▶️",
+    color: "from-green-600 to-teal-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Database,
+    title: "Labs.Google",
+    description: "Expansive suite of AI-powered tools for creativity, learning, and productivity",
+    emoji: "🧪",
+    color: "from-blue-700 to-indigo-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Users,
+    title: "Hey Gen",
+    description: "AI video generation with Avatar customization, talking photos, and text-to-image capabilities",
+    emoji: "👋",
+    color: "from-purple-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Video,
+    title: "Sora",
+    description: "Groundbreaking AI model by OpenAI that transforms text into highly realistic videos",
+    emoji: "🎥",
+    color: "from-orange-600 to-red-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Building,
+    title: "Build AI",
+    description: "Build your own AI enhanced applications effortlessly by simply describing them",
+    emoji: "🏗️",
+    color: "from-cyan-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: BookOpen,
+    title: "Children's Picture Book Maker",
+    description: "Create magical picture books for children with AI-powered illustrations and narratives",
+    emoji: "📚",
+    color: "from-green-600 to-emerald-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Film,
+    title: "Movie Scene Maker GPT",
+    description: "Transform yourself into a movie star and create stunning personalized movie scenes",
+    emoji: "🎬",
+    color: "from-red-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
   }
 ];
 
 const FeaturedTools = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Filter tools based on search term
+  const filteredTools = allTools.filter(tool =>
+    tool.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    tool.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const filteredFeaturedTools = featuredTools.filter(tool =>
+    tool.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    tool.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const filteredGridTools = filteredTools.slice(6);
+
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -537,100 +730,134 @@ const FeaturedTools = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Featured <span className="bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">AI Tools</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Discover our most popular AI-powered tools designed to enhance your creative process
           </p>
+          
+          {/* Search Bar */}
+          <div className="max-w-md mx-auto relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <Input
+              type="text"
+              placeholder="Search AI tools..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 transition-all duration-300"
+            />
+          </div>
         </div>
         
         {/* Featured Tools Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {featuredTools.map((tool, index) => (
-            <Card key={index} className="group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-0 bg-white/80 backdrop-blur-sm">
-              <CardHeader className="text-center pb-4">
-                <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${tool.color} flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-transform duration-300`}>
-                  {tool.emoji}
-                </div>
-                <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-ai-purple transition-colors">
-                  {tool.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <CardDescription className="text-gray-600 mb-4 leading-relaxed">
-                  {tool.description}
-                </CardDescription>
-                {/* YouTube Video Embed */}
-                <div className="mb-4 rounded-lg overflow-hidden">
-                  <iframe
-                    width="100%"
-                    height="200"
-                    src={tool.videoUrl}
-                    title={`${tool.title} Demo`}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="rounded-lg"
-                  ></iframe>
-                </div>
-                <Button className="w-full bg-gradient-to-r from-ai-purple to-ai-blue hover:from-ai-purple/80 hover:to-ai-blue/80 text-white transition-all duration-300">
-                  Try Now
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        {filteredFeaturedTools.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {filteredFeaturedTools.map((tool, index) => (
+              <Card key={index} className="group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-0 bg-white/80 backdrop-blur-sm">
+                <CardHeader className="text-center pb-4">
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${tool.color} flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-transform duration-300`}>
+                    {tool.emoji}
+                  </div>
+                  <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-ai-purple transition-colors">
+                    {tool.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <CardDescription className="text-gray-600 mb-4 leading-relaxed">
+                    {tool.description}
+                  </CardDescription>
+                  {/* YouTube Video Embed */}
+                  <div className="mb-4 rounded-lg overflow-hidden">
+                    <iframe
+                      width="100%"
+                      height="200"
+                      src={tool.videoUrl}
+                      title={`${tool.title} Demo`}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="rounded-lg"
+                    ></iframe>
+                  </div>
+                  <Button className="w-full bg-gradient-to-r from-ai-purple to-ai-blue hover:from-ai-purple/80 hover:to-ai-blue/80 text-white transition-all duration-300 transform hover:scale-105">
+                    Try Now
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
 
         {/* All Tools Section */}
-        <div className="text-center mb-12">
-          <h3 className="text-3xl font-bold text-gray-900 mb-8">
-            Complete <span className="bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">AI Tools Collection</span>
-          </h3>
-        </div>
+        {filteredGridTools.length > 0 && (
+          <>
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-gray-900 mb-8">
+                Complete <span className="bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">AI Tools Collection</span>
+              </h3>
+            </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {allTools.slice(6).map((tool, index) => (
-            <Card key={index} className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-0 bg-white/70 backdrop-blur-sm">
-              <CardHeader className="text-center pb-2">
-                <div className={`w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-white text-lg group-hover:scale-110 transition-transform duration-300`}>
-                  {tool.emoji}
-                </div>
-                <CardTitle className="text-lg font-bold text-gray-900 group-hover:text-ai-purple transition-colors">
-                  {tool.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <CardDescription className="text-gray-600 mb-3 text-sm leading-relaxed">
-                  {tool.description}
-                </CardDescription>
-                {/* Smaller YouTube Video Embed for grid items */}
-                <div className="mb-3 rounded overflow-hidden">
-                  <iframe
-                    width="100%"
-                    height="120"
-                    src={tool.videoUrl}
-                    title={`${tool.title} Demo`}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="rounded"
-                  ></iframe>
-                </div>
-                <Button size="sm" className="w-full bg-gradient-to-r from-ai-purple to-ai-blue hover:from-ai-purple/80 hover:to-ai-blue/80 text-white transition-all duration-300">
-                  Try Now
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {filteredGridTools.map((tool, index) => (
+                <Card key={index} className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-0 bg-white/70 backdrop-blur-sm">
+                  <CardHeader className="text-center pb-2">
+                    <div className={`w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-white text-lg group-hover:scale-110 transition-transform duration-300`}>
+                      {tool.emoji}
+                    </div>
+                    <CardTitle className="text-lg font-bold text-gray-900 group-hover:text-ai-purple transition-colors">
+                      {tool.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-center">
+                    <CardDescription className="text-gray-600 mb-3 text-sm leading-relaxed">
+                      {tool.description}
+                    </CardDescription>
+                    {/* Smaller YouTube Video Embed for grid items */}
+                    <div className="mb-3 rounded overflow-hidden">
+                      <iframe
+                        width="100%"
+                        height="120"
+                        src={tool.videoUrl}
+                        title={`${tool.title} Demo`}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="rounded"
+                      ></iframe>
+                    </div>
+                    <Button size="sm" className="w-full bg-gradient-to-r from-ai-purple to-ai-blue hover:from-ai-purple/80 hover:to-ai-blue/80 text-white transition-all duration-300 transform hover:scale-105">
+                      Try Now
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* No Results Message */}
+        {searchTerm && filteredTools.length === 0 && (
+          <div className="text-center py-12">
+            <div className="text-gray-500 text-xl mb-4">No AI tools found for "{searchTerm}"</div>
+            <Button 
+              onClick={() => setSearchTerm("")}
+              variant="outline" 
+              className="border-ai-purple text-ai-purple hover:bg-ai-purple hover:text-white"
+            >
+              Clear Search
+            </Button>
+          </div>
+        )}
         
-        <div className="text-center mt-12">
-          <Button 
-            size="lg" 
-            variant="outline" 
-            className="border-ai-purple text-ai-purple hover:bg-ai-purple hover:text-white px-8 py-4 rounded-xl transition-all duration-300"
-          >
-            View All AI Tools
-          </Button>
-        </div>
+        {!searchTerm && (
+          <div className="text-center mt-12">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-ai-purple text-ai-purple hover:bg-ai-purple hover:text-white px-8 py-4 rounded-xl transition-all duration-300"
+            >
+              View All AI Tools
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );
