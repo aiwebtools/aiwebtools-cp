@@ -196,7 +196,6 @@ const ToolDetail = () => {
 
                 {/* Media Section */}
                 <div className="mb-8">
-                  <h3 className="text-2xl font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-4 cyber-glow">Preview</h3>
                   <div className="shadow-lg border border-cyan-500/30 neon-border rounded-xl overflow-hidden">
                     <DetailMediaComponent />
                   </div>
