@@ -16,3 +16,9 @@ export { imageAndDesign } from './imageAndDesign';
 export { businessAndProductivity } from './businessAndProductivity';
 export { specializedAndNiche } from './specializedAndNiche';
 export { educationAndLearning } from './educationAndLearning';
+
+// Additional new categories for missing tools
+export { creativeAndEntertainment } from './creativeAndEntertainment';
+export { professionalServices } from './professionalServices';
+export { researchAndLearning } from './researchAndLearning';
+export { aiToolsAndUtilities } from './aiToolsAndUtilities';

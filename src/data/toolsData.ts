@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import {
   businessTools,
@@ -14,7 +13,11 @@ import {
   imageAndDesign,
   businessAndProductivity,
   specializedAndNiche,
-  educationAndLearning
+  educationAndLearning,
+  creativeAndEntertainment,
+  professionalServices,
+  researchAndLearning,
+  aiToolsAndUtilities
 } from './tools';
 
 // Combine all tools from different categories with enhanced categorization
@@ -32,7 +35,11 @@ export const allTools: Tool[] = [
   ...aiArtTools,
   ...contentCreationTools,
   ...aiToolsAndDevelopment,
-  ...specializedTools
+  ...specializedTools,
+  ...creativeAndEntertainment,
+  ...professionalServices,
+  ...researchAndLearning,
+  ...aiToolsAndUtilities
 ];
 
 // Create featured tools by selecting diverse tools from different categories
