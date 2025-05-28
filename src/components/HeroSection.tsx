@@ -50,7 +50,7 @@ const HeroSection = () => {
               className="bg-gradient-to-r from-ai-purple to-ai-blue hover:from-ai-purple/80 hover:to-ai-blue/80 text-white px-8 py-4 text-lg rounded-xl transition-all duration-300 transform hover:scale-105"
             >
               <Zap className="w-5 h-5 mr-2" />
-              Explore AI Tools
+              SEARCH ALL AI WEB TOOLS
             </Button>
             <Button 
               variant="outline" 
