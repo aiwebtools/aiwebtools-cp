@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Palette, Music, Camera, Film, Gamepad2, Sparkles, 
@@ -242,5 +243,18 @@ export const creativeAndEntertainment: Tool[] = [
     category: "Creative & Entertainment",
     rating: 4.2,
     totalVotes: 2456
+  },
+  {
+    icon: Heart,
+    title: "Dream Interpreter GPT",
+    description: "Professional dream analysis and interpretation tool. Decode dream symbolism, understand subconscious messages, and explore the psychological meanings behind your dreams.",
+    emoji: "💭",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://dreaminterpreter.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-ad-for-an-ai-tool-called-dream-interp_5LG7D.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    tags: ["dream interpretation", "psychology", "symbolism", "subconscious", "analysis"],
+    category: "Creative & Entertainment",
+    rating: 4.1,
+    totalVotes: 2234
   }
 ];

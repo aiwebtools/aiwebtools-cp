@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import {
   Video, Film, Camera, Play, Edit, Clapperboard,
@@ -8,12 +9,12 @@ import {
   PenTool, Scissors, ImageIcon, Gamepad2,
   Target, Lightbulb, Globe, Users, TrendingUp,
   BarChart3, FileText, Briefcase, Building,
-  Search, Monitor, Youtube, UserCheck
+  Search, Monitor, Youtube, UserCheck, BookOpen
 } from "lucide-react";
 
 export const videoTools: Tool[] = [
   {
-    icon: BookOpen,
+    icon: Search,
     title: "Video Second-by-Second Analysis GPT",
     description: "Analyze videos frame by frame with detailed AI insights. Break down video content, scenes, and visual elements with precision.",
     emoji: "🎬",
@@ -24,8 +25,8 @@ export const videoTools: Tool[] = [
     category: "Video & Animation Creation"
   },
   {
-    icon: BookOpen,
-    title: "InVideo Ai",
+    icon: Video,
+    title: "InVideo AI",
     description: "Create professional videos with AI assistance. Transform text into engaging video content with automated editing and production.",
     emoji: "🎥",
     color: "from-red-500 to-purple-500",
@@ -35,8 +36,8 @@ export const videoTools: Tool[] = [
     category: "Video & Animation Creation"
   },
   {
-    icon: BookOpen,
-    title: "PixVerse Ai",
+    icon: Video,
+    title: "PixVerse AI",
     description: "Generate and edit videos with AI-powered tools. Create dynamic video content with automated editing and visual effects.",
     emoji: "📹",
     color: "from-blue-500 to-purple-500",
@@ -46,7 +47,7 @@ export const videoTools: Tool[] = [
     category: "Video & Animation Creation"
   },
   {
-    icon: BookOpen,
+    icon: Video,
     title: "SORA – OPENAI's Video Generation Model",
     description: "Generate high-quality videos from text descriptions using OpenAI's advanced video AI model.",
     emoji: "🎥",
@@ -57,7 +58,7 @@ export const videoTools: Tool[] = [
     category: "Video & Animation Creation"
   },
   {
-    icon: BookOpen,
+    icon: Video,
     title: "KLING Video Generator",
     description: "Generate professional videos with advanced AI technology. Create high-quality video content from text descriptions and prompts.",
     emoji: "📹",
@@ -68,7 +69,7 @@ export const videoTools: Tool[] = [
     category: "Video & Animation Creation"
   },
   {
-    icon: BookOpen,
+    icon: Video,
     title: "LUMA DREAM MACHINE - TEXT TO VIDEO GENERATOR",
     description: "Transform text descriptions into stunning videos with Luma's Dream Machine AI technology.",
     emoji: "🌟",
@@ -79,7 +80,7 @@ export const videoTools: Tool[] = [
     category: "Video & Animation Creation"
   },
   {
-    icon: BookOpen,
+    icon: Video,
     title: "GOOGLE VEO 3 Video & FX Generator – Video with Sound Generation",
     description: "Create videos with sound effects and audio using Google's advanced VEO 3 AI technology for comprehensive multimedia generation.",
     emoji: "🎥",
@@ -90,7 +91,7 @@ export const videoTools: Tool[] = [
     category: "Video & Animation Creation"
   },
   {
-    icon: BookOpen,
+    icon: Video,
     title: "Music Video Maker AI Studio",
     description: "Create professional music videos with AI assistance. Generate visual content synchronized with audio tracks and musical elements.",
     emoji: "🎬",
@@ -101,7 +102,7 @@ export const videoTools: Tool[] = [
     category: "Video & Animation Creation"
   },
   {
-    icon: BookOpen,
+    icon: Video,
     title: "PIKA LABS",
     description: "Advanced AI video generation platform creating high-quality videos from text prompts with cutting-edge AI technology.",
     emoji: "⚡",

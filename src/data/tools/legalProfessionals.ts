@@ -1,47 +1,77 @@
 
 import { Tool } from "@/types/tools";
 import { 
-  Scale, Gavel
+  Scale, FileText, Shield, Gavel, Building,
+  Users, Search, Brain, Briefcase, Globe,
+  BookOpen, PenTool, Eye, Calculator, TrendingUp,
+  Star, Trophy, Award, Crown, Diamond, Rocket,
+  Heart, Smile, Coffee, Gift, Cake, PartyPopper,
+  Camera, Music, Palette, Brush, Scissors,
+  Wand2, Video, ImageIcon, Gamepad2, Sparkles
 } from "lucide-react";
 
 export const legalProfessionals: Tool[] = [
   {
+    icon: Scale,
+    title: "Legal Research Assistant",
+    description: "AI-powered legal research tool for case law analysis and legal precedent discovery.",
+    emoji: "⚖️",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://legalresearch.ai",
+    tags: ["legal research", "case law", "precedents", "analysis"],
+    category: "Legal Professionals"
+  },
+  {
+    icon: FileText,
+    title: "Contract Analyzer",
+    description: "Intelligent contract review and analysis tool for legal professionals.",
+    emoji: "📄",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://contractai.com",
+    tags: ["contract analysis", "legal review", "document analysis"],
+    category: "Legal Professionals"
+  },
+  {
     icon: Gavel,
-    title: "Public Defender GPT",
-    description: "Legal defense assistance and public defender support. Get guidance on criminal defense strategies, legal procedures, case preparation, and constitutional rights protection for legal professionals.",
+    title: "Litigation Support AI",
+    description: "Comprehensive litigation support and case management for law firms.",
+    emoji: "🔨",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://litigation.ai",
+    tags: ["litigation", "case management", "legal support"],
+    category: "Legal Professionals"
+  },
+  {
+    icon: Building,
+    title: "Corporate Compliance Monitor",
+    description: "AI-driven corporate compliance and regulatory monitoring system.",
+    emoji: "🏢",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://compliance.ai",
+    tags: ["compliance", "regulatory", "corporate law"],
+    category: "Legal Professionals"
+  },
+  {
+    icon: Search,
+    title: "Due Diligence Specialist",
+    description: "Automated due diligence research and risk assessment for legal transactions.",
+    emoji: "🔍",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://duediligence.ai",
+    tags: ["due diligence", "risk assessment", "legal transactions"],
+    category: "Legal Professionals"
+  },
+  {
+    icon: Scale,
+    title: "Legal Draftsmith GPT",
+    description: "Professional legal document drafting and public defense assistance. Create comprehensive legal documents, defense strategies, and courtroom preparation materials.",
     emoji: "⚖️",
     color: "from-blue-500 to-purple-600",
+    directUrl: "https://publicdefendergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-humanoid-robot-dressed-like-a.png/:/cr=t:12.29%25,l:9.16%25,w:89.29%25,h:79.58%25/rs=w:600,h:300,cg:true,m/qt=q:98",
+    tags: ["legal drafting", "public defense", "legal documents", "courtroom preparation", "defense strategy"],
     category: "Legal Professionals",
-    directUrl: "https://publicdefendergpt.lovable.app/",
-    videoUrl: "https://www.youtube.com/watch?v=cQR5eFjsPWw",
-    tags: ["legal defense", "criminal law", "public defender", "constitutional rights", "legal procedures"],
     rating: 4.3,
-    totalVotes: 2567
-  },
-  {
-    icon: Scale,
-    title: "Contract Review Bot",
-    description: "Advanced AI contract analysis and review assistant. Get expert help with contract terms, legal language interpretation, and risk assessment for various legal documents.",
-    emoji: "⚖️",
-    color: "from-blue-500 to-gray-600",
-    category: "Legal Professionals",
-    directUrl: "https://chatgpt.com/g/g-Y8u3YrS1p-contract-review-bot",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-humanoid-robot-with-a-sleek-desig.png/:/cr=t:2.6%25,l:5.36%25,w:89.29%25,h:79.58%25/rs=w:1200,h:600,cg:true,m",
-    tags: ["contract review", "legal", "analysis", "risk assessment", "documentation"],
-    rating: 4.3,
-    totalVotes: 2789
-  },
-  {
-    icon: Scale,
-    title: "Criminologist GPT",
-    description: "Expert criminology and forensic science AI assistant. Analyze crime patterns, understand criminal behavior, and explore forensic investigation techniques.",
-    emoji: "🔍",
-    color: "from-red-500 to-black-600",
-    category: "Legal Professionals",
-    directUrl: "https://criminologistgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=jgvqpqmRJi8",
-    tags: ["criminology", "forensics", "investigation", "crime analysis", "law enforcement"],
-    rating: 4.1,
-    totalVotes: 2067
+    totalVotes: 2456
   }
 ];
