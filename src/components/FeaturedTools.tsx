@@ -24,6 +24,17 @@ const FeaturedTools = () => {
       setSelectedCategory(event.detail);
       setSearchTerm("");
       setDisplayedToolsCount(20); // Reset count when category changes
+      
+      // Scroll to the tools display area with smooth animation
+      setTimeout(() => {
+        const toolsDisplayArea = document.getElementById('tools-display-area');
+        if (toolsDisplayArea) {
+          toolsDisplayArea.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 100);
     };
 
     window.addEventListener('selectCategory', handleCategorySelect as EventListener);
@@ -88,6 +99,17 @@ const FeaturedTools = () => {
     setSelectedCategory(selectedCategory === category ? null : category);
     setSearchTerm("");
     setDisplayedToolsCount(20); // Reset count when category changes
+    
+    // Scroll to the tools display area with smooth animation
+    setTimeout(() => {
+      const toolsDisplayArea = document.getElementById('tools-display-area');
+      if (toolsDisplayArea) {
+        toolsDisplayArea.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 100);
   };
 
   const clearFilters = () => {
@@ -123,6 +145,10 @@ const FeaturedTools = () => {
     setDisplayedToolsCount(20);
   }, [searchTerm, selectedCategory]);
 
+  const handleDownloadClick = () => {
+    window.open('https://docs.google.com/document/d/1qtDKo3XN_EsspgrQD72Cpq2qh83H5xSd/edit?usp=drivesdk&ouid=116187507271950139405&rtpof=true&sd=true', '_blank');
+  };
+
   return (
     <section id="tools-section" className="py-20 bg-black relative">
       <div className="container mx-auto px-4 pt-20">
@@ -136,9 +162,10 @@ const FeaturedTools = () => {
           
           <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
           
-          {/* Download Button */}
+          {/* Download Button - Now Connected to Google Docs */}
           <div className="mt-8">
             <Button 
+              onClick={handleDownloadClick}
               size="lg" 
               className="bg-gradient-to-r from-cyan-500 to-cyan-700 hover:from-cyan-600 hover:to-cyan-800 text-black px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 interactive-button font-bold"
             >
@@ -226,60 +253,63 @@ const FeaturedTools = () => {
           </>
         )}
 
-        {/* All Tools Section with Infinite Scroll */}
-        {displayTools.length > 0 && (
-          <>
-            <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-cyan-100 mb-8 cyber-glow">
-                {selectedCategory ? (
-                  <>🎯 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{selectedCategory}</span></>
-                ) : searchTerm ? (
-                  <>🔍 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Search Results</span></>
-                ) : (
-                  <>🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Complete AI Tools Collection</span></>
-                )}
-              </h3>
-            </div>
+        {/* Tools Display Area - This is where category selections scroll to */}
+        <div id="tools-display-area">
+          {/* All Tools Section with Infinite Scroll */}
+          {displayTools.length > 0 && (
+            <>
+              <div className="text-center mb-12">
+                <h3 className="text-3xl font-bold text-cyan-100 mb-8 cyber-glow">
+                  {selectedCategory ? (
+                    <>🎯 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{selectedCategory}</span></>
+                  ) : searchTerm ? (
+                    <>🔍 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Search Results</span></>
+                  ) : (
+                    <>🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Complete AI Tools Collection</span></>
+                  )}
+                </h3>
+              </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {displayTools.map((tool, index) => (
-                <ToolCard key={`${tool.title}-${index}`} tool={tool} />
-              ))}
-            </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {displayTools.map((tool, index) => (
+                  <ToolCard key={`${tool.title}-${index}`} tool={tool} />
+                ))}
+              </div>
 
-            {/* Loading indicator and load more button */}
-            {displayedToolsCount < filteredTools.length && (
-              <div className="text-center mt-12">
-                <div className="mb-4 text-cyan-200">
-                  Showing {displayedToolsCount} of {filteredTools.length} tools
+              {/* Loading indicator and load more button */}
+              {displayedToolsCount < filteredTools.length && (
+                <div className="text-center mt-12">
+                  <div className="mb-4 text-cyan-200">
+                    Showing {displayedToolsCount} of {filteredTools.length} tools
+                  </div>
+                  <Button 
+                    onClick={loadMoreTools}
+                    size="lg" 
+                    variant="outline" 
+                    className="border-cyan-500 text-cyan-100 hover:bg-cyan-600 hover:text-black px-8 py-4 rounded-xl transition-all duration-300 bg-black/50"
+                  >
+                    Load More Tools
+                  </Button>
                 </div>
-                <Button 
-                  onClick={loadMoreTools}
-                  size="lg" 
-                  variant="outline" 
-                  className="border-cyan-500 text-cyan-100 hover:bg-cyan-600 hover:text-black px-8 py-4 rounded-xl transition-all duration-300 bg-black/50"
-                >
-                  Load More Tools
-                </Button>
-              </div>
-            )}
+              )}
 
-            {/* End of results indicator */}
-            {displayedToolsCount >= filteredTools.length && filteredTools.length > 20 && (
-              <div className="text-center mt-12 text-cyan-300">
-                🎉 You've seen all {filteredTools.length} tools! 
-                {!selectedCategory && !searchTerm && (
-                  <span className="block mt-2">Try searching or filtering by category to discover specific tools.</span>
-                )}
-              </div>
-            )}
-          </>
-        )}
+              {/* End of results indicator */}
+              {displayedToolsCount >= filteredTools.length && filteredTools.length > 20 && (
+                <div className="text-center mt-12 text-cyan-300">
+                  🎉 You've seen all {filteredTools.length} tools! 
+                  {!selectedCategory && !searchTerm && (
+                    <span className="block mt-2">Try searching or filtering by category to discover specific tools.</span>
+                  )}
+                </div>
+              )}
+            </>
+          )}
 
-        {/* No Results Message */}
-        {searchTerm && filteredTools.length === 0 && (
-          <NoResults searchTerm={searchTerm} onClearSearch={() => setSearchTerm("")} />
-        )}
+          {/* No Results Message */}
+          {searchTerm && filteredTools.length === 0 && (
+            <NoResults searchTerm={searchTerm} onClearSearch={() => setSearchTerm("")} />
+          )}
+        </div>
 
         {/* Inspirational Message */}
         <div className="text-center mt-20 p-8 bg-black/80 border border-cyan-500/30 rounded-2xl shadow-lg neon-border">
