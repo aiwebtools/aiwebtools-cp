@@ -1,12 +1,13 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Zap, Wrench, Calculator, Database, Code,
   Settings, Brain, Bot, Star, Award,
   Stethoscope, Scale, ShieldCheck, Home, Car,
-  Plane, MapPin, Gamepad2, BookOpen, Calc,
+  Plane, MapPin, Gamepad2, BookOpen, Calculator as Calc,
   Briefcase, HeartHandshake, Baby, PawPrint,
   Leaf, Recycle, Droplets, Fuel, Search,
-  Heart, Palette
+  Heart, Palette, Target, Shield, Crosshair
 } from "lucide-react";
 
 export const specializedAndNiche: Tool[] = [
@@ -281,5 +282,135 @@ export const specializedAndNiche: Tool[] = [
     category: "Specialized & Niche",
     rating: 4.1,
     totalVotes: 1876
+  },
+  {
+    icon: Brain,
+    title: "Albert Einstein GPT",
+    description: "Engage with the brilliant mind of Albert Einstein. Explore physics concepts, scientific theories, and philosophical discussions with the AI embodiment of the renowned physicist.",
+    emoji: "🧠",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=kfGyOfjBI0s",
+    tags: ["physics", "science", "Einstein", "education", "theory"],
+    category: "Specialized & Niche",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
+    icon: Clock,
+    title: "Interpretis 🕰️",
+    description: "Historical interpretation and analysis tool. Explore historical events, analyze past eras, and gain insights into different time periods with expert historical perspective.",
+    emoji: "🕰️",
+    color: "from-amber-500 to-brown-600",
+    directUrl: "https://interpretis.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
+    tags: ["history", "interpretation", "historical analysis", "time periods", "research"],
+    category: "Specialized & Niche",
+    rating: 4.2,
+    totalVotes: 2187
+  },
+  {
+    icon: Plane,
+    title: "Imagination Traveler GPT",
+    description: "Creative travel planning and imaginative journey assistant. Explore unique destinations, plan fantasy trips, and discover extraordinary travel experiences.",
+    emoji: "✈️",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://imaginationtravelergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-advertisement-for-imaginati_E4k--.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["travel", "imagination", "creative planning", "destinations", "experiences"],
+    category: "Specialized & Niche",
+    rating: 4.1,
+    totalVotes: 1923
+  },
+  {
+    icon: Bot,
+    title: "Nucleus AI Inbound Call Agents Platform",
+    description: "Advanced AI-powered inbound call management platform. Streamline customer service operations with intelligent call routing and automated assistance.",
+    emoji: "📞",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "http://www.nucleus.com/",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-futuristic-office-_x8S3w.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["call center", "customer service", "AI agents", "automation", "business"],
+    category: "Specialized & Niche",
+    rating: 4.3,
+    totalVotes: 2654
+  },
+  {
+    icon: Star,
+    title: "Titanic Resurrections GPT",
+    description: "Historical recreation and storytelling tool focused on the Titanic. Explore the ship's history, passenger stories, and alternative historical scenarios.",
+    emoji: "🚢",
+    color: "from-blue-500 to-gray-600",
+    directUrl: "https://titanicresurrectionsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=XlWVaz5bw08",
+    tags: ["history", "Titanic", "storytelling", "historical recreation", "maritime"],
+    category: "Specialized & Niche",
+    rating: 4.0,
+    totalVotes: 1765
+  },
+  {
+    icon: BookOpen,
+    title: "Historical Headlines GPT",
+    description: "Time-traveling news assistant that recreates historical headlines and provides context for major events throughout history.",
+    emoji: "📰",
+    color: "from-yellow-500 to-red-600",
+    directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-historical-headline_1Ll1g.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["history", "headlines", "news", "historical events", "time travel"],
+    category: "Specialized & Niche",
+    rating: 4.2,
+    totalVotes: 2098
+  },
+  {
+    icon: Zap,
+    title: "Alchemist Scientist GPT",
+    description: "Blend ancient alchemy with modern science. Explore chemical processes, scientific experiments, and the historical evolution of chemistry and natural sciences.",
+    emoji: "⚗️",
+    color: "from-purple-500 to-green-600",
+    directUrl: "https://alchemicalscientistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-the-ai-tool-_C4irn.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["science", "alchemy", "chemistry", "experiments", "research"],
+    category: "Specialized & Niche",
+    rating: 4.3,
+    totalVotes: 2345
+  },
+  {
+    icon: Search,
+    title: "Indiana Archeologist GPT",
+    description: "Archaeological exploration and discovery assistant. Analyze artifacts, explore ancient civilizations, and embark on virtual archaeological expeditions.",
+    emoji: "🏺",
+    color: "from-brown-500 to-yellow-600",
+    directUrl: "https://indianaarchaeologygpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=uf2i_DdaJ7M",
+    tags: ["archaeology", "artifacts", "ancient civilizations", "exploration", "history"],
+    category: "Specialized & Niche",
+    rating: 4.2,
+    totalVotes: 2123
+  },
+  {
+    icon: Droplets,
+    title: "Solar Land Assessor GPT",
+    description: "Solar energy land assessment tool. Evaluate properties for solar panel installation, analyze energy potential, and optimize renewable energy projects.",
+    emoji: "☀️",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://solarlandgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=CEca8C2GIpY",
+    tags: ["solar energy", "renewable energy", "land assessment", "sustainability", "green technology"],
+    category: "Specialized & Niche",
+    rating: 4.1,
+    totalVotes: 1876
+  },
+  {
+    icon: Heart,
+    title: "ALAN WATTS GPT",
+    description: "Philosophical wisdom and Eastern philosophy assistant inspired by Alan Watts. Explore mindfulness, spirituality, and philosophical insights.",
+    emoji: "🧘",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://alanwattsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=zdKfwsQwOLE",
+    tags: ["philosophy", "spirituality", "mindfulness", "Eastern philosophy", "wisdom"],
+    category: "Specialized & Niche",
+    rating: 4.4,
+    totalVotes: 2987
   }
 ];

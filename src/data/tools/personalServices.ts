@@ -1,9 +1,8 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  User, Heart, Scissors, Coffee, UtensilsCrossed,
-  Home, Car, Wrench, Palette, Star,
-  Wine, ChefHat, Shirt
+  Heart, Users, Home, Baby, PawPrint,
+  Scissors, Wrench, Car, Briefcase, Shield,
+  UserCheck, Calendar, MessageCircle, Phone, Smile
 } from "lucide-react";
 
 export const personalServices: Tool[] = [
@@ -69,5 +68,18 @@ export const personalServices: Tool[] = [
     category: "Personal Services",
     rating: 4.1,
     totalVotes: 1987
+  },
+  {
+    icon: Heart,
+    title: "Marriage Mender GPT",
+    description: "Relationship counseling and marriage guidance assistant. Get advice on communication, conflict resolution, and strengthening romantic relationships.",
+    emoji: "💕",
+    color: "from-pink-500 to-red-600",
+    directUrl: "https://marriagemendergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=3HCv5_QldrU",
+    tags: ["relationships", "marriage", "counseling", "communication", "love"],
+    category: "Personal Services",
+    rating: 4.1,
+    totalVotes: 2345
   }
 ];

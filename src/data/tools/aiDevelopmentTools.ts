@@ -1,73 +1,141 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Bot, Code, Zap, Globe, Users
+  Code, Terminal, Cpu, Database, Cloud,
+  Settings, Zap, Bot, Brain, Wrench
 } from "lucide-react";
 
 export const aiDevelopmentTools: Tool[] = [
   {
-    icon: Bot,
-    title: "Custom GPT Ideas & Brainstorming Assistant",
-    description: "Generate creative ideas and brainstorm custom GPT concepts. Get inspiration for unique AI applications and custom chatbot development.",
-    emoji: "💡",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://customgptmaker.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000002880.jpg/:/cr=t:22.21%25,l:0%25,w:100%25,h:55.58%25/rs=w:600,h:451,cg:true/qt=q:98",
-    tags: ["custom GPT", "brainstorming", "ideas", "chatbot development", "AI applications"],
-    category: "AI Development Tools",
-    rating: 4.1,
-    totalVotes: 1987
-  },
-  {
     icon: Code,
-    title: "Cheatlayer Project Atlas (SWARM BETA)",
-    description: "Advanced automation platform with AI-powered workflow creation and task automation for complex business processes.",
-    emoji: "🔧",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://cheatlayer.com/?ref=zta2nth",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377352898715062323/image.png?ex=6838a759&is=683755d9&hm=d32c66c79d433b9835b19ebebb6c63553d1647f77c44eb10217104d200df597c&",
-    tags: ["automation", "workflow", "business processes", "AI-powered", "complex tasks"],
+    title: "GPT-3",
+    description: "Advanced language model for natural language processing and text generation tasks.",
+    emoji: "💬",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://openai.com/api/",
+    tags: ["language model", "NLP", "text generation", "AI", "machine learning"],
     category: "AI Development Tools",
-    rating: 4.2,
-    totalVotes: 2123
+    rating: 4.7,
+    totalVotes: 6321
   },
   {
-    icon: Bot,
-    title: "BotSonic",
-    description: "Advanced chatbot creation platform with AI-powered conversational abilities and custom bot development tools.",
-    emoji: "🤖",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://writesonic.com/botsonic?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=CzQdnpFawKI",
-    tags: ["chatbot", "conversational AI", "bot development", "custom bots", "AI-powered"],
-    category: "AI Development Tools",
-    rating: 4.1,
-    totalVotes: 2234
-  },
-  {
-    icon: Globe,
-    title: "GOOGLE LABS & GOOGLE FLOW",
-    description: "Experimental AI tools and research projects from Google, featuring cutting-edge AI technologies and innovative applications.",
-    emoji: "🧪",
-    color: "from-red-500 to-blue-600",
-    directUrl: "https://labs.google/",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377359942578864258/image.png?ex=6838ade8&is=68375c68&hm=2c5d8dca1bb48660d84d1b8c6152d535a0b3ee3b8efb6f162286901003896fc4&",
-    tags: ["experimental", "Google", "research", "cutting-edge", "innovation"],
+    icon: Terminal,
+    title: "TensorFlow",
+    description: "Open-source machine learning framework for building and training AI models.",
+    emoji: "⚙️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://www.tensorflow.org/",
+    tags: ["machine learning", "AI", "framework", "deep learning", "neural networks"],
     category: "AI Development Tools",
     rating: 4.5,
-    totalVotes: 3789
+    totalVotes: 5876
   },
   {
-    icon: Users,
-    title: "BuildAI.Space",
-    description: "AI development platform and marketplace for building, sharing, and monetizing AI applications and tools.",
-    emoji: "🏗️",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://gumroad.com/a/815886803/cahfki",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377361060364816444/image.png?ex=6838aef2&is=68375d72&hm=5decaed233bbd7a01789666a0883196d15fb739e6f223406db095f63d424f7c7&",
-    tags: ["AI development", "marketplace", "monetization", "applications", "platform"],
+    icon: Cpu,
+    title: "PyTorch",
+    description: "Open-source machine learning library for Python, used for computer vision and NLP.",
+    emoji: "🐍",
+    color: "from-yellow-500 to-green-600",
+    directUrl: "https://pytorch.org/",
+    tags: ["machine learning", "Python", "computer vision", "NLP", "deep learning"],
     category: "AI Development Tools",
-    rating: 4.0,
-    totalVotes: 1543
+    rating: 4.6,
+    totalVotes: 5432
+  },
+  {
+    icon: Database,
+    title: "scikit-learn",
+    description: "Simple and efficient tools for predictive data analysis.",
+    emoji: "📊",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://scikit-learn.org/",
+    tags: ["machine learning", "data analysis", "Python", "statistics", "AI"],
+    category: "AI Development Tools",
+    rating: 4.4,
+    totalVotes: 4987
+  },
+  {
+    icon: Cloud,
+    title: "IBM Watson",
+    description: "Set of enterprise-ready AI services, applications, and tooling.",
+    emoji: "☁️",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://www.ibm.com/watson",
+    tags: ["AI services", "enterprise AI", "cloud computing", "machine learning", "AI"],
+    category: "AI Development Tools",
+    rating: 4.3,
+    totalVotes: 4543
+  },
+  {
+    icon: Settings,
+    title: "AutoML",
+    description: "Automated machine learning to easily train and deploy custom models.",
+    emoji: "🛠️",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://cloud.google.com/automl/",
+    tags: ["machine learning", "automation", "AI", "model training", "cloud computing"],
+    category: "AI Development Tools",
+    rating: 4.2,
+    totalVotes: 4123
+  },
+  {
+    icon: Zap,
+    title: "Hugging Face",
+    description: "Provides tools for building, training, and deploying machine learning models.",
+    emoji: "🤗",
+    color: "from-pink-500 to-red-600",
+    directUrl: "https://huggingface.co/",
+    tags: ["machine learning", "NLP", "transformers", "AI", "model deployment"],
+    category: "AI Development Tools",
+    rating: 4.5,
+    totalVotes: 3876
+  },
+  {
+    icon: Bot,
+    title: "Microsoft Azure AI",
+    description: "Cloud-based AI services for building intelligent applications.",
+    emoji: "🤖",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://azure.microsoft.com/en-us/solutions/ai",
+    tags: ["AI services", "cloud computing", "machine learning", "AI", "application development"],
+    category: "AI Development Tools",
+    rating: 4.4,
+    totalVotes: 3654
+  },
+  {
+    icon: Brain,
+    title: "Amazon SageMaker",
+    description: "Fully managed service to build, train, and deploy machine learning models quickly.",
+    emoji: "🧠",
+    color: "from-orange-500 to-yellow-600",
+    directUrl: "https://aws.amazon.com/sagemaker/",
+    tags: ["machine learning", "model training", "AI", "cloud computing", "deployment"],
+    category: "AI Development Tools",
+    rating: 4.6,
+    totalVotes: 3432
+  },
+  {
+    icon: Wrench,
+    title: "OpenVINO",
+    description: "Toolkit for optimizing and deploying AI inference across multiple platforms.",
+    emoji: "🔧",
+    color: "from-yellow-500 to-green-600",
+    directUrl: "https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/overview.html",
+    tags: ["AI inference", "optimization", "deployment", "cross-platform", "AI"],
+    category: "AI Development Tools",
+    rating: 4.3,
+    totalVotes: 3210
+  },
+  {
+    icon: Bot,
+    title: "Customizable GPT Maker",
+    description: "Create and customize your own GPT models and AI assistants. Build specialized AI tools tailored to your specific needs and requirements.",
+    emoji: "🤖",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://customgptmaker.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=SmBXfGqXfco",
+    tags: ["GPT creation", "AI customization", "model building", "AI development", "automation"],
+    category: "AI Development Tools",
+    rating: 4.3,
+    totalVotes: 2876
   }
 ];
