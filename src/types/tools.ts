@@ -9,4 +9,5 @@ export interface Tool {
   color: string;
   videoUrl: string;
   tags?: string[];
+  category?: string;
 }

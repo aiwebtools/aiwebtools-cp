@@ -1,28 +1,53 @@
 
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { featuredTools, allTools, searchTools } from "@/data/toolsData";
+import { featuredTools, allTools, searchTools, getCategoriesWithCounts, getToolsByCategory } from "@/data/toolsData";
 import SearchBar from "@/components/tools/SearchBar";
 import ToolCard from "@/components/tools/ToolCard";
 import NoResults from "@/components/tools/NoResults";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const FeaturedTools = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   // Use enhanced search functionality
   const filteredTools = searchTools(allTools, searchTerm);
   const filteredFeaturedTools = searchTools(featuredTools, searchTerm);
-  const filteredGridTools = filteredTools.slice(6);
+  
+  // Apply category filter if selected
+  const displayTools = selectedCategory 
+    ? getToolsByCategory(selectedCategory).filter(tool => 
+        searchTerm ? searchTools([tool], searchTerm).length > 0 : true
+      )
+    : filteredTools;
+
+  const categoriesWithCounts = getCategoriesWithCounts();
+
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(selectedCategory === category ? null : category);
+    setSearchTerm("");
+  };
+
+  const clearFilters = () => {
+    setSelectedCategory(null);
+    setSearchTerm("");
+  };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section id="tools-section" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Featured <span className="bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">AI Tools</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Discover our most popular AI-powered tools designed to enhance your creative process
+            Discover our comprehensive collection of 600+ AI-powered tools designed to enhance your creative process, productivity, and innovation
           </p>
           
           <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
@@ -37,27 +62,103 @@ const FeaturedTools = () => {
             </Button>
           </div>
         </div>
-        
-        {/* Featured Tools Grid */}
-        {filteredFeaturedTools.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {filteredFeaturedTools.map((tool, index) => (
-              <ToolCard key={index} tool={tool} isFeatured={true} />
-            ))}
+
+        {/* Category Filter Accordion */}
+        <div className="mb-12 max-w-4xl mx-auto">
+          <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-lg">
+            <AccordionItem value="categories" className="border-none">
+              <AccordionTrigger className="px-6 py-4 text-lg font-semibold text-gray-900 hover:text-ai-purple">
+                Browse Tools by Category ({Object.keys(categoriesWithCounts).length} Categories)
+              </AccordionTrigger>
+              <AccordionContent className="px-6 pb-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {Object.entries(categoriesWithCounts).map(([category, count]) => (
+                    <Button
+                      key={category}
+                      variant={selectedCategory === category ? "default" : "outline"}
+                      className={`justify-between h-auto p-3 text-left ${
+                        selectedCategory === category 
+                          ? "bg-ai-purple text-white" 
+                          : "border-ai-purple text-ai-purple hover:bg-ai-purple hover:text-white"
+                      }`}
+                      onClick={() => handleCategorySelect(category)}
+                    >
+                      <span className="text-sm font-medium">{category}</span>
+                      <span className={`text-xs px-2 py-1 rounded-full ${
+                        selectedCategory === category 
+                          ? "bg-white text-ai-purple" 
+                          : "bg-ai-purple text-white"
+                      }`}>
+                        {count}
+                      </span>
+                    </Button>
+                  ))}
+                </div>
+                {(selectedCategory || searchTerm) && (
+                  <div className="mt-4 text-center">
+                    <Button onClick={clearFilters} variant="outline" size="sm">
+                      Clear All Filters
+                    </Button>
+                  </div>
+                )}
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+
+        {/* Active Filters Display */}
+        {(selectedCategory || searchTerm) && (
+          <div className="mb-8 text-center">
+            <div className="inline-flex items-center space-x-2 bg-white px-4 py-2 rounded-lg shadow-md">
+              <span className="text-gray-600">Showing:</span>
+              {selectedCategory && (
+                <span className="bg-ai-purple text-white px-3 py-1 rounded-full text-sm">
+                  {selectedCategory}
+                </span>
+              )}
+              {searchTerm && (
+                <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm">
+                  "{searchTerm}"
+                </span>
+              )}
+              <span className="text-gray-600">({displayTools.length} tools)</span>
+            </div>
           </div>
         )}
-
-        {/* All Tools Section */}
-        {filteredGridTools.length > 0 && (
+        
+        {/* Featured Tools Grid - Only show if no filters applied */}
+        {!selectedCategory && !searchTerm && (
           <>
             <div className="text-center mb-12">
               <h3 className="text-3xl font-bold text-gray-900 mb-8">
-                Complete <span className="bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">AI Tools Collection</span>
+                🌟 <span className="bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">Most Popular Tools</span>
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              {featuredTools.map((tool, index) => (
+                <ToolCard key={index} tool={tool} isFeatured={true} />
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* All Tools Section */}
+        {displayTools.length > 0 && (
+          <>
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-gray-900 mb-8">
+                {selectedCategory ? (
+                  <>🎯 <span className="bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">{selectedCategory}</span></>
+                ) : searchTerm ? (
+                  <>🔍 <span className="bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">Search Results</span></>
+                ) : (
+                  <>🚀 <span className="bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">Complete AI Tools Collection</span></>
+                )}
               </h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {filteredGridTools.map((tool, index) => (
+              {(selectedCategory || searchTerm ? displayTools : displayTools.slice(6)).map((tool, index) => (
                 <ToolCard key={index} tool={tool} />
               ))}
             </div>
@@ -65,18 +166,18 @@ const FeaturedTools = () => {
         )}
 
         {/* No Results Message */}
-        {searchTerm && filteredTools.length === 0 && (
+        {searchTerm && displayTools.length === 0 && (
           <NoResults searchTerm={searchTerm} onClearSearch={() => setSearchTerm("")} />
         )}
         
-        {!searchTerm && (
+        {!searchTerm && !selectedCategory && (
           <div className="text-center mt-12">
             <Button 
               size="lg" 
               variant="outline" 
               className="border-ai-purple text-ai-purple hover:bg-ai-purple hover:text-white px-8 py-4 rounded-xl transition-all duration-300"
             >
-              View All AI Tools
+              View All {allTools.length}+ AI Tools
             </Button>
           </div>
         )}

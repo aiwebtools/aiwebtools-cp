@@ -1,8 +1,43 @@
 
 import { Button } from "@/components/ui/button";
-import { Menu, Phone } from "lucide-react";
+import { Menu, Phone, ChevronDown } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+import { getCategoriesWithCounts } from "@/data/toolsData";
 
 const Header = () => {
+  const categoriesWithCounts = getCategoriesWithCounts();
+
+  const scrollToTools = () => {
+    const toolsSection = document.getElementById('tools-section');
+    if (toolsSection) {
+      toolsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToCategory = (category: string) => {
+    scrollToTools();
+    // Small delay to ensure scroll completes before filtering
+    setTimeout(() => {
+      const searchInput = document.querySelector('input[placeholder*="Search"]') as HTMLInputElement;
+      if (searchInput) {
+        searchInput.value = category;
+        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    }, 500);
+  };
+
   return (
     <header className="bg-white/90 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4">
@@ -15,7 +50,39 @@ const Header = () => {
           
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#home" className="text-gray-700 hover:text-ai-purple transition-colors">Home</a>
-            <a href="#tools" className="text-gray-700 hover:text-ai-purple transition-colors">🆓Industry Specific AI</a>
+            
+            {/* AI Tools Dropdown with Categories */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center space-x-1 text-gray-700 hover:text-ai-purple transition-colors">
+                <span>🆓Industry Specific AI</span>
+                <ChevronDown className="w-4 h-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-80 max-h-96 overflow-y-auto bg-white shadow-lg border border-gray-200">
+                <div className="p-2">
+                  <div className="font-semibold text-ai-purple mb-2">Browse by Category</div>
+                  {Object.entries(categoriesWithCounts).map(([category, count]) => (
+                    <DropdownMenuItem
+                      key={category}
+                      onClick={() => scrollToCategory(category)}
+                      className="flex justify-between items-center cursor-pointer hover:bg-gray-100 rounded-md p-2"
+                    >
+                      <span className="text-sm">{category}</span>
+                      <span className="text-xs bg-ai-purple text-white px-2 py-1 rounded-full">
+                        {count}
+                      </span>
+                    </DropdownMenuItem>
+                  ))}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={scrollToTools}
+                    className="cursor-pointer hover:bg-gray-100 rounded-md p-2 font-medium text-ai-purple"
+                  >
+                    View All Tools
+                  </DropdownMenuItem>
+                </div>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <a href="#services" className="text-gray-700 hover:text-ai-purple transition-colors">More</a>
             <div className="flex items-center space-x-2 text-gray-700">
               <Phone className="w-4 h-4" />
@@ -23,9 +90,45 @@ const Header = () => {
             </div>
           </nav>
           
-          <Button variant="outline" size="sm" className="md:hidden">
-            <Menu className="w-4 h-4" />
-          </Button>
+          {/* Mobile Menu */}
+          <div className="md:hidden">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm">
+                  <Menu className="w-4 h-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-80 max-h-96 overflow-y-auto bg-white shadow-lg">
+                <div className="p-2">
+                  <DropdownMenuItem onClick={() => window.location.href = '#home'}>
+                    Home
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <div className="font-semibold text-ai-purple mb-2 px-2">AI Tool Categories</div>
+                  {Object.entries(categoriesWithCounts).map(([category, count]) => (
+                    <DropdownMenuItem
+                      key={category}
+                      onClick={() => scrollToCategory(category)}
+                      className="flex justify-between items-center"
+                    >
+                      <span className="text-sm">{category}</span>
+                      <span className="text-xs bg-ai-purple text-white px-2 py-1 rounded-full">
+                        {count}
+                      </span>
+                    </DropdownMenuItem>
+                  ))}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => window.location.href = '#services'}>
+                    More Services
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Phone className="w-4 h-4 mr-2" />
+                    475-800-8096
+                  </DropdownMenuItem>
+                </div>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </div>
     </header>
