@@ -15,3 +15,4 @@ export { writingAndContent } from './writingAndContent';
 export { imageAndDesign } from './imageAndDesign';
 export { businessAndProductivity } from './businessAndProductivity';
 export { specializedAndNiche } from './specializedAndNiche';
+export { educationAndLearning } from './educationAndLearning';

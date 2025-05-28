@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import {
   businessTools,
@@ -12,34 +13,13 @@ import {
   writingAndContent,
   imageAndDesign,
   businessAndProductivity,
-  specializedAndNiche
+  specializedAndNiche,
+  educationAndLearning
 } from './tools';
 import { BookOpen, Youtube } from "lucide-react";
 
 // Additional standalone tools that may need separate categorization
 const additionalTools: Tool[] = [
-  {
-    icon: Youtube,
-    title: "BHUMAN – Avatars Creation For Outreach",
-    description: "Generates hyper-personalized video messages by cloning your face and voice for marketing and outreach campaigns.",
-    emoji: "👤",
-    color: "from-purple-500 to-blue-500",
-    videoUrl: "https://www.youtube.com/watch?v=W1WHD9IhGhs",
-    directUrl: "https://app.bhuman.ai/?ref=zde0otr",
-    tags: ["avatars", "outreach", "marketing", "personalization", "video cloning"],
-    category: "Video & Animation Creation"
-  },
-  {
-    icon: Youtube,
-    title: "AI Tools Finder GPT",
-    description: "Discover and find the perfect AI tools for your needs. Search through comprehensive databases of AI applications and services.",
-    emoji: "🛠️",
-    color: "from-blue-500 to-purple-500",
-    videoUrl: "https://www.youtube.com/watch?v=IrKKi3SX89g",
-    directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
-    tags: ["AI tools", "discovery", "search", "productivity", "finder", "database"],
-    category: "AI Development & Platforms"
-  },
   {
     icon: BookOpen,
     title: "Restaurant Menu Maker GPT",
@@ -49,17 +29,6 @@ const additionalTools: Tool[] = [
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-restaurant-menu-with-a-vari__Oji1.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     directUrl: "https://restaurantmenumakergpt.lovable.app/",
     tags: ["restaurant", "menu", "food", "hospitality", "design", "culinary"],
-    category: "Business & Productivity Tools"
-  },
-  {
-    icon: BookOpen,
-    title: "🚀 Startup Validator GPT",
-    description: "Validate your startup ideas with comprehensive AI analysis. Get market research, competitor analysis, and business model validation.",
-    emoji: "🚀",
-    color: "from-purple-500 to-blue-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-named-st_4i8GY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    directUrl: "https://startupvalidatorgpt.lovable.app/?via=aiwebtools",
-    tags: ["startup", "validation", "business model", "market research", "entrepreneurship"],
     category: "Business & Productivity Tools"
   }
 ];
@@ -72,6 +41,7 @@ export const allTools: Tool[] = [
   ...videoTools,
   ...audioMusicTools,
   ...businessAndProductivity,
+  ...educationAndLearning,
   ...specializedAndNiche,
   ...businessTools,
   ...aiAssistants,
@@ -92,7 +62,7 @@ export const featuredTools: Tool[] = [
   allTools.find(tool => tool.title.includes("Ideogram")) || allTools[5]
 ];
 
-// Enhanced search function with comprehensive keywords from your directory
+// Enhanced search function with comprehensive keywords
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) return tools;
   
@@ -102,6 +72,58 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     tool.description.toLowerCase().includes(term) ||
     tool.category?.toLowerCase().includes(term) ||
     tool.tags?.some(tag => tag.toLowerCase().includes(term)) ||
+    
+    // Business & Productivity enhanced keywords
+    (term.includes('business') && (tool.title.toLowerCase().includes('business') || tool.category?.includes('Business'))) ||
+    (term.includes('productivity') && tool.tags?.some(tag => tag.toLowerCase().includes('productivity'))) ||
+    (term.includes('automation') && tool.tags?.some(tag => tag.toLowerCase().includes('automation'))) ||
+    (term.includes('website') && tool.tags?.some(tag => tag.toLowerCase().includes('website'))) ||
+    (term.includes('bot') && tool.tags?.some(tag => tag.toLowerCase().includes('bot'))) ||
+    (term.includes('plan') && tool.tags?.some(tag => tag.toLowerCase().includes('plan'))) ||
+    (term.includes('contract') && tool.tags?.some(tag => tag.toLowerCase().includes('contract'))) ||
+    (term.includes('insurance') && tool.tags?.some(tag => tag.toLowerCase().includes('insurance'))) ||
+    (term.includes('claims') && tool.tags?.some(tag => tag.toLowerCase().includes('claims'))) ||
+    (term.includes('data') && tool.tags?.some(tag => tag.toLowerCase().includes('data'))) ||
+    (term.includes('analysis') && tool.tags?.some(tag => tag.toLowerCase().includes('analysis'))) ||
+    (term.includes('make') && tool.title.toLowerCase().includes('make')) ||
+    (term.includes('10web') && tool.title.toLowerCase().includes('10web')) ||
+    (term.includes('botsonic') && tool.title.toLowerCase().includes('botsonic')) ||
+    (term.includes('cheatlayer') && tool.title.toLowerCase().includes('cheatlayer')) ||
+    (term.includes('valuation') && tool.tags?.some(tag => tag.toLowerCase().includes('valuation'))) ||
+    (term.includes('saas') && tool.tags?.some(tag => tag.toLowerCase().includes('saas'))) ||
+    (term.includes('microsaas') && tool.title.toLowerCase().includes('microsaas')) ||
+    (term.includes('nucleus') && tool.title.toLowerCase().includes('nucleus')) ||
+    (term.includes('call') && tool.tags?.some(tag => tag.toLowerCase().includes('call'))) ||
+    (term.includes('phone') && tool.tags?.some(tag => tag.toLowerCase().includes('phone'))) ||
+    (term.includes('credit') && tool.tags?.some(tag => tag.toLowerCase().includes('credit'))) ||
+    (term.includes('resume') && tool.tags?.some(tag => tag.toLowerCase().includes('resume'))) ||
+    (term.includes('job') && tool.tags?.some(tag => tag.toLowerCase().includes('job'))) ||
+    (term.includes('startup') && tool.tags?.some(tag => tag.toLowerCase().includes('startup'))) ||
+    (term.includes('taxes') && tool.tags?.some(tag => tag.toLowerCase().includes('taxes'))) ||
+    (term.includes('trading') && tool.tags?.some(tag => tag.toLowerCase().includes('trading'))) ||
+    (term.includes('finance') && tool.tags?.some(tag => tag.toLowerCase().includes('finance'))) ||
+    (term.includes('training') && tool.tags?.some(tag => tag.toLowerCase().includes('training'))) ||
+    
+    // Education & Learning enhanced keywords
+    (term.includes('education') && (tool.category?.includes('Education') || tool.tags?.some(tag => tag.toLowerCase().includes('education')))) ||
+    (term.includes('learning') && tool.tags?.some(tag => tag.toLowerCase().includes('learning'))) ||
+    (term.includes('course') && tool.tags?.some(tag => tag.toLowerCase().includes('course'))) ||
+    (term.includes('college') && tool.tags?.some(tag => tag.toLowerCase().includes('college'))) ||
+    (term.includes('degree') && tool.tags?.some(tag => tag.toLowerCase().includes('degree'))) ||
+    (term.includes('school') && tool.tags?.some(tag => tag.toLowerCase().includes('school'))) ||
+    (term.includes('homeschool') && tool.title.toLowerCase().includes('homeschool')) ||
+    (term.includes('skill') && tool.tags?.some(tag => tag.toLowerCase().includes('skill'))) ||
+    (term.includes('quiz') && tool.tags?.some(tag => tag.toLowerCase().includes('quiz'))) ||
+    (term.includes('test') && tool.tags?.some(tag => tag.toLowerCase().includes('test'))) ||
+    (term.includes('math') && tool.tags?.some(tag => tag.toLowerCase().includes('math'))) ||
+    (term.includes('algebra') && tool.tags?.some(tag => tag.toLowerCase().includes('algebra'))) ||
+    (term.includes('probability') && tool.tags?.some(tag => tag.toLowerCase().includes('probability'))) ||
+    (term.includes('firearms') && tool.tags?.some(tag => tag.toLowerCase().includes('firearms'))) ||
+    (term.includes('safety') && tool.tags?.some(tag => tag.toLowerCase().includes('safety'))) ||
+    (term.includes('tutor') && tool.tags?.some(tag => tag.toLowerCase().includes('tutor'))) ||
+    (term.includes('academic') && tool.tags?.some(tag => tag.toLowerCase().includes('academic'))) ||
+    (term.includes('curriculum') && tool.tags?.some(tag => tag.toLowerCase().includes('curriculum'))) ||
+    (term.includes('instruction') && tool.tags?.some(tag => tag.toLowerCase().includes('instruction'))) ||
     
     // Video & Animation Creation enhanced keywords
     (term.includes('video') && (tool.title.toLowerCase().includes('video') || tool.description.toLowerCase().includes('video') || tool.category?.includes('Video'))) ||
@@ -211,8 +233,6 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     (term.includes('play') && tool.tags?.some(tag => tag.toLowerCase().includes('play'))) ||
     (term.includes('theater') && tool.tags?.some(tag => tag.toLowerCase().includes('theater'))) ||
     (term.includes('testimony') && tool.tags?.some(tag => tag.toLowerCase().includes('testimony'))) ||
-    (term.includes('training') && tool.tags?.some(tag => tag.toLowerCase().includes('training'))) ||
-    (term.includes('manual') && tool.tags?.some(tag => tag.toLowerCase().includes('manual'))) ||
     (term.includes('clarity') && tool.title.toLowerCase().includes('clarity')) ||
     
     // Image & Design keywords
@@ -235,23 +255,6 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     (term.includes('restyle') && tool.title.toLowerCase().includes('restyle')) ||
     (term.includes('meshy') && tool.title.toLowerCase().includes('meshy')) ||
     (term.includes('3d') && tool.tags?.some(tag => tag.toLowerCase().includes('3d'))) ||
-    
-    // Business & Productivity keywords
-    (term.includes('business') && (tool.title.toLowerCase().includes('business') || tool.category?.includes('Business'))) ||
-    (term.includes('productivity') && tool.tags?.some(tag => tag.toLowerCase().includes('productivity'))) ||
-    (term.includes('automation') && tool.tags?.some(tag => tag.toLowerCase().includes('automation'))) ||
-    (term.includes('website') && tool.tags?.some(tag => tag.toLowerCase().includes('website'))) ||
-    (term.includes('bot') && tool.tags?.some(tag => tag.toLowerCase().includes('bot'))) ||
-    (term.includes('plan') && tool.tags?.some(tag => tag.toLowerCase().includes('plan'))) ||
-    (term.includes('contract') && tool.tags?.some(tag => tag.toLowerCase().includes('contract'))) ||
-    (term.includes('insurance') && tool.tags?.some(tag => tag.toLowerCase().includes('insurance'))) ||
-    (term.includes('claims') && tool.tags?.some(tag => tag.toLowerCase().includes('claims'))) ||
-    (term.includes('data') && tool.tags?.some(tag => tag.toLowerCase().includes('data'))) ||
-    (term.includes('analysis') && tool.tags?.some(tag => tag.toLowerCase().includes('analysis'))) ||
-    (term.includes('make') && tool.title.toLowerCase().includes('make')) ||
-    (term.includes('10web') && tool.title.toLowerCase().includes('10web')) ||
-    (term.includes('botsonic') && tool.title.toLowerCase().includes('botsonic')) ||
-    (term.includes('cheatlayer') && tool.title.toLowerCase().includes('cheatlayer')) ||
     
     // Specialized & Niche keywords
     (term.includes('specialized') && tool.category?.includes('Specialized')) ||

@@ -90,5 +90,115 @@ export const businessAndProductivity: Tool[] = [
     directUrl: "https://www.make.com/en/register?pc=aiwebtools",
     tags: ["automation", "workflows", "integration", "productivity", "no-code"],
     category: "Business & Productivity Tools"
+  },
+  {
+    icon: Youtube,
+    title: "MATERIUMOR- MATERIAL VALUATION GPT",
+    description: "Next-generation valuation assistant for physical and digital assets (rare metals, gems, digital currencies), providing data-informed insights on market value and trends.",
+    emoji: "💎",
+    color: "from-purple-500 to-gold-500",
+    videoUrl: "https://www.youtube.com/watch?v=tbZu4vnsY_8",
+    directUrl: "https://materialvaluationgpt.lovable.app/?via=aiwebtools",
+    tags: ["valuation", "assets", "materials", "market analysis", "investments", "gems", "metals"],
+    category: "Business & Productivity Tools"
+  },
+  {
+    icon: BookOpen,
+    title: "MicroSaaS GPT",
+    description: "AI chat assistant helping entrepreneurs turn niche-specific ideas into structured, ready-to-build SaaS applications with development blueprints.",
+    emoji: "🚀",
+    color: "from-green-500 to-blue-500",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-mockup-advertisement-with-t_AgWMY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    directUrl: "https://microsaasgpt.lovable.app/?via=aiwebtools",
+    tags: ["SaaS", "entrepreneurship", "micro SaaS", "business ideas", "development"],
+    category: "Business & Productivity Tools"
+  },
+  {
+    icon: BookOpen,
+    title: "Nucleus AI Inbound Call Agents Platform",
+    description: "AI-powered virtual business inbound call assistant to handle inquiries, promote brand, forward messages, and capture leads. Provides a new business phone number.",
+    emoji: "📞",
+    color: "from-blue-500 to-purple-500",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-futuristic-office-_x8S3w.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    directUrl: "http://www.nucleus.com/",
+    tags: ["call agents", "customer service", "inbound calls", "AI assistant", "lead capture"],
+    category: "Business & Productivity Tools"
+  },
+  {
+    icon: BookOpen,
+    title: "Phone Call GPT (Freedom GPT)",
+    description: "Deploy AI Phone Agents with Freedom GPT for automated phone conversations and customer service.",
+    emoji: "☎️",
+    color: "from-purple-500 to-blue-500",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377352651477614672/image.png?ex=6838a71e&is=6837559e&hm=b0dc0aa8fe73a8d3efe08a0bc3e4ac5f04c4bc743d1310505f53e80e933e573a&",
+    directUrl: "http://shrsl.com/2meh1-3brt-1iyev",
+    tags: ["phone agents", "AI calls", "automation", "customer service"],
+    category: "Business & Productivity Tools"
+  },
+  {
+    icon: BookOpen,
+    title: "Predictive Credit Score Checker GPT",
+    description: "AI tool for estimating creditworthiness based on specific addresses, useful for real estate, finance, and lending.",
+    emoji: "💳",
+    color: "from-green-500 to-blue-500",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-screenshot-of-a-web-app-with-the-text-predic.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    directUrl: "https://predictivecreditscoregpt.lovable.app/?via=aiwebtools",
+    tags: ["credit score", "finance", "lending", "real estate", "predictive analytics"],
+    category: "Business & Productivity Tools"
+  },
+  {
+    icon: BookOpen,
+    title: "The Resume & Job Finder Ai Suite",
+    description: "Combines Job Finder GPT, Resume Enhancer GPT, and Resume Specialist GPT for job searching, resume sharpening, and job coaching.",
+    emoji: "📄",
+    color: "from-blue-500 to-green-500",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-happy-man-with-a-job-offer-_n6N-k.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    directUrl: "https://resumeandjobsgpt.lovable.app/?via=aiwebtools",
+    tags: ["resume", "job search", "career", "employment", "job finder", "recruiting"],
+    category: "Business & Productivity Tools"
+  },
+  {
+    icon: BookOpen,
+    title: "🚀 Startup Validator GPT",
+    description: "AI startup analysis tool to assess market viability, scalability, and investment potential, providing insights on competition, risk, and growth strategies.",
+    emoji: "🚀",
+    color: "from-purple-500 to-blue-500",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-named-st_4i8GY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    directUrl: "https://startupvalidatorgpt.lovable.app/?via=aiwebtools",
+    tags: ["startup", "validation", "business model", "market research", "entrepreneurship"],
+    category: "Business & Productivity Tools"
+  },
+  {
+    icon: Youtube,
+    title: "Taxes GPT",
+    description: "AI-powered tax assistant to simplify tax preparation, maximize deductions, analyze financial data, and provide accurate tax reports.",
+    emoji: "💰",
+    color: "from-green-500 to-blue-500",
+    videoUrl: "https://www.youtube.com/watch?v=xkcsSVbBhf4",
+    directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
+    tags: ["taxes", "tax preparation", "deductions", "finance", "accounting"],
+    category: "Business & Productivity Tools"
+  },
+  {
+    icon: Youtube,
+    title: "Trader GPT",
+    description: "Advanced AI tool for day traders and investors, providing real-time market analysis and trading signals using technical analysis. (Simulation for informational/research purposes only).",
+    emoji: "📈",
+    color: "from-red-500 to-green-500",
+    videoUrl: "https://www.youtube.com/watch?v=Izs80Fak4hQ",
+    directUrl: "https://tradergpt.lovable.app/?via=aiwebtools",
+    tags: ["trading", "investing", "market analysis", "finance", "stocks", "day trading"],
+    category: "Business & Productivity Tools"
+  },
+  {
+    icon: BookOpen,
+    title: "Training Manual Generator GPT",
+    description: "AI-powered generator for comprehensive, customized training manuals for businesses, ensuring alignment with company needs for effective employee training.",
+    emoji: "📖",
+    color: "from-blue-500 to-purple-500",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005968.jpg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
+    directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
+    tags: ["training", "manuals", "business", "education", "employee training", "HR"],
+    category: "Business & Productivity Tools"
   }
 ];
