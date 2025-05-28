@@ -129,7 +129,81 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       (searchTerm.includes('design') && (lowerTitle.includes('design') || lowerCategory.includes('design'))),
       (searchTerm.includes('art') && (lowerTitle.includes('art') || lowerCategory.includes('art'))),
       (searchTerm.includes('midjourney') && lowerTitle.includes('midjourney')),
-      (searchTerm.includes('ideogram') && lowerTitle.includes('ideogram'))
+      (searchTerm.includes('ideogram') && lowerTitle.includes('ideogram')),
+      
+      // Fun & Entertainment
+      (searchTerm.includes('fun') && lowerCategory.includes('fun')),
+      (searchTerm.includes('game') && (lowerTitle.includes('game') || lowerTags.some(tag => tag.includes('game')))),
+      (searchTerm.includes('entertainment') && lowerCategory.includes('entertainment')),
+      (searchTerm.includes('celebrity') && lowerTitle.includes('celebrity')),
+      (searchTerm.includes('dream') && lowerTitle.includes('dream')),
+      (searchTerm.includes('matrix') && lowerTitle.includes('matrix')),
+      (searchTerm.includes('trivia') && lowerTitle.includes('trivia')),
+      
+      // Hobbies & Interests
+      (searchTerm.includes('fishing') && lowerTitle.includes('fisherman')),
+      (searchTerm.includes('fish') && lowerTitle.includes('fisherman')),
+      (searchTerm.includes('survival') && lowerTitle.includes('survivalist')),
+      (searchTerm.includes('travel') && lowerTitle.includes('travel')),
+      (searchTerm.includes('collectible') && lowerTitle.includes('collectible')),
+      (searchTerm.includes('antique') && lowerTitle.includes('antique')),
+      (searchTerm.includes('mushroom') && lowerTitle.includes('fungus')),
+      (searchTerm.includes('fungus') && lowerTitle.includes('fungus')),
+      
+      // Food & Culinary
+      (searchTerm.includes('food') && (lowerTitle.includes('food') || lowerCategory.includes('food'))),
+      (searchTerm.includes('recipe') && lowerTags.some(tag => tag.includes('recipe'))),
+      (searchTerm.includes('cooking') && lowerTags.some(tag => tag.includes('cooking'))),
+      (searchTerm.includes('chef') && lowerTitle.includes('chef')),
+      (searchTerm.includes('restaurant') && lowerTitle.includes('restaurant')),
+      (searchTerm.includes('cocktail') && lowerTitle.includes('mixologist')),
+      (searchTerm.includes('bartender') && lowerTitle.includes('mixologist')),
+      
+      // Health & Medical
+      (searchTerm.includes('doctor') && lowerTitle.includes('doctor')),
+      (searchTerm.includes('medical') && lowerCategory.includes('medical')),
+      (searchTerm.includes('pharmacy') && lowerTitle.includes('pharmaceutical')),
+      (searchTerm.includes('mental') && lowerTitle.includes('mental')),
+      (searchTerm.includes('veterinarian') && lowerTitle.includes('veterinarian')),
+      (searchTerm.includes('vet') && lowerTitle.includes('veterinarian')),
+      (searchTerm.includes('pet') && lowerTitle.includes('veterinarian')),
+      
+      // Utility & Conversion
+      (searchTerm.includes('binary') && lowerTitle.includes('binary')),
+      (searchTerm.includes('convert') && lowerTitle.includes('convert')),
+      (searchTerm.includes('utility') && lowerCategory.includes('utility')),
+      (searchTerm.includes('prompt') && lowerTitle.includes('prompt')),
+      
+      // Ethical & Philosophical
+      (searchTerm.includes('philosophy') && lowerTags.some(tag => tag.includes('philosophy'))),
+      (searchTerm.includes('peace') && lowerTitle.includes('peace')),
+      (searchTerm.includes('wisdom') && lowerTags.some(tag => tag.includes('wisdom'))),
+      (searchTerm.includes('sustainable') && lowerTitle.includes('sustainable')),
+      (searchTerm.includes('environment') && lowerTags.some(tag => tag.includes('environment'))),
+      
+      // Legal & Governmental
+      (searchTerm.includes('contract') && lowerTitle.includes('contract')),
+      (searchTerm.includes('legislation') && lowerTitle.includes('legislation')),
+      (searchTerm.includes('cyber') && lowerTitle.includes('cyber')),
+      (searchTerm.includes('security') && lowerTitle.includes('security')),
+      (searchTerm.includes('fact') && lowerTitle.includes('fact')),
+      
+      // Real Estate & Property
+      (searchTerm.includes('home') && lowerTitle.includes('home')),
+      (searchTerm.includes('property') && lowerTitle.includes('property')),
+      (searchTerm.includes('renovation') && lowerTitle.includes('renovator')),
+      (searchTerm.includes('repair') && lowerTags.some(tag => tag.includes('repair'))),
+      
+      // Automotive
+      (searchTerm.includes('car') && lowerTitle.includes('automobile')),
+      (searchTerm.includes('auto') && lowerTitle.includes('automobile')),
+      (searchTerm.includes('vehicle') && lowerTags.some(tag => tag.includes('vehicle'))),
+      
+      // AI Tool Aggregators
+      (searchTerm.includes('ai tools') && lowerCategory.includes('aggregators')),
+      (searchTerm.includes('tool finder') && lowerTitle.includes('finder')),
+      (searchTerm.includes('1000') && lowerTitle.includes('1000')),
+      (searchTerm.includes('list') && lowerTitle.includes('list'))
     ];
     
     return specialMatches.some(match => match);
