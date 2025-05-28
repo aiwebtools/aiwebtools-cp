@@ -5,41 +5,41 @@
 
 @layer base {
   :root {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 0%;
+    --foreground: 180 100% 90%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 5%;
+    --card-foreground: 180 100% 90%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 180 100% 90%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 270 100% 50%;
+    --secondary-foreground: 180 100% 90%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 300 100% 50%;
+    --accent-foreground: 180 100% 90%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 180 100% 90%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 270 50% 20%;
+    --input: 270 50% 20%;
+    --ring: 180 100% 50%;
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 180 100% 90%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 270 100% 50%;
+    --sidebar-accent-foreground: 180 100% 90%;
+    --sidebar-border: 270 50% 20%;
+    --sidebar-ring: 180 100% 50%;
   }
 }
 
@@ -49,23 +49,40 @@
   }
 
   body {
-    @apply bg-gray-900 text-white;
-    background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #1a1a2e);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    @apply bg-black text-cyan-100;
+    background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%);
+    background-attachment: fixed;
     min-height: 100vh;
+    font-family: 'Orbitron', 'Roboto', monospace;
   }
 
-  @keyframes gradientShift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+  /* Cyberpunk glow effects */
+  .cyber-glow {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+
+  .neon-border {
+    border: 1px solid;
+    border-image: linear-gradient(45deg, #00ffff, #ff00ff) 1;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(255, 0, 255, 0.1);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00ffff, #ff00ff);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #00cccc, #cc00cc);
   }
 
   .moving-stars {
@@ -80,9 +97,10 @@
 
   .star {
     position: absolute;
-    background: white;
+    background: #00ffff;
     border-radius: 50%;
     animation: twinkle 3s infinite ease-in-out;
+    box-shadow: 0 0 6px #00ffff;
   }
 
   @keyframes twinkle {
@@ -102,9 +120,10 @@
 
   .particle {
     position: absolute;
-    background: rgba(139, 95, 191, 0.6);
+    background: rgba(0, 255, 255, 0.6);
     border-radius: 50%;
     animation: float 20s infinite linear;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
   }
 
   @keyframes float {
@@ -123,40 +142,53 @@
       opacity: 0;
     }
   }
-}
 
-/* Enhanced button animations */
-.interactive-button {
-  @apply transition-all duration-300 transform hover:scale-105 hover:shadow-2xl;
-  position: relative;
-  overflow: hidden;
-}
-
-.interactive-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transition: left 0.5s;
-}
-
-.interactive-button:hover::before {
-  left: 100%;
-}
-
-.glow-effect {
-  box-shadow: 0 0 20px rgba(139, 95, 191, 0.5);
-  animation: pulse-glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes pulse-glow {
-  from {
-    box-shadow: 0 0 20px rgba(139, 95, 191, 0.5);
+  /* Enhanced button animations */
+  .interactive-button {
+    @apply transition-all duration-300 transform hover:scale-105;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
   }
-  to {
-    box-shadow: 0 0 30px rgba(139, 95, 191, 0.8), 0 0 40px rgba(79, 70, 229, 0.3);
+
+  .interactive-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  .interactive-button:hover::before {
+    left: 100%;
+  }
+
+  .interactive-button:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.3);
+  }
+
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes pulse-glow {
+    from {
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+    to {
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 40px rgba(255, 0, 255, 0.3);
+    }
+  }
+
+  /* Cyberpunk grid overlay */
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
   }
 }
