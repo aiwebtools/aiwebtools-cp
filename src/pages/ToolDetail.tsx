@@ -1,4 +1,3 @@
-
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -21,11 +20,13 @@ const ToolDetail = () => {
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
 
-  // Reset loading states when tool changes
+  // Reset loading states and scroll to top when tool changes
   useEffect(() => {
     setImageLoaded(false);
     setImageError(false);
     setVideoError(false);
+    // Scroll to top of page when component mounts or tool changes
+    window.scrollTo(0, 0);
   }, [toolIndex]);
 
   if (!tool) {
