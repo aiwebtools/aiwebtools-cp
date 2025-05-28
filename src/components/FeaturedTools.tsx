@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { featuredTools, allTools, searchTools, getCategoriesWithCounts, getToolsByCategory } from "@/data/toolsData";
 import SearchBar from "@/components/tools/SearchBar";
 import ToolCard from "@/components/tools/ToolCard";
@@ -16,7 +16,21 @@ const FeaturedTools = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  // Enhanced search with more keywords
+  // Listen for category selection events from header
+  useEffect(() => {
+    const handleCategorySelect = (event: CustomEvent) => {
+      setSelectedCategory(event.detail);
+      setSearchTerm("");
+    };
+
+    window.addEventListener('selectCategory', handleCategorySelect as EventListener);
+    
+    return () => {
+      window.removeEventListener('selectCategory', handleCategorySelect as EventListener);
+    };
+  }, []);
+
+  // Enhanced search with more keywords including "suite"
   const enhancedSearchTools = (tools: any[], searchTerm: string) => {
     if (!searchTerm.trim()) return tools;
     
@@ -26,6 +40,8 @@ const FeaturedTools = () => {
       tool.description.toLowerCase().includes(term) ||
       tool.category?.toLowerCase().includes(term) ||
       tool.tags?.some((tag: string) => tag.toLowerCase().includes(term)) ||
+      // Suite search functionality
+      (term.includes('suite') && (tool.title.toLowerCase().includes('suite') || tool.description.toLowerCase().includes('suite'))) ||
       // Additional search keywords
       (term.includes('video') && (tool.title.toLowerCase().includes('video') || tool.description.toLowerCase().includes('video') || tool.category === 'Video Tools')) ||
       (term.includes('music') && (tool.title.toLowerCase().includes('music') || tool.description.toLowerCase().includes('music') || tool.category === 'Audio & Music')) ||
@@ -63,13 +79,13 @@ const FeaturedTools = () => {
   };
 
   return (
-    <section id="tools-section" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section id="tools-section" className="py-20 bg-black relative">
+      <div className="container mx-auto px-4 pt-20">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Featured <span className="bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">AI Tools</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-cyan-100 mb-4 cyber-glow">
+            Featured <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">AI Tools</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-cyan-200 max-w-3xl mx-auto mb-8">
             Discover our comprehensive collection of 600+ AI-powered tools designed to enhance your creative process, productivity, and innovation
           </p>
           
@@ -79,7 +95,7 @@ const FeaturedTools = () => {
           <div className="mt-8">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-ai-purple to-ai-blue hover:from-ai-purple/80 hover:to-ai-blue/80 text-white px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105"
+              className="bg-gradient-to-r from-cyan-500 to-cyan-700 hover:from-cyan-600 hover:to-cyan-800 text-black px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 interactive-button font-bold"
             >
               DOWNLOAD YOUR FREE MASTER AI TOOLS LIST OF 1000+ AI TOOLS
             </Button>
@@ -88,9 +104,9 @@ const FeaturedTools = () => {
 
         {/* Category Filter Accordion */}
         <div className="mb-12 max-w-4xl mx-auto">
-          <Accordion type="single" collapsible className="w-full bg-white rounded-xl shadow-lg">
+          <Accordion type="single" collapsible className="w-full bg-black/80 rounded-xl shadow-lg border border-cyan-500/30 neon-border">
             <AccordionItem value="categories" className="border-none">
-              <AccordionTrigger className="px-6 py-4 text-lg font-semibold text-gray-900 hover:text-ai-purple">
+              <AccordionTrigger className="px-6 py-4 text-lg font-semibold text-cyan-100 hover:text-cyan-400">
                 Browse Tools by Category ({Object.keys(categoriesWithCounts).length} Categories)
               </AccordionTrigger>
               <AccordionContent className="px-6 pb-6">
@@ -101,16 +117,16 @@ const FeaturedTools = () => {
                       variant={selectedCategory === category ? "default" : "outline"}
                       className={`justify-between h-auto p-3 text-left ${
                         selectedCategory === category 
-                          ? "bg-ai-purple text-white" 
-                          : "border-ai-purple text-ai-purple hover:bg-ai-purple hover:text-white"
+                          ? "bg-cyan-600 text-black border-cyan-400" 
+                          : "border-cyan-500 text-cyan-100 hover:bg-cyan-600 hover:text-black bg-black/50"
                       }`}
                       onClick={() => handleCategorySelect(category)}
                     >
                       <span className="text-sm font-medium">{category}</span>
                       <span className={`text-xs px-2 py-1 rounded-full ${
                         selectedCategory === category 
-                          ? "bg-white text-ai-purple" 
-                          : "bg-ai-purple text-white"
+                          ? "bg-black text-cyan-400" 
+                          : "bg-cyan-600 text-black"
                       }`}>
                         {count}
                       </span>
@@ -119,7 +135,7 @@ const FeaturedTools = () => {
                 </div>
                 {(selectedCategory || searchTerm) && (
                   <div className="mt-4 text-center">
-                    <Button onClick={clearFilters} variant="outline" size="sm">
+                    <Button onClick={clearFilters} variant="outline" size="sm" className="border-cyan-500 text-cyan-100 hover:bg-cyan-600 hover:text-black">
                       Clear All Filters
                     </Button>
                   </div>
@@ -132,19 +148,19 @@ const FeaturedTools = () => {
         {/* Active Filters Display */}
         {(selectedCategory || searchTerm) && (
           <div className="mb-8 text-center">
-            <div className="inline-flex items-center space-x-2 bg-white px-4 py-2 rounded-lg shadow-md">
-              <span className="text-gray-600">Showing:</span>
+            <div className="inline-flex items-center space-x-2 bg-black/80 border border-cyan-500/30 px-4 py-2 rounded-lg shadow-md">
+              <span className="text-cyan-200">Showing:</span>
               {selectedCategory && (
-                <span className="bg-ai-purple text-white px-3 py-1 rounded-full text-sm">
+                <span className="bg-cyan-600 text-black px-3 py-1 rounded-full text-sm font-bold">
                   {selectedCategory}
                 </span>
               )}
               {searchTerm && (
-                <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm">
+                <span className="bg-cyan-500 text-black px-3 py-1 rounded-full text-sm font-bold">
                   "{searchTerm}"
                 </span>
               )}
-              <span className="text-gray-600">({displayTools.length} tools)</span>
+              <span className="text-cyan-200">({displayTools.length} tools)</span>
             </div>
           </div>
         )}
@@ -153,8 +169,8 @@ const FeaturedTools = () => {
         {!selectedCategory && !searchTerm && (
           <>
             <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-gray-900 mb-8">
-                🌟 <span className="bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">Most Popular Tools</span>
+              <h3 className="text-3xl font-bold text-cyan-100 mb-8 cyber-glow">
+                🌟 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Most Popular Tools</span>
               </h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
@@ -169,13 +185,13 @@ const FeaturedTools = () => {
         {displayTools.length > 0 && (
           <>
             <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-gray-900 mb-8">
+              <h3 className="text-3xl font-bold text-cyan-100 mb-8 cyber-glow">
                 {selectedCategory ? (
-                  <>🎯 <span className="bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">{selectedCategory}</span></>
+                  <>🎯 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{selectedCategory}</span></>
                 ) : searchTerm ? (
-                  <>🔍 <span className="bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">Search Results</span></>
+                  <>🔍 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Search Results</span></>
                 ) : (
-                  <>🚀 <span className="bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">Complete AI Tools Collection</span></>
+                  <>🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Complete AI Tools Collection</span></>
                 )}
               </h3>
             </div>
@@ -198,7 +214,7 @@ const FeaturedTools = () => {
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-ai-purple text-ai-purple hover:bg-ai-purple hover:text-white px-8 py-4 rounded-xl transition-all duration-300"
+              className="border-cyan-500 text-cyan-100 hover:bg-cyan-600 hover:text-black px-8 py-4 rounded-xl transition-all duration-300 bg-black/50"
             >
               View All {allTools.length}+ AI Tools
             </Button>
@@ -206,13 +222,13 @@ const FeaturedTools = () => {
         )}
 
         {/* Inspirational Message */}
-        <div className="text-center mt-20 p-8 bg-white rounded-2xl shadow-lg">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+        <div className="text-center mt-20 p-8 bg-black/80 border border-cyan-500/30 rounded-2xl shadow-lg neon-border">
+          <h3 className="text-2xl font-bold text-cyan-100 mb-4 cyber-glow">
             Best of luck on your inspiring AI journey!
           </h3>
-          <p className="text-gray-600 mb-4">We Thank You for Visiting AiTools.Studio</p>
+          <p className="text-cyan-200 mb-4">We Thank You for Visiting AiTools.Studio</p>
           
-          <div className="max-w-4xl mx-auto text-sm text-gray-500 leading-relaxed space-y-2">
+          <div className="max-w-4xl mx-auto text-sm text-cyan-300 leading-relaxed space-y-2">
             <p>The future is unwritten — it can be shaped by human choice and collective action.</p>
             <p>Knowledge and technology are not ends in themselves; they are tools meant to serve people, helping each of us fulfill our potential.</p>
             <p>Power should be decentralized, fairness upheld, and human dignity honored through creativity, uniqueness, and compassion.</p>
@@ -223,7 +239,7 @@ const FeaturedTools = () => {
             <p>Let us move with courage and open minds — for the path ahead is ours to shape, together. 🕊️</p>
           </div>
           
-          <p className="text-lg font-semibold text-ai-purple mt-6">
+          <p className="text-lg font-semibold text-cyan-400 mt-6">
             "Choose your path. The future is yours to create." - KB
           </p>
         </div>

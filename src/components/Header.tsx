@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Menu, Phone, ChevronDown } from "lucide-react";
 import {
@@ -21,23 +22,27 @@ const Header = () => {
   };
 
   const scrollToCategory = (category: string) => {
-    scrollToTools();
-    setTimeout(() => {
-      const searchInput = document.querySelector('input[placeholder*="Search"]') as HTMLInputElement;
-      if (searchInput) {
-        searchInput.value = category;
-        searchInput.dispatchEvent(new Event('input', { bubbles: true }));
-      }
-    }, 500);
+    // First scroll to tools section
+    const toolsSection = document.getElementById('tools-section');
+    if (toolsSection) {
+      toolsSection.scrollIntoView({ behavior: 'smooth' });
+      
+      // Wait for scroll to complete, then trigger category filter
+      setTimeout(() => {
+        // Dispatch custom event to trigger category selection
+        const event = new CustomEvent('selectCategory', { detail: category });
+        window.dispatchEvent(event);
+      }, 800);
+    }
   };
 
   return (
-    <header className="bg-gray-900/95 backdrop-blur-md border-b border-purple-500/30 sticky top-0 z-50 shadow-lg shadow-purple-500/10">
+    <header className="bg-black/95 backdrop-blur-md border-b border-cyan-500/30 fixed top-0 w-full z-50 shadow-lg shadow-cyan-500/10">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center space-x-4 flex-shrink-0">
             <div className="text-center">
-              <div className="text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+              <div className="text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
                 AITOOLS.STUDIO
               </div>
               <div className="text-xs md:text-sm text-gray-400">
@@ -46,7 +51,7 @@ const Header = () => {
                   href="https://www.aiwebtools.ai" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-cyan-400 hover:text-purple-400 transition-colors underline"
+                  className="text-cyan-400 hover:text-cyan-300 transition-colors underline"
                 >
                   AiWebTools.AI
                 </a>
@@ -67,17 +72,17 @@ const Header = () => {
                 <span>🆓Industry Specific AI</span>
                 <ChevronDown className="w-4 h-4" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-80 max-h-96 overflow-y-auto bg-gray-900/95 shadow-lg border border-purple-500/30 backdrop-blur-md">
+              <DropdownMenuContent className="w-80 max-h-96 overflow-y-auto bg-black/95 shadow-lg border border-cyan-500/30 backdrop-blur-md">
                 <div className="p-2">
                   <div className="font-semibold text-cyan-400 mb-2">Browse by Category</div>
                   {Object.entries(categoriesWithCounts).map(([category, count]) => (
                     <DropdownMenuItem
                       key={category}
                       onClick={() => scrollToCategory(category)}
-                      className="flex justify-between items-center cursor-pointer hover:bg-purple-500/20 rounded-md p-2 text-cyan-100"
+                      className="flex justify-between items-center cursor-pointer hover:bg-cyan-500/20 rounded-md p-2 text-cyan-100"
                     >
                       <span className="text-sm">{category}</span>
-                      <span className="text-xs bg-gradient-to-r from-cyan-400 to-purple-500 text-black px-2 py-1 rounded-full font-bold">
+                      <span className="text-xs bg-gradient-to-r from-cyan-400 to-cyan-600 text-black px-2 py-1 rounded-full font-bold">
                         {count}
                       </span>
                     </DropdownMenuItem>
@@ -85,7 +90,7 @@ const Header = () => {
                   <DropdownMenuSeparator className="border-gray-700" />
                   <DropdownMenuItem
                     onClick={scrollToTools}
-                    className="cursor-pointer hover:bg-purple-500/20 rounded-md p-2 font-medium text-cyan-400"
+                    className="cursor-pointer hover:bg-cyan-500/20 rounded-md p-2 font-medium text-cyan-400"
                   >
                     View All Tools
                   </DropdownMenuItem>
@@ -112,13 +117,13 @@ const Header = () => {
             </div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="border-purple-500/30 bg-gray-900/80 text-cyan-100 hover:bg-purple-500/20 flex-shrink-0">
+                <Button variant="outline" size="sm" className="border-cyan-500/30 bg-black/80 text-cyan-100 hover:bg-cyan-500/20 flex-shrink-0">
                   <Menu className="w-4 h-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-80 max-h-96 overflow-y-auto bg-gray-900/95 shadow-lg border border-purple-500/30 backdrop-blur-md">
+              <DropdownMenuContent className="w-80 max-h-96 overflow-y-auto bg-black/95 shadow-lg border border-cyan-500/30 backdrop-blur-md">
                 <div className="p-2">
-                  <DropdownMenuItem onClick={() => window.location.href = '#home'} className="text-cyan-100 hover:bg-purple-500/20">
+                  <DropdownMenuItem onClick={() => window.location.href = '#home'} className="text-cyan-100 hover:bg-cyan-500/20">
                     Home
                   </DropdownMenuItem>
                   <DropdownMenuSeparator className="border-gray-700" />
@@ -127,19 +132,19 @@ const Header = () => {
                     <DropdownMenuItem
                       key={category}
                       onClick={() => scrollToCategory(category)}
-                      className="flex justify-between items-center text-cyan-100 hover:bg-purple-500/20"
+                      className="flex justify-between items-center text-cyan-100 hover:bg-cyan-500/20"
                     >
                       <span className="text-sm">{category}</span>
-                      <span className="text-xs bg-gradient-to-r from-cyan-400 to-purple-500 text-black px-2 py-1 rounded-full font-bold">
+                      <span className="text-xs bg-gradient-to-r from-cyan-400 to-cyan-600 text-black px-2 py-1 rounded-full font-bold">
                         {count}
                       </span>
                     </DropdownMenuItem>
                   ))}
                   <DropdownMenuSeparator className="border-gray-700" />
-                  <DropdownMenuItem onClick={() => window.location.href = '#services'} className="text-cyan-100 hover:bg-purple-500/20">
+                  <DropdownMenuItem onClick={() => window.location.href = '#services'} className="text-cyan-100 hover:bg-cyan-500/20">
                     More Services
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="text-cyan-100 hover:bg-purple-500/20">
+                  <DropdownMenuItem className="text-cyan-100 hover:bg-cyan-500/20">
                     <Phone className="w-4 h-4 mr-2" />
                     <a href="tel:+14758008096">475-800-8096</a>
                   </DropdownMenuItem>
@@ -152,13 +157,13 @@ const Header = () => {
           <div className="hidden md:flex lg:hidden">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="border-purple-500/30 bg-gray-900/80 text-cyan-100 hover:bg-purple-500/20">
+                <Button variant="outline" size="sm" className="border-cyan-500/30 bg-black/80 text-cyan-100 hover:bg-cyan-500/20">
                   <Menu className="w-4 h-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-80 max-h-96 overflow-y-auto bg-gray-900/95 shadow-lg border border-purple-500/30 backdrop-blur-md">
+              <DropdownMenuContent className="w-80 max-h-96 overflow-y-auto bg-black/95 shadow-lg border border-cyan-500/30 backdrop-blur-md">
                 <div className="p-2">
-                  <DropdownMenuItem onClick={() => window.location.href = '#home'} className="text-cyan-100 hover:bg-purple-500/20">
+                  <DropdownMenuItem onClick={() => window.location.href = '#home'} className="text-cyan-100 hover:bg-cyan-500/20">
                     Home
                   </DropdownMenuItem>
                   <DropdownMenuSeparator className="border-gray-700" />
@@ -167,19 +172,19 @@ const Header = () => {
                     <DropdownMenuItem
                       key={category}
                       onClick={() => scrollToCategory(category)}
-                      className="flex justify-between items-center text-cyan-100 hover:bg-purple-500/20"
+                      className="flex justify-between items-center text-cyan-100 hover:bg-cyan-500/20"
                     >
                       <span className="text-sm">{category}</span>
-                      <span className="text-xs bg-gradient-to-r from-cyan-400 to-purple-500 text-black px-2 py-1 rounded-full font-bold">
+                      <span className="text-xs bg-gradient-to-r from-cyan-400 to-cyan-600 text-black px-2 py-1 rounded-full font-bold">
                         {count}
                       </span>
                     </DropdownMenuItem>
                   ))}
                   <DropdownMenuSeparator className="border-gray-700" />
-                  <DropdownMenuItem onClick={() => window.location.href = '#services'} className="text-cyan-100 hover:bg-purple-500/20">
+                  <DropdownMenuItem onClick={() => window.location.href = '#services'} className="text-cyan-100 hover:bg-cyan-500/20">
                     More Services
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="text-cyan-100 hover:bg-purple-500/20">
+                  <DropdownMenuItem className="text-cyan-100 hover:bg-cyan-500/20">
                     <Phone className="w-4 h-4 mr-2" />
                     <a href="tel:+14758008096">475-800-8096</a>
                   </DropdownMenuItem>
