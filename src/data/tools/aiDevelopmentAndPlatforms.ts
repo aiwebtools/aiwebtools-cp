@@ -4,7 +4,8 @@ import {
   Zap, Brain, MessageSquare, Settings, Wrench,
   Star, Trophy, Award, Crown, Diamond, Rocket,
   Heart, Smile, Coffee, Gift, Cake, PartyPopper,
-  Palette, ImageIcon, Users, Download
+  Palette, ImageIcon, Users, Download, Shield,
+  Globe, Building
 } from "lucide-react";
 
 export const aiDevelopmentAndPlatforms: Tool[] = [
@@ -176,5 +177,96 @@ export const aiDevelopmentAndPlatforms: Tool[] = [
     category: "AI Development & Platforms",
     rating: 4.0,
     totalVotes: 1543
+  },
+  {
+    icon: Brain,
+    title: "Midjourney – Image Generation Platform",
+    description: "Leading AI image generation platform for creating stunning artwork, illustrations, and creative visuals using advanced AI technology.",
+    emoji: "🎨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.midjourney.com/home",
+    videoUrl: "https://www.youtube.com/watch?v=5deYUaqwreo",
+    tags: ["image generation", "artwork", "AI art", "creative", "visual design"],
+    category: "AI Development & Platforms",
+    rating: 4.6,
+    totalVotes: 5234
+  },
+  {
+    icon: Brain,
+    title: "Claude",
+    description: "Advanced AI assistant by Anthropic with sophisticated reasoning capabilities, ethical AI principles, and comprehensive knowledge across various domains.",
+    emoji: "🤖",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://claude.ai/",
+    videoUrl: "https://www.youtube.com/watch?v=oqUclC3gqKs",
+    tags: ["AI assistant", "reasoning", "ethical AI", "conversational", "comprehensive"],
+    category: "AI Development & Platforms",
+    rating: 4.7,
+    totalVotes: 6789
+  },
+  {
+    icon: ImageIcon,
+    title: "Ideogram – Image Generator",
+    description: "AI-powered image generation platform specializing in high-quality visual content creation with advanced artistic capabilities.",
+    emoji: "🖼️",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://ideogram.ai/",
+    videoUrl: "https://www.youtube.com/watch?v=USSpwbe3Rxk",
+    tags: ["image generation", "visual content", "artistic", "AI art", "creative"],
+    category: "AI Development & Platforms",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: Users,
+    title: "BHUMAN – Avatars Creation For Outreach",
+    description: "AI-powered avatar creation platform for personalized video outreach, sales, and marketing communications with realistic digital personas.",
+    emoji: "👤",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://app.bhuman.ai/?ref=zde0otr",
+    videoUrl: "https://www.youtube.com/watch?v=W1WHD9IhGhs",
+    tags: ["avatar creation", "video outreach", "personalized", "marketing", "digital personas"],
+    category: "AI Development & Platforms",
+    rating: 4.2,
+    totalVotes: 2987
+  },
+  {
+    icon: Download,
+    title: "LM STUDIO – Run AI Locally & Download & Deploy Countless AI Models",
+    description: "Local AI model deployment platform for running and managing AI models on your own hardware with privacy and control.",
+    emoji: "💾",
+    color: "from-gray-500 to-blue-600",
+    directUrl: "https://lmstudio.ai/",
+    videoUrl: "https://www.youtube.com/watch?v=yBI1nPep72Q",
+    tags: ["local AI", "model deployment", "privacy", "self-hosted", "AI models"],
+    category: "AI Development & Platforms",
+    rating: 4.3,
+    totalVotes: 3234
+  },
+  {
+    icon: Zap,
+    title: "Merlin Ai",
+    description: "AI-powered browser extension and productivity assistant for enhanced web browsing, research, and content creation across multiple platforms.",
+    emoji: "🧙‍♂️",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://app.getmerlin.in/plans?ref=mte1mgu4",
+    videoUrl: "https://www.youtube.com/watch?v=rDrG5DqCCgY",
+    tags: ["browser extension", "productivity", "research", "content creation", "web assistant"],
+    category: "AI Development & Platforms",
+    rating: 4.1,
+    totalVotes: 2765
+  },
+  {
+    icon: Brain,
+    title: "Llama by META",
+    description: "Meta's open-source large language model family offering powerful AI capabilities for developers and researchers with transparent development.",
+    emoji: "🦙",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://llama.meta.com/",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/converted_image.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    tags: ["open source", "language model", "Meta", "developers", "research"],
+    category: "AI Development & Platforms",
+    rating: 4.5,
+    totalVotes: 4321
   }
 ];
