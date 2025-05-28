@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import {
   Video, Film, Camera, Play, Edit, Clapperboard,
@@ -150,6 +149,19 @@ export const videoTools: Tool[] = [
     category: "Video Tools",
     rating: 4.3,
     totalVotes: 2789
+  },
+  {
+    icon: UserCheck,
+    title: "Hey Gen – Interactive Avatar Creation Hub",
+    description: "Advanced AI avatar creation platform for interactive video content, digital presenters, and personalized video experiences.",
+    emoji: "👥",
+    color: "from-purple-500 to-cyan-600",
+    directUrl: "https://app.heygen.com/guest/home?sid=rewardful&via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377360265238155334/image.png?ex=6838ae35&is=68375cb5&hm=0707c33ddc6e2d86638158d89c26611517049cd508cd73468072bfec6fda488c&",
+    tags: ["interactive avatars", "digital presenters", "personalized video", "avatar creation", "video experiences"],
+    category: "Video Tools",
+    rating: 4.3,
+    totalVotes: 2456
   },
   {
     icon: Search,

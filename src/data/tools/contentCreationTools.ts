@@ -1,6 +1,6 @@
 
 import { Tool } from "@/types/tools";
-import { BookOpen, Youtube } from "lucide-react";
+import { BookOpen, Youtube, Film } from "lucide-react";
 
 export const contentCreationTools: Tool[] = [
   {
@@ -26,7 +26,7 @@ export const contentCreationTools: Tool[] = [
     category: "Content Creation"
   },
   {
-    icon: Youtube,
+    icon: Film,
     title: "Movie Scene Maker GPT",
     description: "Create compelling movie scenes and screenplays with AI assistance. Generate dialogue, action sequences, and cinematic content.",
     emoji: "🎬",
@@ -37,7 +37,7 @@ export const contentCreationTools: Tool[] = [
     category: "Content Creation"
   },
   {
-    icon: Youtube,
+    icon: BookOpen,
     title: "Children's Picture Book Maker GPT",
     description: "Create engaging children's picture books with AI assistance. Generate stories, illustrations, and interactive content for young readers.",
     emoji: "📚",
