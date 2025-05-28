@@ -7,42 +7,42 @@ const featuredTools = [
   {
     icon: BookOpen,
     title: "Book Writer GPT",
-    description: "Create professionally written full books about anything you dream",
+    description: "Create professionally written full books about any topic",
     emoji: "✍️",
     color: "from-blue-500 to-purple-600"
   },
   {
     icon: Film,
     title: "Movie Script Writer GPT",
-    description: "Your AI companion for full industry-standard movie scripts and storytelling",
+    description: "AI companion for industry-standard movie scripts and storytelling",
     emoji: "🎬",
     color: "from-red-500 to-pink-600"
   },
   {
     icon: Clock,
     title: "Time Machine GPT",
-    description: "Uncover the past, explore potential futures, and dive into alternative realities",
+    description: "Explore the past, potential futures, and alternative realities",
     emoji: "🌀",
     color: "from-cyan-500 to-blue-600"
   },
   {
     icon: Car,
     title: "Automobile GPT",
-    description: "Your ultimate automotive expert for deals, repairs, and maintenance advice",
+    description: "Comprehensive automotive expert for deals, repairs, and maintenance advice",
     emoji: "🏎️",
     color: "from-orange-500 to-red-600"
   },
   {
     icon: GraduationCap,
     title: "College Degree GPT",
-    description: "Complete college education experience - access to education is a human right",
+    description: "Complete college education experience with accessible learning resources",
     emoji: "🎓",
     color: "from-green-500 to-teal-600"
   },
   {
     icon: Shield,
     title: "Survivalist GPT",
-    description: "Your ultimate survival companion with vast knowledge and experience",
+    description: "Comprehensive survival companion with practical knowledge and experience",
     emoji: "🛡️",
     color: "from-gray-500 to-slate-600"
   }
@@ -60,14 +60,14 @@ const allTools = [
   {
     icon: Zap,
     title: "Nikola Tesla GPT",
-    description: "Investigate scientific mysteries and craft groundbreaking theories with Tesla's visionary brilliance",
+    description: "Investigate scientific mysteries and craft groundbreaking theories with innovative brilliance",
     emoji: "⚡",
     color: "from-purple-600 to-indigo-700"
   },
   {
     icon: Search,
     title: "Food Quality Inspector GPT",
-    description: "Your smart companion for grocery shopping, assessing food quality and safety",
+    description: "Smart companion for grocery shopping, assessing food quality and safety",
     emoji: "🛒",
     color: "from-yellow-500 to-orange-600"
   },
@@ -109,7 +109,7 @@ const allTools = [
   {
     icon: Brain,
     title: "Trivia Night GPT",
-    description: "Ultimate AI-powered trivia showdown for friends and family",
+    description: "AI-powered trivia showdown for friends and family",
     emoji: "🧠",
     color: "from-indigo-600 to-purple-700"
   },
@@ -123,7 +123,7 @@ const allTools = [
   {
     icon: Shield,
     title: "Insurance Claims GPT",
-    description: "Revolutionary claims management and estimation with advanced damage analysis",
+    description: "Advanced claims management and estimation with detailed damage analysis",
     emoji: "🔒",
     color: "from-blue-700 to-indigo-800"
   },
@@ -144,7 +144,7 @@ const allTools = [
   {
     icon: BookOpen,
     title: "Learn Any Course GPT",
-    description: "Your dedicated AI-powered tutor for comprehensive courses on any subject",
+    description: "AI-powered tutor for comprehensive courses on any subject",
     emoji: "📚",
     color: "from-blue-600 to-cyan-600"
   },
@@ -236,7 +236,7 @@ const FeaturedTools = () => {
             Featured <span className="bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">AI Tools</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover our most popular AI-powered tools designed to revolutionize your creative process
+            Discover our most popular AI-powered tools designed to enhance your creative process
           </p>
         </div>
         
@@ -300,7 +300,7 @@ const FeaturedTools = () => {
             variant="outline" 
             className="border-ai-purple text-ai-purple hover:bg-ai-purple hover:text-white px-8 py-4 rounded-xl transition-all duration-300"
           >
-            View All 1111+ AI Tools
+            View All AI Tools
           </Button>
         </div>
       </div>
