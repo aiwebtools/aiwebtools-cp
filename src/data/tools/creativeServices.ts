@@ -1,7 +1,9 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Palette, Camera, Music, Film, PenTool, Brush,
-  Wand2, Sparkles, Star, Heart, Gift, Cake
+  Wand2, Sparkles, Star, Heart, Gift, Cake,
+  Users, Video
 } from "lucide-react";
 
 export const creativeServices: Tool[] = [
@@ -97,7 +99,7 @@ export const creativeServices: Tool[] = [
     totalVotes: 2567
   },
   {
-    icon: Youtube,
+    icon: Video,
     title: "King Blueberry GPT",
     description: "Creative AI assistant with a unique personality. Engage in entertaining conversations, get creative insights, and explore imaginative scenarios with this distinctive AI character.",
     emoji: "👑",

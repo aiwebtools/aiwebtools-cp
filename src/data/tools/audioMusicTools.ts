@@ -1,8 +1,7 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Music, Headphones, Mic, Volume2, Radio, 
-  Speaker, Disc, Waveform, Piano, Guitar,
+  Speaker, Disc, Video, Piano, Guitar,
   Drum, Zap, Star, Heart, Play, Pause,
   SkipForward, SkipBack, Shuffle, Repeat
 } from "lucide-react";
