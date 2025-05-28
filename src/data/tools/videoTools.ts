@@ -1,6 +1,5 @@
-
 import { Tool } from "@/types/tools";
-import { BookOpen, Youtube } from "lucide-react";
+import { BookOpen, Youtube, Zap } from "lucide-react";
 
 export const videoTools: Tool[] = [
   {
@@ -94,13 +93,13 @@ export const videoTools: Tool[] = [
   {
     icon: BookOpen,
     title: "PIKA LABS",
-    description: "Create engaging videos with AI-powered generation tools. Transform ideas into dynamic video content with advanced AI technology.",
-    emoji: "🎬",
-    color: "from-pink-500 to-purple-500",
+    description: "Advanced AI video generation platform creating high-quality videos from text prompts with cutting-edge AI technology.",
+    emoji: "⚡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://www.pika.art",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377338889760542790/image.png?ex=68389a4d&is=683748cd&hm=0e8f1a14cd916e76022667e10a18d93f9de2b74c752845cf07b30af750c5b21c&=&format=webp&quality=lossless&width=2370&height=1026",
-    directUrl: "https://www.Pika.art",
-    tags: ["video generation", "AI video", "creative", "animation", "pika", "text to video", "image to video"],
-    category: "Video & Animation Creation"
+    tags: ["video generation", "AI", "text-to-video", "creative", "content"],
+    category: "Video Tools"
   },
   {
     icon: BookOpen,

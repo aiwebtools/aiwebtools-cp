@@ -1,11 +1,14 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Settings, Wrench, Code, Terminal, Database, 
-  Search, Filter, Download, Upload, Zap,
-  Cpu, HardDrive, Monitor, Wifi, Bluetooth,
-  FileText, Image as ImageIcon, Video, Music, Archive,
-  Binary, Calculator, Clock, Globe, Shield, MessageSquare
+  Cpu, Bot, Zap, Code, Database, Cloud, 
+  Settings, Wrench, Globe, Search, Brain,
+  FileText, Calculator, BarChart3, TrendingUp,
+  Users, Building, Briefcase, Target, Lightbulb,
+  Star, Trophy, Award, Crown, Diamond, Rocket,
+  Heart, Smile, Coffee, Gift, Cake, PartyPopper,
+  Camera, Music, Palette, Brush, PenTool, Scissors,
+  Wand2, Video, ImageIcon, Gamepad2, Sparkles,
+  Microscope, Shield
 } from "lucide-react";
 
 export const aiToolsAndUtilities: Tool[] = [

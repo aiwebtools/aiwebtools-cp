@@ -1,9 +1,10 @@
 import { Tool } from "@/types/tools";
 import { 
-  BookOpen, GraduationCap, Users, Brain, Target, 
-  Lightbulb, Award, Clock, Calculator, Globe,
-  Microscope, FlaskConical, Atom, Star, Rocket,
-  Home, UserCheck, Building, Heart, Stethoscope
+  GraduationCap, BookOpen, Brain, Users, Target, 
+  Globe, Lightbulb, Award, FileText, Calculator,
+  Map, Clock, Microscope, Palette, Music, Code,
+  Rocket, Trophy, Star, Heart, Camera, PenTool,
+  Gamepad2, Zap, Timer
 } from "lucide-react";
 
 export const educationAndLearning: Tool[] = [
@@ -97,6 +98,39 @@ export const educationAndLearning: Tool[] = [
     tags: ["course creation", "curriculum design", "content creation", "assessment development", "course management"],
     rating: 4.3,
     totalVotes: 3123
+  },
+  {
+    icon: FileText,
+    title: "Quiz Maker Ai",
+    description: "Advanced AI-powered quiz creation tool that generates comprehensive quizzes, assessments, and educational content across various subjects and difficulty levels.",
+    emoji: "📝",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-cUahkn19i-quiz-maker-ai",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-eye-catching-advertisement-for-quiz-maker-.jpeg/:/cr=t:5.56%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
+    tags: ["quiz", "assessment", "education", "testing", "learning"],
+    category: "Education & Learning"
+  },
+  {
+    icon: GraduationCap,
+    title: "Course Maker GPT",
+    description: "Comprehensive AI tool for creating structured educational courses, curriculum design, and learning pathways across various subjects and skill levels.",
+    emoji: "🎓",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377336291427090462/ChatGPT_Image_May_28_2025_01_22_27_PM.png?ex=683897e1&is=68374661&hm=71f0b50e1d34249bf9ed9ca8b7a1b0e45d0d2127cb9e356e2b4c65b35518656a&=&format=webp&quality=lossless&width=2088&height=1392",
+    tags: ["course", "curriculum", "education", "teaching", "learning design"],
+    category: "Education & Learning"
+  },
+  {
+    icon: Clock,
+    title: "Native American History Time Machine GPT - (Special Edition)",
+    description: "Interactive historical exploration tool providing immersive experiences through Native American history, culture, and heritage with educational insights.",
+    emoji: "🪶",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://nativeamerican-timemachine.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=jVFTGCeuNSM",
+    tags: ["history", "education", "culture", "native american", "time machine"],
+    category: "Education & Learning"
   },
   {
     icon: Clock,

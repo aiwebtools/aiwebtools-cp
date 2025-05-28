@@ -1,9 +1,10 @@
 import { Tool } from "@/types/tools";
 import { 
-  Music, Video, Gamepad2, Palette, Mic, 
-  Camera, Film, Radio, Headphones, Play,
-  Sparkles, Star, Trophy, Target, Zap,
-  Search, Gem, Clock, Theater, UserPlus, Rocket
+  Palette, Music, Camera, Film, Gamepad2, Sparkles, 
+  Star, Heart, Smile, Coffee, Gift, Cake, PartyPopper,
+  Mic, Video, ImageIcon, Brush, PenTool, Scissors, 
+  Wand2, Zap, Trophy, Crown, Diamond, Rocket, 
+  Lightbulb, Target, Users, Globe, Eye
 } from "lucide-react";
 
 export const creativeAndEntertainment: Tool[] = [

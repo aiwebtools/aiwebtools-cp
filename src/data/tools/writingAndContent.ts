@@ -1,6 +1,5 @@
-
 import { Tool } from "@/types/tools";
-import { BookOpen, Youtube } from "lucide-react";
+import { BookOpen, Youtube, FileText } from "lucide-react";
 
 export const writingAndContent: Tool[] = [
   {
@@ -138,13 +137,13 @@ export const writingAndContent: Tool[] = [
   {
     icon: Youtube,
     title: "Public Testimony Writer GPT",
-    description: "Innovative AI tool to streamline the legislative testimony process and promote public engagement in local policy. Featured in CT POST & CT INSIDER.",
-    emoji: "🏛️",
-    color: "from-blue-500 to-green-500",
-    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
+    description: "Specialized AI tool for crafting compelling public testimonies, statements, and advocacy documents for civic engagement.",
+    emoji: "📢",
+    color: "from-blue-500 to-green-600",
     directUrl: "https://publictestimonywriter.lovable.app/?via=aiwebtools",
-    tags: ["legislation", "testimony", "government", "civic engagement", "policy"],
-    category: "Writing & Content Generation"
+    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
+    tags: ["testimony", "public speaking", "advocacy", "civic", "writing"],
+    category: "Writing & Content"
   },
   {
     icon: BookOpen,

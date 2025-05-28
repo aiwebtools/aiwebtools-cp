@@ -1,9 +1,8 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Code, Database, Terminal, Cpu, Zap, 
   Bot, Brain, Settings, Wrench, Play,
-  BookOpen, Youtube
+  BookOpen, Youtube, Globe
 } from "lucide-react";
 
 export const aiDevelopmentAndPlatforms: Tool[] = [
@@ -123,5 +122,16 @@ export const aiDevelopmentAndPlatforms: Tool[] = [
     tags: ["custom GPT", "AI creation", "personalization", "model building", "automation"],
     rating: 4.4,
     totalVotes: 3123
+  },
+  {
+    icon: Globe,
+    title: "10Web Website Generator",
+    description: "AI-powered website builder creating professional websites with advanced design capabilities and automated optimization features.",
+    emoji: "🌐",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://10web.io/?_from=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-striking-futuristic-advertisement-for-the-a.jpeg/:/cr=t:12.16%25,l:4.06%25,w:94.34%25,h:70.75%25/rs=w:1152,h:576,cg:true,m",
+    tags: ["website builder", "AI", "web development", "design", "automation"],
+    category: "AI Development & Platforms"
   }
 ];
