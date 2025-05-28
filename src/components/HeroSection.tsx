@@ -3,6 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Sparkles, Zap, Globe } from "lucide-react";
 
 const HeroSection = () => {
+  const scrollToTools = () => {
+    const toolsSection = document.getElementById('tools-section');
+    if (toolsSection) {
+      toolsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
       {/* Background Effects */}
@@ -29,6 +36,7 @@ const HeroSection = () => {
         
         <div className="flex flex-col sm:flex-row gap-4 mb-12">
           <Button 
+            onClick={scrollToTools}
             size="lg" 
             className="bg-gradient-to-r from-ai-purple to-ai-blue hover:from-ai-purple/80 hover:to-ai-blue/80 text-white px-8 py-4 text-lg rounded-xl transition-all duration-300 transform hover:scale-105"
           >
