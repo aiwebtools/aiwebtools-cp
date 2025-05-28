@@ -16,22 +16,6 @@ import {
   specializedAndNiche,
   educationAndLearning
 } from './tools';
-import { BookOpen, Youtube } from "lucide-react";
-
-// Additional standalone tools that may need separate categorization
-const additionalTools: Tool[] = [
-  {
-    icon: BookOpen,
-    title: "Restaurant Menu Maker GPT",
-    description: "Create professional restaurant menus with AI assistance. Design appealing menu layouts, descriptions, and pricing strategies.",
-    emoji: "🍽️",
-    color: "from-orange-500 to-red-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-restaurant-menu-with-a-vari__Oji1.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    directUrl: "https://restaurantmenumakergpt.lovable.app/",
-    tags: ["restaurant", "menu", "food", "hospitality", "design", "culinary"],
-    category: "Business & Productivity Tools"
-  }
-];
 
 // Combine all tools from different categories with enhanced categorization
 export const allTools: Tool[] = [
@@ -48,8 +32,7 @@ export const allTools: Tool[] = [
   ...aiArtTools,
   ...contentCreationTools,
   ...aiToolsAndDevelopment,
-  ...specializedTools,
-  ...additionalTools
+  ...specializedTools
 ];
 
 // Create featured tools by selecting diverse tools from different categories
@@ -62,239 +45,97 @@ export const featuredTools: Tool[] = [
   allTools.find(tool => tool.title.includes("Ideogram")) || allTools[5]
 ];
 
-// Enhanced search function with comprehensive keywords
+// Enhanced search function with comprehensive keywords and fuzzy matching
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) return tools;
   
   const term = searchTerm.toLowerCase();
-  return tools.filter(tool => 
-    tool.title.toLowerCase().includes(term) ||
-    tool.description.toLowerCase().includes(term) ||
-    tool.category?.toLowerCase().includes(term) ||
-    tool.tags?.some(tag => tag.toLowerCase().includes(term)) ||
+  
+  // Helper function to check if a tool matches the search term
+  const matchesTool = (tool: Tool, searchTerm: string): boolean => {
+    const lowerTitle = tool.title.toLowerCase();
+    const lowerDescription = tool.description.toLowerCase();
+    const lowerCategory = tool.category?.toLowerCase() || '';
+    const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
     
-    // Business & Productivity enhanced keywords
-    (term.includes('business') && (tool.title.toLowerCase().includes('business') || tool.category?.includes('Business'))) ||
-    (term.includes('productivity') && tool.tags?.some(tag => tag.toLowerCase().includes('productivity'))) ||
-    (term.includes('automation') && tool.tags?.some(tag => tag.toLowerCase().includes('automation'))) ||
-    (term.includes('website') && tool.tags?.some(tag => tag.toLowerCase().includes('website'))) ||
-    (term.includes('bot') && tool.tags?.some(tag => tag.toLowerCase().includes('bot'))) ||
-    (term.includes('plan') && tool.tags?.some(tag => tag.toLowerCase().includes('plan'))) ||
-    (term.includes('contract') && tool.tags?.some(tag => tag.toLowerCase().includes('contract'))) ||
-    (term.includes('insurance') && tool.tags?.some(tag => tag.toLowerCase().includes('insurance'))) ||
-    (term.includes('claims') && tool.tags?.some(tag => tag.toLowerCase().includes('claims'))) ||
-    (term.includes('data') && tool.tags?.some(tag => tag.toLowerCase().includes('data'))) ||
-    (term.includes('analysis') && tool.tags?.some(tag => tag.toLowerCase().includes('analysis'))) ||
-    (term.includes('make') && tool.title.toLowerCase().includes('make')) ||
-    (term.includes('10web') && tool.title.toLowerCase().includes('10web')) ||
-    (term.includes('botsonic') && tool.title.toLowerCase().includes('botsonic')) ||
-    (term.includes('cheatlayer') && tool.title.toLowerCase().includes('cheatlayer')) ||
-    (term.includes('valuation') && tool.tags?.some(tag => tag.toLowerCase().includes('valuation'))) ||
-    (term.includes('saas') && tool.tags?.some(tag => tag.toLowerCase().includes('saas'))) ||
-    (term.includes('microsaas') && tool.title.toLowerCase().includes('microsaas')) ||
-    (term.includes('nucleus') && tool.title.toLowerCase().includes('nucleus')) ||
-    (term.includes('call') && tool.tags?.some(tag => tag.toLowerCase().includes('call'))) ||
-    (term.includes('phone') && tool.tags?.some(tag => tag.toLowerCase().includes('phone'))) ||
-    (term.includes('credit') && tool.tags?.some(tag => tag.toLowerCase().includes('credit'))) ||
-    (term.includes('resume') && tool.tags?.some(tag => tag.toLowerCase().includes('resume'))) ||
-    (term.includes('job') && tool.tags?.some(tag => tag.toLowerCase().includes('job'))) ||
-    (term.includes('startup') && tool.tags?.some(tag => tag.toLowerCase().includes('startup'))) ||
-    (term.includes('taxes') && tool.tags?.some(tag => tag.toLowerCase().includes('taxes'))) ||
-    (term.includes('trading') && tool.tags?.some(tag => tag.toLowerCase().includes('trading'))) ||
-    (term.includes('finance') && tool.tags?.some(tag => tag.toLowerCase().includes('finance'))) ||
-    (term.includes('training') && tool.tags?.some(tag => tag.toLowerCase().includes('training'))) ||
+    // Direct matches
+    if (lowerTitle.includes(searchTerm) || 
+        lowerDescription.includes(searchTerm) || 
+        lowerCategory.includes(searchTerm) || 
+        lowerTags.some(tag => tag.includes(searchTerm))) {
+      return true;
+    }
     
-    // Education & Learning enhanced keywords
-    (term.includes('education') && (tool.category?.includes('Education') || tool.tags?.some(tag => tag.toLowerCase().includes('education')))) ||
-    (term.includes('learning') && tool.tags?.some(tag => tag.toLowerCase().includes('learning'))) ||
-    (term.includes('course') && tool.tags?.some(tag => tag.toLowerCase().includes('course'))) ||
-    (term.includes('college') && tool.tags?.some(tag => tag.toLowerCase().includes('college'))) ||
-    (term.includes('degree') && tool.tags?.some(tag => tag.toLowerCase().includes('degree'))) ||
-    (term.includes('school') && tool.tags?.some(tag => tag.toLowerCase().includes('school'))) ||
-    (term.includes('homeschool') && tool.title.toLowerCase().includes('homeschool')) ||
-    (term.includes('skill') && tool.tags?.some(tag => tag.toLowerCase().includes('skill'))) ||
-    (term.includes('quiz') && tool.tags?.some(tag => tag.toLowerCase().includes('quiz'))) ||
-    (term.includes('test') && tool.tags?.some(tag => tag.toLowerCase().includes('test'))) ||
-    (term.includes('math') && tool.tags?.some(tag => tag.toLowerCase().includes('math'))) ||
-    (term.includes('algebra') && tool.tags?.some(tag => tag.toLowerCase().includes('algebra'))) ||
-    (term.includes('probability') && tool.tags?.some(tag => tag.toLowerCase().includes('probability'))) ||
-    (term.includes('firearms') && tool.tags?.some(tag => tag.toLowerCase().includes('firearms'))) ||
-    (term.includes('safety') && tool.tags?.some(tag => tag.toLowerCase().includes('safety'))) ||
-    (term.includes('tutor') && tool.tags?.some(tag => tag.toLowerCase().includes('tutor'))) ||
-    (term.includes('academic') && tool.tags?.some(tag => tag.toLowerCase().includes('academic'))) ||
-    (term.includes('curriculum') && tool.tags?.some(tag => tag.toLowerCase().includes('curriculum'))) ||
-    (term.includes('instruction') && tool.tags?.some(tag => tag.toLowerCase().includes('instruction'))) ||
+    // Fuzzy matching for tool names - if user types partial name, find the tool
+    const titleWords = lowerTitle.split(' ');
+    const searchWords = searchTerm.split(' ');
     
-    // Video & Animation Creation enhanced keywords
-    (term.includes('video') && (tool.title.toLowerCase().includes('video') || tool.description.toLowerCase().includes('video') || tool.category?.includes('Video'))) ||
-    (term.includes('animation') && tool.tags?.some(tag => tag.toLowerCase().includes('animation'))) ||
-    (term.includes('avatar') && tool.tags?.some(tag => tag.toLowerCase().includes('avatar'))) ||
-    (term.includes('sora') && tool.title.toLowerCase().includes('sora')) ||
-    (term.includes('runway') && tool.title.toLowerCase().includes('runway')) ||
-    (term.includes('luma') && tool.title.toLowerCase().includes('luma')) ||
-    (term.includes('kling') && tool.title.toLowerCase().includes('kling')) ||
-    (term.includes('pika') && tool.title.toLowerCase().includes('pika')) ||
-    (term.includes('pixverse') && tool.title.toLowerCase().includes('pixverse')) ||
-    (term.includes('synthesia') && tool.title.toLowerCase().includes('synthesia')) ||
-    (term.includes('heygen') && tool.title.toLowerCase().includes('heygen')) ||
-    (term.includes('hey gen') && tool.title.toLowerCase().includes('hey gen')) ||
-    (term.includes('invideo') && tool.title.toLowerCase().includes('invideo')) ||
-    (term.includes('bhuman') && tool.title.toLowerCase().includes('bhuman')) ||
-    (term.includes('minimax') && tool.title.toLowerCase().includes('minimax')) ||
-    (term.includes('google veo') && tool.title.toLowerCase().includes('veo')) ||
-    (term.includes('veo') && tool.title.toLowerCase().includes('veo')) ||
-    (term.includes('flow') && tool.title.toLowerCase().includes('flow')) ||
-    (term.includes('hotshot') && tool.title.toLowerCase().includes('hotshot')) ||
-    (term.includes('movie') && tool.tags?.some(tag => tag.toLowerCase().includes('movie'))) ||
-    (term.includes('cinema') && tool.tags?.some(tag => tag.toLowerCase().includes('cinematic'))) ||
-    (term.includes('scene') && tool.tags?.some(tag => tag.toLowerCase().includes('scene'))) ||
-    (term.includes('outreach') && tool.tags?.some(tag => tag.toLowerCase().includes('outreach'))) ||
-    (term.includes('cloning') && tool.tags?.some(tag => tag.toLowerCase().includes('cloning'))) ||
-    (term.includes('face') && tool.tags?.some(tag => tag.toLowerCase().includes('face'))) ||
-    (term.includes('voice cloning') && tool.tags?.some(tag => tag.toLowerCase().includes('voice cloning'))) ||
-    (term.includes('text to video') && tool.tags?.some(tag => tag.toLowerCase().includes('text to video'))) ||
-    (term.includes('image to video') && tool.tags?.some(tag => tag.toLowerCase().includes('image to video'))) ||
-    (term.includes('dream machine') && tool.title.toLowerCase().includes('dream machine')) ||
-    (term.includes('prompt assistant') && tool.tags?.some(tag => tag.toLowerCase().includes('prompt assistant'))) ||
-    (term.includes('midjourney') && tool.title.toLowerCase().includes('midjourney')) ||
-    (term.includes('gen-3') && tool.tags?.some(tag => tag.toLowerCase().includes('gen-3'))) ||
-    (term.includes('fx') && tool.tags?.some(tag => tag.toLowerCase().includes('fx'))) ||
-    (term.includes('sound effects') && tool.tags?.some(tag => tag.toLowerCase().includes('sound effects'))) ||
+    // Check if all search words match at least one title word (partial matching)
+    const allWordsMatch = searchWords.every(searchWord => 
+      titleWords.some(titleWord => titleWord.includes(searchWord) || searchWord.includes(titleWord))
+    );
     
-    // Audio & Music Production enhanced keywords
-    (term.includes('music') && (tool.title.toLowerCase().includes('music') || tool.description.toLowerCase().includes('music') || tool.category?.includes('Audio'))) ||
-    (term.includes('audio') && (tool.category?.includes('Audio') || tool.description.toLowerCase().includes('audio'))) ||
-    (term.includes('suno') && tool.title.toLowerCase().includes('suno')) ||
-    (term.includes('udio') && tool.title.toLowerCase().includes('udio')) ||
-    (term.includes('eleven') && tool.title.toLowerCase().includes('eleven')) ||
-    (term.includes('elevenlabs') && tool.title.toLowerCase().includes('eleven')) ||
-    (term.includes('speech') && tool.tags?.some(tag => tag.toLowerCase().includes('speech'))) ||
-    (term.includes('text to speech') && tool.description.toLowerCase().includes('text to speech')) ||
-    (term.includes('tts') && tool.tags?.some(tag => tag.toLowerCase().includes('tts'))) ||
-    (term.includes('voice') && tool.tags?.some(tag => tag.toLowerCase().includes('voice'))) ||
-    (term.includes('sound') && tool.tags?.some(tag => tag.toLowerCase().includes('sound'))) ||
-    (term.includes('melodies') && tool.title.toLowerCase().includes('melodies')) ||
-    (term.includes('lessons') && tool.tags?.some(tag => tag.toLowerCase().includes('lessons'))) ||
-    (term.includes('podcast') && tool.tags?.some(tag => tag.toLowerCase().includes('podcast'))) ||
-    (term.includes('composition') && tool.tags?.some(tag => tag.toLowerCase().includes('composition'))) ||
-    (term.includes('instruments') && tool.tags?.some(tag => tag.toLowerCase().includes('instruments'))) ||
-    (term.includes('vocals') && tool.tags?.some(tag => tag.toLowerCase().includes('vocals'))) ||
-    (term.includes('songwriting') && tool.tags?.some(tag => tag.toLowerCase().includes('songwriting'))) ||
-    (term.includes('voiceover') && tool.tags?.some(tag => tag.toLowerCase().includes('voiceover'))) ||
-    (term.includes('voice synthesis') && tool.tags?.some(tag => tag.toLowerCase().includes('voice synthesis'))) ||
-    (term.includes('text to music') && tool.tags?.some(tag => tag.toLowerCase().includes('text to music'))) ||
-    (term.includes('instrumentals') && tool.tags?.some(tag => tag.toLowerCase().includes('instrumentals'))) ||
+    if (allWordsMatch) return true;
     
-    // AI Development & Platforms keywords
-    (term.includes('llm') && (tool.title.toLowerCase().includes('llm') || tool.description.toLowerCase().includes('llm') || tool.tags?.some(tag => tag.toLowerCase().includes('llm')))) ||
-    (term.includes('local') && tool.tags?.some(tag => tag.toLowerCase().includes('local'))) ||
-    (term.includes('development') && (tool.category?.includes('Development') || tool.tags?.some(tag => tag.toLowerCase().includes('development')))) ||
-    (term.includes('platform') && (tool.category?.includes('Platform') || tool.tags?.some(tag => tag.toLowerCase().includes('platform')))) ||
-    (term.includes('hosting') && tool.tags?.some(tag => tag.toLowerCase().includes('hosting'))) ||
-    (term.includes('model') && tool.tags?.some(tag => tag.toLowerCase().includes('model'))) ||
-    (term.includes('claude') && tool.title.toLowerCase().includes('claude')) ||
-    (term.includes('gemini') && tool.title.toLowerCase().includes('gemini')) ||
-    (term.includes('grok') && tool.title.toLowerCase().includes('grok')) ||
-    (term.includes('groq') && tool.title.toLowerCase().includes('groq')) ||
-    (term.includes('llama') && tool.title.toLowerCase().includes('llama')) ||
-    (term.includes('hugging') && tool.title.toLowerCase().includes('hugging')) ||
-    (term.includes('nvidia') && tool.title.toLowerCase().includes('nvidia')) ||
-    (term.includes('rtx') && tool.tags?.some(tag => tag.toLowerCase().includes('rtx'))) ||
-    (term.includes('anthropic') && tool.tags?.some(tag => tag.toLowerCase().includes('anthropic'))) ||
-    (term.includes('meta') && tool.tags?.some(tag => tag.toLowerCase().includes('meta'))) ||
-    (term.includes('openai') && tool.tags?.some(tag => tag.toLowerCase().includes('openai'))) ||
-    (term.includes('mistral') && tool.title.toLowerCase().includes('mistral')) ||
-    (term.includes('studio') && tool.title.toLowerCase().includes('studio')) ||
-    (term.includes('bolt') && tool.title.toLowerCase().includes('bolt')) ||
-    (term.includes('lovable') && tool.title.toLowerCase().includes('lovable')) ||
-    (term.includes('pinokio') && tool.title.toLowerCase().includes('pinokio')) ||
-    (term.includes('freedom') && tool.title.toLowerCase().includes('freedom')) ||
-    (term.includes('uncensored') && tool.tags?.some(tag => tag.toLowerCase().includes('uncensored'))) ||
-    (term.includes('decentralized') && tool.tags?.some(tag => tag.toLowerCase().includes('decentralized'))) ||
-    (term.includes('arena') && tool.title.toLowerCase().includes('arena')) ||
-    (term.includes('benchmark') && tool.tags?.some(tag => tag.toLowerCase().includes('benchmark'))) ||
+    // Special handling for common abbreviations and variations
+    const specialMatches = [
+      // Educational tools
+      (searchTerm.includes('learn') && (lowerTitle.includes('learn') || lowerCategory.includes('education'))),
+      (searchTerm.includes('skill') && lowerTitle.includes('skill')),
+      (searchTerm.includes('course') && lowerTitle.includes('course')),
+      (searchTerm.includes('education') && lowerCategory.includes('education')),
+      (searchTerm.includes('college') && lowerTitle.includes('college')),
+      (searchTerm.includes('school') && (lowerTitle.includes('school') || lowerCategory.includes('education'))),
+      
+      // Business tools
+      (searchTerm.includes('business') && (lowerTitle.includes('business') || lowerCategory.includes('business'))),
+      (searchTerm.includes('startup') && lowerTitle.includes('startup')),
+      (searchTerm.includes('entrepreneur') && lowerTags.some(tag => tag.includes('entrepreneur'))),
+      
+      // AI Development
+      (searchTerm.includes('ai') && lowerTitle.includes('ai')),
+      (searchTerm.includes('gpt') && lowerTitle.includes('gpt')),
+      (searchTerm.includes('chat') && lowerTitle.includes('chat')),
+      (searchTerm.includes('claude') && lowerTitle.includes('claude')),
+      (searchTerm.includes('gemini') && lowerTitle.includes('gemini')),
+      
+      // Video & Audio
+      (searchTerm.includes('video') && (lowerTitle.includes('video') || lowerCategory.includes('video'))),
+      (searchTerm.includes('music') && (lowerTitle.includes('music') || lowerCategory.includes('audio'))),
+      (searchTerm.includes('sora') && lowerTitle.includes('sora')),
+      (searchTerm.includes('runway') && lowerTitle.includes('runway')),
+      (searchTerm.includes('suno') && lowerTitle.includes('suno')),
+      
+      // Specialized tools
+      (searchTerm.includes('legal') && lowerTags.some(tag => tag.includes('legal'))),
+      (searchTerm.includes('medical') && lowerTags.some(tag => tag.includes('medical'))),
+      (searchTerm.includes('health') && lowerTags.some(tag => tag.includes('health'))),
+      (searchTerm.includes('cannabis') && lowerTitle.includes('cannabis')),
+      (searchTerm.includes('automotive') && lowerTags.some(tag => tag.includes('automotive'))),
+      (searchTerm.includes('real estate') && lowerTags.some(tag => tag.includes('real estate') || tag.includes('property'))),
+      
+      // Historical & Cultural
+      (searchTerm.includes('history') && lowerTags.some(tag => tag.includes('history') || tag.includes('historical'))),
+      (searchTerm.includes('time') && lowerTitle.includes('time')),
+      
+      // Science & Engineering
+      (searchTerm.includes('science') && lowerTags.some(tag => tag.includes('science') || tag.includes('physics'))),
+      (searchTerm.includes('engineering') && lowerTags.some(tag => tag.includes('engineering'))),
+      (searchTerm.includes('einstein') && lowerTitle.includes('einstein')),
+      (searchTerm.includes('tesla') && lowerTitle.includes('tesla')),
+      
+      // Image & Design
+      (searchTerm.includes('image') && (lowerTitle.includes('image') || lowerCategory.includes('image'))),
+      (searchTerm.includes('design') && (lowerTitle.includes('design') || lowerCategory.includes('design'))),
+      (searchTerm.includes('art') && (lowerTitle.includes('art') || lowerCategory.includes('art'))),
+      (searchTerm.includes('midjourney') && lowerTitle.includes('midjourney')),
+      (searchTerm.includes('ideogram') && lowerTitle.includes('ideogram'))
+    ];
     
-    // Writing & Content keywords
-    (term.includes('writing') && (tool.tags?.some(tag => tag.toLowerCase().includes('writing')) || tool.category?.includes('Writing'))) ||
-    (term.includes('content') && (tool.tags?.some(tag => tag.toLowerCase().includes('content')) || tool.category?.includes('Content'))) ||
-    (term.includes('book') && tool.tags?.some(tag => tag.toLowerCase().includes('book'))) ||
-    (term.includes('script') && tool.tags?.some(tag => tag.toLowerCase().includes('script'))) ||
-    (term.includes('article') && tool.tags?.some(tag => tag.toLowerCase().includes('article'))) ||
-    (term.includes('blog') && tool.tags?.some(tag => tag.toLowerCase().includes('blog'))) ||
-    (term.includes('rewrite') && tool.tags?.some(tag => tag.toLowerCase().includes('rewrite'))) ||
-    (term.includes('prompt') && tool.tags?.some(tag => tag.toLowerCase().includes('prompt'))) ||
-    (term.includes('legal') && tool.tags?.some(tag => tag.toLowerCase().includes('legal'))) ||
-    (term.includes('legislation') && tool.tags?.some(tag => tag.toLowerCase().includes('legislation'))) ||
-    (term.includes('grant') && tool.tags?.some(tag => tag.toLowerCase().includes('grant'))) ||
-    (term.includes('presentation') && tool.tags?.some(tag => tag.toLowerCase().includes('presentation'))) ||
-    (term.includes('powerpoint') && tool.tags?.some(tag => tag.toLowerCase().includes('powerpoint'))) ||
-    (term.includes('ppt') && tool.title.toLowerCase().includes('ppt')) ||
-    (term.includes('gamma') && tool.title.toLowerCase().includes('gamma')) ||
-    (term.includes('play') && tool.tags?.some(tag => tag.toLowerCase().includes('play'))) ||
-    (term.includes('theater') && tool.tags?.some(tag => tag.toLowerCase().includes('theater'))) ||
-    (term.includes('testimony') && tool.tags?.some(tag => tag.toLowerCase().includes('testimony'))) ||
-    (term.includes('clarity') && tool.title.toLowerCase().includes('clarity')) ||
-    
-    // Image & Design keywords
-    (term.includes('image') && (tool.title.toLowerCase().includes('image') || tool.description.toLowerCase().includes('image'))) ||
-    (term.includes('design') && (tool.category?.includes('Design') || tool.tags?.some(tag => tag.toLowerCase().includes('design')))) ||
-    (term.includes('art') && (tool.title.toLowerCase().includes('art') || tool.category?.includes('Art') || tool.category?.includes('Design'))) ||
-    (term.includes('generation') && tool.tags?.some(tag => tag.toLowerCase().includes('generation'))) ||
-    (term.includes('graphic') && tool.tags?.some(tag => tag.toLowerCase().includes('graphic'))) ||
-    (term.includes('logo') && tool.tags?.some(tag => tag.toLowerCase().includes('logo'))) ||
-    (term.includes('cover') && tool.tags?.some(tag => tag.toLowerCase().includes('cover'))) ||
-    (term.includes('sketch') && tool.tags?.some(tag => tag.toLowerCase().includes('sketch'))) ||
-    (term.includes('coloring') && tool.tags?.some(tag => tag.toLowerCase().includes('coloring'))) ||
-    (term.includes('children') && tool.tags?.some(tag => tag.toLowerCase().includes('children'))) ||
-    (term.includes('tattoo') && tool.tags?.some(tag => tag.toLowerCase().includes('tattoo'))) ||
-    (term.includes('artwork') && tool.tags?.some(tag => tag.toLowerCase().includes('artwork'))) ||
-    (term.includes('vintage') && tool.tags?.some(tag => tag.toLowerCase().includes('vintage'))) ||
-    (term.includes('appraisal') && tool.tags?.some(tag => tag.toLowerCase().includes('appraisal'))) ||
-    (term.includes('ideogram') && tool.title.toLowerCase().includes('ideogram')) ||
-    (term.includes('leonardo') && tool.title.toLowerCase().includes('leonardo')) ||
-    (term.includes('restyle') && tool.title.toLowerCase().includes('restyle')) ||
-    (term.includes('meshy') && tool.title.toLowerCase().includes('meshy')) ||
-    (term.includes('3d') && tool.tags?.some(tag => tag.toLowerCase().includes('3d'))) ||
-    
-    // Specialized & Niche keywords
-    (term.includes('specialized') && tool.category?.includes('Specialized')) ||
-    (term.includes('niche') && tool.category?.includes('Niche')) ||
-    (term.includes('fungus') && tool.title.toLowerCase().includes('fungus')) ||
-    (term.includes('mushroom') && tool.tags?.some(tag => tag.toLowerCase().includes('mushroom'))) ||
-    (term.includes('oil') && tool.tags?.some(tag => tag.toLowerCase().includes('oil'))) ||
-    (term.includes('gas') && tool.tags?.some(tag => tag.toLowerCase().includes('gas'))) ||
-    (term.includes('drill') && tool.title.toLowerCase().includes('drill')) ||
-    (term.includes('dream') && tool.tags?.some(tag => tag.toLowerCase().includes('dream'))) ||
-    (term.includes('interpreter') && tool.title.toLowerCase().includes('interpreter')) ||
-    (term.includes('person') && tool.tags?.some(tag => tag.toLowerCase().includes('person'))) ||
-    (term.includes('finder') && tool.tags?.some(tag => tag.toLowerCase().includes('finder'))) ||
-    (term.includes('snoop') && tool.title.toLowerCase().includes('snoop')) ||
-    (term.includes('detection') && tool.tags?.some(tag => tag.toLowerCase().includes('detection'))) ||
-    (term.includes('historical') && tool.tags?.some(tag => tag.toLowerCase().includes('historical'))) ||
-    (term.includes('pattern') && tool.tags?.some(tag => tag.toLowerCase().includes('pattern'))) ||
-    (term.includes('mary') && tool.title.toLowerCase().includes('mary')) ||
-    (term.includes('magdalene') && tool.title.toLowerCase().includes('magdalene')) ||
-    (term.includes('sophia') && tool.title.toLowerCase().includes('sophia')) ||
-    (term.includes('wisdom') && tool.tags?.some(tag => tag.toLowerCase().includes('wisdom'))) ||
-    (term.includes('mental') && tool.tags?.some(tag => tag.toLowerCase().includes('mental'))) ||
-    (term.includes('wellness') && tool.tags?.some(tag => tag.toLowerCase().includes('wellness'))) ||
-    (term.includes('ubi') && tool.tags?.some(tag => tag.toLowerCase().includes('ubi'))) ||
-    (term.includes('peace') && tool.tags?.some(tag => tag.toLowerCase().includes('peace'))) ||
-    (term.includes('simulation') && tool.tags?.some(tag => tag.toLowerCase().includes('simulation'))) ||
-    
-    // General enhanced search terms
-    (term.includes('ai') && tool.title.toLowerCase().includes('ai')) ||
-    (term.includes('gpt') && tool.title.toLowerCase().includes('gpt')) ||
-    (term.includes('chat') && tool.title.toLowerCase().includes('chat')) ||
-    (term.includes('generator') && tool.title.toLowerCase().includes('generator')) ||
-    (term.includes('maker') && tool.title.toLowerCase().includes('maker')) ||
-    (term.includes('creator') && tool.title.toLowerCase().includes('creator')) ||
-    (term.includes('assistant') && tool.title.toLowerCase().includes('assistant')) ||
-    (term.includes('tool') && tool.title.toLowerCase().includes('tool')) ||
-    (term.includes('engine') && tool.title.toLowerCase().includes('engine')) ||
-    (term.includes('labs') && tool.title.toLowerCase().includes('labs')) ||
-    (term.includes('suite') && (tool.title.toLowerCase().includes('suite') || tool.description.toLowerCase().includes('suite')))
-  );
+    return specialMatches.some(match => match);
+  };
+  
+  return tools.filter(tool => matchesTool(tool, term));
 };
 
 // Helper function to get categories with counts
