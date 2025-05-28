@@ -8,4 +8,5 @@ export interface Tool {
   emoji: string;
   color: string;
   videoUrl: string;
+  tags?: string[];
 }
