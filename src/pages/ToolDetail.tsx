@@ -37,8 +37,30 @@ const ToolDetail = () => {
 
   const handleUseItNow = () => {
     if (tool.directUrl) {
-      window.open(tool.directUrl, '_blank');
+      window.open(tool.directUrl, '_blank', 'noopener,noreferrer');
     }
+  };
+
+  // Enhanced description for individual tool pages
+  const getEnhancedDescription = () => {
+    if (tool.description && tool.description.length > 100) {
+      return tool.description;
+    }
+    
+    // Create comprehensive description
+    let description = tool.description || "This advanced AI-powered tool is designed to revolutionize your workflow and enhance productivity.";
+    
+    if (tool.category) {
+      description += ` Specifically crafted for ${tool.category.toLowerCase()}, this tool provides specialized functionality that addresses the unique challenges in this field.`;
+    }
+    
+    if (tool.tags && tool.tags.length > 0) {
+      description += ` Key features include ${tool.tags.join(', ')}, making it a comprehensive solution for both beginners and professionals.`;
+    }
+    
+    description += " Experience the power of artificial intelligence and transform the way you work with this cutting-edge technology.";
+    
+    return description;
   };
 
   return (
@@ -80,7 +102,7 @@ const ToolDetail = () => {
                 <div className="mb-8">
                   <h3 className="text-2xl font-semibold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-4 cyber-glow">About This Tool</h3>
                   <CardDescription className="text-lg text-gray-300 leading-relaxed">
-                    {tool.description}
+                    {getEnhancedDescription()}
                   </CardDescription>
                 </div>
 
@@ -136,10 +158,10 @@ const ToolDetail = () => {
                     className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white px-12 py-4 text-lg rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-purple-500/30 interactive-button glow-effect"
                   >
                     <ExternalLink className="w-5 h-5 mr-2" />
-                    USE IT NOW
+                    {tool.directUrl ? "USE IT NOW" : "COMING SOON"}
                   </Button>
                   <p className="text-sm text-gray-400 mt-3">
-                    {tool.directUrl ? "Click to access this AI tool and start using it immediately" : "Direct access coming soon"}
+                    {tool.directUrl ? "Click to access this AI tool and start using it immediately" : "Direct access coming soon - check back later"}
                   </p>
                 </div>
               </CardContent>

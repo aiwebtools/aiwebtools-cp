@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { featuredTools, allTools, searchTools, getCategoriesWithCounts, getToolsByCategory } from "@/data/toolsData";
 import SearchBar from "@/components/tools/SearchBar";
 import ToolCard from "@/components/tools/ToolCard";
@@ -15,12 +15,15 @@ import {
 const FeaturedTools = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [displayedToolsCount, setDisplayedToolsCount] = useState(20); // Start with 20 tools
+  const TOOLS_PER_LOAD = 20;
 
   // Listen for category selection events from header
   useEffect(() => {
     const handleCategorySelect = (event: CustomEvent) => {
       setSelectedCategory(event.detail);
       setSearchTerm("");
+      setDisplayedToolsCount(20); // Reset count when category changes
     };
 
     window.addEventListener('selectCategory', handleCategorySelect as EventListener);
@@ -40,8 +43,14 @@ const FeaturedTools = () => {
       tool.description.toLowerCase().includes(term) ||
       tool.category?.toLowerCase().includes(term) ||
       tool.tags?.some((tag: string) => tag.toLowerCase().includes(term)) ||
-      // Suite search functionality
-      (term.includes('suite') && (tool.title.toLowerCase().includes('suite') || tool.description.toLowerCase().includes('suite'))) ||
+      // Suite search functionality - enhanced
+      (term.includes('suite') && (
+        tool.title.toLowerCase().includes('suite') || 
+        tool.description.toLowerCase().includes('suite') ||
+        tool.title.toLowerCase().includes('studio') ||
+        tool.title.toLowerCase().includes('master') ||
+        tool.title.toLowerCase().includes('pro')
+      )) ||
       // Additional search keywords
       (term.includes('video') && (tool.title.toLowerCase().includes('video') || tool.description.toLowerCase().includes('video') || tool.category === 'Video Tools')) ||
       (term.includes('music') && (tool.title.toLowerCase().includes('music') || tool.description.toLowerCase().includes('music') || tool.category === 'Audio & Music')) ||
@@ -55,28 +64,64 @@ const FeaturedTools = () => {
     );
   };
 
-  // Use enhanced search functionality
-  const filteredTools = enhancedSearchTools(allTools, searchTerm);
-  const filteredFeaturedTools = enhancedSearchTools(featuredTools, searchTerm);
-  
-  // Apply category filter if selected
-  const displayTools = selectedCategory 
-    ? getToolsByCategory(selectedCategory).filter(tool => 
-        searchTerm ? enhancedSearchTools([tool], searchTerm).length > 0 : true
-      )
-    : filteredTools;
+  // Get filtered tools based on search and category
+  const getFilteredTools = () => {
+    let tools = allTools;
+    
+    if (selectedCategory) {
+      tools = getToolsByCategory(selectedCategory);
+    }
+    
+    if (searchTerm) {
+      tools = enhancedSearchTools(tools, searchTerm);
+    }
+    
+    return tools;
+  };
+
+  const filteredTools = getFilteredTools();
+  const displayTools = filteredTools.slice(0, displayedToolsCount);
 
   const categoriesWithCounts = getCategoriesWithCounts();
 
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(selectedCategory === category ? null : category);
     setSearchTerm("");
+    setDisplayedToolsCount(20); // Reset count when category changes
   };
 
   const clearFilters = () => {
     setSelectedCategory(null);
     setSearchTerm("");
+    setDisplayedToolsCount(20); // Reset count when clearing filters
   };
+
+  // Infinite scroll handler
+  const loadMoreTools = useCallback(() => {
+    if (displayedToolsCount < filteredTools.length) {
+      setDisplayedToolsCount(prev => Math.min(prev + TOOLS_PER_LOAD, filteredTools.length));
+    }
+  }, [displayedToolsCount, filteredTools.length]);
+
+  // Scroll event listener for infinite scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop
+        >= document.documentElement.offsetHeight - 1000 // Load more when 1000px from bottom
+      ) {
+        loadMoreTools();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [loadMoreTools]);
+
+  // Reset displayed count when search or category changes
+  useEffect(() => {
+    setDisplayedToolsCount(20);
+  }, [searchTerm, selectedCategory]);
 
   return (
     <section id="tools-section" className="py-20 bg-black relative">
@@ -160,12 +205,12 @@ const FeaturedTools = () => {
                   "{searchTerm}"
                 </span>
               )}
-              <span className="text-cyan-200">({displayTools.length} tools)</span>
+              <span className="text-cyan-200">({filteredTools.length} tools)</span>
             </div>
           </div>
         )}
         
-        {/* Featured Tools Grid - Only show if no filters applied */}
+        {/* Featured Tools Section - Only show if no filters applied */}
         {!selectedCategory && !searchTerm && (
           <>
             <div className="text-center mb-12">
@@ -181,7 +226,7 @@ const FeaturedTools = () => {
           </>
         )}
 
-        {/* All Tools Section */}
+        {/* All Tools Section with Infinite Scroll */}
         {displayTools.length > 0 && (
           <>
             <div className="text-center mb-12">
@@ -197,28 +242,43 @@ const FeaturedTools = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {(selectedCategory || searchTerm ? displayTools : displayTools.slice(6)).map((tool, index) => (
-                <ToolCard key={index} tool={tool} />
+              {displayTools.map((tool, index) => (
+                <ToolCard key={`${tool.title}-${index}`} tool={tool} />
               ))}
             </div>
+
+            {/* Loading indicator and load more button */}
+            {displayedToolsCount < filteredTools.length && (
+              <div className="text-center mt-12">
+                <div className="mb-4 text-cyan-200">
+                  Showing {displayedToolsCount} of {filteredTools.length} tools
+                </div>
+                <Button 
+                  onClick={loadMoreTools}
+                  size="lg" 
+                  variant="outline" 
+                  className="border-cyan-500 text-cyan-100 hover:bg-cyan-600 hover:text-black px-8 py-4 rounded-xl transition-all duration-300 bg-black/50"
+                >
+                  Load More Tools
+                </Button>
+              </div>
+            )}
+
+            {/* End of results indicator */}
+            {displayedToolsCount >= filteredTools.length && filteredTools.length > 20 && (
+              <div className="text-center mt-12 text-cyan-300">
+                🎉 You've seen all {filteredTools.length} tools! 
+                {!selectedCategory && !searchTerm && (
+                  <span className="block mt-2">Try searching or filtering by category to discover specific tools.</span>
+                )}
+              </div>
+            )}
           </>
         )}
 
         {/* No Results Message */}
-        {searchTerm && displayTools.length === 0 && (
+        {searchTerm && filteredTools.length === 0 && (
           <NoResults searchTerm={searchTerm} onClearSearch={() => setSearchTerm("")} />
-        )}
-        
-        {!searchTerm && !selectedCategory && (
-          <div className="text-center mt-12">
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-cyan-500 text-cyan-100 hover:bg-cyan-600 hover:text-black px-8 py-4 rounded-xl transition-all duration-300 bg-black/50"
-            >
-              View All {allTools.length}+ AI Tools
-            </Button>
-          </div>
         )}
 
         {/* Inspirational Message */}
