@@ -27,7 +27,8 @@ export const featuredTools: Tool[] = [
     description: "Create professionally written full books about any topic with AI-powered assistance",
     emoji: "✍️",
     color: "from-blue-500 to-purple-600",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/xNQi8wuM3DQ",
+    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
     tags: ["writing", "books", "literature", "publishing", "creative", "author", "content creation"],
     category: "Writing & Content"
   },
@@ -37,7 +38,8 @@ export const featuredTools: Tool[] = [
     description: "AI companion for industry-standard movie scripts and professional storytelling",
     emoji: "🎬",
     color: "from-red-500 to-pink-600",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/4e3Rkurt3-c",
+    directUrl: "https://moviescriptwritergpt.lovable.app/?via=aiwebtools",
     tags: ["writing", "movies", "scripts", "entertainment", "storytelling", "screenplay", "film"],
     category: "Writing & Content"
   },
@@ -47,7 +49,8 @@ export const featuredTools: Tool[] = [
     description: "Explore the past, potential futures, and alternative realities with AI guidance",
     emoji: "🌀",
     color: "from-cyan-500 to-blue-600",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/rXXScpdUWQo",
+    directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
     tags: ["history", "time", "exploration", "education", "science", "past", "future", "timeline"],
     category: "Education & Learning"
   },
@@ -57,7 +60,8 @@ export const featuredTools: Tool[] = [
     description: "Comprehensive automotive expert for deals, repairs, maintenance advice, and car knowledge",
     emoji: "🏎️",
     color: "from-orange-500 to-red-600",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/f_4aFnL-mk8",
+    directUrl: "https://automobilegpt.lovable.app/?via=aiwebtools",
     tags: ["automotive", "cars", "maintenance", "repair", "transportation", "vehicles", "mechanic"],
     category: "Tools & Utilities"
   },
@@ -67,7 +71,8 @@ export const featuredTools: Tool[] = [
     description: "Complete college education experience with accessible learning resources and academic support",
     emoji: "🎓",
     color: "from-green-500 to-teal-600",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/Cd8uvD-smlM",
+    directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
     tags: ["education", "college", "learning", "degree", "academic", "university", "study", "curriculum"],
     category: "Education & Learning"
   },
@@ -77,7 +82,8 @@ export const featuredTools: Tool[] = [
     description: "Comprehensive survival companion with practical knowledge and outdoor experience guidance",
     emoji: "🛡️",
     color: "from-gray-500 to-slate-600",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/RX6W8KC0y18",
+    directUrl: "https://survivalistgpt.lovable.app/?via=aiwebtools",
     tags: ["survival", "outdoor", "emergency", "preparedness", "skills", "wilderness", "safety"],
     category: "Tools & Utilities"
   }
@@ -101,7 +107,8 @@ export const allTools: Tool[] = [
     description: "Professional AI-powered movie creation studio for filmmakers and content creators",
     emoji: "🎬",
     color: "from-red-600 to-pink-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/Zdthelofv_E",
+    directUrl: "https://moviemakerstudio.lovable.app/?via=aiwebtools",
     tags: ["movie", "studio", "filmmaking", "video", "production", "AI", "cinema", "video generation", "film production", "director", "visual effects"],
     category: "Video Generation & Editing"
   },
@@ -111,7 +118,8 @@ export const allTools: Tool[] = [
     description: "AI assistant for insurance claim processing, documentation, and professional guidance",
     emoji: "📋",
     color: "from-blue-500 to-indigo-600",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/WNPywJWOUzU",
+    directUrl: "https://insuranceclaimsgpt.lovable.app/?via=aiwebtools",
     tags: ["insurance", "claims", "documentation", "legal", "finance", "professional", "processing"],
     category: "Legal & Finance"
   },
@@ -121,7 +129,8 @@ export const allTools: Tool[] = [
     description: "Professional veterinary assistant for animal health, care guidance, and medical advice",
     emoji: "🐾",
     color: "from-green-600 to-emerald-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/ElAfvB0yLEI",
+    directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
     tags: ["veterinary", "animals", "pets", "health", "medical", "care", "advice", "vet"],
     category: "Health & Wellness"
   },
@@ -131,7 +140,8 @@ export const allTools: Tool[] = [
     description: "Expert travel planning assistant for destinations, itineraries, and travel optimization",
     emoji: "✈️",
     color: "from-cyan-500 to-blue-600",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-futuristic-setting-where-a-_3Mwmg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    directUrl: "https://travelagentgpt.lovable.app/?via=aiwebtools",
     tags: ["travel", "vacation", "planning", "destinations", "tourism", "advisor", "trip"],
     category: "Tools & Utilities"
   },
@@ -141,7 +151,8 @@ export const allTools: Tool[] = [
     description: "Community support assistant for social services, welfare, and public assistance guidance",
     emoji: "🤝",
     color: "from-purple-500 to-indigo-600",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/pXXqMe97GDg",
+    directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
     tags: ["social", "services", "community", "support", "welfare", "assistance", "public"],
     category: "Communication & Social"
   },
@@ -151,7 +162,8 @@ export const allTools: Tool[] = [
     description: "Comprehensive cannabis education, cultivation, and industry guidance assistant",
     emoji: "🌿",
     color: "from-green-500 to-emerald-600",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-illustration-of-a-green-cannab_iUjpW.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    directUrl: "https://cannabisgpt.lovable.app/?via=aiwebtools",
     tags: ["cannabis", "marijuana", "cultivation", "medical", "industry", "education"],
     category: "Health & Wellness"
   },
@@ -171,7 +183,8 @@ export const allTools: Tool[] = [
     description: "Professional home renovation guidance for construction, design, and improvement projects",
     emoji: "🏠",
     color: "from-yellow-500 to-orange-600",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-humanoid-robot-fixing-a-bathroom-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
     tags: ["home", "renovation", "construction", "design", "improvement", "building", "DIY"],
     category: "Tools & Utilities"
   },
@@ -181,7 +194,8 @@ export const allTools: Tool[] = [
     description: "Legal assistance for public defense cases, criminal law guidance, and court preparation",
     emoji: "⚖️",
     color: "from-gray-600 to-slate-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/cQR5eFjsPWw",
+    directUrl: "https://publicdefendergpt.lovable.app/",
     tags: ["legal", "defense", "criminal", "law", "court", "justice", "attorney"],
     category: "Legal & Finance"
   },
@@ -231,7 +245,8 @@ export const allTools: Tool[] = [
     description: "AI-powered music video creation and production studio for artists",
     emoji: "🎵",
     color: "from-purple-600 to-pink-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/rBQTUrvHcR8",
+    directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
     tags: ["music", "video", "studio", "production", "artist", "creation", "visual", "video generation"],
     category: "Video Generation & Editing"
   },
@@ -241,7 +256,8 @@ export const allTools: Tool[] = [
     description: "Space exploration and strategy gaming assistant for Stellaris and space simulations",
     emoji: "🚀",
     color: "from-purple-600 to-indigo-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/tJwhDOE3mUM",
+    directUrl: "https://stellaris.lovable.app/?via=aiwebtools",
     tags: ["space", "gaming", "strategy", "stellaris", "exploration", "simulation"],
     category: "Entertainment & Gaming"
   },
@@ -271,7 +287,8 @@ export const allTools: Tool[] = [
     description: "Criminal investigation analysis, forensics guidance, and criminology expertise",
     emoji: "🔍",
     color: "from-gray-600 to-slate-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/jgvqpqmRJi8",
+    directUrl: "https://criminologistgpt.lovable.app/?via=aiwebtools",
     tags: ["criminology", "investigation", "forensics", "crime", "analysis", "detective"],
     category: "Legal & Finance"
   },
@@ -311,7 +328,8 @@ export const allTools: Tool[] = [
     description: "Electrical engineering and invention guidance inspired by Nikola Tesla's genius",
     emoji: "⚡",
     color: "from-blue-600 to-purple-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/DR_3MvP7Wws",
+    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
     tags: ["tesla", "science", "electricity", "invention", "engineering", "physics", "innovation"],
     category: "Science & Research"
   },
@@ -331,7 +349,8 @@ export const allTools: Tool[] = [
     description: "Truth analysis, fact verification, and wisdom guidance for seeking authentic information",
     emoji: "🔮",
     color: "from-cyan-500 to-purple-600",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/dUNrGNj8rhM",
+    directUrl: "https://oraculum.lovable.app/?via=aiwebtools",
     tags: ["truth", "wisdom", "oracle", "verification", "analysis", "insight"],
     category: "Tools & Utilities"
   },
@@ -361,7 +380,8 @@ export const allTools: Tool[] = [
     description: "Agricultural expertise for farming optimization, crop management, and sustainable agriculture",
     emoji: "🌱",
     color: "from-green-600 to-emerald-700",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/fFbtPFkRERA",
+    directUrl: "https://agronomus.lovable.app/?via=aiwebtools",
     tags: ["farming", "agriculture", "crops", "sustainable", "optimization", "cultivation"],
     category: "Science & Research"
   },
@@ -424,6 +444,270 @@ export const allTools: Tool[] = [
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     tags: ["movie", "scene", "cinema", "storytelling", "film", "production", "video generation"],
     category: "Video Generation & Editing"
+  },
+  {
+    icon: Theater,
+    title: "StageMaster AI Suite",
+    description: "Professional performing arts assistant for stage productions and theatrical guidance",
+    emoji: "🎭",
+    color: "from-purple-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/-QIxYSlcRWM",
+    directUrl: "https://stagemasterai.lovable.app/?via=aiwebtools",
+    tags: ["theater", "performing arts", "stage", "production", "drama", "acting"],
+    category: "Creative & Design"
+  },
+  {
+    icon: Crown,
+    title: "ImmortalizeME",
+    description: "Digital immortalization service for preserving memories and legacy",
+    emoji: "👑",
+    color: "from-gold-500 to-yellow-600",
+    videoUrl: "https://www.youtube.com/embed/JXLqPMfw49Y",
+    directUrl: "https://immortalizeme.lovable.app/?via=aiwebtools",
+    tags: ["immortalization", "legacy", "memories", "preservation", "digital"],
+    category: "Specialized Services"
+  },
+  {
+    icon: Globe,
+    title: "Illuminous World Data Explorer GPT",
+    description: "Advanced data exploration and world information analysis assistant",
+    emoji: "🌍",
+    color: "from-blue-600 to-green-700",
+    videoUrl: "https://www.youtube.com/embed/Nd1Ui2-VLMU",
+    directUrl: "https://illuminous.lovable.app/?via=aiwebtools",
+    tags: ["data", "exploration", "world", "information", "analysis", "research"],
+    category: "Science & Research"
+  },
+  {
+    icon: Zap,
+    title: "GODMODE GPT",
+    description: "Advanced AI assistant with enhanced capabilities and unlimited potential",
+    emoji: "⚡",
+    color: "from-purple-600 to-red-700",
+    videoUrl: "https://www.youtube.com/embed/or3JtZsq6Bc",
+    directUrl: "https://godmodegpt.lovable.app/?via=aiwebtools",
+    tags: ["AI", "advanced", "godmode", "unlimited", "enhanced", "powerful"],
+    category: "AI Assistants & Chatbots"
+  },
+  {
+    icon: History,
+    title: "Talk to History GPT",
+    description: "Interactive historical conversations with AI-powered historical figures",
+    emoji: "📚",
+    color: "from-brown-600 to-orange-700",
+    videoUrl: "https://www.youtube.com/embed/5t7EXS5tthQ",
+    directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
+    tags: ["history", "historical", "conversations", "education", "figures", "interactive"],
+    category: "Education & Learning"
+  },
+  {
+    icon: Star,
+    title: "Talk to the Gods GPT",
+    description: "Mystical conversations with AI-powered divine entities and spiritual guidance",
+    emoji: "⭐",
+    color: "from-gold-500 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/xoUdjZDgplw",
+    directUrl: "https://talktothegodsgpt.lovable.app/?via=aiwebtools",
+    tags: ["mystical", "gods", "spiritual", "divine", "guidance", "conversation"],
+    category: "Entertainment & Gaming"
+  },
+  {
+    icon: Dna,
+    title: "Resurrection GPT",
+    description: "Advanced AI for data recovery, restoration, and digital resurrection services",
+    emoji: "🧬",
+    color: "from-green-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/nEuxdGO-RZ4",
+    directUrl: "https://resurrectiongpt.lovable.app/?via=aiwebtools",
+    tags: ["resurrection", "recovery", "restoration", "digital", "advanced", "data"],
+    category: "Technology & Development"
+  },
+  {
+    icon: Wand2,
+    title: "Perfect Prompt Engine",
+    description: "Advanced prompt optimization and engineering for AI interactions",
+    emoji: "🪄",
+    color: "from-purple-600 to-blue-700",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-humanoid-robot-controlli.png/:/cr=t:9.25%25,l:11.96%25,w:73.53%25,h:65.54%25/rs=w:1200,cg:true,m",
+    directUrl: "https://perfectpromptengine.lovable.app/?via=aiwebtools",
+    tags: ["prompts", "optimization", "engineering", "AI", "enhancement", "perfect"],
+    category: "AI Assistants & Chatbots"
+  },
+  {
+    icon: Eye,
+    title: "Clarity Omni GPT",
+    description: "All-seeing AI assistant for comprehensive analysis and clear insights",
+    emoji: "👁️",
+    color: "from-cyan-500 to-purple-600",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-scene-of-an-ai-agent-with-a-halo.jpeg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
+    directUrl: "https://clarityomni.lovable.app/?via=aiwebtools",
+    tags: ["clarity", "analysis", "insights", "comprehensive", "omni", "AI"],
+    category: "AI Assistants & Chatbots"
+  },
+  {
+    icon: Cog,
+    title: "Engineering GPT AI Suite",
+    description: "Comprehensive engineering solutions and technical guidance for all disciplines",
+    emoji: "⚙️",
+    color: "from-gray-600 to-blue-700",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-engineering-_hEePg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
+    tags: ["engineering", "technical", "solutions", "comprehensive", "disciplines", "AI"],
+    category: "Technology & Development"
+  },
+  {
+    icon: Sparkles,
+    title: "Phenomenon Explorer AI Suite",
+    description: "Investigate unexplained phenomena and mysterious occurrences with AI guidance",
+    emoji: "✨",
+    color: "from-purple-600 to-pink-700",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-ufo-hovering-in-the-sky-wit_w8l4l.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
+    tags: ["phenomena", "mystery", "unexplained", "investigation", "paranormal", "exploration"],
+    category: "Science & Research"
+  },
+  {
+    icon: FileText,
+    title: "Legislation Writer GPT",
+    description: "Professional legislative drafting and legal document creation assistant",
+    emoji: "📜",
+    color: "from-blue-600 to-gray-700",
+    videoUrl: "https://www.youtube.com/embed/poOGR-6bb2g",
+    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
+    tags: ["legislation", "legal", "drafting", "documents", "law", "professional"],
+    category: "Legal & Finance"
+  },
+  {
+    icon: Palette,
+    title: "Graphic & Cover Design GPT",
+    description: "Professional graphic design and cover creation for books, albums, and marketing",
+    emoji: "🎨",
+    color: "from-pink-600 to-purple-700",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/2e70f2ce-b17e-4b0f-b5d3-f36c9c22a2e3.png/:/cr=t:12.5%25,l:0%25,w:100%25,h:75%25/rs=w:1200,h:600,cg:true",
+    directUrl: "https://graphicdesigngpt.lovable.app/?via=aiwebtools",
+    tags: ["graphic design", "covers", "books", "albums", "marketing", "visual"],
+    category: "Creative & Design"
+  },
+  {
+    icon: CheckCircle2,
+    title: "Fact Checker GPT",
+    description: "Advanced fact verification and truth analysis for reliable information",
+    emoji: "✅",
+    color: "from-green-600 to-blue-700",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-person-holding-a-sign-that-_gfexU.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    directUrl: "https://factcheckergpt.lovable.app/?via=aiwebtools",
+    tags: ["fact checking", "verification", "truth", "analysis", "reliability", "information"],
+    category: "Tools & Utilities"
+  },
+  {
+    icon: TreePine,
+    title: "Sustainable Futures GPT",
+    description: "Environmental sustainability planning and green future development guidance",
+    emoji: "🌲",
+    color: "from-green-600 to-emerald-700",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-future-city-with-vertical-gardens.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    directUrl: "https://sustainablefuturesgpt.lovable.app/?via=aiwebtools",
+    tags: ["sustainability", "environment", "green", "future", "development", "eco"],
+    category: "Science & Research"
+  },
+  {
+    icon: Apple,
+    title: "Food Quality Inspector GPT",
+    description: "Food safety inspection and quality assurance guidance for consumers and professionals",
+    emoji: "🍎",
+    color: "from-red-600 to-orange-700",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-man-inspecting-food-in-a-supermar.png/:/cr=t:4.65%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    directUrl: "https://foodqualitygpt.lovable.app/?via=aiwebtools",
+    tags: ["food safety", "quality", "inspection", "health", "consumer", "professional"],
+    category: "Health & Wellness"
+  },
+  {
+    icon: Fish,
+    title: "Fisherman GPT",
+    description: "Comprehensive fishing guidance, techniques, and angling expertise for all skill levels",
+    emoji: "🎣",
+    color: "from-blue-600 to-cyan-700",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-bearded-fisherman-wearin.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    directUrl: "https://fishermangpt.lovable.app/?via=aiwebtools",
+    tags: ["fishing", "angling", "techniques", "outdoor", "recreation", "water sports"],
+    category: "Entertainment & Gaming"
+  },
+  {
+    icon: Gem,
+    title: "Antique and Collectible Appraisal GPT",
+    description: "Professional antique and collectible valuation and authentication services",
+    emoji: "💎",
+    color: "from-purple-600 to-gold-700",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-antique-and-collectibl.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    directUrl: "https://antiqueappraisalgpt.lovable.app/?via=aiwebtools",
+    tags: ["antiques", "collectibles", "appraisal", "valuation", "authentication", "professional"],
+    category: "Specialized Services"
+  },
+  {
+    icon: Gamepad2,
+    title: "Trivia Night GPT",
+    description: "Interactive trivia game host with thousands of questions across all topics",
+    emoji: "🎮",
+    color: "from-purple-600 to-blue-700",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/trivanight.jpg/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    directUrl: "https://trivianightgpt.lovable.app/?via=aiwebtools",
+    tags: ["trivia", "games", "questions", "entertainment", "interactive", "fun"],
+    category: "Entertainment & Gaming"
+  },
+  {
+    icon: BarChart,
+    title: "Probability GPT",
+    description: "Advanced probability analysis and statistical modeling for decision making",
+    emoji: "📊",
+    color: "from-blue-600 to-purple-700",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
+    directUrl: "https://probabilitygpt.lovable.app/?via=aiwebtools",
+    tags: ["probability", "statistics", "analysis", "modeling", "decision making", "mathematics"],
+    category: "Science & Research"
+  },
+  {
+    icon: BookOpen,
+    title: "Learn Any Course GPT",
+    description: "Comprehensive learning assistant for any subject or course curriculum",
+    emoji: "📖",
+    color: "from-green-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/98fLvWZy9wI",
+    directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
+    tags: ["learning", "education", "courses", "curriculum", "subjects", "comprehensive"],
+    category: "Education & Learning"
+  },
+  {
+    icon: Building,
+    title: "Property Data Finder GPT",
+    description: "Real estate data analysis and property information research assistant",
+    emoji: "🏢",
+    color: "from-gray-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/0ZGBGn9yYwY",
+    directUrl: "https://propertydatafindergpt.lovable.app/?via=aiwebtools",
+    tags: ["real estate", "property", "data", "research", "analysis", "information"],
+    category: "Business & Productivity"
+  },
+  {
+    icon: Camera,
+    title: "Leonardo AI",
+    description: "Advanced AI image generation and creative visual content creation platform",
+    emoji: "📷",
+    color: "from-purple-600 to-pink-700",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/image_converted.jpeg/:/rs=w:1200,h:600,cg:true,m/cr=w:1200,h:600",
+    directUrl: "https://app.leonardo.ai/?via=aiwebtools",
+    tags: ["AI", "image generation", "visual", "creative", "art", "platform"],
+    category: "Creative & Design"
+  },
+  {
+    icon: Calculator,
+    title: "Algebraic Expression Inventor GPT",
+    description: "Mathematical expression creation and algebraic problem solving assistant",
+    emoji: "🧮",
+    color: "from-blue-600 to-green-700",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-futuristic-advertisement-for-alg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
+    tags: ["mathematics", "algebra", "expressions", "problem solving", "education", "calculation"],
+    category: "Education & Learning"
   }
 ];
 

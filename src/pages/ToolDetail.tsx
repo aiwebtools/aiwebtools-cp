@@ -28,6 +28,12 @@ const ToolDetail = () => {
     );
   }
 
+  const handleUseItNow = () => {
+    if (tool.directUrl) {
+      window.open(tool.directUrl, '_blank');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
@@ -116,13 +122,15 @@ const ToolDetail = () => {
               <div className="text-center pt-6 border-t border-gray-200">
                 <Button 
                   size="lg"
+                  onClick={handleUseItNow}
+                  disabled={!tool.directUrl}
                   className="bg-gradient-to-r from-ai-purple to-ai-blue hover:from-ai-purple/80 hover:to-ai-blue/80 text-white px-12 py-4 text-lg rounded-xl transition-all duration-300 transform hover:scale-105"
                 >
                   <ExternalLink className="w-5 h-5 mr-2" />
                   USE IT NOW
                 </Button>
                 <p className="text-sm text-gray-500 mt-3">
-                  Click to access this AI tool and start using it immediately
+                  {tool.directUrl ? "Click to access this AI tool and start using it immediately" : "Direct access coming soon"}
                 </p>
               </div>
             </CardContent>
