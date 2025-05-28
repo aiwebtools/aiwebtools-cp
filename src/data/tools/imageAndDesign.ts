@@ -1,30 +1,18 @@
 
 import { Tool } from "@/types/tools";
-import { aiImageGeneration } from "./aiImageGeneration";
-import { imageEditingTools } from "./imageEditingTools";
-import { designAndGraphicsTools } from "./designAndGraphicsTools";
-import { Box } from "lucide-react";
-
-// Additional tools specific to imageAndDesign category
-const additionalImageDesignTools: Tool[] = [
-  {
-    icon: Box,
-    title: "Meshy AI - TEXT TO 3D Generator",
-    description: "Revolutionary AI platform for generating 3D models from text descriptions. Create detailed 3D assets for games, design, and visualization projects.",
-    emoji: "🧊",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://www.meshy.ai/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377357834886582463/image.png?ex=6838abf1&is=68375a71&hm=8796d07ef297f42d59644ba648de8f8e892976312a6e04ec90242aea3c02c9ad&",
-    tags: ["3D generation", "text to 3D", "3D modeling", "game assets", "visualization"],
-    category: "Image & Design",
-    rating: 4.4,
-    totalVotes: 3234
-  }
-];
 
 export const imageAndDesign: Tool[] = [
-  ...aiImageGeneration,
-  ...imageEditingTools,
-  ...designAndGraphicsTools,
-  ...additionalImageDesignTools
+  {
+    icon: "palette",
+    title: "Graphic & Cover Design GPT",
+    description: "Professional graphic design and cover creation assistant. Create stunning graphics, book covers, marketing materials, and visual designs with AI guidance.",
+    emoji: "🎨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://graphicdesigngpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/2e70f2ce-b17e-4b0f-b5d3-f36c9c22a2e3.png/:/cr=t:12.5%25,l:0%25,w:100%25,h:75%25/rs=w:1200,h:600,cg:true",
+    tags: ["graphic design", "cover design", "visual design", "marketing materials", "AI design"],
+    category: "Image & Design",
+    rating: 4.2,
+    totalVotes: 2234
+  }
 ];
