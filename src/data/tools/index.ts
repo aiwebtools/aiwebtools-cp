@@ -1,4 +1,3 @@
-
 // Re-export all tool categories
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
@@ -33,3 +32,7 @@ export { personalServices } from './personalServices';
 export { aiImageGeneration } from './aiImageGeneration';
 export { imageEditingTools } from './imageEditingTools';
 export { designAndGraphicsTools } from './designAndGraphicsTools';
+
+// New specialized categories
+export { specializedPolicyTools } from './specializedPolicyTools';
+export { artAndCollectibles } from './artAndCollectibles';

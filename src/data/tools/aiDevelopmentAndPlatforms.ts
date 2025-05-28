@@ -1,9 +1,10 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Bot, Code, Cpu, Zap, Settings, Wrench, Database,
-  Cloud, Server, GitBranch, Terminal, Brain, Rocket,
-  Star, Trophy, Crown, Shield, Globe, Users, Building
+  Bot, Code, Cpu, Database, Cloud, Terminal, 
+  Zap, Brain, MessageSquare, Settings, Wrench,
+  Star, Trophy, Award, Crown, Diamond, Rocket,
+  Heart, Smile, Coffee, Gift, Cake, PartyPopper,
+  Palette, ImageIcon, Users, Download
 } from "lucide-react";
 
 export const aiDevelopmentAndPlatforms: Tool[] = [

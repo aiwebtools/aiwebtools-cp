@@ -21,7 +21,9 @@ import {
   legalProfessionals,
   emergencyServices,
   creativeServices,
-  personalServices
+  personalServices,
+  specializedPolicyTools,
+  artAndCollectibles
 } from './tools';
 
 // Combine all tools from different categories with enhanced categorization
@@ -47,7 +49,9 @@ export const allTools: Tool[] = [
   ...legalProfessionals,
   ...emergencyServices,
   ...creativeServices,
-  ...personalServices
+  ...personalServices,
+  ...specializedPolicyTools,
+  ...artAndCollectibles
 ];
 
 // Create featured tools by selecting diverse tools from different categories
