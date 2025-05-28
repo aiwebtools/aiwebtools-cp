@@ -56,6 +56,18 @@
     font-family: 'Orbitron', 'Roboto', monospace;
   }
 
+  /* Performance optimizations for images and videos */
+  img {
+    image-rendering: optimizeQuality;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  iframe {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
   /* Cyberpunk glow effects */
   .cyber-glow {
     text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
@@ -93,6 +105,7 @@
     height: 100%;
     pointer-events: none;
     z-index: 0;
+    will-change: transform;
   }
 
   .star {
@@ -101,6 +114,7 @@
     border-radius: 50%;
     animation: twinkleAndMove 4s infinite ease-in-out;
     box-shadow: 0 0 8px #00ffff, 0 0 16px rgba(0, 255, 255, 0.5);
+    will-change: transform, opacity;
   }
 
   @keyframes twinkleAndMove {
@@ -134,6 +148,7 @@
     height: 100%;
     pointer-events: none;
     z-index: 1;
+    will-change: transform;
   }
 
   .particle {
@@ -142,6 +157,7 @@
     border-radius: 50%;
     animation: floatFaster 15s infinite linear;
     box-shadow: 0 0 12px rgba(0, 255, 255, 0.9);
+    will-change: transform, opacity;
   }
 
   @keyframes floatFaster {
@@ -170,6 +186,7 @@
     height: 100%;
     pointer-events: none;
     z-index: 1;
+    will-change: transform;
   }
 
   .shooting-star {
@@ -180,6 +197,7 @@
     border-radius: 50%;
     animation: shootingStarFast 3s infinite linear;
     box-shadow: 0 0 12px #00ffff, 0 0 24px #00ffff;
+    will-change: transform, opacity;
   }
 
   .shooting-star::before {
@@ -232,6 +250,7 @@
     height: 100%;
     pointer-events: none;
     z-index: 1;
+    will-change: transform;
   }
 
   .comet {
@@ -242,6 +261,7 @@
     border-radius: 50%;
     animation: cometStreak 7s infinite linear;
     box-shadow: 0 0 15px #ffffff, 0 0 30px rgba(255, 255, 255, 0.7);
+    will-change: transform, opacity;
   }
 
   .comet::before {
@@ -279,6 +299,7 @@
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    will-change: transform;
   }
 
   .interactive-button::before {
@@ -321,6 +342,7 @@
       linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 50px 50px;
     animation: gridMove 20s infinite linear;
+    will-change: background-position;
   }
 
   @keyframes gridMove {
@@ -330,5 +352,41 @@
     100% {
       background-position: 50px 50px;
     }
+  }
+
+  /* Performance optimizations for mobile */
+  @media (max-width: 768px) {
+    .cyber-grid {
+      animation: none; /* Disable grid animation on mobile for better performance */
+    }
+    
+    .glow-effect {
+      animation: none; /* Reduce animations on mobile */
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    }
+    
+    .interactive-button {
+      transform: none; /* Disable transform on mobile */
+    }
+    
+    .interactive-button:hover {
+      transform: none;
+    }
+  }
+
+  /* Loading skeleton animation */
+  @keyframes skeleton-loading {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: calc(200px + 100%) 0;
+    }
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+    background-size: 200px 100%;
+    animation: skeleton-loading 1.5s infinite;
   }
 }
