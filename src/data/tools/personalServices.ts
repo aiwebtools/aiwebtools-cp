@@ -1,47 +1,73 @@
 
 import { Tool } from "@/types/tools";
 import { 
-  Briefcase, Heart, Map
+  User, Heart, Scissors, Coffee, UtensilsCrossed,
+  Home, Car, Wrench, Palette, Star,
+  Wine, ChefHat, Shirt
 } from "lucide-react";
 
 export const personalServices: Tool[] = [
   {
-    icon: Briefcase,
-    title: "AUTOMOBILE GPT",
-    description: "Expert automotive AI assistant for car enthusiasts, mechanics, and buyers. Get advice on car maintenance, repairs, buying guides, and automotive troubleshooting.",
-    emoji: "🚗",
-    color: "from-blue-500 to-gray-600",
+    icon: Scissors,
+    title: "Hair Stylist GPT",
+    description: "AI-powered hair styling consultant providing personalized hairstyle recommendations, hair care advice, and styling tips.",
+    emoji: "💇‍♀️",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://hairstylistgpt.lovable.app/?via=aiwebtools",
+    tags: ["hair styling", "beauty", "hairstyles", "hair care", "personal styling"],
     category: "Personal Services",
-    directUrl: "https://automobilegpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=f_4aFnL-mk8",
-    tags: ["automotive", "cars", "maintenance", "repair", "advice"],
-    rating: 4.2,
-    totalVotes: 2456
+    rating: 4.1,
+    totalVotes: 2134
   },
   {
     icon: Heart,
-    title: "Social Safety Net GPT",
-    description: "Navigate social services and support systems with AI assistance. Get help understanding benefits, social programs, and community resources available to you.",
-    emoji: "🤝",
-    color: "from-blue-500 to-green-600",
+    title: "Personal Trainer GPT",
+    description: "AI fitness coach providing personalized workout plans, nutrition guidance, and health recommendations.",
+    emoji: "💪",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://personaltrainergpt.lovable.app/?via=aiwebtools",
+    tags: ["fitness", "personal training", "workout", "nutrition", "health"],
     category: "Personal Services",
-    directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
-    tags: ["social services", "benefits", "support", "community", "assistance"],
-    rating: 4.4,
-    totalVotes: 3156
+    rating: 4.3,
+    totalVotes: 2876
   },
   {
-    icon: Map,
-    title: "Travel Advisor GPT",
-    description: "Your AI travel companion for planning perfect trips. Get personalized recommendations, travel tips, itinerary planning, and destination insights from an expert travel advisor.",
-    emoji: "✈️",
-    color: "from-blue-500 to-cyan-600",
+    icon: Wine,
+    title: "Mixologist GPT",
+    description: "Professional bartending AI assistant specializing in cocktail recipes, drink recommendations, and mixology techniques for bartenders and cocktail enthusiasts.",
+    emoji: "🍸",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://mixologistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-modern-and-stylish-bartender-with.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["mixology", "cocktails", "bartending", "drink recipes", "beverage"],
     category: "Personal Services",
-    directUrl: "https://travelagentgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-futuristic-setting-where-a-_3Mwmg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["travel", "planning", "destinations", "advisor", "tourism"],
-    rating: 4.3,
-    totalVotes: 2834
+    rating: 4.2,
+    totalVotes: 2543
+  },
+  {
+    icon: ChefHat,
+    title: "Chef 'Sizzle' AI Culinary Assistant",
+    description: "Professional culinary AI assistant providing recipes, cooking techniques, meal planning, and culinary expertise for chefs and cooking enthusiasts.",
+    emoji: "👨‍🍳",
+    color: "from-orange-500 to-yellow-600",
+    directUrl: "https://chefgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=vJz1HOGtV0I",
+    tags: ["cooking", "recipes", "culinary", "chef", "meal planning"],
+    category: "Personal Services",
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: Shirt,
+    title: "RESTYLE ME GPT",
+    description: "Personal styling AI assistant providing fashion advice, wardrobe recommendations, style transformation guidance, and outfit coordination for all occasions.",
+    emoji: "👗",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://restylemegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/ChatGPT%20Image%20Apr%2027%2C%202025%2C%2007_08_04%20PM.png/:/cr=t:12.5%25,l:0%25,w:100%25,h:75%25/rs=w:1200,h:600,cg:true",
+    tags: ["fashion", "styling", "wardrobe", "outfit coordination", "personal style"],
+    category: "Personal Services",
+    rating: 4.1,
+    totalVotes: 1987
   }
 ];

@@ -1,7 +1,8 @@
 import { Tool } from "@/types/tools";
 import { 
-  Settings, Wrench, Code, Cpu, Shield, FlaskConical, Atom,
-  Search, Target, TrendingUp, Users, Globe, Lightbulb, Zap
+  Bot, Zap, Search, Settings, Wrench, 
+  Database, Cloud, Code, Terminal, Cpu,
+  Globe, Users, Download, Binary
 } from "lucide-react";
 
 export const aiToolsAndUtilities: Tool[] = [
@@ -114,5 +115,18 @@ export const aiToolsAndUtilities: Tool[] = [
     category: "AI Tools & Utilities",
     rating: 4.3,
     totalVotes: 2789
+  },
+  {
+    icon: Binary,
+    title: "Binary-Text-Image Converter GPT", 
+    description: "Advanced conversion utility for transforming between binary, text, and image formats with comprehensive encoding/decoding capabilities and file format support.",
+    emoji: "🔢",
+    color: "from-gray-500 to-blue-600",
+    directUrl: "https://binarytoconvertergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-sophisticated-and-futuristic-advertisement-.jpeg/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
+    tags: ["binary conversion", "text conversion", "image conversion", "encoding", "file formats"],
+    category: "AI Tools & Utilities",
+    rating: 4.0,
+    totalVotes: 1654
   }
 ];

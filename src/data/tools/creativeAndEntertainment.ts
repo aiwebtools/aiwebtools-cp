@@ -268,5 +268,18 @@ export const creativeAndEntertainment: Tool[] = [
     tags: ["mythology", "gods", "divine", "spiritual", "ancient wisdom"],
     rating: 4.2,
     totalVotes: 2567
+  },
+  {
+    icon: Star,
+    title: "Celebrity Chatline GPT",
+    description: "Interactive AI entertainment platform for chatting with celebrity-inspired personas, offering engaging conversations and entertainment experiences.",
+    emoji: "🌟",
+    color: "from-gold-500 to-yellow-600",
+    directUrl: "https://celebritychatline.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-split-screen-image-of-snoop-dogg-talking-on-.png/:/cr=t:0%25,l:0.11%25,w:99.78%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["celebrity", "entertainment", "chat", "interactive", "personalities"],
+    category: "Creative & Entertainment",
+    rating: 4.0,
+    totalVotes: 2134
   }
 ];

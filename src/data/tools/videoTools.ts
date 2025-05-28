@@ -114,5 +114,31 @@ export const videoTools: Tool[] = [
     category: "Video Tools",
     rating: 4.2,
     totalVotes: 2345
+  },
+  {
+    icon: Video,
+    title: "Sora Prompt Assistant",
+    description: "Advanced AI assistant for creating optimized prompts for Sora video generation, helping users craft detailed and effective video generation prompts.",
+    emoji: "🎬",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-city-with-tall-buildings-th_JdXy-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["Sora", "video generation", "prompt creation", "AI video", "text to video"],
+    category: "Video Tools",
+    rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: Sparkles,
+    title: "Luma Dream Machine Prompt Assistant",
+    description: "Specialized AI assistant for creating optimized prompts for Luma Dream Machine video generation, enhancing creative video production workflows.",
+    emoji: "✨",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-neon-lit-advertisement-for-the-l.jpeg/:/cr=t:50%25,l:0%25,w:100%25,h:50%25/rs=w:1240,h:620,cg:true",
+    tags: ["Luma", "dream machine", "video generation", "prompt optimization", "creative video"],
+    category: "Video Tools",
+    rating: 4.2,
+    totalVotes: 2134
   }
 ];

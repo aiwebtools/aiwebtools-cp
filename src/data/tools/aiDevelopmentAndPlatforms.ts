@@ -268,5 +268,18 @@ export const aiDevelopmentAndPlatforms: Tool[] = [
     category: "AI Development & Platforms",
     rating: 4.5,
     totalVotes: 4321
+  },
+  {
+    icon: Brain,
+    title: "ANYTHING LLM",
+    description: "Comprehensive local AI platform for running and managing multiple language models with full privacy control, custom training capabilities, and enterprise-grade features.",
+    emoji: "🧠",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://anythingllm.com/",
+    videoUrl: "https://www.youtube.com/watch?v=gd4xkmzLWSQ",
+    tags: ["local AI", "language models", "privacy", "enterprise", "custom training"],
+    category: "AI Development & Platforms",
+    rating: 4.3,
+    totalVotes: 2987
   }
 ];

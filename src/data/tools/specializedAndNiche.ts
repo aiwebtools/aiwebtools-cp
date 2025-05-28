@@ -1,14 +1,8 @@
 import { Tool } from "@/types/tools";
 import { 
-  Stethoscope, Scale, ShieldCheck, Paintbrush, Home, Car,
-  Plane, MapPin, Gamepad2, BookOpen, Calculator, Briefcase,
-  HeartHandshake, Baby, PawPrint, Leaf, Recycle, Droplets,
-  Fuel, Search, Heart, Sparkles, Zap, Star, Trophy, Award,
-  Crown, Diamond, Rocket, Smile, Coffee, Gift, Cake,
-  PartyPopper, Camera, Music, Palette, Brush, PenTool,
-  Scissors, Wand2, Video, ImageIcon, Target, Lightbulb,
-  Globe, Users, TrendingUp, BarChart3, FileText, Building,
-  Settings, Wrench, Code, Cpu, Shield, FlaskConical, Atom
+  Target, Shield, Zap, Wrench, Cpu, 
+  Database, Cloud, Lock, Settings,
+  Crosshair, AlertTriangle
 } from "lucide-react";
 
 export const specializedAndNiche: Tool[] = [
@@ -246,5 +240,42 @@ export const specializedAndNiche: Tool[] = [
     category: "Specialized & Niche",
     rating: 4.3,
     totalVotes: 2567
+  },
+  {
+    icon: Target,
+    title: "Cannabis Industry Consultant GPT",
+    description: "Specialized AI consultant for the cannabis industry, providing regulatory guidance, business strategies, and compliance information.",
+    emoji: "🌿",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://cannabisindustrygpt.lovable.app/?via=aiwebtools",
+    tags: ["cannabis", "regulatory", "compliance", "business strategy", "industry"],
+    category: "Specialized & Niche",
+    rating: 4.0,
+    totalVotes: 1543
+  },
+  {
+    icon: Shield,
+    title: "Cybersecurity Analyst GPT",
+    description: "Advanced cybersecurity AI assistant providing threat analysis, security recommendations, and cyber defense strategies.",
+    emoji: "🛡️",
+    color: "from-red-500 to-blue-600",
+    directUrl: "https://cybersecuritygpt.lovable.app/?via=aiwebtools",
+    tags: ["cybersecurity", "threat analysis", "security", "cyber defense", "protection"],
+    category: "Specialized & Niche",
+    rating: 4.4,
+    totalVotes: 3124
+  },
+  {
+    icon: Crosshair,
+    title: "Firearms Safety Instructor GPT",
+    description: "Professional firearms safety education assistant providing comprehensive gun safety training, handling protocols, and responsible ownership guidance.",
+    emoji: "🎯",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://firearmsafetyeducationgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-humanoid-shooting-a-gun-at-a-targ.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["firearms safety", "gun safety", "safety training", "responsible ownership", "education"],
+    category: "Specialized & Niche",
+    rating: 4.1,
+    totalVotes: 1876
   }
 ];

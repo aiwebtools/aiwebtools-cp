@@ -1,35 +1,59 @@
 
 import { Tool } from "@/types/tools";
 import { 
-  Scale, FileText, Gavel, Shield, Building, Search,
-  Users, Calculator, Briefcase, Target, Star
+  Scale, FileText, Gavel, Shield, Building, 
+  Briefcase, Search, Users, CheckCircle,
+  Bot, Clipboard
 } from "lucide-react";
 
 export const legalProfessionals: Tool[] = [
   {
     icon: Scale,
-    title: "Legal Draftsmith GPT",
-    description: "Professional legal document drafting and contract creation assistant. Generate legal documents, contracts, and legal correspondence with expert guidance.",
+    title: "Legal Document Analyzer GPT",
+    description: "AI-powered legal document analysis tool for lawyers, providing contract review, legal research, and document drafting assistance.",
     emoji: "⚖️",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://publicdefendergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-humanoid-robot-dressed-like-a.png/:/cr=t:12.29%25,l:9.16%25,w:89.29%25,h:79.58%25/rs=w:600,h:300,cg:true,m/qt=q:98",
-    tags: ["legal drafting", "contracts", "legal documents", "professional", "law"],
+    color: "from-blue-500 to-gray-600",
+    directUrl: "https://legaldocumentanalyzergpt.lovable.app/?via=aiwebtools",
+    tags: ["legal", "document analysis", "contract review", "legal research", "law"],
     category: "Legal Professionals",
-    rating: 4.2,
-    totalVotes: 1567
+    rating: 4.3,
+    totalVotes: 2567
   },
   {
-    icon: Building,
-    title: "Legislator Link GPT",
-    description: "Connect with legislators and government officials. Get help with policy research, government communications, and civic engagement initiatives.",
-    emoji: "🏛️",
-    color: "from-blue-500 to-green-600",
-    directUrl: "https://legislatorlink.lovable.app/",
-    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4&list=TLGGczTnMbeNmL0yODA1MjAyNQ",
-    tags: ["government", "legislation", "policy", "civic engagement", "officials"],
+    icon: FileText,
+    title: "Contract Drafting Assistant GPT",
+    description: "Specialized AI assistant for creating and reviewing legal contracts, agreements, and legal documents with professional accuracy.",
+    emoji: "📄",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://contractdraftinggpt.lovable.app/?via=aiwebtools",
+    tags: ["contract drafting", "legal documents", "agreements", "legal writing", "law"],
     category: "Legal Professionals",
-    rating: 4.1,
-    totalVotes: 1234
+    rating: 4.4,
+    totalVotes: 3021
+  },
+  {
+    icon: Search,
+    title: "Legal Research Assistant GPT",
+    description: "Advanced AI tool for legal research, case law analysis, statute interpretation, and legal precedent discovery.",
+    emoji: "🔍",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://legalresearchgpt.lovable.app/?via=aiwebtools",
+    tags: ["legal research", "case law", "statutes", "precedents", "legal analysis"],
+    category: "Legal Professionals",
+    rating: 4.2,
+    totalVotes: 1987
+  },
+  {
+    icon: Bot,
+    title: "Contract Review Bot",
+    description: "Advanced AI-powered contract review system that analyzes legal agreements, identifies potential issues, and provides comprehensive contract evaluation and risk assessment.",
+    emoji: "🤖",
+    color: "from-gray-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-Y8u3YrS1p-contract-review-bot",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-humanoid-robot-with-a-sleek-desig.png/:/cr=t:2.6%25,l:5.36%25,w:89.29%25,h:79.58%25/rs=w:1200,h:600,cg:true,m",
+    tags: ["contract review", "legal analysis", "risk assessment", "agreement analysis", "legal automation"],
+    category: "Legal Professionals",
+    rating: 4.5,
+    totalVotes: 3456
   }
 ];
