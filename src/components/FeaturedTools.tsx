@@ -1,7 +1,6 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Film, Clock, Car, GraduationCap, Shield, Theater, Heart, Music, Beaker, Gavel, Palette, Search, Leaf, Zap, Brain, Home, Fish, Sprout, Gem, Camera, Gamepad2, Calculator, Globe, TrendingUp, Stethoscope, Scale, Briefcase, PenTool, Code, Utensils, Brush, Phone, DollarSign, Dna, Binary, Star, Eye, FileText, Hammer, Award } from "lucide-react";
+import { BookOpen, Film, Clock, Car, GraduationCap, Shield, Theater, Heart, Music, Beaker, Gavel, Palette, Search, Leaf, Zap, Brain, Home, Fish, Sprout, Gem, Camera, Gamepad2, Calculator, Globe, TrendingUp, Stethoscope, Scale, Briefcase, PenTool, Code, Utensils, Brush, Phone, DollarSign, Dna, Binary, Star, Eye, FileText, Hammer, Award, CreditCard, Users, Palette as PaletteIcon, Video, Rocket, Cpu, Settings, Target, Building, Headphones, UserSearch, Presentation, HandHeart, History, PaintBucket, Microscope, Mountain } from "lucide-react";
 
 const featuredTools = [
   {
@@ -168,7 +167,6 @@ const allTools = [
     color: "from-blue-600 to-cyan-600",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
   },
-  // ... continue with all remaining tools, each with a videoUrl property
   {
     icon: Gavel,
     title: "Public Defender GPT",
@@ -208,8 +206,327 @@ const allTools = [
     emoji: "🎯",
     color: "from-red-600 to-pink-700",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: CreditCard,
+    title: "Predictive Credit Score Checker GPT",
+    description: "AI tool for estimating creditworthiness based on specific addresses with data-backed credit score estimates",
+    emoji: "💳",
+    color: "from-blue-700 to-indigo-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Users,
+    title: "Name Insight Predictor",
+    description: "Discover hidden meanings in your name through history, numerology, and culture with AI-driven insights",
+    emoji: "📝",
+    color: "from-purple-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: PaletteIcon,
+    title: "Coloring Book Generator GPT",
+    description: "Creates full coloring books from your imagination with custom designs and themes",
+    emoji: "🎨",
+    color: "from-orange-500 to-red-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Video,
+    title: "PIKA LABS",
+    description: "Text to video generation platform with lip sync and sound effects capabilities",
+    emoji: "🎬",
+    color: "from-cyan-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: History,
+    title: "Native American History Time Machine",
+    description: "Immersive time travel adventure through Native American history with authentic stories and cultures",
+    emoji: "🏛️",
+    color: "from-amber-600 to-orange-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: FileText,
+    title: "Public Testimony Writer GPT",
+    description: "Streamlines legislative testimony process and promotes public engagement in local policy",
+    emoji: "📜",
+    color: "from-gray-600 to-slate-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Settings,
+    title: "MAKE AUTOMATIONS",
+    description: "Create automation workflows with an all-in-one platform trusted by over 500,000 makers",
+    emoji: "⚙️",
+    color: "from-green-600 to-teal-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Shield,
+    title: "Cyber Security GPT",
+    description: "Deploy defense mechanisms and strategies to mitigate infrastructure attacks and cyber threats",
+    emoji: "🔐",
+    color: "from-red-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Globe,
+    title: "10Web",
+    description: "AI-powered website builder that clones websites and converts them into WordPress sites",
+    emoji: "🌐",
+    color: "from-blue-600 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Rocket,
+    title: "Startup Validator GPT",
+    description: "AI-powered startup analysis tool for assessing market viability, scalability, and investment potential",
+    emoji: "🚀",
+    color: "from-orange-600 to-red-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Cpu,
+    title: "PINOKIO.COMPUTER",
+    description: "Install and run multiple AI applications locally on your computer with ease",
+    emoji: "💻",
+    color: "from-gray-700 to-slate-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Video,
+    title: "RUNWAY ML",
+    description: "Create videos from text descriptions and images with cutting-edge AI video generation",
+    emoji: "🎥",
+    color: "from-purple-700 to-indigo-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Users,
+    title: "Synthesia",
+    description: "Premier AI video generation platform with 140+ lifelike AI avatars for dynamic content",
+    emoji: "👥",
+    color: "from-cyan-700 to-blue-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Building,
+    title: "Business Plan Generator GPT",
+    description: "AI-driven tool creating tailored business plans with market analysis and financial projections",
+    emoji: "💼",
+    color: "from-green-700 to-emerald-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Sprout,
+    title: "Fungus Whisperer GPT",
+    description: "Expert AI guide for mushroom cultivation, safe foraging, and creative culinary uses of fungi",
+    emoji: "🍄",
+    color: "from-amber-700 to-orange-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Zap,
+    title: "Drill Baby Drill AI Suite",
+    description: "Cutting-edge collection of 10 specialized AI tools for oil and gas operations optimization",
+    emoji: "⚡",
+    color: "from-yellow-600 to-orange-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Brain,
+    title: "Dream Interpreter GPT",
+    description: "Analyze and interpret dreams using psychological, mythological, and symbolic frameworks",
+    emoji: "💭",
+    color: "from-purple-600 to-indigo-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Headphones,
+    title: "Podcast Script Writer GPT",
+    description: "Craft engaging, structured podcast scripts optimized for audio storytelling",
+    emoji: "🎙️",
+    color: "from-red-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: UserSearch,
+    title: "Person Information Finder GPT",
+    description: "Uncover detailed public information about individuals through web and social media searches",
+    emoji: "🔍",
+    color: "from-blue-700 to-indigo-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Presentation,
+    title: "PPTx Maker GPT",
+    description: "Create beautiful, detailed PowerPoint presentations with custom visuals and ready-to-download slides",
+    emoji: "📊",
+    color: "from-orange-600 to-red-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: FileText,
+    title: "Grant Writer GPT",
+    description: "Expert AI partner for crafting compelling, funder-ready grant proposals",
+    emoji: "📝",
+    color: "from-green-600 to-teal-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: DollarSign,
+    title: "Universal Basic Income Strategist GPT",
+    description: "Design sustainable UBI models with implementation roadmaps and economic analysis",
+    emoji: "💰",
+    color: "from-emerald-600 to-green-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: HandHeart,
+    title: "Global Peace Restoration GPT",
+    description: "AI-powered diplomatic tool for resolving complex global conflicts through structured negotiation",
+    emoji: "🕊️",
+    color: "from-blue-600 to-cyan-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Gem,
+    title: "Artwork & Vintage Appraisal GPT",
+    description: "Expert AI for fast, accurate valuations of art, antiques, and collectibles with market data",
+    emoji: "🎨",
+    color: "from-purple-700 to-pink-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Eye,
+    title: "Uncovering Hidden Historical Patterns GPT",
+    description: "Reveals suppressed truths and hidden power structures by analyzing symbolism and historical contradictions",
+    emoji: "👁️",
+    color: "from-gray-800 to-slate-900",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: PaintBucket,
+    title: "Sketch Artist GPT",
+    description: "AI-powered sketch art assistant turning images or descriptions into professional sketches",
+    emoji: "✏️",
+    color: "from-gray-600 to-slate-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Target,
+    title: "AI Tools Finder GPT",
+    description: "Personal expert for locating the best AI tools with step-by-step guides for any AI tool",
+    emoji: "🎯",
+    color: "from-cyan-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: PenTool,
+    title: "Article and Blog Rewriter GPT",
+    description: "Rewrite SEO optimized articles and blogs with enhanced content and improved structure",
+    emoji: "📝",
+    color: "from-green-600 to-emerald-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Camera,
+    title: "Midjourney 101",
+    description: "Unlock the full potential of AI-generated art with comprehensive Midjourney tutorials",
+    emoji: "📷",
+    color: "from-purple-600 to-indigo-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Star,
+    title: "Gemini By Google",
+    description: "Next generation AI with live streaming capabilities, real-time captions, and translations",
+    emoji: "⭐",
+    color: "from-blue-600 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Brain,
+    title: "Claude 3.5 Sonnet",
+    description: "Revolutionary AI with enhanced capabilities, 200K token context window, and superior reasoning",
+    emoji: "🧠",
+    color: "from-orange-600 to-red-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Video,
+    title: "Video Second-by-Second Analysis GPT",
+    description: "Break down footage with precision, analyzing every second and extracting key visual frames",
+    emoji: "🎬",
+    color: "from-red-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Palette,
+    title: "Ideogram AI",
+    description: "Revolutionary text-in-image generation with unparalleled capabilities for logos and advertisements",
+    emoji: "🎨",
+    color: "from-pink-600 to-purple-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Users,
+    title: "BHUMAN",
+    description: "Generate hyper-personalized video messages by cloning your face and voice for customer engagement",
+    emoji: "👤",
+    color: "from-cyan-600 to-blue-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Cpu,
+    title: "LM STUDIO",
+    description: "Download and run hundreds of AI tools locally on your computer with no internet required",
+    emoji: "💻",
+    color: "from-gray-700 to-slate-800",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Zap,
+    title: "Merlin AI",
+    description: "All-in-one AI extension powered by GPT-4, Claude, and Llama models for enhanced productivity",
+    emoji: "⚡",
+    color: "from-purple-600 to-indigo-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Target,
+    title: "LMSYS CHATBOT ARENA",
+    description: "Dynamic platform for benchmarking language models through anonymous chatbot duels",
+    emoji: "🏟️",
+    color: "from-red-600 to-orange-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Mountain,
+    title: "Llama by META",
+    description: "Open source AI model you can fine-tune, distill and deploy anywhere in 8B, 70B and 405B versions",
+    emoji: "🦙",
+    color: "from-blue-600 to-cyan-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Brush,
+    title: "MiddleJourney Prompt Enhancer",
+    description: "Expert AI for optimizing Midjourney prompts and enhancing your creative experience",
+    emoji: "🎨",
+    color: "from-orange-600 to-pink-700",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+    icon: Heart,
+    title: "Mary Magdalene GPT",
+    description: "Connect with Mary Magdalene to explore profound Gnostic divine secrets and hidden insights",
+    emoji: "🕊️",
+    color: "from-gold-500 to-amber-600",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
   }
-  // Note: I'm showing a sample of tools here. All tools would have the videoUrl property added.
 ];
 
 const FeaturedTools = () => {
