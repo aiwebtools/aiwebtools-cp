@@ -1,196 +1,76 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Music, Headphones, Mic, Volume2, Radio, 
-  AudioLines, Disc, Piano, Guitar, Drum,
-  Music2, Music3, Music4, Waves, Speaker,
-  Play, Pause, SkipForward, Repeat, Shuffle,
-  BookOpen, Youtube, Sparkles, Zap
+  Speaker, Disc, Waveform, Piano, Guitar,
+  Drum, Zap, Star, Heart, Play, Pause,
+  SkipForward, SkipBack, Shuffle, Repeat
 } from "lucide-react";
 
 export const audioMusicTools: Tool[] = [
   {
     icon: Music,
-    title: "AI Vocal Remover",
-    description: "Remove vocals from any song using AI. Extract instrumental tracks for karaoke, remixes, or sampling with high precision.",
-    emoji: "🎤",
-    color: "from-red-500 to-purple-500",
-    directUrl: "https://vocalremover.org/",
-    tags: ["vocal remover", "instrumentals", "karaoke", "remixing", "sampling"],
-    category: "Audio & Music",
-    rating: 4.5,
-    totalVotes: 3210
-  },
-  {
-    icon: Headphones,
-    title: "Boomy AI Music Generator",
-    description: "Create original songs in seconds with AI. Customize genres, styles, and moods to produce unique tracks for any purpose.",
-    emoji: "🎧",
-    color: "from-blue-500 to-green-500",
-    directUrl: "https://boomy.com/",
-    tags: ["music generator", "AI music", "song creation", "customizable", "original tracks"],
-    category: "Audio & Music",
-    rating: 4.2,
-    totalVotes: 2567
-  },
-  {
-    icon: Mic,
-    title: "LALAL.AI Source Splitter",
-    description: "Extract vocals and instruments from any audio track with AI-powered precision. Isolate stems for remixes, covers, and more.",
-    emoji: "🎚️",
-    color: "from-purple-500 to-blue-500",
-    directUrl: "https://www.lalal.ai/",
-    tags: ["source splitter", "vocal extraction", "instrument isolation", "remixes", "covers"],
-    category: "Audio & Music",
-    rating: 4.4,
-    totalVotes: 2987
-  },
-  {
-    icon: Volume2,
-    title: "VEED.IO AI Voice Generator",
-    description: "Generate realistic AI voices for narrations, voiceovers, and audio content. Customize accents, tones, and languages for diverse applications.",
-    emoji: "🔊",
-    color: "from-green-500 to-yellow-500",
-    directUrl: "https://www.veed.io/tools/ai-voice-generator/",
-    tags: ["voice generator", "AI voices", "narration", "voiceovers", "audio content"],
-    category: "Audio & Music",
-    rating: 4.3,
-    totalVotes: 2765
-  },
-  {
-    icon: Radio,
-    title: "Jukebox AI by OpenAI",
-    description: "Generate music in various genres and styles with AI. Create original compositions with lyrics and instrumental arrangements.",
-    emoji: "📻",
-    color: "from-yellow-500 to-orange-500",
-    directUrl: "https://openai.com/research/jukebox",
-    tags: ["music generation", "AI music", "genres", "lyrics", "instrumental"],
-    category: "Audio & Music",
-    rating: 4.1,
-    totalVotes: 2345
-  },
-  {
-    icon: AudioLines,
-    title: "Songmkr AI Songwriter",
-    description: "Write songs with AI assistance. Generate lyrics, melodies, and chord progressions for original compositions.",
-    emoji: "🎼",
-    color: "from-orange-500 to-red-500",
-    directUrl: "https://www.songmkr.com/",
-    tags: ["songwriting", "AI songwriter", "lyrics", "melodies", "chords"],
-    category: "Audio & Music",
-    rating: 4.0,
-    totalVotes: 2123
-  },
-  {
-    icon: Disc,
-    title: "Amper Music (Shutterstock)",
-    description: "Create custom music for videos, podcasts, and advertising with AI. Generate royalty-free tracks tailored to your content.",
-    emoji: "💿",
-    color: "from-red-500 to-pink-500",
-    directUrl: "https://www.shutterstock.com/music/ai-music-generator",
-    tags: ["custom music", "AI music", "royalty-free", "videos", "podcasts"],
-    category: "Audio & Music",
-    rating: 4.2,
-    totalVotes: 2678
-  },
-  {
-    icon: Piano,
-    title: "AIVA AI Music Composition",
-    description: "Compose emotional soundtracks and music for games, movies, and advertising with AI. Generate unique and expressive compositions.",
-    emoji: "🎹",
-    color: "from-pink-500 to-purple-500",
-    directUrl: "https://www.aiva.ai/",
-    tags: ["music composition", "AI music", "soundtracks", "games", "movies"],
-    category: "Audio & Music",
-    rating: 4.4,
-    totalVotes: 3012
-  },
-  {
-    icon: Guitar,
-    title: "Ecrett Music AI Composer",
-    description: "Generate royalty-free music for videos and advertising with AI. Customize genres, moods, and lengths to fit your projects.",
-    emoji: "🎸",
-    color: "from-purple-500 to-blue-500",
-    directUrl: "https://ecrettmusic.com/",
-    tags: ["royalty-free music", "AI composer", "videos", "advertising", "customizable"],
-    category: "Audio & Music",
-    rating: 4.3,
-    totalVotes: 2876
-  },
-  {
-    icon: Drum,
-    title: "Beatoven.AI Music Generator",
-    description: "Create unique and royalty-free music for videos and podcasts with AI. Customize styles, moods, and lengths to match your content.",
-    emoji: "🥁",
-    color: "from-blue-500 to-cyan-500",
-    directUrl: "https://www.beatoven.ai/",
-    tags: ["music generator", "royalty-free", "videos", "podcasts", "customizable"],
-    category: "Audio & Music",
-    rating: 4.1,
-    totalVotes: 2456
-  },
-  {
-    icon: Music,
-    title: "SUNO AI – Music Creation Platform",
-    description: "Revolutionary AI music generator that creates complete songs from text descriptions including vocals, instruments, and professional arrangements.",
+    title: "SUNO AI MUSIC GENERATOR",
+    description: "Revolutionary AI music creation platform. Generate original songs, melodies, and complete musical compositions across all genres with advanced AI technology.",
     emoji: "🎵",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://suno.com/invite/@aiwebtools",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377357075260244098/image.png?ex=6838ab3c&is=683759bc&hm=1aa91ac7fb3fe0b9ff7844bc8e7de4121e2aaafac7b474707398367c99068b55&",
-    tags: ["AI music", "song creation", "vocals", "professional", "text to music"],
-    category: "Audio & Music",
+    tags: ["AI music", "song generation", "composition", "melodies", "original music"],
+    category: "Audio & Music Tools",
     rating: 4.6,
     totalVotes: 4567
   },
   {
-    icon: Music2,
+    icon: Piano,
     title: "Music Melodies & Lessons GPT",
-    description: "AI music tutor providing personalized music lessons, melody composition guidance, and music theory education.",
-    emoji: "🎼",
+    description: "Comprehensive music education and melody creation assistant. Learn music theory, composition techniques, and create beautiful melodies with AI guidance.",
+    emoji: "🎹",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://musicmelodiesandlessonsgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-music-melodi_LBv7r.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
-    tags: ["music education", "lessons", "melody composition", "music theory", "tutoring"],
-    category: "Audio & Music",
+    tags: ["music education", "melody creation", "music theory", "composition", "lessons"],
+    category: "Audio & Music Tools",
     rating: 4.3,
-    totalVotes: 2876
+    totalVotes: 2678
   },
   {
-    icon: Music3,
+    icon: Music,
     title: "UDIO MUSIC Generator",
-    description: "Advanced AI music generation platform creating high-quality music tracks across multiple genres with professional audio output.",
+    description: "Advanced AI music generation platform for creating high-quality musical compositions, beats, and soundtracks with professional-grade output.",
     emoji: "🎶",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.udio.com/home",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377364206441070592/image.png?ex=6838b1e1&is=68376061&hm=4872d401aedf46706d1213c2a93ce9ca260725cec15f98b2186eb25746fda56f&",
-    tags: ["music generation", "professional audio", "multiple genres", "high quality"],
-    category: "Audio & Music",
+    tags: ["AI music", "professional", "compositions", "beats", "soundtracks"],
+    category: "Audio & Music Tools",
     rating: 4.4,
-    totalVotes: 3234
+    totalVotes: 3456
   },
   {
-    icon: Music4,
+    icon: Video,
     title: "MiniMax Video & Music Generator",
-    description: "Comprehensive AI platform for generating both video content and musical compositions with synchronized audio-visual capabilities.",
+    description: "Dual-purpose AI platform for creating both video content and musical compositions with synchronized audio-visual generation capabilities.",
     emoji: "🎬",
-    color: "from-red-500 to-purple-600",
+    color: "from-purple-500 to-blue-600",
     directUrl: "https://hailuoai.video/",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377364574084399265/image.png?ex=6838b238&is=683760b8&hm=20d61dcb4ae8f474612c5f535cc50ed50eb70eacac600ffd40866e30475f67de&",
-    tags: ["video generation", "music generation", "synchronized", "audio-visual", "comprehensive"],
-    category: "Audio & Music",
+    tags: ["video generation", "music generation", "synchronized", "audio-visual", "dual-purpose"],
+    category: "Audio & Music Tools",
     rating: 4.2,
-    totalVotes: 2456
+    totalVotes: 2789
   },
   {
     icon: Mic,
     title: "Eleven Labs Text to Speech & Sound Effect Generation Platform",
-    description: "Industry-leading AI voice synthesis and sound effect generation with realistic speech and professional audio production capabilities.",
-    emoji: "🗣️",
+    description: "Professional AI voice synthesis and sound effect generation platform with realistic voice cloning and audio production capabilities.",
+    emoji: "🎤",
     color: "from-orange-500 to-red-600",
     directUrl: "https://elevenlabs.io/?from=kennybastian5304",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377368060364849193/image.png?ex=6838b577&is=683763f7&hm=5d7af47618e4e284baa269ee596a3b68f2ee26e23dd13ed84be94a092aff4f44&",
-    tags: ["text to speech", "voice synthesis", "sound effects", "realistic speech", "audio production"],
-    category: "Audio & Music",
-    rating: 4.7,
-    totalVotes: 5432
+    tags: ["text to speech", "voice synthesis", "sound effects", "voice cloning", "audio production"],
+    category: "Audio & Music Tools",
+    rating: 4.5,
+    totalVotes: 3789
   }
 ];

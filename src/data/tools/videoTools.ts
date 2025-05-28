@@ -13,17 +13,6 @@ import {
 
 export const videoTools: Tool[] = [
   {
-    icon: Search,
-    title: "Video Second-by-Second Analysis GPT",
-    description: "Analyze videos frame by frame with detailed AI insights. Break down video content, scenes, and visual elements with precision.",
-    emoji: "🎬",
-    color: "from-red-500 to-blue-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-banner-ad-with-the-text-video-second-b_764zv.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    directUrl: "https://videoanalysisgpt.lovable.app/?via=aiwebtools",
-    tags: ["video analysis", "frame analysis", "media", "content", "breakdown", "VLM training"],
-    category: "Video & Animation Creation"
-  },
-  {
     icon: Video,
     title: "InVideo AI",
     description: "Create professional videos with AI assistance. Transform text into engaging video content with automated editing and production.",
@@ -99,56 +88,6 @@ export const videoTools: Tool[] = [
     directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
     tags: ["music videos", "video creation", "AI production", "multimedia", "music"],
     category: "Video & Animation Creation"
-  },
-  {
-    icon: Video,
-    title: "PIKA LABS",
-    description: "Advanced AI video generation platform creating high-quality videos from text prompts with cutting-edge AI technology.",
-    emoji: "⚡",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://www.pika.art",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377338889760542790/image.png?ex=68389a4d&is=683748cd&hm=0e8f1a14cd916e76022667e10a18d93f9de2b74c752845cf07b30af750c5b21c&=&format=webp&quality=lossless&width=2370&height=1026",
-    tags: ["video generation", "AI", "text-to-video", "creative", "content"],
-    category: "Video Tools"
-  },
-  {
-    icon: Film,
-    title: "RUNWAY ML",
-    description: "Advanced AI video generation and editing platform. Create professional videos, apply AI effects, generate video content from text, and enhance video production with cutting-edge AI tools.",
-    emoji: "🎬",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://runwayml.com/",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-stunning-advertisement-for-runway-ml-an-ai-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1152,cg:true",
-    tags: ["AI video", "video generation", "video editing", "AI effects", "content creation"],
-    category: "Video Tools",
-    rating: 4.5,
-    totalVotes: 4123
-  },
-  {
-    icon: UserCheck,
-    title: "Synthesia Avatar Creation Studio",
-    description: "Professional AI avatar and synthetic video creation platform. Create realistic AI avatars, generate personalized video content, and produce professional presentations with AI presenters.",
-    emoji: "👤",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://www.synthesia.io/?via=Aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-eye-catching-advertisement-showcasing-synt.jpeg/:/cr=t:0%25,l:14.85%25,w:70.42%25,h:52.82%25/rs=w:1152,h:576,cg:true,m",
-    tags: ["AI avatars", "synthetic video", "video presentations", "AI presenters", "content creation"],
-    category: "Video Tools",
-    rating: 4.4,
-    totalVotes: 3456
-  },
-  {
-    icon: UserCheck,
-    title: "BHUMAN – Avatars Creation For Outreach",
-    description: "AI-powered avatar creation platform for personalized outreach and marketing. Create realistic AI avatars for video messages, sales outreach, and personalized communication at scale.",
-    emoji: "🤖",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://app.bhuman.ai/?ref=zde0otr",
-    videoUrl: "https://www.youtube.com/watch?v=W1WHD9IhGhs",
-    tags: ["AI avatars", "outreach", "personalized video", "marketing", "sales automation"],
-    category: "Video Tools",
-    rating: 4.3,
-    totalVotes: 2789
   },
   {
     icon: UserCheck,

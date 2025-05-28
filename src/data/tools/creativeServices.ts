@@ -1,10 +1,36 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Palette, Camera, Users, Youtube
+  Palette, Camera, Music, Film, PenTool, Brush,
+  Wand2, Sparkles, Star, Heart, Gift, Cake
 } from "lucide-react";
 
 export const creativeServices: Tool[] = [
+  {
+    icon: Film,
+    title: "Children's Picture Book Maker GPT",
+    description: "Create beautiful children's picture books with AI assistance. Generate stories, illustrations, and complete book layouts for young readers.",
+    emoji: "📚",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://childrensbookmaker.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=MryAyvg_N0U",
+    tags: ["children's books", "picture books", "storytelling", "illustrations", "young readers"],
+    category: "Creative Services",
+    rating: 4.4,
+    totalVotes: 2789
+  },
+  {
+    icon: Film,
+    title: "Movie Scene Maker GPT",
+    description: "Create compelling movie scenes and cinematic content. Generate screenplays, scene descriptions, and visual storytelling elements for film projects.",
+    emoji: "🎬",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://moviescenemakergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=9fpWIE20z7s&t",
+    tags: ["movie scenes", "screenwriting", "cinematic", "visual storytelling", "film projects"],
+    category: "Creative Services",
+    rating: 4.2,
+    totalVotes: 2345
+  },
   {
     icon: Palette,
     title: "Tattoo Designer GPT",
