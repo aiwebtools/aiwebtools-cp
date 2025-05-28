@@ -9,12 +9,13 @@ export const imageAndDesign: Tool[] = [
   {
     icon: Palette,
     title: "Leonardo AI",
-    description: "Generate production-quality assets for your creative projects with AI-driven speed and style consistency.",
+    description: "Advanced AI image generation platform with production-quality assets. Create stunning visuals, maintain style consistency, and generate professional-grade images for creative projects.",
     emoji: "🎨",
     color: "from-pink-500 to-purple-600",
     category: "Image & Design",
-    directUrl: "https://leonardo.ai/",
-    tags: ["image generation", "asset creation", "style consistency"],
+    directUrl: "https://app.leonardo.ai/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/image_converted.jpeg/:/rs=w:1200,h:600,cg:true,m/cr=w:1200,h:600",
+    tags: ["image generation", "AI art", "creative", "professional", "visual design"],
     rating: 4.5,
     totalVotes: 4567
   },

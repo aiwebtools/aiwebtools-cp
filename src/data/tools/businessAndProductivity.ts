@@ -2,7 +2,8 @@ import { Tool } from "@/types/tools";
 import { 
   Briefcase, Calculator, TrendingUp, FileText, Users, 
   DollarSign, BarChart, PieChart, Building, Globe,
-  Scale, Shield, Home, Hammer
+  Scale, Shield, Home, Hammer, BookOpen, Youtube,
+  Lightbulb, Phone
 } from "lucide-react";
 
 export const businessAndProductivity: Tool[] = [
@@ -15,7 +16,9 @@ export const businessAndProductivity: Tool[] = [
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-striking-futuristic-advertisement-for-the-a.jpeg/:/cr=t:12.16%25,l:4.06%25,w:94.34%25,h:70.75%25/rs=w:1152,h:576,cg:true,m",
     directUrl: "https://10web.io/?_from=aiwebtools",
     tags: ["website builder", "WordPress", "web development", "templates", "cloning"],
-    category: "Business & Productivity Tools"
+    category: "Business & Productivity",
+    rating: 4.2,
+    totalVotes: 2567
   },
   {
     icon: Youtube,
@@ -26,10 +29,12 @@ export const businessAndProductivity: Tool[] = [
     videoUrl: "https://www.youtube.com/watch?v=CzQdnpFawKI",
     directUrl: "https://writesonic.com/botsonic?via=aiwebtools",
     tags: ["chatbots", "customer service", "conversation", "AI assistant"],
-    category: "Business & Productivity Tools"
+    category: "Business & Productivity",
+    rating: 4.3,
+    totalVotes: 2890
   },
   {
-    icon: BookOpen,
+    icon: Briefcase,
     title: "Business Plan Generator GPT💼",
     description: "AI-driven tool that quickly creates tailored business plans including market analysis, financial projections, and strategic growth initiatives.",
     emoji: "💼",
@@ -51,7 +56,7 @@ export const businessAndProductivity: Tool[] = [
     category: "Business & Productivity Tools"
   },
   {
-    icon: BookOpen,
+    icon: FileText,
     title: "Contract Review Bot",
     description: "Advanced AI assistant to simplify contract review by breaking down legal language, identifying risks, and ensuring fairness.",
     emoji: "📋",
@@ -73,7 +78,7 @@ export const businessAndProductivity: Tool[] = [
     category: "Business & Productivity Tools"
   },
   {
-    icon: Youtube,
+    icon: Shield,
     title: "Insurance Claims GPT 🔒",
     description: "Revolutionizes claims management and estimation with user-friendly experience, damage analysis, and comprehensive reports.",
     emoji: "🔒",
@@ -84,7 +89,7 @@ export const businessAndProductivity: Tool[] = [
     category: "Business & Productivity Tools"
   },
   {
-    icon: BookOpen,
+    icon: Globe,
     title: "MAKE - AUTOMATIONS PLATFORM",
     description: "All-in-one platform to create automation workflows, tasks, applications, and systems. Free forever plan available.",
     emoji: "⚙️",
@@ -106,7 +111,7 @@ export const businessAndProductivity: Tool[] = [
     category: "Business & Productivity Tools"
   },
   {
-    icon: BookOpen,
+    icon: Lightbulb,
     title: "MicroSaaS GPT",
     description: "AI chat assistant helping entrepreneurs turn niche-specific ideas into structured, ready-to-build SaaS applications with development blueprints.",
     emoji: "🚀",
@@ -117,7 +122,7 @@ export const businessAndProductivity: Tool[] = [
     category: "Business & Productivity Tools"
   },
   {
-    icon: BookOpen,
+    icon: Phone,
     title: "Nucleus AI Inbound Call Agents Platform",
     description: "AI-powered virtual business inbound call assistant to handle inquiries, promote brand, forward messages, and capture leads. Provides a new business phone number.",
     emoji: "📞",
@@ -128,7 +133,7 @@ export const businessAndProductivity: Tool[] = [
     category: "Business & Productivity Tools"
   },
   {
-    icon: BookOpen,
+    icon: Users,
     title: "Phone Call GPT (Freedom GPT)",
     description: "Deploy AI Phone Agents with Freedom GPT for automated phone conversations and customer service.",
     emoji: "☎️",
@@ -139,7 +144,7 @@ export const businessAndProductivity: Tool[] = [
     category: "Business & Productivity Tools"
   },
   {
-    icon: BookOpen,
+    icon: TrendingUp,
     title: "Predictive Credit Score Checker GPT",
     description: "AI tool for estimating creditworthiness based on specific addresses, useful for real estate, finance, and lending.",
     emoji: "💳",
@@ -150,7 +155,7 @@ export const businessAndProductivity: Tool[] = [
     category: "Business & Productivity Tools"
   },
   {
-    icon: BookOpen,
+    icon: FileText,
     title: "The Resume & Job Finder Ai Suite",
     description: "Combines Job Finder GPT, Resume Enhancer GPT, and Resume Specialist GPT for job searching, resume sharpening, and job coaching.",
     emoji: "📄",
@@ -161,7 +166,7 @@ export const businessAndProductivity: Tool[] = [
     category: "Business & Productivity Tools"
   },
   {
-    icon: BookOpen,
+    icon: Briefcase,
     title: "🚀 Startup Validator GPT",
     description: "AI startup analysis tool to assess market viability, scalability, and investment potential, providing insights on competition, risk, and growth strategies.",
     emoji: "🚀",
@@ -172,7 +177,7 @@ export const businessAndProductivity: Tool[] = [
     category: "Business & Productivity Tools"
   },
   {
-    icon: Youtube,
+    icon: DollarSign,
     title: "Taxes GPT",
     description: "AI-powered tax assistant to simplify tax preparation, maximize deductions, analyze financial data, and provide accurate tax reports.",
     emoji: "💰",
@@ -183,7 +188,7 @@ export const businessAndProductivity: Tool[] = [
     category: "Business & Productivity Tools"
   },
   {
-    icon: Youtube,
+    icon: BarChart,
     title: "Trader GPT",
     description: "Advanced AI tool for day traders and investors, providing real-time market analysis and trading signals using technical analysis. (Simulation for informational/research purposes only).",
     emoji: "📈",
@@ -203,6 +208,41 @@ export const businessAndProductivity: Tool[] = [
     directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
     tags: ["training", "manuals", "business", "education", "employee training", "HR"],
     category: "Business & Productivity Tools"
+  },
+  {
+    icon: Youtube,
+    title: "Data Research Analysis Report GPT",
+    description: "Transforms complex datasets into actionable insights with statistical methods, trend identification, and predictive modeling.",
+    emoji: "📊",
+    color: "from-green-500 to-blue-500",
+    videoUrl: "https://www.youtube.com/watch?v=idxjOwUAD_I",
+    directUrl: "https://dataanalysisandreportai.lovable.app/?via=aiwebtools",
+    tags: ["data analysis", "statistics", "reports", "insights", "visualization"],
+    category: "Business & Productivity Tools"
+  },
+  {
+    icon: BookOpen,
+    title: "The Resume & Job Finder Ai Suite",
+    description: "Combines Job Finder GPT, Resume Enhancer GPT, and Resume Specialist GPT for job searching, resume sharpening, and job coaching.",
+    emoji: "📄",
+    color: "from-blue-500 to-green-500",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-happy-man-with-a-job-offer-_n6N-k.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    directUrl: "https://resumeandjobsgpt.lovable.app/?via=aiwebtools",
+    tags: ["resume", "job search", "career", "employment", "job finder", "recruiting"],
+    category: "Business & Productivity Tools"
+  },
+  {
+    icon: Youtube,
+    title: "Solar Land Assessor GPT",
+    description: "Professional solar land assessment and renewable energy site evaluation. Analyze property suitability for solar installations, energy potential, and investment opportunities.",
+    emoji: "☀️",
+    color: "from-yellow-500 to-green-600",
+    videoUrl: "https://www.youtube.com/watch?v=CEca8C2GIpY",
+    directUrl: "https://solarlandgpt.lovable.app/?via=aiwebtools",
+    tags: ["solar energy", "land assessment", "renewable energy", "property evaluation", "investment"],
+    category: "Business & Productivity",
+    rating: 4.3,
+    totalVotes: 2567
   },
   {
     icon: Scale,

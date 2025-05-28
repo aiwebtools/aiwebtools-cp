@@ -3,7 +3,7 @@ import {
   Music, Video, Gamepad2, Palette, Mic, 
   Camera, Film, Radio, Headphones, Play,
   Sparkles, Star, Trophy, Target, Zap,
-  Search, Gem
+  Search, Gem, Clock, Theater, UserPlus, Rocket
 } from "lucide-react";
 
 export const creativeAndEntertainment: Tool[] = [
@@ -149,5 +149,83 @@ export const creativeAndEntertainment: Tool[] = [
     tags: ["trivia", "quiz", "games", "entertainment", "questions"],
     rating: 4.2,
     totalVotes: 2134
+  },
+  {
+    icon: Star,
+    title: "Fortune Teller GPT",
+    description: "Mystical AI fortune teller for divination and future insights. Get personalized readings, explore destiny, and discover hidden truths through ancient fortune-telling wisdom.",
+    emoji: "🔮",
+    color: "from-purple-500 to-pink-600",
+    category: "Creative & Entertainment",
+    directUrl: "https://fortunetellergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-fortune-teller-gpt-_kRpji.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["fortune telling", "divination", "mystical", "future", "readings"],
+    rating: 4.1,
+    totalVotes: 2234
+  },
+  {
+    icon: Target,
+    title: "Imagination Traveler GPT",
+    description: "Journey through limitless worlds of imagination with AI. Explore fantastical realms, create immersive stories, and experience adventures beyond reality through creative AI storytelling.",
+    emoji: "🌈",
+    color: "from-cyan-500 to-purple-600",
+    category: "Creative & Entertainment",
+    directUrl: "https://imaginationtravelergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-advertisement-for-imaginati_E4k--.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["imagination", "storytelling", "fantasy", "adventure", "creative"],
+    rating: 4.2,
+    totalVotes: 2456
+  },
+  {
+    icon: Film,
+    title: "Titanic Resurrections GPT",
+    description: "Experience the Titanic story like never before with AI-powered historical recreation. Explore untold stories, meet passengers, and witness history through immersive AI simulation.",
+    emoji: "🚢",
+    color: "from-blue-500 to-gray-600",
+    category: "Creative & Entertainment",
+    directUrl: "https://titanicresurrectionsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=XlWVaz5bw08",
+    tags: ["titanic", "history", "simulation", "historical", "recreation"],
+    rating: 4.3,
+    totalVotes: 2789
+  },
+  {
+    icon: Search,
+    title: "Historical Headlines GPT",
+    description: "Travel through time and explore historical events through newspaper headlines. Discover major moments in history, analyze past events, and understand historical context.",
+    emoji: "📰",
+    color: "from-brown-500 to-yellow-600",
+    category: "Creative & Entertainment",
+    directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-historical-headline_1Ll1g.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["history", "headlines", "time travel", "historical events", "news"],
+    rating: 4.2,
+    totalVotes: 2345
+  },
+  {
+    icon: Trophy,
+    title: "🎭 Playwriter GPT",
+    description: "Professional playwright and theatrical script writing assistant. Create compelling plays, develop characters, structure dramatic narratives, and format theatrical scripts professionally.",
+    emoji: "🎭",
+    color: "from-red-500 to-purple-600",
+    category: "Creative & Entertainment",
+    directUrl: "https://playwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=KKldzg40wEI&list=TLGGGcedR_qZHHYyODA1MjAyNQ",
+    tags: ["playwriting", "theater", "scripts", "drama", "theatrical"],
+    rating: 4.3,
+    totalVotes: 2678
+  },
+  {
+    icon: Clock,
+    title: "Interpretis 🕰️",
+    description: "Historical interpretation and cultural analysis AI. Decode historical documents, analyze cultural artifacts, and understand historical contexts with expert AI guidance.",
+    emoji: "🕰️",
+    color: "from-brown-500 to-gold-600",
+    category: "Creative & Entertainment",
+    directUrl: "https://interpretis.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
+    tags: ["historical interpretation", "cultural analysis", "artifacts", "historical documents", "research"],
+    rating: 4.1,
+    totalVotes: 2123
   }
 ];

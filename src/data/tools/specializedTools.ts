@@ -2,7 +2,8 @@ import { Tool } from "@/types/tools";
 import { 
   Stethoscope, Pill, Brain, Heart, Eye, 
   Dna, Bone, Microscope, Activity, Shield,
-  Leaf, Beaker, FlaskConical, TestTube, Syringe
+  Leaf, Beaker, FlaskConical, TestTube, Syringe,
+  BookOpen, Youtube
 } from "lucide-react";
 
 export const specializedTools: Tool[] = [
@@ -154,5 +155,70 @@ export const specializedTools: Tool[] = [
     tags: ["cannabis", "cultivation", "strains", "compliance", "medical marijuana"],
     rating: 4.1,
     totalVotes: 2234
+  },
+  {
+    icon: BookOpen,
+    title: "Alchemist Scientist GPT",
+    description: "Explore the fascinating world of alchemy and ancient science. Combine historical alchemical knowledge with modern scientific understanding for unique insights and discoveries.",
+    emoji: "⚗️",
+    color: "from-purple-500 to-gold-600",
+    category: "Specialized Tools",
+    directUrl: "https://alchemicalscientistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-the-ai-tool-_C4irn.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["alchemy", "science", "chemistry", "historical", "experimentation"],
+    rating: 4.2,
+    totalVotes: 2345
+  },
+  {
+    icon: Youtube,
+    title: "Personalized DR. GPT (Doctor GPT)",
+    description: "AI medical assistant for health information and wellness guidance. Get personalized health insights, symptom analysis, and medical information (not a substitute for professional medical advice).",
+    emoji: "👨‍⚕️",
+    color: "from-blue-500 to-green-600",
+    category: "Specialized Tools",
+    directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=EKKIttUG0sI",
+    tags: ["medical", "health", "doctor", "wellness", "symptoms"],
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: Youtube,
+    title: "Indiana Archeologist GPT",
+    description: "Adventure into archaeology with AI expertise. Explore ancient civilizations, analyze artifacts, plan excavations, and uncover historical mysteries with archaeological guidance.",
+    emoji: "🏺",
+    color: "from-brown-500 to-yellow-600",
+    category: "Specialized Tools",
+    directUrl: "https://indianaarchaeologygpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=uf2i_DdaJ7M",
+    tags: ["archaeology", "ancient civilizations", "artifacts", "excavation", "history"],
+    rating: 4.3,
+    totalVotes: 2789
+  },
+  {
+    icon: Youtube,
+    title: "Marriage Mender GPT",
+    description: "AI relationship counselor for marriage and partnership guidance. Get expert advice on communication, conflict resolution, intimacy, and building stronger relationships.",
+    emoji: "💕",
+    color: "from-pink-500 to-red-600",
+    category: "Specialized Tools",
+    directUrl: "https://marriagemendergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=3HCv5_QldrU",
+    tags: ["marriage", "relationships", "counseling", "communication", "couples"],
+    rating: 4.2,
+    totalVotes: 2456
+  },
+  {
+    icon: Youtube,
+    title: "ALAN WATTS GPT",
+    description: "Explore Eastern philosophy and mindfulness with AI Alan Watts. Discover Zen Buddhism, meditation, consciousness, and philosophical insights from the renowned philosopher.",
+    emoji: "🧘",
+    color: "from-purple-500 to-blue-600",
+    category: "Specialized Tools",
+    directUrl: "https://alanwattsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=zdKfwsQwOLE",
+    tags: ["philosophy", "zen", "mindfulness", "meditation", "consciousness"],
+    rating: 4.5,
+    totalVotes: 3789
   }
 ];

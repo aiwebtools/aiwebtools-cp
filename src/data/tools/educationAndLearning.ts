@@ -1,6 +1,9 @@
-
 import { Tool } from "@/types/tools";
-import { BookOpen, Youtube } from "lucide-react";
+import { 
+  BookOpen, GraduationCap, Users, Brain, Lightbulb, 
+  Calculator, Globe, Microscope, Atom, Telescope,
+  PenTool, Youtube, Target
+} from "lucide-react";
 
 export const educationAndLearning: Tool[] = [
   {
@@ -112,5 +115,31 @@ export const educationAndLearning: Tool[] = [
     directUrl: "https://chatgpt.com/g/g-cUahkn19i-quiz-maker-ai",
     tags: ["quiz", "assessment", "education", "testing", "teachers", "learning evaluation"],
     category: "Education & Learning"
+  },
+  {
+    icon: Calculator,
+    title: "Algebraic Expression Inventor GPT",
+    description: "Master algebraic expressions and mathematical creativity. Generate complex algebraic formulas, solve mathematical problems, and explore advanced mathematical concepts with AI assistance.",
+    emoji: "🔢",
+    color: "from-blue-500 to-purple-600",
+    category: "Education & Learning",
+    directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-futuristic-advertisement-for-alg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["algebra", "mathematics", "expressions", "formulas", "problem solving"],
+    rating: 4.3,
+    totalVotes: 2567
+  },
+  {
+    icon: Youtube,
+    title: "LEARN ANY SKILL GPT",
+    description: "Comprehensive skill acquisition assistant for learning any ability. Get structured learning paths, practice exercises, and expert guidance for mastering new skills efficiently.",
+    emoji: "🎯",
+    color: "from-green-500 to-blue-600",
+    category: "Education & Learning",
+    directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=q1AY2LukHrk",
+    tags: ["skill learning", "education", "practice", "mastery", "development"],
+    rating: 4.4,
+    totalVotes: 3234
   }
 ];
