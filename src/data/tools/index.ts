@@ -1,3 +1,4 @@
+
 // Re-export all tool categories
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
@@ -20,19 +21,4 @@ export { educationAndLearning } from './educationAndLearning';
 export { creativeAndEntertainment } from './creativeAndEntertainment';
 export { professionalServices } from './professionalServices';
 export { researchAndLearning } from './researchAndLearning';
-export { aiToolsAndUtilities } from './aiToolsAndUtilities';
-
-// Update businessAndProductivity export to include new tools
-export { businessAndProductivity } from './businessAndProductivity';
-
-// Update specializedAndNiche export to include new tools  
-export { specializedAndNiche } from './specializedAndNiche';
-
-// Update educationAndLearning export to include new tools
-export { educationAndLearning } from './educationAndLearning';
-
-// Update professionalServices export to include new tools
-export { professionalServices } from './professionalServices';
-
-// Update aiToolsAndUtilities export to include new tools
 export { aiToolsAndUtilities } from './aiToolsAndUtilities';

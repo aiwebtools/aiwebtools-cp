@@ -1,10 +1,11 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Settings, Wrench, Code, Terminal, Database, 
   Search, Filter, Download, Upload, Zap,
   Cpu, HardDrive, Monitor, Wifi, Bluetooth,
-  FileText, ImageIcon as Image, Video, Music, Archive,
-  Binary, Calculator, Clock, Globe, Shield
+  FileText, Image as ImageIcon, Video, Music, Archive,
+  Binary, Calculator, Clock, Globe, Shield, MessageSquare
 } from "lucide-react";
 
 export const aiToolsAndUtilities: Tool[] = [

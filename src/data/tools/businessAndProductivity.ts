@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Briefcase, TrendingUp, BarChart3, Users, Building, 
@@ -5,7 +6,8 @@ import {
   Calendar, Clock, DollarSign, PieChart, LineChart,
   Handshake, Shield, Scale, UserCheck, Activity,
   Presentation, Globe, Zap, Lightbulb, Rocket,
-  Camera, Video, Mic, Edit, Palette
+  Camera, Video, Mic, Edit, Palette, BookOpen,
+  Youtube, Phone, Home, Hammer
 } from "lucide-react";
 
 export const businessAndProductivity: Tool[] = [

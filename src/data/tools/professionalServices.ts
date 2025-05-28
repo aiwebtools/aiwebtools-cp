@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Briefcase, Users, Building, TrendingUp, Calculator, 
@@ -7,7 +8,7 @@ import {
   UserCheck, UserPlus, Heart, Home, Car,
   Stethoscope, Pill, Syringe, Microscope, FlaskConical,
   Youtube, BookOpen, Palette, Camera, Eye,
-  Flame, Mountain, Zap, Wrench, Hammer
+  Flame, Mountain, Zap, Wrench, Hammer, Gavel, Map
 } from "lucide-react";
 
 export const professionalServices: Tool[] = [
