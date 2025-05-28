@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 const AnimatedBackground = () => {
   const starsRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
+  const shootingStarsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Create stars
@@ -40,12 +41,30 @@ const AnimatedBackground = () => {
       }
     };
 
+    // Create shooting stars
+    const createShootingStars = () => {
+      const shootingStarsContainer = shootingStarsRef.current;
+      if (!shootingStarsContainer) return;
+
+      for (let i = 0; i < 8; i++) {
+        const shootingStar = document.createElement('div');
+        shootingStar.className = 'shooting-star';
+        shootingStar.style.left = Math.random() * 100 + '%';
+        shootingStar.style.top = Math.random() * 50 + '%';
+        shootingStar.style.animationDelay = Math.random() * 10 + 's';
+        shootingStar.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        shootingStarsContainer.appendChild(shootingStar);
+      }
+    };
+
     createStars();
     createParticles();
+    createShootingStars();
 
     return () => {
       if (starsRef.current) starsRef.current.innerHTML = '';
       if (particlesRef.current) particlesRef.current.innerHTML = '';
+      if (shootingStarsRef.current) shootingStarsRef.current.innerHTML = '';
     };
   }, []);
 
@@ -53,6 +72,7 @@ const AnimatedBackground = () => {
     <>
       <div ref={starsRef} className="moving-stars" />
       <div ref={particlesRef} className="floating-particles" />
+      <div ref={shootingStarsRef} className="shooting-stars-container" />
     </>
   );
 };
