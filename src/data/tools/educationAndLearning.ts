@@ -11,7 +11,7 @@ import {
 export const educationAndLearning: Tool[] = [
   {
     icon: BookOpen,
-    title: "Learn Anything AI",
+    title: "LEARN ANY SKILL GPT",
     description: "AI-powered learning platform for personalized education. Get customized learning paths, study guides, and expert assistance on any subject, tailored to your learning style.",
     emoji: "📚",
     color: "from-blue-500 to-purple-600",
