@@ -43,8 +43,21 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <div className="text-2xl font-bold bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">
-              AI Web Tools LLC
+            <div className="text-center">
+              <div className="text-2xl font-bold bg-gradient-to-r from-ai-purple to-ai-blue bg-clip-text text-transparent">
+                AITOOLS.STUDIO
+              </div>
+              <div className="text-sm text-gray-600">
+                Presented by{" "}
+                <a 
+                  href="https://www.aiwebtools.ai" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-ai-purple hover:text-ai-blue transition-colors underline"
+                >
+                  AiWebTools.AI
+                </a>
+              </div>
             </div>
           </div>
           
@@ -86,7 +99,12 @@ const Header = () => {
             <a href="#services" className="text-gray-700 hover:text-ai-purple transition-colors">More</a>
             <div className="flex items-center space-x-2 text-gray-700">
               <Phone className="w-4 h-4" />
-              <span>475-800-8096</span>
+              <a 
+                href="tel:+14758008096" 
+                className="hover:text-ai-purple transition-colors cursor-pointer"
+              >
+                475-800-8096
+              </a>
             </div>
           </nav>
           
@@ -123,7 +141,7 @@ const Header = () => {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Phone className="w-4 h-4 mr-2" />
-                    475-800-8096
+                    <a href="tel:+14758008096">475-800-8096</a>
                   </DropdownMenuItem>
                 </div>
               </DropdownMenuContent>

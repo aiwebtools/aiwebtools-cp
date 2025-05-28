@@ -16,14 +16,37 @@ const FeaturedTools = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
+  // Enhanced search with more keywords
+  const enhancedSearchTools = (tools: any[], searchTerm: string) => {
+    if (!searchTerm.trim()) return tools;
+    
+    const term = searchTerm.toLowerCase();
+    return tools.filter((tool: any) => 
+      tool.title.toLowerCase().includes(term) ||
+      tool.description.toLowerCase().includes(term) ||
+      tool.category?.toLowerCase().includes(term) ||
+      tool.tags?.some((tag: string) => tag.toLowerCase().includes(term)) ||
+      // Additional search keywords
+      (term.includes('video') && (tool.title.toLowerCase().includes('video') || tool.description.toLowerCase().includes('video') || tool.category === 'Video Tools')) ||
+      (term.includes('music') && (tool.title.toLowerCase().includes('music') || tool.description.toLowerCase().includes('music') || tool.category === 'Audio & Music')) ||
+      (term.includes('ai') && tool.title.toLowerCase().includes('ai')) ||
+      (term.includes('gpt') && tool.title.toLowerCase().includes('gpt')) ||
+      (term.includes('image') && (tool.title.toLowerCase().includes('image') || tool.description.toLowerCase().includes('image'))) ||
+      (term.includes('business') && (tool.title.toLowerCase().includes('business') || tool.category === 'Business Tools')) ||
+      (term.includes('art') && (tool.title.toLowerCase().includes('art') || tool.category === 'AI Art')) ||
+      (term.includes('chat') && tool.title.toLowerCase().includes('chat')) ||
+      (term.includes('legal') && (tool.title.toLowerCase().includes('legal') || tool.category === 'Legal'))
+    );
+  };
+
   // Use enhanced search functionality
-  const filteredTools = searchTools(allTools, searchTerm);
-  const filteredFeaturedTools = searchTools(featuredTools, searchTerm);
+  const filteredTools = enhancedSearchTools(allTools, searchTerm);
+  const filteredFeaturedTools = enhancedSearchTools(featuredTools, searchTerm);
   
   // Apply category filter if selected
   const displayTools = selectedCategory 
     ? getToolsByCategory(selectedCategory).filter(tool => 
-        searchTerm ? searchTools([tool], searchTerm).length > 0 : true
+        searchTerm ? enhancedSearchTools([tool], searchTerm).length > 0 : true
       )
     : filteredTools;
 
@@ -187,7 +210,7 @@ const FeaturedTools = () => {
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
             Best of luck on your inspiring AI journey!
           </h3>
-          <p className="text-gray-600 mb-4">We Thank You for Visiting AiWebTools.Ai</p>
+          <p className="text-gray-600 mb-4">We Thank You for Visiting AiTools.Studio</p>
           
           <div className="max-w-4xl mx-auto text-sm text-gray-500 leading-relaxed space-y-2">
             <p>The future is unwritten — it can be shaped by human choice and collective action.</p>

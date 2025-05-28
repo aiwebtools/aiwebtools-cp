@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { BookOpen, Youtube } from "lucide-react";
 
@@ -663,3 +664,37 @@ export const allTools: Tool[] = [
     category: "Audio & Music"
   }
 ];
+
+// Create featured tools by selecting the first 6 tools
+export const featuredTools: Tool[] = allTools.slice(0, 6);
+
+// Helper function to search tools
+export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
+  if (!searchTerm.trim()) return tools;
+  
+  const term = searchTerm.toLowerCase();
+  return tools.filter(tool => 
+    tool.title.toLowerCase().includes(term) ||
+    tool.description.toLowerCase().includes(term) ||
+    tool.category?.toLowerCase().includes(term) ||
+    tool.tags?.some(tag => tag.toLowerCase().includes(term))
+  );
+};
+
+// Helper function to get categories with counts
+export const getCategoriesWithCounts = (): Record<string, number> => {
+  const categoryCounts: Record<string, number> = {};
+  
+  allTools.forEach(tool => {
+    if (tool.category) {
+      categoryCounts[tool.category] = (categoryCounts[tool.category] || 0) + 1;
+    }
+  });
+  
+  return categoryCounts;
+};
+
+// Helper function to get tools by category
+export const getToolsByCategory = (category: string): Tool[] => {
+  return allTools.filter(tool => tool.category === category);
+};
