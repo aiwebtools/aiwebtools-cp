@@ -2,12 +2,12 @@
 import { Tool } from "@/types/tools";
 import { 
   Briefcase, TrendingUp, BarChart3, Users, Building, 
-  Target, Award, Calculator, FileText, Mail,
+  FileText, Calculator, Mail, Phone, Globe,
   Calendar, Clock, DollarSign, PieChart, LineChart,
   Handshake, Shield, Scale, UserCheck, Activity,
-  Presentation, Globe, Zap, Lightbulb, Rocket,
+  Presentation, Zap, Lightbulb, Rocket,
   Camera, Video, Mic, Edit, Palette, BookOpen,
-  Youtube, Phone, Home, Hammer
+  Youtube, Home, Hammer
 } from "lucide-react";
 
 export const businessAndProductivity: Tool[] = [

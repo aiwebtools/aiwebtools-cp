@@ -19,6 +19,12 @@ export { educationAndLearning } from './educationAndLearning';
 
 // Additional new categories for missing tools
 export { creativeAndEntertainment } from './creativeAndEntertainment';
-export { professionalServices } from './professionalServices';
 export { researchAndLearning } from './researchAndLearning';
 export { aiToolsAndUtilities } from './aiToolsAndUtilities';
+
+// Refactored professional services categories
+export { healthcareProfessionals } from './healthcareProfessionals';
+export { legalProfessionals } from './legalProfessionals';
+export { emergencyServices } from './emergencyServices';
+export { creativeServices } from './creativeServices';
+export { personalServices } from './personalServices';
