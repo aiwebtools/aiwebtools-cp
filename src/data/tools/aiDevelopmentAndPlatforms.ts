@@ -42,7 +42,7 @@ export const aiDevelopmentAndPlatforms: Tool[] = [
     description: "Build your own AI-enhanced applications effortlessly by simply describing it. Platform for no-code AI development.",
     emoji: "🏗️",
     color: "from-purple-500 to-blue-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377361060364816444/image.png?ex=6838aef2&is=68375d72&hm=5decaed233bbd7a01789666a0883196d15fb739e6f223406db095f63d424f7c7&",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377361060364816444/image.png?ex=6838aef2&is=68375d72&hm=5decaed233bbd7a01789666a0883196d15fb739e6f223406db095f63d424f7c7",
     directUrl: "https://gumroad.com/a/815886803/cahfki",
     tags: ["AI building", "no-code", "deployment", "platform", "development"],
     category: "AI Development & Platforms"
@@ -243,6 +243,17 @@ export const aiDevelopmentAndPlatforms: Tool[] = [
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377352651477614672/image.png?ex=6838a71e&is=6837559e&hm=b0dc0aa8fe73a8d3efe08a0bc3e4ac5f04c4bc743d1310505f53e80e933e573a&",
     directUrl: "http://shrsl.com/2meh1-3brt-1iyev",
     tags: ["uncensored", "decentralized", "freedom", "chat", "open source"],
+    category: "AI Development & Platforms"
+  },
+  {
+    icon: Youtube,
+    title: "AI Tools Finder GPT",
+    description: "Discover and find the perfect AI tools for your needs. Search through comprehensive databases of AI applications and services.",
+    emoji: "🛠️",
+    color: "from-blue-500 to-purple-500",
+    videoUrl: "https://www.youtube.com/watch?v=IrKKi3SX89g",
+    directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
+    tags: ["AI tools", "discovery", "search", "productivity", "finder", "database"],
     category: "AI Development & Platforms"
   }
 ];

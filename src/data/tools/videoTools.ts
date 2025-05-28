@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { BookOpen, Youtube } from "lucide-react";
 
@@ -123,5 +122,27 @@ export const videoTools: Tool[] = [
     directUrl: "https://runwayml.com/",
     tags: ["video generation", "AI video", "machine learning", "professional", "runway"],
     category: "Video Tools"
+  },
+  {
+    icon: BookOpen,
+    title: "GOOGLE LABS",
+    description: "Suite of AI-powered tools from Google for creativity, learning, and productivity, including MusicFX, ImageFX, NotebookLM, and experimental AI features.",
+    emoji: "🧪",
+    color: "from-blue-500 to-green-500",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377359942578864258/image.png?ex=6838ade8&is=68375c68&hm=2c5d8dca1bb48660d84d1b8c6152d535a0b3ee3b8efb6f162286901003896fc4&",
+    directUrl: "https://labs.google/",
+    tags: ["experimental", "AI tools", "Google", "creativity", "productivity", "research"],
+    category: "Video & Animation Creation"
+  },
+  {
+    icon: BookOpen,
+    title: "GOOGLE VEO 3 Video & FX Generator",
+    description: "Part of Google Labs (Flow), for generating video with sound and FX. Advanced video generation with realistic motion and effects.",
+    emoji: "🎬",
+    color: "from-red-500 to-purple-500",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377367549376729088/image.png?ex=6838b4fe&is=6837637e&hm=5e0adb734d3dfd56244543427ec52bd8fb031ff6962424935198ce1e977b22e9&",
+    directUrl: "https://labs.google/fx/tools/flow",
+    tags: ["video generation", "sound effects", "FX", "Google", "flow", "veo", "motion"],
+    category: "Video & Animation Creation"
   }
 ];
