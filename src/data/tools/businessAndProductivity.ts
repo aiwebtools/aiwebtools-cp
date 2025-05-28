@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Briefcase, TrendingUp, BarChart3, Users, Building, 
@@ -192,7 +191,7 @@ export const businessAndProductivity: Tool[] = [
     category: "Business & Productivity Tools"
   },
   {
-    icon: BarChart,
+    icon: BarChart3,
     title: "Trader GPT",
     description: "Advanced AI tool for day traders and investors, providing real-time market analysis and trading signals using technical analysis. (Simulation for informational/research purposes only).",
     emoji: "📈",

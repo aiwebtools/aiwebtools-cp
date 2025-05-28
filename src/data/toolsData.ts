@@ -15,9 +15,13 @@ import {
   specializedAndNiche,
   educationAndLearning,
   creativeAndEntertainment,
-  professionalServices,
   researchAndLearning,
-  aiToolsAndUtilities
+  aiToolsAndUtilities,
+  healthcareProfessionals,
+  legalProfessionals,
+  emergencyServices,
+  creativeServices,
+  personalServices
 } from './tools';
 
 // Combine all tools from different categories with enhanced categorization
@@ -37,9 +41,13 @@ export const allTools: Tool[] = [
   ...aiToolsAndDevelopment,
   ...specializedTools,
   ...creativeAndEntertainment,
-  ...professionalServices,
   ...researchAndLearning,
-  ...aiToolsAndUtilities
+  ...aiToolsAndUtilities,
+  ...healthcareProfessionals,
+  ...legalProfessionals,
+  ...emergencyServices,
+  ...creativeServices,
+  ...personalServices
 ];
 
 // Create featured tools by selecting diverse tools from different categories
