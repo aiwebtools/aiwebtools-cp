@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ToolDetail from "./pages/ToolDetail";
 import NotFound from "./pages/NotFound";
+import DisclaimerPopup from "./components/DisclaimerPopup";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,7 @@ const App = () => (
       <div className="relative min-h-screen bg-black">
         <Toaster />
         <Sonner />
+        <DisclaimerPopup />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />

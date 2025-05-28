@@ -9,6 +9,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SimilarTools from "@/components/SimilarTools";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import ToolDisclaimer from "@/components/ToolDisclaimer";
 import { useState, useEffect } from "react";
 
 const ToolDetail = () => {
@@ -222,6 +223,11 @@ const ToolDetail = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Tool-Specific Legal Disclaimer */}
+            <div className="mt-8">
+              <ToolDisclaimer tool={tool} />
+            </div>
 
             {/* Additional Information */}
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
