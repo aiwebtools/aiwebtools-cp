@@ -1,3 +1,4 @@
+
 // Re-export all tool categories
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
@@ -9,7 +10,6 @@ export { aiToolsAndDevelopment } from './aiToolsAndDevelopment';
 export { specializedTools } from './specializedTools';
 
 // New categories
-export { aiDevelopmentAndPlatforms } from './aiDevelopmentAndPlatforms';
 export { writingAndContent } from './writingAndContent';
 export { imageAndDesign } from './imageAndDesign';
 export { businessAndProductivity } from './businessAndProductivity';
@@ -36,3 +36,12 @@ export { designAndGraphicsTools } from './designAndGraphicsTools';
 // New specialized categories
 export { specializedPolicyTools } from './specializedPolicyTools';
 export { artAndCollectibles } from './artAndCollectibles';
+
+// Refactored AI Development & Platforms sub-categories
+export { aiChatPlatforms } from './aiChatPlatforms';
+export { aiDevelopmentTools } from './aiDevelopmentTools';
+export { localAISolutions } from './localAISolutions';
+export { aiInferencePlatforms } from './aiInferencePlatforms';
+export { imageGenerationPlatforms } from './imageGenerationPlatforms';
+export { aiProductivityTools } from './aiProductivityTools';
+export { openSourceAIModels } from './openSourceAIModels';

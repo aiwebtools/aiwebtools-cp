@@ -1,8 +1,12 @@
 import { Tool } from "@/types/tools";
 import { 
-  Target, Shield, Zap, Wrench, Cpu, 
-  Database, Cloud, Lock, Settings,
-  Crosshair, AlertTriangle
+  Zap, Wrench, Calculator, Database, Code,
+  Settings, Brain, Bot, Star, Award,
+  Stethoscope, Scale, ShieldCheck, Home, Car,
+  Plane, MapPin, Gamepad2, BookOpen, Calc,
+  Briefcase, HeartHandshake, Baby, PawPrint,
+  Leaf, Recycle, Droplets, Fuel, Search,
+  Heart, Palette
 } from "lucide-react";
 
 export const specializedAndNiche: Tool[] = [
@@ -97,7 +101,7 @@ export const specializedAndNiche: Tool[] = [
     category: "Specialized & Niche"
   },
   {
-    icon: Calculator,
+    icon: Calc,
     title: "Financial Modeling Expert",
     description: "Advanced financial modeling and analysis for investment professionals.",
     emoji: "💰",

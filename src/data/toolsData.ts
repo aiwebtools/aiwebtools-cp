@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import {
   businessTools,
@@ -8,7 +9,6 @@ import {
   contentCreationTools,
   aiToolsAndDevelopment,
   specializedTools,
-  aiDevelopmentAndPlatforms,
   writingAndContent,
   imageAndDesign,
   businessAndProductivity,
@@ -23,12 +23,25 @@ import {
   creativeServices,
   personalServices,
   specializedPolicyTools,
-  artAndCollectibles
+  artAndCollectibles,
+  aiChatPlatforms,
+  aiDevelopmentTools,
+  localAISolutions,
+  aiInferencePlatforms,
+  imageGenerationPlatforms,
+  aiProductivityTools,
+  openSourceAIModels
 } from './tools';
 
 // Combine all tools from different categories with enhanced categorization
 export const allTools: Tool[] = [
-  ...aiDevelopmentAndPlatforms,
+  ...aiChatPlatforms,
+  ...aiDevelopmentTools,
+  ...localAISolutions,
+  ...aiInferencePlatforms,
+  ...imageGenerationPlatforms,
+  ...aiProductivityTools,
+  ...openSourceAIModels,
   ...writingAndContent,
   ...imageAndDesign,
   ...videoTools,
