@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Palette, Music, Camera, Film, Gamepad2, Sparkles, 
@@ -6,7 +5,7 @@ import {
   Mic, Video, ImageIcon, Brush, PenTool, Scissors, 
   Wand2, Zap, Trophy, Crown, Diamond, Rocket, 
   Lightbulb, Target, Users, Globe, Eye, Clock,
-  Theater, UserPlus, Search, Gem
+  Theater, UserPlus, Search, Gem, Brain, Earth
 } from "lucide-react";
 
 export const creativeAndEntertainment: Tool[] = [
@@ -230,5 +229,18 @@ export const creativeAndEntertainment: Tool[] = [
     tags: ["historical interpretation", "cultural analysis", "artifacts", "historical documents", "research"],
     rating: 4.1,
     totalVotes: 2123
+  },
+  {
+    icon: Brain,
+    title: "\"IF AI RULED THE WORLD\" - AI SIMULATION GPT",
+    description: "Explore hypothetical scenarios where AI governs society. Simulate AI-controlled governance, analyze potential outcomes, and examine the implications of AI leadership in various domains.",
+    emoji: "🤖",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://ifairuledtheworldgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=93M9ZyhpmFM",
+    tags: ["AI simulation", "governance", "hypothetical scenarios", "future society", "AI leadership"],
+    category: "Creative & Entertainment",
+    rating: 4.2,
+    totalVotes: 2456
   }
 ];

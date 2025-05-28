@@ -1,8 +1,14 @@
 import { Tool } from "@/types/tools";
 import { 
-  Code, Database, Terminal, Cpu, Zap, 
-  Bot, Brain, Settings, Wrench, Play,
-  BookOpen, Youtube, Globe
+  Bot, Brain, Cpu, Code, Database, Cloud, 
+  Settings, Wrench, Globe, Zap, Building,
+  Users, Target, Lightbulb, Star, Trophy,
+  Award, Crown, Diamond, Rocket, Heart,
+  Smile, Coffee, Gift, Cake, PartyPopper,
+  Camera, Music, Palette, Brush, PenTool,
+  Scissors, Wand2, Video, ImageIcon, Gamepad2,
+  Sparkles, Monitor, Search, MessageSquare,
+  Laptop, Download
 } from "lucide-react";
 
 export const aiDevelopmentAndPlatforms: Tool[] = [
@@ -133,5 +139,57 @@ export const aiDevelopmentAndPlatforms: Tool[] = [
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-striking-futuristic-advertisement-for-the-a.jpeg/:/cr=t:12.16%25,l:4.06%25,w:94.34%25,h:70.75%25/rs=w:1152,h:576,cg:true,m",
     tags: ["website builder", "AI", "web development", "design", "automation"],
     category: "AI Development & Platforms"
+  },
+  {
+    icon: Monitor,
+    title: "PINOKIO.COMPUTER",
+    description: "Local AI model deployment and management platform. Install, run, and manage AI models locally on your computer with an intuitive interface for various AI applications.",
+    emoji: "💻",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://pinokio.computer/",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/blob.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1152,cg:true",
+    tags: ["local AI", "model deployment", "AI management", "local computing", "AI applications"],
+    category: "AI Development & Platforms",
+    rating: 4.3,
+    totalVotes: 2567
+  },
+  {
+    icon: MessageSquare,
+    title: "Claude",
+    description: "Advanced AI assistant by Anthropic for complex reasoning and analysis. Engage in sophisticated conversations, get help with research, writing, coding, and problem-solving with constitutional AI.",
+    emoji: "🤖",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://claude.ai/",
+    videoUrl: "https://www.youtube.com/watch?v=oqUclC3gqKs",
+    tags: ["AI assistant", "reasoning", "analysis", "constitutional AI", "conversational AI"],
+    category: "AI Development & Platforms",
+    rating: 4.6,
+    totalVotes: 4789
+  },
+  {
+    icon: Download,
+    title: "LM STUDIO – Run AI Locally & Download & Deploy Countless AI Models",
+    description: "Local AI model studio for downloading, deploying, and running AI models on your computer. Access thousands of AI models, run them locally, and maintain privacy with offline AI capabilities.",
+    emoji: "📥",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://lmstudio.ai/",
+    videoUrl: "https://www.youtube.com/watch?v=yBI1nPep72Q",
+    tags: ["local AI", "model deployment", "offline AI", "AI models", "privacy"],
+    category: "AI Development & Platforms",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Search,
+    title: "AI Tools Finder GPT",
+    description: "Comprehensive AI tools discovery and recommendation engine. Find the perfect AI tools for your specific needs, compare features, and discover new AI solutions across all categories.",
+    emoji: "🔍",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=IrKKi3SX89g",
+    tags: ["AI tools", "tool discovery", "recommendations", "AI finder", "tool comparison"],
+    category: "AI Development & Platforms",
+    rating: 4.4,
+    totalVotes: 3234
   }
 ];

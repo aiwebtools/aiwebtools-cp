@@ -1,5 +1,15 @@
 import { Tool } from "@/types/tools";
-import { BookOpen, Youtube, Zap } from "lucide-react";
+import {
+  Video, Film, Camera, Play, Edit, Clapperboard,
+  Mic, Music, Headphones, Volume2, Settings,
+  Wand2, Sparkles, Zap, Star, Trophy, Award,
+  Crown, Diamond, Rocket, Heart, Smile, Coffee,
+  Gift, Cake, PartyPopper, Palette, Brush,
+  PenTool, Scissors, ImageIcon, Gamepad2,
+  Target, Lightbulb, Globe, Users, TrendingUp,
+  BarChart3, FileText, Briefcase, Building,
+  Search, Monitor, Youtube, UserCheck
+} from "lucide-react";
 
 export const videoTools: Tool[] = [
   {
@@ -102,124 +112,55 @@ export const videoTools: Tool[] = [
     category: "Video Tools"
   },
   {
-    icon: BookOpen,
+    icon: Film,
     title: "RUNWAY ML",
-    description: "Advanced AI video generation and editing platform. Create professional video content with cutting-edge machine learning technology.",
+    description: "Advanced AI video generation and editing platform. Create professional videos, apply AI effects, generate video content from text, and enhance video production with cutting-edge AI tools.",
     emoji: "🎬",
-    color: "from-green-500 to-blue-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-stunning-advertisement-for-runway-ml-an-ai-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1152,cg:true",
+    color: "from-green-500 to-blue-600",
     directUrl: "https://runwayml.com/",
-    tags: ["video generation", "AI video", "machine learning", "professional", "runway", "gen-3"],
-    category: "Video & Animation Creation"
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-stunning-advertisement-for-runway-ml-an-ai-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1152,cg:true",
+    tags: ["AI video", "video generation", "video editing", "AI effects", "content creation"],
+    category: "Video Tools",
+    rating: 4.5,
+    totalVotes: 4123
   },
   {
-    icon: Youtube,
-    title: "BHUMAN – Avatars Creation For Outreach",
-    description: "Generates hyper-personalized video messages by cloning your face and voice for marketing and outreach campaigns.",
-    emoji: "👤",
-    color: "from-purple-500 to-blue-500",
-    videoUrl: "https://www.youtube.com/watch?v=W1WHD9IhGhs",
-    directUrl: "https://app.bhuman.ai/?ref=zde0otr",
-    tags: ["avatars", "outreach", "marketing", "personalization", "video cloning", "face cloning", "voice cloning"],
-    category: "Video & Animation Creation"
-  },
-  {
-    icon: BookOpen,
-    title: "Hey Gen – Interactive Avatar Creation Hub",
-    description: "Offers features for video generation, including Avatar customization, talking photo generation, text-to-image AI, and screen recording.",
-    emoji: "🎭",
-    color: "from-blue-500 to-purple-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377360265238155334/image.png?ex=6838ae35&is=68375cb5&hm=0707c33ddc6e2d86638158d89c26611517049cd508cd73468072bfec6fda488c&",
-    directUrl: "https://app.heygen.com/guest/home?sid=rewardful&via=aiwebtools",
-    tags: ["avatar creation", "video generation", "talking photo", "screen recording", "interactive"],
-    category: "Video & Animation Creation"
-  },
-  {
-    icon: BookOpen,
+    icon: UserCheck,
     title: "Synthesia Avatar Creation Studio",
-    description: "Premier AI Video Generation Platform converting text into videos with 140+ lifelike AI Avatars for L&D, Sales, Marketing.",
-    emoji: "🎯",
-    color: "from-green-500 to-blue-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-eye-catching-advertisement-showcasing-synt.jpeg/:/cr=t:0%25,l:14.85%25,w:70.42%25,h:52.82%25/rs=w:1152,h:576,cg:true,m",
+    description: "Professional AI avatar and synthetic video creation platform. Create realistic AI avatars, generate personalized video content, and produce professional presentations with AI presenters.",
+    emoji: "👤",
+    color: "from-blue-500 to-purple-600",
     directUrl: "https://www.synthesia.io/?via=Aiwebtools",
-    tags: ["avatar creation", "AI avatars", "text to video", "L&D", "sales", "marketing", "professional"],
-    category: "Video & Animation Creation"
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-eye-catching-advertisement-showcasing-synt.jpeg/:/cr=t:0%25,l:14.85%25,w:70.42%25,h:52.82%25/rs=w:1152,h:576,cg:true,m",
+    tags: ["AI avatars", "synthetic video", "video presentations", "AI presenters", "content creation"],
+    category: "Video Tools",
+    rating: 4.4,
+    totalVotes: 3456
   },
   {
-    icon: Youtube,
-    title: "AI Movie Maker Studio",
-    description: "Suite of tools for Movie & Motion Picture Production, including Movie Script Writer, Movie Scene Maker, Movie Trailer Poster Maker, etc.",
-    emoji: "🎬",
-    color: "from-red-500 to-purple-500",
-    videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E&list=TLGGyT65jYe0o6cyODA1MjAyNQ&t",
-    directUrl: "https://moviemakerstudio.lovable.app/?via=aiwebtools",
-    tags: ["movie production", "movie maker", "script writer", "scene maker", "trailer", "motion picture"],
-    category: "Video & Animation Creation"
+    icon: UserCheck,
+    title: "BHUMAN – Avatars Creation For Outreach",
+    description: "AI-powered avatar creation platform for personalized outreach and marketing. Create realistic AI avatars for video messages, sales outreach, and personalized communication at scale.",
+    emoji: "🤖",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://app.bhuman.ai/?ref=zde0otr",
+    videoUrl: "https://www.youtube.com/watch?v=W1WHD9IhGhs",
+    tags: ["AI avatars", "outreach", "personalized video", "marketing", "sales automation"],
+    category: "Video Tools",
+    rating: 4.3,
+    totalVotes: 2789
   },
   {
-    icon: Youtube,
-    title: "Movie Scene Maker GPT",
-    description: "Become the star of your own cinematic adventure. Create personalized movie scenes in any genre, setting, or storyline using GPT-4o Image Generation.",
-    emoji: "🎭",
-    color: "from-purple-500 to-blue-500",
-    videoUrl: "https://www.youtube.com/watch?v=9fpWIE20z7s&t",
-    directUrl: "https://moviescenemakergpt.lovable.app/?via=aiwebtools",
-    tags: ["movie scenes", "cinematic", "personalized", "genre", "storyline", "GPT-4o"],
-    category: "Video & Animation Creation"
-  },
-  {
-    icon: BookOpen,
-    title: "MiniMax Video & Music Generator",
-    description: "Create videos and music content with AI-powered generation tools. Produce multimedia content with automated creation capabilities.",
-    emoji: "🎬",
-    color: "from-red-500 to-blue-500",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377364574084399265/image.png?ex=6838b238&is=683760b8&hm=20d61dcb4ae8f474612c5f535cc50ed50eb70eacac600ffd40866e30475f67de&",
-    directUrl: "https://hailuoai.video/",
-    tags: ["video generation", "music generation", "multimedia", "AI creation", "chinese", "promotional videos"],
-    category: "Video & Animation Creation"
-  },
-  {
-    icon: BookOpen,
-    title: "Luma Dream Machine Prompt Assistant",
-    description: "Helps create epic prompts for the Luma Dream Machine text-to-video engine. Expert guidance for optimal video generation results.",
-    emoji: "💡",
-    color: "from-purple-500 to-blue-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-neon-lit-advertisement-for-the-l.jpeg/:/cr=t:50%25,l:0%25,w:100%25,h:50%25/rs=w:1240,h:620,cg:true",
-    directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
-    tags: ["prompt assistant", "luma", "text to video", "prompt optimization", "video prompts"],
-    category: "Video & Animation Creation"
-  },
-  {
-    icon: BookOpen,
-    title: "Midjourney Prompting Assistant",
-    description: "AI expert for Midjourney prompt optimization, answering questions, and crafting new prompts for image and video generation.",
-    emoji: "🎨",
-    color: "from-blue-500 to-purple-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-visually-captivating-advertisement-for-the-.jpeg/:/cr=t:0.11%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:300,cg:true/qt=q:98",
-    directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
-    tags: ["midjourney", "prompt optimization", "prompt assistant", "image generation", "video generation"],
-    category: "Video & Animation Creation"
-  },
-  {
-    icon: BookOpen,
-    title: "Sora Prompt Assistant GPT",
-    description: "Ultimate assistant for crafting epic video prompts for SORA and bringing cinematic ideas to life with optimized prompting.",
-    emoji: "🚀",
-    color: "from-green-500 to-blue-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-city-with-tall-buildings-th_JdXy-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
-    tags: ["sora", "prompt assistant", "cinematic", "video prompts", "OpenAI", "prompt optimization"],
-    category: "Video & Animation Creation"
-  },
-  {
-    icon: BookOpen,
-    title: "HotShot Text-to-Video Generator",
-    description: "Cutting-edge AI text-to-video tool, similar to Runway and Kling, requires detailed prompts for best results.",
-    emoji: "🔥",
-    color: "from-orange-500 to-red-500",
-    imageUrl: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&h=300&fit=crop",
-    directUrl: "https://hotshot.co/",
-    tags: ["text to video", "AI video", "video generation", "detailed prompts", "cutting-edge"],
-    category: "Video & Animation Creation"
+    icon: Search,
+    title: "Video Second-by-Second Analysis GPT",
+    description: "Advanced video analysis tool for detailed frame-by-frame examination. Analyze video content, extract insights, identify objects, and perform comprehensive video data analysis.",
+    emoji: "🔍",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://videoanalysisgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-banner-ad-with-the-text-video-second-b_764zv.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    tags: ["video analysis", "frame analysis", "content examination", "video data", "detailed analysis"],
+    category: "Video Tools",
+    rating: 4.2,
+    totalVotes: 2345
   }
 ];
