@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Palette, Music, Camera, Film, Gamepad2, Sparkles, 
@@ -256,5 +255,18 @@ export const creativeAndEntertainment: Tool[] = [
     category: "Creative & Entertainment",
     rating: 4.1,
     totalVotes: 2234
+  },
+  {
+    icon: Sparkles,
+    title: "Talk to the Gods",
+    description: "Engage in divine conversations with mythological deities and gods from various cultures. Experience wisdom from ancient pantheons, receive divine guidance, and explore mythology through AI-powered spiritual dialogues.",
+    emoji: "⚡",
+    color: "from-gold-500 to-purple-600",
+    category: "Creative & Entertainment",
+    directUrl: "https://talktothegods.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE",
+    tags: ["mythology", "gods", "divine", "spiritual", "ancient wisdom"],
+    rating: 4.2,
+    totalVotes: 2567
   }
 ];
