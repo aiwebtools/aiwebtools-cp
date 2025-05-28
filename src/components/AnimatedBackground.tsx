@@ -7,12 +7,12 @@ const AnimatedBackground = () => {
   const shootingStarsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Create stars - increased from 100 to 300
+    // Create stars - increased to 500 for maximum starfield effect
     const createStars = () => {
       const starsContainer = starsRef.current;
       if (!starsContainer) return;
 
-      for (let i = 0; i < 300; i++) {
+      for (let i = 0; i < 500; i++) {
         const star = document.createElement('div');
         star.className = 'star';
         star.style.left = Math.random() * 100 + '%';
@@ -20,16 +20,17 @@ const AnimatedBackground = () => {
         star.style.width = Math.random() * 3 + 1 + 'px';
         star.style.height = star.style.width;
         star.style.animationDelay = Math.random() * 3 + 's';
+        star.style.animationDuration = (Math.random() * 2 + 2) + 's';
         starsContainer.appendChild(star);
       }
     };
 
-    // Create floating particles - increased from 20 to 40
+    // Create floating particles - increased to 60
     const createParticles = () => {
       const particlesContainer = particlesRef.current;
       if (!particlesContainer) return;
 
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < 60; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * 100 + '%';
@@ -41,17 +42,17 @@ const AnimatedBackground = () => {
       }
     };
 
-    // Create shooting stars - increased from 8 to 15
+    // Create shooting stars - increased to 25 for more frequent shooting stars
     const createShootingStars = () => {
       const shootingStarsContainer = shootingStarsRef.current;
       if (!shootingStarsContainer) return;
 
-      for (let i = 0; i < 15; i++) {
+      for (let i = 0; i < 25; i++) {
         const shootingStar = document.createElement('div');
         shootingStar.className = 'shooting-star';
         shootingStar.style.left = Math.random() * 100 + '%';
         shootingStar.style.top = Math.random() * 50 + '%';
-        shootingStar.style.animationDelay = Math.random() * 10 + 's';
+        shootingStar.style.animationDelay = Math.random() * 15 + 's';
         shootingStar.style.animationDuration = (Math.random() * 3 + 2) + 's';
         shootingStarsContainer.appendChild(shootingStar);
       }

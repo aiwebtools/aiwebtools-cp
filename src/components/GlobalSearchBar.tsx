@@ -29,6 +29,14 @@ const GlobalSearchBar = () => {
     setSearchResults([]);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setIsOpen(false);
+      setSearchTerm("");
+      setSearchResults([]);
+    }
+  };
+
   return (
     <div className="relative max-w-md w-full">
       <div className="relative">
@@ -38,12 +46,13 @@ const GlobalSearchBar = () => {
           placeholder="Search AI tools..."
           value={searchTerm}
           onChange={(e) => handleSearchChange(e.target.value)}
-          className="pl-10 pr-4 py-2 bg-gray-900/80 border-2 border-purple-500/30 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 text-cyan-100 placeholder-gray-400 rounded-lg backdrop-blur-sm"
+          onKeyDown={handleKeyDown}
+          className="pl-10 pr-4 py-2 bg-gray-900/80 border-2 border-purple-500/30 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 text-cyan-100 placeholder-gray-400 rounded-lg backdrop-blur-sm neon-border glow-effect"
         />
       </div>
       
       {isOpen && searchResults.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-purple-500/30 rounded-lg shadow-2xl backdrop-blur-md z-50 max-h-80 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-purple-500/30 rounded-lg shadow-2xl backdrop-blur-md z-50 max-h-80 overflow-y-auto neon-border">
           {searchResults.map((tool, index) => {
             const toolIndex = allTools.findIndex(t => t.title === tool.title);
             return (
@@ -51,13 +60,13 @@ const GlobalSearchBar = () => {
                 key={index}
                 to={`/tool/${toolIndex}`}
                 onClick={handleResultClick}
-                className="flex items-center space-x-3 p-3 hover:bg-purple-500/20 transition-colors border-b border-gray-800 last:border-b-0"
+                className="flex items-center space-x-3 p-3 hover:bg-purple-500/20 transition-all duration-300 border-b border-gray-800 last:border-b-0 interactive-button"
               >
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 flex items-center justify-center text-white text-sm flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 flex items-center justify-center text-white text-sm flex-shrink-0 glow-effect">
                   {tool.emoji}
                 </div>
                 <div className="flex-grow min-w-0">
-                  <div className="text-cyan-100 font-medium truncate">{tool.title}</div>
+                  <div className="text-cyan-100 font-medium truncate cyber-glow">{tool.title}</div>
                   <div className="text-gray-400 text-xs truncate">{tool.category}</div>
                 </div>
               </Link>
