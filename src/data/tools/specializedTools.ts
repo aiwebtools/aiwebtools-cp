@@ -1,6 +1,9 @@
-
 import { Tool } from "@/types/tools";
-import { BookOpen, Youtube } from "lucide-react";
+import { 
+  Stethoscope, Pill, Brain, Heart, Eye, 
+  Dna, Bone, Microscope, Activity, Shield,
+  Leaf, Beaker, FlaskConical, TestTube, Syringe
+} from "lucide-react";
 
 export const specializedTools: Tool[] = [
   {
@@ -112,5 +115,44 @@ export const specializedTools: Tool[] = [
     directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
     tags: ["mental health", "wellness", "therapy", "self-care", "mindfulness"],
     category: "Health & Wellness"
+  },
+  {
+    icon: Heart,
+    title: "🐾Veterinarian GPT",
+    description: "Professional veterinary AI assistant for animal health and care. Get expert guidance on pet health, animal diseases, treatment options, and veterinary best practices for all animals.",
+    emoji: "🐾",
+    color: "from-green-500 to-blue-600",
+    category: "Medical & Health",
+    directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=ElAfvB0yLEI",
+    tags: ["veterinary", "animal health", "pet care", "medical", "treatment"],
+    rating: 4.4,
+    totalVotes: 3156
+  },
+  {
+    icon: Beaker,
+    title: "Food Quality Inspector GPT",
+    description: "Professional food safety and quality inspection assistant. Ensure food safety standards, quality control, contamination detection, and regulatory compliance in food production and service.",
+    emoji: "🔍",
+    color: "from-orange-500 to-red-600",
+    category: "Medical & Health",
+    directUrl: "https://foodqualitygpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-man-inspecting-food-in-a-supermar.png/:/cr=t:4.65%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["food safety", "quality control", "inspection", "contamination", "compliance"],
+    rating: 4.2,
+    totalVotes: 2678
+  },
+  {
+    icon: Leaf,
+    title: "Cannabis GPT",
+    description: "Comprehensive cannabis industry expert for cultivation, processing, and compliance. Get guidance on growing techniques, strain information, legal compliance, and cannabis business operations.",
+    emoji: "🌿",
+    color: "from-green-500 to-cyan-600",
+    category: "Medical & Health",
+    directUrl: "https://cannabisgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-illustration-of-a-green-cannab_iUjpW.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["cannabis", "cultivation", "strains", "compliance", "medical marijuana"],
+    rating: 4.1,
+    totalVotes: 2234
   }
 ];

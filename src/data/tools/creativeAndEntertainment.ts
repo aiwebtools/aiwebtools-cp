@@ -1,9 +1,9 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Clock, Car, GraduationCap, Video, Shield, Theater, 
-  UserPlus, Film, Globe, Zap, Music, Star, BookOpen, 
-  History, Rocket, Scale, Heart, Sparkles
+  Music, Video, Gamepad2, Palette, Mic, 
+  Camera, Film, Radio, Headphones, Play,
+  Sparkles, Star, Trophy, Target, Zap,
+  Search, Gem
 } from "lucide-react";
 
 export const creativeAndEntertainment: Tool[] = [
@@ -110,5 +110,44 @@ export const creativeAndEntertainment: Tool[] = [
     tags: ["resurrection", "historical figures", "conversations", "unique", "exploration"],
     rating: 4.1,
     totalVotes: 2789
+  },
+  {
+    icon: Search,
+    title: "Antique and Collectible Appraisal GPT",
+    description: "Expert antique and collectible valuation service. Get professional appraisals, historical information, market values, and authenticity verification for your valuable items and collections.",
+    emoji: "🏺",
+    color: "from-amber-500 to-brown-600",
+    category: "Creative & Entertainment",
+    directUrl: "https://antiqueappraisalgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-antique-and-collectibl.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["antiques", "collectibles", "appraisal", "valuation", "authentication"],
+    rating: 4.3,
+    totalVotes: 2456
+  },
+  {
+    icon: Gem,
+    title: "Oraculum – The Revealer of Hidden \"Truths\"",
+    description: "Mystical AI oracle for divination and hidden insights. Explore esoteric knowledge, receive prophetic guidance, and uncover hidden truths through ancient wisdom and mystical interpretation.",
+    emoji: "🔮",
+    color: "from-purple-500 to-cyan-600",
+    category: "Creative & Entertainment",
+    directUrl: "https://oraculum.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=dUNrGNj8rhM",
+    tags: ["divination", "mystical", "oracle", "esoteric", "prophecy"],
+    rating: 4.1,
+    totalVotes: 2789
+  },
+  {
+    icon: Trophy,
+    title: "Trivia Night GPT",
+    description: "Ultimate trivia game host and question generator. Create engaging trivia nights, generate diverse questions across all topics, and host interactive quiz experiences for any audience.",
+    emoji: "🧠",
+    color: "from-yellow-500 to-orange-600",
+    category: "Creative & Entertainment",
+    directUrl: "https://trivianightgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/trivanight.jpg/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["trivia", "quiz", "games", "entertainment", "questions"],
+    rating: 4.2,
+    totalVotes: 2134
   }
 ];

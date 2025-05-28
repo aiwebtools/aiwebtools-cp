@@ -1,6 +1,9 @@
-
 import { Tool } from "@/types/tools";
-import { BookOpen, Youtube } from "lucide-react";
+import { 
+  Code, Cpu, Database, Globe, Zap, Brain, 
+  Settings, Terminal, Github, Cloud,
+  Wrench, Cog, BookOpen, GraduationCap
+} from "lucide-react";
 
 export const aiDevelopmentAndPlatforms: Tool[] = [
   {
@@ -255,5 +258,44 @@ export const aiDevelopmentAndPlatforms: Tool[] = [
     directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
     tags: ["AI tools", "discovery", "search", "productivity", "finder", "database"],
     category: "AI Development & Platforms"
+  },
+  {
+    icon: Wrench,
+    title: "Engineering GPT AI Suite",
+    description: "Comprehensive engineering AI assistant for all disciplines. Get expert help with mechanical, electrical, civil, software, and other engineering challenges with advanced problem-solving capabilities.",
+    emoji: "⚙️",
+    color: "from-blue-500 to-gray-600",
+    category: "AI Development & Platforms",
+    directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-engineering-_hEePg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["engineering", "technical", "problem solving", "design", "analysis"],
+    rating: 4.4,
+    totalVotes: 3245
+  },
+  {
+    icon: Brain,
+    title: "Nikola Tesla GPT",
+    description: "Channel the genius of Nikola Tesla for innovative engineering and scientific insights. Explore electricity, magnetism, wireless technology, and futuristic inventions with Tesla's brilliant mind.",
+    emoji: "⚡",
+    color: "from-purple-500 to-blue-600",
+    category: "AI Development & Platforms",
+    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=DR_3MvP7Wws",
+    tags: ["Tesla", "innovation", "electricity", "science", "genius"],
+    rating: 4.5,
+    totalVotes: 3876
+  },
+  {
+    icon: GraduationCap,
+    title: "LEARN ANY COURSE GPT",
+    description: "Master any subject with personalized AI tutoring. Get comprehensive course guidance, learning plans, and expert instruction across all academic disciplines and professional skills.",
+    emoji: "📚",
+    color: "from-green-500 to-blue-600",
+    category: "AI Development & Platforms",
+    directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
+    tags: ["education", "learning", "courses", "tutoring", "skills"],
+    rating: 4.3,
+    totalVotes: 2945
   }
 ];

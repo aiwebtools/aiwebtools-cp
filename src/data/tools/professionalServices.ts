@@ -1,8 +1,7 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Car, Shield, Scale, Heart, Briefcase, 
-  Search, MessageSquare, Map
+  Search, MessageSquare, Map, Gavel
 } from "lucide-react";
 
 export const professionalServices: Tool[] = [
@@ -70,5 +69,18 @@ export const professionalServices: Tool[] = [
     tags: ["travel", "planning", "destinations", "advisor", "tourism"],
     rating: 4.3,
     totalVotes: 2834
+  },
+  {
+    icon: Gavel,
+    title: "Public Defender GPT",
+    description: "Legal defense assistance and public defender support. Get guidance on criminal defense strategies, legal procedures, case preparation, and constitutional rights protection for legal professionals.",
+    emoji: "⚖️",
+    color: "from-blue-500 to-purple-600",
+    category: "Professional Services",
+    directUrl: "https://publicdefendergpt.lovable.app/",
+    videoUrl: "https://www.youtube.com/watch?v=cQR5eFjsPWw",
+    tags: ["legal defense", "criminal law", "public defender", "constitutional rights", "legal procedures"],
+    rating: 4.3,
+    totalVotes: 2567
   }
 ];

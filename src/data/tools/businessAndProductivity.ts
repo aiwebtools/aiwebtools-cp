@@ -1,6 +1,9 @@
-
 import { Tool } from "@/types/tools";
-import { BookOpen, Youtube } from "lucide-react";
+import { 
+  Briefcase, Calculator, TrendingUp, FileText, Users, 
+  DollarSign, BarChart, PieChart, Building, Globe,
+  Scale, Shield, Home, Hammer
+} from "lucide-react";
 
 export const businessAndProductivity: Tool[] = [
   {
@@ -200,5 +203,57 @@ export const businessAndProductivity: Tool[] = [
     directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
     tags: ["training", "manuals", "business", "education", "employee training", "HR"],
     category: "Business & Productivity Tools"
+  },
+  {
+    icon: Scale,
+    title: "Legislation Writer GPT",
+    description: "Professional legislative drafting assistance for lawmakers and legal professionals. Create comprehensive bills, amendments, and legal documents with expert guidance on legal language and structure.",
+    emoji: "⚖️",
+    color: "from-blue-500 to-purple-600",
+    category: "Business & Productivity",
+    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=poOGR-6bb2g",
+    tags: ["legislation", "legal", "drafting", "government", "law"],
+    rating: 4.2,
+    totalVotes: 2456
+  },
+  {
+    icon: Shield,
+    title: "🔒Insurance Claims GPT",
+    description: "Streamline insurance claim processing and management. Get expert guidance on claim documentation, assessment procedures, fraud detection, and efficient claims resolution strategies.",
+    emoji: "🔒",
+    color: "from-blue-500 to-green-600",
+    category: "Business & Productivity",
+    directUrl: "https://insuranceclaimsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=WNPywJWOUzU",
+    tags: ["insurance", "claims", "documentation", "assessment", "fraud detection"],
+    rating: 4.3,
+    totalVotes: 2789
+  },
+  {
+    icon: Home,
+    title: "Property Data Finder GPT",
+    description: "Comprehensive real estate data analysis and property research. Find property values, market trends, investment opportunities, and detailed property information for informed real estate decisions.",
+    emoji: "🏠",
+    color: "from-green-500 to-blue-600",
+    category: "Business & Productivity",
+    directUrl: "https://propertydatafindergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=0ZGBGn9yYwY",
+    tags: ["real estate", "property data", "market analysis", "investment", "research"],
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: Hammer,
+    title: "Home Renovator GPT 🏡🔧",
+    description: "Expert home renovation and improvement guidance. Get professional advice on remodeling projects, material selection, cost estimation, and DIY home improvement solutions.",
+    emoji: "🏡",
+    color: "from-orange-500 to-brown-600",
+    category: "Business & Productivity",
+    directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-humanoid-robot-fixing-a-bathroom-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["renovation", "home improvement", "DIY", "construction", "remodeling"],
+    rating: 4.2,
+    totalVotes: 2567
   }
 ];
