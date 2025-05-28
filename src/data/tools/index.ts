@@ -28,3 +28,8 @@ export { legalProfessionals } from './legalProfessionals';
 export { emergencyServices } from './emergencyServices';
 export { creativeServices } from './creativeServices';
 export { personalServices } from './personalServices';
+
+// Image and Design sub-categories
+export { aiImageGeneration } from './aiImageGeneration';
+export { imageEditingTools } from './imageEditingTools';
+export { designAndGraphicsTools } from './designAndGraphicsTools';
