@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import SimilarTools from "@/components/SimilarTools";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ToolDisclaimer from "@/components/ToolDisclaimer";
+import StarRating from "@/components/tools/StarRating";
 import { useState, useEffect } from "react";
 
 const ToolDetail = () => {
@@ -46,6 +47,11 @@ const ToolDetail = () => {
       </div>
     );
   }
+
+  // Generate default rating if not set
+  const defaultRatings = [4.1, 4.2, 4.3, 4.4];
+  const defaultRating = tool.rating || defaultRatings[toolIndex % defaultRatings.length];
+  const defaultVotes = tool.totalVotes || Math.floor(Math.random() * 3000) + 2000;
 
   const handleUseItNow = () => {
     if (tool.directUrl) {
@@ -172,6 +178,9 @@ const ToolDetail = () => {
                       {tool.category}
                     </Badge>
                   )}
+                  <div className="flex justify-center">
+                    <StarRating rating={defaultRating} totalVotes={defaultVotes} />
+                  </div>
                 </div>
               </CardHeader>
 

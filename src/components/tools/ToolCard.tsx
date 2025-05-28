@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tool } from "@/types/tools";
@@ -7,6 +6,7 @@ import { Link } from "react-router-dom";
 import { ExternalLink, Play, Image as ImageIcon } from "lucide-react";
 import { allTools } from "@/data/toolsData";
 import { useState } from "react";
+import StarRating from "./StarRating";
 
 interface ToolCardProps {
   tool: Tool;
@@ -25,6 +25,11 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
 
   // Find the tool index for the URL
   const toolIndex = allTools.findIndex(t => t.title === tool.title);
+
+  // Generate default rating if not set
+  const defaultRatings = [4.1, 4.2, 4.3, 4.4];
+  const defaultRating = tool.rating || defaultRatings[toolIndex % defaultRatings.length];
+  const defaultVotes = tool.totalVotes || Math.floor(Math.random() * 3000) + 2000;
 
   // Optimized YouTube URL conversion with quality and performance settings
   const getOptimizedEmbedUrl = (url: string) => {
@@ -137,6 +142,9 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
               {tool.category}
             </Badge>
           )}
+          <div className="pt-2">
+            <StarRating rating={defaultRating} totalVotes={defaultVotes} showVoteCount={!isFeatured} />
+          </div>
         </div>
       </CardHeader>
       

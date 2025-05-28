@@ -12,4 +12,6 @@ export interface Tool {
   directUrl?: string;
   tags?: string[];
   category?: string;
+  rating?: number;
+  totalVotes?: number;
 }
