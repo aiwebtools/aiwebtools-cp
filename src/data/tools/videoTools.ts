@@ -12,6 +12,7 @@ export const videoTools: Tool[] = [
     description: "AI video creation suite with tools for generating, editing, and enhancing video content.",
     emoji: "🎬",
     color: "from-purple-500 to-pink-600",
+    imageUrl: "https://images.unsplash.com/photo-1441986300917-64674bd600d8",
     directUrl: "https://runwayml.com/",
     tags: ["AI video", "video editing", "content creation", "machine learning"],
     category: "Video Tools",
