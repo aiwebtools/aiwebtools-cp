@@ -8,6 +8,7 @@ import SpecialServices from "@/components/SpecialServices";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
+import { Button } from "@/components/ui/button";
 import { runFullToolVerification } from "@/utils/toolIndexing";
 import { searchTools } from "@/utils/searchUtils";
 import { getCurrentToolCount } from "@/utils/toolCounter";
@@ -15,6 +16,7 @@ import { getCurrentToolCount } from "@/utils/toolCounter";
 const Index = () => {
   const navigate = useNavigate();
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
+  const [toolsLoadedCount, setToolsLoadedCount] = useState(0);
 
   useEffect(() => {
     // Get accurate tool count for SEO
@@ -45,6 +47,29 @@ const Index = () => {
       }
     }
   }, []);
+
+  const handleToolsLoaded = (count: number) => {
+    setToolsLoadedCount(count);
+  };
+
+  const scrollToLoadMoreTools = () => {
+    // Scroll to the tools section and trigger load more
+    const toolsSection = document.getElementById('tools-section');
+    if (toolsSection) {
+      toolsSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      
+      // Trigger load more after a brief delay
+      setTimeout(() => {
+        const loadMoreButton = document.querySelector('[data-load-more-trigger]') as HTMLButtonElement;
+        if (loadMoreButton) {
+          loadMoreButton.click();
+        }
+      }, 500);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -81,8 +106,26 @@ const Index = () => {
         <Header />
         <HeroSection />
         <div id="tools-section">
-          <FeaturedToolsSection />
+          <FeaturedToolsSection onToolsLoaded={handleToolsLoaded} />
         </div>
+        
+        {/* Show More AI Tools Button - positioned above Premium AI Suites */}
+        <div className="text-center py-16 bg-gradient-to-br from-slate-900 to-purple-900">
+          <div className="container mx-auto px-4">
+            <Button
+              onClick={scrollToLoadMoreTools}
+              size="lg"
+              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-12 py-6 rounded-xl text-xl shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
+              data-load-more-trigger
+            >
+              🚀 SHOW MORE AI TOOLS
+            </Button>
+            <div className="mt-4 text-cyan-300 text-lg">
+              Discover more from our collection of {toolStats.marketing} AI tools
+            </div>
+          </div>
+        </div>
+        
         <SpecialServices />
         <Footer />
       </div>

@@ -1,5 +1,5 @@
 
-import { useCallback } from "react";
+import { useCallback, useImperativeHandle, forwardRef } from "react";
 import CategoryFilters from "@/components/tools/CategoryFilters";
 import ActiveFilters from "@/components/tools/ActiveFilters";
 import ToolsGrid from "@/components/tools/ToolsGrid";
@@ -144,6 +144,7 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
             size="lg"
             disabled={isLoading}
             className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-6 py-3 rounded-xl transition-all duration-300"
+            data-load-more-trigger
           >
             {isLoading ? (
               <div className="flex items-center space-x-2">
