@@ -45,7 +45,22 @@ const Navigation = () => {
   };
 
   const viewAllTools = () => {
-    navigate('/category/All%20Categories');
+    // Navigate to home if not already there
+    if (window.location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const toolsSection = document.getElementById('tools-section');
+        if (toolsSection) {
+          toolsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      // Already on home page, just scroll to tools section
+      const toolsSection = document.getElementById('tools-section');
+      if (toolsSection) {
+        toolsSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   };
 
   return (
