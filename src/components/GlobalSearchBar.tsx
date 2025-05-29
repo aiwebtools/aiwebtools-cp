@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { searchTools, allTools } from "@/data/toolsData";
+import { allTools } from "@/data/toolsData";
+import { searchTools } from "@/utils/searchUtils";
 import { Tool } from "@/types/tools";
 import { Link } from "react-router-dom";
 
@@ -17,7 +18,7 @@ const GlobalSearchBar = () => {
     setSearchTerm(value);
     if (value.trim()) {
       console.log("Header search - searching tools with term:", value);
-      const results = searchTools(allTools, value).slice(0, 8); // Limit to 8 results
+      const results = searchTools(allTools, value).slice(0, 12); // Increased from 8 to 12 results
       console.log("Header search - search results:", results);
       setSearchResults(results);
       setIsOpen(true);
@@ -128,7 +129,7 @@ const GlobalSearchBar = () => {
       
       {/* Desktop Results */}
       {isOpen && searchResults.length > 0 && !isMobileSearchOpen && (
-        <div className="hidden md:block absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-purple-500/30 rounded-lg shadow-2xl backdrop-blur-md z-50 max-h-80 overflow-y-auto neon-border">
+        <div className="hidden md:block absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-purple-500/30 rounded-lg shadow-2xl backdrop-blur-md z-50 max-h-96 overflow-y-auto neon-border">
           {searchResults.map((tool, index) => {
             const toolIndex = allTools.findIndex(t => t.title === tool.title);
             return (

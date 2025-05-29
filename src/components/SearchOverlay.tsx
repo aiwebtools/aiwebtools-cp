@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { Search, X, ArrowLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { searchTools, allTools } from "@/data/toolsData";
+import { allTools } from "@/data/toolsData";
+import { searchTools } from "@/utils/searchUtils";
 import { Tool } from "@/types/tools";
 import { Link } from "react-router-dom";
 
@@ -19,7 +20,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
     if (value.trim()) {
-      const results = searchTools(allTools, value).slice(0, 8); // Limit to 8 results for better UX
+      const results = searchTools(allTools, value).slice(0, 16); // Increased from 8 to 16 results
       setSearchResults(results);
     } else {
       setSearchResults([]);
