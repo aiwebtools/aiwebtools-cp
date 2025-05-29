@@ -18,19 +18,19 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
     
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1].split('&')[0];
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1`;
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&volume=65`;
       console.log('YouTube embed URL:', embedUrl);
       return embedUrl;
     }
     if (url.includes('youtu.be/')) {
       const videoId = url.split('youtu.be/')[1].split('?')[0];
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1`;
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&volume=65`;
       console.log('YouTube short embed URL:', embedUrl);
       return embedUrl;
     }
     if (url.includes('vimeo.com/')) {
       const videoId = url.split('vimeo.com/')[1].split('?')[0];
-      const embedUrl = `https://player.vimeo.com/video/${videoId}?autoplay=0`;
+      const embedUrl = `https://player.vimeo.com/video/${videoId}?autoplay=0&volume=0.65`;
       console.log('Vimeo embed URL:', embedUrl);
       return embedUrl;
     }
