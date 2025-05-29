@@ -1,91 +1,35 @@
-import { useState, useMemo, useEffect, useCallback } from "react";
-import { useLocation } from "react-router-dom";
-import { allTools, searchTools, getCategoriesWithCounts, getToolsByCategory } from "@/data/toolsData";
+
+import { useCallback } from "react";
 import CategoryFilters from "@/components/tools/CategoryFilters";
 import ActiveFilters from "@/components/tools/ActiveFilters";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import { Button } from "@/components/ui/button";
+import { useFeaturedToolsState } from "@/hooks/useFeaturedToolsState";
+import { useScrollMemory } from "@/hooks/useScrollMemory";
+import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 
 interface FeaturedToolsProps {
   showLoadMoreButton?: boolean;
 }
 
 const FeaturedTools = ({ showLoadMoreButton = false }: FeaturedToolsProps) => {
-  const location = useLocation();
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [displayedCount, setDisplayedCount] = useState<number>(12);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const {
+    selectedCategory,
+    searchTerm,
+    displayedCount,
+    isLoading,
+    setDisplayedCount,
+    setIsLoading,
+    handleCategoryChange,
+    handleSearchChange,
+    filteredTools,
+    totalToolsCount,
+    categoriesWithCounts,
+    hasMoreTools
+  } = useFeaturedToolsState();
 
-  // Save scroll position when navigating away
-  useEffect(() => {
-    const saveScrollPosition = () => {
-      sessionStorage.setItem('aitools-scroll-position', window.pageYOffset.toString());
-      sessionStorage.setItem('aitools-displayed-count', displayedCount.toString());
-      sessionStorage.setItem('aitools-selected-category', selectedCategory || '');
-      sessionStorage.setItem('aitools-search-term', searchTerm);
-    };
-
-    // Save position before page unload or navigation
-    window.addEventListener('beforeunload', saveScrollPosition);
-    
-    return () => {
-      window.removeEventListener('beforeunload', saveScrollPosition);
-      saveScrollPosition(); // Save when component unmounts
-    };
-  }, [displayedCount, selectedCategory, searchTerm]);
-
-  // Restore scroll position and state when coming back
-  useEffect(() => {
-    const restoreState = () => {
-      const savedScrollPosition = sessionStorage.getItem('aitools-scroll-position');
-      const savedDisplayedCount = sessionStorage.getItem('aitools-displayed-count');
-      const savedCategory = sessionStorage.getItem('aitools-selected-category');
-      const savedSearchTerm = sessionStorage.getItem('aitools-search-term');
-
-      if (savedDisplayedCount) {
-        setDisplayedCount(parseInt(savedDisplayedCount, 10));
-      }
-      if (savedCategory && savedCategory !== '') {
-        setSelectedCategory(savedCategory);
-      }
-      if (savedSearchTerm) {
-        setSearchTerm(savedSearchTerm);
-      }
-
-      // Restore scroll position after a short delay to ensure content is rendered
-      if (savedScrollPosition) {
-        setTimeout(() => {
-          window.scrollTo(0, parseInt(savedScrollPosition, 10));
-        }, 100);
-      }
-    };
-
-    // Only restore state when navigating back (not on initial load)
-    if (location.key !== 'default') {
-      restoreState();
-    }
-  }, [location.key]);
-
-  const handleCategoryChange = (category: string | null) => {
-    setSelectedCategory(category);
-    setSearchTerm("");
-    setDisplayedCount(12);
-    setIsLoading(false);
-    // Clear saved state when actively changing filters
-    sessionStorage.removeItem('aitools-scroll-position');
-    sessionStorage.removeItem('aitools-displayed-count');
-  };
-
-  const handleSearchChange = (term: string) => {
-    setSearchTerm(term);
-    setSelectedCategory(null);
-    setDisplayedCount(12);
-    setIsLoading(false);
-    // Clear saved state when actively searching
-    sessionStorage.removeItem('aitools-scroll-position');
-    sessionStorage.removeItem('aitools-displayed-count');
-  };
+  // Handle scroll position memory
+  useScrollMemory({ displayedCount, selectedCategory, searchTerm });
 
   const handleLoadMore = useCallback(() => {
     if (isLoading) return;
@@ -95,62 +39,20 @@ const FeaturedTools = ({ showLoadMoreButton = false }: FeaturedToolsProps) => {
       setDisplayedCount((prevCount) => prevCount + 8);
       setIsLoading(false);
     }, 100);
-  }, [isLoading]);
+  }, [isLoading, setDisplayedCount, setIsLoading]);
 
   const handleLoadMoreButton = () => {
     handleLoadMore();
   };
 
-  // Improved infinite scroll with better performance and glitch prevention
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    
-    const handleScroll = () => {
-      if (isLoading || showLoadMoreButton) return; // Don't auto-scroll if button mode is enabled
-      
-      // Clear previous timeout to prevent multiple triggers
-      clearTimeout(timeoutId);
-      
-      timeoutId = setTimeout(() => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        
-        // More conservative threshold to prevent glitches
-        const threshold = 600;
-        const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
-        
-        if (nearBottom && displayedCount < filteredTools.length && !isLoading) {
-          handleLoadMore();
-        }
-      }, 100); // Debounce scroll events
-    };
-
-    if (!showLoadMoreButton) {
-      window.addEventListener('scroll', handleScroll, { passive: true });
-    }
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timeoutId);
-    };
-  }, [displayedCount, handleLoadMore, isLoading, showLoadMoreButton]);
-
-  const filteredTools = useMemo(() => {
-    let tools = allTools;
-
-    if (selectedCategory) {
-      tools = getToolsByCategory(allTools, selectedCategory);
-    } else if (searchTerm) {
-      tools = searchTools(allTools, searchTerm);
-    }
-
-    return tools;
-  }, [allTools, selectedCategory, searchTerm]);
-
-  const totalToolsCount = filteredTools.length;
-  const categoriesWithCounts = getCategoriesWithCounts(allTools);
-  const hasMoreTools = displayedCount < filteredTools.length;
+  // Handle infinite scroll
+  useInfiniteScroll({
+    isLoading,
+    showLoadMoreButton,
+    displayedCount,
+    totalTools: filteredTools.length,
+    onLoadMore: handleLoadMore
+  });
 
   return (
     <div className="w-full">
