@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { getAllToolCategories } from './toolsCollection';
 import { extractPriorityTools } from './priorityTools';
@@ -33,10 +32,11 @@ export { searchTools, getCategoriesWithCounts, getToolsByCategory };
 // Get comprehensive tool count analysis
 const toolCountAnalysis = getToolCount();
 
-// Debug information with enhanced logging
+// Debug information with enhanced logging using accurate count
 console.log(`🎉 MILESTONE ACHIEVED! Total tools loaded: ${allTools.length}`);
 console.log(`📊 Categories found: ${Object.keys(getCategoriesWithCounts(allTools)).length}`);
-console.log(`🎯 Target reached: ${allTools.length >= 1000 ? 'YES! 🎉' : 'NO - Need ' + (1000 - allTools.length) + ' more'}`);
+console.log(`🎯 Accurate count for website: ${allTools.length} tools`);
+console.log(`📈 Marketing display: ${Math.round(allTools.length / 100) * 100}+ tools`);
 
 const categoryBreakdown = getCategoriesWithCounts(allTools);
 console.log('📋 Category breakdown:', categoryBreakdown);
@@ -49,12 +49,12 @@ if (uncategorizedTools.length > 0) {
   console.log('✅ All tools are properly categorized!');
 }
 
-// Summary for Ken
+// Summary for Ken with accurate numbers
 console.log(`
 🚀 AI WEB TOOLS DIRECTORY STATUS REPORT 🚀
 ================================================
-✅ Total AI Tools: ${allTools.length}
-✅ Target Achievement: ${allTools.length >= 1000 ? 'EXCEEDED 1000 TOOLS! 🎉' : 'Still building...'}
+✅ EXACT Total AI Tools: ${allTools.length}
+✅ Marketing Display: ${Math.round(allTools.length / 100) * 100}+ AI Tools
 ✅ Categories Available: ${Object.keys(categoryBreakdown).length}
 ✅ Quality Assurance: All tools categorized and deduplicated
 ✅ Coverage: Advanced AI, Research, Productivity, Security, Finance, Healthcare, Education, Legal, and more!

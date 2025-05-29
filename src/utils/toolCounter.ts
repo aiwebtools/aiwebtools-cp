@@ -12,11 +12,9 @@ export const getToolCount = () => {
     categoryBreakdown[category] = (categoryBreakdown[category] || 0) + 1;
   });
   
-  console.log('🎉 MILESTONE UPDATE - COMPREHENSIVE DUPLICATE CLEANUP COMPLETE! 🎉');
-  console.log(`📊 Current Tool Count Analysis:`);
-  console.log(`Total Tools: ${deduplicatedTools.length}`);
+  console.log('🎉 ACCURATE TOOL COUNT VERIFICATION 🎉');
+  console.log(`📊 EXACT Tool Count: ${deduplicatedTools.length}`);
   console.log('Category Breakdown:', categoryBreakdown);
-  console.log(`✅ 1000+ Target Status: ${deduplicatedTools.length >= 1000 ? 'ACHIEVED! 🚀' : `Need ${1000 - deduplicatedTools.length} more tools`}`);
   
   // Enhanced pricing analysis
   const freeTools = deduplicatedTools.filter(tool => 
@@ -51,16 +49,17 @@ export const getToolCount = () => {
   console.log(`Tools with Tags: ${toolsWithTags} (${Math.round((toolsWithTags / deduplicatedTools.length) * 100)}%)`);
   console.log(`Tools with Categories: ${toolsWithCategories} (${Math.round((toolsWithCategories / deduplicatedTools.length) * 100)}%)`);
   
-  console.log('✅ COMPREHENSIVE DUPLICATE SCAN COMPLETE:');
-  console.log(`Scanned all categories for duplicates while preserving custom GPTs`);
-  console.log(`All tools are now unique and properly categorized for optimal search performance.`);
-  console.log(`Custom GPTs (lovable.app, chatgpt.com/g/) are preserved and not deduplicated.`);
+  console.log('✅ FINAL ACCURATE COUNT FOR WEBSITE UPDATES:');
+  console.log(`🎯 EXACT TOTAL: ${deduplicatedTools.length} AI TOOLS`);
+  console.log(`📈 Rounded Marketing Number: ${Math.round(deduplicatedTools.length / 100) * 100}+`);
+  console.log(`🚀 Categories Available: ${Object.keys(categoryBreakdown).length}`);
   
   return {
+    exactTotal: deduplicatedTools.length,
+    marketingNumber: `${Math.round(deduplicatedTools.length / 100) * 100}+`,
     totalTools: deduplicatedTools.length,
     categoryBreakdown,
-    toolsNeededFor1000: Math.max(0, 1000 - deduplicatedTools.length),
-    newlyAdded: 50,
+    categoriesCount: Object.keys(categoryBreakdown).length,
     freeTools,
     freemiumTools,
     paidTools,
@@ -68,5 +67,15 @@ export const getToolCount = () => {
       withTags: toolsWithTags,
       withCategories: toolsWithCategories
     }
+  };
+};
+
+// Export a function to get the current accurate count for use in components
+export const getCurrentToolCount = (): { total: number; marketing: string; categories: number } => {
+  const result = getToolCount();
+  return {
+    total: result.exactTotal,
+    marketing: result.marketingNumber,
+    categories: result.categoriesCount
   };
 };

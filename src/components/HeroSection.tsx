@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import { Search, Sparkles, Zap, Brain, Rocket, Stars } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "./GlobalSearchBar";
+import { getCurrentToolCount } from "@/utils/toolCounter";
 
 const HeroSection = () => {
   const navigate = useNavigate();
   const [currentWord, setCurrentWord] = useState(0);
+  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   
   const words = [
     "Transform",
@@ -18,6 +20,10 @@ const HeroSection = () => {
   ];
 
   useEffect(() => {
+    // Get accurate tool count
+    const stats = getCurrentToolCount();
+    setToolStats(stats);
+    
     const interval = setInterval(() => {
       setCurrentWord((prev) => (prev + 1) % words.length);
     }, 2000);
@@ -118,14 +124,14 @@ const HeroSection = () => {
           </span>
         </button>
 
-        {/* Stats - updated to reflect new tool count */}
+        {/* Stats - updated with accurate count */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">1100+</div>
+            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{toolStats.marketing}</div>
             <div className="text-cyan-200 text-sm">AI Tools</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">60+</div>
+            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{toolStats.categories}+</div>
             <div className="text-cyan-200 text-sm">Categories</div>
           </div>
           <div className="text-center">
