@@ -14,6 +14,7 @@ const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true, toolId }
   const [hoveredRating, setHoveredRating] = useState(0);
   const [userRating, setUserRating] = useState(0);
   const [hasVoted, setHasVoted] = useState(false);
+  const [currentRating, setCurrentRating] = useState(rating);
   const [currentVoteCount, setCurrentVoteCount] = useState(totalVotes);
 
   // Check if user has already voted for this tool
@@ -22,8 +23,9 @@ const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true, toolId }
       const votedTools = JSON.parse(localStorage.getItem('votedTools') || '{}');
       const toolVoteData = votedTools[toolId];
       if (toolVoteData) {
-        setUserRating(toolVoteData.rating);
+        setUserRating(toolVoteData.userRating);
         setHasVoted(true);
+        setCurrentRating(toolVoteData.currentRating);
         setCurrentVoteCount(toolVoteData.voteCount);
       }
     }
@@ -34,13 +36,21 @@ const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true, toolId }
 
     setUserRating(newRating);
     setHasVoted(true);
+    
+    // Calculate new average: (current_rating * current_votes + new_rating) / (current_votes + 1)
+    const totalRatingPoints = currentRating * currentVoteCount;
+    const newTotalRatingPoints = totalRatingPoints + newRating;
     const newVoteCount = currentVoteCount + 1;
+    const newAverageRating = newTotalRatingPoints / newVoteCount;
+    
+    setCurrentRating(newAverageRating);
     setCurrentVoteCount(newVoteCount);
     
     // Store vote in localStorage
     const votedTools = JSON.parse(localStorage.getItem('votedTools') || '{}');
     votedTools[toolId] = {
-      rating: newRating,
+      userRating: newRating,
+      currentRating: newAverageRating,
       voteCount: newVoteCount,
       timestamp: Date.now()
     };
@@ -49,7 +59,7 @@ const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true, toolId }
     onRate?.(newRating);
   };
 
-  const displayRating = userRating || rating;
+  const displayRating = currentRating;
   const displayVotes = currentVoteCount;
 
   return (
