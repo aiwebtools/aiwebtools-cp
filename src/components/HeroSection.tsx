@@ -1,19 +1,29 @@
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Sparkles, Zap, Globe } from "lucide-react";
-import SearchOverlay from "./SearchOverlay";
+import { useState, useEffect } from "react";
+import { Search, Sparkles, Zap, Brain, Rocket, Stars } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import GlobalSearchBar from "./GlobalSearchBar";
 
 const HeroSection = () => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const navigate = useNavigate();
+  const [currentWord, setCurrentWord] = useState(0);
+  
+  const words = [
+    "Create",
+    "Design", 
+    "Automate",
+    "Innovate",
+    "Transform",
+    "Build"
+  ];
 
-  const handleExploreTools = () => {
-    setIsSearchOpen(true);
-  };
-
-  const handleGetDomain = () => {
-    window.open('https://freename.io?ref=olive-ears-obey&utm_source=clipboard', '_blank', 'noopener,noreferrer');
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWord((prev) => (prev + 1) % words.length);
+    }, 2000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   const scrollToTools = () => {
     const toolsSection = document.getElementById('tools-section');
@@ -23,61 +33,118 @@ const HeroSection = () => {
   };
 
   return (
-    <>
-      <section className="relative min-h-screen bg-gradient-to-br from-slate-950/60 via-purple-950/50 to-slate-950/60 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-r from-ai-purple/3 to-ai-blue/3 animate-pulse"></div>
-        <div className="absolute top-20 left-20 w-72 h-72 bg-ai-purple/20 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-ai-cyan/15 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
-        
-        <div className="relative container mx-auto px-4 pt-8 md:pt-12 pb-20 flex flex-col items-center justify-center min-h-screen text-center">
-          <div className="mb-2 animate-glow">
-            <Sparkles className="w-12 h-12 md:w-16 md:h-16 text-ai-cyan mx-auto" />
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            Welcome to
+    <section className="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-cyan-500/5 to-blue-500/5 rounded-full blur-3xl animate-spin-slow"></div>
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto">
+        {/* Main heading with animated word */}
+        <div className="mb-8">
+          <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
+            <span className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
+              {words[currentWord]}
+            </span>
             <br />
-            <span className="bg-gradient-to-r from-ai-cyan via-ai-purple to-ai-blue bg-clip-text text-transparent">
-              AI WEB TOOLS
+            <span className="text-white">
+              with AI
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl">
-            Launch your next idea with a <span className="text-ai-cyan font-semibold">.aiwebtools</span> or{" "}
-            <span className="text-ai-purple font-semibold">.ai-tools</span> domain. The future starts here.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            <Button 
-              onClick={handleExploreTools}
-              size="lg" 
-              className="bg-gradient-to-r from-ai-purple to-ai-blue hover:from-ai-purple/80 hover:to-ai-blue/80 text-white px-8 py-4 text-lg rounded-xl transition-all duration-300 transform hover:scale-105"
-            >
-              <Zap className="w-5 h-5 mr-2" />
-              SEARCH ALL AI WEB TOOLS
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              onClick={handleGetDomain}
-              className="border-ai-cyan text-ai-cyan hover:bg-ai-cyan hover:text-white px-8 py-4 text-lg rounded-xl transition-all duration-300"
-            >
-              <Globe className="w-5 h-5 mr-2" />
-              <span className="hidden sm:inline">Get .aiwebtools or ai-tools Web3 Domain</span>
-              <span className="sm:hidden">Get Web3 Domain</span>
-            </Button>
-          </div>
-          
-          <div className="text-center space-y-2">
-            <p className="text-3xl font-bold text-white">🌐 Crafting the Future—🚀 Redefining the Game</p>
-            <p className="text-gray-400">YOU'VE JUST BEEN GIFTED AI SUPERPOWERS...</p>
+          <div className="flex items-center justify-center space-x-4 mb-6">
+            <Sparkles className="w-8 h-8 text-cyan-400 animate-pulse" />
+            <p className="text-xl md:text-2xl text-cyan-100 max-w-3xl leading-relaxed">
+              Discover 1000+ cutting-edge AI tools to revolutionize your workflow
+            </p>
+            <Stars className="w-8 h-8 text-cyan-400 animate-pulse" />
           </div>
         </div>
-      </section>
-      
-      <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-    </>
+
+        {/* Search section */}
+        <div className="mb-12 max-w-4xl mx-auto">
+          <GlobalSearchBar placeholder="Search for AI tools, features, or use cases..." />
+          
+          <div className="flex flex-wrap justify-center gap-3 mt-6">
+            {[
+              "AI Art Generator",
+              "Writing Assistant", 
+              "Video Creator",
+              "Code Helper",
+              "Business Tools",
+              "Voice AI"
+            ].map((tag) => (
+              <span 
+                key={tag}
+                className="px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 rounded-full text-cyan-100 text-sm hover:from-cyan-500/30 hover:to-blue-500/30 transition-all duration-300 cursor-pointer cyber-glow"
+                onClick={() => {
+                  const searchEvent = new CustomEvent('globalSearch', { detail: tag });
+                  window.dispatchEvent(searchEvent);
+                  scrollToTools();
+                }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Feature highlights */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
+          <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
+            <Brain className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
+            <h3 className="text-xl font-semibold text-white mb-2">Smart Discovery</h3>
+            <p className="text-cyan-200">Find the perfect AI tool with intelligent search and recommendations</p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
+            <Zap className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
+            <h3 className="text-xl font-semibold text-white mb-2">Lightning Fast</h3>
+            <p className="text-cyan-200">Access tools instantly with our optimized platform</p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
+            <Rocket className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
+            <h3 className="text-xl font-semibold text-white mb-2">Future Ready</h3>
+            <p className="text-cyan-200">Stay ahead with the latest AI innovations and updates</p>
+          </div>
+        </div>
+
+        {/* CTA Button */}
+        <button
+          onClick={scrollToTools}
+          className="group relative px-12 py-6 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-lg rounded-full shadow-2xl shadow-cyan-500/40 hover:shadow-cyan-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-cyan-400 hover:border-cyan-300 cyber-glow"
+        >
+          <span className="flex items-center space-x-3">
+            <Search className="w-6 h-6" />
+            <span>Explore AI Tools</span>
+            <Sparkles className="w-6 h-6 group-hover:animate-spin" />
+          </span>
+        </button>
+
+        {/* Stats */}
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">1000+</div>
+            <div className="text-cyan-200 text-sm">AI Tools</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">50+</div>
+            <div className="text-cyan-200 text-sm">Categories</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">100%</div>
+            <div className="text-cyan-200 text-sm">Free Access</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">24/7</div>
+            <div className="text-cyan-200 text-sm">Available</div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
