@@ -48,8 +48,6 @@ export { developerAndCodingTools } from './developerAndCodingTools';
 export { contentDetectionTools } from './contentDetectionTools';
 export { contentCreationAndWritingTools } from './contentCreationAndWritingTools';
 export { documentAndResearchTools } from './documentAndResearchTools';
-
-// New categories for latest tools
 export { designAndGraphicsTools } from './designAndGraphicsTools';
 export { productivityAndAutomationTools } from './productivityAndAutomationTools';
 export { writingAndContentEnhancement } from './writingAndContentEnhancement';

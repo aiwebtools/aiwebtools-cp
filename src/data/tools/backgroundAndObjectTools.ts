@@ -11,7 +11,10 @@ import {
   ImageIcon,
   Eraser,
   Palette,
-  Grid3X3
+  Grid3X3,
+  Paintbrush,
+  Globe,
+  Sparkles
 } from "lucide-react";
 
 export const backgroundAndObjectTools: Tool[] = [
@@ -28,7 +31,7 @@ export const backgroundAndObjectTools: Tool[] = [
     totalVotes: 3456
   },
   {
-    icon: PaintBucket,
+    icon: Paintbrush,
     title: "AutoDraw",
     description: "Free, web-based drawing tool from Google Creative Lab that uses machine learning to help users create high-quality drawings quickly and easily. Works on any device and turns doodles into good drawings with AI assistance.",
     emoji: "✏️",
