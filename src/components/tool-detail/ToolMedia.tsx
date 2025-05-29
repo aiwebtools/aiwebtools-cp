@@ -22,6 +22,10 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
       const videoId = url.split('youtu.be/')[1].split('?')[0];
       return `https://www.youtube.com/embed/${videoId}?quality=hd1080&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=${window.location.origin}`;
     }
+    if (url.includes('vimeo.com/')) {
+      const videoId = url.split('vimeo.com/')[1].split('?')[0];
+      return `https://player.vimeo.com/video/${videoId}?quality=hd&autoplay=0`;
+    }
     return url;
   };
 
