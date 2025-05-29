@@ -1,3 +1,4 @@
+
 // Enhanced keyword mapping for intelligent search - AI tools focused
 export const keywordMapping: Record<string, string[]> = {
   // Core AI Keywords
@@ -50,6 +51,13 @@ export const keywordMapping: Record<string, string[]> = {
   "finance": ["financial", "banking", "investment", "AI finance", "financial AI", "fintech", "trading AI"],
   "marketing": ["advertising", "promotion", "digital marketing", "AI marketing", "marketing tools", "ad AI"],
   "legal": ["law", "compliance", "legal AI", "law tools", "legal tech", "compliance AI"],
+  
+  // Automotive Keywords - ENHANCED FOR CAR SEARCH
+  "car": ["automobile", "automotive", "vehicle", "auto", "cars", "transportation", "driving", "motor", "car maintenance", "auto repair", "vehicle diagnostics", "automotive tools", "car buying", "automobile gpt"],
+  "automobile": ["car", "automotive", "vehicle", "auto", "cars", "transportation", "driving", "motor", "auto industry", "car gpt", "automotive gpt"],
+  "automotive": ["car", "automobile", "vehicle", "auto", "cars", "transportation", "driving", "motor", "auto repair", "car maintenance", "vehicle diagnostics"],
+  "vehicle": ["car", "automobile", "automotive", "auto", "cars", "transportation", "driving", "motor", "truck", "suv"],
+  "auto": ["car", "automobile", "automotive", "vehicle", "cars", "automatic", "auto repair", "auto maintenance", "auto industry"],
   
   // Popular Features
   "free": ["no cost", "gratis", "complimentary", "free AI tools", "free software", "no payment"],
