@@ -1,7 +1,8 @@
 
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useCallback } from "react";
-import { featuredTools, allTools, searchTools, getCategoriesWithCounts, getToolsByCategory } from "@/data/toolsData";
+import { featuredTools, allTools, searchTools } from "@/data/toolsData";
+import { getCategoriesWithCounts, getToolsByCategory } from "@/utils/categoryUtils";
 import SearchBar from "@/components/tools/SearchBar";
 import ToolCard from "@/components/tools/ToolCard";
 import NoResults from "@/components/tools/NoResults";
@@ -80,11 +81,11 @@ const FeaturedTools = () => {
     let tools = allTools;
     
     if (selectedCategory) {
-      tools = getToolsByCategory(selectedCategory);
+      tools = getToolsByCategory(allTools, selectedCategory);
     }
     
     if (searchTerm) {
-      tools = enhancedSearchTools(tools, searchTerm);
+      tools = searchTools(tools, searchTerm);
     }
     
     return tools;
@@ -93,7 +94,7 @@ const FeaturedTools = () => {
   const filteredTools = getFilteredTools();
   const displayTools = filteredTools.slice(0, displayedToolsCount);
 
-  const categoriesWithCounts = getCategoriesWithCounts();
+  const categoriesWithCounts = getCategoriesWithCounts(allTools);
 
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(selectedCategory === category ? null : category);

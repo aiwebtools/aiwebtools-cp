@@ -7,10 +7,11 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { getCategoriesWithCounts } from "@/data/toolsData";
+import { allTools } from "@/data/toolsData";
+import { getCategoriesWithCounts } from "@/utils/categoryUtils";
 
 const Navigation = () => {
-  const categoriesWithCounts = getCategoriesWithCounts();
+  const categoriesWithCounts = getCategoriesWithCounts(allTools);
 
   const scrollToTools = () => {
     const toolsSection = document.getElementById('tools-section');
