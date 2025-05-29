@@ -35,7 +35,10 @@ import {
   timeAndHistory,
   creativeSuites,
   advancedAITools,
-  gameDesignAndDevelopment
+  gameDesignAndDevelopment,
+  learningAndEducation,
+  platformsAndDevelopment,
+  professionalServices
 } from './tools';
 
 import { searchTools } from '@/utils/searchUtils';
@@ -44,6 +47,7 @@ import { getCategoriesWithCounts, getToolsByCategory } from '@/utils/categoryUti
 
 // Combine all tools from different categories with enhanced categorization
 export const allTools: Tool[] = [
+  ...learningAndEducation,
   ...timeAndHistory,
   ...creativeSuites,
   ...advancedAITools,
@@ -78,7 +82,9 @@ export const allTools: Tool[] = [
   ...personalServices,
   ...specializedPolicyTools,
   ...artAndCollectibles,
-  ...gameDesignAndDevelopment
+  ...gameDesignAndDevelopment,
+  ...platformsAndDevelopment,
+  ...professionalServices
 ];
 
 // Create featured tools using the utility function

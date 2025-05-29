@@ -2,19 +2,19 @@
 // Enhanced keyword mapping for intelligent search - significantly enhanced
 export const keywordMapping: Record<string, string[]> = {
   // Writing and Content Creation
-  "book": ["writer", "author", "novel", "manuscript", "publish", "literature", "authoring", "story creation", "fiction", "non-fiction", "dialogue writer", "storytelling", "professional books", "structured writing", "narrative", "create books", "AI writer", "full books", "professional writing", "BookGPT", "dream anything"],
-  "write": ["writer", "author", "content", "blog", "article", "manuscript", "script", "screenplay"],
+  "book": ["writer", "author", "novel", "manuscript", "publish", "literature", "authoring", "story creation", "fiction", "non-fiction", "dialogue writer", "storytelling", "professional books", "structured writing", "narrative", "create books", "AI writer", "full books", "professional writing", "BookGPT", "dream anything", "BOOK WRITER GPT"],
+  "write": ["writer", "author", "content", "blog", "article", "manuscript", "script", "screenplay", "writing", "content creation"],
   "script": ["screenwriting", "movie scripts", "film", "cinema", "character development", "scene planning", "dialogue", "screenplay", "filmmaking", "cinematic", "industry-standard", "award-winning scripts", "MovieScriptGPT"],
-  "author": ["writer", "book", "novel", "manuscript", "publish", "content creation"],
+  "author": ["writer", "book", "novel", "manuscript", "publish", "content creation", "BOOK WRITER GPT"],
   
   // Time and History
-  "time": ["history", "historical exploration", "future", "past", "alternative realities", "time travel", "historical figures", "eras", "imagination", "historical moments", "uncover past", "explore futures", "personal conversations", "educational", "simulation", "TimeMachineGPT"],
-  "history": ["historical", "past", "ancient", "heritage", "civilization", "culture", "timeline", "historical headlines", "immersive news articles", "contemporary perspective", "period language", "eyewitness accounts", "cultural context"],
+  "time": ["history", "historical exploration", "future", "past", "alternative realities", "time travel", "historical figures", "eras", "imagination", "historical moments", "uncover past", "explore futures", "personal conversations", "educational", "simulation", "TimeMachineGPT", "TIME MACHINE GPT"],
+  "history": ["historical", "past", "ancient", "heritage", "civilization", "culture", "timeline", "historical headlines", "immersive news articles", "contemporary perspective", "period language", "eyewitness accounts", "cultural context", "TALK TO HISTORY GPT"],
   "historical": ["history", "past", "ancient", "heritage", "civilization", "titanic", "resurrections", "voices", "passengers", "crew", "first-person storytelling", "survivor testimonies"],
   
   // Automotive and Transportation
-  "car": ["automotive", "vehicle", "automobile", "dealership", "repair", "maintenance", "upgrades", "auto care", "local dealerships", "precise decisions", "automotive world", "car parts", "AutomobileGPT", "AutoGPT"],
-  "automotive": ["car", "vehicle", "automobile", "auto", "transportation"],
+  "car": ["automotive", "vehicle", "automobile", "dealership", "repair", "maintenance", "upgrades", "auto care", "local dealerships", "precise decisions", "automotive world", "car parts", "AutomobileGPT", "AutoGPT", "AUTOMOBILE GPT"],
+  "automotive": ["car", "vehicle", "automobile", "auto", "transportation", "AUTOMOBILE GPT"],
   
   // Education and Learning - ENHANCED
   "learn": ["education", "course", "skill", "study", "training", "college", "university", "homeschool", "free education", "college courses", "university degree", "learn any subject", "higher education", "online learning", "self-taught", "academic", "educational experience", "open source prompt", "human right", "all subjects", "curriculum", "CollegeDegreeGPT", "skill acquisition", "beginner to expert", "step-by-step", "YouTube videos", "visuals", "interactive learning", "multimedia", "practical skills", "academic knowledge", "self-improvement", "personal development", "LearnSkillGPT", "LEARN ANY COURSE GPT", "LEARN ANY SKILL GPT", "master any subject", "personalized learning", "adaptive study"],
@@ -27,11 +27,11 @@ export const keywordMapping: Record<string, string[]> = {
   
   // Movie and Video Creation
   "movie": ["film", "cinema", "video", "production", "script", "scene", "director", "cinematic", "motion picture", "film making", "script writer", "scene maker", "trailer poster maker", "creative suite", "video editing", "cinematic tools", "film tools", "complete movie tools", "MovieStudioAI", "motion picture production"],
-  "video": ["movie", "film", "cinema", "production", "editing", "creation", "content", "visual", "animation", "streaming"],
+  "video": ["movie", "film", "cinema", "production", "editing", "creation", "content", "visual", "animation", "streaming", "SORA", "RunwayML", "Luma Labs", "PIKA LABS"],
   "film": ["movie", "cinema", "video", "production", "cinematic", "filmmaking"],
   
   // Survival and Emergency
-  "survival": ["survivalist", "emergency", "preparedness", "safety", "crisis", "outdoor", "battlefield scenario", "step-by-step guidance", "practical strategies", "pocket guide", "robot expert", "emergency preparedness", "outdoor survival", "crisis management", "safety", "ultimate companion", "SurvivalGPT"],
+  "survival": ["survivalist", "emergency", "preparedness", "safety", "crisis", "outdoor", "battlefield scenario", "step-by-step guidance", "practical strategies", "pocket guide", "robot expert", "emergency preparedness", "outdoor survival", "crisis management", "safety", "ultimate companion", "SurvivalGPT", "Survivalist GPT"],
   "emergency": ["survival", "preparedness", "safety", "crisis", "response"],
   
   // Performance and Theater
@@ -65,17 +65,17 @@ export const keywordMapping: Record<string, string[]> = {
   // Health and Medical
   "health": ["medical", "wellness", "fitness", "doctor", "healthcare", "medicine"],
   "medical": ["health", "doctor", "healthcare", "medicine", "clinical", "pharmaceutical"],
-  "doctor": ["medical", "health", "healthcare", "physician", "medicine", "medical simulation", "informational", "health advice", "private", "confidential", "personalized", "not replacement for doctor", "health queries", "symptom checker", "well-being", "DoctorGPT"],
+  "doctor": ["medical", "health", "healthcare", "physician", "medicine", "medical simulation", "informational", "health advice", "private", "confidential", "personalized", "not replacement for doctor", "health queries", "symptom checker", "well-being", "DoctorGPT", "Personalized DR. GPT"],
   "mental": ["wellness", "health", "therapy", "psychology", "emotional", "virtual chat", "emotional support", "mental well-being", "empathetic guidance", "cognitive behavioral therapy", "CBT", "stress", "anxiety", "life challenges", "practical tools", "coping strategies", "judgment-free space", "personal growth", "resilience", "self-care", "MentalWellnessGPT"],
   
   // Legal and Government
   "legal": ["law", "lawyer", "attorney", "contract", "compliance", "legislation", "court", "justice"],
   "law": ["legal", "lawyer", "attorney", "justice", "legislation", "court"],
-  "contract": ["legal", "agreement", "document", "terms", "review"],
-  "legislation": ["legal", "law", "government", "policy", "bill", "drafting legislation", "legal language", "page by page", "precise", "continuity", "law making", "government documents", "policy writing", "legal documents", "bill drafting", "legislative process", "legal tech", "LegislationWriter"],
+  "contract": ["legal", "agreement", "document", "terms", "review", "Contract Review Bot"],
+  "legislation": ["legal", "law", "government", "policy", "bill", "drafting legislation", "legal language", "page by page", "precise", "continuity", "law making", "government documents", "policy writing", "legal documents", "bill drafting", "legislative process", "legal tech", "LegislationWriter", "Legislation Writer GPT"],
   
   // Food and Cooking
-  "food": ["cooking", "recipe", "chef", "cuisine", "nutrition", "restaurant", "menu"],
+  "food": ["cooking", "recipe", "chef", "cuisine", "nutrition", "restaurant", "menu", "Food Quality Inspector GPT"],
   "cooking": ["food", "recipe", "chef", "cuisine", "kitchen", "culinary"],
   "recipe": ["cooking", "food", "chef", "cuisine", "ingredient", "preparation"],
   "chef": ["cooking", "food", "recipe", "cuisine", "kitchen", "culinary"],
@@ -89,7 +89,7 @@ export const keywordMapping: Record<string, string[]> = {
   // Financial and Investment
   "money": ["finance", "financial", "investment", "budget", "accounting", "trading"],
   "finance": ["money", "financial", "investment", "budget", "accounting", "trading"],
-  "trading": ["finance", "investment", "market", "stocks", "day traders", "investors", "real-time market analysis", "trading signals", "market data", "technical analysis", "actionable insights", "informed decisions", "simulation", "financial markets", "stock trading", "TraderGPT"],
+  "trading": ["finance", "investment", "market", "stocks", "day traders", "investors", "real-time market analysis", "trading signals", "market data", "technical analysis", "actionable insights", "informed decisions", "simulation", "financial markets", "stock trading", "TraderGPT", "Trader GPT"],
   "investment": ["finance", "money", "trading", "market", "portfolio"],
   
   // Travel and Adventure
@@ -98,12 +98,12 @@ export const keywordMapping: Record<string, string[]> = {
   "vacation": ["travel", "trip", "holiday", "destination", "leisure"],
   
   // Data and Analytics
-  "data": ["analysis", "analytics", "statistics", "research", "insight", "information"],
+  "data": ["analysis", "analytics", "statistics", "research", "insight", "information", "Data Research Analysis Report GPT"],
   "analytics": ["data", "analysis", "statistics", "research", "metrics", "insights"],
   "analysis": ["data", "analytics", "research", "investigation", "examination"],
   
   // Cannabis and Hemp
-  "cannabis": ["weed", "pot", "marijuana", "hemp", "cbd", "thc", "legal cannabis", "growers", "strain genetics", "dosing", "edibles", "cultivation", "plant health", "regulations", "medical research", "safe consumption", "cannabinoid science", "terpene profiles", "21+", "HempGPT", "CannabisGPT"],
+  "cannabis": ["weed", "pot", "marijuana", "hemp", "cbd", "thc", "legal cannabis", "growers", "strain genetics", "dosing", "edibles", "cultivation", "plant health", "regulations", "medical research", "safe consumption", "cannabinoid science", "terpene profiles", "21+", "HempGPT", "CannabisGPT", "Cannabis GPT"],
   "weed": ["cannabis", "marijuana", "pot", "hemp"],
   "marijuana": ["cannabis", "weed", "pot", "hemp"],
   "hemp": ["cannabis", "cbd", "legal", "industrial"],
@@ -129,7 +129,31 @@ export const keywordMapping: Record<string, string[]> = {
   
   // Specific Tool Keywords
   "suite": ["studio", "master", "pro", "collection", "toolkit", "comprehensive"],
-  "einstein": ["physics", "science", "genius", "relativity", "Einstein intellect", "critical thinking", "universe mysteries", "physics", "mathematics", "philosophy", "challenge wisdom", "scientific rigor", "logical reasoning", "creative thought", "thought experiments", "science AI", "AlbertEinsteinGPT"],
-  "dream": ["interpretation", "analysis", "subconscious", "analyze dreams", "interpret dreams", "psychological", "mythological", "symbolic frameworks", "uncover hidden meanings", "subconscious patterns", "emotions", "personal growth", "introspection", "dream symbols", "DreamInterpreterGPT"],
-  "tesla": ["nikola", "invention", "electricity", "scientific mysteries", "groundbreaking theories", "innovation", "data analysis", "Python modeling", "research synthesis", "complex challenges", "uncharted ideas", "scientific precision", "inventors", "visionaries", "physics", "NikolaTeslaGPT"]
+  "einstein": ["physics", "science", "genius", "relativity", "Einstein intellect", "critical thinking", "universe mysteries", "physics", "mathematics", "philosophy", "challenge wisdom", "scientific rigor", "logical reasoning", "creative thought", "thought experiments", "science AI", "AlbertEinsteinGPT", "Albert Einstein GPT"],
+  "dream": ["interpretation", "analysis", "subconscious", "analyze dreams", "interpret dreams", "psychological", "mythological", "symbolic frameworks", "uncover hidden meanings", "subconscious patterns", "emotions", "personal growth", "introspection", "dream symbols", "DreamInterpreterGPT", "Dream Interpreter GPT"],
+  "tesla": ["nikola", "invention", "electricity", "scientific mysteries", "groundbreaking theories", "innovation", "data analysis", "Python modeling", "research synthesis", "complex challenges", "uncharted ideas", "scientific precision", "inventors", "visionaries", "physics", "NikolaTeslaGPT", "Nikola Tesla GPT"],
+  
+  // Peace and Global Affairs
+  "peace": ["global peace", "world peace", "conflict resolution", "diplomacy", "peace building", "Global Peace Restoration Strategist GPT"],
+  "global": ["world", "international", "worldwide", "universal", "Global Peace Restoration Strategist GPT"],
+  
+  // Fishing and Outdoor
+  "fishing": ["fish", "angling", "outdoor", "recreation", "Fisherman GPT", "fishing spots", "gear recommendations"],
+  "fish": ["fishing", "angling", "aquatic", "marine", "Fisherman GPT"],
+  
+  // Property and Real Estate
+  "property": ["real estate", "property data", "market analysis", "investment", "Property Data Finder GPT"],
+  "real estate": ["property", "housing", "market", "investment", "Property Data Finder GPT"],
+  
+  // Veterinary and Pet Care
+  "veterinary": ["pet", "animal", "vet", "animal care", "Veterinarian GPT"],
+  "pet": ["animal", "veterinary", "pet care", "Veterinarian GPT"],
+  "animal": ["pet", "veterinary", "wildlife", "Veterinarian GPT"],
+  
+  // Binary and Technical
+  "binary": ["code", "programming", "conversion", "technical", "computer science"],
+  "converter": ["conversion", "transform", "change", "binary"],
+  
+  // Celebrity and Entertainment
+  "celebrity": ["famous", "star", "entertainment", "chat", "conversation"]
 };

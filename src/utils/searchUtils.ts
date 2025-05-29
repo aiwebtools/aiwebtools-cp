@@ -55,7 +55,12 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     // Get expanded keywords for intelligent matching
     const expandedKeywords = getExpandedKeywords(searchTerm);
     
-    // Direct title matches get highest score
+    // Exact title matches get highest score
+    if (lowerTitle === searchTerm) {
+      score += 200;
+    }
+    
+    // Direct title matches get very high score
     if (lowerTitle.includes(searchTerm)) {
       score += 100;
     }
@@ -63,7 +68,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     // Partial title matches
     const searchWords = searchTerm.split(' ');
     const titleMatchCount = searchWords.filter(word => lowerTitle.includes(word)).length;
-    score += titleMatchCount * 20;
+    score += titleMatchCount * 25;
     
     // Category matches
     if (lowerCategory.includes(searchTerm)) {
@@ -74,7 +79,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     const tagMatchCount = lowerTags.filter(tag => 
       tag.includes(searchTerm) || searchTerm.includes(tag)
     ).length;
-    score += tagMatchCount * 15;
+    score += tagMatchCount * 20;
     
     // Description matches
     if (lowerDescription.includes(searchTerm)) {
@@ -84,10 +89,10 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     // Expanded keyword matches
     expandedKeywords.forEach(keyword => {
       if (keyword !== searchTerm) { // Don't double count the original term
-        if (lowerTitle.includes(keyword)) score += 25;
-        if (lowerDescription.includes(keyword)) score += 15;
-        if (lowerCategory.includes(keyword)) score += 20;
-        if (lowerTags.some(tag => tag.includes(keyword))) score += 10;
+        if (lowerTitle.includes(keyword)) score += 30;
+        if (lowerDescription.includes(keyword)) score += 20;
+        if (lowerCategory.includes(keyword)) score += 25;
+        if (lowerTags.some(tag => tag.includes(keyword))) score += 15;
       }
     });
     
@@ -96,6 +101,11 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       if (lowerTitle.includes('learn') || lowerTitle.includes('skill') || lowerTitle.includes('course')) {
         score += 75; // High boost for learning-related searches
       }
+    }
+    
+    // Boost for exact tool name matches (case insensitive)
+    if (lowerTitle.replace(/[^a-z0-9]/g, '').includes(searchTerm.replace(/[^a-z0-9]/g, ''))) {
+      score += 50;
     }
     
     // Context-aware phrase matching
@@ -111,6 +121,10 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       // Creative context
       ((searchTerm.includes('creative') || searchTerm.includes('art') || searchTerm.includes('design')) && 
        (lowerCategory.includes('creative') || lowerCategory.includes('design') || lowerCategory.includes('art'))),
+       
+      // AI context
+      ((searchTerm.includes('ai') || searchTerm.includes('gpt')) && 
+       (lowerTitle.includes('ai') || lowerTitle.includes('gpt') || lowerCategory.includes('ai'))),
     ];
     
     if (contextMatches.some(match => match)) {
