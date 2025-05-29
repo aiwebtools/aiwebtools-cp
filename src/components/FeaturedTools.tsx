@@ -178,6 +178,7 @@ const FeaturedTools = ({ showLoadMoreButton = false }: FeaturedToolsProps) => {
         onLoadMore={handleLoadMore}
         hasInfiniteScroll={!showLoadMoreButton}
         isLoading={isLoading}
+        onCategoryChange={handleCategoryChange}
       />
 
       {/* SEE MORE AI TOOLS Button - only show on main page when there are more tools */}

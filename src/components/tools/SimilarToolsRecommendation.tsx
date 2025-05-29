@@ -5,10 +5,37 @@ import ToolCard from "./ToolCard";
 interface SimilarToolsRecommendationProps {
   similarTools: Tool[];
   originalCount: number;
+  searchTerm?: string;
+  selectedCategory?: string | null;
 }
 
-const SimilarToolsRecommendation = ({ similarTools, originalCount }: SimilarToolsRecommendationProps) => {
+const SimilarToolsRecommendation = ({ 
+  similarTools, 
+  originalCount, 
+  searchTerm, 
+  selectedCategory 
+}: SimilarToolsRecommendationProps) => {
   if (similarTools.length === 0) return null;
+
+  const getRecommendationTitle = () => {
+    if (searchTerm) {
+      return `Tools related to "${searchTerm}"`;
+    }
+    if (selectedCategory) {
+      return `More tools like ${selectedCategory}`;
+    }
+    return "You might also like";
+  };
+
+  const getRecommendationSubtitle = () => {
+    if (searchTerm) {
+      return `Found ${originalCount} direct matches for your search`;
+    }
+    if (selectedCategory) {
+      return `Found ${originalCount} tools in ${selectedCategory}`;
+    }
+    return `Found ${originalCount} direct matches`;
+  };
 
   return (
     <div className="mt-12 px-4 sm:px-0">
@@ -17,10 +44,10 @@ const SimilarToolsRecommendation = ({ similarTools, originalCount }: SimilarTool
           <span className="text-2xl mr-3">💡</span>
           <div>
             <h3 className="text-lg font-semibold text-white">
-              Found {originalCount} direct matches
+              {getRecommendationTitle()}
             </h3>
             <p className="text-sm text-gray-300">
-              Here are {similarTools.length} similar tools you might also like
+              {getRecommendationSubtitle()} • Here are {similarTools.length} similar tools
             </p>
           </div>
         </div>

@@ -3,9 +3,10 @@ import { Tool } from "@/types/tools";
 import ToolCard from "@/components/tools/ToolCard";
 import LoadMoreButton from "@/components/tools/LoadMoreButton";
 import SimilarToolsRecommendation from "@/components/tools/SimilarToolsRecommendation";
-import { getSimilarTools, shouldShowSimilarTools } from "@/utils/similarTools";
+import SeeMoreCategoriesButton from "@/components/tools/SeeMoreCategoriesButton";
+import { getContextAwareSimilarTools, shouldShowSimilarTools } from "@/utils/contextAwareSimilarTools";
 import { createDeduplicatedToolsList } from "@/utils/toolDeduplication";
-import { allTools } from "@/data/toolsData";
+import { allTools, getCategoriesWithCounts } from "@/data/toolsData";
 import { useMemo } from "react";
 
 interface ToolsGridProps {
@@ -16,6 +17,7 @@ interface ToolsGridProps {
   onLoadMore: () => void;
   hasInfiniteScroll?: boolean;
   isLoading?: boolean;
+  onCategoryChange?: (category: string) => void;
 }
 
 const ToolsGrid = ({ 
@@ -25,7 +27,8 @@ const ToolsGrid = ({
   searchTerm, 
   onLoadMore,
   hasInfiniteScroll = false,
-  isLoading = false
+  isLoading = false,
+  onCategoryChange
 }: ToolsGridProps) => {
   // Apply deduplication to prevent frequent repeats
   const deduplicatedTools = useMemo(() => {
@@ -34,8 +37,12 @@ const ToolsGrid = ({
 
   const displayTools = deduplicatedTools.slice(0, displayedCount);
   const shouldShowSimilar = shouldShowSimilarTools(deduplicatedTools.length);
-  const similarTools = shouldShowSimilar ? getSimilarTools(deduplicatedTools, allTools) : [];
+  const similarTools = shouldShowSimilar ? getContextAwareSimilarTools(deduplicatedTools, searchTerm, selectedCategory) : [];
   const hasMoreTools = displayedCount < deduplicatedTools.length;
+
+  // Get categories for the "See More Categories" button
+  const categoriesWithCounts = getCategoriesWithCounts(allTools);
+  const shouldShowCategoriesButton = deduplicatedTools.length < 15 && !selectedCategory && !searchTerm;
 
   const getSectionTitle = () => {
     if (selectedCategory) {
@@ -82,11 +89,21 @@ const ToolsGrid = ({
         ))}
       </div>
 
-      {/* Show similar tools recommendation when original results are limited */}
+      {/* Show context-aware similar tools recommendation */}
       <SimilarToolsRecommendation 
         similarTools={similarTools}
         originalCount={deduplicatedTools.length}
+        searchTerm={searchTerm}
+        selectedCategory={selectedCategory}
       />
+
+      {/* Show "See More Categories" button when results are limited and not filtered */}
+      {shouldShowCategoriesButton && onCategoryChange && (
+        <SeeMoreCategoriesButton 
+          categoriesWithCounts={categoriesWithCounts}
+          onCategoryChange={onCategoryChange}
+        />
+      )}
 
       {/* Improved loading state - only show when actually loading more tools */}
       {hasInfiniteScroll && isLoading && hasMoreTools && (
