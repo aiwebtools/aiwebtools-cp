@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Search, Sparkles, Zap, Brain, Rocket, Stars } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -65,7 +64,7 @@ const HeroSection = () => {
 
         {/* Search section */}
         <div className="mb-12 max-w-4xl mx-auto">
-          <GlobalSearchBar placeholder="Search for AI tools, features, or use cases..." />
+          <GlobalSearchBar />
           
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             {[
