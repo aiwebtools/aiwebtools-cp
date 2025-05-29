@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Bot, 
@@ -8,7 +7,7 @@ import {
   FlaskConical, 
   Lightbulb, 
   Eye, 
-  Crystal, 
+  Gem, 
   Star,
   Gamepad2,
   Calculator,
@@ -49,7 +48,7 @@ export const advancedAITools: Tool[] = [
     totalVotes: 2187
   },
   {
-    icon: Crystal,
+    icon: Gem,
     title: "Resurrection GPT",
     description: "Explore concepts of renewal, restoration, and revival in various contexts from historical revivals to personal transformation.",
     emoji: "✨",

@@ -40,7 +40,7 @@ import {
   Fish,
   Wheat,
   Package,
-  Crystal,
+  Gem,
   Star,
   DollarSign,
   Gamepad2,

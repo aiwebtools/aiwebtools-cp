@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Film, 
@@ -7,7 +6,7 @@ import {
   PenTool, 
   Gamepad2, 
   Star, 
-  Crystal, 
+  Gem, 
   Lightbulb,
   Code,
   Bot,
@@ -108,7 +107,7 @@ export const creativeSuites: Tool[] = [
     totalVotes: 3456
   },
   {
-    icon: Crystal,
+    icon: Gem,
     title: "Interpretis 🕰️",
     description: "Advanced interpretation and analysis tool for understanding complex texts, historical documents, and cultural artifacts.",
     emoji: "🔍",
