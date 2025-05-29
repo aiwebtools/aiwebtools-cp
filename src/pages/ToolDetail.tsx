@@ -1,4 +1,3 @@
-
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -88,6 +87,10 @@ const ToolDetail = () => {
     { name: tool.title, url: `https://aitools.studio/tool/${toolIndex}` }
   ];
 
+  const handleSeeMoreTools = () => {
+    navigate('/#tools-section');
+  };
+
   return (
     <div className="min-h-screen bg-black relative">
       <SEOHead
@@ -162,6 +165,20 @@ const ToolDetail = () => {
             </div>
 
             <SimilarTools currentTool={tool} currentToolIndex={toolIndex} />
+
+            {/* See More AI Tools Button */}
+            <div className="text-center mt-16 mb-16 px-4">
+              <Button
+                onClick={handleSeeMoreTools}
+                size="lg"
+                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
+              >
+                🚀 SEE MORE AI TOOLS
+              </Button>
+              <div className="mt-4 text-cyan-300 text-sm">
+                Explore our complete collection of {allTools.length}+ amazing AI tools
+              </div>
+            </div>
           </div>
         </div>
 
