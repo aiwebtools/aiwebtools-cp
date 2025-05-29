@@ -73,6 +73,39 @@
     text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
   }
 
+  /* Enhanced glowing text effect for logo */
+  .glow-text-effect {
+    text-shadow: 
+      0 0 5px rgba(6, 182, 212, 0.8),
+      0 0 10px rgba(6, 182, 212, 0.6),
+      0 0 15px rgba(6, 182, 212, 0.4),
+      0 0 20px rgba(6, 182, 212, 0.3),
+      0 0 25px rgba(6, 182, 212, 0.2),
+      0 0 30px rgba(6, 182, 212, 0.1);
+    animation: glowing-pulse 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glowing-pulse {
+    from {
+      text-shadow: 
+        0 0 5px rgba(6, 182, 212, 0.8),
+        0 0 10px rgba(6, 182, 212, 0.6),
+        0 0 15px rgba(6, 182, 212, 0.4),
+        0 0 20px rgba(6, 182, 212, 0.3),
+        0 0 25px rgba(6, 182, 212, 0.2),
+        0 0 30px rgba(6, 182, 212, 0.1);
+    }
+    to {
+      text-shadow: 
+        0 0 8px rgba(6, 182, 212, 1),
+        0 0 16px rgba(6, 182, 212, 0.8),
+        0 0 24px rgba(6, 182, 212, 0.6),
+        0 0 32px rgba(6, 182, 212, 0.4),
+        0 0 40px rgba(6, 182, 212, 0.3),
+        0 0 48px rgba(6, 182, 212, 0.2);
+    }
+  }
+
   .neon-border {
     border: 1px solid;
     border-image: linear-gradient(45deg, #00ffff, #ff00ff) 1;

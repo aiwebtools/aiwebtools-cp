@@ -1,69 +1,73 @@
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
 
 interface CategoryFiltersProps {
   categoriesWithCounts: Record<string, number>;
   selectedCategory: string | null;
-  onCategorySelect: (category: string) => void;
-  onClearFilters: () => void;
+  onCategoryChange: (category: string | null) => void;
+  onSearchChange: (term: string) => void;
   searchTerm: string;
 }
 
-const CategoryFilters = ({ 
-  categoriesWithCounts, 
-  selectedCategory, 
-  onCategorySelect, 
-  onClearFilters,
-  searchTerm 
+const CategoryFilters = ({
+  categoriesWithCounts,
+  selectedCategory,
+  onCategoryChange,
+  onSearchChange,
+  searchTerm,
 }: CategoryFiltersProps) => {
   return (
-    <div className="mb-12 max-w-4xl mx-auto">
-      <Accordion type="single" collapsible className="w-full bg-black/80 rounded-xl shadow-lg border border-cyan-500/30 neon-border">
-        <AccordionItem value="categories" className="border-none">
-          <AccordionTrigger className="px-6 py-4 text-lg font-semibold text-cyan-100 hover:text-cyan-400">
-            Browse Tools by Category ({Object.keys(categoriesWithCounts).length} Categories)
-          </AccordionTrigger>
-          <AccordionContent className="px-6 pb-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-              {Object.entries(categoriesWithCounts).map(([category, count]) => (
+    <section className="py-12 bg-black/40 backdrop-blur-sm border-y border-cyan-500/20">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
+          {/* Search Bar */}
+          <div className="relative w-full lg:w-96">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-cyan-400 w-5 h-5" />
+            <Input
+              type="text"
+              placeholder="Search AI tools..."
+              value={searchTerm}
+              onChange={(e) => onSearchChange(e.target.value)}
+              className="pl-10 bg-black/60 border-cyan-500/30 text-cyan-100 placeholder-cyan-400/60 focus:border-cyan-400 focus:ring-cyan-400/30"
+            />
+          </div>
+
+          {/* Category Filters */}
+          <div className="flex flex-wrap gap-2 justify-center lg:justify-end">
+            <Button
+              variant={selectedCategory === null ? "default" : "outline"}
+              onClick={() => onCategoryChange(null)}
+              className={`${
+                selectedCategory === null
+                  ? "bg-gradient-to-r from-cyan-500 to-cyan-600 text-white"
+                  : "border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/10"
+              } transition-all duration-300`}
+            >
+              All Tools ({Object.values(categoriesWithCounts).reduce((a, b) => a + b, 0)})
+            </Button>
+            {Object.entries(categoriesWithCounts)
+              .sort(([a], [b]) => a.localeCompare(b))
+              .map(([category, count]) => (
                 <Button
                   key={category}
                   variant={selectedCategory === category ? "default" : "outline"}
-                  className={`justify-between h-auto p-3 text-left ${
-                    selectedCategory === category 
-                      ? "bg-cyan-600 text-black border-cyan-400" 
-                      : "border-cyan-500 text-cyan-100 hover:bg-cyan-600 hover:text-black bg-black/50"
-                  }`}
-                  onClick={() => onCategorySelect(category)}
+                  onClick={() => onCategoryChange(category)}
+                  className={`${
+                    selectedCategory === category
+                      ? "bg-gradient-to-r from-cyan-500 to-cyan-600 text-white"
+                      : "border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/10"
+                  } transition-all duration-300`}
                 >
-                  <span className="text-sm font-medium">{category}</span>
-                  <span className={`text-xs px-2 py-1 rounded-full ${
-                    selectedCategory === category 
-                      ? "bg-black text-cyan-400" 
-                      : "bg-cyan-600 text-black"
-                  }`}>
-                    {count}
-                  </span>
+                  {category} ({count})
                 </Button>
               ))}
-            </div>
-            {(selectedCategory || searchTerm) && (
-              <div className="mt-4 text-center">
-                <Button onClick={onClearFilters} variant="outline" size="sm" className="border-cyan-500 text-cyan-100 hover:bg-cyan-600 hover:text-black">
-                  Clear All Filters
-                </Button>
-              </div>
-            )}
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
