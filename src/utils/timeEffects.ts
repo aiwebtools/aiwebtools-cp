@@ -58,7 +58,7 @@ const extractToolName = (destinationUrl: string): string => {
 };
 
 export const createTimePortalEffect = (destinationUrl: string) => {
-  console.log('🌀 Creating enhanced time portal effect for URL:', destinationUrl);
+  console.log('🌀 Creating enhanced dimensional portal effect for URL:', destinationUrl);
   
   // Extract tool name for personalized robot voice
   const toolName = extractToolName(destinationUrl);
@@ -67,10 +67,10 @@ export const createTimePortalEffect = (destinationUrl: string) => {
   // Create container for all effects
   const effectsContainer = createEffectsContainer();
 
-  // Apply time warp filter to body
+  // Apply enhanced time warp filter to body
   applyTimeWarpFilter();
 
-  // Execute all visual effects with enhanced spiral tunnel
+  // Execute all enhanced visual effects
   createParticles(effectsContainer);
   createVortexRings(effectsContainer);
   createSpiralTunnel(effectsContainer);
@@ -78,16 +78,16 @@ export const createTimePortalEffect = (destinationUrl: string) => {
   createLightning(effectsContainer);
   createFlash(effectsContainer);
   
-  // Create portal sounds
+  // Create extended portal sounds
   createPortalSounds();
   
   // Create robot voice with contextual message
   createRobotVoice(toolName, destinationUrl);
 
-  // Cleanup and open in new tab after 2.3 seconds (as requested)
+  // Cleanup and open in new tab after 3.5 seconds (extended to match audio)
   setTimeout(() => {
     console.log('🧹 Cleaning up effects and opening in new tab:', destinationUrl);
     cleanupEffects(effectsContainer);
     openDestinationUrl(destinationUrl);
-  }, 2300); // Changed to exactly 2.3 seconds as requested
+  }, 3500); // Extended to match the longer audio duration
 };

@@ -17,16 +17,18 @@ export const createEffectsContainer = (): HTMLElement => {
 
 export const applyTimeWarpFilter = () => {
   document.body.style.filter = 'hue-rotate(0deg) saturate(1) brightness(1)';
-  document.body.style.transition = 'filter 0.2s ease-out';
+  document.body.style.transition = 'filter 0.3s ease-out';
+  document.body.classList.add('time-warp-active');
   
   setTimeout(() => {
-    document.body.style.filter = 'hue-rotate(360deg) saturate(1.5) brightness(1.2)';
-  }, 50);
+    document.body.style.filter = 'hue-rotate(360deg) saturate(3) brightness(2) contrast(2)';
+  }, 100);
 };
 
 export const cleanupEffects = (effectsContainer: HTMLElement) => {
   document.body.style.filter = '';
   document.body.style.transition = '';
+  document.body.classList.remove('time-warp-active');
   effectsContainer.remove();
 };
 
