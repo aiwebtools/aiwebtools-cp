@@ -1,7 +1,7 @@
 
 import { Tool } from "@/types/tools";
 import { 
-  Bot, Code, Cpu
+  Bot, Code, Cpu, Globe
 } from "lucide-react";
 
 export const aiAgents: Tool[] = [
@@ -40,5 +40,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.4,
     totalVotes: 2156
+  },
+  {
+    icon: Globe,
+    title: "Surf",
+    description: "AI-powered web browsing agent that helps automate web tasks, extract information, and interact with websites intelligently through natural language commands.",
+    emoji: "🏄",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://surf.new/?via=aiwebtools",
+    tags: ["AI agent", "web automation", "web browsing", "task automation", "information extraction"],
+    category: "AI Agents",
+    rating: 4.3,
+    totalVotes: 1845
   }
 ];
