@@ -699,7 +699,7 @@ export const designAndGraphicsTools: Tool[] = [
     totalVotes: 3567
   },
   {
-    icon: Gamepad2,
+    icon: Gamepad,
     title: "Genial.ly",
     description: "Interactive content creation platform that empowers users to design engaging media-rich experiences. Transform static content into clickable and gamified materials.",
     emoji: "🎮",
