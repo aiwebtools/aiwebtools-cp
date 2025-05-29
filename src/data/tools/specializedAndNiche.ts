@@ -250,18 +250,6 @@ export const specializedAndNiche: Tool[] = [
     totalVotes: 2567
   },
   {
-    icon: Target,
-    title: "Cannabis Industry Consultant GPT",
-    description: "Specialized AI consultant for the cannabis industry, providing regulatory guidance, business strategies, and compliance information.",
-    emoji: "🌿",
-    color: "from-green-500 to-teal-600",
-    directUrl: "https://cannabisindustrygpt.lovable.app/?via=aiwebtools",
-    tags: ["cannabis", "regulatory", "compliance", "business strategy", "industry"],
-    category: "Specialized & Niche",
-    rating: 4.0,
-    totalVotes: 1543
-  },
-  {
     icon: Shield,
     title: "Cybersecurity Analyst GPT",
     description: "Advanced cybersecurity AI assistant providing threat analysis, security recommendations, and cyber defense strategies.",
