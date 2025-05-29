@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Scale, 
@@ -123,5 +124,17 @@ export const legalProfessionals: Tool[] = [
     category: "Legal Professionals",
     rating: 4.5,
     totalVotes: 2876
+  },
+  {
+    icon: Shield,
+    title: "Public Defender GPT",
+    description: "AI assistant for public defenders providing legal research, case preparation, and client advocacy support for criminal defense.",
+    emoji: "🛡️",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://publicdefendergpt.lovable.app/?via=aiwebtools",
+    tags: ["public defender", "criminal defense", "legal aid", "case preparation", "legal research"],
+    category: "Legal Professionals",
+    rating: 4.3,
+    totalVotes: 2123
   }
 ];

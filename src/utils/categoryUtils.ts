@@ -16,5 +16,12 @@ export const getCategoriesWithCounts = (allTools: Tool[]): Record<string, number
 
 // Helper function to get tools by category
 export const getToolsByCategory = (allTools: Tool[], category: string): Tool[] => {
-  return allTools.filter(tool => tool.category === category);
+  const filteredTools = allTools.filter(tool => tool.category === category);
+  
+  // Debug logging to help identify issues
+  console.log(`Filtering for category: "${category}"`);
+  console.log(`Found ${filteredTools.length} tools in this category`);
+  console.log('Tools found:', filteredTools.map(tool => tool.title));
+  
+  return filteredTools;
 };
