@@ -62,7 +62,7 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
     return `${baseDescription}${categoryInfo}${featureInfo} Perfect for professionals and enthusiasts looking to leverage cutting-edge AI technology.`;
   };
 
-  // Enhanced media component with proper video thumbnail support
+  // Enhanced media component without demo overlays for videos
   const MediaComponent = () => {
     console.log('Tool media check for card:', {
       title: tool.title,
@@ -91,16 +91,6 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
             onLoad={() => setImageLoaded(true)}
             onError={() => setImageError(true)}
           />
-          {tool.videoUrl && (
-            <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/50 transition-all duration-300">
-              <div className="bg-white/90 rounded-full p-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Play className="w-8 h-8 text-gray-800 ml-1" fill="currentColor" />
-              </div>
-              <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
-                VIDEO
-              </div>
-            </div>
-          )}
         </div>
       );
     }
@@ -128,28 +118,22 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
               onLoad={() => setImageLoaded(true)}
               onError={() => setImageError(true)}
             />
-            <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/50 transition-all duration-300">
-              <div className="bg-white/90 rounded-full p-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Play className="w-8 h-8 text-gray-800 ml-1" fill="currentColor" />
-              </div>
-              <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
-                VIDEO DEMO
-              </div>
+            {/* Small video indicator only - no overlay blocking playback */}
+            <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
+              VIDEO
             </div>
           </div>
         );
       }
       
-      // Fallback for video without thumbnail
+      // Fallback for video without thumbnail - still no blocking overlay
       return (
         <div 
           className="relative w-full overflow-hidden rounded-lg bg-gray-800 cursor-pointer group"
           style={{ height: imageHeight, aspectRatio: '16/9' }}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center group-hover:from-gray-600 group-hover:to-gray-700 transition-all duration-300">
-            <div className="bg-white/90 rounded-full p-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-              <Play className="w-12 h-12 text-gray-800 ml-1" fill="currentColor" />
-            </div>
+            <Play className="w-12 h-12 text-gray-400 group-hover:text-white transition-colors duration-300" />
             <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
               VIDEO DEMO
             </div>
