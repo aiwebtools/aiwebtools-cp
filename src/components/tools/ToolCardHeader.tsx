@@ -31,7 +31,7 @@ const ToolCardHeader = ({
         {tool.emoji}
       </div>
       <div className="space-y-2">
-        <CardTitle className={`${titleSize} font-bold ${isAIWebToolsOriginal ? 'text-cyan-100' : 'text-white'} group-hover:text-cyan-300 transition-colors leading-tight`}>
+        <CardTitle className={`${titleSize} font-bold text-cyan-200 group-hover:text-cyan-100 transition-colors leading-tight drop-shadow-lg`}>
           {tool.title}
         </CardTitle>
         {tool.category && (
