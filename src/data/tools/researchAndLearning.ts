@@ -1,23 +1,11 @@
+
 import { Tool } from "@/types/tools";
 import { 
-  GraduationCap, Globe, BookOpen, History, Search, 
+  Globe, BookOpen, History, Search, 
   MessageSquare, Lightbulb, Telescope
 } from "lucide-react";
 
 export const researchAndLearning: Tool[] = [
-  {
-    icon: GraduationCap,
-    title: "COLLEGE DEGREE GPT",
-    description: "Your comprehensive college and university guidance AI. Get help with degree selection, course planning, career guidance, and academic success strategies.",
-    emoji: "🎓",
-    color: "from-blue-500 to-purple-600",
-    category: "Research & Learning",
-    directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=Cd8uvD-smlM",
-    tags: ["education", "college", "degree", "academic", "career guidance"],
-    rating: 4.2,
-    totalVotes: 2945
-  },
   {
     icon: Globe,
     title: "Illuminous World Data Explorer GPT",
