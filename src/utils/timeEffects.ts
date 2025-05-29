@@ -1,4 +1,3 @@
-
 import { createPortalSounds, createRobotVoice } from './effects/audioEffects';
 import { 
   createParticles, 
@@ -197,7 +196,7 @@ const extractToolName = (destinationUrl: string): string => {
 };
 
 export const createTimePortalEffect = (destinationUrl: string) => {
-  console.log('🌀 Creating enhanced dimensional portal effect for URL:', destinationUrl);
+  console.log('🌀 Creating enhanced centered portal effect for URL:', destinationUrl);
   
   // Extract tool name for personalized robot voice
   const toolName = extractToolName(destinationUrl);
@@ -206,10 +205,10 @@ export const createTimePortalEffect = (destinationUrl: string) => {
   // Create container for all effects
   const effectsContainer = createEffectsContainer();
 
-  // Apply enhanced time warp filter to body
+  // Apply centered portal filter instead of body distortion
   applyTimeWarpFilter();
 
-  // Execute all enhanced visual effects
+  // Execute all centered visual effects
   createParticles(effectsContainer);
   createVortexRings(effectsContainer);
   createSpiralTunnel(effectsContainer);
@@ -217,16 +216,17 @@ export const createTimePortalEffect = (destinationUrl: string) => {
   createLightning(effectsContainer);
   createFlash(effectsContainer);
   
-  // Create extended portal sounds
+  // Create portal sounds (keeping existing timing)
   createPortalSounds();
   
   // Create robot voice with contextual message
   createRobotVoice(toolName, destinationUrl);
 
-  // Cleanup and open in new tab after 3.5 seconds (extended to match audio)
+  // Cleanup and open in new tab after 3.5 seconds (always new window to keep users on site)
   setTimeout(() => {
-    console.log('🧹 Cleaning up effects and opening in new tab:', destinationUrl);
+    console.log('🧹 Cleaning up effects and opening in new window:', destinationUrl);
     cleanupEffects(effectsContainer);
+    // Ensure it always opens in new window to keep users on our website
     openDestinationUrl(destinationUrl);
-  }, 3500); // Extended to match the longer audio duration
+  }, 3500);
 };
