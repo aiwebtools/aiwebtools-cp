@@ -1,7 +1,7 @@
 
 // Re-export all sidebar components from their respective modules
 export { useSidebar, SidebarProvider } from "./sidebar/context"
-export { Sidebar } from "./sidebar/core"
+export { Sidebar } from "./sidebar/sidebar-core"
 export { 
   SidebarContent,
   SidebarFooter,
@@ -9,8 +9,8 @@ export {
   SidebarInput,
   SidebarInset,
   SidebarSeparator
-} from "./sidebar/layout"
-export { SidebarTrigger, SidebarRail } from "./sidebar/controls"
+} from "./sidebar/sidebar-layout"
+export { SidebarTrigger, SidebarRail } from "./sidebar/sidebar-controls"
 export {
   SidebarGroup,
   SidebarGroupAction,
@@ -25,4 +25,4 @@ export {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "./sidebar/menu"
+} from "./sidebar/sidebar-menu"
