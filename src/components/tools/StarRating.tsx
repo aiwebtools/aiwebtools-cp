@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Star } from "lucide-react";
 
 interface StarRatingProps {
@@ -7,19 +7,50 @@ interface StarRatingProps {
   totalVotes: number;
   onRate?: (rating: number) => void;
   showVoteCount?: boolean;
+  toolId?: string; // Add toolId to track votes per tool
 }
 
-const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true }: StarRatingProps) => {
+const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true, toolId }: StarRatingProps) => {
   const [hoveredRating, setHoveredRating] = useState(0);
   const [userRating, setUserRating] = useState(0);
+  const [hasVoted, setHasVoted] = useState(false);
+  const [currentVoteCount, setCurrentVoteCount] = useState(totalVotes);
+
+  // Check if user has already voted for this tool
+  useEffect(() => {
+    if (toolId) {
+      const votedTools = JSON.parse(localStorage.getItem('votedTools') || '{}');
+      const toolVoteData = votedTools[toolId];
+      if (toolVoteData) {
+        setUserRating(toolVoteData.rating);
+        setHasVoted(true);
+        setCurrentVoteCount(toolVoteData.voteCount);
+      }
+    }
+  }, [toolId]);
 
   const handleRate = (newRating: number) => {
+    if (hasVoted || !toolId) return;
+
     setUserRating(newRating);
+    setHasVoted(true);
+    const newVoteCount = currentVoteCount + 1;
+    setCurrentVoteCount(newVoteCount);
+    
+    // Store vote in localStorage
+    const votedTools = JSON.parse(localStorage.getItem('votedTools') || '{}');
+    votedTools[toolId] = {
+      rating: newRating,
+      voteCount: newVoteCount,
+      timestamp: Date.now()
+    };
+    localStorage.setItem('votedTools', JSON.stringify(votedTools));
+    
     onRate?.(newRating);
   };
 
   const displayRating = userRating || rating;
-  const displayVotes = userRating ? totalVotes + 1 : totalVotes;
+  const displayVotes = currentVoteCount;
 
   return (
     <div className="flex items-center space-x-2">
@@ -28,9 +59,13 @@ const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true }: StarRa
           <button
             key={star}
             onClick={() => handleRate(star)}
-            onMouseEnter={() => setHoveredRating(star)}
+            onMouseEnter={() => !hasVoted && setHoveredRating(star)}
             onMouseLeave={() => setHoveredRating(0)}
-            className="focus:outline-none transition-colors duration-200"
+            className={`focus:outline-none transition-colors duration-200 ${
+              hasVoted ? 'cursor-default' : 'cursor-pointer hover:scale-110'
+            }`}
+            disabled={hasVoted}
+            title={hasVoted ? 'You have already voted' : 'Click to rate'}
           >
             <Star
               className={`w-4 h-4 ${
@@ -48,6 +83,11 @@ const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true }: StarRa
       {showVoteCount && (
         <span className="text-xs text-gray-400">
           ({displayVotes.toLocaleString()} votes)
+        </span>
+      )}
+      {hasVoted && (
+        <span className="text-xs text-green-400 font-medium">
+          ✓ Voted
         </span>
       )}
     </div>

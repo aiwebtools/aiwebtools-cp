@@ -1,4 +1,3 @@
-
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -22,7 +21,6 @@ const ToolDetail = () => {
   const toolIndex = parseInt(toolId || "0");
   const tool = allTools[toolIndex];
 
-  // Scroll to top when tool changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [toolIndex]);
@@ -47,7 +45,6 @@ const ToolDetail = () => {
     );
   }
 
-  // Generate default rating if not set
   const defaultRatings = [4.1, 4.2, 4.3, 4.4];
   const defaultRating = tool.rating || defaultRatings[toolIndex % defaultRatings.length];
   const defaultVotes = tool.totalVotes || Math.floor(Math.random() * 3000) + 2000;
@@ -60,7 +57,6 @@ const ToolDetail = () => {
         
         <div className="container mx-auto px-4 py-20">
           <div className="max-w-4xl mx-auto">
-            {/* Back Button */}
             <Link to="/" className="inline-block mb-8">
               <Button variant="outline" size="sm" className="border-cyan-500/30 bg-gray-900/80 text-cyan-100 hover:bg-cyan-500/20 transition-all duration-300 interactive-button">
                 <ArrowLeft className="w-4 h-4 mr-2" />
@@ -68,10 +64,14 @@ const ToolDetail = () => {
               </Button>
             </Link>
 
-            {/* Tool Detail Card */}
             <Card className="overflow-hidden bg-gray-900/80 backdrop-blur-md shadow-2xl shadow-cyan-500/20 border border-cyan-500/30 neon-border">
               <CardHeader>
-                <ToolHeader tool={tool} defaultRating={defaultRating} defaultVotes={defaultVotes} />
+                <ToolHeader 
+                  tool={tool} 
+                  defaultRating={defaultRating} 
+                  defaultVotes={defaultVotes}
+                  toolIndex={toolIndex}
+                />
               </CardHeader>
 
               <CardContent className="p-8 bg-gray-900/50">
@@ -82,14 +82,11 @@ const ToolDetail = () => {
               </CardContent>
             </Card>
 
-            {/* Tool-Specific Legal Disclaimer */}
             <div className="mt-8">
               <ToolDisclaimer tool={tool} />
             </div>
 
             <AdditionalInfo />
-
-            {/* Similar Tools */}
             <SimilarTools currentTool={tool} currentToolIndex={toolIndex} />
           </div>
         </div>

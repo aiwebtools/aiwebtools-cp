@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tool } from "@/types/tools";
@@ -31,6 +30,9 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
   const defaultRatings = [4.1, 4.2, 4.3, 4.4];
   const defaultRating = tool.rating || defaultRatings[toolIndex % defaultRatings.length];
   const defaultVotes = tool.totalVotes || Math.floor(Math.random() * 3000) + 2000;
+
+  // Check if this is a GPT tool (contains "GPT" in title)
+  const isGPTTool = tool.title.toUpperCase().includes('GPT');
 
   // Optimized YouTube URL conversion with quality and performance settings
   const getOptimizedEmbedUrl = (url: string) => {
@@ -128,6 +130,15 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
     <Card className="group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 transform hover:-translate-y-2 border border-gray-700 bg-gray-900/90 backdrop-blur-sm h-full flex flex-col relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       
+      {/* FREE Badge for GPT tools */}
+      {isGPTTool && (
+        <div className="absolute top-4 right-4 z-20">
+          <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg transform rotate-12 animate-pulse">
+            FREE
+          </div>
+        </div>
+      )}
+      
       <CardHeader className="text-center pb-4 flex-shrink-0 relative z-10">
         <div className={`${cardSize} mx-auto mb-4 rounded-full bg-gradient-to-r ${tool.color} flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-xl`}>
           {tool.emoji}
@@ -142,7 +153,12 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
             </Badge>
           )}
           <div className="pt-2">
-            <StarRating rating={defaultRating} totalVotes={defaultVotes} showVoteCount={!isFeatured} />
+            <StarRating 
+              rating={defaultRating} 
+              totalVotes={defaultVotes} 
+              showVoteCount={!isFeatured}
+              toolId={`tool-${toolIndex}`}
+            />
           </div>
         </div>
       </CardHeader>
