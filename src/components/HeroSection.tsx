@@ -99,11 +99,6 @@ const HeroSection = () => {
               <span className="sm:hidden">Get Web3 Domain</span>
             </Button>
           </div>
-          
-          <div className="text-center space-y-2 mb-12">
-            <p className="text-3xl font-bold text-white">🌐 Crafting the Future—🚀 Redefining the Game</p>
-            <p className="text-gray-400">YOU'VE JUST BEEN GIFTED AI SUPERPOWERS...</p>
-          </div>
 
           {/* Search Bar and Categories Section */}
           <div className="w-full max-w-6xl space-y-8">
