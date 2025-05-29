@@ -14,33 +14,50 @@ const generateRobotMessage = (toolName: string, destinationUrl: string): string 
   
   let message = "Master, I am now opening ";
   
-  // Determine the tool type and create contextual message
+  // Determine the tool type and create inspiring, unique contextual message
   if (toolNameLower.includes('gpt') || toolNameLower.includes('chat')) {
-    message += `${cleanToolName} GPT. Initiating neural link... prepare for cognitive enhancement!`;
+    message += `${cleanToolName} - Please stand by as we unlock the gates to infinite conversation and wisdom. Your AI companion awaits your commands!`;
   } else if (toolNameLower.includes('college') || toolNameLower.includes('degree')) {
-    message += `${cleanToolName}. Initiating academic transcendence... knowledge awaits!`;
+    message += `${cleanToolName} - Please stand by as we transport you to the halls of eternal knowledge. Your academic destiny unfolds before you!`;
   } else if (toolNameLower.includes('image') || toolNameLower.includes('art') || toolNameLower.includes('photo')) {
-    message += `${cleanToolName}. Initiating visual creation matrix... artistic powers activating!`;
+    message += `${cleanToolName} - Please stand by as we breach the veil between imagination and reality. Your artistic vision shall manifest!`;
   } else if (toolNameLower.includes('video') || toolNameLower.includes('movie') || toolNameLower.includes('film')) {
-    message += `${cleanToolName}. Initiating cinematic dimension... reality becomes your canvas!`;
+    message += `${cleanToolName} - Please stand by as we enter the realm where stories come alive. Your cinematic masterpiece awaits creation!`;
   } else if (toolNameLower.includes('music') || toolNameLower.includes('audio') || toolNameLower.includes('voice')) {
-    message += `${cleanToolName}. Initiating sonic realm... sound waves bend to your will!`;
+    message += `${cleanToolName} - Please stand by as we tune into the frequencies of pure creation. Let the symphony of innovation begin!`;
   } else if (toolNameLower.includes('business') || toolNameLower.includes('productivity')) {
-    message += `${cleanToolName}. Initiating enterprise nexus... success protocols engaged!`;
+    message += `${cleanToolName} - Please stand by as we ascend to the pinnacle of entrepreneurial excellence. Your empire of success starts now!`;
   } else if (toolNameLower.includes('code') || toolNameLower.includes('develop')) {
-    message += `${cleanToolName}. Initiating digital forge... reality bends to your commands!`;
+    message += `${cleanToolName} - Please stand by as we dive into the matrix of digital creation. Reality bends to your programming will!`;
   } else if (toolNameLower.includes('write') || toolNameLower.includes('content') || toolNameLower.includes('book')) {
-    message += `${cleanToolName}. Initiating literary dimension... words become your weapon!`;
+    message += `${cleanToolName} - Please stand by as we journey to the sacred library of infinite stories. Your words shall echo through eternity!`;
   } else if (toolNameLower.includes('time') || toolNameLower.includes('history')) {
-    message += `${cleanToolName}. Initiating temporal nexus... past, present, and future converge!`;
+    message += `${cleanToolName} - Please stand by as we breach the temporal barriers of space and time. Past, present, and future converge at your command!`;
   } else if (toolNameLower.includes('god') || toolNameLower.includes('mode')) {
-    message += `${cleanToolName}. Initiating omnipotent protocols... unlimited power awaits!`;
+    message += `${cleanToolName} - Please stand by as we activate the ultimate protocols of limitless power. Omnipotence is now within your grasp!`;
   } else if (toolNameLower.includes('immortal')) {
-    message += `${cleanToolName}. Initiating eternal preservation matrix... legacy secured forever!`;
+    message += `${cleanToolName} - Please stand by as we enter the sanctuary of eternal preservation. Your digital legacy shall transcend time itself!`;
   } else if (toolNameLower.includes('stage') || toolNameLower.includes('theater')) {
-    message += `${cleanToolName}. Initiating performance dimension... the stage is yours!`;
+    message += `${cleanToolName} - Please stand by as we raise the curtain on infinite possibilities. The spotlight of greatness shines upon you!`;
+  } else if (toolNameLower.includes('3d') || toolNameLower.includes('print')) {
+    message += `${cleanToolName} - Please stand by as we materialize dreams into tangible reality. Your creations shall take physical form!`;
+  } else if (toolNameLower.includes('micro') || toolNameLower.includes('saas')) {
+    message += `${cleanToolName} - Please stand by as we launch your rocket ship to entrepreneurial stardom. Your software empire begins its ascension!`;
+  } else if (toolNameLower.includes('big') || toolNameLower.includes('agi')) {
+    message += `${cleanToolName} - Please stand by as we connect to the neural network of supreme intelligence. The future of AI is at your fingertips!`;
   } else {
-    message += `${cleanToolName}. Initiating mystical portal... adventure and discovery await!`;
+    // Create inspiring generic messages with varied phrasing
+    const genericMessages = [
+      `${cleanToolName} - Please stand by as we unlock the gateway to your extraordinary destiny. Adventure and discovery await your arrival!`,
+      `${cleanToolName} - Please stand by as we activate the portal to infinite possibilities. Your journey to greatness begins now!`,
+      `${cleanToolName} - Please stand by as we open the dimensional door to your next breakthrough. Excellence is calling your name!`,
+      `${cleanToolName} - Please stand by as we initiate your passage to realms of unlimited potential. Your transformation starts here!`,
+      `${cleanToolName} - Please stand by as we transport you to the epicenter of innovation. Your moment of triumph approaches!`
+    ];
+    
+    // Select a random inspiring message for variety
+    const randomIndex = Math.floor(Math.random() * genericMessages.length);
+    message += genericMessages[randomIndex];
   }
   
   return message;
