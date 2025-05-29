@@ -1,6 +1,6 @@
+
 import { Tool } from "@/types/tools";
 import { 
-  Stethoscope, 
   Heart, 
   Brain, 
   Eye, 
@@ -13,19 +13,6 @@ import {
 } from "lucide-react";
 
 export const healthcareProfessionals: Tool[] = [
-  {
-    icon: Stethoscope,
-    title: "Medical Diagnosis GPT",
-    description: "AI-powered diagnostic tool for healthcare professionals, providing insights and support for medical diagnosis.",
-    emoji: "🩺",
-    color: "from-blue-500 to-green-500",
-    directUrl: "https://medicalgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=mPwY2V8OH7o",
-    category: "Healthcare Professionals",
-    tags: ["medical", "diagnosis", "healthcare", "AI"],
-    rating: 4.5,
-    totalVotes: 2345
-  },
   {
     icon: Heart,
     title: "Mental Health GPT",

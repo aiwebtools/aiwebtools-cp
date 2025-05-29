@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Building, TrendingUp, Users, BarChart3, 
@@ -6,18 +7,6 @@ import {
 } from "lucide-react";
 
 export const businessTools: Tool[] = [
-  {
-    icon: Building,
-    title: "Business Plan GPT",
-    description: "AI-powered business plan generator for entrepreneurs, startups, and small businesses, providing strategic planning and business development assistance.",
-    emoji: "🏢",
-    color: "from-blue-500 to-gray-600",
-    directUrl: "https://businessplangpt.lovable.app/?via=aiwebtools",
-    tags: ["business plan", "entrepreneur", "startup", "small business", "planning"],
-    category: "Business Tools",
-    rating: 4.5,
-    totalVotes: 3456
-  },
   {
     icon: TrendingUp,
     title: "Market Research GPT",
@@ -53,17 +42,5 @@ export const businessTools: Tool[] = [
     category: "Business Tools",
     rating: 4.4,
     totalVotes: 3234
-  },
-  {
-    icon: DollarSign,
-    title: "Grant Writer GPT",
-    description: "AI-driven grant writing assistant for nonprofits and organizations, providing grant proposal assistance and funding strategies.",
-    emoji: "💰",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://grantwritergpt.lovable.app/?via=aiwebtools",
-    tags: ["grant writing", "nonprofits", "funding", "grant proposal", "fundraising"],
-    category: "Business Tools",
-    rating: 4.1,
-    totalVotes: 2134
   }
 ];

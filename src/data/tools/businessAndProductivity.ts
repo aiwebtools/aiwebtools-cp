@@ -7,19 +7,6 @@ import {
 
 export const businessAndProductivity: Tool[] = [
   {
-    icon: TrendingUp,
-    title: "MicroSaaS GPT",
-    description: "AI chat assistant helps entrepreneurs turn niche ideas into structured, ready-to-build SaaS apps. Generates concepts and complete development blueprints. Streamlines the journey from ideation to deployment for speed, scalability, and efficiency with AI code builders.",
-    emoji: "🚀",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://microsaasgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-mockup-advertisement-with-t_AgWMY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["micro-SaaS", "business development", "software", "startup", "entrepreneurship"],
-    category: "Business & Productivity",
-    rating: 4.2,
-    totalVotes: 2123
-  },
-  {
     icon: Building,
     title: "🚀 Startup Validator GPT",
     description: "AI startup analysis for market viability, scalability, and investment potential. Perfect for brainstorming or seeking funding. Provides deep insights on competition, risk, and growth strategies using real-time data. Get validation and funding recommendations.",
@@ -32,18 +19,6 @@ export const businessAndProductivity: Tool[] = [
     totalVotes: 3456
   },
   {
-    icon: FileText,
-    title: "Business Plan Generator GPT",
-    description: "AI-driven tool that quickly creates tailored business plans. Gathers key information and produces detailed plans including market analysis, financial projections, and strategic initiatives. Efficient and personalized business planning solution.",
-    emoji: "💼",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://businessplangpt.lovable.app/?via=aiwebtools",
-    tags: ["business planning", "market analysis", "financial projections", "strategy", "entrepreneurship"],
-    category: "Business & Productivity",
-    rating: 4.3,
-    totalVotes: 2789
-  },
-  {
     icon: DollarSign,
     title: "Universal Basic Income Strategist GPT",
     description: "Designs sustainable, future-ready UBI models for your region. Analyzes economic data, automation trends, and societal needs for implementation roadmaps including funding and impact analysis. Perfect for policymakers and researchers.",
@@ -54,18 +29,6 @@ export const businessAndProductivity: Tool[] = [
     category: "Business & Productivity",
     rating: 4.2,
     totalVotes: 1987
-  },
-  {
-    icon: Target,
-    title: "AI Marketing Assistant",
-    description: "AI-powered marketing assistant that provides marketing insights, campaign optimization, and marketing automation assistance. Transform your marketing strategy with data-driven recommendations and automated solutions.",
-    emoji: "🎯",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://aimarketingassistant.lovable.app/?via=aiwebtools",
-    tags: ["marketing assistant", "AI marketing", "marketing insights", "campaign optimization", "marketing automation"],
-    category: "Business & Productivity",
-    rating: 4.3,
-    totalVotes: 2567
   },
   {
     icon: Calculator,

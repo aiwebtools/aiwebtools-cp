@@ -1,23 +1,10 @@
 
 import { Tool } from "@/types/tools";
 import { 
-  Zap, Brain
+  Brain
 } from "lucide-react";
 
 export const aiInferencePlatforms: Tool[] = [
-  {
-    icon: Zap,
-    title: "Groq",
-    description: "Ultra-fast AI inference platform with lightning-speed response times for real-time AI applications.",
-    emoji: "⚡",
-    color: "from-blue-500 to-cyan-600",
-    directUrl: "https://groq.com/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377356378594873427/image.png?ex=6838aa96&is=68375916&hm=6055b10a7b77314902941a3c85bc62fca7c4dbc8419cb2a038c69cf5f9c74026&",
-    tags: ["fast inference", "real-time", "high performance", "AI applications", "speed"],
-    category: "AI Inference Platforms",
-    rating: 4.3,
-    totalVotes: 2567
-  },
   {
     icon: Brain,
     title: "BIG-AGI",
