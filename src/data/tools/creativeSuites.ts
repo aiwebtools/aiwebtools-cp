@@ -1,71 +1,69 @@
 
 import { Tool } from "@/types/tools";
 import { 
-  Video, 
-  Music, 
   Palette, 
   Camera, 
-  Film, 
-  Mic,
-  Edit,
-  Brush,
-  Play,
-  FileVideo,
+  Video, 
+  Music, 
+  Brush, 
+  Wand2,
+  Sparkles,
   Image,
-  Headphones
+  Film,
+  Mic
 } from "lucide-react";
 
 export const creativeSuites: Tool[] = [
   {
     icon: Video,
-    title: "Movie Maker Studio AI SUITE",
-    description: "Complete AI-powered movie production suite with scriptwriting, storyboarding, editing, and post-production tools.",
+    title: "TEXT TO VIDEO PROMPTER GPT",
+    description: "Advanced text-to-video prompt generator for creating stunning AI videos. Optimize your prompts for platforms like Runway, Pika Labs, and other video AI tools.",
     emoji: "🎬",
     color: "from-red-500 to-purple-600",
-    directUrl: "https://moviemakerstudioaisuite.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E&list=TLGGyT65jYe0o6cyODA1MjAyNQ&t",
-    tags: ["movie making", "video production", "AI suite", "filmmaking"],
+    directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=sCQ_7CyK4YE",
     category: "Creative Suites",
-    rating: 4.5,
+    tags: ["text to video", "AI video", "prompt generation", "video creation"],
+    rating: 4.6,
     totalVotes: 3456
   },
   {
-    icon: Play,
-    title: "STAGEMASTER AI SUITE FOR THE Preforming Arts",
-    description: "Comprehensive AI suite for theater, dance, and performing arts with choreography, staging, and production assistance.",
-    emoji: "🎭",
+    icon: Palette,
+    title: "CREATIVE DIRECTOR GPT",
+    description: "Professional creative direction and artistic guidance for projects, campaigns, and creative endeavors across all mediums.",
+    emoji: "🎨",
     color: "from-purple-500 to-pink-600",
-    directUrl: "https://stagemasteraisuite.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=-QIxYSlcRWM",
-    tags: ["performing arts", "theater", "choreography", "staging"],
+    directUrl: "https://creativedirectorgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5",
     category: "Creative Suites",
+    tags: ["creative direction", "artistic guidance", "project management", "creative strategy"],
+    rating: 4.7,
+    totalVotes: 2987
+  },
+  {
+    icon: Brush,
+    title: "Sketch Artist GPT",
+    description: "Professional digital sketching and drawing assistant. Create detailed sketches, concept art, character designs, and artistic illustrations with AI-powered guidance.",
+    emoji: "✏️",
+    color: "from-gray-500 to-purple-600",
+    directUrl: "https://sketchartistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-s_CPSIx.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    category: "Creative Suites",
+    tags: ["digital sketching", "concept art", "character design", "drawing", "illustration"],
     rating: 4.4,
-    totalVotes: 2876
+    totalVotes: 2345
   },
   {
-    icon: Music,
-    title: "Music Video Maker AI Studio",
-    description: "Create professional music videos with AI-powered editing, effects, and synchronization tools.",
-    emoji: "🎵",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://musicvideomakerstudio.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=rBQTUrvHcR8&list=TLGGHKS5WME8OJ8yODA1MjAyNQ",
-    tags: ["music videos", "video editing", "AI effects", "synchronization"],
+    icon: Film,
+    title: "STORYBOARD CREATOR GPT",
+    description: "Professional storyboard creation for films, animations, commercials, and video projects with detailed scene planning and visual storytelling.",
+    emoji: "🎞️",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://storyboardcreator.lovable.app/?via=aiwebtools",
+    imageUrl: "https://images.unsplash.com/photo-1489599849587-2ee91cede3ba",
     category: "Creative Suites",
-    rating: 4.3,
-    totalVotes: 2567
-  },
-  {
-    icon: Edit,
-    title: "Movie Script Writer GPT",
-    description: "Professional screenplay and script writing assistant with industry-standard formatting and story development tools.",
-    emoji: "📝",
-    color: "from-blue-500 to-indigo-600",
-    directUrl: "https://moviescriptwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=4e3Rkurt3-c&list=TLGGtoG6kc0vED4yODA1MjAyNQ",
-    tags: ["screenwriting", "script writing", "storytelling", "formatting"],
-    category: "Creative Suites",
-    rating: 4.6,
-    totalVotes: 3234
+    tags: ["storyboard", "visual storytelling", "film planning", "animation"],
+    rating: 4.5,
+    totalVotes: 2123
   }
 ];
