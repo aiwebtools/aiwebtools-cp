@@ -154,7 +154,7 @@ export const createTimePortalEffect = (destinationUrl: string) => {
         audioContext.resume();
       }
       
-      // Whoosh sound
+      // Whoosh sound - extended duration
       const createWhoosh = () => {
         const oscillator = audioContext.createOscillator();
         const gainNode = audioContext.createGain();
@@ -166,20 +166,20 @@ export const createTimePortalEffect = (destinationUrl: string) => {
         
         oscillator.type = 'sawtooth';
         oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 1);
+        oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 2);
         
         filter.type = 'lowpass';
         filter.frequency.setValueAtTime(2000, audioContext.currentTime);
-        filter.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 1);
+        filter.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 2);
         
         gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2);
         
         oscillator.start();
-        oscillator.stop(audioContext.currentTime + 1);
+        oscillator.stop(audioContext.currentTime + 2);
       };
       
-      // Portal opening sound
+      // Portal opening sound - extended duration
       const createPortalSound = () => {
         const oscillator = audioContext.createOscillator();
         const gainNode = audioContext.createGain();
@@ -189,20 +189,20 @@ export const createTimePortalEffect = (destinationUrl: string) => {
         
         oscillator.type = 'sine';
         oscillator.frequency.setValueAtTime(100, audioContext.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.3);
-        oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.8);
+        oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.5);
+        oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 1.5);
         
         gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
-        gainNode.gain.linearRampToValueAtTime(0.4, audioContext.currentTime + 0.2);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.8);
+        gainNode.gain.linearRampToValueAtTime(0.4, audioContext.currentTime + 0.3);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
         
         oscillator.start();
-        oscillator.stop(audioContext.currentTime + 0.8);
+        oscillator.stop(audioContext.currentTime + 1.5);
       };
       
-      // Energy crackle
+      // Energy crackle - more crackles over longer duration
       const createCrackle = () => {
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 12; i++) {
           setTimeout(() => {
             const oscillator = audioContext.createOscillator();
             const gainNode = audioContext.createGain();
@@ -214,11 +214,11 @@ export const createTimePortalEffect = (destinationUrl: string) => {
             oscillator.frequency.setValueAtTime(800 + Math.random() * 1200, audioContext.currentTime);
             
             gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.08);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.12);
             
             oscillator.start();
-            oscillator.stop(audioContext.currentTime + 0.08);
-          }, i * 60);
+            oscillator.stop(audioContext.currentTime + 0.12);
+          }, i * 180);
         }
       };
       
