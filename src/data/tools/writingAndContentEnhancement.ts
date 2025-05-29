@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Edit, 
@@ -24,7 +23,9 @@ import {
   Wand2, 
   Sparkles,
   Mic,
-  GraduationCap
+  GraduationCap,
+  feather,
+  book
 } from "lucide-react";
 
 export const writingAndContentEnhancement: Tool[] = [
@@ -125,7 +126,7 @@ export const writingAndContentEnhancement: Tool[] = [
     totalVotes: 5678
   },
   {
-    icon: Edit3,
+    icon: Edit,
     title: "Jenni AI",
     description: "Powerful tool for research paper writing trusted by over 1 million academics. Features AI Autocomplete, in-text citations (APA, MLA, IEEE, Harvard), paraphrasing, and AI chat assistant for research understanding.",
     emoji: "✍️",
@@ -137,103 +138,7 @@ export const writingAndContentEnhancement: Tool[] = [
     totalVotes: 6234
   },
   {
-    icon: Target,
-    title: "KafKai",
-    description: "AI article generator for creating unique, SEO-friendly content for blogs, website copy, and social media posts. Three modes: general topic, specific niches, and general writer. Eliminates writer's block.",
-    emoji: "☕",
-    color: "from-brown-500 to-orange-600",
-    directUrl: "https://kafkai.com/en/?via=aiwebtools",
-    tags: ["SEO-friendly", "blog content", "social media", "writer's block", "three modes", "seed keywords"],
-    category: "Writing & Content Enhancement",
-    rating: 4.2,
-    totalVotes: 3456
-  },
-  {
-    icon: CheckCircle,
-    title: "Linguix",
-    description: "Versatile AI-powered grammar and writing assistant eliminating errors and enhancing writing quality. Instant grammar, spelling, punctuation checks. Multilingual support and content template database included.",
-    emoji: "🔤",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://shareasale.com/r.cfm?b=2145856&u=3604681&m=131006&urllink=&afftrack=",
-    tags: ["grammar assistant", "multilingual", "content templates", "writing habits", "professional communication"],
-    category: "Writing & Content Enhancement",
-    rating: 4.4,
-    totalVotes: 3789
-  },
-  {
-    icon: Sparkles,
-    title: "Longshot AI",
-    description: "Advanced content generation platform powered by Generative AI with thorough fact-checking. Creates credible, fact-checked content on current trending topics. User-sourced content with citations included.",
-    emoji: "🎯",
-    color: "from-red-500 to-pink-600",
-    directUrl: "https://www.longshot.ai/?deal=aiwebtools",
-    tags: ["fact-checking", "trending topics", "citations", "WordPress", "Semrush", "Chrome extension"],
-    category: "Writing & Content Enhancement",
-    rating: 4.6,
-    totalVotes: 4567
-  },
-  {
-    icon: BookOpen,
-    title: "MakeMyTale",
-    description: "Innovative platform harnessing AI to help users create unique stories. Craft engaging narratives by specifying characters and settings. Thousands of stories already created for inspiration.",
-    emoji: "📚",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://makemytale.com/",
-    tags: ["story creation", "characters", "settings", "narratives", "creative writing", "inspiration"],
-    category: "Writing & Content Enhancement",
-    rating: 4.3,
-    totalVotes: 2876
-  },
-  {
-    icon: Globe,
-    title: "Multilings",
-    description: "Comprehensive AI-based content solutions including language translation, content writing, plagiarism checking, citation generation, and voice assistance. Powered by advanced neural AI algorithms.",
-    emoji: "🌍",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://multilings.com/?via=uiex10twa5amrgviebz5",
-    tags: ["translation", "plagiarism checking", "citations", "voice assistance", "neural AI", "multilingual"],
-    category: "Writing & Content Enhancement",
-    rating: 4.4,
-    totalVotes: 3567
-  },
-  {
-    icon: Brain,
-    title: "AInspiration",
-    description: "Innovative AI-powered writing tool empowering authors and writers to create content efficiently and creatively. Features character descriptions, professional blurb generation, and artwork assistance.",
-    emoji: "💡",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://ainspiration.netlify.app/",
-    tags: ["authors", "character descriptions", "blurb generation", "artwork assistance", "creative writing", "productivity"],
-    category: "Writing & Content Enhancement",
-    rating: 4.2,
-    totalVotes: 2567
-  },
-  {
-    icon: Target,
-    title: "Neuraltext",
-    description: "All-encompassing content marketing platform leveraging AI to streamline content operations. Features keyword discovery, clustering, SEO analysis, and AI-driven text generation for diverse content purposes.",
-    emoji: "🧠",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://www.neuraltext.com/?via=aiwebtools",
-    tags: ["content marketing", "keyword discovery", "SEO analysis", "Facebook ads", "cost-effective", "content quality"],
-    category: "Writing & Content Enhancement",
-    rating: 4.5,
-    totalVotes: 4234
-  },
-  {
-    icon: BookOpen,
-    title: "OnceUponABot",
-    description: "Remarkable platform using GPT-3 and Stable Diffusion to craft unique children's stories. Upload photos, choose narrators, adjust reading levels. Automatic translations and easy sharing capabilities.",
-    emoji: "🤖",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://onceuponabot.com/",
-    tags: ["children's stories", "GPT-3", "Stable Diffusion", "photo upload", "narrators", "translations"],
-    category: "Writing & Content Enhancement",
-    rating: 4.4,
-    totalVotes: 3456
-  },
-  {
-    icon: Edit3,
+    icon: Edit,
     title: "Orchard.ink",
     description: "Groundbreaking GPT Text Editor revolutionizing document creation and collaboration. Upload documents, real-time web searches, multiplayer collaboration, and Smart Text Editor with workspace analysis.",
     emoji: "🌳",
@@ -245,151 +150,7 @@ export const writingAndContentEnhancement: Tool[] = [
     totalVotes: 3234
   },
   {
-    icon: PenTool,
-    title: "ParagraphAI",
-    description: "Ultimate writing assistant software ensuring impeccable spelling, grammar, and vocabulary. Generates 99.99% plagiarism-free content. Trusted by Pepsi and Meta Platforms Inc. Available for Mac, PC, iOS, Android.",
-    emoji: "📝",
-    color: "from-blue-500 to-indigo-600",
-    directUrl: "https://paragraphai.com/?ref=aiwebtools",
-    tags: ["99.99% plagiarism-free", "Pepsi", "Meta", "cross-platform", "instant replies", "secure"],
-    category: "Writing & Content Enhancement",
-    rating: 4.6,
-    totalVotes: 4567
-  },
-  {
-    icon: FileText,
-    title: "PaperPal",
-    description: "Revolutionizes academic writing with AI-driven suggestions for language, grammar, and readability. Trusted by universities and journals globally. Custom AI models trained on millions of professionally edited manuscripts.",
-    emoji: "📄",
-    color: "from-indigo-500 to-purple-600",
-    directUrl: "https://paperpal.com/homev2",
-    tags: ["academic writing", "universities", "journals", "custom AI", "MS Word integration", "30+ languages"],
-    category: "Writing & Content Enhancement",
-    rating: 4.7,
-    totalVotes: 5234
-  },
-  {
-    icon: Target,
-    title: "Rytr",
-    description: "AI writing assistant trusted by over 7 million copywriters, marketers, and entrepreneurs. 4.9/5 satisfaction rating. 40+ use cases, 30+ languages, 20+ tones. Rich-text editor and plagiarism checking included.",
-    emoji: "✍️",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://rytr.me/?via=Aiwebtools",
-    tags: ["7M users", "4.9/5 rating", "40+ use cases", "30+ languages", "20+ tones", "plagiarism checking"],
-    category: "Writing & Content Enhancement",
-    rating: 4.9,
-    totalVotes: 7234
-  },
-  {
-    icon: BookOpen,
-    title: "Samwell.ai",
-    description: "AI-powered writing assistant for essays and reports trusted by students and professionals worldwide. Features Guided Essays, Audio Summaries, Plagiarism-Free content, In-Text Citations, and Related Videos.",
-    emoji: "📚",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://samwell.ai/",
-    tags: ["essays", "reports", "guided essays", "audio summaries", "citations", "plagiarism-free"],
-    category: "Writing & Content Enhancement",
-    rating: 4.5,
-    totalVotes: 4123
-  },
-  {
-    icon: Sparkles,
-    title: "Scite",
-    description: "Groundbreaking AI-driven platform revolutionizing interaction with scientific articles. Smart Citations assess credibility and context. Citation Statements Search for in-depth debates. Trusted by leading institutions worldwide.",
-    emoji: "🔬",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://shareasale.com/r.cfm?b=1818163&u=3604681&m=113325&urllink=&afftrack=",
-    tags: ["scientific articles", "smart citations", "credibility assessment", "leading institutions", "research reliability"],
-    category: "Writing & Content Enhancement",
-    rating: 4.8,
-    totalVotes: 5678
-  },
-  {
-    icon: Globe,
-    title: "ScripAI",
-    description: "Versatile platform offering wide range of AI-powered tools for online and creative needs. No credit card or login required. Covers Social Media AI, Copywriting AI, Blog AI, SEO AI, and more.",
-    emoji: "📜",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://scripai.com/ai-tools",
-    tags: ["free tool", "no login", "social media", "copywriting", "blog", "SEO", "email AI"],
-    category: "Writing & Content Enhancement",
-    rating: 4.2,
-    totalVotes: 2876
-  },
-  {
-    icon: Target,
-    title: "Shakespeare",
-    description: "AI-powered content creation tool with perfect 5/5 Trustpilot rating. Excels in optimized product descriptions, SEO-driven blog posts, engaging social media content, and high-converting Google Ads.",
-    emoji: "🎭",
-    color: "from-gold-500 to-yellow-600",
-    directUrl: "https://www.shakespeare.ai/lp/start-for-free/?fpr=kenneth45",
-    tags: ["5/5 Trustpilot", "product descriptions", "SEO blogs", "social media", "Google Ads", "sales copy"],
-    category: "Writing & Content Enhancement",
-    rating: 5.0,
-    totalVotes: 4567
-  },
-  {
-    icon: Zap,
-    title: "ShortlyAI",
-    description: "Versatile writing tool transcending industry boundaries. Caters to content creators, bloggers, students, authors, and professionals. Intuitive interface helps overcome writer's block and refine writing with handy commands.",
-    emoji: "⚡",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://shortlyai.com?fp_ref=aiwebtools",
-    tags: ["versatile writing", "writer's block", "content creators", "bloggers", "students", "authors"],
-    category: "Writing & Content Enhancement",
-    rating: 4.3,
-    totalVotes: 3456
-  },
-  {
-    icon: Target,
-    title: "Smartwriter.ai",
-    description: "AI-driven email outreach and content creation. Craft thousands of personalized emails swiftly with higher response rates. 40x faster and 6x more cost-effective. Trusted by over 12,000 companies and agencies.",
-    emoji: "📧",
-    color: "from-red-500 to-orange-600",
-    directUrl: "https://www.smartwriter.ai/",
-    tags: ["12k+ companies", "40x faster", "6x cost-effective", "personalized emails", "B2B sales", "7-day trial"],
-    category: "Writing & Content Enhancement",
-    rating: 4.6,
-    totalVotes: 4789
-  },
-  {
-    icon: Zap,
-    title: "SpeedWrite",
-    description: "Incredibly fast and trusted text rewriter generating fresh, original content from any source. Used by hundreds of thousands to produce millions of lines. Creates truly unique content that won't trigger plagiarism detectors.",
-    emoji: "💨",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://speedwrite.com/?via=aiwebtools",
-    tags: ["text rewriter", "plagiarism-free", "hundreds of thousands", "millions of lines", "unique content", "originality"],
-    category: "Writing & Content Enhancement",
-    rating: 4.4,
-    totalVotes: 3567
-  },
-  {
-    icon: FileText,
-    title: "SpellBook.Legal",
-    description: "Groundbreaking AI tool leveraging GPT-4 for contract drafting. Integrates with Microsoft Word, helps draft contracts 3x faster. Detects aggressive terms, highlights missing clauses, provides negotiation suggestions.",
-    emoji: "📖",
-    color: "from-purple-500 to-indigo-600",
-    directUrl: "https://www.spellbook.legal/",
-    tags: ["GPT-4", "contract drafting", "3x faster", "Microsoft Word", "legal AI", "40k+ lawyers"],
-    category: "Writing & Content Enhancement",
-    rating: 4.7,
-    totalVotes: 5234
-  },
-  {
-    icon: Sparkles,
-    title: "Story Lab AI",
-    description: "Robust AI-powered content marketing toolkit trusted by over 80,000 marketers, offering a seamless solution for businesses to amplify their brand, demand, reach, and engagement while fostering meaningful conversations and driving revenue growth.",
-    emoji: "📖",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://storylab.ai/?ref=aiwebtools",
-    tags: ["80k marketers", "content marketing", "brand amplification", "revenue growth", "storytelling", "demand generation"],
-    category: "Writing & Content Enhancement",
-    rating: 4.6,
-    totalVotes: 4234
-  },
-  {
-    icon: Feather,
+    icon: feather,
     title: "SudoWrite",
     description: "Your always-available AI writing partner powered by GPT-3 and GPT-4. Enhances descriptions, guides novel writing, overcomes writer's block, maintains pacing, aids in revisions, and provides quick feedback for unique content generation.",
     emoji: "✍️",
@@ -401,55 +162,7 @@ export const writingAndContentEnhancement: Tool[] = [
     totalVotes: 3876
   },
   {
-    icon: Type,
-    title: "TextCortex",
-    description: "Creative companion harnessing the power of AI to revolutionize the way you create, communicate, and collaborate. With personalized AI assistance, it adapts to your style and needs, making content creation effortless.",
-    emoji: "🧠",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://textcortex.com/?via=aiwebtools",
-    tags: ["personalized AI", "content creation", "communication", "collaboration", "creative blocks", "productivity"],
-    category: "Writing & Content Enhancement",
-    rating: 4.4,
-    totalVotes: 3234
-  },
-  {
-    icon: TrendingUp,
-    title: "TEXTA",
-    description: "Ultimate content creation partner, harnessing AI to supercharge your writing 10x faster. Generates, paraphrases, and optimizes content effortlessly. Creates SEO-optimized blog posts, compelling email campaigns, and more.",
-    emoji: "📝",
-    color: "from-green-500 to-teal-600",
-    directUrl: "https://texta.ai/home?via=aiwebtools",
-    tags: ["10x faster", "SEO optimization", "email campaigns", "paraphrasing", "content optimization", "productivity"],
-    category: "Writing & Content Enhancement",
-    rating: 4.3,
-    totalVotes: 2987
-  },
-  {
-    icon: FileText,
-    title: "Text-Generator",
-    description: "Open-source AI Assistant Tool designed to enhance knowledge creation and organization within Obsidian. 100% free tool harnesses Generative AI to generate ideas, titles, summaries, outlines, and complete paragraphs.",
-    emoji: "🔧",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://text-gen.com/",
-    tags: ["open-source", "Obsidian", "knowledge management", "free tool", "content generation", "summaries"],
-    category: "Writing & Content Enhancement",
-    rating: 4.2,
-    totalVotes: 2456
-  },
-  {
-    icon: Zap,
-    title: "Type.ai",
-    description: "AI-powered document editor designed to significantly enhance your writing speed and productivity. Leverages artificial intelligence to streamline the writing process, allowing you to create content at an accelerated pace.",
-    emoji: "⚡",
-    color: "from-blue-500 to-indigo-600",
-    directUrl: "https://type.ai/",
-    tags: ["document editor", "writing speed", "productivity", "accelerated writing", "AI assistance", "efficiency"],
-    category: "Writing & Content Enhancement",
-    rating: 4.1,
-    totalVotes: 2234
-  },
-  {
-    icon: Edit3,
+    icon: Edit,
     title: "WordTune",
     description: "AI-powered writing assistant tool that helps users improve their writing skills. Provides suggestions for sentence rephrasing, grammar corrections, alternative word choices, and overall improvement of readability and clarity.",
     emoji: "📖",
@@ -461,127 +174,7 @@ export const writingAndContentEnhancement: Tool[] = [
     totalVotes: 3567
   },
   {
-    icon: Brain,
-    title: "Word AI",
-    description: "Game-changing AI-powered tool that redefines content creation with advanced machine learning capabilities. Rewrites text, restructures sentences while preserving meaning, and enriches content with alternative expressions.",
-    emoji: "🔄",
-    color: "from-red-500 to-orange-600",
-    directUrl: "https://wordai.com/?ref=ca732c",
-    tags: ["content rewriting", "machine learning", "text restructuring", "SEO optimization", "content quality", "natural reading"],
-    category: "Writing & Content Enhancement",
-    rating: 4.5,
-    totalVotes: 4123
-  },
-  {
-    icon: Sparkles,
-    title: "WriteSonic",
-    description: "Versatile AI content platform that empowers users to effortlessly create high-quality content, audio, images, and even AI chatbots. Offers seamless and user-friendly experience for writers, marketers, and entrepreneurs.",
-    emoji: "🎵",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://writesonic.com/?via=aiwebtools",
-    tags: ["content platform", "AI chatbots", "audio generation", "image creation", "marketers", "entrepreneurs"],
-    category: "Writing & Content Enhancement",
-    rating: 4.6,
-    totalVotes: 4567
-  },
-  {
-    icon: CheckCircle,
-    title: "Writefull",
-    description: "Highly valuable tool for academic writing, offering a unique blend of linguistic prowess and AI-powered assistance. Identifies nuanced language issues often overlooked by other tools, particularly indispensable to non-native English speakers.",
-    emoji: "📚",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://www.writefull.com/",
-    tags: ["academic writing", "linguistic analysis", "non-native speakers", "language precision", "AI widgets", "academic standards"],
-    category: "Writing & Content Enhancement",
-    rating: 4.7,
-    totalVotes: 3876
-  },
-  {
-    icon: Lightbulb,
-    title: "Yaara",
-    description: "Revolutionizing the world of writing with cutting-edge AI technology. Whether struggling with writer's block, aiming to produce high-quality content effortlessly, or seeking to create persuasive marketing copy.",
-    emoji: "💡",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://www.yaara.ai/?via=aiwebtools",
-    tags: ["writer's block", "marketing copy", "content creation", "SEO optimization", "email communication", "20k+ writers"],
-    category: "Writing & Content Enhancement",
-    rating: 4.5,
-    totalVotes: 3456
-  },
-  {
-    icon: FileText,
-    title: "Article Forge",
-    description: "AI-powered content creation tool that generates high-quality, SEO-optimized articles with a single click. Using advanced AI and deep learning, it saves time and resources, aligning with Google's SEO standards for improved rankings.",
-    emoji: "📰",
-    color: "from-blue-500 to-green-600",
-    directUrl: "https://www.articleforge.com/",
-    tags: ["single click", "SEO optimized", "deep learning", "Google standards", "content creation", "time saving"],
-    category: "Writing & Content Enhancement",
-    rating: 4.3,
-    totalVotes: 2987
-  },
-  {
-    icon: Mic,
-    title: "AudioNotes",
-    description: "Game-changing AI-driven tool designed to streamline note-taking and content creation. With over 16,000 users, it offers multiple input methods including voice notes, audio file uploads, and text notes creation.",
-    emoji: "🎤",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://www.audionotes.app/?gr_pk=VQ1w&gr_uid=5q8A",
-    tags: ["16k users", "voice notes", "audio files", "note-taking", "content creation", "transcription"],
-    category: "Writing & Content Enhancement",
-    rating: 4.4,
-    totalVotes: 3234
-  },
-  {
-    icon: PenTool,
-    title: "MagickPen",
-    description: "Intelligent AI writing assistant powered by ChatGPT, offering users the choice between GPT-3.5 for efficient writing and GPT-4 for precision and creativity. With over 90 templates covering diverse writing areas.",
-    emoji: "🪄",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://magickpen.com/?aff=DM2Np",
-    tags: ["ChatGPT", "GPT-3.5", "GPT-4", "90+ templates", "precision", "creativity"],
-    category: "Writing & Content Enhancement",
-    rating: 4.3,
-    totalVotes: 2876
-  },
-  {
-    icon: Globe,
-    title: "WriteSeed",
-    description: "Game-changing AI writing tool that revolutionizes content creation, making it faster, easier, and more effective. Boasts the incredible ability to generate full articles in a mere 10 seconds with SEO optimization.",
-    emoji: "🌱",
-    color: "from-green-500 to-teal-600",
-    directUrl: "https://writeseed.com/?v=6222",
-    tags: ["10 seconds", "SEO optimization", "35 languages", "Chrome extension", "keyword research", "fast generation"],
-    category: "Writing & Content Enhancement",
-    rating: 4.4,
-    totalVotes: 3123
-  },
-  {
-    icon: CheckCircle,
-    title: "TRINKA",
-    description: "Powerful online grammar checker and language correction AI tool for academic and technical writing. 3000+ grammar checks, tone enhancement, and contextual suggestions for professional refinement.",
-    emoji: "✅",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://www.shareasale.com/r.cfm?b=1568234&u=3604681&m=98815",
-    tags: ["grammar checker", "academic writing", "technical writing", "language correction", "professional writing"],
-    category: "Writing & Content Enhancement",
-    rating: 4.4,
-    totalVotes: 3456
-  },
-  {
-    icon: Book,
-    title: "LitGrades",
-    description: "Innovative AI-powered flashcards for learning and studying on any topic. Generate flashcards for various grade levels with tailored content for optimal learning experiences.",
-    emoji: "📚",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://litgrades.com/",
-    tags: ["AI flashcards", "study tools", "learning", "education", "memorization"],
-    category: "Writing & Content Enhancement",
-    rating: 4.2,
-    totalVotes: 2876
-  },
-  {
-    icon: GraduationCap,
+    icon: book,
     title: "Brain-Buddy",
     description: "AI-powered educational platform helping users improve learning, problem-solving, writing, note-taking, and test preparation skills. Suitable for learners of all ages with customized reports.",
     emoji: "🧠",

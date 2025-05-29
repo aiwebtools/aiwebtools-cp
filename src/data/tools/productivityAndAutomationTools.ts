@@ -25,7 +25,6 @@ import {
   Archive, 
   Share2, 
   RefreshCw, 
-  Sync, 
   Filter, 
   Printer, 
   Image, 
@@ -40,7 +39,6 @@ import {
   Smartphone, 
   Tablet, 
   Laptop, 
-  Brain, 
   Target, 
   Star, 
   Heart, 
@@ -74,7 +72,6 @@ import {
   EyeOff, 
   MousePointer2, 
   Hand, 
-  Finger, 
   TouchpadOff, 
   Gamepad, 
   Joystick, 
@@ -107,7 +104,9 @@ import {
   ChevronsUp, 
   ChevronsDown, 
   ChevronsLeft, 
-  ChevronsRight
+  ChevronsRight,
+  ShoppingCart,
+  Brain
 } from "lucide-react";
 
 export const productivityAndAutomationTools: Tool[] = [
