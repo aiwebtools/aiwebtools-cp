@@ -1,8 +1,10 @@
 
 import { Tool } from "@/types/tools";
+import { Bot, Cpu, Zap, Building, Users, Wrench, Gamepad2, Brain, Eye, Factory, Star, Dna, Activity, Palette, Gauge } from "lucide-react";
 
 export const roboticsCompanies: Tool[] = [
   {
+    icon: Bot,
     title: "Unitree Robotics",
     emoji: "🤖",
     category: "Robotics Companies",
@@ -13,6 +15,7 @@ export const roboticsCompanies: Tool[] = [
     tags: ["humanoid robots", "quadruped robots", "robotics manufacturer", "AI robotics", "commercial robots"]
   },
   {
+    icon: Gauge,
     title: "Boston Dynamics",
     emoji: "🦿",
     category: "Robotics Companies", 
@@ -23,6 +26,7 @@ export const roboticsCompanies: Tool[] = [
     tags: ["Atlas robot", "Spot robot", "dynamic robotics", "humanoid", "commercial robotics"]
   },
   {
+    icon: Users,
     title: "Agility Robotics",
     emoji: "🚶",
     category: "Robotics Companies",
@@ -33,6 +37,7 @@ export const roboticsCompanies: Tool[] = [
     tags: ["Digit robot", "bipedal robot", "warehouse automation", "logistics robotics", "humanoid"]
   },
   {
+    icon: Building,
     title: "Honda Robotics (ASIMO)",
     emoji: "🎌",
     category: "Robotics Companies",
@@ -43,6 +48,7 @@ export const roboticsCompanies: Tool[] = [
     tags: ["ASIMO", "bipedal locomotion", "Honda robotics", "humanoid research", "AI integration"]
   },
   {
+    icon: Zap,
     title: "Tesla Bot (Optimus)",
     emoji: "⚡",
     category: "Robotics Companies",
@@ -53,6 +59,7 @@ export const roboticsCompanies: Tool[] = [
     tags: ["Tesla Bot", "Optimus", "general purpose robot", "manufacturing automation", "humanoid"]
   },
   {
+    icon: Eye,
     title: "Hanson Robotics",
     emoji: "👤",
     category: "Robotics Companies",
@@ -63,6 +70,7 @@ export const roboticsCompanies: Tool[] = [
     tags: ["Sophia robot", "social robotics", "AI conversation", "humanoid expressions", "entertainment robots"]
   },
   {
+    icon: Building,
     title: "SoftBank Robotics",
     emoji: "🏢",
     category: "Robotics Companies",
@@ -73,6 +81,7 @@ export const roboticsCompanies: Tool[] = [
     tags: ["Pepper robot", "NAO robot", "service robots", "education robotics", "emotion sensing"]
   },
   {
+    icon: Wrench,
     title: "PAL Robotics",
     emoji: "🔬",
     category: "Robotics Companies",
@@ -83,6 +92,7 @@ export const roboticsCompanies: Tool[] = [
     tags: ["TALOS robot", "REEM robot", "research robotics", "mobile manipulation", "European robotics"]
   },
   {
+    icon: Gamepad2,
     title: "Ubtech Robotics",
     emoji: "🎓",
     category: "Robotics Companies",
@@ -93,6 +103,7 @@ export const roboticsCompanies: Tool[] = [
     tags: ["Walker robot", "Alpha robot", "education robotics", "entertainment robots", "AI learning"]
   },
   {
+    icon: Factory,
     title: "Figure AI",
     emoji: "🏭",
     category: "Robotics Companies",
@@ -103,6 +114,7 @@ export const roboticsCompanies: Tool[] = [
     tags: ["Figure-01", "commercial humanoid", "manufacturing robots", "general purpose", "workplace automation"]
   },
   {
+    icon: Star,
     title: "1X (formerly Halodi)",
     emoji: "🌟",
     category: "Robotics Companies",
@@ -113,6 +125,7 @@ export const roboticsCompanies: Tool[] = [
     tags: ["NEO robot", "EVE robot", "home assistance", "workplace robots", "human-robot coexistence"]
   },
   {
+    icon: Dna,
     title: "Clone Robotics",
     emoji: "🧬",
     category: "Robotics Companies",
@@ -123,6 +136,7 @@ export const roboticsCompanies: Tool[] = [
     tags: ["bio-inspired robotics", "artificial muscles", "human dexterity", "advanced humanoids", "biomimetics"]
   },
   {
+    icon: Brain,
     title: "Sanctuary AI",
     emoji: "🧠",
     category: "Robotics Companies",
@@ -133,6 +147,7 @@ export const roboticsCompanies: Tool[] = [
     tags: ["Phoenix robot", "general intelligence", "human dexterity", "Canadian robotics", "AI workforce"]
   },
   {
+    icon: Palette,
     title: "Engineered Arts",
     emoji: "🎭",
     category: "Robotics Companies",
@@ -143,6 +158,7 @@ export const roboticsCompanies: Tool[] = [
     tags: ["Ameca robot", "realistic humanoids", "entertainment robots", "research platforms", "UK robotics"]
   },
   {
+    icon: Activity,
     title: "Apptronik",
     emoji: "💪",
     category: "Robotics Companies",
