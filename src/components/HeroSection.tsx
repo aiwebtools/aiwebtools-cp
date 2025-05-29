@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Zap, Globe } from "lucide-react";
@@ -30,12 +29,12 @@ const HeroSection = () => {
         <div className="absolute top-20 left-20 w-72 h-72 bg-ai-purple/30 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-ai-cyan/20 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
         
-        <div className="relative container mx-auto px-4 py-20 flex flex-col items-center justify-center min-h-screen text-center">
-          <div className="mb-4 animate-glow">
-            <Sparkles className="w-16 h-16 text-ai-cyan mx-auto mb-2" />
+        <div className="relative container mx-auto px-4 pt-8 md:pt-12 pb-20 flex flex-col items-center justify-center min-h-screen text-center">
+          <div className="mb-2 animate-glow">
+            <Sparkles className="w-12 h-12 md:w-16 md:h-16 text-ai-cyan mx-auto" />
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             Welcome to{" "}
             <span className="bg-gradient-to-r from-ai-cyan via-ai-purple to-ai-blue bg-clip-text text-transparent">
               AI Web Tools
