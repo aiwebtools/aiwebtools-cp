@@ -39,8 +39,8 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
   };
 
   return (
-    <Card className={`group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 transform hover:-translate-y-2 border ${isAIWebToolsOriginal ? 'border-cyan-500/50 bg-gradient-to-br from-gray-900/95 to-cyan-900/20' : 'border-gray-700 bg-gray-900/90'} backdrop-blur-sm h-full flex flex-col relative overflow-hidden`}>
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    <Card className={`group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-200 transform hover:-translate-y-1 border ${isAIWebToolsOriginal ? 'border-cyan-500/50 bg-gradient-to-br from-gray-900/95 to-cyan-900/20' : 'border-gray-700 bg-gray-900/90'} backdrop-blur-sm h-full flex flex-col relative overflow-hidden will-change-transform`}>
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
       
       {/* Enhanced FREE Badge for AI Web Tools original tools */}
       {isAIWebToolsOriginal && (

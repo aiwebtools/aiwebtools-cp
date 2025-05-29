@@ -54,7 +54,8 @@ const ToolsGrid = ({
         </h3>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-0">
+      {/* Optimized grid with better mobile performance */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-0" style={{ contentVisibility: 'auto' }}>
         {displayTools.map((tool, index) => (
           <ToolCard key={`${tool.title}-${index}`} tool={tool} />
         ))}
@@ -77,7 +78,7 @@ const ToolsGrid = ({
       )}
 
       {/* Show completion message when all tools are displayed */}
-      {hasInfiniteScroll && displayedCount >= deduplicatedTools.length && deduplicatedTools.length > 20 && (
+      {hasInfiniteScroll && displayedCount >= deduplicatedTools.length && deduplicatedTools.length > 15 && (
         <div className="text-center mt-12 text-cyan-300">
           🎉 You've seen all {deduplicatedTools.length} tools! 
           <span className="block mt-2">Try searching or filtering by category to discover specific tools.</span>

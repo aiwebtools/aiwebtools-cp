@@ -9,39 +9,48 @@ import ToolsGrid from "@/components/tools/ToolsGrid";
 const FeaturedTools = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [displayedCount, setDisplayedCount] = useState<number>(20);
+  const [displayedCount, setDisplayedCount] = useState<number>(12); // Reduced from 20 for mobile
 
   const handleCategoryChange = (category: string | null) => {
     setSelectedCategory(category);
     setSearchTerm(""); // Clear search term when a category is selected
-    setDisplayedCount(20); // Reset displayed count when category changes
+    setDisplayedCount(12); // Reset displayed count when category changes
   };
 
   const handleSearchChange = (term: string) => {
     setSearchTerm(term);
     setSelectedCategory(null); // Clear category when a search term is entered
-    setDisplayedCount(20); // Reset displayed count when search term changes
+    setDisplayedCount(12); // Reset displayed count when search term changes
   };
 
   const handleLoadMore = useCallback(() => {
-    setDisplayedCount((prevCount) => prevCount + 20);
+    setDisplayedCount((prevCount) => prevCount + 8); // Smaller increments for mobile
   }, []);
 
-  // Infinite scroll implementation
+  // Optimized infinite scroll with throttling for mobile
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop
-        >= document.documentElement.offsetHeight - 1000 // Load more when 1000px from bottom
-      ) {
-        const filteredToolsLength = filteredTools.length;
-        if (displayedCount < filteredToolsLength) {
-          handleLoadMore();
-        }
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (
+            window.innerHeight + document.documentElement.scrollTop
+            >= document.documentElement.offsetHeight - 800 // Reduced threshold for mobile
+          ) {
+            const filteredToolsLength = filteredTools.length;
+            if (displayedCount < filteredToolsLength) {
+              handleLoadMore();
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    // Use passive event listener for better mobile performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [displayedCount, handleLoadMore]);
 
@@ -80,7 +89,7 @@ const FeaturedTools = () => {
 
       {(!selectedCategory && !searchTerm) && (
         <div className="px-4 sm:px-0">
-          <FeaturedToolsSection featuredTools={allTools.slice(0, 6)} />
+          <FeaturedToolsSection featuredTools={allTools.slice(0, 4)} />
         </div>
       )}
 
