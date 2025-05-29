@@ -17,13 +17,7 @@ const MoreToolsSection = ({
 }: MoreToolsSectionProps) => {
   const handleSeeMoreTools = () => {
     onSeeMoreTools();
-    // Scroll to the tools section after showing more tools
-    setTimeout(() => {
-      const toolsSection = document.getElementById('more-tools-section');
-      if (toolsSection) {
-        toolsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 100);
+    // Don't scroll - just show more tools in place
   };
 
   if (!showMoreTools) {

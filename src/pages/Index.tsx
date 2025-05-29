@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -52,33 +51,16 @@ const Index = () => {
     setToolsLoadedCount(count);
   };
 
-  const scrollToLoadMoreTools = () => {
-    // First scroll to the tools section
-    const toolsSection = document.getElementById('tools-section');
-    if (toolsSection) {
-      toolsSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-      
-      // Wait for scroll to complete, then trigger load more
-      setTimeout(() => {
-        // Find the load more button in the FeaturedTools component
-        const loadMoreButton = document.querySelector('[data-load-more-trigger]') as HTMLButtonElement;
-        if (loadMoreButton && !loadMoreButton.disabled) {
-          console.log('🎯 Triggering load more from Show More AI Tools button');
-          loadMoreButton.click();
-        } else {
-          console.log('⚠️ Load more button not found or disabled');
-          // Fallback: scroll down a bit more to trigger infinite scroll
-          setTimeout(() => {
-            window.scrollBy({
-              top: 800,
-              behavior: 'smooth'
-            });
-          }, 300);
-        }
-      }, 1000);
+  const triggerLoadMoreTools = () => {
+    // Find the load more button in the FeaturedTools component and click it
+    const loadMoreButton = document.querySelector('[data-load-more-trigger]') as HTMLButtonElement;
+    if (loadMoreButton && !loadMoreButton.disabled) {
+      console.log('🎯 Triggering load more from Show More AI Tools button');
+      loadMoreButton.click();
+    } else {
+      console.log('⚠️ Load more button not found or disabled - triggering scroll event');
+      // Fallback: dispatch a custom event to trigger load more
+      window.dispatchEvent(new CustomEvent('loadMoreTools'));
     }
   };
 
@@ -124,7 +106,7 @@ const Index = () => {
         <div className="text-center py-16 bg-gradient-to-br from-slate-900 to-purple-900">
           <div className="container mx-auto px-4">
             <Button
-              onClick={scrollToLoadMoreTools}
+              onClick={triggerLoadMoreTools}
               size="lg"
               className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-12 py-6 rounded-xl text-xl shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
             >
