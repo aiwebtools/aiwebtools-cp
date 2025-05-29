@@ -1,5 +1,4 @@
 
-
 import { Tool } from "@/types/tools";
 import { 
   Search, List, Zap,
@@ -15,7 +14,7 @@ export const aiToolsAndUtilities: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
     tags: ["AI tools", "tool discovery", "AI resources", "search", "finder"],
-    category: "AI Tools & Utilities",
+    category: "AI Tools To Run LOCALLY",
     rating: 4.2,
     totalVotes: 2345
   },
@@ -27,7 +26,7 @@ export const aiToolsAndUtilities: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://1000aitools.lovable.app/?via=aiwebtools",
     tags: ["AI tools", "AI resources", "list", "directory", "database"],
-    category: "AI Tools & Utilities",
+    category: "AI Tools To Run LOCALLY",
     rating: 4.3,
     totalVotes: 2789
   },
@@ -39,7 +38,7 @@ export const aiToolsAndUtilities: Tool[] = [
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://promptbox.lovable.app/?via=aiwebtools",
     tags: ["prompt generator", "AI prompts", "chatbots", "AI models", "prompt engineering"],
-    category: "AI Tools & Utilities",
+    category: "AI Tools To Run LOCALLY",
     rating: 4.1,
     totalVotes: 1987
   },
@@ -51,7 +50,7 @@ export const aiToolsAndUtilities: Tool[] = [
     color: "from-gray-500 to-blue-600",
     directUrl: "https://ailegalassistant.lovable.app/?via=aiwebtools",
     tags: ["legal assistant", "AI legal", "legal information", "document review", "legal research"],
-    category: "AI Tools & Utilities",
+    category: "AI Tools To Run LOCALLY",
     rating: 4.4,
     totalVotes: 3567
   },
@@ -63,7 +62,7 @@ export const aiToolsAndUtilities: Tool[] = [
     color: "from-red-500 to-blue-600",
     directUrl: "https://aichemicalassistant.lovable.app/?via=aiwebtools",
     tags: ["chemical assistant", "AI chemical", "chemical information", "reaction prediction", "chemical research"],
-    category: "AI Tools & Utilities",
+    category: "AI Tools To Run LOCALLY",
     rating: 4.5,
     totalVotes: 3456
   },
@@ -75,9 +74,8 @@ export const aiToolsAndUtilities: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://aiphysicsassistant.lovable.app/?via=aiwebtools",
     tags: ["physics assistant", "AI physics", "physics information", "problem-solving", "physics research"],
-    category: "AI Tools & Utilities",
+    category: "AI Tools To Run LOCALLY",
     rating: 4.2,
     totalVotes: 1876
   }
 ];
-
