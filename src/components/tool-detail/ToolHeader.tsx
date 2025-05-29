@@ -1,9 +1,11 @@
 
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import { Tool } from "@/types/tools";
 import StarRating from "@/components/tools/StarRating";
+import { useNavigate } from "react-router-dom";
 
 interface ToolHeaderProps {
   tool: Tool;
@@ -13,9 +15,17 @@ interface ToolHeaderProps {
 }
 
 const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeaderProps) => {
+  const navigate = useNavigate();
+
   const handleUseItNow = () => {
     if (tool.directUrl) {
       window.open(tool.directUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const handleCategoryClick = () => {
+    if (tool.category) {
+      navigate(`/category/${encodeURIComponent(tool.category)}`);
     }
   };
 
@@ -41,7 +51,11 @@ const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeader
           {tool.title}
         </h1>
         {tool.category && (
-          <Badge variant="outline" className="text-sm border-cyan-400 text-cyan-400 bg-cyan-400/10 px-4 py-2 glow-effect">
+          <Badge 
+            variant="outline" 
+            className="text-sm border-cyan-400 text-cyan-400 bg-cyan-400/10 px-4 py-2 glow-effect cursor-pointer hover:bg-cyan-400/20 hover:border-cyan-300 transition-all duration-200 transform hover:scale-105"
+            onClick={handleCategoryClick}
+          >
             {tool.category}
           </Badge>
         )}
@@ -69,3 +83,4 @@ const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeader
 };
 
 export default ToolHeader;
+
