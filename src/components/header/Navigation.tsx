@@ -1,6 +1,6 @@
 
 import { Phone, ChevronDown } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +12,18 @@ import { allTools } from "@/data/toolsData";
 import { getCategoriesWithCounts } from "@/utils/categoryUtils";
 
 const Navigation = () => {
+  const navigate = useNavigate();
   const categoriesWithCounts = getCategoriesWithCounts(allTools);
+
+  const scrollToHome = () => {
+    // If we're already on the home page, just scroll to top
+    if (window.location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // Navigate to home page
+      navigate('/');
+    }
+  };
 
   const scrollToTools = () => {
     const toolsSection = document.getElementById('tools-section');
@@ -47,7 +58,12 @@ const Navigation = () => {
 
   return (
     <nav className="hidden lg:flex items-center space-x-6 flex-shrink-0">
-      <a href="#home" className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap">Home</a>
+      <button 
+        onClick={scrollToHome}
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
+      >
+        Home
+      </button>
       
       <DropdownMenu>
         <DropdownMenuTrigger className="flex items-center space-x-1 text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap">
