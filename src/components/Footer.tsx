@@ -1,4 +1,3 @@
-
 import { Separator } from "@/components/ui/separator";
 import { Globe, Mail, Phone, Home } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -107,7 +106,7 @@ const Footer = () => {
                 Privacy Policy
               </a>
               <a 
-                href="https://aiwebtools.ai/terms-of-services" 
+                href="https://aitools.company/terms-of-services" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm"
