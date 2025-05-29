@@ -12,7 +12,8 @@ import {
   Eye, 
   Baby, 
   Smile,
-  Leaf
+  Leaf,
+  HeadphonesIcon
 } from "lucide-react";
 
 export const healthcareProfessionals: Tool[] = [
@@ -184,5 +185,17 @@ export const healthcareProfessionals: Tool[] = [
     tags: ["cannabis", "medical marijuana", "education", "healthcare", "wellness"],
     rating: 4.3,
     totalVotes: 1876
+  },
+  {
+    icon: HeadphonesIcon,
+    title: "EMDR-Thera Assistant",
+    description: "Professional EMDR therapy assistant with full capabilities for therapists and mental health professionals, providing comprehensive support for Eye Movement Desensitization and Reprocessing therapy sessions.",
+    emoji: "🎧",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-oM5YeBpRq-emdr-therapy-assistant-with-full-capabilities",
+    category: "Healthcare",
+    tags: ["EMDR", "therapy", "mental health", "trauma", "therapeutic assistant", "psychology", "counseling"],
+    rating: 4.5,
+    totalVotes: 1234
   },
 ];

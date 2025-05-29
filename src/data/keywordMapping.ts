@@ -1,4 +1,3 @@
-
 // Enhanced keyword mapping for intelligent search - significantly enhanced
 export const keywordMapping: Record<string, string[]> = {
   // Writing and Content Creation
@@ -62,11 +61,17 @@ export const keywordMapping: Record<string, string[]> = {
   "audio": ["music", "sound", "voice", "speech", "podcast", "recording"],
   "sound": ["audio", "music", "voice", "noise", "acoustic"],
   
-  // Health and Medical
-  "health": ["medical", "wellness", "fitness", "doctor", "healthcare", "medicine"],
+  // Health and Medical - ENHANCED WITH EMDR
+  "health": ["medical", "wellness", "fitness", "doctor", "healthcare", "medicine", "therapy", "mental health"],
   "medical": ["health", "doctor", "healthcare", "medicine", "clinical", "pharmaceutical"],
   "doctor": ["medical", "health", "healthcare", "physician", "medicine", "medical simulation", "informational", "health advice", "private", "confidential", "personalized", "not replacement for doctor", "health queries", "symptom checker", "well-being", "DoctorGPT", "Personalized DR. GPT"],
   "mental": ["wellness", "health", "therapy", "psychology", "emotional", "virtual chat", "emotional support", "mental well-being", "empathetic guidance", "cognitive behavioral therapy", "CBT", "stress", "anxiety", "life challenges", "practical tools", "coping strategies", "judgment-free space", "personal growth", "resilience", "self-care", "MentalWellnessGPT"],
+  "therapy": ["mental health", "counseling", "psychology", "therapeutic", "treatment", "EMDR", "trauma therapy", "eye movement", "desensitization", "reprocessing", "therapeutic assistant", "EMDR-Thera Assistant"],
+  "emdr": ["eye movement desensitization reprocessing", "trauma therapy", "therapy", "mental health", "therapeutic", "counseling", "psychology", "EMDR-Thera Assistant"],
+  "trauma": ["therapy", "mental health", "EMDR", "counseling", "psychology", "therapeutic", "treatment", "EMDR-Thera Assistant"],
+  "therapeutic": ["therapy", "mental health", "counseling", "treatment", "EMDR", "psychology", "EMDR-Thera Assistant"],
+  "counseling": ["therapy", "mental health", "psychology", "therapeutic", "treatment", "EMDR", "EMDR-Thera Assistant"],
+  "psychology": ["mental health", "therapy", "counseling", "therapeutic", "behavioral", "EMDR", "EMDR-Thera Assistant"],
   
   // Legal and Government
   "legal": ["law", "lawyer", "attorney", "contract", "compliance", "legislation", "court", "justice"],
