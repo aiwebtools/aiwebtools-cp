@@ -1,167 +1,64 @@
 
 import { Tool } from "@/types/tools";
 
-// Helper function to normalize tool titles for comparison
-const normalizeTitle = (title: string): string => {
-  return title.toLowerCase()
-    .replace(/[^a-z0-9\s]/g, '') // Remove special characters
-    .replace(/\s+/g, ' ') // Normalize spaces
-    .trim();
-};
-
-// Helper function to determine the best category for a tool
-const getBestCategory = (tool: Tool, duplicateCategories: string[]): string => {
-  // Priority mapping for category selection
-  const categoryPriority: Record<string, number> = {
-    "Creative Suites": 10,
-    "Advanced AI Tools": 9,
-    "AI Development Tools": 8,
-    "Video & Content Creation": 7,
-    "Image & Design Tools": 6,
-    "Writing & Content Creation": 5,
-    "Business & Productivity": 4,
-    "Audio & Voice Tools": 3,
-    "Education & Learning": 2,
-    "Specialized Tools": 1
-  };
-
-  // Find the highest priority category
-  return duplicateCategories.reduce((best, current) => {
-    const currentPriority = categoryPriority[current] || 0;
-    const bestPriority = categoryPriority[best] || 0;
-    return currentPriority > bestPriority ? current : best;
-  });
-};
-
-// Function to identify and resolve duplicate tools
+// Remove duplicate tools based on title and URL
 export const deduplicateTools = (tools: Tool[]): Tool[] => {
-  const seenTitles = new Map<string, Tool[]>();
-  const deduplicatedTools: Tool[] = [];
-
-  // Group tools by normalized title
-  tools.forEach(tool => {
-    const normalizedTitle = normalizeTitle(tool.title);
-    if (!seenTitles.has(normalizedTitle)) {
-      seenTitles.set(normalizedTitle, []);
-    }
-    seenTitles.get(normalizedTitle)!.push(tool);
-  });
-
-  // Process each group of tools with same normalized title
-  seenTitles.forEach((toolGroup, normalizedTitle) => {
-    if (toolGroup.length === 1) {
-      // No duplicates, add as is
-      deduplicatedTools.push(toolGroup[0]);
+  const seen = new Set<string>();
+  const uniqueTools: Tool[] = [];
+  
+  for (const tool of tools) {
+    // Create a unique key based on title and directUrl
+    const key = `${tool.title.toLowerCase().trim()}|${tool.directUrl?.toLowerCase().trim() || ''}`;
+    
+    if (!seen.has(key)) {
+      seen.add(key);
+      uniqueTools.push(tool);
     } else {
-      // Handle duplicates
-      console.log(`Found duplicate tools: ${toolGroup.map(t => t.title).join(', ')}`);
-      
-      // Get all categories these tools appear in
-      const categories = toolGroup.map(t => t.category).filter(Boolean) as string[];
-      const bestCategory = getBestCategory(toolGroup[0], categories);
-      
-      // Use the tool with the most complete data
-      const bestTool = toolGroup.reduce((best, current) => {
-        const bestScore = (best.description?.length || 0) + 
-                         (best.tags?.length || 0) + 
-                         (best.videoUrl ? 10 : 0) + 
-                         (best.imageUrl ? 5 : 0);
-        const currentScore = (current.description?.length || 0) + 
-                           (current.tags?.length || 0) + 
-                           (current.videoUrl ? 10 : 0) + 
-                           (current.imageUrl ? 5 : 0);
-        return currentScore > bestScore ? current : best;
-      });
-
-      // Merge tags from all duplicates
-      const allTags = new Set<string>();
-      toolGroup.forEach(tool => {
-        tool.tags?.forEach(tag => allTags.add(tag));
-        // Add category names as tags for search
-        if (tool.category) {
-          allTags.add(tool.category.toLowerCase());
-        }
-      });
-
-      // Create the consolidated tool
-      const consolidatedTool: Tool = {
-        ...bestTool,
-        category: bestCategory,
-        tags: Array.from(allTags)
-      };
-
-      deduplicatedTools.push(consolidatedTool);
-      console.log(`Consolidated "${normalizedTitle}" into category: ${bestCategory}`);
+      console.log(`Duplicate tool removed: ${tool.title}`);
     }
-  });
-
-  return deduplicatedTools;
-};
-
-// Function to create a deduplicated tools list with smart distribution to prevent frequent repeats
-export const createDeduplicatedToolsList = (tools: Tool[], intervalSize: number = 8): Tool[] => {
-  const deduplicatedTools = deduplicateTools(tools);
-  
-  // If we have fewer tools than the interval, just return them
-  if (deduplicatedTools.length <= intervalSize) {
-    return deduplicatedTools;
   }
   
-  // Group tools by category for better distribution
-  const categorizedTools = new Map<string, Tool[]>();
+  console.log(`Deduplication: ${tools.length} -> ${uniqueTools.length} tools`);
+  return uniqueTools;
+};
+
+// Create a deduplication function that maintains diversity
+export const createDeduplicatedToolsList = (tools: Tool[], maxRepeats: number = 8): Tool[] => {
+  const toolFrequency = new Map<string, number>();
+  const result: Tool[] = [];
   
-  deduplicatedTools.forEach(tool => {
+  for (const tool of tools) {
+    const count = toolFrequency.get(tool.title) || 0;
+    
+    if (count < maxRepeats) {
+      result.push(tool);
+      toolFrequency.set(tool.title, count + 1);
+    }
+  }
+  
+  return result;
+};
+
+// Deduplicate tools within categories
+export const deduplicateByCategory = (tools: Tool[]): Tool[] => {
+  const categoryMap = new Map<string, Set<string>>();
+  const uniqueTools: Tool[] = [];
+  
+  for (const tool of tools) {
     const category = tool.category || 'Uncategorized';
-    if (!categorizedTools.has(category)) {
-      categorizedTools.set(category, []);
-    }
-    categorizedTools.get(category)!.push(tool);
-  });
-  
-  // Create a more evenly distributed list
-  const distributedTools: Tool[] = [];
-  const categoryKeys = Array.from(categorizedTools.keys());
-  let categoryIndex = 0;
-  let maxToolsPerCategory = Math.ceil(deduplicatedTools.length / categoryKeys.length);
-  
-  // First pass: Add tools from each category in round-robin fashion
-  while (distributedTools.length < deduplicatedTools.length) {
-    const currentCategory = categoryKeys[categoryIndex % categoryKeys.length];
-    const categoryTools = categorizedTools.get(currentCategory);
     
-    if (categoryTools && categoryTools.length > 0) {
-      const tool = categoryTools.shift()!;
-      distributedTools.push(tool);
+    if (!categoryMap.has(category)) {
+      categoryMap.set(category, new Set());
     }
     
-    categoryIndex++;
+    const categorySet = categoryMap.get(category)!;
+    const toolKey = tool.title.toLowerCase().trim();
     
-    // If we've gone through all categories and still have tools, continue
-    if (categoryIndex >= categoryKeys.length * maxToolsPerCategory) {
-      // Add any remaining tools
-      categoryKeys.forEach(category => {
-        const remainingTools = categorizedTools.get(category) || [];
-        distributedTools.push(...remainingTools);
-      });
-      break;
+    if (!categorySet.has(toolKey)) {
+      categorySet.add(toolKey);
+      uniqueTools.push(tool);
     }
   }
   
-  return distributedTools;
-};
-
-// Function to get category-specific keywords for search enhancement
-export const getCategorySearchKeywords = (category: string): string[] => {
-  const categoryKeywords: Record<string, string[]> = {
-    "Video & Content Creation": ["video", "content", "editing", "movie", "film", "cinema", "youtube", "streaming", "production", "animation"],
-    "Image & Design Tools": ["image", "design", "art", "photo", "picture", "graphic", "visual", "illustration", "logo", "color", "cover", "graph"],
-    "Creative Suites": ["creative", "suite", "design", "multimedia", "production", "artistic", "professional"],
-    "Writing & Content Creation": ["writing", "content", "text", "article", "blog", "copy", "document", "research", "paper"],
-    "Business & Productivity": ["business", "productivity", "work", "office", "management", "team", "collaboration"],
-    "AI Development Tools": ["ai", "development", "coding", "programming", "developer", "api", "model"],
-    "Audio & Voice Tools": ["audio", "voice", "music", "sound", "podcast", "speech", "recording"],
-    "Advanced AI Tools": ["advanced", "ai", "sophisticated", "complex", "enterprise", "professional"]
-  };
-
-  return categoryKeywords[category] || [];
+  return uniqueTools;
 };

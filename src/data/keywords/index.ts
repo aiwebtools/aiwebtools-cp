@@ -36,7 +36,10 @@ export const searchSynonyms: Record<string, string[]> = {
   "analyze": ["examine", "study", "review", "assess", "evaluate"],
   "design": ["create", "build", "craft", "develop", "style"],
   "cover": ["wrapper", "jacket", "face", "front", "surface"],
-  "graph": ["chart", "diagram", "plot", "visualization", "infographic"]
+  "graph": ["chart", "diagram", "plot", "visualization", "infographic"],
+  "3d": ["three dimensional", "3D modeling", "3D design", "three-d"],
+  "automation": ["workflow", "process automation", "task automation", "auto"],
+  "analytics": ["data analysis", "business intelligence", "reporting", "metrics"]
 };
 
 // Category-specific keywords for better categorization
@@ -55,7 +58,10 @@ export const categoryKeywords: Record<string, string[]> = {
   "Spirituality & Wellness": ["spiritual AI", "wellness tools", "meditation AI", "spiritual guidance", "mindfulness"],
   "Game Design & Development": ["game AI", "game development", "gaming tools", "game design", "interactive entertainment"],
   "Emergency Services": ["emergency tools", "safety AI", "crisis management", "first aid", "disaster response"],
-  "Professional Services": ["professional AI", "service tools", "business services", "expert assistance", "consultation tools"]
+  "Professional Services": ["professional AI", "service tools", "business services", "expert assistance", "consultation tools"],
+  "3D & Visualization": ["3D modeling", "3D design", "3D animation", "3D rendering", "visualization", "three dimensional", "3D tools"],
+  "Data & Analytics": ["data analysis", "business intelligence", "analytics", "data visualization", "reporting", "dashboards", "metrics"],
+  "Automation & Workflows": ["automation", "workflow", "process automation", "task automation", "business automation", "workflow tools"]
 };
 
 // Export individual keyword categories for specific use cases

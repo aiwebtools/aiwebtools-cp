@@ -66,3 +66,6 @@ export { meetingAndTranscriptionTools } from './meetingAndTranscriptionTools';
 export { webDevelopmentTools } from './webDevelopmentTools';
 export { emailManagementTools } from './emailManagementTools';
 export { technicalAndUtilityTools } from './technicalAndUtilityTools';
+export { threeDAndVisualizationTools } from './threeDAndVisualizationTools';
+export { dataAnalyticsTools } from './dataAnalyticsTools';
+export { automationAndWorkflowTools } from './automationAndWorkflowTools';

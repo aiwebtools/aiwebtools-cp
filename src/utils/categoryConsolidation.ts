@@ -23,6 +23,7 @@ const categoryMapping: Record<string, string> = {
   "Business Tools": "Business & Productivity",
   "Business & Team Tools": "Business & Productivity",
   "Business Sales Tools": "Business & Productivity",
+  "Business & Sales Tools": "Business & Productivity",
   "Ecommerce & Marketing Tools": "Business & Productivity",
   "Email Management Tools": "Business & Productivity",
   "Meeting & Transcription Tools": "Business & Productivity",
@@ -62,6 +63,21 @@ const categoryMapping: Record<string, string> = {
   "Legal Professionals": "Professional Services",
   "Professional Services": "Professional Services",
   "Financial & Trading Tools": "Professional Services",
+  
+  // Data and Analytics consolidation
+  "Data & Analytics Tools": "Data & Analytics",
+  "Data Analytics Tools": "Data & Analytics",
+  "Business Intelligence": "Data & Analytics",
+  
+  // 3D and Visualization consolidation
+  "3D & Visualization Tools": "3D & Visualization",
+  "3D Tools": "3D & Visualization",
+  "Visualization Tools": "3D & Visualization",
+  
+  // Automation consolidation
+  "Automation & Workflow Tools": "Automation & Workflows",
+  "Workflow Tools": "Automation & Workflows",
+  "Process Automation": "Automation & Workflows",
   
   // Specialized consolidation
   "Specialized & Niche": "Specialized Tools",

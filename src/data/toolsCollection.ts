@@ -74,6 +74,11 @@ import { businessSalesTools } from './tools/businessSalesTools';
 import { specializedAITools } from './tools/specializedAITools';
 import { entertainmentMediaTools } from './tools/entertainmentMediaTools';
 
+// Import new categories
+import { threeDAndVisualizationTools } from './tools/threeDAndVisualizationTools';
+import { dataAnalyticsTools } from './tools/dataAnalyticsTools';
+import { automationAndWorkflowTools } from './tools/automationAndWorkflowTools';
+
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
@@ -144,6 +149,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...artAndCollectibles,
     ...financialAndTradingTools,
     ...specializedNicheTools,
-    ...educationAndLearning
+    ...educationAndLearning,
+    ...threeDAndVisualizationTools,
+    ...dataAnalyticsTools,
+    ...automationAndWorkflowTools
   ];
 };
