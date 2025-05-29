@@ -36,5 +36,18 @@ export const writingAndContent: Tool[] = [
     category: "Writing & Content",
     rating: 4.5,
     totalVotes: 2654
+  },
+  {
+    icon: BookOpen,
+    title: "Book Writer GPT",
+    description: "AI-powered book writing assistant that helps authors create compelling narratives, develop characters, and structure their stories professionally.",
+    emoji: "📚",
+    color: "from-purple-500 to-blue-600",
+    videoUrl: "https://www.youtube.com/watch?v=rN4H4r7gk5w",
+    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
+    tags: ["book writing", "storytelling", "publishing", "creative writing", "authors"],
+    category: "Writing & Content",
+    rating: 4.7,
+    totalVotes: 3892
   }
 ];

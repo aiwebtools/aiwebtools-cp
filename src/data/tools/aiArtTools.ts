@@ -42,20 +42,11 @@ export const aiArtTools: Tool[] = [
     description: "Create detailed sketches and drawings with AI assistance. Generate artistic sketches, character designs, and illustration concepts.",
     emoji: "✏️",
     color: "from-gray-500 to-black-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-s_CPSIx.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-sketch-ar.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,h:300,cg:true",
     directUrl: "https://sketchartistgpt.lovable.app/?via=aiwebtools",
-    tags: ["sketching", "drawing", "art", "illustration", "character design"],
-    category: "Art & Design"
-  },
-  {
-    icon: BookOpen,
-    title: "Artwork & Vintage Appraisal GPT",
-    description: "Appraise and evaluate artwork and vintage items with AI expertise. Get professional assessments of art pieces, antiques, and collectibles.",
-    emoji: "🎨",
-    color: "from-yellow-500 to-orange-500",
-    imageUrl: "https://ideogram.ai/assets/image/lossless/response/Gyn0RfDSR_SHRDWC7neQaw",
-    directUrl: "https://artandvintagegpt.lovable.app/?via=aiwebtools",
-    tags: ["art", "appraisal", "vintage", "collectibles", "antiques", "valuation"],
-    category: "Art & Culture"
+    tags: ["sketching", "drawing", "art", "character design", "illustration"],
+    category: "AI Art",
+    rating: 4.3,
+    totalVotes: 1847
   }
 ];
