@@ -6,6 +6,18 @@ import {
 
 export const designAndGraphicsTools: Tool[] = [
   {
+    icon: Camera,
+    title: "Product Photography GPT",
+    description: "AI-powered product photography tool that creates stunning product images and commercial photography with professional lighting and composition.",
+    emoji: "📸",
+    color: "from-blue-500 to-purple-500",
+    directUrl: "https://productphotographygpt.lovable.app/?via=aiwebtools",
+    tags: ["product photography", "commercial photography", "ai photography", "product images"],
+    category: "Image & Design",
+    rating: 4.4,
+    totalVotes: 2876
+  },
+  {
     icon: Brush,
     title: "RunwayML Gen-2",
     description: "Generate videos and images from text prompts using generative AI.",
