@@ -16,6 +16,11 @@ export const getToolNameMatchScore = (toolTitle: string, searchTerm: string): nu
     return 500;
   }
   
+  // Special boost for GPT tools when searching for "gpt"
+  if (searchTerm.toLowerCase().includes('gpt') && lowerTitle.includes('gpt')) {
+    score += 400;
+  }
+  
   // Check if search term matches beginning of title
   if (lowerTitle.startsWith(searchTerm)) {
     score += 400;
@@ -86,6 +91,16 @@ export const calculateIntentScore = (tool: Tool, searchTerm: string): number => 
   const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
   
   let score = 0;
+  
+  // Special boost for GPT tools when searching for GPT-related terms
+  if (searchTerm.toLowerCase().includes('gpt')) {
+    if (lowerTitle.includes('gpt') || lowerDescription.includes('gpt') || lowerTags.some(tag => tag.includes('gpt'))) {
+      score += 150; // High boost for GPT tools
+    }
+    if (lowerTitle.includes('custom') || lowerDescription.includes('custom') || lowerTags.some(tag => tag.includes('custom'))) {
+      score += 100; // Boost for custom GPTs
+    }
+  }
   
   // Check for pricing-related searches
   if (searchTerm.includes('free')) {
