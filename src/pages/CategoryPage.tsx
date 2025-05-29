@@ -45,6 +45,10 @@ const CategoryPage = () => {
     }, 100);
   }, [isLoading]);
 
+  const handleLoadMoreButton = () => {
+    handleLoadMore();
+  };
+
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
     
@@ -129,6 +133,8 @@ const CategoryPage = () => {
     );
   }
 
+  const hasMoreTools = displayedCount < categoryTools.length;
+
   return (
     <div className="min-h-screen bg-black relative">
       <AnimatedBackground />
@@ -149,6 +155,30 @@ const CategoryPage = () => {
             hasInfiniteScroll={true}
             isLoading={isLoading}
           />
+
+          {/* Load More Button - Show when there are more tools to load */}
+          {hasMoreTools && (
+            <div className="text-center mt-12 mb-16 px-4">
+              <Button
+                onClick={handleLoadMoreButton}
+                size="lg"
+                disabled={isLoading}
+                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
+              >
+                {isLoading ? (
+                  <div className="flex items-center space-x-3">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    <span>Loading More Tools...</span>
+                  </div>
+                ) : (
+                  <>🚀 LOAD MORE {selectedCategory.toUpperCase()} TOOLS</>
+                )}
+              </Button>
+              <div className="mt-4 text-cyan-300 text-sm">
+                Showing {displayedCount} of {categoryTools.length} tools in {selectedCategory}
+              </div>
+            </div>
+          )}
 
           <CategorySelector
             ref={categoryButtonsRef}
