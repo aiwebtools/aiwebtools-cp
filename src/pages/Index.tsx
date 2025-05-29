@@ -44,11 +44,11 @@ const Index = () => {
         <Header />
         <div className="pt-20">
           <HeroSection />
-          <div className="container mx-auto px-4 pb-8">
-            <InspirationMessage />
-          </div>
           <div className="featured-tools-transparent" id="tools-section">
             <FeaturedTools />
+          </div>
+          <div className="container mx-auto px-4 pb-8">
+            <InspirationMessage />
           </div>
           <Footer />
         </div>
