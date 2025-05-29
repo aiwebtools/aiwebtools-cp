@@ -61,5 +61,17 @@ export const writingAndContent: Tool[] = [
     category: "Writing & Content",
     rating: 4.5,
     totalVotes: 2876
+  },
+  {
+    icon: BookOpen,
+    title: "Children's Picture Book Generator",
+    description: "Create engaging children's picture books with AI-generated stories and illustrations. Perfect for parents, educators, and aspiring children's book authors.",
+    emoji: "📖",
+    color: "from-yellow-500 to-pink-600",
+    directUrl: "https://childrenspicturebookgpt.lovable.app/?via=aiwebtools",
+    tags: ["children's books", "picture books", "storytelling", "education", "creative writing"],
+    category: "Writing & Content",
+    rating: 4.6,
+    totalVotes: 3245
   }
 ];

@@ -16,7 +16,8 @@ import {
   Layout,
   Grid,
   Shapes,
-  Paintbrush
+  Paintbrush,
+  BookOpen
 } from "lucide-react";
 
 export const imageAndDesign: Tool[] = [
@@ -175,5 +176,17 @@ export const imageAndDesign: Tool[] = [
     category: "Image & Design",
     rating: 4.5,
     totalVotes: 2987
+  },
+  {
+    icon: BookOpen,
+    title: "Children's Picture Book Generator",
+    description: "Create engaging children's picture books with AI-generated stories and illustrations. Perfect for parents, educators, and aspiring children's book authors.",
+    emoji: "📖",
+    color: "from-yellow-500 to-pink-600",
+    directUrl: "https://childrenspicturebookgpt.lovable.app/?via=aiwebtools",
+    tags: ["children's books", "picture books", "illustrations", "education", "creative design"],
+    category: "Image & Design",
+    rating: 4.6,
+    totalVotes: 3245
   }
 ];
