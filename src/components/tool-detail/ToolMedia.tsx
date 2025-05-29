@@ -14,22 +14,45 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   const [videoError, setVideoError] = useState(false);
 
   const getOptimizedEmbedUrl = (url: string) => {
+    console.log('Processing video URL:', url);
+    
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1].split('&')[0];
-      return `https://www.youtube.com/embed/${videoId}?quality=hd1080&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=${window.location.origin}`;
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1`;
+      console.log('YouTube embed URL:', embedUrl);
+      return embedUrl;
     }
     if (url.includes('youtu.be/')) {
       const videoId = url.split('youtu.be/')[1].split('?')[0];
-      return `https://www.youtube.com/embed/${videoId}?quality=hd1080&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=${window.location.origin}`;
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1`;
+      console.log('YouTube short embed URL:', embedUrl);
+      return embedUrl;
     }
     if (url.includes('vimeo.com/')) {
       const videoId = url.split('vimeo.com/')[1].split('?')[0];
-      return `https://player.vimeo.com/video/${videoId}?quality=hd&autoplay=0`;
+      const embedUrl = `https://player.vimeo.com/video/${videoId}?autoplay=0`;
+      console.log('Vimeo embed URL:', embedUrl);
+      return embedUrl;
     }
+    console.log('Using original URL:', url);
     return url;
   };
 
+  const handleVideoError = () => {
+    console.error('Video failed to load for tool:', tool.title);
+    setVideoError(true);
+  };
+
   const MediaComponent = () => {
+    // Log what media we're trying to display
+    console.log('Tool media check:', {
+      title: tool.title,
+      hasImage: !!tool.imageUrl,
+      hasVideo: !!tool.videoUrl,
+      imageError,
+      videoError
+    });
+
     if (tool.imageUrl && !imageError) {
       return (
         <div className="relative w-full h-80 overflow-hidden rounded-xl bg-gray-800">
@@ -54,19 +77,22 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
     }
     
     if (tool.videoUrl && !videoError) {
+      const embedUrl = getOptimizedEmbedUrl(tool.videoUrl);
+      
       return (
         <div className="relative w-full h-80 overflow-hidden rounded-xl bg-gray-800">
           <iframe
             width="100%"
             height="320"
-            src={getOptimizedEmbedUrl(tool.videoUrl)}
+            src={embedUrl}
             title={`${tool.title} Demo`}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="w-full h-full rounded-xl"
             loading="eager"
-            onError={() => setVideoError(true)}
+            onError={handleVideoError}
+            onLoad={() => console.log('Video loaded successfully for:', tool.title)}
           />
           <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full p-2">
             <Play className="w-6 h-6 text-white" />
