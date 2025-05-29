@@ -18,19 +18,6 @@ import {
 
 export const healthcareProfessionals: Tool[] = [
   {
-    icon: Stethoscope,
-    title: "Medical Diagnosis GPT",
-    description: "AI-powered medical diagnosis tool for healthcare professionals, providing insights and support for accurate diagnoses.",
-    emoji: "🩺",
-    color: "from-blue-500 to-cyan-500",
-    directUrl: "https://medicaldiagnosisgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=a-VvJmQ-yjw",
-    category: "Healthcare",
-    tags: ["medical", "diagnosis", "healthcare", "AI", "health"],
-    rating: 4.5,
-    totalVotes: 2345
-  },
-  {
     icon: Heart,
     title: "Mental Health GPT",
     description: "AI-driven mental health support and guidance for individuals seeking emotional well-being and mental wellness resources.",
