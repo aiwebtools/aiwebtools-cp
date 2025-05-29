@@ -97,5 +97,31 @@ export const legalProfessionals: Tool[] = [
     tags: ["government", "legislators", "civic engagement", "policy tracking", "political"],
     rating: 4.3,
     totalVotes: 1987
+  },
+  {
+    icon: Scale,
+    title: "Criminologist GPT",
+    description: "Criminal justice research and analysis assistant for law enforcement, legal professionals, and criminology students.",
+    emoji: "🔍",
+    color: "from-red-500 to-gray-600",
+    directUrl: "https://criminologistgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=jgvqpqmRJi8",
+    tags: ["criminology", "criminal justice", "law enforcement", "research"],
+    category: "Legal Professionals",
+    rating: 4.4,
+    totalVotes: 2567
+  },
+  {
+    icon: FileText,
+    title: "Legislation Writer GPT",
+    description: "Professional legislative drafting assistant for creating, analyzing, and improving legal documents and policies.",
+    emoji: "📜",
+    color: "from-blue-600 to-gray-700",
+    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=poOGR-6bb2g",
+    tags: ["legislation", "legal drafting", "policy writing", "legal documents"],
+    category: "Legal Professionals",
+    rating: 4.5,
+    totalVotes: 2876
   }
 ];

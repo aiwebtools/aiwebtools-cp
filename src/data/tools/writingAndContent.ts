@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   BookOpen, PenTool, FileText, Edit3, Type, Scroll, 
@@ -8,16 +7,16 @@ import {
 export const writingAndContent: Tool[] = [
   {
     icon: BookOpen,
-    title: "Book Writer GPT",
-    description: "Creates professionally written full books about anything, ensuring well-structured content with seamless page-to-page continuity, engaging dialogue, and captivating storytelling. Transform your ideas into complete, publication-ready books.",
-    emoji: "✍️",
-    color: "from-blue-500 to-purple-600",
+    title: "BOOK WRITER GPT",
+    description: "Professional book writing assistant for authors, covering plot development, character creation, and publishing guidance.",
+    emoji: "📚",
+    color: "from-indigo-500 to-purple-600",
     directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-professional-advertisement-for-an-ai-tool-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    tags: ["book writing", "content creation", "storytelling", "publishing", "creative writing"],
+    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
+    tags: ["book writing", "authoring", "plot development", "publishing"],
     category: "Writing & Content",
-    rating: 4.5,
-    totalVotes: 3456
+    rating: 4.6,
+    totalVotes: 3876
   },
   {
     icon: PenTool,

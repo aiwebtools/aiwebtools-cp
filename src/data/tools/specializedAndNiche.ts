@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Car, Leaf, Fish, Shield, Home, Wrench, Dog, Star, 
@@ -8,16 +7,16 @@ import {
 export const specializedAndNiche: Tool[] = [
   {
     icon: Car,
-    title: "Automobile GPT",
-    description: "Your ultimate AI automotive expert, guiding through the automotive world with precision: best deals at local dealerships, detailed repair cost assessments, expert advice on maintenance and upgrades. Unmatched accuracy for informed vehicle decisions.",
-    emoji: "🏎️",
-    color: "from-red-500 to-orange-600",
+    title: "AUTOMOBILE GPT",
+    description: "Comprehensive automotive assistant for car enthusiasts, mechanics, and buyers with detailed vehicle information and diagnostics.",
+    emoji: "🚗",
+    color: "from-blue-500 to-gray-600",
     directUrl: "https://automobilegpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-stunning-advertisement-for-an-ai-tool-cal.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    tags: ["automotive", "car buying", "vehicle maintenance", "repair costs", "dealership advice"],
+    videoUrl: "https://www.youtube.com/watch?v=f_4aFnL-mk8",
+    tags: ["automotive", "cars", "diagnostics", "vehicle information"],
     category: "Specialized & Niche",
-    rating: 4.4,
-    totalVotes: 3234
+    rating: 4.3,
+    totalVotes: 2876
   },
   {
     icon: Leaf,
@@ -48,15 +47,15 @@ export const specializedAndNiche: Tool[] = [
   {
     icon: Shield,
     title: "Survivalist GPT",
-    description: "A survival expert in your pocket. AI companion with vast knowledge in survival techniques, offering step-by-step guidance, practical strategies, and personalized support for any survival or battlefield scenario. Your ultimate survival companion.",
-    emoji: "🛡️",
-    color: "from-gray-500 to-green-600",
+    description: "Wilderness survival guide and emergency preparedness assistant with practical survival skills and techniques.",
+    emoji: "🏕️",
+    color: "from-green-500 to-brown-600",
     directUrl: "https://survivalistgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-dramatic-advertisement-for-an-ai-tool-cal.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    tags: ["survival", "outdoor skills", "emergency preparedness", "wilderness survival", "self-reliance"],
+    videoUrl: "https://www.youtube.com/watch?v=RX6W8KC0y18&list=TLGGkaSLRgubL1gyODA1MjAyNQ",
+    tags: ["survival", "wilderness", "emergency preparedness", "outdoor skills"],
     category: "Specialized & Niche",
-    rating: 4.5,
-    totalVotes: 3456
+    rating: 4.4,
+    totalVotes: 2567
   },
   {
     icon: Home,
@@ -82,6 +81,19 @@ export const specializedAndNiche: Tool[] = [
     category: "Specialized & Niche",
     rating: 4.4,
     totalVotes: 3123
+  },
+  {
+    icon: Star,
+    title: "ImmortalizeME",
+    description: "Digital legacy and memory preservation platform for creating lasting digital memorials and life stories.",
+    emoji: "✨",
+    color: "from-purple-500 to-gold-600",
+    directUrl: "https://immortalizeme.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=JXLqPMfw49Y",
+    tags: ["digital legacy", "memory preservation", "memorials", "life stories"],
+    category: "Specialized & Niche",
+    rating: 4.2,
+    totalVotes: 2234
   },
   {
     icon: Star,

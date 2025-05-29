@@ -1,8 +1,7 @@
-
 import { Tool } from "@/types/tools";
 import { 
   GraduationCap, Globe, BookOpen, History, Search, 
-  MessageSquare, Lightbulb
+  MessageSquare, Lightbulb, Telescope
 } from "lucide-react";
 
 export const researchAndLearning: Tool[] = [
@@ -57,5 +56,18 @@ export const researchAndLearning: Tool[] = [
     tags: ["history", "historical figures", "education", "conversations", "learning"],
     rating: 4.1,
     totalVotes: 2456
+  },
+  {
+    icon: Telescope,
+    title: "Stellaris: 🚀AI Space Explorer",
+    description: "Advanced space exploration and astronomy research assistant with interactive cosmic simulations.",
+    emoji: "🚀",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://stellarisaiexplorer.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=tJwhDOE3mUM",
+    tags: ["space exploration", "astronomy", "cosmic simulations", "research"],
+    category: "Research & Learning",
+    rating: 4.7,
+    totalVotes: 3245
   }
 ];
