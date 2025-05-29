@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Search, Sparkles, Zap, Brain, Rocket, Stars } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "./GlobalSearchBar";
+import { allTools, getCategoriesWithCounts } from "@/data/toolsData";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -17,6 +18,13 @@ const HeroSection = () => {
     "Grow"
   ];
 
+  // Get real categories from the tools data
+  const categoriesWithCounts = getCategoriesWithCounts(allTools);
+  const topCategories = Object.entries(categoriesWithCounts)
+    .sort(([,a], [,b]) => b - a) // Sort by count, highest first
+    .slice(0, 6) // Take top 6 categories
+    .map(([category]) => category);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentWord((prev) => (prev + 1) % words.length);
@@ -30,6 +38,10 @@ const HeroSection = () => {
     if (toolsSection) {
       toolsSection.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleCategoryClick = (category: string) => {
+    navigate(`/category/${encodeURIComponent(category)}`);
   };
 
   return (
@@ -57,7 +69,7 @@ const HeroSection = () => {
           <div className="flex items-center justify-center space-x-4 mb-6">
             <Sparkles className="w-8 h-8 text-cyan-400 animate-pulse" />
             <p className="text-xl md:text-2xl text-cyan-100 max-w-3xl leading-relaxed">
-              Access 1000+ enterprise-grade AI solutions to transform your operations
+              Discover 1000+ cutting-edge AI tools to revolutionize your workflow
             </p>
             <Stars className="w-8 h-8 text-cyan-400 animate-pulse" />
           </div>
@@ -68,24 +80,13 @@ const HeroSection = () => {
           <GlobalSearchBar />
           
           <div className="flex flex-wrap justify-center gap-3 mt-6">
-            {[
-              "Business Analytics",
-              "Process Automation", 
-              "Customer Solutions",
-              "Operations Tools",
-              "Enterprise Software",
-              "Workflow AI"
-            ].map((tag) => (
+            {topCategories.map((category) => (
               <span 
-                key={tag}
+                key={category}
                 className="px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 rounded-full text-cyan-100 text-sm hover:from-cyan-500/30 hover:to-blue-500/30 transition-all duration-300 cursor-pointer cyber-glow"
-                onClick={() => {
-                  const searchEvent = new CustomEvent('globalSearch', { detail: tag });
-                  window.dispatchEvent(searchEvent);
-                  scrollToTools();
-                }}
+                onClick={() => handleCategoryClick(category)}
               >
-                {tag}
+                {category}
               </span>
             ))}
           </div>
