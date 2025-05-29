@@ -1,7 +1,8 @@
 
+
 import { Tool } from "@/types/tools";
 import { 
-  Search, List, Zap, Download,
+  Search, List, Zap,
   Shield, FlaskConical, Atom
 } from "lucide-react";
 
@@ -43,18 +44,6 @@ export const aiToolsAndUtilities: Tool[] = [
     totalVotes: 1987
   },
   {
-    icon: Download,
-    title: "AI PDF Converter",
-    description: "AI-powered PDF converter that converts PDFs to various formats with high accuracy and speed.",
-    emoji: "📄",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://aipdfconverter.lovable.app/?via=aiwebtools",
-    tags: ["PDF converter", "AI PDF", "file conversion", "document conversion", "PDF tools"],
-    category: "AI Tools & Utilities",
-    rating: 4.2,
-    totalVotes: 2123
-  },
-  {
     icon: Shield,
     title: "AI Legal Assistant",
     description: "AI-powered legal assistant that provides legal information, document review, and legal research assistance.",
@@ -91,3 +80,4 @@ export const aiToolsAndUtilities: Tool[] = [
     totalVotes: 1876
   }
 ];
+

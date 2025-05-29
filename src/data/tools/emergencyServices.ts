@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Shield, 
@@ -12,18 +13,6 @@ import {
 } from "lucide-react";
 
 export const emergencyServices: Tool[] = [
-  {
-    icon: Phone,
-    title: "Emergency Response Coordinator GPT",
-    description: "AI assistant for emergency response coordination, providing crisis management guidance and emergency protocol assistance.",
-    emoji: "🚨",
-    color: "from-red-500 to-orange-600",
-    directUrl: "https://emergencyresponsegpt.lovable.app/?via=aiwebtools",
-    tags: ["emergency response", "crisis management", "emergency protocols", "coordination", "safety"],
-    category: "Emergency Services",
-    rating: 4.4,
-    totalVotes: 2876
-  },
   {
     icon: Plus,
     title: "Paramedic Assistant GPT",
