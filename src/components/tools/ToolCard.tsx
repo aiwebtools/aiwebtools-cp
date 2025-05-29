@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tool } from "@/types/tools";
@@ -17,6 +18,7 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
   
   const imageHeight = isFeatured ? "240px" : "180px";
   const cardSize = isFeatured ? "w-16 h-16" : "w-12 h-12";
@@ -36,23 +38,21 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
 
   // Optimized YouTube URL conversion with quality and performance settings
   const getOptimizedEmbedUrl = (url: string) => {
+    console.log('Processing video URL for card:', url);
+    
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1].split('&')[0];
-      return `https://www.youtube.com/embed/${videoId}?quality=hd720&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=${window.location.origin}`;
+      return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
     }
     if (url.includes('youtu.be/')) {
       const videoId = url.split('youtu.be/')[1].split('?')[0];
-      return `https://www.youtube.com/embed/${videoId}?quality=hd720&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=${window.location.origin}`;
+      return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
+    }
+    if (url.includes('vimeo.com/')) {
+      const videoId = url.split('vimeo.com/')[1].split('?')[0];
+      return `https://player.vimeo.com/video/${videoId}?autoplay=0`;
     }
     return url;
-  };
-
-  // Handle button click - either go to tool page or external URL
-  const handleButtonClick = (e: React.MouseEvent) => {
-    if (tool.directUrl) {
-      e.preventDefault();
-      window.open(tool.directUrl, '_blank', 'noopener,noreferrer');
-    }
   };
 
   // Enhanced description with better fallbacks
@@ -68,8 +68,46 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
     return `${baseDescription}${categoryInfo}${featureInfo} Perfect for professionals and enthusiasts looking to leverage cutting-edge AI technology.`;
   };
 
-  // Optimized image component with proper aspect ratio and no cropping
+  // Handle video thumbnail click
+  const handleVideoClick = () => {
+    if (tool.videoUrl) {
+      setShowVideo(true);
+    }
+  };
+
+  // Enhanced media component that prioritizes video when available
   const MediaComponent = () => {
+    console.log('Tool media check for card:', {
+      title: tool.title,
+      hasImage: !!tool.imageUrl,
+      hasVideo: !!tool.videoUrl,
+      showVideo,
+      imageError,
+      videoError
+    });
+
+    // Show video if we have one and either showVideo is true or we don't have an image
+    if (tool.videoUrl && (showVideo || !tool.imageUrl) && !videoError) {
+      return (
+        <div className="relative w-full overflow-hidden rounded-lg bg-gray-800" style={{ height: imageHeight, aspectRatio: '16/9' }}>
+          <iframe
+            width="100%"
+            height="100%"
+            src={getOptimizedEmbedUrl(tool.videoUrl)}
+            title={`${tool.title} Demo`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="w-full h-full"
+            loading="lazy"
+            onError={() => setVideoError(true)}
+            onLoad={() => console.log('Video loaded in card for:', tool.title)}
+          />
+        </div>
+      );
+    }
+
+    // Show image with video overlay if we have both
     if (tool.imageUrl && !imageError) {
       return (
         <div className="relative w-full overflow-hidden rounded-lg bg-gray-800" style={{ height: imageHeight, aspectRatio: '16/9' }}>
@@ -89,27 +127,38 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
             onLoad={() => setImageLoaded(true)}
             onError={() => setImageError(true)}
           />
+          {tool.videoUrl && !videoError && (
+            <div 
+              className="absolute inset-0 bg-black/30 flex items-center justify-center cursor-pointer group hover:bg-black/50 transition-all duration-300"
+              onClick={handleVideoClick}
+            >
+              <div className="bg-white/90 rounded-full p-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Play className="w-8 h-8 text-gray-800 ml-1" fill="currentColor" />
+              </div>
+              <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
+                VIDEO
+              </div>
+            </div>
+          )}
         </div>
       );
     }
     
+    // Show video thumbnail for video-only tools
     if (tool.videoUrl && !videoError) {
       return (
-        <div className="relative w-full overflow-hidden rounded-lg bg-gray-800" style={{ height: imageHeight, aspectRatio: '16/9' }}>
-          <iframe
-            width="100%"
-            height="100%"
-            src={getOptimizedEmbedUrl(tool.videoUrl)}
-            title={`${tool.title} Demo`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            className="w-full h-full"
-            loading="lazy"
-            onError={() => setVideoError(true)}
-          />
-          <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-sm rounded-full p-1">
-            <Play className="w-4 h-4 text-white" />
+        <div 
+          className="relative w-full overflow-hidden rounded-lg bg-gray-800 cursor-pointer group"
+          style={{ height: imageHeight, aspectRatio: '16/9' }}
+          onClick={handleVideoClick}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center group-hover:from-gray-600 group-hover:to-gray-700 transition-all duration-300">
+            <div className="bg-white/90 rounded-full p-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <Play className="w-12 h-12 text-gray-800 ml-1" fill="currentColor" />
+            </div>
+            <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
+              VIDEO DEMO
+            </div>
           </div>
         </div>
       );
