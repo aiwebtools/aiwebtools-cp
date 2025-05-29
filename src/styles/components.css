@@ -47,6 +47,101 @@
     }
   }
 
+  /* Sidebar sparkle effects */
+  .sidebar-sparkles {
+    position: relative;
+    background: linear-gradient(135deg, 
+      rgba(0, 10, 20, 0.95) 0%, 
+      rgba(5, 15, 30, 0.98) 25%, 
+      rgba(10, 20, 40, 0.95) 50%, 
+      rgba(5, 15, 30, 0.98) 75%, 
+      rgba(0, 10, 20, 0.95) 100%
+    );
+    box-shadow: 
+      inset 0 0 30px rgba(0, 255, 255, 0.1),
+      inset 0 0 60px rgba(255, 0, 255, 0.05),
+      0 0 20px rgba(0, 255, 255, 0.2);
+    border-right: 1px solid rgba(0, 255, 255, 0.3);
+  }
+
+  .sidebar-sparkles::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 90%, rgba(0, 255, 255, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 90% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
+    animation: sparkleShimmer 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .sidebar-sparkles::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(1px 1px at 10px 20px, rgba(0, 255, 255, 0.8), transparent),
+      radial-gradient(1px 1px at 50px 80px, rgba(255, 0, 255, 0.6), transparent),
+      radial-gradient(1px 1px at 80px 40px, rgba(255, 255, 255, 0.7), transparent),
+      radial-gradient(1px 1px at 30px 120px, rgba(0, 255, 255, 0.5), transparent),
+      radial-gradient(1px 1px at 90px 160px, rgba(255, 0, 255, 0.4), transparent),
+      radial-gradient(1px 1px at 120px 60px, rgba(255, 255, 255, 0.6), transparent);
+    background-repeat: repeat;
+    background-size: 150px 200px;
+    animation: sparkleFloat 8s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes sparkleShimmer {
+    0%, 100% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes sparkleFloat {
+    0% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.7;
+    }
+    25% {
+      transform: translateY(-10px) translateX(5px);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-5px) translateX(-3px);
+      opacity: 0.8;
+    }
+    75% {
+      transform: translateY(-15px) translateX(8px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.7;
+    }
+  }
+
+  /* Enhanced sparkles on scroll */
+  .sidebar-sparkles:hover::before {
+    animation: sparkleShimmer 2s ease-in-out infinite;
+  }
+
+  .sidebar-sparkles:hover::after {
+    animation: sparkleFloat 4s linear infinite;
+  }
+
   /* Performance optimizations for mobile */
   @media (max-width: 768px) {
     .cyber-grid {
@@ -64,6 +159,11 @@
     
     .interactive-button:hover {
       transform: none;
+    }
+
+    .sidebar-sparkles::before,
+    .sidebar-sparkles::after {
+      animation-duration: 6s; /* Slower animations on mobile */
     }
   }
 }
