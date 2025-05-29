@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Tool } from "@/types/tools";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
-import { ExternalLink, Play, Image as ImageIcon } from "lucide-react";
+import { ExternalLink, Image as ImageIcon } from "lucide-react";
 import { allTools } from "@/data/toolsData";
 import { useState } from "react";
 import StarRating from "./StarRating";
@@ -60,7 +60,7 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
     return `${baseDescription}${categoryInfo}${featureInfo} Perfect for professionals and enthusiasts looking to leverage cutting-edge AI technology.`;
   };
 
-  // Enhanced media component with priority for your tools
+  // Enhanced media component with priority for your tools - NO VIDEO OVERLAYS in card view
   const MediaComponent = () => {
     console.log('Tool media check for card:', {
       title: tool.title,
@@ -90,17 +90,11 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
             onLoad={() => setImageLoaded(true)}
             onError={() => setImageError(true)}
           />
-          {/* Video indicator if both image and video exist */}
-          {tool.videoUrl && (
-            <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
-              VIDEO
-            </div>
-          )}
         </div>
       );
     }
 
-    // Priority 2: YouTube video with thumbnail
+    // Priority 2: YouTube video with thumbnail - NO OVERLAY, just thumbnail
     if (tool.videoUrl) {
       const thumbnailUrl = getYouTubeThumbnail(tool.videoUrl);
       
@@ -109,7 +103,7 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
           <div className="relative w-full overflow-hidden rounded-lg bg-gray-800" style={{ height: imageHeight, aspectRatio: '16/9' }}>
             {!imageLoaded && (
               <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center animate-pulse">
-                <Play className="w-8 h-8 text-gray-500" />
+                <ImageIcon className="w-8 h-8 text-gray-500" />
               </div>
             )}
             <img
@@ -123,27 +117,18 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
               onLoad={() => setImageLoaded(true)}
               onError={() => setImageError(true)}
             />
-            <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
-              VIDEO DEMO
-            </div>
-            <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
-              <Play className="w-12 h-12 text-white opacity-0 hover:opacity-100 transition-opacity duration-300" />
-            </div>
           </div>
         );
       }
       
-      // Fallback for video without thumbnail
+      // Fallback for video without thumbnail - simple placeholder
       return (
         <div 
-          className="relative w-full overflow-hidden rounded-lg bg-gradient-to-br from-gray-700 to-gray-900 cursor-pointer group"
+          className="relative w-full overflow-hidden rounded-lg bg-gradient-to-br from-gray-700 to-gray-900"
           style={{ height: imageHeight, aspectRatio: '16/9' }}
         >
-          <div className="absolute inset-0 flex items-center justify-center group-hover:from-gray-600 group-hover:to-gray-800 transition-all duration-300">
-            <Play className="w-12 h-12 text-gray-400 group-hover:text-white transition-colors duration-300" />
-            <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
-              VIDEO DEMO
-            </div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className={`${isFeatured ? 'text-4xl' : 'text-3xl'} text-gray-400`}>{tool.emoji}</span>
           </div>
         </div>
       );
