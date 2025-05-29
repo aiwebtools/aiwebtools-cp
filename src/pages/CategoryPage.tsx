@@ -23,6 +23,7 @@ const CategoryPage = () => {
   const toolsGridRef = useRef<HTMLDivElement>(null);
   const categoryButtonsRef = useRef<HTMLDivElement>(null);
   
+  // Use the same consolidated category calculation
   const categoriesWithCounts = getCategoriesWithCounts(allTools);
   
   // Handle "All Categories" special case

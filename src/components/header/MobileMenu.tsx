@@ -15,6 +15,7 @@ import GlobalSearchBar from "../GlobalSearchBar";
 
 const MobileMenu = () => {
   const navigate = useNavigate();
+  // Use the same consolidated category calculation as everywhere else
   const categoriesWithCounts = getCategoriesWithCounts(allTools);
 
   // Psychologically Strategic Order

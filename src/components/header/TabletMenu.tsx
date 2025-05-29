@@ -14,6 +14,7 @@ import { getCategoriesWithCounts } from "@/utils/categoryUtils";
 
 const TabletMenu = () => {
   const navigate = useNavigate();
+  // Use the same consolidated category calculation as everywhere else
   const categoriesWithCounts = getCategoriesWithCounts(allTools);
 
   // Psychologically Strategic Order
