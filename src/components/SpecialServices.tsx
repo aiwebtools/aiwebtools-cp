@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -33,20 +32,20 @@ const specialServices = [
     color: "from-cyan-500 to-blue-600",
     features: ["Voice Cloning", "Personality AI", "Memory Integration", "Real-time Conversations"],
     directUrl: "https://immortalizeme.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=immortalize-video" // You'll need to provide the actual video URL
+    videoUrl: "https://www.youtube.com/watch?v=JXLqPMfw49Y"
   }
 ];
 
+const getVideoId = (url: string) => {
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+  return match ? match[1] : null;
+};
+
+const handleAccessSuite = (directUrl: string) => {
+  window.open(directUrl, '_blank', 'noopener,noreferrer');
+};
+
 const SpecialServices = () => {
-  const getVideoId = (url: string) => {
-    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
-    return match ? match[1] : null;
-  };
-
-  const handleAccessSuite = (directUrl: string) => {
-    window.open(directUrl, '_blank', 'noopener,noreferrer');
-  };
-
   return (
     <section className="py-20 bg-gradient-to-br from-slate-900 to-purple-900">
       <div className="container mx-auto px-4">
