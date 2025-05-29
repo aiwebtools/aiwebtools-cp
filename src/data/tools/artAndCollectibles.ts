@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Palette, Camera, Search, Star, Award, Crown,
