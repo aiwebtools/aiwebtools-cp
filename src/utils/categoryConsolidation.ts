@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 
 // Enhanced mapping of old categories to new consolidated categories
@@ -53,7 +54,6 @@ const categoryMapping: Record<string, string> = {
   "Audio & Music Tools": "Audio & Voice Tools",
   "Audio & Voice Tools": "Audio & Voice Tools",
   "Audio & Podcasting": "Audio & Voice Tools",
-  "Audio & Music Tools": "Audio & Voice Tools",
   "Text to Speech": "Audio & Voice Tools",
   
   // Education & Learning consolidation
@@ -115,7 +115,6 @@ const categoryMapping: Record<string, string> = {
   "Information & Research": "Information & Research",
   
   "Health & Wellness": "Health & Wellness",
-  "Health & Fitness": "Health & Wellness",
   
   // New specialized categories
   "AI Chat & Assistants": "AI Chat & Assistants",
