@@ -1,9 +1,10 @@
 
-import { forwardRef } from "react";
+import { forwardRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import ToolCard from "@/components/tools/ToolCard";
 import { Button } from "@/components/ui/button";
 import { Tool } from "@/types/tools";
+import { createDeduplicatedToolsList } from "@/utils/toolDeduplication";
 
 interface ToolsDisplayProps {
   selectedCategory: string;
@@ -20,19 +21,24 @@ const ToolsDisplay = forwardRef<HTMLDivElement, ToolsDisplayProps>(
       navigate('/');
     };
 
+    // Apply deduplication to prevent frequent repeats
+    const deduplicatedTools = useMemo(() => {
+      return createDeduplicatedToolsList(categoryTools, 8);
+    }, [categoryTools]);
+
     // Use displayedCount if provided, otherwise show all tools
-    const toolsToDisplay = displayedCount ? categoryTools.slice(0, displayedCount) : categoryTools;
+    const toolsToDisplay = displayedCount ? deduplicatedTools.slice(0, displayedCount) : deduplicatedTools;
 
     return (
       <div className="mb-16 px-4 sm:px-0" ref={ref}>
-        {categoryTools.length > 0 ? (
+        {deduplicatedTools.length > 0 ? (
           <>
             <div className="text-center mb-6 sm:mb-8">
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">
                 AI Tools in {selectedCategory}
               </h2>
               <p className="text-sm sm:text-base text-gray-400">
-                Showing {toolsToDisplay.length} of {categoryTools.length} tools
+                Showing {toolsToDisplay.length} of {deduplicatedTools.length} tools
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
@@ -42,7 +48,7 @@ const ToolsDisplay = forwardRef<HTMLDivElement, ToolsDisplayProps>(
             </div>
 
             {/* Show loading indicator when infinite scroll is active and more tools are available */}
-            {hasInfiniteScroll && displayedCount && displayedCount < categoryTools.length && (
+            {hasInfiniteScroll && displayedCount && displayedCount < deduplicatedTools.length && (
               <div className="text-center mt-8 text-cyan-200">
                 <div className="flex items-center justify-center space-x-2">
                   <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-cyan-500"></div>
@@ -52,9 +58,9 @@ const ToolsDisplay = forwardRef<HTMLDivElement, ToolsDisplayProps>(
             )}
 
             {/* Show completion message when all tools are displayed */}
-            {hasInfiniteScroll && displayedCount && displayedCount >= categoryTools.length && categoryTools.length > 20 && (
+            {hasInfiniteScroll && displayedCount && displayedCount >= deduplicatedTools.length && deduplicatedTools.length > 20 && (
               <div className="text-center mt-12 text-cyan-300">
-                🎉 You've seen all {categoryTools.length} tools in {selectedCategory}! 
+                🎉 You've seen all {deduplicatedTools.length} tools in {selectedCategory}! 
                 <span className="block mt-2">Try exploring other categories to discover more tools.</span>
               </div>
             )}

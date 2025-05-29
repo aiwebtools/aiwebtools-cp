@@ -4,7 +4,9 @@ import ToolCard from "@/components/tools/ToolCard";
 import LoadMoreButton from "@/components/tools/LoadMoreButton";
 import SimilarToolsRecommendation from "@/components/tools/SimilarToolsRecommendation";
 import { getSimilarTools, shouldShowSimilarTools } from "@/utils/similarTools";
+import { createDeduplicatedToolsList } from "@/utils/toolDeduplication";
 import { allTools } from "@/data/toolsData";
+import { useMemo } from "react";
 
 interface ToolsGridProps {
   tools: Tool[];
@@ -23,9 +25,14 @@ const ToolsGrid = ({
   onLoadMore,
   hasInfiniteScroll = false 
 }: ToolsGridProps) => {
-  const displayTools = tools.slice(0, displayedCount);
-  const shouldShowSimilar = shouldShowSimilarTools(tools.length);
-  const similarTools = shouldShowSimilar ? getSimilarTools(tools, allTools) : [];
+  // Apply deduplication to prevent frequent repeats
+  const deduplicatedTools = useMemo(() => {
+    return createDeduplicatedToolsList(tools, 8);
+  }, [tools]);
+
+  const displayTools = deduplicatedTools.slice(0, displayedCount);
+  const shouldShowSimilar = shouldShowSimilarTools(deduplicatedTools.length);
+  const similarTools = shouldShowSimilar ? getSimilarTools(deduplicatedTools, allTools) : [];
 
   const getSectionTitle = () => {
     if (selectedCategory) {
@@ -56,11 +63,11 @@ const ToolsGrid = ({
       {/* Show similar tools recommendation when original results are limited */}
       <SimilarToolsRecommendation 
         similarTools={similarTools}
-        originalCount={tools.length}
+        originalCount={deduplicatedTools.length}
       />
 
       {/* Show loading indicator when infinite scroll is active and more tools are available */}
-      {hasInfiniteScroll && displayedCount < tools.length && (
+      {hasInfiniteScroll && displayedCount < deduplicatedTools.length && (
         <div className="text-center mt-8 text-cyan-200">
           <div className="flex items-center justify-center space-x-2">
             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-cyan-500"></div>
@@ -70,9 +77,9 @@ const ToolsGrid = ({
       )}
 
       {/* Show completion message when all tools are displayed */}
-      {hasInfiniteScroll && displayedCount >= tools.length && tools.length > 20 && (
+      {hasInfiniteScroll && displayedCount >= deduplicatedTools.length && deduplicatedTools.length > 20 && (
         <div className="text-center mt-12 text-cyan-300">
-          🎉 You've seen all {tools.length} tools! 
+          🎉 You've seen all {deduplicatedTools.length} tools! 
           <span className="block mt-2">Try searching or filtering by category to discover specific tools.</span>
         </div>
       )}
@@ -81,7 +88,7 @@ const ToolsGrid = ({
       {!hasInfiniteScroll && (
         <LoadMoreButton 
           displayedCount={displayedCount}
-          totalCount={tools.length}
+          totalCount={deduplicatedTools.length}
           onLoadMore={onLoadMore}
         />
       )}
