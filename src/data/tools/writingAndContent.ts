@@ -1,27 +1,25 @@
-
 import { Tool } from "@/types/tools";
 import { 
   PenTool, 
   FileText, 
   BookOpen, 
   Edit3, 
-  Type, 
   MessageSquare, 
-  Users, 
-  Briefcase, 
-  Globe, 
-  Mail, 
-  Target, 
-  TrendingUp, 
-  Zap, 
-  Heart, 
-  Coffee, 
-  Music, 
-  Film, 
-  Camera, 
-  Palette, 
+  Newspaper,
+  Scroll,
+  Feather,
+  Type,
+  Hash,
+  Mail,
+  Megaphone,
+  Users,
+  Target,
+  TrendingUp,
+  Calendar,
+  Share2,
   Lightbulb,
-  Newspaper
+  Zap,
+  Eye
 } from "lucide-react";
 
 export const writingAndContent: Tool[] = [
@@ -49,5 +47,18 @@ export const writingAndContent: Tool[] = [
     category: "Writing & Content",
     rating: 4.7,
     totalVotes: 3892
+  },
+  {
+    icon: Eye,
+    title: "Clarity Omni",
+    description: "Advanced writing assistant that provides comprehensive clarity analysis, readability enhancement, and content optimization for all types of written communication.",
+    emoji: "🔍",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://clarityomni.lovable.app/?via=aiwebtools",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298678930473072/clarity.webp?ex=683874da&is=6837235a&hm=290a2f80b52f013562d0b3f01168973ac86850a011bf4c7dcdfb78ca0e91aad0&=&format=webp&width=2340&height=1312",
+    tags: ["writing", "clarity", "readability", "content optimization"],
+    category: "Writing & Content",
+    rating: 4.5,
+    totalVotes: 2876
   }
 ];
