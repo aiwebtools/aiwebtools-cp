@@ -1,4 +1,4 @@
-import { Video, Play, Film, Camera, Zap, Wand2, Edit, Monitor } from "lucide-react";
+import { Video, Play, Film, Camera, Zap, Wand2, Edit, Monitor, Sparkles } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 export const advancedVideoTools: Tool[] = [
