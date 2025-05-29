@@ -15,6 +15,7 @@ interface ToolsGridProps {
   searchTerm: string;
   onLoadMore: () => void;
   hasInfiniteScroll?: boolean;
+  isLoading?: boolean;
 }
 
 const ToolsGrid = ({ 
@@ -23,7 +24,8 @@ const ToolsGrid = ({
   selectedCategory, 
   searchTerm, 
   onLoadMore,
-  hasInfiniteScroll = false 
+  hasInfiniteScroll = false,
+  isLoading = false
 }: ToolsGridProps) => {
   // Apply deduplication to prevent frequent repeats
   const deduplicatedTools = useMemo(() => {
@@ -33,6 +35,7 @@ const ToolsGrid = ({
   const displayTools = deduplicatedTools.slice(0, displayedCount);
   const shouldShowSimilar = shouldShowSimilarTools(deduplicatedTools.length);
   const similarTools = shouldShowSimilar ? getSimilarTools(deduplicatedTools, allTools) : [];
+  const hasMoreTools = displayedCount < deduplicatedTools.length;
 
   const getSectionTitle = () => {
     if (selectedCategory) {
@@ -54,8 +57,14 @@ const ToolsGrid = ({
         </h3>
       </div>
 
-      {/* Optimized grid with better mobile performance */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-0" style={{ contentVisibility: 'auto' }}>
+      {/* Optimized grid with virtual scrolling hints for better performance */}
+      <div 
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-0" 
+        style={{ 
+          contentVisibility: 'auto',
+          containIntrinsicSize: '300px' // Helps with layout stability
+        }}
+      >
         {displayTools.map((tool, index) => (
           <ToolCard key={`${tool.title}-${index}`} tool={tool} />
         ))}
@@ -67,21 +76,26 @@ const ToolsGrid = ({
         originalCount={deduplicatedTools.length}
       />
 
-      {/* Show loading indicator when infinite scroll is active and more tools are available */}
-      {hasInfiniteScroll && displayedCount < deduplicatedTools.length && (
-        <div className="text-center mt-8 text-cyan-200">
-          <div className="flex items-center justify-center space-x-2">
-            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-cyan-500"></div>
-            <span>Loading more tools...</span>
+      {/* Improved loading state - only show when actually loading more tools */}
+      {hasInfiniteScroll && isLoading && hasMoreTools && (
+        <div className="text-center mt-8 py-8">
+          <div className="flex items-center justify-center space-x-3">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-500"></div>
+            <span className="text-cyan-200 text-lg">Loading more amazing tools...</span>
           </div>
         </div>
       )}
 
-      {/* Show completion message when all tools are displayed */}
-      {hasInfiniteScroll && displayedCount >= deduplicatedTools.length && deduplicatedTools.length > 15 && (
-        <div className="text-center mt-12 text-cyan-300">
-          🎉 You've seen all {deduplicatedTools.length} tools! 
-          <span className="block mt-2">Try searching or filtering by category to discover specific tools.</span>
+      {/* Show completion message only when all tools are displayed and not loading */}
+      {hasInfiniteScroll && !hasMoreTools && !isLoading && deduplicatedTools.length > 15 && (
+        <div className="text-center mt-12 py-8 text-cyan-300">
+          <div className="text-2xl mb-2">🎉</div>
+          <div className="text-lg font-semibold mb-2">
+            You've explored all {deduplicatedTools.length} tools!
+          </div>
+          <div className="text-sm opacity-80">
+            Try searching or filtering by category to discover specific tools.
+          </div>
         </div>
       )}
 

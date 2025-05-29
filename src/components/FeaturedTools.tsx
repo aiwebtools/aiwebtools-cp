@@ -9,50 +9,64 @@ import ToolsGrid from "@/components/tools/ToolsGrid";
 const FeaturedTools = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [displayedCount, setDisplayedCount] = useState<number>(12); // Reduced from 20 for mobile
+  const [displayedCount, setDisplayedCount] = useState<number>(12);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleCategoryChange = (category: string | null) => {
     setSelectedCategory(category);
-    setSearchTerm(""); // Clear search term when a category is selected
-    setDisplayedCount(12); // Reset displayed count when category changes
+    setSearchTerm("");
+    setDisplayedCount(12);
+    setIsLoading(false);
   };
 
   const handleSearchChange = (term: string) => {
     setSearchTerm(term);
-    setSelectedCategory(null); // Clear category when a search term is entered
-    setDisplayedCount(12); // Reset displayed count when search term changes
+    setSelectedCategory(null);
+    setDisplayedCount(12);
+    setIsLoading(false);
   };
 
   const handleLoadMore = useCallback(() => {
-    setDisplayedCount((prevCount) => prevCount + 8); // Smaller increments for mobile
-  }, []);
+    if (isLoading) return;
+    
+    setIsLoading(true);
+    setTimeout(() => {
+      setDisplayedCount((prevCount) => prevCount + 8);
+      setIsLoading(false);
+    }, 100);
+  }, [isLoading]);
 
-  // Optimized infinite scroll with throttling for mobile
+  // Improved infinite scroll with better performance and glitch prevention
   useEffect(() => {
-    let ticking = false;
+    let timeoutId: NodeJS.Timeout;
     
     const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          if (
-            window.innerHeight + document.documentElement.scrollTop
-            >= document.documentElement.offsetHeight - 800 // Reduced threshold for mobile
-          ) {
-            const filteredToolsLength = filteredTools.length;
-            if (displayedCount < filteredToolsLength) {
-              handleLoadMore();
-            }
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
+      if (isLoading) return;
+      
+      // Clear previous timeout to prevent multiple triggers
+      clearTimeout(timeoutId);
+      
+      timeoutId = setTimeout(() => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // More conservative threshold to prevent glitches
+        const threshold = 600;
+        const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
+        
+        if (nearBottom && displayedCount < filteredTools.length && !isLoading) {
+          handleLoadMore();
+        }
+      }, 100); // Debounce scroll events
     };
 
-    // Use passive event listener for better mobile performance
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [displayedCount, handleLoadMore]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
+    };
+  }, [displayedCount, handleLoadMore, isLoading]);
 
   const filteredTools = useMemo(() => {
     let tools = allTools;
@@ -100,6 +114,7 @@ const FeaturedTools = () => {
         searchTerm={searchTerm}
         onLoadMore={handleLoadMore}
         hasInfiniteScroll={true}
+        isLoading={isLoading}
       />
     </div>
   );

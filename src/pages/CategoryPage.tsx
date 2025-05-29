@@ -19,6 +19,7 @@ const CategoryPage = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>(categoryName || "");
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [displayedCount, setDisplayedCount] = useState<number>(20);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const toolsGridRef = useRef<HTMLDivElement>(null);
   const categoryButtonsRef = useRef<HTMLDivElement>(null);
   
@@ -34,28 +35,51 @@ const CategoryPage = () => {
     }
   }, [categoryName]);
 
+  const handleLoadMore = useCallback(() => {
+    if (isLoading) return;
+    
+    setIsLoading(true);
+    setTimeout(() => {
+      setDisplayedCount(prev => prev + 20);
+      setIsLoading(false);
+    }, 100);
+  }, [isLoading]);
+
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300);
       
-      // Infinite scroll logic
-      if (
-        window.innerHeight + document.documentElement.scrollTop
-        >= document.documentElement.offsetHeight - 1000
-      ) {
-        if (displayedCount < categoryTools.length) {
-          setDisplayedCount(prev => prev + 20);
+      if (isLoading) return;
+      
+      clearTimeout(timeoutId);
+      
+      timeoutId = setTimeout(() => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        const threshold = 800;
+        const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
+        
+        if (nearBottom && displayedCount < categoryTools.length && !isLoading) {
+          handleLoadMore();
         }
-      }
+      }, 150);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [displayedCount, categoryTools.length]);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
+    };
+  }, [displayedCount, categoryTools.length, handleLoadMore, isLoading]);
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
-    setDisplayedCount(20); // Reset displayed count when category changes
+    setDisplayedCount(20);
+    setIsLoading(false);
     navigate(`/category/${encodeURIComponent(category)}`);
     
     // Scroll to tools grid after a short delay to ensure the page has updated
@@ -123,6 +147,7 @@ const CategoryPage = () => {
             categoryTools={categoryTools}
             displayedCount={displayedCount}
             hasInfiniteScroll={true}
+            isLoading={isLoading}
           />
 
           <CategorySelector
