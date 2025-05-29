@@ -186,10 +186,10 @@ export const createRobotVoice = (toolName: string, destinationUrl: string) => {
     
     const utterance = new SpeechSynthesisUtterance(message);
     
-    // Configure voice for mystical robot effect
+    // Configure voice for mystical robot effect with increased volume
     utterance.rate = 0.6; // Even slower for more dramatic effect
     utterance.pitch = 0.2; // Much deeper, more robotic tone
-    utterance.volume = 0.9; // Clear and prominent
+    utterance.volume = 1.0; // Maximum volume for better audibility
     
     // Try to find a deeper, more robotic voice
     const voices = speechSynthesis.getVoices();
