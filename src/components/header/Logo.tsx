@@ -24,7 +24,7 @@ const Logo = () => {
         <div className="text-xs md:text-sm text-gray-400">
           Presented by{" "}
           <a 
-            href="https://www.aiwebtools.ai" 
+            href="https://aitools.company" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-cyan-400 hover:text-cyan-300 transition-colors underline"
