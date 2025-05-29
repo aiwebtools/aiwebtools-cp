@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Bot, 
@@ -21,7 +22,8 @@ import {
   Mail,
   BarChart,
   Shield,
-  Star
+  Star,
+  ShoppingCart
 } from "lucide-react";
 
 export const productivityAndAutomationTools: Tool[] = [
