@@ -1,6 +1,7 @@
 
+
 import { Separator } from "@/components/ui/separator";
-import { Globe, Mail, Phone, Home, MapPin, Shield, Plus } from "lucide-react";
+import { Globe, Mail, Phone, Home, MapPin, Shield, Plus, Upload } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
@@ -53,6 +54,59 @@ Best regards,
     window.location.href = mailtoUrl;
   };
 
+  const handleSubmitTool = () => {
+    const subject = encodeURIComponent('AI Tool Submission - List My Tool');
+    const body = encodeURIComponent(`Hi AI Web Tools Team,
+
+I would like to submit my AI tool to be listed on your platform.
+
+Tool Information:
+1. Tool Name:
+   [Your tool name here]
+
+2. Tool Description (brief overview):
+   [Describe what your tool does]
+
+3. Tool URL/Website:
+   [Your tool's website or access link]
+
+4. Category (e.g., Writing, Business, Creative, etc.):
+   [Which category does your tool fit into]
+
+5. Target Audience:
+   [Who is your tool designed for]
+
+6. Key Features:
+   [List the main features and capabilities]
+
+7. Pricing Model (Free, Freemium, Paid):
+   [How is your tool priced]
+
+8. Tool Logo/Icon (if available):
+   [Please attach or provide link to your tool's logo]
+
+9. Screenshots or Demo (optional):
+   [Any visual examples of your tool in action]
+
+10. Contact Information:
+    Name: [Your name]
+    Email: [Your email]
+    Company/Organization: [If applicable]
+
+Additional Information:
+[Any other details about your tool]
+
+I confirm that I own or have permission to submit this tool for listing.
+
+Thank you for considering my submission!
+
+Best regards,
+[Your name]`);
+    
+    const mailtoUrl = `mailto:contact@ai-webtools.com?subject=${subject}&body=${body}`;
+    window.location.href = mailtoUrl;
+  };
+
   return (
     <footer className="bg-black text-cyan-100 py-16 border-t border-cyan-500/30">
       <div className="container mx-auto px-4">
@@ -69,7 +123,16 @@ Best regards,
             <Shield className="w-6 h-6" />
           </a>
           
-          <div className="pt-2">
+          <div className="pt-2 space-y-3">
+            <button
+              onClick={handleSubmitTool}
+              className="inline-flex items-center justify-center space-x-3 px-12 py-6 bg-gradient-to-r from-purple-600 via-purple-500 to-purple-600 hover:from-purple-500 hover:via-purple-400 hover:to-purple-500 text-white font-bold text-lg rounded-full shadow-2xl shadow-purple-500/40 hover:shadow-purple-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-purple-400 hover:border-purple-300 cyber-glow"
+            >
+              <Upload className="w-6 h-6" />
+              <span className="text-xl">SUBMIT YOUR AI TOOL</span>
+              <Upload className="w-6 h-6" />
+            </button>
+            
             <button
               onClick={handleRequestTool}
               className="inline-flex items-center justify-center space-x-3 px-12 py-6 bg-gradient-to-r from-green-600 via-green-500 to-green-600 hover:from-green-500 hover:via-green-400 hover:to-green-500 text-black font-bold text-lg rounded-full shadow-2xl shadow-green-500/40 hover:shadow-green-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-green-400 hover:border-green-300 cyber-glow"
@@ -195,3 +258,4 @@ Best regards,
 };
 
 export default Footer;
+
