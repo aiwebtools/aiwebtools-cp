@@ -22,7 +22,16 @@ import {
   BarChart,
   Shield,
   Star,
-  ShoppingCart
+  ShoppingCart,
+  TrendingUp,
+  FileText as NinjaForms,
+  Archive,
+  BarChart as VWO,
+  Zap as Tango,
+  Bot as Bardeen,
+  MessageSquare as Superflow,
+  Search as BrowseAI,
+  Globe as WebscrapeAI
 } from "lucide-react";
 
 export const productivityAndAutomationTools: Tool[] = [
@@ -376,15 +385,15 @@ export const productivityAndAutomationTools: Tool[] = [
   },
   {
     icon: BarChart,
-    title: "VWO",
-    description: "Visual Website Optimizer is a Conversion Rate Optimization (CRO) tool. Comprehensive experimentation platform that empowers businesses to optimize their digital user journeys and maximize conversions.",
+    title: "VWO (Visual Website Optimizer)",
+    description: "Comprehensive optimization platform that empowers businesses to enhance digital experiences and boost conversions through A/B testing and user behavior analysis.",
     emoji: "📈",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://affiliates.vwo.com/aiwebtools",
-    tags: ["CRO optimization", "A/B testing", "user behavior", "personalization", "mobile apps", "privacy compliant"],
+    tags: ["A/B testing", "conversion optimization", "user behavior", "data-driven insights", "privacy compliant", "digital experiences"],
     category: "Productivity & Automation Tools",
-    rating: 4.5,
-    totalVotes: 3789
+    rating: 4.6,
+    totalVotes: 4123
   },
   {
     icon: Star,
@@ -517,5 +526,113 @@ export const productivityAndAutomationTools: Tool[] = [
     category: "Productivity & Automation Tools",
     rating: 4.5,
     totalVotes: 3789
+  },
+  {
+    icon: TrendingUp,
+    title: "Diib Automated SEO",
+    description: "Revolutionizes SEO by harnessing automation power. Diib Answer Engine combines real-time analytics, competitor insights, and industry benchmarks for rapid growth.",
+    emoji: "📈",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://www.diib.com/?ref=njvimzh",
+    tags: ["automated SEO", "real-time analytics", "competitor insights", "500k+ members", "no coding", "AI recommendations"],
+    category: "Productivity & Automation Tools",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
+    icon: FileText,
+    title: "NinjaForms",
+    description: "Powerful yet user-friendly WordPress form builder with over 30 million downloads. Drag-and-drop fields, multi-page forms, conditional logic, and advanced features.",
+    emoji: "🥷",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://shareasale.com/r.cfm?b=812237&u=3604681&m=63061&urllink=&afftrack=",
+    tags: ["WordPress forms", "30M downloads", "drag-and-drop", "conditional logic", "payment integration", "no coding"],
+    category: "Productivity & Automation Tools",
+    rating: 4.7,
+    totalVotes: 5234
+  },
+  {
+    icon: Archive,
+    title: "Wayback Machine Downloader",
+    description: "Powerful tool designed to retrieve websites from Wayback Machine's extensive web archive. Website recovery, competitive analysis, and content preservation.",
+    emoji: "📦",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.waybackmachinedownloader.com/en/?browser=y75b4bucvp8",
+    tags: ["website recovery", "web archive", "competitive analysis", "content preservation", "historical data", "web scraping"],
+    category: "Productivity & Automation Tools",
+    rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: BarChart,
+    title: "VWO (Visual Website Optimizer)",
+    description: "Comprehensive optimization platform that empowers businesses to enhance digital experiences and boost conversions through A/B testing and user behavior analysis.",
+    emoji: "📊",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://affiliates.vwo.com/aiwebtools",
+    tags: ["A/B testing", "conversion optimization", "user behavior", "data-driven insights", "privacy compliant", "digital experiences"],
+    category: "Productivity & Automation Tools",
+    rating: 4.6,
+    totalVotes: 4123
+  },
+  {
+    icon: Zap,
+    title: "Tango",
+    description: "Game-changing tool that streamlines creating how-to guides and interactive walkthroughs. Automatically documents processes by clicking through steps.",
+    emoji: "⚡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://www.tango.us/",
+    tags: ["how-to guides", "interactive walkthroughs", "automatic documentation", "step-by-step", "process capture", "team training"],
+    category: "Productivity & Automation Tools",
+    rating: 4.5,
+    totalVotes: 3567
+  },
+  {
+    icon: Bot,
+    title: "Bardeen",
+    description: "Automated web data collection tool without manual scraping or coding skills. Advanced AI scraper with precise data collection and customization options.",
+    emoji: "🤖",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://www.bardeen.ai/",
+    tags: ["web scraping", "no coding", "AI scraper", "data collection", "automation", "customizable"],
+    category: "Productivity & Automation Tools",
+    rating: 4.4,
+    totalVotes: 2945
+  },
+  {
+    icon: MessageSquare,
+    title: "Superflow",
+    description: "Web-based tool that facilitates website feedback and collaboration for design and software teams. Comment and collaborate directly on websites for efficient iteration.",
+    emoji: "💬",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://www.usesuperflow.com/",
+    tags: ["website feedback", "design collaboration", "area commenting", "task assignments", "progress tracking", "team workflow"],
+    category: "Productivity & Automation Tools",
+    rating: 4.3,
+    totalVotes: 2234
+  },
+  {
+    icon: Search,
+    title: "Browse AI",
+    description: "Versatile web scraping and data extraction platform without coding. Train web scraping robot in two minutes with intuitive interface and prebuilt robots.",
+    emoji: "🔍",
+    color: "from-green-500 to-cyan-600",
+    directUrl: "https://partners.browse.ai/Aiwebtools",
+    tags: ["web scraping", "no coding", "2-minute setup", "prebuilt robots", "7k+ integrations", "2.3B rows extracted"],
+    category: "Productivity & Automation Tools",
+    rating: 4.6,
+    totalVotes: 4567
+  },
+  {
+    icon: Globe,
+    title: "Webscrape AI",
+    description: "Powerful and user-friendly tool for effortless web data collection. Advanced AI scraper handles data collection with sophisticated algorithms and customization.",
+    emoji: "🌐",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://webscrapeai.com/?via=fassm0gd3k5m7klwfyva",
+    tags: ["web data collection", "AI scraper", "no coding", "precise data", "cost-effective", "lightning-fast"],
+    category: "Productivity & Automation Tools",
+    rating: 4.2,
+    totalVotes: 2678
   }
 ];

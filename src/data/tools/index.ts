@@ -66,3 +66,4 @@ export { audioAndVoiceTools } from './audioAndVoiceTools';
 // Export the new categories
 export { financialAndTradingTools } from './financialAndTradingTools';
 export { specializedNicheTools } from './specializedNicheTools';
+export { meetingAndTranscriptionTools } from './meetingAndTranscriptionTools';

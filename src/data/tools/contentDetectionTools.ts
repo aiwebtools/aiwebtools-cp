@@ -59,7 +59,7 @@ export const contentDetectionTools: Tool[] = [
     totalVotes: 2134
   },
   {
-    icon: Chrome,
+    icon: Globe,
     title: "Detect GPT",
     description: "Chrome extension analyzing web content for AI-generated text. Visual indicators show AI vs human content. Paste text feature for quick authenticity assessment.",
     emoji: "🔍",
@@ -105,5 +105,89 @@ export const contentDetectionTools: Tool[] = [
     category: "Content Detection Tools",
     rating: 4.6,
     totalVotes: 4234
+  },
+  {
+    icon: Search,
+    title: "Scribbr Paraphrasing Tool",
+    description: "Free AI-powered solution that allows users to rewrite and rephrase text effortlessly. Helps express ideas in your own words while preserving the original meaning with various writing styles.",
+    emoji: "📝",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://www.scribbr.com/paraphrasing-tool/",
+    tags: ["paraphrasing", "rewriting", "academic writing", "plagiarism prevention", "text transformation", "free tool"],
+    category: "Content Detection Tools",
+    rating: 4.4,
+    totalVotes: 3245
+  },
+  {
+    icon: Sparkles,
+    title: "GPTMinus1",
+    description: "Innovative text transformation tool that offers writers the ability to inject creativity and freshness into their content by randomly replacing words with synonyms.",
+    emoji: "✨",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://www.gptminus1.com/",
+    tags: ["text transformation", "synonyms", "creative writing", "content variation", "writing enhancement", "creativity"],
+    category: "Content Detection Tools",
+    rating: 4.1,
+    totalVotes: 2156
+  },
+  {
+    icon: Bot,
+    title: "SpinBot",
+    description: "Intelligent, free, and easy-to-use text rewriting tool that adds flair and creativity to your writing instantly. Contextually intelligent software provides fresh perspectives on content.",
+    emoji: "🤖",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://spinbot.com/",
+    tags: ["text spinning", "content rewriting", "paraphrasing", "free tool", "creative writing", "content variation"],
+    category: "Content Detection Tools",
+    rating: 4.0,
+    totalVotes: 2845
+  },
+  {
+    icon: Edit3,
+    title: "Rephrasely",
+    description: "Versatile AI-powered writing tool that offers comprehensive features including paraphrasing, paragraph generation, plagiarism checking, text simplification, and sentence shortening.",
+    emoji: "✏️",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://rephrasely.com/",
+    tags: ["paraphrasing", "AI writing", "plagiarism check", "text simplification", "content creation", "multi-language"],
+    category: "Content Detection Tools",
+    rating: 4.3,
+    totalVotes: 3567
+  },
+  {
+    icon: Shield,
+    title: "Undetectable.ai",
+    description: "Groundbreaking AI-powered tool designed to transform AI-generated content into undetectable, human-like text. Advanced algorithms bypass AI detectors effectively.",
+    emoji: "🛡️",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://undetectable.ai/",
+    tags: ["AI bypass", "human-like text", "content transformation", "AI detection", "text humanization", "content creation"],
+    category: "Content Detection Tools",
+    rating: 4.2,
+    totalVotes: 2934
+  },
+  {
+    icon: Star,
+    title: "Word-Spinner",
+    description: "Powerful AI-driven content creation platform that empowers users to generate high-quality written and visual content. Over 75 customizable templates for various purposes.",
+    emoji: "⭐",
+    color: "from-yellow-500 to-red-600",
+    directUrl: "https://word-spinner.com/",
+    tags: ["AI content", "template-based", "SEO optimization", "multi-language", "visual content", "blog writing"],
+    category: "Content Detection Tools",
+    rating: 4.1,
+    totalVotes: 2678
+  },
+  {
+    icon: Search,
+    title: "Plag.ai",
+    description: "Forefront of plagiarism detection technology, offering the first AI-driven plagiarism checker. University-grade detection with billions of articles in database.",
+    emoji: "🔍",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://www.plag.ai/",
+    tags: ["plagiarism detection", "AI-driven", "university-grade", "academic integrity", "scientific articles", "freemium"],
+    category: "Content Detection Tools",
+    rating: 4.5,
+    totalVotes: 4123
   }
 ];

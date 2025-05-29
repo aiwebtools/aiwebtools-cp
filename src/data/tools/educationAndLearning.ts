@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   BookOpen, 
@@ -91,5 +90,41 @@ export const educationAndLearning: Tool[] = [
     category: "Education & Learning",
     rating: 2.9,
     totalVotes: 1234
+  },
+  {
+    icon: GraduationCap,
+    title: "Teachermatic",
+    description: "Innovative AI platform designed by teachers, for teachers, leveraging GPT-3 technology to revolutionize education. Streamlines teaching tasks and reduces workloads.",
+    emoji: "👩‍🏫",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://teachermatic.com/ref/6715",
+    tags: ["teacher-designed", "GPT-3 powered", "lesson plans", "educational resources", "workload reduction", "teaching efficiency"],
+    category: "Education & Learning",
+    rating: 4.6,
+    totalVotes: 3456
+  },
+  {
+    icon: BookOpen,
+    title: "LitGrades",
+    description: "Innovative approach to learning with AI-powered flashcards. Create flashcards on any topic in the world and study conveniently during bus rides or last-minute prep.",
+    emoji: "📚",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://litgrades.com/",
+    tags: ["AI flashcards", "any topic", "convenient study", "grade levels", "efficient learning", "memorization"],
+    category: "Education & Learning",
+    rating: 4.4,
+    totalVotes: 2876
+  },
+  {
+    icon: Brain,
+    title: "Brain-Buddy",
+    description: "AI-powered educational platform designed to help users improve learning, problem-solving, writing, note-taking, and test preparation skills. Suitable for all ages.",
+    emoji: "🧠",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://brain-buddy.com/",
+    tags: ["educational platform", "all ages", "problem-solving", "test preparation", "customized reports", "learning enhancement"],
+    category: "Education & Learning",
+    rating: 4.3,
+    totalVotes: 2234
   }
 ];

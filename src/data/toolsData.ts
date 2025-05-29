@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import {
   businessTools,
@@ -60,7 +61,8 @@ import {
   backgroundAndObjectTools,
   audioAndVoiceTools,
   financialAndTradingTools,
-  specializedNicheTools
+  specializedNicheTools,
+  meetingAndTranscriptionTools
 } from './tools';
 
 import { searchTools } from '@/utils/searchUtils';
@@ -129,6 +131,9 @@ export const allTools: Tool[] = [
   ...platformsAndDevelopment,
   ...professionalServices,
   ...resumeAndCareerTools,
+  
+  // MEETING AND TRANSCRIPTION TOOLS
+  ...meetingAndTranscriptionTools,
   
   // THEN SPECIALIZED CATEGORIES
   ...specializedAndNiche,

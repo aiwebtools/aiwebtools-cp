@@ -1,11 +1,12 @@
-
 import { Tool } from "@/types/tools";
 import { 
   ShoppingCart, 
   TrendingUp, 
   Target, 
   Mail, 
-  Zap
+  Zap,
+  Video,
+  Users
 } from "lucide-react";
 
 export const ecommerceAndMarketingTools: Tool[] = [
@@ -44,5 +45,41 @@ export const ecommerceAndMarketingTools: Tool[] = [
     category: "E-commerce & Marketing Tools",
     rating: 4.6,
     totalVotes: 4567
+  },
+  {
+    icon: ShoppingCart,
+    title: "Shopify Magic",
+    description: "Groundbreaking AI innovation seamlessly integrated into Shopify. Sidekick AI commerce assistant refines writing, streamlines tasks, and optimizes workflows.",
+    emoji: "🛍️",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://shopify.pxf.io/baqN2M",
+    tags: ["Shopify integration", "AI assistant", "e-commerce", "workflow optimization", "content creation", "conversions"],
+    category: "Ecommerce & Marketing Tools",
+    rating: 4.7,
+    totalVotes: 4567
+  },
+  {
+    icon: Video,
+    title: "LiveReacting",
+    description: "Go-to solution for running interactive live streams that boost follower count and engagement. Incorporate pre-recorded videos, games, countdowns, and polls.",
+    emoji: "📺",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://livereacting.sjv.io/c/4110048/461538/8208",
+    tags: ["live streaming", "interactive content", "engagement boost", "multi-platform", "branded videos", "5-20x engagement"],
+    category: "Ecommerce & Marketing Tools",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
+    icon: Users,
+    title: "MyHeritage Deep Nostalgia",
+    description: "Viral sensation with 110+ million animations. Breathe life into family photos with realistic video footage using deep learning technology from D-ID.",
+    emoji: "👨‍👩‍👧‍👦",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://myheritage.sjv.io/c/4110048/909501/12471",
+    tags: ["photo animation", "deep learning", "family photos", "viral technology", "D-ID powered", "110M+ animations"],
+    category: "Ecommerce & Marketing Tools",
+    rating: 4.6,
+    totalVotes: 5234
   }
 ];
