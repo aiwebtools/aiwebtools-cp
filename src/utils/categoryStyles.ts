@@ -135,6 +135,106 @@ export const getCategoryStyle = (category: string) => {
         hover: "hover:bg-yellow-500/20 hover:border-yellow-400/80",
         selected: "bg-gradient-to-r from-yellow-500 to-yellow-600"
       }
+    },
+    // Adding missing categories from the image
+    "AI Art": {
+      emoji: "🖼️",
+      colors: {
+        bg: "bg-fuchsia-800/40",
+        border: "border-fuchsia-400/60",
+        hover: "hover:bg-fuchsia-500/20 hover:border-fuchsia-400/80",
+        selected: "bg-gradient-to-r from-fuchsia-500 to-fuchsia-600"
+      }
+    },
+    "AI Assistants": {
+      emoji: "🤖",
+      colors: {
+        bg: "bg-cyan-800/40",
+        border: "border-cyan-400/60",
+        hover: "hover:bg-cyan-500/20 hover:border-cyan-400/80",
+        selected: "bg-gradient-to-r from-cyan-500 to-cyan-600"
+      }
+    },
+    "AI Development": {
+      emoji: "⚙️",
+      colors: {
+        bg: "bg-sky-800/40",
+        border: "border-sky-400/60",
+        hover: "hover:bg-sky-500/20 hover:border-sky-400/80",
+        selected: "bg-gradient-to-r from-sky-500 to-sky-600"
+      }
+    },
+    "AI Infrastructure": {
+      emoji: "🏗️",
+      colors: {
+        bg: "bg-stone-800/40",
+        border: "border-stone-400/60",
+        hover: "hover:bg-stone-500/20 hover:border-stone-400/80",
+        selected: "bg-gradient-to-r from-stone-500 to-stone-600"
+      }
+    },
+    "AI Inference Platforms": {
+      emoji: "🧠",
+      colors: {
+        bg: "bg-zinc-800/40",
+        border: "border-zinc-400/60",
+        hover: "hover:bg-zinc-500/20 hover:border-zinc-400/80",
+        selected: "bg-gradient-to-r from-zinc-500 to-zinc-600"
+      }
+    },
+    "AI Productivity Tools": {
+      emoji: "⚡",
+      colors: {
+        bg: "bg-yellow-700/40",
+        border: "border-yellow-300/60",
+        hover: "hover:bg-yellow-500/20 hover:border-yellow-300/80",
+        selected: "bg-gradient-to-r from-yellow-400 to-yellow-500"
+      }
+    },
+    "AI Tools": {
+      emoji: "🛠️",
+      colors: {
+        bg: "bg-neutral-800/40",
+        border: "border-neutral-400/60",
+        hover: "hover:bg-neutral-500/20 hover:border-neutral-400/80",
+        selected: "bg-gradient-to-r from-neutral-500 to-neutral-600"
+      }
+    },
+    "AI Tools & Development": {
+      emoji: "🔧",
+      colors: {
+        bg: "bg-red-700/40",
+        border: "border-red-300/60",
+        hover: "hover:bg-red-500/20 hover:border-red-300/80",
+        selected: "bg-gradient-to-r from-red-400 to-red-500"
+      }
+    },
+    "AI Tools & Utilities": {
+      emoji: "🔨",
+      colors: {
+        bg: "bg-orange-700/40",
+        border: "border-orange-300/60",
+        hover: "hover:bg-orange-500/20 hover:border-orange-300/80",
+        selected: "bg-gradient-to-r from-orange-400 to-orange-500"
+      }
+    },
+    "Art & Design": {
+      emoji: "🎨",
+      colors: {
+        bg: "bg-purple-700/40",
+        border: "border-purple-300/60",
+        hover: "hover:bg-purple-500/20 hover:border-purple-300/80",
+        selected: "bg-gradient-to-r from-purple-400 to-purple-500"
+      }
+    },
+    "Advanced AI Tools": {
+      emoji: "🚀",
+      colors: {
+        bg: "bg-blue-700/40",
+        border: "border-blue-300/60",
+        hover: "hover:bg-blue-500/20 hover:border-blue-300/80",
+        selected: "bg-gradient-to-r from-blue-400 to-blue-500"
+      }
     }
   };
 
