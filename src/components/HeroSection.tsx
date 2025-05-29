@@ -95,20 +95,20 @@ const HeroSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
           <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
             <Brain className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
-            <h3 className="text-xl font-semibold text-white mb-2">AI-Powered Solutions</h3>
-            <p className="text-cyan-200">Discover intelligent tools that automate, optimize, and enhance every aspect of your workflow</p>
+            <h3 className="text-xl font-semibold text-white mb-2">Smart Tools. Real Results.</h3>
+            <p className="text-cyan-200">From idea to execution — unlock AI that helps you create faster, think bigger, and work smarter. Built for builders, dreamers, and doers.</p>
           </div>
           
           <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
             <Zap className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
-            <h3 className="text-xl font-semibold text-white mb-2">Instant Access</h3>
-            <p className="text-cyan-200">Access groundbreaking AI tools instantly - no barriers, completely free for everyone</p>
+            <h3 className="text-xl font-semibold text-white mb-2">Instant Access. No Gatekeeping.</h3>
+            <p className="text-cyan-200">Dive right in. Most tools are totally free and ready to use — no signups, no strings. Some premium tools are here too (not ours), if you want to explore even further.</p>
           </div>
           
           <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
             <Rocket className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
-            <h3 className="text-xl font-semibold text-white mb-2">Transform Everything</h3>
-            <p className="text-cyan-200">From creativity to productivity, revolutionize how you work, learn, and create with AI</p>
+            <h3 className="text-xl font-semibold text-white mb-2">Reimagine What You Can Do.</h3>
+            <p className="text-cyan-200">Whether you're designing, writing, learning, or launching something big — AIWebTools.ai gives you the edge. The future's already here. Plug in.</p>
           </div>
         </div>
 
