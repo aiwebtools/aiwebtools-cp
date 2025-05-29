@@ -25,7 +25,7 @@ export const learningAndEducation: Tool[] = [
     videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
     category: "Education & Learning",
     tags: ["learning", "courses", "education", "study", "course", "learn"],
-    rating: 4.6,
+    rating: 4.8,
     totalVotes: 2987
   },
   {
@@ -38,7 +38,7 @@ export const learningAndEducation: Tool[] = [
     videoUrl: "https://www.youtube.com/watch?v=q1AY2LukHrk",
     category: "Skill Development",
     tags: ["skill learning", "personal development", "training", "growth", "skill", "learn"],
-    rating: 4.7,
+    rating: 4.4,
     totalVotes: 3456
   },
   {
