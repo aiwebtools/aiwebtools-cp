@@ -4,6 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import FeaturedTools from "@/components/FeaturedTools";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import InspirationMessage from "@/components/tools/InspirationMessage";
 
 const Index = () => {
   return (
@@ -17,6 +18,9 @@ const Index = () => {
             <FeaturedTools />
           </div>
           <Footer />
+          <div className="container mx-auto px-4 pb-8">
+            <InspirationMessage />
+          </div>
         </div>
       </div>
     </div>
