@@ -1,16 +1,17 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Scissors,
-  PaintBucket,
-  Target,
-  Globe,
+  Upload,
+  Download,
   Zap,
+  Wand2,
+  Target,
+  Layers,
   Edit3,
-  Sparkles,
-  Bot,
-  Video,
-  Palette
+  ImageIcon,
+  Eraser,
+  Palette,
+  Grid3X3
 } from "lucide-react";
 
 export const backgroundAndObjectTools: Tool[] = [
@@ -133,5 +134,77 @@ export const backgroundAndObjectTools: Tool[] = [
     category: "Image Generation Platforms",
     rating: 4.7,
     totalVotes: 4567
+  },
+  {
+    icon: Scissors,
+    title: "Magic Eraser",
+    description: "User-friendly online photo editor that simplifies removing unwanted elements from images. Drag-and-drop interface, no signup required, eliminates distractions with PRO version for high-resolution downloads and bulk editing.",
+    emoji: "✂️",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://magicstudio.com/?via=aiwebtools",
+    tags: ["drag-and-drop", "no signup", "unwanted removal", "PRO version", "bulk editing", "real estate"],
+    category: "Image Generation Platforms",
+    rating: 4.6,
+    totalVotes: 4123
+  },
+  {
+    icon: Wand2,
+    title: "ClickMajic",
+    description: "Hassle-free solution for removing backgrounds from images with user-friendly interface and advanced AI technology. Handles complex scenarios, processes 1,000+ images, with API for seamless integration.",
+    emoji: "🪄",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://clickmajic.com/",
+    tags: ["background removal", "1000+ images", "API integration", "complex scenarios", "transparent backgrounds", "marketing materials"],
+    category: "Image Generation Platforms",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Scissors,
+    title: "RemBG.pics",
+    description: "Powerful online tool that harnesses AI capabilities to effortlessly remove backgrounds from images. Clean and transparent foreground results with quick and efficient background removal process.",
+    emoji: "🖼️",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://www.rembg.pics/",
+    tags: ["background removal", "AI-powered", "transparent foreground", "quick processing", "e-commerce", "graphics"],
+    category: "Image Generation Platforms",
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: Eraser,
+    title: "ObjectRemover",
+    description: "Smart JPG/PNG image cleaner that utilizes cutting-edge AI technology to swiftly remove unwanted objects from images. Eliminates quotes, text overlays, watermarks with natural-looking results.",
+    emoji: "🧹",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://objectremover.com/image-cleaner",
+    tags: ["object removal", "text removal", "watermark removal", "AI technology", "natural results", "fast processing"],
+    category: "Image Generation Platforms",
+    rating: 4.5,
+    totalVotes: 3567
+  },
+  {
+    icon: Zap,
+    title: "WatermarkRemover.io",
+    description: "Hassle-free solution to rid your images of watermarks using advanced AI technology. Removes translucent watermarks while retaining original quality with automatic detection and bulk processing options.",
+    emoji: "💧",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://www.watermarkremover.io/",
+    tags: ["watermark removal", "translucent watermarks", "original quality", "automatic detection", "bulk processing", "commercial use"],
+    category: "Image Generation Platforms",
+    rating: 4.6,
+    totalVotes: 4123
+  },
+  {
+    icon: Grid3X3,
+    title: "Background.LOL",
+    description: "Innovative tool that empowers users to generate AI-generated wallpapers effortlessly in seconds. Wide range of themes including anime, sunset, space, futuristic, forest with 4K upscaling capabilities.",
+    emoji: "🌅",
+    color: "from-rainbow-500 to-purple-600",
+    directUrl: "https://www.background.lol/",
+    tags: ["AI wallpapers", "anime themes", "4K upscaling", "futuristic", "forest themes", "seconds generation"],
+    category: "Image Generation Platforms",
+    rating: 4.3,
+    totalVotes: 2876
   }
 ];

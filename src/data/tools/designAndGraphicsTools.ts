@@ -18,7 +18,14 @@ import {
   Camera,
   Play,
   Crown,
-  Users
+  Users,
+  Scissors,
+  Zap,
+  Globe,
+  Grid3X3,
+  ImageIcon,
+  FileImage,
+  Crop
 } from "lucide-react";
 
 export const designAndGraphicsTools: Tool[] = [
@@ -153,5 +160,161 @@ export const designAndGraphicsTools: Tool[] = [
     category: "Design & Graphics Tools",
     rating: 4.4,
     totalVotes: 3234
+  },
+  {
+    icon: Layers,
+    title: "PixTeller",
+    description: "User-friendly online image editor and animation maker that empowers users to effortlessly create stunning visuals, including posters, animated GIFs, logos, banners, invitations, flyers, and more. Features PixBot AI assistant and extensive template library.",
+    emoji: "🎭",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://pixteller.com?fp_ref=aiwebtools",
+    tags: ["image editor", "animation maker", "PixBot", "animated GIFs", "templates", "no design skills"],
+    category: "Design & Graphics Tools",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Camera,
+    title: "Pebblely",
+    description: "Platform that allows you to generate stunning product photos with your brand's colors effortlessly. Create Instagram-worthy images for any product in seconds with 40 free photos every month.",
+    emoji: "📸",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://pebblely.com/",
+    tags: ["product photos", "brand colors", "Instagram-worthy", "40 free photos", "e-commerce", "marketing materials"],
+    category: "Design & Graphics Tools",
+    rating: 4.6,
+    totalVotes: 4123
+  },
+  {
+    icon: Edit3,
+    title: "PhotoPea",
+    description: "Versatile and free web-based image editor that serves various purposes, including resizing images, webpage design, illustration creation, photo processing, and image format conversion. Compatible with modern browsers.",
+    emoji: "🖼️",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://www.photopea.com/",
+    tags: ["web-based", "free editor", "raster graphics", "vector graphics", "no plugins", "browser compatible"],
+    category: "Design & Graphics Tools",
+    rating: 4.5,
+    totalVotes: 3567
+  },
+  {
+    icon: Sparkles,
+    title: "PhotoKit",
+    description: "Top choice for online photo editing tools with intuitive interface and robust functionality. Features background removal, bulk image processing, user-friendly filters, and comprehensive editing suite.",
+    emoji: "📷",
+    color: "from-green-500 to-cyan-600",
+    directUrl: "https://photokit.com/landing/coupon.html?aid=2848457",
+    tags: ["photo editing", "background removal", "bulk processing", "filters", "user-friendly", "comprehensive"],
+    category: "Design & Graphics Tools",
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: Layers,
+    title: "PlaygroundAI",
+    description: "Mixed Image Editing platform that combines real and synthetic images, enabling creation of stunning, imaginative, and photorealistic artworks. Edit images as you envision with collaborative features.",
+    emoji: "🎮",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://playgroundai.com/",
+    tags: ["mixed editing", "real images", "synthetic images", "photorealistic", "collaborative", "imaginative"],
+    category: "Design & Graphics Tools",
+    rating: 4.6,
+    totalVotes: 4567
+  },
+  {
+    icon: Camera,
+    title: "Pixelcut",
+    description: "Revolutionizes product photography by leveraging AI technology to generate stunning backgrounds effortlessly, resulting in product photos that are produced 10 times faster than traditional methods.",
+    emoji: "✂️",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://www.pixelcut.ai/",
+    tags: ["product photography", "AI backgrounds", "10x faster", "e-commerce", "professional quality", "time saving"],
+    category: "Design & Graphics Tools",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Users,
+    title: "PFPmaker",
+    description: "Go-to solution for crafting flawless profile pictures and business headshots for any occasion, entirely free. Powered by AI, eliminating need for design expertise with hundreds of professional options.",
+    emoji: "👤",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://pfpmaker.com/",
+    tags: ["profile pictures", "business headshots", "free", "AI-powered", "no design expertise", "professional"],
+    category: "Design & Graphics Tools",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: Video,
+    title: "Impresso",
+    description: "Simple yet powerful app designed to help you create inspiring videos that boost your brand's presence. With animated text effects and rich text animation library for social media content.",
+    emoji: "🎬",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://impresso.com/",
+    tags: ["video creation", "animated text", "brand presence", "social media", "text animation", "high quality"],
+    category: "Design & Graphics Tools",
+    rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: Palette,
+    title: "Khroma",
+    description: "Cutting-edge design tool that helps you work with colors you love effortlessly. AI learns your color preferences and generates limitless color palettes tailored to your taste with neural networks.",
+    emoji: "🎨",
+    color: "from-rainbow-500 to-purple-600",
+    directUrl: "https://www.khroma.co/",
+    tags: ["color palettes", "AI learning", "neural networks", "unlimited library", "WCAG ratings", "color preferences"],
+    category: "Design & Graphics Tools",
+    rating: 4.6,
+    totalVotes: 4234
+  },
+  {
+    icon: Brush,
+    title: "Drawtify",
+    description: "Powerful online vector graphic design app that offers incredibly user-friendly experience. Goes beyond being just an online illustrator, vector creator, or SVG editor with no design background required.",
+    emoji: "✏️",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://drawtify.com/",
+    tags: ["vector graphics", "online illustrator", "SVG editor", "no design background", "intuitive interface", "professional results"],
+    category: "Design & Graphics Tools",
+    rating: 4.5,
+    totalVotes: 3567
+  },
+  {
+    icon: Zap,
+    title: "DesignBeast",
+    description: "Cutting-edge design suite powered by AI offering six powerful design technologies within one dashboard. Creates mockups, logos, removes backgrounds, transforms static photos into animations.",
+    emoji: "🦁",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://jvz8.com/c/2848457/371547/",
+    tags: ["AI design suite", "six technologies", "mockups", "logos", "animations", "commercial licensing"],
+    category: "Design & Graphics Tools",
+    rating: 4.4,
+    totalVotes: 3123
+  },
+  {
+    icon: Globe,
+    title: "DOTYETI",
+    description: "Subscription-based graphic design service that provides businesses and teams with unlimited access to professional graphic design and creative services. Dedicated design teams with quick turnaround times.",
+    emoji: "🎨",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://www.dotyeti.com/pricing/?via=aiwebtools",
+    tags: ["graphic design service", "unlimited access", "professional design", "dedicated teams", "quick turnaround", "flexible plans"],
+    category: "Design & Graphics Tools",
+    rating: 4.7,
+    totalVotes: 4789
+  },
+  {
+    icon: Monitor,
+    title: "ZoomScape.AI",
+    description: "Ultimate AI Zoom background generator offering impressive collection of 34,148 backgrounds. Define your background, let AI work its magic, and download favorites instantly with HD quality.",
+    emoji: "🖥️",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://zoomscape.ai/",
+    tags: ["Zoom backgrounds", "34k backgrounds", "AI generator", "HD quality", "one-time payment", "no subscription"],
+    category: "Design & Graphics Tools",
+    rating: 4.5,
+    totalVotes: 3789
   }
 ];

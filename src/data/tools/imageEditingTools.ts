@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Edit3,
@@ -9,7 +8,11 @@ import {
   Brush,
   Monitor,
   Camera,
-  Target
+  Target,
+  Wand2,
+  Layers,
+  Sparkles,
+  Palette
 } from "lucide-react";
 
 export const imageEditingTools: Tool[] = [
@@ -120,5 +123,125 @@ export const imageEditingTools: Tool[] = [
     category: "Image Generation Platforms",
     rating: 4.6,
     totalVotes: 4234
+  },
+  {
+    icon: Wand2,
+    title: "Cutout.pro",
+    description: "AI-powered visual design platform catering to clean text icons, loading icons, and free-form drawings. Trusted by over 25,000 businesses for secure, reliable API integration with top-notch AI performance.",
+    emoji: "✂️",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://www.cutout.pro/?vsource=cutout_share-406567850369093",
+    tags: ["25k businesses", "API integration", "Image Background Removal", "Photo Enhancer", "secure", "reliable"],
+    category: "Image Generation Platforms",
+    rating: 4.6,
+    totalVotes: 4567
+  },
+  {
+    icon: Sparkles,
+    title: "FYLM.ai",
+    description: "Groundbreaking online platform that revolutionizes color grading and LUT creation through AI power. NeuralToneAI as your AI colorist, streamlines process saving up to 90% of time with cinematic frames training.",
+    emoji: "🎬",
+    color: "from-purple-500 to-cyan-600",
+    directUrl: "https://fylm.ai/",
+    tags: ["color grading", "LUT creation", "NeuralToneAI", "90% time saving", "cinematic frames", "deep learning"],
+    category: "Image Generation Platforms",
+    rating: 4.7,
+    totalVotes: 4789
+  },
+  {
+    icon: Layers,
+    title: "Media.io",
+    description: "Versatile online platform offering wide range of AI-powered tools to enhance and manipulate various types of media content including video, audio, and images. User-friendly interface with massive collection of free tools.",
+    emoji: "🎭",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.media.io/",
+    tags: ["media enhancement", "video editing", "audio editing", "image editing", "free tools", "AI-powered"],
+    category: "Image Generation Platforms",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Upload,
+    title: "Upscayl",
+    description: "Groundbreaking AI-powered solution that takes images to the next level, transforming science fiction into reality. Upscayl Cloud offers speeds up to 5 times faster without hardware constraints or quality compromises.",
+    emoji: "⬆️",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://www.upscayl.org/",
+    tags: ["AI upscaling", "5x faster", "no hardware constraints", "quality enhancement", "commercial usage", "cloud-based"],
+    category: "Image Generation Platforms",
+    rating: 4.6,
+    totalVotes: 4234
+  },
+  {
+    icon: Wand2,
+    title: "VanceAI",
+    description: "Go-to solution for effortless and efficient photo enhancement and editing powered by AI. One-click access to upscaling, sharpening, denoising, background removal using cutting-edge Deep Convolutional Neural Networks.",
+    emoji: "🚀",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://vanceai.com/",
+    tags: ["photo enhancement", "one-click access", "DCNN", "upscaling", "denoising", "professional quality"],
+    category: "Image Generation Platforms",
+    rating: 4.7,
+    totalVotes: 5234
+  },
+  {
+    icon: Palette,
+    title: "Image Colorizer",
+    description: "Advanced AI-powered tool designed to restore and enhance old family photos effortlessly. Automatically transforms black and white pictures into vibrant, colorful images with face restoration and damage repair.",
+    emoji: "🌈",
+    color: "from-rainbow-500 to-purple-600",
+    directUrl: "https://imagecolorizer.com/",
+    tags: ["photo restoration", "colorization", "family photos", "face restoration", "damage repair", "AI technology"],
+    category: "Image Generation Platforms",
+    rating: 4.5,
+    totalVotes: 3567
+  },
+  {
+    icon: Palette,
+    title: "Palette.fm",
+    description: "AI colorization service that empowers users to effortlessly transform black and white images into vibrant, lifelike color images. Favored by professional colorists for accurate details and dynamic skin tones.",
+    emoji: "🎨",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://palette.fm/?via=aiwebtools",
+    tags: ["AI colorization", "professional colorists", "dynamic skin tones", "vibrant colors", "25 megapixels", "Chrome Safari"],
+    category: "Image Generation Platforms",
+    rating: 4.6,
+    totalVotes: 4123
+  },
+  {
+    icon: Upload,
+    title: "RestorePhotos.io",
+    description: "User-friendly AI-powered tool designed to revive old and blurry photos, making it accessible for everyone to cherish and share precious memories. Enhances faded family photos and historical images.",
+    emoji: "📷",
+    color: "from-sepia-500 to-brown-600",
+    directUrl: "https://www.restorephotos.io/",
+    tags: ["photo restoration", "old photos", "blurry photos", "family memories", "historical images", "genealogy research"],
+    category: "Image Generation Platforms",
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: Layers,
+    title: "LeiaPix Converter",
+    description: "Powerful tool that allows you to effortlessly transform 2D images into captivating 3D Lightfield images. Export to various formats with high-definition animations and improved depth maps.",
+    emoji: "🔮",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://convert.leiapix.com/",
+    tags: ["2D to 3D", "Lightfield images", "depth animations", "HD animations", "various formats", "redesigned interface"],
+    category: "Image Generation Platforms",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Edit3,
+    title: "PicWonderful",
+    description: "AI-powered photo toolkit gearing up to release API soon. Wide range of online photo editing tools including generating images from text, removing backgrounds, unblurring photos, and colorizing images.",
+    emoji: "✨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.picwonderful.com/",
+    tags: ["photo toolkit", "API release", "text to image", "background removal", "photo unblur", "colorization"],
+    category: "Image Generation Platforms",
+    rating: 4.3,
+    totalVotes: 2876
   }
 ];
