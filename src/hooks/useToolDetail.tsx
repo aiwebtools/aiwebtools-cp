@@ -13,7 +13,12 @@ export const useToolDetail = (toolIndex: number) => {
   const tool = allTools[toolIndex];
 
   useEffect(() => {
+    // Force scroll to absolute top of page
     window.scrollTo(0, 0);
+    
+    // Also try using scrollTop as a backup
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
     
     // Verify tool exists and is properly indexed
     if (tool) {
