@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Car, Leaf, Fish, Shield, Home, Wrench, Dog, Star, 
@@ -63,7 +64,7 @@ export const specializedAndNiche: Tool[] = [
     description: "AI home improvement assistant simplifying repair and renovation projects. Provides personalized instructions, cost estimates, and finds local suppliers and contractors. Upload photos for tailored advice and detailed reports covering materials and labor. Perfect for DIY enthusiasts or those hiring professionals.",
     emoji: "🏡",
     color: "from-orange-500 to-red-600",
-    directUrl: "https://homerengovatorgpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-professional-advertisement-for-an-ai-tool_1k6Qj.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
     tags: ["home renovation", "DIY projects", "home improvement", "construction", "repair guidance"],
     category: "Specialized & Niche",
@@ -76,7 +77,7 @@ export const specializedAndNiche: Tool[] = [
     description: "Compassionate virtual veterinarian simulation providing expert advice on pet health and well-being. Advanced AI analyzes your pet's health with tailored care recommendations. Multimodal capabilities allow uploading data and images for detailed assessments. Disclaimer: Informational only, not substitute for professional veterinary advice.",
     emoji: "🐾",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://veterinariangpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
     tags: ["veterinary", "pet health", "animal care", "pet advice", "animal wellness"],
     category: "Specialized & Niche",
     rating: 4.4,
@@ -101,7 +102,7 @@ export const specializedAndNiche: Tool[] = [
     description: "AI-driven dream analysis and interpretation using psychological, mythological, and symbolic frameworks. Uncover hidden meanings, subconscious patterns, emotions, and opportunities for personal growth. Breaks down symbols and guides introspection for deeper self-understanding.",
     emoji: "💭",
     color: "from-purple-500 to-pink-600",
-    directUrl: "https://dreaminterpretergpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://dreaminterpreter.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-mystical-advertisement-for-an-ai-tool-cal.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
     tags: ["dream interpretation", "psychology", "symbolism", "self-discovery", "subconscious analysis"],
     category: "Specialized & Niche",

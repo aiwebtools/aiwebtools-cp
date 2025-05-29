@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Globe, BookOpen, History, Search, 
@@ -50,7 +51,7 @@ export const researchAndLearning: Tool[] = [
     description: "Advanced space exploration and astronomy research assistant with interactive cosmic simulations.",
     emoji: "🚀",
     color: "from-blue-500 to-purple-600",
-    directUrl: "https://stellarisaiexplorer.lovable.app/?via=aiwebtools",
+    directUrl: "https://stellaris.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=tJwhDOE3mUM",
     tags: ["space exploration", "astronomy", "cosmic simulations", "research"],
     category: "Research & Learning",

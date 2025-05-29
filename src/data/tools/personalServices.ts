@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Heart, 
@@ -61,7 +62,7 @@ export const personalServices: Tool[] = [
     description: "Virtual celebrity chat and interaction platform for engaging with AI-simulated personalities and virtual events.",
     emoji: "🎤",
     color: "from-yellow-500 to-orange-600",
-    directUrl: "https://celebritychatlinegpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://celebritychatline.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-split-screen-image-of-snoop-dogg-talking-on-.png/:/cr=t:0%25,l:0.11%25,w:99.78%25,h:100%25/rs=w:1200,cg:true",
     tags: ["celebrity chat", "virtual interaction", "AI personalities", "virtual events"],
     category: "Personal Services",
@@ -87,7 +88,7 @@ export const personalServices: Tool[] = [
     description: "Comprehensive people search and information retrieval tool for finding contact details, social media profiles, and background information.",
     emoji: "👤",
     color: "from-blue-500 to-indigo-600",
-    directUrl: "https://personinformationfindergpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://personfindergpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-p_gHXnM.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
     tags: ["people search", "information retrieval", "contact details", "social media"],
     category: "Personal Services",
