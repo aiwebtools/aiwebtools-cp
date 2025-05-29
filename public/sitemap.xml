@@ -1,49 +1,131 @@
 
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://aitools.studio</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <lastmod>2025-01-27</lastmod>
+    <xhtml:link rel="alternate" hrefLang="en" href="https://aitools.studio"/>
+    <xhtml:link rel="alternate" hrefLang="x-default" href="https://aitools.studio"/>
   </url>
   <url>
     <loc>https://aitools.studio/category/AI%20Assistants</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hrefLang="en" href="https://aitools.studio/category/AI%20Assistants"/>
   </url>
   <url>
     <loc>https://aitools.studio/category/Image%20Generation</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hrefLang="en" href="https://aitools.studio/category/Image%20Generation"/>
   </url>
   <url>
     <loc>https://aitools.studio/category/Writing%20%26%20Content</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hrefLang="en" href="https://aitools.studio/category/Writing%20%26%20Content"/>
   </url>
   <url>
     <loc>https://aitools.studio/category/Video%20Tools</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hrefLang="en" href="https://aitools.studio/category/Video%20Tools"/>
   </url>
   <url>
     <loc>https://aitools.studio/category/Audio%20%26%20Music</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hrefLang="en" href="https://aitools.studio/category/Audio%20%26%20Music"/>
   </url>
   <url>
     <loc>https://aitools.studio/category/Business%20%26%20Productivity</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hrefLang="en" href="https://aitools.studio/category/Business%20%26%20Productivity"/>
   </url>
   <url>
     <loc>https://aitools.studio/category/Education%20%26%20Learning</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hrefLang="en" href="https://aitools.studio/category/Education%20%26%20Learning"/>
+  </url>
+  <url>
+    <loc>https://aitools.studio/category/Creative%20Services</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hrefLang="en" href="https://aitools.studio/category/Creative%20Services"/>
+  </url>
+  <url>
+    <loc>https://aitools.studio/?search=ai%20tools</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://aitools.studio/category/Creative%20%26%20Entertainment</loc>
+    <loc>https://aitools.studio/?search=chatgpt</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aitools.studio/?search=image%20generation</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aitools.studio/?search=video%20editing</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aitools.studio/?search=writing%20assistant</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aitools.studio/?search=business%20automation</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aitools.studio/?search=creative%20ai</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aitools.studio/?search=productivity%20tools</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aitools.studio/?search=free%20ai%20tools</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aitools.studio/?search=ai%20art%20generator</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
