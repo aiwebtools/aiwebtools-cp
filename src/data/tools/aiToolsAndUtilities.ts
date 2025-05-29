@@ -1,22 +1,39 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Search, List, Zap,
-  Shield, FlaskConical, Atom
+  Bot, 
+  Search, 
+  Code, 
+  Zap, 
+  Brain, 
+  Settings, 
+  Globe, 
+  Calculator,
+  Target,
+  MessageSquare,
+  Lightbulb,
+  Database,
+  FileText,
+  Cpu,
+  Activity,
+  Shield,
+  Eye,
+  Rocket,
+  Hash,
+  Cloud
 } from "lucide-react";
 
 export const aiToolsAndUtilities: Tool[] = [
   {
     icon: Search,
-    title: "AI Tool Finder",
-    description: "AI-powered tool discovery platform for finding the best AI tools and resources for your specific needs.",
+    title: "Perplexity AI Search Engine",
+    description: "One of the best AI search engines available - similar to Google but with advanced AI capabilities. Features real-time search with citations and sources.",
     emoji: "🔍",
     color: "from-blue-500 to-purple-600",
-    directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
-    tags: ["AI tools", "tool discovery", "AI resources", "search", "finder"],
-    category: "AI Tools To Run LOCALLY",
-    rating: 4.2,
-    totalVotes: 2345
+    directUrl: "https://www.perplexity.ai/",
+    tags: ["AI search", "search engine", "research", "citations", "real-time"],
+    category: "AI Tools & Utilities",
+    rating: 4.8,
+    totalVotes: 4567
   },
   {
     icon: List,

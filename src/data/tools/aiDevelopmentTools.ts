@@ -1,16 +1,39 @@
 import { Tool } from "@/types/tools";
 import { 
-  Zap, 
-  Brain, 
   Code, 
+  Bot, 
   Cpu, 
   Database, 
+  Terminal, 
+  GitBranch,
+  Layers,
+  Zap,
+  Brain,
+  Settings,
+  Wrench,
+  Building,
+  Cloud,
+  Activity,
+  FileCode,
   Globe,
-  Bot,
-  Users
+  Rocket,
+  Shield,
+  Target
 } from "lucide-react";
 
 export const aiDevelopmentTools: Tool[] = [
+  {
+    icon: Settings,
+    title: "OpenAI Playground",
+    description: "Build, refine, design, and test your custom AI models. Access your API keys, experiment with different parameters, and develop AI applications. The essential OpenAI hub for developers.",
+    emoji: "🛠️",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://platform.openai.com/playground",
+    tags: ["OpenAI", "API", "model testing", "development", "playground", "custom models"],
+    category: "AI Development Tools",
+    rating: 4.9,
+    totalVotes: 5432
+  },
   {
     icon: Code,
     title: "Claude by Anthropic",
