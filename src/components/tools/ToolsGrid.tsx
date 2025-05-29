@@ -2,6 +2,9 @@
 import { Tool } from "@/types/tools";
 import ToolCard from "@/components/tools/ToolCard";
 import LoadMoreButton from "@/components/tools/LoadMoreButton";
+import SimilarToolsRecommendation from "@/components/tools/SimilarToolsRecommendation";
+import { getSimilarTools, shouldShowSimilarTools } from "@/utils/similarTools";
+import { allTools } from "@/data/toolsData";
 
 interface ToolsGridProps {
   tools: Tool[];
@@ -21,6 +24,8 @@ const ToolsGrid = ({
   hasInfiniteScroll = false 
 }: ToolsGridProps) => {
   const displayTools = tools.slice(0, displayedCount);
+  const shouldShowSimilar = shouldShowSimilarTools(tools.length);
+  const similarTools = shouldShowSimilar ? getSimilarTools(tools, allTools) : [];
 
   const getSectionTitle = () => {
     if (selectedCategory) {
@@ -47,6 +52,12 @@ const ToolsGrid = ({
           <ToolCard key={`${tool.title}-${index}`} tool={tool} />
         ))}
       </div>
+
+      {/* Show similar tools recommendation when original results are limited */}
+      <SimilarToolsRecommendation 
+        similarTools={similarTools}
+        originalCount={tools.length}
+      />
 
       {/* Show loading indicator when infinite scroll is active and more tools are available */}
       {hasInfiniteScroll && displayedCount < tools.length && (

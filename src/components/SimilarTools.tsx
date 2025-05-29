@@ -2,6 +2,7 @@
 import { Tool } from "@/types/tools";
 import { allTools } from "@/data/toolsData";
 import ToolCard from "./tools/ToolCard";
+import { getSimilarTools } from "@/utils/similarTools";
 
 interface SimilarToolsProps {
   currentTool: Tool;
@@ -9,40 +10,8 @@ interface SimilarToolsProps {
 }
 
 const SimilarTools = ({ currentTool, currentToolIndex }: SimilarToolsProps) => {
-  // Find similar tools based on category and tags
-  const getSimilarTools = (): Tool[] => {
-    const similar = allTools.filter((tool, index) => {
-      if (index === currentToolIndex) return false; // Exclude current tool
-      
-      // Check if same category
-      if (tool.category === currentTool.category) return true;
-      
-      // Check if shared tags
-      if (currentTool.tags && tool.tags) {
-        const sharedTags = currentTool.tags.some(tag => 
-          tool.tags?.some(toolTag => 
-            toolTag.toLowerCase().includes(tag.toLowerCase()) ||
-            tag.toLowerCase().includes(toolTag.toLowerCase())
-          )
-        );
-        if (sharedTags) return true;
-      }
-      
-      // Check if similar keywords in description
-      const currentKeywords = currentTool.description.toLowerCase().split(' ');
-      const toolKeywords = tool.description.toLowerCase().split(' ');
-      const commonWords = currentKeywords.filter(word => 
-        word.length > 4 && toolKeywords.includes(word)
-      );
-      
-      return commonWords.length >= 2;
-    });
-    
-    // Shuffle and return first 6
-    return similar.sort(() => Math.random() - 0.5).slice(0, 6);
-  };
-
-  const similarTools = getSimilarTools();
+  // Use the new utility function to get similar tools
+  const similarTools = getSimilarTools([currentTool], allTools, 6);
 
   if (similarTools.length === 0) {
     return null;
