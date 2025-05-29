@@ -57,7 +57,7 @@ const HeroSection = () => {
           <div className="flex items-center justify-center space-x-4 mb-6">
             <Sparkles className="w-8 h-8 text-cyan-400 animate-pulse" />
             <p className="text-xl md:text-2xl text-cyan-100 max-w-3xl leading-relaxed">
-              Discover 1000+ cutting-edge AI tools to revolutionize your workflow
+              Discover 1000+ free AI tools that empower everyone to transform their work and life
             </p>
             <Stars className="w-8 h-8 text-cyan-400 animate-pulse" />
           </div>
@@ -72,20 +72,20 @@ const HeroSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
           <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
             <Brain className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
-            <h3 className="text-xl font-semibold text-white mb-2">Strategic Solutions</h3>
-            <p className="text-cyan-200">Find the perfect business tool with intelligent recommendations</p>
+            <h3 className="text-xl font-semibold text-white mb-2">Community-Powered Solutions</h3>
+            <p className="text-cyan-200">Find the perfect AI tool with intelligent recommendations from our open community</p>
           </div>
           
           <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
             <Zap className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
-            <h3 className="text-xl font-semibold text-white mb-2">Enterprise Speed</h3>
-            <p className="text-cyan-200">Deploy solutions instantly with our optimized platform</p>
+            <h3 className="text-xl font-semibold text-white mb-2">Instant Access</h3>
+            <p className="text-cyan-200">Access groundbreaking AI tools instantly - no barriers, completely free for everyone</p>
           </div>
           
           <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
             <Rocket className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
-            <h3 className="text-xl font-semibold text-white mb-2">Market Leadership</h3>
-            <p className="text-cyan-200">Stay competitive with cutting-edge business innovations</p>
+            <h3 className="text-xl font-semibold text-white mb-2">Innovation for All</h3>
+            <p className="text-cyan-200">Democratizing AI innovation to create opportunities for individuals and communities worldwide</p>
           </div>
         </div>
 
@@ -96,7 +96,7 @@ const HeroSection = () => {
         >
           <span className="flex items-center space-x-3">
             <Search className="w-6 h-6" />
-            <span>Explore Business Solutions</span>
+            <span>Explore Free AI Tools</span>
             <Sparkles className="w-6 h-6 group-hover:animate-spin" />
           </span>
         </button>
@@ -105,19 +105,19 @@ const HeroSection = () => {
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
           <div className="text-center">
             <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">1000+</div>
-            <div className="text-cyan-200 text-sm">Business Tools</div>
+            <div className="text-cyan-200 text-sm">Free AI Tools</div>
           </div>
           <div className="text-center">
             <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">50+</div>
-            <div className="text-cyan-200 text-sm">Industries</div>
+            <div className="text-cyan-200 text-sm">Industries Served</div>
           </div>
           <div className="text-center">
             <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">100%</div>
-            <div className="text-cyan-200 text-sm">Enterprise Ready</div>
+            <div className="text-cyan-200 text-sm">Community Driven</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">24/7</div>
-            <div className="text-cyan-200 text-sm">Support</div>
+            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Always</div>
+            <div className="text-cyan-200 text-sm">Free Access</div>
           </div>
         </div>
       </div>
