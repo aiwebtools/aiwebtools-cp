@@ -21,7 +21,7 @@ export const analyzeDuplicates = (): DuplicateAnalysis => {
   const toolsToKeep: Tool[] = [];
   const toolsToRemove: Tool[] = [];
 
-  console.log(`🔍 DUPLICATE ANALYSIS STARTING...`);
+  console.log(`🔍 COMPREHENSIVE DUPLICATE ANALYSIS STARTING...`);
   console.log(`Total tools to analyze: ${allTools.length}`);
 
   for (let i = 0; i < allTools.length; i++) {
@@ -46,21 +46,26 @@ export const analyzeDuplicates = (): DuplicateAnalysis => {
         continue;
       }
 
-      // Check for exact title match
-      if (currentTool.title.toLowerCase().trim() === compareTool.title.toLowerCase().trim()) {
-        // Check if URLs are similar or one is more complete
+      // Check for exact title match or very similar titles
+      const currentTitle = currentTool.title.toLowerCase().trim();
+      const compareTitle = compareTool.title.toLowerCase().trim();
+      
+      if (currentTitle === compareTitle) {
+        // Exact title match - check URLs for confirmation
         const currentUrl = currentTool.directUrl?.toLowerCase() || '';
         const compareUrl = compareTool.directUrl?.toLowerCase() || '';
         
         if (currentUrl === compareUrl || 
             currentUrl.includes(compareUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')) ||
-            compareUrl.includes(currentUrl.replace(/^https?:\/\//, '').replace(/\/$/, ''))) {
+            compareUrl.includes(currentUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')) ||
+            currentUrl === '' || compareUrl === '') {
           
           duplicates.push(compareTool);
           processedTools.add(compareKey);
           
-          // Choose the best version (more complete description, rating, etc.)
-          if (compareTool.description.length > bestTool.description.length ||
+          // Choose the best version (more complete description, URL, rating, etc.)
+          if ((compareTool.directUrl && !bestTool.directUrl) ||
+              (compareTool.description.length > bestTool.description.length) ||
               (compareTool.rating && !bestTool.rating) ||
               (compareTool.tags && compareTool.tags.length > (bestTool.tags?.length || 0))) {
             // Keep the compare tool instead
@@ -77,13 +82,15 @@ export const analyzeDuplicates = (): DuplicateAnalysis => {
         const currentDomain = currentTool.directUrl.replace(/^https?:\/\//, '').replace(/\/.*$/, '').toLowerCase();
         const compareDomain = compareTool.directUrl.replace(/^https?:\/\//, '').replace(/\/.*$/, '').toLowerCase();
         
-        if (currentDomain === compareDomain && currentDomain !== '') {
+        if (currentDomain === compareDomain && currentDomain !== '' && 
+            !currentDomain.includes('lovable.app') && !currentDomain.includes('chatgpt.com')) {
           // Same domain, likely same service with different descriptions
           duplicates.push(compareTool);
           processedTools.add(compareKey);
           
           // Keep the one with more complete information
-          if (compareTool.description.length > bestTool.description.length) {
+          if (compareTool.description.length > bestTool.description.length ||
+              (compareTool.rating && !bestTool.rating)) {
             if (bestTool !== currentTool) {
               duplicates.push(bestTool);
             }
@@ -101,22 +108,41 @@ export const analyzeDuplicates = (): DuplicateAnalysis => {
       const isCustomGPT = bestTool.directUrl?.includes('lovable.app') || 
                          bestTool.directUrl?.includes('chatgpt.com/g/') ||
                          bestTool.description.includes('aiwebtools') ||
-                         bestTool.title.includes('GPT');
+                         bestTool.title.toLowerCase().includes('gpt');
 
       if (!isCustomGPT) {
-        duplicateGroups.push({
-          originalTool: bestTool,
-          duplicates: duplicates,
-          reason: duplicates.length > 0 ? 
-            (duplicates[0].title === bestTool.title ? 'Identical title and URL/domain' : 'Same domain/service') : ''
-        });
+        // Filter out any GPTs from duplicates as well
+        const nonGPTDuplicates = duplicates.filter(dup => 
+          !dup.directUrl?.includes('lovable.app') && 
+          !dup.directUrl?.includes('chatgpt.com/g/') &&
+          !dup.description.includes('aiwebtools') &&
+          !dup.title.toLowerCase().includes('gpt')
+        );
 
-        toolsToKeep.push(bestTool);
-        toolsToRemove.push(...duplicates);
+        if (nonGPTDuplicates.length > 0) {
+          duplicateGroups.push({
+            originalTool: bestTool,
+            duplicates: nonGPTDuplicates,
+            reason: nonGPTDuplicates.length > 0 ? 
+              (nonGPTDuplicates[0].title.toLowerCase() === bestTool.title.toLowerCase() ? 'Identical title' : 'Same domain/service') : ''
+          });
+
+          toolsToKeep.push(bestTool);
+          toolsToRemove.push(...nonGPTDuplicates);
+        } else {
+          toolsToKeep.push(bestTool);
+        }
       } else {
         // Keep all custom GPTs
         toolsToKeep.push(bestTool);
-        toolsToKeep.push(...duplicates);
+        // Only add non-GPT duplicates to removal list
+        const nonGPTDuplicates = duplicates.filter(dup => 
+          !dup.directUrl?.includes('lovable.app') && 
+          !dup.directUrl?.includes('chatgpt.com/g/') &&
+          !dup.description.includes('aiwebtools') &&
+          !dup.title.toLowerCase().includes('gpt')
+        );
+        toolsToRemove.push(...nonGPTDuplicates);
       }
     } else {
       toolsToKeep.push(bestTool);
@@ -125,10 +151,23 @@ export const analyzeDuplicates = (): DuplicateAnalysis => {
 
   const totalDuplicates = toolsToRemove.length;
 
-  console.log(`🔍 DUPLICATE ANALYSIS COMPLETE:`);
+  console.log(`🔍 COMPREHENSIVE DUPLICATE ANALYSIS COMPLETE:`);
   console.log(`Duplicate groups found: ${duplicateGroups.length}`);
   console.log(`Total duplicates to remove: ${totalDuplicates}`);
   console.log(`Tools to keep: ${toolsToKeep.length}`);
+
+  // Log specific duplicates found
+  duplicateGroups.forEach((group, index) => {
+    console.log(`\n📋 Duplicate Group ${index + 1}:`);
+    console.log(`KEEP: "${group.originalTool.title}" (${group.originalTool.category})`);
+    console.log(`URL: ${group.originalTool.directUrl}`);
+    
+    group.duplicates.forEach((duplicate, dupIndex) => {
+      console.log(`  ❌ REMOVE ${dupIndex + 1}: "${duplicate.title}" (${duplicate.category})`);
+      console.log(`     URL: ${duplicate.directUrl}`);
+    });
+    console.log(`Reason: ${group.reason}`);
+  });
 
   return {
     duplicateGroups,
@@ -139,11 +178,11 @@ export const analyzeDuplicates = (): DuplicateAnalysis => {
 };
 
 export const logDuplicateReport = (analysis: DuplicateAnalysis): void => {
-  console.log(`\n🔍 DUPLICATE DETECTION REPORT:`);
-  console.log(`===============================`);
+  console.log(`\n🔍 COMPREHENSIVE DUPLICATE DETECTION REPORT:`);
+  console.log(`===============================================`);
   
   if (analysis.duplicateGroups.length === 0) {
-    console.log(`✅ No duplicates found!`);
+    console.log(`✅ No duplicates found! Database is clean.`);
     return;
   }
 
@@ -165,3 +204,7 @@ export const logDuplicateReport = (analysis: DuplicateAnalysis): void => {
   console.log(`Total tools to remove: ${analysis.totalDuplicates}`);
   console.log(`Remaining unique tools: ${analysis.toolsToKeep.length}`);
 };
+
+// Execute the analysis and log results
+const duplicateAnalysis = analyzeDuplicates();
+logDuplicateReport(duplicateAnalysis);

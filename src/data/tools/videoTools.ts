@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Video, 
@@ -80,11 +81,11 @@ export const videoTools: Tool[] = [
   {
     icon: Camera,
     title: "HeyGen",
-    description: "AI video generator with realistic avatars and voice cloning. Create personalized video content at scale with custom avatars and multilingual support.",
+    description: "CREATE ENGAGING VIDEOS 10X FASTER WITH AI Meet HeyGen - The best AI video generation platform for your team. AI video generator with realistic avatars and voice cloning. Create personalized video content at scale with custom avatars and multilingual support.",
     emoji: "📹",
     color: "from-orange-500 to-red-600",
-    directUrl: "https://www.heygen.com/",
-    tags: ["AI avatars", "voice cloning", "personalized videos", "multilingual", "scale"],
+    directUrl: "https://app.heygen.com/guest?sid=rewardful&via=aiwebtools",
+    tags: ["AI avatars", "voice cloning", "personalized videos", "multilingual", "scale", "video generation"],
     category: "Video Tools",
     rating: 4.5,
     totalVotes: 3123
