@@ -1,10 +1,12 @@
 
 import { Tool } from "@/types/tools";
 import { 
-  Stethoscope, Pill, Brain, Heart, Eye, 
-  Dna, Bone, Microscope, Activity, Shield,
-  Leaf, Beaker, FlaskConical, TestTube, Syringe,
-  BookOpen, Youtube
+  BookOpen, Youtube, Heart, Brain, Eye, 
+  Beaker, FlaskConical, TestTube, Syringe,
+  Leaf, Shield, Crosshair, Clock, Plane, Bot, Star,
+  Search, Zap, Gavel, CheckCircle, Sprout, Factory, 
+  Fish, Hammer, Utensils, PawPrint, Scale, Users,
+  TrendingUp, Gamepad
 } from "lucide-react";
 
 export const specializedTools: Tool[] = [
