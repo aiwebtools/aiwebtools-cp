@@ -93,10 +93,6 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
             onError={handleVideoError}
             onLoad={() => console.log('Video loaded successfully for:', tool.title)}
           />
-          {/* Small video badge - no overlay blocking video playback */}
-          <div className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-red-600/90 backdrop-blur-sm rounded px-2 py-1 pointer-events-none">
-            <span className="text-white text-xs font-bold">VIDEO</span>
-          </div>
         </div>
       );
     }
