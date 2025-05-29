@@ -45,7 +45,7 @@ const Index = () => {
         <div className="pt-20">
           <HeroSection />
           <div className="featured-tools-transparent" id="tools-section">
-            <FeaturedTools />
+            <FeaturedTools showLoadMoreButton={true} />
           </div>
           <div className="container mx-auto px-4 pb-8">
             <InspirationMessage />
