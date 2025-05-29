@@ -4,11 +4,15 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 Disallow: /*.json$
+Disallow: /404
+Disallow: /*?*
+Allow: /*?search=*
 
-# Allow important crawlers
+# Allow important crawlers with specific rules
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
+Allow: /sitemap.xml
 
 User-agent: Bingbot
 Allow: /
@@ -30,7 +34,6 @@ User-agent: YandexBot
 Allow: /
 Crawl-delay: 2
 
-# Social media crawlers
 User-agent: facebookexternalhit
 Allow: /
 
@@ -45,6 +48,25 @@ Allow: /
 
 User-agent: TelegramBot
 Allow: /
+
+User-agent: PinterestBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
 
 # Sitemap location
 Sitemap: https://aitools.studio/sitemap.xml

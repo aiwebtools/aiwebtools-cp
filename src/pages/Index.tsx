@@ -14,20 +14,29 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-black relative">
       <SEOHead
-        title="1000+ AI Tools Directory - Free AI Web Tools Collection"
-        description="Discover the world's largest collection of 1000+ AI-powered tools. Find AI tools for business, creativity, productivity, design, video, audio, and more. Free access to the best AI tools of 2025."
+        title="1000+ AI Tools Directory - Free AI Web Tools Collection 2025"
+        description="Discover the world's largest collection of 1000+ AI-powered tools. Find AI tools for business, creativity, productivity, design, video, audio, and more. Free access to the best AI tools of 2025 including ChatGPT alternatives, AI assistants, and automation tools."
         keywords={[
           ...seoConfig.keywords,
-          "AI tools directory",
-          "free AI tools",
-          "AI tools collection",
-          "best AI tools 2025",
-          "AI tools list",
-          "artificial intelligence tools",
-          "AI productivity tools",
-          "AI business tools"
+          "AI tools directory 2025",
+          "free AI tools collection",
+          "best AI tools list",
+          "artificial intelligence software",
+          "AI productivity suite",
+          "enterprise AI tools",
+          "AI automation platform",
+          "machine learning tools",
+          "AI development tools",
+          "business intelligence AI",
+          "creative AI tools",
+          "AI content creation",
+          "video AI tools",
+          "audio AI generators",
+          "image AI tools",
+          "writing AI assistants"
         ]}
         structuredData={structuredData}
+        includeFAQ={true}
       />
       
       <AnimatedBackground />
