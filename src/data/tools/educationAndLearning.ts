@@ -13,7 +13,8 @@ import {
   Gavel,
   Target,
   Eye,
-  Palette
+  Palette,
+  Crown
 } from "lucide-react";
 
 export const educationAndLearning: Tool[] = [
@@ -66,5 +67,29 @@ export const educationAndLearning: Tool[] = [
     category: "Education & Learning",
     rating: 4.5,
     totalVotes: 2987
+  },
+  {
+    icon: Crown,
+    title: "Talk to the Gods",
+    description: "Educational tool for religious studies, exploring ancient mythologies, divine narratives, and comparative religion through interactive learning.",
+    emoji: "👑",
+    color: "from-purple-500 to-gold-600",
+    directUrl: "https://talktothegods.lovable.app/?via=aiwebtools",
+    tags: ["religious studies", "mythology", "comparative religion", "ancient history", "education"],
+    category: "Education & Learning",
+    rating: 4.4,
+    totalVotes: 2123
+  },
+  {
+    icon: Building,
+    title: "3D Print GPT",
+    description: "Educational tool for learning 3D printing techniques, design principles, and manufacturing processes for students and educators.",
+    emoji: "🏗️",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://3dprintgpt.lovable.app/?via=aiwebtools",
+    tags: ["3d printing", "manufacturing", "design", "engineering education"],
+    category: "Education & Learning",
+    rating: 2.9,
+    totalVotes: 1234
   }
 ];
