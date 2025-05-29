@@ -44,23 +44,27 @@ const FeaturedTools = () => {
   const categoriesWithCounts = getCategoriesWithCounts(allTools);
 
   return (
-    <div>
-      <CategoryFilters
-        categoriesWithCounts={categoriesWithCounts}
-        selectedCategory={selectedCategory}
-        onCategoryChange={handleCategoryChange}
-        onSearchChange={handleSearchChange}
-        searchTerm={searchTerm}
-      />
+    <div className="w-full">
+      <div className="px-4 sm:px-0">
+        <CategoryFilters
+          categoriesWithCounts={categoriesWithCounts}
+          selectedCategory={selectedCategory}
+          onCategoryChange={handleCategoryChange}
+          onSearchChange={handleSearchChange}
+          searchTerm={searchTerm}
+        />
 
-      <ActiveFilters
-        selectedCategory={selectedCategory}
-        searchTerm={searchTerm}
-        totalTools={totalToolsCount}
-      />
+        <ActiveFilters
+          selectedCategory={selectedCategory}
+          searchTerm={searchTerm}
+          totalTools={totalToolsCount}
+        />
+      </div>
 
       {(!selectedCategory && !searchTerm) && (
-        <FeaturedToolsSection featuredTools={allTools.slice(0, 6)} />
+        <div className="px-4 sm:px-0">
+          <FeaturedToolsSection featuredTools={allTools.slice(0, 6)} />
+        </div>
       )}
 
       <ToolsGrid

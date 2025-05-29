@@ -44,7 +44,6 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   };
 
   const MediaComponent = () => {
-    // Log what media we're trying to display
     console.log('Tool media check:', {
       title: tool.title,
       hasImage: !!tool.imageUrl,
@@ -55,10 +54,10 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
 
     if (tool.imageUrl && !imageError) {
       return (
-        <div className="relative w-full h-80 overflow-hidden rounded-xl bg-gray-800">
+        <div className="relative w-full h-60 sm:h-80 overflow-hidden rounded-xl bg-gray-800">
           {!imageLoaded && (
             <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center animate-pulse">
-              <ImageIcon className="w-12 h-12 text-gray-500" />
+              <ImageIcon className="w-8 sm:w-12 h-8 sm:h-12 text-gray-500" />
             </div>
           )}
           <img
@@ -67,7 +66,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
             className={`w-full h-full object-contain transition-all duration-500 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
-            loading="eager"
+            loading="lazy"
             decoding="async"
             onLoad={() => setImageLoaded(true)}
             onError={() => setImageError(true)}
@@ -80,36 +79,36 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
       const embedUrl = getOptimizedEmbedUrl(tool.videoUrl);
       
       return (
-        <div className="relative w-full h-80 overflow-hidden rounded-xl bg-gray-800">
+        <div className="relative w-full h-60 sm:h-80 overflow-hidden rounded-xl bg-gray-800">
           <iframe
             width="100%"
-            height="320"
+            height="100%"
             src={embedUrl}
             title={`${tool.title} Demo`}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="w-full h-full rounded-xl"
-            loading="eager"
+            loading="lazy"
             onError={handleVideoError}
             onLoad={() => console.log('Video loaded successfully for:', tool.title)}
           />
-          <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full p-2">
-            <Play className="w-6 h-6 text-white" />
+          <div className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-black/50 backdrop-blur-sm rounded-full p-1 sm:p-2">
+            <Play className="w-4 sm:w-6 h-4 sm:h-6 text-white" />
           </div>
         </div>
       );
     }
     
     return (
-      <div className="w-full h-80 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-cyan-500/30 neon-border rounded-xl">
-        <span className="text-6xl glow-effect">{tool.emoji}</span>
+      <div className="w-full h-60 sm:h-80 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-cyan-500/30 neon-border rounded-xl">
+        <span className="text-4xl sm:text-6xl glow-effect">{tool.emoji}</span>
       </div>
     );
   };
 
   return (
-    <div className="mb-8">
+    <div className="mb-6 sm:mb-8 px-4 sm:px-0">
       <div className="shadow-lg border border-cyan-500/30 neon-border rounded-xl overflow-hidden">
         <MediaComponent />
       </div>

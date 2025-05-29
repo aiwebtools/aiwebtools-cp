@@ -28,13 +28,13 @@ const ToolsGrid = ({ tools, displayedCount, selectedCategory, searchTerm, onLoad
 
   return (
     <>
-      <div className="text-center mb-12">
-        <h3 className="text-3xl font-bold text-cyan-100 mb-8 cyber-glow">
+      <div className="text-center mb-8 sm:mb-12 px-4">
+        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
           {getSectionTitle()}
         </h3>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-0">
         {displayTools.map((tool, index) => (
           <ToolCard key={`${tool.title}-${index}`} tool={tool} />
         ))}
