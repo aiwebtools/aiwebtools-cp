@@ -18,17 +18,17 @@ export const createTimePortalEffect = (destinationUrl: string) => {
 
   // Apply time warp filter to body
   document.body.style.filter = 'hue-rotate(0deg) saturate(1) brightness(1)';
-  document.body.style.transition = 'filter 0.3s ease-out';
+  document.body.style.transition = 'filter 0.2s ease-out';
   
   setTimeout(() => {
     document.body.style.filter = 'hue-rotate(360deg) saturate(1.5) brightness(1.2)';
-  }, 100);
+  }, 50);
 
   // Create particle explosion
   const createParticles = () => {
     console.log('✨ Creating particles');
     const colors = ['#00ffff', '#ff00ff', '#ffff00', '#00ff00', '#ff0080', '#8000ff'];
-    const particleCount = 50;
+    const particleCount = 30;
     
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
@@ -42,12 +42,12 @@ export const createTimePortalEffect = (destinationUrl: string) => {
         top: 50%;
         left: 50%;
         box-shadow: 0 0 10px currentColor;
-        animation: particle-explosion 1.5s ease-out forwards;
+        animation: particle-explosion 1s ease-out forwards;
         transform-origin: center;
       `;
       
       const angle = (i / particleCount) * 360;
-      const velocity = 200 + Math.random() * 300;
+      const velocity = 150 + Math.random() * 200;
       particle.style.setProperty('--angle', `${angle}deg`);
       particle.style.setProperty('--velocity', `${velocity}px`);
       
@@ -58,7 +58,7 @@ export const createTimePortalEffect = (destinationUrl: string) => {
   // Create vortex rings
   const createVortexRings = () => {
     console.log('🌀 Creating vortex rings');
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 3; i++) {
       const ring = document.createElement('div');
       ring.className = 'vortex-ring';
       ring.style.cssText = `
@@ -68,8 +68,8 @@ export const createTimePortalEffect = (destinationUrl: string) => {
         border: 3px solid rgba(0, 255, 255, 0.8);
         border-radius: 50%;
         transform: translate(-50%, -50%);
-        animation: vortex-spin 2s ease-out forwards;
-        animation-delay: ${i * 0.2}s;
+        animation: vortex-spin 1.2s ease-out forwards;
+        animation-delay: ${i * 0.1}s;
       `;
       effectsContainer.appendChild(ring);
     }
@@ -78,7 +78,7 @@ export const createTimePortalEffect = (destinationUrl: string) => {
   // Create energy waves
   const createEnergyWaves = () => {
     console.log('⚡ Creating energy waves');
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 2; i++) {
       const wave = document.createElement('div');
       wave.className = 'energy-wave';
       wave.style.cssText = `
@@ -88,8 +88,8 @@ export const createTimePortalEffect = (destinationUrl: string) => {
         border: 2px solid rgba(255, 0, 255, 0.6);
         border-radius: 50%;
         transform: translate(-50%, -50%);
-        animation: energy-pulse 1.8s ease-out forwards;
-        animation-delay: ${i * 0.3}s;
+        animation: energy-pulse 1s ease-out forwards;
+        animation-delay: ${i * 0.2}s;
       `;
       effectsContainer.appendChild(wave);
     }
@@ -98,7 +98,7 @@ export const createTimePortalEffect = (destinationUrl: string) => {
   // Create lightning bolts
   const createLightning = () => {
     console.log('⚡ Creating lightning bolts');
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 6; i++) {
       const bolt = document.createElement('div');
       bolt.className = 'lightning-bolt';
       bolt.style.cssText = `
@@ -106,13 +106,13 @@ export const createTimePortalEffect = (destinationUrl: string) => {
         top: 50%;
         left: 50%;
         width: 2px;
-        height: 100px;
+        height: 80px;
         background: linear-gradient(0deg, transparent, #ffff00, transparent);
         transform-origin: bottom center;
-        transform: translate(-50%, -100%) rotate(${i * 45}deg);
-        animation: lightning-flash 0.8s ease-out forwards;
-        animation-delay: ${i * 0.1}s;
-        box-shadow: 0 0 20px #ffff00;
+        transform: translate(-50%, -100%) rotate(${i * 60}deg);
+        animation: lightning-flash 0.6s ease-out forwards;
+        animation-delay: ${i * 0.05}s;
+        box-shadow: 0 0 15px #ffff00;
       `;
       effectsContainer.appendChild(bolt);
     }
@@ -129,7 +129,7 @@ export const createTimePortalEffect = (destinationUrl: string) => {
       width: 100%;
       height: 100%;
       background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(0,255,255,0.4) 50%, transparent 100%);
-      animation: flash-fade 1.2s ease-out forwards;
+      animation: flash-fade 0.8s ease-out forwards;
     `;
     effectsContainer.appendChild(flash);
   };
@@ -165,17 +165,17 @@ export const createTimePortalEffect = (destinationUrl: string) => {
         
         oscillator.type = 'sawtooth';
         oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 1.5);
+        oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 1);
         
         filter.type = 'lowpass';
         filter.frequency.setValueAtTime(2000, audioContext.currentTime);
-        filter.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 1.5);
+        filter.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 1);
         
         gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
         
         oscillator.start();
-        oscillator.stop(audioContext.currentTime + 1.5);
+        oscillator.stop(audioContext.currentTime + 1);
       };
       
       // Portal opening sound
@@ -188,20 +188,20 @@ export const createTimePortalEffect = (destinationUrl: string) => {
         
         oscillator.type = 'sine';
         oscillator.frequency.setValueAtTime(100, audioContext.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.5);
-        oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 1.2);
+        oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.3);
+        oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.8);
         
         gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
-        gainNode.gain.linearRampToValueAtTime(0.4, audioContext.currentTime + 0.3);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.2);
+        gainNode.gain.linearRampToValueAtTime(0.4, audioContext.currentTime + 0.2);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.8);
         
         oscillator.start();
-        oscillator.stop(audioContext.currentTime + 1.2);
+        oscillator.stop(audioContext.currentTime + 0.8);
       };
       
       // Energy crackle
       const createCrackle = () => {
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 6; i++) {
           setTimeout(() => {
             const oscillator = audioContext.createOscillator();
             const gainNode = audioContext.createGain();
@@ -213,17 +213,17 @@ export const createTimePortalEffect = (destinationUrl: string) => {
             oscillator.frequency.setValueAtTime(800 + Math.random() * 1200, audioContext.currentTime);
             
             gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.08);
             
             oscillator.start();
-            oscillator.stop(audioContext.currentTime + 0.1);
-          }, i * 100);
+            oscillator.stop(audioContext.currentTime + 0.08);
+          }, i * 60);
         }
       };
       
       createWhoosh();
-      setTimeout(createPortalSound, 200);
-      setTimeout(createCrackle, 400);
+      setTimeout(createPortalSound, 100);
+      setTimeout(createCrackle, 200);
       
     } catch (error) {
       console.log('Audio context error:', error);
@@ -238,7 +238,7 @@ export const createTimePortalEffect = (destinationUrl: string) => {
   createFlash();
   createPortalSounds();
 
-  // Cleanup and open in new tab
+  // Cleanup and open in new tab - reduced from 2800ms to 1500ms
   setTimeout(() => {
     console.log('🧹 Cleaning up effects and opening in new tab:', destinationUrl);
     document.body.style.filter = '';
@@ -251,5 +251,5 @@ export const createTimePortalEffect = (destinationUrl: string) => {
     } else {
       console.log('No destination URL provided');
     }
-  }, 2800);
+  }, 1500);
 };
