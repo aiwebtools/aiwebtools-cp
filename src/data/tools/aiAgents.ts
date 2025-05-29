@@ -1,8 +1,6 @@
-
-
 import { Tool } from "@/types/tools";
 import { 
-  Bot, Code, Cpu, Globe, Zap, Brain, Sparkles, Layers, Workflow, GitBranch
+  Bot, Code, Cpu, Globe, Zap, Brain, Sparkles, Layers, Workflow, GitBranch, Settings
 } from "lucide-react";
 
 export const aiAgents: Tool[] = [
@@ -31,6 +29,19 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 3987
+  },
+  {
+    icon: Settings,
+    title: "GPT Operator",
+    description: "Advanced AI agent that automates complex tasks and operations across multiple platforms with intelligent decision-making capabilities.",
+    emoji: "🎯",
+    color: "from-red-500 to-orange-600",
+    imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    directUrl: "https://gptoperator.io/?via=aiwebtools",
+    tags: ["AI agent", "task automation", "operations", "intelligent automation", "multi-platform"],
+    category: "AI Agents",
+    rating: 4.5,
+    totalVotes: 2341
   },
   {
     icon: Cpu,
@@ -129,4 +140,3 @@ export const aiAgents: Tool[] = [
     totalVotes: 4156
   }
 ];
-
