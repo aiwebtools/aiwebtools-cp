@@ -97,6 +97,28 @@
     background: linear-gradient(180deg, #00cccc, #cc00cc);
   }
 
+  /* Featured Tools Transparency */
+  .featured-tools-transparent {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(1px);
+  }
+
+  .featured-tools-transparent section {
+    background: transparent !important;
+  }
+
+  .featured-tools-transparent .bg-black {
+    background: rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .featured-tools-transparent .bg-gray-900 {
+    background: rgba(17, 24, 39, 0.4) !important;
+  }
+
+  .featured-tools-transparent .bg-slate-900 {
+    background: rgba(15, 23, 42, 0.4) !important;
+  }
+
   .moving-stars {
     position: fixed;
     top: 0;

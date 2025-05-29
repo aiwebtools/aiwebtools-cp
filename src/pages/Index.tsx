@@ -13,7 +13,9 @@ const Index = () => {
         <Header />
         <div className="pt-20">
           <HeroSection />
-          <FeaturedTools />
+          <div className="featured-tools-transparent">
+            <FeaturedTools />
+          </div>
           <Footer />
         </div>
       </div>
