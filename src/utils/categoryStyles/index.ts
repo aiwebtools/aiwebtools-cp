@@ -6,7 +6,7 @@ import { creativeCategories } from "./creativeCategories";
 import { businessCategories } from "./businessCategories";
 import { specialtyCategories } from "./specialtyCategories";
 
-export { CategoryStyle } from "./types";
+export type { CategoryStyle } from "./types";
 
 export const categoryStyles: Record<string, CategoryStyle> = {
   ...aiCategories,
