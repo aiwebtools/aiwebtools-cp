@@ -10,7 +10,8 @@ import {
   Zap,
   Globe,
   Target,
-  Brain
+  Brain,
+  Calendar
 } from "lucide-react";
 
 export const writingAndContentEnhancement: Tool[] = [
