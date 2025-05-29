@@ -32,7 +32,9 @@ import {
   Mail,
   BarChart,
   FileText,
-  ShoppingCart
+  ShoppingCart,
+  Gamepad,
+  Presentation
 } from "lucide-react";
 
 export const designAndGraphicsTools: Tool[] = [
