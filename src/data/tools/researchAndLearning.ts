@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Search, 
@@ -15,7 +16,8 @@ import {
   Telescope,
   Wrench,
   Cpu,
-  Zap
+  Zap,
+  Clock
 } from "lucide-react";
 
 export const researchAndLearning: Tool[] = [
@@ -46,7 +48,7 @@ export const researchAndLearning: Tool[] = [
     totalVotes: 3267
   },
   {
-    icon: History,
+    icon: Clock,
     title: "TALK TO HISTORY GPT",
     description: "Engage in conversations with historical figures and explore historical events through AI. Experience immersive historical dialogues and learn from the past.",
     emoji: "📜",
