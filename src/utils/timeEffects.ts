@@ -238,9 +238,9 @@ export const createTimePortalEffect = (destinationUrl: string) => {
   createFlash();
   createPortalSounds();
 
-  // Cleanup and redirect
+  // Cleanup and open in new tab
   setTimeout(() => {
-    console.log('🧹 Cleaning up effects and redirecting to:', destinationUrl);
+    console.log('🧹 Cleaning up effects and opening in new tab:', destinationUrl);
     document.body.style.filter = '';
     document.body.style.transition = '';
     effectsContainer.remove();
