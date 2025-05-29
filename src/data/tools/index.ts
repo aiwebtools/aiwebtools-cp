@@ -1,4 +1,3 @@
-
 // Export all tool categories for easy importing
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
@@ -60,3 +59,6 @@ export { coreImageGenerators } from './coreImageGenerators';
 export { imageEditingTools } from './imageEditingTools';
 export { specializedImageTools } from './specializedImageTools';
 export { backgroundAndObjectTools } from './backgroundAndObjectTools';
+
+// Export the new audio and voice tools
+export { audioAndVoiceTools } from './audioAndVoiceTools';

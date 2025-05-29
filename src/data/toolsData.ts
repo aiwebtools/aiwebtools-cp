@@ -54,7 +54,12 @@ import {
   writingAndContentEnhancement,
   resumeAndCareerTools,
   ecommerceAndMarketingTools,
-  videoEditingAndContentTools
+  videoEditingAndContentTools,
+  coreImageGenerators,
+  imageEditingTools,
+  specializedImageTools,
+  backgroundAndObjectTools,
+  audioAndVoiceTools
 } from './tools';
 
 import { searchTools } from '@/utils/searchUtils';
@@ -102,9 +107,16 @@ export const allTools: Tool[] = [
   ...videoAndContentTools,
   ...videoEditingAndContentTools,
   ...audioMusicTools,
+  ...audioAndVoiceTools,
   ...contentCreationAndWritingTools,
   ...contentDetectionTools,
   ...documentAndResearchTools,
+  
+  // IMAGE GENERATION TOOLS
+  ...coreImageGenerators,
+  ...imageEditingTools,
+  ...specializedImageTools,
+  ...backgroundAndObjectTools,
   
   // THEN BUSINESS AND PRODUCTIVITY
   ...businessAndProductivity,

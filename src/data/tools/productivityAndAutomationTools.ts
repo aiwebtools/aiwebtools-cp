@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Bot, 
@@ -18,7 +17,11 @@ import {
   Palette,
   Edit3,
   Camera,
-  Sparkles
+  Sparkles,
+  Mail,
+  BarChart,
+  Shield,
+  Star
 } from "lucide-react";
 
 export const productivityAndAutomationTools: Tool[] = [
@@ -201,5 +204,197 @@ export const productivityAndAutomationTools: Tool[] = [
     category: "Productivity & Automation Tools",
     rating: 4.7,
     totalVotes: 5234
+  },
+  {
+    icon: Bot,
+    title: "Character GPT",
+    description: "Decentralized application (dApp) built on the AI Protocol, harnessing the power of the CharacterGPT V2 Multimodal AI System to create lifelike, intelligent, and interactive AI characters on Polygon blockchain.",
+    emoji: "🤖",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://mycharacter.ai/signup?referral_code=208dce5e-9fd0-42a6-9002-f045d22d694f",
+    tags: ["blockchain AI", "interactive characters", "Polygon", "collectible assets", "digital companions", "CharacterGPT V2"],
+    category: "Productivity & Automation Tools",
+    rating: 4.2,
+    totalVotes: 2567
+  },
+  {
+    icon: Code,
+    title: "BUILDAI - AI APP Builder",
+    description: "Revolutionary platform that democratizes AI app creation, allowing businesses to harness the power of artificial intelligence without any coding expertise. Transform ideas into reality effortlessly.",
+    emoji: "🛠️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://gumroad.com/a/815886803/cahfki",
+    tags: ["no-code AI", "app creation", "business solutions", "website embedding", "natural language", "custom AI tools"],
+    category: "Productivity & Automation Tools",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Target,
+    title: "Reply.io",
+    description: "Powerful AI-driven sales engagement platform that can supercharge your revenue growth. Create new opportunities at scale with B2B contact database and automated meeting scheduling.",
+    emoji: "🎯",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://get.reply.io/aiwebtools1415",
+    tags: ["sales engagement", "B2B contacts", "automated scheduling", "multi-channel", "AI-driven", "revenue growth"],
+    category: "Productivity & Automation Tools",
+    rating: 4.6,
+    totalVotes: 4234
+  },
+  {
+    icon: MessageSquare,
+    title: "LandBot",
+    description: "No-code Chat Bot builder and is a perfect way to create your own customer chatbot. Trusted by Nestle, Coca-Cola, and Allianz to boost revenue, slash operational costs, and create delightful experiences.",
+    emoji: "💬",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://get.landbotlab.com/aiwebtools",
+    tags: ["no-code chatbot", "customer engagement", "WhatsApp automation", "12,000+ businesses", "native integrations", "ready templates"],
+    category: "Productivity & Automation Tools",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: Palette,
+    title: "Looka",
+    description: "Versatile and user-friendly AI-powered design platform that simplifies the process of creating a stunning logo and developing a comprehensive brand identity with 300+ professionally designed templates.",
+    emoji: "🎨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://looka.partnerlinks.io/Aiwebtools",
+    tags: ["AI logo generator", "brand identity", "300+ templates", "custom mockups", "award-winning", "Brand Kit"],
+    category: "Productivity & Automation Tools",
+    rating: 4.7,
+    totalVotes: 5123
+  },
+  {
+    icon: Users,
+    title: "Meet Geek",
+    description: "Ultimate AI meeting assistant designed to transform your meeting culture. Automates video recording, transcribing, summarizing and sharing personalized insights with 10,000+ teams worldwide.",
+    emoji: "👥",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://get.meetgeek.ai/aiwebtools",
+    tags: ["meeting assistant", "AI summaries", "action items", "10,000+ teams", "app integration", "meeting effectiveness"],
+    category: "Productivity & Automation Tools",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Mail,
+    title: "Moosend",
+    description: "Leading email marketing and automation software designed to simplify the process of creating, managing, and automating email campaigns with AI-driven subject line optimization.",
+    emoji: "📧",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://trymoo.moosend.com/aiwebtools",
+    tags: ["email marketing", "automation", "A/B testing", "AI optimization", "landing pages", "24/7 support"],
+    category: "Productivity & Automation Tools",
+    rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: Users,
+    title: "NapoleonCat",
+    description: "Comprehensive social media management platform designed to help businesses engage and support their customers effectively on social media across 70+ countries.",
+    emoji: "🐱",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://napoleoncat.grsm.io/aiwebtools",
+    tags: ["social media management", "auto-moderation", "social CRM", "analytics", "70+ countries", "14-day trial"],
+    category: "Productivity & Automation Tools",
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: ShoppingCart,
+    title: "OctaneAI",
+    description: "All-in-one personalized marketing toolset tailored specifically for Shopify stores, trusted by over 3,000 brands. Create captivating product recommendation quizzes and boost sales.",
+    emoji: "🛒",
+    color: "from-green-500 to-cyan-600",
+    directUrl: "https://octaneai.grsm.io/aiwebtools5757",
+    tags: ["Shopify marketing", "3,000+ brands", "product quizzes", "email/SMS lists", "AI insights", "enterprise management"],
+    category: "Productivity & Automation Tools",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Edit3,
+    title: "QuillBot",
+    description: "Ultimate paraphrasing writing companion, designed to elevate your writing to the next level. Eliminate grammar errors and assist in paraphrasing with the power to humanize AI written content.",
+    emoji: "✍️",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://try.quillbot.com/aiwebtools",
+    tags: ["paraphrasing", "grammar correction", "content rewriting", "AI humanization", "undetectable", "writing companion"],
+    category: "Productivity & Automation Tools",
+    rating: 4.6,
+    totalVotes: 4567
+  },
+  {
+    icon: BarChart,
+    title: "RevealBot",
+    description: "Powerful ad management automation tool designed to help businesses optimize and scale their advertising campaigns effortlessly. Reduce ad spend by 76% and save up to 6 hours daily.",
+    emoji: "📊",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://reveal.grsm.io/aiwebtools",
+    tags: ["ad automation", "76% spend reduction", "6 hours saved", "15,000+ clients", "pre-built automations", "professional reports"],
+    category: "Productivity & Automation Tools",
+    rating: 4.7,
+    totalVotes: 5234
+  },
+  {
+    icon: Building,
+    title: "SalesFlare",
+    description: "User-friendly automated CRM solution tailored for small and medium-sized B2B businesses harnessing the power of AI with seamless integration with Gmail, Microsoft 365, LinkedIn.",
+    emoji: "🏢",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://salesflare.grsm.io/aiwebtools",
+    tags: ["automated CRM", "B2B businesses", "Gmail integration", "LinkedIn sync", "data enrichment", "customizable reporting"],
+    category: "Productivity & Automation Tools",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: Mail,
+    title: "SaneBox",
+    description: "Your solution to email overload. Regain control of your inbox by automatically identifying and organizing important emails while neatly sorting the rest with intelligent AI-powered system.",
+    emoji: "📮",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://try.sanebox.com/aiwebtools",
+    tags: ["email organization", "inbox control", "AI sorting", "daily updates", "customizable filters", "14-day trial"],
+    category: "Productivity & Automation Tools",
+    rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: Search,
+    title: "Surfer AI",
+    description: "Go-to SEO tool for effortlessly generating top-quality, traffic-driving content. Next-gen AI writing assistant simplifies content creation from research to optimization in just 20 minutes.",
+    emoji: "🔍",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://get.surferseo.com/aiwebtools",
+    tags: ["SEO content", "20-minute creation", "traffic driving", "15,000+ users", "multiple languages", "real-time metrics"],
+    category: "Productivity & Automation Tools",
+    rating: 4.6,
+    totalVotes: 4234
+  },
+  {
+    icon: BarChart,
+    title: "VWO",
+    description: "Visual Website Optimizer is a Conversion Rate Optimization (CRO) tool. Comprehensive experimentation platform that empowers businesses to optimize their digital user journeys and maximize conversions.",
+    emoji: "📈",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://affiliates.vwo.com/aiwebtools",
+    tags: ["CRO optimization", "A/B testing", "user behavior", "personalization", "mobile apps", "privacy compliant"],
+    category: "Productivity & Automation Tools",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Star,
+    title: "MyBrandNewLogo AI",
+    description: "Innovative online logo maker powered by artificial intelligence, simplifying the logo design process for individuals and businesses with Smart Shapes and full copyright ownership.",
+    emoji: "⭐",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://shareasale.com/r.cfm?b=1559933&u=3604681&m=98455&urllink=&afftrack=",
+    tags: ["AI logo maker", "Smart Shapes", "copyright ownership", "social media compatibility", "scalability", "startup-friendly"],
+    category: "Productivity & Automation Tools",
+    rating: 4.2,
+    totalVotes: 2567
   }
 ];

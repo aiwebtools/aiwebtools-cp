@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Video, 
@@ -552,50 +551,14 @@ export const videoEditingAndContentTools: Tool[] = [
   },
   {
     icon: Video,
-    title: "VIDYO",
-    description: "Ultimate AI-powered video editing companion, streamlining the process of creating short video clips from your longer content. Trusted by over 500,000 podcasters and creators with auto-video captioning and instant resizing.",
-    emoji: "📹",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://vidyo.ai/",
-    tags: ["500k+ users", "auto-captioning", "instant resizing", "social media templates", "podcasters", "content repurposing"],
+    title: "MURF",
+    description: "Versatile AI voice generator that empowers creators to transform text into lifelike speech with studio-quality voiceovers. Over 120+ AI voices available in 20+ languages with extensive customization.",
+    emoji: "🎙️",
+    color: "from-orange-500 to-pink-600",
+    directUrl: "https://get.murf.ai/1uvb0e8dznua",
+    tags: ["120+ voices", "20+ languages", "studio-quality", "pitch adjustment", "video sync", "professional results"],
     category: "Video Editing & Content Tools",
-    rating: 4.5,
-    totalVotes: 3789
-  },
-  {
-    icon: Camera,
-    title: "Kamua",
-    description: "Revolutionary browser-based video editing tool that empowers users to edit videos 50-90% faster without any prior experience. Ultra-fast cloud computing and AI automation with automated captioning in 60+ languages.",
-    emoji: "📹",
-    color: "from-green-500 to-purple-600",
-    directUrl: "https://kamua.com/",
-    tags: ["50-90% faster", "no experience needed", "60+ languages", "cloud computing", "AI automation", "browser-based"],
-    category: "Video Editing & Content Tools",
-    rating: 4.6,
-    totalVotes: 4234
-  },
-  {
-    icon: Scissors,
-    title: "Dumme",
-    description: "Game-changing platform that simplifies the process of creating engaging and impactful short videos. Effortlessly curate, subtitle, and reformat video content into high-impact shorts in just minutes with AI models.",
-    emoji: "✂️",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://dumme.com/",
-    tags: ["short videos", "AI curation", "subtitles", "20+ languages", "natural flow", "ready-to-upload"],
-    category: "Video Editing & Content Tools",
-    rating: 4.4,
-    totalVotes: 3234
-  },
-  {
-    icon: Video,
-    title: "Aideo",
-    description: "World's first AI-powered video editor, capable of creating, uploading, and scheduling the perfect video with remarkable precision and efficiency. In just minutes, obtain extraordinary video reel by uploading footage.",
-    emoji: "🎬",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://aideo.io/ai",
-    tags: ["first AI editor", "upload footage", "select song", "automatic editing", "precision", "efficiency"],
-    category: "Video Editing & Content Tools",
-    rating: 4.3,
-    totalVotes: 2876
+    rating: 4.7,
+    totalVotes: 5123
   }
 ];
