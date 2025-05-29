@@ -10,7 +10,7 @@ export const aiArtTools: Tool[] = [
     emoji: "🎨",
     color: "from-purple-500 to-pink-500",
     videoUrl: "https://www.youtube.com/watch?v=5deYUaqwreo",
-    directUrl: "https://www.midjourney.com/home",
+    directUrl: "https://www.midjourney.com/home?via=aiwebtools",
     tags: ["image generation", "AI art", "creativity", "visual", "midjourney", "discord"],
     category: "AI Art"
   },
@@ -21,7 +21,7 @@ export const aiArtTools: Tool[] = [
     emoji: "🖼️",
     color: "from-blue-500 to-green-500",
     videoUrl: "https://www.youtube.com/watch?v=USSpwbe3Rxk",
-    directUrl: "https://ideogram.ai/",
+    directUrl: "https://ideogram.ai/?via=aiwebtools",
     tags: ["image generation", "graphics", "AI art", "design", "logos", "professional"],
     category: "AI Art"
   },
