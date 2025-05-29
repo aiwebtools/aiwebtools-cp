@@ -1,4 +1,3 @@
-
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -15,9 +14,11 @@ import ToolMedia from "@/components/tool-detail/ToolMedia";
 import ToolTags from "@/components/tool-detail/ToolTags";
 import ToolActions from "@/components/tool-detail/ToolActions";
 import SearchBar from "@/components/tools/SearchBar";
+import SEOHead from "@/components/SEOHead";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { searchTools } from "@/utils/searchUtils";
+import { generateStructuredData } from "@/utils/seo";
 
 const ToolDetail = () => {
   const { toolId } = useParams();
@@ -44,6 +45,11 @@ const ToolDetail = () => {
   if (!tool) {
     return (
       <div className="min-h-screen bg-black relative">
+        <SEOHead
+          title="Tool Not Found"
+          description="The requested AI tool could not be found. Browse our collection of 1000+ AI tools."
+          noIndex={true}
+        />
         <AnimatedBackground />
         <div className="relative z-10 min-h-screen flex items-center justify-center cyber-grid">
           <div className="text-center p-8 bg-gray-900/80 backdrop-blur-md rounded-xl border border-cyan-500/30 shadow-2xl shadow-cyan-500/20">
@@ -65,8 +71,30 @@ const ToolDetail = () => {
   const defaultRating = tool.rating || defaultRatings[toolIndex % defaultRatings.length];
   const defaultVotes = tool.totalVotes || Math.floor(Math.random() * 3000) + 2000;
 
+  const toolStructuredData = generateStructuredData('tool', {
+    title: tool.title,
+    description: tool.description,
+    rating: defaultRating,
+    totalVotes: defaultVotes
+  });
+
   return (
     <div className="min-h-screen bg-black relative">
+      <SEOHead
+        title={`${tool.title} - AI Tool Review & Access`}
+        description={`${tool.description} Access ${tool.title}, a powerful AI tool in the ${tool.category} category. Read reviews, features, and get direct access.`}
+        keywords={[
+          tool.title.toLowerCase(),
+          `${tool.category?.toLowerCase()} ai tool`,
+          "ai tool review",
+          "artificial intelligence",
+          ...(tool.tags || [])
+        ]}
+        url={`/tool/${toolIndex}`}
+        type="article"
+        structuredData={toolStructuredData}
+      />
+      
       <AnimatedBackground />
       <div className="relative z-10 cyber-grid">
         <Header />
