@@ -25,6 +25,18 @@ const TabletMenu = () => {
     }
   };
 
+  const viewAllTools = () => {
+    const toolsSection = document.getElementById('tools-section');
+    if (toolsSection) {
+      toolsSection.scrollIntoView({ behavior: 'smooth' });
+      
+      setTimeout(() => {
+        const event = new CustomEvent('selectCategory', { detail: 'All Categories' });
+        window.dispatchEvent(event);
+      }, 800);
+    }
+  };
+
   return (
     <div className="hidden md:flex lg:hidden">
       <DropdownMenu>
@@ -37,6 +49,13 @@ const TabletMenu = () => {
           <div className="p-2">
             <DropdownMenuItem onClick={() => window.location.href = '#home'} className="text-cyan-100 hover:bg-cyan-500/20">
               Home
+            </DropdownMenuItem>
+            <DropdownMenuSeparator className="border-gray-700" />
+            <DropdownMenuItem
+              onClick={viewAllTools}
+              className="text-cyan-400 hover:bg-cyan-500/20 font-medium"
+            >
+              🔍 View All Tools
             </DropdownMenuItem>
             <DropdownMenuSeparator className="border-gray-700" />
             <div className="font-semibold text-cyan-400 mb-2 px-2">AI Tool Categories</div>

@@ -31,6 +31,18 @@ const Navigation = () => {
     }
   };
 
+  const viewAllTools = () => {
+    const toolsSection = document.getElementById('tools-section');
+    if (toolsSection) {
+      toolsSection.scrollIntoView({ behavior: 'smooth' });
+      
+      setTimeout(() => {
+        const event = new CustomEvent('selectCategory', { detail: 'All Categories' });
+        window.dispatchEvent(event);
+      }, 800);
+    }
+  };
+
   return (
     <nav className="hidden lg:flex items-center space-x-6 flex-shrink-0">
       <a href="#home" className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap">Home</a>
@@ -42,6 +54,13 @@ const Navigation = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-80 max-h-96 overflow-y-auto bg-black/95 shadow-lg border border-cyan-500/30 backdrop-blur-md">
           <div className="p-2">
+            <DropdownMenuItem
+              onClick={viewAllTools}
+              className="cursor-pointer hover:bg-cyan-500/20 rounded-md p-2 font-medium text-cyan-400 mb-2"
+            >
+              🔍 View All Tools
+            </DropdownMenuItem>
+            <DropdownMenuSeparator className="border-gray-700" />
             <div className="font-semibold text-cyan-400 mb-2">Browse by Category</div>
             {Object.entries(categoriesWithCounts).map(([category, count]) => (
               <DropdownMenuItem
@@ -55,13 +74,6 @@ const Navigation = () => {
                 </span>
               </DropdownMenuItem>
             ))}
-            <DropdownMenuSeparator className="border-gray-700" />
-            <DropdownMenuItem
-              onClick={scrollToTools}
-              className="cursor-pointer hover:bg-cyan-500/20 rounded-md p-2 font-medium text-cyan-400"
-            >
-              View All Tools
-            </DropdownMenuItem>
           </div>
         </DropdownMenuContent>
       </DropdownMenu>
