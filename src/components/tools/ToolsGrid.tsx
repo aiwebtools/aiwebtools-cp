@@ -44,18 +44,30 @@ const ToolsGrid = ({
     if (searchTerm) {
       return <>🔍 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Search Results</span></>;
     }
-    return <>🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Complete AI Tools Collection</span></>;
+    return <>🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">COMPLETE AI TOOL COLLECTION</span></>;
   };
 
   if (displayTools.length === 0) return null;
 
   return (
     <>
-      <div className="text-center mb-8 sm:mb-12 px-4">
-        <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
-          {getSectionTitle()}
-        </h3>
-      </div>
+      {/* Only show title for category/search results, not for main page */}
+      {(selectedCategory || searchTerm) && (
+        <div className="text-center mb-8 sm:mb-12 px-4">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
+            {getSectionTitle()}
+          </h3>
+        </div>
+      )}
+
+      {/* Show title for main page only when not at the beginning */}
+      {(!selectedCategory && !searchTerm && displayedCount > 12) && (
+        <div className="text-center mb-8 sm:mb-12 px-4">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
+            {getSectionTitle()}
+          </h3>
+        </div>
+      )}
 
       {/* Optimized grid with virtual scrolling hints for better performance */}
       <div 

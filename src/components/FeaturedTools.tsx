@@ -3,7 +3,6 @@ import { useState, useMemo, useEffect, useCallback } from "react";
 import { allTools, searchTools, getCategoriesWithCounts, getToolsByCategory } from "@/data/toolsData";
 import CategoryFilters from "@/components/tools/CategoryFilters";
 import ActiveFilters from "@/components/tools/ActiveFilters";
-import FeaturedToolsSection from "@/components/tools/FeaturedToolsSection";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 
 const FeaturedTools = () => {
@@ -100,12 +99,6 @@ const FeaturedTools = () => {
           totalTools={totalToolsCount}
         />
       </div>
-
-      {(!selectedCategory && !searchTerm) && (
-        <div className="px-4 sm:px-0">
-          <FeaturedToolsSection featuredTools={allTools.slice(0, 4)} />
-        </div>
-      )}
 
       <ToolsGrid
         tools={filteredTools}
