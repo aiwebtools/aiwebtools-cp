@@ -2,19 +2,26 @@
 import { allTools } from "@/data/toolsData";
 import { seoConfig } from "./seo";
 
+interface SitemapUrl {
+  loc: string;
+  changefreq: string;
+  priority: string;
+  lastmod?: string;
+}
+
 export const generateSitemap = () => {
-  const baseUrls = [
+  const baseUrls: SitemapUrl[] = [
     { loc: seoConfig.siteUrl, changefreq: 'daily', priority: '1.0' },
   ];
 
-  const toolUrls = allTools.map((tool, index) => ({
+  const toolUrls: SitemapUrl[] = allTools.map((tool, index) => ({
     loc: `${seoConfig.siteUrl}/tool/${index}`,
     changefreq: 'weekly',
     priority: '0.8',
     lastmod: new Date().toISOString()
   }));
 
-  const categoryUrls = Array.from(new Set(allTools.map(tool => tool.category).filter(Boolean))).map(category => ({
+  const categoryUrls: SitemapUrl[] = Array.from(new Set(allTools.map(tool => tool.category).filter(Boolean))).map(category => ({
     loc: `${seoConfig.siteUrl}/category/${encodeURIComponent(category)}`,
     changefreq: 'weekly',
     priority: '0.7'
