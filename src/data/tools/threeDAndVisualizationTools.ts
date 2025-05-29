@@ -2,7 +2,7 @@
 import { Tool } from "@/types/tools";
 import { 
   Box, 
-  Cube, 
+  Package, 
   Eye, 
   Layers, 
   Zap, 
@@ -27,7 +27,7 @@ export const threeDAndVisualizationTools: Tool[] = [
     totalVotes: 3456
   },
   {
-    icon: Cube,
+    icon: Package,
     title: "Meshy",
     description: "AI-powered 3D model generator that creates high-quality 3D assets from text prompts or images. Perfect for game development and 3D visualization.",
     emoji: "🎲",
