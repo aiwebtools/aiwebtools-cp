@@ -7,11 +7,14 @@ interface ToolDescriptionProps {
 }
 
 const ToolDescription = ({ tool }: ToolDescriptionProps) => {
+  // Use the full description directly if it exists and is substantial
   const getEnhancedDescription = () => {
+    // If the tool already has a substantial description (over 100 characters), use it as-is
     if (tool.description && tool.description.length > 100) {
       return tool.description;
     }
     
+    // Fallback for tools with shorter descriptions
     let description = tool.description || "This advanced AI-powered tool is designed to revolutionize your workflow and enhance productivity.";
     
     if (tool.category) {
