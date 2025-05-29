@@ -130,7 +130,7 @@ const CategoryPage = () => {
 
           {/* Category Toggle Section */}
           <div className="mb-16" ref={categoryButtonsRef}>
-            <h3 className="text-xl md:text-2xl font-semibold text-purple-300 mb-6 text-center">
+            <h3 className="text-xl md:text-2xl font-semibold text-white mb-6 text-center">
               Browse Other Categories
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 max-w-6xl mx-auto">
@@ -145,8 +145,8 @@ const CategoryPage = () => {
                   className={`
                     group relative overflow-hidden transition-all duration-300 transform hover:scale-105
                     ${category === selectedCategory 
-                      ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/25" 
-                      : "border-purple-500/30 text-purple-300 hover:bg-gradient-to-r hover:from-purple-500/20 hover:to-pink-500/20 hover:border-purple-400/50 hover:text-white"
+                      ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30 border-cyan-400" 
+                      : "border-gray-400/60 bg-gray-800/40 text-gray-200 hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-blue-500/20 hover:border-cyan-400/80 hover:text-white hover:shadow-md hover:shadow-cyan-500/20"
                     }
                   `}
                 >
@@ -155,8 +155,8 @@ const CategoryPage = () => {
                     variant="secondary" 
                     className={`ml-2 text-xs relative z-10 ${
                       category === selectedCategory 
-                        ? "bg-white/20 text-white" 
-                        : "bg-purple-500/20 text-purple-200 group-hover:bg-white/20 group-hover:text-white"
+                        ? "bg-white/25 text-white border-white/30" 
+                        : "bg-gray-600/60 text-gray-300 border-gray-500/40 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30"
                     }`}
                   >
                     {count}
