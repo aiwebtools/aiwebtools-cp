@@ -1,5 +1,3 @@
-
-
 export const createTimePortalEffect = (destinationUrl: string) => {
   console.log('🌀 Creating time portal effect for URL:', destinationUrl);
   
@@ -154,7 +152,7 @@ export const createTimePortalEffect = (destinationUrl: string) => {
         audioContext.resume();
       }
       
-      // Whoosh sound - extended duration
+      // Deep whoosh sound - much lower and more dramatic
       const createWhoosh = () => {
         const oscillator = audioContext.createOscillator();
         const gainNode = audioContext.createGain();
@@ -165,55 +163,76 @@ export const createTimePortalEffect = (destinationUrl: string) => {
         gainNode.connect(audioContext.destination);
         
         oscillator.type = 'sawtooth';
-        oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 2);
+        oscillator.frequency.setValueAtTime(80, audioContext.currentTime); // Much lower starting frequency
+        oscillator.frequency.exponentialRampToValueAtTime(25, audioContext.currentTime + 2); // Even deeper end
         
         filter.type = 'lowpass';
-        filter.frequency.setValueAtTime(2000, audioContext.currentTime);
-        filter.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 2);
+        filter.frequency.setValueAtTime(800, audioContext.currentTime); // Lower filter
+        filter.frequency.exponentialRampToValueAtTime(60, audioContext.currentTime + 2);
         
-        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.setValueAtTime(0.4, audioContext.currentTime); // Slightly louder
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2);
         
         oscillator.start();
         oscillator.stop(audioContext.currentTime + 2);
       };
       
-      // Portal opening sound - extended duration
+      // Deep portal opening sound with sub-bass
       const createPortalSound = () => {
         const oscillator = audioContext.createOscillator();
         const gainNode = audioContext.createGain();
+        const subOscillator = audioContext.createOscillator(); // Add sub-bass layer
+        const subGain = audioContext.createGain();
         
         oscillator.connect(gainNode);
         gainNode.connect(audioContext.destination);
+        subOscillator.connect(subGain);
+        subGain.connect(audioContext.destination);
         
+        // Main oscillator - deeper
         oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(100, audioContext.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.5);
-        oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 1.5);
+        oscillator.frequency.setValueAtTime(60, audioContext.currentTime); // Much lower
+        oscillator.frequency.exponentialRampToValueAtTime(300, audioContext.currentTime + 0.5);
+        oscillator.frequency.exponentialRampToValueAtTime(120, audioContext.currentTime + 1.5); // Lower end
         
-        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
-        gainNode.gain.linearRampToValueAtTime(0.4, audioContext.currentTime + 0.3);
+        // Sub-bass layer
+        subOscillator.type = 'sine';
+        subOscillator.frequency.setValueAtTime(30, audioContext.currentTime); // Very deep
+        subOscillator.frequency.exponentialRampToValueAtTime(80, audioContext.currentTime + 1.5);
+        
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.5, audioContext.currentTime + 0.3);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
+        
+        subGain.gain.setValueAtTime(0.2, audioContext.currentTime);
+        subGain.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.3);
+        subGain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
         
         oscillator.start();
         oscillator.stop(audioContext.currentTime + 1.5);
+        subOscillator.start();
+        subOscillator.stop(audioContext.currentTime + 1.5);
       };
       
-      // Energy crackle - more crackles over longer duration
+      // Deeper energy crackle with more bass
       const createCrackle = () => {
         for (let i = 0; i < 12; i++) {
           setTimeout(() => {
             const oscillator = audioContext.createOscillator();
             const gainNode = audioContext.createGain();
+            const filter = audioContext.createBiquadFilter();
             
-            oscillator.connect(gainNode);
+            oscillator.connect(filter);
+            filter.connect(gainNode);
             gainNode.connect(audioContext.destination);
             
             oscillator.type = 'square';
-            oscillator.frequency.setValueAtTime(800 + Math.random() * 1200, audioContext.currentTime);
+            oscillator.frequency.setValueAtTime(400 + Math.random() * 600, audioContext.currentTime); // Lower range
             
-            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(1200, audioContext.currentTime); // Filter out harsh highs
+            
+            gainNode.gain.setValueAtTime(0.15, audioContext.currentTime); // Slightly louder
             gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.12);
             
             oscillator.start();
@@ -254,4 +273,3 @@ export const createTimePortalEffect = (destinationUrl: string) => {
     }
   }, 2500);
 };
-
