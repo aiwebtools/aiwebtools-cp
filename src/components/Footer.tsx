@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator";
-import { Globe, Mail, Phone, Home, MapPin } from "lucide-react";
+import { Globe, Mail, Phone, Home, MapPin, Shield } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
@@ -18,6 +18,20 @@ const Footer = () => {
   return (
     <footer className="bg-black text-cyan-100 py-16 border-t border-cyan-500/30">
       <div className="container mx-auto px-4">
+        {/* Big Disclaimer Button */}
+        <div className="text-center mb-12">
+          <a
+            href="https://aitools.company/terms-of-services"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center space-x-3 px-12 py-6 bg-gradient-to-r from-cyan-600 via-cyan-500 to-cyan-600 hover:from-cyan-500 hover:via-cyan-400 hover:to-cyan-500 text-black font-bold text-lg rounded-full shadow-2xl shadow-cyan-500/40 hover:shadow-cyan-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-cyan-400 hover:border-cyan-300 cyber-glow"
+          >
+            <Shield className="w-6 h-6" />
+            <span className="text-xl">READ FULL DISCLAIMER AND TERMS OF SERVICE</span>
+            <Shield className="w-6 h-6" />
+          </a>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
