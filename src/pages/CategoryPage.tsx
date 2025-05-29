@@ -133,7 +133,7 @@ const CategoryPage = () => {
             <h3 className="text-xl md:text-2xl font-semibold text-white mb-6 text-center">
               Browse Other Categories
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 max-w-6xl mx-auto">
               {Object.entries(categoriesWithCounts)
                 .sort(([a], [b]) => a.localeCompare(b))
                 .map(([category, count]) => (
@@ -143,24 +143,26 @@ const CategoryPage = () => {
                   variant={category === selectedCategory ? "default" : "outline"}
                   size="sm"
                   className={`
-                    group relative overflow-hidden transition-all duration-300 transform hover:scale-105
+                    group relative overflow-hidden transition-all duration-300 transform hover:scale-105 w-full min-w-fit px-4 py-3 h-auto whitespace-normal text-left
                     ${category === selectedCategory 
                       ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30 border-cyan-400" 
                       : "border-gray-400/60 bg-gray-800/40 text-gray-200 hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-blue-500/20 hover:border-cyan-400/80 hover:text-white hover:shadow-md hover:shadow-cyan-500/20"
                     }
                   `}
                 >
-                  <span className="relative z-10 text-sm font-medium truncate">{category}</span>
-                  <Badge 
-                    variant="secondary" 
-                    className={`ml-2 text-xs relative z-10 ${
-                      category === selectedCategory 
-                        ? "bg-white/25 text-white border-white/30" 
-                        : "bg-gray-600/60 text-gray-300 border-gray-500/40 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30"
-                    }`}
-                  >
-                    {count}
-                  </Badge>
+                  <div className="flex justify-between items-center w-full gap-2">
+                    <span className="relative z-10 text-sm font-medium leading-tight flex-1">{category}</span>
+                    <Badge 
+                      variant="secondary" 
+                      className={`text-xs relative z-10 flex-shrink-0 ${
+                        category === selectedCategory 
+                          ? "bg-white/25 text-white border-white/30" 
+                          : "bg-gray-600/60 text-gray-300 border-gray-500/40 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30"
+                      }`}
+                    >
+                      {count}
+                    </Badge>
+                  </div>
                 </Button>
               ))}
             </div>
