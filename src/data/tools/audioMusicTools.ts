@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Music,
@@ -5,19 +6,6 @@ import {
 } from "lucide-react";
 
 export const audioMusicTools: Tool[] = [
-  {
-    icon: Music,
-    title: "AI Music Generator",
-    description: "Create original music compositions with AI. Generate songs, melodies, and harmonies in various styles and genres.",
-    emoji: "🎵",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://www.soundraw.io/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/soundraw-ai-music-generator.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    tags: ["AI music", "music generation", "songwriting", "melody", "harmony"],
-    category: "Audio & Music",
-    rating: 4.5,
-    totalVotes: 2345
-  },
   {
     icon: Music,
     title: "AI Vocal Remover",
