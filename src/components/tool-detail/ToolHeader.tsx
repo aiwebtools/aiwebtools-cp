@@ -1,8 +1,7 @@
 
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Mail } from "lucide-react";
 import { Tool } from "@/types/tools";
 import StarRating from "@/components/tools/StarRating";
 import { useNavigate } from "react-router-dom";
@@ -27,6 +26,20 @@ const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeader
     if (tool.category) {
       navigate(`/category/${encodeURIComponent(tool.category)}`);
     }
+  };
+
+  const handleSendFeedback = () => {
+    const subject = encodeURIComponent(`Feedback for ${tool.title}`);
+    const body = encodeURIComponent(`Hi,
+
+I would like to provide feedback about ${tool.title}:
+
+[Please describe your concerns, bugs, or suggestions here]
+
+Thank you!`);
+    
+    const mailtoUrl = `mailto:contact@ai-webtools.com?subject=${subject}&body=${body}`;
+    window.location.href = mailtoUrl;
   };
 
   // Check if this is a GPT tool (contains "GPT" in title)
@@ -66,7 +79,7 @@ const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeader
             toolId={toolIndex !== undefined ? `tool-${toolIndex}` : undefined}
           />
         </div>
-        <div className="pt-4">
+        <div className="pt-4 space-y-3">
           <Button 
             size="lg"
             onClick={handleUseItNow}
@@ -76,6 +89,20 @@ const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeader
             <ExternalLink className="w-4 h-4 mr-2" />
             {tool.directUrl ? "USE IT NOW" : "COMING SOON"}
           </Button>
+          
+          {isGPTTool && (
+            <div>
+              <Button 
+                size="lg"
+                onClick={handleSendFeedback}
+                variant="outline"
+                className="border-yellow-500/50 bg-yellow-500/10 text-yellow-300 hover:bg-yellow-500/20 hover:border-yellow-400 px-8 py-3 text-base rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+              >
+                <Mail className="w-4 h-4 mr-2" />
+                SEND THE CREATOR FEEDBACK
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -83,4 +110,3 @@ const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeader
 };
 
 export default ToolHeader;
-
