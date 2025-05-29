@@ -10,10 +10,8 @@ const FooterLinks = () => {
   };
 
   const quickLinks = [
-    { name: "AI Tools Directory", url: "https://aitools.studio" },
-    { name: "Business Solutions", url: "https://aiwebtools.ai/business" },
-    { name: "Custom AI Development", url: "https://aiwebtools.ai/custom" },
-    { name: "AI Consulting", url: "https://aiwebtools.ai/consulting" }
+    { name: "Custom AI Development", url: "https://aitools.company/hire-us-to-build-your-ai-1" },
+    { name: "AI Consulting", url: "https://aitools.company/hire-us-to-build-your-ai-1" }
   ];
 
   const legalLinks = [
