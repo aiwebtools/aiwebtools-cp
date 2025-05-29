@@ -31,7 +31,8 @@ export const createPortalSounds = () => {
           // Add some noise for texture
           const noise = (Math.random() - 0.5) * 0.1 * Math.exp(-t * 2);
           
-          channelData[i] = (whoosh1 + whoosh2 * 0.7 + whoosh3 * 0.5 + noise) * envelope * 0.3;
+          // Reduced volume from 0.3 to 0.15 for better voice clarity
+          channelData[i] = (whoosh1 + whoosh2 * 0.7 + whoosh3 * 0.5 + noise) * envelope * 0.15;
         }
       }
       
@@ -54,7 +55,8 @@ export const createPortalSounds = () => {
           const harmonic = Math.sin(2 * Math.PI * 80 * t) * Math.exp(-t * 4) * 0.5;
           const envelope = Math.exp(-t * 2);
           
-          channelData[i] = (pulse + harmonic) * envelope * 0.4;
+          // Reduced volume from 0.4 to 0.2 for better voice clarity
+          channelData[i] = (pulse + harmonic) * envelope * 0.2;
         }
       }
       
