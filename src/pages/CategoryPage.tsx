@@ -1,6 +1,6 @@
 
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
@@ -15,6 +15,7 @@ const CategoryPage = () => {
   const { categoryName } = useParams<{ categoryName: string }>();
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string>(categoryName || "");
+  const toolsGridRef = useRef<HTMLDivElement>(null);
   
   const categoriesWithCounts = getCategoriesWithCounts(allTools);
   const categoryTools = getToolsByCategory(allTools, selectedCategory);
@@ -28,6 +29,16 @@ const CategoryPage = () => {
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
     navigate(`/category/${encodeURIComponent(category)}`);
+    
+    // Scroll to tools grid after a short delay to ensure the page has updated
+    setTimeout(() => {
+      if (toolsGridRef.current) {
+        toolsGridRef.current.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 100);
   };
 
   const goBack = () => {
@@ -115,7 +126,7 @@ const CategoryPage = () => {
           </div>
 
           {/* Tools Grid */}
-          <div className="mb-16">
+          <div className="mb-16" ref={toolsGridRef}>
             {categoryTools.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {categoryTools.map((tool, index) => (
