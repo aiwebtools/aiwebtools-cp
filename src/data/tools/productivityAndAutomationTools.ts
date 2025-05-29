@@ -106,10 +106,121 @@ import {
   ChevronsLeft, 
   ChevronsRight,
   ShoppingCart,
-  Brain
+  Brain,
+  Sparkles,
+  BarChart2,
+  Filter2
 } from "lucide-react";
 
 export const productivityAndAutomationTools: Tool[] = [
+  {
+    icon: Bot,
+    title: "BitSkout",
+    description: "Innovative solution for automating back-office tasks using artificial intelligence. Effortlessly create plugins that can read and extract data from documents and emails with just a few clicks. This extracted data can then be seamlessly integrated into popular tools like Asana, Zapier, or Power Automate.",
+    emoji: "🤖",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://www.bitskout.com/?via=aiwebtools",
+    tags: ["automation", "AI plugins", "data extraction", "document processing", "workflow integration"],
+    category: "Productivity & Automation Tools",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: Mail,
+    title: "SaneBox",
+    description: "Intelligent email management tool designed to help users declutter their inboxes and prioritize important emails. With a free 14-day trial, offers seamless integration with various email platforms, including Google, Office365, Apple iCloud, and more using AI technology.",
+    emoji: "📧",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://try.sanebox.com/aiwebtools",
+    tags: ["email management", "AI organization", "inbox declutter", "priority emails", "multi-platform"],
+    category: "Productivity & Automation Tools",
+    rating: 4.5,
+    totalVotes: 4567
+  },
+  {
+    icon: FileText,
+    title: "Compose AI",
+    description: "Chrome extension designed to significantly enhance writing efficiency with AI-powered autocompletion and text generation, reducing writing time by up to 40%. This free extension automates repetitive typing tasks, allowing users to save time for more important activities.",
+    emoji: "✍️",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://affiliate.notion.so/composeai-notion-aiwebtools",
+    tags: ["Chrome extension", "AI writing", "40% time savings", "autocompletion", "text generation"],
+    category: "Productivity & Automation Tools",
+    rating: 4.3,
+    totalVotes: 3789
+  },
+  {
+    icon: Brain,
+    title: "Notion",
+    description: "Ultimate AI-Powered Workspace. Revolutionizes the way teams work, offering a connected workspace equipped with integrated AI assistance. Whether it's centralizing knowledge through versatile wikis, streamlining communication with powerful docs, or enhancing project management efficiency.",
+    emoji: "📝",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://affiliate.notion.so/aiwebtools",
+    tags: ["AI workspace", "team collaboration", "project management", "knowledge base", "50+ countries"],
+    category: "Productivity & Automation Tools",
+    rating: 4.8,
+    totalVotes: 7234
+  },
+  {
+    icon: Sparkles,
+    title: "Taskade",
+    description: "Innovative AI-powered productivity tool that seamlessly combines five AI-driven features into a single, unified workspace. With Taskade, teams can automate over 700 tasks across various domains, including marketing, sales, HR, and more.",
+    emoji: "✨",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://taskade.com/?via=aiwebtools",
+    tags: ["AI productivity", "700+ task automation", "unified workspace", "team collaboration", "workflow automation"],
+    category: "Productivity & Automation Tools",
+    rating: 4.6,
+    totalVotes: 5234
+  },
+  {
+    icon: BarChart2,
+    title: "SheetsAI",
+    description: "Transformative AI tool that seamlessly integrates with Google Sheets, revolutionizing spreadsheet functionality. By simply expressing your needs in plain English, empowers your spreadsheets with AI capabilities, automating tasks and delivering insightful solutions.",
+    emoji: "📊",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://www.sheetai.app/?via=Aiwebtools",
+    tags: ["Google Sheets AI", "spreadsheet automation", "plain English commands", "data processing", "AI functions"],
+    category: "Productivity & Automation Tools",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: FileText,
+    title: "Humata",
+    description: "AI-driven marvel that revolutionizes research, document analysis, and learning processes. With its capabilities to accelerate these tasks by an astounding 100-fold, it empowers users to effortlessly distill complex research papers into succinct summaries.",
+    emoji: "📄",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://www.humata.ai/?via=Aiwebtools",
+    tags: ["100x faster research", "document analysis", "research papers", "AI summaries", "Q&A functionality"],
+    category: "Productivity & Automation Tools",
+    rating: 4.7,
+    totalVotes: 5678
+  },
+  {
+    icon: Brain,
+    title: "AIforbiz",
+    description: "Your go-to resource for discovering how to leverage AI in your business. Whether you're a newcomer to AI or looking for fresh insights, offers practical use cases and expert guidance to help you harness the power of artificial intelligence.",
+    emoji: "🧠",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://aiforbiz.co/",
+    tags: ["AI business guidance", "practical use cases", "expert insights", "business optimization", "AI implementation"],
+    category: "Productivity & Automation Tools",
+    rating: 4.2,
+    totalVotes: 2345
+  },
+  {
+    icon: Archive,
+    title: "DropBox",
+    description: "Trusted by over 700 million registered users and 600,000 teams, offers an easy-to-use, reliable, private, and secure solution for storing and sharing your vital files. With a commitment to privacy, ensures that your files belong to you.",
+    emoji: "📦",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://www.dropbox.com/referrals/AAAy2YnslqkBow4iLZxUNWDzQT296CfaIys?src=global9",
+    tags: ["700M users", "file storage", "team collaboration", "security", "integrations"],
+    category: "Productivity & Automation Tools",
+    rating: 4.6,
+    totalVotes: 8901
+  },
   {
     icon: Zap,
     title: "Task Automation Tool",
