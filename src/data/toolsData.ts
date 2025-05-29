@@ -47,10 +47,9 @@ import {
   advancedChatPlatforms,
   developerAndCodingTools,
   contentDetectionTools,
-  contentCreationTools as contentCreationAndWritingTools,
+  contentCreationAndWritingTools,
   documentAndResearchTools,
-  imageAndDesign as designAndGraphicsTools,
-  productivityAndAutomationTools,
+  designAndGraphicsTools,
   writingAndContentEnhancement,
   resumeAndCareerTools,
   ecommerceAndMarketingTools,
@@ -66,7 +65,6 @@ import {
 } from './tools';
 
 // Import the refactored tools
-import { productivityAndAutomationTools } from './tools/productivityAndAutomationTools';
 import { advancedVideoTools } from './tools/advancedVideoTools';
 import { creativeDesignTools } from './tools/creativeDesignTools';
 import { businessSalesTools } from './tools/businessSalesTools';
@@ -138,7 +136,6 @@ export const allTools: Tool[] = [
   ...businessTools,
   ...businessAndTeamTools,
   ...searchAndProductivityTools,
-  ...productivityAndAutomationTools,
   ...ecommerceAndMarketingTools,
   ...platformsAndDevelopment,
   ...professionalServices,
