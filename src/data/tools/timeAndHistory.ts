@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Clock, 
@@ -28,6 +27,7 @@ export const timeAndHistory: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298793409806528/time.webp?ex=683874f5&is=68372375&hm=d34130b093578f32c613a8b740b8e19d7d789380d810971be36ae94d5885215e&=&format=webp&width=2338&height=1312",
     tags: ["time travel", "history", "simulation", "education"],
     category: "Time & History",
     rating: 4.5,

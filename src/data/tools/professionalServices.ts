@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Stethoscope, 
@@ -27,7 +26,7 @@ export const professionalServices: Tool[] = [
     emoji: "✅",
     color: "from-green-600 to-blue-600",
     directUrl: "https://factcheckergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-person-holding-a-sign-that-_gfexU.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298676611022848/factchecker.webp?ex=683874d9&is=68372359&hm=c575ff58fbcfb3bd6ef61a2a9a4ba8200253b6f2d697458c53a6205877342432&",
     category: "Research & Verification",
     tags: ["fact checking", "verification", "research", "accuracy"],
     rating: 4.6,
@@ -40,7 +39,7 @@ export const professionalServices: Tool[] = [
     emoji: "🌱",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://sustainablefuturesgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-future-city-with-vertical-gardens.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298675931418794/sustainablefuture.webp?ex=683874d9&is=68372359&hm=5b73e178ab39c38fe42f25d18029f3802a6495ad540bacd9ae2c1b24ad908a45&",
     category: "Environmental",
     tags: ["sustainability", "environment", "green technology", "eco-friendly"],
     rating: 4.7,

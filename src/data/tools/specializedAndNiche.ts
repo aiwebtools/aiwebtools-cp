@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Car, Leaf, Fish, Shield, Home, Wrench, Dog, Star, 
@@ -14,6 +13,7 @@ export const specializedAndNiche: Tool[] = [
     color: "from-blue-500 to-gray-600",
     directUrl: "https://automobilegpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=f_4aFnL-mk8",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298792986185759/automobile.webp?ex=683874f5&is=68372375&hm=ec15bb55f45d7623016122da411f80c948a8120c5091a6085e69ca09706031d8&=&format=webp&width=2400&height=1200",
     tags: ["automotive", "cars", "diagnostics", "vehicle information"],
     category: "Specialized & Niche",
     rating: 4.3,
@@ -39,7 +39,7 @@ export const specializedAndNiche: Tool[] = [
     emoji: "🎣",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://fishermangpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-advertisement-for-an-ai-tool-c_xfvGY.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298674383847533/fisherman.webp?ex=683874d8&is=68372358&hm=7dfbc73fcad2c6df09898e396f518c9a23b39f19a1f48c3d2fa48ce92d680ab6&",
     tags: ["fishing", "outdoor recreation", "fishing spots", "gear recommendations", "angling"],
     category: "Specialized & Niche",
     rating: 4.2,
@@ -53,6 +53,7 @@ export const specializedAndNiche: Tool[] = [
     color: "from-green-500 to-brown-600",
     directUrl: "https://survivalistgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=RX6W8KC0y18&list=TLGGkaSLRgubL1gyODA1MjAyNQ",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298679387521186/survivalist.webp?ex=683874da&is=6837235a&hm=47343d2e045ffa4fbd8d754f9e85a79b9172d12cb3651ee90c48add9ad6ed748&=&format=webp&width=2340&height=1312",
     tags: ["survival", "wilderness", "emergency preparedness", "outdoor skills"],
     category: "Specialized & Niche",
     rating: 4.4,
@@ -65,7 +66,7 @@ export const specializedAndNiche: Tool[] = [
     emoji: "🏡",
     color: "from-orange-500 to-red-600",
     directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-professional-advertisement-for-an-ai-tool_1k6Qj.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298674819924100/home_renovator.webp?ex=683874d9&is=68372359&hm=65ce1afedf863b9ad7c71a3202814f3e571253cb0adf806e6de06d006de8e06c&=&format=webp&width=2340&height=1312",
     tags: ["home renovation", "DIY projects", "home improvement", "construction", "repair guidance"],
     category: "Specialized & Niche",
     rating: 4.3,
@@ -128,6 +129,7 @@ export const specializedAndNiche: Tool[] = [
     emoji: "🔍",
     color: "from-green-500 to-blue-600",
     directUrl: "https://foodqualitygpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298675285626880/foodquality.webp?ex=683874d9&is=68372359&hm=68b71d1ffdf0228ef2cad3d55d4e8369304444a51cc07b4cb5c8feec9235f6a0&",
     tags: ["food safety", "quality inspection", "nutrition analysis", "grocery shopping", "health assessment"],
     category: "Specialized & Niche",
     rating: 4.1,
