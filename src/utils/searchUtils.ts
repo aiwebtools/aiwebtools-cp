@@ -22,7 +22,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     "AI Development Tools": ["ai", "development", "coding", "programming", "developer", "api", "model", "inference", "agent", "machine learning"],
     "Audio & Voice Tools": ["audio", "voice", "music", "sound", "podcast", "speech", "recording", "synthesis"],
     "Education & Learning": ["education", "learning", "study", "school", "teacher", "student", "course", "training", "academic"],
-    "Professional Services": ["professional", "healthcare", "legal", "medical", "law", "finance", "trading", "pharmacy", "consultation", "gpt"],
+    "Professional Services": ["professional", "healthcare", "legal", "medical", "law", "finance", "trading", "pharmacy", "consultation"],
     "Creative & Entertainment": ["creative", "entertainment", "fun", "game", "play", "art", "media", "interactive"],
     "Time & History": ["history", "historical", "time", "past", "ancient", "heritage", "archaeological", "timeline"],
     "Spirituality & Wellness": ["spiritual", "wellness", "meditation", "mindfulness", "peace", "healing", "consciousness"],
@@ -39,10 +39,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     "Creative & Design": ["creative", "design", "canva", "figma", "photoshop", "illustration", "graphics", "visual", "artwork", "templates"],
     "Cloud Services": ["cloud", "storage", "hosting", "server", "infrastructure", "aws", "google cloud", "dropbox", "drive", "backup"],
     "Information & Research": ["information", "research", "news", "wikipedia", "knowledge", "data", "facts", "study", "academic"],
-    "Health & Wellness": ["health", "wellness", "fitness", "medical", "nutrition", "exercise", "mental health", "meditation", "tracking"],
-    
-    // GPT-specific category keywords - CRUCIAL for Ken's GPTs
-    "Custom GPTs": ["gpt", "assistant", "chatbot", "conversational ai", "ai helper", "custom gpt", "personalized ai"]
+    "Health & Wellness": ["health", "wellness", "fitness", "medical", "nutrition", "exercise", "mental health", "meditation", "tracking"]
   };
   
   // Helper function to check if a tool matches the search term with scoring
@@ -57,20 +54,6 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     // First, check for intelligent tool name matching
     const nameMatchScore = getToolNameMatchScore(tool.title, searchTerm);
     score += nameMatchScore;
-    
-    // SPECIAL GPT HANDLING - Essential for Ken's custom GPTs
-    if (searchTerm.toLowerCase() === 'gpt') {
-      if (lowerTitle.includes('gpt')) {
-        score += 500; // Massive boost for GPT tools when searching "gpt"
-      }
-      if (lowerDescription.includes('gpt') || lowerDescription.includes('assistant')) {
-        score += 200;
-      }
-      // Extra boost for Ken's custom GPTs
-      if (tool.directUrl?.includes('lovable.app')) {
-        score += 150;
-      }
-    }
     
     // For very short searches, prioritize name matching
     if (isShortSearch) {
@@ -198,12 +181,6 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   
   console.log(`✅ Search results for "${term}": ${results.length} tools found`);
   console.log(`📊 Top 5 results:`, results.slice(0, 5).map(t => ({ title: t.title, category: t.category })));
-  
-  // Special logging for GPT searches
-  if (term === 'gpt') {
-    const gptResults = results.filter(t => t.title.toLowerCase().includes('gpt'));
-    console.log(`🤖 GPT tools found: ${gptResults.length}`, gptResults.map(t => t.title));
-  }
   
   // Verify search is working across the full tool collection
   if (results.length === 0 && tools.length > 0) {

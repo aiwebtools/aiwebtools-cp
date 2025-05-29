@@ -21,7 +21,7 @@ export const useInfiniteScroll = ({
     onLoadMore();
   }, [isLoading, onLoadMore]);
 
-  // Enhanced infinite scroll with better performance and reliability
+  // Improved infinite scroll with better performance and glitch prevention
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
     
@@ -36,22 +36,18 @@ export const useInfiniteScroll = ({
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
         
-        // More conservative threshold to prevent glitches but ensure consistent loading
-        const threshold = 800; // Increased threshold for better UX
+        // More conservative threshold to prevent glitches
+        const threshold = 600;
         const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
         
-        // Additional check to ensure we haven't reached the maximum
         if (nearBottom && displayedCount < totalTools && !isLoading) {
-          console.log('🔄 Auto-loading more tools via infinite scroll');
           handleLoadMore();
         }
-      }, 150); // Slightly longer debounce for better performance
+      }, 100); // Debounce scroll events
     };
 
-    // Only add scroll listener if infinite scroll is enabled
-    if (!showLoadMoreButton && totalTools > displayedCount) {
+    if (!showLoadMoreButton) {
       window.addEventListener('scroll', handleScroll, { passive: true });
-      console.log('✅ Infinite scroll enabled for seamless tool loading');
     }
     
     return () => {
