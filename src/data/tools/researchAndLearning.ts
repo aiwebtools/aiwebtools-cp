@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Globe, BookOpen, History, Search, 
