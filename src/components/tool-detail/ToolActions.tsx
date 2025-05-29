@@ -28,8 +28,8 @@ Thank you!`);
     window.location.href = mailtoUrl;
   };
 
-  // Check if this is a GPT tool (contains "GPT" in title)
-  const isGPTTool = tool.title.toUpperCase().includes('GPT');
+  // Check if this is an AI Web Tools LLC original tool (has lovable.app in the URL)
+  const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
 
   return (
     <div className="text-center pt-6 border-t border-cyan-500/30">
@@ -44,7 +44,7 @@ Thank you!`);
           {tool.directUrl ? "USE IT NOW" : "COMING SOON"}
         </Button>
         
-        {isGPTTool && (
+        {isAIWebToolsOriginal && (
           <Button 
             size="lg"
             onClick={handleSendFeedback}
@@ -59,7 +59,7 @@ Thank you!`);
       
       <p className="text-sm text-gray-400 mt-3 px-4">
         {tool.directUrl ? "Click to access this AI tool and start using it immediately" : "Direct access coming soon - check back later"}
-        {isGPTTool && (
+        {isAIWebToolsOriginal && (
           <>
             <br />
             <span className="text-yellow-400">Have feedback? Send concerns or bug reports directly to the creator!</span>

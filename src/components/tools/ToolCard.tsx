@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tool } from "@/types/tools";
@@ -31,8 +30,8 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
   const defaultRating = tool.rating || defaultRatings[toolIndex % defaultRatings.length];
   const defaultVotes = tool.totalVotes || Math.floor(Math.random() * 3000) + 2000;
 
-  // Check if this is a GPT tool (contains "GPT" in title)
-  const isGPTTool = tool.title.toUpperCase().includes('GPT');
+  // Check if this is an AI Web Tools LLC original tool (has lovable.app in the URL)
+  const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
 
   // Generate YouTube thumbnail URL from video URL
   const getYouTubeThumbnail = (url: string) => {
@@ -157,8 +156,8 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
     <Card className="group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 transform hover:-translate-y-2 border border-gray-700 bg-gray-900/90 backdrop-blur-sm h-full flex flex-col relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       
-      {/* FREE Badge for GPT tools */}
-      {isGPTTool && (
+      {/* FREE Badge for AI Web Tools original tools */}
+      {isAIWebToolsOriginal && (
         <div className="absolute top-4 right-4 z-20">
           <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg transform rotate-12 animate-pulse">
             FREE

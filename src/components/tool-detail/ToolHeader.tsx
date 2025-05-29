@@ -42,13 +42,13 @@ Thank you!`);
     window.location.href = mailtoUrl;
   };
 
-  // Check if this is a GPT tool (contains "GPT" in title)
-  const isGPTTool = tool.title.toUpperCase().includes('GPT');
+  // Check if this is an AI Web Tools LLC original tool (has lovable.app in the URL)
+  const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
 
   return (
     <div className="text-center pb-6 bg-gradient-to-r from-gray-900/50 to-gray-800/30 relative">
-      {/* FREE Badge for GPT tools */}
-      {isGPTTool && (
+      {/* FREE Badge for AI Web Tools original tools */}
+      {isAIWebToolsOriginal && (
         <div className="absolute top-4 right-4 z-20">
           <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-4 py-2 rounded-full text-sm font-bold shadow-lg transform rotate-12 animate-pulse">
             FREE
@@ -90,7 +90,7 @@ Thank you!`);
             {tool.directUrl ? "USE IT NOW" : "COMING SOON"}
           </Button>
           
-          {isGPTTool && (
+          {isAIWebToolsOriginal && (
             <div className="px-4 sm:px-0">
               <Button 
                 size="lg"
