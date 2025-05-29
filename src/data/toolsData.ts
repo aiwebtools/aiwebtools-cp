@@ -40,7 +40,12 @@ import {
   platformsAndDevelopment,
   professionalServices,
   spiritualityTools,
-  rawUncutTools
+  rawUncutTools,
+  videoAndContentTools,
+  businessAndTeamTools,
+  searchAndProductivityTools,
+  advancedChatPlatforms,
+  developerAndCodingTools
 } from './tools';
 
 import { searchTools } from '@/utils/searchUtils';
@@ -88,7 +93,12 @@ export const allTools: Tool[] = [
   ...artAndCollectibles,
   ...gameDesignAndDevelopment,
   ...platformsAndDevelopment,
-  ...professionalServices
+  ...professionalServices,
+  ...videoAndContentTools,
+  ...businessAndTeamTools,
+  ...searchAndProductivityTools,
+  ...advancedChatPlatforms,
+  ...developerAndCodingTools
 ];
 
 // Create featured tools using the utility function

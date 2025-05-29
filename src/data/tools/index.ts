@@ -1,4 +1,3 @@
-
 // Export all tool categories for easy importing
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
@@ -40,3 +39,8 @@ export { platformsAndDevelopment } from './platformsAndDevelopment';
 export { professionalServices } from './professionalServices';
 export { spiritualityTools } from './spiritualityTools';
 export { rawUncutTools } from './rawUncutTools';
+export { videoAndContentTools } from './videoAndContentTools';
+export { businessAndTeamTools } from './businessAndTeamTools';
+export { searchAndProductivityTools } from './searchAndProductivityTools';
+export { advancedChatPlatforms } from './advancedChatPlatforms';
+export { developerAndCodingTools } from './developerAndCodingTools';

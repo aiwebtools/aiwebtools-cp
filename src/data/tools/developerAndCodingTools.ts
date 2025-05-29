@@ -1,0 +1,51 @@
+
+import { Tool } from "@/types/tools";
+import { 
+  Code, 
+  Terminal, 
+  FileText, 
+  Database, 
+  Zap, 
+  Settings,
+  Bot,
+  Cpu
+} from "lucide-react";
+
+export const developerAndCodingTools: Tool[] = [
+  {
+    icon: Code,
+    title: "Multitasker GPT4o Custom GPT",
+    description: "Advanced custom GPT model designed for multitasking and complex problem-solving. Enhanced capabilities for handling multiple concurrent tasks efficiently.",
+    emoji: "🔄",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-CeNnTrmnZ-multitasker-gpt-turbo",
+    tags: ["custom GPT", "multitasking", "GPT-4o", "problem solving", "productivity", "advanced AI"],
+    category: "Developer & Coding Tools",
+    rating: 4.5,
+    totalVotes: 3234
+  },
+  {
+    icon: Terminal,
+    title: "Cursor AI Coding Agent",
+    description: "Advanced AI-powered code editor enhancing developer productivity. Features intelligent autocompletion, error detection, debugging, and AI-driven suggestions for faster, smarter coding.",
+    emoji: "💻",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.cursor.com",
+    tags: ["code editor", "AI coding", "autocompletion", "debugging", "productivity", "developer tools"],
+    category: "Developer & Coding Tools",
+    rating: 4.7,
+    totalVotes: 5678
+  },
+  {
+    icon: FileText,
+    title: "Hugging Face GPT Prompt Library",
+    description: "Rich repository of hundreds of ChatGPT prompts for creativity and streamlined AI interactions. Treasure trove for developers, researchers, and writers. 100% free resource.",
+    emoji: "📚",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://huggingface.co/datasets/fka/awesome-chatgpt-prompts",
+    tags: ["prompts", "ChatGPT", "free", "developers", "researchers", "creativity", "Hugging Face"],
+    category: "Developer & Coding Tools",
+    rating: 4.6,
+    totalVotes: 4567
+  }
+];

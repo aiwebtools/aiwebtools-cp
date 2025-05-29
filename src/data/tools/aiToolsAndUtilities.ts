@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Bot, 
@@ -23,7 +22,8 @@ import {
   Cloud,
   List,
   FlaskConical,
-  Atom
+  Atom,
+  Building
 } from "lucide-react";
 
 export const aiToolsAndUtilities: Tool[] = [
@@ -98,5 +98,17 @@ export const aiToolsAndUtilities: Tool[] = [
     category: "AI Tools To Run LOCALLY",
     rating: 4.2,
     totalVotes: 1876
+  },
+  {
+    icon: Building,
+    title: "AI WEB TOOLS LLC",
+    description: "Comprehensive AI Tool Directory & Portfolio showcasing the latest and most innovative AI tools and technologies across all categories.",
+    emoji: "🏢",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://www.aiwebtools.ai",
+    tags: ["AI directory", "portfolio", "tools collection", "AI resources", "comprehensive", "innovation"],
+    category: "AI Tools & Utilities",
+    rating: 4.8,
+    totalVotes: 2567
   }
 ];
