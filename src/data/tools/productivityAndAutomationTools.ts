@@ -7,7 +7,18 @@ import {
   Globe,
   Zap,
   Settings,
-  Brain
+  Brain,
+  Building,
+  Search,
+  Code,
+  Download,
+  Target,
+  Wand2,
+  FileText,
+  Palette,
+  Edit3,
+  Camera,
+  Sparkles
 } from "lucide-react";
 
 export const productivityAndAutomationTools: Tool[] = [
@@ -22,5 +33,173 @@ export const productivityAndAutomationTools: Tool[] = [
     category: "Productivity & Automation Tools",
     rating: 4.3,
     totalVotes: 2876
+  },
+  {
+    icon: Palette,
+    title: "Artificial Printer",
+    description: "Cutting-edge AI tool that revolutionizes your online shopping experience. AI-powered 'Skip to Content' feature, personalized product recommendations, and custom AI art T-shirts with free worldwide shipping.",
+    emoji: "🖨️",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://artificialprinter.com/products/chromatic-american-gothic?bg_ref=xhONznP5FS",
+    tags: ["AI shopping", "personalized recommendations", "custom AI art", "free shipping", "T-shirts", "Skip to Content"],
+    category: "Productivity & Automation Tools",
+    rating: 4.2,
+    totalVotes: 2456
+  },
+  {
+    icon: Code,
+    title: "THE FORGE",
+    description: "Revolutionary AI tool that empowers users to effortlessly create and monetize AI-driven applications without coding skills. From idea conception to product realization in just five minutes.",
+    emoji: "⚒️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://theforgeai.com/",
+    tags: ["no-code", "AI applications", "monetization", "5 minutes", "web API", "marketplace"],
+    category: "Productivity & Automation Tools",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Search,
+    title: "Shade",
+    description: "Powerful AI tool designed to revolutionize file management experience. Private AI-powered file explorer with visual search, reverse image/video/audio search, and auto-tagging capabilities.",
+    emoji: "🔍",
+    color: "from-gray-500 to-blue-600",
+    directUrl: "https://www.shade.inc/",
+    tags: ["file management", "visual search", "reverse search", "auto-tagging", "private AI", "asset indexing"],
+    category: "Productivity & Automation Tools",
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: Wand2,
+    title: "RELUME",
+    description: "Groundbreaking AI-powered platform designed to revolutionize web design. Integrates with Figma and Webflow, AI Site Builder auto-generates sitemaps and wireframes, reducing design time significantly.",
+    emoji: "🪄",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://library.relume.io/?via=aiwebtools",
+    tags: ["web design", "Figma integration", "Webflow", "AI Site Builder", "sitemaps", "wireframes"],
+    category: "Productivity & Automation Tools",
+    rating: 4.6,
+    totalVotes: 4567
+  },
+  {
+    icon: Camera,
+    title: "WordLab",
+    description: "Cutting-edge AI tool designed to revolutionize product photography. Transform ordinary product images into stunning, professional-quality photos with instant background change and one-click removal.",
+    emoji: "📸",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://wordlab.io/",
+    tags: ["product photography", "background change", "background removal", "professional quality", "eCommerce", "cost-effective"],
+    category: "Productivity & Automation Tools",
+    rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: Edit3,
+    title: "Plotdot",
+    description: "Industry-redefining AI-powered screenwriting assistant designed to streamline the scriptwriting process. Transform creative ideas into fully-fledged scripts in hours, not days.",
+    emoji: "✍️",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.plotdot.ai/",
+    tags: ["screenwriting", "script development", "creative ideas", "character development", "plot structure", "hours not days"],
+    category: "Productivity & Automation Tools",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: FileText,
+    title: "DocWorm",
+    description: "Free personal data retrieval and analytics platform. Similar to Claude, upload as many datasets as you wish and ask questions about the data with absolute precision for medical records, COA results, or any document type.",
+    emoji: "🐛",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://docworm.ai/",
+    tags: ["data retrieval", "analytics platform", "dataset analysis", "medical records", "document analysis", "absolute precision"],
+    category: "Productivity & Automation Tools",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Download,
+    title: "Pinokio.computer",
+    description: "Groundbreaking browser tool that empowers users to effortlessly install, execute, and programmatically control any application with unparalleled ease. One-click installation and AI workflow automation.",
+    emoji: "🤖",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://pinokio.computer/",
+    tags: ["one-click install", "application control", "AI workflows", "community scripts", "no technical knowledge", "automation"],
+    category: "Productivity & Automation Tools",
+    rating: 4.6,
+    totalVotes: 4234
+  },
+  {
+    icon: Globe,
+    title: "Plaza AI",
+    description: "Cutting-edge AI-powered text-to-website generator that empowers users to effortlessly create stunning websites within seconds. Transform ideas and content into professionally designed web pages.",
+    emoji: "🌐",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://www.plazaai.co/site_builder",
+    tags: ["text-to-website", "stunning websites", "seconds creation", "professional design", "AI-powered", "effortless"],
+    category: "Productivity & Automation Tools",
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: Bot,
+    title: "MultiOn",
+    description: "Comprehensive AI tool designed to revolutionize digital experiences by seamlessly handling tasks in background. AI agents streamline user interactions across websites, applications, and everyday life.",
+    emoji: "🔄",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.multion.ai/",
+    tags: ["AI agents", "background tasks", "digital experiences", "Chrome extension", "mobile app", "productivity"],
+    category: "Productivity & Automation Tools",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Globe,
+    title: "Sites GPT",
+    description: "Create website effortlessly for free with this free AI website generator that is actually pretty good for being free.",
+    emoji: "🌍",
+    color: "from-green-500 to-cyan-600",
+    directUrl: "https://www.sitesGPT.com",
+    tags: ["free website", "AI generator", "effortless creation", "good quality", "no cost", "website builder"],
+    category: "Productivity & Automation Tools",
+    rating: 4.1,
+    totalVotes: 2234
+  },
+  {
+    icon: Bot,
+    title: "BotSonic",
+    description: "Effortless way to create AI bots for your website such as customer service representatives or custom GPTs. No-code deployment tool with custom GPT integration capabilities.",
+    emoji: "🤖",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://writesonic.com/botsonic?via=aiwebtools",
+    tags: ["AI bots", "customer service", "no-code deployment", "custom GPTs", "website integration", "easy creation"],
+    category: "Productivity & Automation Tools",
+    rating: 4.2,
+    totalVotes: 2567
+  },
+  {
+    icon: Building,
+    title: "Cassidy Ai",
+    description: "Build AI Automations & Assistants Trained on Your Business. Securely integrates with your tools, leveraging company knowledge to automate tasks like customer support, lead qualification, and RFP processing.",
+    emoji: "🏢",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://www.cassidyai.com/",
+    tags: ["business AI", "automation", "secure integration", "customer support", "lead qualification", "RFP processing"],
+    category: "Productivity & Automation Tools",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Download,
+    title: "LM Studio",
+    description: "Download Hundreds of AI Tools and Run Locally on Your Computer. No Internet Required, No Governmental Overlords, No Limits. Complete local AI control and privacy.",
+    emoji: "💾",
+    color: "from-gray-500 to-blue-600",
+    directUrl: "https://lmstudio.ai/",
+    tags: ["local AI", "no internet", "privacy", "no limits", "hundreds of tools", "complete control"],
+    category: "Productivity & Automation Tools",
+    rating: 4.7,
+    totalVotes: 5234
   }
 ];
