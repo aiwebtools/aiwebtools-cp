@@ -1,5 +1,4 @@
-
-import { Phone, Bot, Users, Briefcase, Store, Mail, TrendingUp, BarChart } from "lucide-react";
+import { Phone, Bot, Users, Briefcase, Store, Mail, TrendingUp, BarChart, Target } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 export const businessSalesTools: Tool[] = [
@@ -194,5 +193,65 @@ export const businessSalesTools: Tool[] = [
     category: "Industry-Specific Tools",
     rating: 4.3,
     totalVotes: 1420
+  },
+  {
+    icon: Users,
+    title: "Distil.ai",
+    description: "AI-driven Customer Data Platform consolidating and analyzing customer information to enhance engagement and drive sales with personalized communication and marketing analytics.",
+    emoji: "📊",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://distil.ai/",
+    tags: ["customer data", "marketing analytics", "personalized communication", "e-commerce insights", "data security"],
+    category: "Business & Sales Tools",
+    rating: 4.6,
+    totalVotes: 3123
+  },
+  {
+    icon: Phone,
+    title: "SpaceVoice Call Agents",
+    description: "AI-driven solution replacing traditional sales reps with AI agents conducting natural conversations in 11 languages with custom scripts and 24/7 support.",
+    emoji: "📞",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://spacevoice.ai/",
+    tags: ["AI sales agents", "11 languages", "natural conversations", "24/7 support", "custom scripts"],
+    category: "Business & Sales Tools",
+    rating: 4.7,
+    totalVotes: 3456
+  },
+  {
+    icon: Target,
+    title: "XnGen Lead Generation",
+    description: "AI-powered lead generation platform helping businesses connect with ideal customers through high-quality verified leads with real-time data enrichment and CRM integration.",
+    emoji: "🎯",
+    color: "from-green-500 to-cyan-600",
+    directUrl: "https://xngen.app/",
+    tags: ["lead generation", "verified leads", "data enrichment", "CRM integration", "client acquisition"],
+    category: "Business & Sales Tools",
+    rating: 4.5,
+    totalVotes: 2890
+  },
+  {
+    icon: BarChart,
+    title: "Inflact Profile Analyzer",
+    description: "Powerful Instagram analytics tool providing deep insights into public profiles, engagement trends, content performance for marketers, influencers, and businesses.",
+    emoji: "📱",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://inflact.com/tools/profile-analyzer/",
+    tags: ["Instagram analytics", "engagement trends", "content performance", "competitor analysis", "influencer research"],
+    category: "Business & Sales Tools",
+    rating: 4.4,
+    totalVotes: 2567
+  },
+  {
+    icon: Phone,
+    title: "Nucleus Free AI Call Agent",
+    description: "AI-powered virtual business assistant handling inquiries, promoting brands, forwarding messages, and capturing leads with new business phone number and AI attendant.",
+    emoji: "☎️",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://www.nucleus.com",
+    tags: ["virtual assistant", "business phone", "lead capture", "brand promotion", "free premium plans"],
+    category: "Business & Sales Tools",
+    rating: 4.3,
+    totalVotes: 2234
   }
 ];

@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Code, 
@@ -11,7 +10,8 @@ import {
   Calculator,
   Target,
   Zap,
-  Globe
+  Globe,
+  Settings
 } from "lucide-react";
 
 export const platformsAndDevelopment: Tool[] = [
@@ -121,15 +121,50 @@ export const platformsAndDevelopment: Tool[] = [
   },
   {
     icon: Globe,
-    title: "GOOGLE LABS & GOOGLE FLOW",
-    description: "Google's experimental AI and technology laboratory featuring cutting-edge research projects and innovative tools.",
-    emoji: "🔬",
-    color: "from-blue-500 to-green-600",
-    directUrl: "https://labs.google/",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377359942578864258/image.png?ex=6838ade8&is=68375c68&hm=2c5d8dca1bb48660d84d1b8c6152d535a0b3ee3b8efb6f162286901003896fc4&",
+    title: "Hugging Face Spaces",
+    description: "Community-driven platform empowering developers to build, deploy, and share interactive AI applications with Gradio and Streamlit integration for rapid experimentation.",
+    emoji: "🤗",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://huggingface.co/spaces",
+    tags: ["community platform", "AI applications", "Gradio", "Streamlit", "open source ML"],
     category: "Platforms & Development",
-    tags: ["Google Labs", "experimental", "research", "innovation", "technology"],
-    rating: 4.5,
+    rating: 4.8,
+    totalVotes: 5234
+  },
+  {
+    icon: Code,
+    title: "CopyCoder.AI",
+    description: "Advanced AI tool converting UI screenshots into optimized prompts for AI code generators, streamlining development by eliminating manual UI descriptions.",
+    emoji: "📸",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://copycoder.ai/",
+    tags: ["UI screenshots", "code generation", "AI prompts", "development tools", "automation"],
+    category: "Platforms & Development",
+    rating: 4.4,
+    totalVotes: 2456
+  },
+  {
+    icon: Settings,
+    title: "n8n Workflow Automation",
+    description: "Open-source workflow automation tool connecting different apps and services without coding, offering more flexibility than Zapier with self-hosting capabilities.",
+    emoji: "🔗",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://n8n.io/",
+    tags: ["workflow automation", "open source", "no-code", "self-hosted", "app integration"],
+    category: "Platforms & Development",
+    rating: 4.6,
     totalVotes: 3456
+  },
+  {
+    icon: Bot,
+    title: "Gumloop AI Automation",
+    description: "No-code AI automation platform with drag-and-drop interface for complex workflows, data extraction, scoring with 40+ platform integrations and self-hosting options.",
+    emoji: "🔄",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://www.gumloop.com/",
+    tags: ["no-code automation", "drag-and-drop", "data extraction", "platform integrations", "self-hosting"],
+    category: "Platforms & Development",
+    rating: 4.5,
+    totalVotes: 2890
   }
 ];

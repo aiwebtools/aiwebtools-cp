@@ -1,4 +1,4 @@
-import { Code, Zap, Brain, Settings, Bot, Wrench, Globe, Layers } from "lucide-react";
+import { Bot, Globe, Code, Wand2, Zap, Brain, Github, Rocket, Settings, Monitor, Server, HardDrive, Users, Settings2, Database as DatabaseIcon, Terminal as TerminalIcon, Cpu as CpuIcon } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 export const aiDevelopmentTools: Tool[] = [
@@ -15,7 +15,7 @@ export const aiDevelopmentTools: Tool[] = [
     totalVotes: 3200
   },
   {
-    icon: Terminal,
+    icon: TerminalIcon,
     title: "Cursor AI",
     description: "Advanced code editor integrating AI directly into coding environment. Navigate, edit, and improve codebase with natural language commands and predictive text features. SOC 2 certified.",
     emoji: "🎯",
@@ -75,7 +75,7 @@ export const aiDevelopmentTools: Tool[] = [
     totalVotes: 2200
   },
   {
-    icon: Cpu,
+    icon: CpuIcon,
     title: "Qualcomm AI HUB",
     description: "Simplifies workflow for deploying AI models on Qualcomm devices. Tools for model conversion, optimization, and deployment supporting PyTorch and ONNX frameworks.",
     emoji: "🔧",
@@ -87,7 +87,7 @@ export const aiDevelopmentTools: Tool[] = [
     totalVotes: 1890
   },
   {
-    icon: Database,
+    icon: DatabaseIcon,
     title: "Compute.HyperSpace",
     description: "Powerful AI research platform enabling advanced, agent-driven task automation and optimization. Create multi-step AI agents for complex processes with iterative improvement.",
     emoji: "🌌",
@@ -135,7 +135,7 @@ export const aiDevelopmentTools: Tool[] = [
     totalVotes: 1780
   },
   {
-    icon: Terminal,
+    icon: TerminalIcon,
     title: "Computer.TLDRAW",
     description: "Innovative platform providing infinite canvas for natural language computing. Create workflows connecting components that generate and transform data using multi-modal language models.",
     emoji: "💻",
@@ -313,5 +313,53 @@ export const aiDevelopmentTools: Tool[] = [
     category: "AI Development Tools",
     rating: 4.4,
     totalVotes: 2345
+  },
+  {
+    icon: TerminalIcon,
+    title: "Google AI Studio",
+    description: "Versatile platform for developers to explore and integrate AI capabilities with Google's Gemini models. Features prompt engineering, fine-tuning, API management, and Multimodal Live API.",
+    emoji: "🧪",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://aistudio.google.com/live",
+    tags: ["Google Gemini", "AI development", "prompt engineering", "multimodal", "API management"],
+    category: "AI Development Tools",
+    rating: 4.7,
+    totalVotes: 3890
+  },
+  {
+    icon: CpuIcon,
+    title: "Compute by Hyperspace",
+    description: "Powerful AI research platform enabling advanced, agent-driven task automation and optimization. Creates multi-step AI agents for complex processes with iterative testing and refinement.",
+    emoji: "⚡",
+    color: "from-purple-500 to-cyan-600",
+    directUrl: "https://compute.hyper.space",
+    tags: ["AI research", "automation", "multi-step agents", "optimization", "iterative testing"],
+    category: "AI Development Tools",
+    rating: 4.6,
+    totalVotes: 2567
+  },
+  {
+    icon: DatabaseIcon,
+    title: "MiniMax (Hailuo AI)",
+    description: "Chinese AI platform offering text-to-video generation competing with Sora and KLING. Features music generation, content creation, and productivity tools for enhanced efficiency.",
+    emoji: "🎬",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://hailuoai.com/",
+    tags: ["text-to-video", "music generation", "Chinese AI", "content creation", "productivity"],
+    category: "AI Development Tools",
+    rating: 4.5,
+    totalVotes: 2890
+  },
+  {
+    icon: TerminalIcon,
+    title: "Replit",
+    description: "AI-powered platform democratizing software development by enabling users to create and deploy applications directly from their devices with Replit Agent and real-time collaboration.",
+    emoji: "💻",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://replit.com/",
+    tags: ["software development", "AI deployment", "real-time collaboration", "code generation", "web mobile"],
+    category: "AI Development Tools",
+    rating: 4.7,
+    totalVotes: 4123
   }
 ];

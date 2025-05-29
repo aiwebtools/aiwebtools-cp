@@ -141,7 +141,7 @@ export const allTools: Tool[] = [
   ...professionalServices,
   ...resumeAndCareerTools,
   
-  // EMAIL AND WEB DEVELOPMENT
+  // EMAIL AND WEB DEVELOPMENT (UPDATED WITH NEW TOOLS)
   ...emailManagementTools,
   ...webDevelopmentTools,
   
@@ -155,7 +155,7 @@ export const allTools: Tool[] = [
   ...specializedAITools,
   ...entertainmentMediaTools,
   
-  // THEN SPECIALIZED CATEGORIES
+  // THEN SPECIALIZED CATEGORIES (UPDATED WITH NEW TOOLS)
   ...specializedAndNiche,
   ...specializedTools,
   ...creativeAndEntertainment,
@@ -165,7 +165,7 @@ export const allTools: Tool[] = [
   ...specializedPolicyTools,
   ...artAndCollectibles,
   
-  // FINANCIAL AND TRADING TOOLS
+  // FINANCIAL AND TRADING TOOLS (UPDATED WITH NEW TOOLS)
   ...financialAndTradingTools,
   ...specializedNicheTools
 ];

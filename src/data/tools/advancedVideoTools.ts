@@ -206,5 +206,65 @@ export const advancedVideoTools: Tool[] = [
     category: "Advanced Video Tools",
     rating: 4.3,
     totalVotes: 2134
+  },
+  {
+    icon: Video,
+    title: "SkyReels",
+    description: "Advanced AI video generation tool creating cinematic-quality videos from text, images, or animation prompts, powered by HunyuanVideo model trained on 10M+ film clips.",
+    emoji: "🎬",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://www.skyreels.ai/home?utm_source=chatgpt.com",
+    tags: ["cinematic videos", "HunyuanVideo", "film clips", "realistic motion", "professional grade"],
+    category: "Advanced Video Tools",
+    rating: 4.8,
+    totalVotes: 4123
+  },
+  {
+    icon: Camera,
+    title: "Higgsfield AI",
+    description: "Cutting-edge video generation platform transforming selfies into realistic, personalized video content using text prompts through mobile-first app Diffuse.",
+    emoji: "🤳",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://higgsfield.ai/",
+    tags: ["selfie to video", "personalized content", "mobile app", "realistic characters", "social media"],
+    category: "Advanced Video Tools",
+    rating: 4.6,
+    totalVotes: 3234
+  },
+  {
+    icon: Sparkles,
+    title: "TopView AI Avatars",
+    description: "AI-powered avatar video generator integrating real product images into engaging sales-driven videos with lifelike avatars, automated scriptwriting, and multilingual support.",
+    emoji: "🛍️",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.topview.ai/",
+    tags: ["avatar videos", "product marketing", "sales driven", "multilingual", "e-commerce"],
+    category: "Advanced Video Tools",
+    rating: 4.7,
+    totalVotes: 3456
+  },
+  {
+    icon: Monitor,
+    title: "2Short",
+    description: "AI-powered platform transforming long-form videos into engaging short clips optimized for YouTube Shorts, TikTok, and Instagram Reels with animated subtitles and facial tracking.",
+    emoji: "✂️",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://2short.ai/",
+    tags: ["short clips", "YouTube Shorts", "TikTok", "Instagram Reels", "animated subtitles"],
+    category: "Advanced Video Tools",
+    rating: 4.4,
+    totalVotes: 2890
+  },
+  {
+    icon: Video,
+    title: "Velocity by Avataar.ai",
+    description: "AI-powered platform transforming static product pages into dynamic, professional-quality videos within minutes for enhanced e-commerce content creation.",
+    emoji: "🚀",
+    color: "from-purple-500 to-cyan-600",
+    directUrl: "https://velocity.avataar.ai/",
+    tags: ["product videos", "e-commerce", "dynamic content", "professional quality", "cost reduction"],
+    category: "Advanced Video Tools",
+    rating: 4.5,
+    totalVotes: 2567
   }
 ];

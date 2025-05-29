@@ -1,4 +1,3 @@
-
 // Export all tool categories
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
@@ -48,7 +47,7 @@ export { developerAndCodingTools } from './developerAndCodingTools';
 export { contentDetectionTools } from './contentDetectionTools';
 export { contentCreationAndWritingTools } from './contentCreationAndWritingTools';
 export { documentAndResearchTools } from './documentAndResearchTools';
-export { imageAndDesign as designAndGraphicsTools } from './designAndGraphicsTools';
+export { designAndGraphicsTools } from './designAndGraphicsTools';
 export { writingAndContentEnhancement } from './writingAndContentEnhancement';
 export { resumeAndCareerTools } from './resumeAndCareerTools';
 export { ecommerceAndMarketingTools } from './ecommerceAndMarketingTools';

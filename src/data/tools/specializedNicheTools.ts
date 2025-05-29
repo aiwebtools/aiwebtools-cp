@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Leaf, 
@@ -10,7 +9,9 @@ import {
   Users,
   Star,
   Shield,
-  Search
+  Search,
+  Download,
+  Globe
 } from "lucide-react";
 
 export const specializedNicheTools: Tool[] = [
@@ -25,5 +26,29 @@ export const specializedNicheTools: Tool[] = [
     category: "Specialized Niche Tools",
     rating: 4.3,
     totalVotes: 2567
+  },
+  {
+    icon: Download,
+    title: "YouTube to MP3 Ripper",
+    description: "Free tool for easily converting YouTube videos to MP3 by pasting video links and downloading high-quality audio files instantly with simple interface.",
+    emoji: "🎵",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://ytmp3.cc/l2HZ/",
+    tags: ["YouTube converter", "MP3 download", "audio extraction", "free tool", "instant conversion"],
+    category: "Specialized & Niche Tools",
+    rating: 4.1,
+    totalVotes: 2890
+  },
+  {
+    icon: Globe,
+    title: "Freename Web3 Domains",
+    description: "Web3 domain registration service for buying and selling web3 domain names including .aiwebtools domains, supporting blockchain-based domain ownership.",
+    emoji: "🌐",
+    color: "from-purple-500 to-cyan-600",
+    directUrl: "https://freename.io?ref=olive-ears-obey&utm_source=clipboard",
+    tags: ["web3 domains", "blockchain", "domain registration", "NFT domains", "decentralized web"],
+    category: "Specialized & Niche Tools",
+    rating: 4.0,
+    totalVotes: 1890
   }
 ];
