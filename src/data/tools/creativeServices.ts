@@ -8,7 +8,9 @@ import {
   Brush,
   Coffee,
   ShoppingBag,
-  MessageCircle
+  MessageCircle,
+  Video,
+  BookOpen
 } from "lucide-react";
 
 export const creativeServices: Tool[] = [
@@ -37,5 +39,29 @@ export const creativeServices: Tool[] = [
     tags: ["mixology", "cocktails", "beverage creation", "bartending", "recipe development"],
     rating: 4.3,
     totalVotes: 1987
+  },
+  {
+    icon: Video,
+    title: "Music Video Maker AI Studio",
+    description: "Create professional music videos with AI-powered editing, effects, and synchronization tools for creative projects.",
+    emoji: "🎵",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://musicvideomakerstudio.lovable.app/?via=aiwebtools",
+    tags: ["music videos", "creative video editing", "artistic projects", "multimedia creation"],
+    category: "Creative Services",
+    rating: 4.3,
+    totalVotes: 2567
+  },
+  {
+    icon: BookOpen,
+    title: "Book Writer GPT",
+    description: "AI-powered creative writing assistant for authors, helping with storytelling, character development, and narrative structure.",
+    emoji: "📚",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
+    tags: ["creative writing", "storytelling", "authors", "narrative development"],
+    category: "Creative Services",
+    rating: 4.7,
+    totalVotes: 3892
   }
 ];

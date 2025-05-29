@@ -1,8 +1,8 @@
-
 import { Tool } from "@/types/tools";
 import { 
   TrendingUp, DollarSign, Building, Users, FileText, 
-  BarChart3, Target, Briefcase, Calculator, CheckSquare
+  BarChart3, Target, Briefcase, Calculator, CheckSquare,
+  BookOpen, Palette
 } from "lucide-react";
 
 export const businessAndProductivity: Tool[] = [
@@ -89,5 +89,29 @@ export const businessAndProductivity: Tool[] = [
     category: "Business & Productivity",
     rating: 4.4,
     totalVotes: 2789
+  },
+  {
+    icon: BookOpen,
+    title: "Article Writer GPT",
+    description: "Professional article writing assistant for journalists, bloggers, and content creators with business applications.",
+    emoji: "📰",
+    color: "from-blue-500 to-gray-600",
+    directUrl: "https://rewritergpt.lovable.app/?via=aiwebtools",
+    tags: ["article writing", "content marketing", "business content", "professional writing"],
+    category: "Business & Productivity",
+    rating: 4.5,
+    totalVotes: 2654
+  },
+  {
+    icon: Palette,
+    title: "GRAPHIC & COVER DESIGN GPT",
+    description: "Professional graphic design for business materials, marketing content, branding, and corporate visual identity.",
+    emoji: "🎨",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://graphicdesigngpt.lovable.app/?via=aiwebtools",
+    tags: ["business graphics", "marketing design", "corporate branding", "professional design"],
+    category: "Business & Productivity",
+    rating: 4.5,
+    totalVotes: 2987
   }
 ];
