@@ -62,10 +62,24 @@ export { financialAndTradingTools } from './financialAndTradingTools';
 export { specializedNicheTools } from './specializedNicheTools';
 export { meetingAndTranscriptionTools } from './meetingAndTranscriptionTools';
 
-// Export new tool categories
+// Export existing tool categories
 export { webDevelopmentTools } from './webDevelopmentTools';
 export { emailManagementTools } from './emailManagementTools';
 export { technicalAndUtilityTools } from './technicalAndUtilityTools';
 export { threeDAndVisualizationTools } from './threeDAndVisualizationTools';
 export { dataAnalyticsTools } from './dataAnalyticsTools';
 export { automationAndWorkflowTools } from './automationAndWorkflowTools';
+
+// Export new tool categories (100 additional tools)
+export { socialMediaTools } from './socialMediaTools';
+export { collaborationTools } from './collaborationTools';
+export { marketingTools } from './marketingTools';
+export { utilitiesTools } from './utilitiesTools';
+export { creativePlatforms } from './creativePlatforms';
+export { learningPlatforms } from './learningPlatforms';
+export { cloudServices } from './cloudServices';
+export { developerTools } from './developerTools';
+export { communicationTools } from './communicationTools';
+export { entertainmentTools } from './entertainmentTools';
+export { newsAndInformationTools } from './newsAndInformationTools';
+export { healthAndWellnessTools } from './healthAndWellnessTools';

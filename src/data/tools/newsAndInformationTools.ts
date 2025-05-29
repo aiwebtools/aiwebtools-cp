@@ -1,0 +1,77 @@
+
+import { Tool } from "@/types/tools";
+import { 
+  Newspaper, 
+  Globe, 
+  BookOpen, 
+  Search, 
+  TrendingUp,
+  Users,
+  Brain,
+  Eye,
+  MessageSquare,
+  Rss
+} from "lucide-react";
+
+export const newsAndInformationTools: Tool[] = [
+  {
+    icon: Globe,
+    title: "Wikipedia",
+    description: "Free online encyclopedia with millions of articles in hundreds of languages. Collaborative knowledge base for everyone.",
+    emoji: "📖",
+    color: "from-gray-500 to-blue-600",
+    directUrl: "https://wikipedia.org/",
+    tags: ["encyclopedia", "knowledge", "free", "collaborative", "research"],
+    category: "News & Information",
+    rating: 4.8,
+    totalVotes: 9876
+  },
+  {
+    icon: Newspaper,
+    title: "Google News",
+    description: "Personalized news aggregator that organizes and highlights news stories from thousands of publishers worldwide.",
+    emoji: "📰",
+    color: "from-blue-500 to-red-600",
+    directUrl: "https://news.google.com/",
+    tags: ["news aggregator", "personalized", "global news", "publishers"],
+    category: "News & Information",
+    rating: 4.5,
+    totalVotes: 6789
+  },
+  {
+    icon: Users,
+    title: "Reddit",
+    description: "Social news aggregation and discussion platform. Join communities, share content, and engage in discussions on any topic.",
+    emoji: "🤖",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://reddit.com/",
+    tags: ["social news", "communities", "discussions", "content sharing", "forums"],
+    category: "News & Information",
+    rating: 4.4,
+    totalVotes: 7890
+  },
+  {
+    icon: Brain,
+    title: "TED Talks",
+    description: "Ideas worth spreading. Watch inspiring talks from experts in technology, science, design, and other fields.",
+    emoji: "💡",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://ted.com/talks",
+    tags: ["educational talks", "inspiration", "experts", "ideas", "learning"],
+    category: "News & Information",
+    rating: 4.7,
+    totalVotes: 5432
+  },
+  {
+    icon: Search,
+    title: "AllSides",
+    description: "News platform showing multiple perspectives on current events. Compare how different sources cover the same story.",
+    emoji: "⚖️",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://allsides.com/",
+    tags: ["multiple perspectives", "balanced news", "media bias", "current events"],
+    category: "News & Information",
+    rating: 4.3,
+    totalVotes: 3456
+  }
+];

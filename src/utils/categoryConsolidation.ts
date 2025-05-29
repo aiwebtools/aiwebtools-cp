@@ -45,6 +45,7 @@ const categoryMapping: Record<string, string> = {
   "AI Inference Platforms": "AI Development Tools",
   "Open Source AI Models": "AI Development Tools",
   "AI Agents": "AI Development Tools",
+  "Developer Tools": "AI Development Tools",
   
   // Audio consolidation
   "Audio & Music Tools": "Audio & Voice Tools",
@@ -53,10 +54,12 @@ const categoryMapping: Record<string, string> = {
   // Education & Learning consolidation
   "Research & Learning": "Education & Learning",
   "Learning & Education": "Education & Learning",
+  "Learning Platforms": "Education & Learning",
   
   // Entertainment & Media consolidation
   "Entertainment & Media": "Creative & Entertainment",
   "Creative & Entertainment": "Creative & Entertainment",
+  "Entertainment Tools": "Creative & Entertainment",
   
   // Professional Services consolidation
   "Healthcare Professionals": "Professional Services",
@@ -78,6 +81,29 @@ const categoryMapping: Record<string, string> = {
   "Automation & Workflow Tools": "Automation & Workflows",
   "Workflow Tools": "Automation & Workflows",
   "Process Automation": "Automation & Workflows",
+  
+  // New category consolidations
+  "Social Media & Marketing": "Marketing & Social Media",
+  "Marketing & Analytics": "Marketing & Social Media",
+  "Marketing Tools": "Marketing & Social Media",
+  "Social Media Tools": "Marketing & Social Media",
+  
+  "Collaboration & Communication": "Communication & Collaboration",
+  "Communication Tools": "Communication & Collaboration",
+  "Collaboration Tools": "Communication & Collaboration",
+  
+  "Productivity & Utilities": "Utilities & Productivity",
+  "Utilities Tools": "Utilities & Productivity",
+  
+  "Creative Platforms": "Creative & Design",
+  "Creative Suites": "Creative & Design",
+  
+  "Cloud & Infrastructure": "Cloud Services",
+  "Cloud Services": "Cloud Services",
+  
+  "News & Information": "Information & Research",
+  
+  "Health & Wellness": "Health & Wellness",
   
   // Specialized consolidation
   "Specialized & Niche": "Specialized Tools",

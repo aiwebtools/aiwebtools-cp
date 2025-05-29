@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import {
   businessTools,
@@ -74,14 +73,29 @@ import { businessSalesTools } from './tools/businessSalesTools';
 import { specializedAITools } from './tools/specializedAITools';
 import { entertainmentMediaTools } from './tools/entertainmentMediaTools';
 
-// Import new categories
+// Import existing categories
 import { threeDAndVisualizationTools } from './tools/threeDAndVisualizationTools';
 import { dataAnalyticsTools } from './tools/dataAnalyticsTools';
 import { automationAndWorkflowTools } from './tools/automationAndWorkflowTools';
 
+// Import new categories (100 additional tools)
+import { socialMediaTools } from './tools/socialMediaTools';
+import { collaborationTools } from './tools/collaborationTools';
+import { marketingTools } from './tools/marketingTools';
+import { utilitiesTools } from './tools/utilitiesTools';
+import { creativePlatforms } from './tools/creativePlatforms';
+import { learningPlatforms } from './tools/learningPlatforms';
+import { cloudServices } from './tools/cloudServices';
+import { developerTools } from './tools/developerTools';
+import { communicationTools } from './tools/communicationTools';
+import { entertainmentTools } from './tools/entertainmentTools';
+import { newsAndInformationTools } from './tools/newsAndInformationTools';
+import { healthAndWellnessTools } from './tools/healthAndWellnessTools';
+
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
+    // ... keep existing code (existing tool category imports)
     ...spiritualityTools,
     ...advancedAITools,
     ...timeAndHistory,
@@ -152,6 +166,20 @@ export const getAllToolCategories = (): Tool[] => {
     ...educationAndLearning,
     ...threeDAndVisualizationTools,
     ...dataAnalyticsTools,
-    ...automationAndWorkflowTools
+    ...automationAndWorkflowTools,
+    
+    // New tool categories (100 additional tools)
+    ...socialMediaTools,
+    ...collaborationTools,
+    ...marketingTools,
+    ...utilitiesTools,
+    ...creativePlatforms,
+    ...learningPlatforms,
+    ...cloudServices,
+    ...developerTools,
+    ...communicationTools,
+    ...entertainmentTools,
+    ...newsAndInformationTools,
+    ...healthAndWellnessTools
   ];
 };

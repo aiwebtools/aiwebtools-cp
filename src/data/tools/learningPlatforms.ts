@@ -1,0 +1,77 @@
+
+import { Tool } from "@/types/tools";
+import { 
+  BookOpen, 
+  GraduationCap, 
+  Users, 
+  Globe, 
+  Brain,
+  Code,
+  Languages,
+  Calculator,
+  Microscope,
+  Music
+} from "lucide-react";
+
+export const learningPlatforms: Tool[] = [
+  {
+    icon: GraduationCap,
+    title: "Khan Academy",
+    description: "Free online courses, lessons and practice in math, science, computer programming, history, art, economics, and more.",
+    emoji: "🎓",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://khanacademy.org/",
+    tags: ["online learning", "free courses", "math", "science", "programming"],
+    category: "Learning Platforms",
+    rating: 4.8,
+    totalVotes: 6789
+  },
+  {
+    icon: Code,
+    title: "freeCodeCamp",
+    description: "Learn to code for free with interactive coding lessons, projects, and certifications in web development and data science.",
+    emoji: "💻",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://freecodecamp.org/",
+    tags: ["coding", "programming", "web development", "free", "certifications"],
+    category: "Learning Platforms",
+    rating: 4.9,
+    totalVotes: 8765
+  },
+  {
+    icon: Globe,
+    title: "Coursera",
+    description: "Online courses from top universities and companies. Earn certificates and degrees in various subjects from leading institutions.",
+    emoji: "🌍",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://coursera.org/",
+    tags: ["university courses", "certificates", "degrees", "professional development"],
+    category: "Learning Platforms",
+    rating: 4.6,
+    totalVotes: 5432
+  },
+  {
+    icon: Languages,
+    title: "Duolingo",
+    description: "Free language learning platform with gamified lessons. Learn languages through interactive exercises and stories.",
+    emoji: "🦜",
+    color: "from-green-500 to-yellow-600",
+    directUrl: "https://duolingo.com/",
+    tags: ["language learning", "gamified", "free", "interactive", "multiple languages"],
+    category: "Learning Platforms",
+    rating: 4.7,
+    totalVotes: 7890
+  },
+  {
+    icon: Brain,
+    title: "Brilliant",
+    description: "Interactive courses in math, science, and computer science. Learn through problem-solving and visual explanations.",
+    emoji: "🧠",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://brilliant.org/",
+    tags: ["math", "science", "computer science", "problem solving", "interactive"],
+    category: "Learning Platforms",
+    rating: 4.5,
+    totalVotes: 4321
+  }
+];
