@@ -1,3 +1,4 @@
+
 import { Separator } from "@/components/ui/separator";
 import { Globe, Mail, Phone, Home } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -35,11 +36,21 @@ const Footer = () => {
             <p className="text-cyan-300 leading-relaxed">
               Crafting the future of AI-powered web tools and services. Empowering creators, businesses, and innovators worldwide.
             </p>
-            <div className="flex space-x-4">
-              <div className="flex items-center space-x-2 text-cyan-300">
+            <div className="flex flex-col space-y-2">
+              <a 
+                href="tel:+14758008096" 
+                className="flex items-center space-x-2 text-cyan-300 hover:text-cyan-400 transition-colors"
+              >
                 <Phone className="w-4 h-4" />
-                <span>475-800-8096</span>
-              </div>
+                <span>(475) 800-8096</span>
+              </a>
+              <a 
+                href="mailto:Contact@ai-webtools.com" 
+                className="flex items-center space-x-2 text-cyan-300 hover:text-cyan-400 transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                <span>Contact@ai-webtools.com</span>
+              </a>
             </div>
           </div>
           
@@ -77,8 +88,33 @@ const Footer = () => {
         <Separator className="bg-cyan-500/30 mb-8" />
         
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="text-cyan-300">
-            © 2024 AI Web Tools LLC. All rights reserved.
+          <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
+            <a 
+              href="https://www.AiWebTools.AI" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-cyan-300 hover:text-cyan-400 transition-colors"
+            >
+              © 2025 AI WEB TOOLS LLC All rights reserved.
+            </a>
+            <div className="flex space-x-4">
+              <a 
+                href="https://openai.com/policies/privacy-policy/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm"
+              >
+                Privacy Policy
+              </a>
+              <a 
+                href="https://aiwebtools.ai/terms-of-services" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm"
+              >
+                Terms of Service
+              </a>
+            </div>
           </div>
           <div className="flex items-center space-x-6 text-cyan-300">
             <span className="flex items-center space-x-2">
