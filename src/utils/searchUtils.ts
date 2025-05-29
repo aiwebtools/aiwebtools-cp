@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { keywordMapping } from "@/data/keywordMapping";
 
@@ -10,6 +9,216 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   
   // Minimum length check to prevent single character searches from triggering keyword expansion
   const isShortSearch = term.length <= 2;
+  
+  // Helper function to check if a tool name matches partial input intelligently
+  const getToolNameMatchScore = (toolTitle: string, searchTerm: string): number => {
+    const lowerTitle = toolTitle.toLowerCase();
+    const cleanTitle = lowerTitle.replace(/[^a-z0-9\s]/g, ''); // Remove special characters
+    const words = cleanTitle.split(' ');
+    
+    let score = 0;
+    
+    // Exact match gets highest score
+    if (lowerTitle === searchTerm) {
+      return 500;
+    }
+    
+    // Check if search term matches beginning of title
+    if (lowerTitle.startsWith(searchTerm)) {
+      score += 400;
+    }
+    
+    // Check if search term matches beginning of any word in title
+    const startsWithWord = words.some(word => word.startsWith(searchTerm));
+    if (startsWithWord) {
+      score += 350;
+    }
+    
+    // For very short searches (2-3 characters), be more intelligent about matching
+    if (searchTerm.length >= 2 && searchTerm.length <= 3) {
+      // Special handling for common tool abbreviations and partial names
+      const toolAbbreviations: Record<string, string[]> = {
+        'ch': ['chatgpt', 'chat', 'character'],
+        'cl': ['claude', 'clone', 'clean'],
+        'cla': ['claude'],
+        'gp': ['gpt', 'chatgpt'],
+        'gpt': ['gpt', 'chatgpt'],
+        'ai': ['ai', 'artificial'],
+        'da': ['dalle', 'data'],
+        'dall': ['dalle'],
+        'mid': ['midjourney'],
+        'sta': ['stable', 'start'],
+        'gen': ['generator', 'generate'],
+        'wr': ['write', 'writer'],
+        'wri': ['write', 'writer', 'writing'],
+        'des': ['design', 'designer'],
+        'art': ['art', 'artist'],
+        'mus': ['music', 'musician'],
+        'vid': ['video'],
+        'aud': ['audio'],
+        'ima': ['image'],
+        'pic': ['picture'],
+        'pho': ['photo'],
+        'bus': ['business'],
+        'pro': ['productivity', 'professional'],
+        'lea': ['learn', 'learning'],
+        'edu': ['education', 'educational'],
+        'hea': ['health', 'healthcare'],
+        'fin': ['finance', 'financial'],
+        'leg': ['legal'],
+        'cod': ['code', 'coding'],
+        'dev': ['development', 'developer'],
+        'web': ['web', 'website'],
+        'app': ['app', 'application'],
+        'pla': ['platform'],
+        'too': ['tool', 'tools'],
+        'ass': ['assistant'],
+        'hel': ['helper', 'help'],
+        'gui': ['guide'],
+        'sup': ['support'],
+        'cre': ['create', 'creative', 'creator'],
+        'mak': ['make', 'maker'],
+        'bui': ['build', 'builder'],
+        'edi': ['edit', 'editor'],
+        'ana': ['analyze', 'analysis'],
+        'res': ['research', 'resume'],
+        'stu': ['study', 'student'],
+        'tea': ['teach', 'teacher'],
+        'tut': ['tutorial'],
+        'cou': ['course'],
+        'tra': ['training', 'translate'],
+        'med': ['medical', 'media'],
+        'soc': ['social'],
+        'mar': ['marketing'],
+        'sal': ['sales'],
+        'aut': ['automation', 'automotive'],
+        'car': ['car', 'career'],
+        'auto': ['automotive', 'automation'],
+        'gam': ['game', 'gaming'],
+        'ent': ['entertainment'],
+        'fun': ['fun'],
+        'spi': ['spiritual'],
+        'rel': ['relaxation', 'religion'],
+        'medi': ['meditation', 'medical'],
+        'pea': ['peace'],
+        'cal': ['calm', 'calendar'],
+        'zen': ['zen'],
+        'dre': ['dream'],
+        'sle': ['sleep'],
+        'ast': ['astrology'],
+        'tar': ['tarot'],
+        'ang': ['angel'],
+        'can': ['cannabis'],
+        'fis': ['fishing'],
+        'cel': ['celebrity'],
+        'ein': ['einstein'],
+        'bin': ['binary'],
+        'foo': ['food'],
+        'qua': ['quality'],
+        'his': ['history', 'historian'],
+        'tim': ['time'],
+        'tra': ['travel', 'training'],
+        'dir': ['director'],
+        'ske': ['sketch'],
+        'sto': ['story', 'storyboard']
+      };
+      
+      // Check if the search term matches any abbreviation
+      if (toolAbbreviations[searchTerm]) {
+        const matchingConcepts = toolAbbreviations[searchTerm];
+        const hasConceptMatch = matchingConcepts.some(concept => 
+          lowerTitle.includes(concept) || cleanTitle.includes(concept)
+        );
+        if (hasConceptMatch) {
+          score += 300;
+        }
+      }
+    }
+    
+    // Check for partial matches within words (for longer searches)
+    if (searchTerm.length >= 3) {
+      const hasPartialMatch = words.some(word => word.includes(searchTerm));
+      if (hasPartialMatch) {
+        score += 250;
+      }
+    }
+    
+    // Check if title contains search term anywhere
+    if (lowerTitle.includes(searchTerm)) {
+      score += 200;
+    }
+    
+    // Fuzzy matching for common typos and variations
+    if (searchTerm.length >= 3) {
+      const fuzzyMatches: Record<string, string[]> = {
+        'chatgpt': ['chatgpt', 'chat gpt', 'gpt chat', 'gpt'],
+        'claude': ['claude', 'claud'],
+        'midjourney': ['midjourney', 'mid journey', 'midjorney'],
+        'dalle': ['dalle', 'dall-e', 'dal-e', 'dali'],
+        'stable': ['stable', 'stabl'],
+        'openai': ['openai', 'open ai'],
+        'anthropic': ['anthropic', 'antropic'],
+        'google': ['google', 'googl'],
+        'microsoft': ['microsoft', 'micro soft'],
+        'generator': ['generator', 'generater', 'genrator'],
+        'assistant': ['assistant', 'assitant', 'asistant'],
+        'creative': ['creative', 'creativ', 'creatve'],
+        'business': ['business', 'bussiness', 'busines'],
+        'productivity': ['productivity', 'productivty', 'productiviy'],
+        'education': ['education', 'educaton', 'educaion'],
+        'development': ['development', 'developement', 'devlopment'],
+        'professional': ['professional', 'proffesional', 'profesional']
+      };
+      
+      Object.entries(fuzzyMatches).forEach(([correct, variants]) => {
+        if (variants.some(variant => variant.includes(searchTerm) || searchTerm.includes(variant))) {
+          if (lowerTitle.includes(correct)) {
+            score += 180;
+          }
+        }
+      });
+    }
+    
+    // Acronym matching (e.g., "AI" matches "Artificial Intelligence")
+    if (searchTerm.length >= 2) {
+      const acronymMatches: Record<string, string[]> = {
+        'ai': ['artificial intelligence', 'ai'],
+        'ml': ['machine learning'],
+        'nlp': ['natural language processing'],
+        'gpt': ['generative pre-trained transformer', 'gpt'],
+        'ui': ['user interface'],
+        'ux': ['user experience'],
+        'seo': ['search engine optimization'],
+        'api': ['application programming interface'],
+        'sdk': ['software development kit'],
+        'cms': ['content management system'],
+        'crm': ['customer relationship management'],
+        'erp': ['enterprise resource planning'],
+        'hr': ['human resources'],
+        'it': ['information technology'],
+        'qa': ['quality assurance'],
+        'cv': ['computer vision', 'curriculum vitae'],
+        'ar': ['augmented reality'],
+        'vr': ['virtual reality'],
+        'iot': ['internet of things'],
+        'saas': ['software as a service'],
+        'b2b': ['business to business'],
+        'b2c': ['business to consumer'],
+        'roi': ['return on investment'],
+        'kpi': ['key performance indicator']
+      };
+      
+      if (acronymMatches[searchTerm]) {
+        const matchingTerms = acronymMatches[searchTerm];
+        const hasAcronymMatch = matchingTerms.some(term => lowerTitle.includes(term));
+        if (hasAcronymMatch) {
+          score += 160;
+        }
+      }
+    }
+    
+    return score;
+  };
   
   // Helper function to get expanded keywords with better matching
   const getExpandedKeywords = (searchTerm: string): string[] => {
@@ -64,9 +273,18 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     
     let score = 0;
     
-    // For very short searches, be more restrictive
+    // First, check for intelligent tool name matching
+    const nameMatchScore = getToolNameMatchScore(tool.title, searchTerm);
+    score += nameMatchScore;
+    
+    // For very short searches, prioritize name matching
     if (isShortSearch) {
-      // Only match if the search term is at the beginning of words
+      // If we have a good name match, boost it significantly
+      if (nameMatchScore > 200) {
+        return score + 1000; // High priority for good name matches on short searches
+      }
+      
+      // Only match if the search term is at the beginning of words for other content
       const titleWords = lowerTitle.split(' ');
       const hasWordStart = titleWords.some(word => word.startsWith(searchTerm));
       const categoryWords = lowerCategory.split(' ');
