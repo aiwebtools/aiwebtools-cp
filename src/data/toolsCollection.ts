@@ -104,6 +104,9 @@ import { aiHealthcareTools } from './tools/aiHealthcareTools';
 import { aiEducationTools } from './tools/aiEducationTools';
 import { aiLegalTools } from './tools/aiLegalTools';
 
+// Import mind-blowing AI tools for everyday users
+import { mindBlowingAITools } from './tools/mindBlowingAITools';
+
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
@@ -205,6 +208,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiFinanceTools,
     ...aiHealthcareTools,
     ...aiEducationTools,
-    ...aiLegalTools
+    ...aiLegalTools,
+    
+    // NEW: 50 mind-blowing AI tools for everyday users
+    ...mindBlowingAITools
   ];
 };

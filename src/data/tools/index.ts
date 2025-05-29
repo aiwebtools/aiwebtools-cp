@@ -96,3 +96,6 @@ export { aiFinanceTools } from './aiFinanceTools';
 export { aiHealthcareTools } from './aiHealthcareTools';
 export { aiEducationTools } from './aiEducationTools';
 export { aiLegalTools } from './aiLegalTools';
+
+// Export mind-blowing AI tools for everyday users
+export { mindBlowingAITools } from './mindBlowingAITools';
