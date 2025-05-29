@@ -2,13 +2,26 @@
 import { Tool } from "@/types/tools";
 
 export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
+  // Priority tools that MUST be in top 10
+  const priorityTitles = [
+    'BOOK WRITER GPT',
+    'MOVIE MAKER STUDIO', 
+    'STAGE MASTER SUITE'
+  ];
+  
+  // Find priority tools first
+  const priorityTools = allTools.filter(tool => 
+    priorityTitles.some(title => tool.title.includes(title))
+  );
+  
   // Prioritize AI Web Tools LLC original GPTs (those with lovable.app URLs)
   const aiWebToolsGPTs = allTools.filter(tool => 
     tool.directUrl?.includes('lovable.app') && 
-    (tool.videoUrl || tool.imageUrl)
+    (tool.videoUrl || tool.imageUrl) &&
+    !priorityTools.some(pTool => pTool.title === tool.title) // Avoid duplicates
   );
   
-  // Select the best performing and most popular AI Web Tools GPTs
+  // Select the best performing AI Web Tools GPTs (excluding priority tools already selected)
   const featuredAIWebToolsGPTs = [
     // Top performing GPTs with videos
     ...aiWebToolsGPTs.filter(tool => 
@@ -21,7 +34,7 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
       tool.title.includes('ImmortalizeME') ||
       tool.title.includes('Resurrection GPT') ||
       tool.title.includes('ENTER THE MATRIX GPT')
-    ).slice(0, 6),
+    ).slice(0, 4),
     
     // Additional popular GPTs with good media
     ...aiWebToolsGPTs.filter(tool => 
@@ -31,16 +44,25 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
       tool.title.includes('Legislation Writer GPT') ||
       tool.title.includes('Agronomus AI Farming Expert') ||
       tool.title.includes('COLLEGE DEGREE GPT')
-    ).slice(0, 3)
+    ).slice(0, 2)
   ];
   
-  // If we need more featured tools, add other high-rated tools
+  // If we need more featured tools, add other high-rated tools (excluding already selected)
+  const alreadySelected = [...priorityTools, ...featuredAIWebToolsGPTs];
   const otherPopularTools = allTools
     .filter(tool => 
-      !featuredAIWebToolsGPTs.includes(tool) && 
+      !alreadySelected.some(selected => selected.title === tool.title) && 
       (tool.rating >= 4.5 || tool.totalVotes >= 4000)
     )
-    .slice(0, 3);
+    .slice(0, 1);
   
-  return [...featuredAIWebToolsGPTs, ...otherPopularTools].slice(0, 9);
+  // Combine with priority tools first, then featured AI Web Tools GPTs, then others
+  const finalFeaturedTools = [...priorityTools, ...featuredAIWebToolsGPTs, ...otherPopularTools];
+  
+  // Remove any potential duplicates by title and return top 9
+  const uniqueTools = finalFeaturedTools.filter((tool, index, self) => 
+    index === self.findIndex(t => t.title === tool.title)
+  );
+  
+  return uniqueTools.slice(0, 9);
 };

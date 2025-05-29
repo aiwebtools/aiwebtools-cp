@@ -80,23 +80,38 @@ import { searchTools } from '@/utils/searchUtils';
 import { createFeaturedTools } from '@/utils/featuredTools';
 import { getCategoriesWithCounts, getToolsByCategory } from '@/utils/categoryUtils';
 
-// Combine all tools with YOUR PRIORITY GPTS AND TOOLS FIRST - ALWAYS MOST POPULAR
-export const allTools: Tool[] = [
-  // YOUR TOP PRIORITY GPTS COME FIRST - HIGHEST RATED AND MOST POPULAR
-  ...spiritualityTools, // Contains TALK TO THE GODS GPT, Fortune Teller GPT, etc.
-  ...advancedAITools, // Contains GODMODE GPT, MULTITASKER GPT, PERFECT PROMPT ENGINE, etc.
-  ...timeAndHistory, // Contains TIME MACHINE GPT, Historical tools, etc.
-  ...creativeSuites, // Contains Movie Maker Studio, Music Video Maker, etc.
-  ...learningAndEducation, // Contains COLLEGE DEGREE GPT, LEARN ANY COURSE GPT, etc.
-  ...gameDesignAndDevelopment, // Contains GAME DESIGNER GPT, etc.
-  ...emergencyServices, // Contains specialized emergency GPTs
-  ...professionalServices, // Contains specialized professional GPTs
-  ...legalProfessionals, // Contains Legislation Writer GPT, etc.
-  ...healthcareProfessionals, // Contains specialized health GPTs
-  ...creativeServices, // Contains Oraculum, Trivia Night GPT, etc.
-  ...technicalAndUtilityTools, // Contains technical GPTs
+// Helper function to extract priority tools and move them to the front
+const extractPriorityTools = (toolsArray: Tool[]): { priorityTools: Tool[], remainingTools: Tool[] } => {
+  const priorityTitles = ['BOOK WRITER GPT', 'MOVIE MAKER STUDIO', 'STAGE MASTER SUITE'];
   
-  // THEN AI-FOCUSED CATEGORIES (UPDATED WITH NEW TOOLS)
+  const priorityTools: Tool[] = [];
+  const remainingTools: Tool[] = [];
+  
+  toolsArray.forEach(tool => {
+    if (priorityTitles.some(title => tool.title.includes(title))) {
+      priorityTools.push(tool);
+    } else {
+      remainingTools.push(tool);
+    }
+  });
+  
+  return { priorityTools, remainingTools };
+};
+
+// Combine all tool categories
+const allToolCategories = [
+  ...spiritualityTools,
+  ...advancedAITools,
+  ...timeAndHistory,
+  ...creativeSuites,
+  ...learningAndEducation,
+  ...gameDesignAndDevelopment,
+  ...emergencyServices,
+  ...professionalServices,
+  ...legalProfessionals,
+  ...healthcareProfessionals,
+  ...creativeServices,
+  ...technicalAndUtilityTools,
   ...aiChatPlatforms,
   ...aiDevelopmentTools,
   ...aiAgents,
@@ -111,8 +126,6 @@ export const allTools: Tool[] = [
   ...aiArtTools,
   ...advancedChatPlatforms,
   ...developerAndCodingTools,
-  
-  // THEN CONTENT AND CREATIVE TOOLS (UPDATED WITH NEW TOOLS)
   ...writingAndContent,
   ...writingAndContentEnhancement,
   ...imageAndDesign,
@@ -126,14 +139,10 @@ export const allTools: Tool[] = [
   ...contentCreationAndWritingTools,
   ...contentDetectionTools,
   ...documentAndResearchTools,
-  
-  // IMAGE GENERATION TOOLS (UPDATED WITH NEW TOOLS)
   ...coreImageGenerators,
   ...imageEditingTools,
   ...specializedImageTools,
   ...backgroundAndObjectTools,
-  
-  // THEN BUSINESS AND PRODUCTIVITY
   ...businessAndProductivity,
   ...businessTools,
   ...businessAndTeamTools,
@@ -141,22 +150,14 @@ export const allTools: Tool[] = [
   ...ecommerceAndMarketingTools,
   ...platformsAndDevelopment,
   ...resumeAndCareerTools,
-  
-  // EMAIL AND WEB DEVELOPMENT (UPDATED WITH NEW TOOLS)
   ...emailManagementTools,
   ...webDevelopmentTools,
-  
-  // MEETING AND TRANSCRIPTION TOOLS
   ...meetingAndTranscriptionTools,
-  
-  // REFACTORED TOOLS CATEGORIES (UPDATED WITH NEW TOOLS)
   ...advancedVideoTools,
   ...creativeDesignTools,
   ...businessSalesTools,
   ...specializedAITools,
   ...entertainmentMediaTools,
-  
-  // THEN SPECIALIZED CATEGORIES (UPDATED WITH NEW TOOLS)
   ...specializedAndNiche,
   ...specializedTools,
   ...creativeAndEntertainment,
@@ -164,10 +165,17 @@ export const allTools: Tool[] = [
   ...personalServices,
   ...specializedPolicyTools,
   ...artAndCollectibles,
-  
-  // FINANCIAL AND TRADING TOOLS (UPDATED WITH NEW TOOLS)
   ...financialAndTradingTools,
   ...specializedNicheTools
+];
+
+// Extract priority tools and reorder
+const { priorityTools, remainingTools } = extractPriorityTools(allToolCategories);
+
+// Combine with priority tools first, ensuring no duplicates
+export const allTools: Tool[] = [
+  ...priorityTools,
+  ...remainingTools
 ];
 
 // Create featured tools using the utility function - prioritizes your GPTs
