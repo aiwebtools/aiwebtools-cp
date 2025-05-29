@@ -1,8 +1,20 @@
 
 import { Tool } from "@/types/tools";
-import { Brain } from "lucide-react";
+import { Brain, Box } from "lucide-react";
 
 export const aiProductivityTools: Tool[] = [
+  {
+    icon: Box,
+    title: "3D Print GPT",
+    description: "Advanced 3D printing assistant for design optimization, troubleshooting, material selection, and printing guidance. Expert advice for all levels of 3D printing.",
+    emoji: "🖨️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://3dprintgpt.lovable.app/?via=aiwebtools",
+    tags: ["3D printing", "design optimization", "troubleshooting", "materials", "printing guidance"],
+    category: "AI Productivity Tools",
+    rating: 4.3,
+    totalVotes: 2456
+  },
   {
     icon: Brain,
     title: "MicroSaaS GPT",
