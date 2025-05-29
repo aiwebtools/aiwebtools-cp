@@ -18,10 +18,11 @@ export const useInfiniteScroll = ({
 }: UseInfiniteScrollProps) => {
   const handleLoadMore = useCallback(() => {
     if (isLoading) return;
+    console.log(`🔄 Infinite scroll triggered - Loading more tools...`);
     onLoadMore();
   }, [isLoading, onLoadMore]);
 
-  // Improved infinite scroll with better performance and glitch prevention
+  // Enhanced infinite scroll with better performance and glitch prevention
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
     
@@ -36,19 +37,22 @@ export const useInfiniteScroll = ({
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
         
-        // More conservative threshold to prevent glitches
-        const threshold = 600;
+        // More aggressive threshold for better user experience
+        const threshold = 800;
         const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
         
+        console.log(`📏 Scroll check - ScrollTop: ${scrollTop}, WindowHeight: ${windowHeight}, DocumentHeight: ${documentHeight}, NearBottom: ${nearBottom}`);
+        
         if (nearBottom && displayedCount < totalTools && !isLoading) {
+          console.log(`🎯 Triggering load more - Displayed: ${displayedCount}, Total: ${totalTools}`);
           handleLoadMore();
         }
-      }, 100); // Debounce scroll events
+      }, 50); // Reduced debounce for more responsive loading
     };
 
-    if (!showLoadMoreButton) {
-      window.addEventListener('scroll', handleScroll, { passive: true });
-    }
+    // Always enable scroll listening for homepage
+    console.log(`🎮 Setting up infinite scroll - ShowButton: ${showLoadMoreButton}, Displayed: ${displayedCount}, Total: ${totalTools}`);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener('scroll', handleScroll);

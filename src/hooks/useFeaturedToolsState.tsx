@@ -8,13 +8,13 @@ import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
 export const useFeaturedToolsState = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [displayedCount, setDisplayedCount] = useState<number>(12);
+  const [displayedCount, setDisplayedCount] = useState<number>(20); // Start with more tools
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleCategoryChange = (category: string | null) => {
     setSelectedCategory(category);
     setSearchTerm("");
-    setDisplayedCount(12);
+    setDisplayedCount(20);
     setIsLoading(false);
     // Clear saved state when actively changing filters
     sessionStorage.removeItem('aitools-scroll-position');
@@ -24,7 +24,7 @@ export const useFeaturedToolsState = () => {
   const handleSearchChange = (term: string) => {
     setSearchTerm(term);
     setSelectedCategory(null);
-    setDisplayedCount(12);
+    setDisplayedCount(20);
     setIsLoading(false);
     // Clear saved state when actively searching
     sessionStorage.removeItem('aitools-scroll-position');
@@ -42,6 +42,9 @@ export const useFeaturedToolsState = () => {
     } else if (searchTerm) {
       tools = searchTools(allTools, searchTerm);
       console.log(`🔍 Filtered by search "${searchTerm}": ${tools.length} tools`);
+    } else {
+      // For homepage, show all tools
+      console.log(`🏠 Homepage - showing all ${tools.length} tools`);
     }
 
     return tools;
