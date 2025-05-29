@@ -37,16 +37,15 @@ import {
   X, 
   Plus, 
   Minus, 
-  Edit, 
-  Delete, 
+  Edit3, 
+  Trash2, 
   Save, 
   Copy, 
   Paste, 
   Cut, 
   Undo, 
   Redo, 
-  Refresh, 
-  Sync, 
+  RefreshCw, 
   Share, 
   Export, 
   Import, 
@@ -63,7 +62,7 @@ import {
   Record, 
   Mic, 
   Speaker, 
-  Volume, 
+  Volume2, 
   Mute, 
   Headphones, 
   Monitor, 
@@ -77,7 +76,11 @@ import {
   Building,
   Eye,
   TestTube,
-  Palette
+  Palette,
+  Code,
+  Wand2,
+  MousePointer,
+  Shield
 } from "lucide-react";
 
 export const productivityAndAutomationTools: Tool[] = [

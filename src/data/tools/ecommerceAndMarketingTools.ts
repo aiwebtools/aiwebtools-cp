@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   ShoppingCart, 
@@ -14,7 +15,12 @@ import {
   CreditCard,
   Instagram,
   Share2,
-  MessageSquare
+  MessageSquare,
+  Phone,
+  Heart,
+  Map,
+  Store,
+  Video
 } from "lucide-react";
 
 export const ecommerceAndMarketingTools: Tool[] = [

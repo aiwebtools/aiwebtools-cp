@@ -1,32 +1,27 @@
 import { Tool } from "@/types/tools";
 import { 
   Code, 
-  Brain, 
-  Zap, 
+  Bot, 
   Cpu, 
   Database, 
-  Globe, 
-  Layers, 
-  GitBranch, 
   Terminal, 
-  Bot, 
-  Sparkles, 
-  Wand2, 
-  Settings, 
-  Rocket, 
-  Building2, 
-  Package,
-  Smartphone,
-  MonitorSpeaker,
+  GitBranch,
+  Layers,
+  Zap,
+  Brain,
+  Settings,
+  Wrench,
+  Building,
+  Cloud,
+  Activity,
   FileCode,
-  Palette,
-  Figma,
-  Search,
-  Eye,
-  TestTube,
-  Image,
-  Camera,
-  Cloud
+  Globe,
+  Rocket,
+  Shield,
+  Target,
+  Users,
+  Video,
+  BookOpen
 } from "lucide-react";
 
 export const aiToolsAndDevelopment: Tool[] = [
@@ -308,7 +303,7 @@ export const aiToolsAndDevelopment: Tool[] = [
     totalVotes: 3456
   },
   {
-    icon: Building2,
+    icon: Building,
     title: "10Web",
     description: "Comprehensive suite of tools and services designed to help individuals and businesses create, host, and optimize websites with ease. At its core, 10Web provides an AI Website Builder that empowers users to quickly generate websites with AI-generated content and images.",
     emoji: "🔟",

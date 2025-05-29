@@ -1,14 +1,19 @@
 import { Tool } from "@/types/tools";
 import { 
   MessageSquare, 
-  Brain, 
-  Zap, 
-  Users, 
   Bot, 
+  Zap, 
+  Brain, 
+  Wand2, 
   Search, 
+  Users, 
+  Star,
   Globe,
-  Smartphone,
-  Cat
+  Shield,
+  Image,
+  Download,
+  Building,
+  Sparkles
 } from "lucide-react";
 
 export const advancedChatPlatforms: Tool[] = [
@@ -49,7 +54,7 @@ export const advancedChatPlatforms: Tool[] = [
     totalVotes: 3789
   },
   {
-    icon: ImageIcon,
+    icon: Image,
     title: "GPT4V Online",
     description: "Chat with images, powered by GPT4. Experience a new level of interaction where you can upload images and engage in text-based conversations based on the contents of those images using GPT4's cutting-edge AI technology.",
     emoji: "🖼️",
@@ -157,7 +162,7 @@ export const advancedChatPlatforms: Tool[] = [
     totalVotes: 2987
   },
   {
-    icon: Cat,
+    icon: Wand2,
     title: "ChattyCat",
     description: "AI chatbot embodying adorable cat persona on WhatsApp. Chat, send voice messages, and request images from your virtual feline friend within WhatsApp interface.",
     emoji: "🐱",

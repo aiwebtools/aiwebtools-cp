@@ -1,5 +1,5 @@
 
-// Export all tool categories for easy importing
+// Export all tool categories
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
 export { videoTools } from './videoTools';
@@ -46,7 +46,7 @@ export { searchAndProductivityTools } from './searchAndProductivityTools';
 export { advancedChatPlatforms } from './advancedChatPlatforms';
 export { developerAndCodingTools } from './developerAndCodingTools';
 export { contentDetectionTools } from './contentDetectionTools';
-export { contentCreationAndWritingTools } from './contentCreationAndWritingTools';
+export { contentCreationTools as contentCreationAndWritingTools } from './contentCreationAndWritingTools';
 export { documentAndResearchTools } from './documentAndResearchTools';
 export { designAndGraphicsTools } from './designAndGraphicsTools';
 export { productivityAndAutomationTools } from './productivityAndAutomationTools';
@@ -54,17 +54,11 @@ export { writingAndContentEnhancement } from './writingAndContentEnhancement';
 export { resumeAndCareerTools } from './resumeAndCareerTools';
 export { ecommerceAndMarketingTools } from './ecommerceAndMarketingTools';
 export { videoEditingAndContentTools } from './videoEditingAndContentTools';
-
-// Export the refactored image generation tools
 export { coreImageGenerators } from './coreImageGenerators';
 export { imageEditingTools } from './imageEditingTools';
 export { specializedImageTools } from './specializedImageTools';
 export { backgroundAndObjectTools } from './backgroundAndObjectTools';
-
-// Export the new audio and voice tools
 export { audioAndVoiceTools } from './audioAndVoiceTools';
-
-// Export the new categories
 export { financialAndTradingTools } from './financialAndTradingTools';
 export { specializedNicheTools } from './specializedNicheTools';
 export { meetingAndTranscriptionTools } from './meetingAndTranscriptionTools';

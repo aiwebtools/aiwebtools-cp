@@ -1,13 +1,14 @@
 import { Tool } from "@/types/tools";
 import { 
+  Scale, 
   Gavel, 
-  Shield, 
+  Building, 
+  Briefcase, 
   FileText, 
+  Brain, 
+  Shield, 
   Search, 
-  Users, 
-  Building,
-  Target,
-  Briefcase
+  BookOpen 
 } from "lucide-react";
 
 export const legalProfessionals: Tool[] = [
@@ -60,7 +61,7 @@ export const legalProfessionals: Tool[] = [
     totalVotes: 110
   },
   {
-    icon: Book,
+    icon: BookOpen,
     title: "AI Legal Research Tool",
     description: "Conduct legal research efficiently with AI-driven search and analysis.",
     emoji: "📚",

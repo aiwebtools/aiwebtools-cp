@@ -2,14 +2,18 @@ import { Tool } from "@/types/tools";
 import { 
   PenTool, 
   FileText, 
-  Edit, 
-  CheckCircle, 
-  Zap, 
-  Target, 
+  Edit3, 
+  Wand2, 
+  BookOpen, 
+  Type, 
+  Lightbulb, 
+  Search, 
   Globe, 
-  Brain,
-  Book,
-  GraduationCap
+  Sparkles, 
+  Brain, 
+  Languages, 
+  Calendar,
+  Feather
 } from "lucide-react";
 
 export const writingAndContentEnhancement: Tool[] = [
@@ -110,7 +114,7 @@ export const writingAndContentEnhancement: Tool[] = [
     totalVotes: 5678
   },
   {
-    icon: Edit,
+    icon: Edit3,
     title: "Jenni AI",
     description: "Powerful tool for research paper writing trusted by over 1 million academics. Features AI Autocomplete, in-text citations (APA, MLA, IEEE, Harvard), paraphrasing, and AI chat assistant for research understanding.",
     emoji: "✍️",
@@ -218,7 +222,7 @@ export const writingAndContentEnhancement: Tool[] = [
     totalVotes: 3456
   },
   {
-    icon: Edit,
+    icon: Edit3,
     title: "Orchard.ink",
     description: "Groundbreaking GPT Text Editor revolutionizing document creation and collaboration. Upload documents, real-time web searches, multiplayer collaboration, and Smart Text Editor with workspace analysis.",
     emoji: "🌳",
@@ -434,7 +438,7 @@ export const writingAndContentEnhancement: Tool[] = [
     totalVotes: 2234
   },
   {
-    icon: Edit,
+    icon: Edit3,
     title: "WordTune",
     description: "AI-powered writing assistant tool that helps users improve their writing skills. Provides suggestions for sentence rephrasing, grammar corrections, alternative word choices, and overall improvement of readability and clarity.",
     emoji: "📖",

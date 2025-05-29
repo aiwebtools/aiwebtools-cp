@@ -1,13 +1,17 @@
+
 import { Tool } from "@/types/tools";
 import { 
-  FileText, 
   User, 
+  FileText, 
   TrendingUp, 
-  Target, 
-  Search, 
   Briefcase, 
-  Users,
-  Building
+  Users, 
+  Search, 
+  Building, 
+  Target, 
+  Star, 
+  Zap, 
+  Award
 } from "lucide-react";
 
 export const resumeAndCareerTools: Tool[] = [
