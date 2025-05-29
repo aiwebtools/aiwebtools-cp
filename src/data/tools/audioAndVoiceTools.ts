@@ -7,7 +7,7 @@ import {
   Radio, 
   Speaker, 
   FileAudio,
-  Waveform,
+  AudioWaveform,
   Play,
   Settings,
   Sparkles,
@@ -65,7 +65,7 @@ export const audioAndVoiceTools: Tool[] = [
     totalVotes: 3890
   },
   {
-    icon: Waveform,
+    icon: AudioWaveform,
     title: "Udio",
     description: "AI music creation platform for generating high-quality music tracks. Create songs with vocals, instruments, and professional mixing.",
     emoji: "🎼",
