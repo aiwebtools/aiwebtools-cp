@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import {
   businessTools,
@@ -63,7 +64,8 @@ import {
   meetingAndTranscriptionTools,
   webDevelopmentTools,
   emailManagementTools,
-  technicalAndUtilityTools
+  technicalAndUtilityTools,
+  roboticsCompanies
 } from './tools';
 
 // Import the refactored tools
@@ -180,6 +182,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...communicationTools,
     ...entertainmentTools,
     ...newsAndInformationTools,
-    ...healthAndWellnessTools
+    ...healthAndWellnessTools,
+    
+    // Robotics companies category
+    ...roboticsCompanies
   ];
 };

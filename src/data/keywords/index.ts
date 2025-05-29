@@ -1,4 +1,3 @@
-
 // Main keyword mapping index that combines all keyword categories
 import { coreAIKeywords } from './coreAIKeywords';
 import { creativeKeywords } from './creativeKeywords';
@@ -21,6 +20,19 @@ export const keywordMapping: Record<string, string[]> = {
   ...userIntentKeywords,
   ...specialtyKeywords,
   ...searchMetaKeywords,
+  
+  // Robotics keywords
+  "robotics": ["robot", "robotics companies", "humanoid robots", "robot manufacturers", "robot distributors"],
+  "humanoid": ["humanoid robots", "bipedal robots", "human-like robots", "android", "cyborg"],
+  "unitree": ["unitree robotics", "G1 robot", "quadruped robots", "robot dogs"],
+  "boston dynamics": ["atlas robot", "spot robot", "dynamic robotics", "advanced robotics"],
+  "agility": ["digit robot", "bipedal locomotion", "warehouse robotics"],
+  "tesla bot": ["optimus robot", "tesla robotics", "general purpose robots"],
+  "sophia": ["hanson robotics", "social robots", "conversational robots"],
+  "pepper": ["softbank robotics", "nao robot", "service robots"],
+  "manufacturing robots": ["industrial robots", "factory automation", "robotic workers"],
+  "service robots": ["hospitality robots", "healthcare robots", "retail robots"],
+  "research robots": ["academic robotics", "laboratory robots", "experimental robots"]
 };
 
 // Enhanced search synonyms for better matching
@@ -39,7 +51,9 @@ export const searchSynonyms: Record<string, string[]> = {
   "graph": ["chart", "diagram", "plot", "visualization", "infographic"],
   "3d": ["three dimensional", "3D modeling", "3D design", "three-d"],
   "automation": ["workflow", "process automation", "task automation", "auto"],
-  "analytics": ["data analysis", "business intelligence", "reporting", "metrics"]
+  "analytics": ["data analysis", "business intelligence", "reporting", "metrics"],
+  "robot": ["robotics", "humanoid", "android", "automaton", "cyborg"],
+  "humanoid": ["human-like", "bipedal", "android", "anthropomorphic"]
 };
 
 // Category-specific keywords for better categorization
@@ -61,7 +75,8 @@ export const categoryKeywords: Record<string, string[]> = {
   "Professional Services": ["professional AI", "service tools", "business services", "expert assistance", "consultation tools"],
   "3D & Visualization": ["3D modeling", "3D design", "3D animation", "3D rendering", "visualization", "three dimensional", "3D tools"],
   "Data & Analytics": ["data analysis", "business intelligence", "analytics", "data visualization", "reporting", "dashboards", "metrics"],
-  "Automation & Workflows": ["automation", "workflow", "process automation", "task automation", "business automation", "workflow tools"]
+  "Automation & Workflows": ["automation", "workflow", "process automation", "task automation", "business automation", "workflow tools"],
+  "Robotics Companies": ["robotics", "humanoid robots", "robot manufacturers", "robot distributors", "commercial robots", "industrial robots", "service robots", "research robots", "bipedal robots", "quadruped robots", "robot companies", "robotics industry"]
 };
 
 // Export individual keyword categories for specific use cases

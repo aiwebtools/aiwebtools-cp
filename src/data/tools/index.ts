@@ -83,3 +83,6 @@ export { communicationTools } from './communicationTools';
 export { entertainmentTools } from './entertainmentTools';
 export { newsAndInformationTools } from './newsAndInformationTools';
 export { healthAndWellnessTools } from './healthAndWellnessTools';
+
+// Export robotics companies category
+export { roboticsCompanies } from './roboticsCompanies';

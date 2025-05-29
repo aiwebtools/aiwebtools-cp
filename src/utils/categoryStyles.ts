@@ -1,4 +1,3 @@
-
 import { 
   Palette, Zap, Video, PenTool, Headphones, Code, 
   BookOpen, Settings, Clock, Heart, Gamepad2, 
@@ -279,6 +278,16 @@ export const categoryStyles: Record<string, CategoryStyle> = {
       selected: "bg-gradient-to-r from-green-500 to-blue-600"
     },
     icon: Activity
+  },
+  "Robotics Companies": {
+    emoji: "🤖",
+    colors: {
+      bg: "bg-gradient-to-r from-indigo-500/20 to-cyan-500/20",
+      border: "border-indigo-500/40",
+      hover: "hover:bg-gradient-to-r hover:from-indigo-500/30 hover:to-cyan-500/30 hover:border-indigo-400",
+      selected: "bg-gradient-to-r from-indigo-500 to-cyan-600"
+    },
+    icon: Bot
   }
 };
 

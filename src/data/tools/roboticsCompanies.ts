@@ -1,0 +1,155 @@
+
+import { Tool } from "@/types/tools";
+
+export const roboticsCompanies: Tool[] = [
+  {
+    title: "Unitree Robotics",
+    emoji: "🤖",
+    category: "Robotics Companies",
+    description: "Leading manufacturer of quadruped and humanoid robots including the G1 humanoid robot and Go series quadrupeds. Specializes in advanced robotics for research, education, and commercial applications.",
+    color: "from-blue-600 to-purple-600",
+    directUrl: "https://www.unitree.com/?via=aiwebtools",
+    rating: 4.8,
+    tags: ["humanoid robots", "quadruped robots", "robotics manufacturer", "AI robotics", "commercial robots"]
+  },
+  {
+    title: "Boston Dynamics",
+    emoji: "🦿",
+    category: "Robotics Companies", 
+    description: "World-renowned robotics company famous for Atlas humanoid robot, Spot quadruped, and Stretch warehouse robot. Pioneers in dynamic mobility and advanced robotics research.",
+    color: "from-orange-600 to-red-600",
+    directUrl: "https://www.bostondynamics.com/?via=aiwebtools",
+    rating: 4.9,
+    tags: ["Atlas robot", "Spot robot", "dynamic robotics", "humanoid", "commercial robotics"]
+  },
+  {
+    title: "Agility Robotics",
+    emoji: "🚶",
+    category: "Robotics Companies",
+    description: "Creator of Digit, the bipedal humanoid robot designed for logistics and warehouse automation. Focus on human-robot collaboration in workplace environments.",
+    color: "from-green-600 to-blue-600", 
+    directUrl: "https://agilityrobotics.com/?via=aiwebtools",
+    rating: 4.7,
+    tags: ["Digit robot", "bipedal robot", "warehouse automation", "logistics robotics", "humanoid"]
+  },
+  {
+    title: "Honda Robotics (ASIMO)",
+    emoji: "🎌",
+    category: "Robotics Companies",
+    description: "Honda's advanced robotics division, famous for ASIMO humanoid robot. Pioneering research in bipedal locomotion, AI integration, and human-robot interaction.",
+    color: "from-red-600 to-orange-600",
+    directUrl: "https://global.honda/innovation/robotics/?via=aiwebtools", 
+    rating: 4.6,
+    tags: ["ASIMO", "bipedal locomotion", "Honda robotics", "humanoid research", "AI integration"]
+  },
+  {
+    title: "Tesla Bot (Optimus)",
+    emoji: "⚡",
+    category: "Robotics Companies",
+    description: "Tesla's humanoid robot project designed for general-purpose tasks. Aims to create affordable humanoid robots for manufacturing and household applications.",
+    color: "from-gray-600 to-blue-600",
+    directUrl: "https://www.tesla.com/AI/?via=aiwebtools",
+    rating: 4.5,
+    tags: ["Tesla Bot", "Optimus", "general purpose robot", "manufacturing automation", "humanoid"]
+  },
+  {
+    title: "Hanson Robotics",
+    emoji: "👤",
+    category: "Robotics Companies",
+    description: "Creator of Sophia the robot and other social humanoid robots. Specializes in AI-powered social robotics with lifelike expressions and conversational abilities.",
+    color: "from-purple-600 to-pink-600",
+    directUrl: "https://www.hansonrobotics.com/?via=aiwebtools",
+    rating: 4.4,
+    tags: ["Sophia robot", "social robotics", "AI conversation", "humanoid expressions", "entertainment robots"]
+  },
+  {
+    title: "SoftBank Robotics",
+    emoji: "🏢",
+    category: "Robotics Companies",
+    description: "Manufacturer of Pepper and NAO humanoid robots for education, retail, and healthcare. Focus on emotion-sensing and interactive service robots.",
+    color: "from-blue-600 to-cyan-600",
+    directUrl: "https://www.softbankrobotics.com/?via=aiwebtools",
+    rating: 4.3,
+    tags: ["Pepper robot", "NAO robot", "service robots", "education robotics", "emotion sensing"]
+  },
+  {
+    title: "PAL Robotics",
+    emoji: "🔬",
+    category: "Robotics Companies",
+    description: "European robotics company creating TALOS, REEM, and TIAGo humanoid robots for research and service applications. Focus on mobile manipulation and AI.",
+    color: "from-indigo-600 to-purple-600",
+    directUrl: "https://pal-robotics.com/?via=aiwebtools",
+    rating: 4.5,
+    tags: ["TALOS robot", "REEM robot", "research robotics", "mobile manipulation", "European robotics"]
+  },
+  {
+    title: "Ubtech Robotics",
+    emoji: "🎓",
+    category: "Robotics Companies",
+    description: "Chinese robotics company producing Walker humanoid robots and Alpha educational robots. Focuses on AI education and entertainment robotics.",
+    color: "from-yellow-600 to-orange-600",
+    directUrl: "https://www.ubtrobot.com/?via=aiwebtools",
+    rating: 4.2,
+    tags: ["Walker robot", "Alpha robot", "education robotics", "entertainment robots", "AI learning"]
+  },
+  {
+    title: "Figure AI",
+    emoji: "🏭",
+    category: "Robotics Companies",
+    description: "Developing Figure-01 humanoid robot for commercial deployment in manufacturing and logistics. Focus on general-purpose humanoid workers.",
+    color: "from-gray-600 to-green-600",
+    directUrl: "https://www.figure.ai/?via=aiwebtools",
+    rating: 4.6,
+    tags: ["Figure-01", "commercial humanoid", "manufacturing robots", "general purpose", "workplace automation"]
+  },
+  {
+    title: "1X (formerly Halodi)",
+    emoji: "🌟",
+    category: "Robotics Companies",
+    description: "Norwegian robotics company developing NEO and EVE humanoid robots for home and workplace assistance. Focus on safe human-robot coexistence.",
+    color: "from-teal-600 to-blue-600",
+    directUrl: "https://www.1x.tech/?via=aiwebtools",
+    rating: 4.4,
+    tags: ["NEO robot", "EVE robot", "home assistance", "workplace robots", "human-robot coexistence"]
+  },
+  {
+    title: "Clone Robotics",
+    emoji: "🧬",
+    category: "Robotics Companies",
+    description: "Advanced humanoid robotics company focusing on bio-inspired artificial muscles and human-like dexterity. Developing next-generation humanoid robots.",
+    color: "from-purple-600 to-blue-600",
+    directUrl: "https://www.clone-robotics.com/?via=aiwebtools",
+    rating: 4.3,
+    tags: ["bio-inspired robotics", "artificial muscles", "human dexterity", "advanced humanoids", "biomimetics"]
+  },
+  {
+    title: "Sanctuary AI",
+    emoji: "🧠",
+    category: "Robotics Companies",
+    description: "Canadian AI robotics company developing Phoenix humanoid robot with human-like intelligence and dexterity for general-purpose work.",
+    color: "from-red-600 to-purple-600",
+    directUrl: "https://sanctuary.ai/?via=aiwebtools",
+    rating: 4.5,
+    tags: ["Phoenix robot", "general intelligence", "human dexterity", "Canadian robotics", "AI workforce"]
+  },
+  {
+    title: "Engineered Arts",
+    emoji: "🎭",
+    category: "Robotics Companies",
+    description: "UK-based company creating ultra-realistic humanoid robots like Ameca for entertainment, education, and research applications.",
+    color: "from-pink-600 to-purple-600",
+    directUrl: "https://www.engineeredarts.co.uk/?via=aiwebtools",
+    rating: 4.4,
+    tags: ["Ameca robot", "realistic humanoids", "entertainment robots", "research platforms", "UK robotics"]
+  },
+  {
+    title: "Apptronik",
+    emoji: "💪",
+    category: "Robotics Companies",
+    description: "Texas-based robotics company developing Apollo humanoid robot for logistics and manufacturing. Focus on practical commercial applications.",
+    color: "from-orange-600 to-yellow-600",
+    directUrl: "https://apptronik.com/?via=aiwebtools",
+    rating: 4.3,
+    tags: ["Apollo robot", "logistics automation", "manufacturing robots", "commercial humanoids", "Texas robotics"]
+  }
+];
