@@ -1,7 +1,8 @@
+
 import { Tool } from "@/types/tools";
 import { 
-  Bot, Search, List, Zap, Globe, Download,
-  Shield, FlaskConical, Atom, Target
+  Search, List, Zap, Download,
+  Shield, FlaskConical, Atom
 } from "lucide-react";
 
 export const aiToolsAndUtilities: Tool[] = [
@@ -40,18 +41,6 @@ export const aiToolsAndUtilities: Tool[] = [
     category: "AI Tools & Utilities",
     rating: 4.1,
     totalVotes: 1987
-  },
-  {
-    icon: Globe,
-    title: "AI Website Builder",
-    description: "AI-powered website builder that creates professional websites with AI-generated content and design.",
-    emoji: "🌐",
-    color: "from-blue-500 to-cyan-600",
-    directUrl: "https://aiwebsitebuilder.lovable.app/?via=aiwebtools",
-    tags: ["website builder", "AI website", "AI content", "web design", "website creation"],
-    category: "AI Tools & Utilities",
-    rating: 4.0,
-    totalVotes: 1654
   },
   {
     icon: Download,
@@ -100,17 +89,5 @@ export const aiToolsAndUtilities: Tool[] = [
     category: "AI Tools & Utilities",
     rating: 4.2,
     totalVotes: 1876
-  },
-  {
-    icon: Target,
-    title: "AI Marketing Assistant",
-    description: "AI-powered marketing assistant that provides marketing insights, campaign optimization, and marketing automation assistance.",
-    emoji: "🎯",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://aimarketingassistant.lovable.app/?via=aiwebtools",
-    tags: ["marketing assistant", "AI marketing", "marketing insights", "campaign optimization", "marketing automation"],
-    category: "AI Tools & Utilities",
-    rating: 4.3,
-    totalVotes: 2567
   }
 ];
