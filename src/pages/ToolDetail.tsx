@@ -1,3 +1,4 @@
+
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -15,6 +16,8 @@ import ToolTags from "@/components/tool-detail/ToolTags";
 import ToolActions from "@/components/tool-detail/ToolActions";
 import SearchBar from "@/components/tools/SearchBar";
 import SEOHead from "@/components/SEOHead";
+import AdvancedSEOHead from "@/components/AdvancedSEOHead";
+import BreadcrumbSEO from "@/components/BreadcrumbSEO";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { searchTools } from "@/utils/searchUtils";
@@ -78,22 +81,37 @@ const ToolDetail = () => {
     totalVotes: defaultVotes
   });
 
+  const breadcrumbItems = [
+    { name: "Home", url: "https://aitools.studio" },
+    { name: "AI Tools", url: "https://aitools.studio/#tools-section" },
+    { name: tool.category || "Tools", url: `https://aitools.studio/category/${encodeURIComponent(tool.category || "")}` },
+    { name: tool.title, url: `https://aitools.studio/tool/${toolIndex}` }
+  ];
+
   return (
     <div className="min-h-screen bg-black relative">
       <SEOHead
-        title={`${tool.title} - AI Tool Review & Access`}
-        description={`${tool.description} Access ${tool.title}, a powerful AI tool in the ${tool.category} category. Read reviews, features, and get direct access.`}
+        title={`${tool.title} - AI Tool Review & Access | Free AI Tools 2025`}
+        description={`${tool.description} Access ${tool.title}, a powerful AI tool in the ${tool.category} category. Read comprehensive reviews, features, pricing, and get direct access to this ${tool.category} AI tool.`}
         keywords={[
           tool.title.toLowerCase(),
           `${tool.category?.toLowerCase()} ai tool`,
           "ai tool review",
           "artificial intelligence",
+          "free ai tools",
+          "ai tools 2025",
+          `best ${tool.category?.toLowerCase()} tools`,
+          "ai tool comparison",
+          "ai software review",
           ...(tool.tags || [])
         ]}
         url={`/tool/${toolIndex}`}
         type="article"
         structuredData={toolStructuredData}
       />
+      
+      <AdvancedSEOHead tool={tool} toolIndex={toolIndex} pageType="tool" />
+      <BreadcrumbSEO items={breadcrumbItems} />
       
       <AnimatedBackground />
       <div className="relative z-10 cyber-grid">
