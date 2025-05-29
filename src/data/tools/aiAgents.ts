@@ -1,7 +1,7 @@
 
 import { Tool } from "@/types/tools";
 import { 
-  Bot, Code, Cpu, Globe, Zap, Brain, Sparkles, Layers
+  Bot, Code, Cpu, Globe, Zap, Brain, Sparkles, Layers, Workflow, GitBranch
 } from "lucide-react";
 
 export const aiAgents: Tool[] = [
@@ -100,5 +100,29 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.4,
     totalVotes: 2987
+  },
+  {
+    icon: Workflow,
+    title: "n8n",
+    description: "Open-source workflow automation tool that connects apps and services with visual workflow builder and AI-powered automation capabilities.",
+    emoji: "🔗",
+    color: "from-purple-600 to-blue-700",
+    directUrl: "https://n8n.io/?via=aiwebtools",
+    tags: ["workflow automation", "no-code", "integrations", "API connections", "open source"],
+    category: "Automation",
+    rating: 4.6,
+    totalVotes: 3287
+  },
+  {
+    icon: GitBranch,
+    title: "Make.com",
+    description: "Visual platform for creating automated workflows between apps and services with powerful automation scenarios and data transformation capabilities.",
+    emoji: "⚙️",
+    color: "from-blue-600 to-indigo-700",
+    directUrl: "https://make.com/?via=aiwebtools",
+    tags: ["automation platform", "integrations", "workflow builder", "data sync", "no-code"],
+    category: "Automation",
+    rating: 4.7,
+    totalVotes: 4156
   }
 ];
