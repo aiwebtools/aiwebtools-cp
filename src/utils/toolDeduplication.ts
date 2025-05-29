@@ -98,6 +98,58 @@ export const deduplicateTools = (tools: Tool[]): Tool[] => {
   return deduplicatedTools;
 };
 
+// Function to create a deduplicated tools list with smart distribution to prevent frequent repeats
+export const createDeduplicatedToolsList = (tools: Tool[], intervalSize: number = 8): Tool[] => {
+  const deduplicatedTools = deduplicateTools(tools);
+  
+  // If we have fewer tools than the interval, just return them
+  if (deduplicatedTools.length <= intervalSize) {
+    return deduplicatedTools;
+  }
+  
+  // Group tools by category for better distribution
+  const categorizedTools = new Map<string, Tool[]>();
+  
+  deduplicatedTools.forEach(tool => {
+    const category = tool.category || 'Uncategorized';
+    if (!categorizedTools.has(category)) {
+      categorizedTools.set(category, []);
+    }
+    categorizedTools.get(category)!.push(tool);
+  });
+  
+  // Create a more evenly distributed list
+  const distributedTools: Tool[] = [];
+  const categoryKeys = Array.from(categorizedTools.keys());
+  let categoryIndex = 0;
+  let maxToolsPerCategory = Math.ceil(deduplicatedTools.length / categoryKeys.length);
+  
+  // First pass: Add tools from each category in round-robin fashion
+  while (distributedTools.length < deduplicatedTools.length) {
+    const currentCategory = categoryKeys[categoryIndex % categoryKeys.length];
+    const categoryTools = categorizedTools.get(currentCategory);
+    
+    if (categoryTools && categoryTools.length > 0) {
+      const tool = categoryTools.shift()!;
+      distributedTools.push(tool);
+    }
+    
+    categoryIndex++;
+    
+    // If we've gone through all categories and still have tools, continue
+    if (categoryIndex >= categoryKeys.length * maxToolsPerCategory) {
+      // Add any remaining tools
+      categoryKeys.forEach(category => {
+        const remainingTools = categorizedTools.get(category) || [];
+        distributedTools.push(...remainingTools);
+      });
+      break;
+    }
+  }
+  
+  return distributedTools;
+};
+
 // Function to get category-specific keywords for search enhancement
 export const getCategorySearchKeywords = (category: string): string[] => {
   const categoryKeywords: Record<string, string[]> = {
