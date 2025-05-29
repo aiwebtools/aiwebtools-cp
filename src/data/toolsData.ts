@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import {
   businessTools,
@@ -83,12 +82,146 @@ export const featuredTools: Tool[] = [
   allTools.find(tool => tool.title.includes("Ideogram")) || allTools[5]
 ];
 
-// Enhanced search function with comprehensive keywords and fuzzy matching
+// Enhanced keyword mapping for intelligent search
+const keywordMapping: Record<string, string[]> = {
+  // Theater and Performance
+  "play": ["playwright", "stagemaster", "theater", "drama", "script", "performance"],
+  "theater": ["playwright", "stagemaster", "drama", "script", "performance", "stage"],
+  "drama": ["playwright", "stagemaster", "theater", "script", "performance"],
+  "script": ["playwright", "stagemaster", "screenwriter", "drama", "theater"],
+  "performance": ["stagemaster", "playwright", "theater", "drama"],
+
+  // Writing and Books
+  "book": ["writer", "author", "novel", "manuscript", "publish", "literature"],
+  "write": ["writer", "author", "content", "blog", "article", "manuscript"],
+  "author": ["writer", "book", "novel", "manuscript", "publish"],
+  "novel": ["writer", "book", "author", "manuscript", "literature"],
+  "manuscript": ["writer", "book", "author", "novel", "publish"],
+
+  // Training and Education
+  "train": ["training", "manual", "staff", "employee", "education", "course"],
+  "staff": ["training", "manual", "employee", "team", "management"],
+  "employee": ["training", "manual", "staff", "team", "management"],
+  "manual": ["training", "guide", "documentation", "instruction"],
+
+  // Cannabis related
+  "weed": ["cannabis"],
+  "pot": ["cannabis"],
+  "marijuana": ["cannabis"],
+  "hemp": ["cannabis"],
+  "cbd": ["cannabis"],
+  "thc": ["cannabis"],
+
+  // Learning keywords
+  "learn": ["skill", "course", "education", "study", "training", "college", "homeschool"],
+  "study": ["learn", "course", "education", "skill", "college", "research"],
+  "education": ["learn", "course", "skill", "college", "homeschool", "training"],
+  "skill": ["learn", "course", "education", "training", "development"],
+  "course": ["learn", "education", "skill", "college", "training"],
+  "college": ["education", "learn", "course", "degree", "university"],
+  "university": ["college", "education", "learn", "course", "degree"],
+  "homeschool": ["education", "learn", "course", "teaching"],
+
+  // Business keywords
+  "business": ["entrepreneur", "startup", "company", "brand", "marketing", "analysis", "website", "design"],
+  "startup": ["business", "entrepreneur", "company", "venture", "innovation"],
+  "entrepreneur": ["business", "startup", "company", "venture"],
+  "company": ["business", "startup", "corporate", "enterprise"],
+  "brand": ["business", "marketing", "design", "identity", "logo"],
+  "marketing": ["business", "brand", "promotion", "advertising", "social"],
+  "website": ["web", "design", "development", "site", "online"],
+  "analysis": ["data", "analytics", "insight", "research", "statistics"],
+
+  // Data and Analytics
+  "data": ["analysis", "analytics", "statistics", "research", "insight"],
+  "analytics": ["data", "analysis", "statistics", "research", "metrics"],
+  "statistics": ["data", "analysis", "analytics", "research", "metrics"],
+  "research": ["data", "analysis", "study", "investigation", "insight"],
+
+  // Creative and Design
+  "design": ["graphic", "visual", "creative", "art", "ui", "ux", "website"],
+  "art": ["design", "creative", "visual", "drawing", "painting", "illustration"],
+  "creative": ["art", "design", "visual", "innovation", "imagination"],
+  "drawing": ["art", "sketch", "illustration", "design", "creative"],
+  "painting": ["art", "creative", "visual", "design"],
+
+  // Technology and Development
+  "code": ["programming", "development", "software", "web", "app"],
+  "programming": ["code", "development", "software", "coding"],
+  "development": ["code", "programming", "software", "web", "app"],
+  "software": ["code", "programming", "development", "app", "tool"],
+  "app": ["application", "software", "development", "mobile", "web"],
+  "web": ["website", "development", "online", "internet"],
+
+  // Health and Wellness
+  "health": ["medical", "wellness", "fitness", "doctor", "healthcare"],
+  "medical": ["health", "doctor", "healthcare", "medicine", "clinical"],
+  "fitness": ["health", "exercise", "workout", "training", "wellness"],
+  "doctor": ["medical", "health", "healthcare", "physician"],
+
+  // Food and Cooking
+  "food": ["cooking", "recipe", "chef", "cuisine", "nutrition"],
+  "cooking": ["food", "recipe", "chef", "cuisine", "kitchen"],
+  "recipe": ["cooking", "food", "chef", "cuisine", "ingredient"],
+  "chef": ["cooking", "food", "recipe", "cuisine", "kitchen"],
+
+  // Travel and Adventure
+  "travel": ["trip", "vacation", "destination", "tourism", "adventure"],
+  "trip": ["travel", "vacation", "journey", "destination"],
+  "vacation": ["travel", "trip", "holiday", "destination"],
+  "adventure": ["travel", "exploration", "journey"],
+
+  // Entertainment and Fun
+  "game": ["gaming", "entertainment", "fun", "play", "interactive"],
+  "gaming": ["game", "entertainment", "fun", "play"],
+  "entertainment": ["fun", "game", "music", "video", "show"],
+  "fun": ["entertainment", "game", "play", "enjoyment"],
+  "music": ["audio", "sound", "song", "entertainment"],
+
+  // Financial and Legal
+  "money": ["finance", "financial", "investment", "budget", "accounting"],
+  "finance": ["money", "financial", "investment", "budget", "accounting"],
+  "legal": ["law", "lawyer", "attorney", "contract", "compliance"],
+  "law": ["legal", "lawyer", "attorney", "justice"],
+
+  // AI and Technology
+  "ai": ["artificial", "intelligence", "machine", "learning", "automation"],
+  "artificial": ["ai", "intelligence", "machine", "automation"],
+  "intelligence": ["ai", "artificial", "smart", "automation"],
+  "automation": ["ai", "automatic", "smart", "efficient"],
+
+  // Communication and Social
+  "chat": ["communication", "messaging", "conversation", "talk"],
+  "communication": ["chat", "messaging", "conversation", "social"],
+  "social": ["communication", "network", "community", "sharing"],
+
+  // Professional Services
+  "professional": ["expert", "specialist", "service", "consultant"],
+  "expert": ["professional", "specialist", "authority", "master"],
+  "consultant": ["professional", "expert", "advisor", "specialist"]
+};
+
+// Enhanced search function with comprehensive keywords and intelligent matching
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) return tools;
   
-  const term = searchTerm.toLowerCase();
+  const term = searchTerm.toLowerCase().trim();
   
+  // Helper function to get expanded keywords
+  const getExpandedKeywords = (searchTerm: string): string[] => {
+    const words = searchTerm.split(' ');
+    const expandedKeywords = new Set([searchTerm]);
+    
+    words.forEach(word => {
+      if (keywordMapping[word]) {
+        keywordMapping[word].forEach(keyword => expandedKeywords.add(keyword));
+      }
+      expandedKeywords.add(word);
+    });
+    
+    return Array.from(expandedKeywords);
+  };
+
   // Helper function to check if a tool matches the search term
   const matchesTool = (tool: Tool, searchTerm: string): boolean => {
     const lowerTitle = tool.title.toLowerCase();
@@ -96,15 +229,62 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     const lowerCategory = tool.category?.toLowerCase() || '';
     const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
     
-    // Direct matches
-    if (lowerTitle.includes(searchTerm) || 
-        lowerDescription.includes(searchTerm) || 
-        lowerCategory.includes(searchTerm) || 
-        lowerTags.some(tag => tag.includes(searchTerm))) {
-      return true;
+    // Get expanded keywords for intelligent matching
+    const expandedKeywords = getExpandedKeywords(searchTerm);
+    
+    // Direct matches with expanded keywords
+    for (const keyword of expandedKeywords) {
+      if (lowerTitle.includes(keyword) || 
+          lowerDescription.includes(keyword) || 
+          lowerCategory.includes(keyword) || 
+          lowerTags.some(tag => tag.includes(keyword))) {
+        return true;
+      }
     }
     
-    // Fuzzy matching for tool names - if user types partial name, find the tool
+    // Context-aware phrase matching
+    const contextMatches = [
+      // Theater and Performance
+      ((searchTerm.includes('make a play') || searchTerm.includes('write a play')) && 
+       (lowerTitle.includes('playwright') || lowerTitle.includes('stagemaster'))),
+      
+      // Writing and Books
+      ((searchTerm.includes('write a book') || searchTerm.includes('book writer')) && 
+       lowerTitle.includes('writer')),
+      
+      // Training and Staff
+      ((searchTerm.includes('train staff') || searchTerm.includes('training manual')) && 
+       lowerTitle.includes('training')),
+      
+      // Business context
+      ((searchTerm.includes('start a business') || searchTerm.includes('build my business') || 
+        searchTerm.includes('business tools')) && 
+       (lowerCategory.includes('business') || lowerTags.some(tag => tag.includes('business')))),
+      
+      // Learning context
+      ((searchTerm.includes('want to learn') || searchTerm.includes('learning tools')) && 
+       (lowerTitle.includes('learn') || lowerCategory.includes('learning'))),
+      
+      // Data analysis context
+      ((searchTerm.includes('data analysis') || searchTerm.includes('analytics tools')) && 
+       (lowerTags.some(tag => tag.includes('data') || tag.includes('analytics')))),
+      
+      // Cannabis variations
+      ((searchTerm.includes('weed') || searchTerm.includes('pot') || searchTerm.includes('marijuana')) && 
+       lowerTitle.includes('cannabis')),
+      
+      // Creative context
+      ((searchTerm.includes('creative tools') || searchTerm.includes('design tools')) && 
+       (lowerCategory.includes('design') || lowerCategory.includes('creative'))),
+      
+      // AI context
+      ((searchTerm.includes('ai tools') || searchTerm.includes('artificial intelligence')) && 
+       (lowerTitle.includes('ai') || lowerTitle.includes('gpt'))),
+    ];
+    
+    if (contextMatches.some(match => match)) return true;
+    
+    // Fuzzy matching for tool names
     const titleWords = lowerTitle.split(' ');
     const searchWords = searchTerm.split(' ');
     
@@ -115,111 +295,21 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     
     if (allWordsMatch) return true;
     
-    // Enhanced special matches with focus on the user's provided tools
-    const specialMatches = [
-      // Learning tools - prioritize these since they were specifically requested
-      (searchTerm.includes('l') && lowerTitle.includes('learn')),
-      (searchTerm.includes('learn') && lowerTitle.includes('learn')),
-      (searchTerm.includes('skill') && lowerTitle.includes('skill')),
-      (searchTerm.includes('course') && lowerTitle.includes('course')),
-      (searchTerm.includes('any') && lowerTitle.includes('any')),
-      
-      // All the user's provided tools
-      (searchTerm.includes('phenomenon') && lowerTitle.includes('phenomenon')),
-      (searchTerm.includes('explorer') && lowerTitle.includes('explorer')),
-      (searchTerm.includes('ufo') && lowerTitle.includes('phenomenon')),
-      (searchTerm.includes('legislation') && lowerTitle.includes('legislation')),
-      (searchTerm.includes('writer') && lowerTitle.includes('writer')),
-      (searchTerm.includes('graphic') && lowerTitle.includes('graphic')),
-      (searchTerm.includes('cover') && lowerTitle.includes('cover')),
-      (searchTerm.includes('fact') && lowerTitle.includes('fact')),
-      (searchTerm.includes('checker') && lowerTitle.includes('checker')),
-      (searchTerm.includes('sustainable') && lowerTitle.includes('sustainable')),
-      (searchTerm.includes('futures') && lowerTitle.includes('futures')),
-      (searchTerm.includes('nikola') && lowerTitle.includes('nikola')),
-      (searchTerm.includes('tesla') && lowerTitle.includes('tesla')),
-      (searchTerm.includes('food') && lowerTitle.includes('food')),
-      (searchTerm.includes('quality') && lowerTitle.includes('quality')),
-      (searchTerm.includes('inspector') && lowerTitle.includes('inspector')),
-      (searchTerm.includes('home') && lowerTitle.includes('home')),
-      (searchTerm.includes('renovator') && lowerTitle.includes('renovator')),
-      (searchTerm.includes('renovation') && lowerTitle.includes('renovation')),
-      (searchTerm.includes('fisherman') && lowerTitle.includes('fisherman')),
-      (searchTerm.includes('fishing') && lowerTitle.includes('fisherman')),
-      (searchTerm.includes('agronomus') && lowerTitle.includes('agronomus')),
-      (searchTerm.includes('farming') && lowerTitle.includes('agronomus')),
-      (searchTerm.includes('antique') && lowerTitle.includes('antique')),
-      (searchTerm.includes('collectible') && lowerTitle.includes('collectible')),
-      (searchTerm.includes('appraisal') && lowerTitle.includes('appraisal')),
-      (searchTerm.includes('oraculum') && lowerTitle.includes('oraculum')),
-      (searchTerm.includes('oracle') && lowerTitle.includes('oraculum')),
-      (searchTerm.includes('trivia') && lowerTitle.includes('trivia')),
-      (searchTerm.includes('night') && lowerTitle.includes('night')),
-      (searchTerm.includes('veterinarian') && lowerTitle.includes('veterinarian')),
-      (searchTerm.includes('vet') && lowerTitle.includes('veterinarian')),
-      (searchTerm.includes('insurance') && lowerTitle.includes('insurance')),
-      (searchTerm.includes('claims') && lowerTitle.includes('claims')),
-      (searchTerm.includes('cannabis') && lowerTitle.includes('cannabis')),
-      (searchTerm.includes('probability') && lowerTitle.includes('probability')),
-      (searchTerm.includes('defender') && lowerTitle.includes('defender')),
-      (searchTerm.includes('public') && lowerTitle.includes('public')),
-      (searchTerm.includes('property') && lowerTitle.includes('property')),
-      (searchTerm.includes('data') && lowerTitle.includes('data')),
-      (searchTerm.includes('finder') && lowerTitle.includes('finder')),
-      (searchTerm.includes('leonardo') && lowerTitle.includes('leonardo')),
-      (searchTerm.includes('algebraic') && lowerTitle.includes('algebraic')),
-      (searchTerm.includes('expression') && lowerTitle.includes('expression')),
-      (searchTerm.includes('inventor') && lowerTitle.includes('inventor')),
-      (searchTerm.includes('bolt') && lowerTitle.includes('bolt')),
-      (searchTerm.includes('new') && lowerTitle.includes('bolt')),
-      (searchTerm.includes('multitasker') && lowerTitle.includes('multitasker')),
-      (searchTerm.includes('fortune') && lowerTitle.includes('fortune')),
-      (searchTerm.includes('teller') && lowerTitle.includes('teller')),
-      (searchTerm.includes('materiumor') && lowerTitle.includes('materiumor')),
-      (searchTerm.includes('material') && lowerTitle.includes('material')),
-      (searchTerm.includes('valuation') && lowerTitle.includes('valuation')),
-      (searchTerm.includes('lovable') && lowerTitle.includes('lovable')),
-      (searchTerm.includes('gemini') && lowerTitle.includes('gemini')),
-      (searchTerm.includes('google') && lowerTitle.includes('gemini')),
-      (searchTerm.includes('studio') && lowerTitle.includes('studio')),
-      (searchTerm.includes('microsaas') && lowerTitle.includes('microsaas')),
-      (searchTerm.includes('saas') && lowerTitle.includes('microsaas')),
-      (searchTerm.includes('micro') && lowerTitle.includes('microsaas')),
-      
-      // Existing comprehensive matches for other tools
-      (searchTerm.includes('business') && (lowerTitle.includes('business') || lowerCategory.includes('business'))),
-      (searchTerm.includes('ai') && lowerTitle.includes('ai')),
-      (searchTerm.includes('chat') && lowerTitle.includes('chat')),
-      (searchTerm.includes('video') && (lowerTitle.includes('video') || lowerCategory.includes('video'))),
-      (searchTerm.includes('music') && (lowerTitle.includes('music') || lowerCategory.includes('audio'))),
-      (searchTerm.includes('design') && (lowerTitle.includes('design') || lowerCategory.includes('design'))),
-      (searchTerm.includes('art') && (lowerTitle.includes('art') || lowerCategory.includes('art'))),
-      (searchTerm.includes('health') && lowerTags.some(tag => tag.includes('health'))),
-      (searchTerm.includes('automotive') && lowerTags.some(tag => tag.includes('automotive'))),
-      (searchTerm.includes('fungus') && lowerTitle.includes('fungus')),
-      (searchTerm.includes('mushroom') && lowerTitle.includes('fungus')),
-      (searchTerm.includes('recipe') && lowerTags.some(tag => tag.includes('recipe'))),
-      (searchTerm.includes('cooking') && lowerTags.some(tag => tag.includes('cooking'))),
-      (searchTerm.includes('chef') && lowerTitle.includes('chef')),
-      (searchTerm.includes('cocktail') && lowerTitle.includes('mixologist')),
-      (searchTerm.includes('bartender') && lowerTitle.includes('mixologist')),
-      (searchTerm.includes('mixologist') && lowerTitle.includes('mixologist')),
-      (searchTerm.includes('style') && lowerTitle.includes('style')),
-      (searchTerm.includes('fashion') && lowerTitle.includes('style')),
-      (searchTerm.includes('hair') && lowerTitle.includes('hair')),
-      (searchTerm.includes('fitness') && lowerTitle.includes('fitness')),
-      (searchTerm.includes('trainer') && lowerTitle.includes('trainer')),
-      (searchTerm.includes('peace') && lowerTitle.includes('peace')),
-      (searchTerm.includes('wisdom') && lowerTags.some(tag => tag.includes('wisdom'))),
-      (searchTerm.includes('claude') && lowerTitle.includes('claude')),
-      (searchTerm.includes('midjourney') && lowerTitle.includes('midjourney')),
-      (searchTerm.includes('ideogram') && lowerTitle.includes('ideogram')),
-      (searchTerm.includes('fun') && lowerCategory.includes('fun')),
-      (searchTerm.includes('game') && (lowerTitle.includes('game') || lowerTags.some(tag => tag.includes('game')))),
-      (searchTerm.includes('entertainment') && lowerCategory.includes('entertainment'))
+    // Category-based matching
+    const categoryMatches = [
+      (searchTerm.includes('business') && lowerCategory.includes('business')),
+      (searchTerm.includes('learning') && lowerCategory.includes('learning')),
+      (searchTerm.includes('education') && lowerCategory.includes('education')),
+      (searchTerm.includes('creative') && lowerCategory.includes('creative')),
+      (searchTerm.includes('design') && lowerCategory.includes('design')),
+      (searchTerm.includes('video') && lowerCategory.includes('video')),
+      (searchTerm.includes('audio') && lowerCategory.includes('audio')),
+      (searchTerm.includes('health') && lowerCategory.includes('health')),
+      (searchTerm.includes('legal') && lowerCategory.includes('legal')),
+      (searchTerm.includes('professional') && lowerCategory.includes('professional')),
     ];
     
-    return specialMatches.some(match => match);
+    return categoryMatches.some(match => match);
   };
   
   return tools.filter(tool => matchesTool(tool, term));
