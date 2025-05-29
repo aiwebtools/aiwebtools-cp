@@ -15,6 +15,33 @@ const Navigation = () => {
   const navigate = useNavigate();
   const categoriesWithCounts = getCategoriesWithCounts(allTools);
 
+  // Psychologically Strategic Order
+  const categoryOrder = [
+    "Creative Suites",
+    "Advanced AI Tools", 
+    "Learning & Education",
+    "Time & History",
+    "Spirituality & Wellness",
+    "Emergency Services",
+    "Game Design & Development"
+  ];
+
+  // Sort categories according to strategic order, then alphabetically for others
+  const sortedCategories = Object.entries(categoriesWithCounts).sort(([a], [b]) => {
+    const aIndex = categoryOrder.indexOf(a);
+    const bIndex = categoryOrder.indexOf(b);
+    
+    if (aIndex !== -1 && bIndex !== -1) {
+      return aIndex - bIndex;
+    } else if (aIndex !== -1) {
+      return -1;
+    } else if (bIndex !== -1) {
+      return 1;
+    } else {
+      return a.localeCompare(b);
+    }
+  });
+
   const scrollToHome = () => {
     // If we're already on the home page, just scroll to top
     if (window.location.pathname === '/') {
@@ -72,7 +99,7 @@ const Navigation = () => {
             </DropdownMenuItem>
             <DropdownMenuSeparator className="border-gray-700" />
             <div className="font-semibold text-cyan-400 mb-2">Browse by Category</div>
-            {Object.entries(categoriesWithCounts).map(([category, count]) => (
+            {sortedCategories.map(([category, count]) => (
               <DropdownMenuItem key={category} asChild>
                 <Link
                   to={`/category/${encodeURIComponent(category)}`}
