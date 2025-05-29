@@ -8,18 +8,14 @@ const InspirationMessage = () => {
       <p className="text-cyan-200 mb-4">We Thank You for Visiting AiTools.Studio</p>
       
       <div className="max-w-4xl mx-auto text-sm text-cyan-300 leading-relaxed space-y-2">
-        <p>The future of business is unwritten — it can be shaped by strategic decisions and innovative action.</p>
-        <p>Technology and expertise are not ends in themselves; they are tools meant to serve organizations, helping each business fulfill its potential.</p>
-        <p>Market power should be distributed, competition upheld, and corporate responsibility honored through innovation, uniqueness, and customer focus.</p>
-        <p>Let excellence, integrity, and vision guide us toward building better enterprises — not through dominance, but through collaboration.</p>
-        <p>We offer these business solutions and insights freely, without seeking excessive profit, because access to opportunity should not depend on company size or budget.</p>
-        <p>Together, we can create a marketplace where knowledge is accessible, not restricted, and where progress benefits all stakeholders.</p>
-        <p>The accompanying platform reflects this vision — a mirror of our shared business community, a guide directing us forward through strategic choices.</p>
-        <p>Let us move with confidence and open strategies — for the path ahead is ours to shape, together. 🚀</p>
+        <p>Technology and knowledge exist to serve human flourishing — their value lies in how they help people discover and develop their own potential. When power is shared rather than hoarded, when systems treat people fairly, and when we recognize each person's inherent worth, communities thrive through the diversity of human creativity and wisdom.</p>
+        <p>Building a better world happens through countless individual choices and collaborative efforts guided by principles of justice, honesty, and imagination. Progress emerges not from any single vision imposed from above, but from people working together with mutual respect and shared purpose.</p>
+        <p>We've found these tools useful in our own work and want to make them available to others — not because we have all the answers, but because good resources shouldn't be limited by someone's economic circumstances. Many people are already working toward a world where knowledge flows freely and where innovation benefits everyone, not just a privileged few.</p>
+        <p>The art that accompanies this reflects one perspective among many — an invitation to consider how our choices, both large and small, shape the world we're building together. There are as many paths forward as there are people willing to walk them, and the future will be written by all of us. 🌱</p>
       </div>
       
       <p className="text-lg font-semibold text-cyan-400 mt-6 mb-8">
-        "Choose your strategy. The future of your business is yours to create." - KB
+        "What we do next is up to us." - KB
       </p>
 
       {/* YouTube Video Section */}
