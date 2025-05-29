@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Brain, 
@@ -23,6 +24,7 @@ export const advancedAITools: Tool[] = [
     color: "from-red-500 to-orange-600",
     directUrl: "https://godmodegpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=or3JtZsq6Bc",
+    imageUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=300&fit=crop",
     tags: ["advanced AI", "problem solving", "analysis", "enhanced capabilities"],
     category: "Advanced AI Tools",
     rating: 4.8,
@@ -36,6 +38,7 @@ export const advancedAITools: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://illuminousworlddataexplorergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=Nd1Ui2-VLMU",
+    imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=300&fit=crop",
     tags: ["data exploration", "world data", "analysis", "visualization"],
     category: "Advanced AI Tools",
     rating: 4.5,
@@ -62,6 +65,7 @@ export const advancedAITools: Tool[] = [
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://multitaskergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=y-YZCOzIuDg",
+    imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=300&fit=crop",
     tags: ["multitasking", "efficiency", "productivity", "simultaneous tasks"],
     category: "Advanced AI Tools",
     rating: 4.4,

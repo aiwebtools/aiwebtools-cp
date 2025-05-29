@@ -1,5 +1,4 @@
 
-
 import { Tool } from "@/types/tools";
 import { 
   BookOpen, 
@@ -15,7 +14,6 @@ import {
   Target
 } from "lucide-react";
 
-// Update the specific tools that have media:
 export const educationAndLearning: Tool[] = [
   {
     icon: GraduationCap,
@@ -77,10 +75,10 @@ export const educationAndLearning: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://propertydatafindergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=0ZGBGn9yYwY",
+    imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=300&fit=crop",
     category: "Real Estate",
     tags: ["real estate", "property data", "market analysis", "investment"],
     rating: 4.5,
     totalVotes: 2654
   }
 ];
-
