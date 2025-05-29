@@ -3,6 +3,7 @@ import { createPortalSounds, createRobotVoice } from './effects/audioEffects';
 import { 
   createParticles, 
   createVortexRings, 
+  createSpiralTunnel,
   createEnergyWaves, 
   createLightning, 
   createFlash 
@@ -69,9 +70,10 @@ export const createTimePortalEffect = (destinationUrl: string) => {
   // Apply time warp filter to body
   applyTimeWarpFilter();
 
-  // Execute all visual effects
+  // Execute all visual effects with enhanced spiral tunnel
   createParticles(effectsContainer);
   createVortexRings(effectsContainer);
+  createSpiralTunnel(effectsContainer);
   createEnergyWaves(effectsContainer);
   createLightning(effectsContainer);
   createFlash(effectsContainer);

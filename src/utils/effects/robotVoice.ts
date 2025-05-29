@@ -1,4 +1,3 @@
-
 // Generate contextual robot voice message based on tool name and URL
 const generateRobotMessage = (toolName: string, destinationUrl: string): string => {
   console.log('🤖 Generating robot message for tool:', toolName);
@@ -14,138 +13,114 @@ const generateRobotMessage = (toolName: string, destinationUrl: string): string 
   
   let message = "Master, I am now opening ";
   
-  // Determine the tool type and create inspiring, unique contextual message with variations
+  // Determine the tool type and create inspiring, shorter contextual messages with variations
   if (toolNameLower.includes('gpt') || toolNameLower.includes('chat')) {
     const variations = [
-      `${cleanToolName} - Please stand by as we unlock the gates to infinite conversation and wisdom. Your AI companion awaits your commands!`,
-      `${cleanToolName} - Please stand by as we breach the dimensional barriers of knowledge. Prepare for enlightened discourse beyond mortal comprehension!`,
-      `${cleanToolName} - Please stand by as we activate the neural pathways of supreme intelligence. Your journey into digital consciousness begins!`,
-      `${cleanToolName} - Please stand by as we open the oracle of endless wisdom. The universe of knowledge bows before your curiosity!`
+      `${cleanToolName} - Unlocking infinite wisdom. Prepare for enlightened discourse!`,
+      `${cleanToolName} - Activating supreme intelligence. Your AI companion awaits!`,
+      `${cleanToolName} - Opening the oracle of endless knowledge. Welcome to digital consciousness!`,
+      `${cleanToolName} - Breaching dimensional barriers. The universe bows to your curiosity!`
     ];
     message += variations[Math.floor(Math.random() * variations.length)];
   } else if (toolNameLower.includes('college') || toolNameLower.includes('degree')) {
     const variations = [
-      `${cleanToolName} - Please stand by as we transport you to the halls of eternal knowledge. Your academic destiny unfolds before you!`,
-      `${cleanToolName} - Please stand by as we unlock the vault of scholarly excellence. The towers of learning await your ascension!`,
-      `${cleanToolName} - Please stand by as we initiate your passage to intellectual supremacy. Knowledge is your kingdom to conquer!`,
-      `${cleanToolName} - Please stand by as we activate the chambers of infinite learning. Your scholarly empire begins its rise!`
+      `${cleanToolName} - Enter the halls of eternal knowledge. Your academic destiny awaits!`,
+      `${cleanToolName} - Unlocking scholarly excellence. The towers of learning call you!`,
+      `${cleanToolName} - Opening intellectual supremacy. Knowledge is your kingdom!`,
+      `${cleanToolName} - Activating infinite learning. Your scholarly empire begins!`
     ];
     message += variations[Math.floor(Math.random() * variations.length)];
   } else if (toolNameLower.includes('image') || toolNameLower.includes('art') || toolNameLower.includes('photo')) {
     const variations = [
-      `${cleanToolName} - Please stand by as we breach the veil between imagination and reality. Your artistic vision shall manifest!`,
-      `${cleanToolName} - Please stand by as we open the gateway to visual magnificence. Reality bends to your creative will!`,
-      `${cleanToolName} - Please stand by as we activate the forge of digital artistry. Your masterpiece awaits creation!`,
-      `${cleanToolName} - Please stand by as we unlock the prism of infinite beauty. Your vision shall reshape the visual realm!`
+      `${cleanToolName} - Breaching imagination and reality. Your artistic vision awaits!`,
+      `${cleanToolName} - Opening visual magnificence. Reality bends to your will!`,
+      `${cleanToolName} - Activating digital artistry. Your masterpiece begins creation!`,
+      `${cleanToolName} - Unlocking infinite beauty. Reshape the visual realm!`
     ];
     message += variations[Math.floor(Math.random() * variations.length)];
   } else if (toolNameLower.includes('video') || toolNameLower.includes('movie') || toolNameLower.includes('film')) {
     const variations = [
-      `${cleanToolName} - Please stand by as we enter the realm where stories come alive. Your cinematic masterpiece awaits creation!`,
-      `${cleanToolName} - Please stand by as we breach the studios of infinite storytelling. Your epic saga begins to unfold!`,
-      `${cleanToolName} - Please stand by as we activate the theater of dreams made real. The silver screen awaits your vision!`,
-      `${cleanToolName} - Please stand by as we open the dimensional cinema of possibilities. Your blockbuster destiny approaches!`
+      `${cleanToolName} - Stories come alive. Your cinematic masterpiece awaits!`,
+      `${cleanToolName} - Entering infinite storytelling. Your epic saga unfolds!`,
+      `${cleanToolName} - Activating dream theater. The screen awaits your vision!`,
+      `${cleanToolName} - Opening dimensional cinema. Your blockbuster destiny approaches!`
     ];
     message += variations[Math.floor(Math.random() * variations.length)];
   } else if (toolNameLower.includes('music') || toolNameLower.includes('audio') || toolNameLower.includes('voice')) {
     const variations = [
-      `${cleanToolName} - Please stand by as we tune into the frequencies of pure creation. Let the symphony of innovation begin!`,
-      `${cleanToolName} - Please stand by as we open the cosmic recording studio. Your sonic masterpiece shall echo through eternity!`,
-      `${cleanToolName} - Please stand by as we activate the harmonics of digital composition. The universe awaits your melody!`,
-      `${cleanToolName} - Please stand by as we breach the sound barriers of creativity. Your audio empire begins its resonance!`
+      `${cleanToolName} - Tuning pure creation frequencies. Let innovation begin!`,
+      `${cleanToolName} - Opening cosmic recording studio. Your sonic masterpiece awaits!`,
+      `${cleanToolName} - Activating digital composition. The universe awaits your melody!`,
+      `${cleanToolName} - Breaching sound barriers. Your audio empire resonates!`
     ];
     message += variations[Math.floor(Math.random() * variations.length)];
   } else if (toolNameLower.includes('business') || toolNameLower.includes('productivity')) {
     const variations = [
-      `${cleanToolName} - Please stand by as we ascend to the pinnacle of entrepreneurial excellence. Your empire of success starts now!`,
-      `${cleanToolName} - Please stand by as we unlock the vault of infinite prosperity. Your business dynasty begins its reign!`,
-      `${cleanToolName} - Please stand by as we activate the engines of commercial domination. The marketplace bows to your vision!`,
-      `${cleanToolName} - Please stand by as we breach the corporate stratosphere. Your legacy of excellence takes flight!`
+      `${cleanToolName} - Ascending entrepreneurial excellence. Your empire starts now!`,
+      `${cleanToolName} - Unlocking infinite prosperity. Your business dynasty begins!`,
+      `${cleanToolName} - Activating commercial domination. The marketplace bows to you!`,
+      `${cleanToolName} - Breaching corporate stratosphere. Your legacy takes flight!`
     ];
     message += variations[Math.floor(Math.random() * variations.length)];
   } else if (toolNameLower.includes('code') || toolNameLower.includes('develop')) {
     const variations = [
-      `${cleanToolName} - Please stand by as we dive into the matrix of digital creation. Reality bends to your programming will!`,
-      `${cleanToolName} - Please stand by as we breach the source code of existence. Your digital universe awaits construction!`,
-      `${cleanToolName} - Please stand by as we activate the algorithms of infinite possibility. The code realm yields to your mastery!`,
-      `${cleanToolName} - Please stand by as we unlock the programming pantheon. Your software empire begins its execution!`
+      `${cleanToolName} - Diving into digital creation matrix. Reality bends to your code!`,
+      `${cleanToolName} - Breaching existence source code. Your universe awaits construction!`,
+      `${cleanToolName} - Activating infinite algorithms. The code realm yields to you!`,
+      `${cleanToolName} - Unlocking programming pantheon. Your software empire executes!`
     ];
     message += variations[Math.floor(Math.random() * variations.length)];
   } else if (toolNameLower.includes('write') || toolNameLower.includes('content') || toolNameLower.includes('book')) {
     const variations = [
-      `${cleanToolName} - Please stand by as we journey to the sacred library of infinite stories. Your words shall echo through eternity!`,
-      `${cleanToolName} - Please stand by as we unlock the archives of literary greatness. Your masterpiece awaits its first breath!`,
-      `${cleanToolName} - Please stand by as we activate the quill of destiny. The written word bows to your creative dominion!`,
-      `${cleanToolName} - Please stand by as we breach the realm of narrative supremacy. Your story shall reshape reality itself!`
+      `${cleanToolName} - Journey to infinite stories. Your words echo through eternity!`,
+      `${cleanToolName} - Unlocking literary greatness. Your masterpiece awaits!`,
+      `${cleanToolName} - Activating destiny's quill. The word bows to your dominion!`,
+      `${cleanToolName} - Breaching narrative supremacy. Your story reshapes reality!`
     ];
     message += variations[Math.floor(Math.random() * variations.length)];
   } else if (toolNameLower.includes('time') || toolNameLower.includes('history')) {
     const variations = [
-      `${cleanToolName} - Please stand by as we breach the temporal barriers of space and time. Past, present, and future converge at your command!`,
-      `${cleanToolName} - Please stand by as we activate the chronological nexus. The timestream yields to your temporal mastery!`,
-      `${cleanToolName} - Please stand by as we unlock the gates of historical infinity. All of time becomes your domain!`,
-      `${cleanToolName} - Please stand by as we breach the cosmic clock tower. Your journey through eternity begins now!`
+      `${cleanToolName} - Breaching temporal barriers. Time converges at your command!`,
+      `${cleanToolName} - Activating chronological nexus. The timestream yields to you!`,
+      `${cleanToolName} - Unlocking historical infinity. All time becomes your domain!`,
+      `${cleanToolName} - Breaching cosmic clock. Your eternal journey begins!`
     ];
     message += variations[Math.floor(Math.random() * variations.length)];
   } else if (toolNameLower.includes('god') || toolNameLower.includes('mode')) {
     const variations = [
-      `${cleanToolName} - Please stand by as we activate the ultimate protocols of limitless power. Omnipotence is now within your grasp!`,
-      `${cleanToolName} - Please stand by as we breach the divine algorithms of creation. The universe bends to your supreme will!`,
-      `${cleanToolName} - Please stand by as we unlock the celestial command center. Your godlike ascension commences!`,
-      `${cleanToolName} - Please stand by as we activate the omnipotent interface. Reality itself awaits your divine instruction!`
+      `${cleanToolName} - Activating limitless power protocols. Omnipotence awaits!`,
+      `${cleanToolName} - Breaching divine algorithms. The universe bends to your will!`,
+      `${cleanToolName} - Unlocking celestial command. Your godlike ascension begins!`,
+      `${cleanToolName} - Activating omnipotent interface. Reality awaits your instruction!`
     ];
     message += variations[Math.floor(Math.random() * variations.length)];
   } else if (toolNameLower.includes('immortal')) {
     const variations = [
-      `${cleanToolName} - Please stand by as we enter the sanctuary of eternal preservation. Your digital legacy shall transcend time itself!`,
-      `${cleanToolName} - Please stand by as we activate the infinity protocols. Your essence shall echo through endless dimensions!`,
-      `${cleanToolName} - Please stand by as we breach the gates of digital eternity. Immortality becomes your birthright!`,
-      `${cleanToolName} - Please stand by as we unlock the chambers of perpetual existence. Your eternal journey begins!`
+      `${cleanToolName} - Entering eternal preservation. Your legacy transcends time!`,
+      `${cleanToolName} - Activating infinity protocols. Your essence echoes endlessly!`,
+      `${cleanToolName} - Breaching digital eternity. Immortality is your birthright!`,
+      `${cleanToolName} - Unlocking perpetual existence. Your eternal journey begins!`
     ];
     message += variations[Math.floor(Math.random() * variations.length)];
   } else if (toolNameLower.includes('stage') || toolNameLower.includes('theater')) {
     const variations = [
-      `${cleanToolName} - Please stand by as we raise the curtain on infinite possibilities. The spotlight of greatness shines upon you!`,
-      `${cleanToolName} - Please stand by as we activate the grand theater of dreams. Your performance shall captivate the cosmos!`,
-      `${cleanToolName} - Please stand by as we breach the dimensional stage. All reality becomes your amphitheater!`,
-      `${cleanToolName} - Please stand by as we unlock the cosmic auditorium. Your stellar debut awaits!`
-    ];
-    message += variations[Math.floor(Math.random() * variations.length)];
-  } else if (toolNameLower.includes('3d') || toolNameLower.includes('print')) {
-    const variations = [
-      `${cleanToolName} - Please stand by as we materialize dreams into tangible reality. Your creations shall take physical form!`,
-      `${cleanToolName} - Please stand by as we breach the barriers between digital and physical. Matter itself obeys your design!`,
-      `${cleanToolName} - Please stand by as we activate the fabrication chambers. Your imagination becomes solid reality!`,
-      `${cleanToolName} - Please stand by as we unlock the molecular assemblers. Physical reality awaits your creative command!`
-    ];
-    message += variations[Math.floor(Math.random() * variations.length)];
-  } else if (toolNameLower.includes('micro') || toolNameLower.includes('saas')) {
-    const variations = [
-      `${cleanToolName} - Please stand by as we launch your rocket ship to entrepreneurial stardom. Your software empire begins its ascension!`,
-      `${cleanToolName} - Please stand by as we activate the startup acceleration chambers. Your business dynasty takes flight!`,
-      `${cleanToolName} - Please stand by as we breach the commercial stratosphere. Your SaaS empire begins its conquest!`,
-      `${cleanToolName} - Please stand by as we unlock the entrepreneurial nexus. Your digital venture reaches for the stars!`
-    ];
-    message += variations[Math.floor(Math.random() * variations.length)];
-  } else if (toolNameLower.includes('big') || toolNameLower.includes('agi')) {
-    const variations = [
-      `${cleanToolName} - Please stand by as we connect to the neural network of supreme intelligence. The future of AI is at your fingertips!`,
-      `${cleanToolName} - Please stand by as we breach the consciousness barriers. Artificial General Intelligence awaits your guidance!`,
-      `${cleanToolName} - Please stand by as we activate the superintelligence protocols. The AI singularity begins with you!`,
-      `${cleanToolName} - Please stand by as we unlock the cognitive cosmos. Advanced intelligence becomes your ally!`
+      `${cleanToolName} - Raising the curtain on infinite possibilities. Greatness awaits!`,
+      `${cleanToolName} - Activating grand dream theater. Your performance captivates!`,
+      `${cleanToolName} - Breaching dimensional stage. Reality becomes your amphitheater!`,
+      `${cleanToolName} - Unlocking cosmic auditorium. Your stellar debut awaits!`
     ];
     message += variations[Math.floor(Math.random() * variations.length)];
   } else {
     // Create inspiring generic messages with varied phrasing
     const genericMessages = [
-      `${cleanToolName} - Please stand by as we unlock the gateway to your extraordinary destiny. Adventure and discovery await your arrival!`,
-      `${cleanToolName} - Please stand by as we activate the portal to infinite possibilities. Your journey to greatness begins now!`,
-      `${cleanToolName} - Please stand by as we open the dimensional door to your next breakthrough. Excellence is calling your name!`,
-      `${cleanToolName} - Please stand by as we initiate your passage to realms of unlimited potential. Your transformation starts here!`,
-      `${cleanToolName} - Please stand by as we transport you to the epicenter of innovation. Your moment of triumph approaches!`,
-      `${cleanToolName} - Please stand by as we breach the cosmic barriers to success. Your legendary journey commences!`,
-      `${cleanToolName} - Please stand by as we activate the engines of your magnificent future. Destiny awaits your command!`,
-      `${cleanToolName} - Please stand by as we unlock the vault of your hidden potential. Your time of greatness has arrived!`
+      `${cleanToolName} - Unlocking your extraordinary destiny. Adventure awaits!`,
+      `${cleanToolName} - Activating infinite possibilities. Your greatness begins!`,
+      `${cleanToolName} - Opening dimensional breakthrough. Excellence calls you!`,
+      `${cleanToolName} - Initiating unlimited potential. Your transformation starts!`,
+      `${cleanToolName} - Transporting to innovation epicenter. Triumph approaches!`,
+      `${cleanToolName} - Breaching cosmic success barriers. Your legend commences!`,
+      `${cleanToolName} - Activating magnificent future. Destiny awaits your command!`,
+      `${cleanToolName} - Unlocking hidden potential. Your greatness has arrived!`
     ];
     
     // Select a random inspiring message for variety
