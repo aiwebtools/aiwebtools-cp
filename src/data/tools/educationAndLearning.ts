@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   BookOpen, 
@@ -21,7 +22,7 @@ export const educationAndLearning: Tool[] = [
     description: "Comprehensive college and university guidance system for degree planning, course selection, and academic success.",
     emoji: "🎓",
     color: "from-blue-500 to-purple-600",
-    directUrl: "https://collegedegreegpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=Cd8uvD-smlM&list=TLGGLsn0bAvnp3EyODA1MjAyNQ",
     tags: ["college", "degree planning", "academic guidance", "university"],
     category: "Education & Learning",
