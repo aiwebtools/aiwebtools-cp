@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { AlertTriangle } from "lucide-react";
+import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const DisclaimerPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,8 +30,16 @@ const DisclaimerPopup = () => {
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem("disclaimerAccepted", "true");
-    setIsOpen(false);
+    console.log('🌀 User agreeing to disclaimer - initiating portal entry...');
+    
+    // Create the time portal effect without a destination URL
+    createTimePortalEffect('');
+    
+    // Store acceptance and close dialog after a short delay to let the effect start
+    setTimeout(() => {
+      localStorage.setItem("disclaimerAccepted", "true");
+      setIsOpen(false);
+    }, 300);
   };
 
   // Don't render anything until ready to prevent flickering
@@ -56,21 +65,21 @@ const DisclaimerPopup = () => {
             <div>
               <h4 className="font-semibold text-cyan-400 mb-2">Terms of Use</h4>
               <p className="leading-relaxed">
-                This AI tools directory is for educational and informational purposes only. All tools are third-party services - we don't guarantee their accuracy, reliability, or availability.
+                This AI tools directory is for educational purposes only. All tools are third-party services - we don't guarantee their accuracy or availability.
               </p>
             </div>
 
             <div>
               <h4 className="font-semibold text-cyan-400 mb-2">No Warranties</h4>
               <p className="leading-relaxed">
-                We provide no warranties about tool functionality. Use all AI tools at your own risk and always verify results independently.
+                We provide no warranties about tool functionality. Use all AI tools at your own risk and verify results independently.
               </p>
             </div>
 
             <div>
               <h4 className="font-semibold text-cyan-400 mb-2">Limitation of Liability</h4>
               <p className="leading-relaxed">
-                We're not liable for any damages arising from your use of this website or any linked AI tools. Users are responsible for evaluating tool accuracy and usefulness.
+                We're not liable for damages from using this website or linked tools. Users are responsible for evaluating tool accuracy.
               </p>
             </div>
           </div>
