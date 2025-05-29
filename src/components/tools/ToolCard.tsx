@@ -17,8 +17,6 @@ interface ToolCardProps {
 const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const [videoError, setVideoError] = useState(false);
-  const [showVideo, setShowVideo] = useState(false);
   
   const imageHeight = isFeatured ? "240px" : "180px";
   const cardSize = isFeatured ? "w-16 h-16" : "w-12 h-12";
@@ -36,23 +34,19 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
   // Check if this is a GPT tool (contains "GPT" in title)
   const isGPTTool = tool.title.toUpperCase().includes('GPT');
 
-  // Optimized YouTube URL conversion with quality and performance settings
-  const getOptimizedEmbedUrl = (url: string) => {
-    console.log('Processing video URL for card:', url);
+  // Generate YouTube thumbnail URL from video URL
+  const getYouTubeThumbnail = (url: string) => {
+    console.log('Generating YouTube thumbnail for:', url);
     
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1].split('&')[0];
-      return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
+      return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
     }
     if (url.includes('youtu.be/')) {
       const videoId = url.split('youtu.be/')[1].split('?')[0];
-      return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
+      return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
     }
-    if (url.includes('vimeo.com/')) {
-      const videoId = url.split('vimeo.com/')[1].split('?')[0];
-      return `https://player.vimeo.com/video/${videoId}?autoplay=0`;
-    }
-    return url;
+    return null;
   };
 
   // Enhanced description with better fallbacks
@@ -68,46 +62,16 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
     return `${baseDescription}${categoryInfo}${featureInfo} Perfect for professionals and enthusiasts looking to leverage cutting-edge AI technology.`;
   };
 
-  // Handle video thumbnail click
-  const handleVideoClick = () => {
-    if (tool.videoUrl) {
-      setShowVideo(true);
-    }
-  };
-
-  // Enhanced media component that prioritizes video when available
+  // Enhanced media component with proper video thumbnail support
   const MediaComponent = () => {
     console.log('Tool media check for card:', {
       title: tool.title,
       hasImage: !!tool.imageUrl,
       hasVideo: !!tool.videoUrl,
-      showVideo,
-      imageError,
-      videoError
+      imageError
     });
 
-    // Show video if we have one and either showVideo is true or we don't have an image
-    if (tool.videoUrl && (showVideo || !tool.imageUrl) && !videoError) {
-      return (
-        <div className="relative w-full overflow-hidden rounded-lg bg-gray-800" style={{ height: imageHeight, aspectRatio: '16/9' }}>
-          <iframe
-            width="100%"
-            height="100%"
-            src={getOptimizedEmbedUrl(tool.videoUrl)}
-            title={`${tool.title} Demo`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            className="w-full h-full"
-            loading="lazy"
-            onError={() => setVideoError(true)}
-            onLoad={() => console.log('Video loaded in card for:', tool.title)}
-          />
-        </div>
-      );
-    }
-
-    // Show image with video overlay if we have both
+    // If we have a direct image, use it
     if (tool.imageUrl && !imageError) {
       return (
         <div className="relative w-full overflow-hidden rounded-lg bg-gray-800" style={{ height: imageHeight, aspectRatio: '16/9' }}>
@@ -119,7 +83,7 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
           <img
             src={tool.imageUrl}
             alt={`${tool.title} Preview`}
-            className={`w-full h-full object-contain transition-all duration-500 ${
+            className={`w-full h-full object-cover transition-all duration-500 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             loading="lazy"
@@ -127,11 +91,8 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
             onLoad={() => setImageLoaded(true)}
             onError={() => setImageError(true)}
           />
-          {tool.videoUrl && !videoError && (
-            <div 
-              className="absolute inset-0 bg-black/30 flex items-center justify-center cursor-pointer group hover:bg-black/50 transition-all duration-300"
-              onClick={handleVideoClick}
-            >
+          {tool.videoUrl && (
+            <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/50 transition-all duration-300">
               <div className="bg-white/90 rounded-full p-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                 <Play className="w-8 h-8 text-gray-800 ml-1" fill="currentColor" />
               </div>
@@ -143,14 +104,47 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
         </div>
       );
     }
-    
-    // Show video thumbnail for video-only tools
-    if (tool.videoUrl && !videoError) {
+
+    // If we have a video but no image, try to get YouTube thumbnail
+    if (tool.videoUrl) {
+      const thumbnailUrl = getYouTubeThumbnail(tool.videoUrl);
+      
+      if (thumbnailUrl) {
+        return (
+          <div className="relative w-full overflow-hidden rounded-lg bg-gray-800" style={{ height: imageHeight, aspectRatio: '16/9' }}>
+            {!imageLoaded && (
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center animate-pulse">
+                <Play className="w-8 h-8 text-gray-500" />
+              </div>
+            )}
+            <img
+              src={thumbnailUrl}
+              alt={`${tool.title} Video Preview`}
+              className={`w-full h-full object-cover transition-all duration-500 ${
+                imageLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
+              loading="lazy"
+              decoding="async"
+              onLoad={() => setImageLoaded(true)}
+              onError={() => setImageError(true)}
+            />
+            <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/50 transition-all duration-300">
+              <div className="bg-white/90 rounded-full p-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Play className="w-8 h-8 text-gray-800 ml-1" fill="currentColor" />
+              </div>
+              <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
+                VIDEO DEMO
+              </div>
+            </div>
+          </div>
+        );
+      }
+      
+      // Fallback for video without thumbnail
       return (
         <div 
           className="relative w-full overflow-hidden rounded-lg bg-gray-800 cursor-pointer group"
           style={{ height: imageHeight, aspectRatio: '16/9' }}
-          onClick={handleVideoClick}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center group-hover:from-gray-600 group-hover:to-gray-700 transition-all duration-300">
             <div className="bg-white/90 rounded-full p-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
