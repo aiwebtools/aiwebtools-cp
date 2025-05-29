@@ -1,6 +1,11 @@
 
-import { Search } from "lucide-react";
+import { useState } from "react";
+import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { allTools } from "@/data/toolsData";
+import { searchTools } from "@/utils/searchUtils";
+import { Tool } from "@/types/tools";
+import { Link } from "react-router-dom";
 
 interface SearchBarProps {
   searchTerm: string;
@@ -8,6 +13,48 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchResults, setSearchResults] = useState<Tool[]>([]);
+
+  const handleSearchChange = (value: string) => {
+    console.log("Tools search - handleSearchChange called with:", value);
+    onSearchChange(value);
+    
+    if (value.trim()) {
+      console.log("Tools search - searching tools with term:", value);
+      const results = searchTools(allTools, value).slice(0, 8);
+      console.log("Tools search - search results:", results);
+      setSearchResults(results);
+      setIsOpen(true);
+      console.log("Tools search - isOpen set to true");
+    } else {
+      console.log("Tools search - clearing results");
+      setSearchResults([]);
+      setIsOpen(false);
+    }
+  };
+
+  const handleResultClick = () => {
+    setIsOpen(false);
+    onSearchChange("");
+    setSearchResults([]);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setIsOpen(false);
+      onSearchChange("");
+      setSearchResults([]);
+    }
+  };
+
+  const handleInputBlur = () => {
+    // Delay closing to allow clicks on results
+    setTimeout(() => setIsOpen(false), 200);
+  };
+
+  console.log("Tools search - rendering, isOpen:", isOpen, "searchResults.length:", searchResults.length);
+
   return (
     <div className="max-w-2xl mx-auto relative">
       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -15,12 +62,52 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
         type="text"
         placeholder="Search 600+ AI tools... Try: 'Learn Any Skill', 'Einstein', 'Cannabis', 'Fishing', 'Dream Interpreter', 'Celebrity Chat', 'Binary Converter', 'Peace', 'Automotive', 'Food Quality'"
         value={searchTerm}
-        onChange={(e) => onSearchChange(e.target.value)}
+        onChange={(e) => handleSearchChange(e.target.value)}
+        onKeyDown={handleKeyDown}
+        onBlur={handleInputBlur}
+        onFocus={() => {
+          if (searchTerm.trim() && searchResults.length > 0) {
+            setIsOpen(true);
+          }
+        }}
         className="pl-10 pr-4 py-4 text-lg rounded-xl border-2 border-gray-200 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 transition-all duration-300 shadow-lg"
       />
       <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-400">
         {searchTerm ? `Searching...` : '600+ Tools'}
       </div>
+
+      {/* Search Results Dropdown */}
+      {isOpen && searchResults.length > 0 && (
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 max-h-96 overflow-y-auto">
+          <div className="p-2">
+            <div className="text-xs text-gray-500 px-3 py-2 border-b border-gray-100">
+              Search Results ({searchResults.length})
+            </div>
+            {searchResults.map((tool, index) => {
+              const toolIndex = allTools.findIndex(t => t.title === tool.title);
+              return (
+                <Link
+                  key={index}
+                  to={`/tool/${toolIndex}`}
+                  onClick={handleResultClick}
+                  className="flex items-center space-x-3 p-3 hover:bg-gray-50 transition-all duration-200 border-b border-gray-50 last:border-b-0 rounded-lg mx-1"
+                >
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-ai-purple to-ai-blue flex items-center justify-center text-white text-lg flex-shrink-0">
+                    {tool.emoji}
+                  </div>
+                  <div className="flex-grow min-w-0">
+                    <div className="text-gray-900 font-medium truncate">{tool.title}</div>
+                    <div className="text-gray-500 text-sm truncate">{tool.category}</div>
+                  </div>
+                  <div className="text-xs text-gray-400 flex-shrink-0">
+                    ⭐ {tool.rating || '4.5'}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
