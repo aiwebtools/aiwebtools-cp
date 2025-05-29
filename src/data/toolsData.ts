@@ -38,7 +38,9 @@ import {
   gameDesignAndDevelopment,
   learningAndEducation,
   platformsAndDevelopment,
-  professionalServices
+  professionalServices,
+  spiritualityTools,
+  rawUncutTools
 } from './tools';
 
 import { searchTools } from '@/utils/searchUtils';
@@ -47,6 +49,8 @@ import { getCategoriesWithCounts, getToolsByCategory } from '@/utils/categoryUti
 
 // Combine all tools from different categories with enhanced categorization
 export const allTools: Tool[] = [
+  ...spiritualityTools,
+  ...rawUncutTools,
   ...learningAndEducation,
   ...timeAndHistory,
   ...creativeSuites,

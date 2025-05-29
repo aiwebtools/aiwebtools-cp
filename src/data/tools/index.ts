@@ -38,3 +38,5 @@ export { gameDesignAndDevelopment } from './gameDesignAndDevelopment';
 export { learningAndEducation } from './learningAndEducation';
 export { platformsAndDevelopment } from './platformsAndDevelopment';
 export { professionalServices } from './professionalServices';
+export { spiritualityTools } from './spiritualityTools';
+export { rawUncutTools } from './rawUncutTools';

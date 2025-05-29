@@ -1,4 +1,3 @@
-
 export const getCategoryStyle = (category: string) => {
   const categoryStyles: Record<string, { emoji: string; colors: { bg: string; border: string; hover: string; selected: string } }> = {
     "Writing & Content": {
@@ -136,7 +135,24 @@ export const getCategoryStyle = (category: string) => {
         selected: "bg-gradient-to-r from-yellow-500 to-yellow-600"
       }
     },
-    // Adding missing categories from the image
+    "Spirituality": {
+      emoji: "🙏",
+      colors: {
+        bg: "bg-violet-800/40",
+        border: "border-violet-400/60",
+        hover: "hover:bg-violet-500/20 hover:border-violet-400/80",
+        selected: "bg-gradient-to-r from-violet-500 to-violet-600"
+      }
+    },
+    "Raw / Uncut": {
+      emoji: "⚡",
+      colors: {
+        bg: "bg-red-800/40",
+        border: "border-red-400/60",
+        hover: "hover:bg-red-500/20 hover:border-red-400/80",
+        selected: "bg-gradient-to-r from-red-500 to-red-600"
+      }
+    },
     "AI Art": {
       emoji: "🖼️",
       colors: {
