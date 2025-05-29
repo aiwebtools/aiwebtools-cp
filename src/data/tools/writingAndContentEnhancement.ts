@@ -2,25 +2,14 @@ import { Tool } from "@/types/tools";
 import { 
   PenTool, 
   FileText, 
-  CheckCircle, 
-  BookOpen, 
   Edit, 
-  Sparkles,
-  Zap,
-  Globe,
-  Target,
+  CheckCircle, 
+  Zap, 
+  Target, 
+  Globe, 
   Brain,
-  Calendar,
-  Mail,
-  Type,
-  Users,
-  TrendingUp,
-  Lightbulb,
-  Eye,
-  MessageSquare,
-  Feather,
-  Hash,
-  Mic
+  Book,
+  GraduationCap
 } from "lucide-react";
 
 export const writingAndContentEnhancement: Tool[] = [
@@ -551,5 +540,41 @@ export const writingAndContentEnhancement: Tool[] = [
     category: "Writing & Content Enhancement",
     rating: 4.4,
     totalVotes: 3123
+  },
+  {
+    icon: CheckCircle,
+    title: "TRINKA",
+    description: "Powerful online grammar checker and language correction AI tool for academic and technical writing. 3000+ grammar checks, tone enhancement, and contextual suggestions for professional refinement.",
+    emoji: "✅",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.shareasale.com/r.cfm?b=1568234&u=3604681&m=98815",
+    tags: ["grammar checker", "academic writing", "technical writing", "language correction", "professional writing"],
+    category: "Writing & Content Enhancement",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: Book,
+    title: "LitGrades",
+    description: "Innovative AI-powered flashcards for learning and studying on any topic. Generate flashcards for various grade levels with tailored content for optimal learning experiences.",
+    emoji: "📚",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://litgrades.com/",
+    tags: ["AI flashcards", "study tools", "learning", "education", "memorization"],
+    category: "Writing & Content Enhancement",
+    rating: 4.2,
+    totalVotes: 2876
+  },
+  {
+    icon: GraduationCap,
+    title: "Brain-Buddy",
+    description: "AI-powered educational platform helping users improve learning, problem-solving, writing, note-taking, and test preparation skills. Suitable for learners of all ages with customized reports.",
+    emoji: "🧠",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://brain-buddy.com/",
+    tags: ["educational AI", "learning assistance", "problem solving", "note-taking", "test preparation"],
+    category: "Writing & Content Enhancement",
+    rating: 4.3,
+    totalVotes: 2654
   }
 ];

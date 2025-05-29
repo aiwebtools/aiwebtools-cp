@@ -1,16 +1,14 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Users, 
-  Building, 
-  MessageSquare, 
+  Target, 
   TrendingUp, 
-  Bot, 
-  DollarSign,
-  Phone,
-  Target,
-  Globe,
-  Briefcase
+  Briefcase, 
+  MessageSquare, 
+  Brain, 
+  Building,
+  User,
+  Handshake
 } from "lucide-react";
 
 export const businessAndTeamTools: Tool[] = [
@@ -77,13 +75,25 @@ export const businessAndTeamTools: Tool[] = [
   {
     icon: Target,
     title: "Jason AI",
-    description: "Pioneering B2B Conversational AI for sales outreach. Powered by ChatGPT, handles outreach sequences, prospect responses, and meeting booking with remarkable efficiency.",
-    emoji: "🎯",
+    description: "First B2B Conversational AI powered by ChatGPT streamlining outreach, handling prospect responses, and facilitating meeting bookings. Essential sales AI assistant for SDRs and businesses.",
+    emoji: "🤝",
     color: "from-blue-500 to-green-600",
     directUrl: "https://get.reply.io/aiwebtools",
-    tags: ["B2B sales", "outreach automation", "ChatGPT powered", "meeting booking", "lead generation", "sales assistant"],
+    tags: ["B2B sales", "conversational AI", "lead generation", "meeting booking", "sales automation"],
     category: "Business & Team Tools",
     rating: 4.4,
     totalVotes: 3456
+  },
+  {
+    icon: User,
+    title: "Coach Vox",
+    description: "Innovative platform creating AI version of yourself for lead generation, audience engagement, client coaching, and team empowerment. Ultimate lead magnet for entrepreneurs and creators.",
+    emoji: "👤",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://coachvox.ai/",
+    tags: ["AI avatar", "lead generation", "coaching", "audience engagement", "entrepreneur tools"],
+    category: "Business & Team Tools",
+    rating: 4.3,
+    totalVotes: 2876
   }
 ];

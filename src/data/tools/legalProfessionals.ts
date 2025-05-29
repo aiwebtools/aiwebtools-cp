@@ -1,15 +1,13 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Scale, 
-  FileText, 
   Gavel, 
   Shield, 
-  Book,
-  Users,
-  Search,
-  AlertTriangle,
-  Building
+  FileText, 
+  Search, 
+  Users, 
+  Building,
+  Target,
+  Briefcase
 } from "lucide-react";
 
 export const legalProfessionals: Tool[] = [
@@ -136,5 +134,29 @@ export const legalProfessionals: Tool[] = [
     category: "Legal Professionals",
     rating: 4.3,
     totalVotes: 2123
+  },
+  {
+    icon: Gavel,
+    title: "Robin AI",
+    description: "Game-changing AI platform revolutionizing legal contract management with generative AI. Features Draft, Review, and Query capabilities processing 500,000+ contracts with 85% speed increase.",
+    emoji: "⚖️",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://www.robinai.com/",
+    tags: ["legal tech", "contract management", "AI review", "legal automation", "contract drafting"],
+    category: "Legal Professionals",
+    rating: 4.6,
+    totalVotes: 3456
+  },
+  {
+    icon: Shield,
+    title: "DoNotPay",
+    description: "Ultimate AI consumer champion and legal assistant utilizing AI to challenge corporations, protect privacy, uncover hidden funds, and navigate bureaucracy with ease.",
+    emoji: "🛡️",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://donotpay.com/",
+    tags: ["consumer protection", "legal assistance", "AI advocacy", "bureaucracy navigation", "consumer rights"],
+    category: "Legal Professionals",
+    rating: 4.3,
+    totalVotes: 2987
   }
 ];

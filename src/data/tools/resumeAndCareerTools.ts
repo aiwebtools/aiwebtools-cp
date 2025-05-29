@@ -1,11 +1,13 @@
-
 import { Tool } from "@/types/tools";
 import { 
   FileText, 
   User, 
-  Award, 
+  TrendingUp, 
   Target, 
-  Briefcase
+  Search, 
+  Briefcase, 
+  Users,
+  Building
 } from "lucide-react";
 
 export const resumeAndCareerTools: Tool[] = [
@@ -56,5 +58,17 @@ export const resumeAndCareerTools: Tool[] = [
     category: "Resume & Career Tools",
     rating: 4.8,
     totalVotes: 5678
+  },
+  {
+    icon: Search,
+    title: "LoopCV",
+    description: "AI-powered platform streamlining job searching by automating applications, personalized recruiter emails, and interview securing. Trusted by 50,000+ users in top global companies.",
+    emoji: "🔄",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://loopcv.pro/?via=Aiwebtools",
+    tags: ["job search automation", "recruiter outreach", "interview optimization", "career advancement", "application tracking"],
+    category: "Resume & Career Tools",
+    rating: 4.4,
+    totalVotes: 3456
   }
 ];

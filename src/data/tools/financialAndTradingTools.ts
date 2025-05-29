@@ -2,30 +2,26 @@
 import { Tool } from "@/types/tools";
 import { 
   TrendingUp, 
-  BarChart, 
   DollarSign, 
-  Bot, 
-  Shield, 
-  Zap, 
-  Settings,
+  BarChart3, 
+  Calculator,
+  PieChart,
   Target,
   Building,
-  Users,
-  Star,
-  Brain
+  CreditCard
 } from "lucide-react";
 
 export const financialAndTradingTools: Tool[] = [
   {
     icon: TrendingUp,
-    title: "Quadency",
-    description: "All-in-one crypto trading platform designed to cater to traders of all levels of expertise. Trading bots operate effectively in various market conditions, with custom bots using Cody AI - the Trading Assistant.",
+    title: "Buy Forex Expert Advisor Online",
+    description: "Cutting-edge AI forex robots for automated trading with verifiable track records. Access diverse AI strategies for technical analysis and consistent profits in the $6 trillion daily forex market.",
     emoji: "📈",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://quadency.com?r=3d7f741ffc82e1e4d44f9c65",
-    tags: ["crypto trading", "trading bots", "Cody AI Assistant", "multi-exchange", "TradingView charts", "QUAD token"],
+    directUrl: "https://www.buyforexeaonline.com/",
+    tags: ["forex trading", "AI robots", "automated trading", "technical analysis", "forex expert advisors"],
     category: "Financial & Trading Tools",
-    rating: 4.5,
-    totalVotes: 3789
+    rating: 4.2,
+    totalVotes: 2567
   }
 ];

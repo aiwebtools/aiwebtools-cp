@@ -1,20 +1,14 @@
-
 import { Tool } from "@/types/tools";
 import { 
   MessageSquare, 
-  Bot, 
   Brain, 
   Zap, 
-  Globe, 
-  Shield, 
   Users, 
+  Bot, 
   Search, 
-  Image as ImageIcon, 
-  Video, 
-  Code, 
-  Sparkles,
-  Download,
-  Building
+  Globe,
+  Smartphone,
+  Cat
 } from "lucide-react";
 
 export const advancedChatPlatforms: Tool[] = [
@@ -125,5 +119,53 @@ export const advancedChatPlatforms: Tool[] = [
     category: "Advanced Chat Platforms",
     rating: 4.9,
     totalVotes: 8956
+  },
+  {
+    icon: Search,
+    title: "Perplexity AI",
+    description: "Cutting-edge AI-powered search engine and chatbot with advanced NLP and machine learning. GPT-3 model with internet access providing real-time information and content detection capabilities.",
+    emoji: "🔍",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://www.perplexity.ai/",
+    tags: ["AI search", "real-time information", "content detection", "research", "knowledge engine"],
+    category: "Advanced Chat Platforms",
+    rating: 4.6,
+    totalVotes: 4567
+  },
+  {
+    icon: Brain,
+    title: "Merlin AI",
+    description: "Cutting-edge AI chatbot harnessing NLP, machine learning, and knowledge graphs. Available as Android app and Chrome extension for content creation, customer support, and translation.",
+    emoji: "🧙‍♂️",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://app.getmerlin.in/plans?ref=mte1mgu4",
+    tags: ["AI chatbot", "NLP", "content creation", "browser extension", "multilingual"],
+    category: "Advanced Chat Platforms",
+    rating: 4.3,
+    totalVotes: 3234
+  },
+  {
+    icon: MessageSquare,
+    title: "POE",
+    description: "Ultimate AI chat assistant driven by Claude, GPT, and Llama models. Free and subscription options with iOS app for convenient AI interactions without ChatGPT login complexities.",
+    emoji: "🤖",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://poe.com/AI-Tools-GPT",
+    tags: ["AI chat", "multiple models", "iOS app", "subscription options", "convenient access"],
+    category: "Advanced Chat Platforms",
+    rating: 4.2,
+    totalVotes: 2987
+  },
+  {
+    icon: Cat,
+    title: "ChattyCat",
+    description: "AI chatbot embodying adorable cat persona on WhatsApp. Chat, send voice messages, and request images from your virtual feline friend within WhatsApp interface.",
+    emoji: "🐱",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://chattycat.ju.mp/",
+    tags: ["WhatsApp bot", "cat persona", "voice messages", "virtual pet", "entertainment"],
+    category: "Advanced Chat Platforms",
+    rating: 4.0,
+    totalVotes: 2234
   }
 ];

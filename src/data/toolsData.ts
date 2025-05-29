@@ -145,7 +145,7 @@ export const allTools: Tool[] = [
   ...specializedPolicyTools,
   ...artAndCollectibles,
   
-  // NEW CATEGORIES
+  // FINANCIAL AND TRADING TOOLS
   ...financialAndTradingTools,
   ...specializedNicheTools
 ];

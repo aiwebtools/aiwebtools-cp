@@ -1,23 +1,19 @@
-
 import { Tool } from "@/types/tools";
 import { 
   PenTool, 
   FileText, 
-  Zap, 
-  Globe, 
+  Edit, 
   BookOpen, 
-  Edit,
+  Zap, 
+  Sparkles, 
+  Brain, 
+  Target, 
+  Search, 
   Copy,
-  Sparkles,
-  MessageSquare,
-  Target,
-  Search,
-  Bot,
-  Music,
-  Languages,
-  Briefcase,
-  Users,
-  TrendingUp
+  RefreshCw,
+  Shield,
+  Eye,
+  CheckCircle
 } from "lucide-react";
 
 export const contentCreationAndWritingTools: Tool[] = [
@@ -260,5 +256,113 @@ export const contentCreationAndWritingTools: Tool[] = [
     category: "Content Creation & Writing",
     rating: 4.2,
     totalVotes: 2345
+  },
+  {
+    icon: RefreshCw,
+    title: "Scribbr Paraphrasing Tool",
+    description: "Free AI-powered paraphrasing tool for rewriting text while preserving meaning. Offers various writing styles for academic, professional, and social media content with plagiarism checking.",
+    emoji: "🔄",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://www.scribbr.com/paraphrasing-tool/",
+    tags: ["paraphrasing", "rewriting", "academic writing", "plagiarism checker", "content enhancement"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: Zap,
+    title: "GPTMinus1",
+    description: "Innovative text transformation tool injecting creativity by randomly replacing words with synonyms. Helps writers generate engaging and imaginative variations of original content.",
+    emoji: "⚡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://www.gptminus1.com/",
+    tags: ["text transformation", "creativity", "writing assistant", "content variation", "synonym replacement"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.1,
+    totalVotes: 2234
+  },
+  {
+    icon: RefreshCw,
+    title: "SpinBot",
+    description: "Intelligent text rewriting tool adding flair and creativity to writing instantly. Contextually intelligent software ensuring grammatical accuracy with Paraphrasing Tool Mode options.",
+    emoji: "🔀",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://spinbot.com/",
+    tags: ["text spinning", "content rewriting", "creativity", "grammar accuracy", "paraphrasing"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.0,
+    totalVotes: 2876
+  },
+  {
+    icon: Brain,
+    title: "Rephrasely",
+    description: "Versatile AI-powered writing tool with advanced paraphrasing, paragraph generation, plagiarism checking, text simplification, and sentence shortening capabilities.",
+    emoji: "🧠",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://rephrasely.com/",
+    tags: ["paraphrasing", "content generation", "plagiarism checking", "text simplification", "writing enhancement"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.3,
+    totalVotes: 3123
+  },
+  {
+    icon: Shield,
+    title: "Undetectable.ai",
+    description: "AI-powered tool transforming AI-generated content into undetectable, human-like text. Advanced algorithms and paraphrasing techniques bypass AI detectors effectively.",
+    emoji: "🛡️",
+    color: "from-gray-500 to-blue-600",
+    directUrl: "https://undetectable.ai/",
+    tags: ["AI detection bypass", "human-like text", "content transformation", "paraphrasing", "text authenticity"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.2,
+    totalVotes: 2654
+  },
+  {
+    icon: RefreshCw,
+    title: "Word-Spinner",
+    description: "AI-driven content creation platform generating high-quality written and visual content. 75+ customizable templates for SEO-optimized articles, blogs, ads, and multilingual content.",
+    emoji: "🔄",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://word-spinner.com/",
+    tags: ["content creation", "SEO optimization", "templates", "multilingual", "AI writing"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.3,
+    totalVotes: 2987
+  },
+  {
+    icon: Target,
+    title: "Jasper",
+    description: "AI-powered content creation platform maintaining consistent brand tone across content types. Reduces drafting time by 80%, increases downloads by 40%, with 3.5x ROI for businesses.",
+    emoji: "🎯",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://jasper.ai/?utm_source=partner&fpr=aiwebtools",
+    tags: ["content creation", "brand consistency", "business content", "ROI optimization", "enterprise AI"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.6,
+    totalVotes: 4567
+  },
+  {
+    icon: Zap,
+    title: "Compose AI",
+    description: "Chrome extension supercharging writing efficiency with AI-driven autocompletion and text generation. Integrates with Google Docs and Gmail, learning your writing style for personalized content.",
+    emoji: "⚡",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://affiliate.notion.so/composeai-notion-aiwebtools",
+    tags: ["writing efficiency", "autocompletion", "Chrome extension", "personalized AI", "productivity"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: Target,
+    title: "Shopia",
+    description: "AI-powered platform revolutionizing content creation and SEO optimization. Write and research content 10x faster with 100+ AI templates, GPT-4 powered chat, and SEO features.",
+    emoji: "🚀",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.shopia.ai/?via=Aiwebtools",
+    tags: ["content creation", "SEO optimization", "AI templates", "research", "team collaboration"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.5,
+    totalVotes: 3876
   }
 ];
