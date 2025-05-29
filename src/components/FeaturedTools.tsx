@@ -48,7 +48,22 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
   }, [isLoading, displayedCount, setDisplayedCount, setIsLoading, onToolsLoaded]);
 
   const handleLoadMoreButton = () => {
+    const currentScrollPosition = window.pageYOffset;
     handleLoadMore();
+    
+    // Scroll to the newly loaded tools after a brief delay
+    setTimeout(() => {
+      // Calculate approximate position of new tools
+      const toolHeight = 300; // Approximate height of each tool card
+      const toolsPerRow = window.innerWidth >= 1280 ? 4 : window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+      const newRows = Math.ceil(8 / toolsPerRow);
+      const scrollOffset = newRows * toolHeight;
+      
+      window.scrollTo({
+        top: currentScrollPosition + scrollOffset,
+        behavior: 'smooth'
+      });
+    }, 200);
   };
 
   // Handle infinite scroll

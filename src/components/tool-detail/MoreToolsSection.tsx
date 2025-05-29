@@ -15,11 +15,22 @@ const MoreToolsSection = ({
   onSeeMoreTools, 
   onToolsLoaded 
 }: MoreToolsSectionProps) => {
+  const handleSeeMoreTools = () => {
+    onSeeMoreTools();
+    // Scroll to the tools section after showing more tools
+    setTimeout(() => {
+      const toolsSection = document.getElementById('more-tools-section');
+      if (toolsSection) {
+        toolsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
   if (!showMoreTools) {
     return (
       <div className="text-center mt-16 mb-16 px-4">
         <Button
-          onClick={onSeeMoreTools}
+          onClick={handleSeeMoreTools}
           size="lg"
           className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
         >
