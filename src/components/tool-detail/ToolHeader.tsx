@@ -95,15 +95,19 @@ Thank you!`);
           </Button>
           
           {isAIWebToolsOriginal && (
-            <div className="px-4 sm:px-0">
+            <div className="px-2 sm:px-0">
               <Button 
                 size="lg"
                 onClick={handleSendFeedback}
                 variant="outline"
-                className="w-full sm:w-auto border-yellow-500/50 bg-yellow-500/10 text-yellow-300 hover:bg-yellow-500/20 hover:border-yellow-400 px-4 sm:px-8 py-3 text-xs sm:text-base rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="w-full sm:w-auto border-yellow-500/50 bg-yellow-500/10 text-yellow-300 hover:bg-yellow-500/20 hover:border-yellow-400 px-2 sm:px-4 py-3 text-xs sm:text-sm rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                <Mail className="w-4 h-4 mr-2 flex-shrink-0" />
-                <span className="whitespace-nowrap overflow-hidden text-ellipsis">SEND CREATOR FEEDBACK</span>
+                <Mail className="w-4 h-4 mr-1 sm:mr-2 flex-shrink-0" />
+                <span className="text-center leading-tight">
+                  <span className="block sm:hidden">CREATOR</span>
+                  <span className="block sm:hidden">FEEDBACK</span>
+                  <span className="hidden sm:block">SEND CREATOR FEEDBACK</span>
+                </span>
               </Button>
             </div>
           )}
