@@ -1,3 +1,4 @@
+
 // Export all tool categories
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
@@ -64,3 +65,4 @@ export { meetingAndTranscriptionTools } from './meetingAndTranscriptionTools';
 // Export new tool categories
 export { webDevelopmentTools } from './webDevelopmentTools';
 export { emailManagementTools } from './emailManagementTools';
+export { technicalAndUtilityTools } from './technicalAndUtilityTools';
