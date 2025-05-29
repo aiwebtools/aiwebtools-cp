@@ -56,3 +56,9 @@ export { writingAndContentEnhancement } from './writingAndContentEnhancement';
 export { resumeAndCareerTools } from './resumeAndCareerTools';
 export { ecommerceAndMarketingTools } from './ecommerceAndMarketingTools';
 export { videoEditingAndContentTools } from './videoEditingAndContentTools';
+
+// Export the refactored image generation tools
+export { coreImageGenerators } from './coreImageGenerators';
+export { imageEditingTools } from './imageEditingTools';
+export { specializedImageTools } from './specializedImageTools';
+export { backgroundAndObjectTools } from './backgroundAndObjectTools';
