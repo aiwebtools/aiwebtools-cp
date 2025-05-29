@@ -31,8 +31,8 @@ const HeroSection = () => {
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-ai-cyan/20 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
         
         <div className="relative container mx-auto px-4 py-20 flex flex-col items-center justify-center min-h-screen text-center">
-          <div className="mb-8 animate-glow">
-            <Sparkles className="w-16 h-16 text-ai-cyan mx-auto mb-4" />
+          <div className="mb-4 animate-glow">
+            <Sparkles className="w-16 h-16 text-ai-cyan mx-auto mb-2" />
           </div>
           
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
