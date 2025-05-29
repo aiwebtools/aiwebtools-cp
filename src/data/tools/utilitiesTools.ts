@@ -5,7 +5,7 @@ import {
   Download, 
   Upload, 
   Scissors, 
-  Compress,
+  Archive,
   RefreshCw,
   Shield,
   Lock,
@@ -27,7 +27,7 @@ export const utilitiesTools: Tool[] = [
     totalVotes: 4567
   },
   {
-    icon: Compress,
+    icon: Archive,
     title: "TinyPNG",
     description: "Advanced lossy compression for PNG and JPEG images. Reduce file sizes while maintaining quality for web optimization.",
     emoji: "🖼️",
