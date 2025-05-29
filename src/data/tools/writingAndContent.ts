@@ -26,19 +26,6 @@ import {
 
 export const writingAndContent: Tool[] = [
   {
-    icon: PenTool,
-    title: "Book Writer GPT",
-    description: "AI-powered book writing assistant that helps authors create compelling narratives, develop characters, and structure their stories professionally.",
-    emoji: "📚",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=example",
-    tags: ["book writing", "storytelling", "publishing", "creative writing", "authors"],
-    category: "Writing & Content",
-    rating: 4.7,
-    totalVotes: 3892
-  },
-  {
     icon: Newspaper,
     title: "Article Writer GPT",
     description: "Professional article writing assistant for journalists, bloggers, and content creators.",
