@@ -24,11 +24,11 @@ const HeroSection = () => {
 
   return (
     <>
-      <section className="relative min-h-screen bg-gradient-to-br from-slate-900/40 via-purple-900/30 to-slate-900/40 overflow-hidden">
+      <section className="relative min-h-screen bg-gradient-to-br from-slate-950/60 via-purple-950/50 to-slate-950/60 overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-r from-ai-purple/5 to-ai-blue/5 animate-pulse"></div>
-        <div className="absolute top-20 left-20 w-72 h-72 bg-ai-purple/30 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-ai-cyan/20 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-ai-purple/3 to-ai-blue/3 animate-pulse"></div>
+        <div className="absolute top-20 left-20 w-72 h-72 bg-ai-purple/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-ai-cyan/15 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
         
         <div className="relative container mx-auto px-4 pt-8 md:pt-12 pb-20 flex flex-col items-center justify-center min-h-screen text-center">
           <div className="mb-2 animate-glow">
