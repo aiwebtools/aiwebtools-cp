@@ -75,40 +75,27 @@ export const legalProfessionals: Tool[] = [
   {
     icon: FileText,
     title: "Contract Review Bot",
-    description: "AI-powered contract analysis and review tool for legal professionals to identify key terms, risks, and compliance issues.",
+    description: "AI-powered contract analysis and review tool for legal professionals with risk assessment and clause optimization.",
     emoji: "📋",
-    color: "from-blue-600 to-purple-600",
+    color: "from-blue-500 to-gray-700",
     directUrl: "https://chatgpt.com/g/g-Y8u3YrS1p-contract-review-bot",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-humanoid-robot-with-a-sleek-desig.png/:/cr=t:2.6%25,l:5.36%25,w:89.29%25,h:79.58%25/rs=w:1200,h:600,cg:true,m",
     category: "Legal Professionals",
-    tags: ["contract review", "legal analysis", "compliance", "risk assessment"],
-    rating: 4.5,
-    totalVotes: 2187
+    tags: ["contract review", "legal analysis", "risk assessment", "document review", "legal AI"],
+    rating: 4.4,
+    totalVotes: 2345
   },
   {
     icon: Users,
-    title: "Public Testimony Writer GPT",
-    description: "Assistance with writing effective public testimony and statements for government hearings, policy advocacy, and civic engagement.",
-    emoji: "🗣️",
-    color: "from-green-600 to-blue-600",
-    directUrl: "https://publictestimonywriter.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
+    title: "Legislator Link GPT",
+    description: "Connect with legislators and government officials with contact information, policy tracking, and civic engagement tools.",
+    emoji: "🏛️",
+    color: "from-blue-600 to-red-600",
+    directUrl: "https://legislatorlink.lovable.app/",
+    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4&list=TLGGczTnMbeNmL0yODA1MjAyNQ",
     category: "Legal Professionals",
-    tags: ["public testimony", "advocacy", "government", "civic engagement"],
-    rating: 4.4,
-    totalVotes: 1876
-  },
-  {
-    icon: Scale,
-    title: "Legal Draftsmith GPT",
-    description: "Professional legal document drafting and legal writing assistance for attorneys, paralegals, and legal professionals.",
-    emoji: "⚖️",
-    color: "from-blue-600 to-gray-600",
-    directUrl: "https://publicdefendergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-humanoid-robot-dressed-like-a.png/:/cr=t:12.29%25,l:9.16%25,w:89.29%25,h:79.58%25/rs=w:600,h:300,cg:true,m/qt=q:98",
-    category: "Legal Professionals",
-    tags: ["legal drafting", "legal writing", "legal documents", "attorney"],
-    rating: 4.6,
-    totalVotes: 2345
+    tags: ["government", "legislators", "civic engagement", "policy tracking", "political"],
+    rating: 4.3,
+    totalVotes: 1987
   }
 ];

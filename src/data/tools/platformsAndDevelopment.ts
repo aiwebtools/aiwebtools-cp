@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Code, 
@@ -10,7 +9,8 @@ import {
   Stethoscope, 
   Calculator,
   Target,
-  Zap
+  Zap,
+  Globe
 } from "lucide-react";
 
 export const platformsAndDevelopment: Tool[] = [
@@ -143,5 +143,18 @@ export const platformsAndDevelopment: Tool[] = [
     tags: ["material valuation", "assessment", "properties", "analysis"],
     rating: 4.4,
     totalVotes: 1876
+  },
+  {
+    icon: Globe,
+    title: "GOOGLE LABS & GOOGLE FLOW",
+    description: "Google's experimental AI and technology laboratory featuring cutting-edge research projects and innovative tools.",
+    emoji: "🔬",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://labs.google/",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377359942578864258/image.png?ex=6838ade8&is=68375c68&hm=2c5d8dca1bb48660d84d1b8c6152d535a0b3ee3b8efb6f162286901003896fc4&",
+    category: "Platforms & Development",
+    tags: ["Google Labs", "experimental", "research", "innovation", "technology"],
+    rating: 4.5,
+    totalVotes: 3456
   }
 ];

@@ -14,7 +14,8 @@ import {
   Globe,
   Search,
   Video,
-  Bot
+  Bot,
+  Box
 } from "lucide-react";
 
 export const imageAndDesign: Tool[] = [
@@ -186,5 +187,31 @@ export const imageAndDesign: Tool[] = [
     tags: ["Midjourney", "prompt engineering", "AI art", "optimization"],
     rating: 4.5,
     totalVotes: 2234
+  },
+  {
+    icon: Box,
+    title: "Meshy AI - TEXT TO 3D Generator",
+    description: "Revolutionary text-to-3D AI platform that creates stunning 3D models from text descriptions. Use promo code AIWEBTOOLS for 20% off!",
+    emoji: "🎲",
+    color: "from-purple-500 to-cyan-600",
+    directUrl: "https://www.meshy.ai/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377357834886582463/image.png?ex=6838abf1&is=68375a71&hm=8796d07ef297f42d59644ba648de8f8e892976312a6e04ec90242aea3c02c9ad&",
+    category: "Image & Design",
+    tags: ["3D generation", "text-to-3D", "3D modeling", "AI 3D", "mesh generation"],
+    rating: 4.5,
+    totalVotes: 2876
+  },
+  {
+    icon: Users,
+    title: "Hey Gen – Interactive Avatar Creation Hub",
+    description: "Create realistic AI avatars and talking heads for videos, presentations, and interactive content with advanced facial animation.",
+    emoji: "👤",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://app.heygen.com/guest/home?sid=rewardful&via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377360265238155334/image.png?ex=6838ae35&is=68375cb5&hm=0707c33ddc6e2d86638158d89c26611517049cd508cd73468072bfec6fda488c&",
+    category: "Image & Design",
+    tags: ["avatar creation", "talking heads", "AI avatars", "video avatars", "facial animation"],
+    rating: 4.6,
+    totalVotes: 3234
   }
 ];

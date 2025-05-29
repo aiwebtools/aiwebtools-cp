@@ -7,7 +7,8 @@ import {
   AlertTriangle,
   Flame,
   Target,
-  Users
+  Users,
+  Plus
 } from "lucide-react";
 
 export const emergencyServices: Tool[] = [
@@ -24,7 +25,7 @@ export const emergencyServices: Tool[] = [
     totalVotes: 2876
   },
   {
-    icon: Cross,
+    icon: Plus,
     title: "Paramedic Assistant GPT",
     description: "Emergency medical AI assistant for paramedics and EMTs, providing medical protocol guidance and emergency care support.",
     emoji: "🚑",

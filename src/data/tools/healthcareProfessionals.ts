@@ -2,14 +2,14 @@ import { Tool } from "@/types/tools";
 import { 
   Stethoscope, 
   Heart, 
-  Activity, 
   Brain, 
   Eye, 
-  Pill,
+  Pill, 
+  Activity,
+  Users,
   Shield,
-  Dna,
-  Plus,
-  Users
+  HeartHandshake,
+  Sparkles
 } from "lucide-react";
 
 export const healthcareProfessionals: Tool[] = [
@@ -81,40 +81,40 @@ export const healthcareProfessionals: Tool[] = [
   {
     icon: Pill,
     title: "Pharmaceutical Assistant GPT",
-    description: "Professional pharmaceutical guidance for medication information, drug interactions, and pharmaceutical research assistance.",
+    description: "Professional pharmaceutical guidance for pharmacists and healthcare providers with drug information, interactions, and dosage recommendations.",
     emoji: "💊",
-    color: "from-blue-600 to-green-600",
+    color: "from-blue-500 to-green-600",
     directUrl: "https://rxai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-professional-looking-pharmaceutical-assistan.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     category: "Healthcare Professionals",
-    tags: ["pharmacy", "medication", "drug interactions", "pharmaceutical"],
+    tags: ["pharmaceutical", "drug information", "pharmacy", "healthcare", "medications"],
     rating: 4.5,
-    totalVotes: 2234
+    totalVotes: 2456
   },
   {
-    icon: Pill,
+    icon: Brain,
     title: "PHARMA RESEARCH PRO",
-    description: "Advanced pharmaceutical research tool for drug development, clinical trials, and medical research analysis.",
+    description: "Advanced pharmaceutical research assistant for drug development, clinical trials, and regulatory compliance in the pharmaceutical industry.",
     emoji: "🔬",
-    color: "from-purple-600 to-blue-600",
+    color: "from-purple-500 to-blue-600",
     directUrl: "https://rxai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-professional-pharmaceutical-assis.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     category: "Healthcare Professionals",
-    tags: ["pharmaceutical research", "drug development", "clinical trials", "medical research"],
-    rating: 4.6,
-    totalVotes: 1987
+    tags: ["pharmaceutical research", "drug development", "clinical trials", "regulatory", "medical research"],
+    rating: 4.4,
+    totalVotes: 1876
   },
   {
-    icon: Dna,
-    title: "Genome GPT",
-    description: "Advanced genomic analysis and DNA research tool for genetic counseling, research, and personalized medicine applications.",
-    emoji: "🧬",
-    color: "from-green-600 to-blue-600",
-    directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    icon: HeartHandshake,
+    title: "Mental Wellness GPT",
+    description: "Supportive mental health and wellness guidance for individuals seeking emotional support and coping strategies.",
+    emoji: "🧠",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377362789097803786/image.png?ex=6838b08f&is=68375f0f&hm=f63e1ae446523dd9eff4aa0f95166aa8a5e6119c506b44ab1656322ea4ca47b7&=&format=webp&quality=lossless&width=2646&height=1392",
     category: "Healthcare Professionals",
-    tags: ["genomics", "DNA", "genetics", "personalized medicine"],
-    rating: 4.7,
-    totalVotes: 2156
+    tags: ["mental health", "wellness", "emotional support", "coping strategies", "therapy"],
+    rating: 4.6,
+    totalVotes: 3234
   }
 ];
