@@ -1,0 +1,69 @@
+
+@layer base {
+  .neon-border {
+    border: 1px solid;
+    border-image: linear-gradient(45deg, #00ffff, #ff00ff) 1;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(255, 0, 255, 0.1);
+  }
+
+  /* Featured Tools Transparency */
+  .featured-tools-transparent {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(1px);
+  }
+
+  .featured-tools-transparent section {
+    background: transparent !important;
+  }
+
+  .featured-tools-transparent .bg-black {
+    background: rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .featured-tools-transparent .bg-gray-900 {
+    background: rgba(17, 24, 39, 0.4) !important;
+  }
+
+  .featured-tools-transparent .bg-slate-900 {
+    background: rgba(15, 23, 42, 0.4) !important;
+  }
+
+  /* Cyberpunk grid overlay */
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s infinite linear;
+    will-change: background-position;
+  }
+
+  @keyframes gridMove {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 50px 50px;
+    }
+  }
+
+  /* Performance optimizations for mobile */
+  @media (max-width: 768px) {
+    .cyber-grid {
+      animation: none; /* Disable grid animation on mobile for better performance */
+    }
+    
+    .glow-effect {
+      animation: none; /* Reduce animations on mobile */
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    }
+    
+    .interactive-button {
+      transform: none; /* Disable transform on mobile */
+    }
+    
+    .interactive-button:hover {
+      transform: none;
+    }
+  }
+}

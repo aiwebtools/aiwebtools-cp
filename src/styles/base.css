@@ -1,0 +1,88 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 180 100% 90%;
+
+    --card: 0 0% 5%;
+    --card-foreground: 180 100% 90%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 180 100% 90%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 270 100% 50%;
+    --secondary-foreground: 180 100% 90%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 300 100% 50%;
+    --accent-foreground: 180 100% 90%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 180 100% 90%;
+
+    --border: 270 50% 20%;
+    --input: 270 50% 20%;
+    --ring: 180 100% 50%;
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 180 100% 90%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 270 100% 50%;
+    --sidebar-accent-foreground: 180 100% 90%;
+    --sidebar-border: 270 50% 20%;
+    --sidebar-ring: 180 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-black text-cyan-100;
+    background: radial-gradient(ellipse at center, #050505 0%, #000000 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    font-family: 'Orbitron', 'Roboto', monospace;
+  }
+
+  /* Performance optimizations for images and videos */
+  img {
+    image-rendering: optimizeQuality;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  iframe {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00ffff, #ff00ff);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #00cccc, #cc00cc);
+  }
+}

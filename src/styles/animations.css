@@ -1,0 +1,98 @@
+
+@layer base {
+  /* Cyberpunk glow effects */
+  .cyber-glow {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+
+  /* Enhanced glowing text effect for logo */
+  .glow-text-effect {
+    text-shadow: 
+      0 0 5px rgba(6, 182, 212, 0.8),
+      0 0 10px rgba(6, 182, 212, 0.6),
+      0 0 15px rgba(6, 182, 212, 0.4),
+      0 0 20px rgba(6, 182, 212, 0.3),
+      0 0 25px rgba(6, 182, 212, 0.2),
+      0 0 30px rgba(6, 182, 212, 0.1);
+    animation: glowing-pulse 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glowing-pulse {
+    from {
+      text-shadow: 
+        0 0 5px rgba(6, 182, 212, 0.8),
+        0 0 10px rgba(6, 182, 212, 0.6),
+        0 0 15px rgba(6, 182, 212, 0.4),
+        0 0 20px rgba(6, 182, 212, 0.3),
+        0 0 25px rgba(6, 182, 212, 0.2),
+        0 0 30px rgba(6, 182, 212, 0.1);
+    }
+    to {
+      text-shadow: 
+        0 0 8px rgba(6, 182, 212, 1),
+        0 0 16px rgba(6, 182, 212, 0.8),
+        0 0 24px rgba(6, 182, 212, 0.6),
+        0 0 32px rgba(6, 182, 212, 0.4),
+        0 0 40px rgba(6, 182, 212, 0.3),
+        0 0 48px rgba(6, 182, 212, 0.2);
+    }
+  }
+
+  /* Enhanced button animations */
+  .interactive-button {
+    @apply transition-all duration-300 transform hover:scale-105;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    will-change: transform;
+  }
+
+  .interactive-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  .interactive-button:hover::before {
+    left: 100%;
+  }
+
+  .interactive-button:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.3);
+  }
+
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes pulse-glow {
+    from {
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+    to {
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 40px rgba(255, 0, 255, 0.3);
+    }
+  }
+
+  /* Loading skeleton animation */
+  @keyframes skeleton-loading {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: calc(200px + 100%) 0;
+    }
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+    background-size: 200px 100%;
+    animation: skeleton-loading 1.5s infinite;
+  }
+}
