@@ -223,13 +223,13 @@ export const videoTools: Tool[] = [
     totalVotes: 7456
   },
   {
-    icon: Video,
-    title: "Google Flow (Veo 3)",
-    description: "Google's next-generation video AI with sound generation capabilities, representing the latest advancement in AI video creation technology.",
+    icon: Music,
+    title: "Google Flow Studio",
+    description: "Google's comprehensive AI studio featuring Veo 2, Veo 3, image generation, and sound-enabled video creation with cutting-edge multimedia capabilities.",
     emoji: "🎵",
     color: "from-indigo-500 to-purple-600",
-    directUrl: "https://deepmind.google/technologies/veo/",
-    tags: ["Google", "sound generation", "video AI", "next-generation", "multimedia"],
+    directUrl: "https://labs.google/fx/tools/flow",
+    tags: ["Google", "Veo 3", "sound generation", "video AI", "image generation", "multimedia", "audio-visual"],
     category: "Video Tools",
     rating: 4.9,
     totalVotes: 5678
