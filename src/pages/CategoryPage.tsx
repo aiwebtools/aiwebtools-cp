@@ -57,6 +57,10 @@ const CategoryPage = () => {
     console.log(`📄 Category page loaded: "${standardizedCategory}" (${categoryTools.length} tools)`);
   }, [standardizedCategory, categoryTools.length]);
 
+  const handleLoadMore = () => {
+    setDisplayedCount(prev => prev + 12);
+  };
+
   if (!decodedCategory) {
     return (
       <div className="min-h-screen bg-black relative">
@@ -123,7 +127,7 @@ const CategoryPage = () => {
         <ToolsDisplay 
           tools={filteredTools}
           displayedCount={displayedCount}
-          onLoadMore={() => setDisplayedCount(prev => prev + 12)}
+          onLoadMore={handleLoadMore}
           hasMoreTools={displayedCount < filteredTools.length}
           categoryName={standardizedCategory}
           searchTerm={searchTerm}
