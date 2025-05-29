@@ -1,5 +1,6 @@
 
 import { Phone, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -64,15 +65,16 @@ const Navigation = () => {
             <DropdownMenuSeparator className="border-gray-700" />
             <div className="font-semibold text-cyan-400 mb-2">Browse by Category</div>
             {Object.entries(categoriesWithCounts).map(([category, count]) => (
-              <DropdownMenuItem
-                key={category}
-                onClick={() => scrollToCategory(category)}
-                className="flex justify-between items-center cursor-pointer hover:bg-cyan-500/20 rounded-md p-2 text-cyan-100"
-              >
-                <span className="text-sm">{category}</span>
-                <span className="text-xs bg-gradient-to-r from-cyan-400 to-cyan-600 text-black px-2 py-1 rounded-full font-bold">
-                  {count}
-                </span>
+              <DropdownMenuItem key={category} asChild>
+                <Link
+                  to={`/category/${encodeURIComponent(category)}`}
+                  className="flex justify-between items-center cursor-pointer hover:bg-cyan-500/20 rounded-md p-2 text-cyan-100 w-full"
+                >
+                  <span className="text-sm">{category}</span>
+                  <span className="text-xs bg-gradient-to-r from-cyan-400 to-cyan-600 text-black px-2 py-1 rounded-full font-bold">
+                    {count}
+                  </span>
+                </Link>
               </DropdownMenuItem>
             ))}
           </div>
