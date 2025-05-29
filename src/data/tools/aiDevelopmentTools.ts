@@ -1,3 +1,4 @@
+
 import { Bot, Brain, Code, Database, Rocket, Zap, Cpu, Network, Settings, Globe, Wand2, Terminal, Layers, Wrench } from "lucide-react";
 import { Tool } from "@/types/tools";
 
@@ -157,5 +158,17 @@ export const aiDevelopmentTools: Tool[] = [
     category: "AI Development Tools",
     rating: 4.3,
     totalVotes: 1890
+  },
+  {
+    icon: Code,
+    title: "V0 by Vercel",
+    description: "AI-powered, chat-based website builder by Vercel that transforms user prompts into functional code using Next.js, React, Tailwind CSS, and shadcn UI components.",
+    emoji: "⚡",
+    color: "from-black-500 to-gray-600",
+    directUrl: "https://v0.dev/",
+    tags: ["website builder", "Next.js", "React", "Tailwind CSS", "chat-based development"],
+    category: "AI Development Tools",
+    rating: 4.8,
+    totalVotes: 5432
   }
 ];

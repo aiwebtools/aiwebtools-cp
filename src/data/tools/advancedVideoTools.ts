@@ -1,3 +1,4 @@
+
 import { Video, Play, Film, Camera, Zap, Wand2, Edit, Monitor, Sparkles } from "lucide-react";
 import { Tool } from "@/types/tools";
 
@@ -242,29 +243,5 @@ export const advancedVideoTools: Tool[] = [
     category: "Advanced Video Tools",
     rating: 4.7,
     totalVotes: 3456
-  },
-  {
-    icon: Monitor,
-    title: "2Short",
-    description: "AI-powered platform transforming long-form videos into engaging short clips optimized for YouTube Shorts, TikTok, and Instagram Reels with animated subtitles and facial tracking.",
-    emoji: "✂️",
-    color: "from-red-500 to-orange-600",
-    directUrl: "https://2short.ai/",
-    tags: ["short clips", "YouTube Shorts", "TikTok", "Instagram Reels", "animated subtitles"],
-    category: "Advanced Video Tools",
-    rating: 4.4,
-    totalVotes: 2890
-  },
-  {
-    icon: Video,
-    title: "Velocity by Avataar.ai",
-    description: "AI-powered platform transforming static product pages into dynamic, professional-quality videos within minutes for enhanced e-commerce content creation.",
-    emoji: "🚀",
-    color: "from-purple-500 to-cyan-600",
-    directUrl: "https://velocity.avataar.ai/",
-    tags: ["product videos", "e-commerce", "dynamic content", "professional quality", "cost reduction"],
-    category: "Advanced Video Tools",
-    rating: 4.5,
-    totalVotes: 2567
   }
 ];
