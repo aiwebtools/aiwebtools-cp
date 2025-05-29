@@ -44,3 +44,6 @@ export { businessAndTeamTools } from './businessAndTeamTools';
 export { searchAndProductivityTools } from './searchAndProductivityTools';
 export { advancedChatPlatforms } from './advancedChatPlatforms';
 export { developerAndCodingTools } from './developerAndCodingTools';
+export { contentDetectionTools } from './contentDetectionTools';
+export { contentCreationAndWritingTools } from './contentCreationAndWritingTools';
+export { documentAndResearchTools } from './documentAndResearchTools';
