@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Brush, PenTool, Crop, Layers, Camera, Palette
@@ -16,6 +15,18 @@ export const designAndGraphicsTools: Tool[] = [
     category: "Image & Design",
     rating: 4.4,
     totalVotes: 2876
+  },
+  {
+    icon: Palette,
+    title: "Ad & Logo Maker GPT",
+    description: "AI-powered advertising and logo creation tool that generates professional ads and brand logos with customizable designs and marketing-focused layouts.",
+    emoji: "🎨",
+    color: "from-purple-500 to-pink-500",
+    directUrl: "https://adandlogomakergpt.lovable.app/?via=aiwebtools",
+    tags: ["logo design", "advertising", "brand design", "marketing materials"],
+    category: "Image & Design",
+    rating: 4.3,
+    totalVotes: 3124
   },
   {
     icon: Brush,
