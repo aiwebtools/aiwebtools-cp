@@ -14,18 +14,6 @@ import {
 
 export const emergencyServices: Tool[] = [
   {
-    icon: Plus,
-    title: "Paramedic Assistant GPT",
-    description: "Emergency medical AI assistant for paramedics and EMTs, providing medical protocol guidance and emergency care support.",
-    emoji: "🚑",
-    color: "from-blue-500 to-red-600",
-    directUrl: "https://paramedicgpt.lovable.app/?via=aiwebtools",
-    tags: ["paramedic", "emergency medical", "EMT", "medical protocols", "emergency care"],
-    category: "Emergency Services",
-    rating: 4.3,
-    totalVotes: 2134
-  },
-  {
     icon: Target,
     title: "Firearms Safety Instructor GPT",
     description: "Comprehensive firearms safety education and training resources for instructors, students, and gun safety programs.",
