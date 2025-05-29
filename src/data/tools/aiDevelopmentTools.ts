@@ -1,5 +1,4 @@
-
-import { Code, Terminal, Cpu, Wrench, Layers, Database, Globe, Settings } from "lucide-react";
+import { Code, Zap, Brain, Settings, Bot, Wrench, Globe, Layers } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 export const aiDevelopmentTools: Tool[] = [
@@ -158,5 +157,161 @@ export const aiDevelopmentTools: Tool[] = [
     category: "AI Development Tools",
     rating: 4.8,
     totalVotes: 2890
+  },
+  {
+    icon: Globe,
+    title: "Lovable",
+    description: "AI-powered platform that transforms ideas into fully functional web applications without coding. Features responsive front-end designs, backend integration with Supabase, one-click deployment, and GitHub synchronization.",
+    emoji: "💝",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://lovable.dev/?via=aiwebtools",
+    tags: ["no-code", "web development", "AI platform", "Supabase integration", "deployment"],
+    category: "AI Development Tools",
+    rating: 4.8,
+    totalVotes: 3456
+  },
+  {
+    icon: Code,
+    title: "CopyCoder.AI",
+    description: "Advanced AI tool that converts UI screenshots into optimized prompts for AI code generators. Simply upload a screenshot and get structured, AI-ready prompts for seamless code creation.",
+    emoji: "📸",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://copycoder.ai/",
+    tags: ["UI conversion", "code generation", "screenshots", "AI prompts", "development"],
+    category: "AI Development Tools",
+    rating: 4.4,
+    totalVotes: 2234
+  },
+  {
+    icon: Settings,
+    title: "N8N",
+    description: "Open-source workflow automation tool that connects different apps and services without coding. More flexible than Zapier with self-hosting and customization options.",
+    emoji: "🔧",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://n8n.io/",
+    tags: ["workflow automation", "open-source", "no-code", "integrations", "self-hosted"],
+    category: "AI Development Tools",
+    rating: 4.6,
+    totalVotes: 2890
+  },
+  {
+    icon: Brain,
+    title: "FlowiseAI",
+    description: "Open-source, low-code platform for building customized LLM applications and AI agents. Features drag-and-drop interface with 100+ pre-built components and seamless integrations.",
+    emoji: "🌊",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://flowiseai.com/",
+    tags: ["LLM applications", "AI agents", "open-source", "drag-and-drop", "low-code"],
+    category: "AI Development Tools",
+    rating: 4.7,
+    totalVotes: 3123
+  },
+  {
+    icon: Zap,
+    title: "Gumloop",
+    description: "No-code AI automation platform with drag-and-drop interface for complex workflows. Features pre-built components for data extraction, scoring, and integrations with 50+ platforms.",
+    emoji: "🔄",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.gumloop.com/",
+    tags: ["no-code automation", "workflow builder", "AI tasks", "integrations", "drag-and-drop"],
+    category: "AI Development Tools",
+    rating: 4.5,
+    totalVotes: 2567
+  },
+  {
+    icon: Bot,
+    title: "V0 by Vercel",
+    description: "AI-powered, chat-based website builder that transforms prompts into functional code using Next.js, React, and Tailwind CSS. Features real-time preview and deployment capabilities.",
+    emoji: "⚡",
+    color: "from-black to-gray-600",
+    directUrl: "https://v0.dev/",
+    tags: ["website builder", "AI chat", "Next.js", "React", "code generation"],
+    category: "AI Development Tools",
+    rating: 4.8,
+    totalVotes: 4123
+  },
+  {
+    icon: Code,
+    title: "Replit",
+    description: "AI-powered platform for creating and deploying applications directly from any device. Features Replit Agent for app generation, real-time collaboration, and comprehensive development tools.",
+    emoji: "🚀",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://replit.com/",
+    tags: ["cloud IDE", "AI agent", "collaboration", "deployment", "multi-language"],
+    category: "AI Development Tools",
+    rating: 4.7,
+    totalVotes: 3890
+  },
+  {
+    icon: Layers,
+    title: "Create.XYZ",
+    description: "AI-powered no-code platform that transforms text descriptions into fully functional websites, tools, and applications. Built-in GPT-4o capabilities with 40+ integrations.",
+    emoji: "🌟",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://www.create.xyz/",
+    tags: ["no-code platform", "GPT-4o", "web apps", "automation", "templates"],
+    category: "AI Development Tools",
+    rating: 4.6,
+    totalVotes: 2734
+  },
+  {
+    icon: Settings,
+    title: "VectorShift",
+    description: "No-code generative AI automation platform for designing AI-driven workflows and applications. Features drag-and-drop interface with live data synchronization and flexible deployment.",
+    emoji: "📊",
+    color: "from-teal-500 to-cyan-600",
+    directUrl: "https://vectorshift.ai/",
+    tags: ["AI automation", "no-code", "workflows", "data sync", "chatbots"],
+    category: "AI Development Tools",
+    rating: 4.5,
+    totalVotes: 2456
+  },
+  {
+    icon: Brain,
+    title: "MindStudio Agents Platform",
+    description: "Versatile AI platform for creating and deploying AI agents without coding. Features multi-step workflows integrating language, image, and voice models with existing services.",
+    emoji: "🧠",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://www.mindstudio.ai/",
+    tags: ["AI agents", "no-code", "multi-modal", "automation", "workflows"],
+    category: "AI Development Tools",
+    rating: 4.6,
+    totalVotes: 2890
+  },
+  {
+    icon: Zap,
+    title: "Stack-AI Agent Platform",
+    description: "No-code platform for building and deploying enterprise AI applications. Features drag-and-drop interface, pre-built templates, and enterprise-grade security compliance.",
+    emoji: "⚡",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://www.stack-ai.com/",
+    tags: ["enterprise AI", "no-code", "security", "templates", "compliance"],
+    category: "AI Development Tools",
+    rating: 4.7,
+    totalVotes: 3234
+  },
+  {
+    icon: Bot,
+    title: "RelevanceAI Agent Platform",
+    description: "No-code platform for building AI agents that automate sales, marketing, support, and operations. Features customizable templates and multi-agent systems with SOC2 compliance.",
+    emoji: "🤖",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://relevanceai.com/",
+    tags: ["AI agents", "automation", "no-code", "multi-agent", "enterprise"],
+    category: "AI Development Tools",
+    rating: 4.5,
+    totalVotes: 2567
+  },
+  {
+    icon: Settings,
+    title: "Taskade",
+    description: "AI-powered productivity platform with team collaboration and project management. Features real-time collaboration, AI agents for workflow automation, and multiple project views.",
+    emoji: "📋",
+    color: "from-orange-500 to-pink-600",
+    directUrl: "https://www.taskade.com/",
+    tags: ["productivity", "collaboration", "AI agents", "project management", "automation"],
+    category: "AI Development Tools",
+    rating: 4.4,
+    totalVotes: 2345
   }
 ];

@@ -1,41 +1,101 @@
-
+import { Image, Palette, Wand2, Sparkles, Camera, Brush } from "lucide-react";
 import { Tool } from "@/types/tools";
-import { 
-  Image, 
-  Palette, 
-  Wand2, 
-  Sparkles, 
-  Camera, 
-  Brush, 
-  Zap,
-  Eye,
-  Layers,
-  Star
-} from "lucide-react";
 
 export const coreImageGenerators: Tool[] = [
   {
-    icon: Image,
-    title: "DALL·E 3",
-    description: "Advanced AI tool by OpenAI transforming text into high-precision images. Integrated with ChatGPT for collaborative creativity, emphasizing safety and responsible content generation.",
+    icon: Wand2,
+    title: "Google Whisk",
+    description: "Revolutionary AI tool from Google Labs that generates images using other images as prompts instead of text. Input images for subject, scene, and style to create unique visuals with Imagen 3.",
     emoji: "🎨",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://www.bing.com/create",
-    tags: ["text-to-image", "OpenAI", "image generation", "creative AI", "visual content"],
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://labs.google/fx/tools/whisk",
+    tags: ["image prompts", "Google Labs", "Imagen 3", "visual exploration", "creative"],
     category: "Core Image Generators",
     rating: 4.8,
-    totalVotes: 6543
+    totalVotes: 3456
+  },
+  {
+    icon: Image,
+    title: "Image FX by Google",
+    description: "Cutting-edge AI image generator from Google Labs that converts text prompts into visually stunning images. Advanced AI models make image generation accessible to all skill levels.",
+    emoji: "🖼️",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://labs.google/fx/tools/image-fx",
+    tags: ["Google Labs", "text-to-image", "AI models", "creative tools", "image generation"],
+    category: "Core Image Generators",
+    rating: 4.7,
+    totalVotes: 3234
   },
   {
     icon: Sparkles,
-    title: "HotPot.ai",
-    description: "Innovative creative tool powered by AI for generating stunning graphics, images, and written content. Transform text into art, create personalized headshots, upscale images, and remove backgrounds.",
-    emoji: "🔥",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://hotpot.ai/",
-    tags: ["creative AI", "graphics generation", "image editing", "content creation", "design tools"],
+    title: "Krea.ai",
+    description: "Intuitive AI-powered platform for generating and enhancing images and videos. Features Flux for high-quality images, video AI, enhancer for upscaling, and creative mini-apps.",
+    emoji: "✨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.krea.ai/",
+    tags: ["image generation", "video AI", "upscaling", "free platform", "creative tools"],
+    category: "Core Image Generators",
+    rating: 4.6,
+    totalVotes: 2890
+  },
+  {
+    icon: Palette,
+    title: "Playground.com Design",
+    description: "AI-powered design platform with hundreds of customizable templates for creating stunning visuals. Generate unique designs for logos, t-shirts, social media, and more without design skills.",
+    emoji: "🎪",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://playground.com/design",
+    tags: ["design templates", "AI design", "customizable", "logos", "social media"],
+    category: "Core Image Generators",
+    rating: 4.5,
+    totalVotes: 2567
+  },
+  {
+    icon: Camera,
+    title: "Flair.ai",
+    description: "AI-powered design platform for high-quality product photoshoots. Drag and drop props, stage scenes with AI, real-time collaboration, and AI-generated fashion models.",
+    emoji: "📸",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://flair.ai/",
+    tags: ["product photography", "AI staging", "fashion models", "collaboration", "e-commerce"],
+    category: "Core Image Generators",
+    rating: 4.7,
+    totalVotes: 3123
+  },
+  {
+    icon: Brush,
+    title: "Exactly.Ai",
+    description: "Create custom image models that emulate your specific art styles. Train AI on your artwork to generate consistent images matching your unique artistic vision.",
+    emoji: "🖌️",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://exactly.ai/",
+    tags: ["custom models", "art style", "training", "consistent generation", "artistic"],
     category: "Core Image Generators",
     rating: 4.4,
-    totalVotes: 3876
+    totalVotes: 2234
+  },
+  {
+    icon: Wand2,
+    title: "Recraft AI Image Generator",
+    description: "Powerful tool that transforms text prompts into high-quality, versatile images for advertisements, digital banners, and printable materials. Collaborative platform with real-time feedback.",
+    emoji: "🔧",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://www.recraft.ai/",
+    tags: ["text-to-image", "advertisements", "collaborative", "high-quality", "versatile"],
+    category: "Core Image Generators",
+    rating: 4.6,
+    totalVotes: 2890
+  },
+  {
+    icon: Sparkles,
+    title: "SeeLab.ai",
+    description: "AI-powered platform for creating brand-specific visuals with precision. Fine-tune AI models using brand assets, generate product images, avatars, and marketing materials with visual editor.",
+    emoji: "👁️",
+    color: "from-purple-500 to-indigo-600",
+    directUrl: "https://www.seelab.ai/en",
+    tags: ["brand visuals", "fine-tuning", "product images", "marketing", "visual editor"],
+    category: "Core Image Generators",
+    rating: 4.5,
+    totalVotes: 2456
   }
 ];

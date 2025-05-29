@@ -95,7 +95,7 @@ export const allTools: Tool[] = [
   ...educationAndLearning,
   ...contentCreationTools,
   
-  // THEN AI-FOCUSED CATEGORIES
+  // THEN AI-FOCUSED CATEGORIES (UPDATED WITH NEW TOOLS)
   ...aiChatPlatforms,
   ...aiDevelopmentTools,
   ...aiAgents,
@@ -111,7 +111,7 @@ export const allTools: Tool[] = [
   ...advancedChatPlatforms,
   ...developerAndCodingTools,
   
-  // THEN CONTENT AND CREATIVE TOOLS
+  // THEN CONTENT AND CREATIVE TOOLS (UPDATED WITH NEW TOOLS)
   ...writingAndContent,
   ...writingAndContentEnhancement,
   ...imageAndDesign,
@@ -125,7 +125,7 @@ export const allTools: Tool[] = [
   ...contentDetectionTools,
   ...documentAndResearchTools,
   
-  // IMAGE GENERATION TOOLS
+  // IMAGE GENERATION TOOLS (UPDATED WITH NEW TOOLS)
   ...coreImageGenerators,
   ...imageEditingTools,
   ...specializedImageTools,
@@ -148,7 +148,7 @@ export const allTools: Tool[] = [
   // MEETING AND TRANSCRIPTION TOOLS
   ...meetingAndTranscriptionTools,
   
-  // REFACTORED TOOLS CATEGORIES
+  // REFACTORED TOOLS CATEGORIES (UPDATED WITH NEW TOOLS)
   ...advancedVideoTools,
   ...creativeDesignTools,
   ...businessSalesTools,

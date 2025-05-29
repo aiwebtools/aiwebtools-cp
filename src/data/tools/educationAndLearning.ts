@@ -1,5 +1,4 @@
-
-import { GraduationCap, BookOpen, Brain, Target, Code, Lightbulb, Users, Search } from "lucide-react";
+import { GraduationCap, BookOpen, Brain, Target, Code, Lightbulb, Users, Search, Globe, Award } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 export const educationAndLearning: Tool[] = [
@@ -74,5 +73,77 @@ export const educationAndLearning: Tool[] = [
     category: "Monitoring & Research",
     rating: 4.3,
     totalVotes: 1890
+  },
+  {
+    icon: Globe,
+    title: "Google AI Training Courses",
+    description: "Free AI training courses from Google Cloud Skills Boost with hands-on experience in machine learning, AI, and cloud computing. Interactive labs, tutorials, and real-world projects.",
+    emoji: "🎓",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://www.cloudskillsboost.google/paths/118",
+    tags: ["Google Cloud", "free courses", "machine learning", "hands-on labs", "certifications"],
+    category: "Education & Learning",
+    rating: 4.8,
+    totalVotes: 4567
+  },
+  {
+    icon: Award,
+    title: "Career Dreamer by Google",
+    description: "AI-powered tool by Grow with Google that analyzes skills and experiences to explore new career possibilities. Creates personalized Career Identity Statements with U.S. labor market data.",
+    emoji: "💼",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://grow.google/career-dreamer/home/",
+    tags: ["career exploration", "Google Grow", "skills analysis", "labor market data", "career planning"],
+    category: "Education & Learning",
+    rating: 4.6,
+    totalVotes: 3234
+  },
+  {
+    icon: BookOpen,
+    title: "Gospel of AI: Super Book of Deployable Robot Prompts",
+    description: "Groundbreaking manifesto by AIWebTools.ai with 50+ fully operational GPT instructions. Includes Book Writer GPT, Trader GPT, and more specialized tools requiring no technical expertise.",
+    emoji: "📖",
+    color: "from-gold-500 to-yellow-600",
+    directUrl: "https://amzn.to/4bk3pmu",
+    tags: ["GPT prompts", "deployable robots", "AIWebTools", "book", "specialized tools"],
+    category: "Education & Learning",
+    rating: 4.9,
+    totalVotes: 5678
+  },
+  {
+    icon: Brain,
+    title: "Google AI Studio",
+    description: "Versatile platform for developers to explore and integrate AI capabilities with Google's Gemini models. Features prompt engineering, fine-tuning, API management, and Multimodal Live API.",
+    emoji: "🧪",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://aistudio.google.com/live",
+    tags: ["Google Gemini", "AI development", "prompt engineering", "multimodal", "API management"],
+    category: "Education & Learning",
+    rating: 4.7,
+    totalVotes: 3890
+  },
+  {
+    icon: Target,
+    title: "Project Astra by Google",
+    description: "Research prototype by Google DeepMind exploring universal AI assistant capabilities. Natural voice/video interaction, real-time conversations, context memory, and tool integration.",
+    emoji: "🌟",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://deepmind.google/technologies/project-astra/",
+    tags: ["Google DeepMind", "universal AI", "voice interaction", "research prototype", "context memory"],
+    category: "Education & Learning",
+    rating: 4.8,
+    totalVotes: 4123
+  },
+  {
+    icon: Code,
+    title: "QWEN",
+    description: "Alibaba's family of large language models developed by Alibaba Cloud AI. Similar to OpenAI's GPT models, designed for text generation, code assistance, chatbots, and enterprise AI solutions.",
+    emoji: "🤖",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://chat.qwenlm.ai/",
+    tags: ["Alibaba AI", "LLM", "text generation", "code assistance", "enterprise AI"],
+    category: "Education & Learning",
+    rating: 4.5,
+    totalVotes: 2890
   }
 ];
