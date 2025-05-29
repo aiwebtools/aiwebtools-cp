@@ -2,6 +2,7 @@
 import { useState, useMemo } from "react";
 import { allTools, searchTools } from "@/data/toolsData";
 import { getCategoriesWithCounts, getToolsByCategory } from "@/utils/categoryUtils";
+import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
 
 export const useFeaturedToolsState = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -42,8 +43,8 @@ export const useFeaturedToolsState = () => {
   }, [allTools, selectedCategory, searchTerm]);
 
   const totalToolsCount = filteredTools.length;
-  // Use the same consolidated category calculation
-  const categoriesWithCounts = getCategoriesWithCounts(allTools);
+  // Use standardized category titles and counts
+  const categoriesWithCounts = getStandardizedCategoriesWithCounts();
   const hasMoreTools = displayedCount < filteredTools.length;
 
   return {

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { getCategoryStyle } from "@/utils/categoryStyles";
+import { getStandardizedCategoryTitle } from "@/utils/categoryTitles";
 import SearchBar from "./SearchBar";
 
 interface CategoryFiltersProps {
@@ -22,7 +23,11 @@ const CategoryFilters = ({
 }: CategoryFiltersProps) => {
   const [showAll, setShowAll] = useState(false);
   
-  const categories = Object.entries(categoriesWithCounts).sort(([a], [b]) => a.localeCompare(b));
+  // Apply standardized titles to category entries
+  const categories = Object.entries(categoriesWithCounts)
+    .map(([category, count]) => [getStandardizedCategoryTitle(category), count] as [string, number])
+    .sort(([a], [b]) => a.localeCompare(b));
+  
   const displayedCategories = showAll ? categories : categories.slice(0, 8);
 
   const handleCategoryClick = (category: string) => {

@@ -1,4 +1,3 @@
-
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef, useCallback } from "react";
 import Header from "@/components/Header";
@@ -11,6 +10,7 @@ import ScrollToTopButton from "@/components/category/ScrollToTopButton";
 import { Button } from "@/components/ui/button";
 import { allTools } from "@/data/toolsData";
 import { getCategoriesWithCounts, getToolsByCategory } from "@/utils/categoryUtils";
+import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
 import { ChevronLeft } from "lucide-react";
 
 const CategoryPage = () => {
@@ -23,8 +23,8 @@ const CategoryPage = () => {
   const toolsGridRef = useRef<HTMLDivElement>(null);
   const categoryButtonsRef = useRef<HTMLDivElement>(null);
   
-  // Use the same consolidated category calculation
-  const categoriesWithCounts = getCategoriesWithCounts(allTools);
+  // Use standardized category titles and counts
+  const categoriesWithCounts = getStandardizedCategoriesWithCounts();
   
   // Handle "All Categories" special case
   const isAllCategories = selectedCategory === "All Categories";
