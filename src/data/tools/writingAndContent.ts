@@ -43,7 +43,7 @@ export const writingAndContent: Tool[] = [
     description: "AI-powered book writing assistant that helps authors create compelling narratives, develop characters, and structure their stories professionally.",
     emoji: "📚",
     color: "from-purple-500 to-blue-600",
-    videoUrl: "https://www.youtube.com/watch?v=rN4H4r7gk5w",
+    videoUrl: "https://www.youtube.com/watch?v=5deYUaqwreo",
     directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
     tags: ["book writing", "storytelling", "publishing", "creative writing", "authors"],
     category: "Writing & Content",
