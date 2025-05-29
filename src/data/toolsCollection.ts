@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import {
   businessTools,
@@ -110,6 +109,9 @@ import { mindBlowingAITools } from './tools/mindBlowingAITools';
 // Import new design assistant tools category
 import { designAssistantTools } from './tools/designAssistantTools';
 
+// Import the comprehensive AI tools collection
+import { comprehensiveAITools } from './tools/comprehensiveAITools';
+
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
@@ -217,6 +219,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...mindBlowingAITools,
     
     // NEW: Design assistant tools
-    ...designAssistantTools
+    ...designAssistantTools,
+    
+    // NEW: Comprehensive AI tools collection (120+ additional tools)
+    ...comprehensiveAITools
   ];
 };

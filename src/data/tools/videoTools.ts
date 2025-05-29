@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Video, 
@@ -12,10 +11,36 @@ import {
   Wand2,
   Sparkles,
   Music,
-  Mic
+  Mic,
+  Globe,
+  Brain
 } from "lucide-react";
 
 export const videoTools: Tool[] = [
+  {
+    icon: Globe,
+    title: "Google Flow Editing Studio",
+    description: "Google's experimental visual editing tool that allows you to create and edit visual content with AI-powered features. Part of Google Labs' innovative tools for creative professionals.",
+    emoji: "🌊",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://labs.google/fx/tools/flow/?via=aiwebtools",
+    tags: ["Google Labs", "visual editing", "experimental", "creative tools", "AI editing"],
+    category: "Video Tools",
+    rating: 4.5,
+    totalVotes: 2100
+  },
+  {
+    icon: Brain,
+    title: "Google VEO 3",
+    description: "Google DeepMind's most advanced video generation model. VEO 3 creates high-quality videos with sound from text prompts, representing the cutting edge of AI video generation technology.",
+    emoji: "🧠",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://deepmind.google/models/veo/?via=aiwebtools",
+    tags: ["Google DeepMind", "video generation", "text-to-video", "AI video", "sound generation"],
+    category: "Video Tools",
+    rating: 4.8,
+    totalVotes: 3200
+  },
   {
     icon: Video,
     title: "Runway ML",

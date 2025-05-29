@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 
 // Enhanced mapping of old categories to new consolidated categories
@@ -8,6 +7,8 @@ const categoryMapping: Record<string, string> = {
   "Advanced Video Tools": "Video & Content Creation",
   "Video & Content Tools": "Video & Content Creation",
   "Video Editing & Content Tools": "Video & Content Creation",
+  "Video & Marketing": "Video & Content Creation",
+  "Video & Streaming": "Video & Content Creation",
   
   // Image consolidation
   "Image & Design": "Image & Design Tools",
@@ -28,6 +29,7 @@ const categoryMapping: Record<string, string> = {
   "Email Management Tools": "Business & Productivity",
   "Meeting & Transcription Tools": "Business & Productivity",
   "Resume & Career Tools": "Business & Productivity",
+  "Business & Branding": "Business & Productivity",
   
   // Writing consolidation
   "Writing & Content": "Writing & Content Creation",
@@ -50,6 +52,9 @@ const categoryMapping: Record<string, string> = {
   // Audio consolidation
   "Audio & Music Tools": "Audio & Voice Tools",
   "Audio & Voice Tools": "Audio & Voice Tools",
+  "Audio & Podcasting": "Audio & Voice Tools",
+  "Audio & Music Tools": "Audio & Voice Tools",
+  "Text to Speech": "Audio & Voice Tools",
   
   // Education & Learning consolidation
   "Research & Learning": "Education & Learning",
@@ -66,27 +71,31 @@ const categoryMapping: Record<string, string> = {
   "Legal Professionals": "Professional Services",
   "Professional Services": "Professional Services",
   "Financial & Trading Tools": "Professional Services",
+  "Finance & Trading": "Professional Services",
   
   // Data and Analytics consolidation
   "Data & Analytics Tools": "Data & Analytics",
   "Data Analytics Tools": "Data & Analytics",
   "Business Intelligence": "Data & Analytics",
+  "Analytics & Insights": "Data & Analytics",
   
-  // 3D and Visualization consolidation
-  "3D & Visualization Tools": "3D & Visualization",
-  "3D Tools": "3D & Visualization",
-  "Visualization Tools": "3D & Visualization",
+  // 3D and Animation consolidation
+  "3D & Visualization Tools": "3D & Animation",
+  "3D Tools": "3D & Animation",
+  "Visualization Tools": "3D & Animation",
+  "3D & Animation": "3D & Animation",
   
   // Automation consolidation
   "Automation & Workflow Tools": "Automation & Workflows",
   "Workflow Tools": "Automation & Workflows",
   "Process Automation": "Automation & Workflows",
   
-  // New category consolidations - ensuring all new tools are properly mapped
+  // New category consolidations
   "Social Media & Marketing": "Marketing & Social Media",
   "Marketing & Analytics": "Marketing & Social Media",
   "Marketing Tools": "Marketing & Social Media",
   "Social Media Tools": "Marketing & Social Media",
+  "Sales & Marketing": "Marketing & Social Media",
   
   "Collaboration & Communication": "Communication & Collaboration",
   "Communication Tools": "Communication & Collaboration",
@@ -97,13 +106,24 @@ const categoryMapping: Record<string, string> = {
   
   "Creative Platforms": "Creative & Design",
   "Creative Suites": "Creative & Design",
+  "Creative & Design": "Creative & Design",
   
   "Cloud & Infrastructure": "Cloud Services",
   "Cloud Services": "Cloud Services",
   
   "News & Information": "Information & Research",
+  "Information & Research": "Information & Research",
   
   "Health & Wellness": "Health & Wellness",
+  "Health & Fitness": "Health & Wellness",
+  
+  // New specialized categories
+  "AI Chat & Assistants": "AI Chat & Assistants",
+  "Customer Service": "Customer Service",
+  "Gaming & Streaming": "Gaming & Streaming",
+  "E-commerce & Shopping": "E-commerce & Marketing",
+  "E-commerce & Marketing": "E-commerce & Marketing",
+  "Food & Cooking": "Lifestyle & Personal",
   
   // Specialized consolidation
   "Specialized & Niche": "Specialized Tools",

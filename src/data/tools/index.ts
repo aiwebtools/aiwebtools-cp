@@ -1,4 +1,3 @@
-
 // Export all tool categories
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
@@ -102,3 +101,6 @@ export { mindBlowingAITools } from './mindBlowingAITools';
 
 // Export new design assistant tools category
 export { designAssistantTools } from './designAssistantTools';
+
+// Export comprehensive AI tools collection
+export { comprehensiveAITools } from './comprehensiveAITools';
