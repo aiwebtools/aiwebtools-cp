@@ -13,6 +13,24 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   // Minimum length check to prevent single character searches from triggering keyword expansion
   const isShortSearch = term.length <= 2;
   
+  // Category keyword mapping for consolidated categories
+  const categoryKeywords: Record<string, string[]> = {
+    "Video & Content Creation": ["video", "content", "editing", "movie", "film", "cinema", "youtube", "streaming", "production"],
+    "Image & Design Tools": ["image", "design", "art", "photo", "picture", "graphic", "visual", "illustration", "logo", "color"],
+    "Business & Productivity": ["business", "productivity", "work", "office", "management", "team", "collaboration", "finance", "sales", "marketing", "email"],
+    "Writing & Content Creation": ["writing", "content", "text", "article", "blog", "copy", "document", "research", "paper"],
+    "AI Development Tools": ["ai", "development", "coding", "programming", "developer", "api", "model", "inference", "agent"],
+    "Audio & Voice Tools": ["audio", "voice", "music", "sound", "podcast", "speech", "recording"],
+    "Education & Learning": ["education", "learning", "study", "school", "teacher", "student", "course", "training"],
+    "Professional Services": ["professional", "healthcare", "legal", "medical", "law", "finance", "trading", "pharmacy"],
+    "Creative & Entertainment": ["creative", "entertainment", "fun", "game", "play", "art", "media"],
+    "Time & History": ["history", "historical", "time", "past", "ancient", "heritage", "archaeological"],
+    "Spirituality & Wellness": ["spiritual", "wellness", "meditation", "mindfulness", "peace", "healing"],
+    "Emergency Services": ["emergency", "safety", "fire", "rescue", "survival", "first aid"],
+    "Game Design & Development": ["game", "gaming", "design", "development", "player"],
+    "Specialized Tools": ["specialized", "niche", "specific", "technical", "utility", "custom"]
+  };
+  
   // Helper function to check if a tool matches the search term with scoring
   const getToolMatchScore = (tool: Tool, searchTerm: string): number => {
     const lowerTitle = tool.title.toLowerCase();
@@ -69,9 +87,18 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     const titleMatchCount = searchWords.filter(word => lowerTitle.includes(word)).length;
     score += titleMatchCount * 25;
     
-    // Category matches
+    // Category matches with consolidated category keywords
     if (lowerCategory.includes(searchTerm)) {
       score += 50;
+    }
+    
+    // Check against category-specific keywords
+    if (tool.category) {
+      const categoryKeys = categoryKeywords[tool.category] || [];
+      const categoryKeywordMatches = categoryKeys.filter(keyword => 
+        keyword.includes(searchTerm) || searchTerm.includes(keyword)
+      ).length;
+      score += categoryKeywordMatches * 15;
     }
     
     // Tag matches

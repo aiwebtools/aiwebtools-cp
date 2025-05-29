@@ -2,9 +2,9 @@
 import { getCategoriesWithCounts } from "./categoryUtils";
 import { allTools } from "@/data/toolsData";
 
-// Centralized category title configuration
+// Streamlined category title configuration with consolidated categories
 export const CATEGORY_TITLES = {
-  // Core categories with standardized titles
+  // Core consolidated categories
   "Video & Content Creation": "Video & Content Creation",
   "Image & Design Tools": "Image & Design Tools", 
   "Business & Productivity": "Business & Productivity",
@@ -13,13 +13,14 @@ export const CATEGORY_TITLES = {
   "Audio & Voice Tools": "Audio & Voice Tools",
   "Education & Learning": "Education & Learning",
   "Specialized Tools": "Specialized Tools",
-  "Creative Suites": "Creative Suites",
-  "Advanced AI Tools": "Advanced AI Tools",
-  "Learning & Education": "Learning & Education",
+  "Professional Services": "Professional Services",
+  "Creative & Entertainment": "Creative & Entertainment",
   "Time & History": "Time & History",
   "Spirituality & Wellness": "Spirituality & Wellness",
   "Emergency Services": "Emergency Services",
-  "Game Design & Development": "Game Design & Development"
+  "Game Design & Development": "Game Design & Development",
+  "Creative Suites": "Creative Suites",
+  "Advanced AI Tools": "Advanced AI Tools"
 } as const;
 
 // Function to get standardized category title
@@ -34,23 +35,22 @@ export const getStandardizedCategoriesWithCounts = (): Record<string, number> =>
   
   Object.entries(categoriesWithCounts).forEach(([category, count]) => {
     const standardizedTitle = getStandardizedCategoryTitle(category);
-    standardizedCategories[standardizedTitle] = count;
+    standardizedCategories[standardizedTitle] = (standardizedCategories[standardizedTitle] || 0) + count;
   });
   
-  console.log('Standardized category titles applied:', standardizedCategories);
+  console.log('Consolidated category titles applied:', standardizedCategories);
   
   return standardizedCategories;
 };
 
-// Psychologically Strategic Order for consistent display
+// Updated strategic order for consolidated categories
 export const CATEGORY_DISPLAY_ORDER = [
   "Creative Suites",
   "Advanced AI Tools", 
-  "Learning & Education",
   "Time & History",
   "Spirituality & Wellness",
-  "Emergency Services",
   "Game Design & Development",
+  "Emergency Services",
   "Video & Content Creation",
   "Image & Design Tools",
   "Business & Productivity",
@@ -58,6 +58,8 @@ export const CATEGORY_DISPLAY_ORDER = [
   "AI Development Tools",
   "Audio & Voice Tools",
   "Education & Learning",
+  "Creative & Entertainment",
+  "Professional Services",
   "Specialized Tools"
 ];
 

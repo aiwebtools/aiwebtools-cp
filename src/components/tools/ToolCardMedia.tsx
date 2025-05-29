@@ -8,7 +8,7 @@ interface ToolCardMediaProps {
 }
 
 const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) => {
-  const hasImage = tool.image && tool.image.trim() !== '';
+  const hasImage = tool.imageUrl && tool.imageUrl.trim() !== '';
   
   return (
     <div 
@@ -17,7 +17,7 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
     >
       {hasImage ? (
         <img 
-          src={tool.image} 
+          src={tool.imageUrl} 
           alt={`${tool.title} screenshot`}
           className="w-full h-full object-cover"
           loading="lazy"

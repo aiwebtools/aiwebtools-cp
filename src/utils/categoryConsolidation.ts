@@ -1,7 +1,7 @@
 
 import { Tool } from "@/types/tools";
 
-// Mapping of old categories to new consolidated categories
+// Enhanced mapping of old categories to new consolidated categories
 const categoryMapping: Record<string, string> = {
   // Video consolidation
   "Video Tools": "Video & Content Creation",
@@ -24,33 +24,62 @@ const categoryMapping: Record<string, string> = {
   "Business & Team Tools": "Business & Productivity",
   "Business Sales Tools": "Business & Productivity",
   "Ecommerce & Marketing Tools": "Business & Productivity",
+  "Email Management Tools": "Business & Productivity",
+  "Meeting & Transcription Tools": "Business & Productivity",
+  "Resume & Career Tools": "Business & Productivity",
   
   // Writing consolidation
   "Writing & Content": "Writing & Content Creation",
   "Content Creation Tools": "Writing & Content Creation",
   "Content Creation & Writing Tools": "Writing & Content Creation",
   "Writing & Content Enhancement": "Writing & Content Creation",
+  "Document & Research Tools": "Writing & Content Creation",
   
   // AI Tools consolidation
   "AI Tools & Development": "AI Development Tools",
   "AI Tools & Utilities": "AI Development Tools",
   "AI Development Tools": "AI Development Tools",
   "Developer & Coding Tools": "AI Development Tools",
+  "Web Development Tools": "AI Development Tools",
+  "AI Inference Platforms": "AI Development Tools",
+  "Open Source AI Models": "AI Development Tools",
+  "AI Agents": "AI Development Tools",
   
   // Audio consolidation
   "Audio & Music Tools": "Audio & Voice Tools",
   "Audio & Voice Tools": "Audio & Voice Tools",
   
-  // Research consolidation
+  // Education & Learning consolidation
   "Research & Learning": "Education & Learning",
   "Learning & Education": "Education & Learning",
-  "Document & Research Tools": "Education & Learning",
+  
+  // Entertainment & Media consolidation
+  "Entertainment & Media": "Creative & Entertainment",
+  "Creative & Entertainment": "Creative & Entertainment",
+  
+  // Professional Services consolidation
+  "Healthcare Professionals": "Professional Services",
+  "Legal Professionals": "Professional Services",
+  "Professional Services": "Professional Services",
+  "Financial & Trading Tools": "Professional Services",
   
   // Specialized consolidation
   "Specialized & Niche": "Specialized Tools",
   "Specialized Niche Tools": "Specialized Tools",
   "Specialized AI Tools": "Specialized Tools",
-  "Technical & Utility Tools": "Specialized Tools"
+  "Technical & Utility Tools": "Specialized Tools",
+  "Specialized Tools": "Specialized Tools",
+  
+  // Single/small category consolidations
+  "Mystical & Esoteric": "Spirituality & Wellness",
+  "Historical Figures": "Time & History",
+  "Science & Mysticism": "Time & History",
+  "Archaeology": "Time & History",
+  "Maritime History": "Time & History",
+  "Historical News": "Time & History",
+  "Philosophy & Spirituality": "Spirituality & Wellness",
+  "Theatrical Writing": "Creative & Entertainment",
+  "Historical Medicine": "Time & History"
 };
 
 export const consolidateCategory = (category: string): string => {
@@ -62,4 +91,10 @@ export const consolidateTools = (tools: Tool[]): Tool[] => {
     ...tool,
     category: consolidateCategory(tool.category)
   }));
+};
+
+// Get the final consolidated categories list
+export const getConsolidatedCategories = (): string[] => {
+  const uniqueCategories = new Set(Object.values(categoryMapping));
+  return Array.from(uniqueCategories).sort();
 };

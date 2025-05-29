@@ -60,7 +60,7 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
       <Input
         type="text"
-        placeholder="Search 600+ AI tools... Try: 'Learn Any Skill', 'Einstein', 'Cannabis', 'Fishing', 'Dream Interpreter', 'Celebrity Chat', 'Binary Converter', 'Peace', 'Automotive', 'Food Quality'"
+        placeholder="Search 700+ AI tools... Try: 'video editing', 'business', 'writing', 'image design', 'education', 'emergency', 'finance', 'game design'"
         value={searchTerm}
         onChange={(e) => handleSearchChange(e.target.value)}
         onKeyDown={handleKeyDown}
@@ -73,7 +73,7 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
         className="pl-10 pr-4 py-4 text-lg rounded-xl border-2 border-gray-200 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 transition-all duration-300 shadow-lg"
       />
       <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-400">
-        {searchTerm ? `Searching...` : '600+ Tools'}
+        {searchTerm ? `Searching...` : '700+ Tools'}
       </div>
 
       {/* Search Results Dropdown */}
