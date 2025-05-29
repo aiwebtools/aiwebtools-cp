@@ -1,9 +1,13 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Truck, Phone, Shield, AlertTriangle, Cross,
-  Siren, Activity, Radio, MapPin,
-  Flame
+  Shield, 
+  Truck, 
+  Heart, 
+  Phone, 
+  AlertTriangle,
+  Flame,
+  Target,
+  Users
 } from "lucide-react";
 
 export const emergencyServices: Tool[] = [
@@ -32,16 +36,29 @@ export const emergencyServices: Tool[] = [
     totalVotes: 2134
   },
   {
+    icon: Target,
+    title: "Firearms Safety Instructor GPT",
+    description: "Comprehensive firearms safety education and training resources for instructors, students, and gun safety programs.",
+    emoji: "🎯",
+    color: "from-red-600 to-orange-600",
+    directUrl: "https://firearmsafetyeducationgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-humanoid-shooting-a-gun-at-a-targ.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    category: "Emergency Services",
+    tags: ["firearms safety", "education", "training", "safety"],
+    rating: 4.3,
+    totalVotes: 1654
+  },
+  {
     icon: Flame,
     title: "Firefighter GPT",
-    description: "Specialized AI assistant for firefighters and fire safety professionals, providing fire suppression techniques, safety protocols, and emergency response guidance.",
+    description: "Professional firefighting guidance, emergency response protocols, and fire safety education for firefighters and emergency personnel.",
     emoji: "🚒",
-    color: "from-red-500 to-orange-600",
+    color: "from-red-600 to-yellow-600",
     directUrl: "https://firefightergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=lGsefWkYfq0",
-    tags: ["firefighting", "fire safety", "emergency response", "fire suppression", "safety protocols"],
     category: "Emergency Services",
-    rating: 4.5,
-    totalVotes: 3456
+    tags: ["firefighting", "emergency response", "fire safety", "first responder"],
+    rating: 4.7,
+    totalVotes: 2456
   }
 ];

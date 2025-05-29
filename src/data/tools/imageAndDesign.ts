@@ -1,6 +1,21 @@
-
 import { Tool } from "@/types/tools";
-import { Palette } from "lucide-react";
+import { 
+  Image, 
+  Palette, 
+  Camera, 
+  Edit, 
+  Layers,
+  Eye,
+  Zap,
+  Star,
+  Brush,
+  Monitor,
+  Users,
+  Globe,
+  Search,
+  Video,
+  Bot
+} from "lucide-react";
 
 export const imageAndDesign: Tool[] = [
   {
@@ -14,6 +29,162 @@ export const imageAndDesign: Tool[] = [
     tags: ["graphic design", "cover design", "visual design", "marketing materials", "AI design"],
     category: "Image & Design",
     rating: 4.2,
+    totalVotes: 2234
+  },
+  {
+    icon: Video,
+    title: "Sora Prompt Assistant",
+    description: "Create optimized prompts for Sora AI video generation with expert guidance on text-to-video prompt engineering.",
+    emoji: "🎬",
+    color: "from-purple-600 to-blue-600",
+    directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-city-with-tall-buildings-th_JdXy-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    category: "Image & Design",
+    tags: ["Sora", "video generation", "prompt engineering", "AI video"],
+    rating: 4.6,
+    totalVotes: 2456
+  },
+  {
+    icon: Video,
+    title: "Luma Dream Machine Prompt Assistant",
+    description: "Optimize prompts for Luma Dream Machine AI video generation with specialized prompt crafting for high-quality video output.",
+    emoji: "✨",
+    color: "from-cyan-600 to-purple-600",
+    directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-neon-lit-advertisement-for-the-l.jpeg/:/cr=t:50%25,l:0%25,w:100%25,h:50%25/rs=w:1240,h:620,cg:true",
+    category: "Image & Design",
+    tags: ["Luma", "video generation", "prompt optimization", "AI video"],
+    rating: 4.5,
+    totalVotes: 2143
+  },
+  {
+    icon: Video,
+    title: "PIKA LABS",
+    description: "Advanced AI video generation platform for creating stunning videos from text prompts with professional-quality output.",
+    emoji: "🎥",
+    color: "from-pink-600 to-purple-600",
+    directUrl: "https://www.pika.art",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377338889760542790/image.png?ex=68389a4d&is=683748cd&hm=0e8f1a14cd916e76022667e10a18d93f9de2b74c752845cf07b30af750c5b21c&=&format=webp&quality=lossless&width=2370&height=1026",
+    category: "Image & Design",
+    tags: ["video generation", "AI video", "text-to-video", "creative"],
+    rating: 4.7,
+    totalVotes: 3245
+  },
+  {
+    icon: Image,
+    title: "Midjourney – Image Generation Platform",
+    description: "Leading AI image generation platform for creating stunning artwork, illustrations, and creative visuals from text descriptions.",
+    emoji: "🎨",
+    color: "from-purple-600 to-pink-600",
+    directUrl: "https://www.midjourney.com/home",
+    videoUrl: "https://www.youtube.com/watch?v=5deYUaqwreo",
+    category: "Image & Design",
+    tags: ["AI art", "image generation", "creative", "illustration"],
+    rating: 4.8,
+    totalVotes: 5678
+  },
+  {
+    icon: Bot,
+    title: "Claude",
+    description: "Advanced AI assistant by Anthropic with powerful image analysis, document processing, and creative capabilities.",
+    emoji: "🤖",
+    color: "from-orange-600 to-red-600",
+    directUrl: "https://claude.ai/",
+    videoUrl: "https://www.youtube.com/watch?v=oqUclC3gqKs",
+    category: "Image & Design",
+    tags: ["AI assistant", "image analysis", "document processing", "creative"],
+    rating: 4.9,
+    totalVotes: 6789
+  },
+  {
+    icon: Image,
+    title: "Ideogram – Image Generator",
+    description: "AI-powered image generation platform specializing in text rendering and creative image creation with advanced typography.",
+    emoji: "💡",
+    color: "from-blue-600 to-green-600",
+    directUrl: "https://ideogram.ai/",
+    videoUrl: "https://www.youtube.com/watch?v=USSpwbe3Rxk",
+    category: "Image & Design",
+    tags: ["image generation", "typography", "text rendering", "AI art"],
+    rating: 4.6,
+    totalVotes: 3456
+  },
+  {
+    icon: Users,
+    title: "BHUMAN – Avatars Creation For Outreach",
+    description: "Create personalized AI avatars for video outreach, marketing, and communication with realistic human-like presentations.",
+    emoji: "👤",
+    color: "from-cyan-600 to-blue-600",
+    directUrl: "https://app.bhuman.ai/?ref=zde0otr",
+    videoUrl: "https://www.youtube.com/watch?v=W1WHD9IhGhs",
+    category: "Image & Design",
+    tags: ["avatars", "video outreach", "personalization", "marketing"],
+    rating: 4.5,
+    totalVotes: 2345
+  },
+  {
+    icon: Video,
+    title: "InVideo AI",
+    description: "AI-powered video creation platform for marketing videos, social media content, and professional video production.",
+    emoji: "📹",
+    color: "from-red-600 to-orange-600",
+    directUrl: "https://invideo.sjv.io/k0kMbn",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377349795445739520/image.png?ex=6838a475&is=683752f5&hm=4e72fe93f1d3e8f1641da970546dbad34b8b2726a7e0fb9022dfcee4c612e4a8&=&format=webp&quality=lossless&width=2848&height=1206",
+    category: "Image & Design",
+    tags: ["video creation", "marketing videos", "social media", "AI video"],
+    rating: 4.6,
+    totalVotes: 2987
+  },
+  {
+    icon: Eye,
+    title: "Snoop Image AI - Experimental AI Image Generation Detector",
+    description: "Detect AI-generated images with advanced analysis to identify artificial content and verify image authenticity.",
+    emoji: "🔍",
+    color: "from-gray-600 to-blue-600",
+    directUrl: "https://snoopimageai.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-snoop-image-ai-presented-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
+    category: "Image & Design",
+    tags: ["AI detection", "image analysis", "authenticity", "verification"],
+    rating: 4.3,
+    totalVotes: 1765
+  },
+  {
+    icon: Video,
+    title: "RUNWAY ML",
+    description: "Advanced AI platform for creative professionals with video generation, image editing, and multimedia AI tools.",
+    emoji: "🎬",
+    color: "from-green-600 to-blue-600",
+    directUrl: "https://runwayml.com/",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-stunning-advertisement-for-runway-ml-an-ai-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1152,cg:true",
+    category: "Image & Design",
+    tags: ["AI platform", "video generation", "creative tools", "multimedia"],
+    rating: 4.8,
+    totalVotes: 4567
+  },
+  {
+    icon: Users,
+    title: "Synthesia Avatar Creation Studio",
+    description: "Create AI avatars and talking head videos for presentations, training, and corporate communications.",
+    emoji: "🗣️",
+    color: "from-blue-600 to-purple-600",
+    directUrl: "https://www.synthesia.io/?via=Aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-eye-catching-advertisement-showcasing-synt.jpeg/:/cr=t:0%25,l:14.85%25,w:70.42%25,h:52.82%25/rs=w:1152,h:576,cg:true,m",
+    category: "Image & Design",
+    tags: ["avatars", "talking head videos", "presentations", "corporate"],
+    rating: 4.7,
+    totalVotes: 3456
+  },
+  {
+    icon: Palette,
+    title: "\"MiddleJourney\" Midjourney Prompting Assistant",
+    description: "Expert prompt crafting assistance for Midjourney AI art generation with optimized prompting techniques.",
+    emoji: "🎨",
+    color: "from-purple-600 to-pink-600",
+    directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-visually-captivating-advertisement-for-the-.jpeg/:/cr=t:0.11%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:300,cg:true/qt=q:98",
+    category: "Image & Design",
+    tags: ["Midjourney", "prompt engineering", "AI art", "optimization"],
+    rating: 4.5,
     totalVotes: 2234
   }
 ];

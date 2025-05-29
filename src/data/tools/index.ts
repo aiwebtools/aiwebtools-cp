@@ -56,3 +56,6 @@ export { professionalServices } from './professionalServices';
 export { learningAndEducation } from './learningAndEducation';
 export { historicalAndCultural } from './historicalAndCultural';
 export { platformsAndDevelopment } from './platformsAndDevelopment';
+
+// New game design category
+export { gameDesignAndDevelopment } from './gameDesignAndDevelopment';

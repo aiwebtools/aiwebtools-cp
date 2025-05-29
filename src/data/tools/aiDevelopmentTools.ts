@@ -1,6 +1,21 @@
-
 import { Tool } from "@/types/tools";
-import { Code, Heart } from "lucide-react";
+import { 
+  Code, 
+  Terminal, 
+  Wrench, 
+  Cpu, 
+  Database,
+  Bot,
+  Zap,
+  Monitor,
+  Server,
+  Globe,
+  Package,
+  Settings,
+  Brain,
+  Lightbulb,
+  Target
+} from "lucide-react";
 
 export const aiDevelopmentTools: Tool[] = [
   {
@@ -28,5 +43,96 @@ export const aiDevelopmentTools: Tool[] = [
     category: "AI Development Tools",
     rating: 4.4,
     totalVotes: 2987
+  },
+  {
+    icon: Bot,
+    title: "King Blueberry GPT",
+    description: "Advanced mathematical and algebraic expression analysis tool with specialized capabilities for complex mathematical problem-solving.",
+    emoji: "👑",
+    color: "from-blue-600 to-purple-600",
+    directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=U8TLg15RTg8",
+    category: "AI Development Tools",
+    tags: ["mathematics", "algebra", "problem solving", "analysis"],
+    rating: 4.5,
+    totalVotes: 2143
+  },
+  {
+    icon: Monitor,
+    title: "LM STUDIO – Run AI Locally & Download & Deploy Countless AI Models",
+    description: "Local AI model deployment platform for running large language models on your own hardware with complete privacy control.",
+    emoji: "💻",
+    color: "from-green-600 to-blue-600",
+    directUrl: "https://lmstudio.ai/",
+    videoUrl: "https://www.youtube.com/watch?v=yBI1nPep72Q",
+    category: "AI Development Tools",
+    tags: ["local AI", "model deployment", "LLM", "privacy"],
+    rating: 4.7,
+    totalVotes: 3456
+  },
+  {
+    icon: Bot,
+    title: "Merlin AI",
+    description: "AI-powered browser extension and platform for enhanced productivity, research, and content creation across web applications.",
+    emoji: "🧙‍♂️",
+    color: "from-purple-600 to-blue-600",
+    directUrl: "https://app.getmerlin.in/plans?ref=mte1mgu4",
+    videoUrl: "https://www.youtube.com/watch?v=rDrG5DqCCgY",
+    category: "AI Development Tools",
+    tags: ["browser extension", "productivity", "research", "content creation"],
+    rating: 4.5,
+    totalVotes: 2654
+  },
+  {
+    icon: Brain,
+    title: "Custom GPT Ideas & Brainstorming Assistant",
+    description: "Generate creative ideas and concepts for custom GPT applications with brainstorming support and implementation guidance.",
+    emoji: "💡",
+    color: "from-yellow-600 to-orange-600",
+    directUrl: "https://customgptmaker.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000002880.jpg/:/cr=t:22.21%25,l:0%25,w:100%25,h:55.58%25/rs=w:600,h:451,cg:true/qt=q:98",
+    category: "AI Development Tools",
+    tags: ["custom GPT", "brainstorming", "AI ideas", "implementation"],
+    rating: 4.6,
+    totalVotes: 2345
+  },
+  {
+    icon: Package,
+    title: "PINOKIO.COMPUTER",
+    description: "AI application launcher and manager for easily installing and running various AI tools and models on your local machine.",
+    emoji: "📦",
+    color: "from-cyan-600 to-blue-600",
+    directUrl: "https://pinokio.computer/",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/blob.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1152,cg:true",
+    category: "AI Development Tools",
+    tags: ["AI launcher", "local deployment", "model management", "applications"],
+    rating: 4.4,
+    totalVotes: 1876
+  },
+  {
+    icon: Zap,
+    title: "MAKE - AUTOMATIONS PLATFORM",
+    description: "Visual automation platform for connecting apps and services with AI-powered workflows and integration capabilities.",
+    emoji: "⚡",
+    color: "from-orange-600 to-red-600",
+    directUrl: "https://www.make.com/en/register?pc=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-striking-advertisement-for-the-ai-tool-make.jpeg/:/cr=t:2.61%25,l:0%25,w:100%25,h:75%25/rs=w:1152,h:576,cg:true",
+    category: "AI Development Tools",
+    tags: ["automation", "workflows", "integration", "no-code"],
+    rating: 4.6,
+    totalVotes: 2987
+  },
+  {
+    icon: Globe,
+    title: "10Web Website Generator",
+    description: "AI-powered website builder with automated design, content generation, and optimization for professional web development.",
+    emoji: "🌐",
+    color: "from-blue-600 to-green-600",
+    directUrl: "https://10web.io/?_from=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-striking-futuristic-advertisement-for-the-a.jpeg/:/cr=t:12.16%25,l:4.06%25,w:94.34%25,h:70.75%25/rs=w:1152,h:576,cg:true,m",
+    category: "AI Development Tools",
+    tags: ["website builder", "AI design", "web development", "automation"],
+    rating: 4.5,
+    totalVotes: 2234
   }
 ];

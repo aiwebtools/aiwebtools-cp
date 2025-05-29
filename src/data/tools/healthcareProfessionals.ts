@@ -1,121 +1,120 @@
 import { Tool } from "@/types/tools";
 import { 
-  Stethoscope, Heart, Brain, Eye, Activity,
-  Pill, Users, Baby, PawPrint, Shield
+  Stethoscope, 
+  Heart, 
+  Activity, 
+  Brain, 
+  Eye, 
+  Pill,
+  Shield,
+  Dna,
+  Plus,
+  Users
 } from "lucide-react";
 
 export const healthcareProfessionals: Tool[] = [
   {
     icon: Stethoscope,
-    title: "Medical Assistant GPT",
-    description: "AI-powered medical information and assistance tool for healthcare professionals and patients.",
-    emoji: "🏥",
-    color: "from-red-400 to-pink-500",
-    directUrl: "https://medical.ai",
-    tags: ["healthcare", "medical", "diagnosis", "treatment"],
-    category: "Healthcare Professionals"
+    title: "Medical Diagnosis GPT",
+    description: "AI-powered diagnostic tool for healthcare professionals, providing insights and support for medical diagnosis.",
+    emoji: "🩺",
+    color: "from-blue-500 to-green-500",
+    directUrl: "https://medicalgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=mPwY2V8OH7o",
+    category: "Healthcare Professionals",
+    tags: ["medical", "diagnosis", "healthcare", "AI"],
+    rating: 4.5,
+    totalVotes: 2345
   },
   {
     icon: Heart,
-    title: "Mental Health Companion",
-    description: "AI-driven support for mental wellness and emotional health.",
+    title: "Mental Health GPT",
+    description: "AI-driven mental health support and resources for individuals seeking guidance and assistance with mental well-being.",
     emoji: "❤️",
-    color: "from-blue-400 to-indigo-500",
-    directUrl: "https://mentalhealth.ai",
-    tags: ["mental health", "wellness", "emotional support", "therapy"],
-    category: "Healthcare Professionals"
-  },
-  {
-    icon: Brain,
-    title: "Neurology Diagnostic Tool",
-    description: "Advanced AI for neurological disorder diagnosis and analysis.",
-    emoji: "🧠",
-    color: "from-green-400 to-teal-500",
-    directUrl: "https://neuro.ai",
-    tags: ["neurology", "diagnosis", "brain disorders", "neural analysis"],
-    category: "Healthcare Professionals"
-  },
-  {
-    icon: Eye,
-    title: "Ophthalmology Assistant",
-    description: "AI-powered vision care and eye health analysis for ophthalmologists.",
-    emoji: "👁️",
-    color: "from-yellow-400 to-orange-500",
-    directUrl: "https://eyehealth.ai",
-    tags: ["ophthalmology", "vision care", "eye health", "eye analysis"],
-    category: "Healthcare Professionals"
+    color: "from-purple-500 to-pink-500",
+    directUrl: "https://mentalhealthgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=wz-v9J6J0pc",
+    category: "Healthcare Professionals",
+    tags: ["mental health", "well-being", "support", "AI"],
+    rating: 4.3,
+    totalVotes: 1876
   },
   {
     icon: Activity,
-    title: "Fitness & Wellness Tracker",
-    description: "AI-driven fitness and wellness tracking for personalized health management.",
-    emoji: "🏃",
-    color: "from-purple-400 to-pink-500",
-    directUrl: "https://fitness.ai",
-    tags: ["fitness", "wellness", "health tracking", "personalized health"],
-    category: "Healthcare Professionals"
+    title: "Fitness Trainer GPT",
+    description: "Personalized fitness training and workout plans powered by AI, tailored to individual fitness goals and preferences.",
+    emoji: "💪",
+    color: "from-red-500 to-orange-500",
+    directUrl: "https://fitnesstrainergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=a-xOyJt-O34",
+    category: "Healthcare Professionals",
+    tags: ["fitness", "training", "workout", "AI"],
+    rating: 4.6,
+    totalVotes: 2123
+  },
+  {
+    icon: Brain,
+    title: "Psychologist GPT",
+    description: "AI-powered psychology assistant providing insights, support, and resources for mental health and psychological well-being.",
+    emoji: "🧠",
+    color: "from-yellow-500 to-green-500",
+    directUrl: "https://psychologistgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=YO2-j76O-MI",
+    category: "Healthcare Professionals",
+    tags: ["psychology", "mental health", "well-being", "AI"],
+    rating: 4.4,
+    totalVotes: 1987
+  },
+  {
+    icon: Eye,
+    title: "Optometrist GPT",
+    description: "AI-driven vision care assistant offering information, resources, and support for eye health and vision-related queries.",
+    emoji: "👁️",
+    color: "from-blue-500 to-purple-500",
+    directUrl: "https://optometristgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=nKz1aeh6jWM",
+    category: "Healthcare Professionals",
+    tags: ["optometry", "vision care", "eye health", "AI"],
+    rating: 4.2,
+    totalVotes: 1654
   },
   {
     icon: Pill,
-    title: "Pharmaceutical Research Aid",
-    description: "AI tool for pharmaceutical research and drug discovery.",
+    title: "Pharmaceutical Assistant GPT",
+    description: "Professional pharmaceutical guidance for medication information, drug interactions, and pharmaceutical research assistance.",
     emoji: "💊",
-    color: "from-blue-400 to-cyan-500",
-    directUrl: "https://pharma.ai",
-    tags: ["pharmaceutical", "drug research", "drug discovery", "medicine"],
-    category: "Healthcare Professionals"
-  },
-  {
-    icon: Users,
-    title: "Patient Care Coordinator",
-    description: "AI-enhanced patient care coordination and management system.",
-    emoji: "🧑‍⚕️",
-    color: "from-green-400 to-blue-500",
-    directUrl: "https://patientcare.ai",
-    tags: ["patient care", "care coordination", "healthcare management", "patient support"],
-    category: "Healthcare Professionals"
-  },
-  {
-    icon: Baby,
-    title: "Pediatric Diagnostic Tool",
-    description: "AI-assisted pediatric diagnosis and child health monitoring.",
-    emoji: "👶",
-    color: "from-indigo-400 to-purple-500",
-    directUrl: "https://pediatrics.ai",
-    tags: ["pediatrics", "child health", "diagnosis", "child monitoring"],
-    category: "Healthcare Professionals"
-  },
-  {
-    icon: PawPrint,
-    title: "Veterinary Diagnostic Assistant",
-    description: "AI-powered diagnostic support for veterinary medicine.",
-    emoji: "🐾",
-    color: "from-yellow-400 to-green-500",
-    directUrl: "https://veterinary.ai",
-    tags: ["veterinary", "animal health", "diagnosis", "pet care"],
-    category: "Healthcare Professionals"
-  },
-  {
-    icon: Shield,
-    title: "Public Health Monitor",
-    description: "AI for monitoring and managing public health crises.",
-    emoji: "🛡️",
-    color: "from-orange-400 to-red-500",
-    directUrl: "https://publichealth.ai",
-    tags: ["public health", "crisis management", "health monitoring", "disease control"],
-    category: "Healthcare Professionals"
-  },
-  {
-    icon: Stethoscope,
-    title: "Personalized DR. GPT (Doctor GPT)",
-    description: "Comprehensive medical consultation assistant providing personalized health guidance, symptom analysis, and general medical information.",
-    emoji: "👨‍⚕️",
-    color: "from-blue-500 to-green-600",
-    directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=EKKIttUG0sI",
-    tags: ["medical consultation", "health guidance", "symptom analysis", "personalized care", "general medicine"],
+    color: "from-blue-600 to-green-600",
+    directUrl: "https://rxai.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-professional-looking-pharmaceutical-assistan.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     category: "Healthcare Professionals",
-    rating: 4.3,
-    totalVotes: 2876
+    tags: ["pharmacy", "medication", "drug interactions", "pharmaceutical"],
+    rating: 4.5,
+    totalVotes: 2234
+  },
+  {
+    icon: Pill,
+    title: "PHARMA RESEARCH PRO",
+    description: "Advanced pharmaceutical research tool for drug development, clinical trials, and medical research analysis.",
+    emoji: "🔬",
+    color: "from-purple-600 to-blue-600",
+    directUrl: "https://rxai.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-professional-pharmaceutical-assis.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    category: "Healthcare Professionals",
+    tags: ["pharmaceutical research", "drug development", "clinical trials", "medical research"],
+    rating: 4.6,
+    totalVotes: 1987
+  },
+  {
+    icon: Dna,
+    title: "Genome GPT",
+    description: "Advanced genomic analysis and DNA research tool for genetic counseling, research, and personalized medicine applications.",
+    emoji: "🧬",
+    color: "from-green-600 to-blue-600",
+    directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    category: "Healthcare Professionals",
+    tags: ["genomics", "DNA", "genetics", "personalized medicine"],
+    rating: 4.7,
+    totalVotes: 2156
   }
 ];
