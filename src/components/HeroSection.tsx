@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Search, Sparkles, Zap, Brain, Rocket, Stars } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -32,15 +31,32 @@ const HeroSection = () => {
   }, []);
 
   const scrollToTools = () => {
-    // Scroll to the actual tools grid, not the inspiration message
-    const toolsSection = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4');
-    if (toolsSection) {
-      toolsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // First try to find the actual tools grid by class name
+    const toolsGrid = document.querySelector('[class*="grid"][class*="grid-cols-1"][class*="md:grid-cols-2"][class*="lg:grid-cols-4"]');
+    
+    if (toolsGrid) {
+      // Scroll to the tools grid with some offset for better visibility
+      const yOffset = -100; // Offset to show some content above
+      const y = toolsGrid.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+      });
     } else {
-      // Fallback to tools-section if the grid is not found
-      const fallbackSection = document.getElementById('tools-section');
-      if (fallbackSection) {
-        fallbackSection.scrollIntoView({ behavior: 'smooth' });
+      // Fallback: scroll to tools-section if grid is not found
+      const toolsSection = document.getElementById('tools-section');
+      if (toolsSection) {
+        toolsSection.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      } else {
+        // Last resort: scroll down by a fixed amount
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: 'smooth'
+        });
       }
     }
   };
