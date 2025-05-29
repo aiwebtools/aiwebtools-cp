@@ -8,7 +8,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) return tools;
   
   const term = searchTerm.toLowerCase().trim();
-  console.log(`Searching for: "${term}"`);
+  console.log(`🔍 Searching for: "${term}" across ${tools.length} tools`);
   
   // Minimum length check to prevent single character searches from triggering keyword expansion
   const isShortSearch = term.length <= 2;
@@ -120,7 +120,8 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     .sort((a, b) => b.score - a.score)
     .map(item => item.tool);
   
-  console.log(`Search results for "${term}": ${results.length} tools found`);
+  console.log(`✅ Search results for "${term}": ${results.length} tools found`);
+  console.log(`📊 Top 5 results:`, results.slice(0, 5).map(t => ({ title: t.title, category: t.category })));
   
   return results;
 };

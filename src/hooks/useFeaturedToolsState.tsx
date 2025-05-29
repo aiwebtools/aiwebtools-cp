@@ -1,6 +1,7 @@
 
 import { useState, useMemo } from "react";
-import { allTools, searchTools } from "@/data/toolsData";
+import { allTools } from "@/data/toolsData";
+import { searchTools } from "@/utils/searchUtils";
 import { getCategoriesWithCounts, getToolsByCategory } from "@/utils/categoryUtils";
 import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
 
@@ -31,21 +32,27 @@ export const useFeaturedToolsState = () => {
   };
 
   const filteredTools = useMemo(() => {
+    console.log(`🔧 Filtering tools - Category: ${selectedCategory}, Search: ${searchTerm}, Total tools: ${allTools.length}`);
+    
     let tools = allTools;
 
     if (selectedCategory) {
       tools = getToolsByCategory(allTools, selectedCategory);
+      console.log(`📂 Filtered by category "${selectedCategory}": ${tools.length} tools`);
     } else if (searchTerm) {
       tools = searchTools(allTools, searchTerm);
+      console.log(`🔍 Filtered by search "${searchTerm}": ${tools.length} tools`);
     }
 
     return tools;
-  }, [allTools, selectedCategory, searchTerm]);
+  }, [selectedCategory, searchTerm]);
 
   const totalToolsCount = filteredTools.length;
   // Use standardized category titles and counts
   const categoriesWithCounts = getStandardizedCategoriesWithCounts();
   const hasMoreTools = displayedCount < filteredTools.length;
+
+  console.log(`📊 Hook state - Total: ${totalToolsCount}, Displayed: ${displayedCount}, Has more: ${hasMoreTools}`);
 
   return {
     selectedCategory,
