@@ -117,19 +117,19 @@ const CategoryPage = () => {
             onScrollToCategories={scrollToCategories}
           />
 
-          <CategorySelector
-            ref={categoryButtonsRef}
-            categoriesWithCounts={categoriesWithCounts}
-            selectedCategory={selectedCategory}
-            onCategoryChange={handleCategoryChange}
-          />
-
           <ToolsDisplay
             ref={toolsGridRef}
             selectedCategory={selectedCategory}
             categoryTools={categoryTools}
             displayedCount={displayedCount}
             hasInfiniteScroll={true}
+          />
+
+          <CategorySelector
+            ref={categoryButtonsRef}
+            categoriesWithCounts={categoriesWithCounts}
+            selectedCategory={selectedCategory}
+            onCategoryChange={handleCategoryChange}
           />
         </div>
         
