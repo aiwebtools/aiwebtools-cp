@@ -1,29 +1,26 @@
 
-import { useMemo } from "react";
-import { Tool } from "@/types/tools";
-import ToolCard from "@/components/tools/ToolCard";
-import { allTools } from "@/data/toolsData";
-import { createFeaturedTools } from "@/utils/featuredTools";
+import FeaturedTools from "@/components/FeaturedTools";
 
-const FeaturedToolsSection = () => {
-  // Generate featured tools from all available tools
-  const featuredTools = useMemo(() => {
-    return createFeaturedTools(allTools);
-  }, []);
+interface FeaturedToolsSectionProps {
+  onToolsLoaded?: (count: number) => void;
+}
 
+const FeaturedToolsSection = ({ onToolsLoaded }: FeaturedToolsSectionProps) => {
   return (
-    <>
-      <div className="text-center mb-12">
-        <h3 className="text-3xl font-bold text-cyan-100 mb-8 cyber-glow">
-          🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">FEATURED AI TOOLS</span>
-        </h3>
+    <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900 relative overflow-hidden">
+      <div className="container mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 cyber-glow">
+            🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">EXPLORE AI TOOLS</span>
+          </h2>
+          <p className="text-xl text-cyan-200 max-w-3xl mx-auto">
+            Discover cutting-edge AI tools that transform how you work, create, and innovate
+          </p>
+        </div>
+        
+        <FeaturedTools onToolsLoaded={onToolsLoaded} />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        {featuredTools.map((tool, index) => (
-          <ToolCard key={`featured-${tool.title}-${index}`} tool={tool} isFeatured={true} />
-        ))}
-      </div>
-    </>
+    </section>
   );
 };
 

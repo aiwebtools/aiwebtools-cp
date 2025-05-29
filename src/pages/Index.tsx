@@ -53,7 +53,7 @@ const Index = () => {
   };
 
   const scrollToLoadMoreTools = () => {
-    // Scroll to the tools section and trigger load more
+    // First scroll to the tools section
     const toolsSection = document.getElementById('tools-section');
     if (toolsSection) {
       toolsSection.scrollIntoView({ 
@@ -61,13 +61,24 @@ const Index = () => {
         block: 'start'
       });
       
-      // Trigger load more after a brief delay
+      // Wait for scroll to complete, then trigger load more
       setTimeout(() => {
+        // Find the load more button in the FeaturedTools component
         const loadMoreButton = document.querySelector('[data-load-more-trigger]') as HTMLButtonElement;
-        if (loadMoreButton) {
+        if (loadMoreButton && !loadMoreButton.disabled) {
+          console.log('🎯 Triggering load more from Show More AI Tools button');
           loadMoreButton.click();
+        } else {
+          console.log('⚠️ Load more button not found or disabled');
+          // Fallback: scroll down a bit more to trigger infinite scroll
+          setTimeout(() => {
+            window.scrollBy({
+              top: 800,
+              behavior: 'smooth'
+            });
+          }, 300);
         }
-      }, 500);
+      }, 1000);
     }
   };
 
@@ -116,7 +127,6 @@ const Index = () => {
               onClick={scrollToLoadMoreTools}
               size="lg"
               className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-12 py-6 rounded-xl text-xl shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
-              data-load-more-trigger
             >
               🚀 SHOW MORE AI TOOLS
             </Button>
