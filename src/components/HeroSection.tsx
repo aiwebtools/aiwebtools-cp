@@ -9,12 +9,12 @@ const HeroSection = () => {
   const [currentWord, setCurrentWord] = useState(0);
   
   const words = [
-    "Scale",
-    "Optimize", 
-    "Streamline",
+    "Transform",
+    "Empower", 
+    "Revolutionize",
     "Accelerate",
     "Enhance",
-    "Grow"
+    "Elevate"
   ];
 
   useEffect(() => {
@@ -51,20 +51,23 @@ const HeroSection = () => {
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Main heading with animated word */}
         <div className="mb-8">
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <span className="text-white mb-4 block">
+              Welcome to AI Web Tools
+            </span>
             <span className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
               {words[currentWord]}
             </span>
             <br />
-            <span className="text-white">
-              Your Business
+            <span className="text-white text-4xl md:text-5xl">
+              Work & Life
             </span>
           </h1>
           
           <div className="flex items-center justify-center space-x-4 mb-6">
             <Sparkles className="w-8 h-8 text-cyan-400 animate-pulse" />
-            <p className="text-xl md:text-2xl text-cyan-100 max-w-3xl leading-relaxed">
-              Discover 1000+ free AI tools that empower everyone to transform their work and life
+            <p className="text-xl md:text-2xl text-cyan-100 max-w-4xl leading-relaxed">
+              Discover vast AI tools that empower everyone to transform their work and life with cutting-edge artificial intelligence
             </p>
             <Stars className="w-8 h-8 text-cyan-400 animate-pulse" />
           </div>
@@ -79,8 +82,8 @@ const HeroSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
           <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
             <Brain className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
-            <h3 className="text-xl font-semibold text-white mb-2">Community-Powered Solutions</h3>
-            <p className="text-cyan-200">Find the perfect AI tool with intelligent recommendations from our open community</p>
+            <h3 className="text-xl font-semibold text-white mb-2">AI-Powered Solutions</h3>
+            <p className="text-cyan-200">Discover intelligent tools that automate, optimize, and enhance every aspect of your workflow</p>
           </div>
           
           <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
@@ -91,8 +94,8 @@ const HeroSection = () => {
           
           <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
             <Rocket className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
-            <h3 className="text-xl font-semibold text-white mb-2">Innovation for All</h3>
-            <p className="text-cyan-200">Democratizing AI innovation to create opportunities for individuals and communities worldwide</p>
+            <h3 className="text-xl font-semibold text-white mb-2">Transform Everything</h3>
+            <p className="text-cyan-200">From creativity to productivity, revolutionize how you work, learn, and create with AI</p>
           </div>
         </div>
 
@@ -103,7 +106,7 @@ const HeroSection = () => {
         >
           <span className="flex items-center space-x-3">
             <Search className="w-6 h-6" />
-            <span>Explore Free AI Tools</span>
+            <span>Explore AI Tools</span>
             <Sparkles className="w-6 h-6 group-hover:animate-spin" />
           </span>
         </button>
@@ -112,19 +115,19 @@ const HeroSection = () => {
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
           <div className="text-center">
             <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">1000+</div>
-            <div className="text-cyan-200 text-sm">Free AI Tools</div>
+            <div className="text-cyan-200 text-sm">AI Tools</div>
           </div>
           <div className="text-center">
             <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">50+</div>
-            <div className="text-cyan-200 text-sm">Industries Served</div>
+            <div className="text-cyan-200 text-sm">Categories</div>
           </div>
           <div className="text-center">
             <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">100%</div>
-            <div className="text-cyan-200 text-sm">Community Driven</div>
+            <div className="text-cyan-200 text-sm">Free Access</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Always</div>
-            <div className="text-cyan-200 text-sm">Free Access</div>
+            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">24/7</div>
+            <div className="text-cyan-200 text-sm">Available</div>
           </div>
         </div>
       </div>
