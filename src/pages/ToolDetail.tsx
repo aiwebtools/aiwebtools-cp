@@ -18,6 +18,7 @@ import SearchBar from "@/components/tools/SearchBar";
 import SEOHead from "@/components/SEOHead";
 import AdvancedSEOHead from "@/components/AdvancedSEOHead";
 import BreadcrumbSEO from "@/components/BreadcrumbSEO";
+import FeaturedTools from "@/components/FeaturedTools";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { searchTools } from "@/utils/searchUtils";
@@ -29,6 +30,8 @@ const ToolDetail = () => {
   const toolIndex = parseInt(toolId || "0");
   const tool = allTools[toolIndex];
   const [searchTerm, setSearchTerm] = useState("");
+  const [showMoreTools, setShowMoreTools] = useState(false);
+  const [toolsLoadedCount, setToolsLoadedCount] = useState(12);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -51,6 +54,21 @@ const ToolDetail = () => {
         navigate(`/tool/${firstResultIndex}`);
       }
     }
+  };
+
+  const handleSeeMoreTools = () => {
+    setShowMoreTools(true);
+    // Scroll to the tools section
+    setTimeout(() => {
+      const toolsSection = document.getElementById('more-tools-section');
+      if (toolsSection) {
+        toolsSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
+  const handleToolsLoaded = (count: number) => {
+    setToolsLoadedCount(count);
   };
 
   if (!tool) {
@@ -98,10 +116,6 @@ const ToolDetail = () => {
     { name: tool.category || "Tools", url: `https://aitools.studio/category/${encodeURIComponent(tool.category || "")}` },
     { name: tool.title, url: `https://aitools.studio/tool/${toolIndex}` }
   ];
-
-  const handleSeeMoreTools = () => {
-    navigate('/#tools-section');
-  };
 
   return (
     <div className="min-h-screen bg-black relative">
@@ -178,19 +192,36 @@ const ToolDetail = () => {
 
             <SimilarTools currentTool={tool} currentToolIndex={toolIndex} />
 
-            {/* See More AI Tools Button */}
-            <div className="text-center mt-16 mb-16 px-4">
-              <Button
-                onClick={handleSeeMoreTools}
-                size="lg"
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
-              >
-                🚀 SEE MORE AI TOOLS
-              </Button>
-              <div className="mt-4 text-cyan-300 text-sm">
-                Explore our complete collection of {allTools.length}+ amazing AI tools
+            {/* Enhanced See More AI Tools Section */}
+            {!showMoreTools ? (
+              <div className="text-center mt-16 mb-16 px-4">
+                <Button
+                  onClick={handleSeeMoreTools}
+                  size="lg"
+                  className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
+                >
+                  🚀 SEE MORE AI TOOLS
+                </Button>
+                <div className="mt-4 text-cyan-300 text-sm">
+                  Explore our complete collection of {allTools.length}+ amazing AI tools
+                </div>
               </div>
-            </div>
+            ) : (
+              <div id="more-tools-section" className="mt-16">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-4 cyber-glow">
+                    🚀 Explore More AI Tools
+                  </h3>
+                  <p className="text-gray-300">
+                    Continuously discover new AI tools from our collection
+                  </p>
+                </div>
+                <FeaturedTools 
+                  showLoadMoreButton={true} 
+                  onToolsLoaded={handleToolsLoaded}
+                />
+              </div>
+            )}
           </div>
         </div>
 

@@ -10,9 +10,10 @@ import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 
 interface FeaturedToolsProps {
   showLoadMoreButton?: boolean;
+  onToolsLoaded?: (count: number) => void;
 }
 
-const FeaturedTools = ({ showLoadMoreButton = false }: FeaturedToolsProps) => {
+const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedToolsProps) => {
   const {
     selectedCategory,
     searchTerm,
@@ -36,10 +37,15 @@ const FeaturedTools = ({ showLoadMoreButton = false }: FeaturedToolsProps) => {
     
     setIsLoading(true);
     setTimeout(() => {
-      setDisplayedCount((prevCount) => prevCount + 8);
+      const newCount = displayedCount + 8;
+      setDisplayedCount(newCount);
       setIsLoading(false);
+      // Notify parent component about tools loaded
+      if (onToolsLoaded) {
+        onToolsLoaded(newCount);
+      }
     }, 100);
-  }, [isLoading, setDisplayedCount, setIsLoading]);
+  }, [isLoading, displayedCount, setDisplayedCount, setIsLoading, onToolsLoaded]);
 
   const handleLoadMoreButton = () => {
     handleLoadMore();
@@ -83,7 +89,7 @@ const FeaturedTools = ({ showLoadMoreButton = false }: FeaturedToolsProps) => {
         onCategoryChange={handleCategoryChange}
       />
 
-      {/* SEE MORE AI TOOLS Button - only show on main page when there are more tools */}
+      {/* SEE MORE AI TOOLS Button - enhanced for continuous loading */}
       {showLoadMoreButton && !selectedCategory && !searchTerm && hasMoreTools && (
         <div className="text-center mt-12 mb-16 px-4">
           <Button
@@ -103,6 +109,19 @@ const FeaturedTools = ({ showLoadMoreButton = false }: FeaturedToolsProps) => {
           </Button>
           <div className="mt-4 text-cyan-300 text-sm">
             Showing {displayedCount} of {totalToolsCount} amazing AI tools
+          </div>
+        </div>
+      )}
+
+      {/* Show completion message when all tools are loaded */}
+      {showLoadMoreButton && !hasMoreTools && !isLoading && totalToolsCount > 20 && (
+        <div className="text-center mt-12 mb-16 px-4 text-cyan-300">
+          <div className="text-2xl mb-2">🎉</div>
+          <div className="text-lg font-semibold mb-2">
+            You've explored all {totalToolsCount} amazing AI tools!
+          </div>
+          <div className="text-sm opacity-80">
+            Try searching or filtering by category to discover specific tools.
           </div>
         </div>
       )}
