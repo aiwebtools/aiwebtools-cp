@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Bot, 
@@ -19,7 +20,10 @@ import {
   Eye,
   Rocket,
   Hash,
-  Cloud
+  Cloud,
+  List,
+  FlaskConical,
+  Atom
 } from "lucide-react";
 
 export const aiToolsAndUtilities: Tool[] = [

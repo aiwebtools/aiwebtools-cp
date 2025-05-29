@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Code, 
@@ -18,7 +19,8 @@ import {
   Globe,
   Rocket,
   Shield,
-  Target
+  Target,
+  Users
 } from "lucide-react";
 
 export const aiDevelopmentTools: Tool[] = [
