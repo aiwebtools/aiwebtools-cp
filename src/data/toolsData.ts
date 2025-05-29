@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import {
   businessTools,
@@ -47,7 +48,13 @@ import {
   developerAndCodingTools,
   contentDetectionTools,
   contentCreationAndWritingTools,
-  documentAndResearchTools
+  documentAndResearchTools,
+  designAndGraphicsTools,
+  productivityAndAutomationTools,
+  writingAndContentEnhancement,
+  resumeAndCareerTools,
+  ecommerceAndMarketingTools,
+  videoEditingAndContentTools
 } from './tools';
 
 import { searchTools } from '@/utils/searchUtils';
@@ -56,7 +63,7 @@ import { getCategoriesWithCounts, getToolsByCategory } from '@/utils/categoryUti
 
 // Combine all tools with YOUR GPTS AND ORIGINAL TOOLS PRIORITIZED AT THE TOP
 export const allTools: Tool[] = [
-  // YOUR PRIORITY GPTS AND TOOLS COME FIRST
+  // YOUR PRIORITY GPTS AND TOOLS COME FIRST - ALWAYS MOST POPULAR
   ...spiritualityTools,
   ...rawUncutTools,
   ...learningAndEducation,
@@ -88,9 +95,12 @@ export const allTools: Tool[] = [
   
   // THEN CONTENT AND CREATIVE TOOLS
   ...writingAndContent,
+  ...writingAndContentEnhancement,
   ...imageAndDesign,
+  ...designAndGraphicsTools,
   ...videoTools,
   ...videoAndContentTools,
+  ...videoEditingAndContentTools,
   ...audioMusicTools,
   ...contentCreationAndWritingTools,
   ...contentDetectionTools,
@@ -101,8 +111,11 @@ export const allTools: Tool[] = [
   ...businessTools,
   ...businessAndTeamTools,
   ...searchAndProductivityTools,
+  ...productivityAndAutomationTools,
+  ...ecommerceAndMarketingTools,
   ...platformsAndDevelopment,
   ...professionalServices,
+  ...resumeAndCareerTools,
   
   // THEN SPECIALIZED CATEGORIES
   ...specializedAndNiche,
