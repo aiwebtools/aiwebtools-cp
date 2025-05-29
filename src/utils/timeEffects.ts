@@ -1,4 +1,5 @@
 
+
 export const createTimePortalEffect = (destinationUrl: string) => {
   console.log('🌀 Creating time portal effect for URL:', destinationUrl);
   
@@ -238,7 +239,7 @@ export const createTimePortalEffect = (destinationUrl: string) => {
   createFlash();
   createPortalSounds();
 
-  // Cleanup and open in new tab - reduced from 2800ms to 1500ms
+  // Cleanup and open in new tab - changed from 1500ms to 2500ms
   setTimeout(() => {
     console.log('🧹 Cleaning up effects and opening in new tab:', destinationUrl);
     document.body.style.filter = '';
@@ -251,5 +252,6 @@ export const createTimePortalEffect = (destinationUrl: string) => {
     } else {
       console.log('No destination URL provided');
     }
-  }, 1500);
+  }, 2500);
 };
+
