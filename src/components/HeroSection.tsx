@@ -40,7 +40,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden pt-24 md:pt-28">
+    <section className="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden pt-32 md:pt-36">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -49,24 +49,31 @@ const HeroSection = () => {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Main heading with animated word */}
+        {/* Main heading with improved layout */}
         <div className="mb-8">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="text-white mb-4 block">
-              Welcome to AI Web Tools
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+            {/* First line */}
+            <span className="text-white block mb-4">
+              WELCOME TO THE WORLD OF
             </span>
-            <span className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
-              {words[currentWord]}
+            
+            {/* Second line - AI WEB TOOLS on its own line */}
+            <span className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow block mb-6">
+              AI WEB TOOLS
             </span>
-            <br />
-            <span className="text-white text-4xl md:text-5xl">
-              Work & Life
+            
+            {/* Third line with animated word */}
+            <span className="text-3xl md:text-4xl lg:text-5xl text-white block">
+              <span className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
+                {words[currentWord]}
+              </span>
+              <span className="ml-4">Work & Life</span>
             </span>
           </h1>
           
-          <div className="flex items-center justify-center space-x-4 mb-6">
+          <div className="flex items-center justify-center space-x-4 mb-8">
             <Sparkles className="w-8 h-8 text-cyan-400 animate-pulse" />
-            <p className="text-xl md:text-2xl text-cyan-100 max-w-4xl leading-relaxed">
+            <p className="text-lg md:text-xl text-cyan-100 max-w-4xl leading-relaxed">
               Discover vast AI tools that empower everyone to transform their work and life with cutting-edge artificial intelligence
             </p>
             <Stars className="w-8 h-8 text-cyan-400 animate-pulse" />
@@ -111,14 +118,14 @@ const HeroSection = () => {
           </span>
         </button>
 
-        {/* Stats */}
+        {/* Stats - updated to reflect new tool count */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">1000+</div>
+            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">1100+</div>
             <div className="text-cyan-200 text-sm">AI Tools</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">50+</div>
+            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">60+</div>
             <div className="text-cyan-200 text-sm">Categories</div>
           </div>
           <div className="text-center">

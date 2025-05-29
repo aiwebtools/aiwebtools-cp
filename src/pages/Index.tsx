@@ -17,7 +17,7 @@ const Index = () => {
 
   useEffect(() => {
     // Run tool verification on app load to ensure everything is properly indexed
-    console.log('🔍 Verifying all 700+ tools are properly indexed and searchable...');
+    console.log('🔍 Verifying all 1100+ tools are properly indexed and searchable...');
     const verificationResults = runFullToolVerification(searchTools);
     
     // Log critical information about tool accessibility
@@ -44,8 +44,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
       <SEOHead
-        title="AI Tools Directory - 700+ Best AI Tools 2025 | Free AI Web Tools"
-        description={`Discover 700+ cutting-edge AI tools for business, creativity, and productivity. Complete directory of AI assistants, image generators, writing tools, and more. Find the perfect AI solution for your needs.`}
+        title="AI Tools Directory - 1100+ Best AI Tools 2025 | Free AI Web Tools"
+        description={`Discover 1100+ cutting-edge AI tools for business, creativity, and productivity. Complete directory of AI assistants, image generators, writing tools, social media tools, and more. Find the perfect AI solution for your needs.`}
         keywords={[
           "ai tools directory",
           "artificial intelligence tools",
@@ -60,7 +60,11 @@ const Index = () => {
           "machine learning tools",
           "ai automation tools",
           "best ai tools",
-          "ai software directory"
+          "ai software directory",
+          "social media ai tools",
+          "communication tools",
+          "collaboration tools",
+          "marketing ai tools"
         ]}
         includeFAQ={true}
         includeLocalBusiness={true}

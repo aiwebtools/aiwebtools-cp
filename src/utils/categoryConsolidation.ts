@@ -82,7 +82,7 @@ const categoryMapping: Record<string, string> = {
   "Workflow Tools": "Automation & Workflows",
   "Process Automation": "Automation & Workflows",
   
-  // New category consolidations
+  // New category consolidations - ensuring all new tools are properly mapped
   "Social Media & Marketing": "Marketing & Social Media",
   "Marketing & Analytics": "Marketing & Social Media",
   "Marketing Tools": "Marketing & Social Media",

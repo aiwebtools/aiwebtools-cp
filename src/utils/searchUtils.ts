@@ -13,7 +13,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   // Minimum length check to prevent single character searches from triggering keyword expansion
   const isShortSearch = term.length <= 2;
   
-  // Enhanced category keyword mapping for consolidated categories
+  // Enhanced category keyword mapping for consolidated categories - including all new categories
   const categoryKeywords: Record<string, string[]> = {
     "Video & Content Creation": ["video", "content", "editing", "movie", "film", "cinema", "youtube", "streaming", "production", "animation", "multimedia"],
     "Image & Design Tools": ["image", "design", "art", "photo", "picture", "graphic", "visual", "illustration", "logo", "color", "cover", "graph", "chart", "infographic"],
@@ -30,7 +30,16 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     "Game Design & Development": ["game", "gaming", "design", "development", "player", "interactive", "entertainment"],
     "Specialized Tools": ["specialized", "niche", "specific", "technical", "utility", "custom", "expert"],
     "Creative Suites": ["creative", "suite", "design", "multimedia", "professional", "comprehensive", "all-in-one"],
-    "Advanced AI Tools": ["advanced", "ai", "sophisticated", "enterprise", "professional", "cutting-edge"]
+    "Advanced AI Tools": ["advanced", "ai", "sophisticated", "enterprise", "professional", "cutting-edge"],
+    
+    // New categories from recent additions
+    "Marketing & Social Media": ["marketing", "social", "media", "advertising", "promotion", "brand", "instagram", "facebook", "twitter", "linkedin", "tiktok", "social media", "campaigns"],
+    "Communication & Collaboration": ["communication", "collaboration", "team", "messaging", "chat", "video call", "meeting", "whatsapp", "telegram", "skype", "discord"],
+    "Utilities & Productivity": ["utilities", "productivity", "tools", "converter", "compression", "pdf", "file", "document", "optimization", "archive"],
+    "Creative & Design": ["creative", "design", "canva", "figma", "photoshop", "illustration", "graphics", "visual", "artwork", "templates"],
+    "Cloud Services": ["cloud", "storage", "hosting", "server", "infrastructure", "aws", "google cloud", "dropbox", "drive", "backup"],
+    "Information & Research": ["information", "research", "news", "wikipedia", "knowledge", "data", "facts", "study", "academic"],
+    "Health & Wellness": ["health", "wellness", "fitness", "medical", "nutrition", "exercise", "mental health", "meditation", "tracking"]
   };
   
   // Helper function to check if a tool matches the search term with scoring
@@ -94,13 +103,20 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       score += 50;
     }
     
-    // Check against category-specific keywords
+    // Check against category-specific keywords for all categories including new ones
     if (tool.category) {
       const categoryKeys = categoryKeywords[tool.category] || [];
       const categoryKeywordMatches = categoryKeys.filter(keyword => 
         keyword.includes(searchTerm) || searchTerm.includes(keyword)
       ).length;
       score += categoryKeywordMatches * 15;
+      
+      // Special handling for common search terms
+      if (searchTerm.includes('social') && tool.category.includes('Social Media')) score += 40;
+      if (searchTerm.includes('video') && tool.category.includes('Video')) score += 40;
+      if (searchTerm.includes('design') && tool.category.includes('Design')) score += 40;
+      if (searchTerm.includes('communication') && tool.category.includes('Communication')) score += 40;
+      if (searchTerm.includes('productivity') && tool.category.includes('Productivity')) score += 40;
     }
     
     // Tag matches
@@ -140,6 +156,12 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     if ((searchTerm.includes('cover') || searchTerm.includes('graph')) && 
         (lowerTitle.includes('design') || lowerCategory.includes('design'))) {
       score += 40;
+    }
+    
+    // Boost for popular tool names
+    const popularTools = ['canva', 'figma', 'notion', 'slack', 'discord', 'whatsapp', 'spotify', 'youtube', 'github'];
+    if (popularTools.some(popular => lowerTitle.includes(popular) && searchTerm.includes(popular))) {
+      score += 60;
     }
     
     return score;
