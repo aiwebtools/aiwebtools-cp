@@ -107,6 +107,9 @@ import { aiLegalTools } from './tools/aiLegalTools';
 // Import mind-blowing AI tools for everyday users
 import { mindBlowingAITools } from './tools/mindBlowingAITools';
 
+// Import new design assistant tools category
+import { designAssistantTools } from './tools/designAssistantTools';
+
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
@@ -211,6 +214,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiLegalTools,
     
     // NEW: 50 mind-blowing AI tools for everyday users
-    ...mindBlowingAITools
+    ...mindBlowingAITools,
+    
+    // NEW: Design assistant tools
+    ...designAssistantTools
   ];
 };

@@ -99,3 +99,6 @@ export { aiLegalTools } from './aiLegalTools';
 
 // Export mind-blowing AI tools for everyday users
 export { mindBlowingAITools } from './mindBlowingAITools';
+
+// Export new design assistant tools category
+export { designAssistantTools } from './designAssistantTools';
