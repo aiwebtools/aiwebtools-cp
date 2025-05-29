@@ -13,12 +13,17 @@ const GlobalSearchBar = () => {
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
 
   const handleSearchChange = (value: string) => {
+    console.log("Header search - handleSearchChange called with:", value);
     setSearchTerm(value);
     if (value.trim()) {
+      console.log("Header search - searching tools with term:", value);
       const results = searchTools(allTools, value).slice(0, 8); // Limit to 8 results
+      console.log("Header search - search results:", results);
       setSearchResults(results);
       setIsOpen(true);
+      console.log("Header search - isOpen set to true");
     } else {
+      console.log("Header search - clearing results");
       setSearchResults([]);
       setIsOpen(false);
     }
@@ -41,6 +46,7 @@ const GlobalSearchBar = () => {
   };
 
   const handleInputClick = () => {
+    console.log("Header search - input clicked, window width:", window.innerWidth);
     // Only open mobile overlay on small screens
     if (window.innerWidth < 768) {
       setIsMobileSearchOpen(true);
@@ -53,6 +59,8 @@ const GlobalSearchBar = () => {
     setSearchResults([]);
     setIsOpen(false);
   };
+
+  console.log("Header search - rendering, isOpen:", isOpen, "searchResults.length:", searchResults.length, "isMobileSearchOpen:", isMobileSearchOpen);
 
   return (
     <div className="relative w-full max-w-lg">
