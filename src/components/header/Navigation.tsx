@@ -45,15 +45,7 @@ const Navigation = () => {
   };
 
   const viewAllTools = () => {
-    const toolsSection = document.getElementById('tools-section');
-    if (toolsSection) {
-      toolsSection.scrollIntoView({ behavior: 'smooth' });
-      
-      setTimeout(() => {
-        const event = new CustomEvent('selectCategory', { detail: 'All Categories' });
-        window.dispatchEvent(event);
-      }, 800);
-    }
+    navigate('/category/All%20Categories');
   };
 
   return (

@@ -1,6 +1,6 @@
 
 import { Menu, Phone } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -13,6 +13,7 @@ import { allTools } from "@/data/toolsData";
 import { getCategoriesWithCounts } from "@/utils/categoryUtils";
 
 const TabletMenu = () => {
+  const navigate = useNavigate();
   const categoriesWithCounts = getCategoriesWithCounts(allTools);
 
   const scrollToCategory = (category: string) => {
@@ -28,15 +29,7 @@ const TabletMenu = () => {
   };
 
   const viewAllTools = () => {
-    const toolsSection = document.getElementById('tools-section');
-    if (toolsSection) {
-      toolsSection.scrollIntoView({ behavior: 'smooth' });
-      
-      setTimeout(() => {
-        const event = new CustomEvent('selectCategory', { detail: 'All Categories' });
-        window.dispatchEvent(event);
-      }, 800);
-    }
+    navigate('/category/All%20Categories');
   };
 
   return (
