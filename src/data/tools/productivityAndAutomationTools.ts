@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Bot, 
@@ -398,5 +397,125 @@ export const productivityAndAutomationTools: Tool[] = [
     category: "Productivity & Automation Tools",
     rating: 4.2,
     totalVotes: 2567
+  },
+  {
+    icon: Users,
+    title: "HypeFury",
+    description: "Your personal assistant for growing and monetizing your Twitter audience. Combines the best techniques used by Twitter OGs to help you seamlessly create new content, expand your follower base, and boost product sales.",
+    emoji: "🐦",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://hypefury.com/?via=aiwebtools",
+    tags: ["Twitter growth", "content creation", "email subscribers", "auto-retweets", "Instagram sync", "free trial"],
+    category: "Productivity & Automation Tools",
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: FileText,
+    title: "Guidde",
+    description: "Ultimate generative AI platform for businesses, revolutionizing the way teams create video documentation by making it 11 times faster. Powered by GPT technology with over 100 different voices and languages.",
+    emoji: "📖",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://www.guidde.com/?ref=njningu",
+    tags: ["11x faster", "GPT technology", "100+ voices", "browser extension", "video documentation", "customer satisfaction"],
+    category: "Productivity & Automation Tools",
+    rating: 4.7,
+    totalVotes: 5234
+  },
+  {
+    icon: Wand2,
+    title: "Tango",
+    description: "Game-changing tool that enables businesses to streamline the process of creating how-to guides and interactive walkthroughs for software and processes. Automatically documents any process.",
+    emoji: "🔄",
+    color: "from-orange-500 to-green-600",
+    directUrl: "https://www.tango.us/",
+    tags: ["how-to guides", "interactive walkthroughs", "automatic documentation", "step-by-step", "analytics", "free to use"],
+    category: "Productivity & Automation Tools",
+    rating: 4.6,
+    totalVotes: 4567
+  },
+  {
+    icon: Bot,
+    title: "Botsonic",
+    description: "User-friendly no-code AI chatbot builder designed to empower businesses by centralizing their data on their websites effortlessly. Create custom ChatGPT chatbots trained on your own data in minutes.",
+    emoji: "🤖",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://writesonic.com/botsonic?via=aiwebtools",
+    tags: ["no-code chatbot", "500,000+ teams", "15,000+ ratings", "GPT-4 powered", "24x7 support", "multilingual"],
+    category: "Productivity & Automation Tools",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Users,
+    title: "Expandi",
+    description: "Ultimate LinkedIn automation tool offering comprehensive set of features to revolutionize your outreach efforts. Seamless integration of LinkedIn and Email outreach with personalized touchpoints through Images and GIFs.",
+    emoji: "💼",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://expandi.io/?gr_pk=PRWR&gr_uid=5q8A",
+    tags: ["LinkedIn automation", "12,500+ users", "Smart Sequences", "Expandi Academy", "7-day trial", "lead generation"],
+    category: "Productivity & Automation Tools",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: Code,
+    title: "The Website Copier and Scraper",
+    description: "Powerful online tool that enables users to replicate any website free of charge and then download it. Over 571,921 websites copied to date with seamless functionality for sites up to 50 pages.",
+    emoji: "🖥️",
+    color: "from-gray-500 to-blue-600",
+    directUrl: "https://www.toolsbug.com/website-copier-online.php",
+    tags: ["website replication", "571,921+ copied", "free tool", "50 pages limit", "archive websites", "structure analysis"],
+    category: "Productivity & Automation Tools",
+    rating: 4.2,
+    totalVotes: 2567
+  },
+  {
+    icon: Search,
+    title: "Browse AI",
+    description: "Versatile web scraping and data extraction platform designed to simplify the process of gathering data from websites, all without the need for coding. Train a web scraping robot in just two minutes.",
+    emoji: "🔍",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://partners.browse.ai/Aiwebtools",
+    tags: ["web scraping", "2-minute setup", "7,000+ integrations", "2.3B rows extracted", "19M hours saved", "no coding"],
+    category: "Productivity & Automation Tools",
+    rating: 4.6,
+    totalVotes: 4234
+  },
+  {
+    icon: Globe,
+    title: "Webscrape AI",
+    description: "Powerful and user-friendly tool designed for effortless web data collection, eliminating the need for manual scraping and coding skills. Advanced AI scraper handles precise data collection through sophisticated algorithms.",
+    emoji: "🌐",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://webscrapeai.com/?via=fassm0gd3k5m7klwfyva",
+    tags: ["AI scraper", "no coding skills", "precise data", "customization options", "cost-effective", "lightning-fast"],
+    category: "Productivity & Automation Tools",
+    rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: Users,
+    title: "Superflow",
+    description: "Web-based tool that facilitates website feedback and collaboration for design and software teams. Comment and collaborate directly on websites, making it easier to iterate and ship websites more efficiently.",
+    emoji: "💬",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://www.usesuperflow.com/",
+    tags: ["website feedback", "design collaboration", "area commenting", "task assignments", "mobile optimized", "team management"],
+    category: "Productivity & Automation Tools",
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: Search,
+    title: "SiteChecker",
+    description: "All-in-one solution for optimizing and monitoring website performance. Comprehensive SEO checker and audit tool provides invaluable insights with website crawling, rank tracking, and backlink monitoring.",
+    emoji: "🔍",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://shareasale.com/r.cfm?b=1501623&u=3604681&m=95321&urllink=&afftrack=",
+    tags: ["SEO checker", "website crawling", "rank tracking", "backlink monitoring", "24/7 monitoring", "global brands"],
+    category: "Productivity & Automation Tools",
+    rating: 4.5,
+    totalVotes: 3789
   }
 ];

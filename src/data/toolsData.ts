@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import {
   businessTools,
@@ -59,7 +58,9 @@ import {
   imageEditingTools,
   specializedImageTools,
   backgroundAndObjectTools,
-  audioAndVoiceTools
+  audioAndVoiceTools,
+  financialAndTradingTools,
+  specializedNicheTools
 } from './tools';
 
 import { searchTools } from '@/utils/searchUtils';
@@ -137,7 +138,11 @@ export const allTools: Tool[] = [
   ...healthcareProfessionals,
   ...personalServices,
   ...specializedPolicyTools,
-  ...artAndCollectibles
+  ...artAndCollectibles,
+  
+  // NEW CATEGORIES
+  ...financialAndTradingTools,
+  ...specializedNicheTools
 ];
 
 // Create featured tools using the utility function

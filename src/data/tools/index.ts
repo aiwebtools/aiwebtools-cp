@@ -62,3 +62,7 @@ export { backgroundAndObjectTools } from './backgroundAndObjectTools';
 
 // Export the new audio and voice tools
 export { audioAndVoiceTools } from './audioAndVoiceTools';
+
+// Export the new categories
+export { financialAndTradingTools } from './financialAndTradingTools';
+export { specializedNicheTools } from './specializedNicheTools';

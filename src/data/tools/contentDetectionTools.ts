@@ -1,13 +1,24 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Shield, 
   Search, 
+  Shield, 
+  FileText, 
   Eye, 
   CheckCircle, 
   AlertTriangle,
-  FileText,
-  Chrome
+  Zap,
+  Target,
+  Globe,
+  Bot,
+  Edit3,
+  Wand2,
+  Star,
+  BarChart,
+  Settings,
+  Code,
+  Users,
+  Brain,
+  Sparkles
 } from "lucide-react";
 
 export const contentDetectionTools: Tool[] = [
@@ -58,5 +69,41 @@ export const contentDetectionTools: Tool[] = [
     category: "Content Detection Tools",
     rating: 4.2,
     totalVotes: 2876
+  },
+  {
+    icon: Search,
+    title: "Originality AI",
+    description: "Cutting-edge content marketing and SEO tool that empowers professionals to ensure the authenticity and quality of their content. With unparalleled accuracy in detecting AI-generated content, including popular language models like Chat GPT and GPT-4.",
+    emoji: "🔍",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://originality.ai?lmref=S_Cj-w",
+    tags: ["AI detection", "plagiarism checker", "GPT-4 detection", "content authenticity", "SEO tool", "bulk site scans"],
+    category: "Content Detection Tools",
+    rating: 4.7,
+    totalVotes: 5234
+  },
+  {
+    icon: Edit3,
+    title: "CopyGenius",
+    description: "Innovative AI-powered writing tool designed to effortlessly conquer writer's block and boost content creation productivity. Genius Editor feature analyzes individual writing styles and tone to auto-generate the next sentence or paragraph seamlessly.",
+    emoji: "✍️",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://copygenius.io/?ref=aiwebtools",
+    tags: ["AI writing", "writer's block", "content creation", "Genius Editor", "writing styles", "productivity"],
+    category: "Content Detection Tools",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: FileText,
+    title: "InkForAll",
+    description: "Revolutionary AI-powered content creation and optimization platform that empowers users to produce high-quality, SEO-optimized content at unprecedented speed. Real-time audience research enhances conversion copywriting.",
+    emoji: "📝",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://inkforall.com/?fpr=aiwebtools",
+    tags: ["SEO optimization", "AI keyword research", "content optimization", "audience research", "conversion copywriting", "brand protection"],
+    category: "Content Detection Tools",
+    rating: 4.6,
+    totalVotes: 4234
   }
 ];
