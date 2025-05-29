@@ -1,3 +1,4 @@
+
 // Re-export all tool categories
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
@@ -49,3 +50,9 @@ export { openSourceAIModels } from './openSourceAIModels';
 export { timeAndHistory } from './timeAndHistory';
 export { creativeSuites } from './creativeSuites';
 export { advancedAITools } from './advancedAITools';
+
+// Additional specialized tools categories
+export { professionalServices } from './professionalServices';
+export { learningAndEducation } from './learningAndEducation';
+export { historicalAndCultural } from './historicalAndCultural';
+export { platformsAndDevelopment } from './platformsAndDevelopment';

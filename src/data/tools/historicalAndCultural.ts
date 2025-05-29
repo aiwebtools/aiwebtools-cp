@@ -1,0 +1,162 @@
+
+import { Tool } from "@/types/tools";
+import { 
+  Users, 
+  Crown, 
+  FlaskConical, 
+  Lightbulb, 
+  Shovel, 
+  Theater, 
+  Heart, 
+  BookOpen, 
+  Scroll,
+  Star,
+  User,
+  History
+} from "lucide-react";
+
+export const historicalAndCultural: Tool[] = [
+  {
+    icon: Star,
+    title: "Oraculum – The Revealer of Hidden \"Truths\"",
+    description: "Mystical oracle tool for exploring hidden knowledge, ancient wisdom, and esoteric insights across cultures and traditions.",
+    emoji: "🔮",
+    color: "from-purple-600 to-indigo-700",
+    directUrl: "https://oraculum.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=dUNrGNj8rhM",
+    category: "Mystical & Esoteric",
+    tags: ["oracle", "mystical", "hidden knowledge", "wisdom"],
+    rating: 4.3,
+    totalVotes: 1876
+  },
+  {
+    icon: Lightbulb,
+    title: "Nikola Tesla GPT",
+    description: "Explore the genius of Nikola Tesla with insights into his inventions, scientific theories, and revolutionary ideas about electricity and innovation.",
+    emoji: "⚡",
+    color: "from-blue-600 to-purple-700",
+    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=DR_3MvP7Wws",
+    category: "Historical Figures",
+    tags: ["Tesla", "invention", "electricity", "innovation"],
+    rating: 4.8,
+    totalVotes: 4567
+  },
+  {
+    icon: User,
+    title: "Albert Einstein GPT",
+    description: "Engage with the mind of Albert Einstein to explore physics, relativity, scientific philosophy, and revolutionary thinking.",
+    emoji: "🧮",
+    color: "from-gray-600 to-blue-700",
+    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=kfGyOfjBI0s",
+    category: "Historical Figures",
+    tags: ["Einstein", "physics", "relativity", "science"],
+    rating: 4.9,
+    totalVotes: 5234
+  },
+  {
+    icon: FlaskConical,
+    title: "Alchemist Scientist GPT",
+    description: "Explore the mystical world of alchemy combined with modern scientific principles, bridging ancient wisdom and contemporary knowledge.",
+    emoji: "⚗️",
+    color: "from-yellow-600 to-orange-700",
+    directUrl: "https://alchemicalscientistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-the-ai-tool-_C4irn.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    category: "Science & Mysticism",
+    tags: ["alchemy", "science", "chemistry", "mystical"],
+    rating: 4.4,
+    totalVotes: 1987
+  },
+  {
+    icon: Shovel,
+    title: "Indiana Archeologist GPT",
+    description: "Archaeological adventure tool for exploring ancient civilizations, artifact analysis, and historical excavation insights.",
+    emoji: "🏛️",
+    color: "from-brown-600 to-yellow-700",
+    directUrl: "https://indianaarchaeologygpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=uf2i_DdaJ7M",
+    category: "Archaeology",
+    tags: ["archaeology", "ancient civilizations", "artifacts", "history"],
+    rating: 4.5,
+    totalVotes: 2345
+  },
+  {
+    icon: BookOpen,
+    title: "BOOK WRITER GPT",
+    description: "Comprehensive book writing assistant for authors, covering plot development, character creation, writing techniques, and publishing guidance.",
+    emoji: "📚",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
+    category: "Writing & Publishing",
+    tags: ["book writing", "authors", "publishing", "storytelling"],
+    rating: 4.7,
+    totalVotes: 3456
+  },
+  {
+    icon: Crown,
+    title: "Titanic Resurrections GPT",
+    description: "Explore the history of the Titanic, passenger stories, historical reconstruction, and maritime heritage preservation.",
+    emoji: "🚢",
+    color: "from-blue-700 to-gray-800",
+    directUrl: "https://titanicresurrectionsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=XlWVaz5bw08",
+    category: "Maritime History",
+    tags: ["Titanic", "maritime history", "historical reconstruction", "heritage"],
+    rating: 4.3,
+    totalVotes: 1876
+  },
+  {
+    icon: Scroll,
+    title: "Historical Headlines GPT",
+    description: "Travel through time with historical headlines, explore past events, and understand how news shaped different eras.",
+    emoji: "📰",
+    color: "from-gray-600 to-blue-600",
+    directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-historical-headline_1Ll1g.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    category: "Historical News",
+    tags: ["historical headlines", "news history", "time travel", "journalism"],
+    rating: 4.4,
+    totalVotes: 2134
+  },
+  {
+    icon: User,
+    title: "ALAN WATTS GPT",
+    description: "Explore Eastern philosophy, mindfulness, and spiritual wisdom through the teachings and insights of philosopher Alan Watts.",
+    emoji: "🧘",
+    color: "from-purple-600 to-indigo-700",
+    directUrl: "https://alanwattsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=zdKfwsQwOLE",
+    category: "Philosophy & Spirituality",
+    tags: ["philosophy", "spirituality", "mindfulness", "Eastern philosophy"],
+    rating: 4.6,
+    totalVotes: 2987
+  },
+  {
+    icon: Theater,
+    title: "🎭 Playwriter GPT",
+    description: "Professional playwriting tool for creating theatrical scripts, developing characters, and structuring dramatic works for stage performance.",
+    emoji: "🎭",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://playwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=KKldzg40wEI&list=TLGGGcedR_qZHHYyODA1MjAyNQ",
+    category: "Theatrical Writing",
+    tags: ["playwriting", "theater", "scripts", "drama"],
+    rating: 4.5,
+    totalVotes: 2456
+  },
+  {
+    icon: FlaskConical,
+    title: "Historical Apothecary GPT",
+    description: "Explore historical medicine, traditional remedies, herbal knowledge, and the evolution of pharmaceutical practices through the ages.",
+    emoji: "🏺",
+    color: "from-green-600 to-brown-700",
+    directUrl: "https://apothecarygpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-the-ai-tool-_kLdMI.png/:/cr=t:0%25,l:7.93%25,w:84.15%25,h:100%25/rs=w:1200,cg:true",
+    category: "Historical Medicine",
+    tags: ["historical medicine", "apothecary", "herbal remedies", "traditional healing"],
+    rating: 4.3,
+    totalVotes: 1765
+  }
+];
