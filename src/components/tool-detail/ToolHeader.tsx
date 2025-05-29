@@ -23,8 +23,8 @@ const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeader
     console.log('USE IT NOW button clicked in header for:', tool.title);
     console.log('Tool directUrl:', tool.directUrl);
     
-    // Always trigger the effect, even if no directUrl
-    createTimePortalEffect(tool.directUrl || '');
+    // Pass the tool title to the time portal effect
+    createTimePortalEffect(tool.directUrl || '', tool.title);
   };
 
   const handleCategoryClick = () => {

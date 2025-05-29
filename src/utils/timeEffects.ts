@@ -15,8 +15,19 @@ import {
 } from './effects/domEffects';
 
 // Enhanced tool name extraction that works with all tool types and categories
-const extractToolName = (destinationUrl: string): string => {
+const extractToolName = (destinationUrl: string, providedToolName?: string): string => {
   console.log('🎯 Extracting tool name for URL:', destinationUrl);
+  console.log('🎯 Provided tool name:', providedToolName);
+  
+  // If we have a provided tool name, use it directly
+  if (providedToolName && providedToolName.trim().length > 0) {
+    const cleanedName = providedToolName.trim()
+      .replace(/\s+(GPT|AI|Tool|Platform|Studio|App|Software|Service|Pro|Plus|Premium)(\s|$)/gi, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    console.log('🎯 Using provided tool name:', cleanedName || providedToolName);
+    return cleanedName || providedToolName;
+  }
   
   const activeElement = document.activeElement as HTMLElement;
   
@@ -195,12 +206,13 @@ const extractToolName = (destinationUrl: string): string => {
   return 'AI Tool';
 };
 
-export const createTimePortalEffect = (destinationUrl: string) => {
+export const createTimePortalEffect = (destinationUrl: string, toolName?: string) => {
   console.log('🌀 Creating enhanced centered portal effect for URL:', destinationUrl);
+  console.log('🌀 Tool name provided:', toolName);
   
   // Extract tool name for personalized robot voice
-  const toolName = extractToolName(destinationUrl);
-  console.log('🎯 Final detected tool name:', toolName);
+  const finalToolName = extractToolName(destinationUrl, toolName);
+  console.log('🎯 Final detected tool name:', finalToolName);
   
   // Create container for all effects
   const effectsContainer = createEffectsContainer();
@@ -219,8 +231,8 @@ export const createTimePortalEffect = (destinationUrl: string) => {
   // Create portal sounds (keeping existing timing)
   createPortalSounds();
   
-  // Create robot voice with contextual message
-  createRobotVoice(toolName, destinationUrl);
+  // Create robot voice with contextual message using the actual tool name
+  createRobotVoice(finalToolName, destinationUrl);
 
   // Cleanup and open in new tab after 3.5 seconds (always new window to keep users on site)
   setTimeout(() => {
