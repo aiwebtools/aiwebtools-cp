@@ -1,5 +1,5 @@
 
-import { Phone, Bot, Users, Briefcase, Store, Mail } from "lucide-react";
+import { Phone, Bot, Users, Briefcase, Store, Mail, TrendingUp, BarChart } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 export const businessSalesTools: Tool[] = [
@@ -98,5 +98,101 @@ export const businessSalesTools: Tool[] = [
     category: "Communication & Call Center",
     rating: 4.6,
     totalVotes: 1340
+  },
+  {
+    icon: TrendingUp,
+    title: "Dicer AI",
+    description: "AI-powered tool for optimizing Meta ads with detailed analysis of videos, images, and copy to enhance engagement and conversions. Provides precise targeting and budget insights with actionable steps.",
+    emoji: "🎯",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://www.dicer.ai",
+    tags: ["Meta ads", "optimization", "engagement", "conversions", "targeting"],
+    category: "Marketing & Advertising",
+    rating: 4.5,
+    totalVotes: 1890
+  },
+  {
+    icon: BarChart,
+    title: "Neurons AI",
+    description: "AI-powered copilot built on 20+ years of neuroscience experience for boosting ad performance. Features attention heatmaps, cognitive scores, and comparison views for A/B testing.",
+    emoji: "🧠",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.neuronsinc.com/neurons-ai",
+    tags: ["neuroscience", "ad performance", "heatmaps", "A/B testing", "cognitive scores"],
+    category: "Marketing & Advertising",
+    rating: 4.8,
+    totalVotes: 2890
+  },
+  {
+    icon: Briefcase,
+    title: "AiVolut",
+    description: "Empowers over 30,000 business owners to streamline operations, cut costs, and enhance profitability with AI. Automate processes, optimize resources, and make data-driven decisions.",
+    emoji: "💼",
+    color: "from-green-400 to-teal-500",
+    directUrl: "https://aivolut.com/?via=aiwebtools",
+    tags: ["business automation", "cost reduction", "profitability", "data-driven", "operations"],
+    category: "Business & Operations",
+    rating: 4.6,
+    totalVotes: 2100
+  },
+  {
+    icon: Briefcase,
+    title: "EDOM.AI",
+    description: "Advanced AI-driven business growth platform providing strategic insights and tools inspired by Nike, Apple, and Tesla. Offers real-time guidance, performance monitoring, and actionable strategies.",
+    emoji: "🚀",
+    color: "from-orange-400 to-red-500",
+    directUrl: "https://www.edom.ai",
+    tags: ["business growth", "strategic insights", "performance monitoring", "real-time guidance", "scaling"],
+    category: "Business & Operations",
+    rating: 4.7,
+    totalVotes: 1950
+  },
+  {
+    icon: Phone,
+    title: "SynthFlow",
+    description: "Effortless human-like AI phone calls with no-code AI phone system. Features AI voice assistants to stop missing calls and start converting more leads into customers.",
+    emoji: "☎️",
+    color: "from-cyan-400 to-blue-500",
+    directUrl: "https://synthflow.ai/",
+    tags: ["AI phone calls", "voice assistants", "lead conversion", "no-code", "automation"],
+    category: "Communication & Call Center",
+    rating: 4.5,
+    totalVotes: 1680
+  },
+  {
+    icon: Phone,
+    title: "Hey Rosie",
+    description: "AI phone assistant that answers calls during after hours. Sounds incredibly real and can be trained on company data. Plans start at $49/month to never miss appointments again.",
+    emoji: "🌹",
+    color: "from-pink-400 to-red-500",
+    directUrl: "https://heyrosie.com/",
+    tags: ["AI phone assistant", "after hours", "appointments", "company training", "realistic voice"],
+    category: "Communication & Call Center",
+    rating: 4.6,
+    totalVotes: 1890
+  },
+  {
+    icon: Users,
+    title: "Agent.AI",
+    description: "AI-powered platform and marketplace for hiring specialized AI agents to perform tasks like company research, meme creation, and website domain valuation. Over 28 AI agents available.",
+    emoji: "🤖",
+    color: "from-purple-400 to-indigo-500",
+    directUrl: "https://www.agent.ai",
+    tags: ["AI agents", "marketplace", "research", "automation", "specialized tasks"],
+    category: "AI Tools & Platforms",
+    rating: 4.4,
+    totalVotes: 1780
+  },
+  {
+    icon: Briefcase,
+    title: "Matador Auto Dealer AI",
+    description: "AI agent software for automating sales & service conversations and leads specifically designed for auto dealerships. Streamlines customer interactions and lead management.",
+    emoji: "🚗",
+    color: "from-red-400 to-orange-500",
+    directUrl: "https://www.matador.ai",
+    tags: ["auto dealership", "sales automation", "lead management", "customer service", "automotive"],
+    category: "Industry-Specific Tools",
+    rating: 4.3,
+    totalVotes: 1420
   }
 ];

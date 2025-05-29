@@ -1,5 +1,5 @@
 
-import { Image, Edit, Presentation } from "lucide-react";
+import { Image, Edit, Presentation, Palette, Brush, Sparkles } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 export const creativeDesignTools: Tool[] = [
@@ -74,5 +74,161 @@ export const creativeDesignTools: Tool[] = [
     category: "Productivity & Business Tools",
     rating: 4.5,
     totalVotes: 1240
+  },
+  {
+    icon: Image,
+    title: "FLUX Image Generation",
+    description: "Open source free image generator with hyper realistic image generation capabilities. Great for realistic images and excellent at generating text within images. Download and run locally.",
+    emoji: "⚡",
+    color: "from-yellow-400 to-orange-500",
+    directUrl: "https://fal.ai/models/fal-ai/flux",
+    tags: ["image generation", "open source", "realistic", "text generation", "local"],
+    category: "Image & Design Tools",
+    rating: 4.8,
+    totalVotes: 3200
+  },
+  {
+    icon: Palette,
+    title: "LogoAI",
+    description: "AI tool that creates stunning logos 100% free. Simple and effective logo generation for businesses and personal projects without any cost.",
+    emoji: "🏷️",
+    color: "from-blue-400 to-purple-500",
+    directUrl: "https://logoai.ai",
+    tags: ["logo creation", "free", "AI generation", "business branding", "design"],
+    category: "Image & Design Tools",
+    rating: 4.2,
+    totalVotes: 1890
+  },
+  {
+    icon: Image,
+    title: "ImageGen3 by Google",
+    description: "Google's new and improved free image generator with impressive prompt adherence and hyperrealism. Features strict prompt language but excellent quality comparable to Flux-1.",
+    emoji: "🎯",
+    color: "from-red-400 to-yellow-500",
+    directUrl: "https://aitestkitchen.withgoogle.com/tools/image-fx",
+    tags: ["Google AI", "image generation", "free", "hyperrealistic", "prompt adherence"],
+    category: "Image & Design Tools",
+    rating: 4.6,
+    totalVotes: 2450
+  },
+  {
+    icon: Image,
+    title: "FLUX 1A Image Generator",
+    description: "AI text-to-image generator available on Freepik with endless results in real time. Variety of models to choose from, decent capabilities though not as uncensored as 1B version.",
+    emoji: "🚀",
+    color: "from-purple-400 to-pink-500",
+    directUrl: "https://www.freepik.com",
+    tags: ["text to image", "real time", "Freepik", "AI generation", "multiple models"],
+    category: "Image & Design Tools",
+    rating: 4.4,
+    totalVotes: 1680
+  },
+  {
+    icon: Palette,
+    title: "Playground.com",
+    description: "Effortlessly become a graphic designer with AI-powered design tools. Create custom t-shirt designs, hat designs, or anything else you envision. Launch your print-on-demand business instantly.",
+    emoji: "🎮",
+    color: "from-green-400 to-blue-500",
+    directUrl: "https://playground.com/",
+    tags: ["graphic design", "print on demand", "custom designs", "t-shirts", "business"],
+    category: "Image & Design Tools",
+    rating: 4.5,
+    totalVotes: 2100
+  },
+  {
+    icon: Sparkles,
+    title: "Exactly.AI",
+    description: "Create your own image models emulating your art or styles. Advanced AI platform for training custom image generation models based on personal artistic preferences.",
+    emoji: "🎨",
+    color: "from-indigo-400 to-purple-500",
+    directUrl: "https://exactly.ai/",
+    tags: ["custom models", "art style", "image generation", "personalization", "training"],
+    category: "Image & Design Tools",
+    rating: 4.6,
+    totalVotes: 1950
+  },
+  {
+    icon: Image,
+    title: "Recraft AI",
+    description: "Powerful AI Image Generator that transforms text prompts into high-quality, versatile images for advertisements, digital banners, and printable materials. Supports real-time team collaboration.",
+    emoji: "🔧",
+    color: "from-orange-400 to-red-500",
+    directUrl: "https://www.recraft.ai/",
+    tags: ["image generation", "advertisements", "collaboration", "professional", "versatile"],
+    category: "Image & Design Tools",
+    rating: 4.7,
+    totalVotes: 2300
+  },
+  {
+    icon: Edit,
+    title: "AI Ease Photo Editor",
+    description: "Free AI-powered photo editing platform with AI Headshot Generator, Passport Photo Maker, Image Enlarger, and Photo Restoration. Professional results with minimal effort.",
+    emoji: "📸",
+    color: "from-cyan-400 to-blue-500",
+    directUrl: "https://www.aiease.ai/",
+    tags: ["photo editing", "AI headshots", "image restoration", "free", "professional"],
+    category: "Image & Design Tools",
+    rating: 4.3,
+    totalVotes: 1650
+  },
+  {
+    icon: Brush,
+    title: "MolyPix.AI",
+    description: "AI-powered design platform for creating customized visuals like posters, invitations, postcards, and cards using text prompts. Features flexible editing tools and extensive template library.",
+    emoji: "🎪",
+    color: "from-pink-400 to-purple-500",
+    directUrl: "https://molypix.ai/",
+    tags: ["custom visuals", "templates", "text prompts", "design platform", "editing tools"],
+    category: "Image & Design Tools",
+    rating: 4.4,
+    totalVotes: 1780
+  },
+  {
+    icon: Palette,
+    title: "Free Anime Generator",
+    description: "AI Anime Generator with user-friendly interface for creating anime images. Suitable for all ages with intuitive design supporting seamless creative experience from character design to scenes.",
+    emoji: "🌸",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://aianimegenerator.live/",
+    tags: ["anime generation", "character design", "user friendly", "creative", "scenes"],
+    category: "Image & Design Tools",
+    rating: 4.2,
+    totalVotes: 1420
+  },
+  {
+    icon: Image,
+    title: "Text2Infographic",
+    description: "AI-powered tool that converts written content into visually appealing infographics in minutes. Designed for users without design skills, ideal for blogs, social media, and presentations.",
+    emoji: "📊",
+    color: "from-blue-400 to-green-500",
+    directUrl: "https://text2infographic.com/",
+    tags: ["infographics", "content conversion", "visual design", "presentations", "no design skills"],
+    category: "Image & Design Tools",
+    rating: 4.3,
+    totalVotes: 1590
+  },
+  {
+    icon: Brush,
+    title: "Napkin AI",
+    description: "Versatile AI tool that transforms written content into visual formats like diagrams, images, and infographics. Makes idea-sharing more effective with quick text-to-visual conversion.",
+    emoji: "📝",
+    color: "from-yellow-400 to-orange-500",
+    directUrl: "https://www.napkin.ai",
+    tags: ["text to visual", "diagrams", "infographics", "idea sharing", "brainstorming"],
+    category: "Image & Design Tools",
+    rating: 4.4,
+    totalVotes: 1890
+  },
+  {
+    icon: Sparkles,
+    title: "Creatopy",
+    description: "AI-powered platform for ad creation, management, and scaling. Features creative automation, brand management, multi-platform ad generation, A/B testing, and real-time updates.",
+    emoji: "📢",
+    color: "from-purple-400 to-pink-500",
+    directUrl: "https://www.creatopy.com",
+    tags: ["ad creation", "automation", "brand management", "A/B testing", "multi-platform"],
+    category: "Image & Design Tools",
+    rating: 4.5,
+    totalVotes: 2050
   }
 ];

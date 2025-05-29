@@ -47,9 +47,10 @@ import {
   advancedChatPlatforms,
   developerAndCodingTools,
   contentDetectionTools,
-  contentCreationAndWritingTools,
+  contentCreationTools as contentCreationAndWritingTools,
   documentAndResearchTools,
-  designAndGraphicsTools,
+  imageAndDesign as designAndGraphicsTools,
+  productivityAndAutomationTools,
   writingAndContentEnhancement,
   resumeAndCareerTools,
   ecommerceAndMarketingTools,
@@ -71,6 +72,10 @@ import { creativeDesignTools } from './tools/creativeDesignTools';
 import { businessSalesTools } from './tools/businessSalesTools';
 import { specializedAITools } from './tools/specializedAITools';
 import { entertainmentMediaTools } from './tools/entertainmentMediaTools';
+
+// Import the new tools categories
+import { webDevelopmentTools } from './tools/webDevelopmentTools';
+import { emailManagementTools } from './tools/emailManagementTools';
 
 import { searchTools } from '@/utils/searchUtils';
 import { createFeaturedTools } from '@/utils/featuredTools';
@@ -138,6 +143,10 @@ export const allTools: Tool[] = [
   ...platformsAndDevelopment,
   ...professionalServices,
   ...resumeAndCareerTools,
+  
+  // EMAIL AND WEB DEVELOPMENT
+  ...emailManagementTools,
+  ...webDevelopmentTools,
   
   // MEETING AND TRANSCRIPTION TOOLS
   ...meetingAndTranscriptionTools,
