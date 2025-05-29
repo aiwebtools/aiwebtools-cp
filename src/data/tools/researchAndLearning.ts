@@ -2,22 +2,32 @@
 import { Tool } from "@/types/tools";
 import { 
   Telescope, 
-  Wrench
+  Wrench,
+  TestTube,
+  Atom,
+  Lightbulb,
+  Brain,
+  Globe,
+  Calculator,
+  Search,
+  BookOpen,
+  Star,
+  Zap
 } from "lucide-react";
 
 export const researchAndLearning: Tool[] = [
   {
     icon: Telescope,
     title: "Stellaris: 🚀AI Space Explorer",
-    description: "Advanced space exploration and astronomy research assistant with interactive cosmic simulations.",
+    description: "Advanced space exploration and astronomy research assistant with interactive cosmic simulations, space mission planning, and astrophysics education.",
     emoji: "🚀",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://stellaris.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=tJwhDOE3mUM",
-    tags: ["space exploration", "astronomy", "cosmic simulations", "research"],
+    tags: ["space exploration", "astronomy", "cosmic simulations", "astrophysics", "space missions"],
     category: "Research & Learning",
-    rating: 4.7,
-    totalVotes: 3245
+    rating: 4.8,
+    totalVotes: 4567
   },
   {
     icon: Wrench,
@@ -27,9 +37,87 @@ export const researchAndLearning: Tool[] = [
     color: "from-gray-500 to-blue-600",
     directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298678326366271/engineering.webp?ex=683874d9&is=68372359&hm=d8eee6e5bd26c24db971e870a3e570517fe3fafb17ae33f35bcb91674fe9033a&=&format=webp&width=2340&height=1312",
-    tags: ["engineering", "technical analysis", "problem solving", "science"],
+    tags: ["engineering", "technical analysis", "problem solving", "mechanical engineering", "electrical engineering"],
+    category: "Research & Learning",
+    rating: 4.7,
+    totalVotes: 3890
+  },
+  {
+    icon: Atom,
+    title: "Nikola Tesla GPT",
+    description: "Explore the genius of Nikola Tesla with insights into his inventions, electrical engineering innovations, and scientific discoveries that shaped modern technology.",
+    emoji: "⚡",
+    color: "from-blue-500 to-yellow-600",
+    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=DR_3MvP7Wws",
+    tags: ["Nikola Tesla", "electrical engineering", "inventions", "scientific discoveries", "innovation"],
     category: "Research & Learning",
     rating: 4.6,
-    totalVotes: 3245
+    totalVotes: 3456
+  },
+  {
+    icon: Brain,
+    title: "Albert Einstein GPT",
+    description: "Delve into the mind of Albert Einstein with explanations of relativity, quantum physics, and revolutionary scientific theories that changed our understanding of the universe.",
+    emoji: "🧠",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=kfGyOfjBI0s",
+    tags: ["Albert Einstein", "relativity", "quantum physics", "scientific theories", "physics"],
+    category: "Research & Learning",
+    rating: 4.8,
+    totalVotes: 4123
+  },
+  {
+    icon: TestTube,
+    title: "Genome GPT",
+    description: "Advanced genomics and genetics research assistant covering DNA analysis, genetic engineering, biotechnology, and molecular biology for researchers and students.",
+    emoji: "🧬",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["genomics", "genetics", "DNA analysis", "biotechnology", "molecular biology"],
+    category: "Research & Learning",
+    rating: 4.5,
+    totalVotes: 3123
+  },
+  {
+    icon: Calculator,
+    title: "Probability GPT",
+    description: "Advanced probability and statistics analysis tool for mathematical modeling, statistical analysis, risk assessment, and probability calculations.",
+    emoji: "📊",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://probabilitygpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
+    tags: ["probability", "statistics", "mathematical modeling", "risk assessment", "data analysis"],
+    category: "Research & Learning",
+    rating: 4.4,
+    totalVotes: 2987
+  },
+  {
+    icon: Calculator,
+    title: "Algebraic Expression Inventor GPT",
+    description: "Creative mathematical tool for generating complex algebraic expressions, mathematical problem solving, and advanced mathematical concept exploration.",
+    emoji: "🔢",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-futuristic-advertisement-for-alg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["algebraic expressions", "mathematical creativity", "problem solving", "mathematical concepts", "algebra"],
+    category: "Research & Learning",
+    rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: TestTube,
+    title: "Alchemist Scientist GPT",
+    description: "Explore the intersection of ancient alchemy and modern science with historical chemical knowledge, experimental techniques, and scientific discovery.",
+    emoji: "⚗️",
+    color: "from-green-500 to-yellow-600",
+    directUrl: "https://alchemicalscientistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-the-ai-tool-_C4irn.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["alchemy", "chemistry", "historical science", "experimental techniques", "scientific discovery"],
+    category: "Research & Learning",
+    rating: 4.2,
+    totalVotes: 2654
   }
 ];
