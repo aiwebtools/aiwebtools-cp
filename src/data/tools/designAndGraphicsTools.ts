@@ -1,21 +1,10 @@
+
 import { Tool } from "@/types/tools";
 import { 
-  Brush, PenTool, Crop, Layers, Camera, Palette, GraduationCap
+  Brush, PenTool, Crop, Layers, Camera, Palette
 } from "lucide-react";
 
 export const designAndGraphicsTools: Tool[] = [
-  {
-    icon: GraduationCap,
-    title: "ART DESIGN EDUCATION GPT",
-    description: "Comprehensive art and design education assistant providing tutorials, techniques, and guidance for various artistic disciplines and design principles.",
-    emoji: "🎨",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://chatgpt.com/g/g-6837ed348ec881919b27325a29830581-art-design-education-gpt",
-    tags: ["art education", "design education", "tutorials", "art techniques", "design principles"],
-    category: "Image & Design",
-    rating: 4.4,
-    totalVotes: 2567
-  },
   {
     icon: Camera,
     title: "Product Photography GPT",
