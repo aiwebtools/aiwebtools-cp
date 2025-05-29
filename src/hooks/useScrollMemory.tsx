@@ -37,26 +37,18 @@ export const useScrollMemory = ({ displayedCount, selectedCategory, searchTerm }
       const savedCategory = sessionStorage.getItem('aitools-selected-category');
       const savedSearchTerm = sessionStorage.getItem('aitools-search-term');
 
-      const result = {
-        displayedCount: savedDisplayedCount ? parseInt(savedDisplayedCount, 10) : null,
-        category: savedCategory && savedCategory !== '' ? savedCategory : null,
-        searchTerm: savedSearchTerm || null,
-        scrollPosition: savedScrollPosition ? parseInt(savedScrollPosition, 10) : null
-      };
-
       // Restore scroll position after a short delay to ensure content is rendered
-      if (result.scrollPosition) {
+      if (savedScrollPosition) {
+        const scrollPosition = parseInt(savedScrollPosition, 10);
         setTimeout(() => {
-          window.scrollTo(0, result.scrollPosition);
+          window.scrollTo(0, scrollPosition);
         }, 100);
       }
-
-      return result;
     };
 
     // Only restore state when navigating back (not on initial load)
     if (location.key !== 'default') {
-      return restoreState();
+      restoreState();
     }
   }, [location.key]);
 };
