@@ -34,7 +34,6 @@ export const gameDesignAndDevelopment: Tool[] = [
     color: "from-green-600 to-black",
     directUrl: "https://neomatrixgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=BkPCpeu_nSs",
-    imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=300&fit=crop",
     category: "Game Design & Development",
     tags: ["Matrix", "simulation", "philosophy", "interactive"],
     rating: 4.7,

@@ -53,7 +53,6 @@ export const researchAndLearning: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://stellaris.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=tJwhDOE3mUM",
-    imageUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=300&fit=crop",
     tags: ["space exploration", "astronomy", "cosmic simulations", "research"],
     category: "Research & Learning",
     rating: 4.7,

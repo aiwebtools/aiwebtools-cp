@@ -20,7 +20,6 @@ export const creativeServices: Tool[] = [
     color: "from-purple-500 to-pink-600",
     directUrl: "https://tattoogpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=3dtGbNqXdPY",
-    imageUrl: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=600&h=300&fit=crop",
     category: "Creative Services",
     tags: ["tattoo design", "body art", "custom artwork", "artistic design", "personalized"],
     rating: 4.4,
