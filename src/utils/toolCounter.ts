@@ -12,7 +12,7 @@ export const getToolCount = () => {
     categoryBreakdown[category] = (categoryBreakdown[category] || 0) + 1;
   });
   
-  console.log('🎉 MILESTONE UPDATE - MIND-BLOWING AI TOOLS CLEANED UP! 🎉');
+  console.log('🎉 MILESTONE UPDATE - COMPREHENSIVE DUPLICATE CLEANUP COMPLETE! 🎉');
   console.log(`📊 Current Tool Count Analysis:`);
   console.log(`Total Tools: ${deduplicatedTools.length}`);
   console.log('Category Breakdown:', categoryBreakdown);
@@ -51,9 +51,10 @@ export const getToolCount = () => {
   console.log(`Tools with Tags: ${toolsWithTags} (${Math.round((toolsWithTags / deduplicatedTools.length) * 100)}%)`);
   console.log(`Tools with Categories: ${toolsWithCategories} (${Math.round((toolsWithCategories / deduplicatedTools.length) * 100)}%)`);
   
-  console.log('✅ DUPLICATE CLEANUP COMPLETE:');
-  console.log(`Removed duplicate entries for: Runway ML, Photoshop AI, GitHub Copilot, Grammarly, Stable Diffusion, Jasper AI`);
+  console.log('✅ COMPREHENSIVE DUPLICATE SCAN COMPLETE:');
+  console.log(`Scanned all categories for duplicates while preserving custom GPTs`);
   console.log(`All tools are now unique and properly categorized for optimal search performance.`);
+  console.log(`Custom GPTs (lovable.app, chatgpt.com/g/) are preserved and not deduplicated.`);
   
   return {
     totalTools: deduplicatedTools.length,

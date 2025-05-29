@@ -139,8 +139,8 @@ export const calculateIntentScore = (tool: Tool, searchTerm: string): number => 
     }
   });
   
-  // Specific tool name recognition for popular tools - including new mind-blowing tools
-  const mindBlowingToolMatches = {
+  // Enhanced tool name recognition with cleaned duplicate data
+  const enhancedToolMatches = {
     "replika": ["replika", "ai companion", "personal ai", "friend ai"],
     "character": ["character.ai", "character ai", "roleplay ai"],
     "perplexity": ["perplexity", "ai search", "research ai"],
@@ -160,10 +160,13 @@ export const calculateIntentScore = (tool: Tool, searchTerm: string): number => 
     "deepl": ["deepl", "ai translator", "translation"],
     "grammarly": ["grammarly", "grammar check", "writing assistant"],
     "stable": ["stable diffusion", "ai art", "open source ai"],
-    "jasper": ["jasper", "ai copywriting", "marketing ai"]
+    "jasper": ["jasper", "ai copywriting", "marketing ai"],
+    "chatgpt": ["chatgpt", "openai", "gpt"],
+    "midjourney": ["midjourney", "ai art", "discord bot"],
+    "claude": ["claude", "anthropic", "ai assistant"]
   };
   
-  Object.entries({ ...toolNameMatches, ...mindBlowingToolMatches }).forEach(([toolName, keywords]) => {
+  Object.entries({ ...toolNameMatches, ...enhancedToolMatches }).forEach(([toolName, keywords]) => {
     if (keywords.some(keyword => searchTerm.includes(keyword))) {
       if (lowerTitle.includes(toolName) || lowerDescription.includes(toolName)) {
         score += 80; // High boost for specific tool matches
