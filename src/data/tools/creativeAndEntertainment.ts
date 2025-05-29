@@ -23,19 +23,6 @@ import {
 
 export const creativeAndEntertainment: Tool[] = [
   {
-    icon: Film,
-    title: "Movie Generator GPT",
-    description: "AI-powered movie concept and script generator for filmmakers, writers, and creative professionals in the entertainment industry.",
-    emoji: "🎬",
-    color: "from-red-500 to-purple-600",
-    directUrl: "https://moviegeneratorgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=example",
-    tags: ["movie generation", "filmmaking", "script writing", "entertainment", "creative"],
-    category: "Creative & Entertainment",
-    rating: 4.6,
-    totalVotes: 3234
-  },
-  {
     icon: Palette,
     title: "AI Art Generator",
     description: "Create stunning digital artwork and illustrations using advanced AI image generation technology.",
