@@ -74,26 +74,27 @@ import { entertainmentMediaTools } from './tools/entertainmentMediaTools';
 // Import the new tools categories
 import { webDevelopmentTools } from './tools/webDevelopmentTools';
 import { emailManagementTools } from './tools/emailManagementTools';
+import { technicalAndUtilityTools } from './tools/technicalAndUtilityTools';
 
 import { searchTools } from '@/utils/searchUtils';
 import { createFeaturedTools } from '@/utils/featuredTools';
 import { getCategoriesWithCounts, getToolsByCategory } from '@/utils/categoryUtils';
 
-// Combine all tools with YOUR GPTS AND ORIGINAL TOOLS PRIORITIZED AT THE TOP
+// Combine all tools with YOUR PRIORITY GPTS AND TOOLS FIRST - ALWAYS MOST POPULAR
 export const allTools: Tool[] = [
-  // YOUR PRIORITY GPTS AND TOOLS COME FIRST - ALWAYS MOST POPULAR
-  ...spiritualityTools,
-  ...rawUncutTools,
-  ...learningAndEducation,
-  ...timeAndHistory,
-  ...creativeSuites,
-  ...advancedAITools,
-  ...gameDesignAndDevelopment,
-  ...emergencyServices,
-  ...creativeServices,
-  ...legalProfessionals,
-  ...educationAndLearning,
-  ...contentCreationTools,
+  // YOUR TOP PRIORITY GPTS COME FIRST - HIGHEST RATED AND MOST POPULAR
+  ...spiritualityTools, // Contains TALK TO THE GODS GPT, Fortune Teller GPT, etc.
+  ...advancedAITools, // Contains GODMODE GPT, MULTITASKER GPT, PERFECT PROMPT ENGINE, etc.
+  ...timeAndHistory, // Contains TIME MACHINE GPT, Historical tools, etc.
+  ...creativeSuites, // Contains Movie Maker Studio, Music Video Maker, etc.
+  ...learningAndEducation, // Contains COLLEGE DEGREE GPT, LEARN ANY COURSE GPT, etc.
+  ...gameDesignAndDevelopment, // Contains GAME DESIGNER GPT, etc.
+  ...emergencyServices, // Contains specialized emergency GPTs
+  ...professionalServices, // Contains specialized professional GPTs
+  ...legalProfessionals, // Contains Legislation Writer GPT, etc.
+  ...healthcareProfessionals, // Contains specialized health GPTs
+  ...creativeServices, // Contains Oraculum, Trivia Night GPT, etc.
+  ...technicalAndUtilityTools, // Contains technical GPTs
   
   // THEN AI-FOCUSED CATEGORIES (UPDATED WITH NEW TOOLS)
   ...aiChatPlatforms,
@@ -121,6 +122,7 @@ export const allTools: Tool[] = [
   ...videoEditingAndContentTools,
   ...audioMusicTools,
   ...audioAndVoiceTools,
+  ...contentCreationTools,
   ...contentCreationAndWritingTools,
   ...contentDetectionTools,
   ...documentAndResearchTools,
@@ -138,7 +140,6 @@ export const allTools: Tool[] = [
   ...searchAndProductivityTools,
   ...ecommerceAndMarketingTools,
   ...platformsAndDevelopment,
-  ...professionalServices,
   ...resumeAndCareerTools,
   
   // EMAIL AND WEB DEVELOPMENT (UPDATED WITH NEW TOOLS)
@@ -160,7 +161,6 @@ export const allTools: Tool[] = [
   ...specializedTools,
   ...creativeAndEntertainment,
   ...researchAndLearning,
-  ...healthcareProfessionals,
   ...personalServices,
   ...specializedPolicyTools,
   ...artAndCollectibles,
@@ -170,7 +170,7 @@ export const allTools: Tool[] = [
   ...specializedNicheTools
 ];
 
-// Create featured tools using the utility function
+// Create featured tools using the utility function - prioritizes your GPTs
 export const featuredTools: Tool[] = createFeaturedTools(allTools);
 
 // Export utility functions for use in components
