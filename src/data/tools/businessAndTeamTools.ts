@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Users, 
@@ -16,7 +15,8 @@ import {
   Zap,
   Globe,
   Brain,
-  Share2
+  Share2,
+  User
 } from "lucide-react";
 
 export const businessAndTeamTools: Tool[] = [
@@ -174,6 +174,102 @@ export const businessAndTeamTools: Tool[] = [
     tags: ["AI avatar", "lead generation", "coaching", "audience engagement", "entrepreneur tools"],
     category: "Business & Team Tools",
     rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: Bot,
+    title: "WonderChat",
+    description: "AI-powered chatbot builder designed to simplify and streamline customer support and engagement for businesses. With WonderChat, you can create custom ChatGPT-driven chatbots effortlessly, training them on your website links and PDF files. The platform offers a 5-minute setup process, making it quick and convenient to deploy chatbots.",
+    emoji: "🎯",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://wonderchat.io/?via=aiwebtools",
+    tags: ["ChatGPT chatbots", "customer support", "5-minute setup", "website integration", "PDF training"],
+    category: "Business & Team Tools",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: Bot,
+    title: "ChatFast",
+    description: "Powerful platform that enables users to effortlessly create custom GPT chatbots using their own data. By uploading files or providing website URLs, ChatFast builds chatbots capable of answering questions related to your content in real-time. This AI tool offers several robust features, including the ability to train chatbots on multiple data sources.",
+    emoji: "⚡",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://chatfast.io/?via=aiwebtools",
+    tags: ["custom GPT chatbots", "50+ languages", "API access", "analytics", "team collaboration"],
+    category: "Business & Team Tools",
+    rating: 4.3,
+    totalVotes: 2987
+  },
+  {
+    icon: Zap,
+    title: "AUTORY",
+    description: "AI-powered automation platform dedicated to creating personalized solutions tailored to your specific needs and objectives. With a team experienced in business processes and automation, Autory helps clients save time and streamline their operations by providing automation tools designed to empower, not overwhelm.",
+    emoji: "🔧",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://autory.ai/",
+    tags: ["business automation", "personalized solutions", "process optimization", "fair pricing", "continuous improvement"],
+    category: "Business & Team Tools",
+    rating: 4.2,
+    totalVotes: 2654
+  },
+  {
+    icon: Zap,
+    title: "MAKE",
+    description: "All-in-one visual platform that empowers individuals and teams to turn ideas into reality. With MAKE, you can create and automate a wide range of things, from tasks and workflows to full-fledged applications and systems. Trusted by over 500,000 makers, MAKE offers a powerful and user-friendly environment.",
+    emoji: "⚡",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://www.make.com/en/register?pc=aiwebtools",
+    tags: ["workflow automation", "visual platform", "500k+ users", "free forever", "task automation"],
+    category: "Business & Team Tools",
+    rating: 4.5,
+    totalVotes: 4567
+  },
+  {
+    icon: Users,
+    title: "PhantomBuster",
+    description: "Powerful lead generation and data automation solution trusted by over 100,000 businesses. With a wide range of pre-built automations and integrations with popular tools, PhantomBuster helps users collect valuable data and execute outreach campaigns seamlessly. This code-free platform allows users to generate high-quality leads efficiently.",
+    emoji: "👻",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://phantombuster.com/?deal=kenneth70",
+    tags: ["lead generation", "data automation", "100k+ businesses", "code-free", "outreach campaigns"],
+    category: "Business & Team Tools",
+    rating: 4.4,
+    totalVotes: 3789
+  },
+  {
+    icon: Users,
+    title: "Seamless AI",
+    description: "Advanced AI-powered sales intelligence tool that revolutionizes the way businesses acquire and engage with prospects. Leveraging artificial intelligence and real-time data, Seamless.AI enables sales professionals to effortlessly identify and verify leads, access their contact information, and integrate seamlessly with popular CRM and sales platforms.",
+    emoji: "🎯",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://get.seamless.ai/iekn4p9ktqix",
+    tags: ["sales intelligence", "lead verification", "CRM integration", "Chrome extension", "real-time data"],
+    category: "Business & Team Tools",
+    rating: 4.5,
+    totalVotes: 4123
+  },
+  {
+    icon: Users,
+    title: "SmartLead",
+    description: "Versatile AI-driven platform designed to revolutionize lead generation and outreach efforts. With features like unlimited auto-rotating email accounts, multi-channel outreach capabilities, and natural AI conversations, SmartLead offers a comprehensive solution for businesses to scale their outreach confidently.",
+    emoji: "🚀",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://smartlead.ai/?via=aiwebtools",
+    tags: ["lead generation", "multi-channel outreach", "AI conversations", "email automation", "white-label"],
+    category: "Business & Team Tools",
+    rating: 4.3,
+    totalVotes: 3123
+  },
+  {
+    icon: Users,
+    title: "SalesFlow",
+    description: "AI-powered LinkedIn lead generation platform designed to streamline and enhance B2B social selling efforts. With its user-friendly interface and robust feature set, Salesflow enables sales professionals and teams to efficiently connect with potential leads, send personalized messages at scale, and manage their LinkedIn outreach campaigns.",
+    emoji: "💼",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://salesflow.io/referral?fp_ref=aiwebtools",
+    tags: ["LinkedIn automation", "B2B social selling", "personalized messages", "analytics", "Zapier integration"],
+    category: "Business & Team Tools",
+    rating: 4.2,
     totalVotes: 2876
   }
 ];
