@@ -33,9 +33,24 @@ const ToolDescription = ({ tool }: ToolDescriptionProps) => {
   return (
     <div className="mb-8">
       <h3 className="text-2xl font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-4 cyber-glow">About This Tool</h3>
-      <CardDescription className="text-lg text-gray-300 leading-relaxed">
+      <CardDescription className="text-lg text-gray-300 leading-relaxed mb-6">
         {getEnhancedDescription()}
       </CardDescription>
+      
+      {/* SEO Tagline */}
+      <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-lg p-4 mb-4">
+        <p className="text-sm text-cyan-300 text-center leading-relaxed">
+          <span className="font-semibold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+            Discover {tool.title} and 1000+ AI Tools
+          </span>
+          <br />
+          <span className="text-gray-400">
+            Curated by <strong className="text-cyan-300">AI WEB TOOLS LLC</strong> | 
+            Visit <strong className="text-cyan-300">AIWEBTOOLS.AI</strong> | 
+            Your trusted <strong className="text-cyan-300">AI WEB TOOLS</strong> directory
+          </span>
+        </p>
+      </div>
     </div>
   );
 };
