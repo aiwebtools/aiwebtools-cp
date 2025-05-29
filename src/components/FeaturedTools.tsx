@@ -1,5 +1,5 @@
-
 import { useState, useMemo, useEffect, useCallback } from "react";
+import { useLocation } from "react-router-dom";
 import { allTools, searchTools, getCategoriesWithCounts, getToolsByCategory } from "@/data/toolsData";
 import CategoryFilters from "@/components/tools/CategoryFilters";
 import ActiveFilters from "@/components/tools/ActiveFilters";
@@ -11,16 +11,70 @@ interface FeaturedToolsProps {
 }
 
 const FeaturedTools = ({ showLoadMoreButton = false }: FeaturedToolsProps) => {
+  const location = useLocation();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [displayedCount, setDisplayedCount] = useState<number>(12);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  // Save scroll position when navigating away
+  useEffect(() => {
+    const saveScrollPosition = () => {
+      sessionStorage.setItem('aitools-scroll-position', window.pageYOffset.toString());
+      sessionStorage.setItem('aitools-displayed-count', displayedCount.toString());
+      sessionStorage.setItem('aitools-selected-category', selectedCategory || '');
+      sessionStorage.setItem('aitools-search-term', searchTerm);
+    };
+
+    // Save position before page unload or navigation
+    window.addEventListener('beforeunload', saveScrollPosition);
+    
+    return () => {
+      window.removeEventListener('beforeunload', saveScrollPosition);
+      saveScrollPosition(); // Save when component unmounts
+    };
+  }, [displayedCount, selectedCategory, searchTerm]);
+
+  // Restore scroll position and state when coming back
+  useEffect(() => {
+    const restoreState = () => {
+      const savedScrollPosition = sessionStorage.getItem('aitools-scroll-position');
+      const savedDisplayedCount = sessionStorage.getItem('aitools-displayed-count');
+      const savedCategory = sessionStorage.getItem('aitools-selected-category');
+      const savedSearchTerm = sessionStorage.getItem('aitools-search-term');
+
+      if (savedDisplayedCount) {
+        setDisplayedCount(parseInt(savedDisplayedCount, 10));
+      }
+      if (savedCategory && savedCategory !== '') {
+        setSelectedCategory(savedCategory);
+      }
+      if (savedSearchTerm) {
+        setSearchTerm(savedSearchTerm);
+      }
+
+      // Restore scroll position after a short delay to ensure content is rendered
+      if (savedScrollPosition) {
+        setTimeout(() => {
+          window.scrollTo(0, parseInt(savedScrollPosition, 10));
+        }, 100);
+      }
+    };
+
+    // Only restore state when navigating back (not on initial load)
+    if (location.key !== 'default') {
+      restoreState();
+    }
+  }, [location.key]);
 
   const handleCategoryChange = (category: string | null) => {
     setSelectedCategory(category);
     setSearchTerm("");
     setDisplayedCount(12);
     setIsLoading(false);
+    // Clear saved state when actively changing filters
+    sessionStorage.removeItem('aitools-scroll-position');
+    sessionStorage.removeItem('aitools-displayed-count');
   };
 
   const handleSearchChange = (term: string) => {
@@ -28,6 +82,9 @@ const FeaturedTools = ({ showLoadMoreButton = false }: FeaturedToolsProps) => {
     setSelectedCategory(null);
     setDisplayedCount(12);
     setIsLoading(false);
+    // Clear saved state when actively searching
+    sessionStorage.removeItem('aitools-scroll-position');
+    sessionStorage.removeItem('aitools-displayed-count');
   };
 
   const handleLoadMore = useCallback(() => {
