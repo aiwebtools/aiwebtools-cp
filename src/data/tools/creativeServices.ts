@@ -1,12 +1,13 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Palette, 
   Utensils, 
   Shirt, 
   Star,
-  Tattoo,
-  Drink,
-  Clothes,
+  Brush,
+  Coffee,
+  ShoppingBag,
   MessageCircle
 } from "lucide-react";
 

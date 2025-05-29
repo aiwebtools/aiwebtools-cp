@@ -3,7 +3,7 @@ import {
   Globe, 
   Users, 
   Heart, 
-  Scales, 
+  Scale, 
   Building, 
   Shield,
   Lightbulb, 

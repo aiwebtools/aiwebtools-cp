@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Globe, 
@@ -34,7 +35,8 @@ import {
   CheckCircle,
   Sprout,
   Diamond,
-  Compass
+  Compass,
+  Sparkles
 } from "lucide-react";
 
 export const specializedTools: Tool[] = [
