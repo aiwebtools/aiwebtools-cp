@@ -1,4 +1,3 @@
-
 // Enhanced keyword mapping for intelligent search - AI tools focused
 export const keywordMapping: Record<string, string[]> = {
   // Core AI Keywords
@@ -110,10 +109,9 @@ export const categoryKeywords: Record<string, string[]> = {
   "AI Assistants": ["chatbot", "virtual assistant", "AI chat", "conversational AI", "digital assistant"],
   "Image Generation": ["AI art", "image generator", "visual AI", "art creation", "picture generator"],
   "Writing & Content": ["AI writing", "content creation", "text generator", "copywriting", "article writer"],
-  "Video Tools": ["video AI", "video generator", "film AI", "video editing", "animation AI"],
+  "Video Tools": ["video AI", "video generator", "film AI", "video editing", "animation AI", "video creation", "video editing", "film production", "animation"],
   "Audio & Music": ["music AI", "audio generator", "sound AI", "music creation", "voice AI"],
   "Business & Productivity": ["business AI", "productivity tools", "workflow automation", "business automation"],
   "Education & Learning": ["educational AI", "learning tools", "teaching AI", "academic AI"],
-  "Creative Services": ["creative AI", "design tools", "artistic AI", "creative automation"],
-  "Video Tools": ["video creation", "video editing", "film production", "animation", "video AI"]
+  "Creative Services": ["creative AI", "design tools", "artistic AI", "creative automation"]
 };

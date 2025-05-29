@@ -1,11 +1,12 @@
 
 import { allTools } from '@/data/toolsData';
-import { getCategoriesWithCounts } from '@/utils/categoryUtils';
 
 export const generateEnhancedSitemap = () => {
   const baseUrl = 'https://aitools.studio';
   const currentDate = new Date().toISOString().split('T')[0];
-  const categories = getCategoriesWithCounts();
+  
+  // Get unique categories from tools data
+  const categories = Array.from(new Set(allTools.map(tool => tool.category).filter(Boolean)));
   
   // Priority levels for different page types
   const priorities = {
@@ -44,7 +45,7 @@ export const generateEnhancedSitemap = () => {
 `;
 
   // Category pages with enhanced SEO data
-  categories.forEach(({ category, count }) => {
+  categories.forEach((category) => {
     const categoryUrl = `${baseUrl}/category/${encodeURIComponent(category)}`;
     sitemap += `  <url>
     <loc>${categoryUrl}</loc>
@@ -59,7 +60,7 @@ export const generateEnhancedSitemap = () => {
   // Individual tool pages with image and video data
   allTools.forEach((tool, index) => {
     const toolUrl = `${baseUrl}/tool/${index}`;
-    const isPopular = tool.rating && tool.rating > 4.5;
+    const isPopular = tool.rating && parseFloat(tool.rating.toString()) > 4.5;
     const priority = isPopular ? priorities.popularTool : priorities.tool;
     
     sitemap += `  <url>
