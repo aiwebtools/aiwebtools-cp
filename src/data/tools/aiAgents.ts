@@ -1,4 +1,5 @@
 
+
 import { Tool } from "@/types/tools";
 import { 
   Bot, Code, Cpu, Globe, Zap, Brain, Sparkles, Layers, Workflow, GitBranch
@@ -11,6 +12,7 @@ export const aiAgents: Tool[] = [
     description: "AI-powered web application builder that creates React apps with natural language. Build full-stack applications with AI assistance and real-time collaboration.",
     emoji: "💜",
     color: "from-purple-500 to-pink-600",
+    imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
     directUrl: "https://lovable.dev/?via=aiwebtools",
     tags: ["AI coding", "web development", "React", "full-stack", "AI builder"],
     category: "AI Agents",
@@ -23,6 +25,7 @@ export const aiAgents: Tool[] = [
     description: "AI-powered coding assistant that helps developers write, debug, and optimize code across multiple programming languages with intelligent suggestions.",
     emoji: "⚡",
     color: "from-blue-500 to-cyan-600",
+    imageUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
     directUrl: "https://bolt.new/?via=aiwebtools",
     tags: ["AI coding", "code assistant", "debugging", "programming", "AI development"],
     category: "AI Agents",
@@ -126,3 +129,4 @@ export const aiAgents: Tool[] = [
     totalVotes: 4156
   }
 ];
+
