@@ -24,7 +24,7 @@ export const learningAndEducation: Tool[] = [
     directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
     category: "Education & Learning",
-    tags: ["learning", "courses", "education", "study"],
+    tags: ["learning", "courses", "education", "study", "course", "learn"],
     rating: 4.6,
     totalVotes: 2987
   },
@@ -37,7 +37,7 @@ export const learningAndEducation: Tool[] = [
     directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=q1AY2LukHrk",
     category: "Skill Development",
-    tags: ["skill learning", "personal development", "training", "growth"],
+    tags: ["skill learning", "personal development", "training", "growth", "skill", "learn"],
     rating: 4.7,
     totalVotes: 3456
   },

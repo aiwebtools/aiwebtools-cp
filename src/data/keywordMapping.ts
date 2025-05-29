@@ -16,12 +16,13 @@ export const keywordMapping: Record<string, string[]> = {
   "car": ["automotive", "vehicle", "automobile", "dealership", "repair", "maintenance", "upgrades", "auto care", "local dealerships", "precise decisions", "automotive world", "car parts", "AutomobileGPT", "AutoGPT"],
   "automotive": ["car", "vehicle", "automobile", "auto", "transportation"],
   
-  // Education and Learning
-  "learn": ["education", "course", "skill", "study", "training", "college", "university", "homeschool", "free education", "college courses", "university degree", "learn any subject", "higher education", "online learning", "self-taught", "academic", "educational experience", "open source prompt", "human right", "all subjects", "curriculum", "CollegeDegreeGPT", "skill acquisition", "beginner to expert", "step-by-step", "YouTube videos", "visuals", "interactive learning", "multimedia", "practical skills", "academic knowledge", "self-improvement", "personal development", "LearnSkillGPT"],
-  "education": ["learn", "course", "skill", "college", "homeschool", "training", "teaching", "curriculum"],
-  "college": ["education", "learn", "course", "degree", "university", "academic"],
-  "course": ["education", "learn", "training", "curriculum", "lesson", "class"],
-  "skill": ["learn", "course", "education", "training", "development", "ability"],
+  // Education and Learning - ENHANCED
+  "learn": ["education", "course", "skill", "study", "training", "college", "university", "homeschool", "free education", "college courses", "university degree", "learn any subject", "higher education", "online learning", "self-taught", "academic", "educational experience", "open source prompt", "human right", "all subjects", "curriculum", "CollegeDegreeGPT", "skill acquisition", "beginner to expert", "step-by-step", "YouTube videos", "visuals", "interactive learning", "multimedia", "practical skills", "academic knowledge", "self-improvement", "personal development", "LearnSkillGPT", "LEARN ANY COURSE GPT", "LEARN ANY SKILL GPT", "master any subject", "personalized learning", "adaptive study"],
+  "education": ["learn", "course", "skill", "college", "homeschool", "training", "teaching", "curriculum", "LEARN ANY COURSE GPT", "master any subject", "educational experience"],
+  "college": ["education", "learn", "course", "degree", "university", "academic", "LEARN ANY COURSE GPT"],
+  "course": ["education", "learn", "training", "curriculum", "lesson", "class", "LEARN ANY COURSE GPT", "master any subject", "personalized learning", "course recommendations"],
+  "skill": ["learn", "course", "education", "training", "development", "ability", "LEARN ANY SKILL GPT", "skill development", "personal growth", "structured learning", "practice exercises"],
+  "any": ["learn", "skill", "course", "LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT", "master any subject", "develop any skill"],
   "homeschool": ["education", "learn", "course", "teaching", "parents", "state-specific legal guidance", "educational resources", "compliance", "nurturing learning", "child education", "curriculum support", "K-12", "alternative education", "HomeSchoolingGPT"],
   
   // Movie and Video Creation
@@ -41,7 +42,7 @@ export const keywordMapping: Record<string, string[]> = {
   // AI and Technology
   "ai": ["artificial", "intelligence", "machine", "learning", "automation", "gpt", "claude", "gemini", "chatbot", "assistant"],
   "artificial": ["ai", "intelligence", "machine", "automation", "synthetic"],
-  "gpt": ["ai", "openai", "chatgpt", "language model", "llm"],
+  "gpt": ["ai", "openai", "chatgpt", "language model", "llm", "LEARN ANY COURSE GPT", "LEARN ANY SKILL GPT"],
   "claude": ["anthropic", "ai", "assistant", "llm", "Haiku", "Sonnet", "Opus models", "cognitive tasks", "200k context window", "coding", "math", "reasoning", "conversational AI", "advanced intelligence", "cost efficiency", "ClaudeAI"],
   "gemini": ["google", "ai", "assistant", "multimodal", "Android", "Gemini Live", "real-time captions", "translations", "stream summaries", "Q&A", "highlight reels", "branding", "live events", "educational content", "gaming", "social media", "GeminiAI"],
   
