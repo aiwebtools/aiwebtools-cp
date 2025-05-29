@@ -5,6 +5,7 @@ import { ExternalLink, Mail } from "lucide-react";
 import { Tool } from "@/types/tools";
 import StarRating from "@/components/tools/StarRating";
 import { useNavigate } from "react-router-dom";
+import { createTimePortalEffect } from "@/utils/timeEffects";
 
 interface ToolHeaderProps {
   tool: Tool;
@@ -16,10 +17,14 @@ interface ToolHeaderProps {
 const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeaderProps) => {
   const navigate = useNavigate();
 
-  const handleUseItNow = () => {
-    if (tool.directUrl) {
-      window.open(tool.directUrl, '_blank', 'noopener,noreferrer');
-    }
+  const handleUseItNow = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('USE IT NOW button clicked in header for:', tool.title);
+    console.log('Tool directUrl:', tool.directUrl);
+    
+    // Always trigger the effect, even if no directUrl
+    createTimePortalEffect(tool.directUrl || '');
   };
 
   const handleCategoryClick = () => {
@@ -83,7 +88,6 @@ Thank you!`);
           <Button 
             size="lg"
             onClick={handleUseItNow}
-            disabled={!tool.directUrl}
             className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-6 sm:px-8 py-3 text-sm sm:text-base rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-cyan-500/30 interactive-button glow-effect"
           >
             <ExternalLink className="w-4 h-4 mr-2" />

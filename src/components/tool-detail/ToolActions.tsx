@@ -11,6 +11,7 @@ interface ToolActionsProps {
 const ToolActions = ({ tool }: ToolActionsProps) => {
   const handleUseItNow = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     console.log('USE IT NOW button clicked for:', tool.title);
     console.log('Tool directUrl:', tool.directUrl);
     
