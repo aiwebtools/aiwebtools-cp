@@ -1,19 +1,30 @@
+
 import { Tool } from "@/types/tools";
 import { 
-  PenTool, 
+  Edit, 
   FileText, 
-  Edit3, 
-  Wand2, 
-  BookOpen, 
+  Zap, 
+  CheckCircle, 
+  Target, 
+  PenTool, 
   Type, 
-  Lightbulb, 
-  Search, 
-  Globe, 
-  Sparkles, 
-  Brain, 
+  AlignLeft, 
+  BookOpen, 
   Languages, 
-  Calendar,
-  Feather
+  Search, 
+  Star, 
+  ThumbsUp, 
+  Calendar, 
+  Clock, 
+  Users, 
+  Globe, 
+  TrendingUp, 
+  Brain, 
+  Lightbulb, 
+  Wand2, 
+  Sparkles,
+  Mic,
+  GraduationCap
 } from "lucide-react";
 
 export const writingAndContentEnhancement: Tool[] = [

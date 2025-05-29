@@ -48,7 +48,7 @@ export { developerAndCodingTools } from './developerAndCodingTools';
 export { contentDetectionTools } from './contentDetectionTools';
 export { contentCreationTools as contentCreationAndWritingTools } from './contentCreationAndWritingTools';
 export { documentAndResearchTools } from './documentAndResearchTools';
-export { designAndGraphicsTools } from './designAndGraphicsTools';
+export { imageAndDesign as designAndGraphicsTools } from './designAndGraphicsTools';
 export { productivityAndAutomationTools } from './productivityAndAutomationTools';
 export { writingAndContentEnhancement } from './writingAndContentEnhancement';
 export { resumeAndCareerTools } from './resumeAndCareerTools';
