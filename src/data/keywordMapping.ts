@@ -17,15 +17,15 @@ export const keywordMapping: Record<string, string[]> = {
   "anthropic": ["claude", "ai safety", "constitutional ai", "ai assistant", "language model", "ai research"],
   
   // Creative AI Tools
-  "art": ["design", "creative", "visual", "drawing", "painting", "illustration", "artistic", "AI art", "generative art", "digital art", "art generator", "creative tools", "image generation", "dall-e", "midjourney"],
+  "art": ["design", "creative", "visual", "drawing", "painting", "illustration", "artistic", "AI art", "generative art", "digital art", "art generator", "creative tools", "image generation", "dall-e", "midjourney", "sketch", "draw"],
   "design": ["graphic", "visual", "creative", "art", "ui", "ux", "website", "logo", "illustration", "AI design", "design tools", "creative design", "layout", "typography"],
   "image": ["generation", "ai art", "visual", "picture", "photo", "graphic", "AI image", "image generator", "picture generator", "visual AI", "dall-e", "midjourney", "stable diffusion"],
-  "video": ["editing", "creation", "production", "AI video", "video generator", "film", "movie", "animation", "video AI", "video tools", "motion graphics", "multimedia"],
+  "video": ["editing", "creation", "production", "AI video", "video generator", "film", "movie", "animation", "video AI", "video tools", "motion graphics", "multimedia", "storyboard"],
   "music": ["audio", "sound", "composition", "AI music", "music generator", "audio AI", "song creation", "music production", "audio tools", "beat", "melody", "soundtrack"],
   "audio": ["music", "sound", "voice", "speech", "podcast", "audio editing", "sound effects", "voice synthesis", "text to speech", "audio generation"],
   
   // Business and Productivity
-  "business": ["productivity", "enterprise", "commercial", "professional", "business tools", "AI business", "business automation", "workflow", "corporate", "management", "strategy"],
+  "business": ["productivity", "enterprise", "commercial", "professional", "business tools", "AI business", "business automation", "workflow", "corporate", "management", "strategy", "sales", "marketing"],
   "productivity": ["efficiency", "workflow", "automation", "business", "tools", "productivity AI", "work tools", "efficiency tools", "task management", "organization"],
   "writing": ["content", "text", "copywriting", "authoring", "AI writing", "writing assistant", "content creation", "text generation", "blog", "article", "essay", "creative writing"],
   "content": ["creation", "writing", "marketing", "blog", "article", "content AI", "content generator", "creative content", "copywriting", "social media"],
@@ -55,9 +55,20 @@ export const keywordMapping: Record<string, string[]> = {
   // Industry-Specific
   "healthcare": ["medical", "health", "clinical", "AI healthcare", "medical AI", "health tools", "clinical AI", "medicine", "patient care"],
   "medical": ["healthcare", "medicine", "clinical", "doctor", "patient", "diagnosis", "treatment", "health", "medical AI"],
-  "education": ["learning", "teaching", "academic", "AI education", "educational AI", "learning tools", "teaching AI", "school", "student"],
+  "education": ["learning", "teaching", "academic", "AI education", "educational AI", "learning tools", "teaching AI", "school", "student", "course", "tutorial"],
   "finance": ["financial", "banking", "investment", "AI finance", "financial AI", "fintech", "trading AI", "money", "economics"],
   "legal": ["law", "compliance", "legal AI", "law tools", "legal tech", "compliance AI", "attorney", "lawyer", "judicial"],
+  
+  // Enhanced Keywords for Specific Tools
+  "einstein": ["physics", "genius", "scientist", "smart", "intelligent", "brilliant", "scientific", "albert", "relativity", "physicist", "nobel", "theory"],
+  "celebrity": ["famous", "star", "actor", "musician", "public figure", "personality", "icon", "hollywood", "entertainment", "fame"],
+  "dream": ["sleep", "subconscious", "interpretation", "meaning", "psychology", "symbols", "nightmare", "lucid", "rem", "unconscious"],
+  "cannabis": ["marijuana", "weed", "hemp", "medical marijuana", "cbd", "thc", "plant", "dispensary", "strain", "cultivation"],
+  "fishing": ["angling", "fish", "outdoor", "sport", "recreation", "water", "hobby", "rod", "bait", "catch", "lake", "river"],
+  "peace": ["meditation", "calm", "tranquil", "serenity", "mindfulness", "relaxation", "zen", "harmony", "quiet", "stillness"],
+  "binary": ["code", "programming", "computer", "digital", "conversion", "numbers", "computing", "bits", "bytes", "system"],
+  "food": ["nutrition", "cooking", "recipe", "meal", "diet", "culinary", "eating", "quality", "ingredients", "health"],
+  "quality": ["standard", "grade", "assessment", "evaluation", "rating", "measure", "level", "excellence", "control"],
   
   // Automotive Keywords - ENHANCED FOR CAR SEARCH
   "car": ["automobile", "automotive", "vehicle", "auto", "cars", "transportation", "driving", "motor", "car maintenance", "auto repair", "vehicle diagnostics", "automotive tools", "car buying", "automobile gpt"],
@@ -67,14 +78,14 @@ export const keywordMapping: Record<string, string[]> = {
   "auto": ["car", "automobile", "automotive", "vehicle", "cars", "automatic", "auto repair", "auto maintenance", "auto industry"],
   
   // Learning and Skills
-  "learn": ["education", "study", "skill", "course", "training", "tutorial", "lesson", "teaching", "learning", "knowledge", "instruction"],
-  "skill": ["ability", "talent", "expertise", "competency", "proficiency", "capability", "training", "development", "learning"],
+  "learn": ["education", "study", "skill", "course", "training", "tutorial", "lesson", "teaching", "learning", "knowledge", "instruction", "master", "develop"],
+  "skill": ["ability", "talent", "expertise", "competency", "proficiency", "capability", "training", "development", "learning", "mastery"],
   "course": ["class", "lesson", "tutorial", "training", "education", "curriculum", "program", "workshop", "seminar"],
   "tutorial": ["guide", "lesson", "instruction", "how-to", "walkthrough", "training", "learning", "educational"],
   "training": ["education", "learning", "skill development", "course", "workshop", "instruction", "coaching"],
   
   // Entertainment and Gaming
-  "game": ["gaming", "entertainment", "fun", "play", "interactive", "video game", "game development", "gaming AI"],
+  "game": ["gaming", "entertainment", "fun", "play", "interactive", "video game", "game development", "gaming AI", "design"],
   "entertainment": ["fun", "leisure", "amusement", "recreation", "gaming", "media", "content", "show"],
   "fun": ["entertainment", "enjoyable", "amusing", "recreational", "playful", "engaging", "interactive"],
   
@@ -82,6 +93,26 @@ export const keywordMapping: Record<string, string[]> = {
   "social": ["media", "network", "community", "sharing", "communication", "interaction", "platform", "connect"],
   "communication": ["messaging", "chat", "talk", "conversation", "interaction", "contact", "dialogue"],
   "translate": ["translation", "language", "convert", "interpret", "multilingual", "localization"],
+  
+  // Spirituality and Wellness Keywords
+  "spiritual": ["spirituality", "meditation", "mindfulness", "enlightenment", "consciousness", "soul", "divine", "sacred", "guru", "awakening"],
+  "astrology": ["horoscope", "zodiac", "stars", "planets", "birth chart", "cosmic", "celestial", "astrological"],
+  "tarot": ["cards", "reading", "divination", "fortune", "oracle", "mystical", "spiritual guidance"],
+  "angel": ["angels", "divine", "spiritual", "celestial", "heavenly", "guardian", "numbers", "messages"],
+  "manifestation": ["law of attraction", "visualization", "goals", "desires", "abundance", "positive thinking"],
+  "meditation": ["mindfulness", "zen", "peace", "calm", "relaxation", "spiritual", "consciousness"],
+  
+  // Time and History Keywords  
+  "history": ["historical", "past", "ancient", "timeline", "events", "civilization", "culture", "heritage"],
+  "time": ["temporal", "chronology", "period", "era", "epoch", "calendar", "clock"],
+  "historian": ["history", "historical", "academic", "scholar", "research", "past"],
+  "travel": ["journey", "trip", "explore", "adventure", "destination", "tourism"],
+  
+  // Creative and Design Keywords
+  "creative": ["creativity", "artistic", "imagination", "innovative", "original", "design", "art"],
+  "sketch": ["drawing", "art", "illustration", "design", "artistic", "creative", "pencil"],
+  "storyboard": ["film", "video", "planning", "visual", "story", "sequence", "production"],
+  "director": ["creative", "leadership", "vision", "artistic", "management", "production"],
   
   // Popular Features
   "free": ["no cost", "gratis", "complimentary", "free AI tools", "free software", "no payment", "open source", "zero cost"],
@@ -132,26 +163,10 @@ export const keywordMapping: Record<string, string[]> = {
   "voice": ["audio", "speech", "sound", "vocal", "speaking", "narration", "pronunciation"],
   "podcast": ["audio", "show", "episode", "broadcast", "media", "content", "listening"],
   
-  // Specific Tools and Services
-  "einstein": ["physics", "genius", "scientist", "smart", "intelligent", "brilliant", "scientific"],
-  "celebrity": ["famous", "star", "actor", "musician", "public figure", "personality", "icon"],
-  "dream": ["sleep", "subconscious", "interpretation", "meaning", "psychology", "symbols"],
-  "cannabis": ["marijuana", "weed", "hemp", "medical marijuana", "cbd", "thc", "plant"],
-  "fishing": ["angling", "fish", "outdoor", "sport", "recreation", "water", "hobby"],
-  "peace": ["meditation", "calm", "tranquil", "serenity", "mindfulness", "relaxation", "zen"],
-  "binary": ["code", "programming", "computer", "digital", "conversion", "numbers", "computing"],
-  "food": ["nutrition", "cooking", "recipe", "meal", "diet", "culinary", "eating", "quality"],
-  "quality": ["standard", "grade", "assessment", "evaluation", "rating", "measure", "level"],
-  
   // Professional Services
   "consulting": ["advisory", "guidance", "expert", "professional", "consultation", "advice"],
   "therapy": ["counseling", "treatment", "healing", "psychological", "mental health", "therapeutic"],
   "coaching": ["training", "mentoring", "guidance", "development", "instruction", "teaching"],
-  
-  // Time and Productivity
-  "schedule": ["calendar", "time", "planning", "organization", "appointment", "agenda"],
-  "task": ["todo", "work", "assignment", "job", "activity", "duty", "project"],
-  "project": ["work", "assignment", "task", "job", "undertaking", "initiative"],
   
   // Technology and Computing
   "software": ["program", "application", "tool", "system", "platform", "technology"],
@@ -161,32 +176,7 @@ export const keywordMapping: Record<string, string[]> = {
   // Language and Communication
   "language": ["linguistic", "communication", "speaking", "writing", "verbal", "tongue"],
   "english": ["language", "communication", "writing", "speaking", "grammar", "vocabulary"],
-  "grammar": ["language", "writing", "english", "syntax", "structure", "rules"],
-  
-  // Science and Research
-  "science": ["scientific", "research", "study", "knowledge", "discovery", "investigation"],
-  "scientific": ["science", "research", "academic", "scholarly", "empirical", "systematic"],
-  "experiment": ["test", "trial", "research", "study", "investigation", "analysis"],
-  
-  // Emotions and Psychology
-  "emotion": ["feeling", "mood", "psychological", "mental", "emotional", "sentiment"],
-  "mood": ["emotion", "feeling", "state", "mental", "psychological", "temperament"],
-  "stress": ["pressure", "tension", "anxiety", "strain", "mental health", "wellness"],
-  
-  // Money and Finance
-  "money": ["finance", "financial", "economic", "currency", "cash", "payment"],
-  "investment": ["finance", "money", "financial", "portfolio", "trading", "economic"],
-  "trading": ["investment", "finance", "market", "stocks", "financial", "economic"],
-  
-  // Home and Lifestyle
-  "home": ["house", "domestic", "household", "residence", "living", "family"],
-  "lifestyle": ["living", "way of life", "habits", "routine", "personal", "wellness"],
-  "family": ["relatives", "household", "domestic", "personal", "relationships", "home"],
-  
-  // Travel and Geography
-  "travel": ["trip", "journey", "vacation", "tourism", "adventure", "exploration"],
-  "location": ["place", "position", "geography", "area", "region", "spot"],
-  "map": ["geography", "location", "navigation", "direction", "spatial", "route"]
+  "grammar": ["language", "writing", "english", "syntax", "structure", "rules"]
 };
 
 // Enhanced search synonyms for better matching
@@ -212,5 +202,10 @@ export const categoryKeywords: Record<string, string[]> = {
   "Business & Productivity": ["business AI", "productivity tools", "workflow automation", "business automation"],
   "Education & Learning": ["educational AI", "learning tools", "teaching AI", "academic AI"],
   "Creative Services": ["creative AI", "design tools", "artistic AI", "creative automation"],
-  "Healthcare": ["medical AI", "health tools", "wellness AI", "healthcare technology"]
+  "Healthcare": ["medical AI", "health tools", "wellness AI", "healthcare technology"],
+  "Spirituality & Wellness": ["spiritual AI", "wellness tools", "meditation AI", "spiritual guidance"],
+  "Game Design & Development": ["game AI", "game development", "gaming tools", "game design"],
+  "History & Time": ["historical AI", "time tools", "history research", "historical analysis"],
+  "Advanced AI Tools": ["advanced AI", "AI platforms", "sophisticated AI", "AI development"],
+  "Creative Suites": ["creative tools", "design suites", "artistic platforms", "creative AI"]
 };
