@@ -1,4 +1,3 @@
-
 import { useCallback } from "react";
 import CategoryFilters from "@/components/tools/CategoryFilters";
 import ActiveFilters from "@/components/tools/ActiveFilters";
@@ -7,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useFeaturedToolsState } from "@/hooks/useFeaturedToolsState";
 import { useScrollMemory } from "@/hooks/useScrollMemory";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
+import LoadMoreButton from "@/components/tools/LoadMoreButton";
 
 interface FeaturedToolsProps {
   showLoadMoreButton?: boolean;
@@ -104,9 +104,9 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
         onCategoryChange={handleCategoryChange}
       />
 
-      {/* SEE MORE AI TOOLS Button - enhanced for continuous loading */}
+      {/* Main SEE MORE AI TOOLS Button - enhanced for continuous loading */}
       {showLoadMoreButton && !selectedCategory && !searchTerm && hasMoreTools && (
-        <div className="text-center mt-12 mb-16 px-4">
+        <div className="text-center mt-12 mb-8 px-4">
           <Button
             onClick={handleLoadMoreButton}
             size="lg"
@@ -128,8 +128,21 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
         </div>
       )}
 
+      {/* ALWAYS AVAILABLE Backup Load More Button - ensures accessibility */}
+      {!showLoadMoreButton && hasMoreTools && (
+        <div className="text-center mt-8 mb-16 px-4">
+          <LoadMoreButton 
+            displayedCount={displayedCount}
+            totalCount={totalToolsCount}
+            onLoadMore={handleLoadMore}
+            isLoading={isLoading}
+            showAsBackup={true}
+          />
+        </div>
+      )}
+
       {/* Show completion message when all tools are loaded */}
-      {showLoadMoreButton && !hasMoreTools && !isLoading && totalToolsCount > 20 && (
+      {!hasMoreTools && !isLoading && totalToolsCount > 20 && (
         <div className="text-center mt-12 mb-16 px-4 text-cyan-300">
           <div className="text-2xl mb-2">🎉</div>
           <div className="text-lg font-semibold mb-2">

@@ -14,6 +14,16 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   // Add the full search term
   expandedKeywords.add(searchTerm);
   
+  // Special handling for GPT searches - this is crucial for Ken's GPTs
+  if (searchTerm.toLowerCase().includes('gpt')) {
+    expandedKeywords.add('gpt');
+    expandedKeywords.add('GPT');
+    expandedKeywords.add('chatgpt');
+    expandedKeywords.add('custom gpt');
+    expandedKeywords.add('ai assistant');
+    expandedKeywords.add('conversational ai');
+  }
+  
   // Add individual words (only if they're longer than 2 characters)
   words.forEach(word => {
     if (word.length > 2) {
