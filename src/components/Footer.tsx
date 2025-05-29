@@ -1,5 +1,6 @@
+
 import { Separator } from "@/components/ui/separator";
-import { Globe, Mail, Phone, Home, MapPin, Shield } from "lucide-react";
+import { Globe, Mail, Phone, Home, MapPin, Shield, Plus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
@@ -15,11 +16,48 @@ const Footer = () => {
     }
   };
 
+  const handleRequestTool = () => {
+    const subject = encodeURIComponent('AI Tool Request - New Tool Build');
+    const body = encodeURIComponent(`Hi AI Web Tools Team,
+
+I would like to request a new AI tool to be built for your website.
+
+Tool Details:
+1. What should this AI tool do? (Describe the main functionality)
+   [Your answer here]
+
+2. What category would this tool fit into? (e.g., Writing, Business, Creative, etc.)
+   [Your answer here]
+
+3. Who is the target audience for this tool? (e.g., Students, Professionals, Content Creators, etc.)
+   [Your answer here]
+
+4. Are there any specific features or capabilities you'd like included?
+   [Your answer here]
+
+5. Do you have any examples of similar tools or references?
+   [Your answer here]
+
+6. How would this tool benefit users?
+   [Your answer here]
+
+Additional Information:
+[Any other details or requirements]
+
+Thank you for considering my request!
+
+Best regards,
+[Your name]`);
+    
+    const mailtoUrl = `mailto:contact@ai-webtools.com?subject=${subject}&body=${body}`;
+    window.location.href = mailtoUrl;
+  };
+
   return (
     <footer className="bg-black text-cyan-100 py-16 border-t border-cyan-500/30">
       <div className="container mx-auto px-4">
-        {/* Big Disclaimer Button */}
-        <div className="text-center mb-12">
+        {/* Big Action Buttons */}
+        <div className="text-center mb-12 space-y-4">
           <a
             href="https://aitools.company/terms-of-services"
             target="_blank"
@@ -30,6 +68,17 @@ const Footer = () => {
             <span className="text-xl">READ FULL DISCLAIMER AND TERMS OF SERVICE</span>
             <Shield className="w-6 h-6" />
           </a>
+          
+          <div className="pt-2">
+            <button
+              onClick={handleRequestTool}
+              className="inline-flex items-center justify-center space-x-3 px-12 py-6 bg-gradient-to-r from-green-600 via-green-500 to-green-600 hover:from-green-500 hover:via-green-400 hover:to-green-500 text-black font-bold text-lg rounded-full shadow-2xl shadow-green-500/40 hover:shadow-green-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-green-400 hover:border-green-300 cyber-glow"
+            >
+              <Plus className="w-6 h-6" />
+              <span className="text-xl">REQUEST A TOOL BUILD</span>
+              <Plus className="w-6 h-6" />
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
