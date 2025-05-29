@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { allTools } from "@/data/toolsData";
 import { getCategoriesWithCounts, getToolsByCategory } from "@/utils/categoryUtils";
-import { ChevronLeft, Grid3X3 } from "lucide-react";
+import { ChevronLeft, Grid3X3, Download, FileText } from "lucide-react";
 
 const CategoryPage = () => {
   const { categoryName } = useParams<{ categoryName: string }>();
@@ -43,6 +43,10 @@ const CategoryPage = () => {
 
   const goBack = () => {
     navigate('/');
+  };
+
+  const handleDownloadMasterList = () => {
+    window.open("https://docs.google.com/document/d/1qtDKo3XN_EsspgrQD72Cpq2qh83H5xSd/edit?usp=sharing&ouid=116187507271950139405&rtpof=true&sd=true", "_blank");
   };
 
   if (!selectedCategory || !categoriesWithCounts[selectedCategory]) {
@@ -92,6 +96,24 @@ const CategoryPage = () => {
             <Badge variant="outline" className="text-lg px-4 py-2 border-cyan-400 text-cyan-300 bg-cyan-500/10">
               {categoryTools.length} Tools Available
             </Badge>
+
+            {/* Special Download Button for Writing & Content Category */}
+            {selectedCategory === "Writing & Content" && (
+              <div className="mt-8">
+                <Button 
+                  onClick={handleDownloadMasterList}
+                  className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold px-6 py-3 text-lg"
+                  size="lg"
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  <FileText className="w-5 h-5 mr-2" />
+                  1250+ More AI Tools For Free - MASTER AI TOOL DOWNLOADABLE LIST
+                </Button>
+                <p className="text-sm text-gray-400 mt-2">
+                  Access our comprehensive collection of AI tools
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Category Toggle Section */}
