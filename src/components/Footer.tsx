@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator";
-import { Globe, Mail, Phone, Home } from "lucide-react";
+import { Globe, Mail, Phone, Home, MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
@@ -36,6 +36,10 @@ const Footer = () => {
               Crafting the future of AI-powered web tools and services. Empowering creators, businesses, and innovators worldwide.
             </p>
             <div className="flex flex-col space-y-2">
+              <div className="flex items-center space-x-2 text-cyan-300">
+                <MapPin className="w-4 h-4" />
+                <span>One World Drive, Earth</span>
+              </div>
               <a 
                 href="tel:+14758008096" 
                 className="flex items-center space-x-2 text-cyan-300 hover:text-cyan-400 transition-colors"
