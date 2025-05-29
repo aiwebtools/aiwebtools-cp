@@ -46,6 +46,9 @@ export { imageGenerationPlatforms } from './imageGenerationPlatforms';
 export { aiProductivityTools } from './aiProductivityTools';
 export { openSourceAIModels } from './openSourceAIModels';
 
+// New AI Agents category
+export { aiAgents } from './aiAgents';
+
 // New categories for the requested tools
 export { timeAndHistory } from './timeAndHistory';
 export { creativeSuites } from './creativeSuites';
