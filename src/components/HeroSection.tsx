@@ -3,18 +3,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Zap, Globe } from "lucide-react";
 import SearchOverlay from "./SearchOverlay";
-import SearchBar from "./tools/SearchBar";
-import CategoryFilters from "./tools/CategoryFilters";
-import { allTools } from "@/data/toolsData";
-import { getCategoriesWithCounts } from "@/utils/categoryUtils";
-import { searchTools } from "@/utils/searchUtils";
 
 const HeroSection = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
-  const categoriesWithCounts = getCategoriesWithCounts(allTools);
 
   const handleExploreTools = () => {
     setIsSearchOpen(true);
@@ -29,28 +20,6 @@ const HeroSection = () => {
     if (toolsSection) {
       toolsSection.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const handleSearchChange = (value: string) => {
-    setSearchTerm(value);
-    if (value.trim()) {
-      // Trigger search and scroll to tools section
-      setTimeout(() => {
-        scrollToTools();
-        const event = new CustomEvent('heroSearch', { detail: value });
-        window.dispatchEvent(event);
-      }, 300);
-    }
-  };
-
-  const handleCategoryChange = (category: string | null) => {
-    setSelectedCategory(category);
-    // Trigger category change and scroll to tools section
-    setTimeout(() => {
-      scrollToTools();
-      const event = new CustomEvent('selectCategory', { detail: category || 'All Categories' });
-      window.dispatchEvent(event);
-    }, 300);
   };
 
   return (
@@ -99,25 +68,10 @@ const HeroSection = () => {
               <span className="sm:hidden">Get Web3 Domain</span>
             </Button>
           </div>
-
-          {/* Search Bar and Categories Section */}
-          <div className="w-full max-w-6xl space-y-8">
-            <div className="mb-8">
-              <SearchBar 
-                searchTerm={searchTerm}
-                onSearchChange={handleSearchChange}
-              />
-            </div>
-            
-            <div className="mb-8">
-              <CategoryFilters
-                categoriesWithCounts={categoriesWithCounts}
-                selectedCategory={selectedCategory}
-                onCategoryChange={handleCategoryChange}
-                onSearchChange={handleSearchChange}
-                searchTerm={searchTerm}
-              />
-            </div>
+          
+          <div className="text-center space-y-2">
+            <p className="text-3xl font-bold text-white">🌐 Crafting the Future—🚀 Redefining the Game</p>
+            <p className="text-gray-400">YOU'VE JUST BEEN GIFTED AI SUPERPOWERS...</p>
           </div>
         </div>
       </section>
