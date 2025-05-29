@@ -36,9 +36,10 @@ const HeroSection = () => {
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            Welcome to{" "}
+            Welcome to
+            <br />
             <span className="bg-gradient-to-r from-ai-cyan via-ai-purple to-ai-blue bg-clip-text text-transparent">
-              AI Web Tools
+              AI WEB TOOLS
             </span>
           </h1>
           
