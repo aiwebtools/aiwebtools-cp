@@ -94,6 +94,16 @@ import { entertainmentTools } from './tools/entertainmentTools';
 import { newsAndInformationTools } from './tools/newsAndInformationTools';
 import { healthAndWellnessTools } from './tools/healthAndWellnessTools';
 
+// Import NEW comprehensive AI tool categories to reach 1000+
+import { aiGenerativeTools } from './tools/aiGenerativeTools';
+import { aiResearchTools } from './tools/aiResearchTools';
+import { aiProductivitySuite } from './tools/aiProductivitySuite';
+import { aiSecurityTools } from './tools/aiSecurityTools';
+import { aiFinanceTools } from './tools/aiFinanceTools';
+import { aiHealthcareTools } from './tools/aiHealthcareTools';
+import { aiEducationTools } from './tools/aiEducationTools';
+import { aiLegalTools } from './tools/aiLegalTools';
+
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
@@ -185,6 +195,16 @@ export const getAllToolCategories = (): Tool[] => {
     ...healthAndWellnessTools,
     
     // Robotics companies category
-    ...roboticsCompanies
+    ...roboticsCompanies,
+    
+    // NEW comprehensive AI tool categories to reach 1000+
+    ...aiGenerativeTools,
+    ...aiResearchTools,
+    ...aiProductivitySuite,
+    ...aiSecurityTools,
+    ...aiFinanceTools,
+    ...aiHealthcareTools,
+    ...aiEducationTools,
+    ...aiLegalTools
   ];
 };

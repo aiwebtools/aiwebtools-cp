@@ -86,3 +86,13 @@ export { healthAndWellnessTools } from './healthAndWellnessTools';
 
 // Export robotics companies category
 export { roboticsCompanies } from './roboticsCompanies';
+
+// Export NEW comprehensive AI tool categories to reach 1000+
+export { aiGenerativeTools } from './aiGenerativeTools';
+export { aiResearchTools } from './aiResearchTools';
+export { aiProductivitySuite } from './aiProductivitySuite';
+export { aiSecurityTools } from './aiSecurityTools';
+export { aiFinanceTools } from './aiFinanceTools';
+export { aiHealthcareTools } from './aiHealthcareTools';
+export { aiEducationTools } from './aiEducationTools';
+export { aiLegalTools } from './aiLegalTools';
