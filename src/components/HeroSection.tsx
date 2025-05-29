@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Zap, Globe } from "lucide-react";
@@ -23,9 +24,9 @@ const HeroSection = () => {
 
   return (
     <>
-      <section className="relative min-h-screen bg-gradient-to-br from-slate-900/70 via-purple-900/60 to-slate-900/70 overflow-hidden">
+      <section className="relative min-h-screen bg-gradient-to-br from-slate-900/40 via-purple-900/30 to-slate-900/40 overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-r from-ai-purple/10 to-ai-blue/10 animate-pulse"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-ai-purple/5 to-ai-blue/5 animate-pulse"></div>
         <div className="absolute top-20 left-20 w-72 h-72 bg-ai-purple/30 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-ai-cyan/20 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
         
@@ -62,7 +63,7 @@ const HeroSection = () => {
               className="border-ai-cyan text-ai-cyan hover:bg-ai-cyan hover:text-white px-8 py-4 text-lg rounded-xl transition-all duration-300"
             >
               <Globe className="w-5 h-5 mr-2" />
-              <span className="hidden sm:inline">Get .aiwebtool or ai-tools Web3 Domain</span>
+              <span className="hidden sm:inline">Get .aiwebtools or ai-tools Web3 Domain</span>
               <span className="sm:hidden">Get Web3 Domain</span>
             </Button>
           </div>
