@@ -32,6 +32,16 @@ const Logo = () => {
             AiWebTools.AI
           </a>
         </div>
+        <div className="text-xs text-gray-500">
+          <a 
+            href="https://aitools.company" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-500 hover:text-cyan-400 transition-colors"
+          >
+            An AiTools.Company
+          </a>
+        </div>
       </div>
       <button
         onClick={scrollToHome}
