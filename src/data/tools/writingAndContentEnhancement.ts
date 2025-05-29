@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   PenTool, 
@@ -11,7 +10,17 @@ import {
   Globe,
   Target,
   Brain,
-  Calendar
+  Calendar,
+  Mail,
+  Type,
+  Users,
+  TrendingUp,
+  Lightbulb,
+  Eye,
+  MessageSquare,
+  Feather,
+  Hash,
+  Mic
 } from "lucide-react";
 
 export const writingAndContentEnhancement: Tool[] = [
@@ -362,5 +371,185 @@ export const writingAndContentEnhancement: Tool[] = [
     category: "Writing & Content Enhancement",
     rating: 4.7,
     totalVotes: 5234
+  },
+  {
+    icon: Sparkles,
+    title: "Story Lab AI",
+    description: "Robust AI-powered content marketing toolkit trusted by over 80,000 marketers, offering a seamless solution for businesses to amplify their brand, demand, reach, and engagement while fostering meaningful conversations and driving revenue growth.",
+    emoji: "📖",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://storylab.ai/?ref=aiwebtools",
+    tags: ["80k marketers", "content marketing", "brand amplification", "revenue growth", "storytelling", "demand generation"],
+    category: "Writing & Content Enhancement",
+    rating: 4.6,
+    totalVotes: 4234
+  },
+  {
+    icon: Feather,
+    title: "SudoWrite",
+    description: "Your always-available AI writing partner powered by GPT-3 and GPT-4. Enhances descriptions, guides novel writing, overcomes writer's block, maintains pacing, aids in revisions, and provides quick feedback for unique content generation.",
+    emoji: "✍️",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://www.sudowrite.com/?via=aiwebtools",
+    tags: ["GPT-3", "GPT-4", "novel writing", "writer's block", "revisions", "creative writing"],
+    category: "Writing & Content Enhancement",
+    rating: 4.5,
+    totalVotes: 3876
+  },
+  {
+    icon: Type,
+    title: "TextCortex",
+    description: "Creative companion harnessing the power of AI to revolutionize the way you create, communicate, and collaborate. With personalized AI assistance, it adapts to your style and needs, making content creation effortless.",
+    emoji: "🧠",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://textcortex.com/?via=aiwebtools",
+    tags: ["personalized AI", "content creation", "communication", "collaboration", "creative blocks", "productivity"],
+    category: "Writing & Content Enhancement",
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: TrendingUp,
+    title: "TEXTA",
+    description: "Ultimate content creation partner, harnessing AI to supercharge your writing 10x faster. Generates, paraphrases, and optimizes content effortlessly. Creates SEO-optimized blog posts, compelling email campaigns, and more.",
+    emoji: "📝",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://texta.ai/home?via=aiwebtools",
+    tags: ["10x faster", "SEO optimization", "email campaigns", "paraphrasing", "content optimization", "productivity"],
+    category: "Writing & Content Enhancement",
+    rating: 4.3,
+    totalVotes: 2987
+  },
+  {
+    icon: FileText,
+    title: "Text-Generator",
+    description: "Open-source AI Assistant Tool designed to enhance knowledge creation and organization within Obsidian. 100% free tool harnesses Generative AI to generate ideas, titles, summaries, outlines, and complete paragraphs.",
+    emoji: "🔧",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://text-gen.com/",
+    tags: ["open-source", "Obsidian", "knowledge management", "free tool", "content generation", "summaries"],
+    category: "Writing & Content Enhancement",
+    rating: 4.2,
+    totalVotes: 2456
+  },
+  {
+    icon: Zap,
+    title: "Type.ai",
+    description: "AI-powered document editor designed to significantly enhance your writing speed and productivity. Leverages artificial intelligence to streamline the writing process, allowing you to create content at an accelerated pace.",
+    emoji: "⚡",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://type.ai/",
+    tags: ["document editor", "writing speed", "productivity", "accelerated writing", "AI assistance", "efficiency"],
+    category: "Writing & Content Enhancement",
+    rating: 4.1,
+    totalVotes: 2234
+  },
+  {
+    icon: Edit,
+    title: "WordTune",
+    description: "AI-powered writing assistant tool that helps users improve their writing skills. Provides suggestions for sentence rephrasing, grammar corrections, alternative word choices, and overall improvement of readability and clarity.",
+    emoji: "📖",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://app.wordtune.com/account/signup?product=write&platform=editor&redirect=https://app.wordtune.com/v2/editor",
+    tags: ["sentence rephrasing", "grammar corrections", "readability", "clarity", "writing improvement", "productivity"],
+    category: "Writing & Content Enhancement",
+    rating: 4.4,
+    totalVotes: 3567
+  },
+  {
+    icon: Brain,
+    title: "Word AI",
+    description: "Game-changing AI-powered tool that redefines content creation with advanced machine learning capabilities. Rewrites text, restructures sentences while preserving meaning, and enriches content with alternative expressions.",
+    emoji: "🔄",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://wordai.com/?ref=ca732c",
+    tags: ["content rewriting", "machine learning", "text restructuring", "SEO optimization", "content quality", "natural reading"],
+    category: "Writing & Content Enhancement",
+    rating: 4.5,
+    totalVotes: 4123
+  },
+  {
+    icon: Sparkles,
+    title: "WriteSonic",
+    description: "Versatile AI content platform that empowers users to effortlessly create high-quality content, audio, images, and even AI chatbots. Offers seamless and user-friendly experience for writers, marketers, and entrepreneurs.",
+    emoji: "🎵",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://writesonic.com/?via=aiwebtools",
+    tags: ["content platform", "AI chatbots", "audio generation", "image creation", "marketers", "entrepreneurs"],
+    category: "Writing & Content Enhancement",
+    rating: 4.6,
+    totalVotes: 4567
+  },
+  {
+    icon: CheckCircle,
+    title: "Writefull",
+    description: "Highly valuable tool for academic writing, offering a unique blend of linguistic prowess and AI-powered assistance. Identifies nuanced language issues often overlooked by other tools, particularly indispensable to non-native English speakers.",
+    emoji: "📚",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.writefull.com/",
+    tags: ["academic writing", "linguistic analysis", "non-native speakers", "language precision", "AI widgets", "academic standards"],
+    category: "Writing & Content Enhancement",
+    rating: 4.7,
+    totalVotes: 3876
+  },
+  {
+    icon: Lightbulb,
+    title: "Yaara",
+    description: "Revolutionizing the world of writing with cutting-edge AI technology. Whether struggling with writer's block, aiming to produce high-quality content effortlessly, or seeking to create persuasive marketing copy.",
+    emoji: "💡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://www.yaara.ai/?via=aiwebtools",
+    tags: ["writer's block", "marketing copy", "content creation", "SEO optimization", "email communication", "20k+ writers"],
+    category: "Writing & Content Enhancement",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
+    icon: FileText,
+    title: "Article Forge",
+    description: "AI-powered content creation tool that generates high-quality, SEO-optimized articles with a single click. Using advanced AI and deep learning, it saves time and resources, aligning with Google's SEO standards for improved rankings.",
+    emoji: "📰",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://www.articleforge.com/",
+    tags: ["single click", "SEO optimized", "deep learning", "Google standards", "content creation", "time saving"],
+    category: "Writing & Content Enhancement",
+    rating: 4.3,
+    totalVotes: 2987
+  },
+  {
+    icon: Mic,
+    title: "AudioNotes",
+    description: "Game-changing AI-driven tool designed to streamline note-taking and content creation. With over 16,000 users, it offers multiple input methods including voice notes, audio file uploads, and text notes creation.",
+    emoji: "🎤",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://www.audionotes.app/?gr_pk=VQ1w&gr_uid=5q8A",
+    tags: ["16k users", "voice notes", "audio files", "note-taking", "content creation", "transcription"],
+    category: "Writing & Content Enhancement",
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: PenTool,
+    title: "MagickPen",
+    description: "Intelligent AI writing assistant powered by ChatGPT, offering users the choice between GPT-3.5 for efficient writing and GPT-4 for precision and creativity. With over 90 templates covering diverse writing areas.",
+    emoji: "🪄",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://magickpen.com/?aff=DM2Np",
+    tags: ["ChatGPT", "GPT-3.5", "GPT-4", "90+ templates", "precision", "creativity"],
+    category: "Writing & Content Enhancement",
+    rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: Globe,
+    title: "WriteSeed",
+    description: "Game-changing AI writing tool that revolutionizes content creation, making it faster, easier, and more effective. Boasts the incredible ability to generate full articles in a mere 10 seconds with SEO optimization.",
+    emoji: "🌱",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://writeseed.com/?v=6222",
+    tags: ["10 seconds", "SEO optimization", "35 languages", "Chrome extension", "keyword research", "fast generation"],
+    category: "Writing & Content Enhancement",
+    rating: 4.4,
+    totalVotes: 3123
   }
 ];
