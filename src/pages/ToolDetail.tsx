@@ -1,3 +1,4 @@
+
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -31,7 +32,15 @@ const ToolDetail = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [toolIndex]);
+    
+    // Verify tool exists and is properly indexed
+    if (tool) {
+      console.log(`📄 Loaded tool page ${toolIndex}: "${tool.title}" in category "${tool.category}"`);
+      console.log(`🔍 Tool searchability test: Can find by title = ${searchTools(allTools, tool.title).length > 0}`);
+    } else {
+      console.error(`❌ Tool at index ${toolIndex} not found in collection of ${allTools.length} tools`);
+    }
+  }, [toolIndex, tool]);
 
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
@@ -49,7 +58,7 @@ const ToolDetail = () => {
       <div className="min-h-screen bg-black relative">
         <SEOHead
           title="Tool Not Found"
-          description="The requested AI tool could not be found. Browse our collection of 1000+ AI tools."
+          description="The requested AI tool could not be found. Browse our collection of 700+ AI tools."
           noIndex={true}
         />
         <AnimatedBackground />
@@ -57,10 +66,13 @@ const ToolDetail = () => {
           <div className="text-center p-8 bg-gray-900/80 backdrop-blur-md rounded-xl border border-cyan-500/30 shadow-2xl shadow-cyan-500/20">
             <h1 className="text-3xl font-bold text-cyan-100 mb-4 cyber-glow">Tool Not Found</h1>
             <p className="text-gray-300 mb-6">This AI tool seems to have vanished into the digital matrix.</p>
+            <p className="text-gray-400 mb-6 text-sm">
+              Requested tool index: {toolIndex} | Total tools available: {allTools.length}
+            </p>
             <Link to="/">
               <Button variant="outline" className="border-cyan-500/30 bg-gray-900/80 text-cyan-100 hover:bg-cyan-500/20 interactive-button">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Home
+                Back to Browse All {allTools.length}+ Tools
               </Button>
             </Link>
           </div>
@@ -125,7 +137,7 @@ const ToolDetail = () => {
             <Link to="/" className="inline-block mb-8">
               <Button variant="outline" size="sm" className="border-cyan-500/30 bg-gray-900/80 text-cyan-100 hover:bg-cyan-500/20 transition-all duration-300 interactive-button">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to All AI Web Tools
+                Back to All {allTools.length}+ AI Web Tools
               </Button>
             </Link>
 
@@ -156,7 +168,7 @@ const ToolDetail = () => {
                 <h3 className="text-2xl font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-4 cyber-glow">
                   Discover More AI Tools
                 </h3>
-                <p className="text-gray-300 mb-6">Search through our collection of 600+ AI tools to find your next favorite</p>
+                <p className="text-gray-300 mb-6">Search through our collection of {allTools.length}+ AI tools to find your next favorite</p>
               </div>
               <SearchBar 
                 searchTerm={searchTerm}

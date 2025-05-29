@@ -123,5 +123,10 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   console.log(`✅ Search results for "${term}": ${results.length} tools found`);
   console.log(`📊 Top 5 results:`, results.slice(0, 5).map(t => ({ title: t.title, category: t.category })));
   
+  // Verify search is working across the full tool collection
+  if (results.length === 0 && tools.length > 0) {
+    console.warn(`⚠️ No search results found for "${term}" in collection of ${tools.length} tools`);
+  }
+  
   return results;
 };
