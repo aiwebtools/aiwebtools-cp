@@ -24,8 +24,8 @@ import {
   Sparkles,
   Mic,
   GraduationCap,
-  feather,
-  book
+  Feather,
+  Book
 } from "lucide-react";
 
 export const writingAndContentEnhancement: Tool[] = [
@@ -150,7 +150,7 @@ export const writingAndContentEnhancement: Tool[] = [
     totalVotes: 3234
   },
   {
-    icon: feather,
+    icon: Feather,
     title: "SudoWrite",
     description: "Your always-available AI writing partner powered by GPT-3 and GPT-4. Enhances descriptions, guides novel writing, overcomes writer's block, maintains pacing, aids in revisions, and provides quick feedback for unique content generation.",
     emoji: "✍️",
@@ -174,7 +174,7 @@ export const writingAndContentEnhancement: Tool[] = [
     totalVotes: 3567
   },
   {
-    icon: book,
+    icon: Book,
     title: "Brain-Buddy",
     description: "AI-powered educational platform helping users improve learning, problem-solving, writing, note-taking, and test preparation skills. Suitable for learners of all ages with customized reports.",
     emoji: "🧠",
