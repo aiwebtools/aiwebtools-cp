@@ -1,5 +1,10 @@
 
-@import './styles/base.css';
-@import './styles/components.css';
-@import './styles/animations.css';
-@import './styles/background-effects.css';
+@import url("./styles/base.css");
+@import url("./styles/components.css");
+@import url("./styles/animations.css");
+@import url("./styles/background-effects.css");
+@import url("./styles/timeEffects.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

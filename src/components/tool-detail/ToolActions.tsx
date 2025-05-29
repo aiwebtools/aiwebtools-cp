@@ -2,15 +2,17 @@
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Mail } from "lucide-react";
 import { Tool } from "@/types/tools";
+import { createTimePortalEffect } from "@/utils/timeEffects";
 
 interface ToolActionsProps {
   tool: Tool;
 }
 
 const ToolActions = ({ tool }: ToolActionsProps) => {
-  const handleUseItNow = () => {
+  const handleUseItNow = (e: React.MouseEvent) => {
+    e.preventDefault();
     if (tool.directUrl) {
-      window.open(tool.directUrl, '_blank', 'noopener,noreferrer');
+      createTimePortalEffect(tool.directUrl);
     }
   };
 
