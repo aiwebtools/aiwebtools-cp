@@ -1,8 +1,7 @@
-
-
 import { Separator } from "@/components/ui/separator";
 import { Globe, Mail, Phone, Home, MapPin, Shield, Plus, Upload } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -107,21 +106,27 @@ Best regards,
     window.location.href = mailtoUrl;
   };
 
+  // Enhanced external link handler with time portal effect
+  const handleExternalLink = (url: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('🌀 External link clicked in footer:', url);
+    createTimePortalEffect(url);
+  };
+
   return (
     <footer className="bg-black text-cyan-100 py-16 border-t border-cyan-500/30">
       <div className="container mx-auto px-4">
         {/* Big Action Buttons */}
         <div className="text-center mb-12 space-y-4">
-          <a
-            href="https://aitools.company/terms-of-services"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={(e) => handleExternalLink("https://aitools.company/terms-of-services", e)}
             className="inline-flex items-center justify-center space-x-3 px-12 py-6 bg-gradient-to-r from-cyan-600 via-cyan-500 to-cyan-600 hover:from-cyan-500 hover:via-cyan-400 hover:to-cyan-500 text-black font-bold text-lg rounded-full shadow-2xl shadow-cyan-500/40 hover:shadow-cyan-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-cyan-400 hover:border-cyan-300 cyber-glow"
           >
             <Shield className="w-6 h-6" />
             <span className="text-xl">READ FULL DISCLAIMER AND TERMS OF SERVICE</span>
             <Shield className="w-6 h-6" />
-          </a>
+          </button>
           
           <div className="pt-2 space-y-3">
             <button
@@ -218,31 +223,25 @@ Best regards,
         
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
-            <a 
-              href="https://www.AiWebTools.AI" 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <button 
+              onClick={(e) => handleExternalLink("https://www.AiWebTools.AI", e)}
               className="text-cyan-300 hover:text-cyan-400 transition-colors"
             >
               © 2025 AI WEB TOOLS LLC All rights reserved.
-            </a>
+            </button>
             <div className="flex space-x-4">
-              <a 
-                href="https://openai.com/policies/privacy-policy/" 
-                target="_blank" 
-                rel="noopener noreferrer"
+              <button 
+                onClick={(e) => handleExternalLink("https://openai.com/policies/privacy-policy/", e)}
                 className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm"
               >
                 Privacy Policy
-              </a>
-              <a 
-                href="https://aitools.company/terms-of-services" 
-                target="_blank" 
-                rel="noopener noreferrer"
+              </button>
+              <button 
+                onClick={(e) => handleExternalLink("https://aitools.company/terms-of-services", e)}
                 className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm"
               >
                 Terms of Service
-              </a>
+              </button>
             </div>
           </div>
           <div className="flex items-center space-x-6 text-cyan-300">
@@ -258,4 +257,3 @@ Best regards,
 };
 
 export default Footer;
-

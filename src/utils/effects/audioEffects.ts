@@ -114,3 +114,96 @@ export const createPortalSounds = () => {
     console.log('Audio context error:', error);
   }
 };
+
+// Generate contextual robot voice message based on tool name and URL
+const generateRobotMessage = (toolName: string, destinationUrl: string): string => {
+  console.log('🤖 Generating robot message for tool:', toolName);
+  
+  // Extract tool category and purpose from name and URL
+  const toolNameLower = toolName.toLowerCase();
+  const urlLower = destinationUrl.toLowerCase();
+  
+  let message = "Master, ";
+  
+  // Determine the tool type and create contextual message
+  if (toolNameLower.includes('gpt') || toolNameLower.includes('chat')) {
+    message += `the AI Oracle ${toolName} awaits your wisdom. Prepare to transcend digital realms!`;
+  } else if (toolNameLower.includes('image') || toolNameLower.includes('art') || toolNameLower.includes('photo')) {
+    message += `the visual creation portal ${toolName} beckons. Your artistic visions shall manifest!`;
+  } else if (toolNameLower.includes('video') || toolNameLower.includes('movie')) {
+    message += `the cinematic dimension ${toolName} opens before you. Reality becomes your canvas!`;
+  } else if (toolNameLower.includes('music') || toolNameLower.includes('audio') || toolNameLower.includes('voice')) {
+    message += `the sonic realm ${toolName} resonates with your essence. Let creativity flow through sound!`;
+  } else if (toolNameLower.includes('business') || toolNameLower.includes('productivity')) {
+    message += `the enterprise nexus ${toolName} empowers your ambitions. Success awaits beyond the portal!`;
+  } else if (toolNameLower.includes('code') || toolNameLower.includes('develop')) {
+    message += `the digital forge ${toolName} ignites your coding prowess. Reality bends to your commands!`;
+  } else if (toolNameLower.includes('write') || toolNameLower.includes('content')) {
+    message += `the literary dimension ${toolName} amplifies your voice. Words become your weapon!`;
+  } else if (toolNameLower.includes('time') || toolNameLower.includes('history')) {
+    message += `the temporal nexus ${toolName} unlocks the mysteries of time itself. Past, present, and future converge!`;
+  } else {
+    message += `the mystical realm ${toolName} opens its secrets to you. Adventure and discovery await!`;
+  }
+  
+  return message;
+};
+
+// Enhanced robot voice synthesis with deeper, more mystical tone
+export const createRobotVoice = (toolName: string, destinationUrl: string) => {
+  console.log('🤖 Creating robot voice for:', toolName);
+  
+  // Check if Speech Synthesis is supported
+  if (!('speechSynthesis' in window)) {
+    console.log('Speech synthesis not supported');
+    return;
+  }
+  
+  try {
+    // Generate contextual message
+    const message = generateRobotMessage(toolName, destinationUrl);
+    console.log('🗣️ Robot message:', message);
+    
+    const utterance = new SpeechSynthesisUtterance(message);
+    
+    // Configure voice for mystical robot effect
+    utterance.rate = 0.7; // Slower, more deliberate speech
+    utterance.pitch = 0.3; // Much deeper, robotic tone
+    utterance.volume = 0.8; // Clear but not overwhelming
+    
+    // Try to find a deeper, more robotic voice
+    const voices = speechSynthesis.getVoices();
+    
+    // Prefer male voices with lower pitch characteristics
+    const preferredVoices = voices.filter(voice => 
+      voice.name.toLowerCase().includes('male') ||
+      voice.name.toLowerCase().includes('david') ||
+      voice.name.toLowerCase().includes('alex') ||
+      voice.name.toLowerCase().includes('daniel') ||
+      voice.lang.startsWith('en')
+    );
+    
+    if (preferredVoices.length > 0) {
+      utterance.voice = preferredVoices[0];
+    } else if (voices.length > 0) {
+      // Fallback to first available English voice
+      const englishVoice = voices.find(voice => voice.lang.startsWith('en'));
+      if (englishVoice) {
+        utterance.voice = englishVoice;
+      }
+    }
+    
+    // Add event listeners for debugging
+    utterance.onstart = () => console.log('🗣️ Robot voice started speaking');
+    utterance.onend = () => console.log('🗣️ Robot voice finished speaking');
+    utterance.onerror = (error) => console.log('🗣️ Robot voice error:', error);
+    
+    // Start speaking after a brief delay to sync with visual effects
+    setTimeout(() => {
+      speechSynthesis.speak(utterance);
+    }, 300);
+    
+  } catch (error) {
+    console.log('Robot voice synthesis error:', error);
+  }
+};

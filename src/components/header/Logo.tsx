@@ -1,6 +1,7 @@
 
 import { Home } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const Logo = () => {
   const navigate = useNavigate();
@@ -15,6 +16,14 @@ const Logo = () => {
     }
   };
 
+  // Enhanced external link handler with time portal effect
+  const handleExternalLink = (url: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('🌀 External link clicked in header:', url);
+    createTimePortalEffect(url);
+  };
+
   return (
     <div className="flex items-center space-x-4 flex-shrink-0">
       <div className="text-center">
@@ -23,24 +32,20 @@ const Logo = () => {
         </div>
         <div className="text-xs md:text-sm text-gray-400">
           Presented by{" "}
-          <a 
-            href="https://aitools.company" 
-            target="_blank" 
-            rel="noopener noreferrer"
+          <button 
+            onClick={(e) => handleExternalLink("https://aitools.company", e)}
             className="text-cyan-400 hover:text-cyan-300 transition-colors underline"
           >
             AiWebTools.AI
-          </a>
+          </button>
         </div>
         <div className="text-xs text-gray-500">
-          <a 
-            href="https://aitools.company" 
-            target="_blank" 
-            rel="noopener noreferrer"
+          <button 
+            onClick={(e) => handleExternalLink("https://aitools.company", e)}
             className="text-gray-500 hover:text-cyan-400 transition-colors"
           >
             An AiTools.Company
-          </a>
+          </button>
         </div>
       </div>
       <button
