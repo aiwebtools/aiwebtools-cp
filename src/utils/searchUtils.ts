@@ -86,7 +86,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
         'tea': ['teach', 'teacher'],
         'tut': ['tutorial'],
         'cou': ['course'],
-        'tra': ['training', 'translate'],
+        'train': ['training', 'translate'],
         'med': ['medical', 'media'],
         'soc': ['social'],
         'mar': ['marketing'],
@@ -117,7 +117,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
         'qua': ['quality'],
         'his': ['history', 'historian'],
         'tim': ['time'],
-        'tra': ['travel', 'training'],
+        'travel': ['travel', 'training'],
         'dir': ['director'],
         'ske': ['sketch'],
         'sto': ['story', 'storyboard']
