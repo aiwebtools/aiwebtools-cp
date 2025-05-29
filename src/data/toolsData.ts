@@ -50,7 +50,6 @@ import {
   contentCreationAndWritingTools,
   documentAndResearchTools,
   designAndGraphicsTools,
-  productivityAndAutomationTools,
   writingAndContentEnhancement,
   resumeAndCareerTools,
   ecommerceAndMarketingTools,
@@ -64,6 +63,14 @@ import {
   specializedNicheTools,
   meetingAndTranscriptionTools
 } from './tools';
+
+// Import the refactored tools
+import { productivityAndAutomationTools } from './tools/productivityAndAutomationTools';
+import { advancedVideoTools } from './tools/advancedVideoTools';
+import { creativeDesignTools } from './tools/creativeDesignTools';
+import { businessSalesTools } from './tools/businessSalesTools';
+import { specializedAITools } from './tools/specializedAITools';
+import { entertainmentMediaTools } from './tools/entertainmentMediaTools';
 
 import { searchTools } from '@/utils/searchUtils';
 import { createFeaturedTools } from '@/utils/featuredTools';
@@ -134,6 +141,13 @@ export const allTools: Tool[] = [
   
   // MEETING AND TRANSCRIPTION TOOLS
   ...meetingAndTranscriptionTools,
+  
+  // REFACTORED TOOLS CATEGORIES
+  ...advancedVideoTools,
+  ...creativeDesignTools,
+  ...businessSalesTools,
+  ...specializedAITools,
+  ...entertainmentMediaTools,
   
   // THEN SPECIALIZED CATEGORIES
   ...specializedAndNiche,
