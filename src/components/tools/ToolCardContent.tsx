@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Tool } from "@/types/tools";
 import ToolCardMedia from "./ToolCardMedia";
+import { createTimePortalEffect } from "@/utils/timeEffects";
 
 interface ToolCardContentProps {
   tool: Tool;
@@ -24,6 +25,16 @@ const ToolCardContent = ({
   imageHeight, 
   getDescription 
 }: ToolCardContentProps) => {
+  
+  const handleDirectAccess = (e: React.MouseEvent) => {
+    if (tool.directUrl) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('Direct access clicked for:', tool.title);
+      createTimePortalEffect(tool.directUrl);
+    }
+  };
+
   return (
     <CardContent className="text-center flex-grow flex flex-col relative z-10">
       <ToolCardMedia 
@@ -36,15 +47,29 @@ const ToolCardContent = ({
         {getDescription()}
       </CardDescription>
       
-      {/* Always link to individual tool page first, then external if available */}
-      <Link to={`/tool/${toolIndex}`} className="mt-auto">
-        <Button 
-          size={buttonSize as any}
-          className={`w-full ${isAIWebToolsOriginal ? 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600' : 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700'} text-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30`}
-        >
-          View Details
-        </Button>
-      </Link>
+      <div className="mt-auto space-y-2">
+        {/* View Details Button - always links to tool page */}
+        <Link to={`/tool/${toolIndex}`}>
+          <Button 
+            size={buttonSize as any}
+            className={`w-full ${isAIWebToolsOriginal ? 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600' : 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700'} text-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30`}
+          >
+            View Details
+          </Button>
+        </Link>
+        
+        {/* Direct Access Button - only show if tool has directUrl */}
+        {tool.directUrl && (
+          <Button 
+            size={buttonSize as any}
+            onClick={handleDirectAccess}
+            variant="outline"
+            className="w-full border-green-500/50 bg-green-500/10 text-green-300 hover:bg-green-500/20 hover:border-green-400 transition-all duration-300 transform hover:scale-105 shadow-lg"
+          >
+            🚀 USE IT NOW
+          </Button>
+        )}
+      </div>
     </CardContent>
   );
 };

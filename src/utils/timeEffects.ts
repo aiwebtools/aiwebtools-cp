@@ -1,5 +1,7 @@
 
 export const createTimePortalEffect = (destinationUrl: string) => {
+  console.log('🌀 Creating time portal effect for URL:', destinationUrl);
+  
   // Create container for all effects
   const effectsContainer = document.createElement('div');
   effectsContainer.style.cssText = `
@@ -24,6 +26,7 @@ export const createTimePortalEffect = (destinationUrl: string) => {
 
   // Create particle explosion
   const createParticles = () => {
+    console.log('✨ Creating particles');
     const colors = ['#00ffff', '#ff00ff', '#ffff00', '#00ff00', '#ff0080', '#8000ff'];
     const particleCount = 50;
     
@@ -54,6 +57,7 @@ export const createTimePortalEffect = (destinationUrl: string) => {
 
   // Create vortex rings
   const createVortexRings = () => {
+    console.log('🌀 Creating vortex rings');
     for (let i = 0; i < 5; i++) {
       const ring = document.createElement('div');
       ring.className = 'vortex-ring';
@@ -73,6 +77,7 @@ export const createTimePortalEffect = (destinationUrl: string) => {
 
   // Create energy waves
   const createEnergyWaves = () => {
+    console.log('⚡ Creating energy waves');
     for (let i = 0; i < 3; i++) {
       const wave = document.createElement('div');
       wave.className = 'energy-wave';
@@ -92,6 +97,7 @@ export const createTimePortalEffect = (destinationUrl: string) => {
 
   // Create lightning bolts
   const createLightning = () => {
+    console.log('⚡ Creating lightning bolts');
     for (let i = 0; i < 8; i++) {
       const bolt = document.createElement('div');
       bolt.className = 'lightning-bolt';
@@ -114,6 +120,7 @@ export const createTimePortalEffect = (destinationUrl: string) => {
 
   // Create full-screen flash
   const createFlash = () => {
+    console.log('💥 Creating flash effect');
     const flash = document.createElement('div');
     flash.style.cssText = `
       position: absolute;
@@ -129,82 +136,97 @@ export const createTimePortalEffect = (destinationUrl: string) => {
 
   // Generate portal sounds using Web Audio API
   const createPortalSounds = () => {
-    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-    
-    // Whoosh sound
-    const createWhoosh = () => {
-      const oscillator = audioContext.createOscillator();
-      const gainNode = audioContext.createGain();
-      const filter = audioContext.createBiquadFilter();
-      
-      oscillator.connect(filter);
-      filter.connect(gainNode);
-      gainNode.connect(audioContext.destination);
-      
-      oscillator.type = 'sawtooth';
-      oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
-      oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 1.5);
-      
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(2000, audioContext.currentTime);
-      filter.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 1.5);
-      
-      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
-      
-      oscillator.start();
-      oscillator.stop(audioContext.currentTime + 1.5);
-    };
-    
-    // Portal opening sound
-    const createPortalSound = () => {
-      const oscillator = audioContext.createOscillator();
-      const gainNode = audioContext.createGain();
-      
-      oscillator.connect(gainNode);
-      gainNode.connect(audioContext.destination);
-      
-      oscillator.type = 'sine';
-      oscillator.frequency.setValueAtTime(100, audioContext.currentTime);
-      oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.5);
-      oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 1.2);
-      
-      gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
-      gainNode.gain.linearRampToValueAtTime(0.4, audioContext.currentTime + 0.3);
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.2);
-      
-      oscillator.start();
-      oscillator.stop(audioContext.currentTime + 1.2);
-    };
-    
-    // Energy crackle
-    const createCrackle = () => {
-      for (let i = 0; i < 10; i++) {
-        setTimeout(() => {
-          const oscillator = audioContext.createOscillator();
-          const gainNode = audioContext.createGain();
-          
-          oscillator.connect(gainNode);
-          gainNode.connect(audioContext.destination);
-          
-          oscillator.type = 'square';
-          oscillator.frequency.setValueAtTime(800 + Math.random() * 1200, audioContext.currentTime);
-          
-          gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-          gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-          
-          oscillator.start();
-          oscillator.stop(audioContext.currentTime + 0.1);
-        }, i * 100);
-      }
-    };
+    console.log('🔊 Creating portal sounds');
     
     try {
+      // Try to create audio context
+      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioContext) {
+        console.log('Web Audio API not supported');
+        return;
+      }
+      
+      const audioContext = new AudioContext();
+      
+      // Resume audio context if it's suspended (required by browsers)
+      if (audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+      
+      // Whoosh sound
+      const createWhoosh = () => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        const filter = audioContext.createBiquadFilter();
+        
+        oscillator.connect(filter);
+        filter.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.type = 'sawtooth';
+        oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 1.5);
+        
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(2000, audioContext.currentTime);
+        filter.frequency.exponentialRampToValueAtTime(100, audioContext.currentTime + 1.5);
+        
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
+        
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 1.5);
+      };
+      
+      // Portal opening sound
+      const createPortalSound = () => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(100, audioContext.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.5);
+        oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 1.2);
+        
+        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.4, audioContext.currentTime + 0.3);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.2);
+        
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 1.2);
+      };
+      
+      // Energy crackle
+      const createCrackle = () => {
+        for (let i = 0; i < 10; i++) {
+          setTimeout(() => {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.type = 'square';
+            oscillator.frequency.setValueAtTime(800 + Math.random() * 1200, audioContext.currentTime);
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + 0.1);
+          }, i * 100);
+        }
+      };
+      
       createWhoosh();
       setTimeout(createPortalSound, 200);
       setTimeout(createCrackle, 400);
+      
     } catch (error) {
-      console.log('Audio context not available');
+      console.log('Audio context error:', error);
     }
   };
 
@@ -218,13 +240,16 @@ export const createTimePortalEffect = (destinationUrl: string) => {
 
   // Cleanup and redirect
   setTimeout(() => {
+    console.log('🧹 Cleaning up effects and redirecting to:', destinationUrl);
     document.body.style.filter = '';
     document.body.style.transition = '';
     effectsContainer.remove();
     
-    // Open destination URL in new tab
-    if (destinationUrl) {
+    // Open destination URL in new tab if URL exists
+    if (destinationUrl && destinationUrl.trim()) {
       window.open(destinationUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      console.log('No destination URL provided');
     }
   }, 2800);
 };
