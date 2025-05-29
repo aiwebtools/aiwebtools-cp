@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Search, Sparkles, Zap, Brain, Rocket, Stars } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "./GlobalSearchBar";
-import { allTools, getCategoriesWithCounts } from "@/data/toolsData";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -18,13 +17,6 @@ const HeroSection = () => {
     "Grow"
   ];
 
-  // Get real categories from the tools data
-  const categoriesWithCounts = getCategoriesWithCounts(allTools);
-  const topCategories = Object.entries(categoriesWithCounts)
-    .sort(([,a], [,b]) => b - a) // Sort by count, highest first
-    .slice(0, 6) // Take top 6 categories
-    .map(([category]) => category);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentWord((prev) => (prev + 1) % words.length);
@@ -38,10 +30,6 @@ const HeroSection = () => {
     if (toolsSection) {
       toolsSection.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const handleCategoryClick = (category: string) => {
-    navigate(`/category/${encodeURIComponent(category)}`);
   };
 
   return (
@@ -78,18 +66,6 @@ const HeroSection = () => {
         {/* Search section */}
         <div className="mb-12 max-w-4xl mx-auto">
           <GlobalSearchBar />
-          
-          <div className="flex flex-wrap justify-center gap-3 mt-6">
-            {topCategories.map((category) => (
-              <span 
-                key={category}
-                className="px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 rounded-full text-cyan-100 text-sm hover:from-cyan-500/30 hover:to-blue-500/30 transition-all duration-300 cursor-pointer cyber-glow"
-                onClick={() => handleCategoryClick(category)}
-              >
-                {category}
-              </span>
-            ))}
-          </div>
         </div>
 
         {/* Feature highlights */}
