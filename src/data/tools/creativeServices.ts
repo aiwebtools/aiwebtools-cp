@@ -108,7 +108,7 @@ export const creativeServices: Tool[] = [
     totalVotes: 2789
   },
   {
-    icon: Utensils,
+    icon: Heart,
     title: "Restaurant Menu Maker GPT",
     description: "Professional restaurant menu design and creation tool covering menu planning, food descriptions, pricing strategies, and culinary presentation.",
     emoji: "🍽️",

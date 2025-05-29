@@ -40,53 +40,5 @@ export const gameDesignAndDevelopment: Tool[] = [
     category: "Game Design & Development",
     rating: 4.6,
     totalVotes: 3456
-  },
-  {
-    icon: Settings,
-    title: "UNITY GAME DEVELOPER GPT",
-    description: "Expert Unity game development assistance covering scripting, scene management, physics, UI design, and optimization for creating professional Unity games.",
-    emoji: "🔧",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://unitygamedevelopergpt.lovable.app/?via=aiwebtools",
-    tags: ["Unity development", "game scripting", "scene management", "game physics", "UI design"],
-    category: "Game Design & Development",
-    rating: 4.5,
-    totalVotes: 3123
-  },
-  {
-    icon: Trophy,
-    title: "GAME MONETIZATION STRATEGIST GPT",
-    description: "Strategic guidance for game monetization including in-app purchases, advertising integration, subscription models, and revenue optimization for game developers.",
-    emoji: "💰",
-    color: "from-green-500 to-yellow-600",
-    directUrl: "https://gamemonetizationstrategistgpt.lovable.app/?via=aiwebtools",
-    tags: ["game monetization", "revenue optimization", "in-app purchases", "advertising", "subscription models"],
-    category: "Game Design & Development",
-    rating: 4.4,
-    totalVotes: 2987
-  },
-  {
-    icon: Star,
-    title: "STORYBOARD CREATOR GPT",
-    description: "Professional storyboard creation for games, animations, and interactive media with visual storytelling techniques and scene composition guidance.",
-    emoji: "📐",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://storyboardcreatorgpt.lovable.app/?via=aiwebtools",
-    tags: ["storyboard creation", "visual storytelling", "scene composition", "game narratives", "interactive media"],
-    category: "Game Design & Development",
-    rating: 4.3,
-    totalVotes: 2876
-  },
-  {
-    icon: Users,
-    title: "CREATIVE DIRECTOR GPT",
-    description: "Creative direction and vision guidance for game projects including art direction, narrative design, creative problem-solving, and team coordination.",
-    emoji: "🎨",
-    color: "from-indigo-500 to-purple-600",
-    directUrl: "https://creativedirectorgpt.lovable.app/?via=aiwebtools",
-    tags: ["creative direction", "art direction", "narrative design", "creative problem-solving", "team coordination"],
-    category: "Game Design & Development",
-    rating: 4.2,
-    totalVotes: 2654
   }
 ];
