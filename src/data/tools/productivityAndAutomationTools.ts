@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Zap, 
@@ -15,7 +14,15 @@ import {
   CheckCircle,
   Calendar,
   Lightbulb,
-  BarChart
+  BarChart,
+  Mic,
+  Brain,
+  Video,
+  Globe,
+  Smartphone,
+  Search,
+  Phone,
+  Shield
 } from "lucide-react";
 
 export const productivityAndAutomationTools: Tool[] = [
@@ -138,5 +145,125 @@ export const productivityAndAutomationTools: Tool[] = [
     category: "Productivity & Automation Tools",
     rating: 4.4,
     totalVotes: 2234
+  },
+  {
+    icon: Mic,
+    title: "FireFlies AI",
+    description: "Streamlines meeting notes management by automating transcription, summarization, search, and analysis of voice conversations. Trusted by over 100,000 organizations with AI-powered search and conversation intelligence.",
+    emoji: "🪰",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://fireflies.ai/?gr_pk=Orzo&gr_uid=lqX7",
+    tags: ["100k organizations", "meeting transcription", "AI search", "conversation intelligence", "CRM integration", "knowledge workers"],
+    category: "Productivity & Automation Tools",
+    rating: 4.8,
+    totalVotes: 6234
+  },
+  {
+    icon: Video,
+    title: "Simplified",
+    description: "Versatile all-in-one AI platform trusted by over 2.5 million marketing teams, creators, and businesses. Graphics design, video editing, AI copywriting, social media management, and more in one convenient app.",
+    emoji: "⚡",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://simplified.com/?fpr=kenneth81",
+    tags: ["2.5M teams", "graphics design", "video editing", "AI copywriting", "social media", "collaborative workspaces"],
+    category: "Productivity & Automation Tools",
+    rating: 4.7,
+    totalVotes: 5678
+  },
+  {
+    icon: Video,
+    title: "Podium",
+    description: "Powerful AI-driven tool designed to streamline podcast production by creating high-quality content efficiently. AI-generated show notes, episode chapters, transcripts, highlight clips, and social media posts.",
+    emoji: "🎙️",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://hello.podium.page/?via=aiwebtools",
+    tags: ["podcast production", "show notes", "transcripts", "highlight clips", "social media posts", "content creators"],
+    category: "Productivity & Automation Tools",
+    rating: 4.6,
+    totalVotes: 4234
+  },
+  {
+    icon: Brain,
+    title: "MindReader",
+    description: "AI-powered profiling engine designed to enhance communication. Uses linguistics and physiognomy to provide personalized insights across Knight, Explorer, Healer, and Wizard psychological types with thousands of data points.",
+    emoji: "🧠",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.themindreader.ai/?gr_pk=WGjW&gr_uid=5q8A",
+    tags: ["psychological profiling", "communication enhancement", "4 personality types", "thousands of data points", "workplace efficiency", "conflict minimization"],
+    category: "Productivity & Automation Tools",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Mail,
+    title: "DirectIQ",
+    description: "Robust email marketing platform that empowers businesses to create, send, and optimize email campaigns effectively. Drag-and-Drop Editor, segmented campaigns, automation features, and in-depth metrics tracking.",
+    emoji: "📧",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://www.directiq.com/?gr_pk=9aWp&gr_uid=5q8A",
+    tags: ["email marketing", "drag-drop editor", "segmented campaigns", "automation", "A/B testing", "Shopify integration"],
+    category: "Productivity & Automation Tools",
+    rating: 4.6,
+    totalVotes: 4123
+  },
+  {
+    icon: Target,
+    title: "FoxyApps",
+    description: "Revolutionary platform that empowers marketers to convert website visitors into valuable leads using AI-powered lead magnets. Three simple steps with personalized email sequences and revenue sharing for creators.",
+    emoji: "🦊",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://www.foxyapps.com/?gr_pk=8281&gr_uid=5q8A",
+    tags: ["AI lead magnets", "visitor conversion", "email sequences", "revenue sharing", "no coding", "lead generation"],
+    category: "Productivity & Automation Tools",
+    rating: 4.7,
+    totalVotes: 4567
+  },
+  {
+    icon: Phone,
+    title: "TimelinesAI",
+    description: "Robust WhatsApp management solution tailored for businesses with multiple individual WhatsApp numbers. 360° view of interactions with shared inbox, CRM integrations, and ChatGPT automation responses.",
+    emoji: "📱",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://timelines.ai/?gr_pk=QKmN&gr_uid=5q8A",
+    tags: ["WhatsApp management", "multiple numbers", "CRM integration", "ChatGPT automation", "bulk messaging", "team collaboration"],
+    category: "Productivity & Automation Tools",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
+    icon: Mail,
+    title: "EmailWritr",
+    description: "Cloud-hosted email marketing software that simplifies email creation into four easy steps. Generate 5-9 day email sequences for businesses, freelancers, marketers, and copywriters with unlimited custom sequences.",
+    emoji: "✍️",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://emailwritr.com/?gr_pk=JZam&gr_uid=5q8A",
+    tags: ["email sequences", "4 easy steps", "unlimited sequences", "24/7 support", "multiple formats", "high-converting emails"],
+    category: "Productivity & Automation Tools",
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: Bot,
+    title: "GeekBot",
+    description: "Trusted by over 170,000 users for streamlined meetings and efficient teamwork. Transforms routine updates into automated workflows with standup prompts, Slack/MS Teams integration, and team sentiment tracking.",
+    emoji: "🤖",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://geekbot.com/?gr_pk=GR2K&gr_uid=5q8A",
+    tags: ["170k users", "automated workflows", "Slack integration", "MS Teams", "sentiment tracking", "30-day trial"],
+    category: "Productivity & Automation Tools",
+    rating: 4.6,
+    totalVotes: 4567
+  },
+  {
+    icon: Brain,
+    title: "Drafter AI",
+    description: "All-in-one platform for harnessing artificial intelligence power, delivering solutions in minutes not months. User-friendly interface with integrated AI technologies for no-code AI revolution and on-premise security.",
+    emoji: "🚀",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://drafter.ai/?gr_pk=O7ra&gr_uid=5q8A",
+    tags: ["no-code AI", "minutes not months", "on-premise security", "workflow automation", "practical results", "cost savings"],
+    category: "Productivity & Automation Tools",
+    rating: 4.7,
+    totalVotes: 4789
   }
 ];
