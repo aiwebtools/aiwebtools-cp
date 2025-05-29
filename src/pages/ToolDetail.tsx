@@ -1,3 +1,4 @@
+
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -13,17 +14,32 @@ import ToolDescription from "@/components/tool-detail/ToolDescription";
 import ToolMedia from "@/components/tool-detail/ToolMedia";
 import ToolTags from "@/components/tool-detail/ToolTags";
 import ToolActions from "@/components/tool-detail/ToolActions";
-import AdditionalInfo from "@/components/tool-detail/AdditionalInfo";
-import { useEffect } from "react";
+import SearchBar from "@/components/tools/SearchBar";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { searchTools } from "@/utils/searchUtils";
 
 const ToolDetail = () => {
   const { toolId } = useParams();
+  const navigate = useNavigate();
   const toolIndex = parseInt(toolId || "0");
   const tool = allTools[toolIndex];
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [toolIndex]);
+
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    if (value.trim()) {
+      const results = searchTools(allTools, value);
+      if (results.length > 0) {
+        const firstResultIndex = allTools.findIndex(t => t.title === results[0].title);
+        navigate(`/tool/${firstResultIndex}`);
+      }
+    }
+  };
 
   if (!tool) {
     return (
@@ -86,7 +102,19 @@ const ToolDetail = () => {
               <ToolDisclaimer tool={tool} />
             </div>
 
-            <AdditionalInfo />
+            <div className="mt-12">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-4 cyber-glow">
+                  Discover More AI Tools
+                </h3>
+                <p className="text-gray-300 mb-6">Search through our collection of 600+ AI tools to find your next favorite</p>
+              </div>
+              <SearchBar 
+                searchTerm={searchTerm}
+                onSearchChange={handleSearchChange}
+              />
+            </div>
+
             <SimilarTools currentTool={tool} currentToolIndex={toolIndex} />
           </div>
         </div>
