@@ -82,19 +82,6 @@ export const historicalAndCultural: Tool[] = [
     totalVotes: 2345
   },
   {
-    icon: BookOpen,
-    title: "BOOK WRITER GPT",
-    description: "Comprehensive book writing assistant for authors, covering plot development, character creation, writing techniques, and publishing guidance.",
-    emoji: "📚",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
-    category: "Writing & Publishing",
-    tags: ["book writing", "authors", "publishing", "storytelling"],
-    rating: 4.7,
-    totalVotes: 3456
-  },
-  {
     icon: Crown,
     title: "Titanic Resurrections GPT",
     description: "Explore the history of the Titanic, passenger stories, historical reconstruction, and maritime heritage preservation.",

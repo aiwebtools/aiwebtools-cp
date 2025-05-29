@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Code, 
@@ -14,19 +15,6 @@ import {
 } from "lucide-react";
 
 export const platformsAndDevelopment: Tool[] = [
-  {
-    icon: Palette,
-    title: "Leonardo AI",
-    description: "Advanced AI-powered image generation platform for creating stunning artwork, designs, and visual content with professional-quality results.",
-    emoji: "🎨",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://app.leonardo.ai/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/image_converted.jpeg/:/rs=w:1200,h:600,cg:true,m/cr=w:1200,h:600",
-    category: "AI Art Generation",
-    tags: ["AI art", "image generation", "design", "creativity"],
-    rating: 4.8,
-    totalVotes: 4567
-  },
   {
     icon: Bot,
     title: "GEMINI/GOOGLE AI STUDIO",
@@ -78,19 +66,6 @@ export const platformsAndDevelopment: Tool[] = [
     tags: ["trading", "finance", "investment", "market analysis"],
     rating: 4.5,
     totalVotes: 2654
-  },
-  {
-    icon: Heart,
-    title: "Marriage Mender GPT",
-    description: "Relationship counseling and marriage guidance tool for couples seeking to improve communication and strengthen their relationships.",
-    emoji: "💕",
-    color: "from-pink-500 to-red-600",
-    directUrl: "https://marriagemendergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=3HCv5_QldrU",
-    category: "Relationship Counseling",
-    tags: ["marriage", "relationships", "counseling", "communication"],
-    rating: 4.4,
-    totalVotes: 2134
   },
   {
     icon: Target,

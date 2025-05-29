@@ -21,19 +21,6 @@ import {
 
 export const professionalServices: Tool[] = [
   {
-    icon: Gavel,
-    title: "Legislation Writer GPT",
-    description: "Professional legislative drafting tool for creating bills, policies, and legal documents with proper formatting and legal language.",
-    emoji: "⚖️",
-    color: "from-blue-600 to-gray-700",
-    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=poOGR-6bb2g",
-    category: "Legal Professionals",
-    tags: ["legislation", "legal drafting", "policy writing", "government"],
-    rating: 4.5,
-    totalVotes: 2134
-  },
-  {
     icon: FileX,
     title: "FACT CHECKER GPT",
     description: "Comprehensive fact-checking tool for verifying information, sources, and claims with detailed analysis and verification processes.",
@@ -86,19 +73,6 @@ export const professionalServices: Tool[] = [
     totalVotes: 2345
   },
   {
-    icon: Fish,
-    title: "Fisherman GPT🎣😊",
-    description: "Comprehensive fishing guide with location recommendations, technique tutorials, equipment advice, and weather conditions.",
-    emoji: "🎣",
-    color: "from-blue-500 to-teal-600",
-    directUrl: "https://fishermangpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-bearded-fisherman-wearin.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    category: "Recreation & Sports",
-    tags: ["fishing", "outdoor recreation", "sports", "hobby"],
-    rating: 4.3,
-    totalVotes: 1654
-  },
-  {
     icon: Wheat,
     title: "Agronomus AI Farming Expert",
     description: "Advanced agricultural consulting tool for crop management, soil analysis, farming techniques, and agricultural optimization.",
@@ -149,19 +123,6 @@ export const professionalServices: Tool[] = [
     tags: ["insurance", "claims", "policy", "documentation"],
     rating: 4.3,
     totalVotes: 2134
-  },
-  {
-    icon: Leaf,
-    title: "Cannabis GPT",
-    description: "Comprehensive cannabis information resource covering cultivation, medical applications, legal considerations, and industry insights.",
-    emoji: "🌿",
-    color: "from-green-500 to-emerald-700",
-    directUrl: "https://cannabisgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-illustration-of-a-green-cannab_iUjpW.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    category: "Cannabis Industry",
-    tags: ["cannabis", "cultivation", "medical", "legal"],
-    rating: 4.2,
-    totalVotes: 1765
   },
   {
     icon: FileText,

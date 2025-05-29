@@ -12,7 +12,9 @@ export const contentCreationTools: Tool[] = [
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-illustration-of-a-podcast-host-with-a_HnlUN.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
     directUrl: "https://podcastwritergpt.lovable.app/?via=aiwebtools",
     tags: ["podcast", "writing", "scripts", "content creation", "audio", "broadcasting"],
-    category: "Content Creation"
+    category: "Content Creation",
+    rating: 4.2,
+    totalVotes: 1654
   },
   {
     icon: BookOpen,
@@ -23,7 +25,9 @@ export const contentCreationTools: Tool[] = [
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005696.jpg/:/cr=t:9.9%25,l:0%25,w:100%25,h:80.21%25/rs=w:600,h:300,cg:true/qt=q:98",
     directUrl: "https://rewritergpt.lovable.app/?via=aiwebtools",
     tags: ["writing", "rewriting", "content", "blogging", "articles", "seo"],
-    category: "Content Creation"
+    category: "Content Creation",
+    rating: 4.2,
+    totalVotes: 1876
   },
   {
     icon: Film,
@@ -34,7 +38,9 @@ export const contentCreationTools: Tool[] = [
     videoUrl: "https://www.youtube.com/watch?v=9fpWIE20z7s&t",
     directUrl: "https://moviescenemakergpt.lovable.app/?via=aiwebtools",
     tags: ["movie scenes", "screenplay", "cinema", "creative writing", "dialogue"],
-    category: "Content Creation"
+    category: "Content Creation",
+    rating: 4.3,
+    totalVotes: 2567
   },
   {
     icon: BookOpen,
@@ -45,7 +51,9 @@ export const contentCreationTools: Tool[] = [
     videoUrl: "https://www.youtube.com/watch?v=MryAyvg_N0U",
     directUrl: "https://childrensbookmaker.lovable.app/?via=aiwebtools",
     tags: ["children's books", "storytelling", "illustrations", "education", "kids"],
-    category: "Education & Learning"
+    category: "Education & Learning",
+    rating: 4.5,
+    totalVotes: 2345
   },
   {
     icon: BookOpen,
@@ -56,7 +64,9 @@ export const contentCreationTools: Tool[] = [
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-restaurant-menu-with-a-vari__Oji1.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     directUrl: "https://restaurantmenumakergpt.lovable.app/",
     tags: ["restaurant", "menu", "food", "hospitality", "design", "culinary"],
-    category: "Business Tools"
+    category: "Business Tools",
+    rating: 4.4,
+    totalVotes: 2134
   },
   {
     icon: BookOpen,
@@ -67,6 +77,8 @@ export const contentCreationTools: Tool[] = [
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-coloring-page-of-a-robot-with-a-human-like-b.png/:/cr=t:4.3%25,l:0.78%25,w:94.34%25,h:84.09%25/rs=w:1200,h:600,cg:true,m",
     directUrl: "https://coloringbookmaker.lovable.app/?via=aiwebtools",
     tags: ["coloring books", "children", "art", "creativity", "education", "drawing"],
-    category: "Art & Design"
+    category: "Art & Design",
+    rating: 4.1,
+    totalVotes: 1987
   }
 ];

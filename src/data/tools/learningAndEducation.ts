@@ -42,19 +42,6 @@ export const learningAndEducation: Tool[] = [
     totalVotes: 3456
   },
   {
-    icon: Gavel,
-    title: "Public Defender GPT",
-    description: "Legal assistance and guidance for public defense cases, legal research, and criminal justice support for defendants and attorneys.",
-    emoji: "⚖️",
-    color: "from-blue-600 to-gray-700",
-    directUrl: "https://publicdefendergpt.lovable.app/",
-    videoUrl: "https://www.youtube.com/watch?v=cQR5eFjsPWw",
-    category: "Legal Services",
-    tags: ["public defense", "legal aid", "criminal justice", "legal research"],
-    rating: 4.4,
-    totalVotes: 2134
-  },
-  {
     icon: Building,
     title: "Property Data Finder GPT",
     description: "Comprehensive property research tool for real estate analysis, market data, property valuations, and investment insights.",
