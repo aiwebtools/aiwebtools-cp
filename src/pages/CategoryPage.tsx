@@ -22,7 +22,10 @@ const CategoryPage = () => {
   const categoryButtonsRef = useRef<HTMLDivElement>(null);
   
   const categoriesWithCounts = getCategoriesWithCounts(allTools);
-  const categoryTools = getToolsByCategory(allTools, selectedCategory);
+  
+  // Handle "All Categories" special case
+  const isAllCategories = selectedCategory === "All Categories";
+  const categoryTools = isAllCategories ? allTools : getToolsByCategory(allTools, selectedCategory);
   
   useEffect(() => {
     if (categoryName) {
@@ -71,7 +74,8 @@ const CategoryPage = () => {
     navigate('/');
   };
 
-  if (!selectedCategory || !categoriesWithCounts[selectedCategory]) {
+  // Check if category exists or is the special "All Categories" case
+  if (!selectedCategory || (!isAllCategories && !categoriesWithCounts[selectedCategory])) {
     return (
       <div className="min-h-screen bg-black relative">
         <AnimatedBackground />
