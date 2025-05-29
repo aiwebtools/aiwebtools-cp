@@ -26,9 +26,16 @@ const HeroSection = () => {
   }, []);
 
   const scrollToTools = () => {
-    const toolsSection = document.getElementById('tools-section');
+    // Scroll to the actual tools grid, not the inspiration message
+    const toolsSection = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4');
     if (toolsSection) {
-      toolsSection.scrollIntoView({ behavior: 'smooth' });
+      toolsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // Fallback to tools-section if the grid is not found
+      const fallbackSection = document.getElementById('tools-section');
+      if (fallbackSection) {
+        fallbackSection.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 

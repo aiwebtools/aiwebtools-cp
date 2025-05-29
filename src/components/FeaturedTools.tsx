@@ -1,10 +1,10 @@
+
 import { useState, useMemo } from "react";
 import { allTools, searchTools, getCategoriesWithCounts, getToolsByCategory } from "@/data/toolsData";
 import CategoryFilters from "@/components/tools/CategoryFilters";
 import ActiveFilters from "@/components/tools/ActiveFilters";
 import FeaturedToolsSection from "@/components/tools/FeaturedToolsSection";
 import ToolsGrid from "@/components/tools/ToolsGrid";
-import InspirationMessage from "@/components/tools/InspirationMessage";
 
 const FeaturedTools = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -45,8 +45,6 @@ const FeaturedTools = () => {
 
   return (
     <div>
-      <InspirationMessage />
-
       <CategoryFilters
         categoriesWithCounts={categoriesWithCounts}
         selectedCategory={selectedCategory}

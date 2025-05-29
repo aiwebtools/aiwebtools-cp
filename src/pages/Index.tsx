@@ -4,6 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import FeaturedTools from "@/components/FeaturedTools";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import InspirationMessage from "@/components/tools/InspirationMessage";
 import SEOHead from "@/components/SEOHead";
 import { generateStructuredData, seoConfig } from "@/utils/seo";
 
@@ -43,6 +44,9 @@ const Index = () => {
         <Header />
         <div className="pt-20">
           <HeroSection />
+          <div className="container mx-auto px-4 pb-8">
+            <InspirationMessage />
+          </div>
           <div className="featured-tools-transparent" id="tools-section">
             <FeaturedTools />
           </div>
