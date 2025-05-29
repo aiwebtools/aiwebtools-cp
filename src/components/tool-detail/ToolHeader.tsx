@@ -79,27 +79,27 @@ Thank you!`);
             toolId={toolIndex !== undefined ? `tool-${toolIndex}` : undefined}
           />
         </div>
-        <div className="pt-4 space-y-3">
+        <div className="pt-4 space-y-3 px-4">
           <Button 
             size="lg"
             onClick={handleUseItNow}
             disabled={!tool.directUrl}
-            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-3 text-base rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-cyan-500/30 interactive-button glow-effect"
+            className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-6 sm:px-8 py-3 text-sm sm:text-base rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-cyan-500/30 interactive-button glow-effect"
           >
             <ExternalLink className="w-4 h-4 mr-2" />
             {tool.directUrl ? "USE IT NOW" : "COMING SOON"}
           </Button>
           
           {isGPTTool && (
-            <div>
+            <div className="px-4 sm:px-0">
               <Button 
                 size="lg"
                 onClick={handleSendFeedback}
                 variant="outline"
-                className="border-yellow-500/50 bg-yellow-500/10 text-yellow-300 hover:bg-yellow-500/20 hover:border-yellow-400 px-8 py-3 text-base rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="w-full sm:w-auto border-yellow-500/50 bg-yellow-500/10 text-yellow-300 hover:bg-yellow-500/20 hover:border-yellow-400 px-4 sm:px-8 py-3 text-xs sm:text-base rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                <Mail className="w-4 h-4 mr-2" />
-                SEND THE CREATOR FEEDBACK
+                <Mail className="w-4 h-4 mr-2 flex-shrink-0" />
+                <span className="whitespace-nowrap overflow-hidden text-ellipsis">SEND CREATOR FEEDBACK</span>
               </Button>
             </div>
           )}

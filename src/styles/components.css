@@ -165,5 +165,34 @@
     .sidebar-sparkles::after {
       animation-duration: 6s; /* Slower animations on mobile */
     }
+
+    /* Mobile button optimizations */
+    .interactive-button {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Ensure buttons don't overflow on mobile */
+    button {
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    button span {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  /* Additional mobile-specific button styles */
+  @media (max-width: 640px) {
+    .interactive-button {
+      font-size: 0.875rem; /* Smaller text on very small screens */
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 }
