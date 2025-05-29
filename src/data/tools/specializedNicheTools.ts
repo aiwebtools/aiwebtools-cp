@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Leaf, 
@@ -22,7 +23,7 @@ export const specializedNicheTools: Tool[] = [
     emoji: "🌿",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://cthempshop.com/cannabis-ai-tools",
-    tags: ["cannabis industry", "100% free", "horticulture", "compliance tools", "medical strain", "anonymous usage"],
+    tags: ["cannabis industry", "100% free", "horticulture", "compliance tools", "medical strain", "anonymous usage", "aiwebtools"],
     category: "Specialized Niche Tools",
     rating: 4.3,
     totalVotes: 2567

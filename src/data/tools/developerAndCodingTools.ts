@@ -19,7 +19,7 @@ export const developerAndCodingTools: Tool[] = [
     emoji: "🔄",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-CeNnTrmnZ-multitasker-gpt-turbo",
-    tags: ["custom GPT", "multitasking", "GPT-4o", "problem solving", "productivity", "advanced AI"],
+    tags: ["custom GPT", "multitasking", "GPT-4o", "problem solving", "productivity", "advanced AI", "aiwebtools"],
     category: "Developer & Coding Tools",
     rating: 4.5,
     totalVotes: 3234

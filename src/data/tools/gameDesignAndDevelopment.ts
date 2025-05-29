@@ -22,7 +22,7 @@ export const gameDesignAndDevelopment: Tool[] = [
     directUrl: "https://gamedesigngpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-floating-man-with-blue-skin-and-white-hair-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     category: "Game Design & Development",
-    tags: ["game design", "game development", "documentation", "mechanics"],
+    tags: ["game design", "game development", "documentation", "mechanics", "aiwebtools"],
     rating: 4.6,
     totalVotes: 2456
   },
@@ -35,7 +35,7 @@ export const gameDesignAndDevelopment: Tool[] = [
     directUrl: "https://neomatrixgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=BkPCpeu_nSs",
     category: "Game Design & Development",
-    tags: ["Matrix", "simulation", "philosophy", "interactive"],
+    tags: ["Matrix", "simulation", "philosophy", "interactive", "aiwebtools"],
     rating: 4.7,
     totalVotes: 3245
   }
