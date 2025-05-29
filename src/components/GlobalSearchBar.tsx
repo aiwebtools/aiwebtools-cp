@@ -40,8 +40,11 @@ const GlobalSearchBar = () => {
     }
   };
 
-  const handleMobileSearchClick = () => {
-    setIsMobileSearchOpen(true);
+  const handleInputClick = () => {
+    // Only open mobile overlay on small screens
+    if (window.innerWidth < 768) {
+      setIsMobileSearchOpen(true);
+    }
   };
 
   const closeMobileSearch = () => {
@@ -110,9 +113,8 @@ const GlobalSearchBar = () => {
           value={searchTerm}
           onChange={(e) => handleSearchChange(e.target.value)}
           onKeyDown={handleKeyDown}
-          onClick={handleMobileSearchClick}
-          className="pl-12 pr-4 py-3 w-full bg-gray-900/90 border-2 border-purple-500/40 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 transition-all duration-300 text-cyan-100 placeholder-gray-400 rounded-lg backdrop-blur-sm neon-border glow-effect text-base md:cursor-text cursor-pointer"
-          readOnly={window.innerWidth < 768}
+          onClick={handleInputClick}
+          className="pl-12 pr-4 py-3 w-full bg-gray-900/90 border-2 border-purple-500/40 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 transition-all duration-300 text-cyan-100 placeholder-gray-400 rounded-lg backdrop-blur-sm neon-border glow-effect text-base"
         />
       </div>
       
