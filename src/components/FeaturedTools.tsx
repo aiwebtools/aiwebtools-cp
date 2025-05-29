@@ -1,5 +1,5 @@
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { allTools, searchTools, getCategoriesWithCounts, getToolsByCategory } from "@/data/toolsData";
 import CategoryFilters from "@/components/tools/CategoryFilters";
 import ActiveFilters from "@/components/tools/ActiveFilters";
@@ -23,9 +23,27 @@ const FeaturedTools = () => {
     setDisplayedCount(20); // Reset displayed count when search term changes
   };
 
-  const handleLoadMore = () => {
+  const handleLoadMore = useCallback(() => {
     setDisplayedCount((prevCount) => prevCount + 20);
-  };
+  }, []);
+
+  // Infinite scroll implementation
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop
+        >= document.documentElement.offsetHeight - 1000 // Load more when 1000px from bottom
+      ) {
+        const filteredToolsLength = filteredTools.length;
+        if (displayedCount < filteredToolsLength) {
+          handleLoadMore();
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [displayedCount, handleLoadMore]);
 
   const filteredTools = useMemo(() => {
     let tools = allTools;
@@ -40,7 +58,6 @@ const FeaturedTools = () => {
   }, [allTools, selectedCategory, searchTerm]);
 
   const totalToolsCount = filteredTools.length;
-
   const categoriesWithCounts = getCategoriesWithCounts(allTools);
 
   return (
@@ -73,6 +90,7 @@ const FeaturedTools = () => {
         selectedCategory={selectedCategory}
         searchTerm={searchTerm}
         onLoadMore={handleLoadMore}
+        hasInfiniteScroll={true}
       />
     </div>
   );

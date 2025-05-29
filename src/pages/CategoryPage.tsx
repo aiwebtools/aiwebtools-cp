@@ -1,6 +1,6 @@
 
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
@@ -18,6 +18,7 @@ const CategoryPage = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string>(categoryName || "");
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [displayedCount, setDisplayedCount] = useState<number>(20);
   const toolsGridRef = useRef<HTMLDivElement>(null);
   const categoryButtonsRef = useRef<HTMLDivElement>(null);
   
@@ -36,14 +37,25 @@ const CategoryPage = () => {
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300);
+      
+      // Infinite scroll logic
+      if (
+        window.innerHeight + document.documentElement.scrollTop
+        >= document.documentElement.offsetHeight - 1000
+      ) {
+        if (displayedCount < categoryTools.length) {
+          setDisplayedCount(prev => prev + 20);
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [displayedCount, categoryTools.length]);
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
+    setDisplayedCount(20); // Reset displayed count when category changes
     navigate(`/category/${encodeURIComponent(category)}`);
     
     // Scroll to tools grid after a short delay to ensure the page has updated
@@ -116,6 +128,8 @@ const CategoryPage = () => {
             ref={toolsGridRef}
             selectedCategory={selectedCategory}
             categoryTools={categoryTools}
+            displayedCount={displayedCount}
+            hasInfiniteScroll={true}
           />
         </div>
         

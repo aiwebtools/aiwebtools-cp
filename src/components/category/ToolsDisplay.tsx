@@ -8,15 +8,20 @@ import { Tool } from "@/types/tools";
 interface ToolsDisplayProps {
   selectedCategory: string;
   categoryTools: Tool[];
+  displayedCount?: number;
+  hasInfiniteScroll?: boolean;
 }
 
 const ToolsDisplay = forwardRef<HTMLDivElement, ToolsDisplayProps>(
-  ({ selectedCategory, categoryTools }, ref) => {
+  ({ selectedCategory, categoryTools, displayedCount, hasInfiniteScroll = false }, ref) => {
     const navigate = useNavigate();
 
     const goBack = () => {
       navigate('/');
     };
+
+    // Use displayedCount if provided, otherwise show all tools
+    const toolsToDisplay = displayedCount ? categoryTools.slice(0, displayedCount) : categoryTools;
 
     return (
       <div className="mb-16 px-4 sm:px-0" ref={ref}>
@@ -27,14 +32,32 @@ const ToolsDisplay = forwardRef<HTMLDivElement, ToolsDisplayProps>(
                 AI Tools in {selectedCategory}
               </h2>
               <p className="text-sm sm:text-base text-gray-400">
-                Showing all {categoryTools.length} tools
+                Showing {toolsToDisplay.length} of {categoryTools.length} tools
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-              {categoryTools.map((tool, index) => (
+              {toolsToDisplay.map((tool, index) => (
                 <ToolCard key={`${tool.title}-${index}`} tool={tool} />
               ))}
             </div>
+
+            {/* Show loading indicator when infinite scroll is active and more tools are available */}
+            {hasInfiniteScroll && displayedCount && displayedCount < categoryTools.length && (
+              <div className="text-center mt-8 text-cyan-200">
+                <div className="flex items-center justify-center space-x-2">
+                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-cyan-500"></div>
+                  <span>Loading more tools...</span>
+                </div>
+              </div>
+            )}
+
+            {/* Show completion message when all tools are displayed */}
+            {hasInfiniteScroll && displayedCount && displayedCount >= categoryTools.length && categoryTools.length > 20 && (
+              <div className="text-center mt-12 text-cyan-300">
+                🎉 You've seen all {categoryTools.length} tools in {selectedCategory}! 
+                <span className="block mt-2">Try exploring other categories to discover more tools.</span>
+              </div>
+            )}
           </>
         ) : (
           <div className="text-center py-12 sm:py-16">

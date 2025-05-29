@@ -9,9 +9,17 @@ interface ToolsGridProps {
   selectedCategory: string | null;
   searchTerm: string;
   onLoadMore: () => void;
+  hasInfiniteScroll?: boolean;
 }
 
-const ToolsGrid = ({ tools, displayedCount, selectedCategory, searchTerm, onLoadMore }: ToolsGridProps) => {
+const ToolsGrid = ({ 
+  tools, 
+  displayedCount, 
+  selectedCategory, 
+  searchTerm, 
+  onLoadMore,
+  hasInfiniteScroll = false 
+}: ToolsGridProps) => {
   const displayTools = tools.slice(0, displayedCount);
 
   const getSectionTitle = () => {
@@ -40,11 +48,32 @@ const ToolsGrid = ({ tools, displayedCount, selectedCategory, searchTerm, onLoad
         ))}
       </div>
 
-      <LoadMoreButton 
-        displayedCount={displayedCount}
-        totalCount={tools.length}
-        onLoadMore={onLoadMore}
-      />
+      {/* Show loading indicator when infinite scroll is active and more tools are available */}
+      {hasInfiniteScroll && displayedCount < tools.length && (
+        <div className="text-center mt-8 text-cyan-200">
+          <div className="flex items-center justify-center space-x-2">
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-cyan-500"></div>
+            <span>Loading more tools...</span>
+          </div>
+        </div>
+      )}
+
+      {/* Show completion message when all tools are displayed */}
+      {hasInfiniteScroll && displayedCount >= tools.length && tools.length > 20 && (
+        <div className="text-center mt-12 text-cyan-300">
+          🎉 You've seen all {tools.length} tools! 
+          <span className="block mt-2">Try searching or filtering by category to discover specific tools.</span>
+        </div>
+      )}
+
+      {/* Fallback load more button for non-infinite scroll scenarios */}
+      {!hasInfiniteScroll && (
+        <LoadMoreButton 
+          displayedCount={displayedCount}
+          totalCount={tools.length}
+          onLoadMore={onLoadMore}
+        />
+      )}
     </>
   );
 };
