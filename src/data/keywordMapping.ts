@@ -1,4 +1,3 @@
-
 // Enhanced keyword mapping for intelligent search - AI tools focused
 export const keywordMapping: Record<string, string[]> = {
   // Core AI Keywords
@@ -18,18 +17,15 @@ export const keywordMapping: Record<string, string[]> = {
   
   // Creative AI Tools
   "art": ["design", "creative", "visual", "drawing", "painting", "illustration", "artistic", "AI art", "generative art", "digital art", "art generator", "creative tools", "image generation", "dall-e", "midjourney", "sketch", "draw"],
-  "design": ["graphic", "visual", "creative", "art", "ui", "ux", "website", "logo", "illustration", "AI design", "design tools", "creative design", "layout", "typography"],
-  "image": ["generation", "ai art", "visual", "picture", "photo", "graphic", "AI image", "image generator", "picture generator", "visual AI", "dall-e", "midjourney", "stable diffusion"],
-  "video": ["editing", "creation", "production", "AI video", "video generator", "film", "movie", "animation", "video AI", "video tools", "motion graphics", "multimedia", "storyboard"],
+  "design": ["graphic", "visual", "creative", "art", "ui", "ux", "website", "logo", "illustration", "AI design", "design tools", "creative design", "layout", "typography", "cover", "graph"],
+  "image": ["generation", "ai art", "visual", "picture", "photo", "graphic", "AI image", "image generator", "picture generator", "visual AI", "dall-e", "midjourney", "stable diffusion", "design"],
+  "video": ["editing", "creation", "production", "AI video", "video generator", "film", "movie", "animation", "video AI", "video tools", "motion graphics", "multimedia", "storyboard", "cinema"],
   "music": ["audio", "sound", "composition", "AI music", "music generator", "audio AI", "song creation", "music production", "audio tools", "beat", "melody", "soundtrack"],
   "audio": ["music", "sound", "voice", "speech", "podcast", "audio editing", "sound effects", "voice synthesis", "text to speech", "audio generation"],
   
   // Business and Productivity
-  "business": ["productivity", "enterprise", "commercial", "professional", "business tools", "AI business", "business automation", "workflow", "corporate", "management", "strategy", "sales", "marketing"],
-  "productivity": ["efficiency", "workflow", "automation", "business", "tools", "productivity AI", "work tools", "efficiency tools", "task management", "organization"],
-  "writing": ["content", "text", "copywriting", "authoring", "AI writing", "writing assistant", "content creation", "text generation", "blog", "article", "essay", "creative writing"],
-  "content": ["creation", "writing", "marketing", "blog", "article", "content AI", "content generator", "creative content", "copywriting", "social media"],
-  "marketing": ["advertising", "promotion", "digital marketing", "AI marketing", "marketing tools", "ad AI", "social media", "brand", "campaign", "seo"],
+  "business": ["productivity", "enterprise", "commercial", "professional", "business tools", "AI business", "business automation", "workflow", "corporate", "management", "strategy", "sales", "marketing", "office"],
+  "productivity": ["efficiency", "workflow", "automation", "business", "tools", "productivity AI", "work tools", "efficiency tools", "task management", "organization", "streamline"],
   
   // Technical and Development
   "code": ["programming", "development", "software", "coding", "AI coding", "code generator", "programming AI", "developer tools", "script", "algorithm"],
@@ -103,13 +99,13 @@ export const keywordMapping: Record<string, string[]> = {
   "meditation": ["mindfulness", "zen", "peace", "calm", "relaxation", "spiritual", "consciousness"],
   
   // Time and History Keywords  
-  "history": ["historical", "past", "ancient", "timeline", "events", "civilization", "culture", "heritage"],
-  "time": ["temporal", "chronology", "period", "era", "epoch", "calendar", "clock"],
+  "history": ["historical", "past", "ancient", "timeline", "events", "civilization", "culture", "heritage", "archive", "chronicle"],
+  "time": ["temporal", "chronology", "period", "era", "epoch", "calendar", "clock", "schedule", "timeline"],
   "historian": ["history", "historical", "academic", "scholar", "research", "past"],
   "travel": ["journey", "trip", "explore", "adventure", "destination", "tourism"],
   
   // Creative and Design Keywords
-  "creative": ["creativity", "artistic", "imagination", "innovative", "original", "design", "art"],
+  "creative": ["creativity", "artistic", "imagination", "innovative", "original", "design", "art", "suite", "multimedia", "production"],
   "sketch": ["drawing", "art", "illustration", "design", "artistic", "creative", "pencil"],
   "storyboard": ["film", "video", "planning", "visual", "story", "sequence", "production"],
   "director": ["creative", "leadership", "vision", "artistic", "management", "production"],
@@ -189,23 +185,27 @@ export const searchSynonyms: Record<string, string[]> = {
   "premium": ["paid", "pro", "professional", "advanced", "subscription"],
   "create": ["generate", "make", "build", "produce", "design"],
   "edit": ["modify", "change", "update", "enhance", "improve"],
-  "analyze": ["examine", "study", "review", "assess", "evaluate"]
+  "analyze": ["examine", "study", "review", "assess", "evaluate"],
+  "design": ["create", "build", "craft", "develop", "style"],
+  "cover": ["wrapper", "jacket", "face", "front", "surface"],
+  "graph": ["chart", "diagram", "plot", "visualization", "infographic"]
 };
 
 // Category-specific keywords for better categorization
 export const categoryKeywords: Record<string, string[]> = {
-  "AI Assistants": ["chatbot", "virtual assistant", "AI chat", "conversational AI", "digital assistant"],
-  "Image Generation": ["AI art", "image generator", "visual AI", "art creation", "picture generator"],
-  "Writing & Content": ["AI writing", "content creation", "text generator", "copywriting", "article writer"],
-  "Video Tools": ["video AI", "video generator", "film AI", "video editing", "animation AI", "video creation", "video editing", "film production", "animation"],
-  "Audio & Music": ["music AI", "audio generator", "sound AI", "music creation", "voice AI"],
-  "Business & Productivity": ["business AI", "productivity tools", "workflow automation", "business automation"],
-  "Education & Learning": ["educational AI", "learning tools", "teaching AI", "academic AI"],
-  "Creative Services": ["creative AI", "design tools", "artistic AI", "creative automation"],
-  "Healthcare": ["medical AI", "health tools", "wellness AI", "healthcare technology"],
-  "Spirituality & Wellness": ["spiritual AI", "wellness tools", "meditation AI", "spiritual guidance"],
-  "Game Design & Development": ["game AI", "game development", "gaming tools", "game design"],
-  "History & Time": ["historical AI", "time tools", "history research", "historical analysis"],
-  "Advanced AI Tools": ["advanced AI", "AI platforms", "sophisticated AI", "AI development"],
-  "Creative Suites": ["creative tools", "design suites", "artistic platforms", "creative AI"]
+  "Creative Suites": ["creative tools", "design suites", "artistic platforms", "creative AI", "multimedia", "professional creative", "all-in-one creative"],
+  "Advanced AI Tools": ["advanced AI", "AI platforms", "sophisticated AI", "AI development", "enterprise AI", "professional AI"],
+  "Video & Content Creation": ["video AI", "video generator", "film AI", "video editing", "animation AI", "video creation", "content creation", "multimedia"],
+  "Image & Design Tools": ["AI art", "image generator", "visual AI", "art creation", "picture generator", "design tools", "graphic design", "cover design", "logo design"],
+  "Writing & Content Creation": ["AI writing", "content creation", "text generator", "copywriting", "article writer", "writing assistant"],
+  "Business & Productivity": ["business AI", "productivity tools", "workflow automation", "business automation", "office tools"],
+  "Audio & Voice Tools": ["music AI", "audio generator", "sound AI", "music creation", "voice AI", "audio editing"],
+  "AI Development Tools": ["AI development", "machine learning", "neural networks", "AI programming", "developer tools"],
+  "Education & Learning": ["educational AI", "learning tools", "teaching AI", "academic AI", "training tools"],
+  "Specialized Tools": ["niche tools", "technical tools", "industry-specific", "professional tools", "expert systems"],
+  "Time & History": ["historical AI", "time tools", "history research", "historical analysis", "timeline tools"],
+  "Spirituality & Wellness": ["spiritual AI", "wellness tools", "meditation AI", "spiritual guidance", "mindfulness"],
+  "Game Design & Development": ["game AI", "game development", "gaming tools", "game design", "interactive entertainment"],
+  "Emergency Services": ["emergency tools", "safety AI", "crisis management", "first aid", "disaster response"],
+  "Professional Services": ["professional AI", "service tools", "business services", "expert assistance", "consultation tools"]
 };

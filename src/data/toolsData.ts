@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import {
   businessTools,
@@ -78,6 +77,7 @@ import { searchTools } from '@/utils/searchUtils';
 import { createFeaturedTools } from '@/utils/featuredTools';
 import { getCategoriesWithCounts, getToolsByCategory } from '@/utils/categoryUtils';
 import { consolidateTools } from '@/utils/categoryConsolidation';
+import { deduplicateTools } from '@/utils/toolDeduplication';
 
 // Helper function to extract priority tools and move them to the front
 const extractPriorityTools = (toolsArray: Tool[]): { priorityTools: Tool[], remainingTools: Tool[] } => {
@@ -169,13 +169,11 @@ const allToolCategories = consolidateTools([
   ...educationAndLearning
 ]);
 
-// Remove duplicates based on title
-const uniqueTools = allToolCategories.filter((tool, index, array) => 
-  index === array.findIndex(t => t.title === tool.title)
-);
+// Apply deduplication to remove tools that appear in multiple categories
+const deduplicatedTools = deduplicateTools(allToolCategories);
 
 // Extract priority tools and reorder
-const { priorityTools, remainingTools } = extractPriorityTools(uniqueTools);
+const { priorityTools, remainingTools } = extractPriorityTools(deduplicatedTools);
 
 // Combine with priority tools first
 export const allTools: Tool[] = [
