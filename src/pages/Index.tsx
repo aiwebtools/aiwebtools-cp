@@ -1,57 +1,91 @@
 
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import FeaturedTools from "@/components/FeaturedTools";
+import CategoryPageSelection from "@/components/CategoryPageSelection";
+import SpecialServices from "@/components/SpecialServices";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
-import InspirationMessage from "@/components/tools/InspirationMessage";
 import SEOHead from "@/components/SEOHead";
-import { generateStructuredData, seoConfig } from "@/utils/seo";
+import { runFullToolVerification } from "@/utils/toolIndexing";
+import { searchTools } from "@/utils/searchUtils";
+import { getCurrentToolCount } from "@/utils/toolCounter";
 
 const Index = () => {
-  const structuredData = generateStructuredData('homepage');
+  const navigate = useNavigate();
+  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
+
+  useEffect(() => {
+    // Get accurate tool count for SEO
+    const stats = getCurrentToolCount();
+    setToolStats(stats);
+    
+    // Run tool verification on app load to ensure everything is properly indexed
+    console.log(`🔍 Verifying all ${stats.total} tools are properly indexed and searchable...`);
+    const verificationResults = runFullToolVerification(searchTools);
+    
+    // Log critical information about tool accessibility
+    console.log(`✅ Verified ${verificationResults.overallHealth.toolsIndexed} tools across ${verificationResults.overallHealth.categoriesAvailable} categories`);
+    console.log(`📄 Generated ${verificationResults.overallHealth.pagesGenerated} individual tool pages`);
+    
+    if (verificationResults.overallHealth.toolsWithIssues > 0) {
+      console.warn(`⚠️ Found ${verificationResults.overallHealth.toolsWithIssues} indexing issues - check console for details`);
+    }
+  }, []);
+
+  // Handle search from URL parameters
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchParam = urlParams.get('search');
+    if (searchParam) {
+      const element = document.getElementById('categories-section');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, []);
 
   return (
-    <div className="min-h-screen bg-black relative">
+    <div className="min-h-screen bg-black relative overflow-x-hidden">
       <SEOHead
-        title="1000+ AI Tools Directory - Free AI Web Tools Collection 2025"
-        description="Discover the world's largest collection of 1000+ AI-powered tools. Find AI tools for business, creativity, productivity, design, video, audio, and more. Free access to the best AI tools of 2025 including ChatGPT alternatives, AI assistants, and automation tools."
+        title={`AI Tools Directory - ${toolStats.marketing} Best AI Tools 2025 | Free AI Web Tools`}
+        description={`Discover ${toolStats.marketing} cutting-edge AI tools for business, creativity, and productivity. Complete directory of AI assistants, image generators, writing tools, social media tools, and more. Find the perfect AI solution for your needs.`}
         keywords={[
-          ...seoConfig.keywords,
-          "AI tools directory 2025",
-          "free AI tools collection",
-          "best AI tools list",
-          "artificial intelligence software",
-          "AI productivity suite",
-          "enterprise AI tools",
-          "AI automation platform",
+          "ai tools directory",
+          "artificial intelligence tools",
+          "ai tools 2025",
+          "free ai tools",
+          "ai assistants",
+          "ai image generators",
+          "ai writing tools",
+          "business ai tools",
+          "creative ai tools",
+          "productivity ai tools",
           "machine learning tools",
-          "AI development tools",
-          "business intelligence AI",
-          "creative AI tools",
-          "AI content creation",
-          "video AI tools",
-          "audio AI generators",
-          "image AI tools",
-          "writing AI assistants"
+          "ai automation tools",
+          "best ai tools",
+          "ai software directory",
+          "social media ai tools",
+          "communication tools",
+          "collaboration tools",
+          "marketing ai tools"
         ]}
-        structuredData={structuredData}
         includeFAQ={true}
+        includeLocalBusiness={true}
       />
       
       <AnimatedBackground />
+      
       <div className="relative z-10 cyber-grid">
         <Header />
-        <div className="pt-20">
-          <HeroSection />
-          <div className="featured-tools-transparent" id="tools-section">
-            <FeaturedTools showLoadMoreButton={true} />
-          </div>
-          <div className="container mx-auto px-4 pb-8">
-            <InspirationMessage />
-          </div>
-          <Footer />
+        <HeroSection />
+        <div id="categories-section">
+          <CategoryPageSelection />
         </div>
+        
+        <SpecialServices />
+        <Footer />
       </div>
     </div>
   );

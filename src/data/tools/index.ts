@@ -61,6 +61,46 @@ export { financialAndTradingTools } from './financialAndTradingTools';
 export { specializedNicheTools } from './specializedNicheTools';
 export { meetingAndTranscriptionTools } from './meetingAndTranscriptionTools';
 
-// Export new tool categories
+// Export existing tool categories
 export { webDevelopmentTools } from './webDevelopmentTools';
 export { emailManagementTools } from './emailManagementTools';
+export { technicalAndUtilityTools } from './technicalAndUtilityTools';
+export { threeDAndVisualizationTools } from './threeDAndVisualizationTools';
+export { dataAnalyticsTools } from './dataAnalyticsTools';
+export { automationAndWorkflowTools } from './automationAndWorkflowTools';
+
+// Export new tool categories (100 additional tools)
+export { socialMediaTools } from './socialMediaTools';
+export { collaborationTools } from './collaborationTools';
+export { marketingTools } from './marketingTools';
+export { utilitiesTools } from './utilitiesTools';
+export { creativePlatforms } from './creativePlatforms';
+export { learningPlatforms } from './learningPlatforms';
+export { cloudServices } from './cloudServices';
+export { developerTools } from './developerTools';
+export { communicationTools } from './communicationTools';
+export { entertainmentTools } from './entertainmentTools';
+export { newsAndInformationTools } from './newsAndInformationTools';
+export { healthAndWellnessTools } from './healthAndWellnessTools';
+
+// Export robotics companies category
+export { roboticsCompanies } from './roboticsCompanies';
+
+// Export NEW comprehensive AI tool categories to reach 1000+
+export { aiGenerativeTools } from './aiGenerativeTools';
+export { aiResearchTools } from './aiResearchTools';
+export { aiProductivitySuite } from './aiProductivitySuite';
+export { aiSecurityTools } from './aiSecurityTools';
+export { aiFinanceTools } from './aiFinanceTools';
+export { aiHealthcareTools } from './aiHealthcareTools';
+export { aiEducationTools } from './aiEducationTools';
+export { aiLegalTools } from './aiLegalTools';
+
+// Export mind-blowing AI tools for everyday users
+export { mindBlowingAITools } from './mindBlowingAITools';
+
+// Export new design assistant tools category
+export { designAssistantTools } from './designAssistantTools';
+
+// Export comprehensive AI tools collection
+export { comprehensiveAITools } from './comprehensiveAITools';

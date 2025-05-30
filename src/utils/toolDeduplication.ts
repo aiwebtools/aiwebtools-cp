@@ -1,61 +1,80 @@
 
 import { Tool } from "@/types/tools";
 
-interface SeenTool {
-  title: string;
-  lastSeenIndex: number;
-}
-
-export class ToolDeduplicationManager {
-  private seenTools: Map<string, SeenTool> = new Map();
-  private minSpacing: number;
-
-  constructor(minSpacing: number = 8) {
-    this.minSpacing = minSpacing;
-  }
-
-  shouldShowTool(tool: Tool, currentIndex: number): boolean {
-    const toolKey = tool.title.toLowerCase();
-    const seenTool = this.seenTools.get(toolKey);
-
-    if (!seenTool) {
-      this.seenTools.set(toolKey, {
-        title: tool.title,
-        lastSeenIndex: currentIndex
-      });
-      return true;
-    }
-
-    const spacing = currentIndex - seenTool.lastSeenIndex;
-    if (spacing >= this.minSpacing) {
-      seenTool.lastSeenIndex = currentIndex;
-      return true;
-    }
-
-    return false;
-  }
-
-  reset() {
-    this.seenTools.clear();
-  }
-
-  getFilteredTools(tools: Tool[]): Tool[] {
-    this.reset();
-    const filteredTools: Tool[] = [];
-    let currentIndex = 0;
-
-    for (const tool of tools) {
-      if (this.shouldShowTool(tool, currentIndex)) {
-        filteredTools.push(tool);
-        currentIndex++;
+/**
+ * Enhanced deduplication that preserves order and handles category-specific logic
+ */
+export const createDeduplicatedToolsList = (tools: Tool[], maxDistance: number = 8): Tool[] => {
+  if (!tools || tools.length === 0) return [];
+  
+  const deduplicatedTools: Tool[] = [];
+  const seenTitles = new Set<string>();
+  const titlePositions = new Map<string, number>();
+  
+  console.log(`🔄 Starting deduplication for ${tools.length} tools with max distance ${maxDistance}`);
+  
+  for (let i = 0; i < tools.length; i++) {
+    const tool = tools[i];
+    const normalizedTitle = tool.title.toLowerCase().trim();
+    
+    // Check if we've seen this tool before
+    if (seenTitles.has(normalizedTitle)) {
+      const lastPosition = titlePositions.get(normalizedTitle) || 0;
+      const distance = deduplicatedTools.length - lastPosition;
+      
+      // Only skip if it's too close (within maxDistance) and maxDistance > 0
+      if (maxDistance > 0 && distance < maxDistance) {
+        console.log(`⏭️ Skipping duplicate "${tool.title}" (distance: ${distance})`);
+        continue;
       }
+      
+      console.log(`✅ Adding duplicate "${tool.title}" (distance: ${distance} >= ${maxDistance})`);
     }
-
-    return filteredTools;
+    
+    // Add the tool
+    deduplicatedTools.push(tool);
+    seenTitles.add(normalizedTitle);
+    titlePositions.set(normalizedTitle, deduplicatedTools.length - 1);
   }
-}
+  
+  console.log(`✨ Deduplication complete: ${tools.length} → ${deduplicatedTools.length} tools`);
+  return deduplicatedTools;
+};
 
-export const createDeduplicatedToolsList = (tools: Tool[], minSpacing: number = 8): Tool[] => {
-  const manager = new ToolDeduplicationManager(minSpacing);
-  return manager.getFilteredTools(tools);
+/**
+ * Remove exact duplicates from a list of tools
+ */
+export const deduplicateTools = (tools: Tool[]): Tool[] => {
+  const seen = new Set<string>();
+  const deduplicated: Tool[] = [];
+  
+  for (const tool of tools) {
+    const key = `${tool.title.toLowerCase().trim()}-${tool.category?.toLowerCase().trim() || 'uncategorized'}`;
+    
+    if (!seen.has(key)) {
+      seen.add(key);
+      deduplicated.push(tool);
+    }
+  }
+  
+  console.log(`🗑️ Removed ${tools.length - deduplicated.length} exact duplicates`);
+  return deduplicated;
+};
+
+/**
+ * Shuffle array while maintaining some structure
+ */
+export const shuffleWithStructure = (tools: Tool[], preserveFirst: number = 0): Tool[] => {
+  if (tools.length <= preserveFirst) return [...tools];
+  
+  const preserved = tools.slice(0, preserveFirst);
+  const toShuffle = tools.slice(preserveFirst);
+  
+  // Fisher-Yates shuffle
+  for (let i = toShuffle.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [toShuffle[i], toShuffle[j]] = [toShuffle[j], toShuffle[i]];
+  }
+  
+  return [...preserved, ...toShuffle];
 };

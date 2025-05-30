@@ -16,6 +16,11 @@ export const getToolNameMatchScore = (toolTitle: string, searchTerm: string): nu
     return 500;
   }
   
+  // Special boost for GPT tools when searching for "gpt"
+  if (searchTerm.toLowerCase().includes('gpt') && lowerTitle.includes('gpt')) {
+    score += 400;
+  }
+  
   // Check if search term matches beginning of title
   if (lowerTitle.startsWith(searchTerm)) {
     score += 400;
@@ -87,6 +92,31 @@ export const calculateIntentScore = (tool: Tool, searchTerm: string): number => 
   
   let score = 0;
   
+  // Special boost for GPT tools when searching for GPT-related terms
+  if (searchTerm.toLowerCase().includes('gpt')) {
+    if (lowerTitle.includes('gpt') || lowerDescription.includes('gpt') || lowerTags.some(tag => tag.includes('gpt'))) {
+      score += 150; // High boost for GPT tools
+    }
+    if (lowerTitle.includes('custom') || lowerDescription.includes('custom') || lowerTags.some(tag => tag.includes('custom'))) {
+      score += 100; // Boost for custom GPTs
+    }
+  }
+  
+  // Check for pricing-related searches
+  if (searchTerm.includes('free')) {
+    if (lowerTags.includes('free') || lowerDescription.includes('completely free') || lowerDescription.includes('free to use')) {
+      score += 100; // High boost for free tools when searching for "free"
+    } else if (lowerTags.includes('freemium') || lowerDescription.includes('free plan') || lowerDescription.includes('free tier')) {
+      score += 80; // Good boost for freemium tools
+    }
+  }
+  
+  if (searchTerm.includes('paid') || searchTerm.includes('premium') || searchTerm.includes('subscription')) {
+    if (lowerTags.includes('paid') || lowerDescription.includes('subscription') || lowerDescription.includes('/month')) {
+      score += 80; // Boost paid tools when specifically searching for paid options
+    }
+  }
+  
   // Check for intent matches
   Object.entries(intentMatches).forEach(([intent, keywords]) => {
     if (keywords.some(keyword => searchTerm.includes(keyword))) {
@@ -124,8 +154,34 @@ export const calculateIntentScore = (tool: Tool, searchTerm: string): number => 
     }
   });
   
-  // Specific tool name recognition for popular tools
-  Object.entries(toolNameMatches).forEach(([toolName, keywords]) => {
+  // Enhanced tool name recognition with cleaned duplicate data
+  const enhancedToolMatches = {
+    "replika": ["replika", "ai companion", "personal ai", "friend ai"],
+    "character": ["character.ai", "character ai", "roleplay ai"],
+    "perplexity": ["perplexity", "ai search", "research ai"],
+    "runway": ["runway", "runway ml", "video ai", "text to video"],
+    "otter": ["otter", "otter.ai", "meeting notes", "transcription"],
+    "synthesia": ["synthesia", "ai presenter", "ai avatar", "video presenter"],
+    "remove": ["remove.bg", "rembg", "background removal"],
+    "lensa": ["lensa", "ai portrait", "avatar creator"],
+    "notion": ["notion ai", "notion", "productivity ai"],
+    "topaz": ["topaz", "video upscaling", "ai enhancement"],
+    "faceapp": ["faceapp", "face editing", "age filter"],
+    "murf": ["murf", "text to speech", "ai voice"],
+    "descript": ["descript", "video editing", "text based editing"],
+    "aiva": ["aiva", "ai music", "ai composer"],
+    "photoshop": ["photoshop ai", "adobe firefly", "generative fill"],
+    "copilot": ["github copilot", "ai coding", "code assistant"],
+    "deepl": ["deepl", "ai translator", "translation"],
+    "grammarly": ["grammarly", "grammar check", "writing assistant"],
+    "stable": ["stable diffusion", "ai art", "open source ai"],
+    "jasper": ["jasper", "ai copywriting", "marketing ai"],
+    "chatgpt": ["chatgpt", "openai", "gpt"],
+    "midjourney": ["midjourney", "ai art", "discord bot"],
+    "claude": ["claude", "anthropic", "ai assistant"]
+  };
+  
+  Object.entries({ ...toolNameMatches, ...enhancedToolMatches }).forEach(([toolName, keywords]) => {
     if (keywords.some(keyword => searchTerm.includes(keyword))) {
       if (lowerTitle.includes(toolName) || lowerDescription.includes(toolName)) {
         score += 80; // High boost for specific tool matches

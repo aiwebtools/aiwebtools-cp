@@ -2,15 +2,17 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ChevronLeft, Grid3X3 } from "lucide-react";
+import { ChevronLeft, Grid3X3, Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 interface CategoryHeaderProps {
-  selectedCategory: string;
-  toolsCount: number;
-  onScrollToCategories: () => void;
+  categoryName: string;
+  toolCount: number;
+  searchTerm: string;
+  onSearchChange: (value: string) => void;
 }
 
-const CategoryHeader = ({ selectedCategory, toolsCount, onScrollToCategories }: CategoryHeaderProps) => {
+const CategoryHeader = ({ categoryName, toolCount, searchTerm, onSearchChange }: CategoryHeaderProps) => {
   const navigate = useNavigate();
 
   const goBack = () => {
@@ -18,7 +20,7 @@ const CategoryHeader = ({ selectedCategory, toolsCount, onScrollToCategories }: 
   };
 
   return (
-    <div className="text-center mb-12">
+    <div className="text-center mb-12 px-4">
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
         <Button 
           onClick={goBack} 
@@ -28,28 +30,34 @@ const CategoryHeader = ({ selectedCategory, toolsCount, onScrollToCategories }: 
           <ChevronLeft className="w-4 h-4 mr-2" />
           Back to Home
         </Button>
-        
-        <Button 
-          onClick={onScrollToCategories} 
-          variant="outline" 
-          className="border-pink-500/30 text-pink-300 hover:bg-pink-500/20 hover:border-pink-400/50 transition-all duration-300"
-        >
-          Browse Categories
-        </Button>
       </div>
       
       <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
         <Grid3X3 className="inline-block w-8 h-8 md:w-10 md:h-10 mr-3 text-purple-400" />
-        {selectedCategory}
+        {categoryName}
       </h1>
       
       <p className="text-xl md:text-2xl text-gray-300 mb-6">
-        Discover {toolsCount} AI tools in this category
+        Discover {toolCount} AI tools in this category
       </p>
       
-      <Badge variant="outline" className="text-lg px-6 py-3 border-purple-400 text-purple-300 bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300">
-        {toolsCount} Tools Available
+      <Badge variant="outline" className="text-lg px-6 py-3 border-purple-400 text-purple-300 bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300 mb-8">
+        {toolCount} Tools Available
       </Badge>
+
+      {/* Search bar for category page */}
+      <div className="max-w-md mx-auto">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+          <Input
+            type="text"
+            placeholder={`Search in ${categoryName}...`}
+            value={searchTerm}
+            onChange={(e) => onSearchChange(e.target.value)}
+            className="pl-10 bg-gray-900/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500"
+          />
+        </div>
+      </div>
     </div>
   );
 };

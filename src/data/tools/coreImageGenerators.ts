@@ -1,4 +1,4 @@
-import { Image, Palette, Wand2, Sparkles, Camera, Brush } from "lucide-react";
+import { Image, Palette, Wand2, Sparkles, Camera, Brush, Star, Crown, Zap } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 export const coreImageGenerators: Tool[] = [
@@ -97,5 +97,53 @@ export const coreImageGenerators: Tool[] = [
     category: "Core Image Generators",
     rating: 4.5,
     totalVotes: 2456
+  },
+  {
+    icon: Star,
+    title: "Midjourney",
+    description: "Leading AI art generator known for creating stunning, artistic images from text prompts. Premium quality results with unique artistic style and community features.",
+    emoji: "⭐",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://www.midjourney.com/",
+    tags: ["AI art", "artistic style", "premium quality", "community", "text-to-image"],
+    category: "Core Image Generators",
+    rating: 4.9,
+    totalVotes: 6789
+  },
+  {
+    icon: Crown,
+    title: "DALL-E 3",
+    description: "OpenAI's most advanced image generation model with improved prompt adherence and safety. Create detailed, contextually accurate images from complex descriptions.",
+    emoji: "👑",
+    color: "from-gold-500 to-orange-600",
+    directUrl: "https://openai.com/dall-e-3",
+    tags: ["OpenAI", "advanced model", "prompt adherence", "detailed images", "safety"],
+    category: "Core Image Generators",
+    rating: 4.8,
+    totalVotes: 5432
+  },
+  {
+    icon: Zap,
+    title: "Stable Diffusion",
+    description: "Open-source AI image generator that can be run locally or through various online platforms. Highly customizable with extensive community support and models.",
+    emoji: "⚡",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://stability.ai/stablediffusion",
+    tags: ["open source", "local deployment", "customizable", "community", "free"],
+    category: "Core Image Generators",
+    rating: 4.7,
+    totalVotes: 4321
+  },
+  {
+    icon: Image,
+    title: "Leonardo AI",
+    description: "AI art generator focused on game assets, concept art, and creative content. Features various models optimized for different artistic styles and use cases.",
+    emoji: "🎨",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://leonardo.ai/",
+    tags: ["game assets", "concept art", "multiple models", "artistic styles", "creative"],
+    category: "Core Image Generators",
+    rating: 4.6,
+    totalVotes: 3876
   }
 ];
