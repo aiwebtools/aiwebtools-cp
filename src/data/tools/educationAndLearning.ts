@@ -1,21 +1,59 @@
-
 import { Tool } from "@/types/tools";
 import { 
+  GraduationCap, 
   BookOpen, 
-  Calculator, 
-  Globe, 
-  Search, 
+  Brain, 
   Users, 
-  Star, 
-  Crown, 
+  Award, 
+  PenTool,
+  School,
   Target,
-  Brain,
   Lightbulb,
-  TestTube,
-  Eye
+  Library
 } from "lucide-react";
 
 export const educationAndLearning: Tool[] = [
+  {
+    icon: GraduationCap,
+    title: "COLLEGE DEGREE GPT",
+    description: "College Degree GPT teaches you every college class for any degree you desire, mirroring the exact structure of your chosen institution or university. While it doesn't provide an accredited degree, it delivers a full, in-depth educational experience as if you were earning one. We believe that access to education is a fundamental human right, and it should be free for everyone. That's why we've open-sourced the prompt for you to save for your personal records. 🕊️",
+    emoji: "🎓",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=Cd8uvD-smlM&list=TLGGLsn0bAvnp3EyODA1MjAyNQ",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298792230944880/college.webp",
+    tags: ["college education", "degree programs", "free education", "educational experience", "open-source"],
+    category: "Education & Learning",
+    rating: 4.9,
+    totalVotes: 5678
+  },
+  {
+    icon: BookOpen,
+    title: "LEARN ANY COURSE GPT",
+    description: "Learn Any Course GPT is your dedicated AI-powered tutor, here to guide you through comprehensive, step-by-step courses on any subject you choose. Whether you want to master 12th-grade English, dive into advanced coding, or explore a specialized university degree, this tool brings a personalized, classroom-style experience right to your screen. Unlike static resources, Learn Any Course GPT combines rich, text-based explanations, curated YouTube video recommendations, and engaging visuals to deepen your understanding of complex subjects. on any subject you desire! #FreeEducation #EducationForAll #AnyAGE #SelfTaught #BelieveinYourself",
+    emoji: "📚",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298533723537600/learnanycourse.webp",
+    tags: ["personalized tutoring", "step-by-step learning", "multimedia education", "YouTube integration", "free education"],
+    category: "Education & Learning",
+    rating: 4.8,
+    totalVotes: 4567
+  },
+  {
+    icon: Target,
+    title: "LEARN ANY SKILL GPT",
+    description: "Learn Any Skill GPT by AiWebTools.AI is a dynamic AI-powered educational assistant that guides users through learning any skill, from beginner to expert. It combines step-by-step explanations, curated YouTube videos, and web-sourced visuals for an interactive, multimedia learning experience. Designed for adaptability, it breaks down complex topics into manageable modules, ensuring thorough understanding at every stage. Whether mastering practical skills or academic knowledge, Learn Any Skill GPT is your ultimate guide to success.",
+    emoji: "🎯",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=q1AY2LukHrk",
+    tags: ["skill development", "beginner to expert", "multimedia learning", "modular approach", "practical skills"],
+    category: "Education & Learning",
+    rating: 4.7,
+    totalVotes: 3892
+  },
   {
     icon: Search,
     title: "FACT CHECKER GPT",

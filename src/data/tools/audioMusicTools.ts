@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Music, 
@@ -20,7 +21,7 @@ export const audioMusicTools: Tool[] = [
   {
     icon: Film,
     title: "Music Video Maker AI Studio",
-    description: "Epic AI-powered music video creation suite that transforms your music into stunning visual experiences. Create professional music videos with AI-driven effects, synchronization, and cinematic storytelling for musicians and content creators.",
+    description: "-Full-Blown Music Video & Music Production Creative Suite- Transform yourself into the star of cinematic-quality music videos with our cutting-edge AI director. Build scene-by-scene visuals where you and even your band are featured in vivid, realistic scenes tied to your music.",
     emoji: "🎬",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",

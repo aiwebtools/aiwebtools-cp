@@ -1,12 +1,57 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Newspaper, 
+  PenTool, 
+  FileText, 
   BookOpen, 
-  Eye
+  Edit3, 
+  Type, 
+  Feather,
+  Scroll,
+  Book,
+  Pen,
+  Sparkles
 } from "lucide-react";
 
 export const writingAndContent: Tool[] = [
+  {
+    icon: Scroll,
+    title: "Movie Script Writer GPT",
+    description: "Unlock your creative potential with Movie Scriptwriter GPT, the ultimate AI assistant designed to help you write award-winning movie scripts. Whether you're planning scenes or developing characters, our AI supports you through each stage of the scriptwriting process. It provides professional formatting, detailed descriptions, and captivating dialogue, ensuring your script meets industry standards. Ideal for both new writers and experienced filmmakers, this tool brings your story to life on screen. Begin your path to the red carpet with Movie Scriptwriter GPT. You can use the Original Version 1 by clicking here (V1) Updated on 9/29/24 to Version 2 — now offering the ability to download each scene for your records.",
+    emoji: "📝",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://moviescriptwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=4e3Rkurt3-c&list=TLGGtoG6kc0vED4yODA1MjAyNQ",
+    tags: ["script writing", "movie scripts", "professional formatting", "character development", "industry standards"],
+    category: "Writing & Content",
+    rating: 4.8,
+    totalVotes: 4567
+  },
+  {
+    icon: Book,
+    title: "BOOK WRITER GPT",
+    description: "Book Writer GPT assists you in creating professional, well-structured books with seamless page-to-page continuity, engaging dialogue, and captivating storytelling.",
+    emoji: "📚",
+    color: "from-brown-500 to-orange-600",
+    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
+    tags: ["book writing", "page-to-page continuity", "engaging dialogue", "storytelling", "professional books"],
+    category: "Writing & Content",
+    rating: 4.7,
+    totalVotes: 3892
+  },
+  {
+    icon: Sparkles,
+    title: "PERFECT PROMPT ENGINE",
+    description: "The Prompt Perfect Engine effortlessly optimizes all your chat prompts. Crafted by prompt engineers, it's perfect for maximizing your potential, whether you're a beginner or aiming for perfection. Additionally, it can execute tasks flawlessly based on the generated prompts. Prompt Perfect Engine is your #1 personal prompt engineer, designed to fit in your pocket and ensure your success.",
+    emoji: "✨",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://perfectpromptengine.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-humanoid-robot-controlli.png/:/cr=t:9.25%25,l:11.96%25,w:73.53%25,h:65.54%25/rs=w:1200,h:600,cg:true,m",
+    tags: ["prompt optimization", "prompt engineering", "task execution", "productivity", "AI assistance"],
+    category: "Writing & Content",
+    rating: 4.8,
+    totalVotes: 4234
+  },
   {
     icon: Eye,
     title: "Clarity Omni",
