@@ -2,12 +2,12 @@
 import { Tool } from "@/types/tools";
 
 export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
-  // Priority tools that MUST be in top 10 - adding Stelaris Space Explorer
+  // Priority tools that MUST be in top 10 - Book Writer GPT moved to top priority
   const priorityTitles = [
     'BOOK WRITER GPT',
     'MOVIE MAKER STUDIO', 
     'STAGE MASTER SUITE',
-    'Stelaris Space Explorer'
+    'Stellaris: 🚀AI Space Explorer'
   ];
   
   // Find priority tools first
@@ -32,10 +32,14 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
       tool.title.includes('MULTITASKER GPT') ||
       tool.title.includes('Illuminous World Data Explorer GPT') ||
       tool.title.includes('PERFECT PROMPT ENGINE') ||
-      tool.title.includes('ImmortalizeME') ||
-      tool.title.includes('Resurrection GPT') ||
       tool.title.includes('ENTER THE MATRIX GPT')
-    ).slice(0, 3), // Reduced to make room for Stelaris
+    ).slice(0, 3),
+    
+    // Grouped resurrection/immortality tools together
+    ...aiWebToolsGPTs.filter(tool => 
+      tool.title.includes('Resurrection GPT') ||
+      tool.title.includes('ImmortalizeME')
+    ),
     
     // Additional popular GPTs with good media
     ...aiWebToolsGPTs.filter(tool => 
