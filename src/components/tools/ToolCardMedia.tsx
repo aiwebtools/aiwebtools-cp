@@ -12,9 +12,17 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
   const hasVideo = tool.videoUrl && tool.videoUrl.trim() !== '';
   
-  // For AI Web Tools original tools: prioritize image if available, then video, then emoji
+  // Always prioritize image if available, regardless of tool origin
   const shouldShowImage = hasImage;
-  const shouldShowVideo = isAIWebToolsOriginal && hasVideo && !hasImage;
+  const shouldShowVideo = hasVideo && !hasImage;
+  
+  console.log('ToolCardMedia for', tool.title, {
+    hasImage,
+    hasVideo,
+    shouldShowImage,
+    shouldShowVideo,
+    imageUrl: tool.imageUrl
+  });
   
   const getOptimizedEmbedUrl = (url: string) => {
     if (url.includes('youtube.com/watch?v=')) {
@@ -38,20 +46,30 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
       style={{ height: imageHeight }}
     >
       {shouldShowImage ? (
-        <img 
-          src={tool.imageUrl} 
-          alt={`${tool.title} screenshot`}
-          className="w-full h-full object-cover"
-          loading="lazy"
-          onError={(e) => {
-            // Fallback to emoji display if image fails to load
-            const target = e.target as HTMLImageElement;
-            target.style.display = 'none';
-            if (target.nextElementSibling) {
-              target.nextElementSibling.classList.remove('hidden');
-            }
-          }}
-        />
+        <>
+          <img 
+            src={tool.imageUrl} 
+            alt={`${tool.title} screenshot`}
+            className="w-full h-full object-cover"
+            loading="lazy"
+            onError={(e) => {
+              console.error('Image failed to load for', tool.title, tool.imageUrl);
+              // Fallback to emoji display if image fails to load
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+              if (target.nextElementSibling) {
+                target.nextElementSibling.classList.remove('hidden');
+              }
+            }}
+            onLoad={() => {
+              console.log('Image loaded successfully for', tool.title);
+            }}
+          />
+          {/* Hidden emoji fallback */}
+          <div className="hidden absolute inset-0 flex items-center justify-center text-6xl opacity-50">
+            {tool.emoji}
+          </div>
+        </>
       ) : shouldShowVideo ? (
         <iframe
           width="100%"
@@ -64,15 +82,15 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
           className="w-full h-full rounded-lg"
           loading="lazy"
         />
-      ) : null}
-      
-      {/* Emoji fallback - always present but hidden if image/video loads */}
-      <div className={`${(shouldShowImage || shouldShowVideo) ? 'hidden absolute inset-0' : ''} flex items-center justify-center text-6xl ${isFeatured ? 'text-7xl' : ''} opacity-50`}>
-        {tool.emoji}
-      </div>
+      ) : (
+        /* Default emoji display when no image or video */
+        <div className="flex items-center justify-center text-6xl opacity-50">
+          {tool.emoji}
+        </div>
+      )}
       
       {/* Overlay gradient for better text readability - only show for images, not videos */}
-      {!shouldShowVideo && (
+      {shouldShowImage && (
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
       )}
     </div>
