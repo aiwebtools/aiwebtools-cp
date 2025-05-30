@@ -88,7 +88,7 @@ const GlobalSearchBar = () => {
         </div>
 
         {isOpen && searchResults.length > 0 && (
-          <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900/98 border border-cyan-500/30 shadow-2xl z-50 max-h-96 overflow-y-auto backdrop-blur-md">
+          <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900 border border-cyan-500/30 shadow-2xl z-50 max-h-96 overflow-y-auto">
             <CardContent className="p-2">
               {searchResults.map((tool, index) => {
                 const toolIndex = allTools.findIndex(t => t.title === tool.title);
@@ -96,7 +96,7 @@ const GlobalSearchBar = () => {
                   <Tooltip key={`global-search-${tool.title}-${index}`} delayDuration={300}>
                     <TooltipTrigger asChild>
                       <div 
-                        className="flex items-center space-x-3 p-4 md:p-3 rounded-lg hover:bg-gray-800/70 cursor-pointer group transition-all duration-200 border-b border-gray-700/50 last:border-b-0"
+                        className="flex items-center space-x-3 p-4 md:p-3 rounded-lg hover:bg-gray-800 cursor-pointer group transition-all duration-200 border-b border-gray-700/50 last:border-b-0"
                         onClick={() => handleToolClick(toolIndex)}
                       >
                         <div className={`w-10 h-10 md:w-8 md:h-8 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-base md:text-sm flex-shrink-0`}>
