@@ -1,8 +1,9 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { useNavigate } from "react-router-dom";
+import GlobalSearchBar from "@/components/GlobalSearchBar";
 
 const featuredGPTs = [
   {
@@ -46,6 +47,7 @@ const featuredGPTs = [
     features: ["Movie Script Writer", "Scene Maker", "Trailer Creator", "Poster Designer"],
     directUrl: "https://moviemakerstudio.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E",
+    imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop",
     emoji: "🎬"
   },
   {
@@ -67,6 +69,7 @@ const featuredGPTs = [
     features: ["Set Design", "Choreography", "Costume Creation", "Lighting Optimization"],
     directUrl: "https://stagemasterai.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=-QIxYSlcRWM",
+    imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop",
     emoji: "🎭"
   },
   {
@@ -77,6 +80,7 @@ const featuredGPTs = [
     features: ["Voice Cloning", "Personality AI", "Memory Integration", "Real-time Conversations"],
     directUrl: "https://immortalizeme.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=JXLqPMfw49Y",
+    imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=200&fit=crop",
     emoji: "♾️"
   },
   {
@@ -402,6 +406,7 @@ const featuredGPTs = [
     features: ["Plot Development", "Character Creation", "Writing Guidance", "Manuscript Support"],
     directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
+    imageUrl: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=200&fit=crop",
     emoji: "📚"
   },
   {
@@ -412,6 +417,7 @@ const featuredGPTs = [
     features: ["Health Guidance", "Symptom Analysis", "Medical Info", "Healthcare Support"],
     directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=EKKIttUG0sI",
+    imageUrl: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=200&fit=crop",
     emoji: "👨‍⚕️"
   },
   {
@@ -422,6 +428,7 @@ const featuredGPTs = [
     features: ["Trading Strategies", "Market Analysis", "Investment Tips", "Financial Education"],
     directUrl: "https://tradergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=Izs80Fak4hQ",
+    imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=200&fit=crop",
     emoji: "📈"
   },
   {
@@ -432,6 +439,7 @@ const featuredGPTs = [
     features: ["Tax Preparation", "Law Guidance", "Deduction Optimization", "Tax Planning"],
     directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=xkcsSVbBhf4",
+    imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop",
     emoji: "💰"
   },
   {
@@ -442,6 +450,7 @@ const featuredGPTs = [
     features: ["Marriage Counseling", "Relationship Guidance", "Conflict Resolution", "Communication"],
     directUrl: "https://marriagemendergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=3HCv5_QldrU",
+    imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop",
     emoji: "💑"
   }
 ];
@@ -457,6 +466,18 @@ const handleAccessTool = (directUrl: string, toolName: string) => {
 };
 
 const SpecialServices = () => {
+  const navigate = useNavigate();
+
+  const handleShowCategories = () => {
+    navigate('/');
+    setTimeout(() => {
+      const categoriesSection = document.getElementById('categories-section');
+      if (categoriesSection) {
+        categoriesSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   return (
     <section className="py-20 bg-gradient-to-br from-slate-900 to-purple-900">
       <div className="container mx-auto px-4">
@@ -553,6 +574,32 @@ const SpecialServices = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* New Section with Search Bar and Show Categories Button */}
+        <div className="mt-16 text-center">
+          <div className="mb-8">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              Discover More <span className="bg-gradient-to-r from-ai-cyan to-ai-blue bg-clip-text text-transparent">AI Tools</span>
+            </h3>
+            <p className="text-gray-300 mb-6">
+              Explore our complete collection of AI tools or browse by category
+            </p>
+            
+            {/* Search Bar */}
+            <div className="max-w-md mx-auto mb-6">
+              <GlobalSearchBar />
+            </div>
+            
+            {/* Show Categories Button */}
+            <Button
+              onClick={handleShowCategories}
+              size="lg"
+              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
+            >
+              🗂️ BROWSE CATEGORIES
+            </Button>
+          </div>
         </div>
       </div>
     </section>
