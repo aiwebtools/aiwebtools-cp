@@ -1,15 +1,15 @@
 
-// Enhanced portal sounds with deep bass guitar time warp effect
+// Enhanced portal sounds with multiple audio layers for deeper immersion
 export const createPortalSounds = () => {
-  console.log('🔊 Creating bass guitar time warp portal effects');
+  console.log('🔊 Creating enhanced portal audio effects');
   
   try {
     // Create AudioContext
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     
-    // Create deep bass guitar time warp sound
-    const createBassTimeWarp = () => {
-      const duration = 4.0;
+    // Enhanced portal whoosh sound with multiple frequencies
+    const createPortalWhoosh = () => {
+      const duration = 3.5;
       const sampleRate = audioContext.sampleRate;
       const numFrames = sampleRate * duration;
       const buffer = audioContext.createBuffer(2, numFrames, sampleRate);
@@ -19,39 +19,29 @@ export const createPortalSounds = () => {
         
         for (let i = 0; i < numFrames; i++) {
           const t = i / sampleRate;
-          const fadeIn = Math.min(1, t * 3);
-          const fadeOut = Math.max(0, 1 - (t - 2.8) * 3);
+          const fadeIn = Math.min(1, t * 4);
+          const fadeOut = Math.max(0, 1 - (t - 2.5) * 2);
           const envelope = fadeIn * fadeOut;
           
-          // Deep bass guitar fundamental (starting low, bending down)
-          const bassFund = Math.sin(2 * Math.PI * (80 - t * 25) * t) * Math.exp(-t * 0.3);
+          // Multiple frequency layers for richer sound
+          const whoosh1 = Math.sin(2 * Math.PI * (80 + t * 200) * t) * Math.exp(-t * 0.5);
+          const whoosh2 = Math.sin(2 * Math.PI * (120 + t * 150) * t) * Math.exp(-t * 0.7);
+          const whoosh3 = Math.sin(2 * Math.PI * (60 + t * 300) * t) * Math.exp(-t * 0.3);
           
-          // Bass harmonics for richness
-          const bassHarm1 = Math.sin(2 * Math.PI * (160 - t * 50) * t) * Math.exp(-t * 0.4) * 0.6;
-          const bassHarm2 = Math.sin(2 * Math.PI * (240 - t * 75) * t) * Math.exp(-t * 0.5) * 0.3;
+          // Add some noise for texture
+          const noise = (Math.random() - 0.5) * 0.1 * Math.exp(-t * 2);
           
-          // Time warp effect - pitch bending down with vibrato
-          const vibrato = Math.sin(2 * Math.PI * 4 * t) * 0.1;
-          const pitchBend = 1 - (t * 0.4) + vibrato;
-          
-          // Combine bass elements with time warp modulation
-          const bassGuitar = (bassFund + bassHarm1 + bassHarm2) * pitchBend;
-          
-          // Add some reverb-like echo
-          const echoDelay = Math.floor(sampleRate * 0.2);
-          const echo = i > echoDelay ? channelData[i - echoDelay] * 0.3 : 0;
-          
-          // Final bass guitar time warp sound
-          channelData[i] = (bassGuitar + echo) * envelope * 0.4;
+          // Reduced volume from 0.3 to 0.15 for better voice clarity
+          channelData[i] = (whoosh1 + whoosh2 * 0.7 + whoosh3 * 0.5 + noise) * envelope * 0.15;
         }
       }
       
       return buffer;
     };
 
-    // Create dimensional shift whoosh (complementary effect)
-    const createDimensionalShift = () => {
-      const duration = 3.0;
+    // Enhanced energy pulse sound
+    const createEnergyPulse = () => {
+      const duration = 2.0;
       const sampleRate = audioContext.sampleRate;
       const numFrames = sampleRate * duration;
       const buffer = audioContext.createBuffer(2, numFrames, sampleRate);
@@ -61,41 +51,37 @@ export const createPortalSounds = () => {
         
         for (let i = 0; i < numFrames; i++) {
           const t = i / sampleRate;
-          const envelope = Math.exp(-t * 1.2);
+          const pulse = Math.sin(2 * Math.PI * 40 * t) * Math.exp(-t * 3);
+          const harmonic = Math.sin(2 * Math.PI * 80 * t) * Math.exp(-t * 4) * 0.5;
+          const envelope = Math.exp(-t * 2);
           
-          // Low frequency dimensional shift
-          const shift1 = Math.sin(2 * Math.PI * (45 + t * 100) * t) * Math.exp(-t * 0.8);
-          const shift2 = Math.sin(2 * Math.PI * (65 + t * 150) * t) * Math.exp(-t * 1.0);
-          
-          // Add filtered noise for texture
-          const noise = (Math.random() - 0.5) * 0.08 * Math.exp(-t * 3);
-          
-          channelData[i] = (shift1 + shift2 * 0.7 + noise) * envelope * 0.25;
+          // Reduced volume from 0.4 to 0.2 for better voice clarity
+          channelData[i] = (pulse + harmonic) * envelope * 0.2;
         }
       }
       
       return buffer;
     };
 
-    // Create and play bass guitar time warp
-    const bassWarpBuffer = createBassTimeWarp();
-    const bassWarpSource = audioContext.createBufferSource();
-    bassWarpSource.buffer = bassWarpBuffer;
-    bassWarpSource.connect(audioContext.destination);
-    bassWarpSource.start();
+    // Create and play portal whoosh
+    const whooshBuffer = createPortalWhoosh();
+    const whooshSource = audioContext.createBufferSource();
+    whooshSource.buffer = whooshBuffer;
+    whooshSource.connect(audioContext.destination);
+    whooshSource.start();
 
-    // Create and play dimensional shift with delay
+    // Create and play energy pulse with delay
     setTimeout(() => {
-      const shiftBuffer = createDimensionalShift();
-      const shiftSource = audioContext.createBufferSource();
-      shiftSource.buffer = shiftBuffer;
-      shiftSource.connect(audioContext.destination);
-      shiftSource.start();
-    }, 600);
+      const pulseBuffer = createEnergyPulse();
+      const pulseSource = audioContext.createBufferSource();
+      pulseSource.buffer = pulseBuffer;
+      pulseSource.connect(audioContext.destination);
+      pulseSource.start();
+    }, 800);
 
-    console.log('🎸 Bass guitar time warp effects created successfully');
+    console.log('🎵 Portal audio effects created successfully');
     
   } catch (error) {
-    console.log('Bass guitar portal audio creation failed:', error);
+    console.log('Portal audio creation failed:', error);
   }
 };

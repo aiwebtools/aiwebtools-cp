@@ -1,5 +1,5 @@
 
-import { useEffect, useCallback, useRef } from "react";
+import { useEffect, useCallback } from "react";
 
 interface UseInfiniteScrollProps {
   isLoading: boolean;
@@ -16,55 +16,47 @@ export const useInfiniteScroll = ({
   totalTools, 
   onLoadMore 
 }: UseInfiniteScrollProps) => {
-  const timeoutRef = useRef<NodeJS.Timeout>();
-  const isLoadingRef = useRef(false);
-
   const handleLoadMore = useCallback(() => {
-    if (isLoadingRef.current || isLoading) return;
+    if (isLoading) return;
     console.log(`🔄 Infinite scroll triggered - Loading more tools...`);
-    isLoadingRef.current = true;
     onLoadMore();
-    
-    // Reset loading flag after a delay to prevent rapid firing
-    setTimeout(() => {
-      isLoadingRef.current = false;
-    }, 1000);
   }, [isLoading, onLoadMore]);
 
-  // Heavily optimized infinite scroll with throttling and performance improvements
+  // Enhanced infinite scroll with better performance and glitch prevention
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
     const handleScroll = () => {
-      if (isLoading || showLoadMoreButton || isLoadingRef.current) return;
+      if (isLoading || showLoadMoreButton) return; // Don't auto-scroll if button mode is enabled
       
       // Clear previous timeout to prevent multiple triggers
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      clearTimeout(timeoutId);
       
-      timeoutRef.current = setTimeout(() => {
-        // Use more efficient scroll calculation
-        const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+      timeoutId = setTimeout(() => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
         
-        // More aggressive threshold for better UX
-        const threshold = 600;
-        const nearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
+        // More aggressive threshold for better user experience
+        const threshold = 800;
+        const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
         
-        if (nearBottom && displayedCount < totalTools && !isLoading && !isLoadingRef.current) {
+        console.log(`📏 Scroll check - ScrollTop: ${scrollTop}, WindowHeight: ${windowHeight}, DocumentHeight: ${documentHeight}, NearBottom: ${nearBottom}`);
+        
+        if (nearBottom && displayedCount < totalTools && !isLoading) {
           console.log(`🎯 Triggering load more - Displayed: ${displayedCount}, Total: ${totalTools}`);
           handleLoadMore();
         }
-      }, 100); // Optimized debounce timing
+      }, 50); // Reduced debounce for more responsive loading
     };
 
-    // Use passive listeners for better performance
-    console.log(`🎮 Setting up optimized infinite scroll - ShowButton: ${showLoadMoreButton}, Displayed: ${displayedCount}, Total: ${totalTools}`);
-    window.addEventListener('scroll', handleScroll, { passive: true, capture: false });
+    // Always enable scroll listening for homepage
+    console.log(`🎮 Setting up infinite scroll - ShowButton: ${showLoadMoreButton}, Displayed: ${displayedCount}, Total: ${totalTools}`);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      clearTimeout(timeoutId);
     };
   }, [displayedCount, handleLoadMore, isLoading, showLoadMoreButton, totalTools]);
 

@@ -9,8 +9,6 @@ import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
-import { getCurrentToolCount } from "@/utils/toolCounter";
-import { useSearchScroll } from "@/hooks/useSearchScroll";
 
 const GlobalSearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -18,8 +16,6 @@ const GlobalSearchBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const searchRef = useRef(null);
   const navigate = useNavigate();
-  const toolStats = getCurrentToolCount();
-  const { scrollToSearchResults } = useSearchScroll();
 
   useEffect(() => {
     if (searchTerm.trim()) {
@@ -60,14 +56,6 @@ const GlobalSearchBar = () => {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && searchTerm.trim()) {
-      console.log('🚀 Enter pressed - triggering search scroll');
-      setIsOpen(false);
-      scrollToSearchResults(searchTerm);
-    }
-  };
-
   const clearSearch = () => {
     setSearchTerm("");
     setIsOpen(false);
@@ -75,31 +63,30 @@ const GlobalSearchBar = () => {
 
   return (
     <TooltipProvider>
-      <div ref={searchRef} className="relative w-full">
-        <div className="relative w-full">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 z-10" />
+      <div ref={searchRef} className="relative w-full max-w-md">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           <Input
             type="text"
-            placeholder={`Search ${toolStats.total} AI tools... Press Enter to scroll to results`}
+            placeholder="Search 700+ AI tools..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyDown={handleKeyDown}
-            className="pl-10 pr-10 py-3 h-12 bg-gray-900/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500 w-full text-base rounded-lg min-w-0"
+            className="pl-10 pr-10 bg-gray-900/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500"
           />
           {searchTerm && (
             <Button
               variant="ghost"
               size="sm"
               onClick={clearSearch}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 text-gray-400 hover:text-white z-10"
+              className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-gray-400 hover:text-white"
             >
-              <X className="w-4 h-4" />
+              <X className="w-3 h-3" />
             </Button>
           )}
         </div>
 
         {isOpen && searchResults.length > 0 && (
-          <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900 border border-cyan-500/30 shadow-2xl z-50 max-h-96 overflow-y-auto">
+          <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-cyan-500/30 shadow-2xl z-50 max-h-96 overflow-y-auto">
             <CardContent className="p-2">
               {searchResults.map((tool, index) => {
                 const toolIndex = allTools.findIndex(t => t.title === tool.title);
@@ -107,18 +94,18 @@ const GlobalSearchBar = () => {
                   <Tooltip key={`global-search-${tool.title}-${index}`} delayDuration={300}>
                     <TooltipTrigger asChild>
                       <div 
-                        className="flex items-center space-x-3 p-4 md:p-3 rounded-lg hover:bg-gray-800 cursor-pointer group transition-all duration-200 border-b border-gray-700/50 last:border-b-0"
+                        className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800/50 cursor-pointer group transition-all duration-200"
                         onClick={() => handleToolClick(toolIndex)}
                       >
-                        <div className={`w-10 h-10 md:w-8 md:h-8 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-base md:text-sm flex-shrink-0`}>
+                        <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-sm flex-shrink-0`}>
                           {tool.emoji}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-medium text-white text-base md:text-sm truncate group-hover:text-cyan-400 transition-colors leading-tight">
+                          <h3 className="font-medium text-white text-sm truncate group-hover:text-cyan-400 transition-colors">
                             {tool.title}
                           </h3>
                           {tool.category && (
-                            <p className="text-sm md:text-xs text-gray-300 truncate mt-1 md:mt-0.5">{tool.category}</p>
+                            <p className="text-xs text-gray-400 truncate">{tool.category}</p>
                           )}
                         </div>
                         
@@ -126,7 +113,7 @@ const GlobalSearchBar = () => {
                           <Button 
                             size="sm"
                             variant="outline"
-                            className="border-green-500/50 bg-green-500/10 text-green-300 hover:bg-green-500/20 text-sm md:text-xs px-3 md:px-2 py-2 md:py-1 h-auto flex-shrink-0"
+                            className="border-green-500/50 bg-green-500/10 text-green-300 hover:bg-green-500/20 text-xs px-2 py-1 h-auto flex-shrink-0"
                             onClick={(e) => handleDirectAccess(tool, e)}
                           >
                             🚀

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -6,8 +7,6 @@ import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { Tool } from "@/types/tools";
 import { Link } from "react-router-dom";
-import { getCurrentToolCount } from "@/utils/toolCounter";
-import { useSearchScroll } from "@/hooks/useSearchScroll";
 
 interface SearchBarProps {
   searchTerm: string;
@@ -17,8 +16,6 @@ interface SearchBarProps {
 const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchResults, setSearchResults] = useState<Tool[]>([]);
-  const toolStats = getCurrentToolCount();
-  const { scrollToSearchResults } = useSearchScroll();
 
   const handleSearchChange = (value: string) => {
     console.log("Tools search - handleSearchChange called with:", value);
@@ -49,10 +46,6 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
       setIsOpen(false);
       onSearchChange("");
       setSearchResults([]);
-    } else if (e.key === 'Enter' && searchTerm.trim()) {
-      console.log('🚀 Enter pressed in SearchBar - triggering search scroll');
-      setIsOpen(false);
-      scrollToSearchResults(searchTerm);
     }
   };
 
@@ -69,7 +62,7 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
         <Input
           type="text"
-          placeholder={`Search ${toolStats.total} AI tools... Press Enter to scroll to results. Try: 'canva', 'notion', 'social media', 'video editing', 'whatsapp', 'spotify', 'github', 'figma'`}
+          placeholder="Search 1100+ AI tools... Try: 'canva', 'notion', 'social media', 'video editing', 'whatsapp', 'spotify', 'github', 'figma'"
           value={searchTerm}
           onChange={(e) => handleSearchChange(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -82,7 +75,7 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
           className="pl-10 pr-4 py-4 text-lg rounded-xl border-2 border-gray-200 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 transition-all duration-300 shadow-lg"
         />
         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-400">
-          {searchTerm ? `Searching...` : `${toolStats.total} Tools`}
+          {searchTerm ? `Searching...` : '1100+ Tools'}
         </div>
 
         {/* Search Results Dropdown */}
@@ -90,7 +83,7 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
           <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 max-h-96 overflow-y-auto">
             <div className="p-2">
               <div className="text-xs text-gray-500 px-3 py-2 border-b border-gray-100">
-                Search Results ({searchResults.length}) - Press Enter to scroll to results
+                Search Results ({searchResults.length})
               </div>
               {searchResults.map((tool, index) => {
                 const toolIndex = allTools.findIndex(t => t.title === tool.title);

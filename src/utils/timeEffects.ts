@@ -1,4 +1,4 @@
-import { createPortalSounds } from './effects/audioEffects';
+import { createPortalSounds, createRobotVoice } from './effects/audioEffects';
 import { 
   createParticles, 
   createVortexRings, 
@@ -207,17 +207,17 @@ const extractToolName = (destinationUrl: string, providedToolName?: string): str
 };
 
 export const createTimePortalEffect = (destinationUrl: string, toolName?: string) => {
-  console.log('🌀 Creating enhanced bass guitar time portal effect for URL:', destinationUrl);
+  console.log('🌀 Creating enhanced centered portal effect for URL:', destinationUrl);
   console.log('🌀 Tool name provided:', toolName);
   
-  // Extract tool name for logging purposes
+  // Extract tool name for personalized robot voice
   const finalToolName = extractToolName(destinationUrl, toolName);
   console.log('🎯 Final detected tool name:', finalToolName);
   
   // Create container for all effects
   const effectsContainer = createEffectsContainer();
 
-  // Apply centered portal filter
+  // Apply centered portal filter instead of body distortion
   applyTimeWarpFilter();
 
   // Execute all centered visual effects
@@ -228,8 +228,11 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   createLightning(effectsContainer);
   createFlash(effectsContainer);
   
-  // Create bass guitar time warp sounds (no robot voice)
+  // Create portal sounds (keeping existing timing)
   createPortalSounds();
+  
+  // Create robot voice with contextual message using the actual tool name
+  createRobotVoice(finalToolName, destinationUrl);
 
   // Cleanup and open in new tab after 3.5 seconds (always new window to keep users on site)
   setTimeout(() => {
