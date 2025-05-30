@@ -9,14 +9,22 @@ import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { getCurrentToolCount } from "@/utils/toolCounter";
 
 const GlobalSearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [displayedCount, setDisplayedCount] = useState(30); // Start with 30 results
   const [isOpen, setIsOpen] = useState(false);
+  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const searchRef = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Get accurate tool count
+    const stats = getCurrentToolCount();
+    setToolStats(stats);
+  }, []);
 
   useEffect(() => {
     if (searchTerm.trim()) {
@@ -83,7 +91,7 @@ const GlobalSearchBar = () => {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           <Input
             type="text"
-            placeholder="Search 700+ AI tools..."
+            placeholder={`Search ${toolStats.marketing} AI tools...`}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 pr-10 bg-gray-900/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500"
