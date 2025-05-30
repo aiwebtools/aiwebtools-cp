@@ -94,6 +94,8 @@ const AnimatedBackground = () => {
       <div ref={particlesRef} className="floating-particles" />
       <div ref={shootingStarsRef} className="shooting-stars-container" />
       <div ref={cometsRef} className="comets-container" />
+      {/* Add subtle overlay for better text readability */}
+      <div className="fixed inset-0 bg-black/20 backdrop-blur-[0.5px] pointer-events-none z-0" />
     </>
   );
 };
