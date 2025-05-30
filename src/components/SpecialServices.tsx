@@ -90,7 +90,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-indigo-600",
     features: ["Clear Insights", "Multi-domain Analysis", "Cognitive Enhancement", "Decision Support"],
     directUrl: "https://clarityomni.lovable.app/?via=aiwebtools",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298678930473072/clarity.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-scene-of-an-ai-agent-with-a-halo.jpeg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
     emoji: "🔮"
   },
   {
