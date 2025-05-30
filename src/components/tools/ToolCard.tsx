@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
@@ -21,13 +20,8 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
   const titleSize = isFeatured ? "text-xl" : "text-lg";
   const buttonSize = isFeatured ? "default" : "sm";
 
-  // Find the tool index for the URL - ensure we find the exact match
-  const toolIndex = allTools.findIndex(t => t.title === tool.title && t.description === tool.description);
-  
-  // Log if tool not found for debugging
-  if (toolIndex === -1) {
-    console.warn(`Tool not found in allTools array: ${tool.title}`);
-  }
+  // Find the tool index for the URL
+  const toolIndex = allTools.findIndex(t => t.title === tool.title);
 
   // Enhanced rating system - boost ratings for AI Web Tools original GPTs
   const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
@@ -51,9 +45,7 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
   const handleFindSimilar = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (toolIndex !== -1) {
-      navigate(`/similar/${toolIndex}`);
-    }
+    navigate(`/similar/${toolIndex}`);
   };
 
   return (

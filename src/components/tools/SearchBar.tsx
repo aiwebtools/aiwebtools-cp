@@ -6,7 +6,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { Tool } from "@/types/tools";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface SearchBarProps {
   searchTerm: string;
@@ -16,7 +16,7 @@ interface SearchBarProps {
 const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchResults, setSearchResults] = useState<Tool[]>([]);
-  const navigate = useNavigate();
+  const [displayedCount, setDisplayedCount] = useState(50); // Start with 50 results
 
   const handleSearchChange = (value: string) => {
     console.log("Tools search - handleSearchChange called with:", value);
@@ -24,31 +24,25 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
     
     if (value.trim()) {
       console.log("Tools search - searching tools with term:", value);
-      const results = searchTools(allTools, value).slice(0, 8);
-      console.log("Tools search - search results:", results);
+      const results = searchTools(allTools, value); // Get ALL results, no slice limit
+      console.log("Tools search - search results:", results.length, "total results");
       setSearchResults(results);
+      setDisplayedCount(50); // Reset display count
       setIsOpen(true);
       console.log("Tools search - isOpen set to true");
     } else {
       console.log("Tools search - clearing results");
       setSearchResults([]);
       setIsOpen(false);
+      setDisplayedCount(50);
     }
   };
 
-  const handleResultClick = (tool: Tool) => {
-    // Find the correct tool index in the main allTools array
-    const toolIndex = allTools.findIndex(t => t.title === tool.title && t.description === tool.description);
-    console.log(`Navigating to tool: ${tool.title} at index: ${toolIndex}`);
-    
-    if (toolIndex !== -1) {
-      setIsOpen(false);
-      onSearchChange("");
-      setSearchResults([]);
-      navigate(`/tool/${toolIndex}`);
-    } else {
-      console.error(`Tool not found in allTools array: ${tool.title}`);
-    }
+  const handleResultClick = () => {
+    setIsOpen(false);
+    onSearchChange("");
+    setSearchResults([]);
+    setDisplayedCount(50);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -56,6 +50,7 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
       setIsOpen(false);
       onSearchChange("");
       setSearchResults([]);
+      setDisplayedCount(50);
     }
   };
 
@@ -64,7 +59,18 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
     setTimeout(() => setIsOpen(false), 200);
   };
 
-  console.log("Tools search - rendering, isOpen:", isOpen, "searchResults.length:", searchResults.length);
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+    
+    // Load more when user scrolls near the bottom
+    if (scrollHeight - scrollTop <= clientHeight + 100 && displayedCount < searchResults.length) {
+      setDisplayedCount(prev => Math.min(prev + 30, searchResults.length));
+    }
+  };
+
+  const displayedResults = searchResults.slice(0, displayedCount);
+
+  console.log("Tools search - rendering, isOpen:", isOpen, "searchResults.length:", searchResults.length, "displayedCount:", displayedCount);
 
   return (
     <TooltipProvider>
@@ -85,24 +91,28 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
           className="pl-10 pr-4 py-4 text-lg rounded-xl border-2 border-gray-200 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 transition-all duration-300 shadow-lg"
         />
         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-400">
-          {searchTerm ? `Searching...` : '1100+ Tools'}
+          {searchTerm ? `${searchResults.length} found` : '1100+ Tools'}
         </div>
 
         {/* Search Results Dropdown */}
         {isOpen && searchResults.length > 0 && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 max-h-96 overflow-y-auto">
+          <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" onScroll={handleScroll}>
             <div className="p-2">
-              <div className="text-xs text-gray-500 px-3 py-2 border-b border-gray-100">
-                Search Results ({searchResults.length})
+              <div className="text-xs text-gray-500 px-3 py-2 border-b border-gray-100 sticky top-0 bg-white">
+                Search Results ({searchResults.length} total) - Showing {displayedCount}
+                {displayedCount < searchResults.length && (
+                  <span className="text-cyan-600 ml-2">Scroll for more...</span>
+                )}
               </div>
-              {searchResults.map((tool, index) => {
-                const toolIndex = allTools.findIndex(t => t.title === tool.title && t.description === tool.description);
+              {displayedResults.map((tool, index) => {
+                const toolIndex = allTools.findIndex(t => t.title === tool.title);
                 return (
                   <Tooltip key={index} delayDuration={300}>
                     <TooltipTrigger asChild>
-                      <div
-                        onClick={() => handleResultClick(tool)}
-                        className="flex items-center space-x-3 p-3 hover:bg-gray-50 transition-all duration-200 border-b border-gray-50 last:border-b-0 rounded-lg mx-1 cursor-pointer"
+                      <Link
+                        to={`/tool/${toolIndex}`}
+                        onClick={handleResultClick}
+                        className="flex items-center space-x-3 p-3 hover:bg-gray-50 transition-all duration-200 border-b border-gray-50 last:border-b-0 rounded-lg mx-1"
                       >
                         <div className="w-10 h-10 rounded-full bg-gradient-to-r from-ai-purple to-ai-blue flex items-center justify-center text-white text-lg flex-shrink-0">
                           {tool.emoji}
@@ -114,7 +124,7 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
                         <div className="text-xs text-gray-400 flex-shrink-0">
                           ⭐ {tool.rating || '4.5'}
                         </div>
-                      </div>
+                      </Link>
                     </TooltipTrigger>
                     <TooltipContent 
                       side="right" 
@@ -146,6 +156,12 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
                   </Tooltip>
                 );
               })}
+              {displayedCount < searchResults.length && (
+                <div className="text-center py-4 text-gray-500 text-sm">
+                  <div className="animate-pulse">Loading more tools...</div>
+                  <div className="text-xs mt-1">{searchResults.length - displayedCount} more available</div>
+                </div>
+              )}
             </div>
           </div>
         )}

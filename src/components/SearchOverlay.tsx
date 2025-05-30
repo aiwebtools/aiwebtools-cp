@@ -16,31 +16,26 @@ interface SearchOverlayProps {
 
 const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState(allTools.slice(0, 8));
+  const [searchResults, setSearchResults] = useState(allTools.slice(0, 24)); // Start with 24 tools
+  const [displayedCount, setDisplayedCount] = useState(24);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (searchTerm.trim()) {
-      const results = searchTools(allTools, searchTerm);
-      setSearchResults(results.slice(0, 12));
+      const results = searchTools(allTools, searchTerm); // Get ALL results
+      setSearchResults(results);
+      setDisplayedCount(24); // Reset display count
     } else {
       // Show random tools when no search term
       const shuffled = [...allTools].sort(() => 0.5 - Math.random());
-      setSearchResults(shuffled.slice(0, 8));
+      setSearchResults(shuffled);
+      setDisplayedCount(24);
     }
   }, [searchTerm]);
 
-  const handleToolClick = (tool: any) => {
-    // Find the correct tool index in the main allTools array
-    const toolIndex = allTools.findIndex(t => t.title === tool.title && t.description === tool.description);
-    console.log(`Search overlay navigating to tool: ${tool.title} at index: ${toolIndex}`);
-    
-    if (toolIndex !== -1) {
-      onClose();
-      navigate(`/tool/${toolIndex}`);
-    } else {
-      console.error(`Tool not found in allTools array: ${tool.title}`);
-    }
+  const handleToolClick = (toolIndex: number) => {
+    onClose();
+    navigate(`/tool/${toolIndex}`);
   };
 
   const handleDirectAccess = (tool: any, e: React.MouseEvent) => {
@@ -48,10 +43,21 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
       e.preventDefault();
       e.stopPropagation();
       console.log('🌀 Direct access clicked in search overlay for:', tool.title);
-      createTimePortalEffect(tool.directUrl, tool.title);
+      createTimePortalEffect(tool.directUrl);
       onClose();
     }
   };
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+    
+    // Load more when user scrolls near the bottom
+    if (scrollHeight - scrollTop <= clientHeight + 100 && displayedCount < searchResults.length) {
+      setDisplayedCount(prev => Math.min(prev + 24, searchResults.length));
+    }
+  };
+
+  const displayedResults = searchResults.slice(0, displayedCount);
 
   if (!isOpen) return null;
 
@@ -84,14 +90,22 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-96 overflow-y-auto">
-              {searchResults.map((tool, index) => {
-                const toolIndex = allTools.findIndex(t => t.title === tool.title && t.description === tool.description);
+            <div className="mb-4 text-center text-sm text-cyan-400">
+              {searchTerm ? `${searchResults.length} tools found` : `Browsing ${searchResults.length} tools`} 
+              {displayedCount < searchResults.length && ` - Showing ${displayedCount}, scroll for more`}
+            </div>
+
+            <div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800"
+              onScroll={handleScroll}
+            >
+              {displayedResults.map((tool, index) => {
+                const toolIndex = allTools.findIndex(t => t.title === tool.title);
                 return (
                   <Card 
                     key={`search-${tool.title}-${index}`}
                     className="bg-gray-800/50 border-gray-600 hover:border-cyan-500/50 transition-all duration-200 cursor-pointer group"
-                    onClick={() => handleToolClick(tool)}
+                    onClick={() => handleToolClick(toolIndex)}
                   >
                     <CardContent className="p-4">
                       <div className="flex items-center space-x-3 mb-3">
@@ -118,7 +132,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                           className="flex-1 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-xs"
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleToolClick(tool);
+                            handleToolClick(toolIndex);
                           }}
                         >
                           View Details
@@ -139,6 +153,14 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                   </Card>
                 );
               })}
+              {displayedCount < searchResults.length && (
+                <div className="col-span-full text-center py-6">
+                  <div className="text-cyan-400 text-lg animate-pulse">Loading more tools...</div>
+                  <div className="text-gray-400 text-sm mt-2">
+                    {searchResults.length - displayedCount} more tools available - Keep scrolling!
+                  </div>
+                </div>
+              )}
             </div>
 
             {searchResults.length === 0 && (

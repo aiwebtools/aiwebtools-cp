@@ -13,18 +13,21 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 const GlobalSearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [displayedCount, setDisplayedCount] = useState(30); // Start with 30 results
   const [isOpen, setIsOpen] = useState(false);
   const searchRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (searchTerm.trim()) {
-      const results = searchTools(allTools, searchTerm);
-      setSearchResults(results.slice(0, 8));
+      const results = searchTools(allTools, searchTerm); // Get ALL results
+      setSearchResults(results);
+      setDisplayedCount(30); // Reset display count
       setIsOpen(true);
     } else {
       setSearchResults([]);
       setIsOpen(false);
+      setDisplayedCount(30);
     }
   }, [searchTerm]);
 
@@ -39,18 +42,10 @@ const GlobalSearchBar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleToolClick = (tool: any) => {
-    // Find the correct tool index in the main allTools array
-    const toolIndex = allTools.findIndex(t => t.title === tool.title && t.description === tool.description);
-    console.log(`Global search navigating to tool: ${tool.title} at index: ${toolIndex}`);
-    
-    if (toolIndex !== -1) {
-      setIsOpen(false);
-      setSearchTerm("");
-      navigate(`/tool/${toolIndex}`);
-    } else {
-      console.error(`Tool not found in allTools array: ${tool.title}`);
-    }
+  const handleToolClick = (toolIndex: number) => {
+    setIsOpen(false);
+    setSearchTerm("");
+    navigate(`/tool/${toolIndex}`);
   };
 
   const handleDirectAccess = (tool: any, e: React.MouseEvent) => {
@@ -67,7 +62,19 @@ const GlobalSearchBar = () => {
   const clearSearch = () => {
     setSearchTerm("");
     setIsOpen(false);
+    setDisplayedCount(30);
   };
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+    
+    // Load more when user scrolls near the bottom
+    if (scrollHeight - scrollTop <= clientHeight + 50 && displayedCount < searchResults.length) {
+      setDisplayedCount(prev => Math.min(prev + 20, searchResults.length));
+    }
+  };
+
+  const displayedResults = searchResults.slice(0, displayedCount);
 
   return (
     <TooltipProvider>
@@ -94,16 +101,20 @@ const GlobalSearchBar = () => {
         </div>
 
         {isOpen && searchResults.length > 0 && (
-          <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-cyan-500/30 shadow-2xl z-50 max-h-96 overflow-y-auto">
+          <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-cyan-500/30 shadow-2xl z-50 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" onScroll={handleScroll}>
             <CardContent className="p-2">
-              {searchResults.map((tool, index) => {
-                const toolIndex = allTools.findIndex(t => t.title === tool.title && t.description === tool.description);
+              <div className="text-xs text-cyan-400 px-3 py-2 border-b border-gray-700 sticky top-0 bg-gray-900/95">
+                {searchResults.length} Results - Showing {displayedCount}
+                {displayedCount < searchResults.length && " - Scroll for more"}
+              </div>
+              {displayedResults.map((tool, index) => {
+                const toolIndex = allTools.findIndex(t => t.title === tool.title);
                 return (
                   <Tooltip key={`global-search-${tool.title}-${index}`} delayDuration={300}>
                     <TooltipTrigger asChild>
                       <div 
                         className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800/50 cursor-pointer group transition-all duration-200"
-                        onClick={() => handleToolClick(tool)}
+                        onClick={() => handleToolClick(toolIndex)}
                       >
                         <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-sm flex-shrink-0`}>
                           {tool.emoji}
@@ -159,6 +170,12 @@ const GlobalSearchBar = () => {
                   </Tooltip>
                 );
               })}
+              {displayedCount < searchResults.length && (
+                <div className="text-center py-3 text-gray-400 text-xs">
+                  <div className="animate-pulse">Loading more...</div>
+                  <div className="mt-1">{searchResults.length - displayedCount} more tools available</div>
+                </div>
+              )}
             </CardContent>
           </Card>
         )}

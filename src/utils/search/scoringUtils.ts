@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { toolAbbreviations, fuzzyMatches, acronymMatches } from "./toolAbbreviations";
 import { intentMatches, toolNameMatches, semanticGroups } from "./intentMatching";
@@ -90,13 +91,6 @@ export const calculateIntentScore = (tool: Tool, searchTerm: string): number => 
   const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
   
   let score = 0;
-  
-  // PRIORITY BOOST: AI Web Tools original GPTs get massive boost
-  const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
-  if (isAIWebToolsOriginal) {
-    score += 1000; // Massive boost to ensure they appear first
-    console.log(`🚀 AI Web Tools original tool boosted: ${tool.title} (+1000 points)`);
-  }
   
   // Special boost for GPT tools when searching for GPT-related terms
   if (searchTerm.toLowerCase().includes('gpt')) {

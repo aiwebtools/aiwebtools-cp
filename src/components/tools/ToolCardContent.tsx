@@ -36,12 +36,6 @@ const ToolCardContent = ({
     }
   };
 
-  // Only render navigation if we have a valid tool index
-  if (toolIndex === -1) {
-    console.error(`Cannot render ToolCardContent: Invalid tool index for ${tool.title}`);
-    return null;
-  }
-
   return (
     <CardContent className="text-center flex-grow flex flex-col relative z-10">
       <ToolCardMedia 
