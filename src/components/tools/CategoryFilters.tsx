@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { getCategoryStyle } from "@/utils/categoryStyles";
 import { getStandardizedCategoryTitle, getSortedStandardizedCategories } from "@/utils/categoryTitles";
-import { getMainCategoriesWithCounts, mainCategories } from "@/utils/mainCategoryMapping";
+import { mainCategories } from "@/utils/mainCategoryMapping";
+import { getMainCategoriesWithCounts } from "@/utils/categoryUtils";
 import { allTools } from "@/data/toolsData";
 import SearchBar from "./SearchBar";
 
