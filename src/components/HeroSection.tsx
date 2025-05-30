@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Search, Sparkles, Zap, Brain, Rocket, Stars } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -87,6 +88,13 @@ const HeroSection = () => {
               <span className="ml-4">Work & Life</span>
             </span>
           </h1>
+          
+          {/* New tagline */}
+          <div className="mb-8">
+            <span className="inline-block px-6 py-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/50 rounded-full text-green-300 font-bold text-lg md:text-xl animate-pulse cyber-glow">
+              ✨ NEW AI TOOLS ADDED DAILY ✨
+            </span>
+          </div>
         </div>
 
         {/* Search section */}
