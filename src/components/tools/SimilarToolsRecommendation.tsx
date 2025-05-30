@@ -54,16 +54,25 @@ const SimilarToolsRecommendation = ({
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-        {similarTools.map((tool, index) => (
-          <div key={`similar-${tool.title}-${index}`} className="relative">
-            <div className="absolute -top-2 -right-2 z-10">
-              <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs px-2 py-1 rounded-full shadow-lg">
-                Similar
+        {similarTools.map((tool, index) => {
+          // Highlight your AI Web Tools creations with a special badge
+          const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app');
+          
+          return (
+            <div key={`similar-${tool.title}-${index}`} className="relative">
+              <div className="absolute -top-2 -right-2 z-10">
+                <div className={`text-white text-xs px-2 py-1 rounded-full shadow-lg ${
+                  isAIWebToolsOriginal 
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-500' 
+                    : 'bg-gradient-to-r from-purple-500 to-pink-500'
+                }`}>
+                  {isAIWebToolsOriginal ? 'Featured' : 'Similar'}
+                </div>
               </div>
+              <ToolCard tool={tool} />
             </div>
-            <ToolCard tool={tool} />
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

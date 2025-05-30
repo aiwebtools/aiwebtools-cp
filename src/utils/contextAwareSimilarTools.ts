@@ -15,6 +15,12 @@ export const getContextAwareSimilarTools = (
 
   const currentToolTitles = new Set(currentTools.map(tool => tool.title));
   
+  // Get your AI Web Tools LLC creations for strategic placement
+  const aiWebToolsCreations = allTools.filter(tool => 
+    tool.directUrl?.includes('lovable.app') && 
+    !currentToolTitles.has(tool.title)
+  );
+  
   // Find similar tools based on search context or category
   const similarTools = allTools.filter(tool => {
     // Skip if already in current tools
@@ -54,9 +60,27 @@ export const getContextAwareSimilarTools = (
     return false;
   });
 
-  // Shuffle and return the needed amount to reach minimum recommendations
+  // Strategic mixing: Include 1-2 of your tools in every recommendation set
   const needed = minRecommendations - currentTools.length;
-  return similarTools.sort(() => Math.random() - 0.5).slice(0, needed);
+  const aiWebToolsToInclude = Math.min(Math.ceil(needed * 0.3), 2); // 30% or max 2 tools
+  const regularToolsNeeded = needed - aiWebToolsToInclude;
+  
+  // Select your tools strategically
+  const selectedAIWebTools = aiWebToolsCreations
+    .sort(() => Math.random() - 0.5)
+    .slice(0, aiWebToolsToInclude);
+  
+  // Select other similar tools
+  const selectedSimilarTools = similarTools
+    .filter(tool => !aiWebToolsCreations.some(awt => awt.title === tool.title))
+    .sort(() => Math.random() - 0.5)
+    .slice(0, regularToolsNeeded);
+  
+  // Combine and shuffle for natural distribution
+  const finalTools = [...selectedAIWebTools, ...selectedSimilarTools]
+    .sort(() => Math.random() - 0.5);
+  
+  return finalTools.slice(0, needed);
 };
 
 // Helper function to get related categories

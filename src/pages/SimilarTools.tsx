@@ -22,32 +22,40 @@ const SimilarTools = () => {
   const [displayedCount, setDisplayedCount] = useState(12);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Get smart similar tools based on the base tool
+  // Get smart similar tools based on the base tool with strategic AI Web Tools inclusion
   const similarTools = useMemo(() => {
     if (!baseTool) return [];
     
+    // Get your AI Web Tools LLC creations for strategic placement
+    const aiWebToolsCreations = allTools.filter((tool, index) => 
+      index !== toolIndex && tool.directUrl?.includes('lovable.app')
+    );
+    
     // Find tools with same category
     const categoryMatches = allTools.filter((tool, index) => 
-      index !== toolIndex && tool.category === baseTool.category
+      index !== toolIndex && 
+      tool.category === baseTool.category &&
+      !tool.directUrl?.includes('lovable.app') // Exclude your tools to add them strategically
     );
 
     // Find tools with overlapping tags
     const tagMatches = allTools.filter((tool, index) => 
       index !== toolIndex && 
-      tool.tags?.some(tag => baseTool.tags?.includes(tag))
+      tool.tags?.some(tag => baseTool.tags?.includes(tag)) &&
+      !tool.directUrl?.includes('lovable.app')
     );
 
     // Find tools with similar descriptions (keyword matching)
     const keywordMatches = allTools.filter((tool, index) => {
-      if (index === toolIndex) return false;
+      if (index === toolIndex || tool.directUrl?.includes('lovable.app')) return false;
       const baseKeywords = baseTool.description.toLowerCase().split(' ').filter(word => word.length > 4);
       const toolKeywords = tool.description.toLowerCase().split(' ').filter(word => word.length > 4);
       const commonKeywords = baseKeywords.filter(word => toolKeywords.includes(word));
       return commonKeywords.length >= 2;
     });
 
-    // Combine and deduplicate, prioritizing category matches
-    const allSimilar = [
+    // Combine other tools and deduplicate
+    const otherSimilarTools = [
       ...categoryMatches,
       ...tagMatches.filter(tool => !categoryMatches.some(ct => ct.title === tool.title)),
       ...keywordMatches.filter(tool => 
@@ -56,16 +64,42 @@ const SimilarTools = () => {
       )
     ];
 
-    // If we still don't have enough, add random tools from different categories
-    if (allSimilar.length < 50) {
-      const remainingTools = allTools.filter((tool, index) => 
-        index !== toolIndex && 
-        !allSimilar.some(st => st.title === tool.title)
-      );
-      allSimilar.push(...remainingTools.sort(() => Math.random() - 0.5).slice(0, 50 - allSimilar.length));
+    // Strategic mixing: Every 4-5 tools, include one of your creations
+    const totalNeeded = Math.min(otherSimilarTools.length + aiWebToolsCreations.length, 60);
+    const aiWebToolsToInclude = Math.min(Math.floor(totalNeeded / 4), aiWebToolsCreations.length);
+    
+    // Shuffle and select your tools
+    const selectedAIWebTools = aiWebToolsCreations
+      .sort(() => Math.random() - 0.5)
+      .slice(0, aiWebToolsToInclude);
+    
+    // Combine with strategic placement
+    const mixedTools: typeof allTools = [];
+    const otherToolsShuffled = otherSimilarTools.sort(() => Math.random() - 0.5);
+    let aiWebToolIndex = 0;
+    
+    for (let i = 0; i < Math.min(totalNeeded, 60); i++) {
+      // Every 4th position (starting from 3rd), try to place an AI Web Tool
+      if ((i + 1) % 4 === 0 && aiWebToolIndex < selectedAIWebTools.length) {
+        mixedTools.push(selectedAIWebTools[aiWebToolIndex]);
+        aiWebToolIndex++;
+      } else if (otherToolsShuffled.length > 0) {
+        mixedTools.push(otherToolsShuffled.shift()!);
+      }
+    }
+    
+    // Add any remaining AI Web Tools at the end
+    while (aiWebToolIndex < selectedAIWebTools.length && mixedTools.length < 60) {
+      mixedTools.push(selectedAIWebTools[aiWebToolIndex]);
+      aiWebToolIndex++;
+    }
+    
+    // Fill remaining with other tools if needed
+    while (otherToolsShuffled.length > 0 && mixedTools.length < 60) {
+      mixedTools.push(otherToolsShuffled.shift()!);
     }
 
-    return allSimilar.sort(() => Math.random() - 0.5);
+    return mixedTools;
   }, [baseTool, toolIndex]);
 
   const displayedTools = similarTools.slice(0, displayedCount);
