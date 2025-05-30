@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Video, 
@@ -14,7 +13,9 @@ import {
   Music,
   Mic,
   Globe,
-  Brain
+  Brain,
+  Monitor,
+  Clapperboard
 } from "lucide-react";
 
 export const videoTools: Tool[] = [
@@ -161,5 +162,127 @@ export const videoTools: Tool[] = [
     category: "Video Tools",
     rating: 4.4,
     totalVotes: 2876
+  },
+  
+  // NEW AI VIDEO TOOLS (10 additions)
+  {
+    icon: Film,
+    title: "Colossyan Creator",
+    description: "AI video platform with virtual human presenters for learning and development. Create engaging training videos with AI actors in multiple languages.",
+    emoji: "👥",
+    color: "from-blue-500 to-teal-600",
+    directUrl: "https://www.colossyan.com/",
+    tags: ["AI actors", "training videos", "learning", "multilingual", "virtual presenters"],
+    category: "Video Tools",
+    rating: 4.3,
+    totalVotes: 2134
+  },
+  {
+    icon: Video,
+    title: "Wondershare Filmora",
+    description: "AI-powered video editor with smart features like auto-reframe, motion tracking, and AI audio denoise. Professional video editing made simple.",
+    emoji: "🎞️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://filmora.wondershare.com/",
+    tags: ["video editing", "motion tracking", "auto-reframe", "AI denoise", "professional"],
+    category: "Video Tools",
+    rating: 4.4,
+    totalVotes: 3876
+  },
+  {
+    icon: Clapperboard,
+    title: "Stable Video Diffusion",
+    description: "Stability AI's open-source video generation model. Create high-quality videos from images using state-of-the-art diffusion technology.",
+    emoji: "🎭",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://stability.ai/stable-video",
+    tags: ["open source", "diffusion model", "image-to-video", "Stability AI", "high-quality"],
+    category: "Video Tools",
+    rating: 4.5,
+    totalVotes: 2987
+  },
+  {
+    icon: Monitor,
+    title: "Clipchamp",
+    description: "Microsoft's AI video editor with smart auto-compose, text-to-speech, and brand kit features. Create professional videos in minutes.",
+    emoji: "📹",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://clipchamp.com/",
+    tags: ["Microsoft", "auto-compose", "text-to-speech", "brand kit", "professional"],
+    category: "Video Tools",
+    rating: 4.3,
+    totalVotes: 3245
+  },
+  {
+    icon: Camera,
+    title: "Genmo AI",
+    description: "Creative AI platform for generating videos, images, and 3D models. Transform ideas into visual content with advanced AI models.",
+    emoji: "🌟",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://www.genmo.ai/",
+    tags: ["creative AI", "video generation", "3D models", "visual content", "advanced models"],
+    category: "Video Tools",
+    rating: 4.4,
+    totalVotes: 2654
+  },
+  {
+    icon: Edit,
+    title: "Opus Clip",
+    description: "AI-powered tool that turns long videos into viral short clips. Automatically identifies highlights and creates engaging social media content.",
+    emoji: "✂️",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://www.opus.pro/",
+    tags: ["video clipping", "viral content", "highlights", "social media", "automation"],
+    category: "Video Tools",
+    rating: 4.2,
+    totalVotes: 2876
+  },
+  {
+    icon: Video,
+    title: "DeepBrain AI",
+    description: "AI video generator with realistic AI humans for business communication. Create professional videos with AI avatars in multiple languages.",
+    emoji: "🤖",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://www.deepbrain.io/",
+    tags: ["AI humans", "business communication", "AI avatars", "multilingual", "professional"],
+    category: "Video Tools",
+    rating: 4.3,
+    totalVotes: 2134
+  },
+  {
+    icon: Sparkles,
+    title: "Elai.io",
+    description: "AI video generation platform for creating personalized videos at scale. Features AI presenters and automated video production workflows.",
+    emoji: "⭐",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://elai.io/",
+    tags: ["personalized videos", "scale", "AI presenters", "automation", "workflows"],
+    category: "Video Tools",
+    rating: 4.1,
+    totalVotes: 1987
+  },
+  {
+    icon: Film,
+    title: "Animoto",
+    description: "AI-powered video maker for creating professional marketing videos. Smart templates and automated editing for social media and business content.",
+    emoji: "🎨",
+    color: "from-purple-500 to-cyan-600",
+    directUrl: "https://animoto.com/",
+    tags: ["marketing videos", "smart templates", "automated editing", "social media", "business"],
+    category: "Video Tools",
+    rating: 4.0,
+    totalVotes: 3456
+  },
+  {
+    icon: Video,
+    title: "Hour One",
+    description: "AI video platform that creates professional videos with virtual presenters. Transform text into engaging video content with realistic AI humans.",
+    emoji: "⏰",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://hourone.ai/",
+    tags: ["virtual presenters", "text-to-video", "AI humans", "professional", "engaging content"],
+    category: "Video Tools",
+    rating: 4.2,
+    totalVotes: 2234
   }
 ];
