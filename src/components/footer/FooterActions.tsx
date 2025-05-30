@@ -1,5 +1,5 @@
 
-import { Shield, Plus, Upload } from "lucide-react";
+import { Shield, Plus, Upload, FileText } from "lucide-react";
 
 interface FooterActionsProps {
   handleExternalLink: (url: string, e: React.MouseEvent) => void;
@@ -20,6 +20,15 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
       </button>
       
       <div className="pt-2 space-y-3">
+        <button
+          onClick={(e) => handleExternalLink("https://docs.google.com/document/d/1qtDKo3XN_EsspgrQD72Cpq2qh83H5xSd/edit?usp=sharing&ouid=116187507271950139405&rtpof=true&sd=true", e)}
+          className="inline-flex items-center justify-center space-x-3 px-12 py-6 bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-600 hover:from-yellow-500 hover:via-yellow-400 hover:to-yellow-500 text-black font-bold text-lg rounded-full shadow-2xl shadow-yellow-500/40 hover:shadow-yellow-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-yellow-400 hover:border-yellow-300 cyber-glow"
+        >
+          <FileText className="w-6 h-6" />
+          <span className="text-xl">📥 DOWNLOAD 1000+ AI TOOLS DOCUMENT</span>
+          <FileText className="w-6 h-6" />
+        </button>
+        
         <button
           onClick={handleSubmitTool}
           className="inline-flex items-center justify-center space-x-3 px-12 py-6 bg-gradient-to-r from-purple-600 via-purple-500 to-purple-600 hover:from-purple-500 hover:via-purple-400 hover:to-purple-500 text-white font-bold text-lg rounded-full shadow-2xl shadow-purple-500/40 hover:shadow-purple-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-purple-400 hover:border-purple-300 cyber-glow"

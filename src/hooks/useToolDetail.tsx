@@ -13,12 +13,40 @@ export const useToolDetail = (toolIndex: number) => {
   const tool = allTools[toolIndex];
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Multiple aggressive scroll attempts to ensure we get to the absolute top
+    const scrollToTop = () => {
+      // Method 1: Immediate scroll to 0,0
+      window.scrollTo(0, 0);
+      
+      // Method 2: Set document scroll positions to 0
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      
+      // Method 3: Use smooth scroll to top as backup
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'auto' // Use 'auto' for immediate scroll
+      });
+    };
+
+    // Execute immediately
+    scrollToTop();
+    
+    // Execute again after a tiny delay to override any other scroll events
+    setTimeout(scrollToTop, 10);
+    
+    // Execute one more time after DOM settles
+    setTimeout(scrollToTop, 50);
+    
+    // Final attempt after component fully renders
+    setTimeout(scrollToTop, 100);
     
     // Verify tool exists and is properly indexed
     if (tool) {
       console.log(`📄 Loaded tool page ${toolIndex}: "${tool.title}" in category "${tool.category}"`);
       console.log(`🔍 Tool searchability test: Can find by title = ${searchTools(allTools, tool.title).length > 0}`);
+      console.log(`📍 Ensuring scroll to absolute top of page for tool details view`);
     } else {
       console.error(`❌ Tool at index ${toolIndex} not found in collection of ${allTools.length} tools`);
     }
