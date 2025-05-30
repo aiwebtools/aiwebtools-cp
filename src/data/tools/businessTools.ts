@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Briefcase, 
@@ -11,10 +12,12 @@ import {
   GraduationCap,
   Target,
   Users,
-  Lightbulb
+  Lightbulb,
+  Rocket
 } from "lucide-react";
 
 export const businessTools: Tool[] = [
+  // AI Web Tools custom GPTs first
   {
     icon: Car,
     title: "AUTOMOBILE GPT",
@@ -80,5 +83,18 @@ export const businessTools: Tool[] = [
     category: "Business Tools",
     rating: 4.6,
     totalVotes: 3456
+  },
+  {
+    icon: Rocket,
+    title: "🚀 Startup Validator GPT",
+    description: "🚀 Startup Validator GPT is your ultimate AI-powered startup analysis tool, designed to rapidly assess market viability, scalability, and investment potential. Whether you're brainstorming a new business idea or seeking funding, I provide deep insights on competition, risk factors, and growth strategies—all backed by real-time market data. With expert-level validation, funding recommendations, and strategic guidance, I help you refine, validate, and scale your startup with confidence. Let's turn your vision into a venture-ready success!",
+    emoji: "🚀",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://startupvalidatorgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-named-st_4i8GY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["startup validation", "market analysis", "investment potential", "business strategy", "venture funding"],
+    category: "Business Tools",
+    rating: 4.7,
+    totalVotes: 3890
   }
 ];

@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 export const aiResearchTools: Tool[] = [
+  // AI Web Tools custom GPTs first
   {
     icon: Beaker,
     title: "Genome GPT",
@@ -67,6 +68,7 @@ export const aiResearchTools: Tool[] = [
     rating: 4.0,
     totalVotes: 1876
   },
+  // Other research tools
   {
     icon: Database,
     title: "Connected Papers",

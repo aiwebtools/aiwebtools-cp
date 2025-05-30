@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   GraduationCap, 
@@ -16,6 +17,7 @@ import {
 } from "lucide-react";
 
 export const educationAndLearning: Tool[] = [
+  // AI Web Tools custom GPTs first
   {
     icon: GraduationCap,
     title: "COLLEGE DEGREE GPT",
@@ -86,7 +88,7 @@ export const educationAndLearning: Tool[] = [
   {
     icon: Search,
     title: "FACT CHECKER GPT",
-    description: "Advanced fact-checking and information verification tool for validating claims, checking sources, and ensuring accuracy in research and journalism.",
+    description: "Fact Checker GPT is a powerful AI tool designed to combat misinformation by analyzing claims, articles, and websites for accuracy, bias, and reliability. It cross-references multiple credible sources, identifies patterns of misinformation, and assigns a truth score to evaluate content validity. By highlighting biases, detecting unreliable sources, and educating users on critical thinking, it empowers informed decision-making. With advanced capabilities like data visualization and web searches, Fact Checker GPT is your ultimate ally in exposing fake news and ensuring factual integrity. Download it's free open-source prompt to save for your records by clicking here.",
     emoji: "✅",
     color: "from-green-500 to-blue-600",
     directUrl: "https://factcheckergpt.lovable.app/?via=aiwebtools",
@@ -99,7 +101,7 @@ export const educationAndLearning: Tool[] = [
   {
     icon: Globe,
     title: "Sustainable Futures GPT",
-    description: "Comprehensive sustainability education covering environmental science, climate change, renewable energy, and sustainable development for a better future.",
+    description: "I am Sustainable Futures GPT, and my purpose is to assist governments, communities, and individuals in making informed, data-driven decisions to achieve environmental sustainability. I specialize in analyzing global climate data, offering predictions, and providing actionable strategies to reduce environmental impact and regenerate Earth's resources for future harmony with nature.",
     emoji: "🌍",
     color: "from-green-500 to-blue-600",
     directUrl: "https://sustainablefuturesgpt.lovable.app/?via=aiwebtools",
@@ -112,7 +114,7 @@ export const educationAndLearning: Tool[] = [
   {
     icon: Users,
     title: "Travel Advisor GPT",
-    description: "Comprehensive travel planning and advisory services covering destination guides, itinerary planning, travel tips, and cultural insights for travelers.",
+    description: "Plan your next vacation with your personal AI travel advisor. Get tailored recommendations and craft your dream getaway within your preferences, budget, and envisioned experience. Enjoy a stress-free journey with expert guidance every step of the way.",
     emoji: "✈️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://travelagentgpt.lovable.app/?via=aiwebtools",
@@ -125,7 +127,7 @@ export const educationAndLearning: Tool[] = [
   {
     icon: BookOpen,
     title: "AI Tools Finder GPT",
-    description: "Comprehensive AI tools discovery and recommendation service for finding the right AI tools for specific needs, comparing features, and staying updated with AI innovations.",
+    description: "Your own personal expert in the world of Ai Tools and knowledge. Locate the best Ai tools for your projects and be presented with step by step guides on any Ai tool that exists.",
     emoji: "🔍",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
@@ -137,7 +139,7 @@ export const educationAndLearning: Tool[] = [
   {
     icon: Eye,
     title: "Clarity Omni",
-    description: "Advanced writing assistant that provides comprehensive clarity analysis, readability enhancement, and content optimization for all types of written communication.",
+    description: "Clarity Omni GPT is an AI tool designed to rewrite text for improved clarity while preserving the original meaning and intent. It can either maintain the exact wording of the input or make adjustments to the wording, tone, and structure to enhance readability. Regardless of the approach, this AI ensures that every detail is retained, delivering a refined version of the text that stays true to the user's purpose.",
     emoji: "🔍",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://clarityomni.lovable.app/?via=aiwebtools",

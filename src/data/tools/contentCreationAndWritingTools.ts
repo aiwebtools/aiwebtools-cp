@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   PenTool, 
@@ -15,6 +16,7 @@ import {
 } from "lucide-react";
 
 export const contentCreationAndWritingTools: Tool[] = [
+  // AI Web Tools custom GPTs first
   {
     icon: FileText,
     title: "Article and Blog Rewriter GPT",

@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Palette, 
@@ -11,7 +12,9 @@ import {
   Star,
   Crown,
   Wand2,
-  Utensils
+  Utensils,
+  Film,
+  Theater
 } from "lucide-react";
 
 export const creativeServices: Tool[] = [
