@@ -51,7 +51,7 @@ const MobileMenu = () => {
 
   return (
     <div className="md:hidden flex items-center space-x-2">
-      <div className="flex-1 min-w-0 max-w-xs">
+      <div className="flex-1 min-w-0 w-full max-w-sm">
         <GlobalSearchBar />
       </div>
       <DropdownMenu>
