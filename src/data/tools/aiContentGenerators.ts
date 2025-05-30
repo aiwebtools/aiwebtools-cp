@@ -1,0 +1,85 @@
+
+import { Tool } from "@/types/tools";
+import { 
+  Brain,
+  PenTool,
+  FileText,
+  Target,
+  Bot,
+  Crown
+} from "lucide-react";
+
+export const aiContentGenerators: Tool[] = [
+  {
+    icon: Brain,
+    title: "Jasper AI",
+    description: "AI content generation platform for marketing teams. Create blog posts, social media content, ads, and marketing copy with advanced AI models.",
+    emoji: "🧠",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.jasper.ai/",
+    tags: ["content generation", "marketing copy", "blog posts", "social media", "ads"],
+    category: "Writing & Content Enhancement",
+    rating: 4.6,
+    totalVotes: 4234
+  },
+  {
+    icon: PenTool,
+    title: "Copy.ai",
+    description: "AI copywriting tool that generates marketing copy, product descriptions, emails, and social media content. Templates for various content types.",
+    emoji: "✍️",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://www.copy.ai/",
+    tags: ["copywriting", "marketing copy", "product descriptions", "emails", "templates"],
+    category: "Writing & Content Enhancement",
+    rating: 4.5,
+    totalVotes: 3876
+  },
+  {
+    icon: FileText,
+    title: "Writesonic",
+    description: "AI writing platform for creating articles, ads, product descriptions, and landing pages. GPT-powered content generation with SEO optimization.",
+    emoji: "📝",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://writesonic.com/",
+    tags: ["AI writing", "articles", "ads", "product descriptions", "SEO optimization"],
+    category: "Writing & Content Enhancement",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: Target,
+    title: "Rytr",
+    description: "AI writing assistant for creating high-quality content in seconds. Generate emails, blogs, ads, and social media posts with tone and style customization.",
+    emoji: "🎯",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://rytr.me/",
+    tags: ["content creation", "emails", "blogs", "ads", "tone customization"],
+    category: "Writing & Content Enhancement",
+    rating: 4.3,
+    totalVotes: 2987
+  },
+  {
+    icon: Bot,
+    title: "ChatGPT Plus",
+    description: "OpenAI's premium conversational AI with advanced writing capabilities, custom instructions, and access to GPT-4 for superior content creation.",
+    emoji: "🤖",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://chat.openai.com/",
+    tags: ["ChatGPT", "OpenAI", "GPT-4", "conversational AI", "content creation"],
+    category: "Writing & Content Enhancement",
+    rating: 4.8,
+    totalVotes: 9876
+  },
+  {
+    icon: Crown,
+    title: "Claude Pro",
+    description: "Anthropic's advanced AI assistant with exceptional writing capabilities, long-form content creation, and nuanced understanding of context and tone.",
+    emoji: "👑",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://claude.ai/",
+    tags: ["Claude", "Anthropic", "long-form writing", "context understanding", "advanced AI"],
+    category: "Writing & Content Enhancement",
+    rating: 4.8,
+    totalVotes: 7654
+  }
+];

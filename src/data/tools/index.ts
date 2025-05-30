@@ -104,3 +104,9 @@ export { designAssistantTools } from './designAssistantTools';
 
 // Export comprehensive AI tools collection
 export { comprehensiveAITools } from './comprehensiveAITools';
+
+// Export new refactored writing tool categories
+export { grammarAndWritingAssistants } from './grammarAndWritingAssistants';
+export { aiContentGenerators } from './aiContentGenerators';
+export { creativeWritingTools } from './creativeWritingTools';
+export { transcriptionAndDocumentTools } from './transcriptionAndDocumentTools';
