@@ -3,12 +3,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import FeaturedToolsSection from "@/components/tools/FeaturedToolsSection";
+import CategoryPageSelection from "@/components/CategoryPageSelection";
 import SpecialServices from "@/components/SpecialServices";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
-import { Button } from "@/components/ui/button";
 import { runFullToolVerification } from "@/utils/toolIndexing";
 import { searchTools } from "@/utils/searchUtils";
 import { getCurrentToolCount } from "@/utils/toolCounter";
@@ -16,7 +15,6 @@ import { getCurrentToolCount } from "@/utils/toolCounter";
 const Index = () => {
   const navigate = useNavigate();
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
-  const [toolsLoadedCount, setToolsLoadedCount] = useState(0);
 
   useEffect(() => {
     // Get accurate tool count for SEO
@@ -41,29 +39,12 @@ const Index = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const searchParam = urlParams.get('search');
     if (searchParam) {
-      const element = document.getElementById('tools-section');
+      const element = document.getElementById('categories-section');
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
   }, []);
-
-  const handleToolsLoaded = (count: number) => {
-    setToolsLoadedCount(count);
-  };
-
-  const triggerLoadMoreTools = () => {
-    // Find the load more button in the FeaturedTools component and click it
-    const loadMoreButton = document.querySelector('[data-load-more-trigger]') as HTMLButtonElement;
-    if (loadMoreButton && !loadMoreButton.disabled) {
-      console.log('🎯 Triggering load more from Show More AI Tools button');
-      loadMoreButton.click();
-    } else {
-      console.log('⚠️ Load more button not found or disabled - triggering scroll event');
-      // Fallback: dispatch a custom event to trigger load more
-      window.dispatchEvent(new CustomEvent('loadMoreTools'));
-    }
-  };
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -99,8 +80,8 @@ const Index = () => {
       <div className="relative z-10 cyber-grid">
         <Header />
         <HeroSection />
-        <div id="tools-section">
-          <FeaturedToolsSection onToolsLoaded={handleToolsLoaded} />
+        <div id="categories-section">
+          <CategoryPageSelection />
         </div>
         
         <SpecialServices />
