@@ -2,46 +2,25 @@
 import { getCategoriesWithCounts } from "./categoryUtils";
 import { allTools } from "@/data/toolsData";
 
-// Streamlined category title configuration with better organization
+// Consolidated category title configuration matching your new structure
 export const CATEGORY_TITLES = {
-  // Core AI & Development
-  "AI Development Tools": "AI Development Tools",
-  "Advanced AI Tools": "Advanced AI Tools",
-  
-  // Content Creation
-  "Video & Content Creation": "Video & Content Creation",
-  "Image & Design Tools": "Image & Design Tools", 
-  "Writing & Content Creation": "Writing & Content Creation",
-  "Audio & Voice Tools": "Audio & Voice Tools",
-  
-  // Business & Professional
-  "Business & Productivity": "Business & Productivity",
-  "Professional Services": "Professional Services",
-  "Marketing & Social Media": "Marketing & Social Media",
-  "Communication & Collaboration": "Communication & Collaboration",
-  
-  // Specialized & Industry
-  "Education & Learning": "Education & Learning",
-  "Health & Wellness": "Health & Wellness",
-  "Finance & Trading": "Finance & Trading",
-  "Legal & Compliance": "Legal & Compliance",
-  
-  // Creative & Entertainment
-  "Creative & Entertainment": "Creative & Entertainment",
-  "Game Design & Development": "Game Design & Development",
-  "3D & Animation": "3D & Animation",
-  
-  // Technical & Utilities
-  "Data & Analytics": "Data & Analytics",
-  "Automation & Workflows": "Automation & Workflows",
-  "Cloud Services": "Cloud Services",
-  "Utilities & Productivity": "Utilities & Productivity",
-  
-  // Specialized Categories
-  "Time & History": "Time & History",
-  "Spirituality & Wellness": "Spirituality & Wellness",
-  "Emergency Services": "Emergency Services",
-  "Specialized Tools": "Specialized Tools"
+  // Core consolidated categories
+  "AI Development & Platforms": "AI Development & Platforms",
+  "Writing & Text Generation": "Writing & Text Generation",
+  "Image & Design Generation": "Image & Design Generation",
+  "Video & Animation Tools": "Video & Animation Tools",
+  "Audio & Music Tools": "Audio & Music Tools",
+  "Business Operations & Productivity": "Business Operations & Productivity",
+  "Automation Platforms": "Automation Platforms",
+  "Marketing & Sales Solutions": "Marketing & Sales Solutions",
+  "Communication & Collaboration Tools": "Communication & Collaboration Tools",
+  "AI Assistants & Search": "AI Assistants & Search",
+  "Data Science & Analytics": "Data Science & Analytics",
+  "Education & Research Tools": "Education & Research Tools",
+  "Industry-Specific Solutions": "Industry-Specific Solutions",
+  "Creative & Entertainment (General & Gaming)": "Creative & Entertainment (General & Gaming)",
+  "Health, Wellness & Personal Lifestyle": "Health, Wellness & Personal Lifestyle",
+  "Historical & Time-Based AI Tools": "Historical & Time-Based AI Tools"
 } as const;
 
 // Function to get standardized category title
@@ -59,51 +38,29 @@ export const getStandardizedCategoriesWithCounts = (): Record<string, number> =>
     standardizedCategories[standardizedTitle] = (standardizedCategories[standardizedTitle] || 0) + count;
   });
   
-  console.log('Organized category structure applied:', standardizedCategories);
+  console.log('New consolidated category structure applied:', standardizedCategories);
   
   return standardizedCategories;
 };
 
-// Improved strategic order with logical groupings
+// Strategic order for the new consolidated categories
 export const CATEGORY_DISPLAY_ORDER = [
-  // Core AI & Development (Most Popular)
-  "AI Development Tools",
-  "Advanced AI Tools",
-  
-  // Content Creation (High Usage)
-  "Video & Content Creation",
-  "Image & Design Tools",
-  "Writing & Content Creation",
-  "Audio & Voice Tools",
-  
-  // Business & Professional (Essential)
-  "Business & Productivity",
-  "Marketing & Social Media",
-  "Communication & Collaboration",
-  "Professional Services",
-  
-  // Technical & Data
-  "Data & Analytics",
-  "Automation & Workflows",
-  "Cloud Services",
-  "Utilities & Productivity",
-  
-  // Industry Specific
-  "Education & Learning",
-  "Health & Wellness",
-  "Finance & Trading",
-  "Legal & Compliance",
-  
-  // Creative & Entertainment
-  "Creative & Entertainment",
-  "Game Design & Development",
-  "3D & Animation",
-  
-  // Specialized & Niche
-  "Time & History",
-  "Spirituality & Wellness",
-  "Emergency Services",
-  "Specialized Tools"
+  "AI Development & Platforms",
+  "Writing & Text Generation",
+  "Image & Design Generation", 
+  "Video & Animation Tools",
+  "Audio & Music Tools",
+  "Business Operations & Productivity",
+  "Marketing & Sales Solutions",
+  "Communication & Collaboration Tools",
+  "AI Assistants & Search",
+  "Data Science & Analytics",
+  "Automation Platforms",
+  "Education & Research Tools",
+  "Industry-Specific Solutions",
+  "Creative & Entertainment (General & Gaming)",
+  "Health, Wellness & Personal Lifestyle",
+  "Historical & Time-Based AI Tools"
 ];
 
 // Function to get sorted categories with consistent ordering
