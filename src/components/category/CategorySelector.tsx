@@ -3,7 +3,6 @@ import { forwardRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { getCategoryStyle } from "@/utils/categoryStyles";
-import { getStandardizedCategoryTitle } from "@/utils/categoryTitles";
 
 interface CategorySelectorProps {
   categoriesWithCounts: Record<string, number>;
@@ -20,7 +19,6 @@ const CategorySelector = forwardRef<HTMLDivElement, CategorySelectorProps>(
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 max-w-6xl mx-auto">
           {Object.entries(categoriesWithCounts)
-            .map(([category, count]) => [getStandardizedCategoryTitle(category), count] as [string, number])
             .sort(([a], [b]) => a.localeCompare(b))
             .map(([category, count]) => {
               const categoryStyle = getCategoryStyle(category);

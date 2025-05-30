@@ -1,7 +1,6 @@
 
 import { allTools } from "@/data/toolsData";
 import { seoConfig } from "./seo";
-import { getStandardizedCategoriesWithCounts } from "./categoryTitles";
 
 interface SitemapUrl {
   loc: string;
@@ -11,13 +10,10 @@ interface SitemapUrl {
 }
 
 export const generateSitemap = () => {
-  console.log(`📄 Generating sitemap for ${allTools.length} tools...`);
-  
   const baseUrls: SitemapUrl[] = [
     { loc: seoConfig.siteUrl, changefreq: 'daily', priority: '1.0' },
   ];
 
-  // Generate URLs for ALL tools to ensure they're indexed
   const toolUrls: SitemapUrl[] = allTools.map((tool, index) => ({
     loc: `${seoConfig.siteUrl}/tool/${index}`,
     changefreq: 'weekly',
@@ -25,17 +21,13 @@ export const generateSitemap = () => {
     lastmod: new Date().toISOString()
   }));
 
-  // Generate category URLs using standardized category titles
-  const categoriesWithCounts = getStandardizedCategoriesWithCounts();
-  const categoryUrls: SitemapUrl[] = Object.keys(categoriesWithCounts).map(category => ({
+  const categoryUrls: SitemapUrl[] = Array.from(new Set(allTools.map(tool => tool.category).filter(Boolean))).map(category => ({
     loc: `${seoConfig.siteUrl}/category/${encodeURIComponent(category)}`,
     changefreq: 'weekly',
     priority: '0.7'
   }));
 
   const allUrls = [...baseUrls, ...toolUrls, ...categoryUrls];
-
-  console.log(`✅ Generated sitemap with ${allUrls.length} URLs (${toolUrls.length} tool pages, ${categoryUrls.length} category pages)`);
 
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -61,20 +53,4 @@ export const downloadSitemap = () => {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-};
-
-// Verify all tools can be accessed via their individual URLs
-export const verifyToolPageUrls = () => {
-  const toolUrls = allTools.map((tool, index) => ({
-    index,
-    title: tool.title,
-    category: tool.category,
-    url: `/tool/${index}`,
-    fullUrl: `${seoConfig.siteUrl}/tool/${index}`
-  }));
-
-  console.log(`🔗 Verified ${toolUrls.length} tool page URLs`);
-  console.log('📄 Sample tool URLs:', toolUrls.slice(0, 10));
-
-  return toolUrls;
 };

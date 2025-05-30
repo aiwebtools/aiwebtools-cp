@@ -1,8 +1,8 @@
-import { createPortalSounds, createRobotVoice } from './effects/audioEffects';
+
+import { createPortalSounds } from './effects/audioEffects';
 import { 
   createParticles, 
   createVortexRings, 
-  createSpiralTunnel,
   createEnergyWaves, 
   createLightning, 
   createFlash 
@@ -14,231 +14,27 @@ import {
   openDestinationUrl 
 } from './effects/domEffects';
 
-// Enhanced tool name extraction that works with all tool types and categories
-const extractToolName = (destinationUrl: string, providedToolName?: string): string => {
-  console.log('🎯 Extracting tool name for URL:', destinationUrl);
-  console.log('🎯 Provided tool name:', providedToolName);
-  
-  // If we have a provided tool name, use it directly
-  if (providedToolName && providedToolName.trim().length > 0) {
-    const cleanedName = providedToolName.trim()
-      .replace(/\s+(GPT|AI|Tool|Platform|Studio|App|Software|Service|Pro|Plus|Premium)(\s|$)/gi, ' ')
-      .replace(/\s+/g, ' ')
-      .trim();
-    console.log('🎯 Using provided tool name:', cleanedName || providedToolName);
-    return cleanedName || providedToolName;
-  }
-  
-  const activeElement = document.activeElement as HTMLElement;
-  
-  if (activeElement) {
-    // First, try to get tool name from the clicked element's context
-    const buttonText = activeElement.textContent?.trim() || '';
-    console.log('🔍 Button text:', buttonText);
-    
-    // Look for the tool card container
-    const toolCard = activeElement.closest('[class*="card"], .tool-card, [data-tool], .group');
-    console.log('🎯 Found tool card:', !!toolCard);
-    
-    if (toolCard) {
-      // Try multiple strategies to find the tool title
-      const titleSelectors = [
-        'h1, h2, h3, h4, h5, h6',
-        '[class*="title"]',
-        '[class*="CardTitle"]',
-        '[class*="tool-title"]',
-        '.font-bold',
-        '.font-semibold',
-        '.text-lg',
-        '.text-xl',
-        '.text-2xl'
-      ];
-      
-      for (const selector of titleSelectors) {
-        const titleElement = toolCard.querySelector(selector);
-        if (titleElement?.textContent) {
-          const title = titleElement.textContent.trim();
-          // Clean up the title - remove extra whitespace and common UI elements
-          const cleanTitle = title
-            .replace(/\s+/g, ' ')
-            .replace(/^\s*[\d\.\-\*\+]\s*/, '') // Remove list markers
-            .replace(/\s*(★|⭐|rating|votes?|reviews?)\s*.*$/i, '') // Remove ratings
-            .replace(/\s*(USE IT NOW|View Details|Learn More|Get Started)\s*$/i, '') // Remove button text
-            .replace(/\s*\|\s*.*$/, '') // Remove everything after pipe
-            .replace(/\s*–\s*.*$/, '') // Remove everything after dash
-            .replace(/\s*-\s*.*$/, '') // Remove everything after hyphen
-            .trim();
-          
-          if (cleanTitle && cleanTitle.length > 2 && cleanTitle.length < 100) {
-            console.log('🎯 Found tool title from selector', selector, ':', cleanTitle);
-            return cleanTitle;
-          }
-        }
-      }
-      
-      // Try to get from data attributes
-      const dataTitle = toolCard.getAttribute('data-title') || 
-                       toolCard.getAttribute('title') ||
-                       toolCard.getAttribute('aria-label');
-      if (dataTitle && dataTitle.trim().length > 2) {
-        console.log('🎯 Found tool title from data attribute:', dataTitle.trim());
-        return dataTitle.trim();
-      }
-      
-      // Try to get from alt text of images
-      const img = toolCard.querySelector('img');
-      if (img?.alt && img.alt.trim().length > 2) {
-        const altText = img.alt.trim().replace(/\s+(logo|icon|image)$/i, '');
-        if (altText.length > 2) {
-          console.log('🎯 Found tool title from image alt:', altText);
-          return altText;
-        }
-      }
-      
-      // Look for any prominent text in the card
-      const allText = toolCard.textContent || '';
-      const lines = allText.split('\n')
-        .map(line => line.trim())
-        .filter(line => line.length > 2 && line.length < 100)
-        .filter(line => !line.match(/^\d+(\.\d+)?\s*★/)) // Remove ratings
-        .filter(line => !line.toLowerCase().includes('use it now'))
-        .filter(line => !line.toLowerCase().includes('view details'))
-        .filter(line => !line.toLowerCase().includes('votes'))
-        .filter(line => !line.toLowerCase().includes('rating'))
-        .filter(line => !line.toLowerCase().includes('category'))
-        .filter(line => !line.toLowerCase().includes('tag'));
-      
-      // Get the first substantial line that looks like a tool name
-      const toolNameLine = lines.find(line => 
-        line.length >= 3 && 
-        line.length <= 80 &&
-        !line.match(/^\d+$/) && // Not just numbers
-        !line.match(/^[★⭐]+$/) && // Not just stars
-        line.split(' ').length <= 10 // Not too many words
-      );
-      
-      if (toolNameLine) {
-        console.log('🎯 Found tool name from card text analysis:', toolNameLine);
-        return toolNameLine;
-      }
-    }
-    
-    // If we have a "USE IT NOW" button, look in the surrounding context
-    if (buttonText.toLowerCase().includes('use it now')) {
-      const container = activeElement.closest('.group, [class*="card"], .tool-item') || 
-                       activeElement.parentElement?.parentElement;
-      
-      if (container) {
-        const containerText = container.textContent || '';
-        const lines = containerText.split('\n')
-          .map(line => line.trim())
-          .filter(line => line.length > 2 && line.length < 100)
-          .filter(line => !line.toLowerCase().includes('use it now'))
-          .filter(line => !line.toLowerCase().includes('view details'))
-          .filter(line => !line.includes('★'))
-          .filter(line => !line.toLowerCase().includes('rating'))
-          .filter(line => !line.toLowerCase().includes('votes'));
-        
-        const toolName = lines[0]; // Usually the first line is the tool name
-        if (toolName && toolName.length > 2) {
-          console.log('🎯 Found tool name from USE IT NOW context:', toolName);
-          return toolName;
-        }
-      }
-    }
-  }
-  
-  // Fallback: extract from URL
-  if (destinationUrl) {
-    try {
-      const url = new URL(destinationUrl);
-      const hostname = url.hostname.toLowerCase();
-      
-      // Handle specific domains
-      if (hostname.includes('chatgpt.com') || hostname.includes('openai.com')) {
-        if (url.pathname.includes('/g/')) {
-          const pathParts = url.pathname.split('/');
-          const gptIndex = pathParts.indexOf('g');
-          if (gptIndex >= 0 && pathParts[gptIndex + 2]) {
-            const gptName = pathParts[gptIndex + 2]
-              .replace(/-/g, ' ')
-              .replace(/\b\w/g, l => l.toUpperCase());
-            console.log('🎯 Found ChatGPT name from URL:', gptName);
-            return gptName;
-          }
-        }
-        return 'ChatGPT';
-      }
-      
-      // Extract from domain name
-      const domainParts = hostname.replace('www.', '').split('.');
-      const mainDomain = domainParts[0];
-      
-      // Handle common domain patterns
-      const domainBasedName = mainDomain
-        .replace(/[-_]/g, ' ')
-        .replace(/\b\w/g, l => l.toUpperCase())
-        .replace(/\s+/g, ' ')
-        .trim();
-      
-      if (domainBasedName && domainBasedName.length > 1) {
-        console.log('🎯 Using domain-based tool name:', domainBasedName);
-        return domainBasedName;
-      }
-      
-      // Extract from pathname
-      const pathParts = url.pathname.split('/').filter(part => part && part !== 'via=aiwebtools');
-      if (pathParts.length > 0) {
-        const pathBasedName = pathParts[pathParts.length - 1]
-          .replace(/-/g, ' ')
-          .replace(/\b\w/g, l => l.toUpperCase());
-        if (pathBasedName && pathBasedName.length > 2) {
-          console.log('🎯 Using path-based tool name:', pathBasedName);
-          return pathBasedName;
-        }
-      }
-    } catch (error) {
-      console.log('Error parsing URL:', error);
-    }
-  }
-  
-  console.log('🎯 Using fallback tool name');
-  return 'AI Tool';
-};
-
-export const createTimePortalEffect = (destinationUrl: string, toolName?: string) => {
-  console.log('🌀 Creating enhanced centered portal effect for URL:', destinationUrl);
-  console.log('🌀 Tool name provided:', toolName);
-  
-  // Extract tool name for personalized robot voice
-  const finalToolName = extractToolName(destinationUrl, toolName);
-  console.log('🎯 Final detected tool name:', finalToolName);
+export const createTimePortalEffect = (destinationUrl: string) => {
+  console.log('🌀 Creating time portal effect for URL:', destinationUrl);
   
   // Create container for all effects
   const effectsContainer = createEffectsContainer();
 
-  // Apply centered portal filter instead of body distortion
+  // Apply time warp filter to body
   applyTimeWarpFilter();
 
-  // Execute all centered visual effects
+  // Execute all effects
   createParticles(effectsContainer);
   createVortexRings(effectsContainer);
-  createSpiralTunnel(effectsContainer);
   createEnergyWaves(effectsContainer);
   createLightning(effectsContainer);
   createFlash(effectsContainer);
-  
-  // Create portal sounds (keeping existing timing)
   createPortalSounds();
-  
-  // Create robot voice with contextual message using the actual tool name
-  createRobotVoice(finalToolName, destinationUrl);
 
-  // Cleanup and open in new tab after 3.5 seconds (always new window to keep users on site)
+  // Cleanup and open in new tab after 2.5 seconds
   setTimeout(() => {
-    console.log('🧹 Cleaning up effects and opening in new window:', destinationUrl);
+    console.log('🧹 Cleaning up effects and opening in new tab:', destinationUrl);
     cleanupEffects(effectsContainer);
-    // Ensure it always opens in new window to keep users on our website
     openDestinationUrl(destinationUrl);
-  }, 3500);
+  }, 2500);
 };

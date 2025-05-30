@@ -6,8 +6,7 @@ import SimilarToolsRecommendation from "@/components/tools/SimilarToolsRecommend
 import SeeMoreCategoriesButton from "@/components/tools/SeeMoreCategoriesButton";
 import { getContextAwareSimilarTools, shouldShowSimilarTools } from "@/utils/contextAwareSimilarTools";
 import { createDeduplicatedToolsList } from "@/utils/toolDeduplication";
-import { allTools } from "@/data/toolsData";
-import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
+import { allTools, getCategoriesWithCounts } from "@/data/toolsData";
 import { useMemo } from "react";
 
 interface ToolsGridProps {
@@ -41,8 +40,8 @@ const ToolsGrid = ({
   const similarTools = shouldShowSimilar ? getContextAwareSimilarTools(deduplicatedTools, searchTerm, selectedCategory) : [];
   const hasMoreTools = displayedCount < deduplicatedTools.length;
 
-  // Get standardized categories for the "See More Categories" button
-  const categoriesWithCounts = getStandardizedCategoriesWithCounts();
+  // Get categories for the "See More Categories" button
+  const categoriesWithCounts = getCategoriesWithCounts(allTools);
   const shouldShowCategoriesButton = deduplicatedTools.length < 15 && !selectedCategory && !searchTerm;
 
   const getSectionTitle = () => {

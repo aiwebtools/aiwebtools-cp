@@ -1,23 +1,178 @@
+
 import { Tool } from "@/types/tools";
-import { getAllToolCategories } from './toolsCollection';
-import { extractPriorityTools } from './priorityTools';
+import {
+  businessTools,
+  aiAssistants,
+  videoTools,
+  aiArtTools,
+  audioMusicTools,
+  contentCreationTools,
+  aiToolsAndDevelopment,
+  specializedTools,
+  writingAndContent,
+  imageAndDesign,
+  businessAndProductivity,
+  specializedAndNiche,
+  educationAndLearning,
+  creativeAndEntertainment,
+  researchAndLearning,
+  aiToolsAndUtilities,
+  healthcareProfessionals,
+  legalProfessionals,
+  emergencyServices,
+  creativeServices,
+  personalServices,
+  specializedPolicyTools,
+  artAndCollectibles,
+  aiChatPlatforms,
+  aiDevelopmentTools,
+  localAISolutions,
+  aiInferencePlatforms,
+  imageGenerationPlatforms,
+  aiProductivityTools,
+  openSourceAIModels,
+  aiAgents,
+  timeAndHistory,
+  creativeSuites,
+  advancedAITools,
+  gameDesignAndDevelopment,
+  learningAndEducation,
+  platformsAndDevelopment,
+  professionalServices,
+  spiritualityTools,
+  rawUncutTools,
+  videoAndContentTools,
+  businessAndTeamTools,
+  searchAndProductivityTools,
+  advancedChatPlatforms,
+  developerAndCodingTools,
+  contentDetectionTools,
+  contentCreationAndWritingTools,
+  documentAndResearchTools,
+  designAndGraphicsTools,
+  writingAndContentEnhancement,
+  resumeAndCareerTools,
+  ecommerceAndMarketingTools,
+  videoEditingAndContentTools,
+  coreImageGenerators,
+  imageEditingTools,
+  specializedImageTools,
+  backgroundAndObjectTools,
+  audioAndVoiceTools,
+  financialAndTradingTools,
+  specializedNicheTools,
+  meetingAndTranscriptionTools
+} from './tools';
+
+// Import the refactored tools
+import { advancedVideoTools } from './tools/advancedVideoTools';
+import { creativeDesignTools } from './tools/creativeDesignTools';
+import { businessSalesTools } from './tools/businessSalesTools';
+import { specializedAITools } from './tools/specializedAITools';
+import { entertainmentMediaTools } from './tools/entertainmentMediaTools';
+
+// Import the new tools categories
+import { webDevelopmentTools } from './tools/webDevelopmentTools';
+import { emailManagementTools } from './tools/emailManagementTools';
+import { technicalAndUtilityTools } from './tools/technicalAndUtilityTools';
+
 import { searchTools } from '@/utils/searchUtils';
 import { createFeaturedTools } from '@/utils/featuredTools';
 import { getCategoriesWithCounts, getToolsByCategory } from '@/utils/categoryUtils';
-import { consolidateTools } from '@/utils/categoryConsolidation';
-import { deduplicateTools } from '@/utils/toolDeduplication';
-import { getToolCount } from '@/utils/toolCounter';
 
-// Combine all tool categories and apply consolidation
-const allToolCategories = consolidateTools(getAllToolCategories());
+// Helper function to extract priority tools and move them to the front
+const extractPriorityTools = (toolsArray: Tool[]): { priorityTools: Tool[], remainingTools: Tool[] } => {
+  const priorityTitles = ['BOOK WRITER GPT', 'MOVIE MAKER STUDIO', 'STAGE MASTER SUITE'];
+  
+  const priorityTools: Tool[] = [];
+  const remainingTools: Tool[] = [];
+  
+  toolsArray.forEach(tool => {
+    if (priorityTitles.some(title => tool.title.includes(title))) {
+      priorityTools.push(tool);
+    } else {
+      remainingTools.push(tool);
+    }
+  });
+  
+  return { priorityTools, remainingTools };
+};
 
-// Apply deduplication to remove tools that appear in multiple categories
-const deduplicatedTools = deduplicateTools(allToolCategories);
+// Combine all tool categories
+const allToolCategories = [
+  ...spiritualityTools,
+  ...advancedAITools,
+  ...timeAndHistory,
+  ...creativeSuites,
+  ...learningAndEducation,
+  ...gameDesignAndDevelopment,
+  ...emergencyServices,
+  ...professionalServices,
+  ...legalProfessionals,
+  ...healthcareProfessionals,
+  ...creativeServices,
+  ...technicalAndUtilityTools,
+  ...aiChatPlatforms,
+  ...aiDevelopmentTools,
+  ...aiAgents,
+  ...localAISolutions,
+  ...aiInferencePlatforms,
+  ...imageGenerationPlatforms,
+  ...aiProductivityTools,
+  ...openSourceAIModels,
+  ...aiToolsAndDevelopment,
+  ...aiToolsAndUtilities,
+  ...aiAssistants,
+  ...aiArtTools,
+  ...advancedChatPlatforms,
+  ...developerAndCodingTools,
+  ...writingAndContent,
+  ...writingAndContentEnhancement,
+  ...imageAndDesign,
+  ...designAndGraphicsTools,
+  ...videoTools,
+  ...videoAndContentTools,
+  ...videoEditingAndContentTools,
+  ...audioMusicTools,
+  ...audioAndVoiceTools,
+  ...contentCreationTools,
+  ...contentCreationAndWritingTools,
+  ...contentDetectionTools,
+  ...documentAndResearchTools,
+  ...coreImageGenerators,
+  ...imageEditingTools,
+  ...specializedImageTools,
+  ...backgroundAndObjectTools,
+  ...businessAndProductivity,
+  ...businessTools,
+  ...businessAndTeamTools,
+  ...searchAndProductivityTools,
+  ...ecommerceAndMarketingTools,
+  ...platformsAndDevelopment,
+  ...resumeAndCareerTools,
+  ...emailManagementTools,
+  ...webDevelopmentTools,
+  ...meetingAndTranscriptionTools,
+  ...advancedVideoTools,
+  ...creativeDesignTools,
+  ...businessSalesTools,
+  ...specializedAITools,
+  ...entertainmentMediaTools,
+  ...specializedAndNiche,
+  ...specializedTools,
+  ...creativeAndEntertainment,
+  ...researchAndLearning,
+  ...personalServices,
+  ...specializedPolicyTools,
+  ...artAndCollectibles,
+  ...financialAndTradingTools,
+  ...specializedNicheTools
+];
 
 // Extract priority tools and reorder
-const { priorityTools, remainingTools } = extractPriorityTools(deduplicatedTools);
+const { priorityTools, remainingTools } = extractPriorityTools(allToolCategories);
 
-// Combine with priority tools first
+// Combine with priority tools first, ensuring no duplicates
 export const allTools: Tool[] = [
   ...priorityTools,
   ...remainingTools
@@ -28,36 +183,3 @@ export const featuredTools: Tool[] = createFeaturedTools(allTools);
 
 // Export utility functions for use in components
 export { searchTools, getCategoriesWithCounts, getToolsByCategory };
-
-// Get comprehensive tool count analysis
-const toolCountAnalysis = getToolCount();
-
-// Debug information with enhanced logging using accurate count
-console.log(`🎉 MILESTONE ACHIEVED! Total tools loaded: ${allTools.length}`);
-console.log(`📊 Categories found: ${Object.keys(getCategoriesWithCounts(allTools)).length}`);
-console.log(`🎯 Accurate count for website: ${allTools.length} tools`);
-console.log(`📈 Marketing display: ${Math.round(allTools.length / 100) * 100}+ tools`);
-
-const categoryBreakdown = getCategoriesWithCounts(allTools);
-console.log('📋 Category breakdown:', categoryBreakdown);
-
-// Verify all tools have categories
-const uncategorizedTools = allTools.filter(tool => !tool.category || tool.category.trim() === '');
-if (uncategorizedTools.length > 0) {
-  console.warn(`⚠️ Found ${uncategorizedTools.length} uncategorized tools:`, uncategorizedTools.map(t => t.title));
-} else {
-  console.log('✅ All tools are properly categorized!');
-}
-
-// Summary for Ken with accurate numbers
-console.log(`
-🚀 AI WEB TOOLS DIRECTORY STATUS REPORT 🚀
-================================================
-✅ EXACT Total AI Tools: ${allTools.length}
-✅ Marketing Display: ${Math.round(allTools.length / 100) * 100}+ AI Tools
-✅ Categories Available: ${Object.keys(categoryBreakdown).length}
-✅ Quality Assurance: All tools categorized and deduplicated
-✅ Coverage: Advanced AI, Research, Productivity, Security, Finance, Healthcare, Education, Legal, and more!
-
-This comprehensive directory now covers ALL major AI domains and provides users with an unmatched resource for AI tool discovery! 🌟
-`);

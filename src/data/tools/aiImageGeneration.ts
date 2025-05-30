@@ -13,7 +13,7 @@ export const aiImageGeneration: Tool[] = [
     color: "from-blue-600 to-purple-600",
     directUrl: "https://openai.com/dall-e-3?via=aiwebtools",
     tags: ["image generation", "text to image", "ai art"],
-    category: "Image & Design Tools",
+    category: "Image & Design",
     rating: 4.7,
     totalVotes: 5234
   },
@@ -25,7 +25,7 @@ export const aiImageGeneration: Tool[] = [
     color: "from-purple-500 to-red-500",
     directUrl: "https://nightcafe.studio/?via=aiwebtools",
     tags: ["ai art", "image generation", "ai art community"],
-    category: "Image & Design Tools",
+    category: "Image & Design",
     rating: 4.4,
     totalVotes: 4123
   },
@@ -38,7 +38,7 @@ export const aiImageGeneration: Tool[] = [
     directUrl: "https://sketchartistgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-s_CPSIx.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
     tags: ["sketching", "digital art", "drawing", "character design", "artistic illustration"],
-    category: "Image & Design Tools",
+    category: "Image & Design",
     rating: 4.3,
     totalVotes: 2567
   },
@@ -51,7 +51,7 @@ export const aiImageGeneration: Tool[] = [
     directUrl: "https://www.midjourney.com/home?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=5deYUaqwreo",
     tags: ["AI art", "image generation", "creative visuals", "text-to-image", "digital art"],
-    category: "Image & Design Tools",
+    category: "Image & Design",
     rating: 4.6,
     totalVotes: 4567
   },
@@ -64,7 +64,7 @@ export const aiImageGeneration: Tool[] = [
     directUrl: "https://ideogram.ai/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=USSpwbe3Rxk",
     tags: ["text-to-image", "logo creation", "AI generator", "visual content", "graphic design"],
-    category: "Image & Design Tools",
+    category: "Image & Design",
     rating: 4.4,
     totalVotes: 3789
   }

@@ -1,233 +1,121 @@
 
 @layer utilities {
-  /* Enhanced particle explosion animation with ultra-bright colors */
+  /* Particle explosion animation */
   @keyframes particle-explosion {
     0% {
       transform: translate(-50%, -50%) rotate(var(--angle)) translateX(0) scale(1);
       opacity: 1;
-      filter: brightness(3) saturate(4) hue-rotate(0deg);
-    }
-    50% {
-      opacity: 0.9;
-      filter: brightness(4) saturate(5) hue-rotate(180deg);
     }
     100% {
       transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--velocity)) scale(0);
       opacity: 0;
-      filter: brightness(5) saturate(6) hue-rotate(360deg);
     }
   }
 
-  /* Enhanced vortex ring animation with intense spiral motion */
+  /* Vortex ring animation */
   @keyframes vortex-spin {
     0% {
       width: 0;
       height: 0;
       opacity: 1;
-      transform: translate(-50%, -50%) rotate(0deg) scale(1);
-      filter: brightness(3) saturate(4) hue-rotate(0deg);
-      border-width: 2px;
-    }
-    25% {
-      opacity: 1;
-      filter: brightness(4) saturate(5) hue-rotate(90deg);
-      border-width: 8px;
-    }
-    50% {
-      opacity: 0.9;
-      filter: brightness(5) saturate(6) hue-rotate(180deg);
-      border-width: 12px;
-    }
-    75% {
-      opacity: 0.7;
-      filter: brightness(4) saturate(5) hue-rotate(270deg);
-      border-width: 16px;
-    }
-    100% {
-      width: 1800px;
-      height: 1800px;
-      opacity: 0;
-      transform: translate(-50%, -50%) rotate(1800deg) scale(0.2);
-      filter: brightness(6) saturate(7) hue-rotate(720deg);
-      border-width: 25px;
-    }
-  }
-
-  /* Intense spiral tunnel effect that fills the entire screen */
-  @keyframes spiral-tunnel {
-    0% {
-      width: 0;
-      height: 0;
-      opacity: 1;
-      transform: translate(-50%, -50%) rotate(0deg) scale(1);
-      border-width: 0px;
-      filter: brightness(3) saturate(4);
-    }
-    25% {
-      opacity: 0.9;
-      transform: translate(-50%, -50%) rotate(360deg) scale(1.5);
-      border-width: 10px;
-      filter: brightness(4) saturate(5);
+      transform: translate(-50%, -50%) rotate(0deg);
     }
     50% {
       opacity: 0.8;
-      transform: translate(-50%, -50%) rotate(720deg) scale(1.8);
-      border-width: 18px;
-      filter: brightness(5) saturate(6);
-    }
-    75% {
-      opacity: 0.6;
-      transform: translate(-50%, -50%) rotate(1080deg) scale(1.2);
-      border-width: 25px;
-      filter: brightness(6) saturate(7);
     }
     100% {
-      width: 2000px;
-      height: 2000px;
+      width: 800px;
+      height: 800px;
       opacity: 0;
-      transform: translate(-50%, -50%) rotate(1800deg) scale(0.1);
-      border-width: 35px;
-      filter: brightness(7) saturate(8);
+      transform: translate(-50%, -50%) rotate(720deg);
     }
   }
 
-  /* Enhanced energy wave pulse with rainbow cycling */
+  /* Energy wave pulse animation */
   @keyframes energy-pulse {
     0% {
       width: 0;
       height: 0;
       opacity: 1;
       transform: translate(-50%, -50%) scale(1);
-      filter: brightness(3) saturate(4) hue-rotate(0deg);
-    }
-    25% {
-      opacity: 0.9;
-      transform: translate(-50%, -50%) scale(1.5);
-      filter: brightness(4) saturate(5) hue-rotate(90deg);
     }
     50% {
-      opacity: 0.7;
-      transform: translate(-50%, -50%) scale(1.3);
-      filter: brightness(5) saturate(6) hue-rotate(180deg);
-    }
-    75% {
-      opacity: 0.5;
-      transform: translate(-50%, -50%) scale(1.1);
-      filter: brightness(6) saturate(7) hue-rotate(270deg);
+      opacity: 0.6;
+      transform: translate(-50%, -50%) scale(1.2);
     }
     100% {
-      width: 1200px;
-      height: 1200px;
+      width: 600px;
+      height: 600px;
       opacity: 0;
-      transform: translate(-50%, -50%) scale(0.6);
-      filter: brightness(7) saturate(8) hue-rotate(540deg);
+      transform: translate(-50%, -50%) scale(0.8);
     }
   }
 
-  /* Enhanced lightning flash with intense brightness */
+  /* Lightning flash animation */
   @keyframes lightning-flash {
     0% {
       opacity: 0;
       transform: translate(-50%, -100%) rotate(var(--rotation, 0deg)) scaleY(0);
-      filter: brightness(3) saturate(4);
-    }
-    15% {
-      opacity: 1;
-      transform: translate(-50%, -100%) rotate(var(--rotation, 0deg)) scaleY(1.5);
-      filter: brightness(5) saturate(6);
-    }
-    30% {
-      opacity: 0.9;
-      transform: translate(-50%, -100%) rotate(var(--rotation, 0deg)) scaleY(1.8);
-      filter: brightness(6) saturate(7);
-    }
-    60% {
-      opacity: 0.6;
-      transform: translate(-50%, -100%) rotate(var(--rotation, 0deg)) scaleY(1.2);
-      filter: brightness(7) saturate(8);
-    }
-    100% {
-      opacity: 0;
-      transform: translate(-50%, -100%) rotate(var(--rotation, 0deg)) scaleY(0.5);
-      filter: brightness(8) saturate(9);
-    }
-  }
-
-  /* Enhanced full screen portal flash with dimensional effect */
-  @keyframes portal-flash {
-    0% {
-      opacity: 0;
-      background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(0,255,255,0) 50%, transparent 100%);
-    }
-    5% {
-      opacity: 0.2;
-      background: radial-gradient(circle, rgba(255,0,255,0.6) 0%, rgba(0,255,255,0.4) 20%, rgba(255,255,0,0.3) 40%, transparent 70%);
-    }
-    15% {
-      opacity: 0.8;
-      background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,0,255,0.8) 15%, rgba(0,255,255,0.7) 30%, rgba(255,255,0,0.6) 50%, rgba(0,255,0,0.4) 70%, transparent 100%);
-    }
-    30% {
-      opacity: 1;
-      background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,0,255,0.9) 10%, rgba(0,255,255,0.8) 20%, rgba(255,255,0,0.7) 35%, rgba(0,255,0,0.6) 50%, rgba(255,0,0,0.4) 70%, transparent 100%);
-    }
-    100% {
-      opacity: 0;
-      background: radial-gradient(circle, rgba(0,255,255,0) 0%, rgba(255,0,255,0) 50%, transparent 100%);
-    }
-  }
-
-  /* Enhanced time warp body filter with intense rainbow cycling */
-  @keyframes time-warp {
-    0% {
-      filter: hue-rotate(0deg) saturate(2) brightness(1.5) contrast(1.5) blur(0px);
     }
     20% {
-      filter: hue-rotate(72deg) saturate(3) brightness(1.8) contrast(1.8) blur(1px);
+      opacity: 1;
+      transform: translate(-50%, -100%) rotate(var(--rotation, 0deg)) scaleY(1);
     }
     40% {
-      filter: hue-rotate(144deg) saturate(4) brightness(2.1) contrast(2.1) blur(2px);
-    }
-    60% {
-      filter: hue-rotate(216deg) saturate(3.5) brightness(1.9) contrast(1.9) blur(1px);
-    }
-    80% {
-      filter: hue-rotate(288deg) saturate(3) brightness(1.7) contrast(1.7) blur(0.5px);
+      opacity: 0.8;
+      transform: translate(-50%, -100%) rotate(var(--rotation, 0deg)) scaleY(1.2);
     }
     100% {
-      filter: hue-rotate(360deg) saturate(2.5) brightness(1.6) contrast(1.6) blur(0px);
+      opacity: 0;
+      transform: translate(-50%, -100%) rotate(var(--rotation, 0deg)) scaleY(0.8);
     }
   }
 
-  /* Effect container classes with enhanced performance */
+  /* Full screen flash animation */
+  @keyframes flash-fade {
+    0% {
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Time warp body filter animation */
+  @keyframes time-warp {
+    0% {
+      filter: hue-rotate(0deg) saturate(1) brightness(1);
+    }
+    50% {
+      filter: hue-rotate(180deg) saturate(1.5) brightness(1.3);
+    }
+    100% {
+      filter: hue-rotate(360deg) saturate(1.2) brightness(1.1);
+    }
+  }
+
+  /* Effect container classes */
   .explosion-particle {
-    will-change: transform, opacity, filter;
-    backface-visibility: hidden;
+    will-change: transform, opacity;
   }
 
   .vortex-ring {
-    will-change: transform, opacity, filter, border-width;
-    backface-visibility: hidden;
-  }
-
-  .spiral-tunnel {
-    will-change: transform, opacity, filter, border-width;
-    backface-visibility: hidden;
+    will-change: transform, opacity;
   }
 
   .energy-wave {
-    will-change: transform, opacity, filter;
-    backface-visibility: hidden;
+    will-change: transform, opacity;
   }
 
   .lightning-bolt {
-    will-change: transform, opacity, filter;
-    backface-visibility: hidden;
+    will-change: transform, opacity;
   }
 
-  /* Enhanced time warp effect class */
+  /* Time warp effect class */
   .time-warp-active {
-    animation: time-warp 3.5s ease-in-out;
-    will-change: filter;
+    animation: time-warp 2.8s ease-in-out;
   }
 }

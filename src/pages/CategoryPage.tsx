@@ -1,139 +1,198 @@
 
-import { useParams } from "react-router-dom";
-import { useState, useEffect, useMemo } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import CategoryHeader from "@/components/category/CategoryHeader";
+import CategorySelector from "@/components/category/CategorySelector";
 import ToolsDisplay from "@/components/category/ToolsDisplay";
 import ScrollToTopButton from "@/components/category/ScrollToTopButton";
-import SEOHead from "@/components/SEOHead";
-import BreadcrumbSEO from "@/components/BreadcrumbSEO";
+import { Button } from "@/components/ui/button";
 import { allTools } from "@/data/toolsData";
-import { getToolsByCategory } from "@/utils/categoryUtils";
-import { getStandardizedCategoryTitle } from "@/utils/categoryTitles";
-import { generateStructuredData } from "@/utils/seo";
+import { getCategoriesWithCounts, getToolsByCategory } from "@/utils/categoryUtils";
+import { ChevronLeft } from "lucide-react";
 
 const CategoryPage = () => {
-  const { categoryName } = useParams();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [displayedCount, setDisplayedCount] = useState(12);
-
-  // Decode and standardize the category name
-  const decodedCategory = categoryName ? decodeURIComponent(categoryName) : "";
-  const standardizedCategory = getStandardizedCategoryTitle(decodedCategory);
+  const { categoryName } = useParams<{ categoryName: string }>();
+  const navigate = useNavigate();
+  const [selectedCategory, setSelectedCategory] = useState<string>(categoryName || "");
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [displayedCount, setDisplayedCount] = useState<number>(20);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const toolsGridRef = useRef<HTMLDivElement>(null);
+  const categoryButtonsRef = useRef<HTMLDivElement>(null);
   
-  // Get tools for this category
-  const categoryTools = useMemo(() => {
-    console.log(`📂 Loading category page for: "${standardizedCategory}"`);
-    const tools = getToolsByCategory(allTools, standardizedCategory);
-    console.log(`📊 Found ${tools.length} tools in category "${standardizedCategory}"`);
-    return tools;
-  }, [standardizedCategory]);
-
-  // Filter tools by search if search term exists
-  const filteredTools = useMemo(() => {
-    if (!searchTerm.trim()) {
-      return categoryTools;
-    }
-    
-    const term = searchTerm.toLowerCase();
-    const filtered = categoryTools.filter(tool => 
-      tool.title.toLowerCase().includes(term) ||
-      tool.description.toLowerCase().includes(term) ||
-      tool.tags?.some(tag => tag.toLowerCase().includes(term))
-    );
-    
-    console.log(`🔍 Filtered category "${standardizedCategory}" with search "${searchTerm}": ${filtered.length} tools`);
-    return filtered;
-  }, [categoryTools, searchTerm]);
-
+  const categoriesWithCounts = getCategoriesWithCounts(allTools);
+  
+  // Handle "All Categories" special case
+  const isAllCategories = selectedCategory === "All Categories";
+  const categoryTools = isAllCategories ? allTools : getToolsByCategory(allTools, selectedCategory);
+  
   useEffect(() => {
-    window.scrollTo(0, 0);
-    setDisplayedCount(12);
-    setSearchTerm("");
-    
-    // Log category page load for verification
-    console.log(`📄 Category page loaded: "${standardizedCategory}" (${categoryTools.length} tools)`);
-  }, [standardizedCategory, categoryTools.length]);
+    if (categoryName) {
+      setSelectedCategory(decodeURIComponent(categoryName));
+    }
+  }, [categoryName]);
 
-  const handleLoadMore = () => {
-    setDisplayedCount(prev => prev + 12);
+  const handleLoadMore = useCallback(() => {
+    if (isLoading) return;
+    
+    setIsLoading(true);
+    setTimeout(() => {
+      setDisplayedCount(prev => prev + 20);
+      setIsLoading(false);
+    }, 100);
+  }, [isLoading]);
+
+  const handleLoadMoreButton = () => {
+    handleLoadMore();
   };
 
-  if (!decodedCategory) {
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+      
+      if (isLoading) return;
+      
+      clearTimeout(timeoutId);
+      
+      timeoutId = setTimeout(() => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        const threshold = 800;
+        const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
+        
+        if (nearBottom && displayedCount < categoryTools.length && !isLoading) {
+          handleLoadMore();
+        }
+      }, 150);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
+    };
+  }, [displayedCount, categoryTools.length, handleLoadMore, isLoading]);
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    setDisplayedCount(20);
+    setIsLoading(false);
+    navigate(`/category/${encodeURIComponent(category)}`);
+    
+    // Scroll to tools grid after a short delay to ensure the page has updated
+    setTimeout(() => {
+      if (toolsGridRef.current) {
+        toolsGridRef.current.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 100);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToCategories = () => {
+    if (categoryButtonsRef.current) {
+      categoryButtonsRef.current.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+  };
+
+  const goBack = () => {
+    navigate('/');
+  };
+
+  // Check if category exists or is the special "All Categories" case
+  if (!selectedCategory || (!isAllCategories && !categoriesWithCounts[selectedCategory])) {
     return (
       <div className="min-h-screen bg-black relative">
-        <SEOHead
-          title="Category Not Found"
-          description="The requested category could not be found. Browse our collection of AI tool categories."
-          noIndex={true}
-        />
         <AnimatedBackground />
-        <div className="relative z-10 min-h-screen flex items-center justify-center">
-          <div className="text-center p-8">
-            <h1 className="text-3xl font-bold text-cyan-100 mb-4">Category Not Found</h1>
-            <p className="text-gray-300">This category doesn't exist in our directory.</p>
+        <div className="relative z-10">
+          <Header />
+          <div className="pt-32 px-4 text-center">
+            <h1 className="text-4xl font-bold text-white mb-4">Category Not Found</h1>
+            <Button onClick={goBack} className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700">
+              <ChevronLeft className="w-4 h-4 mr-2" />
+              Back to Home
+            </Button>
           </div>
         </div>
       </div>
     );
   }
 
-  const categoryStructuredData = generateStructuredData('category', {
-    title: standardizedCategory,
-    description: `Discover the best AI tools in the ${standardizedCategory} category`,
-    toolCount: categoryTools.length
-  });
-
-  const breadcrumbItems = [
-    { name: "Home", url: "https://aitools.studio" },
-    { name: "AI Tools", url: "https://aitools.studio/#tools-section" },
-    { name: standardizedCategory, url: `https://aitools.studio/category/${encodeURIComponent(standardizedCategory)}` }
-  ];
+  const hasMoreTools = displayedCount < categoryTools.length;
 
   return (
     <div className="min-h-screen bg-black relative">
-      <SEOHead
-        title={`${standardizedCategory} AI Tools - Best ${standardizedCategory} Tools 2025`}
-        description={`Discover ${categoryTools.length} premium ${standardizedCategory.toLowerCase()} AI tools. Find the best artificial intelligence solutions for ${standardizedCategory.toLowerCase()} tasks and workflows.`}
-        keywords={[
-          `${standardizedCategory.toLowerCase()} ai tools`,
-          `best ${standardizedCategory.toLowerCase()} tools`,
-          `${standardizedCategory.toLowerCase()} artificial intelligence`,
-          `ai ${standardizedCategory.toLowerCase()} software`,
-          "ai tools directory",
-          "artificial intelligence tools",
-          "ai tools 2025"
-        ]}
-        url={`/category/${encodeURIComponent(standardizedCategory)}`}
-        structuredData={categoryStructuredData}
-        category={standardizedCategory}
-      />
-      
-      <BreadcrumbSEO items={breadcrumbItems} />
-      
       <AnimatedBackground />
-      <div className="relative z-10 cyber-grid">
+      <div className="relative z-10">
         <Header />
+        <div className="pt-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <CategoryHeader 
+            selectedCategory={selectedCategory}
+            toolsCount={categoryTools.length}
+            onScrollToCategories={scrollToCategories}
+          />
+
+          <ToolsDisplay
+            ref={toolsGridRef}
+            selectedCategory={selectedCategory}
+            categoryTools={categoryTools}
+            displayedCount={displayedCount}
+            hasInfiniteScroll={true}
+            isLoading={isLoading}
+          />
+
+          {/* Load More Button - Show when there are more tools to load */}
+          {hasMoreTools && (
+            <div className="text-center mt-12 mb-16 px-4">
+              <Button
+                onClick={handleLoadMoreButton}
+                size="lg"
+                disabled={isLoading}
+                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
+              >
+                {isLoading ? (
+                  <div className="flex items-center space-x-3">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    <span>Loading More Tools...</span>
+                  </div>
+                ) : (
+                  <>🚀 LOAD MORE {selectedCategory.toUpperCase()} TOOLS</>
+                )}
+              </Button>
+              <div className="mt-4 text-cyan-300 text-sm">
+                Showing {displayedCount} of {categoryTools.length} tools in {selectedCategory}
+              </div>
+            </div>
+          )}
+
+          <CategorySelector
+            ref={categoryButtonsRef}
+            categoriesWithCounts={categoriesWithCounts}
+            selectedCategory={selectedCategory}
+            onCategoryChange={handleCategoryChange}
+          />
+        </div>
         
-        <CategoryHeader 
-          categoryName={standardizedCategory}
-          toolCount={categoryTools.length}
-          searchTerm={searchTerm}
-          onSearchChange={setSearchTerm}
+        <ScrollToTopButton 
+          showScrollTop={showScrollTop}
+          onScrollToTop={scrollToTop}
         />
         
-        <ToolsDisplay 
-          tools={filteredTools}
-          displayedCount={displayedCount}
-          onLoadMore={handleLoadMore}
-          hasMoreTools={displayedCount < filteredTools.length}
-          categoryName={standardizedCategory}
-          searchTerm={searchTerm}
-        />
-        
-        <ScrollToTopButton />
         <Footer />
       </div>
     </div>
