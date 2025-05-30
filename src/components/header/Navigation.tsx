@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { getSortedStandardizedCategories } from "@/utils/categoryTitles";
+import { getCategoryStyle } from "@/utils/categoryStyles";
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -78,29 +79,67 @@ const Navigation = () => {
           <span>🆓Industry Specific AI</span>
           <ChevronDown className="w-4 h-4" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-80 max-h-96 overflow-y-auto bg-black/95 shadow-lg border border-cyan-500/30 backdrop-blur-md">
-          <div className="p-2">
-            <DropdownMenuItem
-              onClick={viewAllTools}
-              className="cursor-pointer hover:bg-cyan-500/20 rounded-md p-2 font-medium text-cyan-400 mb-2"
-            >
-              🔍 View All Tools
-            </DropdownMenuItem>
-            <DropdownMenuSeparator className="border-gray-700" />
-            <div className="font-semibold text-cyan-400 mb-2">Browse by Category</div>
-            {sortedCategories.map(([category, count]) => (
-              <DropdownMenuItem key={category} asChild>
-                <Link
-                  to={`/category/${encodeURIComponent(category)}`}
-                  className="flex justify-between items-center cursor-pointer hover:bg-cyan-500/20 rounded-md p-2 text-cyan-100 w-full"
-                >
-                  <span className="text-sm">{category}</span>
-                  <span className="text-xs bg-gradient-to-r from-cyan-400 to-cyan-600 text-black px-2 py-1 rounded-full font-bold">
-                    {count}
-                  </span>
-                </Link>
+        <DropdownMenuContent className="w-[900px] max-h-[600px] overflow-y-auto bg-black/95 shadow-xl border border-cyan-500/30 backdrop-blur-md">
+          <div className="p-4">
+            {/* Header Section */}
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-2">
+                🎯 Explore AI Tools by Category
+              </h3>
+              <p className="text-cyan-200 text-sm">Choose from our organized collection of specialized AI tools</p>
+            </div>
+
+            {/* View All Tools Button */}
+            <div className="flex justify-center mb-6">
+              <DropdownMenuItem
+                onClick={viewAllTools}
+                className="cursor-pointer bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+              >
+                🔍 View All {sortedCategories.reduce((total, [, count]) => total + count, 0)} AI Tools
               </DropdownMenuItem>
-            ))}
+            </div>
+
+            <DropdownMenuSeparator className="border-gray-700 mb-4" />
+
+            {/* Categories Grid */}
+            <div className="grid grid-cols-3 gap-4">
+              {sortedCategories.map(([category, count]) => {
+                const categoryStyle = getCategoryStyle(category);
+                return (
+                  <DropdownMenuItem key={category} asChild>
+                    <Link
+                      to={`/category/${encodeURIComponent(category)}`}
+                      className="group flex flex-col items-center p-4 rounded-lg border border-gray-700/50 hover:border-cyan-500/50 bg-gray-800/30 hover:bg-gradient-to-br hover:from-cyan-500/10 hover:to-blue-600/10 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                    >
+                      <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                        {categoryStyle.emoji}
+                      </div>
+                      <div className="text-center">
+                        <div className="text-cyan-100 font-medium text-sm leading-tight mb-1 group-hover:text-white transition-colors">
+                          {category}
+                        </div>
+                        <div className="text-xs bg-gradient-to-r from-cyan-400 to-cyan-600 text-black px-3 py-1 rounded-full font-bold">
+                          {count} tools
+                        </div>
+                      </div>
+                    </Link>
+                  </DropdownMenuItem>
+                );
+              })}
+            </div>
+
+            <DropdownMenuSeparator className="border-gray-700 mt-6 mb-4" />
+
+            {/* Footer Links */}
+            <div className="flex justify-between items-center">
+              <DropdownMenuItem onClick={() => window.location.href = '#services'} className="text-cyan-100 hover:bg-cyan-500/20 px-4 py-2 rounded">
+                More Services
+              </DropdownMenuItem>
+              <DropdownMenuItem className="text-cyan-100 hover:bg-cyan-500/20 px-4 py-2 rounded">
+                <Phone className="w-4 h-4 mr-2" />
+                <a href="tel:+14758008096">475-800-8096</a>
+              </DropdownMenuItem>
+            </div>
           </div>
         </DropdownMenuContent>
       </DropdownMenu>
