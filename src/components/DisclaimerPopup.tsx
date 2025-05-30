@@ -67,19 +67,20 @@ const DisclaimerPopup = () => {
             // Create portal sounds
             createPortalSounds();
             
-            // Create simple robot voice
+            // Create deeper, more natural robot voice
             if ('speechSynthesis' in window) {
               const utterance = new SpeechSynthesisUtterance("Welcome to AI Web Tools - Access Granted!");
-              utterance.rate = 0.8;
-              utterance.pitch = 0.3;
+              utterance.rate = 0.9; // Slightly faster, more natural
+              utterance.pitch = 0.7; // Higher pitch, less robotic
               utterance.volume = 1.0;
               
-              // Try to find a deeper voice
+              // Try to find a more natural voice
               const voices = speechSynthesis.getVoices();
               const preferredVoice = voices.find(voice => 
-                voice.name.toLowerCase().includes('male') ||
                 voice.name.toLowerCase().includes('david') ||
-                voice.lang.startsWith('en')
+                voice.name.toLowerCase().includes('daniel') ||
+                voice.name.toLowerCase().includes('male') ||
+                (voice.lang.startsWith('en') && voice.name.toLowerCase().includes('natural'))
               );
               
               if (preferredVoice) {
