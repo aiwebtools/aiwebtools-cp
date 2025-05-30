@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Music, 
@@ -16,6 +15,126 @@ import {
 } from "lucide-react";
 
 export const audioMusicTools: Tool[] = [
+  {
+    icon: Music,
+    title: "AIVA",
+    description: "AI composer that creates emotional soundtrack music for films, video games, commercials, and any creative project. Trained on thousands of musical pieces from classical composers.",
+    emoji: "🎼",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://www.aiva.ai/",
+    tags: ["AI composer", "soundtrack music", "film scoring", "video game music", "emotional music", "classical training"],
+    category: "Audio & Music Tools",
+    rating: 4.7,
+    totalVotes: 4567
+  },
+  {
+    icon: Music,
+    title: "Amper Music",
+    description: "AI music composition platform that enables content creators to build original music that fits the mood and style of their content. Perfect for videos, podcasts, and games.",
+    emoji: "🎵",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://www.ampermusic.com/",
+    tags: ["AI composition", "content creators", "mood-based music", "original music", "video music", "podcast music"],
+    category: "Audio & Music Tools",
+    rating: 4.5,
+    totalVotes: 3234
+  },
+  {
+    icon: Mic,
+    title: "Speechify",
+    description: "Leading text-to-speech app that converts any text into natural-sounding audio. Perfect for audiobooks, articles, PDFs, and documents with celebrity and AI voices.",
+    emoji: "📢",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://speechify.com/",
+    tags: ["text-to-speech", "audiobooks", "natural voices", "celebrity voices", "document reading", "accessibility"],
+    category: "Audio & Music Tools",
+    rating: 4.6,
+    totalVotes: 5678
+  },
+  {
+    icon: Music,
+    title: "Endel",
+    description: "AI-powered focus music app that creates adaptive soundscapes to help you focus, relax, and sleep. Uses real-time inputs like heart rate, weather, and time of day.",
+    emoji: "🧘",
+    color: "from-green-500 to-cyan-600",
+    directUrl: "https://endel.io/",
+    tags: ["adaptive soundscapes", "focus music", "sleep sounds", "heart rate sync", "wellness audio", "productivity"],
+    category: "Audio & Music Tools",
+    rating: 4.4,
+    totalVotes: 3789
+  },
+  {
+    icon: Mic,
+    title: "Descript Overdub",
+    description: "Ultra-realistic voice cloning technology that creates a digital copy of your voice for editing audio and video content. Edit speech by typing text.",
+    emoji: "🎭",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://www.descript.com/overdub",
+    tags: ["voice cloning", "ultra-realistic", "speech editing", "text-based editing", "voice synthesis", "content editing"],
+    category: "Audio & Music Tools",
+    rating: 4.7,
+    totalVotes: 4123
+  },
+  {
+    icon: Music,
+    title: "Jukebox (OpenAI)",
+    description: "Neural network that generates music, including rudimentary singing, as raw audio in various genres and artist styles. Can generate novel music continuing from a prompt.",
+    emoji: "📻",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://openai.com/blog/jukebox/",
+    tags: ["OpenAI", "neural network", "raw audio generation", "singing synthesis", "genre variety", "artist styles"],
+    category: "Audio & Music Tools",
+    rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: Volume2,
+    title: "Replica Studios",
+    description: "AI voice actor platform providing expressive voice performances for games, films, and interactive media. Offers a diverse library of AI voice actors with emotions.",
+    emoji: "🎬",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://replicastudios.com/",
+    tags: ["AI voice actors", "expressive performances", "game voices", "film narration", "emotional range", "interactive media"],
+    category: "Audio & Music Tools",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
+    icon: Music,
+    title: "Melodrive",
+    description: "Adaptive music engine that creates procedural music for games and interactive applications. Music responds dynamically to gameplay and user interactions.",
+    emoji: "🎮",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://melodrive.com/",
+    tags: ["procedural music", "adaptive music", "game audio", "interactive music", "dynamic soundtracks", "gameplay responsive"],
+    category: "Audio & Music Tools",
+    rating: 4.2,
+    totalVotes: 2345
+  },
+  {
+    icon: Mic,
+    title: "Lyrebird AI",
+    description: "Voice synthesis technology that can mimic anyone's voice with just a few minutes of audio. Now part of Descript, offering professional voice cloning capabilities.",
+    emoji: "🐦",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://lyrebird.ai/",
+    tags: ["voice mimicking", "voice synthesis", "few-shot learning", "professional cloning", "audio technology", "speech generation"],
+    category: "Audio & Music Tools",
+    rating: 4.4,
+    totalVotes: 3567
+  },
+  {
+    icon: Music,
+    title: "Humtap",
+    description: "AI music creation app that turns your voice humming and body tapping into full musical compositions. Create songs by singing melodies and tapping rhythms.",
+    emoji: "🎤",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://www.humtap.com/",
+    tags: ["humming to music", "body tapping", "voice input", "rhythm creation", "melody generation", "mobile music creation"],
+    category: "Audio & Music Tools",
+    rating: 4.1,
+    totalVotes: 2123
+  },
   {
     icon: Mic,
     title: "MURF AI",
