@@ -1,4 +1,3 @@
-
 import { Separator } from "@/components/ui/separator";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import FooterActions from "./footer/FooterActions";
@@ -42,6 +41,11 @@ Best regards,
     
     const mailtoUrl = `mailto:contact@ai-webtools.com?subject=${subject}&body=${body}`;
     window.location.href = mailtoUrl;
+    
+    // Also open the Google form
+    setTimeout(() => {
+      createTimePortalEffect("https://docs.google.com/forms/d/e/1FAIpQLSchtKquEqaaKSZM9AWygcY3Uf3uQOpVHZUMayVZMCbDTxfyfQ/viewform?usp=sf_link", "Custom AI Development Request Form");
+    }, 500);
   };
 
   const handleSubmitTool = () => {
