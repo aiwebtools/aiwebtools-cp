@@ -12,7 +12,14 @@ import {
   Wand2,
   Layers,
   Sparkles,
-  Palette
+  Palette,
+  Image,
+  Zap,
+  Eye,
+  Crop,
+  Filter,
+  Maximize,
+  Bot
 } from "lucide-react";
 
 export const imageEditingTools: Tool[] = [
@@ -243,5 +250,137 @@ export const imageEditingTools: Tool[] = [
     category: "Image Generation Platforms",
     rating: 4.3,
     totalVotes: 2876
+  },
+  {
+    icon: Image,
+    title: "Leonardo AI",
+    description: "Advanced AI image generation platform with fine-tuned models for creating stunning art, illustrations, and concept designs. Features real-time canvas editing and professional-grade image generation capabilities.",
+    emoji: "🎭",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://leonardo.ai/",
+    tags: ["AI art generation", "fine-tuned models", "real-time canvas", "concept design", "professional grade", "illustrations"],
+    category: "Image Generation Platforms",
+    rating: 4.7,
+    totalVotes: 5234
+  },
+  {
+    icon: Zap,
+    title: "Ideogram",
+    description: "Revolutionary AI image generator that excels at creating images with perfect text rendering. Specializes in logos, posters, and marketing materials with crystal-clear typography integration.",
+    emoji: "💡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://ideogram.ai/",
+    tags: ["text rendering", "logo creation", "marketing materials", "typography", "posters", "crystal clear"],
+    category: "Image Generation Platforms",
+    rating: 4.6,
+    totalVotes: 4567
+  },
+  {
+    icon: Eye,
+    title: "Flux AI",
+    description: "State-of-the-art AI image generation model known for photorealistic outputs and exceptional prompt adherence. Open-source foundation with multiple variants for different use cases and quality levels.",
+    emoji: "⚡",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://flux1.ai/",
+    tags: ["photorealistic", "prompt adherence", "open-source", "multiple variants", "state-of-the-art", "quality levels"],
+    category: "Image Generation Platforms",
+    rating: 4.8,
+    totalVotes: 6789
+  },
+  {
+    icon: Crop,
+    title: "Freepik AI",
+    description: "AI-powered image generator integrated with the world's largest stock media library. Create custom images, edit existing photos, and access millions of premium resources in one platform.",
+    emoji: "🖼️",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.freepik.com/ai/image-generator",
+    tags: ["stock integration", "custom images", "photo editing", "premium resources", "library access", "one platform"],
+    category: "Image Generation Platforms",
+    rating: 4.5,
+    totalVotes: 4234
+  },
+  {
+    icon: Filter,
+    title: "Photoroom",
+    description: "Professional AI photo editor designed for e-commerce and content creation. Instantly remove backgrounds, create product photos, and generate marketing visuals with studio-quality results.",
+    emoji: "📱",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://www.photoroom.com/",
+    tags: ["e-commerce", "product photos", "background removal", "marketing visuals", "studio quality", "content creation"],
+    category: "Image Generation Platforms",
+    rating: 4.6,
+    totalVotes: 4567
+  },
+  {
+    icon: Maximize,
+    title: "Krita AI Diffusion",
+    description: "Powerful AI image generation plugin for Krita that brings Stable Diffusion directly into the professional digital art workflow. Perfect for artists who want AI assistance in their creative process.",
+    emoji: "🎨",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://github.com/Acly/krita-ai-diffusion",
+    tags: ["Krita plugin", "Stable Diffusion", "digital art", "artist workflow", "creative process", "professional tools"],
+    category: "Image Generation Platforms",
+    rating: 4.7,
+    totalVotes: 3456
+  },
+  {
+    icon: Bot,
+    title: "Playground AI",
+    description: "User-friendly AI art generator with a focus on creative expression and artistic styles. Offers multiple AI models, style presets, and collaborative features for artists and designers.",
+    emoji: "🎪",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://playgroundai.com/",
+    tags: ["creative expression", "artistic styles", "multiple models", "style presets", "collaborative", "user-friendly"],
+    category: "Image Generation Platforms",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Sparkles,
+    title: "Getimg.ai",
+    description: "Comprehensive AI image generation suite with advanced editing capabilities. Features inpainting, outpainting, and custom model training for professional image creation and manipulation.",
+    emoji: "✨",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://getimg.ai/",
+    tags: ["inpainting", "outpainting", "custom models", "professional creation", "image manipulation", "comprehensive suite"],
+    category: "Image Generation Platforms",
+    rating: 4.6,
+    totalVotes: 4123
+  },
+  {
+    icon: Target,
+    title: "NightCafe",
+    description: "AI art community platform with multiple generation algorithms and artistic styles. Features daily challenges, community galleries, and both beginner-friendly and advanced creation tools.",
+    emoji: "🌙",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://nightcafe.studio/",
+    tags: ["art community", "daily challenges", "community galleries", "beginner friendly", "advanced tools", "artistic styles"],
+    category: "Image Generation Platforms",
+    rating: 4.4,
+    totalVotes: 3567
+  },
+  {
+    icon: Settings,
+    title: "Artbreeder",
+    description: "Collaborative AI art platform that uses genetic algorithms to evolve and blend images. Create portraits, landscapes, and abstract art through intuitive breeding and collaboration mechanisms.",
+    emoji: "🧬",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://www.artbreeder.com/",
+    tags: ["genetic algorithms", "image breeding", "collaborative art", "portraits", "landscapes", "abstract art"],
+    category: "Image Generation Platforms",
+    rating: 4.3,
+    totalVotes: 2987
+  },
+  {
+    icon: PaintBucket,
+    title: "DeepAI",
+    description: "Versatile AI platform offering multiple image generation and editing tools. Features style transfer, colorization, super resolution, and various artistic filters with API access for developers.",
+    emoji: "🤖",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://deepai.org/",
+    tags: ["style transfer", "colorization", "super resolution", "artistic filters", "API access", "versatile platform"],
+    category: "Image Generation Platforms",
+    rating: 4.2,
+    totalVotes: 3234
   }
 ];
