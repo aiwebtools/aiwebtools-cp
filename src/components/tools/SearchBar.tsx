@@ -16,6 +16,7 @@ interface SearchBarProps {
 const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchResults, setSearchResults] = useState<Tool[]>([]);
+  const [displayedCount, setDisplayedCount] = useState(50); // Start with 50 results
 
   const handleSearchChange = (value: string) => {
     console.log("Tools search - handleSearchChange called with:", value);
@@ -23,15 +24,17 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
     
     if (value.trim()) {
       console.log("Tools search - searching tools with term:", value);
-      const results = searchTools(allTools, value).slice(0, 8);
-      console.log("Tools search - search results:", results);
+      const results = searchTools(allTools, value); // Get ALL results, no slice limit
+      console.log("Tools search - search results:", results.length, "total results");
       setSearchResults(results);
+      setDisplayedCount(50); // Reset display count
       setIsOpen(true);
       console.log("Tools search - isOpen set to true");
     } else {
       console.log("Tools search - clearing results");
       setSearchResults([]);
       setIsOpen(false);
+      setDisplayedCount(50);
     }
   };
 
@@ -39,6 +42,7 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
     setIsOpen(false);
     onSearchChange("");
     setSearchResults([]);
+    setDisplayedCount(50);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -46,6 +50,7 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
       setIsOpen(false);
       onSearchChange("");
       setSearchResults([]);
+      setDisplayedCount(50);
     }
   };
 
@@ -54,7 +59,18 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
     setTimeout(() => setIsOpen(false), 200);
   };
 
-  console.log("Tools search - rendering, isOpen:", isOpen, "searchResults.length:", searchResults.length);
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+    
+    // Load more when user scrolls near the bottom
+    if (scrollHeight - scrollTop <= clientHeight + 100 && displayedCount < searchResults.length) {
+      setDisplayedCount(prev => Math.min(prev + 30, searchResults.length));
+    }
+  };
+
+  const displayedResults = searchResults.slice(0, displayedCount);
+
+  console.log("Tools search - rendering, isOpen:", isOpen, "searchResults.length:", searchResults.length, "displayedCount:", displayedCount);
 
   return (
     <TooltipProvider>
@@ -75,17 +91,20 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
           className="pl-10 pr-4 py-4 text-lg rounded-xl border-2 border-gray-200 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 transition-all duration-300 shadow-lg"
         />
         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-400">
-          {searchTerm ? `Searching...` : '1100+ Tools'}
+          {searchTerm ? `${searchResults.length} found` : '1100+ Tools'}
         </div>
 
         {/* Search Results Dropdown */}
         {isOpen && searchResults.length > 0 && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 max-h-96 overflow-y-auto">
+          <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" onScroll={handleScroll}>
             <div className="p-2">
-              <div className="text-xs text-gray-500 px-3 py-2 border-b border-gray-100">
-                Search Results ({searchResults.length})
+              <div className="text-xs text-gray-500 px-3 py-2 border-b border-gray-100 sticky top-0 bg-white">
+                Search Results ({searchResults.length} total) - Showing {displayedCount}
+                {displayedCount < searchResults.length && (
+                  <span className="text-cyan-600 ml-2">Scroll for more...</span>
+                )}
               </div>
-              {searchResults.map((tool, index) => {
+              {displayedResults.map((tool, index) => {
                 const toolIndex = allTools.findIndex(t => t.title === tool.title);
                 return (
                   <Tooltip key={index} delayDuration={300}>
@@ -137,6 +156,12 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
                   </Tooltip>
                 );
               })}
+              {displayedCount < searchResults.length && (
+                <div className="text-center py-4 text-gray-500 text-sm">
+                  <div className="animate-pulse">Loading more tools...</div>
+                  <div className="text-xs mt-1">{searchResults.length - displayedCount} more available</div>
+                </div>
+              )}
             </div>
           </div>
         )}

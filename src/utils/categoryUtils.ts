@@ -1,6 +1,7 @@
 
 import { Tool } from "@/types/tools";
 import { consolidateTools } from "./categoryConsolidation";
+import { getMainCategoryCounts, getSubcategoriesForMainCategory, mainCategories } from "./mainCategoryMapping";
 
 // Helper function to get categories with counts
 export const getCategoriesWithCounts = (allTools: Tool[]): Record<string, number> => {
@@ -21,6 +22,12 @@ export const getCategoriesWithCounts = (allTools: Tool[]): Record<string, number
   return categoryCounts;
 };
 
+// NEW: Helper function to get main categories with counts
+export const getMainCategoriesWithCounts = (allTools: Tool[]): Record<string, number> => {
+  const subcategoryCounts = getCategoriesWithCounts(allTools);
+  return getMainCategoryCounts(subcategoryCounts);
+};
+
 // Helper function to get tools by category
 export const getToolsByCategory = (allTools: Tool[], category: string): Tool[] => {
   // Apply consolidation to ensure consistent categorization
@@ -33,6 +40,24 @@ export const getToolsByCategory = (allTools: Tool[], category: string): Tool[] =
   console.log(`Filtering for category: "${category}"`);
   console.log(`Found ${filteredTools.length} tools in this category`);
   console.log('Tools found:', filteredTools.map(tool => tool.title));
+  
+  return filteredTools;
+};
+
+// NEW: Helper function to get tools by main category
+export const getToolsByMainCategory = (allTools: Tool[], mainCategoryName: string): Tool[] => {
+  const subcategories = getSubcategoriesForMainCategory(mainCategoryName);
+  const consolidatedTools = consolidateTools(allTools);
+  
+  const filteredTools = consolidatedTools.filter(tool => 
+    tool.category && subcategories.some(sub => 
+      sub.toLowerCase() === tool.category!.toLowerCase()
+    )
+  );
+  
+  console.log(`Filtering for main category: "${mainCategoryName}"`);
+  console.log(`Subcategories included: ${subcategories.join(', ')}`);
+  console.log(`Found ${filteredTools.length} tools in this main category`);
   
   return filteredTools;
 };
