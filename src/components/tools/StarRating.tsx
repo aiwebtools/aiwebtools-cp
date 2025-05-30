@@ -14,8 +14,8 @@ const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true, toolId }
   const [hoveredRating, setHoveredRating] = useState(0);
   const [userRating, setUserRating] = useState(0);
   const [hasVoted, setHasVoted] = useState(false);
-  const [currentRating, setCurrentRating] = useState(rating);
-  const [currentVoteCount, setCurrentVoteCount] = useState(totalVotes);
+  const [currentRating, setCurrentRating] = useState(rating || 4.1); // Provide default fallback
+  const [currentVoteCount, setCurrentVoteCount] = useState(totalVotes || 1000); // Provide default fallback
 
   // Check if user has already voted for this tool
   useEffect(() => {
@@ -27,9 +27,17 @@ const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true, toolId }
         setHasVoted(true);
         setCurrentRating(toolVoteData.currentRating);
         setCurrentVoteCount(toolVoteData.voteCount);
+      } else {
+        // Initialize with provided props if no local data exists
+        setCurrentRating(rating || 4.1);
+        setCurrentVoteCount(totalVotes || 1000);
       }
+    } else {
+      // Initialize with provided props when no toolId
+      setCurrentRating(rating || 4.1);
+      setCurrentVoteCount(totalVotes || 1000);
     }
-  }, [toolId]);
+  }, [toolId, rating, totalVotes]);
 
   const handleRate = (newRating: number) => {
     if (hasVoted || !toolId) return;
@@ -59,8 +67,9 @@ const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true, toolId }
     onRate?.(newRating);
   };
 
-  const displayRating = currentRating;
-  const displayVotes = currentVoteCount;
+  // Ensure displayRating is always a valid number
+  const displayRating = currentRating || rating || 4.1;
+  const displayVotes = currentVoteCount || totalVotes || 1000;
 
   return (
     <div className="flex items-center space-x-2">
