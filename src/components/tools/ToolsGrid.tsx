@@ -8,7 +8,7 @@ import { getContextAwareSimilarTools, shouldShowSimilarTools } from "@/utils/con
 import { createDeduplicatedToolsList } from "@/utils/toolDeduplication";
 import { allTools } from "@/data/toolsData";
 import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
-import { useMemo } from "react";
+import { useMemo, memo } from "react";
 
 interface ToolsGridProps {
   tools: Tool[];
@@ -21,7 +21,7 @@ interface ToolsGridProps {
   onCategoryChange?: (category: string) => void;
 }
 
-const ToolsGrid = ({ 
+const ToolsGrid = memo(({ 
   tools, 
   displayedCount, 
   selectedCategory, 
@@ -31,21 +31,37 @@ const ToolsGrid = ({
   isLoading = false,
   onCategoryChange
 }: ToolsGridProps) => {
-  // Apply deduplication to prevent frequent repeats
+  // Memoize expensive computations for performance
   const deduplicatedTools = useMemo(() => {
     return createDeduplicatedToolsList(tools, 8);
   }, [tools]);
 
-  const displayTools = deduplicatedTools.slice(0, displayedCount);
-  const shouldShowSimilar = shouldShowSimilarTools(deduplicatedTools.length);
-  const similarTools = shouldShowSimilar ? getContextAwareSimilarTools(deduplicatedTools, searchTerm, selectedCategory) : [];
-  const hasMoreTools = displayedCount < deduplicatedTools.length;
+  const displayTools = useMemo(() => {
+    return deduplicatedTools.slice(0, displayedCount);
+  }, [deduplicatedTools, displayedCount]);
 
-  // Get standardized categories for the "See More Categories" button
-  const categoriesWithCounts = getStandardizedCategoriesWithCounts();
-  const shouldShowCategoriesButton = deduplicatedTools.length < 15 && !selectedCategory && !searchTerm;
+  const shouldShowSimilar = useMemo(() => {
+    return shouldShowSimilarTools(deduplicatedTools.length);
+  }, [deduplicatedTools.length]);
 
-  const getSectionTitle = () => {
+  const similarTools = useMemo(() => {
+    return shouldShowSimilar ? getContextAwareSimilarTools(deduplicatedTools, searchTerm, selectedCategory) : [];
+  }, [shouldShowSimilar, deduplicatedTools, searchTerm, selectedCategory]);
+
+  const hasMoreTools = useMemo(() => {
+    return displayedCount < deduplicatedTools.length;
+  }, [displayedCount, deduplicatedTools.length]);
+
+  // Memoize categories for performance
+  const categoriesWithCounts = useMemo(() => {
+    return getStandardizedCategoriesWithCounts();
+  }, []);
+
+  const shouldShowCategoriesButton = useMemo(() => {
+    return deduplicatedTools.length < 15 && !selectedCategory && !searchTerm;
+  }, [deduplicatedTools.length, selectedCategory, searchTerm]);
+
+  const getSectionTitle = useMemo(() => {
     if (selectedCategory) {
       return <>🎯 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{selectedCategory}</span></>;
     }
@@ -53,44 +69,46 @@ const ToolsGrid = ({
       return <>🔍 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Search Results</span></>;
     }
     return <>🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">COMPLETE AI TOOL COLLECTION</span></>;
-  };
+  }, [selectedCategory, searchTerm]);
 
   if (displayTools.length === 0) return null;
 
   return (
     <>
-      {/* Only show title for category/search results, not for main page */}
+      {/* Optimized title rendering */}
       {(selectedCategory || searchTerm) && (
         <div className="text-center mb-8 sm:mb-12 px-4">
-          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
-            {getSectionTitle()}
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow will-change-auto">
+            {getSectionTitle}
           </h3>
         </div>
       )}
 
-      {/* Show title for main page only when not at the beginning */}
       {(!selectedCategory && !searchTerm && displayedCount > 12) && (
         <div className="text-center mb-8 sm:mb-12 px-4">
-          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
-            {getSectionTitle()}
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow will-change-auto">
+            {getSectionTitle}
           </h3>
         </div>
       )}
 
-      {/* Optimized grid with virtual scrolling hints for better performance */}
+      {/* Heavily optimized grid with performance hints */}
       <div 
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-0" 
         style={{ 
           contentVisibility: 'auto',
-          containIntrinsicSize: '300px' // Helps with layout stability
+          containIntrinsicSize: '300px',
+          contain: 'layout style paint'
         }}
       >
         {displayTools.map((tool, index) => (
-          <ToolCard key={`${tool.title}-${index}`} tool={tool} />
+          <ToolCard 
+            key={`${tool.title}-${index}`} 
+            tool={tool}
+          />
         ))}
       </div>
 
-      {/* Show context-aware similar tools recommendation */}
       <SimilarToolsRecommendation 
         similarTools={similarTools}
         originalCount={deduplicatedTools.length}
@@ -98,7 +116,6 @@ const ToolsGrid = ({
         selectedCategory={selectedCategory}
       />
 
-      {/* Show "See More Categories" button when results are limited and not filtered */}
       {shouldShowCategoriesButton && onCategoryChange && (
         <SeeMoreCategoriesButton 
           categoriesWithCounts={categoriesWithCounts}
@@ -106,17 +123,16 @@ const ToolsGrid = ({
         />
       )}
 
-      {/* Improved loading state - only show when actually loading more tools */}
+      {/* Optimized loading state */}
       {hasInfiniteScroll && isLoading && hasMoreTools && (
         <div className="text-center mt-8 py-8">
           <div className="flex items-center justify-center space-x-3">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-500"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-500 will-change-[transform]"></div>
             <span className="text-cyan-200 text-lg">Loading more amazing tools...</span>
           </div>
         </div>
       )}
 
-      {/* Show completion message only when all tools are displayed and not loading */}
       {hasInfiniteScroll && !hasMoreTools && !isLoading && deduplicatedTools.length > 15 && (
         <div className="text-center mt-12 py-8 text-cyan-300">
           <div className="text-2xl mb-2">🎉</div>
@@ -129,7 +145,6 @@ const ToolsGrid = ({
         </div>
       )}
 
-      {/* Fallback load more button for non-infinite scroll scenarios */}
       {!hasInfiniteScroll && (
         <LoadMoreButton 
           displayedCount={displayedCount}
@@ -139,6 +154,8 @@ const ToolsGrid = ({
       )}
     </>
   );
-};
+});
+
+ToolsGrid.displayName = 'ToolsGrid';
 
 export default ToolsGrid;
