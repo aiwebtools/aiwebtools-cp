@@ -15,7 +15,11 @@ import {
   Globe,
   Brain,
   Monitor,
-  Clapperboard
+  Clapperboard,
+  Users,
+  Lightbulb,
+  Star,
+  Clock
 } from "lucide-react";
 
 export const videoTools: Tool[] = [
@@ -163,8 +167,6 @@ export const videoTools: Tool[] = [
     rating: 4.4,
     totalVotes: 2876
   },
-  
-  // NEW AI VIDEO TOOLS (10 additions)
   {
     icon: Film,
     title: "Colossyan Creator",
@@ -284,5 +286,125 @@ export const videoTools: Tool[] = [
     category: "Video Tools",
     rating: 4.2,
     totalVotes: 2234
+  },
+  {
+    icon: Users,
+    title: "Vyond",
+    description: "Professional animated video creation platform with AI-powered features. Create engaging business videos, training content, and presentations with customizable characters and scenes.",
+    emoji: "🎪",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.vyond.com/",
+    tags: ["animated videos", "business content", "training", "presentations", "customizable characters"],
+    category: "Video Tools",
+    rating: 4.4,
+    totalVotes: 3567
+  },
+  {
+    icon: Brain,
+    title: "Rephrase.ai",
+    description: "AI-powered video generation platform for creating personalized videos at scale. Generate thousands of videos using AI avatars and natural language processing.",
+    emoji: "🔄",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.rephrase.ai/",
+    tags: ["personalized videos", "scale generation", "AI avatars", "natural language", "automated"],
+    category: "Video Tools",
+    rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: Lightbulb,
+    title: "Lumen5",
+    description: "AI-powered video creation platform that transforms blog posts and articles into engaging videos. Automated video production with smart content analysis.",
+    emoji: "💡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://lumen5.com/",
+    tags: ["blog to video", "content transformation", "automated production", "smart analysis", "social media"],
+    category: "Video Tools",
+    rating: 4.2,
+    totalVotes: 4123
+  },
+  {
+    icon: Star,
+    title: "Steve AI",
+    description: "AI video creation platform that converts text to video with animations. Create live-action and animated videos for marketing, education, and social media.",
+    emoji: "⭐",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://www.steve.ai/",
+    tags: ["text to video", "animations", "live-action", "marketing", "education", "social media"],
+    category: "Video Tools",
+    rating: 4.1,
+    totalVotes: 2987
+  },
+  {
+    icon: Clock,
+    title: "Vidyo.ai",
+    description: "AI-powered video editing tool that automatically creates short clips from long-form content. Perfect for creating social media content from podcasts, webinars, and interviews.",
+    emoji: "⏱️",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://vidyo.ai/",
+    tags: ["automatic clipping", "long-form to short", "social media", "podcasts", "webinars", "interviews"],
+    category: "Video Tools",
+    rating: 4.3,
+    totalVotes: 3234
+  },
+  {
+    icon: Film,
+    title: "Wideo",
+    description: "Online video creation platform with AI-assisted editing. Create professional animated videos, presentations, and marketing content with drag-and-drop simplicity.",
+    emoji: "🎬",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://wideo.co/",
+    tags: ["animated videos", "presentations", "marketing content", "drag-and-drop", "professional"],
+    category: "Video Tools",
+    rating: 4.0,
+    totalVotes: 2543
+  },
+  {
+    icon: Video,
+    title: "Visla",
+    description: "AI video creation platform for teams and businesses. Generate videos from text, record with teleprompter, and edit with AI-powered tools for professional content.",
+    emoji: "📺",
+    color: "from-indigo-500 to-cyan-600",
+    directUrl: "https://www.visla.us/",
+    tags: ["team collaboration", "business videos", "teleprompter", "professional content", "AI editing"],
+    category: "Video Tools",
+    rating: 4.2,
+    totalVotes: 2876
+  },
+  {
+    icon: Camera,
+    title: "Tavus",
+    description: "AI video generation platform for creating personalized videos at scale. Generate thousands of customized videos with AI voice cloning and avatar technology.",
+    emoji: "📷",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://www.tavus.io/",
+    tags: ["personalized videos", "scale generation", "voice cloning", "avatar technology", "customized"],
+    category: "Video Tools",
+    rating: 4.4,
+    totalVotes: 2234
+  },
+  {
+    icon: Edit,
+    title: "Munch",
+    description: "AI-powered video repurposing tool that extracts the most engaging moments from long-form content. Automatically creates short clips optimized for social platforms.",
+    emoji: "🍽️",
+    color: "from-orange-500 to-yellow-600",
+    directUrl: "https://www.getmunch.com/",
+    tags: ["video repurposing", "engaging moments", "short clips", "social optimization", "automatic"],
+    category: "Video Tools",
+    rating: 4.1,
+    totalVotes: 1987
+  },
+  {
+    icon: Wand2,
+    title: "Vadoo AI",
+    description: "AI video editing platform that automatically adds captions, creates highlights, and optimizes content for social media. Transform raw footage into polished videos instantly.",
+    emoji: "🪄",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://vadoo.tv/",
+    tags: ["automatic captions", "highlights creation", "social optimization", "raw footage", "instant editing"],
+    category: "Video Tools",
+    rating: 4.2,
+    totalVotes: 2654
   }
 ];
