@@ -1,4 +1,3 @@
-
 import { useState, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -177,28 +176,44 @@ const CategoryPageSelection = () => {
         </Button>
       </div>
 
-      {/* Categories Grid - Enhanced for better text display */}
+      {/* Categories Grid - Enhanced with unique icons and colors */}
       <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-3 sm:gap-4 mb-12 sm:mb-16">
         {sortedCategories.map(([category, count]) => {
           const categoryStyle = getCategoryStyle(category);
           const isSelected = category === selectedCategory;
+          const IconComponent = categoryStyle.icon;
           
           return (
             <Button
               key={category}
               onClick={() => handleCategorySelect(category)}
               variant="outline"
-              className={`group relative overflow-hidden transition-all duration-300 transform hover:scale-105 h-auto py-4 sm:py-5 px-3 sm:px-4 text-xs sm:text-sm min-h-[120px] sm:min-h-[140px] ${
+              className={`group relative overflow-hidden transition-all duration-300 transform hover:scale-105 h-auto py-4 sm:py-5 px-3 sm:px-4 text-xs sm:text-sm min-h-[140px] sm:min-h-[160px] ${
                 isSelected 
                   ? `${categoryStyle.colors.selected} text-white shadow-lg border-white/30 scale-105` 
                   : `${categoryStyle.colors.bg} ${categoryStyle.colors.border} text-gray-200 ${categoryStyle.colors.hover} hover:text-white hover:shadow-md`
               }`}
             >
               <div className="flex flex-col items-center justify-center space-y-2 sm:space-y-3 w-full h-full">
-                <span className="text-2xl sm:text-3xl flex-shrink-0">{categoryStyle.emoji}</span>
-                <span className="relative z-10 text-center leading-tight font-medium text-xs sm:text-sm hyphens-auto break-words max-w-full px-1">
+                {/* Icon Section - Both Emoji and Lucide Icon */}
+                <div className="flex items-center justify-center space-x-2 mb-1">
+                  <span className="text-xl sm:text-2xl flex-shrink-0">{categoryStyle.emoji}</span>
+                  <IconComponent 
+                    size={20} 
+                    className={`flex-shrink-0 ${
+                      isSelected 
+                        ? "text-white" 
+                        : "text-gray-300 group-hover:text-white"
+                    }`} 
+                  />
+                </div>
+                
+                {/* Category Title */}
+                <span className="relative z-10 text-center leading-tight font-medium text-xs sm:text-sm break-words max-w-full px-1 hyphens-auto">
                   {category}
                 </span>
+                
+                {/* Tool Count Badge */}
                 <Badge 
                   variant="secondary" 
                   className={`text-xs relative z-10 flex-shrink-0 ${
