@@ -34,13 +34,11 @@ const Index = () => {
     }
   }, []);
 
-  // Handle search and category navigation from URL parameters
+  // Handle search from URL parameters
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const searchParam = urlParams.get('search');
-    const mainCategoryParam = urlParams.get('mainCategory');
-    
-    if (searchParam || mainCategoryParam) {
+    if (searchParam) {
       const element = document.getElementById('categories-section');
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
