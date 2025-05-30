@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Brain, 
@@ -16,6 +15,19 @@ import {
 } from "lucide-react";
 
 export const specializedAITools: Tool[] = [
+  {
+    icon: Globe,
+    title: "Tattoo Designer GPT",
+    description: "TattooGPT is your all-in-one tattoo and piercing assistant, designed to provide expert guidance in every aspect of body art and modification. From creating unique, high-quality tattoo designs tailored to personal styles and symbolism to assisting tattoo artists and shop owners with business planning, marketing, and compliance, TattooGPT ensures professionalism and precision. It also offers expert advice on piercing procedures, hygiene protocols, jewelry selection, and aftercare to promote safe healing. Whether for clients seeking inspiration, artists refining their craft, or entrepreneurs launching a studio, TattooGPT delivers comprehensive support to bring tattoo and piercing visions to life.",
+    emoji: "🎨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://tattoogpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=3dtGbNqXdPY",
+    tags: ["tattoo design", "body art", "piercing guidance", "tattoo business", "artistic creation"],
+    category: "Specialized AI Tools",
+    rating: 4.8,
+    totalVotes: 4234
+  },
   {
     icon: Brain,
     title: "OpenAI API",

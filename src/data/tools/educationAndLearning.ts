@@ -17,6 +17,19 @@ import {
 
 export const educationAndLearning: Tool[] = [
   {
+    icon: School,
+    title: "Home-Schooling Assistant GPT",
+    description: "Presented by AIWEBTOOLS.AI, Home School GPT is your all-in-compassing AI-powered assistant designed to empower parents in their homeschooling journey. It provides precise, state-specific legal guidance and a wealth of educational resources, ensuring compliance and enhancing the homeschooling experience. With Home School GPT, you have a trusted partner to help create a successful and nurturing learning environment for your child.",
+    emoji: "🏠",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://homeschoolgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-parent-teaching-their-ki-0096e43.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["homeschooling", "educational resources", "legal guidance", "parent support", "learning environment"],
+    category: "Education & Learning",
+    rating: 4.8,
+    totalVotes: 4234
+  },
+  {
     icon: PenTool,
     title: "Quiz Maker Ai",
     description: "This GPT is ideal for adding quizzes and tests to your courses. Designed to work seamlessly with Course Maker GPT and College Degree GPT, you can easily integrate it into your course whenever you're ready for a quiz by typing \"@\" followed by the GPT's name. Make sure to use it at least once beforehand to have it in your GPT call memory. Additionally, teachers can utilize this GPT to create tests and quizzes for their students.",

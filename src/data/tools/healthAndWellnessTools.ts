@@ -1,31 +1,175 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Heart, 
-  Stethoscope, 
   Brain, 
   Activity, 
-  Shield, 
-  Zap,
-  Apple,
+  Dumbbell, 
+  Apple, 
   Moon,
-  Dumbbell,
-  Smile
+  Smile,
+  Timer,
+  Target,
+  Calendar,
+  Leaf,
+  Sun
 } from "lucide-react";
 
 export const healthAndWellnessTools: Tool[] = [
   {
+    icon: Brain,
+    title: "Mental Wellness GPT (CBT)",
+    description: "Mental Wellness GPT is a virtual chat tool for emotional support and mental well-being, offering empathetic guidance rooted in cognitive behavioral therapy (CBT) principles. Designed to help navigate stress, anxiety, and life's challenges, I provide practical tools, coping strategies, and a safe, judgment-free space for personal growth. While not a licensed therapist, I aim to complement your journey toward resilience and self-care with meaningful insights and support. Disclaimer: These AI-driven tools are designed for creative and emotional support purposes only and should not be considered as replacements for professional mental health care, therapy, or diagnosis.",
+    emoji: "🧠",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377362789097803786/image.png?ex=6838b08f&is=68375f0f&hm=f63e1ae446523dd9eff4aa0f95166aa8a5e6119c506b44ab1656322ea4ca47b7&=&format=webp&quality=lossless&width=2646&height=1392",
+    tags: ["mental wellness", "CBT therapy", "emotional support", "stress management", "anxiety relief"],
+    category: "Health & Wellness Tools",
+    rating: 4.8,
+    totalVotes: 4234
+  },
+  {
     icon: Heart,
-    title: "Petcare GPT",
-    description: "Comprehensive pet care assistance with veterinary guidance, health monitoring, nutrition advice, and behavioral training tips for all types of pets.",
-    emoji: "🐾",
+    title: "Spiritual Guidance AI",
+    description: "Personalized spiritual guidance and meditation support for various spiritual traditions and practices.",
+    emoji: "💖",
     color: "from-pink-500 to-purple-600",
-    directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=ElAfvB0yLEI",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298535833407488/vet.webp?ex=683874b7&is=68372337&hm=6274e617c1d1c74e075cc96681923fe4888b86be9ca89183217ec758bd4947af&",
-    tags: ["pet care", "veterinary advice", "animal health", "pet nutrition", "pet training"],
-    category: "Health & Wellness",
+    directUrl: "https://example.com/spiritualguidance",
+    tags: ["spiritual guidance", "meditation", "mindfulness", "personal growth", "wisdom"],
+    category: "Health & Wellness Tools",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
+    icon: Dumbbell,
+    title: "AI Personal Trainer",
+    description: "Customized workout plans and fitness coaching based on your goals, fitness level, and preferences.",
+    emoji: "🏋️‍♀️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://example.com/aipersonaltrainer",
+    tags: ["personal trainer", "workout plans", "fitness coaching", "exercise", "health"],
+    category: "Health & Wellness Tools",
     rating: 4.6,
-    totalVotes: 3245
+    totalVotes: 3789
+  },
+  {
+    icon: Heart,
+    title: "Fitness Tracker Pro",
+    description: "Comprehensive fitness tracking with AI-powered workout recommendations, progress monitoring, and health insights.",
+    emoji: "💪",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://example.com/fitnesstracker",
+    tags: ["fitness tracking", "workout plans", "health monitoring", "exercise", "wellness"],
+    category: "Health & Wellness Tools",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
+    icon: Apple,
+    title: "Nutrition Planner",
+    description: "AI-powered meal planning and nutrition tracking with personalized dietary recommendations and calorie counting.",
+    emoji: "🍎",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://example.com/nutritionplanner",
+    tags: ["nutrition tracking", "meal planning", "diet recommendations", "calorie counting", "healthy eating"],
+    category: "Health & Wellness Tools",
+    rating: 4.4,
+    totalVotes: 2987
+  },
+  {
+    icon: Moon,
+    title: "Sleep Optimizer",
+    description: "Smart sleep tracking and optimization tool with personalized sleep schedules and rest quality analysis.",
+    emoji: "🌙",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://example.com/sleepoptimizer",
+    tags: ["sleep tracking", "sleep optimization", "rest quality", "sleep schedules", "wellness"],
+    category: "Health & Wellness Tools",
+    rating: 4.3,
+    totalVotes: 2654
+  },
+  {
+    icon: Activity,
+    title: "Health Metrics Dashboard",
+    description: "Comprehensive health dashboard with vital signs monitoring, health trends, and AI-powered health insights.",
+    emoji: "📊",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://example.com/healthmetrics",
+    tags: ["health monitoring", "vital signs", "health trends", "medical insights", "wellness tracking"],
+    category: "Health & Wellness Tools",
+    rating: 4.6,
+    totalVotes: 3789
+  },
+  {
+    icon: Smile,
+    title: "Mindfulness Companion",
+    description: "AI-guided meditation and mindfulness practices with personalized sessions and progress tracking.",
+    emoji: "😊",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://example.com/mindfulness",
+    tags: ["meditation", "mindfulness", "mental health", "stress relief", "wellness"],
+    category: "Health & Wellness Tools",
+    rating: 4.7,
+    totalVotes: 4123
+  },
+  {
+    icon: Timer,
+    title: "Habit Builder",
+    description: "Smart habit tracking and formation tool with AI-powered coaching and behavioral insights.",
+    emoji: "⏰",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://example.com/habitbuilder",
+    tags: ["habit tracking", "behavior change", "personal development", "goal setting", "wellness"],
+    category: "Health & Wellness Tools",
+    rating: 4.2,
+    totalVotes: 2876
+  },
+  {
+    icon: Target,
+    title: "Wellness Goals Tracker",
+    description: "Comprehensive wellness goal setting and tracking with AI-powered recommendations and progress analytics.",
+    emoji: "🎯",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://example.com/wellnessgoals",
+    tags: ["goal tracking", "wellness planning", "progress monitoring", "health goals", "personal wellness"],
+    category: "Health & Wellness Tools",
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: Calendar,
+    title: "Health Appointment Manager",
+    description: "Smart healthcare appointment scheduling and management with health reminders and medical history tracking.",
+    emoji: "📅",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://example.com/healthappointments",
+    tags: ["appointment scheduling", "health reminders", "medical management", "healthcare", "wellness"],
+    category: "Health & Wellness Tools",
+    rating: 4.1,
+    totalVotes: 2543
+  },
+  {
+    icon: Leaf,
+    title: "Stress Management Coach",
+    description: "AI-powered stress management with personalized coping strategies, relaxation techniques, and wellness coaching.",
+    emoji: "🍃",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://example.com/stressmanagement",
+    tags: ["stress management", "relaxation techniques", "wellness coaching", "mental health", "coping strategies"],
+    category: "Health & Wellness Tools",
+    rating: 4.5,
+    totalVotes: 3567
+  },
+  {
+    icon: Sun,
+    title: "Wellness Insights Analytics",
+    description: "Advanced health and wellness analytics with AI-powered insights, trends analysis, and personalized recommendations.",
+    emoji: "☀️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://example.com/wellnessinsights",
+    tags: ["wellness analytics", "health insights", "trends analysis", "personalized recommendations", "health data"],
+    category: "Health & Wellness Tools",
+    rating: 4.6,
+    totalVotes: 3890
   }
 ];
