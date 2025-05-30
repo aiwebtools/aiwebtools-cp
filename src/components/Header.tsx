@@ -1,6 +1,6 @@
 
 import Logo from "./header/Logo";
-import EnhancedNavigation from "./header/EnhancedNavigation";
+import Navigation from "./header/Navigation";
 import MobileMenu from "./header/MobileMenu";
 import TabletMenu from "./header/TabletMenu";
 import GlobalSearchBar from "./GlobalSearchBar";
@@ -31,7 +31,7 @@ const Header = () => {
             <GlobalSearchBar />
           </div>
           
-          <EnhancedNavigation />
+          <Navigation />
           <TabletMenu />
         </div>
       </div>
