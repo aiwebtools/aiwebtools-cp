@@ -16,11 +16,24 @@ import {
 
 export const aiResearchTools: Tool[] = [
   {
+    icon: BarChart3,
+    title: "Data Research Analysis Report GPT",
+    description: "Data Analysis Report AI is a revolutionary tool that transforms complex datasets into actionable insights with unparalleled precision. Leveraging advanced statistical methods, trend identification, and predictive modeling, it excels in delivering accurate and detailed analyses. With its robust capabilities in generating professional visualizations and customizable reports, it empowers users to make informed, strategic decisions effortlessly. Currently #8 in the world!",
+    emoji: "📊",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://dataanalysisandreportai.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=idxjOwUAD_I",
+    tags: ["data analysis", "research reports", "statistical modeling", "visualizations", "strategic insights"],
+    category: "AI Research Tools",
+    rating: 4.8,
+    totalVotes: 4567
+  },
+  {
     icon: TrendingUp,
     title: "Predictive Credit Score Checker GPT",
     description: "Predictive Credit Score Checker GPT is an AI tool for estimating creditworthiness based on specific addresses. Ideal for real estate, finance, and lending, it provides quick, data-backed credit score estimates by analyzing local demographics and trends. Use it to assess prospects or evaluate risk. Note that predictions are estimates to guide decision-making, not guarantees. Fast, efficient, and insightful—this AI helps you target leads with confidence!",
-    emoji: "📊",
-    color: "from-blue-500 to-purple-600",
+    emoji: "💳",
+    color: "from-green-500 to-blue-600",
     directUrl: "https://predictivecreditscoregpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-screenshot-of-a-web-app-with-the-text-predic.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     tags: ["credit scoring", "risk assessment", "demographic analysis", "financial prediction", "real estate"],

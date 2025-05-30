@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Briefcase, 
@@ -12,10 +13,24 @@ import {
   Target,
   Users,
   Lightbulb,
-  Rocket
+  Rocket,
+  FileText
 } from "lucide-react";
 
 export const businessTools: Tool[] = [
+  {
+    icon: FileText,
+    title: "The Resume & Job Finder Ai Suite",
+    description: "The Resume & Job Finder AI Suite by aiwebtools.ai combines Job Finder GPT, Resume Enhancer GPT, and Resume Specialist GPT to elevate your entire job search experience. Job Finder GPT uncovers tailored opportunities, Resume Enhancer GPT sharpens your resume with impactful language, and Resume Specialist GPT not only customizes your resume for specific roles but also serves as a job coach—offering expert guidance and proven job-seeking strategies. Together, they help you apply with confidence and land the role you've been aiming for.",
+    emoji: "📄",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://resumeandjobsgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-happy-man-with-a-job-offer-_n6N-k.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["resume optimization", "job search", "career coaching", "job opportunities", "employment strategies"],
+    category: "Business Tools",
+    rating: 4.8,
+    totalVotes: 4234
+  },
   {
     icon: Rocket,
     title: "🚀 Startup Validator GPT",
