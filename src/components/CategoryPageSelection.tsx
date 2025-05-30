@@ -177,8 +177,8 @@ const CategoryPageSelection = () => {
         </Button>
       </div>
 
-      {/* Categories Grid - Fully Responsive */}
-      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2 sm:gap-4 mb-12 sm:mb-16">
+      {/* Categories Grid - Enhanced for better text display */}
+      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-3 sm:gap-4 mb-12 sm:mb-16">
         {sortedCategories.map(([category, count]) => {
           const categoryStyle = getCategoryStyle(category);
           const isSelected = category === selectedCategory;
@@ -188,18 +188,20 @@ const CategoryPageSelection = () => {
               key={category}
               onClick={() => handleCategorySelect(category)}
               variant="outline"
-              className={`group relative overflow-hidden transition-all duration-300 transform hover:scale-105 h-auto py-3 sm:py-4 px-2 sm:px-4 text-xs sm:text-sm ${
+              className={`group relative overflow-hidden transition-all duration-300 transform hover:scale-105 h-auto py-4 sm:py-5 px-3 sm:px-4 text-xs sm:text-sm min-h-[120px] sm:min-h-[140px] ${
                 isSelected 
                   ? `${categoryStyle.colors.selected} text-white shadow-lg border-white/30 scale-105` 
                   : `${categoryStyle.colors.bg} ${categoryStyle.colors.border} text-gray-200 ${categoryStyle.colors.hover} hover:text-white hover:shadow-md`
               }`}
             >
-              <div className="flex flex-col items-center space-y-1 sm:space-y-2 w-full">
-                <span className="text-lg sm:text-2xl">{categoryStyle.emoji}</span>
-                <span className="relative z-10 text-center leading-tight font-medium text-xs sm:text-sm line-clamp-2">{category}</span>
+              <div className="flex flex-col items-center justify-center space-y-2 sm:space-y-3 w-full h-full">
+                <span className="text-2xl sm:text-3xl flex-shrink-0">{categoryStyle.emoji}</span>
+                <span className="relative z-10 text-center leading-tight font-medium text-xs sm:text-sm hyphens-auto break-words max-w-full px-1">
+                  {category}
+                </span>
                 <Badge 
                   variant="secondary" 
-                  className={`text-xs relative z-10 ${
+                  className={`text-xs relative z-10 flex-shrink-0 ${
                     isSelected
                       ? "bg-white/25 text-white border-white/30" 
                       : "bg-black/30 text-gray-300 border-gray-500/40 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30"
