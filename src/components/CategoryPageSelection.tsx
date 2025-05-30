@@ -18,15 +18,33 @@ const CategoryPageSelection = () => {
     navigate(`/main-category/${encodeURIComponent(mainCategoryName)}`);
   };
 
+  const handleViewAllToolsClick = () => {
+    navigate('/all-tools');
+  };
+
   return (
     <section className="py-16 px-4 relative">
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
           🎯 Choose Your AI Tool Category
         </h2>
-        <p className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto">
+        <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
           Select a category to explore an endless stream of AI tools tailored to your needs
         </p>
+
+        {/* View All AI Tools Button */}
+        <div className="mb-12">
+          <Button
+            onClick={handleViewAllToolsClick}
+            size="lg"
+            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
+          >
+            🤖 View All AI Tools ({allTools.length}+)
+          </Button>
+          <p className="text-sm text-gray-400 mt-2">
+            Browse our complete database with infinite scroll
+          </p>
+        </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {mainCategories.map((mainCat) => {
@@ -38,14 +56,16 @@ const CategoryPageSelection = () => {
                 key={mainCat.name}
                 onClick={() => handleMainCategoryClick(mainCat.name)}
                 variant="outline"
-                className="group relative overflow-hidden transition-all duration-300 transform hover:scale-105 border h-auto py-6 px-4 bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-gray-600/50 text-gray-200 hover:from-cyan-600/20 hover:to-blue-600/20 hover:text-white hover:shadow-lg hover:border-cyan-400/50"
+                className="group relative overflow-hidden transition-all duration-300 transform hover:scale-105 border h-auto py-4 px-3 bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-gray-600/50 text-gray-200 hover:from-cyan-600/20 hover:to-blue-600/20 hover:text-white hover:shadow-lg hover:border-cyan-400/50"
               >
-                <div className="flex flex-col items-center space-y-3 w-full">
-                  <span className="text-2xl">{mainCat.emoji}</span>
-                  <span className="relative z-10 text-center leading-tight font-bold text-sm">{mainCat.name}</span>
+                <div className="flex flex-col items-center space-y-2 w-full min-h-[120px] justify-center">
+                  <span className="text-2xl mb-1">{mainCat.emoji}</span>
+                  <span className="relative z-10 text-center leading-tight font-bold text-xs px-1 line-clamp-2 break-words">
+                    {mainCat.name}
+                  </span>
                   <Badge 
                     variant="secondary" 
-                    className="text-xs relative z-10 bg-black/30 text-gray-300 border-gray-500/40 group-hover:bg-cyan-500/20 group-hover:text-white group-hover:border-cyan-400/30"
+                    className="text-xs relative z-10 bg-black/30 text-gray-300 border-gray-500/40 group-hover:bg-cyan-500/20 group-hover:text-white group-hover:border-cyan-400/30 mt-auto"
                   >
                     {count} tools
                   </Badge>
