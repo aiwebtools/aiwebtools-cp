@@ -9,20 +9,28 @@ import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { getCurrentToolCount } from "@/utils/toolCounter";
 
 const GlobalSearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [displayedCount, setDisplayedCount] = useState(30); // Start with 30 results
+  const [displayedCount, setDisplayedCount] = useState(30);
   const [isOpen, setIsOpen] = useState(false);
+  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const searchRef = useRef(null);
   const navigate = useNavigate();
 
+  // Get accurate tool counts on component mount
+  useEffect(() => {
+    const stats = getCurrentToolCount();
+    setToolStats(stats);
+  }, []);
+
   useEffect(() => {
     if (searchTerm.trim()) {
-      const results = searchTools(allTools, searchTerm); // Get ALL results
+      const results = searchTools(allTools, searchTerm);
       setSearchResults(results);
-      setDisplayedCount(30); // Reset display count
+      setDisplayedCount(30);
       setIsOpen(true);
     } else {
       setSearchResults([]);
@@ -68,7 +76,6 @@ const GlobalSearchBar = () => {
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
-    // Load more when user scrolls near the bottom
     if (scrollHeight - scrollTop <= clientHeight + 50 && displayedCount < searchResults.length) {
       setDisplayedCount(prev => Math.min(prev + 20, searchResults.length));
     }
@@ -83,7 +90,7 @@ const GlobalSearchBar = () => {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           <Input
             type="text"
-            placeholder="Search 700+ AI tools..."
+            placeholder={`Search ${toolStats.total}+ AI tools...`}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 pr-10 bg-gray-900/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500"
