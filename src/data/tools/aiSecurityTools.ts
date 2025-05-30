@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Shield, 
@@ -51,7 +52,7 @@ export const aiSecurityTools: Tool[] = [
     totalVotes: 1654
   },
   {
-    icon: Scan,
+    icon: Search,
     title: "DeepCode (Snyk Code)",
     description: "AI code review tool that analyzes code for security vulnerabilities and quality issues using deep learning.",
     emoji: "🔍",
@@ -63,7 +64,7 @@ export const aiSecurityTools: Tool[] = [
     totalVotes: 1432
   },
   {
-    icon: ShieldCheck,
+    icon: Shield,
     title: "CrowdStrike Falcon",
     description: "AI-powered endpoint protection platform with threat intelligence and automated incident response capabilities.",
     emoji: "🦅",

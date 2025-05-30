@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Film, 
@@ -41,7 +42,7 @@ export const entertainmentTools: Tool[] = [
     totalVotes: 8765
   },
   {
-    icon: Video,
+    icon: Play,
     title: "YouTube",
     description: "World's largest video sharing platform. Watch, upload, and share videos on any topic. Learn, entertain, and connect.",
     emoji: "📺",
