@@ -47,7 +47,7 @@ export const legalProfessionals: Tool[] = [
     emoji: "🗣️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://publictestimonywriter.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
+    videoUrl: "https://www.youtube.com/watch?v=lPJZg3aaVls",
     tags: ["public testimony", "legislative comments", "government proceedings", "public hearings", "official statements"],
     category: "Legal Professionals",
     rating: 4.5,
