@@ -7,16 +7,15 @@ import { Tool } from "@/types/tools";
 import { createDeduplicatedToolsList } from "@/utils/toolDeduplication";
 
 interface ToolsDisplayProps {
-  tools: Tool[];
-  displayedCount: number;
-  onLoadMore: () => void;
-  hasMoreTools: boolean;
-  categoryName: string;
-  searchTerm: string;
+  selectedCategory: string;
+  categoryTools: Tool[];
+  displayedCount?: number;
+  hasInfiniteScroll?: boolean;
+  isLoading?: boolean;
 }
 
 const ToolsDisplay = forwardRef<HTMLDivElement, ToolsDisplayProps>(
-  ({ tools, displayedCount, onLoadMore, hasMoreTools, categoryName, searchTerm }, ref) => {
+  ({ selectedCategory, categoryTools, displayedCount, hasInfiniteScroll = false, isLoading = false }, ref) => {
     const navigate = useNavigate();
 
     const goBack = () => {
@@ -25,11 +24,12 @@ const ToolsDisplay = forwardRef<HTMLDivElement, ToolsDisplayProps>(
 
     // Apply deduplication to prevent frequent repeats
     const deduplicatedTools = useMemo(() => {
-      return createDeduplicatedToolsList(tools, 8);
-    }, [tools]);
+      return createDeduplicatedToolsList(categoryTools, 8);
+    }, [categoryTools]);
 
-    // Use displayedCount to show tools
-    const toolsToDisplay = deduplicatedTools.slice(0, displayedCount);
+    // Use displayedCount if provided, otherwise show all tools
+    const toolsToDisplay = displayedCount ? deduplicatedTools.slice(0, displayedCount) : deduplicatedTools;
+    const hasMoreTools = displayedCount ? displayedCount < deduplicatedTools.length : false;
 
     return (
       <div className="mb-16 px-4 sm:px-0" ref={ref}>
@@ -37,7 +37,7 @@ const ToolsDisplay = forwardRef<HTMLDivElement, ToolsDisplayProps>(
           <>
             <div className="text-center mb-6 sm:mb-8">
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">
-                {searchTerm ? `Search Results in ${categoryName}` : `AI Tools in ${categoryName}`}
+                AI Tools in {selectedCategory}
               </h2>
               <p className="text-sm sm:text-base text-gray-400">
                 Showing {toolsToDisplay.length} of {deduplicatedTools.length} tools
@@ -55,25 +55,22 @@ const ToolsDisplay = forwardRef<HTMLDivElement, ToolsDisplayProps>(
               ))}
             </div>
 
-            {/* Load more button */}
-            {hasMoreTools && (
-              <div className="text-center mt-8">
-                <Button
-                  onClick={onLoadMore}
-                  size="lg"
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-                >
-                  Load More Tools
-                </Button>
+            {/* Improved loading state for category pages */}
+            {hasInfiniteScroll && isLoading && hasMoreTools && (
+              <div className="text-center mt-8 py-8">
+                <div className="flex items-center justify-center space-x-3">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-500"></div>
+                  <span className="text-cyan-200 text-lg">Loading more tools...</span>
+                </div>
               </div>
             )}
 
             {/* Show completion message when all tools are displayed */}
-            {!hasMoreTools && deduplicatedTools.length > 20 && (
+            {hasInfiniteScroll && !hasMoreTools && !isLoading && deduplicatedTools.length > 20 && (
               <div className="text-center mt-12 py-8 text-cyan-300">
                 <div className="text-2xl mb-2">🎉</div>
                 <div className="text-lg font-semibold mb-2">
-                  You've seen all {deduplicatedTools.length} tools in {categoryName}!
+                  You've seen all {deduplicatedTools.length} tools in {selectedCategory}!
                 </div>
                 <div className="text-sm opacity-80">
                   Try exploring other categories to discover more tools.
@@ -84,15 +81,8 @@ const ToolsDisplay = forwardRef<HTMLDivElement, ToolsDisplayProps>(
         ) : (
           <div className="text-center py-12 sm:py-16">
             <div className="text-4xl sm:text-6xl mb-4">🔍</div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2">
-              {searchTerm ? 'No Search Results' : 'No Tools Found'}
-            </h3>
-            <p className="text-sm sm:text-base text-gray-400 mb-6">
-              {searchTerm 
-                ? `No tools found for "${searchTerm}" in ${categoryName}.`
-                : `This category doesn't have any tools yet.`
-              }
-            </p>
+            <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2">No Tools Found</h3>
+            <p className="text-sm sm:text-base text-gray-400 mb-6">This category doesn't have any tools yet.</p>
             <Button 
               onClick={goBack}
               size="lg"

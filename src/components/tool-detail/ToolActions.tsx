@@ -15,8 +15,8 @@ const ToolActions = ({ tool }: ToolActionsProps) => {
     console.log('USE IT NOW button clicked for:', tool.title);
     console.log('Tool directUrl:', tool.directUrl);
     
-    // Pass the tool title to the time portal effect
-    createTimePortalEffect(tool.directUrl || '', tool.title);
+    // Always trigger the effect, even if no directUrl
+    createTimePortalEffect(tool.directUrl || '');
   };
 
   const handleSendFeedback = () => {
@@ -53,14 +53,10 @@ Thank you!`);
             size="lg"
             onClick={handleSendFeedback}
             variant="outline"
-            className="w-full sm:w-auto border-yellow-500/50 bg-yellow-500/10 text-yellow-300 hover:bg-yellow-500/20 hover:border-yellow-400 px-3 sm:px-6 py-4 text-xs sm:text-sm rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+            className="w-full sm:w-auto border-yellow-500/50 bg-yellow-500/10 text-yellow-300 hover:bg-yellow-500/20 hover:border-yellow-400 px-6 sm:px-12 py-4 text-sm sm:text-lg rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
-            <Mail className="w-4 h-4 mr-1 sm:mr-2 flex-shrink-0" />
-            <span className="text-center leading-tight">
-              <span className="block sm:hidden">CREATOR</span>
-              <span className="block sm:hidden">FEEDBACK</span>
-              <span className="hidden sm:block">SEND CREATOR FEEDBACK</span>
-            </span>
+            <Mail className="w-5 h-5 mr-2 flex-shrink-0" />
+            <span className="whitespace-nowrap overflow-hidden text-ellipsis">SEND CREATOR FEEDBACK</span>
           </Button>
         )}
       </div>

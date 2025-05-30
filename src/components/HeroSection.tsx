@@ -3,27 +3,21 @@ import { useState, useEffect } from "react";
 import { Search, Sparkles, Zap, Brain, Rocket, Stars } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "./GlobalSearchBar";
-import { getCurrentToolCount } from "@/utils/toolCounter";
 
 const HeroSection = () => {
   const navigate = useNavigate();
   const [currentWord, setCurrentWord] = useState(0);
-  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   
   const words = [
-    "Transform",
-    "Empower", 
-    "Revolutionize",
+    "Scale",
+    "Optimize", 
+    "Streamline",
     "Accelerate",
     "Enhance",
-    "Elevate"
+    "Grow"
   ];
 
   useEffect(() => {
-    // Get accurate tool count
-    const stats = getCurrentToolCount();
-    setToolStats(stats);
-    
     const interval = setInterval(() => {
       setCurrentWord((prev) => (prev + 1) % words.length);
     }, 2000);
@@ -32,38 +26,21 @@ const HeroSection = () => {
   }, []);
 
   const scrollToTools = () => {
-    // First try to find the actual tools grid by class name
-    const toolsGrid = document.querySelector('[class*="grid"][class*="grid-cols-1"][class*="md:grid-cols-2"][class*="lg:grid-cols-4"]');
-    
-    if (toolsGrid) {
-      // Scroll to the tools grid with some offset for better visibility
-      const yOffset = -100; // Offset to show some content above
-      const y = toolsGrid.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      
-      window.scrollTo({
-        top: y,
-        behavior: 'smooth'
-      });
+    // Scroll to the actual tools grid, not the inspiration message
+    const toolsSection = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4');
+    if (toolsSection) {
+      toolsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
-      // Fallback: scroll to tools-section if grid is not found
-      const toolsSection = document.getElementById('tools-section');
-      if (toolsSection) {
-        toolsSection.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-      } else {
-        // Last resort: scroll down by a fixed amount
-        window.scrollTo({
-          top: window.innerHeight,
-          behavior: 'smooth'
-        });
+      // Fallback to tools-section if the grid is not found
+      const fallbackSection = document.getElementById('tools-section');
+      if (fallbackSection) {
+        fallbackSection.scrollIntoView({ behavior: 'smooth' });
       }
     }
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden pt-20 md:pt-24">
+    <section className="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -72,58 +49,82 @@ const HeroSection = () => {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Main heading with improved layout */}
-        <div className="mb-6">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            {/* First line */}
-            <span className="text-white block mb-3">
-              AI WEB TOOLS
+        {/* Main heading with animated word */}
+        <div className="mb-8">
+          <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight">
+            <span className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
+              {words[currentWord]}
             </span>
-            
-            {/* Second line with animated word */}
-            <span className="text-3xl md:text-4xl lg:text-5xl text-white block">
-              <span className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
-                {words[currentWord]}
-              </span>
-              <span className="ml-4">Work & Life</span>
+            <br />
+            <span className="text-white">
+              Your Business
             </span>
           </h1>
+          
+          <div className="flex items-center justify-center space-x-4 mb-6">
+            <Sparkles className="w-8 h-8 text-cyan-400 animate-pulse" />
+            <p className="text-xl md:text-2xl text-cyan-100 max-w-3xl leading-relaxed">
+              Discover 1000+ free AI tools that empower everyone to transform their work and life
+            </p>
+            <Stars className="w-8 h-8 text-cyan-400 animate-pulse" />
+          </div>
         </div>
 
         {/* Search section */}
-        <div className="mb-8 max-w-4xl mx-auto">
+        <div className="mb-12 max-w-4xl mx-auto">
           <GlobalSearchBar />
+        </div>
+
+        {/* Feature highlights */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
+          <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
+            <Brain className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
+            <h3 className="text-xl font-semibold text-white mb-2">Community-Powered Solutions</h3>
+            <p className="text-cyan-200">Find the perfect AI tool with intelligent recommendations from our open community</p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
+            <Zap className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
+            <h3 className="text-xl font-semibold text-white mb-2">Instant Access</h3>
+            <p className="text-cyan-200">Access groundbreaking AI tools instantly - no barriers, completely free for everyone</p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
+            <Rocket className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
+            <h3 className="text-xl font-semibold text-white mb-2">Innovation for All</h3>
+            <p className="text-cyan-200">Democratizing AI innovation to create opportunities for individuals and communities worldwide</p>
+          </div>
         </div>
 
         {/* CTA Button */}
         <button
           onClick={scrollToTools}
-          className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-lg rounded-full shadow-2xl shadow-cyan-500/40 hover:shadow-cyan-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-cyan-400 hover:border-cyan-300 cyber-glow mb-8"
+          className="group relative px-12 py-6 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-lg rounded-full shadow-2xl shadow-cyan-500/40 hover:shadow-cyan-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-cyan-400 hover:border-cyan-300 cyber-glow"
         >
           <span className="flex items-center space-x-3">
             <Search className="w-6 h-6" />
-            <span>Explore AI Tools</span>
+            <span>Explore Free AI Tools</span>
             <Sparkles className="w-6 h-6 group-hover:animate-spin" />
           </span>
         </button>
 
-        {/* Stats - updated with accurate count */}
-        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
+        {/* Stats */}
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
           <div className="text-center">
-            <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{toolStats.marketing}</div>
-            <div className="text-cyan-200 text-sm">AI Tools</div>
+            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">1000+</div>
+            <div className="text-cyan-200 text-sm">Free AI Tools</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{toolStats.categories}+</div>
-            <div className="text-cyan-200 text-sm">Categories</div>
+            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">50+</div>
+            <div className="text-cyan-200 text-sm">Industries Served</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">100%</div>
+            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">100%</div>
+            <div className="text-cyan-200 text-sm">Community Driven</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Always</div>
             <div className="text-cyan-200 text-sm">Free Access</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">24/7</div>
-            <div className="text-cyan-200 text-sm">Available</div>
           </div>
         </div>
       </div>
