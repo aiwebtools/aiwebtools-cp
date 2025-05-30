@@ -1,29 +1,9 @@
+
 import { Tool } from "@/types/tools";
 import { BookOpen, Youtube } from "lucide-react";
 
 export const aiArtTools: Tool[] = [
-  {
-    icon: Youtube,
-    title: "Midjourney – Image Generation Platform",
-    description: "Create stunning AI-generated images and artwork. Transform text prompts into beautiful, high-quality visual content.",
-    emoji: "🎨",
-    color: "from-purple-500 to-pink-500",
-    videoUrl: "https://www.youtube.com/watch?v=5deYUaqwreo",
-    directUrl: "https://www.midjourney.com/home?via=aiwebtools",
-    tags: ["image generation", "AI art", "creativity", "visual", "midjourney", "discord"],
-    category: "AI Art"
-  },
-  {
-    icon: Youtube,
-    title: "Ideogram – Image Generator",
-    description: "Generate high-quality images and graphics with AI. Create professional visuals, logos, and artistic content from text descriptions.",
-    emoji: "🖼️",
-    color: "from-blue-500 to-green-500",
-    videoUrl: "https://www.youtube.com/watch?v=USSpwbe3Rxk",
-    directUrl: "https://ideogram.ai/?via=aiwebtools",
-    tags: ["image generation", "graphics", "AI art", "design", "logos", "professional"],
-    category: "AI Art"
-  },
+  // Priority: Your image-related GPTs at the top
   {
     icon: BookOpen,
     title: "\"MiddleJourney\" Midjourney Prompting Assistant",
@@ -48,17 +28,28 @@ export const aiArtTools: Tool[] = [
     rating: 4.3,
     totalVotes: 1847
   },
+  // Top mainstream AI art tools
   {
-    icon: BookOpen,
-    title: "Artbreeder",
-    description: "Create unique artworks by blending images and exploring endless creative possibilities. Generate portraits, landscapes, and abstract art through collaborative AI.",
-    emoji: "🧬",
-    color: "from-green-500 to-blue-500",
-    directUrl: "https://www.artbreeder.com/?via=aiwebtools",
-    tags: ["image blending", "portraits", "landscapes", "collaborative", "creative AI"],
-    category: "AI Art",
-    rating: 4.2,
-    totalVotes: 2156
+    icon: Youtube,
+    title: "Midjourney – Image Generation Platform",
+    description: "Create stunning AI-generated images and artwork. Transform text prompts into beautiful, high-quality visual content.",
+    emoji: "🎨",
+    color: "from-purple-500 to-pink-500",
+    videoUrl: "https://www.youtube.com/watch?v=5deYUaqwreo",
+    directUrl: "https://www.midjourney.com/home?via=aiwebtools",
+    tags: ["image generation", "AI art", "creativity", "visual", "midjourney", "discord"],
+    category: "AI Art"
+  },
+  {
+    icon: Youtube,
+    title: "Ideogram – Image Generator",
+    description: "Generate high-quality images and graphics with AI. Create professional visuals, logos, and artistic content from text descriptions.",
+    emoji: "🖼️",
+    color: "from-blue-500 to-green-500",
+    videoUrl: "https://www.youtube.com/watch?v=USSpwbe3Rxk",
+    directUrl: "https://ideogram.ai/?via=aiwebtools",
+    tags: ["image generation", "graphics", "AI art", "design", "logos", "professional"],
+    category: "AI Art"
   },
   {
     icon: BookOpen,
@@ -74,18 +65,6 @@ export const aiArtTools: Tool[] = [
   },
   {
     icon: BookOpen,
-    title: "Stable Diffusion Online",
-    description: "Free online access to Stable Diffusion AI image generation. Create high-quality images from text prompts without installation.",
-    emoji: "🌟",
-    color: "from-cyan-500 to-purple-500",
-    directUrl: "https://stablediffusionweb.com/?via=aiwebtools",
-    tags: ["stable diffusion", "free", "online", "text to image", "high quality"],
-    category: "AI Art",
-    rating: 4.4,
-    totalVotes: 2987
-  },
-  {
-    icon: BookOpen,
     title: "DreamStudio",
     description: "Official Stable Diffusion interface by Stability AI. Create stunning AI art with advanced customization options and professional results.",
     emoji: "💫",
@@ -95,78 +74,6 @@ export const aiArtTools: Tool[] = [
     category: "AI Art",
     rating: 4.5,
     totalVotes: 3765
-  },
-  {
-    icon: BookOpen,
-    title: "BlueWillow",
-    description: "AI image generation tool with Discord integration. Create beautiful artwork, logos, and graphics through simple text prompts.",
-    emoji: "🌸",
-    color: "from-blue-500 to-purple-500",
-    directUrl: "https://www.bluewillow.ai/?via=aiwebtools",
-    tags: ["discord integration", "logos", "graphics", "simple prompts", "artwork"],
-    category: "AI Art",
-    rating: 4.1,
-    totalVotes: 1892
-  },
-  {
-    icon: BookOpen,
-    title: "Jasper Art",
-    description: "AI art generator integrated with Jasper AI platform. Create custom images for marketing, social media, and creative projects.",
-    emoji: "🎭",
-    color: "from-orange-500 to-red-500",
-    directUrl: "https://www.jasper.ai/art?via=aiwebtools",
-    tags: ["marketing", "social media", "creative projects", "custom images", "jasper AI"],
-    category: "AI Art",
-    rating: 4.3,
-    totalVotes: 2543
-  },
-  {
-    icon: BookOpen,
-    title: "Wombo Dream",
-    description: "Mobile-first AI art generator that creates stunning artwork from text prompts. Easy-to-use interface with various artistic styles.",
-    emoji: "📱",
-    color: "from-pink-500 to-yellow-500",
-    directUrl: "https://dream.ai/?via=aiwebtools",
-    tags: ["mobile app", "artistic styles", "easy interface", "text prompts", "stunning artwork"],
-    category: "AI Art",
-    rating: 4.0,
-    totalVotes: 1678
-  },
-  {
-    icon: BookOpen,
-    title: "Craiyon (formerly DALL-E mini)",
-    description: "Free AI image generator that creates images from text descriptions. Quick and accessible tool for generating creative visuals.",
-    emoji: "🖍️",
-    color: "from-rainbow-500 to-blue-500",
-    directUrl: "https://www.craiyon.com/?via=aiwebtools",
-    tags: ["free", "text descriptions", "creative visuals", "accessible", "quick generation"],
-    category: "AI Art",
-    rating: 3.9,
-    totalVotes: 2234
-  },
-  {
-    icon: BookOpen,
-    title: "DeepAI Image Generator",
-    description: "Versatile AI image generator with multiple models and styles. Create art, enhance photos, and generate creative content with ease.",
-    emoji: "🤖",
-    color: "from-gray-500 to-blue-500",
-    directUrl: "https://deepai.org/?via=aiwebtools",
-    tags: ["multiple models", "photo enhancement", "creative content", "versatile", "various styles"],
-    category: "AI Art",
-    rating: 4.2,
-    totalVotes: 1956
-  },
-  {
-    icon: BookOpen,
-    title: "Canva AI Image Generator",
-    description: "AI-powered image generation integrated into Canva's design platform. Create custom visuals for presentations, social media, and marketing.",
-    emoji: "🎨",
-    color: "from-blue-500 to-green-500",
-    directUrl: "https://www.canva.com/ai-image-generator/?via=aiwebtools",
-    tags: ["canva integration", "presentations", "social media", "marketing", "design platform"],
-    category: "AI Art",
-    rating: 4.4,
-    totalVotes: 3187
   },
   {
     icon: BookOpen,
@@ -182,6 +89,54 @@ export const aiArtTools: Tool[] = [
   },
   {
     icon: BookOpen,
+    title: "Stable Diffusion Online",
+    description: "Free online access to Stable Diffusion AI image generation. Create high-quality images from text prompts without installation.",
+    emoji: "🌟",
+    color: "from-cyan-500 to-purple-500",
+    directUrl: "https://stablediffusionweb.com/?via=aiwebtools",
+    tags: ["stable diffusion", "free", "online", "text to image", "high quality"],
+    category: "AI Art",
+    rating: 4.4,
+    totalVotes: 2987
+  },
+  {
+    icon: BookOpen,
+    title: "Krea AI",
+    description: "Real-time AI image generation and editing platform. Create and modify images instantly with live preview and advanced editing capabilities.",
+    emoji: "⚡",
+    color: "from-yellow-500 to-orange-500",
+    directUrl: "https://www.krea.ai/?via=aiwebtools",
+    tags: ["real-time", "live preview", "instant editing", "advanced capabilities", "interactive"],
+    category: "AI Art",
+    rating: 4.4,
+    totalVotes: 3123
+  },
+  {
+    icon: BookOpen,
+    title: "Clipdrop",
+    description: "AI-powered visual editing suite with image generation, background removal, and object manipulation. Professional tools for creators and businesses.",
+    emoji: "✂️",
+    color: "from-orange-500 to-red-500",
+    directUrl: "https://clipdrop.co/?via=aiwebtools",
+    tags: ["visual editing", "background removal", "object manipulation", "professional tools", "creators"],
+    category: "AI Art",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: BookOpen,
+    title: "Canva AI Image Generator",
+    description: "AI-powered image generation integrated into Canva's design platform. Create custom visuals for presentations, social media, and marketing.",
+    emoji: "🎨",
+    color: "from-blue-500 to-green-500",
+    directUrl: "https://www.canva.com/ai-image-generator/?via=aiwebtools",
+    tags: ["canva integration", "presentations", "social media", "marketing", "design platform"],
+    category: "AI Art",
+    rating: 4.4,
+    totalVotes: 3187
+  },
+  {
+    icon: BookOpen,
     title: "Playground AI",
     description: "User-friendly AI image generator with intuitive interface and powerful editing tools. Create, edit, and refine AI-generated artwork effortlessly.",
     emoji: "🎪",
@@ -194,6 +149,66 @@ export const aiArtTools: Tool[] = [
   },
   {
     icon: BookOpen,
+    title: "Tensor.Art",
+    description: "Professional AI art generation platform with advanced model training capabilities. Create and share custom AI models for specialized art styles.",
+    emoji: "🧮",
+    color: "from-cyan-500 to-blue-500",
+    directUrl: "https://tensor.art/?via=aiwebtools",
+    tags: ["model training", "custom models", "professional", "specialized styles", "community platform"],
+    category: "AI Art",
+    rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: BookOpen,
+    title: "Neural.love",
+    description: "AI art generator with premium quality output and commercial licensing. Create high-resolution artwork for professional and commercial use.",
+    emoji: "💎",
+    color: "from-red-500 to-purple-500",
+    directUrl: "https://neural.love/?via=aiwebtools",
+    tags: ["premium quality", "commercial licensing", "high-resolution", "professional use", "artistic excellence"],
+    category: "AI Art",
+    rating: 4.3,
+    totalVotes: 2654
+  },
+  {
+    icon: BookOpen,
+    title: "Jasper Art",
+    description: "AI art generator integrated with Jasper AI platform. Create custom images for marketing, social media, and creative projects.",
+    emoji: "🎭",
+    color: "from-orange-500 to-red-500",
+    directUrl: "https://www.jasper.ai/art?via=aiwebtools",
+    tags: ["marketing", "social media", "creative projects", "custom images", "jasper AI"],
+    category: "AI Art",
+    rating: 4.3,
+    totalVotes: 2543
+  },
+  {
+    icon: BookOpen,
+    title: "Artbreeder",
+    description: "Create unique artworks by blending images and exploring endless creative possibilities. Generate portraits, landscapes, and abstract art through collaborative AI.",
+    emoji: "🧬",
+    color: "from-green-500 to-blue-500",
+    directUrl: "https://www.artbreeder.com/?via=aiwebtools",
+    tags: ["image blending", "portraits", "landscapes", "collaborative", "creative AI"],
+    category: "AI Art",
+    rating: 4.2,
+    totalVotes: 2156
+  },
+  {
+    icon: BookOpen,
+    title: "DeepAI Image Generator",
+    description: "Versatile AI image generator with multiple models and styles. Create art, enhance photos, and generate creative content with ease.",
+    emoji: "🤖",
+    color: "from-gray-500 to-blue-500",
+    directUrl: "https://deepai.org/?via=aiwebtools",
+    tags: ["multiple models", "photo enhancement", "creative content", "versatile", "various styles"],
+    category: "AI Art",
+    rating: 4.2,
+    totalVotes: 1956
+  },
+  {
+    icon: BookOpen,
     title: "NightCafe Creator",
     description: "AI art generator with multiple algorithms and styles. Create stunning digital art, participate in community challenges, and explore various AI models.",
     emoji: "🌙",
@@ -202,6 +217,54 @@ export const aiArtTools: Tool[] = [
     tags: ["multiple algorithms", "community challenges", "digital art", "various models", "artistic styles"],
     category: "AI Art",
     rating: 4.2,
+    totalVotes: 2456
+  },
+  {
+    icon: BookOpen,
+    title: "Fotor AI Image Generator",
+    description: "AI-powered image generation integrated with photo editing suite. Create, edit, and enhance images with professional-grade AI tools and filters.",
+    emoji: "📷",
+    color: "from-green-500 to-teal-500",
+    directUrl: "https://www.fotor.com/ai-image-generator/?via=aiwebtools",
+    tags: ["photo editing", "professional tools", "image enhancement", "filters", "integrated suite"],
+    category: "AI Art",
+    rating: 4.2,
+    totalVotes: 2321
+  },
+  {
+    icon: BookOpen,
+    title: "Perplexity AI Image",
+    description: "AI image generation integrated with Perplexity's research platform. Create images while researching topics with intelligent context understanding.",
+    emoji: "🔬",
+    color: "from-indigo-500 to-cyan-500",
+    directUrl: "https://www.perplexity.ai/?via=aiwebtools",
+    tags: ["research integration", "context understanding", "intelligent generation", "academic", "knowledge-based"],
+    category: "AI Art",
+    rating: 4.2,
+    totalVotes: 2234
+  },
+  {
+    icon: BookOpen,
+    title: "BlueWillow",
+    description: "AI image generation tool with Discord integration. Create beautiful artwork, logos, and graphics through simple text prompts.",
+    emoji: "🌸",
+    color: "from-blue-500 to-purple-500",
+    directUrl: "https://www.bluewillow.ai/?via=aiwebtools",
+    tags: ["discord integration", "logos", "graphics", "simple prompts", "artwork"],
+    category: "AI Art",
+    rating: 4.1,
+    totalVotes: 1892
+  },
+  {
+    icon: BookOpen,
+    title: "Lexica",
+    description: "Search engine and gallery for Stable Diffusion artwork with prompt database. Discover inspiration and create AI art with proven prompts.",
+    emoji: "🔍",
+    color: "from-purple-500 to-teal-500",
+    directUrl: "https://lexica.art/?via=aiwebtools",
+    tags: ["prompt database", "gallery", "inspiration", "stable diffusion", "search engine"],
+    category: "AI Art",
+    rating: 4.1,
     totalVotes: 2456
   },
   {
@@ -218,6 +281,30 @@ export const aiArtTools: Tool[] = [
   },
   {
     icon: BookOpen,
+    title: "Freepik AI Image Generator",
+    description: "AI image generation integrated with Freepik's vast resource library. Create custom images and access millions of design assets.",
+    emoji: "🎨",
+    color: "from-green-500 to-blue-500",
+    directUrl: "https://www.freepik.com/ai/image-generator?via=aiwebtools",
+    tags: ["freepik integration", "design assets", "custom images", "resource library", "commercial use"],
+    category: "AI Art",
+    rating: 4.1,
+    totalVotes: 2567
+  },
+  {
+    icon: BookOpen,
+    title: "Wombo Dream",
+    description: "Mobile-first AI art generator that creates stunning artwork from text prompts. Easy-to-use interface with various artistic styles.",
+    emoji: "📱",
+    color: "from-pink-500 to-yellow-500",
+    directUrl: "https://dream.ai/?via=aiwebtools",
+    tags: ["mobile app", "artistic styles", "easy interface", "text prompts", "stunning artwork"],
+    category: "AI Art",
+    rating: 4.0,
+    totalVotes: 1678
+  },
+  {
+    icon: BookOpen,
     title: "StarryAI",
     description: "Mobile and web-based AI art generator that transforms text into stunning artwork. Create unique art pieces with various artistic styles and techniques.",
     emoji: "⭐",
@@ -227,42 +314,6 @@ export const aiArtTools: Tool[] = [
     category: "AI Art",
     rating: 4.0,
     totalVotes: 1987
-  },
-  {
-    icon: BookOpen,
-    title: "Fotor AI Image Generator",
-    description: "AI-powered image generation integrated with photo editing suite. Create, edit, and enhance images with professional-grade AI tools and filters.",
-    emoji: "📷",
-    color: "from-green-500 to-teal-500",
-    directUrl: "https://www.fotor.com/ai-image-generator/?via=aiwebtools",
-    tags: ["photo editing", "professional tools", "image enhancement", "filters", "integrated suite"],
-    category: "AI Art",
-    rating: 4.2,
-    totalVotes: 2321
-  },
-  {
-    icon: BookOpen,
-    title: "Tensor.Art",
-    description: "Professional AI art generation platform with advanced model training capabilities. Create and share custom AI models for specialized art styles.",
-    emoji: "🧮",
-    color: "from-cyan-500 to-blue-500",
-    directUrl: "https://tensor.art/?via=aiwebtools",
-    tags: ["model training", "custom models", "professional", "specialized styles", "community platform"],
-    category: "AI Art",
-    rating: 4.3,
-    totalVotes: 2876
-  },
-  {
-    icon: BookOpen,
-    title: "Lexica",
-    description: "Search engine and gallery for Stable Diffusion artwork with prompt database. Discover inspiration and create AI art with proven prompts.",
-    emoji: "🔍",
-    color: "from-purple-500 to-teal-500",
-    directUrl: "https://lexica.art/?via=aiwebtools",
-    tags: ["prompt database", "gallery", "inspiration", "stable diffusion", "search engine"],
-    category: "AI Art",
-    rating: 4.1,
-    totalVotes: 2456
   },
   {
     icon: BookOpen,
@@ -278,42 +329,6 @@ export const aiArtTools: Tool[] = [
   },
   {
     icon: BookOpen,
-    title: "Perplexity AI Image",
-    description: "AI image generation integrated with Perplexity's research platform. Create images while researching topics with intelligent context understanding.",
-    emoji: "🔬",
-    color: "from-indigo-500 to-cyan-500",
-    directUrl: "https://www.perplexity.ai/?via=aiwebtools",
-    tags: ["research integration", "context understanding", "intelligent generation", "academic", "knowledge-based"],
-    category: "AI Art",
-    rating: 4.2,
-    totalVotes: 2234
-  },
-  {
-    icon: BookOpen,
-    title: "Krea AI",
-    description: "Real-time AI image generation and editing platform. Create and modify images instantly with live preview and advanced editing capabilities.",
-    emoji: "⚡",
-    color: "from-yellow-500 to-orange-500",
-    directUrl: "https://www.krea.ai/?via=aiwebtools",
-    tags: ["real-time", "live preview", "instant editing", "advanced capabilities", "interactive"],
-    category: "AI Art",
-    rating: 4.4,
-    totalVotes: 3123
-  },
-  {
-    icon: BookOpen,
-    title: "Freepik AI Image Generator",
-    description: "AI image generation integrated with Freepik's vast resource library. Create custom images and access millions of design assets.",
-    emoji: "🎨",
-    color: "from-green-500 to-blue-500",
-    directUrl: "https://www.freepik.com/ai/image-generator?via=aiwebtools",
-    tags: ["freepik integration", "design assets", "custom images", "resource library", "commercial use"],
-    category: "AI Art",
-    rating: 4.1,
-    totalVotes: 2567
-  },
-  {
-    icon: BookOpen,
     title: "ImgCreator.AI",
     description: "Text-to-image AI generator with focus on illustration and artistic styles. Create book illustrations, concept art, and stylized images.",
     emoji: "📚",
@@ -326,15 +341,15 @@ export const aiArtTools: Tool[] = [
   },
   {
     icon: BookOpen,
-    title: "Neural.love",
-    description: "AI art generator with premium quality output and commercial licensing. Create high-resolution artwork for professional and commercial use.",
-    emoji: "💎",
-    color: "from-red-500 to-purple-500",
-    directUrl: "https://neural.love/?via=aiwebtools",
-    tags: ["premium quality", "commercial licensing", "high-resolution", "professional use", "artistic excellence"],
+    title: "Craiyon (formerly DALL-E mini)",
+    description: "Free AI image generator that creates images from text descriptions. Quick and accessible tool for generating creative visuals.",
+    emoji: "🖍️",
+    color: "from-rainbow-500 to-blue-500",
+    directUrl: "https://www.craiyon.com/?via=aiwebtools",
+    tags: ["free", "text descriptions", "creative visuals", "accessible", "quick generation"],
     category: "AI Art",
-    rating: 4.3,
-    totalVotes: 2654
+    rating: 3.9,
+    totalVotes: 2234
   },
   {
     icon: BookOpen,
@@ -350,14 +365,122 @@ export const aiArtTools: Tool[] = [
   },
   {
     icon: BookOpen,
-    title: "Clipdrop",
-    description: "AI-powered visual editing suite with image generation, background removal, and object manipulation. Professional tools for creators and businesses.",
-    emoji: "✂️",
-    color: "from-orange-500 to-red-500",
-    directUrl: "https://clipdrop.co/?via=aiwebtools",
-    tags: ["visual editing", "background removal", "object manipulation", "professional tools", "creators"],
+    title: "Flux AI Image Generator",
+    description: "Advanced AI image generation with high-quality output and fast processing. Create detailed artwork and professional images with cutting-edge AI models.",
+    emoji: "⚡",
+    color: "from-electric-blue-500 to-cyan-500",
+    directUrl: "https://flux-ai.io/?via=aiwebtools",
+    tags: ["advanced AI", "high quality", "fast processing", "detailed artwork", "professional"],
+    category: "AI Art",
+    rating: 4.5,
+    totalVotes: 2890
+  },
+  {
+    icon: BookOpen,
+    title: "Recraft AI",
+    description: "Professional vector and raster image generation platform. Create logos, icons, illustrations, and 3D graphics with precise control and style consistency.",
+    emoji: "🔧",
+    color: "from-orange-500 to-yellow-500",
+    directUrl: "https://www.recraft.ai/?via=aiwebtools",
+    tags: ["vector graphics", "logos", "icons", "illustrations", "3D graphics", "professional"],
+    category: "AI Art",
+    rating: 4.3,
+    totalVotes: 1987
+  },
+  {
+    icon: BookOpen,
+    title: "Firefly AI by Adobe",
+    description: "Adobe's AI-powered creative suite for image generation and editing. Integrated with Creative Cloud for seamless workflow and professional results.",
+    emoji: "🔥",
+    color: "from-red-500 to-purple-500",
+    directUrl: "https://www.adobe.com/sensei/generative-ai/firefly.html?via=aiwebtools",
+    tags: ["adobe", "creative cloud", "professional", "editing", "integrated workflow"],
     category: "AI Art",
     rating: 4.4,
     totalVotes: 3456
+  },
+  {
+    icon: BookOpen,
+    title: "Pika Labs",
+    description: "AI video and image generation platform with focus on motion and animation. Create dynamic visuals, short videos, and animated content from text prompts.",
+    emoji: "🎬",
+    color: "from-purple-500 to-blue-500",
+    directUrl: "https://pika.art/?via=aiwebtools",
+    tags: ["video generation", "animation", "motion", "dynamic visuals", "short videos"],
+    category: "AI Art",
+    rating: 4.2,
+    totalVotes: 2134
+  },
+  {
+    icon: BookOpen,
+    title: "Scenario AI",
+    description: "Game asset generation platform powered by AI. Create consistent game art, characters, environments, and assets with custom trained models.",
+    emoji: "🎮",
+    color: "from-green-500 to-blue-500",
+    directUrl: "https://www.scenario.com/?via=aiwebtools",
+    tags: ["game assets", "characters", "environments", "custom models", "consistent art"],
+    category: "AI Art",
+    rating: 4.1,
+    totalVotes: 1876
+  },
+  {
+    icon: BookOpen,
+    title: "Generated Photos",
+    description: "AI-generated human faces and full-body photos. Create diverse, realistic human images for projects without using real people's photos.",
+    emoji: "👤",
+    color: "from-skin-tone-500 to-brown-500",
+    directUrl: "https://generated.photos/?via=aiwebtools",
+    tags: ["human faces", "realistic photos", "diverse", "full-body", "ethical AI"],
+    category: "AI Art",
+    rating: 4.0,
+    totalVotes: 1543
+  },
+  {
+    icon: BookOpen,
+    title: "Removal.AI",
+    description: "AI-powered background removal and photo editing tool. Remove backgrounds, replace scenes, and edit photos with professional precision.",
+    emoji: "🖼️",
+    color: "from-red-500 to-pink-500",
+    directUrl: "https://removal.ai/?via=aiwebtools",
+    tags: ["background removal", "photo editing", "scene replacement", "professional precision"],
+    category: "AI Art",
+    rating: 4.2,
+    totalVotes: 2987
+  },
+  {
+    icon: BookOpen,
+    title: "Upscale.media",
+    description: "AI image upscaling and enhancement tool. Increase image resolution and quality while preserving details using advanced AI algorithms.",
+    emoji: "📈",
+    color: "from-blue-500 to-green-500",
+    directUrl: "https://upscale.media/?via=aiwebtools",
+    tags: ["image upscaling", "enhancement", "resolution", "quality improvement", "detail preservation"],
+    category: "AI Art",
+    rating: 4.1,
+    totalVotes: 1765
+  },
+  {
+    icon: BookOpen,
+    title: "Vectorizer.AI",
+    description: "Convert bitmap images to vector graphics using AI. Transform photos and raster images into scalable vector formats with precision.",
+    emoji: "📐",
+    color: "from-purple-500 to-cyan-500",
+    directUrl: "https://vectorizer.ai/?via=aiwebtools",
+    tags: ["vector conversion", "bitmap to vector", "scalable graphics", "precision conversion"],
+    category: "AI Art",
+    rating: 4.0,
+    totalVotes: 1432
+  },
+  {
+    icon: BookOpen,
+    title: "Colorize.cc",
+    description: "AI-powered photo colorization tool. Add realistic colors to black and white photos automatically using advanced deep learning models.",
+    emoji: "🌈",
+    color: "from-rainbow-500 to-colorful-500",
+    directUrl: "https://colorize.cc/?via=aiwebtools",
+    tags: ["photo colorization", "black and white", "realistic colors", "deep learning", "automatic"],
+    category: "AI Art",
+    rating: 3.9,
+    totalVotes: 1234
   }
 ];
