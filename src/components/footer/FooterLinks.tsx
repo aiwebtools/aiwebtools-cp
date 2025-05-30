@@ -1,39 +1,85 @@
 
+import { createTimePortalEffect } from "@/utils/timeEffects";
+
 const FooterLinks = () => {
+  const handleExternalLink = (url: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('🌀 External link clicked in footer links:', url);
+    createTimePortalEffect(url);
+  };
+
+  const quickLinks = [
+    { name: "AI Tools Directory", url: "https://aitools.studio" },
+    { name: "Business Solutions", url: "https://aiwebtools.ai/business" },
+    { name: "Custom AI Development", url: "https://aiwebtools.ai/custom" },
+    { name: "AI Consulting", url: "https://aiwebtools.ai/consulting" }
+  ];
+
+  const supportLinks = [
+    { name: "Help Center", url: "https://aiwebtools.ai/help" },
+    { name: "Documentation", url: "https://docs.aiwebtools.ai" },
+    { name: "API Access", url: "https://api.aiwebtools.ai" },
+    { name: "Developer Portal", url: "https://developers.aiwebtools.ai" }
+  ];
+
+  const legalLinks = [
+    { name: "Terms of Service", url: "https://aitools.company/terms-of-services" },
+    { name: "Privacy Policy", url: "https://openai.com/policies/privacy-policy/" },
+    { name: "Cookie Policy", url: "https://aiwebtools.ai/cookies" },
+    { name: "DMCA", url: "https://aiwebtools.ai/dmca" }
+  ];
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-      <div className="space-y-4">
-        <div className="space-y-4">
-          <h4 className="text-lg font-semibold text-cyan-100">Popular Tools</h4>
-          <ul className="space-y-2 text-cyan-300">
-            <li><a href="#" className="hover:text-cyan-400 transition-colors">Book Writer GPT</a></li>
-            <li><a href="#" className="hover:text-cyan-400 transition-colors">Movie Script Writer</a></li>
-            <li><a href="#" className="hover:text-cyan-400 transition-colors">Time Machine GPT</a></li>
-            <li><a href="#" className="hover:text-cyan-400 transition-colors">College Degree GPT</a></li>
-          </ul>
-        </div>
-      </div>
-      
-      <div className="space-y-4">
-        <h4 className="text-lg font-semibold text-cyan-100">Tool Suites</h4>
-        <ul className="space-y-2 text-cyan-300">
-          <li><a href="#" className="hover:text-cyan-400 transition-colors">Movie Maker Studio</a></li>
-          <li><a href="#" className="hover:text-cyan-400 transition-colors">StageMaster AI</a></li>
-          <li><a href="#" className="hover:text-cyan-400 transition-colors">ImmortalizeMe™</a></li>
-          <li><a href="#" className="hover:text-cyan-400 transition-colors">GodMode GPT</a></li>
+    <>
+      <div>
+        <h4 className="text-lg font-semibold text-cyan-300 mb-4">Quick Links</h4>
+        <ul className="space-y-2">
+          {quickLinks.map((link, index) => (
+            <li key={index}>
+              <button
+                onClick={(e) => handleExternalLink(link.url, e)}
+                className="text-gray-300 hover:text-cyan-400 transition-colors text-sm block w-full text-left"
+              >
+                {link.name}
+              </button>
+            </li>
+          ))}
         </ul>
       </div>
-      
-      <div className="space-y-4">
-        <h4 className="text-lg font-semibold text-cyan-100">Resources</h4>
-        <ul className="space-y-2 text-cyan-300">
-          <li><a href="#" className="hover:text-cyan-400 transition-colors">Free AI Tools List</a></li>
-          <li><a href="#" className="hover:text-cyan-400 transition-colors">Open Source Prompts</a></li>
-          <li><a href="#" className="hover:text-cyan-400 transition-colors">Domain Services</a></li>
-          <li><a href="#" className="hover:text-cyan-400 transition-colors">Support</a></li>
+
+      <div>
+        <h4 className="text-lg font-semibold text-cyan-300 mb-4">Support</h4>
+        <ul className="space-y-2">
+          {supportLinks.map((link, index) => (
+            <li key={index}>
+              <button
+                onClick={(e) => handleExternalLink(link.url, e)}
+                className="text-gray-300 hover:text-cyan-400 transition-colors text-sm block w-full text-left"
+              >
+                {link.name}
+              </button>
+            </li>
+          ))}
         </ul>
       </div>
-    </div>
+
+      <div>
+        <h4 className="text-lg font-semibold text-cyan-300 mb-4">Legal</h4>
+        <ul className="space-y-2">
+          {legalLinks.map((link, index) => (
+            <li key={index}>
+              <button
+                onClick={(e) => handleExternalLink(link.url, e)}
+                className="text-gray-300 hover:text-cyan-400 transition-colors text-sm block w-full text-left"
+              >
+                {link.name}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 };
 

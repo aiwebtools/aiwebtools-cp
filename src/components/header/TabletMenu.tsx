@@ -9,39 +9,12 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { allTools } from "@/data/toolsData";
-import { getCategoriesWithCounts } from "@/utils/categoryUtils";
+import { getSortedStandardizedCategories } from "@/utils/categoryTitles";
 
 const TabletMenu = () => {
   const navigate = useNavigate();
-  const categoriesWithCounts = getCategoriesWithCounts(allTools);
-
-  // Psychologically Strategic Order
-  const categoryOrder = [
-    "Creative Suites",
-    "Advanced AI Tools", 
-    "Learning & Education",
-    "Time & History",
-    "Spirituality & Wellness",
-    "Emergency Services",
-    "Game Design & Development"
-  ];
-
-  // Sort categories according to strategic order, then alphabetically for others
-  const sortedCategories = Object.entries(categoriesWithCounts).sort(([a], [b]) => {
-    const aIndex = categoryOrder.indexOf(a);
-    const bIndex = categoryOrder.indexOf(b);
-    
-    if (aIndex !== -1 && bIndex !== -1) {
-      return aIndex - bIndex;
-    } else if (aIndex !== -1) {
-      return -1;
-    } else if (bIndex !== -1) {
-      return 1;
-    } else {
-      return a.localeCompare(b);
-    }
-  });
+  // Use standardized category titles and consistent ordering
+  const sortedCategories = getSortedStandardizedCategories();
 
   const scrollToCategory = (category: string) => {
     const toolsSection = document.getElementById('tools-section');

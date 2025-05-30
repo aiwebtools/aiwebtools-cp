@@ -1,157 +1,161 @@
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
-import { Tool } from "@/types/tools";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const GlobalSearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [searchResults, setSearchResults] = useState<Tool[]>([]);
-  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+  const searchRef = useRef(null);
+  const navigate = useNavigate();
 
-  const handleSearchChange = (value: string) => {
-    console.log("Header search - handleSearchChange called with:", value);
-    setSearchTerm(value);
-    if (value.trim()) {
-      console.log("Header search - searching tools with term:", value);
-      const results = searchTools(allTools, value).slice(0, 12); // Increased from 8 to 12 results
-      console.log("Header search - search results:", results);
-      setSearchResults(results);
+  useEffect(() => {
+    if (searchTerm.trim()) {
+      const results = searchTools(allTools, searchTerm);
+      setSearchResults(results.slice(0, 8));
       setIsOpen(true);
-      console.log("Header search - isOpen set to true");
     } else {
-      console.log("Header search - clearing results");
       setSearchResults([]);
       setIsOpen(false);
     }
-  };
+  }, [searchTerm]);
 
-  const handleResultClick = () => {
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleToolClick = (toolIndex: number) => {
     setIsOpen(false);
     setSearchTerm("");
-    setSearchResults([]);
-    setIsMobileSearchOpen(false);
+    navigate(`/tool/${toolIndex}`);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
+  const handleDirectAccess = (tool: any, e: React.MouseEvent) => {
+    if (tool.directUrl) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('🌀 Direct access clicked in global search for:', tool.title);
+      createTimePortalEffect(tool.directUrl);
       setIsOpen(false);
       setSearchTerm("");
-      setSearchResults([]);
-      setIsMobileSearchOpen(false);
     }
   };
 
-  const handleInputClick = () => {
-    console.log("Header search - input clicked, window width:", window.innerWidth);
-    // Only open mobile overlay on small screens
-    if (window.innerWidth < 768) {
-      setIsMobileSearchOpen(true);
-    }
-  };
-
-  const closeMobileSearch = () => {
-    setIsMobileSearchOpen(false);
+  const clearSearch = () => {
     setSearchTerm("");
-    setSearchResults([]);
     setIsOpen(false);
   };
 
-  console.log("Header search - rendering, isOpen:", isOpen, "searchResults.length:", searchResults.length, "isMobileSearchOpen:", isMobileSearchOpen);
-
   return (
-    <div className="relative w-full max-w-lg">
-      {/* Mobile Search Dropdown */}
-      {isMobileSearchOpen && (
-        <div className="md:hidden fixed inset-0 bg-black/95 z-50 p-4">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-cyan-100 text-lg font-semibold">Search AI Tools</h2>
-            <button onClick={closeMobileSearch} className="text-cyan-100 hover:text-cyan-400">
-              <X className="w-6 h-6" />
-            </button>
-          </div>
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-cyan-400 w-5 h-5" />
-            <Input
-              type="text"
-              placeholder="Search AI tools..."
-              value={searchTerm}
-              onChange={(e) => handleSearchChange(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="pl-12 pr-4 py-4 w-full bg-gray-900/90 border-2 border-purple-500/40 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 transition-all duration-300 text-cyan-100 placeholder-gray-400 rounded-lg backdrop-blur-sm neon-border glow-effect text-lg"
-              autoFocus
-            />
-          </div>
-          
-          {searchResults.length > 0 && (
-            <div className="mt-4 bg-gray-900/95 border border-purple-500/30 rounded-lg shadow-2xl backdrop-blur-md max-h-96 overflow-y-auto">
+    <TooltipProvider>
+      <div ref={searchRef} className="relative w-full max-w-md">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+          <Input
+            type="text"
+            placeholder="Search 700+ AI tools..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-10 pr-10 bg-gray-900/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500"
+          />
+          {searchTerm && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={clearSearch}
+              className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-gray-400 hover:text-white"
+            >
+              <X className="w-3 h-3" />
+            </Button>
+          )}
+        </div>
+
+        {isOpen && searchResults.length > 0 && (
+          <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-cyan-500/30 shadow-2xl z-50 max-h-96 overflow-y-auto">
+            <CardContent className="p-2">
               {searchResults.map((tool, index) => {
                 const toolIndex = allTools.findIndex(t => t.title === tool.title);
                 return (
-                  <Link
-                    key={index}
-                    to={`/tool/${toolIndex}`}
-                    onClick={handleResultClick}
-                    className="flex items-center space-x-3 p-4 hover:bg-purple-500/20 transition-all duration-300 border-b border-gray-800 last:border-b-0"
-                  >
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 flex items-center justify-center text-white text-xl flex-shrink-0">
-                      {tool.emoji}
-                    </div>
-                    <div className="flex-grow min-w-0">
-                      <div className="text-cyan-100 font-medium text-lg">{tool.title}</div>
-                      <div className="text-gray-400 text-sm">{tool.category}</div>
-                    </div>
-                  </Link>
+                  <Tooltip key={`global-search-${tool.title}-${index}`} delayDuration={300}>
+                    <TooltipTrigger asChild>
+                      <div 
+                        className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800/50 cursor-pointer group transition-all duration-200"
+                        onClick={() => handleToolClick(toolIndex)}
+                      >
+                        <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-sm flex-shrink-0`}>
+                          {tool.emoji}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-medium text-white text-sm truncate group-hover:text-cyan-400 transition-colors">
+                            {tool.title}
+                          </h3>
+                          {tool.category && (
+                            <p className="text-xs text-gray-400 truncate">{tool.category}</p>
+                          )}
+                        </div>
+                        
+                        {tool.directUrl && (
+                          <Button 
+                            size="sm"
+                            variant="outline"
+                            className="border-green-500/50 bg-green-500/10 text-green-300 hover:bg-green-500/20 text-xs px-2 py-1 h-auto flex-shrink-0"
+                            onClick={(e) => handleDirectAccess(tool, e)}
+                          >
+                            🚀
+                          </Button>
+                        )}
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent 
+                      side="right" 
+                      className="max-w-sm p-3 bg-gray-800 text-white border-gray-600 shadow-xl z-[60]"
+                      sideOffset={10}
+                    >
+                      <div className="space-y-2">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-lg">{tool.emoji}</span>
+                          <span className="font-semibold text-cyan-400">{tool.title}</span>
+                        </div>
+                        <p className="text-sm text-gray-300 leading-relaxed">
+                          {tool.description}
+                        </p>
+                        {tool.tags && tool.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mt-2">
+                            {tool.tags.slice(0, 3).map((tag, tagIndex) => (
+                              <span 
+                                key={tagIndex}
+                                className="px-2 py-1 bg-gray-700 text-xs rounded-full text-gray-300"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </TooltipContent>
+                  </Tooltip>
                 );
               })}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Regular Search Bar */}
-      <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-cyan-400 w-5 h-5 z-10" />
-        <Input
-          type="text"
-          placeholder="Search AI tools..."
-          value={searchTerm}
-          onChange={(e) => handleSearchChange(e.target.value)}
-          onKeyDown={handleKeyDown}
-          onClick={handleInputClick}
-          className="pl-12 pr-4 py-3 w-full bg-gray-900/90 border-2 border-purple-500/40 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30 transition-all duration-300 text-cyan-100 placeholder-gray-400 rounded-lg backdrop-blur-sm neon-border glow-effect text-base"
-        />
+            </CardContent>
+          </Card>
+        )}
       </div>
-      
-      {/* Desktop Results */}
-      {isOpen && searchResults.length > 0 && !isMobileSearchOpen && (
-        <div className="hidden md:block absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-purple-500/30 rounded-lg shadow-2xl backdrop-blur-md z-50 max-h-96 overflow-y-auto neon-border">
-          {searchResults.map((tool, index) => {
-            const toolIndex = allTools.findIndex(t => t.title === tool.title);
-            return (
-              <Link
-                key={index}
-                to={`/tool/${toolIndex}`}
-                onClick={handleResultClick}
-                className="flex items-center space-x-3 p-4 hover:bg-purple-500/20 transition-all duration-300 border-b border-gray-800 last:border-b-0 interactive-button"
-              >
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 flex items-center justify-center text-white text-lg flex-shrink-0 glow-effect">
-                  {tool.emoji}
-                </div>
-                <div className="flex-grow min-w-0">
-                  <div className="text-cyan-100 font-medium truncate cyber-glow text-base">{tool.title}</div>
-                  <div className="text-gray-400 text-sm truncate">{tool.category}</div>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      )}
-    </div>
+    </TooltipProvider>
   );
 };
 

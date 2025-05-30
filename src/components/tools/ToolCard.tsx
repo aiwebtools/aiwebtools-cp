@@ -1,7 +1,9 @@
-
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Search } from "lucide-react";
 import { Tool } from "@/types/tools";
 import { allTools } from "@/data/toolsData";
+import { useNavigate } from "react-router-dom";
 import ToolCardHeader from "./ToolCardHeader";
 import ToolCardContent from "./ToolCardContent";
 
@@ -11,6 +13,8 @@ interface ToolCardProps {
 }
 
 const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
+  const navigate = useNavigate();
+  
   const imageHeight = isFeatured ? "240px" : "180px";
   const cardSize = isFeatured ? "w-16 h-16" : "w-12 h-12";
   const titleSize = isFeatured ? "text-xl" : "text-lg";
@@ -38,9 +42,27 @@ const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
     return `${baseDescription}${categoryInfo}${featureInfo} Perfect for professionals and enthusiasts looking to leverage cutting-edge AI technology.`;
   };
 
+  const handleFindSimilar = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigate(`/similar/${toolIndex}`);
+  };
+
   return (
     <Card className={`group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-200 transform hover:-translate-y-1 border ${isAIWebToolsOriginal ? 'border-cyan-500/50 bg-gradient-to-br from-gray-900/95 to-cyan-900/20' : 'border-gray-700 bg-gray-900/90'} backdrop-blur-sm h-full flex flex-col relative overflow-hidden will-change-transform`}>
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+      
+      {/* Find Similar Button - Top Left */}
+      <div className="absolute top-4 left-4 z-20">
+        <Button
+          size="sm"
+          onClick={handleFindSimilar}
+          className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-xs px-2 py-1 h-auto rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 shadow-lg"
+        >
+          <Search className="w-3 h-3 mr-1" />
+          FIND SIMILAR
+        </Button>
+      </div>
       
       {/* Enhanced FREE Badge for AI Web Tools original tools */}
       {isAIWebToolsOriginal && (

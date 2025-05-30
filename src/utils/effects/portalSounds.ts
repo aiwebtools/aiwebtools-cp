@@ -1,116 +1,87 @@
 
+// Enhanced portal sounds with multiple audio layers for deeper immersion
 export const createPortalSounds = () => {
-  console.log('🔊 Creating portal sounds');
+  console.log('🔊 Creating enhanced portal audio effects');
   
   try {
-    // Try to create audio context
-    const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-    if (!AudioContext) {
-      console.log('Web Audio API not supported');
-      return;
-    }
+    // Create AudioContext
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     
-    const audioContext = new AudioContext();
-    
-    // Resume audio context if it's suspended (required by browsers)
-    if (audioContext.state === 'suspended') {
-      audioContext.resume();
-    }
-    
-    // Deep whoosh sound - much lower and more dramatic
-    const createWhoosh = () => {
-      const oscillator = audioContext.createOscillator();
-      const gainNode = audioContext.createGain();
-      const filter = audioContext.createBiquadFilter();
+    // Enhanced portal whoosh sound with multiple frequencies
+    const createPortalWhoosh = () => {
+      const duration = 3.5;
+      const sampleRate = audioContext.sampleRate;
+      const numFrames = sampleRate * duration;
+      const buffer = audioContext.createBuffer(2, numFrames, sampleRate);
       
-      oscillator.connect(filter);
-      filter.connect(gainNode);
-      gainNode.connect(audioContext.destination);
-      
-      oscillator.type = 'sawtooth';
-      oscillator.frequency.setValueAtTime(80, audioContext.currentTime);
-      oscillator.frequency.exponentialRampToValueAtTime(25, audioContext.currentTime + 2);
-      
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(800, audioContext.currentTime);
-      filter.frequency.exponentialRampToValueAtTime(60, audioContext.currentTime + 2);
-      
-      gainNode.gain.setValueAtTime(0.4, audioContext.currentTime);
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2);
-      
-      oscillator.start();
-      oscillator.stop(audioContext.currentTime + 2);
-    };
-    
-    // Deep portal opening sound with sub-bass
-    const createPortalSound = () => {
-      const oscillator = audioContext.createOscillator();
-      const gainNode = audioContext.createGain();
-      const subOscillator = audioContext.createOscillator();
-      const subGain = audioContext.createGain();
-      
-      oscillator.connect(gainNode);
-      gainNode.connect(audioContext.destination);
-      subOscillator.connect(subGain);
-      subGain.connect(audioContext.destination);
-      
-      // Main oscillator - deeper
-      oscillator.type = 'sine';
-      oscillator.frequency.setValueAtTime(60, audioContext.currentTime);
-      oscillator.frequency.exponentialRampToValueAtTime(300, audioContext.currentTime + 0.5);
-      oscillator.frequency.exponentialRampToValueAtTime(120, audioContext.currentTime + 1.5);
-      
-      // Sub-bass layer
-      subOscillator.type = 'sine';
-      subOscillator.frequency.setValueAtTime(30, audioContext.currentTime);
-      subOscillator.frequency.exponentialRampToValueAtTime(80, audioContext.currentTime + 1.5);
-      
-      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-      gainNode.gain.linearRampToValueAtTime(0.5, audioContext.currentTime + 0.3);
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
-      
-      subGain.gain.setValueAtTime(0.2, audioContext.currentTime);
-      subGain.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.3);
-      subGain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
-      
-      oscillator.start();
-      oscillator.stop(audioContext.currentTime + 1.5);
-      subOscillator.start();
-      subOscillator.stop(audioContext.currentTime + 1.5);
-    };
-    
-    // Deeper energy crackle with more bass
-    const createCrackle = () => {
-      for (let i = 0; i < 12; i++) {
-        setTimeout(() => {
-          const oscillator = audioContext.createOscillator();
-          const gainNode = audioContext.createGain();
-          const filter = audioContext.createBiquadFilter();
+      for (let channel = 0; channel < 2; channel++) {
+        const channelData = buffer.getChannelData(channel);
+        
+        for (let i = 0; i < numFrames; i++) {
+          const t = i / sampleRate;
+          const fadeIn = Math.min(1, t * 4);
+          const fadeOut = Math.max(0, 1 - (t - 2.5) * 2);
+          const envelope = fadeIn * fadeOut;
           
-          oscillator.connect(filter);
-          filter.connect(gainNode);
-          gainNode.connect(audioContext.destination);
+          // Multiple frequency layers for richer sound
+          const whoosh1 = Math.sin(2 * Math.PI * (80 + t * 200) * t) * Math.exp(-t * 0.5);
+          const whoosh2 = Math.sin(2 * Math.PI * (120 + t * 150) * t) * Math.exp(-t * 0.7);
+          const whoosh3 = Math.sin(2 * Math.PI * (60 + t * 300) * t) * Math.exp(-t * 0.3);
           
-          oscillator.type = 'square';
-          oscillator.frequency.setValueAtTime(400 + Math.random() * 600, audioContext.currentTime);
+          // Add some noise for texture
+          const noise = (Math.random() - 0.5) * 0.1 * Math.exp(-t * 2);
           
-          filter.type = 'lowpass';
-          filter.frequency.setValueAtTime(1200, audioContext.currentTime);
-          
-          gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
-          gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.12);
-          
-          oscillator.start();
-          oscillator.stop(audioContext.currentTime + 0.12);
-        }, i * 180);
+          // Reduced volume from 0.3 to 0.15 for better voice clarity
+          channelData[i] = (whoosh1 + whoosh2 * 0.7 + whoosh3 * 0.5 + noise) * envelope * 0.15;
+        }
       }
+      
+      return buffer;
     };
-    
-    createWhoosh();
-    setTimeout(createPortalSound, 100);
-    setTimeout(createCrackle, 200);
+
+    // Enhanced energy pulse sound
+    const createEnergyPulse = () => {
+      const duration = 2.0;
+      const sampleRate = audioContext.sampleRate;
+      const numFrames = sampleRate * duration;
+      const buffer = audioContext.createBuffer(2, numFrames, sampleRate);
+      
+      for (let channel = 0; channel < 2; channel++) {
+        const channelData = buffer.getChannelData(channel);
+        
+        for (let i = 0; i < numFrames; i++) {
+          const t = i / sampleRate;
+          const pulse = Math.sin(2 * Math.PI * 40 * t) * Math.exp(-t * 3);
+          const harmonic = Math.sin(2 * Math.PI * 80 * t) * Math.exp(-t * 4) * 0.5;
+          const envelope = Math.exp(-t * 2);
+          
+          // Reduced volume from 0.4 to 0.2 for better voice clarity
+          channelData[i] = (pulse + harmonic) * envelope * 0.2;
+        }
+      }
+      
+      return buffer;
+    };
+
+    // Create and play portal whoosh
+    const whooshBuffer = createPortalWhoosh();
+    const whooshSource = audioContext.createBufferSource();
+    whooshSource.buffer = whooshBuffer;
+    whooshSource.connect(audioContext.destination);
+    whooshSource.start();
+
+    // Create and play energy pulse with delay
+    setTimeout(() => {
+      const pulseBuffer = createEnergyPulse();
+      const pulseSource = audioContext.createBufferSource();
+      pulseSource.buffer = pulseBuffer;
+      pulseSource.connect(audioContext.destination);
+      pulseSource.start();
+    }, 800);
+
+    console.log('🎵 Portal audio effects created successfully');
     
   } catch (error) {
-    console.log('Audio context error:', error);
+    console.log('Portal audio creation failed:', error);
   }
 };

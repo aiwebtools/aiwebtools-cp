@@ -31,7 +31,8 @@ const ToolCardContent = ({
       e.preventDefault();
       e.stopPropagation();
       console.log('Direct access clicked for:', tool.title);
-      createTimePortalEffect(tool.directUrl);
+      // Pass the tool title to the time portal effect
+      createTimePortalEffect(tool.directUrl, tool.title);
     }
   };
 
