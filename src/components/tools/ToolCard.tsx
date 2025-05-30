@@ -1,98 +1,68 @@
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
 import { Tool } from "@/types/tools";
-import { allTools } from "@/data/toolsData";
-import { useNavigate } from "react-router-dom";
-import ToolCardHeader from "./ToolCardHeader";
-import ToolCardContent from "./ToolCardContent";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Star } from "lucide-react";
+import { Link } from "react-router-dom";
+import { createTimePortalEffect } from "@/utils/timeEffects";
 
 interface ToolCardProps {
   tool: Tool;
-  isFeatured?: boolean;
 }
 
-const ToolCard = ({ tool, isFeatured = false }: ToolCardProps) => {
-  const navigate = useNavigate();
-  
-  const imageHeight = isFeatured ? "240px" : "180px";
-  const cardSize = isFeatured ? "w-16 h-16" : "w-12 h-12";
-  const titleSize = isFeatured ? "text-xl" : "text-lg";
-  const buttonSize = isFeatured ? "default" : "sm";
-
-  // Find the tool index for the URL
-  const toolIndex = allTools.findIndex(t => t.title === tool.title);
-
-  // Enhanced rating system - boost ratings for AI Web Tools original GPTs
-  const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
-  const baseRating = tool.rating || 4.1;
-  const boostedRating = isAIWebToolsOriginal ? Math.min(baseRating + 0.3, 4.9) : baseRating;
-  const defaultVotes = tool.totalVotes || (isAIWebToolsOriginal ? Math.floor(Math.random() * 2000) + 4000 : Math.floor(Math.random() * 1500) + 2000);
-
-  // Enhanced description with better fallbacks
-  const getDescription = () => {
-    if (tool.description && tool.description.length > 50) {
-      return tool.description;
+const ToolCard = ({ tool }: ToolCardProps) => {
+  const handleDirectAccess = (e: React.MouseEvent) => {
+    if (tool.directUrl) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('🌀 Direct access clicked for:', tool.title);
+      createTimePortalEffect(tool.directUrl);
     }
-    
-    const baseDescription = tool.description || "Advanced AI-powered tool designed to enhance your workflow and productivity.";
-    const categoryInfo = tool.category ? ` Specialized for ${tool.category.toLowerCase()} applications.` : "";
-    const featureInfo = tool.tags ? ` Features include ${tool.tags.slice(0, 3).join(', ')}.` : "";
-    
-    return `${baseDescription}${categoryInfo}${featureInfo} Perfect for professionals and enthusiasts looking to leverage cutting-edge AI technology.`;
-  };
-
-  const handleFindSimilar = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    navigate(`/similar/${toolIndex}`);
   };
 
   return (
-    <Card className={`group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-200 transform hover:-translate-y-1 border ${isAIWebToolsOriginal ? 'border-cyan-500/50 bg-gradient-to-br from-gray-900/95 to-cyan-900/20' : 'border-gray-700 bg-gray-900/90'} backdrop-blur-sm h-full flex flex-col relative overflow-hidden will-change-transform`}>
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-      
-      {/* Find Similar Button - Top Left */}
-      <div className="absolute top-4 left-4 z-20">
-        <Button
-          size="sm"
-          onClick={handleFindSimilar}
-          className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white text-xs px-2 py-1 h-auto rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 shadow-lg"
-        >
-          <Search className="w-3 h-3 mr-1" />
-          FIND SIMILAR
-        </Button>
-      </div>
-      
-      {/* Enhanced FREE Badge for AI Web Tools original tools */}
-      {isAIWebToolsOriginal && (
-        <div className="absolute top-4 right-4 z-20">
-          <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg transform rotate-12 animate-pulse border-2 border-yellow-300">
-            FREE
+    <Card 
+      className={`group bg-gradient-to-br ${tool.color} backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 cursor-pointer h-full flex flex-col`}
+      data-tool-title={tool.title}
+    >
+      <CardContent className="p-6 flex-grow">
+        <div className="flex items-center space-x-4 mb-4">
+          <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-2xl text-white shadow-md`}>
+            {tool.emoji}
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold text-gray-100 group-hover:text-white transition-colors duration-300 leading-tight">
+              {tool.title}
+            </h3>
+            <p className="text-gray-300 text-sm truncate max-w-xs">{tool.category}</p>
           </div>
         </div>
-      )}
-      
-      <ToolCardHeader
-        tool={tool}
-        toolIndex={toolIndex}
-        isFeatured={isFeatured}
-        cardSize={cardSize}
-        titleSize={titleSize}
-        isAIWebToolsOriginal={isAIWebToolsOriginal}
-        boostedRating={boostedRating}
-        defaultVotes={defaultVotes}
-      />
-      
-      <ToolCardContent
-        tool={tool}
-        toolIndex={toolIndex}
-        isFeatured={isFeatured}
-        buttonSize={buttonSize}
-        isAIWebToolsOriginal={isAIWebToolsOriginal}
-        imageHeight={imageHeight}
-        getDescription={getDescription}
-      />
+        <p className="text-gray-400 leading-relaxed mb-6 flex-grow">
+          {tool.description}
+        </p>
+      </CardContent>
+      <CardFooter className="px-6 pb-6 pt-0 bg-transparent border-t-0 flex items-center justify-between">
+        <div className="flex items-center space-x-2 text-gray-400">
+          <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+          <span className="text-sm">{tool.rating || '4.5'}</span>
+        </div>
+        <div className="flex space-x-2">
+          {tool.directUrl && (
+            <Button 
+              size="sm"
+              variant="outline"
+              className="border-green-500/50 bg-green-500/10 text-green-300 hover:bg-green-500/20"
+              onClick={handleDirectAccess}
+            >
+              🚀
+            </Button>
+          )}
+          <Link to={`/tool/${tool.id}`}>
+            <Button size="sm">
+              More Info
+            </Button>
+          </Link>
+        </div>
+      </CardFooter>
     </Card>
   );
 };

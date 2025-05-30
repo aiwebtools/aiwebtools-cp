@@ -28,7 +28,6 @@ export const useSearchScroll = () => {
       // Add a slight delay to allow the scroll to complete
       setTimeout(() => {
         // Try to find the first matching tool card and highlight it
-        const firstMatchingTool = matchingTools[0];
         const toolCards = document.querySelectorAll('[data-tool-title]');
         
         // Remove any existing highlights
