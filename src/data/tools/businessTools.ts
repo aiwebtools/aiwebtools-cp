@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Briefcase, 
@@ -17,7 +16,45 @@ import {
 } from "lucide-react";
 
 export const businessTools: Tool[] = [
-  // AI Web Tools custom GPTs first
+  {
+    icon: Calculator,
+    title: "Taxes GPT",
+    description: "Taxes GPT is your AI-powered tax assistant, designed to simplify tax preparation while maximizing your deductions. Securely analyze your financial data, receive accurate tax reports, and minimize liabilities with ease. Let Taxes GPT handle the complexity so you can enjoy greater savings.",
+    emoji: "💰",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xkcsSVbBhf4",
+    tags: ["tax preparation", "deduction maximization", "financial analysis", "tax reports", "liability minimization"],
+    category: "Business Tools",
+    rating: 4.5,
+    totalVotes: 3123
+  },
+  {
+    icon: Rocket,
+    title: "🚀 Startup Validator GPT",
+    description: "🚀 Startup Validator GPT is your ultimate AI-powered startup analysis tool, designed to rapidly assess market viability, scalability, and investment potential. Whether you're brainstorming a new business idea or seeking funding, I provide deep insights on competition, risk factors, and growth strategies—all backed by real-time market data. With expert-level validation, funding recommendations, and strategic guidance, I help you refine, validate, and scale your startup with confidence. Let's turn your vision into a venture-ready success!",
+    emoji: "🚀",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://startupvalidatorgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-named-st_4i8GY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["startup validation", "market analysis", "investment potential", "business strategy", "venture funding"],
+    category: "Business Tools",
+    rating: 4.7,
+    totalVotes: 3890
+  },
+  {
+    icon: Briefcase,
+    title: "Business Plan Generator GPT",
+    description: "Business Plan Generator GPT is an AI-driven tool that quickly creates tailored business plans. By gathering key information about your business, it produces a detailed plan that includes market analysis, financial projections, and strategic growth initiatives. Efficient, personalized, and designed to meet your specific business goals.",
+    emoji: "📊",
+    color: "from-yellow-500 to-green-600",
+    directUrl: "https://businessplanandtrainai.lovable.app//?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-logo-design-with-the-text-business-plan-gene.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    tags: ["business planning", "market analysis", "financial projections", "strategic growth", "startup support"],
+    category: "Business Tools",
+    rating: 4.6,
+    totalVotes: 3456
+  },
   {
     icon: Car,
     title: "AUTOMOBILE GPT",
@@ -57,44 +94,5 @@ export const businessTools: Tool[] = [
     category: "Business Tools",
     rating: 4.6,
     totalVotes: 3234
-  },
-  {
-    icon: Calculator,
-    title: "Taxes GPT",
-    description: "Taxes GPT is your AI-powered tax assistant, designed to simplify tax preparation while maximizing your deductions. Securely analyze your financial data, receive accurate tax reports, and minimize liabilities with ease. Let Taxes GPT handle the complexity so you can enjoy greater savings.",
-    emoji: "💰",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=xkcsSVbBhf4",
-    tags: ["tax preparation", "deduction maximization", "financial analysis", "tax reports", "liability minimization"],
-    category: "Business Tools",
-    rating: 4.5,
-    totalVotes: 3123
-  },
-  {
-    icon: Briefcase,
-    title: "Business Plan Generator GPT",
-    description: "Business Plan Generator GPT is an AI-driven tool that quickly creates tailored business plans. By gathering key information about your business, it produces a detailed plan that includes market analysis, financial projections, and strategic growth initiatives. Efficient, personalized, and designed to meet your specific business goals.",
-    emoji: "📊",
-    color: "from-yellow-500 to-green-600",
-    directUrl: "https://businessplanandtrainai.lovable.app//?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-logo-design-with-the-text-business-plan-gene.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
-    tags: ["business planning", "market analysis", "financial projections", "strategic growth", "startup support"],
-    category: "Business Tools",
-    rating: 4.6,
-    totalVotes: 3456
-  },
-  {
-    icon: Rocket,
-    title: "🚀 Startup Validator GPT",
-    description: "🚀 Startup Validator GPT is your ultimate AI-powered startup analysis tool, designed to rapidly assess market viability, scalability, and investment potential. Whether you're brainstorming a new business idea or seeking funding, I provide deep insights on competition, risk factors, and growth strategies—all backed by real-time market data. With expert-level validation, funding recommendations, and strategic guidance, I help you refine, validate, and scale your startup with confidence. Let's turn your vision into a venture-ready success!",
-    emoji: "🚀",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://startupvalidatorgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-named-st_4i8GY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["startup validation", "market analysis", "investment potential", "business strategy", "venture funding"],
-    category: "Business Tools",
-    rating: 4.7,
-    totalVotes: 3890
   }
 ];

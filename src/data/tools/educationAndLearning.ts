@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   GraduationCap, 
@@ -17,7 +16,32 @@ import {
 } from "lucide-react";
 
 export const educationAndLearning: Tool[] = [
-  // AI Web Tools custom GPTs first
+  {
+    icon: PenTool,
+    title: "Quiz Maker Ai",
+    description: "This GPT is ideal for adding quizzes and tests to your courses. Designed to work seamlessly with Course Maker GPT and College Degree GPT, you can easily integrate it into your course whenever you're ready for a quiz by typing \"@\" followed by the GPT's name. Make sure to use it at least once beforehand to have it in your GPT call memory. Additionally, teachers can utilize this GPT to create tests and quizzes for their students.",
+    emoji: "📝",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-cUahkn19i-quiz-maker-ai",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-eye-catching-advertisement-for-quiz-maker-.jpeg/:/cr=t:5.56%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
+    tags: ["quiz creation", "course integration", "educational testing", "teacher tools", "student assessment"],
+    category: "Education & Learning",
+    rating: 4.3,
+    totalVotes: 2567
+  },
+  {
+    icon: BookOpen,
+    title: "Course Maker GPT",
+    description: "Course Maker GPT is designed to work seamlessly with Quiz Maker AI and College Degree GPT to create comprehensive educational experiences with structured learning paths and assessment integration.",
+    emoji: "📖",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377336291427090462/ChatGPT_Image_May_28_2025_01_22_27_PM.png?ex=683897e1&is=68374661&hm=71f0b50e1d34249bf9ed9ca8b7a1b0e45d0d2127cb9e356e2b4c65b35518656a&=&format=webp&quality=lossless&width=2088&height=1392",
+    tags: ["course creation", "educational design", "learning paths", "curriculum development", "educational integration"],
+    category: "Education & Learning",
+    rating: 4.4,
+    totalVotes: 2987
+  },
   {
     icon: GraduationCap,
     title: "COLLEGE DEGREE GPT",
@@ -58,32 +82,6 @@ export const educationAndLearning: Tool[] = [
     category: "Education & Learning",
     rating: 4.7,
     totalVotes: 3892
-  },
-  {
-    icon: PenTool,
-    title: "Quiz Maker Ai",
-    description: "This GPT is ideal for adding quizzes and tests to your courses. Designed to work seamlessly with Course Maker GPT and College Degree GPT, you can easily integrate it into your course whenever you're ready for a quiz by typing \"@\" followed by the GPT's name. Make sure to use it at least once beforehand to have it in your GPT call memory. Additionally, teachers can utilize this GPT to create tests and quizzes for their students.",
-    emoji: "📝",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://chatgpt.com/g/g-cUahkn19i-quiz-maker-ai",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-eye-catching-advertisement-for-quiz-maker-.jpeg/:/cr=t:5.56%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
-    tags: ["quiz creation", "course integration", "educational testing", "teacher tools", "student assessment"],
-    category: "Education & Learning",
-    rating: 4.3,
-    totalVotes: 2567
-  },
-  {
-    icon: BookOpen,
-    title: "Course Maker GPT",
-    description: "Course Maker GPT is designed to work seamlessly with Quiz Maker AI and College Degree GPT to create comprehensive educational experiences with structured learning paths and assessment integration.",
-    emoji: "📖",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377336291427090462/ChatGPT_Image_May_28_2025_01_22_27_PM.png?ex=683897e1&is=68374661&hm=71f0b50e1d34249bf9ed9ca8b7a1b0e45d0d2127cb9e356e2b4c65b35518656a&=&format=webp&quality=lossless&width=2088&height=1392",
-    tags: ["course creation", "educational design", "learning paths", "curriculum development", "educational integration"],
-    category: "Education & Learning",
-    rating: 4.4,
-    totalVotes: 2987
   },
   {
     icon: Search,
