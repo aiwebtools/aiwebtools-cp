@@ -21,20 +21,20 @@ const MobileMenu = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [displayedCount, setDisplayedCount] = useState(30);
+  const [displayedCount, setDisplayedCount] = useState(50); // Start with 50 results
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);
 
   useEffect(() => {
     if (searchTerm.trim()) {
-      const results = searchTools(allTools, searchTerm);
+      const results = searchTools(allTools, searchTerm); // Get ALL results
       setSearchResults(results);
-      setDisplayedCount(30);
+      setDisplayedCount(50); // Reset display count
       setIsSearchOpen(true);
     } else {
       setSearchResults([]);
       setIsSearchOpen(false);
-      setDisplayedCount(30);
+      setDisplayedCount(50);
     }
   }, [searchTerm]);
 
@@ -82,7 +82,7 @@ const MobileMenu = () => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     if (scrollHeight - scrollTop <= clientHeight + 50 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 20, searchResults.length));
+      setDisplayedCount(prev => Math.min(prev + 30, searchResults.length));
     }
   };
 
@@ -111,7 +111,7 @@ const MobileMenu = () => {
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                   <Input
                     type="text"
-                    placeholder="Search 700+ AI tools..."
+                    placeholder="Search 1100+ AI tools..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10 pr-10 bg-gray-900/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500"
@@ -130,7 +130,7 @@ const MobileMenu = () => {
 
                 {/* Search Results */}
                 {isSearchOpen && searchResults.length > 0 && (
-                  <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-cyan-500/30 shadow-2xl z-50 max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" onScroll={handleScroll}>
+                  <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-cyan-500/30 shadow-2xl z-50 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" onScroll={handleScroll}>
                     <CardContent className="p-2">
                       <div className="text-xs text-cyan-400 px-3 py-2 border-b border-gray-700 sticky top-0 bg-gray-900/95">
                         {searchResults.length} Results - Showing {displayedCount}
