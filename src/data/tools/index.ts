@@ -1,3 +1,4 @@
+
 // Export all tool categories
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
@@ -110,3 +111,10 @@ export { grammarAndWritingAssistants } from './grammarAndWritingAssistants';
 export { aiContentGenerators } from './aiContentGenerators';
 export { creativeWritingTools } from './creativeWritingTools';
 export { transcriptionAndDocumentTools } from './transcriptionAndDocumentTools';
+
+// Export new refactored audio and music tool categories
+export { musicVideoCreationTools } from './musicVideoCreationTools';
+export { musicGenerationTools } from './musicGenerationTools';
+export { voiceAndSpeechTools } from './voiceAndSpeechTools';
+export { audioEditingAndProductionTools } from './audioEditingAndProductionTools';
+export { podcastAndStreamingTools } from './podcastAndStreamingTools';
