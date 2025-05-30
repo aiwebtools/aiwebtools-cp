@@ -15,8 +15,8 @@ const CategoryPageSelection = () => {
   const mainCategoryCounts = getMainCategoriesWithCounts(allTools);
 
   const handleMainCategoryClick = (mainCategoryName: string) => {
-    // Navigate to tools page with main category selected
-    navigate(`/?mainCategory=${encodeURIComponent(mainCategoryName)}`);
+    // Navigate to main category page
+    navigate(`/main-category/${encodeURIComponent(mainCategoryName)}`);
   };
 
   return (

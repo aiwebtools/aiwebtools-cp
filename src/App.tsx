@@ -8,6 +8,7 @@ import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import ToolDetail from "./pages/ToolDetail";
 import CategoryPage from "./pages/CategoryPage";
+import MainCategoryPage from "./pages/MainCategoryPage";
 import SimilarTools from "./pages/SimilarTools";
 import NotFound from "./pages/NotFound";
 import DisclaimerPopup from "./components/DisclaimerPopup";
@@ -25,6 +26,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/tool/:toolId" element={<ToolDetail />} />
             <Route path="/category/:categoryName" element={<CategoryPage />} />
+            <Route path="/main-category/:mainCategoryName" element={<MainCategoryPage />} />
             <Route path="/similar/:toolId" element={<SimilarTools />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
