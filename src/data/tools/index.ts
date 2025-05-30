@@ -105,6 +105,10 @@ export { designAssistantTools } from './designAssistantTools';
 // Export comprehensive AI tools collection
 export { comprehensiveAITools } from './comprehensiveAITools';
 
+// Export new refactored business tool categories
+export { aiWebToolsGPTs } from './aiWebToolsGPTs';
+export { traditionalBusinessTools } from './traditionalBusinessTools';
+
 // Export new refactored writing tool categories
 export { grammarAndWritingAssistants } from './grammarAndWritingAssistants';
 export { aiContentGenerators } from './aiContentGenerators';
