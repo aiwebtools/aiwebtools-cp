@@ -31,10 +31,13 @@ const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
         </div>
       </div>
       <div className="flex items-center space-x-6 text-cyan-300">
-        <span className="flex items-center space-x-2">
+        <button 
+          onClick={(e) => handleExternalLink("https://freename.io?ref=olive-ears-obey&utm_source=clipboard", e)}
+          className="flex items-center space-x-2 hover:text-cyan-400 transition-colors cursor-pointer"
+        >
           <Globe className="w-4 h-4" />
           <span>Launch your next idea with .aiwebtools or .ai-tools</span>
-        </span>
+        </button>
       </div>
     </div>
   );

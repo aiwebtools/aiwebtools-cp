@@ -1,6 +1,7 @@
 
 import { Phone } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -33,6 +34,13 @@ const Navigation = () => {
     }
   };
 
+  const handleExternalLink = (url: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('🌀 External link clicked in navigation:', url);
+    createTimePortalEffect(url);
+  };
+
   return (
     <nav className="hidden lg:flex items-center space-x-6 flex-shrink-0">
       <button 
@@ -49,7 +57,13 @@ const Navigation = () => {
         🎯 Browse AI Tools
       </button>
 
-      <a href="#services" className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap">More</a>
+      <button 
+        onClick={(e) => handleExternalLink("https://aitools.company/hire-us-to-build-your-ai-1", e)}
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
+      >
+        More
+      </button>
+      
       <div className="flex items-center space-x-2 text-cyan-100 whitespace-nowrap">
         <Phone className="w-4 h-4" />
         <a 
