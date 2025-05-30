@@ -56,15 +56,29 @@ export const businessTools: Tool[] = [
     totalVotes: 3234
   },
   {
-    icon: DollarSign,
-    title: "Financial Modeling GPT",
-    description: "AI-powered financial modeling tool for creating financial forecasts, investment analysis, and financial planning for businesses.",
-    emoji: "📊",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://financialmodelinggpt.lovable.app/?via=aiwebtools",
-    tags: ["financial modeling", "financial forecasts", "investment analysis", "financial planning", "finance"],
+    icon: Calculator,
+    title: "Taxes GPT",
+    description: "Taxes GPT is your AI-powered tax assistant, designed to simplify tax preparation while maximizing your deductions. Securely analyze your financial data, receive accurate tax reports, and minimize liabilities with ease. Let Taxes GPT handle the complexity so you can enjoy greater savings.",
+    emoji: "💰",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xkcsSVbBhf4",
+    tags: ["tax preparation", "deduction maximization", "financial analysis", "tax reports", "liability minimization"],
     category: "Business Tools",
-    rating: 4.4,
-    totalVotes: 3234
+    rating: 4.5,
+    totalVotes: 3123
+  },
+  {
+    icon: Briefcase,
+    title: "Business Plan Generator GPT",
+    description: "Business Plan Generator GPT is an AI-driven tool that quickly creates tailored business plans. By gathering key information about your business, it produces a detailed plan that includes market analysis, financial projections, and strategic growth initiatives. Efficient, personalized, and designed to meet your specific business goals.",
+    emoji: "📊",
+    color: "from-yellow-500 to-green-600",
+    directUrl: "https://businessplanandtrainai.lovable.app//?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-logo-design-with-the-text-business-plan-gene.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    tags: ["business planning", "market analysis", "financial projections", "strategic growth", "startup support"],
+    category: "Business Tools",
+    rating: 4.6,
+    totalVotes: 3456
   }
 ];

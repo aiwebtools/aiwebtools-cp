@@ -1,22 +1,71 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Search, BookOpen, Database, BarChart3, Brain, Microscope,
-  FileText, Globe, Calculator, TrendingUp, Atom, Beaker
+  Search, 
+  Database, 
+  BarChart3, 
+  Brain, 
+  Eye, 
+  FileSearch,
+  Microscope,
+  Target,
+  Beaker,
+  BookOpen,
+  TrendingUp,
+  Users
 } from "lucide-react";
 
 export const aiResearchTools: Tool[] = [
   {
-    icon: Search,
-    title: "Semantic Scholar",
-    description: "AI-powered academic search engine with intelligent paper recommendations and research insights from over 200M papers.",
-    emoji: "🔬",
-    color: "from-blue-500 to-cyan-600",
-    directUrl: "https://www.semanticscholar.org/",
-    tags: ["academic search", "research papers", "AI recommendations", "citations"],
-    category: "Information & Research",
+    icon: Beaker,
+    title: "Genome GPT",
+    description: "Genome GPT is a cutting-edge AI tool designed to assist researchers, scientists, and enthusiasts in genetic analysis and discovery. Specializing in genomic data interpretation, Genome GPT provides comprehensive and detailed insights into genetic sequences, patterns, and variations. Whether you're analyzing human DNA, exploring plant genetics, or researching cannabis strains, Genome GPT offers thorough scientific analysis in a user-friendly, professional manner.",
+    emoji: "🧬",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["genetic analysis", "DNA research", "genomic data", "scientific analysis", "biotechnology"],
+    category: "AI Research Tools",
     rating: 4.7,
     totalVotes: 3456
+  },
+  {
+    icon: TrendingUp,
+    title: "Predictive Credit Score Checker GPT",
+    description: "Predictive Credit Score Checker GPT is an AI tool for estimating creditworthiness based on specific addresses. Ideal for real estate, finance, and lending, it provides quick, data-backed credit score estimates by analyzing local demographics and trends. Use it to assess prospects or evaluate risk. Note that predictions are estimates to guide decision-making, not guarantees. Fast, efficient, and insightful—this AI helps you target leads with confidence!",
+    emoji: "📊",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://predictivecreditscoregpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-screenshot-of-a-web-app-with-the-text-predic.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["credit scoring", "risk assessment", "demographic analysis", "financial prediction", "real estate"],
+    category: "AI Research Tools",
+    rating: 4.4,
+    totalVotes: 2987
+  },
+  {
+    icon: Search,
+    title: "Name Insight Research & Predictor GPT",
+    description: "Your name holds hidden meanings, shaping your personality, strengths, and destiny through history, numerology, and culture. Dive deep into its origins, global significance, and psychological impact with AI-driven insights. Discover what your name says about YOU today!",
+    emoji: "🔍",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://whatsmynamegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-interface-with-a-dark-blue-_mXbL6.png/:/cr=t:10.87%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["name analysis", "numerology", "cultural research", "personality insights", "historical origins"],
+    category: "AI Research Tools",
+    rating: 4.2,
+    totalVotes: 2134
+  },
+  {
+    icon: Users,
+    title: "Person Information Finder GPT",
+    description: "Person Information Finder GPT is an AI tool that specializes in uncovering detailed public information about individuals by searching the web, social media, news, and public records. Whether you're reconnecting with a lost contact, researching a public figure, or verifying someone's background, this AI compiles comprehensive profiles with precision and speed.",
+    emoji: "👤",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://personfindergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-p_gHXnM.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    tags: ["background research", "public records", "social media search", "contact verification", "profile compilation"],
+    category: "AI Research Tools",
+    rating: 4.0,
+    totalVotes: 1876
   },
   {
     icon: Database,
