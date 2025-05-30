@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { consolidateTools } from "./categoryConsolidation";
 import { getMainCategoryCounts, getSubcategoriesForMainCategory, mainCategories } from "./mainCategoryMapping";
