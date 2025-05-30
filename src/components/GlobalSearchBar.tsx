@@ -96,18 +96,18 @@ const GlobalSearchBar = () => {
                   <Tooltip key={`global-search-${tool.title}-${index}`} delayDuration={300}>
                     <TooltipTrigger asChild>
                       <div 
-                        className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800/70 cursor-pointer group transition-all duration-200 border-b border-gray-700/50 last:border-b-0"
+                        className="flex items-center space-x-3 p-4 md:p-3 rounded-lg hover:bg-gray-800/70 cursor-pointer group transition-all duration-200 border-b border-gray-700/50 last:border-b-0"
                         onClick={() => handleToolClick(toolIndex)}
                       >
-                        <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-sm flex-shrink-0`}>
+                        <div className={`w-10 h-10 md:w-8 md:h-8 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-base md:text-sm flex-shrink-0`}>
                           {tool.emoji}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-medium text-white text-sm truncate group-hover:text-cyan-400 transition-colors leading-tight">
+                          <h3 className="font-medium text-white text-base md:text-sm truncate group-hover:text-cyan-400 transition-colors leading-tight">
                             {tool.title}
                           </h3>
                           {tool.category && (
-                            <p className="text-xs text-gray-300 truncate mt-0.5">{tool.category}</p>
+                            <p className="text-sm md:text-xs text-gray-300 truncate mt-1 md:mt-0.5">{tool.category}</p>
                           )}
                         </div>
                         
@@ -115,7 +115,7 @@ const GlobalSearchBar = () => {
                           <Button 
                             size="sm"
                             variant="outline"
-                            className="border-green-500/50 bg-green-500/10 text-green-300 hover:bg-green-500/20 text-xs px-2 py-1 h-auto flex-shrink-0"
+                            className="border-green-500/50 bg-green-500/10 text-green-300 hover:bg-green-500/20 text-sm md:text-xs px-3 md:px-2 py-2 md:py-1 h-auto flex-shrink-0"
                             onClick={(e) => handleDirectAccess(tool, e)}
                           >
                             🚀
