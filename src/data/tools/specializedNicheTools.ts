@@ -11,7 +11,11 @@ import {
   Coffee,
   Dog,
   Utensils,
-  Heart
+  Heart,
+  Search,
+  Scissors,
+  Palette,
+  Code
 } from "lucide-react";
 
 export const specializedNicheTools: Tool[] = [
@@ -57,7 +61,7 @@ export const specializedNicheTools: Tool[] = [
   {
     icon: Search,
     title: "Antique and Collectible Appraisal GPT",
-    description: "Professional appraisal services for antiques, collectibles, vintage items, and valuable objects with market analysis and authentication guidance.",
+    description: "Antique and Collectible Appraisal GPT by AiWebTools.Ai is a powerful AI tool for expert appraisals and valuations of antiques, collectibles, and coins. By analyzing images, engravings, and condition, it delivers precise insights into an item's history, rarity, and market value. Perfect for collectors, sellers, or enthusiasts, it provides professional evaluations and organized, downloadable reports.",
     emoji: "🏺",
     color: "from-brown-500 to-yellow-600",
     directUrl: "https://antiqueappraisalgpt.lovable.app/?via=aiwebtools",
@@ -70,7 +74,7 @@ export const specializedNicheTools: Tool[] = [
   {
     icon: Scissors,
     title: "Tattoo Designer GPT",
-    description: "Professional tattoo design assistance covering custom tattoo creation, design concepts, tattoo placement, and artistic guidance for tattoo artists and clients.",
+    description: "TattooGPT is your all-in-one tattoo and piercing assistant, designed to provide expert guidance in every aspect of body art and modification. From creating unique, high-quality tattoo designs tailored to personal styles and symbolism to assisting tattoo artists and shop owners with business planning, marketing, and compliance, TattooGPT ensures professionalism and precision. It also offers expert advice on piercing procedures, hygiene protocols, jewelry selection, and aftercare to promote safe healing. Whether for clients seeking inspiration, artists refining their craft, or entrepreneurs launching a studio, TattooGPT delivers comprehensive support to bring tattoo and piercing visions to life.",
     emoji: "🎨",
     color: "from-black to-red-600",
     directUrl: "https://tattoogpt.lovable.app/?via=aiwebtools",
@@ -83,7 +87,7 @@ export const specializedNicheTools: Tool[] = [
   {
     icon: Palette,
     title: "RESTYLE ME GPT",
-    description: "Personal styling and fashion guidance covering wardrobe planning, style recommendations, fashion trends, and personal image consulting.",
+    description: "Transform your images into any artistic style you can imagine, bringing your creative vision to life with detailed and stunning effects. Upload your photo and let our AI transform you into any style you can imagine – from Ghibli animation to cyberpunk, action figures to movie scenes. Powered by the New GPT 4o Image Generation Model",
     emoji: "👗",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://restylemegpt.lovable.app/?via=aiwebtools",
@@ -94,9 +98,9 @@ export const specializedNicheTools: Tool[] = [
     totalVotes: 2345
   },
   {
-    icon: Search,
+    icon: Fish,
     title: "Fisherman GPT🎣😊",
-    description: "Comprehensive fishing guidance covering fishing techniques, bait selection, location scouting, equipment recommendations, and fishing regulations.",
+    description: "Hi there! 👋 I'm Fisherman GPT, your expert virtual fishing assistant. I specialize in providing detailed, step-by-step guidance for all things related to fishing, from finding the best fishing spots and recommending ideal baits, to sourcing the cheapest gear and calculating trip costs. I can also identify fish species, analyze water conditions, and provide local regulations to ensure you're fully prepared for your trip. With the ability to search the web for the latest data and even generate reports, I offer a complete, personalized fishing experience, helping you make the most of your time on the water. 🎣😊",
     emoji: "🎣",
     color: "from-blue-500 to-green-600",
     directUrl: "https://fishermangpt.lovable.app/?via=aiwebtools",
@@ -107,9 +111,9 @@ export const specializedNicheTools: Tool[] = [
     totalVotes: 2654
   },
   {
-    icon: Code2,
+    icon: Code,
     title: "Binary-Text-Image Converter GPT",
-    description: "Advanced conversion tool for binary, text, and image formats with encoding/decoding capabilities and data transformation for technical applications.",
+    description: "Unlock the power of binary with the Binary-Text Image Converter GPT by AI Web Tools! This fun and intuitive tool allows you to effortlessly convert text to binary and binary to text, making it simple to communicate in the language of computers.",
     emoji: "🔢",
     color: "from-green-500 to-blue-600",
     directUrl: "https://binarytoconvertergpt.lovable.app/?via=aiwebtools",
