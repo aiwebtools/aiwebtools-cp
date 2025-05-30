@@ -16,19 +16,6 @@ import {
 
 export const aiResearchTools: Tool[] = [
   {
-    icon: Beaker,
-    title: "Genome GPT",
-    description: "Genome GPT is a cutting-edge AI tool designed to assist researchers, scientists, and enthusiasts in genetic analysis and discovery. Specializing in genomic data interpretation, Genome GPT provides comprehensive and detailed insights into genetic sequences, patterns, and variations. Whether you're analyzing human DNA, exploring plant genetics, or researching cannabis strains, Genome GPT offers thorough scientific analysis in a user-friendly, professional manner.",
-    emoji: "🧬",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["genetic analysis", "DNA research", "genomic data", "scientific analysis", "biotechnology"],
-    category: "AI Research Tools",
-    rating: 4.7,
-    totalVotes: 3456
-  },
-  {
     icon: TrendingUp,
     title: "Predictive Credit Score Checker GPT",
     description: "Predictive Credit Score Checker GPT is an AI tool for estimating creditworthiness based on specific addresses. Ideal for real estate, finance, and lending, it provides quick, data-backed credit score estimates by analyzing local demographics and trends. Use it to assess prospects or evaluate risk. Note that predictions are estimates to guide decision-making, not guarantees. Fast, efficient, and insightful—this AI helps you target leads with confidence!",
@@ -53,6 +40,19 @@ export const aiResearchTools: Tool[] = [
     category: "AI Research Tools",
     rating: 4.2,
     totalVotes: 2134
+  },
+  {
+    icon: Beaker,
+    title: "Genome GPT",
+    description: "Genome GPT is a cutting-edge AI tool designed to assist researchers, scientists, and enthusiasts in genetic analysis and discovery. Specializing in genomic data interpretation, Genome GPT provides comprehensive and detailed insights into genetic sequences, patterns, and variations. Whether you're analyzing human DNA, exploring plant genetics, or researching cannabis strains, Genome GPT offers thorough scientific analysis in a user-friendly, professional manner.",
+    emoji: "🧬",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["genetic analysis", "DNA research", "genomic data", "scientific analysis", "biotechnology"],
+    category: "AI Research Tools",
+    rating: 4.7,
+    totalVotes: 3456
   },
   {
     icon: Users,

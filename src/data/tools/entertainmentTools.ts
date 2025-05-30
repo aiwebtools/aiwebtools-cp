@@ -1,19 +1,33 @@
-
 import { Tool } from "@/types/tools";
 import { 
+  Film, 
   Music, 
-  Video, 
   Gamepad2, 
-  Radio, 
-  Tv,
-  Play,
-  Headphones,
+  Star, 
+  Tv, 
+  Radio,
   Camera,
+  Headphones,
   Mic,
-  Film
+  Play,
+  Eye,
+  Sparkles
 } from "lucide-react";
 
 export const entertainmentTools: Tool[] = [
+  {
+    icon: Eye,
+    title: "ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)",
+    description: "Step into The Matrix as Neo, guided by Morpheus. Awaken to deeper truths hidden in the fabric of reality. Explore Quantum Meaning & Simulation Theory ~Created By AiWebTools.Ai -Follow the White Rabbit 🐇..... Disclaimer: NeoMatrix GPT is a fictional experience for entertainment and reflection. It does not provide real-world advice, and users engage at their own discretion.",
+    emoji: "👁️",
+    color: "from-green-500 to-black-600",
+    directUrl: "https://neomatrixgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=BkPCpeu_nSs",
+    tags: ["Matrix", "Neo", "simulation theory", "entertainment", "philosophical"],
+    category: "Entertainment Tools",
+    rating: 4.7,
+    totalVotes: 3892
+  },
   {
     icon: Music,
     title: "Spotify Web Player",

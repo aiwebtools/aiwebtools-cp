@@ -1,22 +1,30 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Shield, Lock, Eye, AlertTriangle, Search, Bug, Key,
-  Fingerprint, ShieldCheck, Scan, Radar, Zap
+  Shield, 
+  Lock, 
+  Key, 
+  AlertTriangle, 
+  Eye, 
+  Search,
+  Database,
+  Bug,
+  FileText,
+  Globe
 } from "lucide-react";
 
 export const aiSecurityTools: Tool[] = [
   {
     icon: Shield,
-    title: "Darktrace",
-    description: "AI-powered cybersecurity platform that detects and responds to cyber threats in real-time using machine learning.",
+    title: "Cyber Security GPT",
+    description: "Given the increasing threat of infrastructure attacks, AiWebTools.Ai aims to encourage the creation of solutions. Our cybersecurity assistant can deploy defense mechanisms and strategies to mitigate the impact of such attacks. Cybersecurity teams can rely on this assistant for advice, opinions, and assistance in deploying code whenever needed to defend against unwarranted infrastructure attacks.",
     emoji: "🛡️",
-    color: "from-red-500 to-orange-600",
-    directUrl: "https://darktrace.com/",
-    tags: ["cybersecurity", "threat detection", "machine learning", "real-time protection"],
-    category: "Specialized Tools",
-    rating: 4.7,
-    totalVotes: 2345
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-Qvat03gmj-hacking-defender-infrastructure-protector-gpt",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-robot-with-a-large-shield-tha.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["cybersecurity", "infrastructure protection", "defense mechanisms", "attack mitigation", "security consulting"],
+    category: "AI Security Tools",
+    rating: 4.6,
+    totalVotes: 3456
   },
   {
     icon: Eye,

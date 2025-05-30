@@ -17,19 +17,6 @@ import {
 
 export const businessTools: Tool[] = [
   {
-    icon: Calculator,
-    title: "Taxes GPT",
-    description: "Taxes GPT is your AI-powered tax assistant, designed to simplify tax preparation while maximizing your deductions. Securely analyze your financial data, receive accurate tax reports, and minimize liabilities with ease. Let Taxes GPT handle the complexity so you can enjoy greater savings.",
-    emoji: "💰",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=xkcsSVbBhf4",
-    tags: ["tax preparation", "deduction maximization", "financial analysis", "tax reports", "liability minimization"],
-    category: "Business Tools",
-    rating: 4.5,
-    totalVotes: 3123
-  },
-  {
     icon: Rocket,
     title: "🚀 Startup Validator GPT",
     description: "🚀 Startup Validator GPT is your ultimate AI-powered startup analysis tool, designed to rapidly assess market viability, scalability, and investment potential. Whether you're brainstorming a new business idea or seeking funding, I provide deep insights on competition, risk factors, and growth strategies—all backed by real-time market data. With expert-level validation, funding recommendations, and strategic guidance, I help you refine, validate, and scale your startup with confidence. Let's turn your vision into a venture-ready success!",
@@ -54,6 +41,19 @@ export const businessTools: Tool[] = [
     category: "Business Tools",
     rating: 4.6,
     totalVotes: 3456
+  },
+  {
+    icon: Calculator,
+    title: "Taxes GPT",
+    description: "Taxes GPT is your AI-powered tax assistant, designed to simplify tax preparation while maximizing your deductions. Securely analyze your financial data, receive accurate tax reports, and minimize liabilities with ease. Let Taxes GPT handle the complexity so you can enjoy greater savings.",
+    emoji: "💰",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xkcsSVbBhf4",
+    tags: ["tax preparation", "deduction maximization", "financial analysis", "tax reports", "liability minimization"],
+    category: "Business Tools",
+    rating: 4.5,
+    totalVotes: 3123
   },
   {
     icon: Car,
