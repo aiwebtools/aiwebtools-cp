@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Shield, 
@@ -14,7 +15,24 @@ import {
   Crown,
   Eye,
   Brain,
-  Sparkles
+  Sparkles,
+  Calculator,
+  Briefcase,
+  HandHeart,
+  Baby,
+  PawPrint,
+  Recycle,
+  Droplets,
+  Fuel,
+  Palette,
+  Crosshair,
+  Clock,
+  Utensils,
+  Hammer,
+  Factory,
+  Beaker,
+  CheckCircle,
+  Sprout
 } from "lucide-react";
 
 export const specializedTools: Tool[] = [

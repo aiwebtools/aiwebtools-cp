@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   GraduationCap, 
@@ -9,7 +10,10 @@ import {
   School,
   Target,
   Lightbulb,
-  Library
+  Library,
+  Search,
+  Globe,
+  Eye
 } from "lucide-react";
 
 export const educationAndLearning: Tool[] = [

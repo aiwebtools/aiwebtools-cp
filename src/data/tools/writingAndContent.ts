@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   PenTool, 
@@ -9,7 +10,8 @@ import {
   Scroll,
   Book,
   Pen,
-  Sparkles
+  Sparkles,
+  Eye
 } from "lucide-react";
 
 export const writingAndContent: Tool[] = [
