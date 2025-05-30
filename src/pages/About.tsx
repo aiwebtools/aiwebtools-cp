@@ -31,7 +31,7 @@ const About = () => {
           "contact AI WEB TOOLS",
           "aiwebtools.ai company info"
         ]}
-        schemaType="AboutPage"
+        schemaType="Organization"
       />
       
       <AnimatedBackground />

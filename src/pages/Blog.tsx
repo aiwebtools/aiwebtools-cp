@@ -78,7 +78,7 @@ const Blog = () => {
           "AI tool comparisons",
           "AI best practices"
         ]}
-        schemaType="Blog"
+        schemaType="Article"
       />
       
       <AnimatedBackground />
