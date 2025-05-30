@@ -26,6 +26,11 @@ const MainCategoryPage = () => {
   // Find the main category
   const mainCategory = mainCategories.find(cat => cat.name === decodedCategoryName);
   
+  // Scroll to top when category changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [decodedCategoryName]);
+  
   if (!mainCategory) {
     // If category not found, redirect to home
     useEffect(() => {

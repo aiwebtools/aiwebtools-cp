@@ -1,5 +1,6 @@
 
 import { forwardRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { getCategoryStyle } from "@/utils/categoryStyles";
@@ -13,6 +14,19 @@ interface CategorySelectorProps {
 
 const CategorySelector = forwardRef<HTMLDivElement, CategorySelectorProps>(
   ({ categoriesWithCounts, selectedCategory, onCategoryChange }, ref) => {
+    const navigate = useNavigate();
+
+    const handleCategoryClick = (category: string) => {
+      // Scroll to top immediately
+      window.scrollTo(0, 0);
+      
+      // Navigate to category page
+      navigate(`/category/${encodeURIComponent(category)}`);
+      
+      // Call the original handler
+      onCategoryChange(category);
+    };
+
     return (
       <div className="mb-16" ref={ref}>
         <h3 className="text-xl md:text-2xl font-semibold text-white mb-6 text-center">
@@ -29,7 +43,7 @@ const CategorySelector = forwardRef<HTMLDivElement, CategorySelectorProps>(
               return (
                 <Button
                   key={category}
-                  onClick={() => onCategoryChange(category)}
+                  onClick={() => handleCategoryClick(category)}
                   variant="outline"
                   size="sm"
                   className={`

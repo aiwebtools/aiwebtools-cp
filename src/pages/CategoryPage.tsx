@@ -49,6 +49,7 @@ const CategoryPage = () => {
   }, [categoryTools, searchTerm]);
 
   useEffect(() => {
+    // Scroll to top when category changes
     window.scrollTo(0, 0);
     setDisplayedCount(12);
     setSearchTerm("");
