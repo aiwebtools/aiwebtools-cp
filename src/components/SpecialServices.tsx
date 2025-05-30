@@ -6,17 +6,40 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const featuredGPTs = [
   {
-    title: "BOOK WRITER GPT",
-    description: "Professional book writing assistant that helps authors create compelling novels, non-fiction books, and manuscripts with expert guidance on plot development, character creation, and writing techniques.",
-    badge: "WRITING SUITE",
-    color: "from-blue-600 to-purple-600",
-    features: ["Plot Development", "Character Creation", "Writing Guidance", "Manuscript Support"],
-    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=example1",
-    emoji: "📚"
+    title: "TIME MACHINE GPT",
+    description: "Travel through time and explore different historical periods with advanced AI-powered time travel simulation and historical exploration.",
+    badge: "TIME TRAVEL",
+    color: "from-amber-600 to-orange-600",
+    features: ["Time Travel", "Historical Exploration", "Period Analysis", "Timeline Navigation"],
+    directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298793409806528/time.webp",
+    emoji: "⏰"
   },
   {
-    title: "AI Movie Maker Studio",
+    title: "COLLEGE DEGREE GPT",
+    description: "Complete academic guidance system for college students covering degree planning, course selection, career pathways, and academic success strategies.",
+    badge: "EDUCATION",
+    color: "from-blue-600 to-indigo-600",
+    features: ["Degree Planning", "Course Selection", "Career Pathways", "Academic Success"],
+    directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=Cd8uvD-smlM",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298792230944880/college.webp",
+    emoji: "🎓"
+  },
+  {
+    title: "AUTOMOBILE GPT",
+    description: "Comprehensive automotive expertise covering car maintenance, repairs, diagnostics, buying guides, and automotive technology for car enthusiasts and professionals.",
+    badge: "AUTOMOTIVE",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Car Maintenance", "Repair Diagnostics", "Buying Guides", "Auto Technology"],
+    directUrl: "https://automobilegpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=f_4aFnL-mk8",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298792986185759/automobile.webp",
+    emoji: "🚗"
+  },
+  {
+    title: "Movie Maker Studio AI SUITE",
     description: "Complete movie & motion picture production suite with every tool needed for professional filmmaking from script to screen.",
     badge: "STUDIO SUITE",
     color: "from-purple-600 to-pink-600",
@@ -26,7 +49,18 @@ const featuredGPTs = [
     emoji: "🎬"
   },
   {
-    title: "StageMaster AI Suite",
+    title: "Survivalist GPT",
+    description: "Ultimate survival guidance system covering wilderness survival, emergency preparedness, survival skills, and outdoor safety techniques.",
+    badge: "SURVIVAL",
+    color: "from-green-600 to-teal-600",
+    features: ["Wilderness Survival", "Emergency Prep", "Survival Skills", "Outdoor Safety"],
+    directUrl: "https://survivalistgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=RX6W8KC0y18",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298679387521186/survivalist.webp",
+    emoji: "🏕️"
+  },
+  {
+    title: "STAGEMASTER AI SUITE",
     description: "Transform every aspect of stage production, from set design to choreography and lighting for professional performing arts.",
     badge: "PERFORMING ARTS",
     color: "from-red-500 to-orange-500",
@@ -46,14 +80,309 @@ const featuredGPTs = [
     emoji: "♾️"
   },
   {
-    title: "AUTOMOBILE GPT",
-    description: "Comprehensive automotive expertise covering car maintenance, repairs, diagnostics, buying guides, and automotive technology for car enthusiasts and professionals.",
-    badge: "AUTOMOTIVE",
+    title: "Clarity Omni GPT",
+    description: "Advanced AI assistant providing crystal-clear insights and comprehensive analysis across multiple domains with enhanced cognitive abilities.",
+    badge: "AI ASSISTANT",
+    color: "from-purple-500 to-indigo-600",
+    features: ["Clear Insights", "Multi-domain Analysis", "Cognitive Enhancement", "Decision Support"],
+    directUrl: "https://clarityomni.lovable.app/?via=aiwebtools",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298678930473072/clarity.webp",
+    emoji: "🔮"
+  },
+  {
+    title: "Engineering GPT Suite",
+    description: "Comprehensive engineering solutions covering mechanical, electrical, civil, and software engineering with professional-grade calculations and designs.",
+    badge: "ENGINEERING",
+    color: "from-gray-600 to-blue-600",
+    features: ["Multi-Engineering", "Calculations", "Design Solutions", "Technical Analysis"],
+    directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298678326366271/engineering.webp",
+    emoji: "⚙️"
+  },
+  {
+    title: "Phenomenon Investigator Suite",
+    description: "Explore unexplained phenomena, conduct scientific investigations, and analyze mysterious events with advanced research methodologies.",
+    badge: "INVESTIGATION",
+    color: "from-purple-600 to-pink-600",
+    features: ["Phenomenon Analysis", "Scientific Investigation", "Research Methods", "Event Analysis"],
+    directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298677785428110/phenomon.webp",
+    emoji: "🛸"
+  },
+  {
+    title: "GRAPHIC & COVER DESIGN GPT",
+    description: "Professional graphic design assistant for creating stunning covers, logos, marketing materials, and visual content with artistic expertise.",
+    badge: "DESIGN",
+    color: "from-pink-500 to-purple-600",
+    features: ["Cover Design", "Logo Creation", "Marketing Materials", "Visual Content"],
+    directUrl: "https://graphicdesigngpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298677336379464/graphic_design.webp",
+    emoji: "🎨"
+  },
+  {
+    title: "FACT CHECKER GPT",
+    description: "Advanced fact-checking system for verifying information, analyzing claims, detecting misinformation, and providing evidence-based validation.",
+    badge: "VERIFICATION",
+    color: "from-green-500 to-blue-600",
+    features: ["Fact Verification", "Claim Analysis", "Misinformation Detection", "Evidence Validation"],
+    directUrl: "https://factcheckergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298676611022848/factchecker.webp",
+    emoji: "✅"
+  },
+  {
+    title: "Sustainable Futures GPT",
+    description: "Environmental sustainability consultant providing eco-friendly solutions, green technology guidance, and sustainable development strategies.",
+    badge: "SUSTAINABILITY",
+    color: "from-green-600 to-teal-600",
+    features: ["Eco Solutions", "Green Technology", "Sustainability Planning", "Environmental Impact"],
+    directUrl: "https://sustainablefuturesgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298675931418794/sustainablefuture.webp",
+    emoji: "🌱"
+  },
+  {
+    title: "FOOD QUALITY INSPECTOR GPT",
+    description: "Professional food safety and quality inspection guidance covering food safety standards, quality control, inspection procedures, and regulatory compliance.",
+    badge: "FOOD SAFETY",
+    color: "from-green-500 to-teal-600",
+    features: ["Food Safety", "Quality Control", "Inspection Procedures", "Regulatory Compliance"],
+    directUrl: "https://foodqualitygpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298675285626880/foodquality.webp",
+    emoji: "🥘"
+  },
+  {
+    title: "HOME RENOVATOR GPT",
+    description: "Expert home renovation guidance covering project planning, material selection, cost estimation, and DIY renovation tips for homeowners and contractors.",
+    badge: "HOME IMPROVEMENT",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Project Planning", "Material Selection", "Cost Estimation", "DIY Tips"],
+    directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298674819924100/home_renovator.webp",
+    emoji: "🔧"
+  },
+  {
+    title: "FISHERMAN GPT",
+    description: "Complete fishing guide covering techniques, equipment, locations, weather patterns, and fishing regulations for anglers of all skill levels.",
+    badge: "OUTDOOR SPORTS",
     color: "from-blue-500 to-cyan-600",
-    features: ["Car Maintenance", "Repair Diagnostics", "Buying Guides", "Auto Technology"],
-    directUrl: "https://automobilegpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=f_4aFnL-mk8",
-    emoji: "🚗"
+    features: ["Fishing Techniques", "Equipment Guide", "Location Finder", "Weather Analysis"],
+    directUrl: "https://fishermangpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298674383847533/fisherman.webp",
+    emoji: "🎣"
+  },
+  {
+    title: "COLLECTIBLES APPRAISAL GPT",
+    description: "Professional collectibles and antiques appraisal service providing market valuations, authenticity verification, and investment guidance.",
+    badge: "APPRAISAL",
+    color: "from-amber-500 to-yellow-600",
+    features: ["Market Valuation", "Authenticity Check", "Investment Guide", "Market Trends"],
+    directUrl: "https://antiqueappraisalgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298536781185136/collectible.webp",
+    emoji: "💎"
+  },
+  {
+    title: "TRIVIA NIGHT GPT",
+    description: "Ultimate trivia game master creating custom quizzes, hosting trivia nights, and providing endless entertainment with diverse knowledge categories.",
+    badge: "ENTERTAINMENT",
+    color: "from-purple-500 to-pink-600",
+    features: ["Custom Quizzes", "Trivia Hosting", "Knowledge Categories", "Game Management"],
+    directUrl: "https://trivianightgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298536336593046/trivia.webp",
+    emoji: "🧠"
+  },
+  {
+    title: "VETERINARIAN GPT",
+    description: "Professional veterinary assistant providing pet health guidance, medical information, care instructions, and emergency support for pet owners.",
+    badge: "PET CARE",
+    color: "from-green-500 to-blue-600",
+    features: ["Pet Health", "Medical Guidance", "Care Instructions", "Emergency Support"],
+    directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=ElAfvB0yLEI",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298535833407488/vet.webp",
+    emoji: "🐾"
+  },
+  {
+    title: "Insurance Claims GPT",
+    description: "Expert guidance for insurance claims processing, policy understanding, claim documentation, and insurance dispute resolution for various insurance types.",
+    badge: "INSURANCE",
+    color: "from-blue-500 to-purple-600",
+    features: ["Claims Processing", "Policy Guidance", "Documentation", "Dispute Resolution"],
+    directUrl: "https://insuranceclaimsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=WNPywJWOUzU",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298535288012901/insurance.webp",
+    emoji: "🛡️"
+  },
+  {
+    title: "Cannabis GPT",
+    description: "Comprehensive cannabis education covering cultivation, strains, medical applications, legal information, and industry insights for enthusiasts and professionals.",
+    badge: "CANNABIS",
+    color: "from-green-500 to-lime-600",
+    features: ["Cultivation Guide", "Strain Information", "Medical Applications", "Legal Guidance"],
+    directUrl: "https://cannabisgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298534713397288/cannabis.webp",
+    emoji: "🌿"
+  },
+  {
+    title: "Probability GPT",
+    description: "Advanced probability and statistics calculator providing mathematical analysis, risk assessment, predictive modeling, and statistical insights.",
+    badge: "MATHEMATICS",
+    color: "from-blue-600 to-purple-600",
+    features: ["Probability Calculations", "Risk Assessment", "Predictive Modeling", "Statistical Analysis"],
+    directUrl: "https://probabilitygpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298534348623902/probility.webp",
+    emoji: "📊"
+  },
+  {
+    title: "LEARN ANY COURSE GPT",
+    description: "Personalized learning assistant for any subject providing structured courses, learning paths, practice exercises, and educational support.",
+    badge: "EDUCATION",
+    color: "from-blue-500 to-indigo-600",
+    features: ["Course Creation", "Learning Paths", "Practice Exercises", "Educational Support"],
+    directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298533723537600/learnanycourse.webp",
+    emoji: "📚"
+  },
+  {
+    title: "Public Defender GPT",
+    description: "Legal assistance for criminal defense, understanding legal rights, court procedures, and criminal law guidance for defendants and legal professionals.",
+    badge: "LEGAL AID",
+    color: "from-purple-500 to-blue-600",
+    features: ["Legal Defense", "Rights Guidance", "Court Procedures", "Legal Assistance"],
+    directUrl: "https://publicdefendergpt.lovable.app/",
+    videoUrl: "https://www.youtube.com/watch?v=cQR5eFjsPWw",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298533241065532/public_defender.webp",
+    emoji: "⚖️"
+  },
+  {
+    title: "Property Data Finder GPT",
+    description: "Comprehensive property research tool for real estate analysis, property valuations, market trends, and investment opportunities in real estate markets.",
+    badge: "REAL ESTATE",
+    color: "from-orange-500 to-red-600",
+    features: ["Property Research", "Market Analysis", "Valuations", "Investment Opportunities"],
+    directUrl: "https://propertydatafindergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=0ZGBGn9yYwY",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298532771565589/property_data.webp",
+    emoji: "🏠"
+  },
+  {
+    title: "Leonardo AI",
+    description: "Advanced AI image generation platform for creating stunning artwork, designs, and visual content with professional-grade artistic capabilities.",
+    badge: "AI ART",
+    color: "from-purple-600 to-pink-600",
+    features: ["Image Generation", "Artistic Creation", "Design Tools", "Visual Content"],
+    directUrl: "https://app.leonardo.ai/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298532423303249/leonardo.webp",
+    emoji: "🎨"
+  },
+  {
+    title: "Algebraic Expression Creative Inventor GPT",
+    description: "Mathematical creativity tool for generating unique algebraic expressions, solving complex equations, and exploring mathematical patterns.",
+    badge: "MATHEMATICS",
+    color: "from-indigo-500 to-purple-600",
+    features: ["Expression Generation", "Equation Solving", "Pattern Analysis", "Mathematical Creativity"],
+    directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298272208551936/alegraic.webp",
+    emoji: "🔢"
+  },
+  {
+    title: "BOLT.NEW",
+    description: "Revolutionary web development platform for creating full-stack applications instantly with AI-powered coding and deployment capabilities.",
+    badge: "DEVELOPMENT",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Instant Development", "Full-Stack Apps", "AI Coding", "Auto Deployment"],
+    directUrl: "https://bolt.new/?rid=iewkqu",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298247617614034/bolt.webp",
+    emoji: "⚡"
+  },
+  {
+    title: "FORTUNE TELLER GPT",
+    description: "Mystical fortune telling assistant providing tarot readings, astrology insights, numerology analysis, and spiritual guidance for personal enlightenment.",
+    badge: "MYSTICAL",
+    color: "from-purple-600 to-pink-600",
+    features: ["Tarot Readings", "Astrology", "Numerology", "Spiritual Guidance"],
+    directUrl: "https://fortunetellergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298247135002864/fortune.webp",
+    emoji: "🔮"
+  },
+  {
+    title: "GEMINI",
+    description: "Google's advanced AI language model providing multimodal capabilities, intelligent conversations, and comprehensive assistance across multiple domains.",
+    badge: "AI PLATFORM",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Multimodal AI", "Intelligent Chat", "Code Generation", "Content Creation"],
+    directUrl: "http://g.co/g1referral/911Z9NTK",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298246380163246/gemini.webp",
+    emoji: "♊"
+  },
+  {
+    title: "MICROSAAS GPT",
+    description: "Startup guidance for building micro-SaaS businesses including product development, market validation, monetization strategies, and scaling techniques.",
+    badge: "BUSINESS",
+    color: "from-green-500 to-blue-600",
+    features: ["Product Development", "Market Validation", "Monetization", "Scaling Strategies"],
+    directUrl: "https://microsaasgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298245864259686/microsaas.webp",
+    emoji: "💼"
+  },
+  {
+    title: "Interpretis GPT",
+    description: "Historical interpreter and cultural translator providing deep insights into historical contexts, cultural meanings, and temporal interpretations.",
+    badge: "HISTORY",
+    color: "from-amber-500 to-orange-600",
+    features: ["Historical Context", "Cultural Translation", "Temporal Analysis", "Cultural Insights"],
+    directUrl: "https://interpretis.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298245406953602/interpretis.webp",
+    emoji: "📜"
+  },
+  {
+    title: "Imagination Traveler GPT",
+    description: "Creative journey assistant for exploring imaginary worlds, building fictional universes, and enhancing creative storytelling and world-building.",
+    badge: "CREATIVITY",
+    color: "from-purple-500 to-pink-600",
+    features: ["World Building", "Creative Stories", "Fictional Universes", "Imagination Enhancement"],
+    directUrl: "https://imaginationtravelergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298244790521897/imaginationtravel.webp",
+    emoji: "🚀"
+  },
+  {
+    title: "Nucleus Call Agents",
+    description: "Advanced AI-powered call center automation platform providing intelligent customer service, call routing, and automated response systems.",
+    badge: "AUTOMATION",
+    color: "from-blue-600 to-purple-600",
+    features: ["Call Automation", "Customer Service", "Intelligent Routing", "Response Systems"],
+    directUrl: "http://www.nucleus.com/",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298243775496252/nucleus_call.webp",
+    emoji: "📞"
+  },
+  {
+    title: "Historical Headlines GPT",
+    description: "Time-traveling news service providing historical headlines, period-accurate reporting, and immersive historical news experiences.",
+    badge: "HISTORY",
+    color: "from-amber-600 to-red-600",
+    features: ["Historical Headlines", "Period Reporting", "News Archives", "Historical Context"],
+    directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298243083305081/historical_headlines.webp",
+    emoji: "📰"
+  },
+  {
+    title: "Alchemist Scientist GPT",
+    description: "Mystical science advisor combining ancient alchemy with modern chemistry, providing unique insights into materials, transformations, and scientific mysteries.",
+    badge: "SCIENCE",
+    color: "from-purple-600 to-amber-600",
+    features: ["Alchemy Science", "Material Analysis", "Chemical Insights", "Scientific Mysteries"],
+    directUrl: "https://alchemicalscientistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298241884000256/alchemist.webp",
+    emoji: "⚗️"
+  },
+  {
+    title: "BOOK WRITER GPT",
+    description: "Professional book writing assistant that helps authors create compelling novels, non-fiction books, and manuscripts with expert guidance on plot development, character creation, and writing techniques.",
+    badge: "WRITING SUITE",
+    color: "from-blue-600 to-purple-600",
+    features: ["Plot Development", "Character Creation", "Writing Guidance", "Manuscript Support"],
+    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
+    emoji: "📚"
   },
   {
     title: "Personalized DR. GPT",
@@ -64,16 +393,6 @@ const featuredGPTs = [
     directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=EKKIttUG0sI",
     emoji: "👨‍⚕️"
-  },
-  {
-    title: "Public Defender GPT",
-    description: "Legal assistance for criminal defense, understanding legal rights, court procedures, and criminal law guidance for defendants and legal professionals.",
-    badge: "LEGAL AID",
-    color: "from-purple-500 to-blue-600",
-    features: ["Legal Defense", "Rights Guidance", "Court Procedures", "Legal Assistance"],
-    directUrl: "https://publicdefendergpt.lovable.app/",
-    videoUrl: "https://www.youtube.com/watch?v=cQR5eFjsPWw",
-    emoji: "⚖️"
   },
   {
     title: "Trader GPT",
@@ -94,46 +413,6 @@ const featuredGPTs = [
     directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=xkcsSVbBhf4",
     emoji: "💰"
-  },
-  {
-    title: "Insurance Claims GPT",
-    description: "Expert guidance for insurance claims processing, policy understanding, claim documentation, and insurance dispute resolution for various insurance types.",
-    badge: "INSURANCE",
-    color: "from-blue-500 to-purple-600",
-    features: ["Claims Processing", "Policy Guidance", "Documentation", "Dispute Resolution"],
-    directUrl: "https://insuranceclaimsgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=WNPywJWOUzU",
-    emoji: "🛡️"
-  },
-  {
-    title: "Property Data Finder GPT",
-    description: "Comprehensive property research tool for real estate analysis, property valuations, market trends, and investment opportunities in real estate markets.",
-    badge: "REAL ESTATE",
-    color: "from-orange-500 to-red-600",
-    features: ["Property Research", "Market Analysis", "Valuations", "Investment Opportunities"],
-    directUrl: "https://propertydatafindergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=0ZGBGn9yYwY",
-    emoji: "🏠"
-  },
-  {
-    title: "Home Renovator GPT",
-    description: "Expert home renovation guidance covering project planning, material selection, cost estimation, and DIY renovation tips for homeowners and contractors.",
-    badge: "HOME IMPROVEMENT",
-    color: "from-yellow-500 to-orange-600",
-    features: ["Project Planning", "Material Selection", "Cost Estimation", "DIY Tips"],
-    directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-humanoid-robot-fixing-a-bathroom-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    emoji: "🔧"
-  },
-  {
-    title: "Food Quality Inspector GPT",
-    description: "Professional food safety and quality inspection guidance covering food safety standards, quality control, inspection procedures, and regulatory compliance.",
-    badge: "FOOD SAFETY",
-    color: "from-green-500 to-teal-600",
-    features: ["Food Safety", "Quality Control", "Inspection Procedures", "Regulatory Compliance"],
-    directUrl: "https://foodqualitygpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-man-inspecting-food-in-a-supermar.png/:/cr=t:4.65%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    emoji: "🥘"
   },
   {
     title: "Marriage Mender GPT",
