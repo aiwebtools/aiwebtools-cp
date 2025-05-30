@@ -2,25 +2,46 @@
 import { getCategoriesWithCounts } from "./categoryUtils";
 import { allTools } from "@/data/toolsData";
 
-// Streamlined category title configuration with consolidated categories
+// Streamlined category title configuration with better organization
 export const CATEGORY_TITLES = {
-  // Core consolidated categories
+  // Core AI & Development
+  "AI Development Tools": "AI Development Tools",
+  "Advanced AI Tools": "Advanced AI Tools",
+  
+  // Content Creation
   "Video & Content Creation": "Video & Content Creation",
   "Image & Design Tools": "Image & Design Tools", 
-  "Business & Productivity": "Business & Productivity",
   "Writing & Content Creation": "Writing & Content Creation",
-  "AI Development Tools": "AI Development Tools",
   "Audio & Voice Tools": "Audio & Voice Tools",
-  "Education & Learning": "Education & Learning",
-  "Specialized Tools": "Specialized Tools",
+  
+  // Business & Professional
+  "Business & Productivity": "Business & Productivity",
   "Professional Services": "Professional Services",
+  "Marketing & Social Media": "Marketing & Social Media",
+  "Communication & Collaboration": "Communication & Collaboration",
+  
+  // Specialized & Industry
+  "Education & Learning": "Education & Learning",
+  "Health & Wellness": "Health & Wellness",
+  "Finance & Trading": "Finance & Trading",
+  "Legal & Compliance": "Legal & Compliance",
+  
+  // Creative & Entertainment
   "Creative & Entertainment": "Creative & Entertainment",
+  "Game Design & Development": "Game Design & Development",
+  "3D & Animation": "3D & Animation",
+  
+  // Technical & Utilities
+  "Data & Analytics": "Data & Analytics",
+  "Automation & Workflows": "Automation & Workflows",
+  "Cloud Services": "Cloud Services",
+  "Utilities & Productivity": "Utilities & Productivity",
+  
+  // Specialized Categories
   "Time & History": "Time & History",
   "Spirituality & Wellness": "Spirituality & Wellness",
   "Emergency Services": "Emergency Services",
-  "Game Design & Development": "Game Design & Development",
-  "Creative Suites": "Creative Suites",
-  "Advanced AI Tools": "Advanced AI Tools"
+  "Specialized Tools": "Specialized Tools"
 } as const;
 
 // Function to get standardized category title
@@ -38,28 +59,50 @@ export const getStandardizedCategoriesWithCounts = (): Record<string, number> =>
     standardizedCategories[standardizedTitle] = (standardizedCategories[standardizedTitle] || 0) + count;
   });
   
-  console.log('Consolidated category titles applied:', standardizedCategories);
+  console.log('Organized category structure applied:', standardizedCategories);
   
   return standardizedCategories;
 };
 
-// Updated strategic order for consolidated categories
+// Improved strategic order with logical groupings
 export const CATEGORY_DISPLAY_ORDER = [
-  "Creative Suites",
-  "Advanced AI Tools", 
-  "Time & History",
-  "Spirituality & Wellness",
-  "Game Design & Development",
-  "Emergency Services",
+  // Core AI & Development (Most Popular)
+  "AI Development Tools",
+  "Advanced AI Tools",
+  
+  // Content Creation (High Usage)
   "Video & Content Creation",
   "Image & Design Tools",
-  "Business & Productivity",
   "Writing & Content Creation",
-  "AI Development Tools",
   "Audio & Voice Tools",
-  "Education & Learning",
-  "Creative & Entertainment",
+  
+  // Business & Professional (Essential)
+  "Business & Productivity",
+  "Marketing & Social Media",
+  "Communication & Collaboration",
   "Professional Services",
+  
+  // Technical & Data
+  "Data & Analytics",
+  "Automation & Workflows",
+  "Cloud Services",
+  "Utilities & Productivity",
+  
+  // Industry Specific
+  "Education & Learning",
+  "Health & Wellness",
+  "Finance & Trading",
+  "Legal & Compliance",
+  
+  // Creative & Entertainment
+  "Creative & Entertainment",
+  "Game Design & Development",
+  "3D & Animation",
+  
+  // Specialized & Niche
+  "Time & History",
+  "Spirituality & Wellness",
+  "Emergency Services",
   "Specialized Tools"
 ];
 
