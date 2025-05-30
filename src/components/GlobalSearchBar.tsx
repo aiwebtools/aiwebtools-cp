@@ -88,7 +88,7 @@ const GlobalSearchBar = () => {
         </div>
 
         {isOpen && searchResults.length > 0 && (
-          <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-cyan-500/30 shadow-2xl z-50 max-h-96 overflow-y-auto">
+          <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900/98 border border-cyan-500/30 shadow-2xl z-50 max-h-96 overflow-y-auto backdrop-blur-md">
             <CardContent className="p-2">
               {searchResults.map((tool, index) => {
                 const toolIndex = allTools.findIndex(t => t.title === tool.title);
@@ -96,18 +96,18 @@ const GlobalSearchBar = () => {
                   <Tooltip key={`global-search-${tool.title}-${index}`} delayDuration={300}>
                     <TooltipTrigger asChild>
                       <div 
-                        className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800/50 cursor-pointer group transition-all duration-200"
+                        className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800/70 cursor-pointer group transition-all duration-200 border-b border-gray-700/50 last:border-b-0"
                         onClick={() => handleToolClick(toolIndex)}
                       >
                         <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-sm flex-shrink-0`}>
                           {tool.emoji}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-medium text-white text-sm truncate group-hover:text-cyan-400 transition-colors">
+                          <h3 className="font-medium text-white text-sm truncate group-hover:text-cyan-400 transition-colors leading-tight">
                             {tool.title}
                           </h3>
                           {tool.category && (
-                            <p className="text-xs text-gray-400 truncate">{tool.category}</p>
+                            <p className="text-xs text-gray-300 truncate mt-0.5">{tool.category}</p>
                           )}
                         </div>
                         
