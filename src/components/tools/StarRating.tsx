@@ -14,8 +14,13 @@ const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true, toolId }
   const [hoveredRating, setHoveredRating] = useState(0);
   const [userRating, setUserRating] = useState(0);
   const [hasVoted, setHasVoted] = useState(false);
-  const [currentRating, setCurrentRating] = useState(rating);
-  const [currentVoteCount, setCurrentVoteCount] = useState(totalVotes);
+  
+  // Provide fallback values to prevent undefined errors
+  const safeRating = rating || 4.1;
+  const safeTotalVotes = totalVotes || 1000;
+  
+  const [currentRating, setCurrentRating] = useState(safeRating);
+  const [currentVoteCount, setCurrentVoteCount] = useState(safeTotalVotes);
 
   // Check if user has already voted for this tool
   useEffect(() => {
