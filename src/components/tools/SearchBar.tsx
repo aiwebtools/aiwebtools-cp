@@ -7,7 +7,6 @@ import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { Tool } from "@/types/tools";
 import { Link } from "react-router-dom";
-import { getCurrentToolCount } from "@/utils/toolCounter";
 
 interface SearchBarProps {
   searchTerm: string;
@@ -17,10 +16,7 @@ interface SearchBarProps {
 const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchResults, setSearchResults] = useState<Tool[]>([]);
-  const [displayedCount, setDisplayedCount] = useState(50);
-
-  // Get accurate tool count
-  const toolStats = getCurrentToolCount();
+  const [displayedCount, setDisplayedCount] = useState(50); // Start with 50 results
 
   const handleSearchChange = (value: string) => {
     console.log("Tools search - handleSearchChange called with:", value);
@@ -28,10 +24,10 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
     
     if (value.trim()) {
       console.log("Tools search - searching tools with term:", value);
-      const results = searchTools(allTools, value);
+      const results = searchTools(allTools, value); // Get ALL results, no slice limit
       console.log("Tools search - search results:", results.length, "total results");
       setSearchResults(results);
-      setDisplayedCount(50);
+      setDisplayedCount(50); // Reset display count
       setIsOpen(true);
       console.log("Tools search - isOpen set to true");
     } else {
@@ -82,7 +78,7 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
         <Input
           type="text"
-          placeholder={`Search ${toolStats.total}+ AI tools... Try: 'canva', 'notion', 'social media', 'video editing', 'whatsapp', 'spotify', 'github', 'figma'`}
+          placeholder="Search 1100+ AI tools... Try: 'canva', 'notion', 'social media', 'video editing', 'whatsapp', 'spotify', 'github', 'figma'"
           value={searchTerm}
           onChange={(e) => handleSearchChange(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -95,7 +91,7 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
           className="pl-10 pr-4 py-4 text-lg rounded-xl border-2 border-gray-200 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 transition-all duration-300 shadow-lg"
         />
         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-400">
-          {searchTerm ? `${searchResults.length} found` : `${toolStats.total}+ Tools`}
+          {searchTerm ? `${searchResults.length} found` : '1100+ Tools'}
         </div>
 
         {/* Search Results Dropdown */}
