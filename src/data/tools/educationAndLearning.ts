@@ -17,6 +17,32 @@ import {
 
 export const educationAndLearning: Tool[] = [
   {
+    icon: Target,
+    title: "MULTITASKER GPT",
+    description: "You can give me multiple unrelated tasks at once, and I will work to complete them all for you. Fire away!",
+    emoji: "🎯",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://multitaskergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=y-YZCOzIuDg",
+    tags: ["multitasking", "task management", "productivity", "versatile assistant", "multiple projects"],
+    category: "Education & Learning",
+    rating: 4.9,
+    totalVotes: 5432
+  },
+  {
+    icon: Lightbulb,
+    title: "Fortune Teller GPT",
+    description: "Fortune Teller GPT is an advanced AI-powered analytical tool designed to predict trends, analyze data, and provide insights based on real-world patterns. It combines web searches, statistical modeling, and Python-driven calculations to generate data-backed forecasts on various topics, including economics, technology, resource management, and geopolitical shifts. Unlike traditional fortune-telling, Fortune Teller GPT relies on factual data, historical patterns, and predictive algorithms to uncover likely future outcomes.",
+    emoji: "🔮",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://fortunetellergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-fortune-teller-gpt-_kRpji.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["predictive analytics", "trend analysis", "data forecasting", "statistical modeling", "future insights"],
+    category: "Education & Learning",
+    rating: 4.8,
+    totalVotes: 4567
+  },
+  {
     icon: School,
     title: "Home-Schooling Assistant GPT",
     description: "Presented by AIWEBTOOLS.AI, Home School GPT is your all-in-compassing AI-powered assistant designed to empower parents in their homeschooling journey. It provides precise, state-specific legal guidance and a wealth of educational resources, ensuring compliance and enhancing the homeschooling experience. With Home School GPT, you have a trusted partner to help create a successful and nurturing learning environment for your child.",
@@ -26,7 +52,7 @@ export const educationAndLearning: Tool[] = [
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-parent-teaching-their-ki-0096e43.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     tags: ["homeschooling", "educational resources", "legal guidance", "parent support", "learning environment"],
     category: "Education & Learning",
-    rating: 4.8,
+    rating: 4.7,
     totalVotes: 4234
   },
   {

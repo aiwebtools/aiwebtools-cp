@@ -16,6 +16,19 @@ import {
 
 export const aiResearchTools: Tool[] = [
   {
+    icon: Target,
+    title: "Probability GPT",
+    description: "Discover the truth behind any claim with Probability GPT, where speculation ends, and accuracy begins. With precise probability scores and unbiased truth, Probability GPT cuts through the noise of misinformation, guiding you to make informed decisions. As the ultimate AI Truth Seeker, it illuminates uncertainty with clear, definitive answers. Let Probability GPT lead you to certainty, helping you see things as they truly are.",
+    emoji: "⚖️",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://probabilitygpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
+    tags: ["probability analysis", "truth seeking", "prediction accuracy", "data verification", "decision support"],
+    category: "AI Research Tools",
+    rating: 4.9,
+    totalVotes: 5678
+  },
+  {
     icon: BarChart3,
     title: "Data Research Analysis Report GPT",
     description: "Data Analysis Report AI is a revolutionary tool that transforms complex datasets into actionable insights with unparalleled precision. Leveraging advanced statistical methods, trend identification, and predictive modeling, it excels in delivering accurate and detailed analyses. With its robust capabilities in generating professional visualizations and customizable reports, it empowers users to make informed, strategic decisions effortlessly. Currently #8 in the world!",
