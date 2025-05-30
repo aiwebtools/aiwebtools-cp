@@ -1,134 +1,80 @@
+
 import { Tool } from "@/types/tools";
 
-// Enhanced deduplication function that preserves custom GPTs
-export const deduplicateTools = (tools: Tool[]): Tool[] => {
-  const seen = new Map<string, Tool>();
-  const duplicatesFound: string[] = [];
+/**
+ * Enhanced deduplication that preserves order and handles category-specific logic
+ */
+export const createDeduplicatedToolsList = (tools: Tool[], maxDistance: number = 8): Tool[] => {
+  if (!tools || tools.length === 0) return [];
   
-  for (const tool of tools) {
-    // Create multiple keys to catch different variations of the same tool
-    const normalizedTitle = tool.title.toLowerCase()
-      .replace(/\s+/g, ' ')
-      .replace(/[^\w\s]/g, '')
-      .trim();
-    
-    const urlKey = tool.directUrl?.toLowerCase().replace(/^https?:\/\//, '').replace(/\/$/, '') || '';
-    
-    // Create compound key for more accurate detection
-    const primaryKey = `${normalizedTitle}|${urlKey}`;
-    const titleOnlyKey = normalizedTitle;
-    
-    // Check if this is a custom GPT (preserve all custom GPTs)
-    const isCustomGPT = tool.directUrl?.includes('lovable.app') || 
-                       tool.directUrl?.includes('chatgpt.com/g/') ||
-                       tool.title.includes('GPT') && (
-                         tool.directUrl?.includes('lovable.app') ||
-                         tool.description.includes('aiwebtools')
-                       );
-    
-    if (isCustomGPT) {
-      // Always keep custom GPTs, don't deduplicate them
-      seen.set(`custom_${tool.title}_${Date.now()}`, tool);
-      continue;
-    }
-    
-    // Check for existing tool with same primary key
-    if (seen.has(primaryKey)) {
-      duplicatesFound.push(tool.title);
-      continue;
-    }
-    
-    // Check for title-only duplicates
-    let foundDuplicate = false;
-    for (const [existingKey, existingTool] of seen.entries()) {
-      if (existingKey.startsWith('custom_')) continue; // Skip custom GPTs
-      
-      const existingTitle = existingTool.title.toLowerCase()
-        .replace(/\s+/g, ' ')
-        .replace(/[^\w\s]/g, '')
-        .trim();
-      
-      if (existingTitle === titleOnlyKey) {
-        duplicatesFound.push(tool.title);
-        foundDuplicate = true;
-        break;
-      }
-    }
-    
-    if (!foundDuplicate) {
-      seen.set(primaryKey, tool);
-    }
-  }
+  const deduplicatedTools: Tool[] = [];
+  const seenTitles = new Set<string>();
+  const titlePositions = new Map<string, number>();
   
-  console.log(`🧹 COMPREHENSIVE DUPLICATE CLEANUP:`);
-  console.log(`Original tools: ${tools.length}`);
-  console.log(`Unique tools: ${seen.size}`);
-  console.log(`Duplicates removed: ${duplicatesFound.length}`);
-  if (duplicatesFound.length > 0) {
-    console.log(`Removed duplicates: ${duplicatesFound.join(', ')}`);
-  }
+  console.log(`🔄 Starting deduplication for ${tools.length} tools with max distance ${maxDistance}`);
   
-  return Array.from(seen.values());
-};
-
-// Create a deduplication function that maintains diversity
-export const createDeduplicatedToolsList = (tools: Tool[], maxRepeats: number = 1): Tool[] => {
-  const toolFrequency = new Map<string, number>();
-  const result: Tool[] = [];
-  
-  for (const tool of tools) {
+  for (let i = 0; i < tools.length; i++) {
+    const tool = tools[i];
     const normalizedTitle = tool.title.toLowerCase().trim();
-    const count = toolFrequency.get(normalizedTitle) || 0;
     
-    // Always allow custom GPTs
-    const isCustomGPT = tool.directUrl?.includes('lovable.app') || 
-                       tool.directUrl?.includes('chatgpt.com/g/') ||
-                       tool.title.includes('GPT') && (
-                         tool.directUrl?.includes('lovable.app') ||
-                         tool.description.includes('aiwebtools')
-                       );
-    
-    if (isCustomGPT || count < maxRepeats) {
-      result.push(tool);
-      if (!isCustomGPT) {
-        toolFrequency.set(normalizedTitle, count + 1);
+    // Check if we've seen this tool before
+    if (seenTitles.has(normalizedTitle)) {
+      const lastPosition = titlePositions.get(normalizedTitle) || 0;
+      const distance = deduplicatedTools.length - lastPosition;
+      
+      // Only skip if it's too close (within maxDistance) and maxDistance > 0
+      if (maxDistance > 0 && distance < maxDistance) {
+        console.log(`⏭️ Skipping duplicate "${tool.title}" (distance: ${distance})`);
+        continue;
       }
+      
+      console.log(`✅ Adding duplicate "${tool.title}" (distance: ${distance} >= ${maxDistance})`);
     }
+    
+    // Add the tool
+    deduplicatedTools.push(tool);
+    seenTitles.add(normalizedTitle);
+    titlePositions.set(normalizedTitle, deduplicatedTools.length - 1);
   }
   
-  return result;
+  console.log(`✨ Deduplication complete: ${tools.length} → ${deduplicatedTools.length} tools`);
+  return deduplicatedTools;
 };
 
-// Deduplicate tools within categories
-export const deduplicateByCategory = (tools: Tool[]): Tool[] => {
-  const categoryMap = new Map<string, Set<string>>();
-  const uniqueTools: Tool[] = [];
+/**
+ * Remove exact duplicates from a list of tools
+ */
+export const deduplicateTools = (tools: Tool[]): Tool[] => {
+  const seen = new Set<string>();
+  const deduplicated: Tool[] = [];
   
   for (const tool of tools) {
-    const category = tool.category || 'Uncategorized';
+    const key = `${tool.title.toLowerCase().trim()}-${tool.category?.toLowerCase().trim() || 'uncategorized'}`;
     
-    if (!categoryMap.has(category)) {
-      categoryMap.set(category, new Set());
-    }
-    
-    const categorySet = categoryMap.get(category)!;
-    const toolKey = tool.title.toLowerCase().trim();
-    
-    // Always allow custom GPTs
-    const isCustomGPT = tool.directUrl?.includes('lovable.app') || 
-                       tool.directUrl?.includes('chatgpt.com/g/') ||
-                       tool.title.includes('GPT') && (
-                         tool.directUrl?.includes('lovable.app') ||
-                         tool.description.includes('aiwebtools')
-                       );
-    
-    if (isCustomGPT || !categorySet.has(toolKey)) {
-      if (!isCustomGPT) {
-        categorySet.add(toolKey);
-      }
-      uniqueTools.push(tool);
+    if (!seen.has(key)) {
+      seen.add(key);
+      deduplicated.push(tool);
     }
   }
   
-  return uniqueTools;
+  console.log(`🗑️ Removed ${tools.length - deduplicated.length} exact duplicates`);
+  return deduplicated;
+};
+
+/**
+ * Shuffle array while maintaining some structure
+ */
+export const shuffleWithStructure = (tools: Tool[], preserveFirst: number = 0): Tool[] => {
+  if (tools.length <= preserveFirst) return [...tools];
+  
+  const preserved = tools.slice(0, preserveFirst);
+  const toShuffle = tools.slice(preserveFirst);
+  
+  // Fisher-Yates shuffle
+  for (let i = toShuffle.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [toShuffle[i], toShuffle[j]] = [toShuffle[j], toShuffle[i]];
+  }
+  
+  return [...preserved, ...toShuffle];
 };
