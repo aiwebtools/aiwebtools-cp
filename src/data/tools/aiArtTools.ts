@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { BookOpen, Youtube } from "lucide-react";
 
@@ -6,7 +7,7 @@ export const aiArtTools: Tool[] = [
   {
     icon: BookOpen,
     title: "\"MiddleJourney\" Midjourney Prompting Assistant",
-    description: "Optimize your Midjourney prompts for better AI art generation. Create more effective prompts and improve your AI art results. Powered by GPT-4o Image Generation with full coding abilities, image generation, and web search capabilities.",
+    description: "Optimize your Midjourney prompts for better AI art generation. Create more effective prompts and improve your AI art results. Powered by GPT-4o Image Generation with full coding abilities, image generation, and web search capabilities. Free limited usage available, unrestricted access with ChatGPT Plus membership and higher tiers.",
     emoji: "🎨",
     color: "from-purple-500 to-pink-500",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-visually-captivating-advertisement-for-the-.jpeg/:/cr=t:0.11%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:300,cg:true/qt=q:98",
@@ -17,7 +18,7 @@ export const aiArtTools: Tool[] = [
   {
     icon: BookOpen,
     title: "Sketch Artist GPT",
-    description: "Create detailed sketches and drawings with AI assistance. Generate artistic sketches, character designs, and illustration concepts. Powered by GPT-4o Image Generation with full coding abilities, image generation, and web search capabilities.",
+    description: "Create detailed sketches and drawings with AI assistance. Generate artistic sketches, character designs, and illustration concepts. Powered by GPT-4o Image Generation with full coding abilities, image generation, and web search capabilities. Free limited usage available, unrestricted access with ChatGPT Plus membership and higher tiers.",
     emoji: "✏️",
     color: "from-gray-500 to-black-500",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-sketch-ar.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,h:300,cg:true",
