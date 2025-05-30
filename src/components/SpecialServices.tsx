@@ -156,7 +156,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Project Planning", "Material Selection", "Cost Estimation", "DIY Tips"],
     directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298674819924100/home_renovator.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-humanoid-robot-fixing-a-bathroom-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🔧"
   },
   {
@@ -166,8 +166,28 @@ const featuredGPTs = [
     color: "from-blue-500 to-cyan-600",
     features: ["Fishing Techniques", "Equipment Guide", "Location Finder", "Weather Analysis"],
     directUrl: "https://fishermangpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298674383847533/fisherman.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-bearded-fisherman-wearin.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "🎣"
+  },
+  {
+    title: "Business Plan Generator GPT",
+    description: "Professional business plan creation tool with comprehensive templates, financial modeling, market analysis, and strategic planning guidance.",
+    badge: "BUSINESS",
+    color: "from-blue-600 to-purple-600",
+    features: ["Business Planning", "Financial Modeling", "Market Analysis", "Strategic Planning"],
+    directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-logo-design-with-the-text-business-plan-gene.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    emoji: "💼"
+  },
+  {
+    title: "Fungus GPT – AI Mushroom Specialist",
+    description: "Expert mycology guidance covering mushroom identification, cultivation, foraging safety, and fungal biology for enthusiasts and professionals.",
+    badge: "MYCOLOGY",
+    color: "from-green-600 to-brown-600",
+    features: ["Mushroom ID", "Cultivation", "Foraging Safety", "Fungal Biology"],
+    directUrl: "https://fungusgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-man-with-a-beard-holding-a-_9DLLj.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    emoji: "🍄"
   },
   {
     title: "COLLECTIBLES APPRAISAL GPT",
@@ -186,7 +206,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-pink-600",
     features: ["Custom Quizzes", "Trivia Hosting", "Knowledge Categories", "Game Management"],
     directUrl: "https://trivianightgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298536336593046/trivia.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/trivanight.jpg/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "🧠"
   },
   {
@@ -218,7 +238,7 @@ const featuredGPTs = [
     color: "from-green-500 to-lime-600",
     features: ["Cultivation Guide", "Strain Information", "Medical Applications", "Legal Guidance"],
     directUrl: "https://cannabisgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298534713397288/cannabis.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-illustration-of-a-green-cannab_iUjpW.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🌿"
   },
   {
@@ -228,7 +248,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-purple-600",
     features: ["Probability Calculations", "Risk Assessment", "Predictive Modeling", "Statistical Analysis"],
     directUrl: "https://probabilitygpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298534348623902/probility.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
     emoji: "📊"
   },
   {
@@ -271,7 +291,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-pink-600",
     features: ["Image Generation", "Artistic Creation", "Design Tools", "Visual Content"],
     directUrl: "https://app.leonardo.ai/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298532423303249/leonardo.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/image_converted.jpeg/:/rs=w:1200,h:600,cg:true,m/cr=w:1200,h:600",
     emoji: "🎨"
   },
   {
@@ -281,7 +301,7 @@ const featuredGPTs = [
     color: "from-indigo-500 to-purple-600",
     features: ["Expression Generation", "Equation Solving", "Pattern Analysis", "Mathematical Creativity"],
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298272208551936/alegraic.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-futuristic-advertisement-for-alg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🔢"
   },
   {
@@ -291,7 +311,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Instant Development", "Full-Stack Apps", "AI Coding", "Auto Deployment"],
     directUrl: "https://bolt.new/?rid=iewkqu",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298247617614034/bolt.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-high-tech-office-with-mu.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "⚡"
   },
   {
@@ -301,7 +321,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-pink-600",
     features: ["Tarot Readings", "Astrology", "Numerology", "Spiritual Guidance"],
     directUrl: "https://fortunetellergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298247135002864/fortune.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-fortune-teller-gpt-_kRpji.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🔮"
   },
   {
@@ -311,7 +331,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-cyan-600",
     features: ["Multimodal AI", "Intelligent Chat", "Code Generation", "Content Creation"],
     directUrl: "http://g.co/g1referral/911Z9NTK",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298246380163246/gemini.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/gemini_multimodal_live.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "♊"
   },
   {
@@ -321,7 +341,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Product Development", "Market Validation", "Monetization", "Scaling Strategies"],
     directUrl: "https://microsaasgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298245864259686/microsaas.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-mockup-advertisement-with-t_AgWMY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "💼"
   },
   {
@@ -331,7 +351,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-orange-600",
     features: ["Historical Context", "Cultural Translation", "Temporal Analysis", "Cultural Insights"],
     directUrl: "https://interpretis.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298245406953602/interpretis.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
     emoji: "📜"
   },
   {
@@ -341,7 +361,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-pink-600",
     features: ["World Building", "Creative Stories", "Fictional Universes", "Imagination Enhancement"],
     directUrl: "https://imaginationtravelergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298244790521897/imaginationtravel.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-advertisement-for-imaginati_E4k--.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "🚀"
   },
   {
@@ -351,7 +371,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-purple-600",
     features: ["Call Automation", "Customer Service", "Intelligent Routing", "Response Systems"],
     directUrl: "http://www.nucleus.com/",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298243775496252/nucleus_call.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-futuristic-office-_x8S3w.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "📞"
   },
   {
@@ -361,7 +381,7 @@ const featuredGPTs = [
     color: "from-amber-600 to-red-600",
     features: ["Historical Headlines", "Period Reporting", "News Archives", "Historical Context"],
     directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298243083305081/historical_headlines.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-historical-headline_1Ll1g.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "📰"
   },
   {
@@ -371,7 +391,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-amber-600",
     features: ["Alchemy Science", "Material Analysis", "Chemical Insights", "Scientific Mysteries"],
     directUrl: "https://alchemicalscientistgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298241884000256/alchemist.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-the-ai-tool-_C4irn.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "⚗️"
   },
   {
@@ -491,7 +511,18 @@ const SpecialServices = () => {
                         alt={`${tool.title} Preview`}
                         className="w-full h-full object-cover"
                         loading="lazy"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          const fallback = target.parentElement?.querySelector('.fallback-emoji') as HTMLElement;
+                          if (fallback) {
+                            fallback.style.display = 'flex';
+                          }
+                        }}
                       />
+                      <div className="fallback-emoji absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-4xl opacity-50 hidden">
+                        {tool.emoji}
+                      </div>
                     </div>
                   ) : (
                     <div className="w-full h-32 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-cyan-500/30 rounded-lg">
