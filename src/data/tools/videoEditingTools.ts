@@ -1,0 +1,96 @@
+
+import { Tool } from "@/types/tools";
+import { 
+  Edit, 
+  Zap,
+  Play,
+  Clock,
+  Wand2
+} from "lucide-react";
+
+export const videoEditingTools: Tool[] = [
+  {
+    icon: Edit,
+    title: "Descript",
+    description: "AI-powered video and audio editor that works like a document. Edit videos by editing text, remove filler words, and clone voices.",
+    emoji: "✂️",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.descript.com/",
+    tags: ["text-based editing", "filler word removal", "voice cloning", "audio editing", "transcription"],
+    category: "Video Tools",
+    rating: 4.7,
+    totalVotes: 4234
+  },
+  {
+    icon: Zap,
+    title: "Kapwing",
+    description: "Online video editor with AI features including auto-subtitles, background removal, and smart cropping. Collaborative editing platform.",
+    emoji: "⚡",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://www.kapwing.com/",
+    tags: ["online editor", "auto-subtitles", "background removal", "smart cropping", "collaborative"],
+    category: "Video Tools",
+    rating: 4.4,
+    totalVotes: 2876
+  },
+  {
+    icon: Edit,
+    title: "Wondershare Filmora",
+    description: "AI-powered video editor with smart features like auto-reframe, motion tracking, and AI audio denoise. Professional video editing made simple.",
+    emoji: "🎞️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://filmora.wondershare.com/",
+    tags: ["video editing", "motion tracking", "auto-reframe", "AI denoise", "professional"],
+    category: "Video Tools",
+    rating: 4.4,
+    totalVotes: 3876
+  },
+  {
+    icon: Edit,
+    title: "Opus Clip",
+    description: "AI-powered tool that turns long videos into viral short clips. Automatically identifies highlights and creates engaging social media content.",
+    emoji: "✂️",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://www.opus.pro/",
+    tags: ["video clipping", "viral content", "highlights", "social media", "automation"],
+    category: "Video Tools",
+    rating: 4.2,
+    totalVotes: 2876
+  },
+  {
+    icon: Clock,
+    title: "Vidyo.ai",
+    description: "AI-powered video editing tool that automatically creates short clips from long-form content. Perfect for creating social media content from podcasts, webinars, and interviews.",
+    emoji: "⏱️",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://vidyo.ai/",
+    tags: ["automatic clipping", "long-form to short", "social media", "podcasts", "webinars", "interviews"],
+    category: "Video Tools",
+    rating: 4.3,
+    totalVotes: 3234
+  },
+  {
+    icon: Edit,
+    title: "Munch",
+    description: "AI-powered video repurposing tool that extracts the most engaging moments from long-form content. Automatically creates short clips optimized for social platforms.",
+    emoji: "🍽️",
+    color: "from-orange-500 to-yellow-600",
+    directUrl: "https://www.getmunch.com/",
+    tags: ["video repurposing", "engaging moments", "short clips", "social optimization", "automatic"],
+    category: "Video Tools",
+    rating: 4.1,
+    totalVotes: 1987
+  },
+  {
+    icon: Wand2,
+    title: "Vadoo AI",
+    description: "AI video editing platform that automatically adds captions, creates highlights, and optimizes content for social media. Transform raw footage into polished videos instantly.",
+    emoji: "🪄",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://vadoo.tv/",
+    tags: ["automatic captions", "highlights creation", "social optimization", "raw footage", "instant editing"],
+    category: "Video Tools",
+    rating: 4.2,
+    totalVotes: 2654
+  }
+];
