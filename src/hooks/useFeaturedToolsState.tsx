@@ -65,9 +65,12 @@ export const useFeaturedToolsState = () => {
       
       console.log(`📊 Final category result: ${tools.length} tools`);
     } else if (searchTerm) {
+      // For search, return ALL matching tools without limiting
       const searchResults = searchTools(allTools, searchTerm);
-      tools = createDeduplicatedToolsList(searchResults, 0);
-      console.log(`🔍 Search "${searchTerm}" found ${tools.length} tools`);
+      console.log(`🔍 Search "${searchTerm}" found ${searchResults.length} tools (unlimited)`);
+      
+      // Don't apply deduplication for search - show all matching results
+      tools = searchResults;
     } else {
       // For homepage, apply smart deduplication
       tools = createDeduplicatedToolsList(allTools, 8);
@@ -81,7 +84,7 @@ export const useFeaturedToolsState = () => {
   const categoriesWithCounts = getStandardizedCategoriesWithCounts();
   const hasMoreTools = displayedCount < filteredTools.length;
 
-  console.log(`📊 Hook state - Category: ${selectedCategory}, Total: ${totalToolsCount}, Displayed: ${displayedCount}, Has more: ${hasMoreTools}`);
+  console.log(`📊 Hook state - Category: ${selectedCategory}, Search: ${searchTerm}, Total: ${totalToolsCount}, Displayed: ${displayedCount}, Has more: ${hasMoreTools}`);
 
   return {
     selectedCategory,
@@ -102,27 +105,23 @@ export const useFeaturedToolsState = () => {
 // Helper function to get related categories
 const getRelatedCategories = (category: string): string[] => {
   const categoryRelations: Record<string, string[]> = {
-    "Data & Analytics": ["Business & Productivity", "AI Research Tools", "Developer Tools"],
-    "Business & Productivity": ["Data & Analytics", "Automation & Workflows", "Communication"],
-    "AI Image Generation": ["Creative Design", "Art & Collectibles", "Video Tools"],
-    "Creative Design": ["AI Image Generation", "Art & Collectibles", "Content Creation"],
-    "AI Assistants": ["Communication", "Productivity Tools", "AI Chat Platforms"],
-    "Video Tools": ["Audio & Voice", "Creative Design", "Content Creation"],
-    "Developer Tools": ["AI Development", "Data & Analytics", "Automation & Workflows"],
-    "AI Research Tools": ["Data & Analytics", "Education & Learning", "Academic Tools"],
-    "Health & Wellness": ["Healthcare Professionals", "Personal Services", "Education & Learning"],
-    "Finance Tools": ["Business & Productivity", "Data & Analytics", "Professional Services"],
-    "Education & Learning": ["AI Research Tools", "Academic Tools", "Personal Services"],
-    "Communication": ["AI Assistants", "Social Media", "Collaboration Tools"],
-    "Content Creation": ["AI Writing Tools", "Creative Design", "Social Media"],
-    "Social Media": ["Content Creation", "Marketing Tools", "Communication"],
-    "Marketing Tools": ["Social Media", "Business & Productivity", "Content Creation"],
-    "Legal Tools": ["Professional Services", "Business & Productivity", "Document Tools"],
-    "AI Writing Tools": ["Content Creation", "AI Assistants", "Productivity Tools"],
-    "Audio & Voice": ["Video Tools", "Creative Design", "AI Assistants"],
-    "Automation & Workflows": ["Business & Productivity", "Developer Tools", "AI Tools"],
-    "Security Tools": ["Developer Tools", "Business & Productivity", "Privacy Tools"]
+    "AI Development & Platforms": ["Data Science & Analytics", "Automation Platforms", "Industry-Specific Solutions"],
+    "Writing & Text Generation": ["AI Assistants & Search", "Business Operations & Productivity", "Education & Research Tools"],
+    "Image & Design Generation": ["Video & Animation Tools", "Creative & Entertainment (General & Gaming)", "Marketing & Sales Solutions"],
+    "Video & Animation Tools": ["Image & Design Generation", "Audio & Music Tools", "Creative & Entertainment (General & Gaming)"],
+    "Audio & Music Tools": ["Video & Animation Tools", "Creative & Entertainment (General & Gaming)", "Communication & Collaboration Tools"],
+    "Business Operations & Productivity": ["Marketing & Sales Solutions", "Data Science & Analytics", "Automation Platforms"],
+    "Marketing & Sales Solutions": ["Business Operations & Productivity", "Communication & Collaboration Tools", "Image & Design Generation"],
+    "Communication & Collaboration Tools": ["Business Operations & Productivity", "AI Assistants & Search", "Marketing & Sales Solutions"],
+    "AI Assistants & Search": ["Writing & Text Generation", "Communication & Collaboration Tools", "Business Operations & Productivity"],
+    "Data Science & Analytics": ["AI Development & Platforms", "Business Operations & Productivity", "Education & Research Tools"],
+    "Automation Platforms": ["AI Development & Platforms", "Business Operations & Productivity", "Data Science & Analytics"],
+    "Education & Research Tools": ["AI Assistants & Search", "Data Science & Analytics", "Writing & Text Generation"],
+    "Industry-Specific Solutions": ["AI Development & Platforms", "Business Operations & Productivity", "Data Science & Analytics"],
+    "Creative & Entertainment (General & Gaming)": ["Image & Design Generation", "Video & Animation Tools", "Audio & Music Tools"],
+    "Health, Wellness & Personal Lifestyle": ["AI Assistants & Search", "Education & Research Tools", "Industry-Specific Solutions"],
+    "Historical & Time-Based AI Tools": ["Education & Research Tools", "Industry-Specific Solutions", "Creative & Entertainment (General & Gaming)"]
   };
 
-  return categoryRelations[category] || ["Business & Productivity", "AI Assistants", "Creative Design"];
+  return categoryRelations[category] || ["Business Operations & Productivity", "AI Development & Platforms", "Creative & Entertainment (General & Gaming)"];
 };

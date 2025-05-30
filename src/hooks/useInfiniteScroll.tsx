@@ -7,6 +7,7 @@ interface UseInfiniteScrollProps {
   displayedCount: number;
   totalTools: number;
   onLoadMore: () => void;
+  searchTerm?: string;
 }
 
 export const useInfiniteScroll = ({ 
@@ -14,13 +15,14 @@ export const useInfiniteScroll = ({
   showLoadMoreButton, 
   displayedCount, 
   totalTools, 
-  onLoadMore 
+  onLoadMore,
+  searchTerm = ""
 }: UseInfiniteScrollProps) => {
   const handleLoadMore = useCallback(() => {
     if (isLoading) return;
-    console.log(`🔄 Infinite scroll triggered - Loading more tools...`);
+    console.log(`🔄 Infinite scroll triggered - Loading more tools... Search: "${searchTerm}"`);
     onLoadMore();
-  }, [isLoading, onLoadMore]);
+  }, [isLoading, onLoadMore, searchTerm]);
 
   // Enhanced infinite scroll with better performance and glitch prevention
   useEffect(() => {
@@ -37,28 +39,28 @@ export const useInfiniteScroll = ({
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
         
-        // More aggressive threshold for better user experience
-        const threshold = 800;
+        // More aggressive threshold for better user experience, especially for search
+        const threshold = searchTerm ? 600 : 800; // Lower threshold for search results
         const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
         
-        console.log(`📏 Scroll check - ScrollTop: ${scrollTop}, WindowHeight: ${windowHeight}, DocumentHeight: ${documentHeight}, NearBottom: ${nearBottom}`);
+        console.log(`📏 Scroll check - ScrollTop: ${scrollTop}, WindowHeight: ${windowHeight}, DocumentHeight: ${documentHeight}, NearBottom: ${nearBottom}, Search: "${searchTerm}"`);
         
         if (nearBottom && displayedCount < totalTools && !isLoading) {
-          console.log(`🎯 Triggering load more - Displayed: ${displayedCount}, Total: ${totalTools}`);
+          console.log(`🎯 Triggering load more - Displayed: ${displayedCount}, Total: ${totalTools}, Search: "${searchTerm}"`);
           handleLoadMore();
         }
-      }, 50); // Reduced debounce for more responsive loading
+      }, searchTerm ? 30 : 50); // Faster response for search results
     };
 
-    // Always enable scroll listening for homepage
-    console.log(`🎮 Setting up infinite scroll - ShowButton: ${showLoadMoreButton}, Displayed: ${displayedCount}, Total: ${totalTools}`);
+    // Always enable scroll listening for search results and homepage
+    console.log(`🎮 Setting up infinite scroll - ShowButton: ${showLoadMoreButton}, Displayed: ${displayedCount}, Total: ${totalTools}, Search: "${searchTerm}"`);
     window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
       clearTimeout(timeoutId);
     };
-  }, [displayedCount, handleLoadMore, isLoading, showLoadMoreButton, totalTools]);
+  }, [displayedCount, handleLoadMore, isLoading, showLoadMoreButton, totalTools, searchTerm]);
 
   return { handleLoadMore };
 };

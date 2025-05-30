@@ -31,7 +31,7 @@ const ToolsGrid = ({
 }: ToolsGridProps) => {
   // Use the already deduplicated tools directly - no further deduplication needed
   const displayTools = tools.slice(0, displayedCount);
-  const shouldShowSimilar = shouldShowSimilarTools(tools.length);
+  const shouldShowSimilar = shouldShowSimilarTools(tools.length) && !searchTerm; // Don't show similar tools for search
   const similarTools = shouldShowSimilar ? getContextAwareSimilarTools(tools, searchTerm, selectedCategory) : [];
   const hasMoreTools = displayedCount < tools.length;
 
@@ -44,7 +44,7 @@ const ToolsGrid = ({
       return <>🎯 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{selectedCategory}</span></>;
     }
     if (searchTerm) {
-      return <>🔍 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Search Results</span></>;
+      return <>🔍 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Search Results for "{searchTerm}"</span></>;
     }
     return <>🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">AI TOOLS COLLECTION</span></>;
   };
@@ -61,12 +61,18 @@ const ToolsGrid = ({
 
   return (
     <>
-      {/* Only show title for category/search results, not for main page */}
+      {/* Show title for search results and categories */}
       {(selectedCategory || searchTerm) && (
         <div className="text-center mb-8 sm:mb-12 px-4">
           <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
             {getSectionTitle()}
           </h3>
+          {searchTerm && (
+            <p className="text-gray-300 text-sm">
+              Found {tools.length} tools matching "{searchTerm}"
+              {tools.length > displayTools.length && " - scroll down to see more!"}
+            </p>
+          )}
           {selectedCategory && (
             <p className="text-gray-300 text-sm">
               Showing {displayTools.length} of {tools.length} tools in {selectedCategory}
@@ -98,13 +104,15 @@ const ToolsGrid = ({
         ))}
       </div>
 
-      {/* Show context-aware similar tools recommendation only for limited results */}
-      <SimilarToolsRecommendation 
-        similarTools={similarTools}
-        originalCount={tools.length}
-        searchTerm={searchTerm}
-        selectedCategory={selectedCategory}
-      />
+      {/* Show context-aware similar tools recommendation only for limited results (not for search) */}
+      {!searchTerm && (
+        <SimilarToolsRecommendation 
+          similarTools={similarTools}
+          originalCount={tools.length}
+          searchTerm={searchTerm}
+          selectedCategory={selectedCategory}
+        />
+      )}
 
       {/* Show "See More Categories" button when results are limited and not filtered */}
       {shouldShowCategoriesButton && onCategoryChange && (
@@ -119,25 +127,31 @@ const ToolsGrid = ({
         <div className="text-center mt-8 py-8">
           <div className="flex items-center justify-center space-x-3">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-500"></div>
-            <span className="text-cyan-200 text-lg">Loading more tools...</span>
+            <span className="text-cyan-200 text-lg">
+              {searchTerm ? `Loading more search results...` : `Loading more tools...`}
+            </span>
           </div>
         </div>
       )}
 
-      {/* Show completion message when all tools in category are displayed */}
+      {/* Show completion message when all tools are displayed */}
       {hasInfiniteScroll && !hasMoreTools && !isLoading && tools.length > 15 && (
         <div className="text-center mt-12 py-8 text-cyan-300">
           <div className="text-2xl mb-2">🎉</div>
           <div className="text-lg font-semibold mb-2">
-            {selectedCategory 
-              ? `You've explored all ${tools.length} tools in ${selectedCategory}!`
-              : `You've explored all ${tools.length} tools!`
+            {searchTerm 
+              ? `You've seen all ${tools.length} tools matching "${searchTerm}"!`
+              : selectedCategory 
+                ? `You've explored all ${tools.length} tools in ${selectedCategory}!`
+                : `You've explored all ${tools.length} tools!`
             }
           </div>
           <div className="text-sm opacity-80">
-            {selectedCategory 
-              ? "Try exploring other categories to discover more tools."
-              : "Try searching or filtering by category to discover specific tools."
+            {searchTerm 
+              ? "Try a different search term to discover more tools."
+              : selectedCategory 
+                ? "Try exploring other categories to discover more tools."
+                : "Try searching or filtering by category to discover specific tools."
             }
           </div>
         </div>
