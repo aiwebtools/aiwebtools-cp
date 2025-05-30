@@ -78,5 +78,19 @@ export const legalProfessionals: Tool[] = [
     category: "Legal Professionals",
     rating: 4.3,
     totalVotes: 2876
+  },
+  {
+    icon: Shield,
+    title: "Public Defender GPT",
+    description: "Legal assistance and guidance for public defense cases, criminal law support, and legal advocacy for those in need of legal representation.",
+    emoji: "🛡️",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://publicdefendergpt.lovable.app/",
+    videoUrl: "https://www.youtube.com/watch?v=cQR5eFjsPWw",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298533241065532/public_defender.webp?ex=683874b7&is=68372337&hm=6e7d732a85a078780d07a20f7b55c5ea3f0edb6f290cb6101a671fca91c398d9&",
+    tags: ["public defense", "criminal law", "legal advocacy", "legal representation", "defense strategy"],
+    category: "Legal Professionals",
+    rating: 4.2,
+    totalVotes: 2654
   }
 ];

@@ -67,5 +67,18 @@ export const aiImageGeneration: Tool[] = [
     category: "Image & Design Tools",
     rating: 4.4,
     totalVotes: 3789
+  },
+  {
+    icon: Palette,
+    title: "Leonardo AI",
+    description: "Advanced AI image generation platform with precision controls for creating high-quality artwork, designs, and visual content.",
+    emoji: "🎨",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://app.leonardo.ai/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298532423303249/leonardo.webp?ex=683874b7&is=68372337&hm=2a2cb45408fda109c050a3afe84d79aad0a5fd26ae489114f33cc92a3da33a47&",
+    tags: ["AI art", "image generation", "digital art", "creative tools", "design"],
+    category: "Image & Design Tools",
+    rating: 4.5,
+    totalVotes: 3421
   }
 ];
