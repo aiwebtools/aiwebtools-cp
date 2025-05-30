@@ -10,7 +10,6 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { getSortedStandardizedCategories } from "@/utils/categoryTitles";
-import GlobalSearchBar from "../GlobalSearchBar";
 
 const MobileMenu = () => {
   const navigate = useNavigate();
@@ -50,10 +49,7 @@ const MobileMenu = () => {
   };
 
   return (
-    <div className="md:hidden flex items-center space-x-2">
-      <div className="flex-1 min-w-0 max-w-xs">
-        <GlobalSearchBar />
-      </div>
+    <div className="md:hidden">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="sm" className="border-cyan-500/30 bg-black/80 text-cyan-100 hover:bg-cyan-500/20 flex-shrink-0">
