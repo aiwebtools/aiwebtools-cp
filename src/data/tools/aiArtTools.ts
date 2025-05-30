@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { BookOpen, Youtube } from "lucide-react";
 
@@ -168,5 +167,77 @@ export const aiArtTools: Tool[] = [
     category: "AI Art",
     rating: 4.4,
     totalVotes: 3187
+  },
+  {
+    icon: BookOpen,
+    title: "Leonardo AI",
+    description: "Advanced AI image generation platform with fine-tuned models for game assets, concept art, and creative designs. Professional-grade AI art creation.",
+    emoji: "🎯",
+    color: "from-orange-500 to-purple-500",
+    directUrl: "https://leonardo.ai/?via=aiwebtools",
+    tags: ["game assets", "concept art", "fine-tuned models", "professional", "creative designs"],
+    category: "AI Art",
+    rating: 4.5,
+    totalVotes: 3892
+  },
+  {
+    icon: BookOpen,
+    title: "Playground AI",
+    description: "User-friendly AI image generator with intuitive interface and powerful editing tools. Create, edit, and refine AI-generated artwork effortlessly.",
+    emoji: "🎪",
+    color: "from-pink-500 to-cyan-500",
+    directUrl: "https://playgroundai.com/?via=aiwebtools",
+    tags: ["user-friendly", "editing tools", "intuitive interface", "artwork refinement", "creative editing"],
+    category: "AI Art",
+    rating: 4.3,
+    totalVotes: 2765
+  },
+  {
+    icon: BookOpen,
+    title: "NightCafe Creator",
+    description: "AI art generator with multiple algorithms and styles. Create stunning digital art, participate in community challenges, and explore various AI models.",
+    emoji: "🌙",
+    color: "from-purple-500 to-blue-500",
+    directUrl: "https://creator.nightcafe.studio/?via=aiwebtools",
+    tags: ["multiple algorithms", "community challenges", "digital art", "various models", "artistic styles"],
+    category: "AI Art",
+    rating: 4.2,
+    totalVotes: 2456
+  },
+  {
+    icon: BookOpen,
+    title: "Hotpot AI",
+    description: "Comprehensive AI graphics platform offering image generation, photo editing, and design tools. Create professional graphics and artwork with ease.",
+    emoji: "🔥",
+    color: "from-red-500 to-orange-500",
+    directUrl: "https://hotpot.ai/?via=aiwebtools",
+    tags: ["graphics platform", "photo editing", "design tools", "professional graphics", "comprehensive"],
+    category: "AI Art",
+    rating: 4.1,
+    totalVotes: 2134
+  },
+  {
+    icon: BookOpen,
+    title: "StarryAI",
+    description: "Mobile and web-based AI art generator that transforms text into stunning artwork. Create unique art pieces with various artistic styles and techniques.",
+    emoji: "⭐",
+    color: "from-yellow-500 to-purple-500",
+    directUrl: "https://www.starryai.com/?via=aiwebtools",
+    tags: ["mobile app", "web-based", "artistic styles", "unique artwork", "text to art"],
+    category: "AI Art",
+    rating: 4.0,
+    totalVotes: 1987
+  },
+  {
+    icon: BookOpen,
+    title: "Fotor AI Image Generator",
+    description: "AI-powered image generation integrated with photo editing suite. Create, edit, and enhance images with professional-grade AI tools and filters.",
+    emoji: "📷",
+    color: "from-green-500 to-teal-500",
+    directUrl: "https://www.fotor.com/ai-image-generator/?via=aiwebtools",
+    tags: ["photo editing", "professional tools", "image enhancement", "filters", "integrated suite"],
+    category: "AI Art",
+    rating: 4.2,
+    totalVotes: 2321
   }
 ];
