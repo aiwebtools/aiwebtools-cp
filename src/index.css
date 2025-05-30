@@ -1,10 +1,60 @@
 
-@import url("./styles/base.css");
-@import url("./styles/components.css");
-@import url("./styles/animations.css");
-@import url("./styles/background-effects.css");
-@import url("./styles/timeEffects.css");
-
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap');
+@import './styles/search-highlight.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ... keep existing code (all the current styles) */
+
+/* Enhanced SEO and accessibility improvements */
+.cyber-glow {
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+}
+
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+  background-size: 100px 100px;
+}
+
+/* Performance optimizations */
+.will-change-auto {
+  will-change: auto;
+}
+
+/* Search result highlights */
+.search-result-highlight {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(59, 130, 246, 0.2));
+  border: 2px solid rgba(6, 182, 212, 0.6);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .search-highlight {
+    animation: none;
+    transition: none;
+  }
+  
+  .animate-spin, .animate-pulse, .animate-bounce {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .search-highlight {
+    border-color: #ffffff;
+    background: #000000;
+  }
+}
+
+/* Print styles for SEO */
+@media print {
+  .search-highlight {
+    border: 2px solid #000000;
+    background: transparent;
+  }
+}

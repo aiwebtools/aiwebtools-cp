@@ -10,6 +10,7 @@ import { searchTools } from "@/utils/searchUtils";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
+import { useSearchScroll } from "@/hooks/useSearchScroll";
 
 const GlobalSearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -18,6 +19,7 @@ const GlobalSearchBar = () => {
   const searchRef = useRef(null);
   const navigate = useNavigate();
   const toolStats = getCurrentToolCount();
+  const { scrollToSearchResults } = useSearchScroll();
 
   useEffect(() => {
     if (searchTerm.trim()) {
@@ -58,6 +60,14 @@ const GlobalSearchBar = () => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && searchTerm.trim()) {
+      console.log('🚀 Enter pressed - triggering search scroll');
+      setIsOpen(false);
+      scrollToSearchResults(searchTerm);
+    }
+  };
+
   const clearSearch = () => {
     setSearchTerm("");
     setIsOpen(false);
@@ -70,9 +80,10 @@ const GlobalSearchBar = () => {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 z-10" />
           <Input
             type="text"
-            placeholder={`Search ${toolStats.total} AI tools...`}
+            placeholder={`Search ${toolStats.total} AI tools... Press Enter to scroll to results`}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleKeyDown}
             className="pl-10 pr-10 py-3 h-12 bg-gray-900/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500 w-full text-base rounded-lg min-w-0"
           />
           {searchTerm && (
