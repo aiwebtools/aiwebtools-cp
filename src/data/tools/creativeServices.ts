@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Palette, 
@@ -57,6 +58,20 @@ export const creativeServices: Tool[] = [
     totalVotes: 5234
   },
   {
+    icon: Music,
+    title: "Music Video Maker AI Studio",
+    description: "Step into the spotlight with Music Video Maker Studio, the ultimate AI-powered creative suite that transforms your music into cinematic experiences. Our advanced AI director helps you craft stunning, scene-by-scene visuals where you—and even your entire band—take center stage. Bring your sound to life with vivid, hyper-realistic scenes synced perfectly to your music, making every beat a visual masterpiece.",
+    emoji: "🎵",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=rBQTUrvHcR8&list=TLGGHKS5WME8OJ8yODA1MjAyNQ",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-dynamic-product-advertisement-showcase_TiaF.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    tags: ["music video production", "cinematic visuals", "AI director", "scene creation", "music synchronization"],
+    category: "Creative Suites",
+    rating: 4.8,
+    totalVotes: 4123
+  },
+  {
     icon: Theater,
     title: "STAGEMASTER AI SUITE FOR THE Preforming Arts",
     description: "A powerful suite of AI tools that transforms every aspect of stage production, from set design to choreography, costume creation to lighting optimization.",
@@ -75,24 +90,11 @@ export const creativeServices: Tool[] = [
     description: "Create stunning custom designs, book covers, marketing materials, and more with our AI-powered design assistant. Powered by the new GPT 4o Image Generation Model",
     emoji: "🎨",
     color: "from-blue-500 to-purple-600",
-    directUrl: "https://graphicdesigntool.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=V-Q-4K-bsVo",
+    directUrl: "https://graphicdesigngpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/2e70f2ce-b17e-4b0f-b5d3-f36c9c22a2e3.png/:/cr=t:12.5%25,l:0%25,w:100%25,h:75%25/rs=w:1200,h:600,cg:true",
     tags: ["graphic design", "book covers", "marketing materials", "AI design", "GPT 4o"],
     category: "Creative Suites",
     rating: 4.7,
     totalVotes: 3567
-  },
-  {
-    icon: Star,
-    title: "RESTYLE ME GPT",
-    description: "Transform your images into any artistic style you can imagine, bringing your creative vision to life with detailed and stunning effects. Upload your photo and let our AI transform you into any style you can imagine – from Ghibli animation to cyberpunk, action figures to movie scenes. Powered by the New GPT 4o Image Generation Model",
-    emoji: "🌟",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://restylemegpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=W-Q-4K-bsVo",
-    tags: ["image transformation", "artistic styles", "Ghibli animation", "cyberpunk", "GPT 4o"],
-    category: "Creative Suites",
-    rating: 4.6,
-    totalVotes: 3234
-  },
+  }
 ];

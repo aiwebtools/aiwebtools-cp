@@ -12,10 +12,63 @@ import {
   Zap,
   Sparkles,
   Globe,
-  Brain
+  Brain,
+  Theater
 } from "lucide-react";
 
 export const contentCreationAndWritingTools: Tool[] = [
+  {
+    icon: Theater,
+    title: "🎭 Playwriter GPT",
+    description: "Craft professional, fully structured theatrical plays from start to finish. Whether you have a concept or need inspiration, create original, engaging plays designed to captivate audiences.",
+    emoji: "🎭",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://playwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=KKldzg40wEI&list=TLGGGcedR_qZHHYyODA1MjAyNQ",
+    tags: ["theatrical writing", "play creation", "script development", "dramatic structure", "performance writing"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.9,
+    totalVotes: 5432
+  },
+  {
+    icon: FileText,
+    title: "Movie Script Writer GPT",
+    description: "Unlock your creative potential with Movie Scriptwriter GPT, the ultimate AI assistant designed to help you write award-winning movie scripts. Whether you're planning scenes or developing characters, our AI supports you through each stage of the scriptwriting process. It provides professional formatting, detailed descriptions, and captivating dialogue, ensuring your script meets industry standards. Ideal for both new writers and experienced filmmakers, this tool brings your story to life on screen. Begin your path to the red carpet with Movie Scriptwriter GPT. You can use the Original Version 1 by clicking here (V1) Updated on 9/29/24 to Version 2 — now offering the ability to download each scene for your records.",
+    emoji: "🎬",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://moviescriptwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=4e3Rkurt3-c&list=TLGGtoG6kc0vED4yODA1MjAyNQ",
+    tags: ["screenwriting", "movie scripts", "character development", "scene planning", "professional formatting"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.8,
+    totalVotes: 4567
+  },
+  {
+    icon: BookOpen,
+    title: "BOOK WRITER GPT",
+    description: "Book Writer GPT assists you in creating professional, well-structured books with seamless page-to-page continuity, engaging dialogue, and captivating storytelling.",
+    emoji: "📚",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
+    tags: ["book writing", "novel creation", "storytelling", "page continuity", "professional publishing"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.7,
+    totalVotes: 4123
+  },
+  {
+    icon: Mic,
+    title: "Podcast Script Writer GPT",
+    description: "Podcast Script Writer GPT specializes in crafting engaging, structured, and professionally formatted podcast scripts and episode outlines. This AI-powered tool efficiently transforms ideas into compelling narratives optimized specifically for audio storytelling, ensuring each script captures audience attention and enhances listener experience.",
+    emoji: "🎙️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://podcastwritergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-illustration-of-a-podcast-host-with-a_HnlUN.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
+    tags: ["podcast scripts", "audio storytelling", "episode outlines", "narrative structure", "podcast production"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.6,
+    totalVotes: 3789
+  },
   {
     icon: Brain,
     title: "MATERIAL VALUATION GPT",
