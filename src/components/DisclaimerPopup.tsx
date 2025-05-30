@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { AlertTriangle } from "lucide-react";
+import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const DisclaimerPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,79 +32,10 @@ const DisclaimerPopup = () => {
   const handleAccept = () => {
     console.log('🌀 User agreeing to disclaimer - initiating portal entry...');
     
-    // Create the time portal effect with a simple welcome message
-    const createSimplePortalEffect = () => {
-      console.log('🌀 Creating simple welcome portal effect');
-      
-      // Import the visual and audio effects directly
-      import('@/utils/effects/visualEffects').then(({ 
-        createParticles, 
-        createVortexRings, 
-        createSpiralTunnel,
-        createEnergyWaves, 
-        createLightning, 
-        createFlash 
-      }) => {
-        import('@/utils/effects/portalSounds').then(({ createPortalSounds }) => {
-          import('@/utils/effects/domEffects').then(({ 
-            createEffectsContainer, 
-            applyTimeWarpFilter, 
-            cleanupEffects 
-          }) => {
-            // Create container for all effects
-            const effectsContainer = createEffectsContainer();
-
-            // Apply centered portal filter
-            applyTimeWarpFilter();
-
-            // Execute visual effects
-            createParticles(effectsContainer);
-            createVortexRings(effectsContainer);
-            createSpiralTunnel(effectsContainer);
-            createEnergyWaves(effectsContainer);
-            createLightning(effectsContainer);
-            createFlash(effectsContainer);
-            
-            // Create portal sounds
-            createPortalSounds();
-            
-            // Create deeper, more natural robot voice
-            if ('speechSynthesis' in window) {
-              const utterance = new SpeechSynthesisUtterance("Welcome to AI Web Tools - Access Granted!");
-              utterance.rate = 0.9; // Slightly faster, more natural
-              utterance.pitch = 0.7; // Higher pitch, less robotic
-              utterance.volume = 1.0;
-              
-              // Try to find a more natural voice
-              const voices = speechSynthesis.getVoices();
-              const preferredVoice = voices.find(voice => 
-                voice.name.toLowerCase().includes('david') ||
-                voice.name.toLowerCase().includes('daniel') ||
-                voice.name.toLowerCase().includes('male') ||
-                (voice.lang.startsWith('en') && voice.name.toLowerCase().includes('natural'))
-              );
-              
-              if (preferredVoice) {
-                utterance.voice = preferredVoice;
-              }
-              
-              setTimeout(() => {
-                speechSynthesis.speak(utterance);
-              }, 300);
-            }
-
-            // Cleanup effects after 3 seconds
-            setTimeout(() => {
-              cleanupEffects(effectsContainer);
-            }, 3000);
-          });
-        });
-      });
-    };
+    // Create the time portal effect without a destination URL
+    createTimePortalEffect('');
     
-    createSimplePortalEffect();
-    
-    // Store acceptance and close dialog after a short delay
+    // Store acceptance and close dialog after a short delay to let the effect start
     setTimeout(() => {
       localStorage.setItem("disclaimerAccepted", "true");
       setIsOpen(false);

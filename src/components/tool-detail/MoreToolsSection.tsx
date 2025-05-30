@@ -1,7 +1,6 @@
 
 import { Button } from "@/components/ui/button";
 import FeaturedTools from "@/components/FeaturedTools";
-import { getCurrentToolCount } from "@/utils/toolCounter";
 
 interface MoreToolsSectionProps {
   showMoreTools: boolean;
@@ -16,11 +15,15 @@ const MoreToolsSection = ({
   onSeeMoreTools, 
   onToolsLoaded 
 }: MoreToolsSectionProps) => {
-  const toolStats = getCurrentToolCount();
-  
   const handleSeeMoreTools = () => {
     onSeeMoreTools();
-    // Don't scroll - just show more tools in place
+    // Scroll to the tools section after showing more tools
+    setTimeout(() => {
+      const toolsSection = document.getElementById('more-tools-section');
+      if (toolsSection) {
+        toolsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   };
 
   if (!showMoreTools) {
@@ -34,7 +37,7 @@ const MoreToolsSection = ({
           🚀 SEE MORE AI TOOLS
         </Button>
         <div className="mt-4 text-cyan-300 text-sm">
-          Explore our complete collection of {toolStats.total} amazing AI tools
+          Explore our complete collection of {totalTools}+ amazing AI tools
         </div>
       </div>
     );

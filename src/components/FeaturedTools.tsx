@@ -1,5 +1,5 @@
 
-import { useCallback, useImperativeHandle, forwardRef } from "react";
+import { useCallback } from "react";
 import CategoryFilters from "@/components/tools/CategoryFilters";
 import ActiveFilters from "@/components/tools/ActiveFilters";
 import ToolsGrid from "@/components/tools/ToolsGrid";
@@ -33,14 +33,11 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
   useScrollMemory({ displayedCount, selectedCategory, searchTerm });
 
   const handleLoadMore = useCallback(() => {
-    if (isLoading || !hasMoreTools) return;
+    if (isLoading) return;
     
-    console.log(`🚀 Loading more tools - Current: ${displayedCount}, Total: ${filteredTools.length}`);
     setIsLoading(true);
-    
     setTimeout(() => {
-      const newCount = Math.min(displayedCount + 16, filteredTools.length); // Load 16 more tools at a time
-      console.log(`📈 Setting new count: ${newCount}`);
+      const newCount = displayedCount + 12; // Load 12 more tools at a time
       setDisplayedCount(newCount);
       setIsLoading(false);
       // Notify parent component about tools loaded
@@ -48,22 +45,31 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
         onToolsLoaded(newCount);
       }
     }, 100);
-  }, [isLoading, displayedCount, setDisplayedCount, setIsLoading, onToolsLoaded, hasMoreTools, filteredTools.length]);
+  }, [isLoading, displayedCount, setDisplayedCount, setIsLoading, onToolsLoaded]);
 
   const handleLoadMoreButton = () => {
-    // Just load more tools without any scrolling
+    const currentScrollPosition = window.pageYOffset;
     handleLoadMore();
+    
+    // Scroll to the newly loaded tools after a brief delay
+    setTimeout(() => {
+      // Calculate approximate position of new tools
+      const toolHeight = 300; // Approximate height of each tool card
+      const toolsPerRow = window.innerWidth >= 1280 ? 4 : window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+      const newRows = Math.ceil(12 / toolsPerRow);
+      const scrollOffset = newRows * toolHeight;
+      
+      window.scrollTo({
+        top: currentScrollPosition + scrollOffset,
+        behavior: 'smooth'
+      });
+    }, 200);
   };
 
-  // Enable infinite scroll for homepage - always active when not filtering
-  const enableInfiniteScroll = !selectedCategory && !searchTerm;
-  
-  console.log(`🔄 Infinite scroll enabled: ${enableInfiniteScroll}, Has more tools: ${hasMoreTools}`);
-
-  // Handle infinite scroll - enabled for homepage
+  // Handle infinite scroll - always enabled for better UX
   useInfiniteScroll({
     isLoading,
-    showLoadMoreButton: false, // Always use infinite scroll for homepage
+    showLoadMoreButton: false, // Always use infinite scroll
     displayedCount,
     totalTools: filteredTools.length,
     onLoadMore: handleLoadMore
@@ -98,7 +104,7 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
         onCategoryChange={handleCategoryChange}
       />
 
-      {/* Enhanced SEE MORE AI TOOLS Button - backup for when infinite scroll doesn't trigger */}
+      {/* Enhanced SEE MORE AI TOOLS Button - always available as backup */}
       {showLoadMoreButton && hasMoreTools && (
         <div className="text-center mt-12 mb-16 px-4">
           <Button
@@ -122,28 +128,25 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
         </div>
       )}
 
-      {/* Always visible Load More Button for homepage when there are more tools */}
-      {!showLoadMoreButton && hasMoreTools && !selectedCategory && !searchTerm && (
+      {/* Backup Load More Button - always visible when there are more tools */}
+      {!showLoadMoreButton && hasMoreTools && (
         <div className="text-center mt-8 mb-8 px-4">
           <Button
             onClick={handleLoadMore}
             size="lg"
             disabled={isLoading}
-            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-6 py-3 rounded-xl transition-all duration-300"
-            data-load-more-trigger
+            variant="outline"
+            className="border-cyan-500 text-cyan-100 hover:bg-cyan-600 hover:text-black px-6 py-3 rounded-xl transition-all duration-300 bg-black/50"
           >
             {isLoading ? (
               <div className="flex items-center space-x-2">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                <span>Loading More Tools...</span>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-cyan-500"></div>
+                <span>Loading...</span>
               </div>
             ) : (
-              "Load More AI Tools"
+              "Load More Tools"
             )}
           </Button>
-          <div className="mt-3 text-cyan-300 text-sm">
-            {displayedCount} of {totalToolsCount} tools loaded
-          </div>
         </div>
       )}
 

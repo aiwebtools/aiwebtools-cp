@@ -9,7 +9,6 @@ import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
-import { getCurrentToolCount } from "@/utils/toolCounter";
 
 const GlobalSearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,7 +16,6 @@ const GlobalSearchBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const searchRef = useRef(null);
   const navigate = useNavigate();
-  const toolStats = getCurrentToolCount();
 
   useEffect(() => {
     if (searchTerm.trim()) {
@@ -65,24 +63,24 @@ const GlobalSearchBar = () => {
 
   return (
     <TooltipProvider>
-      <div ref={searchRef} className="relative w-full">
+      <div ref={searchRef} className="relative w-full max-w-md">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 z-10" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           <Input
             type="text"
-            placeholder={`Search ${toolStats.total} AI tools...`}
+            placeholder="Search 700+ AI tools..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10 pr-10 py-3 h-12 bg-gray-900/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500 w-full text-base rounded-lg"
+            className="pl-10 pr-10 bg-gray-900/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500"
           />
           {searchTerm && (
             <Button
               variant="ghost"
               size="sm"
               onClick={clearSearch}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 text-gray-400 hover:text-white z-10"
+              className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-gray-400 hover:text-white"
             >
-              <X className="w-4 h-4" />
+              <X className="w-3 h-3" />
             </Button>
           )}
         </div>

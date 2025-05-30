@@ -113,7 +113,7 @@ Best regards,
           handleRequestTool={handleRequestTool}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <FooterCompanyInfo />
           <FooterLinks />
         </div>

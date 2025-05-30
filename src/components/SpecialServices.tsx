@@ -1,9 +1,7 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Infinity, Music, Users } from "lucide-react";
-import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const specialServices = [
   {
@@ -43,9 +41,8 @@ const getVideoId = (url: string) => {
   return match ? match[1] : null;
 };
 
-const handleAccessSuite = (directUrl: string, suiteName: string) => {
-  console.log('🌀 Access Suite clicked:', suiteName, 'URL:', directUrl);
-  createTimePortalEffect(directUrl, suiteName);
+const handleAccessSuite = (directUrl: string) => {
+  window.open(directUrl, '_blank', 'noopener,noreferrer');
 };
 
 const SpecialServices = () => {
@@ -108,7 +105,7 @@ const SpecialServices = () => {
                 </div>
                 <Button 
                   className={`w-full bg-gradient-to-r ${service.color} hover:opacity-90 text-white transition-all duration-300`}
-                  onClick={() => handleAccessSuite(service.directUrl, service.title)}
+                  onClick={() => handleAccessSuite(service.directUrl)}
                 >
                   Access Suite
                 </Button>
