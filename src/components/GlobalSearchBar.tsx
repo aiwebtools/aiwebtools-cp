@@ -20,7 +20,7 @@ const GlobalSearchBar = () => {
   useEffect(() => {
     if (searchTerm.trim()) {
       const results = searchTools(allTools, searchTerm);
-      setSearchResults(results.slice(0, 8));
+      setSearchResults(results.slice(0, 15)); // Increased from 8 to 15
       setIsOpen(true);
     } else {
       setSearchResults([]);
@@ -86,7 +86,7 @@ const GlobalSearchBar = () => {
         </div>
 
         {isOpen && searchResults.length > 0 && (
-          <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-cyan-500/30 shadow-2xl z-50 max-h-96 overflow-y-auto">
+          <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-cyan-500/30 shadow-2xl z-50 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800">
             <CardContent className="p-2">
               {searchResults.map((tool, index) => {
                 const toolIndex = allTools.findIndex(t => t.title === tool.title);

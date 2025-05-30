@@ -16,17 +16,17 @@ interface SearchOverlayProps {
 
 const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState(allTools.slice(0, 8));
+  const [searchResults, setSearchResults] = useState(allTools.slice(0, 12)); // Increased from 8 to 12
   const navigate = useNavigate();
 
   useEffect(() => {
     if (searchTerm.trim()) {
       const results = searchTools(allTools, searchTerm);
-      setSearchResults(results.slice(0, 12));
+      setSearchResults(results.slice(0, 24)); // Increased from 12 to 24
     } else {
       // Show random tools when no search term
       const shuffled = [...allTools].sort(() => 0.5 - Math.random());
-      setSearchResults(shuffled.slice(0, 8));
+      setSearchResults(shuffled.slice(0, 12));
     }
   }, [searchTerm]);
 
@@ -76,7 +76,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-96 overflow-y-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800">
               {searchResults.map((tool, index) => {
                 const toolIndex = allTools.findIndex(t => t.title === tool.title);
                 return (
