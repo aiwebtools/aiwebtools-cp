@@ -50,16 +50,20 @@ const MobileMenu = () => {
   };
 
   return (
-    <div className="md:hidden flex items-center space-x-3 w-full">
-      {/* Mobile Search Bar - Full width with proper sizing */}
-      <div className="flex-1 w-full min-w-0">
+    <div className="md:hidden flex items-center justify-between w-full gap-2">
+      {/* Mobile Search Bar - Takes most of the available width */}
+      <div className="flex-1 min-w-0 max-w-none w-full">
         <GlobalSearchBar />
       </div>
       
-      {/* Mobile Menu Button */}
+      {/* Mobile Menu Button - Fixed width */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="sm" className="border-cyan-500/30 bg-black/80 text-cyan-100 hover:bg-cyan-500/20 flex-shrink-0 px-3">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="border-cyan-500/30 bg-black/80 text-cyan-100 hover:bg-cyan-500/20 flex-shrink-0 w-10 h-10 p-0"
+          >
             <Menu className="w-5 h-5" />
           </Button>
         </DropdownMenuTrigger>
