@@ -12,8 +12,9 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
   const hasVideo = tool.videoUrl && tool.videoUrl.trim() !== '';
   
-  // For AI Web Tools original tools with videos, show video player
-  const shouldShowVideo = isAIWebToolsOriginal && hasVideo;
+  // For AI Web Tools original tools: prioritize image if available, then video, then emoji
+  const shouldShowImage = hasImage;
+  const shouldShowVideo = isAIWebToolsOriginal && hasVideo && !hasImage;
   
   const getOptimizedEmbedUrl = (url: string) => {
     if (url.includes('youtube.com/watch?v=')) {
@@ -36,19 +37,7 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
       className={`${isFeatured ? 'mb-6' : 'mb-4'} rounded-lg overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative group-hover:scale-105 transition-transform duration-200`}
       style={{ height: imageHeight }}
     >
-      {shouldShowVideo ? (
-        <iframe
-          width="100%"
-          height="100%"
-          src={getOptimizedEmbedUrl(tool.videoUrl!)}
-          title={`${tool.title} Demo`}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          className="w-full h-full rounded-lg"
-          loading="lazy"
-        />
-      ) : hasImage ? (
+      {shouldShowImage ? (
         <img 
           src={tool.imageUrl} 
           alt={`${tool.title} screenshot`}
@@ -63,10 +52,22 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
             }
           }}
         />
+      ) : shouldShowVideo ? (
+        <iframe
+          width="100%"
+          height="100%"
+          src={getOptimizedEmbedUrl(tool.videoUrl!)}
+          title={`${tool.title} Demo`}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          className="w-full h-full rounded-lg"
+          loading="lazy"
+        />
       ) : null}
       
       {/* Emoji fallback - always present but hidden if image/video loads */}
-      <div className={`${(hasImage || shouldShowVideo) ? 'hidden absolute inset-0' : ''} flex items-center justify-center text-6xl ${isFeatured ? 'text-7xl' : ''} opacity-50`}>
+      <div className={`${(shouldShowImage || shouldShowVideo) ? 'hidden absolute inset-0' : ''} flex items-center justify-center text-6xl ${isFeatured ? 'text-7xl' : ''} opacity-50`}>
         {tool.emoji}
       </div>
       
