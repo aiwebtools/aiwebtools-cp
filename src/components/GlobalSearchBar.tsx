@@ -39,10 +39,18 @@ const GlobalSearchBar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleToolClick = (toolIndex: number) => {
-    setIsOpen(false);
-    setSearchTerm("");
-    navigate(`/tool/${toolIndex}`);
+  const handleToolClick = (tool: any) => {
+    // Find the correct tool index in the main allTools array
+    const toolIndex = allTools.findIndex(t => t.title === tool.title && t.description === tool.description);
+    console.log(`Global search navigating to tool: ${tool.title} at index: ${toolIndex}`);
+    
+    if (toolIndex !== -1) {
+      setIsOpen(false);
+      setSearchTerm("");
+      navigate(`/tool/${toolIndex}`);
+    } else {
+      console.error(`Tool not found in allTools array: ${tool.title}`);
+    }
   };
 
   const handleDirectAccess = (tool: any, e: React.MouseEvent) => {
@@ -89,13 +97,13 @@ const GlobalSearchBar = () => {
           <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-cyan-500/30 shadow-2xl z-50 max-h-96 overflow-y-auto">
             <CardContent className="p-2">
               {searchResults.map((tool, index) => {
-                const toolIndex = allTools.findIndex(t => t.title === tool.title);
+                const toolIndex = allTools.findIndex(t => t.title === tool.title && t.description === tool.description);
                 return (
                   <Tooltip key={`global-search-${tool.title}-${index}`} delayDuration={300}>
                     <TooltipTrigger asChild>
                       <div 
                         className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800/50 cursor-pointer group transition-all duration-200"
-                        onClick={() => handleToolClick(toolIndex)}
+                        onClick={() => handleToolClick(tool)}
                       >
                         <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-sm flex-shrink-0`}>
                           {tool.emoji}

@@ -6,7 +6,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { Tool } from "@/types/tools";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface SearchBarProps {
   searchTerm: string;
@@ -16,6 +16,7 @@ interface SearchBarProps {
 const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchResults, setSearchResults] = useState<Tool[]>([]);
+  const navigate = useNavigate();
 
   const handleSearchChange = (value: string) => {
     console.log("Tools search - handleSearchChange called with:", value);
@@ -35,10 +36,19 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
     }
   };
 
-  const handleResultClick = () => {
-    setIsOpen(false);
-    onSearchChange("");
-    setSearchResults([]);
+  const handleResultClick = (tool: Tool) => {
+    // Find the correct tool index in the main allTools array
+    const toolIndex = allTools.findIndex(t => t.title === tool.title && t.description === tool.description);
+    console.log(`Navigating to tool: ${tool.title} at index: ${toolIndex}`);
+    
+    if (toolIndex !== -1) {
+      setIsOpen(false);
+      onSearchChange("");
+      setSearchResults([]);
+      navigate(`/tool/${toolIndex}`);
+    } else {
+      console.error(`Tool not found in allTools array: ${tool.title}`);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -86,14 +96,13 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
                 Search Results ({searchResults.length})
               </div>
               {searchResults.map((tool, index) => {
-                const toolIndex = allTools.findIndex(t => t.title === tool.title);
+                const toolIndex = allTools.findIndex(t => t.title === tool.title && t.description === tool.description);
                 return (
                   <Tooltip key={index} delayDuration={300}>
                     <TooltipTrigger asChild>
-                      <Link
-                        to={`/tool/${toolIndex}`}
-                        onClick={handleResultClick}
-                        className="flex items-center space-x-3 p-3 hover:bg-gray-50 transition-all duration-200 border-b border-gray-50 last:border-b-0 rounded-lg mx-1"
+                      <div
+                        onClick={() => handleResultClick(tool)}
+                        className="flex items-center space-x-3 p-3 hover:bg-gray-50 transition-all duration-200 border-b border-gray-50 last:border-b-0 rounded-lg mx-1 cursor-pointer"
                       >
                         <div className="w-10 h-10 rounded-full bg-gradient-to-r from-ai-purple to-ai-blue flex items-center justify-center text-white text-lg flex-shrink-0">
                           {tool.emoji}
@@ -105,7 +114,7 @@ const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
                         <div className="text-xs text-gray-400 flex-shrink-0">
                           ⭐ {tool.rating || '4.5'}
                         </div>
-                      </Link>
+                      </div>
                     </TooltipTrigger>
                     <TooltipContent 
                       side="right" 
