@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -100,22 +101,6 @@ const Index = () => {
         <HeroSection />
         <div id="tools-section">
           <FeaturedToolsSection onToolsLoaded={handleToolsLoaded} />
-        </div>
-        
-        {/* Show More AI Tools Button - positioned above Premium AI Suites */}
-        <div className="text-center py-16 bg-gradient-to-br from-slate-900 to-purple-900">
-          <div className="container mx-auto px-4">
-            <Button
-              onClick={triggerLoadMoreTools}
-              size="lg"
-              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-12 py-6 rounded-xl text-xl shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
-            >
-              🚀 SHOW MORE AI TOOLS
-            </Button>
-            <div className="mt-4 text-cyan-300 text-lg">
-              Discover more from our collection of {toolStats.marketing} AI tools
-            </div>
-          </div>
         </div>
         
         <SpecialServices />

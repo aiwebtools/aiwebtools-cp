@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Search, Sparkles, Zap, Brain, Rocket, Stars } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -62,7 +63,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden pt-32 md:pt-36">
+    <section className="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden pt-20 md:pt-24">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -72,19 +73,14 @@ const HeroSection = () => {
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Main heading with improved layout */}
-        <div className="mb-8">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+        <div className="mb-6">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
             {/* First line */}
-            <span className="text-white block mb-4">
-              WELCOME TO THE WORLD OF
-            </span>
-            
-            {/* Second line - AI WEB TOOLS on its own line */}
-            <span className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow block mb-6">
+            <span className="text-white block mb-3">
               AI WEB TOOLS
             </span>
             
-            {/* Third line with animated word */}
+            {/* Second line with animated word */}
             <span className="text-3xl md:text-4xl lg:text-5xl text-white block">
               <span className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
                 {words[currentWord]}
@@ -92,46 +88,17 @@ const HeroSection = () => {
               <span className="ml-4">Work & Life</span>
             </span>
           </h1>
-          
-          <div className="flex items-center justify-center space-x-4 mb-8">
-            <Sparkles className="w-8 h-8 text-cyan-400 animate-pulse" />
-            <p className="text-lg md:text-xl text-cyan-100 max-w-4xl leading-relaxed">
-              Discover vast AI tools that empower everyone to transform their work and life with cutting-edge artificial intelligence
-            </p>
-            <Stars className="w-8 h-8 text-cyan-400 animate-pulse" />
-          </div>
         </div>
 
         {/* Search section */}
-        <div className="mb-12 max-w-4xl mx-auto">
+        <div className="mb-8 max-w-4xl mx-auto">
           <GlobalSearchBar />
-        </div>
-
-        {/* Feature highlights */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
-          <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
-            <Brain className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
-            <h3 className="text-xl font-semibold text-white mb-2">Smart Tools. Real Results.</h3>
-            <p className="text-cyan-200">From idea to execution — unlock AI that helps you create faster, think bigger, and work smarter. Built for builders, dreamers, and doers.</p>
-          </div>
-          
-          <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
-            <Zap className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
-            <h3 className="text-xl font-semibold text-white mb-2">Instant Access. No Gatekeeping.</h3>
-            <p className="text-cyan-200">Dive right in. Most tools are totally free and ready to use — no signups, no strings. Some premium tools are here too (not ours), if you want to explore even further.</p>
-          </div>
-          
-          <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-2xl p-6 backdrop-blur-sm hover:border-cyan-500/40 transition-all duration-300 cyber-glow">
-            <Rocket className="w-12 h-12 text-cyan-400 mb-4 mx-auto" />
-            <h3 className="text-xl font-semibold text-white mb-2">Reimagine What You Can Do.</h3>
-            <p className="text-cyan-200">Whether you're designing, writing, learning, or launching something big — AIWebTools.ai gives you the edge. The future's already here. Plug in.</p>
-          </div>
         </div>
 
         {/* CTA Button */}
         <button
           onClick={scrollToTools}
-          className="group relative px-12 py-6 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-lg rounded-full shadow-2xl shadow-cyan-500/40 hover:shadow-cyan-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-cyan-400 hover:border-cyan-300 cyber-glow"
+          className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-lg rounded-full shadow-2xl shadow-cyan-500/40 hover:shadow-cyan-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-cyan-400 hover:border-cyan-300 cyber-glow mb-8"
         >
           <span className="flex items-center space-x-3">
             <Search className="w-6 h-6" />
@@ -141,21 +108,21 @@ const HeroSection = () => {
         </button>
 
         {/* Stats - updated with accurate count */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{toolStats.marketing}</div>
+            <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{toolStats.marketing}</div>
             <div className="text-cyan-200 text-sm">AI Tools</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{toolStats.categories}+</div>
+            <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{toolStats.categories}+</div>
             <div className="text-cyan-200 text-sm">Categories</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">100%</div>
+            <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">100%</div>
             <div className="text-cyan-200 text-sm">Free Access</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">24/7</div>
+            <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">24/7</div>
             <div className="text-cyan-200 text-sm">Available</div>
           </div>
         </div>
