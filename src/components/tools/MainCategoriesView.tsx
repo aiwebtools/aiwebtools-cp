@@ -1,0 +1,43 @@
+
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { mainCategories } from "@/utils/mainCategoryMapping";
+
+interface MainCategoriesViewProps {
+  mainCategoryCounts: Record<string, number>;
+  onMainCategoryClick: (mainCategoryName: string) => void;
+}
+
+const MainCategoriesView = ({ mainCategoryCounts, onMainCategoryClick }: MainCategoriesViewProps) => {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+      {mainCategories.map((mainCat) => {
+        const count = mainCategoryCounts[mainCat.name] || 0;
+        if (count === 0) return null;
+        
+        return (
+          <Button
+            key={mainCat.name}
+            onClick={() => onMainCategoryClick(mainCat.name)}
+            variant="outline"
+            size="sm"
+            className="group relative overflow-hidden transition-all duration-300 transform hover:scale-105 text-xs border h-auto py-4 px-3 bg-gradient-to-br from-purple-600/20 to-blue-600/20 border-purple-500/30 text-gray-200 hover:from-purple-600/30 hover:to-blue-600/30 hover:text-white hover:shadow-md hover:border-purple-400/50"
+          >
+            <div className="flex flex-col items-center space-y-2 w-full">
+              <span className="text-xl">{mainCat.emoji}</span>
+              <span className="relative z-10 text-center leading-tight font-bold text-xs">{mainCat.name}</span>
+              <Badge 
+                variant="secondary" 
+                className="text-xs relative z-10 bg-black/30 text-gray-300 border-gray-500/40 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30"
+              >
+                {count} tools
+              </Badge>
+            </div>
+          </Button>
+        );
+      })}
+    </div>
+  );
+};
+
+export default MainCategoriesView;
