@@ -16,20 +16,17 @@ interface SearchOverlayProps {
 
 const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState(allTools.slice(0, 24)); // Start with 24 tools
-  const [displayedCount, setDisplayedCount] = useState(24);
+  const [searchResults, setSearchResults] = useState(allTools.slice(0, 8));
   const navigate = useNavigate();
 
   useEffect(() => {
     if (searchTerm.trim()) {
-      const results = searchTools(allTools, searchTerm); // Get ALL results
-      setSearchResults(results);
-      setDisplayedCount(24); // Reset display count
+      const results = searchTools(allTools, searchTerm);
+      setSearchResults(results.slice(0, 12));
     } else {
       // Show random tools when no search term
       const shuffled = [...allTools].sort(() => 0.5 - Math.random());
-      setSearchResults(shuffled);
-      setDisplayedCount(24);
+      setSearchResults(shuffled.slice(0, 8));
     }
   }, [searchTerm]);
 
@@ -47,17 +44,6 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
       onClose();
     }
   };
-
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-    
-    // Load more when user scrolls near the bottom
-    if (scrollHeight - scrollTop <= clientHeight + 100 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 24, searchResults.length));
-    }
-  };
-
-  const displayedResults = searchResults.slice(0, displayedCount);
 
   if (!isOpen) return null;
 
@@ -90,16 +76,8 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
               />
             </div>
 
-            <div className="mb-4 text-center text-sm text-cyan-400">
-              {searchTerm ? `${searchResults.length} tools found` : `Browsing ${searchResults.length} tools`} 
-              {displayedCount < searchResults.length && ` - Showing ${displayedCount}, scroll for more`}
-            </div>
-
-            <div 
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800"
-              onScroll={handleScroll}
-            >
-              {displayedResults.map((tool, index) => {
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-96 overflow-y-auto">
+              {searchResults.map((tool, index) => {
                 const toolIndex = allTools.findIndex(t => t.title === tool.title);
                 return (
                   <Card 
@@ -153,14 +131,6 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                   </Card>
                 );
               })}
-              {displayedCount < searchResults.length && (
-                <div className="col-span-full text-center py-6">
-                  <div className="text-cyan-400 text-lg animate-pulse">Loading more tools...</div>
-                  <div className="text-gray-400 text-sm mt-2">
-                    {searchResults.length - displayedCount} more tools available - Keep scrolling!
-                  </div>
-                </div>
-              )}
             </div>
 
             {searchResults.length === 0 && (
