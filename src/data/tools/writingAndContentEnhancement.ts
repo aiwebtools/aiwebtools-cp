@@ -13,7 +13,13 @@ import {
   MessageSquare,
   Eye,
   Search,
-  Languages
+  Languages,
+  Wand2,
+  Bot,
+  Mic,
+  Video,
+  Users,
+  Crown
 } from "lucide-react";
 
 export const writingAndContentEnhancement: Tool[] = [
@@ -136,5 +142,127 @@ export const writingAndContentEnhancement: Tool[] = [
     category: "Writing & Content Enhancement",
     rating: 4.3,
     totalVotes: 2654
+  },
+  
+  // NEW: 10 Additional Amazing AI Writing Tools
+  {
+    icon: Wand2,
+    title: "Sudowrite",
+    description: "AI writing assistant specifically designed for creative writers and novelists. Helps with character development, plot progression, and overcoming writer's block.",
+    emoji: "✨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.sudowrite.com/",
+    tags: ["creative writing", "novelists", "character development", "plot progression", "writer's block"],
+    category: "Writing & Content Enhancement",
+    rating: 4.7,
+    totalVotes: 3456
+  },
+  {
+    icon: Bot,
+    title: "ChatGPT Plus",
+    description: "OpenAI's premium conversational AI with advanced writing capabilities, custom instructions, and access to GPT-4 for superior content creation.",
+    emoji: "🤖",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://chat.openai.com/",
+    tags: ["ChatGPT", "OpenAI", "GPT-4", "conversational AI", "content creation"],
+    category: "Writing & Content Enhancement",
+    rating: 4.8,
+    totalVotes: 9876
+  },
+  {
+    icon: Crown,
+    title: "Claude Pro",
+    description: "Anthropic's advanced AI assistant with exceptional writing capabilities, long-form content creation, and nuanced understanding of context and tone.",
+    emoji: "👑",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://claude.ai/",
+    tags: ["Claude", "Anthropic", "long-form writing", "context understanding", "advanced AI"],
+    category: "Writing & Content Enhancement",
+    rating: 4.8,
+    totalVotes: 7654
+  },
+  {
+    icon: Sparkles,
+    title: "Perplexity AI",
+    description: "AI-powered research and writing assistant that provides accurate, cited information for content creation with real-time web search capabilities.",
+    emoji: "🔮",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://www.perplexity.ai/",
+    tags: ["research assistant", "cited sources", "real-time search", "fact-checking", "content research"],
+    category: "Writing & Content Enhancement",
+    rating: 4.6,
+    totalVotes: 5432
+  },
+  {
+    icon: FileText,
+    title: "Lex",
+    description: "AI-powered word processor that combines the simplicity of Google Docs with advanced AI writing assistance for seamless content creation.",
+    emoji: "📄",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://lex.page/",
+    tags: ["word processor", "AI writing", "document creation", "seamless integration", "content editing"],
+    category: "Writing & Content Enhancement",
+    rating: 4.4,
+    totalVotes: 2876
+  },
+  {
+    icon: Brain,
+    title: "Jenni AI",
+    description: "AI writing assistant for academic and research writing. Helps with citations, research integration, and maintaining academic writing standards.",
+    emoji: "🎓",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://jenni.ai/",
+    tags: ["academic writing", "research writing", "citations", "academic standards", "thesis writing"],
+    category: "Writing & Content Enhancement",
+    rating: 4.5,
+    totalVotes: 3234
+  },
+  {
+    icon: Mic,
+    title: "Otter.ai",
+    description: "AI meeting transcription and note-taking tool that converts speech to text with smart summaries and action item extraction.",
+    emoji: "🦦",
+    color: "from-orange-500 to-yellow-600",
+    directUrl: "https://otter.ai/",
+    tags: ["transcription", "meeting notes", "speech to text", "smart summaries", "action items"],
+    category: "Writing & Content Enhancement",
+    rating: 4.4,
+    totalVotes: 4567
+  },
+  {
+    icon: Video,
+    title: "Descript",
+    description: "AI-powered text-based video and audio editing with transcription capabilities. Edit media by editing text, perfect for content creators.",
+    emoji: "🎬",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://www.descript.com/",
+    tags: ["text-based editing", "transcription", "video editing", "audio editing", "content creation"],
+    category: "Writing & Content Enhancement",
+    rating: 4.6,
+    totalVotes: 3789
+  },
+  {
+    icon: Users,
+    title: "Tome",
+    description: "AI-powered storytelling platform that creates presentations and documents with intelligent narrative structure and visual design.",
+    emoji: "📚",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://tome.app/",
+    tags: ["storytelling", "presentations", "narrative structure", "visual design", "AI documents"],
+    category: "Writing & Content Enhancement",
+    rating: 4.3,
+    totalVotes: 2543
+  },
+  {
+    icon: Zap,
+    title: "Gamma",
+    description: "AI-powered presentation and document creation tool that generates beautiful, engaging content with minimal effort and maximum impact.",
+    emoji: "⚡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://gamma.app/",
+    tags: ["presentations", "document creation", "beautiful design", "minimal effort", "engaging content"],
+    category: "Writing & Content Enhancement",
+    rating: 4.5,
+    totalVotes: 3456
   }
 ];
