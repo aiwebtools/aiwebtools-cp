@@ -36,7 +36,7 @@ export const aiImageGeneration: Tool[] = [
     emoji: "✏️",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://sketchartistgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-s_CPSIx.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377297453321162812/sketch.webp?ex=683873b5&is=68372235&hm=004c60f783b5ee0fc0e866fe8bbafb8c93952d2ac4e4bccaa93a9f71a7095ccb&",
     tags: ["sketching", "digital art", "drawing", "character design", "artistic illustration"],
     category: "Image & Design Tools",
     rating: 4.3,
