@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import SimilarTools from "@/components/SimilarTools";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ToolDisclaimer from "@/components/ToolDisclaimer";
+import AIWebToolsDisclaimer from "@/components/AIWebToolsDisclaimer";
 import ToolHeader from "@/components/tool-detail/ToolHeader";
 import ToolDescription from "@/components/tool-detail/ToolDescription";
 import ToolMedia from "@/components/tool-detail/ToolMedia";
@@ -56,6 +57,9 @@ const ToolDetail = () => {
     { name: tool.category || "Tools", url: `https://aitools.studio/category/${encodeURIComponent(tool.category || "")}` },
     { name: tool.title, url: `https://aitools.studio/tool/${toolIndex}` }
   ];
+
+  // Check if this is an AI Web Tools LLC GPT (has lovable.app in the URL)
+  const isAIWebToolsGPT = tool.directUrl?.includes('lovable.app') || false;
 
   return (
     <div className="min-h-screen bg-black relative">
@@ -108,7 +112,13 @@ const ToolDetail = () => {
               </CardContent>
             </Card>
 
-            <div className="mt-8">
+            <div className="mt-8 space-y-6">
+              {/* Show AI Web Tools disclaimer for GPTs created by AI Web Tools LLC */}
+              {isAIWebToolsGPT && (
+                <AIWebToolsDisclaimer tool={tool} />
+              )}
+              
+              {/* Show general third-party disclaimer for all tools */}
               <ToolDisclaimer tool={tool} />
             </div>
 
