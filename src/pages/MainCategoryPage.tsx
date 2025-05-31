@@ -42,8 +42,16 @@ const MainCategoryPage = () => {
     return null;
   }
 
-  // Get all tools for this main category
-  const categoryTools = getToolsByMainCategory(allTools, decodedCategoryName);
+  // Get tools for this main category - handle "ALL AI TOOLS" special case
+  const categoryTools = decodedCategoryName === "ALL AI TOOLS" 
+    ? allTools // Return ALL tools for "ALL AI TOOLS" category
+    : getToolsByMainCategory(allTools, decodedCategoryName);
+  
+  console.log(`🔍 MainCategoryPage Debug for "${decodedCategoryName}":`, {
+    isAllAITools: decodedCategoryName === "ALL AI TOOLS",
+    categoryToolsCount: categoryTools.length,
+    totalAllToolsCount: allTools.length
+  });
   
   // Apply search filter if search term exists
   const filteredTools = searchTerm.trim() 
@@ -224,7 +232,7 @@ const MainCategoryPage = () => {
         </main>
 
         {/* Featured Tools Section - Our AIWebTools.ai Professional Solutions */}
-        {!showAllTools && (
+        {!showAllTools && decodedCategoryName !== "ALL AI TOOLS" && (
           <div className="mt-16">
             <FeaturedToolsSection />
             

@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { mainCategories } from "./mainCategoryMapping";
 
@@ -178,110 +177,56 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): Record<string, numbe
 };
 
 export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string): Tool[] => {
+  console.log(`🔍 Getting tools for main category: "${mainCategoryName}"`);
+  
+  // Special case for "ALL AI TOOLS" - return ALL tools with AI Web Tools GPTs prioritized
+  if (mainCategoryName === "ALL AI TOOLS") {
+    console.log(`🌟 ALL AI TOOLS requested - returning all ${tools.length} tools with prioritization`);
+    
+    // Get AI Web Tools GPTs first (these should be prioritized)
+    const aiWebToolsGPTs = tools.filter(tool => 
+      tool.directUrl?.includes('lovable.app') || 
+      tool.directUrl?.includes('aiwebtools')
+    );
+    
+    // Get all other tools
+    const otherTools = tools.filter(tool => 
+      !tool.directUrl?.includes('lovable.app') && 
+      !tool.directUrl?.includes('aiwebtools')
+    );
+    
+    console.log(`🎯 AI Web Tools GPTs: ${aiWebToolsGPTs.length}, Other tools: ${otherTools.length}`);
+    
+    // Return all tools with AI Web Tools GPTs first
+    return [...aiWebToolsGPTs, ...otherTools];
+  }
+  
+  // Find the main category configuration
   const mainCategory = mainCategories.find(cat => cat.name === mainCategoryName);
-  if (!mainCategory) return [];
   
-  const allCategoryTools: Tool[] = [];
+  if (!mainCategory) {
+    console.warn(`❌ Main category "${mainCategoryName}" not found`);
+    return [];
+  }
   
-  mainCategory.subcategories.forEach(subcategory => {
-    const categoryTools = getToolsByCategory(tools, subcategory);
-    allCategoryTools.push(...categoryTools);
+  console.log(`📂 Found main category with ${mainCategory.subcategories.length} subcategories`);
+  
+  // Get tools that match any of the subcategories
+  const categoryTools = tools.filter(tool => {
+    if (!tool.category) return false;
+    
+    return mainCategory.subcategories.some(subcat => {
+      // Normalize both strings for comparison
+      const normalizedToolCategory = tool.category.toLowerCase().trim();
+      const normalizedSubcat = subcat.toLowerCase().trim();
+      
+      return normalizedToolCategory === normalizedSubcat ||
+             normalizedToolCategory.includes(normalizedSubcat) ||
+             normalizedSubcat.includes(normalizedToolCategory);
+    });
   });
   
-  // Enhanced fuzzy matching for tools that might be missing due to category name variations
-  if (mainCategoryName === "COMMUNICATION & COLLABORATION AI TOOLS") {
-    const additionalTools = tools.filter(tool => 
-      tool.category && (
-        tool.category.toLowerCase().includes('communication') ||
-        tool.category.toLowerCase().includes('collaboration') ||
-        tool.category.toLowerCase().includes('entertainment') ||
-        tool.category.toLowerCase().includes('chat') ||
-        tool.category.toLowerCase().includes('social') ||
-        tool.category.toLowerCase().includes('game')
-      )
-    );
-    allCategoryTools.push(...additionalTools);
-  }
+  console.log(`✅ Found ${categoryTools.length} tools for main category "${mainCategoryName}"`);
   
-  if (mainCategoryName === "MARKETING & SALES AI TOOLS") {
-    const additionalTools = tools.filter(tool => 
-      tool.category && (
-        tool.category.toLowerCase().includes('marketing') ||
-        tool.category.toLowerCase().includes('sales') ||
-        tool.category.toLowerCase().includes('business') ||
-        tool.category.toLowerCase().includes('e-commerce') ||
-        tool.category.toLowerCase().includes('ecommerce')
-      )
-    );
-    allCategoryTools.push(...additionalTools);
-  }
-  
-  if (mainCategoryName === "DATA & ANALYTICS AI TOOLS") {
-    const additionalTools = tools.filter(tool => 
-      tool.category && (
-        tool.category.toLowerCase().includes('data') ||
-        tool.category.toLowerCase().includes('analytics') ||
-        tool.category.toLowerCase().includes('research') ||
-        tool.category.toLowerCase().includes('analysis') ||
-        tool.category.toLowerCase().includes('financial') ||
-        tool.category.toLowerCase().includes('trading')
-      )
-    );
-    allCategoryTools.push(...additionalTools);
-  }
-  
-  if (mainCategoryName === "CONTENT CREATION & WRITING") {
-    const additionalTools = tools.filter(tool => 
-      tool.category && (
-        tool.category.toLowerCase().includes('content') ||
-        tool.category.toLowerCase().includes('writing') ||
-        tool.category.toLowerCase().includes('creative') ||
-        tool.category.toLowerCase().includes('grammar')
-      )
-    );
-    allCategoryTools.push(...additionalTools);
-  }
-  
-  if (mainCategoryName === "HEALTH & WELLNESS") {
-    const additionalTools = tools.filter(tool => 
-      tool.category && (
-        tool.category.toLowerCase().includes('health') ||
-        tool.category.toLowerCase().includes('wellness') ||
-        tool.category.toLowerCase().includes('medical') ||
-        tool.category.toLowerCase().includes('healthcare')
-      )
-    );
-    allCategoryTools.push(...additionalTools);
-  }
-  
-  if (mainCategoryName === "EDUCATION & LEARNING") {
-    const additionalTools = tools.filter(tool => 
-      tool.category && (
-        tool.category.toLowerCase().includes('education') ||
-        tool.category.toLowerCase().includes('learning') ||
-        tool.category.toLowerCase().includes('research')
-      )
-    );
-    allCategoryTools.push(...additionalTools);
-  }
-  
-  if (mainCategoryName === "DEVELOPMENT & CODING") {
-    const additionalTools = tools.filter(tool => 
-      tool.category && (
-        tool.category.toLowerCase().includes('developer') ||
-        tool.category.toLowerCase().includes('development') ||
-        tool.category.toLowerCase().includes('coding') ||
-        tool.category.toLowerCase().includes('web development') ||
-        tool.category.toLowerCase().includes('platforms')
-      )
-    );
-    allCategoryTools.push(...additionalTools);
-  }
-  
-  // Remove exact duplicates by title
-  const uniqueTools = allCategoryTools.filter((tool, index, self) => 
-    index === self.findIndex(t => t.title === tool.title)
-  );
-  
-  return uniqueTools;
+  return categoryTools;
 };
