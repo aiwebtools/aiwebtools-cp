@@ -13,7 +13,9 @@ export const serviceCategories: MainCategory[] = [
       "Research & Learning",
       "Education And Learning",
       "Learning And Education",
-      "Research And Learning"
+      "Research And Learning",
+      "AI Education Tools",
+      "AI Research Tools"
     ]
   },
   {
@@ -25,7 +27,8 @@ export const serviceCategories: MainCategory[] = [
       "Health & Wellness Tools",
       "Healthcare Professionals",
       "Health And Wellness",
-      "Health And Wellness Tools"
+      "Health And Wellness Tools",
+      "AI Healthcare Tools"
     ]
   },
   {
@@ -37,7 +40,8 @@ export const serviceCategories: MainCategory[] = [
       "Professional Services",
       "Personal Services",
       "Resume & Career Tools",
-      "Resume And Career Tools"
+      "Resume And Career Tools",
+      "AI Legal Tools"
     ]
   }
 ];

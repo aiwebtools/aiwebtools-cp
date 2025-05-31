@@ -30,7 +30,9 @@ export const specializedCategories: MainCategory[] = [
       "Open Source AI Models",
       "Art And Collectibles",
       "Historical And Cultural",
-      "Time And History"
+      "Time And History",
+      "Mind Blowing AI Tools",
+      "AI Security Tools"
     ]
   }
 ];

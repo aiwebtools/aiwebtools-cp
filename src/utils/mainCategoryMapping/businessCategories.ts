@@ -19,7 +19,9 @@ export const businessCategories: MainCategory[] = [
       "Business And Team Tools",
       "Automation And Workflow Tools",
       "Productivity And Automation Tools",
-      "Search And Productivity Tools"
+      "Search And Productivity Tools",
+      "AI Tools & Utilities",
+      "AI Tools And Utilities"
     ]
   },
   {
@@ -50,7 +52,8 @@ export const businessCategories: MainCategory[] = [
       "Data Analytics Tools",
       "Financial & Trading Tools",
       "Data Analytics Tools",
-      "Financial And Trading Tools"
+      "Financial And Trading Tools",
+      "AI Finance Tools"
     ]
   }
 ];

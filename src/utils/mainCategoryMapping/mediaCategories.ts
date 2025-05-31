@@ -68,7 +68,8 @@ export const mediaCategories: MainCategory[] = [
       "Multimedia & Content",
       "Content Creation Tools",
       "Content Creation And Writing Tools",
-      "Creative Design Tools"
+      "Creative Design Tools",
+      "Raw & Uncut Tools"
     ]
   },
   {

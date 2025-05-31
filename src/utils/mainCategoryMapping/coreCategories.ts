@@ -17,7 +17,12 @@ export const coreCategories: MainCategory[] = [
       "AI Assistants", 
       "Advanced Chat Platforms",
       "AI Agents",
-      "Conversational AI"
+      "Conversational AI",
+      "Advanced AI Tools",
+      "AI Inference Platforms",
+      "AI Productivity Suite",
+      "AI Productivity Tools",
+      "Comprehensive AI Tools"
     ]
   },
   {
@@ -34,7 +39,9 @@ export const coreCategories: MainCategory[] = [
       "Content Creation & Writing Tools",
       "Writing And Content",
       "Content Creation And Writing Tools",
-      "Writing And Content Enhancement"
+      "Writing And Content Enhancement",
+      "Content Detection Tools",
+      "AI Generative Tools"
     ]
   },
   {
