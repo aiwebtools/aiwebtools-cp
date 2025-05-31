@@ -1,9 +1,13 @@
+
 import { Tool } from "@/types/tools";
 import { isSimilarCategory } from "./normalization";
 import { DATA_ANALYTICS_PRIORITY_TOOLS, MARKETING_SALES_PRIORITY_TOOLS } from "./constants";
 
 // Special handling for Data & Analytics category
 export const getDataAnalyticsTools = (tools: Tool[], categoryName: string): Tool[] => {
+  console.log(`🔍 Getting data analytics tools for category: "${categoryName}"`);
+  
+  // Get tools that match the direct category
   const directCategoryTools = tools.filter(tool => 
     tool.category && (
       isSimilarCategory(tool.category, categoryName) ||
@@ -16,17 +20,22 @@ export const getDataAnalyticsTools = (tools: Tool[], categoryName: string): Tool
     )
   );
   
-  // Also include tools by title/content matching for key analytics tools
+  // Also include tools by title/description matching for key analytics tools
   const priorityTools = tools.filter(tool => 
     DATA_ANALYTICS_PRIORITY_TOOLS.some(priorityName => 
       tool.title.toLowerCase().includes(priorityName.toLowerCase()) ||
-      priorityName.toLowerCase().includes(tool.title.toLowerCase()) ||
-      tool.description.toLowerCase().includes('data analysis') ||
-      tool.description.toLowerCase().includes('analytics') ||
-      tool.description.toLowerCase().includes('statistical analysis') ||
-      tool.description.toLowerCase().includes('data visualization') ||
-      tool.description.toLowerCase().includes('business intelligence')
-    )
+      priorityName.toLowerCase().includes(tool.title.toLowerCase())
+    ) ||
+    tool.description.toLowerCase().includes('data analysis') ||
+    tool.description.toLowerCase().includes('analytics') ||
+    tool.description.toLowerCase().includes('statistical analysis') ||
+    tool.description.toLowerCase().includes('data visualization') ||
+    tool.description.toLowerCase().includes('business intelligence') ||
+    tool.description.toLowerCase().includes('predictive modeling') ||
+    tool.description.toLowerCase().includes('research analysis') ||
+    (tool.title.toLowerCase() === 'claude' && tool.description.toLowerCase().includes('analytical')) ||
+    (tool.title.toLowerCase() === 'chatgpt' && tool.description.toLowerCase().includes('data')) ||
+    (tool.title.toLowerCase() === 'gemini' && tool.description.toLowerCase().includes('analysis'))
   );
   
   const allTools = [...directCategoryTools, ...priorityTools];
@@ -39,7 +48,7 @@ export const getDataAnalyticsTools = (tools: Tool[], categoryName: string): Tool
     directCategoryTools: directCategoryTools.length,
     priorityTools: priorityTools.length,
     uniqueTools: uniqueTools.length,
-    sampleTitles: uniqueTools.slice(0, 10).map(t => t.title)
+    sampleTitles: uniqueTools.slice(0, 10).map(t => `${t.title} (${t.category})`)
   });
   
   return uniqueTools;
