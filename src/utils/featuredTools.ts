@@ -60,6 +60,10 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     'Binary-Text-Image Converter GPT'
   ];
   
+  console.log(`🔍 Starting createFeaturedTools - looking for ${priorityTitles.length} priority tools`);
+  console.log(`📊 Total aiWebToolsGPTs available: ${aiWebToolsGPTs.length}`);
+  console.log(`📋 First 10 aiWebToolsGPTs titles:`, aiWebToolsGPTs.slice(0, 10).map(t => t.title));
+  
   // Find priority tools first - these MUST appear in featured sections everywhere
   const priorityTools = allTools.filter(tool => 
     priorityTitles.some(title => 
@@ -70,8 +74,8 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     )
   );
   
-  console.log(`🎯 Priority tools found for featured display: ${priorityTools.length} of ${priorityTitles.length} expected`);
-  console.log(`📋 Priority tools:`, priorityTools.map(t => t.title));
+  console.log(`🎯 Priority tools found: ${priorityTools.length} of ${priorityTitles.length} expected`);
+  console.log(`📋 Found priority tools:`, priorityTools.map(t => t.title));
   
   // Get ALL AI Web Tools GPTs directly from the source to ensure consistency
   console.log(`🔍 Total AI Web Tools GPTs available: ${aiWebToolsGPTs.length}`);
@@ -100,6 +104,7 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
   
   console.log(`🚀 Total featured tools being returned: ${allFeaturedTools.length}`);
   console.log(`📊 Breakdown - Priority: ${priorityTools.length}, AI Web Tools: ${uniqueAiWebToolsGPTs.length}, Additional: ${additionalTools.length}`);
+  console.log(`🏷️ First 20 featured tool titles:`, allFeaturedTools.slice(0, 20).map(t => t.title));
   
   // Remove any final duplicates by title (safety check)
   const uniqueTools = allFeaturedTools.filter((tool, index, self) => 
@@ -107,7 +112,7 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
   );
   
   console.log(`✅ Final unique featured tools count: ${uniqueTools.length}`);
-  console.log(`🏷️ First 45 priority tool titles:`, uniqueTools.slice(0, 45).map(t => t.title));
+  console.log(`🎯 Confirming first 10 tools in final list:`, uniqueTools.slice(0, 10).map(t => t.title));
   
   // Return ALL unique tools - this ensures ALL priority tools appear in featured sections everywhere
   return uniqueTools;
