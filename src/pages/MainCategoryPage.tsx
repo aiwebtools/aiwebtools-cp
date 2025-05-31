@@ -5,10 +5,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
-import ToolsGrid from "@/components/tools/ToolsGrid";
-import FeaturedToolsSection from "@/components/tools/FeaturedToolsSection";
-import SearchBar from "@/components/tools/SearchBar";
-import { Button } from "@/components/ui/button";
+import CategoryHeader from "@/components/main-category/CategoryHeader";
+import SearchSection from "@/components/main-category/SearchSection";
+import ToolsCountDisplay from "@/components/main-category/ToolsCountDisplay";
+import ToolsSection from "@/components/main-category/ToolsSection";
+import CompletionMessage from "@/components/main-category/CompletionMessage";
+import SeeMoreSection from "@/components/main-category/SeeMoreSection";
 import { allTools } from "@/data/toolsData";
 import { getToolsByMainCategory } from "@/utils/categoryUtils";
 import { mainCategories } from "@/utils/mainCategoryMapping";
@@ -18,7 +20,7 @@ import { searchTools } from "@/utils/searchUtils";
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
   const navigate = useNavigate();
-  const [displayedCount, setDisplayedCount] = useState(24); // Increased initial count
+  const [displayedCount, setDisplayedCount] = useState(24);
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [showAllTools, setShowAllTools] = useState(false);
@@ -168,104 +170,49 @@ const MainCategoryPage = () => {
         <Header />
         
         <main className="container mx-auto px-4 py-8">
-          {/* Category Header */}
-          <div className="text-center mb-8">
-            <div className="text-6xl mb-4">{mainCategory.emoji}</div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
-              {decodedCategoryName}
-            </h1>
-            <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
-              {mainCategory.description}
-            </p>
-          </div>
+          <CategoryHeader 
+            categoryName={decodedCategoryName}
+            emoji={mainCategory.emoji}
+            description={mainCategory.description}
+          />
 
-          {/* Search Bar - Positioned after category description */}
-          <div className="max-w-2xl mx-auto mb-8">
-            <h3 className="text-xl font-bold text-white mb-4 text-center">
-              🔍 Search All AI Tools
-            </h3>
-            <SearchBar
-              searchTerm={searchTerm}
-              onSearchChange={handleSearchChange}
-              preventAutoNavigation={true}
-            />
-          </div>
+          <SearchSection 
+            searchTerm={searchTerm}
+            onSearchChange={handleSearchChange}
+          />
 
-          {/* Tools Count */}
-          <div className="text-center mb-8">
-            <div className="text-cyan-400 font-semibold">
-              {showAllTools 
-                ? (searchTerm ? `${allFilteredTools.length} tools found` : `${allTools.length} total tools available`)
-                : (searchTerm ? `${filteredTools.length} tools found` : `${filteredTools.length} tools available`)
-              }
-            </div>
-          </div>
+          <ToolsCountDisplay 
+            showAllTools={showAllTools}
+            searchTerm={searchTerm}
+            allFilteredTools={allFilteredTools}
+            filteredTools={filteredTools}
+            allTools={allTools}
+          />
 
-          {/* Main Tools Section - Always render */}
-          <div id={showAllTools ? "all-tools-section" : "category-tools-section"}>
-            {currentTools.length > 0 ? (
-              <ToolsGrid
-                tools={currentTools}
-                displayedCount={currentDisplayedCount}
-                selectedCategory={showAllTools ? null : decodedCategoryName}
-                searchTerm={searchTerm}
-                onLoadMore={showAllTools ? handleAllToolsLoadMore : handleLoadMore}
-                hasInfiniteScroll={true}
-                isLoading={isLoading}
-              />
-            ) : (
-              <div className="text-center py-16">
-                <div className="text-4xl mb-4">🔍</div>
-                <h3 className="text-2xl font-bold text-cyan-100 mb-4">
-                  {searchTerm ? 'No search results' : 'No tools found'}
-                </h3>
-                <p className="text-gray-300 mb-8">
-                  {searchTerm 
-                    ? `No tools found for "${searchTerm}" in this category.`
-                    : 'We couldn\'t find any tools in this category at the moment.'
-                  }
-                </p>
-              </div>
-            )}
-          </div>
+          <ToolsSection 
+            currentTools={currentTools}
+            currentDisplayedCount={currentDisplayedCount}
+            decodedCategoryName={decodedCategoryName}
+            searchTerm={searchTerm}
+            showAllTools={showAllTools}
+            isLoading={isLoading}
+            onLoadMore={showAllTools ? handleAllToolsLoadMore : handleLoadMore}
+          />
 
-          {/* Enhanced completion message */}
-          {showCompletionMessage && (
-            <div className="text-center mt-12 mb-16 px-4 text-cyan-300">
-              <div className="text-2xl mb-4">🎉</div>
-              <div className="text-lg font-semibold mb-4">
-                You've explored all {currentTools.length} tools{showAllTools ? ' in our database' : ` in ${decodedCategoryName}`}!
-              </div>
-              <div className="text-sm opacity-80 mb-8">
-                {showAllTools 
-                  ? "Try searching or filtering by category to discover specific tools."
-                  : "Try exploring other categories to discover more tools."
-                }
-              </div>
-            </div>
-          )}
+          <CompletionMessage 
+            showCompletionMessage={showCompletionMessage}
+            currentTools={currentTools}
+            showAllTools={showAllTools}
+            decodedCategoryName={decodedCategoryName}
+          />
         </main>
 
-        {/* Featured Tools Section - Our AIWebTools.ai Professional Solutions */}
-        {!showAllTools && decodedCategoryName !== "ALL AI TOOLS" && (
-          <div className="mt-16">
-            <FeaturedToolsSection />
-            
-            {/* SEE MORE AI TOOLS Button */}
-            <div className="text-center mt-12 mb-16 px-4">
-              <Button
-                onClick={handleSeeMoreAITools}
-                size="lg"
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
-              >
-                🚀 SEE MORE AI TOOLS
-              </Button>
-              <div className="mt-4 text-cyan-300 text-sm">
-                Explore our complete collection of {allTools.length}+ amazing AI tools
-              </div>
-            </div>
-          </div>
-        )}
+        <SeeMoreSection 
+          showAllTools={showAllTools}
+          decodedCategoryName={decodedCategoryName}
+          allToolsLength={allTools.length}
+          onSeeMoreAITools={handleSeeMoreAITools}
+        />
         
         <Footer />
       </div>
