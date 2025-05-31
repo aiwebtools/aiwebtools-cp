@@ -1,5 +1,5 @@
 import { Tool } from "@/types/tools";
-import { Bot, Brain, Clock, Microscope, Heart, Zap, Users, Crown, Sparkles, Globe, Star, Shield, Gamepad2 } from "lucide-react";
+import { Bot, Brain, Clock, Microscope, Heart, Zap, Users, Crown, Sparkles, Globe, Star, Shield, Gamepad2, Eye, FileText, Leaf, Gem, Layers, GraduationCap, DollarSign, Ship, Compass } from "lucide-react";
 
 export const secondPriorityFeaturedGPTs: Tool[] = [
   {
