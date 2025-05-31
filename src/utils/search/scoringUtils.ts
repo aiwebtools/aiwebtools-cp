@@ -89,8 +89,31 @@ export const calculateIntentScore = (tool: Tool, searchTerm: string): number => 
   const lowerDescription = tool.description.toLowerCase();
   const lowerCategory = tool.category?.toLowerCase() || '';
   const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+  const lowerSearchTerm = searchTerm.toLowerCase();
   
   let score = 0;
+  
+  // ENHANCED MEDICAL SEARCH PRIORITIZATION for AI Web Tools GPTs
+  if (lowerSearchTerm.includes('medical') || lowerSearchTerm.includes('health') || lowerSearchTerm.includes('doctor') || lowerSearchTerm.includes('wellness')) {
+    // Prioritize specific AI Web Tools medical GPTs
+    if (lowerTitle.includes('personalized dr. gpt') || lowerTitle.includes('doctor gpt')) {
+      score += 300; // Highest priority for Doctor GPT
+    }
+    if (lowerTitle.includes('mental wellness gpt')) {
+      score += 290; // High priority for Mental Wellness GPT
+    }
+    if (lowerTitle.includes('veterinarian gpt') || lowerTitle.includes('pet')) {
+      score += 200; // Lower but still boosted for Vet GPT
+    }
+    if (lowerTitle.includes('pharmaceutical assistant')) {
+      score += 180; // Boost for Pharmaceutical Assistant
+    }
+    
+    // General medical tools boost (but lower than specific GPTs)
+    if (lowerCategory.includes('healthcare') || lowerTags.some(tag => tag.includes('medical') || tag.includes('health'))) {
+      score += 100;
+    }
+  }
   
   // Special boost for GPT tools when searching for GPT-related terms
   if (searchTerm.toLowerCase().includes('gpt')) {

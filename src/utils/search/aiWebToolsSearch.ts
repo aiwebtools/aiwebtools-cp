@@ -47,7 +47,9 @@ export const searchAIWebToolsGPTs = (tools: Tool[], searchTerm: string): Tool[] 
       { search: 'openai', matches: ['gpt', 'artificial intelligence'] },
       { search: 'ai art', matches: ['restyle', 'graphic', 'design'] },
       { search: 'video', matches: ['movie', 'scene', 'sora'] },
-      { search: 'writing', matches: ['book', 'script', 'content'] }
+      { search: 'writing', matches: ['book', 'script', 'content'] },
+      { search: 'medical', matches: ['doctor', 'health', 'wellness', 'dr', 'gpt'] },
+      { search: 'health', matches: ['medical', 'doctor', 'wellness', 'mental', 'gpt'] }
     ];
     
     for (const fuzzy of fuzzyMatches) {
@@ -70,6 +72,23 @@ export const scoreAIWebToolsGPT = (tool: Tool, searchTerm: string): number => {
   const lowerSearchTerm = searchTerm.toLowerCase();
   const toolText = `${tool.title} ${tool.description}`.toLowerCase();
   let score = 0;
+  
+  // PRIORITY SCORING FOR MEDICAL SEARCHES
+  if (lowerSearchTerm.includes('medical') || lowerSearchTerm.includes('health') || lowerSearchTerm.includes('doctor') || lowerSearchTerm.includes('wellness')) {
+    // Top priority for specific medical GPTs
+    if (toolText.includes('personalized dr. gpt') || toolText.includes('doctor gpt')) {
+      score += 200; // Highest priority
+    }
+    if (toolText.includes('mental wellness gpt')) {
+      score += 190; // Second highest
+    }
+    if (toolText.includes('veterinarian gpt')) {
+      score += 150; // Third
+    }
+    if (toolText.includes('pharmaceutical assistant')) {
+      score += 140; // Fourth
+    }
+  }
   
   // Exact title match gets highest score
   if (tool.title.toLowerCase().includes(lowerSearchTerm)) {
