@@ -16,18 +16,21 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   const getOptimizedEmbedUrl = (url: string) => {
     console.log('Processing video URL:', url);
     
-    if (url.includes('youtube.com/watch?v=')) {
-      const videoId = url.split('v=')[1].split('&')[0];
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&volume=65&autohide=1&controls=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
-      console.log('YouTube embed URL:', embedUrl);
-      return embedUrl;
-    }
+    // Handle youtu.be short URLs
     if (url.includes('youtu.be/')) {
       const videoId = url.split('youtu.be/')[1].split('?')[0];
       const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&volume=65&autohide=1&controls=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
       console.log('YouTube short embed URL:', embedUrl);
       return embedUrl;
     }
+    
+    if (url.includes('youtube.com/watch?v=')) {
+      const videoId = url.split('v=')[1].split('&')[0];
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&volume=65&autohide=1&controls=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
+      console.log('YouTube embed URL:', embedUrl);
+      return embedUrl;
+    }
+    
     if (url.includes('vimeo.com/')) {
       const videoId = url.split('vimeo.com/')[1].split('?')[0];
       const embedUrl = `https://player.vimeo.com/video/${videoId}?autoplay=0&volume=0.65`;
@@ -48,6 +51,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
       title: tool.title,
       hasImage: !!tool.imageUrl,
       hasVideo: !!tool.videoUrl,
+      videoUrl: tool.videoUrl,
       imageError,
       videoError
     });
