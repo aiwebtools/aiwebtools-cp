@@ -1,3 +1,4 @@
+
 import { Bot, Globe, Code, Wand2, Zap, Brain, Github, Rocket, Settings, Monitor, Server, HardDrive, Users, Settings2, Database as DatabaseIcon, Terminal as TerminalIcon, Cpu as CpuIcon } from "lucide-react";
 import { Tool } from "@/types/tools";
 
@@ -181,30 +182,6 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.7,
     totalVotes: 3100
-  },
-  {
-    icon: Bot,
-    title: "AI Assistant",
-    description: "AI Assistant is an AI agent that can perform various tasks. It allows users to create and manage AI agents for specific purposes.",
-    emoji: "🤖",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://www.ai-assistant.com/",
-    tags: ["task performance", "AI agent", "customization", "management", "automation"],
-    category: "AI Agents",
-    rating: 4.8,
-    totalVotes: 3300
-  },
-  {
-    icon: Bot,
-    title: "AI Pal",
-    description: "AI Pal is an AI agent that can perform various tasks. It allows users to create and manage AI agents for specific purposes.",
-    emoji: "🤖",
-    color: "from-green-500 to-teal-600",
-    directUrl: "https://www.ai-pal.com/",
-    tags: ["task performance", "AI agent", "customization", "management", "automation"],
-    category: "AI Agents",
-    rating: 4.9,
-    totalVotes: 3500
   },
   {
     icon: Bot,
