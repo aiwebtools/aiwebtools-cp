@@ -7,17 +7,20 @@ export const technicalCategories: MainCategory[] = [
     emoji: "⚡",
     description: "AI-powered development tools, code assistants, and programming utilities",
     subcategories: [
+      "DEVELOPMENT & CODING",
       "Developer Tools",
       "AI Development Tools",
-      "Developer & Coding Tools",
+      "Developer & Coding Tools", 
       "Web Development Tools",
       "AI Tools & Development",
       "Platforms & Development",
       "Developer And Coding Tools",
-      "AI Tools And Development",
+      "AI Tools And Development", 
       "Platforms And Development",
       "Technical & Utility Tools",
-      "AI Development Platforms"
+      "AI Development Platforms",
+      "Automation And Workflow Tools",
+      "Cloud Services"
     ]
   },
   {
