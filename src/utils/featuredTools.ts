@@ -6,7 +6,7 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
   console.log(`🔍 Creating featured tools from ${allTools.length} total tools`);
   console.log(`🎯 AI Web Tools GPTs available in source: ${aiWebToolsGPTs.length}`);
   
-  // Priority tools that MUST be in top positions - all four sets (45 tools total)
+  // Priority tools that MUST be in top positions - all four sets plus additional featured tools
   const priorityTitles = [
     // First priority set (14 tools)
     'BOOK WRITER GPT',
@@ -80,6 +80,7 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     // Fourth priority set (12 tools)
     'Contract Review Bot',
     'Tattoo Designer GPT',
+    'Tattoo Design GPT',
     'Firearms Safety Instructor GPT',
     'Sora Prompt Assistant',
     'King Blueberry GPT',
