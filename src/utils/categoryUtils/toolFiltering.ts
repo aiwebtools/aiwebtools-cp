@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -168,6 +167,14 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     const aiDevelopmentTools = getAIDevelopmentPlatformsTools(tools, mainCategoryName);
     console.log(`✅ Found ${aiDevelopmentTools.length} AI development & platforms tools`);
     return aiDevelopmentTools;
+  }
+  
+  // Special case for "EDUCATION & LEARNING" - use enhanced matching
+  if (mainCategoryName === "EDUCATION & LEARNING") {
+    console.log(`🎓 EDUCATION & LEARNING requested - using enhanced matching`);
+    const educationTools = getEducationLearningTools(tools, mainCategoryName);
+    console.log(`✅ Found ${educationTools.length} education & learning tools`);
+    return educationTools;
   }
   
   // Special case for "DATA & ANALYTICS AI TOOLS" - use enhanced matching

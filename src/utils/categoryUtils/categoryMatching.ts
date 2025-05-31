@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { isSimilarCategory } from "./normalization";
 import { isVideoRelatedTool } from "./videoDetection";
@@ -604,5 +603,74 @@ export const getMarketingSalesTools = (tools: Tool[], categoryName: string): Too
   });
 
   console.log(`✅ Found ${matchedTools.length} marketing & sales tools`);
+  return matchedTools;
+};
+
+export const getEducationLearningTools = (tools: Tool[], categoryName: string): Tool[] => {
+  console.log(`🎓 EDUCATION & LEARNING enhanced matching for: ${categoryName}`);
+  
+  const educationLearningKeywords = [
+    'college degree', 'learn any course', 'learn any skill', 'homeschooling', 'home schooling',
+    'training manual', 'children\'s picture book', 'stellaris', 'space explorer', 'engineering gpt',
+    'nikola tesla', 'albert einstein', 'genome gpt', 'probability gpt', 'algebraic expression',
+    'alchemist scientist', 'historical patterns', 'language tutor', 'homework helper',
+    'essay writer', 'khan academy', 'khanmigo', 'duolingo', 'coursera', 'wolfram alpha',
+    'century tech', 'socratic', 'quiz maker', 'course maker', 'freecodecamp', 'brilliant',
+    'yippity', 'originality', 'plag', 'globe ai', 'education', 'learning', 'teaching',
+    'tutoring', 'instruction', 'academic', 'study', 'curriculum', 'lesson', 'course',
+    'skill development', 'knowledge', 'training', 'educational', 'student', 'teacher',
+    'school', 'university', 'college', 'degree', 'certification', 'assessment', 'quiz',
+    'test', 'homework', 'assignment', 'research', 'analysis', 'comprehension', 'literacy',
+    'numeracy', 'science education', 'math education', 'language learning', 'coding education',
+    'programming education', 'interactive learning', 'adaptive learning', 'personalized learning',
+    'online learning', 'e-learning', 'distance learning', 'self-paced learning', 'microlearning'
+  ];
+
+  const educationToolNames = [
+    'COLLEGE DEGREE GPT', 'LEARN ANY COURSE GPT', 'LEARN ANY SKILL GPT', 'Home-Schooling Assistant GPT',
+    'Training Manual Generator GPT', 'Children\'s Picture Book Maker GPT', 'Stellaris: AI Space Explorer',
+    'Engineering GPT AI Suite', 'Nikola Tesla GPT', 'Albert Einstein GPT', 'Genome GPT',
+    'Probability GPT', 'Algebraic Expression Inventor GPT', 'Alchemist Scientist GPT',
+    'Uncovering Hidden Historical Patterns GPT', 'Language Tutor AI', 'Homework Helper Bot',
+    'AI Essay Writer', 'Khan Academy Khanmigo', 'Duolingo', 'Coursera AI', 'Wolfram Alpha',
+    'Century Tech', 'Socratic by Google', 'Quiz Maker AI', 'Course Maker GPT', 'freeCodeCamp',
+    'Brilliant', 'Khan Academy', 'Yippity.io', 'Originality.ai', 'Plag.ai', 'Globe Ai'
+  ];
+
+  const matchedTools = tools.filter(tool => {
+    if (!tool.title && !tool.description && !tool.category) return false;
+    
+    const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
+    
+    // Direct name matching
+    const nameMatch = educationToolNames.some(name => 
+      tool.title?.toLowerCase().includes(name.toLowerCase()) ||
+      name.toLowerCase().includes(tool.title?.toLowerCase() || '')
+    );
+    
+    // Keyword matching
+    const keywordMatch = educationLearningKeywords.some(keyword => 
+      toolText.includes(keyword.toLowerCase())
+    );
+    
+    // Category matching
+    const categoryMatch = tool.category && (
+      isSimilarCategory(tool.category, categoryName) ||
+      tool.category.toLowerCase().includes('education') ||
+      tool.category.toLowerCase().includes('learning') ||
+      tool.category.toLowerCase().includes('teaching') ||
+      tool.category.toLowerCase().includes('academic') ||
+      tool.category.toLowerCase().includes('study') ||
+      tool.category.toLowerCase().includes('course') ||
+      tool.category.toLowerCase().includes('training') ||
+      tool.category.toLowerCase().includes('tutorial') ||
+      tool.category.toLowerCase().includes('skill') ||
+      tool.category.toLowerCase().includes('knowledge')
+    );
+
+    return nameMatch || keywordMatch || categoryMatch;
+  });
+
+  console.log(`✅ Found ${matchedTools.length} education & learning tools`);
   return matchedTools;
 };
