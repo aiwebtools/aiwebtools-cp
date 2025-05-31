@@ -66,18 +66,6 @@ export const healthcareProfessionals: Tool[] = [
     totalVotes: 3234
   },
   {
-    icon: PlusCircle,
-    title: "Medical Diagnosis Assistant",
-    description: "AI-powered diagnostic support tool for healthcare professionals to assist in patient evaluation and treatment planning.",
-    emoji: "🏥",
-    color: "from-red-500 to-pink-600",
-    directUrl: "https://example.com/medicaldiagnosis",
-    tags: ["medical diagnosis", "healthcare", "patient evaluation", "treatment planning", "clinical support"],
-    category: "Healthcare Professionals",
-    rating: 4.5,
-    totalVotes: 2987
-  },
-  {
     icon: Activity,
     title: "Health Metrics Analyzer",
     description: "Advanced analytics for patient health metrics, vital signs monitoring, and predictive health insights.",
