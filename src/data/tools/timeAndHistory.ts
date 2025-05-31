@@ -8,7 +8,6 @@ import {
   Map, 
   Calendar,
   Scroll,
-  Crown,
   Mountain,
   Compass
 } from "lucide-react";
@@ -99,18 +98,6 @@ export const timeAndHistory: Tool[] = [
     category: "Time & History",
     rating: 4.7,
     totalVotes: 4012
-  },
-  {
-    icon: Crown,
-    title: "Royal Family Tree GPT",
-    description: "Explore the intricate family trees of royal dynasties throughout history. Uncover the relationships, alliances, and power struggles that shaped kingdoms and empires.",
-    emoji: "👑",
-    color: "from-yellow-500 to-purple-600",
-    directUrl: "https://royalfamilytree.lovable.app/?via=aiwebtools",
-    tags: ["royal family tree", "dynasties", "relationships", "alliances", "power struggles"],
-    category: "Time & History",
-    rating: 4.5,
-    totalVotes: 3345
   },
   {
     icon: Mountain,
