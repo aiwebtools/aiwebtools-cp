@@ -6,17 +6,18 @@ import { getCategoriesWithCounts, getToolsByCategory } from "@/utils/categoryUti
 import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
 import { createDeduplicatedToolsList } from "@/utils/toolDeduplication";
 import { createFeaturedTools } from "@/utils/featuredTools";
+import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
 
 export const useFeaturedToolsState = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [displayedCount, setDisplayedCount] = useState<number>(45); // Increased to show all 45 priority tools initially
+  const [displayedCount, setDisplayedCount] = useState<number>(60); // Increased to show more tools initially
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleCategoryChange = (category: string | null) => {
     setSelectedCategory(category);
     setSearchTerm("");
-    setDisplayedCount(45); // Always show all priority tools first
+    setDisplayedCount(60); // Show more tools initially
     setIsLoading(false);
     // Clear saved state when actively changing filters
     sessionStorage.removeItem('aitools-scroll-position');
@@ -26,7 +27,7 @@ export const useFeaturedToolsState = () => {
   const handleSearchChange = (term: string) => {
     setSearchTerm(term);
     setSelectedCategory(null);
-    setDisplayedCount(45); // Always show all priority tools first
+    setDisplayedCount(60); // Show more tools initially
     setIsLoading(false);
     // Clear saved state when actively searching
     sessionStorage.removeItem('aitools-scroll-position');
@@ -35,6 +36,7 @@ export const useFeaturedToolsState = () => {
 
   const filteredTools = useMemo(() => {
     console.log(`🔧 Filtering tools - Category: ${selectedCategory}, Search: ${searchTerm}, Total tools: ${allTools.length}`);
+    console.log(`🎯 AI Web Tools GPTs source count: ${aiWebToolsGPTs.length}`);
     
     let tools = allTools;
 
@@ -73,9 +75,24 @@ export const useFeaturedToolsState = () => {
       // Don't apply deduplication for search - show all matching results
       tools = searchResults;
     } else {
-      // For homepage, use the featured tools with ALL priority tools and AI Web Tools GPTs
+      // For homepage, use the featured tools with ALL AI Web Tools GPTs
       tools = createFeaturedTools(allTools);
-      console.log(`🏠 Homepage - showing ${tools.length} featured tools (including ALL 45 priority tools + all AI Web Tools GPTs)`);
+      console.log(`🏠 Homepage - showing ${tools.length} featured tools`);
+      
+      // Verify AI Web Tools GPTs are included
+      const aiWebToolsInFiltered = tools.filter(tool => 
+        aiWebToolsGPTs.some(gpt => gpt.title === tool.title) ||
+        tool.directUrl?.includes('lovable.app')
+      );
+      console.log(`🚀 AI Web Tools GPTs in filtered homepage tools: ${aiWebToolsInFiltered.length} of ${aiWebToolsGPTs.length}`);
+      
+      if (aiWebToolsInFiltered.length < aiWebToolsGPTs.length) {
+        console.error(`❌ CRITICAL: Missing AI Web Tools GPTs from homepage!`);
+        const missing = aiWebToolsGPTs.filter(gpt => 
+          !tools.some(tool => tool.title === gpt.title)
+        );
+        console.error(`Missing:`, missing.slice(0, 10).map(t => t.title));
+      }
     }
 
     return tools;

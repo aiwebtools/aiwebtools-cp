@@ -1,23 +1,36 @@
 
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
+import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
 
 // Verify all tools have proper indexing and can be found
 export const verifyToolIndexing = () => {
-  console.log(`🔍 Verifying indexing for ${allTools.length} tools...`);
+  console.log(`🔍 Verifying indexing for ${allTools.length} total tools...`);
+  console.log(`🎯 AI Web Tools GPTs available: ${aiWebToolsGPTs.length}`);
   
   const indexingReport = {
     totalTools: allTools.length,
+    aiWebToolsGPTs: aiWebToolsGPTs.length,
+    aiWebToolsInAllTools: 0,
     toolsWithCategories: 0,
     toolsWithDirectUrls: 0,
     toolsWithTags: 0,
     toolsWithDescriptions: 0,
     categoriesFound: new Set<string>(),
     duplicateTitles: new Map<string, number>(),
-    indexingIssues: [] as string[]
+    indexingIssues: [] as string[],
+    missingAiWebToolsGPTs: [] as string[]
   };
 
+  // Check how many AI Web Tools GPTs are actually in allTools
+  const aiWebToolTitles = new Set(aiWebToolsGPTs.map(t => t.title));
+  
   allTools.forEach((tool, index) => {
+    // Check if this is an AI Web Tools GPT
+    if (aiWebToolTitles.has(tool.title) || tool.directUrl?.includes('lovable.app')) {
+      indexingReport.aiWebToolsInAllTools++;
+    }
+
     // Check for essential properties
     if (tool.category) {
       indexingReport.toolsWithCategories++;
@@ -45,6 +58,14 @@ export const verifyToolIndexing = () => {
     indexingReport.duplicateTitles.set(tool.title, titleCount + 1);
   });
 
+  // Find missing AI Web Tools GPTs
+  aiWebToolsGPTs.forEach(gpt => {
+    const foundInAllTools = allTools.some(tool => tool.title === gpt.title);
+    if (!foundInAllTools) {
+      indexingReport.missingAiWebToolsGPTs.push(gpt.title);
+    }
+  });
+
   // Report duplicates
   indexingReport.duplicateTitles.forEach((count, title) => {
     if (count > 1) {
@@ -57,6 +78,16 @@ export const verifyToolIndexing = () => {
     categoriesFound: Array.from(indexingReport.categoriesFound).sort(),
     duplicateTitles: undefined // Don't log the full map
   });
+
+  if (indexingReport.missingAiWebToolsGPTs.length > 0) {
+    console.error('❌ Missing AI Web Tools GPTs from allTools:', indexingReport.missingAiWebToolsGPTs);
+  }
+
+  if (indexingReport.aiWebToolsInAllTools < aiWebToolsGPTs.length) {
+    console.warn(`⚠️ Only ${indexingReport.aiWebToolsInAllTools} of ${aiWebToolsGPTs.length} AI Web Tools GPTs found in allTools`);
+  } else {
+    console.log(`✅ All ${aiWebToolsGPTs.length} AI Web Tools GPTs are properly indexed!`);
+  }
 
   return indexingReport;
 };
@@ -71,8 +102,11 @@ export const verifyToolSearchability = (searchFunction: (tools: Tool[], term: st
   console.log('🔍 Verifying tool searchability...');
   
   const searchTests = [
-    // Test exact title matches
-    ...allTools.slice(0, 10).map(tool => tool.title),
+    // Test exact title matches for AI Web Tools GPTs
+    'TIME MACHINE GPT',
+    'BOOK WRITER GPT',
+    'GODMODE GPT',
+    'Movie Maker Studio',
     // Test category searches
     'AI Assistants',
     'Image Generation',
@@ -124,6 +158,8 @@ export const runFullToolVerification = (searchFunction: (tools: Tool[], term: st
     accessibility: accessibilityReport,
     overallHealth: {
       toolsIndexed: indexingReport.totalTools,
+      aiWebToolsGPTsIndexed: indexingReport.aiWebToolsInAllTools,
+      aiWebToolsGPTsTotal: indexingReport.aiWebToolsGPTs,
       categoriesAvailable: indexingReport.categoriesFound.size,
       toolsWithIssues: indexingReport.indexingIssues.length,
       pagesGenerated: accessibilityReport.totalPages
@@ -133,4 +169,33 @@ export const runFullToolVerification = (searchFunction: (tools: Tool[], term: st
   console.log('✅ Full Verification Complete:', summary.overallHealth);
   
   return summary;
+};
+
+// Verify featured tools specifically
+export const verifyFeaturedToolsContent = (featuredTools: Tool[]) => {
+  console.log(`🎯 Verifying featured tools content - Total: ${featuredTools.length}`);
+  
+  const aiWebToolsInFeatured = featuredTools.filter(tool => 
+    tool.directUrl?.includes('lovable.app') || 
+    aiWebToolsGPTs.some(gpt => gpt.title === tool.title)
+  );
+  
+  console.log(`🚀 AI Web Tools GPTs in featured: ${aiWebToolsInFeatured.length} of ${aiWebToolsGPTs.length}`);
+  console.log(`📋 Featured AI Web Tools GPT titles:`, aiWebToolsInFeatured.slice(0, 20).map(t => t.title));
+  
+  const missingFromFeatured = aiWebToolsGPTs.filter(gpt => 
+    !featuredTools.some(featured => featured.title === gpt.title)
+  );
+  
+  if (missingFromFeatured.length > 0) {
+    console.warn(`❌ Missing from featured tools:`, missingFromFeatured.slice(0, 10).map(t => t.title));
+  }
+  
+  return {
+    totalFeatured: featuredTools.length,
+    aiWebToolsInFeatured: aiWebToolsInFeatured.length,
+    aiWebToolsTotal: aiWebToolsGPTs.length,
+    missingCount: missingFromFeatured.length,
+    missingTitles: missingFromFeatured.map(t => t.title)
+  };
 };

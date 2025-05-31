@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { useFeaturedToolsState } from "@/hooks/useFeaturedToolsState";
 import { useScrollMemory } from "@/hooks/useScrollMemory";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
+import { verifyFeaturedToolsContent, runFullToolVerification } from "@/utils/toolIndexing";
+import { searchTools } from "@/utils/searchUtils";
 
 interface FeaturedToolsProps {
   showLoadMoreButton?: boolean;
@@ -29,18 +31,44 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
     hasMoreTools
   } = useFeaturedToolsState();
 
+  // Run comprehensive verification on component mount
+  React.useEffect(() => {
+    console.log('🚀 Running featured tools verification...');
+    
+    // Run full tool verification
+    const verificationResults = runFullToolVerification(searchTools);
+    
+    // Verify featured tools content specifically
+    const featuredVerification = verifyFeaturedToolsContent(filteredTools);
+    
+    console.log('📊 Featured Tools Verification Results:', featuredVerification);
+    
+    if (featuredVerification.missingCount > 0) {
+      console.error(`❌ CRITICAL ISSUE: ${featuredVerification.missingCount} AI Web Tools GPTs missing from featured tools!`);
+      console.error('Missing tools:', featuredVerification.missingTitles.slice(0, 20));
+    } else {
+      console.log('✅ All AI Web Tools GPTs are properly included in featured tools!');
+    }
+  }, [filteredTools]);
+
   // Handle scroll position memory
   useScrollMemory({ displayedCount, selectedCategory, searchTerm });
 
-  // Log details about the tools being displayed
+  // Enhanced logging with verification details
   console.log(`📊 FeaturedTools Component Stats:`);
   console.log(`   Total tools available: ${totalToolsCount}`);
   console.log(`   Filtered tools: ${filteredTools.length}`);
   console.log(`   Currently displayed: ${displayedCount}`);
   console.log(`   Has more tools: ${hasMoreTools}`);
   
+  // Count AI Web Tools GPTs in current display
+  const aiWebToolsInDisplay = filteredTools.slice(0, displayedCount).filter(tool => 
+    tool.directUrl?.includes('lovable.app')
+  ).length;
+  console.log(`🎯 AI Web Tools GPTs currently displayed: ${aiWebToolsInDisplay}`);
+  
   // Log first few tool titles for debugging
-  console.log(`🔍 First 10 filtered tools:`, filteredTools.slice(0, 10).map(t => t.title));
+  console.log(`🔍 First 15 filtered tools:`, filteredTools.slice(0, 15).map(t => t.title));
 
   const handleLoadMore = useCallback(() => {
     if (isLoading || !hasMoreTools) return;
@@ -49,7 +77,7 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
     setIsLoading(true);
     
     setTimeout(() => {
-      const newCount = Math.min(displayedCount + 20, filteredTools.length); // Load 20 more tools at a time
+      const newCount = Math.min(displayedCount + 25, filteredTools.length); // Load 25 more tools at a time
       console.log(`📈 Setting new count: ${newCount}`);
       setDisplayedCount(newCount);
       setIsLoading(false);
@@ -162,7 +190,7 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
         <div className="text-center mt-12 mb-16 px-4 text-cyan-300">
           <div className="text-2xl mb-2">🎉</div>
           <div className="text-lg font-semibold mb-2">
-            You've explored all {totalToolsCount} amazing AI Web Tools GPTs!
+            You've explored all {totalToolsCount} amazing AI tools!
           </div>
           <div className="text-sm opacity-80">
             Try searching or filtering by category to discover specific tools.
