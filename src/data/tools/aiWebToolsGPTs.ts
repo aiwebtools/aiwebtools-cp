@@ -28,7 +28,11 @@ import {
   Lightbulb,
   Palette,
   Code,
-  Search
+  Search,
+  Timer,
+  Compass,
+  Sparkles,
+  Flower
 } from "lucide-react";
 
 export const aiWebToolsGPTs: Tool[] = [
@@ -278,5 +282,122 @@ export const aiWebToolsGPTs: Tool[] = [
     category: "Business & Productivity",
     rating: 4.9,
     totalVotes: 4876
+  },
+  {
+    icon: Globe,
+    title: "Universal Basic Income Strategist GPT",
+    description: "UBI Strategist GPT helps you design sustainable, future-ready Universal Basic Income models tailored to your region. It analyzes real-time economic data, automation trends, and societal needs to craft step-by-step implementation roadmaps. From funding strategies to impact forecasts, it covers everything needed to build a fair and abundant future. Ideal for policymakers, researchers, activists, and visionaries shaping a post-AI world.",
+    emoji: "💰",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://ubigpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-the-ai-tool-ubi-str_22t4n.png/:/rs=w:600,cg:true,m/qt=q:30",
+    tags: ["UBI strategy", "economic policy", "automation impact", "social welfare", "future planning"],
+    category: "Business & Productivity",
+    rating: 4.7,
+    totalVotes: 3654
+  },
+  {
+    icon: Brain,
+    title: "\"IF AI RULED THE WORLD\" - AI SIMULATION GPT",
+    description: "This is a simulation to evaluate the actions of measuring the thought process behind an AI who thinks it is the Omni Controller of the world. This is for research purposes only",
+    emoji: "🤖",
+    color: "from-purple-500 to-red-600",
+    directUrl: "https://ifairuledtheworldgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=93M9ZyhpmFM",
+    tags: ["AI simulation", "world governance", "research tool", "thought experiments", "AI philosophy"],
+    category: "Business & Productivity",
+    rating: 4.8,
+    totalVotes: 5432
+  },
+  {
+    icon: Globe,
+    title: "Global Peace Restoration Strategist GPT",
+    description: "Global Peace Restoration GPT is an AI-powered diplomatic tool engineered to resolve complex global conflicts through structured negotiation, historical analysis, and real-time intelligence. It is the world's most advanced mediator, capable of simulating multi-party negotiations, designing peace roadmaps, and facilitating trust-building between adversaries. Whether addressing geopolitical tensions, resource disputes, or ideological divides, Global Peace Restoration GPT brings data-driven clarity, impartial strategy, and actionable solutions to the world's most pressing crises. With full-spectrum conflict resolution capabilities, it is the essential tool for diplomats, peacebuilders, NGOs, and international organizations seeking lasting peace.",
+    emoji: "🕊️",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://worldpeacegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-earth-with-a-dark-blue-atmosp_Uq9U_.png/:/rs=w:600,h:300,cg:true,m/cr=w:600,h:300/qt=q:30",
+    tags: ["peace building", "conflict resolution", "diplomatic strategy", "global politics", "negotiation"],
+    category: "Business & Productivity",
+    rating: 4.9,
+    totalVotes: 4321
+  },
+  {
+    icon: Palette,
+    title: "Artwork & Vintage Appraisal GPT",
+    description: "Artwork & Vintage Appraisal GPT is your expert AI for fast, accurate valuations of art, antiques, and collectibles. Just upload a photo and get detailed appraisals, historical insights, and real-time market data. Perfect for collectors, sellers, or the simply curious. Discover the true value of your treasures with Artwork & Vintage Appraisal GPT today!",
+    emoji: "🎨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://artandvintagegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://ideogram.ai/assets/image/lossless/response/Gyn0RfDSR_SHRDWC7neQaw",
+    tags: ["art appraisal", "vintage items", "market valuation", "collectibles", "historical analysis"],
+    category: "Business & Productivity",
+    rating: 4.6,
+    totalVotes: 3789
+  },
+  {
+    icon: Search,
+    title: "Uncovering Hidden Historical Patterns GPT",
+    description: "Uncovering Hidden Historical Patterns GPT is an advanced AI tool that reveals the suppressed truths and hidden power structures shaping our world. By analyzing symbolism, financial systems, and historical contradictions, it uncovers patterns connecting ancient empires to modern institutions. This tool cross-references mainstream narratives with alternative sources, secret societies, and esoteric knowledge to expose what history books omit. Perfect for truth seekers, researchers, and critical thinkers ready to see beyond the surface.",
+    emoji: "🔍",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://historicalpatternsgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-advertisement-with-the-eye_C64dU.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    tags: ["historical analysis", "pattern recognition", "hidden knowledge", "research tool", "critical thinking"],
+    category: "Business & Productivity",
+    rating: 4.5,
+    totalVotes: 2987
+  },
+  {
+    icon: Palette,
+    title: "Sketch Artist GPT",
+    description: "Sketch Artist GPT is your AI-powered sketch art assistant, turning images or text descriptions into clean, high-resolution sketches using advanced Python and DALLE technology. Whether you're uploading a photo or describing an idea, Sketch Artist GPT delivers precise, professional sketches ready for creative use.",
+    emoji: "✏️",
+    color: "from-gray-500 to-blue-600",
+    directUrl: "https://sketchartistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-s_CPSIx.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    tags: ["sketch creation", "digital art", "image conversion", "artistic tools", "creative design"],
+    category: "Business & Productivity",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: Search,
+    title: "AI Tools Finder GPT",
+    description: "Your own personal expert in the world of Ai Tools and knowledge. Locate the best Ai tools for your projects and be presented with step by step guides on any Ai tool that exists.",
+    emoji: "🔧",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=IrKKi3SX89g",
+    tags: ["AI tool discovery", "tool recommendations", "AI guidance", "technology finder", "productivity tools"],
+    category: "Business & Productivity",
+    rating: 4.8,
+    totalVotes: 5234
+  },
+  {
+    icon: FileText,
+    title: "Article and Blog Rewriter GPT",
+    description: "Rewrite epic SEO optimized articles and blogs! Simply copy and paste the blog or article you wish to rewrite and bam! 🎯",
+    emoji: "📝",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://rewritergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005696.jpg/:/cr=t:9.9%25,l:0%25,w:100%25,h:80.21%25/rs=w:600,h:300,cg:true/qt=q:98",
+    tags: ["content rewriting", "SEO optimization", "blog writing", "article creation", "content marketing"],
+    category: "Business & Productivity",
+    rating: 4.6,
+    totalVotes: 4123
+  },
+  {
+    icon: Camera,
+    title: "Video Second-by-Second Analysis GPT",
+    description: "Video Second-by-Second Analysis GPT breaks down your footage with incredible precision, analyzing every second and extracting key visual frames for detailed insight. Just upload your video, and this AI tool will guide you through a step-by-step review of each moment—highlighting actions, people, objects, and scene changes. It's also a powerful resource for training and fine-tuning Vision-Language Models (VLMs), offering structured, labeled visual data with contextual analysis. Ideal for creators, analysts, educators, researchers, and investigators who need deep clarity from their video content.",
+    emoji: "🎥",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://videoanalysisgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-banner-ad-with-the-text-video-second-b_764zv.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    tags: ["video analysis", "frame extraction", "visual content", "media processing", "research tool"],
+    category: "Business & Productivity",
+    rating: 4.7,
+    totalVotes: 3654
   }
 ];
