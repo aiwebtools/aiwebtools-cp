@@ -1,3 +1,4 @@
+
 import { Menu, Phone, Search, X, FileText } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -45,6 +46,14 @@ const MobileMenu = () => {
       setDisplayedCount(50);
     }
   }, [searchTerm]);
+
+  const handleExternalLink = (url: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('🌀 External link clicked in mobile menu:', url);
+    createTimePortalEffect(url);
+    setIsMenuOpen(false);
+  };
 
   const scrollToCategories = () => {
     if (window.location.pathname !== '/') {
@@ -238,10 +247,7 @@ const MobileMenu = () => {
                 
                 {/* Terms & Disclaimer Button */}
                 <DropdownMenuItem 
-                  onClick={() => { 
-                    window.open('https://aitools.company/terms-of-services', '_blank');
-                    setIsMenuOpen(false);
-                  }} 
+                  onClick={(e) => handleExternalLink('https://aitools.company/terms-of-services', e)} 
                   className="text-cyan-100 hover:bg-cyan-500/20 rounded"
                 >
                   <FileText className="w-4 h-4 mr-2" />
