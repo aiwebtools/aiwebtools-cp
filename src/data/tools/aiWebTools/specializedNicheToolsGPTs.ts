@@ -140,7 +140,6 @@ export const specializedNicheToolsGPTs: Tool[] = [
     color: "from-green-500 to-brown-600",
     directUrl: "https://fungusgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=qzndRzBtrEU",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-man-with-a-beard-holding-a-_9DLLj.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
     tags: ["mushroom cultivation", "mycology", "foraging", "fungi identification", "culinary fungi"],
     category: "Specialized Niche Tools",
     rating: 4.7,
