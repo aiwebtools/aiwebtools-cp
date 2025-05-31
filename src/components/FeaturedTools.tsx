@@ -97,7 +97,7 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
     setIsLoading(true);
     
     setTimeout(() => {
-      const newCount = Math.min(displayedCount + 25, filteredTools.length); // Load 25 more tools at a time
+      const newCount = Math.min(displayedCount + 20, filteredTools.length); // Reduced batch size
       console.log(`📈 Setting new count: ${newCount}`);
       setDisplayedCount(newCount);
       setIsLoading(false);
@@ -105,7 +105,7 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
       if (onToolsLoaded) {
         onToolsLoaded(newCount);
       }
-    }, 100);
+    }, 200); // Reduced timeout for better performance
   }, [isLoading, displayedCount, setDisplayedCount, setIsLoading, onToolsLoaded, hasMoreTools, filteredTools.length]);
 
   const handleLoadMoreButton = () => {
@@ -116,7 +116,7 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
   const handleShowMoreFeaturedTools = () => {
     console.log('🚀 Show More Featured Tools clicked!');
     setShowAllFeaturedTools(true);
-    setDisplayedCount(filteredTools.length); // Show all tools
+    setDisplayedCount(Math.min(filteredTools.length, 100)); // Load in batches to prevent crashes
   };
 
   // Enable infinite scroll for homepage - always active when not filtering
@@ -124,7 +124,7 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
   
   console.log(`🔄 Infinite scroll enabled: ${enableInfiniteScroll}, Has more tools: ${hasMoreTools}`);
 
-  // Handle infinite scroll - enabled for homepage
+  // Handle infinite scroll - enabled for homepage with performance optimization
   useInfiniteScroll({
     isLoading,
     showLoadMoreButton: false, // Always use infinite scroll for homepage

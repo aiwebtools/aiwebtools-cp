@@ -27,9 +27,16 @@ export const useInfiniteScroll = ({
   // Enhanced infinite scroll with better performance and search optimization
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
+    let isThrottled = false;
     
     const handleScroll = () => {
-      if (isLoading || showLoadMoreButton) return; // Don't auto-scroll if button mode is enabled
+      if (isLoading || showLoadMoreButton || isThrottled) return; // Don't auto-scroll if button mode is enabled or throttled
+      
+      // Throttle scroll events for better performance
+      isThrottled = true;
+      setTimeout(() => {
+        isThrottled = false;
+      }, 100);
       
       // Clear previous timeout to prevent multiple triggers
       clearTimeout(timeoutId);
@@ -39,8 +46,8 @@ export const useInfiniteScroll = ({
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
         
-        // More aggressive threshold for search results to ensure infinite scroll works
-        const threshold = searchTerm ? 400 : 800; // Much lower threshold for search results
+        // More conservative threshold for better performance
+        const threshold = searchTerm ? 600 : 1000; // Increased threshold to prevent premature loading
         const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
         
         console.log(`📏 Scroll check - ScrollTop: ${scrollTop}, WindowHeight: ${windowHeight}, DocumentHeight: ${documentHeight}, NearBottom: ${nearBottom}, Search: "${searchTerm}"`);
@@ -49,7 +56,7 @@ export const useInfiniteScroll = ({
           console.log(`🎯 Triggering load more - Displayed: ${displayedCount}, Total: ${totalTools}, Search: "${searchTerm}"`);
           handleLoadMore();
         }
-      }, searchTerm ? 50 : 100); // Faster response for search results
+      }, searchTerm ? 100 : 200); // Slightly delayed response to prevent rapid triggering
     };
 
     // Always enable scroll listening, especially for search results
