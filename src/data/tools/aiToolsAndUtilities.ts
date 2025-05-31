@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Bot, 
@@ -62,42 +63,6 @@ export const aiToolsAndUtilities: Tool[] = [
     category: "AI Tools To Run LOCALLY",
     rating: 4.1,
     totalVotes: 1987
-  },
-  {
-    icon: Shield,
-    title: "AI Legal Assistant",
-    description: "AI-powered legal assistant that provides legal information, document review, and legal research assistance.",
-    emoji: "⚖️",
-    color: "from-gray-500 to-blue-600",
-    directUrl: "https://ailegalassistant.lovable.app/?via=aiwebtools",
-    tags: ["legal assistant", "AI legal", "legal information", "document review", "legal research"],
-    category: "AI Tools To Run LOCALLY",
-    rating: 4.4,
-    totalVotes: 3567
-  },
-  {
-    icon: FlaskConical,
-    title: "AI Chemical Assistant",
-    description: "AI-powered chemical assistant that provides chemical information, reaction prediction, and chemical research assistance.",
-    emoji: "🧪",
-    color: "from-red-500 to-blue-600",
-    directUrl: "https://aichemicalassistant.lovable.app/?via=aiwebtools",
-    tags: ["chemical assistant", "AI chemical", "chemical information", "reaction prediction", "chemical research"],
-    category: "AI Tools To Run LOCALLY",
-    rating: 4.5,
-    totalVotes: 3456
-  },
-  {
-    icon: Atom,
-    title: "AI Physics Assistant",
-    description: "AI-powered physics assistant that provides physics information, problem-solving assistance, and physics research assistance.",
-    emoji: "⚛️",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://aiphysicsassistant.lovable.app/?via=aiwebtools",
-    tags: ["physics assistant", "AI physics", "physics information", "problem-solving", "physics research"],
-    category: "AI Tools To Run LOCALLY",
-    rating: 4.2,
-    totalVotes: 1876
   },
   {
     icon: Building,
