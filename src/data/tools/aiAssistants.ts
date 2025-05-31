@@ -1,27 +1,163 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Sparkles, 
-  Lightbulb, 
+  Bot, 
   MessageSquare, 
   Brain, 
-  Code, 
-  FileText,
-  Users
+  Zap, 
+  Star,
+  Crown,
+  Sparkles,
+  Globe,
+  Search,
+  Users,
+  Heart,
+  Shield
 } from "lucide-react";
 
 export const aiAssistants: Tool[] = [
   {
-    icon: Sparkles,
-    title: "Merlin Ai",
-    description: "AI-powered browser extension and assistant that works across multiple platforms. Provides AI assistance for research, writing, summarization, and productivity tasks directly in your browser.",
-    emoji: "🧙‍♂️",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://app.getmerlin.in/plans?ref=mte1mgu4",
-    videoUrl: "https://www.youtube.com/watch?v=rDrG5DqCCgY",
-    tags: ["browser extension", "AI assistant", "productivity", "research assistant", "writing helper", "multi-platform"],
-    category: "AI Assistants",
+    icon: Crown,
+    title: "GODMODE GPT",
+    description: "Imagine having an AI companion so powerful and versatile that it seamlessly transforms to meet every need you have—introducing GodMode GPT. This revolutionary AI assistant adapts to any task, providing unmatched capabilities across all domains of knowledge and productivity.",
+    emoji: "👑",
+    color: "from-yellow-400 to-red-500",
+    directUrl: "https://godmodegpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=or3JtZsq6Bc",
+    tags: ["versatile ai", "all-purpose", "productivity", "godmode", "ultimate assistant"],
+    category: "AI Assistants & Search",
+    rating: 4.9,
+    totalVotes: 6500
+  },
+  {
+    icon: Bot,
+    title: "Personal AI Assistant",
+    description: "Your AI companion for daily tasks, reminders, and information retrieval. Get personalized assistance and streamline your life.",
+    emoji: "🤖",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://example.com/aiassistant",
+    tags: ["personal assistant", "productivity", "reminders", "information", "automation"],
+    category: "AI Assistants & Search",
+    rating: 4.7,
+    totalVotes: 4231
+  },
+  {
+    icon: MessageSquare,
+    title: "AI Chatbot Buddy",
+    description: "Engage in natural language conversations with an AI chatbot. Get answers, advice, and companionship anytime you need it.",
+    emoji: "💬",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://example.com/aibuddy",
+    tags: ["chatbot", "conversational ai", "natural language", "advice", "companionship"],
+    category: "AI Assistants & Search",
+    rating: 4.6,
+    totalVotes: 3876
+  },
+  {
+    icon: Brain,
+    title: "AI Knowledge Navigator",
+    description: "Access a vast database of knowledge and get AI-powered insights, summaries, and answers to your questions.",
+    emoji: "🧠",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://example.com/aiknowledge",
+    tags: ["knowledge base", "ai insights", "summarization", "answers", "research"],
+    category: "AI Assistants & Search",
     rating: 4.5,
-    totalVotes: 3234
+    totalVotes: 3543
+  },
+  {
+    icon: Zap,
+    title: "AI Task Automator",
+    description: "Automate repetitive tasks and workflows with AI. Boost your productivity and focus on what matters most.",
+    emoji: "⚡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://example.com/aitaskautomator",
+    tags: ["task automation", "workflow", "productivity", "efficiency", "ai tools"],
+    category: "AI Assistants & Search",
+    rating: 4.4,
+    totalVotes: 3210
+  },
+  {
+    icon: Star,
+    title: "AI Creative Spark",
+    description: "Unleash your creativity with AI-powered inspiration, ideas, and content generation for art, writing, and more.",
+    emoji: "✨",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://example.com/aicreativespark",
+    tags: ["creative ai", "inspiration", "content generation", "art", "writing"],
+    category: "AI Assistants & Search",
+    rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: Sparkles,
+    title: "AI Productivity Booster",
+    description: "Maximize your productivity with AI-driven tools for time management, focus enhancement, and goal setting.",
+    emoji: "🌟",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://example.com/aibooster",
+    tags: ["productivity tools", "time management", "focus", "goal setting", "ai assistance"],
+    category: "AI Assistants & Search",
+    rating: 4.2,
+    totalVotes: 2543
+  },
+  {
+    icon: Globe,
+    title: "AI Language Tutor",
+    description: "Learn new languages with AI-powered tutoring, personalized lessons, and real-time feedback.",
+    emoji: "🌍",
+    color: "from-teal-500 to-blue-600",
+    directUrl: "https://example.com/ailanguagetutor",
+    tags: ["language learning", "ai tutoring", "personalized lessons", "feedback", "education"],
+    category: "AI Assistants & Search",
+    rating: 4.1,
+    totalVotes: 2210
+  },
+  {
+    icon: Search,
+    title: "AI Smart Search",
+    description: "Intelligent search engine that understands context and provides accurate, relevant results.",
+    emoji: "🔍",
+    color: "from-gray-500 to-blue-600",
+    directUrl: "https://example.com/aismartsearch",
+    tags: ["smart search", "contextual search", "ai search engine", "accurate results"],
+    category: "AI Assistants & Search",
+    rating: 4.3,
+    totalVotes: 2987
+  },
+  {
+    icon: Users,
+    title: "AI Social Connector",
+    description: "AI-powered social networking tool that helps you connect with like-minded people and build communities.",
+    emoji: "🧑‍🤝‍🧑",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://example.com/aisocialconnector",
+    tags: ["social networking", "community building", "ai connections", "social media"],
+    category: "AI Assistants & Search",
+    rating: 4.2,
+    totalVotes: 2654
+  },
+  {
+    icon: Heart,
+    title: "AI Wellness Coach",
+    description: "AI-driven wellness coach that provides personalized fitness plans, nutrition advice, and mental health support.",
+    emoji: "❤️",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://example.com/aiwellnesscoach",
+    tags: ["wellness coach", "fitness plans", "nutrition advice", "mental health"],
+    category: "AI Assistants & Search",
+    rating: 4.4,
+    totalVotes: 3123
+  },
+  {
+    icon: Shield,
+    title: "AI Security Guardian",
+    description: "AI-powered security tool that protects your data, devices, and online privacy from threats.",
+    emoji: "🛡️",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://example.com/aisecurityguardian",
+    tags: ["security tool", "data protection", "online privacy", "threat detection"],
+    category: "AI Assistants & Search",
+    rating: 4.5,
+    totalVotes: 3456
   }
 ];

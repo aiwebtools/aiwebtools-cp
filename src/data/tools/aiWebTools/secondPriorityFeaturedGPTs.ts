@@ -1,20 +1,46 @@
-
 import { Tool } from "@/types/tools";
-import { MapPin, Crown, Eye, FileText, Zap, Leaf, Gem, Layers, GraduationCap, DollarSign, Brain, Ship, Compass } from "lucide-react";
+import { Bot, Brain, Clock, Microscope, Heart, Zap, Users, Crown, Sparkles, Globe, Star, Shield, Gamepad2 } from "lucide-react";
 
 export const secondPriorityFeaturedGPTs: Tool[] = [
   {
-    icon: MapPin,
+    icon: Bot,
+    title: "BOOK WRITER GPT",
+    description: "Book Writer GPT assists you in creating professional, well-structured books with seamless page-to-page continuity, engaging dialogue, and captivating storytelling.",
+    emoji: "📚",
+    color: "from-blue-500 to-green-600",
+    category: "Creative & Entertainment (General & Gaming)",
+    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
+    rating: 4.7,
+    totalVotes: 4123,
+    tags: ["book writing", "novel creation", "storytelling", "page continuity", "professional publishing"]
+  },
+  {
+    icon: Brain,
     title: "Travel Advisor GPT",
     description: "Plan your next vacation with your personal AI travel advisor. Get tailored recommendations and craft your dream getaway within your preferences, budget, and envisioned experience. Enjoy a stress-free journey with expert guidance every step of the way.",
-    emoji: "✈️",
-    color: "from-blue-500 to-green-500",
-    category: "Professional Services & Business Solutions",
+    emoji: "🧳",
+    color: "from-teal-500 to-blue-600",
+    category: "Business, Finance & Productivity",
     directUrl: "https://travelagentgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-futuristic-setting-where-a-_3Mwmg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    rating: 4.7,
-    totalVotes: 4100,
-    tags: ["travel planning", "vacation", "recommendations", "budget", "advisor"]
+    rating: 4.6,
+    totalVotes: 3500,
+    tags: ["travel planning", "vacation advisor", "personalized recommendations", "budget planning", "expert guidance"]
+  },
+  {
+    icon: Clock,
+    title: "TIME MACHINE GPT",
+    description: "Uncover the past, explore potential futures, and dive into alternative realities with Time Machine GPT! Experience key historical moments, interact with notable figures, and journey through different eras—unlock your imagination. For deeper, more personal conversations with historical characters, we recommend using Talk to History GPT",
+    emoji: "⏰",
+    color: "from-amber-500 to-orange-600",
+    category: "Historical & Time-Based AI Tools",
+    directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298793409806528/time.webp",
+    rating: 4.8,
+    totalVotes: 5000,
+    tags: ["time travel", "historical exploration", "future scenarios", "alternative realities", "historical figures"]
   },
   {
     icon: Crown,
