@@ -50,7 +50,7 @@ export const foodAndHospitalityGPTs: Tool[] = [
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chefgpt.lovable.app/?via=aiwebtools",
     tags: ["recipe generation", "cooking", "meal planning", "dietary preferences", "custom recipes"],
-    category: "Food & Hospitality", 
+    category: "Food & Cooking", 
     rating: 4.5,
     totalVotes: 3456
   }
