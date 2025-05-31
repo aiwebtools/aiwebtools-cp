@@ -1,6 +1,6 @@
 
 import { Tool } from "@/types/tools";
-import { MapPin, Crown, Eye, FileText, Zap, Leaf, Crystal, Layers, GraduationCap, DollarSign, Brain, Ship, Compass } from "lucide-react";
+import { MapPin, Crown, Eye, FileText, Zap, Leaf, Gem, Layers, GraduationCap, DollarSign, Brain, Ship, Compass } from "lucide-react";
 
 export const secondPriorityFeaturedGPTs: Tool[] = [
   {
@@ -82,7 +82,7 @@ export const secondPriorityFeaturedGPTs: Tool[] = [
     tags: ["farming", "agriculture", "crops", "soil analysis", "sustainable farming"]
   },
   {
-    icon: Crystal,
+    icon: Gem,
     title: "Oraculum – The Revealer of Hidden Truths",
     description: "Oraculum reveals hidden systems, symbols, and histories shaping our world. Through historical insight and symbolic wisdom, it helps seekers uncover patterns, expand knowledge, and think critically. This educational tool encourages exploration of hidden truths and reverse perspectives, showing the power of perspective through interpretive analysis.",
     emoji: "🔮",
