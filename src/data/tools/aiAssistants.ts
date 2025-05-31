@@ -1,4 +1,4 @@
-import { Tool } from "@/types/tools";
+
 import { 
   Bot, 
   MessageSquare, 
