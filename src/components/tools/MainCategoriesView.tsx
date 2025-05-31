@@ -10,7 +10,7 @@ interface MainCategoriesViewProps {
 
 const MainCategoriesView = ({ mainCategoryCounts, onMainCategoryClick }: MainCategoriesViewProps) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
       {mainCategories.map((mainCat) => {
         const count = mainCategoryCounts[mainCat.name] || 0;
         if (count === 0) return null;
@@ -21,14 +21,14 @@ const MainCategoriesView = ({ mainCategoryCounts, onMainCategoryClick }: MainCat
             onClick={() => onMainCategoryClick(mainCat.name)}
             variant="outline"
             size="sm"
-            className="group relative overflow-hidden transition-all duration-300 transform hover:scale-105 text-xs border h-auto py-4 px-3 bg-gradient-to-br from-purple-600/20 to-blue-600/20 border-purple-500/30 text-gray-200 hover:from-purple-600/30 hover:to-blue-600/30 hover:text-white hover:shadow-md hover:border-purple-400/50"
+            className="group relative overflow-hidden transition-all duration-300 transform hover:scale-105 text-xs border h-auto py-4 px-4 min-w-0 bg-gradient-to-br from-purple-600/20 to-blue-600/20 border-purple-500/30 text-gray-200 hover:from-purple-600/30 hover:to-blue-600/30 hover:text-white hover:shadow-md hover:border-purple-400/50"
           >
-            <div className="flex flex-col items-center space-y-2 w-full">
-              <span className="text-xl">{mainCat.emoji}</span>
-              <span className="relative z-10 text-center leading-tight font-bold text-xs">{mainCat.name}</span>
+            <div className="flex flex-col items-center space-y-2 w-full min-w-0">
+              <span className="text-xl flex-shrink-0">{mainCat.emoji}</span>
+              <span className="relative z-10 text-center leading-tight font-bold text-xs break-words hyphens-auto min-w-0 max-w-full">{mainCat.name}</span>
               <Badge 
                 variant="secondary" 
-                className="text-xs relative z-10 bg-black/30 text-gray-300 border-gray-500/40 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30"
+                className="text-xs relative z-10 bg-black/30 text-gray-300 border-gray-500/40 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30 flex-shrink-0"
               >
                 {count} tools
               </Badge>
