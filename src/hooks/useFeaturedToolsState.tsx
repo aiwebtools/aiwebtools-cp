@@ -5,17 +5,18 @@ import { searchTools } from "@/utils/searchUtils";
 import { getCategoriesWithCounts, getToolsByCategory } from "@/utils/categoryUtils";
 import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
 import { createDeduplicatedToolsList } from "@/utils/toolDeduplication";
+import { createFeaturedTools } from "@/utils/featuredTools";
 
 export const useFeaturedToolsState = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [displayedCount, setDisplayedCount] = useState<number>(20);
+  const [displayedCount, setDisplayedCount] = useState<number>(30); // Increased to show more tools initially
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleCategoryChange = (category: string | null) => {
     setSelectedCategory(category);
     setSearchTerm("");
-    setDisplayedCount(20);
+    setDisplayedCount(30);
     setIsLoading(false);
     // Clear saved state when actively changing filters
     sessionStorage.removeItem('aitools-scroll-position');
@@ -25,7 +26,7 @@ export const useFeaturedToolsState = () => {
   const handleSearchChange = (term: string) => {
     setSearchTerm(term);
     setSelectedCategory(null);
-    setDisplayedCount(20);
+    setDisplayedCount(30);
     setIsLoading(false);
     // Clear saved state when actively searching
     sessionStorage.removeItem('aitools-scroll-position');
@@ -72,9 +73,9 @@ export const useFeaturedToolsState = () => {
       // Don't apply deduplication for search - show all matching results
       tools = searchResults;
     } else {
-      // For homepage, apply smart deduplication
-      tools = createDeduplicatedToolsList(allTools, 8);
-      console.log(`🏠 Homepage - showing ${tools.length} deduplicated tools`);
+      // For homepage, use the featured tools with all AI Web Tools GPTs
+      tools = createFeaturedTools(allTools);
+      console.log(`🏠 Homepage - showing ${tools.length} featured tools (including all AI Web Tools GPTs)`);
     }
 
     return tools;
