@@ -102,11 +102,12 @@ const Index = () => {
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full rounded-xl border border-cyan-500/30 shadow-2xl"
-                  src="https://www.youtube.com/embed/drUyFiVayaw?autoplay=1&mute=0&loop=1&playlist=drUyFiVayaw&controls=1&rel=0&modestbranding=1&hd=1&vq=hd1080&enablejsapi=1"
+                  src="https://www.youtube.com/embed/drUyFiVayaw?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&fs=1&cc_load_policy=0&iv_load_policy=3&autohide=1&color=red&theme=dark&playsinline=1&origin=https://aiwebtools.ai"
                   title="AI Web Tools Featured Video"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  referrerPolicy="strict-origin-when-cross-origin"
                 ></iframe>
               </div>
             </div>
