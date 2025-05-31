@@ -9,7 +9,11 @@ import {
   Edit,
   Wand2,
   Lightbulb,
-  Sparkles
+  Sparkles,
+  Search,
+  Presentation,
+  Leaf,
+  Drill
 } from "lucide-react";
 
 export const contentCreationToolsGPTs: Tool[] = [

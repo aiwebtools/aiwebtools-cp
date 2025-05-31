@@ -10,7 +10,9 @@ import {
   BookOpen,
   UserCheck,
   AlertTriangle,
-  Edit
+  Edit,
+  PenTool,
+  Calendar
 } from "lucide-react";
 
 export const legalAndGovernmentGPTs: Tool[] = [
