@@ -617,3 +617,100 @@ export const getImageDesignTools = (tools: Tool[], categoryName: string): Tool[]
     return categoryMatches || keywordMatches || specificImageDesignTools || isAIWebToolsImageGPT;
   });
 };
+
+export const getVideoMultimediaTools = (tools: Tool[], categoryName: string): Tool[] => {
+  console.log(`🎬 Enhanced video & multimedia matching for: "${categoryName}"`);
+  
+  // Video & multimedia keywords for content analysis
+  const videoKeywords = [
+    // Core video terms
+    'video', 'movie', 'film', 'cinema', 'multimedia', 'animation', 'motion',
+    // Video creation & editing
+    'video creation', 'video editing', 'video generation', 'video production',
+    'video maker', 'video studio', 'video suite', 'video platform',
+    // Animation terms
+    'animation', 'animated', 'avatar', 'character', 'motion graphics',
+    // Specific video technologies
+    'text-to-video', 'image-to-video', 'ai video', 'video ai',
+    // Video types
+    'music video', 'explainer video', 'training video', 'marketing video',
+    'educational video', 'promotional video', 'demo video',
+    // Video tools & features
+    'video editor', 'video effects', 'video enhancement', 'video optimization',
+    'video streaming', 'video hosting', 'video sharing',
+    // Performance & stage
+    'performing arts', 'stage', 'theater', 'performance', 'show production',
+    // Specific tool names from the list
+    'sora', 'luma', 'kling', 'pika', 'runway', 'synthesia', 'heygen',
+    'invideo', 'pictory', 'descript', 'kapwing', 'filmora', 'opus',
+    'colossyan', 'vyond', 'lumen5', 'fliki', 'animoto', 'veed',
+    'movie maker', 'music video maker', 'stagemaster'
+  ];
+  
+  // Enhanced category matching
+  const matchingTools = tools.filter(tool => {
+    if (!tool.title && !tool.description && !tool.category) return false;
+    
+    const searchText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
+    
+    // Direct category match
+    if (tool.category && isSimilarCategory(tool.category, categoryName)) {
+      return true;
+    }
+    
+    // Check for video-related categories
+    if (tool.category) {
+      const category = tool.category.toLowerCase();
+      if (category.includes('video') || 
+          category.includes('multimedia') || 
+          category.includes('animation') ||
+          category.includes('film') ||
+          category.includes('movie') ||
+          category.includes('cinema') ||
+          category.includes('creative') ||
+          category.includes('entertainment') ||
+          category.includes('media') ||
+          category.includes('content creation')) {
+        return true;
+      }
+    }
+    
+    // Content-based matching using video keywords
+    const hasVideoKeyword = videoKeywords.some(keyword => 
+      searchText.includes(keyword.toLowerCase())
+    );
+    
+    // Check for video URLs
+    const hasVideoUrl = tool.videoUrl && tool.videoUrl.trim() !== '';
+    
+    // Specific tool name matching for the tools in the user's list
+    const specificToolNames = [
+      'movie maker studio', 'music video maker', 'stagemaster', 'heygen',
+      'syllaby', 'tolstoy', 'rask', 'hippo video', 'submagic', 'renderlion',
+      'timebolt', 'sora', 'minimax', 'kling', 'luma dream machine', 'google veo',
+      'pixverse', 'pika labs', 'stable video', 'genmo', 'invideo', 'steve ai',
+      'bhuman', 'descript', 'kapwing', 'filmora', 'opus clip', 'vidyo',
+      'munch', 'vadoo', 'synthesia', 'colossyan', 'clipchamp', 'deepbrain',
+      'vyond', 'rephrase', 'lumen5', 'hour one', 'tavus', 'pictory',
+      'fliki', 'elai', 'animoto', 'wideo', 'visla', 'chat d-id',
+      'guidde', 'podcastle', 'myheritage', 'livereacting', 'you-tldr',
+      'video2recipe', 'outfitsai', 'veed', 'oxolo', 'waymark', 'kaiber',
+      'cloudinary', 'jitter', 'flexclip', 'moonvalley', 'hiber3d',
+      'creatify', 'ai comic factory', 'meshy', 'videoleap', 'umu ai',
+      'bigvu', 'ghostcut', 'vcat ai', 'runway', 'd-id', 'gling',
+      'pollo ai', 'aivideo', '2short', 'vozo ai', 'velocity', 'infinity ai',
+      'skyreels', 'topview ai', 'topaz video', 'deepmotion', 'windsor'
+    ];
+    
+    const hasSpecificToolName = specificToolNames.some(toolName => 
+      searchText.includes(toolName)
+    );
+    
+    return hasVideoKeyword || hasVideoUrl || hasSpecificToolName;
+  });
+  
+  console.log(`🎬 Found ${matchingTools.length} video & multimedia tools`);
+  console.log(`🎥 Sample tools:`, matchingTools.slice(0, 10).map(t => ({ title: t.title, category: t.category })));
+  
+  return matchingTools;
+};

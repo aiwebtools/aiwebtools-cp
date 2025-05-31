@@ -9,7 +9,8 @@ import {
   getAutomationPlatformsTools,
   getAIChatAssistantsTools,
   getContentCreationWritingTools,
-  getImageDesignTools
+  getImageDesignTools,
+  getVideoMultimediaTools
 } from "./categoryMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
 
@@ -60,6 +61,11 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
   // Special handling for Image & Design Tools category
   if (categoryName === "IMAGE & DESIGN TOOLS" || categoryName === "Image & Design") {
     return getImageDesignTools(tools, categoryName);
+  }
+  
+  // Special handling for Video & Multimedia category
+  if (categoryName === "VIDEO & MULTIMEDIA" || categoryName === "Video & Multimedia") {
+    return getVideoMultimediaTools(tools, categoryName);
   }
   
   // Regular category filtering with enhanced similarity matching
@@ -149,38 +155,10 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   
   // Special enhanced handling for VIDEO & MULTIMEDIA category
   if (mainCategoryName === "VIDEO & MULTIMEDIA") {
-    console.log(`🎬 VIDEO & MULTIMEDIA category requested`);
-    
-    // Get tools that match video subcategories
-    const mainCategory = mainCategories.find(cat => cat.name === mainCategoryName);
-    if (!mainCategory) return [];
-    
-    const categoryTools = tools.filter(tool => {
-      if (!tool.category) return false;
-      
-      return mainCategory.subcategories.some(subcat => {
-        const normalizedToolCategory = tool.category.toLowerCase().trim();
-        const normalizedSubcat = subcat.toLowerCase().trim();
-        
-        return normalizedToolCategory === normalizedSubcat ||
-               normalizedToolCategory.includes(normalizedSubcat) ||
-               normalizedSubcat.includes(normalizedToolCategory);
-      });
-    });
-    
-    // Also get tools that are video-related by content analysis
-    const videoRelatedTools = tools.filter(tool => isVideoRelatedTool(tool));
-    
-    // Combine and deduplicate
-    const allVideoTools = [...categoryTools, ...videoRelatedTools];
-    const uniqueVideoTools = allVideoTools.filter((tool, index, self) => 
-      index === self.findIndex(t => t.title === tool.title)
-    );
-    
-    console.log(`🎥 Found ${categoryTools.length} category-matched tools, ${videoRelatedTools.length} content-matched tools, ${uniqueVideoTools.length} total unique video tools`);
-    console.log(`🎬 Sample video tools found:`, uniqueVideoTools.slice(0, 10).map(t => ({ title: t.title, category: t.category })));
-    
-    return uniqueVideoTools;
+    console.log(`🎬 VIDEO & MULTIMEDIA category requested - using enhanced matching`);
+    const videoMultimediaTools = getVideoMultimediaTools(tools, mainCategoryName);
+    console.log(`✅ Found ${videoMultimediaTools.length} video & multimedia tools`);
+    return videoMultimediaTools;
   }
   
   // Find the main category configuration
