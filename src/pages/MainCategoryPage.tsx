@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -220,7 +221,7 @@ const MainCategoryPage = () => {
             </div>
           </div>
 
-          {/* Show More From This Category Button - appears before tools grid */}
+          {/* Show More From This Category Button - appears before tools grid (TOP) */}
           {shouldShowAllCategoryButton && (
             <div className="text-center mb-8 px-4">
               <Button
@@ -276,6 +277,22 @@ const MainCategoryPage = () => {
                   ? "Try searching or filtering by category to discover specific tools."
                   : "Try exploring other categories to discover more tools."
                 }
+              </div>
+            </div>
+          )}
+
+          {/* Show More From This Category Button - appears after tools but before featured tools (BOTTOM) */}
+          {shouldShowAllCategoryButton && (
+            <div className="text-center mt-12 mb-8 px-4">
+              <Button
+                onClick={handleShowAllCategoryTools}
+                size="lg"
+                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
+              >
+                📋 SHOW MORE FROM THIS CATEGORY
+              </Button>
+              <div className="mt-4 text-green-300 text-sm">
+                Currently showing {displayedCount} of {filteredTools.length} tools in this category
               </div>
             </div>
           )}
