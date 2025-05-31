@@ -24,6 +24,27 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
     expandedKeywords.add('conversational ai');
   }
   
+  // Special handling for phone/call searches
+  if (searchTerm.toLowerCase().includes('phone')) {
+    expandedKeywords.add('call');
+    expandedKeywords.add('voice');
+    expandedKeywords.add('communication');
+    expandedKeywords.add('chat');
+    expandedKeywords.add('talk');
+    expandedKeywords.add('celebrity');
+    expandedKeywords.add('chatline');
+  }
+  
+  // Special handling for celebrity searches
+  if (searchTerm.toLowerCase().includes('celebrity')) {
+    expandedKeywords.add('famous');
+    expandedKeywords.add('star');
+    expandedKeywords.add('chat');
+    expandedKeywords.add('phone');
+    expandedKeywords.add('call');
+    expandedKeywords.add('talk');
+  }
+  
   // Add individual words (only if they're longer than 2 characters)
   words.forEach(word => {
     if (word.length > 2) {

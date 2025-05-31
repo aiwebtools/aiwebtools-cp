@@ -1,3 +1,4 @@
+
 // Main keyword mapping index that combines all keyword categories
 import { coreAIKeywords } from './coreAIKeywords';
 import { creativeKeywords } from './creativeKeywords';
@@ -22,6 +23,54 @@ export const keywordMapping: Record<string, string[]> = {
   ...specialtyKeywords,
   ...searchMetaKeywords,
   ...aiWebToolsKeywords,
+  
+  // Communication and phone-related keywords
+  "phone": ["call", "voice", "communication", "telephone", "mobile", "cellular", "calling", "dial", "contact", "chat", "conversation", "talk", "speak"],
+  "call": ["phone", "voice", "calling", "telephone", "communication", "dial", "contact", "conversation", "chat", "talk"],
+  "voice": ["speech", "audio", "sound", "call", "phone", "talk", "speak", "vocal", "microphone", "recording"],
+  "chat": ["conversation", "talk", "communication", "messaging", "text", "dialogue", "discussion", "speak"],
+  "talk": ["speak", "voice", "conversation", "chat", "communication", "dialogue", "discussion", "call"],
+  
+  // Celebrity and entertainment keywords
+  "celebrity": ["famous", "star", "actor", "musician", "entertainer", "public figure", "personality", "artist", "performer"],
+  "famous": ["celebrity", "star", "well-known", "renowned", "popular", "notable", "prominent"],
+  "chatline": ["phone", "call", "conversation", "talk", "communication", "celebrity", "chat"],
+  
+  // AI and assistant keywords
+  "assistant": ["helper", "aide", "support", "guide", "ai", "bot", "agent", "companion"],
+  "helper": ["assistant", "aide", "support", "guide", "tool", "utility"],
+  "agent": ["assistant", "bot", "ai", "helper", "representative", "operator"],
+  
+  // Content creation keywords
+  "content": ["creation", "generate", "make", "produce", "write", "create", "build", "develop"],
+  "create": ["make", "generate", "build", "produce", "design", "craft", "develop", "content"],
+  "generate": ["create", "make", "produce", "build", "content", "ai", "automatic"],
+  
+  // Professional services keywords
+  "doctor": ["medical", "health", "healthcare", "physician", "medicine", "clinic", "treatment"],
+  "medical": ["health", "healthcare", "doctor", "physician", "medicine", "treatment", "diagnosis"],
+  "lawyer": ["legal", "attorney", "law", "court", "justice", "legal advice", "counsel"],
+  "legal": ["law", "lawyer", "attorney", "court", "justice", "counsel", "advice"],
+  
+  // Creative and design keywords
+  "design": ["creative", "art", "graphic", "visual", "style", "aesthetic", "layout", "interface"],
+  "art": ["creative", "design", "artistic", "visual", "drawing", "painting", "illustration"],
+  "graphic": ["design", "visual", "art", "image", "picture", "illustration", "creative"],
+  
+  // Business and productivity keywords
+  "business": ["professional", "corporate", "enterprise", "commercial", "work", "office", "company"],
+  "productivity": ["efficiency", "workflow", "automation", "organization", "business", "work"],
+  "workflow": ["automation", "process", "productivity", "business", "efficiency", "organization"],
+  
+  // Education and learning keywords
+  "learn": ["education", "study", "training", "course", "tutorial", "skill", "knowledge"],
+  "education": ["learning", "study", "training", "course", "school", "academic", "knowledge"],
+  "course": ["education", "learning", "training", "tutorial", "class", "lesson", "study"],
+  
+  // Entertainment and gaming keywords
+  "game": ["gaming", "entertainment", "play", "fun", "interactive", "video game", "puzzle"],
+  "entertainment": ["fun", "game", "music", "video", "media", "leisure", "recreation"],
+  "fun": ["entertainment", "game", "play", "enjoyable", "amusing", "recreation"],
   
   // Robotics keywords
   "robotics": ["robot", "robotics companies", "humanoid robots", "robot manufacturers", "robot distributors"],
@@ -55,7 +104,10 @@ export const searchSynonyms: Record<string, string[]> = {
   "automation": ["workflow", "process automation", "task automation", "auto"],
   "analytics": ["data analysis", "business intelligence", "reporting", "metrics"],
   "robot": ["robotics", "humanoid", "android", "automaton", "cyborg"],
-  "humanoid": ["human-like", "bipedal", "android", "anthropomorphic"]
+  "humanoid": ["human-like", "bipedal", "android", "anthropomorphic"],
+  "phone": ["call", "telephone", "mobile", "cellular", "voice", "communication"],
+  "call": ["phone", "voice", "telephone", "contact", "dial", "ring"],
+  "celebrity": ["famous", "star", "actor", "musician", "public figure"]
 };
 
 // Category-specific keywords for better categorization
@@ -66,7 +118,7 @@ export const categoryKeywords: Record<string, string[]> = {
   "Image & Design Tools": ["AI art", "image generator", "visual AI", "art creation", "picture generator", "design tools", "graphic design", "cover design", "logo design"],
   "Writing & Content Creation": ["AI writing", "content creation", "text generator", "copywriting", "article writer", "writing assistant"],
   "Business & Productivity": ["business AI", "productivity tools", "workflow automation", "business automation", "office tools"],
-  "Audio & Voice Tools": ["music AI", "audio generator", "sound AI", "music creation", "voice AI", "audio editing"],
+  "Audio & Voice Tools": ["music AI", "audio generator", "sound AI", "music creation", "voice AI", "audio editing", "call", "phone", "voice assistant"],
   "AI Development Tools": ["AI development", "machine learning", "neural networks", "AI programming", "developer tools"],
   "Education & Learning": ["educational AI", "learning tools", "teaching AI", "academic AI", "training tools"],
   "Specialized Tools": ["niche tools", "technical tools", "industry-specific", "professional tools", "expert systems"],
@@ -74,11 +126,12 @@ export const categoryKeywords: Record<string, string[]> = {
   "Spirituality & Wellness": ["spiritual AI", "wellness tools", "meditation AI", "spiritual guidance", "mindfulness"],
   "Game Design & Development": ["game AI", "game development", "gaming tools", "game design", "interactive entertainment"],
   "Emergency Services": ["emergency tools", "safety AI", "crisis management", "first aid", "disaster response"],
-  "Professional Services": ["professional AI", "service tools", "business services", "expert assistance", "consultation tools"],
+  "Professional Services": ["professional AI", "service tools", "business services", "expert assistance", "consultation tools", "doctor", "lawyer", "medical", "legal"],
   "3D & Visualization": ["3D modeling", "3D design", "3D animation", "3D rendering", "visualization", "three dimensional", "3D tools"],
   "Data & Analytics": ["data analysis", "business intelligence", "analytics", "data visualization", "reporting", "dashboards", "metrics"],
   "Automation & Workflows": ["automation", "workflow", "process automation", "task automation", "business automation", "workflow tools"],
-  "Robotics Companies": ["robotics", "humanoid robots", "robot manufacturers", "robot distributors", "commercial robots", "industrial robots", "service robots", "research robots", "bipedal robots", "quadruped robots", "robot companies", "robotics industry"]
+  "Robotics Companies": ["robotics", "humanoid robots", "robot manufacturers", "robot distributors", "commercial robots", "industrial robots", "service robots", "research robots", "bipedal robots", "quadruped robots", "robot companies", "robotics industry"],
+  "Communication & Entertainment": ["phone", "call", "voice", "chat", "talk", "celebrity", "entertainment", "conversation", "communication tools"]
 };
 
 // Export individual keyword categories for specific use cases
