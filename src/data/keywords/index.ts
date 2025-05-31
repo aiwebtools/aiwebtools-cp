@@ -8,6 +8,7 @@ import { contentKeywords } from './contentKeywords';
 import { userIntentKeywords } from './userIntentKeywords';
 import { specialtyKeywords } from './specialtyKeywords';
 import { searchMetaKeywords } from './searchMetaKeywords';
+import { aiWebToolsKeywords } from './aiWebToolsKeywords';
 
 // Enhanced keyword mapping for intelligent search - AI tools focused
 export const keywordMapping: Record<string, string[]> = {
@@ -20,6 +21,7 @@ export const keywordMapping: Record<string, string[]> = {
   ...userIntentKeywords,
   ...specialtyKeywords,
   ...searchMetaKeywords,
+  ...aiWebToolsKeywords,
   
   // Robotics keywords
   "robotics": ["robot", "robotics companies", "humanoid robots", "robot manufacturers", "robot distributors"],

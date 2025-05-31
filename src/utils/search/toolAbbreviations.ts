@@ -103,7 +103,19 @@ export const fuzzyMatches: Record<string, string[]> = {
   'productivity': ['productivity', 'productivty', 'productiviy'],
   'education': ['education', 'educaton', 'educaion'],
   'development': ['development', 'developement', 'devlopment'],
-  'professional': ['professional', 'proffesional', 'profesional']
+  'professional': ['professional', 'proffesional', 'profesional'],
+  // AI Web Tools specific fuzzy matches
+  'aiwebtools': ['ai web tools', 'aiwebtools', 'ai webtools'],
+  'timemachine': ['time machine', 'timemachine', 'time travel'],
+  'godmode': ['god mode', 'godmode', 'ultimate gpt'],
+  'bookwriter': ['book writer', 'bookwriter', 'author gpt'],
+  'moviemaker': ['movie maker', 'moviemaker', 'film studio'],
+  'stagemaster': ['stage master', 'stagemaster', 'theater gpt'],
+  'survivalist': ['survivalist', 'survival gpt', 'outdoor survival'],
+  'trivia': ['trivia night', 'quiz gpt', 'knowledge game'],
+  'veterinarian': ['vet gpt', 'pet care', 'animal doctor'],
+  'mixologist': ['bartender', 'cocktail maker', 'drink mixer'],
+  'firefighter': ['fire fighter', 'emergency responder', 'fire safety']
 };
 
 export const acronymMatches: Record<string, string[]> = {
@@ -130,5 +142,10 @@ export const acronymMatches: Record<string, string[]> = {
   'b2b': ['business to business'],
   'b2c': ['business to consumer'],
   'roi': ['return on investment'],
-  'kpi': ['key performance indicator']
+  'kpi': ['key performance indicator'],
+  // AI Web Tools specific acronyms
+  'awt': ['ai web tools'],
+  'awg': ['ai web tools gpts'],
+  'dr': ['doctor gpt', 'medical gpt'],
+  'vet': ['veterinarian gpt', 'pet care gpt']
 };
