@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Video, 
@@ -15,7 +16,8 @@ import {
   Volume2,
   Image,
   PenTool,
-  Layers
+  Layers,
+  BookOpen
 } from "lucide-react";
 
 export const creativeAndMediaGPTs: Tool[] = [
@@ -30,6 +32,18 @@ export const creativeAndMediaGPTs: Tool[] = [
     category: "Creative & Media",
     rating: 4.7,
     totalVotes: 3456
+  },
+  {
+    icon: BookOpen,
+    title: "Comic Book Generator GPT",
+    description: "Comic Book Generator GPT by AI Web Tools LLC is your ultimate AI-powered comic book creation assistant, transforming stories and ideas into professional comic book format with stunning visuals, compelling narratives, and authentic comic book styling. Whether you're creating superhero adventures, graphic novels, webcomics, or educational comics, this advanced AI guides you through every aspect of comic book production from concept to completion. Generate detailed character designs, dynamic panel layouts, engaging dialogue, and captivating storylines that bring your vision to life. The AI analyzes your story concepts, character descriptions, and artistic preferences to create cohesive comic book pages with professional formatting, speech bubbles, sound effects, and visual storytelling techniques. Features include character consistency across panels, dynamic action sequences, background scene generation, and comic book typography styling. Perfect for aspiring comic book creators, storytellers seeking visual narratives, educators creating engaging content, and artists exploring sequential art. Comic Book Generator GPT makes professional comic book creation accessible to everyone, regardless of artistic skill level.",
+    emoji: "📚",
+    color: "from-red-500 to-blue-600",
+    directUrl: "https://comicbookmakergpt.lovable.app/?via=aiwebtools",
+    tags: ["comic book creation", "graphic novels", "storytelling", "sequential art", "character design", "visual narratives", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.8,
+    totalVotes: 3789
   },
   {
     icon: Video,
