@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Briefcase, 
@@ -281,12 +282,12 @@ export const professionalServicesGPTs: Tool[] = [
   },
   {
     icon: Clock,
-    title: "Time Management Coach GPT",
+    title: "Personal Life Coach GPT",
     description: "Improve your time management skills with AI. This tool provides scheduling tips, productivity techniques, and goal-setting strategies to help you make the most of your time.",
     emoji: "⏰",
     color: "from-blue-500 to-purple-600",
-    directUrl: "https://timemanagementgpt.lovable.app/?via=aiwebtools",
-    tags: ["time management", "productivity", "scheduling", "goal setting", "aiwebtools"],
+    directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
+    tags: ["time management", "productivity", "scheduling", "goal setting", "mental wellness", "life coaching", "aiwebtools"],
     category: "Professional Services",
     rating: 4.5,
     totalVotes: 2987
@@ -295,7 +296,7 @@ export const professionalServicesGPTs: Tool[] = [
     icon: DollarSign,
     title: "Tax Advisor GPT",
     description: "Get tax advice with AI. This tool provides information on tax laws, deductions, and credits to help you minimize your tax liability.",
-    emoji: " tax",
+    emoji: "💸",
     color: "from-green-500 to-yellow-600",
     directUrl: "https://taxgpt.lovable.app/?via=aiwebtools",
     tags: ["tax", "tax advice", "deductions", "credits", "aiwebtools"],
