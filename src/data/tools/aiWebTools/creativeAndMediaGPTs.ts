@@ -18,7 +18,8 @@ import {
   Layers,
   BookOpen,
   Megaphone,
-  Shirt
+  Shirt,
+  ShoppingCart
 } from "lucide-react";
 
 export const creativeAndMediaGPTs: Tool[] = [
@@ -45,6 +46,18 @@ export const creativeAndMediaGPTs: Tool[] = [
     category: "Creative & Media",
     rating: 4.5,
     totalVotes: 3245
+  },
+  {
+    icon: ShoppingCart,
+    title: "SHOPPING GPT",
+    description: "AI-powered shopping assistant that helps you find the best deals, compare products, discover new items, and make informed purchasing decisions. Get personalized product recommendations, price comparisons, and shopping advice tailored to your preferences and budget.",
+    emoji: "🛒",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://shoppinggpt.lovable.app/?via=aiwebtools",
+    tags: ["shopping assistant", "product recommendations", "deal finder", "price comparison", "shopping advice", "product discovery", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.4,
+    totalVotes: 2987
   },
   {
     icon: PenTool,

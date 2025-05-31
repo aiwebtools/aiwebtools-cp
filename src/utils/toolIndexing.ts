@@ -12,7 +12,8 @@ export const verifyToolIndexing = () => {
     'Creative Logo Assistant',
     'AD Maker GPT4o Image GPT',
     'This Day in History GPT',
-    'VIRTUAL TRY ON STYLIST GPT'
+    'VIRTUAL TRY ON STYLIST GPT',
+    'SHOPPING GPT'
   ];
   
   const indexingReport = {
