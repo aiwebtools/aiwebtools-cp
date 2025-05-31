@@ -82,6 +82,19 @@ export const healthAndWellnessGPTs: Tool[] = [
     totalVotes: 6234
   },
   {
+    icon: Heart,
+    title: "Relationship Advisor GPT",
+    description: "Marriage Mender is a virtual mediation service designed for educational and informational purposes, facilitating communication and understanding between couples facing relationship challenges. It is an experimental simulation that provides guidance and support but is not a replacement for professional counseling or human marriage therapy. Users acknowledge that Marriage Mender is not a licensed therapist and disclaims any liability for actions taken based on the information provided.",
+    emoji: "💕",
+    color: "from-pink-500 to-red-600",
+    directUrl: "https://marriagemendergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=3HCv5_QldrU",
+    tags: ["relationship counseling", "marriage advice", "couples therapy", "communication", "relationship support", "aiwebtools"],
+    category: "Health & Wellness",
+    rating: 4.6,
+    totalVotes: 4321
+  },
+  {
     icon: Activity,
     title: "DENTAL GPT",
     description: "DENTAL GPT is your comprehensive AI-powered dental consultant, providing expert guidance on oral health, dental procedures, and preventive care. Whether you're dealing with dental concerns, seeking advice on oral hygiene practices, or need information about dental treatments, this advanced AI offers professional dental knowledge and personalized recommendations. From routine dental care guidance to understanding complex dental procedures, DENTAL GPT helps you make informed decisions about your oral health. Perfect for patients seeking dental education, dental professionals looking for reference material, and anyone wanting to maintain optimal oral health through expert guidance.",
