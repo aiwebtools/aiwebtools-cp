@@ -1,4 +1,3 @@
-
 import { Menu, Phone, Search, X, FileText } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -222,7 +221,7 @@ const MobileMenu = () => {
                 onClick={handleBrowseAITools}
                 className="text-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 font-medium mb-3 rounded-lg p-3"
               >
-                🎯 VIEW ALL AI TOOLS
+                🎯 Browse AI Tools
               </DropdownMenuItem>
               
               <DropdownMenuSeparator className="border-gray-700 mb-3" />
