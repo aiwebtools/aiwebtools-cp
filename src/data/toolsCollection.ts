@@ -1,4 +1,7 @@
+
 import { Tool } from "@/types/tools";
+
+// Import organized tool categories
 import {
   businessTools,
   aiAssistants,
@@ -16,6 +19,10 @@ import {
   creativeAndEntertainment,
   researchAndLearning,
   aiToolsAndUtilities,
+  spiritualityTools
+} from './toolsCollection/coreToolImports';
+
+import {
   healthcareProfessionals,
   legalProfessionals,
   emergencyServices,
@@ -23,6 +30,10 @@ import {
   personalServices,
   specializedPolicyTools,
   artAndCollectibles,
+  professionalServices
+} from './toolsCollection/professionalToolImports';
+
+import {
   aiChatPlatforms,
   aiDevelopmentTools,
   localAISolutions,
@@ -31,91 +42,92 @@ import {
   aiProductivityTools,
   openSourceAIModels,
   aiAgents,
-  timeAndHistory,
-  creativeSuites,
-  advancedAITools,
-  gameDesignAndDevelopment,
-  learningAndEducation,
   platformsAndDevelopment,
-  professionalServices,
-  spiritualityTools,
-  rawUncutTools,
-  videoAndContentTools,
-  businessAndTeamTools,
-  searchAndProductivityTools,
   advancedChatPlatforms,
-  developerAndCodingTools,
-  contentDetectionTools,
+  developerAndCodingTools
+} from './toolsCollection/platformToolImports';
+
+import {
   contentCreationAndWritingTools,
+  contentDetectionTools,
   documentAndResearchTools,
   designAndGraphicsTools,
   writingAndContentEnhancement,
-  resumeAndCareerTools,
-  ecommerceAndMarketingTools,
+  videoAndContentTools,
   videoEditingAndContentTools,
   coreImageGenerators,
   imageEditingTools,
   specializedImageTools,
   backgroundAndObjectTools,
   audioAndVoiceTools,
-  financialAndTradingTools,
-  specializedNicheTools,
-  meetingAndTranscriptionTools,
-  webDevelopmentTools,
+  meetingAndTranscriptionTools
+} from './toolsCollection/contentMediaToolImports';
+
+import {
+  businessAndTeamTools,
+  searchAndProductivityTools,
+  ecommerceAndMarketingTools,
+  resumeAndCareerTools,
   emailManagementTools,
+  webDevelopmentTools,
+  financialAndTradingTools,
+  specializedNicheTools
+} from './toolsCollection/businessProductivityImports';
+
+import {
+  timeAndHistory,
+  creativeSuites,
+  advancedAITools,
+  gameDesignAndDevelopment,
+  learningAndEducation,
   technicalAndUtilityTools,
+  threeDAndVisualizationTools,
+  dataAnalyticsTools,
+  automationAndWorkflowTools,
   roboticsCompanies
-} from './tools';
+} from './toolsCollection/specializedToolImports';
 
-// Import the refactored tools
-import { advancedVideoTools } from './tools/advancedVideoTools';
-import { creativeDesignTools } from './tools/creativeDesignTools';
-import { businessSalesTools } from './tools/businessSalesTools';
-import { specializedAITools } from './tools/specializedAITools';
-import { entertainmentMediaTools } from './tools/entertainmentMediaTools';
+import {
+  advancedVideoTools,
+  creativeDesignTools,
+  businessSalesTools,
+  specializedAITools,
+  entertainmentMediaTools
+} from './toolsCollection/refactoredToolImports';
 
-// Import existing categories
-import { threeDAndVisualizationTools } from './tools/threeDAndVisualizationTools';
-import { dataAnalyticsTools } from './tools/dataAnalyticsTools';
-import { automationAndWorkflowTools } from './tools/automationAndWorkflowTools';
+import {
+  socialMediaTools,
+  collaborationTools,
+  marketingTools,
+  utilitiesTools,
+  creativePlatforms,
+  learningPlatforms,
+  cloudServices,
+  developerTools,
+  communicationTools,
+  entertainmentTools,
+  newsAndInformationTools,
+  healthAndWellnessTools
+} from './toolsCollection/newCategoryImports';
 
-// Import new categories (100 additional tools)
-import { socialMediaTools } from './tools/socialMediaTools';
-import { collaborationTools } from './tools/collaborationTools';
-import { marketingTools } from './tools/marketingTools';
-import { utilitiesTools } from './tools/utilitiesTools';
-import { creativePlatforms } from './tools/creativePlatforms';
-import { learningPlatforms } from './tools/learningPlatforms';
-import { cloudServices } from './tools/cloudServices';
-import { developerTools } from './tools/developerTools';
-import { communicationTools } from './tools/communicationTools';
-import { entertainmentTools } from './tools/entertainmentTools';
-import { newsAndInformationTools } from './tools/newsAndInformationTools';
-import { healthAndWellnessTools } from './tools/healthAndWellnessTools';
-
-// Import NEW comprehensive AI tool categories to reach 1000+
-import { aiGenerativeTools } from './tools/aiGenerativeTools';
-import { aiResearchTools } from './tools/aiResearchTools';
-import { aiProductivitySuite } from './tools/aiProductivitySuite';
-import { aiSecurityTools } from './tools/aiSecurityTools';
-import { aiFinanceTools } from './tools/aiFinanceTools';
-import { aiHealthcareTools } from './tools/aiHealthcareTools';
-import { aiEducationTools } from './tools/aiEducationTools';
-import { aiLegalTools } from './tools/aiLegalTools';
-
-// Import mind-blowing AI tools for everyday users
-import { mindBlowingAITools } from './tools/mindBlowingAITools';
-
-// Import new design assistant tools category
-import { designAssistantTools } from './tools/designAssistantTools';
-
-// Import the comprehensive AI tools collection
-import { comprehensiveAITools } from './tools/comprehensiveAITools';
+import {
+  aiGenerativeTools,
+  aiResearchTools,
+  aiProductivitySuite,
+  aiSecurityTools,
+  aiFinanceTools,
+  aiHealthcareTools,
+  aiEducationTools,
+  aiLegalTools,
+  mindBlowingAITools,
+  designAssistantTools,
+  comprehensiveAITools
+} from './toolsCollection/comprehensiveAIImports';
 
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
-    // ... keep existing code (existing tool category imports)
+    // Specialized and advanced tools
     ...spiritualityTools,
     ...advancedAITools,
     ...timeAndHistory,
@@ -128,6 +140,8 @@ export const getAllToolCategories = (): Tool[] => {
     ...healthcareProfessionals,
     ...creativeServices,
     ...technicalAndUtilityTools,
+    
+    // AI and development platforms
     ...aiChatPlatforms,
     ...aiDevelopmentTools,
     ...aiAgents,
@@ -142,6 +156,8 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiArtTools,
     ...advancedChatPlatforms,
     ...developerAndCodingTools,
+    
+    // Content and media tools
     ...writingAndContent,
     ...writingAndContentEnhancement,
     ...imageAndDesign,
@@ -160,6 +176,8 @@ export const getAllToolCategories = (): Tool[] => {
     ...imageEditingTools,
     ...specializedImageTools,
     ...backgroundAndObjectTools,
+    
+    // Business and productivity
     ...businessAndProductivity,
     ...businessTools,
     ...businessAndTeamTools,
@@ -171,6 +189,8 @@ export const getAllToolCategories = (): Tool[] => {
     ...emailManagementTools,
     ...webDevelopmentTools,
     ...meetingAndTranscriptionTools,
+    
+    // Creative and specialized
     ...creativeDesignTools,
     ...specializedAITools,
     ...entertainmentMediaTools,
@@ -188,7 +208,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...dataAnalyticsTools,
     ...automationAndWorkflowTools,
     
-    // New tool categories (100 additional tools)
+    // New tool categories
     ...socialMediaTools,
     ...collaborationTools,
     ...marketingTools,
@@ -202,10 +222,10 @@ export const getAllToolCategories = (): Tool[] => {
     ...newsAndInformationTools,
     ...healthAndWellnessTools,
     
-    // Robotics companies category
+    // Robotics and specialized hardware
     ...roboticsCompanies,
     
-    // NEW comprehensive AI tool categories to reach 1000+
+    // Comprehensive AI tool categories
     ...aiGenerativeTools,
     ...aiResearchTools,
     ...aiProductivitySuite,
@@ -215,13 +235,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiEducationTools,
     ...aiLegalTools,
     
-    // NEW: 50 mind-blowing AI tools for everyday users
+    // Mind-blowing AI tools and design assistants
     ...mindBlowingAITools,
-    
-    // NEW: Design assistant tools
     ...designAssistantTools,
-    
-    // NEW: Comprehensive AI tools collection (120+ additional tools)
     ...comprehensiveAITools
   ];
 };
