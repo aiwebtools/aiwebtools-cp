@@ -41,5 +41,17 @@ export const foodAndHospitalityGPTs: Tool[] = [
     category: "Food & Hospitality",
     rating: 4.6,
     totalVotes: 4321
+  },
+  {
+    icon: Utensils,
+    title: "Recipe Generator",
+    description: "Advanced AI-powered recipe generator that creates personalized recipes based on your ingredients, dietary preferences, and cooking skill level. Generate custom recipes with detailed instructions, nutritional information, and cooking tips.",
+    emoji: "🍳",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://chefgpt.lovable.app/?via=aiwebtools",
+    tags: ["recipe generation", "cooking", "meal planning", "dietary preferences", "custom recipes"],
+    category: "Food & Hospitality", 
+    rating: 4.5,
+    totalVotes: 3456
   }
 ];
