@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Pen, 
@@ -8,7 +9,6 @@ import {
   Video,
   Camera,
   Type,
-  MessageSquare,
   Zap,
   Sparkles,
   Globe,
@@ -191,18 +191,6 @@ export const contentCreationAndWritingTools: Tool[] = [
     category: "Content Creation & Writing Tools",
     rating: 4.1,
     totalVotes: 2234
-  },
-  {
-    icon: MessageSquare,
-    title: "Social Media Content Planner",
-    description: "Comprehensive social media content planning and creation tool with AI-powered post generation and scheduling.",
-    emoji: "💬",
-    color: "from-pink-500 to-purple-600",
-    directUrl: "https://example.com/socialmediaplanner",
-    tags: ["social media", "content planning", "post generation", "content scheduling", "social strategy"],
-    category: "Content Creation & Writing Tools",
-    rating: 4.5,
-    totalVotes: 3567
   },
   {
     icon: Zap,
