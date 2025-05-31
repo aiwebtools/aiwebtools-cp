@@ -20,8 +20,7 @@ export const businessCategories: MainCategory[] = [
       "Utilities & Productivity",
       "Email Management Tools",
       "Meeting & Transcription Tools",
-      "Business Operations & Productivity",
-      "Utility & Productivity"
+      "Business Operations & Productivity"
     ]
   },
   {
@@ -68,14 +67,7 @@ export const businessCategories: MainCategory[] = [
       "Communication Tools",
       "Collaboration Tools",
       "Communication & Entertainment",
-      "Entertainment Tools",
-      "Entertainment & Gaming",
-      "Meeting & Transcription Tools",
-      "Email Management Tools",
-      "Social Media Tools",
-      "AI Chat Platforms",
-      "AI Assistants",
-      "Content Creation Tools"
+      "Entertainment Tools"
     ]
   }
 ];

@@ -20,39 +20,45 @@ export const useInfiniteScroll = ({
 }: UseInfiniteScrollProps) => {
   const handleLoadMore = useCallback(() => {
     if (isLoading) return;
+    console.log(`🔄 Infinite scroll triggered - Loading more tools... Search: "${searchTerm}"`);
     onLoadMore();
-  }, [isLoading, onLoadMore]);
+  }, [isLoading, onLoadMore, searchTerm]);
 
-  // Optimized infinite scroll with throttling
+  // Enhanced infinite scroll with better performance and search optimization
   useEffect(() => {
-    if (isLoading || showLoadMoreButton) return;
-    
-    let ticking = false;
+    let timeoutId: NodeJS.Timeout;
     
     const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const scrollTop = window.pageYOffset;
-          const windowHeight = window.innerHeight;
-          const documentHeight = document.documentElement.scrollHeight;
-          
-          const threshold = searchTerm ? 200 : 400;
-          const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
-          
-          if (nearBottom && displayedCount < totalTools && !isLoading) {
-            handleLoadMore();
-          }
-          
-          ticking = false;
-        });
-        ticking = true;
-      }
+      if (isLoading || showLoadMoreButton) return; // Don't auto-scroll if button mode is enabled
+      
+      // Clear previous timeout to prevent multiple triggers
+      clearTimeout(timeoutId);
+      
+      timeoutId = setTimeout(() => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // More aggressive threshold for search results to ensure infinite scroll works
+        const threshold = searchTerm ? 400 : 800; // Much lower threshold for search results
+        const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
+        
+        console.log(`📏 Scroll check - ScrollTop: ${scrollTop}, WindowHeight: ${windowHeight}, DocumentHeight: ${documentHeight}, NearBottom: ${nearBottom}, Search: "${searchTerm}"`);
+        
+        if (nearBottom && displayedCount < totalTools && !isLoading) {
+          console.log(`🎯 Triggering load more - Displayed: ${displayedCount}, Total: ${totalTools}, Search: "${searchTerm}"`);
+          handleLoadMore();
+        }
+      }, searchTerm ? 50 : 100); // Faster response for search results
     };
 
+    // Always enable scroll listening, especially for search results
+    console.log(`🎮 Setting up infinite scroll - ShowButton: ${showLoadMoreButton}, Displayed: ${displayedCount}, Total: ${totalTools}, Search: "${searchTerm}"`);
     window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
     };
   }, [displayedCount, handleLoadMore, isLoading, showLoadMoreButton, totalTools, searchTerm]);
 

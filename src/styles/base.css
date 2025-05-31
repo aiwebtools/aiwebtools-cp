@@ -65,8 +65,6 @@
     line-height: 1.5;
     font-display: swap;
     overflow-x: hidden;
-    will-change: auto;
-    contain: layout style paint;
   }
 
   /* Optimized scrollbar */
@@ -91,8 +89,6 @@
   img, video, iframe {
     max-width: 100%;
     height: auto;
-    will-change: auto;
-    contain: layout style paint;
   }
 
   /* Focus optimization */
@@ -106,18 +102,6 @@
     button, a, [role="button"] {
       min-height: 44px;
       min-width: 44px;
-    }
-  }
-
-  /* Performance for low-end devices */
-  @media (max-width: 480px) {
-    body {
-      background: #000000;
-    }
-    
-    * {
-      animation-duration: 0.1s !important;
-      transition-duration: 0.1s !important;
     }
   }
 

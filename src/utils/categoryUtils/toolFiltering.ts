@@ -92,14 +92,6 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     return analyticsTools;
   }
   
-  // Special case for "COMMUNICATION & COLLABORATION TOOLS" - use enhanced matching
-  if (mainCategoryName === "COMMUNICATION & COLLABORATION TOOLS") {
-    console.log(`💬 COMMUNICATION & COLLABORATION TOOLS requested - using enhanced matching`);
-    const commCollabTools = getCommunicationCollaborationTools(tools, mainCategoryName);
-    console.log(`✅ Found ${commCollabTools.length} communication & collaboration tools`);
-    return commCollabTools;
-  }
-  
   // Special enhanced handling for VIDEO & MULTIMEDIA category
   if (mainCategoryName === "VIDEO & MULTIMEDIA") {
     console.log(`🎬 VIDEO & MULTIMEDIA category requested`);
@@ -144,27 +136,23 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     return [];
   }
   
-  console.log(`📂 Found main category with ${mainCategory.subcategories.length} subcategories:`, mainCategory.subcategories);
+  console.log(`📂 Found main category with ${mainCategory.subcategories.length} subcategories`);
   
-  // Get tools that match any of the subcategories with enhanced matching
+  // Get tools that match any of the subcategories
   const categoryTools = tools.filter(tool => {
     if (!tool.category) return false;
     
-    const normalizedToolCategory = tool.category.toLowerCase().trim();
-    
     return mainCategory.subcategories.some(subcat => {
+      const normalizedToolCategory = tool.category.toLowerCase().trim();
       const normalizedSubcat = subcat.toLowerCase().trim();
       
-      // Enhanced matching logic
       return normalizedToolCategory === normalizedSubcat ||
              normalizedToolCategory.includes(normalizedSubcat) ||
-             normalizedSubcat.includes(normalizedToolCategory) ||
-             isSimilarCategory(tool.category, subcat);
+             normalizedSubcat.includes(normalizedToolCategory);
     });
   });
   
   console.log(`✅ Found ${categoryTools.length} tools for main category "${mainCategoryName}"`);
-  console.log(`🔍 Sample tools found:`, categoryTools.slice(0, 10).map(t => ({ title: t.title, category: t.category })));
   
   return categoryTools;
 };
