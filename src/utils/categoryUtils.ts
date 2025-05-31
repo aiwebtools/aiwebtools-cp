@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { mainCategories } from "./mainCategoryMapping";
 
@@ -82,6 +81,26 @@ const isSimilarCategory = (cat1: string, cat2: string): boolean => {
   return false;
 };
 
+// Check if a tool is video-related based on its properties
+const isVideoRelatedTool = (tool: Tool): boolean => {
+  const videoKeywords = [
+    'video', 'pika', 'luma', 'dream machine', 'veo', 'runway', 'synthesia',
+    'heygen', 'colossyan', 'gen-2', 'sora', 'kling', 'film', 'cinema', 'movie',
+    'animation', 'visual effects', 'motion', 'editing', 'production', 'studio',
+    'avatar', 'presenter', 'deepbrain', 'tavus', 'hour one', 'rephrase',
+    'vyond', 'lumen5', 'clipchamp', 'descript', 'kapwing', 'filmora',
+    'opus clip', 'vidyo', 'munch', 'vadoo', 'pictory', 'fliki', 'elai',
+    'animoto', 'wideo', 'visla', 'invideo', 'steve ai', 'genmo', 'pixverse',
+    'stable video', 'minimax', 'hailuo', 'pollo ai', 'aivideo', 'mochi',
+    'skyreels', 'higgsfield', 'topview', 'velocity', 'infinity ai', 'vozo',
+    '2short', 'gling', 'bgrem'
+  ];
+  
+  const searchText = `${tool.title} ${tool.description} ${tool.tags?.join(' ')} ${tool.category || ''}`.toLowerCase();
+  
+  return videoKeywords.some(keyword => searchText.includes(keyword));
+};
+
 export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] => {
   // Special handling for Data & Analytics category
   if (categoryName === "DATA & ANALYTICS AI TOOLS" || categoryName === "Data & Analytics Tools") {
@@ -94,7 +113,6 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
       )
     );
     
-    // Add priority tools that should appear in Data & Analytics
     const priorityTools = tools.filter(tool => 
       DATA_ANALYTICS_PRIORITY_TOOLS.some(priorityName => 
         tool.title.toLowerCase().includes(priorityName.toLowerCase()) ||
@@ -102,7 +120,6 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
       )
     );
     
-    // Combine and deduplicate by title
     const allTools = [...directCategoryTools, ...priorityTools];
     const uniqueTools = allTools.filter((tool, index, self) => 
       index === self.findIndex(t => t.title === tool.title)
@@ -125,7 +142,6 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
       )
     );
     
-    // Add priority tools that should appear in Marketing & Sales
     const priorityTools = tools.filter(tool => 
       MARKETING_SALES_PRIORITY_TOOLS.some(priorityName => 
         tool.title.toLowerCase().includes(priorityName.toLowerCase()) ||
@@ -133,7 +149,6 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
       )
     );
     
-    // Combine and deduplicate by title
     const allTools = [...directCategoryTools, ...priorityTools];
     const uniqueTools = allTools.filter((tool, index, self) => 
       index === self.findIndex(t => t.title === tool.title)
@@ -185,13 +200,11 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   if (mainCategoryName === "ALL AI TOOLS") {
     console.log(`🌟 ALL AI TOOLS requested - returning all ${tools.length} tools with prioritization`);
     
-    // Get AI Web Tools GPTs first (these should be prioritized)
     const aiWebToolsGPTs = tools.filter(tool => 
       tool.directUrl?.includes('lovable.app') || 
       tool.directUrl?.includes('aiwebtools')
     );
     
-    // Get all other tools
     const otherTools = tools.filter(tool => 
       !tool.directUrl?.includes('lovable.app') && 
       !tool.directUrl?.includes('aiwebtools')
@@ -199,11 +212,46 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     
     console.log(`🎯 AI Web Tools GPTs: ${aiWebToolsGPTs.length}, Other tools: ${otherTools.length}`);
     
-    // Return all tools with AI Web Tools GPTs first
     const allToolsWithPriority = [...aiWebToolsGPTs, ...otherTools];
     console.log(`✅ Returning total of ${allToolsWithPriority.length} tools for ALL AI TOOLS`);
     
     return allToolsWithPriority;
+  }
+  
+  // Special enhanced handling for VIDEO & MULTIMEDIA category
+  if (mainCategoryName === "VIDEO & MULTIMEDIA") {
+    console.log(`🎬 VIDEO & MULTIMEDIA category requested`);
+    
+    // Get tools that match video subcategories
+    const mainCategory = mainCategories.find(cat => cat.name === mainCategoryName);
+    if (!mainCategory) return [];
+    
+    const categoryTools = tools.filter(tool => {
+      if (!tool.category) return false;
+      
+      return mainCategory.subcategories.some(subcat => {
+        const normalizedToolCategory = tool.category.toLowerCase().trim();
+        const normalizedSubcat = subcat.toLowerCase().trim();
+        
+        return normalizedToolCategory === normalizedSubcat ||
+               normalizedToolCategory.includes(normalizedSubcat) ||
+               normalizedSubcat.includes(normalizedToolCategory);
+      });
+    });
+    
+    // Also get tools that are video-related by content analysis
+    const videoRelatedTools = tools.filter(tool => isVideoRelatedTool(tool));
+    
+    // Combine and deduplicate
+    const allVideoTools = [...categoryTools, ...videoRelatedTools];
+    const uniqueVideoTools = allVideoTools.filter((tool, index, self) => 
+      index === self.findIndex(t => t.title === tool.title)
+    );
+    
+    console.log(`🎥 Found ${categoryTools.length} category-matched tools, ${videoRelatedTools.length} content-matched tools, ${uniqueVideoTools.length} total unique video tools`);
+    console.log(`🎬 Sample video tools found:`, uniqueVideoTools.slice(0, 10).map(t => ({ title: t.title, category: t.category })));
+    
+    return uniqueVideoTools;
   }
   
   // Find the main category configuration
@@ -221,7 +269,6 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     if (!tool.category) return false;
     
     return mainCategory.subcategories.some(subcat => {
-      // Normalize both strings for comparison
       const normalizedToolCategory = tool.category.toLowerCase().trim();
       const normalizedSubcat = subcat.toLowerCase().trim();
       
