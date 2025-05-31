@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Video, 
@@ -110,6 +109,19 @@ export const creativeAndMediaGPTs: Tool[] = [
     category: "Creative & Media",
     rating: 4.8,
     totalVotes: 3789
+  },
+  {
+    icon: Image,
+    title: "MEME GENERATOR GPT",
+    description: "MEME GENERATOR GPT by AI Web Tools LLC is your ultimate AI-powered meme creation assistant, designed to help you create viral, funny, and engaging memes for social media, marketing campaigns, and entertainment purposes. Whether you're looking to create trending memes, custom reaction images, or brand-specific humorous content, this advanced AI understands meme culture, current trends, and viral formats to help you craft the perfect meme that resonates with your audience. Generate memes using popular templates, create original meme formats, add witty captions, and customize visual elements to match your brand or personal style. The AI analyzes current internet trends, meme formats, and cultural references to suggest relevant and timely content that has viral potential. Features include access to popular meme templates, custom text overlay capabilities, trending topic integration, and social media optimization. Perfect for social media managers seeking engaging content, content creators looking to add humor to their posts, marketers wanting to connect with younger audiences, and anyone who wants to participate in internet culture. MEME GENERATOR GPT makes meme creation accessible and ensures your content stays relevant and shareable.",
+    emoji: "😂",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://memegeneratorgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://ideogram.ai/assets/image/lossless/response/h2Lp-rLMScaWK6A-mrFZQA",
+    tags: ["meme creation", "viral content", "social media", "humor", "internet culture", "content creation", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.6,
+    totalVotes: 4521
   },
   {
     icon: Video,
