@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Scale, 
@@ -62,18 +63,6 @@ export const legalProfessionals: Tool[] = [
     category: "Legal Professionals",
     rating: 4.4,
     totalVotes: 2876
-  },
-  {
-    icon: BookOpen,
-    title: "Legal Research Assistant",
-    description: "Advanced AI assistant for legal research, case law analysis, and statute interpretation for legal professionals.",
-    emoji: "📚",
-    color: "from-indigo-500 to-purple-600",
-    directUrl: "https://example.com/legalresearch",
-    tags: ["legal research", "case law", "statute interpretation", "legal analysis", "jurisprudence"],
-    category: "Legal Professionals",
-    rating: 4.6,
-    totalVotes: 3456
   },
   {
     icon: Search,
