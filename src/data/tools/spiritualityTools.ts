@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Heart, 
@@ -77,65 +78,5 @@ export const spiritualityTools: Tool[] = [
     category: "Spirituality Tools",
     rating: 4.9,
     totalVotes: 4789
-  },
-  {
-    icon: Heart,
-    title: "Spiritual Guidance AI",
-    description: "Personalized spiritual guidance and meditation support for various spiritual traditions and practices.",
-    emoji: "💖",
-    color: "from-pink-500 to-purple-600",
-    directUrl: "https://example.com/spiritualguidance",
-    tags: ["spiritual guidance", "meditation", "mindfulness", "personal growth", "wisdom"],
-    category: "Spirituality Tools",
-    rating: 4.5,
-    totalVotes: 3456
-  },
-  {
-    icon: Moon,
-    title: "Dream Interpreter",
-    description: "AI-powered dream analysis and interpretation based on various psychological and spiritual frameworks.",
-    emoji: "🌙",
-    color: "from-indigo-500 to-purple-600",
-    directUrl: "https://example.com/dreaminterpreter",
-    tags: ["dream analysis", "interpretation", "psychology", "symbolism", "subconscious"],
-    category: "Spirituality Tools",
-    rating: 4.3,
-    totalVotes: 2876
-  },
-  {
-    icon: Compass,
-    title: "Life Purpose Guide",
-    description: "Discover your life purpose and spiritual path through guided self-reflection and wisdom traditions.",
-    emoji: "🧭",
-    color: "from-teal-500 to-blue-600",
-    directUrl: "https://example.com/lifepurposeguide",
-    tags: ["life purpose", "spiritual path", "self-discovery", "guidance", "meaning"],
-    category: "Spirituality Tools",
-    rating: 4.4,
-    totalVotes: 3123
-  },
-  {
-    icon: Sparkles,
-    title: "Chakra Balancer",
-    description: "Interactive chakra assessment and balancing guidance with personalized recommendations for energy healing.",
-    emoji: "✨",
-    color: "from-rainbow-500 to-purple-600",
-    directUrl: "https://example.com/chakrabalancer",
-    tags: ["chakras", "energy healing", "balance", "wellness", "spiritual health"],
-    category: "Spirituality Tools",
-    rating: 4.2,
-    totalVotes: 2654
-  },
-  {
-    icon: Flower,
-    title: "Mindfulness Companion",
-    description: "Daily mindfulness practices, breathing exercises, and present-moment awareness training.",
-    emoji: "🌸",
-    color: "from-green-500 to-pink-600",
-    directUrl: "https://example.com/mindfulnesscompanion",
-    tags: ["mindfulness", "meditation", "breathing exercises", "awareness", "peace"],
-    category: "Spirituality Tools",
-    rating: 4.6,
-    totalVotes: 3789
   }
 ];
