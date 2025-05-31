@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Video, 
@@ -10,10 +9,50 @@ import {
   Wand2,
   Sparkles,
   Zap,
-  Music
+  Music,
+  Users
 } from "lucide-react";
 
 export const videoGenerationTools: Tool[] = [
+  {
+    icon: Users,
+    title: "HeyGen – Interactive Avatar Creation Hub",
+    description: "Advanced AI avatar creation platform that generates realistic digital humans for video content. Create interactive avatars with natural speech, gestures, and expressions for marketing, education, and entertainment.",
+    emoji: "🤖",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://app.heygen.com/guest/home?sid=rewardful&via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377360265238155334/image.png?ex=6838ae35&is=68375cb5&hm=0707c33ddc6e2d86638158d89c26611517049cd508cd73468072bfec6fda488c&",
+    tags: ["avatar creation", "digital humans", "ai avatars", "interactive avatars", "video avatars", "heygen", "realistic avatars", "video content", "avatar ai"],
+    category: "Video & Content Creation",
+    rating: 4.8,
+    totalVotes: 4234
+  },
+  {
+    icon: Sparkles,
+    title: "SORA – OPENAI's Video Generation Model",
+    description: "OpenAI's groundbreaking text-to-video AI model that creates realistic and imaginative videos from text prompts. Experience the future of video generation with SORA's advanced AI technology.",
+    emoji: "🌟",
+    color: "from-green-500 to-cyan-600",
+    directUrl: "http://www.sora.com/",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377360868613820609/image.png?ex=6838aec5&is=68375d45&hm=b944d49b82b4779a88a1e4cd5d895f84867b12d9ce9fc12fa3641b32f6828117&",
+    tags: ["openai", "sora", "text to video", "video generation", "ai video", "video ai", "openai sora", "video synthesis", "ai model"],
+    category: "Video & Content Creation",
+    rating: 4.9,
+    totalVotes: 6789
+  },
+  {
+    icon: Wand2,
+    title: "BuildAI.Space",
+    description: "Comprehensive AI development platform and marketplace for building, deploying, and monetizing AI applications. Access tools, resources, and community support for AI creators and developers.",
+    emoji: "🛠️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://gumroad.com/a/815886803/cahfki",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377361060364816444/image.png?ex=6838aef2&is=68375d72&hm=5decaed233bbd7a01789666a0883196d15fb739e6f223406db095f63d424f7c7&",
+    tags: ["ai development", "ai platform", "ai marketplace", "ai tools", "development platform", "ai creation", "buildai", "ai apps"],
+    category: "AI Development Tools",
+    rating: 4.6,
+    totalVotes: 3456
+  },
   {
     icon: Music,
     title: "UDIO MUSIC Generator",

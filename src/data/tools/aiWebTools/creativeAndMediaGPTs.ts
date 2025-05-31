@@ -1,8 +1,44 @@
-
 import { Tool } from "@/types/tools";
-import { Video, Music, Palette, Camera, Film, Mic, Edit, Image, Play, Headphones } from "lucide-react";
+import { 
+  Palette, 
+  Camera, 
+  Video, 
+  Music, 
+  Paintbrush, 
+  Film, 
+  ImageIcon as Image, 
+  Sparkles,
+  BookOpen,
+  Wand2
+} from "lucide-react";
 
 export const creativeAndMediaGPTs: Tool[] = [
+  {
+    icon: BookOpen,
+    title: "Children's Picture Book Maker GPT",
+    description: "Create Magical Picture Books for Children Unleash your creativity with AI-powered children's book creation that brings your stories to life with vibrant illustrations and engaging narratives.",
+    emoji: "📚",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://childrensbookmaker.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=MryAyvg_N0U",
+    tags: ["children's books", "picture books", "storytelling", "illustrations", "book creation", "kids", "creative writing", "aiwebtools"],
+    category: "Creative & Entertainment",
+    rating: 4.7,
+    totalVotes: 3456
+  },
+  {
+    icon: Film,
+    title: "Movie Scene Maker GPT",
+    description: "Transform Yourself Into A Movie Star Become the star of your own cinematic adventure with Movie Scene Maker GPT. Create stunning, personalized movie scenes featuring you in any genre, setting, or storyline. Powered by GPT 4o Image Generation Technology.",
+    emoji: "🎬",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://moviescenemakergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=9fpWIE20z7s&t",
+    tags: ["movie scenes", "cinema", "movie maker", "personalized scenes", "film creation", "movie star", "video generation", "aiwebtools"],
+    category: "Creative & Entertainment",
+    rating: 4.8,
+    totalVotes: 4123
+  },
   {
     icon: Video,
     title: "Movie Maker Studio AI SUITE",
