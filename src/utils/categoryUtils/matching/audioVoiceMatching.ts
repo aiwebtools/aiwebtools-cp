@@ -5,12 +5,25 @@ import { isSimilarCategory } from "../normalization";
 export const getAudioVoiceTools = (tools: Tool[], categoryName: string): Tool[] => {
   console.log(`🎵 AUDIO & VOICE enhanced matching for: ${categoryName}`);
   
-  // Priority Audio & Voice Tools (first priority - user specified)
+  // HIGH PRIORITY Audio & Voice Tools (AI Web Tools GPTs that MUST appear first)
+  const highPriorityAudioVoiceTools = [
+    'Music Video Maker AI Studio',
+    'Music Melodies & Lessons GPT',
+    'Podcast Script Writer GPT',
+    'Mixologist GPT',
+    'Chef "Sizzle" AI Culinary Assistant'
+  ];
+
+  // Priority Audio & Voice Tools (second priority - user specified)
   const priorityAudioVoiceTools = [
     'SUNO AI MUSIC GENERATOR',
     'Suno AI',
-    'SUNO AI MUSIC GENERATOR',
-    'Music Video Maker AI Studio',
+    'UDIO MUSIC Generator',
+    'Udio',
+    'ElevenLabs',
+    'Eleven Labs Text to Speech & Sound Effect Generation Platform',
+    'MURF AI',
+    'Murf AI',
     'LALAL.AI',
     'Specterr',
     'Mubert',
@@ -19,8 +32,6 @@ export const getAudioVoiceTools = (tools: Tool[], categoryName: string): Tool[] 
     'Podium',
     'Wondercraft',
     'WonderCraft AI',
-    'UDIO MUSIC Generator',
-    'Udio',
     'Stable Audio',
     'MusicLM (Google)',
     'Google MusicLM',
@@ -36,12 +47,12 @@ export const getAudioVoiceTools = (tools: Tool[], categoryName: string): Tool[] 
     'Speechify',
     'Endel',
     'Descript Overdub',
+    'Descript',
     'Jukebox (OpenAI)',
     'Replica Studios',
     'Melodrive',
     'Lyrebird AI',
     'Humtap',
-    'MURF AI',
     'BEATOVEN.AI',
     'BeatBot',
     'SoundDraw.io',
@@ -51,8 +62,6 @@ export const getAudioVoiceTools = (tools: Tool[], categoryName: string): Tool[] 
     'Krisp AI',
     'Boomy',
     'Riffusion',
-    'ElevenLabs',
-    'Eleven Labs Text to Speech & Sound Effect Generation Platform',
     'VoiceAI',
     'MyVocal.AI',
     'Resemble.ai',
@@ -73,8 +82,7 @@ export const getAudioVoiceTools = (tools: Tool[], categoryName: string): Tool[] 
     'Listnr',
     'Xpeacho',
     'AudioNotes',
-    'Dictanote',
-    'Murf AI'
+    'Dictanote'
   ];
 
   const audioVoiceKeywords = [
@@ -111,25 +119,42 @@ export const getAudioVoiceTools = (tools: Tool[], categoryName: string): Tool[] 
     return keywordMatch || categoryMatch;
   });
 
-  // Separate tools into priority groups
+  // Separate tools into priority groups with EXACT matching
+  const highPriorityTools = categoryMatchedTools.filter(tool => 
+    highPriorityAudioVoiceTools.some(priorityName => {
+      const toolTitle = tool.title?.toLowerCase() || '';
+      const priorityNameLower = priorityName.toLowerCase();
+      return toolTitle.includes(priorityNameLower) || 
+             priorityNameLower.includes(toolTitle) ||
+             toolTitle === priorityNameLower;
+    })
+  );
+
   const priorityTools = categoryMatchedTools.filter(tool => 
-    priorityAudioVoiceTools.some(priorityName => 
-      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
-      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '') ||
-      tool.title?.toLowerCase() === priorityName.toLowerCase()
-    )
+    !highPriorityTools.includes(tool) &&
+    priorityAudioVoiceTools.some(priorityName => {
+      const toolTitle = tool.title?.toLowerCase() || '';
+      const priorityNameLower = priorityName.toLowerCase();
+      return toolTitle.includes(priorityNameLower) || 
+             priorityNameLower.includes(toolTitle) ||
+             toolTitle === priorityNameLower;
+    })
   );
 
   const remainingTools = categoryMatchedTools.filter(tool => 
-    !priorityTools.includes(tool)
+    !highPriorityTools.includes(tool) && !priorityTools.includes(tool)
   );
 
-  // Combine in priority order
+  // Combine in priority order - HIGH PRIORITY FIRST!
   const finalTools = [
+    ...highPriorityTools,
     ...priorityTools,
     ...remainingTools
   ];
 
-  console.log(`✅ Found ${finalTools.length} audio & voice tools (${priorityTools.length} priority, ${remainingTools.length} remaining)`);
+  console.log(`✅ Found ${finalTools.length} audio & voice tools (${highPriorityTools.length} high priority, ${priorityTools.length} priority, ${remainingTools.length} remaining)`);
+  console.log(`🎯 High Priority Tools Found:`, highPriorityTools.map(t => t.title));
+  console.log(`⭐ Priority Tools Found:`, priorityTools.map(t => t.title));
+  
   return finalTools;
 };
