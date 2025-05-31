@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { isSimilarCategory } from "../normalization";
 import { isVideoRelatedTool } from "../videoDetection";
@@ -6,6 +5,129 @@ import { isVideoRelatedTool } from "../videoDetection";
 export const getVideoMultimediaTools = (tools: Tool[], categoryName: string): Tool[] => {
   console.log(`🎬 VIDEO & MULTIMEDIA enhanced matching for: ${categoryName}`);
   
+  // Priority AI Web Tools GPTs for Video & Multimedia (first priority)
+  const priorityAIWebToolsGPTs = [
+    'Movie Maker Studio AI SUITE',
+    'Music Video Maker AI Studio',
+    'STAGEMASTER AI SUITE FOR THE Performing Arts',
+    'Movie Scene Maker GPT',
+    'Sora Prompt Assistant',
+    'Luma Dream Machine Prompt Assistant'
+  ];
+
+  // Other Priority Video & Multimedia Tools (second priority)
+  const otherPriorityTools = [
+    'HeyGen – Interactive Avatar Creation Hub',
+    'HeyGen',
+    'Google Flow Editing Studio',
+    'Podcastr',
+    'Syllaby.io',
+    'Tolstoy',
+    'RASK',
+    'Hippo Video',
+    'QR Code AI',
+    'SubMagic.co',
+    'RenderLion',
+    'TimeBolt',
+    'SORA – OPENAI\'s Video Generation Model',
+    'Sora',
+    'SORA by OpenAI',
+    'MiniMax Video & Music Generator',
+    'KLING Video Generator',
+    'KLING AI',
+    'LUMA DREAM MACHINE - TEXT TO VIDEO GENERATOR',
+    'Luma Dream Machine',
+    'Luma Labs Dream Machine',
+    'GOOGLE VEO 3 Video & FX Generator',
+    'Google Veo 2',
+    'Video FX by Google',
+    'Google Flow',
+    'PixVerse Ai',
+    'Pika Labs',
+    'Stable Video Diffusion',
+    'Genmo AI',
+    'Genmo',
+    'Genmo.ai',
+    'Invideo AI',
+    'INVIDEO',
+    'Steve AI',
+    'BHUMAN – Avatars Creation For Outreach',
+    'Descript',
+    'Kapwing',
+    'Wondershare Filmora',
+    'Wondershare Filmora AI',
+    'Opus Clip',
+    'OPUS.PRO',
+    'Vidyo.ai',
+    'Munch',
+    'Vadoo AI',
+    'Synthesia',
+    'Colossyan Creator',
+    'Colossyan',
+    'Clipchamp',
+    'DeepBrain AI',
+    'Vyond',
+    'Rephrase.ai',
+    'Lumen5',
+    'Hour One',
+    'Tavus',
+    'Pictory',
+    'Pictory AI',
+    'Fliki',
+    'Elai.io',
+    'Animoto',
+    'Wideo',
+    'Visla',
+    'Chat D-ID',
+    'GUIDDE',
+    'Podcastle',
+    'MyHeritage Deep Nostalgia™',
+    'LiveReacting',
+    'You-TLDR',
+    'Video2Recipe',
+    'OutfitsAI',
+    'VEED.IO',
+    'Oxolo',
+    'Waymark',
+    'Kaiber.ai',
+    'Kaiber AI',
+    'Cloudinary',
+    'Jitter.Video',
+    'FlexClip',
+    'Simplified',
+    'MoonValley AI',
+    'Hiber3D',
+    'SDXL Turbo',
+    'AnimateDiff',
+    'SkyGlass',
+    'Creatify AI',
+    'AI Comic Factory',
+    'Meshy AI',
+    'VideoLeap',
+    'UMU AI',
+    'BIGVU',
+    'Ghostcut',
+    'VCAT AI',
+    'Runway ML',
+    'RunwayML Gen-2',
+    'D-ID',
+    'Gling AI Video Editor',
+    'Pollo AI Video Generator',
+    'AIVideo.com',
+    '2Short.ai',
+    'Vozo AI',
+    'Velocity by Avataar.ai',
+    'Infinity AI Video Generator',
+    'SkyReels',
+    'TopView AI Avatars',
+    'Topaz Video AI',
+    'DeepMotion',
+    'WINDSOR.IO',
+    'Windsor',
+    'Vowel',
+    'MOVIE MAKER AI STUDIO SUITE'
+  ];
+
   const videoMultimediaKeywords = [
     'video', 'multimedia', 'film', 'movie', 'animation', 'motion', 'cinema',
     'editing', 'production', 'post-production', 'effects', 'transitions',
@@ -14,7 +136,8 @@ export const getVideoMultimediaTools = (tools: Tool[], categoryName: string): To
     'documentary', 'commercial', 'promotional', 'educational', 'tutorial'
   ];
 
-  const matchedTools = tools.filter(tool => {
+  // Get all tools that match the category
+  const categoryMatchedTools = tools.filter(tool => {
     if (!tool.title && !tool.description && !tool.category) return false;
     
     const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
@@ -40,8 +163,36 @@ export const getVideoMultimediaTools = (tools: Tool[], categoryName: string): To
     return isVideoTool || keywordMatch || categoryMatch;
   });
 
-  console.log(`✅ Found ${matchedTools.length} video & multimedia tools`);
-  return matchedTools;
+  // Separate tools into priority groups
+  const priorityAIWebTools = categoryMatchedTools.filter(tool => 
+    priorityAIWebToolsGPTs.some(priorityName => 
+      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '')
+    )
+  );
+
+  const otherPriority = categoryMatchedTools.filter(tool => 
+    !priorityAIWebTools.includes(tool) && 
+    otherPriorityTools.some(priorityName => 
+      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '')
+    )
+  );
+
+  const remainingTools = categoryMatchedTools.filter(tool => 
+    !priorityAIWebTools.includes(tool) && 
+    !otherPriority.includes(tool)
+  );
+
+  // Combine in priority order
+  const finalTools = [
+    ...priorityAIWebTools,
+    ...otherPriority,
+    ...remainingTools
+  ];
+
+  console.log(`✅ Found ${finalTools.length} video & multimedia tools (${priorityAIWebTools.length} priority AI Web Tools, ${otherPriority.length} other priority, ${remainingTools.length} remaining)`);
+  return finalTools;
 };
 
 export const getAudioVoiceTools = (tools: Tool[], categoryName: string): Tool[] => {

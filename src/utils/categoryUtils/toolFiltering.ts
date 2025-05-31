@@ -14,7 +14,10 @@ import {
   getAudioVoiceTools,
   get3DVisualizationTools,
   getBusinessOperationsProductivityTools,
-  getAIDevelopmentPlatformsTools
+  getAIDevelopmentPlatformsTools,
+  getEducationLearningTools,
+  getHealthWellnessTools,
+  getSpecializedNicheTools
 } from "./categoryMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
 
