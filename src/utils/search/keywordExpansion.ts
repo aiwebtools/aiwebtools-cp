@@ -24,15 +24,60 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
     expandedKeywords.add('conversational ai');
   }
   
-  // Special handling for phone/call searches
-  if (searchTerm.toLowerCase().includes('phone')) {
+  // Enhanced phone/call search handling
+  if (searchTerm.toLowerCase().includes('phone') || searchTerm.toLowerCase().includes('call')) {
     expandedKeywords.add('call');
+    expandedKeywords.add('phone');
     expandedKeywords.add('voice');
     expandedKeywords.add('communication');
     expandedKeywords.add('chat');
     expandedKeywords.add('talk');
     expandedKeywords.add('celebrity');
     expandedKeywords.add('chatline');
+    expandedKeywords.add('call agent');
+    expandedKeywords.add('call agents');
+    expandedKeywords.add('voice agent');
+    expandedKeywords.add('ai agent');
+    expandedKeywords.add('nucleus');
+    expandedKeywords.add('inbound');
+    expandedKeywords.add('outbound');
+    expandedKeywords.add('call center');
+    expandedKeywords.add('telephone');
+    expandedKeywords.add('mobile');
+  }
+  
+  // Special handling for agent searches
+  if (searchTerm.toLowerCase().includes('agent') || searchTerm.toLowerCase().includes('agents')) {
+    expandedKeywords.add('agent');
+    expandedKeywords.add('agents');
+    expandedKeywords.add('call agent');
+    expandedKeywords.add('call agents');
+    expandedKeywords.add('voice agent');
+    expandedKeywords.add('voice agents');
+    expandedKeywords.add('ai agent');
+    expandedKeywords.add('ai agents');
+    expandedKeywords.add('nucleus');
+    expandedKeywords.add('inbound');
+    expandedKeywords.add('outbound');
+    expandedKeywords.add('call center');
+    expandedKeywords.add('phone');
+    expandedKeywords.add('voice');
+    expandedKeywords.add('communication');
+  }
+  
+  // Special handling for nucleus search
+  if (searchTerm.toLowerCase().includes('nucleus')) {
+    expandedKeywords.add('nucleus');
+    expandedKeywords.add('call agent');
+    expandedKeywords.add('call agents');
+    expandedKeywords.add('voice agent');
+    expandedKeywords.add('ai agent');
+    expandedKeywords.add('inbound');
+    expandedKeywords.add('phone');
+    expandedKeywords.add('call');
+    expandedKeywords.add('voice');
+    expandedKeywords.add('communication');
+    expandedKeywords.add('call center');
   }
   
   // Special handling for celebrity searches
