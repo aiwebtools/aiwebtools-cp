@@ -1,5 +1,6 @@
+
 import { Tool } from "@/types/tools";
-import { FileText, Palette, Shield, Video, Crown, FlaskConical, Martini, ChefHat, Scissors, Phone, Flame, Binary, Users } from "lucide-react";
+import { FileText, Palette, Shield, Video, Crown, FlaskConical, Martini, ChefHat, Scissors, Phone, Flame, Binary, Users, Heart } from "lucide-react";
 
 export const fourthPriorityFeaturedGPTs: Tool[] = [
   {
@@ -14,6 +15,19 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     totalVotes: 5432,
     tags: ["historical conversations", "historical figures", "educational tool", "history learning", "interactive history", "aiwebtools"],
     category: "Time & History"
+  },
+  {
+    icon: Heart,
+    title: "Social Safety Net GPT",
+    description: "Social Safety Net GPT exemplifies how AI can make a significant societal impact with minimal effort and resources. By providing comprehensive support to those in need, it demonstrates the power of how AI technology can foster positive change. Imagine the collective benefit if everyone participated! #GPTS4GOOD -How To Guide. #BUILDYOURWORLD- Builders Tips and Tricks.",
+    emoji: "🤝",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
+    rating: 4.8,
+    totalVotes: 4200,
+    tags: ["social services", "community support", "assistance", "resources", "social impact", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle"
   },
   {
     icon: FileText,
