@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Wrench, 
@@ -11,7 +12,8 @@ import {
   Target,
   BarChart3,
   Brain,
-  Lightbulb
+  Lightbulb,
+  Binary
 } from "lucide-react";
 
 export const utilityAndProductivityGPTs: Tool[] = [

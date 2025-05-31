@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Image, 
@@ -9,7 +10,8 @@ import {
   Brush,
   Zap,
   Star,
-  Crown
+  Crown,
+  Paintbrush
 } from "lucide-react";
 
 export const aiImageGeneration: Tool[] = [
