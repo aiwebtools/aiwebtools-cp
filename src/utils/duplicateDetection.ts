@@ -50,8 +50,10 @@ export const analyzeDuplicates = (): DuplicateAnalysis => {
       const currentTitle = currentTool.title.toLowerCase().trim();
       const compareTitle = compareTool.title.toLowerCase().trim();
       
-      if (currentTitle === compareTitle) {
-        // Exact title match - check URLs for confirmation
+      // Enhanced duplicate detection for video tools
+      if (currentTitle === compareTitle || 
+          isSimilarVideoTool(currentTool, compareTool)) {
+        
         const currentUrl = currentTool.directUrl?.toLowerCase() || '';
         const compareUrl = compareTool.directUrl?.toLowerCase() || '';
         
@@ -63,12 +65,8 @@ export const analyzeDuplicates = (): DuplicateAnalysis => {
           duplicates.push(compareTool);
           processedTools.add(compareKey);
           
-          // Choose the best version (more complete description, URL, rating, etc.)
-          if ((compareTool.directUrl && !bestTool.directUrl) ||
-              (compareTool.description.length > bestTool.description.length) ||
-              (compareTool.rating && !bestTool.rating) ||
-              (compareTool.tags && compareTool.tags.length > (bestTool.tags?.length || 0))) {
-            // Keep the compare tool instead
+          // Choose the best version (prioritize AI Web Tools GPTs, then more complete info)
+          if (shouldKeepCompareTool(bestTool, compareTool)) {
             if (bestTool !== currentTool) {
               duplicates.push(bestTool);
             }
@@ -84,13 +82,10 @@ export const analyzeDuplicates = (): DuplicateAnalysis => {
         
         if (currentDomain === compareDomain && currentDomain !== '' && 
             !currentDomain.includes('lovable.app') && !currentDomain.includes('chatgpt.com')) {
-          // Same domain, likely same service with different descriptions
           duplicates.push(compareTool);
           processedTools.add(compareKey);
           
-          // Keep the one with more complete information
-          if (compareTool.description.length > bestTool.description.length ||
-              (compareTool.rating && !bestTool.rating)) {
+          if (shouldKeepCompareTool(bestTool, compareTool)) {
             if (bestTool !== currentTool) {
               duplicates.push(bestTool);
             }
@@ -104,20 +99,10 @@ export const analyzeDuplicates = (): DuplicateAnalysis => {
     processedTools.add(currentKey);
 
     if (duplicates.length > 0) {
-      // Don't touch any GPTs or custom tools
-      const isCustomGPT = bestTool.directUrl?.includes('lovable.app') || 
-                         bestTool.directUrl?.includes('chatgpt.com/g/') ||
-                         bestTool.description.includes('aiwebtools') ||
-                         bestTool.title.toLowerCase().includes('gpt');
+      const isCustomGPT = isAIWebToolsGPT(bestTool);
 
       if (!isCustomGPT) {
-        // Filter out any GPTs from duplicates as well
-        const nonGPTDuplicates = duplicates.filter(dup => 
-          !dup.directUrl?.includes('lovable.app') && 
-          !dup.directUrl?.includes('chatgpt.com/g/') &&
-          !dup.description.includes('aiwebtools') &&
-          !dup.title.toLowerCase().includes('gpt')
-        );
+        const nonGPTDuplicates = duplicates.filter(dup => !isAIWebToolsGPT(dup));
 
         if (nonGPTDuplicates.length > 0) {
           duplicateGroups.push({
@@ -133,15 +118,8 @@ export const analyzeDuplicates = (): DuplicateAnalysis => {
           toolsToKeep.push(bestTool);
         }
       } else {
-        // Keep all custom GPTs
         toolsToKeep.push(bestTool);
-        // Only add non-GPT duplicates to removal list
-        const nonGPTDuplicates = duplicates.filter(dup => 
-          !dup.directUrl?.includes('lovable.app') && 
-          !dup.directUrl?.includes('chatgpt.com/g/') &&
-          !dup.description.includes('aiwebtools') &&
-          !dup.title.toLowerCase().includes('gpt')
-        );
+        const nonGPTDuplicates = duplicates.filter(dup => !isAIWebToolsGPT(dup));
         toolsToRemove.push(...nonGPTDuplicates);
       }
     } else {
@@ -175,6 +153,57 @@ export const analyzeDuplicates = (): DuplicateAnalysis => {
     toolsToKeep,
     toolsToRemove
   };
+};
+
+// Helper function to detect AI Web Tools GPTs
+const isAIWebToolsGPT = (tool: Tool): boolean => {
+  return tool.directUrl?.includes('lovable.app') || 
+         tool.directUrl?.includes('chatgpt.com/g/') ||
+         tool.description.toLowerCase().includes('aiwebtools') ||
+         tool.title.toLowerCase().includes('gpt');
+};
+
+// Helper function to determine if we should keep the compare tool over the current best
+const shouldKeepCompareTool = (bestTool: Tool, compareTool: Tool): boolean => {
+  // Prioritize AI Web Tools GPTs
+  if (isAIWebToolsGPT(compareTool) && !isAIWebToolsGPT(bestTool)) {
+    return true;
+  }
+  
+  // If both or neither are GPTs, choose based on completeness
+  if ((compareTool.directUrl && !bestTool.directUrl) ||
+      (compareTool.description.length > bestTool.description.length) ||
+      (compareTool.rating && !bestTool.rating) ||
+      (compareTool.tags && compareTool.tags.length > (bestTool.tags?.length || 0))) {
+    return true;
+  }
+  
+  return false;
+};
+
+// Helper function to detect similar video tools
+const isSimilarVideoTool = (tool1: Tool, tool2: Tool): boolean => {
+  const title1 = tool1.title.toLowerCase().trim();
+  const title2 = tool2.title.toLowerCase().trim();
+  
+  // Check for common video tool variations
+  const videoToolVariations = [
+    ['runwayml gen-2', 'runway ml', 'runway gen-2'],
+    ['luma labs dream machine', 'luma dream machine', 'dream machine'],
+    ['google veo 2', 'google veo', 'video fx by google'],
+    ['music video maker ai studio', 'music video maker studio', 'music video maker'],
+    ['movie maker studio ai suite', 'movie maker studio', 'movie studio ai'],
+    ['pika labs', 'pika ai', 'pika'],
+    ['minimax', 'hailuo ai', 'hailuo ai (minimax)']
+  ];
+  
+  for (const variations of videoToolVariations) {
+    if (variations.some(v => title1.includes(v)) && variations.some(v => title2.includes(v))) {
+      return true;
+    }
+  }
+  
+  return false;
 };
 
 export const logDuplicateReport = (analysis: DuplicateAnalysis): void => {

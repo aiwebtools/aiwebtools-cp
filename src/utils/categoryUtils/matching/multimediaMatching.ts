@@ -17,9 +17,6 @@ export const getVideoMultimediaTools = (tools: Tool[], categoryName: string): To
 
   // Other Priority Video & Multimedia Tools (second priority)
   const otherPriorityTools = [
-    'Movie Maker Studio AI SUITE',
-    'Music Video Maker AI Studio',
-    'STAGEMASTER AI SUITE FOR THE Performing Arts',
     'HeyGen – Interactive Avatar Creation Hub',
     'HeyGen',
     'Google Flow Editing Studio',
@@ -35,7 +32,6 @@ export const getVideoMultimediaTools = (tools: Tool[], categoryName: string): To
     'SORA – OPENAI\'s Video Generation Model',
     'Sora',
     'SORA by OpenAI',
-    'MiniMax Video & Music Generator',
     'KLING Video Generator',
     'KLING AI',
     'LUMA DREAM MACHINE - TEXT TO VIDEO GENERATOR',
@@ -127,8 +123,7 @@ export const getVideoMultimediaTools = (tools: Tool[], categoryName: string): To
     'DeepMotion',
     'WINDSOR.IO',
     'Windsor',
-    'Vowel',
-    'MOVIE MAKER AI STUDIO SUITE'
+    'Vowel'
   ];
 
   const videoMultimediaKeywords = [
@@ -166,15 +161,32 @@ export const getVideoMultimediaTools = (tools: Tool[], categoryName: string): To
     return isVideoTool || keywordMatch || categoryMatch;
   });
 
+  // Remove duplicates by creating a map based on normalized titles
+  const uniqueToolsMap = new Map<string, Tool>();
+  
+  categoryMatchedTools.forEach(tool => {
+    const normalizedTitle = tool.title.toLowerCase().trim()
+      .replace(/\s+/g, ' ')
+      .replace(/[^\w\s]/g, '');
+    
+    // If we haven't seen this tool before, or if this version is better, keep it
+    if (!uniqueToolsMap.has(normalizedTitle) || 
+        shouldReplaceWithBetterVersion(uniqueToolsMap.get(normalizedTitle)!, tool)) {
+      uniqueToolsMap.set(normalizedTitle, tool);
+    }
+  });
+
+  const deduplicatedTools = Array.from(uniqueToolsMap.values());
+
   // Separate tools into priority groups
-  const priorityAIWebTools = categoryMatchedTools.filter(tool => 
+  const priorityAIWebTools = deduplicatedTools.filter(tool => 
     priorityAIWebToolsGPTs.some(priorityName => 
       tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
       priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '')
     )
   );
 
-  const otherPriority = categoryMatchedTools.filter(tool => 
+  const otherPriority = deduplicatedTools.filter(tool => 
     !priorityAIWebTools.includes(tool) && 
     otherPriorityTools.some(priorityName => 
       tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
@@ -182,7 +194,7 @@ export const getVideoMultimediaTools = (tools: Tool[], categoryName: string): To
     )
   );
 
-  const remainingTools = categoryMatchedTools.filter(tool => 
+  const remainingTools = deduplicatedTools.filter(tool => 
     !priorityAIWebTools.includes(tool) && 
     !otherPriority.includes(tool)
   );
@@ -195,7 +207,32 @@ export const getVideoMultimediaTools = (tools: Tool[], categoryName: string): To
   ];
 
   console.log(`✅ Found ${finalTools.length} video & multimedia tools (${priorityAIWebTools.length} priority AI Web Tools, ${otherPriority.length} other priority, ${remainingTools.length} remaining)`);
+  console.log(`🗑️ Removed ${categoryMatchedTools.length - finalTools.length} duplicates`);
+  
   return finalTools;
+};
+
+// Helper function to determine if we should replace with a better version
+const shouldReplaceWithBetterVersion = (existing: Tool, candidate: Tool): boolean => {
+  // Prioritize AI Web Tools GPTs
+  const existingIsGPT = existing.directUrl?.includes('lovable.app') || existing.directUrl?.includes('chatgpt.com/g/');
+  const candidateIsGPT = candidate.directUrl?.includes('lovable.app') || candidate.directUrl?.includes('chatgpt.com/g/');
+  
+  if (candidateIsGPT && !existingIsGPT) return true;
+  if (existingIsGPT && !candidateIsGPT) return false;
+  
+  // Choose based on completeness and quality
+  const candidateScore = (candidate.directUrl ? 1 : 0) + 
+                         (candidate.description?.length || 0) / 100 +
+                         (candidate.rating || 0) +
+                         (candidate.tags?.length || 0) / 10;
+  
+  const existingScore = (existing.directUrl ? 1 : 0) + 
+                       (existing.description?.length || 0) / 100 +
+                       (existing.rating || 0) +
+                       (existing.tags?.length || 0) / 10;
+  
+  return candidateScore > existingScore;
 };
 
 export { getAudioVoiceTools } from "./audioVoiceMatching";

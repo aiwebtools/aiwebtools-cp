@@ -1,3 +1,4 @@
+
 import { Video, Play, Film, Camera, Zap, Wand2, Edit, Monitor, Sparkles } from "lucide-react";
 import { Tool } from "@/types/tools";
 
@@ -137,30 +138,6 @@ export const advancedVideoTools: Tool[] = [
     totalVotes: 4567
   },
   {
-    icon: Play,
-    title: "RunwayML Gen-2",
-    description: "Generate realistic and creative videos with simple text prompts. An advanced AI tool for video creation and editing.",
-    emoji: "🚀",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://runwayml.com/gen2/",
-    tags: ["text-to-video", "AI generation", "video editing", "creative tools", "machine learning"],
-    category: "Advanced Video Tools",
-    rating: 4.8,
-    totalVotes: 4234
-  },
-  {
-    icon: Film,
-    title: "Pika Labs",
-    description: "Create and edit videos with AI. Bring your creative visions to life with this innovative video tool.",
-    emoji: "🌟",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://pika.art/",
-    tags: ["AI video editing", "video creation", "creative AI", "machine learning", "video effects"],
-    category: "Advanced Video Tools",
-    rating: 4.7,
-    totalVotes: 3890
-  },
-  {
     icon: Camera,
     title: "D-ID",
     description: "Create AI presenters from just a photo and text. Perfect for engaging video content and presentations.",
@@ -269,18 +246,6 @@ export const advancedVideoTools: Tool[] = [
     totalVotes: 3123
   },
   {
-    icon: Camera,
-    title: "MiniMax (Hailuo AI)",
-    description: "Chinese Sora contender with KLING. Excellent text-to-video generator from MiniMax designed as AI productivity partner. Features video generation, music creation, and more.",
-    emoji: "🎭",
-    color: "from-red-500 to-purple-600",
-    directUrl: "https://hailuoai.com/",
-    tags: ["Chinese AI", "Sora competitor", "text-to-video", "music creation", "productivity"],
-    category: "Advanced Video Tools",
-    rating: 4.5,
-    totalVotes: 2567
-  },
-  {
     icon: Edit,
     title: "2Short.ai",
     description: "AI platform that transforms long-form videos into engaging short clips for YouTube Shorts, TikTok, and Instagram Reels. Features animated subtitles, facial tracking, and brand presets.",
@@ -339,18 +304,6 @@ export const advancedVideoTools: Tool[] = [
     category: "Advanced Video Tools",
     rating: 4.8,
     totalVotes: 4123
-  },
-  {
-    icon: Camera,
-    title: "Higgsfield AI",
-    description: "Cutting-edge video generation platform transforming selfies into realistic, personalized video content using text prompts through mobile-first app Diffuse.",
-    emoji: "🤳",
-    color: "from-pink-500 to-purple-600",
-    directUrl: "https://higgsfield.ai/",
-    tags: ["selfie to video", "personalized content", "mobile app", "realistic characters", "social media"],
-    category: "Advanced Video Tools",
-    rating: 4.6,
-    totalVotes: 3234
   },
   {
     icon: Sparkles,
