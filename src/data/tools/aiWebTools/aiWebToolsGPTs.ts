@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { appraisalAndValuationGPTs } from "./appraisalAndValuationGPTs";
 import { healthAndWellnessGPTs } from "./healthAndWellnessGPTs";
@@ -28,6 +27,9 @@ import { investigativeAndAnalysisGPTs } from "./investigativeAndAnalysisGPTs";
 import { artAndCreativeGPTs } from "./artAndCreativeGPTs";
 import { personalDevelopmentGPTs } from "./personalDevelopmentGPTs";
 import { communicationAndEntertainmentGPTs } from "./communicationAndEntertainmentGPTs";
+import { advancedSpecialtyGPTs } from "./advancedSpecialtyGPTs";
+import { governmentCivicGPTs } from "./governmentCivicGPTs";
+import { technologyInnovationGPTs } from "./technologyInnovationGPTs";
 
 // Combine all AI Web Tools GPTs from organized categories
 export const aiWebToolsGPTs: Tool[] = [
@@ -59,5 +61,8 @@ export const aiWebToolsGPTs: Tool[] = [
   ...artAndCreativeGPTs,
   ...personalDevelopmentGPTs,
   ...communicationAndEntertainmentGPTs,
+  ...advancedSpecialtyGPTs,
+  ...governmentCivicGPTs,
+  ...technologyInnovationGPTs,
   // Additional GPTs will be added here as new category files are created
 ];

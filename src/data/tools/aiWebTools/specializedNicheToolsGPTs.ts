@@ -1,6 +1,5 @@
-
 import { Tool } from "@/types/tools";
-import { Calculator, Dna, Gamepad2, CreditCard, User, Palette, History, Megaphone, Shield, TrendingUp } from "lucide-react";
+import { Sprout, Hammer, MapPin, Calculator, DollarSign, Users, Building, Zap, Leaf } from "lucide-react";
 
 export const specializedNicheToolsGPTs: Tool[] = [
   {
@@ -119,5 +118,32 @@ export const specializedNicheToolsGPTs: Tool[] = [
     category: "Specialized Niche Tools",
     rating: 4.9,
     totalVotes: 8234
+  },
+  {
+    icon: Sprout,
+    title: "Drill Baby Drill Ai Suite For Oil & Gas",
+    description: "Drill Baby Drill AI Tools Suite is a cutting-edge collection of 10 specialized AI tools designed to optimize every aspect of oil and gas operations, from exploration and drilling to logistics, safety, compliance, and financial forecasting.",
+    emoji: "⛽",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://drillbabydrillaisuite.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cartoon-illustration-of-a-man-with-a-h_lmQ_X.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
+    tags: ["oil industry", "gas industry", "drilling optimization", "energy sector", "industrial tools"],
+    category: "Specialized Niche Tools",
+    rating: 4.8,
+    totalVotes: 6234
+  },
+  {
+    icon: Leaf,
+    title: "Fungus GPT – AI Mushroom Specialist",
+    description: "Fungus Whisperer GPT is an expert AI guide specializing in mushroom cultivation, safe foraging, and creative culinary uses of fungi. It provides precise identification assistance, step-by-step growing techniques, and innovative recipes, ensuring safety and sustainability. With deep knowledge of mycology, it enhances learning through scientific insights, folklore, and hands-on guidance for mushroom enthusiasts of all levels.",
+    emoji: "🍄",
+    color: "from-green-500 to-brown-600",
+    directUrl: "https://fungusgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=qzndRzBtrEU",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-man-with-a-beard-holding-a-_9DLLj.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    tags: ["mushroom cultivation", "mycology", "foraging", "fungi identification", "culinary fungi"],
+    category: "Specialized Niche Tools",
+    rating: 4.7,
+    totalVotes: 5432
   }
 ];
