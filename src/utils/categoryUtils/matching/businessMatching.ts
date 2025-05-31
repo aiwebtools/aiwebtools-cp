@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { isSimilarCategory } from "../normalization";
 
@@ -203,6 +204,22 @@ export const getCommunicationCollaborationTools = (tools: Tool[], categoryName: 
 export const getAutomationPlatformsTools = (tools: Tool[], categoryName: string): Tool[] => {
   console.log(`🤖 AUTOMATION PLATFORMS enhanced matching for: ${categoryName}`);
   
+  // Priority Automation Platform Tools (first priority - user specified)
+  const priorityAutomationPlatformTools = [
+    'Zapier',
+    'Make',
+    'Integromat',
+    'Make (Integromat)',
+    'Microsoft Power Automate',
+    'GitHub Actions',
+    'IFTTT',
+    'n8n Workflow Automation',
+    'n8n',
+    'Gumloop AI Automation',
+    'Gumloop',
+    'Bardeen'
+  ];
+
   const automationKeywords = [
     'zapier', 'make', 'integromat', 'microsoft power automate', 'github actions', 
     'ifttt', 'n8n', 'gumloop', 'bardeen', 'automation', 'workflow', 'process', 
@@ -216,22 +233,11 @@ export const getAutomationPlatformsTools = (tools: Tool[], categoryName: string)
     'browser automation', 'task automation'
   ];
 
-  const automationToolNames = [
-    'Zapier', 'Make', 'Integromat', 'Microsoft Power Automate', 'GitHub Actions',
-    'IFTTT', 'n8n Workflow Automation', 'n8n', 'Gumloop AI Automation', 'Gumloop',
-    'Bardeen'
-  ];
-
-  const matchedTools = tools.filter(tool => {
+  // Get all tools that match the category
+  const categoryMatchedTools = tools.filter(tool => {
     if (!tool.title && !tool.description && !tool.category) return false;
     
     const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
-    
-    // Direct name matching
-    const nameMatch = automationToolNames.some(name => 
-      tool.title?.toLowerCase().includes(name.toLowerCase()) ||
-      name.toLowerCase().includes(tool.title?.toLowerCase() || '')
-    );
     
     // Keyword matching
     const keywordMatch = automationKeywords.some(keyword => 
@@ -250,9 +256,28 @@ export const getAutomationPlatformsTools = (tools: Tool[], categoryName: string)
       tool.category.toLowerCase().includes('platform')
     );
 
-    return nameMatch || keywordMatch || categoryMatch;
+    return keywordMatch || categoryMatch;
   });
 
-  console.log(`✅ Found ${matchedTools.length} automation platform tools`);
-  return matchedTools;
+  // Separate tools into priority groups
+  const priorityTools = categoryMatchedTools.filter(tool => 
+    priorityAutomationPlatformTools.some(priorityName => 
+      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '') ||
+      tool.title?.toLowerCase() === priorityName.toLowerCase()
+    )
+  );
+
+  const remainingTools = categoryMatchedTools.filter(tool => 
+    !priorityTools.includes(tool)
+  );
+
+  // Combine in priority order
+  const finalTools = [
+    ...priorityTools,
+    ...remainingTools
+  ];
+
+  console.log(`✅ Found ${finalTools.length} automation platform tools (${priorityTools.length} priority, ${remainingTools.length} remaining)`);
+  return finalTools;
 };
