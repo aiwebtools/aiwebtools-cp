@@ -32,6 +32,16 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
   // Handle scroll position memory
   useScrollMemory({ displayedCount, selectedCategory, searchTerm });
 
+  // Log details about the tools being displayed
+  console.log(`📊 FeaturedTools Component Stats:`);
+  console.log(`   Total tools available: ${totalToolsCount}`);
+  console.log(`   Filtered tools: ${filteredTools.length}`);
+  console.log(`   Currently displayed: ${displayedCount}`);
+  console.log(`   Has more tools: ${hasMoreTools}`);
+  
+  // Log first few tool titles for debugging
+  console.log(`🔍 First 10 filtered tools:`, filteredTools.slice(0, 10).map(t => t.title));
+
   const handleLoadMore = useCallback(() => {
     if (isLoading || !hasMoreTools) return;
     
@@ -39,7 +49,7 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
     setIsLoading(true);
     
     setTimeout(() => {
-      const newCount = Math.min(displayedCount + 16, filteredTools.length); // Load 16 more tools at a time
+      const newCount = Math.min(displayedCount + 20, filteredTools.length); // Load 20 more tools at a time
       console.log(`📈 Setting new count: ${newCount}`);
       setDisplayedCount(newCount);
       setIsLoading(false);
@@ -138,11 +148,11 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
                 <span>Loading More Tools...</span>
               </div>
             ) : (
-              "Load More AI Tools"
+              "Load More AI Web Tools GPTs"
             )}
           </Button>
           <div className="mt-3 text-cyan-300 text-sm">
-            {displayedCount} of {totalToolsCount} tools loaded
+            {displayedCount} of {totalToolsCount} AI Web Tools GPTs loaded
           </div>
         </div>
       )}
@@ -152,7 +162,7 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
         <div className="text-center mt-12 mb-16 px-4 text-cyan-300">
           <div className="text-2xl mb-2">🎉</div>
           <div className="text-lg font-semibold mb-2">
-            You've explored all {totalToolsCount} amazing AI tools!
+            You've explored all {totalToolsCount} amazing AI Web Tools GPTs!
           </div>
           <div className="text-sm opacity-80">
             Try searching or filtering by category to discover specific tools.

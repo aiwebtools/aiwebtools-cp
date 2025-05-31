@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { appraisalAndValuationGPTs } from "./appraisalAndValuationGPTs";
 import { healthAndWellnessGPTs } from "./healthAndWellnessGPTs";
@@ -66,3 +67,7 @@ export const aiWebToolsGPTs: Tool[] = [
   ...technologyInnovationGPTs,
   // Additional GPTs will be added here as new category files are created
 ];
+
+// Log the total count for debugging
+console.log(`🚀 Total AI Web Tools GPTs loaded: ${aiWebToolsGPTs.length}`);
+console.log(`📋 AI Web Tools GPT titles:`, aiWebToolsGPTs.map(tool => tool.title));
