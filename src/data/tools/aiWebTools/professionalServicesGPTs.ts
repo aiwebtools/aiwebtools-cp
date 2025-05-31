@@ -7,7 +7,7 @@ import {
   Building, 
   Hammer, 
   Fish,
-  Seedling,
+  Sprout,
   HardHat,
   Calculator,
   Briefcase
@@ -55,7 +55,7 @@ export const professionalServicesGPTs: Tool[] = [
     totalVotes: 4321
   },
   {
-    icon: Seedling,
+    icon: Sprout,
     title: "Agronomus AI Farming Expert",
     description: "Ai Farming Expert - Agronomus",
     emoji: "🌱",
