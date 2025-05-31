@@ -1,4 +1,5 @@
-import React, { useCallback, useImperativeHandle, forwardRef } from "react";
+
+import React, { useCallback, useImperativeHandle, forwardRef, useState } from "react";
 import CategoryFilters from "@/components/tools/CategoryFilters";
 import ActiveFilters from "@/components/tools/ActiveFilters";
 import ToolsGrid from "@/components/tools/ToolsGrid";
@@ -15,6 +16,8 @@ interface FeaturedToolsProps {
 }
 
 const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedToolsProps) => {
+  const [showAllFeaturedTools, setShowAllFeaturedTools] = useState(false);
+  
   const {
     selectedCategory,
     searchTerm,
@@ -29,6 +32,23 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
     categoriesWithCounts,
     hasMoreTools
   } = useFeaturedToolsState();
+
+  // Find Marriage Mender GPT index to determine initial display count
+  const marriageMenderIndex = filteredTools.findIndex(tool => 
+    tool.title.toLowerCase().includes('marriage mender')
+  );
+  
+  // Set initial display count based on Marriage Mender GPT position or default to 20
+  const initialDisplayCount = marriageMenderIndex !== -1 ? marriageMenderIndex + 1 : 20;
+  
+  // Calculate actual displayed count based on show more state
+  const actualDisplayedCount = (!selectedCategory && !searchTerm && !showAllFeaturedTools) 
+    ? Math.min(initialDisplayCount, filteredTools.length)
+    : displayedCount;
+
+  // Check if we should show the "Show More Featured Tools" button
+  const shouldShowFeaturedToolsButton = !selectedCategory && !searchTerm && 
+    filteredTools.length > initialDisplayCount && !showAllFeaturedTools;
 
   // Run comprehensive verification on component mount
   React.useEffect(() => {
@@ -51,17 +71,17 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
   }, [filteredTools]);
 
   // Handle scroll position memory
-  useScrollMemory({ displayedCount, selectedCategory, searchTerm });
+  useScrollMemory({ displayedCount: actualDisplayedCount, selectedCategory, searchTerm });
 
   // Enhanced logging with verification details
   console.log(`📊 FeaturedTools Component Stats:`);
   console.log(`   Total tools available: ${totalToolsCount}`);
   console.log(`   Filtered tools: ${filteredTools.length}`);
-  console.log(`   Currently displayed: ${displayedCount}`);
+  console.log(`   Currently displayed: ${actualDisplayedCount}`);
   console.log(`   Has more tools: ${hasMoreTools}`);
   
   // Count AI Web Tools GPTs in current display
-  const aiWebToolsInDisplay = filteredTools.slice(0, displayedCount).filter(tool => 
+  const aiWebToolsInDisplay = filteredTools.slice(0, actualDisplayedCount).filter(tool => 
     tool.directUrl?.includes('lovable.app')
   ).length;
   console.log(`🎯 AI Web Tools GPTs currently displayed: ${aiWebToolsInDisplay}`);
@@ -92,6 +112,11 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
     handleLoadMore();
   };
 
+  const handleShowMoreFeaturedTools = () => {
+    setShowAllFeaturedTools(true);
+    setDisplayedCount(filteredTools.length); // Show all tools
+  };
+
   // Enable infinite scroll for homepage - always active when not filtering
   const enableInfiniteScroll = !selectedCategory && !searchTerm;
   
@@ -101,7 +126,7 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
   useInfiniteScroll({
     isLoading,
     showLoadMoreButton: false, // Always use infinite scroll for homepage
-    displayedCount,
+    displayedCount: actualDisplayedCount,
     totalTools: filteredTools.length,
     onLoadMore: handleLoadMore
   });
@@ -126,7 +151,7 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
 
       <ToolsGrid
         tools={filteredTools}
-        displayedCount={displayedCount}
+        displayedCount={actualDisplayedCount}
         selectedCategory={selectedCategory}
         searchTerm={searchTerm}
         onLoadMore={handleLoadMore}
@@ -134,6 +159,22 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
         isLoading={isLoading}
         onCategoryChange={handleCategoryChange}
       />
+
+      {/* Show More Featured Tools Button - appears after Marriage Mender GPT */}
+      {shouldShowFeaturedToolsButton && (
+        <div className="text-center mt-8 mb-8 px-4">
+          <Button
+            onClick={handleShowMoreFeaturedTools}
+            size="lg"
+            className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
+          >
+            ✨ Show More Featured AI Web Tools GPTs
+          </Button>
+          <div className="mt-4 text-purple-300 text-sm">
+            Discover {filteredTools.length - initialDisplayCount} more amazing AI tools from our collection
+          </div>
+        </div>
+      )}
 
       {/* Enhanced SEE MORE AI TOOLS Button - backup for when infinite scroll doesn't trigger */}
       {showLoadMoreButton && hasMoreTools && (
@@ -154,13 +195,13 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
             )}
           </Button>
           <div className="mt-4 text-cyan-300 text-sm">
-            Showing {displayedCount} of {totalToolsCount} amazing AI tools
+            Showing {actualDisplayedCount} of {totalToolsCount} amazing AI tools
           </div>
         </div>
       )}
 
       {/* Always visible Load More Button for homepage when there are more tools */}
-      {!showLoadMoreButton && hasMoreTools && !selectedCategory && !searchTerm && (
+      {!showLoadMoreButton && hasMoreTools && !selectedCategory && !searchTerm && showAllFeaturedTools && (
         <div className="text-center mt-8 mb-8 px-4">
           <Button
             onClick={handleLoadMore}
@@ -179,7 +220,7 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
             )}
           </Button>
           <div className="mt-3 text-cyan-300 text-sm">
-            {displayedCount} of {totalToolsCount} AI Web Tools GPTs loaded
+            {actualDisplayedCount} of {totalToolsCount} AI Web Tools GPTs loaded
           </div>
         </div>
       )}
