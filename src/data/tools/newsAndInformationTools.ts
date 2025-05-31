@@ -27,18 +27,6 @@ export const newsAndInformationTools: Tool[] = [
     totalVotes: 9876
   },
   {
-    icon: Newspaper,
-    title: "Google News",
-    description: "Personalized news aggregator that organizes and highlights news stories from thousands of publishers worldwide.",
-    emoji: "📰",
-    color: "from-blue-500 to-red-600",
-    directUrl: "https://news.google.com/",
-    tags: ["news aggregator", "personalized", "global news", "publishers"],
-    category: "News & Information",
-    rating: 4.5,
-    totalVotes: 6789
-  },
-  {
     icon: Users,
     title: "Reddit",
     description: "Social news aggregation and discussion platform. Join communities, share content, and engage in discussions on any topic.",
