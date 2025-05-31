@@ -103,41 +103,63 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
 
   const finalResults = Array.from(combinedResults.values());
 
-  // CRITICAL: First, separate exact matches from all other results
+  // ENHANCED: Separate exact matches AND title-starts-with matches from all other results
   const lowerSearchTerm = cleanSearchTerm.toLowerCase();
   const exactMatches: Tool[] = [];
-  const nonExactMatches: Tool[] = [];
+  const titleStartsWithMatches: Tool[] = [];
+  const nonPriorityMatches: Tool[] = [];
 
   finalResults.forEach(tool => {
-    if (tool.title.toLowerCase() === lowerSearchTerm) {
+    const lowerTitle = tool.title.toLowerCase();
+    
+    // Perfect exact match gets highest priority
+    if (lowerTitle === lowerSearchTerm) {
       exactMatches.push(tool);
-    } else {
-      nonExactMatches.push(tool);
+    }
+    // Title starts with search term gets second highest priority (this will catch your GPTs!)
+    else if (lowerTitle.startsWith(lowerSearchTerm)) {
+      titleStartsWithMatches.push(tool);
+    }
+    // Everything else
+    else {
+      nonPriorityMatches.push(tool);
     }
   });
 
   console.log(`🎯 EXACT MATCHES found: ${exactMatches.length}`, exactMatches.map(t => t.title));
+  console.log(`🚀 TITLE STARTS WITH MATCHES found: ${titleStartsWithMatches.length}`, titleStartsWithMatches.map(t => t.title));
 
-  // Score non-exact matches normally
-  const scoredNonExactResults = nonExactMatches.map(tool => ({
+  // Score the title-starts-with matches to prioritize AI Web Tools GPTs
+  const scoredTitleStartsWithResults = titleStartsWithMatches.map(tool => ({
+    tool,
+    score: tool.directUrl?.includes('lovable.app') ? 
+      scoreAIWebToolsGPT(tool, cleanSearchTerm) + 1000 : // Extra boost for AI Web Tools GPTs
+      scoreRegularTool(tool, cleanSearchTerm, expandedKeywords)
+  }));
+
+  // Score non-priority matches normally
+  const scoredNonPriorityResults = nonPriorityMatches.map(tool => ({
     tool,
     score: tool.directUrl?.includes('lovable.app') ? 
       scoreAIWebToolsGPT(tool, cleanSearchTerm) : 
       scoreRegularTool(tool, cleanSearchTerm, expandedKeywords)
   }));
 
-  // Sort non-exact matches by score
-  scoredNonExactResults.sort((a, b) => b.score - a.score);
+  // Sort both groups by score
+  scoredTitleStartsWithResults.sort((a, b) => b.score - a.score);
+  scoredNonPriorityResults.sort((a, b) => b.score - a.score);
 
-  // GUARANTEE: Exact matches ALWAYS come first, followed by scored results
+  // GUARANTEE: Exact matches FIRST, then title-starts-with matches, then everything else
   const sortedResults = [
-    ...exactMatches, // Exact matches first (unsorted among themselves is fine)
-    ...scoredNonExactResults.map(result => result.tool) // Then scored results
+    ...exactMatches, // Perfect matches first
+    ...scoredTitleStartsWithResults.map(result => result.tool), // Your GPTs will be here!
+    ...scoredNonPriorityResults.map(result => result.tool) // Everything else
   ];
   
   console.log(`✅ Enhanced search complete: ${sortedResults.length} total results`);
   console.log(`🎯 AI Web Tools results: ${aiWebToolsResults.length}`);
   console.log(`🏆 EXACT MATCHES: ${exactMatches.length} (will appear first)`);
+  console.log(`🚀 TITLE STARTS WITH: ${titleStartsWithMatches.length} (will appear second)`);
   console.log(`📋 Top 15 results:`, sortedResults.slice(0, 15).map((t, i) => `${i+1}. ${t.title}`));
   
   return sortedResults;
