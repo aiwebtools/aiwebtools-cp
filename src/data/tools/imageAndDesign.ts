@@ -169,7 +169,7 @@ export const imageAndDesign: Tool[] = [
     description: "Generate diverse AI fashion models for virtual photoshoots and style showcases.",
     emoji: "💃",
     color: "from-pink-500 to-purple-600",
-    directUrl: "https://ai-fashion-model-generator.lovable.app/?via=aiwebtools",
+    directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-woman-with-a-futuristic-outfi.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     tags: ["AI fashion models", "virtual photoshoots", "style showcases", "AI"],
     category: "Image & Design",
