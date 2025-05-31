@@ -24,6 +24,10 @@ import { businessStrategyGPTs } from "./businessStrategyGPTs";
 import { contentCreationToolsGPTs } from "./contentCreationToolsGPTs";
 import { additionalSpecializedGPTs } from "./additionalSpecializedGPTs";
 import { finalSpecializedGPTs } from "./finalSpecializedGPTs";
+import { investigativeAndAnalysisGPTs } from "./investigativeAndAnalysisGPTs";
+import { artAndCreativeGPTs } from "./artAndCreativeGPTs";
+import { personalDevelopmentGPTs } from "./personalDevelopmentGPTs";
+import { communicationAndEntertainmentGPTs } from "./communicationAndEntertainmentGPTs";
 
 // Combine all AI Web Tools GPTs from organized categories
 export const aiWebToolsGPTs: Tool[] = [
@@ -51,5 +55,9 @@ export const aiWebToolsGPTs: Tool[] = [
   ...contentCreationToolsGPTs,
   ...additionalSpecializedGPTs,
   ...finalSpecializedGPTs,
+  ...investigativeAndAnalysisGPTs,
+  ...artAndCreativeGPTs,
+  ...personalDevelopmentGPTs,
+  ...communicationAndEntertainmentGPTs,
   // Additional GPTs will be added here as new category files are created
 ];
