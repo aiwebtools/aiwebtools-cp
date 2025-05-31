@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Video, 
@@ -44,6 +45,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "👗",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://ideogram.ai/assets/progressive-image/balanced/response/6wSDfm1RQUeOIPIBIrERTQ",
     tags: ["virtual try on", "fashion styling", "outfit recommendations", "virtual fashion", "style assistant", "fashion AI", "aiwebtools"],
     category: "Creative & Media",
     rating: 4.5,
