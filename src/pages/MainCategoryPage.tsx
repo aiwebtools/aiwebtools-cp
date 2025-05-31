@@ -57,9 +57,11 @@ const MainCategoryPage = () => {
     }, 500);
   };
 
+  // Fixed search handler that doesn't cause navigation or scroll issues
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
     setDisplayedCount(24); // Reset displayed count when searching
+    // Don't scroll or navigate - just update the search term
   };
 
   // Setup infinite scroll
@@ -128,7 +130,7 @@ const MainCategoryPage = () => {
             </div>
           )}
 
-          {/* Enhanced completion message with search bar */}
+          {/* Enhanced completion message */}
           {showCompletionMessage && (
             <div className="text-center mt-12 mb-16 px-4 text-cyan-300">
               <div className="text-2xl mb-4">🎉</div>
@@ -141,7 +143,7 @@ const MainCategoryPage = () => {
             </div>
           )}
 
-          {/* Always show search bar at the bottom */}
+          {/* Always show search bar at the bottom - with stable behavior */}
           <div className="max-w-2xl mx-auto mb-12 mt-16">
             <h3 className="text-xl font-bold text-white mb-4 text-center">
               🔍 Search All AI Tools
@@ -149,6 +151,7 @@ const MainCategoryPage = () => {
             <SearchBar
               searchTerm={searchTerm}
               onSearchChange={handleSearchChange}
+              preventAutoNavigation={true}
             />
           </div>
         </main>
