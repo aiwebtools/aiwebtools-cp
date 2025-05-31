@@ -1,5 +1,5 @@
 
-import { useState, useMemo, useRef, useCallback } from "react";
+import { useState, useMemo } from "react";
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { getCategoriesWithCounts, getToolsByCategory } from "@/utils/categoryUtils";
@@ -11,88 +11,98 @@ import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
 export const useFeaturedToolsState = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [displayedCount, setDisplayedCount] = useState<number>(20); // Reduced initial count
+  const [displayedCount, setDisplayedCount] = useState<number>(60); // Increased to show more tools initially
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // Cache computations to prevent recalculation
-  const cachedFeaturedTools = useRef<any>(null);
-  const cachedCategories = useRef<any>(null);
-
-  // Initialize featured tools cache once
-  if (!cachedFeaturedTools.current) {
-    cachedFeaturedTools.current = createFeaturedTools(allTools).slice(0, 50); // Limit initial featured tools
-  }
-
-  // Initialize categories cache once
-  if (!cachedCategories.current) {
-    cachedCategories.current = getStandardizedCategoriesWithCounts();
-  }
-
-  const handleCategoryChange = useCallback((category: string | null) => {
+  const handleCategoryChange = (category: string | null) => {
     setSelectedCategory(category);
     setSearchTerm("");
-    setDisplayedCount(20); // Reduced count
+    setDisplayedCount(60); // Show more tools initially
     setIsLoading(false);
     // Clear saved state when actively changing filters
     sessionStorage.removeItem('aitools-scroll-position');
     sessionStorage.removeItem('aitools-displayed-count');
-  }, []);
+  };
 
-  const handleSearchChange = useCallback((term: string) => {
+  const handleSearchChange = (term: string) => {
     setSearchTerm(term);
     setSelectedCategory(null);
-    setDisplayedCount(20); // Reduced count
+    setDisplayedCount(60); // Show more tools initially
     setIsLoading(false);
     // Clear saved state when actively searching
     sessionStorage.removeItem('aitools-scroll-position');
     sessionStorage.removeItem('aitools-displayed-count');
-  }, []);
+  };
 
-  // Optimized filtering with aggressive caching and limits
   const filteredTools = useMemo(() => {
-    console.log(`🔧 Filtering tools - Category: ${selectedCategory}, Search: ${searchTerm}`);
+    console.log(`🔧 Filtering tools - Category: ${selectedCategory}, Search: ${searchTerm}, Total tools: ${allTools.length}`);
+    console.log(`🎯 AI Web Tools GPTs source count: ${aiWebToolsGPTs.length}`);
     
-    let tools = [];
+    let tools = allTools;
 
     if (selectedCategory) {
-      // Get tools from the selected category with strict limits
+      // Get tools from the selected category first
       const categoryTools = getToolsByCategory(allTools, selectedCategory);
       console.log(`📂 Found ${categoryTools.length} tools in category "${selectedCategory}"`);
       
-      // Apply lightweight deduplication with smaller batches
-      tools = createDeduplicatedToolsList(categoryTools, 4); // Smaller dedup window
+      // Apply smart deduplication that preserves category order
+      tools = createDeduplicatedToolsList(categoryTools, 0);
       
-      // Limit category tools to prevent slowdown
-      if (tools.length > 200) {
-        tools = tools.slice(0, 200);
-        console.log(`⚡ Limited category tools to 200 for performance`);
+      // If we have fewer than 50 tools in this category, add related tools
+      if (tools.length < 50) {
+        console.log(`🔄 Category has only ${tools.length} tools, adding related tools...`);
+        
+        // Get tools from related categories
+        const relatedCategories = getRelatedCategories(selectedCategory);
+        const relatedTools = allTools.filter(tool => 
+          relatedCategories.includes(tool.category || '') && 
+          !tools.some(existing => existing.title === tool.title)
+        );
+        
+        console.log(`🎯 Found ${relatedTools.length} related tools from categories: ${relatedCategories.join(', ')}`);
+        
+        // Add related tools up to a reasonable limit
+        const additionalTools = createDeduplicatedToolsList(relatedTools, 0).slice(0, 30);
+        tools = [...tools, ...additionalTools];
       }
       
       console.log(`📊 Final category result: ${tools.length} tools`);
     } else if (searchTerm) {
-      // For search, limit results aggressively
+      // For search, return ALL matching tools without limiting
       const searchResults = searchTools(allTools, searchTerm);
-      console.log(`🔍 Search "${searchTerm}" found ${searchResults.length} tools`);
+      console.log(`🔍 Search "${searchTerm}" found ${searchResults.length} tools (unlimited)`);
       
-      // Limit search results to prevent slowdown
-      tools = searchResults.slice(0, 100);
-      if (searchResults.length > 100) {
-        console.log(`⚡ Limited search results to 100 for performance`);
-      }
+      // Don't apply deduplication for search - show all matching results
+      tools = searchResults;
     } else {
-      // For homepage, use cached featured tools
-      tools = cachedFeaturedTools.current;
-      console.log(`🏠 Homepage - showing ${tools.length} cached featured tools`);
+      // For homepage, use the featured tools with ALL AI Web Tools GPTs
+      tools = createFeaturedTools(allTools);
+      console.log(`🏠 Homepage - showing ${tools.length} featured tools`);
+      
+      // Verify AI Web Tools GPTs are included
+      const aiWebToolsInFiltered = tools.filter(tool => 
+        aiWebToolsGPTs.some(gpt => gpt.title === tool.title) ||
+        tool.directUrl?.includes('lovable.app')
+      );
+      console.log(`🚀 AI Web Tools GPTs in filtered homepage tools: ${aiWebToolsInFiltered.length} of ${aiWebToolsGPTs.length}`);
+      
+      if (aiWebToolsInFiltered.length < aiWebToolsGPTs.length) {
+        console.error(`❌ CRITICAL: Missing AI Web Tools GPTs from homepage!`);
+        const missing = aiWebToolsGPTs.filter(gpt => 
+          !tools.some(tool => tool.title === gpt.title)
+        );
+        console.error(`Missing:`, missing.slice(0, 10).map(t => t.title));
+      }
     }
 
     return tools;
   }, [selectedCategory, searchTerm]);
 
-  const totalToolsCount = allTools.length; // Use total count for display
-  const categoriesWithCounts = cachedCategories.current;
+  const totalToolsCount = filteredTools.length;
+  const categoriesWithCounts = getStandardizedCategoriesWithCounts();
   const hasMoreTools = displayedCount < filteredTools.length;
 
-  console.log(`📊 Hook state - Category: ${selectedCategory}, Search: ${searchTerm}, Total: ${totalToolsCount}, Filtered: ${filteredTools.length}, Displayed: ${displayedCount}`);
+  console.log(`📊 Hook state - Category: ${selectedCategory}, Search: ${searchTerm}, Total: ${totalToolsCount}, Displayed: ${displayedCount}, Has more: ${hasMoreTools}`);
 
   return {
     selectedCategory,
@@ -108,4 +118,28 @@ export const useFeaturedToolsState = () => {
     categoriesWithCounts,
     hasMoreTools
   };
+};
+
+// Helper function to get related categories
+const getRelatedCategories = (category: string): string[] => {
+  const categoryRelations: Record<string, string[]> = {
+    "AI Development & Platforms": ["Data Science & Analytics", "Automation Platforms", "Industry-Specific Solutions"],
+    "Writing & Text Generation": ["AI Assistants & Search", "Business Operations & Productivity", "Education & Research Tools"],
+    "Image & Design Generation": ["Video & Animation Tools", "Creative & Entertainment (General & Gaming)", "Marketing & Sales Solutions"],
+    "Video & Animation Tools": ["Image & Design Generation", "Audio & Music Tools", "Creative & Entertainment (General & Gaming)"],
+    "Audio & Music Tools": ["Video & Animation Tools", "Creative & Entertainment (General & Gaming)", "Communication & Collaboration Tools"],
+    "Business Operations & Productivity": ["Marketing & Sales Solutions", "Data Science & Analytics", "Automation Platforms"],
+    "Marketing & Sales Solutions": ["Business Operations & Productivity", "Communication & Collaboration Tools", "Image & Design Generation"],
+    "Communication & Collaboration Tools": ["Business Operations & Productivity", "AI Assistants & Search", "Marketing & Sales Solutions"],
+    "AI Assistants & Search": ["Writing & Text Generation", "Communication & Collaboration Tools", "Business Operations & Productivity"],
+    "Data Science & Analytics": ["AI Development & Platforms", "Business Operations & Productivity", "Education & Research Tools"],
+    "Automation Platforms": ["AI Development & Platforms", "Business Operations & Productivity", "Data Science & Analytics"],
+    "Education & Research Tools": ["AI Assistants & Search", "Data Science & Analytics", "Writing & Text Generation"],
+    "Industry-Specific Solutions": ["AI Development & Platforms", "Business Operations & Productivity", "Data Science & Analytics"],
+    "Creative & Entertainment (General & Gaming)": ["Image & Design Generation", "Video & Animation Tools", "Audio & Music Tools"],
+    "Health, Wellness & Personal Lifestyle": ["AI Assistants & Search", "Education & Research Tools", "Industry-Specific Solutions"],
+    "Historical & Time-Based AI Tools": ["Education & Research Tools", "Industry-Specific Solutions", "Creative & Entertainment (General & Gaming)"]
+  };
+
+  return categoryRelations[category] || ["Business Operations & Productivity", "AI Development & Platforms", "Creative & Entertainment (General & Gaming)"];
 };

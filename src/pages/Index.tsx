@@ -10,24 +10,36 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import { Button } from "@/components/ui/button";
+import { runFullToolVerification } from "@/utils/toolIndexing";
+import { searchTools } from "@/utils/searchUtils";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { allTools } from "@/data/toolsData";
+import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 
 const Index = () => {
   const navigate = useNavigate();
-  // Pre-calculate stats without heavy operations
-  const [toolStats] = useState(() => {
-    const total = allTools.length;
-    return { 
-      total, 
-      marketing: `${Math.round(total / 100) * 100}+`, 
-      categories: 16 // Static count for performance
-    };
-  });
-  
+  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const [showAllTools, setShowAllTools] = useState(false);
   const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(24);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Get accurate tool count for SEO
+    const stats = getCurrentToolCount();
+    setToolStats(stats);
+    
+    // Run tool verification on app load to ensure everything is properly indexed
+    console.log(`🔍 Verifying all ${stats.total} tools are properly indexed and searchable...`);
+    const verificationResults = runFullToolVerification(searchTools);
+    
+    // Log critical information about tool accessibility
+    console.log(`✅ Verified ${verificationResults.overallHealth.toolsIndexed} tools across ${verificationResults.overallHealth.categoriesAvailable} categories`);
+    console.log(`📄 Generated ${verificationResults.overallHealth.pagesGenerated} individual tool pages`);
+    
+    if (verificationResults.overallHealth.toolsWithIssues > 0) {
+      console.warn(`⚠️ Found ${verificationResults.overallHealth.toolsWithIssues} indexing issues - check console for details`);
+    }
+  }, []);
 
   // Handle search and category navigation from URL parameters
   useEffect(() => {
@@ -46,7 +58,7 @@ const Index = () => {
   const handleSeeMoreAITools = () => {
     console.log(`🚀 See More AI Tools clicked! Total tools available: ${allTools.length}`);
     setShowAllTools(true);
-    setAllToolsDisplayedCount(24);
+    setAllToolsDisplayedCount(24); // Start with 24 tools and let infinite scroll handle the rest
     // Scroll to the tools section
     setTimeout(() => {
       const toolsSection = document.getElementById('all-tools-section');
@@ -62,14 +74,24 @@ const Index = () => {
     console.log(`🚀 Loading more tools: ${allToolsDisplayedCount} -> ${Math.min(allToolsDisplayedCount + 24, allTools.length)} of ${allTools.length}`);
     
     setIsLoading(true);
-    // Use immediate state update for better performance
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       setAllToolsDisplayedCount(prev => Math.min(prev + 24, allTools.length));
       setIsLoading(false);
-    });
+    }, 300);
   };
 
+  // Setup infinite scroll for all tools
+  useInfiniteScroll({
+    isLoading,
+    showLoadMoreButton: false,
+    displayedCount: allToolsDisplayedCount,
+    totalTools: allTools.length,
+    onLoadMore: handleAllToolsLoadMore,
+    searchTerm: ""
+  });
+
   const hasMoreTools = allToolsDisplayedCount < allTools.length;
+  const showCompletionMessage = !hasMoreTools && !isLoading && allTools.length > 20;
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -150,7 +172,7 @@ const Index = () => {
           </div>
         )}
 
-        {/* All Tools Section with Lazy Loading */}
+        {/* All Tools Section with Infinite Scroll */}
         {showAllTools && (
           <div id="all-tools-section" className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
             <div className="container mx-auto px-4">
@@ -169,20 +191,20 @@ const Index = () => {
                 selectedCategory={null}
                 searchTerm=""
                 onLoadMore={handleAllToolsLoadMore}
-                hasInfiniteScroll={false}
+                hasInfiniteScroll={true}
                 isLoading={isLoading}
               />
 
-              {/* Load More Button */}
-              {hasMoreTools && (
-                <div className="text-center mt-8">
-                  <Button
-                    onClick={handleAllToolsLoadMore}
-                    disabled={isLoading}
-                    className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-6 py-3 rounded-xl"
-                  >
-                    {isLoading ? "Loading..." : "Load More Tools"}
-                  </Button>
+              {/* Enhanced completion message */}
+              {showCompletionMessage && (
+                <div className="text-center mt-12 mb-16 px-4 text-cyan-300">
+                  <div className="text-2xl mb-4">🎉</div>
+                  <div className="text-lg font-semibold mb-4">
+                    You've explored all {allTools.length} tools in our database!
+                  </div>
+                  <div className="text-sm opacity-80 mb-8">
+                    Try searching or filtering by category to discover specific tools.
+                  </div>
                 </div>
               )}
             </div>

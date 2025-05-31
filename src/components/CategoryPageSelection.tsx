@@ -4,36 +4,22 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { mainCategories } from "@/utils/mainCategoryMapping";
+import { getMainCategoriesWithCounts } from "@/utils/categoryUtils";
 import { allTools } from "@/data/toolsData";
 
 const CategoryPageSelection = () => {
   const navigate = useNavigate();
+  const [selectedMainCategory, setSelectedMainCategory] = useState<string | null>(null);
   
-  // Pre-calculate counts once for performance
-  const [categoryCounts] = useState(() => {
-    const counts: Record<string, number> = {};
-    
-    // Set static counts for performance
-    mainCategories.forEach(category => {
-      if (category.name === "ALL AI TOOLS") {
-        counts[category.name] = allTools.length;
-      } else {
-        // Use estimated counts to avoid heavy computation
-        counts[category.name] = Math.floor(allTools.length / mainCategories.length) + Math.floor(Math.random() * 50);
-      }
-    });
-    
-    return counts;
-  });
+  // Get main category counts
+  const mainCategoryCounts = getMainCategoriesWithCounts(allTools);
 
   const handleMainCategoryClick = (mainCategoryName: string) => {
-    // Immediate scroll and navigation for better UX
+    // Scroll to top immediately before navigation
     window.scrollTo(0, 0);
     
-    // Use requestAnimationFrame for smooth navigation
-    requestAnimationFrame(() => {
-      navigate(`/main-category/${encodeURIComponent(mainCategoryName)}`);
-    });
+    // Navigate to main category page
+    navigate(`/main-category/${encodeURIComponent(mainCategoryName)}`);
   };
 
   return (
@@ -48,7 +34,7 @@ const CategoryPageSelection = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
           {mainCategories.map((mainCat) => {
-            const count = categoryCounts[mainCat.name] || 0;
+            const count = mainCat.name === "ALL AI TOOLS" ? allTools.length : (mainCategoryCounts[mainCat.name] || 0);
             if (count === 0 && mainCat.name !== "ALL AI TOOLS") return null;
             
             return (
@@ -56,7 +42,7 @@ const CategoryPageSelection = () => {
                 key={mainCat.name}
                 onClick={() => handleMainCategoryClick(mainCat.name)}
                 variant="outline"
-                className={`group relative overflow-hidden transition-all duration-200 transform hover:scale-105 border h-auto py-6 px-4 min-w-0 ${
+                className={`group relative overflow-hidden transition-all duration-300 transform hover:scale-105 border h-auto py-6 px-4 min-w-0 ${
                   mainCat.name === "ALL AI TOOLS"
                     ? "bg-gradient-to-br from-yellow-600/30 to-orange-600/30 border-yellow-400/50 text-yellow-200 hover:from-yellow-600/40 hover:to-orange-600/40 hover:text-yellow-100 hover:shadow-xl hover:border-yellow-300/60"
                     : "bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-gray-600/50 text-gray-200 hover:from-cyan-600/20 hover:to-blue-600/20 hover:text-white hover:shadow-lg hover:border-cyan-400/50"

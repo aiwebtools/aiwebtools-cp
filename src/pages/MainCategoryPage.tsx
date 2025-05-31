@@ -1,5 +1,4 @@
-
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -18,11 +17,12 @@ import { searchTools } from "@/utils/searchUtils";
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
   const navigate = useNavigate();
-  const [displayedCount, setDisplayedCount] = useState(12); // Start smaller for better performance
+  const [displayedCount, setDisplayedCount] = useState(24);
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [showAllTools, setShowAllTools] = useState(false);
-  const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(12);
+  const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(24);
+  const [showAllCategoryTools, setShowAllCategoryTools] = useState(false);
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
@@ -31,110 +31,122 @@ const MainCategoryPage = () => {
   
   // Scroll to top when category changes - enhanced for immediate effect
   useEffect(() => {
+    // Immediate scroll to top
     window.scrollTo(0, 0);
-    setShowAllTools(false);
-    setDisplayedCount(12);
-    setSearchTerm("");
+    
+    // Also use requestAnimationFrame to ensure it happens after any layout changes
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+    });
+    
+    // Additional timeout to catch any delayed renders
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
   }, [decodedCategoryName]);
   
   if (!mainCategory) {
+    // If category not found, redirect to home
     useEffect(() => {
       navigate('/');
     }, [navigate]);
     return null;
   }
 
-  // OPTIMIZED: Memoize category tools to prevent recalculation on every render
-  const categoryTools = useMemo(() => {
-    if (!decodedCategoryName) return [];
-    console.log(`🚀 Computing tools for category: ${decodedCategoryName}`);
-    const startTime = performance.now();
-    
-    const tools = getToolsByMainCategory(allTools, decodedCategoryName);
-    
-    const endTime = performance.now();
-    console.log(`⚡ Category filtering took ${endTime - startTime}ms for ${tools.length} tools`);
-    
-    return tools;
-  }, [decodedCategoryName, allTools]);
+  // Get tools for this main category
+  const categoryTools = getToolsByMainCategory(allTools, decodedCategoryName);
   
-  // OPTIMIZED: Memoize filtered tools to prevent re-filtering on every render
-  const filteredTools = useMemo(() => {
-    if (!searchTerm.trim()) return categoryTools;
-    
-    console.log(`🔍 Filtering ${categoryTools.length} tools with search term: "${searchTerm}"`);
-    const startTime = performance.now();
-    
-    const filtered = searchTools(categoryTools, searchTerm);
-    
-    const endTime = performance.now();
-    console.log(`⚡ Search filtering took ${endTime - startTime}ms, found ${filtered.length} results`);
-    
-    return filtered;
-  }, [categoryTools, searchTerm]);
+  console.log(`🔍 MainCategoryPage Debug for "${decodedCategoryName}":`, {
+    isAllAITools: decodedCategoryName === "ALL AI TOOLS",
+    categoryToolsCount: categoryTools.length,
+    totalAllToolsCount: allTools.length,
+    sampleCategoryTools: categoryTools.slice(0, 3).map(t => ({ title: t.title, category: t.category }))
+  });
+  
+  // Apply search filter if search term exists
+  const filteredTools = searchTerm.trim() 
+    ? searchTools(categoryTools, searchTerm)
+    : categoryTools;
 
-  // OPTIMIZED: Memoize all filtered tools for "See More" functionality
-  const allFilteredTools = useMemo(() => {
-    if (!searchTerm.trim()) return [...allTools];
-    
-    console.log(`🔍 Global search for: "${searchTerm}"`);
-    const startTime = performance.now();
-    
-    const filtered = searchTools(allTools, searchTerm);
-    
-    const endTime = performance.now();
-    console.log(`⚡ Global search took ${endTime - startTime}ms, found ${filtered.length} results`);
-    
-    return filtered;
-  }, [searchTerm, allTools]);
+  // Get all tools for "See More" functionality - ensure we get ALL tools
+  const allFilteredTools = searchTerm.trim() 
+    ? searchTools(allTools, searchTerm)
+    : [...allTools]; // Create a copy to avoid mutation
+  
+  console.log(`📊 Current display state:`, {
+    categoryToolsCount: categoryTools.length,
+    filteredToolsCount: filteredTools.length,
+    allFilteredToolsCount: allFilteredTools.length,
+    totalAllToolsCount: allTools.length,
+    showAllTools,
+    showAllCategoryTools,
+    searchTerm: searchTerm || 'none',
+    displayedCount,
+    allToolsDisplayedCount
+  });
 
   // Calculate the actual displayed count based on what we're showing
+  const actualDisplayedCount = showAllCategoryTools ? filteredTools.length : displayedCount;
   const currentTools = showAllTools ? allFilteredTools : filteredTools;
-  const currentDisplayedCount = showAllTools ? allToolsDisplayedCount : displayedCount;
+  const currentDisplayedCount = showAllTools ? allToolsDisplayedCount : actualDisplayedCount;
 
-  // OPTIMIZED: Use callback to prevent function recreation
-  const handleLoadMore = useCallback(() => {
+  const handleLoadMore = () => {
     if (isLoading || displayedCount >= filteredTools.length) return;
     
     setIsLoading(true);
-    // Use requestAnimationFrame for smoother loading
-    requestAnimationFrame(() => {
-      setDisplayedCount(prev => Math.min(prev + 8, filteredTools.length)); // Smaller increments
+    setTimeout(() => {
+      setDisplayedCount(prev => Math.min(prev + 12, filteredTools.length));
       setIsLoading(false);
-    });
-  }, [isLoading, displayedCount, filteredTools.length]);
+    }, 500);
+  };
 
-  const handleAllToolsLoadMore = useCallback(() => {
+  const handleAllToolsLoadMore = () => {
     if (isLoading || allToolsDisplayedCount >= allFilteredTools.length) return;
     
+    console.log(`🚀 Loading more tools: ${allToolsDisplayedCount} -> ${Math.min(allToolsDisplayedCount + 24, allFilteredTools.length)} of ${allFilteredTools.length}`);
+    
     setIsLoading(true);
-    requestAnimationFrame(() => {
-      setAllToolsDisplayedCount(prev => Math.min(prev + 12, allFilteredTools.length));
+    setTimeout(() => {
+      setAllToolsDisplayedCount(prev => Math.min(prev + 24, allFilteredTools.length));
       setIsLoading(false);
-    });
-  }, [isLoading, allToolsDisplayedCount, allFilteredTools.length]);
+    }, 300);
+  };
 
-  // OPTIMIZED: Debounced search handler
-  const handleSearchChange = useCallback((value: string) => {
+  // Fixed search handler that doesn't cause navigation or scroll issues
+  const handleSearchChange = (value: string) => {
     setSearchTerm(value);
-    setDisplayedCount(12);
-    setAllToolsDisplayedCount(12);
-  }, []);
+    setDisplayedCount(24); // Reset displayed count when searching
+    setAllToolsDisplayedCount(24); // Reset all tools count when searching
+    setShowAllCategoryTools(false); // Reset show all category tools when searching
+    // Don't scroll or navigate - just update the search term
+  };
 
-  const handleSeeMoreAITools = useCallback(() => {
+  const handleShowAllCategoryTools = () => {
+    console.log(`🚀 Show More From This Category clicked! Total category tools: ${filteredTools.length}`);
+    setShowAllCategoryTools(true);
+    // Scroll to the tools section
+    setTimeout(() => {
+      const toolsSection = document.getElementById('category-tools-section');
+      if (toolsSection) {
+        toolsSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
+  const handleSeeMoreAITools = () => {
     console.log(`🚀 See More AI Tools clicked! Total tools available: ${allTools.length}`);
     setShowAllTools(true);
-    setAllToolsDisplayedCount(12);
-    
+    setAllToolsDisplayedCount(24); // Start with 24 tools and let infinite scroll handle the rest
+    // Scroll to the tools section
     setTimeout(() => {
       const toolsSection = document.getElementById('all-tools-section');
       if (toolsSection) {
         toolsSection.scrollIntoView({ behavior: 'smooth' });
       }
     }, 100);
-  }, []);
+  };
 
-  // Setup infinite scroll with optimized parameters
+  // Setup infinite scroll - enhanced for better performance
   useInfiniteScroll({
     isLoading,
     showLoadMoreButton: false,
@@ -145,7 +157,21 @@ const MainCategoryPage = () => {
   });
 
   const hasMoreTools = currentDisplayedCount < currentTools.length;
-  const showCompletionMessage = !hasMoreTools && !isLoading && currentTools.length > 15;
+  const showCompletionMessage = !hasMoreTools && !isLoading && currentTools.length > 20;
+
+  // Show "Show More From This Category" button when we have more tools in category and not showing all yet
+  const shouldShowAllCategoryButton = !showAllCategoryTools && !showAllTools && 
+    filteredTools.length > displayedCount && !searchTerm;
+
+  console.log(`📊 Final render state:`, {
+    currentToolsLength: currentTools.length,
+    currentDisplayedCount,
+    hasMoreTools,
+    showAllTools,
+    showAllCategoryTools,
+    shouldShowAllCategoryButton,
+    decodedCategoryName
+  });
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -172,7 +198,7 @@ const MainCategoryPage = () => {
             </p>
           </div>
 
-          {/* Search Bar */}
+          {/* Search Bar - Positioned after category description */}
           <div className="max-w-2xl mx-auto mb-8">
             <h3 className="text-xl font-bold text-white mb-4 text-center">
               🔍 Search All AI Tools
@@ -189,10 +215,26 @@ const MainCategoryPage = () => {
             <div className="text-cyan-400 font-semibold">
               {showAllTools 
                 ? (searchTerm ? `${allFilteredTools.length} tools found` : `${allTools.length} total tools available`)
-                : (searchTerm ? `${filteredTools.length} tools found` : `${filteredTools.length} tools available`)
+                : (searchTerm ? `${filteredTools.length} tools found` : `${categoryTools.length} tools available`)
               }
             </div>
           </div>
+
+          {/* Show More From This Category Button - appears before tools grid */}
+          {shouldShowAllCategoryButton && (
+            <div className="text-center mb-8 px-4">
+              <Button
+                onClick={handleShowAllCategoryTools}
+                size="lg"
+                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
+              >
+                📋 SHOW MORE FROM THIS CATEGORY
+              </Button>
+              <div className="mt-4 text-green-300 text-sm">
+                Currently showing {displayedCount} of {filteredTools.length} tools in this category
+              </div>
+            </div>
+          )}
 
           {/* Main Tools Section */}
           <div id={showAllTools ? "all-tools-section" : "category-tools-section"}>
@@ -239,7 +281,7 @@ const MainCategoryPage = () => {
           )}
         </main>
 
-        {/* Featured Tools Section */}
+        {/* Featured Tools Section - Our AIWebTools.ai Professional Solutions */}
         {!showAllTools && decodedCategoryName !== "ALL AI TOOLS" && (
           <div className="mt-16">
             <FeaturedToolsSection />

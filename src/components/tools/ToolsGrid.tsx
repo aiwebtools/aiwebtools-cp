@@ -6,7 +6,7 @@ import SimilarToolsRecommendation from "@/components/tools/SimilarToolsRecommend
 import SeeMoreCategoriesButton from "@/components/tools/SeeMoreCategoriesButton";
 import { getContextAwareSimilarTools, shouldShowSimilarTools } from "@/utils/contextAwareSimilarTools";
 import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
-import { useMemo, useCallback, memo } from "react";
+import { useMemo } from "react";
 
 interface ToolsGridProps {
   tools: Tool[];
@@ -19,10 +19,7 @@ interface ToolsGridProps {
   onCategoryChange?: (category: string) => void;
 }
 
-// Memoized ToolCard to prevent unnecessary re-renders
-const MemoizedToolCard = memo(ToolCard);
-
-const ToolsGrid = memo(({ 
+const ToolsGrid = ({ 
   tools, 
   displayedCount, 
   selectedCategory, 
@@ -32,36 +29,17 @@ const ToolsGrid = memo(({
   isLoading = false,
   onCategoryChange
 }: ToolsGridProps) => {
-  // OPTIMIZED: Use aggressive memoization for tool slicing
-  const displayTools = useMemo(() => {
-    const startTime = performance.now();
-    const sliced = tools.slice(0, Math.min(displayedCount, tools.length));
-    const endTime = performance.now();
-    console.log(`⚡ Tool slicing took ${endTime - startTime}ms for ${sliced.length} tools`);
-    return sliced;
-  }, [tools, displayedCount]);
-
-  const shouldShowSimilar = useMemo(() => 
-    shouldShowSimilarTools(tools.length) && !searchTerm,
-    [tools.length, searchTerm]
-  );
-
-  const similarTools = useMemo(() => {
-    if (!shouldShowSimilar) return [];
-    const startTime = performance.now();
-    const similar = getContextAwareSimilarTools(tools, searchTerm, selectedCategory);
-    const endTime = performance.now();
-    console.log(`⚡ Similar tools calculation took ${endTime - startTime}ms`);
-    return similar;
-  }, [shouldShowSimilar, tools, searchTerm, selectedCategory]);
-
+  // Use the already deduplicated tools directly - no further deduplication needed
+  const displayTools = tools.slice(0, displayedCount);
+  const shouldShowSimilar = shouldShowSimilarTools(tools.length) && !searchTerm; // Don't show similar tools for search
+  const similarTools = shouldShowSimilar ? getContextAwareSimilarTools(tools, searchTerm, selectedCategory) : [];
   const hasMoreTools = displayedCount < tools.length;
 
   // Get standardized categories for the "See More Categories" button
-  const categoriesWithCounts = useMemo(() => getStandardizedCategoriesWithCounts(), []);
+  const categoriesWithCounts = getStandardizedCategoriesWithCounts();
   const shouldShowCategoriesButton = tools.length < 15 && !selectedCategory && !searchTerm;
 
-  const getSectionTitle = useCallback(() => {
+  const getSectionTitle = () => {
     if (selectedCategory) {
       return <>🎯 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{selectedCategory}</span></>;
     }
@@ -69,21 +47,17 @@ const ToolsGrid = memo(({
       return <>🔍 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Search Results for "{searchTerm}"</span></>;
     }
     return <>🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">AI TOOLS COLLECTION</span></>;
-  }, [selectedCategory, searchTerm]);
+  };
 
-  // OPTIMIZED: Create stable keys for tools to prevent React reconciliation issues
-  const toolsWithStableKeys = useMemo(() => {
-    const startTime = performance.now();
-    const keyed = displayTools.map((tool, index) => ({
+  // Create a unique key for each tool to prevent React reconciliation issues
+  const toolsWithUniqueKeys = useMemo(() => {
+    return displayTools.map((tool, index) => ({
       ...tool,
-      stableKey: `${tool.title.replace(/[^a-zA-Z0-9]/g, '')}-${index}-${tool.title.length}`
+      uniqueKey: `${tool.title}-${tool.category}-${index}`
     }));
-    const endTime = performance.now();
-    console.log(`⚡ Key generation took ${endTime - startTime}ms for ${keyed.length} tools`);
-    return keyed;
   }, [displayTools]);
 
-  if (toolsWithStableKeys.length === 0) return null;
+  if (toolsWithUniqueKeys.length === 0) return null;
 
   return (
     <>
@@ -117,25 +91,16 @@ const ToolsGrid = memo(({
         </div>
       )}
 
-      {/* HIGHLY OPTIMIZED grid with virtual scrolling concepts */}
+      {/* Optimized grid with better performance */}
       <div 
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-0" 
         style={{ 
           contentVisibility: 'auto',
-          containIntrinsicSize: '300px',
-          contain: 'layout style paint size'
+          containIntrinsicSize: '300px'
         }}
       >
-        {toolsWithStableKeys.map((tool) => (
-          <div
-            key={tool.stableKey}
-            style={{
-              contentVisibility: 'auto',
-              containIntrinsicSize: '300px 400px'
-            }}
-          >
-            <MemoizedToolCard tool={tool} />
-          </div>
+        {toolsWithUniqueKeys.map((tool) => (
+          <ToolCard key={tool.uniqueKey} tool={tool} />
         ))}
       </div>
 
@@ -202,8 +167,6 @@ const ToolsGrid = memo(({
       )}
     </>
   );
-});
-
-ToolsGrid.displayName = 'ToolsGrid';
+};
 
 export default ToolsGrid;

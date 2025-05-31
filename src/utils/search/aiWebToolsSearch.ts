@@ -1,112 +1,122 @@
 
 import { Tool } from "@/types/tools";
+import { aiWebToolsKeywords } from "@/data/keywords/aiWebToolsKeywords";
 
-// AI Web Tools GPT identification and scoring
-export const isAIWebToolsGPT = (tool: Tool): boolean => {
-  return tool.directUrl?.includes('lovable.app') || 
-         tool.directUrl?.includes('aiwebtools') ||
-         tool.title.toLowerCase().includes('gpt') ||
-         tool.description.toLowerCase().includes('gpt');
-};
-
-export const scoreAIWebToolsGPT = (tool: Tool, searchTerm: string): number => {
-  const lowerTitle = tool.title.toLowerCase();
-  const lowerSearchTerm = searchTerm.toLowerCase();
-  const lowerDescription = tool.description?.toLowerCase() || '';
-  
-  let score = 0;
-
-  // HIGHEST PRIORITY: AI Web Tools GPTs get massive boost
-  if (isAIWebToolsGPT(tool)) {
-    score += 2000; // Base boost for AI Web Tools GPTs
-  }
-
-  // Enhanced exact matching for AI Web Tools GPTs
-  if (lowerTitle === lowerSearchTerm) {
-    score += 1500; // Perfect exact match
-  }
-
-  // Title starts with search term (this should catch your GPTs!)
-  if (lowerTitle.startsWith(lowerSearchTerm)) {
-    score += 1200; // High boost for title starts with
-  }
-
-  // Enhanced partial matching for GPTs
-  if (lowerTitle.includes(lowerSearchTerm)) {
-    score += 800; // Good boost for title contains
-  }
-
-  // Special boosting for specific AI Web Tools GPTs
-  const specialGPTs = [
-    'learn any course gpt',
-    'learn any skill gpt',
-    'music video maker ai studio',
-    'music melodies & lessons gpt',
-    'podcast script writer gpt',
-    'mixologist gpt',
-    'chef "sizzle" ai culinary assistant'
-  ];
-
-  specialGPTs.forEach(specialGPT => {
-    if (lowerTitle.includes(specialGPT) || specialGPT.includes(lowerTitle)) {
-      score += 500; // Extra boost for special GPTs
-    }
-  });
-
-  // Multi-word search matching for GPTs
-  const searchWords = lowerSearchTerm.split(' ');
-  const titleWords = lowerTitle.split(' ');
-  
-  let matchingWords = 0;
-  searchWords.forEach(searchWord => {
-    if (searchWord.length >= 3) { // Only count meaningful words
-      titleWords.forEach(titleWord => {
-        if (titleWord.startsWith(searchWord) || titleWord.includes(searchWord)) {
-          matchingWords++;
-        }
-      });
-    }
-  });
-
-  if (matchingWords >= searchWords.length) {
-    score += 600; // All search words found in title
-  } else if (matchingWords >= searchWords.length / 2) {
-    score += 300; // Most search words found
-  }
-
-  // Description matching for GPTs
-  if (lowerDescription.includes(lowerSearchTerm)) {
-    score += 200;
-  }
-
-  return score;
-};
-
+// Enhanced search specifically for AI Web Tools GPTs
 export const searchAIWebToolsGPTs = (tools: Tool[], searchTerm: string): Tool[] => {
-  const cleanSearchTerm = searchTerm.trim().toLowerCase();
+  if (!searchTerm || searchTerm.length < 2) return [];
   
-  // Filter AI Web Tools GPTs
-  const aiWebToolsGPTs = tools.filter(tool => isAIWebToolsGPT(tool));
+  const lowerSearchTerm = searchTerm.toLowerCase().trim();
+  const searchWords = lowerSearchTerm.split(/\s+/);
   
-  // Enhanced filtering for AI Web Tools GPTs
-  const matchingGPTs = aiWebToolsGPTs.filter(tool => {
-    const toolText = `${tool.title} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
+  console.log(`🔍 AI Web Tools search for: "${searchTerm}"`);
+  
+  // Filter only AI Web Tools GPTs
+  const aiWebToolsGPTs = tools.filter(tool => 
+    tool.directUrl?.includes('lovable.app') || 
+    tool.directUrl?.includes('aiwebtools') ||
+    tool.title.includes('GPT')
+  );
+  
+  const results = aiWebToolsGPTs.filter(tool => {
+    const toolText = `${tool.title} ${tool.description} ${tool.tags?.join(' ') || ''} ${tool.category || ''}`.toLowerCase();
     
-    // Direct search term match
-    if (toolText.includes(cleanSearchTerm)) {
+    // Direct text match
+    if (toolText.includes(lowerSearchTerm)) {
       return true;
     }
-
-    // Word-by-word matching
-    const searchWords = cleanSearchTerm.split(' ');
-    const matchingWords = searchWords.filter(word => 
-      word.length >= 3 && toolText.includes(word)
-    );
     
-    // Return true if most search words are found
-    return matchingWords.length >= Math.max(1, searchWords.length - 1);
+    // Word-by-word matching
+    const hasAllWords = searchWords.every(word => toolText.includes(word));
+    if (hasAllWords) {
+      return true;
+    }
+    
+    // Enhanced keyword matching for AI Web Tools
+    for (const [keyword, synonyms] of Object.entries(aiWebToolsKeywords)) {
+      if (lowerSearchTerm.includes(keyword) || synonyms.some(syn => lowerSearchTerm.includes(syn))) {
+        if (synonyms.some(syn => toolText.includes(syn)) || toolText.includes(keyword)) {
+          return true;
+        }
+      }
+    }
+    
+    // Fuzzy matching for common variations
+    const fuzzyMatches = [
+      { search: 'chatgpt', matches: ['gpt', 'chat'] },
+      { search: 'openai', matches: ['gpt', 'artificial intelligence'] },
+      { search: 'ai art', matches: ['restyle', 'graphic', 'design'] },
+      { search: 'video', matches: ['movie', 'scene', 'sora'] },
+      { search: 'writing', matches: ['book', 'script', 'content'] },
+      { search: 'medical', matches: ['doctor', 'health', 'wellness', 'dr', 'gpt'] },
+      { search: 'health', matches: ['medical', 'doctor', 'wellness', 'mental', 'gpt'] }
+    ];
+    
+    for (const fuzzy of fuzzyMatches) {
+      if (lowerSearchTerm.includes(fuzzy.search)) {
+        if (fuzzy.matches.some(match => toolText.includes(match))) {
+          return true;
+        }
+      }
+    }
+    
+    return false;
   });
+  
+  console.log(`🎯 AI Web Tools search found ${results.length} results`);
+  return results;
+};
 
-  console.log(`🎯 AI Web Tools GPT search for "${searchTerm}": found ${matchingGPTs.length} matching GPTs`);
-  return matchingGPTs;
+// Enhanced search scoring for AI Web Tools GPTs
+export const scoreAIWebToolsGPT = (tool: Tool, searchTerm: string): number => {
+  const lowerSearchTerm = searchTerm.toLowerCase();
+  const toolText = `${tool.title} ${tool.description}`.toLowerCase();
+  let score = 0;
+  
+  // PRIORITY SCORING FOR MEDICAL SEARCHES
+  if (lowerSearchTerm.includes('medical') || lowerSearchTerm.includes('health') || lowerSearchTerm.includes('doctor') || lowerSearchTerm.includes('wellness')) {
+    // Top priority for specific medical GPTs
+    if (toolText.includes('personalized dr. gpt') || toolText.includes('doctor gpt')) {
+      score += 200; // Highest priority
+    }
+    if (toolText.includes('mental wellness gpt')) {
+      score += 190; // Second highest
+    }
+    if (toolText.includes('veterinarian gpt')) {
+      score += 150; // Third
+    }
+    if (toolText.includes('pharmaceutical assistant')) {
+      score += 140; // Fourth
+    }
+  }
+  
+  // Exact title match gets highest score
+  if (tool.title.toLowerCase().includes(lowerSearchTerm)) {
+    score += 100;
+  }
+  
+  // Description match
+  if (tool.description?.toLowerCase().includes(lowerSearchTerm)) {
+    score += 50;
+  }
+  
+  // Tag matches
+  if (tool.tags?.some(tag => tag.toLowerCase().includes(lowerSearchTerm))) {
+    score += 30;
+  }
+  
+  // Keyword enhancement scoring
+  for (const [keyword, synonyms] of Object.entries(aiWebToolsKeywords)) {
+    if (lowerSearchTerm.includes(keyword)) {
+      if (toolText.includes(keyword)) score += 40;
+      if (synonyms.some(syn => toolText.includes(syn))) score += 25;
+    }
+  }
+  
+  // Boost for AI Web Tools original GPTs
+  if (tool.directUrl?.includes('lovable.app')) {
+    score += 20;
+  }
+  
+  return score;
 };
