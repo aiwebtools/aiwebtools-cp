@@ -48,7 +48,7 @@ export const specializedNicheTools: Tool[] = [
   {
     icon: Leaf,
     title: "Fungus GPT – AI Mushroom Specialist",
-    description: "Fungus Whisperer GPT is an expert AI guide specializing in mushroom cultivation, safe foraging, and creative culinary uses of fungi. It provides precise identification assistance, step-by-step growing techniques, and innovative recipes, ensuring safety and sustainability. With deep knowledge of mycology, it enhances learning through scientific insights, folklore, and hands-on guidance for mushroom enthusiasts of all levels.",
+    description: "Fungus Whisperer GPT is an expert AI guide specializing in mushroom cultivation, safe foraging, and creative culinary uses of fungi. It provides precise identification assistance, step-by-step growing techniques, and innovative recipes, ensuring safety and sustainability. With deep knowledge of mycology, it enhances learning through scientific insights, folklore, and hands-on guidance for mushroom enthusiasts of all levels. ⚠️ CRITICAL SAFETY WARNING: DO NOT EAT mushrooms identified by AI as it may be wrong - this is a simulation only. Always verify outputs with professional mycologists and use multiple expert sources before consuming any wild fungi. All tools on this site are provided for educational, informational, and research purposes only.",
     emoji: "🍄",
     color: "from-green-500 to-brown-600",
     directUrl: "https://fungusgpt.lovable.app/?via=aiwebtools",
