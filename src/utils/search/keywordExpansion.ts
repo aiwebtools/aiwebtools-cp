@@ -1,239 +1,161 @@
 
-import { keywordMapping } from "@/data/keywordMapping";
+import { 
+  coreAIKeywords, 
+  contentKeywords, 
+  creativeKeywords, 
+  businessKeywords, 
+  technicalKeywords, 
+  industryKeywords, 
+  specialtyKeywords,
+  userIntentKeywords,
+  searchMetaKeywords
+} from "@/data/keywords";
 
-// Helper function to get expanded keywords with better matching
+// Enhanced keyword expansion with better educational tool support
 export const getExpandedKeywords = (searchTerm: string): string[] => {
-  // For very short searches, don't expand keywords to prevent false matches
-  if (searchTerm.length <= 2) {
-    return [searchTerm];
+  const lowerSearchTerm = searchTerm.toLowerCase().trim();
+  const expandedKeywords = new Set<string>([searchTerm, lowerSearchTerm]);
+  
+  // LEARNING AND EDUCATION SPECIFIC EXPANSIONS
+  if (lowerSearchTerm.includes('learn')) {
+    expandedKeywords.add('learning');
+    expandedKeywords.add('education');
+    expandedKeywords.add('educational');
+    expandedKeywords.add('course');
+    expandedKeywords.add('courses');
+    expandedKeywords.add('skill');
+    expandedKeywords.add('skills');
+    expandedKeywords.add('tutorial');
+    expandedKeywords.add('tutor');
+    expandedKeywords.add('study');
+    expandedKeywords.add('training');
+    expandedKeywords.add('teaching');
+    expandedKeywords.add('instructor');
+    expandedKeywords.add('academy');
+    expandedKeywords.add('college');
+    expandedKeywords.add('university');
+    expandedKeywords.add('degree');
+    expandedKeywords.add('homeschool');
+    expandedKeywords.add('home-school');
+    expandedKeywords.add('classroom');
   }
   
-  const words = searchTerm.split(' ');
-  const expandedKeywords = new Set([searchTerm]);
-  
-  // Add the full search term
-  expandedKeywords.add(searchTerm);
-  
-  // ENHANCED AUTOMATION TOOLS SEARCH - Critical for "MAKE" and automation tools
-  const automationTerms = ['make', 'automation', 'automate', 'workflow', 'zapier', 'integromat', 'n8n', 'power automate', 'ifttt', 'pipeline', 'trigger', 'action', 'connector', 'integration', 'webhook', 'api', 'flow', 'process', 'scheduler', 'task', 'workflow automation', 'business process', 'no-code', 'low-code'];
-  if (automationTerms.some(term => searchTerm.toLowerCase().includes(term) || term.includes(searchTerm.toLowerCase()))) {
-    automationTerms.forEach(term => expandedKeywords.add(term));
-    expandedKeywords.add('productivity');
-    expandedKeywords.add('business tools');
-    expandedKeywords.add('efficiency');
-    expandedKeywords.add('streamline');
-    expandedKeywords.add('optimize');
-    expandedKeywords.add('platform');
-    expandedKeywords.add('suite');
-    expandedKeywords.add('tool');
-    expandedKeywords.add('software');
+  // SKILL-RELATED EXPANSIONS
+  if (lowerSearchTerm.includes('skill')) {
+    expandedKeywords.add('learn');
+    expandedKeywords.add('learning');
+    expandedKeywords.add('training');
+    expandedKeywords.add('course');
+    expandedKeywords.add('education');
+    expandedKeywords.add('tutorial');
+    expandedKeywords.add('development');
   }
   
-  // ENHANCED MAKE SEARCH - Specific handling for "MAKE" tool
-  if (searchTerm.toLowerCase().includes('make') || searchTerm.toLowerCase() === 'make') {
-    expandedKeywords.add('make');
-    expandedKeywords.add('make.com');
-    expandedKeywords.add('integromat');
-    expandedKeywords.add('automation platform');
-    expandedKeywords.add('workflow builder');
-    expandedKeywords.add('integration platform');
-    expandedKeywords.add('visual automation');
-    expandedKeywords.add('scenario builder');
-    expandedKeywords.add('data connector');
-    expandedKeywords.add('app integration');
-    expandedKeywords.add('business automation');
-    expandedKeywords.add('process automation');
+  // COURSE-RELATED EXPANSIONS
+  if (lowerSearchTerm.includes('course')) {
+    expandedKeywords.add('learn');
+    expandedKeywords.add('learning');
+    expandedKeywords.add('education');
+    expandedKeywords.add('skill');
+    expandedKeywords.add('training');
+    expandedKeywords.add('class');
+    expandedKeywords.add('lesson');
+    expandedKeywords.add('curriculum');
   }
   
-  // Enhanced text-to-speech and audio AI search handling
-  const ttsTerms = ['tts', 'text to speech', 'text-to-speech', 'speech synthesis', 'voice generation', 'voice ai', 'speech ai', 'eleven labs', 'elevenlabs', 'voice cloning', 'voice clone', 'ai voice', 'synthetic voice', 'artificial voice', 'voice over', 'voiceover', 'narration', 'speech generation'];
-  if (ttsTerms.some(term => searchTerm.toLowerCase().includes(term))) {
-    ttsTerms.forEach(term => expandedKeywords.add(term));
-    expandedKeywords.add('sound effects');
-    expandedKeywords.add('audio generation');
-    expandedKeywords.add('voice synthesis');
-    expandedKeywords.add('speech technology');
-    expandedKeywords.add('audio ai');
-    expandedKeywords.add('voice technology');
-    expandedKeywords.add('speech engine');
-    expandedKeywords.add('voice engine');
-    expandedKeywords.add('realistic voice');
-    expandedKeywords.add('human voice');
-    expandedKeywords.add('professional voice');
+  // Medical/Health expansions
+  if (lowerSearchTerm.includes('medical') || lowerSearchTerm.includes('health') || lowerSearchTerm.includes('doctor')) {
+    expandedKeywords.add('medical');
+    expandedKeywords.add('health');
+    expandedKeywords.add('healthcare');
+    expandedKeywords.add('doctor');
+    expandedKeywords.add('dr');
+    expandedKeywords.add('wellness');
+    expandedKeywords.add('mental health');
+    expandedKeywords.add('physician');
+    expandedKeywords.add('clinical');
+    expandedKeywords.add('pharmaceutical');
+    expandedKeywords.add('veterinarian');
+    expandedKeywords.add('vet');
+    expandedKeywords.add('pet care');
   }
   
-  // Enhanced sound generation and audio effects search handling
-  const soundTerms = ['sound', 'audio', 'sound effects', 'sound generation', 'audio generation', 'audio effects', 'sfx', 'foley', 'ambient', 'music', 'noise'];
-  if (soundTerms.some(term => searchTerm.toLowerCase().includes(term))) {
-    soundTerms.forEach(term => expandedKeywords.add(term));
-    expandedKeywords.add('eleven labs');
-    expandedKeywords.add('elevenlabs');
-    expandedKeywords.add('text to speech');
-    expandedKeywords.add('voice generation');
-    expandedKeywords.add('audio ai');
-    expandedKeywords.add('sound ai');
-    expandedKeywords.add('audio production');
-    expandedKeywords.add('sound design');
-    expandedKeywords.add('audio editing');
-  }
-  
-  // Enhanced cannabis/marijuana search handling
-  const cannabisTerms = ['weed', 'cannabis', 'marijuana', 'pot', '420', 'ganja', 'herb', 'mary jane', 'bud', 'thc', 'cbd', 'hemp'];
-  if (cannabisTerms.some(term => searchTerm.toLowerCase().includes(term))) {
-    cannabisTerms.forEach(term => expandedKeywords.add(term));
-    expandedKeywords.add('dispensary');
-    expandedKeywords.add('strain');
-    expandedKeywords.add('medical marijuana');
-    expandedKeywords.add('recreational cannabis');
-    expandedKeywords.add('indica');
-    expandedKeywords.add('sativa');
-    expandedKeywords.add('hybrid');
-    expandedKeywords.add('cultivation');
-    expandedKeywords.add('grow');
-    expandedKeywords.add('green');
-  }
-  
-  // Special handling for GPT searches - ensure all GPT tools are found
-  if (searchTerm.toLowerCase().includes('gpt')) {
+  // GPT-related expansions
+  if (lowerSearchTerm.includes('gpt') || lowerSearchTerm.includes('chat')) {
     expandedKeywords.add('gpt');
     expandedKeywords.add('chatgpt');
-    expandedKeywords.add('openai');
+    expandedKeywords.add('chat');
+    expandedKeywords.add('assistant');
+    expandedKeywords.add('ai chat');
+    expandedKeywords.add('conversation');
     expandedKeywords.add('custom gpt');
-    expandedKeywords.add('ai assistant');
-    expandedKeywords.add('conversational ai');
   }
   
-  // Enhanced phone/call search handling
-  if (searchTerm.toLowerCase().includes('phone') || searchTerm.toLowerCase().includes('call')) {
-    expandedKeywords.add('call');
-    expandedKeywords.add('phone');
-    expandedKeywords.add('voice');
-    expandedKeywords.add('communication');
-    expandedKeywords.add('chat');
-    expandedKeywords.add('talk');
-    expandedKeywords.add('celebrity');
-    expandedKeywords.add('chatline');
-    expandedKeywords.add('call agent');
-    expandedKeywords.add('call agents');
-    expandedKeywords.add('voice agent');
-    expandedKeywords.add('ai agent');
-    expandedKeywords.add('nucleus');
-    expandedKeywords.add('inbound');
-    expandedKeywords.add('outbound');
-    expandedKeywords.add('call center');
-    expandedKeywords.add('telephone');
-    expandedKeywords.add('mobile');
+  // Video/Media expansions
+  if (lowerSearchTerm.includes('video')) {
+    expandedKeywords.add('video');
+    expandedKeywords.add('movie');
+    expandedKeywords.add('film');
+    expandedKeywords.add('cinema');
+    expandedKeywords.add('scene');
+    expandedKeywords.add('editing');
+    expandedKeywords.add('production');
+    expandedKeywords.add('media');
   }
   
-  // Special handling for agent searches
-  if (searchTerm.toLowerCase().includes('agent') || searchTerm.toLowerCase().includes('agents')) {
-    expandedKeywords.add('agent');
-    expandedKeywords.add('agents');
-    expandedKeywords.add('call agent');
-    expandedKeywords.add('call agents');
-    expandedKeywords.add('voice agent');
-    expandedKeywords.add('voice agents');
-    expandedKeywords.add('ai agent');
-    expandedKeywords.add('ai agents');
-    expandedKeywords.add('nucleus');
-    expandedKeywords.add('inbound');
-    expandedKeywords.add('outbound');
-    expandedKeywords.add('call center');
-    expandedKeywords.add('phone');
-    expandedKeywords.add('voice');
-    expandedKeywords.add('communication');
-  }
-  
-  // Special handling for nucleus search
-  if (searchTerm.toLowerCase().includes('nucleus')) {
-    expandedKeywords.add('nucleus');
-    expandedKeywords.add('call agent');
-    expandedKeywords.add('call agents');
-    expandedKeywords.add('voice agent');
-    expandedKeywords.add('ai agent');
-    expandedKeywords.add('inbound');
-    expandedKeywords.add('phone');
-    expandedKeywords.add('call');
-    expandedKeywords.add('voice');
-    expandedKeywords.add('communication');
-    expandedKeywords.add('call center');
-  }
-  
-  // Enhanced AI/tech term expansion
-  const aiTerms = ['ai', 'artificial intelligence', 'machine learning', 'neural network', 'bot', 'chatbot'];
-  if (aiTerms.some(term => searchTerm.toLowerCase().includes(term))) {
-    aiTerms.forEach(term => expandedKeywords.add(term));
-    expandedKeywords.add('automation');
-    expandedKeywords.add('intelligent');
-    expandedKeywords.add('smart');
-  }
-  
-  // Enhanced creative term expansion
-  const creativeTerms = ['art', 'design', 'creative', 'video', 'music', 'image'];
-  if (creativeTerms.some(term => searchTerm.toLowerCase().includes(term))) {
-    creativeTerms.forEach(term => expandedKeywords.add(term));
-    expandedKeywords.add('generator');
-    expandedKeywords.add('creator');
-    expandedKeywords.add('maker');
-    expandedKeywords.add('studio');
-  }
-  
-  // Enhanced business term expansion
-  const businessTerms = ['business', 'work', 'productivity', 'office', 'professional'];
-  if (businessTerms.some(term => searchTerm.toLowerCase().includes(term))) {
-    businessTerms.forEach(term => expandedKeywords.add(term));
-    expandedKeywords.add('enterprise');
-    expandedKeywords.add('corporate');
-    expandedKeywords.add('commercial');
-    expandedKeywords.add('workflow');
-  }
-  
-  // Enhanced social media term expansion
-  const socialTerms = ['social', 'instagram', 'youtube', 'tiktok', 'facebook', 'twitter'];
-  if (socialTerms.some(term => searchTerm.toLowerCase().includes(term))) {
-    socialTerms.forEach(term => expandedKeywords.add(term));
+  // Writing expansions
+  if (lowerSearchTerm.includes('writ')) {
+    expandedKeywords.add('writing');
+    expandedKeywords.add('writer');
     expandedKeywords.add('content');
-    expandedKeywords.add('influencer');
-    expandedKeywords.add('viral');
-    expandedKeywords.add('hashtag');
-    expandedKeywords.add('followers');
+    expandedKeywords.add('text');
+    expandedKeywords.add('copy');
+    expandedKeywords.add('script');
+    expandedKeywords.add('book');
+    expandedKeywords.add('article');
+    expandedKeywords.add('blog');
   }
   
-  // Special handling for celebrity searches
-  if (searchTerm.toLowerCase().includes('celebrity')) {
-    expandedKeywords.add('famous');
-    expandedKeywords.add('star');
-    expandedKeywords.add('chat');
-    expandedKeywords.add('phone');
-    expandedKeywords.add('call');
-    expandedKeywords.add('talk');
-  }
+  // Search through all keyword categories for matches
+  const allKeywordSets = [
+    coreAIKeywords,
+    contentKeywords,
+    creativeKeywords,
+    businessKeywords,
+    technicalKeywords,
+    industryKeywords,
+    specialtyKeywords,
+    userIntentKeywords,
+    searchMetaKeywords
+  ];
   
-  // Add individual words (only if they're longer than 2 characters)
-  words.forEach(word => {
-    if (word.length > 2) {
-      expandedKeywords.add(word);
-      
-      // Check if any keyword mapping key contains this word or vice versa
-      Object.keys(keywordMapping).forEach(key => {
-        if (key.includes(word) || word.includes(key)) {
-          keywordMapping[key].forEach(keyword => expandedKeywords.add(keyword));
-        }
-      });
-      
-      // Direct keyword mapping
-      if (keywordMapping[word]) {
-        keywordMapping[word].forEach(keyword => expandedKeywords.add(keyword));
+  allKeywordSets.forEach(keywordSet => {
+    Object.entries(keywordSet).forEach(([key, synonyms]) => {
+      // Check if search term matches any keyword or synonym
+      if (lowerSearchTerm.includes(key.toLowerCase()) || 
+          synonyms.some(syn => lowerSearchTerm.includes(syn.toLowerCase()))) {
+        expandedKeywords.add(key);
+        synonyms.forEach(syn => expandedKeywords.add(syn));
       }
-    }
+      
+      // Also check reverse - if any synonym contains the search term
+      if (synonyms.some(syn => syn.toLowerCase().includes(lowerSearchTerm))) {
+        expandedKeywords.add(key);
+        synonyms.forEach(syn => expandedKeywords.add(syn));
+      }
+    });
   });
   
-  // Special handling for partial matches in keyword mapping (only for longer terms)
-  if (searchTerm.length > 3) {
-    Object.keys(keywordMapping).forEach(key => {
-      if (searchTerm.includes(key) || key.includes(searchTerm)) {
-        keywordMapping[key].forEach(keyword => expandedKeywords.add(keyword));
-      }
+  // Add partial matches for longer search terms
+  if (lowerSearchTerm.length >= 4) {
+    allKeywordSets.forEach(keywordSet => {
+      Object.entries(keywordSet).forEach(([key, synonyms]) => {
+        if (key.toLowerCase().includes(lowerSearchTerm) || 
+            synonyms.some(syn => syn.toLowerCase().includes(lowerSearchTerm))) {
+          expandedKeywords.add(key);
+          synonyms.forEach(syn => expandedKeywords.add(syn));
+        }
+      });
     });
   }
   

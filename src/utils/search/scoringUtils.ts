@@ -8,75 +8,97 @@ export const getToolNameMatchScore = (toolTitle: string, searchTerm: string): nu
   const lowerTitle = toolTitle.toLowerCase();
   const cleanTitle = lowerTitle.replace(/[^a-z0-9\s]/g, ''); // Remove special characters
   const words = cleanTitle.split(' ');
+  const lowerSearchTerm = searchTerm.toLowerCase();
   
   let score = 0;
   
-  // Exact match gets highest score
-  if (lowerTitle === searchTerm) {
-    return 500;
+  // LEARNING TOOLS SPECIAL PRIORITY
+  if (lowerSearchTerm.includes('learn')) {
+    if (lowerTitle.includes('learn any skill gpt')) {
+      return 2000; // Highest priority
+    }
+    if (lowerTitle.includes('learn any course gpt')) {
+      return 1900; // Second highest
+    }
+    if (lowerTitle.includes('college degree gpt')) {
+      return 1800; // Third highest
+    }
+    if (lowerTitle.includes('homeschool') || lowerTitle.includes('home-school')) {
+      return 1700; // Fourth
+    }
+  }
+  
+  // Exact match gets highest score for non-learning searches
+  if (lowerTitle === lowerSearchTerm) {
+    return 1500;
+  }
+  
+  // EXACT WORD MATCHING (Very High Priority)
+  if (words.some(word => word === lowerSearchTerm)) {
+    score += 1200; // Exact word match
   }
   
   // Special boost for GPT tools when searching for "gpt"
-  if (searchTerm.toLowerCase().includes('gpt') && lowerTitle.includes('gpt')) {
-    score += 400;
+  if (lowerSearchTerm.includes('gpt') && lowerTitle.includes('gpt')) {
+    score += 800;
   }
   
   // Check if search term matches beginning of title
-  if (lowerTitle.startsWith(searchTerm)) {
-    score += 400;
+  if (lowerTitle.startsWith(lowerSearchTerm)) {
+    score += 700;
   }
   
   // Check if search term matches beginning of any word in title
-  const startsWithWord = words.some(word => word.startsWith(searchTerm));
+  const startsWithWord = words.some(word => word.startsWith(lowerSearchTerm));
   if (startsWithWord) {
-    score += 350;
+    score += 600;
   }
   
   // For very short searches (2-3 characters), be more intelligent about matching
-  if (searchTerm.length >= 2 && searchTerm.length <= 3) {
+  if (lowerSearchTerm.length >= 2 && lowerSearchTerm.length <= 3) {
     // Check if the search term matches any abbreviation
-    if (toolAbbreviations[searchTerm]) {
-      const matchingConcepts = toolAbbreviations[searchTerm];
+    if (toolAbbreviations[lowerSearchTerm]) {
+      const matchingConcepts = toolAbbreviations[lowerSearchTerm];
       const hasConceptMatch = matchingConcepts.some(concept => 
         lowerTitle.includes(concept) || cleanTitle.includes(concept)
       );
       if (hasConceptMatch) {
-        score += 300;
+        score += 500;
       }
     }
   }
   
   // Check for partial matches within words (for longer searches)
-  if (searchTerm.length >= 3) {
-    const hasPartialMatch = words.some(word => word.includes(searchTerm));
+  if (lowerSearchTerm.length >= 3) {
+    const hasPartialMatch = words.some(word => word.includes(lowerSearchTerm));
     if (hasPartialMatch) {
-      score += 250;
+      score += 400;
     }
   }
   
   // Check if title contains search term anywhere
-  if (lowerTitle.includes(searchTerm)) {
-    score += 200;
+  if (lowerTitle.includes(lowerSearchTerm)) {
+    score += 300;
   }
   
   // Fuzzy matching for common typos and variations
-  if (searchTerm.length >= 3) {
+  if (lowerSearchTerm.length >= 3) {
     Object.entries(fuzzyMatches).forEach(([correct, variants]) => {
-      if (variants.some(variant => variant.includes(searchTerm) || searchTerm.includes(variant))) {
+      if (variants.some(variant => variant.includes(lowerSearchTerm) || lowerSearchTerm.includes(variant))) {
         if (lowerTitle.includes(correct)) {
-          score += 180;
+          score += 250;
         }
       }
     });
   }
   
   // Acronym matching (e.g., "AI" matches "Artificial Intelligence")
-  if (searchTerm.length >= 2) {
-    if (acronymMatches[searchTerm]) {
-      const matchingTerms = acronymMatches[searchTerm];
+  if (lowerSearchTerm.length >= 2) {
+    if (acronymMatches[lowerSearchTerm]) {
+      const matchingTerms = acronymMatches[lowerSearchTerm];
       const hasAcronymMatch = matchingTerms.some(term => lowerTitle.includes(term));
       if (hasAcronymMatch) {
-        score += 160;
+        score += 200;
       }
     }
   }
@@ -90,95 +112,167 @@ export const calculateIntentScore = (tool: Tool, searchTerm: string): number => 
   const lowerCategory = tool.category?.toLowerCase() || '';
   const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
   const lowerSearchTerm = searchTerm.toLowerCase();
+  const titleWords = lowerTitle.split(' ');
   
   let score = 0;
   
-  // ENHANCED MEDICAL SEARCH PRIORITIZATION for AI Web Tools GPTs
-  if (lowerSearchTerm.includes('medical') || lowerSearchTerm.includes('health') || lowerSearchTerm.includes('doctor') || lowerSearchTerm.includes('wellness')) {
-    // Prioritize specific AI Web Tools medical GPTs
-    if (lowerTitle.includes('personalized dr. gpt') || lowerTitle.includes('doctor gpt')) {
-      score += 300; // Highest priority for Doctor GPT
+  // ENHANCED LEARNING/EDUCATIONAL TOOLS PRIORITIZATION
+  if (lowerSearchTerm.includes('learn')) {
+    // Exact matches get highest priority
+    if (lowerTitle.includes('learn any skill gpt')) {
+      score += 2000; // Highest priority
     }
-    if (lowerTitle.includes('mental wellness gpt')) {
-      score += 290; // High priority for Mental Wellness GPT
+    if (lowerTitle.includes('learn any course gpt')) {
+      score += 1900; // Second highest
     }
-    if (lowerTitle.includes('veterinarian gpt') || lowerTitle.includes('pet')) {
-      score += 200; // Lower but still boosted for Vet GPT
+    if (lowerTitle.includes('college degree gpt')) {
+      score += 1800; // Third
     }
-    if (lowerTitle.includes('pharmaceutical assistant')) {
-      score += 180; // Boost for Pharmaceutical Assistant
+    if (lowerTitle.includes('homeschool') || lowerTitle.includes('home-school')) {
+      score += 1700; // Fourth
     }
     
-    // General medical tools boost (but lower than specific GPTs)
+    // General learning-related terms
+    if (titleWords.some(word => word.startsWith('learn'))) {
+      score += 1500;
+    }
+    if (lowerTitle.includes('education') || lowerTitle.includes('educational')) {
+      score += 1400;
+    }
+    if (lowerTitle.includes('course') || lowerTitle.includes('skill')) {
+      score += 1300;
+    }
+    if (lowerTitle.includes('tutorial') || lowerTitle.includes('training')) {
+      score += 1200;
+    }
+    if (lowerCategory.includes('education') || lowerCategory.includes('learning')) {
+      score += 1100;
+    }
+    if (lowerTags.some(tag => tag.includes('education') || tag.includes('learning') || tag.includes('course'))) {
+      score += 1000;
+    }
+  }
+  
+  // SKILL-RELATED SEARCHES
+  if (lowerSearchTerm.includes('skill')) {
+    if (lowerTitle.includes('learn any skill gpt')) {
+      score += 1900;
+    }
+    if (lowerTitle.includes('skill')) {
+      score += 1500;
+    }
+    if (lowerTitle.includes('learn') || lowerTitle.includes('training')) {
+      score += 1300;
+    }
+  }
+  
+  // COURSE-RELATED SEARCHES
+  if (lowerSearchTerm.includes('course')) {
+    if (lowerTitle.includes('learn any course gpt')) {
+      score += 1900;
+    }
+    if (lowerTitle.includes('college degree gpt')) {
+      score += 1800;
+    }
+    if (lowerTitle.includes('course')) {
+      score += 1500;
+    }
+    if (lowerTitle.includes('learn') || lowerTitle.includes('education')) {
+      score += 1300;
+    }
+  }
+  
+  // EXACT WORD MATCHING IN TITLE (Very High Priority for all searches)
+  if (titleWords.some(word => word === lowerSearchTerm)) {
+    score += 1000;
+  }
+  
+  // ENHANCED MEDICAL SEARCH PRIORITIZATION for AI Web Tools GPTs
+  if (lowerSearchTerm.includes('medical') || lowerSearchTerm.includes('health') || lowerSearchTerm.includes('doctor') || lowerSearchTerm.includes('wellness')) {
+    if (lowerTitle.includes('personalized dr. gpt') || lowerTitle.includes('doctor gpt')) {
+      score += 800;
+    }
+    if (lowerTitle.includes('mental wellness gpt')) {
+      score += 790;
+    }
+    if (lowerTitle.includes('veterinarian gpt') || lowerTitle.includes('pet')) {
+      score += 600;
+    }
+    if (lowerTitle.includes('pharmaceutical assistant')) {
+      score += 580;
+    }
+    
     if (lowerCategory.includes('healthcare') || lowerTags.some(tag => tag.includes('medical') || tag.includes('health'))) {
-      score += 100;
+      score += 400;
     }
   }
   
   // Special boost for GPT tools when searching for GPT-related terms
-  if (searchTerm.toLowerCase().includes('gpt')) {
+  if (lowerSearchTerm.includes('gpt')) {
     if (lowerTitle.includes('gpt') || lowerDescription.includes('gpt') || lowerTags.some(tag => tag.includes('gpt'))) {
-      score += 150; // High boost for GPT tools
+      score += 600;
     }
     if (lowerTitle.includes('custom') || lowerDescription.includes('custom') || lowerTags.some(tag => tag.includes('custom'))) {
-      score += 100; // Boost for custom GPTs
+      score += 500;
     }
   }
   
   // Check for pricing-related searches
-  if (searchTerm.includes('free')) {
+  if (lowerSearchTerm.includes('free')) {
     if (lowerTags.includes('free') || lowerDescription.includes('completely free') || lowerDescription.includes('free to use')) {
-      score += 100; // High boost for free tools when searching for "free"
+      score += 400;
     } else if (lowerTags.includes('freemium') || lowerDescription.includes('free plan') || lowerDescription.includes('free tier')) {
-      score += 80; // Good boost for freemium tools
+      score += 300;
     }
   }
   
-  if (searchTerm.includes('paid') || searchTerm.includes('premium') || searchTerm.includes('subscription')) {
+  if (lowerSearchTerm.includes('paid') || lowerSearchTerm.includes('premium') || lowerSearchTerm.includes('subscription')) {
     if (lowerTags.includes('paid') || lowerDescription.includes('subscription') || lowerDescription.includes('/month')) {
-      score += 80; // Boost paid tools when specifically searching for paid options
+      score += 300;
     }
   }
   
   // Check for intent matches
   Object.entries(intentMatches).forEach(([intent, keywords]) => {
-    if (keywords.some(keyword => searchTerm.includes(keyword))) {
-      // Boost tools that match this intent
+    if (keywords.some(keyword => lowerSearchTerm.includes(keyword))) {
       if (intent === "learn" && (lowerTitle.includes("learn") || lowerTitle.includes("skill") || lowerTitle.includes("course") || lowerTitle.includes("education"))) {
-        score += 60;
+        score += 300;
       }
       if (intent === "help" && (lowerTitle.includes("assistant") || lowerTitle.includes("helper") || lowerTitle.includes("guide"))) {
-        score += 50;
+        score += 250;
       }
       if (intent === "create" && (lowerTitle.includes("generator") || lowerTitle.includes("creator") || lowerTitle.includes("maker"))) {
-        score += 55;
+        score += 275;
       }
       if (intent === "write" && (lowerTitle.includes("writing") || lowerTitle.includes("content") || lowerTitle.includes("text"))) {
-        score += 60;
+        score += 300;
       }
       if (intent === "chat" && (lowerTitle.includes("chat") || lowerTitle.includes("conversation") || lowerTitle.includes("talk"))) {
-        score += 65;
+        score += 325;
       }
       if (intent === "art" && (lowerTitle.includes("art") || lowerTitle.includes("design") || lowerTitle.includes("creative"))) {
-        score += 55;
+        score += 275;
       }
       if (intent === "business" && (lowerCategory.includes("business") || lowerTags.some(tag => tag.includes("business")))) {
-        score += 50;
+        score += 250;
       }
       if (intent === "fun" && (lowerCategory.includes("entertainment") || lowerCategory.includes("game"))) {
-        score += 45;
+        score += 225;
       }
       if (intent === "health" && (lowerCategory.includes("health") || lowerCategory.includes("wellness"))) {
-        score += 55;
+        score += 275;
       }
       if (intent === "spiritual" && (lowerCategory.includes("spiritual") || lowerCategory.includes("wellness"))) {
-        score += 60;
+        score += 300;
       }
     }
   });
   
-  // Enhanced tool name recognition with cleaned duplicate data
+  // Enhanced tool name recognition
   const enhancedToolMatches = {
+    "learn": ["learn any skill", "learn any course", "college degree", "education", "learning"],
+    "skill": ["learn any skill", "skill development", "training", "education"],
+    "course": ["learn any course", "college degree", "education", "curriculum"],
     "replika": ["replika", "ai companion", "personal ai", "friend ai"],
     "character": ["character.ai", "character ai", "roleplay ai"],
     "perplexity": ["perplexity", "ai search", "research ai"],
@@ -205,19 +299,19 @@ export const calculateIntentScore = (tool: Tool, searchTerm: string): number => 
   };
   
   Object.entries({ ...toolNameMatches, ...enhancedToolMatches }).forEach(([toolName, keywords]) => {
-    if (keywords.some(keyword => searchTerm.includes(keyword))) {
+    if (keywords.some(keyword => lowerSearchTerm.includes(keyword))) {
       if (lowerTitle.includes(toolName) || lowerDescription.includes(toolName)) {
-        score += 80; // High boost for specific tool matches
+        score += 400;
       }
     }
   });
   
   // Semantic similarity for related concepts
   Object.values(semanticGroups).forEach(group => {
-    if (group.some(concept => searchTerm.includes(concept))) {
+    if (group.some(concept => lowerSearchTerm.includes(concept))) {
       const toolText = `${lowerTitle} ${lowerDescription} ${lowerCategory} ${lowerTags.join(' ')}`;
       const semanticMatches = group.filter(concept => toolText.includes(concept)).length;
-      score += semanticMatches * 15;
+      score += semanticMatches * 50;
     }
   });
   
