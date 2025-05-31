@@ -14,7 +14,7 @@ const FeaturedToolsSection = ({ onToolsLoaded }: FeaturedToolsSectionProps) => {
             🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">OUR FEATURED AI WEB TOOLS GPTs</span>
           </h2>
           <p className="text-xl text-cyan-200 max-w-3xl mx-auto mb-4">
-            Discover our complete collection of 100+ revolutionary AI Web Tools GPTs - the most comprehensive suite of specialized AI assistants for every industry and need
+            Professional-grade & reality bending AI solutions created by AIWebTools.ai for outside the box capabilites.
           </p>
           <div className="inline-block px-6 py-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/50 rounded-full text-green-300 font-bold">
             ✨ Complete AI Web Tools GPT Collection - 100% Free Access ✨
