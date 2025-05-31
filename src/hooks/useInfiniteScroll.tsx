@@ -24,7 +24,7 @@ export const useInfiniteScroll = ({
     onLoadMore();
   }, [isLoading, onLoadMore, searchTerm]);
 
-  // Enhanced infinite scroll with better performance and glitch prevention
+  // Enhanced infinite scroll with better performance and search optimization
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
     
@@ -39,8 +39,8 @@ export const useInfiniteScroll = ({
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
         
-        // More aggressive threshold for better user experience, especially for search
-        const threshold = searchTerm ? 600 : 800; // Lower threshold for search results
+        // More aggressive threshold for search results to ensure infinite scroll works
+        const threshold = searchTerm ? 400 : 800; // Much lower threshold for search results
         const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
         
         console.log(`📏 Scroll check - ScrollTop: ${scrollTop}, WindowHeight: ${windowHeight}, DocumentHeight: ${documentHeight}, NearBottom: ${nearBottom}, Search: "${searchTerm}"`);
@@ -49,10 +49,10 @@ export const useInfiniteScroll = ({
           console.log(`🎯 Triggering load more - Displayed: ${displayedCount}, Total: ${totalTools}, Search: "${searchTerm}"`);
           handleLoadMore();
         }
-      }, searchTerm ? 30 : 50); // Faster response for search results
+      }, searchTerm ? 50 : 100); // Faster response for search results
     };
 
-    // Always enable scroll listening for search results and homepage
+    // Always enable scroll listening, especially for search results
     console.log(`🎮 Setting up infinite scroll - ShowButton: ${showLoadMoreButton}, Displayed: ${displayedCount}, Total: ${totalTools}, Search: "${searchTerm}"`);
     window.addEventListener('scroll', handleScroll, { passive: true });
     

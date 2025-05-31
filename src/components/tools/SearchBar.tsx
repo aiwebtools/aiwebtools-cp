@@ -65,8 +65,9 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
-    // Load more when user scrolls near the bottom
+    // Load more when user scrolls near the bottom (within 100px)
     if (scrollHeight - scrollTop <= clientHeight + 100 && displayedCount < searchResults.length) {
+      console.log(`🔄 SearchBar infinite scroll triggered - Loading more results... Current: ${displayedCount}, Total: ${searchResults.length}`);
       setDisplayedCount(prev => Math.min(prev + 30, searchResults.length));
     }
   };
@@ -97,12 +98,15 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
           {searchTerm ? `${searchResults.length} found` : `${toolStats.marketing} Tools`}
         </div>
 
-        {/* Search Results Dropdown */}
+        {/* Search Results Dropdown with Infinite Scroll */}
         {isOpen && searchResults.length > 0 && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" onScroll={handleScroll}>
+          <div 
+            className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" 
+            onScroll={handleScroll}
+          >
             <div className="p-2">
               <div className="text-xs text-gray-500 px-3 py-2 border-b border-gray-100 sticky top-0 bg-white">
-                Search Results ({searchResults.length} total) - Showing {displayedCount}
+                Search Results ({searchResults.length} total) - Showing {displayedResults.length}
                 {displayedCount < searchResults.length && (
                   <span className="text-cyan-600 ml-2">Scroll for more...</span>
                 )}
@@ -110,7 +114,7 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
               {displayedResults.map((tool, index) => {
                 const toolIndex = allTools.findIndex(t => t.title === tool.title);
                 return (
-                  <Tooltip key={index} delayDuration={300}>
+                  <Tooltip key={`${tool.title}-${index}`} delayDuration={300}>
                     <TooltipTrigger asChild>
                       <Link
                         to={`/tool/${toolIndex}`}
