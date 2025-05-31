@@ -17,8 +17,8 @@ import { generateStructuredData } from "@/utils/seo";
 const CategoryPage = () => {
   const { categoryName } = useParams();
   const [searchTerm, setSearchTerm] = useState("");
-  const [displayedCount, setDisplayedCount] = useState(12); // Reduced initial count
-  const [toolsLoaded, setToolsLoaded] = useState(false); // Lazy loading state
+  const [displayedCount, setDisplayedCount] = useState(12);
+  const [toolsLoaded, setToolsLoaded] = useState(false);
 
   // Decode and standardize the category name
   const decodedCategory = categoryName ? decodeURIComponent(categoryName) : "";
@@ -31,7 +31,7 @@ const CategoryPage = () => {
     console.log(`📂 Loading category page for: "${standardizedCategory}"`);
     const tools = getToolsByCategory(allTools, standardizedCategory);
     console.log(`📊 Found ${tools.length} tools in category "${standardizedCategory}"`);
-    return tools.slice(0, 500); // Limit tools to prevent slowdown
+    return tools.slice(0, 500);
   }, [standardizedCategory, toolsLoaded]);
 
   // Filter tools by search with optimized memoization
@@ -50,7 +50,7 @@ const CategoryPage = () => {
     );
     
     console.log(`🔍 Filtered category "${standardizedCategory}" with search "${searchTerm}": ${filtered.length} tools`);
-    return filtered.slice(0, 100); // Limit filtered results
+    return filtered.slice(0, 100);
   }, [categoryTools, searchTerm, standardizedCategory, toolsLoaded]);
 
   // Immediate scroll and reset on category change
@@ -58,7 +58,7 @@ const CategoryPage = () => {
     window.scrollTo(0, 0);
     setDisplayedCount(12);
     setSearchTerm("");
-    setToolsLoaded(false); // Reset tools loading
+    setToolsLoaded(false);
     
     console.log(`📄 Category page loaded: "${standardizedCategory}"`);
   }, [standardizedCategory]);
@@ -76,7 +76,7 @@ const CategoryPage = () => {
   const categoryStructuredData = useMemo(() => generateStructuredData('category', {
     title: standardizedCategory,
     description: `Discover the best AI tools in the ${standardizedCategory} category`,
-    toolCount: allTools.length // Use total count for SEO
+    toolCount: allTools.length
   }), [standardizedCategory]);
 
   const breadcrumbItems = useMemo(() => [
@@ -84,6 +84,11 @@ const CategoryPage = () => {
     { name: "AI Tools", url: "https://aitools.studio/#tools-section" },
     { name: standardizedCategory, url: `https://aitools.studio/category/${encodeURIComponent(standardizedCategory)}` }
   ], [standardizedCategory]);
+
+  // Calculate tool count as number for CategoryHeader
+  const toolCount = useMemo(() => {
+    return toolsLoaded ? categoryTools.length : 100;
+  }, [toolsLoaded, categoryTools.length]);
 
   if (!decodedCategory) {
     return (
@@ -131,7 +136,7 @@ const CategoryPage = () => {
         
         <CategoryHeader 
           categoryName={standardizedCategory}
-          toolCount={toolsLoaded ? categoryTools.length : "100+"}
+          toolCount={toolCount}
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
         />
