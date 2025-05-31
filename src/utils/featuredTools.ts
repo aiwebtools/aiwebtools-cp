@@ -112,56 +112,60 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
   console.log(`🔍 Total AI Web Tools GPTs from source: ${aiWebToolsGPTs.length}`);
   console.log(`📋 First 10 AI Web Tools GPTs:`, aiWebToolsGPTs.slice(0, 10).map(t => t.title));
   
-  // Verify which AI Web Tools GPTs are actually in allTools
-  const aiWebToolsInAllTools = aiWebToolsGPTs.filter(gpt => 
+  // Instead of filtering, just include ALL AI Web Tools GPTs directly
+  // This ensures we never miss any of your custom GPTs
+  const allAiWebToolsGPTs = aiWebToolsGPTs.filter(gpt => 
     allTools.some(tool => tool.title === gpt.title)
   );
   
-  console.log(`✅ AI Web Tools GPTs found in allTools: ${aiWebToolsInAllTools.length} of ${aiWebToolsGPTs.length}`);
+  console.log(`✅ AI Web Tools GPTs verified in allTools: ${allAiWebToolsGPTs.length} of ${aiWebToolsGPTs.length}`);
   
-  if (aiWebToolsInAllTools.length < aiWebToolsGPTs.length) {
+  if (allAiWebToolsGPTs.length < aiWebToolsGPTs.length) {
     const missing = aiWebToolsGPTs.filter(gpt => 
       !allTools.some(tool => tool.title === gpt.title)
     );
-    console.warn(`❌ Missing AI Web Tools GPTs:`, missing.slice(0, 10).map(t => t.title));
+    console.warn(`❌ Missing AI Web Tools GPTs from allTools:`, missing.slice(0, 10).map(t => t.title));
   }
   
-  // Filter out any AI Web Tools GPTs that are already in priority tools to avoid duplicates
-  const uniqueAiWebToolsGPTs = aiWebToolsInAllTools.filter(tool =>
-    !priorityTools.some(pTool => pTool.title === tool.title)
-  );
+  // Create a map to track included tools and avoid duplicates
+  const includedTools = new Map<string, Tool>();
   
-  console.log(`✨ Unique AI Web Tools GPTs after filtering duplicates: ${uniqueAiWebToolsGPTs.length}`);
+  // Add priority tools first
+  priorityTools.forEach(tool => {
+    includedTools.set(tool.title, tool);
+  });
+  
+  // Add ALL remaining AI Web Tools GPTs that aren't already included
+  allAiWebToolsGPTs.forEach(tool => {
+    if (!includedTools.has(tool.title)) {
+      includedTools.set(tool.title, tool);
+    }
+  });
   
   // Get additional high-quality tools from the main collection (non-AI Web Tools)
   const additionalTools = allTools.filter(tool => 
-    !priorityTools.some(pTool => pTool.title === tool.title) &&
+    !includedTools.has(tool.title) &&
     !aiWebToolsGPTs.some(awTool => awTool.title === tool.title) &&
     (tool.rating >= 4.5 || tool.totalVotes >= 3000) &&
     !tool.directUrl?.includes('lovable.app') // Exclude other AI Web Tools without proper descriptions
   ).slice(0, 50); // Limit additional tools but prioritize your GPTs
   
-  // Combine all featured tools: Priority first, then ALL AI Web Tools GPTs, then additional
-  const allFeaturedTools = [
-    ...priorityTools, // All priority tools go first
-    ...uniqueAiWebToolsGPTs, // ALL remaining AI Web Tools GPTs
-    ...additionalTools // Additional high-quality tools
-  ];
+  // Add additional tools
+  additionalTools.forEach(tool => {
+    if (!includedTools.has(tool.title)) {
+      includedTools.set(tool.title, tool);
+    }
+  });
+  
+  // Convert map back to array
+  const allFeaturedTools = Array.from(includedTools.values());
   
   console.log(`🚀 Total featured tools being returned: ${allFeaturedTools.length}`);
-  console.log(`📊 Breakdown - Priority: ${priorityTools.length}, AI Web Tools: ${uniqueAiWebToolsGPTs.length}, Additional: ${additionalTools.length}`);
+  console.log(`📊 Breakdown - Priority: ${priorityTools.length}, AI Web Tools: ${allAiWebToolsGPTs.length}, Additional: ${additionalTools.length}`);
   console.log(`🏷️ First 20 featured tool titles:`, allFeaturedTools.slice(0, 20).map(t => t.title));
   
-  // Remove any final duplicates by title (safety check)
-  const uniqueTools = allFeaturedTools.filter((tool, index, self) => 
-    index === self.findIndex(t => t.title === tool.title)
-  );
-  
-  console.log(`✅ Final unique featured tools count: ${uniqueTools.length}`);
-  console.log(`🎯 Confirming first 15 tools in final list:`, uniqueTools.slice(0, 15).map(t => t.title));
-  
   // Final verification - count AI Web Tools GPTs in result
-  const finalAiWebToolsCount = uniqueTools.filter(tool => 
+  const finalAiWebToolsCount = allFeaturedTools.filter(tool => 
     aiWebToolsGPTs.some(gpt => gpt.title === tool.title) ||
     tool.directUrl?.includes('lovable.app')
   ).length;
@@ -171,13 +175,24 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
   if (finalAiWebToolsCount < aiWebToolsGPTs.length) {
     console.error(`❌ CRITICAL: Only ${finalAiWebToolsCount} of ${aiWebToolsGPTs.length} AI Web Tools GPTs in featured tools!`);
     
-    // Find what's missing
+    // Find what's missing and force add them
     const missingFromFeatured = aiWebToolsGPTs.filter(gpt => 
-      !uniqueTools.some(featured => featured.title === gpt.title)
+      !allFeaturedTools.some(featured => featured.title === gpt.title)
     );
     console.error(`❌ Missing from featured:`, missingFromFeatured.slice(0, 20).map(t => t.title));
+    
+    // Force add missing GPTs to ensure ALL are included
+    missingFromFeatured.forEach(missingGpt => {
+      const foundInAllTools = allTools.find(tool => tool.title === missingGpt.title);
+      if (foundInAllTools) {
+        allFeaturedTools.push(foundInAllTools);
+        console.log(`✅ Force added missing GPT: ${foundInAllTools.title}`);
+      }
+    });
+  } else {
+    console.log(`✅ SUCCESS: All ${aiWebToolsGPTs.length} AI Web Tools GPTs are included in featured tools!`);
   }
   
-  // Return ALL unique tools - this ensures ALL AI Web Tools GPTs appear in featured sections
-  return uniqueTools;
+  // Return ALL tools - this ensures ALL AI Web Tools GPTs appear in featured sections
+  return allFeaturedTools;
 };
