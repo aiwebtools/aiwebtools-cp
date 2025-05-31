@@ -1,8 +1,9 @@
+
 import { Tool } from "@/types/tools";
 import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
 
 export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
-  // Priority tools that MUST be in top positions - expanded to include all four sets
+  // Priority tools that MUST be in top positions - all four sets (45 tools total)
   const priorityTitles = [
     // First priority set (10 tools)
     'BOOK WRITER GPT',
@@ -59,7 +60,7 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     'Binary-Text-Image Converter GPT'
   ];
   
-  // Find priority tools first
+  // Find priority tools first - these MUST appear in featured sections everywhere
   const priorityTools = allTools.filter(tool => 
     priorityTitles.some(title => 
       tool.title.includes(title) || 
@@ -69,12 +70,11 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     )
   );
   
-  console.log(`🎯 Priority tools found: ${priorityTools.length}`);
+  console.log(`🎯 Priority tools found for featured display: ${priorityTools.length} of ${priorityTitles.length} expected`);
   console.log(`📋 Priority tools:`, priorityTools.map(t => t.title));
   
-  // Get ALL AI Web Tools GPTs directly from the source
+  // Get ALL AI Web Tools GPTs directly from the source to ensure consistency
   console.log(`🔍 Total AI Web Tools GPTs available: ${aiWebToolsGPTs.length}`);
-  console.log(`📝 First 25 AI Web Tools GPT titles:`, aiWebToolsGPTs.slice(0, 25).map(t => t.title));
   
   // Filter out any AI Web Tools GPTs that are already in priority tools to avoid duplicates
   const uniqueAiWebToolsGPTs = aiWebToolsGPTs.filter(tool =>
@@ -89,13 +89,13 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     !aiWebToolsGPTs.some(awTool => awTool.title === tool.title) &&
     (tool.rating >= 4.5 || tool.totalVotes >= 3000) &&
     !tool.directUrl?.includes('lovable.app') // Exclude other AI Web Tools without proper descriptions
-  ).slice(0, 20); // Keep some additional tools but prioritize your GPTs
+  ).slice(0, 30); // Keep additional tools but prioritize your GPTs
   
-  // Combine all featured tools: Priority first, then ALL AI Web Tools GPTs, then additional
+  // Combine all featured tools: Priority first (45 tools), then ALL AI Web Tools GPTs, then additional
   const allFeaturedTools = [
-    ...priorityTools,
-    ...uniqueAiWebToolsGPTs, // This includes ALL your GPTs with descriptions
-    ...additionalTools
+    ...priorityTools, // All 45 priority tools go first
+    ...uniqueAiWebToolsGPTs, // All remaining AI Web Tools GPTs
+    ...additionalTools // Additional high-quality tools
   ];
   
   console.log(`🚀 Total featured tools being returned: ${allFeaturedTools.length}`);
@@ -106,9 +106,9 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     index === self.findIndex(t => t.title === tool.title)
   );
   
-  console.log(`✅ Final unique tools count: ${uniqueTools.length}`);
-  console.log(`🏷️ First 30 tool titles:`, uniqueTools.slice(0, 30).map(t => t.title));
+  console.log(`✅ Final unique featured tools count: ${uniqueTools.length}`);
+  console.log(`🏷️ First 45 priority tool titles:`, uniqueTools.slice(0, 45).map(t => t.title));
   
-  // Return ALL unique tools - this should include ALL your AI Web Tools GPTs
+  // Return ALL unique tools - this ensures ALL priority tools appear in featured sections everywhere
   return uniqueTools;
 };

@@ -10,13 +10,13 @@ import { createFeaturedTools } from "@/utils/featuredTools";
 export const useFeaturedToolsState = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [displayedCount, setDisplayedCount] = useState<number>(30); // Increased to show more tools initially
+  const [displayedCount, setDisplayedCount] = useState<number>(45); // Increased to show all 45 priority tools initially
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleCategoryChange = (category: string | null) => {
     setSelectedCategory(category);
     setSearchTerm("");
-    setDisplayedCount(30);
+    setDisplayedCount(45); // Always show all priority tools first
     setIsLoading(false);
     // Clear saved state when actively changing filters
     sessionStorage.removeItem('aitools-scroll-position');
@@ -26,7 +26,7 @@ export const useFeaturedToolsState = () => {
   const handleSearchChange = (term: string) => {
     setSearchTerm(term);
     setSelectedCategory(null);
-    setDisplayedCount(30);
+    setDisplayedCount(45); // Always show all priority tools first
     setIsLoading(false);
     // Clear saved state when actively searching
     sessionStorage.removeItem('aitools-scroll-position');
@@ -73,9 +73,9 @@ export const useFeaturedToolsState = () => {
       // Don't apply deduplication for search - show all matching results
       tools = searchResults;
     } else {
-      // For homepage, use the featured tools with all AI Web Tools GPTs
+      // For homepage, use the featured tools with ALL priority tools and AI Web Tools GPTs
       tools = createFeaturedTools(allTools);
-      console.log(`🏠 Homepage - showing ${tools.length} featured tools (including all AI Web Tools GPTs)`);
+      console.log(`🏠 Homepage - showing ${tools.length} featured tools (including ALL 45 priority tools + all AI Web Tools GPTs)`);
     }
 
     return tools;

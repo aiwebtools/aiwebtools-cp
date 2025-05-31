@@ -19,6 +19,9 @@ const FeaturedToolsSection = ({ onToolsLoaded }: FeaturedToolsSectionProps) => {
           <div className="inline-block px-6 py-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/50 rounded-full text-green-300 font-bold">
             ✨ Complete AI Web Tools GPT Collection - 100% Free Access ✨
           </div>
+          <div className="mt-4 text-cyan-300 text-lg font-semibold">
+            🎯 Featured Priority Tools + Complete GPT Suite Available Now!
+          </div>
         </div>
         
         <FeaturedTools onToolsLoaded={onToolsLoaded} />
