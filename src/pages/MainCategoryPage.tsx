@@ -23,6 +23,7 @@ const MainCategoryPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showAllTools, setShowAllTools] = useState(false);
   const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(24);
+  const [showAllCategoryTools, setShowAllCategoryTools] = useState(false);
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
@@ -53,11 +54,6 @@ const MainCategoryPage = () => {
     return null;
   }
 
-  // Debug: Log all available tools and categories
-  console.log(`🌟 Total tools in database: ${allTools.length}`);
-  console.log(`📊 All tool categories:`, [...new Set(allTools.map(tool => tool.category))].sort());
-  console.log(`🔍 Sample tools:`, allTools.slice(0, 5).map(t => ({ title: t.title, category: t.category, url: t.directUrl })));
-
   // Get tools for this main category
   const categoryTools = getToolsByMainCategory(allTools, decodedCategoryName);
   
@@ -84,10 +80,16 @@ const MainCategoryPage = () => {
     allFilteredToolsCount: allFilteredTools.length,
     totalAllToolsCount: allTools.length,
     showAllTools,
+    showAllCategoryTools,
     searchTerm: searchTerm || 'none',
     displayedCount,
     allToolsDisplayedCount
   });
+
+  // Calculate the actual displayed count based on what we're showing
+  const actualDisplayedCount = showAllCategoryTools ? filteredTools.length : displayedCount;
+  const currentTools = showAllTools ? allFilteredTools : filteredTools;
+  const currentDisplayedCount = showAllTools ? allToolsDisplayedCount : actualDisplayedCount;
 
   const handleLoadMore = () => {
     if (isLoading || displayedCount >= filteredTools.length) return;
@@ -116,7 +118,20 @@ const MainCategoryPage = () => {
     setSearchTerm(value);
     setDisplayedCount(24); // Reset displayed count when searching
     setAllToolsDisplayedCount(24); // Reset all tools count when searching
+    setShowAllCategoryTools(false); // Reset show all category tools when searching
     // Don't scroll or navigate - just update the search term
+  };
+
+  const handleShowAllCategoryTools = () => {
+    console.log(`🚀 Show All Category Tools clicked! Total category tools: ${filteredTools.length}`);
+    setShowAllCategoryTools(true);
+    // Scroll to the tools section
+    setTimeout(() => {
+      const toolsSection = document.getElementById('category-tools-section');
+      if (toolsSection) {
+        toolsSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   const handleSeeMoreAITools = () => {
@@ -136,22 +151,26 @@ const MainCategoryPage = () => {
   useInfiniteScroll({
     isLoading,
     showLoadMoreButton: false,
-    displayedCount: showAllTools ? allToolsDisplayedCount : displayedCount,
-    totalTools: showAllTools ? allFilteredTools.length : filteredTools.length,
+    displayedCount: currentDisplayedCount,
+    totalTools: currentTools.length,
     onLoadMore: showAllTools ? handleAllToolsLoadMore : handleLoadMore,
     searchTerm: searchTerm
   });
 
-  const currentTools = showAllTools ? allFilteredTools : filteredTools;
-  const currentDisplayedCount = showAllTools ? allToolsDisplayedCount : displayedCount;
   const hasMoreTools = currentDisplayedCount < currentTools.length;
   const showCompletionMessage = !hasMoreTools && !isLoading && currentTools.length > 20;
+
+  // Show "Show All Tools" button when we have more tools in category and not showing all yet
+  const shouldShowAllCategoryButton = !showAllCategoryTools && !showAllTools && 
+    filteredTools.length > displayedCount && !searchTerm;
 
   console.log(`📊 Final render state:`, {
     currentToolsLength: currentTools.length,
     currentDisplayedCount,
     hasMoreTools,
     showAllTools,
+    showAllCategoryTools,
+    shouldShowAllCategoryButton,
     decodedCategoryName
   });
 
@@ -201,6 +220,22 @@ const MainCategoryPage = () => {
               }
             </div>
           </div>
+
+          {/* Show All Category Tools Button - appears before tools grid */}
+          {shouldShowAllCategoryButton && (
+            <div className="text-center mb-8 px-4">
+              <Button
+                onClick={handleShowAllCategoryTools}
+                size="lg"
+                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
+              >
+                📋 SHOW ALL {filteredTools.length} {decodedCategoryName.toUpperCase()} TOOLS
+              </Button>
+              <div className="mt-4 text-green-300 text-sm">
+                Currently showing {displayedCount} of {filteredTools.length} tools in this category
+              </div>
+            </div>
+          )}
 
           {/* Main Tools Section */}
           <div id={showAllTools ? "all-tools-section" : "category-tools-section"}>
