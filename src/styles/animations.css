@@ -1,84 +1,39 @@
 
 @layer base {
-  /* Optimized cyberpunk glow effects */
+  /* Simplified cyberpunk glow effects */
   .cyber-glow {
-    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+    text-shadow: 0 0 5px currentColor;
     will-change: auto;
     contain: layout style paint;
   }
 
-  /* Enhanced glowing text effect for logo - optimized */
+  /* Simplified glowing text effect */
   .glow-text-effect {
-    text-shadow: 
-      0 0 5px rgba(6, 182, 212, 0.8),
-      0 0 10px rgba(6, 182, 212, 0.6),
-      0 0 15px rgba(6, 182, 212, 0.4);
-    animation: glowing-pulse 3s ease-in-out infinite alternate;
-    will-change: text-shadow;
-  }
-
-  @keyframes glowing-pulse {
-    from {
-      text-shadow: 
-        0 0 5px rgba(6, 182, 212, 0.8),
-        0 0 10px rgba(6, 182, 212, 0.6),
-        0 0 15px rgba(6, 182, 212, 0.4);
-    }
-    to {
-      text-shadow: 
-        0 0 8px rgba(6, 182, 212, 1),
-        0 0 16px rgba(6, 182, 212, 0.8),
-        0 0 24px rgba(6, 182, 212, 0.6);
-    }
-  }
-
-  /* Optimized button animations */
-  .interactive-button {
-    @apply transition-all duration-200;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-    will-change: transform, box-shadow;
+    text-shadow: 0 0 5px rgba(6, 182, 212, 0.8);
+    will-change: auto;
     contain: layout style paint;
   }
 
-  .interactive-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
-    transition: left 0.3s ease;
-    will-change: left;
-  }
-
-  .interactive-button:hover::before {
-    left: 100%;
+  /* Simplified button animations */
+  .interactive-button {
+    @apply transition-transform duration-150;
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+    contain: layout style paint;
   }
 
   .interactive-button:hover {
     transform: scale(1.02);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
   }
 
   .glow-effect {
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
-    animation: pulse-glow 3s ease-in-out infinite alternate;
-    will-change: box-shadow;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    will-change: auto;
+    contain: layout style paint;
   }
 
-  @keyframes pulse-glow {
-    from {
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
-    }
-    to {
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
-    }
-  }
-
-  /* Optimized loading skeleton animation */
+  /* Optimized loading skeleton */
   @keyframes skeleton-loading {
     0% {
       background-position: -200px 0;
@@ -91,25 +46,22 @@
   .skeleton {
     background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
     background-size: 200px 100%;
-    animation: skeleton-loading 1.5s infinite;
+    animation: skeleton-loading 1s infinite;
     will-change: background-position;
   }
 
-  /* Mobile optimizations */
+  /* Mobile optimizations - disable animations */
   @media (max-width: 768px) {
     .cyber-glow {
-      text-shadow: 0 0 5px currentColor;
+      text-shadow: 0 0 3px currentColor;
     }
     
     .glow-text-effect {
-      animation-duration: 4s;
-      text-shadow: 
-        0 0 3px rgba(6, 182, 212, 0.8),
-        0 0 6px rgba(6, 182, 212, 0.6);
+      text-shadow: 0 0 3px rgba(6, 182, 212, 0.8);
     }
     
     .interactive-button {
-      transition-duration: 0.15s;
+      transition-duration: 0.1s;
     }
     
     .interactive-button:hover {
@@ -117,15 +69,7 @@
     }
     
     .glow-effect {
-      animation-duration: 4s;
-      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-    }
-  }
-
-  /* Tablet optimizations */
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .interactive-button:hover {
-      transform: scale(1.03);
+      box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
     }
   }
 
@@ -134,17 +78,29 @@
     .cyber-glow,
     .glow-text-effect,
     .glow-effect {
-      animation: none;
-      text-shadow: 0 0 3px currentColor;
-      box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+      text-shadow: none;
+      box-shadow: none;
     }
     
     .interactive-button {
-      transition: background-color 0.2s ease;
+      transition: none;
     }
     
     .interactive-button:hover {
       transform: none;
+    }
+    
+    .skeleton {
+      animation: none;
+      background: #1a1a1a;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
     }
   }
 }

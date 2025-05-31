@@ -29,15 +29,24 @@ const ToolsGrid = ({
   isLoading = false,
   onCategoryChange
 }: ToolsGridProps) => {
-  // Use the already deduplicated tools directly - no further deduplication needed
-  const displayTools = tools.slice(0, displayedCount);
-  const shouldShowSimilar = shouldShowSimilarTools(tools.length) && !searchTerm; // Don't show similar tools for search
-  const similarTools = shouldShowSimilar ? getContextAwareSimilarTools(tools, searchTerm, selectedCategory) : [];
-  const hasMoreTools = displayedCount < tools.length;
+  // Memoize expensive calculations
+  const { displayTools, shouldShowSimilar, similarTools, categoriesWithCounts, shouldShowCategoriesButton } = useMemo(() => {
+    const displayTools = tools.slice(0, displayedCount);
+    const shouldShowSimilar = shouldShowSimilarTools(tools.length) && !searchTerm;
+    const similarTools = shouldShowSimilar ? getContextAwareSimilarTools(tools, searchTerm, selectedCategory) : [];
+    const categoriesWithCounts = getStandardizedCategoriesWithCounts();
+    const shouldShowCategoriesButton = tools.length < 15 && !selectedCategory && !searchTerm;
 
-  // Get standardized categories for the "See More Categories" button
-  const categoriesWithCounts = getStandardizedCategoriesWithCounts();
-  const shouldShowCategoriesButton = tools.length < 15 && !selectedCategory && !searchTerm;
+    return {
+      displayTools,
+      shouldShowSimilar,
+      similarTools,
+      categoriesWithCounts,
+      shouldShowCategoriesButton
+    };
+  }, [tools, displayedCount, searchTerm, selectedCategory]);
+
+  const hasMoreTools = displayedCount < tools.length;
 
   const getSectionTitle = () => {
     if (selectedCategory) {
@@ -49,11 +58,11 @@ const ToolsGrid = ({
     return <>🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">AI TOOLS COLLECTION</span></>;
   };
 
-  // Create a unique key for each tool to prevent React reconciliation issues
+  // Memoize tools with unique keys
   const toolsWithUniqueKeys = useMemo(() => {
     return displayTools.map((tool, index) => ({
       ...tool,
-      uniqueKey: `${tool.title}-${tool.category}-${index}`
+      uniqueKey: `${tool.title}-${index}`
     }));
   }, [displayTools]);
 
@@ -64,7 +73,7 @@ const ToolsGrid = ({
       {/* Show title for search results and categories */}
       {(selectedCategory || searchTerm) && (
         <div className="text-center mb-8 sm:mb-12 px-4">
-          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8">
             {getSectionTitle()}
           </h3>
           {searchTerm && (
@@ -85,7 +94,7 @@ const ToolsGrid = ({
       {/* Show title for main page only when not at the beginning */}
       {(!selectedCategory && !searchTerm && displayedCount > 12) && (
         <div className="text-center mb-8 sm:mb-12 px-4">
-          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8">
             {getSectionTitle()}
           </h3>
         </div>
@@ -122,12 +131,12 @@ const ToolsGrid = ({
         />
       )}
 
-      {/* Improved loading state */}
+      {/* Simplified loading state */}
       {hasInfiniteScroll && isLoading && hasMoreTools && (
         <div className="text-center mt-8 py-8">
           <div className="flex items-center justify-center space-x-3">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-500"></div>
-            <span className="text-cyan-200 text-lg">
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-cyan-500"></div>
+            <span className="text-cyan-200">
               {searchTerm ? `Loading more search results...` : `Loading more tools...`}
             </span>
           </div>
