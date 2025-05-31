@@ -1,6 +1,6 @@
 
 import { useParams } from "react-router-dom";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
@@ -17,13 +17,13 @@ import { generateStructuredData } from "@/utils/seo";
 const CategoryPage = () => {
   const { categoryName } = useParams();
   const [searchTerm, setSearchTerm] = useState("");
-  const [displayedCount, setDisplayedCount] = useState(12);
+  const [displayedCount, setDisplayedCount] = useState(8); // Start with even fewer tools
 
   // Decode and standardize the category name
   const decodedCategory = categoryName ? decodeURIComponent(categoryName) : "";
   const standardizedCategory = getStandardizedCategoryTitle(decodedCategory);
   
-  // Get tools for this category
+  // Get tools for this category with memoization
   const categoryTools = useMemo(() => {
     console.log(`📂 Loading category page for: "${standardizedCategory}"`);
     const tools = getToolsByCategory(allTools, standardizedCategory);
@@ -31,7 +31,7 @@ const CategoryPage = () => {
     return tools;
   }, [standardizedCategory]);
 
-  // Filter tools by search if search term exists
+  // Filter tools by search with optimized memoization
   const filteredTools = useMemo(() => {
     if (!searchTerm.trim()) {
       return categoryTools;
@@ -46,21 +46,35 @@ const CategoryPage = () => {
     
     console.log(`🔍 Filtered category "${standardizedCategory}" with search "${searchTerm}": ${filtered.length} tools`);
     return filtered;
-  }, [categoryTools, searchTerm]);
+  }, [categoryTools, searchTerm, standardizedCategory]);
 
+  // Optimized effect with cleanup
   useEffect(() => {
-    // Scroll to top when category changes
+    // Immediate scroll to top for better UX
     window.scrollTo(0, 0);
-    setDisplayedCount(12);
+    setDisplayedCount(8); // Reduced initial count
     setSearchTerm("");
     
     // Log category page load for verification
     console.log(`📄 Category page loaded: "${standardizedCategory}" (${categoryTools.length} tools)`);
   }, [standardizedCategory, categoryTools.length]);
 
-  const handleLoadMore = () => {
-    setDisplayedCount(prev => prev + 12);
-  };
+  const handleLoadMore = useCallback(() => {
+    setDisplayedCount(prev => Math.min(prev + 8, filteredTools.length)); // Smaller increment
+  }, [filteredTools.length]);
+
+  // Memoized structured data and breadcrumbs
+  const categoryStructuredData = useMemo(() => generateStructuredData('category', {
+    title: standardizedCategory,
+    description: `Discover the best AI tools in the ${standardizedCategory} category`,
+    toolCount: categoryTools.length
+  }), [standardizedCategory, categoryTools.length]);
+
+  const breadcrumbItems = useMemo(() => [
+    { name: "Home", url: "https://aitools.studio" },
+    { name: "AI Tools", url: "https://aitools.studio/#tools-section" },
+    { name: standardizedCategory, url: `https://aitools.studio/category/${encodeURIComponent(standardizedCategory)}` }
+  ], [standardizedCategory]);
 
   if (!decodedCategory) {
     return (
@@ -80,18 +94,6 @@ const CategoryPage = () => {
       </div>
     );
   }
-
-  const categoryStructuredData = generateStructuredData('category', {
-    title: standardizedCategory,
-    description: `Discover the best AI tools in the ${standardizedCategory} category`,
-    toolCount: categoryTools.length
-  });
-
-  const breadcrumbItems = [
-    { name: "Home", url: "https://aitools.studio" },
-    { name: "AI Tools", url: "https://aitools.studio/#tools-section" },
-    { name: standardizedCategory, url: `https://aitools.studio/category/${encodeURIComponent(standardizedCategory)}` }
-  ];
 
   return (
     <div className="min-h-screen bg-black relative">

@@ -6,7 +6,7 @@ import SimilarToolsRecommendation from "@/components/tools/SimilarToolsRecommend
 import SeeMoreCategoriesButton from "@/components/tools/SeeMoreCategoriesButton";
 import { getContextAwareSimilarTools, shouldShowSimilarTools } from "@/utils/contextAwareSimilarTools";
 import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
-import { useMemo } from "react";
+import { useMemo, useCallback, memo } from "react";
 
 interface ToolsGridProps {
   tools: Tool[];
@@ -19,7 +19,10 @@ interface ToolsGridProps {
   onCategoryChange?: (category: string) => void;
 }
 
-const ToolsGrid = ({ 
+// Memoized ToolCard to prevent unnecessary re-renders
+const MemoizedToolCard = memo(ToolCard);
+
+const ToolsGrid = memo(({ 
   tools, 
   displayedCount, 
   selectedCategory, 
@@ -29,17 +32,28 @@ const ToolsGrid = ({
   isLoading = false,
   onCategoryChange
 }: ToolsGridProps) => {
-  // Use the already deduplicated tools directly - no further deduplication needed
-  const displayTools = tools.slice(0, displayedCount);
-  const shouldShowSimilar = shouldShowSimilarTools(tools.length) && !searchTerm; // Don't show similar tools for search
-  const similarTools = shouldShowSimilar ? getContextAwareSimilarTools(tools, searchTerm, selectedCategory) : [];
+  // Optimized tool slicing with memoization
+  const displayTools = useMemo(() => {
+    return tools.slice(0, Math.min(displayedCount, tools.length));
+  }, [tools, displayedCount]);
+
+  const shouldShowSimilar = useMemo(() => 
+    shouldShowSimilarTools(tools.length) && !searchTerm,
+    [tools.length, searchTerm]
+  );
+
+  const similarTools = useMemo(() => 
+    shouldShowSimilar ? getContextAwareSimilarTools(tools, searchTerm, selectedCategory) : [],
+    [shouldShowSimilar, tools, searchTerm, selectedCategory]
+  );
+
   const hasMoreTools = displayedCount < tools.length;
 
   // Get standardized categories for the "See More Categories" button
-  const categoriesWithCounts = getStandardizedCategoriesWithCounts();
+  const categoriesWithCounts = useMemo(() => getStandardizedCategoriesWithCounts(), []);
   const shouldShowCategoriesButton = tools.length < 15 && !selectedCategory && !searchTerm;
 
-  const getSectionTitle = () => {
+  const getSectionTitle = useCallback(() => {
     if (selectedCategory) {
       return <>🎯 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{selectedCategory}</span></>;
     }
@@ -47,17 +61,17 @@ const ToolsGrid = ({
       return <>🔍 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Search Results for "{searchTerm}"</span></>;
     }
     return <>🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">AI TOOLS COLLECTION</span></>;
-  };
+  }, [selectedCategory, searchTerm]);
 
-  // Create a unique key for each tool to prevent React reconciliation issues
-  const toolsWithUniqueKeys = useMemo(() => {
+  // Create stable keys for tools to prevent React reconciliation issues
+  const toolsWithStableKeys = useMemo(() => {
     return displayTools.map((tool, index) => ({
       ...tool,
-      uniqueKey: `${tool.title}-${tool.category}-${index}`
+      stableKey: `${tool.title.replace(/[^a-zA-Z0-9]/g, '')}-${index}`
     }));
   }, [displayTools]);
 
-  if (toolsWithUniqueKeys.length === 0) return null;
+  if (toolsWithStableKeys.length === 0) return null;
 
   return (
     <>
@@ -91,16 +105,17 @@ const ToolsGrid = ({
         </div>
       )}
 
-      {/* Optimized grid with better performance */}
+      {/* Highly optimized grid with performance enhancements */}
       <div 
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-0" 
         style={{ 
           contentVisibility: 'auto',
-          containIntrinsicSize: '300px'
+          containIntrinsicSize: '300px',
+          contain: 'layout style paint'
         }}
       >
-        {toolsWithUniqueKeys.map((tool) => (
-          <ToolCard key={tool.uniqueKey} tool={tool} />
+        {toolsWithStableKeys.map((tool) => (
+          <MemoizedToolCard key={tool.stableKey} tool={tool} />
         ))}
       </div>
 
@@ -167,6 +182,8 @@ const ToolsGrid = ({
       )}
     </>
   );
-};
+});
+
+ToolsGrid.displayName = 'ToolsGrid';
 
 export default ToolsGrid;

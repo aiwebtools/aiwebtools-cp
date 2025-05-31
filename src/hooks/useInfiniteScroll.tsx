@@ -24,48 +24,54 @@ export const useInfiniteScroll = ({
     onLoadMore();
   }, [isLoading, onLoadMore, searchTerm]);
 
-  // Enhanced infinite scroll with better performance and search optimization
+  // High performance infinite scroll with aggressive throttling
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
+    let rafId: number;
     let isThrottled = false;
     
     const handleScroll = () => {
-      if (isLoading || showLoadMoreButton || isThrottled) return; // Don't auto-scroll if button mode is enabled or throttled
+      if (isLoading || showLoadMoreButton || isThrottled) return;
       
-      // Throttle scroll events for better performance
+      // Heavy throttling for performance
       isThrottled = true;
       setTimeout(() => {
         isThrottled = false;
-      }, 100);
+      }, 300); // Increased throttle time
       
-      // Clear previous timeout to prevent multiple triggers
+      // Clear previous timeout and RAF
       clearTimeout(timeoutId);
+      if (rafId) cancelAnimationFrame(rafId);
       
-      timeoutId = setTimeout(() => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        
-        // More conservative threshold for better performance
-        const threshold = searchTerm ? 600 : 1000; // Increased threshold to prevent premature loading
-        const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
-        
-        console.log(`📏 Scroll check - ScrollTop: ${scrollTop}, WindowHeight: ${windowHeight}, DocumentHeight: ${documentHeight}, NearBottom: ${nearBottom}, Search: "${searchTerm}"`);
-        
-        if (nearBottom && displayedCount < totalTools && !isLoading) {
-          console.log(`🎯 Triggering load more - Displayed: ${displayedCount}, Total: ${totalTools}, Search: "${searchTerm}"`);
-          handleLoadMore();
-        }
-      }, searchTerm ? 100 : 200); // Slightly delayed response to prevent rapid triggering
+      // Use RAF for smoother performance
+      rafId = requestAnimationFrame(() => {
+        timeoutId = setTimeout(() => {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const windowHeight = window.innerHeight;
+          const documentHeight = document.documentElement.scrollHeight;
+          
+          // Very conservative threshold to prevent excessive loading
+          const threshold = searchTerm ? 800 : 1200;
+          const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
+          
+          if (nearBottom && displayedCount < totalTools && !isLoading) {
+            console.log(`🎯 Triggering load more - Displayed: ${displayedCount}, Total: ${totalTools}, Search: "${searchTerm}"`);
+            handleLoadMore();
+          }
+        }, searchTerm ? 200 : 400); // Longer delays for better performance
+      });
     };
 
-    // Always enable scroll listening, especially for search results
-    console.log(`🎮 Setting up infinite scroll - ShowButton: ${showLoadMoreButton}, Displayed: ${displayedCount}, Total: ${totalTools}, Search: "${searchTerm}"`);
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Only enable scroll when absolutely necessary
+    if (!showLoadMoreButton && displayedCount < totalTools) {
+      console.log(`🎮 Setting up infinite scroll - Displayed: ${displayedCount}, Total: ${totalTools}, Search: "${searchTerm}"`);
+      window.addEventListener('scroll', handleScroll, { passive: true });
+    }
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
       clearTimeout(timeoutId);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, [displayedCount, handleLoadMore, isLoading, showLoadMoreButton, totalTools, searchTerm]);
 
