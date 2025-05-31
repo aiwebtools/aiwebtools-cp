@@ -1,5 +1,4 @@
-
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { getCategoriesWithCounts, getToolsByCategory } from "@/utils/categoryUtils";
@@ -7,52 +6,50 @@ import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
 import { createDeduplicatedToolsList } from "@/utils/toolDeduplication";
 import { createFeaturedTools } from "@/utils/featuredTools";
 import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
+import { useDebounce } from "./useDebounce";
 
 export const useFeaturedToolsState = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [displayedCount, setDisplayedCount] = useState<number>(60); // Increased to show more tools initially
+  const [displayedCount, setDisplayedCount] = useState<number>(60);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleCategoryChange = (category: string | null) => {
+  // Debounce search term to prevent excessive filtering
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
+  const handleCategoryChange = useCallback((category: string | null) => {
     setSelectedCategory(category);
     setSearchTerm("");
-    setDisplayedCount(60); // Show more tools initially
+    setDisplayedCount(60);
     setIsLoading(false);
-    // Clear saved state when actively changing filters
     sessionStorage.removeItem('aitools-scroll-position');
     sessionStorage.removeItem('aitools-displayed-count');
-  };
+  }, []);
 
-  const handleSearchChange = (term: string) => {
+  const handleSearchChange = useCallback((term: string) => {
     setSearchTerm(term);
     setSelectedCategory(null);
-    setDisplayedCount(60); // Show more tools initially
+    setDisplayedCount(60);
     setIsLoading(false);
-    // Clear saved state when actively searching
     sessionStorage.removeItem('aitools-scroll-position');
     sessionStorage.removeItem('aitools-displayed-count');
-  };
+  }, []);
 
   const filteredTools = useMemo(() => {
-    console.log(`🔧 Filtering tools - Category: ${selectedCategory}, Search: ${searchTerm}, Total tools: ${allTools.length}`);
+    console.log(`🔧 Filtering tools - Category: ${selectedCategory}, Search: ${debouncedSearchTerm}, Total tools: ${allTools.length}`);
     console.log(`🎯 AI Web Tools GPTs source count: ${aiWebToolsGPTs.length}`);
     
     let tools = allTools;
 
     if (selectedCategory) {
-      // Get tools from the selected category first
       const categoryTools = getToolsByCategory(allTools, selectedCategory);
       console.log(`📂 Found ${categoryTools.length} tools in category "${selectedCategory}"`);
       
-      // Apply smart deduplication that preserves category order
       tools = createDeduplicatedToolsList(categoryTools, 0);
       
-      // If we have fewer than 50 tools in this category, add related tools
       if (tools.length < 50) {
         console.log(`🔄 Category has only ${tools.length} tools, adding related tools...`);
         
-        // Get tools from related categories
         const relatedCategories = getRelatedCategories(selectedCategory);
         const relatedTools = allTools.filter(tool => 
           relatedCategories.includes(tool.category || '') && 
@@ -61,25 +58,21 @@ export const useFeaturedToolsState = () => {
         
         console.log(`🎯 Found ${relatedTools.length} related tools from categories: ${relatedCategories.join(', ')}`);
         
-        // Add related tools up to a reasonable limit
         const additionalTools = createDeduplicatedToolsList(relatedTools, 0).slice(0, 30);
         tools = [...tools, ...additionalTools];
       }
       
       console.log(`📊 Final category result: ${tools.length} tools`);
-    } else if (searchTerm) {
-      // For search, return ALL matching tools without limiting
-      const searchResults = searchTools(allTools, searchTerm);
-      console.log(`🔍 Search "${searchTerm}" found ${searchResults.length} tools (unlimited)`);
+    } else if (debouncedSearchTerm) {
+      // Use debounced search term to prevent excessive filtering
+      const searchResults = searchTools(allTools, debouncedSearchTerm);
+      console.log(`🔍 Search "${debouncedSearchTerm}" found ${searchResults.length} tools (unlimited)`);
       
-      // Don't apply deduplication for search - show all matching results
       tools = searchResults;
     } else {
-      // For homepage, use the featured tools with ALL AI Web Tools GPTs
       tools = createFeaturedTools(allTools);
       console.log(`🏠 Homepage - showing ${tools.length} featured tools`);
       
-      // Verify AI Web Tools GPTs are included
       const aiWebToolsInFiltered = tools.filter(tool => 
         aiWebToolsGPTs.some(gpt => gpt.title === tool.title) ||
         tool.directUrl?.includes('lovable.app')
@@ -96,13 +89,13 @@ export const useFeaturedToolsState = () => {
     }
 
     return tools;
-  }, [selectedCategory, searchTerm]);
+  }, [selectedCategory, debouncedSearchTerm]); // Use debouncedSearchTerm instead of searchTerm
 
   const totalToolsCount = filteredTools.length;
   const categoriesWithCounts = getStandardizedCategoriesWithCounts();
   const hasMoreTools = displayedCount < filteredTools.length;
 
-  console.log(`📊 Hook state - Category: ${selectedCategory}, Search: ${searchTerm}, Total: ${totalToolsCount}, Displayed: ${displayedCount}, Has more: ${hasMoreTools}`);
+  console.log(`📊 Hook state - Category: ${selectedCategory}, Search: ${searchTerm}, Debounced: ${debouncedSearchTerm}, Total: ${totalToolsCount}, Displayed: ${displayedCount}, Has more: ${hasMoreTools}`);
 
   return {
     selectedCategory,
