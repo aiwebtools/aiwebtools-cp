@@ -28,25 +28,6 @@ export const technicalCategories: MainCategory[] = [
     ]
   },
   {
-    name: "DATA & ANALYTICS AI TOOLS",
-    emoji: "📊",
-    description: "Powerful AI tools for data analysis, business intelligence, and analytics insights",
-    subcategories: [
-      "Data & Analytics Tools",
-      "Data Science & Analytics",
-      "Data Analytics Tools",
-      "Business Intelligence",
-      "Analytics & Insights",
-      "DATA & ANALYTICS AI TOOLS",
-      "Data & Analytics",
-      "Business & Analytics",
-      "Research & Analytics",
-      "Statistical Analysis Tools",
-      "Data Visualization Tools",
-      "Predictive Analytics Tools"
-    ]
-  },
-  {
     name: "AUTOMATION PLATFORMS",
     emoji: "🤖",
     description: "AI-powered automation and workflow tools for streamlining business processes",

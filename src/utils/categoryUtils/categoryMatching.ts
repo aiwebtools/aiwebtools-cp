@@ -7,7 +7,7 @@ import { DATA_ANALYTICS_PRIORITY_TOOLS, MARKETING_SALES_PRIORITY_TOOLS } from ".
 export const getDataAnalyticsTools = (tools: Tool[], categoryName: string): Tool[] => {
   console.log(`🔍 Getting data analytics tools for category: "${categoryName}"`);
   
-  // Get tools that match the direct category
+  // Get tools that match the direct category - including all variations
   const directCategoryTools = tools.filter(tool => 
     tool.category && (
       isSimilarCategory(tool.category, categoryName) ||
@@ -16,7 +16,13 @@ export const getDataAnalyticsTools = (tools: Tool[], categoryName: string): Tool
       isSimilarCategory(tool.category, "Data Analytics Tools") ||
       isSimilarCategory(tool.category, "Data Science & Analytics") ||
       isSimilarCategory(tool.category, "Business Intelligence") ||
-      isSimilarCategory(tool.category, "Analytics & Insights")
+      isSimilarCategory(tool.category, "Analytics & Insights") ||
+      isSimilarCategory(tool.category, "Data & Analytics") ||
+      isSimilarCategory(tool.category, "Business & Analytics") ||
+      isSimilarCategory(tool.category, "Research & Analytics") ||
+      isSimilarCategory(tool.category, "Statistical Analysis Tools") ||
+      isSimilarCategory(tool.category, "Data Visualization Tools") ||
+      isSimilarCategory(tool.category, "Predictive Analytics Tools")
     )
   );
   
