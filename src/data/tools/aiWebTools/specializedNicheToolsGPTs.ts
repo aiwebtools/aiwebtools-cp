@@ -1,5 +1,6 @@
+
 import { Tool } from "@/types/tools";
-import { Sprout, Hammer, MapPin, Calculator, DollarSign, Users, Building, Zap, Leaf } from "lucide-react";
+import { Sprout, Hammer, MapPin, Calculator, DollarSign, Users, Building, Zap, Leaf, Dna, Gamepad, CreditCard, User, Palette, Megaphone, Shield } from "lucide-react";
 
 export const specializedNicheToolsGPTs: Tool[] = [
   {
@@ -29,7 +30,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
     totalVotes: 6234
   },
   {
-    icon: Gamepad2,
+    icon: Gamepad,
     title: "Game Design Document / Developer GPT",
     description: "Bring your video game ideas to life with Game Design Document Developer GPT! This tool is your ultimate assistant for game development, guiding you from concept to completion. It helps you create the perfect Game Design Document (GDD) to plan your video game. Whether you're using Unity, Unreal Engine, or another platform, Game Document Design Developer GPT is your comprehensive assistant for designing and developing your next game.",
     emoji: "🎮",
