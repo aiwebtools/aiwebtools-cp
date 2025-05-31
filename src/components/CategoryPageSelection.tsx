@@ -31,22 +31,30 @@ const CategoryPageSelection = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
           {mainCategories.map((mainCat) => {
-            const count = mainCategoryCounts[mainCat.name] || 0;
-            if (count === 0) return null;
+            const count = mainCat.name === "ALL AI TOOLS" ? allTools.length : (mainCategoryCounts[mainCat.name] || 0);
+            if (count === 0 && mainCat.name !== "ALL AI TOOLS") return null;
             
             return (
               <Button
                 key={mainCat.name}
                 onClick={() => handleMainCategoryClick(mainCat.name)}
                 variant="outline"
-                className="group relative overflow-hidden transition-all duration-300 transform hover:scale-105 border h-auto py-6 px-4 min-w-0 bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-gray-600/50 text-gray-200 hover:from-cyan-600/20 hover:to-blue-600/20 hover:text-white hover:shadow-lg hover:border-cyan-400/50"
+                className={`group relative overflow-hidden transition-all duration-300 transform hover:scale-105 border h-auto py-6 px-4 min-w-0 ${
+                  mainCat.name === "ALL AI TOOLS"
+                    ? "bg-gradient-to-br from-yellow-600/30 to-orange-600/30 border-yellow-400/50 text-yellow-200 hover:from-yellow-600/40 hover:to-orange-600/40 hover:text-yellow-100 hover:shadow-xl hover:border-yellow-300/60"
+                    : "bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-gray-600/50 text-gray-200 hover:from-cyan-600/20 hover:to-blue-600/20 hover:text-white hover:shadow-lg hover:border-cyan-400/50"
+                }`}
               >
                 <div className="flex flex-col items-center space-y-3 w-full min-w-0">
                   <span className="text-2xl flex-shrink-0">{mainCat.emoji}</span>
                   <span className="relative z-10 text-center leading-tight font-bold text-sm break-words hyphens-auto min-w-0 max-w-full">{mainCat.name}</span>
                   <Badge 
                     variant="secondary" 
-                    className="text-xs relative z-10 bg-black/30 text-gray-300 border-gray-500/40 group-hover:bg-cyan-500/20 group-hover:text-white group-hover:border-cyan-400/30 flex-shrink-0"
+                    className={`text-xs relative z-10 flex-shrink-0 ${
+                      mainCat.name === "ALL AI TOOLS"
+                        ? "bg-yellow-500/20 text-yellow-200 border-yellow-400/40 group-hover:bg-yellow-400/30 group-hover:text-yellow-100 group-hover:border-yellow-300/50"
+                        : "bg-black/30 text-gray-300 border-gray-500/40 group-hover:bg-cyan-500/20 group-hover:text-white group-hover:border-cyan-400/30"
+                    }`}
                   >
                     {count} tools
                   </Badge>

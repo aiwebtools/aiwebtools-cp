@@ -8,6 +8,12 @@ export interface MainCategory {
 
 export const mainCategories: MainCategory[] = [
   {
+    name: "ALL AI TOOLS",
+    emoji: "🌟",
+    description: "Complete collection of all AI tools across every category and subcategory",
+    subcategories: ["*"] // Special indicator for all tools
+  },
+  {
     name: "AI CHAT & ASSISTANTS",
     emoji: "🤖",
     description: "Advanced AI chatbots, virtual assistants, and conversational AI platforms for various applications",
