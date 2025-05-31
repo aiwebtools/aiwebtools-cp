@@ -14,5 +14,6 @@ import {
 } from "lucide-react";
 
 export const collaborationTools: Tool[] = [
-  // Removed Discord, Zoom, Microsoft Teams, Google Workspace, and Dropbox as these are not AI tools
+  // Removed non-AI collaboration platforms
+  // This category now contains only verified AI-powered collaboration tools
 ];

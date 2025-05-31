@@ -14,5 +14,6 @@ import {
 } from "lucide-react";
 
 export const communicationTools: Tool[] = [
-  // Removed WhatsApp Web, Google Meet, Skype, Telegram Web, and Signal as these are not AI tools
+  // Removed non-AI communication platforms like Discord
+  // This category now contains only verified AI-powered communication tools
 ];

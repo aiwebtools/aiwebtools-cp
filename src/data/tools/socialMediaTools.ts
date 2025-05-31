@@ -1,10 +1,6 @@
 
 import { Tool } from "@/types/tools";
 import { 
-  Instagram, 
-  Twitter, 
-  Facebook, 
-  Youtube, 
   Calendar, 
   Share2,
   TrendingUp,
@@ -14,5 +10,6 @@ import {
 } from "lucide-react";
 
 export const socialMediaTools: Tool[] = [
-  // Removed Buffer, Later, Hootsuite, SocialBee, and Sprout Social as these are traditional social media management tools, not AI tools
+  // Removed Instagram, Facebook, and other non-AI social media platforms
+  // This category now contains only verified AI-powered social media tools
 ];
