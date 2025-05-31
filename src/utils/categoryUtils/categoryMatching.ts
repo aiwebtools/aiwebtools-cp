@@ -91,6 +91,8 @@ export const getMarketingSalesTools = (tools: Tool[], categoryName: string): Too
 
 // Enhanced handling for Communication & Collaboration category
 export const getCommunicationCollaborationTools = (tools: Tool[], categoryName: string): Tool[] => {
+  console.log(`🔍 Getting communication & collaboration tools for category: "${categoryName}"`);
+  
   const directCategoryTools = tools.filter(tool => 
     tool.category && (
       isSimilarCategory(tool.category, categoryName) ||
@@ -98,9 +100,44 @@ export const getCommunicationCollaborationTools = (tools: Tool[], categoryName: 
       isSimilarCategory(tool.category, "Communication Tools") ||
       isSimilarCategory(tool.category, "COMMUNICATION & COLLABORATION AI TOOLS") ||
       isSimilarCategory(tool.category, "Collaboration Tools") ||
-      isSimilarCategory(tool.category, "Entertainment Tools")
+      isSimilarCategory(tool.category, "Entertainment Tools") ||
+      isSimilarCategory(tool.category, "Entertainment & Gaming") ||
+      isSimilarCategory(tool.category, "Meeting & Transcription Tools") ||
+      isSimilarCategory(tool.category, "Email Management Tools") ||
+      isSimilarCategory(tool.category, "Social Media Tools") ||
+      isSimilarCategory(tool.category, "AI Chat Platforms") ||
+      isSimilarCategory(tool.category, "AI Assistants") ||
+      isSimilarCategory(tool.category, "Content Creation Tools")
     )
   );
   
-  return directCategoryTools;
+  // Also include tools that are clearly communication/collaboration related by content
+  const contentMatchedTools = tools.filter(tool => 
+    tool.description.toLowerCase().includes('communication') ||
+    tool.description.toLowerCase().includes('collaboration') ||
+    tool.description.toLowerCase().includes('team') ||
+    tool.description.toLowerCase().includes('chat') ||
+    tool.description.toLowerCase().includes('messaging') ||
+    tool.description.toLowerCase().includes('meeting') ||
+    tool.description.toLowerCase().includes('social') ||
+    tool.description.toLowerCase().includes('entertainment') ||
+    tool.description.toLowerCase().includes('gaming') ||
+    tool.description.toLowerCase().includes('trivia') ||
+    tool.description.toLowerCase().includes('interactive')
+  );
+  
+  const allTools = [...directCategoryTools, ...contentMatchedTools];
+  const uniqueTools = allTools.filter((tool, index, self) => 
+    index === self.findIndex(t => t.title === tool.title)
+  );
+  
+  console.log(`🔍 Communication & Collaboration Tools Debug:`, {
+    categoryName,
+    directCategoryTools: directCategoryTools.length,
+    contentMatchedTools: contentMatchedTools.length,
+    uniqueTools: uniqueTools.length,
+    sampleTitles: uniqueTools.slice(0, 15).map(t => `${t.title} (${t.category})`)
+  });
+  
+  return uniqueTools;
 };

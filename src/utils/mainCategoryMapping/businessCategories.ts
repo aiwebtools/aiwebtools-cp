@@ -68,7 +68,14 @@ export const businessCategories: MainCategory[] = [
       "Communication Tools",
       "Collaboration Tools",
       "Communication & Entertainment",
-      "Entertainment Tools"
+      "Entertainment Tools",
+      "Entertainment & Gaming",
+      "Meeting & Transcription Tools",
+      "Email Management Tools",
+      "Social Media Tools",
+      "AI Chat Platforms",
+      "AI Assistants",
+      "Content Creation Tools"
     ]
   }
 ];
