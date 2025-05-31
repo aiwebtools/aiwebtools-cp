@@ -17,17 +17,5 @@ export const aiHealthcareTools: Tool[] = [
     category: "Health & Wellness",
     rating: 4.6,
     totalVotes: 1432
-  },
-  {
-    icon: Pill,
-    title: "Atomwise",
-    description: "AI platform for drug discovery that uses deep learning to identify potential new medicines faster.",
-    emoji: "💊",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://www.atomwise.com/",
-    tags: ["drug discovery", "pharmaceutical AI", "molecular analysis", "medical research"],
-    category: "Health & Wellness",
-    rating: 4.4,
-    totalVotes: 1876
   }
 ];
