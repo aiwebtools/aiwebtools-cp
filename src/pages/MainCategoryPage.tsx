@@ -157,11 +157,9 @@ const MainCategoryPage = () => {
         </main>
 
         {/* Featured Tools Section - Our AIWebTools.ai Professional Solutions */}
-        {showCompletionMessage && (
-          <div className="mt-16">
-            <FeaturedToolsSection />
-          </div>
-        )}
+        <div className="mt-16">
+          <FeaturedToolsSection />
+        </div>
         
         <Footer />
       </div>
