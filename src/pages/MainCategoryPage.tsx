@@ -229,9 +229,6 @@ const MainCategoryPage = () => {
           {showCategoryTools && (
             <div id="category-tools-section" className="mt-16 border-t border-cyan-500/30 pt-16">
               <div className="text-center mb-8">
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 cyber-glow">
-                  🎯 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{decodedCategoryName}</span>
-                </h3>
                 <p className="text-gray-300 mb-6">
                   Specialized tools in the {decodedCategoryName} category
                 </p>
