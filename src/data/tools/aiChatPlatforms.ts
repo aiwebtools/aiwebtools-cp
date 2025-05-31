@@ -5,6 +5,7 @@ import {
   Users,
   Brain
 } from "lucide-react";
+import { aiWebToolsGPTs } from "./aiWebToolsGPTs";
 
 export const aiChatPlatforms: Tool[] = [
   {
@@ -105,5 +106,10 @@ export const aiChatPlatforms: Tool[] = [
     category: "AI Chat Platforms",
     rating: 4.4,
     totalVotes: 2654
-  }
+  },
+  // Add all AI Web Tools GPTs to this category
+  ...aiWebToolsGPTs.map(tool => ({
+    ...tool,
+    category: "AI Chat & Assistants" as const
+  }))
 ];
