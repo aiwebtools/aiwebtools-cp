@@ -1,6 +1,6 @@
 
 import { Tool } from "@/types/tools";
-import { FileText, Palette, Shield, Video, Crown, FlaskConical, Martini, ChefHat, Scissors, Phone, Flame, Binary } from "lucide-react";
+import { FileText, Palette, Shield, Video, Crown, FlaskConical, Martini, ChefHat, Scissors, Phone, Flame, Binary, Users } from "lucide-react";
 
 export const fourthPriorityFeaturedGPTs: Tool[] = [
   {
@@ -158,5 +158,18 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     rating: 4.4,
     totalVotes: 2800,
     tags: ["binary conversion", "text conversion", "programming", "data conversion", "developer tools"]
+  },
+  {
+    icon: Users,
+    title: "TALK TO HISTORY GPT",
+    description: "Your gateway to engaging in immersive historical conversations with influential leaders of history. Interact with any historical figures you imagine and gain unique insights and perspectives straight from the source. Powered by GPT-4o, it's a streamlined way to make history come alive. Perfect for students and enthusiasts alike. This tool is designed for educational and research purposes only by AiWebTools.Ai",
+    emoji: "🏛️",
+    color: "from-amber-500 to-orange-600",
+    directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=5t7EXS5tthQ",
+    rating: 4.7,
+    totalVotes: 5432,
+    tags: ["historical conversations", "historical figures", "educational tool", "history learning", "interactive history", "aiwebtools"],
+    category: "Time & History"
   }
 ];
