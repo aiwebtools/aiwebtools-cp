@@ -17,7 +17,15 @@ export const mediaCategories: MainCategory[] = [
       "Video Business Tools",
       "Entertainment Media Tools",
       "Video And Content Tools",
-      "Video Editing And Content Tools"
+      "Video Editing And Content Tools",
+      "Video & Content Creation",
+      "Video Generation",
+      "Video Editing",
+      "Video Marketing",
+      "Video Business",
+      "Multimedia",
+      "Multimedia Tools",
+      "Content Creation"
     ]
   },
   {
