@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Eye, 
@@ -6,7 +7,7 @@ import {
   Star, 
   Moon, 
   Wand2,
-  Crystal,
+  Gem,
   Globe,
   Compass,
   Crown
@@ -14,7 +15,7 @@ import {
 
 export const mysteriousAndUnusualGPTs: Tool[] = [
   {
-    icon: Crystal,
+    icon: Gem,
     title: "Fortune Teller GPT",
     description: "Fortune Teller GPT is an advanced AI-powered analytical tool designed to predict trends, analyze data, and provide insights based on real-world patterns. It combines web searches, statistical modeling, and Python-driven calculations to generate data-backed forecasts on various topics, including economics, technology, resource management, and geopolitical shifts. Unlike traditional fortune-telling, Fortune Teller GPT relies on factual data, historical patterns, and predictive algorithms to uncover likely future outcomes.",
     emoji: "🔮",
