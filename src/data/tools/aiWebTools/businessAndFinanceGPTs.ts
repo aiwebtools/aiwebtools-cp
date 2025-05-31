@@ -1,72 +1,82 @@
 
 import { Tool } from "@/types/tools";
-import { Shield, Briefcase, FileText, Rocket, Building, DollarSign, Globe } from "lucide-react";
+import { 
+  TrendingUp, 
+  DollarSign, 
+  BarChart3, 
+  PieChart, 
+  Calculator, 
+  Briefcase,
+  Target,
+  Building,
+  CreditCard,
+  Banknote
+} from "lucide-react";
 
 export const businessAndFinanceGPTs: Tool[] = [
   {
-    icon: Shield,
-    title: "🔒Insurance Claims GPT",
-    description: "Insurance Claims GPT by AIWebTools.ai is a cutting-edge AI tool revolutionizing claims management and estimation. It offers a seamless, user-friendly experience, guiding users through every step of the claims process with unparalleled accuracy and efficiency. Leveraging advanced damage analysis and generating comprehensive reports, Insurance Claims GPT ensures precise, professional, and swift insurance claim resolutions. Protect yourself from inadequate settlements and ensure fair treatment with Insurance Claims GPT, transforming the way you manage and estimate insurance claims with confidence.",
-    emoji: "🔒",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://insuranceclaimsgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=WNPywJWOUzU",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298535288012901/insurance.webp",
-    tags: ["insurance", "claims processing", "risk assessment", "insurance estimation", "legal assistance", "aiwebtools"],
-    category: "Business & Finance",
-    rating: 4.6,
-    totalVotes: 3234
-  },
-  {
-    icon: Briefcase,
-    title: "MicroSaaS GPT",
-    description: "MicroSaaS GPT is an AI-powered chat assistant that helps entrepreneurs and startups turn niche-specific ideas into fully structured, ready-to-build SaaS applications. By generating innovative concepts and providing complete development blueprints, it streamlines the journey from ideation to deployment. Designed for speed, scalability, and efficiency, it ensures seamless execution using AI code builders.",
-    emoji: "💼",
+    icon: TrendingUp,
+    title: "Trader GPT",
+    description: "Trader GPT is an advanced AI tool designed to assist day traders and investors by providing real-time market analysis and trading signals. It leverages the latest market data to perform comprehensive technical analysis, offering actionable insights for informed trading decisions. Disclaimer: Trader GPT is a simulation ai tool for informational and research purposes only, not professional trading advice, and users agree not to rely on it for real-life trading scenarios or decisions.",
+    emoji: "📈",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://microsaasgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-mockup-advertisement-with-t_AgWMY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["microSaaS", "startup ideas", "saas development", "entrepreneurship", "business innovation", "aiwebtools"],
+    directUrl: "https://tradergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=Izs80Fak4hQ",
+    tags: ["trading", "stock market", "investment", "financial analysis", "market data", "aiwebtools"],
     category: "Business & Finance",
     rating: 4.7,
-    totalVotes: 4567
+    totalVotes: 5432
   },
   {
-    icon: FileText,
-    title: "Training Manual Generator GPT",
-    description: "Our AI-powered Training Manual Generator, developed by AIwebtools.ai, creates comprehensive, customized training manuals for your business. This tool ensures perfect alignment with your company's needs, facilitating effective employee training. Enhance your onboarding process with a detailed, tailored training resource.",
-    emoji: "📋",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298130739138741/training_manual.webp",
-    tags: ["training manuals", "employee training", "business documentation", "onboarding", "corporate training", "aiwebtools"],
+    icon: Calculator,
+    title: "MATERIAL VALUATION GPT",
+    description: "Materiumor is a next-generation valuation assistant designed to bring clarity and transparency to the world of physical and digital assets. Whether you're exploring rare metals, precious gems, or digital currencies, Materiumor provides data-informed insights to help you better understand market value, trade opportunities, and economic trends. Our mission is to make material knowledge accessible, equitable, and empowering—so everyone can make informed decisions about their wealth and resources in an evolving global landscape.",
+    emoji: "⚖️",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://materialvaluationgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=tbZu4vnsY_8",
+    tags: ["material valuation", "asset valuation", "precious metals", "market analysis", "wealth management", "aiwebtools"],
     category: "Business & Finance",
-    rating: 4.5,
-    totalVotes: 3456
-  },
-  {
-    icon: DollarSign,
-    title: "Predictive Credit Score Checker GPT",
-    description: "Predictive Credit Score Checker GPT is an AI tool for estimating creditworthiness based on specific addresses. Ideal for real estate, finance, and lending, it provides quick, data-backed credit score estimates by analyzing local demographics and trends. Use it to assess prospects or evaluate risk. Note that predictions are estimates to guide decision-making, not guarantees. Fast, efficient, and insightful—this AI helps you target leads with confidence!",
-    emoji: "💳",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://predictivecreditscoregpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298032445620294/predictive_analytics.webp",
-    tags: ["credit scoring", "predictive analytics", "financial assessment", "risk evaluation", "credit analysis", "aiwebtools"],
-    category: "Business & Finance",
-    rating: 4.6,
-    totalVotes: 4123
+    rating: 4.8,
+    totalVotes: 5432
   },
   {
     icon: Building,
-    title: "The Resume & Job Finder Ai Suite",
-    description: "The Resume & Job Finder AI Suite by aiwebtools.ai combines Job Finder GPT, Resume Enhancer GPT, and Resume Specialist GPT to elevate your entire job search experience. Job Finder GPT uncovers tailored opportunities, Resume Enhancer GPT sharpens your resume with impactful language, and Resume Specialist GPT not only customizes your resume for specific roles but also serves as a job coach—offering expert guidance and proven job-seeking strategies. Together, they help you apply with confidence and land the role you've been aiming for.",
-    emoji: "📄",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://resumeandjobsgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298130353258687/raume.webp",
-    tags: ["resume building", "job search", "career development", "job matching", "professional development", "aiwebtools"],
+    title: "MicroSaaS GPT",
+    description: "MicroSaaS GPT is an AI-powered chat assistant that helps entrepreneurs and startups turn niche-specific ideas into fully structured, ready-to-build SaaS applications. By generating innovative concepts and providing complete development blueprints, it streamlines the journey from ideation to deployment. Designed for speed, scalability, and efficiency, it ensures seamless execution using AI code builders.",
+    emoji: "🏢",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://microsaasgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-mockup-advertisement-with-t_AgWMY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["SaaS development", "startup", "business ideas", "entrepreneurship", "micro SaaS", "aiwebtools"],
     category: "Business & Finance",
-    rating: 4.8,
-    totalVotes: 6234
+    rating: 4.6,
+    totalVotes: 4321
+  },
+  {
+    icon: CreditCard,
+    title: "Predictive Credit Score Checker GPT",
+    description: "Predictive Credit Score Checker GPT is an AI tool for estimating creditworthiness based on specific addresses. Ideal for real estate, finance, and lending, it provides quick, data-backed credit score estimates by analyzing local demographics and trends. Use it to assess prospects or evaluate risk. Note that predictions are estimates to guide decision-making, not guarantees. Fast, efficient, and insightful—this AI helps you target leads with confidence!",
+    emoji: "💳",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://predictivecreditscoregpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-screenshot-of-a-web-app-with-the-text-predic.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["credit score", "financial assessment", "lending", "risk analysis", "creditworthiness", "aiwebtools"],
+    category: "Business & Finance",
+    rating: 4.5,
+    totalVotes: 3876
+  },
+  {
+    icon: DollarSign,
+    title: "Taxes GPT",
+    description: "Taxes GPT is your AI-powered tax assistant, designed to simplify tax preparation while maximizing your deductions. Securely analyze your financial data, receive accurate tax reports, and minimize liabilities with ease. Let Taxes GPT handle the complexity so you can enjoy greater savings.",
+    emoji: "💰",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xkcsSVbBhf4",
+    tags: ["tax preparation", "tax assistance", "financial planning", "deductions", "tax software", "aiwebtools"],
+    category: "Business & Finance",
+    rating: 4.7,
+    totalVotes: 5123
   }
 ];
