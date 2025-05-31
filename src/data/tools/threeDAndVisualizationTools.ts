@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Box, 
@@ -26,6 +25,18 @@ export const threeDAndVisualizationTools: Tool[] = [
     category: "3D & VISUALIZATION",
     rating: 4.8,
     totalVotes: 4567
+  },
+  {
+    icon: Box,
+    title: "3D Print GPT",
+    description: "Advanced 3D printing assistant for design optimization, troubleshooting, material selection, and printing guidance. Expert advice for all levels of 3D printing.",
+    emoji: "🖨️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://3dprintgpt.lovable.app/?via=aiwebtools",
+    tags: ["3D printing", "design optimization", "troubleshooting", "materials", "printing guidance"],
+    category: "3D & VISUALIZATION",
+    rating: 4.3,
+    totalVotes: 2456
   },
   {
     icon: Box,
