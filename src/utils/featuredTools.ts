@@ -2,7 +2,7 @@ import { Tool } from "@/types/tools";
 import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
 
 export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
-  // Priority tools that MUST be in top positions - expanded to include all three sets
+  // Priority tools that MUST be in top positions - expanded to include all four sets
   const priorityTitles = [
     // First priority set (10 tools)
     'BOOK WRITER GPT',
@@ -43,7 +43,20 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     'Customizable GPT Maker',
     'Historical Apothecary GPT',
     'Home-Schooling Assistant GPT',
-    'Pharmaceutical Assistant GPT'
+    'Pharmaceutical Assistant GPT',
+    // Fourth priority set (12 tools)
+    'Contract Review Bot',
+    'Tattoo Designer GPT',
+    'Firearms Safety Instructor GPT',
+    'Sora Prompt Assistant',
+    'King Blueberry GPT',
+    'PHARMA RESEARCH PRO',
+    'Mixologist GPT',
+    'Chef "Sizzle" AI Culinary Assistant',
+    'RESTYLE ME GPT',
+    'Celebrity Chatline GPT',
+    'Firefighter GPT',
+    'Binary-Text-Image Converter GPT'
   ];
   
   // Find priority tools first
