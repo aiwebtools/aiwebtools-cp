@@ -24,6 +24,12 @@ const ActiveFilters = ({ selectedCategory, searchTerm, totalTools }: ActiveFilte
         )}
         <span className="text-cyan-200">({totalTools} tools)</span>
       </div>
+      {/* Debug info for AI CHAT & ASSISTANTS */}
+      {selectedCategory === "AI CHAT & ASSISTANTS" && (
+        <div className="mt-2 text-xs text-gray-400">
+          Debug: AI Web Tools GPTs should appear first in this category
+        </div>
+      )}
     </div>
   );
 };

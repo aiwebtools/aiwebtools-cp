@@ -54,20 +54,43 @@ const MainCategoryPage = () => {
     return null;
   }
 
-  // Get tools for this main category
+  // Get tools for this main category with enhanced debugging for AI CHAT & ASSISTANTS
   const categoryTools = getToolsByMainCategory(allTools, decodedCategoryName);
+  
+  // Special handling for AI CHAT & ASSISTANTS to ensure AI Web Tools GPTs appear first
+  let finalCategoryTools = categoryTools;
+  if (decodedCategoryName === "AI CHAT & ASSISTANTS") {
+    const aiWebToolsGPTs = categoryTools.filter(tool => 
+      tool.directUrl?.includes('lovable.app') || 
+      tool.title.includes('GPT') && tool.directUrl?.includes('aiwebtools')
+    );
+    const otherTools = categoryTools.filter(tool => 
+      !tool.directUrl?.includes('lovable.app') && 
+      !(tool.title.includes('GPT') && tool.directUrl?.includes('aiwebtools'))
+    );
+    
+    finalCategoryTools = [...aiWebToolsGPTs, ...otherTools];
+    
+    console.log(`🎯 AI CHAT & ASSISTANTS Debug:`, {
+      totalCategoryTools: categoryTools.length,
+      aiWebToolsGPTs: aiWebToolsGPTs.length,
+      otherTools: otherTools.length,
+      finalCount: finalCategoryTools.length,
+      firstFewTitles: finalCategoryTools.slice(0, 5).map(t => t.title)
+    });
+  }
   
   console.log(`🔍 MainCategoryPage Debug for "${decodedCategoryName}":`, {
     isAllAITools: decodedCategoryName === "ALL AI TOOLS",
-    categoryToolsCount: categoryTools.length,
+    categoryToolsCount: finalCategoryTools.length,
     totalAllToolsCount: allTools.length,
-    sampleCategoryTools: categoryTools.slice(0, 3).map(t => ({ title: t.title, category: t.category }))
+    sampleCategoryTools: finalCategoryTools.slice(0, 3).map(t => ({ title: t.title, category: t.category }))
   });
   
   // Apply search filter if search term exists
   const filteredTools = searchTerm.trim() 
-    ? searchTools(categoryTools, searchTerm)
-    : categoryTools;
+    ? searchTools(finalCategoryTools, searchTerm)
+    : finalCategoryTools;
 
   // Get all tools for "See More" functionality - ensure we get ALL tools
   const allFilteredTools = searchTerm.trim() 
@@ -75,7 +98,7 @@ const MainCategoryPage = () => {
     : [...allTools]; // Create a copy to avoid mutation
   
   console.log(`📊 Current display state:`, {
-    categoryToolsCount: categoryTools.length,
+    categoryToolsCount: finalCategoryTools.length,
     filteredToolsCount: filteredTools.length,
     allFilteredToolsCount: allFilteredTools.length,
     totalAllToolsCount: allTools.length,
@@ -216,7 +239,7 @@ const MainCategoryPage = () => {
             <div className="text-cyan-400 font-semibold">
               {showAllTools 
                 ? (searchTerm ? `${allFilteredTools.length} tools found` : `${allTools.length} total tools available`)
-                : (searchTerm ? `${filteredTools.length} tools found` : `${categoryTools.length} tools available`)
+                : (searchTerm ? `${filteredTools.length} tools found` : `${finalCategoryTools.length} tools available`)
               }
             </div>
           </div>
