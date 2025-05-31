@@ -68,7 +68,7 @@ const CategoryFilters = ({
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
         <Input
           type="text"
-          placeholder="Search AI Web Tools GPTs..."
+          placeholder="SEARCH AI WEB TOOLS DATABASE"
           value={localSearchTerm}
           onChange={handleSearchInputChange}
           className="pl-10 pr-10 bg-black/50 border-cyan-500/30 text-cyan-100 placeholder-cyan-400/70 focus:border-cyan-400 focus:ring-cyan-400/30 rounded-lg"
