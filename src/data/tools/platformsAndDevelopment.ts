@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Code, 
@@ -17,6 +16,19 @@ import {
 
 export const platformsAndDevelopment: Tool[] = [
   {
+    icon: Code,
+    title: "Lovable.dev",
+    description: "AI-powered web application development platform that enables users to build, modify, and deploy React applications through natural language conversations with AI.",
+    emoji: "💻",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://lovable.dev/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/lovable-ai-web-development.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    category: "AI DEVELOPMENT & PLATFORMS",
+    tags: ["AI development", "web development", "React", "no-code", "AI coding"],
+    rating: 4.8,
+    totalVotes: 4567
+  },
+  {
     icon: Bot,
     title: "GEMINI/GOOGLE AI STUDIO",
     description: "Google's advanced AI platform for developing and deploying AI applications with powerful multimodal capabilities and Google's latest AI technology.",
@@ -24,7 +36,7 @@ export const platformsAndDevelopment: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "http://g.co/g1referral/911Z9NTK",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/gemini_multimodal_live.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    category: "DEVELOPMENT & CODING",
+    category: "AI DEVELOPMENT & PLATFORMS",
     tags: ["Google AI", "Gemini", "AI development", "multimodal AI"],
     rating: 4.9,
     totalVotes: 5678
@@ -128,7 +140,7 @@ export const platformsAndDevelopment: Tool[] = [
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://huggingface.co/spaces",
     tags: ["community platform", "AI applications", "Gradio", "Streamlit", "open source ML"],
-    category: "DEVELOPMENT & CODING",
+    category: "AI DEVELOPMENT & PLATFORMS",
     rating: 4.8,
     totalVotes: 5234
   },
@@ -140,7 +152,7 @@ export const platformsAndDevelopment: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://copycoder.ai/",
     tags: ["UI screenshots", "code generation", "AI prompts", "development tools", "automation"],
-    category: "DEVELOPMENT & CODING",
+    category: "AI DEVELOPMENT & PLATFORMS",
     rating: 4.4,
     totalVotes: 2456
   },
@@ -152,7 +164,7 @@ export const platformsAndDevelopment: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://n8n.io/",
     tags: ["workflow automation", "open source", "no-code", "self-hosted", "app integration"],
-    category: "DEVELOPMENT & CODING",
+    category: "AI DEVELOPMENT & PLATFORMS",
     rating: 4.6,
     totalVotes: 3456
   },
@@ -164,7 +176,7 @@ export const platformsAndDevelopment: Tool[] = [
     color: "from-cyan-500 to-purple-600",
     directUrl: "https://www.gumloop.com/",
     tags: ["no-code automation", "drag-and-drop", "data extraction", "platform integrations", "self-hosting"],
-    category: "DEVELOPMENT & CODING",
+    category: "AI DEVELOPMENT & PLATFORMS",
     rating: 4.5,
     totalVotes: 2890
   }
