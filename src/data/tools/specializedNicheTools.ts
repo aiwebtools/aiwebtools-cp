@@ -1,13 +1,10 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Leaf, 
   Fish, 
   Home, 
   Apple, 
-  Shield, 
-  Truck,
-  Factory,
-  Mountain,
   Coffee,
   Dog,
   Utensils,
@@ -15,7 +12,9 @@ import {
   Search,
   Scissors,
   Palette,
-  Code
+  Code,
+  Mountain,
+  Factory
 } from "lucide-react";
 
 export const specializedNicheTools: Tool[] = [
@@ -158,30 +157,6 @@ export const specializedNicheTools: Tool[] = [
     category: "Specialized Niche Tools",
     rating: 4.4,
     totalVotes: 2987
-  },
-  {
-    icon: Shield,
-    title: "Cybersecurity Sentinel",
-    description: "Advanced cybersecurity monitoring and threat detection system with AI-powered vulnerability assessment.",
-    emoji: "🛡️",
-    color: "from-red-500 to-purple-600",
-    directUrl: "https://example.com/cybersecurity",
-    tags: ["cybersecurity", "threat detection", "vulnerability assessment", "security monitoring", "data protection"],
-    category: "Specialized Niche Tools",
-    rating: 4.6,
-    totalVotes: 3456
-  },
-  {
-    icon: Truck,
-    title: "Fleet Management System",
-    description: "Comprehensive fleet management and logistics optimization platform with real-time tracking and route planning.",
-    emoji: "🚛",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://example.com/fleetmanagement",
-    tags: ["fleet management", "logistics", "route optimization", "vehicle tracking", "transportation"],
-    category: "Specialized Niche Tools",
-    rating: 4.2,
-    totalVotes: 2543
   },
   {
     icon: Factory,
