@@ -147,18 +147,6 @@ export const specializedNicheTools: Tool[] = [
     totalVotes: 3234
   },
   {
-    icon: Apple,
-    title: "Nutrition Tracker Pro",
-    description: "Advanced nutrition tracking and meal planning application with personalized dietary recommendations.",
-    emoji: "🍎",
-    color: "from-green-500 to-yellow-600",
-    directUrl: "https://example.com/nutritiontracker",
-    tags: ["nutrition tracking", "meal planning", "dietary analysis", "health monitoring", "wellness"],
-    category: "Specialized Niche Tools",
-    rating: 4.4,
-    totalVotes: 2987
-  },
-  {
     icon: Factory,
     title: "Industrial IoT Platform",
     description: "Industrial Internet of Things platform for manufacturing optimization and predictive maintenance.",
@@ -181,29 +169,5 @@ export const specializedNicheTools: Tool[] = [
     category: "Specialized Niche Tools",
     rating: 4.1,
     totalVotes: 1654
-  },
-  {
-    icon: Dog,
-    title: "Veterinary Practice Manager",
-    description: "Comprehensive veterinary practice management system with patient records and appointment scheduling.",
-    emoji: "🐕",
-    color: "from-pink-500 to-purple-600",
-    directUrl: "https://example.com/vetpractice",
-    tags: ["veterinary management", "animal care", "patient records", "appointment scheduling", "pet health"],
-    category: "Specialized Niche Tools",
-    rating: 4.3,
-    totalVotes: 2234
-  },
-  {
-    icon: Heart,
-    title: "Wellness Tracker",
-    description: "Holistic wellness tracking platform with mental health monitoring and lifestyle optimization features.",
-    emoji: "💖",
-    color: "from-pink-500 to-red-600",
-    directUrl: "https://example.com/wellnesstracker",
-    tags: ["wellness tracking", "mental health", "lifestyle optimization", "health monitoring", "self-care"],
-    category: "Specialized Niche Tools",
-    rating: 4.5,
-    totalVotes: 3123
   }
 ];

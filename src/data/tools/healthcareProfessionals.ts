@@ -65,29 +65,5 @@ export const healthcareProfessionals: Tool[] = [
     category: "Healthcare Professionals",
     rating: 4.6,
     totalVotes: 3234
-  },
-  {
-    icon: Microscope,
-    title: "Laboratory Results Interpreter",
-    description: "AI assistant for interpreting laboratory results and providing clinical insights for healthcare providers.",
-    emoji: "🔬",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://example.com/labinterpreter",
-    tags: ["laboratory results", "clinical interpretation", "medical testing", "diagnostic support", "lab analysis"],
-    category: "Healthcare Professionals",
-    rating: 4.2,
-    totalVotes: 2543
-  },
-  {
-    icon: UserCheck,
-    title: "Electronic Health Records",
-    description: "Intelligent EHR system with AI-powered data entry, patient history analysis, and treatment recommendations.",
-    emoji: "📋",
-    color: "from-indigo-500 to-purple-600",
-    directUrl: "https://example.com/ehr",
-    tags: ["electronic health records", "patient history", "medical documentation", "healthcare data", "EHR system"],
-    category: "Healthcare Professionals",
-    rating: 4.4,
-    totalVotes: 3123
   }
 ];
