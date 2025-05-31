@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Box, 
@@ -15,6 +14,19 @@ import {
 
 export const threeDAndVisualizationTools: Tool[] = [
   {
+    icon: Package,
+    title: "Meshy Ai - TEXT TO 3D Generator",
+    description: "AI-powered 3D model generator that creates high-quality 3D assets from text prompts or images. Perfect for game development and 3D visualization. Get 20% OFF with Promo CODE: AIWEBTOOLS",
+    emoji: "🎲",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.meshy.ai/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377357834886582463/image.png?ex=6838abf1&is=68375a71&hm=8796d07ef297f42d59644ba648de8f8e892976312a6e04ec90242aea3c02c9ad&",
+    tags: ["AI 3D generation", "text-to-3D", "image-to-3D", "game assets", "3D models", "meshy ai", "aiwebtools"],
+    category: "3D & Visualization Tools",
+    rating: 4.8,
+    totalVotes: 4567
+  },
+  {
     icon: Box,
     title: "Spline",
     description: "Design and collaborate on 3D web experiences in the browser. Create interactive 3D objects, animations, and scenes with real-time collaboration.",
@@ -25,19 +37,6 @@ export const threeDAndVisualizationTools: Tool[] = [
     category: "3D & Visualization Tools",
     rating: 4.6,
     totalVotes: 3456
-  },
-  {
-    icon: Package,
-    title: "Meshy Ai - TEXT TO 3D Generator",
-    description: "AI-powered 3D model generator that creates high-quality 3D assets from text prompts or images. Perfect for game development and 3D visualization. Get 20% OFF with Promo CODE: AIWEBTOOLS",
-    emoji: "🎲",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://www.meshy.ai/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377357834886582463/image.png?ex=6838abf1&is=68375a71&hm=8796d07ef297f42d59644ba648de8f8e892976312a6e04ec90242aea3c02c9ad&",
-    tags: ["AI 3D generation", "text-to-3D", "image-to-3D", "game assets", "3D models", "meshy ai", "aiwebtools"],
-    category: "3D & Visualization Tools",
-    rating: 4.5,
-    totalVotes: 2987
   },
   {
     icon: Sparkles,
