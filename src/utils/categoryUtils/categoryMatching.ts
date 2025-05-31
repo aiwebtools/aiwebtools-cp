@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { isSimilarCategory } from "./normalization";
 import { isVideoRelatedTool } from "./videoDetection";
@@ -608,136 +607,146 @@ export const getMarketingSalesTools = (tools: Tool[], categoryName: string): Too
 };
 
 export const getEducationLearningTools = (tools: Tool[], categoryName: string): Tool[] => {
-  console.log(`🎓 EDUCATION & LEARNING enhanced matching for: ${categoryName}`);
+  console.log(`🎓 Getting education & learning tools for category: "${categoryName}"`);
   
-  const educationLearningKeywords = [
-    'college degree', 'learn any course', 'learn any skill', 'homeschooling', 'home schooling',
-    'training manual', 'children\'s picture book', 'stellaris', 'space explorer', 'engineering gpt',
-    'nikola tesla', 'albert einstein', 'genome gpt', 'probability gpt', 'algebraic expression',
-    'alchemist scientist', 'historical patterns', 'language tutor', 'homework helper',
-    'essay writer', 'khan academy', 'khanmigo', 'duolingo', 'coursera', 'wolfram alpha',
-    'century tech', 'socratic', 'quiz maker', 'course maker', 'freecodecamp', 'brilliant',
-    'yippity', 'originality', 'plag', 'globe ai', 'education', 'learning', 'teaching',
-    'tutoring', 'instruction', 'academic', 'study', 'curriculum', 'lesson', 'course',
-    'skill development', 'knowledge', 'training', 'educational', 'student', 'teacher',
-    'school', 'university', 'college', 'degree', 'certification', 'assessment', 'quiz',
-    'test', 'homework', 'assignment', 'research', 'analysis', 'comprehension', 'literacy',
-    'numeracy', 'science education', 'math education', 'language learning', 'coding education',
-    'programming education', 'interactive learning', 'adaptive learning', 'personalized learning',
-    'online learning', 'e-learning', 'distance learning', 'self-paced learning', 'microlearning'
+  const educationKeywords = [
+    'education', 'learning', 'course', 'skill', 'college', 'degree', 'school', 'tutoring',
+    'homework', 'essay', 'khan academy', 'coursera', 'duolingo', 'brilliant', 'quiz',
+    'children', 'book', 'training', 'manual', 'stellaris', 'engineering', 'tesla',
+    'einstein', 'genome', 'probability', 'algebraic', 'alchemist', 'historical patterns',
+    'language tutor', 'homework helper', 'wolfram alpha', 'socratic', 'yippity',
+    'originality', 'plag', 'freecodecamp', 'globe ai', 'khanmigo'
   ];
-
-  const educationToolNames = [
-    'COLLEGE DEGREE GPT', 'LEARN ANY COURSE GPT', 'LEARN ANY SKILL GPT', 'Home-Schooling Assistant GPT',
-    'Training Manual Generator GPT', 'Children\'s Picture Book Maker GPT', 'Stellaris: AI Space Explorer',
-    'Engineering GPT AI Suite', 'Nikola Tesla GPT', 'Albert Einstein GPT', 'Genome GPT',
-    'Probability GPT', 'Algebraic Expression Inventor GPT', 'Alchemist Scientist GPT',
-    'Uncovering Hidden Historical Patterns GPT', 'Language Tutor AI', 'Homework Helper Bot',
-    'AI Essay Writer', 'Khan Academy Khanmigo', 'Duolingo', 'Coursera AI', 'Wolfram Alpha',
-    'Century Tech', 'Socratic by Google', 'Quiz Maker AI', 'Course Maker GPT', 'freeCodeCamp',
-    'Brilliant', 'Khan Academy', 'Yippity.io', 'Originality.ai', 'Plag.ai', 'Globe Ai'
-  ];
-
-  const matchedTools = tools.filter(tool => {
-    if (!tool.title && !tool.description && !tool.category) return false;
-    
-    const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
-    
-    // Direct name matching
-    const nameMatch = educationToolNames.some(name => 
-      tool.title?.toLowerCase().includes(name.toLowerCase()) ||
-      name.toLowerCase().includes(tool.title?.toLowerCase() || '')
+  
+  const aiWebToolsEducation = tools.filter(tool => {
+    const hasEducationUrl = tool.directUrl?.includes('lovable.app') || tool.directUrl?.includes('aiwebtools');
+    const hasEducationContent = educationKeywords.some(keyword => 
+      tool.title.toLowerCase().includes(keyword) || 
+      tool.description.toLowerCase().includes(keyword) ||
+      (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(keyword)))
     );
-    
-    // Keyword matching
-    const keywordMatch = educationLearningKeywords.some(keyword => 
-      toolText.includes(keyword.toLowerCase())
-    );
-    
-    // Category matching
-    const categoryMatch = tool.category && (
-      isSimilarCategory(tool.category, categoryName) ||
-      tool.category.toLowerCase().includes('education') ||
-      tool.category.toLowerCase().includes('learning') ||
-      tool.category.toLowerCase().includes('teaching') ||
-      tool.category.toLowerCase().includes('academic') ||
-      tool.category.toLowerCase().includes('study') ||
-      tool.category.toLowerCase().includes('course') ||
-      tool.category.toLowerCase().includes('training') ||
-      tool.category.toLowerCase().includes('tutorial') ||
-      tool.category.toLowerCase().includes('skill') ||
-      tool.category.toLowerCase().includes('knowledge')
-    );
-
-    return nameMatch || keywordMatch || categoryMatch;
+    return hasEducationUrl && hasEducationContent;
   });
-
-  console.log(`✅ Found ${matchedTools.length} education & learning tools`);
-  return matchedTools;
+  
+  const otherEducationTools = tools.filter(tool => {
+    const isNotAIWebTools = !tool.directUrl?.includes('lovable.app') && !tool.directUrl?.includes('aiwebtools');
+    const hasEducationContent = educationKeywords.some(keyword => 
+      tool.title.toLowerCase().includes(keyword) || 
+      tool.description.toLowerCase().includes(keyword) ||
+      (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(keyword)))
+    );
+    const hasEducationCategory = tool.category && (
+      tool.category.toLowerCase().includes('education') ||
+      tool.category.toLowerCase().includes('learning')
+    );
+    return isNotAIWebTools && (hasEducationContent || hasEducationCategory);
+  });
+  
+  const educationTools = [...aiWebToolsEducation, ...otherEducationTools];
+  console.log(`✅ Found ${educationTools.length} education & learning tools`);
+  
+  return educationTools;
 };
 
 export const getHealthWellnessTools = (tools: Tool[], categoryName: string): Tool[] => {
-  console.log(`🏥 HEALTH & WELLNESS enhanced matching for: ${categoryName}`);
+  console.log(`🏥 Getting health & wellness tools for category: "${categoryName}"`);
   
-  const healthWellnessKeywords = [
-    'doctor gpt', 'skin care', 'veterinarian', 'pharmaceutical', 'mental wellness', 'relationship advisor',
-    'life coach', 'home organization', 'travel planner', 'communication coach', 'finance advisor',
-    'gift ideas', 'routine optimizer', 'mindfulness', 'meditation', 'dental gpt', 'emdr',
-    'pathai', 'healthcare advisor', 'nutritionist', 'medical diagnosis', 'medical research',
-    'health', 'wellness', 'medical', 'healthcare', 'therapy', 'counseling', 'fitness',
-    'nutrition', 'diet', 'exercise', 'mental health', 'physical health', 'personal care',
-    'lifestyle', 'well-being', 'self-care', 'preventive care', 'holistic health',
-    'alternative medicine', 'telemedicine', 'health monitoring', 'symptom checker',
-    'medical assistant', 'health coach', 'wellness coach', 'health assessment',
-    'medical consultation', 'health guidance', 'medical advice', 'health tips',
-    'wellness tips', 'health education', 'medical education', 'health information',
-    'medical information', 'health data', 'medical data', 'health tracking',
-    'medical tracking', 'health analytics', 'medical analytics'
+  const healthKeywords = [
+    'health', 'wellness', 'medical', 'doctor', 'healthcare', 'fitness', 'nutrition',
+    'mental', 'therapy', 'pharmaceutical', 'veterinarian', 'dental', 'skincare',
+    'meditation', 'mindfulness', 'relationship', 'life coach', 'personal', 'emdr',
+    'pathological', 'diagnosis', 'research', 'ada health', 'myfitnesspal', 'fitbit'
   ];
-
-  const healthToolNames = [
-    'Personalized DR. GPT', 'SKIN CARE GPT', 'Veterinarian GPT', 'Pharmaceutical Assistant GPT',
-    'Mental Wellness GPT', 'Relationship Advisor GPT', 'Personal Life Coach GPT',
-    'Home Organization Expert GPT', 'Personal Travel Planner GPT', 'Communication Coach GPT',
-    'Personal Finance Advisor GPT', 'Gift Ideas Generator GPT', 'Daily Routine Optimizer GPT',
-    'Mindfulness & Meditation Guide GPT', 'DENTAL GPT', 'EMDR Assistant', 'PathAI',
-    'Healthcare Advisor GPT', 'Nutritionist GPT', 'Medical Diagnosis GPT', 'Medical Research GPT'
-  ];
-
-  const matchedTools = tools.filter(tool => {
-    if (!tool.title && !tool.description && !tool.category) return false;
-    
-    const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
-    
-    // Direct name matching
-    const nameMatch = healthToolNames.some(name => 
-      tool.title?.toLowerCase().includes(name.toLowerCase()) ||
-      name.toLowerCase().includes(tool.title?.toLowerCase() || '')
+  
+  const aiWebToolsHealth = tools.filter(tool => {
+    const hasHealthUrl = tool.directUrl?.includes('lovable.app') || tool.directUrl?.includes('aiwebtools');
+    const hasHealthContent = healthKeywords.some(keyword => 
+      tool.title.toLowerCase().includes(keyword) || 
+      tool.description.toLowerCase().includes(keyword) ||
+      (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(keyword)))
     );
-    
-    // Keyword matching
-    const keywordMatch = healthWellnessKeywords.some(keyword => 
-      toolText.includes(keyword.toLowerCase())
+    return hasHealthUrl && hasHealthContent;
+  });
+  
+  const otherHealthTools = tools.filter(tool => {
+    const isNotAIWebTools = !tool.directUrl?.includes('lovable.app') && !tool.directUrl?.includes('aiwebtools');
+    const hasHealthContent = healthKeywords.some(keyword => 
+      tool.title.toLowerCase().includes(keyword) || 
+      tool.description.toLowerCase().includes(keyword) ||
+      (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(keyword)))
     );
-    
-    // Category matching
-    const categoryMatch = tool.category && (
-      isSimilarCategory(tool.category, categoryName) ||
+    const hasHealthCategory = tool.category && (
       tool.category.toLowerCase().includes('health') ||
       tool.category.toLowerCase().includes('wellness') ||
-      tool.category.toLowerCase().includes('medical') ||
-      tool.category.toLowerCase().includes('healthcare') ||
-      tool.category.toLowerCase().includes('therapy') ||
-      tool.category.toLowerCase().includes('fitness') ||
-      tool.category.toLowerCase().includes('nutrition') ||
-      tool.category.toLowerCase().includes('lifestyle') ||
-      tool.category.toLowerCase().includes('personal care') ||
-      tool.category.toLowerCase().includes('mental health')
+      tool.category.toLowerCase().includes('medical')
     );
-
-    return nameMatch || keywordMatch || categoryMatch;
+    return isNotAIWebTools && (hasHealthContent || hasHealthCategory);
   });
+  
+  const healthTools = [...aiWebToolsHealth, ...otherHealthTools];
+  console.log(`✅ Found ${healthTools.length} health & wellness tools`);
+  
+  return healthTools;
+};
 
-  console.log(`✅ Found ${matchedTools.length} health & wellness tools`);
-  return matchedTools;
+export const getSpecializedNicheTools = (tools: Tool[], categoryName: string): Tool[] => {
+  console.log(`🔧 Getting specialized & niche tools for category: "${categoryName}"`);
+  
+  const specializedKeywords = [
+    'specialized', 'niche', 'gods', 'mary magdalene', 'oraculum', 'sophia aeterna',
+    'alan watts', 'native american', 'phenomenon', 'firefighter', 'survivalist',
+    'firearms', 'social safety', 'criminologist', 'real estate', 'legal', 'home services',
+    'construction', 'automotive', 'culinary', 'photography', 'music producer',
+    'environmental', 'aquaculture', 'fungus', 'financial advisor', 'urban planner',
+    'security', 'public defender', 'if ai ruled', 'artwork', 'antique', 'material valuation',
+    'trader', 'taxes', 'cyber security', 'tattoo', 'automobile', 'cannabis', 'fisherman',
+    'home renovator', 'immortalizeme', 'dream interpreter', 'food quality', 'time machine',
+    'titanic', 'historical headlines', 'interpretis', 'stellaris', 'nikola tesla',
+    'alchemist', 'genome', 'global peace', 'enter the matrix', 'legislator', 'customer service',
+    'auto mechanic', 'interior designer', 'chef', 'fishing guide', 'agricultural',
+    'electrician', 'plumber', 'arborist', 'mixologist', 'policy', 'regulatory',
+    'international relations', 'public safety', 'electoral', 'legislative', 'restyle',
+    'binary', 'unitree', 'boston dynamics', 'agility robotics', 'honda robotics',
+    'tesla bot', 'hanson robotics', 'spiritual guidance', 'chakra', 'ancient egypt',
+    'world history', 'this day in history', 'ancient roman', 'age of exploration',
+    'time traveler', 'vectra ai', 'crowdstrike', 'kensho', 'alphasense', 'yodlee',
+    'mint', 'zest ai', 'lexisnexis', 'westlaw', 'kira systems', 'ross intelligence',
+    'luminance', 'forex', 'd-wave', 'uber', 'insect study', 'fruit nutrition',
+    'recipe generator', 'airesume', 'final round', 'distrokid', 'nucleus ai',
+    'ai tools list', 'akto'
+  ];
+  
+  const aiWebToolsSpecialized = tools.filter(tool => {
+    const hasSpecializedUrl = tool.directUrl?.includes('lovable.app') || tool.directUrl?.includes('aiwebtools');
+    const hasSpecializedContent = specializedKeywords.some(keyword => 
+      tool.title.toLowerCase().includes(keyword) || 
+      tool.description.toLowerCase().includes(keyword) ||
+      (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(keyword)))
+    );
+    return hasSpecializedUrl && hasSpecializedContent;
+  });
+  
+  const otherSpecializedTools = tools.filter(tool => {
+    const isNotAIWebTools = !tool.directUrl?.includes('lovable.app') && !tool.directUrl?.includes('aiwebtools');
+    const hasSpecializedContent = specializedKeywords.some(keyword => 
+      tool.title.toLowerCase().includes(keyword) || 
+      tool.description.toLowerCase().includes(keyword) ||
+      (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(keyword)))
+    );
+    const hasSpecializedCategory = tool.category && (
+      tool.category.toLowerCase().includes('specialized') ||
+      tool.category.toLowerCase().includes('niche') ||
+      tool.category.toLowerCase().includes('industry') ||
+      tool.category.toLowerCase().includes('robotics') ||
+      tool.category.toLowerCase().includes('spirituality') ||
+      tool.category.toLowerCase().includes('historical') ||
+      tool.category.toLowerCase().includes('mysterious')
+    );
+    return isNotAIWebTools && (hasSpecializedContent || hasSpecializedCategory);
+  });
+  
+  const specializedTools = [...aiWebToolsSpecialized, ...otherSpecializedTools];
+  console.log(`✅ Found ${specializedTools.length} specialized & niche tools`);
+  
+  return specializedTools;
 };

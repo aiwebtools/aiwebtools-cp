@@ -185,6 +185,14 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     return healthWellnessTools;
   }
   
+  // Special case for "SPECIALIZED & NICHE TOOLS" - use enhanced matching
+  if (mainCategoryName === "SPECIALIZED & NICHE TOOLS") {
+    console.log(`🔧 SPECIALIZED & NICHE TOOLS requested - using enhanced matching`);
+    const specializedNicheTools = getSpecializedNicheTools(tools, mainCategoryName);
+    console.log(`✅ Found ${specializedNicheTools.length} specialized & niche tools`);
+    return specializedNicheTools;
+  }
+  
   // Special case for "DATA & ANALYTICS AI TOOLS" - use enhanced matching
   if (mainCategoryName === "DATA & ANALYTICS AI TOOLS") {
     console.log(`📊 DATA & ANALYTICS AI TOOLS requested - using enhanced matching`);
