@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Mic, 
@@ -68,15 +67,16 @@ export const audioAndVoiceTools: Tool[] = [
   },
   {
     icon: Music,
-    title: "Suno AI",
-    description: "AI music generation platform that creates original songs from text prompts. Generate music in various styles and genres with lyrics and instrumentation.",
+    title: "UDIO MUSIC Generator",
+    description: "Advanced AI music creation platform for generating high-quality music tracks. Create songs with vocals, instruments, and professional mixing using cutting-edge AI technology.",
     emoji: "🎵",
-    color: "from-pink-500 to-purple-600",
-    directUrl: "https://www.suno.ai/",
-    tags: ["AI music", "song generation", "text-to-music", "lyrics", "various genres"],
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.udio.com/home",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377364206441070592/image.png?ex=6838b1e1&is=68376061&hm=4872d401aedf46706d1213c2a93ce9ca260725cec15f98b2186eb25746fda56f&",
+    tags: ["music generation", "ai music", "song creation", "vocals", "instruments", "audio production", "music ai", "udio"],
     category: "Audio & Voice Tools",
     rating: 4.7,
-    totalVotes: 3890
+    totalVotes: 3245
   },
   {
     icon: AudioWaveform,
