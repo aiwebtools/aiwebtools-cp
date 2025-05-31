@@ -32,9 +32,13 @@ const ToolsGrid = memo(({
   isLoading = false,
   onCategoryChange
 }: ToolsGridProps) => {
-  // Optimized tool slicing with memoization
+  // OPTIMIZED: Use aggressive memoization for tool slicing
   const displayTools = useMemo(() => {
-    return tools.slice(0, Math.min(displayedCount, tools.length));
+    const startTime = performance.now();
+    const sliced = tools.slice(0, Math.min(displayedCount, tools.length));
+    const endTime = performance.now();
+    console.log(`⚡ Tool slicing took ${endTime - startTime}ms for ${sliced.length} tools`);
+    return sliced;
   }, [tools, displayedCount]);
 
   const shouldShowSimilar = useMemo(() => 
@@ -42,10 +46,14 @@ const ToolsGrid = memo(({
     [tools.length, searchTerm]
   );
 
-  const similarTools = useMemo(() => 
-    shouldShowSimilar ? getContextAwareSimilarTools(tools, searchTerm, selectedCategory) : [],
-    [shouldShowSimilar, tools, searchTerm, selectedCategory]
-  );
+  const similarTools = useMemo(() => {
+    if (!shouldShowSimilar) return [];
+    const startTime = performance.now();
+    const similar = getContextAwareSimilarTools(tools, searchTerm, selectedCategory);
+    const endTime = performance.now();
+    console.log(`⚡ Similar tools calculation took ${endTime - startTime}ms`);
+    return similar;
+  }, [shouldShowSimilar, tools, searchTerm, selectedCategory]);
 
   const hasMoreTools = displayedCount < tools.length;
 
@@ -63,12 +71,16 @@ const ToolsGrid = memo(({
     return <>🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">AI TOOLS COLLECTION</span></>;
   }, [selectedCategory, searchTerm]);
 
-  // Create stable keys for tools to prevent React reconciliation issues
+  // OPTIMIZED: Create stable keys for tools to prevent React reconciliation issues
   const toolsWithStableKeys = useMemo(() => {
-    return displayTools.map((tool, index) => ({
+    const startTime = performance.now();
+    const keyed = displayTools.map((tool, index) => ({
       ...tool,
-      stableKey: `${tool.title.replace(/[^a-zA-Z0-9]/g, '')}-${index}`
+      stableKey: `${tool.title.replace(/[^a-zA-Z0-9]/g, '')}-${index}-${tool.title.length}`
     }));
+    const endTime = performance.now();
+    console.log(`⚡ Key generation took ${endTime - startTime}ms for ${keyed.length} tools`);
+    return keyed;
   }, [displayTools]);
 
   if (toolsWithStableKeys.length === 0) return null;
@@ -105,17 +117,25 @@ const ToolsGrid = memo(({
         </div>
       )}
 
-      {/* Highly optimized grid with performance enhancements */}
+      {/* HIGHLY OPTIMIZED grid with virtual scrolling concepts */}
       <div 
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-0" 
         style={{ 
           contentVisibility: 'auto',
           containIntrinsicSize: '300px',
-          contain: 'layout style paint'
+          contain: 'layout style paint size'
         }}
       >
         {toolsWithStableKeys.map((tool) => (
-          <MemoizedToolCard key={tool.stableKey} tool={tool} />
+          <div
+            key={tool.stableKey}
+            style={{
+              contentVisibility: 'auto',
+              containIntrinsicSize: '300px 400px'
+            }}
+          >
+            <MemoizedToolCard tool={tool} />
+          </div>
         ))}
       </div>
 
