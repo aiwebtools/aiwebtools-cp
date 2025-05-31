@@ -25,7 +25,7 @@ export const MARKETING_SALES_PRIORITY_TOOLS = [
   "Hunter.io"
 ];
 
-// Video-related keywords for content detection
+// Enhanced video-related keywords for comprehensive content detection
 export const VIDEO_KEYWORDS = [
   'video', 'pika', 'luma', 'dream machine', 'veo', 'runway', 'synthesia',
   'heygen', 'colossyan', 'gen-2', 'sora', 'kling', 'film', 'cinema', 'movie',
@@ -36,5 +36,12 @@ export const VIDEO_KEYWORDS = [
   'animoto', 'wideo', 'visla', 'invideo', 'steve ai', 'genmo', 'pixverse',
   'stable video', 'minimax', 'hailuo', 'pollo ai', 'aivideo', 'mochi',
   'skyreels', 'higgsfield', 'topview', 'velocity', 'infinity ai', 'vozo',
-  '2short', 'gling', 'bgrem'
+  '2short', 'gling', 'bgrem', 'd-id', 'text-to-video', 'video generation',
+  'video creator', 'video maker', 'cinematic', 'screencast', 'livestream',
+  'video editing', 'video effects', 'video production', 'video marketing',
+  'video content', 'video tool', 'video platform', 'video ai', 'video suite',
+  'movie maker', 'film maker', 'video generator', 'video synthesis',
+  'video enhancement', 'video processing', 'video automation', 'video creation',
+  'video business', 'music video', 'short clips', 'video repurposing',
+  'video analytics', 'video optimization', 'video collaboration', 'video workflow'
 ];

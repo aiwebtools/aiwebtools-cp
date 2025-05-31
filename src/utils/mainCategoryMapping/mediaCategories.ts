@@ -27,6 +27,20 @@ export const mediaCategories: MainCategory[] = [
       "Multimedia",
       "Multimedia Tools",
       "Content Creation",
+      "Entertainment Tools",
+      "Creative Tools",
+      "Creative Platforms",
+      "Creative Services",
+      "Creative Suites",
+      "Entertainment Media Tools",
+      "Creative And Entertainment",
+      "Entertainment & Media",
+      "Media Tools",
+      "Media & Content",
+      "Movie Tools",
+      "Film Tools",
+      "Cinema Tools",
+      "Animation Tools",
       // Additional video-related categories that might exist
       "Video Creation",
       "Video Production",
@@ -50,7 +64,11 @@ export const mediaCategories: MainCategory[] = [
       "Cinematic Tools",
       "Motion Graphics",
       "Visual Effects",
-      "Video Effects"
+      "Video Effects",
+      "Multimedia & Content",
+      "Content Creation Tools",
+      "Content Creation And Writing Tools",
+      "Creative Design Tools"
     ]
   },
   {

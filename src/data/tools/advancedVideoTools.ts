@@ -1,8 +1,20 @@
-
 import { Video, Play, Film, Camera, Zap, Wand2, Edit, Monitor, Sparkles } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 export const advancedVideoTools: Tool[] = [
+  {
+    icon: Video,
+    title: "Movie Maker Studio AI Suite",
+    description: "We proudly present to you Movie Maker Studio which consists of every tool needed for Movie & Motion Picture Production. Consisting of Movie Scripter Writer, Movie Scene Maker, Movie Trailer Poster Maker & more.....we offer you the key and show you the door, unlock your creativity my fellow humans--KB",
+    emoji: "🎬",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://moviemakerstudio.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E&list=TLGGyT65jYe0o6cyODA1MjAyNQ&t",
+    tags: ["movie production", "video creation", "film making", "content creation", "AI studio"],
+    category: "Advanced Video Tools",
+    rating: 4.9,
+    totalVotes: 5678
+  },
   {
     icon: Video,
     title: "Music Video Maker AI Studio",
