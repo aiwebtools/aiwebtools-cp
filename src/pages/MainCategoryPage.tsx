@@ -227,9 +227,11 @@ const MainCategoryPage = () => {
               <Button
                 onClick={handleShowAllCategoryTools}
                 size="lg"
-                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
+                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-4 py-4 rounded-xl text-sm sm:text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 max-w-full"
               >
-                📋 SHOW MORE FROM THIS CATEGORY
+                {/* Responsive text - shorter on mobile */}
+                <span className="sm:hidden">📋 SHOW MORE</span>
+                <span className="hidden sm:inline">📋 SHOW MORE FROM THIS CATEGORY</span>
               </Button>
               <div className="mt-4 text-green-300 text-sm">
                 Currently showing {displayedCount} of {filteredTools.length} tools in this category
@@ -287,9 +289,11 @@ const MainCategoryPage = () => {
               <Button
                 onClick={handleShowAllCategoryTools}
                 size="lg"
-                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
+                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-4 py-4 rounded-xl text-sm sm:text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 max-w-full"
               >
-                📋 SHOW MORE FROM THIS CATEGORY
+                {/* Responsive text - shorter on mobile */}
+                <span className="sm:hidden">📋 SHOW MORE</span>
+                <span className="hidden sm:inline">📋 SHOW MORE FROM THIS CATEGORY</span>
               </Button>
               <div className="mt-4 text-green-300 text-sm">
                 Currently showing {displayedCount} of {filteredTools.length} tools in this category
