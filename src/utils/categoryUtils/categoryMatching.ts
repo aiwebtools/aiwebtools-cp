@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { isSimilarCategory } from "./normalization";
 import { DATA_ANALYTICS_PRIORITY_TOOLS, MARKETING_SALES_PRIORITY_TOOLS } from "./constants";
@@ -68,6 +67,79 @@ const AI_CHAT_ASSISTANTS_PRIORITY_TOOLS = [
   'You.com',
   'Merlin',
   'Notebook LM'
+];
+
+// Priority tools for Content Creation & Writing category
+const CONTENT_CREATION_WRITING_PRIORITY_TOOLS = [
+  'BOOK WRITER GPT',
+  'Movie Script Writer GPT',
+  'PERFECT PROMPT ENGINE',
+  'Clarity Omni',
+  'Playwriter GPT',
+  'Podcast Script Writer GPT',
+  'MATERIAL VALUATION GPT',
+  'Algebraic Expression Inventor GPT',
+  'Article and Blog Rewriter GPT',
+  'Children\'s Picture Book Maker GPT',
+  'Game Design Document',
+  'Developer GPT',
+  'Training Manual Generator GPT',
+  'Restaurant Menu Maker GPT',
+  'Movie Scene Maker GPT',
+  'Legal Draftsmith GPT',
+  'Legislation Writer GPT',
+  'Public Testimony Writer GPT',
+  'SCREENPLAY WRITER GPT',
+  'ParagraphAI',
+  'Grammarly',
+  'DeepL Write',
+  'Wordtune',
+  'QuillBot',
+  'Hemingway Editor',
+  'Jasper AI',
+  'Copy.ai',
+  'Writesonic',
+  'Rytr',
+  'ChatGPT Plus',
+  'Claude Pro',
+  'Notion AI',
+  'Sudowrite',
+  'Perplexity AI',
+  'Lex',
+  'Jenni AI',
+  'Tome',
+  'Gamma',
+  'Otter.ai',
+  'Descript',
+  'AI Content Generator Pro',
+  'Smart Text Editor',
+  'Ebook Creator Suite',
+  'Voice Content Creator',
+  'Video Script Generator',
+  'Visual Storytelling Platform',
+  'Typography Designer',
+  'Content Automation Engine',
+  'Multilingual Content Creator',
+  'ChatDOC',
+  'Citation Machine',
+  'DocLime',
+  'Duplichecker',
+  'Elicit',
+  'Enhancv',
+  'BooksAI.app',
+  'JustCluck.com',
+  'Elephas',
+  'Simplified',
+  'Spinrewriter',
+  'Movie Maker Studio AI SUITE',
+  'Prompt Box',
+  'Theneo',
+  'Typed',
+  'MarkCopy',
+  'ARTIRO',
+  'Small PPT',
+  'AIPRM',
+  'ContentStudio'
 ];
 
 // Special handling for Data & Analytics category
@@ -326,6 +398,199 @@ export const getAIChatAssistantsTools = (tools: Tool[], categoryName: string): T
   );
   
   console.log(`💬 AI Chat & Assistants Tools Debug:`, {
+    categoryName,
+    directCategoryTools: directCategoryTools.length,
+    priorityTools: priorityTools.length,
+    uniqueTools: uniqueTools.length,
+    sampleTitles: uniqueTools.slice(0, 15).map(t => `${t.title} (${t.category})`)
+  });
+  
+  return uniqueTools;
+};
+
+// Special handling for Content Creation & Writing category
+export const getContentCreationWritingTools = (tools: Tool[], categoryName: string): Tool[] => {
+  console.log(`✍️ Getting Content Creation & Writing tools for category: "${categoryName}"`);
+  
+  // Get tools that match the direct category - including all variations
+  const directCategoryTools = tools.filter(tool => 
+    tool.category && (
+      isSimilarCategory(tool.category, categoryName) ||
+      isSimilarCategory(tool.category, "CONTENT CREATION & WRITING") ||
+      isSimilarCategory(tool.category, "Content Creation & Writing Tools") ||
+      isSimilarCategory(tool.category, "Writing & Content") ||
+      isSimilarCategory(tool.category, "Content Creation Tools") ||
+      isSimilarCategory(tool.category, "Writing Assistants") ||
+      isSimilarCategory(tool.category, "Creative Writing Tools") ||
+      isSimilarCategory(tool.category, "Grammar & Writing Assistants") ||
+      isSimilarCategory(tool.category, "Writing And Content") ||
+      isSimilarCategory(tool.category, "Content Creation And Writing Tools") ||
+      isSimilarCategory(tool.category, "Writing And Content Enhancement") ||
+      isSimilarCategory(tool.category, "AI Content Generators") ||
+      isSimilarCategory(tool.category, "AI Generative Tools") ||
+      isSimilarCategory(tool.category, "Text Generation") ||
+      isSimilarCategory(tool.category, "Content Generation") ||
+      isSimilarCategory(tool.category, "Writing Tools") ||
+      isSimilarCategory(tool.category, "Creative Writing") ||
+      isSimilarCategory(tool.category, "Script Writing") ||
+      isSimilarCategory(tool.category, "Book Writing") ||
+      isSimilarCategory(tool.category, "Blog Writing") ||
+      isSimilarCategory(tool.category, "Article Writing") ||
+      isSimilarCategory(tool.category, "Copywriting") ||
+      isSimilarCategory(tool.category, "Technical Writing") ||
+      isSimilarCategory(tool.category, "Academic Writing") ||
+      isSimilarCategory(tool.category, "Business Writing") ||
+      isSimilarCategory(tool.category, "Legal Writing") ||
+      isSimilarCategory(tool.category, "Medical Writing") ||
+      isSimilarCategory(tool.category, "Content Marketing") ||
+      isSimilarCategory(tool.category, "SEO Writing") ||
+      isSimilarCategory(tool.category, "Social Media Content") ||
+      isSimilarCategory(tool.category, "Email Writing") ||
+      isSimilarCategory(tool.category, "Newsletter Tools") ||
+      isSimilarCategory(tool.category, "Publishing Tools") ||
+      isSimilarCategory(tool.category, "Document Creation") ||
+      isSimilarCategory(tool.category, "Report Writing") ||
+      isSimilarCategory(tool.category, "Proposal Writing") ||
+      isSimilarCategory(tool.category, "Grant Writing") ||
+      isSimilarCategory(tool.category, "Presentation Tools") ||
+      isSimilarCategory(tool.category, "Storytelling Tools") ||
+      isSimilarCategory(tool.category, "Narrative Tools") ||
+      isSimilarCategory(tool.category, "Creative Content") ||
+      isSimilarCategory(tool.category, "Content Automation") ||
+      isSimilarCategory(tool.category, "Content Management") ||
+      isSimilarCategory(tool.category, "Editing Tools") ||
+      isSimilarCategory(tool.category, "Proofreading Tools") ||
+      isSimilarCategory(tool.category, "Writing Enhancement") ||
+      isSimilarCategory(tool.category, "Language Tools") ||
+      isSimilarCategory(tool.category, "Translation Tools") ||
+      isSimilarCategory(tool.category, "Content Analysis") ||
+      isSimilarCategory(tool.category, "Writing Analytics") ||
+      isSimilarCategory(tool.category, "Content Research") ||
+      isSimilarCategory(tool.category, "Fact Checking") ||
+      isSimilarCategory(tool.category, "Content Curation") ||
+      isSimilarCategory(tool.category, "Content Strategy") ||
+      isSimilarCategory(tool.category, "Content Planning") ||
+      isSimilarCategory(tool.category, "Content Optimization") ||
+      isSimilarCategory(tool.category, "Writing Productivity") ||
+      isSimilarCategory(tool.category, "Writing Workflow") ||
+      isSimilarCategory(tool.category, "Collaborative Writing") ||
+      isSimilarCategory(tool.category, "Team Writing") ||
+      isSimilarCategory(tool.category, "Writing Project Management") ||
+      isSimilarCategory(tool.category, "Writing Templates") ||
+      isSimilarCategory(tool.category, "Writing Prompts") ||
+      isSimilarCategory(tool.category, "Creative Prompts") ||
+      isSimilarCategory(tool.category, "Story Prompts") ||
+      isSimilarCategory(tool.category, "Writing Inspiration") ||
+      isSimilarCategory(tool.category, "Writing Ideas") ||
+      isSimilarCategory(tool.category, "Content Ideas") ||
+      isSimilarCategory(tool.category, "Topic Generation") ||
+      isSimilarCategory(tool.category, "Headline Generation") ||
+      isSimilarCategory(tool.category, "Title Generation") ||
+      isSimilarCategory(tool.category, "Screenplay Writing") ||
+      isSimilarCategory(tool.category, "Scriptwriting Tools") ||
+      isSimilarCategory(tool.category, "Legal Document Writing") ||
+      isSimilarCategory(tool.category, "Legislative Writing") ||
+      isSimilarCategory(tool.category, "Public Speaking Writing") ||
+      isSimilarCategory(tool.category, "Testimony Writing") ||
+      isSimilarCategory(tool.category, "Menu Creation") ||
+      isSimilarCategory(tool.category, "Game Documentation") ||
+      isSimilarCategory(tool.category, "Training Materials") ||
+      isSimilarCategory(tool.category, "Manual Creation") ||
+      isSimilarCategory(tool.category, "Scene Writing") ||
+      isSimilarCategory(tool.category, "Character Development") ||
+      isSimilarCategory(tool.category, "Dialogue Writing") ||
+      isSimilarCategory(tool.category, "Plot Development") ||
+      isSimilarCategory(tool.category, "Story Structure") ||
+      isSimilarCategory(tool.category, "Narrative Design")
+    )
+  );
+  
+  // Also include tools by title matching for priority content creation & writing tools
+  const priorityTools = tools.filter(tool => 
+    CONTENT_CREATION_WRITING_PRIORITY_TOOLS.some(priorityName => 
+      tool.title.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title.toLowerCase())
+    ) ||
+    tool.description.toLowerCase().includes('writing') ||
+    tool.description.toLowerCase().includes('content creation') ||
+    tool.description.toLowerCase().includes('text generation') ||
+    tool.description.toLowerCase().includes('copywriting') ||
+    tool.description.toLowerCase().includes('scriptwriting') ||
+    tool.description.toLowerCase().includes('book writing') ||
+    tool.description.toLowerCase().includes('blog writing') ||
+    tool.description.toLowerCase().includes('article writing') ||
+    tool.description.toLowerCase().includes('grammar') ||
+    tool.description.toLowerCase().includes('proofreading') ||
+    tool.description.toLowerCase().includes('editing') ||
+    tool.description.toLowerCase().includes('storytelling') ||
+    tool.description.toLowerCase().includes('creative writing') ||
+    tool.description.toLowerCase().includes('technical writing') ||
+    tool.description.toLowerCase().includes('academic writing') ||
+    tool.description.toLowerCase().includes('business writing') ||
+    tool.description.toLowerCase().includes('legal writing') ||
+    tool.description.toLowerCase().includes('medical writing') ||
+    tool.description.toLowerCase().includes('content marketing') ||
+    tool.description.toLowerCase().includes('seo writing') ||
+    tool.description.toLowerCase().includes('social media content') ||
+    tool.description.toLowerCase().includes('email writing') ||
+    tool.description.toLowerCase().includes('newsletter') ||
+    tool.description.toLowerCase().includes('document creation') ||
+    tool.description.toLowerCase().includes('report writing') ||
+    tool.description.toLowerCase().includes('proposal writing') ||
+    tool.description.toLowerCase().includes('grant writing') ||
+    tool.description.toLowerCase().includes('screenplay') ||
+    tool.description.toLowerCase().includes('script') ||
+    tool.description.toLowerCase().includes('dialogue') ||
+    tool.description.toLowerCase().includes('character development') ||
+    tool.description.toLowerCase().includes('plot') ||
+    tool.description.toLowerCase().includes('narrative') ||
+    tool.description.toLowerCase().includes('story') ||
+    tool.description.toLowerCase().includes('author') ||
+    tool.description.toLowerCase().includes('publisher') ||
+    tool.description.toLowerCase().includes('editor') ||
+    tool.description.toLowerCase().includes('revision') ||
+    tool.description.toLowerCase().includes('draft') ||
+    tool.description.toLowerCase().includes('manuscript') ||
+    tool.description.toLowerCase().includes('publication') ||
+    tool.description.toLowerCase().includes('publishing') ||
+    tool.description.toLowerCase().includes('literary') ||
+    tool.description.toLowerCase().includes('prose') ||
+    tool.description.toLowerCase().includes('poetry') ||
+    tool.description.toLowerCase().includes('novel') ||
+    tool.description.toLowerCase().includes('ebook') ||
+    tool.description.toLowerCase().includes('book') ||
+    tool.description.toLowerCase().includes('write') ||
+    tool.description.toLowerCase().includes('writer') ||
+    tool.description.toLowerCase().includes('content') ||
+    tool.description.toLowerCase().includes('text') ||
+    tool.description.toLowerCase().includes('words') ||
+    tool.description.toLowerCase().includes('language') ||
+    tool.description.toLowerCase().includes('linguistics') ||
+    tool.description.toLowerCase().includes('vocabulary') ||
+    tool.description.toLowerCase().includes('syntax') ||
+    tool.description.toLowerCase().includes('style') ||
+    tool.description.toLowerCase().includes('tone') ||
+    tool.description.toLowerCase().includes('voice') ||
+    tool.description.toLowerCase().includes('clarity') ||
+    tool.description.toLowerCase().includes('readability') ||
+    tool.description.toLowerCase().includes('comprehension') ||
+    tool.description.toLowerCase().includes('communication') ||
+    tool.description.toLowerCase().includes('expression') ||
+    tool.description.toLowerCase().includes('articulation') ||
+    tool.description.toLowerCase().includes('composition') ||
+    tool.description.toLowerCase().includes('documentation') ||
+    tool.description.toLowerCase().includes('transcription') ||
+    tool.description.toLowerCase().includes('dictation') ||
+    tool.description.toLowerCase().includes('speech to text') ||
+    tool.description.toLowerCase().includes('voice to text')
+  );
+  
+  const allTools = [...directCategoryTools, ...priorityTools];
+  const uniqueTools = allTools.filter((tool, index, self) => 
+    index === self.findIndex(t => t.title === tool.title)
+  );
+  
+  console.log(`✍️ Content Creation & Writing Tools Debug:`, {
     categoryName,
     directCategoryTools: directCategoryTools.length,
     priorityTools: priorityTools.length,
