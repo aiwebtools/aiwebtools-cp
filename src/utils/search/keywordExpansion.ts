@@ -14,6 +14,22 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   // Add the full search term
   expandedKeywords.add(searchTerm);
   
+  // Enhanced cannabis/marijuana search handling
+  const cannabisTerms = ['weed', 'cannabis', 'marijuana', 'pot', '420', 'ganja', 'herb', 'mary jane', 'bud', 'thc', 'cbd', 'hemp'];
+  if (cannabisTerms.some(term => searchTerm.toLowerCase().includes(term))) {
+    cannabisTerms.forEach(term => expandedKeywords.add(term));
+    expandedKeywords.add('dispensary');
+    expandedKeywords.add('strain');
+    expandedKeywords.add('medical marijuana');
+    expandedKeywords.add('recreational cannabis');
+    expandedKeywords.add('indica');
+    expandedKeywords.add('sativa');
+    expandedKeywords.add('hybrid');
+    expandedKeywords.add('cultivation');
+    expandedKeywords.add('grow');
+    expandedKeywords.add('green');
+  }
+  
   // Special handling for GPT searches - ensure all GPT tools are found
   if (searchTerm.toLowerCase().includes('gpt')) {
     expandedKeywords.add('gpt');
@@ -78,6 +94,46 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
     expandedKeywords.add('voice');
     expandedKeywords.add('communication');
     expandedKeywords.add('call center');
+  }
+  
+  // Enhanced AI/tech term expansion
+  const aiTerms = ['ai', 'artificial intelligence', 'machine learning', 'neural network', 'bot', 'chatbot'];
+  if (aiTerms.some(term => searchTerm.toLowerCase().includes(term))) {
+    aiTerms.forEach(term => expandedKeywords.add(term));
+    expandedKeywords.add('automation');
+    expandedKeywords.add('intelligent');
+    expandedKeywords.add('smart');
+  }
+  
+  // Enhanced creative term expansion
+  const creativeTerms = ['art', 'design', 'creative', 'video', 'music', 'image'];
+  if (creativeTerms.some(term => searchTerm.toLowerCase().includes(term))) {
+    creativeTerms.forEach(term => expandedKeywords.add(term));
+    expandedKeywords.add('generator');
+    expandedKeywords.add('creator');
+    expandedKeywords.add('maker');
+    expandedKeywords.add('studio');
+  }
+  
+  // Enhanced business term expansion
+  const businessTerms = ['business', 'work', 'productivity', 'office', 'professional'];
+  if (businessTerms.some(term => searchTerm.toLowerCase().includes(term))) {
+    businessTerms.forEach(term => expandedKeywords.add(term));
+    expandedKeywords.add('enterprise');
+    expandedKeywords.add('corporate');
+    expandedKeywords.add('commercial');
+    expandedKeywords.add('workflow');
+  }
+  
+  // Enhanced social media term expansion
+  const socialTerms = ['social', 'instagram', 'youtube', 'tiktok', 'facebook', 'twitter'];
+  if (socialTerms.some(term => searchTerm.toLowerCase().includes(term))) {
+    socialTerms.forEach(term => expandedKeywords.add(term));
+    expandedKeywords.add('content');
+    expandedKeywords.add('influencer');
+    expandedKeywords.add('viral');
+    expandedKeywords.add('hashtag');
+    expandedKeywords.add('followers');
   }
   
   // Special handling for celebrity searches

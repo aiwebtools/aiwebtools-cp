@@ -24,6 +24,22 @@ export const keywordMapping: Record<string, string[]> = {
   ...searchMetaKeywords,
   ...aiWebToolsKeywords,
   
+  // Cannabis and marijuana related keywords - comprehensive slang and terms
+  "weed": ["cannabis", "marijuana", "pot", "ganja", "herb", "bud", "green", "mary jane", "420", "thc", "cbd", "hemp", "medical marijuana", "recreational cannabis", "dispensary", "strain", "indica", "sativa", "hybrid"],
+  "cannabis": ["marijuana", "weed", "pot", "hemp", "cbd", "thc", "medical cannabis", "recreational marijuana", "dispensary", "strain", "cultivation", "grow", "420", "ganja", "herb", "bud"],
+  "marijuana": ["cannabis", "weed", "pot", "mary jane", "ganja", "herb", "420", "thc", "cbd", "medical marijuana", "recreational cannabis", "dispensary", "strain", "bud", "green"],
+  "pot": ["cannabis", "marijuana", "weed", "herb", "ganja", "420", "thc", "cbd", "bud", "green", "mary jane", "dispensary"],
+  "420": ["cannabis", "marijuana", "weed", "pot", "herb", "ganja", "thc", "cbd", "april 20", "four twenty", "cannabis culture", "medical marijuana"],
+  "ganja": ["cannabis", "marijuana", "weed", "pot", "herb", "420", "rastafarian", "jamaican", "reggae", "bob marley", "thc", "cbd"],
+  "herb": ["cannabis", "marijuana", "weed", "pot", "ganja", "420", "natural", "herbal", "botanical", "medicinal herbs", "thc", "cbd"],
+  "mary jane": ["cannabis", "marijuana", "weed", "pot", "ganja", "420", "thc", "cbd", "herb", "bud", "green"],
+  "bud": ["cannabis", "marijuana", "weed", "flower", "nug", "420", "thc", "cbd", "strain", "indica", "sativa", "dispensary"],
+  "thc": ["cannabis", "marijuana", "psychoactive", "tetrahydrocannabinol", "420", "high", "euphoria", "medical marijuana", "recreational cannabis"],
+  "cbd": ["cannabidiol", "cannabis", "hemp", "non-psychoactive", "medical", "wellness", "pain relief", "anxiety", "therapeutic"],
+  "hemp": ["cannabis", "cbd", "industrial hemp", "fiber", "seeds", "oil", "legal cannabis", "non-psychoactive", "sustainable"],
+  "dispensary": ["cannabis store", "marijuana shop", "medical marijuana", "recreational cannabis", "cannabis retail", "420", "legal cannabis"],
+  "strain": ["cannabis variety", "indica", "sativa", "hybrid", "genetics", "cultivation", "effects", "terpenes", "420"],
+
   // Communication and phone-related keywords
   "phone": ["call", "voice", "communication", "telephone", "mobile", "cellular", "calling", "dial", "contact", "chat", "conversation", "talk", "speak", "call center", "call agent", "inbound", "outbound", "nucleus", "ai agent", "phone agent", "voice agent"],
   "call": ["phone", "voice", "calling", "telephone", "communication", "dial", "contact", "conversation", "chat", "talk", "call center", "call agent", "inbound", "outbound", "nucleus", "ai agent", "phone agent", "voice agent"],
@@ -46,38 +62,67 @@ export const keywordMapping: Record<string, string[]> = {
   "famous": ["celebrity", "star", "well-known", "renowned", "popular", "notable", "prominent"],
   "chatline": ["phone", "call", "conversation", "talk", "communication", "celebrity", "chat"],
   
-  // AI and assistant keywords
-  "assistant": ["helper", "aide", "support", "guide", "ai", "bot", "agent", "companion"],
-  "helper": ["assistant", "aide", "support", "guide", "tool", "utility"],
+  // Enhanced AI and tech slang
+  "ai": ["artificial intelligence", "machine learning", "neural network", "deep learning", "bot", "chatbot", "gpt", "llm", "algorithm", "automation"],
+  "gpt": ["chatgpt", "openai", "language model", "conversational ai", "text generation", "ai assistant", "chat bot", "artificial intelligence"],
+  "bot": ["chatbot", "ai", "automated", "robot", "assistant", "agent", "artificial intelligence", "machine"],
   
-  // Content creation keywords
-  "content": ["creation", "generate", "make", "produce", "write", "create", "build", "develop"],
-  "create": ["make", "generate", "build", "produce", "design", "craft", "develop", "content"],
-  "generate": ["create", "make", "produce", "build", "content", "ai", "automatic"],
+  // Creative and design slang
+  "art": ["artwork", "creative", "design", "artistic", "visual", "drawing", "painting", "illustration", "graphic design", "digital art"],
+  "design": ["creative", "art", "graphic", "visual", "style", "aesthetic", "layout", "interface", "ui", "ux"],
+  "video": ["film", "movie", "clip", "footage", "recording", "cinematography", "editing", "production", "youtube", "tiktok"],
+  "music": ["audio", "sound", "song", "track", "beat", "melody", "composition", "production", "spotify", "soundcloud"],
   
-  // Professional services keywords
-  "doctor": ["medical", "health", "healthcare", "physician", "medicine", "clinic", "treatment"],
-  "medical": ["health", "healthcare", "doctor", "physician", "medicine", "treatment", "diagnosis"],
-  "lawyer": ["legal", "attorney", "law", "court", "justice", "legal advice", "counsel"],
-  "legal": ["law", "lawyer", "attorney", "court", "justice", "counsel", "advice"],
+  // Business and productivity slang
+  "business": ["company", "corporate", "enterprise", "commercial", "work", "office", "professional", "b2b", "startup"],
+  "money": ["finance", "financial", "cash", "payment", "revenue", "profit", "income", "salary", "investment", "trading"],
+  "work": ["job", "career", "employment", "office", "professional", "productivity", "business", "workplace"],
   
-  // Creative and design keywords
-  "design": ["creative", "art", "graphic", "visual", "style", "aesthetic", "layout", "interface"],
-  "art": ["creative", "design", "artistic", "visual", "drawing", "painting", "illustration"],
-  "graphic": ["design", "visual", "art", "image", "picture", "illustration", "creative"],
+  // Social media and platform slang
+  "social": ["facebook", "instagram", "twitter", "tiktok", "linkedin", "youtube", "social media", "networking", "community"],
+  "content": ["creation", "generate", "make", "produce", "write", "create", "build", "develop", "blog", "post"],
+  "youtube": ["video", "content creation", "streaming", "monetization", "views", "subscribers", "channel"],
+  "instagram": ["photos", "stories", "reels", "influencer", "social media", "hashtags", "followers"],
+  "tiktok": ["short video", "viral", "trending", "social media", "content creation", "dance", "music"],
   
-  "business": ["professional", "corporate", "enterprise", "commercial", "work", "office", "company"],
-  "productivity": ["efficiency", "workflow", "automation", "organization", "business", "work"],
-  "workflow": ["automation", "process", "productivity", "business", "efficiency", "organization"],
+  // Health and wellness slang
+  "health": ["medical", "wellness", "fitness", "doctor", "healthcare", "medicine", "nutrition", "exercise"],
+  "fitness": ["exercise", "workout", "gym", "health", "training", "muscle", "cardio", "strength"],
+  "mental": ["psychology", "therapy", "counseling", "wellness", "mindfulness", "meditation", "stress", "anxiety"],
   
-  "learn": ["education", "study", "training", "course", "tutorial", "skill", "knowledge"],
-  "education": ["learning", "study", "training", "course", "school", "academic", "knowledge"],
-  "course": ["education", "learning", "training", "tutorial", "class", "lesson", "study"],
+  // Gaming and entertainment slang
+  "game": ["gaming", "video game", "play", "entertainment", "fun", "interactive", "console", "pc gaming"],
+  "gaming": ["video games", "esports", "streaming", "twitch", "console", "pc", "mobile games", "gameplay"],
   
-  "game": ["gaming", "entertainment", "play", "fun", "interactive", "video game", "puzzle"],
-  "entertainment": ["fun", "game", "music", "video", "media", "leisure", "recreation"],
-  "fun": ["entertainment", "game", "play", "enjoyable", "amusing", "recreation"],
+  // Learning and education slang
+  "learn": ["education", "study", "training", "course", "tutorial", "skill", "knowledge", "school", "university"],
+  "study": ["learning", "education", "research", "academic", "homework", "exam", "knowledge", "school"],
+  "course": ["class", "lesson", "tutorial", "training", "education", "online learning", "certification"],
   
+  // Tech and development slang
+  "code": ["programming", "coding", "development", "software", "computer", "tech", "developer", "github"],
+  "app": ["application", "software", "mobile app", "web app", "program", "tool", "platform"],
+  "website": ["web", "site", "online", "internet", "domain", "webpage", "blog", "portfolio"],
+  
+  // Food and cooking slang
+  "food": ["cooking", "recipe", "kitchen", "chef", "restaurant", "cuisine", "meal", "nutrition"],
+  "cooking": ["recipe", "chef", "kitchen", "food", "meal prep", "baking", "culinary", "ingredients"],
+  
+  // Additional professional services
+  "doctor": ["medical", "health", "healthcare", "physician", "medicine", "clinic", "treatment", "dr", "md"],
+  "lawyer": ["legal", "attorney", "law", "court", "justice", "legal advice", "counsel", "litigation"],
+  "legal": ["law", "lawyer", "attorney", "court", "justice", "counsel", "advice", "contract", "litigation"],
+  
+  // Travel and transportation
+  "travel": ["trip", "vacation", "journey", "tourism", "flight", "hotel", "destination", "adventure"],
+  "car": ["vehicle", "automobile", "transportation", "driving", "automotive", "motor", "wheels"],
+  
+  // Time and productivity
+  "time": ["schedule", "calendar", "clock", "timing", "deadline", "productivity", "management", "planning"],
+  "productivity": ["efficiency", "workflow", "automation", "organization", "business", "work", "time management"],
+  
+  // Robotics and automation
+  "robot": ["robotics", "automation", "mechanical", "ai", "android", "cyborg", "artificial", "machine"],
   "robotics": ["robot", "robotics companies", "humanoid robots", "robot manufacturers", "robot distributors"],
   "humanoid": ["humanoid robots", "bipedal robots", "human-like robots", "android", "cyborg"],
   "unitree": ["unitree robotics", "G1 robot", "quadruped robots", "robot dogs"],
