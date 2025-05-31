@@ -328,8 +328,6 @@ export const mediaCategories: MainCategory[] = [
       "Audio Processing",
       "Sound Effects",
       "Audio Enhancement",
-      
-      // Enhanced audio categories
       "Audio & Music Tools",
       "Audio AI",
       "Voice AI",
@@ -354,8 +352,6 @@ export const mediaCategories: MainCategory[] = [
       "Sound Engineering",
       "Music Engineering",
       "Voice Engineering",
-      
-      // Transcription and document tools
       "Transcription & Document Tools",
       "Meeting & Transcription Tools",
       "Document And Research Tools",
@@ -370,8 +366,6 @@ export const mediaCategories: MainCategory[] = [
       "Dictation",
       "Voice Notes",
       "Audio Notes",
-      
-      // Music generation and composition
       "AI Music Generation",
       "Music Composition",
       "AI Composition",
@@ -399,8 +393,6 @@ export const mediaCategories: MainCategory[] = [
       "Mood Music",
       "Genre Music",
       "Style Music",
-      
-      // Voice and speech technologies
       "Voice Transformation",
       "Voice Modulation",
       "Voice Effects",
@@ -425,8 +417,6 @@ export const mediaCategories: MainCategory[] = [
       "Speech Bots",
       "Voice Agents",
       "Speech Agents",
-      
-      // Audio processing and enhancement
       "Audio Cleanup",
       "Audio Restoration",
       "Audio Mastering",
@@ -454,8 +444,6 @@ export const mediaCategories: MainCategory[] = [
       "Audio Stereo",
       "Audio Mono",
       "Audio Channels",
-      
-      // Music production and editing
       "Music Production",
       "Music Studio",
       "Digital Audio Workstation",
@@ -484,8 +472,6 @@ export const mediaCategories: MainCategory[] = [
       "Sound Library",
       "Sample Library",
       "Preset Library",
-      
-      // Podcast and broadcasting tools
       "Podcast Tools",
       "Podcast Production",
       "Podcast Editing",
@@ -504,8 +490,6 @@ export const mediaCategories: MainCategory[] = [
       "Audio Hosting",
       "Audio CDN",
       "Audio Platform",
-      
-      // Specialized audio categories
       "Spatial Audio",
       "3D Audio",
       "Surround Sound",
@@ -532,8 +516,6 @@ export const mediaCategories: MainCategory[] = [
       "Concert Audio",
       "Performance Audio",
       "Event Audio",
-      
-      // Audio formats and technical
       "Audio Formats",
       "Audio Conversion",
       "Audio Encoding",
@@ -561,8 +543,6 @@ export const mediaCategories: MainCategory[] = [
       "Audio Systems",
       "Audio Infrastructure",
       "Audio Technology",
-      
-      // Voice and speech specialized
       "Celebrity Voices",
       "Character Voices",
       "Custom Voices",
@@ -588,8 +568,6 @@ export const mediaCategories: MainCategory[] = [
       "Marketing Voices",
       "Corporate Voices",
       "Business Voices",
-      
-      // Music and audio AI technologies
       "Neural Audio",
       "Deep Learning Audio",
       "Machine Learning Audio",
@@ -683,7 +661,64 @@ export const mediaCategories: MainCategory[] = [
       "Scientific Visualization",
       "Data Visualization",
       "Information Visualization",
-      "Interactive Visualization"
+      "Interactive Visualization",
+      
+      // Enhanced 3D categories for the specific tools mentioned
+      "3D Printing",
+      "3D Print Tools",
+      "3D Print GPT",
+      "Text to 3D Generation",
+      "Meshy AI",
+      "Meshy",
+      "Spline",
+      "Spline 3D",
+      "Luma AI",
+      "Luma 3D",
+      "3D Capture",
+      "3D Scanning",
+      "Polycam",
+      "Blender",
+      "Blender 3D",
+      "Open Source 3D",
+      "3D Modeling Software",
+      "Professional 3D Tools",
+      "3D Creation Platforms",
+      "AI 3D Tools",
+      "Machine Learning 3D",
+      "Neural 3D Generation",
+      "Procedural 3D",
+      "Generative 3D",
+      "3D Prototyping",
+      "3D Production",
+      "3D Workflow",
+      "3D Pipeline",
+      "3D Asset Creation",
+      "3D Content Creation",
+      "3D Digital Assets",
+      "3D Scene Creation",
+      "3D Environment Design",
+      "3D Character Modeling",
+      "3D Object Modeling",
+      "3D Reconstruction",
+      "3D Digitization",
+      "3D Documentation",
+      "3D Archiving",
+      "3D Preservation",
+      "3D Analysis",
+      "3D Measurement",
+      "3D Inspection",
+      "3D Quality Control",
+      "3D Manufacturing",
+      "3D Production Tools",
+      "3D Design Software",
+      "3D Creative Tools",
+      "3D Artist Tools",
+      "3D Designer Tools",
+      "3D Developer Tools",
+      "3D Engineer Tools",
+      "3D Architect Tools",
+      "Business Operations",
+      "Productivity"
     ]
   }
 ];

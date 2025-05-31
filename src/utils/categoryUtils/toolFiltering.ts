@@ -12,7 +12,8 @@ import {
   getContentCreationWritingTools,
   getImageDesignTools,
   getVideoMultimediaTools,
-  getAudioVoiceTools
+  getAudioVoiceTools,
+  get3DVisualizationTools
 } from "./categoryMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
 
@@ -68,6 +69,16 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
   // Special handling for Video & Multimedia category
   if (categoryName === "VIDEO & MULTIMEDIA" || categoryName === "Video & Multimedia") {
     return getVideoMultimediaTools(tools, categoryName);
+  }
+  
+  // Special handling for Audio & Voice Tools category
+  if (categoryName === "AUDIO & VOICE TOOLS" || categoryName === "Audio & Voice Tools") {
+    return getAudioVoiceTools(tools, categoryName);
+  }
+  
+  // Special handling for 3D & Visualization category
+  if (categoryName === "3D & VISUALIZATION" || categoryName === "3D & Visualization Tools") {
+    return get3DVisualizationTools(tools, categoryName);
   }
   
   // Regular category filtering with enhanced similarity matching
@@ -161,6 +172,22 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     const videoMultimediaTools = getVideoMultimediaTools(tools, mainCategoryName);
     console.log(`✅ Found ${videoMultimediaTools.length} video & multimedia tools`);
     return videoMultimediaTools;
+  }
+  
+  // Special enhanced handling for AUDIO & VOICE TOOLS category
+  if (mainCategoryName === "AUDIO & VOICE TOOLS") {
+    console.log(`🎵 AUDIO & VOICE TOOLS category requested - using enhanced matching`);
+    const audioVoiceTools = getAudioVoiceTools(tools, mainCategoryName);
+    console.log(`✅ Found ${audioVoiceTools.length} audio & voice tools`);
+    return audioVoiceTools;
+  }
+  
+  // Special enhanced handling for 3D & VISUALIZATION category
+  if (mainCategoryName === "3D & VISUALIZATION") {
+    console.log(`🧊 3D & VISUALIZATION category requested - using enhanced matching`);
+    const threeDVisualizationTools = get3DVisualizationTools(tools, mainCategoryName);
+    console.log(`✅ Found ${threeDVisualizationTools.length} 3D & visualization tools`);
+    return threeDVisualizationTools;
   }
   
   // Find the main category configuration
