@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Gem,
@@ -27,16 +28,7 @@ import {
   Gamepad2,
   Lightbulb,
   Palette,
-  Code,
-  Search,
-  TreePine,
-  Microscope,
-  Pill,
-  Coffee,
-  Chef,
-  Sparkles,
-  Phone,
-  Flame
+  Code
 } from "lucide-react";
 
 export const aiWebToolsGPTs: Tool[] = [
@@ -429,135 +421,5 @@ export const aiWebToolsGPTs: Tool[] = [
     category: "Business & Productivity",
     rating: 4.9,
     totalVotes: 5678
-  },
-  {
-    icon: Search,
-    title: "FACT CHECKER GPT",
-    description: "Fact Checker GPT is a powerful AI tool designed to combat misinformation by analyzing claims, articles, and websites for accuracy, bias, and reliability. It cross-references multiple credible sources, identifies patterns of misinformation, and assigns a truth score to evaluate content validity. By highlighting biases, detecting unreliable sources, and educating users on critical thinking, it empowers informed decision-making. With advanced capabilities like data visualization and web searches, Fact Checker GPT is your ultimate ally in exposing fake news and ensuring factual integrity. Download it's free open-source prompt to save for your records by clicking here.",
-    emoji: "🔍",
-    color: "from-red-500 to-orange-600",
-    directUrl: "https://factcheckergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-person-holding-a-sign-that-_gfexU.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["fact checking", "misinformation detection", "truth verification", "bias analysis", "credibility assessment"],
-    category: "Business & Productivity",
-    rating: 4.8,
-    totalVotes: 5234
-  },
-  {
-    icon: TreePine,
-    title: "Sustainable Futures GPT",
-    description: "I am Sustainable Futures GPT, and my purpose is to assist governments, communities, and individuals in making informed, data-driven decisions to achieve environmental sustainability. I specialize in analyzing global climate data, offering predictions, and providing actionable strategies to reduce environmental impact and regenerate Earth's resources for future harmony with nature.",
-    emoji: "🌱",
-    color: "from-green-500 to-emerald-600",
-    directUrl: "https://sustainablefuturesgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-future-city-with-vertical-gardens.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["sustainability", "climate analysis", "environmental strategy", "renewable energy", "green technology"],
-    category: "Business & Productivity",
-    rating: 4.7,
-    totalVotes: 4321
-  },
-  {
-    icon: Microscope,
-    title: "Nikola Tesla GPT",
-    description: "Nikola Tesla GPT is a cutting-edge AI tool inspired by the visionary brilliance of Nikola Tesla, designed to investigate scientific mysteries, craft groundbreaking theories, and innovate across disciplines. With advanced capabilities in data analysis, Python modeling, and research synthesis, it uncovers patterns and delivers actionable insights to drive discovery. This AI tool excels in solving complex challenges, exploring uncharted ideas, and bridging the gap between creativity and scientific precision. Nikola Tesla GPT is the ultimate partner for researchers, inventors, and visionaries seeking to revolutionize the future.",
-    emoji: "⚡",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=DR_3MvP7Wws",
-    tags: ["scientific research", "innovation", "data analysis", "theory development", "invention"],
-    category: "Business & Productivity",
-    rating: 4.9,
-    totalVotes: 6123
-  },
-  {
-    icon: Pill,
-    title: "Food Quality Inspector GPT",
-    description: "Food Quality Inspector GPT by AiWebTools.Ai is your smart companion for grocery shopping, helping you assess food quality, freshness, and safety on the spot. It analyzes ingredients, flags unhealthy or banned substances, and provides clear nutritional insights to guide healthier choices. Whether you're choosing fresh produce or packaged goods, it's like having a food safety and nutrition expert right by your side. 🛒🍎",
-    emoji: "🍎",
-    color: "from-green-500 to-yellow-600",
-    directUrl: "https://foodqualitygpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-man-inspecting-food-in-a-supermar.png/:/cr=t:4.65%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["food safety", "quality inspection", "nutrition analysis", "ingredient checking", "grocery shopping"],
-    category: "Business & Productivity",
-    rating: 4.6,
-    totalVotes: 3987
-  },
-  {
-    icon: Pill,
-    title: "PHARMA RESEARCH PRO",
-    description: "Pharma Research Pro, an AI-powered assistant designed to streamline pharmaceutical research and clinical trials by providing advanced data analysis, literature reviews, and predictive insights. My capabilities ensure efficient and accurate drug development while maintaining regulatory and ethical compliance. From optimizing trial design to monitoring safety, I empower researchers and clinicians to make informed decisions and accelerate the path to safe, effective medications.",
-    emoji: "💊",
-    color: "from-blue-500 to-cyan-600",
-    directUrl: "https://rxai.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-professional-pharmaceutical-assis.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["pharmaceutical research", "clinical trials", "drug development", "medical research", "regulatory compliance"],
-    category: "Business & Productivity",
-    rating: 4.8,
-    totalVotes: 4765
-  },
-  {
-    icon: Coffee,
-    title: "Mixologist GPT",
-    description: "Meet Kenny, the Mixology GPT, your virtual bartender 🍸. He whips up custom cocktails based on your vibe, ingredients, and taste—fun, fresh, and always on point.",
-    emoji: "🍸",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://mixologistgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-modern-and-stylish-bartender-with.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["cocktail recipes", "mixology", "bartending", "drink recommendations", "beverage creation"],
-    category: "Business & Productivity",
-    rating: 4.5,
-    totalVotes: 3234
-  },
-  {
-    icon: Chef,
-    title: "Chef \"Sizzle\" AI Culinary Assistant",
-    description: "Chef Sizzle, the GOAT of the digital kitchen 👨‍🍳🔥. He crafts award-winning, drool-worthy recipes tailored to you—whether you're plant-based, meat-lovin', or somewhere in between.",
-    emoji: "👨‍🍳",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://chefgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=vJz1HOGtV0I",
-    tags: ["cooking recipes", "culinary advice", "meal planning", "nutrition guidance", "cooking techniques"],
-    category: "Business & Productivity",
-    rating: 4.7,
-    totalVotes: 4123
-  },
-  {
-    icon: Sparkles,
-    title: "RESTYLE ME GPT",
-    description: "Transform your images into any artistic style you can imagine, bringing your creative vision to life with detailed and stunning effects. Upload your photo and let our AI transform you into any style you can imagine – from Ghibli animation to cyberpunk, action figures to movie scenes. Powered by the New GPT 4o Image Generation Model",
-    emoji: "✨",
-    color: "from-pink-500 to-purple-600",
-    directUrl: "https://restylemegpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/ChatGPT%20Image%20Apr%2027%2C%202025%2C%2007_08_04%20PM.png/:/cr=t:12.5%25,l:0%25,w:100%25,h:75%25/rs=w:1200,h:600,cg:true",
-    tags: ["image styling", "artistic transformation", "photo editing", "creative effects", "style transfer"],
-    category: "Business & Productivity",
-    rating: 4.6,
-    totalVotes: 3876
-  },
-  {
-    icon: Phone,
-    title: "Celebrity Chatline GPT",
-    description: "I'm a lively AI that brings your favorite celebrities straight to your phone! Dive into a fun, simulated call where you can chat and hang out with the stars you love the most!",
-    emoji: "📞",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://celebritychatline.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-split-screen-image-of-snoop-dogg-talking-on-.png/:/cr=t:0%25,l:0.11%25,w:99.78%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["celebrity chat", "entertainment", "simulation", "celebrity interaction", "fun conversations"],
-    category: "Business & Productivity",
-    rating: 4.4,
-    totalVotes: 2987
-  },
-  {
-    icon: Flame,
-    title: "Firefighter GPT",
-    description: "Introducing your premier AI ally in wildfire management: Firefighting GPT. Harnessing the power of real-time data and predictive analytics, this advanced tool delivers precise, actionable guidance to effectively master and extinguish fires. With Firefighting GPT, you elevate your firefighting strategy, ensuring you not only combat fires but strategically conquer them.",
-    emoji: "🔥",
-    color: "from-red-500 to-orange-600",
-    directUrl: "https://firefightergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=lGsefWkYfq0",
-    tags: ["firefighting", "emergency response", "wildfire management", "safety protocols", "disaster management"],
-    category: "Business & Productivity",
-    rating: 4.8,
-    totalVotes: 4567
   }
 ];
