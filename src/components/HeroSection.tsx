@@ -31,35 +31,9 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const scrollToTools = () => {
-    // First try to find the actual tools grid by class name
-    const toolsGrid = document.querySelector('[class*="grid"][class*="grid-cols-1"][class*="md:grid-cols-2"][class*="lg:grid-cols-4"]');
-    
-    if (toolsGrid) {
-      // Scroll to the tools grid with some offset for better visibility
-      const yOffset = -100; // Offset to show some content above
-      const y = toolsGrid.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      
-      window.scrollTo({
-        top: y,
-        behavior: 'smooth'
-      });
-    } else {
-      // Fallback: scroll to tools-section if grid is not found
-      const toolsSection = document.getElementById('tools-section');
-      if (toolsSection) {
-        toolsSection.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-      } else {
-        // Last resort: scroll down by a fixed amount
-        window.scrollTo({
-          top: window.innerHeight,
-          behavior: 'smooth'
-        });
-      }
-    }
+  const handleExploreAITools = () => {
+    // Navigate to ALL AI TOOLS main category page
+    navigate('/main-category/ALL%20AI%20TOOLS');
   };
 
   return (
@@ -104,7 +78,7 @@ const HeroSection = () => {
 
         {/* CTA Button */}
         <button
-          onClick={scrollToTools}
+          onClick={handleExploreAITools}
           className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-lg rounded-full shadow-2xl shadow-cyan-500/40 hover:shadow-cyan-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-cyan-400 hover:border-cyan-300 cyber-glow mb-8"
         >
           <span className="flex items-center space-x-3">
