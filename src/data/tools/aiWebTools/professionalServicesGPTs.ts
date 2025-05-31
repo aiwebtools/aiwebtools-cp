@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { Briefcase, Users, Calculator, Building, Leaf, Hammer, MapPin, Scale, DollarSign, Zap, Shield, Clock } from "lucide-react";
 
