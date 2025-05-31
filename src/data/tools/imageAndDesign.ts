@@ -195,7 +195,7 @@ export const imageAndDesign: Tool[] = [
     description: "Create engaging children's picture books with AI-generated stories and illustrations. Perfect for parents, educators, and aspiring children's book authors.",
     emoji: "📖",
     color: "from-yellow-500 to-pink-600",
-    directUrl: "https://childrenspicturebookgpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://childrensbookmaker.lovable.app/?via=aiwebtools",
     tags: ["children's books", "picture books", "illustrations", "education", "creative design"],
     category: "Image & Design",
     rating: 4.6,
