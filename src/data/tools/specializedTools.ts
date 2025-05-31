@@ -17,8 +17,7 @@ import {
   Bug,
   Apple,
   Wheat,
-  Utensils,
-  Sandwich
+  Utensils
 } from "lucide-react";
 
 export const specializedTools: Tool[] = [
@@ -177,18 +176,6 @@ export const specializedTools: Tool[] = [
     category: "Food & Cooking",
     rating: 4.2,
     totalVotes: 2156
-  },
-  {
-    icon: Sandwich,
-    title: "Food Pairing Assistant",
-    description: "AI assistant for food and beverage pairings with flavor profile analysis.",
-    emoji: "🥪",
-    color: "from-brown-500 to-orange-600",
-    directUrl: "https://example.com/pairing",
-    tags: ["food pairing", "flavors", "beverages", "culinary"],
-    category: "Food & Cooking",
-    rating: 4.0,
-    totalVotes: 876
   },
   {
     icon: Bot,

@@ -1,6 +1,6 @@
 
 import { Tool } from "@/types/tools";
-import { Scale, FileText, Globe, Shield, Building, Users, Vote, Gavel, Book, Target } from "lucide-react";
+import { Scale, FileText, Globe, Shield, Building, Vote, Gavel, Book, Target } from "lucide-react";
 
 export const specializedPolicyTools: Tool[] = [
   {
@@ -62,18 +62,6 @@ export const specializedPolicyTools: Tool[] = [
     category: "Specialized Policy Tools",
     rating: 4.6,
     totalVotes: 3345
-  },
-  {
-    icon: Users,
-    title: "Social Policy Researcher GPT",
-    description: "Research and develop social policies addressing inequality, welfare, education, and community development. Expert analysis of social issues and policy solutions.",
-    emoji: "👥",
-    color: "from-pink-500 to-purple-600",
-    directUrl: "https://socialpolicyresearchergpt.lovable.app/?via=aiwebtools",
-    tags: ["social policy", "inequality research", "welfare policy", "community development", "social issues"],
-    category: "Specialized Policy Tools",
-    rating: 4.4,
-    totalVotes: 2876
   },
   {
     icon: Vote,
