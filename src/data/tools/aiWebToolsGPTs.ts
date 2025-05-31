@@ -40,8 +40,7 @@ import {
   Crown,
   Telescope,
   Gavel,
-  MapPin,
-  Zap
+  MapPin
 } from "lucide-react";
 
 export const aiWebToolsGPTs: Tool[] = [
