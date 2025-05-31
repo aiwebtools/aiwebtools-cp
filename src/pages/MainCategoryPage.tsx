@@ -21,33 +21,28 @@ const MainCategoryPage = () => {
   const [displayedCount, setDisplayedCount] = useState(24);
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [showAllTools, setShowAllTools] = useState(false);
+  const [showAllTools, setShowAllTools] = useState(true); // Start with showing all tools
   const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(24);
-  const [showAllCategoryTools, setShowAllCategoryTools] = useState(false);
+  const [showCategoryTools, setShowCategoryTools] = useState(false);
+  const [categoryDisplayedCount, setCategoryDisplayedCount] = useState(24);
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
   // Find the main category
   const mainCategory = mainCategories.find(cat => cat.name === decodedCategoryName);
   
-  // Scroll to top when category changes - enhanced for immediate effect
+  // Scroll to top when category changes
   useEffect(() => {
-    // Immediate scroll to top
     window.scrollTo(0, 0);
-    
-    // Also use requestAnimationFrame to ensure it happens after any layout changes
     requestAnimationFrame(() => {
       window.scrollTo(0, 0);
     });
-    
-    // Additional timeout to catch any delayed renders
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 100);
   }, [decodedCategoryName]);
   
   if (!mainCategory) {
-    // If category not found, redirect to home
     useEffect(() => {
       navigate('/');
     }, [navigate]);
@@ -80,54 +75,27 @@ const MainCategoryPage = () => {
     });
   }
   
-  console.log(`🔍 MainCategoryPage Debug for "${decodedCategoryName}":`, {
-    isAllAITools: decodedCategoryName === "ALL AI TOOLS",
-    categoryToolsCount: finalCategoryTools.length,
-    totalAllToolsCount: allTools.length,
-    sampleCategoryTools: finalCategoryTools.slice(0, 3).map(t => ({ title: t.title, category: t.category }))
-  });
-  
-  // Apply search filter if search term exists
-  const filteredTools = searchTerm.trim() 
-    ? searchTools(finalCategoryTools, searchTerm)
-    : finalCategoryTools;
-
-  // Get all tools for "See More" functionality - ensure we get ALL tools
+  // Apply search filter
   const allFilteredTools = searchTerm.trim() 
     ? searchTools(allTools, searchTerm)
-    : [...allTools]; // Create a copy to avoid mutation
+    : [...allTools];
+    
+  const categoryFilteredTools = searchTerm.trim() 
+    ? searchTools(finalCategoryTools, searchTerm)
+    : finalCategoryTools;
   
   console.log(`📊 Current display state:`, {
     categoryToolsCount: finalCategoryTools.length,
-    filteredToolsCount: filteredTools.length,
+    categoryFilteredToolsCount: categoryFilteredTools.length,
     allFilteredToolsCount: allFilteredTools.length,
     totalAllToolsCount: allTools.length,
     showAllTools,
-    showAllCategoryTools,
-    searchTerm: searchTerm || 'none',
-    displayedCount,
-    allToolsDisplayedCount
+    showCategoryTools,
+    searchTerm: searchTerm || 'none'
   });
-
-  // Calculate the actual displayed count based on what we're showing
-  const actualDisplayedCount = showAllCategoryTools ? filteredTools.length : displayedCount;
-  const currentTools = showAllTools ? allFilteredTools : filteredTools;
-  const currentDisplayedCount = showAllTools ? allToolsDisplayedCount : actualDisplayedCount;
-
-  const handleLoadMore = () => {
-    if (isLoading || displayedCount >= filteredTools.length) return;
-    
-    setIsLoading(true);
-    setTimeout(() => {
-      setDisplayedCount(prev => Math.min(prev + 12, filteredTools.length));
-      setIsLoading(false);
-    }, 500);
-  };
 
   const handleAllToolsLoadMore = () => {
     if (isLoading || allToolsDisplayedCount >= allFilteredTools.length) return;
-    
-    console.log(`🚀 Loading more tools: ${allToolsDisplayedCount} -> ${Math.min(allToolsDisplayedCount + 24, allFilteredTools.length)} of ${allFilteredTools.length}`);
     
     setIsLoading(true);
     setTimeout(() => {
@@ -136,65 +104,40 @@ const MainCategoryPage = () => {
     }, 300);
   };
 
-  // Fixed search handler that doesn't cause navigation or scroll issues
+  const handleCategoryToolsLoadMore = () => {
+    if (isLoading || categoryDisplayedCount >= categoryFilteredTools.length) return;
+    
+    setIsLoading(true);
+    setTimeout(() => {
+      setCategoryDisplayedCount(prev => Math.min(prev + 12, categoryFilteredTools.length));
+      setIsLoading(false);
+    }, 300);
+  };
+
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
-    setDisplayedCount(24); // Reset displayed count when searching
-    setAllToolsDisplayedCount(24); // Reset all tools count when searching
-    setShowAllCategoryTools(false); // Reset show all category tools when searching
-    // Don't scroll or navigate - just update the search term
+    setAllToolsDisplayedCount(24);
+    setCategoryDisplayedCount(24);
   };
 
-  const handleShowAllCategoryTools = () => {
-    console.log(`🚀 Show More From This Category clicked! Total category tools: ${filteredTools.length}`);
-    setShowAllCategoryTools(true);
-    // Scroll to the tools section
+  const handleShowCategoryTools = () => {
+    setShowCategoryTools(true);
     setTimeout(() => {
-      const toolsSection = document.getElementById('category-tools-section');
-      if (toolsSection) {
-        toolsSection.scrollIntoView({ behavior: 'smooth' });
+      const categorySection = document.getElementById('category-tools-section');
+      if (categorySection) {
+        categorySection.scrollIntoView({ behavior: 'smooth' });
       }
     }, 100);
   };
 
-  const handleSeeMoreAITools = () => {
-    console.log(`🚀 See More AI Tools clicked! Total tools available: ${allTools.length}`);
-    setShowAllTools(true);
-    setAllToolsDisplayedCount(24); // Start with 24 tools and let infinite scroll handle the rest
-    // Scroll to the tools section
-    setTimeout(() => {
-      const toolsSection = document.getElementById('all-tools-section');
-      if (toolsSection) {
-        toolsSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
-  };
-
-  // Setup infinite scroll - enhanced for better performance
+  // Setup infinite scroll for all tools
   useInfiniteScroll({
     isLoading,
     showLoadMoreButton: false,
-    displayedCount: currentDisplayedCount,
-    totalTools: currentTools.length,
-    onLoadMore: showAllTools ? handleAllToolsLoadMore : handleLoadMore,
+    displayedCount: allToolsDisplayedCount,
+    totalTools: allFilteredTools.length,
+    onLoadMore: handleAllToolsLoadMore,
     searchTerm: searchTerm
-  });
-
-  const hasMoreTools = currentDisplayedCount < currentTools.length;
-  const showCompletionMessage = !hasMoreTools && !isLoading && currentTools.length > 20;
-
-  // Show "Show More From This Category" button when we have more tools in category and not showing all yet
-  const shouldShowAllCategoryButton = !showAllCategoryTools && !showAllTools && 
-    filteredTools.length > displayedCount && !searchTerm;
-
-  console.log(`📊 Final render state:`, {
-    currentToolsLength: currentTools.length,
-    currentDisplayedCount,
-    hasMoreTools,
-    showAllTools,
-    showAllCategoryTools,
-    shouldShowAllCategoryButton,
-    decodedCategoryName
   });
 
   return (
@@ -222,127 +165,112 @@ const MainCategoryPage = () => {
             </p>
           </div>
 
-          {/* Search Bar - Positioned after category description */}
-          <div className="max-w-2xl mx-auto mb-8">
-            <h3 className="text-xl font-bold text-white mb-4 text-center">
-              🔍 Search All AI Tools
-            </h3>
-            <SearchBar
-              searchTerm={searchTerm}
-              onSearchChange={handleSearchChange}
-              preventAutoNavigation={true}
-            />
-          </div>
+          {/* Main AI Tools Collection Section - NOW AT THE TOP */}
+          <div className="mb-16">
+            {/* Search Bar for All Tools */}
+            <div className="max-w-2xl mx-auto mb-8">
+              <h3 className="text-xl font-bold text-white mb-4 text-center">
+                🔍 Search All AI Tools
+              </h3>
+              <SearchBar
+                searchTerm={searchTerm}
+                onSearchChange={handleSearchChange}
+                preventAutoNavigation={true}
+              />
+            </div>
 
-          {/* Tools Count */}
-          <div className="text-center mb-8">
-            <div className="text-cyan-400 font-semibold">
-              {showAllTools 
-                ? (searchTerm ? `${allFilteredTools.length} tools found` : `${allTools.length} total tools available`)
-                : (searchTerm ? `${filteredTools.length} tools found` : `${finalCategoryTools.length} tools available`)
-              }
+            {/* All Tools Count */}
+            <div className="text-center mb-8">
+              <div className="text-cyan-400 font-semibold">
+                {searchTerm ? `${allFilteredTools.length} tools found` : `${allTools.length} total tools available`}
+              </div>
+            </div>
+
+            {/* Main AI Tools Grid */}
+            <div id="all-tools-section">
+              <div className="text-center mb-8 sm:mb-12 px-4">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
+                  🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">AI TOOLS COLLECTION</span>
+                </h3>
+              </div>
+              
+              {allFilteredTools.length > 0 ? (
+                <ToolsGrid
+                  tools={allFilteredTools}
+                  displayedCount={allToolsDisplayedCount}
+                  selectedCategory={null}
+                  searchTerm={searchTerm}
+                  onLoadMore={handleAllToolsLoadMore}
+                  hasInfiniteScroll={true}
+                  isLoading={isLoading}
+                />
+              ) : (
+                <div className="text-center py-16">
+                  <div className="text-4xl mb-4">🔍</div>
+                  <h3 className="text-2xl font-bold text-cyan-100 mb-4">No search results</h3>
+                  <p className="text-gray-300 mb-8">No tools found for "{searchTerm}".</p>
+                </div>
+              )}
             </div>
           </div>
 
-          {/* Show More From This Category Button - appears before tools grid (TOP) */}
-          {shouldShowAllCategoryButton && (
+          {/* Category-Specific Tools Section - NOW AT THE BOTTOM */}
+          {!showCategoryTools && finalCategoryTools.length > 0 && (
             <div className="text-center mb-8 px-4">
               <Button
-                onClick={handleShowAllCategoryTools}
+                onClick={handleShowCategoryTools}
                 size="lg"
                 className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-4 py-4 rounded-xl text-sm sm:text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 max-w-full"
               >
-                {/* Responsive text - shorter on mobile */}
-                <span className="sm:hidden">📋 SHOW MORE</span>
-                <span className="hidden sm:inline">📋 SHOW MORE FROM THIS CATEGORY</span>
+                <span className="sm:hidden">📋 SHOW {decodedCategoryName}</span>
+                <span className="hidden sm:inline">📋 SHOW {decodedCategoryName} SPECIFIC TOOLS</span>
               </Button>
               <div className="mt-4 text-green-300 text-sm">
-                Currently showing {displayedCount} of {filteredTools.length} tools in this category
+                View {finalCategoryTools.length} tools specifically in the {decodedCategoryName} category
               </div>
             </div>
           )}
 
-          {/* Main Tools Section */}
-          <div id={showAllTools ? "all-tools-section" : "category-tools-section"}>
-            {currentTools.length > 0 ? (
-              <ToolsGrid
-                tools={currentTools}
-                displayedCount={currentDisplayedCount}
-                selectedCategory={showAllTools ? null : decodedCategoryName}
-                searchTerm={searchTerm}
-                onLoadMore={showAllTools ? handleAllToolsLoadMore : handleLoadMore}
-                hasInfiniteScroll={true}
-                isLoading={isLoading}
-              />
-            ) : (
-              <div className="text-center py-16">
-                <div className="text-4xl mb-4">🔍</div>
-                <h3 className="text-2xl font-bold text-cyan-100 mb-4">
-                  {searchTerm ? 'No search results' : 'No tools found'}
+          {/* Category Tools Section */}
+          {showCategoryTools && (
+            <div id="category-tools-section" className="mt-16 border-t border-cyan-500/30 pt-16">
+              <div className="text-center mb-8">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 cyber-glow">
+                  🎯 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{decodedCategoryName}</span>
                 </h3>
-                <p className="text-gray-300 mb-8">
-                  {searchTerm 
-                    ? `No tools found for "${searchTerm}" in this category.`
-                    : 'We couldn\'t find any tools in this category at the moment.'
-                  }
+                <p className="text-gray-300 mb-6">
+                  Specialized tools in the {decodedCategoryName} category
                 </p>
+                <div className="text-cyan-400 font-semibold">
+                  {searchTerm ? `${categoryFilteredTools.length} tools found` : `${finalCategoryTools.length} tools available`}
+                </div>
               </div>
-            )}
-          </div>
 
-          {/* Enhanced completion message */}
-          {showCompletionMessage && (
-            <div className="text-center mt-12 mb-16 px-4 text-cyan-300">
-              <div className="text-2xl mb-4">🎉</div>
-              <div className="text-lg font-semibold mb-4">
-                You've explored all {currentTools.length} tools{showAllTools ? ' in our database' : ` in ${decodedCategoryName}`}!
-              </div>
-              <div className="text-sm opacity-80 mb-8">
-                {showAllTools 
-                  ? "Try searching or filtering by category to discover specific tools."
-                  : "Try exploring other categories to discover more tools."
-                }
-              </div>
-            </div>
-          )}
-
-          {/* Show More From This Category Button - appears after tools but before featured tools (BOTTOM) */}
-          {shouldShowAllCategoryButton && (
-            <div className="text-center mt-12 mb-8 px-4">
-              <Button
-                onClick={handleShowAllCategoryTools}
-                size="lg"
-                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-4 py-4 rounded-xl text-sm sm:text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 max-w-full"
-              >
-                {/* Responsive text - shorter on mobile */}
-                <span className="sm:hidden">📋 SHOW MORE</span>
-                <span className="hidden sm:inline">📋 SHOW MORE FROM THIS CATEGORY</span>
-              </Button>
-              <div className="mt-4 text-green-300 text-sm">
-                Currently showing {displayedCount} of {filteredTools.length} tools in this category
-              </div>
+              {categoryFilteredTools.length > 0 ? (
+                <ToolsGrid
+                  tools={categoryFilteredTools}
+                  displayedCount={categoryDisplayedCount}
+                  selectedCategory={decodedCategoryName}
+                  searchTerm={searchTerm}
+                  onLoadMore={handleCategoryToolsLoadMore}
+                  hasInfiniteScroll={false}
+                  isLoading={false}
+                />
+              ) : (
+                <div className="text-center py-16">
+                  <div className="text-4xl mb-4">🔍</div>
+                  <h3 className="text-2xl font-bold text-cyan-100 mb-4">No category results</h3>
+                  <p className="text-gray-300 mb-8">No tools found in {decodedCategoryName} for "{searchTerm}".</p>
+                </div>
+              )}
             </div>
           )}
         </main>
 
-        {/* Featured Tools Section - Our AIWebTools.ai Professional Solutions */}
-        {!showAllTools && decodedCategoryName !== "ALL AI TOOLS" && (
+        {/* Featured Tools Section */}
+        {decodedCategoryName !== "ALL AI TOOLS" && (
           <div className="mt-16">
             <FeaturedToolsSection />
-            
-            {/* SEE MORE AI TOOLS Button */}
-            <div className="text-center mt-12 mb-16 px-4">
-              <Button
-                onClick={handleSeeMoreAITools}
-                size="lg"
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
-              >
-                🚀 SEE MORE AI TOOLS
-              </Button>
-              <div className="mt-4 text-cyan-300 text-sm">
-                Explore our complete collection of {allTools.length}+ amazing AI tools
-              </div>
-            </div>
           </div>
         )}
         
