@@ -90,8 +90,19 @@ const MainCategoryPage = () => {
         <Header />
         
         <main className="container mx-auto px-4 py-8">
-          {/* Search Bar - Moved to top */}
-          <div className="max-w-2xl mx-auto mb-12">
+          {/* Category Header */}
+          <div className="text-center mb-12">
+            <div className="text-6xl mb-4">{mainCategory.emoji}</div>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
+              {decodedCategoryName}
+            </h1>
+            <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
+              {mainCategory.description}
+            </p>
+          </div>
+
+          {/* Search Bar - Positioned after category description */}
+          <div className="max-w-2xl mx-auto mb-8">
             <h3 className="text-xl font-bold text-white mb-4 text-center">
               🔍 Search All AI Tools
             </h3>
@@ -102,15 +113,8 @@ const MainCategoryPage = () => {
             />
           </div>
 
-          {/* Category Header */}
-          <div className="text-center mb-12">
-            <div className="text-6xl mb-4">{mainCategory.emoji}</div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
-              {decodedCategoryName}
-            </h1>
-            <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
-              {mainCategory.description}
-            </p>
+          {/* Tools Count */}
+          <div className="text-center mb-8">
             <div className="text-cyan-400 font-semibold">
               {searchTerm ? `${filteredTools.length} tools found` : `${categoryTools.length} tools available`}
             </div>
