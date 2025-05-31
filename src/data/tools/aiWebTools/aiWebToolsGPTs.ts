@@ -22,6 +22,8 @@ import { educationalToolsGPTs } from "./educationalToolsGPTs";
 import { specializedNicheToolsGPTs } from "./specializedNicheToolsGPTs";
 import { businessStrategyGPTs } from "./businessStrategyGPTs";
 import { contentCreationToolsGPTs } from "./contentCreationToolsGPTs";
+import { additionalSpecializedGPTs } from "./additionalSpecializedGPTs";
+import { finalSpecializedGPTs } from "./finalSpecializedGPTs";
 
 // Combine all AI Web Tools GPTs from organized categories
 export const aiWebToolsGPTs: Tool[] = [
@@ -47,5 +49,7 @@ export const aiWebToolsGPTs: Tool[] = [
   ...specializedNicheToolsGPTs,
   ...businessStrategyGPTs,
   ...contentCreationToolsGPTs,
+  ...additionalSpecializedGPTs,
+  ...finalSpecializedGPTs,
   // Additional GPTs will be added here as new category files are created
 ];

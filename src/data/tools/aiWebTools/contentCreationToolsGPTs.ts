@@ -1,6 +1,6 @@
 
 import { Tool } from "@/types/tools";
-import { Mic, Search, FileText, Edit, PresentationChart, Leaf, Drill } from "lucide-react";
+import { Mic, Search, FileText, Edit, Presentation, Leaf, Drill } from "lucide-react";
 
 export const contentCreationToolsGPTs: Tool[] = [
   {
@@ -30,7 +30,7 @@ export const contentCreationToolsGPTs: Tool[] = [
     totalVotes: 3456
   },
   {
-    icon: PresentationChart,
+    icon: Presentation,
     title: "PPTx Powerpoint Maker GPT",
     description: "PPT Presentation Crafter is your all-in-one AI assistant for creating beautiful, detailed PowerPoint presentations with zero hassle. Whether you're building an educational deck, a business pitch, or a creative visual story, I generate polished content, custom DALLE visuals, and ready-to-download PPTX slides — slide by slide, in real time. Built by AIWebTools.ai, I'm the ultimate productivity partner for turning knowledge into powerful presentations.",
     emoji: "📊",
