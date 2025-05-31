@@ -94,6 +94,18 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
     return uniqueTools;
   }
   
+  // Enhanced handling for Communication & Collaboration category
+  if (categoryName === "COMMUNICATION & COLLABORATION AI TOOLS" || categoryName === "Communication & Entertainment" || categoryName === "Communication Tools") {
+    const directCategoryTools = tools.filter(tool => 
+      tool.category === categoryName || 
+      tool.category === "Communication & Entertainment" ||
+      tool.category === "Communication Tools" ||
+      tool.category === "COMMUNICATION & COLLABORATION AI TOOLS"
+    );
+    
+    return directCategoryTools;
+  }
+  
   // Regular category filtering for other categories
   return tools.filter(tool => tool.category === categoryName);
 };
@@ -123,6 +135,47 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     const categoryTools = getToolsByCategory(tools, subcategory);
     allCategoryTools.push(...categoryTools);
   });
+  
+  // Also include tools that might have slight category name variations
+  if (mainCategoryName === "COMMUNICATION & COLLABORATION AI TOOLS") {
+    // Add tools from related categories that might not be in subcategories
+    const additionalTools = tools.filter(tool => 
+      tool.category && (
+        tool.category.toLowerCase().includes('communication') ||
+        tool.category.toLowerCase().includes('collaboration') ||
+        tool.category.toLowerCase().includes('entertainment') ||
+        tool.category.toLowerCase().includes('chat') ||
+        tool.category.toLowerCase().includes('social')
+      )
+    );
+    allCategoryTools.push(...additionalTools);
+  }
+  
+  if (mainCategoryName === "MARKETING & SALES AI TOOLS") {
+    // Add tools from related marketing/sales categories
+    const additionalTools = tools.filter(tool => 
+      tool.category && (
+        tool.category.toLowerCase().includes('marketing') ||
+        tool.category.toLowerCase().includes('sales') ||
+        tool.category.toLowerCase().includes('business') ||
+        tool.category.toLowerCase().includes('e-commerce')
+      )
+    );
+    allCategoryTools.push(...additionalTools);
+  }
+  
+  if (mainCategoryName === "DATA & ANALYTICS AI TOOLS") {
+    // Add tools from related data/analytics categories
+    const additionalTools = tools.filter(tool => 
+      tool.category && (
+        tool.category.toLowerCase().includes('data') ||
+        tool.category.toLowerCase().includes('analytics') ||
+        tool.category.toLowerCase().includes('research') ||
+        tool.category.toLowerCase().includes('analysis')
+      )
+    );
+    allCategoryTools.push(...additionalTools);
+  }
   
   // Remove exact duplicates by title
   const uniqueTools = allCategoryTools.filter((tool, index, self) => 

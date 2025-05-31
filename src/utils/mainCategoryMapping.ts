@@ -2,217 +2,208 @@
 export interface MainCategory {
   name: string;
   emoji: string;
-  subcategories: string[];
   description: string;
+  subcategories: string[];
 }
 
-// Define the 15 main categories with their subcategories
 export const mainCategories: MainCategory[] = [
   {
-    name: "VIDEO AI TOOLS",
-    emoji: "🎬",
+    name: "AI CHAT & ASSISTANTS",
+    emoji: "🤖",
+    description: "Advanced AI chatbots, virtual assistants, and conversational AI platforms for various applications",
     subcategories: [
-      "Video Tools",
-      "Video & Animation Tools", 
-      "Video & Content Tools",
-      "Video Editing & Content Tools",
-      "Advanced Video Tools"
-    ],
-    description: "Complete video creation, editing, and animation solutions"
+      "AI Chat Platforms",
+      "AI Assistants", 
+      "Advanced Chat Platforms",
+      "AI Agents",
+      "Conversational AI"
+    ]
   },
   {
-    name: "IMAGE AI TOOLS", 
-    emoji: "🎨",
+    name: "CONTENT CREATION & WRITING",
+    emoji: "✍️", 
+    description: "AI-powered tools for writing, content generation, copywriting, and creative writing assistance",
     subcategories: [
-      "AI Art",
-      "Image & Design Generation",
-      "Core Image Generators",
-      "Image Editing Tools",
-      "Specialized Image Tools", 
-      "Background & Object Tools",
+      "AI Content Generators",
+      "Writing & Content",
+      "Content Creation Tools",
+      "Writing Assistants",
+      "Creative Writing Tools",
+      "Grammar & Writing Assistants",
+      "Content Creation & Writing Tools"
+    ]
+  },
+  {
+    name: "IMAGE & DESIGN TOOLS",
+    emoji: "🎨",
+    description: "AI tools for image generation, graphic design, photo editing, and visual content creation",
+    subcategories: [
+      "AI Art Tools",
+      "AI Image Generation",
       "Image Generation Platforms",
       "Design & Graphics Tools",
-      "Design Assistant Tools"
-    ],
-    description: "Image generation, editing, and design tools"
+      "Creative Design Tools",
+      "Image & Design",
+      "Image Editing Tools",
+      "Specialized Image Tools",
+      "Background & Object Tools",
+      "Core Image Generators"
+    ]
   },
   {
-    name: "WRITING AI TOOLS",
-    emoji: "✍️", 
+    name: "VIDEO & MULTIMEDIA",
+    emoji: "🎬",
+    description: "AI-powered video creation, editing, and multimedia production tools",
     subcategories: [
-      "Writing & Text Generation",
-      "Content Creation & Writing Tools",
-      "Writing & Content Enhancement",
-      "Document & Research Tools"
-    ],
-    description: "Writing assistance, content creation, and text generation"
+      "Video Tools",
+      "Video Generation Tools", 
+      "Video Editing Tools",
+      "Advanced Video Tools",
+      "Video & Content Tools",
+      "Video Editing & Content Tools",
+      "Video Marketing Tools",
+      "Video Business Tools",
+      "Entertainment Media Tools"
+    ]
   },
   {
-    name: "AUDIO & MUSIC AI TOOLS",
+    name: "AUDIO & VOICE TOOLS",
     emoji: "🎵",
+    description: "AI tools for audio processing, voice synthesis, music generation, and sound editing",
     subcategories: [
-      "Audio & Music Tools",
-      "Audio & Voice Tools", 
+      "Audio & Voice Tools",
+      "Audio Music Tools",
+      "Transcription & Document Tools",
       "Meeting & Transcription Tools"
-    ],
-    description: "Audio generation, music creation, and voice processing"
+    ]
   },
   {
-    name: "BUSINESS & PRODUCTIVITY AI TOOLS",
+    name: "BUSINESS & PRODUCTIVITY",
     emoji: "💼",
+    description: "AI tools for business automation, productivity enhancement, and workflow optimization",
     subcategories: [
-      "Business Operations & Productivity",
-      "Resume & Career Tools",
-      "Email Management Tools",
-      "Automation Platforms"
-    ],
-    description: "Business operations, productivity, and workflow automation"
+      "Business Tools",
+      "Business & Productivity", 
+      "Productivity & Automation Tools",
+      "Business & Team Tools",
+      "Automation & Workflow Tools",
+      "Business Sales Tools",
+      "Traditional Business Tools",
+      "Search & Productivity Tools"
+    ]
   },
   {
-    name: "MARKETING & SALES AI TOOLS", 
+    name: "MARKETING & SALES AI TOOLS",
     emoji: "📈",
+    description: "AI-powered marketing automation, sales optimization, and customer engagement tools",
     subcategories: [
-      "Marketing & Sales Solutions",
-      "Ecommerce & Marketing Tools",
-      "Social Media Tools"
-    ],
-    description: "Marketing automation, sales optimization, and social media management"
+      "MARKETING & SALES AI TOOLS",
+      "Marketing & Analytics",
+      "E-commerce & Marketing Tools", 
+      "Business & Sales Tools",
+      "Social Media Tools",
+      "Email Management Tools"
+    ]
   },
   {
-    name: "AI DEVELOPMENT & PLATFORMS",
-    emoji: "🤖",
+    name: "DATA & ANALYTICS AI TOOLS", 
+    emoji: "📊",
+    description: "AI tools for data analysis, business intelligence, and analytics platforms",
     subcategories: [
-      "AI Development & Platforms",
-      "Open Source AI Models",
-      "AI Agents",
-      "Local AI Solutions",
-      "AI Inference Platforms",
+      "DATA & ANALYTICS AI TOOLS",
+      "Data & Analytics Tools",
+      "Data Analytics Tools",
+      "Financial & Trading Tools"
+    ]
+  },
+  {
+    name: "DEVELOPMENT & CODING",
+    emoji: "⚡",
+    description: "AI-powered development tools, code assistants, and programming utilities",
+    subcategories: [
       "Developer Tools",
-      "Web Development Tools"
-    ],
-    description: "AI development tools, platforms, and programming resources"
+      "AI Development Tools",
+      "Developer & Coding Tools",
+      "Web Development Tools",
+      "AI Tools & Development",
+      "Platforms & Development"
+    ]
   },
   {
     name: "COMMUNICATION & COLLABORATION AI TOOLS",
     emoji: "💬", 
+    description: "AI tools for communication, collaboration, entertainment, and social interaction",
     subcategories: [
-      "Communication & Collaboration Tools",
-      "AI Assistants & Search",
-      "AI Chat Platforms",
-      "Advanced Chat Platforms"
-    ],
-    description: "Communication, collaboration, and AI assistant tools"
-  },
-  {
-    name: "DATA & ANALYTICS AI TOOLS",
-    emoji: "📊",
-    subcategories: [
-      "Data Science & Analytics",
-      "Content Detection Tools"
-    ],
-    description: "Data analysis, business intelligence, and content detection"
-  },
-  {
-    name: "EDUCATION & RESEARCH AI TOOLS",
-    emoji: "🎓",
-    subcategories: [
-      "Education & Research Tools",
-      "Learning Platforms",
-      "News And Information Tools"
-    ],
-    description: "Educational resources, research tools, and learning platforms"
-  },
-  {
-    name: "INDUSTRY-SPECIFIC AI SOLUTIONS",
-    emoji: "🏢",
-    subcategories: [
-      "Industry-Specific Solutions",
-      "Financial & Trading Tools", 
-      "Robotics Companies",
-      "Technical & Utility Tools",
-      "Cloud Services"
-    ],
-    description: "Specialized solutions for specific industries and professions"
-  },
-  {
-    name: "CREATIVE & ENTERTAINMENT AI TOOLS",
-    emoji: "🎭",
-    subcategories: [
-      "Creative & Entertainment (General & Gaming)",
-      "Entertainment Tools",
-      "Creative Platforms",
-      "Game Design & Development",
-      "Creative Services",
-      "Creative Suites",
-      "Art & Collectibles"
-    ],
-    description: "Creative tools, entertainment, and gaming solutions"
-  },
-  {
-    name: "HEALTH & WELLNESS AI TOOLS",
-    emoji: "🏥",
-    subcategories: [
-      "Health, Wellness & Personal Lifestyle",
-      "Healthcare Professionals",
-      "Health And Wellness Tools"
-    ],
-    description: "Healthcare, wellness, and personal lifestyle tools"
-  },
-  {
-    name: "UTILITIES & GENERAL AI TOOLS",
-    emoji: "🛠️",
-    subcategories: [
-      "Utilities Tools",
+      "COMMUNICATION & COLLABORATION AI TOOLS",
+      "Communication & Entertainment",
       "Communication Tools",
       "Collaboration Tools",
-      "3D & Visualization Tools"
-    ],
-    description: "General utilities, tools, and miscellaneous AI applications"
+      "Entertainment Tools",
+      "Game Design & Development"
+    ]
   },
   {
-    name: "SPECIALIZED & NICHE AI TOOLS",
-    emoji: "🔮",
+    name: "EDUCATION & LEARNING",
+    emoji: "🎓",
+    description: "AI-powered educational tools, learning platforms, and knowledge management systems",
     subcategories: [
-      "Historical & Time-Based AI Tools",
-      "Spirituality Tools",
-      "Emergency Services",
-      "Personal Services",
+      "Education & Learning",
+      "Learning & Education",
+      "Learning Platforms",
+      "Research & Learning"
+    ]
+  },
+  {
+    name: "HEALTH & WELLNESS",
+    emoji: "🏥",
+    description: "AI tools for healthcare, wellness, medical assistance, and health monitoring",
+    subcategories: [
+      "Health & Wellness",
+      "Health & Wellness Tools",
+      "Healthcare Professionals"
+    ]
+  },
+  {
+    name: "LEGAL & PROFESSIONAL SERVICES",
+    emoji: "⚖️", 
+    description: "AI tools for legal assistance, professional services, and compliance management",
+    subcategories: [
       "Legal Professionals",
+      "Professional Services",
+      "Personal Services",
+      "Resume & Career Tools"
+    ]
+  },
+  {
+    name: "3D & VISUALIZATION",
+    emoji: "🧊",
+    description: "AI tools for 3D modeling, visualization, and immersive content creation",
+    subcategories: [
+      "3D & Visualization Tools"
+    ]
+  },
+  {
+    name: "SPECIALIZED & NICHE TOOLS",
+    emoji: "🔧",
+    description: "Specialized AI tools for specific industries, niche applications, and unique use cases",
+    subcategories: [
+      "Specialized Tools",
+      "Specialized AI Tools",
+      "Specialized & Niche", 
+      "Specialized Niche Tools",
       "Specialized Policy Tools",
-      "Specialized Niche Tools"
-    ],
-    description: "Specialized, niche, and unique AI applications"
+      "Technical & Utility Tools",
+      "Utilities Tools",
+      "News & Information Tools",
+      "Local AI Solutions",
+      "Open Source AI Models",
+      "Robotics Companies",
+      "Cloud Services",
+      "Emergency Services",
+      "Art & Collectibles",
+      "Historical & Cultural",
+      "Spirituality Tools",
+      "Time & History"
+    ]
   }
 ];
-
-// Helper function to get main category for a subcategory
-export const getMainCategoryForSubcategory = (subcategory: string): MainCategory | null => {
-  return mainCategories.find(mainCat => 
-    mainCat.subcategories.some(sub => 
-      sub.toLowerCase() === subcategory.toLowerCase()
-    )
-  ) || null;
-};
-
-// Helper function to get all subcategories for a main category
-export const getSubcategoriesForMainCategory = (mainCategoryName: string): string[] => {
-  const mainCat = mainCategories.find(cat => cat.name === mainCategoryName);
-  return mainCat ? mainCat.subcategories : [];
-};
-
-// Helper function to get main category counts
-export const getMainCategoryCounts = (subcategoryCounts: Record<string, number>): Record<string, number> => {
-  const mainCategoryCounts: Record<string, number> = {};
-  
-  mainCategories.forEach(mainCat => {
-    let totalCount = 0;
-    mainCat.subcategories.forEach(subcategory => {
-      totalCount += subcategoryCounts[subcategory] || 0;
-    });
-    mainCategoryCounts[mainCat.name] = totalCount;
-  });
-  
-  return mainCategoryCounts;
-};
-
-export default mainCategories;
