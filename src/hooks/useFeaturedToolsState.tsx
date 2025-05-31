@@ -1,8 +1,9 @@
+
 import { useState, useMemo, useCallback } from "react";
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { getCategoriesWithCounts, getToolsByCategory } from "@/utils/categoryUtils";
-import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
+import { getSortedStandardizedCategories } from "@/utils/categoryTitles";
 import { createDeduplicatedToolsList } from "@/utils/toolDeduplication";
 import { createFeaturedTools } from "@/utils/featuredTools";
 import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
@@ -92,7 +93,13 @@ export const useFeaturedToolsState = () => {
   }, [selectedCategory, debouncedSearchTerm]); // Use debouncedSearchTerm instead of searchTerm
 
   const totalToolsCount = filteredTools.length;
-  const categoriesWithCounts = getStandardizedCategoriesWithCounts();
+  
+  // Convert the categories to the correct array format
+  const categoriesWithCounts = useMemo(() => {
+    const sortedCategories = getSortedStandardizedCategories();
+    return sortedCategories.map(([name, count]) => ({ name, count }));
+  }, []);
+  
   const hasMoreTools = displayedCount < filteredTools.length;
 
   console.log(`📊 Hook state - Category: ${selectedCategory}, Search: ${searchTerm}, Debounced: ${debouncedSearchTerm}, Total: ${totalToolsCount}, Displayed: ${displayedCount}, Has more: ${hasMoreTools}`);
