@@ -14,6 +14,37 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   // Add the full search term
   expandedKeywords.add(searchTerm);
   
+  // ENHANCED AUTOMATION TOOLS SEARCH - Critical for "MAKE" and automation tools
+  const automationTerms = ['make', 'automation', 'automate', 'workflow', 'zapier', 'integromat', 'n8n', 'power automate', 'ifttt', 'pipeline', 'trigger', 'action', 'connector', 'integration', 'webhook', 'api', 'flow', 'process', 'scheduler', 'task', 'workflow automation', 'business process', 'no-code', 'low-code'];
+  if (automationTerms.some(term => searchTerm.toLowerCase().includes(term) || term.includes(searchTerm.toLowerCase()))) {
+    automationTerms.forEach(term => expandedKeywords.add(term));
+    expandedKeywords.add('productivity');
+    expandedKeywords.add('business tools');
+    expandedKeywords.add('efficiency');
+    expandedKeywords.add('streamline');
+    expandedKeywords.add('optimize');
+    expandedKeywords.add('platform');
+    expandedKeywords.add('suite');
+    expandedKeywords.add('tool');
+    expandedKeywords.add('software');
+  }
+  
+  // ENHANCED MAKE SEARCH - Specific handling for "MAKE" tool
+  if (searchTerm.toLowerCase().includes('make') || searchTerm.toLowerCase() === 'make') {
+    expandedKeywords.add('make');
+    expandedKeywords.add('make.com');
+    expandedKeywords.add('integromat');
+    expandedKeywords.add('automation platform');
+    expandedKeywords.add('workflow builder');
+    expandedKeywords.add('integration platform');
+    expandedKeywords.add('visual automation');
+    expandedKeywords.add('scenario builder');
+    expandedKeywords.add('data connector');
+    expandedKeywords.add('app integration');
+    expandedKeywords.add('business automation');
+    expandedKeywords.add('process automation');
+  }
+  
   // Enhanced text-to-speech and audio AI search handling
   const ttsTerms = ['tts', 'text to speech', 'text-to-speech', 'speech synthesis', 'voice generation', 'voice ai', 'speech ai', 'eleven labs', 'elevenlabs', 'voice cloning', 'voice clone', 'ai voice', 'synthetic voice', 'artificial voice', 'voice over', 'voiceover', 'narration', 'speech generation'];
   if (ttsTerms.some(term => searchTerm.toLowerCase().includes(term))) {
