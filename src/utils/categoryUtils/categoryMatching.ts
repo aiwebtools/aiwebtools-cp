@@ -1,6 +1,5 @@
-
-
 import { Tool } from "@/types/tools";
+import { isSimilarCategory } from "./normalization";
 
 export const getAudioVoiceTools = (tools: Tool[], categoryName: string): Tool[] => {
   console.log(`🎵 Getting audio & voice tools for category: "${categoryName}"`);
@@ -541,36 +540,85 @@ export const getMarketingSalesTools = (tools: Tool[], categoryName: string): Too
 };
 
 export const getCommunicationCollaborationTools = (tools: Tool[], categoryName: string): Tool[] => {
-  console.log(`💬 Getting communication & collaboration tools for category: "${categoryName}"`);
+  console.log(`🔍 Enhanced matching for Communication & Collaboration category: "${categoryName}"`);
   
-  const communicationCollaborationTools = tools.filter(tool => {
-    if (!tool.title && !tool.description && !tool.category && !tool.tags) return false;
+  const collaborationKeywords = [
+    // Core collaboration tools
+    'collaboration', 'communicate', 'chat', 'message', 'team', 'meeting', 'video', 'voice',
+    'conference', 'call', 'discuss', 'share', 'workspace', 'whiteboard', 'brainstorm',
     
-    const searchText = `${tool.title} ${tool.description} ${tool.category} ${tool.tags?.join(' ')}`.toLowerCase();
+    // Specific tools from the list
+    'trickle', 'miro', 'planable', 'game design document', 'developer gpt', 'gdd',
+    'click2magic', 'live chat', 'support chat', 'zoom ai companion', 'post-meeting',
     
-    const communicationCollaborationKeywords = [
-      'communication', 'collaboration', 'team', 'meeting', 'chat', 'messaging',
-      'video conferencing', 'audio conferencing', 'screen sharing', 'whiteboard',
-      'project management', 'task management', 'workflow', 'slack', 'teams',
-      'zoom', 'discord', 'telegram', 'whatsapp', 'notion', 'asana', 'trello'
-    ];
+    // General collaboration patterns
+    'team communication', 'workplace chat', 'instant messaging', 'video conferencing',
+    'meeting tools', 'meeting management', 'meeting productivity', 'meeting analytics',
+    'collaboration platforms', 'project collaboration', 'document collaboration',
+    'real-time collaboration', 'remote collaboration', 'virtual collaboration',
+    'collaborative workspaces', 'shared workspaces', 'digital whiteboards',
+    'interactive whiteboards', 'virtual whiteboards', 'brainstorming tools',
+    'mind mapping', 'idea management', 'creative collaboration', 'visual collaboration',
+    'design collaboration', 'content collaboration', 'file sharing', 'document sharing',
+    'screen sharing', 'resource sharing', 'knowledge sharing', 'information sharing'
+  ];
+  
+  const matchedTools = tools.filter(tool => {
+    // Direct category match
+    if (tool.category && isSimilarCategory(tool.category, categoryName)) {
+      console.log(`✅ Direct category match: ${tool.title} (${tool.category})`);
+      return true;
+    }
     
-    const hasCommunicationCollaborationKeyword = communicationCollaborationKeywords.some(keyword => 
-      searchText.includes(keyword)
-    );
+    // Specific tool name matching
+    const toolTitle = tool.title?.toLowerCase() || '';
+    const toolDescription = tool.description?.toLowerCase() || '';
+    const toolContent = `${toolTitle} ${toolDescription}`;
     
-    const categoryMatch = tool.category && (
-      tool.category.toLowerCase().includes('communication') ||
-      tool.category.toLowerCase().includes('collaboration') ||
-      tool.category.toLowerCase().includes('meeting') ||
-      tool.category.toLowerCase().includes('team')
-    );
+    // Specific tools mentioned
+    if (toolTitle.includes('trickle') ||
+        (toolTitle.includes('miro') && toolContent.includes('collaboration')) ||
+        toolTitle.includes('planable') ||
+        (toolTitle.includes('game design document') && toolContent.includes('collaboration')) ||
+        (toolTitle.includes('developer gpt') && toolContent.includes('gdd')) ||
+        toolTitle.includes('click2magic') ||
+        (toolTitle.includes('zoom') && toolContent.includes('ai companion') && toolContent.includes('collaboration'))) {
+      console.log(`✅ Specific tool match: ${tool.title}`);
+      return true;
+    }
     
-    return hasCommunicationCollaborationKeyword || categoryMatch;
+    // Enhanced keyword matching for collaboration tools
+    const keywordMatches = collaborationKeywords.filter(keyword => 
+      toolContent.includes(keyword)
+    ).length;
+    
+    if (keywordMatches >= 2) {
+      console.log(`✅ Enhanced keyword match: ${tool.title} (${keywordMatches} matches)`);
+      return true;
+    }
+    
+    // Category-based matching for communication and collaboration patterns
+    const category = tool.category?.toLowerCase() || '';
+    if (category.includes('communication') || 
+        category.includes('collaboration') ||
+        category.includes('team') ||
+        category.includes('meeting') ||
+        category.includes('chat') ||
+        category.includes('video') ||
+        category.includes('conference') ||
+        category.includes('workspace') ||
+        category.includes('social') ||
+        category.includes('enterprise social') ||
+        category.includes('business communication')) {
+      console.log(`✅ Category pattern match: ${tool.title} (${tool.category})`);
+      return true;
+    }
+    
+    return false;
   });
   
-  console.log(`✅ Found ${communicationCollaborationTools.length} communication & collaboration tools`);
-  return communicationCollaborationTools;
+  console.log(`📊 Found ${matchedTools.length} communication & collaboration tools`);
+  return matchedTools;
 };
 
 export const getAutomationPlatformsTools = (tools: Tool[], categoryName: string): Tool[] => {

@@ -1,5 +1,3 @@
-
-
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -55,7 +53,14 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
   }
   
   // Enhanced handling for Communication & Collaboration category
-  if (categoryName === "COMMUNICATION & COLLABORATION AI TOOLS" || categoryName === "Communication & Entertainment" || categoryName === "Communication Tools") {
+  if (categoryName === "COMMUNICATION & COLLABORATION AI TOOLS" || 
+      categoryName === "COMMUNICATION & COLLABORATION TOOLS" ||
+      categoryName === "Communication & Collaboration" || 
+      categoryName === "Communication & Entertainment" || 
+      categoryName === "Communication Tools" ||
+      categoryName === "Collaboration Tools" ||
+      categoryName === "Team Communication" ||
+      categoryName === "Team Collaboration") {
     return getCommunicationCollaborationTools(tools, categoryName);
   }
   
@@ -164,6 +169,14 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     const marketingSalesTools = getMarketingSalesTools(tools, mainCategoryName);
     console.log(`✅ Found ${marketingSalesTools.length} marketing & sales tools`);
     return marketingSalesTools;
+  }
+  
+  // Enhanced case for "COMMUNICATION & COLLABORATION AI TOOLS" - use enhanced matching
+  if (mainCategoryName === "COMMUNICATION & COLLABORATION AI TOOLS") {
+    console.log(`💬 COMMUNICATION & COLLABORATION AI TOOLS requested - using enhanced matching`);
+    const communicationCollaborationTools = getCommunicationCollaborationTools(tools, mainCategoryName);
+    console.log(`✅ Found ${communicationCollaborationTools.length} communication & collaboration tools`);
+    return communicationCollaborationTools;
   }
   
   // Special case for "AUTOMATION PLATFORMS" - use enhanced matching
