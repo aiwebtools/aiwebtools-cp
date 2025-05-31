@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Clock, 
@@ -81,7 +82,7 @@ export const timeAndHistory: Tool[] = [
     description: "Find out what happened on this day in history. Get daily updates on significant events, birthdays, and milestones from the past.",
     emoji: "🗓️",
     color: "from-orange-500 to-purple-600",
-    directUrl: "https://thisdayinhistory.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-683aa2575eb08191b18b1d3b8621bfca-this-day-in-history",
     tags: ["this day in history", "daily updates", "events", "birthdays", "milestones"],
     category: "Time & History",
     rating: 4.2,
