@@ -1,4 +1,3 @@
-
 // Tools that should appear in Data & Analytics even if they exist elsewhere
 export const DATA_ANALYTICS_PRIORITY_TOOLS = [
   "Claude",
@@ -6,7 +5,12 @@ export const DATA_ANALYTICS_PRIORITY_TOOLS = [
   "Gemini",
   "Data Research Analysis Report GPT",
   "Data Analysis Report AI",
-  "Research Report & Data Analysis AI"
+  "Research Report & Data Analysis AI",
+  "Tableau",
+  "Power BI",
+  "DataRobot",
+  "Looker",
+  "Qlik Sense"
 ];
 
 // Tools that should appear in Marketing & Sales even if they exist elsewhere
