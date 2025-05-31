@@ -1,9 +1,8 @@
-
 // Tool abbreviations and fuzzy matching utilities
 export const toolAbbreviations: Record<string, string[]> = {
   'make': ['make', 'make.com', 'integromat', 'automation', 'workflow'],
   'zap': ['zapier', 'automation', 'workflow', 'integration'],
-  'auto': ['automation', 'automate', 'workflow', 'make', 'zapier'],
+  'auto': ['automation', 'automate', 'workflow', 'make', 'zapier', 'automotive'],
   'flow': ['workflow', 'automation', 'process', 'pipeline'],
   'int': ['integration', 'integrate', 'connector', 'api'],
   'ch': ['chatgpt', 'chat', 'character'],
@@ -61,7 +60,6 @@ export const toolAbbreviations: Record<string, string[]> = {
   'sal': ['sales'],
   'aut': ['automation', 'automotive'],
   'car': ['car', 'career'],
-  'auto': ['automotive', 'automation'],
   'gam': ['game', 'gaming'],
   'ent': ['entertainment'],
   'fun': ['fun'],
