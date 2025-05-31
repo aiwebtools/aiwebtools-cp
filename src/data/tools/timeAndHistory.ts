@@ -128,7 +128,7 @@ export const timeAndHistory: Tool[] = [
     description: "Your comprehensive guide to time travel. Get information on historical events, cultural practices, and technological advancements from different eras.",
     emoji: "🕰️",
     color: "from-purple-500 to-green-600",
-    directUrl: "https://timetravelersalmanac.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-683a8943c01c81919e560b02e2d03ffc-time-travelers-almanac",
     tags: ["time travel", "historical events", "cultural practices", "technological advancements", "almanac"],
     category: "Time & History",
     rating: 4.6,
