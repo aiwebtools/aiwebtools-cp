@@ -1,5 +1,5 @@
-
 import { Tool } from "@/types/tools";
+import { priorityFeaturedGPTs } from "./priorityFeaturedGPTs";
 import { appraisalAndValuationGPTs } from "./appraisalAndValuationGPTs";
 import { healthAndWellnessGPTs } from "./healthAndWellnessGPTs";
 import { businessAndFinanceGPTs } from "./businessAndFinanceGPTs";
@@ -32,8 +32,9 @@ import { advancedSpecialtyGPTs } from "./advancedSpecialtyGPTs";
 import { governmentCivicGPTs } from "./governmentCivicGPTs";
 import { technologyInnovationGPTs } from "./technologyInnovationGPTs";
 
-// Combine all AI Web Tools GPTs from organized categories
+// Combine all AI Web Tools GPTs from organized categories - PRIORITY TOOLS FIRST
 export const aiWebToolsGPTs: Tool[] = [
+  ...priorityFeaturedGPTs, // Put the 10 priority tools at the very beginning
   ...appraisalAndValuationGPTs,
   ...healthAndWellnessGPTs,
   ...businessAndFinanceGPTs,
@@ -70,4 +71,5 @@ export const aiWebToolsGPTs: Tool[] = [
 
 // Log the total count for debugging
 console.log(`🚀 Total AI Web Tools GPTs loaded: ${aiWebToolsGPTs.length}`);
-console.log(`📋 AI Web Tools GPT titles:`, aiWebToolsGPTs.map(tool => tool.title));
+console.log(`📋 Priority Featured GPTs: ${priorityFeaturedGPTs.length}`);
+console.log(`🎯 First 10 GPT titles:`, aiWebToolsGPTs.slice(0, 10).map(tool => tool.title));

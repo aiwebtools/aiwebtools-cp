@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
 
