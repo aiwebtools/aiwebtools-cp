@@ -1,6 +1,6 @@
 
 import { Tool } from "@/types/tools";
-import { Telescope, Microscope, Atom, Dna, Flask, Zap, Rocket, Globe, Brain, Calculator } from "lucide-react";
+import { Telescope, Microscope, Atom, Dna, Beaker, Zap, Rocket, Globe, Brain, Calculator } from "lucide-react";
 
 export const scienceAndResearchGPTs: Tool[] = [
   {
@@ -56,7 +56,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     totalVotes: 5678
   },
   {
-    icon: Flask,
+    icon: Beaker,
     title: "Alchemist Scientist GPT",
     description: "Alchemist Scientist GPT is a powerful AI tool that immerses you in the world of medieval alchemy, combining hands-on chemistry, ancient wisdom, and interactive storytelling. Whether you want to explore historical experiments, uncover the secrets of early science, or dive into the pursuit of legendary transmutations, this AI brings it all to life with vivid descriptions and practical guidance. Step into the alchemist's laboratory and experience the thrill of discovery—where fire, metal, and mystery forge the path to knowledge. ⚗️🔥",
     emoji: "⚗️",
