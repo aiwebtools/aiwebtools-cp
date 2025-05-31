@@ -17,27 +17,22 @@ import { generateStructuredData } from "@/utils/seo";
 const CategoryPage = () => {
   const { categoryName } = useParams();
   const [searchTerm, setSearchTerm] = useState("");
-  const [displayedCount, setDisplayedCount] = useState(12);
-  const [toolsLoaded, setToolsLoaded] = useState(false);
+  const [displayedCount, setDisplayedCount] = useState(24); // Increased initial count
 
   // Decode and standardize the category name
   const decodedCategory = categoryName ? decodeURIComponent(categoryName) : "";
   const standardizedCategory = getStandardizedCategoryTitle(decodedCategory);
   
-  // Get tools for this category with lazy loading
+  // Get tools for this category immediately - no more lazy loading
   const categoryTools = useMemo(() => {
-    if (!toolsLoaded) return [];
-    
     console.log(`📂 Loading category page for: "${standardizedCategory}"`);
     const tools = getToolsByCategory(allTools, standardizedCategory);
     console.log(`📊 Found ${tools.length} tools in category "${standardizedCategory}"`);
     return tools.slice(0, 500);
-  }, [standardizedCategory, toolsLoaded]);
+  }, [standardizedCategory]);
 
   // Filter tools by search with optimized memoization
   const filteredTools = useMemo(() => {
-    if (!toolsLoaded) return [];
-    
     if (!searchTerm.trim()) {
       return categoryTools;
     }
@@ -51,14 +46,13 @@ const CategoryPage = () => {
     
     console.log(`🔍 Filtered category "${standardizedCategory}" with search "${searchTerm}": ${filtered.length} tools`);
     return filtered.slice(0, 100);
-  }, [categoryTools, searchTerm, standardizedCategory, toolsLoaded]);
+  }, [categoryTools, searchTerm, standardizedCategory]);
 
   // Immediate scroll and reset on category change
   useEffect(() => {
     window.scrollTo(0, 0);
-    setDisplayedCount(12);
+    setDisplayedCount(24); // Increased initial count
     setSearchTerm("");
-    setToolsLoaded(false);
     
     console.log(`📄 Category page loaded: "${standardizedCategory}"`);
   }, [standardizedCategory]);
@@ -66,11 +60,6 @@ const CategoryPage = () => {
   const handleLoadMore = useCallback(() => {
     setDisplayedCount(prev => Math.min(prev + 12, filteredTools.length));
   }, [filteredTools.length]);
-
-  const handleLoadTools = useCallback(() => {
-    console.log(`🚀 Loading tools for category: "${standardizedCategory}"`);
-    setToolsLoaded(true);
-  }, [standardizedCategory]);
 
   // Memoized structured data and breadcrumbs
   const categoryStructuredData = useMemo(() => generateStructuredData('category', {
@@ -85,10 +74,8 @@ const CategoryPage = () => {
     { name: standardizedCategory, url: `https://aitools.studio/category/${encodeURIComponent(standardizedCategory)}` }
   ], [standardizedCategory]);
 
-  // Calculate tool count as number for CategoryHeader
-  const toolCount = useMemo(() => {
-    return toolsLoaded ? categoryTools.length : 100;
-  }, [toolsLoaded, categoryTools.length]);
+  // Calculate tool count
+  const toolCount = categoryTools.length;
 
   if (!decodedCategory) {
     return (
@@ -141,32 +128,15 @@ const CategoryPage = () => {
           onSearchChange={setSearchTerm}
         />
         
-        {/* Load Tools Button - Only show if tools not loaded */}
-        {!toolsLoaded && (
-          <div className="text-center mb-12 px-4">
-            <button
-              onClick={handleLoadTools}
-              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
-            >
-              🚀 LOAD {standardizedCategory.toUpperCase()} TOOLS
-            </button>
-            <div className="mt-4 text-cyan-300 text-sm">
-              Click to view all tools in this category
-            </div>
-          </div>
-        )}
-        
-        {/* Tools Display - Only render when loaded */}
-        {toolsLoaded && (
-          <ToolsDisplay 
-            tools={filteredTools}
-            displayedCount={displayedCount}
-            onLoadMore={handleLoadMore}
-            hasMoreTools={displayedCount < filteredTools.length}
-            categoryName={standardizedCategory}
-            searchTerm={searchTerm}
-          />
-        )}
+        {/* Tools Display - Always render */}
+        <ToolsDisplay 
+          tools={filteredTools}
+          displayedCount={displayedCount}
+          onLoadMore={handleLoadMore}
+          hasMoreTools={displayedCount < filteredTools.length}
+          categoryName={standardizedCategory}
+          searchTerm={searchTerm}
+        />
         
         <ScrollToTopButton />
         <Footer />

@@ -18,13 +18,11 @@ import { searchTools } from "@/utils/searchUtils";
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
   const navigate = useNavigate();
-  const [displayedCount, setDisplayedCount] = useState(12); // Start with fewer tools
+  const [displayedCount, setDisplayedCount] = useState(24); // Increased initial count
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [showAllTools, setShowAllTools] = useState(false);
   const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(24);
-  const [showAllCategoryTools, setShowAllCategoryTools] = useState(false);
-  const [toolsLoaded, setToolsLoaded] = useState(false); // New state to track if tools are loaded
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
@@ -46,11 +44,9 @@ const MainCategoryPage = () => {
       window.scrollTo(0, 0);
     }, 100);
     
-    // Reset loading state when category changes
-    setToolsLoaded(false);
-    setShowAllCategoryTools(false);
+    // Reset states when category changes
     setShowAllTools(false);
-    setDisplayedCount(12);
+    setDisplayedCount(24);
   }, [decodedCategoryName]);
   
   if (!mainCategory) {
@@ -61,15 +57,13 @@ const MainCategoryPage = () => {
     return null;
   }
 
-  // Get tools for this main category - but only when needed
-  const categoryTools = toolsLoaded ? getToolsByMainCategory(allTools, decodedCategoryName) : [];
+  // Get tools for this main category immediately - no more lazy loading
+  const categoryTools = getToolsByMainCategory(allTools, decodedCategoryName);
   
   console.log(`🔍 MainCategoryPage Debug for "${decodedCategoryName}":`, {
     isAllAITools: decodedCategoryName === "ALL AI TOOLS",
     categoryToolsCount: categoryTools.length,
-    totalAllToolsCount: allTools.length,
-    toolsLoaded,
-    showAllCategoryTools
+    totalAllToolsCount: allTools.length
   });
   
   // Apply search filter if search term exists
@@ -88,17 +82,14 @@ const MainCategoryPage = () => {
     allFilteredToolsCount: allFilteredTools.length,
     totalAllToolsCount: allTools.length,
     showAllTools,
-    showAllCategoryTools,
     searchTerm: searchTerm || 'none',
     displayedCount,
-    allToolsDisplayedCount,
-    toolsLoaded
+    allToolsDisplayedCount
   });
 
   // Calculate the actual displayed count based on what we're showing
-  const actualDisplayedCount = showAllCategoryTools ? filteredTools.length : displayedCount;
   const currentTools = showAllTools ? allFilteredTools : filteredTools;
-  const currentDisplayedCount = showAllTools ? allToolsDisplayedCount : actualDisplayedCount;
+  const currentDisplayedCount = showAllTools ? allToolsDisplayedCount : displayedCount;
 
   const handleLoadMore = () => {
     if (isLoading || displayedCount >= filteredTools.length) return;
@@ -125,46 +116,8 @@ const MainCategoryPage = () => {
   // Fixed search handler that doesn't cause navigation or scroll issues
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
-    setDisplayedCount(12); // Reset displayed count when searching
+    setDisplayedCount(24); // Reset displayed count when searching
     setAllToolsDisplayedCount(24); // Reset all tools count when searching
-    setShowAllCategoryTools(false); // Reset show all category tools when searching
-    
-    // Load tools if searching and not loaded yet
-    if (value.trim() && !toolsLoaded) {
-      setToolsLoaded(true);
-    }
-  };
-
-  const handleShowAllCategoryTools = () => {
-    console.log(`🚀 Show More From This Category clicked! Loading tools...`);
-    
-    // Load tools first
-    if (!toolsLoaded) {
-      setIsLoading(true);
-      // Simulate loading delay to prevent crashes
-      setTimeout(() => {
-        setToolsLoaded(true);
-        setShowAllCategoryTools(true);
-        setIsLoading(false);
-        
-        // Scroll to the tools section after loading
-        setTimeout(() => {
-          const toolsSection = document.getElementById('category-tools-section');
-          if (toolsSection) {
-            toolsSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 100);
-      }, 500); // Small delay to prevent crashes
-    } else {
-      setShowAllCategoryTools(true);
-      // Scroll to the tools section
-      setTimeout(() => {
-        const toolsSection = document.getElementById('category-tools-section');
-        if (toolsSection) {
-          toolsSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    }
   };
 
   const handleSeeMoreAITools = () => {
@@ -193,22 +146,12 @@ const MainCategoryPage = () => {
   const hasMoreTools = currentDisplayedCount < currentTools.length;
   const showCompletionMessage = !hasMoreTools && !isLoading && currentTools.length > 20;
 
-  // Show "Show More From This Category" button when we have tools available but not loaded yet, or loaded but not showing all
-  const shouldShowAllCategoryButton = !showAllCategoryTools && !showAllTools && !searchTerm && 
-    ((!toolsLoaded) || (toolsLoaded && filteredTools.length > displayedCount));
-
-  // Get estimated tool count for the category without loading all tools
-  const estimatedCategoryToolCount = !toolsLoaded ? "100+" : filteredTools.length;
-
   console.log(`📊 Final render state:`, {
     currentToolsLength: currentTools.length,
     currentDisplayedCount,
     hasMoreTools,
     showAllTools,
-    showAllCategoryTools,
-    shouldShowAllCategoryButton,
-    decodedCategoryName,
-    toolsLoaded
+    decodedCategoryName
   });
 
   return (
@@ -253,64 +196,38 @@ const MainCategoryPage = () => {
             <div className="text-cyan-400 font-semibold">
               {showAllTools 
                 ? (searchTerm ? `${allFilteredTools.length} tools found` : `${allTools.length} total tools available`)
-                : (searchTerm ? `${filteredTools.length} tools found` : `${estimatedCategoryToolCount} tools available`)
+                : (searchTerm ? `${filteredTools.length} tools found` : `${filteredTools.length} tools available`)
               }
             </div>
           </div>
 
-          {/* Show More From This Category Button - appears before tools grid */}
-          {shouldShowAllCategoryButton && (
-            <div className="text-center mb-8 px-4">
-              <Button
-                onClick={handleShowAllCategoryTools}
-                size="lg"
-                disabled={isLoading}
-                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
-              >
-                {isLoading ? (
-                  <div className="flex items-center space-x-2">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                    <span>Loading Tools...</span>
-                  </div>
-                ) : (
-                  "📋 SHOW ALL TOOLS IN THIS CATEGORY"
-                )}
-              </Button>
-              <div className="mt-4 text-green-300 text-sm">
-                Click to load and view all tools in this category
+          {/* Main Tools Section - Always render */}
+          <div id={showAllTools ? "all-tools-section" : "category-tools-section"}>
+            {currentTools.length > 0 ? (
+              <ToolsGrid
+                tools={currentTools}
+                displayedCount={currentDisplayedCount}
+                selectedCategory={showAllTools ? null : decodedCategoryName}
+                searchTerm={searchTerm}
+                onLoadMore={showAllTools ? handleAllToolsLoadMore : handleLoadMore}
+                hasInfiniteScroll={true}
+                isLoading={isLoading}
+              />
+            ) : (
+              <div className="text-center py-16">
+                <div className="text-4xl mb-4">🔍</div>
+                <h3 className="text-2xl font-bold text-cyan-100 mb-4">
+                  {searchTerm ? 'No search results' : 'No tools found'}
+                </h3>
+                <p className="text-gray-300 mb-8">
+                  {searchTerm 
+                    ? `No tools found for "${searchTerm}" in this category.`
+                    : 'We couldn\'t find any tools in this category at the moment.'
+                  }
+                </p>
               </div>
-            </div>
-          )}
-
-          {/* Main Tools Section - Only render when tools are loaded or showing all tools */}
-          {(toolsLoaded || showAllTools) && (
-            <div id={showAllTools ? "all-tools-section" : "category-tools-section"}>
-              {currentTools.length > 0 ? (
-                <ToolsGrid
-                  tools={currentTools}
-                  displayedCount={currentDisplayedCount}
-                  selectedCategory={showAllTools ? null : decodedCategoryName}
-                  searchTerm={searchTerm}
-                  onLoadMore={showAllTools ? handleAllToolsLoadMore : handleLoadMore}
-                  hasInfiniteScroll={true}
-                  isLoading={isLoading}
-                />
-              ) : (
-                <div className="text-center py-16">
-                  <div className="text-4xl mb-4">🔍</div>
-                  <h3 className="text-2xl font-bold text-cyan-100 mb-4">
-                    {searchTerm ? 'No search results' : 'No tools found'}
-                  </h3>
-                  <p className="text-gray-300 mb-8">
-                    {searchTerm 
-                      ? `No tools found for "${searchTerm}" in this category.`
-                      : 'We couldn\'t find any tools in this category at the moment.'
-                    }
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
+            )}
+          </div>
 
           {/* Enhanced completion message */}
           {showCompletionMessage && (
