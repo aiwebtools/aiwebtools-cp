@@ -225,9 +225,9 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     return automationTools;
   }
   
-  // Special case for "AI CHAT & ASSISTANTS" - use enhanced matching
+  // Enhanced case for "AI CHAT & ASSISTANTS" - use enhanced matching with priority
   if (mainCategoryName === "AI CHAT & ASSISTANTS") {
-    console.log(`💬 AI CHAT & ASSISTANTS requested - using enhanced matching`);
+    console.log(`💬 AI CHAT & ASSISTANTS requested - using enhanced matching with priority`);
     const chatAssistantTools = getAIChatAssistantsTools(tools, mainCategoryName);
     console.log(`✅ Found ${chatAssistantTools.length} chat & assistant tools`);
     return chatAssistantTools;
