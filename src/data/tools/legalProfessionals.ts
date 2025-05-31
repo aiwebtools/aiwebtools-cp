@@ -65,18 +65,6 @@ export const legalProfessionals: Tool[] = [
     totalVotes: 2876
   },
   {
-    icon: Search,
-    title: "Evidence Discovery Tool",
-    description: "AI-powered evidence discovery and analysis tool for litigation support and case preparation.",
-    emoji: "🔍",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://example.com/evidencediscovery",
-    tags: ["evidence discovery", "litigation support", "case preparation", "legal investigation", "forensic analysis"],
-    category: "Legal Professionals",
-    rating: 4.3,
-    totalVotes: 2654
-  },
-  {
     icon: Users,
     title: "Client Management System",
     description: "Comprehensive client relationship management system designed specifically for law firms and legal practices.",
