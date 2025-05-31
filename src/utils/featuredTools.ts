@@ -1,19 +1,47 @@
+
 import { Tool } from "@/types/tools";
 import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
 
 export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
-  // Priority tools that MUST be in top positions
+  // Priority tools that MUST be in top positions - expanded to include both sets
   const priorityTitles = [
     'BOOK WRITER GPT',
     'MOVIE MAKER STUDIO', 
     'STAGE MASTER SUITE',
     'GODMODE GPT',
-    'TIME MACHINE GPT'
+    'TIME MACHINE GPT',
+    'Movie Script Writer GPT',
+    'Illuminous World Data Explorer GPT',
+    'Music Video Maker AI Studio',
+    'TALK TO HISTORY GPT',
+    'Stellaris: 🚀AI Space Explorer',
+    'Criminologist GPT',
+    'Social Safety Net GPT',
+    'Resurrection GPT',
+    'PERFECT PROMPT ENGINE',
+    'Travel Advisor GPT',
+    'TALK TO THE GODS GPT',
+    'Phenomenon Explorer AI Suite',
+    'Legislation Writer GPT',
+    'Nikola Tesla GPT',
+    'Agronomus AI Farming Expert',
+    'Oraculum',
+    'MULTITASKER GPT',
+    'LEARN ANY SKILL GPT',
+    'MATERIAL VALUATION GPT',
+    'Albert Einstein GPT',
+    'Titanic Resurrections GPT',
+    'Indiana Archeologist GPT'
   ];
   
   // Find priority tools first
   const priorityTools = allTools.filter(tool => 
-    priorityTitles.some(title => tool.title.includes(title))
+    priorityTitles.some(title => 
+      tool.title.includes(title) || 
+      title.includes(tool.title) ||
+      tool.title.toLowerCase().includes(title.toLowerCase()) ||
+      title.toLowerCase().includes(tool.title.toLowerCase())
+    )
   );
   
   console.log(`🎯 Priority tools found: ${priorityTools.length}`);
@@ -21,41 +49,7 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
   
   // Get ALL AI Web Tools GPTs directly from the source
   console.log(`🔍 Total AI Web Tools GPTs available: ${aiWebToolsGPTs.length}`);
-  console.log(`📝 First 20 AI Web Tools GPT titles:`, aiWebToolsGPTs.slice(0, 20).map(t => t.title));
-  
-  // Check for specific missing tools that were mentioned
-  const specificToolsToCheck = [
-    'Movie Script Writer GPT',
-    'GODMODE GPT', 
-    'TALK TO HISTORY GPT',
-    'MULTITASKER GPT',
-    'LEARN ANY SKILL GPT',
-    'Illuminous World Data Explorer GPT',
-    'Music Video Maker AI Studio',
-    'Stellaris: 🚀AI Space Explorer',
-    'PERFECT PROMPT ENGINE',
-    'Travel Advisor GPT',
-    'ALAN WATTS GPT',
-    'Customizable GPT Maker',
-    'Quiz Maker Ai'
-  ];
-  
-  console.log(`🔍 Checking for specific mentioned tools:`);
-  specificToolsToCheck.forEach(title => {
-    const foundInAiWebTools = aiWebToolsGPTs.find(tool => 
-      tool.title.includes(title) || title.includes(tool.title) || 
-      tool.title.toLowerCase().includes(title.toLowerCase()) ||
-      title.toLowerCase().includes(tool.title.toLowerCase())
-    );
-    const foundInAllTools = allTools.find(tool => 
-      tool.title.includes(title) || title.includes(tool.title) ||
-      tool.title.toLowerCase().includes(title.toLowerCase()) ||
-      title.toLowerCase().includes(tool.title.toLowerCase())
-    );
-    console.log(`   ${title}: AI Web Tools: ${foundInAiWebTools ? '✅' : '❌'}, All Tools: ${foundInAllTools ? '✅' : '❌'}`);
-    if (foundInAiWebTools) console.log(`      Found in AI Web Tools as: "${foundInAiWebTools.title}"`);
-    if (foundInAllTools) console.log(`      Found in All Tools as: "${foundInAllTools.title}"`);
-  });
+  console.log(`📝 First 25 AI Web Tools GPT titles:`, aiWebToolsGPTs.slice(0, 25).map(t => t.title));
   
   // Filter out any AI Web Tools GPTs that are already in priority tools to avoid duplicates
   const uniqueAiWebToolsGPTs = aiWebToolsGPTs.filter(tool =>
