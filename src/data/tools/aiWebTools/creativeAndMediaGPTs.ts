@@ -207,7 +207,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🖍️",
     color: "from-yellow-500 to-green-600",
     directUrl: "https://coloringbookmaker.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-coloring-page-of-a-robot-with-a-human-like-b.png/:/cr=t:4.3%25,l:0.78%25,w:94.34%25,h:84.09%25/rs=w:1200,h:600,cg:true,m",
+    imageUrl: "https://ideogram.ai/assets/progressive-image/balanced/response/1nn1k06fRwWk3OQIbu7sTw",
     tags: ["coloring books", "creative activities", "children's content", "educational tools", "artistic creation", "aiwebtools"],
     category: "Creative & Media",
     rating: 4.3,
