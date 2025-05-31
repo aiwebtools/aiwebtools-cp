@@ -1,4 +1,5 @@
 
+
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -37,8 +38,19 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
     return getDataAnalyticsTools(tools, categoryName);
   }
   
-  // Special handling for Marketing & Sales category
-  if (categoryName === "MARKETING & SALES AI TOOLS" || categoryName === "Marketing & Analytics" || categoryName === "E-commerce & Marketing Tools" || categoryName === "Business & Sales Tools") {
+  // Enhanced handling for Marketing & Sales category
+  if (categoryName === "MARKETING & SALES SOLUTIONS" || 
+      categoryName === "MARKETING & SALES AI TOOLS" || 
+      categoryName === "Marketing & Analytics" || 
+      categoryName === "E-commerce & Marketing Tools" || 
+      categoryName === "Business & Sales Tools" ||
+      categoryName === "Marketing & Social Media" ||
+      categoryName === "Marketing Tools" ||
+      categoryName === "Social Media Tools" ||
+      categoryName === "Sales & Marketing" ||
+      categoryName === "Ecommerce & Marketing Tools" ||
+      categoryName === "E-commerce & Marketing" ||
+      categoryName === "Social Media & Marketing") {
     return getMarketingSalesTools(tools, categoryName);
   }
   
@@ -80,6 +92,17 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
   // Special handling for 3D & Visualization category
   if (categoryName === "3D & VISUALIZATION" || categoryName === "3D & Visualization Tools") {
     return get3DVisualizationTools(tools, categoryName);
+  }
+  
+  // Enhanced handling for Business Operations & Productivity category
+  if (categoryName === "BUSINESS OPERATIONS & PRODUCTIVITY" || 
+      categoryName === "Business & Productivity" ||
+      categoryName === "Business Tools" ||
+      categoryName === "Business & Team Tools" ||
+      categoryName === "Productivity & Utilities" ||
+      categoryName === "Meeting & Transcription Tools" ||
+      categoryName === "Email Management Tools") {
+    return getBusinessOperationsProductivityTools(tools, categoryName);
   }
   
   // Regular category filtering with enhanced similarity matching
@@ -133,6 +156,14 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     const analyticsTools = getDataAnalyticsTools(tools, mainCategoryName);
     console.log(`✅ Found ${analyticsTools.length} analytics tools`);
     return analyticsTools;
+  }
+  
+  // Enhanced case for "MARKETING & SALES SOLUTIONS" - use enhanced matching
+  if (mainCategoryName === "MARKETING & SALES SOLUTIONS") {
+    console.log(`📈 MARKETING & SALES SOLUTIONS requested - using enhanced matching`);
+    const marketingSalesTools = getMarketingSalesTools(tools, mainCategoryName);
+    console.log(`✅ Found ${marketingSalesTools.length} marketing & sales tools`);
+    return marketingSalesTools;
   }
   
   // Special case for "AUTOMATION PLATFORMS" - use enhanced matching
@@ -189,6 +220,14 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     const threeDVisualizationTools = get3DVisualizationTools(tools, mainCategoryName);
     console.log(`✅ Found ${threeDVisualizationTools.length} 3D & visualization tools`);
     return threeDVisualizationTools;
+  }
+  
+  // Enhanced handling for BUSINESS OPERATIONS & PRODUCTIVITY category
+  if (mainCategoryName === "BUSINESS OPERATIONS & PRODUCTIVITY") {
+    console.log(`💼 BUSINESS OPERATIONS & PRODUCTIVITY category requested - using enhanced matching`);
+    const businessProductivityTools = getBusinessOperationsProductivityTools(tools, mainCategoryName);
+    console.log(`✅ Found ${businessProductivityTools.length} business operations & productivity tools`);
+    return businessProductivityTools;
   }
   
   // Find the main category configuration

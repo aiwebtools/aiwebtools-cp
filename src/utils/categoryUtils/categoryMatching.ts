@@ -1,4 +1,5 @@
 
+
 import { Tool } from "@/types/tools";
 
 export const getAudioVoiceTools = (tools: Tool[], categoryName: string): Tool[] => {
@@ -377,25 +378,162 @@ export const getMarketingSalesTools = (tools: Tool[], categoryName: string): Too
     
     const searchText = `${tool.title} ${tool.description} ${tool.category} ${tool.tags?.join(' ')}`.toLowerCase();
     
+    // Enhanced matching for marketing & sales tools
     const marketingSalesKeywords = [
+      // Core marketing & sales terms
       'marketing', 'sales', 'crm', 'lead generation', 'email marketing',
       'social media marketing', 'content marketing', 'digital marketing',
       'advertising', 'campaign', 'conversion', 'funnel', 'customer acquisition',
-      'mailchimp', 'convertkit', 'klaviyo', 'hubspot', 'salesforce',
-      'pipedrive', 'gong', 'outreach', 'zoominfo', 'intercom'
+      
+      // Email marketing tools
+      'mailchimp', 'convertkit', 'klaviyo', 'aweber', 'mailrush', 'activecampaign',
+      'groupmail', 'benchmark email', 'moosend', 'getresponse', 'regie',
+      'mailergpt', 'best regards', 'directiq',
+      
+      // CRM and sales tools
+      'hubspot', 'salesforce', 'pipedrive', 'gong', 'outreach', 'zoominfo',
+      'intercom', 'salesflare', 'folk', 'hunter.io', 'contactout',
+      
+      // SEO and content optimization
+      'semrush', 'ahrefs', 'surfer seo', 'surferseo', 'scalenut', 'outranking',
+      'copyspace', 'answerthe public', 'sitechecker', 'wp-rocket', 'similarc ontent',
+      'postaga', 'keyword insights', 'seobility', 'diib', 'ranked',
+      
+      // Social media marketing
+      'hypefury', 'predis', 'contentstudio', 'flock social', 'kicksta',
+      'subpals', 'stormviews', 'sonuker', 'nitreo', 'kenji',
+      
+      // Lead generation and automation
+      'salesflow', 'meet alfred', 'sales handy', 'warmbox', 'sender ai',
+      'markopolo', 'revealbot', 'luna', 'juice.ai',
+      
+      // Content and creative tools
+      'shinefy', 'shineranker', 'stripo', 'printify', 'mentum ai',
+      'jasper', 'copy.ai', 'writesonic', 'logo and ad generator',
+      
+      // E-commerce and marketplace tools
+      'shopify magic', 'jvzoo', 'profitology', 'shopping gpt',
+      
+      // Analytics and tracking
+      'google analytics', 'tableau', 'power bi', 'webscrape ai',
+      
+      // Communication and engagement
+      'chatfuel', 'confect.io', 'sonetel', 'keeper.ai', 'journeyplan',
+      'spoken.io', 'mediamister',
+      
+      // Business intelligence and consulting
+      'marketing consultant gpt',
+      
+      // LinkedIn and social selling
+      'linkedin automation', 'b2b lead generation', 'social selling',
+      'personalized messaging', 'outreach campaigns',
+      
+      // Content optimization and SEO
+      'content optimization', 'seo analysis', 'serp data', 'content strategy',
+      'keyword clustering', 'content marketing', 'seo platform', 'keyword planner',
+      'content optimizer', 'ai writing', 'seo content', 'article optimization',
+      'serp ranking',
+      
+      // Sales automation and CRM
+      'sales automation', 'multi-channel prospecting', 'linkedin crm',
+      'omnichannel marketing', 'email sms marketing', 'marketing automation',
+      'lead conversion', 'customer journey', 'contact growth',
+      
+      // Email and outreach
+      'email outreach', 'contact finder', 'email verification', 'decision-makers',
+      
+      // Social media management
+      'social media management', 'social media marketing', 'instagram growth',
+      'tiktok marketing', 'youtube marketing', 'facebook marketing',
+      'twitter marketing', 'linkedin marketing', 'content scheduling',
+      'social media analytics', 'influencer marketing', 'social media automation',
+      'community management', 'social media engagement', 'social media optimization',
+      'social media advertising', 'social media strategy',
+      
+      // Digital marketing categories
+      'performance marketing', 'growth marketing', 'conversion optimization',
+      'landing page optimization', 'a/b testing', 'marketing funnels',
+      'retention marketing', 'lifecycle marketing', 'behavioral marketing',
+      'personalization', 'marketing segmentation', 'customer insights',
+      'marketing intelligence', 'competitive intelligence', 'market research',
+      
+      // Advertising and media
+      'programmatic advertising', 'display advertising', 'search advertising',
+      'video advertising', 'mobile marketing', 'app marketing',
+      'push notifications', 'location-based marketing', 'geo-targeting',
+      
+      // Content marketing
+      'content creation', 'visual content', 'video marketing',
+      'content distribution', 'content amplification', 'thought leadership',
+      'brand storytelling', 'user-generated content', 'interactive content',
+      
+      // Customer relationship management
+      'customer relationship management', 'customer data platform',
+      'customer lifecycle management', 'customer success', 'customer retention',
+      'churn prevention', 'customer feedback', 'customer surveys',
+      'net promoter score', 'customer satisfaction', 'customer experience',
+      
+      // Sales processes
+      'sales enablement', 'sales training', 'sales coaching', 'sales performance',
+      'sales analytics', 'sales forecasting', 'pipeline management',
+      'opportunity management', 'account management', 'territory management',
+      'lead scoring', 'lead qualification', 'lead nurturing', 'lead management',
+      
+      // E-commerce and online business
+      'e-commerce integration', 'marketplace integration', 'shopping cart integration',
+      'payment gateway integration', 'inventory management integration',
+      'order management', 'fulfillment management'
     ];
     
+    // Check if any keyword matches
     const hasMarketingSalesKeyword = marketingSalesKeywords.some(keyword => 
       searchText.includes(keyword)
     );
     
+    // Check category matching
     const categoryMatch = tool.category && (
       tool.category.toLowerCase().includes('marketing') ||
       tool.category.toLowerCase().includes('sales') ||
-      tool.category.toLowerCase().includes('crm')
+      tool.category.toLowerCase().includes('crm') ||
+      tool.category.toLowerCase().includes('email') ||
+      tool.category.toLowerCase().includes('social media') ||
+      tool.category.toLowerCase().includes('seo') ||
+      tool.category.toLowerCase().includes('lead generation') ||
+      tool.category.toLowerCase().includes('automation') ||
+      tool.category.toLowerCase().includes('advertising') ||
+      tool.category.toLowerCase().includes('campaign') ||
+      tool.category.toLowerCase().includes('conversion') ||
+      tool.category.toLowerCase().includes('funnel') ||
+      tool.category.toLowerCase().includes('e-commerce') ||
+      tool.category.toLowerCase().includes('ecommerce')
     );
     
-    return hasMarketingSalesKeyword || categoryMatch;
+    // Special handling for known marketing/sales tool names
+    const marketingSalesToolNames = [
+      'salesflow', 'outranking', 'scalenut', 'surfer seo', 'surferseo',
+      'copyspace', 'printify', 'mentum ai', 'sales handy', 'warmbox',
+      'stripo', 'shinefy', 'shineranker', 'revealbot', 'keyword insights',
+      'salesflare', 'markopolo', 'hypefury', 'predis', 'ranked',
+      'meet alfred', 'diib', 'seobility', 'sender ai', 'nitreo',
+      'kenji', 'flock social', 'kicksta', 'subpals', 'stormviews',
+      'sonuker', 'confect', 'contentstudio', 'chatfuel', 'mediamister',
+      'shopify magic', 'sonetel', 'keeper.ai', 'journeyplan', 'spoken.io',
+      'aweber', 'mailrush', 'activecampaign', 'groupmail', 'benchmark email',
+      'answerthe public', 'sitechecker', 'webscrape ai', 'wp-rocket',
+      'similarc ontent', 'postaga', 'jvzoo', 'mailergpt', 'profitology',
+      'moosend', 'juice.ai', 'luna', 'best regards', 'getresponse',
+      'regie.ai', 'folk', 'hunter.io', 'contactout', 'directiq',
+      'marketing consultant gpt', 'logo and ad generator gpt', 'jasper',
+      'copy.ai', 'writesonic', 'mailchimp', 'hubspot', 'google analytics',
+      'semrush', 'ahrefs', 'shopping gpt'
+    ];
+    
+    const toolNameMatch = marketingSalesToolNames.some(name => 
+      tool.title.toLowerCase().includes(name) ||
+      (tool.directUrl && tool.directUrl.toLowerCase().includes(name.replace(/\s+/g, '')))
+    );
+    
+    return hasMarketingSalesKeyword || categoryMatch || toolNameMatch;
   });
   
   console.log(`✅ Found ${marketingSalesTools.length} marketing & sales tools`);
