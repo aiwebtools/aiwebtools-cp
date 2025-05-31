@@ -12,6 +12,22 @@ const DATA_ANALYTICS_PRIORITY_TOOLS = [
   "Research Report & Data Analysis AI"
 ];
 
+// Tools that should appear in Marketing & Sales even if they exist elsewhere
+const MARKETING_SALES_PRIORITY_TOOLS = [
+  "HubSpot",
+  "Salesforce",
+  "Mailchimp",
+  "SalesFlow",
+  "Outranking",
+  "Scalenut",
+  "SurferSEO",
+  "Meet Alfred",
+  "SENDER AI",
+  "ActiveCampaign",
+  "GetResponse",
+  "Hunter.io"
+];
+
 export const getCategoriesWithCounts = (tools: Tool[]): Record<string, number> => {
   const categoryCounts: Record<string, number> = {};
   
@@ -37,6 +53,33 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
     // Add priority tools that should appear in Data & Analytics
     const priorityTools = tools.filter(tool => 
       DATA_ANALYTICS_PRIORITY_TOOLS.some(priorityName => 
+        tool.title.toLowerCase().includes(priorityName.toLowerCase()) ||
+        priorityName.toLowerCase().includes(tool.title.toLowerCase())
+      )
+    );
+    
+    // Combine and deduplicate by title
+    const allTools = [...directCategoryTools, ...priorityTools];
+    const uniqueTools = allTools.filter((tool, index, self) => 
+      index === self.findIndex(t => t.title === tool.title)
+    );
+    
+    return uniqueTools;
+  }
+  
+  // Special handling for Marketing & Sales category
+  if (categoryName === "MARKETING & SALES AI TOOLS" || categoryName === "Marketing & Analytics" || categoryName === "E-commerce & Marketing Tools" || categoryName === "Business & Sales Tools") {
+    const directCategoryTools = tools.filter(tool => 
+      tool.category === categoryName || 
+      tool.category === "Marketing & Analytics" ||
+      tool.category === "E-commerce & Marketing Tools" ||
+      tool.category === "Business & Sales Tools" ||
+      tool.category === "MARKETING & SALES AI TOOLS"
+    );
+    
+    // Add priority tools that should appear in Marketing & Sales
+    const priorityTools = tools.filter(tool => 
+      MARKETING_SALES_PRIORITY_TOOLS.some(priorityName => 
         tool.title.toLowerCase().includes(priorityName.toLowerCase()) ||
         priorityName.toLowerCase().includes(tool.title.toLowerCase())
       )
