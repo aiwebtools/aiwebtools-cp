@@ -92,7 +92,7 @@ export const timeAndHistory: Tool[] = [
     description: "Journey back to the glory of the Roman Empire with our AI-powered time machine. Witness the rise and fall of emperors, explore ancient cities, and experience the grandeur of Roman civilization.",
     emoji: "🏛️",
     color: "from-red-500 to-yellow-600",
-    directUrl: "https://ancientromanempire-timemachine.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-683a8866c1348191813e581882a35e5d-ancient-roman-empire-time-machine",
     tags: ["Ancient Rome", "Roman Empire", "time travel", "emperors", "civilization"],
     category: "Time & History",
     rating: 4.7,
