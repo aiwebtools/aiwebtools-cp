@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { getAllToolCategories } from '@/data/toolsCollection';
 
@@ -50,9 +51,9 @@ export const analyzeDuplicates = (): DuplicateAnalysis => {
       const currentTitle = currentTool.title.toLowerCase().trim();
       const compareTitle = compareTool.title.toLowerCase().trim();
       
-      // Enhanced duplicate detection for video tools
+      // Enhanced duplicate detection for all categories
       if (currentTitle === compareTitle || 
-          isSimilarVideoTool(currentTool, compareTool)) {
+          isSimilarTool(currentTool, compareTool)) {
         
         const currentUrl = currentTool.directUrl?.toLowerCase() || '';
         const compareUrl = compareTool.directUrl?.toLowerCase() || '';
@@ -181,29 +182,66 @@ const shouldKeepCompareTool = (bestTool: Tool, compareTool: Tool): boolean => {
   return false;
 };
 
-// Helper function to detect similar video tools
-const isSimilarVideoTool = (tool1: Tool, tool2: Tool): boolean => {
+// Enhanced helper function to detect similar tools across all categories
+const isSimilarTool = (tool1: Tool, tool2: Tool): boolean => {
   const title1 = tool1.title.toLowerCase().trim();
   const title2 = tool2.title.toLowerCase().trim();
   
-  // Check for common video tool variations
-  const videoToolVariations = [
-    ['runwayml gen-2', 'runway ml', 'runway gen-2'],
-    ['luma labs dream machine', 'luma dream machine', 'dream machine'],
-    ['google veo 2', 'google veo', 'video fx by google'],
+  // Check for common tool variations across all categories
+  const toolVariations = [
+    // Video tools
+    ['runwayml gen-2', 'runway ml', 'runway gen-2', 'runwayml'],
+    ['luma labs dream machine', 'luma dream machine', 'dream machine', 'luma labs'],
+    ['google veo 2', 'google veo', 'video fx by google', 'veo 2'],
     ['music video maker ai studio', 'music video maker studio', 'music video maker'],
     ['movie maker studio ai suite', 'movie maker studio', 'movie studio ai'],
     ['pika labs', 'pika ai', 'pika'],
-    ['minimax', 'hailuo ai', 'hailuo ai (minimax)']
+    ['minimax', 'hailuo ai', 'hailuo ai (minimax)'],
+    ['synthesia', 'synthesia ai', 'synthesia.io'],
+    ['d-id', 'did', 'd id'],
+    
+    // Image tools
+    ['midjourney', 'mid journey', 'mj'],
+    ['dall-e', 'dall e', 'dalle', 'dall·e'],
+    ['stable diffusion', 'stability ai', 'stablediffusion'],
+    ['leonardo ai', 'leonardo.ai', 'leonardo'],
+    
+    // Business tools
+    ['chatgpt', 'chat gpt', 'gpt-4', 'openai'],
+    ['claude', 'claude ai', 'anthropic'],
+    ['gemini', 'google gemini', 'bard'],
+    
+    // Writing tools
+    ['grammarly', 'grammarly ai', 'grammarly premium'],
+    ['jasper', 'jasper ai', 'jasper.ai'],
+    ['copy.ai', 'copyai', 'copy ai'],
+    
+    // Audio tools
+    ['eleven labs', 'elevenlabs', '11labs'],
+    ['murf', 'murf ai', 'murf.ai'],
+    ['speechify', 'speechify ai'],
+    
+    // 3D tools
+    ['meshy ai', 'meshy', 'meshy.ai'],
+    ['luma ai', 'luma', 'luma labs'],
+    
+    // Design tools
+    ['canva', 'canva ai', 'canva pro'],
+    ['figma', 'figma ai', 'figma design'],
+    ['adobe', 'adobe ai', 'adobe creative']
   ];
   
-  for (const variations of videoToolVariations) {
+  for (const variations of toolVariations) {
     if (variations.some(v => title1.includes(v)) && variations.some(v => title2.includes(v))) {
       return true;
     }
   }
   
-  return false;
+  // Check for exact matches with common suffixes/prefixes
+  const cleanTitle1 = title1.replace(/\s?(ai|gpt|pro|premium|suite|studio|labs|\.ai|\.com|\.io)$/g, '');
+  const cleanTitle2 = title2.replace(/\s?(ai|gpt|pro|premium|suite|studio|labs|\.ai|\.com|\.io)$/g, '');
+  
+  return cleanTitle1 === cleanTitle2 && cleanTitle1.length > 3;
 };
 
 export const logDuplicateReport = (analysis: DuplicateAnalysis): void => {

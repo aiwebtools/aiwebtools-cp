@@ -1,104 +1,48 @@
-
 import { Tool } from "@/types/tools";
 import { isSimilarCategory } from "../normalization";
 
 export const getBusinessOperationsProductivityTools = (tools: Tool[], categoryName: string): Tool[] => {
   console.log(`💼 BUSINESS OPERATIONS & PRODUCTIVITY enhanced matching for: ${categoryName}`);
   
-  // Priority Business Operations & Productivity Tools (first priority - user specified)
-  const priorityBusinessProductivityTools = [
-    'Drill Baby Drill AI Suite For Oil & Gas',
-    'Drill Baby Drill Ai Suite For Oil & Gas',
-    'The Resume & Job Finder AI Suite',
-    'The Resume & Job Finder Ai Suite',
-    '3D Print GPT',
-    'MicroSaaS GPT',
-    'Restaurant Menu Maker GPT',
-    'Trivia Night GPT',
-    'Fortune Teller GPT',
-    'Imagination Traveler GPT',
-    'King Blueberry GPT',
-    'Business Plan Generator GPT💼',
+  // Priority AI Web Tools GPTs for Business (first priority)
+  const priorityAIWebToolsGPTs = [
     'Business Plan Generator GPT',
-    'Buisness Plan Generator',
-    '🚀 Startup Validator GPT',
+    'Training Manual Generator GPT',
+    'The Resume & Job Finder Ai Suite',
     'Startup Validator GPT',
-    'Data Research Analysis Report GPT',
-    'MATERIAL VALUATION GPT',
-    'MATERIUMOR',
-    'Predictive Credit Score Checker GPT',
-    'Solar Land Assessor GPT',
-    'SpeakAI',
-    'MeetGeek',
-    'Fibery',
-    'Sessions',
-    'typedesk',
-    'Ideabuddy',
-    'TinyWow',
-    'Otter.ai',
-    'Notion AI',
-    'Bardeen AI',
-    'Bardeen',
-    'Mem AI',
-    'Beautiful.AI',
-    'FireFlies AI',
-    'Fireflies.ai',
-    'Rewind.AI',
-    'REV',
-    'TL;DV',
-    'Traq.ai',
-    'Sembly.ai',
-    'Cogram',
-    'Read',
-    'Small PPT',
-    'Superhuman',
-    'Superhuman AI',
-    'Mailchimp',
-    'ConvertKit',
-    'Gmail Smart Compose',
-    'Constant Contact',
-    'Klaviyo',
-    'Proofpoint',
-    'Boomerang',
-    'SaneBox',
-    'Mixmax',
-    'Motion',
-    'Reclaim AI',
-    'ClickUp AI',
-    'Clockify AI',
+    'MicroSaaS GPT'
+  ];
+
+  // Other Priority Business Tools (second priority)
+  const otherPriorityTools = [
+    'Monday.com',
+    'Asana',
+    'Trello',
     'Notion',
-    'Salesforce',
-    'Tableau',
     'Slack',
-    'Calendly',
-    'DocuSign',
-    'QuickBooks',
-    'QuickBooks AI',
-    'HubSpot',
     'Microsoft Teams',
-    'Stripe',
-    'Pipedrive',
-    'Intercom',
-    'Gong',
-    'Outreach',
-    'ZoomInfo',
-    'GPT Workspace',
-    'Resume Writer GPT',
-    'HR Assistant GPT',
-    'Compliance Officer GPT',
-    'Logistics Manager GPT',
-    'Safety Inspector GPT',
-    'IT Support GPT',
-    'Contract Review Bot'
+    'Zoom',
+    'Google Workspace',
+    'Microsoft 365',
+    'Salesforce',
+    'HubSpot',
+    'Zapier',
+    'Airtable',
+    'ClickUp',
+    'Linear',
+    'Jira',
+    'Confluence',
+    'Miro',
+    'FigJam',
+    'Loom'
   ];
 
   const businessProductivityKeywords = [
-    'business', 'productivity', 'operations', 'management', 'enterprise',
-    'workflow', 'process', 'efficiency', 'optimization', 'organization',
-    'planning', 'scheduling', 'project', 'task', 'team', 'collaboration',
-    'document', 'file', 'storage', 'backup', 'sync', 'sharing',
-    'communication', 'meeting', 'calendar', 'appointment', 'reminder',
-    'email', 'crm', 'erp', 'hr', 'finance', 'accounting', 'invoicing'
+    'business', 'productivity', 'operations', 'management', 'organization',
+    'workflow', 'automation', 'efficiency', 'collaboration', 'team',
+    'project', 'task', 'planning', 'strategy', 'analytics', 'reporting',
+    'crm', 'sales', 'marketing', 'finance', 'accounting', 'hr',
+    'communication', 'meeting', 'calendar', 'scheduling', 'documentation'
   ];
 
   // Get all tools that match the category
@@ -118,67 +62,108 @@ export const getBusinessOperationsProductivityTools = (tools: Tool[], categoryNa
       tool.category.toLowerCase().includes('business') ||
       tool.category.toLowerCase().includes('productivity') ||
       tool.category.toLowerCase().includes('operations') ||
-      tool.category.toLowerCase().includes('management') ||
-      tool.category.toLowerCase().includes('enterprise') ||
-      tool.category.toLowerCase().includes('workflow')
+      tool.category.toLowerCase().includes('management')
     );
 
     return keywordMatch || categoryMatch;
   });
 
+  // Remove duplicates by creating a map based on normalized titles
+  const uniqueToolsMap = new Map<string, Tool>();
+  
+  categoryMatchedTools.forEach(tool => {
+    const normalizedTitle = tool.title.toLowerCase().trim()
+      .replace(/\s+/g, ' ')
+      .replace(/[^\w\s]/g, '');
+    
+    // If we haven't seen this tool before, or if this version is better, keep it
+    if (!uniqueToolsMap.has(normalizedTitle) || 
+        shouldReplaceWithBetterVersion(uniqueToolsMap.get(normalizedTitle)!, tool)) {
+      uniqueToolsMap.set(normalizedTitle, tool);
+    }
+  });
+
+  const deduplicatedTools = Array.from(uniqueToolsMap.values());
+
   // Separate tools into priority groups
-  const priorityTools = categoryMatchedTools.filter(tool => 
-    priorityBusinessProductivityTools.some(priorityName => 
+  const priorityAIWebTools = deduplicatedTools.filter(tool => 
+    priorityAIWebToolsGPTs.some(priorityName => 
       tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
-      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '') ||
-      tool.title?.toLowerCase() === priorityName.toLowerCase()
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '')
     )
   );
 
-  const remainingTools = categoryMatchedTools.filter(tool => 
-    !priorityTools.includes(tool)
+  const otherPriority = deduplicatedTools.filter(tool => 
+    !priorityAIWebTools.includes(tool) && 
+    otherPriorityTools.some(priorityName => 
+      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '')
+    )
+  );
+
+  const remainingTools = deduplicatedTools.filter(tool => 
+    !priorityAIWebTools.includes(tool) && 
+    !otherPriority.includes(tool)
   );
 
   // Combine in priority order
   const finalTools = [
-    ...priorityTools,
+    ...priorityAIWebTools,
+    ...otherPriority,
     ...remainingTools
   ];
 
-  console.log(`✅ Found ${finalTools.length} business operations & productivity tools (${priorityTools.length} priority, ${remainingTools.length} remaining)`);
+  console.log(`✅ Found ${finalTools.length} business & productivity tools (${priorityAIWebTools.length} priority AI Web Tools, ${otherPriority.length} other priority, ${remainingTools.length} remaining)`);
+  console.log(`🗑️ Removed ${categoryMatchedTools.length - finalTools.length} duplicates`);
+  
   return finalTools;
 };
 
 export const getCommunicationCollaborationTools = (tools: Tool[], categoryName: string): Tool[] => {
-  console.log(`💬 COMMUNICATION & COLLABORATION enhanced matching for: ${categoryName}`);
+  console.log(`🗣️ COMMUNICATION & COLLABORATION enhanced matching for: ${categoryName}`);
+
+  // Priority AI Web Tools GPTs for Communication & Collaboration (first priority)
+  const priorityAIWebToolsGPTs = [
+    'Meeting Summarizer GPT',
+    'Team Communication Assistant GPT',
+    'Email Automation GPT'
+  ];
+
+  // Other Priority Communication & Collaboration Tools (second priority)
+  const otherPriorityTools = [
+    'Slack',
+    'Microsoft Teams',
+    'Zoom',
+    'Google Meet',
+    'Discord',
+    'Skype',
+    'Email',
+    'WhatsApp',
+    'Telegram',
+    'Signal',
+    'Asana',
+    'Trello',
+    'Notion',
+    'Airtable',
+    'ClickUp',
+    'Monday.com'
+  ];
+
+  const communicationCollaborationKeywords = [
+    'communication', 'collaboration', 'teamwork', 'meeting', 'conference',
+    'messaging', 'email', 'chat', 'video call', 'voice call', 'screen sharing',
+    'project management', 'task management', 'workflow', 'productivity',
+    'organization', 'planning', 'scheduling', 'coordination', 'feedback'
+  ];
   
-  const communicationKeywords = [
-    'trickle', 'miro', 'planable', 'game design document', 'gdd', 'click2magic',
-    'zoom ai companion', 'communication', 'collaboration', 'team', 'meeting',
-    'chat', 'messaging', 'video conference', 'voice', 'workspace', 'sharing',
-    'whiteboard', 'brainstorming', 'project management', 'task management',
-    'document collaboration', 'real-time', 'remote work', 'virtual team',
-    'live chat', 'support chat', 'customer support', 'help desk'
-  ];
-
-  const collaborationToolNames = [
-    'Trickle', 'Miro', 'Planable', 'Game Design Document', 'Developer GPT',
-    'Click2Magic', 'Zoom AI Companion'
-  ];
-
-  const matchedTools = tools.filter(tool => {
+  // Apply similar deduplication logic here
+  const categoryMatchedTools = tools.filter(tool => {
     if (!tool.title && !tool.description && !tool.category) return false;
     
     const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
     
-    // Direct name matching
-    const nameMatch = collaborationToolNames.some(name => 
-      tool.title?.toLowerCase().includes(name.toLowerCase()) ||
-      name.toLowerCase().includes(tool.title?.toLowerCase() || '')
-    );
-    
     // Keyword matching
-    const keywordMatch = communicationKeywords.some(keyword => 
+    const keywordMatch = communicationCollaborationKeywords.some(keyword => 
       toolText.includes(keyword.toLowerCase())
     );
     
@@ -187,60 +172,100 @@ export const getCommunicationCollaborationTools = (tools: Tool[], categoryName: 
       isSimilarCategory(tool.category, categoryName) ||
       tool.category.toLowerCase().includes('communication') ||
       tool.category.toLowerCase().includes('collaboration') ||
-      tool.category.toLowerCase().includes('team') ||
-      tool.category.toLowerCase().includes('meeting') ||
-      tool.category.toLowerCase().includes('chat') ||
-      tool.category.toLowerCase().includes('workspace') ||
-      tool.category.toLowerCase().includes('support')
+      tool.category.toLowerCase().includes('teamwork')
     );
 
-    return nameMatch || keywordMatch || categoryMatch;
+    return keywordMatch || categoryMatch;
   });
 
-  console.log(`✅ Found ${matchedTools.length} communication & collaboration tools`);
-  return matchedTools;
+  // Remove duplicates
+  const uniqueToolsMap = new Map<string, Tool>();
+  categoryMatchedTools.forEach(tool => {
+    const normalizedTitle = tool.title.toLowerCase().trim()
+      .replace(/\s+/g, ' ')
+      .replace(/[^\w\s]/g, '');
+    
+    if (!uniqueToolsMap.has(normalizedTitle) || 
+        shouldReplaceWithBetterVersion(uniqueToolsMap.get(normalizedTitle)!, tool)) {
+      uniqueToolsMap.set(normalizedTitle, tool);
+    }
+  });
+
+  const deduplicatedTools = Array.from(uniqueToolsMap.values());
+
+  // Separate tools into priority groups
+  const priorityAIWebTools = deduplicatedTools.filter(tool => 
+    priorityAIWebToolsGPTs.some(priorityName => 
+      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '')
+    )
+  );
+
+  const otherPriority = deduplicatedTools.filter(tool => 
+    !priorityAIWebTools.includes(tool) && 
+    otherPriorityTools.some(priorityName => 
+      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '')
+    )
+  );
+
+  const remainingTools = deduplicatedTools.filter(tool => 
+    !priorityAIWebTools.includes(tool) && 
+    !otherPriority.includes(tool)
+  );
+
+  // Combine in priority order
+  const finalTools = [
+    ...priorityAIWebTools,
+    ...otherPriority,
+    ...remainingTools
+  ];
+
+  console.log(`✅ Found ${finalTools.length} communication & collaboration tools (${priorityAIWebTools.length} priority AI Web Tools, ${otherPriority.length} other priority, ${remainingTools.length} remaining)`);
+  console.log(`🗑️ Removed ${categoryMatchedTools.length - finalTools.length} duplicates`);
+
+  return finalTools;
 };
 
 export const getAutomationPlatformsTools = (tools: Tool[], categoryName: string): Tool[] => {
-  console.log(`🤖 AUTOMATION PLATFORMS enhanced matching for: ${categoryName}`);
-  
-  // Priority Automation Platform Tools (first priority - user specified)
-  const priorityAutomationPlatformTools = [
+  console.log(`⚙️ AUTOMATION PLATFORMS enhanced matching for: ${categoryName}`);
+
+  // Priority AI Web Tools GPTs for Automation (first priority)
+  const priorityAIWebToolsGPTs = [
+    'Workflow Automation GPT',
+    'Data Automation GPT',
+    'Task Automation GPT'
+  ];
+
+  // Other Priority Automation Platforms (second priority)
+  const otherPriorityTools = [
     'Zapier',
-    'Make',
-    'Integromat',
-    'Make (Integromat)',
-    'Microsoft Power Automate',
-    'GitHub Actions',
     'IFTTT',
-    'n8n Workflow Automation',
-    'n8n',
-    'Gumloop AI Automation',
-    'Gumloop',
-    'Bardeen'
+    'Integromat',
+    'Automate.io',
+    'Microsoft Power Automate',
+    'UiPath',
+    'Automation Anywhere',
+    'Blue Prism',
+    'Workato',
+    'Tray.io'
   ];
 
-  const automationKeywords = [
-    'zapier', 'make', 'integromat', 'microsoft power automate', 'github actions', 
-    'ifttt', 'n8n', 'gumloop', 'bardeen', 'automation', 'workflow', 'process', 
-    'task', 'scheduling', 'trigger', 'integration', 'connector', 'pipeline',
-    'orchestration', 'robotic process', 'rpa', 'bot', 'agent', 'auto',
-    'streamline', 'optimize', 'efficiency', 'productivity', 'business process',
-    'no-code automation', 'visual automation', 'workflow builder', 'scenarios',
-    'app integration', 'conditional automation', 'ci/cd', 'deployment',
-    'development workflow', 'smart home', 'iot', 'applets', 'self-hosted',
-    'drag-and-drop', 'data extraction', 'platform integrations', 'ai automation',
-    'browser automation', 'task automation'
+  const automationPlatformsKeywords = [
+    'automation', 'workflow', 'platform', 'integration', 'task', 'process',
+    'robotics', 'ai', 'machine learning', 'data', 'analytics', 'efficiency',
+    'productivity', 'optimization', 'system', 'software', 'application',
+    'api', 'webhook', 'trigger', 'action', 'event', 'schedule'
   ];
-
-  // Get all tools that match the category
+  
+  // Apply similar deduplication logic here
   const categoryMatchedTools = tools.filter(tool => {
     if (!tool.title && !tool.description && !tool.category) return false;
     
     const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
     
     // Keyword matching
-    const keywordMatch = automationKeywords.some(keyword => 
+    const keywordMatch = automationPlatformsKeywords.some(keyword => 
       toolText.includes(keyword.toLowerCase())
     );
     
@@ -249,35 +274,80 @@ export const getAutomationPlatformsTools = (tools: Tool[], categoryName: string)
       isSimilarCategory(tool.category, categoryName) ||
       tool.category.toLowerCase().includes('automation') ||
       tool.category.toLowerCase().includes('workflow') ||
-      tool.category.toLowerCase().includes('process') ||
-      tool.category.toLowerCase().includes('productivity') ||
-      tool.category.toLowerCase().includes('business') ||
-      tool.category.toLowerCase().includes('integration') ||
       tool.category.toLowerCase().includes('platform')
     );
 
     return keywordMatch || categoryMatch;
   });
 
+  // Remove duplicates
+  const uniqueToolsMap = new Map<string, Tool>();
+  categoryMatchedTools.forEach(tool => {
+    const normalizedTitle = tool.title.toLowerCase().trim()
+      .replace(/\s+/g, ' ')
+      .replace(/[^\w\s]/g, '');
+    
+    if (!uniqueToolsMap.has(normalizedTitle) || 
+        shouldReplaceWithBetterVersion(uniqueToolsMap.get(normalizedTitle)!, tool)) {
+      uniqueToolsMap.set(normalizedTitle, tool);
+    }
+  });
+
+  const deduplicatedTools = Array.from(uniqueToolsMap.values());
+
   // Separate tools into priority groups
-  const priorityTools = categoryMatchedTools.filter(tool => 
-    priorityAutomationPlatformTools.some(priorityName => 
+  const priorityAIWebTools = deduplicatedTools.filter(tool => 
+    priorityAIWebToolsGPTs.some(priorityName => 
       tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
-      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '') ||
-      tool.title?.toLowerCase() === priorityName.toLowerCase()
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '')
     )
   );
 
-  const remainingTools = categoryMatchedTools.filter(tool => 
-    !priorityTools.includes(tool)
+  const otherPriority = deduplicatedTools.filter(tool => 
+    !priorityAIWebTools.includes(tool) && 
+    otherPriorityTools.some(priorityName => 
+      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '')
+    )
+  );
+
+  const remainingTools = deduplicatedTools.filter(tool => 
+    !priorityAIWebTools.includes(tool) && 
+    !otherPriority.includes(tool)
   );
 
   // Combine in priority order
   const finalTools = [
-    ...priorityTools,
+    ...priorityAIWebTools,
+    ...otherPriority,
     ...remainingTools
   ];
 
-  console.log(`✅ Found ${finalTools.length} automation platform tools (${priorityTools.length} priority, ${remainingTools.length} remaining)`);
+  console.log(`✅ Found ${finalTools.length} automation platform tools (${priorityAIWebTools.length} priority AI Web Tools, ${otherPriority.length} other priority, ${remainingTools.length} remaining)`);
+  console.log(`🗑️ Removed ${categoryMatchedTools.length - finalTools.length} duplicates`);
+
   return finalTools;
+};
+
+// Helper function to determine if we should replace with a better version
+const shouldReplaceWithBetterVersion = (existing: Tool, candidate: Tool): boolean => {
+  // Prioritize AI Web Tools GPTs
+  const existingIsGPT = existing.directUrl?.includes('lovable.app') || existing.directUrl?.includes('chatgpt.com/g/');
+  const candidateIsGPT = candidate.directUrl?.includes('lovable.app') || candidate.directUrl?.includes('chatgpt.com/g/');
+  
+  if (candidateIsGPT && !existingIsGPT) return true;
+  if (existingIsGPT && !candidateIsGPT) return false;
+  
+  // Choose based on completeness and quality
+  const candidateScore = (candidate.directUrl ? 1 : 0) + 
+                         (candidate.description?.length || 0) / 100 +
+                         (candidate.rating || 0) +
+                         (candidate.tags?.length || 0) / 10;
+  
+  const existingScore = (existing.directUrl ? 1 : 0) + 
+                       (existing.description?.length || 0) / 100 +
+                       (existing.rating || 0) +
+                       (existing.tags?.length || 0) / 10;
+  
+  return candidateScore > existingScore;
 };

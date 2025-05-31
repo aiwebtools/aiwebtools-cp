@@ -284,8 +284,25 @@ export const get3DVisualizationTools = (tools: Tool[], categoryName: string): To
     return keywordMatch || categoryMatch;
   });
 
+  // Remove duplicates by creating a map based on normalized titles
+  const uniqueToolsMap = new Map<string, Tool>();
+  
+  categoryMatchedTools.forEach(tool => {
+    const normalizedTitle = tool.title.toLowerCase().trim()
+      .replace(/\s+/g, ' ')
+      .replace(/[^\w\s]/g, '');
+    
+    // If we haven't seen this tool before, or if this version is better, keep it
+    if (!uniqueToolsMap.has(normalizedTitle) || 
+        shouldReplaceWithBetterVersion(uniqueToolsMap.get(normalizedTitle)!, tool)) {
+      uniqueToolsMap.set(normalizedTitle, tool);
+    }
+  });
+
+  const deduplicatedTools = Array.from(uniqueToolsMap.values());
+
   // Separate tools into priority groups
-  const priorityTools = categoryMatchedTools.filter(tool => 
+  const priorityTools = deduplicatedTools.filter(tool => 
     priority3DVisualizationTools.some(priorityName => 
       tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
       priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '') ||
@@ -293,7 +310,7 @@ export const get3DVisualizationTools = (tools: Tool[], categoryName: string): To
     )
   );
 
-  const remainingTools = categoryMatchedTools.filter(tool => 
+  const remainingTools = deduplicatedTools.filter(tool => 
     !priorityTools.includes(tool)
   );
 
@@ -304,5 +321,6 @@ export const get3DVisualizationTools = (tools: Tool[], categoryName: string): To
   ];
 
   console.log(`✅ Found ${finalTools.length} 3D & visualization tools (${priorityTools.length} priority, ${remainingTools.length} remaining)`);
+  console.log(`🗑️ Removed ${categoryMatchedTools.length - finalTools.length} duplicates`);
   return finalTools;
 };

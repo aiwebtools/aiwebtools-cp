@@ -4,180 +4,143 @@ import { isSimilarCategory } from "../normalization";
 export const getContentCreationWritingTools = (tools: Tool[], categoryName: string): Tool[] => {
   console.log(`✍️ CONTENT CREATION & WRITING enhanced matching for: ${categoryName}`);
   
-  // Priority AI Web Tools GPTs that should appear first
+  // Priority AI Web Tools GPTs for Content Creation (first priority)
   const priorityAIWebToolsGPTs = [
-    "BOOK WRITER GPT",
-    "Movie Script Writer GPT", 
-    "PERFECT PROMPT ENGINE",
-    "Clarity Omni GPT",
-    "🎭 Playwriter GPT",
-    "Playwriter GPT",
-    "Podcast Script Writer GPT",
-    "MATERIAL VALUATION GPT",
-    "Algebraic Expression Inventor GPT",
-    "Article and Blog Rewriter GPT",
-    "Children's Picture Book Maker GPT",
-    "Game Design Document",
-    "Developer GPT",
-    "Training Manual Generator GPT",
-    "Restaurant Menu Maker GPT",
-    "Movie Scene Maker GPT",
-    "Legal Draftsmith GPT",
-    "Legislation Writer GPT",
-    "Public Testimony Writer GPT",
-    "SCREENPLAY WRITER GPT"
+    'BOOK WRITER GPT',
+    'Movie Script Writer GPT',
+    'Playwriter GPT',
+    'Podcast Script Writer GPT',
+    'Article and Blog Rewriter GPT',
+    'Grant Writer GPT',
+    'Legislation Writer GPT'
   ];
 
-  // Other priority writing tools that should appear early
-  const priorityWritingTools = [
-    "ParagraphAI",
-    "Grammarly",
-    "DeepL Write",
-    "Wordtune",
-    "QuillBot",
-    "Hemingway Editor",
-    "Jasper AI",
-    "Jasper",
-    "Copy.ai",
-    "Writesonic",
-    "Rytr",
-    "ChatGPT Plus",
-    "Claude Pro",
-    "Notion AI",
-    "Sudowrite",
-    "Perplexity AI",
-    "Lex",
-    "Jenni AI",
-    "Tome",
-    "Gamma",
-    "Otter.ai",
-    "Descript",
-    "AI Content Generator Pro",
-    "Smart Text Editor",
-    "Ebook Creator Suite",
-    "Voice Content Creator",
-    "Video Script Generator",
-    "Visual Storytelling Platform",
-    "Typography Designer",
-    "Content Automation Engine",
-    "Multilingual Content Creator",
-    "ChatDOC",
-    "Citation Machine",
-    "DocLime",
-    "Duplichecker",
-    "Elicit",
-    "Enhancv",
-    "BooksAI.app",
-    "JustCluck.com",
-    "Elephas",
-    "Simplified",
-    "Spinrewriter",
-    "Movie Maker Studio AI SUITE",
-    "Prompt Box",
-    "Theneo",
-    "Typed",
-    "MarkCopy",
-    "ARTIRO",
-    "Small PPT",
-    "AIPRM",
-    "ContentStudio"
+  // Other Priority Content Creation Tools (second priority)
+  const otherPriorityTools = [
+    'ChatGPT',
+    'Claude',
+    'Jasper',
+    'Copy.ai',
+    'Writesonic',
+    'Rytr',
+    'Anyword',
+    'Grammarly',
+    'ProWritingAid',
+    'Hemingway Editor',
+    'Notion AI',
+    'Quillbot',
+    'Wordtune',
+    'Lex',
+    'Sudowrite',
+    'Shortly AI',
+    'Peppertype',
+    'ContentBot',
+    'Article Forge',
+    'CopySmith'
   ];
 
-  // Enhanced content and writing keywords
-  const contentWritingKeywords = [
-    'writing', 'content', 'copywriting', 'blog', 'article', 'text', 'copy',
-    'editor', 'grammar', 'proofreading', 'plagiarism', 'seo writing',
-    'creative writing', 'technical writing', 'documentation', 'storytelling',
-    'script', 'screenplay', 'novel', 'poetry', 'journalism', 'marketing copy',
-    'social media content', 'email content', 'web content', 'content strategy',
-    'book', 'manual', 'guide', 'report', 'proposal', 'resume', 'letter',
-    'speech', 'presentation', 'memo', 'outline', 'summary', 'review'
+  const contentCreationKeywords = [
+    'content', 'writing', 'text', 'article', 'blog', 'copy', 'copywriting',
+    'script', 'screenplay', 'book', 'novel', 'story', 'narrative',
+    'grammar', 'editing', 'proofreading', 'rewriting', 'paraphrasing',
+    'seo', 'marketing', 'social media', 'email', 'newsletter',
+    'creative writing', 'technical writing', 'academic writing',
+    'journalism', 'publishing', 'documentation', 'proposal'
   ];
 
-  // Find priority AI Web Tools GPTs first
-  const priorityGPTs = tools.filter(tool => 
-    priorityAIWebToolsGPTs.some(priorityTitle => 
-      tool.title.toLowerCase().includes(priorityTitle.toLowerCase()) ||
-      priorityTitle.toLowerCase().includes(tool.title.toLowerCase())
-    )
-  );
-
-  // Find other priority writing tools
-  const otherPriorityTools = tools.filter(tool => 
-    !priorityGPTs.some(gpt => gpt.title === tool.title) && // Don't duplicate
-    priorityWritingTools.some(priorityTitle => 
-      tool.title.toLowerCase().includes(priorityTitle.toLowerCase()) ||
-      priorityTitle.toLowerCase().includes(tool.title.toLowerCase())
-    )
-  );
-
-  // Find tools that match the category or have content/writing functionality
-  const categoryMatchingTools = tools.filter(tool => {
-    if (!tool.category && !tool.title && !tool.description) return false;
+  // Get all tools that match the category
+  const categoryMatchedTools = tools.filter(tool => {
+    if (!tool.title && !tool.description && !tool.category) return false;
     
-    // Skip if already in priority lists
-    if (priorityGPTs.some(gpt => gpt.title === tool.title) || 
-        otherPriorityTools.some(other => other.title === tool.title)) {
-      return false;
-    }
-
-    const lowerTitle = tool.title.toLowerCase();
-    const lowerDescription = tool.description.toLowerCase();
-    const lowerCategory = tool.category?.toLowerCase() || '';
-    const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
-
-    // Direct category match
-    if (tool.category && isSimilarCategory(tool.category, categoryName)) {
-      return true;
-    }
-
-    // Check for Content Creation & Writing related categories
-    const writingCategories = [
-      "content creation & writing", "writing & text generation", "content creation",
-      "writing tools", "text generation", "copywriting", "documentation"
-    ];
+    const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
     
-    if (writingCategories.some(cat => isSimilarCategory(lowerCategory, cat))) {
-      return true;
-    }
-
-    // Check for writing/content functionality in title, description, or tags
-    const hasKeyword = contentWritingKeywords.some(keyword =>
-      lowerTitle.includes(keyword) || 
-      lowerDescription.includes(keyword) ||
-      lowerTags.some(tag => tag.includes(keyword))
+    // Keyword matching
+    const keywordMatch = contentCreationKeywords.some(keyword => 
+      toolText.includes(keyword.toLowerCase())
+    );
+    
+    // Category matching
+    const categoryMatch = tool.category && (
+      isSimilarCategory(tool.category, categoryName) ||
+      tool.category.toLowerCase().includes('content') ||
+      tool.category.toLowerCase().includes('writing') ||
+      tool.category.toLowerCase().includes('text') ||
+      tool.category.toLowerCase().includes('copy')
     );
 
-    if (hasKeyword) {
-      return true;
-    }
-
-    // Special checks for writing tools that might not have obvious keywords
-    if (lowerTitle.includes('ai') && (
-      lowerTitle.includes('write') || 
-      lowerTitle.includes('text') || 
-      lowerTitle.includes('content') ||
-      lowerDescription.includes('generate') ||
-      lowerDescription.includes('create') ||
-      lowerDescription.includes('writing') ||
-      lowerDescription.includes('content')
-    )) {
-      return true;
-    }
-
-    return false;
+    return keywordMatch || categoryMatch;
   });
 
-  // Combine with priority order: AI Web Tools GPTs first, then other priority tools, then category matches
-  const allContentWritingTools = [
-    ...priorityGPTs,
-    ...otherPriorityTools, 
-    ...categoryMatchingTools
+  // Remove duplicates by creating a map based on normalized titles
+  const uniqueToolsMap = new Map<string, Tool>();
+  
+  categoryMatchedTools.forEach(tool => {
+    const normalizedTitle = tool.title.toLowerCase().trim()
+      .replace(/\s+/g, ' ')
+      .replace(/[^\w\s]/g, '');
+    
+    // If we haven't seen this tool before, or if this version is better, keep it
+    if (!uniqueToolsMap.has(normalizedTitle) || 
+        shouldReplaceWithBetterVersion(uniqueToolsMap.get(normalizedTitle)!, tool)) {
+      uniqueToolsMap.set(normalizedTitle, tool);
+    }
+  });
+
+  const deduplicatedTools = Array.from(uniqueToolsMap.values());
+
+  // Separate tools into priority groups
+  const priorityAIWebTools = deduplicatedTools.filter(tool => 
+    priorityAIWebToolsGPTs.some(priorityName => 
+      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '')
+    )
+  );
+
+  const otherPriority = deduplicatedTools.filter(tool => 
+    !priorityAIWebTools.includes(tool) && 
+    otherPriorityTools.some(priorityName => 
+      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '')
+    )
+  );
+
+  const remainingTools = deduplicatedTools.filter(tool => 
+    !priorityAIWebTools.includes(tool) && 
+    !otherPriority.includes(tool)
+  );
+
+  // Combine in priority order
+  const finalTools = [
+    ...priorityAIWebTools,
+    ...otherPriority,
+    ...remainingTools
   ];
 
-  console.log(`✍️ Found ${allContentWritingTools.length} content creation & writing tools`);
-  console.log(`📊 Breakdown: ${priorityGPTs.length} priority GPTs, ${otherPriorityTools.length} other priority, ${categoryMatchingTools.length} category matches`);
-  console.log(`🎯 First 10 tools:`, allContentWritingTools.slice(0, 10).map(t => t.title));
+  console.log(`✅ Found ${finalTools.length} content creation & writing tools (${priorityAIWebTools.length} priority AI Web Tools, ${otherPriority.length} other priority, ${remainingTools.length} remaining)`);
+  console.log(`🗑️ Removed ${categoryMatchedTools.length - finalTools.length} duplicates`);
+  
+  return finalTools;
+};
 
-  return allContentWritingTools;
+// Helper function to determine if we should replace with a better version
+const shouldReplaceWithBetterVersion = (existing: Tool, candidate: Tool): boolean => {
+  // Prioritize AI Web Tools GPTs
+  const existingIsGPT = existing.directUrl?.includes('lovable.app') || existing.directUrl?.includes('chatgpt.com/g/');
+  const candidateIsGPT = candidate.directUrl?.includes('lovable.app') || candidate.directUrl?.includes('chatgpt.com/g/');
+  
+  if (candidateIsGPT && !existingIsGPT) return true;
+  if (existingIsGPT && !candidateIsGPT) return false;
+  
+  // Choose based on completeness and quality
+  const candidateScore = (candidate.directUrl ? 1 : 0) + 
+                         (candidate.description?.length || 0) / 100 +
+                         (candidate.rating || 0) +
+                         (candidate.tags?.length || 0) / 10;
+  
+  const existingScore = (existing.directUrl ? 1 : 0) + 
+                       (existing.description?.length || 0) / 100 +
+                       (existing.rating || 0) +
+                       (existing.tags?.length || 0) / 10;
+  
+  return candidateScore > existingScore;
 };
