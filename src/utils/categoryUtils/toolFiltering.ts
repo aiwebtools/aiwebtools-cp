@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -13,7 +14,8 @@ import {
   getVideoMultimediaTools,
   getAudioVoiceTools,
   get3DVisualizationTools,
-  getBusinessOperationsProductivityTools
+  getBusinessOperationsProductivityTools,
+  getAIDevelopmentPlatformsTools
 } from "./categoryMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
 
@@ -31,6 +33,11 @@ export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
 };
 
 export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] => {
+  // Special handling for AI Development & Platforms category
+  if (categoryName === "AI DEVELOPMENT & PLATFORMS" || categoryName === "AI Development & Platforms") {
+    return getAIDevelopmentPlatformsTools(tools, categoryName);
+  }
+  
   // Special handling for Data & Analytics category
   if (categoryName === "DATA & ANALYTICS AI TOOLS" || categoryName === "Data & Analytics Tools") {
     return getDataAnalyticsTools(tools, categoryName);
@@ -153,6 +160,14 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     console.log(`✅ Returning total of ${allToolsWithPriority.length} tools for ALL AI TOOLS`);
     
     return allToolsWithPriority;
+  }
+  
+  // Special case for "AI DEVELOPMENT & PLATFORMS" - use enhanced matching
+  if (mainCategoryName === "AI DEVELOPMENT & PLATFORMS") {
+    console.log(`⚙️ AI DEVELOPMENT & PLATFORMS requested - using enhanced matching`);
+    const aiDevelopmentTools = getAIDevelopmentPlatformsTools(tools, mainCategoryName);
+    console.log(`✅ Found ${aiDevelopmentTools.length} AI development & platforms tools`);
+    return aiDevelopmentTools;
   }
   
   // Special case for "DATA & ANALYTICS AI TOOLS" - use enhanced matching
