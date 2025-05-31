@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { isSimilarCategory } from "./normalization";
 import { isVideoRelatedTool } from "./videoDetection";
@@ -672,5 +673,71 @@ export const getEducationLearningTools = (tools: Tool[], categoryName: string): 
   });
 
   console.log(`✅ Found ${matchedTools.length} education & learning tools`);
+  return matchedTools;
+};
+
+export const getHealthWellnessTools = (tools: Tool[], categoryName: string): Tool[] => {
+  console.log(`🏥 HEALTH & WELLNESS enhanced matching for: ${categoryName}`);
+  
+  const healthWellnessKeywords = [
+    'doctor gpt', 'skin care', 'veterinarian', 'pharmaceutical', 'mental wellness', 'relationship advisor',
+    'life coach', 'home organization', 'travel planner', 'communication coach', 'finance advisor',
+    'gift ideas', 'routine optimizer', 'mindfulness', 'meditation', 'dental gpt', 'emdr',
+    'pathai', 'healthcare advisor', 'nutritionist', 'medical diagnosis', 'medical research',
+    'health', 'wellness', 'medical', 'healthcare', 'therapy', 'counseling', 'fitness',
+    'nutrition', 'diet', 'exercise', 'mental health', 'physical health', 'personal care',
+    'lifestyle', 'well-being', 'self-care', 'preventive care', 'holistic health',
+    'alternative medicine', 'telemedicine', 'health monitoring', 'symptom checker',
+    'medical assistant', 'health coach', 'wellness coach', 'health assessment',
+    'medical consultation', 'health guidance', 'medical advice', 'health tips',
+    'wellness tips', 'health education', 'medical education', 'health information',
+    'medical information', 'health data', 'medical data', 'health tracking',
+    'medical tracking', 'health analytics', 'medical analytics'
+  ];
+
+  const healthToolNames = [
+    'Personalized DR. GPT', 'SKIN CARE GPT', 'Veterinarian GPT', 'Pharmaceutical Assistant GPT',
+    'Mental Wellness GPT', 'Relationship Advisor GPT', 'Personal Life Coach GPT',
+    'Home Organization Expert GPT', 'Personal Travel Planner GPT', 'Communication Coach GPT',
+    'Personal Finance Advisor GPT', 'Gift Ideas Generator GPT', 'Daily Routine Optimizer GPT',
+    'Mindfulness & Meditation Guide GPT', 'DENTAL GPT', 'EMDR Assistant', 'PathAI',
+    'Healthcare Advisor GPT', 'Nutritionist GPT', 'Medical Diagnosis GPT', 'Medical Research GPT'
+  ];
+
+  const matchedTools = tools.filter(tool => {
+    if (!tool.title && !tool.description && !tool.category) return false;
+    
+    const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
+    
+    // Direct name matching
+    const nameMatch = healthToolNames.some(name => 
+      tool.title?.toLowerCase().includes(name.toLowerCase()) ||
+      name.toLowerCase().includes(tool.title?.toLowerCase() || '')
+    );
+    
+    // Keyword matching
+    const keywordMatch = healthWellnessKeywords.some(keyword => 
+      toolText.includes(keyword.toLowerCase())
+    );
+    
+    // Category matching
+    const categoryMatch = tool.category && (
+      isSimilarCategory(tool.category, categoryName) ||
+      tool.category.toLowerCase().includes('health') ||
+      tool.category.toLowerCase().includes('wellness') ||
+      tool.category.toLowerCase().includes('medical') ||
+      tool.category.toLowerCase().includes('healthcare') ||
+      tool.category.toLowerCase().includes('therapy') ||
+      tool.category.toLowerCase().includes('fitness') ||
+      tool.category.toLowerCase().includes('nutrition') ||
+      tool.category.toLowerCase().includes('lifestyle') ||
+      tool.category.toLowerCase().includes('personal care') ||
+      tool.category.toLowerCase().includes('mental health')
+    );
+
+    return nameMatch || keywordMatch || categoryMatch;
+  });
+
+  console.log(`✅ Found ${matchedTools.length} health & wellness tools`);
   return matchedTools;
 };

@@ -177,6 +177,14 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     return educationTools;
   }
   
+  // Special case for "HEALTH & WELLNESS" - use enhanced matching
+  if (mainCategoryName === "HEALTH & WELLNESS") {
+    console.log(`🏥 HEALTH & WELLNESS requested - using enhanced matching`);
+    const healthWellnessTools = getHealthWellnessTools(tools, mainCategoryName);
+    console.log(`✅ Found ${healthWellnessTools.length} health & wellness tools`);
+    return healthWellnessTools;
+  }
+  
   // Special case for "DATA & ANALYTICS AI TOOLS" - use enhanced matching
   if (mainCategoryName === "DATA & ANALYTICS AI TOOLS") {
     console.log(`📊 DATA & ANALYTICS AI TOOLS requested - using enhanced matching`);
