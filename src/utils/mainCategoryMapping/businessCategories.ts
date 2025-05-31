@@ -20,7 +20,8 @@ export const businessCategories: MainCategory[] = [
       "Utilities & Productivity",
       "Email Management Tools",
       "Meeting & Transcription Tools",
-      "Business Operations & Productivity"
+      "Business Operations & Productivity",
+      "Utility & Productivity"
     ]
   },
   {
