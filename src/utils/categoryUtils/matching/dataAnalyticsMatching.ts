@@ -5,6 +5,34 @@ import { isSimilarCategory } from "../normalization";
 export const getDataAnalyticsTools = (tools: Tool[], categoryName: string): Tool[] => {
   console.log(`📊 DATA & ANALYTICS enhanced matching for: ${categoryName}`);
   
+  // Priority Data & Analytics Tools (first priority - user specified)
+  const priorityDataAnalyticsTools = [
+    'Illuminous World Data Explorer GPT',
+    'Illuminous',
+    'Data Research Analysis Report GPT',
+    'Probability GPT',
+    'AskCSV',
+    'Sweephy',
+    'Compar',
+    'Claude',
+    'ChatGPT',
+    'Gemini',
+    'Tableau',
+    'Power BI',
+    'DataRobot',
+    'Looker',
+    'Qlik Sense',
+    'FinChat.io',
+    'FinChat',
+    'ChainGPT',
+    'FACT CHECKER GPT',
+    'Fact Checker GPT',
+    'Person Information Finder GPT',
+    'Google NotebookLM',
+    'Google Notebook LM',
+    'Perplexity'
+  ];
+
   const dataAnalyticsKeywords = [
     'illuminous', 'world data', 'data research', 'data analysis', 'probability', 
     'askcsv', 'sweephy', 'compar', 'claude data', 'chatgpt data', 'gemini data',
@@ -18,24 +46,11 @@ export const getDataAnalyticsTools = (tools: Tool[], categoryName: string): Tool
     'data warehouse', 'olap', 'etl', 'data pipeline', 'real-time analytics'
   ];
 
-  const dataToolNames = [
-    'Illuminous World Data Explorer GPT', 'Data Research Analysis Report GPT', 
-    'Probability GPT', 'AskCSV', 'Sweephy', 'Compar', 'Claude', 'ChatGPT', 
-    'Gemini', 'Tableau', 'Power BI', 'DataRobot', 'Looker', 'Qlik Sense', 
-    'FinChat.io', 'ChainGPT', 'FACT CHECKER GPT', 'Person Information Finder GPT',
-    'Property Data Finder', 'Real Estate GPT', 'Perplexity', 'Google Notebook LM'
-  ];
-
-  const matchedTools = tools.filter(tool => {
+  // Get all tools that match the category
+  const categoryMatchedTools = tools.filter(tool => {
     if (!tool.title && !tool.description && !tool.category) return false;
     
     const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
-    
-    // Direct name matching
-    const nameMatch = dataToolNames.some(name => 
-      tool.title?.toLowerCase().includes(name.toLowerCase()) ||
-      name.toLowerCase().includes(tool.title?.toLowerCase() || '')
-    );
     
     // Keyword matching
     const keywordMatch = dataAnalyticsKeywords.some(keyword => 
@@ -54,9 +69,28 @@ export const getDataAnalyticsTools = (tools: Tool[], categoryName: string): Tool
       tool.category.toLowerCase().includes('analysis')
     );
 
-    return nameMatch || keywordMatch || categoryMatch;
+    return keywordMatch || categoryMatch;
   });
 
-  console.log(`✅ Found ${matchedTools.length} data & analytics tools`);
-  return matchedTools;
+  // Separate tools into priority groups
+  const priorityTools = categoryMatchedTools.filter(tool => 
+    priorityDataAnalyticsTools.some(priorityName => 
+      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '') ||
+      tool.title?.toLowerCase() === priorityName.toLowerCase()
+    )
+  );
+
+  const remainingTools = categoryMatchedTools.filter(tool => 
+    !priorityTools.includes(tool)
+  );
+
+  // Combine in priority order
+  const finalTools = [
+    ...priorityTools,
+    ...remainingTools
+  ];
+
+  console.log(`✅ Found ${finalTools.length} data & analytics tools (${priorityTools.length} priority, ${remainingTools.length} remaining)`);
+  return finalTools;
 };
