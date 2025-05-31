@@ -16,6 +16,32 @@ import {
 
 export const healthAndWellness: Tool[] = [
   {
+    icon: Smile,
+    title: "Mental Wellness GPT",
+    description: "Mental Wellness GPT is a virtual chat tool for emotional support and mental well-being, offering empathetic guidance rooted in cognitive behavioral therapy (CBT) principles. Designed to help navigate stress, anxiety, and life's challenges, I provide practical tools, coping strategies, and a safe, judgment-free space for personal growth. While not a licensed therapist, I aim to complement your journey toward resilience and self-care with meaningful insights and support. Disclaimer: These AI-driven tools are designed for creative and emotional support purposes only and should not be considered as replacements for professional mental health care, therapy, or diagnosis.",
+    emoji: "😊",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/_e6DtLUv-2Q",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377362789097803786/image.png?ex=6838b08f&is=68375f0f&hm=f63e1ae446523dd9eff4aa0f95166aa8a5e6119c506b44ab1656322ea4ca47b7&=&format=webp&quality=lossless&width=2646&height=1392",
+    tags: ["mental wellness", "emotional support", "CBT principles", "stress management", "personal growth"],
+    category: "Health & Wellness",
+    rating: 4.9,
+    totalVotes: 6234
+  },
+  {
+    icon: Stethoscope,
+    title: "DENTAL GPT",
+    description: "DENTAL GPT is your comprehensive AI-powered dental consultant, providing expert guidance on oral health, dental procedures, and preventive care. Whether you're dealing with dental concerns, seeking advice on oral hygiene practices, or need information about dental treatments, this advanced AI offers professional dental knowledge and personalized recommendations. From routine dental care guidance to understanding complex dental procedures, DENTAL GPT helps you make informed decisions about your oral health. Perfect for patients seeking dental education, dental professionals looking for reference material, and anyone wanting to maintain optimal oral health through expert guidance.",
+    emoji: "🦷",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://chatgpt.com/g/g-67cbcbcf3a38819183974f2d062d5d7f-dental-gpt-expert",
+    tags: ["dental health", "oral care", "dentistry", "dental consultation", "oral hygiene", "dental procedures", "healthcare"],
+    category: "Health & Wellness",
+    rating: 4.5,
+    totalVotes: 2890
+  },
+  {
     icon: Heart,
     title: "🐾Veterinarian GPT",
     description: "Veterinarian GPT is a compassionate virtual veterinarian simulation offering expert advice on pet health and well-being. It utilizes advanced Ai features to analyze your pet's health and provide tailored care recommendations. This multimodal AI tool allows you to upload data or images of your pets for detailed assessments and receive practical solutions to ensure their optimal health. 🐾 Disclaimer: Veterinarian GPT is for informational purposes only and is not a substitute for professional veterinary advice, diagnosis, or treatment. GPT 4o1 Compliant Version: PETCARE GPT OR TRY PET ADVISOR GPT",
@@ -40,19 +66,6 @@ export const healthAndWellness: Tool[] = [
     category: "Health & Wellness",
     rating: 4.7,
     totalVotes: 4567
-  },
-  {
-    icon: Smile,
-    title: "Mental Wellness GPT",
-    description: "Mental Wellness GPT is a virtual chat tool for emotional support and mental well-being, offering empathetic guidance rooted in cognitive behavioral therapy (CBT) principles. Designed to help navigate stress, anxiety, and life's challenges, I provide practical tools, coping strategies, and a safe, judgment-free space for personal growth. While not a licensed therapist, I aim to complement your journey toward resilience and self-care with meaningful insights and support. Disclaimer: These AI-driven tools are designed for creative and emotional support purposes only and should not be considered as replacements for professional mental health care, therapy, or diagnosis.",
-    emoji: "😊",
-    color: "from-pink-500 to-purple-600",
-    directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377362789097803786/image.png?ex=6838b08f&is=68375f0f&hm=f63e1ae446523dd9eff4aa0f95166aa8a5e6119c506b44ab1656322ea4ca47b7&=&format=webp&quality=lossless&width=2646&height=1392",
-    tags: ["mental wellness", "emotional support", "CBT principles", "stress management", "personal growth"],
-    category: "Health & Wellness",
-    rating: 4.9,
-    totalVotes: 6234
   },
   {
     icon: Pill,
