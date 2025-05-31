@@ -27,8 +27,8 @@ const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true, toolId }
     if (toolId) {
       const votedTools = JSON.parse(localStorage.getItem('votedTools') || '{}');
       const toolVoteData = votedTools[toolId];
-      if (toolVoteData) {
-        setUserRating(toolVoteData.userRating);
+      if (toolVoteData && typeof toolVoteData.currentRating === 'number' && typeof toolVoteData.voteCount === 'number') {
+        setUserRating(toolVoteData.userRating || 0);
         setHasVoted(true);
         setCurrentRating(toolVoteData.currentRating);
         setCurrentVoteCount(toolVoteData.voteCount);
@@ -64,8 +64,9 @@ const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true, toolId }
     onRate?.(newRating);
   };
 
-  const displayRating = currentRating;
-  const displayVotes = currentVoteCount;
+  // Ensure displayRating and displayVotes are always valid numbers
+  const displayRating = typeof currentRating === 'number' && !isNaN(currentRating) ? currentRating : safeRating;
+  const displayVotes = typeof currentVoteCount === 'number' && !isNaN(currentVoteCount) ? currentVoteCount : safeTotalVotes;
 
   return (
     <div className="flex items-center space-x-2">
