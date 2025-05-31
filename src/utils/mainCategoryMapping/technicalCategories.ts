@@ -40,7 +40,29 @@ export const technicalCategories: MainCategory[] = [
       "Business Process Automation",
       "Workflow Automation",
       "Task Automation",
-      "AI Automation"
+      "AI Automation",
+      "Business & Productivity",
+      "Business Tools",
+      "Productivity & Utilities",
+      "Utilities Tools",
+      "AI Productivity Tools",
+      "Utilities & Productivity",
+      "Business Operations & Productivity",
+      "Email Management Tools",
+      "Meeting & Transcription Tools",
+      "Productivity & Automation Tools",
+      "Business & Team Tools",
+      "Collaboration Tools",
+      "Communication & Collaboration",
+      "Utilities & Productivity",
+      "Technical & Utility Tools",
+      "Search & Productivity Tools",
+      "Developer & Coding Tools",
+      "Web Development Tools",
+      "Business & Analytics",
+      "Data & Analytics Tools",
+      "AI Tools & Utilities",
+      "Comprehensive AI Tools"
     ]
   }
 ];

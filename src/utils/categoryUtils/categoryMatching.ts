@@ -104,3 +104,84 @@ export const getCommunicationCollaborationTools = (tools: Tool[], categoryName: 
   
   return directCategoryTools;
 };
+
+// Special handling for Automation Platforms category
+export const getAutomationPlatformsTools = (tools: Tool[], categoryName: string): Tool[] => {
+  console.log(`🤖 Getting automation platform tools for category: "${categoryName}"`);
+  
+  const directCategoryTools = tools.filter(tool => 
+    tool.category && (
+      isSimilarCategory(tool.category, categoryName) ||
+      isSimilarCategory(tool.category, "Automation Platforms") ||
+      isSimilarCategory(tool.category, "Automation & Workflows") ||
+      isSimilarCategory(tool.category, "Automation & Workflow Tools") ||
+      isSimilarCategory(tool.category, "Workflow Tools") ||
+      isSimilarCategory(tool.category, "Process Automation") ||
+      isSimilarCategory(tool.category, "Business Process Automation") ||
+      isSimilarCategory(tool.category, "Workflow Automation") ||
+      isSimilarCategory(tool.category, "Task Automation") ||
+      isSimilarCategory(tool.category, "AI Automation") ||
+      isSimilarCategory(tool.category, "Business & Productivity") ||
+      isSimilarCategory(tool.category, "Business Tools") ||
+      isSimilarCategory(tool.category, "Productivity & Utilities") ||
+      isSimilarCategory(tool.category, "Utilities Tools") ||
+      isSimilarCategory(tool.category, "AI Productivity Tools") ||
+      isSimilarCategory(tool.category, "Utilities & Productivity") ||
+      isSimilarCategory(tool.category, "Business Operations & Productivity") ||
+      isSimilarCategory(tool.category, "Email Management Tools") ||
+      isSimilarCategory(tool.category, "Meeting & Transcription Tools") ||
+      isSimilarCategory(tool.category, "Productivity & Automation Tools") ||
+      isSimilarCategory(tool.category, "Business & Team Tools") ||
+      isSimilarCategory(tool.category, "Collaboration Tools") ||
+      isSimilarCategory(tool.category, "Communication & Collaboration") ||
+      isSimilarCategory(tool.category, "Technical & Utility Tools") ||
+      isSimilarCategory(tool.category, "Search & Productivity Tools") ||
+      isSimilarCategory(tool.category, "Developer & Coding Tools") ||
+      isSimilarCategory(tool.category, "Web Development Tools") ||
+      isSimilarCategory(tool.category, "AI Tools & Utilities") ||
+      isSimilarCategory(tool.category, "Comprehensive AI Tools")
+    )
+  );
+  
+  // Also include tools by description matching for automation-related tools
+  const automationKeywordTools = tools.filter(tool => 
+    tool.description.toLowerCase().includes('automation') ||
+    tool.description.toLowerCase().includes('workflow') ||
+    tool.description.toLowerCase().includes('automate') ||
+    tool.description.toLowerCase().includes('productivity') ||
+    tool.description.toLowerCase().includes('integrate') ||
+    tool.description.toLowerCase().includes('zapier') ||
+    tool.description.toLowerCase().includes('webhook') ||
+    tool.description.toLowerCase().includes('api integration') ||
+    tool.description.toLowerCase().includes('no-code') ||
+    tool.description.toLowerCase().includes('low-code') ||
+    tool.description.toLowerCase().includes('business process') ||
+    tool.description.toLowerCase().includes('task management') ||
+    tool.description.toLowerCase().includes('scheduling') ||
+    tool.description.toLowerCase().includes('pipeline') ||
+    tool.description.toLowerCase().includes('connector') ||
+    tool.title.toLowerCase().includes('zapier') ||
+    tool.title.toLowerCase().includes('make') ||
+    tool.title.toLowerCase().includes('integromat') ||
+    tool.title.toLowerCase().includes('automate') ||
+    tool.title.toLowerCase().includes('workflow') ||
+    tool.title.toLowerCase().includes('ifttt') ||
+    tool.title.toLowerCase().includes('n8n') ||
+    tool.title.toLowerCase().includes('power automate')
+  );
+  
+  const allTools = [...directCategoryTools, ...automationKeywordTools];
+  const uniqueTools = allTools.filter((tool, index, self) => 
+    index === self.findIndex(t => t.title === tool.title)
+  );
+  
+  console.log(`🤖 Automation Platform Tools Debug:`, {
+    categoryName,
+    directCategoryTools: directCategoryTools.length,
+    automationKeywordTools: automationKeywordTools.length,
+    uniqueTools: uniqueTools.length,
+    sampleTitles: uniqueTools.slice(0, 15).map(t => `${t.title} (${t.category})`)
+  });
+  
+  return uniqueTools;
+};

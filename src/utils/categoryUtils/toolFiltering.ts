@@ -6,7 +6,8 @@ import { isVideoRelatedTool } from "./videoDetection";
 import { 
   getDataAnalyticsTools, 
   getMarketingSalesTools, 
-  getCommunicationCollaborationTools 
+  getCommunicationCollaborationTools,
+  getAutomationPlatformsTools
 } from "./categoryMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
 
@@ -37,6 +38,11 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
   // Enhanced handling for Communication & Collaboration category
   if (categoryName === "COMMUNICATION & COLLABORATION AI TOOLS" || categoryName === "Communication & Entertainment" || categoryName === "Communication Tools") {
     return getCommunicationCollaborationTools(tools, categoryName);
+  }
+  
+  // Special handling for Automation Platforms category
+  if (categoryName === "AUTOMATION PLATFORMS" || categoryName === "Automation Platforms" || categoryName === "Automation & Workflows") {
+    return getAutomationPlatformsTools(tools, categoryName);
   }
   
   // Regular category filtering with enhanced similarity matching
@@ -90,6 +96,14 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     const analyticsTools = getDataAnalyticsTools(tools, mainCategoryName);
     console.log(`✅ Found ${analyticsTools.length} analytics tools`);
     return analyticsTools;
+  }
+  
+  // Special case for "AUTOMATION PLATFORMS" - use enhanced matching
+  if (mainCategoryName === "AUTOMATION PLATFORMS") {
+    console.log(`🤖 AUTOMATION PLATFORMS requested - using enhanced matching`);
+    const automationTools = getAutomationPlatformsTools(tools, mainCategoryName);
+    console.log(`✅ Found ${automationTools.length} automation tools`);
+    return automationTools;
   }
   
   // Special enhanced handling for VIDEO & MULTIMEDIA category
