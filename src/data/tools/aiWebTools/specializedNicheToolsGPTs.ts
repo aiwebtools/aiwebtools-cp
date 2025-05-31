@@ -1,6 +1,5 @@
-
 import { Tool } from "@/types/tools";
-import { Sprout, Hammer, MapPin, Calculator, DollarSign, Users, Building, Zap, Leaf, Dna, Gamepad, CreditCard, User, Palette, Megaphone, Shield } from "lucide-react";
+import { Sprout, Hammer, MapPin, Calculator, DollarSign, Users, Building, Zap, Leaf, Dna, Gamepad, CreditCard, User, Palette, Clock, Megaphone, Shield } from "lucide-react";
 
 export const specializedNicheToolsGPTs: Tool[] = [
   {
@@ -82,7 +81,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
     totalVotes: 5123
   },
   {
-    icon: History,
+    icon: Clock,
     title: "Native American History Time Machine GPT - (Special Edition)",
     description: "Experience an immersive time travel adventure of discovery to any era of Native American history with Geronimo, Chief of Rainbow Apache Destiny as your guide. Discover authentic stories, cultures, and wisdom from the past—or explore possible futures shaped by your choices.",
     emoji: "🏹",
