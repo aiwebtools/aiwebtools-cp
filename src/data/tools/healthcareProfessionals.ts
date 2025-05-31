@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Heart, 
@@ -63,18 +64,6 @@ export const healthcareProfessionals: Tool[] = [
     category: "Healthcare Professionals",
     rating: 4.5,
     totalVotes: 2987
-  },
-  {
-    icon: Shield,
-    title: "Patient Safety Monitor",
-    description: "Comprehensive patient safety monitoring system with AI-powered alerts and risk assessment capabilities.",
-    emoji: "🛡️",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://example.com/patientsafety",
-    tags: ["patient safety", "risk assessment", "medical alerts", "healthcare monitoring", "safety protocols"],
-    category: "Healthcare Professionals",
-    rating: 4.4,
-    totalVotes: 2654
   },
   {
     icon: Brain,
