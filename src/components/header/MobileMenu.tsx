@@ -1,3 +1,4 @@
+
 import { Menu, Phone, Search, X, FileText } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -57,12 +58,6 @@ const MobileMenu = () => {
   const handleBrowseAITools = () => {
     // Navigate to ALL AI TOOLS main category page
     navigate('/main-category/ALL%20AI%20TOOLS');
-    setIsMenuOpen(false);
-  };
-
-  const handleBrowseAllAITools = () => {
-    // Navigate to ALL AI TOOLS main category page with external URL
-    createTimePortalEffect('https://aiwebtools.ai/main-category/ALL%20AI%20TOOLS');
     setIsMenuOpen(false);
   };
 
@@ -225,17 +220,9 @@ const MobileMenu = () => {
               {/* Browse Categories */}
               <DropdownMenuItem
                 onClick={handleBrowseAITools}
-                className="text-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 font-medium mb-2 rounded-lg p-3"
+                className="text-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 font-medium mb-3 rounded-lg p-3"
               >
                 🎯 Browse AI Tool Categories
-              </DropdownMenuItem>
-              
-              {/* Browse All AI Tools - Mobile Only */}
-              <DropdownMenuItem
-                onClick={handleBrowseAllAITools}
-                className="text-center bg-gradient-to-r from-purple-500 to-pink-600 text-white hover:from-purple-600 hover:to-pink-700 font-medium mb-3 rounded-lg p-3"
-              >
-                🚀 Browse All AI Tools
               </DropdownMenuItem>
               
               <DropdownMenuSeparator className="border-gray-700 mb-3" />
