@@ -12,7 +12,7 @@ import {
   Globe,
   BookOpen
 } from "lucide-react";
-import { aiWebToolsGPTs } from "./aiWebToolsGPTs";
+import { priorityFeaturedGPTs } from "./aiWebTools/priorityFeaturedGPTs";
 
 export const aiChatPlatforms: Tool[] = [
   {
@@ -114,97 +114,9 @@ export const aiChatPlatforms: Tool[] = [
     rating: 4.4,
     totalVotes: 2654
   },
-  // First 10 AI Web Tools GPTs with full details
-  {
-    icon: Crown,
-    title: "GODMODE GPT",
-    description: "Imagine having an AI companion so powerful and versatile that it seamlessly transforms to meet every need you have—introducing GodMode GPT. This revolutionary AI assistant adapts to any task, providing unmatched capabilities across all domains of knowledge and productivity.",
-    emoji: "👑",
-    color: "from-yellow-400 to-red-500",
-    directUrl: "https://godmodegpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=or3JtZsq6Bc",
-    tags: ["versatile ai", "all-purpose", "productivity", "godmode", "ultimate assistant"],
-    category: "AI Chat & Assistants",
-    rating: 4.9,
-    totalVotes: 6500
-  },
-  {
-    icon: Clock,
-    title: "TIME MACHINE GPT",
-    description: "Uncover the past, explore potential futures, and dive into alternative realities with Time Machine GPT! Experience key historical moments, interact with notable figures, and journey through different eras—unlock your imagination. For deeper, more personal conversations with historical characters, we recommend using Talk to History GPT",
-    emoji: "⏰",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298793409806528/time.webp",
-    tags: ["time travel", "historical exploration", "future simulation", "interactive history", "alternative realities"],
-    category: "AI Chat & Assistants",
-    rating: 4.8,
-    totalVotes: 5234
-  },
-  {
-    icon: Heart,
-    title: "TALK TO HISTORY GPT",
-    description: "Your gateway to engaging in immersive historical conversations with influential leaders of history. Interact with any historical figures you imagine and gain unique insights and perspectives straight from the source. Powered by GPT-4o, it's a streamlined way to make history come alive. Perfect for students and enthusiasts alike. This tool is designed for educational and research purposes only by AiWebTools.Ai",
-    emoji: "🗣️",
-    color: "from-amber-500 to-orange-600",
-    directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=5t7EXS5tthQ",
-    tags: ["historical figures", "interactive conversations", "educational tool", "history learning", "time exploration"],
-    category: "AI Chat & Assistants",
-    rating: 4.7,
-    totalVotes: 4321
-  },
-  {
-    icon: Sparkles,
-    title: "PERFECT PROMPT ENGINE",
-    description: "The Prompt Perfect Engine effortlessly optimizes all your chat prompts. Crafted by prompt engineers, it's perfect for maximizing your potential, whether you're a beginner or aiming for perfection. Additionally, it can execute tasks flawlessly based on the generated prompts. Prompt Perfect Engine is your #1 personal prompt engineer, designed to fit in your pocket and ensure your success.",
-    emoji: "✨",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://perfectpromptengine.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-humanoid-robot-controlli.png/:/cr=t:9.25%25,l:11.96%25,w:73.53%25,h:65.54%25/rs=w:1200,h:600,cg:true,m",
-    tags: ["prompt optimization", "AI prompting", "productivity", "prompt engineering", "task automation"],
-    category: "AI Chat & Assistants",
-    rating: 4.8,
-    totalVotes: 5678
-  },
-  {
-    icon: Target,
-    title: "MULTITASKER GPT",
-    description: "You can give me multiple unrelated tasks at once, and I will work to complete them all for you. Fire away!",
-    emoji: "🎯",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://multitaskergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=y-YZCOzIuDg",
-    tags: ["multitasking", "productivity", "task management", "efficiency", "multiple tasks"],
-    category: "AI Chat & Assistants",
-    rating: 4.6,
-    totalVotes: 4123
-  },
-  {
-    icon: Globe,
-    title: "Clarity Omni GPT",
-    description: "Clarity Omni GPT is an AI tool designed to rewrite text for improved clarity while preserving the original meaning and intent. It can either maintain the exact wording of the input or make adjustments to the wording, tone, and structure to enhance readability. Regardless of the approach, this AI ensures that every detail is retained, delivering a refined version of the text that stays true to the user's purpose.",
-    emoji: "🔍",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://clarityomni.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-scene-of-an-ai-agent-with-a-halo.jpeg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
-    tags: ["text clarity", "writing improvement", "content refinement", "readability", "text optimization"],
-    category: "AI Chat & Assistants",
-    rating: 4.7,
-    totalVotes: 3987
-  },
-  {
-    icon: BookOpen,
-    title: "TALK TO THE GODS GPT",
-    description: "Talk to the Gods GPT' is a versatile AI chat tool that lets you simulate interacting with deities from any religious backgrounds. Whether you're seeking guidance, wisdom, or comparing world religions, this platform allows you to explore dialogues and gain insights from gods and deities across diverse mythologies. Designed to accommodate any of your inquiries in the persona of your chosen deity, it is powered by GPT-4o. This tool is intended for educational and research purposes only by AiWebTools.Ai",
-    emoji: "⚡",
-    color: "from-gold-500 to-amber-600",
-    directUrl: "https://talktothegodsgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=xoUdjZDgplw",
-    tags: ["spiritual guidance", "mythology", "religious exploration", "deity conversations", "cultural learning"],
-    category: "AI Chat & Assistants",
-    rating: 4.8,
-    totalVotes: 4567
-  }
+  // Add the first 10 AI Web Tools GPTs from priorityFeaturedGPTs
+  ...priorityFeaturedGPTs.slice(0, 10).map(gpt => ({
+    ...gpt,
+    category: "AI Chat & Assistants" as const
+  }))
 ];
