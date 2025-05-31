@@ -9,6 +9,10 @@ import { creativeAndMediaGPTs } from "./aiWebTools/creativeAndMediaGPTs";
 import { timeAndHistoryGPTs } from "./aiWebTools/timeAndHistoryGPTs";
 import { spiritualAndPhilosophyGPTs } from "./aiWebTools/spiritualAndPhilosophyGPTs";
 import { scienceAndResearchGPTs } from "./aiWebTools/scienceAndResearchGPTs";
+import { legalAndGovernmentGPTs } from "./aiWebTools/legalAndGovernmentGPTs";
+import { professionalServicesGPTs } from "./aiWebTools/professionalServicesGPTs";
+import { multimediaAndContentGPTs } from "./aiWebTools/multimediaAndContentGPTs";
+import { mysteriousAndUnusualGPTs } from "./aiWebTools/mysteriousAndUnusualGPTs";
 
 // Combine all AI Web Tools GPTs from organized categories
 export const aiWebToolsGPTs: Tool[] = [
@@ -21,5 +25,9 @@ export const aiWebToolsGPTs: Tool[] = [
   ...timeAndHistoryGPTs,
   ...spiritualAndPhilosophyGPTs,
   ...scienceAndResearchGPTs,
+  ...legalAndGovernmentGPTs,
+  ...professionalServicesGPTs,
+  ...multimediaAndContentGPTs,
+  ...mysteriousAndUnusualGPTs,
   // Additional GPTs will be added here as new category files are created
 ];
