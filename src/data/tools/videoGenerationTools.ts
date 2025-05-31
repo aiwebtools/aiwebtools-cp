@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Video, 
@@ -10,7 +11,8 @@ import {
   Sparkles,
   Zap,
   Music,
-  Users
+  Users,
+  Edit
 } from "lucide-react";
 
 export const videoGenerationTools: Tool[] = [
@@ -185,7 +187,8 @@ export const videoGenerationTools: Tool[] = [
     description: "AI video creation platform that generates videos from text prompts. Create marketing videos, social media content, and presentations effortlessly.",
     emoji: "✨",
     color: "from-cyan-500 to-purple-600",
-    directUrl: "https://invideo.io/",
+    directUrl: "https://invideo.sjv.io/k0kMbn",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377349795445739520/image.png?ex=6838a475&is=683752f5&hm=4e72fe93f1d3e8f1641da970546dbad34b8b2726a7e0fb9022dfcee4c612e4a8&=&format=webp&quality=lossless&width=2848&height=1206",
     tags: ["text-to-video", "marketing videos", "social media", "presentations", "AI creation"],
     category: "Video Tools",
     rating: 4.4,
@@ -202,5 +205,18 @@ export const videoGenerationTools: Tool[] = [
     category: "Video Tools",
     rating: 4.1,
     totalVotes: 2987
+  },
+  {
+    icon: Music,
+    title: "SUNO AI MUSIC GENERATOR",
+    description: "Advanced AI music generation platform that creates professional-quality songs, beats, and compositions. Generate music in any style with lyrics and instrumental tracks.",
+    emoji: "🎵",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://suno.com/invite/@aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377357075260244098/image.png?ex=6838ab3c&is=683759bc&hm=1aa91ac7fb3fe0b9ff7844bc8e7de4121e2aaafac7b474707398367c99068b55&",
+    tags: ["ai music", "song generation", "music creation", "beats", "lyrics", "instrumental", "suno ai"],
+    category: "Audio & Voice Tools",
+    rating: 4.8,
+    totalVotes: 5234
   }
 ];

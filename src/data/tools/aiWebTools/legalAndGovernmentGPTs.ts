@@ -1,8 +1,32 @@
-
 import { Tool } from "@/types/tools";
-import { Scale, Gavel, FileText, Building, Users, Shield, Briefcase, BookOpen, PenTool, Calendar, Vote, Landmark } from "lucide-react";
+import { 
+  Scale, 
+  FileText, 
+  Users, 
+  Building2, 
+  Vote, 
+  Gavel,
+  Shield,
+  BookOpen,
+  UserCheck,
+  AlertTriangle,
+  Edit
+} from "lucide-react";
 
 export const legalAndGovernmentGPTs: Tool[] = [
+  {
+    icon: Edit,
+    title: "Legal Draftsmith GPT",
+    description: "Specializes in the precise drafting of legal documents.",
+    emoji: "⚖️",
+    color: "from-blue-500 to-gray-600",
+    directUrl: "https://publicdefendergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-humanoid-robot-dressed-like-a.png/:/cr=t:12.29%25,l:9.16%25,w:89.29%25,h:79.58%25/rs=w:600,h:300,cg:true,m/qt=q:98",
+    tags: ["legal documents", "document drafting", "legal assistant", "law", "contracts", "legal writing", "aiwebtools"],
+    category: "Legal & Government",
+    rating: 4.7,
+    totalVotes: 3123
+  },
   {
     icon: Gavel,
     title: "Criminologist GPT",

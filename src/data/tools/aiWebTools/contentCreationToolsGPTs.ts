@@ -1,20 +1,43 @@
-
 import { Tool } from "@/types/tools";
-import { Mic, Search, FileText, Edit, Presentation, Leaf, Drill } from "lucide-react";
+import { 
+  PenTool, 
+  FileText, 
+  Video, 
+  Music, 
+  Palette, 
+  Camera,
+  Edit,
+  Wand2,
+  Lightbulb,
+  Sparkles
+} from "lucide-react";
 
 export const contentCreationToolsGPTs: Tool[] = [
   {
-    icon: Mic,
-    title: "Podcast Script Writer GPT",
-    description: "Podcast Script Writer GPT specializes in crafting engaging, structured, and professionally formatted podcast scripts and episode outlines. This AI-powered tool efficiently transforms ideas into compelling narratives optimized specifically for audio storytelling, ensuring each script captures audience attention and enhances listener experience.",
-    emoji: "🎙️",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://podcastwritergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-illustration-of-a-podcast-host-with-a_HnlUN.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
-    tags: ["podcast scripts", "audio content", "storytelling", "script writing", "podcast production"],
-    category: "Content Creation Tools",
-    rating: 4.7,
-    totalVotes: 5234
+    icon: Lightbulb,
+    title: "Custom GPT Ideas & Brainstorming Assistant",
+    description: "GPT Ideas and Instructions Assistant",
+    emoji: "💡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://customgptmaker.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000002880.jpg/:/cr=t:22.21%25,l:0%25,w:100%25,h:55.58%25/rs=w:600,h:451,cg:true/qt=q:98",
+    tags: ["gpt ideas", "brainstorming", "custom gpt", "ai ideas", "creativity", "assistant", "aiwebtools"],
+    category: "Content Creation",
+    rating: 4.5,
+    totalVotes: 2987
+  },
+  {
+    icon: Music,
+    title: "Music Melodies & Lessons GPT",
+    description: "Music Melodies & Lessons GPT is your ultimate musical companion, here to inspire and guide you on your musical journey. Whether you're learning to play an instrument, perfecting your vocals, or writing your own songs, I provide step-by-step guidance, accurate lyrics, and easy-to-follow tablature. I tailor lessons to your goals, help you master techniques, and offer personalized advice on instrument selection and sound improvement. From beginners to experienced musicians, I'm here to make learning fun, creative, and engaging, helping you achieve your musical dreams with clarity and ease.",
+    emoji: "🎵",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://musicmelodiesandlessonsgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-music-melodi_LBv7r.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
+    tags: ["music lessons", "melodies", "musical education", "instrument learning", "music theory", "vocals", "aiwebtools"],
+    category: "Content Creation",
+    rating: 4.8,
+    totalVotes: 4123
   },
   {
     icon: Search,

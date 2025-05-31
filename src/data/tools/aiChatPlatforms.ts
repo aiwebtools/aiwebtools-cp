@@ -10,7 +10,9 @@ import {
   Users,
   Mic,
   Settings,
-  Star
+  Star,
+  Cpu,
+  Shield
 } from "lucide-react";
 
 export const aiChatPlatforms: Tool[] = [
@@ -99,5 +101,96 @@ export const aiChatPlatforms: Tool[] = [
     category: "AI Chat Platforms",
     rating: 4.3,
     totalVotes: 5432
+  },
+  {
+    icon: Zap,
+    title: "GROK",
+    description: "X's (formerly Twitter) AI assistant with real-time access to social media data and current events. Provides witty, informative responses with a unique personality.",
+    emoji: "⚡",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://grok.com/",
+    videoUrl: "https://www.youtube.com/watch?v=LTE8js7y-ss",
+    tags: ["grok", "twitter ai", "real-time data", "social media", "current events", "witty ai"],
+    category: "AI Chat Platforms",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Users,
+    title: "BIG-AGI",
+    description: "Advanced AI platform with multiple model support and enhanced capabilities for professional use. Features collaborative tools and powerful AI processing.",
+    emoji: "🤖",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://get.big-agi.com/",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000003211.jpg/:/cr=t:5.56%25,l:0%25,w:100%25,h:88.89%25/rs=w:600,h:300,cg:true/qt=q:98",
+    tags: ["big-agi", "multi-model", "professional ai", "collaborative tools", "advanced ai"],
+    category: "AI Chat Platforms",
+    rating: 4.6,
+    totalVotes: 2987
+  },
+  {
+    icon: Cpu,
+    title: "ChatRTX by NVIDIA",
+    description: "NVIDIA's local AI chat assistant that runs on RTX GPUs. Provides fast, private AI conversations with your documents and data without internet connectivity.",
+    emoji: "🖥️",
+    color: "from-green-500 to-cyan-600",
+    directUrl: "https://www.nvidia.com/en-us/ai-on-rtx/chatrtx/",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/rtxchat%20pic.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    tags: ["nvidia", "rtx", "local ai", "private ai", "gpu acceleration", "offline ai"],
+    category: "AI Chat Platforms",
+    rating: 4.4,
+    totalVotes: 3456
+  },
+  {
+    icon: Shield,
+    title: "TheFreedomGPT – Uncensored & Decentralized Chat Tool",
+    description: "Decentralized AI chat platform focused on uncensored conversations and freedom of speech. Provides open AI interactions without restrictions.",
+    emoji: "🛡️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "http://shrsl.com/2meh1-3brt-1iyev",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377352651477614672/image.png?ex=6838a71e&is=6837559e&hm=b0dc0aa8fe73a8d3efe08a0bc3e4ac5f04c4bc743d1310505f53e80e933e573a&",
+    tags: ["uncensored ai", "decentralized", "freedom", "open ai", "unrestricted"],
+    category: "AI Chat Platforms",
+    rating: 4.2,
+    totalVotes: 2654
+  },
+  {
+    icon: Bot,
+    title: "Cheatlayer Project Atlas (SWARM BETA)",
+    description: "Advanced AI automation platform with swarm intelligence capabilities. Build complex AI workflows and automation systems with collaborative AI agents.",
+    emoji: "🤖",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://cheatlayer.com/?ref=zta2nth",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377352898715062323/image.png?ex=6838a759&is=683755d9&hm=d32c66c79d433b9835b19ebebb6c63553d1647f77c44eb10217104d200df597c&",
+    tags: ["ai automation", "swarm intelligence", "workflows", "ai agents", "beta platform"],
+    category: "AI Chat Platforms",
+    rating: 4.3,
+    totalVotes: 2345
+  },
+  {
+    icon: Globe,
+    title: "Hugging Face Chat",
+    description: "Open-source AI chat platform by Hugging Face featuring various AI models. Access state-of-the-art language models in a collaborative environment.",
+    emoji: "🤗",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://huggingface.co/chat/",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005663.jpg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    tags: ["hugging face", "open source", "multiple models", "collaborative", "community"],
+    category: "AI Chat Platforms",
+    rating: 4.5,
+    totalVotes: 4123
+  },
+  {
+    icon: Zap,
+    title: "Groq",
+    description: "Ultra-fast AI inference platform providing lightning-speed AI chat responses. Optimized for performance with dedicated AI processing hardware.",
+    emoji: "⚡",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://groq.com/",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377356378594873427/image.png?ex=6838aa96&is=68375916&hm=6055b10a7b77314902941a3c85bc62fca7c4dbc8419cb2a038c69cf5f9c74026&",
+    tags: ["groq", "fast ai", "inference", "performance", "speed", "hardware optimization"],
+    category: "AI Chat Platforms",
+    rating: 4.7,
+    totalVotes: 3678
   }
 ];
