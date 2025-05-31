@@ -22,6 +22,18 @@ import {
 
 export const imageAndDesign: Tool[] = [
   {
+    icon: Camera,
+    title: "Product Photography Image & Design GPT",
+    description: "Professional AI-powered product photography and design assistant. Create stunning product images, enhance lighting, backgrounds, and styling for e-commerce, marketing, and brand photography with expert guidance.",
+    emoji: "📸",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://productphotographygpt.lovable.app/?via=aiwebtools",
+    tags: ["product photography", "e-commerce photography", "product design", "AI photography", "professional photography", "aiwebtools"],
+    category: "Image & Design",
+    rating: 4.6,
+    totalVotes: 3456
+  },
+  {
     icon: Palette,
     title: "🎨Color Palette Generator GPT",
     description: "Create stunning color palettes for design projects with AI-driven suggestions and harmonious color combinations.",
