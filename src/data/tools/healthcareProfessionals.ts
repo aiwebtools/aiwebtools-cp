@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Heart, 
@@ -54,6 +53,19 @@ export const healthcareProfessionals: Tool[] = [
     totalVotes: 3456
   },
   {
+    icon: Brain,
+    title: "Mental Wellness GPT",
+    description: "Mental Wellness GPT is a virtual chat tool for emotional support and mental well-being, offering empathetic guidance rooted in cognitive behavioral therapy (CBT) principles. Designed to help navigate stress, anxiety, and life's challenges, I provide practical tools, coping strategies, and a safe, judgment-free space for personal growth. While not a licensed therapist, I aim to complement your journey toward resilience and self-care with meaningful insights and support. Disclaimer: These AI-driven tools are designed for creative and emotional support purposes only and should not be considered as replacements for professional mental health care, therapy, or diagnosis.",
+    emoji: "🧠",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377362789097803786/image.png?ex=6838b08f&is=68375f0f&hm=f63e1ae446523dd9eff4aa0f95166aa8a5e6119c506b44ab1656322ea4ca47b7&=&format=webp&quality=lossless&width=2646&height=1392",
+    tags: ["mental health", "CBT", "emotional wellness", "psychological support", "therapy", "stress management", "anxiety support"],
+    category: "Healthcare Professionals",
+    rating: 4.6,
+    totalVotes: 3234
+  },
+  {
     icon: PlusCircle,
     title: "Medical Diagnosis Assistant",
     description: "AI-powered diagnostic support tool for healthcare professionals to assist in patient evaluation and treatment planning.",
@@ -64,18 +76,6 @@ export const healthcareProfessionals: Tool[] = [
     category: "Healthcare Professionals",
     rating: 4.5,
     totalVotes: 2987
-  },
-  {
-    icon: Brain,
-    title: "Mental Health Companion",
-    description: "AI-powered mental health support tool providing therapeutic guidance and emotional wellness resources.",
-    emoji: "🧠",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://example.com/mentalhealthcompanion",
-    tags: ["mental health", "therapy", "emotional wellness", "psychological support", "counseling"],
-    category: "Healthcare Professionals",
-    rating: 4.6,
-    totalVotes: 3234
   },
   {
     icon: Activity,
