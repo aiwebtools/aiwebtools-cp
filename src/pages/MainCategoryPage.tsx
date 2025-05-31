@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -42,15 +41,19 @@ const MainCategoryPage = () => {
     return null;
   }
 
-  // Get tools for this main category - handle "ALL AI TOOLS" special case
-  const categoryTools = decodedCategoryName === "ALL AI TOOLS" 
-    ? allTools // Return ALL tools for "ALL AI TOOLS" category
-    : getToolsByMainCategory(allTools, decodedCategoryName);
+  // Debug: Log all available tools and categories
+  console.log(`🌟 Total tools in database: ${allTools.length}`);
+  console.log(`📊 All tool categories:`, [...new Set(allTools.map(tool => tool.category))].sort());
+  console.log(`🔍 Sample tools:`, allTools.slice(0, 5).map(t => ({ title: t.title, category: t.category, url: t.directUrl })));
+
+  // Get tools for this main category
+  const categoryTools = getToolsByMainCategory(allTools, decodedCategoryName);
   
   console.log(`🔍 MainCategoryPage Debug for "${decodedCategoryName}":`, {
     isAllAITools: decodedCategoryName === "ALL AI TOOLS",
     categoryToolsCount: categoryTools.length,
-    totalAllToolsCount: allTools.length
+    totalAllToolsCount: allTools.length,
+    sampleCategoryTools: categoryTools.slice(0, 3).map(t => ({ title: t.title, category: t.category }))
   });
   
   // Apply search filter if search term exists
@@ -63,7 +66,7 @@ const MainCategoryPage = () => {
     ? searchTools(allTools, searchTerm)
     : [...allTools]; // Create a copy to avoid mutation
   
-  console.log(`🔍 MainCategoryPage Debug:`, {
+  console.log(`📊 Current display state:`, {
     categoryToolsCount: categoryTools.length,
     filteredToolsCount: filteredTools.length,
     allFilteredToolsCount: allFilteredTools.length,
@@ -132,11 +135,12 @@ const MainCategoryPage = () => {
   const hasMoreTools = currentDisplayedCount < currentTools.length;
   const showCompletionMessage = !hasMoreTools && !isLoading && currentTools.length > 20;
 
-  console.log(`📊 Current display state:`, {
+  console.log(`📊 Final render state:`, {
     currentToolsLength: currentTools.length,
     currentDisplayedCount,
     hasMoreTools,
-    showAllTools
+    showAllTools,
+    decodedCategoryName
   });
 
   return (

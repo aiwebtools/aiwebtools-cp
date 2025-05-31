@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { mainCategories } from "./mainCategoryMapping";
 
@@ -178,6 +179,7 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): Record<string, numbe
 
 export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string): Tool[] => {
   console.log(`🔍 Getting tools for main category: "${mainCategoryName}"`);
+  console.log(`📊 Total available tools in database: ${tools.length}`);
   
   // Special case for "ALL AI TOOLS" - return ALL tools with AI Web Tools GPTs prioritized
   if (mainCategoryName === "ALL AI TOOLS") {
@@ -198,7 +200,10 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     console.log(`🎯 AI Web Tools GPTs: ${aiWebToolsGPTs.length}, Other tools: ${otherTools.length}`);
     
     // Return all tools with AI Web Tools GPTs first
-    return [...aiWebToolsGPTs, ...otherTools];
+    const allToolsWithPriority = [...aiWebToolsGPTs, ...otherTools];
+    console.log(`✅ Returning total of ${allToolsWithPriority.length} tools for ALL AI TOOLS`);
+    
+    return allToolsWithPriority;
   }
   
   // Find the main category configuration
