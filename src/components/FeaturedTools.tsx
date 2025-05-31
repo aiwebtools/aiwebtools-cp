@@ -1,5 +1,4 @@
-
-import { useCallback, useImperativeHandle, forwardRef } from "react";
+import React, { useCallback, useImperativeHandle, forwardRef } from "react";
 import CategoryFilters from "@/components/tools/CategoryFilters";
 import ActiveFilters from "@/components/tools/ActiveFilters";
 import ToolsGrid from "@/components/tools/ToolsGrid";
