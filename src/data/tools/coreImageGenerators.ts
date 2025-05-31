@@ -1,7 +1,19 @@
-import { Image, Palette, Wand2, Sparkles, Camera, Brush, Star, Crown, Zap } from "lucide-react";
+import { Image, Palette, Wand2, Sparkles, Camera, Brush, Star, Crown, Zap, Bot } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 export const coreImageGenerators: Tool[] = [
+  {
+    icon: Bot,
+    title: "GPT-4o Image Generation",
+    description: "OpenAI's latest GPT-4o model with advanced image generation capabilities. Create stunning visuals from text descriptions with enhanced understanding and creative output.",
+    emoji: "🤖",
+    color: "from-emerald-500 to-blue-600",
+    directUrl: "https://graphicdesigngpt.lovable.app/?via=aiwebtools",
+    tags: ["GPT-4o", "OpenAI", "image generation", "text-to-image", "AI art", "advanced model"],
+    category: "Core Image Generators",
+    rating: 4.9,
+    totalVotes: 7890
+  },
   {
     icon: Wand2,
     title: "Google Whisk",
