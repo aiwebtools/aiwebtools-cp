@@ -1,10 +1,96 @@
-
 import { Tool } from "@/types/tools";
 import { isSimilarCategory } from "../normalization";
 
 export const getBusinessOperationsProductivityTools = (tools: Tool[], categoryName: string): Tool[] => {
   console.log(`💼 BUSINESS OPERATIONS & PRODUCTIVITY enhanced matching for: ${categoryName}`);
   
+  // Priority Business Operations & Productivity Tools (first priority - user specified)
+  const priorityBusinessProductivityTools = [
+    'Drill Baby Drill AI Suite For Oil & Gas',
+    'Drill Baby Drill Ai Suite For Oil & Gas',
+    'The Resume & Job Finder AI Suite',
+    'The Resume & Job Finder Ai Suite',
+    '3D Print GPT',
+    'MicroSaaS GPT',
+    'Restaurant Menu Maker GPT',
+    'Trivia Night GPT',
+    'Fortune Teller GPT',
+    'Imagination Traveler GPT',
+    'King Blueberry GPT',
+    'Business Plan Generator GPT💼',
+    'Business Plan Generator GPT',
+    'Buisness Plan Generator',
+    '🚀 Startup Validator GPT',
+    'Startup Validator GPT',
+    'Data Research Analysis Report GPT',
+    'MATERIAL VALUATION GPT',
+    'MATERIUMOR',
+    'Predictive Credit Score Checker GPT',
+    'Solar Land Assessor GPT',
+    'SpeakAI',
+    'MeetGeek',
+    'Fibery',
+    'Sessions',
+    'typedesk',
+    'Ideabuddy',
+    'TinyWow',
+    'Otter.ai',
+    'Notion AI',
+    'Bardeen AI',
+    'Bardeen',
+    'Mem AI',
+    'Beautiful.AI',
+    'FireFlies AI',
+    'Fireflies.ai',
+    'Rewind.AI',
+    'REV',
+    'TL;DV',
+    'Traq.ai',
+    'Sembly.ai',
+    'Cogram',
+    'Read',
+    'Small PPT',
+    'Superhuman',
+    'Superhuman AI',
+    'Mailchimp',
+    'ConvertKit',
+    'Gmail Smart Compose',
+    'Constant Contact',
+    'Klaviyo',
+    'Proofpoint',
+    'Boomerang',
+    'SaneBox',
+    'Mixmax',
+    'Motion',
+    'Reclaim AI',
+    'ClickUp AI',
+    'Clockify AI',
+    'Notion',
+    'Salesforce',
+    'Tableau',
+    'Slack',
+    'Calendly',
+    'DocuSign',
+    'QuickBooks',
+    'QuickBooks AI',
+    'HubSpot',
+    'Microsoft Teams',
+    'Stripe',
+    'Pipedrive',
+    'Intercom',
+    'Gong',
+    'Outreach',
+    'ZoomInfo',
+    'GPT Workspace',
+    'Resume Writer GPT',
+    'HR Assistant GPT',
+    'Compliance Officer GPT',
+    'Logistics Manager GPT',
+    'Safety Inspector GPT',
+    'IT Support GPT',
+    'Contract Review Bot'
+  ];
+
   const businessProductivityKeywords = [
     'business', 'productivity', 'operations', 'management', 'enterprise',
     'workflow', 'process', 'efficiency', 'optimization', 'organization',
@@ -14,7 +100,8 @@ export const getBusinessOperationsProductivityTools = (tools: Tool[], categoryNa
     'email', 'crm', 'erp', 'hr', 'finance', 'accounting', 'invoicing'
   ];
 
-  const matchedTools = tools.filter(tool => {
+  // Get all tools that match the category
+  const categoryMatchedTools = tools.filter(tool => {
     if (!tool.title && !tool.description && !tool.category) return false;
     
     const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
@@ -38,8 +125,27 @@ export const getBusinessOperationsProductivityTools = (tools: Tool[], categoryNa
     return keywordMatch || categoryMatch;
   });
 
-  console.log(`✅ Found ${matchedTools.length} business operations & productivity tools`);
-  return matchedTools;
+  // Separate tools into priority groups
+  const priorityTools = categoryMatchedTools.filter(tool => 
+    priorityBusinessProductivityTools.some(priorityName => 
+      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '') ||
+      tool.title?.toLowerCase() === priorityName.toLowerCase()
+    )
+  );
+
+  const remainingTools = categoryMatchedTools.filter(tool => 
+    !priorityTools.includes(tool)
+  );
+
+  // Combine in priority order
+  const finalTools = [
+    ...priorityTools,
+    ...remainingTools
+  ];
+
+  console.log(`✅ Found ${finalTools.length} business operations & productivity tools (${priorityTools.length} priority, ${remainingTools.length} remaining)`);
+  return finalTools;
 };
 
 export const getCommunicationCollaborationTools = (tools: Tool[], categoryName: string): Tool[] => {
