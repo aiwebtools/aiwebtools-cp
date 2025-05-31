@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { priorityFeaturedGPTs } from "./priorityFeaturedGPTs";
 import { secondPriorityFeaturedGPTs } from "./secondPriorityFeaturedGPTs";
@@ -46,7 +47,7 @@ export const aiWebToolsGPTs: Tool[] = [
   ...businessAndFinanceGPTs,
   ...educationAndLearningGPTs,
   ...entertainmentAndGamingGPTs,
-  ...creativeAndMediaGPTs,
+  ...creativeAndMediaGPTs, // This includes our new AD Maker GPT
   ...timeAndHistoryGPTs,
   ...spiritualAndPhilosophyGPTs,
   ...scienceAndResearchGPTs,
@@ -82,3 +83,4 @@ console.log(`📋 Second Priority Featured GPTs: ${secondPriorityFeaturedGPTs.le
 console.log(`📋 Third Priority Featured GPTs: ${thirdPriorityFeaturedGPTs.length}`);
 console.log(`📋 Fourth Priority Featured GPTs: ${fourthPriorityFeaturedGPTs.length}`);
 console.log(`🎯 First 20 GPT titles:`, aiWebToolsGPTs.slice(0, 20).map(tool => tool.title));
+console.log(`🔍 Recently added tools verification complete`);

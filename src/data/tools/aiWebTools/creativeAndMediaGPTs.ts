@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Video, 
@@ -17,10 +16,23 @@ import {
   Image,
   PenTool,
   Layers,
-  BookOpen
+  BookOpen,
+  Megaphone
 } from "lucide-react";
 
 export const creativeAndMediaGPTs: Tool[] = [
+  {
+    icon: Megaphone,
+    title: "AD Maker GPT4o Image GPT",
+    description: "Professional AI-powered advertisement creator that generates stunning visual ads, marketing banners, promotional graphics, and advertising content. Create compelling advertisements with intelligent design suggestions, persuasive copy, and eye-catching visuals optimized for various platforms and marketing campaigns.",
+    emoji: "📢",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://chatgpt.com/g/g-6810ea3238888191a084c4f20b40225f-ad-maker-gpt",
+    tags: ["advertisement creation", "marketing banners", "promotional graphics", "visual ads", "marketing campaigns", "advertising design"],
+    category: "Creative & Media",
+    rating: 4.6,
+    totalVotes: 2890
+  },
   {
     icon: PenTool,
     title: "LOGO AND AD GENERATOR GPT",

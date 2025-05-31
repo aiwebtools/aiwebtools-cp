@@ -1,4 +1,5 @@
 
+
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
 import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
@@ -7,6 +8,13 @@ import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
 export const verifyToolIndexing = () => {
   console.log(`🔍 Verifying indexing for ${allTools.length} total tools...`);
   console.log(`🎯 AI Web Tools GPTs available: ${aiWebToolsGPTs.length}`);
+  
+  // Check for recently added tools specifically
+  const recentlyAddedTools = [
+    'Creative Logo Assistant',
+    'AD Maker GPT4o Image GPT',
+    'This Day in History GPT'
+  ];
   
   const indexingReport = {
     totalTools: allTools.length,
@@ -19,7 +27,8 @@ export const verifyToolIndexing = () => {
     categoriesFound: new Set<string>(),
     duplicateTitles: new Map<string, number>(),
     indexingIssues: [] as string[],
-    missingAiWebToolsGPTs: [] as string[]
+    missingAiWebToolsGPTs: [] as string[],
+    recentlyAddedToolsFound: [] as string[]
   };
 
   // Check how many AI Web Tools GPTs are actually in allTools
@@ -29,6 +38,11 @@ export const verifyToolIndexing = () => {
     // Check if this is an AI Web Tools GPT
     if (aiWebToolTitles.has(tool.title) || tool.directUrl?.includes('lovable.app')) {
       indexingReport.aiWebToolsInAllTools++;
+    }
+
+    // Check for recently added tools
+    if (recentlyAddedTools.includes(tool.title)) {
+      indexingReport.recentlyAddedToolsFound.push(tool.title);
     }
 
     // Check for essential properties
@@ -78,6 +92,8 @@ export const verifyToolIndexing = () => {
     categoriesFound: Array.from(indexingReport.categoriesFound).sort(),
     duplicateTitles: undefined // Don't log the full map
   });
+
+  console.log('✅ Recently added tools found:', indexingReport.recentlyAddedToolsFound);
 
   if (indexingReport.missingAiWebToolsGPTs.length > 0) {
     console.error('❌ Missing AI Web Tools GPTs from allTools:', indexingReport.missingAiWebToolsGPTs);
