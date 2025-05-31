@@ -33,6 +33,3 @@ export {
   getHealthWellnessTools, 
   getSpecializedNicheTools 
 } from "./matching/specializedMatching";
-export { 
-  getSpecializedNicheTools 
-} from "./matching/specializedNicheMatching";
