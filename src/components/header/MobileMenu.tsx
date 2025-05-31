@@ -116,16 +116,8 @@ const MobileMenu = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[350px] bg-black/95 shadow-xl border border-cyan-500/30 backdrop-blur-md max-h-[80vh] overflow-hidden">
             <div className="p-3">
-              {/* Header with Close Button */}
-              <div className="text-center mb-4 relative">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={closeMenu}
-                  className="absolute -top-1 -right-1 h-6 w-6 p-0 text-gray-400 hover:text-white hover:bg-gray-800 rounded-full"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
+              {/* Header */}
+              <div className="text-center mb-4">
                 <h3 className="text-lg font-bold text-cyan-400 mb-1">🎯 AI Web Tools</h3>
                 <p className="text-xs text-cyan-200">Navigate our platform</p>
               </div>
@@ -247,6 +239,18 @@ const MobileMenu = () => {
                   <Phone className="w-4 h-4 mr-2" />
                   <a href="tel:+14758008096">475-800-8096</a>
                 </DropdownMenuItem>
+                
+                {/* Close Button under phone number */}
+                <div className="flex justify-center pt-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={closeMenu}
+                    className="h-8 w-8 p-0 text-gray-400 hover:text-white hover:bg-gray-800 rounded-full"
+                  >
+                    <X className="w-4 h-4" />
+                  </Button>
+                </div>
               </div>
             </div>
           </DropdownMenuContent>
