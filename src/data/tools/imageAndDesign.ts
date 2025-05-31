@@ -117,7 +117,7 @@ export const imageAndDesign: Tool[] = [
     description: "AI-powered fashion design assistant for generating innovative clothing designs and style recommendations.",
     emoji: "👗",
     color: "from-pink-500 to-purple-600",
-    directUrl: "https://fashiondesigngpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=aKyJ-i74oH8",
     tags: ["fashion design", "style recommendations", "AI", "clothing designs"],
     category: "Image & Design",
