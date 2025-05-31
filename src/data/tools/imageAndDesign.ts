@@ -104,7 +104,7 @@ export const imageAndDesign: Tool[] = [
     description: "Create personalized AI avatars with customizable features and styles for virtual representation.",
     emoji: "🤖",
     color: "from-purple-500 to-indigo-600",
-    directUrl: "https://ai-avatar-generator.lovable.app/?via=aiwebtools",
+    directUrl: "https://moviescenemakergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=4vjdz-kzlEQ",
     tags: ["AI avatars", "virtual representation", "customization", "AI"],
     category: "Image & Design",
