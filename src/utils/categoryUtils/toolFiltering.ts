@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -9,7 +8,8 @@ import {
   getCommunicationCollaborationTools,
   getAutomationPlatformsTools,
   getAIChatAssistantsTools,
-  getContentCreationWritingTools
+  getContentCreationWritingTools,
+  getImageDesignTools
 } from "./categoryMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
 
@@ -55,6 +55,11 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
   // Special handling for Content Creation & Writing category
   if (categoryName === "CONTENT CREATION & WRITING" || categoryName === "Content Creation & Writing") {
     return getContentCreationWritingTools(tools, categoryName);
+  }
+  
+  // Special handling for Image & Design Tools category
+  if (categoryName === "IMAGE & DESIGN TOOLS" || categoryName === "Image & Design") {
+    return getImageDesignTools(tools, categoryName);
   }
   
   // Regular category filtering with enhanced similarity matching
@@ -132,6 +137,14 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     const contentWritingTools = getContentCreationWritingTools(tools, mainCategoryName);
     console.log(`✅ Found ${contentWritingTools.length} content creation & writing tools`);
     return contentWritingTools;
+  }
+  
+  // Special case for "IMAGE & DESIGN TOOLS" - use enhanced matching
+  if (mainCategoryName === "IMAGE & DESIGN TOOLS") {
+    console.log(`🎨 IMAGE & DESIGN TOOLS requested - using enhanced matching`);
+    const imageDesignTools = getImageDesignTools(tools, mainCategoryName);
+    console.log(`✅ Found ${imageDesignTools.length} image & design tools`);
+    return imageDesignTools;
   }
   
   // Special enhanced handling for VIDEO & MULTIMEDIA category
