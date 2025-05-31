@@ -50,11 +50,22 @@ const MainCategoryPage = () => {
     ? searchTools(categoryTools, searchTerm)
     : categoryTools;
 
-  // Get all tools for "See More" functionality
+  // Get all tools for "See More" functionality - ensure we get ALL tools
   const allFilteredTools = searchTerm.trim() 
     ? searchTools(allTools, searchTerm)
-    : allTools;
+    : [...allTools]; // Create a copy to avoid mutation
   
+  console.log(`🔍 MainCategoryPage Debug:`, {
+    categoryToolsCount: categoryTools.length,
+    filteredToolsCount: filteredTools.length,
+    allFilteredToolsCount: allFilteredTools.length,
+    totalAllToolsCount: allTools.length,
+    showAllTools,
+    searchTerm: searchTerm || 'none',
+    displayedCount,
+    allToolsDisplayedCount
+  });
+
   const handleLoadMore = () => {
     if (isLoading || displayedCount >= filteredTools.length) return;
     
@@ -67,6 +78,8 @@ const MainCategoryPage = () => {
 
   const handleAllToolsLoadMore = () => {
     if (isLoading || allToolsDisplayedCount >= allFilteredTools.length) return;
+    
+    console.log(`🚀 Loading more tools: ${allToolsDisplayedCount} -> ${Math.min(allToolsDisplayedCount + 24, allFilteredTools.length)} of ${allFilteredTools.length}`);
     
     setIsLoading(true);
     setTimeout(() => {
@@ -84,7 +97,9 @@ const MainCategoryPage = () => {
   };
 
   const handleSeeMoreAITools = () => {
+    console.log(`🚀 See More AI Tools clicked! Total tools available: ${allTools.length}`);
     setShowAllTools(true);
+    setAllToolsDisplayedCount(24); // Start with 24 tools and let infinite scroll handle the rest
     // Scroll to the tools section
     setTimeout(() => {
       const toolsSection = document.getElementById('all-tools-section');
@@ -94,19 +109,27 @@ const MainCategoryPage = () => {
     }, 100);
   };
 
-  // Setup infinite scroll for category tools
+  // Setup infinite scroll - enhanced for better performance
   useInfiniteScroll({
     isLoading,
     showLoadMoreButton: false,
     displayedCount: showAllTools ? allToolsDisplayedCount : displayedCount,
     totalTools: showAllTools ? allFilteredTools.length : filteredTools.length,
     onLoadMore: showAllTools ? handleAllToolsLoadMore : handleLoadMore,
+    searchTerm: searchTerm
   });
 
   const currentTools = showAllTools ? allFilteredTools : filteredTools;
   const currentDisplayedCount = showAllTools ? allToolsDisplayedCount : displayedCount;
   const hasMoreTools = currentDisplayedCount < currentTools.length;
   const showCompletionMessage = !hasMoreTools && !isLoading && currentTools.length > 20;
+
+  console.log(`📊 Current display state:`, {
+    currentToolsLength: currentTools.length,
+    currentDisplayedCount,
+    hasMoreTools,
+    showAllTools
+  });
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -123,7 +146,7 @@ const MainCategoryPage = () => {
         
         <main className="container mx-auto px-4 py-8">
           {/* Category Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <div className="text-6xl mb-4">{mainCategory.emoji}</div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
               {decodedCategoryName}
