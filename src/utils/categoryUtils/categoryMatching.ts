@@ -9,9 +9,11 @@ export {
 } from "./matching/chatAssistantsMatching";
 export { 
   getVideoMultimediaTools, 
-  getAudioVoiceTools, 
   get3DVisualizationTools 
 } from "./matching/multimediaMatching";
+export { 
+  getAudioVoiceTools 
+} from "./matching/audioVoiceMatching";
 export { 
   getBusinessOperationsProductivityTools, 
   getCommunicationCollaborationTools, 

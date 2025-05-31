@@ -195,43 +195,7 @@ export const getVideoMultimediaTools = (tools: Tool[], categoryName: string): To
   return finalTools;
 };
 
-export const getAudioVoiceTools = (tools: Tool[], categoryName: string): Tool[] => {
-  console.log(`🎵 AUDIO & VOICE enhanced matching for: ${categoryName}`);
-  
-  const audioVoiceKeywords = [
-    'audio', 'voice', 'sound', 'music', 'speech', 'podcast', 'radio',
-    'recording', 'editing', 'mixing', 'mastering', 'synthesis', 'generation',
-    'text-to-speech', 'speech-to-text', 'transcription', 'voice cloning',
-    'voice over', 'narration', 'dubbing', 'ai voice', 'vocal', 'singing',
-    'instrument', 'beat', 'melody', 'composition', 'production', 'studio'
-  ];
-
-  const matchedTools = tools.filter(tool => {
-    if (!tool.title && !tool.description && !tool.category) return false;
-    
-    const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
-    
-    // Keyword matching
-    const keywordMatch = audioVoiceKeywords.some(keyword => 
-      toolText.includes(keyword.toLowerCase())
-    );
-    
-    // Category matching
-    const categoryMatch = tool.category && (
-      isSimilarCategory(tool.category, categoryName) ||
-      tool.category.toLowerCase().includes('audio') ||
-      tool.category.toLowerCase().includes('voice') ||
-      tool.category.toLowerCase().includes('sound') ||
-      tool.category.toLowerCase().includes('music') ||
-      tool.category.toLowerCase().includes('speech')
-    );
-
-    return keywordMatch || categoryMatch;
-  });
-
-  console.log(`✅ Found ${matchedTools.length} audio & voice tools`);
-  return matchedTools;
-};
+export { getAudioVoiceTools } from "./audioVoiceMatching";
 
 export const get3DVisualizationTools = (tools: Tool[], categoryName: string): Tool[] => {
   console.log(`🧊 3D & VISUALIZATION enhanced matching for: ${categoryName}`);
