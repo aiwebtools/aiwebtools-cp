@@ -116,7 +116,7 @@ export const timeAndHistory: Tool[] = [
     description: "Set sail on a voyage of discovery during the Age of Exploration. Navigate uncharted waters, encounter new cultures, and witness the expansion of global trade and colonization.",
     emoji: "🚢",
     color: "from-blue-500 to-orange-600",
-    directUrl: "https://ageofexploration-timemachine.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-683a8a2256b081919079b1576fb34fe4-age-of-exploration-time-machine",
     tags: ["Age of Exploration", "voyage", "uncharted waters", "cultures", "colonization"],
     category: "Time & History",
     rating: 4.3,
