@@ -143,7 +143,7 @@ export const imageAndDesign: Tool[] = [
     description: "AI-powered architectural design tool for creating innovative building plans and visualizing property development projects.",
     emoji: "🏗️",
     color: "from-gray-500 to-blue-600",
-    directUrl: "https://realestatearchitectgpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://realestategpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=439jSjCQt7w",
     tags: ["architectural design", "building plans", "AI", "property development"],
     category: "Image & Design",
