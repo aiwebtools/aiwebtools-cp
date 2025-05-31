@@ -38,21 +38,9 @@ const TabletMenu = () => {
     }
   }, [searchTerm]);
 
-  const scrollToCategories = () => {
-    if (window.location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => {
-        const categoriesSection = document.getElementById('categories-section');
-        if (categoriesSection) {
-          categoriesSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      const categoriesSection = document.getElementById('categories-section');
-      if (categoriesSection) {
-        categoriesSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+  const handleBrowseAITools = () => {
+    // Navigate to ALL AI TOOLS main category page
+    navigate('/main-category/ALL%20AI%20TOOLS');
   };
 
   const handleToolClick = (toolIndex: number) => {
@@ -205,7 +193,7 @@ const TabletMenu = () => {
               
               {/* Browse Categories */}
               <DropdownMenuItem
-                onClick={scrollToCategories}
+                onClick={handleBrowseAITools}
                 className="text-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 font-medium mb-3 rounded-lg p-3"
               >
                 🎯 Browse AI Tool Categories

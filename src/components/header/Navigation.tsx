@@ -16,22 +16,9 @@ const Navigation = () => {
     }
   };
 
-  const scrollToCategories = () => {
-    // Navigate to home page and scroll to categories section
-    if (window.location.pathname !== '/') {
-      navigate('/');
-      setTimeout(() => {
-        const categoriesSection = document.getElementById('categories-section');
-        if (categoriesSection) {
-          categoriesSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      const categoriesSection = document.getElementById('categories-section');
-      if (categoriesSection) {
-        categoriesSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+  const handleBrowseAITools = () => {
+    // Navigate to ALL AI TOOLS main category page
+    navigate('/main-category/ALL%20AI%20TOOLS');
   };
 
   const handleExternalLink = (url: string, e: React.MouseEvent) => {
@@ -51,7 +38,7 @@ const Navigation = () => {
       </button>
       
       <button 
-        onClick={scrollToCategories}
+        onClick={handleBrowseAITools}
         className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
       >
         🎯 Browse AI Tools
