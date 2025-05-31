@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Gamepad2,
@@ -29,18 +30,6 @@ export const gameDesignAndDevelopment: Tool[] = [
     totalVotes: 4567
   },
   {
-    icon: Code,
-    title: "AI Game Developer",
-    description: "AI Game Developer is your AI-powered assistant for game creation. It helps with coding, level design, and asset generation, streamlining the development process.",
-    emoji: "💻",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://example.com/aigamedeveloper",
-    tags: ["AI game development", "coding", "level design", "asset generation"],
-    category: "Game Design & Development",
-    rating: 4.5,
-    totalVotes: 3892
-  },
-  {
     icon: Layers,
     title: "Level Design AI",
     description: "Level Design AI generates game levels based on your specifications. Customize parameters like difficulty, environment, and gameplay style for unique level designs.",
@@ -51,18 +40,6 @@ export const gameDesignAndDevelopment: Tool[] = [
     category: "Game Design & Development",
     rating: 4.3,
     totalVotes: 3234
-  },
-  {
-    icon: Paintbrush,
-    title: "AI Game Artist",
-    description: "AI Game Artist creates game assets such as textures, models, and animations. Describe your desired art style and receive high-quality assets for your game.",
-    emoji: "🎨",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://example.com/aigameartist",
-    tags: ["game art", "asset creation", "textures", "models", "animations"],
-    category: "Game Design & Development",
-    rating: 4.6,
-    totalVotes: 4123
   },
   {
     icon: Music,
