@@ -20,7 +20,7 @@ export const developerAndCodingTools: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-CeNnTrmnZ-multitasker-gpt-turbo",
     tags: ["custom GPT", "multitasking", "GPT-4o", "problem solving", "productivity", "advanced AI", "aiwebtools"],
-    category: "Developer & Coding Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 3234
   },
@@ -32,7 +32,7 @@ export const developerAndCodingTools: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.cursor.com",
     tags: ["code editor", "AI coding", "autocompletion", "debugging", "productivity", "developer tools"],
-    category: "Developer & Coding Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.7,
     totalVotes: 5678
   },
@@ -44,7 +44,7 @@ export const developerAndCodingTools: Tool[] = [
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://huggingface.co/datasets/fka/awesome-chatgpt-prompts",
     tags: ["prompts", "ChatGPT", "free", "developers", "researchers", "creativity", "Hugging Face"],
-    category: "Developer & Coding Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 4567
   },
@@ -57,7 +57,7 @@ export const developerAndCodingTools: Tool[] = [
     directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-engineering-_hEePg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     tags: ["engineering", "calculations", "design", "optimization", "safety protocols", "technical support"],
-    category: "Developer & Coding Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.8,
     totalVotes: 4200
   }

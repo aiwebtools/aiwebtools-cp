@@ -24,7 +24,7 @@ export const webDevelopmentTools: Tool[] = [
     color: "from-black to-gray-600",
     directUrl: "https://v0.dev/",
     tags: ["React components", "AI coding", "web development", "Vercel", "code generation"],
-    category: "Web Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.7,
     totalVotes: 3456
   },
@@ -36,7 +36,7 @@ export const webDevelopmentTools: Tool[] = [
     color: "from-teal-500 to-blue-600",
     directUrl: "https://www.netlify.com/",
     tags: ["web platform", "automatic deployment", "serverless", "JAMstack", "modern web"],
-    category: "Web Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 4321
   },
@@ -48,7 +48,7 @@ export const webDevelopmentTools: Tool[] = [
     color: "from-green-500 to-teal-600",
     directUrl: "https://supabase.com/",
     tags: ["backend-as-a-service", "PostgreSQL", "authentication", "real-time", "open source"],
-    category: "Web Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 3789
   },
@@ -60,7 +60,7 @@ export const webDevelopmentTools: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.cloudflare.com/products/workers-ai/",
     tags: ["serverless AI", "edge computing", "global deployment", "low latency", "performance"],
-    category: "Web Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.4,
     totalVotes: 2987
   },
@@ -72,7 +72,7 @@ export const webDevelopmentTools: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://replit.com/",
     tags: ["online IDE", "collaboration", "browser coding", "AI assistance", "deployment"],
-    category: "Web Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.3,
     totalVotes: 3234
   },
@@ -84,7 +84,7 @@ export const webDevelopmentTools: Tool[] = [
     color: "from-pink-500 to-purple-600",
     directUrl: "https://www.framer.com/",
     tags: ["website builder", "design tool", "responsive", "animations", "interactive"],
-    category: "Web Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 2876
   },
@@ -96,7 +96,7 @@ export const webDevelopmentTools: Tool[] = [
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://bolt.new/",
     tags: ["full-stack development", "natural language", "complete applications", "AI platform", "deployment"],
-    category: "Web Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 2654
   },
@@ -108,7 +108,7 @@ export const webDevelopmentTools: Tool[] = [
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://webflow.com/",
     tags: ["visual development", "no-code", "responsive design", "CMS", "web design"],
-    category: "Web Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.4,
     totalVotes: 3456
   },
@@ -120,7 +120,7 @@ export const webDevelopmentTools: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.builder.io/",
     tags: ["visual development", "mobile apps", "drag-and-drop", "code generation", "cross-platform"],
-    category: "Web Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.2,
     totalVotes: 2345
   },
@@ -132,7 +132,7 @@ export const webDevelopmentTools: Tool[] = [
     color: "from-purple-500 to-pink-600",
     directUrl: "https://railway.app/",
     tags: ["cloud platform", "zero configuration", "automatic scaling", "infrastructure", "deployment"],
-    category: "Web Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.3,
     totalVotes: 2123
   }

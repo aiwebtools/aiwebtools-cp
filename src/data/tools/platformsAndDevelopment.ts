@@ -24,7 +24,7 @@ export const platformsAndDevelopment: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "http://g.co/g1referral/911Z9NTK",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/gemini_multimodal_live.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    category: "AI Development Platforms",
+    category: "DEVELOPMENT & CODING",
     tags: ["Google AI", "Gemini", "AI development", "multimodal AI"],
     rating: 4.9,
     totalVotes: 5678
@@ -128,7 +128,7 @@ export const platformsAndDevelopment: Tool[] = [
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://huggingface.co/spaces",
     tags: ["community platform", "AI applications", "Gradio", "Streamlit", "open source ML"],
-    category: "Platforms & Development",
+    category: "DEVELOPMENT & CODING",
     rating: 4.8,
     totalVotes: 5234
   },
@@ -140,7 +140,7 @@ export const platformsAndDevelopment: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://copycoder.ai/",
     tags: ["UI screenshots", "code generation", "AI prompts", "development tools", "automation"],
-    category: "Platforms & Development",
+    category: "DEVELOPMENT & CODING",
     rating: 4.4,
     totalVotes: 2456
   },
@@ -152,7 +152,7 @@ export const platformsAndDevelopment: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://n8n.io/",
     tags: ["workflow automation", "open source", "no-code", "self-hosted", "app integration"],
-    category: "Platforms & Development",
+    category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 3456
   },
@@ -164,7 +164,7 @@ export const platformsAndDevelopment: Tool[] = [
     color: "from-cyan-500 to-purple-600",
     directUrl: "https://www.gumloop.com/",
     tags: ["no-code automation", "drag-and-drop", "data extraction", "platform integrations", "self-hosting"],
-    category: "Platforms & Development",
+    category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 2890
   }

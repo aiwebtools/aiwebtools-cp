@@ -24,7 +24,7 @@ export const technicalAndUtilityTools: Tool[] = [
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.mongodb.com/atlas",
     tags: ["cloud database", "performance optimization", "automated scaling", "NoSQL", "modern applications"],
-    category: "Technical & Utility Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 3456
   },
@@ -36,7 +36,7 @@ export const technicalAndUtilityTools: Tool[] = [
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://aws.amazon.com/",
     tags: ["cloud computing", "AI/ML services", "serverless", "automation", "scalable"],
-    category: "Technical & Utility Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 5432
   },
@@ -48,7 +48,7 @@ export const technicalAndUtilityTools: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.cloudflare.com/",
     tags: ["web security", "DDoS protection", "performance optimization", "edge computing", "CDN"],
-    category: "Technical & Utility Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.7,
     totalVotes: 4321
   },
@@ -60,7 +60,7 @@ export const technicalAndUtilityTools: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.datadoghq.com/",
     tags: ["monitoring", "anomaly detection", "analytics", "performance insights", "alerting"],
-    category: "Technical & Utility Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.4,
     totalVotes: 2987
   },
@@ -72,7 +72,7 @@ export const technicalAndUtilityTools: Tool[] = [
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.docker.com/",
     tags: ["containerization", "deployment optimization", "automated scaling", "resource management", "DevOps"],
-    category: "Technical & Utility Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 3789
   },
@@ -84,7 +84,7 @@ export const technicalAndUtilityTools: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://kubernetes.io/",
     tags: ["container orchestration", "auto-scaling", "workload distribution", "cluster management", "cloud native"],
-    category: "Technical & Utility Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.3,
     totalVotes: 3234
   },
@@ -96,7 +96,7 @@ export const technicalAndUtilityTools: Tool[] = [
     color: "from-gray-500 to-blue-600",
     directUrl: "https://www.vaultproject.io/",
     tags: ["secrets management", "threat detection", "credential rotation", "access policies", "security"],
-    category: "Technical & Utility Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.2,
     totalVotes: 2654
   },
@@ -108,7 +108,7 @@ export const technicalAndUtilityTools: Tool[] = [
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://www.terraform.io/",
     tags: ["infrastructure as code", "configuration optimization", "automated provisioning", "resource planning", "HashiCorp"],
-    category: "Technical & Utility Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.4,
     totalVotes: 2876
   },
@@ -120,7 +120,7 @@ export const technicalAndUtilityTools: Tool[] = [
     color: "from-red-500 to-orange-600",
     directUrl: "https://redis.io/",
     tags: ["in-memory database", "caching optimization", "data persistence", "performance tuning", "real-time"],
-    category: "Technical & Utility Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.3,
     totalVotes: 3123
   },
@@ -132,7 +132,7 @@ export const technicalAndUtilityTools: Tool[] = [
     color: "from-yellow-500 to-green-600",
     directUrl: "https://www.elastic.co/",
     tags: ["search engine", "analytics", "relevance tuning", "indexing optimization", "query suggestions"],
-    category: "Technical & Utility Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.2,
     totalVotes: 2345
   }

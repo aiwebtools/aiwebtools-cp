@@ -16,7 +16,8 @@ export const technicalCategories: MainCategory[] = [
       "Developer And Coding Tools",
       "AI Tools And Development",
       "Platforms And Development",
-      "AI Development Tools"
+      "Technical & Utility Tools",
+      "AI Development Platforms"
     ]
   },
   {

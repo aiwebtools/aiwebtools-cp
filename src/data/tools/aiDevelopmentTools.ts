@@ -23,7 +23,7 @@ export const aiDevelopmentTools: Tool[] = [
     directUrl: "https://lmstudio.ai/",
     videoUrl: "https://www.youtube.com/watch?v=yBI1nPep72Q",
     tags: ["local AI", "LLM deployment", "offline AI", "model hosting", "AI development", "desktop AI"],
-    category: "AI Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.7,
     totalVotes: 3789
   },
@@ -35,7 +35,7 @@ export const aiDevelopmentTools: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://github.com/features/copilot",
     tags: ["AI coding", "code completion", "pair programming", "developer tools", "GitHub"],
-    category: "AI Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.9,
     totalVotes: 6234
   },
@@ -47,7 +47,7 @@ export const aiDevelopmentTools: Tool[] = [
     color: "from-green-500 to-cyan-600",
     directUrl: "https://www.tabnine.com/",
     tags: ["AI coding", "code completion", "deep learning", "IDE integration", "developer tools"],
-    category: "AI Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.7,
     totalVotes: 4567
   },
@@ -59,7 +59,7 @@ export const aiDevelopmentTools: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://mutable.ai/",
     tags: ["AI code generation", "automated testing", "code evolution", "developer tools", "AI platform"],
-    category: "AI Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 3890
   },
@@ -71,7 +71,7 @@ export const aiDevelopmentTools: Tool[] = [
     color: "from-purple-500 to-pink-600",
     directUrl: "https://sourcegraph.com/",
     tags: ["code search", "code intelligence", "automation", "developer tools", "CI/CD integration"],
-    category: "AI Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 3456
   },
@@ -83,7 +83,7 @@ export const aiDevelopmentTools: Tool[] = [
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.deepcode.ai/",
     tags: ["code review", "bug detection", "vulnerability analysis", "security", "AI analysis"],
-    category: "AI Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.4,
     totalVotes: 3210
   },
@@ -95,21 +95,9 @@ export const aiDevelopmentTools: Tool[] = [
     color: "from-yellow-500 to-green-600",
     directUrl: "https://codeclimate.com/",
     tags: ["code review", "quality metrics", "technical debt", "developer tools", "automation"],
-    category: "AI Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.3,
     totalVotes: 2987
-  },
-  {
-    icon: Layers,
-    title: "Replit",
-    description: "Online IDE with AI-powered code completion and collaboration features. Allows developers to write, run, and deploy code in multiple languages directly from the browser.",
-    emoji: "💻",
-    color: "from-red-500 to-purple-600",
-    directUrl: "https://replit.com/",
-    tags: ["online IDE", "code completion", "collaboration", "developer tools", "browser-based"],
-    category: "AI Development Tools",
-    rating: 4.2,
-    totalVotes: 2765
   },
   {
     icon: Share2,
@@ -119,7 +107,7 @@ export const aiDevelopmentTools: Tool[] = [
     color: "from-pink-500 to-purple-600",
     directUrl: "https://durable.ai/",
     tags: ["website builder", "AI website", "content generation", "small business", "online presence"],
-    category: "AI Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.1,
     totalVotes: 2543
   },
@@ -131,7 +119,7 @@ export const aiDevelopmentTools: Tool[] = [
     color: "from-cyan-500 to-purple-600",
     directUrl: "https://aws.amazon.com/codewhisperer/",
     tags: ["AI coding", "code completion", "real-time suggestions", "developer tools", "Amazon"],
-    category: "AI Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 3322
   },
@@ -144,7 +132,7 @@ export const aiDevelopmentTools: Tool[] = [
     directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-engineering-_hEePg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     tags: ["engineering", "calculations", "design", "optimization", "safety protocols", "technical support"],
-    category: "AI Development Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.8,
     totalVotes: 4200
   }

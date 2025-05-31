@@ -22,7 +22,7 @@ export const developerTools: Tool[] = [
     color: "from-gray-500 to-blue-600",
     directUrl: "https://github.com/",
     tags: ["version control", "Git", "collaboration", "open source", "repositories"],
-    category: "Developer Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.8,
     totalVotes: 8765
   },
@@ -34,7 +34,7 @@ export const developerTools: Tool[] = [
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://code.visualstudio.com/",
     tags: ["code editor", "debugging", "extensions", "Microsoft", "free"],
-    category: "Developer Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.9,
     totalVotes: 9876
   },
@@ -46,7 +46,7 @@ export const developerTools: Tool[] = [
     color: "from-red-500 to-orange-600",
     directUrl: "https://npmjs.com/",
     tags: ["package manager", "JavaScript", "Node.js", "dependencies", "modules"],
-    category: "Developer Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.7,
     totalVotes: 6789
   },
@@ -58,7 +58,7 @@ export const developerTools: Tool[] = [
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://stackoverflow.com/",
     tags: ["programming help", "Q&A", "community", "knowledge sharing", "debugging"],
-    category: "Developer Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 7890
   },
@@ -70,7 +70,7 @@ export const developerTools: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://codepen.io/",
     tags: ["online editor", "front-end", "HTML", "CSS", "JavaScript", "showcase"],
-    category: "Developer Tools",
+    category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 5432
   }
