@@ -14,6 +14,38 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   // Add the full search term
   expandedKeywords.add(searchTerm);
   
+  // Enhanced text-to-speech and audio AI search handling
+  const ttsTerms = ['tts', 'text to speech', 'text-to-speech', 'speech synthesis', 'voice generation', 'voice ai', 'speech ai', 'eleven labs', 'elevenlabs', 'voice cloning', 'voice clone', 'ai voice', 'synthetic voice', 'artificial voice', 'voice over', 'voiceover', 'narration', 'speech generation'];
+  if (ttsTerms.some(term => searchTerm.toLowerCase().includes(term))) {
+    ttsTerms.forEach(term => expandedKeywords.add(term));
+    expandedKeywords.add('sound effects');
+    expandedKeywords.add('audio generation');
+    expandedKeywords.add('voice synthesis');
+    expandedKeywords.add('speech technology');
+    expandedKeywords.add('audio ai');
+    expandedKeywords.add('voice technology');
+    expandedKeywords.add('speech engine');
+    expandedKeywords.add('voice engine');
+    expandedKeywords.add('realistic voice');
+    expandedKeywords.add('human voice');
+    expandedKeywords.add('professional voice');
+  }
+  
+  // Enhanced sound generation and audio effects search handling
+  const soundTerms = ['sound', 'audio', 'sound effects', 'sound generation', 'audio generation', 'audio effects', 'sfx', 'foley', 'ambient', 'music', 'noise'];
+  if (soundTerms.some(term => searchTerm.toLowerCase().includes(term))) {
+    soundTerms.forEach(term => expandedKeywords.add(term));
+    expandedKeywords.add('eleven labs');
+    expandedKeywords.add('elevenlabs');
+    expandedKeywords.add('text to speech');
+    expandedKeywords.add('voice generation');
+    expandedKeywords.add('audio ai');
+    expandedKeywords.add('sound ai');
+    expandedKeywords.add('audio production');
+    expandedKeywords.add('sound design');
+    expandedKeywords.add('audio editing');
+  }
+  
   // Enhanced cannabis/marijuana search handling
   const cannabisTerms = ['weed', 'cannabis', 'marijuana', 'pot', '420', 'ganja', 'herb', 'mary jane', 'bud', 'thc', 'cbd', 'hemp'];
   if (cannabisTerms.some(term => searchTerm.toLowerCase().includes(term))) {

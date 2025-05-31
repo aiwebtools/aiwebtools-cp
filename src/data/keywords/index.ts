@@ -1,4 +1,3 @@
-
 // Main keyword mapping index that combines all keyword categories
 import { coreAIKeywords } from './coreAIKeywords';
 import { creativeKeywords } from './creativeKeywords';
@@ -24,11 +23,42 @@ export const keywordMapping: Record<string, string[]> = {
   ...searchMetaKeywords,
   ...aiWebToolsKeywords,
   
+  // Text-to-speech and voice AI keywords
+  "tts": ["text to speech", "text-to-speech", "speech synthesis", "voice generation", "eleven labs", "elevenlabs", "voice ai", "speech ai", "voice cloning", "synthetic voice"],
+  "text to speech": ["tts", "speech synthesis", "voice generation", "eleven labs", "elevenlabs", "voice ai", "artificial voice", "voice cloning", "voice over", "narration"],
+  "text-to-speech": ["tts", "speech synthesis", "voice generation", "eleven labs", "elevenlabs", "voice ai", "artificial voice", "voice cloning", "voice over", "narration"],
+  "speech synthesis": ["tts", "text to speech", "voice generation", "eleven labs", "elevenlabs", "voice ai", "artificial voice", "synthetic voice"],
+  "voice generation": ["tts", "text to speech", "speech synthesis", "eleven labs", "elevenlabs", "voice ai", "voice cloning", "synthetic voice", "artificial voice"],
+  "voice cloning": ["voice clone", "voice generation", "eleven labs", "elevenlabs", "voice ai", "synthetic voice", "artificial voice", "speech synthesis"],
+  "voice clone": ["voice cloning", "voice generation", "eleven labs", "elevenlabs", "voice ai", "synthetic voice", "artificial voice"],
+  "eleven labs": ["elevenlabs", "tts", "text to speech", "voice generation", "voice cloning", "speech synthesis", "voice ai", "sound effects", "audio ai"],
+  "elevenlabs": ["eleven labs", "tts", "text to speech", "voice generation", "voice cloning", "speech synthesis", "voice ai", "sound effects", "audio ai"],
+  "voice ai": ["voice generation", "speech synthesis", "tts", "eleven labs", "elevenlabs", "voice cloning", "artificial voice", "synthetic voice"],
+  "speech ai": ["speech synthesis", "voice generation", "tts", "eleven labs", "elevenlabs", "voice ai", "speech technology"],
+  "voice over": ["voiceover", "narration", "tts", "text to speech", "voice generation", "eleven labs", "elevenlabs", "voice ai"],
+  "voiceover": ["voice over", "narration", "tts", "text to speech", "voice generation", "eleven labs", "elevenlabs", "voice ai"],
+  "narration": ["voice over", "voiceover", "tts", "text to speech", "voice generation", "eleven labs", "elevenlabs"],
+  "synthetic voice": ["artificial voice", "voice generation", "voice ai", "speech synthesis", "eleven labs", "elevenlabs", "voice cloning"],
+  "artificial voice": ["synthetic voice", "voice generation", "voice ai", "speech synthesis", "eleven labs", "elevenlabs", "voice cloning"],
+  
+  // Sound generation and audio effects keywords
+  "sound effects": ["sfx", "sound generation", "audio effects", "eleven labs", "elevenlabs", "audio ai", "sound ai", "foley", "ambient sounds"],
+  "sound generation": ["sound effects", "audio generation", "eleven labs", "elevenlabs", "audio ai", "sound ai", "sound design"],
+  "audio generation": ["sound generation", "audio ai", "eleven labs", "elevenlabs", "sound effects", "audio effects", "sound design"],
+  "audio effects": ["sound effects", "audio generation", "sfx", "eleven labs", "elevenlabs", "audio ai", "sound design"],
+  "sfx": ["sound effects", "audio effects", "sound generation", "eleven labs", "elevenlabs", "audio ai", "foley"],
+  "sound design": ["sound effects", "audio effects", "sound generation", "eleven labs", "elevenlabs", "audio ai", "audio production"],
+  "audio ai": ["sound generation", "audio effects", "eleven labs", "elevenlabs", "voice ai", "speech ai", "sound ai", "audio technology"],
+  "sound ai": ["audio ai", "sound generation", "eleven labs", "elevenlabs", "sound effects", "audio effects"],
+  "foley": ["sound effects", "sfx", "audio effects", "sound design", "eleven labs", "elevenlabs"],
+  "ambient": ["ambient sounds", "sound effects", "audio effects", "sound generation", "eleven labs", "elevenlabs"],
+  "audio production": ["sound design", "audio editing", "sound effects", "eleven labs", "elevenlabs", "audio ai", "voice production"],
+  
   // Cannabis and marijuana related keywords - comprehensive slang and terms
   "weed": ["cannabis", "marijuana", "pot", "ganja", "herb", "bud", "green", "mary jane", "420", "thc", "cbd", "hemp", "medical marijuana", "recreational cannabis", "dispensary", "strain", "indica", "sativa", "hybrid"],
   "cannabis": ["marijuana", "weed", "pot", "hemp", "cbd", "thc", "medical cannabis", "recreational marijuana", "dispensary", "strain", "cultivation", "grow", "420", "ganja", "herb", "bud"],
   "marijuana": ["cannabis", "weed", "pot", "mary jane", "ganja", "herb", "420", "thc", "cbd", "medical marijuana", "recreational cannabis", "dispensary", "strain", "bud", "green"],
-  "pot": ["cannabis", "marijuana", "weed", "herb", "ganja", "420", "thc", "cbd", "bud", "green", "mary jane", "dispensary"],
+  "pot": ["cannabis", "marijuana", "weed", "herb", "ganja", "420", "thc", "cbd", "april 20", "four twenty", "cannabis culture", "medical marijuana"],
   "420": ["cannabis", "marijuana", "weed", "pot", "herb", "ganja", "thc", "cbd", "april 20", "four twenty", "cannabis culture", "medical marijuana"],
   "ganja": ["cannabis", "marijuana", "weed", "pot", "herb", "420", "rastafarian", "jamaican", "reggae", "bob marley", "thc", "cbd"],
   "herb": ["cannabis", "marijuana", "weed", "pot", "ganja", "420", "natural", "herbal", "botanical", "medicinal herbs", "thc", "cbd"],
