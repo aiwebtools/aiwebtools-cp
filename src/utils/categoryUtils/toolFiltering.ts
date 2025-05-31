@@ -7,7 +7,8 @@ import {
   getDataAnalyticsTools, 
   getMarketingSalesTools, 
   getCommunicationCollaborationTools,
-  getAutomationPlatformsTools
+  getAutomationPlatformsTools,
+  getAIChatAssistantsTools
 } from "./categoryMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
 
@@ -43,6 +44,11 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
   // Special handling for Automation Platforms category
   if (categoryName === "AUTOMATION PLATFORMS" || categoryName === "Automation Platforms" || categoryName === "Automation & Workflows") {
     return getAutomationPlatformsTools(tools, categoryName);
+  }
+  
+  // Special handling for AI Chat & Assistants category
+  if (categoryName === "AI CHAT & ASSISTANTS" || categoryName === "AI Chat & Assistants") {
+    return getAIChatAssistantsTools(tools, categoryName);
   }
   
   // Regular category filtering with enhanced similarity matching
@@ -104,6 +110,14 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     const automationTools = getAutomationPlatformsTools(tools, mainCategoryName);
     console.log(`✅ Found ${automationTools.length} automation tools`);
     return automationTools;
+  }
+  
+  // Special case for "AI CHAT & ASSISTANTS" - use enhanced matching
+  if (mainCategoryName === "AI CHAT & ASSISTANTS") {
+    console.log(`💬 AI CHAT & ASSISTANTS requested - using enhanced matching`);
+    const chatAssistantTools = getAIChatAssistantsTools(tools, mainCategoryName);
+    console.log(`✅ Found ${chatAssistantTools.length} chat & assistant tools`);
+    return chatAssistantTools;
   }
   
   // Special enhanced handling for VIDEO & MULTIMEDIA category
