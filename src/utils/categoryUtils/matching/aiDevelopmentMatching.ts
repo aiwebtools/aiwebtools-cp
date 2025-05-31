@@ -6,6 +6,101 @@ import { isSimilarCategory } from "../normalization";
 export const getAIDevelopmentPlatformsTools = (tools: Tool[], categoryName: string): Tool[] => {
   console.log(`🔧 AI DEVELOPMENT & PLATFORMS enhanced matching for: ${categoryName}`);
   
+  // Priority AI Development & Platforms Tools (first priority - user specified)
+  const priorityAIDevelopmentPlatformsTools = [
+    'GODMODE GPT',
+    'God Mode GPT',
+    'PERFECT PROMPT ENGINE',
+    'Illuminous World Data Explorer GPT',
+    'Phenomenon Explorer AI Suite',
+    'Customizable GPT Maker',
+    'Custom GPT Maker',
+    'ImmortalizeME',
+    'Resurrection GPT',
+    'Custom GPT Ideas',
+    'Brainstorming Assistant',
+    'ChatRTX',
+    'LM STUDIO',
+    'ANYTHING LLM',
+    'BIG-AGI',
+    'Claude',
+    'TensorFlow',
+    'LangChain',
+    'Hugging Face',
+    'Mistral',
+    'AI WEB TOOLS LLC',
+    'LMSYS CHATBOT ARENA',
+    'Llama',
+    'ChatGPT',
+    'Perplexity AI',
+    'Auto-GPT',
+    'BabyAGI',
+    'AgentGPT',
+    'Microsoft JARVIS',
+    'GPTPastVoices',
+    'ML Agents',
+    'Private LLM Agents',
+    'AI Agents Google',
+    'AI Agents AWS',
+    'AI Agents Azure',
+    'AI Town',
+    'AI Steve',
+    'AI Legion',
+    'AI Matrix',
+    'Manus Autonomous Agent',
+    'Surf.new Web Agents',
+    'Lindy AI Automation',
+    'ChatGPT Operator',
+    'Cheatlayer Project Atlas',
+    'BuildAI.Space',
+    'Convai',
+    'Theneo',
+    'OpenAI API',
+    'Anthropic Claude API',
+    'Pinecone',
+    'Roboflow',
+    'Cohere',
+    'Replicate',
+    'Snyk',
+    'DeepCode',
+    'GPT-4 Turbo',
+    'Claude 3 Opus',
+    'Gemini Ultra',
+    'Mutable AI',
+    'Sourcegraph',
+    'Code Climate',
+    'Durable AI Website Builder',
+    'Amazon CodeWhisperer',
+    'GEMINI/GOOGLE AI STUDIO',
+    'CopyCoder.AI',
+    'Vercel v0',
+    'Netlify',
+    'Supabase',
+    'Cloudflare Workers AI',
+    'Replit',
+    'Framer',
+    'Bolt.new',
+    'Webflow',
+    'Builder.io',
+    'Railway',
+    'MongoDB Atlas',
+    'AWS',
+    'Cloudflare',
+    'Datadog',
+    'Docker',
+    'Kubernetes',
+    'HashiCorp Vault',
+    'Terraform',
+    'Redis',
+    'Elasticsearch',
+    'GitHub Copilot',
+    'Tabnine',
+    'Multitasker GPT',
+    'Cursor AI',
+    'Hugging Face GPT Prompt Library',
+    'Lovable.dev'
+  ];
+
   const aiDevelopmentKeywords = [
     'godmode', 'perfect prompt', 'custom gpt', 'customizable gpt', 'gpt maker', 
     'immortalizeme', 'resurrection gpt', 'brainstorming assistant', 'chatrtx', 
@@ -29,39 +124,11 @@ export const getAIDevelopmentPlatformsTools = (tools: Tool[], categoryName: stri
     'lovable.dev', 'lovable'
   ];
 
-  const developmentPlatformNames = [
-    'GODMODE GPT', 'God Mode GPT', 'PERFECT PROMPT ENGINE', 'Illuminous World Data Explorer GPT',
-    'Phenomenon Explorer AI Suite', 'Customizable GPT Maker', 'Custom GPT Maker', 'ImmortalizeME',
-    'Resurrection GPT', 'Custom GPT Ideas', 'GPT Ideas Assistant', 'Brainstorming Assistant',
-    'ChatRTX', 'LM STUDIO', 'ANYTHING LLM', 'BIG-AGI', 'Claude', 'TensorFlow',
-    'LangChain', 'Hugging Face', 'Mistral', 'AI WEB TOOLS LLC', 'LMSYS CHATBOT ARENA',
-    'Llama', 'ChatGPT', 'Perplexity AI', 'Auto-GPT', 'BabyAGI', 'AgentGPT',
-    'Microsoft JARVIS', 'GPTPastVoices', 'ML Agents', 'Private LLM Agents',
-    'AI Agents Google', 'AI Agents AWS', 'AI Agents Azure', 'AI Town', 'AI Steve',
-    'AI Legion', 'AI Matrix', 'Manus Autonomous Agent', 'Surf.new Web Agents',
-    'Lindy AI Automation', 'ChatGPT Operator', 'Cheatlayer Project Atlas',
-    'BuildAI.Space', 'Convai', 'Theneo', 'OpenAI API', 'Anthropic Claude API',
-    'Pinecone', 'Roboflow', 'Cohere', 'Replicate', 'Snyk', 'DeepCode',
-    'GPT-4 Turbo', 'Claude 3 Opus', 'Gemini Ultra', 'Mutable AI', 'Sourcegraph',
-    'Code Climate', 'Durable AI Website Builder', 'Amazon CodeWhisperer',
-    'GEMINI/GOOGLE AI STUDIO', 'CopyCoder.AI', 'Vercel v0', 'Netlify', 'Supabase',
-    'Cloudflare Workers AI', 'Replit', 'Framer', 'Bolt.new', 'Webflow', 'Builder.io',
-    'Railway', 'MongoDB Atlas', 'AWS', 'Cloudflare', 'Datadog', 'Docker',
-    'Kubernetes', 'HashiCorp Vault', 'Terraform', 'Redis', 'Elasticsearch',
-    'GitHub Copilot', 'Tabnine', 'Multitasker GPT4o Custom GPT', 'Cursor AI Coding Agent',
-    'Hugging Face GPT Prompt Library', 'Lovable.dev'
-  ];
-
-  const matchedTools = tools.filter(tool => {
+  // Get all tools that match the category
+  const categoryMatchedTools = tools.filter(tool => {
     if (!tool.title && !tool.description && !tool.category) return false;
     
     const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
-    
-    // Direct name matching
-    const nameMatch = developmentPlatformNames.some(name => 
-      tool.title?.toLowerCase().includes(name.toLowerCase()) ||
-      name.toLowerCase().includes(tool.title?.toLowerCase() || '')
-    );
     
     // Keyword matching
     const keywordMatch = aiDevelopmentKeywords.some(keyword => 
@@ -83,9 +150,28 @@ export const getAIDevelopmentPlatformsTools = (tools: Tool[], categoryName: stri
       tool.category.toLowerCase().includes('agent')
     );
 
-    return nameMatch || keywordMatch || categoryMatch;
+    return keywordMatch || categoryMatch;
   });
 
-  console.log(`✅ Found ${matchedTools.length} AI Development & Platforms tools`);
-  return matchedTools;
+  // Separate tools into priority groups
+  const priorityTools = categoryMatchedTools.filter(tool => 
+    priorityAIDevelopmentPlatformsTools.some(priorityName => 
+      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '') ||
+      tool.title?.toLowerCase() === priorityName.toLowerCase()
+    )
+  );
+
+  const remainingTools = categoryMatchedTools.filter(tool => 
+    !priorityTools.includes(tool)
+  );
+
+  // Combine in priority order
+  const finalTools = [
+    ...priorityTools,
+    ...remainingTools
+  ];
+
+  console.log(`✅ Found ${finalTools.length} AI Development & Platforms tools (${priorityTools.length} priority, ${remainingTools.length} remaining)`);
+  return finalTools;
 };
