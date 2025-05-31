@@ -53,6 +53,19 @@ export const investigativeAndAnalysisGPTs: Tool[] = [
     totalVotes: 3789
   },
   {
+    icon: Eye,
+    title: "Phenomenon Investigator Suite",
+    description: "Unveil the unexplained with AI precision using the Phenomenon Explorer AI Suite. This powerful collection of specialized AI tools enables users to investigate paranormal phenomena, document cryptid sightings, analyze supernatural myths, and conduct ghost hunts with scientific accuracy and analytical depth. Whether you're a UFO researcher, a paranormal investigator, a folklore scholar, or just someone intrigued by the unknown, our suite of tools—UFO Investigation GPT, Supernatural Myths GPT, Cryptozoology Report GPT, and Ghost Hunting GPT—guides you through structured methodologies and evidence-based approaches to uncover the truth behind some of the world's most mysterious occurrences. Each tool provides tailored support for your investigative journey, combining cutting-edge AI technology with expert-level analysis to offer you a clearer understanding of the unexplained. Start exploring today and see how AI can help illuminate the unknown.",
+    emoji: "👻",
+    color: "from-purple-500 to-indigo-600",
+    directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-ufo-hovering-in-the-sky-wit_w8l4l.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["paranormal investigation", "cryptozoology", "supernatural", "ufo research", "ghost hunting", "phenomena analysis", "mystery investigation", "aiwebtools"],
+    category: "Investigative & Analysis",
+    rating: 4.2,
+    totalVotes: 2156
+  },
+  {
     icon: Search,
     title: "Crime Scene GPT",
     description: "Crime Scene GPT is your go-to AI for analyzing crime scenes with precision. Upload images or describe the scene, and our AI will provide detailed insights, potential leads, and forensic analysis to assist in investigations.",
