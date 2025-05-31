@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Gem,
@@ -421,5 +420,17 @@ export const aiWebToolsGPTs: Tool[] = [
     category: "Business & Productivity",
     rating: 4.9,
     totalVotes: 5678
+  },
+  {
+    icon: TrendingUp,
+    title: "Revenue Optimizer",
+    description: "AI-powered revenue optimization tool that helps businesses maximize their income through data-driven insights and strategic recommendations.",
+    emoji: "💰",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://chatgpt.com/g/g-683a46b5b2d88191993337524498c619-revenue-optimizer",
+    tags: ["revenue optimization", "business growth", "data analysis", "strategic planning", "income maximization"],
+    category: "Business & Productivity",
+    rating: 4.7,
+    totalVotes: 3456
   }
 ];
