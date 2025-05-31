@@ -12,9 +12,10 @@ import { getCurrentToolCount } from "@/utils/toolCounter";
 interface SearchBarProps {
   searchTerm: string;
   onSearchChange: (value: string) => void;
+  preventAutoNavigation?: boolean;
 }
 
-const SearchBar = ({ searchTerm, onSearchChange }: SearchBarProps) => {
+const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }: SearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchResults, setSearchResults] = useState<Tool[]>([]);
   const [displayedCount, setDisplayedCount] = useState(50); // Start with 50 results

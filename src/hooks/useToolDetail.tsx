@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { allTools } from "@/data/toolsData";
-import { searchTools } from "@/utils/searchUtils";
 
 export const useToolDetail = (toolIndex: number) => {
   const navigate = useNavigate();
@@ -45,7 +44,6 @@ export const useToolDetail = (toolIndex: number) => {
     // Verify tool exists and is properly indexed
     if (tool) {
       console.log(`📄 Loaded tool page ${toolIndex}: "${tool.title}" in category "${tool.category}"`);
-      console.log(`🔍 Tool searchability test: Can find by title = ${searchTools(allTools, tool.title).length > 0}`);
       console.log(`📍 Ensuring scroll to absolute top of page for tool details view`);
     } else {
       console.error(`❌ Tool at index ${toolIndex} not found in collection of ${allTools.length} tools`);
@@ -54,13 +52,7 @@ export const useToolDetail = (toolIndex: number) => {
 
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
-    if (value.trim()) {
-      const results = searchTools(allTools, value);
-      if (results.length > 0) {
-        const firstResultIndex = allTools.findIndex(t => t.title === results[0].title);
-        navigate(`/tool/${firstResultIndex}`);
-      }
-    }
+    // Remove auto-navigation - let the SearchBar handle result selection through clicks
   };
 
   const handleSeeMoreTools = () => {

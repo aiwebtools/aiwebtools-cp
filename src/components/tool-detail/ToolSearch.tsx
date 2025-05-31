@@ -8,6 +8,12 @@ interface ToolSearchProps {
 }
 
 const ToolSearch = ({ searchTerm, onSearchChange, totalTools }: ToolSearchProps) => {
+  // Create a version of search change that doesn't auto-navigate
+  const handleSearchChange = (value: string) => {
+    onSearchChange(value);
+    // Don't auto-navigate on typing - let the SearchBar handle result selection
+  };
+
   return (
     <div className="mt-12">
       <div className="text-center mb-8">
@@ -18,7 +24,8 @@ const ToolSearch = ({ searchTerm, onSearchChange, totalTools }: ToolSearchProps)
       </div>
       <SearchBar 
         searchTerm={searchTerm}
-        onSearchChange={onSearchChange}
+        onSearchChange={handleSearchChange}
+        preventAutoNavigation={true}
       />
     </div>
   );
