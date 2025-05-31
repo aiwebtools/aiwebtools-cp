@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Palette, 
@@ -118,7 +119,7 @@ export const artAndCreativeGPTs: Tool[] = [
     description: "Create professional logos for your brand using AI-powered design tools.",
     emoji: "🪄",
     color: "from-yellow-500 to-orange-600",
-    directUrl: "https://example.com/ailogo",
+    directUrl: "https://chatgpt.com/g/g-ICcKk0tgw-creative-logo-generator-and-assistant",
     tags: ["logo design", "AI logo", "branding", "graphic design", "AI tools"],
     category: "Art & Creative",
     rating: 4.8,
