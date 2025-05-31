@@ -19,7 +19,9 @@ import {
   BookOpen,
   Megaphone,
   Shirt,
-  ShoppingCart
+  ShoppingCart,
+  Clapperboard,
+  FileText
 } from "lucide-react";
 
 export const creativeAndMediaGPTs: Tool[] = [
@@ -58,6 +60,30 @@ export const creativeAndMediaGPTs: Tool[] = [
     category: "Creative & Media",
     rating: 4.4,
     totalVotes: 2987
+  },
+  {
+    icon: Clapperboard,
+    title: "COMMERCIAL SCENE IMAGE GENERATOR GPT",
+    description: "Professional AI-powered commercial scene image generator that creates stunning visual scenes for advertising, marketing campaigns, and commercial projects. Generate high-quality commercial photography, product scenes, lifestyle imagery, and marketing visuals with intelligent composition and professional styling.",
+    emoji: "🎬",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-681a201fe69c8191b99e1636be90139e-commercial-scene-maker-gpt",
+    tags: ["commercial photography", "scene generation", "marketing visuals", "advertising imagery", "product photography", "commercial design"],
+    category: "Creative & Media",
+    rating: 4.7,
+    totalVotes: 3456
+  },
+  {
+    icon: FileText,
+    title: "SCREENPLAY WRITER GPT",
+    description: "Professional AI-powered screenplay writing assistant that helps you craft compelling scripts for films, TV shows, and theatrical productions. Generate well-structured screenplays with proper formatting, engaging dialogue, character development, and industry-standard script conventions.",
+    emoji: "📝",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://screenplaywritergpt.lovable.app/?via=aiwebtools",
+    tags: ["screenplay writing", "script development", "film writing", "character development", "dialogue creation", "script formatting", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.8,
+    totalVotes: 4123
   },
   {
     icon: PenTool,

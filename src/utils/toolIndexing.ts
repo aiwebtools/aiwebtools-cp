@@ -13,7 +13,9 @@ export const verifyToolIndexing = () => {
     'AD Maker GPT4o Image GPT',
     'This Day in History GPT',
     'VIRTUAL TRY ON STYLIST GPT',
-    'SHOPPING GPT'
+    'SHOPPING GPT',
+    'COMMERCIAL SCENE IMAGE GENERATOR GPT',
+    'SCREENPLAY WRITER GPT'
   ];
   
   const indexingReport = {
