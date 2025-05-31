@@ -21,10 +21,18 @@ export const getContextAwareSimilarTools = (
     !currentToolTitles.has(tool.title)
   );
   
+  // Use a Set to track tools we've already added to prevent duplicates
+  const seenToolTitles = new Set<string>();
+  const candidateTools: Tool[] = [];
+  
   // Find similar tools based on search context or category
-  const similarTools = allTools.filter(tool => {
-    // Skip if already in current tools
-    if (currentToolTitles.has(tool.title)) return false;
+  allTools.forEach(tool => {
+    // Skip if already in current tools or already seen
+    if (currentToolTitles.has(tool.title) || seenToolTitles.has(tool.title)) {
+      return;
+    }
+    
+    let shouldInclude = false;
     
     // If user searched for something, prioritize tools matching search terms
     if (searchTerm) {
@@ -35,29 +43,34 @@ export const getContextAwareSimilarTools = (
       const searchWords = lowerSearchTerm.split(' ').filter(word => word.length > 2);
       const hasSearchMatch = searchWords.some(word => toolText.includes(word));
       
-      if (hasSearchMatch) return true;
+      if (hasSearchMatch) shouldInclude = true;
     }
     
     // If user selected a category, prioritize tools from similar categories
-    if (selectedCategory) {
-      if (tool.category === selectedCategory) return true;
+    if (selectedCategory && !shouldInclude) {
+      if (tool.category === selectedCategory) shouldInclude = true;
       
       // Find tools from related categories
       const relatedCategories = getRelatedCategories(selectedCategory);
-      if (relatedCategories.includes(tool.category || '')) return true;
+      if (relatedCategories.includes(tool.category || '')) shouldInclude = true;
     }
     
     // Fallback: check for similar categories from current tools
-    const currentCategories = new Set(currentTools.map(t => t.category));
-    if (currentCategories.has(tool.category)) return true;
+    if (!shouldInclude && !searchTerm && !selectedCategory) {
+      const currentCategories = new Set(currentTools.map(t => t.category));
+      if (currentCategories.has(tool.category)) shouldInclude = true;
+      
+      // Check for shared tags
+      const currentTags = new Set(
+        currentTools.flatMap(t => t.tags || []).map(tag => tag.toLowerCase())
+      );
+      if (tool.tags?.some(tag => currentTags.has(tag.toLowerCase()))) shouldInclude = true;
+    }
     
-    // Check for shared tags
-    const currentTags = new Set(
-      currentTools.flatMap(t => t.tags || []).map(tag => tag.toLowerCase())
-    );
-    if (tool.tags?.some(tag => currentTags.has(tag.toLowerCase()))) return true;
-    
-    return false;
+    if (shouldInclude) {
+      candidateTools.push(tool);
+      seenToolTitles.add(tool.title);
+    }
   });
 
   // Strategic mixing: Include 1-2 of your tools in every recommendation set
@@ -65,13 +78,14 @@ export const getContextAwareSimilarTools = (
   const aiWebToolsToInclude = Math.min(Math.ceil(needed * 0.3), 2); // 30% or max 2 tools
   const regularToolsNeeded = needed - aiWebToolsToInclude;
   
-  // Select your tools strategically
+  // Select your tools strategically (also check for duplicates)
   const selectedAIWebTools = aiWebToolsCreations
+    .filter(tool => !seenToolTitles.has(tool.title))
     .sort(() => Math.random() - 0.5)
     .slice(0, aiWebToolsToInclude);
   
-  // Select other similar tools
-  const selectedSimilarTools = similarTools
+  // Select other similar tools (excluding already selected AI Web Tools)
+  const selectedSimilarTools = candidateTools
     .filter(tool => !aiWebToolsCreations.some(awt => awt.title === tool.title))
     .sort(() => Math.random() - 0.5)
     .slice(0, regularToolsNeeded);
@@ -80,7 +94,12 @@ export const getContextAwareSimilarTools = (
   const finalTools = [...selectedAIWebTools, ...selectedSimilarTools]
     .sort(() => Math.random() - 0.5);
   
-  return finalTools.slice(0, needed);
+  // Final deduplication check to be absolutely sure
+  const uniqueFinalTools = finalTools.filter((tool, index, arr) => 
+    arr.findIndex(t => t.title === tool.title) === index
+  );
+  
+  return uniqueFinalTools.slice(0, needed);
 };
 
 // Helper function to get related categories
@@ -98,6 +117,7 @@ const getRelatedCategories = (category: string): string[] => {
     "Productivity": ["Business", "Automation", "AI Assistants"],
     "Education": ["Learning", "Research", "Writing"],
     "Healthcare": ["Medical", "Wellness", "Research"],
+    "Health & Wellness": ["Healthcare", "Medical", "Wellness"],
     "Development": ["Programming", "Web Development", "AI Tools"],
     "Research": ["Education", "Academic", "Data Analysis"],
     "Entertainment": ["Games", "Fun", "Creative"],
