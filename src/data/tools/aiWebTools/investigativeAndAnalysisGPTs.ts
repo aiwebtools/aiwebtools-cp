@@ -27,6 +27,32 @@ export const investigativeAndAnalysisGPTs: Tool[] = [
     totalVotes: 3456
   },
   {
+    icon: Eye,
+    title: "Uncovering Hidden Historical Patterns GPT",
+    description: "Uncovering Hidden Historical Patterns GPT is an advanced AI tool that reveals the suppressed truths and hidden power structures shaping our world. By analyzing symbolism, financial systems, and historical contradictions, it uncovers patterns connecting ancient empires to modern institutions. This tool cross-references mainstream narratives with alternative sources, secret societies, and esoteric knowledge to expose what history books omit. Perfect for truth seekers, researchers, and critical thinkers ready to see beyond the surface.",
+    emoji: "🔍",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://historicalpatternsgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-advertisement-with-the-eye_C64dU.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    tags: ["historical patterns", "hidden truths", "pattern recognition", "alternative history", "research", "truth seeking", "aiwebtools"],
+    category: "Investigative & Analysis",
+    rating: 4.5,
+    totalVotes: 2987
+  },
+  {
+    icon: FileSearch,
+    title: "Video Second-by-Second Analysis GPT",
+    description: "Video Second-by-Second Analysis GPT breaks down your footage with incredible precision, analyzing every second and extracting key visual frames for detailed insight. Just upload your video, and this AI tool will guide you through a step-by-step review of each moment—highlighting actions, people, objects, and scene changes. It's also a powerful resource for training and fine-tuning Vision-Language Models (VLMs), offering structured, labeled visual data with contextual analysis. Ideal for creators, analysts, educators, researchers, and investigators who need deep clarity from their video content.",
+    emoji: "📹",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://videoanalysisgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-banner-ad-with-the-text-video-second-b_764zv.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    tags: ["video analysis", "frame analysis", "visual inspection", "content analysis", "video processing", "aiwebtools"],
+    category: "Investigative & Analysis",
+    rating: 4.7,
+    totalVotes: 3789
+  },
+  {
     icon: Search,
     title: "Crime Scene GPT",
     description: "Crime Scene GPT is your go-to AI for analyzing crime scenes with precision. Upload images or describe the scene, and our AI will provide detailed insights, potential leads, and forensic analysis to assist in investigations.",

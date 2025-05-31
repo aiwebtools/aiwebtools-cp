@@ -1,8 +1,46 @@
-
 import { Tool } from "@/types/tools";
-import { Eye, Zap, Globe, Search, Brain, Star } from "lucide-react";
+import { 
+  Eye, 
+  Zap, 
+  Skull, 
+  Ghost, 
+  Moon, 
+  Star,
+  Brain,
+  Flame,
+  Crown,
+  Shield,
+  Telescope,
+  Globe
+} from "lucide-react";
 
 export const mysteriousAndUnusualGPTs: Tool[] = [
+  {
+    icon: Globe,
+    title: ""IF AI RULED THE WORLD" - AI SIMULATION GPT",
+    description: "This is a simulation to evaluate the actions of measuring the thought process behind an AI who thinks it is the Omni Controller of the world. This is for research purposes only",
+    emoji: "🌍",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://ifairuledtheworldgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=93M9ZyhpmFM",
+    tags: ["ai simulation", "world control", "research", "experimental", "futuristic", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.6,
+    totalVotes: 3245
+  },
+  {
+    icon: Shield,
+    title: "Global Peace Restoration Strategist GPT",
+    description: "Global Peace Restoration GPT is an AI-powered diplomatic tool engineered to resolve complex global conflicts through structured negotiation, historical analysis, and real-time intelligence. It is the world's most advanced mediator, capable of simulating multi-party negotiations, designing peace roadmaps, and facilitating trust-building between adversaries. Whether addressing geopolitical tensions, resource disputes, or ideological divides, Global Peace Restoration GPT brings data-driven clarity, impartial strategy, and actionable solutions to the world's most pressing crises. With full-spectrum conflict resolution capabilities, it is the essential tool for diplomats, peacebuilders, NGOs, and international organizations seeking lasting peace.",
+    emoji: "🕊️",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://worldpeacegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-earth-with-a-dark-blue-atmosp_Uq9U_.png/:/rs=w:600,h:300,cg:true,m/cr=w:600,h:300/qt=q:30",
+    tags: ["peace restoration", "conflict resolution", "diplomacy", "global peace", "mediation", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.8,
+    totalVotes: 4567
+  },
   {
     icon: Eye,
     title: "Oraculum – The Revealer of Hidden \"Truths\"",

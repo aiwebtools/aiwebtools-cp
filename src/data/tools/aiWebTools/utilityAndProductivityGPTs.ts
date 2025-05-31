@@ -1,20 +1,32 @@
-
 import { Tool } from "@/types/tools";
-import { Image, FileText, Lightbulb, Zap, Binary, Search, Menu, HelpCircle, Palette, Users } from "lucide-react";
+import { 
+  Wrench, 
+  Calculator, 
+  Clock, 
+  FileText, 
+  Search, 
+  Database,
+  Settings,
+  Zap,
+  Target,
+  BarChart3,
+  Brain,
+  Lightbulb
+} from "lucide-react";
 
 export const utilityAndProductivityGPTs: Tool[] = [
   {
-    icon: Image,
-    title: "Snoop Image Ai - Experimental AI Image Generation Detector",
-    description: "Snoop Image AI by AI Web Tools LLC is your cutting-edge experimental AI image authentication tool, bringing Snoop Dogg's unmistakable style to the serious business of image verification and authenticity detection. This innovative tool addresses the growing challenge of distinguishing between real and AI-generated images in our increasingly digital world. While maintaining a fun, engaging interface, Snoop Image AI employs sophisticated analysis techniques including metadata examination, pixel-level analysis, and color pattern recognition to identify potential indicators of AI generation. Upload any image to receive a comprehensive authenticity assessment that examines technical markers, compression artifacts, and generation signatures commonly found in AI-created visuals. The tool provides detailed analysis reports explaining the reasoning behind its assessments while acknowledging the experimental nature of the technology. Features include metadata analysis, deep color screening, precision pixel measurements, generation pattern detection, and comprehensive reporting. Perfect for content creators verifying image sources, journalists investigating visual evidence, and digital forensics professionals exploring new detection methods. Important note: This is an experimental tool that should be used as one factor among many in authenticity verification, as modern AI-generated images are increasingly sophisticated and may not always be accurately detected.",
+    icon: Search,
+    title: "AI Tools Finder GPT",
+    description: "Your own personal expert in the world of Ai Tools and knowledge. Locate the best Ai tools for your projects and be presented with step by step guides on any Ai tool that exists.",
     emoji: "🔍",
-    color: "from-green-500 to-purple-600",
-    directUrl: "https://snoopimageai.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-snoop-image-ai-presented-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
-    tags: ["image detection", "AI verification", "authenticity check", "image analysis", "AI detection"],
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=IrKKi3SX89g",
+    tags: ["ai tools", "tool finder", "ai discovery", "productivity tools", "tool search", "aiwebtools"],
     category: "Utility & Productivity",
-    rating: 4.4,
-    totalVotes: 3456
+    rating: 4.7,
+    totalVotes: 4123
   },
   {
     icon: FileText,

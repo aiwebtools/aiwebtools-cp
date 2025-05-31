@@ -1,10 +1,44 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Palette, ImageIcon, Sparkles, Brush, Wand2, Paintbrush
+  Image, 
+  Palette, 
+  Wand2, 
+  Sparkles, 
+  Camera, 
+  Eye,
+  Brush,
+  Zap,
+  Star,
+  Crown
 } from "lucide-react";
 
 export const aiImageGeneration: Tool[] = [
+  {
+    icon: Wand2,
+    title: "Midjourney – Image Generation Platform",
+    description: "Advanced AI image generation platform that creates stunning, high-quality images from text prompts. Known for its artistic style and exceptional detail in generated artwork.",
+    emoji: "🎨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.midjourney.com/home",
+    videoUrl: "https://www.youtube.com/watch?v=5deYUaqwreo",
+    tags: ["image generation", "AI art", "text-to-image", "creative AI", "digital art", "artwork creation"],
+    category: "AI Image Generation",
+    rating: 4.8,
+    totalVotes: 5234
+  },
+  {
+    icon: Star,
+    title: "Ideogram – Image Generator",
+    description: "AI-powered image generation platform that excels at creating images with text integration and typography. Perfect for logos, posters, and text-based designs.",
+    emoji: "💫",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://ideogram.ai/",
+    videoUrl: "https://www.youtube.com/watch?v=USSpwbe3Rxk",
+    tags: ["image generation", "typography", "text integration", "logo design", "AI design", "creative tools"],
+    category: "AI Image Generation",
+    rating: 4.6,
+    totalVotes: 3456
+  },
   {
     icon: Palette,
     title: "DALL·E 3",

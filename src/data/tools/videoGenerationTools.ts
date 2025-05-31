@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Video, 
@@ -218,5 +217,18 @@ export const videoGenerationTools: Tool[] = [
     category: "Audio & Voice Tools",
     rating: 4.8,
     totalVotes: 5234
-  }
+  },
+  {
+    icon: Users,
+    title: "BHUMAN – Avatars Creation For Outreach",
+    description: "AI-powered platform for creating personalized video avatars for sales outreach and marketing. Generate realistic human avatars that can deliver personalized messages at scale.",
+    emoji: "👤",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://app.bhuman.ai/?ref=zde0otr",
+    videoUrl: "https://www.youtube.com/watch?v=W1WHD9IhGhs",
+    tags: ["avatar creation", "video outreach", "personalized videos", "sales automation", "marketing avatars"],
+    category: "Video & Content Creation",
+    rating: 4.6,
+    totalVotes: 3456
+  },
 ];
