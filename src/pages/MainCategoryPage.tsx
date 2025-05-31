@@ -90,6 +90,18 @@ const MainCategoryPage = () => {
         <Header />
         
         <main className="container mx-auto px-4 py-8">
+          {/* Search Bar - Moved to top */}
+          <div className="max-w-2xl mx-auto mb-12">
+            <h3 className="text-xl font-bold text-white mb-4 text-center">
+              🔍 Search All AI Tools
+            </h3>
+            <SearchBar
+              searchTerm={searchTerm}
+              onSearchChange={handleSearchChange}
+              preventAutoNavigation={true}
+            />
+          </div>
+
           {/* Category Header */}
           <div className="text-center mb-12">
             <div className="text-6xl mb-4">{mainCategory.emoji}</div>
@@ -142,18 +154,6 @@ const MainCategoryPage = () => {
               </div>
             </div>
           )}
-
-          {/* Always show search bar at the bottom - with stable behavior */}
-          <div className="max-w-2xl mx-auto mb-12 mt-16">
-            <h3 className="text-xl font-bold text-white mb-4 text-center">
-              🔍 Search All AI Tools
-            </h3>
-            <SearchBar
-              searchTerm={searchTerm}
-              onSearchChange={handleSearchChange}
-              preventAutoNavigation={true}
-            />
-          </div>
         </main>
 
         {/* Featured Tools Section - Our AIWebTools.ai Professional Solutions */}
