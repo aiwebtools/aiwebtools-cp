@@ -41,13 +41,57 @@ export const getCategoriesWithCounts = (tools: Tool[]): Record<string, number> =
   return categoryCounts;
 };
 
+// Enhanced category name normalization
+const normalizeCategoryName = (categoryName: string): string => {
+  return categoryName
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/\s+/g, ' ')
+    .trim();
+};
+
+// Check if two category names are similar enough to be considered the same
+const isSimilarCategory = (cat1: string, cat2: string): boolean => {
+  const norm1 = normalizeCategoryName(cat1);
+  const norm2 = normalizeCategoryName(cat2);
+  
+  // Exact match after normalization
+  if (norm1 === norm2) return true;
+  
+  // One contains the other (for variations like "Health & Wellness" vs "Health & Wellness Tools")
+  if (norm1.includes(norm2) || norm2.includes(norm1)) return true;
+  
+  // Check for common variations
+  const variations = [
+    ['ai tools and development', 'ai development tools'],
+    ['business and productivity', 'business tools'],
+    ['content creation and writing tools', 'writing and content'],
+    ['video editing and content tools', 'video tools'],
+    ['data and analytics tools', 'data analytics tools'],
+    ['marketing and sales ai tools', 'marketing tools'],
+    ['communication and collaboration ai tools', 'communication tools']
+  ];
+  
+  for (const [var1, var2] of variations) {
+    if ((norm1.includes(var1) && norm2.includes(var2)) || 
+        (norm1.includes(var2) && norm2.includes(var1))) {
+      return true;
+    }
+  }
+  
+  return false;
+};
+
 export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] => {
   // Special handling for Data & Analytics category
   if (categoryName === "DATA & ANALYTICS AI TOOLS" || categoryName === "Data & Analytics Tools") {
     const directCategoryTools = tools.filter(tool => 
-      tool.category === categoryName || 
-      tool.category === "Data & Analytics Tools" ||
-      tool.category === "DATA & ANALYTICS AI TOOLS"
+      tool.category && (
+        isSimilarCategory(tool.category, categoryName) ||
+        isSimilarCategory(tool.category, "Data & Analytics Tools") ||
+        isSimilarCategory(tool.category, "DATA & ANALYTICS AI TOOLS") ||
+        isSimilarCategory(tool.category, "Data Analytics Tools")
+      )
     );
     
     // Add priority tools that should appear in Data & Analytics
@@ -70,11 +114,15 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
   // Special handling for Marketing & Sales category
   if (categoryName === "MARKETING & SALES AI TOOLS" || categoryName === "Marketing & Analytics" || categoryName === "E-commerce & Marketing Tools" || categoryName === "Business & Sales Tools") {
     const directCategoryTools = tools.filter(tool => 
-      tool.category === categoryName || 
-      tool.category === "Marketing & Analytics" ||
-      tool.category === "E-commerce & Marketing Tools" ||
-      tool.category === "Business & Sales Tools" ||
-      tool.category === "MARKETING & SALES AI TOOLS"
+      tool.category && (
+        isSimilarCategory(tool.category, categoryName) ||
+        isSimilarCategory(tool.category, "Marketing & Analytics") ||
+        isSimilarCategory(tool.category, "E-commerce & Marketing Tools") ||
+        isSimilarCategory(tool.category, "Business & Sales Tools") ||
+        isSimilarCategory(tool.category, "MARKETING & SALES AI TOOLS") ||
+        isSimilarCategory(tool.category, "Marketing Tools") ||
+        isSimilarCategory(tool.category, "Marketing Sales Tools")
+      )
     );
     
     // Add priority tools that should appear in Marketing & Sales
@@ -97,17 +145,21 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
   // Enhanced handling for Communication & Collaboration category
   if (categoryName === "COMMUNICATION & COLLABORATION AI TOOLS" || categoryName === "Communication & Entertainment" || categoryName === "Communication Tools") {
     const directCategoryTools = tools.filter(tool => 
-      tool.category === categoryName || 
-      tool.category === "Communication & Entertainment" ||
-      tool.category === "Communication Tools" ||
-      tool.category === "COMMUNICATION & COLLABORATION AI TOOLS"
+      tool.category && (
+        isSimilarCategory(tool.category, categoryName) ||
+        isSimilarCategory(tool.category, "Communication & Entertainment") ||
+        isSimilarCategory(tool.category, "Communication Tools") ||
+        isSimilarCategory(tool.category, "COMMUNICATION & COLLABORATION AI TOOLS") ||
+        isSimilarCategory(tool.category, "Collaboration Tools") ||
+        isSimilarCategory(tool.category, "Entertainment Tools")
+      )
     );
     
     return directCategoryTools;
   }
   
-  // Regular category filtering for other categories
-  return tools.filter(tool => tool.category === categoryName);
+  // Regular category filtering with enhanced similarity matching
+  return tools.filter(tool => tool.category && isSimilarCategory(tool.category, categoryName));
 };
 
 export const getMainCategoriesWithCounts = (tools: Tool[]): Record<string, number> => {
@@ -136,42 +188,91 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     allCategoryTools.push(...categoryTools);
   });
   
-  // Also include tools that might have slight category name variations
+  // Enhanced fuzzy matching for tools that might be missing due to category name variations
   if (mainCategoryName === "COMMUNICATION & COLLABORATION AI TOOLS") {
-    // Add tools from related categories that might not be in subcategories
     const additionalTools = tools.filter(tool => 
       tool.category && (
         tool.category.toLowerCase().includes('communication') ||
         tool.category.toLowerCase().includes('collaboration') ||
         tool.category.toLowerCase().includes('entertainment') ||
         tool.category.toLowerCase().includes('chat') ||
-        tool.category.toLowerCase().includes('social')
+        tool.category.toLowerCase().includes('social') ||
+        tool.category.toLowerCase().includes('game')
       )
     );
     allCategoryTools.push(...additionalTools);
   }
   
   if (mainCategoryName === "MARKETING & SALES AI TOOLS") {
-    // Add tools from related marketing/sales categories
     const additionalTools = tools.filter(tool => 
       tool.category && (
         tool.category.toLowerCase().includes('marketing') ||
         tool.category.toLowerCase().includes('sales') ||
         tool.category.toLowerCase().includes('business') ||
-        tool.category.toLowerCase().includes('e-commerce')
+        tool.category.toLowerCase().includes('e-commerce') ||
+        tool.category.toLowerCase().includes('ecommerce')
       )
     );
     allCategoryTools.push(...additionalTools);
   }
   
   if (mainCategoryName === "DATA & ANALYTICS AI TOOLS") {
-    // Add tools from related data/analytics categories
     const additionalTools = tools.filter(tool => 
       tool.category && (
         tool.category.toLowerCase().includes('data') ||
         tool.category.toLowerCase().includes('analytics') ||
         tool.category.toLowerCase().includes('research') ||
-        tool.category.toLowerCase().includes('analysis')
+        tool.category.toLowerCase().includes('analysis') ||
+        tool.category.toLowerCase().includes('financial') ||
+        tool.category.toLowerCase().includes('trading')
+      )
+    );
+    allCategoryTools.push(...additionalTools);
+  }
+  
+  if (mainCategoryName === "CONTENT CREATION & WRITING") {
+    const additionalTools = tools.filter(tool => 
+      tool.category && (
+        tool.category.toLowerCase().includes('content') ||
+        tool.category.toLowerCase().includes('writing') ||
+        tool.category.toLowerCase().includes('creative') ||
+        tool.category.toLowerCase().includes('grammar')
+      )
+    );
+    allCategoryTools.push(...additionalTools);
+  }
+  
+  if (mainCategoryName === "HEALTH & WELLNESS") {
+    const additionalTools = tools.filter(tool => 
+      tool.category && (
+        tool.category.toLowerCase().includes('health') ||
+        tool.category.toLowerCase().includes('wellness') ||
+        tool.category.toLowerCase().includes('medical') ||
+        tool.category.toLowerCase().includes('healthcare')
+      )
+    );
+    allCategoryTools.push(...additionalTools);
+  }
+  
+  if (mainCategoryName === "EDUCATION & LEARNING") {
+    const additionalTools = tools.filter(tool => 
+      tool.category && (
+        tool.category.toLowerCase().includes('education') ||
+        tool.category.toLowerCase().includes('learning') ||
+        tool.category.toLowerCase().includes('research')
+      )
+    );
+    allCategoryTools.push(...additionalTools);
+  }
+  
+  if (mainCategoryName === "DEVELOPMENT & CODING") {
+    const additionalTools = tools.filter(tool => 
+      tool.category && (
+        tool.category.toLowerCase().includes('developer') ||
+        tool.category.toLowerCase().includes('development') ||
+        tool.category.toLowerCase().includes('coding') ||
+        tool.category.toLowerCase().includes('web development') ||
+        tool.category.toLowerCase().includes('platforms')
       )
     );
     allCategoryTools.push(...additionalTools);

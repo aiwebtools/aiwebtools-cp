@@ -30,7 +30,10 @@ export const mainCategories: MainCategory[] = [
       "Writing Assistants",
       "Creative Writing Tools",
       "Grammar & Writing Assistants",
-      "Content Creation & Writing Tools"
+      "Content Creation & Writing Tools",
+      "Writing And Content",
+      "Content Creation And Writing Tools",
+      "Writing And Content Enhancement"
     ]
   },
   {
@@ -47,7 +50,9 @@ export const mainCategories: MainCategory[] = [
       "Image Editing Tools",
       "Specialized Image Tools",
       "Background & Object Tools",
-      "Core Image Generators"
+      "Core Image Generators",
+      "Design And Graphics Tools",
+      "Design Assistant Tools"
     ]
   },
   {
@@ -63,7 +68,9 @@ export const mainCategories: MainCategory[] = [
       "Video Editing & Content Tools",
       "Video Marketing Tools",
       "Video Business Tools",
-      "Entertainment Media Tools"
+      "Entertainment Media Tools",
+      "Video And Content Tools",
+      "Video Editing And Content Tools"
     ]
   },
   {
@@ -74,7 +81,9 @@ export const mainCategories: MainCategory[] = [
       "Audio & Voice Tools",
       "Audio Music Tools",
       "Transcription & Document Tools",
-      "Meeting & Transcription Tools"
+      "Meeting & Transcription Tools",
+      "Document And Research Tools",
+      "Transcription And Document Tools"
     ]
   },
   {
@@ -89,7 +98,12 @@ export const mainCategories: MainCategory[] = [
       "Automation & Workflow Tools",
       "Business Sales Tools",
       "Traditional Business Tools",
-      "Search & Productivity Tools"
+      "Search & Productivity Tools",
+      "Business And Productivity",
+      "Business And Team Tools",
+      "Automation And Workflow Tools",
+      "Productivity And Automation Tools",
+      "Search And Productivity Tools"
     ]
   },
   {
@@ -102,6 +116,11 @@ export const mainCategories: MainCategory[] = [
       "E-commerce & Marketing Tools", 
       "Business & Sales Tools",
       "Social Media Tools",
+      "Email Management Tools",
+      "Marketing Sales Tools",
+      "Marketing Tools",
+      "Ecommerce And Marketing Tools",
+      "Business Sales Tools",
       "Email Management Tools"
     ]
   },
@@ -113,7 +132,9 @@ export const mainCategories: MainCategory[] = [
       "DATA & ANALYTICS AI TOOLS",
       "Data & Analytics Tools",
       "Data Analytics Tools",
-      "Financial & Trading Tools"
+      "Financial & Trading Tools",
+      "Data Analytics Tools",
+      "Financial And Trading Tools"
     ]
   },
   {
@@ -126,7 +147,11 @@ export const mainCategories: MainCategory[] = [
       "Developer & Coding Tools",
       "Web Development Tools",
       "AI Tools & Development",
-      "Platforms & Development"
+      "Platforms & Development",
+      "Developer And Coding Tools",
+      "AI Tools And Development",
+      "Platforms And Development",
+      "AI Development Tools"
     ]
   },
   {
@@ -139,7 +164,9 @@ export const mainCategories: MainCategory[] = [
       "Communication Tools",
       "Collaboration Tools",
       "Entertainment Tools",
-      "Game Design & Development"
+      "Game Design & Development",
+      "Communication And Entertainment",
+      "Game Design And Development"
     ]
   },
   {
@@ -150,7 +177,10 @@ export const mainCategories: MainCategory[] = [
       "Education & Learning",
       "Learning & Education",
       "Learning Platforms",
-      "Research & Learning"
+      "Research & Learning",
+      "Education And Learning",
+      "Learning And Education",
+      "Research And Learning"
     ]
   },
   {
@@ -160,7 +190,9 @@ export const mainCategories: MainCategory[] = [
     subcategories: [
       "Health & Wellness",
       "Health & Wellness Tools",
-      "Healthcare Professionals"
+      "Healthcare Professionals",
+      "Health And Wellness",
+      "Health And Wellness Tools"
     ]
   },
   {
@@ -171,7 +203,8 @@ export const mainCategories: MainCategory[] = [
       "Legal Professionals",
       "Professional Services",
       "Personal Services",
-      "Resume & Career Tools"
+      "Resume & Career Tools",
+      "Resume And Career Tools"
     ]
   },
   {
@@ -179,7 +212,8 @@ export const mainCategories: MainCategory[] = [
     emoji: "🧊",
     description: "AI tools for 3D modeling, visualization, and immersive content creation",
     subcategories: [
-      "3D & Visualization Tools"
+      "3D & Visualization Tools",
+      "ThreeD And Visualization Tools"
     ]
   },
   {
@@ -203,7 +237,14 @@ export const mainCategories: MainCategory[] = [
       "Art & Collectibles",
       "Historical & Cultural",
       "Spirituality Tools",
-      "Time & History"
+      "Time & History",
+      "Specialized And Niche",
+      "Technical And Utility Tools",
+      "News And Information Tools",
+      "Open Source AI Models",
+      "Art And Collectibles",
+      "Historical And Cultural",
+      "Time And History"
     ]
   }
 ];
