@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { Sprout, Hammer, MapPin, Calculator, DollarSign, Users, Building, Zap, Leaf, Dna, Gamepad, CreditCard, User, Palette, Clock, Megaphone, Shield } from "lucide-react";
 
@@ -5,7 +6,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
   {
     icon: Calculator,
     title: "Taxes GPT",
-    description: "Taxes GPT is your AI-powered tax assistant, designed to simplify tax preparation while maximizing your deductions. Securely analyze your financial data, receive accurate tax reports, and minimize liabilities with ease. Let Taxes GPT handle the complexity so you can enjoy greater savings.",
+    description: "Taxes GPT by AI Web Tools LLC is your comprehensive AI-powered tax preparation and optimization assistant, revolutionizing how individuals and businesses approach tax planning and compliance. This intelligent tool transforms the complex world of tax preparation into a streamlined, efficient process that maximizes deductions while ensuring complete accuracy and legal compliance. Whether you're filing personal returns, managing business taxes, or planning strategic tax optimization, Taxes GPT provides expert-level guidance that saves time, reduces stress, and maximizes your tax savings. The AI analyzes your financial data, identifies overlooked deductions, and provides personalized strategies that minimize tax liabilities while maintaining full IRS compliance. Upload financial documents, input income sources, and describe your financial situation to receive detailed tax analysis, optimization recommendations, and comprehensive filing guidance. Features include deduction maximization analysis, tax liability projections, filing status optimization, audit risk assessment, and year-round tax planning strategies. Perfect for individuals seeking maximum refunds, small business owners managing complex tax situations, and anyone wanting to optimize their tax strategy while ensuring complete compliance with federal and state tax regulations.",
     emoji: "💰",
     color: "from-green-500 to-blue-600",
     directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
@@ -18,7 +19,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
   {
     icon: Dna,
     title: "Genome GPT",
-    description: "Genome GPT is a cutting-edge AI tool designed to assist researchers, scientists, and enthusiasts in genetic analysis and discovery. Specializing in genomic data interpretation, Genome GPT provides comprehensive and detailed insights into genetic sequences, patterns, and variations. Whether you're analyzing human DNA, exploring plant genetics, or researching cannabis strains, Genome GPT offers thorough scientific analysis in a user-friendly, professional manner.",
+    description: "Genome GPT by AI Web Tools LLC is your cutting-edge AI-powered genomics research and analysis platform, revolutionizing genetic research through advanced computational biology and data interpretation. This sophisticated tool empowers researchers, scientists, and genetic enthusiasts with comprehensive genetic analysis capabilities that unlock the secrets hidden within DNA sequences and genomic data. Whether you're analyzing human genetics, exploring plant genomics, researching cannabis genetics, or conducting academic research, Genome GPT provides expert-level insights that accelerate discovery and enhance understanding of genetic patterns and variations. The AI processes complex genomic datasets using advanced algorithms trained on extensive genetic databases, providing detailed analysis of genetic sequences, mutation patterns, and hereditary traits. Upload genetic data files, input sequence information, or describe your research objectives to receive comprehensive genetic analysis, pattern identification, and research recommendations. Features include DNA sequence analysis, genetic variation identification, hereditary trait mapping, mutation impact assessment, and comprehensive research documentation. Perfect for genetic researchers seeking advanced analysis tools, academic institutions conducting genomic studies, and biotechnology companies developing genetic solutions. This tool bridges the gap between complex genetic data and actionable scientific insights.",
     emoji: "🧬",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
@@ -31,7 +32,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
   {
     icon: Gamepad,
     title: "Game Design Document / Developer GPT",
-    description: "Bring your video game ideas to life with Game Design Document Developer GPT! This tool is your ultimate assistant for game development, guiding you from concept to completion. It helps you create the perfect Game Design Document (GDD) to plan your video game. Whether you're using Unity, Unreal Engine, or another platform, Game Document Design Developer GPT is your comprehensive assistant for designing and developing your next game.",
+    description: "Game Design Document Developer GPT by AI Web Tools LLC is your ultimate AI-powered game development assistant, transforming creative game concepts into professional, fully structured Game Design Documents (GDD) that guide successful game creation from concept to completion. This comprehensive tool revolutionizes game development by providing expert guidance on every aspect of game design, from initial concept brainstorming to detailed technical specifications and development roadmaps. Whether you're an indie developer with a great idea, a student learning game design, or a professional team planning your next title, this AI delivers the structured documentation and strategic insights needed to bring your vision to life. The tool analyzes your game concept, suggests gameplay mechanics, creates detailed feature specifications, and generates professional documentation that serves as a blueprint for development teams. Input your game idea, target platform, and design goals to receive comprehensive GDDs with mechanics documentation, technical requirements, art direction, and development timelines. Features include gameplay mechanics design, technical architecture planning, art style guidance, monetization strategy development, and platform-specific optimization recommendations. Perfect for Unity developers, Unreal Engine creators, mobile game developers, and anyone seeking to transform creative ideas into successful gaming experiences.",
     emoji: "🎮",
     color: "from-purple-500 to-red-600",
     directUrl: "https://gamedesigngpt.lovable.app/?via=aiwebtools",
@@ -44,7 +45,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
   {
     icon: CreditCard,
     title: "Predictive Credit Score Checker GPT",
-    description: "Predictive Credit Score Checker GPT is an AI tool for estimating creditworthiness based on specific addresses. Ideal for real estate, finance, and lending, it provides quick, data-backed credit score estimates by analyzing local demographics and trends. Use it to assess prospects or evaluate risk. Note that predictions are estimates to guide decision-making, not guarantees. Fast, efficient, and insightful—this AI helps you target leads with confidence!",
+    description: "Predictive Credit Score Checker GPT by AI Web Tools LLC is your advanced AI-powered credit assessment and risk analysis tool, revolutionizing how real estate professionals, lenders, and financial institutions evaluate creditworthiness through innovative address-based analytics. This cutting-edge tool leverages sophisticated demographic analysis and local economic data to provide accurate credit score predictions that help professionals make informed lending and investment decisions. Whether you're a real estate agent qualifying potential buyers, a loan officer screening applicants, or an investor evaluating market opportunities, this AI delivers data-backed credit insights that enhance decision-making and reduce risk exposure. The system analyzes local demographics, property values, economic indicators, and historical credit trends to generate reliable creditworthiness estimates based on geographic and socioeconomic factors. Input addresses, describe your assessment needs, and specify your criteria to receive detailed credit score predictions, risk assessments, and qualification recommendations. Features include demographic-based scoring, local market analysis, risk probability calculations, qualification pre-screening, and comprehensive reporting tools. Perfect for real estate professionals seeking qualified leads, mortgage lenders optimizing approval processes, and financial analysts evaluating market opportunities. Note: Predictions are statistical estimates designed to guide decision-making and should be verified through traditional credit reporting methods.",
     emoji: "📊",
     color: "from-green-500 to-cyan-600",
     directUrl: "https://predictivecreditscoregpt.lovable.app/?via=aiwebtools",
@@ -57,7 +58,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
   {
     icon: User,
     title: "Name Insight Research & Predictor GPT",
-    description: "Your name holds hidden meanings, shaping your personality, strengths, and destiny through history, numerology, and culture. Dive deep into its origins, global significance, and psychological impact with AI-driven insights. Discover what your name says about YOU today!",
+    description: "Name Insight Research & Predictor GPT by AI Web Tools LLC is your comprehensive AI-powered name analysis and cultural research platform, unveiling the hidden meanings, historical significance, and psychological impact of names through advanced linguistic analysis and cultural anthropology. This fascinating tool transforms simple name queries into deep explorations of etymology, numerology, cultural heritage, and personality correlations that reveal the profound connections between names and human identity. Whether you're researching family heritage, choosing names for children, exploring cultural backgrounds, or studying the psychological impact of nomenclature, this AI provides rich insights that illuminate the powerful role names play in shaping identity and destiny. The system analyzes historical records, cultural databases, linguistic patterns, and numerological systems to provide comprehensive name profiles that explore origins, meanings, cultural significance, and personality correlations. Input names, describe your research interests, and specify cultural contexts to receive detailed analysis reports covering etymology, cultural significance, personality insights, and historical connections. Features include multi-cultural name analysis, numerological calculations, personality correlation studies, historical significance research, and global name variation mapping. Perfect for genealogy researchers exploring family heritage, parents choosing meaningful names, cultural anthropologists studying naming traditions, and anyone curious about the deep connections between names and human experience.",
     emoji: "🔍",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://whatsmynamegpt.lovable.app/?via=aiwebtools",
@@ -70,7 +71,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
   {
     icon: Palette,
     title: "Coloring Book Generator GPT",
-    description: "Coloring Book Generator GPT creates full coloring books from your imagination.",
+    description: "Coloring Book Generator GPT by AI Web Tools LLC is your creative AI-powered artistic tool that transforms imagination into comprehensive coloring books, revolutionizing how educators, parents, artists, and publishers create engaging coloring experiences for all ages. This innovative tool generates complete coloring books from simple concepts, providing detailed line art, thematic consistency, and age-appropriate designs that inspire creativity and provide hours of educational entertainment. Whether you're creating educational materials for classrooms, developing therapeutic coloring books for stress relief, designing children's activity books, or producing commercial coloring publications, this AI delivers professional-quality illustrations with consistent artistic style and engaging themes. The system creates detailed line drawings optimized for coloring, with appropriate complexity levels, clear boundaries, and thematic coherence that ensures a cohesive coloring book experience. Input your theme, target age group, and design preferences to receive complete coloring book sets with cover designs, themed illustrations, and print-ready formats. Features include age-appropriate complexity adjustment, thematic illustration generation, educational content integration, therapeutic design optimization, and commercial-quality formatting. Perfect for educators creating classroom materials, therapists developing wellness resources, parents designing personalized activities, and publishers producing marketable coloring books.",
     emoji: "🎨",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://coloringbookmaker.lovable.app/?via=aiwebtools",
@@ -83,7 +84,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
   {
     icon: Clock,
     title: "Native American History Time Machine GPT - (Special Edition)",
-    description: "Experience an immersive time travel adventure of discovery to any era of Native American history with Geronimo, Chief of Rainbow Apache Destiny as your guide. Discover authentic stories, cultures, and wisdom from the past—or explore possible futures shaped by your choices.",
+    description: "Native American History Time Machine GPT by AI Web Tools LLC is your immersive AI-powered cultural education and historical exploration platform, offering authentic journeys through Native American history guided by Geronimo, Chief of Rainbow Apache Destiny. This special edition tool revolutionizes cultural education by providing respectful, accurate, and deeply engaging explorations of Native American heritage, traditions, and historical experiences across all eras of indigenous history. Whether you're a student learning about indigenous cultures, an educator developing culturally sensitive curricula, a researcher studying Native American history, or anyone seeking to understand and honor indigenous perspectives, this AI provides immersive experiences that promote cultural understanding and historical awareness. The system combines historical accuracy with interactive storytelling, allowing users to experience pivotal moments in Native American history while learning about diverse tribal traditions, survival strategies, spiritual practices, and cultural resilience. Engage with historical scenarios, explore tribal cultures, and discover how choices and events shaped Native American communities throughout history. Features include authentic historical recreations, cultural tradition explanations, tribal diversity education, environmental stewardship lessons, and respectful cultural representation. Perfect for educational institutions promoting cultural understanding, museums creating interactive exhibits, students exploring indigenous history, and anyone committed to learning about and honoring Native American heritage and contributions to American history.",
     emoji: "🏹",
     color: "from-orange-500 to-red-600",
     directUrl: "https://nativeamerican-timemachine.lovable.app/?via=aiwebtools",
@@ -94,22 +95,9 @@ export const specializedNicheToolsGPTs: Tool[] = [
     totalVotes: 6789
   },
   {
-    icon: Megaphone,
-    title: "Public Testimony Writer GPT",
-    description: "Innovative AI Tool Streamlines Legislative Testimony Process, Promotes Public Engagement in Local Policy. This tool was featured in various news articles such as the CT POST & CT INSIDER",
-    emoji: "📢",
-    color: "from-blue-500 to-green-600",
-    directUrl: "https://publictestimonywriter.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
-    tags: ["public testimony", "legislative writing", "civic engagement", "government participation", "policy advocacy"],
-    category: "Specialized Niche Tools",
-    rating: 4.6,
-    totalVotes: 4321
-  },
-  {
     icon: Shield,
     title: "Cyber Security GPT",
-    description: "Given the increasing threat of infrastructure attacks, AiWebTools.Ai aims to encourage the creation of solutions. Our cybersecurity assistant can deploy defense mechanisms and strategies to mitigate the impact of such attacks. Cybersecurity teams can rely on this assistant for advice, opinions, and assistance in deploying code whenever needed to defend against unwarranted infrastructure attacks.",
+    description: "Cyber Security GPT by AI Web Tools LLC is your advanced AI-powered cybersecurity defense and infrastructure protection platform, designed to combat the increasing threats facing critical infrastructure and digital systems worldwide. This cutting-edge tool empowers cybersecurity teams with sophisticated defense mechanisms, threat analysis capabilities, and strategic security implementations that protect against cyberattacks and infrastructure vulnerabilities. Whether you're managing corporate network security, protecting government infrastructure, defending against sophisticated attacks, or developing comprehensive security protocols, this AI provides expert-level guidance and actionable security solutions. The system analyzes threat patterns, identifies vulnerabilities, and generates customized defense strategies that adapt to evolving cybersecurity landscapes and emerging attack vectors. Input security challenges, describe your infrastructure, and outline threat concerns to receive detailed security assessments, defense recommendations, and implementation strategies. Features include vulnerability assessment, threat pattern analysis, defense mechanism deployment, security code generation, and incident response planning. Perfect for cybersecurity professionals defending critical systems, IT teams implementing security protocols, government agencies protecting infrastructure, and organizations seeking proactive security solutions. This tool addresses the growing need for AI-powered cybersecurity solutions that can anticipate, identify, and neutralize sophisticated cyber threats before they compromise essential systems and data.",
     emoji: "🛡️",
     color: "from-red-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-Qvat03gmj-hacking-defender-infrastructure-protector-gpt",
@@ -122,7 +110,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
   {
     icon: Sprout,
     title: "Drill Baby Drill Ai Suite For Oil & Gas",
-    description: "Drill Baby Drill AI Tools Suite is a cutting-edge collection of 10 specialized AI tools designed to optimize every aspect of oil and gas operations, from exploration and drilling to logistics, safety, compliance, and financial forecasting.",
+    description: "Drill Baby Drill AI Suite by AI Web Tools LLC is your comprehensive AI-powered oil and gas operations optimization platform, featuring 10 specialized tools designed to revolutionize every aspect of petroleum industry operations from exploration to production. This cutting-edge suite transforms traditional oil and gas workflows through advanced AI analytics, predictive modeling, and operational intelligence that maximizes efficiency, safety, and profitability across all phases of energy production. Whether you're managing exploration projects, optimizing drilling operations, ensuring regulatory compliance, or forecasting financial performance, this integrated suite provides expert-level insights that drive operational excellence and competitive advantage. The platform combines geological analysis, drilling optimization, safety protocols, environmental compliance, logistics management, and financial forecasting into a unified system that supports data-driven decision-making throughout the energy production lifecycle. Access specialized tools for seismic analysis, well planning, production optimization, safety management, and market analysis to receive comprehensive insights and recommendations. Features include exploration data analysis, drilling efficiency optimization, production forecasting, safety compliance monitoring, and comprehensive financial modeling. Perfect for oil and gas companies seeking operational optimization, drilling contractors improving efficiency, energy consultants providing strategic guidance, and industry professionals pursuing sustainable energy production practices.",
     emoji: "⛽",
     color: "from-orange-500 to-red-600",
     directUrl: "https://drillbabydrillaisuite.lovable.app/?via=aiwebtools",
@@ -131,18 +119,5 @@ export const specializedNicheToolsGPTs: Tool[] = [
     category: "Specialized Niche Tools",
     rating: 4.8,
     totalVotes: 6234
-  },
-  {
-    icon: Leaf,
-    title: "Fungus GPT – AI Mushroom Specialist",
-    description: "Fungus Whisperer GPT is an expert AI guide specializing in mushroom cultivation, safe foraging, and creative culinary uses of fungi. It provides precise identification assistance, step-by-step growing techniques, and innovative recipes, ensuring safety and sustainability. With deep knowledge of mycology, it enhances learning through scientific insights, folklore, and hands-on guidance for mushroom enthusiasts of all levels. ⚠️ CRITICAL SAFETY WARNING: DO NOT EAT mushrooms identified by AI as it may be wrong - this is a simulation only. Always verify outputs with professional mycologists and use multiple expert sources before consuming any wild fungi. All tools on this site are provided for educational, informational, and research purposes only.",
-    emoji: "🍄",
-    color: "from-green-500 to-brown-600",
-    directUrl: "https://fungusgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=qzndRzBtrEU",
-    tags: ["mushroom cultivation", "mycology", "foraging", "fungi identification", "culinary fungi"],
-    category: "Specialized Niche Tools",
-    rating: 4.7,
-    totalVotes: 5432
   }
 ];
