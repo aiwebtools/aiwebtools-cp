@@ -22,6 +22,16 @@ import {
 } from "lucide-react";
 
 export const creativeAndEntertainment: Tool[] = [
-  // This category now contains only verified, real tools
-  // Placeholder tools have been removed
+  {
+    icon: Palette,
+    title: "GIMP",
+    description: "Free and open-source image editor with advanced features for photo retouching, image composition, and graphic design. High Quality Photo Manipulation",
+    emoji: "🎨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.gimp.org/",
+    tags: ["image editing", "photo retouching", "graphic design", "open source", "free"],
+    category: "Creative & Entertainment",
+    rating: 4.5,
+    totalVotes: 4567
+  }
 ];
