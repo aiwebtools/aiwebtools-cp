@@ -32,7 +32,7 @@ export const timeAndHistory: Tool[] = [
     description: "Embark on a journey through the wonders of Ancient Egypt with our AI-powered time machine. Explore the pyramids, pharaohs, and mysteries of this ancient civilization.",
     emoji: "🇪🇬",
     color: "from-yellow-500 to-blue-600",
-    directUrl: "https://ancientegypt-timemachine.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-683a87ccb21c81919df66218280f3c64-ancient-egypt-time-machine",
     tags: ["Ancient Egypt", "time travel", "pyramids", "pharaohs", "history"],
     category: "Time & History",
     rating: 4.5,
