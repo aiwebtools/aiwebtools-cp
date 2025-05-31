@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -10,7 +11,8 @@ import {
   getAIChatAssistantsTools,
   getContentCreationWritingTools,
   getImageDesignTools,
-  getVideoMultimediaTools
+  getVideoMultimediaTools,
+  getAudioVoiceTools
 } from "./categoryMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
 
