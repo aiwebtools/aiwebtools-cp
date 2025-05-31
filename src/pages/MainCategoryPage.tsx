@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -31,63 +31,47 @@ const MainCategoryPage = () => {
   // Find the main category
   const mainCategory = mainCategories.find(cat => cat.name === decodedCategoryName);
   
+  // Memoize the category tools to prevent recalculation on every render
+  const categoryTools = useMemo(() => {
+    if (!mainCategory) return [];
+    console.log(`🚀 Calculating tools for category: ${decodedCategoryName}`);
+    const tools = getToolsByMainCategory(allTools, decodedCategoryName);
+    console.log(`✅ Category tools calculated: ${tools.length} tools`);
+    return tools;
+  }, [decodedCategoryName, mainCategory]);
+  
+  // Memoize filtered tools to optimize search performance
+  const filteredTools = useMemo(() => {
+    if (!searchTerm.trim()) return categoryTools;
+    console.log(`🔍 Filtering tools with search term: "${searchTerm}"`);
+    const results = searchTools(categoryTools, searchTerm);
+    console.log(`✅ Search results: ${results.length} tools`);
+    return results;
+  }, [categoryTools, searchTerm]);
+
+  // Memoize all filtered tools for "See More" functionality
+  const allFilteredTools = useMemo(() => {
+    if (!searchTerm.trim()) return [...allTools];
+    console.log(`🔍 Searching all tools with term: "${searchTerm}"`);
+    const results = searchTools(allTools, searchTerm);
+    console.log(`✅ All tools search results: ${results.length} tools`);
+    return results;
+  }, [searchTerm]);
+  
   // Scroll to top when category changes - enhanced for immediate effect
   useEffect(() => {
-    // Immediate scroll to top
     window.scrollTo(0, 0);
-    
-    // Also use requestAnimationFrame to ensure it happens after any layout changes
-    requestAnimationFrame(() => {
-      window.scrollTo(0, 0);
-    });
-    
-    // Additional timeout to catch any delayed renders
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 100);
-    
-    // Reset states when category changes
     setShowAllTools(false);
     setDisplayedCount(24);
+    setSearchTerm(""); // Clear search when changing categories
   }, [decodedCategoryName]);
   
   if (!mainCategory) {
-    // If category not found, redirect to home
     useEffect(() => {
       navigate('/');
     }, [navigate]);
     return null;
   }
-
-  // Get tools for this main category immediately - no more lazy loading
-  const categoryTools = getToolsByMainCategory(allTools, decodedCategoryName);
-  
-  console.log(`🔍 MainCategoryPage Debug for "${decodedCategoryName}":`, {
-    isAllAITools: decodedCategoryName === "ALL AI TOOLS",
-    categoryToolsCount: categoryTools.length,
-    totalAllToolsCount: allTools.length
-  });
-  
-  // Apply search filter if search term exists
-  const filteredTools = searchTerm.trim() 
-    ? searchTools(categoryTools, searchTerm)
-    : categoryTools;
-
-  // Get all tools for "See More" functionality - ensure we get ALL tools
-  const allFilteredTools = searchTerm.trim() 
-    ? searchTools(allTools, searchTerm)
-    : [...allTools]; // Create a copy to avoid mutation
-  
-  console.log(`📊 Current display state:`, {
-    categoryToolsCount: categoryTools.length,
-    filteredToolsCount: filteredTools.length,
-    allFilteredToolsCount: allFilteredTools.length,
-    totalAllToolsCount: allTools.length,
-    showAllTools,
-    searchTerm: searchTerm || 'none',
-    displayedCount,
-    allToolsDisplayedCount
-  });
 
   // Calculate the actual displayed count based on what we're showing
   const currentTools = showAllTools ? allFilteredTools : filteredTools;
@@ -100,33 +84,29 @@ const MainCategoryPage = () => {
     setTimeout(() => {
       setDisplayedCount(prev => Math.min(prev + 12, filteredTools.length));
       setIsLoading(false);
-    }, 300); // Reduced timeout for better performance
+    }, 100); // Reduced timeout for better performance
   };
 
   const handleAllToolsLoadMore = () => {
     if (isLoading || allToolsDisplayedCount >= allFilteredTools.length) return;
     
-    console.log(`🚀 Loading more tools: ${allToolsDisplayedCount} -> ${Math.min(allToolsDisplayedCount + 24, allFilteredTools.length)} of ${allFilteredTools.length}`);
-    
     setIsLoading(true);
     setTimeout(() => {
       setAllToolsDisplayedCount(prev => Math.min(prev + 24, allFilteredTools.length));
       setIsLoading(false);
-    }, 300);
+    }, 100);
   };
 
-  // Fixed search handler that doesn't cause navigation or scroll issues
+  // Optimized search handler
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
-    setDisplayedCount(24); // Reset displayed count when searching
-    setAllToolsDisplayedCount(24); // Reset all tools count when searching
+    setDisplayedCount(24);
+    setAllToolsDisplayedCount(24);
   };
 
   const handleSeeMoreAITools = () => {
-    console.log(`🚀 See More AI Tools clicked! Total tools available: ${allTools.length}`);
     setShowAllTools(true);
-    setAllToolsDisplayedCount(24); // Start with 24 tools and let infinite scroll handle the rest
-    // Scroll to the tools section
+    setAllToolsDisplayedCount(24);
     setTimeout(() => {
       const toolsSection = document.getElementById('all-tools-section');
       if (toolsSection) {
@@ -135,7 +115,7 @@ const MainCategoryPage = () => {
     }, 100);
   };
 
-  // Setup infinite scroll - enhanced for better performance
+  // Setup infinite scroll - optimized
   useInfiniteScroll({
     isLoading,
     showLoadMoreButton: false,
@@ -147,14 +127,6 @@ const MainCategoryPage = () => {
 
   const hasMoreTools = currentDisplayedCount < currentTools.length;
   const showCompletionMessage = !hasMoreTools && !isLoading && currentTools.length > 20;
-
-  console.log(`📊 Final render state:`, {
-    currentToolsLength: currentTools.length,
-    currentDisplayedCount,
-    hasMoreTools,
-    showAllTools,
-    decodedCategoryName
-  });
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">

@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -16,9 +17,9 @@ import {
   getBusinessOperationsProductivityTools,
   getAIDevelopmentPlatformsTools,
   getEducationLearningTools,
-  getHealthWellnessTools,
-  getSpecializedNicheTools
+  getHealthWellnessTools
 } from "./categoryMatching";
+import { getSpecializedNicheTools } from "./matching/specializedNicheMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
 
 export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
@@ -140,12 +141,9 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
 
 export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string): Tool[] => {
   console.log(`🔍 Getting tools for main category: "${mainCategoryName}"`);
-  console.log(`📊 Total available tools in database: ${tools.length}`);
   
   // Special case for "ALL AI TOOLS" - return ALL tools with AI Web Tools GPTs prioritized
   if (mainCategoryName === "ALL AI TOOLS") {
-    console.log(`🌟 ALL AI TOOLS requested - returning all ${tools.length} tools with prioritization`);
-    
     const aiWebToolsGPTs = tools.filter(tool => 
       tool.directUrl?.includes('lovable.app') || 
       tool.directUrl?.includes('aiwebtools')
@@ -156,159 +154,55 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
       !tool.directUrl?.includes('aiwebtools')
     );
     
-    console.log(`🎯 AI Web Tools GPTs: ${aiWebToolsGPTs.length}, Other tools: ${otherTools.length}`);
-    
-    const allToolsWithPriority = [...aiWebToolsGPTs, ...otherTools];
-    console.log(`✅ Returning total of ${allToolsWithPriority.length} tools for ALL AI TOOLS`);
-    
-    return allToolsWithPriority;
+    return [...aiWebToolsGPTs, ...otherTools];
   }
   
-  // Special case for "AI DEVELOPMENT & PLATFORMS" - use enhanced matching
-  if (mainCategoryName === "AI DEVELOPMENT & PLATFORMS") {
-    console.log(`⚙️ AI DEVELOPMENT & PLATFORMS requested - using enhanced matching`);
-    const aiDevelopmentTools = getAIDevelopmentPlatformsTools(tools, mainCategoryName);
-    console.log(`✅ Found ${aiDevelopmentTools.length} AI development & platforms tools`);
-    return aiDevelopmentTools;
-  }
-  
-  // Special case for "EDUCATION & LEARNING" - use enhanced matching
-  if (mainCategoryName === "EDUCATION & LEARNING") {
-    console.log(`🎓 EDUCATION & LEARNING requested - using enhanced matching`);
-    const educationTools = getEducationLearningTools(tools, mainCategoryName);
-    console.log(`✅ Found ${educationTools.length} education & learning tools`);
-    return educationTools;
-  }
-  
-  // Special case for "HEALTH & WELLNESS" - use enhanced matching
-  if (mainCategoryName === "HEALTH & WELLNESS") {
-    console.log(`🏥 HEALTH & WELLNESS requested - using enhanced matching`);
-    const healthWellnessTools = getHealthWellnessTools(tools, mainCategoryName);
-    console.log(`✅ Found ${healthWellnessTools.length} health & wellness tools`);
-    return healthWellnessTools;
-  }
-  
-  // Special case for "SPECIALIZED & NICHE TOOLS" - use enhanced matching
-  if (mainCategoryName === "SPECIALIZED & NICHE TOOLS") {
-    console.log(`🔧 SPECIALIZED & NICHE TOOLS requested - using enhanced matching`);
-    const specializedNicheTools = getSpecializedNicheTools(tools, mainCategoryName);
-    console.log(`✅ Found ${specializedNicheTools.length} specialized & niche tools`);
-    return specializedNicheTools;
-  }
-  
-  // Special case for "DATA & ANALYTICS AI TOOLS" - use enhanced matching
-  if (mainCategoryName === "DATA & ANALYTICS AI TOOLS") {
-    console.log(`📊 DATA & ANALYTICS AI TOOLS requested - using enhanced matching`);
-    const analyticsTools = getDataAnalyticsTools(tools, mainCategoryName);
-    console.log(`✅ Found ${analyticsTools.length} analytics tools`);
-    return analyticsTools;
-  }
-  
-  // Enhanced case for "MARKETING & SALES SOLUTIONS" - use enhanced matching
-  if (mainCategoryName === "MARKETING & SALES SOLUTIONS") {
-    console.log(`📈 MARKETING & SALES SOLUTIONS requested - using enhanced matching`);
-    const marketingSalesTools = getMarketingSalesTools(tools, mainCategoryName);
-    console.log(`✅ Found ${marketingSalesTools.length} marketing & sales tools`);
-    return marketingSalesTools;
-  }
-  
-  // Enhanced case for "COMMUNICATION & COLLABORATION AI TOOLS" - use enhanced matching
-  if (mainCategoryName === "COMMUNICATION & COLLABORATION AI TOOLS") {
-    console.log(`💬 COMMUNICATION & COLLABORATION AI TOOLS requested - using enhanced matching`);
-    const communicationCollaborationTools = getCommunicationCollaborationTools(tools, mainCategoryName);
-    console.log(`✅ Found ${communicationCollaborationTools.length} communication & collaboration tools`);
-    return communicationCollaborationTools;
-  }
-  
-  // Special case for "AUTOMATION PLATFORMS" - use enhanced matching
-  if (mainCategoryName === "AUTOMATION PLATFORMS") {
-    console.log(`🤖 AUTOMATION PLATFORMS requested - using enhanced matching`);
-    const automationTools = getAutomationPlatformsTools(tools, mainCategoryName);
-    console.log(`✅ Found ${automationTools.length} automation tools`);
-    return automationTools;
-  }
-  
-  // Enhanced case for "AI CHAT & ASSISTANTS" - use enhanced matching with priority
-  if (mainCategoryName === "AI CHAT & ASSISTANTS") {
-    console.log(`💬 AI CHAT & ASSISTANTS requested - using enhanced matching with priority`);
-    const chatAssistantTools = getAIChatAssistantsTools(tools, mainCategoryName);
-    console.log(`✅ Found ${chatAssistantTools.length} chat & assistant tools`);
-    return chatAssistantTools;
-  }
-  
-  // Special case for "CONTENT CREATION & WRITING" - use enhanced matching
-  if (mainCategoryName === "CONTENT CREATION & WRITING") {
-    console.log(`✍️ CONTENT CREATION & WRITING requested - using enhanced matching`);
-    const contentWritingTools = getContentCreationWritingTools(tools, mainCategoryName);
-    console.log(`✅ Found ${contentWritingTools.length} content creation & writing tools`);
-    return contentWritingTools;
-  }
-  
-  // Special case for "IMAGE & DESIGN TOOLS" - use enhanced matching
-  if (mainCategoryName === "IMAGE & DESIGN TOOLS") {
-    console.log(`🎨 IMAGE & DESIGN TOOLS requested - using enhanced matching`);
-    const imageDesignTools = getImageDesignTools(tools, mainCategoryName);
-    console.log(`✅ Found ${imageDesignTools.length} image & design tools`);
-    return imageDesignTools;
-  }
-  
-  // Special enhanced handling for VIDEO & MULTIMEDIA category
-  if (mainCategoryName === "VIDEO & MULTIMEDIA") {
-    console.log(`🎬 VIDEO & MULTIMEDIA category requested - using enhanced matching`);
-    const videoMultimediaTools = getVideoMultimediaTools(tools, mainCategoryName);
-    console.log(`✅ Found ${videoMultimediaTools.length} video & multimedia tools`);
-    return videoMultimediaTools;
-  }
-  
-  // Special enhanced handling for AUDIO & VOICE TOOLS category
-  if (mainCategoryName === "AUDIO & VOICE TOOLS") {
-    console.log(`🎵 AUDIO & VOICE TOOLS category requested - using enhanced matching`);
-    const audioVoiceTools = getAudioVoiceTools(tools, mainCategoryName);
-    console.log(`✅ Found ${audioVoiceTools.length} audio & voice tools`);
-    return audioVoiceTools;
-  }
-  
-  // Special enhanced handling for 3D & VISUALIZATION category
-  if (mainCategoryName === "3D & VISUALIZATION") {
-    console.log(`🧊 3D & VISUALIZATION category requested - using enhanced matching`);
-    const threeDVisualizationTools = get3DVisualizationTools(tools, mainCategoryName);
-    console.log(`✅ Found ${threeDVisualizationTools.length} 3D & visualization tools`);
-    return threeDVisualizationTools;
-  }
-  
-  // Enhanced handling for BUSINESS OPERATIONS & PRODUCTIVITY category
-  if (mainCategoryName === "BUSINESS OPERATIONS & PRODUCTIVITY") {
-    console.log(`💼 BUSINESS OPERATIONS & PRODUCTIVITY category requested - using enhanced matching`);
-    const businessProductivityTools = getBusinessOperationsProductivityTools(tools, mainCategoryName);
-    console.log(`✅ Found ${businessProductivityTools.length} business operations & productivity tools`);
-    return businessProductivityTools;
-  }
-  
-  // Find the main category configuration
-  const mainCategory = mainCategories.find(cat => cat.name === mainCategoryName);
-  
-  if (!mainCategory) {
-    console.warn(`❌ Main category "${mainCategoryName}" not found`);
-    return [];
-  }
-  
-  console.log(`📂 Found main category with ${mainCategory.subcategories.length} subcategories`);
-  
-  // Get tools that match any of the subcategories
-  const categoryTools = tools.filter(tool => {
-    if (!tool.category) return false;
-    
-    return mainCategory.subcategories.some(subcat => {
-      const normalizedToolCategory = tool.category.toLowerCase().trim();
-      const normalizedSubcat = subcat.toLowerCase().trim();
+  // Use optimized category-specific functions for better performance
+  switch (mainCategoryName) {
+    case "AI DEVELOPMENT & PLATFORMS":
+      return getAIDevelopmentPlatformsTools(tools, mainCategoryName);
+    case "EDUCATION & LEARNING":
+      return getEducationLearningTools(tools, mainCategoryName);
+    case "HEALTH & WELLNESS":
+      return getHealthWellnessTools(tools, mainCategoryName);
+    case "SPECIALIZED & NICHE TOOLS":
+      return getSpecializedNicheTools(tools, mainCategoryName);
+    case "DATA & ANALYTICS AI TOOLS":
+      return getDataAnalyticsTools(tools, mainCategoryName);
+    case "MARKETING & SALES SOLUTIONS":
+      return getMarketingSalesTools(tools, mainCategoryName);
+    case "COMMUNICATION & COLLABORATION AI TOOLS":
+      return getCommunicationCollaborationTools(tools, mainCategoryName);
+    case "AUTOMATION PLATFORMS":
+      return getAutomationPlatformsTools(tools, mainCategoryName);
+    case "AI CHAT & ASSISTANTS":
+      return getAIChatAssistantsTools(tools, mainCategoryName);
+    case "CONTENT CREATION & WRITING":
+      return getContentCreationWritingTools(tools, mainCategoryName);
+    case "IMAGE & DESIGN TOOLS":
+      return getImageDesignTools(tools, mainCategoryName);
+    case "VIDEO & MULTIMEDIA":
+      return getVideoMultimediaTools(tools, mainCategoryName);
+    case "AUDIO & VOICE TOOLS":
+      return getAudioVoiceTools(tools, mainCategoryName);
+    case "3D & VISUALIZATION":
+      return get3DVisualizationTools(tools, mainCategoryName);
+    case "BUSINESS OPERATIONS & PRODUCTIVITY":
+      return getBusinessOperationsProductivityTools(tools, mainCategoryName);
+    default:
+      // Fallback to original logic for unmapped categories
+      const mainCategory = mainCategories.find(cat => cat.name === mainCategoryName);
+      if (!mainCategory) return [];
       
-      return normalizedToolCategory === normalizedSubcat ||
-             normalizedToolCategory.includes(normalizedSubcat) ||
-             normalizedSubcat.includes(normalizedToolCategory);
-    });
-  });
-  
-  console.log(`✅ Found ${categoryTools.length} tools for main category "${mainCategoryName}"`);
-  
-  return categoryTools;
+      return tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCategory.subcategories.some(subcat => {
+          const normalizedToolCategory = tool.category.toLowerCase().trim();
+          const normalizedSubcat = subcat.toLowerCase().trim();
+          return normalizedToolCategory === normalizedSubcat ||
+                 normalizedToolCategory.includes(normalizedSubcat) ||
+                 normalizedSubcat.includes(normalizedToolCategory);
+        });
+      });
+  }
 };
