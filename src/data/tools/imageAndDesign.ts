@@ -80,7 +80,7 @@ export const imageAndDesign: Tool[] = [
     emoji: "✒️",
     color: "from-red-500 to-pink-600",
     directUrl: "https://tattoogpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=K44SzEyK0i8",
+    videoUrl: "https://www.youtube.com/watch?v=3dtGbNqXdPY",
     tags: ["tattoo design", "body art", "AI", "custom artwork"],
     category: "Image & Design",
     rating: 4.7,
