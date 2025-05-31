@@ -80,19 +80,6 @@ export const creativeAndMediaGPTs: Tool[] = [
     totalVotes: 8234
   },
   {
-    icon: Film,
-    title: "Movie Scene Maker GPT",
-    description: "Transform Yourself Into A Movie Star Become the star of your own cinematic adventure with Movie Scene Maker GPT. Create stunning, personalized movie scenes featuring you in any genre, setting, or storyline. Powered by GPT 4o Image Generation Technology.",
-    emoji: "🎭",
-    color: "from-red-500 to-purple-600",
-    directUrl: "https://moviescenemakergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=9fpWIE20z7s&t",
-    tags: ["movie scenes", "personalized content", "cinematic creation", "character integration", "visual storytelling"],
-    category: "Creative & Entertainment",
-    rating: 4.8,
-    totalVotes: 5678
-  },
-  {
     icon: Palette,
     title: "RESTYLE ME GPT",
     description: "Transform your images into any artistic style you can imagine, bringing your creative vision to life with detailed and stunning effects. Upload your photo and let our AI transform you into any style you can imagine – from Ghibli animation to cyberpunk, action figures to movie scenes. Powered by the New GPT 4o Image Generation Model",

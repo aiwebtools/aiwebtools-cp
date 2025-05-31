@@ -119,6 +119,19 @@ export const videoGenerationTools: Tool[] = [
     totalVotes: 4567
   },
   {
+    icon: Video,
+    title: "PixVerse Ai",
+    description: "AI-powered video generation platform that creates high-quality videos from text prompts and images. Advanced video synthesis with creative control and professional results.",
+    emoji: "🎥",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://pixverse.ai/",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377359320823500861/image.png?ex=6838ad54&is=68375bd4&hm=ceee738c816c8c0266ae87d3e2a23a67a23510b1bec01bea948744dfc3149612&",
+    tags: ["video generation", "ai video", "text to video", "image to video", "pixverse", "video synthesis", "creative control"],
+    category: "Video & Content Creation",
+    rating: 4.7,
+    totalVotes: 3456
+  },
+  {
     icon: Film,
     title: "Pika Labs",
     description: "AI video generator that creates stunning videos from text prompts or images. Easy-to-use platform for creating short-form video content.",
