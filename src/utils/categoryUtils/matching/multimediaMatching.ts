@@ -17,6 +17,9 @@ export const getVideoMultimediaTools = (tools: Tool[], categoryName: string): To
 
   // Other Priority Video & Multimedia Tools (second priority)
   const otherPriorityTools = [
+    'Movie Maker Studio AI SUITE',
+    'Music Video Maker AI Studio',
+    'STAGEMASTER AI SUITE FOR THE Performing Arts',
     'HeyGen – Interactive Avatar Creation Hub',
     'HeyGen',
     'Google Flow Editing Studio',
@@ -200,6 +203,17 @@ export { getAudioVoiceTools } from "./audioVoiceMatching";
 export const get3DVisualizationTools = (tools: Tool[], categoryName: string): Tool[] => {
   console.log(`🧊 3D & VISUALIZATION enhanced matching for: ${categoryName}`);
   
+  // Priority 3D & Visualization Tools (first priority - user specified)
+  const priority3DVisualizationTools = [
+    '3D Print GPT',
+    'Meshy Ai - TEXT TO 3D Generator',
+    'Meshy AI',
+    'Spline',
+    'Luma AI',
+    'Polycam',
+    'Blender'
+  ];
+
   const threeDVisualizationKeywords = [
     '3d', 'three dimensional', 'modeling', 'rendering', 'visualization',
     'virtual reality', 'vr', 'augmented reality', 'ar', 'mixed reality',
@@ -208,7 +222,8 @@ export const get3DVisualizationTools = (tools: Tool[], categoryName: string): To
     'unity', 'unreal', 'blender', 'maya', 'cinema 4d', 'sketchup'
   ];
 
-  const matchedTools = tools.filter(tool => {
+  // Get all tools that match the category
+  const categoryMatchedTools = tools.filter(tool => {
     if (!tool.title && !tool.description && !tool.category) return false;
     
     const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
@@ -232,6 +247,25 @@ export const get3DVisualizationTools = (tools: Tool[], categoryName: string): To
     return keywordMatch || categoryMatch;
   });
 
-  console.log(`✅ Found ${matchedTools.length} 3D & visualization tools`);
-  return matchedTools;
+  // Separate tools into priority groups
+  const priorityTools = categoryMatchedTools.filter(tool => 
+    priority3DVisualizationTools.some(priorityName => 
+      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '') ||
+      tool.title?.toLowerCase() === priorityName.toLowerCase()
+    )
+  );
+
+  const remainingTools = categoryMatchedTools.filter(tool => 
+    !priorityTools.includes(tool)
+  );
+
+  // Combine in priority order
+  const finalTools = [
+    ...priorityTools,
+    ...remainingTools
+  ];
+
+  console.log(`✅ Found ${finalTools.length} 3D & visualization tools (${priorityTools.length} priority, ${remainingTools.length} remaining)`);
+  return finalTools;
 };
