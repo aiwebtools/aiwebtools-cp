@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   TrendingUp, 
@@ -10,10 +9,23 @@ import {
   Target,
   Building,
   CreditCard,
-  Banknote
+  Banknote,
+  ChartBar
 } from "lucide-react";
 
 export const businessAndFinanceGPTs: Tool[] = [
+  {
+    icon: ChartBar,
+    title: "Business Analyst GPT",
+    description: "Professional AI-powered business analyst assistant that helps analyze business processes, performance metrics, market trends, and strategic opportunities. Provides comprehensive business intelligence, data analysis, process optimization recommendations, and strategic insights to drive informed decision-making and business growth.",
+    emoji: "📊",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-683aa58c19348191b966b332ba14b282-business-analyst-gpt",
+    tags: ["business analysis", "data analysis", "market research", "business intelligence", "strategic planning", "performance metrics"],
+    category: "Business & Finance",
+    rating: 4.7,
+    totalVotes: 4156
+  },
   {
     icon: TrendingUp,
     title: "Trader GPT",

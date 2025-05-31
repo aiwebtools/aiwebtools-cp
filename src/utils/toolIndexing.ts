@@ -15,24 +15,10 @@ export const verifyToolIndexing = () => {
     'VIRTUAL TRY ON STYLIST GPT',
     'SHOPPING GPT',
     'COMMERCIAL SCENE IMAGE GENERATOR GPT',
-    'SCREENPLAY WRITER GPT'
+    'SCREENPLAY WRITER GPT',
+    'Business Analyst GPT'
   ];
   
-  const indexingReport = {
-    totalTools: allTools.length,
-    aiWebToolsGPTs: aiWebToolsGPTs.length,
-    aiWebToolsInAllTools: 0,
-    toolsWithCategories: 0,
-    toolsWithDirectUrls: 0,
-    toolsWithTags: 0,
-    toolsWithDescriptions: 0,
-    categoriesFound: new Set<string>(),
-    duplicateTitles: new Map<string, number>(),
-    indexingIssues: [] as string[],
-    missingAiWebToolsGPTs: [] as string[],
-    recentlyAddedToolsFound: [] as string[]
-  };
-
   // Check how many AI Web Tools GPTs are actually in allTools
   const aiWebToolTitles = new Set(aiWebToolsGPTs.map(t => t.title));
   
