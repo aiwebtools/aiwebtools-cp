@@ -33,14 +33,15 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
     hasMoreTools
   } = useFeaturedToolsState();
 
-  // Find Marriage Mender GPT index to determine initial display count
+  // Find Marriage Mender GPT index with more flexible matching
   const marriageMenderIndex = filteredTools.findIndex(tool => 
-    tool.title.toLowerCase().includes('marriage mender')
+    tool.title.toLowerCase().includes('marriage mender') ||
+    tool.title.toLowerCase().includes('marriage') && tool.title.toLowerCase().includes('mender')
   );
   
-  // Set initial display count based on Marriage Mender GPT position or default to 20
-  const initialDisplayCount = marriageMenderIndex !== -1 ? marriageMenderIndex + 1 : 20;
-  
+  // Set initial display count based on Marriage Mender GPT position or default to 25
+  const initialDisplayCount = marriageMenderIndex !== -1 ? marriageMenderIndex + 1 : 25;
+
   // Calculate actual displayed count based on show more state
   const actualDisplayedCount = (!selectedCategory && !searchTerm && !showAllFeaturedTools) 
     ? Math.min(initialDisplayCount, filteredTools.length)
@@ -113,6 +114,7 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
   };
 
   const handleShowMoreFeaturedTools = () => {
+    console.log('🚀 Show More Featured Tools clicked!');
     setShowAllFeaturedTools(true);
     setDisplayedCount(filteredTools.length); // Show all tools
   };
@@ -133,6 +135,22 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
 
   return (
     <div className="w-full">
+      {/* Show More Featured Tools Button - placed above search bar */}
+      {shouldShowFeaturedToolsButton && (
+        <div className="text-center mb-8 px-4">
+          <Button
+            onClick={handleShowMoreFeaturedTools}
+            size="lg"
+            className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
+          >
+            ✨ Show More Featured AI Web Tools GPTs
+          </Button>
+          <div className="mt-4 text-purple-300 text-sm">
+            Discover {filteredTools.length - initialDisplayCount} more amazing AI tools from our collection
+          </div>
+        </div>
+      )}
+
       <div className="px-4 sm:px-0">
         <CategoryFilters
           categoriesWithCounts={categoriesWithCounts}
