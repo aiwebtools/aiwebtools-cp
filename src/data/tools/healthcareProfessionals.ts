@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Heart, 
@@ -64,18 +65,6 @@ export const healthcareProfessionals: Tool[] = [
     category: "Healthcare Professionals",
     rating: 4.6,
     totalVotes: 3234
-  },
-  {
-    icon: Activity,
-    title: "Health Metrics Analyzer",
-    description: "Advanced analytics for patient health metrics, vital signs monitoring, and predictive health insights.",
-    emoji: "📊",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://example.com/healthmetrics",
-    tags: ["health analytics", "vital signs", "patient monitoring", "predictive health", "medical data"],
-    category: "Healthcare Professionals",
-    rating: 4.3,
-    totalVotes: 2876
   },
   {
     icon: Microscope,
