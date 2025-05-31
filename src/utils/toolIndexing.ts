@@ -1,3 +1,4 @@
+
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
 import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
@@ -18,6 +19,21 @@ export const verifyToolIndexing = () => {
     'SCREENPLAY WRITER GPT',
     'Business Analyst GPT'
   ];
+  
+  const indexingReport = {
+    totalTools: allTools.length,
+    aiWebToolsGPTs: aiWebToolsGPTs.length,
+    aiWebToolsInAllTools: 0,
+    toolsWithCategories: 0,
+    toolsWithDirectUrls: 0,
+    toolsWithTags: 0,
+    toolsWithDescriptions: 0,
+    categoriesFound: new Set<string>(),
+    duplicateTitles: new Map<string, number>(),
+    indexingIssues: [] as string[],
+    missingAiWebToolsGPTs: [] as string[],
+    recentlyAddedToolsFound: [] as string[]
+  };
   
   // Check how many AI Web Tools GPTs are actually in allTools
   const aiWebToolTitles = new Set(aiWebToolsGPTs.map(t => t.title));
