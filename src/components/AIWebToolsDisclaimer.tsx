@@ -69,8 +69,8 @@ const AIWebToolsDisclaimer = ({ tool }: AIWebToolsDisclaimerProps) => {
             <div>
               <h4 className="text-cyan-400 font-semibold mb-2">Use at Your Own Risk</h4>
               <p>
-                When you click "USE IT NOW," you will be redirected to an external AI tool. Please review 
-                their terms of service, privacy policy, and any applicable fees before using their service.
+                When you click "USE IT NOW," you will be redirected to access {tool.title}. Please review 
+                the terms of service, privacy policy, and any applicable fees before using the service.
               </p>
             </div>
 
@@ -94,8 +94,8 @@ const AIWebToolsDisclaimer = ({ tool }: AIWebToolsDisclaimerProps) => {
             <div>
               <h4 className="text-cyan-400 font-semibold mb-2">Data Protection</h4>
               <p>
-                Each AI tool has its own data handling practices. We recommend reviewing their privacy 
-                policies before sharing personal or sensitive information.
+                Please review our privacy policy for information about data handling practices before 
+                sharing personal or sensitive information.
               </p>
             </div>
 
