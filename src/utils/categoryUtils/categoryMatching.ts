@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 
 export const getAudioVoiceTools = (tools: Tool[], categoryName: string): Tool[] => {
@@ -270,7 +271,6 @@ export const get3DVisualizationTools = (tools: Tool[], categoryName: string): To
   return threeDVisualizationTools;
 };
 
-// Add placeholder functions for the missing imports to fix build errors
 export const getDataAnalyticsTools = (tools: Tool[], categoryName: string): Tool[] => {
   console.log(`📊 Getting data analytics tools for category: "${categoryName}"`);
   
@@ -294,7 +294,40 @@ export const getDataAnalyticsTools = (tools: Tool[], categoryName: string): Tool
       'financial analytics', 'hr analytics', 'web analytics',
       
       // Specific tools mentioned
-      'data research analysis report', 'business reports', 'research reports'
+      'data research analysis report', 'business reports', 'research reports',
+      'illuminous', 'world data explorer', 'probability gpt', 'askcsv',
+      'sweephy', 'compar', 'claude', 'chatgpt', 'gemini', 'datarobot',
+      'finchat', 'chaingpt', 'fact checker', 'person information finder',
+      'property data finder', 'perplexity', 'google notebook lm',
+      
+      // Data processing and manipulation
+      'csv analysis', 'data cleaning', 'data transformation', 'data preprocessing',
+      'data aggregation', 'data correlation', 'data comparison', 'data validation',
+      'data quality', 'data governance', 'data lineage', 'data catalog',
+      
+      // Statistical and mathematical analysis
+      'statistics', 'statistical modeling', 'regression analysis', 'correlation analysis',
+      'hypothesis testing', 'probability analysis', 'distribution analysis',
+      'time series analysis', 'forecasting', 'trend analysis', 'pattern recognition',
+      
+      // Advanced analytics
+      'machine learning analytics', 'ai analytics', 'predictive modeling',
+      'descriptive analytics', 'diagnostic analytics', 'prescriptive analytics',
+      'real-time analytics', 'streaming analytics', 'batch analytics',
+      
+      // Research and fact-checking
+      'research analysis', 'fact checking', 'data verification', 'information validation',
+      'evidence analysis', 'source verification', 'data integrity', 'accuracy assessment',
+      
+      // Financial and blockchain analytics
+      'financial data analysis', 'market analysis', 'investment analysis',
+      'blockchain analytics', 'cryptocurrency analysis', 'trading analytics',
+      'risk analysis', 'credit analysis', 'property analysis',
+      
+      // Information gathering and analysis
+      'information finder', 'data aggregation', 'data collection', 'web scraping',
+      'data extraction', 'information extraction', 'entity recognition',
+      'sentiment analysis', 'text analytics', 'document analysis'
     ];
     
     const hasDataAnalyticsKeyword = dataAnalyticsKeywords.some(keyword => 
@@ -305,10 +338,31 @@ export const getDataAnalyticsTools = (tools: Tool[], categoryName: string): Tool
       tool.category.toLowerCase().includes('analytics') ||
       tool.category.toLowerCase().includes('data') ||
       tool.category.toLowerCase().includes('intelligence') ||
-      tool.category.toLowerCase().includes('reporting')
+      tool.category.toLowerCase().includes('reporting') ||
+      tool.category.toLowerCase().includes('research') ||
+      tool.category.toLowerCase().includes('analysis') ||
+      tool.category.toLowerCase().includes('statistical') ||
+      tool.category.toLowerCase().includes('business intelligence') ||
+      tool.category.toLowerCase().includes('fact checking') ||
+      tool.category.toLowerCase().includes('information finder')
     );
     
-    return hasDataAnalyticsKeyword || categoryMatch;
+    // Special handling for known data analytics tool names
+    const dataAnalyticsToolNames = [
+      'illuminous', 'world data explorer', 'data research analysis report',
+      'probability gpt', 'askcsv', 'sweephy', 'compar', 'claude',
+      'chatgpt', 'gemini', 'tableau', 'power bi', 'datarobot',
+      'looker', 'qlik sense', 'finchat', 'chaingpt', 'fact checker',
+      'person information finder', 'property data finder', 'perplexity',
+      'google notebook lm', 'business intelligence', 'analytics platform'
+    ];
+    
+    const toolNameMatch = dataAnalyticsToolNames.some(name => 
+      tool.title.toLowerCase().includes(name) ||
+      (tool.directUrl && tool.directUrl.toLowerCase().includes(name.replace(/\s+/g, '')))
+    );
+    
+    return hasDataAnalyticsKeyword || categoryMatch || toolNameMatch;
   });
   
   console.log(`✅ Found ${dataAnalyticsTools.length} data analytics tools`);
@@ -648,5 +702,3 @@ export const getBusinessOperationsProductivityTools = (tools: Tool[], categoryNa
   console.log(`✅ Found ${businessOperationsProductivityTools.length} business operations & productivity tools`);
   return businessOperationsProductivityTools;
 };
-
-export { getBusinessOperationsProductivityTools } from "./categoryMatching";
