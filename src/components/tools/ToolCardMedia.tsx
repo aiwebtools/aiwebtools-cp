@@ -12,15 +12,16 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
   const hasVideo = tool.videoUrl && tool.videoUrl.trim() !== '';
   
-  // Always prioritize image if available, regardless of tool origin
-  const shouldShowImage = hasImage;
-  const shouldShowVideo = hasVideo && !hasImage;
+  // Prioritize video if available, then fallback to image
+  const shouldShowVideo = hasVideo;
+  const shouldShowImage = hasImage && !hasVideo;
   
   console.log('ToolCardMedia for', tool.title, {
     hasImage,
     hasVideo,
     shouldShowImage,
     shouldShowVideo,
+    videoUrl: tool.videoUrl,
     imageUrl: tool.imageUrl
   });
   
@@ -45,7 +46,19 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
       className={`${isFeatured ? 'mb-6' : 'mb-4'} rounded-lg overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative group-hover:scale-105 transition-transform duration-200`}
       style={{ height: imageHeight }}
     >
-      {shouldShowImage ? (
+      {shouldShowVideo ? (
+        <iframe
+          width="100%"
+          height="100%"
+          src={getOptimizedEmbedUrl(tool.videoUrl!)}
+          title={`${tool.title} Demo`}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          className="w-full h-full rounded-lg"
+          loading="lazy"
+        />
+      ) : shouldShowImage ? (
         <>
           <img 
             src={tool.imageUrl} 
@@ -70,18 +83,6 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
             {tool.emoji}
           </div>
         </>
-      ) : shouldShowVideo ? (
-        <iframe
-          width="100%"
-          height="100%"
-          src={getOptimizedEmbedUrl(tool.videoUrl!)}
-          title={`${tool.title} Demo`}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          className="w-full h-full rounded-lg"
-          loading="lazy"
-        />
       ) : (
         /* Default emoji display when no image or video */
         <div className="flex items-center justify-center text-6xl opacity-50">

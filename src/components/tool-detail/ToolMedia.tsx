@@ -52,6 +52,29 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
       videoError
     });
 
+    // Prioritize video if available, then fallback to image
+    if (tool.videoUrl && !videoError) {
+      const embedUrl = getOptimizedEmbedUrl(tool.videoUrl);
+      
+      return (
+        <div className="relative w-full h-60 sm:h-80 overflow-hidden rounded-xl bg-gray-800">
+          <iframe
+            width="100%"
+            height="100%"
+            src={embedUrl}
+            title={`${tool.title} Demo`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="w-full h-full rounded-xl"
+            loading="lazy"
+            onError={handleVideoError}
+            onLoad={() => console.log('Video loaded successfully for:', tool.title)}
+          />
+        </div>
+      );
+    }
+
     if (tool.imageUrl && !imageError) {
       return (
         <div className="relative w-full h-60 sm:h-80 overflow-hidden rounded-xl bg-gray-800">
@@ -70,28 +93,6 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
             decoding="async"
             onLoad={() => setImageLoaded(true)}
             onError={() => setImageError(true)}
-          />
-        </div>
-      );
-    }
-    
-    if (tool.videoUrl && !videoError) {
-      const embedUrl = getOptimizedEmbedUrl(tool.videoUrl);
-      
-      return (
-        <div className="relative w-full h-60 sm:h-80 overflow-hidden rounded-xl bg-gray-800">
-          <iframe
-            width="100%"
-            height="100%"
-            src={embedUrl}
-            title={`${tool.title} Demo`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            className="w-full h-full rounded-xl"
-            loading="lazy"
-            onError={handleVideoError}
-            onLoad={() => console.log('Video loaded successfully for:', tool.title)}
           />
         </div>
       );
