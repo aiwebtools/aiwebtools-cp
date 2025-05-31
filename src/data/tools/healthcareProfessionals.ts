@@ -89,17 +89,5 @@ export const healthcareProfessionals: Tool[] = [
     category: "Healthcare Professionals",
     rating: 4.4,
     totalVotes: 3123
-  },
-  {
-    icon: HelpCircle,
-    title: "Medical Research Assistant",
-    description: "AI-powered research tool for medical literature review, clinical study analysis, and evidence-based practice.",
-    emoji: "🔍",
-    color: "from-teal-500 to-blue-600",
-    directUrl: "https://example.com/medicalresearch",
-    tags: ["medical research", "literature review", "clinical studies", "evidence-based practice", "research assistance"],
-    category: "Healthcare Professionals",
-    rating: 4.5,
-    totalVotes: 2987
   }
 ];
