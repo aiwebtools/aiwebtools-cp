@@ -5,6 +5,84 @@ import { isSimilarCategory } from "../normalization";
 export const getMarketingSalesTools = (tools: Tool[], categoryName: string): Tool[] => {
   console.log(`📈 MARKETING & SALES enhanced matching for: ${categoryName}`);
   
+  // Priority Marketing & Sales Tools (first priority - user specified)
+  const priorityMarketingSalesTools = [
+    'SalesFlow',
+    'Outranking',
+    'Scalenut',
+    'SurferSEO',
+    'CopySpace.ai',
+    'Printify',
+    'Mentum AI',
+    'Sales Handy',
+    'WarmBox',
+    'STRIPO',
+    'Shinefy',
+    'ShineRanker',
+    'Revealbot',
+    'KeywordInsights',
+    'SalesFlare',
+    'Markopolo AI',
+    'Hypefury',
+    'Predis',
+    'Ranked',
+    'Meet Alfred',
+    'DIIB',
+    'SEObility',
+    'SENDER AI',
+    'Nitreo',
+    'KENJI',
+    'FLOCK SOCIAL',
+    'Kicksta',
+    'Subpals',
+    'StormViews',
+    'Sonuker',
+    'Confect.io',
+    'ContentStudio',
+    'Chatfuel',
+    'MediaMister',
+    'Shopify Magic',
+    'Sonetel',
+    'Keeper.ai',
+    'JourneyPlan.co',
+    'Spoken.io',
+    'AWEBER',
+    'MailRush.io',
+    'ActiveCampaign',
+    'GroupMail',
+    'Benchmark Email',
+    'AnswerThePublic',
+    'SiteChecker AI',
+    'Webscrape AI',
+    'WP-Rocket',
+    'SimilarContent',
+    'Postaga',
+    'JVZOO',
+    'MailerGPT',
+    'Profitology',
+    'MooSend',
+    'Juice.ai',
+    'Luna',
+    'Best Regards',
+    'GetResponse',
+    'Regie.ai',
+    'FOLK',
+    'Hunter.io',
+    'ContactOut',
+    'DirectIQ',
+    'Marketing Consultant GPT',
+    'LOGO AND AD GENERATOR GPT',
+    'Jasper',
+    'Copy.ai',
+    'Writesonic',
+    'Mailchimp',
+    'HubSpot',
+    'Google Analytics',
+    'SEMrush',
+    'Ahrefs',
+    'SHOPPING GPT'
+  ];
+
   const marketingSalesKeywords = [
     'salesflow', 'outranking', 'scalenut', 'surferseo', 'copyspace', 'printify',
     'mentum ai', 'sales handy', 'warmbox', 'stripo', 'shinefy', 'shineranker',
@@ -24,33 +102,11 @@ export const getMarketingSalesTools = (tools: Tool[], categoryName: string): Too
     'engagement', 'conversion', 'analytics', 'growth', 'outreach', 'campaigns'
   ];
 
-  const marketingToolNames = [
-    'SalesFlow', 'Outranking', 'Scalenut', 'SurferSEO', 'CopySpace.ai', 'Printify',
-    'Mentum AI', 'Sales Handy', 'WarmBox', 'STRIPO', 'Shinefy', 'ShineRanker',
-    'Revealbot', 'KeywordInsights', 'SalesFlare', 'Markopolo AI', 'Hypefury',
-    'Predis', 'Ranked', 'Meet Alfred', 'DIIB', 'SEObility', 'SENDER AI',
-    'Nitreo', 'KENJI', 'FLOCK SOCIAL', 'Kicksta', 'Subpals', 'StormViews',
-    'Sonuker', 'Confect.io', 'ContentStudio', 'Chatfuel', 'MediaMister',
-    'Shopify Magic', 'Sonetel', 'Keeper.ai', 'JourneyPlan.co', 'Spoken.io',
-    'AWEBER', 'MailRush.io', 'ActiveCampaign', 'GroupMail', 'Benchmark Email',
-    'AnswerThePublic', 'SiteChecker AI', 'Webscrape AI', 'WP-Rocket', 'SimilarContent',
-    'Postaga', 'JVZOO', 'MailerGPT', 'Profitology', 'MooSend', 'Juice.ai',
-    'Luna', 'Best Regards', 'GetResponse', 'Regie.ai', 'FOLK', 'Hunter.io',
-    'ContactOut', 'DirectIQ', 'Marketing Consultant GPT', 'LOGO AND AD GENERATOR GPT',
-    'Jasper', 'Copy.ai', 'Writesonic', 'Mailchimp', 'HubSpot', 'Google Analytics',
-    'SEMrush', 'Ahrefs', 'SHOPPING GPT'
-  ];
-
-  const matchedTools = tools.filter(tool => {
+  // Get all tools that match the category
+  const categoryMatchedTools = tools.filter(tool => {
     if (!tool.title && !tool.description && !tool.category) return false;
     
     const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
-    
-    // Direct name matching
-    const nameMatch = marketingToolNames.some(name => 
-      tool.title?.toLowerCase().includes(name.toLowerCase()) ||
-      name.toLowerCase().includes(tool.title?.toLowerCase() || '')
-    );
     
     // Keyword matching
     const keywordMatch = marketingSalesKeywords.some(keyword => 
@@ -71,9 +127,28 @@ export const getMarketingSalesTools = (tools: Tool[], categoryName: string): Too
       tool.category.toLowerCase().includes('crm')
     );
 
-    return nameMatch || keywordMatch || categoryMatch;
+    return keywordMatch || categoryMatch;
   });
 
-  console.log(`✅ Found ${matchedTools.length} marketing & sales tools`);
-  return matchedTools;
+  // Separate tools into priority groups
+  const priorityTools = categoryMatchedTools.filter(tool => 
+    priorityMarketingSalesTools.some(priorityName => 
+      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '') ||
+      tool.title?.toLowerCase() === priorityName.toLowerCase()
+    )
+  );
+
+  const remainingTools = categoryMatchedTools.filter(tool => 
+    !priorityTools.includes(tool)
+  );
+
+  // Combine in priority order
+  const finalTools = [
+    ...priorityTools,
+    ...remainingTools
+  ];
+
+  console.log(`✅ Found ${finalTools.length} marketing & sales tools (${priorityTools.length} priority, ${remainingTools.length} remaining)`);
+  return finalTools;
 };
