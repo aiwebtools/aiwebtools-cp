@@ -9,7 +9,8 @@ import {
   ImageIcon as Image, 
   Sparkles,
   BookOpen,
-  Wand2
+  Wand2,
+  Edit
 } from "lucide-react";
 
 export const creativeAndMediaGPTs: Tool[] = [
