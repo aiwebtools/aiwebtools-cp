@@ -84,6 +84,14 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     return allToolsWithPriority;
   }
   
+  // Special case for "DATA & ANALYTICS AI TOOLS" - use enhanced matching
+  if (mainCategoryName === "DATA & ANALYTICS AI TOOLS") {
+    console.log(`📊 DATA & ANALYTICS AI TOOLS requested - using enhanced matching`);
+    const analyticsTools = getDataAnalyticsTools(tools, mainCategoryName);
+    console.log(`✅ Found ${analyticsTools.length} analytics tools`);
+    return analyticsTools;
+  }
+  
   // Special enhanced handling for VIDEO & MULTIMEDIA category
   if (mainCategoryName === "VIDEO & MULTIMEDIA") {
     console.log(`🎬 VIDEO & MULTIMEDIA category requested`);
