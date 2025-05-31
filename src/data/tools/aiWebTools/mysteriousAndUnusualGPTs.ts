@@ -1,6 +1,6 @@
 
 import { Tool } from "@/types/tools";
-import { Eye, Sparkles, Zap, Ghost, Telescope, Moon, Star, Mystery, Search, Brain } from "lucide-react";
+import { Eye, Sparkles, Zap, Ghost, Telescope, Moon, Star, Search, Brain, HelpCircle } from "lucide-react";
 
 export const mysteriousAndUnusualGPTs: Tool[] = [
   {
