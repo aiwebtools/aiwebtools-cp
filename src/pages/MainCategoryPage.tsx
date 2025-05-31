@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -28,9 +29,20 @@ const MainCategoryPage = () => {
   // Find the main category
   const mainCategory = mainCategories.find(cat => cat.name === decodedCategoryName);
   
-  // Scroll to top when category changes
+  // Scroll to top when category changes - enhanced for immediate effect
   useEffect(() => {
+    // Immediate scroll to top
     window.scrollTo(0, 0);
+    
+    // Also use requestAnimationFrame to ensure it happens after any layout changes
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+    });
+    
+    // Additional timeout to catch any delayed renders
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
   }, [decodedCategoryName]);
   
   if (!mainCategory) {

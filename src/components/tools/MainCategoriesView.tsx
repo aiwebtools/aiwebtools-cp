@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { mainCategories } from "@/utils/mainCategoryMapping";
+import { useNavigate } from "react-router-dom";
 
 interface MainCategoriesViewProps {
   mainCategoryCounts: Record<string, number>;
@@ -9,6 +10,19 @@ interface MainCategoriesViewProps {
 }
 
 const MainCategoriesView = ({ mainCategoryCounts, onMainCategoryClick }: MainCategoriesViewProps) => {
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (mainCategoryName: string) => {
+    // Scroll to top immediately before navigation
+    window.scrollTo(0, 0);
+    
+    // Navigate to main category page instead of just calling the onClick
+    navigate(`/main-category/${encodeURIComponent(mainCategoryName)}`);
+    
+    // Still call the original handler for any state updates
+    onMainCategoryClick(mainCategoryName);
+  };
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
       {mainCategories.map((mainCat) => {
@@ -18,7 +32,7 @@ const MainCategoriesView = ({ mainCategoryCounts, onMainCategoryClick }: MainCat
         return (
           <Button
             key={mainCat.name}
-            onClick={() => onMainCategoryClick(mainCat.name)}
+            onClick={() => handleCategoryClick(mainCat.name)}
             variant="outline"
             size="sm"
             className="group relative overflow-hidden transition-all duration-300 transform hover:scale-105 text-xs border h-auto py-4 px-4 min-w-0 bg-gradient-to-br from-purple-600/20 to-blue-600/20 border-purple-500/30 text-gray-200 hover:from-purple-600/30 hover:to-blue-600/30 hover:text-white hover:shadow-md hover:border-purple-400/50"

@@ -15,6 +15,9 @@ const CategoryPageSelection = () => {
   const mainCategoryCounts = getMainCategoriesWithCounts(allTools);
 
   const handleMainCategoryClick = (mainCategoryName: string) => {
+    // Scroll to top immediately before navigation
+    window.scrollTo(0, 0);
+    
     // Navigate to main category page
     navigate(`/main-category/${encodeURIComponent(mainCategoryName)}`);
   };
