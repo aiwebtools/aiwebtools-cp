@@ -103,22 +103,42 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
 
   const finalResults = Array.from(combinedResults.values());
 
-  // Enhanced scoring that prioritizes exact matches and AI Web Tools GPTs
-  const scoredResults = finalResults.map(tool => ({
+  // CRITICAL: First, separate exact matches from all other results
+  const lowerSearchTerm = cleanSearchTerm.toLowerCase();
+  const exactMatches: Tool[] = [];
+  const nonExactMatches: Tool[] = [];
+
+  finalResults.forEach(tool => {
+    if (tool.title.toLowerCase() === lowerSearchTerm) {
+      exactMatches.push(tool);
+    } else {
+      nonExactMatches.push(tool);
+    }
+  });
+
+  console.log(`🎯 EXACT MATCHES found: ${exactMatches.length}`, exactMatches.map(t => t.title));
+
+  // Score non-exact matches normally
+  const scoredNonExactResults = nonExactMatches.map(tool => ({
     tool,
     score: tool.directUrl?.includes('lovable.app') ? 
       scoreAIWebToolsGPT(tool, cleanSearchTerm) : 
       scoreRegularTool(tool, cleanSearchTerm, expandedKeywords)
   }));
 
-  // Sort by score (highest first)
-  scoredResults.sort((a, b) => b.score - a.score);
+  // Sort non-exact matches by score
+  scoredNonExactResults.sort((a, b) => b.score - a.score);
 
-  const sortedResults = scoredResults.map(result => result.tool);
+  // GUARANTEE: Exact matches ALWAYS come first, followed by scored results
+  const sortedResults = [
+    ...exactMatches, // Exact matches first (unsorted among themselves is fine)
+    ...scoredNonExactResults.map(result => result.tool) // Then scored results
+  ];
   
   console.log(`✅ Enhanced search complete: ${sortedResults.length} total results`);
   console.log(`🎯 AI Web Tools results: ${aiWebToolsResults.length}`);
-  console.log(`📋 Top 15 results:`, sortedResults.slice(0, 15).map(t => `${t.title} (score: ${scoredResults.find(r => r.tool.title === t.title)?.score})`));
+  console.log(`🏆 EXACT MATCHES: ${exactMatches.length} (will appear first)`);
+  console.log(`📋 Top 15 results:`, sortedResults.slice(0, 15).map((t, i) => `${i+1}. ${t.title}`));
   
   return sortedResults;
 };
@@ -133,10 +153,8 @@ const scoreRegularTool = (tool: Tool, searchTerm: string, expandedKeywords: stri
   
   let score = 0;
 
-  // EXACT MATCHES (Highest Priority) - MASSIVELY INCREASED
-  if (lowerTitle === lowerSearchTerm) {
-    score += 10000; // Perfect match gets massive boost
-  }
+  // NOTE: We no longer give exact matches highest score here because they're handled separately above
+  // This function only scores non-exact matches
 
   // EXACT TITLE CONTAINS EXACT SEARCH (Very High Priority) - INCREASED
   if (lowerTitle.includes(lowerSearchTerm) && lowerSearchTerm.length > 3) {
