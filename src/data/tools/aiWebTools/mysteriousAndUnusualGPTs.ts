@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Eye, 
@@ -11,13 +12,14 @@ import {
   Crown,
   Shield,
   Telescope,
-  Globe
+  Globe,
+  Search
 } from "lucide-react";
 
 export const mysteriousAndUnusualGPTs: Tool[] = [
   {
     icon: Globe,
-    title: ""IF AI RULED THE WORLD" - AI SIMULATION GPT",
+    title: "\"IF AI RULED THE WORLD\" - AI SIMULATION GPT",
     description: "This is a simulation to evaluate the actions of measuring the thought process behind an AI who thinks it is the Omni Controller of the world. This is for research purposes only",
     emoji: "🌍",
     color: "from-red-500 to-purple-600",
