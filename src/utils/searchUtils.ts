@@ -133,19 +133,30 @@ const scoreRegularTool = (tool: Tool, searchTerm: string, expandedKeywords: stri
   
   let score = 0;
 
-  // EXACT MATCHES (Highest Priority)
+  // EXACT MATCHES (Highest Priority) - MASSIVELY INCREASED
   if (lowerTitle === lowerSearchTerm) {
-    score += 1000; // Perfect match
+    score += 10000; // Perfect match gets massive boost
   }
 
-  // TITLE MATCHING (High Priority)
+  // EXACT TITLE CONTAINS EXACT SEARCH (Very High Priority) - INCREASED
+  if (lowerTitle.includes(lowerSearchTerm) && lowerSearchTerm.length > 3) {
+    // Special boost for longer search terms that appear in title
+    const searchWords = lowerSearchTerm.split(' ');
+    const titleContainsAllWords = searchWords.every(word => lowerTitle.includes(word));
+    
+    if (titleContainsAllWords) {
+      score += 5000; // High boost for titles containing all search words
+    }
+  }
+
+  // TITLE MATCHING (High Priority) - INCREASED
   if (lowerTitle.startsWith(lowerSearchTerm)) {
-    score += 800; // Title starts with search
+    score += 4000; // Title starts with search - increased from 800
   } else if (lowerTitle.includes(lowerSearchTerm)) {
-    score += 600; // Title contains search
+    score += 3000; // Title contains search - increased from 600
   }
 
-  // WORD-LEVEL MATCHING
+  // WORD-LEVEL MATCHING - ENHANCED
   const titleWords = lowerTitle.split(' ');
   const searchWords = lowerSearchTerm.split(' ');
   
@@ -153,11 +164,11 @@ const scoreRegularTool = (tool: Tool, searchTerm: string, expandedKeywords: stri
   titleWords.forEach(titleWord => {
     searchWords.forEach(searchWord => {
       if (titleWord === searchWord) {
-        score += 400; // Exact word match
+        score += 800; // Exact word match - increased from 400
       } else if (titleWord.startsWith(searchWord) && searchWord.length >= 3) {
-        score += 300; // Word starts with search
+        score += 600; // Word starts with search - increased from 300
       } else if (titleWord.includes(searchWord) && searchWord.length >= 3) {
-        score += 200; // Word contains search
+        score += 400; // Word contains search - increased from 200
       }
     });
   });
