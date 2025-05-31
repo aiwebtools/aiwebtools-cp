@@ -21,8 +21,9 @@ const MobileMenu = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [displayedCount, setDisplayedCount] = useState(50); // Start with 50 results
+  const [displayedCount, setDisplayedCount] = useState(50);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const searchRef = useRef(null);
 
@@ -60,11 +61,13 @@ const MobileMenu = () => {
         categoriesSection.scrollIntoView({ behavior: 'smooth' });
       }
     }
+    setIsMenuOpen(false);
   };
 
   const handleToolClick = (toolIndex: number) => {
     setSearchTerm("");
     setIsSearchOpen(false);
+    setIsMenuOpen(false);
     navigate(`/tool/${toolIndex}`);
   };
 
@@ -76,6 +79,7 @@ const MobileMenu = () => {
       createTimePortalEffect(tool.directUrl);
       setSearchTerm("");
       setIsSearchOpen(false);
+      setIsMenuOpen(false);
     }
   };
 
@@ -83,6 +87,12 @@ const MobileMenu = () => {
     setSearchTerm("");
     setIsSearchOpen(false);
     setDisplayedCount(30);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setSearchTerm("");
+    setIsSearchOpen(false);
   };
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
@@ -98,7 +108,7 @@ const MobileMenu = () => {
   return (
     <TooltipProvider>
       <div className="md:hidden">
-        <DropdownMenu>
+        <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="sm" className="border-cyan-500/30 bg-black/80 text-cyan-100 hover:bg-cyan-500/20 flex-shrink-0">
               <Menu className="w-4 h-4" />
@@ -106,8 +116,16 @@ const MobileMenu = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[350px] bg-black/95 shadow-xl border border-cyan-500/30 backdrop-blur-md max-h-[80vh] overflow-hidden">
             <div className="p-3">
-              {/* Header */}
-              <div className="text-center mb-4">
+              {/* Header with Close Button */}
+              <div className="text-center mb-4 relative">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={closeMenu}
+                  className="absolute -top-1 -right-1 h-6 w-6 p-0 text-gray-400 hover:text-white hover:bg-gray-800 rounded-full"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
                 <h3 className="text-lg font-bold text-cyan-400 mb-1">🎯 AI Web Tools</h3>
                 <p className="text-xs text-cyan-200">Navigate our platform</p>
               </div>
@@ -205,7 +223,7 @@ const MobileMenu = () => {
                 )}
               </div>
 
-              <DropdownMenuItem onClick={() => window.location.href = '#home'} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
+              <DropdownMenuItem onClick={() => { window.location.href = '#home'; setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
                 Home
               </DropdownMenuItem>
               <DropdownMenuSeparator className="border-gray-700 mb-2" />
@@ -222,10 +240,10 @@ const MobileMenu = () => {
               
               {/* Footer */}
               <div className="space-y-1">
-                <DropdownMenuItem onClick={() => window.location.href = '#services'} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
+                <DropdownMenuItem onClick={() => { window.location.href = '#services'; setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   More Services
                 </DropdownMenuItem>
-                <DropdownMenuItem className="text-cyan-100 hover:bg-cyan-500/20 rounded">
+                <DropdownMenuItem className="text-cyan-100 hover:bg-cyan-500/20 rounded" onClick={() => setIsMenuOpen(false)}>
                   <Phone className="w-4 h-4 mr-2" />
                   <a href="tel:+14758008096">475-800-8096</a>
                 </DropdownMenuItem>
