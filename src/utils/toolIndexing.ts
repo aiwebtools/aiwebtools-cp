@@ -1,5 +1,3 @@
-
-
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
 import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
@@ -13,7 +11,8 @@ export const verifyToolIndexing = () => {
   const recentlyAddedTools = [
     'Creative Logo Assistant',
     'AD Maker GPT4o Image GPT',
-    'This Day in History GPT'
+    'This Day in History GPT',
+    'VIRTUAL TRY ON STYLIST GPT'
   ];
   
   const indexingReport = {

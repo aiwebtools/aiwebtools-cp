@@ -17,7 +17,8 @@ import {
   PenTool,
   Layers,
   BookOpen,
-  Megaphone
+  Megaphone,
+  Shirt
 } from "lucide-react";
 
 export const creativeAndMediaGPTs: Tool[] = [
@@ -32,6 +33,18 @@ export const creativeAndMediaGPTs: Tool[] = [
     category: "Creative & Media",
     rating: 4.6,
     totalVotes: 2890
+  },
+  {
+    icon: Shirt,
+    title: "VIRTUAL TRY ON STYLIST GPT",
+    description: "AI-powered virtual styling assistant that helps you visualize and experiment with different fashion looks, outfits, and styles. Try on clothing virtually, get personalized styling recommendations, and discover new fashion combinations with intelligent fashion AI technology.",
+    emoji: "👗",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
+    tags: ["virtual try on", "fashion styling", "outfit recommendations", "virtual fashion", "style assistant", "fashion AI", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.5,
+    totalVotes: 3245
   },
   {
     icon: PenTool,
