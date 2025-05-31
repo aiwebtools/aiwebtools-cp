@@ -13,7 +13,8 @@ import {
   getImageDesignTools,
   getVideoMultimediaTools,
   getAudioVoiceTools,
-  get3DVisualizationTools
+  get3DVisualizationTools,
+  getBusinessOperationsProductivityTools
 } from "./categoryMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
 
