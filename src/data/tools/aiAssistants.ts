@@ -1,4 +1,4 @@
-
+import { Tool } from "@/types/tools";
 import { 
   Bot, 
   MessageSquare, 
@@ -159,5 +159,17 @@ export const aiAssistants: Tool[] = [
     category: "AI Assistants & Search",
     rating: 4.5,
     totalVotes: 3456
+  },
+  {
+    icon: Heart,
+    title: "EMDR Assistant",
+    description: "EMDR Therapy Assistant with full capabilities for Eye Movement Desensitization and Reprocessing therapy support. This AI tool provides guidance and assistance for EMDR therapeutic techniques, helping both therapists and individuals understand and implement EMDR protocols safely and effectively.",
+    emoji: "🧠",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://chatgpt.com/g/g-oM5YeBpRq-emdr-therapy-assistant-with-full-capabilities",
+    tags: ["emdr therapy", "mental health", "trauma therapy", "therapeutic assistance", "psychology"],
+    category: "Health & Wellness AI Tools",
+    rating: 4.6,
+    totalVotes: 1890
   }
 ];
