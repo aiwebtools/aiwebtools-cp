@@ -1,0 +1,123 @@
+
+import { Tool } from "@/types/tools";
+import { Calculator, Dna, Gamepad2, CreditCard, User, Palette, History, Megaphone, Shield, TrendingUp } from "lucide-react";
+
+export const specializedNicheToolsGPTs: Tool[] = [
+  {
+    icon: Calculator,
+    title: "Taxes GPT",
+    description: "Taxes GPT is your AI-powered tax assistant, designed to simplify tax preparation while maximizing your deductions. Securely analyze your financial data, receive accurate tax reports, and minimize liabilities with ease. Let Taxes GPT handle the complexity so you can enjoy greater savings.",
+    emoji: "💰",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xkcsSVbBhf4",
+    tags: ["tax preparation", "financial planning", "tax optimization", "accounting", "business finance"],
+    category: "Specialized Niche Tools",
+    rating: 4.7,
+    totalVotes: 5432
+  },
+  {
+    icon: Dna,
+    title: "Genome GPT",
+    description: "Genome GPT is a cutting-edge AI tool designed to assist researchers, scientists, and enthusiasts in genetic analysis and discovery. Specializing in genomic data interpretation, Genome GPT provides comprehensive and detailed insights into genetic sequences, patterns, and variations. Whether you're analyzing human DNA, exploring plant genetics, or researching cannabis strains, Genome GPT offers thorough scientific analysis in a user-friendly, professional manner.",
+    emoji: "🧬",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["genetics", "DNA analysis", "genomics", "scientific research", "biotechnology"],
+    category: "Specialized Niche Tools",
+    rating: 4.8,
+    totalVotes: 6234
+  },
+  {
+    icon: Gamepad2,
+    title: "Game Design Document / Developer GPT",
+    description: "Bring your video game ideas to life with Game Design Document Developer GPT! This tool is your ultimate assistant for game development, guiding you from concept to completion. It helps you create the perfect Game Design Document (GDD) to plan your video game. Whether you're using Unity, Unreal Engine, or another platform, Game Document Design Developer GPT is your comprehensive assistant for designing and developing your next game.",
+    emoji: "🎮",
+    color: "from-purple-500 to-red-600",
+    directUrl: "https://gamedesigngpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-floating-man-with-blue-skin-and-white-hair-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["game development", "game design", "GDD creation", "Unity", "Unreal Engine"],
+    category: "Specialized Niche Tools",
+    rating: 4.6,
+    totalVotes: 4789
+  },
+  {
+    icon: CreditCard,
+    title: "Predictive Credit Score Checker GPT",
+    description: "Predictive Credit Score Checker GPT is an AI tool for estimating creditworthiness based on specific addresses. Ideal for real estate, finance, and lending, it provides quick, data-backed credit score estimates by analyzing local demographics and trends. Use it to assess prospects or evaluate risk. Note that predictions are estimates to guide decision-making, not guarantees. Fast, efficient, and insightful—this AI helps you target leads with confidence!",
+    emoji: "📊",
+    color: "from-green-500 to-cyan-600",
+    directUrl: "https://predictivecreditscoregpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-screenshot-of-a-web-app-with-the-text-predic.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["credit scoring", "financial analysis", "risk assessment", "real estate", "lending"],
+    category: "Specialized Niche Tools",
+    rating: 4.5,
+    totalVotes: 3876
+  },
+  {
+    icon: User,
+    title: "Name Insight Research & Predictor GPT",
+    description: "Your name holds hidden meanings, shaping your personality, strengths, and destiny through history, numerology, and culture. Dive deep into its origins, global significance, and psychological impact with AI-driven insights. Discover what your name says about YOU today!",
+    emoji: "🔍",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://whatsmynamegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-interface-with-a-dark-blue-_mXbL6.png/:/cr=t:10.87%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["name analysis", "numerology", "cultural research", "personality insights", "etymology"],
+    category: "Specialized Niche Tools",
+    rating: 4.4,
+    totalVotes: 3234
+  },
+  {
+    icon: Palette,
+    title: "Coloring Book Generator GPT",
+    description: "Coloring Book Generator GPT creates full coloring books from your imagination.",
+    emoji: "🎨",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://coloringbookmaker.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-coloring-page-of-a-robot-with-a-human-like-b.png/:/cr=t:4.3%25,l:0.78%25,w:94.34%25,h:84.09%25/rs=w:1200,h:600,cg:true,m",
+    tags: ["coloring books", "creative tools", "art generation", "children's content", "illustration"],
+    category: "Specialized Niche Tools",
+    rating: 4.7,
+    totalVotes: 5123
+  },
+  {
+    icon: History,
+    title: "Native American History Time Machine GPT - (Special Edition)",
+    description: "Experience an immersive time travel adventure of discovery to any era of Native American history with Geronimo, Chief of Rainbow Apache Destiny as your guide. Discover authentic stories, cultures, and wisdom from the past—or explore possible futures shaped by your choices.",
+    emoji: "🏹",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://nativeamerican-timemachine.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=jVFTGCeuNSM",
+    tags: ["Native American history", "cultural education", "time travel simulation", "historical immersion", "cultural preservation"],
+    category: "Specialized Niche Tools",
+    rating: 4.8,
+    totalVotes: 6789
+  },
+  {
+    icon: Megaphone,
+    title: "Public Testimony Writer GPT",
+    description: "Innovative AI Tool Streamlines Legislative Testimony Process, Promotes Public Engagement in Local Policy. This tool was featured in various news articles such as the CT POST & CT INSIDER",
+    emoji: "📢",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://publictestimonywriter.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
+    tags: ["public testimony", "legislative writing", "civic engagement", "government participation", "policy advocacy"],
+    category: "Specialized Niche Tools",
+    rating: 4.6,
+    totalVotes: 4321
+  },
+  {
+    icon: Shield,
+    title: "Cyber Security GPT",
+    description: "Given the increasing threat of infrastructure attacks, AiWebTools.Ai aims to encourage the creation of solutions. Our cybersecurity assistant can deploy defense mechanisms and strategies to mitigate the impact of such attacks. Cybersecurity teams can rely on this assistant for advice, opinions, and assistance in deploying code whenever needed to defend against unwarranted infrastructure attacks.",
+    emoji: "🛡️",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-Qvat03gmj-hacking-defender-infrastructure-protector-gpt",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-robot-with-a-large-shield-tha.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["cybersecurity", "infrastructure protection", "defense mechanisms", "security analysis", "threat mitigation"],
+    category: "Specialized Niche Tools",
+    rating: 4.9,
+    totalVotes: 8234
+  }
+];

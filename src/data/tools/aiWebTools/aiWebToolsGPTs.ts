@@ -19,6 +19,9 @@ import { foodAndHospitalityGPTs } from "./foodAndHospitalityGPTs";
 import { aiPromptingAndGenerationGPTs } from "./aiPromptingAndGenerationGPTs";
 import { researchAndPharmaceuticalGPTs } from "./researchAndPharmaceuticalGPTs";
 import { educationalToolsGPTs } from "./educationalToolsGPTs";
+import { specializedNicheToolsGPTs } from "./specializedNicheToolsGPTs";
+import { businessStrategyGPTs } from "./businessStrategyGPTs";
+import { contentCreationToolsGPTs } from "./contentCreationToolsGPTs";
 
 // Combine all AI Web Tools GPTs from organized categories
 export const aiWebToolsGPTs: Tool[] = [
@@ -41,5 +44,8 @@ export const aiWebToolsGPTs: Tool[] = [
   ...aiPromptingAndGenerationGPTs,
   ...researchAndPharmaceuticalGPTs,
   ...educationalToolsGPTs,
+  ...specializedNicheToolsGPTs,
+  ...businessStrategyGPTs,
+  ...contentCreationToolsGPTs,
   // Additional GPTs will be added here as new category files are created
 ];
