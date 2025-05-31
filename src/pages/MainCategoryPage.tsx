@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -123,7 +122,7 @@ const MainCategoryPage = () => {
   };
 
   const handleShowAllCategoryTools = () => {
-    console.log(`🚀 Show All Category Tools clicked! Total category tools: ${filteredTools.length}`);
+    console.log(`🚀 Show More From This Category clicked! Total category tools: ${filteredTools.length}`);
     setShowAllCategoryTools(true);
     // Scroll to the tools section
     setTimeout(() => {
@@ -160,7 +159,7 @@ const MainCategoryPage = () => {
   const hasMoreTools = currentDisplayedCount < currentTools.length;
   const showCompletionMessage = !hasMoreTools && !isLoading && currentTools.length > 20;
 
-  // Show "Show All Tools" button when we have more tools in category and not showing all yet
+  // Show "Show More From This Category" button when we have more tools in category and not showing all yet
   const shouldShowAllCategoryButton = !showAllCategoryTools && !showAllTools && 
     filteredTools.length > displayedCount && !searchTerm;
 
@@ -221,7 +220,7 @@ const MainCategoryPage = () => {
             </div>
           </div>
 
-          {/* Show All Category Tools Button - appears before tools grid */}
+          {/* Show More From This Category Button - appears before tools grid */}
           {shouldShowAllCategoryButton && (
             <div className="text-center mb-8 px-4">
               <Button
@@ -229,7 +228,7 @@ const MainCategoryPage = () => {
                 size="lg"
                 className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
               >
-                📋 SHOW ALL {filteredTools.length} {decodedCategoryName.toUpperCase()} TOOLS
+                📋 SHOW MORE FROM THIS CATEGORY
               </Button>
               <div className="mt-4 text-green-300 text-sm">
                 Currently showing {displayedCount} of {filteredTools.length} tools in this category
