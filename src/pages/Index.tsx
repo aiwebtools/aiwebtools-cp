@@ -86,6 +86,33 @@ const Index = () => {
           <CategoryPageSelection />
         </div>
         
+        {/* Featured Video Section */}
+        <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900 relative overflow-hidden">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 cyber-glow">
+                🎬 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">FEATURED VIDEO</span>
+              </h2>
+              <p className="text-xl text-cyan-200 max-w-3xl mx-auto">
+                Discover the future of AI innovation and transformation
+              </p>
+            </div>
+            
+            <div className="max-w-6xl mx-auto">
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-xl border border-cyan-500/30 shadow-2xl"
+                  src="https://www.youtube.com/embed/drUyFiVayaw?autoplay=1&mute=0&loop=1&playlist=drUyFiVayaw&controls=1&rel=0&modestbranding=1&hd=1&vq=hd1080&enablejsapi=1"
+                  title="AI Web Tools Featured Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </section>
+        
         <SpecialServices />
         <Footer />
       </div>
