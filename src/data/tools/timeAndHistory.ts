@@ -44,7 +44,7 @@ export const timeAndHistory: Tool[] = [
     description: "Test your knowledge of world history with our interactive trivia game. Challenge yourself and learn fascinating facts about different cultures and events.",
     emoji: "🌍",
     color: "from-green-500 to-orange-600",
-    directUrl: "https://worldhistory-trivia.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-683a8be36aa08191a1329e41e66479d8-world-history-trivia-gpt",
     tags: ["world history", "trivia", "interactive game", "cultures", "events"],
     category: "Time & History",
     rating: 4.3,
