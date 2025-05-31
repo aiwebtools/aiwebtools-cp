@@ -138,19 +138,19 @@ const MainCategoryPage = () => {
               <div className="text-sm opacity-80 mb-8">
                 Try exploring other categories to discover more tools.
               </div>
-              
-              {/* Search Bar for better navigation */}
-              <div className="max-w-2xl mx-auto mb-12">
-                <h3 className="text-xl font-bold text-white mb-4">
-                  🔍 Search All AI Tools
-                </h3>
-                <SearchBar
-                  searchTerm={searchTerm}
-                  onSearchChange={handleSearchChange}
-                />
-              </div>
             </div>
           )}
+
+          {/* Always show search bar at the bottom */}
+          <div className="max-w-2xl mx-auto mb-12 mt-16">
+            <h3 className="text-xl font-bold text-white mb-4 text-center">
+              🔍 Search All AI Tools
+            </h3>
+            <SearchBar
+              searchTerm={searchTerm}
+              onSearchChange={handleSearchChange}
+            />
+          </div>
         </main>
 
         {/* Featured Tools Section - Our AIWebTools.ai Professional Solutions */}
