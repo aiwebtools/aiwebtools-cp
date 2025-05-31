@@ -22,7 +22,7 @@ export const automationAndWorkflowTools: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://zapier.com/",
     tags: ["automation", "workflow", "app integration", "productivity", "no-code"],
-    category: "Automation & Workflow Tools",
+    category: "AUTOMATION PLATFORMS",
     rating: 4.6,
     totalVotes: 4567
   },
@@ -34,7 +34,7 @@ export const automationAndWorkflowTools: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.make.com/",
     tags: ["visual automation", "workflow builder", "integration", "scenarios", "advanced automation"],
-    category: "Automation & Workflow Tools",
+    category: "AUTOMATION PLATFORMS",
     rating: 4.5,
     totalVotes: 3456
   },
@@ -46,7 +46,7 @@ export const automationAndWorkflowTools: Tool[] = [
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://powerautomate.microsoft.com/",
     tags: ["Microsoft", "business automation", "workflow", "enterprise", "process automation"],
-    category: "Automation & Workflow Tools",
+    category: "AUTOMATION PLATFORMS",
     rating: 4.4,
     totalVotes: 3789
   },
@@ -58,7 +58,7 @@ export const automationAndWorkflowTools: Tool[] = [
     color: "from-gray-500 to-blue-600",
     directUrl: "https://github.com/features/actions",
     tags: ["CI/CD", "GitHub", "software automation", "deployment", "development workflow"],
-    category: "Automation & Workflow Tools",
+    category: "AUTOMATION PLATFORMS",
     rating: 4.7,
     totalVotes: 5234
   },
@@ -70,8 +70,44 @@ export const automationAndWorkflowTools: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://ifttt.com/",
     tags: ["conditional automation", "IoT", "smart home", "simple automation", "applets"],
-    category: "Automation & Workflow Tools",
+    category: "AUTOMATION PLATFORMS",
     rating: 4.2,
     totalVotes: 2987
+  },
+  {
+    icon: Settings,
+    title: "n8n Workflow Automation",
+    description: "Open-source workflow automation tool connecting different apps and services without coding, offering more flexibility than Zapier with self-hosting capabilities.",
+    emoji: "🔗",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://n8n.io/",
+    tags: ["workflow automation", "open source", "no-code", "self-hosted", "app integration"],
+    category: "AUTOMATION PLATFORMS",
+    rating: 4.6,
+    totalVotes: 3456
+  },
+  {
+    icon: Bot,
+    title: "Gumloop AI Automation",
+    description: "No-code AI automation platform with drag-and-drop interface for complex workflows, data extraction, scoring with 40+ platform integrations and self-hosting options.",
+    emoji: "🔄",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://www.gumloop.com/",
+    tags: ["no-code automation", "drag-and-drop", "data extraction", "platform integrations", "self-hosting"],
+    category: "AUTOMATION PLATFORMS",
+    rating: 4.5,
+    totalVotes: 2890
+  },
+  {
+    icon: Zap,
+    title: "Bardeen",
+    description: "AI-powered automation tool that automates manual workflows across web apps. Build custom automations with AI assistance for repetitive tasks.",
+    emoji: "🎯",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://www.bardeen.ai/",
+    tags: ["AI automation", "workflow automation", "productivity", "browser automation", "task automation"],
+    category: "AUTOMATION PLATFORMS",
+    rating: 4.3,
+    totalVotes: 2156
   }
 ];

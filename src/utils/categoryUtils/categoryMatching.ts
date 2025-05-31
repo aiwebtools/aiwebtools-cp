@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { isSimilarCategory } from "./normalization";
 import { isVideoRelatedTool } from "./videoDetection";
@@ -25,7 +26,8 @@ export const getAIDevelopmentPlatformsTools = (tools: Tool[], categoryName: stri
     'development platform', 'coding platform', 'programming platform',
     'ai framework', 'machine learning', 'deep learning', 'neural network',
     'model development', 'api development', 'ai infrastructure', 'mlops',
-    'devops', 'cloud platform', 'edge computing', 'container platform'
+    'devops', 'cloud platform', 'edge computing', 'container platform',
+    'lovable.dev', 'lovable'
   ];
 
   const developmentPlatformNames = [
@@ -48,7 +50,7 @@ export const getAIDevelopmentPlatformsTools = (tools: Tool[], categoryName: stri
     'Railway', 'MongoDB Atlas', 'AWS', 'Cloudflare', 'Datadog', 'Docker',
     'Kubernetes', 'HashiCorp Vault', 'Terraform', 'Redis', 'Elasticsearch',
     'GitHub Copilot', 'Tabnine', 'Multitasker GPT4o Custom GPT', 'Cursor AI Coding Agent',
-    'Hugging Face GPT Prompt Library'
+    'Hugging Face GPT Prompt Library', 'Lovable.dev'
   ];
 
   const matchedTools = tools.filter(tool => {
@@ -303,16 +305,34 @@ export const getAutomationPlatformsTools = (tools: Tool[], categoryName: string)
   console.log(`🤖 AUTOMATION PLATFORMS enhanced matching for: ${categoryName}`);
   
   const automationKeywords = [
-    'automation', 'workflow', 'process', 'task', 'scheduling', 'trigger',
-    'integration', 'connector', 'zapier', 'ifttt', 'make', 'n8n', 'pipeline',
+    'zapier', 'make', 'integromat', 'microsoft power automate', 'github actions', 
+    'ifttt', 'n8n', 'gumloop', 'bardeen', 'automation', 'workflow', 'process', 
+    'task', 'scheduling', 'trigger', 'integration', 'connector', 'pipeline',
     'orchestration', 'robotic process', 'rpa', 'bot', 'agent', 'auto',
-    'streamline', 'optimize', 'efficiency', 'productivity', 'business process'
+    'streamline', 'optimize', 'efficiency', 'productivity', 'business process',
+    'no-code automation', 'visual automation', 'workflow builder', 'scenarios',
+    'app integration', 'conditional automation', 'ci/cd', 'deployment',
+    'development workflow', 'smart home', 'iot', 'applets', 'self-hosted',
+    'drag-and-drop', 'data extraction', 'platform integrations', 'ai automation',
+    'browser automation', 'task automation'
+  ];
+
+  const automationToolNames = [
+    'Zapier', 'Make', 'Integromat', 'Microsoft Power Automate', 'GitHub Actions',
+    'IFTTT', 'n8n Workflow Automation', 'n8n', 'Gumloop AI Automation', 'Gumloop',
+    'Bardeen'
   ];
 
   const matchedTools = tools.filter(tool => {
     if (!tool.title && !tool.description && !tool.category) return false;
     
     const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
+    
+    // Direct name matching
+    const nameMatch = automationToolNames.some(name => 
+      tool.title?.toLowerCase().includes(name.toLowerCase()) ||
+      name.toLowerCase().includes(tool.title?.toLowerCase() || '')
+    );
     
     // Keyword matching
     const keywordMatch = automationKeywords.some(keyword => 
@@ -326,10 +346,12 @@ export const getAutomationPlatformsTools = (tools: Tool[], categoryName: string)
       tool.category.toLowerCase().includes('workflow') ||
       tool.category.toLowerCase().includes('process') ||
       tool.category.toLowerCase().includes('productivity') ||
-      tool.category.toLowerCase().includes('business')
+      tool.category.toLowerCase().includes('business') ||
+      tool.category.toLowerCase().includes('integration') ||
+      tool.category.toLowerCase().includes('platform')
     );
 
-    return keywordMatch || categoryMatch;
+    return nameMatch || keywordMatch || categoryMatch;
   });
 
   console.log(`✅ Found ${matchedTools.length} automation platform tools`);
