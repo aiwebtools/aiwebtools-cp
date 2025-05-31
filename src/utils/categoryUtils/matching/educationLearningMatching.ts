@@ -1,0 +1,118 @@
+
+import { Tool } from "@/types/tools";
+import { isSimilarCategory } from "../normalization";
+
+export const getEducationLearningTools = (tools: Tool[], categoryName: string): Tool[] => {
+  console.log(`🎓 EDUCATION & LEARNING enhanced matching for: ${categoryName}`);
+  
+  // Priority Education & Learning Tools (first priority - user specified)
+  const priorityEducationLearningTools = [
+    'COLLEGE DEGREE GPT',
+    'College Degree GPT',
+    'LEARN ANY COURSE GPT',
+    'Learn Any Course GPT',
+    'LEARN ANY SKILL GPT',
+    'Learn Any Skill GPT',
+    'Home-Schooling Assistant GPT',
+    'HomeSchool GPT',
+    'Training Manual Generator GPT',
+    'Training Manual Generator',
+    'Children\'s Picture Book Maker GPT',
+    'Children\'s Picture Book Maker',
+    'Stellaris: 🚀AI Space Explorer',
+    'Stellaris',
+    'Engineering GPT Suite',
+    'Engineering GPT',
+    'Nikola Tesla GPT',
+    'Tesla Einstein GPT',
+    'Albert Einstein GPT',
+    'Genome GPT',
+    'Probability GPT',
+    'Algebraic Expression Inventor GPT',
+    'Algebraic Expression Creative Inventor GPT',
+    'Alchemist Scientist GPT',
+    'Uncovering Hidden Historical Patterns GPT',
+    'Hidden Historical Pattern Recognition GPT',
+    'Language Tutor AI',
+    'Homework Helper Bot',
+    'AI Essay Writer',
+    'Khan Academy Khanmigo',
+    'Duolingo',
+    'Coursera',
+    'Coursera AI',
+    'Wolfram Alpha',
+    'Century Tech',
+    'Socratic by Google',
+    'Yippity.io',
+    'Originality.ai',
+    'Plag.ai',
+    'Khan Academy',
+    'freeCodeCamp',
+    'Brilliant',
+    'Education Consultant GPT',
+    'Course Maker GPT',
+    'Quiz Maker AI',
+    'Quiz Maker GPT',
+    'Globe Ai'
+  ];
+
+  const educationLearningKeywords = [
+    'college degree gpt', 'learn any course', 'learn any skill', 'homeschool', 'training manual',
+    'children\'s picture book', 'stellaris', 'engineering gpt', 'nikola tesla', 'albert einstein',
+    'genome gpt', 'probability gpt', 'algebraic expression', 'alchemist scientist',
+    'historical patterns', 'language tutor', 'homework helper', 'essay writer',
+    'khan academy', 'duolingo', 'coursera', 'wolfram alpha', 'century tech',
+    'socratic', 'yippity', 'originality', 'plag', 'freecodecamp', 'brilliant',
+    'course maker', 'quiz maker', 'globe ai', 'education', 'learning', 'teaching',
+    'course', 'lesson', 'tutorial', 'training', 'study', 'academic', 'school',
+    'university', 'classroom', 'instructor', 'student', 'curriculum', 'syllabus',
+    'assignment', 'quiz', 'test', 'examination', 'knowledge', 'skill',
+    'certification', 'degree', 'diploma', 'graduation'
+  ];
+
+  // Get all tools that match the category
+  const categoryMatchedTools = tools.filter(tool => {
+    if (!tool.title && !tool.description && !tool.category) return false;
+    
+    const toolText = `${tool.title || ''} ${tool.description || ''} ${tool.category || ''}`.toLowerCase();
+    
+    // Keyword matching
+    const keywordMatch = educationLearningKeywords.some(keyword => 
+      toolText.includes(keyword.toLowerCase())
+    );
+    
+    // Category matching
+    const categoryMatch = tool.category && (
+      isSimilarCategory(tool.category, categoryName) ||
+      tool.category.toLowerCase().includes('education') ||
+      tool.category.toLowerCase().includes('learning') ||
+      tool.category.toLowerCase().includes('teaching') ||
+      tool.category.toLowerCase().includes('course') ||
+      tool.category.toLowerCase().includes('training')
+    );
+
+    return keywordMatch || categoryMatch;
+  });
+
+  // Separate tools into priority groups
+  const priorityTools = categoryMatchedTools.filter(tool => 
+    priorityEducationLearningTools.some(priorityName => 
+      tool.title?.toLowerCase().includes(priorityName.toLowerCase()) ||
+      priorityName.toLowerCase().includes(tool.title?.toLowerCase() || '') ||
+      tool.title?.toLowerCase() === priorityName.toLowerCase()
+    )
+  );
+
+  const remainingTools = categoryMatchedTools.filter(tool => 
+    !priorityTools.includes(tool)
+  );
+
+  // Combine in priority order
+  const finalTools = [
+    ...priorityTools,
+    ...remainingTools
+  ];
+
+  console.log(`✅ Found ${finalTools.length} education & learning tools (${priorityTools.length} priority, ${remainingTools.length} remaining)`);
+  return finalTools;
+};

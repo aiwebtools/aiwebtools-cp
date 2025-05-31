@@ -10,3 +10,6 @@ export * from "./dataAnalyticsMatching";
 export * from "./marketingSalesMatching";
 export * from "./imageDesignMatching";
 export * from "./specializedMatching";
+export * from "./educationLearningMatching";
+export * from "./healthWellnessMatching";
+export * from "./specializedNicheMatching";
