@@ -4,11 +4,8 @@ import {
   Leaf, 
   Fish, 
   Home, 
-  Apple, 
   Coffee,
-  Dog,
   Utensils,
-  Heart,
   Search,
   Scissors,
   Palette,
@@ -121,53 +118,5 @@ export const specializedNicheTools: Tool[] = [
     category: "Specialized & Niche Tools",
     rating: 4.1,
     totalVotes: 2345
-  },
-  {
-    icon: Fish,
-    title: "Aquaculture Manager",
-    description: "Specialized aquaculture and fish farming management system with water quality monitoring and feeding optimization.",
-    emoji: "🐟",
-    color: "from-blue-500 to-cyan-600",
-    directUrl: "https://example.com/aquaculture",
-    tags: ["aquaculture", "fish farming", "water quality", "aquatic management", "marine biology"],
-    category: "Specialized Niche Tools",
-    rating: 4.3,
-    totalVotes: 1876
-  },
-  {
-    icon: Home,
-    title: "Smart Home Automation",
-    description: "Comprehensive smart home automation platform with AI-powered energy management and security integration.",
-    emoji: "🏠",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://example.com/smarthome",
-    tags: ["smart home", "home automation", "energy management", "IoT devices", "home security"],
-    category: "Specialized Niche Tools",
-    rating: 4.5,
-    totalVotes: 3234
-  },
-  {
-    icon: Factory,
-    title: "Industrial IoT Platform",
-    description: "Industrial Internet of Things platform for manufacturing optimization and predictive maintenance.",
-    emoji: "🏭",
-    color: "from-gray-500 to-blue-600",
-    directUrl: "https://example.com/industrialiot",
-    tags: ["industrial IoT", "manufacturing", "predictive maintenance", "automation", "industry 4.0"],
-    category: "Specialized Niche Tools",
-    rating: 4.4,
-    totalVotes: 2876
-  },
-  {
-    icon: Mountain,
-    title: "Geological Survey Tool",
-    description: "Advanced geological survey and mineral exploration tool with AI-powered terrain analysis.",
-    emoji: "⛰️",
-    color: "from-brown-500 to-gray-600",
-    directUrl: "https://example.com/geologicalsurvey",
-    tags: ["geological survey", "mineral exploration", "terrain analysis", "earth sciences", "mining"],
-    category: "Specialized Niche Tools",
-    rating: 4.1,
-    totalVotes: 1654
   }
 ];
