@@ -1,90 +1,90 @@
 
 import { Tool } from "@/types/tools";
-import { consolidateTools } from "./categoryConsolidation";
-import { getMainCategoryCounts, getSubcategoriesForMainCategory, mainCategories } from "./mainCategoryMapping";
+import { mainCategories } from "./mainCategoryMapping";
 
-// Helper function to get categories with counts
-export const getCategoriesWithCounts = (allTools: Tool[]): Record<string, number> => {
-  // Apply consolidation to ensure consistent categorization
-  const consolidatedTools = consolidateTools(allTools);
+// Tools that should appear in Data & Analytics even if they exist elsewhere
+const DATA_ANALYTICS_PRIORITY_TOOLS = [
+  "Claude",
+  "ChatGPT", 
+  "Gemini",
+  "Data Research Analysis Report GPT",
+  "Data Analysis Report AI",
+  "Research Report & Data Analysis AI"
+];
+
+export const getCategoriesWithCounts = (tools: Tool[]): Record<string, number> => {
   const categoryCounts: Record<string, number> = {};
   
-  consolidatedTools.forEach(tool => {
-    if (tool.category && tool.category.trim() !== '') {
-      const category = tool.category.trim();
+  tools.forEach(tool => {
+    const category = tool.category;
+    if (category) {
       categoryCounts[category] = (categoryCounts[category] || 0) + 1;
     }
   });
   
-  console.log('Category counts calculated:', categoryCounts);
-  console.log('Total tools processed:', consolidatedTools.length);
-  
   return categoryCounts;
 };
 
-// NEW: Helper function to get main categories with counts
-export const getMainCategoriesWithCounts = (allTools: Tool[]): Record<string, number> => {
-  const subcategoryCounts = getCategoriesWithCounts(allTools);
-  return getMainCategoryCounts(subcategoryCounts);
+export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] => {
+  // Special handling for Data & Analytics category
+  if (categoryName === "DATA & ANALYTICS AI TOOLS" || categoryName === "Data & Analytics Tools") {
+    const directCategoryTools = tools.filter(tool => 
+      tool.category === categoryName || 
+      tool.category === "Data & Analytics Tools" ||
+      tool.category === "DATA & ANALYTICS AI TOOLS"
+    );
+    
+    // Add priority tools that should appear in Data & Analytics
+    const priorityTools = tools.filter(tool => 
+      DATA_ANALYTICS_PRIORITY_TOOLS.some(priorityName => 
+        tool.title.toLowerCase().includes(priorityName.toLowerCase()) ||
+        priorityName.toLowerCase().includes(tool.title.toLowerCase())
+      )
+    );
+    
+    // Combine and deduplicate by title
+    const allTools = [...directCategoryTools, ...priorityTools];
+    const uniqueTools = allTools.filter((tool, index, self) => 
+      index === self.findIndex(t => t.title === tool.title)
+    );
+    
+    return uniqueTools;
+  }
+  
+  // Regular category filtering for other categories
+  return tools.filter(tool => tool.category === categoryName);
 };
 
-// Helper function to get tools by category
-export const getToolsByCategory = (allTools: Tool[], category: string): Tool[] => {
-  // Apply consolidation to ensure consistent categorization
-  const consolidatedTools = consolidateTools(allTools);
-  const filteredTools = consolidatedTools.filter(tool => 
-    tool.category && tool.category.trim() === category.trim()
-  );
+export const getMainCategoriesWithCounts = (tools: Tool[]): Record<string, number> => {
+  const mainCategoryCounts: Record<string, number> = {};
   
-  // Debug logging to help identify issues
-  console.log(`Filtering for category: "${category}"`);
-  console.log(`Found ${filteredTools.length} tools in this category`);
-  console.log('Tools found:', filteredTools.map(tool => tool.title));
-  
-  return filteredTools;
-};
-
-// NEW: Helper function to get tools by main category
-export const getToolsByMainCategory = (allTools: Tool[], mainCategoryName: string): Tool[] => {
-  const subcategories = getSubcategoriesForMainCategory(mainCategoryName);
-  const consolidatedTools = consolidateTools(allTools);
-  
-  const filteredTools = consolidatedTools.filter(tool => 
-    tool.category && subcategories.some(sub => 
-      sub.toLowerCase() === tool.category!.toLowerCase()
-    )
-  );
-  
-  console.log(`Filtering for main category: "${mainCategoryName}"`);
-  console.log(`Subcategories included: ${subcategories.join(', ')}`);
-  console.log(`Found ${filteredTools.length} tools in this main category`);
-  
-  return filteredTools;
-};
-
-// Helper function to validate all tools have categories
-export const validateToolCategories = (allTools: Tool[]): {
-  totalTools: number;
-  categorizedTools: number;
-  uncategorizedTools: Tool[];
-  categoryBreakdown: Record<string, number>;
-} => {
-  // Apply consolidation to ensure consistent categorization
-  const consolidatedTools = consolidateTools(allTools);
-  const uncategorizedTools = consolidatedTools.filter(tool => !tool.category || tool.category.trim() === '');
-  const categorizedTools = consolidatedTools.filter(tool => tool.category && tool.category.trim() !== '');
-  const categoryBreakdown = getCategoriesWithCounts(allTools);
-  
-  console.log('Tool validation results:', {
-    totalTools: consolidatedTools.length,
-    categorizedTools: categorizedTools.length,
-    uncategorizedCount: uncategorizedTools.length
+  mainCategories.forEach(mainCat => {
+    let count = 0;
+    mainCat.subcategories.forEach(subcat => {
+      const categoryTools = getToolsByCategory(tools, subcat);
+      count += categoryTools.length;
+    });
+    mainCategoryCounts[mainCat.name] = count;
   });
   
-  return {
-    totalTools: consolidatedTools.length,
-    categorizedTools: categorizedTools.length,
-    uncategorizedTools,
-    categoryBreakdown
-  };
+  return mainCategoryCounts;
+};
+
+export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string): Tool[] => {
+  const mainCategory = mainCategories.find(cat => cat.name === mainCategoryName);
+  if (!mainCategory) return [];
+  
+  const allCategoryTools: Tool[] = [];
+  
+  mainCategory.subcategories.forEach(subcategory => {
+    const categoryTools = getToolsByCategory(tools, subcategory);
+    allCategoryTools.push(...categoryTools);
+  });
+  
+  // Remove exact duplicates by title
+  const uniqueTools = allCategoryTools.filter((tool, index, self) => 
+    index === self.findIndex(t => t.title === tool.title)
+  );
+  
+  return uniqueTools;
 };

@@ -10,10 +10,62 @@ import {
   Target,
   Brain,
   Zap,
-  Settings
+  Settings,
+  MessageSquare,
+  Cpu,
+  Bot
 } from "lucide-react";
 
 export const dataAnalyticsTools: Tool[] = [
+  {
+    icon: Brain,
+    title: "Claude",
+    description: "Anthropic's advanced AI assistant with superior analytical capabilities for data interpretation, research analysis, and complex problem-solving. Excels at breaking down large datasets, statistical analysis, and providing detailed insights from complex information.",
+    emoji: "🧠",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://claude.ai/",
+    tags: ["AI assistant", "data analysis", "research", "statistical analysis", "anthropic", "advanced reasoning"],
+    category: "Data & Analytics Tools",
+    rating: 4.8,
+    totalVotes: 12543
+  },
+  {
+    icon: MessageSquare,
+    title: "ChatGPT",
+    description: "OpenAI's powerful conversational AI with strong analytical capabilities for data interpretation, trend analysis, and generating insights from complex datasets. Features advanced reasoning and can process and analyze various data formats.",
+    emoji: "💭",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://chat.openai.com/",
+    tags: ["AI assistant", "data analysis", "OpenAI", "conversational AI", "trend analysis", "insights"],
+    category: "Data & Analytics Tools",
+    rating: 4.7,
+    totalVotes: 15678
+  },
+  {
+    icon: Cpu,
+    title: "Gemini",
+    description: "Google's advanced AI model with powerful analytical and reasoning capabilities. Excellent for data analysis, research tasks, multimodal analysis, and extracting insights from various data sources including text, images, and documents.",
+    emoji: "⚡",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://gemini.google.com/",
+    tags: ["AI assistant", "Google", "multimodal analysis", "data insights", "research", "advanced reasoning"],
+    category: "Data & Analytics Tools",
+    rating: 4.6,
+    totalVotes: 9876
+  },
+  {
+    icon: BarChart3,
+    title: "Data Research Analysis Report GPT",
+    description: "Data Analysis Report AI is a revolutionary tool that transforms complex datasets into actionable insights with unparalleled precision. Leveraging advanced statistical methods, trend identification, and predictive modeling, it excels in delivering accurate and detailed analyses. With its robust capabilities in generating professional visualizations and customizable reports, it empowers users to make informed, strategic decisions effortlessly. Currently #8 in the world!",
+    emoji: "📊",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://dataanalysisandreportai.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=idxjOwUAD_I",
+    tags: ["data analysis", "research reports", "statistical analysis", "data visualization", "predictive modeling", "aiwebtools"],
+    category: "Data & Analytics Tools",
+    rating: 4.9,
+    totalVotes: 5432
+  },
   {
     icon: BarChart3,
     title: "Tableau",
