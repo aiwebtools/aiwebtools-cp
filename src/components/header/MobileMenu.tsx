@@ -1,4 +1,4 @@
-import { Menu, Phone, Search, X } from "lucide-react";
+import { Menu, Phone, Search, X, FileText } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -235,6 +235,19 @@ const MobileMenu = () => {
                 <DropdownMenuItem onClick={() => { window.location.href = '#services'; setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   More Services
                 </DropdownMenuItem>
+                
+                {/* Terms & Disclaimer Button */}
+                <DropdownMenuItem 
+                  onClick={() => { 
+                    window.open('https://aitools.company/terms-of-services', '_blank');
+                    setIsMenuOpen(false);
+                  }} 
+                  className="text-cyan-100 hover:bg-cyan-500/20 rounded"
+                >
+                  <FileText className="w-4 h-4 mr-2" />
+                  Terms & Disclaimer
+                </DropdownMenuItem>
+                
                 <DropdownMenuItem className="text-cyan-100 hover:bg-cyan-500/20 rounded" onClick={() => setIsMenuOpen(false)}>
                   <Phone className="w-4 h-4 mr-2" />
                   <a href="tel:+14758008096">475-800-8096</a>
