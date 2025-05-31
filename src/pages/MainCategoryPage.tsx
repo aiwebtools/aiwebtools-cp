@@ -186,14 +186,8 @@ const MainCategoryPage = () => {
               </div>
             </div>
 
-            {/* Main AI Tools Grid */}
+            {/* Main AI Tools Grid - Remove duplicate title since ToolsGrid will handle it */}
             <div id="all-tools-section">
-              <div className="text-center mb-8 sm:mb-12 px-4">
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
-                  🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">AI TOOLS COLLECTION</span>
-                </h3>
-              </div>
-              
               {allFilteredTools.length > 0 ? (
                 <ToolsGrid
                   tools={allFilteredTools}

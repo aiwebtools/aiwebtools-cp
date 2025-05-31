@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   MessageSquare, 
@@ -119,19 +120,6 @@ export const aiChatPlatforms: Tool[] = [
     category: "AI Chat & Assistants",
     rating: 4.9,
     totalVotes: 5678
-  },
-  {
-    icon: BookOpen,
-    title: "BOOK WRITER GPT",
-    description: "Book Writer GPT assists you in creating professional, well-structured books with seamless page-to-page continuity, engaging dialogue, and captivating storytelling. Whether you're writing fiction, non-fiction, or educational content, this AI provides comprehensive support throughout your entire writing journey.",
-    emoji: "📚",
-    color: "from-amber-500 to-orange-600",
-    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
-    tags: ["book writing", "storytelling", "creative writing", "publishing", "narrative development"],
-    category: "AI Chat & Assistants",
-    rating: 4.8,
-    totalVotes: 6789
   },
   {
     icon: History,
@@ -296,6 +284,20 @@ export const aiChatPlatforms: Tool[] = [
     category: "AI Chat & Assistants",
     rating: 4.4,
     totalVotes: 2654
+  },
+  // Move BOOK WRITER GPT to the end to separate from other instances
+  {
+    icon: BookOpen,
+    title: "BOOK WRITER GPT",
+    description: "Book Writer GPT assists you in creating professional, well-structured books with seamless page-to-page continuity, engaging dialogue, and captivating storytelling. Whether you're writing fiction, non-fiction, or educational content, this AI provides comprehensive support throughout your entire writing journey.",
+    emoji: "📚",
+    color: "from-amber-500 to-orange-600",
+    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
+    tags: ["book writing", "storytelling", "creative writing", "publishing", "narrative development"],
+    category: "AI Chat & Assistants",
+    rating: 4.8,
+    totalVotes: 6789
   },
   // Add the first 10 AI Web Tools GPTs from priorityFeaturedGPTs
   ...priorityFeaturedGPTs.slice(0, 10).map(gpt => ({
