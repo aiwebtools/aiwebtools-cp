@@ -110,7 +110,7 @@ export const timeAndHistory: Tool[] = [
     description: "Explore historical photography, analyze vintage images, and understand the evolution of photographic techniques.",
     emoji: "📸",
     color: "from-gray-600 to-black",
-    directUrl: "https://historicalphotogpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-683ccb6716d48191b0f7ddcd0b19387d-historical-photography-gpt-sacred-lens-of-time",
     videoUrl: "https://www.youtube.com/watch?v=5t7EXS5tthQ",
     category: "Historical Photography",
     tags: ["historical photography", "vintage images", "photographic techniques", "image analysis"],
