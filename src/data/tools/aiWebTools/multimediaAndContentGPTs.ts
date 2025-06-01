@@ -18,6 +18,18 @@ export const multimediaAndContentGPTs: Tool[] = [
   },
   {
     icon: Video,
+    title: "Video Script Generator",
+    description: "AI-powered video script creation tool that generates professional, engaging scripts for various video content including marketing videos, educational content, social media videos, and promotional materials. This tool transforms ideas into compelling video narratives with proper structure and flow.",
+    emoji: "🎬",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://moviescriptwritergpt.lovable.app/?via=aiwebtools",
+    tags: ["video scripts", "content creation", "marketing videos", "social media", "video production"],
+    category: "Multimedia & Content",
+    rating: 4.6,
+    totalVotes: 3890
+  },
+  {
+    icon: Video,
     title: "Video Second-by-Second Analysis GPT",
     description: "Video Second-by-Second Analysis GPT by AI Web Tools LLC is your sophisticated AI-powered video analysis and content extraction platform, delivering unprecedented precision in video content analysis through frame-by-frame examination that provides detailed insights, visual documentation, and comprehensive content understanding for professional and research applications. This cutting-edge tool revolutionizes video analysis by breaking down footage with incredible precision, analyzing every second of content while extracting key visual frames that provide detailed insights into actions, people, objects, scene changes, and contextual information that supports decision-making and content optimization. Whether you're conducting security analysis, media research, educational content development, marketing analysis, or investigative work, this AI provides step-by-step video examination that highlights critical moments, identifies patterns, and delivers structured, labeled visual data with contextual analysis. The system processes video content systematically, extracts key frames, analyzes visual elements, and provides comprehensive documentation that supports various professional applications while maintaining accuracy and analytical depth. Input your video files, analysis objectives, or specific content requirements to receive detailed frame-by-frame analysis, visual documentation, pattern recognition insights, and comprehensive video content reports. Features include precise frame extraction, visual element identification, pattern analysis tools, content categorization systems, and comprehensive reporting capabilities. Perfect for content creators optimizing video strategies, security professionals analyzing surveillance footage, researchers studying visual content, educators developing training materials, and investigators requiring detailed video documentation. This tool also serves as a powerful resource for training and fine-tuning Vision-Language Models (VLMs), offering structured, labeled visual data that advances AI development and research. Ideal for anyone requiring deep clarity from video content through professional-grade analysis and documentation.",
     emoji: "📹",
