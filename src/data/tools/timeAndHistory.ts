@@ -123,7 +123,7 @@ export const timeAndHistory: Tool[] = [
     description: "Analyze historical demographics, population trends, and social structures of past societies and civilizations.",
     emoji: "📊",
     color: "from-purple-600 to-indigo-700",
-    directUrl: "https://historicaldemographicsgpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-683cce7947048191880cabf0093b2822-historical-demographics-gpt",
     videoUrl: "https://www.youtube.com/watch?v=5t7EXS5tthQ",
     category: "Historical Demographics",
     tags: ["historical demographics", "population trends", "social structures", "civilizations"],
