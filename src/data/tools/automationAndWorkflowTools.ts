@@ -23,8 +23,8 @@ export const automationAndWorkflowTools: Tool[] = [
     directUrl: "https://zapier.com/",
     tags: ["automation", "workflow", "app integration", "productivity", "no-code"],
     category: "Automation & Workflow Tools",
-    rating: 4.6,
-    totalVotes: 4567
+    rating: 4.8,
+    totalVotes: 8567
   },
   {
     icon: Bot,
@@ -35,8 +35,20 @@ export const automationAndWorkflowTools: Tool[] = [
     directUrl: "https://www.make.com/",
     tags: ["visual automation", "workflow builder", "integration", "scenarios", "advanced automation"],
     category: "Automation & Workflow Tools",
-    rating: 4.5,
-    totalVotes: 3456
+    rating: 4.7,
+    totalVotes: 7456
+  },
+  {
+    icon: Workflow,
+    title: "n8n",
+    description: "Free and source-available workflow automation tool. Easily automate tasks across different services with a visual interface.",
+    emoji: "🔗",
+    color: "from-green-500 to-purple-600",
+    directUrl: "https://n8n.io/",
+    tags: ["open source", "workflow automation", "self-hosted", "visual builder", "free automation"],
+    category: "Automation & Workflow Tools",
+    rating: 4.6,
+    totalVotes: 6234
   },
   {
     icon: Settings,
