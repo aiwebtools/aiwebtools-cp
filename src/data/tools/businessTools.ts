@@ -10,7 +10,8 @@ import {
   Shield,
   Wrench,
   MapPin,
-  Truck
+  Truck,
+  HardHat
 } from "lucide-react";
 
 export const businessTools: Tool[] = [
@@ -97,5 +98,17 @@ export const businessTools: Tool[] = [
     category: "Business Tools",
     rating: 4.6,
     totalVotes: 4123
+  },
+  {
+    icon: HardHat,
+    title: "SAFETY INSPECTOR GPT",
+    description: "Professional safety inspection and compliance consulting. Provides workplace safety assessments, regulatory compliance guidance, and risk mitigation strategies for various industries.",
+    emoji: "🦺",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-683b9c463ec48191bd96a0013905aa97-safety-inspector-gpt",
+    tags: ["safety inspection", "compliance", "workplace safety", "risk assessment", "regulatory guidance"],
+    category: "Business Tools",
+    rating: 4.5,
+    totalVotes: 3789
   }
 ];
