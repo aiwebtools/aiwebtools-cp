@@ -11,11 +11,13 @@ export const searchAIWebToolsGPTs = (tools: Tool[], searchTerm: string): Tool[] 
   
   console.log(`🔍 AI Web Tools search for: "${searchTerm}"`);
   
-  // Filter only AI Web Tools GPTs
+  // Filter only AI Web Tools GPTs and exclude "RECIPE GENERATOR"
   const aiWebToolsGPTs = tools.filter(tool => 
-    tool.directUrl?.includes('lovable.app') || 
-    tool.directUrl?.includes('aiwebtools') ||
-    tool.title.includes('GPT')
+    tool.title !== "RECIPE GENERATOR" && (
+      tool.directUrl?.includes('lovable.app') || 
+      tool.directUrl?.includes('aiwebtools') ||
+      tool.title.includes('GPT')
+    )
   );
   
   const results = aiWebToolsGPTs.filter(tool => {
@@ -66,7 +68,8 @@ export const searchAIWebToolsGPTs = (tools: Tool[], searchTerm: string): Tool[] 
       { search: 'video', matches: ['movie', 'scene', 'sora'] },
       { search: 'writing', matches: ['book', 'script', 'content'] },
       { search: 'medical', matches: ['doctor', 'health', 'wellness', 'dr', 'gpt'] },
-      { search: 'health', matches: ['medical', 'doctor', 'wellness', 'mental', 'gpt'] }
+      { search: 'health', matches: ['medical', 'doctor', 'wellness', 'mental', 'gpt'] },
+      { search: 'recipe', matches: ['chef', 'cooking', 'food', 'culinary', 'sizzle'] }
     ];
     
     for (const fuzzy of fuzzyMatches) {
@@ -90,6 +93,11 @@ export const scoreAIWebToolsGPT = (tool: Tool, searchTerm: string): number => {
   const toolText = `${tool.title} ${tool.description}`.toLowerCase();
   const titleWords = tool.title.toLowerCase().split(' ');
   let score = 0;
+  
+  // SPECIAL PRIORITY: Chef Sizzle for "recipe" searches
+  if (lowerSearchTerm.includes('recipe') && tool.title.toLowerCase().includes('chef') && tool.title.toLowerCase().includes('sizzle')) {
+    score += 2000; // Highest priority for recipe searches
+  }
   
   // LEARNING/EDUCATIONAL TOOLS PRIORITY
   if (lowerSearchTerm.includes('learn')) {
