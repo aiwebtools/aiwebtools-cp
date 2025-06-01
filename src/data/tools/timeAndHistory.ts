@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Clock, 
@@ -43,7 +44,7 @@ export const timeAndHistory: Tool[] = [
     description: "Explore different time periods, historical events, and cultural shifts with an AI-powered time-traveling assistant.",
     emoji: "🕰️",
     color: "from-gray-500 to-blue-600",
-    directUrl: "https://time-machine.lovable.app/?via=aiwebtools",
+    directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-the-ai-tool-ti_1j11g.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     category: "Historical & Time-Based AI Tools",
     tags: ["time travel", "history", "cultural shifts", "historical events"],
