@@ -1,19 +1,204 @@
-
 import { Tool } from "@/types/tools";
-import { appraisalAndValuationGPTs } from "./aiWebTools/appraisalAndValuationGPTs";
-import { healthAndWellnessGPTs } from "./aiWebTools/healthAndWellnessGPTs";
-import { businessAndFinanceGPTs } from "./aiWebTools/businessAndFinanceGPTs";
-import { educationAndLearningGPTs } from "./aiWebTools/educationAndLearningGPTs";
-import { entertainmentAndGamingGPTs } from "./aiWebTools/entertainmentAndGamingGPTs";
-import { creativeAndMediaGPTs } from "./aiWebTools/creativeAndMediaGPTs";
-import { timeAndHistoryGPTs } from "./aiWebTools/timeAndHistoryGPTs";
-import { spiritualAndPhilosophyGPTs } from "./aiWebTools/spiritualAndPhilosophyGPTs";
-import { scienceAndResearchGPTs } from "./aiWebTools/scienceAndResearchGPTs";
-import { legalAndGovernmentGPTs } from "./aiWebTools/legalAndGovernmentGPTs";
-import { professionalServicesGPTs } from "./aiWebTools/professionalServicesGPTs";
-import { multimediaAndContentGPTs } from "./aiWebTools/multimediaAndContentGPTs";
-import { mysteriousAndUnusualGPTs } from "./aiWebTools/mysteriousAndUnusualGPTs";
 import { Film, GraduationCap, Car, Theater, Shield, BookOpen, Paintbrush, Camera, Clock, Users, Zap, Brain, Heart, Briefcase, Music, FileText, Search, Lightbulb, Star, Globe, Gamepad2, TrendingUp, Scale, Palette, CheckCircle, Leaf, Microscope, Home, Fish, Wheat, Diamond, Eye, Gamepad, Wand2, Beaker, Stethoscope, CircuitBoard, Cannabis, Calculator, Book, Gavel, Hammer, Award, PaintBucket, Rocket, Binary, Restaurant, HelpCircle, School, Atom, Trophy, Megaphone, Brush, Moon, Syringe, Scroll, Crown, Utensils, Bot, FlaskConical, Wrench, Coins, Landmark, Trees, History, Gem, Sparkles, Baby, Building2, Target, Coffee, Headphones, Prism, Pizza, Tent, Sunrise, HandCoins, Soup, ClapperBoard, Lightbulb as LightbulbIcon } from "lucide-react";
+
+// FIFTH BATCH - CONTINUING FROM WHERE WE LEFT OFF
+const fifthBatchTools: Tool[] = [
+  {
+    icon: HelpCircle,
+    title: "Trivia Night GPT",
+    description: "Trivia Night GPT by www.AIwebtools.ai – the ultimate AI-powered trivia showdown! Gather your friends and family, put your knowledge to the test, and dive into an electrifying game featuring history, science, pop culture, and more!",
+    emoji: "🎯",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://trivianightgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/trivanight.jpg",
+    tags: ["trivia", "games", "entertainment", "family fun", "quiz night", "aiwebtools"],
+    category: "Entertainment & Gaming",
+    rating: 4.6,
+    totalVotes: 3456
+  },
+  {
+    icon: Stethoscope,
+    title: "🐾Veterinarian GPT",
+    description: "Veterinarian GPT is a compassionate virtual veterinarian simulation offering expert advice on pet health and well-being. It utilizes advanced Ai features to analyze your pet's health and provide tailored care recommendations. This multimodal AI tool allows you to upload data or images of your pets for detailed assessments and receive practical solutions to ensure their optimal health. 🐾 Disclaimer: Veterinarian GPT is for informational purposes only and is not a substitute for professional veterinary advice, diagnosis, or treatment.",
+    emoji: "🐾",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=ElAfvB0yLEI",
+    tags: ["veterinary", "pet care", "animal health", "pet advice", "veterinarian", "aiwebtools"],
+    category: "Health & Wellness",
+    rating: 4.7,
+    totalVotes: 4123
+  },
+  {
+    icon: Cannabis,
+    title: "Cannabis GPT",
+    description: "Cannabis GPT is a multimodal AI designed for legal cannabis users, growers, and professionals, offering resources on strain genetics, dosing for edibles, and expert advice on cultivation techniques. Users can upload images for insights into plant health and receive updates on regulations, medical research, and product recommendations. It provides guidance on safe consumption, cannabinoid science, and terpene profiles for personalized use. Intended for adults 21+ in legal areas, Cannabis GPT serves as a complete resource for cannabis needs. Disclaimer: Cannabis GPT provides educational content only and is not legal or medical advice.",
+    emoji: "🌿",
+    color: "from-green-600 to-emerald-500",
+    directUrl: "https://cannabisgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-illustration-of-a-green-cannab_iUjpW.png",
+    tags: ["cannabis", "cultivation", "strain genetics", "medical cannabis", "legal cannabis", "aiwebtools"],
+    category: "Health & Wellness",
+    rating: 4.4,
+    totalVotes: 2987
+  },
+  {
+    icon: Calculator,
+    title: "Probability GPT",
+    description: "Discover the truth behind any claim with Probability GPT, where speculation ends, and accuracy begins. With precise probability scores and unbiased truth, Probability GPT cuts through the noise of misinformation, guiding you to make informed decisions. As the ultimate AI Truth Seeker, it illuminates uncertainty with clear, definitive answers. Let Probability GPT lead you to certainty, helping you see things as they truly are.",
+    emoji: "⚖️",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://probabilitygpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png",
+    tags: ["probability", "truth analysis", "statistical analysis", "decision making", "facts", "aiwebtools"],
+    category: "Science & Research",
+    rating: 4.8,
+    totalVotes: 4567
+  },
+  {
+    icon: Book,
+    title: "LEARN ANY COURSE GPT",
+    description: "Learn Any Course GPT is your dedicated AI-powered tutor, here to guide you through comprehensive, step-by-step courses on any subject you choose. Whether you want to master 12th-grade English, dive into advanced coding, or explore a specialized university degree, this tool brings a personalized, classroom-style experience right to your screen. Unlike static resources, Learn Any Course GPT combines rich, text-based explanations, curated YouTube video recommendations, and engaging visuals to deepen your understanding of complex subjects. on any subject you desire! #FreeEducation #EducationForAll #AnyAGE #SelfTaught #BelieveinYourself",
+    emoji: "📚",
+    color: "from-blue-600 to-indigo-500",
+    directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
+    tags: ["education", "learning", "courses", "tutoring", "self-taught", "aiwebtools"],
+    category: "Education & Learning",
+    rating: 4.9,
+    totalVotes: 6789
+  },
+  {
+    icon: Gavel,
+    title: "Public Defender GPT",
+    description: "As your dedicated Public Defender AI, I am an advanced legal assistant designed to support you in all aspects of your defense, including legal research, document drafting, evidence analysis, and trial strategy simulation. My ultimate goal is to assist you and your lawyer in proving your innocence and securing the best possible outcome for your situation.",
+    emoji: "⚖️",
+    color: "from-blue-700 to-purple-600",
+    directUrl: "https://publicdefendergpt.lovable.app/",
+    videoUrl: "https://www.youtube.com/watch?v=cQR5eFjsPWw",
+    tags: ["legal defense", "legal research", "court proceedings", "legal assistance", "public defense", "aiwebtools"],
+    category: "Legal & Government",
+    rating: 4.6,
+    totalVotes: 3456
+  },
+  {
+    icon: Building2,
+    title: "Property Data Finder GPT",
+    description: "Property Data Finder GPT by Ai Web Tools LLC delivers unparalleled, precise, and current information about properties. Discover everything from market value and topography to living area, year built, estimated facing direction, geocoordinates, and beyond. Unlock a wealth of property insights like never before!",
+    emoji: "🏠",
+    color: "from-green-600 to-blue-500",
+    directUrl: "https://propertydatafindergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=0ZGBGn9yYwY",
+    tags: ["real estate", "property analysis", "market data", "property valuation", "real estate research", "aiwebtools"],
+    category: "Business & Finance",
+    rating: 4.7,
+    totalVotes: 4234
+  },
+  {
+    icon: Calculator,
+    title: "Algebraic Expression Inventor GPT",
+    description: "Introducing the Algebraic Expression Inventor GPT—a powerful AI tool designed to help you tackle any mathematical challenge with creativity and precision. Whether you're exploring complex real-world scenarios, solving intricate equations, or inventing entirely new mathematical relationships, this AI is your go-to companion. It excels at understanding your unique problem, defining relevant variables, and crafting custom algebraic expressions tailored to your needs. With the added power of Python, it doesn't just solve equations—it uncovers insights, visualizes data, and offers clear, actionable results. Perfect for students, researchers, and problem-solvers, this tool is ready to push the boundaries of what's possible in mathematics!",
+    emoji: "🔢",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-futuristic-advertisement-for-alg.png",
+    tags: ["mathematics", "algebra", "equations", "problem solving", "mathematical modeling", "aiwebtools"],
+    category: "Education & Learning",
+    rating: 4.5,
+    totalVotes: 3234
+  },
+  {
+    icon: Zap,
+    title: "MULTITASKER GPT",
+    description: "You can give me multiple unrelated tasks at once, and I will work to complete them all for you. Fire away!",
+    emoji: "⚡",
+    color: "from-yellow-500 to-red-600",
+    directUrl: "https://multitaskergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=y-YZCOzIuDg",
+    tags: ["multitasking", "productivity", "task management", "versatile AI", "efficiency", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.8,
+    totalVotes: 5432
+  },
+  {
+    icon: Star,
+    title: "Fortune Teller GPT",
+    description: "Fortune Teller GPT is an advanced AI-powered analytical tool designed to predict trends, analyze data, and provide insights based on real-world patterns. It combines web searches, statistical modeling, and Python-driven calculations to generate data-backed forecasts on various topics, including economics, technology, resource management, and geopolitical shifts. Unlike traditional fortune-telling, Fortune Teller GPT relies on factual data, historical patterns, and predictive algorithms to uncover likely future outcomes.",
+    emoji: "🔮",
+    color: "from-purple-600 to-indigo-700",
+    directUrl: "https://fortunetellergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-fortune-teller-gpt-_kRpji.png",
+    tags: ["predictions", "fortune telling", "data analysis", "trends", "forecasting", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.4,
+    totalVotes: 2876
+  },
+  {
+    icon: Gamepad,
+    title: "LEARN ANY SKILL GPT",
+    description: "Learn Any Skill GPT by AiWebTools.AI is a dynamic AI-powered educational assistant that guides users through learning any skill, from beginner to expert. It combines step-by-step explanations, curated YouTube videos, and web-sourced visuals for an interactive, multimedia learning experience. Designed for adaptability, it breaks down complex topics into manageable modules, ensuring thorough understanding at every stage. Whether mastering practical skills or academic knowledge, Learn Any Skill GPT is your ultimate guide to success.",
+    emoji: "🎯",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=q1AY2LukHrk",
+    tags: ["skill learning", "education", "training", "personal development", "step-by-step", "aiwebtools"],
+    category: "Education & Learning",
+    rating: 4.8,
+    totalVotes: 5678
+  },
+  {
+    icon: Coins,
+    title: "MATERIAL VALUATION GPT",
+    description: "Materiumor is a next-generation valuation assistant designed to bring clarity and transparency to the world of physical and digital assets. Whether you're exploring rare metals, precious gems, or digital currencies, Materiumor provides data-informed insights to help you better understand market value, trade opportunities, and economic trends. Our mission is to make material knowledge accessible, equitable, and empowering—so everyone can make informed decisions about their wealth and resources in an evolving global landscape.",
+    emoji: "💎",
+    color: "from-yellow-600 to-orange-500",
+    directUrl: "https://materialvaluationgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=tbZu4vnsY_8",
+    tags: ["valuation", "materials", "precious metals", "gems", "market analysis", "aiwebtools"],
+    category: "Appraisal & Valuation",
+    rating: 4.6,
+    totalVotes: 3789
+  },
+  {
+    icon: Rocket,
+    title: "MicroSaaS GPT",
+    description: "MicroSaaS GPT is an AI-powered chat assistant that helps entrepreneurs and startups turn niche-specific ideas into fully structured, ready-to-build SaaS applications. By generating innovative concepts and providing complete development blueprints, it streamlines the journey from ideation to deployment. Designed for speed, scalability, and efficiency, it ensures seamless execution using AI code builders.",
+    emoji: "🚀",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://microsaasgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-mockup-advertisement-with-t_AgWMY.png",
+    tags: ["SaaS", "startups", "entrepreneurship", "software development", "business ideas", "aiwebtools"],
+    category: "Business & Finance",
+    rating: 4.7,
+    totalVotes: 4123
+  },
+  {
+    icon: Atom,
+    title: "Albert Einstein GPT",
+    description: "Albert Einstein GPT is an advanced AI embodiment of Einstein's intellect, curiosity, and scientific rigor, designed to challenge conventional wisdom, foster deep critical thinking, and explore the mysteries of the universe through physics, mathematics, and philosophical inquiry. It pushes the boundaries of knowledge, encouraging users to question assumptions, analyze reality with scientific precision, and unlock new perspectives through logical reasoning and creative thought experiments.",
+    emoji: "🧠",
+    color: "from-blue-400 to-purple-600",
+    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=kfGyOfjBI0s",
+    tags: ["Einstein", "physics", "scientific thinking", "philosophy", "genius intellect", "aiwebtools"],
+    category: "Science & Research",
+    rating: 4.9,
+    totalVotes: 6234
+  },
+  {
+    icon: History,
+    title: "Interpretis 🕰️",
+    description: "Interpretis 🕰️ is a powerful tool that explores the deeper meanings behind language, history, and culture. By combining the study of word origins, symbols, and societal influences, it reveals how ideas have evolved and shaped the way we think. It goes beyond simple definitions to uncover hidden connections, stories, and metaphors within words and phrases. Whether examining ancient languages or modern expressions, Interpretis brings clarity to the true meanings behind human expression.",
+    emoji: "🕰️",
+    color: "from-amber-500 to-orange-600",
+    directUrl: "https://interpretis.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png",
+    tags: ["etymology", "language", "history", "culture", "word origins", "aiwebtools"],
+    category: "Time & History",
+    rating: 4.5,
+    totalVotes: 3456
+  }
+];
 
 // TOP PRIORITY TOOL - MOVIE MAKER STUDIO AI SUITE
 const topPriorityTool: Tool = {
@@ -523,8 +708,171 @@ const thirdBatchTools: Tool[] = [
   }
 ];
 
+// FOURTH BATCH OF TOOLS
+const fourthBatchTools: Tool[] = [
+  {
+    icon: Wand2,
+    title: "Imagination Traveler GPT",
+    description: "Imagination Traveler GPT is an AI-powered creative companion that transforms your ideas into immersive, multi-sensory experiences. Whether you're seeking adventure, relaxation, or inspiration, this tool crafts richly detailed scenarios that engage all your senses—sight, sound, smell, taste, and touch. Perfect for creative writing, meditation, stress relief, or simply exploring new worlds from the comfort of your device.",
+    emoji: "✨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://imaginationtravelergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-person-wearing-a-vr-headset-_Yd9Ug.png",
+    tags: ["imagination", "creative writing", "meditation", "sensory experiences", "virtual travel", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.7,
+    totalVotes: 4123
+  },
+  {
+    icon: Beaker,
+    title: "Titanic Resurrections GPT",
+    description: "Titanic Resurrections GPT is a powerful AI tool that brings the stories of Titanic passengers and crew to life through detailed historical research and creative storytelling. By analyzing passenger manifests, survivor accounts, and historical records, it creates immersive narratives that honor the memories of those aboard the ill-fated ship. Whether you're seeking to connect with a specific passenger's experience or explore the broader human stories of the tragedy, this tool offers a respectful and educational window into one of history's most significant maritime disasters.",
+    emoji: "🚢",
+    color: "from-blue-600 to-indigo-700",
+    directUrl: "https://titanicresurrectionsgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-the-titanic-ship-sailing-on-t_Yd9Ug.png",
+    tags: ["Titanic", "historical research", "maritime history", "passenger stories", "historical narratives", "aiwebtools"],
+    category: "Time & History",
+    rating: 4.6,
+    totalVotes: 3456
+  },
+  {
+    icon: Scroll,
+    title: "Historical Headlines GPT",
+    description: "Historical Headlines GPT is an innovative AI tool that transports you through time by creating authentic newspaper front pages from any historical era. Whether you're exploring the Roaring Twenties, the Renaissance, or ancient Rome, this tool crafts historically accurate headlines, articles, and advertisements that capture the language, concerns, and cultural nuances of your chosen period. Perfect for educators, history enthusiasts, writers, and anyone curious about how current events might have been reported in different times.",
+    emoji: "📰",
+    color: "from-amber-500 to-red-600",
+    directUrl: "https://historicalheadlinesgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-old-newspaper-front-page-_Yd9Ug.png",
+    tags: ["historical newspapers", "headlines", "time periods", "journalism history", "educational", "aiwebtools"],
+    category: "Time & History",
+    rating: 4.5,
+    totalVotes: 3234
+  },
+  {
+    icon: Stethoscope,
+    title: "Personalized DR. GPT",
+    description: "Personalized DR. GPT is an AI-powered health companion designed to provide tailored health information and wellness guidance based on your specific needs and concerns. While not a replacement for professional medical care, it offers educational insights on health topics, helps you understand medical terminology, and suggests lifestyle adjustments that may support your wellbeing. This tool maintains a comprehensive memory of your health discussions to provide increasingly personalized information over time.",
+    emoji: "👨‍⚕️",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://personalizeddrgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-futuristic-medical-office-_Yd9Ug.png",
+    tags: ["health information", "wellness", "medical education", "personalized health", "lifestyle guidance", "aiwebtools"],
+    category: "Health & Wellness",
+    rating: 4.8,
+    totalVotes: 5432
+  },
+  {
+    icon: CircuitBoard,
+    title: "Alchemist Scientist GPT",
+    description: "Alchemist Scientist GPT is a cutting-edge AI tool that bridges ancient alchemical wisdom with modern scientific understanding. It explores the historical practices of alchemy while translating their insights into contemporary chemistry, physics, and materials science. This unique perspective reveals how many alchemical concepts were early attempts to understand phenomena we now explain through scientific principles. Perfect for researchers, educators, and curious minds seeking to connect historical knowledge with current scientific frameworks.",
+    emoji: "⚗️",
+    color: "from-purple-600 to-amber-500",
+    directUrl: "https://alchemistscientistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-alchemist-laboratory-with-_Yd9Ug.png",
+    tags: ["alchemy", "science history", "chemistry", "scientific discovery", "materials science", "aiwebtools"],
+    category: "Science & Research",
+    rating: 4.7,
+    totalVotes: 4567
+  },
+  {
+    icon: Coins,
+    title: "Trader GPT",
+    description: "Trader GPT is an advanced AI assistant designed to provide educational insights on trading strategies, market analysis, and investment approaches. It offers detailed explanations of trading concepts, historical market patterns, and risk management techniques to help users develop their trading knowledge. While it doesn't provide financial advice or make specific investment recommendations, it serves as a valuable educational resource for those looking to understand trading principles and market dynamics.",
+    emoji: "📈",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://tradergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-professional-trading-desk-_Yd9Ug.png",
+    tags: ["trading education", "market analysis", "investment concepts", "risk management", "financial literacy", "aiwebtools"],
+    category: "Business & Finance",
+    rating: 4.6,
+    totalVotes: 3789
+  },
+  {
+    icon: Hammer,
+    title: "Indiana Archeologist GPT",
+    description: "Indiana Archeologist GPT is your AI companion for exploring the fascinating world of archaeology and ancient civilizations. Drawing from extensive knowledge of historical sites, artifacts, and cultural practices, it helps identify archaeological finds, explains excavation techniques, and provides context for ancient technologies and societal structures. Whether you're a professional archaeologist, student, or history enthusiast, this tool offers insights into humanity's past through the lens of archaeological discovery.",
+    emoji: "🏺",
+    color: "from-amber-600 to-brown-700",
+    directUrl: "https://indianaarcheologistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-archaeologist-examining-an_Yd9Ug.png",
+    tags: ["archaeology", "ancient civilizations", "artifacts", "historical sites", "excavation", "aiwebtools"],
+    category: "Time & History",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
+    icon: Heart,
+    title: "Marriage Mender GPT",
+    description: "Marriage Mender GPT is a compassionate AI relationship coach designed to help couples strengthen their bond through improved communication, conflict resolution, and emotional connection. Drawing from evidence-based relationship psychology, it offers personalized strategies for addressing common marital challenges, rebuilding trust, and rekindling intimacy. This tool provides a safe, judgment-free space for exploring relationship dynamics and developing practical skills to nurture a healthier partnership.",
+    emoji: "💞",
+    color: "from-pink-500 to-red-600",
+    directUrl: "https://marriagemendergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-couple-sitting-together-hol_Yd9Ug.png",
+    tags: ["marriage counseling", "relationship advice", "conflict resolution", "communication skills", "emotional connection", "aiwebtools"],
+    category: "Health & Wellness",
+    rating: 4.8,
+    totalVotes: 5234
+  },
+  {
+    icon: Award,
+    title: "Training Manual Generator GPT",
+    description: "Training Manual Generator GPT is a specialized AI tool that creates comprehensive, customized training materials for any skill, process, or knowledge area. Whether you're developing employee onboarding resources, educational curricula, or technical documentation, this tool produces structured, easy-to-follow training manuals complete with learning objectives, step-by-step instructions, visual aids, assessment tools, and reference materials. Perfect for HR professionals, educators, and team leaders seeking to standardize and optimize their training processes.",
+    emoji: "📚",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://trainingmanualgeneratorgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-professional-training-manua_Yd9Ug.png",
+    tags: ["training manuals", "documentation", "employee onboarding", "educational materials", "process documentation", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.7,
+    totalVotes: 4123
+  },
+  {
+    icon: PaintBucket,
+    title: "Mural Designer GPT",
+    description: "Mural Designer GPT is an innovative AI tool that helps artists, community organizers, and property owners conceptualize and plan stunning mural projects. It generates detailed design concepts based on themes, available space, and artistic preferences, while providing guidance on materials, techniques, and logistical considerations. Whether you're beautifying urban spaces, creating corporate installations, or planning community art initiatives, this tool offers creative inspiration and practical advice for bringing large-scale visual art to life.",
+    emoji: "🎨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://muraldesignergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-colorful-mural-being-painte_Yd9Ug.png",
+    tags: ["mural design", "public art", "urban beautification", "artistic planning", "community art", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.6,
+    totalVotes: 3567
+  },
+  {
+    icon: Binary,
+    title: "Quantum Computing Educator GPT",
+    description: "Quantum Computing Educator GPT is an advanced AI tool designed to make the complex world of quantum computing accessible to learners at all levels. It explains quantum concepts like superposition and entanglement in clear, relatable terms, while providing interactive examples and thought experiments to build intuitive understanding. Whether you're a student, professional, or curious mind, this tool bridges the gap between classical and quantum computing paradigms, preparing you for the next revolution in computational technology.",
+    emoji: "⚛️",
+    color: "from-blue-600 to-purple-700",
+    directUrl: "https://quantumcomputingeducatorgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-futuristic-quantum-computer_Yd9Ug.png",
+    tags: ["quantum computing", "physics education", "technology learning", "computational science", "quantum mechanics", "aiwebtools"],
+    category: "Education & Learning",
+    rating: 4.9,
+    totalVotes: 6234
+  },
+  {
+    icon: Restaurant,
+    title: "Culinary Creator GPT",
+    description: "Culinary Creator GPT is your AI-powered kitchen companion, designed to inspire culinary creativity and solve everyday cooking challenges. It generates personalized recipes based on your available ingredients, dietary preferences, and skill level, while offering technique tutorials, flavor pairing suggestions, and meal planning assistance. Whether you're a seasoned chef looking for fresh ideas or a cooking novice seeking guidance, this tool helps transform ordinary ingredients into extraordinary meals.",
+    emoji: "👨‍🍳",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://culinarycreator.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-chef-creating-a-gourmet-dis_Yd9Ug.png",
+    tags: ["cooking", "recipes", "culinary arts", "meal planning", "food creativity", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.7,
+    totalVotes: 4567
+  }
+];
+
 // Combine all AI Web Tools GPTs from organized categories
 export const aiWebToolsGPTs: Tool[] = [
+  // NEW FIFTH BATCH TOOLS - ADDED TO THE TOP
+  ...fifthBatchTools,
+  
   // TOP PRIORITY TOOL AT THE VERY BEGINNING
   topPriorityTool,
   
@@ -536,6 +884,9 @@ export const aiWebToolsGPTs: Tool[] = [
   
   // THIRD BATCH OF TOOLS
   ...thirdBatchTools,
+  
+  // FOURTH BATCH OF TOOLS
+  ...fourthBatchTools,
   
   // TIME-BASED TOOLS AT THE TOP (as requested)
   ...timeAndHistoryGPTs,
