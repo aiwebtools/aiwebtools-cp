@@ -1,6 +1,5 @@
 
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Plus, Search } from "lucide-react";
+import { Shield, Plus, Upload } from "lucide-react";
 
 interface FooterActionsProps {
   handleExternalLink: (url: string, e: React.MouseEvent) => void;
@@ -9,46 +8,35 @@ interface FooterActionsProps {
 }
 
 const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool }: FooterActionsProps) => {
-  const handleViewAllTools = (e: React.MouseEvent) => {
-    e.preventDefault();
-    window.location.href = 'https://aiwebtools.ai/main-category/ALL%20AI%20TOOLS';
-  };
-
   return (
-    <div className="text-center mb-16">
-      <h3 className="text-2xl font-bold text-cyan-300 mb-6 cyber-glow">
-        🚀 Discover More AI Tools
-      </h3>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-4xl mx-auto">
-        <Button
-          onClick={handleViewAllTools}
-          variant="outline"
-          size="lg"
-          className="w-full sm:w-auto border-cyan-500 text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-all duration-300"
-        >
-          <Search className="mr-2 h-5 w-5" />
-          VIEW ALL AI TOOLS
-        </Button>
-        
-        <Button
+    <div className="text-center mb-8 space-y-3">
+      <button
+        onClick={(e) => handleExternalLink("https://aitools.company/terms-of-services", e)}
+        className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-cyan-600 via-cyan-500 to-cyan-600 hover:from-cyan-500 hover:via-cyan-400 hover:to-cyan-500 text-black font-bold text-sm rounded-full shadow-lg shadow-cyan-500/30 hover:shadow-cyan-400/50 transform hover:scale-105 transition-all duration-300 border border-cyan-400 hover:border-cyan-300 cyber-glow"
+      >
+        <Shield className="w-4 h-4" />
+        <span>READ FULL DISCLAIMER AND TERMS OF SERVICE</span>
+        <Shield className="w-4 h-4" />
+      </button>
+      
+      <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+        <button
           onClick={handleSubmitTool}
-          variant="outline" 
-          size="lg"
-          className="w-full sm:w-auto border-green-500 text-green-300 hover:bg-green-500/20 hover:text-white transition-all duration-300"
+          className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-600 via-purple-500 to-purple-600 hover:from-purple-500 hover:via-purple-400 hover:to-purple-500 text-white font-bold text-sm rounded-full shadow-lg shadow-purple-500/30 hover:shadow-purple-400/50 transform hover:scale-105 transition-all duration-300 border border-purple-400 hover:border-purple-300 cyber-glow"
         >
-          <Plus className="mr-2 h-5 w-5" />
-          SUBMIT YOUR TOOL
-        </Button>
+          <Upload className="w-4 h-4" />
+          <span>SUBMIT YOUR AI TOOL</span>
+          <Upload className="w-4 h-4" />
+        </button>
         
-        <Button
+        <button
           onClick={handleRequestTool}
-          variant="outline"
-          size="lg" 
-          className="w-full sm:w-auto border-purple-500 text-purple-300 hover:bg-purple-500/20 hover:text-white transition-all duration-300"
+          className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-green-600 via-green-500 to-green-600 hover:from-green-500 hover:via-green-400 hover:to-green-500 text-black font-bold text-sm rounded-full shadow-lg shadow-green-500/30 hover:shadow-green-400/50 transform hover:scale-105 transition-all duration-300 border border-green-400 hover:border-green-300 cyber-glow"
         >
-          <ExternalLink className="mr-2 h-5 w-5" />
-          REQUEST CUSTOM TOOL
-        </Button>
+          <Plus className="w-4 h-4" />
+          <span>REQUEST A TOOL BUILD</span>
+          <Plus className="w-4 h-4" />
+        </button>
       </div>
     </div>
   );
