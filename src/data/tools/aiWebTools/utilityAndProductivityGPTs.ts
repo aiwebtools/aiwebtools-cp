@@ -24,6 +24,18 @@ import {
 
 export const utilityAndProductivityGPTs: Tool[] = [
   {
+    icon: Search,
+    title: "AI TOOL EXPERT",
+    description: "AI Tool Expert is your comprehensive guide to discovering, evaluating, and implementing the best AI tools for any project or need. Whether you're looking for productivity enhancers, creative assistants, or specialized solutions, this expert provides detailed recommendations, comparisons, and step-by-step implementation guides to help you leverage the power of AI tools effectively.",
+    emoji: "🔍",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-8t4uyWOrI-ai-tools-expert-finder-gpt",
+    tags: ["AI tools", "tool discovery", "expert recommendations", "implementation guides", "AI solutions", "productivity"],
+    category: "Utility & Productivity",
+    rating: 4.8,
+    totalVotes: 4567
+  },
+  {
     icon: Languages,
     title: "AI LANGUAGE TRANSLATOR GPT",
     description: "AI Language Translator GPT is a powerful multilingual translation assistant that provides accurate, context-aware translations across dozens of languages. Whether you're translating documents, conversations, or creative content, this AI tool maintains meaning, tone, and cultural nuances while offering real-time translation capabilities. Perfect for business communications, travel, education, and international collaboration.",
