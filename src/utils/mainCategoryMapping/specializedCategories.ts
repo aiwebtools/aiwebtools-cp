@@ -4,6 +4,8 @@ import { MainCategory } from "./types";
 export const specializedCategories: MainCategory[] = [
   {
     name: "AI WEB TOOLS ORIGINALS",
+    emoji: "🌟",
+    description: "Exclusive AI tools and GPTs created by AI Web Tools company",
     subcategories: [
       "AI Web Tools GPTs",
       "Featured AI Web Tools",
@@ -13,6 +15,8 @@ export const specializedCategories: MainCategory[] = [
   },
   {
     name: "HISTORICAL & TIME-BASED AI TOOLS",
+    emoji: "🕰️",
+    description: "Tools for exploring history, time travel simulations, and historical analysis",
     subcategories: [
       "Time & History",
       "Historical & Cultural",
@@ -22,6 +26,8 @@ export const specializedCategories: MainCategory[] = [
   },
   {
     name: "HEALTH, WELLNESS & PERSONAL LIFESTYLE",
+    emoji: "🏥",
+    description: "AI tools for health, wellness, personal care, and lifestyle improvement",
     subcategories: [
       "Health & Wellness",
       "Personal Services",
@@ -31,6 +37,8 @@ export const specializedCategories: MainCategory[] = [
   },
   {
     name: "ROBOTICS & HARDWARE",
+    emoji: "🤖",
+    description: "Robotics companies, hardware tools, and IoT platforms",
     subcategories: [
       "Robotics Companies",
       "Hardware Tools",
