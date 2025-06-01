@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -6,14 +7,15 @@ import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 
 // =============================================================================
-// OUR FEATURED SECTION - Main featured tools showcase
-// This is the "Our Featured Section" that displays curated AI Web Tools GPTs
+// OUR FEATURED SECTION - Portfolio showcase of AI Web Tools GPTs
+// This displays ONLY our AI Web Tools GPTs (our creations) - especially those with videos/images
+// bolt.new and gemini remain searchable in database but not featured here (not our designs)
 // =============================================================================
 
 const featuredGPTs = [
   {
     title: "TIME MACHINE GPT",
-    description: "Travel through time and explore different historical periods with advanced AI-powered time travel simulation and historical exploration.",
+    description: "Uncover the past, explore potential futures, and dive into alternative realities with Time Machine GPT! Experience key historical moments, interact with notable figures, and journey through different eras—unlock your imagination.",
     badge: "TIME TRAVEL",
     color: "from-amber-600 to-orange-600",
     features: ["Time Travel", "Historical Exploration", "Period Analysis", "Timeline Navigation"],
@@ -24,7 +26,7 @@ const featuredGPTs = [
   },
   {
     title: "COLLEGE DEGREE GPT",
-    description: "Complete academic guidance system for college students covering degree planning, course selection, career pathways, and academic success strategies.",
+    description: "College Degree GPT teaches you every college class for any degree you desire, mirroring the exact structure of your chosen institution or university. While it doesn't provide an accredited degree, it delivers a full, in-depth educational experience.",
     badge: "EDUCATION",
     color: "from-blue-600 to-indigo-600",
     features: ["Degree Planning", "Course Selection", "Career Pathways", "Academic Success"],
@@ -35,7 +37,7 @@ const featuredGPTs = [
   },
   {
     title: "AUTOMOBILE GPT",
-    description: "Comprehensive automotive expertise covering car maintenance, repairs, diagnostics, buying guides, and automotive technology for car enthusiasts and professionals.",
+    description: "Automobile GPT is your ultimate, all-encompassing AI automotive expert, designed to guide you through every aspect of the automotive world with precision. Whether you're searching for the best deals at local dealerships, need detailed repair cost assessments, or seek expert advice.",
     badge: "AUTOMOTIVE",
     color: "from-blue-500 to-cyan-600",
     features: ["Car Maintenance", "Repair Diagnostics", "Buying Guides", "Auto Technology"],
@@ -46,7 +48,7 @@ const featuredGPTs = [
   },
   {
     title: "Movie Maker Studio AI SUITE",
-    description: "Complete movie & motion picture production suite with every tool needed for professional filmmaking from script to screen.",
+    description: "Complete movie & motion picture production suite with every tool needed for professional filmmaking from script to screen. Movie Scripter Writer, Movie Scene Maker, Movie Trailer Poster Maker & more.",
     badge: "STUDIO SUITE",
     color: "from-purple-600 to-pink-600",
     features: ["Movie Script Writer", "Scene Maker", "Trailer Creator", "Poster Designer"],
@@ -57,7 +59,7 @@ const featuredGPTs = [
   },
   {
     title: "Survivalist GPT",
-    description: "Ultimate survival guidance system covering wilderness survival, emergency preparedness, survival skills, and outdoor safety techniques.",
+    description: "Congratulations! You now have a survival expert in your pocket. Imagine a robot with vast knowledge and experience in survival techniques, ready to assist you anytime. This GPT offers step-by-step guidance, practical strategies, and personalized support.",
     badge: "SURVIVAL",
     color: "from-green-600 to-teal-600",
     features: ["Wilderness Survival", "Emergency Prep", "Survival Skills", "Outdoor Safety"],
@@ -68,7 +70,7 @@ const featuredGPTs = [
   },
   {
     title: "STAGEMASTER AI SUITE",
-    description: "Transform every aspect of stage production, from set design to choreography and lighting for professional performing arts.",
+    description: "A powerful suite of AI tools that transforms every aspect of stage production, from set design to choreography, costume creation to lighting optimization for professional performing arts.",
     badge: "PERFORMING ARTS",
     color: "from-red-500 to-orange-500",
     features: ["Set Design", "Choreography", "Costume Creation", "Lighting Optimization"],
@@ -78,9 +80,9 @@ const featuredGPTs = [
     emoji: "🎭"
   },
   {
-    title: "ImmortalizeMe™",
-    description: "Create fully interactive digital clones with voice, personality, and life stories preserved forever for lasting digital legacy.",
-    badge: "EXCLUSIVE",
+    title: "ImmortalizeME™",
+    description: "ImmortalizeMe™ creates fully interactive digital clones of individuals using their voice, personality, and life stories. Your digital twin can engage in real-time voice conversations and reflect your unique mannerisms and memories.",
+    badge: "DIGITAL LEGACY",
     color: "from-cyan-500 to-blue-600",
     features: ["Voice Cloning", "Personality AI", "Memory Integration", "Real-time Conversations"],
     directUrl: "https://immortalizeme.lovable.app/?via=aiwebtools",
@@ -89,11 +91,141 @@ const featuredGPTs = [
     emoji: "♾️"
   },
   {
+    title: "Movie Script Writer GPT",
+    description: "Unlock your creative potential with Movie Scriptwriter GPT, the ultimate AI assistant designed to help you write award-winning movie scripts. Whether you're planning scenes or developing characters, our AI supports you through each stage.",
+    badge: "WRITING SUITE",
+    color: "from-purple-600 to-pink-600",
+    features: ["Script Writing", "Character Development", "Scene Planning", "Professional Formatting"],
+    directUrl: "https://moviescriptwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=4e3Rkurt3-c",
+    imageUrl: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=200&fit=crop",
+    emoji: "📝"
+  },
+  {
+    title: "Illuminous World Data Explorer GPT",
+    description: "Illuminous specializes in data analysis and global data retrieval, designed to make accurate predictions about anything. This GPT offers real-time global data analysis, creating stunning infographics to turn complex information into clear insights.",
+    badge: "DATA ANALYSIS",
+    color: "from-cyan-500 to-blue-600",
+    features: ["Data Analysis", "Global Predictions", "Infographics", "Real-time Data"],
+    directUrl: "https://illuminous.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=Nd1Ui2-VLMU",
+    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop",
+    emoji: "💡"
+  },
+  {
+    title: "GODMODE GPT",
+    description: "Imagine having an AI companion so powerful and versatile that it seamlessly transforms to meet every need you have—introducing GodMode GPT, your ultimate AI transformation tool.",
+    badge: "AI POWER",
+    color: "from-purple-600 to-gold-600",
+    features: ["Ultimate AI", "Versatile Transform", "Multi-Purpose", "Power Mode"],
+    directUrl: "https://godmodegpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=or3JtZsq6Bc",
+    imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop",
+    emoji: "⚡"
+  },
+  {
+    title: "Music Video Maker AI Studio",
+    description: "Step into the spotlight with Music Video Maker Studio, the ultimate AI-powered creative suite that transforms your music into cinematic experiences. Build scene-by-scene visuals where you and your band take center stage.",
+    badge: "MUSIC VIDEO",
+    color: "from-purple-600 to-pink-600",
+    features: ["Music Video Creation", "Scene Building", "Band Features", "Cinematic Quality"],
+    directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=rBQTUrvHcR8",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377297324958552105/music_video_maker.webp",
+    emoji: "🎵"
+  },
+  {
+    title: "BOOK WRITER GPT",
+    description: "Book Writer GPT assists you in creating professional, well-structured books with seamless page-to-page continuity, engaging dialogue, and captivating storytelling for authors and writers.",
+    badge: "WRITING SUITE",
+    color: "from-blue-600 to-purple-600",
+    features: ["Book Writing", "Story Structure", "Character Development", "Professional Formatting"],
+    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
+    imageUrl: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=200&fit=crop",
+    emoji: "📚"
+  },
+  {
+    title: "TALK TO HISTORY GPT",
+    description: "Your gateway to engaging in immersive historical conversations with influential leaders of history. Interact with any historical figures you imagine and gain unique insights and perspectives straight from the source.",
+    badge: "HISTORICAL",
+    color: "from-amber-600 to-orange-600",
+    features: ["Historical Conversations", "Time Travel Chat", "Educational Tool", "Historical Figures"],
+    directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=5t7EXS5tthQ",
+    imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop",
+    emoji: "🏛️"
+  },
+  {
+    title: "Stellaris: 🚀AI Space Explorer",
+    description: "Stellaris: AI Space Explorer is a cutting-edge AI designed for space exploration and exoplanet settlement simulations. It provides expert guidance in astrogation, terraforming, and colony planning with advanced data analysis.",
+    badge: "SPACE EXPLORATION",
+    color: "from-purple-600 to-blue-600",
+    features: ["Space Exploration", "Colony Planning", "Terraforming", "Astrogation"],
+    directUrl: "https://stellaris.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=tJwhDOE3mUM",
+    imageUrl: "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=400&h=200&fit=crop",
+    emoji: "🚀"
+  },
+  {
+    title: "Criminologist GPT",
+    description: "A tool to assist with investigations and training of criminologists. This tool is designed solely to assist human investigators by analyzing evidence and providing insights in collaboration with law enforcement.",
+    badge: "INVESTIGATION",
+    color: "from-red-600 to-gray-600",
+    features: ["Crime Analysis", "Evidence Review", "Investigation Support", "Forensic Insights"],
+    directUrl: "https://criminologistgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=jgvqpqmRJi8",
+    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop",
+    emoji: "🔍"
+  },
+  {
+    title: "Social Safety Net GPT",
+    description: "Social Safety Net GPT exemplifies how AI can make a significant societal impact with minimal effort and resources. By providing comprehensive support to those in need, it demonstrates the power of AI for positive change.",
+    badge: "SOCIAL GOOD",
+    color: "from-green-600 to-blue-600",
+    features: ["Social Support", "Resource Access", "Community Aid", "Safety Net"],
+    directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
+    imageUrl: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=200&fit=crop",
+    emoji: "🤝"
+  },
+  {
+    title: "Resurrection GPT",
+    description: "Resurrection GPT offers a unique opportunity to simulate reconnecting with the memories of loved ones who have passed, providing comfort and a sense of presence through simulated conversations for emotional healing.",
+    badge: "MEMORIAL",
+    color: "from-purple-500 to-blue-600",
+    features: ["Memory Simulation", "Emotional Healing", "Comfort Support", "Grief Assistance"],
+    directUrl: "https://resurrectiongpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=nEuxdGO-RZ4",
+    imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop",
+    emoji: "👼"
+  },
+  {
+    title: "PERFECT PROMPT ENGINE",
+    description: "The Prompt Perfect Engine effortlessly optimizes all your chat prompts. Crafted by prompt engineers, it's perfect for maximizing your potential, whether you're a beginner or aiming for perfection.",
+    badge: "PROMPT OPTIMIZATION",
+    color: "from-cyan-500 to-purple-600",
+    features: ["Prompt Optimization", "AI Enhancement", "Perfect Prompts", "Engineering Tool"],
+    directUrl: "https://perfectpromptengine.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-humanoid-robot-controlli.png/:/cr=t:9.25%25,l:11.96%25,w:73.53%25,h:65.54%25/rs=w:1200,h:600,cg:true,m",
+    emoji: "🎯"
+  },
+  {
+    title: "Travel Advisor GPT",
+    description: "Plan your next vacation with your personal AI travel advisor. Get tailored recommendations and craft your dream getaway within your preferences, budget, and envisioned experience.",
+    badge: "TRAVEL",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Travel Planning", "Personalized Recommendations", "Budget Planning", "Dream Vacations"],
+    directUrl: "https://travelagentgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-futuristic-setting-where-a-_3Mwmg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    emoji: "✈️"
+  },
+  {
     title: "Clarity Omni GPT",
-    description: "Advanced AI assistant providing crystal-clear insights and comprehensive analysis across multiple domains with enhanced cognitive abilities.",
-    badge: "AI ASSISTANT",
+    description: "Clarity Omni GPT is an AI tool designed to rewrite text for improved clarity while preserving the original meaning and intent. It ensures that every detail is retained, delivering a refined version of the text.",
+    badge: "CLARITY",
     color: "from-purple-500 to-indigo-600",
-    features: ["Clear Insights", "Multi-domain Analysis", "Cognitive Enhancement", "Decision Support"],
+    features: ["Text Clarity", "Meaning Preservation", "Content Refinement", "Writing Enhancement"],
     directUrl: "https://clarityomni.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-scene-of-an-ai-agent-with-a-halo.jpeg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
     emoji: "🔮"

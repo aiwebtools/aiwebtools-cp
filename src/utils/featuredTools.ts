@@ -5,29 +5,44 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
   console.log(`🔍 Creating featured tools from ${allTools.length} total tools`);
   console.log(`🎯 AI Web Tools GPTs available in source: ${aiWebToolsGPTs.length}`);
   
-  // Tools to exclude from featured sections but keep in database
+  // Tools to exclude from featured sections but keep in database (not our designs)
   const excludedFromFeatured = ['bolt.new', 'gemini'];
   
-  // Priority tools that MUST be in top positions - all four sets plus additional featured tools
+  // Verify bolt.new and gemini are still searchable in main database
+  const boltTool = allTools.find(tool => tool.title.toLowerCase().includes('bolt.new'));
+  const geminiTool = allTools.find(tool => tool.title.toLowerCase().includes('gemini'));
+  
+  console.log(`🔍 Verification - bolt.new searchable: ${!!boltTool}`);
+  console.log(`🔍 Verification - gemini searchable: ${!!geminiTool}`);
+  
+  if (!boltTool) console.warn('⚠️ bolt.new not found in searchable database!');
+  if (!geminiTool) console.warn('⚠️ gemini not found in searchable database!');
+  
+  // Priority tools that MUST be in top positions - all AI Web Tools GPTs
   const priorityTitles = [
-    // First priority set (14 tools)
-    'BOOK WRITER GPT',
-    'MOVIE MAKER STUDIO', 
+    // Core AI Web Tools GPTs with videos/images (our passionate projects)
+    'TIME MACHINE GPT',
+    'COLLEGE DEGREE GPT', 
+    'AUTOMOBILE GPT',
     'Movie Maker Studio AI SUITE',
+    'MOVIE MAKER STUDIO', 
+    'Survivalist GPT',
     'STAGE MASTER SUITE',
     'STAGEMASTER AI SUITE',
-    'GODMODE GPT',
-    'TIME MACHINE GPT',
+    'ImmortalizeME',
+    'ImmortalizeMe',
     'Movie Script Writer GPT',
     'Illuminous World Data Explorer GPT',
+    'GODMODE GPT',
     'Music Video Maker AI Studio',
+    'BOOK WRITER GPT',
     'TALK TO HISTORY GPT',
     'Stellaris: 🚀AI Space Explorer',
+    'Stellaris: AI Space Explorer',
     'Criminologist GPT',
     'Social Safety Net GPT',
     'Resurrection GPT',
     'PERFECT PROMPT ENGINE',
-    // Second priority set (13 tools)
     'Travel Advisor GPT',
     'Clarity Omni GPT',
     'Engineering GPT AI Suite',
@@ -68,7 +83,6 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     'Trader GPT',
     'Indiana Archeologist GPT',
     'Marriage Mender GPT',
-    // Third priority set (additional tools)
     'Training Manual Generator GPT',
     'ALAN WATTS GPT',
     'Solar Land Assessor GPT',
@@ -79,7 +93,6 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     'Historical Apothecary GPT',
     'Home-Schooling Assistant GPT',
     'Pharmaceutical Assistant GPT',
-    // Fourth priority set (12 tools)
     'Contract Review Bot',
     'Tattoo Designer GPT',
     'Tattoo Design GPT',
@@ -92,12 +105,56 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     'RESTYLE ME GPT',
     'Celebrity Chatline GPT',
     'Firefighter GPT',
-    'Binary-Text-Image Converter GPT'
+    'Binary-Text-Image Converter GPT',
+    'Luma Dream Machine Prompt Assistant',
+    'Restaurant Menu Maker GPT',
+    'Quiz Maker Ai',
+    'Course Maker GPT',
+    'Taxes GPT',
+    'Genome GPT',
+    'Game Design Document / Developer GPT',
+    'ENTER THE MATRIX GPT',
+    'NEO👁️MATRIX GPT',
+    'Predictive Credit Score Checker GPT',
+    'Name Insight Research & Predictor GPT',
+    'Coloring Book Generator GPT',
+    'Native American History Time Machine GPT',
+    'Public Testimony Writer GPT',
+    'Cyber Security GPT',
+    'Startup Validator GPT',
+    'Business Plan Generator GPT',
+    'Fungus GPT',
+    'Drill Baby Drill Ai Suite For Oil & Gas',
+    'Dream Interpreter GPT',
+    'Podcast Script Writer GPT',
+    'Person Information Finder GPT',
+    'PPTx Powerpoint Maker GPT',
+    'Grant Writer GPT',
+    'Universal Basic Income Strategist GPT',
+    'IF AI RULED THE WORLD',
+    'Global Peace Restoration Strategist GPT',
+    'Artwork & Vintage Appraisal GPT',
+    'Uncovering Hidden Historical Patterns GPT',
+    'Sketch Artist GPT',
+    'AI Tools Finder GPT',
+    'Article and Blog Rewriter GPT',
+    'Video Second-by-Second Analysis GPT',
+    'MiddleJourney Midjourney Prompting Assistant',
+    'Mary Magdalene GPT',
+    'Snoop Image Ai',
+    'Legal Draftsmith GPT',
+    'Custom GPT Ideas & Brainstorming Assistant',
+    'Music Melodies & Lessons GPT',
+    'Sophia Aeterna AI',
+    'Children\'s Picture Book Maker GPT',
+    'Movie Scene Maker GPT',
+    'Mental Wellness GPT',
+    'Legislator Link GPT'
   ];
   
-  console.log(`🔍 Looking for ${priorityTitles.length} priority tools`);
+  console.log(`🔍 Looking for ${priorityTitles.length} AI Web Tools GPTs`);
   
-  // Filter function to exclude specific tools from featured
+  // Filter function to exclude specific tools from featured but keep in database
   const isExcludedFromFeatured = (tool: Tool): boolean => {
     const toolTitle = tool.title.toLowerCase();
     return excludedFromFeatured.some(excluded => 
@@ -106,92 +163,52 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     );
   };
   
-  // Find priority tools first - these MUST appear in featured sections everywhere
-  const priorityTools = allTools.filter(tool => 
-    !isExcludedFromFeatured(tool) && // Exclude bolt.new and gemini
-    priorityTitles.some(title => 
-      tool.title.includes(title) || 
-      title.includes(tool.title) ||
-      tool.title.toLowerCase().includes(title.toLowerCase()) ||
-      title.toLowerCase().includes(tool.title.toLowerCase())
-    )
+  // Find ALL AI Web Tools GPTs (our creations) - these MUST appear in featured sections
+  const aiWebToolsGPTsInMain = allTools.filter(tool => 
+    !isExcludedFromFeatured(tool) && // Exclude bolt.new and gemini from featured
+    (aiWebToolsGPTs.some(awTool => awTool.title === tool.title) ||
+     tool.directUrl?.includes('lovable.app'))
   );
   
-  console.log(`🎯 Priority tools found: ${priorityTools.length} of ${priorityTitles.length} expected`);
-  console.log(`📋 Found priority tools:`, priorityTools.slice(0, 10).map(t => t.title));
+  console.log(`🎯 AI Web Tools GPTs found for featured: ${aiWebToolsGPTsInMain.length}`);
+  console.log(`🚀 First 20 AI Web Tools GPTs:`, aiWebToolsGPTsInMain.slice(0, 20).map(t => t.title));
   
-  // Get ALL AI Web Tools GPTs directly from the source but exclude bolt.new and gemini
-  console.log(`🔍 Total AI Web Tools GPTs from source: ${aiWebToolsGPTs.length}`);
-  console.log(`📋 First 10 AI Web Tools GPTs:`, aiWebToolsGPTs.slice(0, 10).map(t => t.title));
-  
-  // Filter AI Web Tools GPTs and exclude bolt.new and gemini from featured
-  const allAiWebToolsGPTs = aiWebToolsGPTs.filter(gpt => 
-    allTools.some(tool => tool.title === gpt.title) &&
+  // Ensure we have ALL AI Web Tools GPTs
+  const missingFromFeatured = aiWebToolsGPTs.filter(gpt => 
+    !aiWebToolsGPTsInMain.some(tool => tool.title === gpt.title) &&
     !isExcludedFromFeatured(gpt)
   );
   
-  console.log(`✅ AI Web Tools GPTs verified in allTools (excluding bolt.new/gemini): ${allAiWebToolsGPTs.length} of ${aiWebToolsGPTs.length}`);
-  
-  // Log excluded tools for verification
-  const excludedTools = allTools.filter(isExcludedFromFeatured);
-  console.log(`🚫 Tools excluded from featured:`, excludedTools.map(t => t.title));
-  
-  if (allAiWebToolsGPTs.length < aiWebToolsGPTs.length - excludedTools.length) {
-    const missing = aiWebToolsGPTs.filter(gpt => 
-      !allTools.some(tool => tool.title === gpt.title) &&
-      !isExcludedFromFeatured(gpt)
-    );
-    console.warn(`❌ Missing AI Web Tools GPTs from allTools:`, missing.slice(0, 10).map(t => t.title));
+  if (missingFromFeatured.length > 0) {
+    console.warn(`⚠️ Missing AI Web Tools GPTs from featured:`, missingFromFeatured.slice(0, 10).map(t => t.title));
   }
   
-  // Create a map to track included tools and avoid duplicates
-  const includedTools = new Map<string, Tool>();
+  // Get additional high-quality tools (non-AI Web Tools) but exclude bolt.new and gemini from featured
+  const additionalQualityTools = allTools.filter(tool => 
+    !aiWebToolsGPTsInMain.some(awTool => awTool.title === tool.title) &&
+    !isExcludedFromFeatured(tool) && // Exclude bolt.new and gemini from featured
+    !tool.directUrl?.includes('lovable.app') &&
+    (tool.rating >= 4.5 || tool.totalVotes >= 3000)
+  ).slice(0, 100); // Add some high-quality external tools
   
-  // Add priority tools first
-  priorityTools.forEach(tool => {
-    includedTools.set(tool.title, tool);
-  });
+  // Combine: ALL AI Web Tools GPTs first (our portfolio), then additional quality tools
+  const allFeaturedTools = [
+    ...aiWebToolsGPTsInMain,
+    ...additionalQualityTools
+  ];
   
-  // Add ALL remaining AI Web Tools GPTs that aren't already included and aren't excluded
-  allAiWebToolsGPTs.forEach(tool => {
-    if (!includedTools.has(tool.title)) {
-      includedTools.set(tool.title, tool);
-    }
-  });
+  console.log(`🚀 PORTFOLIO SHOWCASE: ${aiWebToolsGPTsInMain.length} AI Web Tools GPTs in featured section`);
+  console.log(`📊 Total featured tools: ${allFeaturedTools.length}`);
+  console.log(`✅ bolt.new and gemini excluded from featured but remain searchable`);
   
-  // Get additional high-quality tools from the main collection (non-AI Web Tools) but exclude bolt.new and gemini
-  const additionalTools = allTools.filter(tool => 
-    !includedTools.has(tool.title) &&
-    !aiWebToolsGPTs.some(awTool => awTool.title === tool.title) &&
-    !isExcludedFromFeatured(tool) && // Exclude bolt.new and gemini
-    (tool.rating >= 4.5 || tool.totalVotes >= 3000) &&
-    !tool.directUrl?.includes('lovable.app') // Exclude other AI Web Tools without proper descriptions
-  ).slice(0, 50); // Limit additional tools but prioritize your GPTs
+  // Final verification that bolt.new and gemini are searchable but not featured
+  const featuredBolt = allFeaturedTools.find(tool => tool.title.toLowerCase().includes('bolt.new'));
+  const featuredGemini = allFeaturedTools.find(tool => tool.title.toLowerCase().includes('gemini'));
   
-  // Add additional tools
-  additionalTools.forEach(tool => {
-    if (!includedTools.has(tool.title)) {
-      includedTools.set(tool.title, tool);
-    }
-  });
+  console.log(`🔍 FINAL CHECK - bolt.new in featured: ${!!featuredBolt} (should be false)`);
+  console.log(`🔍 FINAL CHECK - gemini in featured: ${!!featuredGemini} (should be false)`);
+  console.log(`🔍 FINAL CHECK - bolt.new searchable in main DB: ${!!boltTool} (should be true)`);
+  console.log(`🔍 FINAL CHECK - gemini searchable in main DB: ${!!geminiTool} (should be true)`);
   
-  // Convert map back to array
-  const allFeaturedTools = Array.from(includedTools.values());
-  
-  console.log(`🚀 Total featured tools being returned: ${allFeaturedTools.length}`);
-  console.log(`📊 Breakdown - Priority: ${priorityTools.length}, AI Web Tools: ${allAiWebToolsGPTs.length}, Additional: ${additionalTools.length}`);
-  console.log(`🏷️ First 20 featured tool titles:`, allFeaturedTools.slice(0, 20).map(t => t.title));
-  
-  // Final verification - count AI Web Tools GPTs in result (excluding bolt.new and gemini)
-  const finalAiWebToolsCount = allFeaturedTools.filter(tool => 
-    (aiWebToolsGPTs.some(gpt => gpt.title === tool.title) ||
-    tool.directUrl?.includes('lovable.app')) &&
-    !isExcludedFromFeatured(tool)
-  ).length;
-  
-  console.log(`🔥 FINAL VERIFICATION: ${finalAiWebToolsCount} AI Web Tools GPTs in featured tools (excluding bolt.new/gemini)`);
-  console.log(`✅ SUCCESS: bolt.new and gemini excluded from featured tools but remain in database`);
-  
-  // Return ALL tools - this ensures ALL AI Web Tools GPTs appear in featured sections (except excluded ones)
   return allFeaturedTools;
 };
