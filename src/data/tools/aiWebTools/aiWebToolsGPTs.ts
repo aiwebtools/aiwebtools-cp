@@ -36,6 +36,210 @@ import { governmentCivicGPTs } from "./governmentCivicGPTs";
 import { technologyInnovationGPTs } from "./technologyInnovationGPTs";
 import { spiritualAndPhilosophyGPTs } from "./spiritualAndPhilosophyGPTs";
 
+// NEWEST BATCH - Adding more AI Web Tools GPTs
+const newestBatchAIWebToolsGPTs: Tool[] = [
+  {
+    title: "Course Maker GPT",
+    description: "Course Maker GPT creates comprehensive educational courses with structured lessons, assessments, and interactive content for any subject or skill level.",
+    category: "Education & Course Creation",
+    directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377336291427090462/ChatGPT_Image_May_28_2025_01_22_27_PM.png?ex=683897e1&is=68374661&hm=71f0b50e1d34249bf9ed9ca8b7a1b0e45d0d2127cb9e356e2b4c65b35518656a&=&format=webp&quality=lossless&width=2088&height=1392",
+    emoji: "📚",
+    color: "from-blue-600 to-indigo-700",
+    tags: ["course", "education", "teaching", "curriculum", "learning"]
+  },
+  {
+    title: "Taxes GPT",
+    description: "Taxes GPT is your AI-powered tax assistant, designed to simplify tax preparation while maximizing your deductions. Securely analyze your financial data, receive accurate tax reports, and minimize liabilities with ease.",
+    category: "Finance & Tax Preparation",
+    directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xkcsSVbBhf4",
+    emoji: "💰",
+    color: "from-green-600 to-emerald-700",
+    tags: ["taxes", "finance", "accounting", "deductions", "preparation"]
+  },
+  {
+    title: "Genome GPT",
+    description: "Genome GPT is a cutting-edge AI tool designed to assist researchers, scientists, and enthusiasts in genetic analysis and discovery. Specializing in genomic data interpretation.",
+    category: "Genetics & Biotechnology",
+    directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    emoji: "🧬",
+    color: "from-purple-600 to-pink-700",
+    tags: ["genetics", "dna", "genome", "biotechnology", "research"]
+  },
+  {
+    title: "Game Design Document / Developer GPT",
+    description: "Bring your video game ideas to life with Game Design Document Developer GPT! This tool is your ultimate assistant for game development, guiding you from concept to completion.",
+    category: "Game Development & Design",
+    directUrl: "https://gamedesigngpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-floating-man-with-blue-skin-and-white-hair-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    emoji: "🎮",
+    color: "from-cyan-500 to-blue-600",
+    tags: ["game", "development", "design", "unity", "unreal"]
+  },
+  {
+    title: "ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)",
+    description: "Step into The Matrix as Neo, guided by Morpheus. Awaken to deeper truths hidden in the fabric of reality. Explore Quantum Meaning & Simulation Theory.",
+    category: "Philosophy & Simulation",
+    directUrl: "https://neomatrixgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=BkPCpeu_nSs",
+    emoji: "👁️",
+    color: "from-red-600 to-black",
+    tags: ["matrix", "philosophy", "simulation", "reality", "neo"]
+  },
+  {
+    title: "Predictive Credit Score Checker GPT",
+    description: "Predictive Credit Score Checker GPT is an AI tool for estimating creditworthiness based on specific addresses. Ideal for real estate, finance, and lending.",
+    category: "Credit & Financial Analysis",
+    directUrl: "https://predictivecreditscoregpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-screenshot-of-a-web-app-with-the-text-predic.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    emoji: "📊",
+    color: "from-blue-500 to-purple-600",
+    tags: ["credit", "score", "finance", "prediction", "analysis"]
+  },
+  {
+    title: "Name Insight Research & Predictor GPT",
+    description: "Your name holds hidden meanings, shaping your personality, strengths, and destiny through history, numerology, and culture. Dive deep into its origins, global significance, and psychological impact.",
+    category: "Personal Analysis & Research",
+    directUrl: "https://whatsmynamegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-interface-with-a-dark-blue-_mXbL6.png/:/cr=t:10.87%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    emoji: "🔍",
+    color: "from-indigo-600 to-purple-700",
+    tags: ["names", "analysis", "personality", "numerology", "culture"]
+  },
+  {
+    title: "Coloring Book Generator GPT",
+    description: "Coloring Book Generator GPT creates full coloring books from your imagination. Generate custom coloring pages and complete books for any theme or subject.",
+    category: "Creative & Art Generation",
+    directUrl: "https://coloringbookmaker.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-coloring-page-of-a-robot-with-a-human-like-b.png/:/cr=t:4.3%25,l:0.78%25,w:94.34%25,h:84.09%25/rs=w:1200,h:600,cg:true,m",
+    emoji: "🎨",
+    color: "from-pink-500 to-purple-600",
+    tags: ["coloring", "books", "art", "creativity", "children"]
+  },
+  {
+    title: "Native American History Time Machine GPT - (Special Edition)",
+    description: "Experience an immersive time travel adventure of discovery to any era of Native American history with Geronimo, Chief of Rainbow Apache Destiny as your guide.",
+    category: "History & Cultural Education",
+    directUrl: "https://nativeamerican-timemachine.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=jVFTGCeuNSM",
+    emoji: "🪶",
+    color: "from-orange-700 to-red-800",
+    tags: ["history", "native american", "culture", "education", "heritage"]
+  },
+  {
+    title: "Public Testimony Writer GPT",
+    description: "Innovative AI Tool Streamlines Legislative Testimony Process, Promotes Public Engagement in Local Policy. This tool was featured in various news articles such as the CT POST & CT INSIDER.",
+    category: "Government & Civic Engagement",
+    directUrl: "https://publictestimonywriter.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
+    emoji: "🏛️",
+    color: "from-blue-700 to-indigo-800",
+    tags: ["government", "testimony", "civic", "policy", "engagement"]
+  },
+  {
+    title: "Cyber Security GPT",
+    description: "Given the increasing threat of infrastructure attacks, AiWebTools.Ai aims to encourage the creation of solutions. Our cybersecurity assistant can deploy defense mechanisms and strategies.",
+    category: "Cybersecurity & Infrastructure",
+    directUrl: "https://chatgpt.com/g/g-Qvat03gmj-hacking-defender-infrastructure-protector-gpt",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-robot-with-a-large-shield-tha.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    emoji: "🛡️",
+    color: "from-red-600 to-orange-700",
+    tags: ["cybersecurity", "protection", "hacking", "defense", "infrastructure"]
+  },
+  {
+    title: "🚀 Startup Validator GPT",
+    description: "🚀 Startup Validator GPT is your ultimate AI-powered startup analysis tool, designed to rapidly assess market viability, scalability, and investment potential.",
+    category: "Business & Startup Validation",
+    directUrl: "https://startupvalidatorgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-named-st_4i8GY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    emoji: "🚀",
+    color: "from-green-500 to-blue-600",
+    tags: ["startup", "validation", "business", "investment", "analysis"]
+  },
+  {
+    title: "Business Plan Generator GPT💼",
+    description: "Business Plan Generator GPT is an AI-driven tool that quickly creates tailored business plans. By gathering key information about your business, it produces a detailed plan.",
+    category: "Business Planning & Strategy",
+    directUrl: "https://businessplanandtrainai.lovable.app//?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-logo-design-with-the-text-business-plan-gene.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    emoji: "💼",
+    color: "from-blue-600 to-purple-700",
+    tags: ["business", "planning", "strategy", "startup", "finance"]
+  },
+  {
+    title: "Fungus GPT – AI Mushroom Specialist",
+    description: "Fungus Whisperer GPT is an expert AI guide specializing in mushroom cultivation, safe foraging, and creative culinary uses of fungi.",
+    category: "Mycology & Agriculture",
+    directUrl: "https://fungusgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-man-with-a-beard-holding-a-_9DLLj.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    emoji: "🍄",
+    color: "from-green-600 to-emerald-700",
+    tags: ["mushrooms", "mycology", "foraging", "cultivation", "fungi"]
+  },
+  {
+    title: "Drill Baby Drill Ai Suite For Oil & Gas",
+    description: "Drill Baby Drill AI Tools Suite is a cutting-edge collection of 10 specialized AI tools designed to optimize every aspect of oil and gas operations.",
+    category: "Oil & Gas Industry",
+    directUrl: "https://drillbabydrillaisuite.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cartoon-illustration-of-a-man-with-a-h_lmQ_X.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
+    emoji: "🛢️",
+    color: "from-yellow-600 to-orange-700",
+    tags: ["oil", "gas", "drilling", "energy", "industry"]
+  },
+  {
+    title: "Dream Interpreter GPT",
+    description: "Dream Interpreter GPT is an AI-driven tool designed to analyze and interpret dreams using psychological, mythological, and symbolic frameworks.",
+    category: "Psychology & Dream Analysis",
+    directUrl: "https://dreaminterpreter.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-ad-for-an-ai-tool-called-dream-interp_5LG7D.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    emoji: "💭",
+    color: "from-purple-600 to-indigo-700",
+    tags: ["dreams", "psychology", "interpretation", "analysis", "subconscious"]
+  },
+  {
+    title: "Podcast Script Writer GPT",
+    description: "Podcast Script Writer GPT specializes in crafting engaging, structured, and professionally formatted podcast scripts and episode outlines.",
+    category: "Podcasting & Audio Content",
+    directUrl: "https://podcastwritergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-illustration-of-a-podcast-host-with-a_HnlUN.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
+    emoji: "🎙️",
+    color: "from-red-500 to-pink-600",
+    tags: ["podcast", "audio", "scripting", "content", "broadcasting"]
+  },
+  {
+    title: "Person Information Finder GPT",
+    description: "Person Information Finder GPT is an AI tool that specializes in uncovering detailed public information about individuals by searching the web, social media, news, and public records.",
+    category: "Research & Investigation",
+    directUrl: "https://personfindergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-p_gHXnM.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    emoji: "🔍",
+    color: "from-blue-600 to-cyan-700",
+    tags: ["research", "investigation", "people", "finder", "public records"]
+  },
+  {
+    title: "PPTx Powerpoint Maker GPT",
+    description: "PPT Presentation Crafter is your all-in-one AI assistant for creating beautiful, detailed PowerPoint presentations with zero hassle.",
+    category: "Presentation & Design",
+    directUrl: "https://pptmakergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-banner-ad-for-an-ai-tool-called-ppt-pr_RY7nJ.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
+    emoji: "📊",
+    color: "from-orange-500 to-red-600",
+    tags: ["powerpoint", "presentations", "slides", "design", "business"]
+  },
+  {
+    title: "Grant Writer GPT",
+    description: "Grant Writer GPT is your expert AI-powered partner for crafting compelling, funder-ready grant proposals that maximize your chances of securing funding.",
+    category: "Grant Writing & Fundraising",
+    directUrl: "https://grantwritergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-illustration-of-an-advertiseme_7T7dn.png/:/cr=t:10.87%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
+    emoji: "💰",
+    color: "from-green-600 to-emerald-700",
+    tags: ["grants", "funding", "nonprofit", "writing", "proposals"]
+  }
+];
+
 // Latest comprehensive batch of AI Web Tools GPTs - continuing where we left off
 const comprehensiveAIWebToolsGPTs: Tool[] = [
   {
@@ -450,6 +654,9 @@ const finalBatchAIWebToolsGPTs: Tool[] = [
 
 // Combine all AI Web Tools GPTs from organized categories - REORGANIZED ORDER WITH NEW ADDITIONS AT TOP
 export const aiWebToolsGPTs: Tool[] = [
+  // NEWEST BATCH ADDED TO THE VERY TOP
+  ...newestBatchAIWebToolsGPTs,
+  
   // NEW COMPREHENSIVE BATCHES ADDED TO THE TOP
   ...comprehensiveAIWebToolsGPTs,
   ...moreAIWebToolsGPTs,
