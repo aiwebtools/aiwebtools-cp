@@ -12,7 +12,7 @@ export const foodAndHospitalityGPTs: Tool[] = [
     directUrl: "https://mixologistgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=vJz1HOGtV0I&t",
     tags: ["cocktails", "bartending", "drinks", "mixology", "beverage creation"],
-    category: "Food & Hospitality",
+    category: "Food & Cooking",
     rating: 4.7,
     totalVotes: 5234
   },
