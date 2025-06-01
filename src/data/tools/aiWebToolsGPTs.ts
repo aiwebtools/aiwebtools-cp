@@ -13,15 +13,17 @@ import { legalAndGovernmentGPTs } from "./aiWebTools/legalAndGovernmentGPTs";
 import { professionalServicesGPTs } from "./aiWebTools/professionalServicesGPTs";
 import { multimediaAndContentGPTs } from "./aiWebTools/multimediaAndContentGPTs";
 import { mysteriousAndUnusualGPTs } from "./aiWebTools/mysteriousAndUnusualGPTs";
+import { Clock } from "lucide-react";
 
 // NEW TOP PRIORITY TOOL - TIME MACHINE GPT COLLECTION
 const topPriorityTool: Tool = {
+  icon: Clock,
   title: "AI TOOLS collection for this TIME MACHINE GPT",
   description: "Uncover the past, explore potential futures, and dive into alternative realities with Time Machine GPT! Experience key historical moments, interact with notable figures, and journey through different eras—unlock your imagination. This comprehensive AI tools collection provides access to advanced time travel simulation and historical exploration capabilities.",
   emoji: "⏰",
   color: "from-purple-500 to-blue-600",
   directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
-  videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
+  videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E&list=TLGGyT65jYe0o6cwMTA2MjAyNQ",
   imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298793409806528/time.webp",
   tags: ["time travel", "history exploration", "historical figures", "alternative realities", "time periods", "aiwebtools", "collection"],
   category: "Time & History",
