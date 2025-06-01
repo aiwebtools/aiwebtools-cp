@@ -13,29 +13,29 @@ import { legalAndGovernmentGPTs } from "./aiWebTools/legalAndGovernmentGPTs";
 import { professionalServicesGPTs } from "./aiWebTools/professionalServicesGPTs";
 import { multimediaAndContentGPTs } from "./aiWebTools/multimediaAndContentGPTs";
 import { mysteriousAndUnusualGPTs } from "./aiWebTools/mysteriousAndUnusualGPTs";
-import { Film, GraduationCap, Car, Theater, Shield, BookOpen, Paintbrush, Camera } from "lucide-react";
+import { Film, GraduationCap, Car, Theater, Shield, BookOpen, Paintbrush, Camera, Clock, Users, Zap, Brain, Heart, Briefcase } from "lucide-react";
 
-// NEW TOP PRIORITY TOOL - MOVIE MAKER STUDIO AI SUITE
+// TOP PRIORITY TOOL - MOVIE MAKER STUDIO AI SUITE
 const topPriorityTool: Tool = {
   icon: Film,
   title: "Movie Maker Studio AI SUITE",
-  description: "-Full-Blown Music Video & Music Production Creative Suite- Transform yourself into the star of cinematic-quality music videos with our cutting-edge AI director. Build scene-by-scene visuals where you and even your band are featured in vivid, realistic scenes tied to your music.",
+  description: "We proudly present to you Movie Maker Studio which consists of every tool needed for Movie & Motion Picture Production. Consisting of Movie Scripter Writer, Movie Scene Maker, Movie Trailer Poster Maker & more.....we offer you the key and show you the door, unlock your creativity my fellow humans--KB",
   emoji: "🎬",
   color: "from-purple-500 to-pink-600",
   directUrl: "https://moviemakerstudio.lovable.app/?via=aiwebtools",
-  videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E&list=TLGGyT65jYe0o6cwMTA2MjAyNQ",
+  videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E&list=TLGGyT65jYe0o6cyODA1MjAyNQ&t",
   tags: ["movie production", "music videos", "AI director", "cinematic quality", "scene creation", "aiwebtools", "creative suite"],
   category: "Creative & Media",
   rating: 4.9,
   totalVotes: 7234
 };
 
-// NEW HIGH PRIORITY FEATURED TOOLS
-const newFeaturedTools: Tool[] = [
+// HIGH PRIORITY FEATURED TOOLS
+const highPriorityFeaturedTools: Tool[] = [
   {
     icon: GraduationCap,
     title: "College Degree GPT",
-    description: "College Degree GPT teaches you every college class for any degree you desire, mirroring the exact structure of your chosen institution or university. While it doesn't provide an accredited degree, it delivers a full, in-depth educational experience as if you were earning one. We believe that access to education is a fundamental human right, and it should be free for everyone. 🕊️",
+    description: "College Degree GPT teaches you every college class for any degree you desire, mirroring the exact structure of your chosen institution or university. While it doesn't provide an accredited degree, it delivers a full, in-depth educational experience as if you were earning one. We believe that access to education is a fundamental human right, and it should be free for everyone. That's why we've open-sourced the prompt for you to save for your personal records. 🕊️",
     emoji: "🎓",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
@@ -125,13 +125,98 @@ const newFeaturedTools: Tool[] = [
   }
 ];
 
+// ADDITIONAL HIGH PRIORITY TOOLS - NEXT BATCH
+const additionalPriorityTools: Tool[] = [
+  {
+    icon: Clock,
+    title: "TIME MACHINE GPT",
+    description: "Uncover the past, explore potential futures, and dive into alternative realities with Time Machine GPT! Experience key historical moments, interact with notable figures, and journey through different eras—unlock your imagination. For deeper, more personal conversations with historical characters, we recommend using Talk to History GPT",
+    emoji: "⏰",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
+    tags: ["time travel", "history", "future exploration", "historical figures", "alternative realities", "aiwebtools"],
+    category: "Time & History",
+    rating: 4.8,
+    totalVotes: 5432
+  },
+  {
+    icon: Users,
+    title: "Survivalist GPT",
+    description: "Congratulations! You now have a survival expert in your pocket. Imagine a robot with vast knowledge and experience in survival techniques, ready to assist you anytime. This GPT, offers step-by-step guidance, practical strategies, and personalized support for any survival or battlefield scenario. It's the ultimate survival companion, always by your side. Remember, with Survivalist GPT, you're never alone.",
+    emoji: "🏕️",
+    color: "from-green-500 to-orange-600",
+    directUrl: "https://survivalistgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=RX6W8KC0y18&list=TLGGkaSLRgubL1gyODA1MjAyNQ",
+    tags: ["survival", "wilderness", "emergency preparedness", "outdoor skills", "safety", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.7,
+    totalVotes: 4321
+  },
+  {
+    icon: Zap,
+    title: "ImmortalizeME",
+    description: "ImmortalizeMe ™ is an AI service offered by AIWebTools.AI that creates fully interactive digital clones of individuals using their voice, personality, and life stories. The team at AI Web Tools handles the entire process—from voice cloning to knowledge integration—based on the data you provide. Your digital twin can engage in real-time voice conversations and reflect your unique mannerisms and memories. It's a hands-free, done-for-you solution to preserve your legacy for future generations.",
+    emoji: "🔮",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://immortalizeme.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=JXLqPMfw49Y",
+    tags: ["digital cloning", "voice cloning", "legacy preservation", "AI personalities", "memory preservation", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.9,
+    totalVotes: 6234
+  },
+  {
+    icon: Brain,
+    title: "Movie Script Writer GPT",
+    description: "Unlock your creative potential with Movie Scriptwriter GPT, the ultimate AI assistant designed to help you write award-winning movie scripts. Whether you're planning scenes or developing characters, our AI supports you through each stage of the scriptwriting process. It provides professional formatting, detailed descriptions, and captivating dialogue, ensuring your script meets industry standards. Ideal for both new writers and experienced filmmakers, this tool brings your story to life on screen. Begin your path to the red carpet with Movie Scriptwriter GPT.",
+    emoji: "📝",
+    color: "from-purple-500 to-indigo-600",
+    directUrl: "https://moviescriptwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=4e3Rkurt3-c&list=TLGGtoG6kc0vED4yODA1MjAyNQ",
+    tags: ["scriptwriting", "movie scripts", "creative writing", "screenwriting", "character development", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.8,
+    totalVotes: 5678
+  },
+  {
+    icon: Heart,
+    title: "Illuminous World Data Explorer GPT",
+    description: "Illuminous specializes in data analysis and global data retrieval, designed to make accurate predictions about anything. This GPT offers real-time global data analysis, creating stunning infographics to turn complex information into clear insights and predictions. Illuminate the future of prediction with Illuminous.",
+    emoji: "💡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://illuminous.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=Nd1Ui2-VLMU",
+    tags: ["data analysis", "global data", "predictions", "infographics", "insights", "aiwebtools"],
+    category: "Science & Research",
+    rating: 4.7,
+    totalVotes: 4567
+  },
+  {
+    icon: Briefcase,
+    title: "GODMODE GPT",
+    description: "Imagine having an AI companion so powerful and versatile that it seamlessly transforms to meet every need you have—introducing GodMode GPT",
+    emoji: "⚡",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://godmodegpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=or3JtZsq6Bc",
+    tags: ["versatile AI", "powerful assistant", "multi-purpose", "advanced capabilities", "godmode", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.9,
+    totalVotes: 7890
+  }
+];
+
 // Combine all AI Web Tools GPTs from organized categories
 export const aiWebToolsGPTs: Tool[] = [
   // TOP PRIORITY TOOL AT THE VERY BEGINNING
   topPriorityTool,
   
-  // NEW HIGH PRIORITY FEATURED TOOLS
-  ...newFeaturedTools,
+  // HIGH PRIORITY FEATURED TOOLS
+  ...highPriorityFeaturedTools,
+  
+  // ADDITIONAL HIGH PRIORITY TOOLS
+  ...additionalPriorityTools,
   
   // TIME-BASED TOOLS AT THE TOP (as requested)
   ...timeAndHistoryGPTs,
