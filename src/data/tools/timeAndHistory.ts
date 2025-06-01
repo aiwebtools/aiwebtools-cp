@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Clock, 
@@ -98,7 +97,7 @@ export const timeAndHistory: Tool[] = [
     description: "Analyze historical literature, explore classic texts, and understand the cultural and social contexts of literary works.",
     emoji: "📜",
     color: "from-orange-600 to-red-700",
-    directUrl: "https://historicalliteraturegpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-683cc947ccc08191bf3669d21b6518d9-historical-literature-gpt",
     videoUrl: "https://www.youtube.com/watch?v=5t7EXS5tthQ",
     category: "Historical Literature",
     tags: ["historical literature", "classic texts", "cultural contexts", "literary analysis"],
