@@ -15,7 +15,7 @@ const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
         >
           © 2025 AI WEB TOOLS LLC All rights reserved.
         </button>
-        <div className="flex space-x-4">
+        <div className="flex flex-wrap justify-center md:justify-start space-x-4">
           <button 
             onClick={(e) => handleExternalLink("https://openai.com/policies/privacy-policy/", e)}
             className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm"
@@ -28,6 +28,12 @@ const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
           >
             Terms of Service
           </button>
+          <a 
+            href="/disclaimers"
+            className="text-yellow-400 hover:text-yellow-300 transition-colors text-sm font-medium"
+          >
+            📜 Full Disclaimers & User Agreement
+          </a>
         </div>
       </div>
       <div className="flex items-center space-x-6 text-cyan-300">
