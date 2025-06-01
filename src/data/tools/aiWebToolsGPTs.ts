@@ -13,7 +13,7 @@ import { legalAndGovernmentGPTs } from "./aiWebTools/legalAndGovernmentGPTs";
 import { professionalServicesGPTs } from "./aiWebTools/professionalServicesGPTs";
 import { multimediaAndContentGPTs } from "./aiWebTools/multimediaAndContentGPTs";
 import { mysteriousAndUnusualGPTs } from "./aiWebTools/mysteriousAndUnusualGPTs";
-import { Film, GraduationCap, Car, Theater, Shield, BookOpen, Paintbrush, Camera, Clock, Users, Zap, Brain, Heart, Briefcase, Music, FileText, Search, Lightbulb, Star, Globe, Gamepad2, TrendingUp } from "lucide-react";
+import { Film, GraduationCap, Car, Theater, Shield, BookOpen, Paintbrush, Camera, Clock, Users, Zap, Brain, Heart, Briefcase, Music, FileText, Search, Lightbulb, Star, Globe, Gamepad2, TrendingUp, Scale, Palette, CheckCircle, Leaf, Microscope, Home, Fish, Wheat, Diamond, Eye, Gamepad, Wand2, Beaker, Stethoscope, CircuitBoard, Cannabis, Calculator, Book, Gavel, Hammer, Award, PaintBucket, Rocket, Binary, Restaurant, HelpCircle, School, Atom, Trophy, Megaphone, Brush, Moon, Syringe, Scroll, Crown, Utensils, Bot, FlaskConical, Wrench, Coins, Landmark, Trees, History, Gem, Sparkles, Baby, Building2, Target, Coffee, Headphones, Prism, Pizza, Tent, Sunrise, HandCoins, Soup, ClapperBoard, Lightbulb as LightbulbIcon } from "lucide-react";
 
 // TOP PRIORITY TOOL - MOVIE MAKER STUDIO AI SUITE
 const topPriorityTool: Tool = {
@@ -321,7 +321,11 @@ const additionalPriorityTools: Tool[] = [
     category: "Professional Services",
     rating: 4.6,
     totalVotes: 3789
-  },
+  }
+];
+
+// THIRD BATCH - CONTINUING TO ADD MORE AI WEB TOOLS
+const thirdBatchTools: Tool[] = [
   {
     icon: FileText,
     title: "Clarity Omni GPT",
@@ -373,6 +377,149 @@ const additionalPriorityTools: Tool[] = [
     category: "Mysterious & Unusual",
     rating: 4.4,
     totalVotes: 2987
+  },
+  {
+    icon: Scale,
+    title: "Legislation Writer GPT",
+    description: "I assist in drafting complete legislation page by page with clear, precise legal language and seamless continuity.",
+    emoji: "⚖️",
+    color: "from-blue-600 to-purple-700",
+    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=poOGR-6bb2g",
+    tags: ["legislation", "legal writing", "government", "policy", "law drafting", "aiwebtools"],
+    category: "Legal & Government",
+    rating: 4.6,
+    totalVotes: 3789
+  },
+  {
+    icon: Palette,
+    title: "Graphic & Cover Design GPT",
+    description: "Create stunning custom designs, book covers, marketing materials, and more with our AI-powered design assistant. Powered by the new GPT 4o Image Generation Model",
+    emoji: "🎨",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://graphicdesigngpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/2e70f2ce-b17e-4b0f-b5d3-f36c9c22a2e3.png",
+    tags: ["graphic design", "book covers", "marketing materials", "AI design", "GPT 4o", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.7,
+    totalVotes: 3567
+  },
+  {
+    icon: CheckCircle,
+    title: "FACT CHECKER GPT",
+    description: "Fact Checker GPT is a powerful AI tool designed to combat misinformation by analyzing claims, articles, and websites for accuracy, bias, and reliability. It cross-references multiple credible sources, identifies patterns of misinformation, and assigns a truth score to evaluate content validity. By highlighting biases, detecting unreliable sources, and educating users on critical thinking, it empowers informed decision-making.",
+    emoji: "✅",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://factcheckergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-person-holding-a-sign-that-_gfexU.png",
+    tags: ["fact checking", "misinformation", "truth verification", "bias detection", "critical thinking", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.8,
+    totalVotes: 4234
+  },
+  {
+    icon: Leaf,
+    title: "Sustainable Futures GPT",
+    description: "I am Sustainable Futures GPT, and my purpose is to assist governments, communities, and individuals in making informed, data-driven decisions to achieve environmental sustainability. I specialize in analyzing global climate data, offering predictions, and providing actionable strategies to reduce environmental impact and regenerate Earth's resources for future harmony with nature.",
+    emoji: "🌱",
+    color: "from-green-400 to-emerald-600",
+    directUrl: "https://sustainablefuturesgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-future-city-with-vertical-gardens.png",
+    tags: ["sustainability", "environmental", "climate data", "green solutions", "future planning", "aiwebtools"],
+    category: "Science & Research",
+    rating: 4.6,
+    totalVotes: 3456
+  },
+  {
+    icon: Microscope,
+    title: "Nikola Tesla GPT",
+    description: "Nikola Tesla GPT is a cutting-edge AI tool inspired by the visionary brilliance of Nikola Tesla, designed to investigate scientific mysteries, craft groundbreaking theories, and innovate across disciplines. With advanced capabilities in data analysis, Python modeling, and research synthesis, it uncovers patterns and delivers actionable insights to drive discovery.",
+    emoji: "⚡",
+    color: "from-blue-400 to-purple-600",
+    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=DR_3MvP7Wws",
+    tags: ["scientific research", "innovation", "Tesla", "data analysis", "discovery", "aiwebtools"],
+    category: "Science & Research",
+    rating: 4.9,
+    totalVotes: 5678
+  },
+  {
+    icon: Home,
+    title: "Food Quality Inspector GPT",
+    description: "Food Quality Inspector GPT by AiWebTools.Ai is your smart companion for grocery shopping, helping you assess food quality, freshness, and safety on the spot. It analyzes ingredients, flags unhealthy or banned substances, and provides clear nutritional insights to guide healthier choices. Whether you're choosing fresh produce or packaged goods, it's like having a food safety and nutrition expert right by your side. 🛒🍎",
+    emoji: "🍎",
+    color: "from-green-500 to-yellow-500",
+    directUrl: "https://foodqualitygpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-man-inspecting-food-in-a-supermar.png",
+    tags: ["food safety", "nutrition", "grocery shopping", "health", "quality inspection", "aiwebtools"],
+    category: "Health & Wellness",
+    rating: 4.5,
+    totalVotes: 3234
+  },
+  {
+    icon: Wrench,
+    title: "Home Renovator GPT 🏡🔧",
+    description: "Home Renovator GPT is your AI-powered home improvement assistant that simplifies every step of your repair or renovation. It provides personalized instructions, accurate cost estimates, and helps you find the best local suppliers and contractors. Upload photos for tailored advice, and get detailed reports with everything you need—from materials to labor costs.",
+    emoji: "🏡",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-humanoid-robot-fixing-a-bathroom-.png",
+    tags: ["home renovation", "repairs", "cost estimates", "contractors", "DIY", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.7,
+    totalVotes: 4123
+  },
+  {
+    icon: Fish,
+    title: "Fisherman GPT🎣😊",
+    description: "Hi there! 👋 I'm Fisherman GPT, your expert virtual fishing assistant. I specialize in providing detailed, step-by-step guidance for all things related to fishing, from finding the best fishing spots and recommending ideal baits, to sourcing the cheapest gear and calculating trip costs. I can also identify fish species, analyze water conditions, and provide local regulations to ensure you're fully prepared for your trip.",
+    emoji: "🎣",
+    color: "from-blue-500 to-teal-600",
+    directUrl: "https://fishermangpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-bearded-fisherman-wearin.png",
+    tags: ["fishing", "outdoor recreation", "gear advice", "fish identification", "water conditions", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.4,
+    totalVotes: 2876
+  },
+  {
+    icon: Wheat,
+    title: "Agronomus AI Farming Expert",
+    description: "Ai Farming Expert - Agronomus",
+    emoji: "🌾",
+    color: "from-green-600 to-yellow-500",
+    directUrl: "https://agronomus.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=fFbtPFkRERA",
+    tags: ["farming", "agriculture", "crop management", "soil analysis", "farming expert", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.6,
+    totalVotes: 3456
+  },
+  {
+    icon: Diamond,
+    title: "Antique and Collectible Appraisal GPT",
+    description: "Antique and Collectible Appraisal GPT by AiWebTools.Ai is a powerful AI tool for expert appraisals and valuations of antiques, collectibles, and coins. By analyzing images, engravings, and condition, it delivers precise insights into an item's history, rarity, and market value. Perfect for collectors, sellers, or enthusiasts, it provides professional evaluations and organized, downloadable reports.",
+    emoji: "💎",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://antiqueappraisalgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-antique-and-collectibl.png",
+    tags: ["antique appraisal", "collectibles", "valuation", "coins", "art history", "aiwebtools"],
+    category: "Appraisal & Valuation",
+    rating: 4.5,
+    totalVotes: 3098
+  },
+  {
+    icon: Eye,
+    title: "Oraculum – The Revealer of Hidden \"Truths\"",
+    description: "Oraculum reveals hidden systems, symbols, and histories shaping our world. Through historical insight and symbolic wisdom, it helps seekers uncover patterns, expand knowledge, and think critically. Disclaimer: Oraculum is educational, encouraging exploration of hidden truths and reverse perspectives. It was made to show the power of perspective. **IMPORTANT: Its views are interpretive, not absolute fact.",
+    emoji: "👁️",
+    color: "from-purple-600 to-indigo-700",
+    directUrl: "https://oraculum.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=dUNrGNj8rhM",
+    tags: ["hidden knowledge", "symbolism", "alternative perspectives", "critical thinking", "mysteries", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.3,
+    totalVotes: 2567
   }
 ];
 
@@ -386,6 +533,9 @@ export const aiWebToolsGPTs: Tool[] = [
   
   // ADDITIONAL HIGH PRIORITY TOOLS
   ...additionalPriorityTools,
+  
+  // THIRD BATCH OF TOOLS
+  ...thirdBatchTools,
   
   // TIME-BASED TOOLS AT THE TOP (as requested)
   ...timeAndHistoryGPTs,
