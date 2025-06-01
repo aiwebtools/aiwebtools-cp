@@ -96,7 +96,7 @@ export const specialtyCategories: Record<string, CategoryStyle> = {
     },
     icon: Newspaper
   },
-  "Health & Wellness": {
+  "Health, Wellness & Personal Lifestyle": {
     emoji: "💚",
     colors: {
       bg: "bg-gradient-to-r from-green-500/20 to-blue-500/20",

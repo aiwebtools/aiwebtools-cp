@@ -134,7 +134,7 @@ const categoryMapping: Record<string, string> = {
   "Creative Services": "Creative & Entertainment (General & Gaming)",
   "Creative Suites": "Creative & Entertainment (General & Gaming)",
   
-  // Health, Wellness & Personal Lifestyle - CONSOLIDATED MAPPING
+  // Health, Wellness & Personal Lifestyle - UNIFIED MAPPING (combining both health categories)
   "Health & Wellness": "Health, Wellness & Personal Lifestyle",
   "Healthcare Professionals": "Health, Wellness & Personal Lifestyle",
   "Medical AI Tools": "Health, Wellness & Personal Lifestyle",
