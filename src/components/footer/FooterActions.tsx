@@ -1,5 +1,5 @@
 
-import { Shield, Plus, Upload } from "lucide-react";
+import { Shield, Plus, Upload, Search } from "lucide-react";
 
 interface FooterActionsProps {
   handleExternalLink: (url: string, e: React.MouseEvent) => void;
@@ -8,8 +8,23 @@ interface FooterActionsProps {
 }
 
 const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool }: FooterActionsProps) => {
+  const handleViewAllAITools = (e: React.MouseEvent) => {
+    handleExternalLink("https://aiwebtools.ai/main-category/ALL%20AI%20TOOLS", e);
+  };
+
   return (
-    <div className="text-center mb-8 space-y-3">
+    <div className="text-center mb-8 space-y-6">
+      {/* VIEW ALL AI TOOLS Button */}
+      <button
+        onClick={handleViewAllAITools}
+        className="inline-flex items-center justify-center space-x-2 px-8 py-4 bg-gradient-to-r from-cyan-600 via-cyan-500 to-cyan-600 hover:from-cyan-500 hover:via-cyan-400 hover:to-cyan-500 text-black font-bold text-lg rounded-full shadow-lg shadow-cyan-500/30 hover:shadow-cyan-400/50 transform hover:scale-105 transition-all duration-300 border border-cyan-400 hover:border-cyan-300 cyber-glow"
+      >
+        <Search className="w-5 h-5" />
+        <span>VIEW ALL AI TOOLS</span>
+        <Search className="w-5 h-5" />
+      </button>
+
+      {/* Terms of Service Button */}
       <button
         onClick={(e) => handleExternalLink("https://aitools.company/terms-of-services", e)}
         className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-gradient-to-r from-cyan-600 via-cyan-500 to-cyan-600 hover:from-cyan-500 hover:via-cyan-400 hover:to-cyan-500 text-black font-bold text-sm rounded-full shadow-lg shadow-cyan-500/30 hover:shadow-cyan-400/50 transform hover:scale-105 transition-all duration-300 border border-cyan-400 hover:border-cyan-300 cyber-glow"
@@ -19,6 +34,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
         <Shield className="w-4 h-4" />
       </button>
       
+      {/* Submit and Request Tool Buttons */}
       <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
         <button
           onClick={handleSubmitTool}
