@@ -83,6 +83,11 @@ const CategoryFilters = ({
             <X className="w-3 h-3" />
           </Button>
         )}
+        
+        {/* Search Tagline */}
+        <div className="text-center mt-2 text-xs text-cyan-400/70 italic">
+          FOR MORE EXPANSIVE SEARCH RESULTS PLEASE USE SEARCH BAR
+        </div>
       </div>
 
       {/* Category Filters */}

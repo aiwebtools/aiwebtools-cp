@@ -98,6 +98,11 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
           {searchTerm ? `${searchResults.length} found` : `${toolStats.marketing} Tools`}
         </div>
 
+        {/* Search Tagline */}
+        <div className="text-center mt-2 text-sm text-gray-500 italic">
+          FOR MORE EXPANSIVE SEARCH RESULTS PLEASE USE SEARCH BAR
+        </div>
+
         {/* Search Results Dropdown with Infinite Scroll */}
         {isOpen && searchResults.length > 0 && (
           <div 

@@ -106,6 +106,11 @@ const GlobalSearchBar = () => {
           )}
         </div>
 
+        {/* Search Tagline */}
+        <div className="text-center mt-1 text-xs text-cyan-400/70 italic">
+          FOR MORE EXPANSIVE SEARCH RESULTS PLEASE USE SEARCH BAR
+        </div>
+
         {isOpen && searchResults.length > 0 && (
           <Card className="absolute top-full left-0 right-0 mt-2 bg-black/95 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-50 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" onScroll={handleScroll}>
             <CardContent className="p-2">
