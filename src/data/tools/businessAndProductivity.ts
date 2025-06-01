@@ -1,9 +1,188 @@
-
 import { Tool } from "@/types/tools";
-import { aiWebToolsGPTs } from "./aiWebToolsGPTs";
-import { traditionalBusinessTools } from "./traditionalBusinessTools";
+import { 
+  FileText, 
+  Calculator, 
+  BarChart, 
+  Clock, 
+  Target, 
+  DollarSign,
+  TrendingUp,
+  Users,
+  Briefcase,
+  PieChart,
+  Building,
+  CheckSquare,
+  Globe,
+  Zap
+} from "lucide-react";
 
 export const businessAndProductivity: Tool[] = [
-  ...aiWebToolsGPTs,
-  ...traditionalBusinessTools
+  {
+    icon: FileText,
+    title: "QUICK PPTx Maker GPT",
+    description: "Create professional PowerPoint presentations quickly and efficiently with AI-powered design and content generation.",
+    emoji: "📊",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://pptmakergpt.lovable.app/?via=aiwebtools",
+    category: "Business & Productivity",
+    tags: ["presentations", "powerpoint", "business", "design"],
+    rating: 4.6,
+    totalVotes: 2345
+  },
+  {
+    icon: DollarSign,
+    title: "Grant Writer GPT",
+    description: "Professional grant writing assistant to help secure funding for nonprofits, research projects, and business initiatives.",
+    emoji: "💰",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://grantwritergpt.lovable.app/?via=aiwebtools",
+    category: "Business & Finance",
+    tags: ["grants", "funding", "writing", "nonprofit"],
+    rating: 4.7,
+    totalVotes: 1876
+  },
+  {
+    icon: BarChart,
+    title: "Diagrams & Charts GPT",
+    description: "Create professional diagrams, charts, and visual representations for business, education, and presentations.",
+    emoji: "📊",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://chatgpt.com/g/g-hd9SJlkyQ-diagraph-chart-gpt",
+    category: "Business & Productivity",
+    tags: ["diagrams", "charts", "visualization", "business"],
+    rating: 4.5,
+    totalVotes: 2345
+  },
+  {
+    icon: Clock,
+    title: "Meeting Summarizer",
+    description: "AI tool that summarizes meetings and generates action items.",
+    emoji: "📝",
+    color: "from-blue-500 to-purple-500",
+    directUrl: "https://summarize.tech/?via=aiwebtools",
+    tags: ["summarizer", "productivity", "meeting", "ai"],
+    category: "Business & Productivity",
+    rating: 4.8,
+    totalVotes: 456
+  },
+  {
+    icon: Target,
+    title: "Taskade",
+    description: "All-in-one collaboration platform for remote teams.",
+    emoji: "🎯",
+    color: "from-orange-500 to-yellow-500",
+    directUrl: "https://www.taskade.com/?via=aiwebtools",
+    tags: ["collaboration", "productivity", "remote teams", "ai"],
+    category: "Business & Productivity",
+    rating: 4.7,
+    totalVotes: 345
+  },
+  {
+    icon: DollarSign,
+    title: "SheetAI",
+    description: "Generate content in spreadsheets with AI.",
+    emoji: "📊",
+    color: "from-green-500 to-blue-500",
+    directUrl: "https://sheetai.app/?via=aiwebtools",
+    tags: ["spreadsheets", "productivity", "content generation", "ai"],
+    category: "Business & Productivity",
+    rating: 4.6,
+    totalVotes: 234
+  },
+  {
+    icon: TrendingUp,
+    title: "Simplified AI Writer",
+    description: "AI writer for marketing and sales content.",
+    emoji: "📈",
+    color: "from-pink-500 to-purple-500",
+    directUrl: "https://simplified.com/ai-writer/?via=aiwebtools",
+    tags: ["writer", "marketing", "sales", "ai"],
+    category: "Business & Productivity",
+    rating: 4.5,
+    totalVotes: 123
+  },
+  {
+    icon: Users,
+    title: "Krisp",
+    description: "AI-powered noise cancellation app for clear communication.",
+    emoji: "🗣️",
+    color: "from-purple-500 to-blue-500",
+    directUrl: "https://krisp.ai/?via=aiwebtools",
+    tags: ["noise cancellation", "communication", "productivity", "ai"],
+    category: "Business & Productivity",
+    rating: 4.4,
+    totalVotes: 567
+  },
+  {
+    icon: Briefcase,
+    title: "Otter.ai",
+    description: "AI-powered transcription and collaboration tool.",
+    emoji: "💼",
+    color: "from-yellow-500 to-green-500",
+    directUrl: "https://otter.ai/?via=aiwebtools",
+    tags: ["transcription", "collaboration", "productivity", "ai"],
+    category: "Business & Productivity",
+    rating: 4.3,
+    totalVotes: 678
+  },
+  {
+    icon: PieChart,
+    title: "Jasper AI",
+    description: "AI-powered content creation platform for marketing.",
+    emoji: "🥧",
+    color: "from-red-500 to-orange-500",
+    directUrl: "https://www.jasper.ai/?via=aiwebtools",
+    tags: ["content creation", "marketing", "productivity", "ai"],
+    category: "Business & Productivity",
+    rating: 4.2,
+    totalVotes: 789
+  },
+  {
+    icon: Building,
+    title: "Murf AI",
+    description: "AI voice generator for professional voiceovers.",
+    emoji: "🏢",
+    color: "from-green-500 to-yellow-500",
+    directUrl: "https://murf.ai/?via=aiwebtools",
+    tags: ["voice generator", "voiceovers", "productivity", "ai"],
+    category: "Business & Productivity",
+    rating: 4.1,
+    totalVotes: 890
+  },
+  {
+    icon: CheckSquare,
+    title: "ClickUp",
+    description: "All-in-one productivity platform for project management.",
+    emoji: "✅",
+    color: "from-blue-500 to-green-500",
+    directUrl: "https://clickup.com/?via=aiwebtools",
+    tags: ["productivity", "project management", "collaboration", "ai"],
+    category: "Business & Productivity",
+    rating: 4.0,
+    totalVotes: 901
+  },
+  {
+    icon: Globe,
+    title: "Rytr",
+    description: "AI writing assistant for creating high-quality content.",
+    emoji: "🌍",
+    color: "from-purple-500 to-pink-500",
+    directUrl: "https://rytr.me/?via=aiwebtools",
+    tags: ["writing assistant", "content creation", "productivity", "ai"],
+    category: "Business & Productivity",
+    rating: 3.9,
+    totalVotes: 1234
+  },
+    {
+    icon: Zap,
+    title: "Zapier",
+    description: "Connect your apps and automate workflows.",
+    emoji: "⚡",
+    color: "from-yellow-400 to-orange-400",
+    directUrl: "https://zapier.com/ via aiwebtools",
+    tags: ["automation", "productivity", "workflows", "integration"],
+    category: "Business & Productivity",
+    rating: 4.7,
+    totalVotes: 3245
+  },
 ];

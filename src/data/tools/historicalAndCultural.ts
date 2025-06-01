@@ -12,10 +12,23 @@ import {
   Scroll,
   Star,
   User,
-  History
+  History,
+  Map
 } from "lucide-react";
 
 export const historicalAndCultural: Tool[] = [
+  {
+    icon: Map,
+    title: "Historical Map Explorer GPT",
+    description: "Explore historical maps and discover how the world has changed over time. Visualize borders, cities, and landmarks from different eras.",
+    emoji: "🗺️",
+    color: "from-brown-500 to-amber-600",
+    directUrl: "https://chatgpt.com/g/g-683c7770e1f08191bdb1a8140e337262-historical-map-explorer",
+    category: "Historical & Time-Based AI Tools",
+    tags: ["historical maps", "geography", "time exploration", "borders"],
+    rating: 4.7,
+    totalVotes: 3234
+  },
   {
     icon: Star,
     title: "Oraculum – The Revealer of Hidden \"Truths\"",

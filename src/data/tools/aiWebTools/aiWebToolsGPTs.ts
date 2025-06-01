@@ -35,6 +35,7 @@ import { communicationAndEntertainmentGPTs } from "./communicationAndEntertainme
 import { advancedSpecialtyGPTs } from "./advancedSpecialtyGPTs";
 import { governmentCivicGPTs } from "./governmentCivicGPTs";
 import { technologyInnovationGPTs } from "./technologyInnovationGPTs";
+import { newSpecializedGPTs } from "./newSpecializedGPTs";
 
 // Combine all AI Web Tools GPTs from organized categories - PRIORITY TOOLS FIRST
 export const aiWebToolsGPTs: Tool[] = [
@@ -73,6 +74,7 @@ export const aiWebToolsGPTs: Tool[] = [
   ...advancedSpecialtyGPTs,
   ...governmentCivicGPTs,
   ...technologyInnovationGPTs,
+  ...newSpecializedGPTs, // Add the new tools here too
   // Additional GPTs will be added here as new category files are created
 ];
 

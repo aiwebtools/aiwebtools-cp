@@ -21,17 +21,15 @@ const MainCategoryPage = () => {
   const [displayedCount, setDisplayedCount] = useState(24);
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [showAllTools, setShowAllTools] = useState(true); // Start with showing all tools
+  const [showAllTools, setShowAllTools] = useState(true);
   const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(24);
   const [showCategoryTools, setShowCategoryTools] = useState(false);
   const [categoryDisplayedCount, setCategoryDisplayedCount] = useState(24);
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
-  // Find the main category
   const mainCategory = mainCategories.find(cat => cat.name === decodedCategoryName);
   
-  // Scroll to top when category changes
   useEffect(() => {
     window.scrollTo(0, 0);
     requestAnimationFrame(() => {
@@ -49,10 +47,8 @@ const MainCategoryPage = () => {
     return null;
   }
 
-  // Get tools for this main category with enhanced debugging for AI CHAT & ASSISTANTS
   const categoryTools = getToolsByMainCategory(allTools, decodedCategoryName);
   
-  // Special handling for AI CHAT & ASSISTANTS to ensure AI Web Tools GPTs appear first
   let finalCategoryTools = categoryTools;
   if (decodedCategoryName === "AI CHAT & ASSISTANTS") {
     const aiWebToolsGPTs = categoryTools.filter(tool => 
@@ -75,7 +71,6 @@ const MainCategoryPage = () => {
     });
   }
   
-  // Apply search filter
   const allFilteredTools = searchTerm.trim() 
     ? searchTools(allTools, searchTerm)
     : [...allTools];
@@ -130,7 +125,6 @@ const MainCategoryPage = () => {
     }, 100);
   };
 
-  // Setup infinite scroll for all tools
   useInfiniteScroll({
     isLoading,
     showLoadMoreButton: false,
@@ -165,7 +159,24 @@ const MainCategoryPage = () => {
             </p>
           </div>
 
-          {/* Main AI Tools Collection Section - NOW AT THE TOP */}
+          {/* MOVED: Category-Specific Tools Button - NOW AT THE TOP */}
+          {finalCategoryTools.length > 0 && (
+            <div className="text-center mb-8 px-4">
+              <Button
+                onClick={handleShowCategoryTools}
+                size="lg"
+                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-4 py-4 rounded-xl text-sm sm:text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 max-w-full"
+              >
+                <span className="sm:hidden">📋 SHOW {decodedCategoryName}</span>
+                <span className="hidden sm:inline">📋 SHOW {decodedCategoryName} SPECIFIC TOOLS</span>
+              </Button>
+              <div className="mt-4 text-green-300 text-sm">
+                View {finalCategoryTools.length} tools specifically in the {decodedCategoryName} category
+              </div>
+            </div>
+          )}
+
+          {/* Main AI Tools Collection Section */}
           <div className="mb-16">
             {/* Search Bar for All Tools */}
             <div className="max-w-2xl mx-auto mb-8">
@@ -186,7 +197,7 @@ const MainCategoryPage = () => {
               </div>
             </div>
 
-            {/* Main AI Tools Grid - Remove duplicate title since ToolsGrid will handle it */}
+            {/* Main AI Tools Grid */}
             <div id="all-tools-section">
               {allFilteredTools.length > 0 ? (
                 <ToolsGrid
@@ -207,23 +218,6 @@ const MainCategoryPage = () => {
               )}
             </div>
           </div>
-
-          {/* Category-Specific Tools Section - NOW AT THE BOTTOM */}
-          {!showCategoryTools && finalCategoryTools.length > 0 && (
-            <div className="text-center mb-8 px-4">
-              <Button
-                onClick={handleShowCategoryTools}
-                size="lg"
-                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-4 py-4 rounded-xl text-sm sm:text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 max-w-full"
-              >
-                <span className="sm:hidden">📋 SHOW {decodedCategoryName}</span>
-                <span className="hidden sm:inline">📋 SHOW {decodedCategoryName} SPECIFIC TOOLS</span>
-              </Button>
-              <div className="mt-4 text-green-300 text-sm">
-                View {finalCategoryTools.length} tools specifically in the {decodedCategoryName} category
-              </div>
-            </div>
-          )}
 
           {/* Category Tools Section */}
           {showCategoryTools && (
