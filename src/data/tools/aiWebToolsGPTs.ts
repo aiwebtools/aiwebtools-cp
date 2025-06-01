@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { appraisalAndValuationGPTs } from "./aiWebTools/appraisalAndValuationGPTs";
 import { healthAndWellnessGPTs } from "./aiWebTools/healthAndWellnessGPTs";
@@ -13,22 +12,21 @@ import { legalAndGovernmentGPTs } from "./aiWebTools/legalAndGovernmentGPTs";
 import { professionalServicesGPTs } from "./aiWebTools/professionalServicesGPTs";
 import { multimediaAndContentGPTs } from "./aiWebTools/multimediaAndContentGPTs";
 import { mysteriousAndUnusualGPTs } from "./aiWebTools/mysteriousAndUnusualGPTs";
-import { Clock } from "lucide-react";
+import { Film } from "lucide-react";
 
-// NEW TOP PRIORITY TOOL - TIME MACHINE GPT COLLECTION
+// NEW TOP PRIORITY TOOL - MOVIE MAKER STUDIO AI SUITE
 const topPriorityTool: Tool = {
-  icon: Clock,
-  title: "AI TOOLS collection for this TIME MACHINE GPT",
-  description: "Uncover the past, explore potential futures, and dive into alternative realities with Time Machine GPT! Experience key historical moments, interact with notable figures, and journey through different eras—unlock your imagination. This comprehensive AI tools collection provides access to advanced time travel simulation and historical exploration capabilities.",
-  emoji: "⏰",
-  color: "from-purple-500 to-blue-600",
-  directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
+  icon: Film,
+  title: "Movie Maker Studio AI SUITE",
+  description: "-Full-Blown Music Video & Music Production Creative Suite- Transform yourself into the star of cinematic-quality music videos with our cutting-edge AI director. Build scene-by-scene visuals where you and even your band are featured in vivid, realistic scenes tied to your music.",
+  emoji: "🎬",
+  color: "from-purple-500 to-pink-600",
+  directUrl: "https://moviemakerstudio.lovable.app/?via=aiwebtools",
   videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E&list=TLGGyT65jYe0o6cwMTA2MjAyNQ",
-  imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298793409806528/time.webp",
-  tags: ["time travel", "history exploration", "historical figures", "alternative realities", "time periods", "aiwebtools", "collection"],
-  category: "Time & History",
+  tags: ["movie production", "music videos", "AI director", "cinematic quality", "scene creation", "aiwebtools", "creative suite"],
+  category: "Creative & Media",
   rating: 4.9,
-  totalVotes: 8945
+  totalVotes: 7234
 };
 
 // Combine all AI Web Tools GPTs from organized categories
