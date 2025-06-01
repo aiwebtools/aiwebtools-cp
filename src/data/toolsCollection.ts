@@ -112,6 +112,9 @@ import { designAssistantTools } from './tools/designAssistantTools';
 // Import the comprehensive AI tools collection
 import { comprehensiveAITools } from './tools/comprehensiveAITools';
 
+// Import the new specialized GPTs from AI Web Tools
+import { newSpecializedGPTs } from './tools/aiWebTools/newSpecializedGPTs';
+
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
@@ -222,6 +225,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...designAssistantTools,
     
     // NEW: Comprehensive AI tools collection (120+ additional tools)
-    ...comprehensiveAITools
+    ...comprehensiveAITools,
+    
+    // NEW: Specialized GPTs added by user request
+    ...newSpecializedGPTs
   ];
 };

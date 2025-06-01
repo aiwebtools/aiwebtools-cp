@@ -28,6 +28,7 @@ import {
   Database
 } from "lucide-react";
 
+// NEW TOOLS ONLY - as specifically requested by the user
 export const newSpecializedGPTs: Tool[] = [
   {
     icon: FileText,
@@ -251,7 +252,7 @@ export const newSpecializedGPTs: Tool[] = [
     description: "Advanced AI-powered image detection and analysis to identify AI-generated content and authenticity.",
     emoji: "🔍",
     color: "from-orange-500 to-red-600",
-    directUrl: "https://snoopimageai.lovable.app/?/via=aiwebtools",
+    directUrl: "https://snoopimageai.lovable.app/?via=aiwebtools",
     category: "AI Tools & Development",
     tags: ["image detection", "AI analysis", "authenticity", "verification"],
     rating: 4.5,
