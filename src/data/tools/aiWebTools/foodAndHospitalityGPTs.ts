@@ -1,20 +1,8 @@
+
 import { Tool } from "@/types/tools";
 import { ChefHat, Wine, Menu } from "lucide-react";
 
 export const foodAndHospitalityGPTs: Tool[] = [
-  {
-    icon: Wine,
-    title: "RECIPE GENERATOR",
-    description: "Mixologist GPT by AI Web Tools LLC is your professional AI-powered bartending companion, transforming anyone into a skilled mixologist with expert cocktail knowledge and creative beverage innovation. Meet Kenny, your virtual bartender who brings decades of mixology expertise to your fingertips, helping you craft perfect cocktails for any occasion, mood, or flavor preference. Whether you're hosting intimate gatherings, running a professional bar, or exploring cocktail culture, Mixologist GPT provides personalized drink recommendations based on available ingredients, taste preferences, and seasonal selections. The AI analyzes flavor profiles, alcohol compatibility, and presentation techniques to suggest innovative cocktail combinations that impress guests and elevate any social experience. Upload photos of your bar setup or list available ingredients to receive custom cocktail recipes, precise mixing instructions, and professional presentation tips. Features include ingredient substitution suggestions, batch cocktail preparation for parties, wine and spirit pairing recommendations, and comprehensive bartending technique tutorials. Perfect for home entertainers seeking signature cocktails, professional bartenders exploring new creations, and hospitality professionals optimizing beverage programs. Kenny ensures every drink is balanced, delicious, and Instagram-worthy.",
-    emoji: "🍸",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://mixologistgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=vJz1HOGtV0I",
-    tags: ["cocktails", "bartending", "drinks", "mixology", "beverage creation"],
-    category: "Food & Cooking",
-    rating: 4.7,
-    totalVotes: 5234
-  },
   {
     icon: Wine,
     title: "Mixologist GPT",
