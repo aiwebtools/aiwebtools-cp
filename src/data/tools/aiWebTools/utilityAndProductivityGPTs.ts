@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Calculator, 
@@ -30,7 +31,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     emoji: "🔍",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-8t4uyWOrI-ai-tools-expert-finder-gpt",
-    tags: ["AI tools", "tool discovery", "expert recommendations", "implementation guides", "AI solutions", "productivity"],
+    tags: ["AI tools", "tool discovery", "expert recommendations", "implementation guides", "AI solutions", "productivity", "ai tool expert", "tool finder", "ai expert"],
     category: "Utility & Productivity",
     rating: 4.8,
     totalVotes: 4567
@@ -43,7 +44,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://chatgpt.com/g/g-683cd0e910bc819195cf96b2b252c7c5-ai-language-translator-gpt",
     imageUrl: "https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-2970-622f-ba38-872803506c8e/raw?se=2025-06-01T23%3A34%3A12Z&sp=r&sv=2024-08-04&sr=b&scid=7700c98c-3eb1-5874-bd2a-2fc28a83de55&skoid=add8ee7d-5fc7-451e-b06e-a82b2276cf62&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-01T05%3A00%3A26Z&ske=2025-06-02T05%3A00%3A26Z&sks=b&skv=2024-08-04&sig=qGr9UZFFfE30df182WTLyNY/3EtgY%2BBUj/mYe9pYGLI%3D",
-    tags: ["language translation", "multilingual", "real-time translation", "cultural context", "international communication", "aiwebtools"],
+    tags: ["language translation", "multilingual", "real-time translation", "cultural context", "international communication", "aiwebtools", "translator", "language", "translate"],
     category: "Utility & Productivity",
     rating: 4.8,
     totalVotes: 5678
@@ -272,7 +273,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     color: "from-gray-500 to-blue-600",
     directUrl: "https://binarytoconvertergpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-sophisticated-and-futuristic-advertisement-.jpeg/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
-    tags: ["binary conversion", "text encoding", "computer language", "data conversion", "programming tools", "aiwebtools"],
+    tags: ["binary conversion", "text encoding", "computer language", "data conversion", "programming tools", "aiwebtools", "binary", "converter", "text to binary"],
     category: "Utility & Productivity",
     rating: 4.3,
     totalVotes: 2156
@@ -285,7 +286,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://multitaskergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=y-YZCOzIuDg",
-    tags: ["multitasking", "task management", "productivity", "efficiency", "multiple tasks", "aiwebtools"],
+    tags: ["multitasking", "task management", "productivity", "efficiency", "multiple tasks", "aiwebtools", "multitask", "tasks"],
     category: "Utility & Productivity",
     rating: 4.7,
     totalVotes: 4321
@@ -298,7 +299,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=IrKKi3SX89g",
-    tags: ["AI tools discovery", "tool recommendations", "step-by-step guides", "AI knowledge", "project tools", "aiwebtools"],
+    tags: ["AI tools discovery", "tool recommendations", "step-by-step guides", "AI knowledge", "project tools", "aiwebtools", "ai tools", "tool finder"],
     category: "Utility & Productivity",
     rating: 4.6,
     totalVotes: 3987
@@ -311,7 +312,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://rxai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-professional-pharmaceutical-assis.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["pharmaceutical research", "clinical trials", "drug development", "regulatory compliance", "data analysis", "aiwebtools"],
+    tags: ["pharmaceutical research", "clinical trials", "drug development", "regulatory compliance", "data analysis", "aiwebtools", "pharma", "research", "pharmaceutical"],
     category: "Utility & Productivity",
     rating: 4.7,
     totalVotes: 3892

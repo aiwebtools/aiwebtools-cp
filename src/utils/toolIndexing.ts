@@ -10,6 +10,10 @@ export const verifyToolIndexing = () => {
   
   // Check for recently added tools specifically
   const recentlyAddedTools = [
+    'AI TOOL EXPERT',
+    'King Blueberry GPT',
+    'CT MMP Data Explorer',
+    'AI LANGUAGE TRANSLATOR GPT',
     'Creative Logo Assistant',
     'AD Maker GPT4o Image GPT',
     'This Day in History GPT',
