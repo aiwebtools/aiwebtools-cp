@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -163,7 +162,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-blue-600",
     features: ["Space Exploration", "Colony Planning", "Terraforming", "Astrogation"],
     directUrl: "https://stellaris.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=tJwhDOE3mUM",
+    videoUrl: "https://www.youtube.com/watch?v=SV4VVRcLX5c",
     imageUrl: "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=400&h=200&fit=crop",
     emoji: "🚀"
   },
