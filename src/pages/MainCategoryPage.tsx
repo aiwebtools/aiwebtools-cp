@@ -165,7 +165,23 @@ const MainCategoryPage = () => {
             </p>
           </div>
 
-          {/* Main AI Tools Collection Section - NOW AT THE TOP */}
+          {/* Category-Specific Tools Button - ABOVE EVERYTHING ELSE */}
+          {finalCategoryTools.length > 0 && decodedCategoryName !== "ALL AI TOOLS" && (
+            <div className="text-center mb-8 px-4">
+              <Button
+                onClick={handleShowCategoryTools}
+                size="lg"
+                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-6 py-4 rounded-xl text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
+              >
+                📋 SHOW {decodedCategoryName.toUpperCase()} SPECIFIC TOOLS
+              </Button>
+              <div className="mt-4 text-green-300 text-sm">
+                View {finalCategoryTools.length} tools specifically in the {decodedCategoryName} category
+              </div>
+            </div>
+          )}
+
+          {/* Main AI Tools Collection Section */}
           <div className="mb-16">
             {/* Search Bar for All Tools */}
             <div className="max-w-2xl mx-auto mb-8">
@@ -186,7 +202,7 @@ const MainCategoryPage = () => {
               </div>
             </div>
 
-            {/* Main AI Tools Grid - Remove duplicate title since ToolsGrid will handle it */}
+            {/* Main AI Tools Grid */}
             <div id="all-tools-section">
               {allFilteredTools.length > 0 ? (
                 <ToolsGrid
@@ -207,23 +223,6 @@ const MainCategoryPage = () => {
               )}
             </div>
           </div>
-
-          {/* Category-Specific Tools Section - NOW AT THE BOTTOM */}
-          {!showCategoryTools && finalCategoryTools.length > 0 && (
-            <div className="text-center mb-8 px-4">
-              <Button
-                onClick={handleShowCategoryTools}
-                size="lg"
-                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold px-4 py-4 rounded-xl text-sm sm:text-lg shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 max-w-full"
-              >
-                <span className="sm:hidden">📋 SHOW {decodedCategoryName}</span>
-                <span className="hidden sm:inline">📋 SHOW {decodedCategoryName} SPECIFIC TOOLS</span>
-              </Button>
-              <div className="mt-4 text-green-300 text-sm">
-                View {finalCategoryTools.length} tools specifically in the {decodedCategoryName} category
-              </div>
-            </div>
-          )}
 
           {/* Category Tools Section */}
           {showCategoryTools && (
