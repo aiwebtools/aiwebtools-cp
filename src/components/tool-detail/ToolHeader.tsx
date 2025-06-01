@@ -1,3 +1,4 @@
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Mail } from "lucide-react";
@@ -20,13 +21,10 @@ const ToolHeader = ({ tool, defaultRating, defaultVotes, toolIndex }: ToolHeader
     e.preventDefault();
     e.stopPropagation();
     console.log('USE IT NOW button clicked in header for:', tool.title);
-    
-    // Use the Chef GPT URL specifically
-    const targetUrl = "https://chefgpt.lovable.app/?via=aiwebtools";
-    console.log('Using Chef GPT URL:', targetUrl);
+    console.log('Tool directUrl:', tool.directUrl);
     
     // Pass the tool title to the time portal effect
-    createTimePortalEffect(targetUrl, tool.title);
+    createTimePortalEffect(tool.directUrl || '', tool.title);
   };
 
   const handleCategoryClick = () => {
@@ -93,7 +91,7 @@ Thank you!`);
             className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-6 sm:px-8 py-3 text-sm sm:text-base rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-cyan-500/30 interactive-button glow-effect"
           >
             <ExternalLink className="w-4 h-4 mr-2" />
-            USE IT NOW
+            {tool.directUrl ? "USE IT NOW" : "COMING SOON"}
           </Button>
           
           {isAIWebToolsOriginal && (

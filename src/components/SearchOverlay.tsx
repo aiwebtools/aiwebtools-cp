@@ -88,11 +88,6 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                 className="pl-10 bg-gray-800 border-gray-600 text-white placeholder-gray-400 focus:border-cyan-500 text-lg py-4"
                 autoFocus
               />
-              
-              {/* Search Tagline */}
-              <div className="text-center mt-2 text-xs text-cyan-400/70 italic">
-                FOR MORE EXPANSIVE SEARCH RESULTS PLEASE USE SEARCH BAR
-              </div>
             </div>
 
             <div className="mb-4 text-center text-sm text-cyan-400">

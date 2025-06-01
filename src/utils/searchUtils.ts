@@ -11,18 +11,15 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const cleanSearchTerm = searchTerm.trim();
   console.log(`🔍 Enhanced search for: "${cleanSearchTerm}"`);
 
-  // Filter out the problematic "RECIPE GENERATOR" tool from all search results
-  const filteredTools = tools.filter(tool => tool.title !== "RECIPE GENERATOR");
-
   // Get AI Web Tools specific results first
-  const aiWebToolsResults = searchAIWebToolsGPTs(filteredTools, cleanSearchTerm);
+  const aiWebToolsResults = searchAIWebToolsGPTs(tools, cleanSearchTerm);
   
   // Get expanded keywords for broader search
   const expandedKeywords = getExpandedKeywords(cleanSearchTerm);
   console.log(`🔍 Expanded keywords:`, expandedKeywords);
 
   // Enhanced search through all tools with better matching
-  const allResults = filteredTools.filter(tool => {
+  const allResults = tools.filter(tool => {
     const toolText = `${tool.title} ${tool.description || ''} ${tool.tags?.join(' ') || ''} ${tool.category || ''}`.toLowerCase();
     const lowerSearchTerm = cleanSearchTerm.toLowerCase();
 
@@ -135,11 +132,6 @@ const scoreRegularTool = (tool: Tool, searchTerm: string, expandedKeywords: stri
   const lowerTags = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
   
   let score = 0;
-
-  // SPECIAL PRIORITY: Chef Sizzle for "recipe" searches
-  if (lowerSearchTerm.includes('recipe') && lowerTitle.includes('chef') && lowerTitle.includes('sizzle')) {
-    score += 2000; // Highest priority for recipe searches
-  }
 
   // EXACT MATCHES (Highest Priority)
   if (lowerTitle === lowerSearchTerm) {
