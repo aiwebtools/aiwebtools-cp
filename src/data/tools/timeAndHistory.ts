@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Clock, 
@@ -57,7 +56,7 @@ export const timeAndHistory: Tool[] = [
     description: "Navigate ancient calendars, track historical dates, and understand time-keeping systems of past civilizations.",
     emoji: "📅",
     color: "from-yellow-600 to-orange-700",
-    directUrl: "https://ancientcalendargpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-683cc76d31008191924249acfdd128b0-ancient-calendar-gpt",
     videoUrl: "https://www.youtube.com/watch?v=AIJq-2KwnGs",
     category: "Historical & Time-Based AI Tools",
     tags: ["ancient calendars", "historical dates", "time-keeping", "civilizations"],
