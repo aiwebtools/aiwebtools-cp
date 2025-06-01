@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   BookOpen, GraduationCap, Brain, Users, Target, Lightbulb,
@@ -65,5 +64,18 @@ export const aiEducationTools: Tool[] = [
     category: "Education & Learning",
     rating: 4.5,
     totalVotes: 2876
+  },
+  {
+    icon: BookOpen,
+    title: "LEARN ANY COURSE GPT",
+    description: "AI-powered comprehensive course learning assistant that provides personalized tutoring across any subject with step-by-step guidance.",
+    emoji: "📚",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
+    tags: ["course learning", "AI tutoring", "personalized education", "comprehensive learning"],
+    category: "Education & Learning",
+    rating: 4.8,
+    totalVotes: 5234
   }
 ];
