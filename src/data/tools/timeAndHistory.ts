@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Clock, 
@@ -126,7 +125,7 @@ export const timeAndHistory: Tool[] = [
     emoji: "📊",
     color: "from-purple-600 to-indigo-700",
     directUrl: "https://chatgpt.com/g/g-683cce7947048191880cabf0093b2822-historical-demographics-gpt",
-    videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
+    imageUrl: "https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-4704-622f-b855-c11eda6c9095/raw?se=2025-06-01T23%3A33%3A33Z&sp=r&sv=2024-08-04&sr=b&scid=551f2b29-6bf8-56dd-8295-f64dd6634414&skoid=add8ee7d-5fc7-451e-b06e-a82b2276cf62&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-01T20%3A47%3A28Z&ske=2025-06-02T20%3A47%3A28Z&sks=b&skv=2024-08-04&sig=K9IMD1NqSTSzyF2EWcSEcAuprEJOA1nGgkKqqaOZbBA%3D",
     category: "Historical Demographics",
     tags: ["historical demographics", "population trends", "social structures", "civilizations"],
     rating: 4.4,
