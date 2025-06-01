@@ -4,17 +4,16 @@ import { priorityFeaturedGPTs } from "./priorityFeaturedGPTs";
 import { secondPriorityFeaturedGPTs } from "./secondPriorityFeaturedGPTs";
 import { thirdPriorityFeaturedGPTs } from "./thirdPriorityFeaturedGPTs";
 import { fourthPriorityFeaturedGPTs } from "./fourthPriorityFeaturedGPTs";
-import { appraisalAndValuationGPTs } from "./appraisalAndValuationGPTs";
-import { healthAndWellnessGPTs } from "./healthAndWellnessGPTs";
+import { timeAndHistoryGPTs } from "./timeAndHistoryGPTs";
 import { businessAndFinanceGPTs } from "./businessAndFinanceGPTs";
+import { professionalServicesGPTs } from "./professionalServicesGPTs";
+import { healthAndWellnessGPTs } from "./healthAndWellnessGPTs";
+import { legalAndGovernmentGPTs } from "./legalAndGovernmentGPTs";
+import { appraisalAndValuationGPTs } from "./appraisalAndValuationGPTs";
 import { educationAndLearningGPTs } from "./educationAndLearningGPTs";
 import { entertainmentAndGamingGPTs } from "./entertainmentAndGamingGPTs";
 import { creativeAndMediaGPTs } from "./creativeAndMediaGPTs";
-import { timeAndHistoryGPTs } from "./timeAndHistoryGPTs";
-import { spiritualAndPhilosophyGPTs } from "./spiritualAndPhilosophyGPTs";
 import { scienceAndResearchGPTs } from "./scienceAndResearchGPTs";
-import { legalAndGovernmentGPTs } from "./legalAndGovernmentGPTs";
-import { professionalServicesGPTs } from "./professionalServicesGPTs";
 import { multimediaAndContentGPTs } from "./multimediaAndContentGPTs";
 import { mysteriousAndUnusualGPTs } from "./mysteriousAndUnusualGPTs";
 import { utilityAndProductivityGPTs } from "./utilityAndProductivityGPTs";
@@ -35,24 +34,30 @@ import { communicationAndEntertainmentGPTs } from "./communicationAndEntertainme
 import { advancedSpecialtyGPTs } from "./advancedSpecialtyGPTs";
 import { governmentCivicGPTs } from "./governmentCivicGPTs";
 import { technologyInnovationGPTs } from "./technologyInnovationGPTs";
+import { spiritualAndPhilosophyGPTs } from "./spiritualAndPhilosophyGPTs";
 
-// Combine all AI Web Tools GPTs from organized categories - PRIORITY TOOLS FIRST
+// Combine all AI Web Tools GPTs from organized categories - REORGANIZED ORDER
 export const aiWebToolsGPTs: Tool[] = [
   ...priorityFeaturedGPTs, // Put the first 10 priority tools at the very beginning
   ...secondPriorityFeaturedGPTs, // Add the second set of 13 priority tools
   ...thirdPriorityFeaturedGPTs, // Add the third set of 10 priority tools
   ...fourthPriorityFeaturedGPTs, // Add the fourth set of 12 priority tools
-  ...appraisalAndValuationGPTs,
-  ...healthAndWellnessGPTs,
+  
+  // TIME-BASED TOOLS AT THE TOP (as requested)
+  ...timeAndHistoryGPTs,
+  
+  // INDUSTRY-SPECIFIC SOLUTIONS TOWARDS THE TOP (as requested)
   ...businessAndFinanceGPTs,
+  ...professionalServicesGPTs,
+  ...healthAndWellnessGPTs,
+  ...legalAndGovernmentGPTs,
+  ...appraisalAndValuationGPTs,
+  
+  // CORE FUNCTIONAL CATEGORIES
   ...educationAndLearningGPTs,
   ...entertainmentAndGamingGPTs,
-  ...creativeAndMediaGPTs, // This includes our new AD Maker GPT
-  ...timeAndHistoryGPTs,
-  ...spiritualAndPhilosophyGPTs,
+  ...creativeAndMediaGPTs,
   ...scienceAndResearchGPTs,
-  ...legalAndGovernmentGPTs,
-  ...professionalServicesGPTs,
   ...multimediaAndContentGPTs,
   ...mysteriousAndUnusualGPTs,
   ...utilityAndProductivityGPTs,
@@ -73,6 +78,10 @@ export const aiWebToolsGPTs: Tool[] = [
   ...advancedSpecialtyGPTs,
   ...governmentCivicGPTs,
   ...technologyInnovationGPTs,
+  
+  // MOVED SPIRITUALITY TO THE BOTTOM (as requested)
+  ...spiritualAndPhilosophyGPTs,
+  
   // Additional GPTs will be added here as new category files are created
 ];
 
@@ -83,4 +92,4 @@ console.log(`📋 Second Priority Featured GPTs: ${secondPriorityFeaturedGPTs.le
 console.log(`📋 Third Priority Featured GPTs: ${thirdPriorityFeaturedGPTs.length}`);
 console.log(`📋 Fourth Priority Featured GPTs: ${fourthPriorityFeaturedGPTs.length}`);
 console.log(`🎯 First 20 GPT titles:`, aiWebToolsGPTs.slice(0, 20).map(tool => tool.title));
-console.log(`🔍 Recently added tools verification complete`);
+console.log(`🔍 Recently reorganized order - Time-based and Industry-specific tools prioritized`);
