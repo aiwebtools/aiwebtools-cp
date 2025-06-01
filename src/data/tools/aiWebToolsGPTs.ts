@@ -13,7 +13,7 @@ import { legalAndGovernmentGPTs } from "./aiWebTools/legalAndGovernmentGPTs";
 import { professionalServicesGPTs } from "./aiWebTools/professionalServicesGPTs";
 import { multimediaAndContentGPTs } from "./aiWebTools/multimediaAndContentGPTs";
 import { mysteriousAndUnusualGPTs } from "./aiWebTools/mysteriousAndUnusualGPTs";
-import { Film, GraduationCap, Car, Theater, Shield, BookOpen, Paintbrush, Camera, Clock, Users, Zap, Brain, Heart, Briefcase } from "lucide-react";
+import { Film, GraduationCap, Car, Theater, Shield, BookOpen, Paintbrush, Camera, Clock, Users, Zap, Brain, Heart, Briefcase, Music, FileText, Search, Lightbulb, Star, Globe, Gamepad2, TrendingUp } from "lucide-react";
 
 // TOP PRIORITY TOOL - MOVIE MAKER STUDIO AI SUITE
 const topPriorityTool: Tool = {
@@ -204,6 +204,175 @@ const additionalPriorityTools: Tool[] = [
     category: "Professional Services",
     rating: 4.9,
     totalVotes: 7890
+  },
+  {
+    icon: Music,
+    title: "Music Video Maker AI Studio",
+    description: "Step into the spotlight with Music Video Maker Studio, the ultimate AI-powered creative suite that transforms your music into cinematic experiences. Our advanced AI director helps you craft stunning, scene-by-scene visuals where you—and even your entire band—take center stage. Bring your sound to life with vivid, hyper-realistic scenes synced perfectly to your music, making every beat a visual masterpiece.",
+    emoji: "🎵",
+    color: "from-purple-600 to-pink-500",
+    directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=rBQTUrvHcR8&list=TLGGHKS5WME8OJ8yODA1MjAyNQ",
+    tags: ["music videos", "AI director", "cinematic", "visual creation", "band videos", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.8,
+    totalVotes: 5234
+  },
+  {
+    icon: FileText,
+    title: "BOOK WRITER GPT",
+    description: "Book Writer GPT assists you in creating professional, well-structured books with seamless page-to-page continuity, engaging dialogue, and captivating storytelling.",
+    emoji: "📖",
+    color: "from-blue-600 to-indigo-500",
+    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
+    tags: ["book writing", "storytelling", "publishing", "creative writing", "literature", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.7,
+    totalVotes: 4123
+  },
+  {
+    icon: Search,
+    title: "TALK TO HISTORY GPT",
+    description: "Your gateway to engaging in immersive historical conversations with influential leaders of history. Interact with any historical figures you imagine and gain unique insights and perspectives straight from the source. Powered by GPT-4o, it's a streamlined way to make history come alive. Perfect for students and enthusiasts alike. This tool is designed for educational and research purposes only by AiWebTools.Ai",
+    emoji: "🏛️",
+    color: "from-amber-500 to-orange-600",
+    directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=5t7EXS5tthQ",
+    tags: ["history", "historical figures", "education", "conversation", "research", "aiwebtools"],
+    category: "Time & History",
+    rating: 4.8,
+    totalVotes: 6789
+  },
+  {
+    icon: Star,
+    title: "Stellaris: 🚀AI Space Explorer",
+    description: "Stellaris: AI Space Explorer is a cutting-edge AI designed for space exploration and exoplanet settlement simulations. It provides expert guidance in astrogation, terraforming, and colony planning, and excels in analyzing detailed schematics to offer recommendations based on current mission status. With advanced data analysis and predictive insights, it supports future interstellar missions with precision. Please note that this tool was created for research, educational, and simulation purposes only.",
+    emoji: "🚀",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://stellaris.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=tJwhDOE3mUM",
+    tags: ["space exploration", "exoplanets", "terraforming", "astronomy", "simulation", "aiwebtools"],
+    category: "Science & Research",
+    rating: 4.6,
+    totalVotes: 3456
+  },
+  {
+    icon: Shield,
+    title: "Criminologist GPT",
+    description: "A tool to assist with investigations and training of criminologists. This tool is designed solely to assist human investigators and is not safe to be deployed autonomously. Do not use in real life situations as this is a simulation only. Disclaimer: This AI tool is intended to support human investigators by analyzing evidence and providing insights in collaboration with law enforcement and forensic experts.",
+    emoji: "🔍",
+    color: "from-red-600 to-gray-700",
+    directUrl: "https://criminologistgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=jgvqpqmRJi8",
+    tags: ["criminology", "investigation", "forensics", "law enforcement", "analysis", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.5,
+    totalVotes: 2987
+  },
+  {
+    icon: Heart,
+    title: "Social Safety Net GPT",
+    description: "Social Safety Net GPT exemplifies how AI can make a significant societal impact with minimal effort and resources. By providing comprehensive support to those in need, it demonstrates the power of how AI technology can foster positive change. Imagine the collective benefit if everyone participated! #GPTS4GOOD",
+    emoji: "🤝",
+    color: "from-green-500 to-blue-500",
+    directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
+    tags: ["social services", "community support", "welfare", "assistance", "social impact", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.7,
+    totalVotes: 4567
+  },
+  {
+    icon: Zap,
+    title: "Resurrection GPT",
+    description: "Resurrection GPT offers a unique opportunity to simulate reconnecting with the memories of loved ones who have passed, providing comfort and a sense of presence through simulated conversations. By capturing the essence of those who have departed, this AI tool supports emotional healing and offers closure during times of loss. Disclaimer: The intent of this tool is to provide comfort and emotional support, and it's important to know that, even though it may feel very real, it is a simulation and not a replacement for mental health or grief counseling in a real-life setting.",
+    emoji: "🕊️",
+    color: "from-purple-500 to-indigo-600",
+    directUrl: "https://resurrectiongpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=nEuxdGO-RZ4&t=4s",
+    tags: ["grief support", "memory", "emotional healing", "bereavement", "simulation", "aiwebtools"],
+    category: "Health & Wellness",
+    rating: 4.3,
+    totalVotes: 2345
+  },
+  {
+    icon: Lightbulb,
+    title: "PERFECT PROMPT ENGINE",
+    description: "The Prompt Perfect Engine effortlessly optimizes all your chat prompts. Crafted by prompt engineers, it's perfect for maximizing your potential, whether you're a beginner or aiming for perfection. Additionally, it can execute tasks flawlessly based on the generated prompts. Prompt Perfect Engine is your #1 personal prompt engineer, designed to fit in your pocket and ensure your success.",
+    emoji: "💡",
+    color: "from-yellow-500 to-orange-500",
+    directUrl: "https://perfectpromptengine.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-humanoid-robot-controlli.png",
+    tags: ["prompt engineering", "AI optimization", "productivity", "chat enhancement", "AI assistance", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.8,
+    totalVotes: 5678
+  },
+  {
+    icon: Globe,
+    title: "Travel Advisor GPT",
+    description: "Plan your next vacation with your personal AI travel advisor. Get tailored recommendations and craft your dream getaway within your preferences, budget, and envisioned experience. Enjoy a stress-free journey with expert guidance every step of the way.",
+    emoji: "✈️",
+    color: "from-blue-500 to-teal-600",
+    directUrl: "https://travelagentgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-futuristic-setting-where-a-_3Mwmg.png",
+    tags: ["travel planning", "vacation advisor", "trip recommendations", "budget travel", "tourism", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.6,
+    totalVotes: 3789
+  },
+  {
+    icon: FileText,
+    title: "Clarity Omni GPT",
+    description: "Clarity Omni GPT is an AI tool designed to rewrite text for improved clarity while preserving the original meaning and intent. It can either maintain the exact wording of the input or make adjustments to the wording, tone, and structure to enhance readability. Regardless of the approach, this AI ensures that every detail is retained, delivering a refined version of the text that stays true to the user's purpose.",
+    emoji: "✨",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://clarityomni.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-scene-of-an-ai-agent-with-a-halo.jpeg",
+    tags: ["text rewriting", "clarity enhancement", "content improvement", "writing assistant", "readability", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.7,
+    totalVotes: 4234
+  },
+  {
+    icon: Gamepad2,
+    title: "Engineering GPT AI Suite",
+    description: "ENGINEERING GPTs by AiWebTools.Ai is a cutting-edge suite of AI-powered tools designed to provide expert-level support across a wide range of engineering disciplines, including Electrical, Mechanical, Civil, and Software Engineering. These tools deliver comprehensive assistance by offering detailed calculations, design recommendations, optimization strategies, and safety protocols tailored to your specific project needs.",
+    emoji: "⚙️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-engineering-_hEePg.png",
+    tags: ["engineering", "technical design", "calculations", "mechanical", "electrical", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.8,
+    totalVotes: 5432
+  },
+  {
+    icon: Users,
+    title: "TALK TO THE GODS GPT",
+    description: "Talk to the Gods GPT' is a versatile AI chat tool that lets you simulate interacting with deities from any religious backgrounds. Whether you're seeking guidance, wisdom, or comparing world religions, this platform allows you to explore dialogues and gain insights from gods and deities across diverse mythologies. Designed to accommodate any of your inquiries in the persona of your chosen deity, it is powered by GPT-4o. This tool is intended for educational and research purposes only by AiWebTools.Ai",
+    emoji: "⚡",
+    color: "from-purple-600 to-indigo-700",
+    directUrl: "https://talktothegodsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xoUdjZDgplw",
+    tags: ["spirituality", "mythology", "religion", "deities", "philosophy", "aiwebtools"],
+    category: "Spiritual & Philosophy",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
+    icon: TrendingUp,
+    title: "Phenomenon Explorer AI Suite",
+    description: "Unveil the unexplained with AI precision using the Phenomenon Explorer AI Suite. This powerful collection of specialized AI tools enables users to investigate paranormal phenomena, document cryptid sightings, analyze supernatural myths, and conduct ghost hunts with scientific accuracy and analytical depth. Whether you're a UFO researcher, a paranormal investigator, a folklore scholar, or just someone intrigued by the unknown, our suite of tools guides you through structured methodologies and evidence-based approaches to uncover the truth behind some of the world's most mysterious occurrences.",
+    emoji: "👽",
+    color: "from-green-500 to-purple-600",
+    directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-ufo-hovering-in-the-sky-wit_w8l4l.png",
+    tags: ["paranormal", "UFO research", "cryptids", "supernatural", "mysteries", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.4,
+    totalVotes: 2987
   }
 ];
 
