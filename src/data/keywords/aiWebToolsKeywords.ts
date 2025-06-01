@@ -6,9 +6,20 @@ export const aiWebToolsKeywords: Record<string, string[]> = {
   "tool expert": ["ai tool expert", "ai tools", "tool discovery", "expert recommendations", "tool finder"],
   "ai expert": ["ai tool expert", "expert recommendations", "ai solutions", "ai guide", "artificial intelligence expert"],
   "tool finder": ["ai tool expert", "ai tools finder", "tool discovery", "find tools", "locate tools"],
-  "king blueberry": ["algebraic conversion", "mathematical operations", "variable conversion", "algebra", "math", "blueberry"],
-  "blueberry": ["king blueberry", "algebraic conversion", "math tools", "algebra"],
-  "algebraic": ["king blueberry", "algebra", "mathematical", "variables", "equations"],
+  
+  // King Blueberry GPT - comprehensive search terms
+  "king blueberry": ["king blueberry gpt", "blueberry", "algebraic conversion", "mathematical operations", "variable conversion", "algebra", "math", "english to algebra", "operational instructions"],
+  "blueberry": ["king blueberry", "king blueberry gpt", "algebraic conversion", "math tools", "algebra", "mathematical"],
+  "king": ["king blueberry", "king blueberry gpt", "royal", "algebraic"],
+  "algebraic": ["king blueberry", "king blueberry gpt", "algebra", "mathematical", "variables", "equations", "conversion"],
+  "algebra": ["king blueberry", "king blueberry gpt", "algebraic", "mathematical", "variables", "equations"],
+  "mathematical": ["king blueberry", "algebra", "algebraic", "math", "calculations", "variables"],
+  "math": ["king blueberry", "algebra", "algebraic", "mathematical", "calculations", "variables"],
+  "conversion": ["king blueberry", "algebraic conversion", "variable conversion", "english to algebra", "translate"],
+  "variables": ["king blueberry", "algebraic", "algebra", "mathematical", "conversion"],
+  "english to algebra": ["king blueberry", "algebraic conversion", "variable conversion", "translation"],
+  "operational instructions": ["king blueberry", "instructions", "operations", "procedures"],
+  
   "ct mmp": ["connecticut", "medical marijuana", "data explorer", "healthcare data"],
   "connecticut": ["ct mmp", "medical marijuana", "data explorer"],
   "medical marijuana": ["ct mmp", "cannabis", "healthcare", "data explorer"],

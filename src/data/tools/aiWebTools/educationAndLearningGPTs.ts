@@ -77,7 +77,7 @@ export const educationAndLearningGPTs: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=U8TLg15RTg8",
-    tags: ["algebraic conversion", "mathematical operations", "variable conversion", "educational tool", "mathematics", "aiwebtools"],
+    tags: ["king blueberry", "blueberry", "algebraic conversion", "mathematical operations", "variable conversion", "educational tool", "mathematics", "algebra", "aiwebtools"],
     category: "Education & Learning",
     rating: 4.5,
     totalVotes: 3456

@@ -26,15 +26,15 @@ export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean
     }
   }
   
-  // Special handling for newly added tools
+  // Special handling for newly added tools with exact matching
   const specialCases = [
     {
       searchTerms: ['ai tool expert', 'tool expert', 'ai expert', 'tool finder'],
       toolKeywords: ['ai tool expert', 'tool discovery', 'expert recommendations']
     },
     {
-      searchTerms: ['king blueberry', 'blueberry', 'algebraic'],
-      toolKeywords: ['king blueberry', 'algebraic conversion', 'mathematical']
+      searchTerms: ['king blueberry', 'blueberry', 'king', 'algebraic', 'algebra', 'mathematical', 'math', 'conversion', 'variables'],
+      toolKeywords: ['king blueberry', 'blueberry', 'algebraic conversion', 'mathematical', 'algebra', 'math']
     },
     {
       searchTerms: ['ct mmp', 'connecticut', 'medical marijuana'],
@@ -67,6 +67,7 @@ export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
   const newToolTitles = [
     'ai tool expert',
     'king blueberry gpt',
+    'king blueberry',
     'ct mmp data explorer',
     'ai language translator gpt'
   ];
@@ -77,6 +78,14 @@ export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
           newTitle.split(' ').some(word => lowerSearchTerm.includes(word))) {
         score += 1000; // Very high priority for new tools
       }
+    }
+  }
+  
+  // Special boost for King Blueberry searches
+  if (lowerSearchTerm.includes('king') || lowerSearchTerm.includes('blueberry') || 
+      lowerSearchTerm.includes('algebraic') || lowerSearchTerm.includes('algebra')) {
+    if (tool.title.toLowerCase().includes('king blueberry')) {
+      score += 2000; // Extra high priority for King Blueberry
     }
   }
   

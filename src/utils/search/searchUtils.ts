@@ -38,23 +38,30 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       return true;
     }
     
-    // PRIORITY 5: Direct text match in any field
+    // PRIORITY 5: Check individual words for King Blueberry specifically
+    if (lowerSearchTerm === 'king' || lowerSearchTerm === 'blueberry') {
+      if (tool.title.toLowerCase().includes('king blueberry')) {
+        return true;
+      }
+    }
+    
+    // PRIORITY 6: Direct text match in any field
     if (toolText.includes(lowerSearchTerm)) {
       return true;
     }
     
-    // PRIORITY 6: Word-by-word matching
+    // PRIORITY 7: Word-by-word matching
     const hasAllWords = searchWords.every(word => toolText.includes(word));
     if (hasAllWords) {
       return true;
     }
     
-    // PRIORITY 7: Expanded keyword matching
+    // PRIORITY 8: Expanded keyword matching
     if (expandedKeywords.some(keyword => toolText.includes(keyword.toLowerCase()))) {
       return true;
     }
     
-    // PRIORITY 8: Partial matching for longer terms
+    // PRIORITY 9: Partial matching for longer terms
     if (lowerSearchTerm.length >= 4) {
       const partialMatches = [
         tool.title.toLowerCase().includes(lowerSearchTerm),
@@ -82,6 +89,9 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const finalResults = scoredResults.map(result => result.tool);
   
   console.log(`✅ Enhanced search found ${finalResults.length} results`);
+  if (lowerSearchTerm.includes('king') || lowerSearchTerm.includes('blueberry')) {
+    console.log(`🫐 King Blueberry search results:`, finalResults.filter(t => t.title.toLowerCase().includes('king blueberry')));
+  }
   return finalResults;
 };
 
