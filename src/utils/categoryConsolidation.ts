@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 
 // Enhanced mapping with your new consolidated structure
@@ -116,7 +117,6 @@ const categoryMapping: Record<string, string> = {
   
   // Industry-Specific Solutions
   "Professional Services": "Industry-Specific Solutions",
-  "Healthcare Professionals": "Industry-Specific Solutions",
   "Legal Professionals": "Industry-Specific Solutions",
   "Financial & Trading Tools": "Industry-Specific Solutions",
   "Finance & Trading": "Industry-Specific Solutions",
@@ -134,11 +134,16 @@ const categoryMapping: Record<string, string> = {
   "Creative Services": "Creative & Entertainment (General & Gaming)",
   "Creative Suites": "Creative & Entertainment (General & Gaming)",
   
-  // Health, Wellness & Personal Lifestyle
+  // Health, Wellness & Personal Lifestyle - CONSOLIDATED MAPPING
   "Health & Wellness": "Health, Wellness & Personal Lifestyle",
+  "Healthcare Professionals": "Health, Wellness & Personal Lifestyle",
+  "Medical AI Tools": "Health, Wellness & Personal Lifestyle",
+  "Health And Wellness Tools": "Health, Wellness & Personal Lifestyle",
   "Spirituality & Wellness": "Health, Wellness & Personal Lifestyle",
   "Personal Services": "Health, Wellness & Personal Lifestyle",
-  "Health And Wellness Tools": "Health, Wellness & Personal Lifestyle",
+  "Wellness & Fitness": "Health, Wellness & Personal Lifestyle",
+  "Lifestyle Tools": "Health, Wellness & Personal Lifestyle",
+  "Health, Wellness & Personal Lifestyle": "Health, Wellness & Personal Lifestyle",
   
   // Specialized consolidation
   "Specialized & Niche": "Industry-Specific Solutions",

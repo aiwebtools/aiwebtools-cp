@@ -32,7 +32,11 @@ export const specializedCategories: MainCategory[] = [
       "Health & Wellness",
       "Personal Services",
       "Lifestyle Tools",
-      "Wellness & Fitness"
+      "Wellness & Fitness",
+      "Healthcare Professionals",
+      "Medical AI Tools",
+      "Health And Wellness Tools",
+      "Health, Wellness & Personal Lifestyle"
     ]
   },
   {

@@ -19,6 +19,29 @@ const isAIWebToolsGPT = (tool: Tool): boolean => {
          tool.tags?.some(tag => tag.toLowerCase().includes('aiwebtools'));
 };
 
+// Helper function to detect health-related tools
+const isHealthRelatedTool = (tool: Tool): boolean => {
+  const healthKeywords = [
+    'health', 'medical', 'wellness', 'healthcare', 'medicine', 'doctor', 'physician',
+    'nurse', 'pharmacy', 'pharmaceutical', 'clinic', 'hospital', 'patient', 'therapy',
+    'treatment', 'diagnosis', 'mental health', 'dental', 'veterinary', 'fitness',
+    'nutrition', 'diet', 'exercise', 'lifestyle', 'personal care', 'skincare',
+    'cannabis', 'insurance claims', 'genome', 'pharma', 'drug', 'medication'
+  ];
+  
+  const titleLower = tool.title.toLowerCase();
+  const descriptionLower = tool.description.toLowerCase();
+  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
+  const categoryLower = tool.category?.toLowerCase() || '';
+  
+  return healthKeywords.some(keyword => 
+    titleLower.includes(keyword) || 
+    descriptionLower.includes(keyword) || 
+    tagsLower.includes(keyword) ||
+    categoryLower.includes(keyword)
+  );
+};
+
 export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
   const categoryCounts: CategoryCounts = {};
   
@@ -71,7 +94,29 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
     // Special handling for AI WEB TOOLS ORIGINALS
     if (mainCat.name === "AI WEB TOOLS ORIGINALS") {
       count = tools.filter(tool => isAIWebToolsGPT(tool)).length;
-    } else {
+    } 
+    // Special enhanced handling for Health, Wellness & Personal Lifestyle
+    else if (mainCat.name === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
+      // Get tools that match subcategories
+      const subcategoryTools = tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCat.subcategories.some(subcat => 
+          isSimilarCategory(tool.category, subcat)
+        );
+      });
+      
+      // Also get tools that are health-related by content analysis
+      const healthRelatedTools = tools.filter(tool => isHealthRelatedTool(tool));
+      
+      // Combine and deduplicate
+      const allHealthTools = [...subcategoryTools, ...healthRelatedTools];
+      const uniqueHealthTools = allHealthTools.filter((tool, index, self) => 
+        index === self.findIndex(t => t.title === tool.title)
+      );
+      
+      count = uniqueHealthTools.length;
+    } 
+    else {
       mainCat.subcategories.forEach(subcat => {
         const categoryTools = getToolsByCategory(tools, subcat);
         count += categoryTools.length;
@@ -111,6 +156,36 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     console.log(`✅ Returning total of ${allToolsWithPriority.length} tools for ALL AI TOOLS`);
     
     return allToolsWithPriority;
+  }
+  
+  // Special enhanced handling for HEALTH, WELLNESS & PERSONAL LIFESTYLE
+  if (mainCategoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
+    console.log(`🏥 HEALTH, WELLNESS & PERSONAL LIFESTYLE requested - using enhanced matching`);
+    
+    const mainCategory = mainCategories.find(cat => cat.name === mainCategoryName);
+    if (!mainCategory) return [];
+    
+    // Get tools that match subcategories
+    const subcategoryTools = tools.filter(tool => {
+      if (!tool.category) return false;
+      return mainCategory.subcategories.some(subcat => 
+        isSimilarCategory(tool.category, subcat)
+      );
+    });
+    
+    // Also get tools that are health-related by content analysis
+    const healthRelatedTools = tools.filter(tool => isHealthRelatedTool(tool));
+    
+    // Combine and deduplicate
+    const allHealthTools = [...subcategoryTools, ...healthRelatedTools];
+    const uniqueHealthTools = allHealthTools.filter((tool, index, self) => 
+      index === self.findIndex(t => t.title === tool.title)
+    );
+    
+    console.log(`🏥 Found ${subcategoryTools.length} subcategory-matched tools, ${healthRelatedTools.length} content-matched tools, ${uniqueHealthTools.length} total unique health tools`);
+    console.log(`🏥 Sample health tools found:`, uniqueHealthTools.slice(0, 10).map(t => ({ title: t.title, category: t.category })));
+    
+    return uniqueHealthTools;
   }
   
   // Special case for "DATA & ANALYTICS AI TOOLS" - use enhanced matching
