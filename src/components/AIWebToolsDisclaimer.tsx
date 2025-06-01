@@ -2,17 +2,26 @@
 import { Shield, AlertTriangle, ExternalLink } from "lucide-react";
 import { Tool } from "@/types/tools";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { useNavigate } from "react-router-dom";
 
 interface AIWebToolsDisclaimerProps {
   tool: Tool;
 }
 
 const AIWebToolsDisclaimer = ({ tool }: AIWebToolsDisclaimerProps) => {
+  const navigate = useNavigate();
+
   const handleExternalLink = (url: string, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     console.log('🌀 External link clicked in AI Web Tools disclaimer:', url);
     createTimePortalEffect(url);
+  };
+
+  const handleDisclaimersPage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigate('/disclaimers');
   };
 
   // Check if this is a Fungus GPT tool for special disclaimer
@@ -66,7 +75,7 @@ const AIWebToolsDisclaimer = ({ tool }: AIWebToolsDisclaimerProps) => {
               <p className="text-xs text-gray-400">
                 By using {tool.title}, you acknowledge this disclaimer and agree to our{" "}
                 <button 
-                  onClick={(e) => handleExternalLink("/disclaimers", e)}
+                  onClick={handleDisclaimersPage}
                   className="text-cyan-400 hover:text-cyan-300 transition-colors underline"
                 >
                   Full Terms & Disclaimers
@@ -79,6 +88,14 @@ const AIWebToolsDisclaimer = ({ tool }: AIWebToolsDisclaimerProps) => {
                   contact@ai-webtools.com
                 </button>
               </p>
+              <div className="mt-2">
+                <button 
+                  onClick={handleDisclaimersPage}
+                  className="text-yellow-400 hover:text-yellow-300 transition-colors underline text-sm font-medium"
+                >
+                  📜 Read Full Disclaimer & User Agreement/Terms of Service
+                </button>
+              </div>
             </div>
           </div>
         </div>
