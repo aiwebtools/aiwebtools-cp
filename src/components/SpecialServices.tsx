@@ -5,6 +5,11 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 
+// =============================================================================
+// OUR FEATURED SECTION - Main featured tools showcase
+// This is the "Our Featured Section" that displays curated AI Web Tools GPTs
+// =============================================================================
+
 const featuredGPTs = [
   {
     title: "TIME MACHINE GPT",
@@ -309,16 +314,6 @@ const featuredGPTs = [
     emoji: "🔢"
   },
   {
-    title: "BOLT.NEW",
-    description: "Revolutionary web development platform for creating full-stack applications instantly with AI-powered coding and deployment capabilities.",
-    badge: "DEVELOPMENT",
-    color: "from-yellow-500 to-orange-600",
-    features: ["Instant Development", "Full-Stack Apps", "AI Coding", "Auto Deployment"],
-    directUrl: "https://bolt.new/?rid=iewkqu",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-high-tech-office-with-mu.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    emoji: "⚡"
-  },
-  {
     title: "FORTUNE TELLER GPT",
     description: "Mystical fortune telling assistant providing tarot readings, astrology insights, numerology analysis, and spiritual guidance for personal enlightenment.",
     badge: "MYSTICAL",
@@ -327,16 +322,6 @@ const featuredGPTs = [
     directUrl: "https://fortunetellergpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-fortune-teller-gpt-_kRpji.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🔮"
-  },
-  {
-    title: "GEMINI",
-    description: "Google's advanced AI language model providing multimodal capabilities, intelligent conversations, and comprehensive assistance across multiple domains.",
-    badge: "AI PLATFORM",
-    color: "from-blue-500 to-cyan-600",
-    features: ["Multimodal AI", "Intelligent Chat", "Code Generation", "Content Creation"],
-    directUrl: "http://g.co/g1referral/911Z9NTK",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/gemini_multimodal_live.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    emoji: "♊"
   },
   {
     title: "MICROSAAS GPT",
@@ -465,7 +450,7 @@ const handleAccessTool = (directUrl: string, toolName: string) => {
   createTimePortalEffect(directUrl, toolName);
 };
 
-const SpecialServices = () => {
+const OurFeaturedSection = () => {
   const navigate = useNavigate();
 
   const handleShowCategories = () => {
@@ -606,4 +591,4 @@ const SpecialServices = () => {
   );
 };
 
-export default SpecialServices;
+export default OurFeaturedSection;
