@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { ChefHat, Wine, Menu } from "lucide-react";
 
@@ -10,7 +9,7 @@ export const foodAndHospitalityGPTs: Tool[] = [
     emoji: "🍸",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://mixologistgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=vJz1HOGtV0I&t",
+    videoUrl: "https://www.youtube.com/watch?v=vJz1HOGtV0I",
     tags: ["cocktails", "bartending", "drinks", "mixology", "beverage creation"],
     category: "Food & Cooking",
     rating: 4.7,
