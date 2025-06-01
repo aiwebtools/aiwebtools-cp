@@ -1,6 +1,6 @@
 
 import { Tool } from "@/types/tools";
-import { Video, Film, Play, Wand2, Camera, Sparkles, Monitor, Zap } from "lucide-react";
+import { Video, Film, Play, Wand2, Camera, Sparkles, Monitor, Zap, Edit3, Type } from "lucide-react";
 
 export const videoGenerationTools: Tool[] = [
   {
@@ -122,5 +122,29 @@ export const videoGenerationTools: Tool[] = [
     category: "Video Generation",
     rating: 4.6,
     totalVotes: 3890
+  },
+  {
+    icon: Edit3,
+    title: "Text to Video Prompt Generator",
+    description: "AI-powered prompt generator specifically designed for text-to-video AI tools. Create optimized prompts that generate better video results from popular AI video platforms like Luma Dream Machine, Sora, and RunwayML.",
+    emoji: "📝",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
+    tags: ["prompt generation", "text-to-video", "AI prompts", "video creation", "prompt optimization"],
+    category: "Video & Multimedia",
+    rating: 4.5,
+    totalVotes: 2890
+  },
+  {
+    icon: Type,
+    title: "VEO3 TEXT TO VIDEO PROMPT GENERATOR",
+    description: "Advanced prompt generator specifically optimized for Google's VEO3 text-to-video AI model. Generate professional-quality prompts that maximize video output quality and creativity for VEO3 video generation.",
+    emoji: "🎯",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://chatgpt.com/g/g-682faef24c608191808180e89719cb09-veo3-text-to-video-prompt-maker",
+    tags: ["VEO3", "prompt generation", "Google AI", "text-to-video", "video prompts", "AI optimization"],
+    category: "Video & Multimedia",
+    rating: 4.4,
+    totalVotes: 2456
   }
 ];
