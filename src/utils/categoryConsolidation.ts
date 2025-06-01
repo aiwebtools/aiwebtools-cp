@@ -145,15 +145,11 @@ const categoryMapping: Record<string, string> = {
   "Lifestyle Tools": "Health, Wellness & Personal Lifestyle",
   "Health, Wellness & Personal Lifestyle": "Health, Wellness & Personal Lifestyle",
   
-  // Specialized consolidation
-  "Specialized & Niche": "Industry-Specific Solutions",
-  "Specialized Niche Tools": "Industry-Specific Solutions",
-  "Specialized AI Tools": "Industry-Specific Solutions",
-  "Technical & Utility Tools": "Industry-Specific Solutions",
-  "Specialized Tools": "Industry-Specific Solutions",
-  
-  // Time & History (keep unique)
+  // Historical & Time-Based AI Tools - ENHANCED MAPPING
   "Time & History": "Historical & Time-Based AI Tools",
+  "Historical & Cultural": "Historical & Time-Based AI Tools",
+  "Time Travel Tools": "Historical & Time-Based AI Tools",
+  "Historical Simulation": "Historical & Time-Based AI Tools",
   "Mystical & Esoteric": "Historical & Time-Based AI Tools",
   "Historical Figures": "Historical & Time-Based AI Tools",
   "Science & Mysticism": "Historical & Time-Based AI Tools",
@@ -162,7 +158,22 @@ const categoryMapping: Record<string, string> = {
   "Historical News": "Historical & Time-Based AI Tools",
   "Philosophy & Spirituality": "Historical & Time-Based AI Tools",
   "Theatrical Writing": "Historical & Time-Based AI Tools",
-  "Historical Medicine": "Historical & Time-Based AI Tools"
+  "Historical Medicine": "Historical & Time-Based AI Tools",
+  "Historical & Time-Based AI Tools": "Historical & Time-Based AI Tools",
+  "Historical Photography": "Historical & Time-Based AI Tools",
+  "Historical Demographics": "Historical & Time-Based AI Tools",
+  "Historical Royalty": "Historical & Time-Based AI Tools",
+  "Historical Literature": "Historical & Time-Based AI Tools",
+  "Historical Geography": "Historical & Time-Based AI Tools",
+  "Historical Maps": "Historical & Time-Based AI Tools",
+  "Historical Patterns": "Historical & Time-Based AI Tools",
+  
+  // Specialized consolidation
+  "Specialized & Niche": "Industry-Specific Solutions",
+  "Specialized Niche Tools": "Industry-Specific Solutions",
+  "Specialized AI Tools": "Industry-Specific Solutions",
+  "Technical & Utility Tools": "Industry-Specific Solutions",
+  "Specialized Tools": "Industry-Specific Solutions"
 };
 
 export const consolidateCategory = (category: string): string => {

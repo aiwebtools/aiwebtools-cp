@@ -42,6 +42,42 @@ const isHealthRelatedTool = (tool: Tool): boolean => {
   );
 };
 
+// Helper function to detect historical and time-based tools
+const isHistoricalTimeRelatedTool = (tool: Tool): boolean => {
+  const historicalKeywords = [
+    'historical', 'history', 'time', 'ancient', 'past', 'timeline', 'era', 'period',
+    'civilization', 'archaeology', 'archaeological', 'artifact', 'heritage', 'legacy',
+    'medieval', 'renaissance', 'antiquity', 'vintage', 'retro', 'classic', 'traditional',
+    'museum', 'archive', 'chronicle', 'documentary', 'manuscript', 'relic', 'fossil',
+    'genealogy', 'ancestry', 'lineage', 'dynasty', 'monarchy', 'empire', 'kingdom',
+    'revolution', 'war', 'battle', 'conquest', 'discovery', 'exploration', 'expedition',
+    'philosopher', 'philosophy', 'wisdom', 'culture', 'cultural', 'ethnic', 'tribal',
+    'folklore', 'legend', 'myth', 'mythology', 'epic', 'saga', 'tale', 'story',
+    'einstein', 'tesla', 'newton', 'shakespeare', 'aristotle', 'plato', 'socrates',
+    'napoleon', 'caesar', 'cleopatra', 'lincoln', 'washington', 'churchill',
+    'titanic', 'pyramids', 'colosseum', 'stonehenge', 'pharaoh', 'viking', 'samurai',
+    'gregorian', 'julian', 'calendar', 'chronology', 'decades', 'centuries', 'millennium',
+    'prehistoric', 'paleolithic', 'neolithic', 'bronze age', 'iron age', 'stone age',
+    'mystical', 'esoteric', 'occult', 'spiritual', 'divine', 'sacred', 'holy',
+    'oracle', 'prophecy', 'divination', 'tarot', 'astrology', 'zodiac', 'horoscope',
+    'resurrection', 'reincarnation', 'afterlife', 'eternity', 'immortal', 'eternal',
+    'time machine', 'time travel', 'temporal', 'chronological', 'anachronism',
+    'alan watts', 'mary magdalene', 'jesus', 'buddha', 'confucius', 'lao tzu'
+  ];
+  
+  const titleLower = tool.title.toLowerCase();
+  const descriptionLower = tool.description.toLowerCase();
+  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
+  const categoryLower = tool.category?.toLowerCase() || '';
+  
+  return historicalKeywords.some(keyword => 
+    titleLower.includes(keyword) || 
+    descriptionLower.includes(keyword) || 
+    tagsLower.includes(keyword) ||
+    categoryLower.includes(keyword)
+  );
+};
+
 export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
   const categoryCounts: CategoryCounts = {};
   
@@ -116,6 +152,27 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
       
       count = uniqueHealthTools.length;
     } 
+    // Special enhanced handling for Historical & Time-Based AI Tools
+    else if (mainCat.name === "HISTORICAL & TIME-BASED AI TOOLS") {
+      // Get tools that match subcategories
+      const subcategoryTools = tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCat.subcategories.some(subcat => 
+          isSimilarCategory(tool.category, subcat)
+        );
+      });
+      
+      // Also get tools that are historical/time-related by content analysis
+      const historicalRelatedTools = tools.filter(tool => isHistoricalTimeRelatedTool(tool));
+      
+      // Combine and deduplicate
+      const allHistoricalTools = [...subcategoryTools, ...historicalRelatedTools];
+      const uniqueHistoricalTools = allHistoricalTools.filter((tool, index, self) => 
+        index === self.findIndex(t => t.title === tool.title)
+      );
+      
+      count = uniqueHistoricalTools.length;
+    } 
     else {
       mainCat.subcategories.forEach(subcat => {
         const categoryTools = getToolsByCategory(tools, subcat);
@@ -183,9 +240,38 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     );
     
     console.log(`🏥 Found ${subcategoryTools.length} subcategory-matched tools, ${healthRelatedTools.length} content-matched tools, ${uniqueHealthTools.length} total unique health tools`);
-    console.log(`🏥 Sample health tools found:`, uniqueHealthTools.slice(0, 10).map(t => ({ title: t.title, category: t.category })));
     
     return uniqueHealthTools;
+  }
+  
+  // Special enhanced handling for HISTORICAL & TIME-BASED AI TOOLS
+  if (mainCategoryName === "HISTORICAL & TIME-BASED AI TOOLS") {
+    console.log(`🕰️ HISTORICAL & TIME-BASED AI TOOLS requested - using enhanced matching`);
+    
+    const mainCategory = mainCategories.find(cat => cat.name === mainCategoryName);
+    if (!mainCategory) return [];
+    
+    // Get tools that match subcategories
+    const subcategoryTools = tools.filter(tool => {
+      if (!tool.category) return false;
+      return mainCategory.subcategories.some(subcat => 
+        isSimilarCategory(tool.category, subcat)
+      );
+    });
+    
+    // Also get tools that are historical/time-related by content analysis
+    const historicalRelatedTools = tools.filter(tool => isHistoricalTimeRelatedTool(tool));
+    
+    // Combine and deduplicate
+    const allHistoricalTools = [...subcategoryTools, ...historicalRelatedTools];
+    const uniqueHistoricalTools = allHistoricalTools.filter((tool, index, self) => 
+      index === self.findIndex(t => t.title === tool.title)
+    );
+    
+    console.log(`🕰️ Found ${subcategoryTools.length} subcategory-matched tools, ${historicalRelatedTools.length} content-matched tools, ${uniqueHistoricalTools.length} total unique historical tools`);
+    console.log(`🕰️ Sample historical tools found:`, uniqueHistoricalTools.slice(0, 10).map(t => ({ title: t.title, category: t.category })));
+    
+    return uniqueHistoricalTools;
   }
   
   // Special case for "DATA & ANALYTICS AI TOOLS" - use enhanced matching
@@ -235,7 +321,6 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     );
     
     console.log(`🎥 Found ${categoryTools.length} category-matched tools, ${videoRelatedTools.length} content-matched tools, ${uniqueVideoTools.length} total unique video tools`);
-    console.log(`🎬 Sample video tools found:`, uniqueVideoTools.slice(0, 10).map(t => ({ title: t.title, category: t.category })));
     
     return uniqueVideoTools;
   }
