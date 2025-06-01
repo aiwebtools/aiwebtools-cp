@@ -105,8 +105,9 @@ const ToolDetail = () => {
               </CardHeader>
 
               <CardContent className="p-8 bg-gray-900/50">
-                <ToolDescription tool={tool} />
+                {/* MOVED: Media (video/image) is now above the description */}
                 <ToolMedia tool={tool} toolIndex={toolIndex} />
+                <ToolDescription tool={tool} />
                 <ToolTags tool={tool} />
                 <ToolActions tool={tool} />
               </CardContent>
