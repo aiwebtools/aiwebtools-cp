@@ -11,6 +11,14 @@ import {
 } from "./categoryMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
 
+// Helper function to detect AI Web Tools GPTs
+const isAIWebToolsGPT = (tool: Tool): boolean => {
+  return tool.directUrl?.includes('lovable.app') || 
+         tool.directUrl?.includes('aiwebtools') ||
+         tool.description?.toLowerCase().includes('aiwebtools') ||
+         tool.tags?.some(tag => tag.toLowerCase().includes('aiwebtools'));
+};
+
 export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
   const categoryCounts: CategoryCounts = {};
   
@@ -25,6 +33,11 @@ export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
 };
 
 export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] => {
+  // Special handling for AI Web Tools Originals category
+  if (categoryName === "AI WEB TOOLS ORIGINALS" || categoryName === "AI Web Tools Originals") {
+    return tools.filter(tool => isAIWebToolsGPT(tool));
+  }
+  
   // Special handling for Data & Analytics category
   if (categoryName === "DATA & ANALYTICS AI TOOLS" || categoryName === "Data & Analytics Tools") {
     return getDataAnalyticsTools(tools, categoryName);
@@ -54,10 +67,17 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
   
   mainCategories.forEach(mainCat => {
     let count = 0;
-    mainCat.subcategories.forEach(subcat => {
-      const categoryTools = getToolsByCategory(tools, subcat);
-      count += categoryTools.length;
-    });
+    
+    // Special handling for AI WEB TOOLS ORIGINALS
+    if (mainCat.name === "AI WEB TOOLS ORIGINALS") {
+      count = tools.filter(tool => isAIWebToolsGPT(tool)).length;
+    } else {
+      mainCat.subcategories.forEach(subcat => {
+        const categoryTools = getToolsByCategory(tools, subcat);
+        count += categoryTools.length;
+      });
+    }
+    
     mainCategoryCounts[mainCat.name] = count;
   });
   
@@ -68,19 +88,22 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   console.log(`🔍 Getting tools for main category: "${mainCategoryName}"`);
   console.log(`📊 Total available tools in database: ${tools.length}`);
   
+  // Special case for "AI WEB TOOLS ORIGINALS" - return all AI Web Tools GPTs
+  if (mainCategoryName === "AI WEB TOOLS ORIGINALS") {
+    console.log(`🌟 AI WEB TOOLS ORIGINALS requested - filtering AI Web Tools GPTs`);
+    
+    const aiWebToolsGPTs = tools.filter(tool => isAIWebToolsGPT(tool));
+    
+    console.log(`✅ Found ${aiWebToolsGPTs.length} AI Web Tools GPTs for AI WEB TOOLS ORIGINALS`);
+    return aiWebToolsGPTs;
+  }
+  
   // Special case for "ALL AI TOOLS" - return ALL tools with AI Web Tools GPTs prioritized
   if (mainCategoryName === "ALL AI TOOLS") {
     console.log(`🌟 ALL AI TOOLS requested - returning all ${tools.length} tools with prioritization`);
     
-    const aiWebToolsGPTs = tools.filter(tool => 
-      tool.directUrl?.includes('lovable.app') || 
-      tool.directUrl?.includes('aiwebtools')
-    );
-    
-    const otherTools = tools.filter(tool => 
-      !tool.directUrl?.includes('lovable.app') && 
-      !tool.directUrl?.includes('aiwebtools')
-    );
+    const aiWebToolsGPTs = tools.filter(tool => isAIWebToolsGPT(tool));
+    const otherTools = tools.filter(tool => !isAIWebToolsGPT(tool));
     
     console.log(`🎯 AI Web Tools GPTs: ${aiWebToolsGPTs.length}, Other tools: ${otherTools.length}`);
     
