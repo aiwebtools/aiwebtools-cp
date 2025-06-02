@@ -13,10 +13,10 @@ const MainCategoriesView = ({ mainCategoryCounts, onMainCategoryClick }: MainCat
   const navigate = useNavigate();
 
   const handleCategoryClick = (mainCategoryName: string) => {
-    // Instant navigation with no delays
+    // Immediate navigation with zero delays for instant response
     const encodedName = encodeURIComponent(mainCategoryName);
-    navigate(`/main-category/${encodedName}`);
     onMainCategoryClick(mainCategoryName);
+    navigate(`/main-category/${encodedName}`);
   };
 
   return (

@@ -10,7 +10,7 @@ import {
   getAutomationPlatformsTools
 } from "./categoryMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
-import { buildToolsCache, resetCache, getToolsCacheByMainCategory, isCacheBuilt } from "./cacheManager";
+import { buildToolsCache, getToolsCacheByMainCategory, isCacheBuilt } from "./cacheManager";
 import { isAIWebToolsGPT } from "./specializedDetection";
 
 export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
@@ -57,36 +57,32 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
 };
 
 export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts => {
-  // Build cache if not built yet
+  // Build cache efficiently if not built yet
   buildToolsCache(tools);
   
   const mainCategoryCounts: MainCategoryCounts = {};
   const toolsCacheByMainCategory = getToolsCacheByMainCategory();
   
-  // Use cached results for instant counts
+  // Use cached results for instant counts - no processing delay
   mainCategories.forEach(mainCat => {
-    const cachedTools = toolsCacheByMainCategory.get(mainCat.name) || [];
-    mainCategoryCounts[mainCat.name] = cachedTools.length;
+    const cachedTools = toolsCacheByMainCategory.get(mainCat.name);
+    mainCategoryCounts[mainCat.name] = cachedTools ? cachedTools.length : 0;
   });
   
-  console.log('📊 Main category counts:', mainCategoryCounts);
   return mainCategoryCounts;
 };
 
 export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string): Tool[] => {
-  console.log(`🚀 Fast lookup for main category: "${mainCategoryName}"`);
-  
-  // Build cache if not built yet
+  // Build cache efficiently if not built yet
   buildToolsCache(tools);
   
   const toolsCacheByMainCategory = getToolsCacheByMainCategory();
   
-  // Return cached results instantly - these are the EXACT same tools used for counting
+  // Return cached results instantly - zero processing time
   const cachedTools = toolsCacheByMainCategory.get(mainCategoryName);
   
   if (cachedTools) {
-    console.log(`✅ Instant cache hit! Returning ${cachedTools.length} tools for "${mainCategoryName}"`);
-    console.log(`🔍 First 5 tools: ${cachedTools.slice(0, 5).map(t => t.title).join(', ')}`);
+    console.log(`⚡ Instant cache hit! ${cachedTools.length} tools for "${mainCategoryName}"`);
     return cachedTools;
   }
   
@@ -95,4 +91,4 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
 };
 
 // Re-export cache management functions
-export { resetCache };
+export { buildToolsCache };

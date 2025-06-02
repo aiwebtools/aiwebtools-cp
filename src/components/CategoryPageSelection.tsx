@@ -9,11 +9,11 @@ import { allTools } from "@/data/toolsData";
 const CategoryPageSelection = () => {
   const navigate = useNavigate();
   
-  // Get main category counts
+  // Get main category counts using optimized cache
   const mainCategoryCounts = getMainCategoriesWithCounts(allTools);
 
   const handleMainCategoryClick = (mainCategoryName: string) => {
-    // Instant navigation with no processing delays
+    // Instant navigation with zero processing delays
     const encodedName = encodeURIComponent(mainCategoryName);
     navigate(`/main-category/${encodedName}`);
   };
