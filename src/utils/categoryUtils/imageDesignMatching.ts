@@ -3,7 +3,7 @@ import { Tool } from "@/types/tools";
 import { isVideoEntertainmentTool, isCoreImageTool, isPureDesignTool, isCategoryMatch } from "./exclusions";
 
 /**
- * Priority tools that should appear at the top of Image & Creative Design category
+ * Priority tools that should appear at the top of Image & Design category
  */
 const PRIORITY_IMAGE_TOOLS = [
   "GPT-4o Image Generation",
@@ -33,10 +33,10 @@ const isPriorityImageTool = (tool: Tool): boolean => {
 };
 
 /**
- * Get tools specifically for Image & Creative Design category with strict filtering and priority ordering
+ * Get tools specifically for Image & Design category with strict filtering and priority ordering
  */
 export const getImageAndDesignTools = (tools: Tool[], categoryName: string): Tool[] => {
-  console.log(`🎨 Getting Image & Creative Design tools for category: ${categoryName}`);
+  console.log(`🎨 Getting Image & Design tools for category: ${categoryName}`);
   
   const imageDesignTools = tools.filter(tool => {
     // EXCLUDE video/entertainment tools FIRST (HIGHEST EXCLUSION PRIORITY)
@@ -50,7 +50,7 @@ export const getImageAndDesignTools = (tools: Tool[], categoryName: string): Too
       const matchType = isPriorityImageTool(tool) ? 'PRIORITY' : 
                        isCoreImageTool(tool) ? 'core-image' : 
                        isPureDesignTool(tool) ? 'pure-design' : 'category-match';
-      console.log(`✅ Including in Image & Creative Design: ${tool.title} (${matchType})`);
+      console.log(`✅ Including in Image & Design: ${tool.title} (${matchType})`);
       return true;
     }
     
