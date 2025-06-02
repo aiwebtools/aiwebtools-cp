@@ -17,6 +17,60 @@
     will-change: text-shadow;
   }
 
+  /* Divine golden radiance effect for AITOOLS.STUDIO */
+  .divine-gold-radiance {
+    text-shadow: 
+      0 0 8px rgba(255, 215, 0, 1),
+      0 0 16px rgba(255, 215, 0, 0.8),
+      0 0 24px rgba(255, 215, 0, 0.6),
+      0 0 32px rgba(255, 215, 0, 0.4),
+      0 0 40px rgba(255, 215, 0, 0.2);
+    animation: divine-golden-pulse 2.5s ease-in-out infinite alternate;
+    will-change: text-shadow;
+    color: #FFD700;
+    background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: divine-golden-pulse 2.5s ease-in-out infinite alternate,
+               golden-shimmer 4s ease-in-out infinite;
+  }
+
+  @keyframes divine-golden-pulse {
+    from {
+      text-shadow: 
+        0 0 8px rgba(255, 215, 0, 1),
+        0 0 16px rgba(255, 215, 0, 0.8),
+        0 0 24px rgba(255, 215, 0, 0.6),
+        0 0 32px rgba(255, 215, 0, 0.4),
+        0 0 40px rgba(255, 215, 0, 0.2);
+      filter: brightness(1);
+    }
+    to {
+      text-shadow: 
+        0 0 12px rgba(255, 215, 0, 1),
+        0 0 24px rgba(255, 215, 0, 1),
+        0 0 36px rgba(255, 215, 0, 0.8),
+        0 0 48px rgba(255, 215, 0, 0.6),
+        0 0 60px rgba(255, 215, 0, 0.4),
+        0 0 72px rgba(255, 215, 0, 0.2);
+      filter: brightness(1.3);
+    }
+  }
+
+  @keyframes golden-shimmer {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   @keyframes glowing-pulse {
     from {
       text-shadow: 
@@ -107,6 +161,14 @@
         0 0 3px rgba(6, 182, 212, 0.8),
         0 0 6px rgba(6, 182, 212, 0.6);
     }
+
+    .divine-gold-radiance {
+      text-shadow: 
+        0 0 6px rgba(255, 215, 0, 1),
+        0 0 12px rgba(255, 215, 0, 0.8),
+        0 0 18px rgba(255, 215, 0, 0.6);
+      animation-duration: 3s;
+    }
     
     .interactive-button {
       transition-duration: 0.15s;
@@ -137,6 +199,13 @@
       animation: none;
       text-shadow: 0 0 3px currentColor;
       box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+    }
+
+    .divine-gold-radiance {
+      animation: none;
+      text-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
+      color: #FFD700;
+      -webkit-text-fill-color: #FFD700;
     }
     
     .interactive-button {
