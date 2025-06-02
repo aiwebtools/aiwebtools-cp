@@ -3,27 +3,10 @@ import { Tool } from "@/types/tools";
 export const getImageAndDesignTools = (tools: Tool[], categoryName: string): Tool[] => {
   console.log(`🎨 Getting Image & Design tools for category: ${categoryName}`);
   
-  return tools.filter(tool => {
+  const imageDesignTools = tools.filter(tool => {
     const lowerTitle = tool.title.toLowerCase();
     const lowerDescription = tool.description.toLowerCase();
     const lowerCategory = tool.category?.toLowerCase() || '';
-    
-    // Exclude video, music, and performing arts tools explicitly
-    const isVideoTool = lowerTitle.includes('video') || lowerTitle.includes('movie') || 
-                       lowerDescription.includes('video') || lowerDescription.includes('movie') ||
-                       lowerTitle.includes('film') || lowerDescription.includes('film');
-    
-    const isMusicTool = lowerTitle.includes('music') || lowerDescription.includes('music') ||
-                       lowerTitle.includes('audio') || lowerDescription.includes('audio');
-    
-    const isPerformingArtsTool = lowerTitle.includes('stage') || lowerTitle.includes('performing') ||
-                                lowerDescription.includes('stage') || lowerDescription.includes('performing');
-    
-    // Exclude these tools from Image & Design
-    if (isVideoTool || isMusicTool || isPerformingArtsTool) {
-      console.log(`🚫 Excluding from Image & Design: ${tool.title} (${isVideoTool ? 'video' : isMusicTool ? 'music' : 'performing arts'})`);
-      return false;
-    }
     
     // Include tools that are specifically image and design related
     const isImageDesignTool = 
@@ -47,7 +30,11 @@ export const getImageAndDesignTools = (tools: Tool[], categoryName: string): Too
       lowerDescription.includes('graphic') ||
       lowerDescription.includes('visual design') ||
       lowerDescription.includes('logo design') ||
-      lowerDescription.includes('graphic design');
+      lowerDescription.includes('graphic design') ||
+      // Also include video/entertainment tools but they'll be deprioritized
+      lowerTitle.includes('movie maker studio') ||
+      lowerTitle.includes('music video maker') ||
+      lowerTitle.includes('stagemaster');
     
     if (isImageDesignTool) {
       console.log(`✅ Including in Image & Design: ${tool.title}`);
@@ -55,6 +42,37 @@ export const getImageAndDesignTools = (tools: Tool[], categoryName: string): Too
     }
     
     return false;
+  });
+
+  // Sort tools to prioritize actual image generators first
+  return imageDesignTools.sort((a, b) => {
+    const aTitle = a.title.toLowerCase();
+    const bTitle = b.title.toLowerCase();
+    
+    // Deprioritize video/entertainment tools (send to bottom)
+    const aIsVideoTool = aTitle.includes('movie') || aTitle.includes('music video') || 
+                       aTitle.includes('stage') || aTitle.includes('performing');
+    const bIsVideoTool = bTitle.includes('movie') || bTitle.includes('music video') || 
+                       bTitle.includes('stage') || bTitle.includes('performing');
+    
+    if (aIsVideoTool && !bIsVideoTool) return 1; // a goes after b
+    if (!aIsVideoTool && bIsVideoTool) return -1; // a goes before b
+    
+    // Prioritize core image generation tools at the top
+    const aIsImageGen = aTitle.includes('image') || aTitle.includes('photo') || 
+                       aTitle.includes('graphic') || aTitle.includes('logo') ||
+                       a.description.toLowerCase().includes('image generation') ||
+                       a.description.toLowerCase().includes('ai image');
+    const bIsImageGen = bTitle.includes('image') || bTitle.includes('photo') || 
+                       bTitle.includes('graphic') || bTitle.includes('logo') ||
+                       b.description.toLowerCase().includes('image generation') ||
+                       b.description.toLowerCase().includes('ai image');
+    
+    if (aIsImageGen && !bIsImageGen) return -1; // a goes before b
+    if (!aIsImageGen && bIsImageGen) return 1; // a goes after b
+    
+    // Default sort by rating (highest first)
+    return (b.rating || 0) - (a.rating || 0);
   });
 };
 
