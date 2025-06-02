@@ -14,6 +14,24 @@ import { CategoryCounts, MainCategoryCounts } from "./types";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 
+// Helper function to detect major LLMs that should appear in multiple categories
+const isMajorLLM = (tool: Tool): boolean => {
+  const majorLLMNames = [
+    'chatgpt', 'claude', 'gemini', 'mistral', 'llama', 'anythingllm',
+    'gpt-4', 'gpt-3.5', 'anthropic', 'google ai', 'meta ai'
+  ];
+  
+  const titleLower = tool.title.toLowerCase();
+  const descriptionLower = tool.description.toLowerCase();
+  
+  return majorLLMNames.some(llm => 
+    titleLower.includes(llm) || 
+    descriptionLower.includes(llm) ||
+    (llm === 'chatgpt' && (titleLower.includes('chat gpt') || titleLower.includes('openai'))) ||
+    (llm === 'anythingllm' && titleLower.includes('anything llm'))
+  );
+};
+
 // Helper function to detect STRICTLY historical and time-based tools
 const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
   // First check if it's primarily an educational tool - if so, exclude it from historical category
@@ -38,6 +56,11 @@ const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
   
   const titleLower = tool.title.toLowerCase();
   const descriptionLower = tool.description.toLowerCase();
+  
+  // Exclude major LLMs and general education tools from historical category
+  if (isMajorLLM(tool)) {
+    return false;
+  }
   
   // Check for specific historical tool names
   const historicalToolNames = [
@@ -78,6 +101,11 @@ const isPrimaryEducationTool = (tool: Tool): boolean => {
   const titleLower = tool.title.toLowerCase();
   const categoryLower = tool.category?.toLowerCase() || '';
   
+  // Exclude major LLMs from being classified as primary education tools
+  if (isMajorLLM(tool)) {
+    return false;
+  }
+  
   // Check if it's explicitly an education tool by name or category
   const isEducationByCategory = categoryLower.includes('education') || 
                                categoryLower.includes('learning');
@@ -94,6 +122,46 @@ const isEducationRelatedTool = (tool: Tool): boolean => {
   return isPrimaryEducationTool(tool) || 
          (tool.category?.toLowerCase().includes('education')) ||
          (tool.category?.toLowerCase().includes('learning'));
+};
+
+// Helper function to detect content creation tools
+const isContentCreationTool = (tool: Tool): boolean => {
+  const contentKeywords = [
+    'writing', 'content creation', 'blog', 'article', 'copywriting', 'content generator',
+    'text generation', 'story writing', 'book writing', 'screenplay', 'script',
+    'marketing copy', 'social media content', 'email writing', 'creative writing',
+    'grammar', 'proofreading', 'editing', 'content enhancement', 'seo writing'
+  ];
+  
+  const titleLower = tool.title.toLowerCase();
+  const descriptionLower = tool.description.toLowerCase();
+  const categoryLower = tool.category?.toLowerCase() || '';
+  
+  return contentKeywords.some(keyword => 
+    titleLower.includes(keyword) || 
+    descriptionLower.includes(keyword) || 
+    categoryLower.includes(keyword)
+  ) || isMajorLLM(tool); // Include major LLMs in content creation
+};
+
+// Helper function to detect data analytics tools
+const isDataAnalyticsTool = (tool: Tool): boolean => {
+  const analyticsKeywords = [
+    'data analysis', 'analytics', 'statistics', 'data science', 'data visualization',
+    'business intelligence', 'reporting', 'dashboard', 'metrics', 'insights',
+    'predictive analytics', 'machine learning', 'ai analysis', 'data mining',
+    'research analysis', 'data processing', 'computational analysis'
+  ];
+  
+  const titleLower = tool.title.toLowerCase();
+  const descriptionLower = tool.description.toLowerCase();
+  const categoryLower = tool.category?.toLowerCase() || '';
+  
+  return analyticsKeywords.some(keyword => 
+    titleLower.includes(keyword) || 
+    descriptionLower.includes(keyword) || 
+    categoryLower.includes(keyword)
+  ) || isMajorLLM(tool); // Include major LLMs in data analytics
 };
 
 // Build cache once for instant category filtering
@@ -114,17 +182,25 @@ const buildToolsCache = (tools: Tool[]) => {
   // Pre-process health tools once  
   const healthRelatedTools = tools.filter(tool => isHealthRelatedTool(tool));
   
-  // Pre-process STRICTLY historical tools (excluding education tools)
+  // Pre-process STRICTLY historical tools (excluding education tools and major LLMs)
   const strictHistoricalTools = tools.filter(tool => isStrictlyHistoricalTimeRelatedTool(tool));
   
-  // Pre-process education tools once (including historical education)
+  // Pre-process education tools once (including historical education but excluding major LLMs)
   const educationRelatedTools = tools.filter(tool => isEducationRelatedTool(tool));
   
   // Pre-process video tools once
   const videoRelatedTools = tools.filter(tool => isVideoRelatedTool(tool));
   
+  // Pre-process content creation tools (including major LLMs)
+  const contentCreationTools = tools.filter(tool => isContentCreationTool(tool));
+  
+  // Pre-process data analytics tools (including major LLMs)
+  const dataAnalyticsTools = tools.filter(tool => isDataAnalyticsTool(tool));
+  
   console.log(`🎓 Education tools found: ${educationRelatedTools.length}`);
   console.log(`🕰️ Strict historical tools found: ${strictHistoricalTools.length}`);
+  console.log(`✍️ Content creation tools found: ${contentCreationTools.length}`);
+  console.log(`📊 Data analytics tools found: ${dataAnalyticsTools.length}`);
   
   mainCategories.forEach(mainCat => {
     let categoryTools: Tool[] = [];
@@ -137,7 +213,7 @@ const buildToolsCache = (tools: Tool[]) => {
       categoryTools = [...tools]; // Show ALL tools without any filtering
     }
     else if (mainCat.name === "AI CHAT & ASSISTANTS") {
-      // Combine subcategory matches with content analysis
+      // Combine subcategory matches with content analysis and major LLMs
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -145,9 +221,41 @@ const buildToolsCache = (tools: Tool[]) => {
         );
       });
       
+      // Include major LLMs in chat category
+      const majorLLMs = tools.filter(tool => isMajorLLM(tool));
+      
       // Merge and deduplicate by title only
-      const allChatTools = [...subcategoryTools, ...chatRelatedTools];
+      const allChatTools = [...subcategoryTools, ...chatRelatedTools, ...majorLLMs];
       categoryTools = allChatTools.filter((tool, index, self) => 
+        index === self.findIndex(t => t.title === tool.title)
+      );
+    }
+    else if (mainCat.name === "CONTENT CREATION & WRITING") {
+      // Enhanced content creation category - include major LLMs
+      const subcategoryTools = tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCat.subcategories.some(subcat => 
+          isSimilarCategory(tool.category, subcat)
+        );
+      });
+      
+      const allContentTools = [...subcategoryTools, ...contentCreationTools];
+      categoryTools = allContentTools.filter((tool, index, self) => 
+        index === self.findIndex(t => t.title === tool.title)
+      );
+    }
+    else if (mainCat.name === "DATA & ANALYTICS AI TOOLS") {
+      // Enhanced data analytics category - include major LLMs
+      const subcategoryTools = tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCat.subcategories.some(subcat => 
+          isSimilarCategory(tool.category, subcat)
+        );
+      });
+      
+      const enhancedDataTools = getDataAnalyticsTools(tools, mainCat.name);
+      const allDataTools = [...subcategoryTools, ...enhancedDataTools, ...dataAnalyticsTools];
+      categoryTools = allDataTools.filter((tool, index, self) => 
         index === self.findIndex(t => t.title === tool.title)
       );
     }
@@ -186,7 +294,7 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "HISTORICAL & TIME-BASED AI TOOLS") {
-      // STRICT historical tools only - exclude education tools
+      // STRICT historical tools only - exclude education tools and major LLMs
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -194,7 +302,7 @@ const buildToolsCache = (tools: Tool[]) => {
         );
       });
       
-      // Only include tools that are STRICTLY historical, not educational
+      // Only include tools that are STRICTLY historical, not educational or major LLMs
       const allHistoricalTools = [...subcategoryTools, ...strictHistoricalTools];
       categoryTools = allHistoricalTools.filter((tool, index, self) => 
         index === self.findIndex(t => t.title === tool.title)
@@ -215,9 +323,6 @@ const buildToolsCache = (tools: Tool[]) => {
       categoryTools = allVideoTools.filter((tool, index, self) => 
         index === self.findIndex(t => t.title === tool.title)
       );
-    }
-    else if (mainCat.name === "DATA & ANALYTICS AI TOOLS") {
-      categoryTools = getDataAnalyticsTools(tools, mainCat.name);
     }
     else if (mainCat.name === "AUTOMATION PLATFORMS") {
       categoryTools = getAutomationPlatformsTools(tools, mainCat.name);
@@ -283,7 +388,7 @@ const isAIChatAssistantTool = (tool: Tool): boolean => {
     descriptionLower.includes(keyword) || 
     tagsLower.includes(keyword) ||
     categoryLower.includes(keyword)
-  );
+  ) || isMajorLLM(tool); // Include major LLMs in chat category
 };
 
 // Helper function to detect health-related tools
