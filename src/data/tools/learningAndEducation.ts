@@ -194,6 +194,19 @@ export const learningAndEducation: Tool[] = [
   },
   {
     icon: Target,
+    title: "Engineering GPT AI Suite",
+    description: "ENGINEERING GPTs by AiWebTools.Ai is a cutting-edge suite of AI-powered tools designed to provide expert-level support across a wide range of engineering disciplines, including Electrical, Mechanical, Civil, and Software Engineering. These tools deliver comprehensive assistance by offering detailed calculations, design recommendations, optimization strategies, and safety protocols tailored to your specific project needs.",
+    emoji: "⚙️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-engineering-_hEePg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:27",
+    tags: ["engineering", "AI tools", "design", "calculations", "optimization", "technical analysis", "education", "aiwebtools"],
+    category: "Learning & Education",
+    rating: 4.8,
+    totalVotes: 5234
+  },
+  {
+    icon: Target,
     title: "Language Tutor AI",
     description: "Personalized language tutoring with AI-driven lessons, grammar assistance, and vocabulary building.",
     emoji: "🎯",
