@@ -179,7 +179,7 @@ const buildToolsCache = (tools: Tool[]) => {
   // Pre-process chat/assistant tools once
   const chatRelatedTools = tools.filter(tool => isAIChatAssistantTool(tool));
   
-  // Pre-process health tools once  
+  // Pre-process ALL health tools once - consolidate everything into one category
   const healthRelatedTools = tools.filter(tool => isHealthRelatedTool(tool));
   
   // Pre-process STRICTLY historical tools (excluding education tools and major LLMs)
@@ -201,6 +201,7 @@ const buildToolsCache = (tools: Tool[]) => {
   console.log(`🕰️ Strict historical tools found: ${strictHistoricalTools.length}`);
   console.log(`✍️ Content creation tools found: ${contentCreationTools.length}`);
   console.log(`📊 Data analytics tools found: ${dataAnalyticsTools.length}`);
+  console.log(`🏥 Health tools found: ${healthRelatedTools.length}`);
   
   mainCategories.forEach(mainCat => {
     let categoryTools: Tool[] = [];
@@ -281,6 +282,7 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
+      // CONSOLIDATED HEALTH CATEGORY - all health tools go here
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -288,10 +290,14 @@ const buildToolsCache = (tools: Tool[]) => {
         );
       });
       
+      // Ensure ALL health-related tools are included
       const allHealthTools = [...subcategoryTools, ...healthRelatedTools];
       categoryTools = allHealthTools.filter((tool, index, self) => 
         index === self.findIndex(t => t.title === tool.title)
       );
+      
+      console.log(`🏥 CONSOLIDATED Health category tools: ${categoryTools.length}`);
+      console.log(`📝 Sample health tools: ${categoryTools.slice(0, 5).map(t => t.title).join(', ')}`);
     }
     else if (mainCat.name === "HISTORICAL & TIME-BASED AI TOOLS") {
       // STRICT historical tools only - exclude education tools and major LLMs
