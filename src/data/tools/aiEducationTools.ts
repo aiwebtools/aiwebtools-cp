@@ -65,5 +65,17 @@ export const aiEducationTools: Tool[] = [
     category: "Education & Learning",
     rating: 4.5,
     totalVotes: 2876
+  },
+  {
+    icon: MessageSquare,
+    title: "AI Essay Writer",
+    description: "Automated essay writing tool with AI-powered research, content generation, and citation assistance.",
+    emoji: "💬",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-683dc6b3725c81918a85c801f894dd19-ai-essay-writer-gpt",
+    tags: ["essay writing", "content generation", "research", "citations"],
+    category: "Education & Learning",
+    rating: 4.2,
+    totalVotes: 2234
   }
 ];

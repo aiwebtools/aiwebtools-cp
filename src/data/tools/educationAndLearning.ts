@@ -1,4 +1,5 @@
 
+
 import { Tool } from "@/types/tools";
 import { 
   BookOpen, 
@@ -137,7 +138,7 @@ export const educationAndLearning: Tool[] = [
     description: "Automated essay writing tool with AI-powered research, content generation, and citation assistance.",
     emoji: "💬",
     color: "from-cyan-500 to-blue-600",
-    directUrl: "https://example.com/aiessaywriter",
+    directUrl: "https://chatgpt.com/g/g-683dc6b3725c81918a85c801f894dd19-ai-essay-writer-gpt",
     tags: ["essay writing", "content generation", "research", "citations"],
     category: "Education & Learning",
     rating: 4.2,

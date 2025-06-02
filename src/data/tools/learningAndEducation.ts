@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   GraduationCap, 
@@ -15,7 +14,8 @@ import {
   School,
   Calculator,
   Globe,
-  TestTube
+  TestTube,
+  MessageSquare
 } from "lucide-react";
 
 export const learningAndEducation: Tool[] = [
@@ -122,5 +122,17 @@ export const learningAndEducation: Tool[] = [
     category: "Learning & Education",
     rating: 4.4,
     totalVotes: 2789
+  },
+  {
+    icon: MessageSquare,
+    title: "AI Essay Writer",
+    description: "Automated essay writing tool with AI-powered research, content generation, and citation assistance.",
+    emoji: "💬",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-683dc6b3725c81918a85c801f894dd19-ai-essay-writer-gpt",
+    tags: ["essay writing", "content generation", "research", "citations"],
+    category: "Learning & Education",
+    rating: 4.2,
+    totalVotes: 2234
   }
 ];
