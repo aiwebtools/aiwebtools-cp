@@ -36,6 +36,33 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
     agentKeywords.forEach(keyword => expandedKeywords.add(keyword));
   }
   
+  // TEXT TO VIDEO SEARCH EXPANSION - HIGH PRIORITY
+  if (lowerSearchTerm.includes('text to video') || lowerSearchTerm.includes('text-to-video') || 
+      (lowerSearchTerm.includes('text') && lowerSearchTerm.includes('video'))) {
+    const textToVideoKeywords = [
+      'luma labs dream machine',
+      'luma dream machine',
+      'pika labs',
+      'google veo 3',
+      'veo3',
+      'movie maker studio',
+      'runwayml gen-2',
+      'runwayml',
+      'sora',
+      'video generation',
+      'ai video',
+      'text-to-video',
+      'video creator',
+      'ai video generator',
+      'video ai',
+      'prompt to video',
+      'generate video',
+      'video from text'
+    ];
+    
+    textToVideoKeywords.forEach(keyword => expandedKeywords.add(keyword));
+  }
+  
   // HISTORY SEARCH EXPANSION - ONLY FOR EXPLICIT HISTORY SEARCHES
   if (lowerSearchTerm === 'history' || lowerSearchTerm.includes('historical')) {
     const historyKeywords = [

@@ -39,6 +39,36 @@ export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean
     }
   }
   
+  // TEXT TO VIDEO SEARCH PRIORITIZATION
+  if (lowerSearchTerm.includes('text to video') || lowerSearchTerm.includes('text-to-video') || 
+      (lowerSearchTerm.includes('text') && lowerSearchTerm.includes('video'))) {
+    // Priority text-to-video tools
+    const priorityVideoTools = [
+      'luma labs dream machine',
+      'luma dream machine',
+      'pika labs',
+      'google veo 3',
+      'veo3',
+      'movie maker studio',
+      'runwayml gen-2',
+      'runwayml',
+      'sora',
+      'text to video prompt generator'
+    ];
+    
+    if (priorityVideoTools.some(tool => lowerTitle.includes(tool))) {
+      return true;
+    }
+    
+    // General text-to-video matching
+    if (lowerTitle.includes('text-to-video') || lowerDescription.includes('text-to-video') ||
+        lowerTitle.includes('video generation') || lowerDescription.includes('video generation') ||
+        lowerTitle.includes('ai video') || lowerDescription.includes('ai video') ||
+        lowerCategory.includes('video generation') || lowerTags.some(tag => tag.includes('text-to-video'))) {
+      return true;
+    }
+  }
+  
   // HISTORY TOOLS ENHANCED MATCHING - ONLY FOR EXPLICIT HISTORY SEARCHES
   if (lowerSearchTerm === 'history' || lowerSearchTerm.includes('historical')) {
     const historyTools = [
@@ -155,6 +185,59 @@ export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
     }
     if (lowerTags.some(tag => tag.includes('agent'))) {
       score += 1200;
+    }
+  }
+  
+  // TEXT TO VIDEO SEARCH SCORING - HIGH PRIORITY
+  if (lowerSearchTerm.includes('text to video') || lowerSearchTerm.includes('text-to-video') || 
+      (lowerSearchTerm.includes('text') && lowerSearchTerm.includes('video'))) {
+    // Top priority text-to-video tools
+    if (lowerTitle.includes('luma labs dream machine') || lowerTitle.includes('luma dream machine')) {
+      score += 1800; // Highest priority for text-to-video
+    }
+    if (lowerTitle.includes('pika labs')) {
+      score += 1750;
+    }
+    if (lowerTitle.includes('google veo 3') || lowerTitle.includes('veo3')) {
+      score += 1700;
+    }
+    if (lowerTitle.includes('movie maker studio')) {
+      score += 1650;
+    }
+    if (lowerTitle.includes('runwayml gen-2') || lowerTitle.includes('runwayml')) {
+      score += 1600;
+    }
+    if (lowerTitle.includes('sora')) {
+      score += 1550;
+    }
+    if (lowerTitle.includes('text to video prompt generator')) {
+      score += 1500;
+    }
+    
+    // General text-to-video matching
+    if (lowerTitle.includes('text-to-video')) {
+      score += 1400;
+    }
+    if (lowerDescription.includes('text-to-video')) {
+      score += 1200;
+    }
+    if (lowerTitle.includes('video generation')) {
+      score += 1300;
+    }
+    if (lowerDescription.includes('video generation')) {
+      score += 1100;
+    }
+    if (lowerTitle.includes('ai video')) {
+      score += 1200;
+    }
+    if (lowerDescription.includes('ai video')) {
+      score += 1000;
+    }
+    if (lowerCategory.includes('video generation')) {
+      score += 1200;
+    }
+    if (lowerTags.some(tag => tag.includes('text-to-video'))) {
+      score += 1100;
     }
   }
   

@@ -47,7 +47,41 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       }
     }
     
-    // PRIORITY 2: HISTORY SEARCH - ONLY FOR EXPLICIT HISTORY SEARCHES
+    // PRIORITY 2: TEXT TO VIDEO SEARCH - HIGH PRIORITY
+    if (lowerSearchTerm.includes('text to video') || lowerSearchTerm.includes('text-to-video') || 
+        (lowerSearchTerm.includes('text') && lowerSearchTerm.includes('video'))) {
+      const textToVideoTools = [
+        'luma labs dream machine',
+        'luma dream machine',
+        'pika labs',
+        'google veo 3',
+        'veo3',
+        'movie maker studio',
+        'runwayml gen-2',
+        'runwayml',
+        'sora',
+        'text to video prompt generator'
+      ];
+      
+      // Exact match for priority text-to-video tools
+      if (textToVideoTools.some(videoTool => tool.title.toLowerCase().includes(videoTool))) {
+        return true;
+      }
+      
+      // General text-to-video matching
+      if (tool.title.toLowerCase().includes('text-to-video') || 
+          tool.description.toLowerCase().includes('text-to-video') ||
+          tool.title.toLowerCase().includes('video generation') ||
+          tool.description.toLowerCase().includes('video generation') ||
+          tool.title.toLowerCase().includes('ai video') ||
+          tool.description.toLowerCase().includes('ai video') ||
+          tool.category?.toLowerCase().includes('video generation') ||
+          tool.tags?.some(tag => tag.toLowerCase().includes('text-to-video'))) {
+        return true;
+      }
+    }
+    
+    // PRIORITY 3: HISTORY SEARCH - ONLY FOR EXPLICIT HISTORY SEARCHES
     if (lowerSearchTerm === 'history' || lowerSearchTerm.includes('historical')) {
       const historyTools = [
         'time machine gpt',
@@ -74,51 +108,51 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       }
     }
     
-    // PRIORITY 3: Exact title match (high priority for non-agent/history searches)
+    // PRIORITY 4: Exact title match (high priority for non-agent/history/video searches)
     if (tool.title.toLowerCase().includes(lowerSearchTerm)) {
       return true;
     }
     
-    // PRIORITY 4: Enhanced keyword matching for new tools
+    // PRIORITY 5: Enhanced keyword matching for new tools
     if (enhancedKeywordMatching(tool, searchTerm)) {
       return true;
     }
     
-    // PRIORITY 5: Title starts with search term
+    // PRIORITY 6: Title starts with search term
     if (tool.title.toLowerCase().startsWith(lowerSearchTerm)) {
       return true;
     }
     
-    // PRIORITY 6: Any word in title starts with search term
+    // PRIORITY 7: Any word in title starts with search term
     const titleWords = tool.title.toLowerCase().split(' ');
     if (titleWords.some(word => word.startsWith(lowerSearchTerm))) {
       return true;
     }
     
-    // PRIORITY 7: Check individual words for King Blueberry specifically
+    // PRIORITY 8: Check individual words for King Blueberry specifically
     if (lowerSearchTerm === 'king' || lowerSearchTerm === 'blueberry') {
       if (tool.title.toLowerCase().includes('king blueberry')) {
         return true;
       }
     }
     
-    // PRIORITY 8: Direct text match in any field
+    // PRIORITY 9: Direct text match in any field
     if (toolText.includes(lowerSearchTerm)) {
       return true;
     }
     
-    // PRIORITY 9: Word-by-word matching
+    // PRIORITY 10: Word-by-word matching
     const hasAllWords = searchWords.every(word => toolText.includes(word));
     if (hasAllWords) {
       return true;
     }
     
-    // PRIORITY 10: Expanded keyword matching
+    // PRIORITY 11: Expanded keyword matching
     if (expandedKeywords.some(keyword => toolText.includes(keyword.toLowerCase()))) {
       return true;
     }
     
-    // PRIORITY 11: Partial matching for longer terms
+    // PRIORITY 12: Partial matching for longer terms
     if (lowerSearchTerm.length >= 4) {
       const partialMatches = [
         tool.title.toLowerCase().includes(lowerSearchTerm),
@@ -151,6 +185,18 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       t.title.toLowerCase().includes('agent') || 
       t.title.toLowerCase().includes('autonomous') ||
       t.category?.toLowerCase().includes('agent')
+    ).slice(0, 10).map(t => t.title));
+  }
+  if (lowerSearchTerm.includes('text to video') || lowerSearchTerm.includes('text-to-video') || 
+      (lowerSearchTerm.includes('text') && lowerSearchTerm.includes('video'))) {
+    console.log(`🎬 Text-to-video search results:`, finalResults.filter(t => 
+      t.title.toLowerCase().includes('luma') || 
+      t.title.toLowerCase().includes('pika') ||
+      t.title.toLowerCase().includes('veo') ||
+      t.title.toLowerCase().includes('movie maker') ||
+      t.title.toLowerCase().includes('runwayml') ||
+      t.title.toLowerCase().includes('sora') ||
+      t.category?.toLowerCase().includes('video generation')
     ).slice(0, 10).map(t => t.title));
   }
   if (lowerSearchTerm === 'history' || lowerSearchTerm.includes('historical')) {
@@ -224,6 +270,59 @@ const calculateSearchScore = (tool: Tool, searchTerm: string, expandedKeywords: 
     }
   }
   
+  // TEXT TO VIDEO SEARCH SCORING - HIGH PRIORITY
+  if (lowerSearchTerm.includes('text to video') || lowerSearchTerm.includes('text-to-video') || 
+      (lowerSearchTerm.includes('text') && lowerSearchTerm.includes('video'))) {
+    // Top priority text-to-video tools
+    if (tool.title.toLowerCase().includes('luma labs dream machine') || tool.title.toLowerCase().includes('luma dream machine')) {
+      score += 2800; // Highest priority for text-to-video
+    }
+    if (tool.title.toLowerCase().includes('pika labs')) {
+      score += 2750;
+    }
+    if (tool.title.toLowerCase().includes('google veo 3') || tool.title.toLowerCase().includes('veo3')) {
+      score += 2700;
+    }
+    if (tool.title.toLowerCase().includes('movie maker studio')) {
+      score += 2650;
+    }
+    if (tool.title.toLowerCase().includes('runwayml gen-2') || tool.title.toLowerCase().includes('runwayml')) {
+      score += 2600;
+    }
+    if (tool.title.toLowerCase().includes('sora')) {
+      score += 2550;
+    }
+    if (tool.title.toLowerCase().includes('text to video prompt generator')) {
+      score += 2500;
+    }
+    
+    // General text-to-video matching
+    if (tool.title.toLowerCase().includes('text-to-video')) {
+      score += 2400;
+    }
+    if (tool.description.toLowerCase().includes('text-to-video')) {
+      score += 2200;
+    }
+    if (tool.title.toLowerCase().includes('video generation')) {
+      score += 2300;
+    }
+    if (tool.description.toLowerCase().includes('video generation')) {
+      score += 2100;
+    }
+    if (tool.title.toLowerCase().includes('ai video')) {
+      score += 2200;
+    }
+    if (tool.description.toLowerCase().includes('ai video')) {
+      score += 2000;
+    }
+    if (tool.category?.toLowerCase().includes('video generation')) {
+      score += 2200;
+    }
+    if (tool.tags?.some(tag => tag.toLowerCase().includes('text-to-video'))) {
+      score += 2100;
+    }
+  }
+  
   // HISTORY SEARCH SCORING - ONLY FOR EXPLICIT HISTORY SEARCHES
   if (lowerSearchTerm === 'history' || lowerSearchTerm.includes('historical')) {
     // Top priority history tools
@@ -270,7 +369,7 @@ const calculateSearchScore = (tool: Tool, searchTerm: string, expandedKeywords: 
   // Enhanced scoring for new tools
   score += enhancedToolScoring(tool, searchTerm);
   
-  // Exact word matching in title (Very High Priority for non-agent/history searches)
+  // Exact word matching in title (Very High Priority for non-agent/history/video searches)
   if (titleWords.some(word => word === lowerSearchTerm)) {
     score += 800;
   }
