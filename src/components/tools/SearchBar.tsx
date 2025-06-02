@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useState, useCallback, useMemo } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -7,6 +8,7 @@ import { searchTools } from "@/utils/searchUtils";
 import { Tool } from "@/types/tools";
 import { Link } from "react-router-dom";
 import { getCurrentToolCount } from "@/utils/toolCounter";
+import { useDebounce } from "@/hooks/useDebounce";
 
 interface SearchBarProps {
   searchTerm: string;
@@ -16,68 +18,77 @@ interface SearchBarProps {
 
 const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }: SearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchResults, setSearchResults] = useState<Tool[]>([]);
   const [displayedCount, setDisplayedCount] = useState(50);
-  const toolStats = getCurrentToolCount();
+  
+  // Debounce search term to prevent excessive search operations
+  const debouncedSearchTerm = useDebounce(searchTerm, 150); // Reduced from default to make it more responsive
+  
+  const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  const handleSearchChange = (value: string) => {
+  // Memoize search results to prevent recalculation on every render
+  const searchResults = useMemo(() => {
+    if (!debouncedSearchTerm.trim()) return [];
+    
+    console.log("🔍 SearchBar - Performing search for:", debouncedSearchTerm);
+    const results = searchTools(allTools, debouncedSearchTerm);
+    console.log("🔍 SearchBar - Search results count:", results.length);
+    return results;
+  }, [debouncedSearchTerm]);
+
+  // Update open state and displayed count when search results change
+  const shouldShowResults = searchResults.length > 0 && debouncedSearchTerm.trim();
+
+  const handleSearchChange = useCallback((value: string) => {
     console.log("🔍 SearchBar - handleSearchChange called with:", value);
-    console.log("🔍 SearchBar - Total tools available for search:", allTools.length);
     onSearchChange(value);
     
     if (value.trim()) {
-      console.log("🔍 SearchBar - Performing search for:", value);
-      const results = searchTools(allTools, value);
-      console.log("🔍 SearchBar - Search results count:", results.length);
-      console.log("🔍 SearchBar - First 5 results:", results.slice(0, 5).map(t => t.title));
-      setSearchResults(results);
-      setDisplayedCount(50);
       setIsOpen(true);
+      setDisplayedCount(50);
     } else {
-      console.log("🔍 SearchBar - Clearing search results");
-      setSearchResults([]);
       setIsOpen(false);
       setDisplayedCount(50);
     }
-  };
+  }, [onSearchChange]);
 
-  const handleResultClick = () => {
+  const handleResultClick = useCallback(() => {
     setIsOpen(false);
     onSearchChange("");
-    setSearchResults([]);
     setDisplayedCount(50);
-  };
+  }, [onSearchChange]);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       onSearchChange("");
-      setSearchResults([]);
       setDisplayedCount(50);
     }
-  };
+  }, [onSearchChange]);
 
-  const handleInputBlur = () => {
+  const handleInputBlur = useCallback(() => {
     setTimeout(() => setIsOpen(false), 200);
-  };
+  }, []);
 
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+  const handleInputFocus = useCallback(() => {
+    if (debouncedSearchTerm.trim() && searchResults.length > 0) {
+      setIsOpen(true);
+    }
+  }, [debouncedSearchTerm, searchResults.length]);
+
+  const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     if (scrollHeight - scrollTop <= clientHeight + 100 && displayedCount < searchResults.length) {
       console.log(`🔄 SearchBar infinite scroll triggered - Loading more results... Current: ${displayedCount}, Total: ${searchResults.length}`);
       setDisplayedCount(prev => Math.min(prev + 30, searchResults.length));
     }
-  };
+  }, [displayedCount, searchResults.length]);
 
-  const displayedResults = searchResults.slice(0, displayedCount);
-
-  console.log("🔍 SearchBar - Rendering with:", {
-    isOpen,
-    searchResultsLength: searchResults.length,
-    displayedCount,
-    toolsAvailable: allTools.length
-  });
+  // Memoize displayed results to prevent recalculation
+  const displayedResults = useMemo(() => 
+    searchResults.slice(0, displayedCount), 
+    [searchResults, displayedCount]
+  );
 
   return (
     <TooltipProvider>
@@ -90,15 +101,11 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
           onChange={(e) => handleSearchChange(e.target.value)}
           onKeyDown={handleKeyDown}
           onBlur={handleInputBlur}
-          onFocus={() => {
-            if (searchTerm.trim() && searchResults.length > 0) {
-              setIsOpen(true);
-            }
-          }}
+          onFocus={handleInputFocus}
           className="pl-10 pr-4 py-4 text-lg rounded-xl border-2 border-gray-200 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 transition-all duration-300 shadow-lg"
         />
 
-        {isOpen && searchResults.length > 0 && (
+        {isOpen && shouldShowResults && (
           <div 
             className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" 
             onScroll={handleScroll}
