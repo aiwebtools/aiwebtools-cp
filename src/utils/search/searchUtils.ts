@@ -1,10 +1,10 @@
+
 import { Tool } from "@/types/tools";
 import { getExpandedKeywords } from "./keywordExpansion";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
 import { matchPhoneAgents, scorePhoneAgents } from "./matching/phoneAgentMatching";
 import { matchMusicTools, scoreMusicTools } from "./matching/musicMatching";
 import { matchAppBuilding, scoreAppBuilding } from "./matching/appBuildingMatching";
-import { matchIndustrySpecific, scoreIndustrySpecific } from "./matching/industryMatching";
 import { 
   matchHealth, 
   scoreHealth,
@@ -35,6 +35,29 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
 
   console.log(`🔍 Enhanced search for: "${searchTerm}" across ${tools.length} tools`);
   
+  // Enhanced debugging to find Name Insight tool in database
+  console.log(`🔍 Searching for Name Insight tool in ${tools.length} tools...`);
+  const possibleNameTools = tools.filter(tool => 
+    tool.title.toLowerCase().includes('name') ||
+    tool.directUrl?.includes('whatsmynamegpt') ||
+    tool.description.toLowerCase().includes('name insight') ||
+    tool.description.toLowerCase().includes('name meaning') ||
+    tool.description.toLowerCase().includes('name analysis')
+  );
+  
+  console.log(`🏷️ Found ${possibleNameTools.length} tools with "name" in title/description/URL:`);
+  possibleNameTools.forEach((tool, index) => {
+    console.log(`${index + 1}. "${tool.title}" - URL: ${tool.directUrl || 'NO URL'}`);
+  });
+  
+  // Specifically look for the exact Name Insight tool
+  const nameInsightTool = tools.find(tool => 
+    tool.title.toLowerCase().includes('name insight') ||
+    tool.directUrl?.includes('whatsmynamegpt') ||
+    (tool.title.toLowerCase().includes('name') && tool.title.toLowerCase().includes('predictor'))
+  );
+  console.log(`🏷️ Name Insight tool found in database:`, nameInsightTool ? nameInsightTool.title : 'NOT FOUND');
+  
   const expandedKeywords = getExpandedKeywords(searchTerm);
   console.log(`📝 Expanded keywords:`, expandedKeywords);
   
@@ -49,15 +72,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     let score = 0;
     let matched = false;
     
-    // HIGHEST PRIORITY: Industry-specific matching for industry searches
-    if (matchIndustrySpecific(tool, searchTerm)) {
-      matched = true;
-      const industryScore = scoreIndustrySpecific(tool, searchTerm);
-      score += industryScore;
-      console.log(`🏭 Industry search match for "${tool.title}" with score: ${industryScore}`);
-    }
-    
-    // Special name insight tool matching - HIGH PRIORITY
+    // Special name insight tool matching - HIGHEST PRIORITY
     const nameMatch = matchNameInsightTool(tool, searchTerm);
     if (nameMatch.matched) {
       matched = true;
@@ -123,42 +138,6 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   .map(result => result.tool);
 
   console.log(`✅ Enhanced search found ${results.length} results for "${searchTerm}"`);
-  
-  // Enhanced debugging for industry searches
-  if (searchTerm.toLowerCase().includes('industry') || searchTerm.toLowerCase().includes('professional')) {
-    console.log(`🏭 INDUSTRY SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
-    console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
-    
-    // Show which tools matched for industry searches
-    console.log(`🏭 Industry-specific tools that matched:`, results.filter(tool => 
-      tool.title.toLowerCase().includes('professional') || 
-      tool.title.toLowerCase().includes('expert') ||
-      tool.description.toLowerCase().includes('professional')
-    ).map(t => t.title));
-  }
-  
-  // Enhanced debugging to find Name Insight tool in database
-  console.log(`🔍 Searching for Name Insight tool in ${tools.length} tools...`);
-  const possibleNameTools = tools.filter(tool => 
-    tool.title.toLowerCase().includes('name') ||
-    tool.directUrl?.includes('whatsmynamegpt') ||
-    tool.description.toLowerCase().includes('name insight') ||
-    tool.description.toLowerCase().includes('name meaning') ||
-    tool.description.toLowerCase().includes('name analysis')
-  );
-  
-  console.log(`🏷️ Found ${possibleNameTools.length} tools with "name" in title/description/URL:`);
-  possibleNameTools.forEach((tool, index) => {
-    console.log(`${index + 1}. "${tool.title}" - URL: ${tool.directUrl || 'NO URL'}`);
-  });
-  
-  // Specifically look for the exact Name Insight tool
-  const nameInsightTool = tools.find(tool => 
-    tool.title.toLowerCase().includes('name insight') ||
-    tool.directUrl?.includes('whatsmynamegpt') ||
-    (tool.title.toLowerCase().includes('name') && tool.title.toLowerCase().includes('predictor'))
-  );
-  console.log(`🏷️ Name Insight tool found in database:`, nameInsightTool ? nameInsightTool.title : 'NOT FOUND');
   
   // Enhanced debugging for health searches
   if (searchTerm.toLowerCase().includes('health') || searchTerm.toLowerCase().includes('medical') || 
