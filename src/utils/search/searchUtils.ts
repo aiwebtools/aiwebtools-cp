@@ -35,19 +35,20 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     let score = 0;
     let matched = false;
     
-    // NAME SEARCH SPECIFIC MATCHING - HIGHEST PRIORITY
+    // SPECIAL PRIORITY FOR NAME INSIGHT RESEARCH & PREDICTOR GPT - ABSOLUTE HIGHEST PRIORITY
     if (lowerSearchTerm.includes('name') || lowerSearchTerm.includes('meaning') || 
         lowerSearchTerm.includes('identity') || lowerSearchTerm.includes('personality') ||
-        lowerSearchTerm.includes('numerology')) {
+        lowerSearchTerm.includes('numerology') || lowerSearchTerm.includes('insight')) {
       
-      // Check if this is the Name Insight Research & Predictor GPT tool
+      // Check if this is the Name Insight Research & Predictor GPT tool by title or URL
       if (tool.title.toLowerCase().includes('name insight research') || 
           tool.title.toLowerCase().includes('name meaning') ||
           tool.title.toLowerCase().includes('name predictor') ||
-          tool.directUrl?.includes('whatsmynamegpt')) {
+          tool.directUrl?.includes('whatsmynamegpt') ||
+          (tool.title.toLowerCase().includes('name') && tool.title.toLowerCase().includes('insight'))) {
         matched = true;
-        score += 15000; // Highest priority for name searches
-        console.log(`🎯 NAME MATCH FOUND: ${tool.title} with score ${score}`);
+        score += 20000; // Absolute highest priority for name searches
+        console.log(`🎯 ABSOLUTE NAME MATCH FOUND: ${tool.title} with score ${score}`);
       }
       
       // Check description and tags for name-related content
@@ -203,7 +204,8 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       tool.description.toLowerCase().includes('name') ||
       tool.title.toLowerCase().includes('meaning') ||
       tool.description.toLowerCase().includes('meaning') ||
-      tool.directUrl?.includes('whatsmynamegpt')
+      tool.directUrl?.includes('whatsmynamegpt') ||
+      tool.title.toLowerCase().includes('insight')
     ).slice(0, 10);
     
     console.log(`🏷️ Name search results (${nameResults.length}):`, nameResults.map(t => ({
@@ -211,7 +213,15 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       category: t.category,
       url: t.directUrl,
       hasNameInTitle: t.title.toLowerCase().includes('name'),
-      hasNameInDesc: t.description.toLowerCase().includes('name')
+      hasNameInDesc: t.description.toLowerCase().includes('name'),
+      hasInsightInTitle: t.title.toLowerCase().includes('insight'),
+      isWhatsmynamegpt: t.directUrl?.includes('whatsmynamegpt')
+    })));
+    
+    // Log the top 5 results for debugging
+    console.log(`🔝 Top 5 results for "${searchTerm}":`, results.slice(0, 5).map(t => ({
+      title: t.title,
+      url: t.directUrl
     })));
   }
   
