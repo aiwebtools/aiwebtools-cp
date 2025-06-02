@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { getExpandedKeywords } from "./keywordExpansion";
 import { enhancedKeywordMatching, enhancedToolScoring } from "./enhancedKeywordMatching";
@@ -46,51 +47,78 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       }
     }
     
-    // PRIORITY 2: Exact title match (high priority for non-agent searches)
+    // PRIORITY 2: HISTORY SEARCH - ONLY FOR EXPLICIT HISTORY SEARCHES
+    if (lowerSearchTerm === 'history' || lowerSearchTerm.includes('historical')) {
+      const historyTools = [
+        'time machine gpt',
+        'talk to history gpt',
+        'historical headlines gpt',
+        'titanic resurrections gpt',
+        'uncovering hidden historical patterns gpt',
+        'native american history time machine gpt'
+      ];
+      
+      // Exact match for priority history tools
+      if (historyTools.some(historyTool => tool.title.toLowerCase().includes(historyTool))) {
+        return true;
+      }
+      
+      // General history matching for explicit history searches
+      if (tool.title.toLowerCase().includes('history') || 
+          tool.description.toLowerCase().includes('history') ||
+          tool.title.toLowerCase().includes('historical') ||
+          tool.description.toLowerCase().includes('historical') ||
+          tool.category?.toLowerCase().includes('history') ||
+          tool.tags?.some(tag => tag.toLowerCase().includes('history'))) {
+        return true;
+      }
+    }
+    
+    // PRIORITY 3: Exact title match (high priority for non-agent/history searches)
     if (tool.title.toLowerCase().includes(lowerSearchTerm)) {
       return true;
     }
     
-    // PRIORITY 3: Enhanced keyword matching for new tools
+    // PRIORITY 4: Enhanced keyword matching for new tools
     if (enhancedKeywordMatching(tool, searchTerm)) {
       return true;
     }
     
-    // PRIORITY 4: Title starts with search term
+    // PRIORITY 5: Title starts with search term
     if (tool.title.toLowerCase().startsWith(lowerSearchTerm)) {
       return true;
     }
     
-    // PRIORITY 5: Any word in title starts with search term
+    // PRIORITY 6: Any word in title starts with search term
     const titleWords = tool.title.toLowerCase().split(' ');
     if (titleWords.some(word => word.startsWith(lowerSearchTerm))) {
       return true;
     }
     
-    // PRIORITY 6: Check individual words for King Blueberry specifically
+    // PRIORITY 7: Check individual words for King Blueberry specifically
     if (lowerSearchTerm === 'king' || lowerSearchTerm === 'blueberry') {
       if (tool.title.toLowerCase().includes('king blueberry')) {
         return true;
       }
     }
     
-    // PRIORITY 7: Direct text match in any field
+    // PRIORITY 8: Direct text match in any field
     if (toolText.includes(lowerSearchTerm)) {
       return true;
     }
     
-    // PRIORITY 8: Word-by-word matching
+    // PRIORITY 9: Word-by-word matching
     const hasAllWords = searchWords.every(word => toolText.includes(word));
     if (hasAllWords) {
       return true;
     }
     
-    // PRIORITY 9: Expanded keyword matching
+    // PRIORITY 10: Expanded keyword matching
     if (expandedKeywords.some(keyword => toolText.includes(keyword.toLowerCase()))) {
       return true;
     }
     
-    // PRIORITY 10: Partial matching for longer terms
+    // PRIORITY 11: Partial matching for longer terms
     if (lowerSearchTerm.length >= 4) {
       const partialMatches = [
         tool.title.toLowerCase().includes(lowerSearchTerm),
@@ -123,6 +151,13 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       t.title.toLowerCase().includes('agent') || 
       t.title.toLowerCase().includes('autonomous') ||
       t.category?.toLowerCase().includes('agent')
+    ).slice(0, 10).map(t => t.title));
+  }
+  if (lowerSearchTerm === 'history' || lowerSearchTerm.includes('historical')) {
+    console.log(`📚 History search results:`, finalResults.filter(t => 
+      t.title.toLowerCase().includes('history') || 
+      t.title.toLowerCase().includes('historical') ||
+      t.category?.toLowerCase().includes('history')
     ).slice(0, 10).map(t => t.title));
   }
   return finalResults;
@@ -189,10 +224,53 @@ const calculateSearchScore = (tool: Tool, searchTerm: string, expandedKeywords: 
     }
   }
   
+  // HISTORY SEARCH SCORING - ONLY FOR EXPLICIT HISTORY SEARCHES
+  if (lowerSearchTerm === 'history' || lowerSearchTerm.includes('historical')) {
+    // Top priority history tools
+    if (tool.title.toLowerCase().includes('time machine gpt')) {
+      score += 2500; // Highest priority for history
+    }
+    if (tool.title.toLowerCase().includes('talk to history gpt')) {
+      score += 2450;
+    }
+    if (tool.title.toLowerCase().includes('historical headlines gpt')) {
+      score += 2400;
+    }
+    if (tool.title.toLowerCase().includes('titanic resurrections gpt')) {
+      score += 2350;
+    }
+    if (tool.title.toLowerCase().includes('uncovering hidden historical patterns gpt')) {
+      score += 2300;
+    }
+    if (tool.title.toLowerCase().includes('native american history time machine gpt')) {
+      score += 2250;
+    }
+    
+    // General history matching for explicit history searches
+    if (tool.title.toLowerCase().includes('history')) {
+      score += 2000;
+    }
+    if (tool.description.toLowerCase().includes('history')) {
+      score += 1800;
+    }
+    if (tool.title.toLowerCase().includes('historical')) {
+      score += 1900;
+    }
+    if (tool.description.toLowerCase().includes('historical')) {
+      score += 1700;
+    }
+    if (tool.category?.toLowerCase().includes('history')) {
+      score += 1900;
+    }
+    if (tool.tags?.some(tag => tag.toLowerCase().includes('history'))) {
+      score += 1800;
+    }
+  }
+  
   // Enhanced scoring for new tools
   score += enhancedToolScoring(tool, searchTerm);
   
-  // Exact word matching in title (Very High Priority for non-agent searches)
+  // Exact word matching in title (Very High Priority for non-agent/history searches)
   if (titleWords.some(word => word === lowerSearchTerm)) {
     score += 800;
   }

@@ -36,6 +36,25 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
     agentKeywords.forEach(keyword => expandedKeywords.add(keyword));
   }
   
+  // HISTORY SEARCH EXPANSION - ONLY FOR EXPLICIT HISTORY SEARCHES
+  if (lowerSearchTerm === 'history' || lowerSearchTerm.includes('historical')) {
+    const historyKeywords = [
+      'time machine gpt',
+      'talk to history gpt',
+      'historical headlines gpt',
+      'titanic resurrections gpt',
+      'uncovering hidden historical patterns gpt',
+      'native american history time machine gpt',
+      'historical figures',
+      'time travel',
+      'historical events',
+      'historical analysis',
+      'historical research'
+    ];
+    
+    historyKeywords.forEach(keyword => expandedKeywords.add(keyword));
+  }
+  
   // LEARNING EXPANSION
   if (lowerSearchTerm.includes('learn')) {
     const learningKeywords = [

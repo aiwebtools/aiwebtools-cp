@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { getToolNameMatchScore, calculateIntentScore } from "./scoringUtils";
 
@@ -34,6 +35,29 @@ export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean
     if (lowerTitle.includes('agent') || lowerDescription.includes('agent') || 
         lowerTitle.includes('autonomous') || lowerDescription.includes('autonomous') ||
         lowerCategory.includes('agent') || lowerTags.some(tag => tag.includes('agent'))) {
+      return true;
+    }
+  }
+  
+  // HISTORY TOOLS ENHANCED MATCHING - ONLY FOR EXPLICIT HISTORY SEARCHES
+  if (lowerSearchTerm === 'history' || lowerSearchTerm.includes('historical')) {
+    const historyTools = [
+      'time machine gpt',
+      'talk to history gpt',
+      'historical headlines gpt',
+      'titanic resurrections gpt',
+      'uncovering hidden historical patterns gpt',
+      'native american history time machine gpt'
+    ];
+    
+    if (historyTools.some(tool => lowerTitle.includes(tool))) {
+      return true;
+    }
+    
+    // Check for history-related terms only for explicit history searches
+    if (lowerTitle.includes('history') || lowerDescription.includes('history') ||
+        lowerTitle.includes('historical') || lowerDescription.includes('historical') ||
+        lowerCategory.includes('history') || lowerTags.some(tag => tag.includes('history'))) {
       return true;
     }
   }
@@ -131,6 +155,42 @@ export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
     }
     if (lowerTags.some(tag => tag.includes('agent'))) {
       score += 1200;
+    }
+  }
+  
+  // HISTORY TOOLS SCORING - ONLY FOR EXPLICIT HISTORY SEARCHES
+  if (lowerSearchTerm === 'history' || lowerSearchTerm.includes('historical')) {
+    if (lowerTitle.includes('time machine gpt')) {
+      score += 1500;
+    }
+    if (lowerTitle.includes('talk to history gpt')) {
+      score += 1450;
+    }
+    if (lowerTitle.includes('historical headlines gpt')) {
+      score += 1400;
+    }
+    if (lowerTitle.includes('titanic resurrections gpt')) {
+      score += 1350;
+    }
+    if (lowerTitle.includes('uncovering hidden historical patterns gpt')) {
+      score += 1300;
+    }
+    if (lowerTitle.includes('native american history time machine gpt')) {
+      score += 1250;
+    }
+    
+    // General history matching for explicit history searches
+    if (lowerTitle.includes('history') || lowerTitle.includes('historical')) {
+      score += 1200;
+    }
+    if (lowerDescription.includes('history') || lowerDescription.includes('historical')) {
+      score += 1000;
+    }
+    if (lowerCategory.includes('history')) {
+      score += 1100;
+    }
+    if (lowerTags.some(tag => tag.includes('history'))) {
+      score += 1000;
     }
   }
   
