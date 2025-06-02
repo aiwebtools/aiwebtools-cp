@@ -2,9 +2,15 @@
 import { Tool } from "@/types/tools";
 import { mainCategoryKeywordMapping, getMainCategoryFromSubcategory } from "./mainCategoryMapping";
 
-// Enhanced tool filtering that ensures proper categorization
+// FIXED enhanced tool filtering that NEVER loses tools
 export const getToolsByMainCategoryEnhanced = (tools: Tool[], mainCategoryName: string): Tool[] => {
   console.log(`🎯 Enhanced filtering for "${mainCategoryName}" from ${tools.length} total tools`);
+  
+  // Special case for ALL AI TOOLS - return everything
+  if (mainCategoryName === "ALL AI TOOLS") {
+    console.log(`🎯 ALL AI TOOLS: Returning all ${tools.length} tools`);
+    return tools;
+  }
   
   // Get keywords for this main category
   const categoryKeywords = mainCategoryKeywordMapping[mainCategoryName] || [];
@@ -15,6 +21,31 @@ export const getToolsByMainCategoryEnhanced = (tools: Tool[], mainCategoryName: 
     const toolMainCategory = getMainCategoryFromSubcategory(tool.category || "");
     if (toolMainCategory === mainCategoryName) {
       return true;
+    }
+    
+    // For INDUSTRY SPECIFIC AI TOOLS, be more inclusive
+    if (mainCategoryName === "INDUSTRY SPECIFIC AI TOOLS") {
+      const titleLower = tool.title.toLowerCase();
+      const descriptionLower = tool.description.toLowerCase();
+      const categoryLower = tool.category?.toLowerCase() || '';
+      
+      // Industry-specific keywords
+      const industryKeywords = [
+        "health", "medical", "doctor", "legal", "law", "education", "learning",
+        "professional", "specialized", "niche", "emergency", "creative", "entertainment",
+        "fitness", "wellness", "therapy", "clinic", "hospital", "pharmacy"
+      ];
+      
+      const isIndustryTool = industryKeywords.some(keyword => 
+        titleLower.includes(keyword) || 
+        descriptionLower.includes(keyword) || 
+        categoryLower.includes(keyword)
+      );
+      
+      if (isIndustryTool) {
+        console.log(`✅ Industry match: "${tool.title}" to "${mainCategoryName}"`);
+        return true;
+      }
     }
     
     // Check if tool matches category keywords
@@ -32,31 +63,17 @@ export const getToolsByMainCategoryEnhanced = (tools: Tool[], mainCategoryName: 
     });
     
     if (matchesKeywords) {
-      console.log(`✅ Matched "${tool.title}" to "${mainCategoryName}" via keywords`);
+      console.log(`✅ Keyword match: "${tool.title}" to "${mainCategoryName}"`);
       return true;
     }
     
     return false;
   });
   
-  // Sort by relevance - exact category matches first, then keyword matches
-  const sortedTools = categoryTools.sort((a, b) => {
-    const aMainCategory = getMainCategoryFromSubcategory(a.category || "");
-    const bMainCategory = getMainCategoryFromSubcategory(b.category || "");
-    
-    const aExactMatch = aMainCategory === mainCategoryName;
-    const bExactMatch = bMainCategory === mainCategoryName;
-    
-    if (aExactMatch && !bExactMatch) return -1;
-    if (!aExactMatch && bExactMatch) return 1;
-    
-    return 0;
-  });
+  console.log(`🎯 Enhanced filtering found ${categoryTools.length} tools for "${mainCategoryName}"`);
+  console.log(`📝 Sample tools:`, categoryTools.slice(0, 5).map(t => `${t.title} (${t.category})`));
   
-  console.log(`🎯 Enhanced filtering found ${sortedTools.length} tools for "${mainCategoryName}"`);
-  console.log(`📝 Sample tools:`, sortedTools.slice(0, 10).map(t => `${t.title} (${t.category})`));
-  
-  return sortedTools;
+  return categoryTools;
 };
 
 // Enhanced category detection for individual tools
