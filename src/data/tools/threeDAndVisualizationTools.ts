@@ -9,7 +9,9 @@ import {
   Monitor,
   Camera,
   Globe,
-  Settings
+  Settings,
+  Wand2,
+  Cube
 } from "lucide-react";
 
 export const threeDAndVisualizationTools: Tool[] = [
@@ -25,6 +27,78 @@ export const threeDAndVisualizationTools: Tool[] = [
     category: "3D & VISUALIZATION",
     rating: 4.8,
     totalVotes: 4567
+  },
+  {
+    icon: Cube,
+    title: "TRIPO AI",
+    description: "Advanced AI-powered 3D model generation platform that creates high-quality 3D assets from text descriptions and images with professional-grade results.",
+    emoji: "🎯",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://tripo3d.ai/?via=aiwebtools",
+    tags: ["AI 3D generation", "text-to-3D", "3D modeling", "professional 3D", "3D assets"],
+    category: "3D & VISUALIZATION",
+    rating: 4.7,
+    totalVotes: 3456
+  },
+  {
+    icon: Wand2,
+    title: "SPLINE AI",
+    description: "AI-powered 3D design tool that generates stunning 3D objects and scenes from text prompts, integrated with Spline's collaborative design platform.",
+    emoji: "✨",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://spline.design/ai-generate/?via=aiwebtools",
+    tags: ["AI 3D generation", "collaborative design", "3D objects", "web 3D", "design tool"],
+    category: "3D & VISUALIZATION",
+    rating: 4.6,
+    totalVotes: 2890
+  },
+  {
+    icon: Package,
+    title: "Sloyd AI",
+    description: "Revolutionary AI 3D generator that creates customizable 3D models from simple text prompts, perfect for game development and creative projects.",
+    emoji: "🔧",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://sloyd.ai/?via=aiwebtools",
+    tags: ["AI 3D models", "customizable 3D", "game development", "text-to-3D", "creative tools"],
+    category: "3D & VISUALIZATION",
+    rating: 4.5,
+    totalVotes: 2234
+  },
+  {
+    icon: Sparkles,
+    title: "3D AI Studio",
+    description: "Comprehensive AI-powered 3D creation studio offering advanced tools for generating, editing, and optimizing 3D models with professional workflows.",
+    emoji: "🏭",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://3daistudio.com/?via=aiwebtools",
+    tags: ["3D studio", "AI 3D creation", "professional tools", "3D editing", "workflow optimization"],
+    category: "3D & VISUALIZATION",
+    rating: 4.4,
+    totalVotes: 1987
+  },
+  {
+    icon: Zap,
+    title: "Hyper 3D",
+    description: "High-performance AI 3D generation platform delivering ultra-fast 3D model creation with exceptional quality and detail for professional applications.",
+    emoji: "⚡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://hyper3d.ai/?via=aiwebtools",
+    tags: ["high-performance 3D", "fast 3D generation", "professional 3D", "AI modeling", "quality 3D"],
+    category: "3D & VISUALIZATION",
+    rating: 4.3,
+    totalVotes: 1765
+  },
+  {
+    icon: Globe,
+    title: "MasterpieceX",
+    description: "Premium AI-powered 3D creation platform designed for professionals, offering masterpiece-quality 3D models and advanced creative tools.",
+    emoji: "🎨",
+    color: "from-gold-500 to-purple-600",
+    directUrl: "https://masterpiece.studio/?via=aiwebtools",
+    tags: ["premium 3D", "masterpiece quality", "professional 3D", "AI creation", "advanced tools"],
+    category: "3D & VISUALIZATION",
+    rating: 4.6,
+    totalVotes: 2123
   },
   {
     icon: Box,
