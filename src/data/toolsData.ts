@@ -8,6 +8,51 @@ import { consolidateTools } from '@/utils/categoryConsolidation';
 import { deduplicateTools } from '@/utils/toolDeduplication';
 import { getToolCount } from '@/utils/toolCounter';
 
+// Import AI Web Tools GPTs - PRIORITY FEATURED TOOLS
+import { priorityFeaturedGPTs } from "./tools/aiWebTools/priorityFeaturedGPTs";
+import { secondPriorityFeaturedGPTs } from "./tools/aiWebTools/secondPriorityFeaturedGPTs";
+import { thirdPriorityFeaturedGPTs } from "./tools/aiWebTools/thirdPriorityFeaturedGPTs";
+import { fourthPriorityFeaturedGPTs } from "./tools/aiWebTools/fourthPriorityFeaturedGPTs";
+
+// Import AI Web Tools GPT Collections
+import { aiWebToolsGPTs } from "./tools/aiWebTools/aiWebToolsGPTs";
+import { advancedSpecialtyGPTs } from "./tools/aiWebTools/advancedSpecialtyGPTs";
+import { additionalSpecializedGPTs } from "./tools/aiWebTools/additionalSpecializedGPTs";
+import { finalSpecializedGPTs } from "./tools/aiWebTools/finalSpecializedGPTs";
+import { newSpecializedGPTs } from "./tools/aiWebTools/newSpecializedGPTs";
+
+// Import AI Web Tools Category Collections
+import { personalDevelopmentGPTs } from "./tools/aiWebTools/personalDevelopmentGPTs";
+import { educationAndLearningGPTs } from "./tools/aiWebTools/educationAndLearningGPTs";
+import { educationalToolsGPTs } from "./tools/aiWebTools/educationalToolsGPTs";
+import { healthAndWellnessGPTs } from "./tools/aiWebTools/healthAndWellnessGPTs";
+import { researchAndPharmaceuticalGPTs } from "./tools/aiWebTools/researchAndPharmaceuticalGPTs";
+import { scienceAndResearchGPTs } from "./tools/aiWebTools/scienceAndResearchGPTs";
+import { businessAndFinanceGPTs } from "./tools/aiWebTools/businessAndFinanceGPTs";
+import { businessStrategyGPTs } from "./tools/aiWebTools/businessStrategyGPTs";
+import { legalAndGovernmentGPTs } from "./tools/aiWebTools/legalAndGovernmentGPTs";
+import { governmentCivicGPTs } from "./tools/aiWebTools/governmentCivicGPTs";
+import { professionalServicesGPTs } from "./tools/aiWebTools/professionalServicesGPTs";
+import { utilityAndProductivityGPTs } from "./tools/aiWebTools/utilityAndProductivityGPTs";
+import { creativeAndMediaGPTs } from "./tools/aiWebTools/creativeAndMediaGPTs";
+import { contentCreationToolsGPTs } from "./tools/aiWebTools/contentCreationToolsGPTs";
+import { multimediaAndContentGPTs } from "./tools/aiWebTools/multimediaAndContentGPTs";
+import { artAndCreativeGPTs } from "./tools/aiWebTools/artAndCreativeGPTs";
+import { aiPromptingAndGenerationGPTs } from "./tools/aiWebTools/aiPromptingAndGenerationGPTs";
+import { communicationAndEntertainmentGPTs } from "./tools/aiWebTools/communicationAndEntertainmentGPTs";
+import { entertainmentAndGamingGPTs } from "./tools/aiWebTools/entertainmentAndGamingGPTs";
+import { foodAndHospitalityGPTs } from "./tools/aiWebTools/foodAndHospitalityGPTs";
+import { investigativeAndAnalysisGPTs } from "./tools/aiWebTools/investigativeAndAnalysisGPTs";
+import { appraisalAndValuationGPTs } from "./tools/aiWebTools/appraisalAndValuationGPTs";
+import { mysteriousAndUnusualGPTs } from "./tools/aiWebTools/mysteriousAndUnusualGPTs";
+import { spiritualAndPhilosophyGPTs } from "./tools/aiWebTools/spiritualAndPhilosophyGPTs";
+import { timeAndHistoryGPTs } from "./tools/aiWebTools/timeAndHistoryGPTs";
+import { technologyInnovationGPTs } from "./tools/aiWebTools/technologyInnovationGPTs";
+import { specializedNicheToolsGPTs } from "./tools/aiWebTools/specializedNicheToolsGPTs";
+
+// Import new personal development tools
+import { personalDevelopmentTools } from "./tools/personalDevelopmentTools";
+
 // Combine all tool categories and apply consolidation
 const allToolCategories = consolidateTools(getAllToolCategories());
 
