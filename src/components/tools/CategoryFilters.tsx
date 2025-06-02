@@ -8,6 +8,8 @@ import CategoryViewToggle from "@/components/tools/CategoryViewToggle";
 import MainCategoriesView from "@/components/tools/MainCategoriesView";
 import SubcategoriesView from "@/components/tools/SubcategoriesView";
 import AllToolsButton from "@/components/tools/AllToolsButton";
+import { getMainCategoriesWithCounts } from "@/utils/categoryUtils/toolFiltering";
+import { allTools } from "@/data/toolsData";
 
 interface CategoryFiltersProps {
   categoriesWithCounts: Record<string, number>;
@@ -26,6 +28,9 @@ const CategoryFilters = ({
 }: CategoryFiltersProps) => {
   const [viewMode, setViewMode] = useState<'main' | 'sub'>('main');
   const [isExpanded, setIsExpanded] = useState(true);
+
+  // Get accurate main category counts from the global cache
+  const mainCategoriesWithCounts = getMainCategoriesWithCounts(allTools);
 
   const totalTools = Object.values(categoriesWithCounts).reduce((sum, count) => sum + count, 0);
 
@@ -74,8 +79,8 @@ const CategoryFilters = ({
           <div className="space-y-4">
             {viewMode === 'main' ? (
               <MainCategoriesView
-                selectedCategory={selectedCategory}
-                onCategoryChange={handleCategorySelect}
+                mainCategoryCounts={mainCategoriesWithCounts}
+                onMainCategoryClick={handleCategorySelect}
               />
             ) : (
               <SubcategoriesView

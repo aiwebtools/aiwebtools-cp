@@ -30,6 +30,14 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
     handleShowMoreFeaturedTools
   } = useFeaturedToolsLogic({ onToolsLoaded });
 
+  // Convert categoriesWithCounts array to Record format if needed
+  const categoriesRecord = Array.isArray(categoriesWithCounts) 
+    ? categoriesWithCounts.reduce((acc, item) => {
+        acc[item.name] = item.count;
+        return acc;
+      }, {} as Record<string, number>)
+    : categoriesWithCounts;
+
   return (
     <div className="w-full">
       {/* Show More Featured Tools Button - placed above search bar */}
@@ -43,7 +51,7 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
 
       <div className="px-4 sm:px-0">
         <CategoryFilters
-          categoriesWithCounts={categoriesWithCounts}
+          categoriesWithCounts={categoriesRecord}
           selectedCategory={selectedCategory}
           onCategoryChange={handleCategoryChange}
           onSearchChange={handleSearchChange}

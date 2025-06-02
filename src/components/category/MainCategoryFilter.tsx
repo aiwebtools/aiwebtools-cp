@@ -18,7 +18,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedMainCategories, setSelectedMainCategories] = useState<string[]>([]);
 
-  // Get accurate main categories with their tool counts using the global tool counts
+  // Get accurate main categories with their tool counts using the global cache
   const mainCategoriesWithCounts = useMemo(() => {
     console.log('🔄 Calculating main category counts for MainCategoryFilter...');
     

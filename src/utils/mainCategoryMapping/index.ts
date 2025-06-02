@@ -6,17 +6,9 @@ import { creativeCategories } from "./creativeCategories";
 import { specializedCategories } from "./specializedCategories";
 import { healthAndWellnessCategories } from "./healthAndWellnessCategories";
 
-// Combine all main categories with proper ordering
+// Combine all main categories with proper ordering - remove duplicate ALL AI TOOLS
 export const mainCategories: MainCategory[] = [
-  // Start with the special "ALL AI TOOLS" category
-  {
-    name: "ALL AI TOOLS",
-    emoji: "🌟",
-    description: "Browse our complete collection of 1100+ AI tools across all categories",
-    subcategories: []
-  },
-  
-  // Core AI categories
+  // Core AI categories - these already include ALL AI TOOLS
   ...coreCategories,
   
   // Business and productivity
@@ -25,7 +17,7 @@ export const mainCategories: MainCategory[] = [
   // Creative and content
   ...creativeCategories,
   
-  // Health and wellness - RESTORED
+  // Health and wellness
   ...healthAndWellnessCategories,
   
   // Specialized and industry-specific
