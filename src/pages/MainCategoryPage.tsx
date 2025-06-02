@@ -62,12 +62,8 @@ const MainCategoryPage = () => {
   const handleLoadMore = () => {
     if (isLoading || allToolsDisplayedCount >= filteredTools.length) return;
     
-    setIsLoading(true);
-    // Reduced timeout for faster loading
-    setTimeout(() => {
-      setAllToolsDisplayedCount(prev => Math.min(prev + 24, filteredTools.length));
-      setIsLoading(false);
-    }, 100);
+    // INSTANT loading - no artificial delays
+    setAllToolsDisplayedCount(prev => Math.min(prev + 24, filteredTools.length));
   };
 
   const handleSearchChange = (value: string) => {
@@ -171,23 +167,15 @@ const MainCategoryPage = () => {
             )}
           </div>
 
-          {/* Show More Button for non-search scenarios */}
+          {/* Show More Button for non-search scenarios - OPTIMIZED */}
           {!searchTerm && hasMoreTools && (
             <div className="text-center mt-12 mb-8">
               <Button
                 onClick={handleLoadMore}
                 size="lg"
-                disabled={isLoading}
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
+                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-6 py-3 rounded-xl text-sm sm:text-base shadow-lg hover:shadow-cyan-500/25 transition-all duration-200 transform hover:scale-105 max-w-full"
               >
-                {isLoading ? (
-                  <div className="flex items-center space-x-3">
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                    <span>Loading More Tools...</span>
-                  </div>
-                ) : (
-                  <>🚀 Show More {decodedCategoryName} Tools</>
-                )}
+                🚀 Show More Tools
               </Button>
               <div className="mt-4 text-cyan-300 text-sm">
                 Showing {allToolsDisplayedCount} of {filteredTools.length} amazing AI tools
