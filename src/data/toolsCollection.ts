@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import {
   businessTools,
@@ -8,7 +9,6 @@ import {
   contentCreationTools,
   aiToolsAndDevelopment,
   specializedTools,
-  writingAndContent,
   imageAndDesign,
   businessAndProductivity,
   specializedAndNiche,
@@ -125,7 +125,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...contentCreationTools,
     ...aiToolsAndDevelopment,
     ...specializedTools,
-    ...writingAndContent,
+    // CONSOLIDATED: Use only contentCreationAndWritingTools (no more writingAndContent)
     ...imageAndDesign,
     ...businessAndProductivity,
     ...specializedAndNiche,
