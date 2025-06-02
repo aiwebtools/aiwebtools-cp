@@ -24,15 +24,32 @@ export const allTools: Tool[] = [
   ...remainingTools
 ];
 
-// DEBUG: Find all instances of Financial Calculator Pro
+// ENHANCED DEBUG: Find all instances of Financial Calculator Pro with source tracking
 const financialCalcInstances = allTools.map((tool, index) => ({
   index,
   title: tool.title,
   url: tool.directUrl,
-  category: tool.category
+  category: tool.category,
+  exactMatch: tool.title === 'Financial Calculator Pro'
 })).filter(tool => tool.title.toLowerCase().includes('financial calculator'));
 
 console.log('🔍 ALL Financial Calculator instances found:', financialCalcInstances);
+
+// DEBUG: Check both instances specifically
+financialCalcInstances.forEach((instance, i) => {
+  console.log(`📋 Instance ${i + 1}:`, {
+    title: instance.title,
+    index: instance.index,
+    url: instance.url,
+    category: instance.category,
+    isExactMatch: instance.exactMatch
+  });
+  
+  if (instance.exactMatch && instance.url !== 'https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools') {
+    console.log(`❌ WRONG URL at index ${instance.index}:`, instance.url);
+    console.log(`✅ Should be: https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools`);
+  }
+});
 
 // DEBUG: Specifically check tool at index 538
 const toolAt538 = allTools[538];
