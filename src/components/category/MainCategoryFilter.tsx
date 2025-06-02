@@ -23,14 +23,11 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   const mainCategoriesWithCounts = useMemo(() => {
     console.log('🔄 Calculating main category counts for MainCategoryFilter using global allTools...');
     
-    // Use the global allTools to get accurate counts that match the main category pages
     const globalCounts = getMainCategoriesWithCounts(allTools);
     
-    // Create a Set to track unique category names and prevent duplicates
     const uniqueCategories = new Set<string>();
     
     const categoriesData = mainCategories.map(mainCat => {
-      // Get the accurate count from global counts using allTools
       const count = globalCounts[mainCat.name] || 0;
       
       console.log(`📊 ${mainCat.name}: ${count} tools (from global allTools)`);
@@ -41,66 +38,70 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
         count: count
       };
     }).filter(cat => {
-      // Only include categories that have tools and haven't been added yet
       if (cat.count > 0 && !uniqueCategories.has(cat.name)) {
         uniqueCategories.add(cat.name);
         return true;
       }
       return false;
-    }).sort((a, b) => b.count - a.count); // Sort by count descending
+    }).sort((a, b) => b.count - a.count);
     
     console.log('🎯 Unique categories after deduplication:', categoriesData.map(c => c.name));
     return categoriesData;
-  }, []); // Remove tools dependency since we're using global allTools
+  }, []);
 
-  // Initialize with current main category selected and immediately show tools
+  // Initialize with current main category selected
   useEffect(() => {
     console.log(`🎯 MainCategoryFilter initializing for: ${currentMainCategory}`);
     
-    // Set the current category as selected if it exists in our available categories
     const categoryExists = mainCategoriesWithCounts.some(cat => cat.name === currentMainCategory);
     if (categoryExists) {
       setSelectedMainCategories([currentMainCategory]);
     }
   }, [currentMainCategory, mainCategoriesWithCounts]);
 
-  // Apply main category filters with priority ordering - filtered tools appear first
+  // Apply main category filters with priority ordering - FIXED LOGIC
   const filteredTools = useMemo(() => {
     if (selectedMainCategories.length === 0) {
-      // When no categories are specifically selected, show all tools for the current page
       console.log(`📂 No filters selected - showing all ${tools.length} tools for ${currentMainCategory}`);
       return tools;
     }
     
     console.log(`🎯 Priority filtering by selected categories: ${selectedMainCategories.join(', ')}`);
     
-    // Get tools from all selected main categories using the GLOBAL allTools for accurate results
-    const priorityTools: Tool[] = [];
+    // Create a Map to store unique tools by title to prevent duplicates
+    const uniqueToolsMap = new Map<string, Tool>();
+    
+    // First, add all tools from selected main categories using GLOBAL allTools
     selectedMainCategories.forEach(mainCategoryName => {
       const categoryTools = getToolsByMainCategory(allTools, mainCategoryName);
-      console.log(`📂 ${mainCategoryName}: found ${categoryTools.length} priority tools (from global allTools)`);
-      priorityTools.push(...categoryTools);
+      console.log(`📂 ${mainCategoryName}: adding ${categoryTools.length} priority tools (from global allTools)`);
+      
+      categoryTools.forEach(tool => {
+        if (!uniqueToolsMap.has(tool.title)) {
+          uniqueToolsMap.set(tool.title, tool);
+        }
+      });
     });
     
-    // Remove duplicates from priority tools by title
-    const uniquePriorityTools = priorityTools.filter((tool, index, self) => 
-      index === self.findIndex(t => t.title === tool.title)
-    );
+    // Convert priority tools from Map to Array
+    const priorityTools = Array.from(uniqueToolsMap.values());
     
     // Get remaining tools from the entire database that are NOT in the priority list
-    const priorityTitles = new Set(uniquePriorityTools.map(tool => tool.title));
-    const remainingTools = allTools.filter(tool => !priorityTitles.has(tool.title));
+    const remainingTools = allTools.filter(tool => !uniqueToolsMap.has(tool.title));
     
     // Combine: priority tools first, then remaining tools
-    const orderedTools = [...uniquePriorityTools, ...remainingTools];
+    const orderedTools = [...priorityTools, ...remainingTools];
     
-    console.log(`✅ Priority ordered result: ${uniquePriorityTools.length} priority tools + ${remainingTools.length} remaining tools = ${orderedTools.length} total`);
+    console.log(`✅ FIXED Priority ordered result: ${priorityTools.length} priority tools + ${remainingTools.length} remaining tools = ${orderedTools.length} total`);
+    console.log(`🔍 Priority tools titles (first 10):`, priorityTools.slice(0, 10).map(t => t.title));
+    
     return orderedTools;
   }, [selectedMainCategories, currentMainCategory, tools]);
 
-  // Update parent component when filtered tools change - but only call when needed
+  // Update parent component when filtered tools change
   useEffect(() => {
     console.log(`🔄 Updating parent with ${filteredTools.length} priority-ordered tools`);
+    console.log(`🎯 Selected categories: ${selectedMainCategories.join(', ')}`);
     onFilteredToolsChange(filteredTools);
   }, [filteredTools, onFilteredToolsChange]);
 
@@ -112,12 +113,10 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       console.log(`📋 Current selection state for ${mainCategoryName}: ${isCurrentlySelected}`);
       
       if (isCurrentlySelected) {
-        // If unchecking, remove from selection
         const newSelection = prev.filter(cat => cat !== mainCategoryName);
         console.log(`➖ Removing ${mainCategoryName}, new selection:`, newSelection);
         return newSelection;
       } else {
-        // If checking, add to selection
         const newSelection = [...prev, mainCategoryName];
         console.log(`➕ Adding ${mainCategoryName}, new selection:`, newSelection);
         return newSelection;
@@ -126,18 +125,18 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   };
 
   const clearAllFilters = () => {
-    // Reset to just the current main category
     setSelectedMainCategories([currentMainCategory]);
   };
 
-  // Debug logging
+  // Enhanced debug logging
   console.log(`🔍 MainCategoryFilter Debug:`, {
     currentMainCategory,
     totalInputTools: tools.length,
     categoriesShown: mainCategoriesWithCounts.length,
     selectedCategories: selectedMainCategories,
     filteredToolsCount: filteredTools.length,
-    usingPriorityOrdering: true
+    priorityToolsCount: selectedMainCategories.length > 0 ? getToolsByMainCategory(allTools, selectedMainCategories[0])?.length : 0,
+    usingPriorityOrdering: selectedMainCategories.length > 0
   });
 
   return (
@@ -161,7 +160,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
         </Button>
       </div>
 
-      {/* Active Filters Display - only show if more than current category selected */}
+      {/* Active Filters Display */}
       {selectedMainCategories.length > 1 && (
         <div className="flex flex-wrap gap-2 justify-center mb-3">
           {selectedMainCategories.filter(cat => cat !== currentMainCategory).map(categoryName => {
@@ -245,12 +244,12 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
             </div>
           )}
 
-          {/* Compact Filter Summary with Priority Indication */}
+          {/* Enhanced Filter Summary */}
           <div className="mt-3 pt-2 border-t border-cyan-500/20 text-center">
             <div className="text-xs text-cyan-300">
               {selectedMainCategories.length <= 1 
                 ? `Showing ${filteredTools.length} tools in ${currentMainCategory}` 
-                : `Prioritizing ${selectedMainCategories.length} categories - filtered tools shown first`
+                : `Prioritizing ${selectedMainCategories.length} categories (${filteredTools.length} total tools) - filtered tools shown first`
               }
             </div>
           </div>
