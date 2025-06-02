@@ -112,6 +112,18 @@ export const aiChatPlatforms: Tool[] = [
     totalVotes: 3876
   },
   {
+    icon: Bot,
+    title: "BotSonic",
+    description: "AI-powered chatbot builder that creates intelligent customer service bots with natural language processing and automated responses.",
+    emoji: "🤖",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://writesonic.com/botsonic?via=aiwebtools",
+    tags: ["chatbot builder", "customer service", "natural language", "automated responses", "AI bot"],
+    category: "AI Chat Platforms",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
     icon: Headphones,
     title: "Replika",
     description: "AI companion that offers emotional support and personalized conversations. Create a unique AI friend and explore self-discovery through chat.",
