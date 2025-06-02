@@ -8,21 +8,22 @@ export const generateEnhancedSitemap = () => {
   // Get unique categories from tools data
   const categories = Array.from(new Set(allTools.map(tool => tool.category).filter(Boolean)));
   
-  // Priority levels for different page types (optimized for SEO)
+  // Priority levels optimized for competitive ranking
   const priorities = {
     homepage: '1.0',
-    category: '0.9',
-    popularTool: '0.8',
-    tool: '0.7',
-    search: '0.8'  // Increased priority for search pages
+    category: '0.95',
+    popularTool: '0.9',
+    tool: '0.85',
+    search: '0.9',
+    highVolumeSearch: '0.95'
   };
   
-  // Change frequencies optimized for search engines
+  // Change frequencies optimized for Google crawling
   const changeFreqs = {
     homepage: 'daily',
-    category: 'weekly',
-    tool: 'monthly',
-    search: 'weekly'
+    category: 'daily',
+    tool: 'weekly',
+    search: 'daily'
   };
 
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -33,7 +34,7 @@ export const generateEnhancedSitemap = () => {
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 `;
 
-  // Homepage with enhanced multilingual support
+  // Homepage with enhanced competitive positioning
   sitemap += `  <url>
     <loc>${baseUrl}</loc>
     <lastmod>${currentDate}</lastmod>
@@ -44,7 +45,7 @@ export const generateEnhancedSitemap = () => {
   </url>
 `;
 
-  // Category pages with enhanced SEO data
+  // Category pages with enhanced competitive SEO
   categories.forEach((category) => {
     const categoryUrl = `${baseUrl}/category/${encodeURIComponent(category)}`;
     sitemap += `  <url>
@@ -57,7 +58,7 @@ export const generateEnhancedSitemap = () => {
 `;
   });
 
-  // Individual tool pages with enhanced metadata
+  // Individual tool pages with competitive optimization
   allTools.forEach((tool, index) => {
     const toolUrl = `${baseUrl}/tool/${index}`;
     const isPopular = tool.rating && parseFloat(tool.rating.toString()) > 4.5;
@@ -71,27 +72,28 @@ export const generateEnhancedSitemap = () => {
     <xhtml:link rel="alternate" hrefLang="en" href="${toolUrl}"/>
 `;
 
-    // Add image data if available
+    // Enhanced image data for better ranking
     if (tool.imageUrl) {
       sitemap += `    <image:image>
       <image:loc>${tool.imageUrl}</image:loc>
-      <image:title>${tool.title} - AI Tool</image:title>
-      <image:caption>${tool.description}</image:caption>
+      <image:title>${tool.title} - Best AI Tool for ${tool.category}</image:title>
+      <image:caption>Discover ${tool.title} - ${tool.description} | AI WEB TOOLS Directory</image:caption>
     </image:image>
 `;
     }
 
-    // Add video data if available
+    // Enhanced video data for multimedia content
     if (tool.videoUrl) {
       sitemap += `    <video:video>
       <video:thumbnail_loc>${tool.imageUrl || `${baseUrl}/placeholder.svg`}</video:thumbnail_loc>
-      <video:title>${tool.title} Demo - AI Tool Tutorial</video:title>
-      <video:description>Learn how to use ${tool.title} - ${tool.description}</video:description>
+      <video:title>${tool.title} Demo - Complete AI Tool Review | AI WEB TOOLS</video:title>
+      <video:description>Complete guide and review of ${tool.title} - ${tool.description} | Best AI Tools 2025</video:description>
       <video:content_loc>${tool.videoUrl}</video:content_loc>
       <video:category>${tool.category}</video:category>
-      <video:tag>AI tool, ${tool.tags?.join(', ') || tool.category}, artificial intelligence</video:tag>
+      <video:tag>AI tool, ${tool.tags?.join(', ') || tool.category}, best AI tools 2025, ${tool.title} review</video:tag>
       <video:family_friendly>yes</video:family_friendly>
       <video:duration>300</video:duration>
+      <video:publication_date>${currentDate}</video:publication_date>
     </video:video>
 `;
     }
@@ -100,57 +102,82 @@ export const generateEnhancedSitemap = () => {
 `;
   });
 
-  // Enhanced search pages for high-volume AI keywords
-  const highVolumeSearchTerms = [
-    // Core AI terms
-    'ai tools', 'artificial intelligence', 'chatgpt', 'ai assistant', 'ai chatbot',
-    'ai image generator', 'ai art generator', 'ai writing tools', 'ai video editor',
+  // High-priority competitive search terms for ranking against Toolify and competitors
+  const competitiveSearchTerms = [
+    // Primary competitive terms
+    'AI WEB TOOLS', 'best ai tools 2025', 'ai tools directory', 'comprehensive ai tools',
+    'verified ai tools', 'toolify alternative', 'better than toolify', 'complete ai tools list',
     
-    // Productivity terms
-    'productivity tools', 'business automation', 'workflow automation', 'ai for business',
+    // High-volume AI terms
+    'chatgpt alternatives', 'ai assistant tools', 'ai image generator', 'ai writing tools',
+    'ai video editor', 'ai content creation', 'ai business tools', 'ai productivity tools',
     
-    // Creative terms
-    'image generation', 'video editing', 'content creation', 'graphic design',
-    'ai music', 'ai art', 'creative ai tools', 'ai design tools',
+    // Category-specific competitive terms
+    'best ai tools for business', 'ai tools for marketing', 'ai tools for content creation',
+    'ai tools for developers', 'ai tools for design', 'ai tools for video editing',
+    'ai tools for writing', 'ai tools for automation', 'ai tools for social media',
     
-    // Professional categories
-    'ai for marketing', 'ai for writing', 'ai for education', 'ai for healthcare',
-    'ai for sales', 'ai for developers', 'ai for startups',
-    
-    // Popular platforms
-    'openai tools', 'gpt tools', 'claude ai', 'midjourney alternative',
-    'stable diffusion', 'ai models', 'machine learning tools',
+    // Platform and technology terms
+    'openai tools', 'gpt tools', 'claude ai tools', 'gemini ai tools', 'custom gpt tools',
+    'machine learning tools', 'ai automation platforms', 'enterprise ai tools',
     
     // Intent-based searches
-    'free ai tools', 'best ai tools', 'ai tools 2025', 'how to use ai',
-    'ai comparison', 'ai alternatives', 'professional ai tools'
+    'how to find best ai tools', 'ai tools comparison', 'ai tools reviews',
+    'top ai tools ranking', 'professional ai tools', 'free ai tools directory',
+    
+    // Trending AI concepts
+    'ai agents 2025', 'multimodal ai tools', 'generative ai tools', 'ai workflow automation',
+    'artificial intelligence directory', 'ai tools marketplace', 'curated ai tools'
   ];
 
-  highVolumeSearchTerms.forEach(term => {
+  competitiveSearchTerms.forEach(term => {
     const searchUrl = `${baseUrl}/?search=${encodeURIComponent(term)}`;
+    const isHighVolume = ['AI WEB TOOLS', 'best ai tools 2025', 'chatgpt alternatives', 'ai tools directory'].includes(term);
+    const priority = isHighVolume ? priorities.highVolumeSearch : priorities.search;
+    
     sitemap += `  <url>
     <loc>${searchUrl}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>${changeFreqs.search}</changefreq>
-    <priority>${priorities.search}</priority>
+    <priority>${priority}</priority>
   </url>
 `;
   });
 
-  // Add main category pages for better organization
-  const mainCategories = [
-    'AI Assistants', 'Image Generation', 'Writing & Content', 'Video Tools', 
-    'Audio & Music', 'Business & Productivity', 'Education & Learning', 
-    'Creative Services', 'Developer Tools', 'Healthcare', 'Marketing Tools'
+  // Enhanced main category pages for better organization and ranking
+  const strategicCategories = [
+    'AI Assistants & Chatbots', 'AI Image Generation & Art', 'AI Writing & Content Creation', 
+    'AI Video & Multimedia Tools', 'AI Audio & Music Tools', 'AI Business & Productivity', 
+    'AI Education & Learning', 'AI Creative Services', 'AI Developer Tools', 
+    'AI Healthcare Solutions', 'AI Marketing & Sales Tools', 'AI Data & Analytics',
+    'AI Design & Graphics', 'AI Automation & Workflow', 'AI Research & Science'
   ];
 
-  mainCategories.forEach(category => {
+  strategicCategories.forEach(category => {
     const categoryUrl = `${baseUrl}/main-category/${encodeURIComponent(category)}`;
     sitemap += `  <url>
     <loc>${categoryUrl}</loc>
     <lastmod>${currentDate}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hrefLang="en" href="${categoryUrl}"/>
+  </url>
+`;
+  });
+
+  // Tool comparison pages for competitive ranking
+  const comparisonPages = [
+    'chatgpt-vs-claude', 'midjourney-vs-dalle', 'ai-writing-tools-comparison',
+    'best-ai-image-generators', 'top-ai-video-editors', 'ai-productivity-tools-ranking'
+  ];
+
+  comparisonPages.forEach(comparison => {
+    const comparisonUrl = `${baseUrl}/compare/${comparison}`;
+    sitemap += `  <url>
+    <loc>${comparisonUrl}</loc>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
 `;
   });
@@ -169,19 +196,25 @@ Disallow: /404
 Disallow: /*?*
 Allow: /*?search=*
 
-# Allow important crawlers with specific rules
+# Enhanced crawling rules for competitive advantage
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 0.5
 Allow: /sitemap.xml
+Allow: /search
+Allow: /category/
+Allow: /tool/
+Allow: /main-category/
 
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 0.5
+Allow: /sitemap.xml
 
 User-agent: Slurp
 Allow: /
 Crawl-delay: 1
+Allow: /sitemap.xml
 
 User-agent: DuckDuckBot
 Allow: /
@@ -195,14 +228,18 @@ User-agent: YandexBot
 Allow: /
 Crawl-delay: 2
 
+# Social media crawlers for better sharing
 User-agent: facebookexternalhit
 Allow: /
+Crawl-delay: 1
 
 User-agent: Twitterbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: LinkedInBot
 Allow: /
+Crawl-delay: 1
 
 User-agent: WhatsApp
 Allow: /
@@ -216,9 +253,10 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-# AI and ML bots (for AI tool discovery)
+# AI and ML bots for enhanced discovery
 User-agent: GPTBot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Claude-Web
 Allow: /
@@ -232,7 +270,13 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
-# Block aggressive crawlers that don't add value
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+# Block aggressive SEO crawlers that don't add value
 User-agent: AhrefsBot
 Disallow: /
 
@@ -254,14 +298,27 @@ Disallow: /
 User-agent: ZoominfoBot
 Disallow: /
 
-# Sitemap location
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+# Sitemap location with enhanced indexing
 Sitemap: https://aitools.studio/sitemap.xml
 
-# Host preference
+# Host preference for canonical URLs
 Host: aitools.studio
 
-# Crawl delay for aggressive bots
-Crawl-delay: 1`;
+# Optimized crawl delay for faster indexing
+Crawl-delay: 0.5
+
+# Additional directives for competitive SEO
+Request-rate: 1/1s
+Visit-time: 0600-2300
+
+# Clean URLs directive
+Clean-param: utm_source&utm_medium&utm_campaign&fbclid&gclid`;
 };
 
 // Generate performance-optimized robots.txt
@@ -269,7 +326,7 @@ export const generateOptimizedRobotsTxt = () => {
   return generateRobotsTxt();
 };
 
-// Generate comprehensive sitemap for better indexing
+// Generate comprehensive sitemap for competitive ranking
 export const generateComprehensiveSitemap = () => {
   return generateEnhancedSitemap();
 };

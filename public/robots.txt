@@ -8,19 +8,25 @@ Disallow: /404
 Disallow: /*?*
 Allow: /*?search=*
 
-# Allow important crawlers with specific rules
+# Enhanced crawling rules for competitive advantage
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 0.5
 Allow: /sitemap.xml
+Allow: /search
+Allow: /category/
+Allow: /tool/
+Allow: /main-category/
 
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 0.5
+Allow: /sitemap.xml
 
 User-agent: Slurp
 Allow: /
 Crawl-delay: 1
+Allow: /sitemap.xml
 
 User-agent: DuckDuckBot
 Allow: /
@@ -34,14 +40,18 @@ User-agent: YandexBot
 Allow: /
 Crawl-delay: 2
 
+# Social media crawlers for better sharing
 User-agent: facebookexternalhit
 Allow: /
+Crawl-delay: 1
 
 User-agent: Twitterbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: LinkedInBot
 Allow: /
+Crawl-delay: 1
 
 User-agent: WhatsApp
 Allow: /
@@ -55,9 +65,10 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-# AI and ML bots (important for AI tool discovery)
+# AI and ML bots for enhanced discovery
 User-agent: GPTBot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Claude-Web
 Allow: /
@@ -71,7 +82,13 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
-# Block aggressive crawlers that consume resources without value
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+# Block aggressive SEO crawlers that don't add value
 User-agent: AhrefsBot
 Disallow: /
 
@@ -93,11 +110,24 @@ Disallow: /
 User-agent: ZoominfoBot
 Disallow: /
 
-# Sitemap location
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+# Sitemap location with enhanced indexing
 Sitemap: https://aitools.studio/sitemap.xml
 
-# Host preference
+# Host preference for canonical URLs
 Host: aitools.studio
 
-# Crawl delay for performance
-Crawl-delay: 1
+# Optimized crawl delay for faster indexing
+Crawl-delay: 0.5
+
+# Additional directives for competitive SEO
+Request-rate: 1/1s
+Visit-time: 0600-2300
+
+# Clean URLs directive
+Clean-param: utm_source&utm_medium&utm_campaign&fbclid&gclid

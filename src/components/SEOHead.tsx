@@ -31,60 +31,71 @@ const SEOHead = ({
   category,
   toolData
 }: SEOHeadProps) => {
-  const fullTitle = title ? `${title} | ${seoConfig.siteName}` : seoConfig.siteName;
+  const fullTitle = title ? `${title} | AI WEB TOOLS - Best AI Tools Directory 2025` : "AI WEB TOOLS - #1 AI Tools Directory | 1000+ Best AI Tools 2025 | ChatGPT Alternatives";
   const canonical = url.startsWith('http') ? url : `${seoConfig.siteUrl}${url}`;
   const fullImage = image.startsWith('http') ? image : `${seoConfig.siteUrl}${image}`;
 
-  // Enhanced keywords with AI-focused terms
-  const enhancedKeywords = [
-    ...keywords,
-    "AI tools 2025",
-    "artificial intelligence directory",
-    "machine learning tools",
-    "AI automation",
-    "productivity AI",
-    "creative AI tools",
-    "business AI solutions"
+  // Enhanced competitive keywords
+  const competitiveKeywords = [
+    "AI WEB TOOLS",
+    "best AI tools 2025",
+    "AI tools directory",
+    "better than toolify",
+    "comprehensive AI tools",
+    "verified AI tools",
+    "ChatGPT alternatives",
+    "top AI tools ranking",
+    "professional AI tools",
+    "enterprise AI solutions",
+    "AI tools comparison",
+    "trusted AI directory",
+    "complete AI tools list",
+    "AI tools marketplace",
+    "curated AI tools",
+    ...keywords
   ];
 
   return (
     <Helmet>
-      {/* Basic Meta Tags */}
+      {/* Critical SEO Meta Tags for Ranking */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      <meta name="keywords" content={enhancedKeywords.join(', ')} />
-      <meta name="author" content={seoConfig.author} />
+      <meta name="keywords" content={competitiveKeywords.join(', ')} />
+      <meta name="author" content="AI WEB TOOLS LLC" />
       <link rel="canonical" href={canonical} />
       
-      {/* Enhanced Meta Tags for AI Tools */}
-      <meta name="application-name" content="AITools.Studio" />
-      <meta name="subject" content="AI Tools Directory" />
-      <meta name="topic" content="Artificial Intelligence, Machine Learning, Productivity Tools" />
-      <meta name="summary" content="Comprehensive directory of AI-powered tools for business, creativity, and productivity" />
-      <meta name="classification" content="Technology, Software, AI Tools" />
+      {/* Enhanced Competitive Meta Tags */}
+      <meta name="application-name" content="AI WEB TOOLS" />
+      <meta name="subject" content="Best AI Tools Directory 2025" />
+      <meta name="topic" content="AI Tools, Artificial Intelligence, ChatGPT Alternatives, Best AI Directory" />
+      <meta name="summary" content="The world's most comprehensive AI tools directory with 1000+ curated AI applications. Better than Toolify." />
+      <meta name="classification" content="Technology, AI Tools, Software Directory" />
       <meta name="designer" content="AI WEB TOOLS LLC" />
       <meta name="owner" content="AI WEB TOOLS LLC" />
       <meta name="directory" content="submission" />
       <meta name="pagename" content={fullTitle} />
-      <meta name="category" content="Technology" />
+      <meta name="category" content="AI Tools Directory" />
       <meta name="coverage" content="Worldwide" />
       <meta name="distribution" content="Global" />
       <meta name="rating" content="General" />
       <meta name="revisit-after" content="1 days" />
       <meta name="target" content="all" />
-      <meta name="audience" content="Professionals, Businesses, Creators, Developers" />
+      <meta name="audience" content="Business Professionals, Content Creators, Developers, Entrepreneurs, Students" />
       <meta name="language" content="English" />
-      <meta name="doc-type" content="Web Page" />
-      <meta name="doc-rights" content="Copywritten Work" />
+      <meta name="doc-type" content="AI Tools Directory" />
+      <meta name="doc-rights" content="AI WEB TOOLS LLC" />
       <meta name="doc-class" content="Living Document" />
       
-      {/* AI and Technology Specific Meta */}
-      <meta name="technology" content="React, TypeScript, AI, Machine Learning" />
-      <meta name="industry" content="Technology, Artificial Intelligence, Software" />
-      <meta name="service" content="AI Tools Directory, Software Recommendations" />
-      <meta name="expertise" content="Artificial Intelligence, Machine Learning, Productivity Software" />
+      {/* Competitive Edge Meta Tags */}
+      <meta name="brand" content="AI WEB TOOLS" />
+      <meta name="company" content="AI WEB TOOLS LLC" />
+      <meta name="expertise" content="AI Tools Curation, Software Recommendations, Technology Reviews" />
+      <meta name="specialty" content="Artificial Intelligence Tools Directory" />
+      <meta name="focus" content="Best AI Tools 2025, ChatGPT Alternatives, Professional AI Solutions" />
+      <meta name="competitive-advantage" content="Most comprehensive AI directory, better than Toolify, verified tools" />
+      <meta name="unique-value" content="1000+ curated AI tools with detailed reviews and ratings" />
       
-      {/* Advanced Performance Meta */}
+      {/* Technical Performance Meta */}
       <meta httpEquiv="x-dns-prefetch-control" content="on" />
       <meta name="renderer" content="webkit" />
       <meta name="force-rendering" content="webkit" />
@@ -95,17 +106,17 @@ const SEOHead = ({
       <meta name="apple-touch-fullscreen" content="yes" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-      <meta name="apple-mobile-web-app-title" content="AITools.Studio" />
+      <meta name="apple-mobile-web-app-title" content="AI WEB TOOLS" />
       
-      {/* Geo and Location Meta */}
+      {/* Geographic and Business Meta */}
       <meta name="geo.region" content="US" />
       <meta name="geo.placename" content="United States" />
       <meta name="ICBM" content="40.7128, -74.0060" />
       <meta name="geo.position" content="40.7128;-74.0060" />
       <meta name="nuts" content="US" />
       
-      {/* Enhanced Social and Business Meta */}
-      <meta name="business.contact_data.street_address" content="Remote Operations" />
+      {/* Business Contact Data */}
+      <meta name="business.contact_data.street_address" content="Remote Operations Worldwide" />
       <meta name="business.contact_data.locality" content="Global" />
       <meta name="business.contact_data.region" content="Worldwide" />
       <meta name="business.contact_data.postal_code" content="00000" />
@@ -114,7 +125,7 @@ const SEOHead = ({
       <meta name="business.contact_data.phone_number" content="+14758008096" />
       <meta name="business.contact_data.website" content={seoConfig.siteUrl} />
       
-      {/* Robots and Crawling */}
+      {/* Enhanced Crawling Instructions */}
       {noIndex ? (
         <>
           <meta name="robots" content="noindex, nofollow" />
@@ -132,10 +143,14 @@ const SEOHead = ({
           <meta name="linkedinbot" content="index, follow" />
           <meta name="whatsapp" content="index, follow" />
           <meta name="telegrambot" content="index, follow" />
+          <meta name="applebot" content="index, follow" />
+          <meta name="gptbot" content="index, follow" />
+          <meta name="claude-web" content="index, follow" />
+          <meta name="ccbot" content="index, follow" />
         </>
       )}
       
-      {/* Enhanced Open Graph */}
+      {/* Comprehensive Open Graph */}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={fullImage} />
@@ -146,7 +161,7 @@ const SEOHead = ({
       <meta property="og:image:secure_url" content={fullImage} />
       <meta property="og:url" content={canonical} />
       <meta property="og:type" content={type} />
-      <meta property="og:site_name" content={seoConfig.siteName} />
+      <meta property="og:site_name" content="AI WEB TOOLS - Best AI Tools Directory" />
       <meta property="og:locale" content="en_US" />
       <meta property="og:locale:alternate" content="en_GB" />
       <meta property="og:determiner" content="the" />
@@ -165,20 +180,20 @@ const SEOHead = ({
       <meta name="twitter:creator" content={seoConfig.twitterHandle} />
       <meta name="twitter:domain" content="aitools.studio" />
       <meta name="twitter:url" content={canonical} />
-      <meta name="twitter:data1" content="AI Tools" />
-      <meta name="twitter:label1" content="Category" />
+      <meta name="twitter:data1" content="1000+ AI Tools" />
+      <meta name="twitter:label1" content="Directory Size" />
       <meta name="twitter:data2" content="Free & Premium" />
       <meta name="twitter:label2" content="Pricing" />
       
-      {/* LinkedIn Meta */}
+      {/* Article and Content Meta */}
       <meta property="article:publisher" content="https://aitools.company" />
       <meta property="article:author" content="AI WEB TOOLS LLC" />
       <meta property="article:published_time" content="2024-01-01T00:00:00Z" />
       <meta property="article:modified_time" content={new Date().toISOString()} />
-      <meta property="article:section" content={category || "AI Tools"} />
-      <meta property="article:tag" content={enhancedKeywords.slice(0, 10).join(", ")} />
+      <meta property="article:section" content={category || "AI Tools Directory"} />
+      <meta property="article:tag" content={competitiveKeywords.slice(0, 15).join(", ")} />
       
-      {/* Mobile and Progressive Web App */}
+      {/* Mobile and PWA Optimization */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="theme-color" content="#0891b2" />
@@ -187,7 +202,7 @@ const SEOHead = ({
       <meta name="msapplication-navbutton-color" content="#0891b2" />
       <meta name="msapplication-starturl" content="/" />
       <meta name="msapplication-window" content="width=1024;height=768" />
-      <meta name="msapplication-tooltip" content="AI Tools Directory - Discover 1000+ AI Tools" />
+      <meta name="msapplication-tooltip" content="AI WEB TOOLS - Best AI Tools Directory with 1000+ curated tools" />
       
       {/* Security and Performance Headers */}
       <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
@@ -197,14 +212,15 @@ const SEOHead = ({
       <meta httpEquiv="Content-Language" content="en" />
       <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       
-      {/* DNS Prefetch and Preconnect for Critical Resources */}
+      {/* Enhanced DNS Prefetch and Preconnect */}
       <link rel="dns-prefetch" href="//fonts.googleapis.com" />
       <link rel="dns-prefetch" href="//fonts.gstatic.com" />
       <link rel="dns-prefetch" href="//aitools.company" />
       <link rel="dns-prefetch" href="//www.aiwebtools.ai" />
-      <link rel="dns-prefetch" href="//cdn.gpteng.co" />
-      <link rel="dns-prefetch" href="//www.google-analytics.com" />
-      <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+      <link rel="dns-prefetch" href="//www.google.com" />
+      <link rel="dns-prefetch" href="//www.bing.com" />
+      <link rel="dns-prefetch" href="//search.yahoo.com" />
+      <link rel="dns-prefetch" href="//duckduckgo.com" />
       
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -219,8 +235,8 @@ const SEOHead = ({
       {/* Alternate Languages and Feeds */}
       <link rel="alternate" hrefLang="en" href={canonical} />
       <link rel="alternate" hrefLang="x-default" href={canonical} />
-      <link rel="alternate" type="application/rss+xml" title="AI Tools RSS Feed" href={`${seoConfig.siteUrl}/rss.xml`} />
-      <link rel="alternate" type="application/atom+xml" title="AI Tools Atom Feed" href={`${seoConfig.siteUrl}/atom.xml`} />
+      <link rel="alternate" type="application/rss+xml" title="AI WEB TOOLS RSS Feed" href={`${seoConfig.siteUrl}/rss.xml`} />
+      <link rel="alternate" type="application/atom+xml" title="AI WEB TOOLS Atom Feed" href={`${seoConfig.siteUrl}/atom.xml`} />
       <link rel="sitemap" type="application/xml" title="Sitemap" href={`${seoConfig.siteUrl}/sitemap.xml`} />
       
       {/* Structured Data */}
@@ -244,19 +260,25 @@ const SEOHead = ({
         </script>
       )}
       
-      {/* Verification Meta Tags */}
-      <meta name="google-site-verification" content="your-google-verification-code" />
-      <meta name="msvalidate.01" content="your-bing-verification-code" />
-      <meta name="yandex-verification" content="your-yandex-verification-code" />
-      <meta name="p:domain_verify" content="your-pinterest-verification-code" />
-      <meta name="alexaVerifyID" content="your-alexa-verification-code" />
-      <meta name="norton-safeweb-site-verification" content="your-norton-verification-code" />
+      {/* Search Engine Verification */}
+      <meta name="google-site-verification" content="ai-web-tools-google-verification" />
+      <meta name="msvalidate.01" content="ai-web-tools-bing-verification" />
+      <meta name="yandex-verification" content="ai-web-tools-yandex-verification" />
+      <meta name="p:domain_verify" content="ai-web-tools-pinterest-verification" />
+      <meta name="alexaVerifyID" content="ai-web-tools-alexa-verification" />
+      <meta name="norton-safeweb-site-verification" content="ai-web-tools-norton-verification" />
       
-      {/* Additional Crawling Instructions */}
-      <meta name="archive" content="no" />
+      {/* Additional Competitive Meta */}
+      <meta name="news_keywords" content="AI tools, artificial intelligence, ChatGPT alternatives, best AI directory, AI web tools" />
+      <meta name="standout" content={canonical} />
+      <meta name="syndication-source" content="https://aitools.studio" />
+      <meta name="original-source" content="https://aitools.studio" />
+      <meta name="generator" content="AI WEB TOOLS Directory Platform" />
+      
+      {/* Cache Control for SEO */}
       <meta name="expires" content="never" />
       <meta name="pragma" content="no-cache" />
-      <meta name="cache-control" content="public, max-age=31536000" />
+      <meta name="cache-control" content="public, max-age=86400" />
     </Helmet>
   );
 };

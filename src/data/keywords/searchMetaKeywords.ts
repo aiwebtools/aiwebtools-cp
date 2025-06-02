@@ -1,65 +1,97 @@
 
-// Search-related and meta keywords for enhanced SEO
+// Enhanced search-related and meta keywords for maximum SEO impact
 export const searchMetaKeywords: Record<string, string[]> = {
-  // Popular Features
-  "free": ["no cost", "gratis", "complimentary", "free AI tools", "free software", "no payment", "open source", "zero cost", "free artificial intelligence", "cost-free AI"],
-  "premium": ["paid", "subscription", "pro", "premium AI", "professional tools", "paid AI", "advanced", "commercial", "enterprise AI", "professional grade"],
-  "online": ["web", "browser", "cloud", "online AI", "web tools", "browser AI", "internet", "web-based", "cloud AI", "SaaS AI"],
-  "offline": ["local", "desktop", "standalone", "no internet", "local AI", "offline tools", "desktop AI", "local processing"],
-  "real-time": ["live", "instant", "immediate", "real-time AI", "instant AI", "live processing", "on-demand", "instant results"],
+  // Primary competitive keywords targeting top AI directories
+  "ai web tools": ["AI WEB TOOLS", "ai directory", "ai tools platform", "best ai tools", "comprehensive ai tools", "verified ai tools"],
+  "best ai tools": ["top ai tools 2025", "ai tools ranking", "best ai tools 2025", "recommended ai tools", "professional ai tools", "enterprise ai tools"],
+  "ai tools directory": ["ai tools list", "comprehensive ai directory", "complete ai tools", "ai tools database", "ai tools marketplace"],
+  "toolify alternative": ["better than toolify", "toolify competitor", "comprehensive ai directory", "verified ai tools platform"],
+  "ai tools 2025": ["latest ai tools", "new ai tools", "trending ai tools", "ai innovations 2025", "modern ai tools"],
   
-  // Search Intent Keywords
-  "best": ["top", "recommended", "popular", "best AI tools", "top AI", "recommended AI", "leading", "excellent", "premier", "highest rated"],
-  "how": ["tutorial", "guide", "instructions", "how to use AI", "AI tutorial", "AI guide", "method", "process", "step by step"],
-  "comparison": ["vs", "versus", "compare", "AI comparison", "tool comparison", "AI vs", "difference", "evaluate", "alternatives"],
-  "review": ["evaluation", "assessment", "AI review", "tool review", "AI evaluation", "rating", "feedback", "analysis"],
+  // High-volume AI search terms
+  "chatgpt": ["chatgpt alternatives", "openai tools", "gpt tools", "ai chat", "conversational ai", "language models", "custom gpt"],
+  "ai assistant": ["virtual assistant", "ai helper", "personal ai", "intelligent assistant", "ai chatbot", "digital assistant"],
+  "ai image generator": ["ai art", "image creation", "ai artwork", "digital art", "visual ai", "picture generator", "ai graphics"],
+  "ai writing tools": ["content creation", "ai writer", "writing assistant", "content generator", "ai copywriting", "blog writing"],
+  "ai video tools": ["video editing", "video creation", "ai video editor", "video generator", "multimedia tools", "video production"],
   
-  // Tool Types
-  "tool": ["software", "application", "platform", "solution", "utility", "service", "system", "program"],
-  "editor": ["editing", "modification", "AI editor", "content editor", "image editor", "video editor", "text editor", "photo editor"],
-  "chat": ["conversation", "messaging", "talk", "dialogue", "communication", "chatbot", "ai chat", "conversational AI"],
-  "generator": ["creation", "AI generator", "content generator", "image generator", "text generator", "automatic generation"],
+  // Business and productivity terms
+  "business ai": ["enterprise ai", "ai for business", "business automation", "productivity ai", "commercial ai tools"],
+  "ai automation": ["workflow automation", "process automation", "smart automation", "business automation", "ai workflows"],
+  "productivity tools": ["efficiency tools", "work tools", "business tools", "productivity software", "optimization tools"],
+  "marketing ai": ["ai marketing", "marketing automation", "digital marketing ai", "social media ai", "seo ai tools"],
   
-  // Popular AI Platforms
-  "chatgpt": ["openai", "gpt", "chat gpt", "chatgpt alternative", "gpt-4", "artificial intelligence chat"],
-  "midjourney": ["ai art", "image generation", "midjourney alternative", "ai artwork", "digital art"],
-  "claude": ["anthropic", "claude ai", "ai assistant", "claude alternative"],
-  "gemini": ["google ai", "bard", "google gemini", "gemini ai"],
+  // Creative and content categories
+  "creative ai": ["ai creativity", "creative tools", "artistic ai", "design ai", "creative software", "innovation tools"],
+  "content creation": ["content tools", "media creation", "digital content", "creative production", "content marketing"],
+  "design tools": ["graphic design", "ui design", "web design", "visual design", "creative design", "design software"],
+  "ai art": ["digital art", "ai artwork", "artistic creation", "visual ai", "creative ai", "art generation"],
   
-  // Business Applications
-  "business": ["enterprise", "commercial", "corporate", "professional", "workplace", "company"],
-  "marketing": ["advertising", "promotion", "digital marketing", "content marketing", "social media marketing"],
-  "sales": ["revenue", "conversion", "lead generation", "customer acquisition", "sales automation"],
+  // Technical and development
+  "developer tools": ["coding tools", "programming ai", "development tools", "software development", "api tools", "dev tools"],
+  "machine learning": ["ml tools", "ai models", "neural networks", "deep learning", "artificial intelligence", "data science"],
+  "api": ["integration tools", "developer api", "ai api", "programming interface", "software integration"],
   
-  // Creative Applications
-  "design": ["graphic design", "ui design", "web design", "creative design", "visual design"],
-  "art": ["digital art", "artwork", "creative", "artistic", "illustration"],
-  "music": ["audio", "sound", "composition", "music creation", "audio production"],
-  "video": ["film", "cinema", "video production", "video editing", "multimedia"],
+  // Industry-specific searches
+  "healthcare ai": ["medical ai", "health tools", "clinical ai", "healthcare technology", "medical software"],
+  "education ai": ["learning tools", "educational ai", "teaching tools", "e-learning", "academic tools"],
+  "finance ai": ["financial tools", "fintech ai", "trading ai", "investment tools", "financial analysis"],
+  "legal ai": ["legal tech", "law tools", "legal software", "compliance tools", "legal assistance"],
   
-  // Technical Keywords
-  "api": ["integration", "developer tools", "programming interface", "development"],
-  "automation": ["workflow", "automated", "process automation", "task automation"],
-  "analytics": ["data analysis", "insights", "metrics", "reporting", "statistics"],
+  // Feature-based searches
+  "free": ["no cost", "gratis", "complimentary", "free ai tools", "free software", "zero cost", "open source"],
+  "premium": ["paid", "subscription", "pro", "premium ai", "professional tools", "advanced features"],
+  "real-time": ["live", "instant", "immediate", "real-time ai", "instant processing", "live analysis"],
+  "online": ["web-based", "browser", "cloud", "online ai", "web tools", "internet tools"],
   
-  // Industry-Specific
-  "healthcare": ["medical", "health", "clinical", "patient care", "medical AI"],
-  "education": ["learning", "teaching", "academic", "educational", "e-learning"],
-  "finance": ["financial", "fintech", "banking", "investment", "trading"],
-  "legal": ["law", "legal tech", "compliance", "legal assistance", "jurisprudence"],
+  // User intent keywords
+  "best": ["top", "recommended", "leading", "excellent", "premier", "highest rated", "top-rated"],
+  "how to": ["tutorial", "guide", "instructions", "how to use", "step by step", "learn"],
+  "comparison": ["vs", "versus", "compare", "difference", "evaluation", "review"],
+  "review": ["analysis", "assessment", "rating", "evaluation", "feedback", "opinion"],
   
-  // Social and Communication
-  "social": ["media", "network", "community", "sharing", "communication", "interaction", "platform", "connect"],
-  "multimodal": ["text and image", "multiple formats", "AI multimodal", "cross-modal AI", "vision and language"],
+  // Platform and model specific
+  "openai": ["gpt", "chatgpt", "dalle", "openai tools", "gpt models", "openai api"],
+  "google ai": ["gemini", "bard", "google tools", "google ai platform", "vertex ai"],
+  "anthropic": ["claude", "claude ai", "anthropic tools", "constitutional ai"],
+  "midjourney": ["ai art", "image generation", "midjourney alternative", "art creation"],
+  "stable diffusion": ["image ai", "diffusion model", "ai image creation", "open source ai"],
   
-  // Performance Keywords
-  "fast": ["quick", "rapid", "speedy", "instant", "efficient", "high-performance"],
-  "accurate": ["precise", "reliable", "dependable", "trustworthy", "high-quality"],
-  "easy": ["simple", "user-friendly", "intuitive", "straightforward", "accessible"],
+  // Trending AI concepts
+  "ai agents": ["autonomous ai", "ai assistants", "intelligent agents", "ai automation"],
+  "multimodal": ["vision language", "text image ai", "multi-modal ai", "cross-modal"],
+  "generative ai": ["creative ai", "content generation", "ai creation", "synthetic media"],
+  "custom gpt": ["personalized ai", "custom ai", "gpt builder", "specialized gpt"],
   
-  // Trending AI Terms
-  "llm": ["large language model", "language model", "AI model", "machine learning model"],
-  "gpt": ["generative pre-trained transformer", "transformer model", "neural network"],
-  "stable diffusion": ["image ai", "diffusion model", "ai image creation"],
-  "prompt": ["prompt engineering", "ai prompting", "prompt optimization"],
+  // Performance and quality indicators
+  "verified": ["trusted", "reliable", "validated", "authentic", "certified", "approved"],
+  "curated": ["selected", "handpicked", "chosen", "reviewed", "quality", "premium"],
+  "comprehensive": ["complete", "extensive", "thorough", "full", "all-inclusive"],
+  "professional": ["enterprise", "business-grade", "commercial", "industry-standard"],
+  
+  // Social and sharing
+  "popular": ["trending", "viral", "hot", "in-demand", "widely-used", "favorite"],
+  "recommended": ["suggested", "endorsed", "approved", "trusted", "preferred"],
+  "featured": ["highlighted", "showcased", "promoted", "selected", "premium"],
+  
+  // Geographic and market
+  "global": ["worldwide", "international", "universal", "cross-border", "multi-region"],
+  "enterprise": ["business", "corporate", "commercial", "professional", "industry"],
+  "startup": ["small business", "entrepreneur", "new business", "emerging company"],
+  
+  // Time-sensitive keywords
+  "new": ["latest", "recent", "fresh", "updated", "modern", "current", "newest"],
+  "updated": ["refreshed", "revised", "improved", "enhanced", "current", "latest"],
+  "trending": ["popular", "hot", "viral", "in-demand", "rising", "growing"],
+  
+  // Value propositions
+  "save time": ["efficiency", "productivity", "automation", "streamline", "optimize"],
+  "increase revenue": ["monetize", "profit", "earnings", "income", "financial growth"],
+  "improve quality": ["enhance", "upgrade", "better results", "professional quality"],
+  
+  // Use case specific
+  "content marketing": ["blog writing", "social media", "copywriting", "marketing content"],
+  "video editing": ["video production", "film editing", "multimedia", "video creation"],
+  "data analysis": ["analytics", "insights", "reporting", "business intelligence"],
+  "customer service": ["support", "help desk", "customer care", "service automation"]
 };
