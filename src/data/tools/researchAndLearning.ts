@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Telescope, 
@@ -31,12 +30,12 @@ export const researchAndLearning: Tool[] = [
   },
   {
     icon: Wrench,
-    title: "Engineering GPT Suite",
-    description: "Comprehensive engineering toolkit covering mechanical, electrical, civil, and software engineering with advanced problem-solving capabilities and technical analysis.",
+    title: "Engineering GPT AI Suite",
+    description: "ENGINEERING GPTs by AiWebTools.Ai is a cutting-edge suite of AI-powered tools designed to provide expert-level support across a wide range of engineering disciplines, including Electrical, Mechanical, Civil, and Software Engineering. These tools deliver comprehensive assistance by offering detailed calculations, design recommendations, optimization strategies, and safety protocols tailored to your specific project needs. Whether you're tackling circuit design, structural analysis, fluid dynamics, or software development, ENGINEERING GPTs provide quick, reliable insights and solutions, helping engineers streamline workflows, improve project quality, and ensure compliance with industry standards. With the ability to generate professional reports, schematics, and documentation, these tools empower engineers to solve complex problems efficiently and effectively, saving time and enhancing productivity.",
     emoji: "⚙️",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298678326366271/engineering.webp?ex=683874d9&is=68372359&hm=d8eee6e5bd26c24db971e870a3e570517fe3fafb17ae33f35bcb91674fe9033a&=&format=webp&width=2340&height=1312",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-engineering-_hEePg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:27",
     tags: ["engineering", "technical analysis", "problem solving", "mechanical engineering", "electrical engineering"],
     category: "Research & Learning",
     rating: 4.7,
