@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 
 // Enhanced mapping with your new consolidated structure
@@ -115,76 +114,63 @@ const categoryMapping: Record<string, string> = {
   "Learning Platforms": "Education & Research Tools",
   "Content Detection Tools": "Education & Research Tools",
   
-  // Industry-Specific Solutions
-  "Professional Services": "Industry-Specific Solutions",
-  "Legal Professionals": "Industry-Specific Solutions",
-  "Financial & Trading Tools": "Industry-Specific Solutions",
-  "Finance & Trading": "Industry-Specific Solutions",
-  "Emergency Services": "Industry-Specific Solutions",
-  "Legal & Compliance": "Industry-Specific Solutions",
-  "Robotics Companies": "Industry-Specific Solutions",
+  // INDUSTRY SPECIFIC AI TOOLS - COMPREHENSIVE MAPPING FOR ALL INDUSTRIES
+  "Health & Wellness": "Industry Specific AI Tools",
+  "Health, Wellness & Personal Lifestyle": "Industry Specific AI Tools",
+  "Healthcare Professionals": "Industry Specific AI Tools",
+  "Medical AI Tools": "Industry Specific AI Tools",
+  "Health And Wellness Tools": "Industry Specific AI Tools",
+  "Spirituality & Wellness": "Industry Specific AI Tools",
+  "Personal Services": "Industry Specific AI Tools",
+  "Wellness & Fitness": "Industry Specific AI Tools",
+  "Lifestyle Tools": "Industry Specific AI Tools",
+  "Medical & Healthcare": "Industry Specific AI Tools",
+  "Healthcare & Medicine": "Industry Specific AI Tools",
+  "Health Tools": "Industry Specific AI Tools",
+  "Wellness Tools": "Industry Specific AI Tools",
+  "Medical Tools": "Industry Specific AI Tools",
+  "Health & Medical": "Industry Specific AI Tools",
+  "Healthcare": "Industry Specific AI Tools",
+  "Medicine": "Industry Specific AI Tools",
+  "Medical": "Industry Specific AI Tools",
+  "Wellness": "Industry Specific AI Tools",
+  "Health": "Industry Specific AI Tools",
   
-  // Creative & Entertainment (General & Gaming)
-  "Creative & Entertainment": "Creative & Entertainment (General & Gaming)",
-  "Entertainment & Media": "Creative & Entertainment (General & Gaming)",
-  "Entertainment Tools": "Creative & Entertainment (General & Gaming)",
-  "Creative Platforms": "Creative & Entertainment (General & Gaming)",
-  "Art & Collectibles": "Creative & Entertainment (General & Gaming)",
-  "Game Design & Development": "Creative & Entertainment (General & Gaming)",
-  "Creative Services": "Creative & Entertainment (General & Gaming)",
-  "Creative Suites": "Creative & Entertainment (General & Gaming)",
+  // Legal Industry
+  "Legal Professionals": "Industry Specific AI Tools",
+  "Legal & Compliance": "Industry Specific AI Tools",
+  "Professional Services": "Industry Specific AI Tools",
   
-  // Health, Wellness & Personal Lifestyle - CRITICAL MAPPING FOR ALL HEALTH VARIATIONS
-  "Health & Wellness": "Health, Wellness & Personal Lifestyle",
-  "Health, Wellness & Personal Lifestyle": "Health, Wellness & Personal Lifestyle",
-  "Healthcare Professionals": "Health, Wellness & Personal Lifestyle",
-  "Medical AI Tools": "Health, Wellness & Personal Lifestyle",
-  "Health And Wellness Tools": "Health, Wellness & Personal Lifestyle",
-  "Spirituality & Wellness": "Health, Wellness & Personal Lifestyle",
-  "Personal Services": "Health, Wellness & Personal Lifestyle",
-  "Wellness & Fitness": "Health, Wellness & Personal Lifestyle",
-  "Lifestyle Tools": "Health, Wellness & Personal Lifestyle",
-  "Medical & Healthcare": "Health, Wellness & Personal Lifestyle",
-  "Healthcare & Medicine": "Health, Wellness & Personal Lifestyle",
-  "Health Tools": "Health, Wellness & Personal Lifestyle",
-  "Wellness Tools": "Health, Wellness & Personal Lifestyle",
-  "Medical Tools": "Health, Wellness & Personal Lifestyle",
-  "Health & Medical": "Health, Wellness & Personal Lifestyle",
-  "Healthcare": "Health, Wellness & Personal Lifestyle",
-  "Medicine": "Health, Wellness & Personal Lifestyle",
-  "Medical": "Health, Wellness & Personal Lifestyle",
-  "Wellness": "Health, Wellness & Personal Lifestyle",
-  "Health": "Health, Wellness & Personal Lifestyle",
+  // Creative Industries
+  "Creative & Entertainment": "Industry Specific AI Tools",
+  "Entertainment & Media": "Industry Specific AI Tools",
+  "Entertainment Tools": "Industry Specific AI Tools",
+  "Creative Platforms": "Industry Specific AI Tools",
+  "Art & Collectibles": "Industry Specific AI Tools",
+  "Game Design & Development": "Industry Specific AI Tools",
+  "Creative Services": "Industry Specific AI Tools",
+  "Creative Suites": "Industry Specific AI Tools",
+  "Creative & Entertainment (General & Gaming)": "Industry Specific AI Tools",
   
-  // Historical & Time-Based AI Tools - ENHANCED MAPPING
-  "Time & History": "Historical & Time-Based AI Tools",
-  "Historical & Cultural": "Historical & Time-Based AI Tools",
-  "Time Travel Tools": "Historical & Time-Based AI Tools",
-  "Historical Simulation": "Historical & Time-Based AI Tools",
-  "Mystical & Esoteric": "Historical & Time-Based AI Tools",
-  "Historical Figures": "Historical & Time-Based AI Tools",
-  "Science & Mysticism": "Historical & Time-Based AI Tools",
-  "Archaeology": "Historical & Time-Based AI Tools",
-  "Maritime History": "Historical & Time-Based AI Tools",
-  "Historical News": "Historical & Time-Based AI Tools",
-  "Philosophy & Spirituality": "Historical & Time-Based AI Tools",
-  "Theatrical Writing": "Historical & Time-Based AI Tools",
-  "Historical Medicine": "Historical & Time-Based AI Tools",
-  "Historical & Time-Based AI Tools": "Historical & Time-Based AI Tools",
-  "Historical Photography": "Historical & Time-Based AI Tools",
-  "Historical Demographics": "Historical & Time-Based AI Tools",
-  "Historical Royalty": "Historical & Time-Based AI Tools",
-  "Historical Literature": "Historical & Time-Based AI Tools",
-  "Historical Geography": "Historical & Time-Based AI Tools",
-  "Historical Maps": "Historical & Time-Based AI Tools",
-  "Historical Patterns": "Historical & Time-Based AI Tools",
+  // Emergency & Safety Industries
+  "Emergency Services": "Industry Specific AI Tools",
+  
+  // Financial Industry
+  "Financial & Trading Tools": "Industry Specific AI Tools",
+  "Finance & Trading": "Industry Specific AI Tools",
+  
+  // Technology & Hardware Industries
+  "Robotics Companies": "Industry Specific AI Tools",
+  "Hardware Tools": "Industry Specific AI Tools",
+  "IoT Platforms": "Industry Specific AI Tools",
+  "Smart Devices": "Industry Specific AI Tools",
   
   // Specialized consolidation
-  "Specialized & Niche": "Industry-Specific Solutions",
-  "Specialized Niche Tools": "Industry-Specific Solutions",
-  "Specialized AI Tools": "Industry-Specific Solutions",
-  "Technical & Utility Tools": "Industry-Specific Solutions",
-  "Specialized Tools": "Industry-Specific Solutions"
+  "Specialized & Niche": "Industry Specific AI Tools",
+  "Specialized Niche Tools": "Industry Specific AI Tools",
+  "Specialized AI Tools": "Industry Specific AI Tools",
+  "Technical & Utility Tools": "Industry Specific AI Tools",
+  "Specialized Tools": "Industry Specific AI Tools"
 };
 
 export const consolidateCategory = (category: string): string => {

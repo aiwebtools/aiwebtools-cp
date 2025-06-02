@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -254,11 +253,128 @@ const isHealthRelatedTool = (tool: Tool): boolean => {
   return isHealthByKeyword;
 };
 
+// Helper function to detect ALL industry-specific tools (comprehensive detection)
+const isIndustrySpecificTool = (tool: Tool): boolean => {
+  // Industry-specific keywords covering all major industries
+  const industryKeywords = [
+    // Healthcare & Medical
+    'health', 'medical', 'wellness', 'healthcare', 'medicine', 'doctor', 'physician',
+    'nurse', 'pharmacy', 'pharmaceutical', 'clinic', 'hospital', 'patient', 'therapy',
+    'treatment', 'diagnosis', 'mental health', 'dental', 'veterinary', 'fitness',
+    'nutrition', 'diet', 'exercise', 'lifestyle', 'personal care', 'skincare',
+    'cannabis', 'insurance claims', 'genome', 'pharma', 'drug', 'medication',
+    
+    // Legal
+    'legal', 'law', 'attorney', 'lawyer', 'court', 'judge', 'contract', 'litigation',
+    'compliance', 'legislation', 'defender', 'justice', 'paralegal',
+    
+    // Education
+    'education', 'learning', 'educational', 'academic', 'study', 'course', 'curriculum',
+    'teaching', 'teacher', 'tutor', 'tutoring', 'lesson', 'homework', 'quiz', 'test',
+    'training', 'university', 'college', 'school', 'degree', 'certification',
+    'insect study', 'entomology', 'species research', 'biological studies',
+    
+    // Creative Arts & Design
+    'graphic design', 'design', 'art', 'creative', 'illustration', 'photography',
+    'video editing', 'animation', 'music', 'audio', 'tattoo', 'sketch', 'drawing',
+    'painting', 'sculpture', 'pottery', 'crafts', 'fashion', 'interior design',
+    'architecture', 'typography', 'branding', 'logo', 'visual', 'aesthetic',
+    
+    // Culinary & Food
+    'cooking', 'chef', 'culinary', 'recipe', 'food', 'restaurant', 'kitchen',
+    'baking', 'pastry', 'nutrition', 'mixologist', 'bartender', 'cocktail',
+    'food quality', 'cuisine', 'gastronomy', 'menu', 'dining',
+    
+    // Agriculture & Farming
+    'farming', 'agriculture', 'crop', 'livestock', 'harvest', 'soil', 'irrigation',
+    'greenhouse', 'organic', 'pesticide', 'fertilizer', 'agronomist',
+    
+    // Real Estate & Property
+    'real estate', 'property', 'housing', 'mortgage', 'rental', 'appraisal',
+    'land', 'construction', 'renovation', 'home', 'building',
+    
+    // Finance & Trading
+    'finance', 'trading', 'investment', 'banking', 'insurance', 'accounting',
+    'tax', 'credit', 'loan', 'budget', 'financial planning', 'wealth management',
+    
+    // Transportation & Automotive
+    'automotive', 'car', 'vehicle', 'transportation', 'logistics', 'shipping',
+    'trucking', 'aviation', 'maritime', 'railway',
+    
+    // Manufacturing & Industrial
+    'manufacturing', 'industrial', 'factory', 'production', 'assembly',
+    'quality control', 'supply chain', 'robotics', 'automation',
+    
+    // Energy & Utilities
+    'energy', 'solar', 'renewable', 'electricity', 'oil', 'gas', 'utility',
+    'power generation', 'grid', 'sustainable',
+    
+    // Entertainment & Media
+    'entertainment', 'media', 'broadcasting', 'journalism', 'publishing',
+    'film', 'television', 'radio', 'gaming', 'sports', 'theater',
+    
+    // Science & Research
+    'research', 'laboratory', 'scientific', 'experiment', 'analysis',
+    'archaeology', 'geology', 'biology', 'chemistry', 'physics',
+    'astronomy', 'meteorology', 'environmental science',
+    
+    // Emergency & Safety
+    'emergency', 'firefighter', 'police', 'security', 'safety', 'rescue',
+    'disaster', 'crisis management', 'first aid', 'paramedic',
+    
+    // Retail & E-commerce
+    'retail', 'e-commerce', 'shopping', 'merchandising', 'inventory',
+    'customer service', 'sales', 'marketing', 'advertising',
+    
+    // Tourism & Hospitality
+    'tourism', 'hospitality', 'hotel', 'travel', 'vacation', 'booking',
+    'restaurant', 'catering', 'event planning',
+    
+    // Telecommunications
+    'telecommunications', 'telecom', 'network', 'wireless', 'internet',
+    'communication', 'phone', 'mobile', 'broadband',
+    
+    // Textiles & Fashion
+    'fashion', 'textile', 'clothing', 'apparel', 'fabric', 'garment',
+    'styling', 'trend', 'runway', 'boutique'
+  ];
+  
+  const titleLower = tool.title.toLowerCase();
+  const descriptionLower = tool.description.toLowerCase();
+  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
+  const categoryLower = tool.category?.toLowerCase() || '';
+  
+  // Check if tool matches any industry-specific keywords
+  const matchesIndustryKeywords = industryKeywords.some(keyword => 
+    titleLower.includes(keyword) || 
+    descriptionLower.includes(keyword) || 
+    tagsLower.includes(keyword) ||
+    categoryLower.includes(keyword)
+  );
+  
+  // Also include tools that are already in known industry categories
+  const industryCategories = [
+    'health', 'medical', 'legal', 'education', 'creative', 'entertainment',
+    'professional services', 'emergency', 'finance', 'specialized', 'robotics'
+  ];
+  
+  const isInIndustryCategory = industryCategories.some(category => 
+    categoryLower.includes(category)
+  );
+  
+  if (matchesIndustryKeywords || isInIndustryCategory) {
+    console.log(`🏭 INDUSTRY: Detected industry-specific tool: ${tool.title}`);
+    return true;
+  }
+  
+  return false;
+};
+
 // Build cache once for instant category filtering
 const buildToolsCache = (tools: Tool[]) => {
   // Force rebuild if cache exists but we need to refresh
   if (cacheBuilt) {
-    console.log('🔄 Forcing cache rebuild for health category consolidation...');
+    console.log('🔄 Forcing cache rebuild for industry category consolidation...');
     toolsCacheByMainCategory.clear();
     cacheBuilt = false;
   }
@@ -276,40 +392,10 @@ const buildToolsCache = (tools: Tool[]) => {
   // Pre-process chat/assistant tools once
   const chatRelatedTools = tools.filter(tool => isAIChatAssistantTool(tool));
   
-  // Pre-process ALL health tools once - FORCE EVERYTHING INTO ONE CATEGORY
-  const healthRelatedTools = tools.filter(tool => {
-    const isHealthTool = isHealthRelatedTool(tool);
-    // Force all health tools to have the unified category
-    if (isHealthTool && tool.category !== "Health, Wellness & Personal Lifestyle") {
-      console.log(`🔄 Force updating health tool category: ${tool.title} from "${tool.category}" to "Health, Wellness & Personal Lifestyle"`);
-      tool.category = "Health, Wellness & Personal Lifestyle";
-    }
-    return isHealthTool;
-  });
-  
-  // CRITICAL: Also check for any tools with old health categories and force them
-  const forceHealthCategoryUpdate = tools.filter(tool => {
-    const hasOldHealthCategory = tool.category === "Health & Wellness" || 
-                                 tool.category === "Healthcare Professionals" ||
-                                 tool.category === "Medical AI Tools" ||
-                                 tool.category?.toLowerCase().includes('health') ||
-                                 tool.category?.toLowerCase().includes('medical') ||
-                                 tool.category?.toLowerCase().includes('wellness');
-    
-    if (hasOldHealthCategory && tool.category !== "Health, Wellness & Personal Lifestyle") {
-      console.log(`🔄 FORCE CATEGORY UPDATE: ${tool.title} from "${tool.category}" to "Health, Wellness & Personal Lifestyle"`);
-      tool.category = "Health, Wellness & Personal Lifestyle";
-      return true;
-    }
-    return false;
-  });
-  
-  // Combine health tools from both detection methods
-  const allHealthTools = [...healthRelatedTools];
-  forceHealthCategoryUpdate.forEach(tool => {
-    if (!allHealthTools.find(t => t.title === tool.title)) {
-      allHealthTools.push(tool);
-    }
+  // Pre-process ALL industry-specific tools once - COMPREHENSIVE DETECTION
+  const industrySpecificTools = tools.filter(tool => {
+    const isIndustryTool = isIndustrySpecificTool(tool);
+    return isIndustryTool;
   });
   
   // Pre-process STRICTLY historical tools (excluding education tools and major LLMs)
@@ -331,8 +417,7 @@ const buildToolsCache = (tools: Tool[]) => {
   console.log(`🕰️ Strict historical tools found: ${strictHistoricalTools.length}`);
   console.log(`✍️ Content creation tools found: ${contentCreationTools.length}`);
   console.log(`📊 Data analytics tools found: ${dataAnalyticsTools.length}`);
-  console.log(`🏥 UNIFIED Health tools found: ${allHealthTools.length}`);
-  console.log(`🔄 Forced health category updates: ${forceHealthCategoryUpdate.length}`);
+  console.log(`🏭 INDUSTRY SPECIFIC tools found: ${industrySpecificTools.length}`);
   
   mainCategories.forEach(mainCat => {
     let categoryTools: Tool[] = [];
@@ -345,7 +430,6 @@ const buildToolsCache = (tools: Tool[]) => {
       categoryTools = [...tools]; // Show ALL tools without any filtering
     }
     else if (mainCat.name === "AI CHAT & ASSISTANTS") {
-      // ... keep existing code (AI chat handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -361,7 +445,6 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "CONTENT CREATION & WRITING") {
-      // ... keep existing code (content creation handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -375,7 +458,6 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "DATA & ANALYTICS AI TOOLS") {
-      // ... keep existing code (data analytics handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -390,7 +472,6 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "EDUCATION & LEARNING") {
-      // ... keep existing code (education handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -409,15 +490,25 @@ const buildToolsCache = (tools: Tool[]) => {
         index === self.findIndex(t => t.title === tool.title)
       );
     }
-    else if (mainCat.name === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
-      // CRITICAL: ONLY ONE UNIFIED HEALTH CATEGORY - USE ALL HEALTH TOOLS
-      categoryTools = [...allHealthTools]; // Use ALL the pre-processed health tools
+    else if (mainCat.name === "INDUSTRY SPECIFIC AI TOOLS") {
+      // COMPREHENSIVE INDUSTRY TOOLS CATEGORY - INCLUDE ALL INDUSTRY-SPECIFIC TOOLS
+      const subcategoryTools = tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCat.subcategories.some(subcat => 
+          isSimilarCategory(tool.category, subcat)
+        );
+      });
       
-      console.log(`🏥 FINAL UNIFIED Health category tools: ${categoryTools.length}`);
-      console.log(`📝 Sample health tools: ${categoryTools.slice(0, 5).map(t => t.title).join(', ')}`);
+      // Combine subcategory tools with comprehensive industry detection
+      const allIndustryTools = [...subcategoryTools, ...industrySpecificTools];
+      categoryTools = allIndustryTools.filter((tool, index, self) => 
+        index === self.findIndex(t => t.title === tool.title)
+      );
+      
+      console.log(`🏭 FINAL Industry Specific category tools: ${categoryTools.length}`);
+      console.log(`📝 Sample industry tools: ${categoryTools.slice(0, 5).map(t => t.title).join(', ')}`);
     }
     else if (mainCat.name === "HISTORICAL & TIME-BASED AI TOOLS") {
-      // ... keep existing code (historical handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -431,7 +522,6 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "VIDEO & MULTIMEDIA") {
-      // ... keep existing code (video handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
