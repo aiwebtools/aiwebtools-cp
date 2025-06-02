@@ -47,7 +47,7 @@ const buildToolsCache = (tools: Tool[]) => {
       categoryTools = [...aiWebToolsGPTs];
     } 
     else if (mainCat.name === "ALL AI TOOLS") {
-      categoryTools = [...aiWebToolsGPTs, ...tools.filter(tool => !isAIWebToolsGPT(tool))];
+      categoryTools = [...tools]; // Show ALL tools without any filtering
     }
     else if (mainCat.name === "AI CHAT & ASSISTANTS") {
       // Combine subcategory matches with content analysis
@@ -58,7 +58,7 @@ const buildToolsCache = (tools: Tool[]) => {
         );
       });
       
-      // Merge and deduplicate
+      // Merge and deduplicate by title only
       const allChatTools = [...subcategoryTools, ...chatRelatedTools];
       categoryTools = allChatTools.filter((tool, index, self) => 
         index === self.findIndex(t => t.title === tool.title)
@@ -119,12 +119,21 @@ const buildToolsCache = (tools: Tool[]) => {
       });
     }
     
+    // Store the exact tools count for this category
     toolsCacheByMainCategory.set(mainCat.name, categoryTools);
+    console.log(`📊 Category "${mainCat.name}": ${categoryTools.length} tools cached`);
   });
   
   cacheBuilt = true;
   const endTime = performance.now();
   console.log(`✅ Tools cache built in ${(endTime - startTime).toFixed(2)}ms for instant category access`);
+  
+  // Debug log to verify cache integrity
+  console.log('🔍 Cache verification:');
+  mainCategories.forEach(mainCat => {
+    const count = toolsCacheByMainCategory.get(mainCat.name)?.length || 0;
+    console.log(`  ${mainCat.name}: ${count} tools`);
+  });
 };
 
 // Helper function to detect AI Web Tools GPTs
@@ -275,6 +284,7 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
     mainCategoryCounts[mainCat.name] = cachedTools.length;
   });
   
+  console.log('📊 Main category counts:', mainCategoryCounts);
   return mainCategoryCounts;
 };
 
@@ -284,11 +294,12 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   // Build cache if not built yet
   buildToolsCache(tools);
   
-  // Return cached results instantly
+  // Return cached results instantly - these are the EXACT same tools used for counting
   const cachedTools = toolsCacheByMainCategory.get(mainCategoryName);
   
   if (cachedTools) {
-    console.log(`✅ Instant cache hit! Found ${cachedTools.length} tools for "${mainCategoryName}"`);
+    console.log(`✅ Instant cache hit! Returning ${cachedTools.length} tools for "${mainCategoryName}"`);
+    console.log(`🔍 First 5 tools: ${cachedTools.slice(0, 5).map(t => t.title).join(', ')}`);
     return cachedTools;
   }
   

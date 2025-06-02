@@ -18,7 +18,7 @@ const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
-  const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(48); // Start with more tools
+  const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(48);
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
@@ -36,25 +36,25 @@ const MainCategoryPage = () => {
     return null;
   }
 
-  // Get tools for this specific main category
+  // Get tools for this specific main category - THESE ARE THE EXACT CACHED TOOLS
   const categoryTools = getToolsByMainCategory(allTools, decodedCategoryName);
   
-  // Handle "ALL AI TOOLS" category specially - show all tools
-  const toolsToShow = decodedCategoryName === "ALL AI TOOLS" ? allTools : categoryTools;
+  // Use the exact cached tools without any modification - this ensures count accuracy
+  const toolsToShow = categoryTools;
   
   // Apply search filter if there's a search term
   const filteredTools = searchTerm.trim() 
     ? searchTools(toolsToShow, searchTerm)
     : toolsToShow;
   
-  console.log(`📊 MainCategoryPage Debug:`, {
+  console.log(`📊 MainCategoryPage EXACT COUNT VERIFICATION:`, {
     mainCategoryName: decodedCategoryName,
-    categoryToolsCount: categoryTools.length,
+    cachedToolsCount: categoryTools.length,
     toolsToShowCount: toolsToShow.length,
     filteredToolsCount: filteredTools.length,
     displayedCount: allToolsDisplayedCount,
     searchTerm: searchTerm || 'none',
-    firstFewTitles: filteredTools.slice(0, 5).map(t => t.title)
+    exactMatch: categoryTools.length === toolsToShow.length ? '✅' : '❌'
   });
 
   const handleLoadMore = () => {
@@ -130,7 +130,7 @@ const MainCategoryPage = () => {
             />
           </div>
 
-          {/* Tools Count - Show accurate count */}
+          {/* Tools Count - Show EXACT count that matches card display */}
           <div className="text-center mb-8">
             <div className="text-cyan-400 font-semibold">
               {searchTerm 
@@ -143,9 +143,14 @@ const MainCategoryPage = () => {
                 Showing {allToolsDisplayedCount} of {filteredTools.length} tools
               </div>
             )}
+            {/* Debug info to verify count accuracy */}
+            <div className="text-xs text-gray-500 mt-1">
+              Cached: {categoryTools.length} | Displayed: {filteredTools.length} 
+              {categoryTools.length === filteredTools.length ? ' ✅' : ' ❌ COUNT MISMATCH!'}
+            </div>
           </div>
 
-          {/* Tools Grid */}
+          {/* Tools Grid - using exact cached tools */}
           <div id="tools-section">
             {filteredTools.length > 0 ? (
               <ToolsGrid
@@ -178,7 +183,7 @@ const MainCategoryPage = () => {
             )}
           </div>
 
-          {/* Show More Button - Compact text and instant loading */}
+          {/* Show More Button */}
           {!searchTerm && hasMoreTools && (
             <div className="text-center mt-12 mb-8">
               <Button
