@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   FileText, 
@@ -18,6 +17,18 @@ import {
 } from "lucide-react";
 
 export const businessAndProductivity: Tool[] = [
+  {
+    icon: Calculator,
+    title: "Financial Calculator Pro",
+    description: "Advanced AI-powered financial calculator for complex calculations, investment analysis, and financial planning with step-by-step explanations.",
+    emoji: "🧮",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools",
+    tags: ["financial calculator", "investment analysis", "financial planning", "calculations"],
+    category: "Business & Productivity",
+    rating: 4.5,
+    totalVotes: 2100
+  },
   {
     icon: FileText,
     title: "QUICK PPTx Maker GPT",
@@ -174,7 +185,7 @@ export const businessAndProductivity: Tool[] = [
     rating: 3.9,
     totalVotes: 1234
   },
-    {
+  {
     icon: Zap,
     title: "Zapier",
     description: "Connect your apps and automate workflows.",
