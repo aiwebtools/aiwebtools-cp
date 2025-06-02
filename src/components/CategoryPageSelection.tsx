@@ -13,8 +13,9 @@ const CategoryPageSelection = () => {
   const mainCategoryCounts = getMainCategoriesWithCounts(allTools);
 
   const handleMainCategoryClick = (mainCategoryName: string) => {
-    // Immediate navigation without any delays
-    navigate(`/main-category/${encodeURIComponent(mainCategoryName)}`);
+    // Instant navigation with no processing delays
+    const encodedName = encodeURIComponent(mainCategoryName);
+    navigate(`/main-category/${encodedName}`);
   };
 
   return (
@@ -37,7 +38,7 @@ const CategoryPageSelection = () => {
                 key={mainCat.name}
                 onClick={() => handleMainCategoryClick(mainCat.name)}
                 variant="outline"
-                className={`group relative overflow-hidden transition-all duration-200 transform hover:scale-105 border h-auto py-6 px-4 min-w-0 ${
+                className={`group relative overflow-hidden transition-all duration-150 transform hover:scale-105 border h-auto py-6 px-4 min-w-0 ${
                   mainCat.name === "ALL AI TOOLS"
                     ? "bg-gradient-to-br from-yellow-600/30 to-orange-600/30 border-yellow-400/50 text-yellow-200 hover:from-yellow-600/40 hover:to-orange-600/40 hover:text-yellow-100 hover:shadow-xl hover:border-yellow-300/60"
                     : "bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-gray-600/50 text-gray-200 hover:from-cyan-600/20 hover:to-blue-600/20 hover:text-white hover:shadow-lg hover:border-cyan-400/50"

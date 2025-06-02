@@ -13,8 +13,9 @@ const MainCategoriesView = ({ mainCategoryCounts, onMainCategoryClick }: MainCat
   const navigate = useNavigate();
 
   const handleCategoryClick = (mainCategoryName: string) => {
-    // Immediate navigation without delays
-    navigate(`/main-category/${encodeURIComponent(mainCategoryName)}`);
+    // Instant navigation with no delays
+    const encodedName = encodeURIComponent(mainCategoryName);
+    navigate(`/main-category/${encodedName}`);
     onMainCategoryClick(mainCategoryName);
   };
 
@@ -30,7 +31,7 @@ const MainCategoriesView = ({ mainCategoryCounts, onMainCategoryClick }: MainCat
             onClick={() => handleCategoryClick(mainCat.name)}
             variant="outline"
             size="sm"
-            className="group relative overflow-hidden transition-all duration-200 transform hover:scale-105 text-xs border h-auto py-4 px-4 min-w-0 bg-gradient-to-br from-purple-600/20 to-blue-600/20 border-purple-500/30 text-gray-200 hover:from-purple-600/30 hover:to-blue-600/30 hover:text-white hover:shadow-md hover:border-purple-400/50"
+            className="group relative overflow-hidden transition-all duration-150 transform hover:scale-105 text-xs border h-auto py-4 px-4 min-w-0 bg-gradient-to-br from-purple-600/20 to-blue-600/20 border-purple-500/30 text-gray-200 hover:from-purple-600/30 hover:to-blue-600/30 hover:text-white hover:shadow-md hover:border-purple-400/50"
           >
             <div className="flex flex-col items-center space-y-2 w-full min-w-0">
               <span className="text-xl flex-shrink-0">{mainCat.emoji}</span>
