@@ -1,4 +1,3 @@
-
 import { useState, useCallback, useMemo } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -62,8 +61,14 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
       setIsOpen(false);
       onSearchChange("");
       setDisplayedCount(50);
+    } else if (e.key === 'Enter') {
+      // On Enter, ensure results are shown if there's a search term
+      if (searchTerm.trim() && searchResults.length > 0) {
+        setIsOpen(true);
+        setDisplayedCount(50);
+      }
     }
-  }, [onSearchChange]);
+  }, [onSearchChange, searchTerm, searchResults.length]);
 
   const handleInputBlur = useCallback(() => {
     setTimeout(() => setIsOpen(false), 200);

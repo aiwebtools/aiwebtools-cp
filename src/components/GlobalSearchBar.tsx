@@ -71,6 +71,20 @@ const GlobalSearchBar = () => {
     setDisplayedCount(30);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setIsOpen(false);
+      setSearchTerm("");
+      setDisplayedCount(30);
+    } else if (e.key === 'Enter') {
+      // On Enter, ensure results are shown if there's a search term
+      if (searchTerm.trim() && searchResults.length > 0) {
+        setIsOpen(true);
+        setDisplayedCount(30);
+      }
+    }
+  };
+
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
@@ -91,6 +105,7 @@ const GlobalSearchBar = () => {
             placeholder={`Search ${toolStats.marketing} AI tools...`}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleKeyDown}
             className="pl-10 pr-10 bg-black/80 border-cyan-500/50 text-cyan-100 placeholder-cyan-400/70 focus:border-cyan-400 focus:ring-cyan-400/30 rounded-lg shadow-lg shadow-cyan-500/10"
           />
           {searchTerm && (

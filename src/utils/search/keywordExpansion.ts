@@ -29,7 +29,6 @@ const typoCorrection: Record<string, string> = {
   // New common misspellings
   "colege": "college",
   "collge": "college",
-  "colege": "college",
   "collega": "college",
   "univercity": "university",
   "universty": "university",
@@ -42,7 +41,6 @@ const typoCorrection: Record<string, string> = {
   "busines": "business",
   "busness": "business",
   "managment": "management",
-  "managment": "management",
   "manegement": "management",
   "devlopment": "development",
   "developement": "development",
@@ -50,7 +48,6 @@ const typoCorrection: Record<string, string> = {
   "programing": "programming",
   "programmin": "programming",
   "progaming": "programming",
-  "artifical": "artificial",
   "artifical": "artificial",
   "artficial": "artificial",
   "inteligence": "intelligence",
