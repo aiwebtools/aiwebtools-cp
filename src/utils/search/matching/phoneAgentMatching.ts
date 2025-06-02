@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 
 export const matchPhoneAgents = (tool: Tool, searchTerm: string): boolean => {
@@ -10,11 +11,12 @@ export const matchPhoneAgents = (tool: Tool, searchTerm: string): boolean => {
   if (lowerSearchTerm.includes('phone') || lowerSearchTerm.includes('call') || 
       lowerSearchTerm.includes('telephone') || lowerSearchTerm.includes('voice agent') ||
       lowerSearchTerm.includes('phone agent') || lowerSearchTerm.includes('call agent') ||
-      lowerSearchTerm.includes('phonecall')) {
+      lowerSearchTerm.includes('phonecall') || lowerSearchTerm.includes('nucleus')) {
     
-    // Priority phone/call agent tools
+    // Priority phone/call agent tools - EXACT MATCHES
     const priorityPhoneAgents = [
       'nucleus ai inbound call agents platform',
+      'nucleus ai',
       'nucleus',
       'call agent',
       'phone agent',
@@ -22,10 +24,20 @@ export const matchPhoneAgents = (tool: Tool, searchTerm: string): boolean => {
       'call center',
       'inbound',
       'outbound',
-      'telephone'
+      'telephone',
+      'phone automation',
+      'call automation',
+      'voice ai',
+      'call ai',
+      'phone ai'
     ];
     
-    if (priorityPhoneAgents.some(agent => lowerTitle.includes(agent) || lowerDescription.includes(agent))) {
+    // Check for exact priority matches first
+    if (priorityPhoneAgents.some(agent => 
+        lowerTitle.includes(agent) || 
+        lowerDescription.includes(agent) ||
+        lowerTags.some(tag => tag.includes(agent))
+    )) {
       return true;
     }
     
@@ -35,7 +47,7 @@ export const matchPhoneAgents = (tool: Tool, searchTerm: string): boolean => {
         lowerTitle.includes('voice') || lowerDescription.includes('voice') ||
         lowerTitle.includes('telephone') || lowerDescription.includes('telephone') ||
         lowerCategory.includes('phone') || lowerCategory.includes('call') ||
-        lowerTags.some(tag => tag.includes('phone') || tag.includes('call') || tag.includes('voice'))) {
+        lowerTags.some(tag => tag.includes('phone') || tag.includes('call') || tag.includes('voice') || tag.includes('nucleus'))) {
       return true;
     }
   }
@@ -55,25 +67,41 @@ export const scorePhoneAgents = (tool: Tool, searchTerm: string): number => {
   if (lowerSearchTerm.includes('phone') || lowerSearchTerm.includes('call') || 
       lowerSearchTerm.includes('telephone') || lowerSearchTerm.includes('voice agent') ||
       lowerSearchTerm.includes('phone agent') || lowerSearchTerm.includes('call agent') ||
-      lowerSearchTerm.includes('phonecall')) {
+      lowerSearchTerm.includes('phonecall') || lowerSearchTerm.includes('nucleus')) {
     
-    // Top priority phone/call agent tools
-    if (lowerTitle.includes('nucleus ai inbound call agents platform') || lowerTitle.includes('nucleus')) {
-      score += 3000; // Highest priority for Nucleus
+    // HIGHEST PRIORITY: Nucleus AI
+    if (lowerTitle.includes('nucleus ai inbound call agents platform') || 
+        lowerTitle.includes('nucleus ai') || 
+        lowerTitle.includes('nucleus')) {
+      score += 5000; // Highest priority for Nucleus
     }
     
-    // Other phone agent specific matches
+    // High priority phone agent specific matches
     if (lowerTitle.includes('call agent') || lowerTitle.includes('phone agent')) {
-      score += 2500;
+      score += 4500;
     }
     if (lowerTitle.includes('voice agent')) {
-      score += 2400;
+      score += 4400;
     }
-    if (lowerTitle.includes('call center')) {
-      score += 2300;
+    if (lowerTitle.includes('call center') || lowerTitle.includes('call automation') || lowerTitle.includes('phone automation')) {
+      score += 4300;
     }
     if (lowerTitle.includes('inbound') || lowerTitle.includes('outbound')) {
-      score += 2200;
+      score += 4200;
+    }
+    
+    // Tag-based scoring for phone agents
+    if (lowerTags.some(tag => tag.includes('nucleus'))) {
+      score += 4800;
+    }
+    if (lowerTags.some(tag => tag.includes('call agent') || tag.includes('phone agent'))) {
+      score += 4000;
+    }
+    if (lowerTags.some(tag => tag.includes('voice agent'))) {
+      score += 3900;
+    }
+    if (lowerTags.some(tag => tag.includes('call center') || tag.includes('inbound calls') || tag.includes('phone system'))) {
+      score += 3800;
     }
     
     // General phone/call matching
@@ -100,9 +128,12 @@ export const scorePhoneAgents = (tool: Tool, searchTerm: string): number => {
     if (lowerDescription.includes('voice')) {
       score += 1300;
     }
+    if (lowerDescription.includes('nucleus')) {
+      score += 2000;
+    }
     
-    // Category and tags matching
-    if (lowerCategory.includes('phone') || lowerCategory.includes('call')) {
+    // Category and general tags matching
+    if (lowerCategory.includes('phone') || lowerCategory.includes('call') || lowerCategory.includes('communication')) {
       score += 1600;
     }
     if (lowerTags.some(tag => tag.includes('phone') || tag.includes('call') || tag.includes('voice'))) {
