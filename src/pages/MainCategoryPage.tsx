@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import { allTools } from "@/data/toolsData";
 import { getToolsByMainCategory } from "@/utils/categoryUtils";
 import { mainCategories } from "@/utils/mainCategoryMapping";
-import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import { searchTools } from "@/utils/searchUtils";
 
 const MainCategoryPage = () => {
@@ -20,7 +19,6 @@ const MainCategoryPage = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(24);
-  const [isLoading, setIsLoading] = useState(false);
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
@@ -60,10 +58,10 @@ const MainCategoryPage = () => {
   });
 
   const handleLoadMore = () => {
-    if (isLoading || allToolsDisplayedCount >= filteredTools.length) return;
+    if (allToolsDisplayedCount >= filteredTools.length) return;
     
-    // INSTANT loading - no artificial delays
-    setAllToolsDisplayedCount(prev => Math.min(prev + 24, filteredTools.length));
+    // Load more tools instantly - increased batch size for better performance
+    setAllToolsDisplayedCount(prev => Math.min(prev + 48, filteredTools.length));
   };
 
   const handleSearchChange = (value: string) => {
@@ -73,14 +71,33 @@ const MainCategoryPage = () => {
 
   const hasMoreTools = allToolsDisplayedCount < filteredTools.length;
 
-  useInfiniteScroll({
-    isLoading,
-    showLoadMoreButton: false,
-    displayedCount: allToolsDisplayedCount,
-    totalTools: filteredTools.length,
-    onLoadMore: handleLoadMore,
-    searchTerm: searchTerm
-  });
+  // Simple scroll listener for infinite scroll - optimized for performance
+  useEffect(() => {
+    if (searchTerm) return; // Disable infinite scroll during search
+    
+    let ticking = false;
+    
+    const handleScroll = () => {
+      if (!ticking && hasMoreTools) {
+        requestAnimationFrame(() => {
+          const scrollTop = window.pageYOffset;
+          const windowHeight = window.innerHeight;
+          const documentHeight = document.documentElement.scrollHeight;
+          
+          // Trigger load more when 1000px from bottom
+          if (scrollTop + windowHeight >= documentHeight - 1000) {
+            handleLoadMore();
+          }
+          
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [hasMoreTools, searchTerm]);
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -144,7 +161,7 @@ const MainCategoryPage = () => {
                 searchTerm={searchTerm}
                 onLoadMore={handleLoadMore}
                 hasInfiniteScroll={true}
-                isLoading={isLoading}
+                isLoading={false}
               />
             ) : (
               <div className="text-center py-16">
@@ -167,13 +184,13 @@ const MainCategoryPage = () => {
             )}
           </div>
 
-          {/* Show More Button for non-search scenarios - OPTIMIZED */}
+          {/* Show More Button - Only show for non-search and when there are more tools */}
           {!searchTerm && hasMoreTools && (
             <div className="text-center mt-12 mb-8">
               <Button
                 onClick={handleLoadMore}
                 size="lg"
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-6 py-3 rounded-xl text-sm sm:text-base shadow-lg hover:shadow-cyan-500/25 transition-all duration-200 transform hover:scale-105 max-w-full"
+                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-6 py-3 rounded-xl text-sm sm:text-base shadow-lg hover:shadow-cyan-500/25 transition-all duration-200 transform hover:scale-105"
               >
                 🚀 Show More Tools
               </Button>
