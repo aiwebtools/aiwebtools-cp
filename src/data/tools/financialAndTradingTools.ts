@@ -16,6 +16,18 @@ import {
 
 export const financialAndTradingTools: Tool[] = [
   {
+    icon: Calculator,
+    title: "Financial Calculator Pro",
+    description: "Advanced AI-powered financial calculator for complex calculations, investment analysis, and financial planning with step-by-step explanations.",
+    emoji: "🧮",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools",
+    tags: ["financial calculator", "investment analysis", "financial planning", "calculations"],
+    category: "Financial & Trading Tools",
+    rating: 4.5,
+    totalVotes: 2100
+  },
+  {
     icon: DollarSign,
     title: "FinChat.io",
     description: "AI platform for financial investors and stock traders with ChatGPT-based capabilities. Provides verified data on over 50,000 public companies for informed market decisions.",
