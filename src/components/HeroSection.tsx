@@ -95,23 +95,19 @@ const HeroSection = () => {
           </span>
         </button>
 
-        {/* Stats - updated with accurate count */}
-        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
+        {/* Stats - updated with new verbiage */}
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
           <div className="text-center">
             <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{toolStats.marketing}</div>
-            <div className="text-cyan-200 text-sm">AI Tools</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{toolStats.categories}+</div>
-            <div className="text-cyan-200 text-sm">Categories</div>
+            <div className="text-cyan-200 text-sm">AI TOOLS</div>
           </div>
           <div className="text-center">
             <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">100%</div>
-            <div className="text-cyan-200 text-sm">Free Access</div>
+            <div className="text-cyan-200 text-sm">Free AI Resource</div>
           </div>
           <div className="text-center">
             <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">24/7</div>
-            <div className="text-cyan-200 text-sm">Available</div>
+            <div className="text-cyan-200 text-sm">Availability</div>
           </div>
         </div>
       </div>
