@@ -7,6 +7,18 @@ import {
 
 export const aiFinanceTools: Tool[] = [
   {
+    icon: Calculator,
+    title: "Financial Calculator Pro",
+    description: "Advanced AI-powered financial calculator for complex calculations, investment analysis, and financial planning with step-by-step explanations.",
+    emoji: "🧮",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools",
+    tags: ["financial calculator", "investment analysis", "financial planning", "calculations"],
+    category: "Professional Services",
+    rating: 4.5,
+    totalVotes: 2100
+  },
+  {
     icon: TrendingUp,
     title: "Kensho",
     description: "AI analytics platform for financial markets providing real-time insights and predictive analytics for investment decisions.",
@@ -29,18 +41,6 @@ export const aiFinanceTools: Tool[] = [
     category: "Professional Services",
     rating: 4.5,
     totalVotes: 1987
-  },
-  {
-    icon: Calculator,
-    title: "Yodlee",
-    description: "AI-driven financial data aggregation and analytics platform for personal finance management and insights.",
-    emoji: "🧮",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://www.yodlee.com/?via=aiwebtools",
-    tags: ["financial data", "personal finance", "aggregation", "analytics"],
-    category: "Professional Services",
-    rating: 4.3,
-    totalVotes: 1654
   },
   {
     icon: Wallet,
