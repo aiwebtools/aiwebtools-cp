@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   BookOpen, 
@@ -12,7 +13,8 @@ import {
   MessageSquare,
   Star,
   Clock,
-  Bug
+  Bug,
+  Apple
 } from "lucide-react";
 
 export const educationAndLearning: Tool[] = [
@@ -190,5 +192,17 @@ export const educationAndLearning: Tool[] = [
     category: "Education & Learning",
     rating: 4.6,
     totalVotes: 3456
+  },
+  {
+    icon: Apple,
+    title: "FRUIT NUTRITION GUIDE",
+    description: "Comprehensive fruit nutrition guide providing detailed nutritional information, health benefits, and dietary recommendations for various fruits. Perfect for nutritionists, health enthusiasts, and anyone looking to make informed dietary choices.",
+    emoji: "🍎",
+    color: "from-green-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-683dda93599481919fc3736a1c8ebc89-fruit-nutrition-guide-gpt",
+    tags: ["nutrition", "fruits", "health", "diet", "wellness", "nutritional analysis"],
+    category: "Education & Learning",
+    rating: 4.5,
+    totalVotes: 2987
   }
 ];
