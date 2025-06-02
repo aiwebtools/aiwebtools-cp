@@ -19,6 +19,32 @@ const isAIWebToolsGPT = (tool: Tool): boolean => {
          tool.tags?.some(tag => tag.toLowerCase().includes('aiwebtools'));
 };
 
+// Helper function to detect AI Chat & Assistant tools with enhanced matching
+const isAIChatAssistantTool = (tool: Tool): boolean => {
+  const chatKeywords = [
+    'chat', 'chatbot', 'assistant', 'conversational ai', 'ai chat', 'dialogue',
+    'conversation', 'virtual assistant', 'personal ai', 'ai companion', 'smart assistant',
+    'digital assistant', 'voice assistant', 'text assistant', 'ai support', 'chatgpt',
+    'claude', 'gemini', 'bard', 'ai helper', 'task assistant', 'productivity assistant',
+    'ai bot', 'smart bot', 'intelligent assistant', 'language model', 'llm', 'gpt',
+    'ai communication', 'messaging ai', 'interactive ai', 'natural language ai',
+    'ai interaction', 'response ai', 'query ai', 'question answering', 'ai guidance',
+    'ai advisor', 'consultation ai', 'recommendation ai', 'planning ai', 'strategy ai'
+  ];
+  
+  const titleLower = tool.title.toLowerCase();
+  const descriptionLower = tool.description.toLowerCase();
+  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
+  const categoryLower = tool.category?.toLowerCase() || '';
+  
+  return chatKeywords.some(keyword => 
+    titleLower.includes(keyword) || 
+    descriptionLower.includes(keyword) || 
+    tagsLower.includes(keyword) ||
+    categoryLower.includes(keyword)
+  );
+};
+
 // Helper function to detect health-related tools
 const isHealthRelatedTool = (tool: Tool): boolean => {
   const healthKeywords = [
@@ -131,6 +157,34 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
     if (mainCat.name === "AI WEB TOOLS ORIGINALS") {
       count = tools.filter(tool => isAIWebToolsGPT(tool)).length;
     } 
+    // Enhanced handling for AI CHAT & ASSISTANTS
+    else if (mainCat.name === "AI CHAT & ASSISTANTS") {
+      // Get tools that match subcategories
+      const subcategoryTools = tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCat.subcategories.some(subcat => 
+          isSimilarCategory(tool.category, subcat)
+        );
+      });
+      
+      // Also get tools that are chat/assistant-related by content analysis
+      const chatRelatedTools = tools.filter(tool => isAIChatAssistantTool(tool));
+      
+      // Combine and deduplicate
+      const allChatTools = [...subcategoryTools, ...chatRelatedTools];
+      const uniqueChatTools = allChatTools.filter((tool, index, self) => 
+        index === self.findIndex(t => t.title === tool.title)
+      );
+      
+      count = uniqueChatTools.length;
+      
+      console.log(`🤖 AI CHAT & ASSISTANTS enhanced counting:`, {
+        subcategoryMatched: subcategoryTools.length,
+        contentMatched: chatRelatedTools.length,
+        uniqueTotal: uniqueChatTools.length,
+        sampleTitles: uniqueChatTools.slice(0, 10).map(t => t.title)
+      });
+    }
     // Special enhanced handling for Health, Wellness & Personal Lifestyle
     else if (mainCat.name === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
       // Get tools that match subcategories
@@ -215,7 +269,37 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     return allToolsWithPriority;
   }
   
-  // Special enhanced handling for HEALTH, WELLNESS & PERSONAL LIFESTYLE
+  // Enhanced handling for AI CHAT & ASSISTANTS
+  if (mainCategoryName === "AI CHAT & ASSISTANTS") {
+    console.log(`🤖 AI CHAT & ASSISTANTS requested - using enhanced matching`);
+    
+    const mainCategory = mainCategories.find(cat => cat.name === mainCategoryName);
+    if (!mainCategory) return [];
+    
+    // Get tools that match subcategories
+    const subcategoryTools = tools.filter(tool => {
+      if (!tool.category) return false;
+      return mainCategory.subcategories.some(subcat => 
+        isSimilarCategory(tool.category, subcat)
+      );
+    });
+    
+    // Also get tools that are chat/assistant-related by content analysis
+    const chatRelatedTools = tools.filter(tool => isAIChatAssistantTool(tool));
+    
+    // Combine and deduplicate
+    const allChatTools = [...subcategoryTools, ...chatRelatedTools];
+    const uniqueChatTools = allChatTools.filter((tool, index, self) => 
+      index === self.findIndex(t => t.title === tool.title)
+    );
+    
+    console.log(`🤖 Found ${subcategoryTools.length} subcategory-matched tools, ${chatRelatedTools.length} content-matched tools, ${uniqueChatTools.length} total unique chat tools`);
+    console.log(`🤖 Sample chat tools found:`, uniqueChatTools.slice(0, 10).map(t => ({ title: t.title, category: t.category })));
+    
+    return uniqueChatTools;
+  }
+  
+  // Special enhanced handling for Health, Wellness & Personal Lifestyle
   if (mainCategoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
     console.log(`🏥 HEALTH, WELLNESS & PERSONAL LIFESTYLE requested - using enhanced matching`);
     
