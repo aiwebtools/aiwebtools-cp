@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -76,11 +77,10 @@ const GlobalSearchBar = () => {
       setIsOpen(false);
       setSearchTerm("");
       setDisplayedCount(30);
-    } else if (e.key === 'Enter') {
-      // On Enter, ensure results are shown if there's a search term
-      if (searchTerm.trim() && searchResults.length > 0) {
+    } else if (e.key === 'Enter' && searchTerm.trim()) {
+      // Simple Enter handling - just ensure dropdown is open if there are results
+      if (searchResults.length > 0) {
         setIsOpen(true);
-        setDisplayedCount(30);
       }
     }
   };
