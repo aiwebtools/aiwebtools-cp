@@ -43,8 +43,8 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   
   return (
     <div 
-      className={`${isFeatured ? 'mb-6' : 'mb-4'} rounded-lg overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative group-hover:scale-105 transition-transform duration-200`}
-      style={{ height: imageHeight }}
+      className={`${isFeatured ? 'mb-6' : 'mb-4'} rounded-lg overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 relative group-hover:scale-105 transition-transform duration-200`}
+      style={{ aspectRatio: '16/9' }}
     >
       {shouldShowVideo ? (
         <iframe
@@ -85,7 +85,7 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
         </>
       ) : (
         /* Default emoji display when no image or video */
-        <div className="flex items-center justify-center text-6xl opacity-50">
+        <div className="flex items-center justify-center text-6xl opacity-50 w-full h-full">
           {tool.emoji}
         </div>
       )}

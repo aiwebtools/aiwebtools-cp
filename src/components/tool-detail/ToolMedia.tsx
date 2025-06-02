@@ -61,7 +61,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
       const embedUrl = getOptimizedEmbedUrl(tool.videoUrl);
       
       return (
-        <div className="relative w-full h-60 sm:h-80 overflow-hidden rounded-xl bg-gray-800">
+        <div className="relative w-full overflow-hidden rounded-xl bg-gray-800" style={{ aspectRatio: '16/9' }}>
           <iframe
             width="100%"
             height="100%"
@@ -81,7 +81,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
 
     if (tool.imageUrl && !imageError) {
       return (
-        <div className="relative w-full h-60 sm:h-80 overflow-hidden rounded-xl bg-gray-800">
+        <div className="relative w-full overflow-hidden rounded-xl bg-gray-800" style={{ aspectRatio: '16/9' }}>
           {!imageLoaded && (
             <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center animate-pulse">
               <ImageIcon className="w-8 sm:w-12 h-8 sm:h-12 text-gray-500" />
@@ -90,7 +90,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
           <img
             src={tool.imageUrl}
             alt={`${tool.title} Preview`}
-            className={`w-full h-full object-contain transition-all duration-500 ${
+            className={`w-full h-full object-cover transition-all duration-500 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             loading="lazy"
@@ -103,7 +103,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
     }
     
     return (
-      <div className="w-full h-60 sm:h-80 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-cyan-500/30 neon-border rounded-xl">
+      <div className="w-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-cyan-500/30 neon-border rounded-xl" style={{ aspectRatio: '16/9' }}>
         <span className="text-4xl sm:text-6xl glow-effect">{tool.emoji}</span>
       </div>
     );
