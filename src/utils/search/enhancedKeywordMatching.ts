@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { getToolNameMatchScore, calculateIntentScore } from "./scoringUtils";
 
@@ -35,6 +34,82 @@ export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean
     if (lowerTitle.includes('agent') || lowerDescription.includes('agent') || 
         lowerTitle.includes('autonomous') || lowerDescription.includes('autonomous') ||
         lowerCategory.includes('agent') || lowerTags.some(tag => tag.includes('agent'))) {
+      return true;
+    }
+  }
+  
+  // CODING AGENT SEARCH PRIORITIZATION
+  if (lowerSearchTerm.includes('coding agent') || lowerSearchTerm.includes('code agent') ||
+      (lowerSearchTerm.includes('coding') && lowerSearchTerm.includes('agent'))) {
+    // Priority coding agent tools
+    const priorityCodingAgents = [
+      'lovable.dev',
+      'bolt.new',
+      'chatgpt operator',
+      'manus autonomous agent',
+      'auto-gpt',
+      'agentgpt'
+    ];
+    
+    if (priorityCodingAgents.some(tool => lowerTitle.includes(tool))) {
+      return true;
+    }
+    
+    // General coding agent matching
+    if (lowerTitle.includes('coding') || lowerDescription.includes('coding') ||
+        lowerTitle.includes('code') || lowerDescription.includes('code') ||
+        lowerTitle.includes('programming') || lowerDescription.includes('programming') ||
+        lowerCategory.includes('coding') || lowerTags.some(tag => tag.includes('coding'))) {
+      return true;
+    }
+  }
+  
+  // WEB DESIGN SEARCH PRIORITIZATION
+  if (lowerSearchTerm.includes('web design') || lowerSearchTerm.includes('website design') ||
+      lowerSearchTerm.includes('web development') || lowerSearchTerm.includes('website development')) {
+    // Priority web design tools
+    const priorityWebDesignTools = [
+      'lovable.dev',
+      'bolt.new',
+      'figma',
+      'canva',
+      'webflow',
+      'framer'
+    ];
+    
+    if (priorityWebDesignTools.some(tool => lowerTitle.includes(tool))) {
+      return true;
+    }
+    
+    // General web design matching
+    if (lowerTitle.includes('web design') || lowerDescription.includes('web design') ||
+        lowerTitle.includes('website') || lowerDescription.includes('website') ||
+        lowerTitle.includes('web development') || lowerDescription.includes('web development') ||
+        lowerCategory.includes('web') || lowerTags.some(tag => tag.includes('web'))) {
+      return true;
+    }
+  }
+  
+  // TEXT TO WEBSITE SEARCH PRIORITIZATION
+  if (lowerSearchTerm.includes('text to website') || lowerSearchTerm.includes('text-to-website') ||
+      (lowerSearchTerm.includes('text') && lowerSearchTerm.includes('website'))) {
+    // Priority text-to-website tools
+    const priorityTextToWebsiteTools = [
+      'lovable.dev',
+      'bolt.new',
+      'webflow',
+      'framer'
+    ];
+    
+    if (priorityTextToWebsiteTools.some(tool => lowerTitle.includes(tool))) {
+      return true;
+    }
+    
+    // General text-to-website matching
+    if (lowerTitle.includes('text-to-website') || lowerDescription.includes('text-to-website') ||
+        lowerTitle.includes('website builder') || lowerDescription.includes('website builder') ||
+        lowerTitle.includes('site generator') || lowerDescription.includes('site generator') ||
+        lowerCategory.includes('website builder') || lowerTags.some(tag => tag.includes('text-to-website'))) {
       return true;
     }
   }
@@ -188,10 +263,142 @@ export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
     }
   }
   
+  // CODING AGENT SEARCH SCORING - HIGH PRIORITY
+  if (lowerSearchTerm.includes('coding agent') || lowerSearchTerm.includes('code agent') ||
+      (lowerSearchTerm.includes('coding') && lowerSearchTerm.includes('agent'))) {
+    // Top priority coding agent tools
+    if (lowerTitle.includes('lovable.dev')) {
+      score += 2000; // Highest priority
+    }
+    if (lowerTitle.includes('bolt.new')) {
+      score += 1950; // Second highest
+    }
+    if (lowerTitle.includes('chatgpt operator')) {
+      score += 1900;
+    }
+    if (lowerTitle.includes('manus autonomous agent')) {
+      score += 1850;
+    }
+    if (lowerTitle.includes('auto-gpt')) {
+      score += 1800;
+    }
+    if (lowerTitle.includes('agentgpt')) {
+      score += 1750;
+    }
+    
+    // General coding agent matching
+    if (lowerTitle.includes('coding') || lowerTitle.includes('code')) {
+      score += 1500;
+    }
+    if (lowerDescription.includes('coding') || lowerDescription.includes('code')) {
+      score += 1200;
+    }
+    if (lowerTitle.includes('programming')) {
+      score += 1400;
+    }
+    if (lowerDescription.includes('programming')) {
+      score += 1100;
+    }
+    if (lowerCategory.includes('coding')) {
+      score += 1300;
+    }
+    if (lowerTags.some(tag => tag.includes('coding'))) {
+      score += 1200;
+    }
+  }
+  
+  // WEB DESIGN SEARCH SCORING - HIGH PRIORITY
+  if (lowerSearchTerm.includes('web design') || lowerSearchTerm.includes('website design') ||
+      lowerSearchTerm.includes('web development') || lowerSearchTerm.includes('website development')) {
+    // Top priority web design tools
+    if (lowerTitle.includes('lovable.dev')) {
+      score += 1900; // Highest priority for web design
+    }
+    if (lowerTitle.includes('bolt.new')) {
+      score += 1850; // Second highest
+    }
+    if (lowerTitle.includes('figma')) {
+      score += 1800;
+    }
+    if (lowerTitle.includes('canva')) {
+      score += 1750;
+    }
+    if (lowerTitle.includes('webflow')) {
+      score += 1700;
+    }
+    if (lowerTitle.includes('framer')) {
+      score += 1650;
+    }
+    
+    // General web design matching
+    if (lowerTitle.includes('web design')) {
+      score += 1500;
+    }
+    if (lowerDescription.includes('web design')) {
+      score += 1200;
+    }
+    if (lowerTitle.includes('website')) {
+      score += 1400;
+    }
+    if (lowerDescription.includes('website')) {
+      score += 1100;
+    }
+    if (lowerCategory.includes('web')) {
+      score += 1300;
+    }
+    if (lowerTags.some(tag => tag.includes('web'))) {
+      score += 1200;
+    }
+  }
+  
+  // TEXT TO WEBSITE SEARCH SCORING - HIGH PRIORITY
+  if (lowerSearchTerm.includes('text to website') || lowerSearchTerm.includes('text-to-website') ||
+      (lowerSearchTerm.includes('text') && lowerSearchTerm.includes('website'))) {
+    // Top priority text-to-website tools
+    if (lowerTitle.includes('lovable.dev')) {
+      score += 1800; // Highest priority for text-to-website
+    }
+    if (lowerTitle.includes('bolt.new')) {
+      score += 1750; // Second highest
+    }
+    if (lowerTitle.includes('webflow')) {
+      score += 1700;
+    }
+    if (lowerTitle.includes('framer')) {
+      score += 1650;
+    }
+    
+    // General text-to-website matching
+    if (lowerTitle.includes('text-to-website')) {
+      score += 1400;
+    }
+    if (lowerDescription.includes('text-to-website')) {
+      score += 1200;
+    }
+    if (lowerTitle.includes('website builder')) {
+      score += 1300;
+    }
+    if (lowerDescription.includes('website builder')) {
+      score += 1100;
+    }
+    if (lowerTitle.includes('site generator')) {
+      score += 1200;
+    }
+    if (lowerDescription.includes('site generator')) {
+      score += 1000;
+    }
+    if (lowerCategory.includes('website builder')) {
+      score += 1200;
+    }
+    if (lowerTags.some(tag => tag.includes('text-to-website'))) {
+      score += 1100;
+    }
+  }
+  
   // TEXT TO VIDEO SEARCH SCORING - HIGH PRIORITY
   if (lowerSearchTerm.includes('text to video') || lowerSearchTerm.includes('text-to-video') || 
       (lowerSearchTerm.includes('text') && lowerSearchTerm.includes('video'))) {
-    // Top priority text-to-video tools
+    // Priority text-to-video tools
     if (lowerTitle.includes('luma labs dream machine') || lowerTitle.includes('luma dream machine')) {
       score += 1800; // Highest priority for text-to-video
     }

@@ -36,6 +36,65 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
     agentKeywords.forEach(keyword => expandedKeywords.add(keyword));
   }
   
+  // CODING AGENT SEARCH EXPANSION - HIGH PRIORITY
+  if (lowerSearchTerm.includes('coding agent') || lowerSearchTerm.includes('code agent') ||
+      (lowerSearchTerm.includes('coding') && lowerSearchTerm.includes('agent'))) {
+    const codingAgentKeywords = [
+      'lovable.dev',
+      'bolt.new',
+      'chatgpt operator',
+      'manus autonomous agent',
+      'auto-gpt',
+      'agentgpt',
+      'coding assistant',
+      'ai coding',
+      'code generation',
+      'web development',
+      'ai developer',
+      'programming assistant'
+    ];
+    
+    codingAgentKeywords.forEach(keyword => expandedKeywords.add(keyword));
+  }
+  
+  // WEB DESIGN SEARCH EXPANSION - HIGH PRIORITY
+  if (lowerSearchTerm.includes('web design') || lowerSearchTerm.includes('website design') ||
+      lowerSearchTerm.includes('web development') || lowerSearchTerm.includes('website development')) {
+    const webDesignKeywords = [
+      'lovable.dev',
+      'bolt.new',
+      'web design',
+      'website builder',
+      'web development',
+      'site builder',
+      'website creation',
+      'web app builder',
+      'ui design',
+      'frontend development'
+    ];
+    
+    webDesignKeywords.forEach(keyword => expandedKeywords.add(keyword));
+  }
+  
+  // TEXT TO WEBSITE SEARCH EXPANSION - HIGH PRIORITY
+  if (lowerSearchTerm.includes('text to website') || lowerSearchTerm.includes('text-to-website') ||
+      (lowerSearchTerm.includes('text') && lowerSearchTerm.includes('website'))) {
+    const textToWebsiteKeywords = [
+      'lovable.dev',
+      'bolt.new',
+      'text to website',
+      'ai website builder',
+      'website generator',
+      'site generator',
+      'web app generator',
+      'instant website',
+      'ai web design',
+      'automated web development'
+    ];
+    
+    textToWebsiteKeywords.forEach(keyword => expandedKeywords.add(keyword));
+  }
+  
   // TEXT TO VIDEO SEARCH EXPANSION - HIGH PRIORITY
   if (lowerSearchTerm.includes('text to video') || lowerSearchTerm.includes('text-to-video') || 
       (lowerSearchTerm.includes('text') && lowerSearchTerm.includes('video'))) {
