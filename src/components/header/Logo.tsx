@@ -1,14 +1,18 @@
+
 import { Home } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const Logo = () => {
+  const navigate = useNavigate();
+
   const scrollToHome = () => {
     // If we're already on the home page, just scroll to top instantly
     if (window.location.pathname === '/') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // For faster navigation, open aiwebtools.ai in new window to keep users on our site
-      window.open('https://aiwebtools.ai', '_blank', 'noopener,noreferrer');
+      // Navigate to home page quickly
+      navigate('/');
     }
   };
 
