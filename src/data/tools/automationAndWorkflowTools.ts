@@ -1,89 +1,136 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Zap, 
+  GitBranch, 
   Settings, 
   Bot, 
   Workflow, 
-  GitBranch,
-  Cpu,
-  Link,
-  Timer,
+  Timer, 
+  Link, 
   Repeat,
-  Target
+  Play,
+  Shuffle
 } from "lucide-react";
 
 export const automationAndWorkflowTools: Tool[] = [
   {
+    icon: Workflow,
+    title: "Make.com",
+    description: "Visual automation platform that connects your apps and services to automate workflows without coding. Create powerful integrations and streamline your business processes.",
+    emoji: "🔗",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://www.make.com/en/register?pc=aiwebtools",
+    tags: ["automation", "workflow", "integration", "no-code", "business process"],
+    category: "Business & Productivity",
+    rating: 4.6,
+    totalVotes: 3847
+  },
+  {
     icon: Zap,
     title: "Zapier",
-    description: "Automation platform that connects your apps and services. Create workflows that automatically move info between your web apps.",
+    description: "Connect your apps and automate workflows. Zapier moves info between your web apps automatically, so you can focus on your most important work.",
     emoji: "⚡",
-    color: "from-orange-500 to-red-600",
+    color: "from-yellow-500 to-orange-600",
     directUrl: "https://zapier.com/",
-    tags: ["automation", "workflow", "app integration", "productivity", "no-code"],
-    category: "Automation & Workflow Tools",
-    rating: 4.8,
-    totalVotes: 8567
-  },
-  {
-    icon: Bot,
-    title: "Make (Integromat)",
-    description: "Visual platform for creating, building and automating workflows. Connect apps and services with powerful automation scenarios.",
-    emoji: "🤖",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://www.make.com/",
-    tags: ["visual automation", "workflow builder", "integration", "scenarios", "advanced automation"],
-    category: "Automation & Workflow Tools",
+    tags: ["automation", "integration", "workflow", "no-code", "productivity"],
+    category: "Business & Productivity",
     rating: 4.7,
-    totalVotes: 7456
-  },
-  {
-    icon: Workflow,
-    title: "n8n",
-    description: "Free and source-available workflow automation tool. Easily automate tasks across different services with a visual interface.",
-    emoji: "🔗",
-    color: "from-green-500 to-purple-600",
-    directUrl: "https://n8n.io/",
-    tags: ["open source", "workflow automation", "self-hosted", "visual builder", "free automation"],
-    category: "Automation & Workflow Tools",
-    rating: 4.6,
-    totalVotes: 6234
-  },
-  {
-    icon: Settings,
-    title: "Microsoft Power Automate",
-    description: "Workflow automation service that helps automate repetitive business processes across applications and services.",
-    emoji: "⚙️",
-    color: "from-blue-500 to-cyan-600",
-    directUrl: "https://powerautomate.microsoft.com/",
-    tags: ["Microsoft", "business automation", "workflow", "enterprise", "process automation"],
-    category: "Automation & Workflow Tools",
-    rating: 4.4,
-    totalVotes: 3789
+    totalVotes: 4231
   },
   {
     icon: GitBranch,
-    title: "GitHub Actions",
-    description: "Automation platform that makes it easy to automate all your software workflows with CI/CD. Build, test, and deploy your code.",
-    emoji: "🔀",
-    color: "from-gray-500 to-blue-600",
-    directUrl: "https://github.com/features/actions",
-    tags: ["CI/CD", "GitHub", "software automation", "deployment", "development workflow"],
-    category: "Automation & Workflow Tools",
-    rating: 4.7,
-    totalVotes: 5234
+    title: "IFTTT",
+    description: "Create simple applets to automate tasks between your favorite apps and devices. Connect your smart home devices, social media accounts, and more.",
+    emoji: "⚙️",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://ifttt.com/",
+    tags: ["automation", "smart home", "applets", "integration", "productivity"],
+    category: "Home Automation",
+    rating: 4.5,
+    totalVotes: 3567
+  },
+  {
+    icon: Settings,
+    title: "UiPath",
+    description: "End-to-end automation platform with robotic process automation (RPA) capabilities. Automate repetitive tasks and streamline your business operations.",
+    emoji: "🤖",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://www.uipath.com/",
+    tags: ["rpa", "automation", "business process", "enterprise", "workflow"],
+    category: "Business & Productivity",
+    rating: 4.4,
+    totalVotes: 3123
+  },
+  {
+    icon: Bot,
+    title: "Microsoft Power Automate",
+    description: "Automate repetitive tasks with Microsoft's cloud-based automation platform. Connect your apps and services to streamline your workflows.",
+    emoji: "☁️",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://powerautomate.microsoft.com/",
+    tags: ["automation", "microsoft", "cloud", "workflow", "integration"],
+    category: "Business & Productivity",
+    rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: Timer,
+    title: "Integromat",
+    description: "Visual platform for connecting apps and automating workflows with advanced data mapping and transformation capabilities.",
+    emoji: "⏱️",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.integromat.com/",
+    tags: ["automation", "integration", "workflow", "data mapping", "no-code"],
+    category: "Business & Productivity",
+    rating: 4.2,
+    totalVotes: 2543
   },
   {
     icon: Link,
-    title: "IFTTT",
-    description: "Connect different services and devices to create simple conditional statements called applets. If This Then That automation.",
+    title: "Workato",
+    description: "Enterprise automation platform for integrating applications and automating business processes with advanced security and governance features.",
     emoji: "🔗",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://ifttt.com/",
-    tags: ["conditional automation", "IoT", "smart home", "simple automation", "applets"],
-    category: "Automation & Workflow Tools",
-    rating: 4.2,
+    directUrl: "https://www.workato.com/",
+    tags: ["automation", "enterprise", "integration", "business process", "security"],
+    category: "Business & Productivity",
+    rating: 4.1,
+    totalVotes: 2234
+  },
+  {
+    icon: Repeat,
+    title: "Automate.io",
+    description: "Connect your apps and automate workflows with a simple, drag-and-drop interface. Automate marketing, sales, and customer support tasks.",
+    emoji: "🔄",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://automate.io/",
+    tags: ["automation", "integration", "workflow", "marketing", "sales"],
+    category: "Business & Productivity",
+    rating: 4.0,
+    totalVotes: 2123
+  },
+  {
+    icon: Play,
+    title: "n8n",
+    description: "Free and open workflow automation tool. Self-hostable, easily extendable, and comes with fair-code license.",
+    emoji: "▶️",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://n8n.io/",
+    tags: ["automation", "workflow", "open source", "self-hosted"],
+    category: "Business & Productivity",
+    rating: 4.3,
+    totalVotes: 2654
+  },
+  {
+    icon: Shuffle,
+    title: "Pipedream",
+    description: "Integration platform for connecting APIs and building event-driven workflows. Serverless functions, triggers, and pre-built components.",
+    emoji: "🔀",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://pipedream.com/",
+    tags: ["integration", "api", "workflow", "serverless", "event-driven"],
+    category: "AI Development Tools",
+    rating: 4.4,
     totalVotes: 2987
   }
 ];
