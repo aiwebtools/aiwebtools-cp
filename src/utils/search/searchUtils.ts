@@ -41,26 +41,27 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     let score = 0;
     let matched = false;
     
-    // Special name insight tool matching
+    // Special name insight tool matching - HIGHEST PRIORITY
     const nameMatch = matchNameInsightTool(tool, searchTerm);
     if (nameMatch.matched) {
       matched = true;
       score += nameMatch.score;
+      console.log(`🏷️ Name search match for "${tool.title}" with score: ${nameMatch.score}`);
     }
     
-    // App building specific matching (highest priority for app building searches)
+    // App building specific matching (high priority for app building searches)
     if (matchAppBuilding(tool, searchTerm)) {
       matched = true;
       score += scoreAppBuilding(tool, searchTerm);
     }
     
-    // Music tool specific matching (highest priority for music searches)
+    // Music tool specific matching (high priority for music searches)
     if (matchMusicTools(tool, searchTerm)) {
       matched = true;
       score += scoreMusicTools(tool, searchTerm);
     }
     
-    // Phone agent specific matching (highest priority for phone searches)
+    // Phone agent specific matching (high priority for phone searches)
     if (matchPhoneAgents(tool, searchTerm)) {
       matched = true;
       score += scorePhoneAgents(tool, searchTerm);
@@ -86,6 +87,12 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   .map(result => result.tool);
 
   console.log(`✅ Enhanced search found ${results.length} results for "${searchTerm}"`);
+  
+  // Enhanced debugging for name searches
+  if (searchTerm.toLowerCase().includes('name')) {
+    console.log(`🏷️ NAME SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
+    console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
+  }
   
   // Enhanced debugging for different search types
   debugNameSearch(searchTerm, results);

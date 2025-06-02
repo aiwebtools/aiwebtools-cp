@@ -18,7 +18,7 @@ export const matchNameInsightTool = (tool: Tool, searchTerm: string): { score: n
         tool.directUrl?.includes('whatsmynamegpt') ||
         (tool.title.toLowerCase().includes('name') && tool.title.toLowerCase().includes('insight'))) {
       matched = true;
-      score += 20000; // Absolute highest priority for name searches
+      score += 25000; // Even higher priority for name searches
       console.log(`🎯 ABSOLUTE NAME MATCH FOUND: ${tool.title} with score ${score}`);
     }
     
@@ -28,7 +28,7 @@ export const matchNameInsightTool = (tool: Tool, searchTerm: string): { score: n
       if (tool.description.toLowerCase().includes(keyword) || 
           tool.tags?.some(tag => tag.toLowerCase().includes(keyword))) {
         matched = true;
-        score += 8000;
+        score += 10000;
       }
     }
   }
