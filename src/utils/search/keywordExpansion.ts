@@ -1,6 +1,6 @@
 import { keywordMapping, searchSynonyms, categoryKeywords } from "@/data/keywords";
 
-// Typo correction mapping for common misspellings
+// Enhanced typo correction mapping for common misspellings
 const typoCorrection: Record<string, string> = {
   "sciece": "science",
   "sciene": "science",
@@ -24,13 +24,165 @@ const typoCorrection: Record<string, string> = {
   "einstien": "einstein",
   "einsten": "einstein",
   "nam": "name",
-  "nameing": "naming"
+  "nameing": "naming",
+  
+  // New common misspellings
+  "colege": "college",
+  "collge": "college",
+  "colege": "college",
+  "collega": "college",
+  "univercity": "university",
+  "universty": "university",
+  "universtiy": "university",
+  "writting": "writing",
+  "writeing": "writing",
+  "writen": "writing",
+  "buisness": "business",
+  "bussiness": "business",
+  "busines": "business",
+  "busness": "business",
+  "managment": "management",
+  "managment": "management",
+  "manegement": "management",
+  "devlopment": "development",
+  "developement": "development",
+  "develpment": "development",
+  "programing": "programming",
+  "programmin": "programming",
+  "progaming": "programming",
+  "artifical": "artificial",
+  "artifical": "artificial",
+  "artficial": "artificial",
+  "inteligence": "intelligence",
+  "inteligent": "intelligent",
+  "intellegence": "intelligence",
+  "marekting": "marketing",
+  "marketting": "marketing",
+  "markting": "marketing",
+  "desing": "design",
+  "desgn": "design",
+  "designg": "design",
+  "creativ": "creative",
+  "creatve": "creative",
+  "creativty": "creativity",
+  "analaytics": "analytics",
+  "analitics": "analytics",
+  "analytcs": "analytics",
+  "finacial": "financial",
+  "financal": "financial",
+  "fincancial": "financial",
+  "helath": "health",
+  "healt": "health",
+  "helth": "health",
+  "medial": "medical",
+  "medicl": "medical",
+  "medcial": "medical",
+  "docktor": "doctor",
+  "docter": "doctor",
+  "doctr": "doctor",
+  "educaton": "education",
+  "educatin": "education",
+  "eduction": "education",
+  "learing": "learning",
+  "lerning": "learning",
+  "learnig": "learning",
+  "traning": "training",
+  "trainig": "training",
+  "trainng": "training",
+  "productivity": "productivity",
+  "productivty": "productivity",
+  "productivety": "productivity",
+  "comunicaton": "communication",
+  "comunication": "communication",
+  "comunicaion": "communication",
+  "colaboration": "collaboration",
+  "colaboraton": "collaboration",
+  "colabration": "collaboration",
+  "automaion": "automation",
+  "automaton": "automation",
+  "automtion": "automation",
+  "generaton": "generation",
+  "generaion": "generation",
+  "genration": "generation",
+  "optimizaton": "optimization",
+  "optimizaion": "optimization",
+  "optimzation": "optimization",
+  "recomendation": "recommendation",
+  "recomendaton": "recommendation",
+  "recomendaion": "recommendation",
+  "personalizaton": "personalization",
+  "personalizaion": "personalization",
+  "personaliztion": "personalization"
 };
+
+// Function to calculate Levenshtein distance for fuzzy matching
+const levenshteinDistance = (str1: string, str2: string): number => {
+  const matrix = [];
+  
+  for (let i = 0; i <= str2.length; i++) {
+    matrix[i] = [i];
+  }
+  
+  for (let j = 0; j <= str1.length; j++) {
+    matrix[0][j] = j;
+  }
+  
+  for (let i = 1; i <= str2.length; i++) {
+    for (let j = 1; j <= str1.length; j++) {
+      if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j - 1] + 1,
+          matrix[i][j - 1] + 1,
+          matrix[i - 1][j] + 1
+        );
+      }
+    }
+  }
+  
+  return matrix[str2.length][str1.length];
+};
+
+// Function to find fuzzy matches for a term
+const findFuzzyMatches = (searchTerm: string, candidates: string[], maxDistance = 2): string[] => {
+  const matches: string[] = [];
+  
+  for (const candidate of candidates) {
+    const distance = levenshteinDistance(searchTerm.toLowerCase(), candidate.toLowerCase());
+    if (distance <= maxDistance && candidate.length >= 4) {
+      matches.push(candidate);
+    }
+  }
+  
+  return matches;
+};
+
+// Common tool keywords for fuzzy matching
+const commonToolKeywords = [
+  'college', 'university', 'education', 'learning', 'training', 'course',
+  'writing', 'content', 'article', 'blog', 'script', 'book',
+  'business', 'marketing', 'sales', 'finance', 'management',
+  'design', 'graphic', 'creative', 'art', 'visual', 'image',
+  'video', 'movie', 'film', 'animation', 'cinema',
+  'music', 'audio', 'sound', 'voice', 'podcast',
+  'health', 'medical', 'doctor', 'wellness', 'fitness',
+  'science', 'research', 'analysis', 'data', 'analytics',
+  'development', 'coding', 'programming', 'software',
+  'artificial', 'intelligence', 'machine', 'learning',
+  'automation', 'productivity', 'workflow', 'efficiency',
+  'communication', 'collaboration', 'social', 'network',
+  'security', 'privacy', 'protection', 'safety',
+  'travel', 'adventure', 'exploration', 'discovery',
+  'gaming', 'entertainment', 'fun', 'recreation',
+  'legal', 'law', 'attorney', 'lawyer', 'contract',
+  'real estate', 'property', 'housing', 'construction'
+];
 
 export const getExpandedKeywords = (searchTerm: string): string[] => {
   let lowerSearchTerm = searchTerm.toLowerCase().trim();
   
-  // Apply typo correction first
+  // Apply direct typo correction first
   if (typoCorrection[lowerSearchTerm]) {
     lowerSearchTerm = typoCorrection[lowerSearchTerm];
   }
@@ -41,6 +193,19 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   expandedKeywords.add(searchTerm.toLowerCase().trim());
   expandedKeywords.add(lowerSearchTerm);
   
+  // Apply fuzzy matching to find similar keywords
+  const fuzzyMatches = findFuzzyMatches(lowerSearchTerm, commonToolKeywords, 2);
+  fuzzyMatches.forEach(match => expandedKeywords.add(match));
+  
+  // Apply fuzzy matching to typo correction keys
+  const typoKeys = Object.keys(typoCorrection);
+  const typoFuzzyMatches = findFuzzyMatches(lowerSearchTerm, typoKeys, 1);
+  typoFuzzyMatches.forEach(match => {
+    if (typoCorrection[match]) {
+      expandedKeywords.add(typoCorrection[match]);
+    }
+  });
+
   // NAME SEARCH EXPANSION - HIGHEST PRIORITY
   if (lowerSearchTerm.includes('name') || lowerSearchTerm.includes('naming') ||
       lowerSearchTerm.includes('identity') || lowerSearchTerm.includes('personality') ||
