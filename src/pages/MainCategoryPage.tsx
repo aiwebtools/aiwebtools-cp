@@ -65,6 +65,11 @@ const MainCategoryPage = () => {
     ? searchTools(toolsToShow, searchTerm)
     : toolsToShow;
 
+  // Reset displayed count when the final filtered tools change
+  useEffect(() => {
+    setDisplayedCount(48);
+  }, [finalFilteredTools.length]);
+
   const handleLoadMore = () => {
     if (displayedCount >= finalFilteredTools.length || isLoading) return;
     
@@ -81,13 +86,13 @@ const MainCategoryPage = () => {
 
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
-    setDisplayedCount(48);
+    // displayedCount will be reset by the useEffect above when finalFilteredTools changes
   };
 
   const handleFilteredToolsChange = (filtered: Tool[]) => {
     console.log(`🎯 Category filter changed: ${filtered.length} tools`);
     setFilteredToolsByCategory(filtered);
-    setDisplayedCount(48); // Reset displayed count when category filter changes
+    // displayedCount will be reset by the useEffect above when finalFilteredTools changes
   };
 
   const hasMoreTools = displayedCount < finalFilteredTools.length;
