@@ -181,64 +181,78 @@ const isDataAnalyticsTool = (tool: Tool): boolean => {
   ) || isMajorLLM(tool); // Include major LLMs in data analytics
 };
 
-// Helper function to detect health-related tools - ENHANCED TO EXCLUDE INSECT STUDY TOOL
+// ENHANCED Helper function to detect ALL health-related tools - COMPREHENSIVE
 const isHealthRelatedTool = (tool: Tool): boolean => {
-  // CRITICAL: Explicitly exclude insect study tool from health category
   const titleLower = tool.title.toLowerCase();
-  if (titleLower.includes('insect study') || titleLower.includes('entomology')) {
-    console.log(`🚫 EXCLUDING from health: ${tool.title} - this is an education tool`);
-    return false;
-  }
+  const descriptionLower = tool.description.toLowerCase();
+  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
+  const categoryLower = tool.category?.toLowerCase() || '';
   
-  // CRITICAL: Also exclude if it's already properly categorized as education
-  if (tool.category === "Education & Learning" || tool.category === "Education & Research Tools") {
-    console.log(`🚫 EXCLUDING from health: ${tool.title} - already in education category`);
-    return false;
-  }
-  
+  // COMPREHENSIVE health keywords - expanded to catch ALL health tools
   const healthKeywords = [
+    // Core health terms
     'health', 'medical', 'wellness', 'healthcare', 'medicine', 'doctor', 'physician',
     'nurse', 'pharmacy', 'pharmaceutical', 'clinic', 'hospital', 'patient', 'therapy',
     'treatment', 'diagnosis', 'mental health', 'dental', 'veterinary', 'fitness',
     'nutrition', 'diet', 'exercise', 'lifestyle', 'personal care', 'skincare',
     'cannabis', 'insurance claims', 'genome', 'pharma', 'drug', 'medication',
     'marriage mender', 'mixologist', 'food quality', 'dr. gpt', 'personalized dr',
-    'skin care', 'dermatology', 'beauty advice', 'cosmetics', 'oral care', 'oral health'
+    'skin care', 'dermatology', 'beauty advice', 'cosmetics', 'oral care', 'oral health',
+    
+    // Expanded health-related terms
+    'therapeutic', 'clinical', 'surgical', 'psychiatry', 'psychology', 'counseling',
+    'rehabilitation', 'recovery', 'addiction', 'substance abuse', 'pain management',
+    'chronic illness', 'disease', 'disorder', 'syndrome', 'condition', 'symptom',
+    'prevention', 'screening', 'immunization', 'vaccination', 'public health',
+    'epidemiology', 'pathology', 'radiology', 'cardiology', 'neurology', 'oncology',
+    'pediatrics', 'geriatrics', 'obstetrics', 'gynecology', 'urology', 'orthopedics',
+    'endocrinology', 'gastroenterology', 'pulmonology', 'nephrology', 'hematology',
+    'infectious disease', 'emergency medicine', 'family medicine', 'internal medicine',
+    'anesthesiology', 'dermatology', 'ophthalmology', 'otolaryngology', 'plastic surgery',
+    'sports medicine', 'occupational therapy', 'physical therapy', 'speech therapy',
+    'respiratory therapy', 'mental wellness', 'behavioral health', 'cognitive therapy',
+    'psychotherapy', 'counselling', 'stress management', 'anxiety', 'depression',
+    'ptsd', 'trauma', 'grief', 'bereavement', 'mindfulness', 'meditation', 'yoga',
+    'alternative medicine', 'holistic health', 'naturopathy', 'homeopathy', 'acupuncture',
+    'chiropractic', 'massage therapy', 'aromatherapy', 'herbal medicine', 'supplements',
+    'vitamins', 'minerals', 'probiotics', 'antioxidants', 'biomarkers', 'genetics',
+    'genomics', 'personalized medicine', 'precision medicine', 'telemedicine',
+    'digital health', 'mhealth', 'health tech', 'medical devices', 'diagnostics',
+    'biomedical', 'biotechnology', 'life sciences', 'clinical trials', 'research',
+    'evidence-based', 'peer review', 'medical literature', 'health records',
+    'electronic health records', 'health information', 'medical coding', 'icd',
+    'cpt codes', 'medical billing', 'health insurance', 'claims processing',
+    'medicare', 'medicaid', 'health policy', 'healthcare administration',
+    'health economics', 'pharmacoeconomics', 'health outcomes', 'quality improvement',
+    'patient safety', 'infection control', 'sterilization', 'hygiene', 'sanitation',
+    'food safety', 'water quality', 'environmental health', 'occupational health',
+    'safety protocols', 'hazardous materials', 'toxicology', 'poison control',
+    'emergency response', 'first aid', 'cpr', 'aed', 'trauma care', 'critical care',
+    'intensive care', 'icu', 'emergency room', 'urgent care', 'ambulatory care',
+    'outpatient', 'inpatient', 'long-term care', 'home health', 'hospice care',
+    'palliative care', 'end-of-life', 'advance directives', 'living will',
+    'healthcare proxy', 'medical ethics', 'bioethics', 'informed consent',
+    'patient rights', 'confidentiality', 'hipaa', 'privacy', 'security'
   ];
   
-  const descriptionLower = tool.description.toLowerCase();
-  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
-  const categoryLower = tool.category?.toLowerCase() || '';
-  
-  // Force specific health tools that might be miscategorized
+  // Force include specific health tools that might be miscategorized
   const forceHealthTools = [
-    'mental wellness gpt',
-    'personalized dr. gpt',
-    'doctor gpt',
-    'veterinarian gpt',
-    'pharmaceutical assistant gpt',
-    'pharma research pro',
-    'genome gpt',
-    'marriage mender gpt',
-    'skin care gpt',
-    'skincare gpt',
-    'dental gpt',
-    'cannabis gpt',
-    'insurance claims gpt',
-    'food quality inspector gpt',
-    'mixologist gpt'
+    'mental wellness gpt', 'personalized dr. gpt', 'doctor gpt', 'veterinarian gpt',
+    'pharmaceutical assistant gpt', 'pharma research pro', 'genome gpt', 'marriage mender gpt',
+    'skin care gpt', 'skincare gpt', 'dental gpt', 'cannabis gpt', 'insurance claims gpt',
+    'food quality inspector gpt', 'mixologist gpt', 'chef', 'culinary', 'nutrition',
+    'diet', 'wellness', 'fitness', 'health', 'medical', 'dr. gpt', 'healthcare',
+    'pharmaceutical', 'pharma', 'drug', 'medication', 'therapy', 'treatment',
+    'clinical', 'patient', 'hospital', 'clinic', 'nursing', 'medicine'
   ];
   
   // Check if it's a forced health tool
   const isForcedHealthTool = forceHealthTools.some(healthTool => 
-    titleLower.includes(healthTool) || titleLower === healthTool
+    titleLower.includes(healthTool) || titleLower === healthTool ||
+    descriptionLower.includes(healthTool)
   );
   
-  if (isForcedHealthTool) {
-    console.log(`🏥 FORCE: Detected health tool by name: ${tool.title}`);
-    return true;
-  }
-  
+  // Check against comprehensive health keywords
   const isHealthByKeyword = healthKeywords.some(keyword => 
     titleLower.includes(keyword) || 
     descriptionLower.includes(keyword) || 
@@ -246,103 +260,147 @@ const isHealthRelatedTool = (tool: Tool): boolean => {
     categoryLower.includes(keyword)
   );
   
-  if (isHealthByKeyword) {
-    console.log(`🏥 KEYWORD: Detected health tool: ${tool.title}`);
+  // Check if category explicitly contains health-related terms
+  const isHealthCategory = categoryLower.includes('health') || 
+                          categoryLower.includes('medical') || 
+                          categoryLower.includes('wellness') ||
+                          categoryLower.includes('healthcare') ||
+                          categoryLower.includes('pharma') ||
+                          categoryLower.includes('fitness') ||
+                          categoryLower.includes('nutrition') ||
+                          categoryLower.includes('lifestyle');
+  
+  const isHealthTool = isForcedHealthTool || isHealthByKeyword || isHealthCategory;
+  
+  if (isHealthTool) {
+    console.log(`🏥 DETECTED health tool: ${tool.title} (Category: ${tool.category})`);
   }
   
-  return isHealthByKeyword;
+  return isHealthTool;
 };
 
-// Helper function to detect ALL industry-specific tools (comprehensive detection)
+// COMPREHENSIVE Helper function to detect ALL industry-specific tools
 const isIndustrySpecificTool = (tool: Tool): boolean => {
-  // Industry-specific keywords covering all major industries
+  const titleLower = tool.title.toLowerCase();
+  const descriptionLower = tool.description.toLowerCase();
+  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
+  const categoryLower = tool.category?.toLowerCase() || '';
+  
+  // COMPREHENSIVE industry keywords covering ALL major industries
   const industryKeywords = [
-    // Healthcare & Medical
+    // Healthcare & Medical (comprehensive list)
     'health', 'medical', 'wellness', 'healthcare', 'medicine', 'doctor', 'physician',
     'nurse', 'pharmacy', 'pharmaceutical', 'clinic', 'hospital', 'patient', 'therapy',
     'treatment', 'diagnosis', 'mental health', 'dental', 'veterinary', 'fitness',
     'nutrition', 'diet', 'exercise', 'lifestyle', 'personal care', 'skincare',
     'cannabis', 'insurance claims', 'genome', 'pharma', 'drug', 'medication',
+    'therapeutic', 'clinical', 'surgical', 'psychiatry', 'psychology', 'counseling',
+    'rehabilitation', 'recovery', 'addiction', 'substance abuse', 'pain management',
+    'chronic illness', 'disease', 'disorder', 'syndrome', 'condition', 'symptom',
+    'prevention', 'screening', 'immunization', 'vaccination', 'public health',
+    'biomedical', 'biotechnology', 'life sciences', 'clinical trials', 'telemedicine',
     
-    // Legal
+    // Legal & Government
     'legal', 'law', 'attorney', 'lawyer', 'court', 'judge', 'contract', 'litigation',
-    'compliance', 'legislation', 'defender', 'justice', 'paralegal',
+    'compliance', 'legislation', 'defender', 'justice', 'paralegal', 'government',
+    'civic', 'policy', 'regulation', 'constitutional', 'criminal law', 'civil law',
+    'corporate law', 'intellectual property', 'patent', 'trademark', 'copyright',
+    'real estate law', 'family law', 'immigration law', 'tax law', 'employment law',
     
-    // Education
+    // Education & Academic
     'education', 'learning', 'educational', 'academic', 'study', 'course', 'curriculum',
     'teaching', 'teacher', 'tutor', 'tutoring', 'lesson', 'homework', 'quiz', 'test',
     'training', 'university', 'college', 'school', 'degree', 'certification',
     'insect study', 'entomology', 'species research', 'biological studies',
+    'research', 'scientific', 'laboratory', 'experiment', 'analysis',
     
     // Creative Arts & Design
     'graphic design', 'design', 'art', 'creative', 'illustration', 'photography',
     'video editing', 'animation', 'music', 'audio', 'tattoo', 'sketch', 'drawing',
     'painting', 'sculpture', 'pottery', 'crafts', 'fashion', 'interior design',
     'architecture', 'typography', 'branding', 'logo', 'visual', 'aesthetic',
+    'multimedia', 'digital art', 'concept art', 'character design', 'game art',
     
-    // Culinary & Food
+    // Culinary & Food Industry
     'cooking', 'chef', 'culinary', 'recipe', 'food', 'restaurant', 'kitchen',
     'baking', 'pastry', 'nutrition', 'mixologist', 'bartender', 'cocktail',
-    'food quality', 'cuisine', 'gastronomy', 'menu', 'dining',
+    'food quality', 'cuisine', 'gastronomy', 'menu', 'dining', 'catering',
+    'hospitality', 'beverage', 'wine', 'brewing', 'food safety', 'food service',
     
     // Agriculture & Farming
     'farming', 'agriculture', 'crop', 'livestock', 'harvest', 'soil', 'irrigation',
-    'greenhouse', 'organic', 'pesticide', 'fertilizer', 'agronomist',
+    'greenhouse', 'organic', 'pesticide', 'fertilizer', 'agronomist', 'agronomy',
+    'horticulture', 'aquaculture', 'forestry', 'sustainable farming', 'precision agriculture',
     
     // Real Estate & Property
     'real estate', 'property', 'housing', 'mortgage', 'rental', 'appraisal',
-    'land', 'construction', 'renovation', 'home', 'building',
+    'land', 'construction', 'renovation', 'home', 'building', 'architecture',
+    'urban planning', 'zoning', 'development', 'commercial real estate',
     
     // Finance & Trading
     'finance', 'trading', 'investment', 'banking', 'insurance', 'accounting',
     'tax', 'credit', 'loan', 'budget', 'financial planning', 'wealth management',
+    'cryptocurrency', 'blockchain', 'fintech', 'payment processing', 'mortgages',
     
     // Transportation & Automotive
     'automotive', 'car', 'vehicle', 'transportation', 'logistics', 'shipping',
-    'trucking', 'aviation', 'maritime', 'railway',
+    'trucking', 'aviation', 'maritime', 'railway', 'fleet management', 'supply chain',
     
     // Manufacturing & Industrial
     'manufacturing', 'industrial', 'factory', 'production', 'assembly',
-    'quality control', 'supply chain', 'robotics', 'automation',
+    'quality control', 'supply chain', 'robotics', 'automation', 'machinery',
+    'operations', 'process optimization', 'lean manufacturing', 'six sigma',
     
     // Energy & Utilities
     'energy', 'solar', 'renewable', 'electricity', 'oil', 'gas', 'utility',
-    'power generation', 'grid', 'sustainable',
+    'power generation', 'grid', 'sustainable', 'wind power', 'hydroelectric',
+    'nuclear energy', 'geothermal', 'energy efficiency', 'carbon footprint',
     
     // Entertainment & Media
     'entertainment', 'media', 'broadcasting', 'journalism', 'publishing',
-    'film', 'television', 'radio', 'gaming', 'sports', 'theater',
+    'film', 'television', 'radio', 'gaming', 'sports', 'theater', 'performance',
+    'streaming', 'podcast', 'content creation', 'social media', 'influencer',
     
     // Science & Research
     'research', 'laboratory', 'scientific', 'experiment', 'analysis',
     'archaeology', 'geology', 'biology', 'chemistry', 'physics',
-    'astronomy', 'meteorology', 'environmental science',
+    'astronomy', 'meteorology', 'environmental science', 'marine biology',
+    'genetics', 'microbiology', 'biochemistry', 'neuroscience', 'psychology',
     
-    // Emergency & Safety
+    // Emergency & Safety Services
     'emergency', 'firefighter', 'police', 'security', 'safety', 'rescue',
-    'disaster', 'crisis management', 'first aid', 'paramedic',
+    'disaster', 'crisis management', 'first aid', 'paramedic', 'emt',
+    'homeland security', 'cybersecurity', 'surveillance', 'investigation',
     
     // Retail & E-commerce
     'retail', 'e-commerce', 'shopping', 'merchandising', 'inventory',
-    'customer service', 'sales', 'marketing', 'advertising',
+    'customer service', 'sales', 'marketing', 'advertising', 'point of sale',
+    'supply chain', 'distribution', 'fulfillment', 'logistics',
     
     // Tourism & Hospitality
     'tourism', 'hospitality', 'hotel', 'travel', 'vacation', 'booking',
-    'restaurant', 'catering', 'event planning',
+    'restaurant', 'catering', 'event planning', 'cruise', 'airline',
+    'destination management', 'tour guide', 'concierge', 'resort',
     
-    // Telecommunications
+    // Telecommunications & IT
     'telecommunications', 'telecom', 'network', 'wireless', 'internet',
-    'communication', 'phone', 'mobile', 'broadband',
+    'communication', 'phone', 'mobile', 'broadband', 'data center',
+    'cloud computing', 'software development', 'cybersecurity', 'it support',
     
     // Textiles & Fashion
     'fashion', 'textile', 'clothing', 'apparel', 'fabric', 'garment',
-    'styling', 'trend', 'runway', 'boutique'
+    'styling', 'trend', 'runway', 'boutique', 'manufacturing', 'retail fashion',
+    
+    // Sports & Recreation
+    'sports', 'fitness', 'recreation', 'athletic', 'coaching', 'training',
+    'exercise', 'gym', 'wellness', 'outdoor', 'adventure', 'competition',
+    
+    // Specialized Industries
+    'appraisal', 'valuation', 'collectibles', 'antiques', 'auction',
+    'investigation', 'forensics', 'detective', 'surveillance', 'background check',
+    'consulting', 'advisory', 'strategy', 'management', 'human resources',
+    'recruitment', 'staffing', 'training', 'development', 'organizational'
   ];
-  
-  const titleLower = tool.title.toLowerCase();
-  const descriptionLower = tool.description.toLowerCase();
-  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
-  const categoryLower = tool.category?.toLowerCase() || '';
   
   // Check if tool matches any industry-specific keywords
   const matchesIndustryKeywords = industryKeywords.some(keyword => 
@@ -355,19 +413,24 @@ const isIndustrySpecificTool = (tool: Tool): boolean => {
   // Also include tools that are already in known industry categories
   const industryCategories = [
     'health', 'medical', 'legal', 'education', 'creative', 'entertainment',
-    'professional services', 'emergency', 'finance', 'specialized', 'robotics'
+    'professional services', 'emergency', 'finance', 'specialized', 'robotics',
+    'wellness', 'lifestyle', 'design', 'culinary', 'food', 'agriculture',
+    'real estate', 'property', 'automotive', 'transportation', 'manufacturing',
+    'energy', 'utilities', 'science', 'research', 'retail', 'tourism',
+    'hospitality', 'telecommunications', 'fashion', 'sports', 'fitness'
   ];
   
   const isInIndustryCategory = industryCategories.some(category => 
     categoryLower.includes(category)
   );
   
-  if (matchesIndustryKeywords || isInIndustryCategory) {
-    console.log(`🏭 INDUSTRY: Detected industry-specific tool: ${tool.title}`);
-    return true;
+  const isIndustryTool = matchesIndustryKeywords || isInIndustryCategory;
+  
+  if (isIndustryTool) {
+    console.log(`🏭 INDUSTRY: Detected industry-specific tool: ${tool.title} (Category: ${tool.category})`);
   }
   
-  return false;
+  return isIndustryTool;
 };
 
 // Build cache once for instant category filtering
@@ -418,6 +481,11 @@ const buildToolsCache = (tools: Tool[]) => {
   console.log(`✍️ Content creation tools found: ${contentCreationTools.length}`);
   console.log(`📊 Data analytics tools found: ${dataAnalyticsTools.length}`);
   console.log(`🏭 INDUSTRY SPECIFIC tools found: ${industrySpecificTools.length}`);
+  
+  // Detailed breakdown of industry tools
+  const healthTools = tools.filter(tool => isHealthRelatedTool(tool));
+  console.log(`🏥 Health & Wellness tools found: ${healthTools.length}`);
+  console.log(`🏥 Sample health tools: ${healthTools.slice(0, 10).map(t => t.title).join(', ')}`);
   
   mainCategories.forEach(mainCat => {
     let categoryTools: Tool[] = [];
@@ -506,7 +574,7 @@ const buildToolsCache = (tools: Tool[]) => {
       );
       
       console.log(`🏭 FINAL Industry Specific category tools: ${categoryTools.length}`);
-      console.log(`📝 Sample industry tools: ${categoryTools.slice(0, 5).map(t => t.title).join(', ')}`);
+      console.log(`📝 Sample industry tools: ${categoryTools.slice(0, 10).map(t => t.title).join(', ')}`);
     }
     else if (mainCat.name === "HISTORICAL & TIME-BASED AI TOOLS") {
       const subcategoryTools = tools.filter(tool => {
