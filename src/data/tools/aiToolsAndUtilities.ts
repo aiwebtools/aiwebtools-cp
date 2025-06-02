@@ -34,7 +34,7 @@ export const aiToolsAndUtilities: Tool[] = [
     description: "One of the best AI search engines available - similar to Google but with advanced AI capabilities. Features real-time search with citations and sources.",
     emoji: "🔍",
     color: "from-blue-500 to-purple-600",
-    directUrl: "https://www.perplexity.ai/",
+    directUrl: "https://www.perplexity.ai/?via=aiwebtools",
     tags: ["AI search", "search engine", "research", "citations", "real-time"],
     category: "AI Tools & Utilities",
     rating: 4.8,

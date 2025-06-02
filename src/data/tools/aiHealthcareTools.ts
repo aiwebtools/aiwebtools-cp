@@ -12,7 +12,7 @@ export const aiHealthcareTools: Tool[] = [
     description: "AI-powered pathology platform that assists pathologists in cancer diagnosis and treatment selection.",
     emoji: "🔬",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://www.pathai.com/",
+    directUrl: "https://www.pathai.com/?via=aiwebtools",
     tags: ["pathology", "cancer diagnosis", "medical imaging", "AI diagnostics"],
     category: "Health & Wellness",
     rating: 4.6,
