@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   BookOpen, 
@@ -124,7 +125,7 @@ export const educationAndLearning: Tool[] = [
     description: "AI-powered homework assistance and study guide for students across various subjects.",
     emoji: "💡",
     color: "from-yellow-500 to-green-600",
-    directUrl: "https://example.com/homeworkhelper",
+    directUrl: "https://chatgpt.com/g/g-683dc3e1898481918c41e1d6007d7a76-homework-helper-bot",
     tags: ["homework help", "study guide", "AI assistance", "education"],
     category: "Education & Learning",
     rating: 4.3,
