@@ -18,40 +18,27 @@ const deduplicatedTools = deduplicateTools(allToolCategories);
 const { priorityTools, remainingTools } = extractPriorityTools(deduplicatedTools);
 
 // Combine with priority tools first
-export const allTools: Tool[] = [
+let combinedTools: Tool[] = [
   ...priorityTools,
   ...remainingTools
 ];
 
-// ENHANCED DEBUG: Find all instances of Financial Calculator Pro with source tracking
-const financialCalcInstances = allTools.map((tool, index) => ({
-  index,
-  title: tool.title,
-  url: tool.directUrl,
-  category: tool.category,
-  exactMatch: tool.title === 'Financial Calculator Pro'
-})).filter(tool => tool.title.toLowerCase().includes('financial calculator'));
-
-console.log('🔍 ALL Financial Calculator instances found:', financialCalcInstances);
-
-// DEBUG: Check both instances specifically
-financialCalcInstances.forEach((instance, i) => {
-  console.log(`📋 Instance ${i + 1}:`, {
-    title: instance.title,
-    index: instance.index,
-    url: instance.url,
-    category: instance.category,
-    isExactMatch: instance.exactMatch
-  });
-  
-  if (instance.exactMatch && instance.url !== 'https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools') {
-    console.log(`❌ WRONG URL at index ${instance.index}:`, instance.url);
-    console.log(`✅ Should be: https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools`);
+// SPECIFIC FIX: Ensure Property Data Finder GPT has the correct URL
+combinedTools = combinedTools.map((tool, index) => {
+  if (tool.title === "Property Data Finder GPT") {
+    console.log(`🔧 FIXING Property Data Finder GPT at index ${index}`);
+    return {
+      ...tool,
+      directUrl: "https://propertydatafindergpt.lovable.app/?via=aiwebtools",
+      category: tool.category || "Real Estate & Property",
+      description: tool.description || "Property Data Finder GPT by Ai Web Tools LLC delivers unparalleled, precise, and current information about properties. Discover everything from market value and topography to living area, year built, estimated facing direction, geocoordinates, and beyond. Unlock a wealth of property insights like never before!"
+    };
   }
+  return tool;
 });
 
 // Remove any duplicate "Financial Calculator Pro" entries - keep only the one from Business & Productivity
-const filteredTools = allTools.filter((tool, index) => {
+const filteredTools = combinedTools.filter((tool, index) => {
   if (tool.title === 'Financial Calculator Pro') {
     // Only keep the one with the correct category and URL
     return tool.category === 'Business & Productivity' && 
@@ -60,8 +47,40 @@ const filteredTools = allTools.filter((tool, index) => {
   return true;
 });
 
-// Replace the allTools export with the filtered version
-export const allToolsFiltered: Tool[] = filteredTools;
+export const allTools: Tool[] = filteredTools;
+
+// DEBUG: Find Property Data Finder GPT and log its details
+const propertyToolIndex = allTools.findIndex(tool => tool.title === "Property Data Finder GPT");
+if (propertyToolIndex !== -1) {
+  const propertyTool = allTools[propertyToolIndex];
+  console.log(`✅ Property Data Finder GPT found at index ${propertyToolIndex}`);
+  console.log(`📍 URL: ${propertyTool.directUrl}`);
+  console.log(`📂 Category: ${propertyTool.category}`);
+} else {
+  console.error(`❌ Property Data Finder GPT not found in tools collection!`);
+}
+
+// ENHANCED DEBUG: Find all instances of tools with similar names
+const propertyRelatedTools = allTools.map((tool, index) => ({
+  index,
+  title: tool.title,
+  url: tool.directUrl,
+  category: tool.category,
+  isPropertyTool: tool.title.toLowerCase().includes('property')
+})).filter(tool => tool.isPropertyTool);
+
+console.log('🏠 All property-related tools found:', propertyRelatedTools);
+
+// Debug tool at index 59 specifically
+if (allTools[59]) {
+  console.log(`🔍 Tool at index 59:`, {
+    title: allTools[59].title,
+    url: allTools[59].directUrl,
+    category: allTools[59].category
+  });
+} else {
+  console.log(`⚠️ No tool found at index 59`);
+}
 
 // Use filtered tools for all exports
 export const featuredTools: Tool[] = createFeaturedTools(filteredTools);
