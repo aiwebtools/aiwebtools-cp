@@ -20,21 +20,15 @@ const MainCategoryPage = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(24);
-  const [categoryDisplayedCount, setCategoryDisplayedCount] = useState(24);
   const [isLoading, setIsLoading] = useState(false);
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
   const mainCategory = mainCategories.find(cat => cat.name === decodedCategoryName);
   
+  // Immediate scroll to top without delays
   useEffect(() => {
     window.scrollTo(0, 0);
-    requestAnimationFrame(() => {
-      window.scrollTo(0, 0);
-    });
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 100);
   }, [decodedCategoryName]);
   
   if (!mainCategory) {
@@ -68,10 +62,11 @@ const MainCategoryPage = () => {
     if (isLoading || allToolsDisplayedCount >= filteredTools.length) return;
     
     setIsLoading(true);
+    // Reduced timeout for faster loading
     setTimeout(() => {
       setAllToolsDisplayedCount(prev => Math.min(prev + 24, filteredTools.length));
       setIsLoading(false);
-    }, 300);
+    }, 100);
   };
 
   const handleSearchChange = (value: string) => {
@@ -125,12 +120,12 @@ const MainCategoryPage = () => {
             />
           </div>
 
-          {/* Tools Count */}
+          {/* Tools Count - Show accurate count */}
           <div className="text-center mb-8">
             <div className="text-cyan-400 font-semibold">
               {searchTerm 
                 ? `${filteredTools.length} tools found` 
-                : `${toolsToShow.length} tools in ${decodedCategoryName}`
+                : `${filteredTools.length} tools in ${decodedCategoryName}`
               }
             </div>
           </div>

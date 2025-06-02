@@ -17,13 +17,8 @@ const CategorySelector = forwardRef<HTMLDivElement, CategorySelectorProps>(
     const navigate = useNavigate();
 
     const handleCategoryClick = (category: string) => {
-      // Scroll to top immediately
-      window.scrollTo(0, 0);
-      
-      // Navigate to category page
+      // Immediate navigation without delays
       navigate(`/category/${encodeURIComponent(category)}`);
-      
-      // Call the original handler
       onCategoryChange(category);
     };
 
@@ -47,7 +42,7 @@ const CategorySelector = forwardRef<HTMLDivElement, CategorySelectorProps>(
                   variant="outline"
                   size="sm"
                   className={`
-                    group relative overflow-hidden transition-all duration-300 transform hover:scale-105 w-full min-w-fit px-4 py-3 h-auto whitespace-normal text-left border
+                    group relative overflow-hidden transition-all duration-200 transform hover:scale-105 w-full min-w-fit px-4 py-3 h-auto whitespace-normal text-left border
                     ${isSelected 
                       ? `${categoryStyle.colors.selected} text-white shadow-lg border-white/30` 
                       : `${categoryStyle.colors.bg} ${categoryStyle.colors.border} text-gray-200 ${categoryStyle.colors.hover} hover:text-white hover:shadow-md`
