@@ -1,4 +1,5 @@
 
+
 import { Tool } from "@/types/tools";
 import { 
   DollarSign, TrendingUp, BarChart3, Calculator, PieChart,
@@ -31,18 +32,6 @@ export const aiFinanceTools: Tool[] = [
     totalVotes: 1987
   },
   {
-    icon: Wallet,
-    title: "Mint (Intuit)",
-    description: "AI-powered personal finance app that categorizes transactions, tracks spending, and provides budget recommendations.",
-    emoji: "💰",
-    color: "from-green-500 to-cyan-600",
-    directUrl: "https://mint.intuit.com/?via=aiwebtools",
-    tags: ["personal finance", "budgeting", "expense tracking", "financial planning"],
-    category: "Professional Services",
-    rating: 4.2,
-    totalVotes: 1432
-  },
-  {
     icon: Building,
     title: "Zest AI",
     description: "AI platform for credit underwriting that helps lenders make more accurate and fair lending decisions.",
@@ -53,5 +42,54 @@ export const aiFinanceTools: Tool[] = [
     category: "Professional Services",
     rating: 4.4,
     totalVotes: 1876
+  },
+  {
+    icon: PieChart,
+    title: "Personal Capital",
+    description: "AI-powered wealth management and financial planning platform with comprehensive portfolio analysis.",
+    emoji: "🥧",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.personalcapital.com/?via=aiwebtools",
+    tags: ["wealth management", "financial planning", "portfolio analysis", "investment tracking"],
+    category: "Professional Services",
+    rating: 4.3,
+    totalVotes: 1654
+  },
+  {
+    icon: Target,
+    title: "Robinhood",
+    description: "AI-enhanced commission-free investing platform with smart portfolio recommendations and market insights.",
+    emoji: "🎯",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://robinhood.com/?via=aiwebtools",
+    tags: ["investing", "trading", "portfolio management", "market analysis"],
+    category: "Professional Services",
+    rating: 4.2,
+    totalVotes: 3421
+  },
+  {
+    icon: CreditCard,
+    title: "Credit Karma",
+    description: "AI-powered credit monitoring and financial health platform with personalized recommendations.",
+    emoji: "💳",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://www.creditkarma.com/?via=aiwebtools",
+    tags: ["credit monitoring", "financial health", "credit score", "personal finance"],
+    category: "Professional Services",
+    rating: 4.1,
+    totalVotes: 2876
+  },
+  {
+    icon: Wallet,
+    title: "Mint (Intuit)",
+    description: "AI-powered personal finance app that categorizes transactions, tracks spending, and provides budget recommendations.",
+    emoji: "💰",
+    color: "from-green-500 to-cyan-600",
+    directUrl: "https://mint.intuit.com/?via=aiwebtools",
+    tags: ["personal finance", "budgeting", "expense tracking", "financial planning"],
+    category: "Professional Services",
+    rating: 4.2,
+    totalVotes: 1432
   }
 ];
+
