@@ -1,18 +1,15 @@
 
 import { Home } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const Logo = () => {
-  const navigate = useNavigate();
-
   const scrollToHome = () => {
-    // If we're already on the home page, just scroll to top
+    // If we're already on the home page, just scroll to top instantly
     if (window.location.pathname === '/') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // Navigate to home page
-      navigate('/');
+      // For faster navigation, use window.location.href for instant redirect
+      window.location.href = '/';
     }
   };
 
