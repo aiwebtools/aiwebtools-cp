@@ -37,11 +37,6 @@ const CategoryPageSelection = () => {
             
             console.log(`📊 CategoryPageSelection ${mainCat.name}: ${count} tools (${mainCat.name === "ALL AI TOOLS" ? 'total tools' : 'from global counts'})`);
             
-            // Special handling for consolidated CONTENT CREATION & WRITING category
-            if (mainCat.name === "CONTENT CREATION & WRITING") {
-              console.log(`✍️ CONSOLIDATED CategoryPageSelection: ${count} tools for Content Creation & Writing`);
-            }
-            
             if (count === 0 && mainCat.name !== "ALL AI TOOLS") return null;
             
             return (
