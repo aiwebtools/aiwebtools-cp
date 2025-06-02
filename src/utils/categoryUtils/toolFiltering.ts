@@ -193,8 +193,16 @@ const buildToolsCache = (tools: Tool[]) => {
   // Pre-process chat/assistant tools once
   const chatRelatedTools = tools.filter(tool => isAIChatAssistantTool(tool));
   
-  // Pre-process ALL health tools once - ENSURE SINGLE CONSOLIDATED CATEGORY
-  const healthRelatedTools = tools.filter(tool => isHealthRelatedTool(tool));
+  // Pre-process ALL health tools once - FORCE EVERYTHING INTO ONE CATEGORY
+  const healthRelatedTools = tools.filter(tool => {
+    const isHealthTool = isHealthRelatedTool(tool);
+    // Force all health tools to have the unified category
+    if (isHealthTool && tool.category !== "Health, Wellness & Personal Lifestyle") {
+      console.log(`🔄 Force updating health tool category: ${tool.title} from "${tool.category}" to "Health, Wellness & Personal Lifestyle"`);
+      tool.category = "Health, Wellness & Personal Lifestyle";
+    }
+    return isHealthTool;
+  });
   
   // Pre-process STRICTLY historical tools (excluding education tools and major LLMs)
   const strictHistoricalTools = tools.filter(tool => isStrictlyHistoricalTimeRelatedTool(tool));
@@ -228,7 +236,7 @@ const buildToolsCache = (tools: Tool[]) => {
       categoryTools = [...tools]; // Show ALL tools without any filtering
     }
     else if (mainCat.name === "AI CHAT & ASSISTANTS") {
-      // Combine subcategory matches with content analysis and major LLMs
+      // ... keep existing code (AI chat handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -236,17 +244,15 @@ const buildToolsCache = (tools: Tool[]) => {
         );
       });
       
-      // Include major LLMs in chat category
       const majorLLMs = tools.filter(tool => isMajorLLM(tool));
       
-      // Merge and deduplicate by title only
       const allChatTools = [...subcategoryTools, ...chatRelatedTools, ...majorLLMs];
       categoryTools = allChatTools.filter((tool, index, self) => 
         index === self.findIndex(t => t.title === tool.title)
       );
     }
     else if (mainCat.name === "CONTENT CREATION & WRITING") {
-      // Enhanced content creation category - include major LLMs
+      // ... keep existing code (content creation handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -260,7 +266,7 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "DATA & ANALYTICS AI TOOLS") {
-      // Enhanced data analytics category - include major LLMs
+      // ... keep existing code (data analytics handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -275,7 +281,7 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "EDUCATION & LEARNING") {
-      // Enhanced education category - include educational tools but exclude pure historical tools
+      // ... keep existing code (education handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -283,7 +289,6 @@ const buildToolsCache = (tools: Tool[]) => {
         );
       });
       
-      // Include educational historical tools that are primarily educational
       const educationalHistoricalTools = tools.filter(tool => 
         isPrimaryEducationTool(tool) && 
         (tool.description.toLowerCase().includes('historical') || 
@@ -296,25 +301,14 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
-      // SINGLE UNIFIED HEALTH CATEGORY - ALL health tools go here
-      const subcategoryTools = tools.filter(tool => {
-        if (!tool.category) return false;
-        return mainCat.subcategories.some(subcat => 
-          isSimilarCategory(tool.category, subcat)
-        );
-      });
+      // CRITICAL: ONLY ONE UNIFIED HEALTH CATEGORY - NO EXCEPTIONS
+      categoryTools = [...healthRelatedTools]; // Use ONLY the pre-processed health tools
       
-      // Ensure ALL health-related tools are included in one category
-      const allHealthTools = [...subcategoryTools, ...healthRelatedTools];
-      categoryTools = allHealthTools.filter((tool, index, self) => 
-        index === self.findIndex(t => t.title === tool.title)
-      );
-      
-      console.log(`🏥 UNIFIED Health category tools: ${categoryTools.length}`);
+      console.log(`🏥 FINAL UNIFIED Health category tools: ${categoryTools.length}`);
       console.log(`📝 Sample health tools: ${categoryTools.slice(0, 5).map(t => t.title).join(', ')}`);
     }
     else if (mainCat.name === "HISTORICAL & TIME-BASED AI TOOLS") {
-      // STRICT historical tools only - exclude education tools and major LLMs
+      // ... keep existing code (historical handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -322,16 +316,13 @@ const buildToolsCache = (tools: Tool[]) => {
         );
       });
       
-      // Only include tools that are STRICTLY historical, not educational or major LLMs
       const allHistoricalTools = [...subcategoryTools, ...strictHistoricalTools];
       categoryTools = allHistoricalTools.filter((tool, index, self) => 
         index === self.findIndex(t => t.title === tool.title)
       );
-      
-      console.log(`🕰️ Final historical tools count: ${categoryTools.length}`);
-      console.log(`📝 Sample historical tools: ${categoryTools.slice(0, 5).map(t => t.title).join(', ')}`);
     }
     else if (mainCat.name === "VIDEO & MULTIMEDIA") {
+      // ... keep existing code (video handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -411,14 +402,15 @@ const isAIChatAssistantTool = (tool: Tool): boolean => {
   ) || isMajorLLM(tool); // Include major LLMs in chat category
 };
 
-// Helper function to detect health-related tools
+// Helper function to detect health-related tools - MOST CRITICAL FUNCTION
 const isHealthRelatedTool = (tool: Tool): boolean => {
   const healthKeywords = [
     'health', 'medical', 'wellness', 'healthcare', 'medicine', 'doctor', 'physician',
     'nurse', 'pharmacy', 'pharmaceutical', 'clinic', 'hospital', 'patient', 'therapy',
     'treatment', 'diagnosis', 'mental health', 'dental', 'veterinary', 'fitness',
     'nutrition', 'diet', 'exercise', 'lifestyle', 'personal care', 'skincare',
-    'cannabis', 'insurance claims', 'genome', 'pharma', 'drug', 'medication'
+    'cannabis', 'insurance claims', 'genome', 'pharma', 'drug', 'medication',
+    'marriage mender', 'mixologist', 'food quality', 'dr. gpt', 'personalized dr'
   ];
   
   const titleLower = tool.title.toLowerCase();
