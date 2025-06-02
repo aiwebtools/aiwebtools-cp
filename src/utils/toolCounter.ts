@@ -3,13 +3,15 @@ import { getAllToolCategories } from '@/data/toolsCollection';
 import { deduplicateTools } from '@/utils/toolDeduplication';
 import { trackToolChanges } from '@/utils/toolChangeTracker';
 import { runIntegrityCheck } from '@/utils/toolIntegrityChecker';
+import { getMainCategoriesWithCounts } from '@/utils/categoryUtils/toolFiltering';
+import { allTools } from '@/data/toolsData';
 
 export const getToolCount = () => {
   // Track changes before counting
   trackToolChanges('tool_count_check');
   
-  const allTools = getAllToolCategories();
-  const deduplicatedTools = deduplicateTools(allTools);
+  const allToolsFromCollection = getAllToolCategories();
+  const deduplicatedTools = deduplicateTools(allToolsFromCollection);
   
   const categoryBreakdown: Record<string, number> = {};
   deduplicatedTools.forEach(tool => {
@@ -17,59 +19,36 @@ export const getToolCount = () => {
     categoryBreakdown[category] = (categoryBreakdown[category] || 0) + 1;
   });
   
+  // Get main category counts using the EXACT same logic as the website
+  const mainCategoryCounts = getMainCategoriesWithCounts(allTools);
+  
   console.log('🎉 ENHANCED TOOL COUNT VERIFICATION 🎉');
   console.log(`📊 EXACT Tool Count: ${deduplicatedTools.length}`);
   console.log('📋 Complete Category Breakdown:', categoryBreakdown);
+  console.log('🎯 Main Category Counts (matching website display):', mainCategoryCounts);
   
   // Enhanced analysis for the categories user mentioned
-  const creativeCategories = Object.keys(categoryBreakdown).filter(cat => 
-    cat.toLowerCase().includes('creative') || 
-    cat.toLowerCase().includes('entertainment') ||
-    cat.toLowerCase().includes('content') ||
-    cat.toLowerCase().includes('media') ||
-    cat.toLowerCase().includes('design') ||
-    cat.toLowerCase().includes('art')
-  );
-  
-  const healthCategories = Object.keys(categoryBreakdown).filter(cat => 
-    cat.toLowerCase().includes('health') || 
-    cat.toLowerCase().includes('wellness') ||
-    cat.toLowerCase().includes('medical') ||
-    cat.toLowerCase().includes('healthcare') ||
-    cat.toLowerCase().includes('fitness')
-  );
-  
-  const creativeToolsCount = creativeCategories.reduce((sum, cat) => sum + (categoryBreakdown[cat] || 0), 0);
-  const healthToolsCount = healthCategories.reduce((sum, cat) => sum + (categoryBreakdown[cat] || 0), 0);
+  const creativeCount = mainCategoryCounts['CREATIVE & ENTERTAINMENT'] || 0;
+  const healthCount = mainCategoryCounts['HEALTH, WELLNESS & PERSONAL LIFESTYLE'] || 0;
+  const marketingCount = mainCategoryCounts['MARKETING & SALES SOLUTIONS'] || 0;
   
   console.log('🎭 CREATIVE & ENTERTAINMENT ANALYSIS:');
-  console.log(`   Categories: ${creativeCategories.join(', ')}`);
-  console.log(`   Total Tools: ${creativeToolsCount}`);
-  creativeCategories.forEach(cat => {
-    console.log(`   ${cat}: ${categoryBreakdown[cat]} tools`);
-  });
+  console.log(`   Main Category Count: ${creativeCount} tools`);
   
   console.log('🏥 HEALTH & WELLNESS ANALYSIS:');
-  console.log(`   Categories: ${healthCategories.join(', ')}`);
-  console.log(`   Total Tools: ${healthToolsCount}`);
-  healthCategories.forEach(cat => {
-    console.log(`   ${cat}: ${categoryBreakdown[cat]} tools`);
-  });
+  console.log(`   Main Category Count: ${healthCount} tools`);
   
-  console.log(`🔍 COMBINED USER CATEGORIES: ${creativeToolsCount + healthToolsCount} tools`);
-  console.log(`🎯 User Expected: Over 1000 tools combined`);
-  console.log(`📊 Actual Found: ${creativeToolsCount + healthToolsCount} tools`);
+  console.log('📈 MARKETING & SALES ANALYSIS:');
+  console.log(`   Main Category Count: ${marketingCount} tools`);
   
-  // Check for potential misalignment
-  if (creativeToolsCount + healthToolsCount < 1000) {
-    console.log('⚠️ POTENTIAL ISSUE: Tool count lower than expected');
-    console.log('🔍 Investigating potential causes:');
-    console.log('   1. Tools might be in different category names');
-    console.log('   2. Category mapping might need updates');
-    console.log('   3. Tools might be miscategorized');
-  } else {
-    console.log('✅ TOOL COUNT MATCHES EXPECTATIONS');
-  }
+  console.log(`🔍 COMBINED USER CATEGORIES: ${creativeCount + healthCount + marketingCount} tools`);
+  
+  // Check consistency between collection count and allTools count
+  const allToolsCount = allTools.length;
+  console.log(`🔍 CONSISTENCY CHECK:`);
+  console.log(`   Collection tools (deduplicated): ${deduplicatedTools.length}`);
+  console.log(`   allTools count: ${allToolsCount}`);
+  console.log(`   Match: ${deduplicatedTools.length === allToolsCount ? '✅' : '❌'}`);
   
   // Enhanced pricing analysis
   const freeTools = deduplicatedTools.filter(tool => 
@@ -108,6 +87,10 @@ export const getToolCount = () => {
   console.log(`🎯 EXACT TOTAL: ${deduplicatedTools.length} AI TOOLS`);
   console.log(`📈 Rounded Marketing Number: ${Math.round(deduplicatedTools.length / 100) * 100}+`);
   console.log(`🚀 Categories Available: ${Object.keys(categoryBreakdown).length}`);
+  console.log('🎯 Main Category Tool Distribution:');
+  Object.entries(mainCategoryCounts).forEach(([category, count]) => {
+    console.log(`   ${category}: ${count} tools`);
+  });
   
   // Run integrity check after counting
   console.log('\n🔍 RUNNING ENHANCED INTEGRITY CHECK...');
@@ -118,12 +101,14 @@ export const getToolCount = () => {
     marketingNumber: `${Math.round(deduplicatedTools.length / 100) * 100}+`,
     totalTools: deduplicatedTools.length,
     categoryBreakdown,
+    mainCategoryCounts,
     categoriesCount: Object.keys(categoryBreakdown).length,
     freeTools,
     freemiumTools,
     paidTools,
-    creativeToolsCount,
-    healthToolsCount,
+    creativeToolsCount: creativeCount,
+    healthToolsCount: healthCount,
+    marketingToolsCount: marketingCount,
     searchReadiness: {
       withTags: toolsWithTags,
       withCategories: toolsWithCategories
@@ -132,12 +117,13 @@ export const getToolCount = () => {
 };
 
 // Export a function to get the current accurate count for use in components
-export const getCurrentToolCount = (): { total: number; marketing: string; categories: number } => {
+export const getCurrentToolCount = (): { total: number; marketing: string; categories: number; mainCategoryCounts: Record<string, number> } => {
   const result = getToolCount();
   return {
     total: result.exactTotal,
     marketing: result.marketingNumber,
-    categories: result.categoriesCount
+    categories: result.categoriesCount,
+    mainCategoryCounts: result.mainCategoryCounts
   };
 };
 

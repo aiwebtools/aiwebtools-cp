@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { mainCategories } from "@/utils/mainCategoryMapping";
-import { getMainCategoriesWithCounts } from "@/utils/categoryUtils";
+import { getMainCategoriesWithCounts } from "@/utils/categoryUtils/toolFiltering";
 import { allTools } from "@/data/toolsData";
 
 const CategoryPageSelection = () => {
   const navigate = useNavigate();
   
-  // Get main category counts using optimized cache
+  // Get main category counts using the EXACT same logic as MainCategoryFilter
   const mainCategoryCounts = getMainCategoriesWithCounts(allTools);
 
   const handleMainCategoryClick = (mainCategoryName: string) => {
@@ -17,6 +17,8 @@ const CategoryPageSelection = () => {
     const encodedName = encodeURIComponent(mainCategoryName);
     navigate(`/main-category/${encodedName}`);
   };
+
+  console.log('📊 CategoryPageSelection: Main category counts:', mainCategoryCounts);
 
   return (
     <section className="py-16 px-4 relative">
@@ -30,7 +32,11 @@ const CategoryPageSelection = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
           {mainCategories.map((mainCat) => {
+            // Use EXACT same logic: ALL AI TOOLS gets total count, others get from globalCounts
             const count = mainCat.name === "ALL AI TOOLS" ? allTools.length : (mainCategoryCounts[mainCat.name] || 0);
+            
+            console.log(`📊 CategoryPageSelection ${mainCat.name}: ${count} tools (${mainCat.name === "ALL AI TOOLS" ? 'total tools' : 'from global counts'})`);
+            
             if (count === 0 && mainCat.name !== "ALL AI TOOLS") return null;
             
             return (

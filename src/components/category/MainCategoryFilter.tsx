@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -19,18 +18,20 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedMainCategories, setSelectedMainCategories] = useState<string[]>([]);
 
-  // Get accurate main categories with their tool counts using the GLOBAL allTools
+  // Get EXACTLY the same counts that are shown on the main category cards
   const mainCategoriesWithCounts = useMemo(() => {
-    console.log('🔄 Calculating main category counts for MainCategoryFilter using global allTools...');
+    console.log('🔄 MainCategoryFilter: Using EXACT same counting logic as main category cards...');
     
+    // Use the EXACT same function that populates the main category cards
     const globalCounts = getMainCategoriesWithCounts(allTools);
     
-    const uniqueCategories = new Set<string>();
+    console.log('📊 MainCategoryFilter Global Counts:', globalCounts);
     
     const categoriesData = mainCategories.map(mainCat => {
-      const count = globalCounts[mainCat.name] || 0;
+      // For "ALL AI TOOLS", use the total count of all tools
+      const count = mainCat.name === "ALL AI TOOLS" ? allTools.length : (globalCounts[mainCat.name] || 0);
       
-      console.log(`📊 ${mainCat.name}: ${count} tools (from global allTools)`);
+      console.log(`📊 MainCategoryFilter ${mainCat.name}: ${count} tools (${mainCat.name === "ALL AI TOOLS" ? 'total tools' : 'from global counts'})`);
       
       return {
         name: mainCat.name,
@@ -38,14 +39,16 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
         count: count
       };
     }).filter(cat => {
-      if (cat.count > 0 && !uniqueCategories.has(cat.name)) {
-        uniqueCategories.add(cat.name);
-        return true;
-      }
-      return false;
-    }).sort((a, b) => b.count - a.count);
+      // Only show categories with tools (except show ALL AI TOOLS even if somehow count is 0)
+      return cat.count > 0 || cat.name === "ALL AI TOOLS";
+    }).sort((a, b) => {
+      // Sort by count descending, but keep ALL AI TOOLS at the top
+      if (a.name === "ALL AI TOOLS") return -1;
+      if (b.name === "ALL AI TOOLS") return 1;
+      return b.count - a.count;
+    });
     
-    console.log('🎯 Unique categories after deduplication:', categoriesData.map(c => c.name));
+    console.log('🎯 MainCategoryFilter Final categories with counts:', categoriesData.map(c => `${c.name}: ${c.count}`));
     return categoriesData;
   }, []);
 
@@ -59,7 +62,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     }
   }, [currentMainCategory, mainCategoriesWithCounts]);
 
-  // Apply main category filters with priority ordering - FIXED LOGIC
+  // Apply main category filters with priority ordering
   const filteredTools = useMemo(() => {
     if (selectedMainCategories.length === 0) {
       console.log(`📂 No filters selected - showing all ${tools.length} tools for ${currentMainCategory}`);
@@ -92,7 +95,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     // Combine: priority tools first, then remaining tools
     const orderedTools = [...priorityTools, ...remainingTools];
     
-    console.log(`✅ FIXED Priority ordered result: ${priorityTools.length} priority tools + ${remainingTools.length} remaining tools = ${orderedTools.length} total`);
+    console.log(`✅ Priority ordered result: ${priorityTools.length} priority tools + ${remainingTools.length} remaining tools = ${orderedTools.length} total`);
     console.log(`🔍 Priority tools titles (first 10):`, priorityTools.slice(0, 10).map(t => t.title));
     
     return orderedTools;
@@ -201,7 +204,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-48 overflow-y-auto">
             {mainCategoriesWithCounts.map(({ name, emoji, count }) => {
               const isChecked = selectedMainCategories.includes(name);
-              console.log(`🔘 Rendering checkbox for ${name}: checked=${isChecked}`);
+              console.log(`🔘 Rendering checkbox for ${name}: checked=${isChecked}, count=${count}`);
               
               return (
                 <div
