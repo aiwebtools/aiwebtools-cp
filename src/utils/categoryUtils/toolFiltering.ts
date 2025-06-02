@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -14,6 +13,68 @@ import { CategoryCounts, MainCategoryCounts } from "./types";
 // Create a cached mapping of tools by main category for instant lookup
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
+
+// Helper function to detect historical and time-based tools
+const isHistoricalTimeRelatedTool = (tool: Tool): boolean => {
+  const historicalKeywords = [
+    'historical', 'history', 'time', 'ancient', 'past', 'timeline', 'era', 'period',
+    'civilization', 'archaeology', 'archaeological', 'artifact', 'heritage', 'legacy',
+    'medieval', 'renaissance', 'antiquity', 'vintage', 'retro', 'classic', 'traditional',
+    'museum', 'archive', 'chronicle', 'documentary', 'manuscript', 'relic', 'fossil',
+    'genealogy', 'ancestry', 'lineage', 'dynasty', 'monarchy', 'empire', 'kingdom',
+    'revolution', 'war', 'battle', 'conquest', 'discovery', 'exploration', 'expedition',
+    'philosopher', 'philosophy', 'wisdom', 'culture', 'cultural', 'ethnic', 'tribal',
+    'folklore', 'legend', 'myth', 'mythology', 'epic', 'saga', 'tale', 'story',
+    'einstein', 'tesla', 'newton', 'shakespeare', 'aristotle', 'plato', 'socrates',
+    'napoleon', 'caesar', 'cleopatra', 'lincoln', 'washington', 'churchill',
+    'titanic', 'pyramids', 'colosseum', 'stonehenge', 'pharaoh', 'viking', 'samurai',
+    'gregorian', 'julian', 'calendar', 'chronology', 'decades', 'centuries', 'millennium',
+    'prehistoric', 'paleolithic', 'neolithic', 'bronze age', 'iron age', 'stone age',
+    'mystical', 'esoteric', 'occult', 'spiritual', 'divine', 'sacred', 'holy',
+    'oracle', 'prophecy', 'divination', 'tarot', 'astrology', 'zodiac', 'horoscope',
+    'resurrection', 'reincarnation', 'afterlife', 'eternity', 'immortal', 'eternal',
+    'time machine', 'time travel', 'temporal', 'chronological', 'anachronism',
+    'alan watts', 'mary magdalene', 'jesus', 'buddha', 'confucius', 'lao tzu'
+  ];
+  
+  const titleLower = tool.title.toLowerCase();
+  const descriptionLower = tool.description.toLowerCase();
+  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
+  const categoryLower = tool.category?.toLowerCase() || '';
+  
+  return historicalKeywords.some(keyword => 
+    titleLower.includes(keyword) || 
+    descriptionLower.includes(keyword) || 
+    tagsLower.includes(keyword) ||
+    categoryLower.includes(keyword)
+  );
+};
+
+// Helper function to detect educational tools (including historical education)
+const isEducationRelatedTool = (tool: Tool): boolean => {
+  const educationKeywords = [
+    'education', 'learning', 'educational', 'academic', 'study', 'course', 'curriculum',
+    'teaching', 'teacher', 'tutor', 'tutoring', 'lesson', 'homework', 'quiz', 'test',
+    'training', 'skill', 'knowledge', 'research', 'university', 'college', 'school',
+    'degree', 'certification', 'workshop', 'seminar', 'lecture', 'instruction',
+    'pedagogy', 'student', 'learner', 'classroom', 'assessment', 'evaluation',
+    'comprehension', 'understanding', 'analysis', 'critical thinking', 'problem solving',
+    'science education', 'mathematics education', 'language learning', 'history learning',
+    'educational simulation', 'learning platform', 'study guide', 'educational content'
+  ];
+  
+  const titleLower = tool.title.toLowerCase();
+  const descriptionLower = tool.description.toLowerCase();
+  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
+  const categoryLower = tool.category?.toLowerCase() || '';
+  
+  return educationKeywords.some(keyword => 
+    titleLower.includes(keyword) || 
+    descriptionLower.includes(keyword) || 
+    tagsLower.includes(keyword) ||
+    categoryLower.includes(keyword)
+  );
+};
 
 // Build cache once for instant category filtering
 const buildToolsCache = (tools: Tool[]) => {
@@ -35,6 +96,9 @@ const buildToolsCache = (tools: Tool[]) => {
   
   // Pre-process historical tools once
   const historicalRelatedTools = tools.filter(tool => isHistoricalTimeRelatedTool(tool));
+  
+  // Pre-process education tools once (including historical education)
+  const educationRelatedTools = tools.filter(tool => isEducationRelatedTool(tool));
   
   // Pre-process video tools once
   const videoRelatedTools = tools.filter(tool => isVideoRelatedTool(tool));
@@ -88,6 +152,29 @@ const buildToolsCache = (tools: Tool[]) => {
       // Merge and deduplicate by title only
       const allChatTools = [...subcategoryTools, ...chatRelatedTools];
       categoryTools = allChatTools.filter((tool, index, self) => 
+        index === self.findIndex(t => t.title === tool.title)
+      );
+    }
+    else if (mainCat.name === "EDUCATION & LEARNING") {
+      // Enhanced education category that includes historical education tools
+      const subcategoryTools = tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCat.subcategories.some(subcat => 
+          isSimilarCategory(tool.category, subcat)
+        );
+      });
+      
+      // Include educational historical tools that may not be in education categories
+      const historicalEducationTools = historicalRelatedTools.filter(tool => 
+        isEducationRelatedTool(tool) || 
+        tool.description.toLowerCase().includes('educational') ||
+        tool.description.toLowerCase().includes('learning') ||
+        tool.description.toLowerCase().includes('student') ||
+        tool.description.toLowerCase().includes('perfect for students')
+      );
+      
+      const allEducationTools = [...subcategoryTools, ...educationRelatedTools, ...historicalEducationTools];
+      categoryTools = allEducationTools.filter((tool, index, self) => 
         index === self.findIndex(t => t.title === tool.title)
       );
     }
@@ -269,6 +356,32 @@ const isHistoricalTimeRelatedTool = (tool: Tool): boolean => {
   const categoryLower = tool.category?.toLowerCase() || '';
   
   return historicalKeywords.some(keyword => 
+    titleLower.includes(keyword) || 
+    descriptionLower.includes(keyword) || 
+    tagsLower.includes(keyword) ||
+    categoryLower.includes(keyword)
+  );
+};
+
+// Helper function to detect educational tools (including historical education)
+const isEducationRelatedTool = (tool: Tool): boolean => {
+  const educationKeywords = [
+    'education', 'learning', 'educational', 'academic', 'study', 'course', 'curriculum',
+    'teaching', 'teacher', 'tutor', 'tutoring', 'lesson', 'homework', 'quiz', 'test',
+    'training', 'skill', 'knowledge', 'research', 'university', 'college', 'school',
+    'degree', 'certification', 'workshop', 'seminar', 'lecture', 'instruction',
+    'pedagogy', 'student', 'learner', 'classroom', 'assessment', 'evaluation',
+    'comprehension', 'understanding', 'analysis', 'critical thinking', 'problem solving',
+    'science education', 'mathematics education', 'language learning', 'history learning',
+    'educational simulation', 'learning platform', 'study guide', 'educational content'
+  ];
+  
+  const titleLower = tool.title.toLowerCase();
+  const descriptionLower = tool.description.toLowerCase();
+  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
+  const categoryLower = tool.category?.toLowerCase() || '';
+  
+  return educationKeywords.some(keyword => 
     titleLower.includes(keyword) || 
     descriptionLower.includes(keyword) || 
     tagsLower.includes(keyword) ||

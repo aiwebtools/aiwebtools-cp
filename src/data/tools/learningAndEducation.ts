@@ -1,22 +1,23 @@
 
 import { Tool } from "@/types/tools";
 import { 
-  GraduationCap, 
   BookOpen, 
-  Brain, 
-  Lightbulb, 
+  GraduationCap, 
+  Calculator, 
+  Globe, 
   Users, 
-  Star, 
-  Target, 
-  Zap, 
-  Crown, 
-  Sparkles,
-  Heart,
+  Award,
+  Brain,
+  Target,
+  Lightbulb,
+  MessageSquare,
+  Star,
+  Clock,
   School,
-  Calculator,
-  Globe,
   TestTube,
-  MessageSquare
+  History,
+  Scroll,
+  User
 } from "lucide-react";
 
 export const learningAndEducation: Tool[] = [
@@ -123,6 +124,73 @@ export const learningAndEducation: Tool[] = [
     category: "Learning & Education",
     rating: 4.4,
     totalVotes: 2789
+  },
+  // HISTORICAL EDUCATION TOOLS - These also appear in Time & History but are valuable for education
+  {
+    icon: History,
+    title: "TALK TO HISTORY GPT",
+    description: "Your gateway to engaging in immersive historical conversations with influential leaders of history. Interact with any historical figures you imagine and gain unique insights and perspectives straight from the source. Powered by GPT-4o, it's a streamlined way to make history come alive. Perfect for students and enthusiasts alike. This tool is designed for educational and research purposes only by AiWebTools.Ai",
+    emoji: "🏛️",
+    color: "from-amber-500 to-orange-600",
+    directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=5t7EXS5tthQ",
+    tags: ["historical conversations", "historical figures", "educational tool", "history learning", "interactive history", "aiwebtools"],
+    category: "Learning & Education",
+    rating: 4.7,
+    totalVotes: 5432
+  },
+  {
+    icon: Clock,
+    title: "TIME MACHINE GPT",
+    description: "Uncover the past, explore potential futures, and dive into alternative realities with Time Machine GPT! Experience key historical moments, interact with notable figures, and journey through different eras—unlock your imagination. For deeper, more personal conversations with historical characters, we recommend using Talk to History GPT",
+    emoji: "⏰",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298793409806528/time.webp",
+    tags: ["time travel", "history exploration", "historical figures", "alternative realities", "educational simulation", "aiwebtools"],
+    category: "Learning & Education",
+    rating: 4.8,
+    totalVotes: 6789
+  },
+  {
+    icon: Scroll,
+    title: "Historical Headlines GPT",
+    description: "Historical Headlines GPT is an AI that specializes in crafting immersive, historically accurate news articles as if they were written at the time of the event. It reports on history from the perspective of contemporary journalists, using period-accurate language, style, and viewpoints without modern bias or anachronisms. Perfect for educational purposes and learning about historical events through period journalism.",
+    emoji: "📰",
+    color: "from-gray-500 to-blue-600",
+    directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-historical-headline_1Ll1g.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    tags: ["historical news", "period journalism", "historical accuracy", "educational content", "learning history", "aiwebtools"],
+    category: "Learning & Education",
+    rating: 4.5,
+    totalVotes: 3876
+  },
+  {
+    icon: User,
+    title: "Nikola Tesla GPT",
+    description: "Nikola Tesla GPT is a cutting-edge AI tool inspired by the visionary brilliance of Nikola Tesla, designed to investigate scientific mysteries, craft groundbreaking theories, and innovate across disciplines. Perfect for students and educators learning about scientific innovation, electrical engineering, and the history of invention.",
+    emoji: "⚡",
+    color: "from-blue-600 to-purple-700",
+    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=DR_3MvP7Wws",
+    tags: ["Tesla", "invention", "electricity", "innovation", "science education", "physics learning", "aiwebtools"],
+    category: "Learning & Education",
+    rating: 4.8,
+    totalVotes: 4567
+  },
+  {
+    icon: User,
+    title: "Albert Einstein GPT",
+    description: "Albert Einstein GPT is an advanced AI embodiment of Einstein's intellect, curiosity, and scientific rigor, designed to challenge conventional wisdom, foster deep critical thinking, and explore the mysteries of the universe through physics, mathematics, and philosophical inquiry. Excellent for educational purposes and learning advanced scientific concepts.",
+    emoji: "🧮",
+    color: "from-gray-600 to-blue-700",
+    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=kfGyOfjBI0s",
+    tags: ["Einstein", "physics", "relativity", "science", "mathematics education", "critical thinking", "aiwebtools"],
+    category: "Learning & Education",
+    rating: 4.9,
+    totalVotes: 5234
   },
   {
     icon: Target,
