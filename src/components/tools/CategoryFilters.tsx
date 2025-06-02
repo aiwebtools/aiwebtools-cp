@@ -28,6 +28,7 @@ const CategoryFilters = ({
 }: CategoryFiltersProps) => {
   const [viewMode, setViewMode] = useState<'main' | 'sub'>('main');
   const [isExpanded, setIsExpanded] = useState(true);
+  const [selectedMainCategory, setSelectedMainCategory] = useState<string | null>(null);
 
   // Get accurate main category counts from the global cache
   const mainCategoriesWithCounts = getMainCategoriesWithCounts(allTools);
@@ -35,6 +36,15 @@ const CategoryFilters = ({
   const totalTools = Object.values(categoriesWithCounts).reduce((sum, count) => sum + count, 0);
 
   const handleCategorySelect = (category: string | null) => {
+    onCategoryChange(category);
+  };
+
+  const handleBackToMain = () => {
+    setSelectedMainCategory(null);
+    setViewMode('main');
+  };
+
+  const handleSubCategoryClick = (category: string) => {
     onCategoryChange(category);
   };
 
@@ -84,9 +94,11 @@ const CategoryFilters = ({
               />
             ) : (
               <SubcategoriesView
-                categoriesWithCounts={categoriesWithCounts}
+                selectedMainCategory={selectedMainCategory}
                 selectedCategory={selectedCategory}
-                onCategoryChange={handleCategorySelect}
+                categoriesWithCounts={categoriesWithCounts}
+                onBackToMain={handleBackToMain}
+                onSubCategoryClick={handleSubCategoryClick}
               />
             )}
           </div>
