@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { getAllToolCategories } from './toolsCollection';
 import { extractPriorityTools } from './priorityTools';
@@ -51,26 +50,21 @@ financialCalcInstances.forEach((instance, i) => {
   }
 });
 
-// DEBUG: Specifically check tool at index 538
-const toolAt538 = allTools[538];
-if (toolAt538) {
-  console.log('🎯 Tool at index 538:', {
-    title: toolAt538.title,
-    url: toolAt538.directUrl,
-    category: toolAt538.category,
-    description: toolAt538.description.substring(0, 100) + '...'
-  });
-  
-  // Check if this is Financial Calculator Pro
-  if (toolAt538.title === 'Financial Calculator Pro') {
-    console.log('❌ FOUND THE PROBLEM: Tool at index 538 is Financial Calculator Pro with wrong URL');
-    console.log('Current URL:', toolAt538.directUrl);
-    console.log('Expected URL: https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools');
+// Remove any duplicate "Financial Calculator Pro" entries - keep only the one from Business & Productivity
+const filteredTools = allTools.filter((tool, index) => {
+  if (tool.title === 'Financial Calculator Pro') {
+    // Only keep the one with the correct category and URL
+    return tool.category === 'Business & Productivity' && 
+           tool.directUrl === 'https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools';
   }
-}
+  return true;
+});
 
-// Create featured tools using the utility function - prioritizes your GPTs
-export const featuredTools: Tool[] = createFeaturedTools(allTools);
+// Replace the allTools export with the filtered version
+export const allToolsFiltered: Tool[] = filteredTools;
+
+// Use filtered tools for all exports
+export const featuredTools: Tool[] = createFeaturedTools(filteredTools);
 
 // Export utility functions for use in components
 export { searchTools, getCategoriesWithCounts, getToolsByCategory };
@@ -79,28 +73,39 @@ export { searchTools, getCategoriesWithCounts, getToolsByCategory };
 const toolCountAnalysis = getToolCount();
 
 // Debug information with enhanced logging using accurate count
-console.log(`🎉 MILESTONE ACHIEVED! Total tools loaded: ${allTools.length}`);
-console.log(`📊 Categories found: ${Object.keys(getCategoriesWithCounts(allTools)).length}`);
-console.log(`🎯 Accurate count for website: ${allTools.length} tools`);
-console.log(`📈 Marketing display: ${Math.round(allTools.length / 100) * 100}+ tools`);
+console.log(`🎉 MILESTONE ACHIEVED! Total tools loaded: ${filteredTools.length}`);
+console.log(`📊 Categories found: ${Object.keys(getCategoriesWithCounts(filteredTools)).length}`);
+console.log(`🎯 Accurate count for website: ${filteredTools.length} tools`);
+console.log(`📈 Marketing display: ${Math.round(filteredTools.length / 100) * 100}+ tools`);
 
-const categoryBreakdown = getCategoriesWithCounts(allTools);
+const categoryBreakdown = getCategoriesWithCounts(filteredTools);
 console.log('📋 Category breakdown:', categoryBreakdown);
 
 // Verify all tools have categories
-const uncategorizedTools = allTools.filter(tool => !tool.category || tool.category.trim() === '');
+const uncategorizedTools = filteredTools.filter(tool => !tool.category || tool.category.trim() === '');
 if (uncategorizedTools.length > 0) {
   console.warn(`⚠️ Found ${uncategorizedTools.length} uncategorized tools:`, uncategorizedTools.map(t => t.title));
 } else {
   console.log('✅ All tools are properly categorized!');
 }
 
+// Final check for Financial Calculator Pro duplicates
+const finalFinancialCalcCheck = filteredTools.filter(tool => tool.title === 'Financial Calculator Pro');
+console.log(`✅ Final Financial Calculator Pro instances: ${finalFinancialCalcCheck.length}`);
+if (finalFinancialCalcCheck.length === 1) {
+  console.log('✅ SUCCESS: Only one Financial Calculator Pro instance remains');
+  console.log('📍 Location:', finalFinancialCalcCheck[0].category);
+  console.log('🔗 URL:', finalFinancialCalcCheck[0].directUrl);
+} else {
+  console.error(`❌ STILL HAVE ${finalFinancialCalcCheck.length} instances of Financial Calculator Pro!`);
+}
+
 // Summary for Ken with accurate numbers
 console.log(`
 🚀 AI WEB TOOLS DIRECTORY STATUS REPORT 🚀
 ================================================
-✅ EXACT Total AI Tools: ${allTools.length}
-✅ Marketing Display: ${Math.round(allTools.length / 100) * 100}+ AI Tools
+✅ EXACT Total AI Tools: ${filteredTools.length}
+✅ Marketing Display: ${Math.round(filteredTools.length / 100) * 100}+ AI Tools
 ✅ Categories Available: ${Object.keys(categoryBreakdown).length}
 ✅ Quality Assurance: All tools categorized and deduplicated
 ✅ Coverage: Advanced AI, Research, Productivity, Security, Finance, Healthcare, Education, Legal, and more!

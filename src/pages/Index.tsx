@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { runFullToolVerification } from "@/utils/toolIndexing";
 import { searchTools } from "@/utils/searchUtils";
 import { getCurrentToolCount } from "@/utils/toolCounter";
-import { allTools } from "@/data/toolsData";
+import { allToolsFiltered as allTools } from "@/data/toolsData";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 
 const Index = () => {
