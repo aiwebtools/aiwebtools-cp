@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Search, 
@@ -174,3 +175,11 @@ export const investigativeAndAnalysisGPTs: Tool[] = [
     totalVotes: 2765
   }
 ];
+
+// Debug logging to ensure proper categorization
+console.log(`🔍 INVESTIGATIVE TOOLS DEBUG: ${investigativeAndAnalysisGPTs.length} tools loaded in Investigative & Analysis category`);
+investigativeAndAnalysisGPTs.forEach((tool, index) => {
+  if (index < 3) { // Log first 3 for verification
+    console.log(`   ${index + 1}. ${tool.title} - Category: ${tool.category}`);
+  }
+});

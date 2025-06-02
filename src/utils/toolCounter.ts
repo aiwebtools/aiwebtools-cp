@@ -17,9 +17,59 @@ export const getToolCount = () => {
     categoryBreakdown[category] = (categoryBreakdown[category] || 0) + 1;
   });
   
-  console.log('🎉 ACCURATE TOOL COUNT VERIFICATION 🎉');
+  console.log('🎉 ENHANCED TOOL COUNT VERIFICATION 🎉');
   console.log(`📊 EXACT Tool Count: ${deduplicatedTools.length}`);
-  console.log('Category Breakdown:', categoryBreakdown);
+  console.log('📋 Complete Category Breakdown:', categoryBreakdown);
+  
+  // Enhanced analysis for the categories user mentioned
+  const creativeCategories = Object.keys(categoryBreakdown).filter(cat => 
+    cat.toLowerCase().includes('creative') || 
+    cat.toLowerCase().includes('entertainment') ||
+    cat.toLowerCase().includes('content') ||
+    cat.toLowerCase().includes('media') ||
+    cat.toLowerCase().includes('design') ||
+    cat.toLowerCase().includes('art')
+  );
+  
+  const healthCategories = Object.keys(categoryBreakdown).filter(cat => 
+    cat.toLowerCase().includes('health') || 
+    cat.toLowerCase().includes('wellness') ||
+    cat.toLowerCase().includes('medical') ||
+    cat.toLowerCase().includes('healthcare') ||
+    cat.toLowerCase().includes('fitness')
+  );
+  
+  const creativeToolsCount = creativeCategories.reduce((sum, cat) => sum + (categoryBreakdown[cat] || 0), 0);
+  const healthToolsCount = healthCategories.reduce((sum, cat) => sum + (categoryBreakdown[cat] || 0), 0);
+  
+  console.log('🎭 CREATIVE & ENTERTAINMENT ANALYSIS:');
+  console.log(`   Categories: ${creativeCategories.join(', ')}`);
+  console.log(`   Total Tools: ${creativeToolsCount}`);
+  creativeCategories.forEach(cat => {
+    console.log(`   ${cat}: ${categoryBreakdown[cat]} tools`);
+  });
+  
+  console.log('🏥 HEALTH & WELLNESS ANALYSIS:');
+  console.log(`   Categories: ${healthCategories.join(', ')}`);
+  console.log(`   Total Tools: ${healthToolsCount}`);
+  healthCategories.forEach(cat => {
+    console.log(`   ${cat}: ${categoryBreakdown[cat]} tools`);
+  });
+  
+  console.log(`🔍 COMBINED USER CATEGORIES: ${creativeToolsCount + healthToolsCount} tools`);
+  console.log(`🎯 User Expected: Over 1000 tools combined`);
+  console.log(`📊 Actual Found: ${creativeToolsCount + healthToolsCount} tools`);
+  
+  // Check for potential misalignment
+  if (creativeToolsCount + healthToolsCount < 1000) {
+    console.log('⚠️ POTENTIAL ISSUE: Tool count lower than expected');
+    console.log('🔍 Investigating potential causes:');
+    console.log('   1. Tools might be in different category names');
+    console.log('   2. Category mapping might need updates');
+    console.log('   3. Tools might be miscategorized');
+  } else {
+    console.log('✅ TOOL COUNT MATCHES EXPECTATIONS');
+  }
   
   // Enhanced pricing analysis
   const freeTools = deduplicatedTools.filter(tool => 
@@ -60,7 +110,7 @@ export const getToolCount = () => {
   console.log(`🚀 Categories Available: ${Object.keys(categoryBreakdown).length}`);
   
   // Run integrity check after counting
-  console.log('\n🔍 RUNNING INTEGRITY CHECK...');
+  console.log('\n🔍 RUNNING ENHANCED INTEGRITY CHECK...');
   runIntegrityCheck();
   
   return {
@@ -72,6 +122,8 @@ export const getToolCount = () => {
     freeTools,
     freemiumTools,
     paidTools,
+    creativeToolsCount,
+    healthToolsCount,
     searchReadiness: {
       withTags: toolsWithTags,
       withCategories: toolsWithCategories
