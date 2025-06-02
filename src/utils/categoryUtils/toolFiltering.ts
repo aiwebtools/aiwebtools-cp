@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -13,6 +14,13 @@ import { CategoryCounts, MainCategoryCounts } from "./types";
 // Create a cached mapping of tools by main category for instant lookup
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
+
+// Force cache rebuild by resetting the cache
+export const resetCache = () => {
+  toolsCacheByMainCategory.clear();
+  cacheBuilt = false;
+  console.log('🔄 Cache reset - will rebuild on next access');
+};
 
 // Force cache rebuild by resetting the cache - IMMEDIATE RESET
 resetCache();
@@ -98,7 +106,8 @@ const isPrimaryEducationTool = (tool: Tool): boolean => {
     'education', 'learning', 'educational', 'academic', 'study', 'course', 'curriculum',
     'teaching', 'teacher', 'tutor', 'tutoring', 'lesson', 'homework', 'quiz', 'test',
     'training', 'university', 'college', 'school', 'degree', 'certification',
-    'workshop', 'seminar', 'lecture', 'instruction', 'student', 'learner', 'classroom'
+    'workshop', 'seminar', 'lecture', 'instruction', 'student', 'learner', 'classroom',
+    'insect study', 'entomology', 'species research', 'biological studies'
   ];
   
   const titleLower = tool.title.toLowerCase();
@@ -167,8 +176,15 @@ const isDataAnalyticsTool = (tool: Tool): boolean => {
   ) || isMajorLLM(tool); // Include major LLMs in data analytics
 };
 
-// Helper function to detect health-related tools - CRITICAL ENHANCED FUNCTION
+// Helper function to detect health-related tools - ENHANCED TO EXCLUDE INSECT STUDY TOOL
 const isHealthRelatedTool = (tool: Tool): boolean => {
+  // CRITICAL: Explicitly exclude insect study tool from health category
+  const titleLower = tool.title.toLowerCase();
+  if (titleLower.includes('insect study') || titleLower.includes('entomology')) {
+    console.log(`🚫 EXCLUDING from health: ${tool.title} - this is an education tool`);
+    return false;
+  }
+  
   const healthKeywords = [
     'health', 'medical', 'wellness', 'healthcare', 'medicine', 'doctor', 'physician',
     'nurse', 'pharmacy', 'pharmaceutical', 'clinic', 'hospital', 'patient', 'therapy',
@@ -179,7 +195,6 @@ const isHealthRelatedTool = (tool: Tool): boolean => {
     'skin care', 'dermatology', 'beauty advice', 'cosmetics', 'oral care', 'oral health'
   ];
   
-  const titleLower = tool.title.toLowerCase();
   const descriptionLower = tool.description.toLowerCase();
   const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
   const categoryLower = tool.category?.toLowerCase() || '';
