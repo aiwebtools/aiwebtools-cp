@@ -91,7 +91,7 @@ import { developerTools } from './tools/developerTools';
 import { communicationTools } from './tools/communicationTools';
 import { entertainmentTools } from './tools/entertainmentTools';
 import { newsAndInformationTools } from './tools/newsAndInformationTools';
-import { healthAndWellnessTools } from './tools/healthAndWellnessTools';
+import { healthAndWellness } from './tools/healthAndWellness';
 
 // Import NEW comprehensive AI tool categories to reach 1000+
 import { aiGenerativeTools } from './tools/aiGenerativeTools';
@@ -203,7 +203,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...communicationTools,
     ...entertainmentTools,
     ...newsAndInformationTools,
-    ...healthAndWellnessTools,
+    ...healthAndWellness,
     
     // Robotics companies category
     ...roboticsCompanies,
