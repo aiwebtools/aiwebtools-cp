@@ -39,6 +39,33 @@ const buildToolsCache = (tools: Tool[]) => {
   // Pre-process video tools once
   const videoRelatedTools = tools.filter(tool => isVideoRelatedTool(tool));
   
+  // INVESTIGATION: Log communication & collaboration tools analysis
+  console.log('🔍 INVESTIGATING COMMUNICATION & COLLABORATION TOOLS...');
+  const allCommCategoryNames = tools.map(tool => tool.category).filter(Boolean);
+  const uniqueCommCategories = [...new Set(allCommCategoryNames)];
+  console.log('📋 All unique categories in database:', uniqueCommCategories);
+  
+  const commRelatedCategories = uniqueCommCategories.filter(cat => 
+    cat?.toLowerCase().includes('communication') ||
+    cat?.toLowerCase().includes('collaboration') ||
+    cat?.toLowerCase().includes('entertainment') ||
+    cat?.toLowerCase().includes('chat') ||
+    cat?.toLowerCase().includes('social')
+  );
+  console.log('🎯 Communication-related categories found:', commRelatedCategories);
+  
+  const potentialCommTools = tools.filter(tool => 
+    tool.category && (
+      tool.category.toLowerCase().includes('communication') ||
+      tool.category.toLowerCase().includes('collaboration') ||
+      tool.category.toLowerCase().includes('entertainment') ||
+      tool.category.toLowerCase().includes('chat') ||
+      tool.category.toLowerCase().includes('social')
+    )
+  );
+  console.log('🔧 Total potential communication tools found:', potentialCommTools.length);
+  console.log('📝 Sample potential comm tools:', potentialCommTools.slice(0, 10).map(t => `${t.title} (${t.category})`));
+  
   mainCategories.forEach(mainCat => {
     let categoryTools: Tool[] = [];
     
@@ -108,6 +135,26 @@ const buildToolsCache = (tools: Tool[]) => {
     }
     else if (mainCat.name === "AUTOMATION PLATFORMS") {
       categoryTools = getAutomationPlatformsTools(tools, mainCat.name);
+    }
+    else if (mainCat.name === "COMMUNICATION & COLLABORATION AI TOOLS") {
+      // DETAILED INVESTIGATION for this specific category
+      console.log('🕵️ DEEP DIVE: COMMUNICATION & COLLABORATION AI TOOLS');
+      console.log('📊 Main category subcategories:', mainCat.subcategories);
+      
+      categoryTools = getCommunicationCollaborationTools(tools, mainCat.name);
+      
+      console.log('🎯 Final communication tools after getCommunicationCollaborationTools:', categoryTools.length);
+      console.log('📋 Communication tools list:', categoryTools.map(t => `${t.title} (${t.category})`));
+      
+      // Let's also check what the subcategory matching would find
+      const subcategoryMatchedTools = tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCat.subcategories.some(subcat => 
+          isSimilarCategory(tool.category, subcat)
+        );
+      });
+      console.log('🔍 Subcategory matched tools:', subcategoryMatchedTools.length);
+      console.log('📝 Subcategory matched tools list:', subcategoryMatchedTools.map(t => `${t.title} (${t.category})`));
     }
     else {
       // Standard subcategory matching for other categories

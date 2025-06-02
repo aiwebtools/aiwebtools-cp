@@ -91,6 +91,9 @@ export const getMarketingSalesTools = (tools: Tool[], categoryName: string): Too
 
 // Enhanced handling for Communication & Collaboration category
 export const getCommunicationCollaborationTools = (tools: Tool[], categoryName: string): Tool[] => {
+  console.log(`🎯 Getting communication & collaboration tools for category: "${categoryName}"`);
+  console.log(`📊 Total tools in database: ${tools.length}`);
+  
   const directCategoryTools = tools.filter(tool => 
     tool.category && (
       isSimilarCategory(tool.category, categoryName) ||
@@ -101,6 +104,53 @@ export const getCommunicationCollaborationTools = (tools: Tool[], categoryName: 
       isSimilarCategory(tool.category, "Entertainment Tools")
     )
   );
+  
+  console.log(`🔍 Direct category matches found: ${directCategoryTools.length}`);
+  directCategoryTools.forEach(tool => {
+    console.log(`  - ${tool.title} (category: "${tool.category}")`);
+  });
+  
+  // Let's also check for broader matches
+  const broadMatches = tools.filter(tool => 
+    tool.category && (
+      tool.category.toLowerCase().includes('communication') ||
+      tool.category.toLowerCase().includes('collaboration') ||
+      tool.category.toLowerCase().includes('entertainment') ||
+      tool.category.toLowerCase().includes('social') ||
+      tool.category.toLowerCase().includes('chat') ||
+      tool.category.toLowerCase().includes('meeting') ||
+      tool.category.toLowerCase().includes('video call') ||
+      tool.category.toLowerCase().includes('messaging')
+    )
+  );
+  
+  console.log(`🌐 Broad category matches found: ${broadMatches.length}`);
+  broadMatches.forEach(tool => {
+    console.log(`  - ${tool.title} (category: "${tool.category}")`);
+  });
+  
+  // Check if we're missing tools by looking at title/description
+  const titleDescriptionMatches = tools.filter(tool => 
+    tool.title.toLowerCase().includes('chat') ||
+    tool.title.toLowerCase().includes('communication') ||
+    tool.title.toLowerCase().includes('collaboration') ||
+    tool.title.toLowerCase().includes('meeting') ||
+    tool.title.toLowerCase().includes('social') ||
+    tool.title.toLowerCase().includes('discord') ||
+    tool.title.toLowerCase().includes('slack') ||
+    tool.title.toLowerCase().includes('zoom') ||
+    tool.title.toLowerCase().includes('teams') ||
+    tool.description.toLowerCase().includes('communication') ||
+    tool.description.toLowerCase().includes('collaboration') ||
+    tool.description.toLowerCase().includes('chat') ||
+    tool.description.toLowerCase().includes('meeting') ||
+    tool.description.toLowerCase().includes('social media')
+  );
+  
+  console.log(`📝 Title/description matches found: ${titleDescriptionMatches.length}`);
+  titleDescriptionMatches.slice(0, 20).forEach(tool => {
+    console.log(`  - ${tool.title} (category: "${tool.category}")`);
+  });
   
   return directCategoryTools;
 };
