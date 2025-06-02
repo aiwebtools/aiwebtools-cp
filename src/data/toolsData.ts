@@ -54,7 +54,10 @@ import { specializedNicheToolsGPTs } from "./tools/aiWebTools/specializedNicheTo
 import { personalDevelopmentTools } from "./tools/personalDevelopmentTools";
 
 // Combine all tool categories and apply consolidation
-const allToolCategories = consolidateTools(getAllToolCategories());
+const allToolCategories = consolidateTools([
+  ...getAllToolCategories(),
+  ...personalDevelopmentTools
+]);
 
 // Apply deduplication to remove tools that appear in multiple categories
 const deduplicatedTools = deduplicateTools(allToolCategories);
