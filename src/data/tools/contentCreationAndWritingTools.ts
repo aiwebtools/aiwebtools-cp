@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Pen, 
@@ -13,7 +12,16 @@ import {
   Sparkles,
   Globe,
   Brain,
-  Theater
+  Theater,
+  CheckCircle,
+  Languages,
+  MessageSquare,
+  Eye,
+  Wand2,
+  Users,
+  Target,
+  Bot,
+  Crown
 } from "lucide-react";
 
 export const contentCreationAndWritingTools: Tool[] = [
@@ -121,6 +129,82 @@ export const contentCreationAndWritingTools: Tool[] = [
     rating: 4.8,
     totalVotes: 4234
   },
+  
+  // NEW: Adding the 6 tools from writingAndContentEnhancement category
+  {
+    icon: CheckCircle,
+    title: "Grammarly",
+    description: "AI-powered writing assistant that helps improve grammar, spelling, clarity, and tone. Real-time suggestions for better writing across all platforms.",
+    emoji: "✅",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.grammarly.com/?via=aiwebtools",
+    tags: ["grammar check", "writing assistant", "spell check", "tone", "clarity"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.7,
+    totalVotes: 5432
+  },
+  {
+    icon: Languages,
+    title: "DeepL Write",
+    description: "AI writing assistant that helps improve and perfect your writing. Fix grammar, enhance clarity, and refine tone with advanced language models.",
+    emoji: "🌐",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://www.deepl.com/write?via=aiwebtools",
+    tags: ["writing improvement", "grammar", "clarity", "tone refinement", "DeepL"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.6,
+    totalVotes: 3654
+  },
+  {
+    icon: BookOpen,
+    title: "Wordtune",
+    description: "AI writing companion that understands context and suggests ways to rewrite sentences. Improve clarity, tone, and style of your writing.",
+    emoji: "📖",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://www.wordtune.com/?via=aiwebtools",
+    tags: ["sentence rewriting", "context understanding", "clarity", "tone", "style"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.4,
+    totalVotes: 3123
+  },
+  {
+    icon: MessageSquare,
+    title: "QuillBot",
+    description: "AI paraphrasing tool that rewrites text while maintaining meaning. Features grammar checker, summarizer, and citation generator.",
+    emoji: "💬",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://quillbot.com/?via=aiwebtools",
+    tags: ["paraphrasing", "grammar check", "summarizer", "citations", "text rewriting"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.5,
+    totalVotes: 3789
+  },
+  {
+    icon: Eye,
+    title: "Hemingway Editor",
+    description: "Writing app that helps make your text clear and concise. Highlights complex sentences, passive voice, and suggests improvements for readability.",
+    emoji: "👁️",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://hemingwayapp.com/?via=aiwebtools",
+    tags: ["readability", "clear writing", "concise text", "sentence complexity", "passive voice"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.3,
+    totalVotes: 2654
+  },
+  {
+    icon: Brain,
+    title: "Jasper AI",
+    description: "AI content generation platform for marketing teams. Create blog posts, social media content, ads, and marketing copy with advanced AI models.",
+    emoji: "🧠",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.jasper.ai/?via=aiwebtools",
+    tags: ["content generation", "marketing copy", "blog posts", "social media", "ads"],
+    category: "Content Creation & Writing Tools",
+    rating: 4.6,
+    totalVotes: 4234
+  },
+  
+  // ... keep existing code (all the remaining tools from the original contentCreationAndWritingTools array)
   {
     icon: Edit,
     title: "Smart Text Editor",
