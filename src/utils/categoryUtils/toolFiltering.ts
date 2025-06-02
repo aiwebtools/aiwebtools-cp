@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -8,7 +7,8 @@ import {
   getDataAnalyticsTools, 
   getMarketingSalesTools, 
   getCommunicationCollaborationTools,
-  getAutomationPlatformsTools
+  getAutomationPlatformsTools,
+  getImageAndDesignTools
 } from "./categoryMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
 import { buildToolsCache, getToolsCacheByMainCategory, isCacheBuilt } from "./cacheManager";
@@ -31,6 +31,13 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
   // Special handling for AI Web Tools Originals category
   if (categoryName === "AI WEB TOOLS ORIGINALS" || categoryName === "AI Web Tools Originals") {
     return tools.filter(tool => isAIWebToolsGPT(tool));
+  }
+  
+  // FIXED: Special handling for Image & Design category
+  if (categoryName === "IMAGE & DESIGN AI TOOLS" || categoryName === "Image & Design" || categoryName === "Image & Design Tools") {
+    const imageDesignTools = getImageAndDesignTools(tools, categoryName);
+    console.log(`🎨 FIXED: Found ${imageDesignTools.length} actual Image & Design tools`);
+    return imageDesignTools;
   }
   
   // Special handling for Data & Analytics category

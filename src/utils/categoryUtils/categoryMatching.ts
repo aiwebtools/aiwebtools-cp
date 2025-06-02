@@ -1,237 +1,126 @@
-
 import { Tool } from "@/types/tools";
-import { isSimilarCategory } from "./normalization";
-import { DATA_ANALYTICS_PRIORITY_TOOLS, MARKETING_SALES_PRIORITY_TOOLS } from "./constants";
 
-// Special handling for Data & Analytics category
+export const getImageAndDesignTools = (tools: Tool[], categoryName: string): Tool[] => {
+  console.log(`🎨 Getting Image & Design tools for category: ${categoryName}`);
+  
+  return tools.filter(tool => {
+    const lowerTitle = tool.title.toLowerCase();
+    const lowerDescription = tool.description.toLowerCase();
+    const lowerCategory = tool.category?.toLowerCase() || '';
+    
+    // Exclude video, music, and performing arts tools explicitly
+    const isVideoTool = lowerTitle.includes('video') || lowerTitle.includes('movie') || 
+                       lowerDescription.includes('video') || lowerDescription.includes('movie') ||
+                       lowerTitle.includes('film') || lowerDescription.includes('film');
+    
+    const isMusicTool = lowerTitle.includes('music') || lowerDescription.includes('music') ||
+                       lowerTitle.includes('audio') || lowerDescription.includes('audio');
+    
+    const isPerformingArtsTool = lowerTitle.includes('stage') || lowerTitle.includes('performing') ||
+                                lowerDescription.includes('stage') || lowerDescription.includes('performing');
+    
+    // Exclude these tools from Image & Design
+    if (isVideoTool || isMusicTool || isPerformingArtsTool) {
+      console.log(`🚫 Excluding from Image & Design: ${tool.title} (${isVideoTool ? 'video' : isMusicTool ? 'music' : 'performing arts'})`);
+      return false;
+    }
+    
+    // Include tools that are specifically image and design related
+    const isImageDesignTool = 
+      lowerCategory.includes('image') ||
+      lowerCategory.includes('design') ||
+      lowerCategory.includes('photo') ||
+      lowerCategory.includes('graphic') ||
+      lowerTitle.includes('design') ||
+      lowerTitle.includes('image') ||
+      lowerTitle.includes('photo') ||
+      lowerTitle.includes('graphic') ||
+      lowerTitle.includes('logo') ||
+      lowerTitle.includes('palette') ||
+      lowerTitle.includes('sketch') ||
+      lowerTitle.includes('tattoo') ||
+      lowerTitle.includes('avatar') ||
+      lowerTitle.includes('meme') ||
+      lowerDescription.includes('design') ||
+      lowerDescription.includes('image') ||
+      lowerDescription.includes('photo') ||
+      lowerDescription.includes('graphic') ||
+      lowerDescription.includes('visual design') ||
+      lowerDescription.includes('logo design') ||
+      lowerDescription.includes('graphic design');
+    
+    if (isImageDesignTool) {
+      console.log(`✅ Including in Image & Design: ${tool.title}`);
+      return true;
+    }
+    
+    return false;
+  });
+};
+
 export const getDataAnalyticsTools = (tools: Tool[], categoryName: string): Tool[] => {
-  console.log(`🔍 Getting data analytics tools for category: "${categoryName}"`);
-  
-  // Get tools that match the direct category - including all variations
-  const directCategoryTools = tools.filter(tool => 
-    tool.category && (
-      isSimilarCategory(tool.category, categoryName) ||
-      isSimilarCategory(tool.category, "Data & Analytics Tools") ||
-      isSimilarCategory(tool.category, "DATA & ANALYTICS AI TOOLS") ||
-      isSimilarCategory(tool.category, "Data Analytics Tools") ||
-      isSimilarCategory(tool.category, "Data Science & Analytics") ||
-      isSimilarCategory(tool.category, "Business Intelligence") ||
-      isSimilarCategory(tool.category, "Analytics & Insights") ||
-      isSimilarCategory(tool.category, "Data & Analytics") ||
-      isSimilarCategory(tool.category, "Business & Analytics") ||
-      isSimilarCategory(tool.category, "Research & Analytics") ||
-      isSimilarCategory(tool.category, "Statistical Analysis Tools") ||
-      isSimilarCategory(tool.category, "Data Visualization Tools") ||
-      isSimilarCategory(tool.category, "Predictive Analytics Tools")
-    )
-  );
-  
-  // Also include tools by title/description matching for key analytics tools
-  const priorityTools = tools.filter(tool => 
-    DATA_ANALYTICS_PRIORITY_TOOLS.some(priorityName => 
-      tool.title.toLowerCase().includes(priorityName.toLowerCase()) ||
-      priorityName.toLowerCase().includes(tool.title.toLowerCase())
-    ) ||
-    tool.description.toLowerCase().includes('data analysis') ||
-    tool.description.toLowerCase().includes('analytics') ||
-    tool.description.toLowerCase().includes('statistical analysis') ||
-    tool.description.toLowerCase().includes('data visualization') ||
-    tool.description.toLowerCase().includes('business intelligence') ||
-    tool.description.toLowerCase().includes('predictive modeling') ||
-    tool.description.toLowerCase().includes('research analysis') ||
-    (tool.title.toLowerCase() === 'claude' && tool.description.toLowerCase().includes('analytical')) ||
-    (tool.title.toLowerCase() === 'chatgpt' && tool.description.toLowerCase().includes('data')) ||
-    (tool.title.toLowerCase() === 'gemini' && tool.description.toLowerCase().includes('analysis'))
-  );
-  
-  const allTools = [...directCategoryTools, ...priorityTools];
-  const uniqueTools = allTools.filter((tool, index, self) => 
-    index === self.findIndex(t => t.title === tool.title)
-  );
-  
-  console.log(`🔍 Data Analytics Tools Debug:`, {
-    categoryName,
-    directCategoryTools: directCategoryTools.length,
-    priorityTools: priorityTools.length,
-    uniqueTools: uniqueTools.length,
-    sampleTitles: uniqueTools.slice(0, 10).map(t => `${t.title} (${t.category})`)
+  return tools.filter(tool => {
+    const lowerTitle = tool.title.toLowerCase();
+    const lowerDescription = tool.description.toLowerCase();
+    const lowerCategory = tool.category?.toLowerCase() || '';
+    
+    return lowerCategory.includes('data') || 
+           lowerCategory.includes('analytics') ||
+           lowerCategory.includes('research') ||
+           lowerTitle.includes('data') ||
+           lowerTitle.includes('analytics') ||
+           lowerTitle.includes('research') ||
+           lowerDescription.includes('data analysis') ||
+           lowerDescription.includes('analytics') ||
+           lowerDescription.includes('research');
   });
-  
-  return uniqueTools;
 };
 
-// Special handling for Marketing & Sales category
 export const getMarketingSalesTools = (tools: Tool[], categoryName: string): Tool[] => {
-  const directCategoryTools = tools.filter(tool => 
-    tool.category && (
-      isSimilarCategory(tool.category, categoryName) ||
-      isSimilarCategory(tool.category, "Marketing & Analytics") ||
-      isSimilarCategory(tool.category, "E-commerce & Marketing Tools") ||
-      isSimilarCategory(tool.category, "Business & Sales Tools") ||
-      isSimilarCategory(tool.category, "MARKETING & SALES AI TOOLS") ||
-      isSimilarCategory(tool.category, "Marketing Tools") ||
-      isSimilarCategory(tool.category, "Marketing Sales Tools")
-    )
-  );
-  
-  const priorityTools = tools.filter(tool => 
-    MARKETING_SALES_PRIORITY_TOOLS.some(priorityName => 
-      tool.title.toLowerCase().includes(priorityName.toLowerCase()) ||
-      priorityName.toLowerCase().includes(tool.title.toLowerCase())
-    )
-  );
-  
-  const allTools = [...directCategoryTools, ...priorityTools];
-  const uniqueTools = allTools.filter((tool, index, self) => 
-    index === self.findIndex(t => t.title === tool.title)
-  );
-  
-  return uniqueTools;
+  return tools.filter(tool => {
+    const lowerTitle = tool.title.toLowerCase();
+    const lowerDescription = tool.description.toLowerCase();
+    const lowerCategory = tool.category?.toLowerCase() || '';
+    
+    return lowerCategory.includes('marketing') ||
+           lowerCategory.includes('sales') ||
+           lowerCategory.includes('business') ||
+           lowerTitle.includes('marketing') ||
+           lowerTitle.includes('sales') ||
+           lowerTitle.includes('business') ||
+           lowerDescription.includes('marketing') ||
+           lowerDescription.includes('sales') ||
+           lowerDescription.includes('business');
+  });
 };
 
-// Enhanced handling for Communication & Collaboration category
 export const getCommunicationCollaborationTools = (tools: Tool[], categoryName: string): Tool[] => {
-  console.log(`🎯 Getting communication & collaboration tools for category: "${categoryName}"`);
-  console.log(`📊 Total tools in database: ${tools.length}`);
-  
-  const directCategoryTools = tools.filter(tool => 
-    tool.category && (
-      isSimilarCategory(tool.category, categoryName) ||
-      isSimilarCategory(tool.category, "Communication & Entertainment") ||
-      isSimilarCategory(tool.category, "Communication Tools") ||
-      isSimilarCategory(tool.category, "COMMUNICATION & COLLABORATION AI TOOLS") ||
-      isSimilarCategory(tool.category, "Collaboration Tools") ||
-      isSimilarCategory(tool.category, "Entertainment Tools")
-    )
-  );
-  
-  console.log(`🔍 Direct category matches found: ${directCategoryTools.length}`);
-  directCategoryTools.forEach(tool => {
-    console.log(`  - ${tool.title} (category: "${tool.category}")`);
+  return tools.filter(tool => {
+    const lowerTitle = tool.title.toLowerCase();
+    const lowerDescription = tool.description.toLowerCase();
+    const lowerCategory = tool.category?.toLowerCase() || '';
+    
+    return lowerCategory.includes('communication') ||
+           lowerCategory.includes('collaboration') ||
+           lowerTitle.includes('communication') ||
+           lowerTitle.includes('collaboration') ||
+           lowerTitle.includes('chat') ||
+           lowerDescription.includes('communication') ||
+           lowerDescription.includes('collaboration');
   });
-  
-  // Let's also check for broader matches
-  const broadMatches = tools.filter(tool => 
-    tool.category && (
-      tool.category.toLowerCase().includes('communication') ||
-      tool.category.toLowerCase().includes('collaboration') ||
-      tool.category.toLowerCase().includes('entertainment') ||
-      tool.category.toLowerCase().includes('social') ||
-      tool.category.toLowerCase().includes('chat') ||
-      tool.category.toLowerCase().includes('meeting') ||
-      tool.category.toLowerCase().includes('video call') ||
-      tool.category.toLowerCase().includes('messaging')
-    )
-  );
-  
-  console.log(`🌐 Broad category matches found: ${broadMatches.length}`);
-  broadMatches.forEach(tool => {
-    console.log(`  - ${tool.title} (category: "${tool.category}")`);
-  });
-  
-  // Check if we're missing tools by looking at title/description
-  const titleDescriptionMatches = tools.filter(tool => 
-    tool.title.toLowerCase().includes('chat') ||
-    tool.title.toLowerCase().includes('communication') ||
-    tool.title.toLowerCase().includes('collaboration') ||
-    tool.title.toLowerCase().includes('meeting') ||
-    tool.title.toLowerCase().includes('social') ||
-    tool.title.toLowerCase().includes('discord') ||
-    tool.title.toLowerCase().includes('slack') ||
-    tool.title.toLowerCase().includes('zoom') ||
-    tool.title.toLowerCase().includes('teams') ||
-    tool.description.toLowerCase().includes('communication') ||
-    tool.description.toLowerCase().includes('collaboration') ||
-    tool.description.toLowerCase().includes('chat') ||
-    tool.description.toLowerCase().includes('meeting') ||
-    tool.description.toLowerCase().includes('social media')
-  );
-  
-  console.log(`📝 Title/description matches found: ${titleDescriptionMatches.length}`);
-  titleDescriptionMatches.slice(0, 20).forEach(tool => {
-    console.log(`  - ${tool.title} (category: "${tool.category}")`);
-  });
-  
-  return directCategoryTools;
 };
 
-// Special handling for Automation Platforms category
 export const getAutomationPlatformsTools = (tools: Tool[], categoryName: string): Tool[] => {
-  console.log(`🤖 Getting automation platform tools for category: "${categoryName}"`);
-  
-  const directCategoryTools = tools.filter(tool => 
-    tool.category && (
-      isSimilarCategory(tool.category, categoryName) ||
-      isSimilarCategory(tool.category, "Automation Platforms") ||
-      isSimilarCategory(tool.category, "Automation & Workflows") ||
-      isSimilarCategory(tool.category, "Automation & Workflow Tools") ||
-      isSimilarCategory(tool.category, "Workflow Tools") ||
-      isSimilarCategory(tool.category, "Process Automation") ||
-      isSimilarCategory(tool.category, "Business Process Automation") ||
-      isSimilarCategory(tool.category, "Workflow Automation") ||
-      isSimilarCategory(tool.category, "Task Automation") ||
-      isSimilarCategory(tool.category, "AI Automation") ||
-      isSimilarCategory(tool.category, "Business & Productivity") ||
-      isSimilarCategory(tool.category, "Business Tools") ||
-      isSimilarCategory(tool.category, "Productivity & Utilities") ||
-      isSimilarCategory(tool.category, "Utilities Tools") ||
-      isSimilarCategory(tool.category, "AI Productivity Tools") ||
-      isSimilarCategory(tool.category, "Utilities & Productivity") ||
-      isSimilarCategory(tool.category, "Business Operations & Productivity") ||
-      isSimilarCategory(tool.category, "Email Management Tools") ||
-      isSimilarCategory(tool.category, "Meeting & Transcription Tools") ||
-      isSimilarCategory(tool.category, "Productivity & Automation Tools") ||
-      isSimilarCategory(tool.category, "Business & Team Tools") ||
-      isSimilarCategory(tool.category, "Collaboration Tools") ||
-      isSimilarCategory(tool.category, "Communication & Collaboration") ||
-      isSimilarCategory(tool.category, "Technical & Utility Tools") ||
-      isSimilarCategory(tool.category, "Search & Productivity Tools") ||
-      isSimilarCategory(tool.category, "Developer & Coding Tools") ||
-      isSimilarCategory(tool.category, "Web Development Tools") ||
-      isSimilarCategory(tool.category, "AI Tools & Utilities") ||
-      isSimilarCategory(tool.category, "Comprehensive AI Tools")
-    )
-  );
-  
-  // Also include tools by description matching for automation-related tools
-  const automationKeywordTools = tools.filter(tool => 
-    tool.description.toLowerCase().includes('automation') ||
-    tool.description.toLowerCase().includes('workflow') ||
-    tool.description.toLowerCase().includes('automate') ||
-    tool.description.toLowerCase().includes('productivity') ||
-    tool.description.toLowerCase().includes('integrate') ||
-    tool.description.toLowerCase().includes('zapier') ||
-    tool.description.toLowerCase().includes('webhook') ||
-    tool.description.toLowerCase().includes('api integration') ||
-    tool.description.toLowerCase().includes('no-code') ||
-    tool.description.toLowerCase().includes('low-code') ||
-    tool.description.toLowerCase().includes('business process') ||
-    tool.description.toLowerCase().includes('task management') ||
-    tool.description.toLowerCase().includes('scheduling') ||
-    tool.description.toLowerCase().includes('pipeline') ||
-    tool.description.toLowerCase().includes('connector') ||
-    tool.title.toLowerCase().includes('zapier') ||
-    tool.title.toLowerCase().includes('make') ||
-    tool.title.toLowerCase().includes('integromat') ||
-    tool.title.toLowerCase().includes('automate') ||
-    tool.title.toLowerCase().includes('workflow') ||
-    tool.title.toLowerCase().includes('ifttt') ||
-    tool.title.toLowerCase().includes('n8n') ||
-    tool.title.toLowerCase().includes('power automate')
-  );
-  
-  const allTools = [...directCategoryTools, ...automationKeywordTools];
-  const uniqueTools = allTools.filter((tool, index, self) => 
-    index === self.findIndex(t => t.title === tool.title)
-  );
-  
-  console.log(`🤖 Automation Platform Tools Debug:`, {
-    categoryName,
-    directCategoryTools: directCategoryTools.length,
-    automationKeywordTools: automationKeywordTools.length,
-    uniqueTools: uniqueTools.length,
-    sampleTitles: uniqueTools.slice(0, 15).map(t => `${t.title} (${t.category})`)
+  return tools.filter(tool => {
+    const lowerTitle = tool.title.toLowerCase();
+    const lowerDescription = tool.description.toLowerCase();
+    const lowerCategory = tool.category?.toLowerCase() || '';
+    
+    return lowerCategory.includes('automation') ||
+           lowerCategory.includes('workflow') ||
+           lowerTitle.includes('automation') ||
+           lowerTitle.includes('workflow') ||
+           lowerDescription.includes('automation') ||
+           lowerDescription.includes('workflow');
   });
-  
-  return uniqueTools;
 };
