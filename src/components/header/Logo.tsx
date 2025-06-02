@@ -1,4 +1,3 @@
-
 import { Home } from "lucide-react";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 
@@ -8,8 +7,8 @@ const Logo = () => {
     if (window.location.pathname === '/') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // For faster navigation, use window.location.href for instant redirect
-      window.location.href = '/';
+      // For faster navigation, open aiwebtools.ai in new window to keep users on our site
+      window.open('https://aiwebtools.ai', '_blank', 'noopener,noreferrer');
     }
   };
 

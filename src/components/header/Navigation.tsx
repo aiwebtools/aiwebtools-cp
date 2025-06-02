@@ -1,4 +1,3 @@
-
 import { Phone } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
@@ -11,8 +10,8 @@ const Navigation = () => {
     if (window.location.pathname === '/') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // For faster navigation, use window.location.href for instant redirect
-      window.location.href = '/';
+      // For faster navigation, open aiwebtools.ai in new window to keep users on our site
+      window.open('https://aiwebtools.ai', '_blank', 'noopener,noreferrer');
     }
   };
 
