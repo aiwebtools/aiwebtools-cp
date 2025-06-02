@@ -58,9 +58,12 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
     return tools.filter(tool => isHealthAndWellnessTool(tool));
   }
   
-  // Enhanced handling for Creative & Entertainment category
+  // Enhanced handling for Creative & Entertainment category - FIXED LOGIC
   if (categoryName === "CREATIVE & ENTERTAINMENT") {
-    return tools.filter(tool => isCreativeAndEntertainmentTool(tool));
+    const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
+    console.log(`🎭 FIXED CREATIVE FILTER: Found ${creativeTools.length} tools for Creative & Entertainment`);
+    console.log(`🎭 Sample tools:`, creativeTools.slice(0, 10).map(t => `${t.title} (${t.category})`));
+    return creativeTools;
   }
   
   // Regular category filtering with enhanced similarity matching
@@ -68,11 +71,11 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
 };
 
 export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts => {
-  console.log(`🔢 ACCURATE COUNTING: Starting count calculation for ${tools.length} total tools`);
+  console.log(`🔢 FIXED COUNTING: Starting count calculation for ${tools.length} total tools`);
   
   const mainCategoryCounts: MainCategoryCounts = {};
   
-  // Calculate counts for each main category using enhanced detection
+  // Calculate counts for each main category using CORRECTED detection
   mainCategories.forEach(mainCat => {
     let toolCount = 0;
     
@@ -83,7 +86,11 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
     } else if (mainCat.name === "CREATIVE & ENTERTAINMENT") {
       const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
       toolCount = creativeTools.length;
-      console.log(`🎭 ${mainCat.name}: ${toolCount} tools (enhanced detection)`);
+      console.log(`🎭 FIXED ${mainCat.name}: ${toolCount} tools (corrected detection)`);
+      
+      // Additional debug for Creative & Entertainment
+      const creativeSample = creativeTools.slice(0, 15).map(t => `${t.title} (${t.category})`);
+      console.log(`🎭 CREATIVE SAMPLE TOOLS:`, creativeSample);
     } else {
       // Build cache if needed and get cached results
       buildToolsCache(tools);
@@ -96,14 +103,14 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
     mainCategoryCounts[mainCat.name] = toolCount;
   });
   
-  // Verify total accuracy
+  // Enhanced verification
   const totalCounted = Object.values(mainCategoryCounts).reduce((sum, count) => sum + count, 0);
-  console.log(`🎯 ACCURACY CHECK: ${totalCounted} tools counted across main categories vs ${tools.length} total tools`);
+  console.log(`🎯 FIXED ACCURACY CHECK: ${totalCounted} tools counted across main categories vs ${tools.length} total tools`);
   
-  // Log the two categories user mentioned for debugging
+  // Enhanced logging for the problematic categories
   const creativeCount = mainCategoryCounts["CREATIVE & ENTERTAINMENT"] || 0;
   const healthCount = mainCategoryCounts["HEALTH, WELLNESS & PERSONAL LIFESTYLE"] || 0;
-  console.log(`🔍 USER MENTIONED CATEGORIES:`);
+  console.log(`🔍 CORRECTED COUNTS:`);
   console.log(`   Creative & Entertainment: ${creativeCount} tools`);
   console.log(`   Health, Wellness & Personal Lifestyle: ${healthCount} tools`);
   console.log(`   Combined: ${creativeCount + healthCount} tools`);
@@ -112,23 +119,23 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
 };
 
 export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string): Tool[] => {
-  console.log(`🔍 ENHANCED RETRIEVAL: Getting tools for "${mainCategoryName}" from ${tools.length} total tools`);
+  console.log(`🔍 FIXED RETRIEVAL: Getting tools for "${mainCategoryName}" from ${tools.length} total tools`);
   
-  // Enhanced handling for Health, Wellness & Personal Lifestyle
+  // CORRECTED handling for Health, Wellness & Personal Lifestyle
   if (mainCategoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
     const healthTools = tools.filter(tool => isHealthAndWellnessTool(tool));
-    console.log(`🏥 ACCURATE COUNT: Found ${healthTools.length} health & wellness tools`);
+    console.log(`🏥 CORRECTED COUNT: Found ${healthTools.length} health & wellness tools`);
     return healthTools;
   }
   
-  // Enhanced handling for Creative & Entertainment
+  // CORRECTED handling for Creative & Entertainment
   if (mainCategoryName === "CREATIVE & ENTERTAINMENT") {
     const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
-    console.log(`🎭 ACCURATE COUNT: Found ${creativeTools.length} creative & entertainment tools`);
+    console.log(`🎭 CORRECTED COUNT: Found ${creativeTools.length} creative & entertainment tools`);
     
-    // Debug logging for Creative & Entertainment specifically
-    const creativeTitles = creativeTools.slice(0, 10).map(t => t.title);
-    console.log(`🎭 Sample Creative Tools:`, creativeTitles);
+    // Enhanced debug logging for Creative & Entertainment
+    const creativeTitles = creativeTools.slice(0, 15).map(t => `${t.title} (${t.category})`);
+    console.log(`🎭 CORRECTED Sample Creative Tools:`, creativeTitles);
     
     return creativeTools;
   }
@@ -142,7 +149,7 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   const cachedTools = toolsCacheByMainCategory.get(mainCategoryName);
   
   if (cachedTools) {
-    console.log(`⚡ ACCURATE CACHE: ${cachedTools.length} tools for "${mainCategoryName}"`);
+    console.log(`⚡ CORRECTED CACHE: ${cachedTools.length} tools for "${mainCategoryName}"`);
     return cachedTools;
   }
   

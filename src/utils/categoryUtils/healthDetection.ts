@@ -1,200 +1,184 @@
 
 import { Tool } from "@/types/tools";
 
-// COMPREHENSIVE Helper function to detect ALL health and wellness related tools
 export const isHealthAndWellnessTool = (tool: Tool): boolean => {
-  const titleLower = tool.title.toLowerCase();
-  const descriptionLower = tool.description.toLowerCase();
-  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
-  const categoryLower = tool.category?.toLowerCase() || '';
-  
-  // COMPREHENSIVE health and wellness keywords - EXPANDED to catch ALL related tools
-  const healthWellnessKeywords = [
-    // Core health terms
-    'health', 'medical', 'wellness', 'healthcare', 'medicine', 'doctor', 'physician',
-    'nurse', 'pharmacy', 'pharmaceutical', 'clinic', 'hospital', 'patient', 'therapy',
-    'treatment', 'diagnosis', 'mental health', 'dental', 'veterinary', 'fitness',
-    'nutrition', 'diet', 'exercise', 'lifestyle', 'personal care', 'skincare',
-    'cannabis', 'insurance claims', 'genome', 'pharma', 'drug', 'medication',
-    'therapeutic', 'clinical', 'surgical', 'psychiatry', 'psychology', 'counseling',
-    'rehabilitation', 'recovery', 'addiction', 'substance abuse', 'pain management',
-    'chronic illness', 'disease', 'disorder', 'syndrome', 'condition', 'symptom',
-    'prevention', 'screening', 'immunization', 'vaccination', 'public health',
-    'biomedical', 'biotechnology', 'life sciences', 'clinical trials', 'telemedicine',
-    
-    // Mental health and wellness
-    'mental wellness', 'emotional support', 'stress management', 'anxiety', 'depression',
-    'ptsd', 'trauma', 'grief', 'bereavement', 'mindfulness', 'meditation', 'yoga',
-    'mental health', 'psychological', 'psychiatry', 'therapy', 'counseling', 'cbt',
-    'cognitive behavioral therapy', 'emotional wellness', 'mental wellbeing',
-    
-    // Spiritual and philosophy wellness
-    'spiritual', 'spirituality', 'philosophy', 'philosophical', 'wisdom', 'enlightenment',
-    'meditation', 'mindfulness', 'consciousness', 'awakening', 'inner peace',
-    'self discovery', 'personal growth', 'life coaching', 'wellness coaching',
-    'holistic health', 'alternative medicine', 'naturopathy', 'homeopathy',
-    'energy healing', 'chakra', 'aura', 'crystal healing', 'reiki',
-    
-    // Relationship and social wellness
-    'marriage', 'relationship', 'couples', 'family', 'social wellness', 'communication',
-    'intimacy', 'love', 'dating', 'marriage counseling', 'relationship therapy',
-    'family therapy', 'social support', 'community wellness', 'marriage mender',
-    
-    // Physical wellness and fitness
-    'fitness', 'exercise', 'workout', 'physical therapy', 'sports medicine',
-    'nutrition', 'diet', 'weight management', 'body wellness', 'physical health',
-    'strength training', 'cardio', 'flexibility', 'mobility', 'rehabilitation',
-    
-    // Lifestyle and personal wellness
-    'lifestyle', 'life balance', 'work life balance', 'stress reduction',
-    'relaxation', 'sleep', 'rest', 'recovery', 'rejuvenation', 'self care',
-    'personal development', 'self improvement', 'life enhancement',
-    'quality of life', 'wellbeing', 'life satisfaction', 'happiness',
-    
-    // Beauty and personal care
-    'skincare', 'beauty', 'cosmetics', 'dermatology', 'skin health',
-    'anti aging', 'beauty advice', 'personal care', 'grooming',
-    
-    // Food and culinary wellness
-    'culinary', 'cooking', 'chef', 'nutrition', 'healthy eating', 'diet',
-    'food quality', 'food safety', 'organic', 'natural foods', 'supplements',
-    'mixologist', 'food inspector',
-    
-    // Veterinary and pet wellness
-    'veterinary', 'pet health', 'animal wellness', 'pet care', 'animal medicine',
-    
-    // Additional specific terms from tool names
-    'alan watts', 'mary magdalene', 'sophia aeterna', 'talk to the gods',
-    'fortune teller', 'dream interpreter', 'manifestation', 'inner child',
-    'stress relief', 'habit builder', 'life coach', 'purpose finder',
-    'gratitude', 'mindfulness mentor', 'self-esteem', 'clarity coach'
+  const title = tool.title.toLowerCase();
+  const description = tool.description.toLowerCase();
+  const category = tool.category?.toLowerCase() || "";
+  const tags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+
+  // Health and wellness keywords
+  const healthKeywords = [
+    'health', 'wellness', 'medical', 'healthcare', 'fitness', 'nutrition', 'diet',
+    'mental health', 'therapy', 'doctor', 'patient', 'clinical', 'pharmaceutical',
+    'medicine', 'treatment', 'diagnosis', 'symptom', 'disease', 'hospital',
+    'veterinarian', 'vet', 'pet care', 'animal health', 'meditation', 'mindfulness',
+    'exercise', 'workout', 'yoga', 'stress', 'anxiety', 'depression', 'counseling',
+    'insurance', 'claims', 'pharmacy', 'drug', 'supplement', 'vitamin'
   ];
-  
-  // Specific tool names that should DEFINITELY be in health & wellness
-  const specificHealthTools = [
-    'mental wellness gpt', 'personalized dr. gpt', 'doctor gpt', 'veterinarian gpt',
-    'pharmaceutical assistant gpt', 'pharma research pro', 'genome gpt', 'marriage mender gpt',
-    'skin care gpt', 'skincare gpt', 'dental gpt', 'cannabis gpt', 'insurance claims gpt',
-    'food quality inspector gpt', 'mixologist gpt', 'chef', 'culinary assistant',
-    'alan watts gpt', 'mary magdalene gpt', 'talk to the gods', 'sophia aeterna',
-    'fortune teller gpt', 'wellness coach', 'fitness coach', 'nutrition advisor',
-    'therapy assistant', 'meditation guide', 'mindfulness coach', 'spiritual guide',
-    'life coach', 'relationship counselor', 'marriage advisor', 'family therapist',
-    'dream interpreter', 'manifestation mentor', 'inner child healer', 'stress relief coach',
-    'habit builder gpt', 'purpose finder gpt', 'gratitude guide gpt', 'mindfulness mentor gpt',
-    'self-esteem booster gpt', 'clarity coach gpt', 'name insight research & predictor gpt'
+
+  // Check if any health keywords are present
+  const hasHealthKeywords = healthKeywords.some(keyword =>
+    title.includes(keyword) ||
+    description.includes(keyword) ||
+    category.includes(keyword) ||
+    tags.some(tag => tag.includes(keyword))
+  );
+
+  // Specific health-related categories
+  const healthCategories = [
+    'health', 'wellness', 'medical', 'healthcare', 'fitness',
+    'veterinarian', 'insurance', 'pharmacy', 'mental wellness'
   ];
-  
-  // Check if tool name explicitly contains "health" or "wellness"
-  const hasHealthInName = titleLower.includes('health') || 
-                         titleLower.includes('wellness') || 
-                         titleLower.includes('medical') ||
-                         titleLower.includes('dr.') ||
-                         titleLower.includes('doctor');
-  
-  // Check if it's a specific health tool
-  const isSpecificHealthTool = specificHealthTools.some(healthTool => 
-    titleLower.includes(healthTool) || titleLower === healthTool ||
-    descriptionLower.includes(healthTool)
+
+  const isHealthCategory = healthCategories.some(healthCat =>
+    category.includes(healthCat)
   );
-  
-  // Check against comprehensive health keywords
-  const isHealthByKeyword = healthWellnessKeywords.some(keyword => 
-    titleLower.includes(keyword) || 
-    descriptionLower.includes(keyword) || 
-    tagsLower.includes(keyword) ||
-    categoryLower.includes(keyword)
-  );
-  
-  // Check if category explicitly contains health-related terms
-  const isHealthCategory = categoryLower.includes('health') || 
-                          categoryLower.includes('medical') || 
-                          categoryLower.includes('wellness') ||
-                          categoryLower.includes('healthcare') ||
-                          categoryLower.includes('pharma') ||
-                          categoryLower.includes('fitness') ||
-                          categoryLower.includes('nutrition') ||
-                          categoryLower.includes('lifestyle') ||
-                          categoryLower.includes('personal') ||
-                          categoryLower.includes('spiritual');
-  
-  const isHealthTool = hasHealthInName || isSpecificHealthTool || isHealthByKeyword || isHealthCategory;
-  
+
+  const isHealthTool = hasHealthKeywords || isHealthCategory;
+
   if (isHealthTool) {
     console.log(`🏥 HEALTH & WELLNESS: Detected tool: ${tool.title} (Category: ${tool.category})`);
   }
-  
+
   return isHealthTool;
 };
 
-// Helper function to detect creative and entertainment tools
 export const isCreativeAndEntertainmentTool = (tool: Tool): boolean => {
-  const titleLower = tool.title.toLowerCase();
-  const descriptionLower = tool.description.toLowerCase();
-  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
-  const categoryLower = tool.category?.toLowerCase() || '';
-  
-  // Creative and entertainment keywords
+  const title = tool.title.toLowerCase();
+  const description = tool.description.toLowerCase();
+  const category = tool.category?.toLowerCase() || "";
+  const tags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+
+  // EXPANDED Creative and entertainment keywords
   const creativeKeywords = [
-    // Core creative terms
-    'creative', 'entertainment', 'art', 'design', 'music', 'video', 'movie', 'film',
-    'game', 'gaming', 'fun', 'play', 'entertainment', 'media', 'artistic', 'visual',
-    'audio', 'sound', 'voice', 'singing', 'dancing', 'performance', 'theater',
-    'drama', 'comedy', 'sketch', 'drawing', 'painting', 'illustration', 'graphic',
-    'animation', 'cartoon', 'character', 'story', 'narrative', 'fiction', 'fantasy',
-    'adventure', 'mystery', 'romance', 'action', 'thriller', 'horror', 'sci-fi',
+    // Core Creative
+    'creative', 'art', 'design', 'graphics', 'visual', 'aesthetic', 'artistic',
+    'drawing', 'painting', 'illustration', 'sketch', 'canvas', 'brush', 'color',
+    'palette', 'creative design', 'graphic design', 'cover design',
     
-    // Specific creative tools
-    'coloring book', 'tattoo', 'celebrity chat', 'trivia', 'quiz', 'game design',
-    'movie maker', 'video maker', 'music video', 'script writer', 'playwriter',
-    'sketch artist', 'graphic design', 'cover design', 'restyle', 'celebrity',
-    'entertainment', 'fortune teller', 'time machine', 'talk to history',
-    'imagination traveler', 'phenomenon explorer', 'oraculum', 'stellaris',
+    // Writing & Content
+    'writing', 'writer', 'author', 'book', 'novel', 'story', 'script', 'screenplay',
+    'content', 'blog', 'article', 'copywriting', 'creative writing', 'storytelling',
+    'narrative', 'character', 'plot', 'dialogue', 'prose', 'poetry', 'poem',
+    'children\'s book', 'picture book', 'coloring book',
     
-    // Gaming and interactive
-    'game', 'gaming', 'interactive', 'virtual', 'simulation', 'role play',
-    'character creation', 'world building', 'adventure', 'quest', 'puzzle'
+    // Entertainment & Media
+    'entertainment', 'game', 'gaming', 'play', 'fun', 'movie', 'film', 'cinema',
+    'video', 'multimedia', 'animation', 'cartoon', 'character', 'avatar',
+    'music', 'audio', 'sound', 'song', 'melody', 'rhythm', 'beat', 'composer',
+    'musician', 'instrument', 'recording', 'studio', 'producer',
+    
+    // Theater & Performance
+    'theater', 'theatre', 'stage', 'performance', 'actor', 'acting', 'drama',
+    'comedy', 'musical', 'opera', 'dance', 'choreography', 'performer',
+    'stagemaster', 'performing arts', 'play', 'playwright', 'script',
+    
+    // Digital Media
+    'digital art', 'pixel art', 'digital design', 'web design', 'ui design',
+    'logo', 'branding', 'poster', 'banner', 'flyer', 'card', 'template',
+    'mockup', 'prototype', 'wireframe',
+    
+    // Photography & Visual
+    'photo', 'photography', 'camera', 'image', 'picture', 'visual', 'snapshot',
+    'portrait', 'landscape', 'studio', 'editing', 'filter', 'effects',
+    
+    // Innovation & Imagination
+    'imagination', 'imaginary', 'fantasy', 'magical', 'mystical', 'adventure',
+    'journey', 'exploration', 'discovery', 'wonder', 'mystery', 'dream',
+    'vision', 'concept', 'idea', 'brainstorm', 'innovation', 'invention',
+    
+    // Specialized Creative
+    'tattoo', 'fashion', 'style', 'trend', 'beauty', 'makeover', 'restyle',
+    'interior design', 'architecture', 'landscaping', 'decoration',
+    'craft', 'diy', 'hobby', 'collection', 'vintage', 'antique',
+    
+    // Spiritual & Philosophical (Creative aspects)
+    'spiritual', 'mystical', 'philosophical', 'wisdom', 'enlightenment',
+    'meditation', 'mindfulness', 'consciousness', 'awakening', 'transformation',
+    'divination', 'fortune', 'tarot', 'prophecy', 'oracle', 'revelation',
+    
+    // Historical & Cultural (Creative aspects)
+    'historical', 'history', 'culture', 'heritage', 'tradition', 'legend',
+    'mythology', 'folklore', 'ancient', 'classical', 'renaissance', 'vintage',
+    'time travel', 'time machine', 'historical figures', 'past', 'era',
+    
+    // Educational Creative
+    'tutorial', 'lesson', 'course', 'learn', 'teach', 'guide', 'instruction',
+    'training', 'skill', 'technique', 'method', 'practice', 'exercise',
+    
+    // Technology Creative
+    'ai art', 'generative', 'neural', 'algorithm', 'procedural', 'automated',
+    'machine learning', 'artificial intelligence', 'deep learning', 'gpt',
+    
+    // Social & Communication Creative
+    'social', 'community', 'sharing', 'collaboration', 'interactive', 'engaging',
+    'conversation', 'chat', 'dialogue', 'communication', 'expression'
   ];
-  
-  // Specific creative tool names
-  const specificCreativeTools = [
-    'coloring book generator gpt', 'tattoo designer gpt', 'celebrity chatline gpt',
-    'trivia night gpt', 'game design document', 'movie maker studio', 'music video maker',
-    'sketch artist gpt', 'graphic & cover design gpt', 'restyle me gpt', 'fortune teller gpt',
-    'time machine gpt', 'talk to history gpt', 'imagination traveler gpt', 'stellaris',
-    'phenomenon explorer', 'oraculum', 'enter the matrix gpt', 'neo matrix gpt',
-    'playwriter gpt', 'movie script writer gpt', 'movie scene maker gpt'
+
+  // EXPANDED Creative categories
+  const creativeCategories = [
+    // Core Creative
+    'creative', 'art', 'design', 'graphics', 'visual arts', 'creative design',
+    'graphic design', 'creative & design', 'creative & entertainment',
+    
+    // Writing & Content
+    'writing', 'content creation', 'content', 'storytelling', 'creative writing',
+    'writing & text generation', 'content creation & writing', 'text generation',
+    'book writing', 'script writing', 'copywriting', 'blog writing',
+    
+    // Entertainment & Media
+    'entertainment', 'gaming', 'games', 'multimedia', 'media', 'video',
+    'animation', 'cinema', 'film', 'movie', 'entertainment & media',
+    'video & multimedia', 'audio & voice', 'music', 'sound',
+    
+    // Educational Creative
+    'education', 'learning', 'educational', 'tutorial', 'course', 'training',
+    'education & research', 'education & learning', 'educational tools',
+    
+    // Historical & Cultural
+    'historical', 'history', 'cultural', 'time-based', 'heritage',
+    'historical & time-based', 'historical & cultural', 'spirituality',
+    'spirituality tools', 'philosophy', 'mysticism',
+    
+    // Industry Specific Creative
+    'industry specific', 'specialized', 'niche', 'custom', 'personalized',
+    'professional services', 'creative services', 'artistic services',
+    
+    // AI Development (Creative)
+    'ai development', 'ai platforms', 'generative', 'artificial intelligence',
+    'machine learning', 'ai tools', 'automation', 'innovation',
+    
+    // Communication Creative
+    'communication', 'collaboration', 'social', 'interactive', 'engagement',
+    'communication & collaboration', 'community', 'sharing'
   ];
-  
-  // Check against creative keywords
-  const isCreativeByKeyword = creativeKeywords.some(keyword => 
-    titleLower.includes(keyword) || 
-    descriptionLower.includes(keyword) || 
-    tagsLower.includes(keyword) ||
-    categoryLower.includes(keyword)
+
+  // Check for creative keywords in any field
+  const hasCreativeKeywords = creativeKeywords.some(keyword =>
+    title.includes(keyword) ||
+    description.includes(keyword) ||
+    category.includes(keyword) ||
+    tags.some(tag => tag.includes(keyword))
   );
-  
-  // Check if it's a specific creative tool
-  const isSpecificCreativeTool = specificCreativeTools.some(creativeTool => 
-    titleLower.includes(creativeTool) || titleLower === creativeTool ||
-    descriptionLower.includes(creativeTool)
+
+  // Check for creative categories
+  const isCreativeCategory = creativeCategories.some(creativeCat =>
+    category.includes(creativeCat)
   );
-  
-  // Check if category explicitly contains creative-related terms
-  const isCreativeCategory = categoryLower.includes('creative') || 
-                            categoryLower.includes('entertainment') || 
-                            categoryLower.includes('game') ||
-                            categoryLower.includes('media') ||
-                            categoryLower.includes('art') ||
-                            categoryLower.includes('design') ||
-                            categoryLower.includes('video') ||
-                            categoryLower.includes('music');
-  
-  const isCreativeTool = isCreativeByKeyword || isSpecificCreativeTool || isCreativeCategory;
-  
+
+  // Special handling for AI Web Tools GPTs (many are creative)
+  const isAIWebToolsCreative = (
+    (title.includes('gpt') || description.includes('gpt') || tags.includes('aiwebtools')) &&
+    (hasCreativeKeywords || isCreativeCategory)
+  );
+
+  // Combine all checks
+  const isCreativeTool = hasCreativeKeywords || isCreativeCategory || isAIWebToolsCreative;
+
   if (isCreativeTool) {
     console.log(`🎭 CREATIVE & ENTERTAINMENT: Detected tool: ${tool.title} (Category: ${tool.category})`);
   }
-  
+
   return isCreativeTool;
 };
