@@ -23,6 +23,22 @@ export const keywordMapping: Record<string, string[]> = {
   ...searchMetaKeywords,
   ...aiWebToolsKeywords,
   
+  // Enhanced App Building and Development Keywords - HIGHEST PRIORITY
+  "build app": ["lovable.dev", "lovable", "bolt.new", "cursor", "app builder", "web app builder", "application builder", "ai web builder", "no-code", "low-code", "web development", "app development", "react builder", "build web app", "create app", "make app", "develop app"],
+  "build web app": ["lovable.dev", "lovable", "bolt.new", "cursor", "web app builder", "build app", "web development", "react builder", "ai web builder", "no-code", "create web app"],
+  "app builder": ["lovable.dev", "lovable", "bolt.new", "cursor", "build app", "web app builder", "application builder", "ai web builder", "no-code", "low-code", "app development"],
+  "web app builder": ["lovable.dev", "lovable", "bolt.new", "cursor", "build app", "app builder", "web development", "ai web builder", "no-code", "react builder"],
+  "create app": ["lovable.dev", "lovable", "bolt.new", "cursor", "build app", "app builder", "make app", "develop app", "app development", "web app builder"],
+  "make app": ["lovable.dev", "lovable", "bolt.new", "cursor", "build app", "create app", "app builder", "develop app", "app development"],
+  "develop app": ["lovable.dev", "lovable", "bolt.new", "cursor", "build app", "create app", "make app", "app development", "web development"],
+  "bolt.new": ["bolt", "stackblitz", "web development", "code editor", "online ide", "lovable.dev", "cursor", "build app", "web app builder"],
+  "bolt": ["bolt.new", "stackblitz", "web development", "lovable.dev", "cursor", "build app", "code editor"],
+  "lovable.dev": ["lovable", "ai web builder", "build app", "web app builder", "react builder", "no-code", "web development", "app builder"],
+  "lovable": ["lovable.dev", "ai web builder", "build app", "web app builder", "react builder", "no-code", "web development"],
+  "cursor": ["cursor ai", "ai code editor", "code assistant", "programming", "development", "lovable.dev", "bolt.new", "ai coding"],
+  "no-code": ["lovable.dev", "app builder", "build app", "web app builder", "no code", "visual development", "drag and drop"],
+  "low-code": ["lovable.dev", "app builder", "build app", "web app builder", "low code", "visual development"],
+  
   // Enhanced Sound and Audio AI Tools - HIGHEST PRIORITY
   "sound": ["suno", "udio", "eleven labs", "murf", "speechify", "text to speech", "tts", "voice generation", "audio generation", "music generation", "ai music", "audio ai", "voice ai", "sound effects", "audio tools", "music tools", "voice tools", "sound generator", "audio creator", "music creator", "voice creator", "speech synthesis", "audio production", "sound design", "music video maker", "podcast script writer"],
   "audio": ["sound", "music", "voice", "speech", "suno", "udio", "eleven labs", "murf", "speechify", "text to speech", "tts", "voice generation", "audio generation", "music generation", "ai music", "audio ai", "voice ai", "sound effects", "audio tools", "music tools", "voice tools", "podcast", "audio production", "sound design"],
@@ -66,8 +82,9 @@ export const keywordMapping: Record<string, string[]> = {
   "logo": ["logo design", "branding", "graphic design", "design", "visual identity", "brand design"],
   
   // Enhanced Code and Development AI Tools
-  "code": ["coding", "programming", "development", "github copilot", "code generation", "ai coding", "programming tools", "developer tools", "code assistant"],
-  "programming": ["coding", "code", "development", "software", "programming tools", "developer tools", "ai coding"],
+  "code": ["coding", "programming", "development", "github copilot", "code generation", "ai coding", "programming tools", "developer tools", "code assistant", "cursor", "lovable.dev", "bolt.new"],
+  "programming": ["coding", "code", "development", "software", "programming tools", "developer tools", "ai coding", "cursor", "lovable.dev"],
+  "coding": ["code", "programming", "development", "ai coding", "code assistant", "cursor", "lovable.dev", "bolt.new"],
   
   // Solar and renewable energy keywords - NEW ADDITION
   "sun": ["solar", "solar land assessor", "solar assessment", "renewable energy", "solar panels", "solar installation", "solar energy", "solar land", "solar professional", "solar project"],
@@ -97,6 +114,14 @@ export const keywordMapping: Record<string, string[]> = {
 
 // Enhanced search synonyms for better matching
 export const searchSynonyms: Record<string, string[]> = {
+  "build app": ["app builder", "create app", "make app", "develop app", "lovable.dev", "bolt.new", "cursor", "web app builder"],
+  "build web app": ["web app builder", "build app", "create web app", "lovable.dev", "bolt.new", "web development"],
+  "app builder": ["build app", "web app builder", "lovable.dev", "bolt.new", "cursor", "no-code", "application builder"],
+  "web app builder": ["build app", "app builder", "lovable.dev", "bolt.new", "web development", "no-code"],
+  "bolt.new": ["bolt", "stackblitz", "lovable.dev", "cursor", "build app", "web development", "code editor"],
+  "lovable.dev": ["lovable", "build app", "web app builder", "ai web builder", "no-code", "react builder"],
+  "cursor": ["cursor ai", "ai code editor", "code assistant", "programming", "development", "ai coding"],
+  "no-code": ["no code", "app builder", "build app", "lovable.dev", "visual development", "drag and drop"],
   "write a book": ["book writing", "novel creation", "storytelling", "author tools", "book writer gpt", "creative writing"],
   "train employees": ["employee training", "staff training", "training manual", "business training", "training manual generator gpt"],
   "sound": ["audio", "music", "voice", "speech", "tts", "suno", "udio", "eleven labs", "murf", "speechify", "sound effects", "audio generation", "music generation", "voice generation"],
@@ -110,7 +135,9 @@ export const searchSynonyms: Record<string, string[]> = {
   "video": ["film", "movie", "clip", "recording", "video generation", "ai video"],
   "text": ["writing", "content", "article", "document", "copy"],
   "design": ["graphic", "visual", "creative", "layout", "ui", "ux"],
-  "code": ["programming", "coding", "development", "software"],
+  "code": ["programming", "coding", "development", "software", "cursor", "lovable.dev", "bolt.new"],
+  "programming": ["coding", "code", "development", "software", "cursor", "lovable.dev"],
+  "coding": ["code", "programming", "development", "cursor", "lovable.dev", "bolt.new"],
   "sun": ["solar", "solar energy", "solar land assessor", "solar assessment", "renewable energy", "solar panels"],
   "solar": ["sun", "solar land assessor", "solar assessment", "renewable energy", "solar panels", "solar energy"],
   "phone": ["call", "telephone", "mobile", "cellular", "voice", "communication", "call agent", "nucleus", "phone agent", "voice agent", "nucleus ai", "phone automation"],
@@ -122,6 +149,7 @@ export const searchSynonyms: Record<string, string[]> = {
 
 // Category-specific keywords for better categorization
 export const categoryKeywords: Record<string, string[]> = {
+  "Development & Coding Tools": ["build app", "app builder", "web app builder", "lovable.dev", "bolt.new", "cursor", "no-code", "low-code", "web development", "app development", "code", "programming", "coding", "development", "ai coding", "code assistant", "react builder", "ai web builder"],
   "Audio & Voice Tools": ["sound", "audio", "voice", "speech", "music", "tts", "text to speech", "suno", "udio", "eleven labs", "murf", "speechify", "voice generation", "audio generation", "music generation", "ai music", "voice ai", "audio ai", "sound effects", "voice cloning", "speech synthesis", "podcast", "music video", "audio production", "sound design", "call agents", "voice agents", "phone agents", "ai agents", "call center", "inbound calls", "outbound calls", "nucleus", "voice communication", "phone systems", "customer service AI", "nucleus ai", "phone automation", "voice ai"],
   "Content Creation & Writing Tools": ["write a book", "book writing", "novel creation", "storytelling", "book writer gpt", "creative writing", "author tools", "manuscript", "write", "writing", "content", "text", "article", "blog", "copywriting", "content creation"],
   "Business & Productivity": ["train employees", "employee training", "training manual", "staff training", "training manual generator gpt", "business training", "onboarding", "business", "productivity", "work", "professional", "corporate"],
@@ -130,7 +158,7 @@ export const categoryKeywords: Record<string, string[]> = {
   "Communication & Entertainment": ["phone", "call", "voice", "chat", "talk", "celebrity", "entertainment", "conversation", "communication tools", "call agents", "voice agents", "call center", "nucleus", "phone agents", "telephone", "phonecall", "inbound", "outbound", "nucleus ai", "phone automation", "call automation"],
   "Call Center & Voice AI": ["call agents", "voice agents", "phone agents", "ai agents", "call center", "inbound calls", "outbound calls", "nucleus", "voice communication", "phone systems", "customer service AI", "nucleus ai"],
   "Industry-Specific Solutions": ["solar", "solar land assessor", "solar assessment", "renewable energy", "solar panels", "solar energy", "sun", "solar professional", "solar project"],
-  "Code & Development Tools": ["code", "programming", "coding", "development", "software", "github", "developer tools", "ai coding", "code generation"],
+  "Code & Development Tools": ["code", "programming", "coding", "development", "software", "github", "developer tools", "ai coding", "code generation", "cursor", "lovable.dev", "bolt.new", "build app", "app builder"],
   "Chat & AI Assistants": ["chat", "chatgpt", "claude", "assistant", "chatbot", "ai assistant", "conversation", "ai chat"]
 };
 

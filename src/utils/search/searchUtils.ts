@@ -4,6 +4,7 @@ import { getExpandedKeywords } from "./keywordExpansion";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
 import { matchPhoneAgents, scorePhoneAgents } from "./matching/phoneAgentMatching";
 import { matchMusicTools, scoreMusicTools } from "./matching/musicMatching";
+import { matchAppBuilding, scoreAppBuilding } from "./matching/appBuildingMatching";
 
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
@@ -30,6 +31,12 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const results = uniqueTools.map(tool => {
     let score = 0;
     let matched = false;
+    
+    // App building specific matching (highest priority for app building searches)
+    if (matchAppBuilding(tool, searchTerm)) {
+      matched = true;
+      score += scoreAppBuilding(tool, searchTerm);
+    }
     
     // Music tool specific matching (highest priority for music searches)
     if (matchMusicTools(tool, searchTerm)) {
@@ -147,6 +154,19 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   .map(result => result.tool);
 
   console.log(`✅ Enhanced search found ${results.length} results`);
+  
+  // Log app building results for debugging
+  if (lowerSearchTerm.includes('build app') || lowerSearchTerm.includes('bolt') || lowerSearchTerm.includes('lovable') || lowerSearchTerm.includes('cursor')) {
+    const appBuildingResults = results.filter(tool => 
+      tool.title.toLowerCase().includes('lovable') || 
+      tool.title.toLowerCase().includes('bolt') || 
+      tool.title.toLowerCase().includes('cursor') ||
+      tool.title.toLowerCase().includes('app builder') ||
+      tool.description.toLowerCase().includes('app builder')
+    ).slice(0, 10);
+    
+    console.log(`🏗️ App building search results:`, appBuildingResults.map(t => t.title));
+  }
   
   // Log music results for debugging
   if (lowerSearchTerm.includes('music') || lowerSearchTerm.includes('suno') || lowerSearchTerm.includes('udio')) {
