@@ -27,6 +27,14 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
 
   console.log(`🔍 Enhanced search for: "${searchTerm}" across ${tools.length} tools`);
   
+  // Check if Name Insight tool exists in the tools array
+  const nameInsightTool = tools.find(tool => 
+    tool.title.toLowerCase().includes('name insight') ||
+    tool.directUrl?.includes('whatsmynamegpt') ||
+    tool.title.toLowerCase().includes('name') && tool.title.toLowerCase().includes('predictor')
+  );
+  console.log(`🏷️ Name Insight tool found in database:`, nameInsightTool ? nameInsightTool.title : 'NOT FOUND');
+  
   const expandedKeywords = getExpandedKeywords(searchTerm);
   console.log(`📝 Expanded keywords:`, expandedKeywords);
   
@@ -92,6 +100,13 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (searchTerm.toLowerCase().includes('name')) {
     console.log(`🏷️ NAME SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
     console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
+    
+    // Check if Name Insight tool is in the results
+    const nameInsightInResults = results.find(tool => 
+      tool.title.toLowerCase().includes('name insight') ||
+      tool.directUrl?.includes('whatsmynamegpt')
+    );
+    console.log(`🏷️ Name Insight tool in results:`, nameInsightInResults ? nameInsightInResults.title : 'NOT IN RESULTS');
   }
   
   // Enhanced debugging for different search types
