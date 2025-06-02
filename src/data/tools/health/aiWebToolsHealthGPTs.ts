@@ -93,7 +93,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
   },
   {
     icon: Heart,
-    title: "Relationship Advisor GPT",
+    title: "Marriage Mender GPT",
     description: "Marriage Mender is a virtual mediation service designed for educational and informational purposes, facilitating communication and understanding between couples facing relationship challenges. It is an experimental simulation that provides guidance and support but is not a replacement for professional counseling or human marriage therapy. Users acknowledge that Marriage Mender is not a licensed therapist and disclaims any liability for actions taken based on the information provided.",
     emoji: "💕",
     color: "from-pink-500 to-red-600",

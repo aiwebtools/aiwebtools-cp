@@ -14,6 +14,13 @@ import { CategoryCounts, MainCategoryCounts } from "./types";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 
+// Force cache rebuild by resetting the cache
+export const resetCache = () => {
+  toolsCacheByMainCategory.clear();
+  cacheBuilt = false;
+  console.log('🔄 Cache reset - will rebuild on next access');
+};
+
 // Helper function to detect major LLMs that should appear in multiple categories
 const isMajorLLM = (tool: Tool): boolean => {
   const majorLLMNames = [
@@ -166,6 +173,13 @@ const isDataAnalyticsTool = (tool: Tool): boolean => {
 
 // Build cache once for instant category filtering
 const buildToolsCache = (tools: Tool[]) => {
+  // Force rebuild if cache exists but we need to refresh
+  if (cacheBuilt) {
+    console.log('🔄 Forcing cache rebuild for health category consolidation...');
+    toolsCacheByMainCategory.clear();
+    cacheBuilt = false;
+  }
+  
   if (cacheBuilt) return;
   
   console.log('🚀 Building tools cache for instant category filtering...');
@@ -179,7 +193,7 @@ const buildToolsCache = (tools: Tool[]) => {
   // Pre-process chat/assistant tools once
   const chatRelatedTools = tools.filter(tool => isAIChatAssistantTool(tool));
   
-  // Pre-process ALL health tools once - consolidate everything into one category
+  // Pre-process ALL health tools once - ENSURE SINGLE CONSOLIDATED CATEGORY
   const healthRelatedTools = tools.filter(tool => isHealthRelatedTool(tool));
   
   // Pre-process STRICTLY historical tools (excluding education tools and major LLMs)
@@ -201,7 +215,7 @@ const buildToolsCache = (tools: Tool[]) => {
   console.log(`🕰️ Strict historical tools found: ${strictHistoricalTools.length}`);
   console.log(`✍️ Content creation tools found: ${contentCreationTools.length}`);
   console.log(`📊 Data analytics tools found: ${dataAnalyticsTools.length}`);
-  console.log(`🏥 Health tools found: ${healthRelatedTools.length}`);
+  console.log(`🏥 UNIFIED Health tools found: ${healthRelatedTools.length}`);
   
   mainCategories.forEach(mainCat => {
     let categoryTools: Tool[] = [];
@@ -282,7 +296,7 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
-      // CONSOLIDATED HEALTH CATEGORY - all health tools go here
+      // SINGLE UNIFIED HEALTH CATEGORY - ALL health tools go here
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -290,13 +304,13 @@ const buildToolsCache = (tools: Tool[]) => {
         );
       });
       
-      // Ensure ALL health-related tools are included
+      // Ensure ALL health-related tools are included in one category
       const allHealthTools = [...subcategoryTools, ...healthRelatedTools];
       categoryTools = allHealthTools.filter((tool, index, self) => 
         index === self.findIndex(t => t.title === tool.title)
       );
       
-      console.log(`🏥 CONSOLIDATED Health category tools: ${categoryTools.length}`);
+      console.log(`🏥 UNIFIED Health category tools: ${categoryTools.length}`);
       console.log(`📝 Sample health tools: ${categoryTools.slice(0, 5).map(t => t.title).join(', ')}`);
     }
     else if (mainCat.name === "HISTORICAL & TIME-BASED AI TOOLS") {
