@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Box, 
@@ -11,7 +12,7 @@ import {
   Globe,
   Settings,
   Wand2,
-  Cube
+  Package2
 } from "lucide-react";
 
 export const threeDAndVisualizationTools: Tool[] = [
@@ -29,7 +30,7 @@ export const threeDAndVisualizationTools: Tool[] = [
     totalVotes: 4567
   },
   {
-    icon: Cube,
+    icon: Package2,
     title: "TRIPO AI",
     description: "Advanced AI-powered 3D model generation platform that creates high-quality 3D assets from text descriptions and images with professional-grade results.",
     emoji: "🎯",
