@@ -24,34 +24,26 @@ export const useInfiniteScroll = ({
     onLoadMore();
   }, [isLoading, onLoadMore, searchTerm]);
 
-  // Optimized infinite scroll with better performance
+  // Ultra-optimized infinite scroll with zero delays
   useEffect(() => {
     if (isLoading || showLoadMoreButton || displayedCount >= totalTools) return;
     
-    let ticking = false;
-    
     const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const scrollTop = window.pageYOffset;
-          const windowHeight = window.innerHeight;
-          const documentHeight = document.documentElement.scrollHeight;
-          
-          // More aggressive threshold for search results
-          const threshold = searchTerm ? 600 : 1000;
-          const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
-          
-          if (nearBottom && displayedCount < totalTools) {
-            console.log(`🎯 Triggering load more - Displayed: ${displayedCount}, Total: ${totalTools}, Search: "${searchTerm}"`);
-            handleLoadMore();
-          }
-          
-          ticking = false;
-        });
-        ticking = true;
+      const scrollTop = window.pageYOffset;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Aggressive threshold for instant loading
+      const threshold = searchTerm ? 500 : 800;
+      const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
+      
+      if (nearBottom && displayedCount < totalTools) {
+        console.log(`🎯 Triggering load more - Displayed: ${displayedCount}, Total: ${totalTools}, Search: "${searchTerm}"`);
+        handleLoadMore();
       }
     };
 
+    // Direct scroll listener without any throttling or frame delays
     window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {

@@ -18,7 +18,7 @@ const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
-  const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(24);
+  const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(48); // Start with more tools
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
@@ -60,44 +60,38 @@ const MainCategoryPage = () => {
   const handleLoadMore = () => {
     if (allToolsDisplayedCount >= filteredTools.length) return;
     
-    // Load more tools instantly - increased batch size for better performance
-    setAllToolsDisplayedCount(prev => Math.min(prev + 48, filteredTools.length));
+    // Load significantly more tools instantly for smoother experience
+    setAllToolsDisplayedCount(prev => Math.min(prev + 96, filteredTools.length));
   };
 
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
-    setAllToolsDisplayedCount(24);
+    setAllToolsDisplayedCount(48);
   };
 
   const hasMoreTools = allToolsDisplayedCount < filteredTools.length;
 
-  // Simple scroll listener for infinite scroll - optimized for performance
+  // Ultra-optimized scroll listener - no delays, no throttling
   useEffect(() => {
     if (searchTerm) return; // Disable infinite scroll during search
     
-    let ticking = false;
-    
     const handleScroll = () => {
-      if (!ticking && hasMoreTools) {
-        requestAnimationFrame(() => {
-          const scrollTop = window.pageYOffset;
-          const windowHeight = window.innerHeight;
-          const documentHeight = document.documentElement.scrollHeight;
-          
-          // Trigger load more when 1000px from bottom
-          if (scrollTop + windowHeight >= documentHeight - 1000) {
-            handleLoadMore();
-          }
-          
-          ticking = false;
-        });
-        ticking = true;
+      if (!hasMoreTools) return;
+      
+      const scrollTop = window.pageYOffset;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // More aggressive threshold - load when 800px from bottom
+      if (scrollTop + windowHeight >= documentHeight - 800) {
+        handleLoadMore();
       }
     };
 
+    // Direct event listener without throttling for maximum responsiveness
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasMoreTools, searchTerm]);
+  }, [hasMoreTools, searchTerm, allToolsDisplayedCount, filteredTools.length]);
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -184,7 +178,7 @@ const MainCategoryPage = () => {
             )}
           </div>
 
-          {/* Show More Button - Only show for non-search and when there are more tools */}
+          {/* Show More Button - Compact text and instant loading */}
           {!searchTerm && hasMoreTools && (
             <div className="text-center mt-12 mb-8">
               <Button
