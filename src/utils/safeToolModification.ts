@@ -15,7 +15,7 @@ export const safelyModifyToolFile = <T>(
   // Create snapshot before modification
   trackToolChanges(`before_modify_${fileName}`);
   
-  // Perform the modification
+  // Perform the modification and capture the result
   const result = trackFileModification(fileName, operation);
   
   // Create snapshot after modification

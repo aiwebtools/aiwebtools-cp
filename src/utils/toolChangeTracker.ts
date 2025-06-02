@@ -215,6 +215,6 @@ export const compareLastTwoSnapshots = () => {
   }
 };
 
-export const trackFileModification = (fileName: string, operation: () => void) => {
+export const trackFileModification = <T>(fileName: string, operation: () => T): T => {
   return toolChangeTracker.trackOperation(`modify_${fileName}`, operation);
 };
