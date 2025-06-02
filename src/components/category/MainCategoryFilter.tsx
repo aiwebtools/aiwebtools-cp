@@ -135,7 +135,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
             {mainCategoriesWithCounts.map(({ name, emoji, count }) => (
               <div
                 key={name}
-                className="flex items-center space-x-2 p-2 hover:bg-cyan-500/10 rounded-md transition-colors min-h-[40px]"
+                className="flex items-start space-x-2 p-2 hover:bg-cyan-500/10 rounded-md transition-colors min-h-[50px]"
               >
                 <Checkbox
                   id={`main-category-${name}`}
@@ -147,20 +147,20 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
                       setSelectedMainCategories(prev => prev.filter(cat => cat !== name));
                     }
                   }}
-                  className="border-cyan-500/50 data-[state=checked]:bg-cyan-500 data-[state=checked]:border-cyan-500 flex-shrink-0"
+                  className="border-cyan-500/50 data-[state=checked]:bg-cyan-500 data-[state=checked]:border-cyan-500 flex-shrink-0 mt-1"
                 />
-                <div className="flex-1 min-w-0 flex items-center justify-between">
+                <div className="flex-1 min-w-0 flex flex-col">
                   <label
                     htmlFor={`main-category-${name}`}
-                    className="text-xs text-cyan-100 cursor-pointer flex items-center min-w-0 flex-1"
+                    className="text-xs font-bold text-cyan-100 cursor-pointer flex items-start leading-tight"
                     title={name}
                   >
                     <span className="mr-1 flex-shrink-0">{emoji}</span>
-                    <span className="truncate text-xs leading-tight">{name}</span>
+                    <span className="break-words text-xs leading-tight font-bold">{name}</span>
                   </label>
                   <Badge
                     variant="secondary"
-                    className="bg-cyan-500/20 text-cyan-300 text-xs ml-2 flex-shrink-0"
+                    className="bg-cyan-500/20 text-cyan-300 text-xs mt-1 self-start"
                   >
                     {count}
                   </Badge>
