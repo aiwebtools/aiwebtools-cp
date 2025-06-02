@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { getAllToolCategories } from './toolsCollection';
 import { extractPriorityTools } from './priorityTools';
@@ -22,6 +23,34 @@ export const allTools: Tool[] = [
   ...priorityTools,
   ...remainingTools
 ];
+
+// DEBUG: Find all instances of Financial Calculator Pro
+const financialCalcInstances = allTools.map((tool, index) => ({
+  index,
+  title: tool.title,
+  url: tool.directUrl,
+  category: tool.category
+})).filter(tool => tool.title.toLowerCase().includes('financial calculator'));
+
+console.log('🔍 ALL Financial Calculator instances found:', financialCalcInstances);
+
+// DEBUG: Specifically check tool at index 538
+const toolAt538 = allTools[538];
+if (toolAt538) {
+  console.log('🎯 Tool at index 538:', {
+    title: toolAt538.title,
+    url: toolAt538.directUrl,
+    category: toolAt538.category,
+    description: toolAt538.description.substring(0, 100) + '...'
+  });
+  
+  // Check if this is Financial Calculator Pro
+  if (toolAt538.title === 'Financial Calculator Pro') {
+    console.log('❌ FOUND THE PROBLEM: Tool at index 538 is Financial Calculator Pro with wrong URL');
+    console.log('Current URL:', toolAt538.directUrl);
+    console.log('Expected URL: https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools');
+  }
+}
 
 // Create featured tools using the utility function - prioritizes your GPTs
 export const featuredTools: Tool[] = createFeaturedTools(allTools);
