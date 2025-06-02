@@ -3,6 +3,7 @@ import { CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tool } from "@/types/tools";
 import StarRating from "./StarRating";
+import { allTools } from "@/data/toolsData";
 
 interface ToolCardHeaderProps {
   tool: Tool;
@@ -25,6 +26,17 @@ const ToolCardHeader = ({
   boostedRating, 
   defaultVotes 
 }: ToolCardHeaderProps) => {
+  
+  // Find the correct index in allTools array
+  const correctToolIndex = allTools.findIndex(t => 
+    t.title === tool.title && 
+    t.directUrl === tool.directUrl && 
+    t.category === tool.category
+  );
+
+  // Use the correct index, fallback to provided index if not found
+  const linkIndex = correctToolIndex !== -1 ? correctToolIndex : toolIndex;
+
   return (
     <CardHeader className="text-center pb-4 flex-shrink-0 relative z-10">
       <div className={`${cardSize} mx-auto mb-4 rounded-full bg-gradient-to-r ${tool.color} flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-xl ${isAIWebToolsOriginal ? 'ring-2 ring-cyan-400/50' : ''}`}>
@@ -44,7 +56,7 @@ const ToolCardHeader = ({
             rating={boostedRating} 
             totalVotes={defaultVotes} 
             showVoteCount={!isFeatured}
-            toolId={`tool-${toolIndex}`}
+            toolId={`tool-${linkIndex}`}
           />
         </div>
       </div>

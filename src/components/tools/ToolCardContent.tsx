@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Tool } from "@/types/tools";
 import ToolCardMedia from "./ToolCardMedia";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { allTools } from "@/data/toolsData";
 
 interface ToolCardContentProps {
   tool: Tool;
@@ -36,6 +37,16 @@ const ToolCardContent = ({
     }
   };
 
+  // Find the correct index in allTools array
+  const correctToolIndex = allTools.findIndex(t => 
+    t.title === tool.title && 
+    t.directUrl === tool.directUrl && 
+    t.category === tool.category
+  );
+
+  // Use the correct index, fallback to provided index if not found
+  const linkIndex = correctToolIndex !== -1 ? correctToolIndex : toolIndex;
+
   return (
     <CardContent className="text-center flex-grow flex flex-col relative z-10">
       <ToolCardMedia 
@@ -49,8 +60,8 @@ const ToolCardContent = ({
       </CardDescription>
       
       <div className="mt-auto space-y-2">
-        {/* View Details Button - always links to tool page */}
-        <Link to={`/tool/${toolIndex}`}>
+        {/* View Details Button - always links to tool page with correct index */}
+        <Link to={`/tool/${linkIndex}`}>
           <Button 
             size={buttonSize as any}
             className={`w-full ${isAIWebToolsOriginal ? 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600' : 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700'} text-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30`}
