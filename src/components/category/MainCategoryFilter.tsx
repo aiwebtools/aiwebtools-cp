@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ChevronDown, ChevronUp, Filter, X } from "lucide-react";
@@ -40,10 +40,27 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       .sort((a, b) => b.count - a.count); // Sort by count descending
   }, [tools]);
 
+  // Initialize with current main category selected and immediately show tools
+  useEffect(() => {
+    console.log(`🎯 MainCategoryFilter initializing for: ${currentMainCategory}`);
+    
+    // Always start by showing all tools for the current main category
+    // Don't wait for user interaction
+    onFilteredToolsChange(tools);
+    
+    // Set the current category as selected if it exists in our available categories
+    const categoryExists = mainCategoriesWithCounts.some(cat => cat.name === currentMainCategory);
+    if (categoryExists) {
+      setSelectedMainCategories([currentMainCategory]);
+    }
+  }, [currentMainCategory, tools, onFilteredToolsChange, mainCategoriesWithCounts]);
+
   // Apply main category filters to tools
   const filteredTools = useMemo(() => {
     if (selectedMainCategories.length === 0) {
-      return tools; // Return all tools if no categories selected
+      // When no categories are specifically selected, show all tools for the current page
+      console.log(`📂 No filters selected - showing all ${tools.length} tools for ${currentMainCategory}`);
+      return tools;
     }
     
     console.log(`🎯 Filtering by selected categories: ${selectedMainCategories.join(', ')}`);
@@ -63,10 +80,10 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     
     console.log(`✅ Final filtered result: ${uniqueTools.length} unique tools`);
     return uniqueTools;
-  }, [tools, selectedMainCategories]);
+  }, [tools, selectedMainCategories, currentMainCategory]);
 
   // Update parent component when filtered tools change
-  React.useEffect(() => {
+  useEffect(() => {
     onFilteredToolsChange(filteredTools);
   }, [filteredTools, onFilteredToolsChange]);
 
@@ -81,11 +98,13 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   };
 
   const clearAllFilters = () => {
-    setSelectedMainCategories([]);
+    // Reset to just the current main category
+    setSelectedMainCategories([currentMainCategory]);
   };
 
   // Debug logging
   console.log(`🔍 MainCategoryFilter Debug:`, {
+    currentMainCategory,
     totalInputTools: tools.length,
     categoriesShown: mainCategoriesWithCounts.length,
     selectedCategories: selectedMainCategories,
@@ -103,20 +122,20 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
           className="border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:text-cyan-200 bg-black/50 text-sm"
         >
           <Filter className="w-3 h-3 mr-2" />
-          Filter by Main Category
+          Additional Category Filters
           {isExpanded ? <ChevronUp className="w-3 h-3 ml-2" /> : <ChevronDown className="w-3 h-3 ml-2" />}
-          {selectedMainCategories.length > 0 && (
+          {selectedMainCategories.length > 1 && (
             <Badge variant="secondary" className="ml-2 bg-cyan-500/20 text-cyan-300 text-xs">
-              {selectedMainCategories.length}
+              +{selectedMainCategories.length - 1}
             </Badge>
           )}
         </Button>
       </div>
 
-      {/* Active Filters Display */}
-      {selectedMainCategories.length > 0 && (
+      {/* Active Filters Display - only show if more than current category selected */}
+      {selectedMainCategories.length > 1 && (
         <div className="flex flex-wrap gap-2 justify-center mb-3">
-          {selectedMainCategories.map(categoryName => {
+          {selectedMainCategories.filter(cat => cat !== currentMainCategory).map(categoryName => {
             const categoryData = mainCategoriesWithCounts.find(cat => cat.name === categoryName);
             return (
               <Badge
@@ -142,7 +161,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
             size="sm"
             className="text-cyan-400 hover:text-cyan-200 text-xs h-6"
           >
-            Clear All
+            Reset Filters
           </Button>
         </div>
       )}
@@ -191,16 +210,16 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
 
           {mainCategoriesWithCounts.length === 0 && (
             <div className="text-center py-3 text-gray-400 text-sm">
-              No main categories available
+              No additional categories available
             </div>
           )}
 
           {/* Compact Filter Summary */}
           <div className="mt-3 pt-2 border-t border-cyan-500/20 text-center">
             <div className="text-xs text-cyan-300">
-              {selectedMainCategories.length === 0 
-                ? `Showing all ${tools.length} tools` 
-                : `Showing ${filteredTools.length} of ${tools.length} tools`
+              {selectedMainCategories.length <= 1 
+                ? `Showing ${tools.length} tools in ${currentMainCategory}` 
+                : `Showing ${filteredTools.length} tools from ${selectedMainCategories.length} categories`
               }
             </div>
           </div>
