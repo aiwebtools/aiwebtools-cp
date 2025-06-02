@@ -127,7 +127,15 @@ export const creativeCategories: MainCategory[] = [
       "Creative Services",
       "Creative Suites",
       "Entertainment Media Tools",
-      "Creative And Entertainment"
+      "Creative And Entertainment",
+      "Gaming & Interactive",
+      "Fun & Entertainment",
+      "Interactive Entertainment",
+      "Creative Gaming Tools",
+      "Entertainment & Gaming",
+      "Media & Entertainment",
+      "Interactive Media",
+      "Digital Entertainment"
     ]
   }
 ];

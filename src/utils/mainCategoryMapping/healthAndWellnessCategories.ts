@@ -24,7 +24,18 @@ export const healthAndWellnessCategories: MainCategory[] = [
       "Cannabis & Hemp",
       "Pharmaceutical & Medical Research",
       "Veterinary & Pet Care",
-      "Insurance & Healthcare Finance"
+      "Insurance & Healthcare Finance",
+      "Personal Development & Self-Discovery",
+      "Mental Wellness & Support",
+      "Healthcare & Medical",
+      "Lifestyle & Personal Care",
+      "Spiritual & Philosophical Tools",
+      "Relationship & Communication",
+      "Food & Nutrition",
+      "Wellness & Mental Health",
+      "Personal Growth & Development",
+      "Health & Medical Services",
+      "Spiritual & Personal Growth"
     ]
   }
 ];

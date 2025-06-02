@@ -3,6 +3,7 @@ import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
 import { isVideoRelatedTool } from "./videoDetection";
+import { isHealthAndWellnessTool, isCreativeAndEntertainmentTool } from "./healthDetection";
 import { 
   getDataAnalyticsTools, 
   getMarketingSalesTools, 
@@ -52,6 +53,16 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
     return getAutomationPlatformsTools(tools, categoryName);
   }
   
+  // Enhanced handling for Health, Wellness & Personal Lifestyle category
+  if (categoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
+    return tools.filter(tool => isHealthAndWellnessTool(tool));
+  }
+  
+  // Enhanced handling for Creative & Entertainment category
+  if (categoryName === "CREATIVE & ENTERTAINMENT") {
+    return tools.filter(tool => isCreativeAndEntertainmentTool(tool));
+  }
+  
   // Regular category filtering with enhanced similarity matching
   return tools.filter(tool => tool.category && isSimilarCategory(tool.category, categoryName));
 };
@@ -61,24 +72,45 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
   buildToolsCache(tools);
   
   const mainCategoryCounts: MainCategoryCounts = {};
-  const toolsCacheByMainCategory = getToolsCacheByMainCategory();
   
-  // Use cached results for instant counts - no processing delay
+  // Calculate counts for each main category using enhanced detection
   mainCategories.forEach(mainCat => {
-    const cachedTools = toolsCacheByMainCategory.get(mainCat.name);
-    mainCategoryCounts[mainCat.name] = cachedTools ? cachedTools.length : 0;
+    if (mainCat.name === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
+      mainCategoryCounts[mainCat.name] = tools.filter(tool => isHealthAndWellnessTool(tool)).length;
+    } else if (mainCat.name === "CREATIVE & ENTERTAINMENT") {
+      mainCategoryCounts[mainCat.name] = tools.filter(tool => isCreativeAndEntertainmentTool(tool)).length;
+    } else {
+      // Use cached results for other categories
+      const toolsCacheByMainCategory = getToolsCacheByMainCategory();
+      const cachedTools = toolsCacheByMainCategory.get(mainCat.name);
+      mainCategoryCounts[mainCat.name] = cachedTools ? cachedTools.length : 0;
+    }
   });
   
   return mainCategoryCounts;
 };
 
 export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string): Tool[] => {
-  // Build cache efficiently if not built yet
+  // Enhanced handling for Health, Wellness & Personal Lifestyle
+  if (mainCategoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
+    const healthTools = tools.filter(tool => isHealthAndWellnessTool(tool));
+    console.log(`🏥 Found ${healthTools.length} health & wellness tools`);
+    return healthTools;
+  }
+  
+  // Enhanced handling for Creative & Entertainment
+  if (mainCategoryName === "CREATIVE & ENTERTAINMENT") {
+    const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
+    console.log(`🎭 Found ${creativeTools.length} creative & entertainment tools`);
+    return creativeTools;
+  }
+  
+  // Build cache efficiently if not built yet for other categories
   buildToolsCache(tools);
   
   const toolsCacheByMainCategory = getToolsCacheByMainCategory();
   
-  // Return cached results instantly - zero processing time
+  // Return cached results instantly for other categories
   const cachedTools = toolsCacheByMainCategory.get(mainCategoryName);
   
   if (cachedTools) {
@@ -86,9 +118,6 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     return cachedTools;
   }
   
-  console.warn(`❌ No cache found for main category "${mainCategoryName}"`);
+  console.log(`⚠️ No cached tools found for main category: "${mainCategoryName}"`);
   return [];
 };
-
-// Re-export cache management functions
-export { buildToolsCache };
