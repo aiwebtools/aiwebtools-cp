@@ -9,7 +9,8 @@ import {
   Link, 
   Repeat,
   Play,
-  Shuffle
+  Shuffle,
+  Cpu
 } from "lucide-react";
 
 export const automationAndWorkflowTools: Tool[] = [
@@ -132,5 +133,17 @@ export const automationAndWorkflowTools: Tool[] = [
     category: "AI Development Tools",
     rating: 4.4,
     totalVotes: 2987
+  },
+  {
+    icon: Cpu,
+    title: "Project Atlas Cheat Layer",
+    description: "AI-powered automation platform that can automate any website or software using natural language commands. Build complex automations without coding knowledge.",
+    emoji: "🤖",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://cheatlayer.com/?ref=zta2nth",
+    tags: ["automation", "natural language", "website automation", "no-code", "AI commands"],
+    category: "Business & Productivity",
+    rating: 4.3,
+    totalVotes: 1876
   }
 ];

@@ -1,7 +1,15 @@
-
 import { Tool } from "@/types/tools";
 import { 
-  Cpu, Download, Brain
+  Cpu, 
+  HardDrive, 
+  Shield, 
+  Download, 
+  Lock, 
+  Server, 
+  Terminal, 
+  Database,
+  Zap,
+  Brain
 } from "lucide-react";
 
 export const localAISolutions: Tool[] = [
@@ -30,6 +38,18 @@ export const localAISolutions: Tool[] = [
     category: "Local AI Solutions",
     rating: 4.3,
     totalVotes: 3234
+  },
+  {
+    icon: Brain,
+    title: "Freedom GPT",
+    description: "Uncensored AI chatbot that runs locally on your device, providing privacy-focused conversations without content restrictions or data collection.",
+    emoji: "🧠",
+    color: "from-green-500 to-blue-600",
+    directUrl: "http://shrsl.com/2meh1-3brt-1iyev",
+    tags: ["uncensored AI", "local AI", "privacy", "chatbot", "no restrictions"],
+    category: "AI Assistants",
+    rating: 4.2,
+    totalVotes: 2876
   },
   {
     icon: Brain,

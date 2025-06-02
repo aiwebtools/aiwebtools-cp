@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Play,
@@ -6,7 +5,8 @@ import {
   Film,
   Video,
   Globe,
-  Sparkles
+  Sparkles,
+  User
 } from "lucide-react";
 
 export const videoMarketingTools: Tool[] = [
@@ -81,6 +81,18 @@ export const videoMarketingTools: Tool[] = [
     category: "Video Tools",
     rating: 4.0,
     totalVotes: 2543
+  },
+  {
+    icon: User,
+    title: "BHUMAN Video Cloner Marketing Outreach Tool",
+    description: "AI-powered video personalization platform that creates thousands of personalized videos for marketing outreach, sales, and customer engagement at scale.",
+    emoji: "👤",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://app.bhuman.ai/?ref=zde0otr",
+    tags: ["personalized videos", "marketing outreach", "sales", "customer engagement", "scale"],
+    category: "Video Tools",
+    rating: 4.3,
+    totalVotes: 2134
   },
   {
     icon: Video,

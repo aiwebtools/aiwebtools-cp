@@ -1,10 +1,14 @@
-
 import { Tool } from "@/types/tools";
 import { 
+  Video, 
+  Scissors, 
+  Zap, 
+  Sparkles, 
+  Play, 
   Edit, 
-  Zap,
-  Play,
-  Clock,
+  Camera, 
+  Film,
+  Monitor,
   Wand2
 } from "lucide-react";
 
@@ -92,5 +96,17 @@ export const videoEditingTools: Tool[] = [
     category: "Video Tools",
     rating: 4.2,
     totalVotes: 2654
+  },
+  {
+    icon: Zap,
+    title: "Submagic",
+    description: "AI-powered tool that automatically generates dynamic captions and subtitles for videos, perfect for social media content creators and marketers.",
+    emoji: "⚡",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://submagic.co/?via=aiwebtools",
+    tags: ["captions", "subtitles", "social media", "content creation", "automated"],
+    category: "Video Generation & Editing",
+    rating: 4.4,
+    totalVotes: 2876
   }
 ];

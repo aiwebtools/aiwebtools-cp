@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Video, 
@@ -103,7 +104,7 @@ export const videoGenerationTools: Tool[] = [
     description: "AI-powered video creation platform that generates professional videos from text scripts with templates and automation.",
     emoji: "📺",
     color: "from-teal-500 to-green-600",
-    directUrl: "https://invideo.io/",
+    directUrl: "https://invideo.sjv.io/k0kMbn",
     tags: ["video creation", "text scripts", "templates", "automation"],
     category: "Video Generation & Editing",
     rating: 4.2,
