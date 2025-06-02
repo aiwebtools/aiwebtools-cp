@@ -94,7 +94,7 @@ export const creativeCategories: MainCategory[] = [
     ]
   },
   {
-    name: "CONTENT CREATION & WRITING",
+    name: "WRITING & CONTENT CREATION",
     emoji: "✍️", 
     description: "AI writing assistants, content generators, and text creation tools",
     subcategories: [
@@ -134,3 +134,4 @@ export const creativeCategories: MainCategory[] = [
     ]
   }
 ];
+

@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -60,10 +61,8 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
     return imageDesignTools;
   }
   
-  // CONSOLIDATED: Content Creation & Writing category (handles BOTH old categories)
-  if (categoryName === "CONTENT CREATION & WRITING" || 
-      categoryName === "Content Creation & Writing" ||
-      categoryName === "WRITING & CONTENT CREATION" ||
+  // CONSOLIDATED: Writing & Content Creation category (handles both old categories)
+  if (categoryName === "WRITING & CONTENT CREATION" || 
       categoryName === "Writing & Content Creation" ||
       categoryName === "Content Creation & Writing Tools" ||
       categoryName === "Writing & Content Enhancement" ||
@@ -71,7 +70,7 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
     const writingTools = tools.filter(tool => {
       if (!tool.category) return false;
       
-      // Match ALL writing and content related categories
+      // Match all writing and content related categories
       const writingCategories = [
         "Content Creation & Writing Tools",
         "Writing & Content Creation", 
@@ -150,8 +149,8 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
       const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
       toolCount = creativeTools.length;
       console.log(`🎭 REFINED ${mainCat.name}: ${toolCount} tools (refined creative detection)`);
-    } else if (mainCat.name === "CONTENT CREATION & WRITING") {
-      // CONSOLIDATED: Count ALL writing and content tools together from BOTH categories
+    } else if (mainCat.name === "WRITING & CONTENT CREATION") {
+      // CONSOLIDATED: Count all writing and content tools together
       const writingTools = tools.filter(tool => {
         if (!tool.category) return false;
         
@@ -170,7 +169,7 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
         return writingCategories.some(cat => isSimilarCategory(tool.category!, cat));
       });
       toolCount = writingTools.length;
-      console.log(`✍️ CONSOLIDATED ${mainCat.name}: ${toolCount} tools (consolidated from both writing categories)`);
+      console.log(`✍️ CONSOLIDATED ${mainCat.name}: ${toolCount} tools (consolidated writing detection)`);
     } else {
       // Build cache if needed and get cached results
       buildToolsCache(tools);
@@ -205,8 +204,8 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     return videoTools;
   }
   
-  // CONSOLIDATED handling for Content Creation & Writing
-  if (mainCategoryName === "CONTENT CREATION & WRITING") {
+  // CONSOLIDATED handling for Writing & Content Creation
+  if (mainCategoryName === "WRITING & CONTENT CREATION") {
     const writingTools = tools.filter(tool => {
       if (!tool.category) return false;
       
@@ -224,9 +223,9 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
       
       return writingCategories.some(cat => isSimilarCategory(tool.category!, cat));
     });
-    console.log(`✍️ CONSOLIDATED COUNT: Found ${writingTools.length} content creation & writing tools`);
+    console.log(`✍️ CONSOLIDATED COUNT: Found ${writingTools.length} writing & content tools`);
     
-    // Enhanced debug logging for Content Creation & Writing
+    // Enhanced debug logging for Writing & Content
     const writingTitles = writingTools.slice(0, 15).map(t => `${t.title} (${t.category})`);
     console.log(`✍️ CONSOLIDATED Sample Writing Tools:`, writingTitles);
     
@@ -268,3 +267,4 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   console.log(`⚠️ No cached tools found for main category: "${mainCategoryName}"`);
   return [];
 };
+
