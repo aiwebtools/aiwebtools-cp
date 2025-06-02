@@ -21,9 +21,7 @@ import {
   Home,
   Zap,
   Plane,
-  Bot,
-  MessageCircle,
-  Link
+  Bot
 } from "lucide-react";
 import { priorityFeaturedGPTs } from "./aiWebTools/priorityFeaturedGPTs";
 
@@ -39,30 +37,6 @@ export const aiChatPlatforms: Tool[] = [
     category: "AI Chat & Assistants",
     rating: 4.5,
     totalVotes: 1234
-  },
-  {
-    icon: MessageCircle,
-    title: "CHATIQ",
-    description: "Intelligent AI chat platform that provides smart conversational experiences with advanced AI capabilities. CHATIQ offers seamless integration and powerful chatbot solutions for businesses looking to enhance customer engagement and automate support processes.",
-    emoji: "💬",
-    color: "from-indigo-500 to-purple-600",
-    directUrl: "https://chatiq.ai/?via=aiwebtools",
-    tags: ["AI chat", "intelligent conversations", "customer engagement", "chatbot solutions", "business automation"],
-    category: "AI Chat & Assistants",
-    rating: 4.4,
-    totalVotes: 987
-  },
-  {
-    icon: Link,
-    title: "ChainDesk",
-    description: "Advanced AI-powered customer support platform that creates intelligent chatbots trained on your data. ChainDesk helps businesses automate customer service with custom AI agents that understand your specific business context and provide accurate, helpful responses.",
-    emoji: "🔗",
-    color: "from-teal-500 to-blue-600",
-    directUrl: "https://www.chaindesk.ai/?via=aiwebtools",
-    tags: ["AI customer support", "custom chatbots", "data training", "business automation", "AI agents"],
-    category: "AI Chat & Assistants",
-    rating: 4.6,
-    totalVotes: 1567
   },
   {
     icon: Clock,
