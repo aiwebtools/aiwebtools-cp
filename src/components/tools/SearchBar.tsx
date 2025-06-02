@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -98,9 +97,6 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
           }}
           className="pl-10 pr-4 py-4 text-lg rounded-xl border-2 border-gray-200 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 transition-all duration-300 shadow-lg"
         />
-        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-400">
-          {searchTerm ? `${searchResults.length} found` : `${toolStats.marketing} Tools`}
-        </div>
 
         {isOpen && searchResults.length > 0 && (
           <div 
