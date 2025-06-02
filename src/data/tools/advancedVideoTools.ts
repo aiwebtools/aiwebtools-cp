@@ -2,7 +2,6 @@ import { Video, Play, Film, Camera, Zap, Wand2, Edit, Monitor, Sparkles } from "
 import { Tool } from "@/types/tools";
 
 export const advancedVideoTools: Tool[] = [
-  // TOP PRIORITY VIDEO TOOLS - These should appear first
   {
     icon: Sparkles,
     title: "Google Flow (Veo 3) - PICTURE AND SOUND!",
@@ -28,8 +27,6 @@ export const advancedVideoTools: Tool[] = [
     rating: 4.9,
     totalVotes: 5678
   },
-  
-  // OTHER HIGH-PRIORITY VIDEO TOOLS
   {
     icon: Video,
     title: "SORA by OpenAI",
@@ -53,42 +50,6 @@ export const advancedVideoTools: Tool[] = [
     category: "Advanced Video Tools",
     rating: 4.8,
     totalVotes: 6523
-  },
-  {
-    icon: Video,
-    title: "Luma Labs Dream Machine",
-    description: "AI-powered video generation platform that creates high-quality, realistic videos from text descriptions and images. Known for excellent physics simulation and natural motion.",
-    emoji: "✨",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://lumalabs.ai/dream-machine",
-    tags: ["text-to-video", "image-to-video", "physics simulation", "realistic motion", "AI video"],
-    category: "Advanced Video Tools",
-    rating: 4.8,
-    totalVotes: 7456
-  },
-  {
-    icon: Play,
-    title: "RunwayML Gen-2",
-    description: "Generate realistic and creative videos with simple text prompts. An advanced AI tool for video creation and editing with powerful Gen-2 model capabilities.",
-    emoji: "🚀",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://runwayml.com/gen2/",
-    tags: ["text-to-video", "AI generation", "video editing", "creative tools", "machine learning"],
-    category: "Advanced Video Tools",
-    rating: 4.8,
-    totalVotes: 7234
-  },
-  {
-    icon: Film,
-    title: "Pika Labs",
-    description: "Create and edit videos with AI. Bring your creative visions to life with this innovative video tool that generates high-quality videos from text prompts and images.",
-    emoji: "🌟",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://pika.art/",
-    tags: ["AI video editing", "video creation", "creative AI", "machine learning", "video effects"],
-    category: "Advanced Video Tools",
-    rating: 4.7,
-    totalVotes: 6890
   },
   {
     icon: Film,
@@ -115,6 +76,42 @@ export const advancedVideoTools: Tool[] = [
     totalVotes: 4123
   },
   {
+    icon: Play,
+    title: "RunwayML Gen-2",
+    description: "Generate realistic and creative videos with simple text prompts. An advanced AI tool for video creation and editing with powerful Gen-2 model capabilities.",
+    emoji: "🚀",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://runwayml.com/gen2/",
+    tags: ["text-to-video", "AI generation", "video editing", "creative tools", "machine learning"],
+    category: "Advanced Video Tools",
+    rating: 4.8,
+    totalVotes: 7234
+  },
+  {
+    icon: Film,
+    title: "Pika Labs",
+    description: "Create and edit videos with AI. Bring your creative visions to life with this innovative video tool that generates high-quality videos from text prompts and images.",
+    emoji: "🌟",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://pika.art/",
+    tags: ["AI video editing", "video creation", "creative AI", "machine learning", "video effects"],
+    category: "Advanced Video Tools",
+    rating: 4.7,
+    totalVotes: 6890
+  },
+  {
+    icon: Video,
+    title: "Luma Labs Dream Machine",
+    description: "AI-powered video generation platform that creates high-quality, realistic videos from text descriptions and images. Known for excellent physics simulation and natural motion.",
+    emoji: "✨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://lumalabs.ai/dream-machine",
+    tags: ["text-to-video", "image-to-video", "physics simulation", "realistic motion", "AI video"],
+    category: "Advanced Video Tools",
+    rating: 4.8,
+    totalVotes: 7456
+  },
+  {
     icon: Video,
     title: "Google Veo 2",
     description: "Google's advanced AI video generation model that creates high-resolution videos with improved understanding of physics, human movement, and visual details from text prompts.",
@@ -138,6 +135,30 @@ export const advancedVideoTools: Tool[] = [
     category: "Advanced Video Tools",
     rating: 4.9,
     totalVotes: 4567
+  },
+  {
+    icon: Play,
+    title: "RunwayML Gen-2",
+    description: "Generate realistic and creative videos with simple text prompts. An advanced AI tool for video creation and editing.",
+    emoji: "🚀",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://runwayml.com/gen2/",
+    tags: ["text-to-video", "AI generation", "video editing", "creative tools", "machine learning"],
+    category: "Advanced Video Tools",
+    rating: 4.8,
+    totalVotes: 4234
+  },
+  {
+    icon: Film,
+    title: "Pika Labs",
+    description: "Create and edit videos with AI. Bring your creative visions to life with this innovative video tool.",
+    emoji: "🌟",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://pika.art/",
+    tags: ["AI video editing", "video creation", "creative AI", "machine learning", "video effects"],
+    category: "Advanced Video Tools",
+    rating: 4.7,
+    totalVotes: 3890
   },
   {
     icon: Camera,
@@ -248,6 +269,18 @@ export const advancedVideoTools: Tool[] = [
     totalVotes: 3123
   },
   {
+    icon: Camera,
+    title: "MiniMax (Hailuo AI)",
+    description: "Chinese Sora contender with KLING. Excellent text-to-video generator from MiniMax designed as AI productivity partner. Features video generation, music creation, and more.",
+    emoji: "🎭",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://hailuoai.com/",
+    tags: ["Chinese AI", "Sora competitor", "text-to-video", "music creation", "productivity"],
+    category: "Advanced Video Tools",
+    rating: 4.5,
+    totalVotes: 2567
+  },
+  {
     icon: Edit,
     title: "2Short.ai",
     description: "AI platform that transforms long-form videos into engaging short clips for YouTube Shorts, TikTok, and Instagram Reels. Features animated subtitles, facial tracking, and brand presets.",
@@ -306,6 +339,18 @@ export const advancedVideoTools: Tool[] = [
     category: "Advanced Video Tools",
     rating: 4.8,
     totalVotes: 4123
+  },
+  {
+    icon: Camera,
+    title: "Higgsfield AI",
+    description: "Cutting-edge video generation platform transforming selfies into realistic, personalized video content using text prompts through mobile-first app Diffuse.",
+    emoji: "🤳",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://higgsfield.ai/",
+    tags: ["selfie to video", "personalized content", "mobile app", "realistic characters", "social media"],
+    category: "Advanced Video Tools",
+    rating: 4.6,
+    totalVotes: 3234
   },
   {
     icon: Sparkles,

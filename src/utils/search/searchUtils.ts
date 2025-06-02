@@ -26,8 +26,6 @@ import {
   debugMusicSearch, 
   debugPhoneAgentSearch 
 } from "./core/searchDebugger";
-import { getToolsByMainCategoryEnhanced, detectToolMainCategory } from "../categoryUtils/enhancedToolFiltering";
-import { mainCategoryKeywordMapping } from "../categoryUtils/mainCategoryMapping";
 
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
@@ -37,33 +35,29 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
 
   console.log(`🔍 Enhanced search for: "${searchTerm}" across ${tools.length} tools`);
   
-  // Check if search term matches a main category
-  const searchTermLower = searchTerm.toLowerCase();
-  let isMainCategorySearch = false;
-  let mainCategoryMatch = "";
+  // Enhanced debugging to find Name Insight tool in database
+  console.log(`🔍 Searching for Name Insight tool in ${tools.length} tools...`);
+  const possibleNameTools = tools.filter(tool => 
+    tool.title.toLowerCase().includes('name') ||
+    tool.directUrl?.includes('whatsmynamegpt') ||
+    tool.description.toLowerCase().includes('name insight') ||
+    tool.description.toLowerCase().includes('name meaning') ||
+    tool.description.toLowerCase().includes('name analysis')
+  );
   
-  for (const [mainCategory, keywords] of Object.entries(mainCategoryKeywordMapping)) {
-    const categoryMatches = keywords.some(keyword => {
-      const keywordLower = keyword.toLowerCase();
-      return searchTermLower.includes(keywordLower) || keywordLower.includes(searchTermLower);
-    });
-    
-    if (categoryMatches) {
-      isMainCategorySearch = true;
-      mainCategoryMatch = mainCategory;
-      console.log(`🎯 Detected main category search: "${searchTerm}" → "${mainCategory}"`);
-      break;
-    }
-  }
+  console.log(`🏷️ Found ${possibleNameTools.length} tools with "name" in title/description/URL:`);
+  possibleNameTools.forEach((tool, index) => {
+    console.log(`${index + 1}. "${tool.title}" - URL: ${tool.directUrl || 'NO URL'}`);
+  });
   
-  // If it's a main category search, use enhanced category filtering
-  if (isMainCategorySearch) {
-    const categoryTools = getToolsByMainCategoryEnhanced(tools, mainCategoryMatch);
-    console.log(`🎯 Main category search "${searchTerm}" found ${categoryTools.length} tools in "${mainCategoryMatch}"`);
-    return categoryTools;
-  }
+  // Specifically look for the exact Name Insight tool
+  const nameInsightTool = tools.find(tool => 
+    tool.title.toLowerCase().includes('name insight') ||
+    tool.directUrl?.includes('whatsmynamegpt') ||
+    (tool.title.toLowerCase().includes('name') && tool.title.toLowerCase().includes('predictor'))
+  );
+  console.log(`🏷️ Name Insight tool found in database:`, nameInsightTool ? nameInsightTool.title : 'NOT FOUND');
   
-  // Continue with regular search logic for non-category searches
   const expandedKeywords = getExpandedKeywords(searchTerm);
   console.log(`📝 Expanded keywords:`, expandedKeywords);
   
@@ -150,6 +144,41 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       searchTerm.toLowerCase().includes('doctor') || searchTerm.toLowerCase().includes('wellness')) {
     console.log(`🏥 HEALTH SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
     console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
+    
+    // Check if key health tools are in the results
+    const doctorGptInResults = results.find(tool => 
+      tool.title.toLowerCase().includes('doctor gpt') || 
+      tool.title.toLowerCase().includes('personalized dr. gpt')
+    );
+    const mentalWellnessInResults = results.find(tool => 
+      tool.title.toLowerCase().includes('mental wellness gpt')
+    );
+    const dentalGptInResults = results.find(tool => 
+      tool.title.toLowerCase().includes('dental gpt')
+    );
+    
+    console.log(`🏥 Doctor GPT in results:`, doctorGptInResults ? doctorGptInResults.title : 'NOT IN RESULTS');
+    console.log(`🧠 Mental Wellness GPT in results:`, mentalWellnessInResults ? mentalWellnessInResults.title : 'NOT IN RESULTS');
+    console.log(`🦷 Dental GPT in results:`, dentalGptInResults ? dentalGptInResults.title : 'NOT IN RESULTS');
+  }
+  
+  // Enhanced debugging for name searches
+  if (searchTerm.toLowerCase().includes('name')) {
+    console.log(`🏷️ NAME SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
+    console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
+    
+    // Check if Name Insight tool is in the results
+    const nameInsightInResults = results.find(tool => 
+      tool.title.toLowerCase().includes('name insight') ||
+      tool.directUrl?.includes('whatsmynamegpt')
+    );
+    console.log(`🏷️ Name Insight tool in results:`, nameInsightInResults ? nameInsightInResults.title : 'NOT IN RESULTS');
+    
+    // Show which tools matched for name searches
+    console.log(`🏷️ All name-related tools that matched:`, results.filter(tool => 
+      tool.title.toLowerCase().includes('name') || 
+      tool.description.toLowerCase().includes('name')
+    ).map(t => t.title));
   }
   
   // Enhanced debugging for different search types

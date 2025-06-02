@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Pen, 
@@ -12,94 +13,22 @@ import {
   Sparkles,
   Globe,
   Brain,
-  Theater,
-  CheckCircle,
-  Languages,
-  MessageSquare,
-  Eye,
-  Wand2,
-  Users,
-  Target,
-  Bot,
-  Crown
+  Theater
 } from "lucide-react";
 
 export const contentCreationAndWritingTools: Tool[] = [
-  // PRIORITY LLMs - Featured First
   {
-    icon: Bot,
-    title: "ChatGPT",
-    description: "OpenAI's advanced conversational AI model for writing, coding, analysis, and creative tasks. The most popular AI assistant for content creation and writing assistance.",
-    emoji: "🤖",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://chat.openai.com/?via=aiwebtools",
-    tags: ["AI assistant", "writing", "conversational AI", "content creation", "OpenAI"],
+    icon: Theater,
+    title: "🎭 Playwriter GPT",
+    description: "Craft professional, fully structured theatrical plays from start to finish. Whether you have a concept or need inspiration, create original, engaging plays designed to captivate audiences.",
+    emoji: "🎭",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://playwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=KKldzg40wEI&list=TLGGGcedR_qZHHYyODA1MjAyNQ",
+    tags: ["theatrical writing", "play creation", "script development", "dramatic structure", "performance writing"],
     category: "Content Creation & Writing Tools",
     rating: 4.9,
-    totalVotes: 12500
-  },
-  {
-    icon: Brain,
-    title: "Claude AI",
-    description: "Anthropic's advanced AI assistant excelling in writing, analysis, coding, and creative tasks. Known for nuanced understanding and helpful, harmless responses.",
-    emoji: "🧠",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://claude.ai/?via=aiwebtools",
-    tags: ["AI assistant", "writing", "analysis", "Anthropic", "creative writing"],
-    category: "Content Creation & Writing Tools",
-    rating: 4.8,
-    totalVotes: 9800
-  },
-  {
-    icon: Sparkles,
-    title: "Google Gemini",
-    description: "Google's powerful multimodal AI model for text, code, and creative content generation. Integrated with Google's ecosystem for enhanced productivity.",
-    emoji: "✨",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://gemini.google.com/?via=aiwebtools",
-    tags: ["Google AI", "multimodal", "content generation", "writing assistant", "productivity"],
-    category: "Content Creation & Writing Tools",
-    rating: 4.7,
-    totalVotes: 8900
-  },
-  {
-    icon: Zap,
-    title: "Meta LLAMA",
-    description: "Meta's large language model for advanced text generation, coding, and creative writing. Open-source foundation for many AI applications.",
-    emoji: "🦙",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://llama.meta.com/?via=aiwebtools",
-    tags: ["Meta AI", "open source", "large language model", "text generation", "coding"],
-    category: "Content Creation & Writing Tools",
-    rating: 4.6,
-    totalVotes: 7200
-  },
-  {
-    icon: Wand2,
-    title: "Mistral AI",
-    description: "European AI company's powerful language model for writing, coding, and reasoning tasks. Known for efficiency and performance in content creation.",
-    emoji: "🌟",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://mistral.ai/?via=aiwebtools",
-    tags: ["European AI", "language model", "writing", "coding", "reasoning"],
-    category: "Content Creation & Writing Tools",
-    rating: 4.5,
-    totalVotes: 6800
-  },
-
-  // PRIORITY AI WEB TOOLS GPTs - Featured Second
-  {
-    icon: BookOpen,
-    title: "BOOK WRITER GPT",
-    description: "Book Writer GPT assists you in creating professional, well-structured books with seamless page-to-page continuity, engaging dialogue, and captivating storytelling.",
-    emoji: "📚",
-    color: "from-blue-500 to-green-600",
-    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
-    tags: ["book writing", "novel creation", "storytelling", "page continuity", "professional publishing"],
-    category: "Content Creation & Writing Tools",
-    rating: 4.7,
-    totalVotes: 4123
+    totalVotes: 5432
   },
   {
     icon: FileText,
@@ -115,33 +44,18 @@ export const contentCreationAndWritingTools: Tool[] = [
     totalVotes: 4567
   },
   {
-    icon: FileText,
-    title: "Training Manual Generator GPT",
-    description: "Our AI-powered Training Manual Generator, developed by AIwebtools.ai, creates comprehensive, customized training manuals for your business. This tool ensures perfect alignment with your company's needs, facilitating effective employee training. Enhance your onboarding process with a detailed, tailored training resource.",
-    emoji: "📋",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005968.jpg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
-    tags: ["training manual", "employee training", "business training", "onboarding", "training materials", "staff training", "training development"],
+    icon: BookOpen,
+    title: "BOOK WRITER GPT",
+    description: "Book Writer GPT assists you in creating professional, well-structured books with seamless page-to-page continuity, engaging dialogue, and captivating storytelling.",
+    emoji: "📚",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
+    tags: ["book writing", "novel creation", "storytelling", "page continuity", "professional publishing"],
     category: "Content Creation & Writing Tools",
-    rating: 4.8,
-    totalVotes: 4234
+    rating: 4.7,
+    totalVotes: 4123
   },
-  {
-    icon: Theater,
-    title: "🎭 Playwriter GPT",
-    description: "Craft professional, fully structured theatrical plays from start to finish. Whether you have a concept or need inspiration, create original, engaging plays designed to captivate audiences.",
-    emoji: "🎭",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://playwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=KKldzg40wEI&list=TLGGGcedR_qZHHYyODA1MjAyNQ",
-    tags: ["theatrical writing", "play creation", "script development", "dramatic structure", "performance writing"],
-    category: "Content Creation & Writing Tools",
-    rating: 4.9,
-    totalVotes: 5432
-  },
-
-  // OTHER AI WEB TOOLS GPTs
   {
     icon: Mic,
     title: "Podcast Script Writer GPT",
@@ -194,82 +108,19 @@ export const contentCreationAndWritingTools: Tool[] = [
     rating: 4.7,
     totalVotes: 3892
   },
-
-  // MAJOR WRITING TOOLS - Grammar & Writing Assistants
   {
-    icon: CheckCircle,
-    title: "Grammarly",
-    description: "AI-powered writing assistant that helps improve grammar, spelling, clarity, and tone. Real-time suggestions for better writing across all platforms.",
-    emoji: "✅",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://www.grammarly.com/?via=aiwebtools",
-    tags: ["grammar check", "writing assistant", "spell check", "tone", "clarity"],
+    icon: FileText,
+    title: "Training Manual Generator GPT",
+    description: "Our AI-powered Training Manual Generator, developed by AIwebtools.ai, creates comprehensive, customized training manuals for your business. This tool ensures perfect alignment with your company's needs, facilitating effective employee training. Enhance your onboarding process with a detailed, tailored training resource.",
+    emoji: "📋",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005968.jpg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
+    tags: ["training manual", "employee training", "business training", "onboarding", "training materials", "staff training", "training development"],
     category: "Content Creation & Writing Tools",
-    rating: 4.7,
-    totalVotes: 5432
-  },
-  {
-    icon: Languages,
-    title: "DeepL Write",
-    description: "AI writing assistant that helps improve and perfect your writing. Fix grammar, enhance clarity, and refine tone with advanced language models.",
-    emoji: "🌐",
-    color: "from-blue-500 to-green-600",
-    directUrl: "https://www.deepl.com/write?via=aiwebtools",
-    tags: ["writing improvement", "grammar", "clarity", "tone refinement", "DeepL"],
-    category: "Content Creation & Writing Tools",
-    rating: 4.6,
-    totalVotes: 3654
-  },
-  {
-    icon: BookOpen,
-    title: "Wordtune",
-    description: "AI writing companion that understands context and suggests ways to rewrite sentences. Improve clarity, tone, and style of your writing.",
-    emoji: "📖",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://www.wordtune.com/?via=aiwebtools",
-    tags: ["sentence rewriting", "context understanding", "clarity", "tone", "style"],
-    category: "Content Creation & Writing Tools",
-    rating: 4.4,
-    totalVotes: 3123
-  },
-  {
-    icon: MessageSquare,
-    title: "QuillBot",
-    description: "AI paraphrasing tool that rewrites text while maintaining meaning. Features grammar checker, summarizer, and citation generator.",
-    emoji: "💬",
-    color: "from-green-500 to-teal-600",
-    directUrl: "https://quillbot.com/?via=aiwebtools",
-    tags: ["paraphrasing", "grammar check", "summarizer", "citations", "text rewriting"],
-    category: "Content Creation & Writing Tools",
-    rating: 4.5,
-    totalVotes: 3789
-  },
-  {
-    icon: Eye,
-    title: "Hemingway Editor",
-    description: "Writing app that helps make your text clear and concise. Highlights complex sentences, passive voice, and suggests improvements for readability.",
-    emoji: "👁️",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://hemingwayapp.com/?via=aiwebtools",
-    tags: ["readability", "clear writing", "concise text", "sentence complexity", "passive voice"],
-    category: "Content Creation & Writing Tools",
-    rating: 4.3,
-    totalVotes: 2654
-  },
-  {
-    icon: Brain,
-    title: "Jasper AI",
-    description: "AI content generation platform for marketing teams. Create blog posts, social media content, ads, and marketing copy with advanced AI models.",
-    emoji: "🧠",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://www.jasper.ai/?via=aiwebtools",
-    tags: ["content generation", "marketing copy", "blog posts", "social media", "ads"],
-    category: "Content Creation & Writing Tools",
-    rating: 4.6,
+    rating: 4.8,
     totalVotes: 4234
   },
-
-  // ... keep existing code (all the remaining tools from the original contentCreationAndWritingTools array)
   {
     icon: Edit,
     title: "Smart Text Editor",

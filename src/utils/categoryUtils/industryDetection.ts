@@ -1,118 +1,143 @@
 
 import { Tool } from "@/types/tools";
 
-// STRICT Helper function to detect ONLY professional industry-specific tools
+// COMPREHENSIVE Helper function to detect ALL industry-specific tools
 export const isIndustrySpecificTool = (tool: Tool): boolean => {
   const titleLower = tool.title.toLowerCase();
   const descriptionLower = tool.description.toLowerCase();
   const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
   const categoryLower = tool.category?.toLowerCase() || '';
   
-  // EXCLUDE video, image, creative tools from industry category
-  const excludeKeywords = [
-    'video', 'image', 'photo', 'art', 'design', 'creative', 'music', 'audio',
-    'generator', 'maker', 'creator', 'editing', 'animation', 'multimedia'
-  ];
-  
-  const hasExcludedKeywords = excludeKeywords.some(keyword => 
-    titleLower.includes(keyword) || 
-    descriptionLower.includes(keyword) || 
-    categoryLower.includes(keyword)
-  );
-  
-  if (hasExcludedKeywords) {
-    return false;
-  }
-  
-  // STRICT industry-specific professional keywords
-  const strictIndustryKeywords = [
+  // COMPREHENSIVE industry keywords covering ALL major industries
+  const industryKeywords = [
     // Legal & Government
-    'criminologist', 'legal', 'law', 'attorney', 'lawyer', 'defender', 'legislation',
-    'contract', 'compliance', 'paralegal', 'judicial', 'court', 'justice',
-    
-    // Healthcare & Medical  
-    'doctor', 'medical', 'healthcare', 'physician', 'clinic', 'hospital',
-    'pharmaceutical', 'pharmacy', 'veterinarian', 'vet', 'patient care',
+    'legal', 'law', 'attorney', 'lawyer', 'court', 'judge', 'contract', 'litigation',
+    'compliance', 'legislation', 'defender', 'justice', 'paralegal', 'government',
+    'civic', 'policy', 'regulation', 'constitutional', 'criminal law', 'civil law',
+    'corporate law', 'intellectual property', 'patent', 'trademark', 'copyright',
+    'real estate law', 'family law', 'immigration law', 'tax law', 'employment law',
     
     // Education & Academic
-    'professor', 'teacher', 'academic', 'university', 'college', 'school',
-    'curriculum', 'educational research', 'academic research',
+    'education', 'learning', 'educational', 'academic', 'study', 'course', 'curriculum',
+    'teaching', 'teacher', 'tutor', 'tutoring', 'lesson', 'homework', 'quiz', 'test',
+    'training', 'university', 'college', 'school', 'degree', 'certification',
+    'insect study', 'entomology', 'species research', 'biological studies',
+    'research', 'scientific', 'laboratory', 'experiment', 'analysis',
     
-    // Science & Research
-    'archaeologist', 'scientist', 'researcher', 'laboratory', 'geology',
-    'biology', 'chemistry', 'physics', 'astronomy', 'meteorology',
-    'genetics', 'microbiology', 'neuroscience', 'psychology',
+    // Creative Arts & Design
+    'graphic design', 'design', 'art', 'creative', 'illustration', 'photography',
+    'video editing', 'animation', 'music', 'audio', 'tattoo', 'sketch', 'drawing',
+    'painting', 'sculpture', 'pottery', 'crafts', 'fashion', 'interior design',
+    'architecture', 'typography', 'branding', 'logo', 'visual', 'aesthetic',
+    'multimedia', 'digital art', 'concept art', 'character design', 'game art',
     
-    // Emergency & Safety
-    'firefighter', 'emergency', 'police', 'security', 'safety', 'rescue',
-    'paramedic', 'emt', 'first aid', 'disaster management',
-    
-    // Finance & Trading (Professional)
-    'financial advisor', 'investment banker', 'trader', 'accountant',
-    'insurance agent', 'mortgage broker', 'tax professional',
-    
-    // Real Estate Professional
-    'real estate agent', 'property appraiser', 'property assessor',
-    'property manager', 'real estate broker',
+    // Culinary & Food Industry
+    'cooking', 'chef', 'culinary', 'recipe', 'food', 'restaurant', 'kitchen',
+    'baking', 'pastry', 'nutrition', 'mixologist', 'bartender', 'cocktail',
+    'food quality', 'cuisine', 'gastronomy', 'menu', 'dining', 'catering',
+    'hospitality', 'beverage', 'wine', 'brewing', 'food safety', 'food service',
     
     // Agriculture & Farming
-    'farmer', 'agriculturalist', 'agronomist', 'veterinarian',
-    'crop specialist', 'livestock manager',
+    'farming', 'agriculture', 'crop', 'livestock', 'harvest', 'soil', 'irrigation',
+    'greenhouse', 'organic', 'pesticide', 'fertilizer', 'agronomist', 'agronomy',
+    'horticulture', 'aquaculture', 'forestry', 'sustainable farming', 'precision agriculture',
     
-    // Engineering & Technical
-    'engineer', 'technician', 'architect', 'construction manager',
-    'project manager', 'quality control', 'inspector',
+    // Real Estate & Property
+    'real estate', 'property', 'housing', 'mortgage', 'rental', 'appraisal',
+    'land', 'construction', 'renovation', 'home', 'building', 'architecture',
+    'urban planning', 'zoning', 'development', 'commercial real estate',
     
-    // Culinary Professional
-    'chef', 'culinary', 'food inspector', 'restaurant manager',
-    'sommelier', 'nutritionist', 'dietitian',
+    // Finance & Trading
+    'finance', 'trading', 'investment', 'banking', 'insurance', 'accounting',
+    'tax', 'credit', 'loan', 'budget', 'financial planning', 'wealth management',
+    'cryptocurrency', 'blockchain', 'fintech', 'payment processing', 'mortgages',
     
-    // Transportation & Logistics
-    'pilot', 'driver', 'logistics coordinator', 'supply chain manager',
-    'shipping coordinator', 'fleet manager',
+    // Transportation & Automotive
+    'automotive', 'car', 'vehicle', 'transportation', 'logistics', 'shipping',
+    'trucking', 'aviation', 'maritime', 'railway', 'fleet management', 'supply chain',
     
-    // Specialized Services
-    'appraiser', 'valuator', 'inspector', 'consultant', 'advisor',
-    'specialist', 'expert', 'professional services'
+    // Manufacturing & Industrial
+    'manufacturing', 'industrial', 'factory', 'production', 'assembly',
+    'quality control', 'supply chain', 'robotics', 'automation', 'machinery',
+    'operations', 'process optimization', 'lean manufacturing', 'six sigma',
+    
+    // Energy & Utilities
+    'energy', 'solar', 'renewable', 'electricity', 'oil', 'gas', 'utility',
+    'power generation', 'grid', 'sustainable', 'wind power', 'hydroelectric',
+    'nuclear energy', 'geothermal', 'energy efficiency', 'carbon footprint',
+    
+    // Entertainment & Media
+    'entertainment', 'media', 'broadcasting', 'journalism', 'publishing',
+    'film', 'television', 'radio', 'gaming', 'sports', 'theater', 'performance',
+    'streaming', 'podcast', 'content creation', 'social media', 'influencer',
+    
+    // Science & Research
+    'research', 'laboratory', 'scientific', 'experiment', 'analysis',
+    'archaeology', 'geology', 'biology', 'chemistry', 'physics',
+    'astronomy', 'meteorology', 'environmental science', 'marine biology',
+    'genetics', 'microbiology', 'biochemistry', 'neuroscience', 'psychology',
+    
+    // Emergency & Safety Services
+    'emergency', 'firefighter', 'police', 'security', 'safety', 'rescue',
+    'disaster', 'crisis management', 'first aid', 'paramedic', 'emt',
+    'homeland security', 'cybersecurity', 'surveillance', 'investigation',
+    
+    // Retail & E-commerce
+    'retail', 'e-commerce', 'shopping', 'merchandising', 'inventory',
+    'customer service', 'sales', 'marketing', 'advertising', 'point of sale',
+    'supply chain', 'distribution', 'fulfillment', 'logistics',
+    
+    // Tourism & Hospitality
+    'tourism', 'hospitality', 'hotel', 'travel', 'vacation', 'booking',
+    'restaurant', 'catering', 'event planning', 'cruise', 'airline',
+    'destination management', 'tour guide', 'concierge', 'resort',
+    
+    // Telecommunications & IT
+    'telecommunications', 'telecom', 'network', 'wireless', 'internet',
+    'communication', 'phone', 'mobile', 'broadband', 'data center',
+    'cloud computing', 'software development', 'cybersecurity', 'it support',
+    
+    // Textiles & Fashion
+    'fashion', 'textile', 'clothing', 'apparel', 'fabric', 'garment',
+    'styling', 'trend', 'runway', 'boutique', 'manufacturing', 'retail fashion',
+    
+    // Sports & Recreation
+    'sports', 'fitness', 'recreation', 'athletic', 'coaching', 'training',
+    'exercise', 'gym', 'wellness', 'outdoor', 'adventure', 'competition',
+    
+    // Specialized Industries
+    'appraisal', 'valuation', 'collectibles', 'antiques', 'auction',
+    'investigation', 'forensics', 'detective', 'surveillance', 'background check',
+    'consulting', 'advisory', 'strategy', 'management', 'human resources',
+    'recruitment', 'staffing', 'training', 'development', 'organizational'
   ];
   
-  // Check if tool matches professional industry keywords
-  const matchesIndustryKeywords = strictIndustryKeywords.some(keyword => 
+  // Check if tool matches any industry-specific keywords
+  const matchesIndustryKeywords = industryKeywords.some(keyword => 
     titleLower.includes(keyword) || 
     descriptionLower.includes(keyword) || 
     tagsLower.includes(keyword) ||
     categoryLower.includes(keyword)
   );
   
-  // Check for specific professional tool patterns
-  const professionalPatterns = [
-    /gpt$/i, // Tools ending with GPT (like Criminologist GPT)
-    /assistant$/i, // Professional assistants
-    /advisor$/i, // Professional advisors
-    /specialist$/i, // Specialists
-    /expert$/i, // Experts
-    /professional$/i // Professionals
+  // Also include tools that are already in known industry categories
+  const industryCategories = [
+    'legal', 'education', 'creative', 'entertainment',
+    'professional services', 'emergency', 'finance', 'specialized', 'robotics',
+    'design', 'culinary', 'food', 'agriculture',
+    'real estate', 'property', 'automotive', 'transportation', 'manufacturing',
+    'energy', 'utilities', 'science', 'research', 'retail', 'tourism',
+    'hospitality', 'telecommunications', 'fashion', 'sports', 'fitness'
   ];
   
-  const matchesProfessionalPattern = professionalPatterns.some(pattern => 
-    pattern.test(tool.title)
+  const isInIndustryCategory = industryCategories.some(category => 
+    categoryLower.includes(category)
   );
   
-  // Also include tools that are explicitly in professional categories
-  const professionalCategories = [
-    'healthcare professionals', 'legal professionals', 'emergency services',
-    'professional services', 'specialized tools', 'specialized & niche',
-    'specialized ai tools', 'technical & utility tools'
-  ];
-  
-  const isInProfessionalCategory = professionalCategories.some(category => 
-    categoryLower.includes(category.toLowerCase())
-  );
-  
-  const isIndustryTool = matchesIndustryKeywords || matchesProfessionalPattern || isInProfessionalCategory;
+  const isIndustryTool = matchesIndustryKeywords || isInIndustryCategory;
   
   if (isIndustryTool) {
-    console.log(`🏭 INDUSTRY: Detected professional industry tool: ${tool.title} (Category: ${tool.category})`);
+    console.log(`🏭 INDUSTRY: Detected industry-specific tool: ${tool.title} (Category: ${tool.category})`);
   }
   
   return isIndustryTool;

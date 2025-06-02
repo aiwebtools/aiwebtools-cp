@@ -1,4 +1,3 @@
-
 // Export all tool categories
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
@@ -49,7 +48,7 @@ export { contentDetectionTools } from './contentDetectionTools';
 export { contentCreationAndWritingTools } from './contentCreationAndWritingTools';
 export { documentAndResearchTools } from './documentAndResearchTools';
 export { designAndGraphicsTools } from './designAndGraphicsTools';
-// REMOVED: writingAndContentEnhancement - consolidated into contentCreationAndWritingTools
+export { writingAndContentEnhancement } from './writingAndContentEnhancement';
 export { resumeAndCareerTools } from './resumeAndCareerTools';
 export { ecommerceAndMarketingTools } from './ecommerceAndMarketingTools';
 export { videoEditingAndContentTools } from './videoEditingAndContentTools';
@@ -115,4 +114,3 @@ export { grammarAndWritingAssistants } from './grammarAndWritingAssistants';
 export { aiContentGenerators } from './aiContentGenerators';
 export { creativeWritingTools } from './creativeWritingTools';
 export { transcriptionAndDocumentTools } from './transcriptionAndDocumentTools';
-

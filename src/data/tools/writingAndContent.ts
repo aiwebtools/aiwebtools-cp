@@ -24,7 +24,7 @@ export const writingAndContent: Tool[] = [
     directUrl: "https://moviescriptwritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=4e3Rkurt3-c&list=TLGGtoG6kc0vED4yODA1MjAyNQ",
     tags: ["script writing", "movie scripts", "professional formatting", "character development", "industry standards"],
-    category: "Content Creation & Writing Tools",
+    category: "Writing & Content",
     rating: 4.8,
     totalVotes: 4567
   },
@@ -37,7 +37,7 @@ export const writingAndContent: Tool[] = [
     directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
     tags: ["book writing", "page-to-page continuity", "engaging dialogue", "storytelling", "professional books"],
-    category: "Content Creation & Writing Tools",
+    category: "Writing & Content",
     rating: 4.7,
     totalVotes: 3892
   },
@@ -50,7 +50,7 @@ export const writingAndContent: Tool[] = [
     directUrl: "https://perfectpromptengine.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-humanoid-robot-controlli.png/:/cr=t:9.25%25,l:11.96%25,w:73.53%25,h:65.54%25/rs=w:1200,h:600,cg:true,m",
     tags: ["prompt optimization", "prompt engineering", "task execution", "productivity", "AI assistance"],
-    category: "Content Creation & Writing Tools",
+    category: "Writing & Content",
     rating: 4.8,
     totalVotes: 4234
   },
@@ -63,7 +63,7 @@ export const writingAndContent: Tool[] = [
     directUrl: "https://clarityomni.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-scene-of-an-ai-agent-with-a-halo.jpeg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
     tags: ["writing", "clarity", "readability", "content optimization", "omni", "analysis"],
-    category: "Content Creation & Writing Tools",
+    category: "Writing & Content",
     rating: 4.5,
     totalVotes: 2876
   }

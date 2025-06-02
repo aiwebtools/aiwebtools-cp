@@ -9,7 +9,7 @@ interface FooterActionsProps {
 }
 
 const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool }: FooterActionsProps) => {
-  const handleShowAllTools = (e: React.MouseEvent) => {
+  const handleViewAllTools = (e: React.MouseEvent) => {
     e.preventDefault();
     window.location.href = 'https://aiwebtools.ai/main-category/ALL%20AI%20TOOLS';
   };
@@ -21,13 +21,13 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
       </h3>
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-4xl mx-auto">
         <Button
-          onClick={handleShowAllTools}
+          onClick={handleViewAllTools}
           variant="outline"
           size="lg"
           className="w-full sm:w-auto border-cyan-500 text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-all duration-300"
         >
           <Search className="mr-2 h-5 w-5" />
-          SHOW ALL AI TOOLS
+          VIEW ALL AI TOOLS
         </Button>
         
         <Button
