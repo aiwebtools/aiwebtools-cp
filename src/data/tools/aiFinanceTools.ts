@@ -31,18 +31,6 @@ export const aiFinanceTools: Tool[] = [
     totalVotes: 1987
   },
   {
-    icon: Calculator,
-    title: "Yodlee",
-    description: "AI-driven financial data aggregation and analytics platform for personal finance management and insights.",
-    emoji: "🧮",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://www.yodlee.com/?via=aiwebtools",
-    tags: ["financial data", "personal finance", "aggregation", "analytics"],
-    category: "Professional Services",
-    rating: 4.3,
-    totalVotes: 1654
-  },
-  {
     icon: Wallet,
     title: "Mint (Intuit)",
     description: "AI-powered personal finance app that categorizes transactions, tracks spending, and provides budget recommendations.",
