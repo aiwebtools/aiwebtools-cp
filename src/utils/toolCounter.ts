@@ -1,8 +1,13 @@
 
 import { getAllToolCategories } from '@/data/toolsCollection';
 import { deduplicateTools } from '@/utils/toolDeduplication';
+import { trackToolChanges } from '@/utils/toolChangeTracker';
+import { runIntegrityCheck } from '@/utils/toolIntegrityChecker';
 
 export const getToolCount = () => {
+  // Track changes before counting
+  trackToolChanges('tool_count_check');
+  
   const allTools = getAllToolCategories();
   const deduplicatedTools = deduplicateTools(allTools);
   
@@ -54,6 +59,10 @@ export const getToolCount = () => {
   console.log(`📈 Rounded Marketing Number: ${Math.round(deduplicatedTools.length / 100) * 100}+`);
   console.log(`🚀 Categories Available: ${Object.keys(categoryBreakdown).length}`);
   
+  // Run integrity check after counting
+  console.log('\n🔍 RUNNING INTEGRITY CHECK...');
+  runIntegrityCheck();
+  
   return {
     exactTotal: deduplicatedTools.length,
     marketingNumber: `${Math.round(deduplicatedTools.length / 100) * 100}+`,
@@ -78,4 +87,15 @@ export const getCurrentToolCount = (): { total: number; marketing: string; categ
     marketing: result.marketingNumber,
     categories: result.categoriesCount
   };
+};
+
+// Export helper to track changes during tool additions
+export const trackToolAddition = (operation: string, additionFn: () => void) => {
+  console.log(`🔄 TRACKING TOOL ADDITION: ${operation}`);
+  trackToolChanges(`before_${operation}`);
+  
+  additionFn();
+  
+  trackToolChanges(`after_${operation}`);
+  console.log(`✅ TOOL ADDITION TRACKING COMPLETE: ${operation}`);
 };
