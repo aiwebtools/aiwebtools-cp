@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useRef } from "react";
-import { Search, X, ArrowDown } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -72,37 +72,11 @@ const GlobalSearchBar = () => {
     setDisplayedCount(30);
   };
 
-  const scrollToResults = () => {
-    // Scroll down to show results below the search bar
-    const searchElement = document.querySelector('[data-search-results]');
-    if (searchElement) {
-      searchElement.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
-      });
-    } else {
-      // Fallback: scroll down by a reasonable amount
-      window.scrollBy({ 
-        top: 400, 
-        behavior: 'smooth' 
-      });
-    }
-  };
-
-  const handleSearchSubmit = () => {
-    if (searchTerm.trim()) {
-      setIsOpen(false);
-      setTimeout(scrollToResults, 100);
-    }
-  };
-
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       setSearchTerm("");
       setDisplayedCount(30);
-    } else if (e.key === 'Enter' && searchTerm.trim()) {
-      handleSearchSubmit();
     }
   };
 
@@ -127,36 +101,18 @@ const GlobalSearchBar = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="pl-10 pr-16 bg-black/80 border-cyan-500/50 text-cyan-100 placeholder-cyan-400/70 focus:border-cyan-400 focus:ring-cyan-400/30 rounded-lg shadow-lg shadow-cyan-500/10"
+            className="pl-10 pr-8 bg-black/80 border-cyan-500/50 text-cyan-100 placeholder-cyan-400/70 focus:border-cyan-400 focus:ring-cyan-400/30 rounded-lg shadow-lg shadow-cyan-500/10"
           />
           
           {searchTerm && (
-            <>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    onClick={handleSearchSubmit}
-                    size="sm"
-                    variant="ghost"
-                    className="absolute right-8 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10"
-                  >
-                    <ArrowDown className="w-3 h-3" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Search and scroll to results</p>
-                </TooltipContent>
-              </Tooltip>
-              
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={clearSearch}
-                className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10"
-              >
-                <X className="w-3 h-3" />
-              </Button>
-            </>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={clearSearch}
+              className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10"
+            >
+              <X className="w-3 h-3" />
+            </Button>
           )}
         </div>
 

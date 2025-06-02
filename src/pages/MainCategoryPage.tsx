@@ -6,15 +6,18 @@ import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
 import ToolsGrid from "@/components/tools/ToolsGrid";
-import SearchBar from "@/components/tools/SearchBar";
 import MainCategoryFilter from "@/components/category/MainCategoryFilter";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Search, ArrowDown } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { allTools } from "@/data/toolsData";
 import { getToolsByMainCategory } from "@/utils/categoryUtils";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { searchTools } from "@/utils/searchUtils";
 import { Tool } from "@/types/tools";
 import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
+import { getCurrentToolCount } from "@/utils/toolCounter";
 
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
@@ -27,6 +30,7 @@ const MainCategoryPage = () => {
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
   const mainCategory = mainCategories.find(cat => cat.name === decodedCategoryName);
+  const toolStats = getCurrentToolCount();
   
   // Immediate scroll to top without delays
   useEffect(() => {
@@ -143,6 +147,37 @@ const MainCategoryPage = () => {
     setSearchTerm(value);
   };
 
+  const scrollToResults = () => {
+    // Scroll down to show results below the search bar
+    const searchElement = document.querySelector('[data-search-results]');
+    if (searchElement) {
+      searchElement.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    } else {
+      // Fallback: scroll down by a reasonable amount
+      window.scrollBy({ 
+        top: 400, 
+        behavior: 'smooth' 
+      });
+    }
+  };
+
+  const handleSearchSubmit = () => {
+    if (searchTerm.trim()) {
+      setTimeout(scrollToResults, 100);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setSearchTerm("");
+    } else if (e.key === 'Enter' && searchTerm.trim()) {
+      handleSearchSubmit();
+    }
+  };
+
   const handleFilteredToolsChange = (filtered: Tool[]) => {
     console.log(`🎯 Category filter changed: ${filtered.length} tools (priority ordered)`);
     setFilteredToolsByCategory(filtered);
@@ -182,16 +217,42 @@ const MainCategoryPage = () => {
             </p>
           </div>
 
-          {/* Main Search Bar */}
+          {/* Main Search Bar with Enter and Arrow functionality */}
           <div className="max-w-2xl mx-auto mb-8">
             <h3 className="text-xl font-bold text-white mb-4 text-center">
               🔍 Search {decodedCategoryName}
             </h3>
-            <SearchBar
-              searchTerm={searchTerm}
-              onSearchChange={handleSearchChange}
-              preventAutoNavigation={true}
-            />
+            <TooltipProvider>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Input
+                  type="text"
+                  placeholder={`Search ${toolStats.marketing} AI tools... Try: 'canva', 'notion', 'social media', 'video editing', 'whatsapp', 'spotify', 'github', 'figma'`}
+                  value={searchTerm}
+                  onChange={(e) => handleSearchChange(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  className="pl-10 pr-12 py-4 text-lg rounded-xl border-2 border-gray-200 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 transition-all duration-300 shadow-lg"
+                />
+                
+                {searchTerm.trim() && (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        onClick={handleSearchSubmit}
+                        size="sm"
+                        variant="ghost"
+                        className="absolute right-2 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 text-gray-500 hover:text-ai-purple hover:bg-ai-purple/10 transition-all duration-200"
+                      >
+                        <ArrowDown className="w-4 h-4" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Search and scroll to results</p>
+                    </TooltipContent>
+                  </Tooltip>
+                )}
+              </div>
+            </TooltipProvider>
           </div>
 
           {/* Category Filter Component */}

@@ -1,6 +1,6 @@
 
 import { useState, useCallback, useMemo } from "react";
-import { Search, X, ArrowDown } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -22,7 +22,7 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
   const [displayedCount, setDisplayedCount] = useState(50);
   
   // Debounce search term to prevent excessive search operations
-  const debouncedSearchTerm = useDebounce(searchTerm, 150); // Reduced from default to make it more responsive
+  const debouncedSearchTerm = useDebounce(searchTerm, 150);
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
@@ -58,39 +58,13 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
     setDisplayedCount(50);
   }, [onSearchChange]);
 
-  const scrollToResults = useCallback(() => {
-    // Scroll down to show results below the search bar
-    const searchElement = document.querySelector('[data-search-results]');
-    if (searchElement) {
-      searchElement.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
-      });
-    } else {
-      // Fallback: scroll down by a reasonable amount
-      window.scrollBy({ 
-        top: 400, 
-        behavior: 'smooth' 
-      });
-    }
-  }, []);
-
-  const handleSearchSubmit = useCallback(() => {
-    if (searchTerm.trim()) {
-      setIsOpen(false);
-      setTimeout(scrollToResults, 100);
-    }
-  }, [searchTerm, scrollToResults]);
-
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       onSearchChange("");
       setDisplayedCount(50);
-    } else if (e.key === 'Enter' && searchTerm.trim()) {
-      handleSearchSubmit();
     }
-  }, [onSearchChange, searchTerm, handleSearchSubmit]);
+  }, [onSearchChange]);
 
   const handleInputBlur = useCallback(() => {
     setTimeout(() => setIsOpen(false), 200);
@@ -133,21 +107,18 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
         />
         
         {searchTerm.trim() && (
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                onClick={handleSearchSubmit}
-                size="sm"
-                variant="ghost"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 text-gray-500 hover:text-ai-purple hover:bg-ai-purple/10 transition-all duration-200"
-              >
-                <ArrowDown className="w-4 h-4" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Search and scroll to results</p>
-            </TooltipContent>
-          </Tooltip>
+          <Button
+            onClick={() => {
+              setIsOpen(false);
+              onSearchChange("");
+              setDisplayedCount(50);
+            }}
+            size="sm"
+            variant="ghost"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 text-gray-500 hover:text-ai-purple hover:bg-ai-purple/10 transition-all duration-200"
+          >
+            <X className="w-4 h-4" />
+          </Button>
         )}
 
         {isOpen && shouldShowResults && (
