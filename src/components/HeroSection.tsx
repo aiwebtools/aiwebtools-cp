@@ -63,6 +63,13 @@ const HeroSection = () => {
             </span>
           </h1>
           
+          {/* Elegant tagline */}
+          <div className="mb-6">
+            <p className="text-sm md:text-base text-cyan-300/80 font-light italic tracking-wide">
+              "Life is but a prompt to imagine — with AI at your side." <span className="text-cyan-400/60">-K.B.</span>
+            </p>
+          </div>
+          
           {/* New tagline */}
           <div className="mb-8">
             <span className="inline-block px-6 py-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/50 rounded-full text-green-300 font-bold text-lg md:text-xl animate-pulse cyber-glow">
