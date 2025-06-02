@@ -23,7 +23,7 @@ const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
             Privacy Policy
           </button>
           <button 
-            onClick={(e) => handleExternalLink("https://aiwebtools.lovable.app/disclaimers", e)}
+            onClick={(e) => handleExternalLink("https://aitools.company/terms-of-services", e)}
             className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm"
           >
             Terms of Service
