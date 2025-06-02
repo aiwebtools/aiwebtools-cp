@@ -12,9 +12,18 @@ export const getToolCount = () => {
     categoryBreakdown[category] = (categoryBreakdown[category] || 0) + 1;
   });
   
-  console.log('🎉 ACCURATE TOOL COUNT VERIFICATION 🎉');
+  console.log('🎉 CURRENT TOOL COUNT VERIFICATION 🎉');
   console.log(`📊 EXACT Tool Count: ${deduplicatedTools.length}`);
   console.log('Category Breakdown:', categoryBreakdown);
+  
+  // Check for CHATRON specifically
+  const chatronExists = deduplicatedTools.find(tool => tool.title === 'CHATRON');
+  console.log('🔍 CHATRON verification:', chatronExists ? 'FOUND' : 'NOT FOUND');
+  
+  // Log AI Chat Platforms specifically
+  const aiChatPlatformTools = deduplicatedTools.filter(tool => tool.category === 'AI Chat Platforms');
+  console.log(`💬 AI Chat Platforms count: ${aiChatPlatformTools.length}`);
+  console.log('AI Chat Platform tools:', aiChatPlatformTools.map(t => t.title));
   
   // Enhanced pricing analysis
   const freeTools = deduplicatedTools.filter(tool => 
@@ -53,6 +62,13 @@ export const getToolCount = () => {
   console.log(`🎯 EXACT TOTAL: ${deduplicatedTools.length} AI TOOLS`);
   console.log(`📈 Rounded Marketing Number: ${Math.round(deduplicatedTools.length / 100) * 100}+`);
   console.log(`🚀 Categories Available: ${Object.keys(categoryBreakdown).length}`);
+  
+  // Verify no tools were lost - previous known count was around 1000+
+  if (deduplicatedTools.length < 900) {
+    console.warn(`⚠️ TOOL COUNT ALERT: Current count ${deduplicatedTools.length} seems low - check for missing tools!`);
+  } else {
+    console.log(`✅ Tool count verification passed: ${deduplicatedTools.length} tools`);
+  }
   
   return {
     exactTotal: deduplicatedTools.length,

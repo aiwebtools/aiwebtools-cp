@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   MessageCircle, 
@@ -122,6 +123,18 @@ export const aiChatPlatforms: Tool[] = [
     category: "AI Chat Platforms",
     rating: 4.5,
     totalVotes: 3456
+  },
+  {
+    icon: Bot,
+    title: "CHATRON",
+    description: "Advanced AI chatbot platform for conversational AI experiences. Create intelligent chatbots with natural language processing and automated responses for various business needs.",
+    emoji: "🤖",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://chatronai.com/?ref=i97f664587e6d4c7c3",
+    tags: ["AI chatbot", "conversational AI", "natural language processing", "business automation", "intelligent responses"],
+    category: "AI Chat Platforms",
+    rating: 4.4,
+    totalVotes: 2876
   },
   {
     icon: Headphones,
