@@ -1,4 +1,3 @@
-
 import { keywordMapping, searchSynonyms, categoryKeywords } from "@/data/keywords";
 
 // Typo correction mapping for common misspellings
@@ -23,7 +22,9 @@ const typoCorrection: Record<string, string> = {
   "rna": "rna",
   "tesla": "tesla",
   "einstien": "einstein",
-  "einsten": "einstein"
+  "einsten": "einstein",
+  "nam": "name",
+  "nameing": "naming"
 };
 
 export const getExpandedKeywords = (searchTerm: string): string[] => {
@@ -39,6 +40,34 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   // Add the original search term and corrected term
   expandedKeywords.add(searchTerm.toLowerCase().trim());
   expandedKeywords.add(lowerSearchTerm);
+  
+  // NAME SEARCH EXPANSION - HIGHEST PRIORITY
+  if (lowerSearchTerm.includes('name') || lowerSearchTerm.includes('naming') ||
+      lowerSearchTerm.includes('identity') || lowerSearchTerm.includes('personality') ||
+      lowerSearchTerm.includes('meaning') || lowerSearchTerm.includes('numerology')) {
+    const nameKeywords = [
+      'name insight research',
+      'name predictor',
+      'name meaning',
+      'name analysis',
+      'personality insights',
+      'numerology',
+      'cultural significance',
+      'personal discovery',
+      'name research',
+      'identity',
+      'naming',
+      'what name means',
+      'name significance',
+      'name interpretation',
+      'name psychology',
+      'whatsmynamegpt',
+      'whats my name',
+      'my name meaning'
+    ];
+    
+    nameKeywords.forEach(keyword => expandedKeywords.add(keyword));
+  }
   
   // SCIENCE AND RESEARCH SEARCH EXPANSION - HIGHEST PRIORITY
   if (lowerSearchTerm.includes('science') || lowerSearchTerm.includes('research') || 

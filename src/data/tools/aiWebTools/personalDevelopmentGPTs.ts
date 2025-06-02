@@ -21,11 +21,22 @@ import {
   Diamond,
   Infinity,
   Feather,
-  Flower,
-  Butterfly
+  Flower
 } from "lucide-react";
 
 export const personalDevelopmentGPTs: Tool[] = [
+  {
+    icon: Eye,
+    title: "Name Insight Research & Predictor GPT",
+    description: "Your name holds hidden meanings, shaping your personality, strengths, and destiny through history, numerology, and culture. Dive deep into its origins, global significance, and psychological impact with AI-driven insights. Discover what your name says about YOU today!",
+    emoji: "🔮",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://whatsmynamegpt.lovable.app/?via=aiwebtools",
+    tags: ["name analysis", "personality insights", "numerology", "cultural significance", "personal discovery", "name meaning", "identity", "name research", "name predictor", "name insight"],
+    category: "Personal Development & Self-Discovery",
+    rating: 4.7,
+    totalVotes: 2890
+  },
   {
     icon: Heart,
     title: "Clarity Coach GPT",
@@ -217,17 +228,5 @@ export const personalDevelopmentGPTs: Tool[] = [
     category: "Personal Development & Self-Discovery",
     rating: 3.3,
     totalVotes: 100
-  },
-  {
-    icon: Eye,
-    title: "Name Meaning GPT",
-    description: "Your name holds hidden meanings, shaping your personality, strengths, and destiny through history, numerology, and culture. Dive deep into its origins, global significance, and psychological impact with AI-driven insights. Discover what your name says about YOU today!",
-    emoji: "🔮",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://whatsmynamegpt.lovable.app/?via=aiwebtools",
-    tags: ["name analysis", "personality insights", "numerology", "cultural significance", "personal discovery", "name meaning", "identity"],
-    category: "Personal Development & Self-Discovery",
-    rating: 4.7,
-    totalVotes: 2890
   }
 ];
