@@ -14,6 +14,7 @@ import { getToolsByMainCategory } from "@/utils/categoryUtils";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { searchTools } from "@/utils/searchUtils";
 import { Tool } from "@/types/tools";
+import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
 
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
@@ -65,33 +66,45 @@ const MainCategoryPage = () => {
     ? searchTools(toolsToShow, searchTerm)
     : toolsToShow;
 
-  // ENDLESS FLOW: Create infinite list by cycling through all tools when category tools are exhausted
+  // ENHANCED ENDLESS FLOW: Create infinite list with smart similar tools and category progression
   const createEndlessToolsList = () => {
     if (searchTerm.trim()) {
-      // For search, just return search results
+      // For search, return search results only
       return baseFilteredTools;
     }
     
     // Start with category-specific tools
     let endlessTools = [...baseFilteredTools];
-    
-    // Calculate how many additional tools we need to fill the displayed count
     const remainingCount = displayedCount - baseFilteredTools.length;
     
     if (remainingCount > 0) {
-      // Get tools from entire database that aren't already in the category
-      const additionalTools = allTools.filter(tool => 
-        !baseFilteredTools.some(filteredTool => filteredTool.title === tool.title)
+      // Get similar tools first using context-aware matching
+      const similarTools = getContextAwareSimilarTools(
+        baseFilteredTools, 
+        "", 
+        decodedCategoryName, 
+        Math.min(remainingCount, 100)
       );
       
-      // If we need more tools than available additional tools, cycle through them
-      if (remainingCount > additionalTools.length) {
-        const cycles = Math.ceil(remainingCount / additionalTools.length);
-        for (let i = 0; i < cycles; i++) {
-          endlessTools = [...endlessTools, ...additionalTools];
+      // Add similar tools
+      const availableSimilar = similarTools.filter(tool => 
+        !endlessTools.some(existing => existing.title === tool.title)
+      );
+      endlessTools = [...endlessTools, ...availableSimilar];
+      
+      // If we still need more tools, get from other categories
+      const stillNeeded = displayedCount - endlessTools.length;
+      if (stillNeeded > 0) {
+        const otherTools = allTools.filter(tool => 
+          !endlessTools.some(existing => existing.title === tool.title)
+        );
+        
+        // Cycle through all remaining tools to ensure endless flow
+        const cycles = Math.ceil(stillNeeded / otherTools.length) || 1;
+        for (let i = 0; i < cycles && endlessTools.length < displayedCount; i++) {
+          const toolsToAdd = otherTools.slice(0, stillNeeded - (endlessTools.length - baseFilteredTools.length - availableSimilar.length));
+          endlessTools = [...endlessTools, ...toolsToAdd];
         }
-      } else {
-        endlessTools = [...endlessTools, ...additionalTools.slice(0, remainingCount)];
       }
     }
     
@@ -113,7 +126,7 @@ const MainCategoryPage = () => {
   const handleLoadMore = () => {
     if (isLoading) return;
     
-    console.log(`🚀 Loading more tools in ${decodedCategoryName}... Current: ${displayedCount}`);
+    console.log(`🚀 Auto-loading more tools in ${decodedCategoryName}... Current: ${displayedCount}`);
     setIsLoading(true);
     
     setTimeout(() => {
@@ -135,15 +148,11 @@ const MainCategoryPage = () => {
     setFilteredToolsByCategory(filtered);
   };
 
-  // Always show as having more tools for endless scroll (except for search)
-  const hasMoreTools = searchTerm.trim() ? displayedCount < baseFilteredTools.length : true;
-
   console.log(`🔍 Final tool display logic:`, {
     baseFilteredToolsLength: baseFilteredTools.length,
     finalFilteredToolsLength: finalFilteredTools.length,
     displayedToolsLength: displayedTools.length,
     displayedCount,
-    hasMoreTools,
     isLoading,
     searchActive: !!searchTerm.trim()
   });
@@ -197,22 +206,20 @@ const MainCategoryPage = () => {
             <div className="text-cyan-400 font-semibold">
               {searchTerm 
                 ? `${baseFilteredTools.length} tools found for "${searchTerm}"` 
-                : filteredToolsByCategory.length > categoryTools.length
-                  ? `${baseFilteredTools.length} tools available - filtered categories shown first`
-                  : `Showing ${displayedTools.length}+ tools in ${decodedCategoryName}`
+                : `Showing ${displayedTools.length}+ tools in ${decodedCategoryName}`
               }
               {!searchTerm && displayedTools.length > baseFilteredTools.length && (
-                <span className="text-cyan-300"> + recommendations from our entire database</span>
+                <span className="text-cyan-300"> + similar and related tools</span>
               )}
             </div>
             {!searchTerm && (
               <div className="text-gray-400 text-sm mt-1">
-                {categoryTools.length} category-specific tools + endless recommendations - keep scrolling!
+                {categoryTools.length} category tools → similar tools → related categories - endless discovery!
               </div>
             )}
           </div>
 
-          {/* Tools Grid with Infinite Scroll */}
+          {/* Tools Grid with Infinite Scroll - NO MANUAL BUTTONS */}
           <div id="tools-section">
             {displayedTools.length > 0 ? (
               <ToolsGrid
@@ -244,19 +251,6 @@ const MainCategoryPage = () => {
               </div>
             )}
           </div>
-
-          {/* Backup Show More Button - only for search results when they have an end */}
-          {searchTerm && hasMoreTools && !isLoading && (
-            <div className="text-center mt-12 mb-8">
-              <Button
-                onClick={handleLoadMore}
-                size="lg"
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-6 py-3 rounded-xl text-sm sm:text-base shadow-lg hover:shadow-cyan-500/25 transition-all duration-200 transform hover:scale-105"
-              >
-                🚀 Show More Search Results
-              </Button>
-            </div>
-          )}
         </main>
         
         <Footer />

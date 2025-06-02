@@ -43,11 +43,12 @@ const ToolsGrid = memo(({
     shouldShowCategoriesButton
   } = useMemo(() => {
     const displayTools = tools.slice(0, displayedCount);
-    const shouldShowSimilar = shouldShowSimilarTools(tools.length) && !searchTerm;
+    const shouldShowSimilar = shouldShowSimilarTools(tools.length) && !searchTerm && !selectedCategory;
     const similarTools = shouldShowSimilar ? getContextAwareSimilarTools(tools, searchTerm, selectedCategory) : [];
     
-    // For endless scroll on category pages (not search), always show as having more
-    const hasMoreTools = searchTerm ? displayedCount < tools.length : selectedCategory ? true : displayedCount < tools.length;
+    // For category pages, always show as having more (endless)
+    // For search, check if there are actually more results
+    const hasMoreTools = selectedCategory ? true : (searchTerm ? displayedCount < tools.length : displayedCount < tools.length);
     
     const categoriesWithCounts = getStandardizedCategoriesWithCounts();
     const shouldShowCategoriesButton = tools.length < 15 && !selectedCategory && !searchTerm;
@@ -65,9 +66,9 @@ const ToolsGrid = memo(({
   // Enable infinite scroll when hasInfiniteScroll is true
   useInfiniteScroll({
     isLoading,
-    showLoadMoreButton: false, // Always use infinite scroll when enabled
+    showLoadMoreButton: false, // Never show manual buttons
     displayedCount,
-    totalTools: searchTerm ? tools.length : Number.MAX_SAFE_INTEGER, // Endless for categories
+    totalTools: selectedCategory ? Number.MAX_SAFE_INTEGER : tools.length, // Endless for categories
     onLoadMore,
     searchTerm,
     selectedCategory,
@@ -113,7 +114,7 @@ const ToolsGrid = memo(({
           )}
           {selectedCategory && !searchTerm && (
             <p className="text-gray-300 text-sm">
-              Exploring {selectedCategory} - endless AI tools await! Keep scrolling for more discoveries.
+              Exploring {selectedCategory} - endless AI tools await! Keep scrolling for automatic discovery.
             </p>
           )}
         </div>
@@ -160,8 +161,8 @@ const ToolsGrid = memo(({
         </div>
       )}
 
-      {/* Show context-aware similar tools recommendation only for limited results (not for search) */}
-      {!searchTerm && (
+      {/* Only show similar tools on homepage, not on category pages */}
+      {!searchTerm && !selectedCategory && (
         <SimilarToolsRecommendation 
           similarTools={similarTools}
           originalCount={tools.length}
@@ -170,7 +171,7 @@ const ToolsGrid = memo(({
         />
       )}
 
-      {/* Show "See More Categories" button when results are limited and not filtered */}
+      {/* Only show categories button on homepage */}
       {shouldShowCategoriesButton && onCategoryChange && (
         <SeeMoreCategoriesButton 
           categoriesWithCounts={categoriesWithCounts}
@@ -179,12 +180,12 @@ const ToolsGrid = memo(({
       )}
 
       {/* Smooth loading indicator for infinite scroll */}
-      {hasInfiniteScroll && isLoading && hasMoreTools && (
+      {hasInfiniteScroll && isLoading && (
         <div className="text-center mt-8 py-8">
           <div className="flex items-center justify-center space-x-3">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-500"></div>
             <span className="text-cyan-200 text-lg">
-              {searchTerm ? `Loading more search results...` : selectedCategory ? `Loading more amazing AI tools...` : `Loading more amazing AI tools...`}
+              {searchTerm ? `Loading more search results...` : selectedCategory ? `Auto-loading more AI tools...` : `Loading more amazing AI tools...`}
             </span>
           </div>
         </div>
@@ -203,21 +204,21 @@ const ToolsGrid = memo(({
         </div>
       )}
 
-      {/* Endless scroll message for categories (no completion message) */}
-      {hasInfiniteScroll && selectedCategory && !searchTerm && displayTools.length > 50 && (
+      {/* Endless scroll encouragement for categories (no end message ever) */}
+      {hasInfiniteScroll && selectedCategory && !searchTerm && displayTools.length > 100 && !isLoading && (
         <div className="text-center mt-12 py-8 text-cyan-300">
           <div className="text-2xl mb-2">🌟</div>
           <div className="text-lg font-semibold mb-2">
-            Keep exploring! We have endless AI tools for you to discover.
+            Amazing! You're discovering our endless AI tools collection.
           </div>
           <div className="text-sm opacity-80">
-            The adventure continues as you scroll...
+            Keep scrolling - we automatically load similar tools and related categories!
           </div>
         </div>
       )}
 
-      {/* Fallback load more button for non-infinite scroll scenarios */}
-      {!hasInfiniteScroll && (
+      {/* NO MANUAL LOAD MORE BUTTONS for category pages with infinite scroll */}
+      {!hasInfiniteScroll && !selectedCategory && (
         <LoadMoreButton 
           displayedCount={displayedCount}
           totalCount={tools.length}
