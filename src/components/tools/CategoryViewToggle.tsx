@@ -32,7 +32,7 @@ const CategoryViewToggle = ({ viewMode, onViewModeChange }: CategoryViewTogglePr
               : "text-gray-300 hover:text-white"
           }`}
         >
-          🗂️ All Subcategories
+          🗂️ All SubCategories
         </Button>
       </div>
     </div>
