@@ -39,8 +39,14 @@ const MainCategoryPage = () => {
     return null;
   }
 
-  // Get tools for this specific main category - THESE ARE THE EXACT CACHED TOOLS
+  // Get tools for this specific main category - using the corrected cached tools
   const categoryTools = getToolsByMainCategory(allTools, decodedCategoryName);
+  
+  console.log(`📊 MainCategoryPage "${decodedCategoryName}":`, {
+    originalCachedTools: categoryTools.length,
+    categoryFilteredTools: filteredToolsByCategory.length,
+    searchTerm: searchTerm || 'none'
+  });
   
   // Initialize filtered tools by category on first load
   useEffect(() => {
@@ -56,15 +62,6 @@ const MainCategoryPage = () => {
   const finalFilteredTools = searchTerm.trim() 
     ? searchTools(toolsToShow, searchTerm)
     : toolsToShow;
-  
-  console.log(`📊 MainCategoryPage FILTERING:`, {
-    mainCategoryName: decodedCategoryName,
-    originalCachedTools: categoryTools.length,
-    categoryFilteredTools: filteredToolsByCategory.length,
-    toolsToShow: toolsToShow.length,
-    afterSearch: finalFilteredTools.length,
-    searchTerm: searchTerm || 'none'
-  });
 
   const handleLoadMore = () => {
     if (allToolsDisplayedCount >= finalFilteredTools.length) return;
@@ -79,6 +76,7 @@ const MainCategoryPage = () => {
   };
 
   const handleFilteredToolsChange = (filtered: Tool[]) => {
+    console.log(`🎯 Category filter changed: ${filtered.length} tools`);
     setFilteredToolsByCategory(filtered);
     setAllToolsDisplayedCount(48); // Reset displayed count when category filter changes
   };
@@ -144,7 +142,7 @@ const MainCategoryPage = () => {
             />
           </div>
 
-          {/* Category Filter Component */}
+          {/* Category Filter Component - CORRECTED */}
           <MainCategoryFilter
             tools={categoryTools}
             onFilteredToolsChange={handleFilteredToolsChange}
@@ -164,10 +162,6 @@ const MainCategoryPage = () => {
                 Showing {allToolsDisplayedCount} of {finalFilteredTools.length} tools
               </div>
             )}
-            {/* Debug info to verify count accuracy */}
-            <div className="text-xs text-gray-500 mt-1">
-              Original: {categoryTools.length} | Filtered: {toolsToShow.length} | Final: {finalFilteredTools.length}
-            </div>
           </div>
 
           {/* Tools Grid - using filtered tools */}

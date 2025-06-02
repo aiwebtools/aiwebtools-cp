@@ -6,7 +6,7 @@ import { ChevronDown, ChevronUp, Filter, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
-import { getToolsByMainCategory } from "@/utils/categoryUtils/toolFiltering";
+import { getToolsByMainCategory, getMainCategoriesWithCounts } from "@/utils/categoryUtils/toolFiltering";
 
 interface MainCategoryFilterProps {
   tools: Tool[];
@@ -18,15 +18,23 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedMainCategories, setSelectedMainCategories] = useState<string[]>([]);
 
-  // Get available main categories with their tool counts
+  // Get accurate main categories with their tool counts using the global tool counts
   const mainCategoriesWithCounts = useMemo(() => {
+    console.log('🔄 Calculating main category counts for MainCategoryFilter...');
+    
+    // Use the global main category counts to ensure accuracy
+    const globalCounts = getMainCategoriesWithCounts(tools);
+    
     return mainCategories.map(mainCat => {
-      // Get tools for this main category from the global tools array
-      const categoryTools = getToolsByMainCategory(tools, mainCat.name);
+      // Get the accurate count from global counts
+      const count = globalCounts[mainCat.name] || 0;
+      
+      console.log(`📊 ${mainCat.name}: ${count} tools`);
+      
       return {
         name: mainCat.name,
         emoji: mainCat.emoji,
-        count: categoryTools.length
+        count: count
       };
     }).filter(cat => cat.count > 0) // Only show categories that have tools
       .sort((a, b) => b.count - a.count); // Sort by count descending
@@ -38,10 +46,13 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       return tools; // Return all tools if no categories selected
     }
     
-    // Get tools from all selected main categories
+    console.log(`🎯 Filtering by selected categories: ${selectedMainCategories.join(', ')}`);
+    
+    // Get tools from all selected main categories using the optimized cache
     const allFilteredTools: Tool[] = [];
     selectedMainCategories.forEach(mainCategoryName => {
       const categoryTools = getToolsByMainCategory(tools, mainCategoryName);
+      console.log(`📂 ${mainCategoryName}: found ${categoryTools.length} tools`);
       allFilteredTools.push(...categoryTools);
     });
     
@@ -50,6 +61,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       index === self.findIndex(t => t.title === tool.title)
     );
     
+    console.log(`✅ Final filtered result: ${uniqueTools.length} unique tools`);
     return uniqueTools;
   }, [tools, selectedMainCategories]);
 
@@ -71,6 +83,14 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   const clearAllFilters = () => {
     setSelectedMainCategories([]);
   };
+
+  // Debug logging
+  console.log(`🔍 MainCategoryFilter Debug:`, {
+    totalInputTools: tools.length,
+    categoriesShown: mainCategoriesWithCounts.length,
+    selectedCategories: selectedMainCategories,
+    filteredToolsCount: filteredTools.length
+  });
 
   return (
     <div className="max-w-4xl mx-auto mb-4">
@@ -162,7 +182,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
                     variant="secondary"
                     className="bg-cyan-500/20 text-cyan-300 text-xs mt-1 self-start"
                   >
-                    {count}
+                    {count} tools
                   </Badge>
                 </div>
               </div>
