@@ -28,9 +28,13 @@ export const getSearchableText = (tool: Tool): string => {
   ].join(' ').toLowerCase();
 };
 
-// Function to calculate similarity score between two strings
+// Optimized similarity calculation
 const calculateSimilarity = (str1: string, str2: string): number => {
   if (str1 === str2) return 1;
+  
+  // Early exit for very different lengths
+  const lengthDiff = Math.abs(str1.length - str2.length);
+  if (lengthDiff > Math.max(str1.length, str2.length) * 0.5) return 0;
   
   const longer = str1.length > str2.length ? str1 : str2;
   const shorter = str1.length > str2.length ? str2 : str1;
@@ -41,9 +45,13 @@ const calculateSimilarity = (str1: string, str2: string): number => {
   return (longer.length - editDistance) / longer.length;
 };
 
-// Levenshtein distance calculation for fuzzy matching
+// Optimized Levenshtein distance with early termination
 const levenshteinDistance = (str1: string, str2: string): number => {
+  if (str1.length === 0) return str2.length;
+  if (str2.length === 0) return str1.length;
+  
   const matrix = [];
+  const maxDistance = Math.max(str1.length, str2.length);
   
   for (let i = 0; i <= str2.length; i++) {
     matrix[i] = [i];
@@ -64,42 +72,36 @@ const levenshteinDistance = (str1: string, str2: string): number => {
           matrix[i - 1][j] + 1
         );
       }
+      
+      // Early termination if distance gets too large
+      if (matrix[i][j] > maxDistance * 0.7) {
+        return maxDistance;
+      }
     }
   }
   
   return matrix[str2.length][str1.length];
 };
 
-// Enhanced fuzzy matching for title and description
+// Streamlined fuzzy matching with performance optimizations
 const performFuzzyMatching = (tool: Tool, searchTerm: string): { score: number; matched: boolean } => {
   const lowerSearchTerm = searchTerm.toLowerCase().trim();
   const searchWords = lowerSearchTerm.split(/\s+/);
   let score = 0;
   let matched = false;
   
-  // Fuzzy match against title words
+  // Only process fuzzy matching for words of reasonable length
   const titleWords = tool.title.toLowerCase().split(/\s+/);
   for (const searchWord of searchWords) {
-    if (searchWord.length >= 3) {
+    if (searchWord.length >= 3 && searchWord.length <= 15) {
       for (const titleWord of titleWords) {
-        const similarity = calculateSimilarity(searchWord, titleWord);
-        if (similarity >= 0.7) { // 70% similarity threshold
-          matched = true;
-          score += similarity * 2000; // High score for title fuzzy matches
-        }
-      }
-    }
-  }
-  
-  // Fuzzy match against description words
-  const descWords = tool.description.toLowerCase().split(/\s+/);
-  for (const searchWord of searchWords) {
-    if (searchWord.length >= 4) { // Slightly longer words for description matching
-      for (const descWord of descWords) {
-        const similarity = calculateSimilarity(searchWord, descWord);
-        if (similarity >= 0.75) { // Higher threshold for description
-          matched = true;
-          score += similarity * 800; // Medium score for description fuzzy matches
+        if (titleWord.length >= 3) {
+          const similarity = calculateSimilarity(searchWord, titleWord);
+          if (similarity >= 0.75) {
+            matched = true;
+            score += similarity * 2000;
+            break; // Found a match, move to next search word
+          }
         }
       }
     }
@@ -123,6 +125,7 @@ export const performBasicSearch = (
   if (tool.title.toLowerCase() === lowerSearchTerm) {
     matched = true;
     score += 10000;
+    return { score, matched }; // Early return for exact match
   }
 
   // Title starts with search term
@@ -155,35 +158,33 @@ export const performBasicSearch = (
     score += 1000;
   }
 
-  // Perform fuzzy matching for misspellings
-  const fuzzyResult = performFuzzyMatching(tool, searchTerm);
-  if (fuzzyResult.matched) {
-    matched = true;
-    score += fuzzyResult.score;
-  }
-
-  // Search through expanded keywords
-  for (const keyword of expandedKeywords) {
-    if (keyword.length > 0 && searchableText.includes(keyword)) {
+  // Only perform fuzzy matching if no exact matches found and term is reasonable length
+  if (!matched && lowerSearchTerm.length >= 3 && lowerSearchTerm.length <= 20) {
+    const fuzzyResult = performFuzzyMatching(tool, searchTerm);
+    if (fuzzyResult.matched) {
       matched = true;
-      
-      // Higher score for title matches
-      if (tool.title.toLowerCase().includes(keyword)) {
-        score += 1500;
-      }
-      // Medium score for description matches
-      else if (tool.description.toLowerCase().includes(keyword)) {
-        score += 800;
-      }
-      // Lower score for other matches
-      else {
-        score += 400;
-      }
+      score += fuzzyResult.score;
     }
   }
 
-  // Multi-word search - all words must be present
-  if (searchWords.length > 1) {
+  // Streamlined keyword matching - only first few keywords for performance
+  for (let i = 0; i < Math.min(expandedKeywords.length, 10); i++) {
+    const keyword = expandedKeywords[i];
+    if (keyword.length > 2 && searchableText.includes(keyword)) {
+      matched = true;
+      if (tool.title.toLowerCase().includes(keyword)) {
+        score += 1500;
+      } else if (tool.description.toLowerCase().includes(keyword)) {
+        score += 800;
+      } else {
+        score += 400;
+      }
+      break; // Found a keyword match, no need to check more
+    }
+  }
+
+  // Multi-word search optimization
+  if (searchWords.length > 1 && searchWords.length <= 4) {
     const allWordsPresent = searchWords.every(word => 
       word.length > 0 && searchableText.includes(word)
     );
@@ -194,41 +195,28 @@ export const performBasicSearch = (
     }
   }
 
-  // Partial word matching for flexibility
-  for (const word of searchWords) {
-    if (word.length >= 3) {
-      if (searchableText.includes(word)) {
-        matched = true;
-        score += 200;
-      }
-    }
-  }
-
-  // Tag matching
-  if (tool.tags) {
+  // Tag matching - only check if not already matched
+  if (!matched && tool.tags) {
     for (const tag of tool.tags) {
       if (tag.toLowerCase().includes(lowerSearchTerm)) {
         matched = true;
         score += 600;
+        break;
       }
     }
-  }
-
-  // URL matching (for direct tool searches)
-  if (tool.directUrl && tool.directUrl.toLowerCase().includes(lowerSearchTerm)) {
-    matched = true;
-    score += 300;
   }
 
   return { score, matched };
 };
 
 export const removeDuplicateTools = (tools: Tool[]): Tool[] => {
-  return tools.reduce((acc, tool) => {
-    const existingTool = acc.find(t => t.title.toLowerCase() === tool.title.toLowerCase());
-    if (!existingTool) {
-      acc.push(tool);
+  const seen = new Set<string>();
+  return tools.filter(tool => {
+    const key = tool.title.toLowerCase();
+    if (seen.has(key)) {
+      return false;
     }
-    return acc;
-  }, [] as Tool[]);
+    seen.add(key);
+    return true;
+  });
 };

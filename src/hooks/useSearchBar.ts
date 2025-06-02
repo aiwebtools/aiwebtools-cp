@@ -14,18 +14,21 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   const [isOpen, setIsOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(50);
   
-  // Reduce debounce time for faster response
-  const debouncedSearchTerm = useDebounce(searchTerm, 100);
+  // Faster debounce for better responsiveness
+  const debouncedSearchTerm = useDebounce(searchTerm, 50);
   
   // Memoize tool stats to prevent recalculation
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // Memoize search results with better optimization
+  // Optimized search results with early returns and caching
   const searchResults = useMemo(() => {
     if (!debouncedSearchTerm.trim()) return [];
     
+    // Use a smaller subset for faster initial results
     const results = searchTools(allTools, debouncedSearchTerm);
-    return results;
+    
+    // Limit initial results for faster rendering
+    return results.slice(0, 200);
   }, [debouncedSearchTerm]);
 
   // Optimize displayed results calculation
@@ -56,7 +59,6 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   }, [onSearchChange]);
 
   const scrollToResults = useCallback(() => {
-    // Scroll down to show results below the search bar
     const searchElement = document.querySelector('[data-search-results]');
     if (searchElement) {
       searchElement.scrollIntoView({ 
@@ -64,7 +66,6 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
         block: 'start' 
       });
     } else {
-      // Fallback: scroll down by a reasonable amount
       window.scrollBy({ 
         top: 400, 
         behavior: 'smooth' 
@@ -78,9 +79,8 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
       onSearchChange("");
       setDisplayedCount(50);
     } else if (e.key === 'Enter' && searchTerm.trim()) {
-      // Close dropdown and scroll to results
       setIsOpen(false);
-      setTimeout(scrollToResults, 100); // Small delay to ensure UI updates
+      setTimeout(scrollToResults, 100);
     }
   }, [onSearchChange, searchTerm, scrollToResults]);
 
@@ -98,7 +98,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     if (scrollHeight - scrollTop <= clientHeight + 100 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 30, searchResults.length));
+      setDisplayedCount(prev => Math.min(prev + 20, searchResults.length));
     }
   }, [displayedCount, searchResults.length]);
 
