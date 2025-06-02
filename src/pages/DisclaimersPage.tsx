@@ -1,6 +1,5 @@
-
 import { useEffect } from "react";
-import { Shield, AlertTriangle, Scale, FileText, ExternalLink } from "lucide-react";
+import { Shield, AlertTriangle, Scale, FileText, ExternalLink, Info } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
@@ -79,7 +78,7 @@ const DisclaimersPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black relative">
+    <div className="min-h-screen bg-black relative divine-spacing">
       <SEOHead
         title="Legal Disclaimers & Terms of Service | AI Web Tools"
         description="Comprehensive legal disclaimers, terms of service, and user agreements for all AI Web Tools GPT applications and third-party AI tools listed in our directory."
@@ -100,37 +99,57 @@ const DisclaimersPage = () => {
       <div className="relative z-10 cyber-grid">
         <Header />
         
-        <div className="container mx-auto px-4 py-20">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-r from-yellow-500 to-orange-600 flex items-center justify-center text-white text-4xl shadow-lg shadow-yellow-500/30 glow-effect">
-                <Scale className="w-12 h-12" />
+        <div className="divine-container divine-section">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16 divine-spacing">
+              <div className="w-28 h-28 mx-auto mb-8 rounded-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-600 flex items-center justify-center text-white text-5xl shadow-2xl shadow-yellow-500/40 glow-effect interactive-button">
+                <Scale className="w-14 h-14" />
               </div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent cyber-glow mb-4">
+              <h1 className="text-5xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500 bg-clip-text text-transparent cyber-glow mb-6 glow-text-effect">
                 Legal Disclaimers & Terms of Service
               </h1>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
                 Comprehensive legal information for all AI Web Tools GPT applications and third-party services
               </p>
             </div>
 
-            {/* General Terms of Service */}
-            <Card className="mb-8 bg-gray-900/80 backdrop-blur-md shadow-2xl shadow-cyan-500/20 border border-cyan-500/30 neon-border">
+            {/* Important Website Disclaimer */}
+            <Card className="mb-12 bg-gradient-to-r from-blue-900/40 to-purple-900/40 border-2 border-blue-500/40 rounded-2xl backdrop-blur-sm shadow-2xl shadow-blue-500/20 neon-border divine-spacing">
               <CardHeader>
-                <CardTitle className="text-2xl text-cyan-400 flex items-center">
-                  <FileText className="w-6 h-6 mr-3" />
+                <CardTitle className="text-3xl text-blue-400 flex items-center glow-text-effect">
+                  <Info className="w-8 h-8 mr-4" />
+                  Important Website Disclaimer
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6 text-gray-300">
+                <div className="bg-blue-900/30 border-2 border-blue-500/40 rounded-xl p-6 divine-spacing">
+                  <p className="text-blue-300 font-semibold mb-3 text-lg">📋 Informational, Educational & Research Purposes Only</p>
+                  <p className="text-lg leading-relaxed">
+                    This website and all AI tools listed in our directory are provided for <strong>informational, educational, and research purposes only</strong>. 
+                    The content, tools, and services should not be considered as professional advice, recommendations, or endorsements for any specific purpose. 
+                    Users are encouraged to conduct their own research and consult qualified professionals before making any decisions based on the information provided.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* General Terms of Service */}
+            <Card className="mb-12 bg-gray-900/90 backdrop-blur-md shadow-2xl shadow-cyan-500/25 border-2 border-cyan-500/40 neon-border rounded-2xl divine-spacing">
+              <CardHeader>
+                <CardTitle className="text-3xl text-cyan-400 flex items-center glow-text-effect">
+                  <FileText className="w-8 h-8 mr-4" />
                   AI Web Tools LLC Terms of Service
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 text-gray-300">
+              <CardContent className="space-y-6 text-gray-300">
                 <div>
-                  <h3 className="text-lg font-semibold text-cyan-400 mb-2">Service Overview</h3>
-                  <p>AI Web Tools LLC operates a directory service connecting users to AI tools and applications. We create original GPT tools and list third-party services for user convenience.</p>
+                  <h3 className="text-xl font-semibold text-cyan-400 mb-3 glow-text-effect">Service Overview</h3>
+                  <p className="text-lg leading-relaxed">AI Web Tools LLC operates a directory service connecting users to AI tools and applications. We create original GPT tools and list third-party services for user convenience.</p>
                 </div>
                 
                 <div>
-                  <h3 className="text-lg font-semibold text-cyan-400 mb-2">User Responsibilities</h3>
-                  <ul className="list-disc list-inside space-y-1 ml-4">
+                  <h3 className="text-xl font-semibold text-cyan-400 mb-3 glow-text-effect">User Responsibilities</h3>
+                  <ul className="list-disc list-inside space-y-2 ml-4 text-lg">
                     <li>Users must be 18+ or have parental consent to use our services</li>
                     <li>Users are responsible for compliance with all applicable laws</li>
                     <li>Users must verify information independently before making important decisions</li>
@@ -139,22 +158,22 @@ const DisclaimersPage = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-semibold text-cyan-400 mb-2">Limitation of Liability</h3>
-                  <p>AI Web Tools LLC provides services "as is" without warranties. We are not liable for any direct, indirect, incidental, or consequential damages arising from use of our services or listed tools.</p>
+                  <h3 className="text-xl font-semibold text-cyan-400 mb-3 glow-text-effect">Limitation of Liability</h3>
+                  <p className="text-lg leading-relaxed">AI Web Tools LLC provides services "as is" without warranties. We are not liable for any direct, indirect, incidental, or consequential damages arising from use of our services or listed tools.</p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-semibold text-cyan-400 mb-2">Third-Party Services</h3>
-                  <p>Our directory includes third-party AI tools that we do not own or control. We are not responsible for their content, availability, terms, or actions. Each third-party service has its own terms and privacy policies.</p>
+                  <h3 className="text-xl font-semibold text-cyan-400 mb-3 glow-text-effect">Third-Party Services</h3>
+                  <p className="text-lg leading-relaxed">Our directory includes third-party AI tools that we do not own or control. We are not responsible for their content, availability, terms, or actions. Each third-party service has its own terms and privacy policies.</p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-semibold text-cyan-400 mb-2">Contact Information</h3>
-                  <p>
+                  <h3 className="text-xl font-semibold text-cyan-400 mb-3 glow-text-effect">Contact Information</h3>
+                  <p className="text-lg">
                     For questions about these terms: {" "}
                     <button 
                       onClick={(e) => handleExternalLink("mailto:contact@ai-webtools.com", e)}
-                      className="text-yellow-400 hover:text-yellow-300 transition-colors underline"
+                      className="text-yellow-400 hover:text-yellow-300 transition-colors underline interactive-button"
                     >
                       contact@ai-webtools.com
                     </button>
@@ -164,56 +183,56 @@ const DisclaimersPage = () => {
             </Card>
 
             {/* AI Web Tools Original GPTs Disclaimer */}
-            <Card className="mb-8 bg-gradient-to-r from-cyan-900/30 to-blue-900/30 border border-cyan-500/30 rounded-xl backdrop-blur-sm">
+            <Card className="mb-12 bg-gradient-to-r from-cyan-900/40 to-blue-900/40 border-2 border-cyan-500/40 rounded-2xl backdrop-blur-sm shadow-2xl shadow-cyan-500/25 neon-border divine-spacing">
               <CardHeader>
-                <CardTitle className="text-2xl text-cyan-400 flex items-center">
-                  <Shield className="w-6 h-6 mr-3" />
+                <CardTitle className="text-3xl text-cyan-400 flex items-center glow-text-effect">
+                  <Shield className="w-8 h-8 mr-4" />
                   AI Web Tools Original GPTs Disclaimer
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 text-gray-300">
-                <div className="bg-cyan-900/20 border border-cyan-500/30 rounded-lg p-4">
-                  <p className="text-cyan-300 font-semibold mb-2">Educational & Informational Use Only</p>
-                  <p>All AI Web Tools GPTs are provided for educational, informational, and research purposes only. They should not be considered professional advice and require verification with qualified professionals.</p>
+              <CardContent className="space-y-6 text-gray-300">
+                <div className="bg-cyan-900/30 border-2 border-cyan-500/40 rounded-xl p-6 divine-spacing">
+                  <p className="text-cyan-300 font-semibold mb-3 text-lg">📚 Educational & Informational Use Only</p>
+                  <p className="text-lg leading-relaxed">All AI Web Tools GPTs are provided for educational, informational, and research purposes only. They should not be considered professional advice and require verification with qualified professionals.</p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-semibold text-cyan-400 mb-2">No Professional Advice</h3>
-                  <p>Our GPTs do not provide medical, legal, financial, or other professional advice. Users must consult appropriate professionals for such guidance.</p>
+                  <h3 className="text-xl font-semibold text-cyan-400 mb-3 glow-text-effect">No Professional Advice</h3>
+                  <p className="text-lg leading-relaxed">Our GPTs do not provide medical, legal, financial, or other professional advice. Users must consult appropriate professionals for such guidance.</p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-semibold text-cyan-400 mb-2">Accuracy Limitations</h3>
-                  <p>While we strive for accuracy, AI-generated content may contain errors, omissions, or outdated information. Users must verify all information independently.</p>
+                  <h3 className="text-xl font-semibold text-cyan-400 mb-3 glow-text-effect">Accuracy Limitations</h3>
+                  <p className="text-lg leading-relaxed">While we strive for accuracy, AI-generated content may contain errors, omissions, or outdated information. Users must verify all information independently.</p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-semibold text-cyan-400 mb-2">User Responsibility</h3>
-                  <p>Users assume full responsibility for any actions taken based on AI-generated content. We are not liable for any consequences resulting from use of our GPTs.</p>
+                  <h3 className="text-xl font-semibold text-cyan-400 mb-3 glow-text-effect">User Responsibility</h3>
+                  <p className="text-lg leading-relaxed">Users assume full responsibility for any actions taken based on AI-generated content. We are not liable for any consequences resulting from use of our GPTs.</p>
                 </div>
               </CardContent>
             </Card>
 
             {/* Individual Tool Disclaimers */}
-            <Card className="mb-8 bg-gray-900/80 backdrop-blur-md shadow-2xl shadow-purple-500/20 border border-purple-500/30 neon-border">
+            <Card className="mb-12 bg-gray-900/90 backdrop-blur-md shadow-2xl shadow-purple-500/25 border-2 border-purple-500/40 neon-border rounded-2xl divine-spacing">
               <CardHeader>
-                <CardTitle className="text-2xl text-purple-400 flex items-center">
-                  <AlertTriangle className="w-6 h-6 mr-3" />
+                <CardTitle className="text-3xl text-purple-400 flex items-center glow-text-effect">
+                  <AlertTriangle className="w-8 h-8 mr-4" />
                   Individual Tool Disclaimers
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid gap-6">
+                <div className="grid gap-8">
                   {toolDisclaimers.map((disclaimer, index) => (
-                    <div key={index} className="border-b border-gray-700 pb-4 last:border-b-0">
-                      <h3 className="text-lg font-semibold text-purple-400 mb-2">{disclaimer.title}</h3>
-                      <p className="text-gray-300 text-sm">{disclaimer.content}</p>
+                    <div key={index} className="border-b-2 border-gray-700/50 pb-6 last:border-b-0 divine-spacing">
+                      <h3 className="text-xl font-semibold text-purple-400 mb-3 glow-text-effect">{disclaimer.title}</h3>
+                      <p className="text-gray-300 text-lg leading-relaxed">{disclaimer.content}</p>
                     </div>
                   ))}
                 </div>
                 
-                <div className="mt-6 p-4 bg-purple-900/20 border border-purple-500/30 rounded-lg">
-                  <p className="text-purple-300 text-sm">
+                <div className="mt-8 p-6 bg-purple-900/30 border-2 border-purple-500/40 rounded-xl divine-spacing">
+                  <p className="text-purple-300 text-lg">
                     <strong>Note:</strong> This list includes our most popular tools. For tools not listed here, 
                     the general AI Web Tools disclaimer applies. Each tool may have specific limitations based on its function.
                   </p>
@@ -222,41 +241,41 @@ const DisclaimersPage = () => {
             </Card>
 
             {/* Critical Safety Warnings */}
-            <Card className="mb-8 bg-gradient-to-r from-red-900/30 to-orange-900/30 border border-red-500/30 rounded-xl backdrop-blur-sm">
+            <Card className="mb-12 bg-gradient-to-r from-red-900/40 to-orange-900/40 border-2 border-red-500/40 rounded-2xl backdrop-blur-sm shadow-2xl shadow-red-500/25 neon-border divine-spacing">
               <CardHeader>
-                <CardTitle className="text-2xl text-red-400 flex items-center">
-                  <AlertTriangle className="w-6 h-6 mr-3" />
+                <CardTitle className="text-3xl text-red-400 flex items-center glow-text-effect">
+                  <AlertTriangle className="w-8 h-8 mr-4" />
                   Critical Safety Warnings
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 text-gray-300">
-                <div className="bg-red-900/40 border border-red-500/60 rounded-lg p-4">
-                  <h3 className="text-red-300 font-semibold mb-2">🍄 Fungus/Mushroom Identification</h3>
-                  <p className="text-red-200 text-sm">
+              <CardContent className="space-y-6 text-gray-300">
+                <div className="bg-red-900/50 border-2 border-red-500/60 rounded-xl p-6 divine-spacing">
+                  <h3 className="text-red-300 font-semibold mb-3 text-lg">🍄 Fungus/Mushroom Identification</h3>
+                  <p className="text-red-200 text-lg leading-relaxed">
                     <strong>NEVER eat mushrooms identified by AI.</strong> Misidentification can result in severe illness or death. 
                     Always consult multiple expert sources and professional mycologists before consuming any wild fungi.
                   </p>
                 </div>
 
-                <div className="bg-red-900/40 border border-red-500/60 rounded-lg p-4">
-                  <h3 className="text-red-300 font-semibold mb-2">🔫 Firearms Safety</h3>
-                  <p className="text-red-200 text-sm">
+                <div className="bg-red-900/50 border-2 border-red-500/60 rounded-xl p-6 divine-spacing">
+                  <h3 className="text-red-300 font-semibold mb-3 text-lg">🔫 Firearms Safety</h3>
+                  <p className="text-red-200 text-lg leading-relaxed">
                     AI guidance does not replace certified firearms training. Always follow proper safety protocols 
                     and comply with local, state, and federal firearms laws.
                   </p>
                 </div>
 
-                <div className="bg-red-900/40 border border-red-500/60 rounded-lg p-4">
-                  <h3 className="text-red-300 font-semibold mb-2">🏥 Medical Information</h3>
-                  <p className="text-red-200 text-sm">
+                <div className="bg-red-900/50 border-2 border-red-500/60 rounded-xl p-6 divine-spacing">
+                  <h3 className="text-red-300 font-semibold mb-3 text-lg">🏥 Medical Information</h3>
+                  <p className="text-red-200 text-lg leading-relaxed">
                     Health-related AI tools provide general information only. Never delay seeking professional medical 
                     care based on AI advice. Contact emergency services for urgent medical situations.
                   </p>
                 </div>
 
-                <div className="bg-red-900/40 border border-red-500/60 rounded-lg p-4">
-                  <h3 className="text-red-300 font-semibold mb-2">💰 Financial Decisions</h3>
-                  <p className="text-red-200 text-sm">
+                <div className="bg-red-900/50 border-2 border-red-500/60 rounded-xl p-6 divine-spacing">
+                  <h3 className="text-red-300 font-semibold mb-3 text-lg">💰 Financial Decisions</h3>
+                  <p className="text-red-200 text-lg leading-relaxed">
                     Trading and investment AI tools provide information only, not financial advice. All investments 
                     carry risk. Consult licensed financial advisors before making investment decisions.
                   </p>
@@ -265,21 +284,21 @@ const DisclaimersPage = () => {
             </Card>
 
             {/* Contact Information */}
-            <Card className="bg-gradient-to-r from-green-900/30 to-blue-900/30 border border-green-500/30 rounded-xl backdrop-blur-sm">
+            <Card className="bg-gradient-to-r from-green-900/40 to-blue-900/40 border-2 border-green-500/40 rounded-2xl backdrop-blur-sm shadow-2xl shadow-green-500/25 neon-border divine-spacing">
               <CardHeader>
-                <CardTitle className="text-2xl text-green-400 flex items-center">
-                  <ExternalLink className="w-6 h-6 mr-3" />
+                <CardTitle className="text-3xl text-green-400 flex items-center glow-text-effect">
+                  <ExternalLink className="w-8 h-8 mr-4" />
                   Contact & Legal Information
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 text-gray-300">
+              <CardContent className="space-y-6 text-gray-300">
                 <div>
-                  <h3 className="text-lg font-semibold text-green-400 mb-2">Contact Information</h3>
-                  <p>
+                  <h3 className="text-xl font-semibold text-green-400 mb-3 glow-text-effect">Contact Information</h3>
+                  <p className="text-lg">
                     For questions, concerns, or legal matters: {" "}
                     <button 
                       onClick={(e) => handleExternalLink("mailto:contact@ai-webtools.com", e)}
-                      className="text-cyan-400 hover:text-cyan-300 transition-colors underline"
+                      className="text-cyan-400 hover:text-cyan-300 transition-colors underline interactive-button"
                     >
                       contact@ai-webtools.com
                     </button>
@@ -287,20 +306,20 @@ const DisclaimersPage = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-semibold text-green-400 mb-2">Updates to Terms</h3>
-                  <p>We may update these terms and disclaimers periodically. Continued use of our services constitutes acceptance of updated terms.</p>
+                  <h3 className="text-xl font-semibold text-green-400 mb-3 glow-text-effect">Updates to Terms</h3>
+                  <p className="text-lg leading-relaxed">We may update these terms and disclaimers periodically. Continued use of our services constitutes acceptance of updated terms.</p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-semibold text-green-400 mb-2">Governing Law</h3>
-                  <p>These terms are governed by the laws of the jurisdiction where AI Web Tools LLC is incorporated, without regard to conflict of law principles.</p>
+                  <h3 className="text-xl font-semibold text-green-400 mb-3 glow-text-effect">Governing Law</h3>
+                  <p className="text-lg leading-relaxed">These terms are governed by the laws of the jurisdiction where AI Web Tools LLC is incorporated, without regard to conflict of law principles.</p>
                 </div>
 
-                <div className="border-t border-green-500/30 pt-4 mt-4">
-                  <p className="text-sm text-gray-400">
+                <div className="border-t-2 border-green-500/40 pt-6 mt-6">
+                  <p className="text-lg text-gray-400">
                     Last Updated: {new Date().toLocaleDateString()}
                   </p>
-                  <p className="text-xs text-gray-500 mt-2">
+                  <p className="text-base text-gray-500 mt-3 leading-relaxed">
                     By using any AI Web Tools service or accessing tools through our directory, 
                     you acknowledge that you have read, understood, and agree to be bound by these terms and disclaimers.
                   </p>

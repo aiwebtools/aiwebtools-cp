@@ -1,15 +1,41 @@
 
 @layer base {
+  /* Divine neon border with celestial radiance */
   .neon-border {
-    border: 1px solid;
-    border-image: linear-gradient(45deg, #00ffff, #ff00ff) 1;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(255, 0, 255, 0.1);
+    border: 2px solid;
+    border-image: linear-gradient(45deg, #FFD700, #FFFFFF, #00FFFF, #FF00FF) 1;
+    box-shadow: 
+      0 0 15px rgba(255, 215, 0, 0.5), 
+      0 0 30px rgba(255, 255, 255, 0.3),
+      0 0 45px rgba(0, 255, 255, 0.2),
+      inset 0 0 15px rgba(255, 0, 255, 0.1);
+    animation: divine-border-glow 5s ease-in-out infinite alternate;
   }
 
-  /* Featured Tools Transparency */
+  @keyframes divine-border-glow {
+    0% {
+      border-image: linear-gradient(45deg, #FFD700, #FFFFFF, #00FFFF, #FF00FF) 1;
+      box-shadow: 
+        0 0 15px rgba(255, 215, 0, 0.5), 
+        0 0 30px rgba(255, 255, 255, 0.3);
+    }
+    100% {
+      border-image: linear-gradient(45deg, #FFFFFF, #00FFFF, #FF00FF, #FFD700) 1;
+      box-shadow: 
+        0 0 25px rgba(255, 215, 0, 0.8), 
+        0 0 50px rgba(255, 255, 255, 0.6),
+        0 0 75px rgba(0, 255, 255, 0.4);
+    }
+  }
+
+  /* Featured Tools Divine Transparency */
   .featured-tools-transparent {
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(1px);
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    box-shadow: 
+      0 0 20px rgba(255, 215, 0, 0.1),
+      inset 0 0 20px rgba(255, 255, 255, 0.05);
   }
 
   .featured-tools-transparent section {
@@ -17,57 +43,91 @@
   }
 
   .featured-tools-transparent .bg-black {
-    background: rgba(0, 0, 0, 0.4) !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
   }
 
   .featured-tools-transparent .bg-gray-900 {
-    background: rgba(17, 24, 39, 0.4) !important;
+    background: rgba(17, 24, 39, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
   }
 
   .featured-tools-transparent .bg-slate-900 {
-    background: rgba(15, 23, 42, 0.4) !important;
+    background: rgba(15, 23, 42, 0.3) !important;
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.05);
   }
 
-  /* Optimized Cyberpunk grid overlay - reduced complexity */
+  /* Divine Cyberpunk grid overlay with celestial movement */
   .cyber-grid {
     background-image: 
-      linear-gradient(rgba(0, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 100px 100px;
+    background-size: 120px 120px, 120px 120px, 240px 240px, 240px 240px;
     will-change: background-position;
+    animation: divine-grid-dance 35s infinite linear;
   }
 
-  /* Reduced animation complexity for better performance */
-  @media (min-width: 1024px) {
-    .cyber-grid {
-      animation: gridMove 30s infinite linear;
-    }
-  }
-
-  @keyframes gridMove {
+  @keyframes divine-grid-dance {
     0% {
-      background-position: 0 0;
+      background-position: 0 0, 0 0, 0 0, 0 0;
+    }
+    25% {
+      background-position: 30px 30px, 30px 30px, 60px 60px, 60px 60px;
+    }
+    50% {
+      background-position: 60px 60px, 60px 60px, 120px 120px, 120px 120px;
+    }
+    75% {
+      background-position: 90px 90px, 90px 90px, 180px 180px, 180px 180px;
     }
     100% {
-      background-position: 100px 100px;
+      background-position: 120px 120px, 120px 120px, 240px 240px, 240px 240px;
     }
   }
 
-  /* Optimized sidebar sparkles with better performance */
+  /* Divine sidebar with celestial sparkles and holy radiance */
   .sidebar-sparkles {
     position: relative;
     background: linear-gradient(135deg, 
       rgba(0, 10, 20, 0.95) 0%, 
-      rgba(5, 15, 30, 0.98) 25%, 
-      rgba(10, 20, 40, 0.95) 50%, 
-      rgba(5, 15, 30, 0.98) 75%, 
+      rgba(10, 15, 35, 0.98) 20%, 
+      rgba(15, 20, 45, 0.95) 40%, 
+      rgba(20, 25, 50, 0.98) 60%,
+      rgba(15, 20, 45, 0.95) 80%, 
       rgba(0, 10, 20, 0.95) 100%
     );
     box-shadow: 
-      inset 0 0 30px rgba(0, 255, 255, 0.1),
-      inset 0 0 60px rgba(255, 0, 255, 0.05),
-      0 0 20px rgba(0, 255, 255, 0.2);
-    border-right: 1px solid rgba(0, 255, 255, 0.3);
+      inset 0 0 40px rgba(255, 215, 0, 0.15),
+      inset 0 0 80px rgba(255, 255, 255, 0.08),
+      inset 0 0 120px rgba(0, 255, 255, 0.06),
+      0 0 30px rgba(255, 215, 0, 0.25),
+      0 0 60px rgba(255, 255, 255, 0.15);
+    border-right: 2px solid rgba(255, 215, 0, 0.4);
+    animation: divine-sidebar-glow 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes divine-sidebar-glow {
+    0% {
+      border-right-color: rgba(255, 215, 0, 0.4);
+      box-shadow: 
+        inset 0 0 40px rgba(255, 215, 0, 0.15),
+        inset 0 0 80px rgba(255, 255, 255, 0.08),
+        0 0 30px rgba(255, 215, 0, 0.25);
+    }
+    100% {
+      border-right-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 
+        inset 0 0 60px rgba(255, 215, 0, 0.25),
+        inset 0 0 120px rgba(255, 255, 255, 0.15),
+        inset 0 0 180px rgba(0, 255, 255, 0.1),
+        0 0 45px rgba(255, 215, 0, 0.4),
+        0 0 90px rgba(255, 255, 255, 0.25);
+    }
   }
 
   .sidebar-sparkles::before {
@@ -77,10 +137,12 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.06) 0%, transparent 50%),
-                radial-gradient(circle at 40% 90%, rgba(0, 255, 255, 0.04) 0%, transparent 50%);
-    animation: sparkleShimmer 6s ease-in-out infinite;
+    background: 
+      radial-gradient(circle at 15% 25%, rgba(255, 215, 0, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 85% 70%, rgba(255, 255, 255, 0.10) 0%, transparent 50%),
+      radial-gradient(circle at 35% 85%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 75% 15%, rgba(255, 0, 255, 0.06) 0%, transparent 50%);
+    animation: divine-sparkle-shimmer 7s ease-in-out infinite;
     pointer-events: none;
     will-change: opacity, transform;
   }
@@ -93,170 +155,225 @@
     right: 0;
     bottom: 0;
     background-image: 
-      radial-gradient(1px 1px at 10px 20px, rgba(0, 255, 255, 0.6), transparent),
-      radial-gradient(1px 1px at 50px 80px, rgba(255, 0, 255, 0.4), transparent),
-      radial-gradient(1px 1px at 80px 40px, rgba(255, 255, 255, 0.5), transparent);
+      radial-gradient(1.5px 1.5px at 12px 25px, rgba(255, 215, 0, 0.8), transparent),
+      radial-gradient(1.5px 1.5px at 60px 90px, rgba(255, 255, 255, 0.7), transparent),
+      radial-gradient(1px 1px at 95px 45px, rgba(0, 255, 255, 0.6), transparent),
+      radial-gradient(1px 1px at 140px 120px, rgba(255, 0, 255, 0.5), transparent);
     background-repeat: repeat;
-    background-size: 200px 250px;
-    animation: sparkleFloat 12s linear infinite;
+    background-size: 250px 300px;
+    animation: divine-sparkle-float 15s linear infinite;
     pointer-events: none;
     will-change: transform;
   }
 
-  @keyframes sparkleShimmer {
+  @keyframes divine-sparkle-shimmer {
     0%, 100% {
-      opacity: 0.6;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.01);
-    }
-  }
-
-  @keyframes sparkleFloat {
-    0% {
-      transform: translateY(0px) translateX(0px);
-      opacity: 0.5;
+      opacity: 0.7;
+      transform: scale(1) rotate(0deg);
     }
     25% {
-      transform: translateY(-5px) translateX(3px);
-      opacity: 0.8;
+      opacity: 1;
+      transform: scale(1.02) rotate(1deg);
     }
     50% {
-      transform: translateY(-3px) translateX(-2px);
-      opacity: 0.6;
+      opacity: 0.9;
+      transform: scale(1.01) rotate(0deg);
     }
     75% {
-      transform: translateY(-8px) translateX(5px);
-      opacity: 0.9;
-    }
-    100% {
-      transform: translateY(0px) translateX(0px);
-      opacity: 0.5;
+      opacity: 1;
+      transform: scale(1.02) rotate(-1deg);
     }
   }
 
-  /* Responsive Design Optimization */
+  @keyframes divine-sparkle-float {
+    0% {
+      transform: translateY(0px) translateX(0px) rotate(0deg);
+      opacity: 0.6;
+    }
+    25% {
+      transform: translateY(-8px) translateX(4px) rotate(90deg);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-5px) translateX(-3px) rotate(180deg);
+      opacity: 0.8;
+    }
+    75% {
+      transform: translateY(-12px) translateX(6px) rotate(270deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0px) translateX(0px) rotate(360deg);
+      opacity: 0.6;
+    }
+  }
+
+  /* Responsive Design with Divine Optimization */
   @media (max-width: 480px) {
     .cyber-grid {
-      animation: none;
-      background-size: 50px 50px;
+      animation-duration: 50s;
+      background-size: 80px 80px, 80px 80px, 160px 160px, 160px 160px;
     }
     
     .glow-effect {
-      animation: none;
-      box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+      animation-duration: 8s;
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
     }
     
     .interactive-button {
       transform: none;
-      transition: background-color 0.2s ease;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
     
     .interactive-button:hover {
-      transform: none;
+      transform: scale(1.01);
     }
 
     .sidebar-sparkles::before,
     .sidebar-sparkles::after {
-      animation: none;
+      animation-duration: 12s;
     }
   }
 
   @media (max-width: 768px) {
     .cyber-grid {
-      background-size: 75px 75px;
-      animation-duration: 40s;
+      background-size: 100px 100px, 100px 100px, 200px 200px, 200px 200px;
+      animation-duration: 45s;
     }
     
     .glow-effect {
-      animation-duration: 3s;
-      box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+      animation-duration: 6s;
+      box-shadow: 
+        0 0 12px rgba(255, 215, 0, 0.5),
+        0 0 24px rgba(255, 255, 255, 0.3);
     }
     
     .interactive-button {
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
     }
     
     .interactive-button:hover {
-      transform: scale(1.02);
+      transform: scale(1.03) translateY(-1px);
     }
 
+    .sidebar-sparkles::before,
+    .sidebar-sparkles::after {
+      animation-duration: 10s;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .cyber-grid {
+      animation-duration: 40s;
+    }
+    
     .sidebar-sparkles::before,
     .sidebar-sparkles::after {
       animation-duration: 8s;
     }
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .cyber-grid {
-      animation-duration: 35s;
-    }
-    
-    .sidebar-sparkles::before,
-    .sidebar-sparkles::after {
-      animation-duration: 6s;
-    }
-  }
-
-  /* Button optimizations for all screen sizes */
+  /* Button optimizations for divine experiences */
   .interactive-button {
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    will-change: transform;
+    will-change: transform, box-shadow;
     contain: layout style paint;
+    padding: 12px 24px;
+    border-radius: 12px;
   }
 
-  /* Text optimization */
+  /* Text optimization with divine enhancement */
   .cyber-glow {
-    will-change: auto;
+    will-change: text-shadow;
     contain: layout style paint;
+    letter-spacing: 0.5px;
   }
 
-  /* Image optimization */
+  /* Image optimization with divine quality */
   img {
     image-rendering: optimizeQuality;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
     will-change: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.1);
   }
 
-  /* Video optimization */
+  /* Video optimization with celestial frame */
   iframe {
     will-change: transform;
     backface-visibility: hidden;
     contain: layout style paint;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2);
   }
 
-  /* Performance optimizations */
+  /* Performance optimizations for divine experiences */
   @media (prefers-reduced-motion: reduce) {
     .cyber-grid,
     .glow-effect,
     .interactive-button,
     .sidebar-sparkles::before,
-    .sidebar-sparkles::after {
+    .sidebar-sparkles::after,
+    .divine-border-glow {
       animation: none;
     }
     
     .interactive-button {
-      transition: background-color 0.2s ease;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
   }
 
-  /* Ultra-wide screen support */
+  /* Ultra-wide screen divine support */
   @media (min-width: 1920px) {
     .container {
       max-width: 1600px;
+      padding: 0 3rem;
     }
   }
 
-  /* High DPI displays */
+  /* High DPI displays with divine clarity */
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .glow-effect {
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+      box-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 0 40px rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  /* Divine spacing enhancements */
+  .divine-spacing {
+    padding: 2rem;
+    margin: 1.5rem 0;
+  }
+
+  .divine-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .divine-section {
+    padding: 4rem 0;
+    margin: 3rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .divine-spacing {
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .divine-container {
+      padding: 0 1rem;
+    }
+
+    .divine-section {
+      padding: 2rem 0;
+      margin: 1.5rem 0;
     }
   }
 }
