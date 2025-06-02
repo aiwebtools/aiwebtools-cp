@@ -1,7 +1,33 @@
 import { Tool } from "@/types/tools";
 
-// Enhanced mapping with your new consolidated structure
+// Enhanced mapping with consolidated structure - HEALTH TOOLS STAY IN HEALTH & WELLNESS
 const categoryMapping: Record<string, string> = {
+  // HEALTH & WELLNESS - KEEP ALL HEALTH TOOLS HERE
+  "Health & Wellness": "Health & Wellness",
+  "Health, Wellness & Personal Lifestyle": "Health & Wellness", 
+  "Healthcare Professionals": "Health & Wellness",
+  "Medical AI Tools": "Health & Wellness",
+  "Health And Wellness Tools": "Health & Wellness",
+  "Spirituality & Wellness": "Health & Wellness",
+  "Personal Services": "Health & Wellness",
+  "Wellness & Fitness": "Health & Wellness",
+  "Lifestyle Tools": "Health & Wellness",
+  "Medical & Healthcare": "Health & Wellness",
+  "Healthcare & Medicine": "Health & Wellness",
+  "Health Tools": "Health & Wellness",
+  "Wellness Tools": "Health & Wellness",
+  "Medical Tools": "Health & Wellness",
+  "Health & Medical": "Health & Wellness",
+  "Healthcare": "Health & Wellness",
+  "Medicine": "Health & Wellness",
+  "Medical": "Health & Wellness",
+  "Wellness": "Health & Wellness",
+  "Health": "Health & Wellness",
+  "Spirituality Tools": "Health & Wellness",
+  "Mental Health Tools": "Health & Wellness",
+  "Fitness Tools": "Health & Wellness",
+  "Nutrition Tools": "Health & Wellness",
+  
   // AI Development & Platforms
   "AI Development Tools": "AI Development & Platforms",
   "Advanced AI Tools": "AI Development & Platforms", 
@@ -53,7 +79,7 @@ const categoryMapping: Record<string, string> = {
   "3D & Visualization Tools": "Video & Animation Tools",
   "3D Tools": "Video & Animation Tools",
   
-  // Audio & Music Tools (keep as is - already consolidated)
+  // Audio & Music Tools
   "Audio & Music Tools": "Audio & Music Tools",
   "Audio & Voice Tools": "Audio & Music Tools",
   "Audio & Podcasting": "Audio & Music Tools",
@@ -114,34 +140,10 @@ const categoryMapping: Record<string, string> = {
   "Learning Platforms": "Education & Research Tools",
   "Content Detection Tools": "Education & Research Tools",
   
-  // INDUSTRY SPECIFIC AI TOOLS - COMPREHENSIVE MAPPING FOR ALL INDUSTRIES
-  "Health & Wellness": "Industry Specific AI Tools",
-  "Health, Wellness & Personal Lifestyle": "Industry Specific AI Tools",
-  "Healthcare Professionals": "Industry Specific AI Tools",
-  "Medical AI Tools": "Industry Specific AI Tools",
-  "Health And Wellness Tools": "Industry Specific AI Tools",
-  "Spirituality & Wellness": "Industry Specific AI Tools",
-  "Personal Services": "Industry Specific AI Tools",
-  "Wellness & Fitness": "Industry Specific AI Tools",
-  "Lifestyle Tools": "Industry Specific AI Tools",
-  "Medical & Healthcare": "Industry Specific AI Tools",
-  "Healthcare & Medicine": "Industry Specific AI Tools",
-  "Health Tools": "Industry Specific AI Tools",
-  "Wellness Tools": "Industry Specific AI Tools",
-  "Medical Tools": "Industry Specific AI Tools",
-  "Health & Medical": "Industry Specific AI Tools",
-  "Healthcare": "Industry Specific AI Tools",
-  "Medicine": "Industry Specific AI Tools",
-  "Medical": "Industry Specific AI Tools",
-  "Wellness": "Industry Specific AI Tools",
-  "Health": "Industry Specific AI Tools",
-  
-  // Legal Industry
+  // Industry Specific AI Tools (NON-HEALTH industries only)
   "Legal Professionals": "Industry Specific AI Tools",
   "Legal & Compliance": "Industry Specific AI Tools",
   "Professional Services": "Industry Specific AI Tools",
-  
-  // Creative Industries
   "Creative & Entertainment": "Industry Specific AI Tools",
   "Entertainment & Media": "Industry Specific AI Tools",
   "Entertainment Tools": "Industry Specific AI Tools",
@@ -151,21 +153,13 @@ const categoryMapping: Record<string, string> = {
   "Creative Services": "Industry Specific AI Tools",
   "Creative Suites": "Industry Specific AI Tools",
   "Creative & Entertainment (General & Gaming)": "Industry Specific AI Tools",
-  
-  // Emergency & Safety Industries
   "Emergency Services": "Industry Specific AI Tools",
-  
-  // Financial Industry
   "Financial & Trading Tools": "Industry Specific AI Tools",
   "Finance & Trading": "Industry Specific AI Tools",
-  
-  // Technology & Hardware Industries
   "Robotics Companies": "Industry Specific AI Tools",
   "Hardware Tools": "Industry Specific AI Tools",
   "IoT Platforms": "Industry Specific AI Tools",
   "Smart Devices": "Industry Specific AI Tools",
-  
-  // Specialized consolidation
   "Specialized & Niche": "Industry Specific AI Tools",
   "Specialized Niche Tools": "Industry Specific AI Tools",
   "Specialized AI Tools": "Industry Specific AI Tools",
@@ -184,7 +178,6 @@ export const consolidateTools = (tools: Tool[]): Tool[] => {
   }));
 };
 
-// Get the final consolidated categories list
 export const getConsolidatedCategories = (): string[] => {
   const uniqueCategories = new Set(Object.values(categoryMapping));
   return Array.from(uniqueCategories).sort();
