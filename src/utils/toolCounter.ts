@@ -4,13 +4,71 @@ import { deduplicateTools } from '@/utils/toolDeduplication';
 
 export const getToolCount = () => {
   const allTools = getAllToolCategories();
+  
+  console.log(`🔍 DETAILED TOOL COUNT ANALYSIS STARTING...`);
+  console.log(`📊 Raw Tools Before Deduplication: ${allTools.length}`);
+  
+  // Track tools by category before deduplication
+  const categoryCountsBefore: Record<string, number> = {};
+  allTools.forEach(tool => {
+    const category = tool.category || 'Uncategorized';
+    categoryCountsBefore[category] = (categoryCountsBefore[category] || 0) + 1;
+  });
+  
+  console.log('📋 Category counts BEFORE deduplication:', categoryCountsBefore);
+  
   const deduplicatedTools = deduplicateTools(allTools);
+  
+  console.log(`📊 Tools After Deduplication: ${deduplicatedTools.length}`);
+  console.log(`🗑️ Tools removed during deduplication: ${allTools.length - deduplicatedTools.length}`);
   
   const categoryBreakdown: Record<string, number> = {};
   deduplicatedTools.forEach(tool => {
     const category = tool.category || 'Uncategorized';
     categoryBreakdown[category] = (categoryBreakdown[category] || 0) + 1;
   });
+  
+  console.log('📋 Category counts AFTER deduplication:', categoryBreakdown);
+  
+  // Compare before and after to see which categories lost tools
+  console.log('\n🔍 CATEGORY COMPARISON (BEFORE → AFTER):');
+  Object.keys(categoryCountsBefore).forEach(category => {
+    const before = categoryCountsBefore[category];
+    const after = categoryBreakdown[category] || 0;
+    if (before !== after) {
+      console.log(`❗ ${category}: ${before} → ${after} (${after - before})`);
+    }
+  });
+  
+  // Look for specific tool titles that might have been lost
+  const toolTitles = allTools.map(tool => tool.title);
+  const deduplicatedTitles = deduplicatedTools.map(tool => tool.title);
+  
+  const lostTools = toolTitles.filter(title => !deduplicatedTitles.includes(title));
+  if (lostTools.length > 0) {
+    console.log('\n🚨 TOOLS THAT WERE REMOVED:');
+    lostTools.forEach(title => {
+      console.log(`❌ Lost: "${title}"`);
+    });
+  }
+  
+  // Check for duplicate tools that were kept vs removed
+  const titleCounts: Record<string, number> = {};
+  allTools.forEach(tool => {
+    titleCounts[tool.title] = (titleCounts[tool.title] || 0) + 1;
+  });
+  
+  const duplicateTitles = Object.keys(titleCounts).filter(title => titleCounts[title] > 1);
+  if (duplicateTitles.length > 0) {
+    console.log('\n🔄 DUPLICATE TOOLS FOUND:');
+    duplicateTitles.forEach(title => {
+      console.log(`🔄 "${title}": ${titleCounts[title]} instances`);
+      const instances = allTools.filter(tool => tool.title === title);
+      instances.forEach((instance, index) => {
+        console.log(`   ${index + 1}. Category: ${instance.category}, URL: ${instance.directUrl}`);
+      });
+    });
+  }
   
   console.log('🎉 ACCURATE TOOL COUNT VERIFICATION 🎉');
   console.log(`📊 Raw Tools Before Deduplication: ${allTools.length}`);
@@ -81,7 +139,9 @@ export const getToolCount = () => {
     },
     rawToolCount: allTools.length,
     deduplicatedCount: deduplicatedTools.length,
-    potentialDataLoss: deduplicatedTools.length < expectedMinimumTools
+    potentialDataLoss: deduplicatedTools.length < expectedMinimumTools,
+    lostTools: lostTools,
+    duplicateTitles: duplicateTitles
   };
 };
 
