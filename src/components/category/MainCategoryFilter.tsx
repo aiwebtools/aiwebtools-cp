@@ -57,16 +57,12 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   useEffect(() => {
     console.log(`🎯 MainCategoryFilter initializing for: ${currentMainCategory}`);
     
-    // Always start by showing all tools for the current main category
-    // Don't wait for user interaction
-    onFilteredToolsChange(tools);
-    
     // Set the current category as selected if it exists in our available categories
     const categoryExists = mainCategoriesWithCounts.some(cat => cat.name === currentMainCategory);
     if (categoryExists) {
       setSelectedMainCategories([currentMainCategory]);
     }
-  }, [currentMainCategory, tools, onFilteredToolsChange, mainCategoriesWithCounts]);
+  }, [currentMainCategory, mainCategoriesWithCounts]);
 
   // Apply main category filters to tools using GLOBAL allTools for accurate filtering
   const filteredTools = useMemo(() => {
@@ -93,10 +89,11 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     
     console.log(`✅ Final filtered result: ${uniqueTools.length} unique tools from ${selectedMainCategories.length} categories`);
     return uniqueTools;
-  }, [selectedMainCategories, currentMainCategory]); // Remove tools dependency for more stable filtering
+  }, [selectedMainCategories, currentMainCategory, tools]);
 
-  // Update parent component when filtered tools change
+  // Update parent component when filtered tools change - but only call when needed
   useEffect(() => {
+    console.log(`🔄 Updating parent with ${filteredTools.length} filtered tools`);
     onFilteredToolsChange(filteredTools);
   }, [filteredTools, onFilteredToolsChange]);
 
@@ -198,7 +195,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-48 overflow-y-auto">
             {mainCategoriesWithCounts.map(({ name, emoji, count }) => {
               const isChecked = selectedMainCategories.includes(name);
-              console.log(`🔘 Checkbox for ${name}: checked=${isChecked}`);
+              console.log(`🔘 Rendering checkbox for ${name}: checked=${isChecked}`);
               
               return (
                 <div
@@ -209,7 +206,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
                     id={`main-category-${name}`}
                     checked={isChecked}
                     onCheckedChange={(checked) => {
-                      console.log(`🎯 Checkbox changed for ${name}: ${checked}`);
+                      console.log(`🎯 Checkbox onCheckedChange for ${name}: ${checked}`);
                       handleMainCategoryToggle(name);
                     }}
                     className="border-cyan-500/50 data-[state=checked]:bg-cyan-500 data-[state=checked]:border-cyan-500 flex-shrink-0 mt-1"
