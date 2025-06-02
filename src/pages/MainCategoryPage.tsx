@@ -54,6 +54,7 @@ const MainCategoryPage = () => {
     categoryToolsCount: categoryTools.length,
     toolsToShowCount: toolsToShow.length,
     filteredToolsCount: filteredTools.length,
+    displayedCount: allToolsDisplayedCount,
     searchTerm: searchTerm || 'none',
     firstFewTitles: filteredTools.slice(0, 5).map(t => t.title)
   });
@@ -73,6 +74,8 @@ const MainCategoryPage = () => {
     setSearchTerm(value);
     setAllToolsDisplayedCount(24);
   };
+
+  const hasMoreTools = allToolsDisplayedCount < filteredTools.length;
 
   useInfiniteScroll({
     isLoading,
@@ -128,6 +131,11 @@ const MainCategoryPage = () => {
                 : `${filteredTools.length} tools in ${decodedCategoryName}`
               }
             </div>
+            {!searchTerm && hasMoreTools && (
+              <div className="text-gray-400 text-sm mt-1">
+                Showing {allToolsDisplayedCount} of {filteredTools.length} tools
+              </div>
+            )}
           </div>
 
           {/* Tools Grid */}
@@ -162,6 +170,30 @@ const MainCategoryPage = () => {
               </div>
             )}
           </div>
+
+          {/* Show More Button for non-search scenarios */}
+          {!searchTerm && hasMoreTools && (
+            <div className="text-center mt-12 mb-8">
+              <Button
+                onClick={handleLoadMore}
+                size="lg"
+                disabled={isLoading}
+                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
+              >
+                {isLoading ? (
+                  <div className="flex items-center space-x-3">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    <span>Loading More Tools...</span>
+                  </div>
+                ) : (
+                  <>🚀 Show More {decodedCategoryName} Tools</>
+                )}
+              </Button>
+              <div className="mt-4 text-cyan-300 text-sm">
+                Showing {allToolsDisplayedCount} of {filteredTools.length} amazing AI tools
+              </div>
+            </div>
+          )}
         </main>
 
         {/* Featured Tools Section - only show if not "ALL AI TOOLS" */}
