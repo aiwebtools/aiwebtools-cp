@@ -1,101 +1,170 @@
-
 import { Tool } from "@/types/tools";
-import { aiWebToolsKeywords } from "@/data/keywords/aiWebToolsKeywords";
+import { getToolNameMatchScore, calculateIntentScore } from "./scoringUtils";
 
-// Enhanced keyword matching specifically for newly added tools
+// Enhanced keyword matching for specific tool categories
 export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean => {
-  const lowerSearchTerm = searchTerm.toLowerCase().trim();
-  const toolText = `${tool.title} ${tool.description} ${tool.tags?.join(' ') || ''}`.toLowerCase();
+  const lowerTitle = tool.title.toLowerCase();
+  const lowerDescription = tool.description.toLowerCase();
+  const lowerSearchTerm = searchTerm.toLowerCase();
+  const lowerCategory = tool.category?.toLowerCase() || '';
+  const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
   
-  // Direct text matching first
-  if (toolText.includes(lowerSearchTerm)) {
-    return true;
-  }
-  
-  // Enhanced keyword matching for AI Web Tools GPTs
-  for (const [keyword, synonyms] of Object.entries(aiWebToolsKeywords)) {
-    // Check if search term matches keyword or any synonym
-    if (lowerSearchTerm.includes(keyword.toLowerCase()) || 
-        synonyms.some(syn => lowerSearchTerm.toLowerCase().includes(syn.toLowerCase()))) {
-      
-      // Check if tool matches the keyword or any synonym
-      if (toolText.includes(keyword.toLowerCase()) || 
-          synonyms.some(syn => toolText.includes(syn.toLowerCase()))) {
-        return true;
-      }
+  // AGENTS SEARCH PRIORITIZATION
+  if (lowerSearchTerm.includes('agent') || lowerSearchTerm === 'agents') {
+    // Priority AI agent tools
+    const priorityAgents = [
+      'chatgpt operator',
+      'manus autonomous agent',
+      'surf.new web agents',
+      'lindy ai automation',
+      'auto-gpt',
+      'babyagi',
+      'agentgpt',
+      'ai town',
+      'god mode gpt',
+      'ai agents',
+      'autonomous agent'
+    ];
+    
+    if (priorityAgents.some(agent => lowerTitle.includes(agent))) {
+      return true;
+    }
+    
+    // General agent-related matching
+    if (lowerTitle.includes('agent') || lowerDescription.includes('agent') || 
+        lowerTitle.includes('autonomous') || lowerDescription.includes('autonomous') ||
+        lowerCategory.includes('agent') || lowerTags.some(tag => tag.includes('agent'))) {
+      return true;
     }
   }
   
-  // Special handling for newly added tools with exact matching
-  const specialCases = [
-    {
-      searchTerms: ['ai tool expert', 'tool expert', 'ai expert', 'tool finder'],
-      toolKeywords: ['ai tool expert', 'tool discovery', 'expert recommendations']
-    },
-    {
-      searchTerms: ['king blueberry', 'blueberry', 'king', 'algebraic', 'algebra', 'mathematical', 'math', 'conversion', 'variables'],
-      toolKeywords: ['king blueberry', 'blueberry', 'algebraic conversion', 'mathematical', 'algebra', 'math']
-    },
-    {
-      searchTerms: ['ct mmp', 'connecticut', 'medical marijuana'],
-      toolKeywords: ['ct mmp', 'connecticut', 'medical marijuana', 'data explorer']
-    },
-    {
-      searchTerms: ['translator', 'translation', 'language'],
-      toolKeywords: ['ai language translator', 'translation', 'multilingual']
+  // LEARNING TOOLS ENHANCED MATCHING
+  if (lowerSearchTerm.includes('learn')) {
+    const learningTools = [
+      'learn any skill gpt',
+      'learn any course gpt',
+      'college degree gpt',
+      'homeschool'
+    ];
+    
+    if (learningTools.some(tool => lowerTitle.includes(tool))) {
+      return true;
     }
-  ];
+  }
   
-  for (const specialCase of specialCases) {
-    if (specialCase.searchTerms.some(term => lowerSearchTerm.includes(term))) {
-      if (specialCase.toolKeywords.some(keyword => toolText.includes(keyword))) {
-        return true;
-      }
+  // MEDICAL/HEALTH ENHANCED MATCHING for AI Web Tools GPTs
+  if (lowerSearchTerm.includes('medical') || lowerSearchTerm.includes('health') || 
+      lowerSearchTerm.includes('doctor') || lowerSearchTerm.includes('wellness')) {
+    const medicalTools = [
+      'personalized dr. gpt',
+      'doctor gpt',
+      'mental wellness gpt',
+      'veterinarian gpt',
+      'pharmaceutical assistant'
+    ];
+    
+    if (medicalTools.some(tool => lowerTitle.includes(tool))) {
+      return true;
     }
   }
   
   return false;
 };
 
-// Enhanced scoring for newly added tools
 export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
+  const lowerTitle = tool.title.toLowerCase();
+  const lowerDescription = tool.description.toLowerCase();
   const lowerSearchTerm = searchTerm.toLowerCase();
-  const toolText = `${tool.title} ${tool.description}`.toLowerCase();
+  const lowerCategory = tool.category?.toLowerCase() || '';
+  const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+  
   let score = 0;
   
-  // Higher priority for exact title matches of new tools
-  const newToolTitles = [
-    'ai tool expert',
-    'king blueberry gpt',
-    'king blueberry',
-    'ct mmp data explorer',
-    'ai language translator gpt'
-  ];
-  
-  for (const newTitle of newToolTitles) {
-    if (tool.title.toLowerCase().includes(newTitle)) {
-      if (lowerSearchTerm.includes(newTitle) || 
-          newTitle.split(' ').some(word => lowerSearchTerm.includes(word))) {
-        score += 1000; // Very high priority for new tools
-      }
+  // AGENTS SEARCH SCORING - HIGHEST PRIORITY
+  if (lowerSearchTerm.includes('agent') || lowerSearchTerm === 'agents') {
+    // Top priority AI agent tools
+    if (lowerTitle.includes('chatgpt operator')) {
+      score += 2000; // Highest priority
+    }
+    if (lowerTitle.includes('manus autonomous agent')) {
+      score += 1950; // Second highest
+    }
+    if (lowerTitle.includes('surf.new web agents')) {
+      score += 1900; // Third highest
+    }
+    if (lowerTitle.includes('lindy ai automation')) {
+      score += 1850; // Fourth highest
+    }
+    
+    // Other important agent tools
+    if (lowerTitle.includes('auto-gpt')) {
+      score += 1800;
+    }
+    if (lowerTitle.includes('babyagi')) {
+      score += 1750;
+    }
+    if (lowerTitle.includes('agentgpt')) {
+      score += 1700;
+    }
+    if (lowerTitle.includes('god mode gpt')) {
+      score += 1650;
+    }
+    if (lowerTitle.includes('ai town')) {
+      score += 1600;
+    }
+    
+    // General agent matching
+    if (lowerTitle.includes('agent')) {
+      score += 1500;
+    }
+    if (lowerDescription.includes('agent')) {
+      score += 1200;
+    }
+    if (lowerTitle.includes('autonomous')) {
+      score += 1400;
+    }
+    if (lowerDescription.includes('autonomous')) {
+      score += 1100;
+    }
+    if (lowerCategory.includes('agent')) {
+      score += 1300;
+    }
+    if (lowerTags.some(tag => tag.includes('agent'))) {
+      score += 1200;
     }
   }
   
-  // Special boost for King Blueberry searches
-  if (lowerSearchTerm.includes('king') || lowerSearchTerm.includes('blueberry') || 
-      lowerSearchTerm.includes('algebraic') || lowerSearchTerm.includes('algebra')) {
-    if (tool.title.toLowerCase().includes('king blueberry')) {
-      score += 2000; // Extra high priority for King Blueberry
+  // LEARNING TOOLS SCORING
+  if (lowerSearchTerm.includes('learn')) {
+    if (lowerTitle.includes('learn any skill gpt')) {
+      score += 1500;
+    }
+    if (lowerTitle.includes('learn any course gpt')) {
+      score += 1450;
+    }
+    if (lowerTitle.includes('college degree gpt')) {
+      score += 1400;
+    }
+    if (lowerTitle.includes('homeschool')) {
+      score += 1350;
     }
   }
   
-  // Standard scoring
-  if (tool.title.toLowerCase().includes(lowerSearchTerm)) {
-    score += 500;
-  }
-  
-  if (toolText.includes(lowerSearchTerm)) {
-    score += 250;
+  // MEDICAL TOOLS SCORING for AI Web Tools GPTs
+  if (lowerSearchTerm.includes('medical') || lowerSearchTerm.includes('health') || 
+      lowerSearchTerm.includes('doctor') || lowerSearchTerm.includes('wellness')) {
+    if (lowerTitle.includes('personalized dr. gpt') || lowerTitle.includes('doctor gpt')) {
+      score += 1200;
+    }
+    if (lowerTitle.includes('mental wellness gpt')) {
+      score += 1150;
+    }
+    if (lowerTitle.includes('veterinarian gpt')) {
+      score += 1100;
+    }
+    if (lowerTitle.includes('pharmaceutical assistant')) {
+      score += 1050;
+    }
   }
   
   return score;
