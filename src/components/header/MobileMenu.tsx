@@ -155,14 +155,14 @@ const MobileMenu = () => {
                           <Tooltip key={`mobile-search-${tool.title}-${index}`} delayDuration={300}>
                             <TooltipTrigger asChild>
                               <div 
-                                className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-800/50 cursor-pointer group transition-all duration-200"
+                                className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-800/50 cursor-pointer group transition-all duration-200"
                                 onClick={() => handleToolClick(toolIndex)}
                               >
                                 <div className={`w-6 h-6 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-xs flex-shrink-0`}>
                                   {tool.emoji}
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                  <h3 className="font-medium text-white text-xs truncate group-hover:text-cyan-400 transition-colors">
+                                  <h3 className="font-medium text-white text-xs leading-tight mb-1 group-hover:text-cyan-400 transition-colors">
                                     {tool.title}
                                   </h3>
                                   {tool.category && (

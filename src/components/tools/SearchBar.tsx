@@ -124,12 +124,14 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
                         onClick={handleResultClick}
                         className="flex items-center space-x-3 p-3 hover:bg-gray-50 transition-all duration-200 border-b border-gray-50 last:border-b-0 rounded-lg mx-1"
                       >
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-ai-purple to-ai-blue flex items-center justify-center text-white text-lg flex-shrink-0">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-ai-purple to-ai-blue flex items-center justify-center text-white text-sm sm:text-lg flex-shrink-0">
                           {tool.emoji}
                         </div>
                         <div className="flex-grow min-w-0">
-                          <div className="text-gray-900 font-medium truncate">{tool.title}</div>
-                          <div className="text-gray-500 text-sm truncate">{tool.category}</div>
+                          <div className="text-gray-900 font-medium text-sm sm:text-base leading-tight mb-1">
+                            {tool.title}
+                          </div>
+                          <div className="text-gray-500 text-xs sm:text-sm truncate">{tool.category}</div>
                         </div>
                         <div className="text-xs text-gray-400 flex-shrink-0">
                           ⭐ {tool.rating || '4.5'}

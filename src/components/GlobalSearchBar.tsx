@@ -122,11 +122,11 @@ const GlobalSearchBar = () => {
                         className="flex items-center space-x-3 p-3 rounded-lg hover:bg-cyan-500/10 cursor-pointer group transition-all duration-200 border border-transparent hover:border-cyan-500/30"
                         onClick={() => handleToolClick(toolIndex)}
                       >
-                        <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-sm flex-shrink-0`}>
+                        <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-xs sm:text-sm flex-shrink-0`}>
                           {tool.emoji}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-medium text-cyan-100 text-sm truncate group-hover:text-cyan-300 transition-colors">
+                          <h3 className="font-medium text-cyan-100 text-xs sm:text-sm leading-tight mb-1 group-hover:text-cyan-300 transition-colors">
                             {tool.title}
                           </h3>
                           {tool.category && (
