@@ -6,6 +6,14 @@ import { matchPhoneAgents, scorePhoneAgents } from "./matching/phoneAgentMatchin
 import { matchMusicTools, scoreMusicTools } from "./matching/musicMatching";
 import { matchAppBuilding, scoreAppBuilding } from "./matching/appBuildingMatching";
 import { 
+  matchHealth, 
+  scoreHealth,
+  matchLearning,
+  scoreLearning,
+  matchMedical,
+  scoreMedical
+} from "./matching/specialtyMatching";
+import { 
   createSearchResult, 
   getSearchWords, 
   performBasicSearch, 
@@ -72,6 +80,26 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🏷️ Name search match for "${tool.title}" with score: ${nameMatch.score}`);
     }
     
+    // Health-specific matching (VERY HIGH PRIORITY for health searches)
+    if (matchHealth(tool, searchTerm)) {
+      matched = true;
+      const healthScore = scoreHealth(tool, searchTerm);
+      score += healthScore;
+      console.log(`🏥 Health search match for "${tool.title}" with score: ${healthScore}`);
+    }
+    
+    // Medical specific matching (high priority for medical searches)
+    if (matchMedical(tool, searchTerm)) {
+      matched = true;
+      score += scoreMedical(tool, searchTerm);
+    }
+    
+    // Learning specific matching (high priority for learning searches)
+    if (matchLearning(tool, searchTerm)) {
+      matched = true;
+      score += scoreLearning(tool, searchTerm);
+    }
+    
     // App building specific matching (high priority for app building searches)
     if (matchAppBuilding(tool, searchTerm)) {
       matched = true;
@@ -110,6 +138,29 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   .map(result => result.tool);
 
   console.log(`✅ Enhanced search found ${results.length} results for "${searchTerm}"`);
+  
+  // Enhanced debugging for health searches
+  if (searchTerm.toLowerCase().includes('health') || searchTerm.toLowerCase().includes('medical') || 
+      searchTerm.toLowerCase().includes('doctor') || searchTerm.toLowerCase().includes('wellness')) {
+    console.log(`🏥 HEALTH SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
+    console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
+    
+    // Check if key health tools are in the results
+    const doctorGptInResults = results.find(tool => 
+      tool.title.toLowerCase().includes('doctor gpt') || 
+      tool.title.toLowerCase().includes('personalized dr. gpt')
+    );
+    const mentalWellnessInResults = results.find(tool => 
+      tool.title.toLowerCase().includes('mental wellness gpt')
+    );
+    const dentalGptInResults = results.find(tool => 
+      tool.title.toLowerCase().includes('dental gpt')
+    );
+    
+    console.log(`🏥 Doctor GPT in results:`, doctorGptInResults ? doctorGptInResults.title : 'NOT IN RESULTS');
+    console.log(`🧠 Mental Wellness GPT in results:`, mentalWellnessInResults ? mentalWellnessInResults.title : 'NOT IN RESULTS');
+    console.log(`🦷 Dental GPT in results:`, dentalGptInResults ? dentalGptInResults.title : 'NOT IN RESULTS');
+  }
   
   // Enhanced debugging for name searches
   if (searchTerm.toLowerCase().includes('name')) {

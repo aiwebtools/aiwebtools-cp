@@ -54,6 +54,55 @@ export const matchLearning = (tool: Tool, searchTerm: string): boolean => {
   return false;
 };
 
+export const matchHealth = (tool: Tool, searchTerm: string): boolean => {
+  const lowerTitle = tool.title.toLowerCase();
+  const lowerDescription = tool.description.toLowerCase();
+  const lowerSearchTerm = searchTerm.toLowerCase();
+  const lowerCategory = tool.category?.toLowerCase() || '';
+  const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+  
+  // Enhanced health search matching
+  if (lowerSearchTerm.includes('health') || lowerSearchTerm.includes('medical') || 
+      lowerSearchTerm.includes('doctor') || lowerSearchTerm.includes('wellness') ||
+      lowerSearchTerm.includes('dental') || lowerSearchTerm.includes('mental') ||
+      lowerSearchTerm.includes('therapy') || lowerSearchTerm.includes('healthcare')) {
+    
+    // Priority health tools
+    const healthTools = [
+      'personalized dr. gpt',
+      'doctor gpt',
+      'mental wellness gpt',
+      'dental gpt',
+      'veterinarian gpt',
+      'pharmaceutical assistant',
+      'pharma research pro',
+      'health',
+      'wellness',
+      'medical'
+    ];
+    
+    // Check if tool matches health tools
+    if (healthTools.some(healthTool => lowerTitle.includes(healthTool))) {
+      return true;
+    }
+    
+    // Check for health-related terms in title, description, category, or tags
+    if (lowerTitle.includes('health') || lowerTitle.includes('medical') ||
+        lowerTitle.includes('doctor') || lowerTitle.includes('wellness') ||
+        lowerTitle.includes('dental') || lowerTitle.includes('mental') ||
+        lowerDescription.includes('health') || lowerDescription.includes('medical') ||
+        lowerDescription.includes('doctor') || lowerDescription.includes('wellness') ||
+        lowerDescription.includes('dental') || lowerDescription.includes('mental') ||
+        lowerCategory.includes('health') || lowerCategory.includes('medical') ||
+        lowerTags.some(tag => tag.includes('health') || tag.includes('medical') || 
+                            tag.includes('wellness') || tag.includes('dental'))) {
+      return true;
+    }
+  }
+  
+  return false;
+};
+
 export const matchMedical = (tool: Tool, searchTerm: string): boolean => {
   const lowerTitle = tool.title.toLowerCase();
   const lowerSearchTerm = searchTerm.toLowerCase();
@@ -141,6 +190,80 @@ export const scoreLearning = (tool: Tool, searchTerm: string): number => {
     }
     if (lowerTitle.includes('homeschool')) {
       score += 1350;
+    }
+  }
+  
+  return score;
+};
+
+export const scoreHealth = (tool: Tool, searchTerm: string): number => {
+  const lowerTitle = tool.title.toLowerCase();
+  const lowerDescription = tool.description.toLowerCase();
+  const lowerSearchTerm = searchTerm.toLowerCase();
+  const lowerCategory = tool.category?.toLowerCase() || '';
+  const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+  
+  let score = 0;
+  
+  if (lowerSearchTerm.includes('health') || lowerSearchTerm.includes('medical') || 
+      lowerSearchTerm.includes('doctor') || lowerSearchTerm.includes('wellness') ||
+      lowerSearchTerm.includes('dental') || lowerSearchTerm.includes('mental') ||
+      lowerSearchTerm.includes('therapy') || lowerSearchTerm.includes('healthcare')) {
+    
+    // Highest priority for main health tools
+    if (lowerTitle.includes('personalized dr. gpt') || lowerTitle.includes('doctor gpt')) {
+      score += 2000;
+    }
+    if (lowerTitle.includes('mental wellness gpt')) {
+      score += 1950;
+    }
+    if (lowerTitle.includes('dental gpt')) {
+      score += 1900;
+    }
+    if (lowerTitle.includes('veterinarian gpt')) {
+      score += 1850;
+    }
+    if (lowerTitle.includes('pharmaceutical assistant')) {
+      score += 1800;
+    }
+    if (lowerTitle.includes('pharma research pro')) {
+      score += 1750;
+    }
+    
+    // General health matching
+    if (lowerTitle.includes('health')) {
+      score += 1600;
+    }
+    if (lowerTitle.includes('medical')) {
+      score += 1550;
+    }
+    if (lowerTitle.includes('wellness')) {
+      score += 1500;
+    }
+    if (lowerTitle.includes('dental')) {
+      score += 1450;
+    }
+    if (lowerTitle.includes('mental')) {
+      score += 1400;
+    }
+    
+    // Description matching
+    if (lowerDescription.includes('health') || lowerDescription.includes('medical')) {
+      score += 1200;
+    }
+    if (lowerDescription.includes('wellness') || lowerDescription.includes('doctor')) {
+      score += 1100;
+    }
+    
+    // Category matching
+    if (lowerCategory.includes('health') || lowerCategory.includes('medical')) {
+      score += 1300;
+    }
+    
+    // Tags matching
+    if (lowerTags.some(tag => tag.includes('health') || tag.includes('medical') || 
+                             tag.includes('wellness') || tag.includes('dental'))) {
+      score += 1000;
     }
   }
   
