@@ -72,6 +72,14 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     setSelectedMainCategories([]);
   };
 
+  const handleCheckboxChange = (checked: boolean, mainCategoryName: string) => {
+    if (checked) {
+      setSelectedMainCategories(prev => [...prev, mainCategoryName]);
+    } else {
+      setSelectedMainCategories(prev => prev.filter(cat => cat !== mainCategoryName));
+    }
+  };
+
   return (
     <div className="max-w-4xl mx-auto mb-4">
       {/* Compact Filter Toggle Button */}
@@ -130,18 +138,17 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       {/* Compact Expandable Filter Panel */}
       {isExpanded && (
         <div className="bg-black/50 border border-cyan-500/30 rounded-lg p-3 backdrop-blur-sm">
-          {/* Main Categories Grid - Improved layout with better text fitting */}
+          {/* Main Categories Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-48 overflow-y-auto">
             {mainCategoriesWithCounts.map(({ name, emoji, count }) => (
               <div
                 key={name}
-                className="flex items-center space-x-2 p-2 hover:bg-cyan-500/10 rounded-md transition-colors cursor-pointer min-h-[40px]"
-                onClick={() => handleMainCategoryToggle(name)}
+                className="flex items-center space-x-2 p-2 hover:bg-cyan-500/10 rounded-md transition-colors min-h-[40px]"
               >
                 <Checkbox
                   id={`main-category-${name}`}
                   checked={selectedMainCategories.includes(name)}
-                  onCheckedChange={() => handleMainCategoryToggle(name)}
+                  onCheckedChange={(checked) => handleCheckboxChange(checked as boolean, name)}
                   className="border-cyan-500/50 data-[state=checked]:bg-cyan-500 data-[state=checked]:border-cyan-500 flex-shrink-0"
                 />
                 <div className="flex-1 min-w-0 flex items-center justify-between">
@@ -149,6 +156,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
                     htmlFor={`main-category-${name}`}
                     className="text-xs text-cyan-100 cursor-pointer flex items-center min-w-0 flex-1"
                     title={name}
+                    onClick={() => handleMainCategoryToggle(name)}
                   >
                     <span className="mr-1 flex-shrink-0">{emoji}</span>
                     <span className="truncate text-xs leading-tight">{name}</span>
