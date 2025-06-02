@@ -15,15 +15,22 @@ export const matchNameInsightTool = (tool: Tool, searchTerm: string): { score: n
     
     console.log(`🏷️ Name-related search detected for: ${tool.title}`);
     
-    // Check if this is the Name Insight Research & Predictor GPT tool by title or URL
-    if (tool.title.toLowerCase().includes('name insight research') || 
-        tool.title.toLowerCase().includes('name meaning') ||
-        tool.title.toLowerCase().includes('name predictor') ||
-        tool.directUrl?.includes('whatsmynamegpt') ||
-        (tool.title.toLowerCase().includes('name') && tool.title.toLowerCase().includes('insight')) ||
-        (tool.title.toLowerCase().includes('name') && tool.title.toLowerCase().includes('research'))) {
+    // Enhanced checking for Name Insight tool with multiple possible title variations
+    const titleLower = tool.title.toLowerCase();
+    const isNameInsightTool = (
+      titleLower.includes('name insight research') || 
+      titleLower.includes('name insight research & predictor') ||
+      titleLower.includes('name meaning') ||
+      titleLower.includes('name predictor') ||
+      tool.directUrl?.includes('whatsmynamegpt') ||
+      (titleLower.includes('name') && titleLower.includes('insight')) ||
+      (titleLower.includes('name') && titleLower.includes('research')) ||
+      (titleLower.includes('name') && titleLower.includes('predictor'))
+    );
+    
+    if (isNameInsightTool) {
       matched = true;
-      score += 25000; // Even higher priority for name searches
+      score += 50000; // Ultra high priority for name searches
       console.log(`🎯 ABSOLUTE NAME MATCH FOUND: ${tool.title} with score ${score}`);
     }
     
@@ -33,17 +40,17 @@ export const matchNameInsightTool = (tool: Tool, searchTerm: string): { score: n
       if (tool.description.toLowerCase().includes(keyword) || 
           tool.tags?.some(tag => tag.toLowerCase().includes(keyword))) {
         matched = true;
-        score += 10000;
-        console.log(`🏷️ Name keyword "${keyword}" found in ${tool.title}, adding 10000 to score`);
+        score += 15000;
+        console.log(`🏷️ Name keyword "${keyword}" found in ${tool.title}, adding 15000 to score`);
       }
     }
     
     // Extra broad matching for any tool with "name" in title or description when searching for "name"
     if (lowerSearchTerm === 'name' || lowerSearchTerm === 'names') {
-      if (tool.title.toLowerCase().includes('name') || tool.description.toLowerCase().includes('name')) {
+      if (titleLower.includes('name') || tool.description.toLowerCase().includes('name')) {
         matched = true;
-        score += 5000;
-        console.log(`🏷️ Broad name match for ${tool.title}, adding 5000 to score`);
+        score += 8000;
+        console.log(`🏷️ Broad name match for ${tool.title}, adding 8000 to score`);
       }
     }
   }

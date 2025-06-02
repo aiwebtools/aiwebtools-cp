@@ -27,11 +27,26 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
 
   console.log(`🔍 Enhanced search for: "${searchTerm}" across ${tools.length} tools`);
   
-  // Check if Name Insight tool exists in the tools array
+  // Enhanced debugging to find Name Insight tool in database
+  console.log(`🔍 Searching for Name Insight tool in ${tools.length} tools...`);
+  const possibleNameTools = tools.filter(tool => 
+    tool.title.toLowerCase().includes('name') ||
+    tool.directUrl?.includes('whatsmynamegpt') ||
+    tool.description.toLowerCase().includes('name insight') ||
+    tool.description.toLowerCase().includes('name meaning') ||
+    tool.description.toLowerCase().includes('name analysis')
+  );
+  
+  console.log(`🏷️ Found ${possibleNameTools.length} tools with "name" in title/description/URL:`);
+  possibleNameTools.forEach((tool, index) => {
+    console.log(`${index + 1}. "${tool.title}" - URL: ${tool.directUrl || 'NO URL'}`);
+  });
+  
+  // Specifically look for the exact Name Insight tool
   const nameInsightTool = tools.find(tool => 
     tool.title.toLowerCase().includes('name insight') ||
     tool.directUrl?.includes('whatsmynamegpt') ||
-    tool.title.toLowerCase().includes('name') && tool.title.toLowerCase().includes('predictor')
+    (tool.title.toLowerCase().includes('name') && tool.title.toLowerCase().includes('predictor'))
   );
   console.log(`🏷️ Name Insight tool found in database:`, nameInsightTool ? nameInsightTool.title : 'NOT FOUND');
   
@@ -107,6 +122,12 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       tool.directUrl?.includes('whatsmynamegpt')
     );
     console.log(`🏷️ Name Insight tool in results:`, nameInsightInResults ? nameInsightInResults.title : 'NOT IN RESULTS');
+    
+    // Show which tools matched for name searches
+    console.log(`🏷️ All name-related tools that matched:`, results.filter(tool => 
+      tool.title.toLowerCase().includes('name') || 
+      tool.description.toLowerCase().includes('name')
+    ).map(t => t.title));
   }
   
   // Enhanced debugging for different search types
