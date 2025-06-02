@@ -34,18 +34,27 @@ export const useInfiniteScroll = ({
   totalToolsRef.current = totalTools;
 
   const handleLoadMore = useCallback(() => {
-    if (isLoadingRef.current || displayedCountRef.current >= totalToolsRef.current) return;
-    console.log(`🔄 Infinite scroll triggered - Loading more tools... Search: "${searchTerm}", Category: "${selectedCategory}"`);
+    // For endless scroll (categories), don't check against totalTools since it can be infinite
+    const isEndlessScroll = selectedCategory && !searchTerm && totalTools === Number.MAX_SAFE_INTEGER;
+    
+    if (isLoadingRef.current) return;
+    if (!isEndlessScroll && displayedCountRef.current >= totalToolsRef.current) return;
+    
+    console.log(`🔄 Infinite scroll triggered - Loading more tools... Search: "${searchTerm}", Category: "${selectedCategory}", Endless: ${isEndlessScroll}`);
     onLoadMore();
-  }, [onLoadMore, searchTerm, selectedCategory]);
+  }, [onLoadMore, searchTerm, selectedCategory, totalTools]);
 
   // Enhanced infinite scroll with performance optimizations
   useEffect(() => {
     // Don't enable infinite scroll if explicitly disabled or if load more button is preferred
     if (!enableInfiniteScroll || showLoadMoreButton) return;
     
-    // Only enable if there are more tools to load
-    if (displayedCount >= totalTools || isLoading) return;
+    // For search results, only enable if there are more tools to load
+    if (searchTerm && displayedCount >= totalTools) return;
+    
+    // For endless scroll (categories), always enable
+    const isEndlessScroll = selectedCategory && !searchTerm;
+    if (!isEndlessScroll && (displayedCount >= totalTools || isLoading)) return;
     
     let ticking = false;
     let timeoutId: NodeJS.Timeout;
@@ -72,19 +81,24 @@ export const useInfiniteScroll = ({
           if (searchTerm) {
             threshold = 400; // More aggressive for search results
           } else if (selectedCategory) {
-            threshold = 600; // Medium aggressive for categories
+            threshold = 600; // Medium aggressive for categories with endless scroll
           }
           
           const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
           
-          if (nearBottom && displayedCountRef.current < totalToolsRef.current && !isLoadingRef.current) {
-            console.log(`🎯 Auto-loading more tools - Context: ${searchTerm ? 'Search' : selectedCategory ? 'Category' : 'Main'}, Displayed: ${displayedCountRef.current}/${totalToolsRef.current}`);
+          if (nearBottom && !isLoadingRef.current) {
+            const isEndlessScrollCheck = selectedCategory && !searchTerm && totalToolsRef.current === Number.MAX_SAFE_INTEGER;
+            const shouldLoad = isEndlessScrollCheck || displayedCountRef.current < totalToolsRef.current;
             
-            // Small delay to prevent rapid fire requests
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => {
-              handleLoadMore();
-            }, 100);
+            if (shouldLoad) {
+              console.log(`🎯 Auto-loading more tools - Context: ${searchTerm ? 'Search' : selectedCategory ? 'Category (Endless)' : 'Main'}, Displayed: ${displayedCountRef.current}/${totalToolsRef.current}`);
+              
+              // Small delay to prevent rapid fire requests
+              clearTimeout(timeoutId);
+              timeoutId = setTimeout(() => {
+                handleLoadMore();
+              }, 100);
+            }
           }
           
           ticking = false;

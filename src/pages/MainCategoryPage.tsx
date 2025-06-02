@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -38,10 +39,10 @@ const MainCategoryPage = () => {
     return null;
   }
 
-  // Get tools for this specific main category - using the CORRECTED cached tools
+  // Get tools for this specific main category
   const categoryTools = getToolsByMainCategory(allTools, decodedCategoryName);
   
-  console.log(`📊 CORRECTED MainCategoryPage "${decodedCategoryName}":`, {
+  console.log(`📊 MainCategoryPage "${decodedCategoryName}":`, {
     originalCachedTools: categoryTools.length,
     categoryFilteredTools: filteredToolsByCategory.length,
     searchTerm: searchTerm || 'none',
@@ -64,19 +65,43 @@ const MainCategoryPage = () => {
     ? searchTools(toolsToShow, searchTerm)
     : toolsToShow;
 
-  // CORRECTED: When we run out of filtered tools, continue with tools from the entire database
-  const finalFilteredTools = baseFilteredTools.length < displayedCount && baseFilteredTools.length > 0
-    ? [...baseFilteredTools, ...allTools.filter(tool => 
+  // ENDLESS FLOW: Create infinite list by cycling through all tools when category tools are exhausted
+  const createEndlessToolsList = () => {
+    if (searchTerm.trim()) {
+      // For search, just return search results
+      return baseFilteredTools;
+    }
+    
+    // Start with category-specific tools
+    let endlessTools = [...baseFilteredTools];
+    
+    // Calculate how many additional tools we need to fill the displayed count
+    const remainingCount = displayedCount - baseFilteredTools.length;
+    
+    if (remainingCount > 0) {
+      // Get tools from entire database that aren't already in the category
+      const additionalTools = allTools.filter(tool => 
         !baseFilteredTools.some(filteredTool => filteredTool.title === tool.title)
-      ).slice(0, displayedCount - baseFilteredTools.length)]
-    : baseFilteredTools.length === 0 && displayedCount > 0
-      ? allTools.slice(0, displayedCount)
-      : baseFilteredTools;
+      );
+      
+      // If we need more tools than available additional tools, cycle through them
+      if (remainingCount > additionalTools.length) {
+        const cycles = Math.ceil(remainingCount / additionalTools.length);
+        for (let i = 0; i < cycles; i++) {
+          endlessTools = [...endlessTools, ...additionalTools];
+        }
+      } else {
+        endlessTools = [...endlessTools, ...additionalTools.slice(0, remainingCount)];
+      }
+    }
+    
+    return endlessTools;
+  };
 
-  // Create displayed tool list that shows tools up to displayedCount
+  const finalFilteredTools = createEndlessToolsList();
   const displayedTools = finalFilteredTools.slice(0, displayedCount);
 
-  // Reset displayed count when the base filtered tools change, but keep a reference to avoid constant resets
+  // Reset displayed count when the base filtered tools change
   const [lastFilteredToolsLength, setLastFilteredToolsLength] = useState(0);
   useEffect(() => {
     if (baseFilteredTools.length !== lastFilteredToolsLength) {
@@ -88,14 +113,13 @@ const MainCategoryPage = () => {
   const handleLoadMore = () => {
     if (isLoading) return;
     
-    console.log(`🚀 CORRECTED Loading more tools in ${decodedCategoryName}... Current: ${displayedCount}, Available: ${finalFilteredTools.length}`);
+    console.log(`🚀 Loading more tools in ${decodedCategoryName}... Current: ${displayedCount}`);
     setIsLoading(true);
     
-    // Use setTimeout to show loading state briefly, then load more tools
     setTimeout(() => {
       setDisplayedCount(prev => {
         const newCount = prev + 48;
-        console.log(`✅ CORRECTED Updated displayedCount from ${prev} to ${newCount}`);
+        console.log(`✅ Updated displayedCount from ${prev} to ${newCount}`);
         return newCount;
       });
       setIsLoading(false);
@@ -104,26 +128,24 @@ const MainCategoryPage = () => {
 
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
-    // displayedCount will be reset by the useEffect above when baseFilteredTools changes
   };
 
   const handleFilteredToolsChange = (filtered: Tool[]) => {
-    console.log(`🎯 CORRECTED Category filter changed: ${filtered.length} tools (priority ordered)`);
+    console.log(`🎯 Category filter changed: ${filtered.length} tools (priority ordered)`);
     setFilteredToolsByCategory(filtered);
-    // displayedCount will be reset by the useEffect above when baseFilteredTools changes
   };
 
-  const hasMoreTools = displayedCount < Math.max(finalFilteredTools.length, allTools.length);
+  // Always show as having more tools for endless scroll (except for search)
+  const hasMoreTools = searchTerm.trim() ? displayedCount < baseFilteredTools.length : true;
 
-  console.log(`🔍 CORRECTED Final tool display logic:`, {
+  console.log(`🔍 Final tool display logic:`, {
     baseFilteredToolsLength: baseFilteredTools.length,
     finalFilteredToolsLength: finalFilteredTools.length,
     displayedToolsLength: displayedTools.length,
     displayedCount,
     hasMoreTools,
     isLoading,
-    isPriorityOrdered: filteredToolsByCategory.length > categoryTools.length,
-    expectedCategoryCount: categoryTools.length
+    searchActive: !!searchTerm.trim()
   });
 
   return (
@@ -151,7 +173,7 @@ const MainCategoryPage = () => {
             </p>
           </div>
 
-          {/* Main Search Bar - Enhanced with Auto-Scroll */}
+          {/* Main Search Bar */}
           <div className="max-w-2xl mx-auto mb-8">
             <h3 className="text-xl font-bold text-white mb-4 text-center">
               🔍 Search {decodedCategoryName}
@@ -170,27 +192,27 @@ const MainCategoryPage = () => {
             currentMainCategory={decodedCategoryName}
           />
 
-          {/* CORRECTED Tools Count - Show EXACT count that matches card display */}
+          {/* Tools Count Display */}
           <div className="text-center mb-8">
             <div className="text-cyan-400 font-semibold">
               {searchTerm 
-                ? `${baseFilteredTools.length} tools found` 
+                ? `${baseFilteredTools.length} tools found for "${searchTerm}"` 
                 : filteredToolsByCategory.length > categoryTools.length
                   ? `${baseFilteredTools.length} tools available - filtered categories shown first`
-                  : `Showing ${displayedTools.length} of ${categoryTools.length} tools in ${decodedCategoryName}`
+                  : `Showing ${displayedTools.length}+ tools in ${decodedCategoryName}`
               }
-              {displayedTools.length > baseFilteredTools.length && (
-                <span className="text-cyan-300"> + additional recommendations</span>
+              {!searchTerm && displayedTools.length > baseFilteredTools.length && (
+                <span className="text-cyan-300"> + recommendations from our entire database</span>
               )}
             </div>
-            {!searchTerm && hasMoreTools && (
+            {!searchTerm && (
               <div className="text-gray-400 text-sm mt-1">
-                {categoryTools.length} total tools in category - scroll down for more!
+                {categoryTools.length} category-specific tools + endless recommendations - keep scrolling!
               </div>
             )}
           </div>
 
-          {/* CORRECTED Tools Grid - with infinite scroll enabled for ALL categories */}
+          {/* Tools Grid with Infinite Scroll */}
           <div id="tools-section">
             {displayedTools.length > 0 ? (
               <ToolsGrid
@@ -223,26 +245,19 @@ const MainCategoryPage = () => {
             )}
           </div>
 
-          {/* Backup Show More Button - only visible if infinite scroll fails */}
-          {!searchTerm && hasMoreTools && !isLoading && (
+          {/* Backup Show More Button - only for search results when they have an end */}
+          {searchTerm && hasMoreTools && !isLoading && (
             <div className="text-center mt-12 mb-8">
               <Button
                 onClick={handleLoadMore}
                 size="lg"
                 className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-6 py-3 rounded-xl text-sm sm:text-base shadow-lg hover:shadow-cyan-500/25 transition-all duration-200 transform hover:scale-105"
               >
-                🚀 Show More Tools
+                🚀 Show More Search Results
               </Button>
-              <div className="mt-4 text-cyan-300 text-sm">
-                Showing {displayedTools.length} of {categoryTools.length} tools in {decodedCategoryName}
-                {displayedTools.length > baseFilteredTools.length && " (including recommendations)"}
-                {filteredToolsByCategory.length > categoryTools.length && " (filtered categories prioritized)"}
-              </div>
             </div>
           )}
         </main>
-
-        {/* REMOVED: Featured Tools Section - per user request */}
         
         <Footer />
       </div>

@@ -45,7 +45,10 @@ const ToolsGrid = memo(({
     const displayTools = tools.slice(0, displayedCount);
     const shouldShowSimilar = shouldShowSimilarTools(tools.length) && !searchTerm;
     const similarTools = shouldShowSimilar ? getContextAwareSimilarTools(tools, searchTerm, selectedCategory) : [];
-    const hasMoreTools = displayedCount < tools.length;
+    
+    // For endless scroll on category pages (not search), always show as having more
+    const hasMoreTools = searchTerm ? displayedCount < tools.length : selectedCategory ? true : displayedCount < tools.length;
+    
     const categoriesWithCounts = getStandardizedCategoriesWithCounts();
     const shouldShowCategoriesButton = tools.length < 15 && !selectedCategory && !searchTerm;
     
@@ -64,7 +67,7 @@ const ToolsGrid = memo(({
     isLoading,
     showLoadMoreButton: false, // Always use infinite scroll when enabled
     displayedCount,
-    totalTools: tools.length,
+    totalTools: searchTerm ? tools.length : Number.MAX_SAFE_INTEGER, // Endless for categories
     onLoadMore,
     searchTerm,
     selectedCategory,
@@ -108,10 +111,9 @@ const ToolsGrid = memo(({
               {tools.length > displayTools.length && " - scroll down for more results!"}
             </p>
           )}
-          {selectedCategory && (
+          {selectedCategory && !searchTerm && (
             <p className="text-gray-300 text-sm">
-              Showing {displayTools.length} of {tools.length} tools in {selectedCategory}
-              {tools.length > displayTools.length && " - scroll down for more tools!"}
+              Exploring {selectedCategory} - endless AI tools await! Keep scrolling for more discoveries.
             </p>
           )}
         </div>
@@ -182,31 +184,34 @@ const ToolsGrid = memo(({
           <div className="flex items-center justify-center space-x-3">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-500"></div>
             <span className="text-cyan-200 text-lg">
-              {searchTerm ? `Loading more search results...` : selectedCategory ? `Loading more ${selectedCategory} tools...` : `Loading more amazing AI tools...`}
+              {searchTerm ? `Loading more search results...` : selectedCategory ? `Loading more amazing AI tools...` : `Loading more amazing AI tools...`}
             </span>
           </div>
         </div>
       )}
 
-      {/* Show completion message when all tools are displayed */}
-      {hasInfiniteScroll && !hasMoreTools && !isLoading && tools.length > 15 && (
+      {/* Show completion message only for search results that have ended */}
+      {hasInfiniteScroll && !hasMoreTools && !isLoading && searchTerm && tools.length > 15 && (
         <div className="text-center mt-12 py-8 text-cyan-300">
-          <div className="text-2xl mb-2">🎉</div>
+          <div className="text-2xl mb-2">🔍</div>
           <div className="text-lg font-semibold mb-2">
-            {searchTerm 
-              ? `You've seen all ${tools.length} tools matching "${searchTerm}"!`
-              : selectedCategory 
-                ? `You've explored all ${tools.length} tools in ${selectedCategory}!`
-                : `You've explored all ${tools.length} amazing AI tools!`
-            }
+            You've seen all {tools.length} tools matching "{searchTerm}"!
           </div>
           <div className="text-sm opacity-80">
-            {searchTerm 
-              ? "Try a different search term to discover more tools."
-              : selectedCategory 
-                ? "Try exploring other categories to discover more tools."
-                : "Try searching or filtering by category to discover specific tools."
-            }
+            Try a different search term to discover more tools.
+          </div>
+        </div>
+      )}
+
+      {/* Endless scroll message for categories (no completion message) */}
+      {hasInfiniteScroll && selectedCategory && !searchTerm && displayTools.length > 50 && (
+        <div className="text-center mt-12 py-8 text-cyan-300">
+          <div className="text-2xl mb-2">🌟</div>
+          <div className="text-lg font-semibold mb-2">
+            Keep exploring! We have endless AI tools for you to discover.
+          </div>
+          <div className="text-sm opacity-80">
+            The adventure continues as you scroll...
           </div>
         </div>
       )}
