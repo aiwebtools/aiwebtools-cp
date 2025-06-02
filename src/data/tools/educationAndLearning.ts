@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   BookOpen, 
@@ -114,7 +115,7 @@ export const educationAndLearning: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-683dc2a086948191b1714340631f2012-language-tutor-ai",
     tags: ["language learning", "AI tutoring", "grammar", "vocabulary"],
-    category: "Education & Learning",
+    category: "Educational & Research",
     rating: 4.4,
     totalVotes: 2876
   },
@@ -126,7 +127,7 @@ export const educationAndLearning: Tool[] = [
     color: "from-yellow-500 to-green-600",
     directUrl: "https://chatgpt.com/g/g-683dc3e1898481918c41e1d6007d7a76-homework-helper-bot",
     tags: ["homework help", "study guide", "AI assistance", "education"],
-    category: "Education & Learning",
+    category: "Educational & Research",
     rating: 4.3,
     totalVotes: 2543
   },
