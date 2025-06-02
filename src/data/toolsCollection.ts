@@ -112,10 +112,7 @@ import { designAssistantTools } from './tools/designAssistantTools';
 import { comprehensiveAITools } from './tools/comprehensiveAITools';
 
 // Import the new specialized GPTs from AI Web Tools
-import { newSpecializedGPTs } from './tools/newSpecializedGPTs';
-
-// Import writing and content tools to be recategorized as OTHER
-import { writingAndContent } from './tools/writingAndContent';
+import { newSpecializedGPTs } from './tools/aiWebTools/newSpecializedGPTs';
 
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
@@ -128,8 +125,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...contentCreationTools,
     ...aiToolsAndDevelopment,
     ...specializedTools,
-    // Include writingAndContent tools with OTHER category
-    ...writingAndContent.map(tool => ({ ...tool, category: "OTHER" })),
+    // CONSOLIDATED: Use only contentCreationAndWritingTools (no more writingAndContent)
     ...imageAndDesign,
     ...businessAndProductivity,
     ...specializedAndNiche,
@@ -167,8 +163,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...advancedChatPlatforms,
     ...developerAndCodingTools,
     ...contentDetectionTools,
-    // Update content creation and writing tools to be OTHER category
-    ...contentCreationAndWritingTools.map(tool => ({ ...tool, category: "OTHER" })),
+    ...contentCreationAndWritingTools,
     ...documentAndResearchTools,
     ...designAndGraphicsTools,
     ...resumeAndCareerTools,

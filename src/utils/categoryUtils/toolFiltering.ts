@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -60,14 +61,17 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
     return imageDesignTools;
   }
   
-  // OTHER category filtering - get all tools that should be in OTHER
-  if (categoryName === "OTHER") {
-    const otherTools = tools.filter(tool => {
+  // CONSOLIDATED: Writing & Content Creation category (handles both old categories)
+  if (categoryName === "WRITING & CONTENT CREATION" || 
+      categoryName === "Writing & Content Creation" ||
+      categoryName === "Content Creation & Writing Tools" ||
+      categoryName === "Writing & Content Enhancement" ||
+      categoryName === "Content Creation Tools") {
+    const writingTools = tools.filter(tool => {
       if (!tool.category) return false;
       
-      // Include all writing and content related categories
-      const otherCategories = [
-        "OTHER",
+      // Match all writing and content related categories
+      const writingCategories = [
         "Content Creation & Writing Tools",
         "Writing & Content Creation", 
         "Writing & Content Enhancement",
@@ -76,33 +80,13 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
         "Creative Writing Tools",
         "Grammar And Writing Assistants",
         "AI Writing Tools",
-        "Content Creation And Writing Tools",
-        "Writing Tools",
-        "Content Tools",
-        "Blog Writing",
-        "Article Writing",
-        "Script Writing",
-        "Book Writing",
-        "Story Writing",
-        "Poetry Writing",
-        "Technical Writing",
-        "Academic Writing",
-        "Business Writing",
-        "Marketing Content",
-        "Social Media Content",
-        "Email Writing",
-        "Copywriting",
-        "Content Strategy",
-        "Content Planning",
-        "Editorial Tools",
-        "Publishing Tools",
-        "Content Management"
+        "Content Creation And Writing Tools"
       ];
       
-      return otherCategories.some(cat => isSimilarCategory(tool.category!, cat));
+      return writingCategories.some(cat => isSimilarCategory(tool.category!, cat));
     });
-    console.log(`📝 OTHER FILTER: Found ${otherTools.length} tools for OTHER category`);
-    return otherTools;
+    console.log(`✍️ CONSOLIDATED WRITING FILTER: Found ${writingTools.length} writing & content tools`);
+    return writingTools;
   }
   
   // Special handling for Data & Analytics category
@@ -165,13 +149,12 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
       const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
       toolCount = creativeTools.length;
       console.log(`🎭 REFINED ${mainCat.name}: ${toolCount} tools (refined creative detection)`);
-    } else if (mainCat.name === "OTHER") {
-      // Count all tools that should be in OTHER category
-      const otherTools = tools.filter(tool => {
+    } else if (mainCat.name === "WRITING & CONTENT CREATION") {
+      // CONSOLIDATED: Count all writing and content tools together
+      const writingTools = tools.filter(tool => {
         if (!tool.category) return false;
         
-        const otherCategories = [
-          "OTHER",
+        const writingCategories = [
           "Content Creation & Writing Tools",
           "Writing & Content Creation", 
           "Writing & Content Enhancement",
@@ -180,33 +163,13 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
           "Creative Writing Tools",
           "Grammar And Writing Assistants",
           "AI Writing Tools",
-          "Content Creation And Writing Tools",
-          "Writing Tools",
-          "Content Tools",
-          "Blog Writing",
-          "Article Writing",
-          "Script Writing",
-          "Book Writing",
-          "Story Writing",
-          "Poetry Writing",
-          "Technical Writing",
-          "Academic Writing",
-          "Business Writing",
-          "Marketing Content",
-          "Social Media Content",
-          "Email Writing",
-          "Copywriting",
-          "Content Strategy",
-          "Content Planning",
-          "Editorial Tools",
-          "Publishing Tools",
-          "Content Management"
+          "Content Creation And Writing Tools"
         ];
         
-        return otherCategories.some(cat => isSimilarCategory(tool.category!, cat));
+        return writingCategories.some(cat => isSimilarCategory(tool.category!, cat));
       });
-      toolCount = otherTools.length;
-      console.log(`📝 ${mainCat.name}: ${toolCount} tools (other category detection)`);
+      toolCount = writingTools.length;
+      console.log(`✍️ CONSOLIDATED ${mainCat.name}: ${toolCount} tools (consolidated writing detection)`);
     } else {
       // Build cache if needed and get cached results
       buildToolsCache(tools);
@@ -241,13 +204,12 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     return videoTools;
   }
   
-  // OTHER category handling
-  if (mainCategoryName === "OTHER") {
-    const otherTools = tools.filter(tool => {
+  // CONSOLIDATED handling for Writing & Content Creation
+  if (mainCategoryName === "WRITING & CONTENT CREATION") {
+    const writingTools = tools.filter(tool => {
       if (!tool.category) return false;
       
-      const otherCategories = [
-        "OTHER",
+      const writingCategories = [
         "Content Creation & Writing Tools",
         "Writing & Content Creation", 
         "Writing & Content Enhancement",
@@ -256,38 +218,18 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
         "Creative Writing Tools",
         "Grammar And Writing Assistants",
         "AI Writing Tools",
-        "Content Creation And Writing Tools",
-        "Writing Tools",
-        "Content Tools",
-        "Blog Writing",
-        "Article Writing",
-        "Script Writing",
-        "Book Writing",
-        "Story Writing",
-        "Poetry Writing",
-        "Technical Writing",
-        "Academic Writing",
-        "Business Writing",
-        "Marketing Content",
-        "Social Media Content",
-        "Email Writing",
-        "Copywriting",
-        "Content Strategy",
-        "Content Planning",
-        "Editorial Tools",
-        "Publishing Tools",
-        "Content Management"
+        "Content Creation And Writing Tools"
       ];
       
-      return otherCategories.some(cat => isSimilarCategory(tool.category!, cat));
+      return writingCategories.some(cat => isSimilarCategory(tool.category!, cat));
     });
-    console.log(`📝 OTHER COUNT: Found ${otherTools.length} tools for OTHER category`);
+    console.log(`✍️ CONSOLIDATED COUNT: Found ${writingTools.length} writing & content tools`);
     
-    // Enhanced debug logging for OTHER
-    const otherTitles = otherTools.slice(0, 15).map(t => `${t.title} (${t.category})`);
-    console.log(`📝 Sample OTHER Tools:`, otherTitles);
+    // Enhanced debug logging for Writing & Content
+    const writingTitles = writingTools.slice(0, 15).map(t => `${t.title} (${t.category})`);
+    console.log(`✍️ CONSOLIDATED Sample Writing Tools:`, writingTitles);
     
-    return otherTools;
+    return writingTools;
   }
   
   // REFINED handling for Health, Wellness & Personal Lifestyle
@@ -325,3 +267,4 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   console.log(`⚠️ No cached tools found for main category: "${mainCategoryName}"`);
   return [];
 };
+
