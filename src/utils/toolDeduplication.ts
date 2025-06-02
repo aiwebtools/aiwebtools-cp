@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 
 /**
@@ -41,44 +42,22 @@ export const createDeduplicatedToolsList = (tools: Tool[], maxDistance: number =
 };
 
 /**
- * MUCH MORE CONSERVATIVE deduplication - only remove EXACT duplicates with same URL
+ * Remove exact duplicates from a list of tools
  */
 export const deduplicateTools = (tools: Tool[]): Tool[] => {
   const seen = new Set<string>();
   const deduplicated: Tool[] = [];
   
-  console.log(`🔍 CONSERVATIVE deduplication starting with ${tools.length} tools`);
-  
   for (const tool of tools) {
-    // Create a more specific key that includes URL to avoid removing different tools with same name
-    const titleKey = tool.title.toLowerCase().trim();
-    const urlKey = tool.directUrl?.toLowerCase().trim() || 'no-url';
-    const categoryKey = tool.category?.toLowerCase().trim() || 'uncategorized';
+    const key = `${tool.title.toLowerCase().trim()}-${tool.category?.toLowerCase().trim() || 'uncategorized'}`;
     
-    // Only consider it a duplicate if BOTH title AND URL are the same
-    const duplicateKey = `${titleKey}|${urlKey}`;
-    
-    // NEVER remove AI Web Tools GPTs - they are unique even if titles are similar
-    const isAIWebToolsGPT = tool.directUrl?.includes('lovable.app') || 
-                           tool.directUrl?.includes('chatgpt.com/g/') ||
-                           tool.description?.toLowerCase().includes('aiwebtools') ||
-                           tool.title.toLowerCase().includes('gpt');
-    
-    if (isAIWebToolsGPT) {
-      // Always keep AI Web Tools GPTs
+    if (!seen.has(key)) {
+      seen.add(key);
       deduplicated.push(tool);
-      console.log(`✅ PRESERVED AI Web Tools GPT: "${tool.title}"`);
-    } else if (!seen.has(duplicateKey)) {
-      seen.add(duplicateKey);
-      deduplicated.push(tool);
-    } else {
-      console.log(`🗑️ REMOVED exact duplicate: "${tool.title}" (${tool.directUrl})`);
     }
   }
   
-  console.log(`🔍 Conservative deduplication removed ${tools.length - deduplicated.length} exact duplicates`);
-  console.log(`✅ Preserved ${deduplicated.length} unique tools`);
-  
+  console.log(`🗑️ Removed ${tools.length - deduplicated.length} exact duplicates`);
   return deduplicated;
 };
 
