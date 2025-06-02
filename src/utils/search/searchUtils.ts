@@ -8,10 +8,11 @@ import { matchAppBuilding, scoreAppBuilding } from "./matching/appBuildingMatchi
 
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
+    console.log("🔍 Empty search term, returning all tools");
     return tools;
   }
 
-  console.log(`🔍 Enhanced search for: "${searchTerm}"`);
+  console.log(`🔍 Enhanced search for: "${searchTerm}" across ${tools.length} tools`);
   
   const expandedKeywords = getExpandedKeywords(searchTerm);
   console.log(`📝 Expanded keywords:`, expandedKeywords);
@@ -27,6 +28,8 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     }
     return acc;
   }, [] as Tool[]);
+  
+  console.log(`🔧 Searching through ${uniqueTools.length} unique tools`);
   
   const results = uniqueTools.map(tool => {
     let score = 0;
@@ -87,6 +90,18 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     if (tool.category?.toLowerCase() === lowerSearchTerm) {
       matched = true;
       score += 2000;
+    }
+    
+    // Category contains search term
+    if (tool.category?.toLowerCase().includes(lowerSearchTerm)) {
+      matched = true;
+      score += 1500;
+    }
+    
+    // Description contains search term
+    if (tool.description.toLowerCase().includes(lowerSearchTerm)) {
+      matched = true;
+      score += 1000;
     }
     
     // Search through expanded keywords
@@ -153,7 +168,28 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   .sort((a, b) => b.score - a.score)
   .map(result => result.tool);
 
-  console.log(`✅ Enhanced search found ${results.length} results`);
+  console.log(`✅ Enhanced search found ${results.length} results for "${searchTerm}"`);
+  
+  // Enhanced debugging for college/education searches
+  if (lowerSearchTerm.includes('college') || lowerSearchTerm.includes('education') || lowerSearchTerm.includes('learn')) {
+    const educationResults = results.filter(tool => 
+      tool.title.toLowerCase().includes('college') || 
+      tool.title.toLowerCase().includes('education') || 
+      tool.title.toLowerCase().includes('learn') ||
+      tool.category?.toLowerCase().includes('education') ||
+      tool.description.toLowerCase().includes('education') ||
+      tool.description.toLowerCase().includes('college') ||
+      tool.description.toLowerCase().includes('learning')
+    ).slice(0, 10);
+    
+    console.log(`📚 Education/College search results (${educationResults.length}):`, educationResults.map(t => ({
+      title: t.title,
+      category: t.category,
+      hasEducationInDesc: t.description.toLowerCase().includes('education'),
+      hasCollegeInDesc: t.description.toLowerCase().includes('college'),
+      hasLearningInDesc: t.description.toLowerCase().includes('learning')
+    })));
+  }
   
   // Log app building results for debugging
   if (lowerSearchTerm.includes('build app') || lowerSearchTerm.includes('bolt') || lowerSearchTerm.includes('lovable') || lowerSearchTerm.includes('cursor')) {

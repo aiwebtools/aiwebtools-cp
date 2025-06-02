@@ -18,23 +18,24 @@ interface SearchBarProps {
 const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }: SearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchResults, setSearchResults] = useState<Tool[]>([]);
-  const [displayedCount, setDisplayedCount] = useState(50); // Start with 50 results
+  const [displayedCount, setDisplayedCount] = useState(50);
   const toolStats = getCurrentToolCount();
 
   const handleSearchChange = (value: string) => {
-    console.log("Tools search - handleSearchChange called with:", value);
+    console.log("🔍 SearchBar - handleSearchChange called with:", value);
+    console.log("🔍 SearchBar - Total tools available for search:", allTools.length);
     onSearchChange(value);
     
     if (value.trim()) {
-      console.log("Tools search - searching tools with term:", value);
-      const results = searchTools(allTools, value); // Get ALL results, no slice limit
-      console.log("Tools search - search results:", results.length, "total results");
+      console.log("🔍 SearchBar - Performing search for:", value);
+      const results = searchTools(allTools, value);
+      console.log("🔍 SearchBar - Search results count:", results.length);
+      console.log("🔍 SearchBar - First 5 results:", results.slice(0, 5).map(t => t.title));
       setSearchResults(results);
-      setDisplayedCount(50); // Reset display count
+      setDisplayedCount(50);
       setIsOpen(true);
-      console.log("Tools search - isOpen set to true");
     } else {
-      console.log("Tools search - clearing results");
+      console.log("🔍 SearchBar - Clearing search results");
       setSearchResults([]);
       setIsOpen(false);
       setDisplayedCount(50);
@@ -58,14 +59,12 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
   };
 
   const handleInputBlur = () => {
-    // Delay closing to allow clicks on results
     setTimeout(() => setIsOpen(false), 200);
   };
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
-    // Load more when user scrolls near the bottom (within 100px)
     if (scrollHeight - scrollTop <= clientHeight + 100 && displayedCount < searchResults.length) {
       console.log(`🔄 SearchBar infinite scroll triggered - Loading more results... Current: ${displayedCount}, Total: ${searchResults.length}`);
       setDisplayedCount(prev => Math.min(prev + 30, searchResults.length));
@@ -74,7 +73,12 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
 
   const displayedResults = searchResults.slice(0, displayedCount);
 
-  console.log("Tools search - rendering, isOpen:", isOpen, "searchResults.length:", searchResults.length, "displayedCount:", displayedCount);
+  console.log("🔍 SearchBar - Rendering with:", {
+    isOpen,
+    searchResultsLength: searchResults.length,
+    displayedCount,
+    toolsAvailable: allTools.length
+  });
 
   return (
     <TooltipProvider>
@@ -98,7 +102,6 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
           {searchTerm ? `${searchResults.length} found` : `${toolStats.marketing} Tools`}
         </div>
 
-        {/* Search Results Dropdown with Infinite Scroll */}
         {isOpen && searchResults.length > 0 && (
           <div 
             className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" 

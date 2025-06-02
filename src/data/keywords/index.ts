@@ -23,6 +23,16 @@ export const keywordMapping: Record<string, string[]> = {
   ...searchMetaKeywords,
   ...aiWebToolsKeywords,
   
+  // Enhanced Education keywords - FIXED FOR COLLEGE SEARCH
+  "college": ["education", "university", "degree", "learning", "academic", "student", "course", "school", "higher education", "college degree gpt", "learn any course", "homeschool", "educational", "study", "curriculum", "teaching"],
+  "university": ["college", "education", "degree", "learning", "academic", "student", "higher education", "course", "school"],
+  "education": ["learning", "teaching", "academic", "college", "university", "school", "student", "course", "tutorial", "educational", "study", "curriculum"],
+  "learning": ["education", "teaching", "study", "course", "tutorial", "academic", "college", "university", "school", "learn any course", "learn any skill"],
+  "degree": ["college", "university", "education", "academic", "bachelor", "master", "phd", "diploma", "certification", "college degree gpt"],
+  "student": ["education", "learning", "college", "university", "school", "academic", "study", "course"],
+  "school": ["education", "learning", "college", "university", "academic", "student", "teaching", "homeschool"],
+  "homeschool": ["education", "learning", "teaching", "school", "student", "curriculum", "homeschooling assistant gpt"],
+  
   // Enhanced App Building and Development Keywords - HIGHEST PRIORITY
   "build app": ["lovable.dev", "lovable", "bolt.new", "cursor", "app builder", "web app builder", "application builder", "ai web builder", "no-code", "low-code", "web development", "app development", "react builder", "build web app", "create app", "make app", "develop app"],
   "build web app": ["lovable.dev", "lovable", "bolt.new", "cursor", "web app builder", "build app", "web development", "react builder", "ai web builder", "no-code", "create web app"],
@@ -114,6 +124,12 @@ export const keywordMapping: Record<string, string[]> = {
 
 // Enhanced search synonyms for better matching
 export const searchSynonyms: Record<string, string[]> = {
+  "college": ["university", "education", "degree", "learning", "academic", "school", "higher education", "college degree gpt"],
+  "university": ["college", "education", "degree", "learning", "academic", "higher education"],
+  "education": ["learning", "teaching", "academic", "college", "university", "school", "educational"],
+  "learning": ["education", "teaching", "study", "course", "tutorial", "academic", "learn any course", "learn any skill"],
+  "degree": ["college", "university", "education", "academic", "diploma", "certification", "college degree gpt"],
+  
   "build app": ["app builder", "create app", "make app", "develop app", "lovable.dev", "bolt.new", "cursor", "web app builder"],
   "build web app": ["web app builder", "build app", "create web app", "lovable.dev", "bolt.new", "web development"],
   "app builder": ["build app", "web app builder", "lovable.dev", "bolt.new", "cursor", "no-code", "application builder"],
@@ -149,6 +165,7 @@ export const searchSynonyms: Record<string, string[]> = {
 
 // Category-specific keywords for better categorization
 export const categoryKeywords: Record<string, string[]> = {
+  "Education & Research Tools": ["college", "university", "education", "learning", "teaching", "academic", "school", "student", "degree", "course", "tutorial", "educational", "study", "curriculum", "homeschool", "college degree gpt", "learn any course", "learn any skill"],
   "Development & Coding Tools": ["build app", "app builder", "web app builder", "lovable.dev", "bolt.new", "cursor", "no-code", "low-code", "web development", "app development", "code", "programming", "coding", "development", "ai coding", "code assistant", "react builder", "ai web builder"],
   "Audio & Voice Tools": ["sound", "audio", "voice", "speech", "music", "tts", "text to speech", "suno", "udio", "eleven labs", "murf", "speechify", "voice generation", "audio generation", "music generation", "ai music", "voice ai", "audio ai", "sound effects", "voice cloning", "speech synthesis", "podcast", "music video", "audio production", "sound design", "call agents", "voice agents", "phone agents", "ai agents", "call center", "inbound calls", "outbound calls", "nucleus", "voice communication", "phone systems", "customer service AI", "nucleus ai", "phone automation", "voice ai"],
   "Content Creation & Writing Tools": ["write a book", "book writing", "novel creation", "storytelling", "book writer gpt", "creative writing", "author tools", "manuscript", "write", "writing", "content", "text", "article", "blog", "copywriting", "content creation"],
