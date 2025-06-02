@@ -33,10 +33,13 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
     return tools.filter(tool => isAIWebToolsGPT(tool));
   }
   
-  // FIXED: Special handling for Image & Design category
-  if (categoryName === "IMAGE & DESIGN AI TOOLS" || categoryName === "Image & Design" || categoryName === "Image & Design Tools") {
+  // FIXED: Unified handling for Image & Design category - use ONLY ONE standardized name
+  if (categoryName === "IMAGE & DESIGN AI TOOLS" || 
+      categoryName === "Image & Design" || 
+      categoryName === "Image & Design Tools" ||
+      categoryName === "Image & Design AI Tools") {
     const imageDesignTools = getImageAndDesignTools(tools, categoryName);
-    console.log(`🎨 FIXED: Found ${imageDesignTools.length} actual Image & Design tools`);
+    console.log(`🎨 FIXED: Found ${imageDesignTools.length} actual Image & Design tools (excluded video/entertainment)`);
     return imageDesignTools;
   }
   

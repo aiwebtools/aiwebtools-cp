@@ -8,6 +8,26 @@ export const getImageAndDesignTools = (tools: Tool[], categoryName: string): Too
     const lowerDescription = tool.description.toLowerCase();
     const lowerCategory = tool.category?.toLowerCase() || '';
     
+    // EXCLUDE video/entertainment tools FIRST (HIGHEST EXCLUSION PRIORITY)
+    const isVideoEntertainmentTool = 
+      lowerTitle.includes('movie maker studio') ||
+      lowerTitle.includes('music video maker') ||
+      lowerTitle.includes('stagemaster') ||
+      lowerTitle.includes('video maker') ||
+      lowerTitle.includes('music video') ||
+      lowerTitle.includes('stage master') ||
+      lowerTitle.includes('performing arts') ||
+      (lowerTitle.includes('video') && !lowerTitle.includes('image')) ||
+      (lowerTitle.includes('music') && !lowerTitle.includes('design')) ||
+      lowerTitle.includes('movie') ||
+      lowerTitle.includes('film');
+    
+    // If it's a video/entertainment tool, exclude it completely from Image & Design
+    if (isVideoEntertainmentTool) {
+      console.log(`❌ EXCLUDING video/entertainment tool: ${tool.title}`);
+      return false;
+    }
+    
     // Core image generation and design tools (HIGHEST PRIORITY)
     const isCoreImageTool = 
       lowerTitle.includes('image generator') ||
@@ -36,19 +56,9 @@ export const getImageAndDesignTools = (tools: Tool[], categoryName: string): Too
     // Category-based inclusion for actual image/design categories
     const isCategoryMatch = 
       lowerCategory.includes('image') ||
-      (lowerCategory.includes('design') && !lowerCategory.includes('creative')) ||
+      lowerCategory.includes('design') ||
       lowerCategory.includes('photo') ||
       lowerCategory.includes('graphic');
-    
-    // Video/Entertainment tools (LOWEST PRIORITY - reluctant inclusion)
-    const isVideoEntertainmentTool = 
-      lowerTitle.includes('movie maker studio') ||
-      lowerTitle.includes('music video maker') ||
-      lowerTitle.includes('stagemaster') ||
-      lowerTitle.includes('video') ||
-      lowerTitle.includes('music') ||
-      lowerTitle.includes('stage') ||
-      lowerTitle.includes('performing');
     
     // Include core image tools first, then pure design tools, then category matches
     if (isCoreImageTool || isPureDesignTool || isCategoryMatch) {
@@ -56,16 +66,10 @@ export const getImageAndDesignTools = (tools: Tool[], categoryName: string): Too
       return true;
     }
     
-    // Only include video/entertainment tools if they have some design elements BUT rank them very low
-    if (isVideoEntertainmentTool && (lowerDescription.includes('design') || lowerCategory.includes('design'))) {
-      console.log(`⬇️ Including video/entertainment tool with design elements (low priority): ${tool.title}`);
-      return true;
-    }
-    
     return false;
   });
 
-  // Intelligent sorting with strict priority levels to push video tools down
+  // Strict priority sorting - pure image tools first, video tools completely excluded
   return imageDesignTools.sort((a, b) => {
     const aTitle = a.title.toLowerCase();
     const bTitle = b.title.toLowerCase();
@@ -115,17 +119,6 @@ export const getImageAndDesignTools = (tools: Tool[], categoryName: string): Too
     
     if (aIsOtherDesign && !bIsOtherDesign) return -1;
     if (!aIsOtherDesign && bIsOtherDesign) return 1;
-    
-    // Priority Level 5: Video/Entertainment Tools (ABSOLUTE LOWEST PRIORITY)
-    const aIsVideo = aTitle.includes('movie') || aTitle.includes('music video') || 
-                    aTitle.includes('stage') || aTitle.includes('video') || aTitle.includes('music') ||
-                    aTitle.includes('movie maker studio') || aTitle.includes('stagemaster');
-    const bIsVideo = bTitle.includes('movie') || bTitle.includes('music video') || 
-                    bTitle.includes('stage') || bTitle.includes('video') || bTitle.includes('music') ||
-                    bTitle.includes('movie maker studio') || bTitle.includes('stagemaster');
-    
-    if (aIsVideo && !bIsVideo) return 1; // video tools go to bottom
-    if (!aIsVideo && bIsVideo) return -1; // non-video tools go to top
     
     // Within same priority level, sort by rating then alphabetically
     const ratingDiff = (b.rating || 0) - (a.rating || 0);
