@@ -8,7 +8,38 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   // Add the original search term
   expandedKeywords.add(lowerSearchTerm);
   
-  // AGENTS SEARCH EXPANSION - HIGHEST PRIORITY
+  // PHONE/CALL AGENT SEARCH EXPANSION - HIGHEST PRIORITY
+  if (lowerSearchTerm.includes('phone') || lowerSearchTerm.includes('call') || 
+      lowerSearchTerm.includes('telephone') || lowerSearchTerm.includes('voice agent') ||
+      lowerSearchTerm.includes('phone agent') || lowerSearchTerm.includes('call agent') ||
+      lowerSearchTerm.includes('phonecall')) {
+    const phoneAgentKeywords = [
+      'nucleus ai inbound call agents platform',
+      'nucleus',
+      'call agent',
+      'phone agent',
+      'voice agent',
+      'ai agent',
+      'call center',
+      'inbound calls',
+      'outbound calls',
+      'phone system',
+      'voice communication',
+      'call automation',
+      'phone automation',
+      'telephone agent',
+      'voice assistant',
+      'call handling',
+      'phone support',
+      'customer service',
+      'call management',
+      'voice ai'
+    ];
+    
+    phoneAgentKeywords.forEach(keyword => expandedKeywords.add(keyword));
+  }
+  
+  // AGENTS SEARCH EXPANSION - HIGH PRIORITY
   if (lowerSearchTerm.includes('agent') || lowerSearchTerm === 'agents') {
     // Add specific agent tool names
     const agentKeywords = [
@@ -16,6 +47,8 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
       'manus autonomous agent',
       'surf.new web agents',
       'lindy ai automation',
+      'nucleus ai inbound call agents platform',
+      'nucleus',
       'auto-gpt',
       'babyagi',
       'agentgpt',
@@ -30,7 +63,10 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
       'web automation',
       'browser automation',
       'ai workflow',
-      'ai automation platform'
+      'ai automation platform',
+      'call agent',
+      'phone agent',
+      'voice agent'
     ];
     
     agentKeywords.forEach(keyword => expandedKeywords.add(keyword));
@@ -184,6 +220,23 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
     expandedKeywords.add('ai agent');
     expandedKeywords.add('autonomous agent');
     expandedKeywords.add('intelligent agent');
+    expandedKeywords.add('call agent');
+    expandedKeywords.add('phone agent');
+    expandedKeywords.add('voice agent');
+  }
+  
+  // Add common variations for phone/call terms
+  if (lowerSearchTerm.includes('phone') || lowerSearchTerm.includes('call')) {
+    expandedKeywords.add('phone');
+    expandedKeywords.add('call');
+    expandedKeywords.add('voice');
+    expandedKeywords.add('telephone');
+    expandedKeywords.add('communication');
+    expandedKeywords.add('call agent');
+    expandedKeywords.add('phone agent');
+    expandedKeywords.add('voice agent');
+    expandedKeywords.add('nucleus');
+    expandedKeywords.add('call center');
   }
   
   // Convert back to array and remove empty strings

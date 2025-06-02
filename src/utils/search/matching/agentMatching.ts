@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 
 export const matchAgents = (tool: Tool, searchTerm: string): boolean => {
@@ -8,19 +9,24 @@ export const matchAgents = (tool: Tool, searchTerm: string): boolean => {
   const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
   
   if (lowerSearchTerm.includes('agent') || lowerSearchTerm === 'agents') {
-    // Priority AI agent tools
+    // Priority AI agent tools (including phone agents)
     const priorityAgents = [
       'chatgpt operator',
       'manus autonomous agent',
       'surf.new web agents',
       'lindy ai automation',
+      'nucleus ai inbound call agents platform',
+      'nucleus',
       'auto-gpt',
       'babyagi',
       'agentgpt',
       'ai town',
       'god mode gpt',
       'ai agents',
-      'autonomous agent'
+      'autonomous agent',
+      'call agent',
+      'phone agent',
+      'voice agent'
     ];
     
     if (priorityAgents.some(agent => lowerTitle.includes(agent))) {
@@ -48,9 +54,12 @@ export const scoreAgents = (tool: Tool, searchTerm: string): number => {
   let score = 0;
   
   if (lowerSearchTerm.includes('agent') || lowerSearchTerm === 'agents') {
-    // Top priority AI agent tools
+    // Top priority AI agent tools (including phone agents)
     if (lowerTitle.includes('chatgpt operator')) {
       score += 2000; // Highest priority
+    }
+    if (lowerTitle.includes('nucleus ai inbound call agents platform') || lowerTitle.includes('nucleus')) {
+      score += 1980; // High priority for phone agents
     }
     if (lowerTitle.includes('manus autonomous agent')) {
       score += 1950; // Second highest
@@ -77,6 +86,14 @@ export const scoreAgents = (tool: Tool, searchTerm: string): number => {
     }
     if (lowerTitle.includes('ai town')) {
       score += 1600;
+    }
+    
+    // Phone/call agent specific scoring
+    if (lowerTitle.includes('call agent') || lowerTitle.includes('phone agent')) {
+      score += 1900;
+    }
+    if (lowerTitle.includes('voice agent')) {
+      score += 1800;
     }
     
     // General agent matching
