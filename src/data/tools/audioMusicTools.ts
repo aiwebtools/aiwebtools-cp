@@ -5,11 +5,12 @@ import {
   Volume2, 
   Headphones, 
   Speaker, 
-  AudioWaveform,
+  Waveform,
   Play,
   Radio,
   Disc,
   VolumeX,
+  AudioWaveform,
   MicVocal
 } from "lucide-react";
 
@@ -111,7 +112,7 @@ export const audioMusicTools: Tool[] = [
     totalVotes: 3123
   },
   {
-    icon: AudioWaveform,
+    icon: Waveform,
     title: "Soundraw",
     description: "AI music generator that creates royalty-free background music for videos, podcasts, and games with customizable mood and genre.",
     emoji: "〰️",
