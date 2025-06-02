@@ -3,6 +3,31 @@ import { Tool } from "@/types/tools";
 
 export const advancedVideoTools: Tool[] = [
   {
+    icon: Sparkles,
+    title: "Google Flow (Veo 3) - PICTURE AND SOUND!",
+    description: "Google's next-generation video AI model featuring picture and sound generation capabilities. Advanced video creation with synchronized audio and enhanced visual quality.",
+    emoji: "🎵",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://labs.google/fx/tools/video-fx",
+    tags: ["Google Labs", "Veo 3", "picture and sound", "audio generation", "next-gen AI"],
+    category: "Advanced Video Tools",
+    rating: 4.9,
+    totalVotes: 9123
+  },
+  {
+    icon: Video,
+    title: "Movie Maker Studio AI Suite",
+    description: "We proudly present to you Movie Maker Studio which consists of every tool needed for Movie & Motion Picture Production. Consisting of Movie Scripter Writer, Movie Scene Maker, Movie Trailer Poster Maker & more.....we offer you the key and show you the door, unlock your creativity my fellow humans--KB",
+    emoji: "🎬",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://moviemakerstudio.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E&list=TLGGyT65jYe0o6cyODA1MjAyNQ&t",
+    tags: ["movie production", "video creation", "film making", "content creation", "AI studio"],
+    category: "Advanced Video Tools",
+    rating: 4.9,
+    totalVotes: 5678
+  },
+  {
     icon: Video,
     title: "SORA by OpenAI",
     description: "OpenAI's revolutionary text-to-video AI model that creates realistic and imaginative scenes from text instructions. Generate high-quality videos up to a minute long while maintaining visual quality and adherence to the user's prompt.",
@@ -97,31 +122,6 @@ export const advancedVideoTools: Tool[] = [
     category: "Advanced Video Tools",
     rating: 4.9,
     totalVotes: 8234
-  },
-  {
-    icon: Sparkles,
-    title: "Google Flow (Veo 3) - PICTURE AND SOUND!",
-    description: "Google's next-generation video AI model featuring picture and sound generation capabilities. Advanced video creation with synchronized audio and enhanced visual quality.",
-    emoji: "🎵",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://labs.google/fx/tools/video-fx",
-    tags: ["Google Labs", "Veo 3", "picture and sound", "audio generation", "next-gen AI"],
-    category: "Advanced Video Tools",
-    rating: 4.9,
-    totalVotes: 9123
-  },
-  {
-    icon: Video,
-    title: "Movie Maker Studio AI Suite",
-    description: "We proudly present to you Movie Maker Studio which consists of every tool needed for Movie & Motion Picture Production. Consisting of Movie Scripter Writer, Movie Scene Maker, Movie Trailer Poster Maker & more.....we offer you the key and show you the door, unlock your creativity my fellow humans--KB",
-    emoji: "🎬",
-    color: "from-red-500 to-pink-600",
-    directUrl: "https://moviemakerstudio.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E&list=TLGGyT65jYe0o6cyODA1MjAyNQ&t",
-    tags: ["movie production", "video creation", "film making", "content creation", "AI studio"],
-    category: "Advanced Video Tools",
-    rating: 4.9,
-    totalVotes: 5678
   },
   {
     icon: Video,
