@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 
 // Enhanced mapping with your new consolidated structure
@@ -133,7 +134,7 @@ const categoryMapping: Record<string, string> = {
   "Creative Services": "Creative & Entertainment (General & Gaming)",
   "Creative Suites": "Creative & Entertainment (General & Gaming)",
   
-  // Health, Wellness & Personal Lifestyle - UNIFIED MAPPING (ALL HEALTH CATEGORIES GO HERE)
+  // Health, Wellness & Personal Lifestyle - CRITICAL MAPPING FOR ALL HEALTH VARIATIONS
   "Health & Wellness": "Health, Wellness & Personal Lifestyle",
   "Health, Wellness & Personal Lifestyle": "Health, Wellness & Personal Lifestyle",
   "Healthcare Professionals": "Health, Wellness & Personal Lifestyle",
@@ -143,6 +144,17 @@ const categoryMapping: Record<string, string> = {
   "Personal Services": "Health, Wellness & Personal Lifestyle",
   "Wellness & Fitness": "Health, Wellness & Personal Lifestyle",
   "Lifestyle Tools": "Health, Wellness & Personal Lifestyle",
+  "Medical & Healthcare": "Health, Wellness & Personal Lifestyle",
+  "Healthcare & Medicine": "Health, Wellness & Personal Lifestyle",
+  "Health Tools": "Health, Wellness & Personal Lifestyle",
+  "Wellness Tools": "Health, Wellness & Personal Lifestyle",
+  "Medical Tools": "Health, Wellness & Personal Lifestyle",
+  "Health & Medical": "Health, Wellness & Personal Lifestyle",
+  "Healthcare": "Health, Wellness & Personal Lifestyle",
+  "Medicine": "Health, Wellness & Personal Lifestyle",
+  "Medical": "Health, Wellness & Personal Lifestyle",
+  "Wellness": "Health, Wellness & Personal Lifestyle",
+  "Health": "Health, Wellness & Personal Lifestyle",
   
   // Historical & Time-Based AI Tools - ENHANCED MAPPING
   "Time & History": "Historical & Time-Based AI Tools",

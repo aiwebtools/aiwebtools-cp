@@ -171,6 +171,66 @@ const isDataAnalyticsTool = (tool: Tool): boolean => {
   ) || isMajorLLM(tool); // Include major LLMs in data analytics
 };
 
+// Helper function to detect health-related tools - CRITICAL ENHANCED FUNCTION
+const isHealthRelatedTool = (tool: Tool): boolean => {
+  const healthKeywords = [
+    'health', 'medical', 'wellness', 'healthcare', 'medicine', 'doctor', 'physician',
+    'nurse', 'pharmacy', 'pharmaceutical', 'clinic', 'hospital', 'patient', 'therapy',
+    'treatment', 'diagnosis', 'mental health', 'dental', 'veterinary', 'fitness',
+    'nutrition', 'diet', 'exercise', 'lifestyle', 'personal care', 'skincare',
+    'cannabis', 'insurance claims', 'genome', 'pharma', 'drug', 'medication',
+    'marriage mender', 'mixologist', 'food quality', 'dr. gpt', 'personalized dr',
+    'skin care', 'dermatology', 'beauty advice', 'cosmetics', 'oral care', 'oral health'
+  ];
+  
+  const titleLower = tool.title.toLowerCase();
+  const descriptionLower = tool.description.toLowerCase();
+  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
+  const categoryLower = tool.category?.toLowerCase() || '';
+  
+  // Force specific health tools that might be miscategorized
+  const forceHealthTools = [
+    'mental wellness gpt',
+    'personalized dr. gpt',
+    'doctor gpt',
+    'veterinarian gpt',
+    'pharmaceutical assistant gpt',
+    'pharma research pro',
+    'genome gpt',
+    'marriage mender gpt',
+    'skin care gpt',
+    'skincare gpt',
+    'dental gpt',
+    'cannabis gpt',
+    'insurance claims gpt',
+    'food quality inspector gpt',
+    'mixologist gpt'
+  ];
+  
+  // Check if it's a forced health tool
+  const isForcedHealthTool = forceHealthTools.some(healthTool => 
+    titleLower.includes(healthTool) || titleLower === healthTool
+  );
+  
+  if (isForcedHealthTool) {
+    console.log(`🏥 FORCE: Detected health tool by name: ${tool.title}`);
+    return true;
+  }
+  
+  const isHealthByKeyword = healthKeywords.some(keyword => 
+    titleLower.includes(keyword) || 
+    descriptionLower.includes(keyword) || 
+    tagsLower.includes(keyword) ||
+    categoryLower.includes(keyword)
+  );
+  
+  if (isHealthByKeyword) {
+    console.log(`🏥 KEYWORD: Detected health tool: ${tool.title}`);
+  }
+  
+  return isHealthByKeyword;
+};
+
 // Build cache once for instant category filtering
 const buildToolsCache = (tools: Tool[]) => {
   // Force rebuild if cache exists but we need to refresh
@@ -204,6 +264,31 @@ const buildToolsCache = (tools: Tool[]) => {
     return isHealthTool;
   });
   
+  // CRITICAL: Also check for any tools with old health categories and force them
+  const forceHealthCategoryUpdate = tools.filter(tool => {
+    const hasOldHealthCategory = tool.category === "Health & Wellness" || 
+                                 tool.category === "Healthcare Professionals" ||
+                                 tool.category === "Medical AI Tools" ||
+                                 tool.category?.toLowerCase().includes('health') ||
+                                 tool.category?.toLowerCase().includes('medical') ||
+                                 tool.category?.toLowerCase().includes('wellness');
+    
+    if (hasOldHealthCategory && tool.category !== "Health, Wellness & Personal Lifestyle") {
+      console.log(`🔄 FORCE CATEGORY UPDATE: ${tool.title} from "${tool.category}" to "Health, Wellness & Personal Lifestyle"`);
+      tool.category = "Health, Wellness & Personal Lifestyle";
+      return true;
+    }
+    return false;
+  });
+  
+  // Combine health tools from both detection methods
+  const allHealthTools = [...healthRelatedTools];
+  forceHealthCategoryUpdate.forEach(tool => {
+    if (!allHealthTools.find(t => t.title === tool.title)) {
+      allHealthTools.push(tool);
+    }
+  });
+  
   // Pre-process STRICTLY historical tools (excluding education tools and major LLMs)
   const strictHistoricalTools = tools.filter(tool => isStrictlyHistoricalTimeRelatedTool(tool));
   
@@ -223,7 +308,8 @@ const buildToolsCache = (tools: Tool[]) => {
   console.log(`🕰️ Strict historical tools found: ${strictHistoricalTools.length}`);
   console.log(`✍️ Content creation tools found: ${contentCreationTools.length}`);
   console.log(`📊 Data analytics tools found: ${dataAnalyticsTools.length}`);
-  console.log(`🏥 UNIFIED Health tools found: ${healthRelatedTools.length}`);
+  console.log(`🏥 UNIFIED Health tools found: ${allHealthTools.length}`);
+  console.log(`🔄 Forced health category updates: ${forceHealthCategoryUpdate.length}`);
   
   mainCategories.forEach(mainCat => {
     let categoryTools: Tool[] = [];
@@ -301,8 +387,8 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
-      // CRITICAL: ONLY ONE UNIFIED HEALTH CATEGORY - NO EXCEPTIONS
-      categoryTools = [...healthRelatedTools]; // Use ONLY the pre-processed health tools
+      // CRITICAL: ONLY ONE UNIFIED HEALTH CATEGORY - USE ALL HEALTH TOOLS
+      categoryTools = [...allHealthTools]; // Use ALL the pre-processed health tools
       
       console.log(`🏥 FINAL UNIFIED Health category tools: ${categoryTools.length}`);
       console.log(`📝 Sample health tools: ${categoryTools.slice(0, 5).map(t => t.title).join(', ')}`);
@@ -400,30 +486,6 @@ const isAIChatAssistantTool = (tool: Tool): boolean => {
     tagsLower.includes(keyword) ||
     categoryLower.includes(keyword)
   ) || isMajorLLM(tool); // Include major LLMs in chat category
-};
-
-// Helper function to detect health-related tools - MOST CRITICAL FUNCTION
-const isHealthRelatedTool = (tool: Tool): boolean => {
-  const healthKeywords = [
-    'health', 'medical', 'wellness', 'healthcare', 'medicine', 'doctor', 'physician',
-    'nurse', 'pharmacy', 'pharmaceutical', 'clinic', 'hospital', 'patient', 'therapy',
-    'treatment', 'diagnosis', 'mental health', 'dental', 'veterinary', 'fitness',
-    'nutrition', 'diet', 'exercise', 'lifestyle', 'personal care', 'skincare',
-    'cannabis', 'insurance claims', 'genome', 'pharma', 'drug', 'medication',
-    'marriage mender', 'mixologist', 'food quality', 'dr. gpt', 'personalized dr'
-  ];
-  
-  const titleLower = tool.title.toLowerCase();
-  const descriptionLower = tool.description.toLowerCase();
-  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
-  const categoryLower = tool.category?.toLowerCase() || '';
-  
-  return healthKeywords.some(keyword => 
-    titleLower.includes(keyword) || 
-    descriptionLower.includes(keyword) || 
-    tagsLower.includes(keyword) ||
-    categoryLower.includes(keyword)
-  );
 };
 
 export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
