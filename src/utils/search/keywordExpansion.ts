@@ -1,13 +1,111 @@
 
 import { keywordMapping, searchSynonyms, categoryKeywords } from "@/data/keywords";
 
+// Typo correction mapping for common misspellings
+const typoCorrection: Record<string, string> = {
+  "sciece": "science",
+  "sciene": "science",
+  "sience": "science",
+  "scince": "science",
+  "resarch": "research",
+  "reserch": "research",
+  "reasearch": "research",
+  "laboratry": "laboratory",
+  "laboraty": "laboratory",
+  "expirement": "experiment",
+  "experimnt": "experiment",
+  "anlaysis": "analysis",
+  "anaylsis": "analysis",
+  "analysys": "analysis",
+  "genom": "genome",
+  "genme": "genome",
+  "dna": "dna",
+  "rna": "rna",
+  "tesla": "tesla",
+  "einstien": "einstein",
+  "einsten": "einstein"
+};
+
 export const getExpandedKeywords = (searchTerm: string): string[] => {
-  const lowerSearchTerm = searchTerm.toLowerCase().trim();
+  let lowerSearchTerm = searchTerm.toLowerCase().trim();
+  
+  // Apply typo correction first
+  if (typoCorrection[lowerSearchTerm]) {
+    lowerSearchTerm = typoCorrection[lowerSearchTerm];
+  }
+  
   const expandedKeywords = new Set<string>();
   
-  // Add the original search term
+  // Add the original search term and corrected term
+  expandedKeywords.add(searchTerm.toLowerCase().trim());
   expandedKeywords.add(lowerSearchTerm);
   
+  // SCIENCE AND RESEARCH SEARCH EXPANSION - HIGHEST PRIORITY
+  if (lowerSearchTerm.includes('science') || lowerSearchTerm.includes('research') || 
+      lowerSearchTerm.includes('scientific') || lowerSearchTerm.includes('laboratory') ||
+      lowerSearchTerm.includes('experiment') || lowerSearchTerm.includes('analysis') ||
+      lowerSearchTerm.includes('genome') || lowerSearchTerm.includes('dna') ||
+      lowerSearchTerm.includes('tesla') || lowerSearchTerm.includes('einstein') ||
+      lowerSearchTerm.includes('space') || lowerSearchTerm.includes('astronomy') ||
+      lowerSearchTerm.includes('physics') || lowerSearchTerm.includes('chemistry') ||
+      lowerSearchTerm.includes('biology') || lowerSearchTerm.includes('genetics')) {
+    const scienceKeywords = [
+      'stellaris',
+      'space explorer',
+      'nikola tesla gpt',
+      'tesla',
+      'einstein',
+      'albert einstein gpt',
+      'alchemist scientist gpt',
+      'alchemy',
+      'genome gpt',
+      'genetics',
+      'dna',
+      'scientific research',
+      'research',
+      'laboratory',
+      'experiment',
+      'analysis',
+      'data analysis',
+      'space exploration',
+      'astronomy',
+      'physics',
+      'chemistry',
+      'biology',
+      'scientific',
+      'science',
+      'scientist',
+      'researcher',
+      'innovation',
+      'discovery',
+      'invention',
+      'technology',
+      'ai research',
+      'space science',
+      'exoplanet',
+      'terraforming',
+      'astrogation',
+      'genomics',
+      'genetic analysis',
+      'molecular',
+      'biochemistry',
+      'biotech',
+      'scientific methodology',
+      'hypothesis',
+      'theory',
+      'empirical',
+      'peer review',
+      'publication',
+      'journal',
+      'academic',
+      'university research',
+      'lab work',
+      'field study'
+    ];
+    
+    scienceKeywords.forEach(keyword => expandedKeywords.add(keyword));
+  }
+
   // SOUND AND AUDIO SEARCH EXPANSION - HIGHEST PRIORITY
   if (lowerSearchTerm.includes('sound') || lowerSearchTerm.includes('audio') || 
       lowerSearchTerm.includes('voice') || lowerSearchTerm.includes('speech') ||

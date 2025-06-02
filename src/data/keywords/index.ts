@@ -23,6 +23,25 @@ export const keywordMapping: Record<string, string[]> = {
   ...searchMetaKeywords,
   ...aiWebToolsKeywords,
   
+  // Enhanced Science and Research keywords - HIGHEST PRIORITY FOR SCIENCE SEARCH
+  "science": ["stellaris", "space explorer", "nikola tesla gpt", "albert einstein gpt", "alchemist scientist gpt", "genome gpt", "scientific research", "research", "laboratory", "experiment", "analysis", "space exploration", "astronomy", "physics", "chemistry", "biology", "genetics", "dna", "scientific", "scientist", "researcher", "innovation", "discovery", "invention", "technology", "ai research"],
+  "scientific": ["science", "research", "laboratory", "experiment", "analysis", "stellaris", "nikola tesla gpt", "albert einstein gpt", "alchemist scientist gpt", "genome gpt", "scientific research", "researcher", "scientist"],
+  "research": ["science", "scientific", "laboratory", "experiment", "analysis", "stellaris", "nikola tesla gpt", "albert einstein gpt", "alchemist scientist gpt", "genome gpt", "data analysis", "researcher", "research tools"],
+  "laboratory": ["science", "scientific", "research", "experiment", "analysis", "alchemist scientist gpt", "lab work", "testing", "experimentation"],
+  "experiment": ["science", "scientific", "research", "laboratory", "analysis", "alchemist scientist gpt", "testing", "hypothesis", "theory"],
+  "analysis": ["science", "scientific", "research", "laboratory", "experiment", "data analysis", "genome gpt", "statistical analysis", "analytical"],
+  "space": ["stellaris", "space explorer", "astronomy", "space exploration", "space science", "exoplanet", "terraforming", "astrogation", "cosmic", "universe"],
+  "astronomy": ["stellaris", "space explorer", "space", "space exploration", "telescope", "celestial", "cosmic", "universe", "planetary"],
+  "physics": ["nikola tesla gpt", "albert einstein gpt", "science", "scientific", "research", "quantum", "mechanics", "relativity", "energy", "matter"],
+  "chemistry": ["alchemist scientist gpt", "science", "scientific", "research", "laboratory", "experiment", "chemical", "molecular", "biochemistry"],
+  "biology": ["genome gpt", "science", "scientific", "research", "genetics", "dna", "biological", "life science", "biotech", "molecular biology"],
+  "genetics": ["genome gpt", "biology", "dna", "genetic analysis", "genomics", "heredity", "genes", "genetic research"],
+  "dna": ["genome gpt", "genetics", "biology", "genetic analysis", "genomics", "molecular", "nucleotide", "sequence"],
+  "tesla": ["nikola tesla gpt", "physics", "electricity", "invention", "innovation", "science", "scientific", "research", "electrical engineering"],
+  "einstein": ["albert einstein gpt", "physics", "relativity", "science", "scientific", "research", "theory", "quantum", "theoretical physics"],
+  "genome": ["genome gpt", "genetics", "dna", "biology", "genetic analysis", "genomics", "sequencing", "bioinformatics"],
+  "alchemy": ["alchemist scientist gpt", "chemistry", "medieval science", "transmutation", "laboratory", "experiment", "historical science"],
+  
   // Enhanced Education keywords - FIXED FOR COLLEGE SEARCH
   "college": ["education", "university", "degree", "learning", "academic", "student", "course", "school", "higher education", "college degree gpt", "learn any course", "homeschool", "educational", "study", "curriculum", "teaching"],
   "university": ["college", "education", "degree", "learning", "academic", "student", "higher education", "course", "school"],
@@ -124,6 +143,23 @@ export const keywordMapping: Record<string, string[]> = {
 
 // Enhanced search synonyms for better matching
 export const searchSynonyms: Record<string, string[]> = {
+  // Science and Research synonyms - NEW PRIORITY SECTION
+  "science": ["scientific", "research", "laboratory", "experiment", "analysis", "stellaris", "nikola tesla gpt", "albert einstein gpt", "alchemist scientist gpt", "genome gpt"],
+  "scientific": ["science", "research", "laboratory", "experiment", "analysis", "researcher", "scientist"],
+  "research": ["science", "scientific", "laboratory", "experiment", "analysis", "researcher", "study"],
+  "laboratory": ["lab", "science", "scientific", "research", "experiment"],
+  "experiment": ["experimental", "testing", "trial", "science", "scientific", "research"],
+  "analysis": ["analytical", "analyze", "examination", "study", "research"],
+  "space": ["stellaris", "space explorer", "astronomy", "cosmic", "universe", "planetary"],
+  "astronomy": ["astronomical", "space", "cosmic", "celestial", "planetary"],
+  "physics": ["physical", "quantum", "mechanics", "tesla", "einstein"],
+  "chemistry": ["chemical", "molecular", "alchemy", "biochemistry"],
+  "biology": ["biological", "genetics", "dna", "genome", "life science"],
+  "genetics": ["genetic", "dna", "genome", "heredity", "genomics"],
+  "dna": ["genetic", "genetics", "genome", "nucleotide", "molecular"],
+  "tesla": ["nikola tesla", "electricity", "electrical", "invention"],
+  "einstein": ["albert einstein", "relativity", "theoretical", "quantum"],
+  
   "college": ["university", "education", "degree", "learning", "academic", "school", "higher education", "college degree gpt"],
   "university": ["college", "education", "degree", "learning", "academic", "higher education"],
   "education": ["learning", "teaching", "academic", "college", "university", "school", "educational"],
@@ -165,6 +201,7 @@ export const searchSynonyms: Record<string, string[]> = {
 
 // Category-specific keywords for better categorization
 export const categoryKeywords: Record<string, string[]> = {
+  "Science & Research": ["science", "scientific", "research", "laboratory", "experiment", "analysis", "stellaris", "space explorer", "nikola tesla gpt", "albert einstein gpt", "alchemist scientist gpt", "genome gpt", "space exploration", "astronomy", "physics", "chemistry", "biology", "genetics", "dna", "tesla", "einstein", "alchemy", "scientist", "researcher", "innovation", "discovery", "invention"],
   "Education & Research Tools": ["college", "university", "education", "learning", "teaching", "academic", "school", "student", "degree", "course", "tutorial", "educational", "study", "curriculum", "homeschool", "college degree gpt", "learn any course", "learn any skill"],
   "Development & Coding Tools": ["build app", "app builder", "web app builder", "lovable.dev", "bolt.new", "cursor", "no-code", "low-code", "web development", "app development", "code", "programming", "coding", "development", "ai coding", "code assistant", "react builder", "ai web builder"],
   "Audio & Voice Tools": ["sound", "audio", "voice", "speech", "music", "tts", "text to speech", "suno", "udio", "eleven labs", "murf", "speechify", "voice generation", "audio generation", "music generation", "ai music", "voice ai", "audio ai", "sound effects", "voice cloning", "speech synthesis", "podcast", "music video", "audio production", "sound design", "call agents", "voice agents", "phone agents", "ai agents", "call center", "inbound calls", "outbound calls", "nucleus", "voice communication", "phone systems", "customer service AI", "nucleus ai", "phone automation", "voice ai"],
