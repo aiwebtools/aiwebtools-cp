@@ -1,110 +1,56 @@
 
 @layer base {
-  /* Divine cyberpunk glow effects with celestial enhancement */
+  /* Optimized cyberpunk glow effects */
   .cyber-glow {
-    text-shadow: 
-      0 0 10px currentColor, 
-      0 0 20px currentColor,
-      0 0 30px rgba(255, 215, 0, 0.8),
-      0 0 40px rgba(255, 255, 255, 0.6);
-    will-change: text-shadow;
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+    will-change: auto;
     contain: layout style paint;
-    animation: divine-text-glow 4s ease-in-out infinite alternate;
   }
 
-  @keyframes divine-text-glow {
-    0% {
-      text-shadow: 
-        0 0 10px currentColor, 
-        0 0 20px currentColor,
-        0 0 30px rgba(255, 215, 0, 0.8),
-        0 0 40px rgba(255, 255, 255, 0.6);
-    }
-    100% {
-      text-shadow: 
-        0 0 15px currentColor, 
-        0 0 30px currentColor,
-        0 0 45px rgba(255, 215, 0, 1),
-        0 0 60px rgba(255, 255, 255, 0.9),
-        0 0 75px rgba(0, 255, 255, 0.7);
-    }
-  }
-
-  /* Enhanced divine glowing text effect */
+  /* Enhanced glowing text effect for logo - optimized */
   .glow-text-effect {
     text-shadow: 
-      0 0 8px rgba(255, 215, 0, 1),
-      0 0 16px rgba(255, 215, 0, 0.8),
-      0 0 24px rgba(255, 215, 0, 0.6),
-      0 0 32px rgba(255, 255, 255, 0.8),
-      0 0 40px rgba(0, 255, 255, 0.6);
-    animation: divine-pulse 3s ease-in-out infinite alternate;
+      0 0 5px rgba(6, 182, 212, 0.8),
+      0 0 10px rgba(6, 182, 212, 0.6),
+      0 0 15px rgba(6, 182, 212, 0.4);
+    animation: glowing-pulse 3s ease-in-out infinite alternate;
     will-change: text-shadow;
   }
 
-  @keyframes divine-pulse {
-    0% {
+  @keyframes glowing-pulse {
+    from {
       text-shadow: 
-        0 0 8px rgba(255, 215, 0, 1),
-        0 0 16px rgba(255, 215, 0, 0.8),
-        0 0 24px rgba(255, 215, 0, 0.6),
-        0 0 32px rgba(255, 255, 255, 0.8),
-        0 0 40px rgba(0, 255, 255, 0.6);
+        0 0 5px rgba(6, 182, 212, 0.8),
+        0 0 10px rgba(6, 182, 212, 0.6),
+        0 0 15px rgba(6, 182, 212, 0.4);
     }
-    100% {
+    to {
       text-shadow: 
-        0 0 12px rgba(255, 215, 0, 1),
-        0 0 24px rgba(255, 215, 0, 1),
-        0 0 36px rgba(255, 215, 0, 0.9),
-        0 0 48px rgba(255, 255, 255, 1),
-        0 0 60px rgba(0, 255, 255, 0.9),
-        0 0 72px rgba(255, 0, 255, 0.7);
+        0 0 8px rgba(6, 182, 212, 1),
+        0 0 16px rgba(6, 182, 212, 0.8),
+        0 0 24px rgba(6, 182, 212, 0.6);
     }
   }
 
-  /* Divine interactive button with celestial effects */
+  /* Optimized button animations */
   .interactive-button {
-    @apply transition-all duration-300;
+    @apply transition-all duration-200;
     position: relative;
     overflow: hidden;
-    box-shadow: 
-      0 0 20px rgba(255, 215, 0, 0.5),
-      0 0 40px rgba(255, 255, 255, 0.3),
-      inset 0 0 20px rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
     will-change: transform, box-shadow;
     contain: layout style paint;
-    border: 2px solid transparent;
-    background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
-    animation: divine-button-glow 5s ease-in-out infinite alternate;
-  }
-
-  @keyframes divine-button-glow {
-    0% {
-      box-shadow: 
-        0 0 20px rgba(255, 215, 0, 0.5),
-        0 0 40px rgba(255, 255, 255, 0.3),
-        inset 0 0 20px rgba(0, 255, 255, 0.1);
-      border-color: rgba(255, 215, 0, 0.3);
-    }
-    100% {
-      box-shadow: 
-        0 0 30px rgba(255, 215, 0, 0.8),
-        0 0 60px rgba(255, 255, 255, 0.6),
-        0 0 90px rgba(0, 255, 255, 0.4),
-        inset 0 0 30px rgba(255, 0, 255, 0.2);
-      border-color: rgba(255, 215, 0, 0.6);
-    }
   }
 
   .interactive-button::before {
     content: '';
     position: absolute;
-    top: -2px;
+    top: 0;
     left: -100%;
     width: 100%;
-    height: calc(100% + 4px);
-    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), rgba(255, 255, 255, 0.6), rgba(0, 255, 255, 0.4), transparent);
-    transition: left 0.5s ease;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+    transition: left 0.3s ease;
     will-change: left;
   }
 
@@ -113,128 +59,92 @@
   }
 
   .interactive-button:hover {
-    transform: scale(1.05) translateY(-2px);
-    box-shadow: 
-      0 0 40px rgba(255, 215, 0, 0.9),
-      0 0 80px rgba(255, 255, 255, 0.7),
-      0 0 120px rgba(0, 255, 255, 0.5),
-      0 10px 30px rgba(0, 0, 0, 0.3);
-    border-color: rgba(255, 215, 0, 0.9);
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
   }
 
-  /* Divine glow effect with celestial radiance */
   .glow-effect {
-    box-shadow: 
-      0 0 20px rgba(255, 215, 0, 0.6),
-      0 0 40px rgba(255, 255, 255, 0.4),
-      0 0 60px rgba(0, 255, 255, 0.3);
-    animation: celestial-glow 4s ease-in-out infinite alternate;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    animation: pulse-glow 3s ease-in-out infinite alternate;
     will-change: box-shadow;
   }
 
-  @keyframes celestial-glow {
-    0% {
-      box-shadow: 
-        0 0 20px rgba(255, 215, 0, 0.6),
-        0 0 40px rgba(255, 255, 255, 0.4),
-        0 0 60px rgba(0, 255, 255, 0.3);
+  @keyframes pulse-glow {
+    from {
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
     }
-    100% {
-      box-shadow: 
-        0 0 30px rgba(255, 215, 0, 0.9),
-        0 0 60px rgba(255, 255, 255, 0.7),
-        0 0 90px rgba(0, 255, 255, 0.5),
-        0 0 120px rgba(255, 0, 255, 0.3);
+    to {
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
     }
   }
 
-  /* Divine loading skeleton with celestial shimmer */
-  @keyframes divine-skeleton-loading {
+  /* Optimized loading skeleton animation */
+  @keyframes skeleton-loading {
     0% {
-      background-position: -300px 0;
-      background: linear-gradient(90deg, 
-        #1a1a1a 25%, 
-        rgba(255, 215, 0, 0.3) 37%, 
-        rgba(255, 255, 255, 0.4) 45%, 
-        rgba(0, 255, 255, 0.3) 55%, 
-        #1a1a1a 75%);
+      background-position: -200px 0;
     }
     100% {
-      background-position: calc(300px + 100%) 0;
-      background: linear-gradient(90deg, 
-        #1a1a1a 25%, 
-        rgba(255, 215, 0, 0.3) 37%, 
-        rgba(255, 255, 255, 0.4) 45%, 
-        rgba(0, 255, 255, 0.3) 55%, 
-        #1a1a1a 75%);
+      background-position: calc(200px + 100%) 0;
     }
   }
 
   .skeleton {
-    background: linear-gradient(90deg, 
-      #1a1a1a 25%, 
-      rgba(255, 215, 0, 0.3) 37%, 
-      rgba(255, 255, 255, 0.4) 45%, 
-      rgba(0, 255, 255, 0.3) 55%, 
-      #1a1a1a 75%);
-    background-size: 300px 100%;
-    animation: divine-skeleton-loading 2s infinite;
+    background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+    background-size: 200px 100%;
+    animation: skeleton-loading 1.5s infinite;
     will-change: background-position;
   }
 
-  /* Mobile optimizations with divine touch */
+  /* Mobile optimizations */
   @media (max-width: 768px) {
     .cyber-glow {
-      text-shadow: 
-        0 0 8px currentColor,
-        0 0 16px rgba(255, 215, 0, 0.8);
+      text-shadow: 0 0 5px currentColor;
     }
     
     .glow-text-effect {
       animation-duration: 4s;
       text-shadow: 
-        0 0 6px rgba(255, 215, 0, 1),
-        0 0 12px rgba(255, 215, 0, 0.8),
-        0 0 18px rgba(255, 255, 255, 0.6);
+        0 0 3px rgba(6, 182, 212, 0.8),
+        0 0 6px rgba(6, 182, 212, 0.6);
     }
     
     .interactive-button {
-      transition-duration: 0.2s;
-    }
-    
-    .interactive-button:hover {
-      transform: scale(1.02) translateY(-1px);
-    }
-    
-    .glow-effect {
-      animation-duration: 5s;
-      box-shadow: 
-        0 0 15px rgba(255, 215, 0, 0.5),
-        0 0 30px rgba(255, 255, 255, 0.3);
-    }
-  }
-
-  /* Performance for divine experiences on all devices */
-  @media (max-width: 480px) {
-    .cyber-glow,
-    .glow-text-effect {
-      animation-duration: 6s;
-      text-shadow: 
-        0 0 5px currentColor,
-        0 0 10px rgba(255, 215, 0, 0.7);
-    }
-    
-    .glow-effect {
-      animation-duration: 7s;
-      box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
-    }
-    
-    .interactive-button {
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      transition-duration: 0.15s;
     }
     
     .interactive-button:hover {
       transform: scale(1.01);
+    }
+    
+    .glow-effect {
+      animation-duration: 4s;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    }
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .interactive-button:hover {
+      transform: scale(1.03);
+    }
+  }
+
+  /* Performance for low-end devices */
+  @media (max-width: 480px) {
+    .cyber-glow,
+    .glow-text-effect,
+    .glow-effect {
+      animation: none;
+      text-shadow: 0 0 3px currentColor;
+      box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+    }
+    
+    .interactive-button {
+      transition: background-color 0.2s ease;
+    }
+    
+    .interactive-button:hover {
+      transform: none;
     }
   }
 }
