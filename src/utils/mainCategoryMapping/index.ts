@@ -5,17 +5,21 @@ import { businessCategories } from "./businessCategories";
 import { creativeCategories } from "./creativeCategories";
 import { specializedCategories } from "./specializedCategories";
 import { healthAndWellnessCategories } from "./healthAndWellnessCategories";
+import { mediaCategories } from "./mediaCategories";
 
-// Combine all main categories with proper ordering - remove duplicate ALL AI TOOLS
+// Combine all main categories with proper ordering
 export const mainCategories: MainCategory[] = [
-  // Core AI categories - these already include ALL AI TOOLS
+  // Core AI categories first
   ...coreCategories,
   
-  // Business and productivity
-  ...businessCategories,
+  // Media and content creation
+  ...mediaCategories,
   
   // Creative and content
   ...creativeCategories,
+  
+  // Business and productivity
+  ...businessCategories,
   
   // Health and wellness
   ...healthAndWellnessCategories,
@@ -33,5 +37,6 @@ export {
   businessCategories, 
   creativeCategories, 
   healthAndWellnessCategories,
-  specializedCategories 
+  specializedCategories,
+  mediaCategories 
 };

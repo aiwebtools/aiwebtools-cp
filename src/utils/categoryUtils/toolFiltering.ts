@@ -29,33 +29,35 @@ export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
 };
 
 export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] => {
-  console.log(`🔍 ENHANCED FILTERING: Getting tools for category "${categoryName}" from ${tools.length} total tools`);
+  console.log(`🔍 REFINED FILTERING: Getting tools for category "${categoryName}" from ${tools.length} total tools`);
   
   // Special handling for AI Web Tools Originals category
   if (categoryName === "AI WEB TOOLS ORIGINALS" || categoryName === "AI Web Tools Originals") {
     return tools.filter(tool => isAIWebToolsGPT(tool));
   }
   
-  // ENHANCED: Video & Multimedia category with strict filtering
+  // REFINED: Video & Multimedia category with ultra-strict filtering
   if (categoryName === "VIDEO & MULTIMEDIA" || 
       categoryName === "Video Tools" || 
       categoryName === "Video & Content Tools" ||
       categoryName === "Advanced Video Tools" ||
       categoryName === "Video Generation Tools" ||
-      categoryName === "Video Editing Tools") {
+      categoryName === "Video Editing Tools" ||
+      categoryName === "Video Marketing Tools" ||
+      categoryName === "Video Business Tools") {
     const videoTools = tools.filter(tool => isVideoRelatedTool(tool));
-    console.log(`🎬 ENHANCED VIDEO FILTER: Found ${videoTools.length} actual video tools`);
+    console.log(`🎬 REFINED VIDEO FILTER: Found ${videoTools.length} actual video tools`);
     console.log(`🎬 Sample video tools:`, videoTools.slice(0, 10).map(t => `${t.title} (${t.category})`));
     return videoTools;
   }
   
-  // ENHANCED: Image & Design category with strict filtering
+  // REFINED: Image & Design category with strict filtering
   if (categoryName === "IMAGE & DESIGN AI TOOLS" || 
       categoryName === "Image & Design" || 
       categoryName === "Image & Design Tools" ||
       categoryName === "Image & Design AI Tools") {
     const imageDesignTools = getImageAndDesignTools(tools, categoryName);
-    console.log(`🎨 ENHANCED: Found ${imageDesignTools.length} actual Image & Design tools (excluded video/entertainment)`);
+    console.log(`🎨 REFINED: Found ${imageDesignTools.length} actual Image & Design tools`);
     return imageDesignTools;
   }
   
@@ -79,17 +81,17 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
     return getAutomationPlatformsTools(tools, categoryName);
   }
   
-  // ENHANCED handling for Health, Wellness & Personal Lifestyle category
+  // REFINED handling for Health, Wellness & Personal Lifestyle category
   if (categoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
     const healthTools = tools.filter(tool => isHealthAndWellnessTool(tool));
-    console.log(`🏥 ENHANCED HEALTH FILTER: Found ${healthTools.length} health & wellness tools`);
+    console.log(`🏥 REFINED HEALTH FILTER: Found ${healthTools.length} health & wellness tools`);
     return healthTools;
   }
   
-  // ENHANCED handling for Creative & Entertainment category
+  // REFINED handling for Creative & Entertainment category
   if (categoryName === "CREATIVE & ENTERTAINMENT") {
     const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
-    console.log(`🎭 ENHANCED CREATIVE FILTER: Found ${creativeTools.length} tools for Creative & Entertainment`);
+    console.log(`🎭 REFINED CREATIVE FILTER: Found ${creativeTools.length} tools for Creative & Entertainment`);
     console.log(`🎭 Sample creative tools:`, creativeTools.slice(0, 10).map(t => `${t.title} (${t.category})`));
     return creativeTools;
   }
@@ -99,26 +101,26 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
 };
 
 export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts => {
-  console.log(`🔢 ENHANCED COUNTING: Starting count calculation for ${tools.length} total tools`);
+  console.log(`🔢 REFINED COUNTING: Starting count calculation for ${tools.length} total tools`);
   
   const mainCategoryCounts: MainCategoryCounts = {};
   
-  // Calculate counts for each main category using ENHANCED detection
+  // Calculate counts for each main category using REFINED detection
   mainCategories.forEach(mainCat => {
     let toolCount = 0;
     
     if (mainCat.name === "VIDEO & MULTIMEDIA") {
       const videoTools = tools.filter(tool => isVideoRelatedTool(tool));
       toolCount = videoTools.length;
-      console.log(`🎬 ${mainCat.name}: ${toolCount} tools (enhanced video detection)`);
+      console.log(`🎬 ${mainCat.name}: ${toolCount} tools (refined video detection)`);
     } else if (mainCat.name === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
       const healthTools = tools.filter(tool => isHealthAndWellnessTool(tool));
       toolCount = healthTools.length;
-      console.log(`🏥 ${mainCat.name}: ${toolCount} tools (enhanced health detection)`);
+      console.log(`🏥 ${mainCat.name}: ${toolCount} tools (refined health detection)`);
     } else if (mainCat.name === "CREATIVE & ENTERTAINMENT") {
       const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
       toolCount = creativeTools.length;
-      console.log(`🎭 ENHANCED ${mainCat.name}: ${toolCount} tools (enhanced creative detection)`);
+      console.log(`🎭 REFINED ${mainCat.name}: ${toolCount} tools (refined creative detection)`);
     } else {
       // Build cache if needed and get cached results
       buildToolsCache(tools);
@@ -131,43 +133,43 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
     mainCategoryCounts[mainCat.name] = toolCount;
   });
   
-  // Enhanced verification
+  // Refined verification
   const totalCounted = Object.values(mainCategoryCounts).reduce((sum, count) => sum + count, 0);
-  console.log(`🎯 ENHANCED ACCURACY CHECK: ${totalCounted} tools counted across main categories vs ${tools.length} total tools`);
+  console.log(`🎯 REFINED ACCURACY CHECK: ${totalCounted} tools counted across main categories vs ${tools.length} total tools`);
   
   return mainCategoryCounts;
 };
 
 export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string): Tool[] => {
-  console.log(`🔍 ENHANCED RETRIEVAL: Getting tools for "${mainCategoryName}" from ${tools.length} total tools`);
+  console.log(`🔍 REFINED RETRIEVAL: Getting tools for "${mainCategoryName}" from ${tools.length} total tools`);
   
-  // ENHANCED handling for Video & Multimedia
+  // REFINED handling for Video & Multimedia
   if (mainCategoryName === "VIDEO & MULTIMEDIA") {
     const videoTools = tools.filter(tool => isVideoRelatedTool(tool));
-    console.log(`🎬 ENHANCED VIDEO COUNT: Found ${videoTools.length} video & multimedia tools`);
+    console.log(`🎬 REFINED VIDEO COUNT: Found ${videoTools.length} video & multimedia tools`);
     
     // Enhanced debug logging for Video & Multimedia
     const videoTitles = videoTools.slice(0, 15).map(t => `${t.title} (${t.category})`);
-    console.log(`🎬 ENHANCED Sample Video Tools:`, videoTitles);
+    console.log(`🎬 REFINED Sample Video Tools:`, videoTitles);
     
     return videoTools;
   }
   
-  // ENHANCED handling for Health, Wellness & Personal Lifestyle
+  // REFINED handling for Health, Wellness & Personal Lifestyle
   if (mainCategoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
     const healthTools = tools.filter(tool => isHealthAndWellnessTool(tool));
-    console.log(`🏥 ENHANCED COUNT: Found ${healthTools.length} health & wellness tools`);
+    console.log(`🏥 REFINED COUNT: Found ${healthTools.length} health & wellness tools`);
     return healthTools;
   }
   
-  // ENHANCED handling for Creative & Entertainment
+  // REFINED handling for Creative & Entertainment
   if (mainCategoryName === "CREATIVE & ENTERTAINMENT") {
     const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
-    console.log(`🎭 ENHANCED COUNT: Found ${creativeTools.length} creative & entertainment tools`);
+    console.log(`🎭 REFINED COUNT: Found ${creativeTools.length} creative & entertainment tools`);
     
     // Enhanced debug logging for Creative & Entertainment
     const creativeTitles = creativeTools.slice(0, 15).map(t => `${t.title} (${t.category})`);
-    console.log(`🎭 ENHANCED Sample Creative Tools:`, creativeTitles);
+    console.log(`🎭 REFINED Sample Creative Tools:`, creativeTitles);
     
     return creativeTools;
   }
@@ -181,7 +183,7 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   const cachedTools = toolsCacheByMainCategory.get(mainCategoryName);
   
   if (cachedTools) {
-    console.log(`⚡ ENHANCED CACHE: ${cachedTools.length} tools for "${mainCategoryName}"`);
+    console.log(`⚡ REFINED CACHE: ${cachedTools.length} tools for "${mainCategoryName}"`);
     return cachedTools;
   }
   
