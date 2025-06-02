@@ -14,6 +14,16 @@ export const seoConfig = {
     "aitools.studio",
     "ai web tools llc",
     
+    // High-volume search terms
+    "ChatGPT alternatives",
+    "AI assistants",
+    "AI chatbots",
+    "AI image generator",
+    "AI art generator",
+    "AI writing tools",
+    "AI video editor",
+    "AI content creator",
+    
     // Productivity and Business
     "productivity tools",
     "business AI",
@@ -23,6 +33,8 @@ export const seoConfig = {
     "business automation",
     "AI productivity suite",
     "workflow automation",
+    "AI marketing tools",
+    "AI sales tools",
     
     // Creative AI Tools
     "AI art generators",
@@ -32,7 +44,8 @@ export const seoConfig = {
     "creative AI tools",
     "AI design tools",
     "content creation AI",
-    "AI writing tools",
+    "AI photo editor",
+    "AI graphic design",
     
     // Development and Technical
     "AI development platform",
@@ -42,15 +55,16 @@ export const seoConfig = {
     "artificial intelligence software",
     "AI programming tools",
     "AI code generation",
+    "developer AI tools",
     
     // Popular AI Platforms
-    "ChatGPT alternatives",
-    "AI assistants",
-    "AI chatbots",
     "OpenAI tools",
     "GPT tools",
     "Claude AI",
     "Gemini AI",
+    "Midjourney alternative",
+    "Stable Diffusion tools",
+    "AI models",
     
     // Specific Use Cases
     "AI for education",
@@ -60,6 +74,7 @@ export const seoConfig = {
     "AI for video editing",
     "AI for data analysis",
     "AI for research",
+    "AI for social media",
     
     // Long-tail keywords
     "how to use AI tools",
@@ -69,7 +84,28 @@ export const seoConfig = {
     "AI tools guide",
     "professional AI tools",
     "AI tools for beginners",
-    "advanced AI tools"
+    "advanced AI tools",
+    "AI tools 2025",
+    "artificial intelligence directory",
+    
+    // Industry-specific
+    "AI for small business",
+    "AI for startups",
+    "AI for content creators",
+    "AI for designers",
+    "AI for developers",
+    "AI for marketers",
+    "AI for writers",
+    "AI for students",
+    
+    // Trending terms
+    "generative AI",
+    "machine learning",
+    "deep learning",
+    "neural networks",
+    "AI automation tools",
+    "AI workflow",
+    "AI assistant tools"
   ],
   author: "AI WEB TOOLS LLC",
   twitterHandle: "@aiwebtools",
@@ -408,6 +444,22 @@ export const generateFAQStructuredData = () => {
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Yes! We welcome suggestions for high-quality AI tools. You can contact us at Contact@ai-webtools.com with information about tools you'd like to see featured. We review all submissions to ensure they meet our quality standards."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What makes your AI tools directory different?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our directory features over 1000+ carefully curated AI tools across multiple categories. We provide detailed descriptions, ratings, and direct access to each tool. Our collection includes both free and premium options, with a focus on tools that enhance productivity, creativity, and business efficiency."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are these AI tools suitable for beginners?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! Our directory includes AI tools for all skill levels, from beginner-friendly options to advanced professional tools. Each tool listing includes information about ease of use, and we categorize tools to help you find options that match your experience level."
         }
       }
     ]

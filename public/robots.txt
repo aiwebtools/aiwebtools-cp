@@ -55,7 +55,23 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-# Block bad bots
+# AI and ML bots (important for AI tool discovery)
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Block aggressive crawlers that consume resources without value
 User-agent: AhrefsBot
 Disallow: /
 
@@ -68,8 +84,20 @@ Disallow: /
 User-agent: DotBot
 Disallow: /
 
+User-agent: SiteAuditBot
+Disallow: /
+
+User-agent: MegaIndex
+Disallow: /
+
+User-agent: ZoominfoBot
+Disallow: /
+
 # Sitemap location
 Sitemap: https://aitools.studio/sitemap.xml
 
 # Host preference
 Host: aitools.studio
+
+# Crawl delay for performance
+Crawl-delay: 1

@@ -8,16 +8,16 @@ export const generateEnhancedSitemap = () => {
   // Get unique categories from tools data
   const categories = Array.from(new Set(allTools.map(tool => tool.category).filter(Boolean)));
   
-  // Priority levels for different page types
+  // Priority levels for different page types (optimized for SEO)
   const priorities = {
     homepage: '1.0',
     category: '0.9',
     popularTool: '0.8',
     tool: '0.7',
-    search: '0.6'
+    search: '0.8'  // Increased priority for search pages
   };
   
-  // Change frequencies
+  // Change frequencies optimized for search engines
   const changeFreqs = {
     homepage: 'daily',
     category: 'weekly',
@@ -33,7 +33,7 @@ export const generateEnhancedSitemap = () => {
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 `;
 
-  // Homepage
+  // Homepage with enhanced multilingual support
   sitemap += `  <url>
     <loc>${baseUrl}</loc>
     <lastmod>${currentDate}</lastmod>
@@ -57,7 +57,7 @@ export const generateEnhancedSitemap = () => {
 `;
   });
 
-  // Individual tool pages with image and video data
+  // Individual tool pages with enhanced metadata
   allTools.forEach((tool, index) => {
     const toolUrl = `${baseUrl}/tool/${index}`;
     const isPopular = tool.rating && parseFloat(tool.rating.toString()) > 4.5;
@@ -75,7 +75,7 @@ export const generateEnhancedSitemap = () => {
     if (tool.imageUrl) {
       sitemap += `    <image:image>
       <image:loc>${tool.imageUrl}</image:loc>
-      <image:title>${tool.title}</image:title>
+      <image:title>${tool.title} - AI Tool</image:title>
       <image:caption>${tool.description}</image:caption>
     </image:image>
 `;
@@ -85,12 +85,13 @@ export const generateEnhancedSitemap = () => {
     if (tool.videoUrl) {
       sitemap += `    <video:video>
       <video:thumbnail_loc>${tool.imageUrl || `${baseUrl}/placeholder.svg`}</video:thumbnail_loc>
-      <video:title>${tool.title} Demo</video:title>
-      <video:description>${tool.description}</video:description>
+      <video:title>${tool.title} Demo - AI Tool Tutorial</video:title>
+      <video:description>Learn how to use ${tool.title} - ${tool.description}</video:description>
       <video:content_loc>${tool.videoUrl}</video:content_loc>
       <video:category>${tool.category}</video:category>
-      <video:tag>${tool.tags?.join(', ') || tool.category}</video:tag>
+      <video:tag>AI tool, ${tool.tags?.join(', ') || tool.category}, artificial intelligence</video:tag>
       <video:family_friendly>yes</video:family_friendly>
+      <video:duration>300</video:duration>
     </video:video>
 `;
     }
@@ -99,20 +100,57 @@ export const generateEnhancedSitemap = () => {
 `;
   });
 
-  // Add search pages for popular keywords
-  const popularSearchTerms = [
-    'ai tools', 'chatgpt', 'image generation', 'video editing', 'writing assistant',
-    'business automation', 'creative ai', 'productivity tools', 'free ai tools',
-    'ai art generator', 'ai music', 'ai coding', 'ai design', 'ai analysis'
+  // Enhanced search pages for high-volume AI keywords
+  const highVolumeSearchTerms = [
+    // Core AI terms
+    'ai tools', 'artificial intelligence', 'chatgpt', 'ai assistant', 'ai chatbot',
+    'ai image generator', 'ai art generator', 'ai writing tools', 'ai video editor',
+    
+    // Productivity terms
+    'productivity tools', 'business automation', 'workflow automation', 'ai for business',
+    
+    // Creative terms
+    'image generation', 'video editing', 'content creation', 'graphic design',
+    'ai music', 'ai art', 'creative ai tools', 'ai design tools',
+    
+    // Professional categories
+    'ai for marketing', 'ai for writing', 'ai for education', 'ai for healthcare',
+    'ai for sales', 'ai for developers', 'ai for startups',
+    
+    // Popular platforms
+    'openai tools', 'gpt tools', 'claude ai', 'midjourney alternative',
+    'stable diffusion', 'ai models', 'machine learning tools',
+    
+    // Intent-based searches
+    'free ai tools', 'best ai tools', 'ai tools 2025', 'how to use ai',
+    'ai comparison', 'ai alternatives', 'professional ai tools'
   ];
 
-  popularSearchTerms.forEach(term => {
+  highVolumeSearchTerms.forEach(term => {
     const searchUrl = `${baseUrl}/?search=${encodeURIComponent(term)}`;
     sitemap += `  <url>
     <loc>${searchUrl}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>${changeFreqs.search}</changefreq>
     <priority>${priorities.search}</priority>
+  </url>
+`;
+  });
+
+  // Add main category pages for better organization
+  const mainCategories = [
+    'AI Assistants', 'Image Generation', 'Writing & Content', 'Video Tools', 
+    'Audio & Music', 'Business & Productivity', 'Education & Learning', 
+    'Creative Services', 'Developer Tools', 'Healthcare', 'Marketing Tools'
+  ];
+
+  mainCategories.forEach(category => {
+    const categoryUrl = `${baseUrl}/main-category/${encodeURIComponent(category)}`;
+    sitemap += `  <url>
+    <loc>${categoryUrl}</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 `;
   });
@@ -178,7 +216,7 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-# AI and ML bots
+# AI and ML bots (for AI tool discovery)
 User-agent: GPTBot
 Allow: /
 
@@ -188,7 +226,13 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-# Block aggressive crawlers
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Block aggressive crawlers that don't add value
 User-agent: AhrefsBot
 Disallow: /
 
@@ -204,6 +248,12 @@ Disallow: /
 User-agent: SiteAuditBot
 Disallow: /
 
+User-agent: MegaIndex
+Disallow: /
+
+User-agent: ZoominfoBot
+Disallow: /
+
 # Sitemap location
 Sitemap: https://aitools.studio/sitemap.xml
 
@@ -212,4 +262,14 @@ Host: aitools.studio
 
 # Crawl delay for aggressive bots
 Crawl-delay: 1`;
+};
+
+// Generate performance-optimized robots.txt
+export const generateOptimizedRobotsTxt = () => {
+  return generateRobotsTxt();
+};
+
+// Generate comprehensive sitemap for better indexing
+export const generateComprehensiveSitemap = () => {
+  return generateEnhancedSitemap();
 };
