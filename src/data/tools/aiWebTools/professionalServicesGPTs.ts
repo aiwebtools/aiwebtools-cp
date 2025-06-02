@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Briefcase, 
@@ -13,6 +12,18 @@ import {
 } from "lucide-react";
 
 export const professionalServicesGPTs: Tool[] = [
+  {
+    icon: Shield,
+    title: "Hacker Defender Cybersecurity Expert",
+    description: "Advanced cybersecurity protection and hacking defense system designed to safeguard infrastructure from cyber threats. Provides expert-level security analysis, threat detection, vulnerability assessment, and defensive strategies to protect against malicious attacks and unauthorized access attempts.",
+    emoji: "🛡️",
+    color: "from-red-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-Qvat03gmj-hacking-defender-infrastructure-protector-gpt",
+    tags: ["cybersecurity", "hacking defense", "infrastructure protection", "threat detection", "security analysis", "vulnerability assessment"],
+    category: "Professional Services",
+    rating: 4.8,
+    totalVotes: 4567
+  },
   {
     icon: Wrench,
     title: "IT SUPPORT GPT",
