@@ -17,6 +17,32 @@ import {
 
 export const audioAndVoiceTools: Tool[] = [
   {
+    icon: Music,
+    title: "Suno AI Music Generator",
+    description: "Create complete songs with vocals and instruments using AI. Generate music in any style, from pop to classical, with professional quality output and custom lyrics.",
+    emoji: "🎵",
+    color: "from-purple-500 to-pink-600",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377364206441070592/image.png?ex=6838b1e1&is=68376061&hm=4872d401aedf46706d1213c2a93ce9ca260725cec15f98b2186eb25746fda56f&",
+    directUrl: "https://suno.com/?via=aiwebtools",
+    tags: ["music generation", "ai music", "song creation", "vocals", "instruments", "suno", "music ai", "audio production"],
+    category: "Audio & Voice Tools",
+    rating: 4.9,
+    totalVotes: 8765
+  },
+  {
+    icon: Music,
+    title: "UDIO AI Music Generator",
+    description: "Advanced AI music creation platform for generating high-quality music tracks. Create songs with vocals, instruments, and professional mixing using cutting-edge AI technology.",
+    emoji: "🎼",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://www.udio.com/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377364206441070592/image.png?ex=6838b1e1&is=68376061&hm=4872d401aedf46706d1213c2a93ce9ca260725cec15f98b2186eb25746fda56f&",
+    tags: ["music generation", "ai music", "song creation", "vocals", "instruments", "audio production", "music ai", "udio"],
+    category: "Audio & Voice Tools",
+    rating: 4.8,
+    totalVotes: 6543
+  },
+  {
     icon: Mic,
     title: "Nucleus AI Inbound Call Agents Platform",
     description: "Revolutionary AI-powered inbound call agents that handle customer service, sales calls, and support with human-like conversation abilities. Advanced phone automation platform for businesses.",
@@ -28,6 +54,19 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Communication & Entertainment",
     rating: 4.9,
     totalVotes: 6789
+  },
+  {
+    icon: Mic,
+    title: "Music Video Maker AI Studio",
+    description: "Transform yourself into the star of cinematic-quality music videos with our cutting-edge AI director. Build scene-by-scene visuals where you and even your band are featured in vivid, realistic scenes tied to your music.",
+    emoji: "🎬",
+    color: "from-purple-500 to-pink-600",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-dynamic-product-advertisement-showcase_TiaF.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
+    tags: ["music video", "ai director", "video creation", "music production", "cinematic", "video maker"],
+    category: "Video & Animation Tools",
+    rating: 4.7,
+    totalVotes: 3245
   },
   {
     icon: Mic,
@@ -56,18 +95,6 @@ export const audioAndVoiceTools: Tool[] = [
     totalVotes: 1654
   },
   {
-    icon: Mic,
-    title: "ElevenLabs",
-    description: "Advanced AI voice generation platform with realistic speech synthesis. Create custom voices, clone voices, and generate speech in multiple languages.",
-    emoji: "🎤",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://elevenlabs.io/?via=aiwebtools",
-    tags: ["voice generation", "speech synthesis", "voice cloning", "multilingual", "realistic"],
-    category: "Audio & Voice Tools",
-    rating: 4.8,
-    totalVotes: 4567
-  },
-  {
     icon: Speaker,
     title: "Murf AI",
     description: "AI voice generator for creating professional voiceovers. Transform text into lifelike speech with 120+ voices in 20+ languages.",
@@ -78,31 +105,6 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Audio & Voice Tools",
     rating: 4.6,
     totalVotes: 3456
-  },
-  {
-    icon: Music,
-    title: "UDIO MUSIC Generator",
-    description: "Advanced AI music creation platform for generating high-quality music tracks. Create songs with vocals, instruments, and professional mixing using cutting-edge AI technology.",
-    emoji: "🎵",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://www.udio.com/home?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377364206441070592/image.png?ex=6838b1e1&is=68376061&hm=4872d401aedf46706d1213c2a93ce9ca260725cec15f98b2186eb25746fda56f&",
-    tags: ["music generation", "ai music", "song creation", "vocals", "instruments", "audio production", "music ai", "udio"],
-    category: "Audio & Voice Tools",
-    rating: 4.7,
-    totalVotes: 3245
-  },
-  {
-    icon: AudioWaveform,
-    title: "Udio",
-    description: "AI music creation platform for generating high-quality music tracks. Create songs with vocals, instruments, and professional mixing.",
-    emoji: "🎼",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://www.udio.com/?via=aiwebtools",
-    tags: ["music creation", "high-quality tracks", "vocals", "instruments", "professional mixing"],
-    category: "Audio & Voice Tools",
-    rating: 4.5,
-    totalVotes: 2987
   },
   {
     icon: Volume2,

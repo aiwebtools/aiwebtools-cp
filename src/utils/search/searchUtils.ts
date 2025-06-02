@@ -3,6 +3,7 @@ import { Tool } from "@/types/tools";
 import { getExpandedKeywords } from "./keywordExpansion";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
 import { matchPhoneAgents, scorePhoneAgents } from "./matching/phoneAgentMatching";
+import { matchMusicTools, scoreMusicTools } from "./matching/musicMatching";
 
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
@@ -17,9 +18,24 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const lowerSearchTerm = searchTerm.toLowerCase().trim();
   const searchWords = lowerSearchTerm.split(/\s+/);
   
-  const results = tools.map(tool => {
+  // Remove duplicates by title before scoring
+  const uniqueTools = tools.reduce((acc, tool) => {
+    const existingTool = acc.find(t => t.title.toLowerCase() === tool.title.toLowerCase());
+    if (!existingTool) {
+      acc.push(tool);
+    }
+    return acc;
+  }, [] as Tool[]);
+  
+  const results = uniqueTools.map(tool => {
     let score = 0;
     let matched = false;
+    
+    // Music tool specific matching (highest priority for music searches)
+    if (matchMusicTools(tool, searchTerm)) {
+      matched = true;
+      score += scoreMusicTools(tool, searchTerm);
+    }
     
     // Phone agent specific matching (highest priority for phone searches)
     if (matchPhoneAgents(tool, searchTerm)) {
@@ -131,6 +147,18 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   .map(result => result.tool);
 
   console.log(`✅ Enhanced search found ${results.length} results`);
+  
+  // Log music results for debugging
+  if (lowerSearchTerm.includes('music') || lowerSearchTerm.includes('suno') || lowerSearchTerm.includes('udio')) {
+    const musicResults = results.filter(tool => 
+      tool.title.toLowerCase().includes('music') || 
+      tool.title.toLowerCase().includes('suno') || 
+      tool.title.toLowerCase().includes('udio') ||
+      tool.title.toLowerCase().includes('audio')
+    ).slice(0, 10);
+    
+    console.log(`🎵 Music search results:`, musicResults.map(t => t.title));
+  }
   
   // Log phone agent results for debugging
   if (lowerSearchTerm.includes('phone') || lowerSearchTerm.includes('call') || lowerSearchTerm.includes('agent')) {

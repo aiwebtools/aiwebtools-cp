@@ -1,3 +1,4 @@
+
 import { coreAIKeywords } from './coreAIKeywords';
 import { creativeKeywords } from './creativeKeywords';
 import { businessKeywords } from './businessKeywords';
@@ -21,6 +22,13 @@ export const keywordMapping: Record<string, string[]> = {
   ...specialtyKeywords,
   ...searchMetaKeywords,
   ...aiWebToolsKeywords,
+  
+  // Enhanced Music-related keywords - HIGHEST PRIORITY
+  "music": ["suno", "udio", "music generation", "ai music", "song creation", "audio generation", "music maker", "music creator", "boomy", "aiva", "music video maker", "audio production", "sound generation", "music ai", "song maker"],
+  "suno": ["suno ai", "music generation", "ai music", "song creation", "vocals", "instruments", "music creator", "audio production"],
+  "udio": ["udio ai", "music generation", "ai music", "song creation", "vocals", "instruments", "music creator", "audio production"],
+  "song": ["music", "suno", "udio", "music generation", "ai music", "song creation", "vocals", "audio", "music maker"],
+  "audio": ["music", "suno", "udio", "sound", "voice", "audio generation", "music creation", "audio production"],
   
   // Enhanced Communication and phone-related keywords - HIGHEST PRIORITY
   "phone": ["call", "voice", "communication", "telephone", "mobile", "cellular", "calling", "dial", "contact", "chat", "conversation", "talk", "speak", "call center", "call agent", "inbound", "outbound", "nucleus", "ai agent", "phone agent", "voice agent", "nucleus ai inbound call agents platform", "nucleus ai", "phone automation", "call automation", "voice ai", "call ai", "phone ai"],
@@ -48,6 +56,9 @@ export const keywordMapping: Record<string, string[]> = {
 
 // Enhanced search synonyms for better matching
 export const searchSynonyms: Record<string, string[]> = {
+  "music": ["song", "audio", "sound", "track", "beat", "tune", "suno", "udio", "music generation", "ai music"],
+  "suno": ["suno ai", "music generation", "ai music", "song creation", "music creator"],
+  "udio": ["udio ai", "music generation", "ai music", "song creation", "music creator"],
   "phone": ["call", "telephone", "mobile", "cellular", "voice", "communication", "call agent", "nucleus", "phone agent", "voice agent", "nucleus ai", "phone automation"],
   "call": ["phone", "voice", "telephone", "contact", "dial", "ring", "call agent", "nucleus", "phone agent", "voice agent", "nucleus ai", "call automation"],
   "voice": ["speech", "audio", "vocal", "sound", "call", "phone", "voice agent", "call agent", "voice ai"],
@@ -58,9 +69,10 @@ export const searchSynonyms: Record<string, string[]> = {
 
 // Category-specific keywords for better categorization
 export const categoryKeywords: Record<string, string[]> = {
+  "Audio & Voice Tools": ["music", "suno", "udio", "audio", "sound", "voice", "speech", "music generation", "ai music", "song creation", "call agents", "voice agents", "phone agents", "ai agents", "call center", "inbound calls", "outbound calls", "nucleus", "voice communication", "phone systems", "customer service AI", "nucleus ai", "phone automation", "voice ai"],
   "Communication & Entertainment": ["phone", "call", "voice", "chat", "talk", "celebrity", "entertainment", "conversation", "communication tools", "call agents", "voice agents", "call center", "nucleus", "phone agents", "telephone", "phonecall", "inbound", "outbound", "nucleus ai", "phone automation", "call automation"],
-  "Audio & Voice Tools": ["call agents", "voice agents", "phone agents", "ai agents", "call center", "inbound calls", "outbound calls", "nucleus", "voice communication", "phone systems", "customer service AI", "nucleus ai", "phone automation", "voice ai"],
-  "Call Center & Voice AI": ["call agents", "voice agents", "phone agents", "ai agents", "call center", "inbound calls", "outbound calls", "nucleus", "voice communication", "phone systems", "customer service AI", "nucleus ai"]
+  "Call Center & Voice AI": ["call agents", "voice agents", "phone agents", "ai agents", "call center", "inbound calls", "outbound calls", "nucleus", "voice communication", "phone systems", "customer service AI", "nucleus ai"],
+  "Video & Animation Tools": ["music video", "video creation", "animation", "video editing", "cinematic", "video maker", "video production"]
 };
 
 // Export individual keyword categories for specific use cases
