@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { getAllToolCategories } from './toolsCollection';
 import { extractPriorityTools } from './priorityTools';
@@ -6,7 +7,7 @@ import { createFeaturedTools } from '@/utils/featuredTools';
 import { getCategoriesWithCounts, getToolsByCategory } from '@/utils/categoryUtils';
 import { consolidateTools } from '@/utils/categoryConsolidation';
 import { deduplicateTools } from '@/utils/toolDeduplication';
-import { getToolCount } from '@/utils/toolCounter';
+// REMOVED: import { getToolCount } from '@/utils/toolCounter'; - causing circular dependency
 
 // Import AI Web Tools GPTs - PRIORITY FEATURED TOOLS
 import { priorityFeaturedGPTs } from "./tools/aiWebTools/priorityFeaturedGPTs";
@@ -136,9 +137,6 @@ export const featuredTools: Tool[] = createFeaturedTools(filteredTools);
 // Export utility functions for use in components
 export { searchTools, getCategoriesWithCounts, getToolsByCategory };
 
-// Get comprehensive tool count analysis
-const toolCountAnalysis = getToolCount();
-
 // Debug information with enhanced logging using accurate count
 console.log(`🎉 MILESTONE ACHIEVED! Total tools loaded: ${filteredTools.length}`);
 console.log(`📊 Categories found: ${Object.keys(getCategoriesWithCounts(filteredTools)).length}`);
@@ -167,6 +165,28 @@ if (finalFinancialCalcCheck.length === 1) {
   console.error(`❌ STILL HAVE ${finalFinancialCalcCheck.length} instances of Financial Calculator Pro!`);
 }
 
+// Check writing tools count for debugging
+const writingTools = filteredTools.filter(tool => {
+  if (!tool.category) return false;
+  
+  const writingCategories = [
+    "Content Creation & Writing Tools",
+    "Writing & Content Creation", 
+    "Writing & Content Enhancement",
+    "Content Creation Tools",
+    "Writing & Content",
+    "Creative Writing Tools",
+    "Grammar And Writing Assistants",
+    "AI Writing Tools",
+    "Content Creation And Writing Tools"
+  ];
+  
+  return writingCategories.some(cat => tool.category!.toLowerCase().includes(cat.toLowerCase()) || cat.toLowerCase().includes(tool.category!.toLowerCase()));
+});
+
+console.log(`✍️ TOTAL WRITING TOOLS COUNT: ${writingTools.length}`);
+console.log(`✍️ Writing tools sample:`, writingTools.slice(0, 10).map(t => `${t.title} (${t.category})`));
+
 // Summary for Ken with accurate numbers
 console.log(`
 🚀 AI WEB TOOLS DIRECTORY STATUS REPORT 🚀
@@ -174,6 +194,7 @@ console.log(`
 ✅ EXACT Total AI Tools: ${filteredTools.length}
 ✅ Marketing Display: ${Math.round(filteredTools.length / 100) * 100}+ AI Tools
 ✅ Categories Available: ${Object.keys(categoryBreakdown).length}
+✅ Writing Tools Count: ${writingTools.length}
 ✅ Quality Assurance: All tools categorized and deduplicated
 ✅ Coverage: Advanced AI, Research, Productivity, Security, Finance, Healthcare, Education, Legal, and more!
 
