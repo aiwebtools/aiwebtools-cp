@@ -1,9 +1,8 @@
 
-import { useMemo } from "react";
+import { useMemo, useState, useCallback } from "react";
 import { Tool } from "@/types/tools";
-import ToolCard from "@/components/tools/ToolCard";
+import VirtualizedToolsGrid from "@/components/tools/VirtualizedToolsGrid";
 import { allTools } from "@/data/toolsData";
-import { createTimePortalEffect } from "@/utils/timeEffects";
 
 interface SimilarToolsProps {
   currentTool: Tool;
@@ -11,8 +10,11 @@ interface SimilarToolsProps {
 }
 
 const SimilarTools = ({ currentTool, currentToolIndex }: SimilarToolsProps) => {
-  // Find similar tools based on category and tags
-  const similarTools = useMemo(() => {
+  const [displayedCount, setDisplayedCount] = useState(12);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Find all similar tools for infinite scroll
+  const allSimilarTools = useMemo(() => {
     const similar = allTools.filter((tool, index) => {
       if (index === currentToolIndex) return false;
       
@@ -23,35 +25,44 @@ const SimilarTools = ({ currentTool, currentToolIndex }: SimilarToolsProps) => {
       const tagOverlap = currentTool.tags && tool.tags ? 
         tool.tags.some(tag => currentTool.tags?.includes(tag)) : false;
       
-      return categoryMatch || tagOverlap;
+      // Check for keyword similarity in descriptions
+      const currentKeywords = currentTool.description.toLowerCase().split(' ').filter(word => word.length > 4);
+      const toolKeywords = tool.description.toLowerCase().split(' ').filter(word => word.length > 4);
+      const commonKeywords = currentKeywords.filter(word => toolKeywords.includes(word));
+      const keywordMatch = commonKeywords.length >= 2;
+      
+      return categoryMatch || tagOverlap || keywordMatch;
     });
     
-    // Shuffle and return first 6
-    return similar.sort(() => 0.5 - Math.random()).slice(0, 6);
+    // If we don't have enough similar tools, add random tools to ensure endless scroll
+    if (similar.length < 50) {
+      const randomTools = allTools
+        .filter((_, index) => index !== currentToolIndex && !similar.some(s => s.title === _.title))
+        .sort(() => 0.5 - Math.random());
+      
+      similar.push(...randomTools);
+    }
+    
+    // Shuffle for variety
+    return similar.sort(() => 0.5 - Math.random());
   }, [currentTool, currentToolIndex]);
 
-  if (similarTools.length === 0) {
-    // If no similar tools, show random tools
-    const randomTools = allTools
-      .filter((_, index) => index !== currentToolIndex)
-      .sort(() => 0.5 - Math.random())
-      .slice(0, 6);
+  const handleLoadMore = useCallback(() => {
+    if (isLoading) return;
     
-    return (
-      <div className="mt-16">
-        <h3 className="text-2xl font-semibold text-center bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-8 cyber-glow">
-          Explore More AI Tools
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {randomTools.map((tool, index) => {
-            const toolIndex = allTools.findIndex(t => t.title === tool.title);
-            return (
-              <ToolCard key={`random-${tool.title}-${index}`} tool={tool} />
-            );
-          })}
-        </div>
-      </div>
-    );
+    setIsLoading(true);
+    
+    // Simulate loading delay for better UX
+    setTimeout(() => {
+      setDisplayedCount(prev => Math.min(prev + 12, allSimilarTools.length));
+      setIsLoading(false);
+    }, 300);
+  }, [isLoading, allSimilarTools.length]);
+
+  const hasMoreTools = displayedCount < allSimilarTools.length;
+
+  if (allSimilarTools.length === 0) {
+    return null;
   }
 
   return (
@@ -59,14 +70,16 @@ const SimilarTools = ({ currentTool, currentToolIndex }: SimilarToolsProps) => {
       <h3 className="text-2xl font-semibold text-center bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-8 cyber-glow">
         Similar AI Tools in {currentTool.category}
       </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {similarTools.map((tool, index) => {
-          const toolIndex = allTools.findIndex(t => t.title === tool.title);
-          return (
-            <ToolCard key={`similar-${tool.title}-${index}`} tool={tool} />
-          );
-        })}
-      </div>
+      <VirtualizedToolsGrid
+        tools={allSimilarTools}
+        displayedCount={displayedCount}
+        searchTerm=""
+        selectedCategory={currentTool.category}
+        enableInfiniteScroll={true}
+        onLoadMore={handleLoadMore}
+        isLoading={isLoading}
+        hasMoreTools={hasMoreTools}
+      />
     </div>
   );
 };
