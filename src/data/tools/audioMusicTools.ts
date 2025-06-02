@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Music, 
@@ -38,7 +37,7 @@ export const audioMusicTools: Tool[] = [
     description: "Revolutionary AI music generator that creates complete songs with vocals and lyrics from simple text prompts. Generate professional-quality music in any genre within seconds.",
     emoji: "🎶",
     color: "from-indigo-500 to-purple-600",
-    directUrl: "https://suno.ai/",
+    directUrl: "https://suno.com/invite/@aiwebtools",
     tags: ["AI music generation", "vocals", "lyrics", "text prompts", "complete songs", "professional quality"],
     category: "Audio & Music Tools",
     rating: 4.8,

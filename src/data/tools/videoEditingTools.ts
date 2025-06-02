@@ -9,7 +9,8 @@ import {
   Camera, 
   Film,
   Monitor,
-  Wand2
+  Wand2,
+  Clock
 } from "lucide-react";
 
 export const videoEditingTools: Tool[] = [

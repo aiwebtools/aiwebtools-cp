@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Video, 
@@ -37,6 +36,18 @@ export const videoGenerationTools: Tool[] = [
     category: "Video Generation & Editing",
     rating: 4.8,
     totalVotes: 5234
+  },
+  {
+    icon: User,
+    title: "HeyGen Interactive Avatar Studio",
+    description: "Advanced AI avatar platform for creating realistic digital humans with natural speech and expressions. Perfect for video presentations, customer service, and interactive content creation.",
+    emoji: "🤖",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://app.heygen.com/guest/home?sid=rewardful&via=aiwebtools",
+    tags: ["interactive avatars", "digital humans", "realistic speech", "video presentations", "customer service"],
+    category: "Video Generation & Editing",
+    rating: 4.7,
+    totalVotes: 4123
   },
   {
     icon: Video,
