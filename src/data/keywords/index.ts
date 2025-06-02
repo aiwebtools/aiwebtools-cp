@@ -34,6 +34,31 @@ export const keywordMapping: Record<string, string[]> = {
   "whatsmynamegpt": ["name insight research & predictor gpt", "name insight research", "name predictor", "name meaning", "name analysis", "personality insights", "numerology", "cultural significance", "personal discovery", "name research", "identity"],
   "whats my name": ["name insight research & predictor gpt", "name insight research", "name predictor", "name meaning", "name analysis", "personality insights", "numerology", "cultural significance", "personal discovery", "name research", "identity", "whatsmynamegpt"],
   
+  // SPIRITUALITY AND RELIGIOUS KEYWORDS - HIGH PRIORITY FOR RELIGIOUS SEARCHES
+  "jesus": ["mary magdalene gpt", "talk to the gods gpt", "oraculum", "sophia aeterna", "alan watts gpt", "spirituality", "religious", "christian", "divine", "sacred", "spiritual guidance", "faith", "religion", "biblical", "christ", "christianity", "spiritual wisdom", "divine wisdom", "religious dialogue"],
+  "christ": ["jesus", "mary magdalene gpt", "talk to the gods gpt", "christianity", "christian", "religious", "spirituality", "divine", "sacred", "spiritual guidance", "faith", "religion", "biblical"],
+  "christian": ["jesus", "christ", "mary magdalene gpt", "talk to the gods gpt", "christianity", "religious", "spirituality", "divine", "sacred", "spiritual guidance", "faith", "religion", "biblical"],
+  "christianity": ["jesus", "christ", "christian", "mary magdalene gpt", "talk to the gods gpt", "religious", "spirituality", "divine", "sacred", "spiritual guidance", "faith", "religion", "biblical"],
+  "religious": ["jesus", "christ", "christian", "christianity", "mary magdalene gpt", "talk to the gods gpt", "spirituality", "divine", "sacred", "spiritual guidance", "faith", "religion", "biblical"],
+  "religion": ["jesus", "christ", "christian", "christianity", "religious", "mary magdalene gpt", "talk to the gods gpt", "spirituality", "divine", "sacred"],
+  "spiritual": ["jesus", "christ", "spiritual", "mary magdalene gpt", "talk to the gods gpt", "alan watts gpt", "sophia aeterna", "oraculum", "divine", "sacred", "spiritual guidance", "faith", "religious", "mystical"],
+  "spirituality": ["jesus", "christ", "spiritual", "mary magdalene gpt", "talk to the gods gpt", "alan watts gpt", "sophia aeterna", "oraculum", "divine", "sacred", "spiritual guidance", "faith", "religious", "mystical"],
+  "divine": ["jesus", "christ", "spiritual", "spirituality", "mary magdalene gpt", "talk to the gods gpt", "sophia aeterna", "sacred", "spiritual guidance", "faith", "religious", "divine wisdom"],
+  "sacred": ["jesus", "christ", "spiritual", "spirituality", "divine", "mary magdalene gpt", "talk to the gods gpt", "sophia aeterna", "spiritual guidance", "faith", "religious"],
+  "faith": ["jesus", "christ", "spiritual", "spirituality", "divine", "sacred", "mary magdalene gpt", "talk to the gods gpt", "spiritual guidance", "religious", "religion"],
+  "biblical": ["jesus", "christ", "christian", "christianity", "religious", "religion", "mary magdalene gpt", "spiritual", "spirituality", "divine", "sacred"],
+  "mystical": ["spiritual", "spirituality", "mary magdalene gpt", "sophia aeterna", "oraculum", "alan watts gpt", "divine", "sacred", "esoteric", "mysticism"],
+  "mysticism": ["mystical", "spiritual", "spirituality", "mary magdalene gpt", "sophia aeterna", "oraculum", "alan watts gpt", "divine", "sacred", "esoteric"],
+  "esoteric": ["mystical", "mysticism", "sophia aeterna", "oraculum", "spiritual", "spirituality", "divine", "sacred", "hidden knowledge"],
+  "wisdom": ["sophia aeterna", "alan watts gpt", "spiritual", "spirituality", "divine wisdom", "spiritual wisdom", "philosophy", "enlightenment"],
+  "enlightenment": ["alan watts gpt", "sophia aeterna", "wisdom", "spiritual", "spirituality", "philosophy", "consciousness"],
+  "consciousness": ["alan watts gpt", "sophia aeterna", "enlightenment", "spiritual", "spirituality", "philosophy", "wisdom"],
+  "philosophy": ["alan watts gpt", "sophia aeterna", "wisdom", "enlightenment", "consciousness", "spiritual", "spirituality"],
+  "gods": ["talk to the gods gpt", "divine", "spiritual", "spirituality", "religious", "deities", "mythology"],
+  "god": ["talk to the gods gpt", "jesus", "christ", "divine", "spiritual", "spirituality", "religious", "faith"],
+  "deities": ["talk to the gods gpt", "gods", "divine", "spiritual", "spirituality", "religious", "mythology"],
+  "mythology": ["talk to the gods gpt", "gods", "deities", "spiritual", "spirituality", "religious", "mythology"],
+  
   // Enhanced Science and Research keywords - HIGHEST PRIORITY FOR SCIENCE SEARCH
   "science": ["stellaris", "space explorer", "nikola tesla gpt", "albert einstein gpt", "alchemist scientist gpt", "genome gpt", "scientific research", "research", "laboratory", "experiment", "analysis", "space exploration", "astronomy", "physics", "chemistry", "biology", "genetics", "dna", "scientific", "scientist", "researcher", "innovation", "discovery", "invention", "technology", "ai research"],
   "scientific": ["science", "research", "laboratory", "experiment", "analysis", "stellaris", "nikola tesla gpt", "albert einstein gpt", "alchemist scientist gpt", "genome gpt", "scientific research", "researcher", "scientist"],
@@ -163,7 +188,27 @@ export const searchSynonyms: Record<string, string[]> = {
   "numerology": ["name insight research & predictor gpt", "name", "numbers", "mystical", "spiritual", "divination", "whatsmynamegpt", "name insight research"],
   "meaning": ["name insight research & predictor gpt", "name meaning", "significance", "interpretation", "definition", "symbolism", "whatsmynamegpt", "name insight research"],
   
-  // Science and Research synonyms - NEW PRIORITY SECTION
+  // SPIRITUALITY AND RELIGIOUS SYNONYMS - HIGH PRIORITY
+  "jesus": ["christ", "mary magdalene gpt", "talk to the gods gpt", "christian", "christianity", "religious", "spirituality", "divine", "sacred", "biblical", "spiritual guidance"],
+  "christ": ["jesus", "mary magdalene gpt", "christian", "christianity", "religious", "spirituality", "divine", "sacred", "biblical"],
+  "christian": ["jesus", "christ", "mary magdalene gpt", "christianity", "religious", "spirituality", "divine", "sacred", "biblical"],
+  "christianity": ["jesus", "christ", "christian", "mary magdalene gpt", "religious", "spirituality", "divine", "sacred", "biblical"],
+  "religious": ["jesus", "christ", "christian", "christianity", "mary magdalene gpt", "talk to the gods gpt", "spirituality", "divine", "sacred", "biblical"],
+  "religion": ["jesus", "christ", "christian", "christianity", "religious", "mary magdalene gpt", "talk to the gods gpt", "spirituality", "divine", "sacred"],
+  "spiritual": ["spirituality", "mary magdalene gpt", "talk to the gods gpt", "alan watts gpt", "sophia aeterna", "divine", "sacred", "mystical", "jesus"],
+  "spirituality": ["spiritual", "mary magdalene gpt", "talk to the gods gpt", "alan watts gpt", "sophia aeterna", "divine", "sacred", "mystical", "jesus"],
+  "divine": ["spiritual", "spirituality", "mary magdalene gpt", "talk to the gods gpt", "sophia aeterna", "sacred", "jesus", "christ"],
+  "sacred": ["spiritual", "spirituality", "divine", "mary magdalene gpt", "talk to the gods gpt", "sophia aeterna", "jesus", "christ"],
+  "faith": ["spiritual", "spirituality", "divine", "sacred", "mary magdalene gpt", "talk to the gods gpt", "jesus", "christ", "religious"],
+  "biblical": ["jesus", "christ", "christian", "christianity", "religious", "mary magdalene gpt", "spiritual", "spirituality"],
+  "mystical": ["mysticism", "spiritual", "spirituality", "mary magdalene gpt", "sophia aeterna", "oraculum", "divine", "sacred"],
+  "mysticism": ["mystical", "spiritual", "spirituality", "mary magdalene gpt", "sophia aeterna", "oraculum", "divine", "sacred"],
+  "wisdom": ["sophia aeterna", "alan watts gpt", "spiritual", "spirituality", "divine wisdom", "philosophy", "enlightenment"],
+  "philosophy": ["alan watts gpt", "sophia aeterna", "wisdom", "enlightenment", "consciousness", "spiritual"],
+  "gods": ["talk to the gods gpt", "divine", "spiritual", "spirituality", "religious", "deities", "mythology"],
+  "god": ["talk to the gods gpt", "jesus", "christ", "divine", "spiritual", "spirituality", "religious", "faith"],
+  
+  // Enhanced Science and Research synonyms - NEW PRIORITY SECTION
   "science": ["scientific", "research", "laboratory", "experiment", "analysis", "stellaris", "nikola tesla gpt", "albert einstein gpt", "alchemist scientist gpt", "genome gpt"],
   "scientific": ["science", "research", "laboratory", "experiment", "analysis", "researcher", "scientist"],
   "research": ["science", "scientific", "laboratory", "experiment", "analysis", "researcher", "study"],
@@ -222,6 +267,7 @@ export const searchSynonyms: Record<string, string[]> = {
 // Category-specific keywords for better categorization
 export const categoryKeywords: Record<string, string[]> = {
   "Personal Development & Self-Discovery": ["name insight research & predictor gpt", "name", "names", "naming", "name meaning", "name analysis", "personality insights", "numerology", "identity", "personal discovery", "self-discovery", "personal growth", "whatsmynamegpt", "name insight research", "name predictor"],
+  "Spirituality & Philosophy": ["jesus", "christ", "christian", "christianity", "religious", "religion", "spiritual", "spirituality", "divine", "sacred", "faith", "biblical", "mystical", "mysticism", "esoteric", "wisdom", "enlightenment", "consciousness", "philosophy", "gods", "god", "deities", "mythology", "mary magdalene gpt", "talk to the gods gpt", "alan watts gpt", "sophia aeterna", "oraculum", "spiritual guidance", "divine wisdom", "spiritual wisdom"],
   "Science & Research": ["science", "scientific", "research", "laboratory", "experiment", "analysis", "stellaris", "space explorer", "nikola tesla gpt", "albert einstein gpt", "alchemist scientist gpt", "genome gpt", "space exploration", "astronomy", "physics", "chemistry", "biology", "genetics", "dna", "tesla", "einstein", "alchemy", "scientist", "researcher", "innovation", "discovery", "invention"],
   "Education & Research Tools": ["college", "university", "education", "learning", "teaching", "academic", "school", "student", "degree", "course", "tutorial", "educational", "study", "curriculum", "homeschool", "college degree gpt", "learn any course", "learn any skill"],
   "Development & Coding Tools": ["build app", "app builder", "web app builder", "lovable.dev", "bolt.new", "cursor", "no-code", "low-code", "web development", "app development", "code", "programming", "coding", "development", "ai coding", "code assistant", "react builder", "ai web builder"],
