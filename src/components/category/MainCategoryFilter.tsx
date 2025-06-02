@@ -101,11 +101,22 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   }, [filteredTools, onFilteredToolsChange]);
 
   const handleMainCategoryToggle = (mainCategoryName: string) => {
+    console.log(`🔄 Toggling category: ${mainCategoryName}`);
+    
     setSelectedMainCategories(prev => {
-      if (prev.includes(mainCategoryName)) {
-        return prev.filter(cat => cat !== mainCategoryName);
+      const isCurrentlySelected = prev.includes(mainCategoryName);
+      console.log(`📋 Current selection state for ${mainCategoryName}: ${isCurrentlySelected}`);
+      
+      if (isCurrentlySelected) {
+        // If unchecking, remove from selection
+        const newSelection = prev.filter(cat => cat !== mainCategoryName);
+        console.log(`➖ Removing ${mainCategoryName}, new selection:`, newSelection);
+        return newSelection;
       } else {
-        return [...prev, mainCategoryName];
+        // If checking, add to selection
+        const newSelection = [...prev, mainCategoryName];
+        console.log(`➕ Adding ${mainCategoryName}, new selection:`, newSelection);
+        return newSelection;
       }
     });
   };
@@ -185,41 +196,43 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
         <div className="bg-black/50 border border-cyan-500/30 rounded-lg p-3 backdrop-blur-sm">
           {/* Main Categories Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-48 overflow-y-auto">
-            {mainCategoriesWithCounts.map(({ name, emoji, count }) => (
-              <div
-                key={name}
-                className="flex items-start space-x-2 p-2 hover:bg-cyan-500/10 rounded-md transition-colors min-h-[50px]"
-              >
-                <Checkbox
-                  id={`main-category-${name}`}
-                  checked={selectedMainCategories.includes(name)}
-                  onCheckedChange={(checked) => {
-                    if (checked) {
-                      setSelectedMainCategories(prev => [...prev, name]);
-                    } else {
-                      setSelectedMainCategories(prev => prev.filter(cat => cat !== name));
-                    }
-                  }}
-                  className="border-cyan-500/50 data-[state=checked]:bg-cyan-500 data-[state=checked]:border-cyan-500 flex-shrink-0 mt-1"
-                />
-                <div className="flex-1 min-w-0 flex flex-col">
-                  <label
-                    htmlFor={`main-category-${name}`}
-                    className="text-xs font-bold text-cyan-100 cursor-pointer flex items-start leading-tight"
-                    title={name}
-                  >
-                    <span className="mr-1 flex-shrink-0">{emoji}</span>
-                    <span className="break-words text-xs leading-tight font-bold">{name}</span>
-                  </label>
-                  <Badge
-                    variant="secondary"
-                    className="bg-cyan-500/20 text-cyan-300 text-xs mt-1 self-start"
-                  >
-                    {count} tools
-                  </Badge>
+            {mainCategoriesWithCounts.map(({ name, emoji, count }) => {
+              const isChecked = selectedMainCategories.includes(name);
+              console.log(`🔘 Checkbox for ${name}: checked=${isChecked}`);
+              
+              return (
+                <div
+                  key={name}
+                  className="flex items-start space-x-2 p-2 hover:bg-cyan-500/10 rounded-md transition-colors min-h-[50px]"
+                >
+                  <Checkbox
+                    id={`main-category-${name}`}
+                    checked={isChecked}
+                    onCheckedChange={(checked) => {
+                      console.log(`🎯 Checkbox changed for ${name}: ${checked}`);
+                      handleMainCategoryToggle(name);
+                    }}
+                    className="border-cyan-500/50 data-[state=checked]:bg-cyan-500 data-[state=checked]:border-cyan-500 flex-shrink-0 mt-1"
+                  />
+                  <div className="flex-1 min-w-0 flex flex-col">
+                    <label
+                      htmlFor={`main-category-${name}`}
+                      className="text-xs font-bold text-cyan-100 cursor-pointer flex items-start leading-tight"
+                      title={name}
+                    >
+                      <span className="mr-1 flex-shrink-0">{emoji}</span>
+                      <span className="break-words text-xs leading-tight font-bold">{name}</span>
+                    </label>
+                    <Badge
+                      variant="secondary"
+                      className="bg-cyan-500/20 text-cyan-300 text-xs mt-1 self-start"
+                    >
+                      {count} tools
+                    </Badge>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {mainCategoriesWithCounts.length === 0 && (
