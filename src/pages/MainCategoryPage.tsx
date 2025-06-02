@@ -60,21 +60,30 @@ const MainCategoryPage = () => {
   const toolsToShow = filteredToolsByCategory.length > 0 ? filteredToolsByCategory : categoryTools;
   
   // Apply search filter if there's a search term
-  const finalFilteredTools = searchTerm.trim() 
+  const baseFilteredTools = searchTerm.trim() 
     ? searchTools(toolsToShow, searchTerm)
     : toolsToShow;
+
+  // When we run out of filtered tools, continue with tools from the entire database
+  const finalFilteredTools = baseFilteredTools.length < displayedCount && baseFilteredTools.length > 0
+    ? [...baseFilteredTools, ...allTools.filter(tool => 
+        !baseFilteredTools.some(filteredTool => filteredTool.title === tool.title)
+      ).slice(0, displayedCount - baseFilteredTools.length)]
+    : baseFilteredTools.length === 0 && displayedCount > 0
+      ? allTools.slice(0, displayedCount)
+      : baseFilteredTools;
 
   // Create displayed tool list that shows tools up to displayedCount
   const displayedTools = finalFilteredTools.slice(0, displayedCount);
 
-  // Reset displayed count when the final filtered tools change, but keep a reference to avoid constant resets
+  // Reset displayed count when the base filtered tools change, but keep a reference to avoid constant resets
   const [lastFilteredToolsLength, setLastFilteredToolsLength] = useState(0);
   useEffect(() => {
-    if (finalFilteredTools.length !== lastFilteredToolsLength) {
+    if (baseFilteredTools.length !== lastFilteredToolsLength) {
       setDisplayedCount(48);
-      setLastFilteredToolsLength(finalFilteredTools.length);
+      setLastFilteredToolsLength(baseFilteredTools.length);
     }
-  }, [finalFilteredTools.length, lastFilteredToolsLength]);
+  }, [baseFilteredTools.length, lastFilteredToolsLength]);
 
   const handleLoadMore = () => {
     if (isLoading) return;
@@ -85,7 +94,7 @@ const MainCategoryPage = () => {
     // Use setTimeout to show loading state briefly, then load more tools
     setTimeout(() => {
       setDisplayedCount(prev => {
-        const newCount = Math.min(prev + 48, finalFilteredTools.length);
+        const newCount = prev + 48;
         console.log(`✅ Updated displayedCount from ${prev} to ${newCount}`);
         return newCount;
       });
@@ -95,18 +104,19 @@ const MainCategoryPage = () => {
 
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
-    // displayedCount will be reset by the useEffect above when finalFilteredTools changes
+    // displayedCount will be reset by the useEffect above when baseFilteredTools changes
   };
 
   const handleFilteredToolsChange = (filtered: Tool[]) => {
     console.log(`🎯 Category filter changed: ${filtered.length} tools (priority ordered)`);
     setFilteredToolsByCategory(filtered);
-    // displayedCount will be reset by the useEffect above when finalFilteredTools changes
+    // displayedCount will be reset by the useEffect above when baseFilteredTools changes
   };
 
-  const hasMoreTools = displayedCount < finalFilteredTools.length;
+  const hasMoreTools = displayedCount < Math.max(finalFilteredTools.length, allTools.length);
 
   console.log(`🔍 Final tool display logic:`, {
+    baseFilteredToolsLength: baseFilteredTools.length,
     finalFilteredToolsLength: finalFilteredTools.length,
     displayedToolsLength: displayedTools.length,
     displayedCount,
@@ -163,24 +173,27 @@ const MainCategoryPage = () => {
           <div className="text-center mb-8">
             <div className="text-cyan-400 font-semibold">
               {searchTerm 
-                ? `${finalFilteredTools.length} tools found` 
+                ? `${baseFilteredTools.length} tools found` 
                 : filteredToolsByCategory.length > categoryTools.length
-                  ? `${finalFilteredTools.length} tools available - filtered categories shown first`
-                  : `${finalFilteredTools.length} tools in ${decodedCategoryName}`
+                  ? `${baseFilteredTools.length} tools available - filtered categories shown first`
+                  : `${baseFilteredTools.length} tools in ${decodedCategoryName}`
               }
+              {displayedTools.length > baseFilteredTools.length && (
+                <span className="text-cyan-300"> + additional recommendations</span>
+              )}
             </div>
             {!searchTerm && hasMoreTools && (
               <div className="text-gray-400 text-sm mt-1">
-                Showing {displayedTools.length} of {finalFilteredTools.length} tools - scroll for more!
+                Showing {displayedTools.length} tools - scroll down for more!
               </div>
             )}
           </div>
 
-          {/* Tools Grid - with infinite scroll enabled */}
+          {/* Tools Grid - with infinite scroll enabled for ALL categories */}
           <div id="tools-section">
             {displayedTools.length > 0 ? (
               <ToolsGrid
-                tools={displayedTools}
+                tools={displayedTools.length < allTools.length ? [...displayedTools, ...allTools.slice(displayedTools.length)] : displayedTools}
                 displayedCount={displayedCount}
                 selectedCategory={decodedCategoryName}
                 searchTerm={searchTerm}
@@ -220,7 +233,8 @@ const MainCategoryPage = () => {
                 🚀 Show More Tools
               </Button>
               <div className="mt-4 text-cyan-300 text-sm">
-                Showing {displayedTools.length} of {finalFilteredTools.length} tools
+                Showing {displayedTools.length} tools
+                {displayedTools.length > baseFilteredTools.length && " (including recommendations)"}
                 {filteredToolsByCategory.length > categoryTools.length && " (filtered categories prioritized)"}
               </div>
             </div>
