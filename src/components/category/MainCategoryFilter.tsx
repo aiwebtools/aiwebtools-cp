@@ -25,7 +25,10 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     // Use the global main category counts to ensure accuracy
     const globalCounts = getMainCategoriesWithCounts(tools);
     
-    return mainCategories.map(mainCat => {
+    // Create a Set to track unique category names and prevent duplicates
+    const uniqueCategories = new Set<string>();
+    
+    const categoriesData = mainCategories.map(mainCat => {
       // Get the accurate count from global counts
       const count = globalCounts[mainCat.name] || 0;
       
@@ -36,8 +39,17 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
         emoji: mainCat.emoji,
         count: count
       };
-    }).filter(cat => cat.count > 0) // Only show categories that have tools
-      .sort((a, b) => b.count - a.count); // Sort by count descending
+    }).filter(cat => {
+      // Only include categories that have tools and haven't been added yet
+      if (cat.count > 0 && !uniqueCategories.has(cat.name)) {
+        uniqueCategories.add(cat.name);
+        return true;
+      }
+      return false;
+    }).sort((a, b) => b.count - a.count); // Sort by count descending
+    
+    console.log('🎯 Unique categories after deduplication:', categoriesData.map(c => c.name));
+    return categoriesData;
   }, [tools]);
 
   // Initialize with current main category selected and immediately show tools
