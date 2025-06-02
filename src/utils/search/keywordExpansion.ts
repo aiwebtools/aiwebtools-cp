@@ -8,6 +8,47 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   // Add the original search term
   expandedKeywords.add(lowerSearchTerm);
   
+  // BOOK WRITING SEARCH EXPANSION - HIGH PRIORITY
+  if (lowerSearchTerm.includes('write a book') || lowerSearchTerm.includes('book writing') ||
+      (lowerSearchTerm.includes('write') && lowerSearchTerm.includes('book'))) {
+    const bookWritingKeywords = [
+      'book writer gpt',
+      'book writing',
+      'novel creation',
+      'storytelling',
+      'book creation',
+      'writing assistant',
+      'author tools',
+      'book publishing',
+      'creative writing',
+      'manuscript'
+    ];
+    
+    bookWritingKeywords.forEach(keyword => expandedKeywords.add(keyword));
+  }
+  
+  // TRAINING EMPLOYEES SEARCH EXPANSION - HIGH PRIORITY
+  if (lowerSearchTerm.includes('train employees') || lowerSearchTerm.includes('employee training') ||
+      lowerSearchTerm.includes('training manual') || lowerSearchTerm.includes('staff training') ||
+      (lowerSearchTerm.includes('train') && lowerSearchTerm.includes('employees'))) {
+    const trainingKeywords = [
+      'training manual generator gpt',
+      'training manual generator',
+      'employee training',
+      'staff training',
+      'training materials',
+      'business training',
+      'onboarding',
+      'training program',
+      'training development',
+      'employee onboarding',
+      'corporate training',
+      'training guide'
+    ];
+    
+    trainingKeywords.forEach(keyword => expandedKeywords.add(keyword));
+  }
+  
   // SOLAR/SUN SEARCH EXPANSION - HIGH PRIORITY
   if (lowerSearchTerm.includes('sun') || lowerSearchTerm.includes('solar')) {
     const solarKeywords = [
@@ -267,6 +308,26 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
     expandedKeywords.add('solar panels');
     expandedKeywords.add('solar assessment');
     expandedKeywords.add('solar land assessor');
+  }
+  
+  // Add common variations for book writing terms
+  if (lowerSearchTerm.includes('write') && lowerSearchTerm.includes('book')) {
+    expandedKeywords.add('book writer');
+    expandedKeywords.add('book writing');
+    expandedKeywords.add('novel creation');
+    expandedKeywords.add('storytelling');
+    expandedKeywords.add('author tools');
+    expandedKeywords.add('book creation');
+  }
+  
+  // Add common variations for training terms
+  if (lowerSearchTerm.includes('train') && lowerSearchTerm.includes('employee')) {
+    expandedKeywords.add('training manual');
+    expandedKeywords.add('employee training');
+    expandedKeywords.add('staff training');
+    expandedKeywords.add('training materials');
+    expandedKeywords.add('business training');
+    expandedKeywords.add('training development');
   }
   
   // Convert back to array and remove empty strings

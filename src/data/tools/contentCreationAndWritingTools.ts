@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Pen, 
@@ -109,16 +110,16 @@ export const contentCreationAndWritingTools: Tool[] = [
   },
   {
     icon: FileText,
-    title: "AI Content Generator Pro",
-    description: "Advanced AI-powered content generation tool for blogs, articles, social media posts, and marketing copy.",
-    emoji: "📝",
+    title: "Training Manual Generator GPT",
+    description: "Our AI-powered Training Manual Generator, developed by AIwebtools.ai, creates comprehensive, customized training manuals for your business. This tool ensures perfect alignment with your company's needs, facilitating effective employee training. Enhance your onboarding process with a detailed, tailored training resource.",
+    emoji: "📋",
     color: "from-blue-500 to-purple-600",
-    directUrl: "https://example.com/aicontentgenerator",
-    videoUrl: "https://www.youtube.com/watch?v=4e3Rkurt3-c&list=TLGGtoG6kc0vED4yODA1MjAyNQ",
-    tags: ["content generation", "AI writing", "blog posts", "marketing copy", "social media"],
+    directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005968.jpg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
+    tags: ["training manual", "employee training", "business training", "onboarding", "training materials", "staff training", "training development"],
     category: "Content Creation & Writing Tools",
-    rating: 4.6,
-    totalVotes: 3789
+    rating: 4.8,
+    totalVotes: 4234
   },
   {
     icon: Edit,

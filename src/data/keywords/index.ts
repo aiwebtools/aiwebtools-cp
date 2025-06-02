@@ -23,6 +23,17 @@ export const keywordMapping: Record<string, string[]> = {
   ...searchMetaKeywords,
   ...aiWebToolsKeywords,
   
+  // Enhanced Book Writing keywords - NEW ADDITION
+  "write a book": ["book writer gpt", "book writing", "novel creation", "storytelling", "author tools", "creative writing", "manuscript", "book creation"],
+  "book writing": ["book writer gpt", "novel creation", "storytelling", "author tools", "creative writing", "manuscript", "book creation"],
+  "write book": ["book writer gpt", "book writing", "novel creation", "storytelling", "author tools", "creative writing"],
+  
+  // Enhanced Training and Employee keywords - NEW ADDITION
+  "train employees": ["training manual generator gpt", "employee training", "staff training", "training materials", "business training", "onboarding", "training development"],
+  "employee training": ["training manual generator gpt", "staff training", "training materials", "business training", "onboarding", "training development"],
+  "training manual": ["training manual generator gpt", "employee training", "training materials", "business training", "training guide"],
+  "staff training": ["training manual generator gpt", "employee training", "training materials", "business training", "onboarding"],
+  
   // Enhanced Music-related keywords - HIGHEST PRIORITY
   "music": ["suno", "udio", "music generation", "ai music", "song creation", "audio generation", "music maker", "music creator", "boomy", "aiva", "music video maker", "audio production", "sound generation", "music ai", "song maker"],
   "suno": ["suno ai", "music generation", "ai music", "song creation", "vocals", "instruments", "music creator", "audio production"],
@@ -60,6 +71,8 @@ export const keywordMapping: Record<string, string[]> = {
 
 // Enhanced search synonyms for better matching
 export const searchSynonyms: Record<string, string[]> = {
+  "write a book": ["book writing", "novel creation", "storytelling", "author tools", "book writer gpt", "creative writing"],
+  "train employees": ["employee training", "staff training", "training manual", "business training", "training manual generator gpt"],
   "music": ["song", "audio", "sound", "track", "beat", "tune", "suno", "udio", "music generation", "ai music"],
   "suno": ["suno ai", "music generation", "ai music", "song creation", "music creator"],
   "udio": ["udio ai", "music generation", "ai music", "song creation", "music creator"],
@@ -75,6 +88,8 @@ export const searchSynonyms: Record<string, string[]> = {
 
 // Category-specific keywords for better categorization
 export const categoryKeywords: Record<string, string[]> = {
+  "Content Creation & Writing Tools": ["write a book", "book writing", "novel creation", "storytelling", "book writer gpt", "creative writing", "author tools", "manuscript"],
+  "Business & Productivity": ["train employees", "employee training", "training manual", "staff training", "training manual generator gpt", "business training", "onboarding"],
   "Audio & Voice Tools": ["music", "suno", "udio", "audio", "sound", "voice", "speech", "music generation", "ai music", "song creation", "call agents", "voice agents", "phone agents", "ai agents", "call center", "inbound calls", "outbound calls", "nucleus", "voice communication", "phone systems", "customer service AI", "nucleus ai", "phone automation", "voice ai"],
   "Communication & Entertainment": ["phone", "call", "voice", "chat", "talk", "celebrity", "entertainment", "conversation", "communication tools", "call agents", "voice agents", "call center", "nucleus", "phone agents", "telephone", "phonecall", "inbound", "outbound", "nucleus ai", "phone automation", "call automation"],
   "Call Center & Voice AI": ["call agents", "voice agents", "phone agents", "ai agents", "call center", "inbound calls", "outbound calls", "nucleus", "voice communication", "phone systems", "customer service AI", "nucleus ai"],
