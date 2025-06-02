@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -27,7 +28,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     
     console.log('📊 MainCategoryFilter Global Counts:', globalCounts);
     
-    // FIXED: Create a Map to ensure unique categories and prevent duplicates
+    // Create a Map to ensure unique categories and prevent duplicates
     const uniqueCategoriesMap = new Map<string, { name: string; emoji: string; count: number }>();
     
     mainCategories.forEach(mainCat => {
@@ -36,7 +37,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       
       console.log(`📊 MainCategoryFilter ${mainCat.name}: ${count} tools (${mainCat.name === "ALL AI TOOLS" ? 'total tools' : 'from global counts'})`);
       
-      // FIXED: Only add if not already in map (prevents duplicates)
+      // Only add if not already in map (prevents duplicates)
       if (!uniqueCategoriesMap.has(mainCat.name)) {
         uniqueCategoriesMap.set(mainCat.name, {
           name: mainCat.name,
@@ -60,7 +61,6 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       });
     
     console.log('🎯 MainCategoryFilter Final UNIQUE categories with counts:', categoriesData.map(c => `${c.name}: ${c.count}`));
-    console.log('🔍 DUPLICATE CHECK: Total unique categories:', categoriesData.length, 'vs original mainCategories:', mainCategories.length);
     
     return categoriesData;
   }, []);
@@ -75,49 +75,57 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     }
   }, [currentMainCategory, mainCategoriesWithCounts]);
 
-  // Apply main category filters with priority ordering
+  // ENHANCED: Create mixed tools from multiple selected categories with endless flow
   const filteredTools = useMemo(() => {
     if (selectedMainCategories.length === 0) {
       console.log(`📂 No filters selected - showing all ${tools.length} tools for ${currentMainCategory}`);
       return tools;
     }
     
-    console.log(`🎯 Priority filtering by selected categories: ${selectedMainCategories.join(', ')}`);
+    console.log(`🎯 MULTI-CATEGORY MIXING: Selected categories: ${selectedMainCategories.join(', ')}`);
     
-    // Create a Map to store unique tools by title to prevent duplicates
-    const uniqueToolsMap = new Map<string, Tool>();
+    // Step 1: Collect tools from all selected categories
+    const selectedCategoryTools = new Map<string, Tool>();
+    let totalSelectedTools = 0;
     
-    // First, add all tools from selected main categories using GLOBAL allTools
-    selectedMainCategories.forEach(mainCategoryName => {
-      const categoryTools = getToolsByMainCategory(allTools, mainCategoryName);
-      console.log(`📂 ${mainCategoryName}: adding ${categoryTools.length} priority tools (from global allTools)`);
+    selectedMainCategories.forEach(categoryName => {
+      const categoryTools = getToolsByMainCategory(allTools, categoryName);
+      console.log(`📂 ${categoryName}: found ${categoryTools.length} tools`);
       
       categoryTools.forEach(tool => {
-        if (!uniqueToolsMap.has(tool.title)) {
-          uniqueToolsMap.set(tool.title, tool);
+        if (!selectedCategoryTools.has(tool.title)) {
+          selectedCategoryTools.set(tool.title, tool);
+          totalSelectedTools++;
         }
       });
     });
     
-    // Convert priority tools from Map to Array
-    const priorityTools = Array.from(uniqueToolsMap.values());
+    // Step 2: Convert to array and shuffle for mixing
+    const selectedTools = Array.from(selectedCategoryTools.values());
+    console.log(`🔀 MIXED TOOLS: ${selectedTools.length} unique tools from ${selectedMainCategories.length} categories`);
     
-    // Get remaining tools from the entire database that are NOT in the priority list
-    const remainingTools = allTools.filter(tool => !uniqueToolsMap.has(tool.title));
+    // Step 3: Add remaining tools from all other categories for endless flow
+    const remainingTools = allTools.filter(tool => !selectedCategoryTools.has(tool.title));
+    console.log(`➕ ENDLESS FLOW: Adding ${remainingTools.length} remaining tools after selected categories`);
     
-    // Combine: priority tools first, then remaining tools
-    const orderedTools = [...priorityTools, ...remainingTools];
+    // Step 4: Combine selected tools first, then remaining tools
+    const finalMixedTools = [...selectedTools, ...remainingTools];
     
-    console.log(`✅ Priority ordered result: ${priorityTools.length} priority tools + ${remainingTools.length} remaining tools = ${orderedTools.length} total`);
-    console.log(`🔍 Priority tools titles (first 10):`, priorityTools.slice(0, 10).map(t => t.title));
+    console.log(`✅ FINAL MIXED RESULT: ${finalMixedTools.length} total tools (${selectedTools.length} from selected categories + ${remainingTools.length} endless flow)`);
     
-    return orderedTools;
+    // Sample logging for verification
+    const selectedSample = selectedTools.slice(0, 5).map(t => `${t.title} (${t.category})`);
+    const remainingSample = remainingTools.slice(0, 5).map(t => `${t.title} (${t.category})`);
+    console.log(`🔍 Selected tools sample:`, selectedSample);
+    console.log(`🔍 Remaining tools sample:`, remainingSample);
+    
+    return finalMixedTools;
   }, [selectedMainCategories, currentMainCategory, tools]);
 
   // Update parent component when filtered tools change
   useEffect(() => {
-    console.log(`🔄 Updating parent with ${filteredTools.length} priority-ordered tools`);
-    console.log(`🎯 Selected categories: ${selectedMainCategories.join(', ')}`);
+    console.log(`🔄 Updating parent with ${filteredTools.length} mixed category tools`);
+    console.log(`🎯 Active category mix: ${selectedMainCategories.join(' + ')} (${selectedMainCategories.length} categories)`);
     onFilteredToolsChange(filteredTools);
   }, [filteredTools, onFilteredToolsChange]);
 
@@ -151,8 +159,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     categoriesShown: mainCategoriesWithCounts.length,
     selectedCategories: selectedMainCategories,
     filteredToolsCount: filteredTools.length,
-    priorityToolsCount: selectedMainCategories.length > 0 ? getToolsByMainCategory(allTools, selectedMainCategories[0])?.length : 0,
-    usingPriorityOrdering: selectedMainCategories.length > 0,
+    multiCategoryMode: selectedMainCategories.length > 1,
     uniqueCategoriesCount: mainCategoriesWithCounts.length
   });
 
@@ -167,20 +174,21 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
           className="border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:text-cyan-200 bg-black/50 text-sm"
         >
           <Filter className="w-3 h-3 mr-2" />
-          Additional Category Filters
+          Mix Multiple Categories
           {isExpanded ? <ChevronUp className="w-3 h-3 ml-2" /> : <ChevronDown className="w-3 h-3 ml-2" />}
           {selectedMainCategories.length > 1 && (
             <Badge variant="secondary" className="ml-2 bg-cyan-500/20 text-cyan-300 text-xs">
-              +{selectedMainCategories.length - 1}
+              {selectedMainCategories.length} mixed
             </Badge>
           )}
         </Button>
       </div>
 
-      {/* Active Filters Display */}
+      {/* Active Category Mix Display */}
       {selectedMainCategories.length > 1 && (
         <div className="flex flex-wrap gap-2 justify-center mb-3">
-          {selectedMainCategories.filter(cat => cat !== currentMainCategory).map(categoryName => {
+          <div className="text-xs text-cyan-400 font-semibold">Mixed Categories:</div>
+          {selectedMainCategories.map(categoryName => {
             const categoryData = mainCategoriesWithCounts.find(cat => cat.name === categoryName);
             return (
               <Badge
@@ -206,7 +214,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
             size="sm"
             className="text-cyan-400 hover:text-cyan-200 text-xs h-6"
           >
-            Reset Filters
+            Reset to {currentMainCategory}
           </Button>
         </div>
       )}
@@ -218,7 +226,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-48 overflow-y-auto">
             {mainCategoriesWithCounts.map(({ name, emoji, count }) => {
               const isChecked = selectedMainCategories.includes(name);
-              console.log(`🔘 Rendering UNIQUE checkbox for ${name}: checked=${isChecked}, count=${count}`);
+              console.log(`🔘 Rendering checkbox for ${name}: checked=${isChecked}, count=${count}`);
               
               return (
                 <div
@@ -266,7 +274,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
             <div className="text-xs text-cyan-300">
               {selectedMainCategories.length <= 1 
                 ? `Showing ${filteredTools.length} tools in ${currentMainCategory}` 
-                : `Prioritizing ${selectedMainCategories.length} categories (${filteredTools.length} total tools) - filtered tools shown first`
+                : `Mixing ${selectedMainCategories.length} categories (${filteredTools.length} total tools) - selected categories shown first, then endless flow`
               }
             </div>
           </div>
