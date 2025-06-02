@@ -30,6 +30,10 @@ export const keywordMapping: Record<string, string[]> = {
   "song": ["music", "suno", "udio", "music generation", "ai music", "song creation", "vocals", "audio", "music maker"],
   "audio": ["music", "suno", "udio", "sound", "voice", "audio generation", "music creation", "audio production"],
   
+  // Solar and renewable energy keywords - NEW ADDITION
+  "sun": ["solar", "solar land assessor", "solar assessment", "renewable energy", "solar panels", "solar installation", "solar energy", "solar land", "solar professional", "solar project"],
+  "solar": ["solar land assessor", "solar assessment", "renewable energy", "solar panels", "solar installation", "solar energy", "solar land", "solar professional", "solar project", "sun", "solar power"],
+  
   // Enhanced Communication and phone-related keywords - HIGHEST PRIORITY
   "phone": ["call", "voice", "communication", "telephone", "mobile", "cellular", "calling", "dial", "contact", "chat", "conversation", "talk", "speak", "call center", "call agent", "inbound", "outbound", "nucleus", "ai agent", "phone agent", "voice agent", "nucleus ai inbound call agents platform", "nucleus ai", "phone automation", "call automation", "voice ai", "call ai", "phone ai"],
   "call": ["phone", "voice", "calling", "telephone", "communication", "dial", "contact", "conversation", "chat", "talk", "call center", "call agent", "inbound", "outbound", "nucleus", "ai agent", "phone agent", "voice agent", "nucleus ai inbound call agents platform", "nucleus ai", "phone automation", "call automation", "voice ai", "call ai", "phone ai"],
@@ -59,6 +63,8 @@ export const searchSynonyms: Record<string, string[]> = {
   "music": ["song", "audio", "sound", "track", "beat", "tune", "suno", "udio", "music generation", "ai music"],
   "suno": ["suno ai", "music generation", "ai music", "song creation", "music creator"],
   "udio": ["udio ai", "music generation", "ai music", "song creation", "music creator"],
+  "sun": ["solar", "solar energy", "solar land assessor", "solar assessment", "renewable energy", "solar panels"],
+  "solar": ["sun", "solar land assessor", "solar assessment", "renewable energy", "solar panels", "solar energy"],
   "phone": ["call", "telephone", "mobile", "cellular", "voice", "communication", "call agent", "nucleus", "phone agent", "voice agent", "nucleus ai", "phone automation"],
   "call": ["phone", "voice", "telephone", "contact", "dial", "ring", "call agent", "nucleus", "phone agent", "voice agent", "nucleus ai", "call automation"],
   "voice": ["speech", "audio", "vocal", "sound", "call", "phone", "voice agent", "call agent", "voice ai"],
@@ -72,7 +78,8 @@ export const categoryKeywords: Record<string, string[]> = {
   "Audio & Voice Tools": ["music", "suno", "udio", "audio", "sound", "voice", "speech", "music generation", "ai music", "song creation", "call agents", "voice agents", "phone agents", "ai agents", "call center", "inbound calls", "outbound calls", "nucleus", "voice communication", "phone systems", "customer service AI", "nucleus ai", "phone automation", "voice ai"],
   "Communication & Entertainment": ["phone", "call", "voice", "chat", "talk", "celebrity", "entertainment", "conversation", "communication tools", "call agents", "voice agents", "call center", "nucleus", "phone agents", "telephone", "phonecall", "inbound", "outbound", "nucleus ai", "phone automation", "call automation"],
   "Call Center & Voice AI": ["call agents", "voice agents", "phone agents", "ai agents", "call center", "inbound calls", "outbound calls", "nucleus", "voice communication", "phone systems", "customer service AI", "nucleus ai"],
-  "Video & Animation Tools": ["music video", "video creation", "animation", "video editing", "cinematic", "video maker", "video production"]
+  "Video & Animation Tools": ["music video", "video creation", "animation", "video editing", "cinematic", "video maker", "video production"],
+  "Industry-Specific Solutions": ["solar", "solar land assessor", "solar assessment", "renewable energy", "solar panels", "solar energy", "sun", "solar professional", "solar project"]
 };
 
 // Export individual keyword categories for specific use cases

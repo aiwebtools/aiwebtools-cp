@@ -8,6 +8,25 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   // Add the original search term
   expandedKeywords.add(lowerSearchTerm);
   
+  // SOLAR/SUN SEARCH EXPANSION - HIGH PRIORITY
+  if (lowerSearchTerm.includes('sun') || lowerSearchTerm.includes('solar')) {
+    const solarKeywords = [
+      'solar land assessor gpt',
+      'solar land assessor',
+      'solar assessment',
+      'solar professional',
+      'solar installation',
+      'solar energy',
+      'renewable energy',
+      'solar panels',
+      'solar project',
+      'solar land',
+      'solar power'
+    ];
+    
+    solarKeywords.forEach(keyword => expandedKeywords.add(keyword));
+  }
+  
   // PHONE/CALL AGENT SEARCH EXPANSION - HIGHEST PRIORITY
   if (lowerSearchTerm.includes('phone') || lowerSearchTerm.includes('call') || 
       lowerSearchTerm.includes('telephone') || lowerSearchTerm.includes('voice agent') ||
@@ -237,6 +256,17 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
     expandedKeywords.add('voice agent');
     expandedKeywords.add('nucleus');
     expandedKeywords.add('call center');
+  }
+  
+  // Add common variations for solar/sun terms
+  if (lowerSearchTerm.includes('sun') || lowerSearchTerm.includes('solar')) {
+    expandedKeywords.add('sun');
+    expandedKeywords.add('solar');
+    expandedKeywords.add('solar energy');
+    expandedKeywords.add('renewable energy');
+    expandedKeywords.add('solar panels');
+    expandedKeywords.add('solar assessment');
+    expandedKeywords.add('solar land assessor');
   }
   
   // Convert back to array and remove empty strings
