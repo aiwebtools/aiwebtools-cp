@@ -21,7 +21,7 @@ const AllToolsButton = ({ selectedCategory, totalTools, onCategoryChange }: AllT
             : "bg-gray-800/70 border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white"
         }`}
       >
-        🎯 All AI Tools
+        🎯 All SubCategories
         <Badge variant="secondary" className="ml-2 text-xs bg-black/30 text-gray-300">
           {totalTools}
         </Badge>
