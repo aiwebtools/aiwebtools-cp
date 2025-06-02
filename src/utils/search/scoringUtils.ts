@@ -12,6 +12,19 @@ export const getToolNameMatchScore = (toolTitle: string, searchTerm: string): nu
   
   let score = 0;
   
+  // IMAGE SEARCH SPECIAL PRIORITY
+  if (lowerSearchTerm.includes('image')) {
+    if (lowerTitle.includes('midjourney')) {
+      return 3000; // Highest priority for Midjourney
+    }
+    if (lowerTitle.includes('leonardo')) {
+      return 2900; // Second highest for Leonardo AI
+    }
+    if (lowerTitle.includes('dall·e') || lowerTitle.includes('dalle') || lowerTitle.includes('gpt-4o') || lowerTitle.includes('gpt4o')) {
+      return 2800; // Third highest for GPT-4o/DALL-E
+    }
+  }
+  
   // LEARNING TOOLS SPECIAL PRIORITY
   if (lowerSearchTerm.includes('learn')) {
     if (lowerTitle.includes('learn any skill gpt')) {
@@ -115,6 +128,30 @@ export const calculateIntentScore = (tool: Tool, searchTerm: string): number => 
   const titleWords = lowerTitle.split(' ');
   
   let score = 0;
+  
+  // IMAGE SEARCH SPECIAL PRIORITY
+  if (lowerSearchTerm.includes('image')) {
+    if (lowerTitle.includes('midjourney')) {
+      score += 3000; // Highest priority for Midjourney
+    }
+    if (lowerTitle.includes('leonardo')) {
+      score += 2900; // Second highest for Leonardo AI
+    }
+    if (lowerTitle.includes('dall·e') || lowerTitle.includes('dalle') || lowerTitle.includes('gpt-4o') || lowerTitle.includes('gpt4o')) {
+      score += 2800; // Third highest for GPT-4o/DALL-E
+    }
+    
+    // General image generation tools
+    if (lowerTitle.includes('image generation') || lowerTitle.includes('ai art') || lowerTitle.includes('text-to-image')) {
+      score += 2000;
+    }
+    if (lowerCategory.includes('image') || lowerCategory.includes('design')) {
+      score += 1800;
+    }
+    if (lowerTags.some(tag => tag.includes('image') || tag.includes('art') || tag.includes('design'))) {
+      score += 1600;
+    }
+  }
   
   // ENHANCED LEARNING/EDUCATIONAL TOOLS PRIORITIZATION
   if (lowerSearchTerm.includes('learn')) {
