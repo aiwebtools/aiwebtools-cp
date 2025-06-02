@@ -1,129 +1,94 @@
 
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Search, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { useDebounce } from "@/hooks/useDebounce";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import SearchBar from "@/components/tools/SearchBar";
+import CategoryViewToggle from "@/components/tools/CategoryViewToggle";
+import MainCategoriesView from "@/components/tools/MainCategoriesView";
+import SubcategoriesView from "@/components/tools/SubcategoriesView";
+import AllToolsButton from "@/components/tools/AllToolsButton";
 
 interface CategoryFiltersProps {
-  categoriesWithCounts: Array<{ name: string; count: number }>;
+  categoriesWithCounts: Record<string, number>;
   selectedCategory: string | null;
   onCategoryChange: (category: string | null) => void;
   onSearchChange: (searchTerm: string) => void;
   searchTerm: string;
 }
 
-const CategoryFilters = ({ 
-  categoriesWithCounts, 
-  selectedCategory, 
-  onCategoryChange, 
-  onSearchChange, 
-  searchTerm 
+const CategoryFilters = ({
+  categoriesWithCounts,
+  selectedCategory,
+  onCategoryChange,
+  onSearchChange,
+  searchTerm
 }: CategoryFiltersProps) => {
-  const [localSearchTerm, setLocalSearchTerm] = useState(searchTerm);
-  
-  // Debounce the search to prevent excessive API calls/filtering
-  const debouncedSearchTerm = useDebounce(localSearchTerm, 300);
-  
-  // Update parent when debounced term changes
-  React.useEffect(() => {
-    onSearchChange(debouncedSearchTerm);
-  }, [debouncedSearchTerm, onSearchChange]);
+  const [viewMode, setViewMode] = useState<'main' | 'sub'>('main');
+  const [isExpanded, setIsExpanded] = useState(true);
 
-  // Sync local state with prop changes
-  React.useEffect(() => {
-    setLocalSearchTerm(searchTerm);
-  }, [searchTerm]);
+  const totalTools = Object.values(categoriesWithCounts).reduce((sum, count) => sum + count, 0);
 
-  const handleSearchInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setLocalSearchTerm(e.target.value);
-  }, []);
-
-  const clearSearch = useCallback(() => {
-    setLocalSearchTerm("");
-    onSearchChange("");
-  }, [onSearchChange]);
-
-  const handleCategoryClick = useCallback((categoryName: string) => {
-    const newCategory = selectedCategory === categoryName ? null : categoryName;
-    onCategoryChange(newCategory);
-    setLocalSearchTerm("");
-  }, [selectedCategory, onCategoryChange]);
-
-  // Memoize filtered categories to prevent unnecessary re-renders
-  const filteredCategories = useMemo(() => {
-    if (!localSearchTerm.trim()) return categoriesWithCounts;
-    
-    const searchLower = localSearchTerm.toLowerCase();
-    return categoriesWithCounts.filter(category =>
-      category.name.toLowerCase().includes(searchLower)
-    );
-  }, [categoriesWithCounts, localSearchTerm]);
+  const handleCategorySelect = (category: string | null) => {
+    onCategoryChange(category);
+  };
 
   return (
-    <div className="mb-8 space-y-6">
+    <div className="mb-8">
       {/* Search Bar */}
-      <div className="relative max-w-md mx-auto">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-        <Input
-          type="text"
-          placeholder="SEARCH AI WEB TOOLS DATABASE"
-          value={localSearchTerm}
-          onChange={handleSearchInputChange}
-          className="pl-10 pr-10 bg-black/50 border-cyan-500/30 text-cyan-100 placeholder-cyan-400/70 focus:border-cyan-400 focus:ring-cyan-400/30 rounded-lg"
+      <div className="mb-6">
+        <SearchBar
+          searchTerm={searchTerm}
+          onSearchChange={onSearchChange}
+          preventAutoNavigation={true}
         />
-        {localSearchTerm && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={clearSearch}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-cyan-400 hover:text-cyan-300"
-          >
-            <X className="w-3 h-3" />
-          </Button>
-        )}
       </div>
 
-      {/* Category Filters */}
-      {!localSearchTerm && (
-        <div className="flex flex-wrap gap-2 justify-center">
-          <Button
-            variant={selectedCategory === null ? "default" : "outline"}
-            onClick={() => onCategoryChange(null)}
-            className={`transition-all duration-200 ${
-              selectedCategory === null
-                ? "bg-cyan-500 text-white border-cyan-500"
-                : "border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:text-cyan-200"
-            }`}
-          >
-            All Categories
-            <Badge variant="secondary" className="ml-2 bg-cyan-500/20 text-cyan-300">
-              {categoriesWithCounts.reduce((sum, cat) => sum + cat.count, 0)}
-            </Badge>
-          </Button>
+      {/* View Toggle */}
+      <CategoryViewToggle 
+        viewMode={viewMode} 
+        onViewModeChange={setViewMode} 
+      />
 
-          {filteredCategories.map((category) => (
-            <Button
-              key={category.name}
-              variant={selectedCategory === category.name ? "default" : "outline"}
-              onClick={() => handleCategoryClick(category.name)}
-              className={`transition-all duration-200 ${
-                selectedCategory === category.name
-                  ? "bg-cyan-500 text-white border-cyan-500"
-                  : "border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:text-cyan-200"
-              }`}
-            >
-              {category.name}
-              <Badge variant="secondary" className="ml-2 bg-cyan-500/20 text-cyan-300">
-                {category.count}
-              </Badge>
-            </Button>
-          ))}
-        </div>
-      )}
+      {/* All Tools Button */}
+      <AllToolsButton
+        selectedCategory={selectedCategory}
+        totalTools={totalTools}
+        onCategoryChange={handleCategorySelect}
+      />
+
+      {/* Categories Section */}
+      <div className="mb-4">
+        <Button
+          onClick={() => setIsExpanded(!isExpanded)}
+          variant="ghost"
+          className="w-full text-cyan-300 hover:text-cyan-100 mb-4"
+        >
+          <span className="text-lg font-semibold">
+            {viewMode === 'main' ? '📁 Browse Main Categories' : '🗂️ Browse All SubCategories'}
+          </span>
+          {isExpanded ? <ChevronUp className="ml-2 h-4 w-4" /> : <ChevronDown className="ml-2 h-4 w-4" />}
+        </Button>
+
+        {isExpanded && (
+          <div className="space-y-4">
+            {viewMode === 'main' ? (
+              <MainCategoriesView
+                selectedCategory={selectedCategory}
+                onCategoryChange={handleCategorySelect}
+              />
+            ) : (
+              <SubcategoriesView
+                categoriesWithCounts={categoriesWithCounts}
+                selectedCategory={selectedCategory}
+                onCategoryChange={handleCategorySelect}
+              />
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-export default React.memo(CategoryFilters);
+export default CategoryFilters;
