@@ -27,28 +27,41 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     
     console.log('📊 MainCategoryFilter Global Counts:', globalCounts);
     
-    const categoriesData = mainCategories.map(mainCat => {
+    // FIXED: Create a Map to ensure unique categories and prevent duplicates
+    const uniqueCategoriesMap = new Map<string, { name: string; emoji: string; count: number }>();
+    
+    mainCategories.forEach(mainCat => {
       // For "ALL AI TOOLS", use the total count of all tools
       const count = mainCat.name === "ALL AI TOOLS" ? allTools.length : (globalCounts[mainCat.name] || 0);
       
       console.log(`📊 MainCategoryFilter ${mainCat.name}: ${count} tools (${mainCat.name === "ALL AI TOOLS" ? 'total tools' : 'from global counts'})`);
       
-      return {
-        name: mainCat.name,
-        emoji: mainCat.emoji,
-        count: count
-      };
-    }).filter(cat => {
-      // Only show categories with tools (except show ALL AI TOOLS even if somehow count is 0)
-      return cat.count > 0 || cat.name === "ALL AI TOOLS";
-    }).sort((a, b) => {
-      // Sort by count descending, but keep ALL AI TOOLS at the top
-      if (a.name === "ALL AI TOOLS") return -1;
-      if (b.name === "ALL AI TOOLS") return 1;
-      return b.count - a.count;
+      // FIXED: Only add if not already in map (prevents duplicates)
+      if (!uniqueCategoriesMap.has(mainCat.name)) {
+        uniqueCategoriesMap.set(mainCat.name, {
+          name: mainCat.name,
+          emoji: mainCat.emoji,
+          count: count
+        });
+      }
     });
     
-    console.log('🎯 MainCategoryFilter Final categories with counts:', categoriesData.map(c => `${c.name}: ${c.count}`));
+    // Convert Map to Array and filter/sort
+    const categoriesData = Array.from(uniqueCategoriesMap.values())
+      .filter(cat => {
+        // Only show categories with tools (except show ALL AI TOOLS even if somehow count is 0)
+        return cat.count > 0 || cat.name === "ALL AI TOOLS";
+      })
+      .sort((a, b) => {
+        // Sort by count descending, but keep ALL AI TOOLS at the top
+        if (a.name === "ALL AI TOOLS") return -1;
+        if (b.name === "ALL AI TOOLS") return 1;
+        return b.count - a.count;
+      });
+    
+    console.log('🎯 MainCategoryFilter Final UNIQUE categories with counts:', categoriesData.map(c => `${c.name}: ${c.count}`));
+    console.log('🔍 DUPLICATE CHECK: Total unique categories:', categoriesData.length, 'vs original mainCategories:', mainCategories.length);
+    
     return categoriesData;
   }, []);
 
@@ -139,7 +152,8 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     selectedCategories: selectedMainCategories,
     filteredToolsCount: filteredTools.length,
     priorityToolsCount: selectedMainCategories.length > 0 ? getToolsByMainCategory(allTools, selectedMainCategories[0])?.length : 0,
-    usingPriorityOrdering: selectedMainCategories.length > 0
+    usingPriorityOrdering: selectedMainCategories.length > 0,
+    uniqueCategoriesCount: mainCategoriesWithCounts.length
   });
 
   return (
@@ -204,7 +218,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-48 overflow-y-auto">
             {mainCategoriesWithCounts.map(({ name, emoji, count }) => {
               const isChecked = selectedMainCategories.includes(name);
-              console.log(`🔘 Rendering checkbox for ${name}: checked=${isChecked}, count=${count}`);
+              console.log(`🔘 Rendering UNIQUE checkbox for ${name}: checked=${isChecked}, count=${count}`);
               
               return (
                 <div
