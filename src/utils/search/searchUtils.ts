@@ -35,6 +35,32 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     let score = 0;
     let matched = false;
     
+    // NAME SEARCH SPECIFIC MATCHING - HIGHEST PRIORITY
+    if (lowerSearchTerm.includes('name') || lowerSearchTerm.includes('meaning') || 
+        lowerSearchTerm.includes('identity') || lowerSearchTerm.includes('personality') ||
+        lowerSearchTerm.includes('numerology')) {
+      
+      // Check if this is the Name Insight Research & Predictor GPT tool
+      if (tool.title.toLowerCase().includes('name insight research') || 
+          tool.title.toLowerCase().includes('name meaning') ||
+          tool.title.toLowerCase().includes('name predictor') ||
+          tool.directUrl?.includes('whatsmynamegpt')) {
+        matched = true;
+        score += 15000; // Highest priority for name searches
+        console.log(`🎯 NAME MATCH FOUND: ${tool.title} with score ${score}`);
+      }
+      
+      // Check description and tags for name-related content
+      const nameKeywords = ['name analysis', 'personality insights', 'numerology', 'cultural significance', 'name meaning', 'identity', 'personal discovery'];
+      for (const keyword of nameKeywords) {
+        if (tool.description.toLowerCase().includes(keyword) || 
+            tool.tags?.some(tag => tag.toLowerCase().includes(keyword))) {
+          matched = true;
+          score += 8000;
+        }
+      }
+    }
+    
     // App building specific matching (highest priority for app building searches)
     if (matchAppBuilding(tool, searchTerm)) {
       matched = true;
@@ -170,24 +196,22 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
 
   console.log(`✅ Enhanced search found ${results.length} results for "${searchTerm}"`);
   
-  // Enhanced debugging for college/education searches
-  if (lowerSearchTerm.includes('college') || lowerSearchTerm.includes('education') || lowerSearchTerm.includes('learn')) {
-    const educationResults = results.filter(tool => 
-      tool.title.toLowerCase().includes('college') || 
-      tool.title.toLowerCase().includes('education') || 
-      tool.title.toLowerCase().includes('learn') ||
-      tool.category?.toLowerCase().includes('education') ||
-      tool.description.toLowerCase().includes('education') ||
-      tool.description.toLowerCase().includes('college') ||
-      tool.description.toLowerCase().includes('learning')
+  // Enhanced debugging for name searches
+  if (lowerSearchTerm.includes('name') || lowerSearchTerm.includes('meaning') || lowerSearchTerm.includes('identity')) {
+    const nameResults = results.filter(tool => 
+      tool.title.toLowerCase().includes('name') || 
+      tool.description.toLowerCase().includes('name') ||
+      tool.title.toLowerCase().includes('meaning') ||
+      tool.description.toLowerCase().includes('meaning') ||
+      tool.directUrl?.includes('whatsmynamegpt')
     ).slice(0, 10);
     
-    console.log(`📚 Education/College search results (${educationResults.length}):`, educationResults.map(t => ({
+    console.log(`🏷️ Name search results (${nameResults.length}):`, nameResults.map(t => ({
       title: t.title,
       category: t.category,
-      hasEducationInDesc: t.description.toLowerCase().includes('education'),
-      hasCollegeInDesc: t.description.toLowerCase().includes('college'),
-      hasLearningInDesc: t.description.toLowerCase().includes('learning')
+      url: t.directUrl,
+      hasNameInTitle: t.title.toLowerCase().includes('name'),
+      hasNameInDesc: t.description.toLowerCase().includes('name')
     })));
   }
   

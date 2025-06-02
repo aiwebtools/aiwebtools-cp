@@ -1,4 +1,3 @@
-
 import { coreAIKeywords } from './coreAIKeywords';
 import { creativeKeywords } from './creativeKeywords';
 import { businessKeywords } from './businessKeywords';
@@ -22,6 +21,18 @@ export const keywordMapping: Record<string, string[]> = {
   ...specialtyKeywords,
   ...searchMetaKeywords,
   ...aiWebToolsKeywords,
+  
+  // NAME ANALYSIS KEYWORDS - HIGHEST PRIORITY FOR NAME SEARCHES
+  "name": ["name insight research", "name predictor", "name meaning", "name analysis", "personality insights", "numerology", "cultural significance", "personal discovery", "name research", "identity", "naming", "whatsmynamegpt", "name insight research & predictor gpt"],
+  "names": ["name insight research", "name predictor", "name meaning", "name analysis", "personality insights", "numerology", "cultural significance", "personal discovery", "name research", "identity", "naming", "whatsmynamegpt", "name insight research & predictor gpt"],
+  "naming": ["name insight research", "name predictor", "name meaning", "name analysis", "name", "names", "identity", "whatsmynamegpt", "name insight research & predictor gpt"],
+  "name meaning": ["name insight research", "name predictor", "name analysis", "personality insights", "numerology", "cultural significance", "personal discovery", "name research", "identity", "whatsmynamegpt", "name insight research & predictor gpt"],
+  "name analysis": ["name insight research", "name predictor", "name meaning", "personality insights", "numerology", "cultural significance", "personal discovery", "name research", "identity", "whatsmynamegpt", "name insight research & predictor gpt"],
+  "personality insights": ["name insight research", "name predictor", "name meaning", "name analysis", "numerology", "cultural significance", "personal discovery", "whatsmynamegpt", "name insight research & predictor gpt"],
+  "numerology": ["name insight research", "name predictor", "name meaning", "name analysis", "personality insights", "cultural significance", "personal discovery", "whatsmynamegpt", "name insight research & predictor gpt"],
+  "identity": ["name insight research", "name predictor", "name meaning", "name analysis", "personality insights", "numerology", "cultural significance", "personal discovery", "name research", "whatsmynamegpt", "name insight research & predictor gpt"],
+  "whatsmynamegpt": ["name insight research", "name predictor", "name meaning", "name analysis", "personality insights", "numerology", "cultural significance", "personal discovery", "name research", "identity", "name insight research & predictor gpt"],
+  "whats my name": ["name insight research", "name predictor", "name meaning", "name analysis", "personality insights", "numerology", "cultural significance", "personal discovery", "name research", "identity", "whatsmynamegpt", "name insight research & predictor gpt"],
   
   // Enhanced Science and Research keywords - HIGHEST PRIORITY FOR SCIENCE SEARCH
   "science": ["stellaris", "space explorer", "nikola tesla gpt", "albert einstein gpt", "alchemist scientist gpt", "genome gpt", "scientific research", "research", "laboratory", "experiment", "analysis", "space exploration", "astronomy", "physics", "chemistry", "biology", "genetics", "dna", "scientific", "scientist", "researcher", "innovation", "discovery", "invention", "technology", "ai research"],
@@ -143,6 +154,15 @@ export const keywordMapping: Record<string, string[]> = {
 
 // Enhanced search synonyms for better matching
 export const searchSynonyms: Record<string, string[]> = {
+  // NAME ANALYSIS SYNONYMS - HIGHEST PRIORITY
+  "name": ["names", "naming", "name meaning", "name analysis", "personality insights", "numerology", "identity", "whatsmynamegpt", "name insight research", "name predictor"],
+  "names": ["name", "names", "name meaning", "name analysis", "personality insights", "numerology", "identity", "whatsmynamegpt", "name insight research", "name predictor"],
+  "naming": ["name", "names", "name meaning", "name analysis", "identity", "whatsmynamegpt", "name insight research", "name predictor"],
+  "identity": ["name", "names", "naming", "personality", "self-discovery", "personal", "whatsmynamegpt", "name insight research"],
+  "personality": ["name", "personality insights", "character", "traits", "numerology", "whatsmynamegpt", "name insight research"],
+  "numerology": ["name", "numbers", "mystical", "spiritual", "divination", "whatsmynamegpt", "name insight research"],
+  "meaning": ["name meaning", "significance", "interpretation", "definition", "symbolism", "whatsmynamegpt", "name insight research"],
+  
   // Science and Research synonyms - NEW PRIORITY SECTION
   "science": ["scientific", "research", "laboratory", "experiment", "analysis", "stellaris", "nikola tesla gpt", "albert einstein gpt", "alchemist scientist gpt", "genome gpt"],
   "scientific": ["science", "research", "laboratory", "experiment", "analysis", "researcher", "scientist"],
@@ -201,6 +221,7 @@ export const searchSynonyms: Record<string, string[]> = {
 
 // Category-specific keywords for better categorization
 export const categoryKeywords: Record<string, string[]> = {
+  "Personal Development & Self-Discovery": ["name", "names", "naming", "name meaning", "name analysis", "personality insights", "numerology", "identity", "personal discovery", "self-discovery", "personal growth", "whatsmynamegpt", "name insight research", "name predictor"],
   "Science & Research": ["science", "scientific", "research", "laboratory", "experiment", "analysis", "stellaris", "space explorer", "nikola tesla gpt", "albert einstein gpt", "alchemist scientist gpt", "genome gpt", "space exploration", "astronomy", "physics", "chemistry", "biology", "genetics", "dna", "tesla", "einstein", "alchemy", "scientist", "researcher", "innovation", "discovery", "invention"],
   "Education & Research Tools": ["college", "university", "education", "learning", "teaching", "academic", "school", "student", "degree", "course", "tutorial", "educational", "study", "curriculum", "homeschool", "college degree gpt", "learn any course", "learn any skill"],
   "Development & Coding Tools": ["build app", "app builder", "web app builder", "lovable.dev", "bolt.new", "cursor", "no-code", "low-code", "web development", "app development", "code", "programming", "coding", "development", "ai coding", "code assistant", "react builder", "ai web builder"],
