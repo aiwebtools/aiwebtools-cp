@@ -230,5 +230,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.8,
     totalVotes: 4567
+  },
+  {
+    icon: Code,
+    title: "Windsurf",
+    description: "AI-powered coding agent and IDE that helps developers write, debug, and refactor code collaboratively. Features intelligent code completion, automated debugging, and seamless development workflows.",
+    emoji: "🏄‍♂️",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://windsurf.com/?via=aiwebtools",
+    tags: ["coding agent", "AI IDE", "code completion", "debugging", "development workflows", "collaborative coding"],
+    category: "AI Agents",
+    rating: 4.7,
+    totalVotes: 3200
   }
 ];
