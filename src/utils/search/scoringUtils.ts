@@ -25,6 +25,19 @@ export const getToolNameMatchScore = (toolTitle: string, searchTerm: string): nu
     }
   }
   
+  // PROPERTY/REAL ESTATE SEARCH SPECIAL PRIORITY
+  if (lowerSearchTerm.includes('property') || lowerSearchTerm.includes('real estate') || lowerSearchTerm.includes('realestate')) {
+    if (lowerTitle.includes('property data finder')) {
+      return 3000; // Highest priority for Property Data Finder GPT
+    }
+    if (lowerTitle.includes('property') || lowerTitle.includes('real estate') || lowerTitle.includes('realestate')) {
+      return 2500; // High priority for property/real estate tools
+    }
+    if (lowerTitle.includes('home') || lowerTitle.includes('house') || lowerTitle.includes('land') || lowerTitle.includes('mortgage')) {
+      return 2000; // Medium-high priority for home/housing related tools
+    }
+  }
+  
   // LEARNING TOOLS SPECIAL PRIORITY
   if (lowerSearchTerm.includes('learn')) {
     if (lowerTitle.includes('learn any skill gpt')) {
@@ -150,6 +163,44 @@ export const calculateIntentScore = (tool: Tool, searchTerm: string): number => 
     }
     if (lowerTags.some(tag => tag.includes('image') || tag.includes('art') || tag.includes('design'))) {
       score += 1600;
+    }
+  }
+  
+  // PROPERTY/REAL ESTATE SEARCH SPECIAL PRIORITY
+  if (lowerSearchTerm.includes('property') || lowerSearchTerm.includes('real estate') || lowerSearchTerm.includes('realestate')) {
+    // Exact matches get highest priority
+    if (lowerTitle.includes('property data finder')) {
+      score += 3000; // Highest priority for Property Data Finder GPT
+    }
+    if (lowerTitle.includes('property') || lowerTitle.includes('real estate') || lowerTitle.includes('realestate')) {
+      score += 2500; // High priority for property/real estate tools
+    }
+    
+    // Related real estate terms
+    if (lowerTitle.includes('home') || lowerTitle.includes('house') || lowerTitle.includes('land')) {
+      score += 2000;
+    }
+    if (lowerTitle.includes('mortgage') || lowerTitle.includes('loan') || lowerTitle.includes('finance')) {
+      score += 1800;
+    }
+    if (lowerTitle.includes('appraisal') || lowerTitle.includes('valuation') || lowerTitle.includes('assessment')) {
+      score += 1700;
+    }
+    if (lowerTitle.includes('renovation') || lowerTitle.includes('repair') || lowerTitle.includes('construction')) {
+      score += 1600;
+    }
+    
+    // Category and tag matching
+    if (lowerCategory.includes('real estate') || lowerCategory.includes('property') || lowerCategory.includes('housing')) {
+      score += 1500;
+    }
+    if (lowerTags.some(tag => tag.includes('property') || tag.includes('real estate') || tag.includes('housing') || tag.includes('home'))) {
+      score += 1400;
+    }
+    
+    // Description matching
+    if (lowerDescription.includes('property') || lowerDescription.includes('real estate') || lowerDescription.includes('housing')) {
+      score += 1300;
     }
   }
   
@@ -310,6 +361,8 @@ export const calculateIntentScore = (tool: Tool, searchTerm: string): number => 
     "learn": ["learn any skill", "learn any course", "college degree", "education", "learning"],
     "skill": ["learn any skill", "skill development", "training", "education"],
     "course": ["learn any course", "college degree", "education", "curriculum"],
+    "property": ["property data finder", "real estate", "property management", "property valuation", "property assessment"],
+    "real estate": ["property data finder", "property", "housing", "real estate tools", "property management"],
     "replika": ["replika", "ai companion", "personal ai", "friend ai"],
     "character": ["character.ai", "character ai", "roleplay ai"],
     "perplexity": ["perplexity", "ai search", "research ai"],
