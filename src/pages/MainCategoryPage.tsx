@@ -22,6 +22,7 @@ const MainCategoryPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(48);
   const [filteredToolsByCategory, setFilteredToolsByCategory] = useState<Tool[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
@@ -64,10 +65,17 @@ const MainCategoryPage = () => {
     : toolsToShow;
 
   const handleLoadMore = () => {
-    if (allToolsDisplayedCount >= finalFilteredTools.length) return;
+    if (allToolsDisplayedCount >= finalFilteredTools.length || isLoading) return;
     
-    // Load significantly more tools instantly for smoother experience
-    setAllToolsDisplayedCount(prev => Math.min(prev + 96, finalFilteredTools.length));
+    console.log(`🚀 Loading more tools in ${decodedCategoryName}...`);
+    setIsLoading(true);
+    
+    // Use setTimeout to show loading state briefly, then load more tools
+    setTimeout(() => {
+      // Load 48 more tools at a time for smooth experience
+      setAllToolsDisplayedCount(prev => Math.min(prev + 48, finalFilteredTools.length));
+      setIsLoading(false);
+    }, 200);
   };
 
   const handleSearchChange = (value: string) => {
@@ -82,28 +90,6 @@ const MainCategoryPage = () => {
   };
 
   const hasMoreTools = allToolsDisplayedCount < finalFilteredTools.length;
-
-  // Ultra-optimized scroll listener - no delays, no throttling
-  useEffect(() => {
-    if (searchTerm) return; // Disable infinite scroll during search
-    
-    const handleScroll = () => {
-      if (!hasMoreTools) return;
-      
-      const scrollTop = window.pageYOffset;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      
-      // More aggressive threshold - load when 800px from bottom
-      if (scrollTop + windowHeight >= documentHeight - 800) {
-        handleLoadMore();
-      }
-    };
-
-    // Direct event listener without throttling for maximum responsiveness
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasMoreTools, searchTerm, allToolsDisplayedCount, finalFilteredTools.length]);
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -142,7 +128,7 @@ const MainCategoryPage = () => {
             />
           </div>
 
-          {/* Category Filter Component - CORRECTED */}
+          {/* Category Filter Component */}
           <MainCategoryFilter
             tools={categoryTools}
             onFilteredToolsChange={handleFilteredToolsChange}
@@ -159,12 +145,12 @@ const MainCategoryPage = () => {
             </div>
             {!searchTerm && hasMoreTools && (
               <div className="text-gray-400 text-sm mt-1">
-                Showing {allToolsDisplayedCount} of {finalFilteredTools.length} tools
+                Showing {allToolsDisplayedCount} of {finalFilteredTools.length} tools - scroll for more!
               </div>
             )}
           </div>
 
-          {/* Tools Grid - using filtered tools */}
+          {/* Tools Grid - with infinite scroll enabled */}
           <div id="tools-section">
             {finalFilteredTools.length > 0 ? (
               <ToolsGrid
@@ -174,7 +160,7 @@ const MainCategoryPage = () => {
                 searchTerm={searchTerm}
                 onLoadMore={handleLoadMore}
                 hasInfiniteScroll={true}
-                isLoading={false}
+                isLoading={isLoading}
               />
             ) : (
               <div className="text-center py-16">
@@ -197,8 +183,8 @@ const MainCategoryPage = () => {
             )}
           </div>
 
-          {/* Show More Button */}
-          {!searchTerm && hasMoreTools && (
+          {/* Backup Show More Button - only visible if infinite scroll fails */}
+          {!searchTerm && hasMoreTools && !isLoading && (
             <div className="text-center mt-12 mb-8">
               <Button
                 onClick={handleLoadMore}

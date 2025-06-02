@@ -7,6 +7,7 @@ import SimilarToolsRecommendation from "@/components/tools/SimilarToolsRecommend
 import SeeMoreCategoriesButton from "@/components/tools/SeeMoreCategoriesButton";
 import { getContextAwareSimilarTools, shouldShowSimilarTools } from "@/utils/contextAwareSimilarTools";
 import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
+import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 
 // Lazy load heavy components
 const VirtualizedToolsGrid = lazy(() => import("./VirtualizedToolsGrid"));
@@ -58,6 +59,18 @@ const ToolsGrid = memo(({
     };
   }, [tools, displayedCount, searchTerm, selectedCategory]);
 
+  // Enable infinite scroll when hasInfiniteScroll is true
+  useInfiniteScroll({
+    isLoading,
+    showLoadMoreButton: false, // Always use infinite scroll when enabled
+    displayedCount,
+    totalTools: tools.length,
+    onLoadMore,
+    searchTerm,
+    selectedCategory,
+    enableInfiniteScroll: hasInfiniteScroll
+  });
+
   const getSectionTitle = useMemo(() => {
     if (selectedCategory) {
       return <>🎯 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{selectedCategory}</span></>;
@@ -92,13 +105,13 @@ const ToolsGrid = memo(({
           {searchTerm && (
             <p className="text-gray-300 text-sm">
               Found {tools.length} tools matching "{searchTerm}"
-              {tools.length > displayTools.length && " - scroll down to see more!"}
+              {tools.length > displayTools.length && " - scroll down for more results!"}
             </p>
           )}
           {selectedCategory && (
             <p className="text-gray-300 text-sm">
               Showing {displayTools.length} of {tools.length} tools in {selectedCategory}
-              {tools.length > displayTools.length && " (scroll for more related tools)"}
+              {tools.length > displayTools.length && " - scroll down for more tools!"}
             </p>
           )}
         </div>
@@ -110,6 +123,9 @@ const ToolsGrid = memo(({
           <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
             {getSectionTitle}
           </h3>
+          <p className="text-gray-300 text-sm">
+            Scroll down to discover more amazing AI tools!
+          </p>
         </div>
       )}
 
@@ -160,13 +176,13 @@ const ToolsGrid = memo(({
         />
       )}
 
-      {/* Improved loading state */}
+      {/* Smooth loading indicator for infinite scroll */}
       {hasInfiniteScroll && isLoading && hasMoreTools && (
         <div className="text-center mt-8 py-8">
           <div className="flex items-center justify-center space-x-3">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-500"></div>
             <span className="text-cyan-200 text-lg">
-              {searchTerm ? `Loading more search results...` : `Loading more tools...`}
+              {searchTerm ? `Loading more search results...` : selectedCategory ? `Loading more ${selectedCategory} tools...` : `Loading more amazing AI tools...`}
             </span>
           </div>
         </div>
@@ -181,7 +197,7 @@ const ToolsGrid = memo(({
               ? `You've seen all ${tools.length} tools matching "${searchTerm}"!`
               : selectedCategory 
                 ? `You've explored all ${tools.length} tools in ${selectedCategory}!`
-                : `You've explored all ${tools.length} tools!`
+                : `You've explored all ${tools.length} amazing AI tools!`
             }
           </div>
           <div className="text-sm opacity-80">

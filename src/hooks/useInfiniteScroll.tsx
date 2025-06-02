@@ -8,6 +8,8 @@ interface UseInfiniteScrollProps {
   totalTools: number;
   onLoadMore: () => void;
   searchTerm?: string;
+  selectedCategory?: string | null;
+  enableInfiniteScroll?: boolean;
 }
 
 export const useInfiniteScroll = ({ 
@@ -16,44 +18,73 @@ export const useInfiniteScroll = ({
   displayedCount, 
   totalTools, 
   onLoadMore,
-  searchTerm = ""
+  searchTerm = "",
+  selectedCategory = null,
+  enableInfiniteScroll = true
 }: UseInfiniteScrollProps) => {
-  // Use refs to prevent unnecessary re-renders
+  // Use refs to prevent unnecessary re-renders and maintain performance
   const isLoadingRef = useRef(isLoading);
   const displayedCountRef = useRef(displayedCount);
   const totalToolsRef = useRef(totalTools);
+  const lastScrollY = useRef(0);
   
-  // Update refs
+  // Update refs for current values
   isLoadingRef.current = isLoading;
   displayedCountRef.current = displayedCount;
   totalToolsRef.current = totalTools;
 
   const handleLoadMore = useCallback(() => {
-    if (isLoadingRef.current) return;
-    console.log(`🔄 Infinite scroll triggered - Loading more tools... Search: "${searchTerm}"`);
+    if (isLoadingRef.current || displayedCountRef.current >= totalToolsRef.current) return;
+    console.log(`🔄 Infinite scroll triggered - Loading more tools... Search: "${searchTerm}", Category: "${selectedCategory}"`);
     onLoadMore();
-  }, [onLoadMore, searchTerm]);
+  }, [onLoadMore, searchTerm, selectedCategory]);
 
-  // Ultra-optimized infinite scroll with RAF throttling
+  // Enhanced infinite scroll with performance optimizations
   useEffect(() => {
-    if (isLoading || showLoadMoreButton || displayedCount >= totalTools) return;
+    // Don't enable infinite scroll if explicitly disabled or if load more button is preferred
+    if (!enableInfiniteScroll || showLoadMoreButton) return;
+    
+    // Only enable if there are more tools to load
+    if (displayedCount >= totalTools || isLoading) return;
     
     let ticking = false;
+    let timeoutId: NodeJS.Timeout;
     
     const handleScroll = () => {
+      // Throttle scroll events using requestAnimationFrame for smooth performance
       if (!ticking) {
         requestAnimationFrame(() => {
           const scrollTop = window.pageYOffset;
           const windowHeight = window.innerHeight;
           const documentHeight = document.documentElement.scrollHeight;
           
-          // More aggressive threshold for instant loading
-          const threshold = searchTerm ? 400 : 600;
+          // Only trigger if scrolling down (prevent accidental triggers when scrolling up)
+          const isScrollingDown = scrollTop > lastScrollY.current;
+          lastScrollY.current = scrollTop;
+          
+          if (!isScrollingDown) {
+            ticking = false;
+            return;
+          }
+          
+          // Dynamic threshold based on context - more aggressive for categories and search
+          let threshold = 800; // Default for main page
+          if (searchTerm) {
+            threshold = 400; // More aggressive for search results
+          } else if (selectedCategory) {
+            threshold = 600; // Medium aggressive for categories
+          }
+          
           const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
           
           if (nearBottom && displayedCountRef.current < totalToolsRef.current && !isLoadingRef.current) {
-            console.log(`🎯 Triggering load more - Displayed: ${displayedCountRef.current}, Total: ${totalToolsRef.current}, Search: "${searchTerm}"`);
-            handleLoadMore();
+            console.log(`🎯 Auto-loading more tools - Context: ${searchTerm ? 'Search' : selectedCategory ? 'Category' : 'Main'}, Displayed: ${displayedCountRef.current}/${totalToolsRef.current}`);
+            
+            // Small delay to prevent rapid fire requests
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+              handleLoadMore();
+            }, 100);
           }
           
           ticking = false;
@@ -62,13 +93,14 @@ export const useInfiniteScroll = ({
       }
     };
 
-    // Use passive listener for better performance
+    // Use passive listener for better scroll performance
     window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
     };
-  }, [displayedCount, handleLoadMore, isLoading, showLoadMoreButton, totalTools, searchTerm]);
+  }, [displayedCount, handleLoadMore, isLoading, showLoadMoreButton, totalTools, searchTerm, selectedCategory, enableInfiniteScroll]);
 
   return { handleLoadMore };
 };
