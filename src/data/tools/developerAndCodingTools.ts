@@ -8,21 +8,23 @@ import {
   Zap, 
   Settings,
   Bot,
-  Cpu
+  Cpu,
+  Wand2,
+  Globe
 } from "lucide-react";
 
 export const developerAndCodingTools: Tool[] = [
   {
-    icon: Code,
-    title: "Multitasker GPT4o Custom GPT",
-    description: "Advanced custom GPT model designed for multitasking and complex problem-solving. Enhanced capabilities for handling multiple concurrent tasks efficiently.",
-    emoji: "🔄",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://chatgpt.com/g/g-CeNnTrmnZ-multitasker-gpt-turbo",
-    tags: ["custom GPT", "multitasking", "GPT-4o", "problem solving", "productivity", "advanced AI", "aiwebtools"],
+    icon: Globe,
+    title: "Lovable.dev - AI Web App Builder",
+    description: "Revolutionary AI-powered web application builder that creates full-stack React applications from natural language prompts. Build complete web apps with modern tech stack including React, TypeScript, and Tailwind CSS in minutes.",
+    emoji: "🌐",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://lovable.dev/?via=aiwebtools",
+    tags: ["AI web builder", "React", "TypeScript", "full-stack", "web development", "no-code", "lovable"],
     category: "DEVELOPMENT & CODING",
-    rating: 4.5,
-    totalVotes: 3234
+    rating: 4.9,
+    totalVotes: 6789
   },
   {
     icon: Terminal,
@@ -30,7 +32,7 @@ export const developerAndCodingTools: Tool[] = [
     description: "Advanced AI-powered code editor enhancing developer productivity. Features intelligent autocompletion, error detection, debugging, and AI-driven suggestions for faster, smarter coding.",
     emoji: "💻",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://www.cursor.com",
+    directUrl: "https://www.cursor.com/?via=aiwebtools",
     tags: ["code editor", "AI coding", "autocompletion", "debugging", "productivity", "developer tools"],
     category: "DEVELOPMENT & CODING",
     rating: 4.7,
