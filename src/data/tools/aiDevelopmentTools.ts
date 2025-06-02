@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Code,
@@ -10,10 +9,23 @@ import {
   Layers,
   Share2,
   Wand2,
-  Monitor
+  Monitor,
+  Wrench
 } from "lucide-react";
 
 export const aiDevelopmentTools: Tool[] = [
+  {
+    icon: Wrench,
+    title: "Brancher.ai",
+    description: "AI tool for building AI tools. Create, deploy, and manage AI applications with a no-code platform designed for developers and businesses.",
+    emoji: "🔧",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://brancher.ai/?via=aiwebtools",
+    tags: ["AI builder", "no-code", "AI development", "tool creation", "platform"],
+    category: "DEVELOPMENT & CODING",
+    rating: 4.5,
+    totalVotes: 1234
+  },
   {
     icon: Monitor,
     title: "LM STUDIO – Run AI Locally & Download & Deploy Countless AI Models",
