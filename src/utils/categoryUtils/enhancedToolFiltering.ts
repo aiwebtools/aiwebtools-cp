@@ -1,6 +1,7 @@
 
 import { Tool } from "@/types/tools";
 import { mainCategoryKeywordMapping, getMainCategoryFromSubcategory } from "./mainCategoryMapping";
+import { isIndustrySpecificTool } from "./industryDetection";
 
 // FIXED enhanced tool filtering that NEVER loses tools
 export const getToolsByMainCategoryEnhanced = (tools: Tool[], mainCategoryName: string): Tool[] => {
@@ -12,6 +13,14 @@ export const getToolsByMainCategoryEnhanced = (tools: Tool[], mainCategoryName: 
     return tools;
   }
   
+  // STRICT industry specific filtering
+  if (mainCategoryName === "INDUSTRY SPECIFIC AI TOOLS") {
+    const industryTools = tools.filter(tool => isIndustrySpecificTool(tool));
+    console.log(`🏭 INDUSTRY SPECIFIC: Found ${industryTools.length} professional industry tools`);
+    console.log(`🏭 Sample industry tools:`, industryTools.slice(0, 10).map(t => `${t.title} (${t.category})`));
+    return industryTools;
+  }
+  
   // Get keywords for this main category
   const categoryKeywords = mainCategoryKeywordMapping[mainCategoryName] || [];
   
@@ -21,31 +30,6 @@ export const getToolsByMainCategoryEnhanced = (tools: Tool[], mainCategoryName: 
     const toolMainCategory = getMainCategoryFromSubcategory(tool.category || "");
     if (toolMainCategory === mainCategoryName) {
       return true;
-    }
-    
-    // For INDUSTRY SPECIFIC AI TOOLS, be more inclusive
-    if (mainCategoryName === "INDUSTRY SPECIFIC AI TOOLS") {
-      const titleLower = tool.title.toLowerCase();
-      const descriptionLower = tool.description.toLowerCase();
-      const categoryLower = tool.category?.toLowerCase() || '';
-      
-      // Industry-specific keywords
-      const industryKeywords = [
-        "health", "medical", "doctor", "legal", "law", "education", "learning",
-        "professional", "specialized", "niche", "emergency", "creative", "entertainment",
-        "fitness", "wellness", "therapy", "clinic", "hospital", "pharmacy"
-      ];
-      
-      const isIndustryTool = industryKeywords.some(keyword => 
-        titleLower.includes(keyword) || 
-        descriptionLower.includes(keyword) || 
-        categoryLower.includes(keyword)
-      );
-      
-      if (isIndustryTool) {
-        console.log(`✅ Industry match: "${tool.title}" to "${mainCategoryName}"`);
-        return true;
-      }
     }
     
     // Check if tool matches category keywords
@@ -78,7 +62,12 @@ export const getToolsByMainCategoryEnhanced = (tools: Tool[], mainCategoryName: 
 
 // Enhanced category detection for individual tools
 export const detectToolMainCategory = (tool: Tool): string => {
-  // First try to get from subcategory mapping
+  // First check for industry specific tools
+  if (isIndustrySpecificTool(tool)) {
+    return "INDUSTRY SPECIFIC AI TOOLS";
+  }
+  
+  // Then try to get from subcategory mapping
   const fromSubcategory = getMainCategoryFromSubcategory(tool.category || "");
   if (fromSubcategory !== "OTHER") {
     return fromSubcategory;

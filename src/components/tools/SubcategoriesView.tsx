@@ -20,18 +20,12 @@ const SubcategoriesView = ({
   onBackToMain, 
   onSubCategoryClick 
 }: SubcategoriesViewProps) => {
+  // ALWAYS show ALL categories regardless of selection
   const sortedCategories = getSortedStandardizedCategories();
 
   const getSubcategoriesForDisplay = () => {
-    if (!selectedMainCategory) return [];
-    
-    const mainCat = mainCategories.find(cat => cat.name === selectedMainCategory);
-    if (!mainCat) return [];
-    
-    return mainCat.subcategories
-      .map(sub => [sub, categoriesWithCounts[sub] || 0] as [string, number])
-      .filter(([, count]) => count > 0)
-      .sort(([a], [b]) => a.localeCompare(b));
+    // Show ALL categories with counts > 0, not just selected main category subcategories
+    return sortedCategories.filter(([, count]) => count > 0);
   };
 
   return (
@@ -47,13 +41,13 @@ const SubcategoriesView = ({
             ← Back to Main Categories
           </Button>
           <h3 className="text-lg font-semibold text-cyan-400">
-            {selectedMainCategory} Subcategories
+            All Available Categories
           </h3>
         </div>
       )}
       
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-        {(selectedMainCategory ? getSubcategoriesForDisplay() : sortedCategories).map(([category, count]) => {
+        {getSubcategoriesForDisplay().map(([category, count]) => {
           const categoryStyle = getCategoryStyle(category);
           const isSelected = category === selectedCategory;
           
