@@ -14,12 +14,8 @@ import { CategoryCounts, MainCategoryCounts } from "./types";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 
-// Force cache rebuild by resetting the cache
-export const resetCache = () => {
-  toolsCacheByMainCategory.clear();
-  cacheBuilt = false;
-  console.log('🔄 Cache reset - will rebuild on next access');
-};
+// Force cache rebuild by resetting the cache - IMMEDIATE RESET
+resetCache();
 
 // Helper function to detect major LLMs that should appear in multiple categories
 const isMajorLLM = (tool: Tool): boolean => {
