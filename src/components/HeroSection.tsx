@@ -63,10 +63,10 @@ const HeroSection = () => {
             </span>
           </h1>
           
-          {/* Shorter, elegant tagline */}
+          {/* Updated tagline */}
           <div className="mb-6">
             <p className="text-sm md:text-base text-cyan-300/80 font-light italic tracking-wide">
-              "Life is but a prompt" <span className="text-cyan-400/60">-KB</span>
+              "Life is but a prompt" <span className="text-cyan-400/60">-Kenneth Bastian</span>
             </p>
           </div>
           

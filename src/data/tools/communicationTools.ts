@@ -14,6 +14,169 @@ import {
 } from "lucide-react";
 
 export const communicationTools: Tool[] = [
-  // Removed non-AI communication platforms like Discord
-  // This category now contains only verified AI-powered communication tools
+  {
+    title: "Nucleus AI Inbound Call Agents Platform",
+    description: "Advanced AI-powered inbound call handling platform that automates customer service, lead qualification, and appointment scheduling. Nucleus AI provides intelligent call routing, real-time sentiment analysis, and seamless CRM integration for businesses looking to enhance their phone communication capabilities.",
+    category: "Communication & Collaboration AI Tools",
+    directUrl: "https://nucleus.ai/?via=aiwebtools",
+    imageUrl: "/placeholder.svg?height=180&width=320",
+    tags: ["phone agents", "call center", "inbound calls", "customer service", "ai phone system"],
+    rating: 4.7,
+    totalVotes: 1890,
+    pricing: "Freemium"
+  },
+  {
+    title: "Bland AI",
+    description: "Build AI phone agents that can make and receive calls with human-like conversation abilities. Perfect for appointment scheduling, customer support, lead qualification, and outbound sales campaigns.",
+    category: "Communication & Collaboration AI Tools",
+    directUrl: "https://bland.ai/?via=aiwebtools",
+    imageUrl: "/placeholder.svg?height=180&width=320",
+    tags: ["phone agents", "voice ai", "outbound calls", "appointment scheduling", "sales calls"],
+    rating: 4.6,
+    totalVotes: 1654,
+    pricing: "Paid"
+  },
+  {
+    title: "Vapi AI",
+    description: "Voice AI platform for building conversational phone agents. Create AI assistants that can handle complex phone conversations, integrate with your systems, and provide 24/7 customer support.",
+    category: "Communication & Collaboration AI Tools",
+    directUrl: "https://vapi.ai/?via=aiwebtools",
+    imageUrl: "/placeholder.svg?height=180&width=320",
+    tags: ["voice ai", "phone automation", "conversational ai", "call handling", "voice assistants"],
+    rating: 4.5,
+    totalVotes: 1423,
+    pricing: "Freemium"
+  },
+  {
+    title: "Retell AI",
+    description: "Real-time conversational AI for phone calls. Build voice agents that can handle complex conversations with low latency and natural speech patterns for customer service and sales.",
+    category: "Communication & Collaboration AI Tools",
+    directUrl: "https://retellai.com/?via=aiwebtools",
+    imageUrl: "/placeholder.svg?height=180&width=320",
+    tags: ["real-time voice", "phone agents", "conversational ai", "low latency", "voice technology"],
+    rating: 4.4,
+    totalVotes: 1287,
+    pricing: "Paid"
+  },
+  {
+    title: "Synthflow",
+    description: "No-code platform for building AI voice assistants and phone agents. Create sophisticated voice workflows for customer support, lead generation, and appointment booking without technical expertise.",
+    category: "Communication & Collaboration AI Tools",
+    directUrl: "https://synthflow.ai/?via=aiwebtools",
+    imageUrl: "/placeholder.svg?height=180&width=320",
+    tags: ["no-code", "voice assistants", "phone automation", "workflow builder", "voice ai"],
+    rating: 4.3,
+    totalVotes: 1156,
+    pricing: "Freemium"
+  },
+  {
+    title: "Aircall AI",
+    description: "Cloud-based phone system with integrated AI features for call analytics, sentiment analysis, and automated call routing. Enhance your team's communication with intelligent call management.",
+    category: "Communication & Collaboration AI Tools",
+    directUrl: "https://aircall.io/?via=aiwebtools",
+    imageUrl: "/placeholder.svg?height=180&width=320",
+    tags: ["cloud phone", "call analytics", "call routing", "team communication", "phone system"],
+    rating: 4.5,
+    totalVotes: 2134,
+    pricing: "Paid"
+  },
+  {
+    title: "Outreach.io",
+    description: "AI-powered sales engagement platform that automates outbound communication across email, phone, and social channels. Streamline your sales outreach with intelligent sequencing and personalization.",
+    category: "Communication & Collaboration AI Tools",
+    directUrl: "https://outreach.io/?via=aiwebtools",
+    imageUrl: "/placeholder.svg?height=180&width=320",
+    tags: ["sales outreach", "email automation", "sales engagement", "multi-channel", "lead generation"],
+    rating: 4.6,
+    totalVotes: 3245,
+    pricing: "Paid"
+  },
+  {
+    title: "SalesLoft",
+    description: "Revenue intelligence platform with AI-powered communication tools for sales teams. Automate outreach, track engagement, and optimize sales conversations across multiple channels.",
+    category: "Communication & Collaboration AI Tools",
+    directUrl: "https://salesloft.com/?via=aiwebtools",
+    imageUrl: "/placeholder.svg?height=180&width=320",
+    tags: ["sales automation", "revenue intelligence", "outreach automation", "sales communication", "crm integration"],
+    rating: 4.5,
+    totalVotes: 2876,
+    pricing: "Paid"
+  },
+  {
+    title: "Apollo.io",
+    description: "All-in-one sales intelligence platform with AI-powered prospecting, outreach automation, and communication tools. Find leads, verify contacts, and automate personalized outreach campaigns.",
+    category: "Communication & Collaboration AI Tools",
+    directUrl: "https://apollo.io/?via=aiwebtools",
+    imageUrl: "/placeholder.svg?height=180&width=320",
+    tags: ["sales intelligence", "prospecting", "outreach automation", "lead generation", "contact database"],
+    rating: 4.4,
+    totalVotes: 2567,
+    pricing: "Freemium"
+  },
+  {
+    title: "Gong.io",
+    description: "Revenue intelligence platform that analyzes sales calls, emails, and meetings to provide AI-powered insights. Improve your team's communication effectiveness and close more deals.",
+    category: "Communication & Collaboration AI Tools",
+    directUrl: "https://gong.io/?via=aiwebtools",
+    imageUrl: "/placeholder.svg?height=180&width=320",
+    tags: ["revenue intelligence", "call analysis", "sales insights", "conversation analytics", "sales coaching"],
+    rating: 4.7,
+    totalVotes: 3456,
+    pricing: "Paid"
+  },
+  {
+    title: "Chorus by ZoomInfo",
+    description: "Conversation intelligence platform that records, transcribes, and analyzes sales calls to provide actionable insights. Enhance your sales communication with AI-powered conversation analytics.",
+    category: "Communication & Collaboration AI Tools",
+    directUrl: "https://chorus.ai/?via=aiwebtools",
+    imageUrl: "/placeholder.svg?height=180&width=320",
+    tags: ["conversation intelligence", "call recording", "sales analytics", "meeting insights", "sales training"],
+    rating: 4.5,
+    totalVotes: 2234,
+    pricing: "Paid"
+  },
+  {
+    title: "Clay",
+    description: "AI-powered data enrichment and outreach platform that helps you find prospects, enrich contact data, and automate personalized outreach campaigns at scale.",
+    category: "Communication & Collaboration AI Tools",
+    directUrl: "https://clay.com/?via=aiwebtools",
+    imageUrl: "/placeholder.svg?height=180&width=320",
+    tags: ["data enrichment", "prospect research", "outreach automation", "lead generation", "sales automation"],
+    rating: 4.6,
+    totalVotes: 1876,
+    pricing: "Paid"
+  },
+  {
+    title: "Instantly.ai",
+    description: "Cold email automation platform with AI-powered personalization and deliverability optimization. Scale your outbound email campaigns while maintaining high deliverability rates.",
+    category: "Communication & Collaboration AI Tools",
+    directUrl: "https://instantly.ai/?via=aiwebtools",
+    imageUrl: "/placeholder.svg?height=180&width=320",
+    tags: ["cold email", "email automation", "deliverability", "outreach campaigns", "email marketing"],
+    rating: 4.4,
+    totalVotes: 1654,
+    pricing: "Paid"
+  },
+  {
+    title: "Lemlist",
+    description: "Multi-channel outreach platform with AI-powered personalization for email, LinkedIn, and phone outreach. Create engaging campaigns that convert prospects into customers.",
+    category: "Communication & Collaboration AI Tools",
+    directUrl: "https://lemlist.com/?via=aiwebtools",
+    imageUrl: "/placeholder.svg?height=180&width=320",
+    tags: ["multi-channel outreach", "email campaigns", "linkedin automation", "personalization", "sales outreach"],
+    rating: 4.3,
+    totalVotes: 1432,
+    pricing: "Paid"
+  },
+  {
+    title: "Smartlead",
+    description: "AI-powered cold email platform with unlimited mailboxes and advanced deliverability features. Scale your outbound email campaigns while protecting your sender reputation.",
+    category: "Communication & Collaboration AI Tools",
+    directUrl: "https://smartlead.ai/?via=aiwebtools",
+    imageUrl: "/placeholder.svg?height=180&width=320",
+    tags: ["cold email", "unlimited mailboxes", "email deliverability", "outbound campaigns", "email warming"],
+    rating: 4.5,
+    totalVotes: 1789,
+    pricing: "Paid"
+  }
 ];
