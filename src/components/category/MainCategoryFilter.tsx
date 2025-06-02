@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { getToolsByMainCategory, getMainCategoriesWithCounts } from "@/utils/categoryUtils/toolFiltering";
+import { allTools } from "@/data/toolsData";
 
 interface MainCategoryFilterProps {
   tools: Tool[];
@@ -18,21 +19,21 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedMainCategories, setSelectedMainCategories] = useState<string[]>([]);
 
-  // Get accurate main categories with their tool counts using the global cache
+  // Get accurate main categories with their tool counts using the GLOBAL allTools
   const mainCategoriesWithCounts = useMemo(() => {
-    console.log('🔄 Calculating main category counts for MainCategoryFilter...');
+    console.log('🔄 Calculating main category counts for MainCategoryFilter using global allTools...');
     
-    // Use the global main category counts to ensure accuracy
-    const globalCounts = getMainCategoriesWithCounts(tools);
+    // Use the global allTools to get accurate counts that match the main category pages
+    const globalCounts = getMainCategoriesWithCounts(allTools);
     
     // Create a Set to track unique category names and prevent duplicates
     const uniqueCategories = new Set<string>();
     
     const categoriesData = mainCategories.map(mainCat => {
-      // Get the accurate count from global counts
+      // Get the accurate count from global counts using allTools
       const count = globalCounts[mainCat.name] || 0;
       
-      console.log(`📊 ${mainCat.name}: ${count} tools`);
+      console.log(`📊 ${mainCat.name}: ${count} tools (from global allTools)`);
       
       return {
         name: mainCat.name,
@@ -50,7 +51,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     
     console.log('🎯 Unique categories after deduplication:', categoriesData.map(c => c.name));
     return categoriesData;
-  }, [tools]);
+  }, []); // Remove tools dependency since we're using global allTools
 
   // Initialize with current main category selected and immediately show tools
   useEffect(() => {
@@ -67,7 +68,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     }
   }, [currentMainCategory, tools, onFilteredToolsChange, mainCategoriesWithCounts]);
 
-  // Apply main category filters to tools
+  // Apply main category filters to tools using GLOBAL allTools for accurate filtering
   const filteredTools = useMemo(() => {
     if (selectedMainCategories.length === 0) {
       // When no categories are specifically selected, show all tools for the current page
@@ -77,11 +78,11 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     
     console.log(`🎯 Filtering by selected categories: ${selectedMainCategories.join(', ')}`);
     
-    // Get tools from all selected main categories using the optimized cache
+    // Get tools from all selected main categories using the GLOBAL allTools for accurate results
     const allFilteredTools: Tool[] = [];
     selectedMainCategories.forEach(mainCategoryName => {
-      const categoryTools = getToolsByMainCategory(tools, mainCategoryName);
-      console.log(`📂 ${mainCategoryName}: found ${categoryTools.length} tools`);
+      const categoryTools = getToolsByMainCategory(allTools, mainCategoryName);
+      console.log(`📂 ${mainCategoryName}: found ${categoryTools.length} tools (from global allTools)`);
       allFilteredTools.push(...categoryTools);
     });
     
@@ -90,9 +91,9 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       index === self.findIndex(t => t.title === tool.title)
     );
     
-    console.log(`✅ Final filtered result: ${uniqueTools.length} unique tools`);
+    console.log(`✅ Final filtered result: ${uniqueTools.length} unique tools from ${selectedMainCategories.length} categories`);
     return uniqueTools;
-  }, [tools, selectedMainCategories, currentMainCategory]);
+  }, [selectedMainCategories, currentMainCategory]); // Remove tools dependency for more stable filtering
 
   // Update parent component when filtered tools change
   useEffect(() => {
@@ -120,7 +121,8 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     totalInputTools: tools.length,
     categoriesShown: mainCategoriesWithCounts.length,
     selectedCategories: selectedMainCategories,
-    filteredToolsCount: filteredTools.length
+    filteredToolsCount: filteredTools.length,
+    usingGlobalCounts: true
   });
 
   return (
@@ -230,7 +232,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
           <div className="mt-3 pt-2 border-t border-cyan-500/20 text-center">
             <div className="text-xs text-cyan-300">
               {selectedMainCategories.length <= 1 
-                ? `Showing ${tools.length} tools in ${currentMainCategory}` 
+                ? `Showing ${filteredTools.length} tools in ${currentMainCategory}` 
                 : `Showing ${filteredTools.length} tools from ${selectedMainCategories.length} categories`
               }
             </div>
