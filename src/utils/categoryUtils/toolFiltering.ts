@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -15,66 +14,86 @@ import { CategoryCounts, MainCategoryCounts } from "./types";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 
-// Helper function to detect historical and time-based tools
-const isHistoricalTimeRelatedTool = (tool: Tool): boolean => {
-  const historicalKeywords = [
-    'historical', 'history', 'time', 'ancient', 'past', 'timeline', 'era', 'period',
-    'civilization', 'archaeology', 'archaeological', 'artifact', 'heritage', 'legacy',
-    'medieval', 'renaissance', 'antiquity', 'vintage', 'retro', 'classic', 'traditional',
-    'museum', 'archive', 'chronicle', 'documentary', 'manuscript', 'relic', 'fossil',
+// Helper function to detect STRICTLY historical and time-based tools
+const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
+  // First check if it's primarily an educational tool - if so, exclude it from historical category
+  if (isPrimaryEducationTool(tool)) {
+    return false;
+  }
+
+  const strictHistoricalKeywords = [
+    'time machine', 'time travel', 'historical figures', 'talk to history', 'historical headlines',
+    'titanic resurrection', 'native american history', 'ancient calendar', 'historical map',
+    'historical photography', 'historical demographics', 'historical royalty', 'historical geography',
+    'historical literature', 'oraculum', 'interpretis', 'phenomenon explorer', 'hidden histories',
+    'archaeological', 'artifact', 'heritage', 'medieval', 'renaissance', 'antiquity',
+    'museum', 'archive', 'chronicle', 'manuscript', 'relic', 'fossil',
     'genealogy', 'ancestry', 'lineage', 'dynasty', 'monarchy', 'empire', 'kingdom',
     'revolution', 'war', 'battle', 'conquest', 'discovery', 'exploration', 'expedition',
-    'philosopher', 'philosophy', 'wisdom', 'culture', 'cultural', 'ethnic', 'tribal',
-    'folklore', 'legend', 'myth', 'mythology', 'epic', 'saga', 'tale', 'story',
-    'einstein', 'tesla', 'newton', 'shakespeare', 'aristotle', 'plato', 'socrates',
-    'napoleon', 'caesar', 'cleopatra', 'lincoln', 'washington', 'churchill',
-    'titanic', 'pyramids', 'colosseum', 'stonehenge', 'pharaoh', 'viking', 'samurai',
-    'gregorian', 'julian', 'calendar', 'chronology', 'decades', 'centuries', 'millennium',
     'prehistoric', 'paleolithic', 'neolithic', 'bronze age', 'iron age', 'stone age',
     'mystical', 'esoteric', 'occult', 'spiritual', 'divine', 'sacred', 'holy',
-    'oracle', 'prophecy', 'divination', 'tarot', 'astrology', 'zodiac', 'horoscope',
-    'resurrection', 'reincarnation', 'afterlife', 'eternity', 'immortal', 'eternal',
-    'time machine', 'time travel', 'temporal', 'chronological', 'anachronism',
-    'alan watts', 'mary magdalene', 'jesus', 'buddha', 'confucius', 'lao tzu'
+    'oracle', 'prophecy', 'divination', 'resurrection', 'reincarnation', 'afterlife',
+    'temporal', 'chronological', 'anachronism'
   ];
   
   const titleLower = tool.title.toLowerCase();
   const descriptionLower = tool.description.toLowerCase();
-  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
-  const categoryLower = tool.category?.toLowerCase() || '';
   
-  return historicalKeywords.some(keyword => 
+  // Check for specific historical tool names
+  const historicalToolNames = [
+    'time machine gpt', 'talk to history', 'historical headlines', 'titanic resurrection',
+    'native american history', 'oraculum', 'interpretis', 'phenomenon explorer',
+    'hidden histories', 'nikola tesla gpt', 'albert einstein gpt', 'alan watts gpt',
+    'mary magdalene gpt', 'talk to the gods', 'fortune teller'
+  ];
+  
+  const isHistoricalToolByName = historicalToolNames.some(name => 
+    titleLower.includes(name)
+  );
+  
+  if (isHistoricalToolByName) {
+    return true;
+  }
+  
+  // Check for strict historical keywords in title or primary description
+  return strictHistoricalKeywords.some(keyword => 
     titleLower.includes(keyword) || 
-    descriptionLower.includes(keyword) || 
-    tagsLower.includes(keyword) ||
-    categoryLower.includes(keyword)
+    (descriptionLower.includes(keyword) && 
+     (descriptionLower.includes('historical') || descriptionLower.includes('history') || 
+      descriptionLower.includes('time travel') || descriptionLower.includes('ancient')))
   );
 };
 
-// Helper function to detect educational tools (including historical education)
-const isEducationRelatedTool = (tool: Tool): boolean => {
-  const educationKeywords = [
+// Helper function to detect PRIMARY education tools
+const isPrimaryEducationTool = (tool: Tool): boolean => {
+  const primaryEducationKeywords = [
+    'quiz maker', 'course maker', 'training manual', 'children\'s book', 'homework helper',
+    'essay writer', 'learn any course', 'learn any skill', 'college degree', 'home school',
     'education', 'learning', 'educational', 'academic', 'study', 'course', 'curriculum',
     'teaching', 'teacher', 'tutor', 'tutoring', 'lesson', 'homework', 'quiz', 'test',
-    'training', 'skill', 'knowledge', 'research', 'university', 'college', 'school',
-    'degree', 'certification', 'workshop', 'seminar', 'lecture', 'instruction',
-    'pedagogy', 'student', 'learner', 'classroom', 'assessment', 'evaluation',
-    'comprehension', 'understanding', 'analysis', 'critical thinking', 'problem solving',
-    'science education', 'mathematics education', 'language learning', 'history learning',
-    'educational simulation', 'learning platform', 'study guide', 'educational content'
+    'training', 'university', 'college', 'school', 'degree', 'certification',
+    'workshop', 'seminar', 'lecture', 'instruction', 'student', 'learner', 'classroom'
   ];
   
   const titleLower = tool.title.toLowerCase();
-  const descriptionLower = tool.description.toLowerCase();
-  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
   const categoryLower = tool.category?.toLowerCase() || '';
   
-  return educationKeywords.some(keyword => 
-    titleLower.includes(keyword) || 
-    descriptionLower.includes(keyword) || 
-    tagsLower.includes(keyword) ||
-    categoryLower.includes(keyword)
+  // Check if it's explicitly an education tool by name or category
+  const isEducationByCategory = categoryLower.includes('education') || 
+                               categoryLower.includes('learning');
+  
+  const isEducationByTitle = primaryEducationKeywords.some(keyword => 
+    titleLower.includes(keyword)
   );
+  
+  return isEducationByCategory || isEducationByTitle;
+};
+
+// Helper function to detect education-related tools (broader scope)
+const isEducationRelatedTool = (tool: Tool): boolean => {
+  return isPrimaryEducationTool(tool) || 
+         (tool.category?.toLowerCase().includes('education')) ||
+         (tool.category?.toLowerCase().includes('learning'));
 };
 
 // Build cache once for instant category filtering
@@ -95,8 +114,8 @@ const buildToolsCache = (tools: Tool[]) => {
   // Pre-process health tools once  
   const healthRelatedTools = tools.filter(tool => isHealthRelatedTool(tool));
   
-  // Pre-process historical tools once
-  const historicalRelatedTools = tools.filter(tool => isHistoricalTimeRelatedTool(tool));
+  // Pre-process STRICTLY historical tools (excluding education tools)
+  const strictHistoricalTools = tools.filter(tool => isStrictlyHistoricalTimeRelatedTool(tool));
   
   // Pre-process education tools once (including historical education)
   const educationRelatedTools = tools.filter(tool => isEducationRelatedTool(tool));
@@ -104,32 +123,8 @@ const buildToolsCache = (tools: Tool[]) => {
   // Pre-process video tools once
   const videoRelatedTools = tools.filter(tool => isVideoRelatedTool(tool));
   
-  // INVESTIGATION: Log communication & collaboration tools analysis
-  console.log('🔍 INVESTIGATING COMMUNICATION & COLLABORATION TOOLS...');
-  const allCommCategoryNames = tools.map(tool => tool.category).filter(Boolean);
-  const uniqueCommCategories = [...new Set(allCommCategoryNames)];
-  console.log('📋 All unique categories in database:', uniqueCommCategories);
-  
-  const commRelatedCategories = uniqueCommCategories.filter(cat => 
-    cat?.toLowerCase().includes('communication') ||
-    cat?.toLowerCase().includes('collaboration') ||
-    cat?.toLowerCase().includes('entertainment') ||
-    cat?.toLowerCase().includes('chat') ||
-    cat?.toLowerCase().includes('social')
-  );
-  console.log('🎯 Communication-related categories found:', commRelatedCategories);
-  
-  const potentialCommTools = tools.filter(tool => 
-    tool.category && (
-      tool.category.toLowerCase().includes('communication') ||
-      tool.category.toLowerCase().includes('collaboration') ||
-      tool.category.toLowerCase().includes('entertainment') ||
-      tool.category.toLowerCase().includes('chat') ||
-      tool.category.toLowerCase().includes('social')
-    )
-  );
-  console.log('🔧 Total potential communication tools found:', potentialCommTools.length);
-  console.log('📝 Sample potential comm tools:', potentialCommTools.slice(0, 10).map(t => `${t.title} (${t.category})`));
+  console.log(`🎓 Education tools found: ${educationRelatedTools.length}`);
+  console.log(`🕰️ Strict historical tools found: ${strictHistoricalTools.length}`);
   
   mainCategories.forEach(mainCat => {
     let categoryTools: Tool[] = [];
@@ -157,7 +152,7 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "EDUCATION & LEARNING") {
-      // Enhanced education category that includes historical education tools
+      // Enhanced education category - include educational tools but exclude pure historical tools
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -165,16 +160,14 @@ const buildToolsCache = (tools: Tool[]) => {
         );
       });
       
-      // Include educational historical tools that may not be in education categories
-      const historicalEducationTools = historicalRelatedTools.filter(tool => 
-        isEducationRelatedTool(tool) || 
-        tool.description.toLowerCase().includes('educational') ||
-        tool.description.toLowerCase().includes('learning') ||
-        tool.description.toLowerCase().includes('student') ||
-        tool.description.toLowerCase().includes('perfect for students')
+      // Include educational historical tools that are primarily educational
+      const educationalHistoricalTools = tools.filter(tool => 
+        isPrimaryEducationTool(tool) && 
+        (tool.description.toLowerCase().includes('historical') || 
+         tool.description.toLowerCase().includes('history'))
       );
       
-      const allEducationTools = [...subcategoryTools, ...educationRelatedTools, ...historicalEducationTools];
+      const allEducationTools = [...subcategoryTools, ...educationRelatedTools, ...educationalHistoricalTools];
       categoryTools = allEducationTools.filter((tool, index, self) => 
         index === self.findIndex(t => t.title === tool.title)
       );
@@ -193,6 +186,7 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "HISTORICAL & TIME-BASED AI TOOLS") {
+      // STRICT historical tools only - exclude education tools
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -200,10 +194,14 @@ const buildToolsCache = (tools: Tool[]) => {
         );
       });
       
-      const allHistoricalTools = [...subcategoryTools, ...historicalRelatedTools];
+      // Only include tools that are STRICTLY historical, not educational
+      const allHistoricalTools = [...subcategoryTools, ...strictHistoricalTools];
       categoryTools = allHistoricalTools.filter((tool, index, self) => 
         index === self.findIndex(t => t.title === tool.title)
       );
+      
+      console.log(`🕰️ Final historical tools count: ${categoryTools.length}`);
+      console.log(`📝 Sample historical tools: ${categoryTools.slice(0, 5).map(t => t.title).join(', ')}`);
     }
     else if (mainCat.name === "VIDEO & MULTIMEDIA") {
       const subcategoryTools = tools.filter(tool => {
@@ -225,24 +223,7 @@ const buildToolsCache = (tools: Tool[]) => {
       categoryTools = getAutomationPlatformsTools(tools, mainCat.name);
     }
     else if (mainCat.name === "COMMUNICATION & COLLABORATION AI TOOLS") {
-      // DETAILED INVESTIGATION for this specific category
-      console.log('🕵️ DEEP DIVE: COMMUNICATION & COLLABORATION AI TOOLS');
-      console.log('📊 Main category subcategories:', mainCat.subcategories);
-      
       categoryTools = getCommunicationCollaborationTools(tools, mainCat.name);
-      
-      console.log('🎯 Final communication tools after getCommunicationCollaborationTools:', categoryTools.length);
-      console.log('📋 Communication tools list:', categoryTools.map(t => `${t.title} (${t.category})`));
-      
-      // Let's also check what the subcategory matching would find
-      const subcategoryMatchedTools = tools.filter(tool => {
-        if (!tool.category) return false;
-        return mainCat.subcategories.some(subcat => 
-          isSimilarCategory(tool.category, subcat)
-        );
-      });
-      console.log('🔍 Subcategory matched tools:', subcategoryMatchedTools.length);
-      console.log('📝 Subcategory matched tools list:', subcategoryMatchedTools.map(t => `${t.title} (${t.category})`));
     }
     else {
       // Standard subcategory matching for other categories
