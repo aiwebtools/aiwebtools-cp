@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Code, 
@@ -27,6 +26,18 @@ export const webDevelopmentTools: Tool[] = [
     category: "DEVELOPMENT & CODING",
     rating: 4.7,
     totalVotes: 3456
+  },
+  {
+    icon: Globe,
+    title: "10Web Website Generator",
+    description: "AI-powered website builder that creates complete WordPress sites in minutes. Advanced AI technology combined with professional hosting and optimization features.",
+    emoji: "🌐",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://10web.io/?_from=aiwebtools",
+    tags: ["website builder", "WordPress", "AI websites", "hosting", "optimization"],
+    category: "DEVELOPMENT & CODING",
+    rating: 4.5,
+    totalVotes: 2876
   },
   {
     icon: Globe,
