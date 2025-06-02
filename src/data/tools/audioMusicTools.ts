@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Music, 
@@ -158,5 +159,17 @@ export const audioMusicTools: Tool[] = [
     category: "Audio & Music Tools",
     rating: 4.6,
     totalVotes: 4567
+  },
+  {
+    icon: Mic,
+    title: "Podcraftr",
+    description: "AI-powered podcast creation platform that helps you create, edit, and distribute professional podcasts with automated features.",
+    emoji: "🎙️",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://podcraftr.com/?linkId=lp_854324&sourceId=aiwebtools&tenantId=podcraftr",
+    tags: ["podcast creation", "automated editing", "distribution", "professional audio"],
+    category: "Audio & Music Tools",
+    rating: 4.3,
+    totalVotes: 2234
   }
 ];

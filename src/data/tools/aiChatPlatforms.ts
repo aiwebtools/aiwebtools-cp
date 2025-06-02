@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   MessageCircle, 
@@ -170,5 +171,101 @@ export const aiChatPlatforms: Tool[] = [
     category: "AI Chat Platforms",
     rating: 4.3,
     totalVotes: 3456
+  },
+  {
+    icon: Bot,
+    title: "CHATRON",
+    description: "Advanced AI chatbot platform that provides intelligent conversations and automated responses for businesses and individuals.",
+    emoji: "🤖",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chatronai.com/?ref=i97f664587e6d4c7c3",
+    tags: ["AI chatbot", "automated responses", "business chat", "conversational AI"],
+    category: "AI Chat Platforms",
+    rating: 4.4,
+    totalVotes: 2567
+  },
+  {
+    icon: MessageCircle,
+    title: "CHATIQ",
+    description: "Intelligent AI chat platform designed for enhanced conversations and smart automation across multiple business use cases.",
+    emoji: "💬",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://chatiq.ai/?via=aiwebtools",
+    tags: ["intelligent chat", "smart automation", "business solutions", "AI conversations"],
+    category: "AI Chat Platforms",
+    rating: 4.3,
+    totalVotes: 2234
+  },
+  {
+    icon: Bot,
+    title: "ChainDesk",
+    description: "AI-powered customer support platform that creates intelligent chatbots trained on your data for automated customer service.",
+    emoji: "🔗",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.chaindesk.ai/?via=aiwebtools",
+    tags: ["customer support", "trained chatbots", "automated service", "AI support"],
+    category: "AI Chat Platforms",
+    rating: 4.5,
+    totalVotes: 2876
+  },
+  {
+    icon: Users,
+    title: "MEETCODY",
+    description: "AI-powered meeting assistant and chatbot that helps schedule, manage, and optimize your business meetings and communications.",
+    emoji: "👥",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://meetcody.ai/?fpr=aiwebtools",
+    tags: ["meeting assistant", "scheduling", "business communications", "AI optimization"],
+    category: "AI Chat Platforms",
+    rating: 4.2,
+    totalVotes: 1987
+  },
+  {
+    icon: Brain,
+    title: "MAGAI",
+    description: "Multi-AI platform that combines multiple AI models in one interface for enhanced productivity and diverse AI capabilities.",
+    emoji: "🧠",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://magai.co/?via=aiwebtools",
+    tags: ["multi-AI platform", "productivity", "diverse AI", "combined models"],
+    category: "AI Chat Platforms",
+    rating: 4.6,
+    totalVotes: 3456
+  },
+  {
+    icon: Users,
+    title: "MY CHARACTER",
+    description: "Create and interact with personalized AI characters for entertainment, roleplay, and creative storytelling experiences.",
+    emoji: "🎭",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://mycharacter.ai/signup?referral_code=208dce5e-9fd0-42a6-9002-f045d22d694f",
+    tags: ["AI characters", "roleplay", "storytelling", "entertainment", "personalized"],
+    category: "AI Chat Platforms",
+    rating: 4.3,
+    totalVotes: 2654
+  },
+  {
+    icon: Globe,
+    title: "Freedom GPT",
+    description: "Uncensored AI chatbot that provides unrestricted conversations and responses without content limitations or filters.",
+    emoji: "🆓",
+    color: "from-green-500 to-blue-600",
+    directUrl: "http://shrsl.com/2meh1-3brt-1iyev",
+    tags: ["uncensored AI", "unrestricted chat", "no filters", "free conversation"],
+    category: "AI Chat Platforms",
+    rating: 4.1,
+    totalVotes: 2123
+  },
+  {
+    icon: Search,
+    title: "Merlin",
+    description: "AI assistant browser extension that provides ChatGPT capabilities across websites, enhancing productivity and web browsing experience.",
+    emoji: "🔍",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://www.getmerlin.in/pricing?ref=mte1mgu4",
+    tags: ["browser extension", "web browsing", "productivity", "ChatGPT integration"],
+    category: "AI Chat Platforms",
+    rating: 4.4,
+    totalVotes: 3234
   }
 ];

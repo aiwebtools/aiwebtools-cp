@@ -13,7 +13,8 @@ export const getToolCount = () => {
   });
   
   console.log('🎉 ACCURATE TOOL COUNT VERIFICATION 🎉');
-  console.log(`📊 EXACT Tool Count: ${deduplicatedTools.length}`);
+  console.log(`📊 Raw Tools Before Deduplication: ${allTools.length}`);
+  console.log(`📊 EXACT Tool Count After Deduplication: ${deduplicatedTools.length}`);
   console.log('Category Breakdown:', categoryBreakdown);
   
   // Enhanced pricing analysis
@@ -49,6 +50,17 @@ export const getToolCount = () => {
   console.log(`Tools with Tags: ${toolsWithTags} (${Math.round((toolsWithTags / deduplicatedTools.length) * 100)}%)`);
   console.log(`Tools with Categories: ${toolsWithCategories} (${Math.round((toolsWithCategories / deduplicatedTools.length) * 100)}%)`);
   
+  // Check for potential data loss during collection
+  const expectedMinimumTools = 1000; // Based on your comprehensive collection
+  if (deduplicatedTools.length < expectedMinimumTools) {
+    console.warn(`⚠️ POTENTIAL DATA LOSS DETECTED!`);
+    console.warn(`Expected minimum: ${expectedMinimumTools} tools`);
+    console.warn(`Current count: ${deduplicatedTools.length} tools`);
+    console.warn(`Difference: ${expectedMinimumTools - deduplicatedTools.length} tools missing`);
+  } else {
+    console.log(`✅ Tool count looks healthy: ${deduplicatedTools.length} tools loaded`);
+  }
+  
   console.log('✅ FINAL ACCURATE COUNT FOR WEBSITE UPDATES:');
   console.log(`🎯 EXACT TOTAL: ${deduplicatedTools.length} AI TOOLS`);
   console.log(`📈 Rounded Marketing Number: ${Math.round(deduplicatedTools.length / 100) * 100}+`);
@@ -66,7 +78,10 @@ export const getToolCount = () => {
     searchReadiness: {
       withTags: toolsWithTags,
       withCategories: toolsWithCategories
-    }
+    },
+    rawToolCount: allTools.length,
+    deduplicatedCount: deduplicatedTools.length,
+    potentialDataLoss: deduplicatedTools.length < expectedMinimumTools
   };
 };
 
