@@ -64,23 +64,8 @@ const MainCategoryPage = () => {
     ? searchTools(toolsToShow, searchTerm)
     : toolsToShow;
 
-  // Create expanded tool list that includes fallback tools from entire database
-  const expandedToolsList = [...finalFilteredTools];
-  
-  // If we need more tools beyond the filtered set, add from entire database
-  if (displayedCount > finalFilteredTools.length) {
-    const remainingToolsNeeded = displayedCount - finalFilteredTools.length;
-    const excludedTitles = new Set(finalFilteredTools.map(tool => tool.title));
-    
-    // Get additional tools from entire database, excluding already shown tools
-    const additionalTools = allTools
-      .filter(tool => !excludedTitles.has(tool.title))
-      .slice(0, remainingToolsNeeded);
-    
-    expandedToolsList.push(...additionalTools);
-    
-    console.log(`🔄 Added ${additionalTools.length} fallback tools from entire database`);
-  }
+  // Create displayed tool list that shows tools up to displayedCount
+  const displayedTools = finalFilteredTools.slice(0, displayedCount);
 
   // Reset displayed count when the final filtered tools change, but keep a reference to avoid constant resets
   const [lastFilteredToolsLength, setLastFilteredToolsLength] = useState(0);
@@ -92,17 +77,15 @@ const MainCategoryPage = () => {
   }, [finalFilteredTools.length, lastFilteredToolsLength]);
 
   const handleLoadMore = () => {
-    // Always allow loading more - either from filtered tools or from entire database
     if (isLoading) return;
     
-    console.log(`🚀 Loading more tools in ${decodedCategoryName}... Current: ${displayedCount}, Filtered: ${finalFilteredTools.length}, Total in DB: ${allTools.length}`);
+    console.log(`🚀 Loading more tools in ${decodedCategoryName}... Current: ${displayedCount}, Available: ${finalFilteredTools.length}`);
     setIsLoading(true);
     
     // Use setTimeout to show loading state briefly, then load more tools
     setTimeout(() => {
-      // Load 48 more tools at a time - can go beyond filtered tools into entire database
       setDisplayedCount(prev => {
-        const newCount = Math.min(prev + 48, allTools.length); // Use entire database as upper limit
+        const newCount = Math.min(prev + 48, finalFilteredTools.length);
         console.log(`✅ Updated displayedCount from ${prev} to ${newCount}`);
         return newCount;
       });
@@ -116,21 +99,20 @@ const MainCategoryPage = () => {
   };
 
   const handleFilteredToolsChange = (filtered: Tool[]) => {
-    console.log(`🎯 Category filter changed: ${filtered.length} tools`);
+    console.log(`🎯 Category filter changed: ${filtered.length} tools (priority ordered)`);
     setFilteredToolsByCategory(filtered);
     // displayedCount will be reset by the useEffect above when finalFilteredTools changes
   };
 
-  // Always have more tools available since we can fall back to entire database
-  const hasMoreTools = displayedCount < allTools.length;
+  const hasMoreTools = displayedCount < finalFilteredTools.length;
 
   console.log(`🔍 Final tool display logic:`, {
     finalFilteredToolsLength: finalFilteredTools.length,
-    expandedToolsListLength: expandedToolsList.length,
+    displayedToolsLength: displayedTools.length,
     displayedCount,
     hasMoreTools,
     isLoading,
-    totalInDatabase: allTools.length
+    isPriorityOrdered: filteredToolsByCategory.length > categoryTools.length
   });
 
   return (
@@ -182,23 +164,23 @@ const MainCategoryPage = () => {
             <div className="text-cyan-400 font-semibold">
               {searchTerm 
                 ? `${finalFilteredTools.length} tools found` 
-                : displayedCount > finalFilteredTools.length 
-                  ? `${finalFilteredTools.length} tools in ${decodedCategoryName} + ${displayedCount - finalFilteredTools.length} additional recommendations`
+                : filteredToolsByCategory.length > categoryTools.length
+                  ? `${finalFilteredTools.length} tools available - filtered categories shown first`
                   : `${finalFilteredTools.length} tools in ${decodedCategoryName}`
               }
             </div>
             {!searchTerm && hasMoreTools && (
               <div className="text-gray-400 text-sm mt-1">
-                Showing {Math.min(displayedCount, expandedToolsList.length)} tools - scroll for more!
+                Showing {displayedTools.length} of {finalFilteredTools.length} tools - scroll for more!
               </div>
             )}
           </div>
 
           {/* Tools Grid - with infinite scroll enabled */}
           <div id="tools-section">
-            {expandedToolsList.length > 0 ? (
+            {displayedTools.length > 0 ? (
               <ToolsGrid
-                tools={expandedToolsList}
+                tools={displayedTools}
                 displayedCount={displayedCount}
                 selectedCategory={decodedCategoryName}
                 searchTerm={searchTerm}
@@ -238,10 +220,8 @@ const MainCategoryPage = () => {
                 🚀 Show More Tools
               </Button>
               <div className="mt-4 text-cyan-300 text-sm">
-                {displayedCount <= finalFilteredTools.length 
-                  ? `Showing ${displayedCount} of ${finalFilteredTools.length} tools in ${decodedCategoryName}`
-                  : `Showing ${finalFilteredTools.length} ${decodedCategoryName} tools + ${displayedCount - finalFilteredTools.length} additional recommendations`
-                }
+                Showing {displayedTools.length} of {finalFilteredTools.length} tools
+                {filteredToolsByCategory.length > categoryTools.length && " (filtered categories prioritized)"}
               </div>
             </div>
           )}

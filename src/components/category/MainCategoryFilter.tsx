@@ -64,7 +64,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     }
   }, [currentMainCategory, mainCategoriesWithCounts]);
 
-  // Apply main category filters to tools using GLOBAL allTools for accurate filtering
+  // Apply main category filters with priority ordering - filtered tools appear first
   const filteredTools = useMemo(() => {
     if (selectedMainCategories.length === 0) {
       // When no categories are specifically selected, show all tools for the current page
@@ -72,28 +72,35 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       return tools;
     }
     
-    console.log(`🎯 Filtering by selected categories: ${selectedMainCategories.join(', ')}`);
+    console.log(`🎯 Priority filtering by selected categories: ${selectedMainCategories.join(', ')}`);
     
     // Get tools from all selected main categories using the GLOBAL allTools for accurate results
-    const allFilteredTools: Tool[] = [];
+    const priorityTools: Tool[] = [];
     selectedMainCategories.forEach(mainCategoryName => {
       const categoryTools = getToolsByMainCategory(allTools, mainCategoryName);
-      console.log(`📂 ${mainCategoryName}: found ${categoryTools.length} tools (from global allTools)`);
-      allFilteredTools.push(...categoryTools);
+      console.log(`📂 ${mainCategoryName}: found ${categoryTools.length} priority tools (from global allTools)`);
+      priorityTools.push(...categoryTools);
     });
     
-    // Remove duplicates by title
-    const uniqueTools = allFilteredTools.filter((tool, index, self) => 
+    // Remove duplicates from priority tools by title
+    const uniquePriorityTools = priorityTools.filter((tool, index, self) => 
       index === self.findIndex(t => t.title === tool.title)
     );
     
-    console.log(`✅ Final filtered result: ${uniqueTools.length} unique tools from ${selectedMainCategories.length} categories`);
-    return uniqueTools;
+    // Get remaining tools from the entire database that are NOT in the priority list
+    const priorityTitles = new Set(uniquePriorityTools.map(tool => tool.title));
+    const remainingTools = allTools.filter(tool => !priorityTitles.has(tool.title));
+    
+    // Combine: priority tools first, then remaining tools
+    const orderedTools = [...uniquePriorityTools, ...remainingTools];
+    
+    console.log(`✅ Priority ordered result: ${uniquePriorityTools.length} priority tools + ${remainingTools.length} remaining tools = ${orderedTools.length} total`);
+    return orderedTools;
   }, [selectedMainCategories, currentMainCategory, tools]);
 
   // Update parent component when filtered tools change - but only call when needed
   useEffect(() => {
-    console.log(`🔄 Updating parent with ${filteredTools.length} filtered tools`);
+    console.log(`🔄 Updating parent with ${filteredTools.length} priority-ordered tools`);
     onFilteredToolsChange(filteredTools);
   }, [filteredTools, onFilteredToolsChange]);
 
@@ -130,7 +137,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     categoriesShown: mainCategoriesWithCounts.length,
     selectedCategories: selectedMainCategories,
     filteredToolsCount: filteredTools.length,
-    usingGlobalCounts: true
+    usingPriorityOrdering: true
   });
 
   return (
@@ -238,12 +245,12 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
             </div>
           )}
 
-          {/* Compact Filter Summary */}
+          {/* Compact Filter Summary with Priority Indication */}
           <div className="mt-3 pt-2 border-t border-cyan-500/20 text-center">
             <div className="text-xs text-cyan-300">
               {selectedMainCategories.length <= 1 
                 ? `Showing ${filteredTools.length} tools in ${currentMainCategory}` 
-                : `Showing ${filteredTools.length} tools from ${selectedMainCategories.length} categories`
+                : `Prioritizing ${selectedMainCategories.length} categories - filtered tools shown first`
               }
             </div>
           </div>
