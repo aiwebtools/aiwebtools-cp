@@ -6,10 +6,22 @@ import {
   TrendingUp,
   Users,
   Heart,
-  MessageCircle
+  MessageCircle,
+  Music
 } from "lucide-react";
 
 export const socialMediaTools: Tool[] = [
-  // Removed Instagram, Facebook, and other non-AI social media platforms
-  // This category now contains only verified AI-powered social media tools
+  {
+    icon: Music,
+    title: "SocialMedia Sonic",
+    description: "Advanced social media management platform that amplifies your online presence with AI-powered content creation, scheduling, and analytics. SocialMedia Sonic helps businesses and creators optimize their social media strategy across multiple platforms with intelligent automation and performance insights.",
+    emoji: "🎵",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://socialsonic.com/?ref=aiwebtoolss",
+    tags: ["social media management", "content creation", "AI-powered", "scheduling", "analytics", "automation"],
+    category: "Social Media & Marketing",
+    rating: 4.6,
+    totalVotes: 2345
+  }
+  // This category now contains verified AI-powered social media tools
 ];

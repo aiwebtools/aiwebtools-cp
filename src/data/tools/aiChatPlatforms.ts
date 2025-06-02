@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   MessageSquare, 
@@ -21,11 +20,24 @@ import {
   Rocket,
   Home,
   Zap,
-  Plane
+  Plane,
+  Bot
 } from "lucide-react";
 import { priorityFeaturedGPTs } from "./aiWebTools/priorityFeaturedGPTs";
 
 export const aiChatPlatforms: Tool[] = [
+  {
+    icon: Bot,
+    title: "CHATRON",
+    description: "Advanced AI chatbot platform designed for intelligent conversations and automated customer support. CHATRON offers sophisticated natural language processing capabilities for businesses and individuals seeking powerful AI communication solutions.",
+    emoji: "🤖",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://chatronai.com/?ref=i97f664587e6d4c7c3",
+    tags: ["AI chatbot", "customer support", "natural language processing", "business automation", "conversational AI"],
+    category: "AI Chat & Assistants",
+    rating: 4.5,
+    totalVotes: 1234
+  },
   {
     icon: Clock,
     title: "TIME MACHINE GPT",
