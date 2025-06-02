@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -65,13 +64,16 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     return categoriesData;
   }, []);
 
-  // Initialize with current main category selected
+  // FIXED: Initialize with current main category selected and keep it checked
   useEffect(() => {
-    console.log(`🎯 MainCategoryFilter initializing for: ${currentMainCategory}`);
+    console.log(`🎯 MainCategoryFilter FIXED: Auto-checking current category: ${currentMainCategory}`);
     
     const categoryExists = mainCategoriesWithCounts.some(cat => cat.name === currentMainCategory);
     if (categoryExists) {
       setSelectedMainCategories([currentMainCategory]);
+      console.log(`✅ Current category "${currentMainCategory}" automatically checked`);
+    } else {
+      console.log(`⚠️ Current category "${currentMainCategory}" not found in available categories`);
     }
   }, [currentMainCategory, mainCategoriesWithCounts]);
 
@@ -136,6 +138,12 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       const isCurrentlySelected = prev.includes(mainCategoryName);
       console.log(`📋 Current selection state for ${mainCategoryName}: ${isCurrentlySelected}`);
       
+      // FIXED: Prevent unchecking the current main category - keep it always checked
+      if (isCurrentlySelected && mainCategoryName === currentMainCategory) {
+        console.log(`🔒 Cannot uncheck current main category: ${currentMainCategory}`);
+        return prev; // Don't allow unchecking the current category
+      }
+      
       if (isCurrentlySelected) {
         const newSelection = prev.filter(cat => cat !== mainCategoryName);
         console.log(`➖ Removing ${mainCategoryName}, new selection:`, newSelection);
@@ -149,6 +157,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   };
 
   const clearAllFilters = () => {
+    console.log(`🔄 Clearing all filters, keeping only current category: ${currentMainCategory}`);
     setSelectedMainCategories([currentMainCategory]);
   };
 
@@ -160,7 +169,8 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     selectedCategories: selectedMainCategories,
     filteredToolsCount: filteredTools.length,
     multiCategoryMode: selectedMainCategories.length > 1,
-    uniqueCategoriesCount: mainCategoriesWithCounts.length
+    uniqueCategoriesCount: mainCategoriesWithCounts.length,
+    currentCategoryChecked: selectedMainCategories.includes(currentMainCategory)
   });
 
   return (
@@ -190,21 +200,31 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
           <div className="text-xs text-cyan-400 font-semibold">Mixed Categories:</div>
           {selectedMainCategories.map(categoryName => {
             const categoryData = mainCategoriesWithCounts.find(cat => cat.name === categoryName);
+            const isCurrentCategory = categoryName === currentMainCategory;
             return (
               <Badge
                 key={categoryName}
                 variant="secondary"
-                className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 text-xs"
+                className={`text-xs ${
+                  isCurrentCategory 
+                    ? 'bg-cyan-600/30 text-cyan-200 border-cyan-400/50' 
+                    : 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30'
+                }`}
               >
                 {categoryData?.emoji} {categoryName}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => handleMainCategoryToggle(categoryName)}
-                  className="ml-1 h-3 w-3 p-0 text-cyan-400 hover:text-cyan-200"
-                >
-                  <X className="w-2 h-2" />
-                </Button>
+                {!isCurrentCategory && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => handleMainCategoryToggle(categoryName)}
+                    className="ml-1 h-3 w-3 p-0 text-cyan-400 hover:text-cyan-200"
+                  >
+                    <X className="w-2 h-2" />
+                  </Button>
+                )}
+                {isCurrentCategory && (
+                  <span className="ml-1 text-xs opacity-70">(locked)</span>
+                )}
               </Badge>
             );
           })}
@@ -226,12 +246,15 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-48 overflow-y-auto">
             {mainCategoriesWithCounts.map(({ name, emoji, count }) => {
               const isChecked = selectedMainCategories.includes(name);
-              console.log(`🔘 Rendering checkbox for ${name}: checked=${isChecked}, count=${count}`);
+              const isCurrentCategory = name === currentMainCategory;
+              console.log(`🔘 Rendering checkbox for ${name}: checked=${isChecked}, current=${isCurrentCategory}, count=${count}`);
               
               return (
                 <div
                   key={name}
-                  className="flex items-start space-x-2 p-2 hover:bg-cyan-500/10 rounded-md transition-colors min-h-[50px]"
+                  className={`flex items-start space-x-2 p-2 hover:bg-cyan-500/10 rounded-md transition-colors min-h-[50px] ${
+                    isCurrentCategory ? 'bg-cyan-500/15 border border-cyan-500/30' : ''
+                  }`}
                 >
                   <Checkbox
                     id={`main-category-${name}`}
@@ -241,15 +264,19 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
                       handleMainCategoryToggle(name);
                     }}
                     className="border-cyan-500/50 data-[state=checked]:bg-cyan-500 data-[state=checked]:border-cyan-500 flex-shrink-0 mt-1"
+                    disabled={isCurrentCategory && isChecked} // Disable unchecking current category
                   />
                   <div className="flex-1 min-w-0 flex flex-col">
                     <label
                       htmlFor={`main-category-${name}`}
-                      className="text-xs font-bold text-cyan-100 cursor-pointer flex items-start leading-tight"
+                      className={`text-xs font-bold cursor-pointer flex items-start leading-tight ${
+                        isCurrentCategory ? 'text-cyan-200' : 'text-cyan-100'
+                      }`}
                       title={name}
                     >
                       <span className="mr-1 flex-shrink-0">{emoji}</span>
                       <span className="break-words text-xs leading-tight font-bold">{name}</span>
+                      {isCurrentCategory && <span className="ml-1 text-xs opacity-70">(current)</span>}
                     </label>
                     <Badge
                       variant="secondary"
@@ -277,6 +304,11 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
                 : `Mixing ${selectedMainCategories.length} categories (${filteredTools.length} total tools) - selected categories shown first, then endless flow`
               }
             </div>
+            {selectedMainCategories.includes(currentMainCategory) && (
+              <div className="text-xs text-cyan-400 mt-1">
+                ✓ Current category "{currentMainCategory}" is automatically included
+              </div>
+            )}
           </div>
         </div>
       )}
