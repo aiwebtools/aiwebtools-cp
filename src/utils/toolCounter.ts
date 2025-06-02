@@ -12,18 +12,36 @@ export const getToolCount = () => {
     categoryBreakdown[category] = (categoryBreakdown[category] || 0) + 1;
   });
   
-  console.log('🎉 CURRENT TOOL COUNT VERIFICATION 🎉');
-  console.log(`📊 EXACT Tool Count: ${deduplicatedTools.length}`);
+  console.log('🎉 TOOL COUNT VERIFICATION & DIAGNOSTICS 🎉');
+  console.log(`📊 Raw tools collected: ${allTools.length}`);
+  console.log(`📊 After deduplication: ${deduplicatedTools.length}`);
+  console.log(`📊 Tools removed by deduplication: ${allTools.length - deduplicatedTools.length}`);
   console.log('Category Breakdown:', categoryBreakdown);
   
   // Check for CHATRON specifically
-  const chatronExists = deduplicatedTools.find(tool => tool.title === 'CHATRON');
-  console.log('🔍 CHATRON verification:', chatronExists ? 'FOUND' : 'NOT FOUND');
+  const chatronInstances = allTools.filter(tool => tool.title === 'CHATRON');
+  const chatronDeduped = deduplicatedTools.filter(tool => tool.title === 'CHATRON');
+  console.log(`🔍 CHATRON instances found: ${chatronInstances.length}`);
+  console.log(`🔍 CHATRON after deduplication: ${chatronDeduped.length}`);
   
   // Log AI Chat Platforms specifically
   const aiChatPlatformTools = deduplicatedTools.filter(tool => tool.category === 'AI Chat Platforms');
   console.log(`💬 AI Chat Platforms count: ${aiChatPlatformTools.length}`);
   console.log('AI Chat Platform tools:', aiChatPlatformTools.map(t => t.title));
+  
+  // Check for any undefined or malformed tools
+  const malformedTools = allTools.filter(tool => !tool.title || !tool.description);
+  console.log(`⚠️ Malformed tools found: ${malformedTools.length}`);
+  if (malformedTools.length > 0) {
+    console.log('Malformed tools:', malformedTools);
+  }
+  
+  // Check category distribution
+  const categoryCounts = Object.entries(categoryBreakdown).sort((a, b) => b[1] - a[1]);
+  console.log('📈 Top 10 categories by tool count:');
+  categoryCounts.slice(0, 10).forEach(([category, count]) => {
+    console.log(`  ${category}: ${count} tools`);
+  });
   
   // Enhanced pricing analysis
   const freeTools = deduplicatedTools.filter(tool => 
@@ -58,14 +76,18 @@ export const getToolCount = () => {
   console.log(`Tools with Tags: ${toolsWithTags} (${Math.round((toolsWithTags / deduplicatedTools.length) * 100)}%)`);
   console.log(`Tools with Categories: ${toolsWithCategories} (${Math.round((toolsWithCategories / deduplicatedTools.length) * 100)}%)`);
   
-  console.log('✅ FINAL ACCURATE COUNT FOR WEBSITE UPDATES:');
+  console.log('✅ FINAL TOOL COUNT SUMMARY:');
   console.log(`🎯 EXACT TOTAL: ${deduplicatedTools.length} AI TOOLS`);
   console.log(`📈 Rounded Marketing Number: ${Math.round(deduplicatedTools.length / 100) * 100}+`);
   console.log(`🚀 Categories Available: ${Object.keys(categoryBreakdown).length}`);
   
-  // Verify no tools were lost - previous known count was around 1000+
+  // Verify no tools were lost - enhanced warning system
   if (deduplicatedTools.length < 900) {
-    console.warn(`⚠️ TOOL COUNT ALERT: Current count ${deduplicatedTools.length} seems low - check for missing tools!`);
+    console.error(`🚨 CRITICAL TOOL COUNT ALERT: Current count ${deduplicatedTools.length} is significantly low!`);
+    console.error(`🚨 Expected minimum: 900+ tools. This indicates a major data loss!`);
+  } else if (deduplicatedTools.length < 1000) {
+    console.warn(`⚠️ TOOL COUNT WARNING: Current count ${deduplicatedTools.length} seems lower than expected.`);
+    console.warn(`⚠️ Expected range: 1000+ tools. Please verify no tools were accidentally removed.`);
   } else {
     console.log(`✅ Tool count verification passed: ${deduplicatedTools.length} tools`);
   }
@@ -82,6 +104,12 @@ export const getToolCount = () => {
     searchReadiness: {
       withTags: toolsWithTags,
       withCategories: toolsWithCategories
+    },
+    diagnostics: {
+      rawToolsCount: allTools.length,
+      deduplicatedCount: deduplicatedTools.length,
+      removedByDeduplication: allTools.length - deduplicatedTools.length,
+      malformedToolsCount: malformedTools.length
     }
   };
 };
