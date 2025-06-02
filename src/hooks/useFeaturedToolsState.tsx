@@ -1,6 +1,6 @@
 
 import { useState, useMemo, useCallback } from "react";
-import { allToolsFiltered as allTools } from "@/data/toolsData";
+import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { getCategoriesWithCounts, getToolsByCategory } from "@/utils/categoryUtils";
 import { getSortedStandardizedCategories } from "@/utils/categoryTitles";

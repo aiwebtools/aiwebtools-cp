@@ -4,7 +4,7 @@ import { X, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { allToolsFiltered as allTools } from "@/data/toolsData";
+import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";

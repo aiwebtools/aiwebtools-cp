@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -13,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { runFullToolVerification } from "@/utils/toolIndexing";
 import { searchTools } from "@/utils/searchUtils";
 import { getCurrentToolCount } from "@/utils/toolCounter";
-import { allToolsFiltered as allTools } from "@/data/toolsData";
+import { allTools } from "@/data/toolsData";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 
 const Index = () => {
