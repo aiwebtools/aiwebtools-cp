@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -44,8 +45,8 @@ const isMajorLLM = (tool: Tool): boolean => {
 
 // Helper function to detect STRICTLY historical and time-based tools
 const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
-  // First check if it's primarily an industry-specific tool - if so, exclude it from historical category
-  if (isIndustrySpecificTool(tool)) {
+  // First check if it's primarily an educational tool - if so, exclude it from historical category
+  if (isPrimaryEducationTool(tool)) {
     return false;
   }
 
@@ -67,7 +68,7 @@ const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
   const titleLower = tool.title.toLowerCase();
   const descriptionLower = tool.description.toLowerCase();
   
-  // Exclude major LLMs from historical category
+  // Exclude major LLMs and general education tools from historical category
   if (isMajorLLM(tool)) {
     return false;
   }
@@ -97,93 +98,48 @@ const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
   );
 };
 
-// Helper function to detect industry-specific tools - COMPREHENSIVE DETECTION
-const isIndustrySpecificTool = (tool: Tool): boolean => {
-  const industryKeywords = [
-    // Healthcare & Medical
-    'health', 'medical', 'wellness', 'healthcare', 'medicine', 'doctor', 'physician',
-    'nurse', 'pharmacy', 'pharmaceutical', 'clinic', 'hospital', 'patient', 'therapy',
-    'treatment', 'diagnosis', 'mental health', 'dental', 'veterinary', 'fitness',
-    'nutrition', 'diet', 'exercise', 'lifestyle', 'personal care', 'skincare',
-    'cannabis', 'insurance claims', 'genome', 'pharma', 'drug', 'medication',
-    'marriage mender', 'mixologist', 'food quality', 'dr. gpt', 'personalized dr',
-    'skin care', 'dermatology', 'beauty advice', 'cosmetics', 'oral care', 'oral health',
-    
-    // Education & Learning
+// Helper function to detect PRIMARY education tools
+const isPrimaryEducationTool = (tool: Tool): boolean => {
+  const primaryEducationKeywords = [
+    'quiz maker', 'course maker', 'training manual', 'children\'s book', 'homework helper',
+    'essay writer', 'learn any course', 'learn any skill', 'college degree', 'home school',
     'education', 'learning', 'educational', 'academic', 'study', 'course', 'curriculum',
     'teaching', 'teacher', 'tutor', 'tutoring', 'lesson', 'homework', 'quiz', 'test',
     'training', 'university', 'college', 'school', 'degree', 'certification',
     'workshop', 'seminar', 'lecture', 'instruction', 'student', 'learner', 'classroom',
-    'insect study', 'entomology', 'species research', 'biological studies',
-    
-    // Legal & Government
-    'legal', 'law', 'lawyer', 'attorney', 'court', 'judge', 'litigation', 'contract',
-    'compliance', 'regulation', 'policy', 'government', 'legislation', 'civic',
-    'public defender', 'legal drafting', 'testimony',
-    
-    // Emergency & Safety
-    'emergency', 'firefighter', 'police', 'paramedic', 'safety', 'security', 'rescue',
-    'disaster', 'crisis', 'first aid', 'surveillance', 'cybersecurity',
-    
-    // Creative Industries
-    'graphic design', 'design', 'art', 'creative', 'photography', 'video editing',
-    'music', 'audio', 'film', 'movie', 'animation', 'gaming', 'game design',
-    'tattoo', 'sketch', 'illustration', 'coloring book', 'children\'s book',
-    
-    // Business & Finance
-    'business', 'finance', 'accounting', 'trading', 'investment', 'banking',
-    'insurance', 'real estate', 'property', 'startup', 'entrepreneur',
-    'sales', 'marketing', 'consultant', 'hr', 'human resources',
-    
-    // Engineering & Technical
-    'engineering', 'engineer', 'technical', 'software', 'hardware', 'robotics',
-    'construction', 'architecture', 'automotive', 'aerospace', 'manufacturing',
-    'energy', 'environmental', 'agriculture', 'farming', 'solar',
-    
-    // Hospitality & Food
-    'restaurant', 'cooking', 'chef', 'food', 'culinary', 'hospitality',
-    'tourism', 'travel', 'hotel', 'catering', 'beverage', 'wine',
-    
-    // Science & Research
-    'research', 'scientist', 'laboratory', 'analysis', 'data science',
-    'archaeology', 'geology', 'astronomy', 'physics', 'chemistry', 'biology',
-    'psychology', 'sociology', 'anthropology', 'statistics',
-    
-    // Specialized Services
-    'appraisal', 'valuation', 'inspection', 'consulting', 'coaching',
-    'fitness training', 'personal trainer', 'life coach', 'spiritual',
-    'astrology', 'fortune telling', 'prediction'
+    'insect study', 'entomology', 'species research', 'biological studies'
   ];
   
   const titleLower = tool.title.toLowerCase();
-  const descriptionLower = tool.description.toLowerCase();
-  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
   const categoryLower = tool.category?.toLowerCase() || '';
   
-  // Exclude major LLMs from being classified as industry-specific
+  // Exclude major LLMs from being classified as primary education tools
   if (isMajorLLM(tool)) {
     return false;
   }
   
-  const isIndustryByKeyword = industryKeywords.some(keyword => 
-    titleLower.includes(keyword) || 
-    descriptionLower.includes(keyword) || 
-    tagsLower.includes(keyword) ||
-    categoryLower.includes(keyword)
+  // CRITICAL: Force Insect Study Tool to be education
+  if (titleLower.includes('insect study')) {
+    console.log(`🎓 FORCE: Insect Study Tool detected as PRIMARY EDUCATION tool`);
+    return true;
+  }
+  
+  // Check if it's explicitly an education tool by name or category
+  const isEducationByCategory = categoryLower.includes('education') || 
+                               categoryLower.includes('learning');
+  
+  const isEducationByTitle = primaryEducationKeywords.some(keyword => 
+    titleLower.includes(keyword)
   );
   
-  // Also check if it's already categorized as an industry-specific category
-  const industryCategories = [
-    'health', 'medical', 'education', 'legal', 'professional', 'emergency',
-    'creative', 'business', 'finance', 'engineering', 'technical', 'hospitality',
-    'food', 'science', 'research', 'specialized', 'industry'
-  ];
-  
-  const isIndustryByCategory = industryCategories.some(cat => 
-    categoryLower.includes(cat)
-  );
-  
-  return isIndustryByKeyword || isIndustryByCategory;
+  return isEducationByCategory || isEducationByTitle;
+};
+
+// Helper function to detect education-related tools (broader scope)
+const isEducationRelatedTool = (tool: Tool): boolean => {
+  return isPrimaryEducationTool(tool) || 
+         (tool.category?.toLowerCase().includes('education')) ||
+         (tool.category?.toLowerCase().includes('learning'));
 };
 
 // Helper function to detect content creation tools
@@ -226,11 +182,83 @@ const isDataAnalyticsTool = (tool: Tool): boolean => {
   ) || isMajorLLM(tool); // Include major LLMs in data analytics
 };
 
+// Helper function to detect health-related tools - ENHANCED TO EXCLUDE INSECT STUDY TOOL
+const isHealthRelatedTool = (tool: Tool): boolean => {
+  // CRITICAL: Explicitly exclude insect study tool from health category
+  const titleLower = tool.title.toLowerCase();
+  if (titleLower.includes('insect study') || titleLower.includes('entomology')) {
+    console.log(`🚫 EXCLUDING from health: ${tool.title} - this is an education tool`);
+    return false;
+  }
+  
+  // CRITICAL: Also exclude if it's already properly categorized as education
+  if (tool.category === "Education & Learning" || tool.category === "Education & Research Tools") {
+    console.log(`🚫 EXCLUDING from health: ${tool.title} - already in education category`);
+    return false;
+  }
+  
+  const healthKeywords = [
+    'health', 'medical', 'wellness', 'healthcare', 'medicine', 'doctor', 'physician',
+    'nurse', 'pharmacy', 'pharmaceutical', 'clinic', 'hospital', 'patient', 'therapy',
+    'treatment', 'diagnosis', 'mental health', 'dental', 'veterinary', 'fitness',
+    'nutrition', 'diet', 'exercise', 'lifestyle', 'personal care', 'skincare',
+    'cannabis', 'insurance claims', 'genome', 'pharma', 'drug', 'medication',
+    'marriage mender', 'mixologist', 'food quality', 'dr. gpt', 'personalized dr',
+    'skin care', 'dermatology', 'beauty advice', 'cosmetics', 'oral care', 'oral health'
+  ];
+  
+  const descriptionLower = tool.description.toLowerCase();
+  const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
+  const categoryLower = tool.category?.toLowerCase() || '';
+  
+  // Force specific health tools that might be miscategorized
+  const forceHealthTools = [
+    'mental wellness gpt',
+    'personalized dr. gpt',
+    'doctor gpt',
+    'veterinarian gpt',
+    'pharmaceutical assistant gpt',
+    'pharma research pro',
+    'genome gpt',
+    'marriage mender gpt',
+    'skin care gpt',
+    'skincare gpt',
+    'dental gpt',
+    'cannabis gpt',
+    'insurance claims gpt',
+    'food quality inspector gpt',
+    'mixologist gpt'
+  ];
+  
+  // Check if it's a forced health tool
+  const isForcedHealthTool = forceHealthTools.some(healthTool => 
+    titleLower.includes(healthTool) || titleLower === healthTool
+  );
+  
+  if (isForcedHealthTool) {
+    console.log(`🏥 FORCE: Detected health tool by name: ${tool.title}`);
+    return true;
+  }
+  
+  const isHealthByKeyword = healthKeywords.some(keyword => 
+    titleLower.includes(keyword) || 
+    descriptionLower.includes(keyword) || 
+    tagsLower.includes(keyword) ||
+    categoryLower.includes(keyword)
+  );
+  
+  if (isHealthByKeyword) {
+    console.log(`🏥 KEYWORD: Detected health tool: ${tool.title}`);
+  }
+  
+  return isHealthByKeyword;
+};
+
 // Build cache once for instant category filtering
 const buildToolsCache = (tools: Tool[]) => {
   // Force rebuild if cache exists but we need to refresh
   if (cacheBuilt) {
-    console.log('🔄 Forcing cache rebuild for industry-specific consolidation...');
+    console.log('🔄 Forcing cache rebuild for health category consolidation...');
     toolsCacheByMainCategory.clear();
     cacheBuilt = false;
   }
@@ -248,19 +276,47 @@ const buildToolsCache = (tools: Tool[]) => {
   // Pre-process chat/assistant tools once
   const chatRelatedTools = tools.filter(tool => isAIChatAssistantTool(tool));
   
-  // Pre-process ALL industry-specific tools once - FORCE EVERYTHING INTO ONE CATEGORY
-  const industrySpecificTools = tools.filter(tool => {
-    const isIndustryTool = isIndustrySpecificTool(tool);
-    // Force all industry-specific tools to have the unified category
-    if (isIndustryTool && tool.category !== "Industry Specific AI TOOLS") {
-      console.log(`🔄 Force updating industry tool category: ${tool.title} from "${tool.category}" to "Industry Specific AI TOOLS"`);
-      tool.category = "Industry Specific AI TOOLS";
+  // Pre-process ALL health tools once - FORCE EVERYTHING INTO ONE CATEGORY
+  const healthRelatedTools = tools.filter(tool => {
+    const isHealthTool = isHealthRelatedTool(tool);
+    // Force all health tools to have the unified category
+    if (isHealthTool && tool.category !== "Health, Wellness & Personal Lifestyle") {
+      console.log(`🔄 Force updating health tool category: ${tool.title} from "${tool.category}" to "Health, Wellness & Personal Lifestyle"`);
+      tool.category = "Health, Wellness & Personal Lifestyle";
     }
-    return isIndustryTool;
+    return isHealthTool;
   });
   
-  // Pre-process STRICTLY historical tools (excluding industry-specific tools and major LLMs)
+  // CRITICAL: Also check for any tools with old health categories and force them
+  const forceHealthCategoryUpdate = tools.filter(tool => {
+    const hasOldHealthCategory = tool.category === "Health & Wellness" || 
+                                 tool.category === "Healthcare Professionals" ||
+                                 tool.category === "Medical AI Tools" ||
+                                 tool.category?.toLowerCase().includes('health') ||
+                                 tool.category?.toLowerCase().includes('medical') ||
+                                 tool.category?.toLowerCase().includes('wellness');
+    
+    if (hasOldHealthCategory && tool.category !== "Health, Wellness & Personal Lifestyle") {
+      console.log(`🔄 FORCE CATEGORY UPDATE: ${tool.title} from "${tool.category}" to "Health, Wellness & Personal Lifestyle"`);
+      tool.category = "Health, Wellness & Personal Lifestyle";
+      return true;
+    }
+    return false;
+  });
+  
+  // Combine health tools from both detection methods
+  const allHealthTools = [...healthRelatedTools];
+  forceHealthCategoryUpdate.forEach(tool => {
+    if (!allHealthTools.find(t => t.title === tool.title)) {
+      allHealthTools.push(tool);
+    }
+  });
+  
+  // Pre-process STRICTLY historical tools (excluding education tools and major LLMs)
   const strictHistoricalTools = tools.filter(tool => isStrictlyHistoricalTimeRelatedTool(tool));
+  
+  // Pre-process education tools once (including historical education but excluding major LLMs)
+  const educationRelatedTools = tools.filter(tool => isEducationRelatedTool(tool));
   
   // Pre-process video tools once
   const videoRelatedTools = tools.filter(tool => isVideoRelatedTool(tool));
@@ -271,10 +327,12 @@ const buildToolsCache = (tools: Tool[]) => {
   // Pre-process data analytics tools (including major LLMs)
   const dataAnalyticsTools = tools.filter(tool => isDataAnalyticsTool(tool));
   
-  console.log(`🏭 Industry-specific tools found: ${industrySpecificTools.length}`);
+  console.log(`🎓 Education tools found: ${educationRelatedTools.length}`);
   console.log(`🕰️ Strict historical tools found: ${strictHistoricalTools.length}`);
   console.log(`✍️ Content creation tools found: ${contentCreationTools.length}`);
   console.log(`📊 Data analytics tools found: ${dataAnalyticsTools.length}`);
+  console.log(`🏥 UNIFIED Health tools found: ${allHealthTools.length}`);
+  console.log(`🔄 Forced health category updates: ${forceHealthCategoryUpdate.length}`);
   
   mainCategories.forEach(mainCat => {
     let categoryTools: Tool[] = [];
@@ -287,6 +345,7 @@ const buildToolsCache = (tools: Tool[]) => {
       categoryTools = [...tools]; // Show ALL tools without any filtering
     }
     else if (mainCat.name === "AI CHAT & ASSISTANTS") {
+      // ... keep existing code (AI chat handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -302,6 +361,7 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "CONTENT CREATION & WRITING") {
+      // ... keep existing code (content creation handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -315,6 +375,7 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "DATA & ANALYTICS AI TOOLS") {
+      // ... keep existing code (data analytics handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -328,14 +389,35 @@ const buildToolsCache = (tools: Tool[]) => {
         index === self.findIndex(t => t.title === tool.title)
       );
     }
-    else if (mainCat.name === "Industry Specific AI TOOLS") {
-      // CRITICAL: ONLY ONE UNIFIED INDUSTRY CATEGORY - USE ALL INDUSTRY TOOLS
-      categoryTools = [...industrySpecificTools]; // Use ALL the pre-processed industry tools
+    else if (mainCat.name === "EDUCATION & LEARNING") {
+      // ... keep existing code (education handling)
+      const subcategoryTools = tools.filter(tool => {
+        if (!tool.category) return false;
+        return mainCat.subcategories.some(subcat => 
+          isSimilarCategory(tool.category, subcat)
+        );
+      });
       
-      console.log(`🏭 FINAL UNIFIED Industry category tools: ${categoryTools.length}`);
-      console.log(`📝 Sample industry tools: ${categoryTools.slice(0, 5).map(t => t.title).join(', ')}`);
+      const educationalHistoricalTools = tools.filter(tool => 
+        isPrimaryEducationTool(tool) && 
+        (tool.description.toLowerCase().includes('historical') || 
+         tool.description.toLowerCase().includes('history'))
+      );
+      
+      const allEducationTools = [...subcategoryTools, ...educationRelatedTools, ...educationalHistoricalTools];
+      categoryTools = allEducationTools.filter((tool, index, self) => 
+        index === self.findIndex(t => t.title === tool.title)
+      );
+    }
+    else if (mainCat.name === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
+      // CRITICAL: ONLY ONE UNIFIED HEALTH CATEGORY - USE ALL HEALTH TOOLS
+      categoryTools = [...allHealthTools]; // Use ALL the pre-processed health tools
+      
+      console.log(`🏥 FINAL UNIFIED Health category tools: ${categoryTools.length}`);
+      console.log(`📝 Sample health tools: ${categoryTools.slice(0, 5).map(t => t.title).join(', ')}`);
     }
     else if (mainCat.name === "HISTORICAL & TIME-BASED AI TOOLS") {
+      // ... keep existing code (historical handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
@@ -349,6 +431,7 @@ const buildToolsCache = (tools: Tool[]) => {
       );
     }
     else if (mainCat.name === "VIDEO & MULTIMEDIA") {
+      // ... keep existing code (video handling)
       const subcategoryTools = tools.filter(tool => {
         if (!tool.category) return false;
         return mainCat.subcategories.some(subcat => 
