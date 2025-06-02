@@ -128,18 +128,33 @@ export const getAllToolCategories = (): Tool[] => {
     // CONSOLIDATED: Use only contentCreationAndWritingTools (no more writingAndContent)
     ...imageAndDesign,
     ...businessAndProductivity,
-    ...specializedAndNiche,
+    
+    // Move these categories to OTHER explicitly
+    ...specializedAndNiche.map(tool => ({
+      ...tool,
+      category: "OTHER"
+    })),
+    
     ...educationAndLearning,
-    ...creativeAndEntertainment,
+    ...creativeAndEntertainment.map(tool => ({
+      ...tool,
+      category: "OTHER"
+    })),
     ...researchAndLearning,
     ...aiToolsAndUtilities,
     ...healthcareProfessionals,
     ...legalProfessionals,
     ...emergencyServices,
-    ...creativeServices,
+    ...creativeServices.map(tool => ({
+      ...tool,
+      category: "OTHER"
+    })),
     ...personalServices,
     ...specializedPolicyTools,
-    ...artAndCollectibles,
+    ...artAndCollectibles.map(tool => ({
+      ...tool,
+      category: "OTHER"
+    })),
     ...aiChatPlatforms,
     ...aiDevelopmentTools,
     ...localAISolutions,
@@ -148,15 +163,30 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiProductivityTools,
     ...openSourceAIModels,
     ...aiAgents,
-    ...timeAndHistory,
-    ...creativeSuites,
+    ...timeAndHistory.map(tool => ({
+      ...tool,
+      category: "OTHER"
+    })),
+    ...creativeSuites.map(tool => ({
+      ...tool,
+      category: "OTHER"
+    })),
     ...advancedAITools,
-    ...gameDesignAndDevelopment,
+    ...gameDesignAndDevelopment.map(tool => ({
+      ...tool,
+      category: "OTHER"
+    })),
     ...learningAndEducation,
     ...platformsAndDevelopment,
     ...professionalServices,
-    ...spiritualityTools,
-    ...rawUncutTools,
+    ...spiritualityTools.map(tool => ({
+      ...tool,
+      category: "OTHER"
+    })),
+    ...rawUncutTools.map(tool => ({
+      ...tool,
+      category: "OTHER"
+    })),
     ...videoAndContentTools,
     ...businessAndTeamTools,
     ...searchAndProductivityTools,
@@ -178,11 +208,17 @@ export const getAllToolCategories = (): Tool[] => {
     ...backgroundAndObjectTools,
     ...audioAndVoiceTools,
     ...financialAndTradingTools,
-    ...specializedNicheTools,
+    ...specializedNicheTools.map(tool => ({
+      ...tool,
+      category: "OTHER"
+    })),
     ...meetingAndTranscriptionTools,
     ...webDevelopmentTools,
     ...emailManagementTools,
-    ...technicalAndUtilityTools,
+    ...technicalAndUtilityTools.map(tool => ({
+      ...tool,
+      category: "OTHER"
+    })),
     ...threeDAndVisualizationTools,
     ...dataAnalyticsTools,
     ...automationAndWorkflowTools,
@@ -192,13 +228,22 @@ export const getAllToolCategories = (): Tool[] => {
     ...collaborationTools,
     ...marketingTools,
     ...utilitiesTools,
-    ...creativePlatforms,
+    ...creativePlatforms.map(tool => ({
+      ...tool,
+      category: "OTHER"
+    })),
     ...learningPlatforms,
     ...cloudServices,
     ...developerTools,
     ...communicationTools,
-    ...entertainmentTools,
-    ...newsAndInformationTools,
+    ...entertainmentTools.map(tool => ({
+      ...tool,
+      category: "OTHER"
+    })),
+    ...newsAndInformationTools.map(tool => ({
+      ...tool,
+      category: "OTHER"
+    })),
     ...healthAndWellness,
     
     // Robotics companies category
