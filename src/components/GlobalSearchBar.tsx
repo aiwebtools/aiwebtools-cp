@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -72,11 +71,32 @@ const GlobalSearchBar = () => {
     setDisplayedCount(30);
   };
 
+  const scrollToResults = () => {
+    // Scroll down to show results below the search bar
+    const searchElement = document.querySelector('[data-search-results]');
+    if (searchElement) {
+      searchElement.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    } else {
+      // Fallback: scroll down by a reasonable amount
+      window.scrollBy({ 
+        top: 400, 
+        behavior: 'smooth' 
+      });
+    }
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       setSearchTerm("");
       setDisplayedCount(30);
+    } else if (e.key === 'Enter' && searchTerm.trim()) {
+      // Close dropdown and scroll to results
+      setIsOpen(false);
+      setTimeout(scrollToResults, 100); // Small delay to ensure UI updates
     }
   };
 
@@ -101,9 +121,8 @@ const GlobalSearchBar = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="pl-10 pr-8 bg-black/80 border-cyan-500/50 text-cyan-100 placeholder-cyan-400/70 focus:border-cyan-400 focus:ring-cyan-400/30 rounded-lg shadow-lg shadow-cyan-500/10"
+            className="pl-10 pr-10 bg-black/80 border-cyan-500/50 text-cyan-100 placeholder-cyan-400/70 focus:border-cyan-400 focus:ring-cyan-400/30 rounded-lg shadow-lg shadow-cyan-500/10"
           />
-          
           {searchTerm && (
             <Button
               variant="ghost"

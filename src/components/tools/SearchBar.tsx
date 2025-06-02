@@ -1,8 +1,6 @@
-
 import { useState, useCallback, useMemo } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
@@ -22,7 +20,7 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
   const [displayedCount, setDisplayedCount] = useState(50);
   
   // Debounce search term to prevent excessive search operations
-  const debouncedSearchTerm = useDebounce(searchTerm, 150);
+  const debouncedSearchTerm = useDebounce(searchTerm, 150); // Reduced from default to make it more responsive
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
@@ -58,13 +56,34 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
     setDisplayedCount(50);
   }, [onSearchChange]);
 
+  const scrollToResults = useCallback(() => {
+    // Scroll down to show results below the search bar
+    const searchElement = document.querySelector('[data-search-results]');
+    if (searchElement) {
+      searchElement.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    } else {
+      // Fallback: scroll down by a reasonable amount
+      window.scrollBy({ 
+        top: 400, 
+        behavior: 'smooth' 
+      });
+    }
+  }, []);
+
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       onSearchChange("");
       setDisplayedCount(50);
+    } else if (e.key === 'Enter' && searchTerm.trim()) {
+      // Close dropdown and scroll to results
+      setIsOpen(false);
+      setTimeout(scrollToResults, 100); // Small delay to ensure UI updates
     }
-  }, [onSearchChange]);
+  }, [onSearchChange, searchTerm, scrollToResults]);
 
   const handleInputBlur = useCallback(() => {
     setTimeout(() => setIsOpen(false), 200);
@@ -103,23 +122,8 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
           onKeyDown={handleKeyDown}
           onBlur={handleInputBlur}
           onFocus={handleInputFocus}
-          className="pl-10 pr-12 py-4 text-lg rounded-xl border-2 border-gray-200 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 transition-all duration-300 shadow-lg"
+          className="pl-10 pr-4 py-4 text-lg rounded-xl border-2 border-gray-200 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 transition-all duration-300 shadow-lg"
         />
-        
-        {searchTerm.trim() && (
-          <Button
-            onClick={() => {
-              setIsOpen(false);
-              onSearchChange("");
-              setDisplayedCount(50);
-            }}
-            size="sm"
-            variant="ghost"
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 text-gray-500 hover:text-ai-purple hover:bg-ai-purple/10 transition-all duration-200"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        )}
 
         {isOpen && shouldShowResults && (
           <div 
