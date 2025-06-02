@@ -1,4 +1,3 @@
-
 import React, { useMemo, memo, lazy, Suspense } from "react";
 import { Tool } from "@/types/tools";
 import ToolCard from "@/components/tools/ToolCard";
@@ -102,7 +101,7 @@ const ToolsGrid = memo(({
     <>
       {/* Show title for search results and categories */}
       {(selectedCategory || searchTerm) && (
-        <div className="text-center mb-8 sm:mb-12 px-4">
+        <div className="text-center mb-8 sm:mb-12 px-4" data-search-results>
           <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
             {getSectionTitle}
           </h3>
@@ -122,7 +121,7 @@ const ToolsGrid = memo(({
 
       {/* Show title for main page only when not at the beginning */}
       {(!selectedCategory && !searchTerm && displayedCount > 12) && (
-        <div className="text-center mb-8 sm:mb-12 px-4">
+        <div className="text-center mb-8 sm:mb-12 px-4" data-search-results>
           <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
             {getSectionTitle}
           </h3>

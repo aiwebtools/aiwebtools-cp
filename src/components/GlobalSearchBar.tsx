@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -72,16 +71,32 @@ const GlobalSearchBar = () => {
     setDisplayedCount(30);
   };
 
+  const scrollToResults = () => {
+    // Scroll down to show results below the search bar
+    const searchElement = document.querySelector('[data-search-results]');
+    if (searchElement) {
+      searchElement.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    } else {
+      // Fallback: scroll down by a reasonable amount
+      window.scrollBy({ 
+        top: 400, 
+        behavior: 'smooth' 
+      });
+    }
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       setSearchTerm("");
       setDisplayedCount(30);
     } else if (e.key === 'Enter' && searchTerm.trim()) {
-      // Simple Enter handling - just ensure dropdown is open if there are results
-      if (searchResults.length > 0) {
-        setIsOpen(true);
-      }
+      // Close dropdown and scroll to results
+      setIsOpen(false);
+      setTimeout(scrollToResults, 100); // Small delay to ensure UI updates
     }
   };
 
