@@ -1,5 +1,5 @@
 
-import { forwardRef, useMemo } from "react";
+import React, { forwardRef, useMemo, memo } from "react";
 import { useNavigate } from "react-router-dom";
 import ToolCard from "@/components/tools/ToolCard";
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,7 @@ interface ToolsDisplayProps {
   searchTerm: string;
 }
 
-const ToolsDisplay = forwardRef<HTMLDivElement, ToolsDisplayProps>(
+const ToolsDisplay = memo(forwardRef<HTMLDivElement, ToolsDisplayProps>(
   ({ tools, displayedCount, onLoadMore, hasMoreTools, categoryName, searchTerm }, ref) => {
     const navigate = useNavigate();
 
@@ -23,13 +23,23 @@ const ToolsDisplay = forwardRef<HTMLDivElement, ToolsDisplayProps>(
       navigate('/');
     };
 
-    // Apply deduplication to prevent frequent repeats
+    // Memoize deduplication to prevent unnecessary recalculation
     const deduplicatedTools = useMemo(() => {
       return createDeduplicatedToolsList(tools, 8);
     }, [tools]);
 
-    // Use displayedCount to show tools
-    const toolsToDisplay = deduplicatedTools.slice(0, displayedCount);
+    // Memoize tools to display
+    const toolsToDisplay = useMemo(() => {
+      return deduplicatedTools.slice(0, displayedCount);
+    }, [deduplicatedTools, displayedCount]);
+
+    // Memoize tools with stable keys
+    const toolsWithStableKeys = useMemo(() => {
+      return toolsToDisplay.map((tool, index) => ({
+        ...tool,
+        stableKey: `${tool.title}-${tool.category}-${index}`
+      }));
+    }, [toolsToDisplay]);
 
     return (
       <div className="mb-16 px-4 sm:px-0" ref={ref}>
@@ -46,12 +56,13 @@ const ToolsDisplay = forwardRef<HTMLDivElement, ToolsDisplayProps>(
             <div 
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
               style={{ 
+                contain: 'layout style',
                 contentVisibility: 'auto',
-                containIntrinsicSize: '300px'
+                containIntrinsicSize: '300px 400px'
               }}
             >
-              {toolsToDisplay.map((tool, index) => (
-                <ToolCard key={`${tool.title}-${index}`} tool={tool} />
+              {toolsWithStableKeys.map((tool) => (
+                <ToolCard key={tool.stableKey} tool={tool} />
               ))}
             </div>
 
@@ -105,7 +116,15 @@ const ToolsDisplay = forwardRef<HTMLDivElement, ToolsDisplayProps>(
       </div>
     );
   }
-);
+), (prevProps, nextProps) => {
+  return (
+    prevProps.tools.length === nextProps.tools.length &&
+    prevProps.displayedCount === nextProps.displayedCount &&
+    prevProps.hasMoreTools === nextProps.hasMoreTools &&
+    prevProps.categoryName === nextProps.categoryName &&
+    prevProps.searchTerm === nextProps.searchTerm
+  );
+});
 
 ToolsDisplay.displayName = "ToolsDisplay";
 

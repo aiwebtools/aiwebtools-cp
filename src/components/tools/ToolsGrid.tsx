@@ -1,4 +1,5 @@
 
+import React, { useMemo, memo, lazy, Suspense } from "react";
 import { Tool } from "@/types/tools";
 import ToolCard from "@/components/tools/ToolCard";
 import LoadMoreButton from "@/components/tools/LoadMoreButton";
@@ -6,7 +7,9 @@ import SimilarToolsRecommendation from "@/components/tools/SimilarToolsRecommend
 import SeeMoreCategoriesButton from "@/components/tools/SeeMoreCategoriesButton";
 import { getContextAwareSimilarTools, shouldShowSimilarTools } from "@/utils/contextAwareSimilarTools";
 import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
-import { useMemo } from "react";
+
+// Lazy load heavy components
+const VirtualizedToolsGrid = lazy(() => import("./VirtualizedToolsGrid"));
 
 interface ToolsGridProps {
   tools: Tool[];
@@ -19,7 +22,7 @@ interface ToolsGridProps {
   onCategoryChange?: (category: string) => void;
 }
 
-const ToolsGrid = ({ 
+const ToolsGrid = memo(({ 
   tools, 
   displayedCount, 
   selectedCategory, 
@@ -29,17 +32,33 @@ const ToolsGrid = ({
   isLoading = false,
   onCategoryChange
 }: ToolsGridProps) => {
-  // Use the already deduplicated tools directly - no further deduplication needed
-  const displayTools = tools.slice(0, displayedCount);
-  const shouldShowSimilar = shouldShowSimilarTools(tools.length) && !searchTerm; // Don't show similar tools for search
-  const similarTools = shouldShowSimilar ? getContextAwareSimilarTools(tools, searchTerm, selectedCategory) : [];
-  const hasMoreTools = displayedCount < tools.length;
+  // Memoize expensive calculations
+  const { 
+    displayTools, 
+    shouldShowSimilar, 
+    similarTools, 
+    hasMoreTools,
+    categoriesWithCounts,
+    shouldShowCategoriesButton
+  } = useMemo(() => {
+    const displayTools = tools.slice(0, displayedCount);
+    const shouldShowSimilar = shouldShowSimilarTools(tools.length) && !searchTerm;
+    const similarTools = shouldShowSimilar ? getContextAwareSimilarTools(tools, searchTerm, selectedCategory) : [];
+    const hasMoreTools = displayedCount < tools.length;
+    const categoriesWithCounts = getStandardizedCategoriesWithCounts();
+    const shouldShowCategoriesButton = tools.length < 15 && !selectedCategory && !searchTerm;
+    
+    return {
+      displayTools,
+      shouldShowSimilar,
+      similarTools,
+      hasMoreTools,
+      categoriesWithCounts,
+      shouldShowCategoriesButton
+    };
+  }, [tools, displayedCount, searchTerm, selectedCategory]);
 
-  // Get standardized categories for the "See More Categories" button
-  const categoriesWithCounts = getStandardizedCategoriesWithCounts();
-  const shouldShowCategoriesButton = tools.length < 15 && !selectedCategory && !searchTerm;
-
-  const getSectionTitle = () => {
+  const getSectionTitle = useMemo(() => {
     if (selectedCategory) {
       return <>🎯 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">{selectedCategory}</span></>;
     }
@@ -47,17 +66,20 @@ const ToolsGrid = ({
       return <>🔍 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Search Results for "{searchTerm}"</span></>;
     }
     return <>🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">AI TOOLS COLLECTION</span></>;
-  };
+  }, [selectedCategory, searchTerm]);
 
-  // Create a unique key for each tool to prevent React reconciliation issues
-  const toolsWithUniqueKeys = useMemo(() => {
+  // Create a stable key for each tool to prevent React reconciliation issues
+  const toolsWithStableKeys = useMemo(() => {
     return displayTools.map((tool, index) => ({
       ...tool,
-      uniqueKey: `${tool.title}-${tool.category}-${index}`
+      stableKey: `${tool.title}-${tool.category}-${index}`
     }));
   }, [displayTools]);
 
-  if (toolsWithUniqueKeys.length === 0) return null;
+  if (toolsWithStableKeys.length === 0) return null;
+
+  // Use virtualized grid for large lists (>100 tools)
+  const useVirtualization = tools.length > 100;
 
   return (
     <>
@@ -65,7 +87,7 @@ const ToolsGrid = ({
       {(selectedCategory || searchTerm) && (
         <div className="text-center mb-8 sm:mb-12 px-4">
           <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
-            {getSectionTitle()}
+            {getSectionTitle}
           </h3>
           {searchTerm && (
             <p className="text-gray-300 text-sm">
@@ -86,23 +108,39 @@ const ToolsGrid = ({
       {(!selectedCategory && !searchTerm && displayedCount > 12) && (
         <div className="text-center mb-8 sm:mb-12 px-4">
           <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-cyan-100 mb-6 sm:mb-8 cyber-glow">
-            {getSectionTitle()}
+            {getSectionTitle}
           </h3>
         </div>
       )}
 
-      {/* Optimized grid with better performance */}
-      <div 
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-0" 
-        style={{ 
-          contentVisibility: 'auto',
-          containIntrinsicSize: '300px'
-        }}
-      >
-        {toolsWithUniqueKeys.map((tool) => (
-          <ToolCard key={tool.uniqueKey} tool={tool} />
-        ))}
-      </div>
+      {/* Optimized grid with conditional virtualization */}
+      {useVirtualization ? (
+        <Suspense fallback={
+          <div className="flex justify-center items-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-500"></div>
+          </div>
+        }>
+          <VirtualizedToolsGrid
+            tools={tools}
+            displayedCount={displayedCount}
+            searchTerm={searchTerm}
+            selectedCategory={selectedCategory}
+          />
+        </Suspense>
+      ) : (
+        <div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-0" 
+          style={{ 
+            contain: 'layout style',
+            contentVisibility: 'auto',
+            containIntrinsicSize: '300px 400px'
+          }}
+        >
+          {toolsWithStableKeys.map((tool) => (
+            <ToolCard key={tool.stableKey} tool={tool} />
+          ))}
+        </div>
+      )}
 
       {/* Show context-aware similar tools recommendation only for limited results (not for search) */}
       {!searchTerm && (
@@ -167,6 +205,17 @@ const ToolsGrid = ({
       )}
     </>
   );
-};
+}, (prevProps, nextProps) => {
+  // Custom comparison for performance
+  return (
+    prevProps.tools.length === nextProps.tools.length &&
+    prevProps.displayedCount === nextProps.displayedCount &&
+    prevProps.selectedCategory === nextProps.selectedCategory &&
+    prevProps.searchTerm === nextProps.searchTerm &&
+    prevProps.isLoading === nextProps.isLoading
+  );
+});
+
+ToolsGrid.displayName = "ToolsGrid";
 
 export default ToolsGrid;

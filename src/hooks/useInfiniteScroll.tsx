@@ -1,5 +1,5 @@
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useRef } from "react";
 
 interface UseInfiniteScrollProps {
   isLoading: boolean;
@@ -18,32 +18,51 @@ export const useInfiniteScroll = ({
   onLoadMore,
   searchTerm = ""
 }: UseInfiniteScrollProps) => {
+  // Use refs to prevent unnecessary re-renders
+  const isLoadingRef = useRef(isLoading);
+  const displayedCountRef = useRef(displayedCount);
+  const totalToolsRef = useRef(totalTools);
+  
+  // Update refs
+  isLoadingRef.current = isLoading;
+  displayedCountRef.current = displayedCount;
+  totalToolsRef.current = totalTools;
+
   const handleLoadMore = useCallback(() => {
-    if (isLoading) return;
+    if (isLoadingRef.current) return;
     console.log(`🔄 Infinite scroll triggered - Loading more tools... Search: "${searchTerm}"`);
     onLoadMore();
-  }, [isLoading, onLoadMore, searchTerm]);
+  }, [onLoadMore, searchTerm]);
 
-  // Ultra-optimized infinite scroll with zero delays
+  // Ultra-optimized infinite scroll with RAF throttling
   useEffect(() => {
     if (isLoading || showLoadMoreButton || displayedCount >= totalTools) return;
     
+    let ticking = false;
+    
     const handleScroll = () => {
-      const scrollTop = window.pageYOffset;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      
-      // Aggressive threshold for instant loading
-      const threshold = searchTerm ? 500 : 800;
-      const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
-      
-      if (nearBottom && displayedCount < totalTools) {
-        console.log(`🎯 Triggering load more - Displayed: ${displayedCount}, Total: ${totalTools}, Search: "${searchTerm}"`);
-        handleLoadMore();
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollTop = window.pageYOffset;
+          const windowHeight = window.innerHeight;
+          const documentHeight = document.documentElement.scrollHeight;
+          
+          // More aggressive threshold for instant loading
+          const threshold = searchTerm ? 400 : 600;
+          const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
+          
+          if (nearBottom && displayedCountRef.current < totalToolsRef.current && !isLoadingRef.current) {
+            console.log(`🎯 Triggering load more - Displayed: ${displayedCountRef.current}, Total: ${totalToolsRef.current}, Search: "${searchTerm}"`);
+            handleLoadMore();
+          }
+          
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    // Direct scroll listener without any throttling or frame delays
+    // Use passive listener for better performance
     window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {

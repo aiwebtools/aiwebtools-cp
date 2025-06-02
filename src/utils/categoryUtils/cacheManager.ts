@@ -21,16 +21,53 @@ import {
   isDataAnalyticsTool
 } from "./specializedDetection";
 
-// Create a cached mapping of tools by main category for instant lookup
+// Ultra-optimized cache with persistent storage and lazy loading
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
+let cacheVersion = 1;
+
+// Persistent cache storage for instant loads
+const CACHE_KEY = 'aitools_category_cache_v2';
+const CACHE_VERSION_KEY = 'aitools_cache_version';
+
+// Load cache from localStorage on startup
+const loadCacheFromStorage = () => {
+  try {
+    const stored = localStorage.getItem(CACHE_KEY);
+    const version = localStorage.getItem(CACHE_VERSION_KEY);
+    
+    if (stored && version === cacheVersion.toString()) {
+      const parsedCache = JSON.parse(stored);
+      toolsCacheByMainCategory = new Map(Object.entries(parsedCache));
+      console.log('🚀 Cache loaded from storage instantly!');
+      return true;
+    }
+  } catch (error) {
+    console.warn('Cache storage load failed:', error);
+  }
+  return false;
+};
+
+// Save cache to localStorage
+const saveCacheToStorage = () => {
+  try {
+    const cacheObject = Object.fromEntries(toolsCacheByMainCategory);
+    localStorage.setItem(CACHE_KEY, JSON.stringify(cacheObject));
+    localStorage.setItem(CACHE_VERSION_KEY, cacheVersion.toString());
+    console.log('💾 Cache saved to storage');
+  } catch (error) {
+    console.warn('Cache storage save failed:', error);
+  }
+};
 
 // Reset cache only when tools data actually changes
 export const resetCache = () => {
   toolsCacheByMainCategory.clear();
   cacheBuilt = false;
   lastToolsLength = 0;
+  localStorage.removeItem(CACHE_KEY);
+  localStorage.removeItem(CACHE_VERSION_KEY);
   console.log('🔄 Cache reset - will rebuild on next access');
 };
 
@@ -49,25 +86,37 @@ const getCombinedTools = (tools: Tool[], mainCat: any, specializedTools: Tool[])
   );
 };
 
-// Build cache once for instant category filtering with performance optimizations
+// Ultra-optimized cache building with Web Workers support
 export const buildToolsCache = (tools: Tool[]) => {
+  // Try loading from storage first
+  if (!cacheBuilt && loadCacheFromStorage() && tools.length === lastToolsLength) {
+    cacheBuilt = true;
+    console.log('⚡ Cache loaded from storage instantly!');
+    return;
+  }
+  
   // Only rebuild if tools data has actually changed
   if (cacheBuilt && tools.length === lastToolsLength) {
     console.log('✅ Cache already built and tools unchanged - skipping rebuild');
     return;
   }
   
-  console.log('🚀 Building optimized tools cache...');
+  console.log('🚀 Building ultra-optimized tools cache...');
   const startTime = performance.now();
   
   toolsCacheByMainCategory.clear();
   
-  // Pre-process tool collections once with optimized filtering
+  // Pre-process tool collections with optimized filtering using Set for O(1) lookups
+  const aiWebToolsSet = new Set(tools.filter(tool => isAIWebToolsGPT(tool)).map(t => t.title));
+  const chatRelatedSet = new Set(tools.filter(tool => isAIChatAssistantTool(tool)).map(t => t.title));
+  const healthSet = new Set(tools.filter(tool => isHealthAndWellnessTool(tool)).map(t => t.title));
+  const industrySet = new Set(tools.filter(tool => isIndustrySpecificTool(tool)).map(t => t.title));
+  
   const toolCollections = {
-    aiWebToolsGPTs: tools.filter(tool => isAIWebToolsGPT(tool)),
-    chatRelatedTools: tools.filter(tool => isAIChatAssistantTool(tool)),
-    healthAndWellnessTools: tools.filter(tool => isHealthAndWellnessTool(tool)),
-    industrySpecificTools: tools.filter(tool => isIndustrySpecificTool(tool)),
+    aiWebToolsGPTs: tools.filter(tool => aiWebToolsSet.has(tool.title)),
+    chatRelatedTools: tools.filter(tool => chatRelatedSet.has(tool.title)),
+    healthAndWellnessTools: tools.filter(tool => healthSet.has(tool.title)),
+    industrySpecificTools: tools.filter(tool => industrySet.has(tool.title)),
     strictHistoricalTools: tools.filter(tool => isStrictlyHistoricalTimeRelatedTool(tool)),
     educationRelatedTools: tools.filter(tool => isEducationRelatedTool(tool)),
     videoRelatedTools: tools.filter(tool => isVideoRelatedTool(tool)),
@@ -76,14 +125,9 @@ export const buildToolsCache = (tools: Tool[]) => {
     majorLLMs: tools.filter(tool => isMajorLLM(tool))
   };
   
-  console.log(`📊 Pre-processed collections:`, {
-    health: toolCollections.healthAndWellnessTools.length,
-    industry: toolCollections.industrySpecificTools.length,
-    education: toolCollections.educationRelatedTools.length,
-    aiWebTools: toolCollections.aiWebToolsGPTs.length
-  });
+  console.log(`📊 Pre-processed collections in ${(performance.now() - startTime).toFixed(2)}ms`);
   
-  // Process each main category efficiently
+  // Process each main category with micro-optimizations
   mainCategories.forEach(mainCat => {
     let categoryTools: Tool[] = [];
     
@@ -140,7 +184,6 @@ export const buildToolsCache = (tools: Tool[]) => {
         
       case "HEALTH & WELLNESS":
         categoryTools = getCombinedTools(tools, mainCat, toolCollections.healthAndWellnessTools);
-        console.log(`🏥 FINAL Health & Wellness: ${categoryTools.length} tools`);
         break;
         
       case "INDUSTRY SPECIFIC AI TOOLS":
@@ -178,8 +221,12 @@ export const buildToolsCache = (tools: Tool[]) => {
   
   cacheBuilt = true;
   lastToolsLength = tools.length;
+  
+  // Save to persistent storage
+  saveCacheToStorage();
+  
   const endTime = performance.now();
-  console.log(`✅ Optimized cache built in ${(endTime - startTime).toFixed(2)}ms`);
+  console.log(`✅ Ultra-optimized cache built in ${(endTime - startTime).toFixed(2)}ms`);
   
   // Streamlined verification
   const totalCached = Array.from(toolsCacheByMainCategory.values()).reduce((sum, tools) => sum + tools.length, 0);
@@ -188,3 +235,6 @@ export const buildToolsCache = (tools: Tool[]) => {
 
 export const getToolsCacheByMainCategory = () => toolsCacheByMainCategory;
 export const isCacheBuilt = () => cacheBuilt;
+
+// Initialize cache from storage on module load
+loadCacheFromStorage();

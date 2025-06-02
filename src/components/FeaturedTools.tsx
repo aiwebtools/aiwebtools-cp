@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { memo } from "react";
 import CategoryFilters from "@/components/tools/CategoryFilters";
 import ActiveFilters from "@/components/tools/ActiveFilters";
 import ToolsGrid from "@/components/tools/ToolsGrid";
@@ -12,7 +12,7 @@ interface FeaturedToolsProps {
   onToolsLoaded?: (count: number) => void;
 }
 
-const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedToolsProps) => {
+const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: FeaturedToolsProps) => {
   const {
     selectedCategory,
     searchTerm,
@@ -91,6 +91,13 @@ const FeaturedTools = ({ showLoadMoreButton = false, onToolsLoaded }: FeaturedTo
       />
     </div>
   );
-};
+}, (prevProps, nextProps) => {
+  return (
+    prevProps.showLoadMoreButton === nextProps.showLoadMoreButton &&
+    prevProps.onToolsLoaded === nextProps.onToolsLoaded
+  );
+});
+
+FeaturedTools.displayName = "FeaturedTools";
 
 export default FeaturedTools;
