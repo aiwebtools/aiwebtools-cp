@@ -20,7 +20,7 @@ const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
-  const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(48);
+  const [displayedCount, setDisplayedCount] = useState(48);
   const [filteredToolsByCategory, setFilteredToolsByCategory] = useState<Tool[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -46,7 +46,8 @@ const MainCategoryPage = () => {
   console.log(`📊 MainCategoryPage "${decodedCategoryName}":`, {
     originalCachedTools: categoryTools.length,
     categoryFilteredTools: filteredToolsByCategory.length,
-    searchTerm: searchTerm || 'none'
+    searchTerm: searchTerm || 'none',
+    displayedCount
   });
   
   // Initialize filtered tools by category on first load
@@ -65,31 +66,31 @@ const MainCategoryPage = () => {
     : toolsToShow;
 
   const handleLoadMore = () => {
-    if (allToolsDisplayedCount >= finalFilteredTools.length || isLoading) return;
+    if (displayedCount >= finalFilteredTools.length || isLoading) return;
     
-    console.log(`🚀 Loading more tools in ${decodedCategoryName}...`);
+    console.log(`🚀 Loading more tools in ${decodedCategoryName}... Current: ${displayedCount}, Total: ${finalFilteredTools.length}`);
     setIsLoading(true);
     
     // Use setTimeout to show loading state briefly, then load more tools
     setTimeout(() => {
       // Load 48 more tools at a time for smooth experience
-      setAllToolsDisplayedCount(prev => Math.min(prev + 48, finalFilteredTools.length));
+      setDisplayedCount(prev => Math.min(prev + 48, finalFilteredTools.length));
       setIsLoading(false);
     }, 200);
   };
 
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
-    setAllToolsDisplayedCount(48);
+    setDisplayedCount(48);
   };
 
   const handleFilteredToolsChange = (filtered: Tool[]) => {
     console.log(`🎯 Category filter changed: ${filtered.length} tools`);
     setFilteredToolsByCategory(filtered);
-    setAllToolsDisplayedCount(48); // Reset displayed count when category filter changes
+    setDisplayedCount(48); // Reset displayed count when category filter changes
   };
 
-  const hasMoreTools = allToolsDisplayedCount < finalFilteredTools.length;
+  const hasMoreTools = displayedCount < finalFilteredTools.length;
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -145,7 +146,7 @@ const MainCategoryPage = () => {
             </div>
             {!searchTerm && hasMoreTools && (
               <div className="text-gray-400 text-sm mt-1">
-                Showing {allToolsDisplayedCount} of {finalFilteredTools.length} tools - scroll for more!
+                Showing {displayedCount} of {finalFilteredTools.length} tools - scroll for more!
               </div>
             )}
           </div>
@@ -155,7 +156,7 @@ const MainCategoryPage = () => {
             {finalFilteredTools.length > 0 ? (
               <ToolsGrid
                 tools={finalFilteredTools}
-                displayedCount={allToolsDisplayedCount}
+                displayedCount={displayedCount}
                 selectedCategory={decodedCategoryName}
                 searchTerm={searchTerm}
                 onLoadMore={handleLoadMore}
@@ -194,7 +195,7 @@ const MainCategoryPage = () => {
                 🚀 Show More Tools
               </Button>
               <div className="mt-4 text-cyan-300 text-sm">
-                Showing {allToolsDisplayedCount} of {finalFilteredTools.length} amazing AI tools
+                Showing {displayedCount} of {finalFilteredTools.length} amazing AI tools
               </div>
             </div>
           )}
