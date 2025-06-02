@@ -118,6 +118,12 @@ const isPrimaryEducationTool = (tool: Tool): boolean => {
     return false;
   }
   
+  // CRITICAL: Force Insect Study Tool to be education
+  if (titleLower.includes('insect study')) {
+    console.log(`🎓 FORCE: Insect Study Tool detected as PRIMARY EDUCATION tool`);
+    return true;
+  }
+  
   // Check if it's explicitly an education tool by name or category
   const isEducationByCategory = categoryLower.includes('education') || 
                                categoryLower.includes('learning');
@@ -182,6 +188,12 @@ const isHealthRelatedTool = (tool: Tool): boolean => {
   const titleLower = tool.title.toLowerCase();
   if (titleLower.includes('insect study') || titleLower.includes('entomology')) {
     console.log(`🚫 EXCLUDING from health: ${tool.title} - this is an education tool`);
+    return false;
+  }
+  
+  // CRITICAL: Also exclude if it's already properly categorized as education
+  if (tool.category === "Education & Learning" || tool.category === "Education & Research Tools") {
+    console.log(`🚫 EXCLUDING from health: ${tool.title} - already in education category`);
     return false;
   }
   
