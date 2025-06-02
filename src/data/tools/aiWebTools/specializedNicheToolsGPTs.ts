@@ -1,6 +1,6 @@
 
 import { Tool } from "@/types/tools";
-import { Sprout, Hammer, MapPin, Calculator, DollarSign, Users, Building, Zap, Leaf, Dna, Gamepad, CreditCard, User, Palette, Clock, Megaphone, Shield } from "lucide-react";
+import { Sprout, Hammer, MapPin, Calculator, DollarSign, Users, Building, Zap, Leaf, Dna, Gamepad, CreditCard, User, Palette, Clock, Megaphone, Shield, Bug } from "lucide-react";
 
 export const specializedNicheToolsGPTs: Tool[] = [
   {
@@ -119,5 +119,17 @@ export const specializedNicheToolsGPTs: Tool[] = [
     category: "Specialized Niche Tools",
     rating: 4.8,
     totalVotes: 6234
+  },
+  {
+    icon: Bug,
+    title: "Insect Study Tool",
+    description: "Insect Study Tool GPT by AI Web Tools LLC is your comprehensive AI-powered entomology research and identification platform, revolutionizing the study of insects through advanced species recognition, behavioral analysis, and ecological insights. This specialized tool empowers entomologists, researchers, students, and nature enthusiasts with expert-level knowledge about insect identification, classification, life cycles, and ecological roles. Whether you're conducting field research, identifying unknown specimens, studying insect behavior, or exploring the fascinating world of entomology, this AI provides detailed scientific analysis and educational resources that enhance understanding of insect diversity and importance. The system analyzes insect characteristics, morphological features, and behavioral patterns to provide accurate species identification and comprehensive biological information. Upload insect photos, describe observations, or input research questions to receive detailed species profiles, identification guides, and ecological insights. Features include morphological analysis, species identification, life cycle documentation, ecological role explanation, and research methodology guidance. Perfect for field researchers conducting entomological studies, students learning insect biology, pest management professionals, and anyone fascinated by the incredible diversity and importance of insects in our ecosystems.",
+    emoji: "🐛",
+    color: "from-green-500 to-yellow-600",
+    directUrl: "https://chatgpt.com/g/g-683ceca09b388191800a60917e7e6d6c-insect-study-tool-gpt",
+    tags: ["entomology", "insect identification", "species research", "biological studies", "scientific analysis"],
+    category: "Specialized Niche Tools",
+    rating: 4.6,
+    totalVotes: 3456
   }
 ];
