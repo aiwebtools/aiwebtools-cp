@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
@@ -14,6 +13,7 @@ import {
 import { CategoryCounts, MainCategoryCounts } from "./types";
 import { buildToolsCache, getToolsCacheByMainCategory, isCacheBuilt } from "./cacheManager";
 import { isAIWebToolsGPT } from "./specializedDetection";
+import { getToolsByMainCategoryEnhanced } from "./enhancedToolFiltering";
 
 export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
   const categoryCounts: CategoryCounts = {};
@@ -129,142 +129,37 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
 };
 
 export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts => {
-  console.log(`🔢 REFINED COUNTING: Starting count calculation for ${tools.length} total tools`);
+  console.log(`🔢 ENHANCED COUNTING: Starting count calculation for ${tools.length} total tools`);
   
   const mainCategoryCounts: MainCategoryCounts = {};
   
-  // Calculate counts for each main category using REFINED detection
+  // Calculate counts for each main category using ENHANCED detection
   mainCategories.forEach(mainCat => {
-    let toolCount = 0;
-    
-    if (mainCat.name === "VIDEO & MULTIMEDIA") {
-      const videoTools = tools.filter(tool => isVideoRelatedTool(tool));
-      toolCount = videoTools.length;
-      console.log(`🎬 ${mainCat.name}: ${toolCount} tools (refined video detection)`);
-    } else if (mainCat.name === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
-      const healthTools = tools.filter(tool => isHealthAndWellnessTool(tool));
-      toolCount = healthTools.length;
-      console.log(`🏥 ${mainCat.name}: ${toolCount} tools (refined health detection)`);
-    } else if (mainCat.name === "CREATIVE & ENTERTAINMENT") {
-      const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
-      toolCount = creativeTools.length;
-      console.log(`🎭 REFINED ${mainCat.name}: ${toolCount} tools (refined creative detection)`);
-    } else if (mainCat.name === "WRITING & CONTENT CREATION") {
-      // CONSOLIDATED: Count all writing and content tools together
-      const writingTools = tools.filter(tool => {
-        if (!tool.category) return false;
-        
-        const writingCategories = [
-          "Content Creation & Writing Tools",
-          "Writing & Content Creation", 
-          "Writing & Content Enhancement",
-          "Content Creation Tools",
-          "Writing & Content",
-          "Creative Writing Tools",
-          "Grammar And Writing Assistants",
-          "AI Writing Tools",
-          "Content Creation And Writing Tools"
-        ];
-        
-        return writingCategories.some(cat => isSimilarCategory(tool.category!, cat));
-      });
-      toolCount = writingTools.length;
-      console.log(`✍️ CONSOLIDATED ${mainCat.name}: ${toolCount} tools (consolidated writing detection)`);
-    } else {
-      // Build cache if needed and get cached results
-      buildToolsCache(tools);
-      const toolsCacheByMainCategory = getToolsCacheByMainCategory();
-      const cachedTools = toolsCacheByMainCategory.get(mainCat.name);
-      toolCount = cachedTools ? cachedTools.length : 0;
-      console.log(`📊 ${mainCat.name}: ${toolCount} tools (cached)`);
-    }
+    const categoryTools = getToolsByMainCategoryEnhanced(tools, mainCat.name);
+    const toolCount = categoryTools.length;
     
     mainCategoryCounts[mainCat.name] = toolCount;
+    console.log(`📊 ${mainCat.name}: ${toolCount} tools (enhanced detection)`);
   });
   
-  // Refined verification
+  // Enhanced verification
   const totalCounted = Object.values(mainCategoryCounts).reduce((sum, count) => sum + count, 0);
-  console.log(`🎯 REFINED ACCURACY CHECK: ${totalCounted} tools counted across main categories vs ${tools.length} total tools`);
+  console.log(`🎯 ENHANCED ACCURACY CHECK: ${totalCounted} tools counted across main categories vs ${tools.length} total tools`);
   
   return mainCategoryCounts;
 };
 
 export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string): Tool[] => {
-  console.log(`🔍 REFINED RETRIEVAL: Getting tools for "${mainCategoryName}" from ${tools.length} total tools`);
+  console.log(`🔍 ENHANCED RETRIEVAL: Getting tools for "${mainCategoryName}" from ${tools.length} total tools`);
   
-  // REFINED handling for Video & Multimedia
-  if (mainCategoryName === "VIDEO & MULTIMEDIA") {
-    const videoTools = tools.filter(tool => isVideoRelatedTool(tool));
-    console.log(`🎬 REFINED VIDEO COUNT: Found ${videoTools.length} video & multimedia tools`);
-    
-    // Enhanced debug logging for Video & Multimedia
-    const videoTitles = videoTools.slice(0, 15).map(t => `${t.title} (${t.category})`);
-    console.log(`🎬 REFINED Sample Video Tools:`, videoTitles);
-    
-    return videoTools;
-  }
+  // Use enhanced filtering for all main categories
+  const enhancedTools = getToolsByMainCategoryEnhanced(tools, mainCategoryName);
   
-  // CONSOLIDATED handling for Writing & Content Creation
-  if (mainCategoryName === "WRITING & CONTENT CREATION") {
-    const writingTools = tools.filter(tool => {
-      if (!tool.category) return false;
-      
-      const writingCategories = [
-        "Content Creation & Writing Tools",
-        "Writing & Content Creation", 
-        "Writing & Content Enhancement",
-        "Content Creation Tools",
-        "Writing & Content",
-        "Creative Writing Tools",
-        "Grammar And Writing Assistants",
-        "AI Writing Tools",
-        "Content Creation And Writing Tools"
-      ];
-      
-      return writingCategories.some(cat => isSimilarCategory(tool.category!, cat));
-    });
-    console.log(`✍️ CONSOLIDATED COUNT: Found ${writingTools.length} writing & content tools`);
-    
-    // Enhanced debug logging for Writing & Content
-    const writingTitles = writingTools.slice(0, 15).map(t => `${t.title} (${t.category})`);
-    console.log(`✍️ CONSOLIDATED Sample Writing Tools:`, writingTitles);
-    
-    return writingTools;
-  }
+  console.log(`⚡ ENHANCED RESULT: ${enhancedTools.length} tools for "${mainCategoryName}"`);
   
-  // REFINED handling for Health, Wellness & Personal Lifestyle
-  if (mainCategoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
-    const healthTools = tools.filter(tool => isHealthAndWellnessTool(tool));
-    console.log(`🏥 REFINED COUNT: Found ${healthTools.length} health & wellness tools`);
-    return healthTools;
-  }
+  // Enhanced debug logging
+  const sampleTitles = enhancedTools.slice(0, 15).map(t => `${t.title} (${t.category})`);
+  console.log(`📝 Enhanced Sample Tools:`, sampleTitles);
   
-  // REFINED handling for Creative & Entertainment
-  if (mainCategoryName === "CREATIVE & ENTERTAINMENT") {
-    const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
-    console.log(`🎭 REFINED COUNT: Found ${creativeTools.length} creative & entertainment tools`);
-    
-    // Enhanced debug logging for Creative & Entertainment
-    const creativeTitles = creativeTools.slice(0, 15).map(t => `${t.title} (${t.category})`);
-    console.log(`🎭 REFINED Sample Creative Tools:`, creativeTitles);
-    
-    return creativeTools;
-  }
-  
-  // Build cache efficiently if not built yet for other categories
-  buildToolsCache(tools);
-  
-  const toolsCacheByMainCategory = getToolsCacheByMainCategory();
-  
-  // Return cached results instantly for other categories
-  const cachedTools = toolsCacheByMainCategory.get(mainCategoryName);
-  
-  if (cachedTools) {
-    console.log(`⚡ REFINED CACHE: ${cachedTools.length} tools for "${mainCategoryName}"`);
-    return cachedTools;
-  }
-  
-  console.log(`⚠️ No cached tools found for main category: "${mainCategoryName}"`);
-  return [];
+  return enhancedTools;
 };
-
