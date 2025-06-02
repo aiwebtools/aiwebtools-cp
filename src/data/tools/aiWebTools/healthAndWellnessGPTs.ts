@@ -24,7 +24,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=EKKIttUG0sI",
     tags: ["medical consultation", "health advice", "doctor simulation", "healthcare", "medical ai", "aiwebtools"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 5432
   },
@@ -36,7 +36,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     color: "from-pink-500 to-purple-600",
     directUrl: "https://skincaregpt.lovable.app/?via=aiwebtools",
     tags: ["skincare", "dermatology", "beauty advice", "skin analysis", "cosmetics", "health", "wellness", "aiwebtools"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 4567
   },
@@ -50,7 +50,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     videoUrl: "https://www.youtube.com/watch?v=ElAfvB0yLEI",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298535833407488/vet.webp",
     tags: ["veterinary care", "pet health", "animal medicine", "pet consultation", "veterinary advice", "aiwebtools"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 4321
   },
@@ -63,7 +63,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     directUrl: "https://rxai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-professional-looking-pharmaceutical-assistan.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     tags: ["pharmaceutical", "medication management", "drug information", "pharmacy", "healthcare", "aiwebtools"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
     totalVotes: 3876
   },
@@ -77,7 +77,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     videoUrl: "https://youtu.be/_e6DtLUv-2Q",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377362789097803786/image.png?ex=6838b08f&is=68375f0f&hm=f63e1ae446523dd9eff4aa0f95166aa8a5e6119c506b44ab1656322ea4ca47b7&=&format=webp&quality=lossless&width=2646&height=1392",
     tags: ["mental health", "wellness", "therapy", "cbt", "emotional support", "aiwebtools"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.8,
     totalVotes: 6234
   },
@@ -90,7 +90,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     directUrl: "https://marriagemendergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=3HCv5_QldrU",
     tags: ["relationship counseling", "marriage advice", "couples therapy", "communication", "relationship support", "aiwebtools"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 4321
   },
@@ -102,7 +102,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-67cbcbcf3a38819183974f2d062d5d7f-dental-gpt-expert",
     tags: ["dental health", "oral care", "dentistry", "dental consultation", "oral hygiene", "dental procedures", "healthcare"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
     totalVotes: 2890
   }

@@ -29,14 +29,14 @@ export const specializedCategories: MainCategory[] = [
     emoji: "🏥",
     description: "AI tools for health, wellness, personal care, and lifestyle improvement",
     subcategories: [
+      "Health, Wellness & Personal Lifestyle",
       "Health & Wellness",
       "Personal Services",
       "Lifestyle Tools",
       "Wellness & Fitness",
       "Healthcare Professionals",
       "Medical AI Tools",
-      "Health And Wellness Tools",
-      "Health, Wellness & Personal Lifestyle"
+      "Health And Wellness Tools"
     ]
   },
   {

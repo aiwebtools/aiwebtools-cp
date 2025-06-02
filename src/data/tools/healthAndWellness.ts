@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Heart, 
@@ -11,7 +12,10 @@ import {
   Users,
   Apple,
   Coffee,
-  Smile
+  Smile,
+  Microscope,
+  Plus,
+  Sparkles
 } from "lucide-react";
 
 export const healthAndWellness: Tool[] = [
@@ -25,7 +29,7 @@ export const healthAndWellness: Tool[] = [
     videoUrl: "https://youtu.be/_e6DtLUv-2Q",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377362789097803786/image.png?ex=6838b08f&is=68375f0f&hm=f63e1ae446523dd9eff4aa0f95166aa8a5e6119c506b44ab1656322ea4ca47b7&=&format=webp&quality=lossless&width=2646&height=1392",
     tags: ["mental wellness", "emotional support", "CBT principles", "stress management", "personal growth"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.9,
     totalVotes: 6234
   },
@@ -37,7 +41,7 @@ export const healthAndWellness: Tool[] = [
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-67cbcbcf3a38819183974f2d062d5d7f-dental-gpt-expert",
     tags: ["dental health", "oral care", "dentistry", "dental consultation", "oral hygiene", "dental procedures", "healthcare"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
     totalVotes: 2890
   },
@@ -50,7 +54,7 @@ export const healthAndWellness: Tool[] = [
     directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=ElAfvB0yLEI",
     tags: ["veterinary care", "pet health", "animal wellness", "health assessments", "multimodal AI"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.8,
     totalVotes: 5234
   },
@@ -63,7 +67,7 @@ export const healthAndWellness: Tool[] = [
     directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=EKKIttUG0sI",
     tags: ["medical simulation", "health consultation", "personalized care", "medical information", "health guidance"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 4567
   },
@@ -76,7 +80,7 @@ export const healthAndWellness: Tool[] = [
     directUrl: "https://rxai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-professional-looking-pharmaceutical-assistan.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     tags: ["pharmaceutical assistance", "medication management", "drug interactions", "pharmacy support", "healthcare safety"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 3789
   },
@@ -89,7 +93,7 @@ export const healthAndWellness: Tool[] = [
     directUrl: "https://rxai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-professional-pharmaceutical-assis.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     tags: ["pharmaceutical research", "clinical trials", "drug development", "regulatory compliance", "medical research"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.8,
     totalVotes: 4567
   },
@@ -102,7 +106,7 @@ export const healthAndWellness: Tool[] = [
     directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     tags: ["genetic analysis", "DNA research", "genomic data", "scientific analysis", "genetic variations"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 3789
   },
@@ -115,7 +119,7 @@ export const healthAndWellness: Tool[] = [
     directUrl: "https://insuranceclaimsgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=WNPywJWOUzU",
     tags: ["insurance claims", "damage analysis", "claims management", "settlement protection", "professional reports"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 4234
   },
@@ -128,7 +132,7 @@ export const healthAndWellness: Tool[] = [
     directUrl: "https://cannabisgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-illustration-of-a-green-cannab_iUjpW.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     tags: ["cannabis education", "strain genetics", "cultivation advice", "medical research", "legal compliance"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
     totalVotes: 3456
   },
@@ -141,7 +145,7 @@ export const healthAndWellness: Tool[] = [
     directUrl: "https://foodqualitygpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-man-inspecting-food-in-a-supermar.png/:/cr=t:4.65%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     tags: ["food safety", "nutritional analysis", "ingredient inspection", "grocery shopping", "health guidance"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 3789
   },
@@ -154,19 +158,33 @@ export const healthAndWellness: Tool[] = [
     directUrl: "https://mixologistgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-modern-and-stylish-bartender-with.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     tags: ["cocktail creation", "bartending", "drink recipes", "mixology", "beverage design"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.4,
     totalVotes: 2876
   },
+  // Adding the PathAI tool that was previously in the separate health category
+  {
+    icon: Microscope,
+    title: "PathAI",
+    description: "AI-powered pathology platform that assists pathologists in cancer diagnosis and treatment selection.",
+    emoji: "🔬",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.pathai.com/?via=aiwebtools",
+    tags: ["pathology", "cancer diagnosis", "medical imaging", "AI diagnostics"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.6,
+    totalVotes: 1432
+  },
+  // Adding additional health and wellness tools to reach the full 38 tools
   {
     icon: Apple,
     title: "MyFitnessPal",
     description: "Comprehensive nutrition and fitness tracking app with AI-powered food recognition and personalized recommendations.",
     emoji: "🍎",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://myfitnesspal.com/",
+    directUrl: "https://myfitnesspal.com/?via=aiwebtools",
     tags: ["nutrition tracking", "fitness", "food recognition", "health monitoring"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.4,
     totalVotes: 5432
   },
@@ -176,9 +194,9 @@ export const healthAndWellness: Tool[] = [
     description: "AI-powered health assessment app that provides personalized health insights and symptom checking.",
     emoji: "🩺",
     color: "from-blue-500 to-purple-600",
-    directUrl: "https://ada.com/",
+    directUrl: "https://ada.com/?via=aiwebtools",
     tags: ["symptom checker", "health assessment", "AI diagnosis", "medical guidance"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.3,
     totalVotes: 3456
   },
@@ -188,10 +206,22 @@ export const healthAndWellness: Tool[] = [
     description: "Advanced fitness tracking with AI-powered personalized insights, sleep analysis, and wellness guidance.",
     emoji: "⚡",
     color: "from-purple-500 to-pink-600",
-    directUrl: "https://fitbit.com/",
+    directUrl: "https://fitbit.com/?via=aiwebtools",
     tags: ["fitness tracking", "sleep analysis", "wellness insights", "health metrics"],
-    category: "Health & Wellness",
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.2,
     totalVotes: 4321
+  },
+  {
+    icon: Sparkles,
+    title: "SKIN CARE GPT",
+    description: "SKINCARE GPT by AI Web Tools LLC is your comprehensive AI-powered dermatology and skincare consultant, providing personalized skincare guidance, product recommendations, and professional beauty advice tailored to your unique skin type and concerns. Whether you're dealing with acne, aging, sensitivity, or seeking to optimize your skincare routine, this advanced AI analyzes your skin condition, lifestyle factors, and preferences to deliver customized skincare solutions that deliver real results. Upload photos of your skin for detailed analysis, receive personalized product recommendations from trusted brands, and get step-by-step skincare routines designed specifically for your needs. The AI considers factors like skin type, age, climate, budget, and specific concerns to create comprehensive skincare protocols that address everything from daily maintenance to targeted treatments. Features include ingredient compatibility checking, product comparison analysis, seasonal routine adjustments, and professional skincare technique guidance. Perfect for skincare enthusiasts seeking expert guidance, individuals with specific skin concerns needing targeted solutions, and anyone wanting to achieve healthy, radiant skin through science-backed recommendations. SKINCARE GPT ensures your skin gets the personalized care it deserves.",
+    emoji: "✨",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://skincaregpt.lovable.app/?via=aiwebtools",
+    tags: ["skincare", "dermatology", "beauty advice", "skin analysis", "cosmetics", "health", "wellness", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.6,
+    totalVotes: 4567
   }
 ];
