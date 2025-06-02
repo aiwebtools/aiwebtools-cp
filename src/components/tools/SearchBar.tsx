@@ -1,3 +1,4 @@
+
 import { useState, useCallback, useMemo } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -19,26 +20,30 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
   const [isOpen, setIsOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(50);
   
-  // Debounce search term to prevent excessive search operations
-  const debouncedSearchTerm = useDebounce(searchTerm, 150); // Reduced from default to make it more responsive
+  // Reduce debounce time for faster response
+  const debouncedSearchTerm = useDebounce(searchTerm, 100);
   
+  // Memoize tool stats to prevent recalculation
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // Memoize search results to prevent recalculation on every render
+  // Memoize search results with better optimization
   const searchResults = useMemo(() => {
     if (!debouncedSearchTerm.trim()) return [];
     
-    console.log("🔍 SearchBar - Performing search for:", debouncedSearchTerm);
     const results = searchTools(allTools, debouncedSearchTerm);
-    console.log("🔍 SearchBar - Search results count:", results.length);
     return results;
   }, [debouncedSearchTerm]);
 
-  // Update open state and displayed count when search results change
+  // Optimize displayed results calculation
+  const displayedResults = useMemo(() => 
+    searchResults.slice(0, displayedCount), 
+    [searchResults, displayedCount]
+  );
+
+  // Update open state based on search results
   const shouldShowResults = searchResults.length > 0 && debouncedSearchTerm.trim();
 
   const handleSearchChange = useCallback((value: string) => {
-    console.log("🔍 SearchBar - handleSearchChange called with:", value);
     onSearchChange(value);
     
     if (value.trim()) {
@@ -99,16 +104,9 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     if (scrollHeight - scrollTop <= clientHeight + 100 && displayedCount < searchResults.length) {
-      console.log(`🔄 SearchBar infinite scroll triggered - Loading more results... Current: ${displayedCount}, Total: ${searchResults.length}`);
       setDisplayedCount(prev => Math.min(prev + 30, searchResults.length));
     }
   }, [displayedCount, searchResults.length]);
-
-  // Memoize displayed results to prevent recalculation
-  const displayedResults = useMemo(() => 
-    searchResults.slice(0, displayedCount), 
-    [searchResults, displayedCount]
-  );
 
   return (
     <TooltipProvider>
