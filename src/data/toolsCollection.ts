@@ -111,7 +111,7 @@ import { designAssistantTools } from './tools/designAssistantTools';
 // Import the comprehensive AI tools collection
 import { comprehensiveAITools } from './tools/comprehensiveAITools';
 
-// Import the new specialized GPTs from AI Web Tools
+// Import the new specialized GPTs from AI Web Tools (FIXED PATH)
 import { newSpecializedGPTs } from './tools/aiWebTools/newSpecializedGPTs';
 
 // Combine all tool categories
@@ -163,7 +163,10 @@ export const getAllToolCategories = (): Tool[] => {
     ...advancedChatPlatforms,
     ...developerAndCodingTools,
     ...contentDetectionTools,
-    ...contentCreationAndWritingTools,
+    ...contentCreationAndWritingTools.map(tool => ({
+      ...tool,
+      category: "OTHER"
+    })),
     ...documentAndResearchTools,
     ...designAndGraphicsTools,
     ...resumeAndCareerTools,
