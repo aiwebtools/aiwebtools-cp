@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -65,10 +64,14 @@ const MainCategoryPage = () => {
     ? searchTools(toolsToShow, searchTerm)
     : toolsToShow;
 
-  // Reset displayed count when the final filtered tools change
+  // Reset displayed count when the final filtered tools change, but keep a reference to avoid constant resets
+  const [lastFilteredToolsLength, setLastFilteredToolsLength] = useState(0);
   useEffect(() => {
-    setDisplayedCount(48);
-  }, [finalFilteredTools.length]);
+    if (finalFilteredTools.length !== lastFilteredToolsLength) {
+      setDisplayedCount(48);
+      setLastFilteredToolsLength(finalFilteredTools.length);
+    }
+  }, [finalFilteredTools.length, lastFilteredToolsLength]);
 
   const handleLoadMore = () => {
     if (displayedCount >= finalFilteredTools.length || isLoading) return;
@@ -79,7 +82,11 @@ const MainCategoryPage = () => {
     // Use setTimeout to show loading state briefly, then load more tools
     setTimeout(() => {
       // Load 48 more tools at a time for smooth experience
-      setDisplayedCount(prev => Math.min(prev + 48, finalFilteredTools.length));
+      setDisplayedCount(prev => {
+        const newCount = Math.min(prev + 48, finalFilteredTools.length);
+        console.log(`✅ Updated displayedCount from ${prev} to ${newCount}`);
+        return newCount;
+      });
       setIsLoading(false);
     }, 200);
   };
@@ -96,6 +103,13 @@ const MainCategoryPage = () => {
   };
 
   const hasMoreTools = displayedCount < finalFilteredTools.length;
+
+  console.log(`🔍 Final tool display logic:`, {
+    finalFilteredToolsLength: finalFilteredTools.length,
+    displayedCount,
+    hasMoreTools,
+    isLoading
+  });
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
