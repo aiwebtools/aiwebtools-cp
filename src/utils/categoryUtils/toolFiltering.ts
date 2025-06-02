@@ -608,24 +608,6 @@ const buildToolsCache = (tools: Tool[]) => {
     else if (mainCat.name === "COMMUNICATION & COLLABORATION AI TOOLS") {
       categoryTools = getCommunicationCollaborationTools(tools, mainCat.name);
     }
-    else if (mainCat.name === "HEALTH & WELLNESS") {
-      // THIS IS THE MOST IMPORTANT CATEGORY - GET ALL HEALTH TOOLS
-      const subcategoryTools = tools.filter(tool => {
-        if (!tool.category) return false;
-        return mainCat.subcategories.some(subcat => 
-          isSimilarCategory(tool.category, subcat)
-        );
-      });
-      
-      // Combine subcategory tools with comprehensive health detection
-      const allHealthTools = [...subcategoryTools, ...healthTools];
-      categoryTools = allHealthTools.filter((tool, index, self) => 
-        index === self.findIndex(t => t.title === tool.title)
-      );
-      
-      console.log(`🏥 FINAL Health & Wellness category tools: ${categoryTools.length}`);
-      console.log(`🏥 Health tools sample: ${categoryTools.slice(0, 15).map(t => t.title).join(', ')}`);
-    }
     else {
       // Standard subcategory matching for other categories
       categoryTools = tools.filter(tool => {
