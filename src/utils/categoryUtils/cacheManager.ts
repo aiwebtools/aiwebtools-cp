@@ -34,6 +34,21 @@ export const resetCache = () => {
   console.log('🔄 Cache reset - will rebuild on next access');
 };
 
+// Helper function to combine subcategory and specialized tools efficiently
+const getCombinedTools = (tools: Tool[], mainCat: any, specializedTools: Tool[]) => {
+  const subcategoryTools = tools.filter(tool => {
+    if (!tool.category) return false;
+    return mainCat.subcategories.some((subcat: string) => 
+      isSimilarCategory(tool.category, subcat)
+    );
+  });
+  
+  const allTools = [...subcategoryTools, ...specializedTools];
+  return allTools.filter((tool, index, self) => 
+    index === self.findIndex(t => t.title === tool.title)
+  );
+};
+
 // Build cache once for instant category filtering with performance optimizations
 export const buildToolsCache = (tools: Tool[]) => {
   // Only rebuild if tools data has actually changed
@@ -84,7 +99,7 @@ export const buildToolsCache = (tools: Tool[]) => {
       case "AI CHAT & ASSISTANTS":
         const subcategoryTools = tools.filter(tool => {
           if (!tool.category) return false;
-          return mainCat.subcategories.some(subcat => 
+          return mainCat.subcategories.some((subcat: string) => 
             isSimilarCategory(tool.category, subcat)
           );
         });
@@ -100,12 +115,12 @@ export const buildToolsCache = (tools: Tool[]) => {
         break;
         
       case "CONTENT CREATION & WRITING":
-        categoryTools = this.getCombinedTools(tools, mainCat, toolCollections.contentCreationTools);
+        categoryTools = getCombinedTools(tools, mainCat, toolCollections.contentCreationTools);
         break;
         
       case "DATA & ANALYTICS AI TOOLS":
         const enhancedDataTools = getDataAnalyticsTools(tools, mainCat.name);
-        categoryTools = this.getCombinedTools(tools, mainCat, [
+        categoryTools = getCombinedTools(tools, mainCat, [
           ...enhancedDataTools, 
           ...toolCollections.dataAnalyticsTools
         ]);
@@ -117,27 +132,27 @@ export const buildToolsCache = (tools: Tool[]) => {
           (tool.description.toLowerCase().includes('historical') || 
            tool.description.toLowerCase().includes('history'))
         );
-        categoryTools = this.getCombinedTools(tools, mainCat, [
+        categoryTools = getCombinedTools(tools, mainCat, [
           ...toolCollections.educationRelatedTools, 
           ...educationalHistoricalTools
         ]);
         break;
         
       case "HEALTH & WELLNESS":
-        categoryTools = this.getCombinedTools(tools, mainCat, toolCollections.healthAndWellnessTools);
+        categoryTools = getCombinedTools(tools, mainCat, toolCollections.healthAndWellnessTools);
         console.log(`🏥 FINAL Health & Wellness: ${categoryTools.length} tools`);
         break;
         
       case "INDUSTRY SPECIFIC AI TOOLS":
-        categoryTools = this.getCombinedTools(tools, mainCat, toolCollections.industrySpecificTools);
+        categoryTools = getCombinedTools(tools, mainCat, toolCollections.industrySpecificTools);
         break;
         
       case "HISTORICAL & TIME-BASED AI TOOLS":
-        categoryTools = this.getCombinedTools(tools, mainCat, toolCollections.strictHistoricalTools);
+        categoryTools = getCombinedTools(tools, mainCat, toolCollections.strictHistoricalTools);
         break;
         
       case "VIDEO & MULTIMEDIA":
-        categoryTools = this.getCombinedTools(tools, mainCat, toolCollections.videoRelatedTools);
+        categoryTools = getCombinedTools(tools, mainCat, toolCollections.videoRelatedTools);
         break;
         
       case "AUTOMATION PLATFORMS":
@@ -152,7 +167,7 @@ export const buildToolsCache = (tools: Tool[]) => {
         // Standard subcategory matching for other categories
         categoryTools = tools.filter(tool => {
           if (!tool.category) return false;
-          return mainCat.subcategories.some(subcat => 
+          return mainCat.subcategories.some((subcat: string) => 
             isSimilarCategory(tool.category, subcat)
           );
         });
@@ -169,21 +184,6 @@ export const buildToolsCache = (tools: Tool[]) => {
   // Streamlined verification
   const totalCached = Array.from(toolsCacheByMainCategory.values()).reduce((sum, tools) => sum + tools.length, 0);
   console.log(`🔍 Cache complete: ${toolsCacheByMainCategory.size} categories, ${totalCached} total tool entries`);
-}
-
-// Helper method to combine subcategory and specialized tools efficiently
-buildToolsCache.getCombinedTools = function(tools: Tool[], mainCat: any, specializedTools: Tool[]) {
-  const subcategoryTools = tools.filter(tool => {
-    if (!tool.category) return false;
-    return mainCat.subcategories.some(subcat => 
-      isSimilarCategory(tool.category, subcat)
-    );
-  });
-  
-  const allTools = [...subcategoryTools, ...specializedTools];
-  return allTools.filter((tool, index, self) => 
-    index === self.findIndex(t => t.title === tool.title)
-  );
 };
 
 export const getToolsCacheByMainCategory = () => toolsCacheByMainCategory;
