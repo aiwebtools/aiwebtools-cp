@@ -30,9 +30,7 @@ const SearchInput = ({
         onKeyDown={onKeyDown}
         onBlur={onBlur}
         onFocus={onFocus}
-        className="pl-10 pr-4 py-4 text-lg rounded-xl border-2 border-gray-200 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 transition-all duration-200 shadow-lg"
-        autoComplete="off"
-        spellCheck="false"
+        className="pl-10 pr-4 py-4 text-lg rounded-xl border-2 border-gray-200 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 transition-all duration-300 shadow-lg"
       />
     </div>
   );
