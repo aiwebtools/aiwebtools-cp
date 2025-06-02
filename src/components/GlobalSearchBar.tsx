@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -71,32 +72,22 @@ const GlobalSearchBar = () => {
     setDisplayedCount(30);
   };
 
-  const scrollToResults = () => {
-    // Scroll down to show results below the search bar
-    const searchElement = document.querySelector('[data-search-results]');
-    if (searchElement) {
-      searchElement.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
-      });
-    } else {
-      // Fallback: scroll down by a reasonable amount
-      window.scrollBy({ 
-        top: 400, 
-        behavior: 'smooth' 
-      });
-    }
-  };
-
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       setSearchTerm("");
       setDisplayedCount(30);
     } else if (e.key === 'Enter' && searchTerm.trim()) {
-      // Close dropdown and scroll to results
-      setIsOpen(false);
-      setTimeout(scrollToResults, 100); // Small delay to ensure UI updates
+      // Navigate to the top matching tool result
+      if (searchResults.length > 0) {
+        const topResult = searchResults[0];
+        const toolIndex = allTools.findIndex(t => t.title === topResult.title);
+        if (toolIndex !== -1) {
+          setIsOpen(false);
+          setSearchTerm("");
+          navigate(`/tool/${toolIndex}`);
+        }
+      }
     }
   };
 
@@ -141,6 +132,9 @@ const GlobalSearchBar = () => {
               <div className="text-xs text-cyan-400 px-3 py-2 border-b border-cyan-500/20 sticky top-0 bg-black/95">
                 {searchResults.length} Results - Showing {displayedCount}
                 {displayedCount < searchResults.length && " - Scroll for more"}
+                {searchResults.length > 0 && (
+                  <div className="text-cyan-300 mt-1">Press Enter to open top result</div>
+                )}
               </div>
               {displayedResults.map((tool, index) => {
                 const toolIndex = allTools.findIndex(t => t.title === tool.title);
