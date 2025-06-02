@@ -21,14 +21,17 @@ const categoryMapping: Record<string, string> = {
   "AI Chat Platforms": "AI Development & Platforms",
   "Advanced Chat Platforms": "AI Development & Platforms",
   
-  // Writing & Text Generation
-  "Writing & Content Creation": "Writing & Text Generation",
-  "Content Creation Tools": "Writing & Text Generation",
-  "Content Creation & Writing Tools": "Writing & Text Generation",
-  "Writing & Content Enhancement": "Writing & Text Generation",
-  "Document & Research Tools": "Writing & Text Generation",
-  "AI Writing Tools": "Writing & Text Generation",
-  "Writing & Content": "Writing & Text Generation",
+  // Writing & Text Generation - NOW MAPPED TO OTHER
+  "Writing & Content Creation": "OTHER",
+  "Content Creation Tools": "OTHER",
+  "Content Creation & Writing Tools": "OTHER",
+  "Writing & Content Enhancement": "OTHER",
+  "Document & Research Tools": "OTHER",
+  "AI Writing Tools": "OTHER",
+  "Writing & Content": "OTHER",
+  "Creative Writing Tools": "OTHER",
+  "Grammar And Writing Assistants": "OTHER",
+  "Content Creation And Writing Tools": "OTHER",
   
   // Image & Design Generation
   "Image & Design Tools": "Image & Design Generation",
@@ -114,13 +117,34 @@ const categoryMapping: Record<string, string> = {
   "Learning Platforms": "Education & Research Tools",
   "Content Detection Tools": "Education & Research Tools",
   
-  // INDUSTRY SPECIFIC AI TOOLS - COMPREHENSIVE MAPPING FOR ALL INDUSTRIES
+  // MOVE NON-INDUSTRY TOOLS TO OTHER CATEGORY
+  // General/Broad Tools that don't belong in Industry Specific
+  "Specialized & Niche": "OTHER",
+  "Specialized Niche Tools": "OTHER", 
+  "Technical & Utility Tools": "OTHER",
+  "Specialized Tools": "OTHER",
+  "Time & History": "OTHER",
+  "Historical & Cultural": "OTHER",
+  "Time Travel Tools": "OTHER",
+  "Historical Simulation": "OTHER",
+  "Raw Uncut Tools": "OTHER",
+  "Spirituality Tools": "OTHER",
+  "Spirituality & Wellness": "OTHER",
+  "Creative Suites": "OTHER",
+  "Entertainment & Media": "OTHER",
+  "Entertainment Tools": "OTHER",
+  "Creative & Entertainment": "OTHER",
+  "Art & Collectibles": "OTHER",
+  "Game Design & Development": "OTHER",
+  "Creative Platforms": "OTHER",
+  "Creative Services": "OTHER",
+  
+  // KEEP TRUE INDUSTRY SPECIFIC TOOLS IN INDUSTRY CATEGORY
   "Health & Wellness": "Industry Specific AI Tools",
   "Health, Wellness & Personal Lifestyle": "Industry Specific AI Tools",
   "Healthcare Professionals": "Industry Specific AI Tools",
   "Medical AI Tools": "Industry Specific AI Tools",
   "Health And Wellness Tools": "Industry Specific AI Tools",
-  "Spirituality & Wellness": "Industry Specific AI Tools",
   "Personal Services": "Industry Specific AI Tools",
   "Wellness & Fitness": "Industry Specific AI Tools",
   "Lifestyle Tools": "Industry Specific AI Tools",
@@ -141,17 +165,6 @@ const categoryMapping: Record<string, string> = {
   "Legal & Compliance": "Industry Specific AI Tools",
   "Professional Services": "Industry Specific AI Tools",
   
-  // Creative Industries
-  "Creative & Entertainment": "Industry Specific AI Tools",
-  "Entertainment & Media": "Industry Specific AI Tools",
-  "Entertainment Tools": "Industry Specific AI Tools",
-  "Creative Platforms": "Industry Specific AI Tools",
-  "Art & Collectibles": "Industry Specific AI Tools",
-  "Game Design & Development": "Industry Specific AI Tools",
-  "Creative Services": "Industry Specific AI Tools",
-  "Creative Suites": "Industry Specific AI Tools",
-  "Creative & Entertainment (General & Gaming)": "Industry Specific AI Tools",
-  
   // Emergency & Safety Industries
   "Emergency Services": "Industry Specific AI Tools",
   
@@ -163,14 +176,7 @@ const categoryMapping: Record<string, string> = {
   "Robotics Companies": "Industry Specific AI Tools",
   "Hardware Tools": "Industry Specific AI Tools",
   "IoT Platforms": "Industry Specific AI Tools",
-  "Smart Devices": "Industry Specific AI Tools",
-  
-  // Specialized consolidation
-  "Specialized & Niche": "Industry Specific AI Tools",
-  "Specialized Niche Tools": "Industry Specific AI Tools",
-  "Specialized AI Tools": "Industry Specific AI Tools",
-  "Technical & Utility Tools": "Industry Specific AI Tools",
-  "Specialized Tools": "Industry Specific AI Tools"
+  "Smart Devices": "Industry Specific AI Tools"
 };
 
 export const consolidateCategory = (category: string): string => {

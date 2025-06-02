@@ -1,143 +1,94 @@
 
 import { Tool } from "@/types/tools";
 
-// COMPREHENSIVE Helper function to detect ALL industry-specific tools
+// STRICT Helper function to detect ONLY truly industry-specific tools
 export const isIndustrySpecificTool = (tool: Tool): boolean => {
   const titleLower = tool.title.toLowerCase();
   const descriptionLower = tool.description.toLowerCase();
   const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
   const categoryLower = tool.category?.toLowerCase() || '';
   
-  // COMPREHENSIVE industry keywords covering ALL major industries
-  const industryKeywords = [
-    // Legal & Government
-    'legal', 'law', 'attorney', 'lawyer', 'court', 'judge', 'contract', 'litigation',
-    'compliance', 'legislation', 'defender', 'justice', 'paralegal', 'government',
-    'civic', 'policy', 'regulation', 'constitutional', 'criminal law', 'civil law',
-    'corporate law', 'intellectual property', 'patent', 'trademark', 'copyright',
-    'real estate law', 'family law', 'immigration law', 'tax law', 'employment law',
+  // STRICT industry keywords - only for tools that are clearly profession/industry specific
+  const strictIndustryKeywords = [
+    // Healthcare & Medical (clearly professional)
+    'doctor', 'physician', 'nurse', 'medical diagnosis', 'patient care', 'hospital', 'clinic',
+    'pharmaceutical', 'medicine prescription', 'medical research', 'surgery', 'therapy',
+    'veterinarian', 'vet', 'veterinary', 'animal health', 'pet care',
     
-    // Education & Academic
-    'education', 'learning', 'educational', 'academic', 'study', 'course', 'curriculum',
-    'teaching', 'teacher', 'tutor', 'tutoring', 'lesson', 'homework', 'quiz', 'test',
-    'training', 'university', 'college', 'school', 'degree', 'certification',
-    'insect study', 'entomology', 'species research', 'biological studies',
-    'research', 'scientific', 'laboratory', 'experiment', 'analysis',
+    // Legal (clearly professional)
+    'attorney', 'lawyer', 'law firm', 'legal practice', 'court case', 'litigation',
+    'contract law', 'legal document', 'paralegal', 'judge', 'legal defense',
+    'public defender', 'legal advice', 'legal research', 'case law',
     
-    // Creative Arts & Design
-    'graphic design', 'design', 'art', 'creative', 'illustration', 'photography',
-    'video editing', 'animation', 'music', 'audio', 'tattoo', 'sketch', 'drawing',
-    'painting', 'sculpture', 'pottery', 'crafts', 'fashion', 'interior design',
-    'architecture', 'typography', 'branding', 'logo', 'visual', 'aesthetic',
-    'multimedia', 'digital art', 'concept art', 'character design', 'game art',
+    // Emergency Services (clearly professional)
+    'firefighter', 'fire department', 'emergency response', 'paramedic', 'emt',
+    'police', 'law enforcement', 'security professional', 'first responder',
     
-    // Culinary & Food Industry
-    'cooking', 'chef', 'culinary', 'recipe', 'food', 'restaurant', 'kitchen',
-    'baking', 'pastry', 'nutrition', 'mixologist', 'bartender', 'cocktail',
-    'food quality', 'cuisine', 'gastronomy', 'menu', 'dining', 'catering',
-    'hospitality', 'beverage', 'wine', 'brewing', 'food safety', 'food service',
+    // Financial Professional Services (clearly professional)
+    'financial advisor', 'investment banker', 'trading professional', 'accountant',
+    'tax professional', 'insurance agent', 'financial planning', 'wealth management',
     
-    // Agriculture & Farming
-    'farming', 'agriculture', 'crop', 'livestock', 'harvest', 'soil', 'irrigation',
-    'greenhouse', 'organic', 'pesticide', 'fertilizer', 'agronomist', 'agronomy',
-    'horticulture', 'aquaculture', 'forestry', 'sustainable farming', 'precision agriculture',
+    // Specialized Technical Industries
+    'aerospace engineer', 'mechanical engineer', 'civil engineer', 'electrical engineer',
+    'software engineer professional', 'architect professional', 'construction management',
     
-    // Real Estate & Property
-    'real estate', 'property', 'housing', 'mortgage', 'rental', 'appraisal',
-    'land', 'construction', 'renovation', 'home', 'building', 'architecture',
-    'urban planning', 'zoning', 'development', 'commercial real estate',
+    // Agriculture & Farming (clearly professional)
+    'farmer', 'agronomist', 'agricultural specialist', 'crop management', 'livestock management',
+    'farming operation', 'agricultural research', 'soil analysis',
     
-    // Finance & Trading
-    'finance', 'trading', 'investment', 'banking', 'insurance', 'accounting',
-    'tax', 'credit', 'loan', 'budget', 'financial planning', 'wealth management',
-    'cryptocurrency', 'blockchain', 'fintech', 'payment processing', 'mortgages',
+    // Food Industry Professional
+    'chef professional', 'restaurant management', 'food safety inspector', 'culinary professional',
+    'food service industry', 'restaurant owner', 'food quality control',
     
-    // Transportation & Automotive
-    'automotive', 'car', 'vehicle', 'transportation', 'logistics', 'shipping',
-    'trucking', 'aviation', 'maritime', 'railway', 'fleet management', 'supply chain',
+    // Real Estate Professional
+    'real estate agent', 'property appraiser', 'real estate broker', 'property management',
+    'real estate investment', 'property development',
     
-    // Manufacturing & Industrial
-    'manufacturing', 'industrial', 'factory', 'production', 'assembly',
-    'quality control', 'supply chain', 'robotics', 'automation', 'machinery',
-    'operations', 'process optimization', 'lean manufacturing', 'six sigma',
-    
-    // Energy & Utilities
-    'energy', 'solar', 'renewable', 'electricity', 'oil', 'gas', 'utility',
-    'power generation', 'grid', 'sustainable', 'wind power', 'hydroelectric',
-    'nuclear energy', 'geothermal', 'energy efficiency', 'carbon footprint',
-    
-    // Entertainment & Media
-    'entertainment', 'media', 'broadcasting', 'journalism', 'publishing',
-    'film', 'television', 'radio', 'gaming', 'sports', 'theater', 'performance',
-    'streaming', 'podcast', 'content creation', 'social media', 'influencer',
-    
-    // Science & Research
-    'research', 'laboratory', 'scientific', 'experiment', 'analysis',
-    'archaeology', 'geology', 'biology', 'chemistry', 'physics',
-    'astronomy', 'meteorology', 'environmental science', 'marine biology',
-    'genetics', 'microbiology', 'biochemistry', 'neuroscience', 'psychology',
-    
-    // Emergency & Safety Services
-    'emergency', 'firefighter', 'police', 'security', 'safety', 'rescue',
-    'disaster', 'crisis management', 'first aid', 'paramedic', 'emt',
-    'homeland security', 'cybersecurity', 'surveillance', 'investigation',
-    
-    // Retail & E-commerce
-    'retail', 'e-commerce', 'shopping', 'merchandising', 'inventory',
-    'customer service', 'sales', 'marketing', 'advertising', 'point of sale',
-    'supply chain', 'distribution', 'fulfillment', 'logistics',
-    
-    // Tourism & Hospitality
-    'tourism', 'hospitality', 'hotel', 'travel', 'vacation', 'booking',
-    'restaurant', 'catering', 'event planning', 'cruise', 'airline',
-    'destination management', 'tour guide', 'concierge', 'resort',
-    
-    // Telecommunications & IT
-    'telecommunications', 'telecom', 'network', 'wireless', 'internet',
-    'communication', 'phone', 'mobile', 'broadband', 'data center',
-    'cloud computing', 'software development', 'cybersecurity', 'it support',
-    
-    // Textiles & Fashion
-    'fashion', 'textile', 'clothing', 'apparel', 'fabric', 'garment',
-    'styling', 'trend', 'runway', 'boutique', 'manufacturing', 'retail fashion',
-    
-    // Sports & Recreation
-    'sports', 'fitness', 'recreation', 'athletic', 'coaching', 'training',
-    'exercise', 'gym', 'wellness', 'outdoor', 'adventure', 'competition',
-    
-    // Specialized Industries
-    'appraisal', 'valuation', 'collectibles', 'antiques', 'auction',
-    'investigation', 'forensics', 'detective', 'surveillance', 'background check',
-    'consulting', 'advisory', 'strategy', 'management', 'human resources',
-    'recruitment', 'staffing', 'training', 'development', 'organizational'
+    // Education Professional
+    'teacher', 'educator', 'school administration', 'curriculum development', 
+    'educational institution', 'academic research', 'university professor'
   ];
   
-  // Check if tool matches any industry-specific keywords
-  const matchesIndustryKeywords = industryKeywords.some(keyword => 
+  // Check if tool matches STRICT industry-specific keywords
+  const matchesStrictIndustryKeywords = strictIndustryKeywords.some(keyword => 
     titleLower.includes(keyword) || 
     descriptionLower.includes(keyword) || 
-    tagsLower.includes(keyword) ||
-    categoryLower.includes(keyword)
+    tagsLower.includes(keyword)
   );
   
-  // Also include tools that are already in known industry categories
-  const industryCategories = [
-    'legal', 'education', 'creative', 'entertainment',
-    'professional services', 'emergency', 'finance', 'specialized', 'robotics',
-    'design', 'culinary', 'food', 'agriculture',
-    'real estate', 'property', 'automotive', 'transportation', 'manufacturing',
-    'energy', 'utilities', 'science', 'research', 'retail', 'tourism',
-    'hospitality', 'telecommunications', 'fashion', 'sports', 'fitness'
+  // Check for tools that are clearly in professional industry categories
+  const professionalIndustryCategories = [
+    'healthcare professionals', 'medical ai tools', 'legal professionals',
+    'emergency services', 'professional services', 'robotics companies'
   ];
   
-  const isInIndustryCategory = industryCategories.some(category => 
+  const isInProfessionalCategory = professionalIndustryCategories.some(category => 
     categoryLower.includes(category)
   );
   
-  const isIndustryTool = matchesIndustryKeywords || isInIndustryCategory;
+  // EXCLUDE general/broad tools that shouldn't be industry-specific
+  const generalToolKeywords = [
+    'general purpose', 'everyday use', 'personal use', 'hobby', 'entertainment',
+    'creative writing', 'art creation', 'music creation', 'video editing',
+    'social media', 'content creation', 'blogging', 'personal productivity',
+    'time management', 'note taking', 'task management', 'calendar',
+    'general ai', 'chatbot', 'assistant', 'helper', 'utility', 'tool',
+    'generator', 'creator', 'maker', 'builder', 'analyzer', 'converter'
+  ];
+  
+  const isGeneralTool = generalToolKeywords.some(keyword =>
+    titleLower.includes(keyword) || 
+    descriptionLower.includes(keyword) || 
+    tagsLower.includes(keyword)
+  );
+  
+  // Only return true if it's clearly industry-specific AND not a general tool
+  const isIndustryTool = (matchesStrictIndustryKeywords || isInProfessionalCategory) && !isGeneralTool;
   
   if (isIndustryTool) {
-    console.log(`🏭 INDUSTRY: Detected industry-specific tool: ${tool.title} (Category: ${tool.category})`);
+    console.log(`🏭 INDUSTRY: Detected truly industry-specific tool: ${tool.title} (Category: ${tool.category})`);
+  } else if (categoryLower.includes('industry') || categoryLower.includes('professional')) {
+    console.log(`📦 MOVING TO OTHER: ${tool.title} - not truly industry-specific`);
   }
   
   return isIndustryTool;
