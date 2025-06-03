@@ -98,14 +98,20 @@ export const matchTextToWebsite = (tool: Tool, searchTerm: string): boolean => {
   const lowerCategory = tool.category?.toLowerCase() || '';
   const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
   
+  // Enhanced text-to-website matching
   if (lowerSearchTerm.includes('text to website') || lowerSearchTerm.includes('text-to-website') ||
+      lowerSearchTerm.includes('text to website generator') || lowerSearchTerm.includes('website generator') ||
+      lowerSearchTerm.includes('website builder') || lowerSearchTerm.includes('site generator') ||
       (lowerSearchTerm.includes('text') && lowerSearchTerm.includes('website'))) {
+    
     // Priority text-to-website tools
     const priorityTextToWebsiteTools = [
       'lovable.dev',
       'bolt.new',
       'webflow',
-      'framer'
+      'framer',
+      'durable ai website builder',
+      'windsurf'
     ];
     
     if (priorityTextToWebsiteTools.some(tool => lowerTitle.includes(tool))) {
@@ -116,7 +122,8 @@ export const matchTextToWebsite = (tool: Tool, searchTerm: string): boolean => {
     if (lowerTitle.includes('text-to-website') || lowerDescription.includes('text-to-website') ||
         lowerTitle.includes('website builder') || lowerDescription.includes('website builder') ||
         lowerTitle.includes('site generator') || lowerDescription.includes('site generator') ||
-        lowerCategory.includes('website builder') || lowerTags.some(tag => tag.includes('text-to-website'))) {
+        lowerTitle.includes('website generator') || lowerDescription.includes('website generator') ||
+        lowerCategory.includes('website builder') || lowerTags.some(tag => tag.includes('text-to-website') || tag.includes('website builder'))) {
       return true;
     }
   }
@@ -134,45 +141,48 @@ export const scoreTextToWebsite = (tool: Tool, searchTerm: string): number => {
   let score = 0;
   
   if (lowerSearchTerm.includes('text to website') || lowerSearchTerm.includes('text-to-website') ||
+      lowerSearchTerm.includes('text to website generator') || lowerSearchTerm.includes('website generator') ||
+      lowerSearchTerm.includes('website builder') || lowerSearchTerm.includes('site generator') ||
       (lowerSearchTerm.includes('text') && lowerSearchTerm.includes('website'))) {
+    
     // Top priority text-to-website tools
     if (lowerTitle.includes('lovable.dev')) {
-      score += 1800; // Highest priority for text-to-website
+      score += 2100; // Highest priority for text-to-website
     }
     if (lowerTitle.includes('bolt.new')) {
-      score += 1750; // Second highest
+      score += 2050; // Second highest
+    }
+    if (lowerTitle.includes('durable ai website builder')) {
+      score += 2000; // High priority for dedicated website builder
+    }
+    if (lowerTitle.includes('windsurf')) {
+      score += 1950; // High priority for coding/website tool
     }
     if (lowerTitle.includes('webflow')) {
-      score += 1700;
+      score += 1900;
     }
     if (lowerTitle.includes('framer')) {
-      score += 1650;
+      score += 1850;
     }
     
     // General text-to-website matching
-    if (lowerTitle.includes('text-to-website')) {
+    if (lowerTitle.includes('text-to-website') || lowerTitle.includes('website builder')) {
+      score += 1700;
+    }
+    if (lowerDescription.includes('text-to-website') || lowerDescription.includes('website builder')) {
       score += 1400;
     }
-    if (lowerDescription.includes('text-to-website')) {
-      score += 1200;
+    if (lowerTitle.includes('website generator') || lowerTitle.includes('site generator')) {
+      score += 1600;
     }
-    if (lowerTitle.includes('website builder')) {
+    if (lowerDescription.includes('website generator') || lowerDescription.includes('site generator')) {
       score += 1300;
     }
-    if (lowerDescription.includes('website builder')) {
-      score += 1100;
-    }
-    if (lowerTitle.includes('site generator')) {
-      score += 1200;
-    }
-    if (lowerDescription.includes('site generator')) {
-      score += 1000;
-    }
     if (lowerCategory.includes('website builder')) {
-      score += 1200;
+      score += 1500;
     }
-    if (lowerTags.some(tag => tag.includes('text-to-website'))) {
-      score += 1100;
+    if (lowerTags.some(tag => tag.includes('text-to-website') || tag.includes('website builder'))) {
+      score += 1400;
     }
   }
   

@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { getExpandedKeywords } from "./keywordExpansion";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
@@ -10,6 +11,10 @@ import { matchWebDevelopment, scoreWebDevelopment } from "./matching/webDevelopm
 import { matchBookWriting, scoreBookWriting } from "./matching/bookWritingMatching";
 import { matchThreeD, scoreThreeD } from "./matching/threeDMatching";
 import { matchCategory, scoreCategory } from "./matching/categoryMatching";
+import { matchCodingAgents, scoreCodingAgents } from "./matching/codingMatching";
+import { 
+  matchWebDesign, scoreWebDesign, matchTextToWebsite, scoreTextToWebsite 
+} from "./matching/webDesignMatching";
 import { 
   matchHealth, 
   scoreHealth,
@@ -88,7 +93,31 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🎯 INTENT MATCH for "${tool.title}" with score: ${intentResult.score}`);
     }
     
-    // PRIORITY 1: Category and subcategory matching - NEW HIGH PRIORITY
+    // PRIORITY 1: Enhanced coding agents matching - NEW HIGH PRIORITY
+    if (matchCodingAgents(tool, searchTerm)) {
+      matched = true;
+      const codingScore = scoreCodingAgents(tool, searchTerm);
+      score += codingScore;
+      console.log(`💻 CODING AGENTS MATCH for "${tool.title}" with score: ${codingScore}`);
+    }
+    
+    // PRIORITY 2: Enhanced text-to-website matching - NEW HIGH PRIORITY
+    if (matchTextToWebsite(tool, searchTerm)) {
+      matched = true;
+      const textToWebsiteScore = scoreTextToWebsite(tool, searchTerm);
+      score += textToWebsiteScore;
+      console.log(`🌐 TEXT-TO-WEBSITE MATCH for "${tool.title}" with score: ${textToWebsiteScore}`);
+    }
+    
+    // PRIORITY 3: Enhanced web design matching - NEW HIGH PRIORITY
+    if (matchWebDesign(tool, searchTerm)) {
+      matched = true;
+      const webDesignScore = scoreWebDesign(tool, searchTerm);
+      score += webDesignScore;
+      console.log(`🎨 WEB DESIGN MATCH for "${tool.title}" with score: ${webDesignScore}`);
+    }
+    
+    // PRIORITY 4: Category and subcategory matching - HIGH PRIORITY
     if (matchCategory(tool, searchTerm)) {
       matched = true;
       const categoryScore = scoreCategory(tool, searchTerm);
@@ -96,7 +125,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`📂 CATEGORY MATCH for "${tool.title}" with score: ${categoryScore}`);
     }
     
-    // PRIORITY 2: Special name insight tool matching - HIGHEST PRIORITY
+    // PRIORITY 5: Special name insight tool matching - HIGH PRIORITY
     const nameMatch = matchNameInsightTool(tool, searchTerm);
     if (nameMatch.matched) {
       matched = true;
@@ -104,7 +133,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🏷️ Name search match for "${tool.title}" with score: ${nameMatch.score}`);
     }
     
-    // PRIORITY 3: 3D tool matching - HIGHEST PRIORITY for 3D searches
+    // PRIORITY 6: 3D tool matching - HIGH PRIORITY for 3D searches
     if (matchThreeD(tool, searchTerm)) {
       matched = true;
       const threeDScore = scoreThreeD(tool, searchTerm);
@@ -112,7 +141,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🎲 3D search match for "${tool.title}" with score: ${threeDScore}`);
     }
     
-    // PRIORITY 4: Book writing specific matching - HIGHEST PRIORITY for ebook searches
+    // PRIORITY 7: Book writing specific matching - HIGH PRIORITY for ebook searches
     if (matchBookWriting(tool, searchTerm)) {
       matched = true;
       const bookScore = scoreBookWriting(tool, searchTerm);
@@ -121,7 +150,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`📚 Book writing search match for "${tool.title}" with score: ${bookScore + bookSearchScore}`);
     }
     
-    // PRIORITY 5: Web Development specific matching - HIGHEST PRIORITY
+    // PRIORITY 8: Web Development specific matching - HIGH PRIORITY
     if (matchWebDevelopment(tool, searchTerm)) {
       matched = true;
       const webDevScore = scoreWebDevelopment(tool, searchTerm);
@@ -129,7 +158,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`💻 Web Dev search match for "${tool.title}" with score: ${webDevScore}`);
     }
     
-    // PRIORITY 6: Cannabis specific matching - HIGHEST PRIORITY
+    // PRIORITY 9: Cannabis specific matching - HIGH PRIORITY
     if (matchCannabis(tool, searchTerm)) {
       matched = true;
       const cannabisScore = scoreCannabis(tool, searchTerm);
@@ -137,7 +166,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🌿 Cannabis search match for "${tool.title}" with score: ${cannabisScore}`);
     }
     
-    // PRIORITY 7: Sound effect specific matching - HIGHEST PRIORITY
+    // PRIORITY 10: Sound effect specific matching - HIGH PRIORITY
     if (matchSoundEffect(tool, searchTerm)) {
       matched = true;
       const soundEffectScore = scoreSoundEffect(tool, searchTerm);
@@ -145,7 +174,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🔊 Sound effect search match for "${tool.title}" with score: ${soundEffectScore}`);
     }
     
-    // PRIORITY 8: Enhanced fuzzy matching for misspellings
+    // PRIORITY 11: Enhanced fuzzy matching for misspellings
     const fuzzyResult = fuzzyMatchTool(tool, searchTerm);
     if (fuzzyResult.matched) {
       matched = true;
@@ -153,7 +182,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🎯 Fuzzy match for "${tool.title}" with score: ${fuzzyResult.score}`);
     }
     
-    // PRIORITY 9: Phonetic matching for sound-alike words
+    // PRIORITY 12: Phonetic matching for sound-alike words
     for (const phoneticTerm of phoneticMatches) {
       const searchableText = [
         tool.title,
@@ -169,7 +198,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       }
     }
     
-    // PRIORITY 10: Prediction-based matching
+    // PRIORITY 13: Prediction-based matching
     for (const prediction of predictions) {
       const searchableText = [
         tool.title,
@@ -193,7 +222,6 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🎓 Education search match for "${tool.title}" with score: ${educationScore}`);
     }
     
-    // PRIORITY 12: Financial specific matching - HIGH PRIORITY
     if (matchFinancial(tool, searchTerm)) {
       matched = true;
       const financialScore = scoreFinancial(tool, searchTerm);
@@ -248,7 +276,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       score += scoreAgents(tool, searchTerm);
     }
     
-    // PRIORITY 13: Enhanced basic search with all intelligent features
+    // FINAL: Enhanced basic search with all intelligent features
     const basicSearch = performBasicSearch(tool, searchTerm, searchWords, expandedKeywords);
     if (basicSearch.matched) {
       matched = true;
