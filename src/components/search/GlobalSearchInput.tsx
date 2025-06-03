@@ -31,15 +31,12 @@ const GlobalSearchInput = memo(({
         className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg backdrop-blur-sm"
         autoComplete="off"
         spellCheck={false}
-        // INSTANT mobile input response - no delays
+        // ZERO delays - instant response
         style={{ 
-          transition: 'none !important',
+          transition: 'none',
           willChange: 'auto',
           transform: 'none',
-          animation: 'none !important',
-          // Force immediate visual feedback
-          contain: 'layout style paint',
-          isolation: 'isolate'
+          animation: 'none'
         }}
         // Mobile optimization
         inputMode="search"

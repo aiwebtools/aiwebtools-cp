@@ -34,19 +34,12 @@ const SearchInput = memo(({
         className="pl-10 pr-4 py-4 text-lg rounded-xl border-0 bg-black/60 text-white placeholder-gray-300 focus:ring-0 focus:outline-none backdrop-blur-sm"
         autoComplete="off"
         spellCheck={false}
-        // INSTANT mobile input - no delays whatsoever
+        // ZERO delays - instant response
         style={{ 
-          transition: 'none !important',
+          transition: 'none',
           willChange: 'auto',
           transform: 'none',
-          animation: 'none !important',
-          // Mobile-specific instant response
-          WebkitTapHighlightColor: 'transparent',
-          touchAction: 'manipulation',
-          userSelect: 'text',
-          // Force immediate rendering
-          contain: 'layout style paint',
-          isolation: 'isolate'
+          animation: 'none'
         }}
         // Mobile optimization attributes
         inputMode="search"

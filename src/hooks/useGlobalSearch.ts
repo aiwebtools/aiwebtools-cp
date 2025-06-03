@@ -9,60 +9,29 @@ import { getCurrentToolCount } from "@/utils/toolCounter";
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [displayedCount, setDisplayedCount] = useState(15);
+  const [displayedCount, setDisplayedCount] = useState(50); // Start with more results
   const [isOpen, setIsOpen] = useState(false);
   const searchRef = useRef(null);
   const navigate = useNavigate();
-
-  // Detect mobile for optimized handling
-  const isMobile = window.innerWidth < 768 || 'ontouchstart' in window;
   
   // Memoize tool stats
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // INSTANT search - NO debouncing at all for mobile
+  // INSTANT search - NO debouncing at all
   useEffect(() => {
     const trimmedTerm = searchTerm.trim();
     if (trimmedTerm) {
-      // Ultra-aggressive mobile optimization
-      const mobileLimit = isMobile ? 3 : 6;
-      const desktopLimit = isMobile ? 5 : 8;
-      const fullLimit = isMobile ? 8 : 15;
-      
-      // Instant single character matching
-      if (trimmedTerm.length === 1) {
-        const simpleResults = allTools.filter(tool => 
-          tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
-        ).slice(0, mobileLimit);
-        setSearchResults(simpleResults);
-        setDisplayedCount(mobileLimit);
-        setIsOpen(true);
-        return;
-      }
-      
-      // Instant two character matching
-      if (trimmedTerm.length === 2) {
-        const fastResults = allTools.filter(tool => 
-          tool.title.toLowerCase().includes(trimmedTerm.toLowerCase()) ||
-          tool.category?.toLowerCase().includes(trimmedTerm.toLowerCase())
-        ).slice(0, desktopLimit);
-        setSearchResults(fastResults);
-        setDisplayedCount(desktopLimit);
-        setIsOpen(true);
-        return;
-      }
-      
-      // Full search with mobile-friendly limits
+      // Full search with ALL results
       const results = searchTools(allTools, trimmedTerm);
-      setSearchResults(results.slice(0, fullLimit));
-      setDisplayedCount(isMobile ? 6 : 10);
+      setSearchResults(results);
+      setDisplayedCount(50); // Show first 50 immediately
       setIsOpen(true);
     } else {
       setSearchResults([]);
       setIsOpen(false);
-      setDisplayedCount(15);
+      setDisplayedCount(50);
     }
-  }, [searchTerm, isMobile]); // Direct dependency on searchTerm for instant response
+  }, [searchTerm]); // Direct dependency for instant response
 
   // Optimized click outside handler
   useEffect(() => {
@@ -96,14 +65,14 @@ export const useGlobalSearch = () => {
   const clearSearch = useCallback(() => {
     setSearchTerm("");
     setIsOpen(false);
-    setDisplayedCount(15);
+    setDisplayedCount(50);
   }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       setSearchTerm("");
-      setDisplayedCount(15);
+      setDisplayedCount(50);
     } else if (e.key === 'Enter' && searchTerm.trim()) {
       if (searchResults.length > 0) {
         const topResult = searchResults[0];
@@ -121,10 +90,9 @@ export const useGlobalSearch = () => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     if (scrollHeight - scrollTop <= clientHeight + 30 && displayedCount < searchResults.length) {
-      const increment = isMobile ? 2 : 4; // Smaller increments on mobile
-      setDisplayedCount(prev => Math.min(prev + increment, searchResults.length));
+      setDisplayedCount(prev => Math.min(prev + 25, searchResults.length));
     }
-  }, [displayedCount, searchResults.length, isMobile]);
+  }, [displayedCount, searchResults.length]);
 
   return {
     searchTerm,
