@@ -42,7 +42,7 @@
       box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
     }
     
-    /* INSTANT mobile search input - ZERO delays */
+    /* MOBILE ULTRA-FAST search input - ZERO delays - FORCE INSTANT */
     .search-glow-optimized, .search-glow-optimized *, 
     input[type="text"], input[type="search"], 
     input[data-testid="search-input"], input[data-testid="global-search-input"] {
@@ -54,9 +54,13 @@
       -moz-transition: none !important;
       -o-transition: none !important;
       -ms-transition: none !important;
-      /* Force immediate input rendering */
+      /* Force immediate mobile input rendering */
       contain: layout style paint !important;
       isolation: isolate !important;
+      /* Mobile hardware acceleration for instant response */
+      -webkit-transform: translateZ(0) !important;
+      backface-visibility: hidden !important;
+      perspective: 1000px !important;
     }
     
     /* Prevent layout shifts on mobile */
@@ -74,10 +78,13 @@
       transition: none !important; /* NO transitions for instant response */
       -webkit-transition: none !important;
       -moz-transition: none !important;
-      /* Force instant visual feedback */
+      /* Force instant visual feedback on mobile */
       will-change: auto !important;
       backface-visibility: hidden !important;
       -webkit-backface-visibility: hidden !important;
+      /* Mobile GPU acceleration for instant typing */
+      transform: translateZ(0) !important;
+      -webkit-transform: translateZ(0) !important;
     }
     
     /* FIXED width for transitioning words to prevent jumping - mobile specific */
@@ -119,7 +126,7 @@
     }
   }
 
-  /* Performance for low-end devices - INSTANT input response */
+  /* Performance for low-end mobile devices - INSTANT input response */
   @media (max-width: 480px) {
     .cyber-glow,
     .glow-text-effect,
@@ -153,15 +160,19 @@
       transform: none;
     }
     
-    /* Ultra-fast search for low-end devices - INSTANT input */
+    /* MOBILE LOW-END DEVICE - FORCE INSTANT input performance */
     .search-glow-optimized, .search-glow-optimized *, 
     input, button, div, span, label {
       transition: none !important;
       animation: none !important;
-      transform: none !important;
+      transform: translateZ(0) !important;
       -webkit-transition: none !important;
       -moz-transition: none !important;
       will-change: auto !important;
+      /* Force GPU acceleration for instant typing */
+      -webkit-transform: translateZ(0) !important;
+      backface-visibility: hidden !important;
+      perspective: 1000px !important;
     }
     
     .transitioning-word {
@@ -170,7 +181,7 @@
       transition: none !important;
     }
     
-    /* Force instant performance for ALL inputs */
+    /* Force instant performance for ALL inputs on mobile */
     input[type="text"], input[type="search"], 
     input[data-testid="search-input"], input[data-testid="global-search-input"] {
       transition: none !important;
@@ -181,17 +192,21 @@
       -ms-transition: none !important;
       will-change: auto !important;
       contain: layout style paint !important;
+      /* Mobile GPU acceleration */
+      transform: translateZ(0) !important;
+      -webkit-transform: translateZ(0) !important;
+      backface-visibility: hidden !important;
     }
   }
   
-  /* Ultra-low-end device optimizations - ZERO delays */
+  /* Ultra-low-end mobile device optimizations - ZERO delays */
   @media (max-width: 360px) {
     .transitioning-word {
       width: 180px !important;
       font-size: 0.85em;
     }
     
-    /* Disable ALL animations and transitions on very small screens */
+    /* Disable ALL animations and transitions on very small mobile screens */
     *, *::before, *::after {
       animation: none !important;
       transition: none !important;
@@ -200,13 +215,19 @@
       -moz-animation: none !important;
       -moz-transition: none !important;
       will-change: auto !important;
+      /* Force GPU acceleration even on ultra-low-end */
+      transform: translateZ(0) !important;
+      -webkit-transform: translateZ(0) !important;
     }
     
-    /* Force instant input response */
+    /* Force instant input response on ultra-low-end mobile */
     input {
       will-change: auto !important;
       contain: layout style paint !important;
       isolation: isolate !important;
+      transform: translateZ(0) !important;
+      -webkit-transform: translateZ(0) !important;
+      backface-visibility: hidden !important;
     }
   }
 }
