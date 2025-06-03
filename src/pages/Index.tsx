@@ -70,8 +70,8 @@ const Index = () => {
         <Header />
         <HeroSection />
         
-        {/* Featured Video Section - Simplified */}
-        <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
+        {/* Featured Video Section - Same background as interactive stars */}
+        <section className="py-16 bg-black relative">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
