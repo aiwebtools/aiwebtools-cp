@@ -69,9 +69,6 @@ const Index = () => {
       <div className="relative z-10">
         <Header />
         <HeroSection />
-        <div id="categories-section">
-          <CategoryPageSelection />
-        </div>
         
         {/* Featured Video Section - Simplified */}
         <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
@@ -96,6 +93,11 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        {/* Category Selection moved here - below the video */}
+        <div id="categories-section">
+          <CategoryPageSelection />
+        </div>
 
         {/* SEE MORE AI TOOLS Button */}
         {!showAllTools && (
