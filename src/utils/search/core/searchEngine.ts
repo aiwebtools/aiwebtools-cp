@@ -1,206 +1,151 @@
 
 import { Tool } from "@/types/tools";
-import { getExpandedKeywords } from "../keywordExpansion";
-import { fuzzyMatchTool, phoneticMatch, calculateSimilarity } from "./fuzzyMatching";
-import { predictUserIntent, enhanceSearchWithContext } from "./intelligentPrediction";
 
-export interface SearchResult {
-  tool: Tool;
-  score: number;
-  matched: boolean;
-}
+// Tools to exclude from search results
+const EXCLUDED_TOOLS = [
+  "Personal Finance Advisor GPT"
+];
 
-export const createSearchResult = (tool: Tool, score: number, matched: boolean): SearchResult => ({
-  tool,
-  score,
-  matched
-});
+export const createSearchResult = (tool: Tool, score: number, matched: boolean) => {
+  // Exclude specific tools from search results
+  if (EXCLUDED_TOOLS.includes(tool.title)) {
+    return { tool, score: 0, matched: false };
+  }
+  
+  return { tool, score, matched };
+};
 
 export const getSearchWords = (searchTerm: string): string[] => {
-  return searchTerm.toLowerCase().trim().split(/\s+/);
+  return searchTerm
+    .toLowerCase()
+    .split(/[\s,.-]+/)
+    .filter(word => word.length > 1);
 };
 
-export const getSearchableText = (tool: Tool): string => {
-  return [
-    tool.title,
-    tool.description,
-    tool.category,
-    ...(tool.tags || []),
-    tool.directUrl || ''
-  ].join(' ').toLowerCase();
-};
-
-// Enhanced basic search with intelligent features
 export const performBasicSearch = (
   tool: Tool, 
   searchTerm: string, 
   searchWords: string[], 
   expandedKeywords: string[]
-): { score: number; matched: boolean } => {
-  const lowerSearchTerm = searchTerm.toLowerCase().trim();
-  const searchableText = getSearchableText(tool);
+) => {
+  // Early exit if tool is excluded
+  if (EXCLUDED_TOOLS.includes(tool.title)) {
+    return { matched: false, score: 0 };
+  }
+
+  const lowerSearchTerm = searchTerm.toLowerCase();
+  const lowerTitle = tool.title.toLowerCase();
+  const lowerDescription = tool.description.toLowerCase();
+  const lowerCategory = tool.category?.toLowerCase() || "";
+  const lowerTags = (tool.tags || []).map(tag => tag.toLowerCase());
+  
   let score = 0;
   let matched = false;
 
-  // PRIORITY 1: Exact matches (highest priority)
-  if (tool.title.toLowerCase() === lowerSearchTerm) {
+  // HIGHEST PRIORITY: Exact title match (case insensitive)
+  if (lowerTitle === lowerSearchTerm) {
     matched = true;
-    score += 10000;
+    score += 15000;
+    console.log(`🎯 EXACT TITLE MATCH for "${tool.title}"`);
   }
-
-  // PRIORITY 2: Title starts with search term
-  if (tool.title.toLowerCase().startsWith(lowerSearchTerm)) {
+  
+  // VERY HIGH PRIORITY: Title starts with search term
+  else if (lowerTitle.startsWith(lowerSearchTerm)) {
+    matched = true;
+    score += 12000;
+    console.log(`🚀 TITLE STARTS WITH for "${tool.title}"`);
+  }
+  
+  // HIGH PRIORITY: Title contains search term
+  else if (lowerTitle.includes(lowerSearchTerm)) {
     matched = true;
     score += 8000;
+    console.log(`📍 TITLE CONTAINS for "${tool.title}"`);
   }
 
-  // PRIORITY 3: Title contains search term
-  if (tool.title.toLowerCase().includes(lowerSearchTerm)) {
+  // MEDIUM-HIGH PRIORITY: Description contains exact term
+  if (lowerDescription.includes(lowerSearchTerm)) {
     matched = true;
-    score += 6000;
+    score += 4000;
+    console.log(`📝 DESCRIPTION MATCH for "${tool.title}"`);
   }
 
-  // PRIORITY 4: Fuzzy matching for misspellings
-  const fuzzyResult = fuzzyMatchTool(tool, searchTerm);
-  if (fuzzyResult.matched) {
-    matched = true;
-    score += fuzzyResult.score;
-  }
-
-  // PRIORITY 5: Phonetic matching
-  const phoneticMatches = phoneticMatch(lowerSearchTerm);
-  for (const phoneticMatch of phoneticMatches) {
-    if (searchableText.includes(phoneticMatch)) {
-      matched = true;
-      score += 4000;
-    }
-  }
-
-  // PRIORITY 6: Enhanced contextual search
-  const contextualTerms = enhanceSearchWithContext(searchTerm);
-  for (const term of contextualTerms) {
-    if (searchableText.includes(term.toLowerCase())) {
-      matched = true;
-      score += 2000;
-    }
-  }
-
-  // PRIORITY 7: Category matching
-  if (tool.category?.toLowerCase().includes(lowerSearchTerm)) {
+  // MEDIUM PRIORITY: Category match
+  if (lowerCategory.includes(lowerSearchTerm)) {
     matched = true;
     score += 3000;
+    console.log(`📂 CATEGORY MATCH for "${tool.title}"`);
   }
 
-  // PRIORITY 8: Description contains search term
-  if (tool.description.toLowerCase().includes(lowerSearchTerm)) {
-    matched = true;
-    score += 2500;
-  }
-
-  // PRIORITY 9: Multi-word search - all words must be present
-  if (searchWords.length > 1) {
-    const allWordsPresent = searchWords.every(word => 
-      word.length > 0 && searchableText.includes(word)
-    );
-    
-    if (allWordsPresent) {
+  // MEDIUM PRIORITY: Tag matches
+  for (const tag of lowerTags) {
+    if (tag.includes(lowerSearchTerm)) {
       matched = true;
-      score += 2000 * searchWords.length;
+      score += 2000;
+      console.log(`🏷️ TAG MATCH for "${tool.title}" with tag: ${tag}`);
     }
   }
 
-  // PRIORITY 10: Partial word matching for flexibility
+  // LOWER PRIORITY: Individual word matches
   for (const word of searchWords) {
-    if (word.length >= 2) {
-      if (searchableText.includes(word)) {
-        matched = true;
-        score += 500;
-      }
-    }
-  }
-
-  // PRIORITY 11: Tag matching with fuzzy support
-  if (tool.tags) {
-    for (const tag of tool.tags) {
-      const tagLower = tag.toLowerCase();
-      if (tagLower.includes(lowerSearchTerm)) {
-        matched = true;
-        score += 1500;
-      }
-      
-      // Fuzzy match tags using imported function
-      for (const searchWord of searchWords) {
-        if (searchWord.length >= 3) {
-          const similarity = calculateSimilarity(searchWord, tagLower);
-          if (similarity >= 0.7) {
-            matched = true;
-            score += similarity * 1000;
-          }
-        }
-      }
-    }
-  }
-
-  // PRIORITY 12: URL matching (for direct tool searches)
-  if (tool.directUrl && tool.directUrl.toLowerCase().includes(lowerSearchTerm)) {
-    matched = true;
-    score += 800;
-  }
-
-  // PRIORITY 13: Expanded keywords from keyword expansion
-  for (const keyword of expandedKeywords) {
-    if (keyword.length > 0 && searchableText.includes(keyword)) {
+    if (word.length < 2) continue;
+    
+    if (lowerTitle.includes(word)) {
       matched = true;
-      
-      // Higher score for title matches
-      if (tool.title.toLowerCase().includes(keyword)) {
-        score += 1500;
-      }
-      // Medium score for description matches
-      else if (tool.description.toLowerCase().includes(keyword)) {
-        score += 800;
-      }
-      // Lower score for other matches
-      else {
-        score += 400;
+      score += 1000;
+    }
+    if (lowerDescription.includes(word)) {
+      matched = true;
+      score += 500;
+    }
+    if (lowerCategory.includes(word)) {
+      matched = true;
+      score += 300;
+    }
+    for (const tag of lowerTags) {
+      if (tag.includes(word)) {
+        matched = true;
+        score += 200;
       }
     }
   }
 
-  return { score, matched };
+  // EXPANDED KEYWORDS: Enhanced keyword matching
+  for (const keyword of expandedKeywords) {
+    const lowerKeyword = keyword.toLowerCase();
+    if (lowerTitle.includes(lowerKeyword)) {
+      matched = true;
+      score += 800;
+    }
+    if (lowerDescription.includes(lowerKeyword)) {
+      matched = true;
+      score += 400;
+    }
+  }
+
+  return { matched, score };
 };
 
 export const removeDuplicateTools = (tools: Tool[]): Tool[] => {
-  return tools.reduce((acc, tool) => {
-    const existingTool = acc.find(t => t.title.toLowerCase() === tool.title.toLowerCase());
-    if (!existingTool) {
-      acc.push(tool);
+  const seen = new Set<string>();
+  return tools.filter(tool => {
+    // Exclude specific tools
+    if (EXCLUDED_TOOLS.includes(tool.title)) {
+      return false;
     }
-    return acc;
-  }, [] as Tool[]);
+    
+    if (seen.has(tool.title)) {
+      return false;
+    }
+    seen.add(tool.title);
+    return true;
+  });
 };
 
-// Enhanced search with intelligent prediction
 export const performIntelligentSearch = (tools: Tool[], searchTerm: string): Tool[] => {
-  const predictions = predictUserIntent(searchTerm, tools);
-  const enhancedResults: Tool[] = [];
+  // Filter out excluded tools before any processing
+  const filteredTools = tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title));
   
-  // First, search with original term
-  const originalResults = tools.filter(tool => {
-    const searchableText = getSearchableText(tool);
-    return searchableText.includes(searchTerm.toLowerCase());
-  });
-  
-  // Then, search with predicted terms
-  for (const prediction of predictions) {
-    const predictedResults = tools.filter(tool => {
-      const searchableText = getSearchableText(tool);
-      return searchableText.includes(prediction.toLowerCase());
-    });
-    enhancedResults.push(...predictedResults);
-  }
-  
-  // Combine and deduplicate
-  const allResults = [...originalResults, ...enhancedResults];
-  return removeDuplicateTools(allResults);
+  // Continue with normal search logic on filtered tools
+  return filteredTools;
 };
