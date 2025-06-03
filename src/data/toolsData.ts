@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { getAllToolCategories } from './toolsCollection';
 import { extractPriorityTools } from './priorityTools';
@@ -142,14 +141,19 @@ let toolCountAnalysis: any = null;
 export const getToolCountAnalysis = () => {
   if (!toolCountAnalysis) {
     // Import getToolCount only when needed to avoid circular dependency
-    import('@/utils/toolCounter').then(({ getToolCount }) => {
+    import('@/utils/toolCounter').then(({ getToolCount, verifyAllToolsPreservation }) => {
       toolCountAnalysis = getToolCount();
+      
+      // Run comprehensive preservation verification
+      console.log(`\n🔍 RUNNING COMPREHENSIVE TOOL PRESERVATION VERIFICATION...`);
+      const preservationReport = verifyAllToolsPreservation();
       
       // Debug information with enhanced logging using accurate count
       console.log(`🎉 MILESTONE ACHIEVED! Total tools loaded: ${filteredTools.length}`);
       console.log(`📊 Categories found: ${Object.keys(getCategoriesWithCounts(filteredTools)).length}`);
       console.log(`🎯 Accurate count for website: ${filteredTools.length} tools`);
       console.log(`📈 Marketing display: ${Math.round(filteredTools.length / 100) * 100}+ tools`);
+      console.log(`🎯 Preservation Score: ${preservationReport.integrityScore.toFixed(1)}/100`);
 
       const categoryBreakdown = getCategoriesWithCounts(filteredTools);
       console.log('📋 Category breakdown:', categoryBreakdown);
@@ -173,7 +177,8 @@ export const getToolCountAnalysis = () => {
         console.error(`❌ STILL HAVE ${finalFinancialCalcCheck.length} instances of Financial Calculator Pro!`);
       }
 
-      // Summary for Ken with accurate numbers
+      // Summary for Ken with accurate numbers and preservation status
+      const criticalToolsMissing = preservationReport.criticalTools.filter(t => t.status === 'missing').length;
       console.log(`
 🚀 AI WEB TOOLS DIRECTORY STATUS REPORT 🚀
 ================================================
@@ -181,9 +186,16 @@ export const getToolCountAnalysis = () => {
 ✅ Marketing Display: ${Math.round(filteredTools.length / 100) * 100}+ AI Tools
 ✅ Categories Available: ${Object.keys(categoryBreakdown).length}
 ✅ Quality Assurance: All tools categorized and deduplicated
+🎯 Preservation Score: ${preservationReport.integrityScore.toFixed(1)}/100
+🔍 Critical AI Web Tools GPTs: ${preservationReport.criticalTools.filter(t => t.status === 'found').length}/${preservationReport.criticalTools.length} preserved
+${criticalToolsMissing > 0 ? `❌ Missing Critical Tools: ${criticalToolsMissing}` : '✅ All Critical Tools Preserved'}
 ✅ Coverage: Advanced AI, Research, Productivity, Security, Finance, Healthcare, Education, Legal, and more!
 
-This comprehensive directory now covers ALL major AI domains and provides users with an unmatched resource for AI tool discovery! 🌟
+${preservationReport.integrityScore >= 95 ? 
+'🎉 EXCELLENT: Tool preservation is working perfectly!' : 
+preservationReport.integrityScore >= 85 ? 
+'⚠️ GOOD: Minor preservation issues detected' : 
+'🚨 CRITICAL: Major preservation issues require attention!'}
 `);
     }).catch(error => {
       console.error('Error loading tool count analysis:', error);

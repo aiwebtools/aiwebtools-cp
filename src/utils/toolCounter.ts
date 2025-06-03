@@ -5,6 +5,7 @@ import { trackToolChanges } from '@/utils/toolChangeTracker';
 import { runIntegrityCheck } from '@/utils/toolIntegrityChecker';
 import { getMainCategoriesWithCounts } from '@/utils/categoryUtils/toolFiltering';
 import { allTools } from '@/data/toolsData';
+import { runFullToolVerification, runQuickToolVerification } from '@/utils/toolPreservationVerifier';
 
 export const getToolCount = () => {
   // Track changes before counting
@@ -21,63 +22,66 @@ export const getToolCount = () => {
   console.log(`📊 After ultra conservative deduplication: ${deduplicatedTools.length}`);
   console.log(`📊 Tools removed by deduplication: ${allToolsFromCollection.length - deduplicatedTools.length}`);
   
-  // Verify our newly added tools are preserved
-  const teamAITool = deduplicatedTools.find(tool => tool.title.includes('TeamAI'));
-  const orchardTool = deduplicatedTools.find(tool => tool.title.includes('Orchard'));
-  const bitAITool = deduplicatedTools.find(tool => tool.title.includes('Bit.ai'));
-  
-  console.log(`✅ NEWLY ADDED TOOLS PRESERVATION CHECK:`);
-  console.log(`TeamAI found: ${!!teamAITool} ${teamAITool ? `(${teamAITool.category})` : ''}`);
-  console.log(`Orchard.ink found: ${!!orchardTool} ${orchardTool ? `(${orchardTool.category})` : ''}`);
-  console.log(`Bit.ai found: ${!!bitAITool} ${bitAITool ? `(${bitAITool.category})` : ''}`);
-  
-  // Check category distribution
-  const categoryBreakdown: Record<string, number> = {};
-  deduplicatedTools.forEach(tool => {
-    const category = tool.category || 'Uncategorized';
-    categoryBreakdown[category] = (categoryBreakdown[category] || 0) + 1;
-  });
+  // Run comprehensive tool preservation verification
+  console.log(`\n🔍 RUNNING COMPREHENSIVE TOOL PRESERVATION VERIFICATION...`);
+  const preservationReport = runFullToolVerification();
   
   // Get main category counts using the EXACT same logic as the website
   const mainCategoryCounts = getMainCategoriesWithCounts(allTools);
   
   console.log(`🎉 TOOL COUNT STATUS REPORT 🎉`);
   console.log(`📊 EXACT Tool Count: ${deduplicatedTools.length}`);
-  console.log(`📊 Should be 1100+: ${deduplicatedTools.length >= 1100 ? '✅ YES' : '❌ NO'}`);
-  console.log('📋 Complete Category Breakdown:', categoryBreakdown);
-  console.log('🎯 Main Category Counts (matching website display):', mainCategoryCounts);
+  console.log(`📊 allTools count: ${allTools.length}`);
+  console.log(`📊 Should be 1100+: ${allTools.length >= 1100 ? '✅ YES' : '❌ NO'}`);
+  console.log(`🎯 Preservation Score: ${preservationReport.integrityScore.toFixed(1)}/100`);
   
-  // Check consistency between collection count and allTools count
-  const allToolsCount = allTools.length;
+  // Check consistency between different counts
   console.log(`🔍 CONSISTENCY CHECK:`);
   console.log(`   Collection tools (deduplicated): ${deduplicatedTools.length}`);
-  console.log(`   allTools count: ${allToolsCount}`);
-  console.log(`   Match: ${deduplicatedTools.length === allToolsCount ? '✅' : '❌'}`);
+  console.log(`   allTools count: ${allTools.length}`);
+  console.log(`   Preservation report final tools: ${preservationReport.totalToolsInAllTools}`);
+  console.log(`   All counts match: ${deduplicatedTools.length === allTools.length && allTools.length === preservationReport.totalToolsInAllTools ? '✅' : '❌'}`);
   
-  if (deduplicatedTools.length !== allToolsCount) {
-    console.warn(`⚠️ MISMATCH DETECTED! Collection has ${deduplicatedTools.length} but allTools has ${allToolsCount}`);
-    console.warn(`This explains the tool count discrepancy!`);
+  if (allTools.length !== preservationReport.totalToolsInAllTools) {
+    console.warn(`⚠️ MISMATCH DETECTED! allTools has ${allTools.length} but preservation report shows ${preservationReport.totalToolsInAllTools}`);
+  }
+  
+  // Critical tool verification
+  const missingCriticalTools = preservationReport.criticalTools.filter(t => t.status === 'missing');
+  if (missingCriticalTools.length > 0) {
+    console.error(`🚨 CRITICAL: ${missingCriticalTools.length} critical AI Web Tools GPTs are missing!`);
+    missingCriticalTools.forEach(tool => {
+      console.error(`   ❌ Missing: "${tool.title}"`);
+    });
+  } else {
+    console.log(`✅ All critical AI Web Tools GPTs are preserved!`);
   }
   
   // If we're under 1100, something is wrong
-  if (deduplicatedTools.length < 1100) {
-    console.error(`🚨 CRITICAL: Tool count is ${deduplicatedTools.length} but should be 1100+!`);
+  if (allTools.length < 1100) {
+    console.error(`🚨 CRITICAL: Tool count is ${allTools.length} but should be 1100+!`);
     console.error(`🚨 Tools may have been lost during processing!`);
+    console.error(`🚨 Preservation score: ${preservationReport.integrityScore.toFixed(1)}/100`);
+  } else {
+    console.log(`🎉 SUCCESS: Tool count is ${allTools.length} which meets the 1100+ requirement!`);
   }
   
-  // Run integrity check after counting
+  // Run enhanced integrity check
   console.log('\n🔍 RUNNING ENHANCED INTEGRITY CHECK...');
   runIntegrityCheck();
   
   return {
-    exactTotal: deduplicatedTools.length,
-    marketingNumber: `${Math.round(deduplicatedTools.length / 100) * 100}+`,
-    totalTools: deduplicatedTools.length,
-    categoryBreakdown,
+    exactTotal: allTools.length, // Use allTools.length as the authoritative count
+    marketingNumber: `${Math.round(allTools.length / 100) * 100}+`,
+    totalTools: allTools.length,
+    categoryBreakdown: preservationReport.categoryDistribution,
     mainCategoryCounts,
-    categoriesCount: Object.keys(categoryBreakdown).length,
+    categoriesCount: Object.keys(preservationReport.categoryDistribution).length,
     rawToolsCount: allToolsFromCollection.length,
-    removedByDeduplication: allToolsFromCollection.length - deduplicatedTools.length
+    removedByDeduplication: allToolsFromCollection.length - deduplicatedTools.length,
+    preservationScore: preservationReport.integrityScore,
+    criticalToolsStatus: preservationReport.criticalTools,
+    missingTools: preservationReport.missingTools.length
   };
 };
 
@@ -101,4 +105,14 @@ export const trackToolAddition = (operation: string, additionFn: () => void) => 
   
   trackToolChanges(`after_${operation}`);
   console.log(`✅ TOOL ADDITION TRACKING COMPLETE: ${operation}`);
+  
+  // Run quick verification after addition
+  console.log(`🔍 Running post-addition verification...`);
+  runQuickToolVerification();
+};
+
+// Export comprehensive verification function
+export const verifyAllToolsPreservation = () => {
+  console.log(`🔍 COMPREHENSIVE TOOL PRESERVATION CHECK INITIATED...`);
+  return runFullToolVerification();
 };
