@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Heart,
@@ -22,7 +23,8 @@ import {
   Infinity,
   Feather,
   Flower,
-  Bird
+  Bird,
+  MessageCircle
 } from "lucide-react";
 
 export const personalDevelopmentGPTs: Tool[] = [
@@ -37,6 +39,18 @@ export const personalDevelopmentGPTs: Tool[] = [
     category: "Personal Development & Self-Discovery",
     rating: 4.7,
     totalVotes: 2890
+  },
+  {
+    icon: MessageCircle,
+    title: "Honest Advice GPT",
+    description: "Get straightforward, honest advice without sugar-coating. This AI provides direct, practical guidance on personal matters, relationships, career decisions, and life challenges. Perfect for those who want clear, unfiltered perspectives to help them make better choices.",
+    emoji: "💬",
+    color: "from-blue-500 to-teal-500",
+    directUrl: "https://chat.openai.com/g/g-8YSiwFFr8",
+    tags: ["honest advice", "personal guidance", "life coaching", "relationship advice", "career guidance", "decision making", "straightforward", "practical advice", "personal development", "life decisions"],
+    category: "Personal Development & Self-Discovery",
+    rating: 4.8,
+    totalVotes: 2100
   },
   {
     icon: Bird,

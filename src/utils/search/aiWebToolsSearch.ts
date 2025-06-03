@@ -66,7 +66,8 @@ export const searchAIWebToolsGPTs = (tools: Tool[], searchTerm: string): Tool[] 
       { search: 'video', matches: ['movie', 'scene', 'sora'] },
       { search: 'writing', matches: ['book', 'script', 'content'] },
       { search: 'medical', matches: ['doctor', 'health', 'wellness', 'dr', 'gpt'] },
-      { search: 'health', matches: ['medical', 'doctor', 'wellness', 'mental', 'gpt'] }
+      { search: 'health', matches: ['medical', 'doctor', 'wellness', 'mental', 'gpt'] },
+      { search: 'personal', matches: ['honest advice', 'life coach', 'personal development', 'self-discovery', 'guidance'] }
     ];
     
     for (const fuzzy of fuzzyMatches) {
@@ -90,6 +91,28 @@ export const scoreAIWebToolsGPT = (tool: Tool, searchTerm: string): number => {
   const toolText = `${tool.title} ${tool.description}`.toLowerCase();
   const titleWords = tool.title.toLowerCase().split(' ');
   let score = 0;
+  
+  // PRIORITY BOOST FOR "PERSONAL" SEARCHES - Custom GPTs first
+  if (lowerSearchTerm.includes('personal')) {
+    // Boost AI Web Tools custom GPTs significantly for "personal" searches
+    if (tool.directUrl?.includes('lovable.app') || tool.directUrl?.includes('aiwebtools')) {
+      score += 2000; // Massive boost for custom GPTs
+    }
+    
+    // Specific boosts for personal development tools
+    if (tool.title.toLowerCase().includes('honest advice gpt')) {
+      score += 1500; // High priority for Honest Advice GPT
+    }
+    if (tool.title.toLowerCase().includes('personal life coach gpt')) {
+      score += 1400; // High priority for Personal Life Coach GPT
+    }
+    if (toolText.includes('personal development') || toolText.includes('self-discovery')) {
+      score += 1200;
+    }
+    if (toolText.includes('guidance') || toolText.includes('advice')) {
+      score += 1100;
+    }
+  }
   
   // LEARNING/EDUCATIONAL TOOLS PRIORITY
   if (lowerSearchTerm.includes('learn')) {
