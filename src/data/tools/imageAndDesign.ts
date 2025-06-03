@@ -91,7 +91,7 @@ export const imageAndDesign: Tool[] = [
     emoji: "😂",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://mememachinegpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=ysnle9uG-C0",
+    imageUrl: "https://ideogram.ai/assets/image/lossless/response/h2Lp-rLMScaWK6A-mrFZQA",
     tags: ["meme generation", "social media", "AI", "content creation"],
     category: "Image & Design",
     rating: 4.3,
