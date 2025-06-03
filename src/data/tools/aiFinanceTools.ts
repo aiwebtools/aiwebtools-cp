@@ -1,5 +1,4 @@
 
-
 import { Tool } from "@/types/tools";
 import { 
   DollarSign, TrendingUp, BarChart3, Calculator, PieChart,
@@ -68,18 +67,6 @@ export const aiFinanceTools: Tool[] = [
     totalVotes: 3421
   },
   {
-    icon: CreditCard,
-    title: "Credit Karma",
-    description: "AI-powered credit monitoring and financial health platform with personalized recommendations.",
-    emoji: "💳",
-    color: "from-blue-500 to-cyan-600",
-    directUrl: "https://www.creditkarma.com/?via=aiwebtools",
-    tags: ["credit monitoring", "financial health", "credit score", "personal finance"],
-    category: "Professional Services",
-    rating: 4.1,
-    totalVotes: 2876
-  },
-  {
     icon: Wallet,
     title: "Mint (Intuit)",
     description: "AI-powered personal finance app that categorizes transactions, tracks spending, and provides budget recommendations.",
@@ -92,4 +79,3 @@ export const aiFinanceTools: Tool[] = [
     totalVotes: 1432
   }
 ];
-
