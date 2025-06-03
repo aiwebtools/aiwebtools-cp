@@ -109,14 +109,12 @@ const typoCorrection: Record<string, string> = {
   "programing": "programming",
   "programmin": "programming",
   "progaming": "programming",
-  "programing": "programming",
   "programimg": "programming",
   
   "goverment": "government",
   "govenment": "government",
   "govermnent": "government",
   "governmnet": "government",
-  "goverment": "government",
   
   "acitivism": "activism",
   "activisim": "activism",
