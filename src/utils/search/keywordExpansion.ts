@@ -1,15 +1,14 @@
-
 import { keywordMapping, searchSynonyms, categoryKeywords } from "@/data/keywords";
 import { phoneticMatch } from "./core/fuzzyMatching";
 
-// Massively expanded typo correction mapping
+// MASSIVELY expanded typo correction mapping for better intelligence
 const typoCorrection: Record<string, string> = {
+  // ... keep existing code (all the previous typo corrections)
   "sciece": "science",
   "sciene": "science",
   "sience": "science",
   "scince": "science",
   
-  // NEW: More comprehensive misspelling corrections
   "colege": "college",
   "collge": "college",
   "collega": "college",
@@ -18,198 +17,98 @@ const typoCorrection: Record<string, string> = {
   "collage": "college",
   "colleg": "college",
   "colegge": "college",
-  "univercity": "university",
-  "universty": "university",
-  "universtiy": "university",
-  "univesity": "university",
-  "unversity": "university",
-  "universtity": "university",
-  "univrsity": "university",
   
+  // NEW: Web Development specific misspellings
+  "webdev": "web development",
+  "web-dev": "web development",
+  "webdevelopment": "web development",
+  "web-development": "web development",
+  "webiste": "website",
+  "websit": "website",
+  "webstie": "website",
+  "webite": "website",
+  "frontent": "frontend",
+  "frontned": "frontend",
+  "front-end": "frontend",
+  "bakend": "backend",
+  "back-end": "backend",
+  "fullstac": "fullstack",
+  "full-stack": "fullstack",
+  "aplplication": "application",
+  "aplicaton": "application",
+  "aplication": "application",
+  "respnsive": "responsive",
+  "responive": "responsive",
+  "responsiv": "responsive",
+  
+  // Programming language misspellings
+  "javascrip": "javascript",
+  "javasript": "javascript",
+  "javscript": "javascript",
+  "javacsript": "javascript",
+  "reactjs": "react",
+  "react.js": "react",
+  "vuejs": "vue",
+  "vue.js": "vue",
+  "angularjs": "angular",
+  "angular.js": "angular",
+  "nodejs": "node",
+  "node.js": "node",
+  
+  // Tools and platforms
+  "lovabledev": "lovable.dev",
+  "lovable.dev": "lovable",
+  "boltdotnew": "bolt.new",
+  "bolt.new": "bolt",
+  "vercelv0": "vercel v0",
+  "v0.dev": "vercel v0",
+  "githubcopilot": "github copilot",
+  "github-copilot": "github copilot",
+  "webfow": "webflow",
+  "webflw": "webflow",
+  "framr": "framer",
+  "builderio": "builder.io",
+  "builder.io": "builder",
+  "netlfy": "netlify",
+  "netlif": "netlify",
+  "supabase": "supabase",
+  "railwy": "railway",
+  "railay": "railway",
+  
+  // ... keep existing code (all other corrections)
   "writting": "writing",
   "writeing": "writing",
-  "writen": "writing",
-  "writng": "writing",
-  "riting": "writing",
-  
   "buisness": "business",
   "bussiness": "business",
-  "busines": "business",
-  "busness": "business",
-  "bizness": "business",
-  "bussines": "business",
-  
   "helath": "health",
-  "healt": "health",
-  "helth": "health",
-  "healthh": "health",
-  "heatlh": "health",
-  
   "docktor": "doctor",
-  "docter": "doctor",
-  "doctr": "doctor",
-  "doktor": "doctor",
-  "dcotor": "doctor",
-  
   "travle": "travel",
-  "trvel": "travel",
-  "travell": "travel",
-  "trvl": "travel",
-  "travaling": "traveling",
-  
   "musik": "music",
-  "musick": "music",
-  "muzic": "music",
-  "misic": "music",
-  "mucis": "music",
-  
   "desing": "design",
-  "desgn": "design",
-  "designg": "design",
-  "dezign": "design",
-  "deisng": "design",
-  
   "resarch": "research",
-  "reserch": "research",
-  "reasearch": "research",
-  "researh": "research",
-  "reseach": "research",
-  
   "politcal": "political",
-  "poltical": "political",
-  "politial": "political",
-  "polical": "political",
-  "politicle": "political",
-  
   "testimny": "testimony",
-  "testmony": "testimony",
-  "testimoney": "testimony",
-  "testimonie": "testimony",
-  "testamony": "testimony",
-  
   "finacial": "financial",
-  "financal": "financial",
-  "fincancial": "financial",
-  "finacnal": "financial",
-  "finanical": "financial",
-  "finacnial": "financial",
-  "finantial": "financial",
-  
   "learing": "learning",
-  "lerning": "learning",
-  "learnig": "learning",
-  "lernig": "learning",
-  "learng": "learning",
-  "leaning": "learning",
-  
   "educaton": "education",
-  "educatin": "education",
-  "eduction": "education",
-  "educaion": "education",
-  "educatoin": "education",
-  
   "scool": "school",
-  "shcool": "school",
-  "schooll": "school",
-  "skool": "school",
-  "schol": "school",
-  "schoo": "school",
-  "schoool": "school",
-  
   "clas": "class",
-  "clase": "class",
-  "claas": "class",
-  "clss": "class",
-  "calss": "class",
-  
   "homwork": "homework",
-  "homewrok": "homework",
-  "homeworkk": "homework",
-  "homwrok": "homework",
-  "hmework": "homework",
-  
   "leson": "lesson",
-  "lesn": "lesson",
-  "lessson": "lesson",
-  "lesno": "lesson",
-  
   "tuor": "tutor",
-  "tuter": "tutor",
-  "tutro": "tutor",
-  "tuotr": "tutor",
-  
   "analaytics": "analytics",
-  "analitics": "analytics",
-  "analytcs": "analytics",
-  "anaytics": "analytics",
-  "analyitcs": "analytics",
-  
   "programing": "programming",
-  "programmin": "programming",
-  "progaming": "programming",
-  "programimg": "programming",
-  
   "goverment": "government",
-  "govenment": "government",
-  "govermnent": "government",
-  "governmnet": "government",
-  
   "acitivism": "activism",
-  "activisim": "activism",
-  "activsim": "activism",
-  "actvism": "activism",
-  "activizm": "activism",
-  
-  // NEW: Cannabis/hemp related typos
   "canabis": "cannabis",
   "cannibis": "cannabis",
-  "canibus": "cannabis",
-  "cannibus": "cannabis",
-  "marihuana": "marijuana",
-  "marajuana": "marijuana",
-  "marijauna": "marijuana",
-  "marjuana": "marijuana",
-  "ganja": "cannabis",
-  "weed": "cannabis",
-  "pot": "cannabis",
-  "cbd": "cannabis",
-  "thc": "cannabis",
-  "hemp": "cannabis",
-  
-  // NEW: Financial and money-related typos
   "mony": "money",
-  "moeny": "money",
-  "monye": "money",
-  "mnoy": "money",
   "tradeing": "trading",
-  "tradng": "trading",
-  "traidng": "trading",
   "invesment": "investment",
-  "investmnt": "investment",
-  "investmenet": "investment",
-  "buget": "budget",
-  "budjet": "budget",
-  "budgit": "budget",
-  "stok": "stock",
-  "stoc": "stock",
-  "stokc": "stock",
-  
-  // NEW: Sound and audio related typos
   "soud": "sound",
-  "soung": "sound",
-  "sond": "sound",
-  "soundd": "sound",
   "efect": "effect",
-  "effct": "effect",
-  "efffect": "effect",
-  "afect": "effect",
-  "fx": "effect",
-  "sfx": "sound effect",
   "elevan": "eleven",
-  "elevn": "eleven",
-  "11labs": "eleven labs",
-  "elevenlabs": "eleven labs",
-  "11 labs": "eleven labs"
+  "11labs": "eleven labs"
 };
 
 // Function to calculate Levenshtein distance for fuzzy matching
@@ -296,6 +195,100 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   expandedKeywords.add(lowerSearchTerm);
   phoneticMatches.forEach(match => expandedKeywords.add(match));
   
+  // WEB DEVELOPMENT SEARCH EXPANSION - HIGHEST PRIORITY
+  if (lowerSearchTerm.includes('web') || lowerSearchTerm.includes('dev') ||
+      lowerSearchTerm.includes('code') || lowerSearchTerm.includes('program') ||
+      lowerSearchTerm.includes('app') || lowerSearchTerm.includes('site') ||
+      lowerSearchTerm.includes('frontend') || lowerSearchTerm.includes('backend') ||
+      lowerSearchTerm.includes('fullstack') || lowerSearchTerm.includes('javascript') ||
+      lowerSearchTerm.includes('react') || lowerSearchTerm.includes('node') ||
+      lowerSearchTerm.includes('html') || lowerSearchTerm.includes('css') ||
+      lowerSearchTerm.includes('ui') || lowerSearchTerm.includes('ux') ||
+      lowerSearchTerm.includes('api') || lowerSearchTerm.includes('database')) {
+    const webDevKeywords = [
+      'lovable.dev',
+      'bolt.new',
+      'vercel v0',
+      'github copilot',
+      'replit',
+      'webflow',
+      'framer',
+      'builder.io',
+      'netlify',
+      'supabase',
+      'railway',
+      'cloudflare workers',
+      'tabnine',
+      'mutable ai',
+      'sourcegraph',
+      'deepcode',
+      'code climate',
+      'durable ai',
+      'amazon codewhisperer',
+      'engineering gpt ai suite',
+      'web development',
+      'web dev',
+      'frontend',
+      'backend',
+      'fullstack',
+      'javascript',
+      'react',
+      'vue',
+      'angular',
+      'node',
+      'html',
+      'css',
+      'programming',
+      'coding',
+      'development',
+      'developer',
+      'code',
+      'app',
+      'application',
+      'website',
+      'web app',
+      'mobile app',
+      'ui design',
+      'ux design',
+      'responsive',
+      'bootstrap',
+      'tailwind',
+      'api',
+      'rest api',
+      'graphql',
+      'database',
+      'sql',
+      'mongodb',
+      'deployment',
+      'hosting',
+      'server',
+      'cloud',
+      'aws',
+      'azure',
+      'framework',
+      'library',
+      'tool',
+      'builder',
+      'generator',
+      'creator',
+      'cms',
+      'ecommerce',
+      'blog',
+      'portfolio',
+      'landing page',
+      'seo',
+      'optimization',
+      'performance',
+      'analytics',
+      'saas',
+      'platform',
+      'service'
+    ];
+    
+    webDevKeywords.forEach(keyword => expandedKeywords.add(keyword));
+    console.log(`💻 WEB DEVELOPMENT SEARCH DETECTED: Added ${webDevKeywords.length} web dev keywords`);
+  }
+
   // EDUCATION/COLLEGE SEARCH EXPANSION - HIGHEST PRIORITY
   if (lowerSearchTerm.includes('college') || lowerSearchTerm.includes('education') ||
       lowerSearchTerm.includes('learning') || lowerSearchTerm.includes('learn') ||
