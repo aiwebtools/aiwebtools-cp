@@ -39,7 +39,9 @@ const SearchInput = memo(({
           transition: 'none',
           willChange: 'auto',
           transform: 'translateZ(0)', // Force hardware acceleration
-          backfaceVisibility: 'hidden' // Prevent flickering
+          backfaceVisibility: 'hidden', // Prevent flickering
+          WebkitTransform: 'translate3d(0,0,0)', // iOS optimization
+          WebkitBackfaceVisibility: 'hidden'
         }}
       />
     </div>

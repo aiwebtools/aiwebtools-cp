@@ -14,10 +14,11 @@ export const useFeaturedToolsState = () => {
   const [displayedCount, setDisplayedCount] = useState<number>(60);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   
-  // Ultra-fast debounce for category page (25ms instead of 200ms)
-  const debouncedSearchTerm = useDebounce(searchTerm, 25);
+  // Ultra-fast debounce for category page (10ms instead of 25ms)
+  const debouncedSearchTerm = useDebounce(searchTerm, 10);
 
   const handleCategoryChange = useCallback((category: string | null) => {
+    console.log('🏷️ Category change requested:', category);
     setSelectedCategory(category);
     setSearchTerm("");
     setDisplayedCount(60);
@@ -36,6 +37,7 @@ export const useFeaturedToolsState = () => {
     let tools = allTools;
 
     if (selectedCategory) {
+      console.log('🔍 Filtering by category:', selectedCategory);
       const categoryTools = getToolsByCategory(allTools, selectedCategory);
       tools = createDeduplicatedToolsList(categoryTools, 0);
     } else if (debouncedSearchTerm) {
@@ -54,9 +56,10 @@ export const useFeaturedToolsState = () => {
           tool.category?.toLowerCase().includes(trimmedTerm.toLowerCase())
         );
       }
-      // For longer terms, use full search
+      // For longer terms, use full search with limit
       else {
-        tools = searchTools(allTools, debouncedSearchTerm);
+        const results = searchTools(allTools, debouncedSearchTerm);
+        tools = results.slice(0, 500); // Hard limit for performance
       }
     } else {
       tools = createFeaturedTools(allTools);

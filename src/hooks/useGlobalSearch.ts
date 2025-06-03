@@ -10,13 +10,13 @@ import { useSearchDebounce, useInstantSearch } from "@/hooks/useDebounce";
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [displayedCount, setDisplayedCount] = useState(20); // Reduced for faster initial render
+  const [displayedCount, setDisplayedCount] = useState(15); // Reduced for faster initial render
   const [isOpen, setIsOpen] = useState(false);
   const searchRef = useRef(null);
   const navigate = useNavigate();
 
-  // Ultra-fast debounce (50ms instead of 150ms)
-  const debouncedSearchTerm = useSearchDebounce(searchTerm, 50);
+  // Ultra-fast debounce (10ms instead of 50ms)
+  const debouncedSearchTerm = useSearchDebounce(searchTerm, 10);
   // Instant feedback for UI
   const instantSearchTerm = useInstantSearch(searchTerm);
 
@@ -31,9 +31,9 @@ export const useGlobalSearch = () => {
       if (trimmedTerm.length === 1) {
         const simpleResults = allTools.filter(tool => 
           tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
-        ).slice(0, 10); // Reduced count
+        ).slice(0, 8); // Reduced count
         setSearchResults(simpleResults);
-        setDisplayedCount(10);
+        setDisplayedCount(8);
         setIsOpen(true);
         return;
       }
@@ -43,21 +43,22 @@ export const useGlobalSearch = () => {
         const fastResults = allTools.filter(tool => 
           tool.title.toLowerCase().includes(trimmedTerm.toLowerCase()) ||
           tool.category?.toLowerCase().includes(trimmedTerm.toLowerCase())
-        ).slice(0, 15);
+        ).slice(0, 12);
         setSearchResults(fastResults);
-        setDisplayedCount(15);
+        setDisplayedCount(12);
         setIsOpen(true);
         return;
       }
       
+      // Optimized search with hard limit
       const results = searchTools(allTools, trimmedTerm);
-      setSearchResults(results);
-      setDisplayedCount(20);
+      setSearchResults(results.slice(0, 20)); // Hard limit for performance
+      setDisplayedCount(15);
       setIsOpen(true);
     } else {
       setSearchResults([]);
       setIsOpen(false);
-      setDisplayedCount(20);
+      setDisplayedCount(15);
     }
   }, [debouncedSearchTerm]);
 
@@ -93,14 +94,14 @@ export const useGlobalSearch = () => {
   const clearSearch = useCallback(() => {
     setSearchTerm("");
     setIsOpen(false);
-    setDisplayedCount(20);
+    setDisplayedCount(15);
   }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       setSearchTerm("");
-      setDisplayedCount(20);
+      setDisplayedCount(15);
     } else if (e.key === 'Enter' && searchTerm.trim()) {
       if (searchResults.length > 0) {
         const topResult = searchResults[0];
@@ -117,8 +118,8 @@ export const useGlobalSearch = () => {
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
-    if (scrollHeight - scrollTop <= clientHeight + 50 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 10, searchResults.length)); // Smaller increments
+    if (scrollHeight - scrollTop <= clientHeight + 30 && displayedCount < searchResults.length) {
+      setDisplayedCount(prev => Math.min(prev + 8, searchResults.length)); // Smaller increments
     }
   }, [displayedCount, searchResults.length]);
 

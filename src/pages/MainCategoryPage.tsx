@@ -24,9 +24,10 @@ const MainCategoryPage = () => {
   const [displayedCount, setDisplayedCount] = useState(48);
   const [filteredToolsByCategory, setFilteredToolsByCategory] = useState<Tool[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
 
-  // Ultra-fast debounce for category page (25ms instead of 150ms)
-  const debouncedSearchTerm = useDebounce(searchTerm, 25);
+  // Ultra-fast debounce for category page (10ms instead of 25ms)
+  const debouncedSearchTerm = useDebounce(searchTerm, 10);
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
@@ -35,30 +36,57 @@ const MainCategoryPage = () => {
     [decodedCategoryName]
   );
   
-  // Scroll to top immediately
+  // Scroll to top immediately and initialize
   useEffect(() => {
+    console.log('🏠 MainCategoryPage mounted for:', decodedCategoryName);
     window.scrollTo(0, 0);
+    setIsInitialized(true);
   }, [decodedCategoryName]);
   
+  // Handle invalid category - prevent request form opening
+  useEffect(() => {
+    if (isInitialized && !mainCategory && decodedCategoryName) {
+      console.log('❌ Invalid category detected:', decodedCategoryName);
+      console.log('🔄 Redirecting to homepage to prevent errors');
+      navigate('/', { replace: true });
+    }
+  }, [mainCategory, decodedCategoryName, navigate, isInitialized]);
+
+  if (!isInitialized) {
+    return (
+      <div className="min-h-screen bg-black relative overflow-x-hidden">
+        <AnimatedBackground />
+        <div className="relative z-10 cyber-grid">
+          <Header />
+          <main className="container mx-auto px-4 py-8">
+            <div className="text-center">
+              <div className="text-6xl mb-4">⏳</div>
+              <h1 className="text-2xl font-bold text-cyan-100">Loading...</h1>
+            </div>
+          </main>
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
   if (!mainCategory) {
-    useEffect(() => {
-      navigate('/');
-    }, [navigate]);
-    return null;
+    return null; // Will redirect in useEffect
   }
 
   // Cache category tools with better memoization
-  const categoryTools = useMemo(() => 
-    getToolsByMainCategory(allTools, decodedCategoryName), 
-    [decodedCategoryName]
-  );
+  const categoryTools = useMemo(() => {
+    const tools = getToolsByMainCategory(allTools, decodedCategoryName);
+    console.log(`📂 Loaded ${tools.length} tools for category: ${decodedCategoryName}`);
+    return tools;
+  }, [decodedCategoryName]);
   
   // Initialize filtered tools by category once
   useEffect(() => {
-    if (filteredToolsByCategory.length === 0 && categoryTools.length > 0) {
+    if (categoryTools.length > 0 && filteredToolsByCategory.length === 0) {
       setFilteredToolsByCategory(categoryTools);
     }
-  }, [categoryTools.length, filteredToolsByCategory.length]);
+  }, [categoryTools, filteredToolsByCategory.length]);
 
   // Use filtered tools from category filter, fallback to original category tools
   const toolsToShow = filteredToolsByCategory.length > 0 ? filteredToolsByCategory : categoryTools;
@@ -83,8 +111,9 @@ const MainCategoryPage = () => {
       );
     }
     
-    // For longer terms, use full search
-    return searchTools(toolsToShow, trimmedTerm);
+    // For longer terms, use full search with limit
+    const results = searchTools(toolsToShow, trimmedTerm);
+    return results.slice(0, 200); // Performance limit
   }, [toolsToShow, debouncedSearchTerm]);
 
   // Create endless tools list with better performance
@@ -115,11 +144,8 @@ const MainCategoryPage = () => {
           !endlessTools.some(existing => existing.title === tool.title)
         );
         
-        const cycles = Math.ceil(stillNeeded / otherTools.length) || 1;
-        for (let i = 0; i < cycles && endlessTools.length < displayedCount; i++) {
-          const toolsToAdd = otherTools.slice(0, stillNeeded - (endlessTools.length - baseFilteredTools.length - availableSimilar.length));
-          endlessTools = [...endlessTools, ...toolsToAdd];
-        }
+        const toolsToAdd = otherTools.slice(0, stillNeeded);
+        endlessTools = [...endlessTools, ...toolsToAdd];
       }
     }
     
@@ -145,7 +171,7 @@ const MainCategoryPage = () => {
     setTimeout(() => {
       setDisplayedCount(prev => prev + 48);
       setIsLoading(false);
-    }, 100);
+    }, 50);
   }, [isLoading]);
 
   const handleSearchChange = useCallback((value: string) => {

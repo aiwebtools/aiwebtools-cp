@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export function useDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
@@ -44,10 +44,10 @@ export function useSearchDebounce<T>(value: T, delay: number): T {
       return;
     }
 
-    // Use very short delay for ultra-fast responsiveness
+    // Use ultra-short delay for instant responsiveness - reduced from 50ms to 10ms
     timeoutRef.current = setTimeout(() => {
       setDebouncedValue(value);
-    }, delay);
+    }, Math.min(delay, 10));
 
     // Cleanup function
     return () => {
@@ -60,7 +60,7 @@ export function useSearchDebounce<T>(value: T, delay: number): T {
   return debouncedValue;
 }
 
-// Immediate response hook for typing feedback
+// Immediate response hook for typing feedback - no delay at all
 export function useInstantSearch<T>(value: T): T {
   return value; // No debouncing for instant visual feedback
 }
