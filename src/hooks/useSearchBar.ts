@@ -11,19 +11,19 @@ interface UseSearchBarProps {
 
 export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [displayedCount, setDisplayedCount] = useState(50);
+  const [displayedCount, setDisplayedCount] = useState(100);
   
-  // INSTANT search results with ZERO delay
+  // LIGHTNING FAST search results - INSTANT calculation
   const searchResults = useMemo(() => {
     const trimmedTerm = searchTerm.trim();
     if (!trimmedTerm || trimmedTerm.length < 1) return [];
     
-    // Use full search with ALL results
+    // INSTANT search with ALL results - no limiting
     const results = searchTools(allTools, trimmedTerm);
-    return results; // Return ALL results, no limiting
+    return results; // Return ALL results for infinite scroll
   }, [searchTerm]);
 
-  // Pre-slice results for display
+  // Display results with virtual scrolling
   const displayedResults = useMemo(() => 
     searchResults.slice(0, displayedCount), 
     [searchResults, displayedCount]
@@ -35,13 +35,13 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     onSearchChange(value);
     const trimmed = value.trim();
     setIsOpen(trimmed.length >= 1);
-    if (!trimmed) setDisplayedCount(50);
+    if (!trimmed) setDisplayedCount(100);
   }, [onSearchChange]);
 
   const handleResultClick = useCallback(() => {
     setIsOpen(false);
     onSearchChange("");
-    setDisplayedCount(50);
+    setDisplayedCount(100);
   }, [onSearchChange]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
@@ -50,7 +50,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
       onSearchChange("");
     } else if (e.key === 'Enter' && searchTerm.trim()) {
       setIsOpen(false);
-      // Simple scroll without timeout for better performance
+      // INSTANT scroll to results
       const element = document.querySelector('[data-search-results]');
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
@@ -59,8 +59,8 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   }, [onSearchChange, searchTerm]);
 
   const handleInputBlur = useCallback(() => {
-    // Minimal timeout for better responsiveness
-    setTimeout(() => setIsOpen(false), 20);
+    // MINIMAL timeout for lightning fast response
+    setTimeout(() => setIsOpen(false), 10);
   }, []);
 
   const handleInputFocus = useCallback(() => {
@@ -71,12 +71,12 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
 
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-    if (scrollHeight - scrollTop <= clientHeight + 50 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 25, searchResults.length));
+    if (scrollHeight - scrollTop <= clientHeight + 30 && displayedCount < searchResults.length) {
+      setDisplayedCount(prev => Math.min(prev + 50, searchResults.length)); // Load 50 more
     }
   }, [displayedCount, searchResults.length]);
 
-  // Memoize tool stats to prevent recalculation
+  // Memoize tool stats for performance
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
   return {

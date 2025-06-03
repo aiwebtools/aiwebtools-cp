@@ -9,29 +9,29 @@ import { getCurrentToolCount } from "@/utils/toolCounter";
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [displayedCount, setDisplayedCount] = useState(50); // Start with more results
+  const [displayedCount, setDisplayedCount] = useState(100); // Show more initially
   const [isOpen, setIsOpen] = useState(false);
   const searchRef = useRef(null);
   const navigate = useNavigate();
   
-  // Memoize tool stats
+  // Memoize tool stats for performance
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // INSTANT search - NO debouncing at all
+  // LIGHTNING FAST search - ZERO delays, INSTANT response
   useEffect(() => {
     const trimmedTerm = searchTerm.trim();
     if (trimmedTerm) {
-      // Full search with ALL results
+      // Immediate search with ALL results - no limiting
       const results = searchTools(allTools, trimmedTerm);
       setSearchResults(results);
-      setDisplayedCount(50); // Show first 50 immediately
+      setDisplayedCount(100); // Show first 100 immediately
       setIsOpen(true);
     } else {
       setSearchResults([]);
       setIsOpen(false);
-      setDisplayedCount(50);
+      setDisplayedCount(100);
     }
-  }, [searchTerm]); // Direct dependency for instant response
+  }, [searchTerm]); // INSTANT dependency for lightning speed
 
   // Optimized click outside handler
   useEffect(() => {
@@ -65,14 +65,14 @@ export const useGlobalSearch = () => {
   const clearSearch = useCallback(() => {
     setSearchTerm("");
     setIsOpen(false);
-    setDisplayedCount(50);
+    setDisplayedCount(100);
   }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       setSearchTerm("");
-      setDisplayedCount(50);
+      setDisplayedCount(100);
     } else if (e.key === 'Enter' && searchTerm.trim()) {
       if (searchResults.length > 0) {
         const topResult = searchResults[0];
@@ -89,8 +89,8 @@ export const useGlobalSearch = () => {
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
-    if (scrollHeight - scrollTop <= clientHeight + 30 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 25, searchResults.length));
+    if (scrollHeight - scrollTop <= clientHeight + 20 && displayedCount < searchResults.length) {
+      setDisplayedCount(prev => Math.min(prev + 50, searchResults.length)); // Load 50 more at a time
     }
   }, [displayedCount, searchResults.length]);
 
