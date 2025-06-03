@@ -7,7 +7,6 @@ import {
   Zap, 
   Search, 
   FileText, 
-  Clock, 
   Briefcase, 
   Target, 
   Bot,
@@ -120,18 +119,6 @@ export const utilityAndProductivityGPTs: Tool[] = [
     category: "Utility & Productivity",
     rating: 4.5,
     totalVotes: 4678
-  },
-  {
-    icon: Clock,
-    title: "Time Zone Converter",
-    description: "Converts times between different time zones accurately and efficiently.",
-    emoji: "⏰",
-    color: "from-green-500 to-teal-600",
-    directUrl: "https://chat.openai.com/g/g-v9RyP2qon-time-zone-converter",
-    tags: ["time zone conversion", "accurate time", "efficient conversion", "global time"],
-    category: "Utility & Productivity",
-    rating: 4.3,
-    totalVotes: 4123
   },
   {
     icon: Briefcase,
