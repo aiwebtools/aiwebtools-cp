@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Mic, 
@@ -53,18 +54,6 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Communication & Entertainment",
     rating: 4.9,
     totalVotes: 6789
-  },
-  {
-    icon: Bot,
-    title: "Manus Automonus Agent",
-    description: "Advanced autonomous AI agent capable of handling complex tasks and decision-making processes. Designed for enterprise-level automation and intelligent task management.",
-    emoji: "🤖",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://manus.ai/?via=aiwebtools",
-    tags: ["autonomous agent", "ai automation", "enterprise ai", "task management", "intelligent automation"],
-    category: "AI Agents & Automation",
-    rating: 5.0,
-    totalVotes: 2500
   },
   {
     icon: Mic,
