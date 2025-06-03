@@ -18,7 +18,8 @@ import {
   Compass,
   Building,
   Shirt,
-  Palette
+  Palette,
+  ShoppingCart
 } from "lucide-react";
 
 export const audioAndVoiceTools: Tool[] = [
@@ -267,5 +268,17 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Creative & Entertainment",
     rating: 4.8,
     totalVotes: 4567
+  },
+  {
+    icon: ShoppingCart,
+    title: "Shopping GPT",
+    description: "AI shopping assistant with tailored recommendations and personalized product suggestions. Get smart shopping advice, compare products, and find the best deals with intelligent recommendation technology.",
+    emoji: "🛒",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://shoppinggpt.lovable.app/?via=aiwebtools",
+    tags: ["shopping assistant", "ai shopping", "product recommendations", "tailored suggestions", "deal finder", "product comparison", "smart shopping", "personalized recommendations", "shopping advice", "retail ai", "shopping guide", "product discovery", "shopping optimization", "consumer assistant", "shopping intelligence"],
+    category: "E-commerce & Shopping",
+    rating: 4.5,
+    totalVotes: 2890
   }
 ];
