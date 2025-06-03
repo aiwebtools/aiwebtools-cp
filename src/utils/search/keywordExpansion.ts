@@ -216,6 +216,119 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   expandedKeywords.add(lowerSearchTerm);
   phoneticMatches.forEach(match => expandedKeywords.add(match));
   
+  // MONEY SEARCH EXPANSION - ABSOLUTE HIGHEST PRIORITY
+  if (lowerSearchTerm.includes('money') || lowerSearchTerm.includes('financial') ||
+      lowerSearchTerm.includes('finance') || lowerSearchTerm.includes('trading') ||
+      lowerSearchTerm.includes('credit') || lowerSearchTerm.includes('investment') ||
+      lowerSearchTerm.includes('wealth') || lowerSearchTerm.includes('banking') ||
+      lowerSearchTerm.includes('loan') || lowerSearchTerm.includes('budget')) {
+    const moneyKeywords = [
+      'trader gpt',
+      'taxes gpt', 
+      'material valuation gpt',
+      'predictive credit score checker gpt',
+      'insurance claims gpt',
+      'business plan generator gpt',
+      'startup validator gpt',
+      'microsaas gpt',
+      'property data finder gpt',
+      'antique and collectible appraisal gpt',
+      'artwork & vintage appraisal gpt',
+      'financial',
+      'finance',
+      'money',
+      'trading',
+      'investment',
+      'investing',
+      'stock market',
+      'cryptocurrency',
+      'crypto',
+      'bitcoin',
+      'wealth management',
+      'banking',
+      'credit score',
+      'credit',
+      'loan',
+      'mortgage',
+      'insurance',
+      'taxes',
+      'tax planning',
+      'budget',
+      'budgeting',
+      'savings',
+      'retirement',
+      'portfolio',
+      'market analysis',
+      'economic',
+      'fiscal',
+      'monetary',
+      'currency',
+      'exchange',
+      'business plan',
+      'startup',
+      'entrepreneurship',
+      'revenue',
+      'profit',
+      'income',
+      'expenses',
+      'accounting',
+      'fintech',
+      'financial planning'
+    ];
+    
+    moneyKeywords.forEach(keyword => expandedKeywords.add(keyword));
+    console.log(`💰 MONEY/FINANCIAL SEARCH DETECTED: Added ${moneyKeywords.length} financial keywords`);
+  }
+
+  // VALUE/APPRAISAL SEARCH EXPANSION - ABSOLUTE HIGHEST PRIORITY
+  if (lowerSearchTerm.includes('value') || lowerSearchTerm.includes('valuation') ||
+      lowerSearchTerm.includes('appraisal') || lowerSearchTerm.includes('worth') ||
+      lowerSearchTerm.includes('estimate') || lowerSearchTerm.includes('price') ||
+      lowerSearchTerm.includes('cost') || lowerSearchTerm.includes('assess')) {
+    const valueKeywords = [
+      'material valuation gpt',
+      'antique and collectible appraisal gpt',
+      'artwork & vintage appraisal gpt',
+      'property data finder gpt',
+      'predictive credit score checker gpt',
+      'valuation',
+      'appraisal',
+      'assessment',
+      'evaluation',
+      'worth',
+      'value estimation',
+      'price assessment',
+      'market value',
+      'fair value',
+      'asset valuation',
+      'property valuation',
+      'real estate appraisal',
+      'collectibles appraisal',
+      'antique valuation',
+      'artwork appraisal',
+      'vintage items',
+      'precious metals',
+      'gems',
+      'jewelry appraisal',
+      'coin valuation',
+      'stamp appraisal',
+      'art evaluation',
+      'rare items',
+      'collectibles',
+      'memorabilia',
+      'investment grade',
+      'market price',
+      'auction value',
+      'retail value',
+      'wholesale value',
+      'insurance value',
+      'replacement value'
+    ];
+    
+    valueKeywords.forEach(keyword => expandedKeywords.add(keyword));
+    console.log(`💎 VALUE/APPRAISAL SEARCH DETECTED: Added ${valueKeywords.length} valuation keywords`);
+  }
+
   // HISTORY SEARCH EXPANSION - HIGHEST PRIORITY
   if (lowerSearchTerm.includes('history') || lowerSearchTerm.includes('historical') ||
       lowerSearchTerm.includes('past') || lowerSearchTerm.includes('ancient') ||
