@@ -11,6 +11,7 @@ import ToolsGrid from "@/components/tools/ToolsGrid";
 import { Button } from "@/components/ui/button";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { allTools } from "@/data/toolsData";
+import FeaturedToolsSection from "@/components/tools/FeaturedToolsSection";
 
 const Index = () => {
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
@@ -94,7 +95,10 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Category Selection moved here - below the video */}
+        {/* Featured Tools Section - moved directly below video */}
+        <FeaturedToolsSection />
+
+        {/* Category Selection moved here - below the featured tools */}
         <div id="categories-section">
           <CategoryPageSelection />
         </div>
