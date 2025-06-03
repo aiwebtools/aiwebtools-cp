@@ -1,11 +1,13 @@
 
 export const specialtyKeywords: Record<string, string[]> = {
-  // 3D and Visualization
-  "3d": ["3D modeling", "3D design", "three dimensional", "3D visualization", "3D creation", "3D animation", "3D rendering"],
-  "mesh": ["3D mesh", "3D models", "geometry", "polygons", "vertices"],
-  "visualization": ["data visualization", "3D visualization", "visual analytics", "charts", "graphs"],
-  "nerf": ["neural radiance fields", "NeRF", "3D reconstruction", "view synthesis"],
-  "photogrammetry": ["3D scanning", "photo reconstruction", "3D capture"],
+  // 3D and Visualization - ENHANCED
+  "3d": ["3D modeling", "3D design", "three dimensional", "3D visualization", "3D creation", "3D animation", "3D rendering", "mesh generation", "3D printing", "3D tools", "modeling", "meshy ai", "spline", "blender", "tripo", "sloyd", "photogrammetry", "3D scanning", "neural radiance fields", "nerf", "point cloud", "voxel", "polygons", "vertices", "wireframe", "texture mapping", "material design", "3D assets", "game assets"],
+  "mesh": ["3D mesh", "3D models", "geometry", "polygons", "vertices", "meshy ai", "mesh generation", "procedural generation"],
+  "visualization": ["data visualization", "3D visualization", "visual analytics", "charts", "graphs", "rendering", "visual design"],
+  "nerf": ["neural radiance fields", "NeRF", "3D reconstruction", "view synthesis", "photogrammetry"],
+  "photogrammetry": ["3D scanning", "photo reconstruction", "3D capture", "point cloud", "mesh generation"],
+  "modeling": ["3D modeling", "mesh modeling", "polygonal modeling", "procedural modeling", "parametric modeling"],
+  "rendering": ["3D rendering", "ray tracing", "rasterization", "real-time rendering", "photorealistic rendering"],
   
   // Data Analytics
   "analytics": ["data analytics", "business intelligence", "data analysis", "reporting", "dashboards"],
@@ -63,6 +65,6 @@ export const specialtyKeywords: Record<string, string[]> = {
   // Specialized Tools
   "figma": ["UI design", "interface design", "design collaboration"],
   "adobe": ["creative suite", "design software", "multimedia"],
-  "blender": ["3D modeling", "animation", "open source 3D"],
+  "blender": ["3D modeling", "animation", "open source 3D", "3D creation", "mesh modeling"],
   "unity": ["game engine", "3D development", "interactive content"]
 };
