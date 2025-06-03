@@ -112,8 +112,8 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Category Selection moved here - below the featured tools and AI TOOLS COLLECTION */}
-        <div id="categories-section">
+        {/* Category Selection moved here - below the featured tools and AI TOOLS COLLECTION with transparent background */}
+        <div id="categories-section" className="bg-transparent relative">
           <CategoryPageSelection />
         </div>
 
