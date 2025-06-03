@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Image as ImageIcon } from "lucide-react";
 import { Tool } from "@/types/tools";
 
@@ -12,52 +12,78 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
-  const getOptimizedEmbedUrl = (url: string) => {
-    console.log('Processing video URL:', url);
-    
+  const getOptimizedEmbedUrl = useCallback((url: string) => {
     // Handle youtu.be short URLs
     if (url.includes('youtu.be/')) {
       const videoId = url.split('youtu.be/')[1].split('?')[0];
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&volume=65&autohide=1&controls=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
-      console.log('YouTube short embed URL:', embedUrl);
-      return embedUrl;
+      return `https://www.youtube.com/embed/${videoId}?modestbranding=1&rel=0&controls=1&fs=1&iv_load_policy=3&cc_load_policy=0`;
     }
     
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1].split('&')[0];
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&volume=65&autohide=1&controls=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
-      console.log('YouTube embed URL:', embedUrl);
-      return embedUrl;
+      return `https://www.youtube.com/embed/${videoId}?modestbranding=1&rel=0&controls=1&fs=1&iv_load_policy=3&cc_load_policy=0`;
     }
     
     if (url.includes('vimeo.com/')) {
       const videoId = url.split('vimeo.com/')[1].split('?')[0];
-      const embedUrl = `https://player.vimeo.com/video/${videoId}?autoplay=0&volume=0.65`;
-      console.log('Vimeo embed URL:', embedUrl);
-      return embedUrl;
+      return `https://player.vimeo.com/video/${videoId}?dnt=1&autopause=0`;
     }
-    console.log('Using original URL:', url);
+    
     return url;
-  };
+  }, []);
 
-  const handleVideoError = () => {
+  const handleVideoError = useCallback(() => {
     console.error('Video failed to load for tool:', tool.title);
     setVideoError(true);
-  };
+  }, [tool.title]);
+
+  const handleVideoClick = useCallback(() => {
+    if (tool.videoUrl && !shouldLoadVideo) {
+      setShouldLoadVideo(true);
+    }
+  }, [tool.videoUrl, shouldLoadVideo]);
 
   const MediaComponent = () => {
-    console.log('Tool media check:', {
-      title: tool.title,
-      hasImage: !!tool.imageUrl,
-      hasVideo: !!tool.videoUrl,
-      videoUrl: tool.videoUrl,
-      imageError,
-      videoError
-    });
-
     // Prioritize video if available, then fallback to image
     if (tool.videoUrl && !videoError) {
+      if (!shouldLoadVideo) {
+        // Show video thumbnail/placeholder
+        return (
+          <div 
+            className="relative w-full overflow-hidden rounded-xl bg-gray-800 cursor-pointer" 
+            style={{ aspectRatio: '16/9' }}
+            onClick={handleVideoClick}
+          >
+            {tool.imageUrl && !imageError ? (
+              <img
+                src={tool.imageUrl}
+                alt={`${tool.title} Preview`}
+                className="w-full h-full object-cover"
+                loading="lazy"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                <span className="text-4xl sm:text-6xl glow-effect">{tool.emoji}</span>
+              </div>
+            )}
+            <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+              <div className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity">
+                <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            </div>
+            <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1 rounded text-sm">
+              Click to play video
+            </div>
+          </div>
+        );
+      }
+      
+      // Show actual video iframe
       const embedUrl = getOptimizedEmbedUrl(tool.videoUrl);
       
       return (
@@ -68,7 +94,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
             src={embedUrl}
             title={`${tool.title} Demo`}
             frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="w-full h-full rounded-xl"
             loading="lazy"
