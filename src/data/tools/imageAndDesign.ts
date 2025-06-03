@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Palette, 
@@ -33,6 +32,32 @@ export const imageAndDesign: Tool[] = [
     category: "Image & Design",
     rating: 4.6,
     totalVotes: 3456
+  },
+  {
+    icon: Palette,
+    title: "🎨Color Palette Generator GPT",
+    description: "Create stunning color palettes for design projects with AI-driven suggestions and harmonious color combinations.",
+    emoji: "🎨",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-683ba2dcdd048191a761aaa76b823379-color-palette-generator-gpt",
+    videoUrl: "https://www.youtube.com/watch?v=AI40uJvvjKE",
+    tags: ["color palettes", "design", "color combinations", "AI"],
+    category: "Image & Design",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
+    icon: Image,
+    title: "🖼️AI Image Upscaler GPT",
+    description: "Enhance image resolution and quality with AI-powered upscaling technology for clear and detailed visuals.",
+    emoji: "🖼️",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://chatgpt.com/g/g-683ba16df6148191b0cf7664c68fe500-ai-image-upscaler-gpt",
+    imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    tags: ["image upscaling", "resolution enhancement", "AI", "visuals"],
+    category: "Image & Design",
+    rating: 4.4,
+    totalVotes: 2987
   },
   {
     icon: Layers,
