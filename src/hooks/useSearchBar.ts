@@ -10,45 +10,60 @@ interface UseSearchBarProps {
   onSearchChange: (value: string) => void;
 }
 
+// Global cache for search results to persist across component re-renders
+const searchCache = new Map<string, any[]>();
+const toolStatsCache = getCurrentToolCount(); // Cache tool stats globally
+
 export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(50);
   
-  // Ultra-fast debounce for instant responsiveness
-  const debouncedSearchTerm = useDebounce(searchTerm, 16); // ~1 frame at 60fps
+  // Super aggressive debounce for instant feel
+  const debouncedSearchTerm = useDebounce(searchTerm, 50); // Reduced from 16ms
   
-  // Cache tool stats to prevent recalculation
-  const toolStats = useMemo(() => getCurrentToolCount(), []);
-
-  // Highly optimized search with early bailouts
+  // Ultra-fast search with aggressive caching
   const searchResults = useMemo(() => {
-    if (!debouncedSearchTerm.trim()) return [];
+    const trimmedTerm = debouncedSearchTerm.trim();
     
-    // Super early return for single characters to prevent lag
-    if (debouncedSearchTerm.trim().length < 2) return [];
+    // Immediate return for empty or too short terms
+    if (!trimmedTerm || trimmedTerm.length < 2) return [];
     
-    // Use the optimized search function
-    return searchTools(allTools, debouncedSearchTerm);
+    // Check cache first
+    if (searchCache.has(trimmedTerm)) {
+      return searchCache.get(trimmedTerm)!;
+    }
+    
+    // Perform search and cache result
+    const results = searchTools(allTools, trimmedTerm);
+    
+    // Limit cache size to prevent memory issues
+    if (searchCache.size > 20) {
+      const firstKey = searchCache.keys().next().value;
+      searchCache.delete(firstKey);
+    }
+    
+    searchCache.set(trimmedTerm, results);
+    return results;
   }, [debouncedSearchTerm]);
 
-  // Memoized slice operation for displayed results
+  // Pre-slice results for better performance
   const displayedResults = useMemo(() => 
     searchResults.slice(0, displayedCount), 
     [searchResults, displayedCount]
   );
 
-  // Quick boolean check for showing results
+  // Simple boolean check
   const shouldShowResults = searchResults.length > 0 && debouncedSearchTerm.trim().length >= 2;
 
   const handleSearchChange = useCallback((value: string) => {
     onSearchChange(value);
     
-    if (value.trim() && value.trim().length >= 2) {
+    const trimmed = value.trim();
+    if (trimmed && trimmed.length >= 2) {
       setIsOpen(true);
       setDisplayedCount(50);
     } else {
       setIsOpen(false);
-      setDisplayedCount(50);
     }
   }, [onSearchChange]);
 
@@ -59,21 +74,12 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   }, [onSearchChange]);
 
   const scrollToResults = useCallback(() => {
-    // Use requestAnimationFrame for smooth scrolling
-    requestAnimationFrame(() => {
-      const searchElement = document.querySelector('[data-search-results]');
-      if (searchElement) {
-        searchElement.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'start' 
-        });
-      } else {
-        window.scrollBy({ 
-          top: 400, 
-          behavior: 'smooth' 
-        });
-      }
-    });
+    const searchElement = document.querySelector('[data-search-results]');
+    if (searchElement) {
+      searchElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.scrollBy({ top: 400, behavior: 'smooth' });
+    }
   }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
@@ -83,17 +89,17 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
       setDisplayedCount(50);
     } else if (e.key === 'Enter' && searchTerm.trim()) {
       setIsOpen(false);
-      setTimeout(scrollToResults, 50); // Shorter delay for responsiveness
+      setTimeout(scrollToResults, 100);
     }
   }, [onSearchChange, searchTerm, scrollToResults]);
 
   const handleInputBlur = useCallback(() => {
-    // Shorter timeout for snappier UX
-    setTimeout(() => setIsOpen(false), 150);
+    setTimeout(() => setIsOpen(false), 200);
   }, []);
 
   const handleInputFocus = useCallback(() => {
-    if (debouncedSearchTerm.trim() && debouncedSearchTerm.trim().length >= 2 && searchResults.length > 0) {
+    const trimmed = debouncedSearchTerm.trim();
+    if (trimmed && trimmed.length >= 2 && searchResults.length > 0) {
       setIsOpen(true);
     }
   }, [debouncedSearchTerm, searchResults.length]);
@@ -102,14 +108,14 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     if (scrollHeight - scrollTop <= clientHeight + 100 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 30, searchResults.length));
+      setDisplayedCount(prev => Math.min(prev + 20, searchResults.length)); // Reduced increment
     }
   }, [displayedCount, searchResults.length]);
 
   return {
     isOpen,
     displayedCount,
-    toolStats,
+    toolStats: toolStatsCache, // Use cached stats
     searchResults,
     displayedResults,
     shouldShowResults,

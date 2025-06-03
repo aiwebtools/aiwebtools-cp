@@ -1,6 +1,7 @@
 
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { memo } from "react";
 
 interface SearchInputProps {
   searchTerm: string;
@@ -11,7 +12,7 @@ interface SearchInputProps {
   onFocus: () => void;
 }
 
-const SearchInput = ({
+const SearchInput = memo(({
   searchTerm,
   placeholder,
   onSearchChange,
@@ -20,8 +21,8 @@ const SearchInput = ({
   onFocus,
 }: SearchInputProps) => {
   return (
-    <div className="relative divine-glow-border rounded-xl">
-      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 z-10" />
+    <div className="relative search-glow-optimized rounded-xl">
+      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 z-10 pointer-events-none" />
       <Input
         type="text"
         placeholder={placeholder}
@@ -30,12 +31,16 @@ const SearchInput = ({
         onKeyDown={onKeyDown}
         onBlur={onBlur}
         onFocus={onFocus}
-        className="pl-10 pr-4 py-4 text-lg rounded-xl border-0 bg-black/50 text-white placeholder-gray-300 focus:ring-0 focus:outline-none transition-colors duration-200 shadow-none backdrop-blur-sm will-change-contents"
+        className="pl-10 pr-4 py-4 text-lg rounded-xl border-0 bg-black/60 text-white placeholder-gray-300 focus:ring-0 focus:outline-none transition-colors duration-150 shadow-none backdrop-blur-sm"
         autoComplete="off"
         spellCheck={false}
+        autoCorrect="off"
+        autoCapitalize="off"
       />
     </div>
   );
-};
+});
+
+SearchInput.displayName = "SearchInput";
 
 export default SearchInput;
