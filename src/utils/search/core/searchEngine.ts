@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 
 // Tools to exclude from search results
@@ -6,7 +5,8 @@ const EXCLUDED_TOOLS = [
   "PERSONAL CAPITAL",
   "PERSONAL ASSISTANT GPT",
   "personal financial advisor",
-  "Google Drive" // Removed - not an AI tool
+  "Google Drive", // Removed - not an AI tool
+  "OneDrive" // Also excluding other non-AI cloud storage
 ];
 
 export const createSearchResult = (tool: Tool, score: number, matched: boolean) => {
