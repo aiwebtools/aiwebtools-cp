@@ -22,10 +22,24 @@ export const matchPolitical = (tool: Tool, searchTerm: string): boolean => {
     tool.directUrl || ''
   ].join(' ').toLowerCase();
   
+  // Special handling for WE THE PEOPLE AI
+  if (tool.title.toLowerCase().includes('we the people ai') ||
+      tool.directUrl?.includes('wethepeople') ||
+      tool.tags?.some(tag => tag.toLowerCase().includes('we the people'))) {
+    return true;
+  }
+  
   // Special handling for Public Testimony Writer GPT
   if (tool.title.toLowerCase().includes('public testimony writer') ||
       tool.title.toLowerCase().includes('testimony writer') ||
       tool.directUrl?.includes('publictestimonywriter')) {
+    return true;
+  }
+  
+  // Special handling for Politician Outreach GPT (Legislator Link)
+  if (tool.title.toLowerCase().includes('politician outreach') ||
+      tool.title.toLowerCase().includes('legislator link') ||
+      tool.directUrl?.includes('legislatorlink')) {
     return true;
   }
   
@@ -53,11 +67,25 @@ export const scorePolitical = (tool: Tool, searchTerm: string): number => {
     tool.directUrl || ''
   ].join(' ').toLowerCase();
   
+  // Special ultra-high priority for WE THE PEOPLE AI
+  if (tool.title.toLowerCase().includes('we the people ai') ||
+      tool.directUrl?.includes('wethepeople') ||
+      tool.tags?.some(tag => tag.toLowerCase().includes('we the people'))) {
+    score += 35000; // Highest priority for WE THE PEOPLE searches
+  }
+  
   // Special high priority for Public Testimony Writer GPT
   if (tool.title.toLowerCase().includes('public testimony writer') ||
       tool.title.toLowerCase().includes('testimony writer') ||
       tool.directUrl?.includes('publictestimonywriter')) {
-    score += 30000; // Highest priority for testimony-related searches
+    score += 30000; // Very high priority for testimony-related searches
+  }
+  
+  // Special high priority for Politician Outreach GPT
+  if (tool.title.toLowerCase().includes('politician outreach') ||
+      tool.title.toLowerCase().includes('legislator link') ||
+      tool.directUrl?.includes('legislatorlink')) {
+    score += 28000; // High priority for legislator searches
   }
   
   // Check if this is a political/civic tool specifically

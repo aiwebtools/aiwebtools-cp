@@ -55,7 +55,45 @@ import { personalDevelopmentTools } from "./tools/personalDevelopmentTools";
 // Combine all tool categories and apply consolidation
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
-  ...personalDevelopmentTools
+  ...personalDevelopmentTools,
+  
+  // Add the AI Web Tools GPT Collections
+  ...priorityFeaturedGPTs,
+  ...secondPriorityFeaturedGPTs,
+  ...thirdPriorityFeaturedGPTs,
+  ...fourthPriorityFeaturedGPTs,
+  ...aiWebToolsGPTs,
+  ...advancedSpecialtyGPTs,
+  ...additionalSpecializedGPTs,
+  ...finalSpecializedGPTs,
+  ...newSpecializedGPTs,
+  ...personalDevelopmentGPTs,
+  ...educationAndLearningGPTs,
+  ...educationalToolsGPTs,
+  ...healthAndWellnessGPTs,
+  ...researchAndPharmaceuticalGPTs,
+  ...scienceAndResearchGPTs,
+  ...businessAndFinanceGPTs,
+  ...businessStrategyGPTs,
+  ...legalAndGovernmentGPTs,
+  ...governmentCivicGPTs,
+  ...professionalServicesGPTs,
+  ...utilityAndProductivityGPTs,
+  ...creativeAndMediaGPTs,
+  ...contentCreationToolsGPTs,
+  ...multimediaAndContentGPTs,
+  ...artAndCreativeGPTs,
+  ...aiPromptingAndGenerationGPTs,
+  ...communicationAndEntertainmentGPTs,
+  ...entertainmentAndGamingGPTs,
+  ...foodAndHospitalityGPTs,
+  ...investigativeAndAnalysisGPTs,
+  ...appraisalAndValuationGPTs,
+  ...mysteriousAndUnusualGPTs,
+  ...spiritualAndPhilosophyGPTs,
+  ...timeAndHistoryGPTs,
+  ...technologyInnovationGPTs,
+  ...specializedNicheToolsGPTs
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
