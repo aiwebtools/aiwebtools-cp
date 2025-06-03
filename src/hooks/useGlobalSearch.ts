@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { allTools } from "@/data/toolsData";
@@ -9,39 +8,54 @@ import { getCurrentToolCount } from "@/utils/toolCounter";
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [displayedCount, setDisplayedCount] = useState(50); // Reduced initial load
+  const [displayedCount, setDisplayedCount] = useState(30); // Reduced
   const [isOpen, setIsOpen] = useState(false);
   const searchRef = useRef(null);
   const navigate = useNavigate();
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // LIGHTNING FAST search effect - optimized for speed
+  // SUPER FAST search effect - optimized for smooth typing
   useEffect(() => {
     const trimmedTerm = searchTerm.trim();
     
     if (!trimmedTerm || trimmedTerm.length < 2) {
       setSearchResults([]);
       setIsOpen(false);
-      setDisplayedCount(50);
+      setDisplayedCount(30);
       return;
     }
 
-    // FAST simple matching for 2 characters
+    // LIGHTNING FAST 2-character search
     if (trimmedTerm.length === 2) {
       const results = allTools.filter(tool => 
         tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
-      ).slice(0, 20);
+      ).slice(0, 15);
       setSearchResults(results);
-      setDisplayedCount(20);
+      setDisplayedCount(15);
       setIsOpen(true);
       return;
     }
 
-    // For 3+ characters, use search with performance limits
+    // OPTIMIZED 3-character search - avoid full searchTools
+    if (trimmedTerm.length === 3) {
+      const results = allTools.filter(tool => {
+        const lowerTitle = tool.title.toLowerCase();
+        const lowerTerm = trimmedTerm.toLowerCase();
+        return lowerTitle.startsWith(lowerTerm) || 
+               lowerTitle.includes(lowerTerm) ||
+               tool.category?.toLowerCase().includes(lowerTerm);
+      }).slice(0, 25);
+      setSearchResults(results);
+      setDisplayedCount(25);
+      setIsOpen(true);
+      return;
+    }
+
+    // For 4+ characters, use search with performance limits
     const results = searchTools(allTools, trimmedTerm);
-    setSearchResults(results.slice(0, 100)); // Hard limit for performance
-    setDisplayedCount(50);
+    setSearchResults(results.slice(0, 50)); // Reduced limit
+    setDisplayedCount(30);
     setIsOpen(true);
   }, [searchTerm]);
 
@@ -76,14 +90,14 @@ export const useGlobalSearch = () => {
   const clearSearch = useCallback(() => {
     setSearchTerm("");
     setIsOpen(false);
-    setDisplayedCount(50);
+    setDisplayedCount(30);
   }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       setSearchTerm("");
-      setDisplayedCount(50);
+      setDisplayedCount(30);
     } else if (e.key === 'Enter' && searchTerm.trim()) {
       if (searchResults.length > 0) {
         const topResult = searchResults[0];
@@ -101,7 +115,7 @@ export const useGlobalSearch = () => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     if (scrollHeight - scrollTop <= clientHeight + 20 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 25, searchResults.length, 50)); // Smaller increments, cap at 50
+      setDisplayedCount(prev => Math.min(prev + 15, searchResults.length, 30)); // Smaller increments
     }
   }, [displayedCount, searchResults.length]);
 
