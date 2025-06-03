@@ -1,3 +1,4 @@
+
 // Export all tool categories
 export { businessTools } from './businessTools';
 export { aiAssistants } from './aiAssistants';
@@ -11,7 +12,7 @@ export { writingAndContent } from './writingAndContent';
 export { imageAndDesign } from './imageAndDesign';
 export { businessAndProductivity } from './businessAndProductivity';
 export { specializedAndNiche } from './specializedAndNiche';
-export { educationAndLearning } from './educationAndLearning';
+export { learningAndEducation as educationAndLearning } from './educationAndLearning';
 export { creativeAndEntertainment } from './creativeAndEntertainment';
 export { researchAndLearning } from './researchAndLearning';
 export { aiToolsAndUtilities } from './aiToolsAndUtilities';
