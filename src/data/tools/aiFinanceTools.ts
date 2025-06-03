@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   DollarSign, TrendingUp, BarChart3, Calculator, PieChart,
@@ -5,18 +6,6 @@ import {
 } from "lucide-react";
 
 export const aiFinanceTools: Tool[] = [
-  {
-    icon: Calculator,
-    title: "Personal Finance Advisor GPT",
-    description: "Advanced AI-powered financial calculator for complex calculations, investment analysis, and financial planning with step-by-step explanations.",
-    emoji: "🧮",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://chat.openai.com/g/g-f0s3qjB7I",
-    tags: ["financial calculator", "investment analysis", "financial planning", "calculations"],
-    category: "Professional Services",
-    rating: 4.5,
-    totalVotes: 2100
-  },
   {
     icon: TrendingUp,
     title: "Kensho",
