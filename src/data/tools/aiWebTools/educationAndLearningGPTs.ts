@@ -1,20 +1,46 @@
-
 import { Tool } from "@/types/tools";
-import { 
-  BookOpen, 
-  GraduationCap, 
-  Brain, 
-  Users, 
-  School, 
-  Award,
-  Target,
-  Lightbulb,
-  FileText,
-  Clock,
-  Calculator
-} from "lucide-react";
+import { BookOpen, GraduationCap, Brain, Calculator, Globe, Languages, Music, Palette, Code, Microscope, Heart, Users, Building, FileText, Award } from "lucide-react";
 
 export const educationAndLearningGPTs: Tool[] = [
+  {
+    icon: Music,
+    title: "Music Melodies & Lessons GPT",
+    description: "Music Melodies & Lessons GPT is your ultimate musical companion, here to inspire and guide you on your musical journey. Whether you're learning to play an instrument, perfecting your vocals, or writing your own songs, I provide step-by-step guidance, accurate lyrics, and easy-to-follow tablature. I tailor lessons to your goals, help you master techniques, and offer personalized advice on instrument selection and sound improvement. From beginners to experienced musicians, I'm here to make learning fun, creative, and engaging, helping you achieve your musical dreams with clarity and ease.",
+    emoji: "🎵",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://musicmelodiesandlessonsgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-music-melodi_LBv7r.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
+    tags: ["music education", "instrument learning", "music lessons", "personalized learning", "music theory", "vocal training", "songwriting", "musical instruments"],
+    category: "Education & Learning",
+    rating: 4.8,
+    totalVotes: 4567
+  },
+  {
+    icon: BookOpen,
+    title: "LEARN ANY COURSE GPT",
+    description: "Learn Any Course GPT is your dedicated AI-powered tutor, here to guide you through comprehensive, step-by-step courses on any subject you choose. Whether you want to master 12th-grade English, dive into advanced coding, or explore a specialized university degree, this tool brings a personalized, classroom-style experience right to your screen. Unlike static resources, Learn Any Course GPT combines rich, text-based explanations, curated YouTube video recommendations, and engaging visuals to deepen your understanding of complex subjects. on any subject you desire! #FreeEducation #EducationForAll #AnyAGE #SelfTaught #BelieveinYourself",
+    emoji: "📚",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
+    tags: ["education", "learning", "courses", "tutoring", "self-learning", "aiwebtools"],
+    category: "Education & Learning",
+    rating: 4.7,
+    totalVotes: 6789
+  },
+  {
+    icon: Brain,
+    title: "LEARN ANY SKILL GPT",
+    description: "Learn Any Skill GPT by AiWebTools.AI is a dynamic AI-powered educational assistant that guides users through learning any skill, from beginner to expert. It combines step-by-step explanations, curated YouTube videos, and web-sourced visuals for an interactive, multimedia learning experience. Designed for adaptability, it breaks down complex topics into manageable modules, ensuring thorough understanding at every stage. Whether mastering practical skills or academic knowledge, Learn Any Skill GPT is your ultimate guide to success.",
+    emoji: "🧠",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=q1AY2LukHrk",
+    tags: ["skill learning", "education", "training", "personal development", "tutorial", "aiwebtools"],
+    category: "Education & Learning",
+    rating: 4.6,
+    totalVotes: 5432
+  },
   {
     icon: GraduationCap,
     title: "COLLEGE DEGREE GPT",
@@ -23,76 +49,48 @@ export const educationAndLearningGPTs: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=Cd8uvD-smlM&list=TLGGLsn0bAvnp3EyODA1MjAyNQ",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298792230944880/college.webp",
-    tags: ["college education", "degree programs", "university courses", "free education", "academic learning", "aiwebtools"],
-    category: "Education & Learning",
-    rating: 4.9,
-    totalVotes: 8234
-  },
-  {
-    icon: BookOpen,
-    title: "LEARN ANY COURSE GPT",
-    description: "Learn Any Course GPT is your dedicated AI-powered tutor, here to guide you through comprehensive, step-by-step courses on any subject you choose. Whether you want to master 12th-grade English, dive into advanced coding, or explore a specialized university degree, this tool brings a personalized, classroom-style experience right to your screen. Unlike static resources, Learn Any Course GPT combines rich, text-based explanations, curated YouTube video recommendations, and engaging visuals to deepen your understanding of complex subjects. on any subject you desire! #FreeEducation #EducationForAll #AnyAGE #SelfTaught #BelieveinYourself",
-    emoji: "📚",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298533723537600/learnanycourse.webp",
-    tags: ["course learning", "education", "tutoring", "skill development", "personalized learning", "aiwebtools"],
+    tags: ["college education", "degree programs", "university courses", "higher education", "academic learning", "aiwebtools"],
     category: "Education & Learning",
     rating: 4.8,
-    totalVotes: 6789
+    totalVotes: 7654
   },
   {
-    icon: Brain,
-    title: "LEARN ANY SKILL GPT",
-    description: "Learn Any Skill GPT by AiWebTools.AI is a dynamic AI-powered educational assistant that guides users through learning any skill, from beginner to expert. It combines step-by-step explanations, curated YouTube videos, and web-sourced visuals for an interactive, multimedia learning experience. Designed for adaptability, it breaks down complex topics into manageable modules, ensuring thorough understanding at every stage. Whether mastering practical skills or academic knowledge, Learn Any Skill GPT is your ultimate guide to success.",
-    emoji: "🧠",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=q1AY2LukHrk",
-    tags: ["skill learning", "education", "training", "personal development", "learning assistant", "aiwebtools"],
-    category: "Education & Learning",
-    rating: 4.7,
-    totalVotes: 5432
-  },
-  {
-    icon: School,
+    icon: Building,
     title: "Home-Schooling Assistant GPT",
     description: "Presented by AIWEBTOOLS.AI, Home School GPT is your all-in-compassing AI-powered assistant designed to empower parents in their homeschooling journey. It provides precise, state-specific legal guidance and a wealth of educational resources, ensuring compliance and enhancing the homeschooling experience. With Home School GPT, you have a trusted partner to help create a successful and nurturing learning environment for your child.",
     emoji: "🏠",
-    color: "from-yellow-500 to-orange-600",
+    color: "from-green-500 to-blue-600",
     directUrl: "https://homeschoolgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298128692318349/homeschool.webp",
-    tags: ["homeschooling", "education", "parental guidance", "learning resources", "educational compliance", "aiwebtools"],
-    category: "Education & Learning",
-    rating: 4.6,
-    totalVotes: 4321
-  },
-  {
-    icon: Calculator,
-    title: "King Blueberry GPT",
-    description: "Reimagine your operational instructions by converting English to algebraic variables. Try King Blueberry GPT today",
-    emoji: "🫐",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=U8TLg15RTg8",
-    tags: ["king blueberry", "blueberry", "algebraic conversion", "mathematical operations", "variable conversion", "educational tool", "mathematics", "algebra", "aiwebtools"],
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-parent-teaching-their-ki-0096e43.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    tags: ["homeschooling", "education", "parenting", "curriculum", "learning resources", "aiwebtools"],
     category: "Education & Learning",
     rating: 4.5,
-    totalVotes: 3456
+    totalVotes: 3876
   },
   {
-    icon: Target,
-    title: "Engineering GPT AI Suite",
-    description: "ENGINEERING GPTs by AiWebTools.Ai is a cutting-edge suite of AI-powered tools designed to provide expert-level support across a wide range of engineering disciplines, including Electrical, Mechanical, Civil, and Software Engineering. These tools deliver comprehensive assistance by offering detailed calculations, design recommendations, optimization strategies, and safety protocols tailored to your specific project needs. Whether you're tackling circuit design, structural analysis, fluid dynamics, or software development, ENGINEERING GPTs provide quick, reliable insights and solutions, helping engineers streamline workflows, improve project quality, and ensure compliance with industry standards. With the ability to generate professional reports, schematics, and documentation, these tools empower engineers to solve complex problems efficiently and effectively, saving time and enhancing productivity.",
-    emoji: "⚙️",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-engineering-_hEePg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:27",
-    tags: ["engineering", "AI tools", "design", "calculations", "optimization", "technical analysis", "aiwebtools"],
+    icon: FileText,
+    title: "Quiz Maker Ai",
+    description: "This GPT is ideal for adding quizzes and tests to your courses. Designed to work seamlessly with Course Maker GPT and College Degree GPT, you can easily integrate it into your course whenever you're ready for a quiz by typing \"@\" followed by the GPT's name. Make sure to use it at least once beforehand to have it in your GPT call memory. Additionally, teachers can utilize this GPT to create tests and quizzes for their students.",
+    emoji: "📝",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-cUahkn19i-quiz-maker-ai",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-eye-catching-advertisement-for-quiz-maker-.jpeg/:/cr=t:5.56%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
+    tags: ["quiz creation", "education", "assessment", "testing", "course integration", "teaching tools", "aiwebtools"],
     category: "Education & Learning",
-    rating: 4.8,
-    totalVotes: 5234
+    rating: 4.4,
+    totalVotes: 2987
+  },
+  {
+    icon: Award,
+    title: "Course Maker GPT",
+    description: "Course Maker GPT is an advanced AI-powered educational tool designed to create comprehensive, structured courses on any subject. Whether you're an educator, trainer, or content creator, this GPT helps you develop engaging curricula with clear learning objectives, detailed lesson plans, and interactive elements. It seamlessly integrates with Quiz Maker AI to provide complete educational experiences with assessments and evaluations.",
+    emoji: "🏆",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377336291427090462/ChatGPT_Image_May_28_2025_01_22_27_PM.png?ex=683897e1&is=68374661&hm=71f0b50e1d34249bf9ed9ca8b7a1b0e45d0d2127cb9e356e2b4c65b35518656a&=&format=webp&quality=lossless&width=2088&height=1392",
+    tags: ["course creation", "curriculum development", "education", "training", "lesson planning", "instructional design", "aiwebtools"],
+    category: "Education & Learning",
+    rating: 4.7,
+    totalVotes: 4321
   }
 ];
