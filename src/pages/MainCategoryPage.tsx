@@ -216,20 +216,17 @@ const MainCategoryPage = () => {
             currentMainCategory={decodedCategoryName}
           />
 
-          {/* Tools Count Display */}
+          {/* Tools Count Display - Simplified text */}
           <div className="text-center mb-8">
             <div className="text-cyan-400 font-semibold">
               {searchTerm 
-                ? `${baseFilteredTools.length} tools found across all categories for "${searchTerm}"` 
-                : `Showing ${displayedTools.length}+ tools in ${decodedCategoryName}`
+                ? `${baseFilteredTools.length} tools found for "${searchTerm}"` 
+                : `${displayedTools.length}+ tools in ${decodedCategoryName}`
               }
-              {!searchTerm && displayedTools.length > baseFilteredTools.length && (
-                <span className="text-cyan-300"> + similar and related tools</span>
-              )}
             </div>
             {!searchTerm && (
               <div className="text-gray-400 text-sm mt-1">
-                {categoryTools.length} category tools → similar tools → related categories - endless discovery!
+                {categoryTools.length} tools + similar + related
               </div>
             )}
           </div>
