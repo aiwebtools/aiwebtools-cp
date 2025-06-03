@@ -216,12 +216,12 @@ const MainCategoryPage = () => {
             currentMainCategory={decodedCategoryName}
           />
 
-          {/* Tools Count Display - Cleaned up */}
+          {/* Tools Count Display - Real counter format */}
           <div className="text-center mb-8">
             <div className="text-cyan-400 font-semibold">
               {searchTerm 
                 ? `${baseFilteredTools.length} tools found for "${searchTerm}"` 
-                : `${displayedTools.length}+ tools in ${decodedCategoryName}`
+                : `${displayedTools.length} out of ${categoryTools.length} tools in ${decodedCategoryName}`
               }
             </div>
           </div>
