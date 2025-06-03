@@ -1,23 +1,16 @@
 
 import { Tool } from "@/types/tools";
 
-// Tools to exclude from search results
-const EXCLUDED_TOOLS = [
-  "Personal Finance Advisor GPT"
-];
-
-// Enhanced search function with tool exclusions
+// Enhanced search function
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
-    // Filter out excluded tools from all results
-    return tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title));
+    return tools;
   }
 
   const lowerSearchTerm = searchTerm.toLowerCase();
   const searchWords = lowerSearchTerm.split(/[\s,.-]+/).filter(word => word.length > 1);
   
   const results = tools
-    .filter(tool => !EXCLUDED_TOOLS.includes(tool.title)) // Exclude specific tools
     .map(tool => {
       const lowerTitle = tool.title.toLowerCase();
       const lowerDescription = tool.description.toLowerCase();
@@ -100,11 +93,6 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
 export const removeDuplicateTools = (tools: Tool[]): Tool[] => {
   const seen = new Set<string>();
   return tools.filter(tool => {
-    // Exclude specific tools
-    if (EXCLUDED_TOOLS.includes(tool.title)) {
-      return false;
-    }
-    
     if (seen.has(tool.title)) {
       return false;
     }

@@ -1,17 +1,7 @@
 
 import { Tool } from "@/types/tools";
 
-// Tools to exclude from search results
-const EXCLUDED_TOOLS = [
-  "Personal Finance Advisor GPT"
-];
-
 export const createSearchResult = (tool: Tool, score: number, matched: boolean) => {
-  // Exclude specific tools from search results
-  if (EXCLUDED_TOOLS.includes(tool.title)) {
-    return { tool, score: 0, matched: false };
-  }
-  
   return { tool, score, matched };
 };
 
@@ -28,11 +18,6 @@ export const performBasicSearch = (
   searchWords: string[], 
   expandedKeywords: string[]
 ) => {
-  // Early exit if tool is excluded
-  if (EXCLUDED_TOOLS.includes(tool.title)) {
-    return { matched: false, score: 0 };
-  }
-
   const lowerSearchTerm = searchTerm.toLowerCase();
   const lowerTitle = tool.title.toLowerCase();
   const lowerDescription = tool.description.toLowerCase();
@@ -123,11 +108,6 @@ export const performBasicSearch = (
 export const removeDuplicateTools = (tools: Tool[]): Tool[] => {
   const seen = new Set<string>();
   return tools.filter(tool => {
-    // Exclude specific tools
-    if (EXCLUDED_TOOLS.includes(tool.title)) {
-      return false;
-    }
-    
     if (seen.has(tool.title)) {
       return false;
     }
@@ -137,9 +117,6 @@ export const removeDuplicateTools = (tools: Tool[]): Tool[] => {
 };
 
 export const performIntelligentSearch = (tools: Tool[], searchTerm: string): Tool[] => {
-  // Filter out excluded tools before any processing
-  const filteredTools = tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title));
-  
-  // Continue with normal search logic on filtered tools
-  return filteredTools;
+  // Return all tools for processing without any exclusions
+  return tools;
 };
