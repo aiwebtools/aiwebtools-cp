@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Briefcase, 
@@ -23,7 +24,7 @@ export const professionalServicesGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://travelagentgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-futuristic-setting-where-a-_3Mwmg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["travel planning", "vacation advisor", "travel recommendations", "trip planning", "travel assistant", "aiwebtools"],
+    tags: ["travel", "vacation", "trip planning", "travel agent", "travel advisor", "travel planning", "vacation advisor", "travel recommendations", "trip planning", "travel assistant", "aiwebtools"],
     category: "Professional Services",
     rating: 4.8,
     totalVotes: 3456

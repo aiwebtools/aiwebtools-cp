@@ -25,7 +25,7 @@ import {
 
 // Enhanced keyword matching for specific tool categories
 export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean => {
-  // Check all matching functions
+  // Check all matching functions including travel and political
   return matchAgents(tool, searchTerm) ||
          matchCodingAgents(tool, searchTerm) ||
          matchWebDesign(tool, searchTerm) ||
@@ -42,7 +42,7 @@ export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean
 export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
   let totalScore = 0;
   
-  // Add scores from all scoring functions
+  // Add scores from all scoring functions including travel and political
   totalScore += scoreAgents(tool, searchTerm);
   totalScore += scoreCodingAgents(tool, searchTerm);
   totalScore += scoreWebDesign(tool, searchTerm);
