@@ -121,10 +121,9 @@ const MainCategoryPage = () => {
   }, []);
 
   // ALL EFFECTS AT THE END
-  // IMMEDIATE scroll to top and initialize - NO DELAYS
+  // Scroll to top immediately and initialize
   useEffect(() => {
     console.log('🏠 MainCategoryPage mounted for:', decodedCategoryName);
-    // IMMEDIATE scroll to top with no delay
     window.scrollTo(0, 0);
     setIsInitialized(true);
   }, [decodedCategoryName]);

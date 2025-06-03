@@ -13,12 +13,14 @@ const CategoryPageSelection = () => {
   const mainCategoryCounts = getMainCategoriesWithCounts(allTools);
 
   const handleMainCategoryClick = (mainCategoryName: string) => {
-    // IMMEDIATE scroll to top BEFORE navigation
-    window.scrollTo(0, 0);
-    
     // Instant navigation with zero processing delays
     const encodedName = encodeURIComponent(mainCategoryName);
     navigate(`/main-category/${encodedName}`);
+    
+    // Ensure user lands at top of the page
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
   };
 
   console.log('📊 CategoryPageSelection: Main category counts:', mainCategoryCounts);

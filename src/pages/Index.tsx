@@ -11,7 +11,6 @@ import ToolsGrid from "@/components/tools/ToolsGrid";
 import { Button } from "@/components/ui/button";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { allTools } from "@/data/toolsData";
-import FeaturedToolsSection from "@/components/tools/FeaturedToolsSection";
 
 const Index = () => {
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
@@ -70,9 +69,12 @@ const Index = () => {
       <div className="relative z-10">
         <Header />
         <HeroSection />
+        <div id="categories-section">
+          <CategoryPageSelection />
+        </div>
         
-        {/* Featured Video Section - Same background as interactive stars */}
-        <section className="py-16 bg-black relative">
+        {/* Featured Video Section - Simplified */}
+        <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -95,31 +97,9 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Featured Tools Section - moved directly below video with interactive space background */}
-        <div className="bg-black relative">
-          <FeaturedToolsSection />
-        </div>
-
-        {/* 🚀 AI TOOLS COLLECTION Section - moved above CategoryPageSelection */}
-        <div className="py-12 bg-black relative">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              🚀 <span className="text-cyan-400">AI TOOLS COLLECTION</span>
-            </h2>
-            <p className="text-cyan-300 text-lg">
-              Scroll down to discover more amazing AI tools!
-            </p>
-          </div>
-        </div>
-
-        {/* Category Selection moved here - below the featured tools and AI TOOLS COLLECTION with transparent background */}
-        <div id="categories-section" className="bg-transparent relative">
-          <CategoryPageSelection />
-        </div>
-
-        {/* SEE MORE AI TOOLS Button - transparent background to show stars */}
+        {/* SEE MORE AI TOOLS Button */}
         {!showAllTools && (
-          <div className="text-center py-12 px-4 bg-transparent relative">
+          <div className="text-center py-12 px-4 bg-gradient-to-br from-slate-900 to-purple-900">
             <Button
               onClick={handleSeeMoreAITools}
               size="lg"
@@ -133,9 +113,9 @@ const Index = () => {
           </div>
         )}
 
-        {/* All Tools Section - Simplified with transparent background */}
+        {/* All Tools Section - Simplified */}
         {showAllTools && (
-          <div id="all-tools-section" className="py-16 bg-transparent relative">
+          <div id="all-tools-section" className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
             <div className="container mx-auto px-4">
               <div className="text-center mb-8">
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">

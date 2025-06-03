@@ -54,7 +54,7 @@ const FeaturedToolsSection = ({ onToolsLoaded }: FeaturedToolsSectionProps) => {
   const showCompletionMessage = !hasMoreTools && !isLoading && allTools.length > 20;
 
   return (
-    <section className="py-16 bg-transparent relative overflow-hidden">
+    <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900 relative overflow-hidden">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 cyber-glow">

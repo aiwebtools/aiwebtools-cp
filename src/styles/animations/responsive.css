@@ -54,7 +54,7 @@
       box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
     }
     
-    /* INSTANT mobile search input - ZERO delays for Apple devices */
+    /* INSTANT mobile search input - ZERO delays */
     .search-glow-optimized, .search-glow-optimized *, 
     input[type="text"], input[type="search"], 
     input[data-testid="search-input"], input[data-testid="global-search-input"] {
@@ -66,15 +66,12 @@
       -moz-transition: none !important;
       -o-transition: none !important;
       -ms-transition: none !important;
-      /* Force immediate input rendering on iOS */
+      /* Force immediate input rendering */
       contain: layout style paint !important;
       isolation: isolate !important;
       /* iOS specific optimizations */
       -webkit-transform: translateZ(0) !important;
       -webkit-backface-visibility: hidden !important;
-      /* Prevent iOS zoom */
-      font-size: 16px !important;
-      -webkit-text-size-adjust: 100% !important;
     }
     
     /* Prevent layout shifts on mobile */
@@ -82,7 +79,7 @@
       contain: layout style;
     }
     
-    /* Mobile input optimizations - INSTANT response for Apple devices */
+    /* Mobile input optimizations - INSTANT response */
     input[type="text"], input[type="search"] {
       -webkit-appearance: none !important;
       -webkit-tap-highlight-color: transparent !important;
@@ -98,10 +95,6 @@
       -webkit-backface-visibility: hidden !important;
       /* iOS performance boost */
       -webkit-transform: translateZ(0) !important;
-      /* Prevent iOS rubber band scrolling issues */
-      -webkit-overflow-scrolling: auto !important;
-      /* Force immediate rendering */
-      contain: layout style paint !important;
     }
     
     /* FIXED width for transitioning words to prevent jumping - mobile specific */
@@ -136,18 +129,6 @@
       -webkit-user-select: none;
       touch-action: manipulation;
       cursor: pointer;
-    }
-    
-    /* iOS input field optimization */
-    input[type="text"], input[type="search"] {
-      -webkit-appearance: none !important;
-      -webkit-tap-highlight-color: transparent !important;
-      -webkit-touch-callout: none !important;
-      -webkit-user-select: text !important;
-      border-radius: 0 !important; /* iOS styling override */
-      font-size: 16px !important; /* Prevent zoom */
-      transition: none !important;
-      -webkit-transition: none !important;
     }
   }
 
