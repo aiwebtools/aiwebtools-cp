@@ -33,6 +33,20 @@ const intentPatterns: IntentPattern[] = [
     description: 'User is interested in robotics and robotic companies'
   },
   {
+    triggers: ['history', 'historical', 'past', 'ancient', 'time travel', 'civilization', 'heritage'],
+    intent: 'history',
+    toolCategories: ['time & history', 'historical & cultural', 'educational'],
+    priorityTools: ['time machine gpt', 'talk to history gpt', 'historical headlines gpt', 'titanic resurrections gpt', 'uncovering hidden historical patterns gpt', 'native american history time machine gpt'],
+    description: 'User wants historical tools and time-related content'
+  },
+  {
+    triggers: ['imagine', 'imagination', 'creative', 'fantasy', 'dream', 'vision', 'wonder', 'magical'],
+    intent: 'imagination',
+    toolCategories: ['creative', 'entertainment', 'mystical'],
+    priorityTools: ['imagination traveler gpt', 'time machine gpt', 'talk to history gpt', 'stellaris', 'oraculum', 'dream interpreter gpt'],
+    description: 'User wants imaginative and creative exploration tools'
+  },
+  {
     triggers: ['web development', 'web dev', 'frontend', 'backend', 'fullstack', 'javascript', 'react', 'coding'],
     intent: 'web_development',
     toolCategories: ['development & coding', 'web development', 'programming'],
