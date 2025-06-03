@@ -19,8 +19,8 @@ export const useFeaturedToolsState = () => {
   const filteredToolsCache = useRef<Map<string, any>>(new Map());
   const lastToolsLength = useRef(allTools.length);
 
-  // Debounce search term to prevent excessive filtering
-  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  // Reduce debounce for category pages to improve responsiveness
+  const debouncedSearchTerm = useDebounce(searchTerm, 150); // Reduced from 300ms to 150ms
 
   const handleCategoryChange = useCallback((category: string | null) => {
     setSelectedCategory(category);

@@ -14,15 +14,18 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   const [isOpen, setIsOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(50);
   
-  // Reduce debounce time for faster response
-  const debouncedSearchTerm = useDebounce(searchTerm, 100);
+  // Reduce debounce time for faster response on category pages
+  const debouncedSearchTerm = useDebounce(searchTerm, 50); // Reduced from 100ms to 50ms
   
   // Memoize tool stats to prevent recalculation
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // Memoize search results with better optimization
+  // Optimize search results with better memoization
   const searchResults = useMemo(() => {
     if (!debouncedSearchTerm.trim()) return [];
+    
+    // Early return for very short terms to avoid excessive processing
+    if (debouncedSearchTerm.trim().length < 2) return [];
     
     const results = searchTools(allTools, debouncedSearchTerm);
     return results;
@@ -35,12 +38,12 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   );
 
   // Update open state based on search results
-  const shouldShowResults = searchResults.length > 0 && debouncedSearchTerm.trim();
+  const shouldShowResults = searchResults.length > 0 && debouncedSearchTerm.trim().length >= 2;
 
   const handleSearchChange = useCallback((value: string) => {
     onSearchChange(value);
     
-    if (value.trim()) {
+    if (value.trim() && value.trim().length >= 2) {
       setIsOpen(true);
       setDisplayedCount(50);
     } else {
@@ -89,7 +92,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   }, []);
 
   const handleInputFocus = useCallback(() => {
-    if (debouncedSearchTerm.trim() && searchResults.length > 0) {
+    if (debouncedSearchTerm.trim() && debouncedSearchTerm.trim().length >= 2 && searchResults.length > 0) {
       setIsOpen(true);
     }
   }, [debouncedSearchTerm, searchResults.length]);
