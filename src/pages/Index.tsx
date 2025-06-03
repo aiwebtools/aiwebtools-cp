@@ -95,8 +95,10 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Featured Tools Section - moved directly below video */}
-        <FeaturedToolsSection />
+        {/* Featured Tools Section - moved directly below video with interactive space background */}
+        <div className="bg-black relative">
+          <FeaturedToolsSection />
+        </div>
 
         {/* Category Selection moved here - below the featured tools */}
         <div id="categories-section">
