@@ -11,14 +11,15 @@ interface ToolCardMediaProps {
 const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [shouldPlayVideo, setShouldPlayVideo] = useState(false);
   const videoRef = useRef<HTMLDivElement>(null);
   
   const hasImage = tool.imageUrl && tool.imageUrl.trim() !== '';
   const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
   const hasVideo = tool.videoUrl && tool.videoUrl.trim() !== '';
   
-  // Prioritize video if available, then fallback to image
-  const shouldShowVideo = hasVideo && !videoError;
+  // Prioritize video if available and should play, then fallback to image
+  const shouldShowVideo = hasVideo && !videoError && shouldPlayVideo;
   const shouldShowImage = hasImage && !shouldShowVideo;
   
   const getOptimizedEmbedUrl = useCallback((url: string) => {
@@ -44,15 +45,28 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   const handleVideoError = useCallback(() => {
     setVideoError(true);
   }, []);
+
+  const handleMouseEnter = useCallback(() => {
+    if (hasVideo && !videoError) {
+      setShouldPlayVideo(true);
+    }
+  }, [hasVideo, videoError]);
+
+  const handleMouseLeave = useCallback(() => {
+    setShouldPlayVideo(false);
+    setVideoLoaded(false);
+  }, []);
   
   return (
     <div 
       className={`${isFeatured ? 'mb-6' : 'mb-4'} rounded-lg overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 relative group-hover:scale-105 transition-transform duration-200`}
       style={{ aspectRatio: '16/9' }}
       ref={videoRef}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {shouldShowVideo ? (
-        // Load video immediately with autoplay
+        // Load video when user hovers
         <div className="relative w-full h-full">
           {!videoLoaded && (
             <div className="absolute inset-0 bg-gray-800 flex items-center justify-center z-10">
@@ -92,6 +106,15 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
         /* Default emoji display when no image or video */
         <div className="flex items-center justify-center text-6xl opacity-50 w-full h-full">
           {tool.emoji}
+        </div>
+      )}
+      
+      {/* Show play button overlay when video is available but not playing */}
+      {hasVideo && !shouldPlayVideo && !videoError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+            <div className="w-0 h-0 border-l-[12px] border-l-white border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent ml-1"></div>
+          </div>
         </div>
       )}
       
