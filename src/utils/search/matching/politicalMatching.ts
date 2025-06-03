@@ -36,7 +36,7 @@ export const matchPolitical = (tool: Tool, searchTerm: string): boolean => {
                            tool.title.toLowerCase().includes('testimony') ||
                            tool.title.toLowerCase().includes('politician') ||
                            tool.title.toLowerCase().includes('civic') ||
-                           tool.directUrl?.includes('wethepeople') ||
+                           tool.directUrl?.includes('legislationwritergpt') ||
                            tool.directUrl?.includes('publictestimonywriter') ||
                            tool.directUrl?.includes('legislator');
     
@@ -50,7 +50,7 @@ export const matchPolitical = (tool: Tool, searchTerm: string): boolean => {
   
   // Special handling for specific tools
   if (tool.title.toLowerCase().includes('we the people ai') ||
-      tool.directUrl?.includes('wethepeople') ||
+      tool.directUrl?.includes('legislationwritergpt') ||
       tool.tags?.some(tag => tag.toLowerCase().includes('we the people'))) {
     return searchContainsPolitical;
   }
@@ -105,7 +105,7 @@ export const scorePolitical = (tool: Tool, searchTerm: string): number => {
   
   // Special ultra-high priority for WE THE PEOPLE AI
   if (tool.title.toLowerCase().includes('we the people ai') ||
-      tool.directUrl?.includes('wethepeople') ||
+      tool.directUrl?.includes('legislationwritergpt') ||
       tool.tags?.some(tag => tag.toLowerCase().includes('we the people'))) {
     score += 35000; // Highest priority for WE THE PEOPLE searches
   }
@@ -134,7 +134,7 @@ export const scorePolitical = (tool: Tool, searchTerm: string): number => {
       tool.description.toLowerCase().includes('political activism') ||
       tool.description.toLowerCase().includes('civic engagement') ||
       tool.description.toLowerCase().includes('testimony') ||
-      tool.directUrl?.includes('legislator')) {
+      tool.directUrl?.includes('legislationwritergpt')) {
     score += 25000; // Very high priority for political searches
   }
   

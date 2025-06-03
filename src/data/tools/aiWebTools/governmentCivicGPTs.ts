@@ -18,7 +18,7 @@ export const governmentCivicGPTs: Tool[] = [
     description: "Empowering citizens with AI-driven tools for political activism, civic engagement, and grassroots organizing. Connect with your representatives, draft compelling testimony, and make your voice heard in democracy. Join the movement to strengthen civic participation through innovative AI technology.",
     emoji: "🗳️",
     color: "from-blue-600 to-red-600",
-    directUrl: "https://wethepeople.lovable.app/?via=aiwebtools",
+    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=political-activism-demo",
     tags: ["political activism", "civic engagement", "democracy", "we the people", "grassroots", "organizing", "government", "voting", "citizens", "political", "activism", "aiwebtools"],
     category: "Government & Civic",
