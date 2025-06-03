@@ -45,13 +45,15 @@ const SearchResults = memo(({
         backfaceVisibility: 'hidden'
       }}
     >
-      <div className="p-2">
-        <div className="px-3 py-2 border-b border-gray-100 sticky top-0 bg-white text-red-500" style={{ fontSize: '11px' }}>
+      <div className="px-3 py-2 border-b border-gray-100 sticky top-0 bg-white text-red-500" style={{ fontSize: '10px' }}>
+        <div className="leading-tight mb-1">
           Search Results ({searchResults.length} total) - Showing {displayedResults.length}
-          {displayedCount < searchResults.length && (
-            <span className="ml-2">Scroll for more...</span>
-          )}
         </div>
+        {displayedCount < searchResults.length && (
+          <div className="text-xs opacity-80">Scroll for more...</div>
+        )}
+      </div>
+      <div className="p-2">
         {displayedResults.map((tool, index) => {
           const toolIndex = allTools.findIndex(t => t.title === tool.title);
           return (
