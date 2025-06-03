@@ -27,21 +27,24 @@ const SearchInput = memo(({
         type="text"
         placeholder={placeholder}
         value={searchTerm}
-        onChange={(e) => onSearchChange(e.target.value)}
+        onChange={(e) => {
+          // INSTANT onChange - NO DELAYS
+          onSearchChange(e.target.value);
+        }}
         onKeyDown={onKeyDown}
         onBlur={onBlur}
         onFocus={onFocus}
         className="pl-10 pr-4 py-4 text-lg rounded-xl border-0 bg-black/60 text-white placeholder-gray-300 focus:ring-0 focus:outline-none backdrop-blur-sm"
         autoComplete="off"
         spellCheck={false}
-        // INSTANT TYPING - ZERO DELAYS
+        // OPTIMIZED FOR INSTANT TYPING RESPONSE
         style={{ 
           transition: 'none',
-          willChange: 'auto',
-          transform: 'none',
-          animation: 'none'
+          willChange: 'contents',
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden'
         }}
-        // Optimize for instant response
+        // Ultra-responsive input settings
         inputMode="search"
         autoCapitalize="none"
         autoCorrect="off"

@@ -26,19 +26,22 @@ const GlobalSearchInput = memo(({
         type="text"
         placeholder={`Search ${toolStats.marketing} AI tools...`}
         value={searchTerm}
-        onChange={(e) => onSearchChange(e.target.value)}
+        onChange={(e) => {
+          // INSTANT onChange - NO DELAYS
+          onSearchChange(e.target.value);
+        }}
         onKeyDown={onKeyDown}
         className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg backdrop-blur-sm"
         autoComplete="off"
         spellCheck={false}
-        // INSTANT TYPING - ZERO DELAYS
+        // OPTIMIZED FOR INSTANT TYPING RESPONSE
         style={{ 
           transition: 'none',
-          willChange: 'auto',
-          transform: 'none',
-          animation: 'none'
+          willChange: 'contents',
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden'
         }}
-        // Optimize for instant response
+        // Ultra-responsive input settings
         inputMode="search"
         autoCapitalize="none"
         autoCorrect="off"
