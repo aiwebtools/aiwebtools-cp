@@ -20,7 +20,8 @@ import {
   Shirt,
   Palette,
   ShoppingCart,
-  BookOpen
+  BookOpen,
+  Trophy
 } from "lucide-react";
 
 export const audioAndVoiceTools: Tool[] = [
@@ -293,5 +294,17 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Creative & Entertainment",
     rating: 4.8,
     totalVotes: 3456
+  },
+  {
+    icon: Trophy,
+    title: "TRIVIA NIGHT GPT",
+    description: "Bringing Friends & Families Together with the Power of AI Trivia! The Ultimate AI Trivia Experience with 7 exciting categories, 4 difficulty levels, and multiple question formats including multiple choice, true/false, and image-based trivia.",
+    emoji: "🏆",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://trivianightgpt.lovable.app/?via=aiwebtools",
+    tags: ["trivia", "ai trivia", "family games", "friends", "multiple choice", "true false", "image trivia", "quiz games", "party games", "entertainment", "trivia night", "game night", "brain games", "knowledge quiz", "interactive games"],
+    category: "Creative & Entertainment",
+    rating: 4.7,
+    totalVotes: 3289
   }
 ];
