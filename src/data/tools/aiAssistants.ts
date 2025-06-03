@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Bot, 
@@ -22,8 +23,8 @@ import {
 export const aiAssistants: Tool[] = [
   {
     icon: History,
-    title: "AI History Expert",
-    description: "Talk to History GPT - Your gateway to engaging in immersive historical conversations with influential leaders of history. Interact with any historical figures you imagine and gain unique insights and perspectives straight from the source.",
+    title: "Talk to History GPT",
+    description: "Your gateway to engaging in immersive historical conversations with influential leaders of history. Interact with any historical figures you imagine and gain unique insights and perspectives straight from the source. Powered by GPT-4o, it's a streamlined way to make history come alive. Perfect for students and enthusiasts alike. This tool is designed for educational and research purposes only by AiWebTools.Ai",
     emoji: "📚",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
