@@ -1,7 +1,30 @@
 import { Tool } from "@/types/tools";
-import { MessageSquare, Bot, Zap, Users, Sparkles, Brain, Globe, Shield } from "lucide-react";
+import { 
+  MessageSquare, 
+  Users, 
+  Bot, 
+  Heart, 
+  Zap,
+  Sparkles,
+  Globe,
+  Star,
+  Crown,
+  Smile
+} from "lucide-react";
 
 export const aiChatPlatforms: Tool[] = [
+  {
+    icon: Heart,
+    title: "REPLIKA - Friendly Companion Maker",
+    description: "Your AI companion that cares. Replika is always ready to chat when you need an empathetic friend. Create a unique chatbot companion, help it develop its personality through conversations, and enjoy personalized interactions designed to make you feel heard and understood.",
+    emoji: "💖",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://replika.ai/?via=aiwebtools",
+    category: "AI Companions & Chat",
+    tags: ["ai companion", "friendship", "emotional support", "chat", "personality development", "empathetic ai"],
+    rating: 4.1,
+    totalVotes: 8965
+  },
   {
     icon: MessageSquare,
     title: "ChatGPT",
