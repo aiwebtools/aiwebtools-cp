@@ -1,10 +1,10 @@
+
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
-import { useInstantSearch } from "@/hooks/useDebounce";
 
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,22 +17,19 @@ export const useGlobalSearch = () => {
   // Detect mobile for optimized handling
   const isMobile = window.innerWidth < 768 || 'ontouchstart' in window;
   
-  // INSTANT search for mobile - no debouncing at all
-  const activeSearchTerm = useInstantSearch(searchTerm);
-
   // Memoize tool stats
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // Ultra-fast search effect with INSTANT mobile response
+  // INSTANT search - NO debouncing at all for mobile
   useEffect(() => {
-    const trimmedTerm = activeSearchTerm.trim();
+    const trimmedTerm = searchTerm.trim();
     if (trimmedTerm) {
-      // For mobile, use even more aggressive limits for speed
-      const mobileLimit = isMobile ? 4 : 6;
-      const desktopLimit = isMobile ? 6 : 8;
-      const fullLimit = isMobile ? 10 : 15;
+      // Ultra-aggressive mobile optimization
+      const mobileLimit = isMobile ? 3 : 6;
+      const desktopLimit = isMobile ? 5 : 8;
+      const fullLimit = isMobile ? 8 : 15;
       
-      // Super fast single character matching
+      // Instant single character matching
       if (trimmedTerm.length === 1) {
         const simpleResults = allTools.filter(tool => 
           tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
@@ -43,7 +40,7 @@ export const useGlobalSearch = () => {
         return;
       }
       
-      // Fast two character matching
+      // Instant two character matching
       if (trimmedTerm.length === 2) {
         const fastResults = allTools.filter(tool => 
           tool.title.toLowerCase().includes(trimmedTerm.toLowerCase()) ||
@@ -55,17 +52,17 @@ export const useGlobalSearch = () => {
         return;
       }
       
-      // Optimized search with mobile-friendly limits
+      // Full search with mobile-friendly limits
       const results = searchTools(allTools, trimmedTerm);
       setSearchResults(results.slice(0, fullLimit));
-      setDisplayedCount(isMobile ? 8 : 12);
+      setDisplayedCount(isMobile ? 6 : 10);
       setIsOpen(true);
     } else {
       setSearchResults([]);
       setIsOpen(false);
       setDisplayedCount(15);
     }
-  }, [activeSearchTerm, isMobile]);
+  }, [searchTerm, isMobile]); // Direct dependency on searchTerm for instant response
 
   // Optimized click outside handler
   useEffect(() => {
@@ -124,7 +121,7 @@ export const useGlobalSearch = () => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     if (scrollHeight - scrollTop <= clientHeight + 30 && displayedCount < searchResults.length) {
-      const increment = isMobile ? 3 : 5; // Smaller increments on mobile
+      const increment = isMobile ? 2 : 4; // Smaller increments on mobile
       setDisplayedCount(prev => Math.min(prev + increment, searchResults.length));
     }
   }, [displayedCount, searchResults.length, isMobile]);
