@@ -70,9 +70,9 @@ const HeroSection = () => {
             </p>
           </div>
           
-          {/* New tagline */}
+          {/* New tagline - made slightly smaller */}
           <div className="mb-8">
-            <span className="inline-block px-6 py-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/50 rounded-full text-green-300 font-bold text-lg md:text-xl animate-pulse cyber-glow">
+            <span className="inline-block px-6 py-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/50 rounded-full text-green-300 font-bold text-base md:text-lg animate-pulse cyber-glow">
               ✨ NEW AI TOOLS ADDED DAILY ✨
             </span>
           </div>
