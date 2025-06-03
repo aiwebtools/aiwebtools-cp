@@ -39,6 +39,15 @@ const ToolCardHeader = ({
 
   return (
     <CardHeader className="text-center pb-4 flex-shrink-0 relative z-10">
+      {/* FREE Badge for AI Web Tools original tools */}
+      {isAIWebToolsOriginal && (
+        <div className="absolute top-0 right-0 z-20">
+          <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-2 py-1 rounded-bl-lg rounded-tr-xl text-xs font-bold shadow-lg transform animate-pulse">
+            FREE
+          </div>
+        </div>
+      )}
+      
       <div className={`${cardSize} mx-auto mb-4 rounded-full bg-gradient-to-r ${tool.color} flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-xl ${isAIWebToolsOriginal ? 'ring-2 ring-cyan-400/50' : ''}`}>
         {tool.emoji}
       </div>
