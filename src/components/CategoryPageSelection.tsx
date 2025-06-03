@@ -16,6 +16,11 @@ const CategoryPageSelection = () => {
     // Instant navigation with zero processing delays
     const encodedName = encodeURIComponent(mainCategoryName);
     navigate(`/main-category/${encodedName}`);
+    
+    // Ensure user lands at top of the page
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
   };
 
   console.log('📊 CategoryPageSelection: Main category counts:', mainCategoryCounts);

@@ -20,6 +20,11 @@ const CategorySelector = forwardRef<HTMLDivElement, CategorySelectorProps>(
       // Immediate navigation without delays
       navigate(`/category/${encodeURIComponent(category)}`);
       onCategoryChange(category);
+      
+      // Ensure user lands at top of the page
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     };
 
     return (

@@ -17,6 +17,11 @@ const MainCategoriesView = ({ mainCategoryCounts, onMainCategoryClick }: MainCat
     const encodedName = encodeURIComponent(mainCategoryName);
     onMainCategoryClick(mainCategoryName);
     navigate(`/main-category/${encodedName}`);
+    
+    // Ensure user lands at top of the page
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
   };
 
   return (
