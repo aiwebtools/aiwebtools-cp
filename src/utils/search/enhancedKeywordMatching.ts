@@ -13,8 +13,10 @@ import {
   matchTextToVideo, scoreTextToVideo 
 } from "./matching/videoMatching";
 import { 
-  matchHistory, matchLearning, matchMedical, 
-  scoreHistory, scoreLearning, scoreMedical 
+  matchFarming, scoreFarming,
+  matchHealth, scoreHealth,
+  matchLearning, scoreLearning,
+  matchMedical, scoreMedical 
 } from "./matching/specialtyMatching";
 
 // Enhanced keyword matching for specific tool categories
@@ -25,7 +27,8 @@ export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean
          matchWebDesign(tool, searchTerm) ||
          matchTextToWebsite(tool, searchTerm) ||
          matchTextToVideo(tool, searchTerm) ||
-         matchHistory(tool, searchTerm) ||
+         matchFarming(tool, searchTerm) ||
+         matchHealth(tool, searchTerm) ||
          matchLearning(tool, searchTerm) ||
          matchMedical(tool, searchTerm);
 };
@@ -39,7 +42,8 @@ export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
   totalScore += scoreWebDesign(tool, searchTerm);
   totalScore += scoreTextToWebsite(tool, searchTerm);
   totalScore += scoreTextToVideo(tool, searchTerm);
-  totalScore += scoreHistory(tool, searchTerm);
+  totalScore += scoreFarming(tool, searchTerm);
+  totalScore += scoreHealth(tool, searchTerm);
   totalScore += scoreLearning(tool, searchTerm);
   totalScore += scoreMedical(tool, searchTerm);
   

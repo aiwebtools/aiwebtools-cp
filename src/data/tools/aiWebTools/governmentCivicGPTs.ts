@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Scale, 
@@ -12,10 +11,23 @@ import {
   BookOpen,
   Flag,
   MapPin,
-  Database
+  Database,
+  Megaphone
 } from "lucide-react";
 
 export const governmentCivicGPTs: Tool[] = [
+  {
+    icon: Megaphone,
+    title: "WE THE PEOPLE AI",
+    description: "WE THE PEOPLE AI is your comprehensive political activism and civic engagement power hub, revolutionizing grassroots democracy through AI-powered tools for political organizing, legislative advocacy, and citizen empowerment. This cutting-edge platform transforms how citizens engage with democracy by providing sophisticated tools for political research, campaign strategy, legislative tracking, and community organizing. Whether you're a political activist organizing campaigns, a citizen advocating for policy changes, a community leader mobilizing voters, or anyone passionate about democratic participation, this AI delivers expert-level guidance and strategic insights that amplify your political voice and maximize your civic impact. The system analyzes political landscapes, tracks legislative developments, and provides strategic recommendations for effective advocacy and political engagement across all levels of government.",
+    emoji: "🗳️",
+    color: "from-blue-500 to-red-600",
+    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
+    tags: ["political activism", "civic engagement", "democracy", "legislation", "advocacy", "grassroots organizing", "political strategy", "voter engagement"],
+    category: "Government & Civic Tools",
+    rating: 4.8,
+    totalVotes: 4567
+  },
   {
     icon: Scale,
     title: "Legislation Writer GPT",
