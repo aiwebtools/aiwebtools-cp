@@ -1,4 +1,3 @@
-
 import { Bot, Globe, Code, Wand2, Zap, Brain, Github, Rocket, Settings, Monitor, Server, HardDrive, Users, Settings2, Database as DatabaseIcon, Terminal as TerminalIcon, Cpu as CpuIcon } from "lucide-react";
 import { Tool } from "@/types/tools";
 
@@ -242,5 +241,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.7,
     totalVotes: 3200
+  },
+  {
+    icon: Code,
+    title: "OPENAI Codex Coding Agent",
+    description: "OpenAI's powerful coding agent built on Codex technology. Assists developers with code generation, debugging, and programming tasks across multiple languages with advanced AI capabilities.",
+    emoji: "💻",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://chatgpt.com/codex/onboarding",
+    tags: ["coding agent", "OpenAI", "Codex", "code generation", "programming assistance", "multi-language support"],
+    category: "AI Agents",
+    rating: 4.9,
+    totalVotes: 5000
   }
 ];
