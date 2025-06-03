@@ -20,17 +20,20 @@ const GlobalSearchResults = ({
   onScroll,
 }: GlobalSearchResultsProps) => {
   const displayedResults = searchResults.slice(0, displayedCount);
+  const hasMoreToLoad = displayedCount < searchResults.length;
 
   return (
     <Card className="absolute top-full left-0 right-0 mt-2 bg-black/95 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-50 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" onScroll={onScroll}>
       <CardContent className="p-0">
         <div className="px-3 py-3 border-b border-cyan-500/20 sticky top-0 bg-black/95 text-red-400 z-10" style={{ fontSize: '10px' }}>
           <div className="leading-tight mb-1">
-            {searchResults.length} Results - Showing {displayedCount}
-            {displayedCount < searchResults.length && " - Scroll for more"}
+            {searchResults.length} Total Tools - Showing {displayedCount}
+            {hasMoreToLoad && " - Scroll for endless discovery!"}
           </div>
           {searchResults.length > 0 && (
-            <div className="text-xs opacity-80 mb-2">Press Enter to open top result</div>
+            <div className="text-xs opacity-80 mb-2">
+              Press Enter to open top result • Endless scroll through all AI tools
+            </div>
           )}
         </div>
         <div className="p-2 pt-4">
@@ -97,10 +100,17 @@ const GlobalSearchResults = ({
               </Tooltip>
             );
           })}
-          {displayedCount < searchResults.length && (
+          {hasMoreToLoad && (
             <div className="text-center py-3 text-cyan-400/70 text-xs">
-              <div className="animate-pulse">Loading more...</div>
-              <div className="mt-1">{searchResults.length - displayedCount} more tools available</div>
+              <div className="animate-pulse">🔄 Loading more amazing AI tools...</div>
+              <div className="mt-1">{searchResults.length - displayedCount} more tools in our endless collection!</div>
+            </div>
+          )}
+          {!hasMoreToLoad && searchResults.length > 50 && (
+            <div className="text-center py-4 text-cyan-300/80 text-xs">
+              <div className="text-lg mb-1">🎉</div>
+              <div>You've explored all {searchResults.length} AI tools!</div>
+              <div className="text-xs opacity-70 mt-1">Try a new search to discover more</div>
             </div>
           )}
         </div>
