@@ -131,7 +131,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🎬",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://moviemakerstudio.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=4e3Rkurt3-c&list=TLGGtoG6kc0vED4yODA1MjAyNQ",
+    videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E&list=TLGGyT65jYe0o6cyODA1MjAyNQ&t",
     tags: ["movie making", "film production", "video creation", "creative suite", "entertainment", "aiwebtools"],
     category: "Creative & Media",
     rating: 4.8,
