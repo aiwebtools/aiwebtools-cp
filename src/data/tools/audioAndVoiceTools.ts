@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Mic, 
@@ -13,7 +14,8 @@ import {
   Sparkles,
   Bot,
   Leaf,
-  Calculator
+  Calculator,
+  Shield
 } from "lucide-react";
 
 export const audioAndVoiceTools: Tool[] = [
@@ -202,5 +204,17 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Healthcare Professionals",
     rating: 4.7,
     totalVotes: 2890
+  },
+  {
+    icon: Shield,
+    title: "Health Insurance Claims GPT",
+    description: "Maximize Your Health Insurance Claims With AI. Health Insurance Claims GPT expertly handles assessments, calculates costs, and generates accurate reports to ensure you get the maximum reimbursement for all your healthcare expenses.",
+    emoji: "🛡️",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://healthinsurenceclaimsgpt.lovable.app/?via=aiwebtools",
+    tags: ["health insurance", "insurance claims", "claim assessment", "cost calculation", "reimbursement", "healthcare expenses", "insurance reports", "claims processing", "medical claims"],
+    category: "Healthcare Professionals",
+    rating: 4.6,
+    totalVotes: 2450
   }
 ];
