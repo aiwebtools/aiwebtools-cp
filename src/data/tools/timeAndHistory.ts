@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Clock, 
@@ -137,7 +138,7 @@ export const timeAndHistory: Tool[] = [
     description: "Explore historical royalty, monarchies, and the lives of kings, queens, and emperors throughout history.",
     emoji: "👑",
     color: "from-yellow-600 to-amber-700",
-    directUrl: "https://historicalroyaltygpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-683e3bf39e1481919498b69e479d8464-historical-royalty-gpt",
     videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
     category: "Historical Royalty",
     tags: ["historical royalty", "monarchies", "kings", "queens", "emperors"],
