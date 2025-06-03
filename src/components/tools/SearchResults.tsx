@@ -36,7 +36,7 @@ const SearchResults = memo(({
 
   return (
     <div 
-      className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-[9999] max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" 
+      className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-[60] max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" 
       onScroll={onScroll}
       style={{
         // Optimize scrolling performance
@@ -84,7 +84,7 @@ const SearchResults = memo(({
               </TooltipTrigger>
               <TooltipContent 
                 side="right" 
-                className="max-w-sm p-3 bg-gray-900 text-white border-gray-700 shadow-xl z-[60]"
+                className="max-w-sm p-3 bg-gray-900 text-white border-gray-700 shadow-xl z-[70]"
                 sideOffset={10}
               >
                 <div className="space-y-2">
