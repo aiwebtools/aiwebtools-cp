@@ -14,30 +14,30 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   const [isOpen, setIsOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(50);
   
-  // Use minimal debounce for instant responsiveness like homepage
-  const debouncedSearchTerm = useDebounce(searchTerm, 50);
+  // Ultra-fast debounce for instant responsiveness
+  const debouncedSearchTerm = useDebounce(searchTerm, 16); // ~1 frame at 60fps
   
-  // Memoize tool stats to prevent recalculation
+  // Cache tool stats to prevent recalculation
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // Optimize search results with direct search - no extra filtering
+  // Highly optimized search with early bailouts
   const searchResults = useMemo(() => {
     if (!debouncedSearchTerm.trim()) return [];
     
-    // Early return for very short terms
+    // Super early return for single characters to prevent lag
     if (debouncedSearchTerm.trim().length < 2) return [];
     
-    const results = searchTools(allTools, debouncedSearchTerm);
-    return results;
+    // Use the optimized search function
+    return searchTools(allTools, debouncedSearchTerm);
   }, [debouncedSearchTerm]);
 
-  // Optimize displayed results calculation
+  // Memoized slice operation for displayed results
   const displayedResults = useMemo(() => 
     searchResults.slice(0, displayedCount), 
     [searchResults, displayedCount]
   );
 
-  // Update open state based on search results
+  // Quick boolean check for showing results
   const shouldShowResults = searchResults.length > 0 && debouncedSearchTerm.trim().length >= 2;
 
   const handleSearchChange = useCallback((value: string) => {
@@ -59,20 +59,21 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   }, [onSearchChange]);
 
   const scrollToResults = useCallback(() => {
-    // Scroll down to show results below the search bar
-    const searchElement = document.querySelector('[data-search-results]');
-    if (searchElement) {
-      searchElement.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
-      });
-    } else {
-      // Fallback: scroll down by a reasonable amount
-      window.scrollBy({ 
-        top: 400, 
-        behavior: 'smooth' 
-      });
-    }
+    // Use requestAnimationFrame for smooth scrolling
+    requestAnimationFrame(() => {
+      const searchElement = document.querySelector('[data-search-results]');
+      if (searchElement) {
+        searchElement.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      } else {
+        window.scrollBy({ 
+          top: 400, 
+          behavior: 'smooth' 
+        });
+      }
+    });
   }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
@@ -81,14 +82,14 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
       onSearchChange("");
       setDisplayedCount(50);
     } else if (e.key === 'Enter' && searchTerm.trim()) {
-      // Close dropdown and scroll to results
       setIsOpen(false);
-      setTimeout(scrollToResults, 100); // Small delay to ensure UI updates
+      setTimeout(scrollToResults, 50); // Shorter delay for responsiveness
     }
   }, [onSearchChange, searchTerm, scrollToResults]);
 
   const handleInputBlur = useCallback(() => {
-    setTimeout(() => setIsOpen(false), 200);
+    // Shorter timeout for snappier UX
+    setTimeout(() => setIsOpen(false), 150);
   }, []);
 
   const handleInputFocus = useCallback(() => {

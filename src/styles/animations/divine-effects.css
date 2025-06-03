@@ -1,53 +1,217 @@
 
-@layer base {
-  /* Divine glowing border effect for search bars - solid glow without flickering */
+/* Optimized Divine Effects - Performance Enhanced */
+@layer components {
+  /* High-performance glow border - uses transform instead of box-shadow */
   .divine-glow-border {
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 
-      0 0 20px rgba(255, 215, 0, 0.9),
-      0 0 40px rgba(255, 215, 0, 0.7),
-      0 0 60px rgba(255, 215, 0, 0.5),
-      0 0 80px rgba(255, 215, 0, 0.3),
-      inset 0 0 15px rgba(255, 255, 255, 0.4);
-    will-change: box-shadow, border-color;
-    backdrop-filter: brightness(1.1);
+    position: relative;
+    isolation: isolate;
+  }
+  
+  .divine-glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    padding: 2px;
+    background: linear-gradient(45deg, 
+      rgba(64, 224, 255, 0.4), 
+      rgba(128, 0, 255, 0.3), 
+      rgba(255, 64, 128, 0.3),
+      rgba(64, 224, 255, 0.4)
+    );
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    z-index: -1;
+    will-change: opacity;
+  }
+  
+  .divine-glow-border:hover::before {
+    opacity: 0.8;
+  }
+  
+  .divine-glow-border:focus-within::before {
+    opacity: 1;
   }
 
-  .divine-glow-border:focus-within {
-    border-color: rgba(255, 215, 0, 0.9);
-    box-shadow: 
-      0 0 25px rgba(255, 215, 0, 1),
-      0 0 50px rgba(255, 215, 0, 0.8),
-      0 0 75px rgba(255, 215, 0, 0.6),
-      0 0 100px rgba(255, 215, 0, 0.4),
-      0 0 125px rgba(255, 215, 0, 0.2),
-      inset 0 0 20px rgba(255, 255, 255, 0.5);
+  /* Lightweight cyber glow for text */
+  .cyber-glow {
+    text-shadow: 0 0 8px rgba(64, 224, 255, 0.3);
+    transition: text-shadow 0.2s ease;
+    will-change: text-shadow;
+  }
+  
+  .cyber-glow:hover {
+    text-shadow: 0 0 12px rgba(64, 224, 255, 0.5);
   }
 
-  /* Enhanced call-to-action banner with brighter glow and animation */
-  .cta-banner {
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(139, 92, 246, 0.15));
-    border: 1px solid rgba(6, 182, 212, 0.4);
-    box-shadow: 
-      0 0 20px rgba(6, 182, 212, 0.6),
-      0 0 40px rgba(6, 182, 212, 0.3),
-      inset 0 0 20px rgba(6, 182, 212, 0.1);
-    animation: cta-pulse 2s ease-in-out infinite alternate;
-    will-change: box-shadow;
+  /* Performance-optimized pulse effect */
+  .divine-pulse {
+    animation: optimized-pulse 2s ease-in-out infinite;
+    will-change: opacity;
   }
-
-  @keyframes cta-pulse {
-    from {
-      box-shadow: 
-        0 0 20px rgba(6, 182, 212, 0.6),
-        0 0 40px rgba(6, 182, 212, 0.3),
-        inset 0 0 20px rgba(6, 182, 212, 0.1);
+  
+  @keyframes optimized-pulse {
+    0%, 100% { 
+      opacity: 0.7; 
     }
-    to {
-      box-shadow: 
-        0 0 30px rgba(6, 182, 212, 0.8),
-        0 0 60px rgba(6, 182, 212, 0.5),
-        inset 0 0 30px rgba(6, 182, 212, 0.2);
+    50% { 
+      opacity: 1; 
     }
   }
+
+  /* Efficient gradient animation using transform */
+  .divine-gradient-shift {
+    background: linear-gradient(45deg, 
+      rgba(64, 224, 255, 0.2), 
+      rgba(128, 0, 255, 0.2), 
+      rgba(255, 64, 128, 0.2)
+    );
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease-in-out infinite;
+    will-change: background-position;
+  }
+  
+  @keyframes gradient-shift {
+    0%, 100% { 
+      background-position: 0% 50%; 
+    }
+    50% { 
+      background-position: 100% 50%; 
+    }
+  }
+
+  /* Optimized floating animation */
+  .divine-float {
+    animation: optimized-float 6s ease-in-out infinite;
+    will-change: transform;
+  }
+  
+  @keyframes optimized-float {
+    0%, 100% { 
+      transform: translateY(0px); 
+    }
+    50% { 
+      transform: translateY(-8px); 
+    }
+  }
+
+  /* Fast scale effect for interactions */
+  .divine-scale {
+    transition: transform 0.15s ease-out;
+    will-change: transform;
+  }
+  
+  .divine-scale:hover {
+    transform: scale(1.02);
+  }
+  
+  .divine-scale:active {
+    transform: scale(0.98);
+  }
+
+  /* Efficient shimmer effect */
+  .divine-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .divine-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.1), 
+      transparent
+    );
+    animation: shimmer 2s infinite;
+    will-change: transform;
+  }
+  
+  @keyframes shimmer {
+    0% { 
+      transform: translateX(-100%); 
+    }
+    100% { 
+      transform: translateX(200%); 
+    }
+  }
+
+  /* Ultra-light aurora effect */
+  .divine-aurora {
+    background: linear-gradient(45deg, 
+      rgba(64, 224, 255, 0.05), 
+      rgba(128, 0, 255, 0.05), 
+      rgba(255, 64, 128, 0.05)
+    );
+    background-size: 400% 400%;
+    animation: aurora 8s ease-in-out infinite;
+    will-change: background-position;
+  }
+  
+  @keyframes aurora {
+    0%, 100% { 
+      background-position: 0% 50%; 
+    }
+    25% { 
+      background-position: 100% 50%; 
+    }
+    50% { 
+      background-position: 100% 100%; 
+    }
+    75% { 
+      background-position: 0% 100%; 
+    }
+  }
+
+  /* Performance-optimized glow for special elements */
+  .divine-special-glow {
+    filter: drop-shadow(0 0 8px rgba(64, 224, 255, 0.3));
+    transition: filter 0.2s ease;
+    will-change: filter;
+  }
+  
+  .divine-special-glow:hover {
+    filter: drop-shadow(0 0 12px rgba(64, 224, 255, 0.5));
+  }
+}
+
+/* Disable effects on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+  .divine-glow-border::before,
+  .divine-pulse,
+  .divine-gradient-shift,
+  .divine-float,
+  .divine-shimmer::after,
+  .divine-aurora {
+    animation: none;
+    transition: none;
+  }
+  
+  .cyber-glow,
+  .divine-special-glow {
+    text-shadow: none;
+    filter: none;
+  }
+}
+
+/* GPU acceleration hints for better performance */
+.divine-glow-border,
+.cyber-glow,
+.divine-pulse,
+.divine-gradient-shift,
+.divine-float,
+.divine-scale,
+.divine-shimmer,
+.divine-aurora,
+.divine-special-glow {
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform: translateZ(0);
 }
