@@ -1,1 +1,150 @@
-[The full, raw code, without any markdown formatting, no triple backticks]
+
+import { Tool } from "@/types/tools";
+import { 
+  FileText, 
+  PenTool, 
+  Edit3, 
+  BookOpen, 
+  Type, 
+  Zap,
+  MessageSquare,
+  Mail,
+  Camera,
+  Video,
+  Mic
+} from "lucide-react";
+
+export const contentCreationAndWritingTools: Tool[] = [
+  {
+    icon: FileText,
+    title: "Rytr",
+    description: "AI writing assistant that helps you create high-quality content, from blog posts to emails, in just a few seconds, saving time and effort.",
+    emoji: "✍️",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://rytr.me/?via=aiwebtools",
+    tags: ["writing assistant", "content creation", "blogging", "email marketing", "copywriting"],
+    category: "Writing & Content Enhancement",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
+    icon: PenTool,
+    title: "Jasper",
+    description: "AI-powered content creation tool that generates original, creative content for marketing, advertising, and more, enhancing your brand's voice.",
+    emoji: "🖋️",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.jasper.ai/?via=aiwebtools",
+    tags: ["content creation", "marketing", "advertising", "brand voice", "AI writing"],
+    category: "Writing & Content Enhancement",
+    rating: 4.7,
+    totalVotes: 4567
+  },
+  {
+    icon: Edit3,
+    title: "Grammarly",
+    description: "AI-driven writing enhancement tool that corrects grammar, spelling, and punctuation, ensuring clear, effective, and error-free communication.",
+    emoji: "📝",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://grammarly.com/?via=aiwebtools",
+    tags: ["grammar check", "spelling", "punctuation", "writing enhancement", "proofreading"],
+    category: "Writing & Content Enhancement",
+    rating: 4.8,
+    totalVotes: 5678
+  },
+  {
+    icon: BookOpen,
+    title: "Ebook Creator Suite",
+    description: "Professional ebook creation and design platform with templates, formatting tools, and publishing options for authors and content creators.",
+    emoji: "📚",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://go2.designrr.io/wordgenie2?affiliate=aiwebtools",
+    tags: ["ebook creation", "publishing", "design", "templates", "content creation"],
+    category: "Writing & Content Enhancement",
+    rating: 4.3,
+    totalVotes: 2876
+  },
+  {
+    icon: Type,
+    title: "Scalenut",
+    description: "AI-driven SEO and content marketing platform that helps you plan, research, and create high-ranking content, driving organic traffic and growth.",
+    emoji: "⌨️",
+    color: "from-orange-500 to-yellow-600",
+    directUrl: "https://www.scalenut.com/?via=aiwebtools",
+    tags: ["SEO", "content marketing", "content planning", "keyword research", "organic traffic"],
+    category: "Writing & Content Enhancement",
+    rating: 4.6,
+    totalVotes: 3987
+  },
+  {
+    icon: Zap,
+    title: "Simplified",
+    description: "All-in-one AI marketing platform with tools for content creation, graphic design, and video editing, streamlining your marketing workflow.",
+    emoji: "⚡",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://simplified.com/?via=aiwebtools",
+    tags: ["marketing platform", "content creation", "graphic design", "video editing", "workflow"],
+    category: "Writing & Content Enhancement",
+    rating: 4.4,
+    totalVotes: 3210
+  },
+  {
+    icon: MessageSquare,
+    title: "Copy.ai",
+    description: "AI-powered copywriting tool that generates high-converting copy for ads, emails, and websites, boosting your marketing ROI.",
+    emoji: "💬",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://www.copy.ai/?via=aiwebtools",
+    tags: ["copywriting", "marketing", "advertising", "email marketing", "conversion"],
+    category: "Writing & Content Enhancement",
+    rating: 4.7,
+    totalVotes: 4123
+  },
+  {
+    icon: Mail,
+    title: "Anyword",
+    description: "AI-driven marketing copy optimization platform that analyzes and improves your messaging for better engagement and conversions.",
+    emoji: "📧",
+    color: "from-yellow-500 to-green-600",
+    directUrl: "https://anyword.com/?via=aiwebtools",
+    tags: ["marketing copy", "optimization", "engagement", "conversion", "messaging"],
+    category: "Writing & Content Enhancement",
+    rating: 4.5,
+    totalVotes: 3654
+  },
+  {
+    icon: Camera,
+    title: "Pictory AI",
+    description: "AI video creation tool that transforms text into engaging videos, perfect for content marketing and social media.",
+    emoji: "📸",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://pictory.ai/?via=aiwebtools",
+    tags: ["video creation", "content marketing", "social media", "text to video", "AI video"],
+    category: "Writing & Content Enhancement",
+    rating: 4.6,
+    totalVotes: 3876
+  },
+  {
+    icon: Video,
+    title: "Synthesia",
+    description: "AI video generation platform that creates realistic AI avatars and videos from text, ideal for training, marketing, and communication.",
+    emoji: "🎥",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.synthesia.io/?via=aiwebtools",
+    tags: ["video generation", "AI avatars", "training videos", "marketing videos", "communication"],
+    category: "Writing & Content Enhancement",
+    rating: 4.9,
+    totalVotes: 6123
+  },
+  {
+    icon: Mic,
+    title: "Murf AI",
+    description: "AI voice generator that creates realistic voiceovers for videos, presentations, and more, enhancing your content with professional audio.",
+    emoji: "🎤",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://murf.ai/?via=aiwebtools",
+    tags: ["voice generator", "voiceovers", "audio enhancement", "AI voice", "professional audio"],
+    category: "Writing & Content Enhancement",
+    rating: 4.7,
+    totalVotes: 4321
+  }
+];
