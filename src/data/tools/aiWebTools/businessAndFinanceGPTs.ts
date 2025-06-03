@@ -24,18 +24,6 @@ import {
 
 export const businessAndFinanceGPTs: Tool[] = [
   {
-    icon: Wallet,
-    title: "Personal Finance Advisor GPT",
-    description: "AI-powered personal finance advisor that helps with budgeting, investment planning, debt management, and financial goal setting. Provides personalized recommendations for improving your financial health.",
-    emoji: "💰",
-    color: "from-green-500 to-emerald-600",
-    directUrl: "https://chat.openai.com/g/g-f0s3qjB7I",
-    tags: ["personal finance", "budgeting", "investment planning", "debt management", "financial advice"],
-    category: "Business & Finance",
-    rating: 4.5,
-    totalVotes: 1250
-  },
-  {
     icon: TrendingUp,
     title: "Bull or Bear AI",
     description: "Analyzes news sentiment to predict stock trends, providing insights into whether market sentiment is bullish or bearish.",
