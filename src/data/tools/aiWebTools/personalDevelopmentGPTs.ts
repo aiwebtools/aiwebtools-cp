@@ -21,7 +21,8 @@ import {
   Diamond,
   Infinity,
   Feather,
-  Flower
+  Flower,
+  Bird
 } from "lucide-react";
 
 export const personalDevelopmentGPTs: Tool[] = [
@@ -36,6 +37,18 @@ export const personalDevelopmentGPTs: Tool[] = [
     category: "Personal Development & Self-Discovery",
     rating: 4.7,
     totalVotes: 2890
+  },
+  {
+    icon: Bird,
+    title: "BirdWatching GPT",
+    description: "Your ultimate AI companion for bird watching and ornithology. Identify bird species, learn about their behaviors, discover the best birding locations, and track your sightings. Perfect for beginners and experienced birders alike who want to enhance their bird watching experience.",
+    emoji: "🐦",
+    color: "from-green-500 to-blue-500",
+    directUrl: "https://chat.openai.com/g/g-hI9vzWGHx",
+    tags: ["bird watching", "ornithology", "bird identification", "nature", "wildlife", "birding", "bird species", "nature observation", "outdoor activities", "hobby"],
+    category: "Personal Development & Self-Discovery",
+    rating: 4.6,
+    totalVotes: 1850
   },
   {
     icon: Heart,
