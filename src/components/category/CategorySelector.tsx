@@ -17,14 +17,12 @@ const CategorySelector = forwardRef<HTMLDivElement, CategorySelectorProps>(
     const navigate = useNavigate();
 
     const handleCategoryClick = (category: string) => {
+      // IMMEDIATE scroll to top BEFORE navigation
+      window.scrollTo(0, 0);
+      
       // Immediate navigation without delays
       navigate(`/category/${encodeURIComponent(category)}`);
       onCategoryChange(category);
-      
-      // Ensure user lands at top of the page
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 100);
     };
 
     return (
