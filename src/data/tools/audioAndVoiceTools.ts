@@ -17,7 +17,8 @@ import {
   Shield,
   Compass,
   Building,
-  Shirt
+  Shirt,
+  Palette
 } from "lucide-react";
 
 export const audioAndVoiceTools: Tool[] = [
@@ -254,5 +255,17 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Creative & Entertainment",
     rating: 4.7,
     totalVotes: 3128
+  },
+  {
+    icon: Palette,
+    title: "AD & LOGO MAKER GPT",
+    description: "Create Breathtaking Ads with AI Power. AD MAKER GPT transforms your ideas into high-quality, personalized advertisements in seconds using cutting-edge GPT-4o image generation technology.",
+    emoji: "🎨",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://adandlogomakergpt.lovable.app/?via=aiwebtools",
+    tags: ["ad maker", "logo generator", "GPT-4o", "advertisement creation", "AI design", "professional design", "brand identity", "instant generation", "cutting-edge technology", "personalized ads", "high-quality design", "ad variations", "logo design", "marketing materials", "AI advertising"],
+    category: "Creative & Entertainment",
+    rating: 4.8,
+    totalVotes: 4567
   }
 ];
