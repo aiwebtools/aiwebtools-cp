@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   MessageSquare, 
@@ -9,7 +10,8 @@ import {
   Globe,
   Star,
   Crown,
-  Smile
+  Smile,
+  Brain
 } from "lucide-react";
 
 export const aiChatPlatforms: Tool[] = [
