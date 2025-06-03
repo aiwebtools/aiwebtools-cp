@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { getExpandedKeywords } from "./keywordExpansion";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
@@ -10,6 +9,7 @@ import { matchCannabis, scoreCannabis } from "./matching/cannabisMatching";
 import { matchWebDevelopment, scoreWebDevelopment } from "./matching/webDevelopmentMatching";
 import { matchBookWriting, scoreBookWriting } from "./matching/bookWritingMatching";
 import { matchThreeD, scoreThreeD } from "./matching/threeDMatching";
+import { matchCategory, scoreCategory } from "./matching/categoryMatching";
 import { 
   matchHealth, 
   scoreHealth,
@@ -88,7 +88,15 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🎯 INTENT MATCH for "${tool.title}" with score: ${intentResult.score}`);
     }
     
-    // PRIORITY 1: Special name insight tool matching - HIGHEST PRIORITY
+    // PRIORITY 1: Category and subcategory matching - NEW HIGH PRIORITY
+    if (matchCategory(tool, searchTerm)) {
+      matched = true;
+      const categoryScore = scoreCategory(tool, searchTerm);
+      score += categoryScore;
+      console.log(`📂 CATEGORY MATCH for "${tool.title}" with score: ${categoryScore}`);
+    }
+    
+    // PRIORITY 2: Special name insight tool matching - HIGHEST PRIORITY
     const nameMatch = matchNameInsightTool(tool, searchTerm);
     if (nameMatch.matched) {
       matched = true;
@@ -96,7 +104,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🏷️ Name search match for "${tool.title}" with score: ${nameMatch.score}`);
     }
     
-    // PRIORITY 2: 3D tool matching - HIGHEST PRIORITY for 3D searches
+    // PRIORITY 3: 3D tool matching - HIGHEST PRIORITY for 3D searches
     if (matchThreeD(tool, searchTerm)) {
       matched = true;
       const threeDScore = scoreThreeD(tool, searchTerm);
@@ -104,7 +112,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🎲 3D search match for "${tool.title}" with score: ${threeDScore}`);
     }
     
-    // PRIORITY 3: Book writing specific matching - HIGHEST PRIORITY for ebook searches
+    // PRIORITY 4: Book writing specific matching - HIGHEST PRIORITY for ebook searches
     if (matchBookWriting(tool, searchTerm)) {
       matched = true;
       const bookScore = scoreBookWriting(tool, searchTerm);
@@ -113,7 +121,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`📚 Book writing search match for "${tool.title}" with score: ${bookScore + bookSearchScore}`);
     }
     
-    // PRIORITY 4: Web Development specific matching - HIGHEST PRIORITY
+    // PRIORITY 5: Web Development specific matching - HIGHEST PRIORITY
     if (matchWebDevelopment(tool, searchTerm)) {
       matched = true;
       const webDevScore = scoreWebDevelopment(tool, searchTerm);
@@ -121,7 +129,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`💻 Web Dev search match for "${tool.title}" with score: ${webDevScore}`);
     }
     
-    // PRIORITY 5: Cannabis specific matching - HIGHEST PRIORITY
+    // PRIORITY 6: Cannabis specific matching - HIGHEST PRIORITY
     if (matchCannabis(tool, searchTerm)) {
       matched = true;
       const cannabisScore = scoreCannabis(tool, searchTerm);
@@ -129,7 +137,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🌿 Cannabis search match for "${tool.title}" with score: ${cannabisScore}`);
     }
     
-    // PRIORITY 6: Sound effect specific matching - HIGHEST PRIORITY
+    // PRIORITY 7: Sound effect specific matching - HIGHEST PRIORITY
     if (matchSoundEffect(tool, searchTerm)) {
       matched = true;
       const soundEffectScore = scoreSoundEffect(tool, searchTerm);
@@ -137,7 +145,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🔊 Sound effect search match for "${tool.title}" with score: ${soundEffectScore}`);
     }
     
-    // PRIORITY 7: Enhanced fuzzy matching for misspellings
+    // PRIORITY 8: Enhanced fuzzy matching for misspellings
     const fuzzyResult = fuzzyMatchTool(tool, searchTerm);
     if (fuzzyResult.matched) {
       matched = true;
@@ -145,7 +153,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🎯 Fuzzy match for "${tool.title}" with score: ${fuzzyResult.score}`);
     }
     
-    // PRIORITY 8: Phonetic matching for sound-alike words
+    // PRIORITY 9: Phonetic matching for sound-alike words
     for (const phoneticTerm of phoneticMatches) {
       const searchableText = [
         tool.title,
@@ -161,7 +169,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       }
     }
     
-    // PRIORITY 9: Prediction-based matching
+    // PRIORITY 10: Prediction-based matching
     for (const prediction of predictions) {
       const searchableText = [
         tool.title,
@@ -177,7 +185,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       }
     }
     
-    // PRIORITY 10: Education specific matching - HIGH PRIORITY
+    // PRIORITY 11: Education specific matching - HIGH PRIORITY
     if (matchEducation(tool, searchTerm)) {
       matched = true;
       const educationScore = scoreEducation(tool, searchTerm);
@@ -185,7 +193,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🎓 Education search match for "${tool.title}" with score: ${educationScore}`);
     }
     
-    // PRIORITY 11: Financial specific matching - HIGH PRIORITY
+    // PRIORITY 12: Financial specific matching - HIGH PRIORITY
     if (matchFinancial(tool, searchTerm)) {
       matched = true;
       const financialScore = scoreFinancial(tool, searchTerm);
@@ -193,7 +201,6 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`💰 Financial search match for "${tool.title}" with score: ${financialScore}`);
     }
     
-    // PRIORITY 12: Travel specific matching
     if (matchTravel(tool, searchTerm)) {
       matched = true;
       const travelScore = scoreTravel(tool, searchTerm);
