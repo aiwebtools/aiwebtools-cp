@@ -14,6 +14,7 @@ import { getToolsByMainCategory } from "@/utils/categoryUtils";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { Tool } from "@/types/tools";
 import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
+import { searchTools } from "@/utils/searchUtils";
 
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
@@ -44,30 +45,17 @@ const MainCategoryPage = () => {
   // Use filtered tools from category filter, fallback to original category tools
   const toolsToShow = filteredToolsByCategory.length > 0 ? filteredToolsByCategory : categoryTools;
   
-  // LIGHTNING FAST category search - no debouncing, instant results
+  // FULL INTELLIGENT SEARCH across ALL TOOLS - restored functionality
   const baseFilteredTools = useMemo(() => {
     const trimmedTerm = searchTerm.trim();
     if (!trimmedTerm) return toolsToShow;
     
-    const lowerTerm = trimmedTerm.toLowerCase();
+    // Use the FULL intelligent search system across ALL tools
+    console.log(`🧠 Running intelligent search for "${trimmedTerm}" across all ${allTools.length} tools`);
+    const searchResults = searchTools(allTools, trimmedTerm);
+    console.log(`✅ Found ${searchResults.length} results for "${trimmedTerm}"`);
     
-    // INSTANT simple matching for category pages - MUCH FASTER
-    return toolsToShow.filter(tool => {
-      const searchableText = [
-        tool.title,
-        tool.description,
-        tool.category,
-        ...(tool.tags || [])
-      ].join(' ').toLowerCase();
-      
-      return (
-        tool.title.toLowerCase().includes(lowerTerm) ||
-        tool.description.toLowerCase().includes(lowerTerm) ||
-        tool.category?.toLowerCase().includes(lowerTerm) ||
-        searchableText.includes(lowerTerm) ||
-        (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(lowerTerm)))
-      );
-    });
+    return searchResults;
   }, [toolsToShow, searchTerm]); // Direct dependency on searchTerm for instant response
 
   // Create endless tools list with better performance
@@ -209,10 +197,10 @@ const MainCategoryPage = () => {
             </p>
           </div>
 
-          {/* Main Search Bar - Optimized */}
+          {/* Main Search Bar - Full functionality restored */}
           <div className="max-w-2xl mx-auto mb-8">
             <h3 className="text-xl font-bold text-white mb-4 text-center">
-              🔍 Search {decodedCategoryName}
+              🔍 Search All AI Tools
             </h3>
             <SearchBar
               searchTerm={searchTerm}
@@ -232,7 +220,7 @@ const MainCategoryPage = () => {
           <div className="text-center mb-8">
             <div className="text-cyan-400 font-semibold">
               {searchTerm 
-                ? `${baseFilteredTools.length} tools found for "${searchTerm}"` 
+                ? `${baseFilteredTools.length} tools found across all categories for "${searchTerm}"` 
                 : `Showing ${displayedTools.length}+ tools in ${decodedCategoryName}`
               }
               {!searchTerm && displayedTools.length > baseFilteredTools.length && (
@@ -264,7 +252,7 @@ const MainCategoryPage = () => {
                 <h3 className="text-2xl font-bold text-cyan-100 mb-4">No tools found</h3>
                 <p className="text-gray-300 mb-8">
                   {searchTerm 
-                    ? `No tools found for "${searchTerm}" in ${decodedCategoryName}.`
+                    ? `No tools found for "${searchTerm}" across all categories.`
                     : `No tools available with the selected filters in ${decodedCategoryName}.`
                   }
                 </p>
