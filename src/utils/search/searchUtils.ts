@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { getExpandedKeywords } from "./keywordExpansion";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
@@ -24,15 +25,12 @@ import {
   createSearchResult, 
   getSearchWords, 
   performBasicSearch, 
-  removeDuplicateTools 
+  removeDuplicateTools,
+  performIntelligentSearch
 } from "./core/searchEngine";
 import { matchNameInsightTool } from "./core/specialtyMatching";
-import { 
-  debugNameSearch, 
-  debugAppBuildingSearch, 
-  debugMusicSearch, 
-  debugPhoneAgentSearch 
-} from "./core/searchDebugger";
+import { fuzzyMatchTool, phoneticMatch } from "./core/fuzzyMatching";
+import { predictUserIntent, enhanceSearchWithContext } from "./core/intelligentPrediction";
 
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
@@ -40,97 +38,30 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return tools;
   }
 
-  console.log(`🔍 Enhanced search for: "${searchTerm}" across ${tools.length} tools`);
+  console.log(`🧠 INTELLIGENT search for: "${searchTerm}" across ${tools.length} tools`);
   
-  // Enhanced debugging to find Name Insight tool in database
-  console.log(`🔍 Searching for Name Insight tool in ${tools.length} tools...`);
-  const possibleNameTools = tools.filter(tool => 
-    tool.title.toLowerCase().includes('name') ||
-    tool.directUrl?.includes('whatsmynamegpt') ||
-    tool.description.toLowerCase().includes('name insight') ||
-    tool.description.toLowerCase().includes('name meaning') ||
-    tool.description.toLowerCase().includes('name analysis')
-  );
+  // Get enhanced search terms
+  const enhancedTerms = enhanceSearchWithContext(searchTerm);
+  const phoneticMatches = phoneticMatch(searchTerm);
+  const predictions = predictUserIntent(searchTerm, tools);
   
-  console.log(`🏷️ Found ${possibleNameTools.length} tools with "name" in title/description/URL:`);
-  possibleNameTools.forEach((tool, index) => {
-    console.log(`${index + 1}. "${tool.title}" - URL: ${tool.directUrl || 'NO URL'}`);
-  });
-  
-  // Specifically look for the exact Name Insight tool
-  const nameInsightTool = tools.find(tool => 
-    tool.title.toLowerCase().includes('name insight') ||
-    tool.directUrl?.includes('whatsmynamegpt') ||
-    (tool.title.toLowerCase().includes('name') && tool.title.toLowerCase().includes('predictor'))
-  );
-  console.log(`🏷️ Name Insight tool found in database:`, nameInsightTool ? nameInsightTool.title : 'NOT FOUND');
-  
-  // Enhanced debugging for political tools including Public Testimony Writer
-  const possiblePoliticalTools = tools.filter(tool => 
-    tool.title.toLowerCase().includes('we the people') ||
-    tool.title.toLowerCase().includes('political') ||
-    tool.title.toLowerCase().includes('legislation') ||
-    tool.title.toLowerCase().includes('politician') ||
-    tool.title.toLowerCase().includes('civic') ||
-    tool.title.toLowerCase().includes('democracy') ||
-    tool.title.toLowerCase().includes('testimony') ||
-    tool.title.toLowerCase().includes('public testimony') ||
-    tool.description.toLowerCase().includes('political activism') ||
-    tool.description.toLowerCase().includes('civic engagement') ||
-    tool.description.toLowerCase().includes('we the people') ||
-    tool.description.toLowerCase().includes('testimony') ||
-    tool.directUrl?.includes('legislator') ||
-    tool.directUrl?.includes('publictestimonywriter')
-  );
-  
-  console.log(`🏛️ Found ${possiblePoliticalTools.length} political/civic tools in database:`);
-  possiblePoliticalTools.forEach((tool, index) => {
-    console.log(`${index + 1}. "${tool.title}" - URL: ${tool.directUrl || 'NO URL'} - Category: ${tool.category || 'NO CATEGORY'}`);
-  });
-  
-  // Enhanced debugging for travel tools
-  const possibleTravelTools = tools.filter(tool => 
-    tool.title.toLowerCase().includes('travel') ||
-    tool.title.toLowerCase().includes('vacation') ||
-    tool.title.toLowerCase().includes('trip') ||
-    tool.description.toLowerCase().includes('travel') ||
-    tool.directUrl?.includes('travel')
-  );
-  
-  console.log(`✈️ Found ${possibleTravelTools.length} travel tools in database:`);
-  possibleTravelTools.forEach((tool, index) => {
-    console.log(`${index + 1}. "${tool.title}" - URL: ${tool.directUrl || 'NO URL'} - Category: ${tool.category || 'NO CATEGORY'}`);
-  });
-  
-  // Enhanced debugging for farming tools
-  const possibleFarmingTools = tools.filter(tool => 
-    tool.title.toLowerCase().includes('agro') ||
-    tool.title.toLowerCase().includes('farm') ||
-    tool.description.toLowerCase().includes('agriculture') ||
-    tool.description.toLowerCase().includes('farming') ||
-    tool.description.toLowerCase().includes('crop')
-  );
-  
-  console.log(`🌾 Found ${possibleFarmingTools.length} farming/agriculture tools in database:`);
-  possibleFarmingTools.forEach((tool, index) => {
-    console.log(`${index + 1}. "${tool.title}" - URL: ${tool.directUrl || 'NO URL'}`);
-  });
+  console.log(`🎯 Enhanced terms:`, enhancedTerms);
+  console.log(`🔤 Phonetic matches:`, phoneticMatches);
+  console.log(`🔮 Predictions:`, predictions);
   
   const expandedKeywords = getExpandedKeywords(searchTerm);
-  console.log(`📝 Expanded keywords:`, expandedKeywords);
-  
   const searchWords = getSearchWords(searchTerm);
   
   // Remove duplicates by title before scoring
   const uniqueTools = removeDuplicateTools(tools);
   
-  console.log(`🔧 Searching through ${uniqueTools.length} unique tools`);
+  console.log(`🔧 Intelligent search through ${uniqueTools.length} unique tools`);
   
   const results = uniqueTools.map(tool => {
     let score = 0;
     let matched = false;
     
-    // Special name insight tool matching - HIGHEST PRIORITY
+    // PRIORITY 1: Special name insight tool matching - HIGHEST PRIORITY
     const nameMatch = matchNameInsightTool(tool, searchTerm);
     if (nameMatch.matched) {
       matched = true;
@@ -138,7 +69,47 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🏷️ Name search match for "${tool.title}" with score: ${nameMatch.score}`);
     }
     
-    // Political/civic specific matching (VERY HIGH PRIORITY for political searches)
+    // PRIORITY 2: Enhanced fuzzy matching for misspellings
+    const fuzzyResult = fuzzyMatchTool(tool, searchTerm);
+    if (fuzzyResult.matched) {
+      matched = true;
+      score += fuzzyResult.score;
+      console.log(`🎯 Fuzzy match for "${tool.title}" with score: ${fuzzyResult.score}`);
+    }
+    
+    // PRIORITY 3: Phonetic matching for sound-alike words
+    for (const phoneticTerm of phoneticMatches) {
+      const searchableText = [
+        tool.title,
+        tool.description,
+        tool.category,
+        ...(tool.tags || [])
+      ].join(' ').toLowerCase();
+      
+      if (searchableText.includes(phoneticTerm.toLowerCase())) {
+        matched = true;
+        score += 4000;
+        console.log(`🔤 Phonetic match for "${tool.title}" with term: ${phoneticTerm}`);
+      }
+    }
+    
+    // PRIORITY 4: Prediction-based matching
+    for (const prediction of predictions) {
+      const searchableText = [
+        tool.title,
+        tool.description,
+        tool.category,
+        ...(tool.tags || [])
+      ].join(' ').toLowerCase();
+      
+      if (searchableText.includes(prediction.toLowerCase())) {
+        matched = true;
+        score += 3500;
+        console.log(`🔮 Prediction match for "${tool.title}" with prediction: ${prediction}`);
+      }
+    }
+    
+    // PRIORITY 5: Political/civic specific matching
     if (matchPolitical(tool, searchTerm)) {
       matched = true;
       const politicalScore = scorePolitical(tool, searchTerm);
@@ -146,7 +117,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🏛️ Political search match for "${tool.title}" with score: ${politicalScore}`);
     }
     
-    // Travel specific matching (VERY HIGH PRIORITY for travel searches)
+    // PRIORITY 6: Travel specific matching
     if (matchTravel(tool, searchTerm)) {
       matched = true;
       const travelScore = scoreTravel(tool, searchTerm);
@@ -154,59 +125,48 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`✈️ Travel search match for "${tool.title}" with score: ${travelScore}`);
     }
     
-    // Farming/Agriculture specific matching (VERY HIGH PRIORITY for agro searches)
+    // PRIORITY 7: Other specialty matchings
     if (matchFarming(tool, searchTerm)) {
       matched = true;
-      const farmingScore = scoreFarming(tool, searchTerm);
-      score += farmingScore;
-      console.log(`🌾 Farming search match for "${tool.title}" with score: ${farmingScore}`);
+      score += scoreFarming(tool, searchTerm);
     }
     
-    // Health-specific matching (VERY HIGH PRIORITY for health searches)
     if (matchHealth(tool, searchTerm)) {
       matched = true;
-      const healthScore = scoreHealth(tool, searchTerm);
-      score += healthScore;
-      console.log(`🏥 Health search match for "${tool.title}" with score: ${healthScore}`);
+      score += scoreHealth(tool, searchTerm);
     }
     
-    // Medical specific matching (high priority for medical searches)
     if (matchMedical(tool, searchTerm)) {
       matched = true;
       score += scoreMedical(tool, searchTerm);
     }
     
-    // Learning specific matching (high priority for learning searches)
     if (matchLearning(tool, searchTerm)) {
       matched = true;
       score += scoreLearning(tool, searchTerm);
     }
     
-    // App building specific matching (high priority for app building searches)
     if (matchAppBuilding(tool, searchTerm)) {
       matched = true;
       score += scoreAppBuilding(tool, searchTerm);
     }
     
-    // Music tool specific matching (high priority for music searches)
     if (matchMusicTools(tool, searchTerm)) {
       matched = true;
       score += scoreMusicTools(tool, searchTerm);
     }
     
-    // Phone agent specific matching (high priority for phone searches)
     if (matchPhoneAgents(tool, searchTerm)) {
       matched = true;
       score += scorePhoneAgents(tool, searchTerm);
     }
     
-    // Agent specific matching
     if (matchAgents(tool, searchTerm)) {
       matched = true;
       score += scoreAgents(tool, searchTerm);
     }
     
-    // Perform basic search scoring - THIS IS CRITICAL FOR SEARCH BAR RECOMMENDATIONS
+    // PRIORITY 8: Enhanced basic search with all intelligent features
     const basicSearch = performBasicSearch(tool, searchTerm, searchWords, expandedKeywords);
     if (basicSearch.matched) {
       matched = true;
@@ -219,111 +179,12 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   .sort((a, b) => b.score - a.score)
   .map(result => result.tool);
 
-  console.log(`✅ Enhanced search found ${results.length} results for "${searchTerm}"`);
+  console.log(`✅ Intelligent search found ${results.length} results for "${searchTerm}"`);
   
-  // Enhanced debugging for political searches including testimony
-  if (searchTerm.toLowerCase().includes('political') || searchTerm.toLowerCase().includes('activism') || 
-      searchTerm.toLowerCase().includes('we the people') || searchTerm.toLowerCase().includes('civic') ||
-      searchTerm.toLowerCase().includes('democracy') || searchTerm.toLowerCase().includes('government') ||
-      searchTerm.toLowerCase().includes('testimony')) {
-    console.log(`🏛️ POLITICAL SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
-    console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
-    
-    // Check if political tools are in the results
-    const politicalInResults = results.filter(tool => 
-      tool.title.toLowerCase().includes('we the people') || 
-      tool.title.toLowerCase().includes('political') ||
-      tool.title.toLowerCase().includes('legislation') ||
-      tool.title.toLowerCase().includes('politician') ||
-      tool.title.toLowerCase().includes('civic') ||
-      tool.title.toLowerCase().includes('testimony')
-    );
-    console.log(`🏛️ Political tools in results:`, politicalInResults.map(t => t.title));
-    
-    // Check specifically for Public Testimony Writer
-    const testimonyInResults = results.find(tool => 
-      tool.title.toLowerCase().includes('public testimony writer') ||
-      tool.title.toLowerCase().includes('testimony writer')
-    );
-    console.log(`📝 Public Testimony Writer in results:`, testimonyInResults ? testimonyInResults.title : 'NOT IN RESULTS');
+  // Enhanced debugging with intelligence info
+  if (results.length > 0) {
+    console.log(`🎯 Top 5 intelligent results:`, results.slice(0, 5).map((t, i) => `${i+1}. ${t.title}`));
   }
-  
-  // Enhanced debugging for travel searches
-  if (searchTerm.toLowerCase().includes('travel') || searchTerm.toLowerCase().includes('vacation') || 
-      searchTerm.toLowerCase().includes('trip') || searchTerm.toLowerCase().includes('tourism')) {
-    console.log(`✈️ TRAVEL SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
-    console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
-    
-    // Check if Travel Advisor tool is in the results
-    const travelInResults = results.find(tool => 
-      tool.title.toLowerCase().includes('travel advisor') || 
-      tool.title.toLowerCase().includes('travel agent') ||
-      tool.directUrl?.includes('travelagentgpt')
-    );
-    console.log(`✈️ Travel Advisor tool in results:`, travelInResults ? travelInResults.title : 'NOT IN RESULTS');
-  }
-  
-  // Enhanced debugging for farming searches
-  if (searchTerm.toLowerCase().includes('agro') || searchTerm.toLowerCase().includes('farm') || 
-      searchTerm.toLowerCase().includes('agriculture') || searchTerm.toLowerCase().includes('crop')) {
-    console.log(`🌾 FARMING SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
-    console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
-    
-    // Check if Agronomus tool is in the results
-    const agronomusInResults = results.find(tool => 
-      tool.title.toLowerCase().includes('agronomus') || 
-      tool.title.toLowerCase().includes('farming expert')
-    );
-    console.log(`🌾 Agronomus tool in results:`, agronomusInResults ? agronomusInResults.title : 'NOT IN RESULTS');
-  }
-  
-  // Enhanced debugging for health searches
-  if (searchTerm.toLowerCase().includes('health') || searchTerm.toLowerCase().includes('medical') || 
-      searchTerm.toLowerCase().includes('doctor') || searchTerm.toLowerCase().includes('wellness')) {
-    console.log(`🏥 HEALTH SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
-    console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
-    
-    // Check if key health tools are in the results
-    const doctorGptInResults = results.find(tool => 
-      tool.title.toLowerCase().includes('doctor gpt') || 
-      tool.title.toLowerCase().includes('personalized dr. gpt')
-    );
-    const mentalWellnessInResults = results.find(tool => 
-      tool.title.toLowerCase().includes('mental wellness gpt')
-    );
-    const dentalGptInResults = results.find(tool => 
-      tool.title.toLowerCase().includes('dental gpt')
-    );
-    
-    console.log(`🏥 Doctor GPT in results:`, doctorGptInResults ? doctorGptInResults.title : 'NOT IN RESULTS');
-    console.log(`🧠 Mental Wellness GPT in results:`, mentalWellnessInResults ? mentalWellnessInResults.title : 'NOT IN RESULTS');
-    console.log(`🦷 Dental GPT in results:`, dentalGptInResults ? dentalGptInResults.title : 'NOT IN RESULTS');
-  }
-  
-  // Enhanced debugging for name searches
-  if (searchTerm.toLowerCase().includes('name')) {
-    console.log(`🏷️ NAME SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
-    console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
-    
-    // Check if Name Insight tool is in the results
-    const nameInsightInResults = results.find(tool => 
-      tool.title.toLowerCase().includes('name insight') ||
-      tool.directUrl?.includes('whatsmynamegpt')
-    );
-    console.log(`🏷️ Name Insight tool in results:`, nameInsightInResults ? nameInsightInResults.title : 'NOT IN RESULTS');
-    
-    // Show which tools matched for name searches
-    console.log(`🏷️ All name-related tools that matched:`, results.filter(tool => 
-      tool.title.toLowerCase().includes('name') || 
-      tool.description.toLowerCase().includes('name')
-    ).map(t => t.title));
-  }
-  
-  // Enhanced debugging for different search types
-  debugNameSearch(searchTerm, results);
-  debugAppBuildingSearch(searchTerm, results);
-  debugMusicSearch(searchTerm, results);
-  debugPhoneAgentSearch(searchTerm, results);
   
   return results;
 };

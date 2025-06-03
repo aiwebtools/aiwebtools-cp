@@ -1,115 +1,128 @@
 import { keywordMapping, searchSynonyms, categoryKeywords } from "@/data/keywords";
+import { phoneticMatch } from "./core/fuzzyMatching";
 
-// Enhanced typo correction mapping for common misspellings
+// Massively expanded typo correction mapping
 const typoCorrection: Record<string, string> = {
   "sciece": "science",
   "sciene": "science",
   "sience": "science",
   "scince": "science",
-  "resarch": "research",
-  "reserch": "research",
-  "reasearch": "research",
-  "laboratry": "laboratory",
-  "laboraty": "laboratory",
-  "expirement": "experiment",
-  "experimnt": "experiment",
-  "anlaysis": "analysis",
-  "anaylsis": "analysis",
-  "analysys": "analysis",
-  "genom": "genome",
-  "genme": "genome",
-  "dna": "dna",
-  "rna": "rna",
-  "tesla": "tesla",
-  "einstien": "einstein",
-  "einsten": "einstein",
-  "nam": "name",
-  "nameing": "naming",
   
-  // New common misspellings
+  // NEW: More comprehensive misspelling corrections
   "colege": "college",
   "collge": "college",
   "collega": "college",
+  "colledge": "college",
+  "coledge": "college",
+  "collage": "college",
   "univercity": "university",
   "universty": "university",
   "universtiy": "university",
+  "univesity": "university",
+  "unversity": "university",
+  
   "writting": "writing",
   "writeing": "writing",
   "writen": "writing",
+  "writng": "writing",
+  "riting": "writing",
+  
   "buisness": "business",
   "bussiness": "business",
   "busines": "business",
   "busness": "business",
-  "managment": "management",
-  "manegement": "management",
-  "devlopment": "development",
-  "developement": "development",
-  "develpment": "development",
-  "programing": "programming",
-  "programmin": "programming",
-  "progaming": "programming",
-  "artifical": "artificial",
-  "artficial": "artificial",
-  "inteligence": "intelligence",
-  "inteligent": "intelligent",
-  "intellegence": "intelligence",
-  "marekting": "marketing",
-  "marketting": "marketing",
-  "markting": "marketing",
-  "desing": "design",
-  "desgn": "design",
-  "designg": "design",
-  "creativ": "creative",
-  "creatve": "creative",
-  "creativty": "creativity",
-  "analaytics": "analytics",
-  "analitics": "analytics",
-  "analytcs": "analytics",
-  "finacial": "financial",
-  "financal": "financial",
-  "fincancial": "financial",
+  "bizness": "business",
+  "bussines": "business",
+  
   "helath": "health",
   "healt": "health",
   "helth": "health",
-  "medial": "medical",
-  "medicl": "medical",
-  "medcial": "medical",
+  "healthh": "health",
+  "heatlh": "health",
+  
   "docktor": "doctor",
   "docter": "doctor",
   "doctr": "doctor",
-  "educaton": "education",
-  "educatin": "education",
-  "eduction": "education",
+  "doktor": "doctor",
+  "dcotor": "doctor",
+  
+  "travle": "travel",
+  "trvel": "travel",
+  "travell": "travel",
+  "trvl": "travel",
+  "travaling": "traveling",
+  
+  "musik": "music",
+  "musick": "music",
+  "muzic": "music",
+  "misic": "music",
+  "mucis": "music",
+  
+  "desing": "design",
+  "desgn": "design",
+  "designg": "design",
+  "dezign": "design",
+  "deisng": "design",
+  
+  "resarch": "research",
+  "reserch": "research",
+  "reasearch": "research",
+  "researh": "research",
+  "reseach": "research",
+  
+  "politcal": "political",
+  "poltical": "political",
+  "politial": "political",
+  "polical": "political",
+  "politicle": "political",
+  
+  "testimny": "testimony",
+  "testmony": "testimony",
+  "testimoney": "testimony",
+  "testimonie": "testimony",
+  "testamony": "testimony",
+  
+  "finacial": "financial",
+  "financal": "financial",
+  "fincancial": "financial",
+  "finacnal": "financial",
+  "finanical": "financial",
+  
   "learing": "learning",
   "lerning": "learning",
   "learnig": "learning",
-  "traning": "training",
-  "trainig": "training",
-  "trainng": "training",
-  "productivity": "productivity",
-  "productivty": "productivity",
-  "productivety": "productivity",
-  "comunicaton": "communication",
-  "comunication": "communication",
-  "comunicaion": "communication",
-  "colaboration": "collaboration",
-  "colaboraton": "collaboration",
-  "colabration": "collaboration",
-  "automaion": "automation",
-  "automaton": "automation",
-  "automtion": "automation",
-  "generaton": "generation",
-  "generaion": "generation",
-  "genration": "generation",
-  "optimizaton": "optimization",
-  "optimizaion": "optimization",
-  "optimzation": "optimization",
-  "recomendation": "recommendation",
-  "recomendaton": "recommendation",
-  "recomendaion": "recommendation",
-  "personalizaton": "personalization",
-  "personalizaion": "personalization",
-  "personaliztion": "personalization"
+  "lernig": "learning",
+  "learng": "learning",
+  
+  "educaton": "education",
+  "educatin": "education",
+  "eduction": "education",
+  "educaion": "education",
+  "educatoin": "education",
+  
+  "analaytics": "analytics",
+  "analitics": "analytics",
+  "analytcs": "analytics",
+  "anaytics": "analytics",
+  "analyitcs": "analytics",
+  
+  "programing": "programming",
+  "programmin": "programming",
+  "progaming": "programming",
+  "programing": "programming",
+  "programimg": "programming",
+  
+  "goverment": "government",
+  "govenment": "government",
+  "govermnent": "government",
+  "governmnet": "government",
+  "goverment": "government",
+  
+  "acitivism": "activism",
+  "activisim": "activism",
+  "activsim": "activism",
+  "actvism": "activism",
+  "activizm": "activism"
 };
 
 // Function to calculate Levenshtein distance for fuzzy matching
@@ -179,30 +192,72 @@ const commonToolKeywords = [
 export const getExpandedKeywords = (searchTerm: string): string[] => {
   let lowerSearchTerm = searchTerm.toLowerCase().trim();
   
-  // Apply direct typo correction first
+  // Apply phonetic matching first
+  const phoneticMatches = phoneticMatch(lowerSearchTerm);
+  
+  // Apply direct typo correction
   if (typoCorrection[lowerSearchTerm]) {
     lowerSearchTerm = typoCorrection[lowerSearchTerm];
   }
   
   const expandedKeywords = new Set<string>();
   
-  // Add the original search term and corrected term
+  // Add the original search term, corrected term, and phonetic matches
   expandedKeywords.add(searchTerm.toLowerCase().trim());
   expandedKeywords.add(lowerSearchTerm);
+  phoneticMatches.forEach(match => expandedKeywords.add(match));
   
-  // Apply fuzzy matching to find similar keywords
-  const fuzzyMatches = findFuzzyMatches(lowerSearchTerm, commonToolKeywords, 2);
-  fuzzyMatches.forEach(match => expandedKeywords.add(match));
-  
-  // Apply fuzzy matching to typo correction keys
-  const typoKeys = Object.keys(typoCorrection);
-  const typoFuzzyMatches = findFuzzyMatches(lowerSearchTerm, typoKeys, 1);
-  typoFuzzyMatches.forEach(match => {
-    if (typoCorrection[match]) {
-      expandedKeywords.add(typoCorrection[match]);
+  // INTELLIGENT CONTEXT-BASED EXPANSION
+  const contextPatterns = [
+    {
+      triggers: ['college', 'university', 'degree', 'education', 'course', 'learn'],
+      expansions: ['college degree gpt', 'learn any course gpt', 'learn any skill gpt', 'education', 'learning', 'university', 'course', 'study', 'tutorial', 'teaching', 'academic']
+    },
+    {
+      triggers: ['doctor', 'medical', 'health', 'wellness', 'dr'],
+      expansions: ['doctor gpt', 'personalized dr gpt', 'health', 'medical', 'wellness', 'healthcare', 'medicine', 'physician', 'clinic', 'hospital']
+    },
+    {
+      triggers: ['travel', 'vacation', 'trip', 'tourism'],
+      expansions: ['travel advisor gpt', 'vacation', 'trip', 'tourism', 'adventure', 'journey', 'explore', 'destination']
+    },
+    {
+      triggers: ['music', 'song', 'audio', 'sound'],
+      expansions: ['music video maker', 'music melodies', 'audio', 'sound', 'melody', 'song', 'instrument', 'musical']
+    },
+    {
+      triggers: ['political', 'politics', 'activism', 'civic', 'democracy', 'government'],
+      expansions: ['we the people ai', 'public testimony writer', 'political', 'activism', 'civic', 'democracy', 'government', 'legislation', 'policy']
+    },
+    {
+      triggers: ['business', 'finance', 'money', 'financial', 'marketing'],
+      expansions: ['business plan generator', 'financial calculator', 'marketing', 'finance', 'money', 'economic', 'commercial', 'enterprise']
+    },
+    {
+      triggers: ['design', 'graphic', 'visual', 'art', 'creative'],
+      expansions: ['graphic design gpt', 'restyle me gpt', 'design', 'graphic', 'visual', 'art', 'creative', 'aesthetic', 'artistic']
+    },
+    {
+      triggers: ['video', 'movie', 'film', 'cinema'],
+      expansions: ['movie maker studio', 'movie scene maker', 'video', 'film', 'cinema', 'cinematic', 'movie', 'production']
+    },
+    {
+      triggers: ['write', 'writing', 'content', 'author'],
+      expansions: ['book writer gpt', 'article writer', 'content', 'writing', 'author', 'script', 'text', 'copywriting']
+    },
+    {
+      triggers: ['research', 'analysis', 'data', 'science'],
+      expansions: ['research', 'analysis', 'data', 'science', 'scientific', 'study', 'investigation', 'examination']
     }
-  });
-
+  ];
+  
+  // Apply context-based expansions
+  for (const pattern of contextPatterns) {
+    if (pattern.triggers.some(trigger => lowerSearchTerm.includes(trigger))) {
+      pattern.expansions.forEach(expansion => expandedKeywords.add(expansion));
+    }
+  }
+  
   // NAME SEARCH EXPANSION - HIGHEST PRIORITY
   if (lowerSearchTerm.includes('name') || lowerSearchTerm.includes('naming') ||
       lowerSearchTerm.includes('identity') || lowerSearchTerm.includes('personality') ||
