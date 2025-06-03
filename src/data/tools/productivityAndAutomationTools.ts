@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 
 // This file has been refactored into smaller, more focused files:
@@ -11,5 +12,7 @@ import { Tool } from "@/types/tools";
 // - educationAndLearning.ts (updated)
 // - contentCreationAndWritingTools.ts (updated)
 // - resumeAndCareerTools.ts (updated)
+
+// Google Drive removed - not an AI tool
 
 export const productivityAndAutomationTools: Tool[] = [];
