@@ -117,3 +117,6 @@ export { transcriptionAndDocumentTools } from './transcriptionAndDocumentTools';
 
 // Export new additional real AI tools
 export { additionalRealAITools } from './additionalRealAITools';
+
+// Export more real AI tools (newest addition)
+export { moreRealAITools } from './moreRealAITools';

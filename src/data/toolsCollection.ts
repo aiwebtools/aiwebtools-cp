@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import {
   businessTools,
@@ -118,6 +119,9 @@ import { newSpecializedGPTs } from './tools/aiWebTools/newSpecializedGPTs';
 // Import the new additional real AI tools
 import { additionalRealAITools } from './tools/additionalRealAITools';
 
+// Import the NEWEST additional real AI tools
+import { moreRealAITools } from './tools/moreRealAITools';
+
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
@@ -234,6 +238,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...newSpecializedGPTs,
     
     // NEW: Additional real AI tools (100 more tools)
-    ...additionalRealAITools
+    ...additionalRealAITools,
+    
+    // NEWEST: More real AI tools (100 additional tools)
+    ...moreRealAITools
   ];
 };
