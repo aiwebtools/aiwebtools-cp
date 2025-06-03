@@ -11,6 +11,25 @@ export const matchThreeD = (tool: Tool, searchTerm: string): boolean => {
     ...(tool.tags || [])
   ].join(' ').toLowerCase();
 
+  // PRIORITY 1: Direct "3D" search - match ANY 3D-related tool
+  if (lowerSearchTerm === '3d' || lowerSearchTerm === '3d tools') {
+    // Check category first
+    if (tool.category?.toLowerCase().includes('3d') || 
+        tool.category?.toLowerCase().includes('visualization') ||
+        tool.category?.toLowerCase() === '3d & visualization') {
+      return true;
+    }
+    
+    // Check if tool has 3D content anywhere
+    if (searchableText.includes('3d') || 
+        searchableText.includes('three d') ||
+        searchableText.includes('mesh') ||
+        searchableText.includes('model') ||
+        searchableText.includes('render')) {
+      return true;
+    }
+  }
+
   // Direct 3D related matches
   const threeDKeywords = [
     '3d', 'three d', 'three dimensional', '3d modeling', '3d design', '3d generation',
@@ -24,8 +43,7 @@ export const matchThreeD = (tool: Tool, searchTerm: string): boolean => {
 
   // Check if search term matches any 3D keywords
   const isThreeDSearch = threeDKeywords.some(keyword => 
-    lowerSearchTerm.includes(keyword) || keyword.includes(lowerSearchTerm) ||
-    lowerSearchTerm === '3d' || lowerSearchTerm === 'three d'
+    lowerSearchTerm.includes(keyword) || keyword.includes(lowerSearchTerm)
   );
 
   if (!isThreeDSearch) return false;
@@ -33,13 +51,7 @@ export const matchThreeD = (tool: Tool, searchTerm: string): boolean => {
   // Check if tool is 3D-related
   const isThreeDTool = threeDKeywords.some(keyword => 
     searchableText.includes(keyword)
-  ) || searchableText.includes('3d') || 
-     searchableText.includes('three d') ||
-     searchableText.includes('mesh') ||
-     searchableText.includes('model') ||
-     searchableText.includes('render') ||
-     searchableText.includes('visual') ||
-     tool.category?.toLowerCase().includes('3d') ||
+  ) || tool.category?.toLowerCase().includes('3d') ||
      tool.category?.toLowerCase().includes('visualization');
 
   return isThreeDTool;
@@ -62,31 +74,36 @@ export const scoreThreeD = (tool: Tool, searchTerm: string): number => {
   if (lowerSearchTerm === '3d' || lowerSearchTerm === '3d tools') {
     // Maximum priority for 3D & Visualization category
     if (tool.category?.toLowerCase().includes('3d') && tool.category?.toLowerCase().includes('visualization')) {
-      score += 15000;
+      score += 20000; // Increased for better category matching
     }
     
     // Very high priority for tools with "3D" in title
     if (tool.title.toLowerCase().includes('3d')) {
-      score += 12000;
+      score += 15000;
     }
     
     // High priority for specific 3D tool names
     const premiumThreeDTools = ['meshy', 'tripo', 'spline', 'sloyd', 'luma', 'hyper', 'masterpiece'];
     for (const toolName of premiumThreeDTools) {
       if (searchableText.includes(toolName)) {
-        score += 10000;
+        score += 12000;
       }
     }
     
     // High priority for mesh and modeling tools
     if (searchableText.includes('mesh') || searchableText.includes('meshy')) {
-      score += 9000;
+      score += 10000;
     }
     
     // Good score for other 3D-related terms
     if (searchableText.includes('model') || searchableText.includes('render') || 
         searchableText.includes('design') || searchableText.includes('visual')) {
-      score += 7000;
+      score += 8000;
+    }
+    
+    // Bonus for being in any 3D-related category
+    if (tool.category?.toLowerCase().includes('3d')) {
+      score += 5000;
     }
   }
 
