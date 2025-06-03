@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Mic, 
@@ -15,7 +14,8 @@ import {
   Bot,
   Leaf,
   Calculator,
-  Shield
+  Shield,
+  Compass
 } from "lucide-react";
 
 export const audioAndVoiceTools: Tool[] = [
@@ -216,5 +216,17 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Healthcare Professionals",
     rating: 4.6,
     totalVotes: 2450
+  },
+  {
+    icon: Compass,
+    title: "Imagination Traveler GPT",
+    description: "Explore Infinite Dimensions of Reality. Step through the portal with the ancient cosmic traveler and journey to alternate histories, possible futures, and realities beyond comprehension.",
+    emoji: "🌌",
+    color: "from-purple-500 to-indigo-600",
+    directUrl: "https://imaginationtravelergpt.lovable.app/?via=aiwebtools",
+    tags: ["imagination", "alternate realities", "time travel", "cosmic exploration", "creative journey", "alternate histories", "future exploration", "reality exploration", "portal travel", "dimensional travel"],
+    category: "Creative & Entertainment",
+    rating: 4.5,
+    totalVotes: 2234
   }
 ];
