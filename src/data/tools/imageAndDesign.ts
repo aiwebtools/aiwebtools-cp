@@ -53,7 +53,7 @@ export const imageAndDesign: Tool[] = [
     emoji: "🖼️",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-683ba16df6148191b0cf7664c68fe500-ai-image-upscaler-gpt",
-    videoUrl: "https://www.youtube.com/watch?v=j9aKyJdcZeg",
+    imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
     tags: ["image upscaling", "resolution enhancement", "AI", "visuals"],
     category: "Image & Design",
     rating: 4.4,
