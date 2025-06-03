@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { allTools } from "@/data/toolsData";
@@ -10,30 +9,38 @@ import { useSearchDebounce, useInstantSearch } from "@/hooks/useDebounce";
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [displayedCount, setDisplayedCount] = useState(15); // Reduced for faster initial render
+  const [displayedCount, setDisplayedCount] = useState(15);
   const [isOpen, setIsOpen] = useState(false);
   const searchRef = useRef(null);
   const navigate = useNavigate();
 
-  // Ultra-fast debounce (10ms instead of 50ms)
-  const debouncedSearchTerm = useSearchDebounce(searchTerm, 10);
+  // Detect mobile for optimized handling
+  const isMobile = window.innerWidth < 768 || 'ontouchstart' in window;
+  
+  // Mobile-optimized debounce (0ms for mobile, 5ms for desktop)
+  const debouncedSearchTerm = useSearchDebounce(searchTerm, isMobile ? 0 : 5);
   // Instant feedback for UI
   const instantSearchTerm = useInstantSearch(searchTerm);
 
   // Memoize tool stats
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // Highly optimized search effect
+  // Highly optimized search effect with mobile priority
   useEffect(() => {
     const trimmedTerm = debouncedSearchTerm.trim();
     if (trimmedTerm) {
+      // For mobile, use even more aggressive limits
+      const mobileLimit = isMobile ? 6 : 8;
+      const desktopLimit = isMobile ? 10 : 12;
+      const fullLimit = isMobile ? 15 : 20;
+      
       // Super fast single character matching
       if (trimmedTerm.length === 1) {
         const simpleResults = allTools.filter(tool => 
           tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
-        ).slice(0, 8); // Reduced count
+        ).slice(0, mobileLimit);
         setSearchResults(simpleResults);
-        setDisplayedCount(8);
+        setDisplayedCount(mobileLimit);
         setIsOpen(true);
         return;
       }
@@ -43,24 +50,24 @@ export const useGlobalSearch = () => {
         const fastResults = allTools.filter(tool => 
           tool.title.toLowerCase().includes(trimmedTerm.toLowerCase()) ||
           tool.category?.toLowerCase().includes(trimmedTerm.toLowerCase())
-        ).slice(0, 12);
+        ).slice(0, desktopLimit);
         setSearchResults(fastResults);
-        setDisplayedCount(12);
+        setDisplayedCount(desktopLimit);
         setIsOpen(true);
         return;
       }
       
-      // Optimized search with hard limit
+      // Optimized search with mobile-friendly limits
       const results = searchTools(allTools, trimmedTerm);
-      setSearchResults(results.slice(0, 20)); // Hard limit for performance
-      setDisplayedCount(15);
+      setSearchResults(results.slice(0, fullLimit));
+      setDisplayedCount(isMobile ? 12 : 15);
       setIsOpen(true);
     } else {
       setSearchResults([]);
       setIsOpen(false);
       setDisplayedCount(15);
     }
-  }, [debouncedSearchTerm]);
+  }, [debouncedSearchTerm, isMobile]);
 
   // Optimized click outside handler
   useEffect(() => {
@@ -119,9 +126,10 @@ export const useGlobalSearch = () => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     if (scrollHeight - scrollTop <= clientHeight + 30 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 8, searchResults.length)); // Smaller increments
+      const increment = isMobile ? 5 : 8; // Smaller increments on mobile
+      setDisplayedCount(prev => Math.min(prev + increment, searchResults.length));
     }
-  }, [displayedCount, searchResults.length]);
+  }, [displayedCount, searchResults.length, isMobile]);
 
   return {
     searchTerm,

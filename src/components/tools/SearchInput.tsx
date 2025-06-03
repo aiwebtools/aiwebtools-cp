@@ -20,6 +20,9 @@ const SearchInput = memo(({
   onBlur,
   onFocus,
 }: SearchInputProps) => {
+  // Detect mobile for optimized handling
+  const isMobile = window.innerWidth < 768 || 'ontouchstart' in window;
+  
   return (
     <div className="relative search-glow-optimized rounded-xl">
       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
@@ -34,15 +37,25 @@ const SearchInput = memo(({
         className="pl-10 pr-4 py-4 text-lg rounded-xl border-0 bg-black/60 text-white placeholder-gray-300 focus:ring-0 focus:outline-none backdrop-blur-sm"
         autoComplete="off"
         spellCheck={false}
-        // Ultra-optimized for instant typing response
+        // Ultra-optimized for mobile with immediate response
         style={{ 
-          transition: 'none',
+          transition: isMobile ? 'none' : 'all 0.1s ease',
           willChange: 'auto',
-          transform: 'translateZ(0)', // Force hardware acceleration
-          backfaceVisibility: 'hidden', // Prevent flickering
-          WebkitTransform: 'translate3d(0,0,0)', // iOS optimization
-          WebkitBackfaceVisibility: 'hidden'
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          WebkitTransform: 'translate3d(0,0,0)',
+          WebkitBackfaceVisibility: 'hidden',
+          // Mobile-specific optimizations
+          WebkitTapHighlightColor: 'transparent',
+          touchAction: isMobile ? 'manipulation' : 'auto',
+          userSelect: 'text'
         }}
+        // Add mobile-specific attributes
+        {...(isMobile && {
+          inputMode: 'search',
+          autoCapitalize: 'none',
+          autoCorrect: 'off'
+        })}
       />
     </div>
   );

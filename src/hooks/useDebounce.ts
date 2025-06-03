@@ -27,7 +27,7 @@ export function useDebounce<T>(value: T, delay: number): T {
   return debouncedValue;
 }
 
-// Ultra-fast debounce hook for search that responds immediately to typing
+// Mobile-optimized debounce for instant typing response
 export function useSearchDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -44,10 +44,13 @@ export function useSearchDebounce<T>(value: T, delay: number): T {
       return;
     }
 
-    // Use ultra-short delay for instant responsiveness - reduced from 50ms to 10ms
+    // Detect mobile and use even shorter delay for mobile
+    const isMobile = window.innerWidth < 768 || 'ontouchstart' in window;
+    const mobileDelay = isMobile ? 0 : Math.min(delay, 5); // No delay on mobile, 5ms on desktop
+    
     timeoutRef.current = setTimeout(() => {
       setDebouncedValue(value);
-    }, Math.min(delay, 10));
+    }, mobileDelay);
 
     // Cleanup function
     return () => {
@@ -60,7 +63,7 @@ export function useSearchDebounce<T>(value: T, delay: number): T {
   return debouncedValue;
 }
 
-// Immediate response hook for typing feedback - no delay at all
+// Instant response hook for mobile typing feedback
 export function useInstantSearch<T>(value: T): T {
   return value; // No debouncing for instant visual feedback
 }

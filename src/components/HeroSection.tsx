@@ -46,7 +46,7 @@ const HeroSection = () => {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Main heading with improved layout */}
+        {/* Main heading with stabilized layout */}
         <div className="mb-6">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
             {/* First line */}
@@ -54,9 +54,15 @@ const HeroSection = () => {
               AI WEB TOOLS
             </span>
             
-            {/* Second line with animated word */}
+            {/* Second line with animated word - fixed width container to prevent jumping */}
             <span className="text-3xl md:text-4xl lg:text-5xl text-white block">
-              <span className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
+              <span 
+                className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow inline-block"
+                style={{ 
+                  minWidth: '280px', // Fixed width to contain longest word
+                  textAlign: 'center'
+                }}
+              >
                 {words[currentWord]}
               </span>
               <span className="ml-4">Work & Life</span>
@@ -78,8 +84,8 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Search section */}
-        <div className="mb-8 max-w-4xl mx-auto">
+        {/* Search section with stable positioning */}
+        <div className="mb-8 max-w-4xl mx-auto" style={{ minHeight: '80px' }}>
           <GlobalSearchBar />
         </div>
 
