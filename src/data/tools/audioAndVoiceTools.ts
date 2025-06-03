@@ -16,7 +16,8 @@ import {
   Calculator,
   Shield,
   Compass,
-  Building
+  Building,
+  Shirt
 } from "lucide-react";
 
 export const audioAndVoiceTools: Tool[] = [
@@ -241,5 +242,17 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Professional Services",
     rating: 4.6,
     totalVotes: 2567
+  },
+  {
+    icon: Shirt,
+    title: "VIRTUAL STYLIST - VIRTUAL TRY-ON GPT",
+    description: "Experience Yourself in the Future of Fashion. Try on outfits, visualize new hairstyles, and transform your look virtually with our advanced AI stylist before making any real changes.",
+    emoji: "👗",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
+    tags: ["virtual stylist", "virtual try-on", "fashion", "outfit visualization", "hairstyle simulation", "ai stylist", "virtual makeover", "style transformation", "fashion ai", "wardrobe assistant", "look visualization", "fashion technology", "virtual fitting", "style advisor", "fashion preview"],
+    category: "Creative & Entertainment",
+    rating: 4.7,
+    totalVotes: 3128
   }
 ];
