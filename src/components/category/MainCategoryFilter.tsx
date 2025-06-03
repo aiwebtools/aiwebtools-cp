@@ -1,4 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react';
+
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ChevronDown, ChevronUp, Filter, X } from "lucide-react";
@@ -18,25 +19,15 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedMainCategories, setSelectedMainCategories] = useState<string[]>([]);
 
-  // Get EXACTLY the same counts that are shown on the main category cards
+  // Cache the categories data to prevent recalculation
   const mainCategoriesWithCounts = useMemo(() => {
-    console.log('🔄 MainCategoryFilter: Using EXACT same counting logic as main category cards...');
-    
-    // Use the EXACT same function that populates the main category cards
     const globalCounts = getMainCategoriesWithCounts(allTools);
     
-    console.log('📊 MainCategoryFilter Global Counts:', globalCounts);
-    
-    // Create a Map to ensure unique categories and prevent duplicates
     const uniqueCategoriesMap = new Map<string, { name: string; emoji: string; count: number }>();
     
     mainCategories.forEach(mainCat => {
-      // For "ALL AI TOOLS", use the total count of all tools
       const count = mainCat.name === "ALL AI TOOLS" ? allTools.length : (globalCounts[mainCat.name] || 0);
       
-      console.log(`📊 MainCategoryFilter ${mainCat.name}: ${count} tools (${mainCat.name === "ALL AI TOOLS" ? 'total tools' : 'from global counts'})`);
-      
-      // Only add if not already in map (prevents duplicates)
       if (!uniqueCategoriesMap.has(mainCat.name)) {
         uniqueCategoriesMap.set(mainCat.name, {
           name: mainCat.name,
@@ -46,132 +37,75 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       }
     });
     
-    // Convert Map to Array and filter/sort
-    const categoriesData = Array.from(uniqueCategoriesMap.values())
-      .filter(cat => {
-        // Only show categories with tools (except show ALL AI TOOLS even if somehow count is 0)
-        return cat.count > 0 || cat.name === "ALL AI TOOLS";
-      })
+    return Array.from(uniqueCategoriesMap.values())
+      .filter(cat => cat.count > 0 || cat.name === "ALL AI TOOLS")
       .sort((a, b) => {
-        // Sort by count descending, but keep ALL AI TOOLS at the top
         if (a.name === "ALL AI TOOLS") return -1;
         if (b.name === "ALL AI TOOLS") return 1;
         return b.count - a.count;
       });
-    
-    console.log('🎯 MainCategoryFilter Final UNIQUE categories with counts:', categoriesData.map(c => `${c.name}: ${c.count}`));
-    
-    return categoriesData;
-  }, []);
+  }, []); // Remove dependencies to prevent recalculation
 
-  // FIXED: Initialize with current main category selected and keep it checked
+  // Initialize with current category selected
   useEffect(() => {
-    console.log(`🎯 MainCategoryFilter FIXED: Auto-checking current category: ${currentMainCategory}`);
-    
     const categoryExists = mainCategoriesWithCounts.some(cat => cat.name === currentMainCategory);
-    if (categoryExists) {
+    if (categoryExists && selectedMainCategories.length === 0) {
       setSelectedMainCategories([currentMainCategory]);
-      console.log(`✅ Current category "${currentMainCategory}" automatically checked`);
-    } else {
-      console.log(`⚠️ Current category "${currentMainCategory}" not found in available categories`);
     }
-  }, [currentMainCategory, mainCategoriesWithCounts]);
+  }, [currentMainCategory, mainCategoriesWithCounts.length]); // Simplified dependencies
 
-  // ENHANCED: Create mixed tools from multiple selected categories with endless flow
+  // Memoize filtered tools with reduced complexity
   const filteredTools = useMemo(() => {
     if (selectedMainCategories.length === 0) {
-      console.log(`📂 No filters selected - showing all ${tools.length} tools for ${currentMainCategory}`);
       return tools;
     }
     
-    console.log(`🎯 MULTI-CATEGORY MIXING: Selected categories: ${selectedMainCategories.join(', ')}`);
-    
-    // Step 1: Collect tools from all selected categories
     const selectedCategoryTools = new Map<string, Tool>();
-    let totalSelectedTools = 0;
     
     selectedMainCategories.forEach(categoryName => {
       const categoryTools = getToolsByMainCategory(allTools, categoryName);
-      console.log(`📂 ${categoryName}: found ${categoryTools.length} tools`);
-      
       categoryTools.forEach(tool => {
         if (!selectedCategoryTools.has(tool.title)) {
           selectedCategoryTools.set(tool.title, tool);
-          totalSelectedTools++;
         }
       });
     });
     
-    // Step 2: Convert to array and shuffle for mixing
     const selectedTools = Array.from(selectedCategoryTools.values());
-    console.log(`🔀 MIXED TOOLS: ${selectedTools.length} unique tools from ${selectedMainCategories.length} categories`);
-    
-    // Step 3: Add remaining tools from all other categories for endless flow
     const remainingTools = allTools.filter(tool => !selectedCategoryTools.has(tool.title));
-    console.log(`➕ ENDLESS FLOW: Adding ${remainingTools.length} remaining tools after selected categories`);
     
-    // Step 4: Combine selected tools first, then remaining tools
-    const finalMixedTools = [...selectedTools, ...remainingTools];
-    
-    console.log(`✅ FINAL MIXED RESULT: ${finalMixedTools.length} total tools (${selectedTools.length} from selected categories + ${remainingTools.length} endless flow)`);
-    
-    // Sample logging for verification
-    const selectedSample = selectedTools.slice(0, 5).map(t => `${t.title} (${t.category})`);
-    const remainingSample = remainingTools.slice(0, 5).map(t => `${t.title} (${t.category})`);
-    console.log(`🔍 Selected tools sample:`, selectedSample);
-    console.log(`🔍 Remaining tools sample:`, remainingSample);
-    
-    return finalMixedTools;
-  }, [selectedMainCategories, currentMainCategory, tools]);
+    return [...selectedTools, ...remainingTools];
+  }, [selectedMainCategories, tools.length]); // Simplified dependencies
 
-  // Update parent component when filtered tools change
+  // Update parent with debounced effect
   useEffect(() => {
-    console.log(`🔄 Updating parent with ${filteredTools.length} mixed category tools`);
-    console.log(`🎯 Active category mix: ${selectedMainCategories.join(' + ')} (${selectedMainCategories.length} categories)`);
-    onFilteredToolsChange(filteredTools);
-  }, [filteredTools, onFilteredToolsChange]);
-
-  const handleMainCategoryToggle = (mainCategoryName: string) => {
-    console.log(`🔄 Toggling category: ${mainCategoryName}`);
+    const timeoutId = setTimeout(() => {
+      onFilteredToolsChange(filteredTools);
+    }, 100);
     
+    return () => clearTimeout(timeoutId);
+  }, [filteredTools]);
+
+  const handleMainCategoryToggle = useCallback((mainCategoryName: string) => {
     setSelectedMainCategories(prev => {
       const isCurrentlySelected = prev.includes(mainCategoryName);
-      console.log(`📋 Current selection state for ${mainCategoryName}: ${isCurrentlySelected}`);
       
-      // FIXED: Prevent unchecking the current main category - keep it always checked
+      // Prevent unchecking current category
       if (isCurrentlySelected && mainCategoryName === currentMainCategory) {
-        console.log(`🔒 Cannot uncheck current main category: ${currentMainCategory}`);
-        return prev; // Don't allow unchecking the current category
+        return prev;
       }
       
       if (isCurrentlySelected) {
-        const newSelection = prev.filter(cat => cat !== mainCategoryName);
-        console.log(`➖ Removing ${mainCategoryName}, new selection:`, newSelection);
-        return newSelection;
+        return prev.filter(cat => cat !== mainCategoryName);
       } else {
-        const newSelection = [...prev, mainCategoryName];
-        console.log(`➕ Adding ${mainCategoryName}, new selection:`, newSelection);
-        return newSelection;
+        return [...prev, mainCategoryName];
       }
     });
-  };
+  }, [currentMainCategory]);
 
-  const clearAllFilters = () => {
-    console.log(`🔄 Clearing all filters, keeping only current category: ${currentMainCategory}`);
+  const clearAllFilters = useCallback(() => {
     setSelectedMainCategories([currentMainCategory]);
-  };
-
-  // Enhanced debug logging
-  console.log(`🔍 MainCategoryFilter Debug:`, {
-    currentMainCategory,
-    totalInputTools: tools.length,
-    categoriesShown: mainCategoriesWithCounts.length,
-    selectedCategories: selectedMainCategories,
-    filteredToolsCount: filteredTools.length,
-    multiCategoryMode: selectedMainCategories.length > 1,
-    uniqueCategoriesCount: mainCategoriesWithCounts.length,
-    currentCategoryChecked: selectedMainCategories.includes(currentMainCategory)
-  });
+  }, [currentMainCategory]);
 
   return (
     <div className="max-w-4xl mx-auto mb-4">
@@ -247,7 +181,6 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
             {mainCategoriesWithCounts.map(({ name, emoji, count }) => {
               const isChecked = selectedMainCategories.includes(name);
               const isCurrentCategory = name === currentMainCategory;
-              console.log(`🔘 Rendering checkbox for ${name}: checked=${isChecked}, current=${isCurrentCategory}, count=${count}`);
               
               return (
                 <div
@@ -259,12 +192,9 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
                   <Checkbox
                     id={`main-category-${name}`}
                     checked={isChecked}
-                    onCheckedChange={(checked) => {
-                      console.log(`🎯 Checkbox onCheckedChange for ${name}: ${checked}`);
-                      handleMainCategoryToggle(name);
-                    }}
+                    onCheckedChange={() => handleMainCategoryToggle(name)}
                     className="border-cyan-500/50 data-[state=checked]:bg-cyan-500 data-[state=checked]:border-cyan-500 flex-shrink-0 mt-1"
-                    disabled={isCurrentCategory && isChecked} // Disable unchecking current category
+                    disabled={isCurrentCategory && isChecked}
                   />
                   <div className="flex-1 min-w-0 flex flex-col">
                     <label
@@ -301,7 +231,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
             <div className="text-xs text-cyan-300">
               {selectedMainCategories.length <= 1 
                 ? `Showing ${filteredTools.length} tools in ${currentMainCategory}` 
-                : `Mixing ${selectedMainCategories.length} categories (${filteredTools.length} total tools) - selected categories shown first, then endless flow`
+                : `Mixing ${selectedMainCategories.length} categories (${filteredTools.length} total tools)`
               }
             </div>
             {selectedMainCategories.includes(currentMainCategory) && (

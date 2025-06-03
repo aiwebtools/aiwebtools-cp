@@ -3,6 +3,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { useSearchBar } from "@/hooks/useSearchBar";
 import SearchInput from "./SearchInput";
 import SearchResults from "./SearchResults";
+import { memo } from "react";
 
 interface SearchBarProps {
   searchTerm: string;
@@ -10,7 +11,7 @@ interface SearchBarProps {
   preventAutoNavigation?: boolean;
 }
 
-const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }: SearchBarProps) => {
+const SearchBar = memo(({ searchTerm, onSearchChange, preventAutoNavigation = false }: SearchBarProps) => {
   const {
     isOpen,
     toolStats,
@@ -30,7 +31,7 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
       <div className="max-w-2xl mx-auto relative">
         <SearchInput
           searchTerm={searchTerm}
-          placeholder={`Search ${toolStats.marketing} AI tools... Try: 'canva', 'notion', 'social media', 'video editing', 'whatsapp', 'spotify', 'github', 'figma'`}
+          placeholder={`Search ${toolStats.marketing} AI tools... Try: 'chatgpt', 'midjourney', 'notion'`}
           onSearchChange={handleSearchChange}
           onKeyDown={handleKeyDown}
           onBlur={handleInputBlur}
@@ -49,6 +50,7 @@ const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }
       </div>
     </TooltipProvider>
   );
-};
+});
 
+SearchBar.displayName = "SearchBar";
 export default SearchBar;

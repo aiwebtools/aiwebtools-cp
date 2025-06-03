@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -15,6 +15,7 @@ import { mainCategories } from "@/utils/mainCategoryMapping";
 import { searchTools } from "@/utils/searchUtils";
 import { Tool } from "@/types/tools";
 import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
+import { useDebounce } from "@/hooks/useDebounce";
 
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
@@ -24,11 +25,17 @@ const MainCategoryPage = () => {
   const [filteredToolsByCategory, setFilteredToolsByCategory] = useState<Tool[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Debounce search to reduce lag
+  const debouncedSearchTerm = useDebounce(searchTerm, 150);
+
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
-  const mainCategory = mainCategories.find(cat => cat.name === decodedCategoryName);
+  const mainCategory = useMemo(() => 
+    mainCategories.find(cat => cat.name === decodedCategoryName), 
+    [decodedCategoryName]
+  );
   
-  // Immediate scroll to top without delays
+  // Scroll to top immediately
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [decodedCategoryName]);
@@ -40,45 +47,39 @@ const MainCategoryPage = () => {
     return null;
   }
 
-  // Get tools for this specific main category
-  const categoryTools = getToolsByMainCategory(allTools, decodedCategoryName);
+  // Cache category tools
+  const categoryTools = useMemo(() => 
+    getToolsByMainCategory(allTools, decodedCategoryName), 
+    [decodedCategoryName]
+  );
   
-  console.log(`📊 MainCategoryPage "${decodedCategoryName}":`, {
-    originalCachedTools: categoryTools.length,
-    categoryFilteredTools: filteredToolsByCategory.length,
-    searchTerm: searchTerm || 'none',
-    displayedCount,
-    totalToolsInDatabase: allTools.length
-  });
-  
-  // Initialize filtered tools by category on first load
+  // Initialize filtered tools by category once
   useEffect(() => {
     if (filteredToolsByCategory.length === 0 && categoryTools.length > 0) {
       setFilteredToolsByCategory(categoryTools);
     }
-  }, [categoryTools, filteredToolsByCategory.length]);
+  }, [categoryTools.length, filteredToolsByCategory.length]);
 
   // Use filtered tools from category filter, fallback to original category tools
   const toolsToShow = filteredToolsByCategory.length > 0 ? filteredToolsByCategory : categoryTools;
   
-  // Apply search filter if there's a search term
-  const baseFilteredTools = searchTerm.trim() 
-    ? searchTools(toolsToShow, searchTerm)
-    : toolsToShow;
+  // Apply search filter with debounced term
+  const baseFilteredTools = useMemo(() => {
+    return debouncedSearchTerm.trim() 
+      ? searchTools(toolsToShow, debouncedSearchTerm)
+      : toolsToShow;
+  }, [toolsToShow, debouncedSearchTerm]);
 
-  // ENHANCED ENDLESS FLOW: Create infinite list with smart similar tools and category progression
-  const createEndlessToolsList = () => {
-    if (searchTerm.trim()) {
-      // For search, return search results only
+  // Create endless tools list
+  const finalFilteredTools = useMemo(() => {
+    if (debouncedSearchTerm.trim()) {
       return baseFilteredTools;
     }
     
-    // Start with category-specific tools
     let endlessTools = [...baseFilteredTools];
     const remainingCount = displayedCount - baseFilteredTools.length;
     
     if (remainingCount > 0) {
-      // Get similar tools first using context-aware matching
       const similarTools = getContextAwareSimilarTools(
         baseFilteredTools, 
         "", 
@@ -86,20 +87,17 @@ const MainCategoryPage = () => {
         Math.min(remainingCount, 100)
       );
       
-      // Add similar tools
       const availableSimilar = similarTools.filter(tool => 
         !endlessTools.some(existing => existing.title === tool.title)
       );
       endlessTools = [...endlessTools, ...availableSimilar];
       
-      // If we still need more tools, get from other categories
       const stillNeeded = displayedCount - endlessTools.length;
       if (stillNeeded > 0) {
         const otherTools = allTools.filter(tool => 
           !endlessTools.some(existing => existing.title === tool.title)
         );
         
-        // Cycle through all remaining tools to ensure endless flow
         const cycles = Math.ceil(stillNeeded / otherTools.length) || 1;
         for (let i = 0; i < cycles && endlessTools.length < displayedCount; i++) {
           const toolsToAdd = otherTools.slice(0, stillNeeded - (endlessTools.length - baseFilteredTools.length - availableSimilar.length));
@@ -109,53 +107,36 @@ const MainCategoryPage = () => {
     }
     
     return endlessTools;
-  };
+  }, [baseFilteredTools, displayedCount, debouncedSearchTerm, decodedCategoryName]);
 
-  const finalFilteredTools = createEndlessToolsList();
-  const displayedTools = finalFilteredTools.slice(0, displayedCount);
+  const displayedTools = useMemo(() => 
+    finalFilteredTools.slice(0, displayedCount), 
+    [finalFilteredTools, displayedCount]
+  );
 
-  // Reset displayed count when the base filtered tools change
-  const [lastFilteredToolsLength, setLastFilteredToolsLength] = useState(0);
+  // Reset displayed count when base filtered tools change
   useEffect(() => {
-    if (baseFilteredTools.length !== lastFilteredToolsLength) {
-      setDisplayedCount(48);
-      setLastFilteredToolsLength(baseFilteredTools.length);
-    }
-  }, [baseFilteredTools.length, lastFilteredToolsLength]);
+    setDisplayedCount(48);
+  }, [baseFilteredTools.length]);
 
-  const handleLoadMore = () => {
+  const handleLoadMore = useCallback(() => {
     if (isLoading) return;
     
-    console.log(`🚀 Auto-loading more tools in ${decodedCategoryName}... Current: ${displayedCount}`);
     setIsLoading(true);
     
     setTimeout(() => {
-      setDisplayedCount(prev => {
-        const newCount = prev + 48;
-        console.log(`✅ Updated displayedCount from ${prev} to ${newCount}`);
-        return newCount;
-      });
+      setDisplayedCount(prev => prev + 48);
       setIsLoading(false);
     }, 200);
-  };
+  }, [isLoading]);
 
-  const handleSearchChange = (value: string) => {
+  const handleSearchChange = useCallback((value: string) => {
     setSearchTerm(value);
-  };
+  }, []);
 
-  const handleFilteredToolsChange = (filtered: Tool[]) => {
-    console.log(`🎯 Category filter changed: ${filtered.length} tools (priority ordered)`);
+  const handleFilteredToolsChange = useCallback((filtered: Tool[]) => {
     setFilteredToolsByCategory(filtered);
-  };
-
-  console.log(`🔍 Final tool display logic:`, {
-    baseFilteredToolsLength: baseFilteredTools.length,
-    finalFilteredToolsLength: finalFilteredTools.length,
-    displayedToolsLength: displayedTools.length,
-    displayedCount,
-    isLoading,
-    searchActive: !!searchTerm.trim()
-  });
+  }, []);
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -204,29 +185,29 @@ const MainCategoryPage = () => {
           {/* Tools Count Display */}
           <div className="text-center mb-8">
             <div className="text-cyan-400 font-semibold">
-              {searchTerm 
-                ? `${baseFilteredTools.length} tools found for "${searchTerm}"` 
+              {debouncedSearchTerm 
+                ? `${baseFilteredTools.length} tools found for "${debouncedSearchTerm}"` 
                 : `Showing ${displayedTools.length}+ tools in ${decodedCategoryName}`
               }
-              {!searchTerm && displayedTools.length > baseFilteredTools.length && (
+              {!debouncedSearchTerm && displayedTools.length > baseFilteredTools.length && (
                 <span className="text-cyan-300"> + similar and related tools</span>
               )}
             </div>
-            {!searchTerm && (
+            {!debouncedSearchTerm && (
               <div className="text-gray-400 text-sm mt-1">
                 {categoryTools.length} category tools → similar tools → related categories - endless discovery!
               </div>
             )}
           </div>
 
-          {/* Tools Grid with Infinite Scroll - NO MANUAL BUTTONS */}
+          {/* Tools Grid with Infinite Scroll */}
           <div id="tools-section">
             {displayedTools.length > 0 ? (
               <ToolsGrid
                 tools={finalFilteredTools}
                 displayedCount={displayedCount}
                 selectedCategory={decodedCategoryName}
-                searchTerm={searchTerm}
+                searchTerm={debouncedSearchTerm}
                 onLoadMore={handleLoadMore}
                 hasInfiniteScroll={true}
                 isLoading={isLoading}
@@ -236,8 +217,8 @@ const MainCategoryPage = () => {
                 <div className="text-4xl mb-4">🔍</div>
                 <h3 className="text-2xl font-bold text-cyan-100 mb-4">No tools found</h3>
                 <p className="text-gray-300 mb-8">
-                  {searchTerm 
-                    ? `No tools found for "${searchTerm}" in ${decodedCategoryName}.`
+                  {debouncedSearchTerm 
+                    ? `No tools found for "${debouncedSearchTerm}" in ${decodedCategoryName}.`
                     : `No tools available with the selected filters in ${decodedCategoryName}.`
                   }
                 </p>
