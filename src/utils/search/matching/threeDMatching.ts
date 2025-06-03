@@ -18,7 +18,8 @@ export const matchThreeD = (tool: Tool, searchTerm: string): boolean => {
     'mesh', 'meshy', 'spline', 'blender', 'modeling', 'visualization', 'rendering',
     'photogrammetry', 'nerf', 'neural radiance', '3d capture', '3d scanning',
     'geometry', 'polygons', 'vertices', 'wireframe', 'texture', 'material',
-    'voxel', 'point cloud', 'mesh generation', 'procedural generation'
+    'voxel', 'point cloud', 'mesh generation', 'procedural generation',
+    'tripo', 'sloyd', 'luma', 'hyper', 'masterpiece'
   ];
 
   // Check if search term matches any 3D keywords
@@ -57,36 +58,43 @@ export const scoreThreeD = (tool: Tool, searchTerm: string): number => {
   
   let score = 0;
 
-  // Very high scores for exact 3D matches
+  // HIGHEST PRIORITY: Exact "3D" search gets massive boost for 3D category tools
   if (lowerSearchTerm === '3d' || lowerSearchTerm === '3d tools') {
-    // Highest priority for tools with "3D" in title
-    if (tool.title.toLowerCase().includes('3d')) {
-      score += 8000;
+    // Maximum priority for 3D & Visualization category
+    if (tool.category?.toLowerCase().includes('3d') && tool.category?.toLowerCase().includes('visualization')) {
+      score += 15000;
     }
     
-    // High priority for 3D category tools
-    if (tool.category?.toLowerCase().includes('3d') || 
-        tool.category?.toLowerCase().includes('visualization')) {
-      score += 7000;
+    // Very high priority for tools with "3D" in title
+    if (tool.title.toLowerCase().includes('3d')) {
+      score += 12000;
+    }
+    
+    // High priority for specific 3D tool names
+    const premiumThreeDTools = ['meshy', 'tripo', 'spline', 'sloyd', 'luma', 'hyper', 'masterpiece'];
+    for (const toolName of premiumThreeDTools) {
+      if (searchableText.includes(toolName)) {
+        score += 10000;
+      }
     }
     
     // High priority for mesh and modeling tools
     if (searchableText.includes('mesh') || searchableText.includes('meshy')) {
-      score += 6500;
+      score += 9000;
     }
     
     // Good score for other 3D-related terms
     if (searchableText.includes('model') || searchableText.includes('render') || 
         searchableText.includes('design') || searchableText.includes('visual')) {
-      score += 5000;
+      score += 7000;
     }
   }
 
-  // Bonus for specific 3D tool names
+  // Bonus for specific 3D tool names regardless of search term
   const threeDToolNames = ['meshy', 'spline', 'blender', 'tripo', 'sloyd', 'luma'];
   for (const toolName of threeDToolNames) {
     if (searchableText.includes(toolName)) {
-      score += 4000;
+      score += 6000;
     }
   }
 
@@ -96,7 +104,7 @@ export const scoreThreeD = (tool: Tool, searchTerm: string): number => {
       const tagLower = tag.toLowerCase();
       if (tagLower.includes('3d') || tagLower.includes('mesh') || 
           tagLower.includes('model') || tagLower.includes('render')) {
-        score += 2000;
+        score += 3000;
       }
     }
   }
