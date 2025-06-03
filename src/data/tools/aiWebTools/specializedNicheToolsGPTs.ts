@@ -1,8 +1,20 @@
-
 import { Tool } from "@/types/tools";
 import { Sprout, Hammer, MapPin, Calculator, DollarSign, Users, Building, Zap, Leaf, Dna, Gamepad, CreditCard, User, Palette, Clock, Megaphone, Shield, Bug } from "lucide-react";
 
 export const specializedNicheToolsGPTs: Tool[] = [
+  {
+    icon: Sprout,
+    title: "Agronomus AI Farming Expert",
+    description: "Comprehensive AI-powered farming and agricultural expert providing advanced guidance on crop management, soil analysis, irrigation systems, pest control, and sustainable farming practices. Whether you're managing large-scale agricultural operations, developing precision farming strategies, or optimizing crop yields, Agronomus delivers expert agricultural insights and data-driven recommendations for modern farming success.",
+    emoji: "🌾",
+    color: "from-green-500 to-yellow-600",
+    directUrl: "https://agronomus.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=fFbtPFkRERA",
+    tags: ["farming", "agriculture", "crop management", "soil analysis", "irrigation", "pest control", "sustainable farming", "agricultural expert", "precision farming", "crop optimization"],
+    category: "Specialized Niche Tools",
+    rating: 4.8,
+    totalVotes: 5678
+  },
   {
     icon: Calculator,
     title: "Taxes GPT",
