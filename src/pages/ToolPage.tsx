@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -6,8 +7,7 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
 import { Button } from "@/components/ui/button";
-import { AiOutlineLink } from "react-icons/ai";
-import { BiLike, BiDislike } from "react-icons/bi";
+import { ExternalLink, ThumbsUp, ThumbsDown } from "lucide-react";
 import { searchTools } from "@/utils/searchUtils";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import { useDebounce } from "@/hooks/useDebounce";
@@ -52,6 +52,11 @@ const ToolPage = () => {
     if (url) {
       window.open(url, '_blank');
     }
+  };
+
+  const handleLoadMore = () => {
+    // This is for the ToolsGrid component requirement
+    console.log("Load more requested");
   };
 
   const searchedSimilarTools = searchTerm
@@ -99,7 +104,7 @@ const ToolPage = () => {
               size="lg"
               className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
             >
-              <AiOutlineLink className="mr-2" />
+              <ExternalLink className="mr-2" />
               Visit Website
             </Button>
           </div>
@@ -118,11 +123,11 @@ const ToolPage = () => {
             </div>
             <div className="flex items-center justify-center mt-2 space-x-4">
               <Button variant="outline" size="sm" className="text-gray-400 hover:text-white">
-                <BiLike className="mr-2" />
+                <ThumbsUp className="mr-2" />
                 Like
               </Button>
               <Button variant="outline" size="sm" className="text-gray-400 hover:text-white">
-                <BiDislike className="mr-2" />
+                <ThumbsDown className="mr-2" />
                 Dislike
               </Button>
             </div>
@@ -153,6 +158,7 @@ const ToolPage = () => {
                 displayedCount={24}
                 selectedCategory={tool.category || ""}
                 searchTerm={debouncedSearchTerm}
+                onLoadMore={handleLoadMore}
                 hasInfiniteScroll={false}
               />
             ) : (

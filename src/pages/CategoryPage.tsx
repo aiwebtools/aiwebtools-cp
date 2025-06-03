@@ -81,11 +81,7 @@ const CategoryPage = () => {
     );
   }
 
-  const categoryStructuredData = generateStructuredData('category', {
-    title: standardizedCategory,
-    description: `Discover the best AI tools in the ${standardizedCategory} category`,
-    toolCount: categoryTools.length
-  });
+  const categoryStructuredData = generateStructuredData('category');
 
   const breadcrumbItems = [
     { name: "Home", url: "https://aitools.studio" },

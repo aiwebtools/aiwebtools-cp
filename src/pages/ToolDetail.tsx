@@ -1,3 +1,4 @@
+
 import { useParams } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { allTools } from "@/data/toolsData";
@@ -55,12 +56,7 @@ const ToolDetail = () => {
   const defaultRating = tool.rating || defaultRatings[toolIndex % defaultRatings.length];
   const defaultVotes = tool.totalVotes || Math.floor(Math.random() * 3000) + 2000;
 
-  const toolStructuredData = generateStructuredData('tool', {
-    title: tool.title,
-    description: tool.description,
-    rating: defaultRating,
-    totalVotes: defaultVotes
-  });
+  const toolStructuredData = generateStructuredData('tool');
 
   const breadcrumbItems = [
     { name: "Home", url: "https://aitools.studio" },
