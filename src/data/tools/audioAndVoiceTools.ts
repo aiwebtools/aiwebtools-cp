@@ -15,7 +15,8 @@ import {
   Leaf,
   Calculator,
   Shield,
-  Compass
+  Compass,
+  Building
 } from "lucide-react";
 
 export const audioAndVoiceTools: Tool[] = [
@@ -228,5 +229,17 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Creative & Entertainment",
     rating: 4.5,
     totalVotes: 2234
+  },
+  {
+    icon: Building,
+    title: "Real Estate GPT",
+    description: "Intelligent Real Estate Analysis & Insights. RealEstateGPT provides detailed, data-driven, and actionable property intelligence for accurate valuation, mortgage analysis, rental management, and commercial real estate investments.",
+    emoji: "🏘️",
+    color: "from-blue-500 to-slate-600",
+    directUrl: "https://realestategpt.lovable.app/?via=aiwebtools",
+    tags: ["real estate", "property valuation", "mortgage analysis", "rental management", "commercial real estate", "property intelligence", "investment analysis", "real estate data", "property assessment", "market analysis"],
+    category: "Professional Services",
+    rating: 4.6,
+    totalVotes: 2567
   }
 ];
