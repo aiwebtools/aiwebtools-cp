@@ -19,7 +19,8 @@ import {
   Building,
   Shirt,
   Palette,
-  ShoppingCart
+  ShoppingCart,
+  BookOpen
 } from "lucide-react";
 
 export const audioAndVoiceTools: Tool[] = [
@@ -280,5 +281,17 @@ export const audioAndVoiceTools: Tool[] = [
     category: "E-commerce & Shopping",
     rating: 4.5,
     totalVotes: 2890
+  },
+  {
+    icon: BookOpen,
+    title: "Comic Book Generator GPT",
+    description: "Create full comic books with GPT-4o! This AI chat assistant collaborates with you to bring whatever you imagine to life in stunning comic book format. From superheroes to slice-of-life stories, transform your ideas into professional comic books.",
+    emoji: "📚",
+    color: "from-red-500 to-yellow-600",
+    directUrl: "https://comicbookmakergpt.lovable.app/?via=aiwebtools",
+    tags: ["comic book", "comic creation", "GPT-4o", "comic generator", "storytelling", "visual storytelling", "comic book maker", "comic art", "graphic novel", "sequential art", "comic strips", "creative writing", "illustration", "character creation", "comic panels"],
+    category: "Creative & Entertainment",
+    rating: 4.8,
+    totalVotes: 3456
   }
 ];
