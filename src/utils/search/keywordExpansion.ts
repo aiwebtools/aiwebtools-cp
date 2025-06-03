@@ -88,6 +88,13 @@ const typoCorrection: Record<string, string> = {
   "time travle": "time travel",
   "time trevel": "time travel",
   
+  // Cannabis/smoking related
+  "smok": "smoke",
+  "smoek": "smoke",
+  "smoke wed": "smoke weed",
+  "smke weed": "smoke weed",
+  "smoek weed": "smoke weed",
+  
   "writting": "writing",
   "writeing": "writing",
   "buisness": "business",
@@ -622,11 +629,13 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
     console.log(`🎓 EDUCATION SEARCH DETECTED: Added ${educationKeywords.length} education keywords`);
   }
 
-  // CANNABIS/HEMP SEARCH EXPANSION - HIGHEST PRIORITY
+  // CANNABIS/HEMP/SMOKING SEARCH EXPANSION - HIGHEST PRIORITY
   if (lowerSearchTerm.includes('cannabis') || lowerSearchTerm.includes('hemp') ||
       lowerSearchTerm.includes('cbd') || lowerSearchTerm.includes('thc') ||
       lowerSearchTerm.includes('marijuana') || lowerSearchTerm.includes('weed') ||
-      lowerSearchTerm.includes('ganja') || lowerSearchTerm.includes('pot')) {
+      lowerSearchTerm.includes('ganja') || lowerSearchTerm.includes('pot') ||
+      lowerSearchTerm.includes('smoke') || lowerSearchTerm.includes('smoking') ||
+      lowerSearchTerm === 'smoke weed' || lowerSearchTerm.includes('smoke weed')) {
     const cannabisKeywords = [
       'cannabis gpt',
       '🌿cannabis gpt',
@@ -658,10 +667,19 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
       'medicinal plants',
       'wellness',
       'alternative medicine',
-      'holistic health'
+      'holistic health',
+      'smoke',
+      'smoking',
+      'vaporize',
+      'vaping',
+      'edibles',
+      'concentrates',
+      'terpenes',
+      'cannabinoids'
     ];
     
     cannabisKeywords.forEach(keyword => expandedKeywords.add(keyword));
+    console.log(`🌿 CANNABIS/SMOKING SEARCH DETECTED: Added ${cannabisKeywords.length} cannabis keywords`);
   }
   
   // SOUND EFFECTS AND AUDIO SEARCH EXPANSION - HIGHEST PRIORITY
