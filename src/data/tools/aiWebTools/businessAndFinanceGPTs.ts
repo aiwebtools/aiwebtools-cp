@@ -251,4 +251,16 @@ export const businessAndFinanceGPTs: Tool[] = [
     rating: 4.5,
     totalVotes: 1890
   },
+  {
+    icon: DollarSign,
+    title: "Personal Finance Ai",
+    description: "AI-powered personal finance assistant that helps you manage your money, create budgets, track expenses, and make informed financial decisions for a better financial future.",
+    emoji: "💰",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://chat.openai.com/g/g-f0s3qjB7I",
+    tags: ["personal finance", "budgeting", "expense tracking", "financial planning", "money management"],
+    category: "Business & Finance",
+    rating: 4.5,
+    totalVotes: 1234
+  },
 ];
