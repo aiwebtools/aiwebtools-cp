@@ -1,3 +1,4 @@
+
 import { keywordMapping, searchSynonyms, categoryKeywords } from "@/data/keywords";
 import { phoneticMatch } from "./core/fuzzyMatching";
 
@@ -295,6 +296,70 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   expandedKeywords.add(lowerSearchTerm);
   phoneticMatches.forEach(match => expandedKeywords.add(match));
   
+  // EDUCATION/COLLEGE SEARCH EXPANSION - HIGHEST PRIORITY
+  if (lowerSearchTerm.includes('college') || lowerSearchTerm.includes('education') ||
+      lowerSearchTerm.includes('learning') || lowerSearchTerm.includes('learn') ||
+      lowerSearchTerm.includes('course') || lowerSearchTerm.includes('school') ||
+      lowerSearchTerm.includes('study') || lowerSearchTerm.includes('skill') ||
+      lowerSearchTerm.includes('training') || lowerSearchTerm.includes('tutorial')) {
+    const educationKeywords = [
+      'learn any course gpt',
+      'learn any skill gpt',
+      'college degree gpt',
+      'course maker gpt',
+      'course creator gpt',
+      'quiz maker ai',
+      'training manual generator gpt',
+      'home-schooling assistant gpt',
+      'homeschool gpt',
+      'music melodies & lessons gpt',
+      'education',
+      'educational',
+      'learning',
+      'college',
+      'university',
+      'course',
+      'courses',
+      'skill',
+      'skills',
+      'training',
+      'tutorial',
+      'lesson',
+      'lessons',
+      'study',
+      'academic',
+      'school',
+      'classroom',
+      'homework',
+      'assignment',
+      'quiz',
+      'test',
+      'exam',
+      'grade',
+      'student',
+      'teacher',
+      'tutor',
+      'instructor',
+      'teaching',
+      'instruction',
+      'curriculum',
+      'syllabus',
+      'knowledge',
+      'competency',
+      'certification',
+      'diploma',
+      'degree',
+      'homeschool',
+      'home school',
+      'online learning',
+      'e-learning',
+      'distance learning'
+    ];
+    
+    educationKeywords.forEach(keyword => expandedKeywords.add(keyword));
+    console.log(`🎓 EDUCATION SEARCH DETECTED: Added ${educationKeywords.length} education keywords`);
+  }
+
   // CANNABIS/HEMP SEARCH EXPANSION - HIGHEST PRIORITY
   if (lowerSearchTerm.includes('cannabis') || lowerSearchTerm.includes('hemp') ||
       lowerSearchTerm.includes('cbd') || lowerSearchTerm.includes('thc') ||
