@@ -1,8 +1,8 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Leaf,
-  ShoppingCart
+  ShoppingCart,
+  Compass
 } from "lucide-react";
 
 export const businessProductivityAudio: Tool[] = [
