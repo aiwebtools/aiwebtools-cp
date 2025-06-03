@@ -39,18 +39,6 @@ export const newsAndInformationTools: Tool[] = [
     totalVotes: 7890
   },
   {
-    icon: Brain,
-    title: "TED Talks",
-    description: "Ideas worth spreading. Watch inspiring talks from experts in technology, science, design, and other fields.",
-    emoji: "💡",
-    color: "from-red-500 to-pink-600",
-    directUrl: "https://ted.com/talks",
-    tags: ["educational talks", "inspiration", "experts", "ideas", "learning"],
-    category: "News & Information",
-    rating: 4.7,
-    totalVotes: 5432
-  },
-  {
     icon: Search,
     title: "AllSides",
     description: "News platform showing multiple perspectives on current events. Compare how different sources cover the same story.",
