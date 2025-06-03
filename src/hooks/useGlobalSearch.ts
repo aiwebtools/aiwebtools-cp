@@ -1,28 +1,42 @@
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
+import { useSearchDebounce } from "@/hooks/useDebounce";
 
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [displayedCount, setDisplayedCount] = useState(30);
   const [isOpen, setIsOpen] = useState(false);
-  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const searchRef = useRef(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const stats = getCurrentToolCount();
-    setToolStats(stats);
-  }, []);
+  // Optimized debounce
+  const debouncedSearchTerm = useSearchDebounce(searchTerm, 150);
 
+  // Memoize tool stats
+  const toolStats = useMemo(() => getCurrentToolCount(), []);
+
+  // Optimized search effect
   useEffect(() => {
-    if (searchTerm.trim()) {
-      const results = searchTools(allTools, searchTerm);
+    const trimmedTerm = debouncedSearchTerm.trim();
+    if (trimmedTerm) {
+      // Early return for single characters
+      if (trimmedTerm.length === 1) {
+        const simpleResults = allTools.filter(tool => 
+          tool.title.toLowerCase().includes(trimmedTerm.toLowerCase())
+        ).slice(0, 20);
+        setSearchResults(simpleResults);
+        setDisplayedCount(20);
+        setIsOpen(true);
+        return;
+      }
+      
+      const results = searchTools(allTools, trimmedTerm);
       setSearchResults(results);
       setDisplayedCount(30);
       setIsOpen(true);
@@ -31,8 +45,9 @@ export const useGlobalSearch = () => {
       setIsOpen(false);
       setDisplayedCount(30);
     }
-  }, [searchTerm]);
+  }, [debouncedSearchTerm]);
 
+  // Optimized click outside handler
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -44,13 +59,13 @@ export const useGlobalSearch = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleToolClick = (toolIndex: number) => {
+  const handleToolClick = useCallback((toolIndex: number) => {
     setIsOpen(false);
     setSearchTerm("");
     navigate(`/tool/${toolIndex}`);
-  };
+  }, [navigate]);
 
-  const handleDirectAccess = (tool: any, e: React.MouseEvent) => {
+  const handleDirectAccess = useCallback((tool: any, e: React.MouseEvent) => {
     if (tool.directUrl) {
       e.preventDefault();
       e.stopPropagation();
@@ -59,15 +74,15 @@ export const useGlobalSearch = () => {
       setIsOpen(false);
       setSearchTerm("");
     }
-  };
+  }, []);
 
-  const clearSearch = () => {
+  const clearSearch = useCallback(() => {
     setSearchTerm("");
     setIsOpen(false);
     setDisplayedCount(30);
-  };
+  }, []);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       setSearchTerm("");
@@ -83,15 +98,15 @@ export const useGlobalSearch = () => {
         }
       }
     }
-  };
+  }, [searchTerm, searchResults, navigate]);
 
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+  const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     if (scrollHeight - scrollTop <= clientHeight + 50 && displayedCount < searchResults.length) {
       setDisplayedCount(prev => Math.min(prev + 20, searchResults.length));
     }
-  };
+  }, [displayedCount, searchResults.length]);
 
   return {
     searchTerm,

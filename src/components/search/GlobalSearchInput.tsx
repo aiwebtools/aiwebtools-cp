@@ -31,6 +31,11 @@ const GlobalSearchInput = memo(({
         className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg backdrop-blur-sm"
         autoComplete="off"
         spellCheck={false}
+        // Optimize input performance
+        style={{ 
+          transition: 'none',  // Disable transitions during typing
+          willChange: 'auto'   // Optimize for frequent changes
+        }}
       />
       {searchTerm && (
         <Button
