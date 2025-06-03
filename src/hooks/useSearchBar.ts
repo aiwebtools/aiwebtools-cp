@@ -11,7 +11,7 @@ interface UseSearchBarProps {
 
 export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [displayedCount, setDisplayedCount] = useState(30); // Reduced further
+  const [displayedCount, setDisplayedCount] = useState(30);
   
   // SUPER FAST search results - optimized for instant typing
   const searchResults = useMemo(() => {
@@ -24,10 +24,10 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     if (trimmedTerm.length === 2) {
       return allTools.filter(tool => 
         tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
-      ).slice(0, 15); // Even smaller limit
+      ); // No limit - show all matching tools
     }
     
-    // OPTIMIZED 3-character search - still simple matching
+    // OPTIMIZED 3-character search - use simple matching instead of heavy searchTools
     if (trimmedTerm.length === 3) {
       return allTools.filter(tool => {
         const lowerTitle = tool.title.toLowerCase();
@@ -35,17 +35,17 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
         return lowerTitle.startsWith(lowerTerm) || 
                lowerTitle.includes(lowerTerm) ||
                tool.category?.toLowerCase().includes(lowerTerm);
-      }).slice(0, 25); // Small limit for speed
+      }); // No limit - show all matching tools
     }
     
-    // For 4+ characters, use optimized search with strict limits
+    // For 4+ characters, use full search with unlimited results
     const results = searchTools(allTools, trimmedTerm);
-    return results.slice(0, 50); // Reduced limit
+    return results; // No limit - show all matching tools
   }, [searchTerm]);
 
-  // Display results with strict performance limits
+  // Display results with performance limits for rendering only
   const displayedResults = useMemo(() => 
-    searchResults.slice(0, Math.min(displayedCount, 30)), // Reduced cap
+    searchResults.slice(0, Math.min(displayedCount, 100)), // Only limit display for performance
     [searchResults, displayedCount]
   );
 
@@ -95,7 +95,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     if (scrollHeight - scrollTop <= clientHeight + 30 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 15, searchResults.length, 30)); // Smaller increments
+      setDisplayedCount(prev => Math.min(prev + 20, searchResults.length)); // Load more in chunks
     }
   }, [displayedCount, searchResults.length]);
 

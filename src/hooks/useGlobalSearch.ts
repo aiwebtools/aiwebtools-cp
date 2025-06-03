@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { allTools } from "@/data/toolsData";
@@ -8,7 +9,7 @@ import { getCurrentToolCount } from "@/utils/toolCounter";
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [displayedCount, setDisplayedCount] = useState(30); // Reduced
+  const [displayedCount, setDisplayedCount] = useState(30);
   const [isOpen, setIsOpen] = useState(false);
   const searchRef = useRef(null);
   const navigate = useNavigate();
@@ -30,14 +31,14 @@ export const useGlobalSearch = () => {
     if (trimmedTerm.length === 2) {
       const results = allTools.filter(tool => 
         tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
-      ).slice(0, 15);
+      ); // No limit - show all matching tools
       setSearchResults(results);
-      setDisplayedCount(15);
+      setDisplayedCount(30);
       setIsOpen(true);
       return;
     }
 
-    // OPTIMIZED 3-character search - avoid full searchTools
+    // OPTIMIZED 3-character search - use simple matching instead of heavy searchTools
     if (trimmedTerm.length === 3) {
       const results = allTools.filter(tool => {
         const lowerTitle = tool.title.toLowerCase();
@@ -45,16 +46,16 @@ export const useGlobalSearch = () => {
         return lowerTitle.startsWith(lowerTerm) || 
                lowerTitle.includes(lowerTerm) ||
                tool.category?.toLowerCase().includes(lowerTerm);
-      }).slice(0, 25);
+      }); // No limit - show all matching tools
       setSearchResults(results);
-      setDisplayedCount(25);
+      setDisplayedCount(30);
       setIsOpen(true);
       return;
     }
 
-    // For 4+ characters, use search with performance limits
+    // For 4+ characters, use full search with unlimited results
     const results = searchTools(allTools, trimmedTerm);
-    setSearchResults(results.slice(0, 50)); // Reduced limit
+    setSearchResults(results); // No limit - show all matching tools
     setDisplayedCount(30);
     setIsOpen(true);
   }, [searchTerm]);
@@ -115,7 +116,7 @@ export const useGlobalSearch = () => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     if (scrollHeight - scrollTop <= clientHeight + 20 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 15, searchResults.length, 30)); // Smaller increments
+      setDisplayedCount(prev => Math.min(prev + 20, searchResults.length)); // Load more in chunks
     }
   }, [displayedCount, searchResults.length]);
 
