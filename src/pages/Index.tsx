@@ -100,7 +100,19 @@ const Index = () => {
           <FeaturedToolsSection />
         </div>
 
-        {/* Category Selection moved here - below the featured tools */}
+        {/* 🚀 AI TOOLS COLLECTION Section - moved above CategoryPageSelection */}
+        <div className="py-12 bg-black relative">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              🚀 <span className="text-cyan-400">AI TOOLS COLLECTION</span>
+            </h2>
+            <p className="text-cyan-300 text-lg">
+              Scroll down to discover more amazing AI tools!
+            </p>
+          </div>
+        </div>
+
+        {/* Category Selection moved here - below the featured tools and AI TOOLS COLLECTION */}
         <div id="categories-section">
           <CategoryPageSelection />
         </div>
