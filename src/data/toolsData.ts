@@ -14,7 +14,7 @@ import { webDevelopmentTools } from "@/data/tools/webDevelopmentTools";
 import { businessAndProductivity } from "@/data/tools/businessAndProductivity";
 import { imageAndDesign } from "@/data/tools/imageAndDesign";
 import { healthAndWellness } from "@/data/tools/healthAndWellness";
-import { educationAndLearning } from "@/data/tools/educationAndLearning";
+import { learningAndEducation } from "@/data/tools/learningAndEducation";
 import { financialAndTradingTools } from "@/data/tools/financialAndTradingTools";
 import { socialMediaTools } from "@/data/tools/socialMediaTools";
 import { dataAnalyticsTools } from "@/data/tools/dataAnalyticsTools";
@@ -69,7 +69,7 @@ const baseTools: Tool[] = [
   ...businessAndProductivity,
   ...imageAndDesign,
   ...healthAndWellness,
-  ...educationAndLearning,
+  ...learningAndEducation,
   ...financialAndTradingTools,
   ...socialMediaTools,
   ...dataAnalyticsTools,
