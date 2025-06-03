@@ -46,10 +46,10 @@ const SearchResults = memo(({
       }}
     >
       <div className="p-2">
-        <div className="text-xs text-gray-500 px-3 py-2 border-b border-gray-100 sticky top-0 bg-white" style={{ fontSize: '9px' }}>
+        <div className="px-3 py-2 border-b border-gray-100 sticky top-0 bg-white text-red-500" style={{ fontSize: '9px' }}>
           Search Results ({searchResults.length} total) - Showing {displayedResults.length}
           {displayedCount < searchResults.length && (
-            <span className="text-cyan-600 ml-2">Scroll for more...</span>
+            <span className="ml-2">Scroll for more...</span>
           )}
         </div>
         {displayedResults.map((tool, index) => {
