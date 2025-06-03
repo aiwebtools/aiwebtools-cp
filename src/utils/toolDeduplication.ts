@@ -42,22 +42,52 @@ export const createDeduplicatedToolsList = (tools: Tool[], maxDistance: number =
 };
 
 /**
- * Remove exact duplicates from a list of tools
+ * CONSERVATIVE deduplication - only remove EXACT duplicates
  */
 export const deduplicateTools = (tools: Tool[]): Tool[] => {
   const seen = new Set<string>();
   const deduplicated: Tool[] = [];
+  const removedTools: Tool[] = [];
+  
+  console.log(`🔍 CONSERVATIVE DEDUPLICATION STARTING: ${tools.length} tools`);
   
   for (const tool of tools) {
-    const key = `${tool.title.toLowerCase().trim()}-${tool.category?.toLowerCase().trim() || 'uncategorized'}`;
+    // Create a unique key based on title AND URL to be more conservative
+    const titleKey = tool.title.toLowerCase().trim();
+    const urlKey = tool.directUrl?.toLowerCase().trim() || 'no-url';
+    const key = `${titleKey}|||${urlKey}`;
     
     if (!seen.has(key)) {
       seen.add(key);
       deduplicated.push(tool);
+    } else {
+      removedTools.push(tool);
+      console.log(`🗑️ Removing exact duplicate: "${tool.title}" (${tool.category})`);
     }
   }
   
-  console.log(`🗑️ Removed ${tools.length - deduplicated.length} exact duplicates`);
+  console.log(`🗑️ DEDUPLICATION RESULTS:`);
+  console.log(`   Input tools: ${tools.length}`);
+  console.log(`   Output tools: ${deduplicated.length}`);
+  console.log(`   Removed duplicates: ${removedTools.length}`);
+  
+  if (removedTools.length > 0) {
+    console.log(`🔍 REMOVED TOOLS DETAILS:`);
+    removedTools.forEach((tool, index) => {
+      console.log(`   ${index + 1}. "${tool.title}" (${tool.category}) - ${tool.directUrl}`);
+    });
+  }
+  
+  // Check specifically for our newly added tools
+  const teamAI = deduplicated.find(t => t.title.includes('TeamAI'));
+  const orchard = deduplicated.find(t => t.title.includes('Orchard'));
+  const bitAI = deduplicated.find(t => t.title.includes('Bit.ai'));
+  
+  console.log(`✅ NEWLY ADDED TOOLS VERIFICATION AFTER DEDUPLICATION:`);
+  console.log(`   TeamAI preserved: ${!!teamAI}`);
+  console.log(`   Orchard.ink preserved: ${!!orchard}`);
+  console.log(`   Bit.ai preserved: ${!!bitAI}`);
+  
   return deduplicated;
 };
 

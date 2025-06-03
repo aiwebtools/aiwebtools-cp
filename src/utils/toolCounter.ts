@@ -13,6 +13,35 @@ export const getToolCount = () => {
   const allToolsFromCollection = getAllToolCategories();
   const deduplicatedTools = deduplicateTools(allToolsFromCollection);
   
+  console.log(`🔍 DETAILED TOOL COUNT ANALYSIS:`);
+  console.log(`📊 Raw tools from collection: ${allToolsFromCollection.length}`);
+  console.log(`📊 After deduplication: ${deduplicatedTools.length}`);
+  console.log(`📊 Tools removed by deduplication: ${allToolsFromCollection.length - deduplicatedTools.length}`);
+  
+  // Check specifically for the tools we just added
+  const teamAITool = deduplicatedTools.find(tool => tool.title.includes('TeamAI'));
+  const orchardTool = deduplicatedTools.find(tool => tool.title.includes('Orchard'));
+  const bitAITool = deduplicatedTools.find(tool => tool.title.includes('Bit.ai'));
+  
+  console.log(`🔍 NEWLY ADDED TOOLS VERIFICATION:`);
+  console.log(`TeamAI found: ${!!teamAITool}`);
+  console.log(`Orchard.ink found: ${!!orchardTool}`);
+  console.log(`Bit.ai found: ${!!bitAITool}`);
+  
+  if (teamAITool) console.log(`TeamAI details:`, teamAITool.title, teamAITool.category);
+  if (orchardTool) console.log(`Orchard details:`, orchardTool.title, orchardTool.category);
+  if (bitAITool) console.log(`Bit.ai details:`, bitAITool.title, bitAITool.category);
+  
+  // Check for potential duplicates that might have been removed
+  const chatPlatformTools = deduplicatedTools.filter(tool => tool.category === 'AI Chat Platforms');
+  const contentCreationTools = deduplicatedTools.filter(tool => tool.category === 'Content Creation');
+  const collaborationTools = deduplicatedTools.filter(tool => tool.category === 'Collaboration Tools');
+  
+  console.log(`📋 Category tool counts:`);
+  console.log(`AI Chat Platforms: ${chatPlatformTools.length}`);
+  console.log(`Content Creation: ${contentCreationTools.length}`);
+  console.log(`Collaboration Tools: ${collaborationTools.length}`);
+  
   const categoryBreakdown: Record<string, number> = {};
   deduplicatedTools.forEach(tool => {
     const category = tool.category || 'Uncategorized';
@@ -22,26 +51,10 @@ export const getToolCount = () => {
   // Get main category counts using the EXACT same logic as the website
   const mainCategoryCounts = getMainCategoriesWithCounts(allTools);
   
-  console.log('🎉 ENHANCED TOOL COUNT VERIFICATION 🎉');
+  console.log(`🎉 ENHANCED TOOL COUNT VERIFICATION 🎉`);
   console.log(`📊 EXACT Tool Count: ${deduplicatedTools.length}`);
   console.log('📋 Complete Category Breakdown:', categoryBreakdown);
   console.log('🎯 Main Category Counts (matching website display):', mainCategoryCounts);
-  
-  // Enhanced analysis for the categories user mentioned
-  const creativeCount = mainCategoryCounts['CREATIVE & ENTERTAINMENT'] || 0;
-  const healthCount = mainCategoryCounts['HEALTH, WELLNESS & PERSONAL LIFESTYLE'] || 0;
-  const marketingCount = mainCategoryCounts['MARKETING & SALES SOLUTIONS'] || 0;
-  
-  console.log('🎭 CREATIVE & ENTERTAINMENT ANALYSIS:');
-  console.log(`   Main Category Count: ${creativeCount} tools`);
-  
-  console.log('🏥 HEALTH & WELLNESS ANALYSIS:');
-  console.log(`   Main Category Count: ${healthCount} tools`);
-  
-  console.log('📈 MARKETING & SALES ANALYSIS:');
-  console.log(`   Main Category Count: ${marketingCount} tools`);
-  
-  console.log(`🔍 COMBINED USER CATEGORIES: ${creativeCount + healthCount + marketingCount} tools`);
   
   // Check consistency between collection count and allTools count
   const allToolsCount = allTools.length;
@@ -50,47 +63,10 @@ export const getToolCount = () => {
   console.log(`   allTools count: ${allToolsCount}`);
   console.log(`   Match: ${deduplicatedTools.length === allToolsCount ? '✅' : '❌'}`);
   
-  // Enhanced pricing analysis
-  const freeTools = deduplicatedTools.filter(tool => 
-    tool.tags?.includes('free') || 
-    tool.description.toLowerCase().includes('completely free') ||
-    tool.description.toLowerCase().includes('free to use')
-  ).length;
-  
-  const freemiumTools = deduplicatedTools.filter(tool => 
-    tool.tags?.includes('freemium') || 
-    tool.description.toLowerCase().includes('free plan') ||
-    tool.description.toLowerCase().includes('free tier')
-  ).length;
-  
-  const paidTools = deduplicatedTools.filter(tool => 
-    tool.tags?.includes('paid') || 
-    tool.description.toLowerCase().includes('subscription') ||
-    tool.description.toLowerCase().includes('/month')
-  ).length;
-  
-  console.log('💰 Pricing Breakdown:');
-  console.log(`Free Tools: ${freeTools}`);
-  console.log(`Freemium Tools: ${freemiumTools}`);
-  console.log(`Paid Tools: ${paidTools}`);
-  console.log(`🆓 Free/Freemium Ratio: ${Math.round(((freeTools + freemiumTools) / deduplicatedTools.length) * 100)}%`);
-  
-  // Search functionality verification
-  const toolsWithTags = deduplicatedTools.filter(tool => tool.tags && tool.tags.length > 0).length;
-  const toolsWithCategories = deduplicatedTools.filter(tool => tool.category).length;
-  
-  console.log('🔍 Search Readiness:');
-  console.log(`Tools with Tags: ${toolsWithTags} (${Math.round((toolsWithTags / deduplicatedTools.length) * 100)}%)`);
-  console.log(`Tools with Categories: ${toolsWithCategories} (${Math.round((toolsWithCategories / deduplicatedTools.length) * 100)}%)`);
-  
-  console.log('✅ FINAL ACCURATE COUNT FOR WEBSITE UPDATES:');
-  console.log(`🎯 EXACT TOTAL: ${deduplicatedTools.length} AI TOOLS`);
-  console.log(`📈 Rounded Marketing Number: ${Math.round(deduplicatedTools.length / 100) * 100}+`);
-  console.log(`🚀 Categories Available: ${Object.keys(categoryBreakdown).length}`);
-  console.log('🎯 Main Category Tool Distribution:');
-  Object.entries(mainCategoryCounts).forEach(([category, count]) => {
-    console.log(`   ${category}: ${count} tools`);
-  });
+  if (deduplicatedTools.length !== allToolsCount) {
+    console.warn(`⚠️ MISMATCH DETECTED! Collection has ${deduplicatedTools.length} but allTools has ${allToolsCount}`);
+    console.warn(`This could explain the tool count discrepancy!`);
+  }
   
   // Run integrity check after counting
   console.log('\n🔍 RUNNING ENHANCED INTEGRITY CHECK...');
@@ -103,16 +79,8 @@ export const getToolCount = () => {
     categoryBreakdown,
     mainCategoryCounts,
     categoriesCount: Object.keys(categoryBreakdown).length,
-    freeTools,
-    freemiumTools,
-    paidTools,
-    creativeToolsCount: creativeCount,
-    healthToolsCount: healthCount,
-    marketingToolsCount: marketingCount,
-    searchReadiness: {
-      withTags: toolsWithTags,
-      withCategories: toolsWithCategories
-    }
+    rawToolsCount: allToolsFromCollection.length,
+    removedByDeduplication: allToolsFromCollection.length - deduplicatedTools.length
   };
 };
 
