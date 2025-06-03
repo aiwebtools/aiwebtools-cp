@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   DollarSign, 
@@ -18,7 +17,7 @@ import {
 export const financialAndTradingTools: Tool[] = [
   {
     icon: Calculator,
-    title: "Financial Calculator Pro",
+    title: "Personal Finance Advisor GPT",
     description: "Advanced AI-powered financial calculator for complex calculations, investment analysis, and financial planning with step-by-step explanations.",
     emoji: "🧮",
     color: "from-green-500 to-blue-600",
