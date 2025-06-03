@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Mic, 
@@ -12,7 +11,8 @@ import {
   Play,
   Settings,
   Sparkles,
-  Bot
+  Bot,
+  Leaf
 } from "lucide-react";
 
 export const audioAndVoiceTools: Tool[] = [
@@ -54,6 +54,18 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Communication & Entertainment",
     rating: 4.9,
     totalVotes: 6789
+  },
+  {
+    icon: Leaf,
+    title: "CCSBA Cannabis GPTs Collection",
+    description: "Comprehensive collection of fine-tuned AI applications specifically designed for the cannabis industry. Access specialized GPTs for cultivation, compliance, business operations, and industry expertise through one convenient platform.",
+    emoji: "🌿",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://linktr.ee/ctcannabisalliance/?via=aiwebtools",
+    tags: ["cannabis", "industry tools", "specialized GPTs", "cultivation", "compliance", "business operations", "agriculture", "hemp", "cannabis tech", "industry solutions"],
+    category: "Specialized Industry Tools",
+    rating: 4.6,
+    totalVotes: 3245
   },
   {
     icon: Mic,
