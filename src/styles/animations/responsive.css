@@ -2,6 +2,13 @@
 @layer base {
   /* Mobile optimizations */
   @media (max-width: 768px) {
+    /* Force hardware acceleration on iOS */
+    * {
+      -webkit-transform: translateZ(0);
+      -webkit-backface-visibility: hidden;
+      -webkit-perspective: 1000;
+    }
+    
     .cyber-glow {
       text-shadow: 0 0 5px currentColor;
     }
@@ -31,6 +38,11 @@
     
     .interactive-button {
       transition-duration: 0.15s;
+      /* iOS tap optimization */
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
     }
     
     .interactive-button:hover {
@@ -57,6 +69,9 @@
       /* Force immediate input rendering */
       contain: layout style paint !important;
       isolation: isolate !important;
+      /* iOS specific optimizations */
+      -webkit-transform: translateZ(0) !important;
+      -webkit-backface-visibility: hidden !important;
     }
     
     /* Prevent layout shifts on mobile */
@@ -78,6 +93,8 @@
       will-change: auto !important;
       backface-visibility: hidden !important;
       -webkit-backface-visibility: hidden !important;
+      /* iOS performance boost */
+      -webkit-transform: translateZ(0) !important;
     }
     
     /* FIXED width for transitioning words to prevent jumping - mobile specific */
@@ -86,6 +103,32 @@
       width: 220px !important; /* Wider on mobile for safety */
       text-align: center !important;
       transition: none !important; /* NO transitions */
+    }
+  }
+
+  /* iOS specific optimizations */
+  @supports (-webkit-touch-callout: none) {
+    /* Target iOS Safari specifically */
+    * {
+      -webkit-transform: translateZ(0);
+      -webkit-backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Disable momentum scrolling on iOS to prevent jank */
+    body {
+      -webkit-overflow-scrolling: touch;
+      overflow-scrolling: touch;
+    }
+    
+    /* iOS button optimization */
+    button, .interactive-button {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      cursor: pointer;
     }
   }
 
@@ -121,6 +164,7 @@
 
   /* Performance for low-end devices - INSTANT input response */
   @media (max-width: 480px) {
+    /* Disable ALL heavy animations on small screens */
     .cyber-glow,
     .glow-text-effect,
     .glow-effect,
@@ -207,6 +251,16 @@
       will-change: auto !important;
       contain: layout style paint !important;
       isolation: isolate !important;
+    }
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
     }
   }
 }
