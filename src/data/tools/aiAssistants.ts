@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Bot, 
@@ -17,7 +16,8 @@ import {
   Code,
   Image,
   Video,
-  History
+  History,
+  Calculator
 } from "lucide-react";
 
 export const aiAssistants: Tool[] = [
@@ -32,6 +32,18 @@ export const aiAssistants: Tool[] = [
     tags: ["history", "historical figures", "conversations", "education", "time travel"],
     rating: 4.5,
     totalVotes: 3456
+  },
+  {
+    icon: Calculator,
+    title: "AI MATH SOLVER",
+    description: "Advanced AI-powered mathematics solver that can handle complex equations, calculus, algebra, and more with step-by-step explanations.",
+    emoji: "🧮",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chat.openai.com/g/g-NIzaPEhi9",
+    category: "AI Assistants & Search",
+    tags: ["mathematics", "equations", "calculus", "algebra", "problem solving"],
+    rating: 4.7,
+    totalVotes: 5432
   },
   {
     icon: Bot,
