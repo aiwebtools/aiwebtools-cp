@@ -27,18 +27,6 @@ export const newsAndInformationTools: Tool[] = [
     totalVotes: 9876
   },
   {
-    icon: Users,
-    title: "Reddit",
-    description: "Social news aggregation and discussion platform. Join communities, share content, and engage in discussions on any topic.",
-    emoji: "🤖",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://reddit.com/",
-    tags: ["social news", "communities", "discussions", "content sharing", "forums"],
-    category: "News & Information",
-    rating: 4.4,
-    totalVotes: 7890
-  },
-  {
     icon: Search,
     title: "AllSides",
     description: "News platform showing multiple perspectives on current events. Compare how different sources cover the same story.",
