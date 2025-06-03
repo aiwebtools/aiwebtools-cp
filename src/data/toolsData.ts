@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { getAllToolCategories } from './toolsCollection';
 import { extractPriorityTools } from './priorityTools';
@@ -6,7 +7,6 @@ import { createFeaturedTools } from '@/utils/featuredTools';
 import { getCategoriesWithCounts, getToolsByCategory } from '@/utils/categoryUtils';
 import { consolidateTools } from '@/utils/categoryConsolidation';
 import { deduplicateTools } from '@/utils/toolDeduplication';
-import { getToolCount } from '@/utils/toolCounter';
 
 // Import AI Web Tools GPTs - PRIORITY FEATURED TOOLS
 import { priorityFeaturedGPTs } from "./tools/aiWebTools/priorityFeaturedGPTs";
@@ -136,39 +136,45 @@ export const featuredTools: Tool[] = createFeaturedTools(filteredTools);
 // Export utility functions for use in components
 export { searchTools, getCategoriesWithCounts, getToolsByCategory };
 
-// Get comprehensive tool count analysis
-const toolCountAnalysis = getToolCount();
+// Lazy initialization of tool count analysis to avoid circular dependency
+let toolCountAnalysis: any = null;
 
-// Debug information with enhanced logging using accurate count
-console.log(`🎉 MILESTONE ACHIEVED! Total tools loaded: ${filteredTools.length}`);
-console.log(`📊 Categories found: ${Object.keys(getCategoriesWithCounts(filteredTools)).length}`);
-console.log(`🎯 Accurate count for website: ${filteredTools.length} tools`);
-console.log(`📈 Marketing display: ${Math.round(filteredTools.length / 100) * 100}+ tools`);
+export const getToolCountAnalysis = () => {
+  if (!toolCountAnalysis) {
+    // Import getToolCount only when needed to avoid circular dependency
+    import('@/utils/toolCounter').then(({ getToolCount }) => {
+      toolCountAnalysis = getToolCount();
+      
+      // Debug information with enhanced logging using accurate count
+      console.log(`🎉 MILESTONE ACHIEVED! Total tools loaded: ${filteredTools.length}`);
+      console.log(`📊 Categories found: ${Object.keys(getCategoriesWithCounts(filteredTools)).length}`);
+      console.log(`🎯 Accurate count for website: ${filteredTools.length} tools`);
+      console.log(`📈 Marketing display: ${Math.round(filteredTools.length / 100) * 100}+ tools`);
 
-const categoryBreakdown = getCategoriesWithCounts(filteredTools);
-console.log('📋 Category breakdown:', categoryBreakdown);
+      const categoryBreakdown = getCategoriesWithCounts(filteredTools);
+      console.log('📋 Category breakdown:', categoryBreakdown);
 
-// Verify all tools have categories
-const uncategorizedTools = filteredTools.filter(tool => !tool.category || tool.category.trim() === '');
-if (uncategorizedTools.length > 0) {
-  console.warn(`⚠️ Found ${uncategorizedTools.length} uncategorized tools:`, uncategorizedTools.map(t => t.title));
-} else {
-  console.log('✅ All tools are properly categorized!');
-}
+      // Verify all tools have categories
+      const uncategorizedTools = filteredTools.filter(tool => !tool.category || tool.category.trim() === '');
+      if (uncategorizedTools.length > 0) {
+        console.warn(`⚠️ Found ${uncategorizedTools.length} uncategorized tools:`, uncategorizedTools.map(t => t.title));
+      } else {
+        console.log('✅ All tools are properly categorized!');
+      }
 
-// Final check for Financial Calculator Pro duplicates
-const finalFinancialCalcCheck = filteredTools.filter(tool => tool.title === 'Financial Calculator Pro');
-console.log(`✅ Final Financial Calculator Pro instances: ${finalFinancialCalcCheck.length}`);
-if (finalFinancialCalcCheck.length === 1) {
-  console.log('✅ SUCCESS: Only one Financial Calculator Pro instance remains');
-  console.log('📍 Location:', finalFinancialCalcCheck[0].category);
-  console.log('🔗 URL:', finalFinancialCalcCheck[0].directUrl);
-} else {
-  console.error(`❌ STILL HAVE ${finalFinancialCalcCheck.length} instances of Financial Calculator Pro!`);
-}
+      // Final check for Financial Calculator Pro duplicates
+      const finalFinancialCalcCheck = filteredTools.filter(tool => tool.title === 'Financial Calculator Pro');
+      console.log(`✅ Final Financial Calculator Pro instances: ${finalFinancialCalcCheck.length}`);
+      if (finalFinancialCalcCheck.length === 1) {
+        console.log('✅ SUCCESS: Only one Financial Calculator Pro instance remains');
+        console.log('📍 Location:', finalFinancialCalcCheck[0].category);
+        console.log('🔗 URL:', finalFinancialCalcCheck[0].directUrl);
+      } else {
+        console.error(`❌ STILL HAVE ${finalFinancialCalcCheck.length} instances of Financial Calculator Pro!`);
+      }
 
-// Summary for Ken with accurate numbers
-console.log(`
+      // Summary for Ken with accurate numbers
+      console.log(`
 🚀 AI WEB TOOLS DIRECTORY STATUS REPORT 🚀
 ================================================
 ✅ EXACT Total AI Tools: ${filteredTools.length}
@@ -179,3 +185,14 @@ console.log(`
 
 This comprehensive directory now covers ALL major AI domains and provides users with an unmatched resource for AI tool discovery! 🌟
 `);
+    }).catch(error => {
+      console.error('Error loading tool count analysis:', error);
+    });
+  }
+  return toolCountAnalysis;
+};
+
+// Initialize the analysis asynchronously to avoid blocking
+setTimeout(() => {
+  getToolCountAnalysis();
+}, 0);
