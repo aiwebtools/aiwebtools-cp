@@ -46,7 +46,7 @@ const SearchResults = memo(({
       }}
     >
       <div className="p-2">
-        <div className="px-3 py-2 border-b border-gray-100 sticky top-0 bg-white text-red-500" style={{ fontSize: '9px' }}>
+        <div className="px-3 py-2 border-b border-gray-100 sticky top-0 bg-white text-red-500" style={{ fontSize: '11px' }}>
           Search Results ({searchResults.length} total) - Showing {displayedResults.length}
           {displayedCount < searchResults.length && (
             <span className="ml-2">Scroll for more...</span>

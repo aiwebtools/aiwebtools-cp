@@ -24,7 +24,7 @@ const GlobalSearchResults = ({
   return (
     <Card className="absolute top-full left-0 right-0 mt-2 bg-black/95 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-50 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" onScroll={onScroll}>
       <CardContent className="p-2">
-        <div className="px-3 py-1.5 border-b border-cyan-500/20 sticky top-0 bg-black/95 text-red-400" style={{ fontSize: '9px' }}>
+        <div className="px-3 py-1.5 border-b border-cyan-500/20 sticky top-0 bg-black/95 text-red-400" style={{ fontSize: '11px' }}>
           <div className="leading-tight">
             {searchResults.length} Results - Showing {displayedCount}
             {displayedCount < searchResults.length && " - Scroll for more"}
