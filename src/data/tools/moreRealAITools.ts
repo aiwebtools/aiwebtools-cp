@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Brain, Zap, MessageSquare, FileText, Image, Video, Music, 
@@ -111,7 +110,7 @@ export const moreRealAITools: Tool[] = [
     totalVotes: 5432
   },
   {
-    icon: Film,
+    icon: Video,
     title: "Lumen5",
     description: "AI-powered video creation platform for turning blog posts into engaging videos.",
     emoji: "🎥",
@@ -658,7 +657,7 @@ export const moreRealAITools: Tool[] = [
   },
   // AI Gaming Tools
   {
-    icon: Gamepad2,
+    icon: Target,
     title: "AI Dungeon",
     description: "AI-powered text adventure game with infinite storytelling possibilities.",
     emoji: "🎲",
