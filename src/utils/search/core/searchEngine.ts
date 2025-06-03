@@ -46,35 +46,30 @@ export const performBasicSearch = (
   if (lowerTitle === lowerSearchTerm) {
     matched = true;
     score += 15000;
-    console.log(`🎯 EXACT TITLE MATCH for "${tool.title}"`);
   }
   
   // VERY HIGH PRIORITY: Title starts with search term
   else if (lowerTitle.startsWith(lowerSearchTerm)) {
     matched = true;
     score += 12000;
-    console.log(`🚀 TITLE STARTS WITH for "${tool.title}"`);
   }
   
   // HIGH PRIORITY: Title contains search term
   else if (lowerTitle.includes(lowerSearchTerm)) {
     matched = true;
     score += 8000;
-    console.log(`📍 TITLE CONTAINS for "${tool.title}"`);
   }
 
   // MEDIUM-HIGH PRIORITY: Description contains exact term
   if (lowerDescription.includes(lowerSearchTerm)) {
     matched = true;
     score += 4000;
-    console.log(`📝 DESCRIPTION MATCH for "${tool.title}"`);
   }
 
   // MEDIUM PRIORITY: Category match
   if (lowerCategory.includes(lowerSearchTerm)) {
     matched = true;
     score += 3000;
-    console.log(`📂 CATEGORY MATCH for "${tool.title}"`);
   }
 
   // MEDIUM PRIORITY: Tag matches
@@ -82,7 +77,6 @@ export const performBasicSearch = (
     if (tag.includes(lowerSearchTerm)) {
       matched = true;
       score += 2000;
-      console.log(`🏷️ TAG MATCH for "${tool.title}" with tag: ${tag}`);
     }
   }
 
