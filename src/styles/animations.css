@@ -32,6 +32,55 @@
     }
   }
 
+  /* Enhanced quote attribution styling for better readability */
+  .quote-attribution {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgba(6, 182, 212, 0.95);
+    text-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
+    letter-spacing: 0.025em;
+  }
+
+  /* Enhanced call-to-action banner with brighter glow and animation */
+  .cta-banner {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(139, 92, 246, 0.15));
+    border: 1px solid rgba(6, 182, 212, 0.4);
+    box-shadow: 
+      0 0 20px rgba(6, 182, 212, 0.6),
+      0 0 40px rgba(6, 182, 212, 0.3),
+      inset 0 0 20px rgba(6, 182, 212, 0.1);
+    animation: cta-pulse 2s ease-in-out infinite alternate;
+    will-change: box-shadow;
+  }
+
+  @keyframes cta-pulse {
+    from {
+      box-shadow: 
+        0 0 20px rgba(6, 182, 212, 0.6),
+        0 0 40px rgba(6, 182, 212, 0.3),
+        inset 0 0 20px rgba(6, 182, 212, 0.1);
+    }
+    to {
+      box-shadow: 
+        0 0 30px rgba(6, 182, 212, 0.8),
+        0 0 60px rgba(6, 182, 212, 0.5),
+        inset 0 0 30px rgba(6, 182, 212, 0.2);
+    }
+  }
+
+  /* High contrast text for accessibility */
+  .high-contrast-text {
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Accessible focus states */
+  .accessible-focus:focus {
+    outline: 2px solid rgba(6, 182, 212, 0.8);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.2);
+  }
+
   /* Optimized button animations */
   .interactive-button {
     @apply transition-all duration-200;
@@ -108,6 +157,14 @@
         0 0 6px rgba(6, 182, 212, 0.6);
     }
     
+    .quote-attribution {
+      font-size: 1rem;
+    }
+    
+    .cta-banner {
+      animation-duration: 3s;
+    }
+    
     .interactive-button {
       transition-duration: 0.15s;
     }
@@ -127,16 +184,61 @@
     .interactive-button:hover {
       transform: scale(1.03);
     }
+    
+    .quote-attribution {
+      font-size: 1.05rem;
+    }
   }
 
   /* Performance for low-end devices */
   @media (max-width: 480px) {
     .cyber-glow,
     .glow-text-effect,
-    .glow-effect {
+    .glow-effect,
+    .cta-banner {
       animation: none;
       text-shadow: 0 0 3px currentColor;
       box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+    }
+    
+    .quote-attribution {
+      font-size: 0.95rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+    
+    .interactive-button {
+      transition: background-color 0.2s ease;
+    }
+    
+    .interactive-button:hover {
+      transform: none;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .quote-attribution {
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    }
+    
+    .high-contrast-text {
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    }
+    
+    .cta-banner {
+      border: 2px solid rgba(6, 182, 212, 0.8);
+      background: rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  /* Reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .glow-text-effect,
+    .cta-banner,
+    .glow-effect {
+      animation: none;
     }
     
     .interactive-button {
