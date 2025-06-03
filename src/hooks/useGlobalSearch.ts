@@ -17,19 +17,14 @@ export const useGlobalSearch = () => {
   // Memoize tool stats for performance
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // LIGHTNING FAST search - NO debouncing, MOBILE OPTIMIZED
+  // INSTANT search - NO debouncing for lightning speed
   useEffect(() => {
     const trimmedTerm = searchTerm.trim();
     if (trimmedTerm) {
-      // MOBILE PERFORMANCE BOOST: Detect mobile and limit results
-      const isMobile = window.innerWidth < 768;
+      // Immediate search with ALL results
       const results = searchTools(allTools, trimmedTerm);
-      
-      // Ultra-fast mobile rendering with fewer results
-      const optimizedResults = isMobile ? results.slice(0, 30) : results;
-      
-      setSearchResults(optimizedResults);
-      setDisplayedCount(isMobile ? 30 : 100);
+      setSearchResults(results);
+      setDisplayedCount(100);
       setIsOpen(true);
     } else {
       setSearchResults([]);

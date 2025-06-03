@@ -42,7 +42,7 @@
       box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
     }
     
-    /* MOBILE ULTRA-FAST search input - ZERO delays - FORCE INSTANT */
+    /* INSTANT mobile search input - ZERO delays */
     .search-glow-optimized, .search-glow-optimized *, 
     input[type="text"], input[type="search"], 
     input[data-testid="search-input"], input[data-testid="global-search-input"] {
@@ -54,21 +54,9 @@
       -moz-transition: none !important;
       -o-transition: none !important;
       -ms-transition: none !important;
-      /* Force immediate mobile input rendering */
+      /* Force immediate input rendering */
       contain: layout style paint !important;
       isolation: isolate !important;
-      /* Mobile hardware acceleration for instant response */
-      -webkit-transform: translateZ(0) !important;
-      backface-visibility: hidden !important;
-      perspective: 1000px !important;
-    }
-    
-    /* FORCE MAXIMUM Z-INDEX for search dropdowns on mobile */
-    .search-results-dropdown, 
-    [data-search-results],
-    .ui-card[class*="absolute"][class*="top-full"] {
-      z-index: 9999 !important;
-      position: absolute !important;
     }
     
     /* Prevent layout shifts on mobile */
@@ -86,13 +74,10 @@
       transition: none !important; /* NO transitions for instant response */
       -webkit-transition: none !important;
       -moz-transition: none !important;
-      /* Force instant visual feedback on mobile */
+      /* Force instant visual feedback */
       will-change: auto !important;
       backface-visibility: hidden !important;
       -webkit-backface-visibility: hidden !important;
-      /* Mobile GPU acceleration for instant typing */
-      transform: translateZ(0) !important;
-      -webkit-transform: translateZ(0) !important;
     }
     
     /* FIXED width for transitioning words to prevent jumping - mobile specific */
@@ -134,7 +119,7 @@
     }
   }
 
-  /* Performance for low-end mobile devices - INSTANT input response */
+  /* Performance for low-end devices - INSTANT input response */
   @media (max-width: 480px) {
     .cyber-glow,
     .glow-text-effect,
@@ -168,29 +153,15 @@
       transform: none;
     }
     
-    /* MOBILE LOW-END DEVICE - FORCE INSTANT input performance */
+    /* Ultra-fast search for low-end devices - INSTANT input */
     .search-glow-optimized, .search-glow-optimized *, 
     input, button, div, span, label {
       transition: none !important;
       animation: none !important;
-      transform: translateZ(0) !important;
+      transform: none !important;
       -webkit-transition: none !important;
       -moz-transition: none !important;
       will-change: auto !important;
-      /* Force GPU acceleration for instant typing */
-      -webkit-transform: translateZ(0) !important;
-      backface-visibility: hidden !important;
-      perspective: 1000px !important;
-    }
-    
-    /* EMERGENCY Z-INDEX FIX for search dropdowns - MAXIMUM PRIORITY */
-    .search-results-dropdown, 
-    [data-search-results],
-    .ui-card[class*="absolute"][class*="top-full"],
-    [class*="Card"][class*="absolute"] {
-      z-index: 99999 !important;
-      position: absolute !important;
-      isolation: isolate !important;
     }
     
     .transitioning-word {
@@ -199,7 +170,7 @@
       transition: none !important;
     }
     
-    /* Force instant performance for ALL inputs on mobile */
+    /* Force instant performance for ALL inputs */
     input[type="text"], input[type="search"], 
     input[data-testid="search-input"], input[data-testid="global-search-input"] {
       transition: none !important;
@@ -210,21 +181,17 @@
       -ms-transition: none !important;
       will-change: auto !important;
       contain: layout style paint !important;
-      /* Mobile GPU acceleration */
-      transform: translateZ(0) !important;
-      -webkit-transform: translateZ(0) !important;
-      backface-visibility: hidden !important;
     }
   }
   
-  /* Ultra-low-end mobile device optimizations - ZERO delays */
+  /* Ultra-low-end device optimizations - ZERO delays */
   @media (max-width: 360px) {
     .transitioning-word {
       width: 180px !important;
       font-size: 0.85em;
     }
     
-    /* Disable ALL animations and transitions on very small mobile screens */
+    /* Disable ALL animations and transitions on very small screens */
     *, *::before, *::after {
       animation: none !important;
       transition: none !important;
@@ -233,44 +200,13 @@
       -moz-animation: none !important;
       -moz-transition: none !important;
       will-change: auto !important;
-      /* Force GPU acceleration even on ultra-low-end */
-      transform: translateZ(0) !important;
-      -webkit-transform: translateZ(0) !important;
     }
     
-    /* NUCLEAR OPTION - Force search dropdowns above EVERYTHING */
-    .search-results-dropdown, 
-    [data-search-results],
-    .ui-card[class*="absolute"][class*="top-full"],
-    [class*="Card"][class*="absolute"],
-    [class*="card"][class*="absolute"] {
-      z-index: 999999 !important;
-      position: fixed !important;
-      isolation: isolate !important;
-    }
-    
-    /* Force instant input response on ultra-low-end mobile */
+    /* Force instant input response */
     input {
       will-change: auto !important;
       contain: layout style paint !important;
       isolation: isolate !important;
-      transform: translateZ(0) !important;
-      -webkit-transform: translateZ(0) !important;
-      backface-visibility: hidden !important;
     }
-  }
-}
-
-/* GLOBAL Z-INDEX EMERGENCY FIX - Apply to all screen sizes */
-@layer utilities {
-  .search-dropdown-priority {
-    z-index: 9999 !important;
-    position: absolute !important;
-  }
-  
-  .search-dropdown-nuclear {
-    z-index: 99999 !important;
-    position: fixed !important;
-    isolation: isolate !important;
   }
 }

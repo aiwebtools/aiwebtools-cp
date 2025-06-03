@@ -18,12 +18,9 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     const trimmedTerm = searchTerm.trim();
     if (!trimmedTerm || trimmedTerm.length < 1) return [];
     
-    // MOBILE OPTIMIZATION: Limit results for faster rendering
-    const isMobile = window.innerWidth < 768;
+    // INSTANT search with ALL results
     const results = searchTools(allTools, trimmedTerm);
-    
-    // Return fewer results on mobile for instant performance
-    return isMobile ? results.slice(0, 50) : results;
+    return results;
   }, [searchTerm]); // Direct dependency for instant response
 
   // Display results with virtual scrolling
@@ -34,7 +31,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
 
   const shouldShowResults = searchResults.length > 0 && searchTerm.trim().length >= 1;
 
-  // LIGHTNING FAST search change handler - ZERO delays
+  // INSTANT search change handler - NO delays
   const handleSearchChange = useCallback((value: string) => {
     onSearchChange(value); // Immediate update
     const trimmed = value.trim();

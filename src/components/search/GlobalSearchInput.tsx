@@ -31,23 +31,18 @@ const GlobalSearchInput = memo(({
         className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg backdrop-blur-sm"
         autoComplete="off"
         spellCheck={false}
-        // MOBILE LIGHTNING FAST - ZERO delays or transitions
+        // INSTANT TYPING - ZERO DELAYS
         style={{ 
-          transition: 'none !important',
-          willChange: 'auto !important',
-          transform: 'none !important',
-          animation: 'none !important',
-          WebkitTransition: 'none !important',
-          MozTransition: 'none !important',
-          contain: 'layout style paint !important'
+          transition: 'none',
+          willChange: 'auto',
+          transform: 'none',
+          animation: 'none'
         }}
-        // Mobile ultra-optimization
+        // Optimize for instant response
         inputMode="search"
         autoCapitalize="none"
         autoCorrect="off"
         data-testid="global-search-input"
-        enterKeyHint="search"
-        tabIndex={0}
       />
       {searchTerm && (
         <Button
@@ -55,7 +50,6 @@ const GlobalSearchInput = memo(({
           size="sm"
           onClick={onClear}
           className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-gray-300 hover:text-white hover:bg-white/10"
-          style={{ transition: 'none !important' }}
         >
           <X className="w-3 h-3" />
         </Button>
