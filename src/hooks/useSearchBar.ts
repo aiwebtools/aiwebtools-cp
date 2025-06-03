@@ -14,17 +14,17 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   const [isOpen, setIsOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(50);
   
-  // Reduce debounce time for faster response on category pages
-  const debouncedSearchTerm = useDebounce(searchTerm, 50); // Reduced from 100ms to 50ms
+  // Use minimal debounce for instant responsiveness like homepage
+  const debouncedSearchTerm = useDebounce(searchTerm, 50);
   
   // Memoize tool stats to prevent recalculation
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // Optimize search results with better memoization
+  // Optimize search results with direct search - no extra filtering
   const searchResults = useMemo(() => {
     if (!debouncedSearchTerm.trim()) return [];
     
-    // Early return for very short terms to avoid excessive processing
+    // Early return for very short terms
     if (debouncedSearchTerm.trim().length < 2) return [];
     
     const results = searchTools(allTools, debouncedSearchTerm);
