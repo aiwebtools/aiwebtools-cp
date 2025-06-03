@@ -16,7 +16,6 @@ const typoCorrection: Record<string, string> = {
   "coledge": "college",
   "collage": "college",
   "colleg": "college",
-  "colege": "college",
   "colegge": "college",
   "univercity": "university",
   "universty": "university",
@@ -107,7 +106,6 @@ const typoCorrection: Record<string, string> = {
   "eduction": "education",
   "educaion": "education",
   "educatoin": "education",
-  "educaton": "education",
   
   "scool": "school",
   "shcool": "school",
@@ -177,7 +175,24 @@ const typoCorrection: Record<string, string> = {
   "budgit": "budget",
   "stok": "stock",
   "stoc": "stock",
-  "stokc": "stock"
+  "stokc": "stock",
+  
+  // NEW: Sound and audio related typos
+  "soud": "sound",
+  "soung": "sound",
+  "sond": "sound",
+  "soundd": "sound",
+  "efect": "effect",
+  "effct": "effect",
+  "efffect": "effect",
+  "afect": "effect",
+  "fx": "effect",
+  "sfx": "sound effect",
+  "elevan": "eleven",
+  "elevn": "eleven",
+  "11labs": "eleven labs",
+  "elevenlabs": "eleven labs",
+  "11 labs": "eleven labs"
 };
 
 // Function to calculate Levenshtein distance for fuzzy matching
@@ -262,6 +277,45 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   expandedKeywords.add(searchTerm.toLowerCase().trim());
   expandedKeywords.add(lowerSearchTerm);
   phoneticMatches.forEach(match => expandedKeywords.add(match));
+  
+  // SOUND EFFECTS AND AUDIO SEARCH EXPANSION - HIGHEST PRIORITY
+  if (lowerSearchTerm.includes('sound effect') || lowerSearchTerm.includes('sound effects') ||
+      lowerSearchTerm.includes('fx') || lowerSearchTerm.includes('sfx') ||
+      (lowerSearchTerm.includes('sound') && lowerSearchTerm.includes('effect')) ||
+      lowerSearchTerm.includes('audio effect') || lowerSearchTerm.includes('audio effects')) {
+    const soundEffectKeywords = [
+      'eleven labs',
+      'elevenlabs',
+      '11labs',
+      'text to speech',
+      'tts',
+      'voice generation',
+      'audio generation',
+      'sound effects',
+      'fx sounds',
+      'audio fx',
+      'voice synthesis',
+      'speech synthesis',
+      'ai voice',
+      'voice ai',
+      'audio ai',
+      'sound generator',
+      'voice generator',
+      'audio tools',
+      'voice tools',
+      'sound design',
+      'audio production',
+      'voice over',
+      'narration',
+      'speech generation',
+      'voice cloning',
+      'ai audio',
+      'synthetic voice',
+      'artificial voice'
+    ];
+    
+    soundEffectKeywords.forEach(keyword => expandedKeywords.add(keyword));
+  }
   
   // INTELLIGENT CONTEXT-BASED EXPANSION
   const contextPatterns = [

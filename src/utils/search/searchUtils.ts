@@ -1,10 +1,10 @@
-
 import { Tool } from "@/types/tools";
 import { getExpandedKeywords } from "./keywordExpansion";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
 import { matchPhoneAgents, scorePhoneAgents } from "./matching/phoneAgentMatching";
 import { matchMusicTools, scoreMusicTools } from "./matching/musicMatching";
 import { matchAppBuilding, scoreAppBuilding } from "./matching/appBuildingMatching";
+import { matchSoundEffect, scoreSoundEffect } from "./matching/soundEffectMatching";
 import { 
   matchHealth, 
   scoreHealth,
@@ -77,7 +77,15 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🏷️ Name search match for "${tool.title}" with score: ${nameMatch.score}`);
     }
     
-    // PRIORITY 2: Enhanced fuzzy matching for misspellings
+    // PRIORITY 2: Sound effect specific matching - HIGHEST PRIORITY
+    if (matchSoundEffect(tool, searchTerm)) {
+      matched = true;
+      const soundEffectScore = scoreSoundEffect(tool, searchTerm);
+      score += soundEffectScore;
+      console.log(`🔊 Sound effect search match for "${tool.title}" with score: ${soundEffectScore}`);
+    }
+    
+    // PRIORITY 3: Enhanced fuzzy matching for misspellings
     const fuzzyResult = fuzzyMatchTool(tool, searchTerm);
     if (fuzzyResult.matched) {
       matched = true;
@@ -85,7 +93,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🎯 Fuzzy match for "${tool.title}" with score: ${fuzzyResult.score}`);
     }
     
-    // PRIORITY 3: Phonetic matching for sound-alike words
+    // PRIORITY 4: Phonetic matching for sound-alike words
     for (const phoneticTerm of phoneticMatches) {
       const searchableText = [
         tool.title,
@@ -101,7 +109,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       }
     }
     
-    // PRIORITY 4: Prediction-based matching
+    // PRIORITY 5: Prediction-based matching
     for (const prediction of predictions) {
       const searchableText = [
         tool.title,
@@ -117,7 +125,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       }
     }
     
-    // PRIORITY 5: Education specific matching - HIGH PRIORITY
+    // PRIORITY 6: Education specific matching - HIGH PRIORITY
     if (matchEducation(tool, searchTerm)) {
       matched = true;
       const educationScore = scoreEducation(tool, searchTerm);
@@ -125,7 +133,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🎓 Education search match for "${tool.title}" with score: ${educationScore}`);
     }
     
-    // PRIORITY 6: Financial specific matching - HIGH PRIORITY
+    // PRIORITY 7: Financial specific matching - HIGH PRIORITY
     if (matchFinancial(tool, searchTerm)) {
       matched = true;
       const financialScore = scoreFinancial(tool, searchTerm);
@@ -133,7 +141,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`💰 Financial search match for "${tool.title}" with score: ${financialScore}`);
     }
     
-    // PRIORITY 7: Political/civic specific matching
+    // PRIORITY 8: Political/civic specific matching
     if (matchPolitical(tool, searchTerm)) {
       matched = true;
       const politicalScore = scorePolitical(tool, searchTerm);
@@ -141,7 +149,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🏛️ Political search match for "${tool.title}" with score: ${politicalScore}`);
     }
     
-    // PRIORITY 8: Travel specific matching
+    // PRIORITY 9: Travel specific matching
     if (matchTravel(tool, searchTerm)) {
       matched = true;
       const travelScore = scoreTravel(tool, searchTerm);
@@ -149,7 +157,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`✈️ Travel search match for "${tool.title}" with score: ${travelScore}`);
     }
     
-    // PRIORITY 9: Other specialty matchings
+    
     if (matchFarming(tool, searchTerm)) {
       matched = true;
       score += scoreFarming(tool, searchTerm);
