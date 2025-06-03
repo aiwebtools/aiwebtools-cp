@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   DollarSign, TrendingUp, BarChart3, Calculator, PieChart,
