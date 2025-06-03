@@ -28,7 +28,7 @@ const ToolPageHeader = ({ totalTools }: ToolPageHeaderProps) => {
         </Button>
       </Link>
       
-      <Link to="/#categories-section" className="inline-block">
+      <Link to="/main-category/ALL%20AI%20TOOLS" className="inline-block">
         <Button variant="outline" size="sm" className="border-purple-500/30 bg-gray-900/80 text-purple-100 hover:bg-purple-500/20 transition-all duration-300 interactive-button">
           <Grid3X3 className="w-4 h-4 mr-2" />
           Back to all categories
