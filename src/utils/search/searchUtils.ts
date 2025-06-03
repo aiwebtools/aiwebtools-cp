@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { getExpandedKeywords } from "./keywordExpansion";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
@@ -66,7 +65,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   );
   console.log(`🏷️ Name Insight tool found in database:`, nameInsightTool ? nameInsightTool.title : 'NOT FOUND');
   
-  // Enhanced debugging for political tools
+  // Enhanced debugging for political tools including Public Testimony Writer
   const possiblePoliticalTools = tools.filter(tool => 
     tool.title.toLowerCase().includes('we the people') ||
     tool.title.toLowerCase().includes('political') ||
@@ -74,10 +73,14 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     tool.title.toLowerCase().includes('politician') ||
     tool.title.toLowerCase().includes('civic') ||
     tool.title.toLowerCase().includes('democracy') ||
+    tool.title.toLowerCase().includes('testimony') ||
+    tool.title.toLowerCase().includes('public testimony') ||
     tool.description.toLowerCase().includes('political activism') ||
     tool.description.toLowerCase().includes('civic engagement') ||
     tool.description.toLowerCase().includes('we the people') ||
-    tool.directUrl?.includes('legislator')
+    tool.description.toLowerCase().includes('testimony') ||
+    tool.directUrl?.includes('legislator') ||
+    tool.directUrl?.includes('publictestimonywriter')
   );
   
   console.log(`🏛️ Found ${possiblePoliticalTools.length} political/civic tools in database:`);
@@ -218,10 +221,11 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
 
   console.log(`✅ Enhanced search found ${results.length} results for "${searchTerm}"`);
   
-  // Enhanced debugging for political searches
+  // Enhanced debugging for political searches including testimony
   if (searchTerm.toLowerCase().includes('political') || searchTerm.toLowerCase().includes('activism') || 
       searchTerm.toLowerCase().includes('we the people') || searchTerm.toLowerCase().includes('civic') ||
-      searchTerm.toLowerCase().includes('democracy') || searchTerm.toLowerCase().includes('government')) {
+      searchTerm.toLowerCase().includes('democracy') || searchTerm.toLowerCase().includes('government') ||
+      searchTerm.toLowerCase().includes('testimony')) {
     console.log(`🏛️ POLITICAL SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
     console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
     
@@ -231,9 +235,17 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       tool.title.toLowerCase().includes('political') ||
       tool.title.toLowerCase().includes('legislation') ||
       tool.title.toLowerCase().includes('politician') ||
-      tool.title.toLowerCase().includes('civic')
+      tool.title.toLowerCase().includes('civic') ||
+      tool.title.toLowerCase().includes('testimony')
     );
     console.log(`🏛️ Political tools in results:`, politicalInResults.map(t => t.title));
+    
+    // Check specifically for Public Testimony Writer
+    const testimonyInResults = results.find(tool => 
+      tool.title.toLowerCase().includes('public testimony writer') ||
+      tool.title.toLowerCase().includes('testimony writer')
+    );
+    console.log(`📝 Public Testimony Writer in results:`, testimonyInResults ? testimonyInResults.title : 'NOT IN RESULTS');
   }
   
   // Enhanced debugging for travel searches
