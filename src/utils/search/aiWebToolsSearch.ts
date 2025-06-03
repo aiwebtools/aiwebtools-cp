@@ -11,10 +11,12 @@ export const searchAIWebToolsGPTs = (tools: Tool[], searchTerm: string): Tool[] 
   
   console.log(`🔍 AI Web Tools search for: "${searchTerm}"`);
   
-  // Filter only AI Web Tools GPTs
+  // Filter AI Web Tools GPTs - include both lovable.app and chat.openai.com URLs from our custom GPTs
   const aiWebToolsGPTs = tools.filter(tool => 
     tool.directUrl?.includes('lovable.app') || 
     tool.directUrl?.includes('aiwebtools') ||
+    tool.directUrl?.includes('chat.openai.com') ||
+    tool.directUrl?.includes('chatgpt.com') ||
     tool.title.includes('GPT')
   );
   
@@ -95,7 +97,10 @@ export const scoreAIWebToolsGPT = (tool: Tool, searchTerm: string): number => {
   // PRIORITY BOOST FOR "PERSONAL" SEARCHES - Custom GPTs first
   if (lowerSearchTerm.includes('personal')) {
     // Boost AI Web Tools custom GPTs significantly for "personal" searches
-    if (tool.directUrl?.includes('lovable.app') || tool.directUrl?.includes('aiwebtools')) {
+    if (tool.directUrl?.includes('lovable.app') || 
+        tool.directUrl?.includes('aiwebtools') ||
+        tool.directUrl?.includes('chat.openai.com') ||
+        tool.directUrl?.includes('chatgpt.com')) {
       score += 2000; // Massive boost for custom GPTs
     }
     
@@ -197,8 +202,10 @@ export const scoreAIWebToolsGPT = (tool: Tool, searchTerm: string): number => {
     }
   }
   
-  // Boost for AI Web Tools original GPTs
-  if (tool.directUrl?.includes('lovable.app')) {
+  // Boost for AI Web Tools original GPTs (all our custom GPTs)
+  if (tool.directUrl?.includes('lovable.app') || 
+      tool.directUrl?.includes('chat.openai.com') ||
+      tool.directUrl?.includes('chatgpt.com')) {
     score += 50;
   }
   
