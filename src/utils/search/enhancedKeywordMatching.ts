@@ -16,7 +16,8 @@ import {
   matchFarming, scoreFarming,
   matchHealth, scoreHealth,
   matchLearning, scoreLearning,
-  matchMedical, scoreMedical 
+  matchMedical, scoreMedical,
+  matchTravel, scoreTravel 
 } from "./matching/specialtyMatching";
 
 // Enhanced keyword matching for specific tool categories
@@ -30,7 +31,8 @@ export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean
          matchFarming(tool, searchTerm) ||
          matchHealth(tool, searchTerm) ||
          matchLearning(tool, searchTerm) ||
-         matchMedical(tool, searchTerm);
+         matchMedical(tool, searchTerm) ||
+         matchTravel(tool, searchTerm);
 };
 
 export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
@@ -46,6 +48,7 @@ export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
   totalScore += scoreHealth(tool, searchTerm);
   totalScore += scoreLearning(tool, searchTerm);
   totalScore += scoreMedical(tool, searchTerm);
+  totalScore += scoreTravel(tool, searchTerm);
   
   return totalScore;
 };
