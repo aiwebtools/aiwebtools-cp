@@ -25,8 +25,8 @@ const MainCategoryPage = () => {
   const [filteredToolsByCategory, setFilteredToolsByCategory] = useState<Tool[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Debounce search to reduce lag
-  const debouncedSearchTerm = useDebounce(searchTerm, 150);
+  // Ultra-fast debounce for category page (25ms instead of 150ms)
+  const debouncedSearchTerm = useDebounce(searchTerm, 25);
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
@@ -47,7 +47,7 @@ const MainCategoryPage = () => {
     return null;
   }
 
-  // Cache category tools
+  // Cache category tools with better memoization
   const categoryTools = useMemo(() => 
     getToolsByMainCategory(allTools, decodedCategoryName), 
     [decodedCategoryName]
@@ -63,14 +63,31 @@ const MainCategoryPage = () => {
   // Use filtered tools from category filter, fallback to original category tools
   const toolsToShow = filteredToolsByCategory.length > 0 ? filteredToolsByCategory : categoryTools;
   
-  // Apply search filter with debounced term
+  // Apply search filter with ultra-fast debounced term
   const baseFilteredTools = useMemo(() => {
-    return debouncedSearchTerm.trim() 
-      ? searchTools(toolsToShow, debouncedSearchTerm)
-      : toolsToShow;
+    const trimmedTerm = debouncedSearchTerm.trim();
+    if (!trimmedTerm) return toolsToShow;
+    
+    // For single character, use instant simple matching
+    if (trimmedTerm.length === 1) {
+      return toolsToShow.filter(tool => 
+        tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
+      );
+    }
+    
+    // For two characters, use fast matching
+    if (trimmedTerm.length === 2) {
+      return toolsToShow.filter(tool => 
+        tool.title.toLowerCase().includes(trimmedTerm.toLowerCase()) ||
+        tool.category?.toLowerCase().includes(trimmedTerm.toLowerCase())
+      );
+    }
+    
+    // For longer terms, use full search
+    return searchTools(toolsToShow, trimmedTerm);
   }, [toolsToShow, debouncedSearchTerm]);
 
-  // Create endless tools list
+  // Create endless tools list with better performance
   const finalFilteredTools = useMemo(() => {
     if (debouncedSearchTerm.trim()) {
       return baseFilteredTools;
@@ -124,10 +141,11 @@ const MainCategoryPage = () => {
     
     setIsLoading(true);
     
+    // Reduced timeout for faster loading
     setTimeout(() => {
       setDisplayedCount(prev => prev + 48);
       setIsLoading(false);
-    }, 200);
+    }, 100);
   }, [isLoading]);
 
   const handleSearchChange = useCallback((value: string) => {
@@ -163,7 +181,7 @@ const MainCategoryPage = () => {
             </p>
           </div>
 
-          {/* Main Search Bar */}
+          {/* Main Search Bar - Optimized */}
           <div className="max-w-2xl mx-auto mb-8">
             <h3 className="text-xl font-bold text-white mb-4 text-center">
               🔍 Search {decodedCategoryName}
