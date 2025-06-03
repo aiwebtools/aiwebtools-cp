@@ -1,42 +1,34 @@
+
 import { Tool } from "@/types/tools";
-import { priorityTools } from "@/data/priorityTools";
+import { extractPriorityTools } from "@/data/priorityTools";
 import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
 import { aiAssistants } from "@/data/tools/aiAssistants";
 import { aiImageGeneration } from "@/data/tools/aiImageGeneration";
-import { aiVideoTools } from "@/data/tools/videoTools";
-import { aiAudioTools } from "@/data/tools/audioAndVoiceTools";
+import { videoTools } from "@/data/tools/videoTools";
+import { audioAndVoiceTools } from "@/data/tools/audioAndVoiceTools";
 import { aiContentGenerators } from "@/data/tools/aiContentGenerators";
 import { aiProductivityTools } from "@/data/tools/aiProductivityTools";
 import { aiChatPlatforms } from "@/data/tools/aiChatPlatforms";
 import { aiDevelopmentTools } from "@/data/tools/aiDevelopmentTools";
 import { webDevelopmentTools } from "@/data/tools/webDevelopmentTools";
 import { businessAndProductivity } from "@/data/tools/businessAndProductivity";
-import { creativeAndDesign } from "@/data/tools/imageAndDesign";
+import { imageAndDesign } from "@/data/tools/imageAndDesign";
 import { healthAndWellness } from "@/data/tools/healthAndWellness";
 import { educationAndLearning } from "@/data/tools/educationAndLearning";
-import { financeAndCrypto } from "@/data/tools/financialAndTradingTools";
-import { socialMediaAndMarketing } from "@/data/tools/socialMediaTools";
-import { dataAndAnalytics } from "@/data/tools/dataAnalyticsTools";
-import { communicationAndCollaboration } from "@/data/tools/communicationTools";
-import { securityAndPrivacy } from "@/data/tools/aiSecurityTools";
-import { entertainmentAndGaming } from "@/data/tools/entertainmentTools";
-import { researchAndAcademic } from "@/data/tools/researchAndLearning";
-import { lifestyleAndPersonal } from "@/data/tools/personalServices";
-import { newsAndInformation } from "@/data/tools/newsAndInformationTools";
-import { ecommerceAndShopping } from "@/data/tools/ecommerceAndMarketingTools";
-import { travelAndTransportation } from "@/data/tools/travelAndTransportation";
-import { realEstateAndProperty } from "@/data/tools/realEstateAndProperty";
-import { legalAndCompliance } from "@/data/tools/legalProfessionals";
-import { humanResourcesAndRecruitment } from "@/data/tools/resumeAndCareerTools";
-import { fashionAndBeauty } from "@/data/tools/fashionAndBeauty";
-import { foodAndNutrition } from "@/data/tools/foodAndNutrition";
-import { sportsAndFitness } from "@/data/tools/sportsAndFitness";
-import { parentingAndFamily } from "@/data/tools/parentingAndFamily";
-import { petsAndAnimals } from "@/data/tools/petsAndAnimals";
-import { hobbyAndCrafts } from "@/data/tools/hobbyAndCrafts";
-import { automotiveAndTransport } from "@/data/tools/automotiveAndTransport";
-import { homeAndGarden } from "@/data/tools/homeAndGarden";
+import { financialAndTradingTools } from "@/data/tools/financialAndTradingTools";
+import { socialMediaTools } from "@/data/tools/socialMediaTools";
+import { dataAnalyticsTools } from "@/data/tools/dataAnalyticsTools";
+import { communicationTools } from "@/data/tools/communicationTools";
+import { aiSecurityTools } from "@/data/tools/aiSecurityTools";
+import { entertainmentTools } from "@/data/tools/entertainmentTools";
+import { researchAndLearning } from "@/data/tools/researchAndLearning";
+import { personalServices } from "@/data/tools/personalServices";
+import { newsAndInformationTools } from "@/data/tools/newsAndInformationTools";
+import { ecommerceAndMarketingTools } from "@/data/tools/ecommerceAndMarketingTools";
+import { legalProfessionals } from "@/data/tools/legalProfessionals";
+import { resumeAndCareerTools } from "@/data/tools/resumeAndCareerTools";
 import { threeDAndVisualizationTools } from "@/data/tools/threeDAndVisualizationTools";
+// Additional specialized tool categories
 import { additionalRealAITools } from "@/data/tools/additionalRealAITools";
 import { advancedAITools } from "@/data/tools/advancedAITools";
 import { comprehensiveAITools } from "@/data/tools/comprehensiveAITools";
@@ -55,7 +47,6 @@ import { cloudServices } from "@/data/tools/cloudServices";
 import { advancedVideoTools } from "@/data/tools/advancedVideoTools";
 import { advancedChatPlatforms } from "@/data/tools/advancedChatPlatforms";
 import { aiLegalTools } from "@/data/tools/aiLegalTools";
-import { aiSecurityTools } from "@/data/tools/aiSecurityTools";
 import { aiFinanceTools } from "@/data/tools/aiFinanceTools";
 import { aiHealthcareTools } from "@/data/tools/aiHealthcareTools";
 import { aiEducationTools } from "@/data/tools/aiEducationTools";
@@ -63,45 +54,34 @@ import { aiResearchTools } from "@/data/tools/aiResearchTools";
 import { aiProductivitySuite } from "@/data/tools/aiProductivitySuite";
 import { aiGenerativeTools } from "@/data/tools/aiGenerativeTools";
 
-// Combine all tools into a single array for easy access
-export const allTools: Tool[] = [
-  ...priorityTools, // Keep priority tools first
+// Get all tools first, then extract priority tools
+const baseTools: Tool[] = [
   ...aiWebToolsGPTs, // Our custom GPTs collection - PRIORITY FEATURED FIRST
   ...aiAssistants,
   ...aiImageGeneration,
-  ...aiVideoTools,
-  ...aiAudioTools,
+  ...videoTools,
+  ...audioAndVoiceTools,
   ...aiContentGenerators,
   ...aiProductivityTools,
   ...aiChatPlatforms,
   ...aiDevelopmentTools,
   ...webDevelopmentTools,
   ...businessAndProductivity,
-  ...creativeAndDesign,
+  ...imageAndDesign,
   ...healthAndWellness,
   ...educationAndLearning,
-  ...financeAndCrypto,
-  ...socialMediaAndMarketing,
-  ...dataAndAnalytics,
-  ...communicationAndCollaboration,
-  ...securityAndPrivacy,
-  ...entertainmentAndGaming,
-  ...researchAndAcademic,
-  ...lifestyleAndPersonal,
-  ...newsAndInformation,
-  ...ecommerceAndShopping,
-  ...travelAndTransportation,
-  ...realEstateAndProperty,
-  ...legalAndCompliance,
-  ...humanResourcesAndRecruitment,
-  ...fashionAndBeauty,
-  ...foodAndNutrition,
-  ...sportsAndFitness,
-  ...parentingAndFamily,
-  ...petsAndAnimals,
-  ...hobbyAndCrafts,
-  ...automotiveAndTransport,
-  ...homeAndGarden,
+  ...financialAndTradingTools,
+  ...socialMediaTools,
+  ...dataAnalyticsTools,
+  ...communicationTools,
+  ...aiSecurityTools,
+  ...entertainmentTools,
+  ...researchAndLearning,
+  ...personalServices,
+  ...newsAndInformationTools,
+  ...ecommerceAndMarketingTools,
+  ...legalProfessionals,
+  ...resumeAndCareerTools,
   ...threeDAndVisualizationTools, // Add the 3D tools here
   // Additional specialized tool categories
   ...additionalRealAITools,
@@ -129,6 +109,15 @@ export const allTools: Tool[] = [
   ...aiResearchTools,
   ...aiProductivitySuite,
   ...aiGenerativeTools
+];
+
+// Extract priority tools and reorganize
+const { priorityTools, remainingTools } = extractPriorityTools(baseTools);
+
+// Combine all tools into a single array for easy access, with priority tools first
+export const allTools: Tool[] = [
+  ...priorityTools, // Keep priority tools first
+  ...remainingTools
 ];
 
 // Log the number of tools loaded
