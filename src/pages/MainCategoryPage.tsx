@@ -216,7 +216,7 @@ const MainCategoryPage = () => {
             currentMainCategory={decodedCategoryName}
           />
 
-          {/* Tools Count Display - Simplified text */}
+          {/* Tools Count Display - Cleaned up */}
           <div className="text-center mb-8">
             <div className="text-cyan-400 font-semibold">
               {searchTerm 
@@ -224,11 +224,6 @@ const MainCategoryPage = () => {
                 : `${displayedTools.length}+ tools in ${decodedCategoryName}`
               }
             </div>
-            {!searchTerm && (
-              <div className="text-gray-400 text-sm mt-1">
-                {categoryTools.length} tools + similar + related
-              </div>
-            )}
           </div>
 
           {/* Tools Grid with Infinite Scroll */}
