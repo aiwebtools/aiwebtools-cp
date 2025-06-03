@@ -54,9 +54,9 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
       ref={videoRef}
     >
       {hasVideo && !shouldLoadVideo ? (
-        // Video thumbnail/placeholder - click to load
+        // Video thumbnail with subtle play overlay
         <div 
-          className="w-full h-full flex items-center justify-center cursor-pointer bg-gray-800 relative"
+          className="w-full h-full relative cursor-pointer group"
           onClick={handleVideoClick}
         >
           {shouldShowImage ? (
@@ -67,17 +67,21 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
               loading="lazy"
             />
           ) : (
-            <div className="flex flex-col items-center justify-center text-gray-400">
-              <div className="text-4xl mb-2">{tool.emoji}</div>
-              <div className="text-sm font-medium">▶️ Click to play video</div>
+            <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+              <div className="text-4xl">{tool.emoji}</div>
             </div>
           )}
-          <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-            <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity">
-              <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+          {/* Subtle play button overlay - only visible on hover */}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+            <div className="w-12 h-12 bg-red-600/80 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-100">
+              <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z"/>
               </svg>
             </div>
+          </div>
+          {/* Small video indicator in corner */}
+          <div className="absolute top-2 right-2 bg-black/70 text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+            ▶️ Video
           </div>
         </div>
       ) : shouldShowVideo ? (
