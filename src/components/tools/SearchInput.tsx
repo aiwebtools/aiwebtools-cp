@@ -26,7 +26,7 @@ const SearchInput = memo(({
   }, [onSearchChange]);
 
   return (
-    <div className="relative search-glow-optimized rounded-xl">
+    <div className="relative rounded-xl border border-gray-600">
       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
       <Input
         type="text"

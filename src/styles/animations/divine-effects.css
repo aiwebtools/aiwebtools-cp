@@ -1,66 +1,70 @@
 
 /* Ultra-lightweight effects for maximum performance */
 @layer components {
-  /* Minimal glow border */
+  /* Simple static border with minimal glow */
   .divine-glow-border {
-    border: 1px solid rgba(64, 224, 255, 0.3);
-    transition: border-color 0.2s ease;
+    border: 1px solid rgba(64, 224, 255, 0.2);
+    transition: none;
   }
   
   .divine-glow-border:hover,
   .divine-glow-border:focus-within {
-    border-color: rgba(64, 224, 255, 0.5);
+    border-color: rgba(64, 224, 255, 0.3);
   }
 
-  /* Simple search glow */
+  /* Minimal search border - no animations */
   .search-glow-optimized {
-    border: 1px solid rgba(64, 224, 255, 0.2);
-    transition: border-color 0.15s ease;
+    border: 1px solid rgba(64, 224, 255, 0.15);
+    transition: none;
   }
   
   .search-glow-optimized:focus-within {
-    border-color: rgba(64, 224, 255, 0.4);
+    border-color: rgba(64, 224, 255, 0.25);
   }
 
-  /* Minimal text glow */
+  /* Static text color */
   .cyber-glow {
     color: rgba(64, 224, 255, 0.9);
   }
 
-  /* Simple scale effect */
+  /* No scale effects */
   .divine-scale {
-    transition: transform 0.15s ease;
+    transition: none;
   }
   
   .divine-scale:hover {
-    transform: scale(1.02);
+    transform: none;
   }
 
-  /* Remove all other expensive effects */
+  /* Disable all other effects completely */
   .divine-pulse,
   .divine-gradient-shift,
   .divine-float,
   .divine-shimmer,
   .divine-aurora,
   .divine-special-glow {
-    /* Disabled for performance */
+    /* All disabled for performance */
   }
 }
 
-/* Disable GPU acceleration that's causing issues */
+/* Remove all GPU acceleration and animations */
 .divine-glow-border,
 .search-glow-optimized,
 .cyber-glow,
 .divine-scale {
   will-change: auto;
+  animation: none !important;
+  transform: none !important;
+  transition: none !important;
 }
 
-/* Remove all animations on mobile */
+/* Ensure no animations on any device */
 @media (max-width: 768px) {
   .divine-glow-border,
   .search-glow-optimized,
   .divine-scale {
     transition: none !important;
     transform: none !important;
+    animation: none !important;
   }
 }
