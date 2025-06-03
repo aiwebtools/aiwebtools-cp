@@ -1,111 +1,82 @@
 
-import React, { useState } from "react";
+import { forwardRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import SearchBar from "@/components/tools/SearchBar";
-import CategoryViewToggle from "@/components/tools/CategoryViewToggle";
-import MainCategoriesView from "@/components/tools/MainCategoriesView";
-import SubcategoriesView from "@/components/tools/SubcategoriesView";
-import AllToolsButton from "@/components/tools/AllToolsButton";
-import { getMainCategoriesWithCounts } from "@/utils/categoryUtils/toolFiltering";
-import { allTools } from "@/data/toolsData";
+import { getCategoryStyle } from "@/utils/categoryStyles";
+import { getStandardizedCategoryTitle } from "@/utils/categoryTitles";
 
 interface CategoryFiltersProps {
   categoriesWithCounts: Record<string, number>;
-  selectedCategory: string | null;
-  onCategoryChange: (category: string | null) => void;
-  onSearchChange: (searchTerm: string) => void;
-  searchTerm: string;
+  selectedCategory: string;
+  onCategoryChange: (category: string) => void;
 }
 
-const CategoryFilters = ({
-  categoriesWithCounts,
-  selectedCategory,
-  onCategoryChange,
-  onSearchChange,
-  searchTerm
-}: CategoryFiltersProps) => {
-  const [viewMode, setViewMode] = useState<'main' | 'sub'>('main');
-  const [isExpanded, setIsExpanded] = useState(true);
-  const [selectedMainCategory, setSelectedMainCategory] = useState<string | null>(null);
+const CategoryFilters = forwardRef<HTMLDivElement, CategoryFiltersProps>(
+  ({ categoriesWithCounts, selectedCategory, onCategoryChange }, ref) => {
+    const navigate = useNavigate();
 
-  // Get accurate main category counts from the global cache
-  const mainCategoriesWithCounts = getMainCategoriesWithCounts(allTools);
+    const handleCategoryClick = (category: string) => {
+      // IMMEDIATE scroll to top BEFORE navigation
+      window.scrollTo(0, 0);
+      
+      // Immediate navigation without delays
+      navigate(`/category/${encodeURIComponent(category)}`);
+      onCategoryChange(category);
+    };
 
-  const totalTools = Object.values(categoriesWithCounts).reduce((sum, count) => sum + count, 0);
-
-  const handleCategorySelect = (category: string | null) => {
-    onCategoryChange(category);
-  };
-
-  const handleBackToMain = () => {
-    setSelectedMainCategory(null);
-    setViewMode('main');
-  };
-
-  const handleSubCategoryClick = (category: string) => {
-    onCategoryChange(category);
-  };
-
-  return (
-    <div className="mb-8">
-      {/* Search Bar - Optimized for instant response */}
-      <div className="mb-6">
-        <SearchBar
-          searchTerm={searchTerm}
-          onSearchChange={onSearchChange}
-          preventAutoNavigation={true}
-        />
+    return (
+      <div className="mb-8" ref={ref}>
+        <h3 className="text-xl md:text-2xl font-semibold text-white mb-6 text-center">
+          Browse by Category
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 max-w-6xl mx-auto">
+          {Object.entries(categoriesWithCounts)
+            .map(([category, count]) => [getStandardizedCategoryTitle(category), count] as [string, number])
+            .sort(([a], [b]) => a.localeCompare(b))
+            .map(([category, count]) => {
+              const categoryStyle = getCategoryStyle(category);
+              const isSelected = category === selectedCategory;
+              
+              return (
+                <Button
+                  key={category}
+                  onClick={() => handleCategoryClick(category)}
+                  variant="outline"
+                  size="sm"
+                  className={`
+                    group relative overflow-hidden transition-all duration-200 transform hover:scale-105 w-full min-w-fit px-4 py-3 h-auto whitespace-normal text-left border
+                    ${isSelected 
+                      ? `${categoryStyle.colors.selected} text-white shadow-lg border-white/30` 
+                      : `${categoryStyle.colors.bg} ${categoryStyle.colors.border} text-gray-200 ${categoryStyle.colors.hover} hover:text-white hover:shadow-md`
+                    }
+                  `}
+                >
+                  <div className="flex justify-between items-center w-full gap-2">
+                    <div className="flex items-center gap-2 flex-1">
+                      <span className="text-lg">{categoryStyle.emoji}</span>
+                      <span className="relative z-10 text-sm font-medium leading-tight">{category}</span>
+                    </div>
+                    <Badge 
+                      variant="secondary" 
+                      className={`text-xs relative z-10 flex-shrink-0 ${
+                        isSelected
+                          ? "bg-white/25 text-white border-white/30" 
+                          : "bg-black/30 text-gray-300 border-gray-500/40 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30"
+                      }`}
+                    >
+                      {count}
+                    </Badge>
+                  </div>
+                </Button>
+              );
+            })}
+        </div>
       </div>
+    );
+  }
+);
 
-      {/* View Toggle */}
-      <CategoryViewToggle 
-        viewMode={viewMode} 
-        onViewModeChange={setViewMode} 
-      />
-
-      {/* All Tools Button */}
-      <AllToolsButton
-        selectedCategory={selectedCategory}
-        totalTools={totalTools}
-        onCategoryChange={handleCategorySelect}
-      />
-
-      {/* Categories Section */}
-      <div className="mb-4">
-        <Button
-          onClick={() => setIsExpanded(!isExpanded)}
-          variant="ghost"
-          className="w-full text-cyan-300 hover:text-cyan-100 mb-4"
-        >
-          <span className="text-lg font-semibold">
-            {viewMode === 'main' ? '📁 Browse Main Categories' : '🗂️ Browse All SubCategories'}
-          </span>
-          {isExpanded ? <ChevronUp className="ml-2 h-4 w-4" /> : <ChevronDown className="ml-2 h-4 w-4" />}
-        </Button>
-
-        {isExpanded && (
-          <div className="space-y-4">
-            {viewMode === 'main' ? (
-              <MainCategoriesView
-                mainCategoryCounts={mainCategoriesWithCounts}
-                onMainCategoryClick={handleCategorySelect}
-              />
-            ) : (
-              <SubcategoriesView
-                selectedMainCategory={selectedMainCategory}
-                selectedCategory={selectedCategory}
-                categoriesWithCounts={categoriesWithCounts}
-                onBackToMain={handleBackToMain}
-                onSubCategoryClick={handleSubCategoryClick}
-              />
-            )}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
+CategoryFilters.displayName = "CategoryFilters";
 
 export default CategoryFilters;
