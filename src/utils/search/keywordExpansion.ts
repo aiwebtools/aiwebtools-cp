@@ -61,6 +61,8 @@ const typoCorrection: Record<string, string> = {
   "time machien": "time machine",
   "bak to the future": "back to the future",
   "back too the future": "back to the future",
+  "bak to future": "back to the future",
+  "back to future": "back to the future",
   "travle in time": "travel in time",
   "travel inn time": "travel in time",
   "histroy": "history",
@@ -163,8 +165,7 @@ const typoCorrection: Record<string, string> = {
   "invesment": "investment",
   "soud": "sound",
   "efect": "effect",
-  "elevan": "eleven",
-  "11labs": "eleven labs"
+  "elevan": "eleven"
 };
 
 // Function to calculate Levenshtein distance for fuzzy matching
@@ -254,11 +255,26 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   phoneticMatches.forEach(match => expandedKeywords.add(match));
   
   // TIME TRAVEL SEARCH EXPANSION - ABSOLUTE HIGHEST PRIORITY
-  if (lowerSearchTerm.includes('time travel') || lowerSearchTerm.includes('travel in time') ||
-      lowerSearchTerm.includes('back to the future') || lowerSearchTerm.includes('time machine') ||
-      lowerSearchTerm === 'time travel' || lowerSearchTerm === 'travel in time' ||
-      lowerSearchTerm === 'back to the future' || lowerSearchTerm.includes('tim travel') ||
-      lowerSearchTerm.includes('time travle') || lowerSearchTerm.includes('bak to the future')) {
+  // Enhanced detection for "back to the future" and all variations
+  const isTimeTravel = 
+    lowerSearchTerm.includes('time travel') || 
+    lowerSearchTerm.includes('travel in time') ||
+    lowerSearchTerm.includes('back to the future') || 
+    lowerSearchTerm.includes('back to future') ||
+    lowerSearchTerm.includes('bak to the future') ||
+    lowerSearchTerm.includes('bak to future') ||
+    lowerSearchTerm.includes('time machine') ||
+    lowerSearchTerm === 'time travel' || 
+    lowerSearchTerm === 'travel in time' ||
+    lowerSearchTerm === 'back to the future' ||
+    lowerSearchTerm === 'back to future' ||
+    lowerSearchTerm.includes('tim travel') ||
+    lowerSearchTerm.includes('time travle') ||
+    lowerSearchTerm.includes('bak to the future') ||
+    PRESERVED_TIME_KEYWORDS.some(keyword => lowerSearchTerm.includes(keyword));
+
+  if (isTimeTravel) {
+    console.log(`⏰ TIME TRAVEL SEARCH DETECTED for: "${searchTerm}"`);
     
     // Add all preserved time keywords
     PRESERVED_TIME_KEYWORDS.forEach(keyword => expandedKeywords.add(keyword));
@@ -311,7 +327,13 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
       'past events',
       'future events',
       'historical simulation',
-      'time periods exploration'
+      'time periods exploration',
+      'back to the future',
+      'time traveler',
+      'time portal',
+      'temporal mechanics',
+      'chronos',
+      'time displacement'
     ];
     
     timeKeywords.forEach(keyword => expandedKeywords.add(keyword));
@@ -962,7 +984,6 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
     const soundEffectKeywords = [
       'eleven labs',
       'elevenlabs',
-      '11labs',
       'text to speech',
       'tts',
       'voice generation',
