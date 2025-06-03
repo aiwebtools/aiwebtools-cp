@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   PenTool, 
@@ -11,7 +10,8 @@ import {
   Book,
   Pen,
   Sparkles,
-  Eye
+  Eye,
+  Film
 } from "lucide-react";
 
 export const writingAndContent: Tool[] = [
@@ -27,6 +27,18 @@ export const writingAndContent: Tool[] = [
     category: "Writing & Content",
     rating: 4.8,
     totalVotes: 4567
+  },
+  {
+    icon: Film,
+    title: "ScreenPlay Writer",
+    description: "Professional screenplay writing assistant powered by AI. Create compelling screenplays with proper formatting, character development, and industry-standard structure for film and television.",
+    emoji: "🎬",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://screenplaywritergpt.lovable.app/?via=aiwebtools",
+    tags: ["screenplay", "screenwriting", "film writing", "television", "script formatting", "character development", "story structure"],
+    category: "Writing & Content",
+    rating: 4.7,
+    totalVotes: 3245
   },
   {
     icon: Book,
