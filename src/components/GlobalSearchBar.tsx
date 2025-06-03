@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -129,11 +128,13 @@ const GlobalSearchBar = () => {
         {isOpen && searchResults.length > 0 && (
           <Card className="absolute top-full left-0 right-0 mt-2 bg-black/95 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-50 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" onScroll={handleScroll}>
             <CardContent className="p-2">
-              <div className="text-xs text-cyan-400 px-3 py-2 border-b border-cyan-500/20 sticky top-0 bg-black/95">
-                {searchResults.length} Results - Showing {displayedCount}
-                {displayedCount < searchResults.length && " - Scroll for more"}
+              <div className="text-xs text-cyan-400 px-3 py-1.5 border-b border-cyan-500/20 sticky top-0 bg-black/95">
+                <div className="text-xs leading-tight">
+                  {searchResults.length} Results - Showing {displayedCount}
+                  {displayedCount < searchResults.length && " - Scroll for more"}
+                </div>
                 {searchResults.length > 0 && (
-                  <div className="text-cyan-300 mt-1">Press Enter to open top result</div>
+                  <div className="text-cyan-300/80 text-xs mt-0.5">Press Enter to open top result</div>
                 )}
               </div>
               {displayedResults.map((tool, index) => {
