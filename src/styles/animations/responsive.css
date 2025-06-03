@@ -42,10 +42,11 @@
       box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
     }
     
-    /* Mobile search optimizations */
-    .search-glow-optimized {
+    /* Mobile search optimizations - ZERO transitions for instant response */
+    .search-glow-optimized, .search-glow-optimized * {
       transition: none !important;
       will-change: auto;
+      animation: none !important;
     }
     
     /* Prevent layout shifts on mobile */
@@ -53,20 +54,22 @@
       contain: layout style;
     }
     
-    /* Mobile input optimizations */
+    /* Mobile input optimizations - INSTANT response */
     input[type="text"], input[type="search"] {
       -webkit-appearance: none;
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
       user-select: text;
       font-size: 16px; /* Prevent zoom on iOS */
+      transition: none !important; /* NO transitions for instant response */
     }
     
-    /* Fixed width for transitioning words to prevent jumping */
+    /* FIXED width for transitioning words to prevent jumping - mobile specific */
     .transitioning-word {
-      display: inline-block;
-      min-width: 200px;
-      text-align: center;
+      display: inline-block !important;
+      width: 220px !important; /* Wider on mobile for safety */
+      text-align: center !important;
+      transition: none !important; /* NO transitions */
     }
   }
 
@@ -85,7 +88,18 @@
     }
     
     .transitioning-word {
-      min-width: 250px;
+      width: 280px !important;
+      display: inline-block !important;
+      text-align: center !important;
+    }
+  }
+
+  /* Desktop - normal behavior */
+  @media (min-width: 1025px) {
+    .transitioning-word {
+      width: 300px !important;
+      display: inline-block !important;
+      text-align: center !important;
     }
   }
 
@@ -96,9 +110,10 @@
     .glow-effect,
     .cta-banner,
     .divine-glow-border {
-      animation: none;
+      animation: none !important;
       text-shadow: 0 0 3px currentColor;
       box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+      transition: none !important;
     }
 
     .divine-glow-border {
@@ -115,45 +130,44 @@
     }
     
     .interactive-button {
-      transition: background-color 0.2s ease;
+      transition: none !important;
     }
     
     .interactive-button:hover {
       transform: none;
     }
     
-    /* Ultra-fast search for low-end devices */
-    .search-glow-optimized * {
+    /* Ultra-fast search for low-end devices - ZERO animations/transitions */
+    .search-glow-optimized, .search-glow-optimized * {
       transition: none !important;
       animation: none !important;
+      transform: none !important;
     }
     
     .transitioning-word {
-      min-width: 180px;
+      width: 200px !important;
+      font-size: 0.9em;
+      transition: none !important;
     }
     
-    /* Force GPU acceleration for better performance */
-    input {
-      transform: translateZ(0);
-      -webkit-transform: translate3d(0,0,0);
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
+    /* Force instant performance */
+    input, button, div {
+      transition: none !important;
+      animation: none !important;
     }
   }
   
   /* Ultra-low-end device optimizations */
   @media (max-width: 360px) {
     .transitioning-word {
-      min-width: 160px;
-      font-size: 0.9em;
+      width: 180px !important;
+      font-size: 0.85em;
     }
     
-    /* Disable all animations on very small screens */
+    /* Disable ALL animations on very small screens */
     *, *::before, *::after {
-      animation-duration: 0s !important;
-      animation-delay: 0s !important;
-      transition-duration: 0s !important;
-      transition-delay: 0s !important;
+      animation: none !important;
+      transition: none !important;
     }
   }
 }

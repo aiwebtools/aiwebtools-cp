@@ -37,7 +37,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden pt-20 md:pt-24">
+    <section className="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden pt-32 md:pt-36">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -54,13 +54,14 @@ const HeroSection = () => {
               AI WEB TOOLS
             </span>
             
-            {/* Second line with animated word - fixed width container to prevent jumping */}
+            {/* Second line with animated word - FIXED width container to prevent jumping */}
             <span className="text-3xl md:text-4xl lg:text-5xl text-white block">
               <span 
-                className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow inline-block"
+                className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow inline-block transitioning-word"
                 style={{ 
-                  minWidth: '280px', // Fixed width to contain longest word
-                  textAlign: 'center'
+                  width: '300px', // FIXED width to contain ALL words
+                  textAlign: 'center',
+                  display: 'inline-block'
                 }}
               >
                 {words[currentWord]}

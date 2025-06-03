@@ -3,7 +3,7 @@ import { useState, useCallback, useMemo } from "react";
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { getCurrentToolCount } from "@/utils/toolCounter";
-import { useSearchDebounce, useInstantSearch } from "@/hooks/useDebounce";
+import { useInstantSearch } from "@/hooks/useDebounce";
 
 interface UseSearchBarProps {
   searchTerm: string;
@@ -12,23 +12,24 @@ interface UseSearchBarProps {
 
 export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [displayedCount, setDisplayedCount] = useState(30); // Reduced for faster rendering
+  const [displayedCount, setDisplayedCount] = useState(20);
   
-  // Ultra-fast debounce for search logic (10ms instead of 50ms)
-  const debouncedSearchTerm = useSearchDebounce(searchTerm, 10);
-  // Instant feedback for UI updates
-  const instantSearchTerm = useInstantSearch(searchTerm);
+  // INSTANT search - no debouncing at all for maximum speed
+  const activeSearchTerm = useInstantSearch(searchTerm);
   
-  // Highly optimized search results with aggressive caching
+  // Highly optimized search results with INSTANT response
   const searchResults = useMemo(() => {
-    const trimmedTerm = debouncedSearchTerm.trim();
+    const trimmedTerm = activeSearchTerm.trim();
     if (!trimmedTerm || trimmedTerm.length < 1) return [];
+    
+    // Detect mobile for performance limits
+    const isMobile = window.innerWidth < 768 || 'ontouchstart' in window;
     
     // For single character, use super fast simple matching
     if (trimmedTerm.length === 1) {
       return allTools.filter(tool => 
         tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
-      ).slice(0, 10); // Reduced count for faster rendering
+      ).slice(0, isMobile ? 6 : 8);
     }
     
     // For 2 characters, still use simple matching for speed
@@ -36,13 +37,13 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
       return allTools.filter(tool => 
         tool.title.toLowerCase().includes(trimmedTerm.toLowerCase()) ||
         tool.category?.toLowerCase().includes(trimmedTerm.toLowerCase())
-      ).slice(0, 15);
+      ).slice(0, isMobile ? 10 : 12);
     }
     
     // For longer terms, use optimized search with limit
     const results = searchTools(allTools, trimmedTerm);
-    return results.slice(0, 25); // Hard limit for performance
-  }, [debouncedSearchTerm]);
+    return results.slice(0, isMobile ? 15 : 20);
+  }, [activeSearchTerm]);
 
   // Pre-slice results for better performance
   const displayedResults = useMemo(() => 
@@ -50,19 +51,19 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     [searchResults, displayedCount]
   );
 
-  const shouldShowResults = searchResults.length > 0 && instantSearchTerm.trim().length >= 1;
+  const shouldShowResults = searchResults.length > 0 && activeSearchTerm.trim().length >= 1;
 
   const handleSearchChange = useCallback((value: string) => {
     onSearchChange(value);
     const trimmed = value.trim();
     setIsOpen(trimmed.length >= 1);
-    if (!trimmed) setDisplayedCount(30);
+    if (!trimmed) setDisplayedCount(20);
   }, [onSearchChange]);
 
   const handleResultClick = useCallback(() => {
     setIsOpen(false);
     onSearchChange("");
-    setDisplayedCount(30);
+    setDisplayedCount(20);
   }, [onSearchChange]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
@@ -85,15 +86,16 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   }, []);
 
   const handleInputFocus = useCallback(() => {
-    if (instantSearchTerm.trim().length >= 1 && searchResults.length > 0) {
+    if (activeSearchTerm.trim().length >= 1 && searchResults.length > 0) {
       setIsOpen(true);
     }
-  }, [instantSearchTerm, searchResults.length]);
+  }, [activeSearchTerm, searchResults.length]);
 
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     if (scrollHeight - scrollTop <= clientHeight + 50 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 10, searchResults.length)); // Smaller increments
+      const isMobile = window.innerWidth < 768 || 'ontouchstart' in window;
+      setDisplayedCount(prev => Math.min(prev + (isMobile ? 5 : 8), searchResults.length));
     }
   }, [displayedCount, searchResults.length]);
 

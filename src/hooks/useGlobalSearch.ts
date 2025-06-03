@@ -4,7 +4,7 @@ import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
-import { useSearchDebounce, useInstantSearch } from "@/hooks/useDebounce";
+import { useInstantSearch } from "@/hooks/useDebounce";
 
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,22 +17,20 @@ export const useGlobalSearch = () => {
   // Detect mobile for optimized handling
   const isMobile = window.innerWidth < 768 || 'ontouchstart' in window;
   
-  // Mobile-optimized debounce (0ms for mobile, 5ms for desktop)
-  const debouncedSearchTerm = useSearchDebounce(searchTerm, isMobile ? 0 : 5);
-  // Instant feedback for UI
-  const instantSearchTerm = useInstantSearch(searchTerm);
+  // INSTANT search for mobile - no debouncing at all
+  const activeSearchTerm = useInstantSearch(searchTerm);
 
   // Memoize tool stats
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // Highly optimized search effect with mobile priority
+  // Ultra-fast search effect with INSTANT mobile response
   useEffect(() => {
-    const trimmedTerm = debouncedSearchTerm.trim();
+    const trimmedTerm = activeSearchTerm.trim();
     if (trimmedTerm) {
-      // For mobile, use even more aggressive limits
-      const mobileLimit = isMobile ? 6 : 8;
-      const desktopLimit = isMobile ? 10 : 12;
-      const fullLimit = isMobile ? 15 : 20;
+      // For mobile, use even more aggressive limits for speed
+      const mobileLimit = isMobile ? 4 : 6;
+      const desktopLimit = isMobile ? 6 : 8;
+      const fullLimit = isMobile ? 10 : 15;
       
       // Super fast single character matching
       if (trimmedTerm.length === 1) {
@@ -60,14 +58,14 @@ export const useGlobalSearch = () => {
       // Optimized search with mobile-friendly limits
       const results = searchTools(allTools, trimmedTerm);
       setSearchResults(results.slice(0, fullLimit));
-      setDisplayedCount(isMobile ? 12 : 15);
+      setDisplayedCount(isMobile ? 8 : 12);
       setIsOpen(true);
     } else {
       setSearchResults([]);
       setIsOpen(false);
       setDisplayedCount(15);
     }
-  }, [debouncedSearchTerm, isMobile]);
+  }, [activeSearchTerm, isMobile]);
 
   // Optimized click outside handler
   useEffect(() => {
@@ -126,7 +124,7 @@ export const useGlobalSearch = () => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     if (scrollHeight - scrollTop <= clientHeight + 30 && displayedCount < searchResults.length) {
-      const increment = isMobile ? 5 : 8; // Smaller increments on mobile
+      const increment = isMobile ? 3 : 5; // Smaller increments on mobile
       setDisplayedCount(prev => Math.min(prev + increment, searchResults.length));
     }
   }, [displayedCount, searchResults.length, isMobile]);

@@ -27,7 +27,7 @@ export function useDebounce<T>(value: T, delay: number): T {
   return debouncedValue;
 }
 
-// Mobile-optimized debounce for instant typing response
+// Mobile-optimized debounce - INSTANT for mobile
 export function useSearchDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -44,13 +44,19 @@ export function useSearchDebounce<T>(value: T, delay: number): T {
       return;
     }
 
-    // Detect mobile and use even shorter delay for mobile
+    // Detect mobile and use ZERO delay for mobile
     const isMobile = window.innerWidth < 768 || 'ontouchstart' in window;
-    const mobileDelay = isMobile ? 0 : Math.min(delay, 5); // No delay on mobile, 5ms on desktop
     
+    if (isMobile) {
+      // INSTANT response on mobile - no debouncing at all
+      setDebouncedValue(value);
+      return;
+    }
+    
+    // Desktop gets minimal delay
     timeoutRef.current = setTimeout(() => {
       setDebouncedValue(value);
-    }, mobileDelay);
+    }, Math.min(delay, 1)); // Maximum 1ms delay on desktop
 
     // Cleanup function
     return () => {
