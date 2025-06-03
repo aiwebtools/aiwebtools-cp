@@ -17,10 +17,23 @@ import {
   Image,
   Video,
   History,
-  Calculator
+  Calculator,
+  Eye
 } from "lucide-react";
 
 export const aiAssistants: Tool[] = [
+  {
+    icon: Brain,
+    title: "Mind Reader GPT",
+    description: "AI that attempts to predict and guess what you're thinking based on context, patterns, and psychological insights. Challenge this GPT to read your mind and see how accurate it can be at understanding your thoughts and intentions.",
+    emoji: "🧠",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://chat.openai.com/g/g-c1yToSktG-mind-reader-gpt/?via=aiwebtools",
+    category: "AI Assistants & Search",
+    tags: ["mind reading", "prediction", "psychology", "thought analysis", "entertainment"],
+    rating: 4.2,
+    totalVotes: 1234
+  },
   {
     icon: History,
     title: "Talk to History GPT",
