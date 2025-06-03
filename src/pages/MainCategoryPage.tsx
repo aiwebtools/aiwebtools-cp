@@ -20,6 +20,8 @@ import { useDebounce } from "@/hooks/useDebounce";
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
   const navigate = useNavigate();
+  
+  // ALL HOOKS MUST BE DECLARED AT THE TOP - NO CONDITIONAL HOOKS
   const [searchTerm, setSearchTerm] = useState("");
   const [displayedCount, setDisplayedCount] = useState(48);
   const [filteredToolsByCategory, setFilteredToolsByCategory] = useState<Tool[]>([]);
@@ -35,58 +37,14 @@ const MainCategoryPage = () => {
     mainCategories.find(cat => cat.name === decodedCategoryName), 
     [decodedCategoryName]
   );
-  
-  // Scroll to top immediately and initialize
-  useEffect(() => {
-    console.log('🏠 MainCategoryPage mounted for:', decodedCategoryName);
-    window.scrollTo(0, 0);
-    setIsInitialized(true);
-  }, [decodedCategoryName]);
-  
-  // Handle invalid category - prevent request form opening
-  useEffect(() => {
-    if (isInitialized && !mainCategory && decodedCategoryName) {
-      console.log('❌ Invalid category detected:', decodedCategoryName);
-      console.log('🔄 Redirecting to homepage to prevent errors');
-      navigate('/', { replace: true });
-    }
-  }, [mainCategory, decodedCategoryName, navigate, isInitialized]);
-
-  if (!isInitialized) {
-    return (
-      <div className="min-h-screen bg-black relative overflow-x-hidden">
-        <AnimatedBackground />
-        <div className="relative z-10 cyber-grid">
-          <Header />
-          <main className="container mx-auto px-4 py-8">
-            <div className="text-center">
-              <div className="text-6xl mb-4">⏳</div>
-              <h1 className="text-2xl font-bold text-cyan-100">Loading...</h1>
-            </div>
-          </main>
-          <Footer />
-        </div>
-      </div>
-    );
-  }
-
-  if (!mainCategory) {
-    return null; // Will redirect in useEffect
-  }
 
   // Cache category tools with better memoization
   const categoryTools = useMemo(() => {
+    if (!decodedCategoryName) return [];
     const tools = getToolsByMainCategory(allTools, decodedCategoryName);
     console.log(`📂 Loaded ${tools.length} tools for category: ${decodedCategoryName}`);
     return tools;
   }, [decodedCategoryName]);
-  
-  // Initialize filtered tools by category once
-  useEffect(() => {
-    if (categoryTools.length > 0 && filteredToolsByCategory.length === 0) {
-      setFilteredToolsByCategory(categoryTools);
-    }
-  }, [categoryTools, filteredToolsByCategory.length]);
 
   // Use filtered tools from category filter, fallback to original category tools
   const toolsToShow = filteredToolsByCategory.length > 0 ? filteredToolsByCategory : categoryTools;
@@ -157,11 +115,7 @@ const MainCategoryPage = () => {
     [finalFilteredTools, displayedCount]
   );
 
-  // Reset displayed count when base filtered tools change
-  useEffect(() => {
-    setDisplayedCount(48);
-  }, [baseFilteredTools.length]);
-
+  // ALL EVENT HANDLERS
   const handleLoadMore = useCallback(() => {
     if (isLoading) return;
     
@@ -181,6 +135,58 @@ const MainCategoryPage = () => {
   const handleFilteredToolsChange = useCallback((filtered: Tool[]) => {
     setFilteredToolsByCategory(filtered);
   }, []);
+
+  // ALL EFFECTS AT THE END
+  // Scroll to top immediately and initialize
+  useEffect(() => {
+    console.log('🏠 MainCategoryPage mounted for:', decodedCategoryName);
+    window.scrollTo(0, 0);
+    setIsInitialized(true);
+  }, [decodedCategoryName]);
+  
+  // Handle invalid category - prevent request form opening
+  useEffect(() => {
+    if (isInitialized && !mainCategory && decodedCategoryName) {
+      console.log('❌ Invalid category detected:', decodedCategoryName);
+      console.log('🔄 Redirecting to homepage to prevent errors');
+      navigate('/', { replace: true });
+    }
+  }, [mainCategory, decodedCategoryName, navigate, isInitialized]);
+
+  // Initialize filtered tools by category once
+  useEffect(() => {
+    if (categoryTools.length > 0 && filteredToolsByCategory.length === 0) {
+      setFilteredToolsByCategory(categoryTools);
+    }
+  }, [categoryTools, filteredToolsByCategory.length]);
+
+  // Reset displayed count when base filtered tools change
+  useEffect(() => {
+    setDisplayedCount(48);
+  }, [baseFilteredTools.length]);
+
+  // CONDITIONAL RENDERING ONLY AFTER ALL HOOKS
+  if (!isInitialized) {
+    return (
+      <div className="min-h-screen bg-black relative overflow-x-hidden">
+        <AnimatedBackground />
+        <div className="relative z-10 cyber-grid">
+          <Header />
+          <main className="container mx-auto px-4 py-8">
+            <div className="text-center">
+              <div className="text-6xl mb-4">⏳</div>
+              <h1 className="text-2xl font-bold text-cyan-100">Loading...</h1>
+            </div>
+          </main>
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
+  if (!mainCategory) {
+    return null; // Will redirect in useEffect
+  }
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
