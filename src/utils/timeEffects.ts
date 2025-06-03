@@ -1,3 +1,4 @@
+
 import { createPortalSounds } from './effects/audioEffects';
 import { 
   createParticles, 
@@ -237,5 +238,5 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
     cleanupEffects(effectsContainer);
     // Ensure it always opens in new window to keep users on our website
     openDestinationUrl(destinationUrl);
-  }, 3500);
+  }, 1500); // Reduced from 3500ms to 1500ms for faster tool opening
 };
