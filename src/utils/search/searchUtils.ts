@@ -11,7 +11,9 @@ import {
   matchLearning,
   scoreLearning,
   matchMedical,
-  scoreMedical
+  scoreMedical,
+  matchFarming,
+  scoreFarming
 } from "./matching/specialtyMatching";
 import { 
   createSearchResult, 
@@ -58,6 +60,20 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   );
   console.log(`🏷️ Name Insight tool found in database:`, nameInsightTool ? nameInsightTool.title : 'NOT FOUND');
   
+  // Enhanced debugging for farming tools
+  const possibleFarmingTools = tools.filter(tool => 
+    tool.title.toLowerCase().includes('agro') ||
+    tool.title.toLowerCase().includes('farm') ||
+    tool.description.toLowerCase().includes('agriculture') ||
+    tool.description.toLowerCase().includes('farming') ||
+    tool.description.toLowerCase().includes('crop')
+  );
+  
+  console.log(`🌾 Found ${possibleFarmingTools.length} farming/agriculture tools in database:`);
+  possibleFarmingTools.forEach((tool, index) => {
+    console.log(`${index + 1}. "${tool.title}" - URL: ${tool.directUrl || 'NO URL'}`);
+  });
+  
   const expandedKeywords = getExpandedKeywords(searchTerm);
   console.log(`📝 Expanded keywords:`, expandedKeywords);
   
@@ -78,6 +94,14 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       matched = true;
       score += nameMatch.score;
       console.log(`🏷️ Name search match for "${tool.title}" with score: ${nameMatch.score}`);
+    }
+    
+    // Farming/Agriculture specific matching (VERY HIGH PRIORITY for agro searches)
+    if (matchFarming(tool, searchTerm)) {
+      matched = true;
+      const farmingScore = scoreFarming(tool, searchTerm);
+      score += farmingScore;
+      console.log(`🌾 Farming search match for "${tool.title}" with score: ${farmingScore}`);
     }
     
     // Health-specific matching (VERY HIGH PRIORITY for health searches)
@@ -138,6 +162,20 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   .map(result => result.tool);
 
   console.log(`✅ Enhanced search found ${results.length} results for "${searchTerm}"`);
+  
+  // Enhanced debugging for farming searches
+  if (searchTerm.toLowerCase().includes('agro') || searchTerm.toLowerCase().includes('farm') || 
+      searchTerm.toLowerCase().includes('agriculture') || searchTerm.toLowerCase().includes('crop')) {
+    console.log(`🌾 FARMING SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
+    console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
+    
+    // Check if Agronomus tool is in the results
+    const agronomusInResults = results.find(tool => 
+      tool.title.toLowerCase().includes('agronomus') || 
+      tool.title.toLowerCase().includes('farming expert')
+    );
+    console.log(`🌾 Agronomus tool in results:`, agronomusInResults ? agronomusInResults.title : 'NOT IN RESULTS');
+  }
   
   // Enhanced debugging for health searches
   if (searchTerm.toLowerCase().includes('health') || searchTerm.toLowerCase().includes('medical') || 
