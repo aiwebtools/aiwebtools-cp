@@ -23,6 +23,7 @@ export const governmentCivicGPTs: Tool[] = [
     emoji: "🗳️",
     color: "from-blue-500 to-red-600",
     directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=poOGR-6bb2g",
     tags: ["political activism", "civic engagement", "democracy", "legislation", "advocacy", "grassroots organizing", "political strategy", "voter engagement"],
     category: "Government & Civic Tools",
     rating: 4.8,
