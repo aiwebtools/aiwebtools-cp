@@ -10,6 +10,9 @@ import {
   matchWebDesign, scoreWebDesign, matchTextToWebsite, scoreTextToWebsite 
 } from "./matching/webDesignMatching";
 import { 
+  matchCompanionTools, scoreCompanionTools 
+} from "./matching/companionMatching";
+import { 
   matchTextToVideo, scoreTextToVideo 
 } from "./matching/videoMatching";
 import { 
@@ -23,13 +26,14 @@ import {
   matchPolitical, scorePolitical 
 } from "./matching/politicalMatching";
 
-// Enhanced keyword matching for specific tool categories including travel and political
+// Enhanced keyword matching for specific tool categories including companion tools
 export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean => {
-  // Check all matching functions including travel and political - CRITICAL FOR SEARCH BAR
+  // Check all matching functions including companion tools - CRITICAL FOR SEARCH BAR
   return matchAgents(tool, searchTerm) ||
          matchCodingAgents(tool, searchTerm) ||
          matchWebDesign(tool, searchTerm) ||
          matchTextToWebsite(tool, searchTerm) ||
+         matchCompanionTools(tool, searchTerm) ||
          matchTextToVideo(tool, searchTerm) ||
          matchFarming(tool, searchTerm) ||
          matchHealth(tool, searchTerm) ||
@@ -42,11 +46,12 @@ export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean
 export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
   let totalScore = 0;
   
-  // Add scores from all scoring functions including travel and political - CRITICAL FOR RANKING
+  // Add scores from all scoring functions including companion tools - CRITICAL FOR RANKING
   totalScore += scoreAgents(tool, searchTerm);
   totalScore += scoreCodingAgents(tool, searchTerm);
   totalScore += scoreWebDesign(tool, searchTerm);
   totalScore += scoreTextToWebsite(tool, searchTerm);
+  totalScore += scoreCompanionTools(tool, searchTerm);
   totalScore += scoreTextToVideo(tool, searchTerm);
   totalScore += scoreFarming(tool, searchTerm);
   totalScore += scoreHealth(tool, searchTerm);
