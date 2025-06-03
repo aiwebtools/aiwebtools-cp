@@ -1,11 +1,13 @@
 
 
+
 import { Tool } from "@/types/tools";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
   "PERSONAL CAPITAL",
-  "PERSONAL ASSISTANT GPT"
+  "PERSONAL ASSISTANT GPT",
+  "personal financial advisor"
 ];
 
 // Enhanced search function with tool exclusions
@@ -114,4 +116,5 @@ export const removeDuplicateTools = (tools: Tool[]): Tool[] => {
     return true;
   });
 };
+
 
