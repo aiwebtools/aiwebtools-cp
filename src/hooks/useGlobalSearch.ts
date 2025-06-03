@@ -5,45 +5,59 @@ import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
-import { useSearchDebounce } from "@/hooks/useDebounce";
+import { useSearchDebounce, useInstantSearch } from "@/hooks/useDebounce";
 
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [displayedCount, setDisplayedCount] = useState(30);
+  const [displayedCount, setDisplayedCount] = useState(20); // Reduced for faster initial render
   const [isOpen, setIsOpen] = useState(false);
   const searchRef = useRef(null);
   const navigate = useNavigate();
 
-  // Optimized debounce
-  const debouncedSearchTerm = useSearchDebounce(searchTerm, 150);
+  // Ultra-fast debounce (50ms instead of 150ms)
+  const debouncedSearchTerm = useSearchDebounce(searchTerm, 50);
+  // Instant feedback for UI
+  const instantSearchTerm = useInstantSearch(searchTerm);
 
   // Memoize tool stats
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // Optimized search effect
+  // Highly optimized search effect
   useEffect(() => {
     const trimmedTerm = debouncedSearchTerm.trim();
     if (trimmedTerm) {
-      // Early return for single characters
+      // Super fast single character matching
       if (trimmedTerm.length === 1) {
         const simpleResults = allTools.filter(tool => 
-          tool.title.toLowerCase().includes(trimmedTerm.toLowerCase())
-        ).slice(0, 20);
+          tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
+        ).slice(0, 10); // Reduced count
         setSearchResults(simpleResults);
-        setDisplayedCount(20);
+        setDisplayedCount(10);
+        setIsOpen(true);
+        return;
+      }
+      
+      // Fast two character matching
+      if (trimmedTerm.length === 2) {
+        const fastResults = allTools.filter(tool => 
+          tool.title.toLowerCase().includes(trimmedTerm.toLowerCase()) ||
+          tool.category?.toLowerCase().includes(trimmedTerm.toLowerCase())
+        ).slice(0, 15);
+        setSearchResults(fastResults);
+        setDisplayedCount(15);
         setIsOpen(true);
         return;
       }
       
       const results = searchTools(allTools, trimmedTerm);
       setSearchResults(results);
-      setDisplayedCount(30);
+      setDisplayedCount(20);
       setIsOpen(true);
     } else {
       setSearchResults([]);
       setIsOpen(false);
-      setDisplayedCount(30);
+      setDisplayedCount(20);
     }
   }, [debouncedSearchTerm]);
 
@@ -79,14 +93,14 @@ export const useGlobalSearch = () => {
   const clearSearch = useCallback(() => {
     setSearchTerm("");
     setIsOpen(false);
-    setDisplayedCount(30);
+    setDisplayedCount(20);
   }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       setSearchTerm("");
-      setDisplayedCount(30);
+      setDisplayedCount(20);
     } else if (e.key === 'Enter' && searchTerm.trim()) {
       if (searchResults.length > 0) {
         const topResult = searchResults[0];
@@ -104,7 +118,7 @@ export const useGlobalSearch = () => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     if (scrollHeight - scrollTop <= clientHeight + 50 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 20, searchResults.length));
+      setDisplayedCount(prev => Math.min(prev + 10, searchResults.length)); // Smaller increments
     }
   }, [displayedCount, searchResults.length]);
 

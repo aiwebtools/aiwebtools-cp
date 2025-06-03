@@ -27,7 +27,7 @@ export function useDebounce<T>(value: T, delay: number): T {
   return debouncedValue;
 }
 
-// Optimized debounce hook for search that responds faster to empty values
+// Ultra-fast debounce hook for search that responds immediately to typing
 export function useSearchDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -44,7 +44,7 @@ export function useSearchDebounce<T>(value: T, delay: number): T {
       return;
     }
 
-    // Set a new timeout for non-empty values
+    // Use very short delay for ultra-fast responsiveness
     timeoutRef.current = setTimeout(() => {
       setDebouncedValue(value);
     }, delay);
@@ -58,4 +58,9 @@ export function useSearchDebounce<T>(value: T, delay: number): T {
   }, [value, delay]);
 
   return debouncedValue;
+}
+
+// Immediate response hook for typing feedback
+export function useInstantSearch<T>(value: T): T {
+  return value; // No debouncing for instant visual feedback
 }

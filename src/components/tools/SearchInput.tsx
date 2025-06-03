@@ -34,10 +34,12 @@ const SearchInput = memo(({
         className="pl-10 pr-4 py-4 text-lg rounded-xl border-0 bg-black/60 text-white placeholder-gray-300 focus:ring-0 focus:outline-none backdrop-blur-sm"
         autoComplete="off"
         spellCheck={false}
-        // Optimize input performance
+        // Ultra-optimized for instant typing response
         style={{ 
-          transition: 'none',  // Disable transitions during typing
-          willChange: 'auto'   // Optimize for frequent changes
+          transition: 'none',
+          willChange: 'auto',
+          transform: 'translateZ(0)', // Force hardware acceleration
+          backfaceVisibility: 'hidden' // Prevent flickering
         }}
       />
     </div>

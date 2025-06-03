@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
+import { memo } from "react";
 
 interface SearchResultsProps {
   searchResults: Tool[];
@@ -12,7 +13,7 @@ interface SearchResultsProps {
   onScroll: (e: React.UIEvent<HTMLDivElement>) => void;
 }
 
-const SearchResults = ({
+const SearchResults = memo(({
   searchResults,
   displayedResults,
   displayedCount,
@@ -23,6 +24,12 @@ const SearchResults = ({
     <div 
       className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" 
       onScroll={onScroll}
+      style={{
+        // Optimize scrolling performance
+        willChange: 'scroll-position',
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden'
+      }}
     >
       <div className="p-2">
         <div className="text-xs text-gray-500 px-3 py-2 border-b border-gray-100 sticky top-0 bg-white">
@@ -34,12 +41,17 @@ const SearchResults = ({
         {displayedResults.map((tool, index) => {
           const toolIndex = allTools.findIndex(t => t.title === tool.title);
           return (
-            <Tooltip key={`${tool.title}-${index}`} delayDuration={300}>
+            <Tooltip key={`${tool.title}-${index}`} delayDuration={200}>
               <TooltipTrigger asChild>
                 <Link
                   to={`/tool/${toolIndex}`}
                   onClick={onResultClick}
-                  className="flex items-center space-x-3 p-3 hover:bg-gray-50 transition-all duration-200 border-b border-gray-50 last:border-b-0 rounded-lg mx-1"
+                  className="flex items-center space-x-3 p-3 hover:bg-gray-50 transition-colors duration-150 border-b border-gray-50 last:border-b-0 rounded-lg mx-1"
+                  style={{
+                    // Optimize rendering performance
+                    willChange: 'auto',
+                    transform: 'translateZ(0)'
+                  }}
                 >
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-ai-purple to-ai-blue flex items-center justify-center text-white text-sm sm:text-lg flex-shrink-0">
                     {tool.emoji}
@@ -94,6 +106,7 @@ const SearchResults = ({
       </div>
     </div>
   );
-};
+});
 
+SearchResults.displayName = "SearchResults";
 export default SearchResults;
