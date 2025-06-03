@@ -12,7 +12,8 @@ import {
   Settings,
   Sparkles,
   Bot,
-  Leaf
+  Leaf,
+  Calculator
 } from "lucide-react";
 
 export const audioAndVoiceTools: Tool[] = [
@@ -189,5 +190,17 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Audio & Voice Tools",
     rating: 4.2,
     totalVotes: 2345
+  },
+  {
+    icon: Calculator,
+    title: "Medical Billing & Coding GPT",
+    description: "Your AI-powered medical billing assistant specializing in CPT, ICD-10, and HCPCS coding with real-time insurance reimbursement calculations. Professional coding expertise for healthcare professionals.",
+    emoji: "🏥",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://medicalbillinggpt.lovable.app/?via=aiwebtools",
+    tags: ["medical billing", "medical coding", "CPT codes", "ICD-10", "HCPCS", "insurance", "reimbursement", "healthcare", "medical professionals", "billing assistant"],
+    category: "Healthcare Professionals",
+    rating: 4.7,
+    totalVotes: 2890
   }
 ];
