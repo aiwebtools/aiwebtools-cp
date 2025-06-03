@@ -104,22 +104,22 @@ const GlobalSearchBar = () => {
   return (
     <TooltipProvider>
       <div ref={searchRef} className="relative w-full max-w-md">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-cyan-400 w-4 h-4" />
+        <div className="relative divine-glow-border rounded-lg">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 w-4 h-4 z-10" />
           <Input
             type="text"
             placeholder={`Search ${toolStats.marketing} AI tools...`}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="pl-10 pr-10 bg-black/80 border-cyan-500/50 text-cyan-100 placeholder-cyan-400/70 focus:border-cyan-400 focus:ring-cyan-400/30 rounded-lg shadow-lg shadow-cyan-500/10"
+            className="pl-10 pr-10 bg-black/50 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg shadow-none backdrop-blur-sm"
           />
           {searchTerm && (
             <Button
               variant="ghost"
               size="sm"
               onClick={clearSearch}
-              className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10"
+              className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-gray-300 hover:text-white hover:bg-white/10 z-10"
             >
               <X className="w-3 h-3" />
             </Button>

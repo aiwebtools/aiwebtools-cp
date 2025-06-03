@@ -20,8 +20,8 @@ const SearchInput = ({
   onFocus,
 }: SearchInputProps) => {
   return (
-    <div className="relative">
-      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+    <div className="relative divine-glow-border rounded-xl">
+      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 z-10" />
       <Input
         type="text"
         placeholder={placeholder}
@@ -30,7 +30,7 @@ const SearchInput = ({
         onKeyDown={onKeyDown}
         onBlur={onBlur}
         onFocus={onFocus}
-        className="pl-10 pr-4 py-4 text-lg rounded-xl border-2 border-gray-200 focus:border-ai-purple focus:ring-2 focus:ring-ai-purple/20 transition-all duration-300 shadow-lg"
+        className="pl-10 pr-4 py-4 text-lg rounded-xl border-0 bg-black/50 text-white placeholder-gray-300 focus:ring-0 focus:outline-none transition-all duration-300 shadow-none backdrop-blur-sm"
       />
     </div>
   );

@@ -95,21 +95,21 @@ const TabletMenu = () => {
 
               {/* Search Bar */}
               <div ref={searchRef} className="relative mb-4">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <div className="relative divine-glow-border rounded-lg">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 z-10" />
                   <Input
                     type="text"
                     placeholder="Search 1100+ AI tools..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 pr-10 bg-gray-900/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500"
+                    className="pl-10 pr-10 bg-black/50 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none backdrop-blur-sm"
                   />
                   {searchTerm && (
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={clearSearch}
-                      className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-gray-400 hover:text-white"
+                      className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-gray-400 hover:text-white z-10"
                     >
                       <X className="w-3 h-3" />
                     </Button>
