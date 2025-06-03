@@ -17,6 +17,35 @@ const typoCorrection: Record<string, string> = {
   "colleg": "college",
   "colegge": "college",
   
+  // NEW: Emergency misspellings
+  "emergancy": "emergency",
+  "emergenci": "emergency",
+  "emergeny": "emergency",
+  "emergenc": "emergency",
+  "emergancy": "emergency",
+  "emrgency": "emergency",
+  "emergnecy": "emergency",
+  "emergecny": "emergency",
+  "fir fighter": "firefighter",
+  "fire figther": "firefighter",
+  "firefigher": "firefighter",
+  "fire-fighter": "firefighter",
+  "docktor": "doctor",
+  "docter": "doctor",
+  "docktor": "doctor",
+  "survivial": "survival",
+  "survial": "survival",
+  "survivle": "survival",
+  "mentl health": "mental health",
+  "mental helth": "mental health",
+  "mentl wellness": "mental wellness",
+  "first responder": "first responder",
+  "first respondr": "first responder",
+  "first-responder": "first responder",
+  "emrgency response": "emergency response",
+  "crisis managment": "crisis management",
+  "crisis managemnt": "crisis management",
+  
   // NEW: Web Development specific misspellings
   "webdev": "web development",
   "web-dev": "web development",
@@ -216,6 +245,67 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   expandedKeywords.add(lowerSearchTerm);
   phoneticMatches.forEach(match => expandedKeywords.add(match));
   
+  // EMERGENCY SEARCH EXPANSION - ABSOLUTE HIGHEST PRIORITY
+  if (lowerSearchTerm.includes('emergency') || lowerSearchTerm.includes('emergancy') ||
+      lowerSearchTerm.includes('crisis') || lowerSearchTerm.includes('urgent') ||
+      lowerSearchTerm.includes('help') || lowerSearchTerm.includes('rescue') ||
+      lowerSearchTerm.includes('first aid') || lowerSearchTerm.includes('response') ||
+      lowerSearchTerm.includes('first responder') || lowerSearchTerm.includes('911') ||
+      lowerSearchTerm.includes('sos') || lowerSearchTerm.includes('disaster') ||
+      lowerSearchTerm.includes('critical') || lowerSearchTerm.includes('life threatening')) {
+    const emergencyKeywords = [
+      'firefighter gpt',
+      'survivalist gpt',
+      'personalized dr gpt',
+      'doctor gpt',
+      'mental wellness gpt',
+      'veterinarian gpt',
+      'criminologist gpt',
+      'social safety net gpt',
+      'firearms safety instructor gpt',
+      'pharmaceutical assistant gpt',
+      'emergency services',
+      'emergency response',
+      'first aid',
+      'medical emergency',
+      'fire safety',
+      'survival skills',
+      'crisis management',
+      'emergency preparedness',
+      'disaster response',
+      'emergency care',
+      'urgent care',
+      'life safety',
+      'emergency procedures',
+      'rescue operations',
+      'emergency planning',
+      'safety protocols',
+      'hazard response',
+      'emergency medicine',
+      'trauma care',
+      'emergency evacuation',
+      'emergency communications',
+      'public safety',
+      'emergency training',
+      'first responder',
+      'paramedic',
+      'emt',
+      'fire department',
+      'police',
+      'search and rescue',
+      'emergency management',
+      'disaster relief',
+      'crisis intervention',
+      'emergency shelter',
+      'emergency supplies',
+      'survival gear',
+      'emergency kit'
+    ];
+    
+    emergencyKeywords.forEach(keyword => expandedKeywords.add(keyword));
+    console.log(`🚨 EMERGENCY SEARCH DETECTED: Added ${emergencyKeywords.length} emergency keywords`);
+  }
+
   // MONEY SEARCH EXPANSION - ABSOLUTE HIGHEST PRIORITY
   if (lowerSearchTerm.includes('money') || lowerSearchTerm.includes('financial') ||
       lowerSearchTerm.includes('finance') || lowerSearchTerm.includes('trading') ||
