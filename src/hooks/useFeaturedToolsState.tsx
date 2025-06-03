@@ -28,7 +28,7 @@ export const useFeaturedToolsState = () => {
     setIsLoading(false);
   }, []);
 
-  // INSTANT filtering logic - NO debouncing for lightning fast response
+  // LIGHTNING FAST filtering logic - optimized for homepage speed
   const filteredTools = useMemo(() => {
     let tools = allTools;
 
@@ -39,30 +39,30 @@ export const useFeaturedToolsState = () => {
     } else if (searchTerm) {
       const trimmedTerm = searchTerm.trim();
       
-      // INSTANT simple matching for homepage
+      // LIGHTNING FAST simple matching for homepage
       if (trimmedTerm.length === 1) {
         tools = allTools.filter(tool => 
           tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
-        );
+        ).slice(0, 50); // Limit for speed
       }
       // Fast matching for two characters
       else if (trimmedTerm.length === 2) {
         tools = allTools.filter(tool => 
           tool.title.toLowerCase().includes(trimmedTerm.toLowerCase()) ||
           tool.category?.toLowerCase().includes(trimmedTerm.toLowerCase())
-        );
+        ).slice(0, 100); // Limit for speed
       }
-      // Full search for longer terms with performance limit
+      // Optimized search for longer terms
       else {
         const results = searchTools(allTools, searchTerm);
-        tools = results.slice(0, 500); // Hard limit for performance
+        tools = results.slice(0, 200); // Performance limit
       }
     } else {
       tools = createFeaturedTools(allTools);
     }
 
     return tools;
-  }, [selectedCategory, searchTerm]); // Direct dependency on searchTerm for instant response
+  }, [selectedCategory, searchTerm]);
 
   const totalToolsCount = filteredTools.length;
   

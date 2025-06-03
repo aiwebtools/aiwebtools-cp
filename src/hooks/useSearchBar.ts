@@ -11,36 +11,48 @@ interface UseSearchBarProps {
 
 export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [displayedCount, setDisplayedCount] = useState(100);
+  const [displayedCount, setDisplayedCount] = useState(50); // Reduced initial load
   
-  // INSTANT search results - direct computation
+  // LIGHTNING FAST search results - optimized for speed
   const searchResults = useMemo(() => {
     const trimmedTerm = searchTerm.trim();
-    if (!trimmedTerm || trimmedTerm.length < 1) return [];
-    return searchTools(allTools, trimmedTerm);
+    
+    // No search for empty or very short terms
+    if (!trimmedTerm || trimmedTerm.length < 2) return [];
+    
+    // FAST simple matching for 2 characters - title starts with only
+    if (trimmedTerm.length === 2) {
+      return allTools.filter(tool => 
+        tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
+      ).slice(0, 20); // Limit to 20 for speed
+    }
+    
+    // For 3+ characters, use optimized search with limits
+    const results = searchTools(allTools, trimmedTerm);
+    return results.slice(0, 100); // Hard limit for performance
   }, [searchTerm]);
 
-  // Display results with virtual scrolling
+  // Display results with performance limits
   const displayedResults = useMemo(() => 
-    searchResults.slice(0, displayedCount), 
+    searchResults.slice(0, Math.min(displayedCount, 50)), // Cap at 50 for speed
     [searchResults, displayedCount]
   );
 
-  const shouldShowResults = searchResults.length > 0 && searchTerm.trim().length >= 1;
+  const shouldShowResults = searchResults.length > 0 && searchTerm.trim().length >= 2;
 
-  // Direct search change handler
+  // INSTANT search change handler - no delays
   const handleSearchChange = useCallback((value: string) => {
     onSearchChange(value);
     const trimmed = value.trim();
-    setIsOpen(trimmed.length >= 1);
-    if (!trimmed) setDisplayedCount(100);
+    setIsOpen(trimmed.length >= 2); // Only open for 2+ chars
+    if (!trimmed) setDisplayedCount(50);
   }, [onSearchChange]);
 
   const handleResultClick = useCallback(() => {
     console.log('🔍 Search result clicked - closing dropdown and clearing search');
     setIsOpen(false);
     onSearchChange("");
-    setDisplayedCount(100);
+    setDisplayedCount(50);
   }, [onSearchChange]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
@@ -64,7 +76,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   }, []);
 
   const handleInputFocus = useCallback(() => {
-    if (searchTerm.trim().length >= 1 && searchResults.length > 0) {
+    if (searchTerm.trim().length >= 2 && searchResults.length > 0) {
       setIsOpen(true);
     }
   }, [searchTerm, searchResults.length]);
@@ -72,7 +84,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     if (scrollHeight - scrollTop <= clientHeight + 30 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 50, searchResults.length));
+      setDisplayedCount(prev => Math.min(prev + 25, searchResults.length, 50)); // Smaller increments
     }
   }, [displayedCount, searchResults.length]);
 

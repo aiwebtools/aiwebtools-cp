@@ -9,26 +9,40 @@ import { getCurrentToolCount } from "@/utils/toolCounter";
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [displayedCount, setDisplayedCount] = useState(100);
+  const [displayedCount, setDisplayedCount] = useState(50); // Reduced initial load
   const [isOpen, setIsOpen] = useState(false);
   const searchRef = useRef(null);
   const navigate = useNavigate();
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // Direct search effect for instant results
+  // LIGHTNING FAST search effect - optimized for speed
   useEffect(() => {
     const trimmedTerm = searchTerm.trim();
-    if (trimmedTerm) {
-      const results = searchTools(allTools, trimmedTerm);
-      setSearchResults(results);
-      setDisplayedCount(100);
-      setIsOpen(true);
-    } else {
+    
+    if (!trimmedTerm || trimmedTerm.length < 2) {
       setSearchResults([]);
       setIsOpen(false);
-      setDisplayedCount(100);
+      setDisplayedCount(50);
+      return;
     }
+
+    // FAST simple matching for 2 characters
+    if (trimmedTerm.length === 2) {
+      const results = allTools.filter(tool => 
+        tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
+      ).slice(0, 20);
+      setSearchResults(results);
+      setDisplayedCount(20);
+      setIsOpen(true);
+      return;
+    }
+
+    // For 3+ characters, use search with performance limits
+    const results = searchTools(allTools, trimmedTerm);
+    setSearchResults(results.slice(0, 100)); // Hard limit for performance
+    setDisplayedCount(50);
+    setIsOpen(true);
   }, [searchTerm]);
 
   useEffect(() => {
@@ -62,14 +76,14 @@ export const useGlobalSearch = () => {
   const clearSearch = useCallback(() => {
     setSearchTerm("");
     setIsOpen(false);
-    setDisplayedCount(100);
+    setDisplayedCount(50);
   }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       setSearchTerm("");
-      setDisplayedCount(100);
+      setDisplayedCount(50);
     } else if (e.key === 'Enter' && searchTerm.trim()) {
       if (searchResults.length > 0) {
         const topResult = searchResults[0];
@@ -87,7 +101,7 @@ export const useGlobalSearch = () => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     if (scrollHeight - scrollTop <= clientHeight + 20 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 50, searchResults.length));
+      setDisplayedCount(prev => Math.min(prev + 25, searchResults.length, 50)); // Smaller increments, cap at 50
     }
   }, [displayedCount, searchResults.length]);
 
