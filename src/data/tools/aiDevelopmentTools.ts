@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   Code,
@@ -98,18 +99,6 @@ export const aiDevelopmentTools: Tool[] = [
     category: "DEVELOPMENT & CODING",
     rating: 4.4,
     totalVotes: 3210
-  },
-  {
-    icon: Bug,
-    title: "Code Climate",
-    description: "Automated code review and quality platform that helps developers maintain high code standards. Provides metrics, insights, and recommendations to improve code quality and reduce technical debt.",
-    emoji: "🐛",
-    color: "from-yellow-500 to-green-600",
-    directUrl: "https://codeclimate.com/",
-    tags: ["code review", "quality metrics", "technical debt", "developer tools", "automation"],
-    category: "DEVELOPMENT & CODING",
-    rating: 4.3,
-    totalVotes: 2987
   },
   {
     icon: Share2,
