@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
@@ -20,9 +20,23 @@ const SearchResults = memo(({
   onResultClick,
   onScroll,
 }: SearchResultsProps) => {
+  const navigate = useNavigate();
+
+  const handleToolClick = (tool: Tool, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const toolIndex = allTools.findIndex(t => t.title === tool.title);
+    if (toolIndex !== -1) {
+      console.log(`🔗 Navigating to tool: ${tool.title} at index ${toolIndex}`);
+      onResultClick(); // Close the search dropdown
+      navigate(`/tool/${toolIndex}`);
+    }
+  };
+
   return (
     <div 
-      className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" 
+      className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-[9999] max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" 
       onScroll={onScroll}
       style={{
         // Optimize scrolling performance
@@ -43,10 +57,9 @@ const SearchResults = memo(({
           return (
             <Tooltip key={`${tool.title}-${index}`} delayDuration={200}>
               <TooltipTrigger asChild>
-                <Link
-                  to={`/tool/${toolIndex}`}
-                  onClick={onResultClick}
-                  className="flex items-center space-x-3 p-3 hover:bg-gray-50 transition-colors duration-150 border-b border-gray-50 last:border-b-0 rounded-lg mx-1"
+                <div
+                  onClick={(e) => handleToolClick(tool, e)}
+                  className="flex items-center space-x-3 p-3 hover:bg-gray-50 transition-colors duration-150 border-b border-gray-50 last:border-b-0 rounded-lg mx-1 cursor-pointer"
                   style={{
                     // Optimize rendering performance
                     willChange: 'auto',
@@ -65,7 +78,7 @@ const SearchResults = memo(({
                   <div className="text-xs text-gray-400 flex-shrink-0">
                     ⭐ {tool.rating || '4.5'}
                   </div>
-                </Link>
+                </div>
               </TooltipTrigger>
               <TooltipContent 
                 side="right" 

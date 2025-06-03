@@ -28,7 +28,7 @@ const SearchBar = memo(({ searchTerm, onSearchChange, preventAutoNavigation = fa
 
   return (
     <TooltipProvider>
-      <div className="max-w-2xl mx-auto relative">
+      <div className="max-w-2xl mx-auto relative" data-search-dropdown>
         <SearchInput
           searchTerm={searchTerm}
           placeholder={`Search ${toolStats.marketing} AI tools... Try: 'chatgpt', 'midjourney', 'notion'`}

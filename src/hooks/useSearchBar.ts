@@ -40,6 +40,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   }, [onSearchChange]);
 
   const handleResultClick = useCallback(() => {
+    console.log('🔍 Search result clicked - closing dropdown and clearing search');
     setIsOpen(false);
     onSearchChange("");
     setDisplayedCount(100);
@@ -59,9 +60,12 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     }
   }, [onSearchChange, searchTerm]);
 
-  const handleInputBlur = useCallback(() => {
-    // INSTANT blur - NO timeout
-    setIsOpen(false);
+  const handleInputBlur = useCallback((e: React.FocusEvent) => {
+    // Only close if clicking outside the dropdown area
+    const relatedTarget = e.relatedTarget as HTMLElement;
+    if (!relatedTarget || !relatedTarget.closest('[data-search-dropdown]')) {
+      setTimeout(() => setIsOpen(false), 150); // Small delay to allow clicks
+    }
   }, []);
 
   const handleInputFocus = useCallback(() => {
