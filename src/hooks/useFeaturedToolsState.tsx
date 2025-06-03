@@ -28,7 +28,7 @@ export const useFeaturedToolsState = () => {
     setIsLoading(false);
   }, []);
 
-  // LIGHTNING FAST filtering logic - no debouncing for homepage
+  // INSTANT filtering logic - NO debouncing for lightning fast response
   const filteredTools = useMemo(() => {
     let tools = allTools;
 

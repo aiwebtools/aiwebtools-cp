@@ -34,18 +34,14 @@ const SearchInput = memo(({
         className="pl-10 pr-4 py-4 text-lg rounded-xl border-0 bg-black/60 text-white placeholder-gray-300 focus:ring-0 focus:outline-none backdrop-blur-sm"
         autoComplete="off"
         spellCheck={false}
-        // LIGHTNING FAST typing - ZERO delays for instant response
+        // INSTANT TYPING - ZERO DELAYS
         style={{ 
-          transition: 'none !important',
-          willChange: 'auto !important',
-          transform: 'none !important',
-          animation: 'none !important',
-          WebkitTransition: 'none !important',
-          MozTransition: 'none !important',
-          OTransition: 'none !important',
-          msTransition: 'none !important'
+          transition: 'none',
+          willChange: 'auto',
+          transform: 'none',
+          animation: 'none'
         }}
-        // Mobile optimization for instant typing
+        // Optimize for instant response
         inputMode="search"
         autoCapitalize="none"
         autoCorrect="off"

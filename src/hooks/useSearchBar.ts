@@ -13,15 +13,15 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   const [isOpen, setIsOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(100);
   
-  // LIGHTNING FAST search results - INSTANT calculation
+  // INSTANT search results - NO debouncing for lightning speed
   const searchResults = useMemo(() => {
     const trimmedTerm = searchTerm.trim();
     if (!trimmedTerm || trimmedTerm.length < 1) return [];
     
-    // INSTANT search with ALL results - no limiting
+    // INSTANT search with ALL results
     const results = searchTools(allTools, trimmedTerm);
-    return results; // Return ALL results for infinite scroll
-  }, [searchTerm]);
+    return results;
+  }, [searchTerm]); // Direct dependency for instant response
 
   // Display results with virtual scrolling
   const displayedResults = useMemo(() => 
@@ -31,8 +31,9 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
 
   const shouldShowResults = searchResults.length > 0 && searchTerm.trim().length >= 1;
 
+  // INSTANT search change handler - NO delays
   const handleSearchChange = useCallback((value: string) => {
-    onSearchChange(value);
+    onSearchChange(value); // Immediate update
     const trimmed = value.trim();
     setIsOpen(trimmed.length >= 1);
     if (!trimmed) setDisplayedCount(100);
@@ -59,8 +60,8 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   }, [onSearchChange, searchTerm]);
 
   const handleInputBlur = useCallback(() => {
-    // MINIMAL timeout for lightning fast response
-    setTimeout(() => setIsOpen(false), 10);
+    // INSTANT blur - NO timeout
+    setIsOpen(false);
   }, []);
 
   const handleInputFocus = useCallback(() => {
@@ -72,7 +73,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     if (scrollHeight - scrollTop <= clientHeight + 30 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 50, searchResults.length)); // Load 50 more
+      setDisplayedCount(prev => Math.min(prev + 50, searchResults.length));
     }
   }, [displayedCount, searchResults.length]);
 

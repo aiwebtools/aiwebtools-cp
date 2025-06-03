@@ -9,7 +9,7 @@ import { getCurrentToolCount } from "@/utils/toolCounter";
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [displayedCount, setDisplayedCount] = useState(100); // Show more initially
+  const [displayedCount, setDisplayedCount] = useState(100);
   const [isOpen, setIsOpen] = useState(false);
   const searchRef = useRef(null);
   const navigate = useNavigate();
@@ -17,14 +17,14 @@ export const useGlobalSearch = () => {
   // Memoize tool stats for performance
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // LIGHTNING FAST search - ZERO delays, INSTANT response
+  // INSTANT search - NO debouncing for lightning speed
   useEffect(() => {
     const trimmedTerm = searchTerm.trim();
     if (trimmedTerm) {
-      // Immediate search with ALL results - no limiting
+      // Immediate search with ALL results
       const results = searchTools(allTools, trimmedTerm);
       setSearchResults(results);
-      setDisplayedCount(100); // Show first 100 immediately
+      setDisplayedCount(100);
       setIsOpen(true);
     } else {
       setSearchResults([]);
@@ -90,7 +90,7 @@ export const useGlobalSearch = () => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     if (scrollHeight - scrollTop <= clientHeight + 20 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 50, searchResults.length)); // Load 50 more at a time
+      setDisplayedCount(prev => Math.min(prev + 50, searchResults.length));
     }
   }, [displayedCount, searchResults.length]);
 
