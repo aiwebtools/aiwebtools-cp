@@ -21,7 +21,7 @@ export const financialAndTradingTools: Tool[] = [
     description: "Advanced AI-powered financial calculator for complex calculations, investment analysis, and financial planning with step-by-step explanations.",
     emoji: "🧮",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://chat.openai.com/g/g-f0s3qjB7I",
+    directUrl: "https://personalfinanceadvisorgpt.lovable.app/?via=aiwebtools",
     tags: ["financial calculator", "investment analysis", "financial planning", "calculations"],
     category: "Financial & Trading Tools",
     rating: 4.5,
