@@ -59,6 +59,24 @@ export const searchAIWebToolsGPTs = (tools: Tool[], searchTerm: string): Tool[] 
       }
     }
     
+    // THEATRE/PERFORMING ARTS SPECIFIC MATCHING
+    if (lowerSearchTerm.includes('theatre') || lowerSearchTerm.includes('theater') || 
+        lowerSearchTerm.includes('stage') || lowerSearchTerm.includes('performing') ||
+        lowerSearchTerm.includes('drama') || lowerSearchTerm.includes('acting')) {
+      if (tool.title.toLowerCase().includes('stagemaster') || 
+          tool.title.toLowerCase().includes('stage master') ||
+          toolText.includes('performing arts') || 
+          toolText.includes('stage production') ||
+          toolText.includes('theatre') || 
+          toolText.includes('theater') ||
+          toolText.includes('choreography') ||
+          toolText.includes('costume') ||
+          toolText.includes('lighting') ||
+          toolText.includes('set design')) {
+        return true;
+      }
+    }
+    
     // Fuzzy matching for common variations
     const fuzzyMatches = [
       { search: 'learn', matches: ['learn', 'education', 'course', 'skill', 'study', 'tutorial'] },
@@ -69,7 +87,9 @@ export const searchAIWebToolsGPTs = (tools: Tool[], searchTerm: string): Tool[] 
       { search: 'writing', matches: ['book', 'script', 'content'] },
       { search: 'medical', matches: ['doctor', 'health', 'wellness', 'dr', 'gpt'] },
       { search: 'health', matches: ['medical', 'doctor', 'wellness', 'mental', 'gpt'] },
-      { search: 'personal', matches: ['honest advice', 'life coach', 'personal development', 'self-discovery', 'guidance'] }
+      { search: 'personal', matches: ['honest advice', 'life coach', 'personal development', 'self-discovery', 'guidance'] },
+      { search: 'theatre', matches: ['stage', 'performing', 'drama', 'acting', 'stagemaster', 'choreography'] },
+      { search: 'theater', matches: ['stage', 'performing', 'drama', 'acting', 'stagemaster', 'choreography'] }
     ];
     
     for (const fuzzy of fuzzyMatches) {
@@ -116,6 +136,20 @@ export const scoreAIWebToolsGPT = (tool: Tool, searchTerm: string): number => {
     }
     if (toolText.includes('guidance') || toolText.includes('advice')) {
       score += 1100;
+    }
+  }
+  
+  // THEATRE/PERFORMING ARTS PRIORITY BOOST
+  if (lowerSearchTerm.includes('theatre') || lowerSearchTerm.includes('theater') || 
+      lowerSearchTerm.includes('stage') || lowerSearchTerm.includes('performing')) {
+    if (tool.title.toLowerCase().includes('stagemaster')) {
+      score += 1500; // High priority for Stagemaster AI Suite
+    }
+    if (toolText.includes('performing arts') || toolText.includes('stage production')) {
+      score += 1200;
+    }
+    if (toolText.includes('choreography') || toolText.includes('costume') || toolText.includes('lighting')) {
+      score += 1000;
     }
   }
   
