@@ -1,248 +1,138 @@
 import { Tool } from "@/types/tools";
-import { getAllToolCategories } from './toolsCollection';
-import { extractPriorityTools } from './priorityTools';
-import { searchTools } from '@/utils/searchUtils';
-import { createFeaturedTools } from '@/utils/featuredTools';
-import { getCategoriesWithCounts, getToolsByCategory } from '@/utils/categoryUtils';
-import { consolidateTools } from '@/utils/categoryConsolidation';
-import { deduplicateTools } from '@/utils/toolDeduplication';
+import { priorityTools } from "@/data/priorityTools";
+import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
+import { aiAssistants } from "@/data/tools/aiAssistants";
+import { aiImageGeneration } from "@/data/tools/aiImageGeneration";
+import { aiVideoTools } from "@/data/tools/videoTools";
+import { aiAudioTools } from "@/data/tools/audioAndVoiceTools";
+import { aiContentGenerators } from "@/data/tools/aiContentGenerators";
+import { aiProductivityTools } from "@/data/tools/aiProductivityTools";
+import { aiChatPlatforms } from "@/data/tools/aiChatPlatforms";
+import { aiDevelopmentTools } from "@/data/tools/aiDevelopmentTools";
+import { webDevelopmentTools } from "@/data/tools/webDevelopmentTools";
+import { businessAndProductivity } from "@/data/tools/businessAndProductivity";
+import { creativeAndDesign } from "@/data/tools/imageAndDesign";
+import { healthAndWellness } from "@/data/tools/healthAndWellness";
+import { educationAndLearning } from "@/data/tools/educationAndLearning";
+import { financeAndCrypto } from "@/data/tools/financialAndTradingTools";
+import { socialMediaAndMarketing } from "@/data/tools/socialMediaTools";
+import { dataAndAnalytics } from "@/data/tools/dataAnalyticsTools";
+import { communicationAndCollaboration } from "@/data/tools/communicationTools";
+import { securityAndPrivacy } from "@/data/tools/aiSecurityTools";
+import { entertainmentAndGaming } from "@/data/tools/entertainmentTools";
+import { researchAndAcademic } from "@/data/tools/researchAndLearning";
+import { lifestyleAndPersonal } from "@/data/tools/personalServices";
+import { newsAndInformation } from "@/data/tools/newsAndInformationTools";
+import { ecommerceAndShopping } from "@/data/tools/ecommerceAndMarketingTools";
+import { travelAndTransportation } from "@/data/tools/travelAndTransportation";
+import { realEstateAndProperty } from "@/data/tools/realEstateAndProperty";
+import { legalAndCompliance } from "@/data/tools/legalProfessionals";
+import { humanResourcesAndRecruitment } from "@/data/tools/resumeAndCareerTools";
+import { fashionAndBeauty } from "@/data/tools/fashionAndBeauty";
+import { foodAndNutrition } from "@/data/tools/foodAndNutrition";
+import { sportsAndFitness } from "@/data/tools/sportsAndFitness";
+import { parentingAndFamily } from "@/data/tools/parentingAndFamily";
+import { petsAndAnimals } from "@/data/tools/petsAndAnimals";
+import { hobbyAndCrafts } from "@/data/tools/hobbyAndCrafts";
+import { automotiveAndTransport } from "@/data/tools/automotiveAndTransport";
+import { homeAndGarden } from "@/data/tools/homeAndGarden";
+import { threeDAndVisualizationTools } from "@/data/tools/threeDAndVisualizationTools";
+import { additionalRealAITools } from "@/data/tools/additionalRealAITools";
+import { advancedAITools } from "@/data/tools/advancedAITools";
+import { comprehensiveAITools } from "@/data/tools/comprehensiveAITools";
+import { mindBlowingAITools } from "@/data/tools/mindBlowingAITools";
+import { moreRealAITools } from "@/data/tools/moreRealAITools";
+import { rawUncutTools } from "@/data/tools/rawUncutTools";
+import { specializedAITools } from "@/data/tools/specializedAITools";
+import { aiAgents } from "@/data/tools/aiAgents";
+import { aiInferencePlatforms } from "@/data/tools/aiInferencePlatforms";
+import { localAISolutions } from "@/data/tools/localAISolutions";
+import { openSourceAIModels } from "@/data/tools/openSourceAIModels";
+import { roboticsCompanies } from "@/data/tools/roboticsCompanies";
+import { aiToolsAndDevelopment } from "@/data/tools/aiToolsAndDevelopment";
+import { aiToolsAndUtilities } from "@/data/tools/aiToolsAndUtilities";
+import { cloudServices } from "@/data/tools/cloudServices";
+import { advancedVideoTools } from "@/data/tools/advancedVideoTools";
+import { advancedChatPlatforms } from "@/data/tools/advancedChatPlatforms";
+import { aiLegalTools } from "@/data/tools/aiLegalTools";
+import { aiSecurityTools } from "@/data/tools/aiSecurityTools";
+import { aiFinanceTools } from "@/data/tools/aiFinanceTools";
+import { aiHealthcareTools } from "@/data/tools/aiHealthcareTools";
+import { aiEducationTools } from "@/data/tools/aiEducationTools";
+import { aiResearchTools } from "@/data/tools/aiResearchTools";
+import { aiProductivitySuite } from "@/data/tools/aiProductivitySuite";
+import { aiGenerativeTools } from "@/data/tools/aiGenerativeTools";
 
-// Import AI Web Tools GPTs - PRIORITY FEATURED TOOLS
-import { priorityFeaturedGPTs } from "./tools/aiWebTools/priorityFeaturedGPTs";
-import { secondPriorityFeaturedGPTs } from "./tools/aiWebTools/secondPriorityFeaturedGPTs";
-import { thirdPriorityFeaturedGPTs } from "./tools/aiWebTools/thirdPriorityFeaturedGPTs";
-import { fourthPriorityFeaturedGPTs } from "./tools/aiWebTools/fourthPriorityFeaturedGPTs";
-
-// Import AI Web Tools GPT Collections
-import { aiWebToolsGPTs } from "./tools/aiWebTools/aiWebToolsGPTs";
-import { advancedSpecialtyGPTs } from "./tools/aiWebTools/advancedSpecialtyGPTs";
-import { additionalSpecializedGPTs } from "./tools/aiWebTools/additionalSpecializedGPTs";
-import { finalSpecializedGPTs } from "./tools/aiWebTools/finalSpecializedGPTs";
-import { newSpecializedGPTs } from "./tools/aiWebTools/newSpecializedGPTs";
-
-// Import AI Web Tools Category Collections
-import { personalDevelopmentGPTs } from "./tools/aiWebTools/personalDevelopmentGPTs";
-import { educationAndLearningGPTs } from "./tools/aiWebTools/educationAndLearningGPTs";
-import { educationalToolsGPTs } from "./tools/aiWebTools/educationalToolsGPTs";
-import { healthAndWellnessGPTs } from "./tools/aiWebTools/healthAndWellnessGPTs";
-import { researchAndPharmaceuticalGPTs } from "./tools/aiWebTools/researchAndPharmaceuticalGPTs";
-import { scienceAndResearchGPTs } from "./tools/aiWebTools/scienceAndResearchGPTs";
-import { businessAndFinanceGPTs } from "./tools/aiWebTools/businessAndFinanceGPTs";
-import { businessStrategyGPTs } from "./tools/aiWebTools/businessStrategyGPTs";
-import { legalAndGovernmentGPTs } from "./tools/aiWebTools/legalAndGovernmentGPTs";
-import { governmentCivicGPTs } from "./tools/aiWebTools/governmentCivicGPTs";
-import { professionalServicesGPTs } from "./tools/aiWebTools/professionalServicesGPTs";
-import { utilityAndProductivityGPTs } from "./tools/aiWebTools/utilityAndProductivityGPTs";
-import { creativeAndMediaGPTs } from "./tools/aiWebTools/creativeAndMediaGPTs";
-import { contentCreationToolsGPTs } from "./tools/aiWebTools/contentCreationToolsGPTs";
-import { multimediaAndContentGPTs } from "./tools/aiWebTools/multimediaAndContentGPTs";
-import { artAndCreativeGPTs } from "./tools/aiWebTools/artAndCreativeGPTs";
-import { aiPromptingAndGenerationGPTs } from "./tools/aiWebTools/aiPromptingAndGenerationGPTs";
-import { communicationAndEntertainmentGPTs } from "./tools/aiWebTools/communicationAndEntertainmentGPTs";
-import { entertainmentAndGamingGPTs } from "./tools/aiWebTools/entertainmentAndGamingGPTs";
-import { foodAndHospitalityGPTs } from "./tools/aiWebTools/foodAndHospitalityGPTs";
-import { investigativeAndAnalysisGPTs } from "./tools/aiWebTools/investigativeAndAnalysisGPTs";
-import { appraisalAndValuationGPTs } from "./tools/aiWebTools/appraisalAndValuationGPTs";
-import { mysteriousAndUnusualGPTs } from "./tools/aiWebTools/mysteriousAndUnusualGPTs";
-import { spiritualAndPhilosophyGPTs } from "./tools/aiWebTools/spiritualAndPhilosophyGPTs";
-import { timeAndHistoryGPTs } from "./tools/aiWebTools/timeAndHistoryGPTs";
-import { technologyInnovationGPTs } from "./tools/aiWebTools/technologyInnovationGPTs";
-import { specializedNicheToolsGPTs } from "./tools/aiWebTools/specializedNicheToolsGPTs";
-
-// Import new personal development tools
-import { personalDevelopmentTools } from "./tools/personalDevelopmentTools";
-
-// Combine all tool categories and apply consolidation
-const allToolCategories = consolidateTools([
-  ...getAllToolCategories(),
-  ...personalDevelopmentTools,
-  
-  // Add the AI Web Tools GPT Collections
-  ...priorityFeaturedGPTs,
-  ...secondPriorityFeaturedGPTs,
-  ...thirdPriorityFeaturedGPTs,
-  ...fourthPriorityFeaturedGPTs,
-  ...aiWebToolsGPTs,
-  ...advancedSpecialtyGPTs,
-  ...additionalSpecializedGPTs,
-  ...finalSpecializedGPTs,
-  ...newSpecializedGPTs,
-  ...personalDevelopmentGPTs,
-  ...educationAndLearningGPTs,
-  ...educationalToolsGPTs,
-  ...healthAndWellnessGPTs,
-  ...researchAndPharmaceuticalGPTs,
-  ...scienceAndResearchGPTs,
-  ...businessAndFinanceGPTs,
-  ...businessStrategyGPTs,
-  ...legalAndGovernmentGPTs,
-  ...governmentCivicGPTs,
-  ...professionalServicesGPTs,
-  ...utilityAndProductivityGPTs,
-  ...creativeAndMediaGPTs,
-  ...contentCreationToolsGPTs,
-  ...multimediaAndContentGPTs,
-  ...artAndCreativeGPTs,
-  ...aiPromptingAndGenerationGPTs,
-  ...communicationAndEntertainmentGPTs,
-  ...entertainmentAndGamingGPTs,
-  ...foodAndHospitalityGPTs,
-  ...investigativeAndAnalysisGPTs,
-  ...appraisalAndValuationGPTs,
-  ...mysteriousAndUnusualGPTs,
-  ...spiritualAndPhilosophyGPTs,
-  ...timeAndHistoryGPTs,
-  ...technologyInnovationGPTs,
-  ...specializedNicheToolsGPTs
-]);
-
-// Apply deduplication to remove tools that appear in multiple categories
-const deduplicatedTools = deduplicateTools(allToolCategories);
-
-// Extract priority tools and reorder
-const { priorityTools, remainingTools } = extractPriorityTools(deduplicatedTools);
-
-// Combine with priority tools first
-let combinedTools: Tool[] = [
-  ...priorityTools,
-  ...remainingTools
+// Combine all tools into a single array for easy access
+export const allTools: Tool[] = [
+  ...priorityTools, // Keep priority tools first
+  ...aiWebToolsGPTs, // Our custom GPTs collection - PRIORITY FEATURED FIRST
+  ...aiAssistants,
+  ...aiImageGeneration,
+  ...aiVideoTools,
+  ...aiAudioTools,
+  ...aiContentGenerators,
+  ...aiProductivityTools,
+  ...aiChatPlatforms,
+  ...aiDevelopmentTools,
+  ...webDevelopmentTools,
+  ...businessAndProductivity,
+  ...creativeAndDesign,
+  ...healthAndWellness,
+  ...educationAndLearning,
+  ...financeAndCrypto,
+  ...socialMediaAndMarketing,
+  ...dataAndAnalytics,
+  ...communicationAndCollaboration,
+  ...securityAndPrivacy,
+  ...entertainmentAndGaming,
+  ...researchAndAcademic,
+  ...lifestyleAndPersonal,
+  ...newsAndInformation,
+  ...ecommerceAndShopping,
+  ...travelAndTransportation,
+  ...realEstateAndProperty,
+  ...legalAndCompliance,
+  ...humanResourcesAndRecruitment,
+  ...fashionAndBeauty,
+  ...foodAndNutrition,
+  ...sportsAndFitness,
+  ...parentingAndFamily,
+  ...petsAndAnimals,
+  ...hobbyAndCrafts,
+  ...automotiveAndTransport,
+  ...homeAndGarden,
+  ...threeDAndVisualizationTools, // Add the 3D tools here
+  // Additional specialized tool categories
+  ...additionalRealAITools,
+  ...advancedAITools,
+  ...comprehensiveAITools,
+  ...mindBlowingAITools,
+  ...moreRealAITools,
+  ...rawUncutTools,
+  ...specializedAITools,
+  ...aiAgents,
+  ...aiInferencePlatforms,
+  ...localAISolutions,
+  ...openSourceAIModels,
+  ...roboticsCompanies,
+  ...aiToolsAndDevelopment,
+  ...aiToolsAndUtilities,
+  ...cloudServices,
+  ...advancedVideoTools,
+  ...advancedChatPlatforms,
+  ...aiLegalTools,
+  ...aiSecurityTools,
+  ...aiFinanceTools,
+  ...aiHealthcareTools,
+  ...aiEducationTools,
+  ...aiResearchTools,
+  ...aiProductivitySuite,
+  ...aiGenerativeTools
 ];
 
-// SPECIFIC FIX: Ensure Property Data Finder GPT has the correct URL
-combinedTools = combinedTools.map((tool, index) => {
-  if (tool.title === "Property Data Finder GPT") {
-    console.log(`🔧 FIXING Property Data Finder GPT at index ${index}`);
-    return {
-      ...tool,
-      directUrl: "https://propertydatafindergpt.lovable.app/?via=aiwebtools",
-      category: tool.category || "Real Estate & Property",
-      description: tool.description || "Property Data Finder GPT by Ai Web Tools LLC delivers unparalleled, precise, and current information about properties. Discover everything from market value and topography to living area, year built, estimated facing direction, geocoordinates, and beyond. Unlock a wealth of property insights like never before!"
-    };
-  }
-  return tool;
-});
+// Log the number of tools loaded
+console.log(`Total tools loaded: ${allTools.length}`);
 
-// Remove any duplicate "Financial Calculator Pro" entries - keep only the one from Business & Productivity
-const filteredTools = combinedTools.filter((tool, index) => {
-  if (tool.title === 'Financial Calculator Pro') {
-    // Only keep the one with the correct category and URL
-    return tool.category === 'Business & Productivity' && 
-           tool.directUrl === 'https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools';
-  }
-  return true;
-});
-
-export const allTools: Tool[] = filteredTools;
-
-// DEBUG: Find Property Data Finder GPT and log its details
-const propertyToolIndex = allTools.findIndex(tool => tool.title === "Property Data Finder GPT");
-if (propertyToolIndex !== -1) {
-  const propertyTool = allTools[propertyToolIndex];
-  console.log(`✅ Property Data Finder GPT found at index ${propertyToolIndex}`);
-  console.log(`📍 URL: ${propertyTool.directUrl}`);
-  console.log(`📂 Category: ${propertyTool.category}`);
-} else {
-  console.error(`❌ Property Data Finder GPT not found in tools collection!`);
-}
-
-// ENHANCED DEBUG: Find all instances of tools with similar names
-const propertyRelatedTools = allTools.map((tool, index) => ({
-  index,
-  title: tool.title,
-  url: tool.directUrl,
-  category: tool.category,
-  isPropertyTool: tool.title.toLowerCase().includes('property')
-})).filter(tool => tool.isPropertyTool);
-
-console.log('🏠 All property-related tools found:', propertyRelatedTools);
-
-// Debug tool at index 59 specifically
-if (allTools[59]) {
-  console.log(`🔍 Tool at index 59:`, {
-    title: allTools[59].title,
-    url: allTools[59].directUrl,
-    category: allTools[59].category
-  });
-} else {
-  console.log(`⚠️ No tool found at index 59`);
-}
-
-// Use filtered tools for all exports
-export const featuredTools: Tool[] = createFeaturedTools(filteredTools);
-
-// Export utility functions for use in components
-export { searchTools, getCategoriesWithCounts, getToolsByCategory };
-
-// Lazy initialization of tool count analysis to avoid circular dependency
-let toolCountAnalysis: any = null;
-
-export const getToolCountAnalysis = () => {
-  if (!toolCountAnalysis) {
-    // Import getToolCount only when needed to avoid circular dependency
-    import('@/utils/toolCounter').then(({ getToolCount, verifyAllToolsPreservation }) => {
-      toolCountAnalysis = getToolCount();
-      
-      // Run comprehensive preservation verification
-      console.log(`\n🔍 RUNNING COMPREHENSIVE TOOL PRESERVATION VERIFICATION...`);
-      const preservationReport = verifyAllToolsPreservation();
-      
-      // Debug information with enhanced logging using accurate count
-      console.log(`🎉 MILESTONE ACHIEVED! Total tools loaded: ${filteredTools.length}`);
-      console.log(`📊 Categories found: ${Object.keys(getCategoriesWithCounts(filteredTools)).length}`);
-      console.log(`🎯 Accurate count for website: ${filteredTools.length} tools`);
-      console.log(`📈 Marketing display: ${Math.round(filteredTools.length / 100) * 100}+ tools`);
-      console.log(`🎯 Preservation Score: ${preservationReport.integrityScore.toFixed(1)}/100`);
-
-      const categoryBreakdown = getCategoriesWithCounts(filteredTools);
-      console.log('📋 Category breakdown:', categoryBreakdown);
-
-      // Verify all tools have categories
-      const uncategorizedTools = filteredTools.filter(tool => !tool.category || tool.category.trim() === '');
-      if (uncategorizedTools.length > 0) {
-        console.warn(`⚠️ Found ${uncategorizedTools.length} uncategorized tools:`, uncategorizedTools.map(t => t.title));
-      } else {
-        console.log('✅ All tools are properly categorized!');
-      }
-
-      // Final check for Financial Calculator Pro duplicates
-      const finalFinancialCalcCheck = filteredTools.filter(tool => tool.title === 'Financial Calculator Pro');
-      console.log(`✅ Final Financial Calculator Pro instances: ${finalFinancialCalcCheck.length}`);
-      if (finalFinancialCalcCheck.length === 1) {
-        console.log('✅ SUCCESS: Only one Financial Calculator Pro instance remains');
-        console.log('📍 Location:', finalFinancialCalcCheck[0].category);
-        console.log('🔗 URL:', finalFinancialCalcCheck[0].directUrl);
-      } else {
-        console.error(`❌ STILL HAVE ${finalFinancialCalcCheck.length} instances of Financial Calculator Pro!`);
-      }
-
-      // Summary for Ken with accurate numbers and preservation status
-      const criticalToolsMissing = preservationReport.criticalTools.filter(t => t.status === 'missing').length;
-      console.log(`
-🚀 AI WEB TOOLS DIRECTORY STATUS REPORT 🚀
-================================================
-✅ EXACT Total AI Tools: ${filteredTools.length}
-✅ Marketing Display: ${Math.round(filteredTools.length / 100) * 100}+ AI Tools
-✅ Categories Available: ${Object.keys(categoryBreakdown).length}
-✅ Quality Assurance: All tools categorized and deduplicated
-🎯 Preservation Score: ${preservationReport.integrityScore.toFixed(1)}/100
-🔍 Critical AI Web Tools GPTs: ${preservationReport.criticalTools.filter(t => t.status === 'found').length}/${preservationReport.criticalTools.length} preserved
-${criticalToolsMissing > 0 ? `❌ Missing Critical Tools: ${criticalToolsMissing}` : '✅ All Critical Tools Preserved'}
-✅ Coverage: Advanced AI, Research, Productivity, Security, Finance, Healthcare, Education, Legal, and more!
-
-${preservationReport.integrityScore >= 95 ? 
-'🎉 EXCELLENT: Tool preservation is working perfectly!' : 
-preservationReport.integrityScore >= 85 ? 
-'⚠️ GOOD: Minor preservation issues detected' : 
-'🚨 CRITICAL: Major preservation issues require attention!'}
-`);
-    }).catch(error => {
-      console.error('Error loading tool count analysis:', error);
-    });
-  }
-  return toolCountAnalysis;
-};
-
-// Initialize the analysis asynchronously to avoid blocking
-setTimeout(() => {
-  getToolCountAnalysis();
-}, 0);
+// Log the first 10 tool titles
+console.log("First 10 tools:", allTools.slice(0, 10).map(tool => tool.title));
