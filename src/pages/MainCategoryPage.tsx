@@ -12,10 +12,8 @@ import { Button } from "@/components/ui/button";
 import { allTools } from "@/data/toolsData";
 import { getToolsByMainCategory } from "@/utils/categoryUtils";
 import { mainCategories } from "@/utils/mainCategoryMapping";
-import { searchTools } from "@/utils/searchUtils";
 import { Tool } from "@/types/tools";
 import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
-import { useDebounce } from "@/hooks/useDebounce";
 
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
@@ -27,9 +25,6 @@ const MainCategoryPage = () => {
   const [filteredToolsByCategory, setFilteredToolsByCategory] = useState<Tool[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
-
-  // Ultra-fast debounce for category page (10ms instead of 25ms)
-  const debouncedSearchTerm = useDebounce(searchTerm, 10);
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
@@ -49,34 +44,35 @@ const MainCategoryPage = () => {
   // Use filtered tools from category filter, fallback to original category tools
   const toolsToShow = filteredToolsByCategory.length > 0 ? filteredToolsByCategory : categoryTools;
   
-  // Apply search filter with ultra-fast debounced term
+  // LIGHTNING FAST category search - no debouncing, instant results
   const baseFilteredTools = useMemo(() => {
-    const trimmedTerm = debouncedSearchTerm.trim();
+    const trimmedTerm = searchTerm.trim();
     if (!trimmedTerm) return toolsToShow;
     
-    // For single character, use instant simple matching
-    if (trimmedTerm.length === 1) {
-      return toolsToShow.filter(tool => 
-        tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
-      );
-    }
+    const lowerTerm = trimmedTerm.toLowerCase();
     
-    // For two characters, use fast matching
-    if (trimmedTerm.length === 2) {
-      return toolsToShow.filter(tool => 
-        tool.title.toLowerCase().includes(trimmedTerm.toLowerCase()) ||
-        tool.category?.toLowerCase().includes(trimmedTerm.toLowerCase())
+    // INSTANT simple matching for category pages - MUCH FASTER
+    return toolsToShow.filter(tool => {
+      const searchableText = [
+        tool.title,
+        tool.description,
+        tool.category,
+        ...(tool.tags || [])
+      ].join(' ').toLowerCase();
+      
+      return (
+        tool.title.toLowerCase().includes(lowerTerm) ||
+        tool.description.toLowerCase().includes(lowerTerm) ||
+        tool.category?.toLowerCase().includes(lowerTerm) ||
+        searchableText.includes(lowerTerm) ||
+        (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(lowerTerm)))
       );
-    }
-    
-    // For longer terms, use full search with limit
-    const results = searchTools(toolsToShow, trimmedTerm);
-    return results.slice(0, 200); // Performance limit
-  }, [toolsToShow, debouncedSearchTerm]);
+    });
+  }, [toolsToShow, searchTerm]); // Direct dependency on searchTerm for instant response
 
   // Create endless tools list with better performance
   const finalFilteredTools = useMemo(() => {
-    if (debouncedSearchTerm.trim()) {
+    if (searchTerm.trim()) {
       return baseFilteredTools;
     }
     
@@ -108,7 +104,7 @@ const MainCategoryPage = () => {
     }
     
     return endlessTools;
-  }, [baseFilteredTools, displayedCount, debouncedSearchTerm, decodedCategoryName]);
+  }, [baseFilteredTools, displayedCount, searchTerm, decodedCategoryName]);
 
   const displayedTools = useMemo(() => 
     finalFilteredTools.slice(0, displayedCount), 
@@ -235,15 +231,15 @@ const MainCategoryPage = () => {
           {/* Tools Count Display */}
           <div className="text-center mb-8">
             <div className="text-cyan-400 font-semibold">
-              {debouncedSearchTerm 
-                ? `${baseFilteredTools.length} tools found for "${debouncedSearchTerm}"` 
+              {searchTerm 
+                ? `${baseFilteredTools.length} tools found for "${searchTerm}"` 
                 : `Showing ${displayedTools.length}+ tools in ${decodedCategoryName}`
               }
-              {!debouncedSearchTerm && displayedTools.length > baseFilteredTools.length && (
+              {!searchTerm && displayedTools.length > baseFilteredTools.length && (
                 <span className="text-cyan-300"> + similar and related tools</span>
               )}
             </div>
-            {!debouncedSearchTerm && (
+            {!searchTerm && (
               <div className="text-gray-400 text-sm mt-1">
                 {categoryTools.length} category tools → similar tools → related categories - endless discovery!
               </div>
@@ -257,7 +253,7 @@ const MainCategoryPage = () => {
                 tools={finalFilteredTools}
                 displayedCount={displayedCount}
                 selectedCategory={decodedCategoryName}
-                searchTerm={debouncedSearchTerm}
+                searchTerm={searchTerm}
                 onLoadMore={handleLoadMore}
                 hasInfiniteScroll={true}
                 isLoading={isLoading}
@@ -267,8 +263,8 @@ const MainCategoryPage = () => {
                 <div className="text-4xl mb-4">🔍</div>
                 <h3 className="text-2xl font-bold text-cyan-100 mb-4">No tools found</h3>
                 <p className="text-gray-300 mb-8">
-                  {debouncedSearchTerm 
-                    ? `No tools found for "${debouncedSearchTerm}" in ${decodedCategoryName}.`
+                  {searchTerm 
+                    ? `No tools found for "${searchTerm}" in ${decodedCategoryName}.`
                     : `No tools available with the selected filters in ${decodedCategoryName}.`
                   }
                 </p>

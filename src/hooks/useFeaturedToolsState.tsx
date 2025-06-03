@@ -6,16 +6,12 @@ import { getToolsByCategory } from "@/utils/categoryUtils";
 import { getSortedStandardizedCategories } from "@/utils/categoryTitles";
 import { createDeduplicatedToolsList } from "@/utils/toolDeduplication";
 import { createFeaturedTools } from "@/utils/featuredTools";
-import { useDebounce } from "./useDebounce";
 
 export const useFeaturedToolsState = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [displayedCount, setDisplayedCount] = useState<number>(60);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  
-  // Ultra-fast debounce for category page (10ms instead of 25ms)
-  const debouncedSearchTerm = useDebounce(searchTerm, 10);
 
   const handleCategoryChange = useCallback((category: string | null) => {
     console.log('🏷️ Category change requested:', category);
@@ -32,7 +28,7 @@ export const useFeaturedToolsState = () => {
     setIsLoading(false);
   }, []);
 
-  // Optimized filtering logic with faster search for short terms
+  // LIGHTNING FAST filtering logic - no debouncing for homepage
   const filteredTools = useMemo(() => {
     let tools = allTools;
 
@@ -40,25 +36,25 @@ export const useFeaturedToolsState = () => {
       console.log('🔍 Filtering by category:', selectedCategory);
       const categoryTools = getToolsByCategory(allTools, selectedCategory);
       tools = createDeduplicatedToolsList(categoryTools, 0);
-    } else if (debouncedSearchTerm) {
-      const trimmedTerm = debouncedSearchTerm.trim();
+    } else if (searchTerm) {
+      const trimmedTerm = searchTerm.trim();
       
-      // For single character, use instant simple matching
+      // INSTANT simple matching for homepage
       if (trimmedTerm.length === 1) {
         tools = allTools.filter(tool => 
           tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
         );
       }
-      // For two characters, use fast matching
+      // Fast matching for two characters
       else if (trimmedTerm.length === 2) {
         tools = allTools.filter(tool => 
           tool.title.toLowerCase().includes(trimmedTerm.toLowerCase()) ||
           tool.category?.toLowerCase().includes(trimmedTerm.toLowerCase())
         );
       }
-      // For longer terms, use full search with limit
+      // Full search for longer terms with performance limit
       else {
-        const results = searchTools(allTools, debouncedSearchTerm);
+        const results = searchTools(allTools, searchTerm);
         tools = results.slice(0, 500); // Hard limit for performance
       }
     } else {
@@ -66,7 +62,7 @@ export const useFeaturedToolsState = () => {
     }
 
     return tools;
-  }, [selectedCategory, debouncedSearchTerm]);
+  }, [selectedCategory, searchTerm]); // Direct dependency on searchTerm for instant response
 
   const totalToolsCount = filteredTools.length;
   
