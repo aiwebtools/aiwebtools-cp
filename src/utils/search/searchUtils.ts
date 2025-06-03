@@ -22,6 +22,14 @@ import {
   scorePolitical 
 } from "./matching/politicalMatching";
 import { 
+  matchEducation, 
+  scoreEducation 
+} from "./matching/educationMatching";
+import { 
+  matchFinancial, 
+  scoreFinancial 
+} from "./matching/financialMatching";
+import { 
   createSearchResult, 
   getSearchWords, 
   performBasicSearch, 
@@ -109,7 +117,23 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       }
     }
     
-    // PRIORITY 5: Political/civic specific matching
+    // PRIORITY 5: Education specific matching - HIGH PRIORITY
+    if (matchEducation(tool, searchTerm)) {
+      matched = true;
+      const educationScore = scoreEducation(tool, searchTerm);
+      score += educationScore;
+      console.log(`🎓 Education search match for "${tool.title}" with score: ${educationScore}`);
+    }
+    
+    // PRIORITY 6: Financial specific matching - HIGH PRIORITY
+    if (matchFinancial(tool, searchTerm)) {
+      matched = true;
+      const financialScore = scoreFinancial(tool, searchTerm);
+      score += financialScore;
+      console.log(`💰 Financial search match for "${tool.title}" with score: ${financialScore}`);
+    }
+    
+    // PRIORITY 7: Political/civic specific matching
     if (matchPolitical(tool, searchTerm)) {
       matched = true;
       const politicalScore = scorePolitical(tool, searchTerm);
@@ -117,7 +141,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🏛️ Political search match for "${tool.title}" with score: ${politicalScore}`);
     }
     
-    // PRIORITY 6: Travel specific matching
+    // PRIORITY 8: Travel specific matching
     if (matchTravel(tool, searchTerm)) {
       matched = true;
       const travelScore = scoreTravel(tool, searchTerm);
@@ -125,7 +149,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`✈️ Travel search match for "${tool.title}" with score: ${travelScore}`);
     }
     
-    // PRIORITY 7: Other specialty matchings
+    // PRIORITY 9: Other specialty matchings
     if (matchFarming(tool, searchTerm)) {
       matched = true;
       score += scoreFarming(tool, searchTerm);
@@ -166,7 +190,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       score += scoreAgents(tool, searchTerm);
     }
     
-    // PRIORITY 8: Enhanced basic search with all intelligent features
+    // PRIORITY 10: Enhanced basic search with all intelligent features
     const basicSearch = performBasicSearch(tool, searchTerm, searchWords, expandedKeywords);
     if (basicSearch.matched) {
       matched = true;

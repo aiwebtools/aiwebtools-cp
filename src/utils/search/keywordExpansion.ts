@@ -120,7 +120,38 @@ const typoCorrection: Record<string, string> = {
   "activisim": "activism",
   "activsim": "activism",
   "actvism": "activism",
-  "activizm": "activism"
+  "activizm": "activism",
+  
+  // NEW: Financial and money-related typos
+  "mony": "money",
+  "moeny": "money",
+  "monye": "money",
+  "finanical": "financial",
+  "finacial": "financial",
+  "tradeing": "trading",
+  "invesment": "investment",
+  "investmnt": "investment",
+  "buget": "budget",
+  "budjet": "budget",
+  "stok": "stock",
+  "stoc": "stock",
+  
+  // NEW: Education-related typos
+  "scool": "school",
+  "shcool": "school",
+  "schooll": "school",
+  "skool": "school",
+  "clas": "class",
+  "clase": "class",
+  "claas": "class",
+  "homwork": "homework",
+  "homewrok": "homework",
+  "homeworkk": "homework",
+  "leson": "lesson",
+  "lesn": "lesson",
+  "tuor": "tutor",
+  "tuter": "tutor",
+  "tutoring": "tutoring"
 };
 
 // Function to calculate Levenshtein distance for fuzzy matching
@@ -208,8 +239,12 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   // INTELLIGENT CONTEXT-BASED EXPANSION
   const contextPatterns = [
     {
-      triggers: ['college', 'university', 'degree', 'education', 'course', 'learn'],
-      expansions: ['college degree gpt', 'learn any course gpt', 'learn any skill gpt', 'education', 'learning', 'university', 'course', 'study', 'tutorial', 'teaching', 'academic']
+      triggers: ['college', 'university', 'degree', 'education', 'course', 'learn', 'school', 'class', 'homework', 'lesson', 'tutor', 'study', 'student'],
+      expansions: ['college degree gpt', 'learn any course gpt', 'learn any skill gpt', 'education', 'learning', 'university', 'course', 'study', 'tutorial', 'teaching', 'academic', 'home-schooling assistant gpt', 'homeschool gpt', 'quiz maker ai', 'course maker gpt', 'training manual generator gpt', 'music melodies & lessons gpt']
+    },
+    {
+      triggers: ['money', 'financial', 'finance', 'trading', 'trader', 'investment', 'budget', 'tax', 'wealth', 'business'],
+      expansions: ['trader gpt', 'material valuation gpt', 'taxes gpt', 'predictive credit score checker gpt', 'insurance claims gpt', 'business plan generator gpt', 'startup validator gpt', 'microsaas gpt', 'financial', 'trading', 'investment', 'business', 'economic', 'monetary']
     },
     {
       triggers: ['doctor', 'medical', 'health', 'wellness', 'dr'],
@@ -226,10 +261,6 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
     {
       triggers: ['political', 'politics', 'activism', 'civic', 'democracy', 'government'],
       expansions: ['we the people ai', 'public testimony writer', 'political', 'activism', 'civic', 'democracy', 'government', 'legislation', 'policy']
-    },
-    {
-      triggers: ['business', 'finance', 'money', 'financial', 'marketing'],
-      expansions: ['business plan generator', 'financial calculator', 'marketing', 'finance', 'money', 'economic', 'commercial', 'enterprise']
     },
     {
       triggers: ['design', 'graphic', 'visual', 'art', 'creative'],
