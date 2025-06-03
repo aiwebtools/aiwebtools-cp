@@ -3,7 +3,7 @@ import { Tool } from "@/types/tools";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
-  "Personal Finance Advisor GPT"
+  // Remove "Personal Finance Advisor GPT" as it's now been re-added to the database
 ];
 
 export const createSearchResult = (tool: Tool, score: number, matched: boolean) => {
