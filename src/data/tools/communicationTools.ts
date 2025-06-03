@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   MessageSquare, 
@@ -52,19 +51,6 @@ export const communicationTools: Tool[] = [
     tags: ["voice ai", "phone automation", "conversational ai", "call handling", "voice assistants"],
     rating: 4.5,
     totalVotes: 1423
-  },
-  {
-    icon: Phone,
-    title: "Retell AI",
-    description: "Real-time conversational AI for phone calls. Build voice agents that can handle complex conversations with low latency and natural speech patterns for customer service and sales.",
-    emoji: "⚡",
-    color: "from-orange-500 to-red-600",
-    category: "Communication & Collaboration AI Tools",
-    directUrl: "https://retellai.com/?via=aiwebtools",
-    imageUrl: "/placeholder.svg?height=180&width=320",
-    tags: ["real-time voice", "phone agents", "conversational ai", "low latency", "voice technology"],
-    rating: 4.4,
-    totalVotes: 1287
   },
   {
     icon: Mic,
