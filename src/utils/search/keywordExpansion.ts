@@ -120,14 +120,7 @@ const typoCorrection: Record<string, string> = {
   "activisim": "activism",
   "activsim": "activism",
   "actvism": "activism",
-  "activizm": "activism",
-
-  // SCHOOL-RELATED TYPOS
-  "shcool": "school",
-  "scool": "school",
-  "skool": "school",
-  "schooll": "school",
-  "shool": "school"
+  "activizm": "activism"
 };
 
 // Function to calculate Levenshtein distance for fuzzy matching
@@ -212,121 +205,11 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   expandedKeywords.add(lowerSearchTerm);
   phoneticMatches.forEach(match => expandedKeywords.add(match));
   
-  // SCHOOL/EDUCATION SEARCH EXPANSION - HIGHEST PRIORITY
-  if (lowerSearchTerm.includes('school') || lowerSearchTerm.includes('education') || 
-      lowerSearchTerm.includes('learn') || lowerSearchTerm.includes('study') ||
-      lowerSearchTerm.includes('teach') || lowerSearchTerm.includes('tutor') ||
-      lowerSearchTerm.includes('course') || lowerSearchTerm.includes('class') ||
-      lowerSearchTerm.includes('academic') || lowerSearchTerm.includes('student') ||
-      lowerSearchTerm.includes('homework') || lowerSearchTerm.includes('assignment') ||
-      lowerSearchTerm.includes('quiz') || lowerSearchTerm.includes('test') ||
-      lowerSearchTerm.includes('exam') || lowerSearchTerm.includes('grade') ||
-      lowerSearchTerm.includes('curriculum') || lowerSearchTerm.includes('syllabus') ||
-      lowerSearchTerm.includes('lesson') || lowerSearchTerm.includes('training') ||
-      lowerSearchTerm.includes('skill') || lowerSearchTerm.includes('knowledge') ||
-      lowerSearchTerm.includes('college') || lowerSearchTerm.includes('university') ||
-      lowerSearchTerm.includes('degree') || lowerSearchTerm.includes('diploma') ||
-      lowerSearchTerm.includes('homeschool') || lowerSearchTerm.includes('home school') ||
-      lowerSearchTerm.includes('homeschooling') || lowerSearchTerm.includes('home-school')) {
-    
-    const educationKeywords = [
-      'learn any course gpt',
-      'learn any skill gpt', 
-      'college degree gpt',
-      'home-schooling assistant gpt',
-      'homeschool gpt',
-      'home school gpt',
-      'quiz maker ai',
-      'course maker gpt',
-      'children\'s picture book maker gpt',
-      'training manual generator gpt',
-      'music melodies & lessons gpt',
-      'education',
-      'learning',
-      'school',
-      'schooling',
-      'academic',
-      'study',
-      'studying',
-      'teach',
-      'teaching',
-      'teacher',
-      'tutor',
-      'tutoring',
-      'course',
-      'courses',
-      'class',
-      'classes',
-      'lesson',
-      'lessons',
-      'curriculum',
-      'syllabus',
-      'homework',
-      'assignment',
-      'assignments',
-      'quiz',
-      'quizzes',
-      'test',
-      'tests',
-      'exam',
-      'exams',
-      'grade',
-      'grades',
-      'student',
-      'students',
-      'pupil',
-      'pupils',
-      'college',
-      'university',
-      'degree',
-      'diploma',
-      'certificate',
-      'certification',
-      'skill',
-      'skills',
-      'training',
-      'knowledge',
-      'homeschool',
-      'homeschooling',
-      'home school',
-      'home-school',
-      'home-schooling',
-      'educational',
-      'instructional',
-      'tutorial',
-      'tutorials',
-      'learning path',
-      'study guide',
-      'educational resources',
-      'learning materials',
-      'course materials',
-      'study materials',
-      'educational tools',
-      'learning tools',
-      'teaching tools',
-      'educational platform',
-      'learning platform',
-      'online learning',
-      'e-learning',
-      'distance learning',
-      'remote learning',
-      'self-learning',
-      'self-study',
-      'autodidact',
-      'personalized learning',
-      'adaptive learning',
-      'interactive learning',
-      'gamified learning'
-    ];
-    
-    educationKeywords.forEach(keyword => expandedKeywords.add(keyword));
-  }
-
   // INTELLIGENT CONTEXT-BASED EXPANSION
   const contextPatterns = [
     {
-      triggers: ['college', 'university', 'degree', 'education', 'course', 'learn', 'school', 'study', 'academic'],
-      expansions: ['college degree gpt', 'learn any course gpt', 'learn any skill gpt', 'home-schooling assistant gpt', 'education', 'learning', 'university', 'course', 'study', 'tutorial', 'teaching', 'academic', 'homeschool', 'quiz maker', 'course maker']
+      triggers: ['college', 'university', 'degree', 'education', 'course', 'learn'],
+      expansions: ['college degree gpt', 'learn any course gpt', 'learn any skill gpt', 'education', 'learning', 'university', 'course', 'study', 'tutorial', 'teaching', 'academic']
     },
     {
       triggers: ['doctor', 'medical', 'health', 'wellness', 'dr'],
