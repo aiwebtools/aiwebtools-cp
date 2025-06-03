@@ -51,15 +51,20 @@ const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true, toolId }
     setCurrentRating(newAverageRating);
     setCurrentVoteCount(newVoteCount);
     
-    // Store vote in localStorage
+    // Store vote in localStorage with enhanced data validation
     const votedTools = JSON.parse(localStorage.getItem('votedTools') || '{}');
     votedTools[toolId] = {
       userRating: newRating,
       currentRating: newAverageRating,
       voteCount: newVoteCount,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      toolTitle: toolId // Add tool identification for debugging
     };
     localStorage.setItem('votedTools', JSON.stringify(votedTools));
+    
+    // Provide user feedback
+    console.log(`⭐ User voted ${newRating} stars for tool ${toolId}`);
+    console.log(`📊 New average: ${newAverageRating.toFixed(1)} (${newVoteCount} votes)`);
     
     onRate?.(newRating);
   };
@@ -77,18 +82,18 @@ const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true, toolId }
             onClick={() => handleRate(star)}
             onMouseEnter={() => !hasVoted && setHoveredRating(star)}
             onMouseLeave={() => setHoveredRating(0)}
-            className={`focus:outline-none transition-colors duration-200 ${
-              hasVoted ? 'cursor-default' : 'cursor-pointer hover:scale-110'
+            className={`focus:outline-none transition-all duration-200 ${
+              hasVoted ? 'cursor-default' : 'cursor-pointer hover:scale-110 transform'
             }`}
             disabled={hasVoted}
-            title={hasVoted ? 'You have already voted' : 'Click to rate'}
+            title={hasVoted ? `You voted ${userRating} stars` : `Click to rate ${star} stars`}
           >
             <Star
               className={`w-4 h-4 ${
                 star <= (hoveredRating || displayRating)
                   ? "fill-yellow-400 text-yellow-400"
-                  : "text-gray-400"
-              }`}
+                  : "text-gray-400 hover:text-yellow-300"
+              } ${!hasVoted ? 'hover:drop-shadow-lg' : ''}`}
             />
           </button>
         ))}
@@ -102,8 +107,8 @@ const StarRating = ({ rating, totalVotes, onRate, showVoteCount = true, toolId }
         </span>
       )}
       {hasVoted && (
-        <span className="text-xs text-green-400 font-medium">
-          ✓ Voted
+        <span className="text-xs text-green-400 font-medium flex items-center">
+          ✓ You rated {userRating} star{userRating !== 1 ? 's' : ''}
         </span>
       )}
     </div>

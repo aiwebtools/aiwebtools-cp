@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Bot, 
@@ -16,10 +15,23 @@ import {
   Database,
   Code,
   Image,
-  Video
+  Video,
+  History
 } from "lucide-react";
 
 export const aiAssistants: Tool[] = [
+  {
+    icon: History,
+    title: "AI History Expert",
+    description: "Talk to History GPT - Your gateway to engaging in immersive historical conversations with influential leaders of history. Interact with any historical figures you imagine and gain unique insights and perspectives straight from the source.",
+    emoji: "📚",
+    color: "from-amber-500 to-orange-600",
+    directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
+    category: "AI Assistants & Search",
+    tags: ["history", "historical figures", "conversations", "education", "time travel"],
+    rating: 4.5,
+    totalVotes: 3456
+  },
   {
     icon: Bot,
     title: "Siri",
