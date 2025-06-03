@@ -23,10 +23,10 @@
 
     .divine-glow-border {
       box-shadow: 
-        0 0 10px rgba(255, 215, 0, 0.6),
-        0 0 20px rgba(255, 215, 0, 0.4),
-        inset 0 0 8px rgba(255, 255, 255, 0.2);
-      animation-duration: 4s;
+        0 0 15px rgba(255, 215, 0, 0.8),
+        0 0 30px rgba(255, 215, 0, 0.6),
+        0 0 45px rgba(255, 215, 0, 0.4),
+        inset 0 0 10px rgba(255, 255, 255, 0.3);
     }
     
     .interactive-button {
@@ -54,7 +54,7 @@
     }
 
     .divine-glow-border {
-      animation-duration: 3.5s;
+      /* Keep solid glow on tablets too */
     }
   }
 
@@ -72,8 +72,9 @@
 
     .divine-glow-border {
       box-shadow: 
-        0 0 8px rgba(255, 215, 0, 0.6),
-        inset 0 0 5px rgba(255, 255, 255, 0.2);
+        0 0 12px rgba(255, 215, 0, 0.7),
+        0 0 24px rgba(255, 215, 0, 0.5),
+        inset 0 0 8px rgba(255, 255, 255, 0.2);
       border: 1px solid rgba(255, 215, 0, 0.8);
     }
     
