@@ -8,7 +8,7 @@ interface SearchInputProps {
   placeholder: string;
   onSearchChange: (value: string) => void;
   onKeyDown: (e: React.KeyboardEvent) => void;
-  onBlur: () => void;
+  onBlur: (e: React.FocusEvent) => void;
   onFocus: () => void;
 }
 
