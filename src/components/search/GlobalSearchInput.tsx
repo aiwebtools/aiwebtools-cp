@@ -19,7 +19,7 @@ const GlobalSearchInput = memo(({
   onKeyDown,
   onClear,
 }: GlobalSearchInputProps) => {
-  // Direct onChange handler for maximum speed
+  // Direct onChange handler for maximum speed - no debouncing
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     onSearchChange(e.target.value);
   }, [onSearchChange]);
@@ -33,13 +33,23 @@ const GlobalSearchInput = memo(({
         value={searchTerm}
         onChange={handleChange}
         onKeyDown={onKeyDown}
-        className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg backdrop-blur-sm"
+        className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 rounded-lg backdrop-blur-sm search-glow-optimized"
         autoComplete="off"
         spellCheck={false}
         inputMode="search"
         autoCapitalize="none"
         autoCorrect="off"
         data-testid="global-search-input"
+        style={{
+          // Force immediate rendering on iOS
+          WebkitAppearance: 'none',
+          WebkitTapHighlightColor: 'transparent',
+          touchAction: 'manipulation',
+          fontSize: '16px', // Prevent zoom on iOS
+          transition: 'none',
+          willChange: 'auto',
+          contain: 'layout style paint'
+        }}
       />
       {searchTerm && (
         <Button
@@ -47,6 +57,10 @@ const GlobalSearchInput = memo(({
           size="sm"
           onClick={onClear}
           className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-gray-300 hover:text-white hover:bg-white/10"
+          style={{
+            transition: 'none',
+            WebkitTapHighlightColor: 'transparent'
+          }}
         >
           <X className="w-3 h-3" />
         </Button>

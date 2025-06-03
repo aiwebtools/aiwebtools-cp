@@ -20,7 +20,7 @@ const SearchInput = memo(({
   onBlur,
   onFocus,
 }: SearchInputProps) => {
-  // Direct onChange handler for maximum speed
+  // Direct onChange handler for maximum speed - no debouncing
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     onSearchChange(e.target.value);
   }, [onSearchChange]);
@@ -36,13 +36,23 @@ const SearchInput = memo(({
         onKeyDown={onKeyDown}
         onBlur={onBlur}
         onFocus={onFocus}
-        className="pl-10 pr-4 py-4 text-lg rounded-xl border-0 bg-black/60 text-white placeholder-gray-300 focus:ring-0 focus:outline-none backdrop-blur-sm"
+        className="pl-10 pr-4 py-4 text-lg rounded-xl border-0 bg-black/60 text-white placeholder-gray-300 backdrop-blur-sm search-glow-optimized"
         autoComplete="off"
         spellCheck={false}
         inputMode="search"
         autoCapitalize="none"
         autoCorrect="off"
         data-testid="search-input"
+        style={{
+          // Force immediate rendering on iOS
+          WebkitAppearance: 'none',
+          WebkitTapHighlightColor: 'transparent',
+          touchAction: 'manipulation',
+          fontSize: '16px', // Prevent zoom on iOS
+          transition: 'none',
+          willChange: 'auto',
+          contain: 'layout style paint'
+        }}
       />
     </div>
   );
