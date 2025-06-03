@@ -124,7 +124,6 @@ export const learningAndEducation: Tool[] = [
     rating: 4.4,
     totalVotes: 2789
   },
-  // HISTORICAL EDUCATION TOOLS - These also appear in Time & History but are valuable for education
   {
     icon: History,
     title: "TALK TO HISTORY GPT",

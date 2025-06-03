@@ -15,18 +15,6 @@ import {
 
 export const learningPlatforms: Tool[] = [
   {
-    icon: GraduationCap,
-    title: "Khan Academy",
-    description: "Free online courses, lessons and practice in math, science, computer programming, history, art, economics, and more.",
-    emoji: "🎓",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://khanacademy.org/",
-    tags: ["online learning", "free courses", "math", "science", "programming"],
-    category: "Learning Platforms",
-    rating: 4.8,
-    totalVotes: 6789
-  },
-  {
     icon: Code,
     title: "freeCodeCamp",
     description: "Learn to code for free with interactive coding lessons, projects, and certifications in web development and data science.",

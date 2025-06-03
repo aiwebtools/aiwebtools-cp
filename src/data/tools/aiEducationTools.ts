@@ -7,18 +7,6 @@ import {
 
 export const aiEducationTools: Tool[] = [
   {
-    icon: Brain,
-    title: "Khan Academy Khanmigo",
-    description: "AI-powered tutoring assistant that provides personalized learning support across subjects with Socratic questioning.",
-    emoji: "🧠",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://www.khanacademy.org/khan-labs?via=aiwebtools",
-    tags: ["AI tutoring", "personalized learning", "education", "Socratic method"],
-    category: "Education & Learning",
-    rating: 4.7,
-    totalVotes: 3456
-  },
-  {
     icon: Calculator,
     title: "Wolfram Alpha",
     description: "Computational knowledge engine that provides expert-level answers and calculations across mathematics and sciences.",
