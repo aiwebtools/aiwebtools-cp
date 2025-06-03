@@ -11,6 +11,7 @@ const GlobalSearchBar = () => {
     searchResults,
     displayedCount,
     isOpen,
+    isLoadingMore,
     toolStats,
     searchRef,
     handleToolClick,
@@ -35,6 +36,7 @@ const GlobalSearchBar = () => {
           <GlobalSearchResults
             searchResults={searchResults}
             displayedCount={displayedCount}
+            isLoadingMore={isLoadingMore}
             onToolClick={handleToolClick}
             onDirectAccess={handleDirectAccess}
             onScroll={handleScroll}

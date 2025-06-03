@@ -7,6 +7,7 @@ import { allTools } from "@/data/toolsData";
 interface GlobalSearchResultsProps {
   searchResults: any[];
   displayedCount: number;
+  isLoadingMore: boolean;
   onToolClick: (toolIndex: number) => void;
   onDirectAccess: (tool: any, e: React.MouseEvent) => void;
   onScroll: (e: React.UIEvent<HTMLDivElement>) => void;
@@ -15,6 +16,7 @@ interface GlobalSearchResultsProps {
 const GlobalSearchResults = ({
   searchResults,
   displayedCount,
+  isLoadingMore,
   onToolClick,
   onDirectAccess,
   onScroll,
@@ -100,13 +102,19 @@ const GlobalSearchResults = ({
               </Tooltip>
             );
           })}
-          {hasMoreToLoad && (
+          {(hasMoreToLoad || isLoadingMore) && (
             <div className="text-center py-3 text-cyan-400/70 text-xs">
-              <div className="animate-pulse">🔄 Loading more amazing AI tools...</div>
-              <div className="mt-1">{searchResults.length - displayedCount} more tools in our endless collection!</div>
+              {isLoadingMore ? (
+                <div className="animate-pulse">🔄 Loading more amazing AI tools...</div>
+              ) : (
+                <div className="animate-pulse">📜 Scroll down to load more tools...</div>
+              )}
+              {hasMoreToLoad && !isLoadingMore && (
+                <div className="mt-1">{searchResults.length - displayedCount} more tools in our endless collection!</div>
+              )}
             </div>
           )}
-          {!hasMoreToLoad && searchResults.length > 50 && (
+          {!hasMoreToLoad && !isLoadingMore && searchResults.length > 50 && (
             <div className="text-center py-4 text-cyan-300/80 text-xs">
               <div className="text-lg mb-1">🎉</div>
               <div>You've explored all {searchResults.length} AI tools!</div>

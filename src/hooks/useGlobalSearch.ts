@@ -12,6 +12,7 @@ export const useGlobalSearch = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [displayedCount, setDisplayedCount] = useState(30);
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const searchRef = useRef(null);
   const navigate = useNavigate();
   
@@ -139,20 +140,26 @@ export const useGlobalSearch = () => {
     }
   }, [searchTerm, searchResults, navigate]);
 
-  // ENHANCED scroll handler with proper endless loading
+  // FIXED scroll handler with proper endless loading
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     // More aggressive loading threshold for smooth endless scroll
-    const threshold = 50;
+    const threshold = 100;
     const nearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
     
-    if (nearBottom && displayedCount < searchResults.length) {
-      const increment = Math.min(20, searchResults.length - displayedCount);
-      console.log(`📜 Loading ${increment} more tools (${displayedCount + increment}/${searchResults.length})`);
-      setDisplayedCount(prev => prev + increment);
+    if (nearBottom && displayedCount < searchResults.length && !isLoadingMore) {
+      setIsLoadingMore(true);
+      
+      // Simulate loading delay and then load more tools
+      setTimeout(() => {
+        const increment = Math.min(20, searchResults.length - displayedCount);
+        console.log(`📜 Loading ${increment} more tools (${displayedCount + increment}/${searchResults.length})`);
+        setDisplayedCount(prev => prev + increment);
+        setIsLoadingMore(false);
+      }, 200); // Small delay to show loading state
     }
-  }, [displayedCount, searchResults.length]);
+  }, [displayedCount, searchResults.length, isLoadingMore]);
 
   return {
     searchTerm,
@@ -160,6 +167,7 @@ export const useGlobalSearch = () => {
     searchResults,
     displayedCount,
     isOpen,
+    isLoadingMore,
     toolStats,
     searchRef,
     handleToolClick,
