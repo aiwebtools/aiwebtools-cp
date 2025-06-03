@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   DollarSign, 
@@ -18,11 +17,11 @@ import {
 export const financialAndTradingTools: Tool[] = [
   {
     icon: Calculator,
-    title: "Financial Calculator Pro",
+    title: "Personal Finance Advisor GPT",
     description: "Advanced AI-powered financial calculator for complex calculations, investment analysis, and financial planning with step-by-step explanations.",
     emoji: "🧮",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools",
+    directUrl: "https://chat.openai.com/g/g-f0s3qjB7I",
     tags: ["financial calculator", "investment analysis", "financial planning", "calculations"],
     category: "Financial & Trading Tools",
     rating: 4.5,
