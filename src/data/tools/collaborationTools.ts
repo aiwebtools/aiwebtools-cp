@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Users, MessageSquare, Video, Calendar, FileText, 
@@ -17,6 +16,18 @@ export const collaborationTools: Tool[] = [
     category: "Collaboration Tools",
     rating: 4.5,
     totalVotes: 9876
+  },
+  {
+    icon: Share2,
+    title: "Google Drive",
+    description: "Cloud storage and file sharing platform for documents, photos, and videos with real-time collaboration.",
+    emoji: "☁️",
+    color: "from-yellow-500 to-green-600",
+    directUrl: "https://drive.google.com/?via=aiwebtools",
+    tags: ["cloud storage", "file sharing", "documents", "photos", "videos", "collaboration"],
+    category: "Collaboration Tools",
+    rating: 4.6,
+    totalVotes: 9234
   },
   {
     icon: Clock,

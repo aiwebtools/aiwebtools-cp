@@ -36,7 +36,7 @@ const SearchResults = memo(({
 
   return (
     <div 
-      className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-[60] max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" 
+      className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-[9999] max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" 
       onScroll={onScroll}
       style={{
         // Optimize scrolling performance
@@ -45,6 +45,14 @@ const SearchResults = memo(({
         backfaceVisibility: 'hidden'
       }}
     >
+      <div className="px-3 py-3 border-b border-gray-100 sticky top-0 bg-white text-red-500 z-10" style={{ fontSize: '10px' }}>
+        <div className="leading-tight mb-1">
+          Search Results ({searchResults.length} total) - Showing {displayedResults.length}
+        </div>
+        {displayedCount < searchResults.length && (
+          <div className="text-xs opacity-80 mb-2">Scroll for more...</div>
+        )}
+      </div>
       <div className="p-2 pt-4">
         {displayedResults.map((tool, index) => {
           const toolIndex = allTools.findIndex(t => t.title === tool.title);
@@ -76,7 +84,7 @@ const SearchResults = memo(({
               </TooltipTrigger>
               <TooltipContent 
                 side="right" 
-                className="max-w-sm p-3 bg-gray-900 text-white border-gray-700 shadow-xl z-[70]"
+                className="max-w-sm p-3 bg-gray-900 text-white border-gray-700 shadow-xl z-[60]"
                 sideOffset={10}
               >
                 <div className="space-y-2">
