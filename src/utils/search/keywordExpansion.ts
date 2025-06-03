@@ -15,11 +15,16 @@ const typoCorrection: Record<string, string> = {
   "colledge": "college",
   "coledge": "college",
   "collage": "college",
+  "colleg": "college",
+  "colege": "college",
+  "colegge": "college",
   "univercity": "university",
   "universty": "university",
   "universtiy": "university",
   "univesity": "university",
   "unversity": "university",
+  "universtity": "university",
+  "univrsity": "university",
   
   "writting": "writing",
   "writeing": "writing",
@@ -87,18 +92,52 @@ const typoCorrection: Record<string, string> = {
   "fincancial": "financial",
   "finacnal": "financial",
   "finanical": "financial",
+  "finacnial": "financial",
+  "finantial": "financial",
   
   "learing": "learning",
   "lerning": "learning",
   "learnig": "learning",
   "lernig": "learning",
   "learng": "learning",
+  "leaning": "learning",
   
   "educaton": "education",
   "educatin": "education",
   "eduction": "education",
   "educaion": "education",
   "educatoin": "education",
+  "educaton": "education",
+  
+  "scool": "school",
+  "shcool": "school",
+  "schooll": "school",
+  "skool": "school",
+  "schol": "school",
+  "schoo": "school",
+  "schoool": "school",
+  
+  "clas": "class",
+  "clase": "class",
+  "claas": "class",
+  "clss": "class",
+  "calss": "class",
+  
+  "homwork": "homework",
+  "homewrok": "homework",
+  "homeworkk": "homework",
+  "homwrok": "homework",
+  "hmework": "homework",
+  
+  "leson": "lesson",
+  "lesn": "lesson",
+  "lessson": "lesson",
+  "lesno": "lesson",
+  
+  "tuor": "tutor",
+  "tuter": "tutor",
+  "tutro": "tutor",
+  "tuotr": "tutor",
   
   "analaytics": "analytics",
   "analitics": "analytics",
@@ -126,32 +165,19 @@ const typoCorrection: Record<string, string> = {
   "mony": "money",
   "moeny": "money",
   "monye": "money",
-  "finanical": "financial",
-  "finacial": "financial",
+  "mnoy": "money",
   "tradeing": "trading",
+  "tradng": "trading",
+  "traidng": "trading",
   "invesment": "investment",
   "investmnt": "investment",
+  "investmenet": "investment",
   "buget": "budget",
   "budjet": "budget",
+  "budgit": "budget",
   "stok": "stock",
   "stoc": "stock",
-  
-  // NEW: Education-related typos
-  "scool": "school",
-  "shcool": "school",
-  "schooll": "school",
-  "skool": "school",
-  "clas": "class",
-  "clase": "class",
-  "claas": "class",
-  "homwork": "homework",
-  "homewrok": "homework",
-  "homeworkk": "homework",
-  "leson": "lesson",
-  "lesn": "lesson",
-  "tuor": "tutor",
-  "tuter": "tutor",
-  "tutoring": "tutoring"
+  "stokc": "stock"
 };
 
 // Function to calculate Levenshtein distance for fuzzy matching
@@ -226,6 +252,7 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   
   // Apply direct typo correction
   if (typoCorrection[lowerSearchTerm]) {
+    console.log(`🔄 Typo correction: "${lowerSearchTerm}" -> "${typoCorrection[lowerSearchTerm]}"`);
     lowerSearchTerm = typoCorrection[lowerSearchTerm];
   }
   

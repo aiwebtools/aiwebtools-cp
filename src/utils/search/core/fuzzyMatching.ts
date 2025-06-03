@@ -56,9 +56,10 @@ export const fuzzyMatchTool = (tool: Tool, searchTerm: string): { score: number;
     if (searchWord.length >= 3) {
       for (const titleWord of titleWords) {
         const similarity = calculateSimilarity(searchWord, titleWord);
-        if (similarity >= 0.7) { // 70% similarity threshold
+        if (similarity >= 0.6) { // Lowered threshold for better misspelling support
           matched = true;
-          totalScore += similarity * 3000; // High score for title matches
+          totalScore += similarity * 3500; // Higher score for title matches
+          console.log(`🎯 Fuzzy title match: "${searchWord}" ~ "${titleWord}" (${similarity.toFixed(2)})`);
         }
       }
     }
@@ -71,9 +72,10 @@ export const fuzzyMatchTool = (tool: Tool, searchTerm: string): { score: number;
       if (searchWord.length >= 4) {
         for (const descWord of descWords) {
           const similarity = calculateSimilarity(searchWord, descWord);
-          if (similarity >= 0.75) { // Higher threshold for description
+          if (similarity >= 0.7) { // Threshold for description
             matched = true;
-            totalScore += similarity * 1500; // Medium score for description matches
+            totalScore += similarity * 1800; // Medium score for description matches
+            console.log(`🎯 Fuzzy desc match: "${searchWord}" ~ "${descWord}" (${similarity.toFixed(2)})`);
           }
         }
       }
@@ -87,9 +89,10 @@ export const fuzzyMatchTool = (tool: Tool, searchTerm: string): { score: number;
       if (searchWord.length >= 3) {
         for (const catWord of categoryWords) {
           const similarity = calculateSimilarity(searchWord, catWord);
-          if (similarity >= 0.8) {
+          if (similarity >= 0.75) {
             matched = true;
-            totalScore += similarity * 1000;
+            totalScore += similarity * 1200;
+            console.log(`🎯 Fuzzy category match: "${searchWord}" ~ "${catWord}" (${similarity.toFixed(2)})`);
           }
         }
       }
@@ -104,9 +107,10 @@ export const fuzzyMatchTool = (tool: Tool, searchTerm: string): { score: number;
         if (searchWord.length >= 3) {
           for (const tagWord of tagWords) {
             const similarity = calculateSimilarity(searchWord, tagWord);
-            if (similarity >= 0.75) {
+            if (similarity >= 0.7) {
               matched = true;
-              totalScore += similarity * 800;
+              totalScore += similarity * 900;
+              console.log(`🎯 Fuzzy tag match: "${searchWord}" ~ "${tagWord}" (${similarity.toFixed(2)})`);
             }
           }
         }
@@ -117,26 +121,36 @@ export const fuzzyMatchTool = (tool: Tool, searchTerm: string): { score: number;
   return { score: totalScore, matched };
 };
 
-// Phonetic matching for common sound-alike words
+// Enhanced phonetic matching for common sound-alike words and misspellings
 export const phoneticMatch = (searchTerm: string): string[] => {
   const phoneticMappings: Record<string, string[]> = {
-    'college': ['collge', 'colege', 'kollege', 'coledge'],
-    'doctor': ['docter', 'docktor', 'doktor', 'dr'],
-    'travel': ['travle', 'trvel', 'travel'],
-    'music': ['musik', 'musick', 'muzic'],
-    'business': ['buisness', 'bussiness', 'busness', 'bizness'],
-    'writing': ['writting', 'writeing', 'riting'],
-    'design': ['desing', 'desgn', 'dezign'],
-    'research': ['resarch', 'reserch', 'reasearch'],
-    'education': ['educaton', 'educatin', 'eduction'],
-    'health': ['helath', 'healt', 'helth'],
-    'finance': ['finace', 'finanace', 'fianance'],
+    'college': ['collge', 'colege', 'kollege', 'coledge', 'collega', 'colledge', 'collage'],
+    'doctor': ['docter', 'docktor', 'doktor', 'dr', 'dcotor'],
+    'travel': ['travle', 'trvel', 'travell'],
+    'music': ['musik', 'musick', 'muzic', 'misic', 'mucis'],
+    'business': ['buisness', 'bussiness', 'busness', 'bizness', 'bussines'],
+    'writing': ['writting', 'writeing', 'riting', 'writen', 'writng'],
+    'design': ['desing', 'desgn', 'dezign', 'deisng'],
+    'research': ['resarch', 'reserch', 'reasearch', 'researh', 'reseach'],
+    'education': ['educaton', 'educatin', 'eduction', 'educaion', 'educatoin'],
+    'health': ['helath', 'healt', 'helth', 'heatlh'],
+    'finance': ['finace', 'finanace', 'fianance', 'finacial', 'financal'],
     'legal': ['leagal', 'legall', 'ligal'],
     'marketing': ['marketting', 'marekting', 'markting'],
     'analysis': ['anlaysis', 'anaylsis', 'analysys'],
-    'government': ['goverment', 'govenment', 'govermnent'],
-    'political': ['politcal', 'poltical', 'politial'],
-    'testimony': ['testimny', 'testmony', 'testimoney']
+    'government': ['goverment', 'govenment', 'govermnent', 'governmnet'],
+    'political': ['politcal', 'poltical', 'politial', 'polical'],
+    'testimony': ['testimny', 'testmony', 'testimoney', 'testimonie'],
+    'school': ['scool', 'shcool', 'schooll', 'skool', 'schol', 'schoo'],
+    'class': ['clas', 'clase', 'claas', 'clss', 'calss'],
+    'homework': ['homwork', 'homewrok', 'homeworkk', 'homwrok', 'hmework'],
+    'lesson': ['leson', 'lesn', 'lessson', 'lesno'],
+    'tutor': ['tuor', 'tuter', 'tutro', 'tuotr'],
+    'money': ['mony', 'moeny', 'monye', 'mnoy'],
+    'trading': ['tradeing', 'tradng', 'traidng'],
+    'investment': ['invesment', 'investmnt', 'investmenet'],
+    'budget': ['buget', 'budjet', 'budgit'],
+    'stock': ['stok', 'stoc', 'stokc']
   };
   
   const matches: string[] = [];
