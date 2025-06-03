@@ -115,6 +115,9 @@ import { comprehensiveAITools } from './tools/comprehensiveAITools';
 // Import the new specialized GPTs from AI Web Tools
 import { newSpecializedGPTs } from './tools/aiWebTools/newSpecializedGPTs';
 
+// Import the new additional real AI tools
+import { additionalRealAITools } from './tools/additionalRealAITools';
+
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
@@ -228,6 +231,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...comprehensiveAITools,
     
     // NEW: Specialized GPTs added by user request
-    ...newSpecializedGPTs
+    ...newSpecializedGPTs,
+    
+    // NEW: Additional real AI tools (100 more tools)
+    ...additionalRealAITools
   ];
 };

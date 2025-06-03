@@ -114,3 +114,6 @@ export { grammarAndWritingAssistants } from './grammarAndWritingAssistants';
 export { aiContentGenerators } from './aiContentGenerators';
 export { creativeWritingTools } from './creativeWritingTools';
 export { transcriptionAndDocumentTools } from './transcriptionAndDocumentTools';
+
+// Export new additional real AI tools
+export { additionalRealAITools } from './additionalRealAITools';
