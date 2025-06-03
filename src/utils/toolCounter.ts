@@ -11,37 +11,27 @@ export const getToolCount = () => {
   trackToolChanges('tool_count_check');
   
   const allToolsFromCollection = getAllToolCategories();
+  console.log(`🔍 RAW TOOLS FROM COLLECTION: ${allToolsFromCollection.length}`);
+  
+  // Use ultra conservative deduplication
   const deduplicatedTools = deduplicateTools(allToolsFromCollection);
   
-  console.log(`🔍 DETAILED TOOL COUNT ANALYSIS:`);
+  console.log(`🎯 TOOL COUNT PRESERVATION ANALYSIS:`);
   console.log(`📊 Raw tools from collection: ${allToolsFromCollection.length}`);
-  console.log(`📊 After deduplication: ${deduplicatedTools.length}`);
+  console.log(`📊 After ultra conservative deduplication: ${deduplicatedTools.length}`);
   console.log(`📊 Tools removed by deduplication: ${allToolsFromCollection.length - deduplicatedTools.length}`);
   
-  // Check specifically for the tools we just added
+  // Verify our newly added tools are preserved
   const teamAITool = deduplicatedTools.find(tool => tool.title.includes('TeamAI'));
   const orchardTool = deduplicatedTools.find(tool => tool.title.includes('Orchard'));
   const bitAITool = deduplicatedTools.find(tool => tool.title.includes('Bit.ai'));
   
-  console.log(`🔍 NEWLY ADDED TOOLS VERIFICATION:`);
-  console.log(`TeamAI found: ${!!teamAITool}`);
-  console.log(`Orchard.ink found: ${!!orchardTool}`);
-  console.log(`Bit.ai found: ${!!bitAITool}`);
+  console.log(`✅ NEWLY ADDED TOOLS PRESERVATION CHECK:`);
+  console.log(`TeamAI found: ${!!teamAITool} ${teamAITool ? `(${teamAITool.category})` : ''}`);
+  console.log(`Orchard.ink found: ${!!orchardTool} ${orchardTool ? `(${orchardTool.category})` : ''}`);
+  console.log(`Bit.ai found: ${!!bitAITool} ${bitAITool ? `(${bitAITool.category})` : ''}`);
   
-  if (teamAITool) console.log(`TeamAI details:`, teamAITool.title, teamAITool.category);
-  if (orchardTool) console.log(`Orchard details:`, orchardTool.title, orchardTool.category);
-  if (bitAITool) console.log(`Bit.ai details:`, bitAITool.title, bitAITool.category);
-  
-  // Check for potential duplicates that might have been removed
-  const chatPlatformTools = deduplicatedTools.filter(tool => tool.category === 'AI Chat Platforms');
-  const contentCreationTools = deduplicatedTools.filter(tool => tool.category === 'Content Creation');
-  const collaborationTools = deduplicatedTools.filter(tool => tool.category === 'Collaboration Tools');
-  
-  console.log(`📋 Category tool counts:`);
-  console.log(`AI Chat Platforms: ${chatPlatformTools.length}`);
-  console.log(`Content Creation: ${contentCreationTools.length}`);
-  console.log(`Collaboration Tools: ${collaborationTools.length}`);
-  
+  // Check category distribution
   const categoryBreakdown: Record<string, number> = {};
   deduplicatedTools.forEach(tool => {
     const category = tool.category || 'Uncategorized';
@@ -51,8 +41,9 @@ export const getToolCount = () => {
   // Get main category counts using the EXACT same logic as the website
   const mainCategoryCounts = getMainCategoriesWithCounts(allTools);
   
-  console.log(`🎉 ENHANCED TOOL COUNT VERIFICATION 🎉`);
+  console.log(`🎉 TOOL COUNT STATUS REPORT 🎉`);
   console.log(`📊 EXACT Tool Count: ${deduplicatedTools.length}`);
+  console.log(`📊 Should be 1100+: ${deduplicatedTools.length >= 1100 ? '✅ YES' : '❌ NO'}`);
   console.log('📋 Complete Category Breakdown:', categoryBreakdown);
   console.log('🎯 Main Category Counts (matching website display):', mainCategoryCounts);
   
@@ -65,7 +56,13 @@ export const getToolCount = () => {
   
   if (deduplicatedTools.length !== allToolsCount) {
     console.warn(`⚠️ MISMATCH DETECTED! Collection has ${deduplicatedTools.length} but allTools has ${allToolsCount}`);
-    console.warn(`This could explain the tool count discrepancy!`);
+    console.warn(`This explains the tool count discrepancy!`);
+  }
+  
+  // If we're under 1100, something is wrong
+  if (deduplicatedTools.length < 1100) {
+    console.error(`🚨 CRITICAL: Tool count is ${deduplicatedTools.length} but should be 1100+!`);
+    console.error(`🚨 Tools may have been lost during processing!`);
   }
   
   // Run integrity check after counting

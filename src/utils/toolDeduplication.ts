@@ -2,59 +2,19 @@
 import { Tool } from "@/types/tools";
 
 /**
- * Enhanced deduplication that preserves order and handles category-specific logic
- */
-export const createDeduplicatedToolsList = (tools: Tool[], maxDistance: number = 8): Tool[] => {
-  if (!tools || tools.length === 0) return [];
-  
-  const deduplicatedTools: Tool[] = [];
-  const seenTitles = new Set<string>();
-  const titlePositions = new Map<string, number>();
-  
-  console.log(`🔄 Starting deduplication for ${tools.length} tools with max distance ${maxDistance}`);
-  
-  for (let i = 0; i < tools.length; i++) {
-    const tool = tools[i];
-    const normalizedTitle = tool.title.toLowerCase().trim();
-    
-    // Check if we've seen this tool before
-    if (seenTitles.has(normalizedTitle)) {
-      const lastPosition = titlePositions.get(normalizedTitle) || 0;
-      const distance = deduplicatedTools.length - lastPosition;
-      
-      // Only skip if it's too close (within maxDistance) and maxDistance > 0
-      if (maxDistance > 0 && distance < maxDistance) {
-        console.log(`⏭️ Skipping duplicate "${tool.title}" (distance: ${distance})`);
-        continue;
-      }
-      
-      console.log(`✅ Adding duplicate "${tool.title}" (distance: ${distance} >= ${maxDistance})`);
-    }
-    
-    // Add the tool
-    deduplicatedTools.push(tool);
-    seenTitles.add(normalizedTitle);
-    titlePositions.set(normalizedTitle, deduplicatedTools.length - 1);
-  }
-  
-  console.log(`✨ Deduplication complete: ${tools.length} → ${deduplicatedTools.length} tools`);
-  return deduplicatedTools;
-};
-
-/**
- * CONSERVATIVE deduplication - only remove EXACT duplicates
+ * ULTRA CONSERVATIVE deduplication - only remove EXACT duplicates with same title AND URL
  */
 export const deduplicateTools = (tools: Tool[]): Tool[] => {
   const seen = new Set<string>();
   const deduplicated: Tool[] = [];
   const removedTools: Tool[] = [];
   
-  console.log(`🔍 CONSERVATIVE DEDUPLICATION STARTING: ${tools.length} tools`);
+  console.log(`🔍 ULTRA CONSERVATIVE DEDUPLICATION STARTING: ${tools.length} tools`);
   
   for (const tool of tools) {
-    // Create a unique key based on title AND URL to be more conservative
+    // Create a unique key based on BOTH title AND URL to be ultra conservative
     const titleKey = tool.title.toLowerCase().trim();
-    const urlKey = tool.directUrl?.toLowerCase().trim() || 'no-url';
+    const urlKey = tool.directUrl?.toLowerCase().trim() || `no-url-${Math.random()}`;
     const key = `${titleKey}|||${urlKey}`;
     
     if (!seen.has(key)) {
@@ -62,11 +22,11 @@ export const deduplicateTools = (tools: Tool[]): Tool[] => {
       deduplicated.push(tool);
     } else {
       removedTools.push(tool);
-      console.log(`🗑️ Removing exact duplicate: "${tool.title}" (${tool.category})`);
+      console.log(`🗑️ Removing EXACT duplicate: "${tool.title}" (${tool.category}) - ${tool.directUrl}`);
     }
   }
   
-  console.log(`🗑️ DEDUPLICATION RESULTS:`);
+  console.log(`🎯 ULTRA CONSERVATIVE DEDUPLICATION RESULTS:`);
   console.log(`   Input tools: ${tools.length}`);
   console.log(`   Output tools: ${deduplicated.length}`);
   console.log(`   Removed duplicates: ${removedTools.length}`);
@@ -78,17 +38,25 @@ export const deduplicateTools = (tools: Tool[]): Tool[] => {
     });
   }
   
-  // Check specifically for our newly added tools
+  // Verify our newly added tools are still there
   const teamAI = deduplicated.find(t => t.title.includes('TeamAI'));
   const orchard = deduplicated.find(t => t.title.includes('Orchard'));
   const bitAI = deduplicated.find(t => t.title.includes('Bit.ai'));
   
-  console.log(`✅ NEWLY ADDED TOOLS VERIFICATION AFTER DEDUPLICATION:`);
-  console.log(`   TeamAI preserved: ${!!teamAI}`);
-  console.log(`   Orchard.ink preserved: ${!!orchard}`);
-  console.log(`   Bit.ai preserved: ${!!bitAI}`);
+  console.log(`✅ NEWLY ADDED TOOLS VERIFICATION AFTER ULTRA CONSERVATIVE DEDUPLICATION:`);
+  console.log(`   TeamAI preserved: ${!!teamAI} ${teamAI ? `(${teamAI.category})` : ''}`);
+  console.log(`   Orchard.ink preserved: ${!!orchard} ${orchard ? `(${orchard.category})` : ''}`);
+  console.log(`   Bit.ai preserved: ${!!bitAI} ${bitAI ? `(${bitAI.category})` : ''}`);
   
   return deduplicated;
+};
+
+/**
+ * DISABLED - No distance-based deduplication to preserve all tools
+ */
+export const createDeduplicatedToolsList = (tools: Tool[], maxDistance: number = 0): Tool[] => {
+  console.log(`🚫 DISTANCE-BASED DEDUPLICATION DISABLED to preserve all tools`);
+  return deduplicateTools(tools); // Just use the conservative deduplication
 };
 
 /**
