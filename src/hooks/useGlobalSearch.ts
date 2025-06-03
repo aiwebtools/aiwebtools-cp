@@ -14,14 +14,12 @@ export const useGlobalSearch = () => {
   const searchRef = useRef(null);
   const navigate = useNavigate();
   
-  // Memoize tool stats for performance
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
-  // INSTANT search - NO debouncing for lightning speed
+  // Direct search effect for instant results
   useEffect(() => {
     const trimmedTerm = searchTerm.trim();
     if (trimmedTerm) {
-      // Immediate search with ALL results
       const results = searchTools(allTools, trimmedTerm);
       setSearchResults(results);
       setDisplayedCount(100);
@@ -31,9 +29,8 @@ export const useGlobalSearch = () => {
       setIsOpen(false);
       setDisplayedCount(100);
     }
-  }, [searchTerm]); // INSTANT dependency for lightning speed
+  }, [searchTerm]);
 
-  // Optimized click outside handler
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {

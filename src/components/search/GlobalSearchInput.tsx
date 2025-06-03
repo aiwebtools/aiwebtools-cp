@@ -2,7 +2,7 @@
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { memo } from "react";
+import { memo, useCallback } from "react";
 
 interface GlobalSearchInputProps {
   searchTerm: string;
@@ -19,6 +19,11 @@ const GlobalSearchInput = memo(({
   onKeyDown,
   onClear,
 }: GlobalSearchInputProps) => {
+  // Direct onChange handler for maximum speed
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    onSearchChange(e.target.value);
+  }, [onSearchChange]);
+
   return (
     <div className="relative search-glow-optimized rounded-lg">
       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 w-4 h-4 pointer-events-none" />
@@ -26,7 +31,7 @@ const GlobalSearchInput = memo(({
         type="text"
         placeholder={`Search ${toolStats.marketing} AI tools...`}
         value={searchTerm}
-        onChange={(e) => onSearchChange(e.target.value)}
+        onChange={handleChange}
         onKeyDown={onKeyDown}
         className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg backdrop-blur-sm"
         autoComplete="off"

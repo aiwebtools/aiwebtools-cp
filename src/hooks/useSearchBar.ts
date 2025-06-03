@@ -13,15 +13,12 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   const [isOpen, setIsOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(100);
   
-  // INSTANT search results - NO debouncing for lightning speed
+  // INSTANT search results - direct computation
   const searchResults = useMemo(() => {
     const trimmedTerm = searchTerm.trim();
     if (!trimmedTerm || trimmedTerm.length < 1) return [];
-    
-    // INSTANT search with ALL results
-    const results = searchTools(allTools, trimmedTerm);
-    return results;
-  }, [searchTerm]); // Direct dependency for instant response
+    return searchTools(allTools, trimmedTerm);
+  }, [searchTerm]);
 
   // Display results with virtual scrolling
   const displayedResults = useMemo(() => 
@@ -31,9 +28,9 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
 
   const shouldShowResults = searchResults.length > 0 && searchTerm.trim().length >= 1;
 
-  // INSTANT search change handler - NO delays
+  // Direct search change handler
   const handleSearchChange = useCallback((value: string) => {
-    onSearchChange(value); // Immediate update
+    onSearchChange(value);
     const trimmed = value.trim();
     setIsOpen(trimmed.length >= 1);
     if (!trimmed) setDisplayedCount(100);
@@ -52,7 +49,6 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
       onSearchChange("");
     } else if (e.key === 'Enter' && searchTerm.trim()) {
       setIsOpen(false);
-      // INSTANT scroll to results
       const element = document.querySelector('[data-search-results]');
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
@@ -61,10 +57,9 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   }, [onSearchChange, searchTerm]);
 
   const handleInputBlur = useCallback((e: React.FocusEvent) => {
-    // Only close if clicking outside the dropdown area
     const relatedTarget = e.relatedTarget as HTMLElement;
     if (!relatedTarget || !relatedTarget.closest('[data-search-dropdown]')) {
-      setTimeout(() => setIsOpen(false), 150); // Small delay to allow clicks
+      setTimeout(() => setIsOpen(false), 150);
     }
   }, []);
 
@@ -81,7 +76,6 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     }
   }, [displayedCount, searchResults.length]);
 
-  // Memoize tool stats for performance
   const toolStats = useMemo(() => getCurrentToolCount(), []);
 
   return {
