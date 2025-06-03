@@ -1,7 +1,7 @@
 
 import { Tool } from "@/types/tools";
 import { getExpandedKeywords } from "../keywordExpansion";
-import { fuzzyMatchTool, phoneticMatch } from "./fuzzyMatching";
+import { fuzzyMatchTool, phoneticMatch, calculateSimilarity } from "./fuzzyMatching";
 import { predictUserIntent, enhanceSearchWithContext } from "./intelligentPrediction";
 
 export interface SearchResult {
@@ -128,10 +128,10 @@ export const performBasicSearch = (
         score += 1500;
       }
       
-      // Fuzzy match tags
+      // Fuzzy match tags using imported function
       for (const searchWord of searchWords) {
         if (searchWord.length >= 3) {
-          const similarity = require('./fuzzyMatching').calculateSimilarity(searchWord, tagLower);
+          const similarity = calculateSimilarity(searchWord, tagLower);
           if (similarity >= 0.7) {
             matched = true;
             score += similarity * 1000;
