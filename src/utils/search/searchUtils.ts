@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { getExpandedKeywords } from "./keywordExpansion";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
@@ -15,6 +14,10 @@ import {
   matchFarming,
   scoreFarming
 } from "./matching/specialtyMatching";
+import { 
+  matchPolitical, 
+  scorePolitical 
+} from "./matching/politicalMatching";
 import { 
   createSearchResult, 
   getSearchWords, 
@@ -60,6 +63,20 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   );
   console.log(`🏷️ Name Insight tool found in database:`, nameInsightTool ? nameInsightTool.title : 'NOT FOUND');
   
+  // Enhanced debugging for political tools
+  const possiblePoliticalTools = tools.filter(tool => 
+    tool.title.toLowerCase().includes('we the people') ||
+    tool.title.toLowerCase().includes('political') ||
+    tool.title.toLowerCase().includes('legislation') ||
+    tool.description.toLowerCase().includes('political activism') ||
+    tool.description.toLowerCase().includes('civic engagement')
+  );
+  
+  console.log(`🏛️ Found ${possiblePoliticalTools.length} political/civic tools in database:`);
+  possiblePoliticalTools.forEach((tool, index) => {
+    console.log(`${index + 1}. "${tool.title}" - URL: ${tool.directUrl || 'NO URL'}`);
+  });
+  
   // Enhanced debugging for farming tools
   const possibleFarmingTools = tools.filter(tool => 
     tool.title.toLowerCase().includes('agro') ||
@@ -94,6 +111,14 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       matched = true;
       score += nameMatch.score;
       console.log(`🏷️ Name search match for "${tool.title}" with score: ${nameMatch.score}`);
+    }
+    
+    // Political/civic specific matching (VERY HIGH PRIORITY for political searches)
+    if (matchPolitical(tool, searchTerm)) {
+      matched = true;
+      const politicalScore = scorePolitical(tool, searchTerm);
+      score += politicalScore;
+      console.log(`🏛️ Political search match for "${tool.title}" with score: ${politicalScore}`);
     }
     
     // Farming/Agriculture specific matching (VERY HIGH PRIORITY for agro searches)
@@ -162,6 +187,21 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   .map(result => result.tool);
 
   console.log(`✅ Enhanced search found ${results.length} results for "${searchTerm}"`);
+  
+  // Enhanced debugging for political searches
+  if (searchTerm.toLowerCase().includes('political') || searchTerm.toLowerCase().includes('activism') || 
+      searchTerm.toLowerCase().includes('we the people') || searchTerm.toLowerCase().includes('civic') ||
+      searchTerm.toLowerCase().includes('democracy') || searchTerm.toLowerCase().includes('government')) {
+    console.log(`🏛️ POLITICAL SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
+    console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
+    
+    // Check if WE THE PEOPLE AI tool is in the results
+    const weThePeopleInResults = results.find(tool => 
+      tool.title.toLowerCase().includes('we the people ai') || 
+      tool.title.toLowerCase().includes('legislation writer')
+    );
+    console.log(`🏛️ WE THE PEOPLE AI tool in results:`, weThePeopleInResults ? weThePeopleInResults.title : 'NOT IN RESULTS');
+  }
   
   // Enhanced debugging for farming searches
   if (searchTerm.toLowerCase().includes('agro') || searchTerm.toLowerCase().includes('farm') || 
