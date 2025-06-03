@@ -1,5 +1,15 @@
 import { keywordMapping, searchSynonyms, categoryKeywords } from "@/data/keywords";
 import { phoneticMatch } from "./core/fuzzyMatching";
+import { 
+  PRESERVED_TIME_KEYWORDS, 
+  PRESERVED_EMERGENCY_KEYWORDS, 
+  PRESERVED_MONEY_KEYWORDS, 
+  PRESERVED_VALUE_KEYWORDS,
+  TIME_TRAVEL_PRIORITY_TOOLS,
+  EMERGENCY_PRIORITY_TOOLS,
+  MONEY_PRIORITY_TOOLS,
+  VALUE_PRIORITY_TOOLS
+} from "@/data/keywords/preservedKeywords";
 
 // MASSIVELY expanded typo correction mapping for better intelligence
 const typoCorrection: Record<string, string> = {
@@ -29,7 +39,6 @@ const typoCorrection: Record<string, string> = {
   "fire figther": "firefighter",
   "firefigher": "firefighter",
   "fire-fighter": "firefighter",
-  "docktor": "doctor",
   "docter": "doctor",
   "survivial": "survival",
   "survial": "survival",
@@ -44,6 +53,21 @@ const typoCorrection: Record<string, string> = {
   "crisis managment": "crisis management",
   "crisis managemnt": "crisis management",
   
+  // Time travel specific misspellings
+  "tim travel": "time travel",
+  "time travle": "time travel",
+  "time trevel": "time travel",
+  "tim machine": "time machine",
+  "time machien": "time machine",
+  "bak to the future": "back to the future",
+  "back too the future": "back to the future",
+  "travle in time": "travel in time",
+  "travel inn time": "travel in time",
+  "histroy": "history",
+  "histoyr": "history",
+  "hsitory": "history",
+  "hostory": "history",
+
   // NEW: Web Development specific misspellings
   "webdev": "web development",
   "web-dev": "web development",
@@ -101,19 +125,6 @@ const typoCorrection: Record<string, string> = {
   "unitri": "unitree",
   "bston dynamics": "boston dynamics",
   "boston dinamic": "boston dynamics",
-  
-  // History and time misspellings
-  "histroy": "history",
-  "histoyr": "history",
-  "hsitory": "history",
-  "hostory": "history",
-  "imagin": "imagine",
-  "imagne": "imagine",
-  "imagien": "imagine",
-  "tim machine": "time machine",
-  "time machien": "time machine",
-  "time travle": "time travel",
-  "time trevel": "time travel",
   
   // Cannabis/smoking related
   "smok": "smoke",
@@ -242,14 +253,76 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   expandedKeywords.add(lowerSearchTerm);
   phoneticMatches.forEach(match => expandedKeywords.add(match));
   
+  // TIME TRAVEL SEARCH EXPANSION - ABSOLUTE HIGHEST PRIORITY
+  if (lowerSearchTerm.includes('time travel') || lowerSearchTerm.includes('travel in time') ||
+      lowerSearchTerm.includes('back to the future') || lowerSearchTerm.includes('time machine') ||
+      lowerSearchTerm === 'time travel' || lowerSearchTerm === 'travel in time' ||
+      lowerSearchTerm === 'back to the future' || lowerSearchTerm.includes('tim travel') ||
+      lowerSearchTerm.includes('time travle') || lowerSearchTerm.includes('bak to the future')) {
+    
+    // Add all preserved time keywords
+    PRESERVED_TIME_KEYWORDS.forEach(keyword => expandedKeywords.add(keyword));
+    
+    // Add all priority time travel tools
+    TIME_TRAVEL_PRIORITY_TOOLS.forEach(tool => expandedKeywords.add(tool));
+    
+    // Add specific time-related keywords for better matching
+    const timeKeywords = [
+      'time machine gpt',
+      'talk to history gpt',
+      'historical headlines gpt',
+      'titanic resurrections gpt',
+      'uncovering hidden historical patterns gpt',
+      'native american history time machine gpt',
+      'historical apothecary gpt',
+      'interpretis',
+      'nikola tesla gpt',
+      'albert einstein gpt',
+      'indiana archeologist gpt',
+      'alan watts gpt',
+      'historical figures',
+      'time travel',
+      'history exploration',
+      'historical conversations',
+      'historical accuracy',
+      'historical analysis',
+      'historical research',
+      'time periods',
+      'ancient history',
+      'modern history',
+      'world history',
+      'cultural history',
+      'historical events',
+      'historical documents',
+      'historical artifacts',
+      'archaeological',
+      'heritage',
+      'legacy',
+      'chronicles',
+      'annals',
+      'archives',
+      'timeline',
+      'epoch',
+      'dynasty',
+      'empire',
+      'time exploration',
+      'temporal',
+      'chronological',
+      'past events',
+      'future events',
+      'historical simulation',
+      'time periods exploration'
+    ];
+    
+    timeKeywords.forEach(keyword => expandedKeywords.add(keyword));
+    console.log(`⏰ TIME TRAVEL SEARCH DETECTED: Added ${timeKeywords.length} time travel keywords`);
+  }
+
   // EMERGENCY SEARCH EXPANSION - ABSOLUTE HIGHEST PRIORITY
-  if (lowerSearchTerm.includes('emergency') || lowerSearchTerm.includes('emergancy') ||
-      lowerSearchTerm.includes('crisis') || lowerSearchTerm.includes('urgent') ||
-      lowerSearchTerm.includes('help') || lowerSearchTerm.includes('rescue') ||
-      lowerSearchTerm.includes('first aid') || lowerSearchTerm.includes('response') ||
-      lowerSearchTerm.includes('first responder') || lowerSearchTerm.includes('911') ||
-      lowerSearchTerm.includes('sos') || lowerSearchTerm.includes('disaster') ||
-      lowerSearchTerm.includes('critical') || lowerSearchTerm.includes('life threatening')) {
+  if (PRESERVED_EMERGENCY_KEYWORDS.some(keyword => lowerSearchTerm.includes(keyword))) {
+    PRESERVED_EMERGENCY_KEYWORDS.forEach(keyword => expandedKeywords.add(keyword));
+    EMERGENCY_PRIORITY_TOOLS.forEach(tool => expandedKeywords.add(tool));
+    
     const emergencyKeywords = [
       'firefighter gpt',
       'survivalist gpt',
@@ -304,11 +377,10 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   }
 
   // MONEY SEARCH EXPANSION - ABSOLUTE HIGHEST PRIORITY
-  if (lowerSearchTerm.includes('money') || lowerSearchTerm.includes('financial') ||
-      lowerSearchTerm.includes('finance') || lowerSearchTerm.includes('trading') ||
-      lowerSearchTerm.includes('credit') || lowerSearchTerm.includes('investment') ||
-      lowerSearchTerm.includes('wealth') || lowerSearchTerm.includes('banking') ||
-      lowerSearchTerm.includes('loan') || lowerSearchTerm.includes('budget')) {
+  if (PRESERVED_MONEY_KEYWORDS.some(keyword => lowerSearchTerm.includes(keyword))) {
+    PRESERVED_MONEY_KEYWORDS.forEach(keyword => expandedKeywords.add(keyword));
+    MONEY_PRIORITY_TOOLS.forEach(tool => expandedKeywords.add(tool));
+    
     const moneyKeywords = [
       'trader gpt',
       'taxes gpt', 
@@ -368,10 +440,10 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   }
 
   // VALUE/APPRAISAL SEARCH EXPANSION - ABSOLUTE HIGHEST PRIORITY
-  if (lowerSearchTerm.includes('value') || lowerSearchTerm.includes('valuation') ||
-      lowerSearchTerm.includes('appraisal') || lowerSearchTerm.includes('worth') ||
-      lowerSearchTerm.includes('estimate') || lowerSearchTerm.includes('price') ||
-      lowerSearchTerm.includes('cost') || lowerSearchTerm.includes('assess')) {
+  if (PRESERVED_VALUE_KEYWORDS.some(keyword => lowerSearchTerm.includes(keyword))) {
+    PRESERVED_VALUE_KEYWORDS.forEach(keyword => expandedKeywords.add(keyword));
+    VALUE_PRIORITY_TOOLS.forEach(tool => expandedKeywords.add(tool));
+    
     const valueKeywords = [
       'material valuation gpt',
       'antique and collectible appraisal gpt',
