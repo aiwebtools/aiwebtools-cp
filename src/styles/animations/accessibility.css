@@ -1,0 +1,43 @@
+
+@layer base {
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .quote-attribution {
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    }
+    
+    .high-contrast-text {
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    }
+    
+    .cta-banner {
+      border: 2px solid rgba(6, 182, 212, 0.8);
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .divine-glow-border {
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  /* Reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .glow-text-effect,
+    .cta-banner,
+    .glow-effect,
+    .divine-glow-border {
+      animation: none;
+    }
+    
+    .interactive-button {
+      transition: background-color 0.2s ease;
+    }
+    
+    .interactive-button:hover {
+      transform: none;
+    }
+  }
+}
