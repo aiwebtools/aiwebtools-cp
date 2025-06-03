@@ -117,9 +117,9 @@ const Index = () => {
           <CategoryPageSelection />
         </div>
 
-        {/* SEE MORE AI TOOLS Button */}
+        {/* SEE MORE AI TOOLS Button - transparent background to show stars */}
         {!showAllTools && (
-          <div className="text-center py-12 px-4 bg-gradient-to-br from-slate-900 to-purple-900">
+          <div className="text-center py-12 px-4 bg-transparent relative">
             <Button
               onClick={handleSeeMoreAITools}
               size="lg"
@@ -133,9 +133,9 @@ const Index = () => {
           </div>
         )}
 
-        {/* All Tools Section - Simplified */}
+        {/* All Tools Section - Simplified with transparent background */}
         {showAllTools && (
-          <div id="all-tools-section" className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
+          <div id="all-tools-section" className="py-16 bg-transparent relative">
             <div className="container mx-auto px-4">
               <div className="text-center mb-8">
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
