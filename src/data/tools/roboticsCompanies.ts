@@ -1,18 +1,42 @@
-
 import { Tool } from "@/types/tools";
 import { Bot, Cpu, Zap, Building, Users, Wrench, Gamepad2, Brain, Eye, Factory, Star, Dna, Activity, Palette, Gauge } from "lucide-react";
 
 export const roboticsCompanies: Tool[] = [
   {
     icon: Bot,
-    title: "Unitree Robotics",
+    title: "Unitree Robotics - G1 Humanoid & Go Series",
     emoji: "🤖",
     category: "Robotics Companies",
-    description: "Leading manufacturer of quadruped and humanoid robots including the G1 humanoid robot and Go series quadrupeds. Specializes in advanced robotics for research, education, and commercial applications.",
+    description: "Leading manufacturer of quadruped and humanoid robots including the G1 humanoid robot and Go series quadrupeds. Specializes in advanced robotics for research, education, and commercial applications with cutting-edge AI integration.",
     color: "from-blue-600 to-purple-600",
     directUrl: "https://www.unitree.com/?via=aiwebtools",
     rating: 4.8,
-    tags: ["humanoid robots", "quadruped robots", "robotics manufacturer", "AI robotics", "commercial robots"]
+    totalVotes: 2341,
+    tags: ["humanoid robots", "quadruped robots", "robotics manufacturer", "AI robotics", "commercial robots", "G1 robot", "Go series", "unitree"]
+  },
+  {
+    icon: Factory,
+    title: "Figure AI - Figure-01 Humanoid Robot",
+    emoji: "🏭",
+    category: "Robotics Companies",
+    description: "Developing Figure-01 humanoid robot for commercial deployment in manufacturing and logistics. Focus on general-purpose humanoid workers with advanced AI capabilities for workplace automation.",
+    color: "from-gray-600 to-green-600",
+    directUrl: "https://www.figure.ai/?via=aiwebtools",
+    rating: 4.6,
+    totalVotes: 1876,
+    tags: ["Figure-01", "Figure 01", "commercial humanoid", "manufacturing robots", "general purpose", "workplace automation", "figure ai", "humanoid worker"]
+  },
+  {
+    icon: Zap,
+    title: "Tesla Bot (Optimus) - Tesla Humanoid Robot",
+    emoji: "⚡",
+    category: "Robotics Companies",
+    description: "Tesla's humanoid robot project designed for general-purpose tasks. Aims to create affordable humanoid robots for manufacturing and household applications with advanced AI and neural networks.",
+    color: "from-gray-600 to-blue-600",
+    directUrl: "https://www.tesla.com/AI/?via=aiwebtools",
+    rating: 4.5,
+    totalVotes: 3421,
+    tags: ["Tesla Bot", "Optimus", "Tesla Optimus", "general purpose robot", "manufacturing automation", "humanoid", "tesla robot", "elon musk robot"]
   },
   {
     icon: Gauge,
@@ -23,7 +47,8 @@ export const roboticsCompanies: Tool[] = [
     color: "from-orange-600 to-red-600",
     directUrl: "https://www.bostondynamics.com/?via=aiwebtools",
     rating: 4.9,
-    tags: ["Atlas robot", "Spot robot", "dynamic robotics", "humanoid", "commercial robotics"]
+    totalVotes: 4532,
+    tags: ["Atlas robot", "Spot robot", "dynamic robotics", "humanoid", "commercial robotics", "boston dynamics"]
   },
   {
     icon: Users,
@@ -34,7 +59,8 @@ export const roboticsCompanies: Tool[] = [
     color: "from-green-600 to-blue-600", 
     directUrl: "https://agilityrobotics.com/?via=aiwebtools",
     rating: 4.7,
-    tags: ["Digit robot", "bipedal robot", "warehouse automation", "logistics robotics", "humanoid"]
+    totalVotes: 1987,
+    tags: ["Digit robot", "bipedal robot", "warehouse automation", "logistics robotics", "humanoid", "agility robotics"]
   },
   {
     icon: Building,
@@ -45,18 +71,8 @@ export const roboticsCompanies: Tool[] = [
     color: "from-red-600 to-orange-600",
     directUrl: "https://global.honda/innovation/robotics/?via=aiwebtools", 
     rating: 4.6,
+    totalVotes: 2134,
     tags: ["ASIMO", "bipedal locomotion", "Honda robotics", "humanoid research", "AI integration"]
-  },
-  {
-    icon: Zap,
-    title: "Tesla Bot (Optimus)",
-    emoji: "⚡",
-    category: "Robotics Companies",
-    description: "Tesla's humanoid robot project designed for general-purpose tasks. Aims to create affordable humanoid robots for manufacturing and household applications.",
-    color: "from-gray-600 to-blue-600",
-    directUrl: "https://www.tesla.com/AI/?via=aiwebtools",
-    rating: 4.5,
-    tags: ["Tesla Bot", "Optimus", "general purpose robot", "manufacturing automation", "humanoid"]
   },
   {
     icon: Eye,
@@ -67,6 +83,7 @@ export const roboticsCompanies: Tool[] = [
     color: "from-purple-600 to-pink-600",
     directUrl: "https://www.hansonrobotics.com/?via=aiwebtools",
     rating: 4.4,
+    totalVotes: 1654,
     tags: ["Sophia robot", "social robotics", "AI conversation", "humanoid expressions", "entertainment robots"]
   },
   {
@@ -78,6 +95,7 @@ export const roboticsCompanies: Tool[] = [
     color: "from-blue-600 to-cyan-600",
     directUrl: "https://www.softbankrobotics.com/?via=aiwebtools",
     rating: 4.3,
+    totalVotes: 1432,
     tags: ["Pepper robot", "NAO robot", "service robots", "education robotics", "emotion sensing"]
   },
   {
@@ -89,6 +107,7 @@ export const roboticsCompanies: Tool[] = [
     color: "from-indigo-600 to-purple-600",
     directUrl: "https://pal-robotics.com/?via=aiwebtools",
     rating: 4.5,
+    totalVotes: 987,
     tags: ["TALOS robot", "REEM robot", "research robotics", "mobile manipulation", "European robotics"]
   },
   {
@@ -100,18 +119,8 @@ export const roboticsCompanies: Tool[] = [
     color: "from-yellow-600 to-orange-600",
     directUrl: "https://www.ubtrobot.com/?via=aiwebtools",
     rating: 4.2,
+    totalVotes: 876,
     tags: ["Walker robot", "Alpha robot", "education robotics", "entertainment robots", "AI learning"]
-  },
-  {
-    icon: Factory,
-    title: "Figure AI",
-    emoji: "🏭",
-    category: "Robotics Companies",
-    description: "Developing Figure-01 humanoid robot for commercial deployment in manufacturing and logistics. Focus on general-purpose humanoid workers.",
-    color: "from-gray-600 to-green-600",
-    directUrl: "https://www.figure.ai/?via=aiwebtools",
-    rating: 4.6,
-    tags: ["Figure-01", "commercial humanoid", "manufacturing robots", "general purpose", "workplace automation"]
   },
   {
     icon: Star,
@@ -122,6 +131,7 @@ export const roboticsCompanies: Tool[] = [
     color: "from-teal-600 to-blue-600",
     directUrl: "https://www.1x.tech/?via=aiwebtools",
     rating: 4.4,
+    totalVotes: 765,
     tags: ["NEO robot", "EVE robot", "home assistance", "workplace robots", "human-robot coexistence"]
   },
   {
@@ -133,6 +143,7 @@ export const roboticsCompanies: Tool[] = [
     color: "from-purple-600 to-blue-600",
     directUrl: "https://www.clone-robotics.com/?via=aiwebtools",
     rating: 4.3,
+    totalVotes: 543,
     tags: ["bio-inspired robotics", "artificial muscles", "human dexterity", "advanced humanoids", "biomimetics"]
   },
   {
@@ -144,6 +155,7 @@ export const roboticsCompanies: Tool[] = [
     color: "from-red-600 to-purple-600",
     directUrl: "https://sanctuary.ai/?via=aiwebtools",
     rating: 4.5,
+    totalVotes: 1234,
     tags: ["Phoenix robot", "general intelligence", "human dexterity", "Canadian robotics", "AI workforce"]
   },
   {
@@ -155,6 +167,7 @@ export const roboticsCompanies: Tool[] = [
     color: "from-pink-600 to-purple-600",
     directUrl: "https://www.engineeredarts.co.uk/?via=aiwebtools",
     rating: 4.4,
+    totalVotes: 987,
     tags: ["Ameca robot", "realistic humanoids", "entertainment robots", "research platforms", "UK robotics"]
   },
   {
@@ -166,6 +179,7 @@ export const roboticsCompanies: Tool[] = [
     color: "from-orange-600 to-yellow-600",
     directUrl: "https://apptronik.com/?via=aiwebtools",
     rating: 4.3,
+    totalVotes: 654,
     tags: ["Apollo robot", "logistics automation", "manufacturing robots", "commercial humanoids", "Texas robotics"]
   }
 ];

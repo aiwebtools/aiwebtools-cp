@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { getExpandedKeywords } from "./keywordExpansion";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
@@ -41,6 +42,7 @@ import {
 import { matchNameInsightTool } from "./core/specialtyMatching";
 import { fuzzyMatchTool, phoneticMatch } from "./core/fuzzyMatching";
 import { predictUserIntent, enhanceSearchWithContext } from "./core/intelligentPrediction";
+import { matchToolByIntent } from "./core/intentBasedMatching";
 
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
@@ -48,7 +50,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return tools;
   }
 
-  console.log(`🧠 INTELLIGENT search for: "${searchTerm}" across ${tools.length} tools`);
+  console.log(`🧠 SUPER-INTELLIGENT search for: "${searchTerm}" across ${tools.length} tools`);
   
   // Get enhanced search terms
   const enhancedTerms = enhanceSearchWithContext(searchTerm);
@@ -65,11 +67,19 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   // Remove duplicates by title before scoring
   const uniqueTools = removeDuplicateTools(tools);
   
-  console.log(`🔧 Intelligent search through ${uniqueTools.length} unique tools`);
+  console.log(`🔧 Super-intelligent search through ${uniqueTools.length} unique tools`);
   
   const results = uniqueTools.map(tool => {
     let score = 0;
     let matched = false;
+    
+    // PRIORITY 0: Intent-based matching - ABSOLUTE HIGHEST PRIORITY
+    const intentResult = matchToolByIntent(tool, searchTerm);
+    if (intentResult.matched) {
+      matched = true;
+      score += intentResult.score;
+      console.log(`🎯 INTENT MATCH for "${tool.title}" with score: ${intentResult.score}`);
+    }
     
     // PRIORITY 1: Special name insight tool matching - HIGHEST PRIORITY
     const nameMatch = matchNameInsightTool(tool, searchTerm);
@@ -220,11 +230,11 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   .sort((a, b) => b.score - a.score)
   .map(result => result.tool);
 
-  console.log(`✅ Intelligent search found ${results.length} results for "${searchTerm}"`);
+  console.log(`✅ Super-intelligent search found ${results.length} results for "${searchTerm}"`);
   
   // Enhanced debugging with intelligence info
   if (results.length > 0) {
-    console.log(`🎯 Top 5 intelligent results:`, results.slice(0, 5).map((t, i) => `${i+1}. ${t.title}`));
+    console.log(`🎯 Top 5 super-intelligent results:`, results.slice(0, 5).map((t, i) => `${i+1}. ${t.title}`));
   }
   
   return results;

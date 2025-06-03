@@ -41,39 +41,41 @@ const typoCorrection: Record<string, string> = {
   "responive": "responsive",
   "responsiv": "responsive",
   
-  // Programming language misspellings
-  "javascrip": "javascript",
-  "javasript": "javascript",
-  "javscript": "javascript",
-  "javacsript": "javascript",
-  "reactjs": "react",
-  "react.js": "react",
-  "vuejs": "vue",
-  "vue.js": "vue",
-  "angularjs": "angular",
-  "angular.js": "angular",
-  "nodejs": "node",
-  "node.js": "node",
+  // App creation misspellings
+  "mak an app": "make an app",
+  "creat an app": "create an app",
+  "bild an app": "build an app",
+  "devlop an app": "develop an app",
+  "buld app": "build app",
+  "mke app": "make app",
+  "creat app": "create app",
   
-  // Tools and platforms
-  "lovabledev": "lovable.dev",
-  "lovable.dev": "lovable",
-  "boltdotnew": "bolt.new",
-  "bolt.new": "bolt",
-  "vercelv0": "vercel v0",
-  "v0.dev": "vercel v0",
-  "githubcopilot": "github copilot",
-  "github-copilot": "github copilot",
-  "webfow": "webflow",
-  "webflw": "webflow",
-  "framr": "framer",
-  "builderio": "builder.io",
-  "builder.io": "builder",
-  "netlfy": "netlify",
-  "netlif": "netlify",
-  "supabase": "supabase",
-  "railwy": "railway",
-  "railay": "railway",
+  // Book writing misspellings
+  "writ a book": "write a book",
+  "wriet a book": "write a book",
+  "write boook": "write book",
+  "wriet book": "write book",
+  "book writting": "book writing",
+  "book writng": "book writing",
+  
+  // Robotics misspellings
+  "robbot": "robot",
+  "robbot": "robot",
+  "robotic": "robotics",
+  "robotik": "robotics",
+  "robootics": "robotics",
+  "humaniod": "humanoid",
+  "humanod": "humanoid",
+  "figur 01": "figure 01",
+  "figur01": "figure 01",
+  "tesla bot": "tesla optimus",
+  "teslabot": "tesla optimus",
+  "optmus": "optimus",
+  "opimus": "optimus",
+  "unitre": "unitree",
+  "unitri": "unitree",
+  "bston dynamics": "boston dynamics",
+  "boston dinamic": "boston dynamics",
   
   // ... keep existing code (all other corrections)
   "writting": "writing",
@@ -195,6 +197,168 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   expandedKeywords.add(lowerSearchTerm);
   phoneticMatches.forEach(match => expandedKeywords.add(match));
   
+  // APP CREATION SEARCH EXPANSION - HIGHEST PRIORITY
+  if (lowerSearchTerm.includes('make an app') || lowerSearchTerm.includes('create an app') ||
+      lowerSearchTerm.includes('build an app') || lowerSearchTerm.includes('develop an app') ||
+      lowerSearchTerm.includes('make app') || lowerSearchTerm.includes('create app') ||
+      lowerSearchTerm.includes('build app') || lowerSearchTerm.includes('app builder') ||
+      (lowerSearchTerm.includes('make') && lowerSearchTerm.includes('app')) ||
+      (lowerSearchTerm.includes('create') && lowerSearchTerm.includes('app')) ||
+      (lowerSearchTerm.includes('build') && lowerSearchTerm.includes('app'))) {
+    const appCreationKeywords = [
+      'lovable.dev',
+      'lovable',
+      'bolt.new',
+      'bolt',
+      'vercel v0',
+      'v0',
+      'github copilot',
+      'replit',
+      'webflow',
+      'framer',
+      'builder.io',
+      'builder',
+      'netlify',
+      'supabase',
+      'railway',
+      'cloudflare workers',
+      'tabnine',
+      'mutable ai',
+      'sourcegraph',
+      'deepcode',
+      'code climate',
+      'durable ai',
+      'amazon codewhisperer',
+      'engineering gpt ai suite',
+      'web development',
+      'app development',
+      'web app builder',
+      'app builder',
+      'no code',
+      'low code',
+      'visual development',
+      'rapid development',
+      'web development tools',
+      'app creation',
+      'website builder',
+      'application development',
+      'software development',
+      'development platform',
+      'coding tools',
+      'programming tools',
+      'development environment'
+    ];
+    
+    appCreationKeywords.forEach(keyword => expandedKeywords.add(keyword));
+    console.log(`🚀 APP CREATION SEARCH DETECTED: Added ${appCreationKeywords.length} app creation keywords`);
+  }
+
+  // BOOK WRITING SEARCH EXPANSION - HIGHEST PRIORITY
+  if (lowerSearchTerm.includes('write a book') || lowerSearchTerm.includes('write book') ||
+      lowerSearchTerm.includes('book writing') || lowerSearchTerm.includes('book writer') ||
+      lowerSearchTerm.includes('create a book') || lowerSearchTerm.includes('author') ||
+      (lowerSearchTerm.includes('write') && lowerSearchTerm.includes('book')) ||
+      (lowerSearchTerm.includes('create') && lowerSearchTerm.includes('book'))) {
+    const bookWritingKeywords = [
+      'book writer gpt',
+      'book writing',
+      'write a book',
+      'book creation',
+      'novel writing',
+      'story writing',
+      'creative writing',
+      'author tools',
+      'writing assistant',
+      'content creation',
+      'manuscript',
+      'novel creation',
+      'storytelling',
+      'book publishing',
+      'writing tools',
+      'narrative writing',
+      'fiction writing',
+      'non-fiction writing',
+      'autobiography',
+      'memoir writing',
+      'children book writer',
+      'script writing',
+      'screenplay',
+      'writing platform',
+      'author assistant',
+      'book generator',
+      'story generator',
+      'writing software'
+    ];
+    
+    bookWritingKeywords.forEach(keyword => expandedKeywords.add(keyword));
+    console.log(`📚 BOOK WRITING SEARCH DETECTED: Added ${bookWritingKeywords.length} book writing keywords`);
+  }
+
+  // ROBOTICS SEARCH EXPANSION - HIGHEST PRIORITY
+  if (lowerSearchTerm.includes('robot') || lowerSearchTerm.includes('robotics') ||
+      lowerSearchTerm.includes('humanoid') || lowerSearchTerm.includes('android') ||
+      lowerSearchTerm.includes('figure 01') || lowerSearchTerm.includes('figure-01') ||
+      lowerSearchTerm.includes('tesla optimus') || lowerSearchTerm.includes('optimus') ||
+      lowerSearchTerm.includes('unitree') || lowerSearchTerm.includes('boston dynamics') ||
+      lowerSearchTerm.includes('atlas robot') || lowerSearchTerm.includes('spot robot')) {
+    const roboticsKeywords = [
+      'unitree robotics',
+      'unitree',
+      'figure ai',
+      'figure 01',
+      'figure-01',
+      'tesla bot',
+      'tesla optimus',
+      'optimus',
+      'boston dynamics',
+      'atlas robot',
+      'spot robot',
+      'agility robotics',
+      'digit robot',
+      'honda asimo',
+      'asimo',
+      'hanson robotics',
+      'sophia robot',
+      'softbank robotics',
+      'pepper robot',
+      'nao robot',
+      'pal robotics',
+      'talos robot',
+      'ubtech robotics',
+      'walker robot',
+      '1x robotics',
+      'neo robot',
+      'eve robot',
+      'clone robotics',
+      'sanctuary ai',
+      'phoenix robot',
+      'engineered arts',
+      'ameca robot',
+      'apptronik',
+      'apollo robot',
+      'humanoid robot',
+      'bipedal robot',
+      'quadruped robot',
+      'service robot',
+      'commercial robot',
+      'industrial robot',
+      'personal robot',
+      'ai robot',
+      'robotic automation',
+      'robotics company',
+      'robot manufacturer',
+      'advanced robotics',
+      'robotics research',
+      'robotic assistant',
+      'home robot',
+      'warehouse robot',
+      'logistics robot'
+    ];
+    
+    roboticsKeywords.forEach(keyword => expandedKeywords.add(keyword));
+    console.log(`🤖 ROBOTICS SEARCH DETECTED: Added ${roboticsKeywords.length} robotics keywords`);
+  }
+
   // WEB DEVELOPMENT SEARCH EXPANSION - HIGHEST PRIORITY
   if (lowerSearchTerm.includes('web') || lowerSearchTerm.includes('dev') ||
       lowerSearchTerm.includes('code') || lowerSearchTerm.includes('program') ||
