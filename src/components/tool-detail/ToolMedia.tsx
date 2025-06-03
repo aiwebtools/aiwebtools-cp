@@ -1,5 +1,5 @@
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { Image as ImageIcon } from "lucide-react";
 import { Tool } from "@/types/tools";
 
@@ -13,35 +13,51 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
 
-  const getOptimizedEmbedUrl = useCallback((url: string) => {
+  const getOptimizedEmbedUrl = (url: string) => {
+    console.log('Processing video URL:', url);
+    
     // Handle youtu.be short URLs
     if (url.includes('youtu.be/')) {
       const videoId = url.split('youtu.be/')[1].split('?')[0];
-      return `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&fs=1&modestbranding=1&rel=0&iv_load_policy=3&cc_load_policy=0`;
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&volume=65&autohide=1&controls=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
+      console.log('YouTube short embed URL:', embedUrl);
+      return embedUrl;
     }
     
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1].split('&')[0];
-      return `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&fs=1&modestbranding=1&rel=0&iv_load_policy=3&cc_load_policy=0`;
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&volume=65&autohide=1&controls=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
+      console.log('YouTube embed URL:', embedUrl);
+      return embedUrl;
     }
     
     if (url.includes('vimeo.com/')) {
       const videoId = url.split('vimeo.com/')[1].split('?')[0];
-      return `https://player.vimeo.com/video/${videoId}?autoplay=1&controls=1`;
+      const embedUrl = `https://player.vimeo.com/video/${videoId}?autoplay=0&volume=0.65`;
+      console.log('Vimeo embed URL:', embedUrl);
+      return embedUrl;
     }
-    
+    console.log('Using original URL:', url);
     return url;
-  }, []);
+  };
 
-  const handleVideoError = useCallback(() => {
+  const handleVideoError = () => {
     console.error('Video failed to load for tool:', tool.title);
     setVideoError(true);
-  }, [tool.title]);
+  };
 
   const MediaComponent = () => {
+    console.log('Tool media check:', {
+      title: tool.title,
+      hasImage: !!tool.imageUrl,
+      hasVideo: !!tool.videoUrl,
+      videoUrl: tool.videoUrl,
+      imageError,
+      videoError
+    });
+
     // Prioritize video if available, then fallback to image
     if (tool.videoUrl && !videoError) {
-      // Show actual video iframe immediately
       const embedUrl = getOptimizedEmbedUrl(tool.videoUrl);
       
       return (
@@ -55,7 +71,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="w-full h-full rounded-xl"
-            loading="eager"
+            loading="lazy"
             onError={handleVideoError}
             onLoad={() => console.log('Video loaded successfully for:', tool.title)}
           />
