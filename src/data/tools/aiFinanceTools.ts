@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { 
   DollarSign, TrendingUp, BarChart3, Calculator, PieChart,
@@ -7,7 +8,7 @@ import {
 export const aiFinanceTools: Tool[] = [
   {
     icon: Calculator,
-    title: "Personal Finance Advisor GPT",
+    title: "Financial Planning Assistant",
     description: "Advanced AI-powered financial calculator for complex calculations, investment analysis, and financial planning with step-by-step explanations.",
     emoji: "🧮",
     color: "from-green-500 to-blue-600",
