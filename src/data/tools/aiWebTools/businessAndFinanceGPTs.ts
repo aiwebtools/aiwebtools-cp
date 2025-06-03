@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Calculator, 
@@ -24,6 +23,18 @@ import {
 } from "lucide-react";
 
 export const businessAndFinanceGPTs: Tool[] = [
+  {
+    icon: Calculator,
+    title: "Personal Finance Advisor GPT",
+    description: "Take control of your personal finances with expert guidance on budgeting, saving, investing, debt management, and financial planning for your future goals.",
+    emoji: "💰",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://chat.openai.com/g/g-f0s3qjB7I",
+    tags: ["personal finance", "budgeting", "investing", "debt management", "financial planning"],
+    category: "Business & Finance",
+    rating: 4.6,
+    totalVotes: 3456
+  },
   {
     icon: TrendingUp,
     title: "Bull or Bear AI",
