@@ -159,6 +159,22 @@ const typoCorrection: Record<string, string> = {
   "actvism": "activism",
   "activizm": "activism",
   
+  // NEW: Cannabis/hemp related typos
+  "canabis": "cannabis",
+  "cannibis": "cannabis",
+  "canibus": "cannabis",
+  "cannibus": "cannabis",
+  "marihuana": "marijuana",
+  "marajuana": "marijuana",
+  "marijauna": "marijuana",
+  "marjuana": "marijuana",
+  "ganja": "cannabis",
+  "weed": "cannabis",
+  "pot": "cannabis",
+  "cbd": "cannabis",
+  "thc": "cannabis",
+  "hemp": "cannabis",
+  
   // NEW: Financial and money-related typos
   "mony": "money",
   "moeny": "money",
@@ -256,7 +272,8 @@ const commonToolKeywords = [
   'travel', 'adventure', 'exploration', 'discovery',
   'gaming', 'entertainment', 'fun', 'recreation',
   'legal', 'law', 'attorney', 'lawyer', 'contract',
-  'real estate', 'property', 'housing', 'construction'
+  'real estate', 'property', 'housing', 'construction',
+  'cannabis', 'hemp', 'marijuana', 'cbd', 'thc'
 ];
 
 export const getExpandedKeywords = (searchTerm: string): string[] => {
@@ -277,6 +294,48 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   expandedKeywords.add(searchTerm.toLowerCase().trim());
   expandedKeywords.add(lowerSearchTerm);
   phoneticMatches.forEach(match => expandedKeywords.add(match));
+  
+  // CANNABIS/HEMP SEARCH EXPANSION - HIGHEST PRIORITY
+  if (lowerSearchTerm.includes('cannabis') || lowerSearchTerm.includes('hemp') ||
+      lowerSearchTerm.includes('cbd') || lowerSearchTerm.includes('thc') ||
+      lowerSearchTerm.includes('marijuana') || lowerSearchTerm.includes('weed') ||
+      lowerSearchTerm.includes('ganja') || lowerSearchTerm.includes('pot')) {
+    const cannabisKeywords = [
+      'cannabis gpt',
+      '🌿cannabis gpt',
+      'cannabis',
+      'hemp',
+      'cbd',
+      'thc',
+      'marijuana',
+      'weed',
+      'ganja',
+      'cannabis cultivation',
+      'hemp gpt',
+      'strain genetics',
+      'cannabis growing',
+      'cannabis medicine',
+      'cannabis research',
+      'cannabis legal',
+      'cannabis industry',
+      'cannabis science',
+      'plant medicine',
+      'herbal medicine',
+      'botanical',
+      'cultivation',
+      'growing',
+      'horticulture',
+      'agriculture',
+      'plant health',
+      'organic farming',
+      'medicinal plants',
+      'wellness',
+      'alternative medicine',
+      'holistic health'
+    ];
+    
+    cannabisKeywords.forEach(keyword => expandedKeywords.add(keyword));
+  }
   
   // SOUND EFFECTS AND AUDIO SEARCH EXPANSION - HIGHEST PRIORITY
   if (lowerSearchTerm.includes('sound effect') || lowerSearchTerm.includes('sound effects') ||
@@ -812,5 +871,9 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   }
   
   // Convert back to array and remove empty strings
-  return Array.from(expandedKeywords).filter(keyword => keyword.length > 0);
+  const result = Array.from(expandedKeywords).filter(keyword => keyword.length > 0);
+  
+  console.log(`🔍 Expanded keywords for "${searchTerm}":`, result);
+  
+  return result;
 };

@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { getExpandedKeywords } from "./keywordExpansion";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
@@ -5,6 +6,7 @@ import { matchPhoneAgents, scorePhoneAgents } from "./matching/phoneAgentMatchin
 import { matchMusicTools, scoreMusicTools } from "./matching/musicMatching";
 import { matchAppBuilding, scoreAppBuilding } from "./matching/appBuildingMatching";
 import { matchSoundEffect, scoreSoundEffect } from "./matching/soundEffectMatching";
+import { matchCannabis, scoreCannabis } from "./matching/cannabisMatching";
 import { 
   matchHealth, 
   scoreHealth,
@@ -77,7 +79,15 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🏷️ Name search match for "${tool.title}" with score: ${nameMatch.score}`);
     }
     
-    // PRIORITY 2: Sound effect specific matching - HIGHEST PRIORITY
+    // PRIORITY 2: Cannabis specific matching - HIGHEST PRIORITY
+    if (matchCannabis(tool, searchTerm)) {
+      matched = true;
+      const cannabisScore = scoreCannabis(tool, searchTerm);
+      score += cannabisScore;
+      console.log(`🌿 Cannabis search match for "${tool.title}" with score: ${cannabisScore}`);
+    }
+    
+    // PRIORITY 3: Sound effect specific matching - HIGHEST PRIORITY
     if (matchSoundEffect(tool, searchTerm)) {
       matched = true;
       const soundEffectScore = scoreSoundEffect(tool, searchTerm);
@@ -85,7 +95,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🔊 Sound effect search match for "${tool.title}" with score: ${soundEffectScore}`);
     }
     
-    // PRIORITY 3: Enhanced fuzzy matching for misspellings
+    // PRIORITY 4: Enhanced fuzzy matching for misspellings
     const fuzzyResult = fuzzyMatchTool(tool, searchTerm);
     if (fuzzyResult.matched) {
       matched = true;
@@ -93,7 +103,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🎯 Fuzzy match for "${tool.title}" with score: ${fuzzyResult.score}`);
     }
     
-    // PRIORITY 4: Phonetic matching for sound-alike words
+    // PRIORITY 5: Phonetic matching for sound-alike words
     for (const phoneticTerm of phoneticMatches) {
       const searchableText = [
         tool.title,
@@ -109,7 +119,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       }
     }
     
-    // PRIORITY 5: Prediction-based matching
+    // PRIORITY 6: Prediction-based matching
     for (const prediction of predictions) {
       const searchableText = [
         tool.title,
@@ -125,7 +135,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       }
     }
     
-    // PRIORITY 6: Education specific matching - HIGH PRIORITY
+    // PRIORITY 7: Education specific matching - HIGH PRIORITY
     if (matchEducation(tool, searchTerm)) {
       matched = true;
       const educationScore = scoreEducation(tool, searchTerm);
@@ -133,7 +143,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🎓 Education search match for "${tool.title}" with score: ${educationScore}`);
     }
     
-    // PRIORITY 7: Financial specific matching - HIGH PRIORITY
+    // PRIORITY 8: Financial specific matching - HIGH PRIORITY
     if (matchFinancial(tool, searchTerm)) {
       matched = true;
       const financialScore = scoreFinancial(tool, searchTerm);
@@ -141,7 +151,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`💰 Financial search match for "${tool.title}" with score: ${financialScore}`);
     }
     
-    // PRIORITY 8: Political/civic specific matching
+    // PRIORITY 9: Political/civic specific matching
     if (matchPolitical(tool, searchTerm)) {
       matched = true;
       const politicalScore = scorePolitical(tool, searchTerm);
@@ -149,7 +159,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       console.log(`🏛️ Political search match for "${tool.title}" with score: ${politicalScore}`);
     }
     
-    // PRIORITY 9: Travel specific matching
+    // PRIORITY 10: Travel specific matching
     if (matchTravel(tool, searchTerm)) {
       matched = true;
       const travelScore = scoreTravel(tool, searchTerm);
@@ -198,7 +208,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       score += scoreAgents(tool, searchTerm);
     }
     
-    // PRIORITY 10: Enhanced basic search with all intelligent features
+    // PRIORITY 11: Enhanced basic search with all intelligent features
     const basicSearch = performBasicSearch(tool, searchTerm, searchWords, expandedKeywords);
     if (basicSearch.matched) {
       matched = true;
