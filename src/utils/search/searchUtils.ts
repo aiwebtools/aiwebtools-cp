@@ -203,7 +203,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       score += scoreAgents(tool, searchTerm);
     }
     
-    // Perform basic search scoring
+    // Perform basic search scoring - THIS IS CRITICAL FOR SEARCH BAR RECOMMENDATIONS
     const basicSearch = performBasicSearch(tool, searchTerm, searchWords, expandedKeywords);
     if (basicSearch.matched) {
       matched = true;

@@ -23,9 +23,9 @@ import {
   matchPolitical, scorePolitical 
 } from "./matching/politicalMatching";
 
-// Enhanced keyword matching for specific tool categories
+// Enhanced keyword matching for specific tool categories including travel and political
 export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean => {
-  // Check all matching functions including travel and political
+  // Check all matching functions including travel and political - CRITICAL FOR SEARCH BAR
   return matchAgents(tool, searchTerm) ||
          matchCodingAgents(tool, searchTerm) ||
          matchWebDesign(tool, searchTerm) ||
@@ -42,7 +42,7 @@ export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean
 export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
   let totalScore = 0;
   
-  // Add scores from all scoring functions including travel and political
+  // Add scores from all scoring functions including travel and political - CRITICAL FOR RANKING
   totalScore += scoreAgents(tool, searchTerm);
   totalScore += scoreCodingAgents(tool, searchTerm);
   totalScore += scoreWebDesign(tool, searchTerm);
