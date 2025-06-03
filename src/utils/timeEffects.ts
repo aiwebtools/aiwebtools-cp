@@ -1,4 +1,4 @@
-import { createPortalSounds, createRobotVoice } from './effects/audioEffects';
+import { createPortalSounds } from './effects/audioEffects';
 import { 
   createParticles, 
   createVortexRings, 
@@ -210,7 +210,7 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   console.log('🌀 Creating enhanced centered portal effect for URL:', destinationUrl);
   console.log('🌀 Tool name provided:', toolName);
   
-  // Extract tool name for personalized robot voice
+  // Extract tool name for logging purposes (no longer used for voice)
   const finalToolName = extractToolName(destinationUrl, toolName);
   console.log('🎯 Final detected tool name:', finalToolName);
   
@@ -228,11 +228,8 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   createLightning(effectsContainer);
   createFlash(effectsContainer);
   
-  // Create portal sounds (keeping existing timing)
+  // Create portal sounds (keeping existing timing) - NO ROBOT VOICE
   createPortalSounds();
-  
-  // Create robot voice with contextual message using the actual tool name
-  createRobotVoice(finalToolName, destinationUrl);
 
   // Cleanup and open in new tab after 3.5 seconds (always new window to keep users on site)
   setTimeout(() => {
