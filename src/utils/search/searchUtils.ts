@@ -1,3 +1,4 @@
+
 import { Tool } from "@/types/tools";
 import { getExpandedKeywords } from "./keywordExpansion";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
@@ -12,7 +13,9 @@ import {
   matchMedical,
   scoreMedical,
   matchFarming,
-  scoreFarming
+  scoreFarming,
+  matchTravel,
+  scoreTravel
 } from "./matching/specialtyMatching";
 import { 
   matchPolitical, 
@@ -68,13 +71,32 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     tool.title.toLowerCase().includes('we the people') ||
     tool.title.toLowerCase().includes('political') ||
     tool.title.toLowerCase().includes('legislation') ||
+    tool.title.toLowerCase().includes('politician') ||
+    tool.title.toLowerCase().includes('civic') ||
+    tool.title.toLowerCase().includes('democracy') ||
     tool.description.toLowerCase().includes('political activism') ||
-    tool.description.toLowerCase().includes('civic engagement')
+    tool.description.toLowerCase().includes('civic engagement') ||
+    tool.description.toLowerCase().includes('we the people') ||
+    tool.directUrl?.includes('legislator')
   );
   
   console.log(`🏛️ Found ${possiblePoliticalTools.length} political/civic tools in database:`);
   possiblePoliticalTools.forEach((tool, index) => {
-    console.log(`${index + 1}. "${tool.title}" - URL: ${tool.directUrl || 'NO URL'}`);
+    console.log(`${index + 1}. "${tool.title}" - URL: ${tool.directUrl || 'NO URL'} - Category: ${tool.category || 'NO CATEGORY'}`);
+  });
+  
+  // Enhanced debugging for travel tools
+  const possibleTravelTools = tools.filter(tool => 
+    tool.title.toLowerCase().includes('travel') ||
+    tool.title.toLowerCase().includes('vacation') ||
+    tool.title.toLowerCase().includes('trip') ||
+    tool.description.toLowerCase().includes('travel') ||
+    tool.directUrl?.includes('travel')
+  );
+  
+  console.log(`✈️ Found ${possibleTravelTools.length} travel tools in database:`);
+  possibleTravelTools.forEach((tool, index) => {
+    console.log(`${index + 1}. "${tool.title}" - URL: ${tool.directUrl || 'NO URL'} - Category: ${tool.category || 'NO CATEGORY'}`);
   });
   
   // Enhanced debugging for farming tools
@@ -119,6 +141,14 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       const politicalScore = scorePolitical(tool, searchTerm);
       score += politicalScore;
       console.log(`🏛️ Political search match for "${tool.title}" with score: ${politicalScore}`);
+    }
+    
+    // Travel specific matching (VERY HIGH PRIORITY for travel searches)
+    if (matchTravel(tool, searchTerm)) {
+      matched = true;
+      const travelScore = scoreTravel(tool, searchTerm);
+      score += travelScore;
+      console.log(`✈️ Travel search match for "${tool.title}" with score: ${travelScore}`);
     }
     
     // Farming/Agriculture specific matching (VERY HIGH PRIORITY for agro searches)
@@ -195,12 +225,30 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     console.log(`🏛️ POLITICAL SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
     console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
     
-    // Check if WE THE PEOPLE AI tool is in the results
-    const weThePeopleInResults = results.find(tool => 
-      tool.title.toLowerCase().includes('we the people ai') || 
-      tool.title.toLowerCase().includes('legislation writer')
+    // Check if political tools are in the results
+    const politicalInResults = results.filter(tool => 
+      tool.title.toLowerCase().includes('we the people') || 
+      tool.title.toLowerCase().includes('political') ||
+      tool.title.toLowerCase().includes('legislation') ||
+      tool.title.toLowerCase().includes('politician') ||
+      tool.title.toLowerCase().includes('civic')
     );
-    console.log(`🏛️ WE THE PEOPLE AI tool in results:`, weThePeopleInResults ? weThePeopleInResults.title : 'NOT IN RESULTS');
+    console.log(`🏛️ Political tools in results:`, politicalInResults.map(t => t.title));
+  }
+  
+  // Enhanced debugging for travel searches
+  if (searchTerm.toLowerCase().includes('travel') || searchTerm.toLowerCase().includes('vacation') || 
+      searchTerm.toLowerCase().includes('trip') || searchTerm.toLowerCase().includes('tourism')) {
+    console.log(`✈️ TRAVEL SEARCH DEBUG - Found ${results.length} results for "${searchTerm}"`);
+    console.log(`🔝 Top 10 results:`, results.slice(0, 10).map((t, i) => `${i+1}. ${t.title}`));
+    
+    // Check if Travel Advisor tool is in the results
+    const travelInResults = results.find(tool => 
+      tool.title.toLowerCase().includes('travel advisor') || 
+      tool.title.toLowerCase().includes('travel agent') ||
+      tool.directUrl?.includes('travelagentgpt')
+    );
+    console.log(`✈️ Travel Advisor tool in results:`, travelInResults ? travelInResults.title : 'NOT IN RESULTS');
   }
   
   // Enhanced debugging for farming searches
