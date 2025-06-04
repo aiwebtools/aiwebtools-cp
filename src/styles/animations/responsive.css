@@ -74,6 +74,40 @@
       -webkit-backface-visibility: hidden !important;
     }
     
+    /* MOBILE APP SEARCH DROPDOWN FIX - Force above all content */
+    [data-search-dropdown], 
+    .search-dropdown-mobile,
+    div[style*="zIndex: 2147483647"],
+    div[style*="z-index: 2147483647"] {
+      position: fixed !important;
+      z-index: 2147483647 !important;
+      isolation: isolate !important;
+      -webkit-transform: translateZ(0) !important;
+      transform: translateZ(0) !important;
+      background: white !important;
+      border: 1px solid #e5e7eb !important;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    }
+    
+    /* Mobile app specific dropdown container */
+    .mobile-search-results {
+      position: fixed !important;
+      top: auto !important;
+      left: 16px !important;
+      right: 16px !important;
+      z-index: 2147483647 !important;
+      background: white !important;
+      border: 1px solid #e5e7eb !important;
+      border-radius: 12px !important;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+      max-height: 60vh !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      isolation: isolate !important;
+      -webkit-transform: translateZ(0) !important;
+      transform: translateZ(0) !important;
+    }
+    
     /* Prevent layout shifts on mobile */
     .hero-section {
       contain: layout style;
@@ -129,6 +163,15 @@
       -webkit-user-select: none;
       touch-action: manipulation;
       cursor: pointer;
+    }
+    
+    /* iOS MOBILE APP specific search dropdown fix */
+    [data-search-dropdown] {
+      position: fixed !important;
+      z-index: 2147483647 !important;
+      isolation: isolate !important;
+      -webkit-transform: translateZ(0) !important;
+      transform: translateZ(0) !important;
     }
   }
 
@@ -226,6 +269,24 @@
       will-change: auto !important;
       contain: layout style paint !important;
     }
+    
+    /* MOBILE APP SEARCH DROPDOWN - Force positioning for small screens */
+    [data-search-dropdown] {
+      position: fixed !important;
+      top: 80px !important;
+      left: 8px !important;
+      right: 8px !important;
+      z-index: 2147483647 !important;
+      background: white !important;
+      border: 1px solid #e5e7eb !important;
+      border-radius: 8px !important;
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.3) !important;
+      max-height: 50vh !important;
+      overflow-y: auto !important;
+      isolation: isolate !important;
+      -webkit-transform: translateZ(0) !important;
+      transform: translateZ(0) !important;
+    }
   }
   
   /* Ultra-low-end device optimizations - ZERO delays */
@@ -251,6 +312,24 @@
       will-change: auto !important;
       contain: layout style paint !important;
       isolation: isolate !important;
+    }
+    
+    /* Ultra small screen search dropdown */
+    [data-search-dropdown] {
+      position: fixed !important;
+      top: 70px !important;
+      left: 4px !important;
+      right: 4px !important;
+      z-index: 2147483647 !important;
+      background: white !important;
+      border: 1px solid #e5e7eb !important;
+      border-radius: 6px !important;
+      box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.3) !important;
+      max-height: 45vh !important;
+      overflow-y: auto !important;
+      isolation: isolate !important;
+      -webkit-transform: translateZ(0) !important;
+      transform: translateZ(0) !important;
     }
   }
 

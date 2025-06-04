@@ -26,9 +26,17 @@ const GlobalSearchResults = ({
 
   return (
     <Card 
-      className="absolute top-full left-0 right-0 mt-2 bg-black/95 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
+      className="absolute top-full left-0 right-0 mt-2 bg-black/95 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800 mobile-search-results" 
       onScroll={onScroll}
-      style={{ zIndex: 2147483647 }}
+      data-search-dropdown
+      style={{ 
+        zIndex: 2147483647,
+        // Mobile app fixes
+        isolation: 'isolate',
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden',
+        position: 'absolute'
+      }}
     >
       <CardContent className="p-0">
         <div className="px-3 py-3 border-b border-cyan-500/20 sticky top-0 bg-black/95 text-red-400" style={{ fontSize: '10px', zIndex: 2147483646 }}>

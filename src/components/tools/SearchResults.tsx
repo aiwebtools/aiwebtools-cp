@@ -36,18 +36,19 @@ const SearchResults = memo(({
 
   return (
     <div 
-      className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" 
+      className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 mobile-search-results" 
       onScroll={onScroll}
+      data-search-dropdown
       style={{
-        // MAXIMUM z-index to appear above everything on mobile
+        // MOBILE APP FIX: Use fixed positioning on mobile
+        position: 'absolute',
         zIndex: 2147483647,
-        // Optimize scrolling performance
-        willChange: 'scroll-position',
+        // Mobile-specific optimizations
+        isolation: 'isolate',
         transform: 'translateZ(0)',
         backfaceVisibility: 'hidden',
-        // Ensure solid background covers content below
+        // Force solid background
         backgroundColor: 'white',
-        position: 'absolute'
       }}
     >
       <div className="px-3 py-3 border-b border-gray-100 sticky top-0 bg-white text-red-500" style={{ fontSize: '10px', zIndex: 2147483646 }}>
