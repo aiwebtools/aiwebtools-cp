@@ -44,15 +44,7 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   return (
     <div 
       className={`${isFeatured ? 'mb-6' : 'mb-4'} rounded-lg overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 relative group-hover:scale-105 transition-transform duration-200`}
-      style={{ 
-        aspectRatio: '16/9',
-        // iOS performance optimizations
-        transform: 'translateZ(0)',
-        backfaceVisibility: 'hidden',
-        willChange: 'transform',
-        // Reduce layout thrashing
-        contain: 'layout style paint'
-      }}
+      style={{ aspectRatio: '16/9' }}
     >
       {shouldShowVideo ? (
         <iframe
@@ -65,11 +57,6 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
           allowFullScreen
           className="w-full h-full rounded-lg"
           loading="lazy"
-          style={{
-            // iOS iframe optimization
-            transform: 'translateZ(0)',
-            backfaceVisibility: 'hidden'
-          }}
         />
       ) : shouldShowImage ? (
         <>
@@ -78,14 +65,6 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
             alt={`${tool.title} screenshot`}
             className="w-full h-full object-cover"
             loading="lazy"
-            decoding="async"
-            style={{
-              // iOS image performance optimization
-              transform: 'translateZ(0)',
-              backfaceVisibility: 'hidden',
-              // Improve image rendering
-              imageRendering: '-webkit-optimize-contrast'
-            }}
             onError={(e) => {
               console.error('Image failed to load for', tool.title, tool.imageUrl);
               // Fallback to emoji display if image fails to load
@@ -106,14 +85,7 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
         </>
       ) : (
         /* Default emoji display when no image or video */
-        <div 
-          className="flex items-center justify-center text-6xl opacity-50 w-full h-full"
-          style={{
-            // iOS performance optimization for emoji display
-            transform: 'translateZ(0)',
-            backfaceVisibility: 'hidden'
-          }}
-        >
+        <div className="flex items-center justify-center text-6xl opacity-50 w-full h-full">
           {tool.emoji}
         </div>
       )}

@@ -18,27 +18,11 @@ export function useIsMobile() {
       setIsMobile(mobile)
     }
     
-    // Use passive event listeners for better performance
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
-    
-    // Use the modern API if available, fallback to deprecated one
-    if (mql.addEventListener) {
-      mql.addEventListener("change", checkMobile, { passive: true })
-    } else {
-      // Fallback for older browsers
-      mql.addListener(checkMobile)
-    }
-    
+    mql.addEventListener("change", checkMobile)
     checkMobile()
     
-    return () => {
-      if (mql.removeEventListener) {
-        mql.removeEventListener("change", checkMobile)
-      } else {
-        // Fallback for older browsers
-        mql.removeListener(checkMobile)
-      }
-    }
+    return () => mql.removeEventListener("change", checkMobile)
   }, [])
 
   return !!isMobile

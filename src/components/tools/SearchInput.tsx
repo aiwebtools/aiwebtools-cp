@@ -26,8 +26,8 @@ const SearchInput = memo(({
   }, [onSearchChange]);
 
   return (
-    <div className="relative rounded-xl border border-gray-600 z-50">
-      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none z-10" />
+    <div className="relative rounded-xl border border-gray-600">
+      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
       <Input
         type="text"
         placeholder={placeholder}
@@ -36,7 +36,7 @@ const SearchInput = memo(({
         onKeyDown={onKeyDown}
         onBlur={onBlur}
         onFocus={onFocus}
-        className="pl-10 pr-4 py-4 text-lg rounded-xl border-0 bg-black/60 text-white placeholder-gray-300 focus:ring-0 focus:outline-none backdrop-blur-sm relative z-10"
+        className="pl-10 pr-4 py-4 text-lg rounded-xl border-0 bg-black/60 text-white placeholder-gray-300 focus:ring-0 focus:outline-none backdrop-blur-sm"
         autoComplete="off"
         spellCheck={false}
         inputMode="search"

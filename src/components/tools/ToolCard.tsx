@@ -48,12 +48,8 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
       style={{
         // Optimize rendering with contain property
         contain: 'layout style paint',
-        // Improve scroll performance - iOS specific optimizations
+        // Improve scroll performance
         willChange: 'transform',
-        transform: 'translateZ(0)',
-        backfaceVisibility: 'hidden',
-        // Reduce paint operations on mobile
-        isolation: 'isolate',
       }}
     >
       <ToolCardHeader 
@@ -79,7 +75,7 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
     </Card>
   );
 }, (prevProps, nextProps) => {
-  // Custom comparison function for memo - prevent unnecessary re-renders
+  // Custom comparison function for memo
   return (
     prevProps.tool.title === nextProps.tool.title &&
     prevProps.tool.directUrl === nextProps.tool.directUrl &&

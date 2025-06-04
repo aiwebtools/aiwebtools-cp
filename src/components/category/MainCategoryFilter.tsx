@@ -108,7 +108,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   }, [currentMainCategory]);
 
   return (
-    <div className="max-w-4xl mx-auto mb-4 relative z-10">
+    <div className="max-w-4xl mx-auto mb-4">
       {/* Compact Filter Toggle Button */}
       <div className="flex items-center justify-center mb-3">
         <Button
@@ -175,7 +175,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
 
       {/* Compact Expandable Filter Panel */}
       {isExpanded && (
-        <div className="bg-black/50 border border-cyan-500/30 rounded-lg p-3 backdrop-blur-sm relative z-10">
+        <div className="bg-black/50 border border-cyan-500/30 rounded-lg p-3 backdrop-blur-sm">
           {/* Main Categories Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-48 overflow-y-auto">
             {mainCategoriesWithCounts.map(({ name, emoji, count }) => {
