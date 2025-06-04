@@ -42,7 +42,10 @@ const SearchResults = memo(({
         // Optimize scrolling performance
         willChange: 'scroll-position',
         transform: 'translateZ(0)',
-        backfaceVisibility: 'hidden'
+        backfaceVisibility: 'hidden',
+        // Ensure solid background covers content below on mobile
+        backgroundColor: 'white',
+        position: 'absolute'
       }}
     >
       <div className="px-3 py-3 border-b border-gray-100 sticky top-0 bg-white text-red-500 z-10" style={{ fontSize: '10px' }}>
@@ -53,7 +56,7 @@ const SearchResults = memo(({
           <div className="text-xs opacity-80 mb-2">Scroll for more...</div>
         )}
       </div>
-      <div className="p-2 pt-4">
+      <div className="p-2 pt-4 bg-white">
         {displayedResults.map((tool, index) => {
           const toolIndex = allTools.findIndex(t => t.title === tool.title);
           return (
@@ -61,11 +64,12 @@ const SearchResults = memo(({
               <TooltipTrigger asChild>
                 <div
                   onClick={(e) => handleToolClick(tool, e)}
-                  className="flex items-center space-x-3 p-3 hover:bg-gray-50 transition-colors duration-150 border-b border-gray-50 last:border-b-0 rounded-lg mx-1 cursor-pointer"
+                  className="flex items-center space-x-3 p-3 hover:bg-gray-50 transition-colors duration-150 border-b border-gray-50 last:border-b-0 rounded-lg mx-1 cursor-pointer bg-white"
                   style={{
                     // Optimize rendering performance
                     willChange: 'auto',
-                    transform: 'translateZ(0)'
+                    transform: 'translateZ(0)',
+                    backgroundColor: 'white'
                   }}
                 >
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-ai-purple to-ai-blue flex items-center justify-center text-white text-sm sm:text-lg flex-shrink-0">
@@ -113,7 +117,7 @@ const SearchResults = memo(({
           );
         })}
         {displayedCount < searchResults.length && (
-          <div className="text-center py-4 text-gray-500 text-sm">
+          <div className="text-center py-4 text-gray-500 text-sm bg-white">
             <div className="animate-pulse">Loading more tools...</div>
             <div className="text-xs mt-1">{searchResults.length - displayedCount} more available</div>
           </div>
