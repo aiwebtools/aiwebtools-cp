@@ -25,31 +25,8 @@ const GlobalSearchResults = ({
   const hasMoreToLoad = displayedCount < searchResults.length;
 
   return (
-    <Card 
-      className="absolute top-full left-0 right-0 mt-2 bg-black/95 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800 mobile-search-results" 
-      onScroll={onScroll}
-      data-search-dropdown
-      style={{ 
-        zIndex: 2147483647,
-        // Mobile app fixes
-        isolation: 'isolate',
-        transform: 'translateZ(0)',
-        backfaceVisibility: 'hidden',
-        position: 'absolute'
-      }}
-    >
+    <Card className="absolute top-full left-0 right-0 mt-2 bg-black/95 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-50 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" onScroll={onScroll}>
       <CardContent className="p-0">
-        <div className="px-3 py-3 border-b border-cyan-500/20 sticky top-0 bg-black/95 text-red-400" style={{ fontSize: '10px', zIndex: 2147483646 }}>
-          <div className="leading-tight mb-1">
-            {searchResults.length} Total Tools - Showing {displayedCount}
-            {hasMoreToLoad && " - Scroll for endless discovery!"}
-          </div>
-          {searchResults.length > 0 && (
-            <div className="text-xs opacity-80 mb-2">
-              Press Enter to open top result • Endless scroll through all AI tools
-            </div>
-          )}
-        </div>
         <div className="p-2 pt-4">
           {displayedResults.map((tool, index) => {
             const toolIndex = allTools.findIndex(t => t.title === tool.title);
@@ -86,9 +63,8 @@ const GlobalSearchResults = ({
                 </TooltipTrigger>
                 <TooltipContent 
                   side="right" 
-                  className="max-w-sm p-3 bg-gray-900/95 text-cyan-100 border-cyan-500/30 shadow-xl"
+                  className="max-w-sm p-3 bg-gray-900/95 text-cyan-100 border-cyan-500/30 shadow-xl z-[60]"
                   sideOffset={10}
-                  style={{ zIndex: 2147483645 }}
                 >
                   <div className="space-y-2">
                     <div className="flex items-center space-x-2">

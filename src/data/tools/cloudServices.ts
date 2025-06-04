@@ -51,18 +51,6 @@ export const cloudServices: Tool[] = [
     totalVotes: 6789
   },
   {
-    icon: Cloud,
-    title: "Google Drive",
-    description: "Cloud storage service with file synchronization and collaboration. Store, share, and collaborate on documents, photos, and more.",
-    emoji: "💾",
-    color: "from-blue-500 to-green-600",
-    directUrl: "https://drive.google.com/",
-    tags: ["cloud storage", "file sharing", "collaboration", "synchronization"],
-    category: "Cloud & Infrastructure",
-    rating: 4.5,
-    totalVotes: 7890
-  },
-  {
     icon: HardDrive,
     title: "OneDrive",
     description: "Microsoft's cloud storage service integrated with Office 365. Store, sync, and share files across devices and platforms.",

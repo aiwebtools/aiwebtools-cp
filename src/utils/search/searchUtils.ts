@@ -6,7 +6,9 @@ import { searchAIWebToolsGPTs, scoreAIWebToolsGPT } from "./aiWebToolsSearch";
 const EXCLUDED_TOOLS = [
   "PERSONAL CAPITAL",
   "PERSONAL ASSISTANT GPT",
-  "personal financial advisor"
+  "personal financial advisor",
+  "Google Drive", // Removed - not an AI tool
+  "OneDrive" // Also excluding other non-AI cloud storage
 ];
 
 // Enhanced search function with AI Web Tools prioritization
