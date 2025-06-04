@@ -39,8 +39,8 @@ const SearchResults = memo(({
       className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" 
       onScroll={onScroll}
       style={{
-        // CRITICAL: High z-index to appear above all other elements on mobile
-        zIndex: 999999,
+        // MAXIMUM z-index to appear above everything on mobile
+        zIndex: 2147483647,
         // Optimize scrolling performance
         willChange: 'scroll-position',
         transform: 'translateZ(0)',
@@ -50,7 +50,7 @@ const SearchResults = memo(({
         position: 'absolute'
       }}
     >
-      <div className="px-3 py-3 border-b border-gray-100 sticky top-0 bg-white text-red-500" style={{ fontSize: '10px', zIndex: 1000000 }}>
+      <div className="px-3 py-3 border-b border-gray-100 sticky top-0 bg-white text-red-500" style={{ fontSize: '10px', zIndex: 2147483646 }}>
         <div className="leading-tight mb-1">
           Search Results ({searchResults.length} total) - Showing {displayedResults.length}
         </div>
@@ -92,7 +92,7 @@ const SearchResults = memo(({
                 side="right" 
                 className="max-w-sm p-3 bg-gray-900 text-white border-gray-700 shadow-xl"
                 sideOffset={10}
-                style={{ zIndex: 1000001 }}
+                style={{ zIndex: 2147483645 }}
               >
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
