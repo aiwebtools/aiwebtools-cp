@@ -36,19 +36,21 @@ const SearchResults = memo(({
 
   return (
     <div 
-      className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-[99999] max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" 
+      className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" 
       onScroll={onScroll}
       style={{
+        // CRITICAL: High z-index to appear above all other elements on mobile
+        zIndex: 999999,
         // Optimize scrolling performance
         willChange: 'scroll-position',
         transform: 'translateZ(0)',
         backfaceVisibility: 'hidden',
-        // Ensure solid background covers content below on mobile
+        // Ensure solid background covers content below
         backgroundColor: 'white',
         position: 'absolute'
       }}
     >
-      <div className="px-3 py-3 border-b border-gray-100 sticky top-0 bg-white text-red-500 z-10" style={{ fontSize: '10px' }}>
+      <div className="px-3 py-3 border-b border-gray-100 sticky top-0 bg-white text-red-500" style={{ fontSize: '10px', zIndex: 1000000 }}>
         <div className="leading-tight mb-1">
           Search Results ({searchResults.length} total) - Showing {displayedResults.length}
         </div>
@@ -88,8 +90,9 @@ const SearchResults = memo(({
               </TooltipTrigger>
               <TooltipContent 
                 side="right" 
-                className="max-w-sm p-3 bg-gray-900 text-white border-gray-700 shadow-xl z-[60]"
+                className="max-w-sm p-3 bg-gray-900 text-white border-gray-700 shadow-xl"
                 sideOffset={10}
+                style={{ zIndex: 1000001 }}
               >
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">

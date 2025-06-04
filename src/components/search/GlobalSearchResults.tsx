@@ -25,9 +25,13 @@ const GlobalSearchResults = ({
   const hasMoreToLoad = displayedCount < searchResults.length;
 
   return (
-    <Card className="absolute top-full left-0 right-0 mt-2 bg-black/95 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-50 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" onScroll={onScroll}>
+    <Card 
+      className="absolute top-full left-0 right-0 mt-2 bg-black/95 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
+      onScroll={onScroll}
+      style={{ zIndex: 999999 }}
+    >
       <CardContent className="p-0">
-        <div className="px-3 py-3 border-b border-cyan-500/20 sticky top-0 bg-black/95 text-red-400 z-10" style={{ fontSize: '10px' }}>
+        <div className="px-3 py-3 border-b border-cyan-500/20 sticky top-0 bg-black/95 text-red-400" style={{ fontSize: '10px', zIndex: 1000000 }}>
           <div className="leading-tight mb-1">
             {searchResults.length} Total Tools - Showing {displayedCount}
             {hasMoreToLoad && " - Scroll for endless discovery!"}
@@ -74,8 +78,9 @@ const GlobalSearchResults = ({
                 </TooltipTrigger>
                 <TooltipContent 
                   side="right" 
-                  className="max-w-sm p-3 bg-gray-900/95 text-cyan-100 border-cyan-500/30 shadow-xl z-[60]"
+                  className="max-w-sm p-3 bg-gray-900/95 text-cyan-100 border-cyan-500/30 shadow-xl"
                   sideOffset={10}
+                  style={{ zIndex: 1000001 }}
                 >
                   <div className="space-y-2">
                     <div className="flex items-center space-x-2">
