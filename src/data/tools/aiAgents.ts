@@ -1,3 +1,4 @@
+
 import { Bot, Globe, Code, Wand2, Zap, Brain, Github, Rocket, Settings, Monitor, Server, HardDrive, Users, Settings2, Database as DatabaseIcon, Terminal as TerminalIcon, Cpu as CpuIcon } from "lucide-react";
 import { Tool } from "@/types/tools";
 
@@ -253,5 +254,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.9,
     totalVotes: 5000
+  },
+  {
+    icon: Bot,
+    title: "RUNNER H AI AGENT",
+    description: "Advanced AI agent by H Company designed for autonomous task execution and intelligent workflow automation. Streamlines complex processes with cutting-edge AI capabilities.",
+    emoji: "🏃‍♂️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://www.hcompany.ai/runner-h",
+    tags: ["autonomous agent", "task execution", "workflow automation", "H Company", "AI automation"],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 2800
   }
 ];
