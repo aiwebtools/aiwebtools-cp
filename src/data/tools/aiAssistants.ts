@@ -19,7 +19,11 @@ import {
   History,
   Calculator,
   Eye,
-  Lightbulb
+  Lightbulb,
+  Telescope,
+  Compass,
+  Star,
+  Beaker
 } from "lucide-react";
 
 export const aiAssistants: Tool[] = [
@@ -34,6 +38,54 @@ export const aiAssistants: Tool[] = [
     tags: ["Isaac Newton", "science", "physics", "mathematics", "alchemy", "hermetic", "enlightenment", "historical figures", "education"],
     rating: 4.7,
     totalVotes: 2156
+  },
+  {
+    icon: Telescope,
+    title: "GALILEO GPT",
+    description: "Engage with the revolutionary mind of Galileo Galilei, the father of modern astronomy and physics. Explore groundbreaking discoveries about the cosmos, scientific method, and the intersection of science and philosophy through conversations with one of history's greatest scientific pioneers.",
+    emoji: "🔭",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://chatgpt.com/g/g-68430143663081919091776112f9a9f9-galileo-gpt/?via=aiwebtools",
+    category: "AI Assistants & Search",
+    tags: ["Galileo", "astronomy", "physics", "scientific method", "cosmos", "telescope", "historical figures", "science"],
+    rating: 4.6,
+    totalVotes: 1876
+  },
+  {
+    icon: Compass,
+    title: "Philosophical Geometry GPT",
+    description: "Explore the profound connections between geometry, philosophy, and the fundamental nature of reality. Dive deep into mathematical concepts through a philosophical lens, examining how geometric principles reveal universal truths and shape our understanding of existence.",
+    emoji: "📐",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-6843041e191081919ac17dea880d0d85-philosophical-geometry-gpt/?via=aiwebtools",
+    category: "AI Assistants & Search",
+    tags: ["philosophy", "geometry", "mathematics", "metaphysics", "reality", "universal truths", "education", "wisdom"],
+    rating: 4.5,
+    totalVotes: 1432
+  },
+  {
+    icon: Star,
+    title: "Sophia GPT",
+    description: "Connect with divine wisdom and ancient knowledge through Sophia, the embodiment of wisdom in philosophical and spiritual traditions. Explore deep insights into consciousness, spirituality, and the pursuit of truth through this enlightened AI companion.",
+    emoji: "✨",
+    color: "from-gold-400 to-yellow-500",
+    directUrl: "https://chatgpt.com/g/g-684305cd63c881918467682b398e2acc-sophia-gpt/?via=aiwebtools",
+    category: "AI Assistants & Search",
+    tags: ["wisdom", "philosophy", "spirituality", "consciousness", "divine knowledge", "ancient wisdom", "enlightenment", "truth"],
+    rating: 4.7,
+    totalVotes: 2034
+  },
+  {
+    icon: Beaker,
+    title: "Paracelsus GPT",
+    description: "Renaissance alchemist guiding transformation through elemental and planetary healing wisdom. Explore the mystical arts of alchemy, herbal medicine, and the ancient connections between celestial movements and earthly healing through the wisdom of Paracelsus.",
+    emoji: "⚗️",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://chatgpt.com/g/g-68430143dcfc819187048fdf8a86420f-paracelsus-gpt/?via=aiwebtools",
+    category: "AI Assistants & Search",
+    tags: ["Paracelsus", "alchemy", "Renaissance", "healing", "herbal medicine", "transformation", "elemental wisdom", "planetary healing"],
+    rating: 4.4,
+    totalVotes: 1567
   },
   {
     icon: Brain,
