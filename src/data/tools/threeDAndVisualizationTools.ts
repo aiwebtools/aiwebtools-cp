@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Box, 
@@ -12,10 +11,23 @@ import {
   Globe,
   Settings,
   Wand2,
-  Package2
+  Package2,
+  Gamepad2
 } from "lucide-react";
 
 export const threeDAndVisualizationTools: Tool[] = [
+  {
+    icon: Gamepad2,
+    title: "ROSEBUD AI - Video Game Generation",
+    description: "Revolutionary AI-powered platform that generates complete video games from text descriptions. Create playable games, assets, and interactive experiences using advanced AI technology for game development and creative expression.",
+    emoji: "🎮",
+    color: "from-pink-500 to-rose-600",
+    directUrl: "https://rosebud.ai/?via=aiwebtools",
+    tags: ["AI game generation", "video games", "game development", "text-to-game", "interactive experiences", "game assets", "rosebud ai", "aiwebtools"],
+    category: "3D & VISUALIZATION",
+    rating: 4.8,
+    totalVotes: 3890
+  },
   {
     icon: Package,
     title: "Meshy Ai - TEXT TO 3D Generator",
