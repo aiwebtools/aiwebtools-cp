@@ -18,17 +18,30 @@ import {
   Video,
   History,
   Calculator,
-  Eye
+  Eye,
+  Lightbulb
 } from "lucide-react";
 
 export const aiAssistants: Tool[] = [
+  {
+    icon: Lightbulb,
+    title: "ISAAC NEWTON GPT - Hermetic Enlightenment Journey",
+    description: "Engage with the brilliant mind of Sir Isaac Newton in this unique AI experience that combines scientific genius with hermetic wisdom. Explore the intersection of physics, mathematics, alchemy, and esoteric knowledge through conversations with one of history's greatest minds.",
+    emoji: "🔬",
+    color: "from-amber-500 to-yellow-600",
+    directUrl: "https://chatgpt.com/g/g-6842eb6c57f08191a0d450db9b63fb06-isaac-newton-gpt-hermetic-enlightenment/?via=aiwebtools",
+    category: "AI Assistants & Search",
+    tags: ["Isaac Newton", "science", "physics", "mathematics", "alchemy", "hermetic", "enlightenment", "historical figures", "education"],
+    rating: 4.7,
+    totalVotes: 2156
+  },
   {
     icon: Brain,
     title: "Mind Reader GPT",
     description: "AI that attempts to predict and guess what you're thinking based on context, patterns, and psychological insights. Challenge this GPT to read your mind and see how accurate it can be at understanding your thoughts and intentions.",
     emoji: "🧠",
     color: "from-purple-500 to-pink-600",
-    directUrl: "https://chat.openai.com/g/g-c1yToSktG-mind-reader-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-c1yToSktG-mind-reader-gpt/?via=aiwebtools",
     category: "AI Assistants & Search",
     tags: ["mind reading", "prediction", "psychology", "thought analysis", "entertainment"],
     rating: 4.2,
