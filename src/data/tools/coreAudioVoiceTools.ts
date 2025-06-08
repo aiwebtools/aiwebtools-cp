@@ -12,7 +12,8 @@ import {
   Play,
   Settings,
   Sparkles,
-  Bot
+  Bot,
+  Fish
 } from "lucide-react";
 
 export const coreAudioVoiceTools: Tool[] = [
@@ -54,6 +55,18 @@ export const coreAudioVoiceTools: Tool[] = [
     category: "Audio & Voice Tools",
     rating: 4.8,
     totalVotes: 5432
+  },
+  {
+    icon: Fish,
+    title: "Fish Audio Text to Speech Platform",
+    description: "Super realistic AI voice generator platform offering high-quality text-to-speech conversion with natural-sounding voices. Advanced voice synthesis technology for creating professional audio content with lifelike vocal characteristics.",
+    emoji: "🐠",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://fish.audio/?via=aiwebtools",
+    tags: ["text to speech", "realistic voice", "voice synthesis", "ai voice", "speech generation", "voice cloning", "audio generation", "natural voice", "voice ai", "tts platform"],
+    category: "Audio & Voice Tools",
+    rating: 4.7,
+    totalVotes: 3456
   },
   {
     icon: Speaker,

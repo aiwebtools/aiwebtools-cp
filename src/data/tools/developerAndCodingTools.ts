@@ -10,7 +10,8 @@ import {
   Bot,
   Cpu,
   Wand2,
-  Globe
+  Globe,
+  TestTube
 } from "lucide-react";
 
 export const developerAndCodingTools: Tool[] = [
@@ -62,5 +63,17 @@ export const developerAndCodingTools: Tool[] = [
     category: "DEVELOPMENT & CODING",
     rating: 4.8,
     totalVotes: 4200
+  },
+  {
+    icon: TestTube,
+    title: "TestSprite Website End-to-End Tester",
+    description: "Comprehensive AI-powered website testing platform for end-to-end testing automation. Perform complete website functionality testing, user journey validation, and quality assurance with intelligent test generation and execution capabilities.",
+    emoji: "🧪",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://www.testsprite.com/?via=aiwebtools",
+    tags: ["website testing", "end-to-end testing", "test automation", "quality assurance", "web testing", "user journey testing", "functional testing", "QA tools"],
+    category: "DEVELOPMENT & CODING",
+    rating: 4.6,
+    totalVotes: 2890
   }
 ];
