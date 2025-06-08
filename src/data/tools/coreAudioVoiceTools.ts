@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Mic, 
@@ -54,6 +53,18 @@ export const coreAudioVoiceTools: Tool[] = [
     category: "Audio & Voice Tools",
     rating: 4.8,
     totalVotes: 5432
+  },
+  {
+    icon: AudioWaveform,
+    title: "Fish Audio Voice Generator",
+    description: "Super realistic text-to-speech voice generator powered by advanced AI. Create natural-sounding voices with exceptional quality and realism for any audio project or application.",
+    emoji: "🐟",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://fish.audio/?via=aiwebtools",
+    tags: ["text to speech", "voice generation", "realistic voice", "ai voice", "speech synthesis", "natural voice", "voice cloning", "audio generation", "fish audio", "tts", "voice ai", "realistic speech", "audio production", "voice synthesis"],
+    category: "Audio & Voice Tools",
+    rating: 4.7,
+    totalVotes: 3890
   },
   {
     icon: Speaker,
