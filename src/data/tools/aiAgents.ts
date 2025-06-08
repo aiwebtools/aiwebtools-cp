@@ -1,19 +1,8 @@
+
 import { Bot, Globe, Code, Wand2, Zap, Brain, Github, Rocket, Settings, Monitor, Server, HardDrive, Users, Settings2, Database as DatabaseIcon, Terminal as TerminalIcon, Cpu as CpuIcon } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 export const aiAgents: Tool[] = [
-  {
-    icon: Code,
-    title: "EMERGENT Agentic Coding Ai",
-    description: "Advanced AI-powered coding agent that assists developers with intelligent code generation, debugging, and software development tasks. Provides autonomous coding assistance and streamlined development workflows for enhanced productivity.",
-    emoji: "🤖",
-    color: "from-emerald-500 to-teal-600",
-    directUrl: "https://app.emergent.sh/?via=aiwebtools",
-    tags: ["coding agent", "AI development", "code generation", "debugging", "software development", "autonomous coding", "developer tools", "programming assistant"],
-    category: "AI Agents",
-    rating: 4.6,
-    totalVotes: 2100
-  },
   {
     icon: Bot,
     title: "Auto-GPT",
