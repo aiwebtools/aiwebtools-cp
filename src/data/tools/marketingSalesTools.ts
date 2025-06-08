@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Mail, 
@@ -17,7 +16,8 @@ import {
   MessageSquare,
   Bot,
   UserPlus,
-  Share2
+  Share2,
+  Sparkles
 } from "lucide-react";
 
 export const marketingSalesTools: Tool[] = [
@@ -200,5 +200,17 @@ export const marketingSalesTools: Tool[] = [
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.6,
     totalVotes: 4567
+  },
+  {
+    icon: Sparkles,
+    title: "MAKE INFLUENCER AI",
+    description: "Launch your custom AI influencers and watch them engage audiences that drive real revenue. It's easy, fast, and fully customizable!",
+    emoji: "✨",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://www.makeinfluencer.ai/?ref=aiwebtools",
+    tags: ["AI influencers", "custom influencers", "audience engagement", "revenue generation", "social media marketing", "influencer marketing", "AI content creators"],
+    category: "MARKETING & SALES AI TOOLS",
+    rating: 4.5,
+    totalVotes: 2890
   }
 ];
