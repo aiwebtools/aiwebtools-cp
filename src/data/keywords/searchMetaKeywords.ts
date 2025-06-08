@@ -15,21 +15,6 @@ export const searchMetaKeywords: Record<string, string[]> = {
   "ai writing tools": ["content creation", "ai writer", "writing assistant", "content generator", "ai copywriting", "blog writing"],
   "ai video tools": ["video editing", "video creation", "ai video editor", "video generator", "multimedia tools", "video production"],
   
-  // Enhanced voice and audio search terms
-  "text to speech": ["tts", "voice synthesis", "speech generation", "voice generator", "speech synthesis", "voice ai", "text-to-voice", "speech ai", "voice conversion", "audio synthesis", "speech technology", "voice technology", "realistic voice", "natural voice", "voice cloning", "ai voice", "speech software", "voice software", "audio generation", "speech production"],
-  "voice generator": ["voice synthesis", "speech generation", "voice ai", "ai voice", "voice creation", "speech synthesis", "voice maker", "voice production"],
-  "speech synthesis": ["text to speech", "voice generation", "speech ai", "voice synthesis", "speech technology", "voice technology", "tts technology"],
-  "voice cloning": ["voice synthesis", "voice replication", "voice copying", "ai voice", "voice ai", "voice generation", "speech synthesis"],
-  "realistic voice": ["natural voice", "human voice", "lifelike voice", "authentic voice", "voice synthesis", "high quality voice", "professional voice"],
-  
-  // Enhanced influencer and social media marketing terms
-  "influencer": ["influencer marketing", "social media influencer", "ai influencer", "digital influencer", "virtual influencer", "influencer creation", "influencer platform", "social media marketing", "content creator", "brand ambassador", "marketing influencer", "online influencer", "social influence", "influencer ai", "custom influencer", "influencer generation"],
-  "ai influencer": ["virtual influencer", "digital influencer", "artificial influencer", "ai content creator", "synthetic influencer", "automated influencer", "influencer ai", "ai personality"],
-  "influencer marketing": ["social media marketing", "influencer campaigns", "brand partnerships", "content marketing", "digital marketing", "social marketing", "influencer strategy"],
-  "social media marketing": ["digital marketing", "social marketing", "content marketing", "online marketing", "social media strategy", "social media management"],
-  "virtual influencer": ["ai influencer", "digital influencer", "synthetic influencer", "artificial influencer", "ai personality", "digital personality"],
-  "custom influencer": ["personalized influencer", "bespoke influencer", "tailored influencer", "ai influencer creation", "influencer design", "influencer customization"],
-  
   // Business and productivity terms
   "business ai": ["enterprise ai", "ai for business", "business automation", "productivity ai", "commercial ai tools"],
   "ai automation": ["workflow automation", "process automation", "smart automation", "business automation", "ai workflows"],
