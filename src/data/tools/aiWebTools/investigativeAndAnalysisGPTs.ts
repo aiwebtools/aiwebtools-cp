@@ -1,4 +1,3 @@
-
 import { Tool } from "@/types/tools";
 import { 
   Search, 
@@ -68,11 +67,12 @@ export const investigativeAndAnalysisGPTs: Tool[] = [
   },
   {
     icon: Search,
-    title: "Crime Scene GPT",
-    description: "Crime Scene GPT is your go-to AI for analyzing crime scenes with precision. Upload images or describe the scene, and our AI will provide detailed insights, potential leads, and forensic analysis to assist in investigations.",
+    title: "Criminologist GPT",
+    description: "A tool to assist with investigations and training of criminologists. This tool is designed solely to assist human investigators and is not safe to be deployed autonomously. Do not use in real life situations as this is a simulation only. Disclaimer: This AI tool is intended to support human investigators by analyzing evidence and providing insights in collaboration with law enforcement and forensic experts. It is not approved for autonomous decision-making or unsupervised deployment. All findings must be reviewed and verified by qualified professionals to ensure accuracy, fairness, and ethical compliance.",
     emoji: "🔍",
     color: "from-red-500 to-purple-600",
-    directUrl: "https://crimescenegpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://criminologistgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/3Ll7KPhTt3M",
     tags: ["crime scene analysis", "forensic analysis", "investigation", "crime scene", "aiwebtools"],
     category: "Investigative & Analysis",
     rating: 4.5,
