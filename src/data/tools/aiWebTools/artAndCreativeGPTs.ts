@@ -1,16 +1,9 @@
 
 import { Tool } from "@/types/tools";
 import { 
-  Palette, 
-  Brush, 
-  Camera, 
-  Scissors, 
-  Music,
   PenTool,
-  Wand2,
-  Sparkles,
-  Image,
-  Edit
+  Edit,
+  Wand2
 } from "lucide-react";
 
 export const artAndCreativeGPTs: Tool[] = [
@@ -41,66 +34,6 @@ export const artAndCreativeGPTs: Tool[] = [
     totalVotes: 2987
   },
   {
-    icon: Palette,
-    title: "Color Palette Generator",
-    description: "Generate beautiful and harmonious color palettes for your design projects.",
-    emoji: "🎨",
-    color: "from-pink-500 to-purple-600",
-    directUrl: "https://example.com/colorpalette",
-    tags: ["color palette", "design", "harmony", "web design", "branding"],
-    category: "Art & Creative",
-    rating: 4.3,
-    totalVotes: 2765
-  },
-  {
-    icon: Brush,
-    title: "AI-Powered Art Generator",
-    description: "Create unique and stunning artwork using the power of artificial intelligence.",
-    emoji: "🖌️",
-    color: "from-blue-500 to-cyan-600",
-    directUrl: "https://example.com/aiart",
-    tags: ["AI art", "art generation", "digital art", "creative AI", "artwork"],
-    category: "Art & Creative",
-    rating: 4.6,
-    totalVotes: 3123
-  },
-  {
-    icon: Camera,
-    title: "Photo Enhancer",
-    description: "Enhance and improve the quality of your photos with AI-driven tools.",
-    emoji: "📸",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://example.com/photoenhance",
-    tags: ["photo enhancement", "image quality", "AI photo", "image editing", "photography"],
-    category: "Art & Creative",
-    rating: 4.4,
-    totalVotes: 2876
-  },
-  {
-    icon: Scissors,
-    title: "Background Remover",
-    description: "Automatically remove backgrounds from images with precision and ease.",
-    emoji: "✂️",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://example.com/removebg",
-    tags: ["background removal", "image editing", "photo editing", "AI tools", "graphics"],
-    category: "Art & Creative",
-    rating: 4.7,
-    totalVotes: 3345
-  },
-  {
-    icon: Music,
-    title: "AI Music Composer",
-    description: "Compose original music tracks using artificial intelligence.",
-    emoji: "🎵",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://example.com/aimusic",
-    tags: ["AI music", "music composition", "songwriting", "AI tools", "music creation"],
-    category: "Art & Creative",
-    rating: 4.2,
-    totalVotes: 2654
-  },
-  {
     icon: Wand2,
     title: "AI Logo Generator",
     description: "Create professional logos for your brand using AI-powered design tools.",
@@ -111,29 +44,5 @@ export const artAndCreativeGPTs: Tool[] = [
     category: "Art & Creative",
     rating: 4.8,
     totalVotes: 3567
-  },
-  {
-    icon: Sparkles,
-    title: "Creative Writing Assistant",
-    description: "Enhance your creative writing with AI-powered suggestions and tools.",
-    emoji: "✨",
-    color: "from-red-500 to-purple-600",
-    directUrl: "https://example.com/aiwriting",
-    tags: ["creative writing", "AI writing", "writing assistant", "content creation", "AI tools"],
-    category: "Art & Creative",
-    rating: 4.3,
-    totalVotes: 2789
-  },
-  {
-    icon: Image,
-    title: "AI-Powered Image Upscaler",
-    description: "Upscale and enhance the resolution of your images using AI technology.",
-    emoji: "🖼️",
-    color: "from-indigo-500 to-purple-600",
-    directUrl: "https://example.com/aiupscale",
-    tags: ["image upscaling", "image enhancement", "AI image", "photo editing", "resolution"],
-    category: "Art & Creative",
-    rating: 4.6,
-    totalVotes: 3210
   }
 ];
