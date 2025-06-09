@@ -5,8 +5,7 @@ import {
   Brush, 
   Camera, 
   Scissors, 
-  Music, 
-  Film,
+  Music,
   PenTool,
   Wand2,
   Sparkles,
@@ -100,18 +99,6 @@ export const artAndCreativeGPTs: Tool[] = [
     category: "Art & Creative",
     rating: 4.2,
     totalVotes: 2654
-  },
-  {
-    icon: Film,
-    title: "Video Style Transfer",
-    description: "Apply artistic styles to your videos using AI style transfer techniques.",
-    emoji: "🎬",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://example.com/videostyle",
-    tags: ["video editing", "style transfer", "AI video", "artistic video", "video effects"],
-    category: "Art & Creative",
-    rating: 4.5,
-    totalVotes: 2987
   },
   {
     icon: Wand2,

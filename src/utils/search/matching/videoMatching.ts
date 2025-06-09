@@ -37,6 +37,28 @@ export const matchTextToVideo = (tool: Tool, searchTerm: string): boolean => {
     }
   }
   
+  // Enhanced video search - prioritize text-to-video generators
+  if (lowerSearchTerm === 'video' || lowerSearchTerm.includes('video')) {
+    const textToVideoTools = [
+      'luma labs dream machine',
+      'luma dream machine', 
+      'pika labs',
+      'google veo 3',
+      'veo3',
+      'movie maker studio',
+      'runwayml gen-2',
+      'runwayml',
+      'sora',
+      'text to video prompt generator',
+      'video generation',
+      'ai video'
+    ];
+    
+    if (textToVideoTools.some(tool => lowerTitle.includes(tool))) {
+      return true;
+    }
+  }
+  
   return false;
 };
 
@@ -98,6 +120,52 @@ export const scoreTextToVideo = (tool: Tool, searchTerm: string): number => {
     }
     if (lowerTags.some(tag => tag.includes('text-to-video'))) {
       score += 1100;
+    }
+  }
+  
+  // Enhanced scoring for general "video" search - prioritize text-to-video generators
+  if (lowerSearchTerm === 'video' || (lowerSearchTerm.includes('video') && !lowerSearchTerm.includes('style'))) {
+    if (lowerTitle.includes('luma labs dream machine') || lowerTitle.includes('luma dream machine')) {
+      score += 1900; // Highest priority for video search
+    }
+    if (lowerTitle.includes('pika labs')) {
+      score += 1850;
+    }
+    if (lowerTitle.includes('google veo 3') || lowerTitle.includes('veo3')) {
+      score += 1800;
+    }
+    if (lowerTitle.includes('movie maker studio')) {
+      score += 1750;
+    }
+    if (lowerTitle.includes('runwayml gen-2') || lowerTitle.includes('runwayml')) {
+      score += 1700;
+    }
+    if (lowerTitle.includes('sora')) {
+      score += 1650;
+    }
+    if (lowerTitle.includes('text to video')) {
+      score += 1600;
+    }
+    if (lowerTitle.includes('video generation')) {
+      score += 1500;
+    }
+    if (lowerTitle.includes('ai video')) {
+      score += 1400;
+    }
+    if (lowerDescription.includes('video generation')) {
+      score += 1300;
+    }
+    if (lowerDescription.includes('ai video')) {
+      score += 1200;
+    }
+    if (lowerCategory.includes('video')) {
+      score += 1000;
+    }
+    if (lowerTags.some(tag => tag.includes('video generation'))) {
+      score += 1100;
+    }
+    if (lowerTags.some(tag => tag.includes('text-to-video'))) {
+      score += 1200;
     }
   }
   
