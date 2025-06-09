@@ -93,5 +93,25 @@ export const searchMetaKeywords: Record<string, string[]> = {
   "content marketing": ["blog writing", "social media", "copywriting", "marketing content"],
   "video editing": ["video production", "film editing", "multimedia", "video creation"],
   "data analysis": ["analytics", "insights", "reporting", "business intelligence"],
-  "customer service": ["support", "help desk", "customer care", "service automation"]
+  "customer service": ["support", "help desk", "customer care", "service automation"],
+  
+  // Added Freepik-specific keywords for enhanced searchability
+  "freepik": ["freepik platform", "freepik resources", "freepik ai", "all-in-one design", "design platform"],
+  "design platform": ["creative platform", "design resources", "visual content platform", "freepik", "all-in-one design"],
+  "all in one": ["comprehensive platform", "complete solution", "unified platform", "freepik", "everything included"],
+  "image resources": ["stock images", "design assets", "visual resources", "freepik", "image library"],
+  "vector graphics": ["vectors", "svg files", "scalable graphics", "freepik", "vector art"],
+  "design templates": ["pre-made designs", "template library", "design layouts", "freepik", "ready-made templates"],
+  "stock photos": ["photography", "stock images", "photo library", "freepik", "professional photos"],
+  "creative assets": ["design elements", "graphic resources", "visual assets", "freepik", "creative content"],
+  "ai design": ["automated design", "intelligent design", "ai-powered design", "freepik", "smart design tools"],
+  "visual content": ["graphics", "imagery", "visual assets", "freepik", "visual design"],
+  "text to speech": ["voice synthesis", "speech generation", "TTS", "fish audio", "voice ai", "audio generation"],
+  "voice generation": ["speech synthesis", "ai voice", "text to speech", "fish audio", "voice cloning"],
+  "fish audio": ["voice platform", "audio ai", "speech synthesis", "text to speech", "voice generation"],
+  "influencer": ["ai influencers", "virtual influencers", "digital personas", "make influencer", "social media ai"],
+  "ai influencers": ["virtual influencers", "digital influencers", "synthetic personas", "make influencer", "automated influencers"],
+  "make influencer": ["ai influencer creation", "virtual persona", "digital marketing", "influencer ai", "custom influencers"],
+  "influencer marketing": ["social media marketing", "digital marketing", "brand promotion", "make influencer", "ai marketing"],
+  "custom influencers": ["personalized influencers", "bespoke influencers", "tailored personas", "make influencer", "ai personalities"]
 };

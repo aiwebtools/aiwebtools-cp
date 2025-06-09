@@ -17,10 +17,23 @@ import {
   Grid,
   Shapes,
   Paintbrush,
-  BookOpen
+  BookOpen,
+  Globe
 } from "lucide-react";
 
 export const imageAndDesign: Tool[] = [
+  {
+    icon: Globe,
+    title: "FREEPIK - ALL IN ONE VIDEO & IMAGE CREATION PLATFORM",
+    description: "Comprehensive creative platform offering millions of high-quality images, videos, vectors, and design resources. Create stunning visual content with AI-powered tools, templates, and assets for all your creative projects.",
+    emoji: "🎨",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://www.freepik.com/?via=aiwebtools",
+    tags: ["image creation", "video creation", "design platform", "templates", "vectors", "AI design", "creative resources", "all-in-one", "visual content"],
+    category: "Image & Design",
+    rating: 4.7,
+    totalVotes: 4567
+  },
   {
     icon: Camera,
     title: "Product Photography Image & Design GPT",
