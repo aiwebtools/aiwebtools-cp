@@ -1,5 +1,4 @@
-
-import { Bot, Globe, Code, Wand2, Zap, Brain, Github, Rocket, Settings, Monitor, Server, HardDrive, Users, Settings2, Database as DatabaseIcon, Terminal as TerminalIcon, Cpu as CpuIcon } from "lucide-react";
+import { Bot, Globe, Code, Wand2, Zap, Brain, Github, Rocket, Settings, Monitor, Server, HardDrive, Users, Settings2, Database as DatabaseIcon, Terminal as TerminalIcon, Cpu as CpuIcon, Layers } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 export const aiAgents: Tool[] = [
@@ -278,5 +277,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.7,
     totalVotes: 2456
+  },
+  {
+    icon: Layers,
+    title: "same.new full stack building agent",
+    description: "Advanced AI agent specialized in full-stack application development. Automates the entire development process from frontend to backend, creating complete web applications with intelligent architecture decisions and seamless integration.",
+    emoji: "🏗️",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://same.new/",
+    tags: ["full-stack development", "web application building", "automated development", "frontend", "backend", "AI architecture", "complete apps"],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 2200
   }
 ];
