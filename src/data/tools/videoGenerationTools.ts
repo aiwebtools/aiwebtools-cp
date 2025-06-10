@@ -1,6 +1,6 @@
 
 import { Tool } from "@/types/tools";
-import { Video, Film, Play, Wand2, Camera, Sparkles, Monitor, Zap, Edit3, Type } from "lucide-react";
+import { Video, Film, Play, Wand2, Camera, Sparkles, Monitor, Zap, Edit3, Type, BookOpen } from "lucide-react";
 
 export const videoGenerationTools: Tool[] = [
   {
@@ -146,5 +146,17 @@ export const videoGenerationTools: Tool[] = [
     category: "Video & Multimedia",
     rating: 4.4,
     totalVotes: 2456
+  },
+  {
+    icon: BookOpen,
+    title: "Visual Educational Video Generator",
+    description: "Create engaging educational videos with AI-powered visual storytelling. Transform complex concepts into easy-to-understand visual explanations perfect for teachers, trainers, and educational content creators.",
+    emoji: "📚",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://imagineexplainers.com/",
+    tags: ["educational videos", "visual learning", "explainer videos", "educational content", "teaching tools", "AI video creation", "learning materials"],
+    category: "Video Generation",
+    rating: 4.5,
+    totalVotes: 1234
   }
 ];
