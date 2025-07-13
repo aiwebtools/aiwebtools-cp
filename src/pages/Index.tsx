@@ -86,7 +86,7 @@ const Index = () => {
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full rounded-xl border border-cyan-500/30"
-                  src="https://www.youtube.com/embed/drUyFiVayaw?mute=0&controls=1&rel=0"
+                  src="https://www.youtube.com/embed/k1aYXaaAkho?mute=0&controls=1&rel=0"
                   title="AI Web Tools Featured Video"
                   frameBorder="0"
                   allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
