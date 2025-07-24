@@ -124,33 +124,59 @@ export const fuzzyMatchTool = (tool: Tool, searchTerm: string): { score: number;
 // Enhanced phonetic matching for common sound-alike words and misspellings
 export const phoneticMatch = (searchTerm: string): string[] => {
   const phoneticMappings: Record<string, string[]> = {
-    'college': ['collge', 'colege', 'kollege', 'coledge', 'collega', 'colledge', 'collage'],
-    'doctor': ['docter', 'docktor', 'doktor', 'dr', 'dcotor'],
-    'travel': ['travle', 'trvel', 'travell'],
-    'music': ['musik', 'musick', 'muzic', 'misic', 'mucis'],
-    'business': ['buisness', 'bussiness', 'busness', 'bizness', 'bussines'],
-    'writing': ['writting', 'writeing', 'riting', 'writen', 'writng'],
-    'design': ['desing', 'desgn', 'dezign', 'deisng'],
-    'research': ['resarch', 'reserch', 'reasearch', 'researh', 'reseach'],
-    'education': ['educaton', 'educatin', 'eduction', 'educaion', 'educatoin'],
-    'health': ['helath', 'healt', 'helth', 'heatlh'],
-    'finance': ['finace', 'finanace', 'fianance', 'finacial', 'financal'],
-    'legal': ['leagal', 'legall', 'ligal'],
-    'marketing': ['marketting', 'marekting', 'markting'],
-    'analysis': ['anlaysis', 'anaylsis', 'analysys'],
-    'government': ['goverment', 'govenment', 'govermnent', 'governmnet'],
-    'political': ['politcal', 'poltical', 'politial', 'polical'],
-    'testimony': ['testimny', 'testmony', 'testimoney', 'testimonie'],
-    'school': ['scool', 'shcool', 'schooll', 'skool', 'schol', 'schoo'],
-    'class': ['clas', 'clase', 'claas', 'clss', 'calss'],
-    'homework': ['homwork', 'homewrok', 'homeworkk', 'homwrok', 'hmework'],
-    'lesson': ['leson', 'lesn', 'lessson', 'lesno'],
-    'tutor': ['tuor', 'tuter', 'tutro', 'tuotr'],
-    'money': ['mony', 'moeny', 'monye', 'mnoy'],
-    'trading': ['tradeing', 'tradng', 'traidng'],
-    'investment': ['invesment', 'investmnt', 'investmenet'],
-    'budget': ['buget', 'budjet', 'budgit'],
-    'stock': ['stok', 'stoc', 'stokc']
+    // Educational terms - Priority for college searches
+    'college': ['collge', 'colege', 'kollege', 'coledge', 'collega', 'colledge', 'collage', 'university', 'degree', 'education', 'school', 'academic', 'study', 'learn'],
+    'education': ['educaton', 'educatin', 'eduction', 'educaion', 'educatoin', 'learning', 'study', 'school', 'course', 'lesson', 'teach'],
+    'school': ['scool', 'shcool', 'schooll', 'skool', 'schol', 'schoo', 'education', 'learning', 'study'],
+    'learn': ['lern', 'larn', 'leanr', 'learnn', 'study', 'education', 'course', 'skill', 'training'],
+    'course': ['corse', 'cours', 'coures', 'coruse', 'class', 'lesson', 'education', 'study'],
+    'study': ['studie', 'stdy', 'studey', 'stduy', 'learn', 'education', 'course'],
+    'skill': ['skil', 'skiil', 'sklil', 'learn', 'ability', 'training'],
+    'degree': ['degre', 'degee', 'dergee', 'college', 'university', 'education'],
+    'class': ['clas', 'clase', 'claas', 'clss', 'calss', 'course', 'lesson'],
+    'homework': ['homwork', 'homewrok', 'homeworkk', 'homwrok', 'hmework', 'assignment'],
+    'lesson': ['leson', 'lesn', 'lessson', 'lesno', 'class', 'course'],
+    'tutor': ['tuor', 'tuter', 'tutro', 'tuotr', 'teacher', 'instructor'],
+    'teacher': ['techer', 'tecaher', 'teahcer', 'tutor', 'instructor'],
+    'training': ['traning', 'trainig', 'trianing', 'learn', 'education'],
+    
+    // Medical/Health terms
+    'doctor': ['docter', 'docktor', 'doktor', 'dr', 'dcotor', 'physician', 'medical', 'health'],
+    'health': ['helath', 'healt', 'helth', 'heatlh', 'medical', 'wellness'],
+    'medical': ['medial', 'medicla', 'medcial', 'health', 'doctor'],
+    'wellness': ['welness', 'wellnes', 'welnes', 'health'],
+    
+    // Creative terms
+    'book': ['bok', 'boook', 'buk', 'write', 'writing', 'author'],
+    'writing': ['writting', 'writeing', 'riting', 'writen', 'writng', 'write', 'author', 'book'],
+    'write': ['rite', 'wrtie', 'wriet', 'writing', 'author'],
+    'author': ['auther', 'authro', 'authr', 'writer', 'writing'],
+    'design': ['desing', 'desgn', 'dezign', 'deisng', 'graphic', 'creative'],
+    'art': ['arte', 'atr', 'creative', 'design', 'artistic'],
+    'music': ['musik', 'musick', 'muzic', 'misic', 'mucis', 'sound', 'audio'],
+    'video': ['vdeo', 'vidoe', 'vide', 'film', 'movie'],
+    'image': ['imag', 'iamge', 'imagge', 'picture', 'photo'],
+    'picture': ['pictur', 'picure', 'pitcure', 'image', 'photo'],
+    'photo': ['foto', 'phot', 'photoo', 'picture', 'image'],
+    
+    // Business terms
+    'business': ['buisness', 'bussiness', 'busness', 'bizness', 'bussines', 'company', 'corporate'],
+    'marketing': ['marketting', 'marekting', 'markting', 'promotion', 'advertising'],
+    'finance': ['finace', 'finanace', 'fianance', 'finacial', 'financal', 'money', 'financial'],
+    'money': ['mony', 'moeny', 'monye', 'mnoy', 'financial', 'finance'],
+    'trading': ['tradeing', 'tradng', 'traidng', 'trade', 'investment'],
+    'investment': ['invesment', 'investmnt', 'investmenet', 'investing', 'finance'],
+    'budget': ['buget', 'budjet', 'budgit', 'financial', 'money'],
+    'stock': ['stok', 'stoc', 'stokc', 'trading', 'investment'],
+    
+    // Other common terms
+    'travel': ['travle', 'trvel', 'travell', 'trip', 'journey'],
+    'research': ['resarch', 'reserch', 'reasearch', 'researh', 'reseach', 'study', 'analysis'],
+    'legal': ['leagal', 'legall', 'ligal', 'law', 'lawyer'],
+    'analysis': ['anlaysis', 'anaylsis', 'analysys', 'analyze', 'research'],
+    'government': ['goverment', 'govenment', 'govermnent', 'governmnet', 'political'],
+    'political': ['politcal', 'poltical', 'politial', 'polical', 'government'],
+    'testimony': ['testimny', 'testmony', 'testimoney', 'testimonie', 'legal']
   };
   
   const matches: string[] = [];
