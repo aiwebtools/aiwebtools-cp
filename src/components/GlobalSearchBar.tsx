@@ -23,7 +23,8 @@ const GlobalSearchBar = () => {
 
   return (
     <TooltipProvider>
-      <div ref={searchRef} className="relative w-full max-w-md">
+      <div className="w-full flex justify-center">
+        <div ref={searchRef} className="relative w-full max-w-2xl mx-auto">
         <GlobalSearchInput
           searchTerm={searchTerm}
           toolStats={toolStats}
@@ -42,6 +43,7 @@ const GlobalSearchBar = () => {
             onScroll={handleScroll}
           />
         )}
+        </div>
       </div>
     </TooltipProvider>
   );

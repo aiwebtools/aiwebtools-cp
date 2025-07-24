@@ -1,7 +1,9 @@
 
+import { useState, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { ChevronUp, ChevronDown } from "lucide-react";
 import { allTools } from "@/data/toolsData";
 
 interface GlobalSearchResultsProps {
@@ -23,9 +25,27 @@ const GlobalSearchResults = ({
 }: GlobalSearchResultsProps) => {
   const displayedResults = searchResults.slice(0, displayedCount);
   const hasMoreToLoad = displayedCount < searchResults.length;
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollToTop = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const scrollToBottom = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <Card className="absolute top-full left-0 right-0 mt-2 bg-black/95 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-50 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" onScroll={onScroll}>
+    <div className="relative">
+      <Card 
+        ref={scrollRef}
+        className="absolute top-full left-0 right-0 mt-2 bg-black/95 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-50 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
+        onScroll={onScroll}
+      >
       <CardContent className="p-0">
         <div className="px-3 py-3 border-b border-cyan-500/20 sticky top-0 bg-black/95 text-red-400 z-10" style={{ fontSize: '10px' }}>
           <div className="leading-tight mb-1">
@@ -124,6 +144,29 @@ const GlobalSearchResults = ({
         </div>
       </CardContent>
     </Card>
+
+    {/* Arrow Scroller Buttons */}
+    {searchResults.length > 5 && (
+      <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex flex-col space-y-1 z-[60]">
+        <Button
+          onClick={scrollToTop}
+          size="sm"
+          variant="outline"
+          className="w-8 h-8 p-0 bg-black/80 border-cyan-500/50 text-cyan-300 hover:bg-cyan-500/20 hover:border-cyan-400"
+        >
+          <ChevronUp className="w-4 h-4" />
+        </Button>
+        <Button
+          onClick={scrollToBottom}
+          size="sm"
+          variant="outline"
+          className="w-8 h-8 p-0 bg-black/80 border-cyan-500/50 text-cyan-300 hover:bg-cyan-500/20 hover:border-cyan-400"
+        >
+          <ChevronDown className="w-4 h-4" />
+        </Button>
+      </div>
+    )}
+  </div>
   );
 };
 
