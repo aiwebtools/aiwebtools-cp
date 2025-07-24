@@ -48,11 +48,15 @@ const GlobalSearchResults = ({
         style={{
           WebkitOverflowScrolling: 'touch',
           overscrollBehavior: 'contain',
-          touchAction: 'pan-y'
+          touchAction: 'pan-y',
+          transform: 'translateZ(0)',
+          willChange: 'scroll-position',
+          backfaceVisibility: 'hidden',
+          perspective: '1000px'
         }}
       >
-      <CardContent className="p-0">
-        <div className="p-2 pt-4">
+      <CardContent className="p-0" style={{ transform: 'translateZ(0)' }}>
+        <div className="p-2 pt-4" style={{ transform: 'translateZ(0)' }}>
           {displayedResults.map((tool, index) => {
             const toolIndex = allTools.findIndex(t => t.title === tool.title);
             return (
