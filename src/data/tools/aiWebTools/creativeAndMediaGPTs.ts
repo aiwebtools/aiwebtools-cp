@@ -227,5 +227,65 @@ export const creativeAndMediaGPTs: Tool[] = [
     category: "Creative & Media",
     rating: 4.7,
     totalVotes: 2156
+  },
+  {
+    icon: Film,
+    title: "Runway ML",
+    description: "Advanced AI video generation platform that creates high-quality videos from text prompts and images. Runway offers cutting-edge AI tools for video editing, motion capture, and creative content production with professional-grade results.",
+    emoji: "🎬",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://runwayml.com",
+    tags: ["video generation", "ai video", "creative tools", "motion capture", "video editing", "content creation"],
+    category: "Creative & Media",
+    rating: 4.8,
+    totalVotes: 8934
+  },
+  {
+    icon: Mic,
+    title: "ElevenLabs",
+    description: "AI voice generation and cloning platform that creates realistic human-like speech from text. ElevenLabs offers advanced voice synthesis technology for podcasts, audiobooks, dubbing, and content creation with natural-sounding AI voices.",
+    emoji: "🎤",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://elevenlabs.io",
+    tags: ["voice generation", "ai voice", "speech synthesis", "voice cloning", "audio content", "text to speech"],
+    category: "Creative & Media",
+    rating: 4.7,
+    totalVotes: 6789
+  },
+  {
+    icon: Video,
+    title: "Luma Dream Machine",
+    description: "AI-powered video generation tool that transforms text prompts into high-quality video content. Luma AI specializes in creating realistic 3D videos and visual effects with advanced AI technology for creative professionals.",
+    emoji: "💫",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://lumalabs.ai",
+    tags: ["video generation", "3d video", "visual effects", "ai video creation", "creative technology", "content production"],
+    category: "Creative & Media",
+    rating: 4.6,
+    totalVotes: 5432
+  },
+  {
+    icon: Camera,
+    title: "Synthesia",
+    description: "AI video platform that creates professional videos with AI avatars from text. Synthesia enables users to produce high-quality video content with realistic AI presenters for training, marketing, and educational purposes.",
+    emoji: "👥",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://synthesia.io",
+    tags: ["ai avatars", "video creation", "virtual presenters", "training videos", "marketing content", "educational videos"],
+    category: "Creative & Media",
+    rating: 4.7,
+    totalVotes: 7123
+  },
+  {
+    icon: Brush,
+    title: "Leonardo AI",
+    description: "AI image generation platform focused on creating high-quality art, illustrations, and concept designs. Leonardo AI offers advanced controls for artistic style, composition, and creative direction for professional creators.",
+    emoji: "🎨",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://leonardo.ai",
+    tags: ["ai art", "image generation", "digital art", "concept design", "illustrations", "creative design"],
+    category: "Creative & Media",
+    rating: 4.6,
+    totalVotes: 4987
   }
 ];

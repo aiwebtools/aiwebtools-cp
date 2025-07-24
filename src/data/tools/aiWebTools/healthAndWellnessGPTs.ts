@@ -105,5 +105,65 @@ export const healthAndWellnessGPTs: Tool[] = [
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
     totalVotes: 2890
+  },
+  {
+    icon: Activity,
+    title: "MyFitnessPal",
+    description: "Comprehensive nutrition and fitness tracking app with AI-powered insights. MyFitnessPal helps users track calories, macros, exercise, and health goals with a vast food database and personalized recommendations.",
+    emoji: "🏃",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://myfitnesspal.com",
+    tags: ["fitness tracking", "nutrition", "calorie counting", "health goals", "exercise", "wellness"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.4,
+    totalVotes: 12345
+  },
+  {
+    icon: Heart,
+    title: "Headspace",
+    description: "AI-enhanced meditation and mindfulness app that provides personalized guided meditations, sleep stories, and mental wellness programs. Headspace offers scientifically-backed techniques for stress reduction and improved well-being.",
+    emoji: "🧘",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://headspace.com",
+    tags: ["meditation", "mindfulness", "mental health", "stress relief", "sleep", "wellness"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.6,
+    totalVotes: 9876
+  },
+  {
+    icon: Stethoscope,
+    title: "WebMD Symptom Checker",
+    description: "AI-powered symptom analysis tool that helps users understand potential health conditions based on symptoms. WebMD provides reliable health information and guidance on when to seek medical care.",
+    emoji: "🩺",
+    color: "from-red-500 to-blue-600",
+    directUrl: "https://webmd.com",
+    tags: ["symptom checker", "health information", "medical guidance", "healthcare", "diagnosis assistance", "health education"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.3,
+    totalVotes: 15432
+  },
+  {
+    icon: Shield,
+    title: "Calm",
+    description: "AI-powered mental wellness app offering meditation, sleep stories, relaxation programs, and stress management tools. Calm provides personalized content to improve sleep quality and reduce anxiety.",
+    emoji: "😌",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://calm.com",
+    tags: ["mental wellness", "meditation", "sleep", "relaxation", "stress management", "anxiety relief"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.5,
+    totalVotes: 8765
+  },
+  {
+    icon: Plus,
+    title: "Babylon Health",
+    description: "AI-powered digital health platform that provides virtual consultations, symptom checking, and personalized health insights. Babylon combines AI technology with healthcare professionals for accessible medical care.",
+    emoji: "🏥",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://babylonhealth.com",
+    tags: ["telemedicine", "virtual consultations", "ai health", "digital healthcare", "symptom checker", "medical care"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.4,
+    totalVotes: 6543
   }
 ];

@@ -67,5 +67,65 @@ export const scienceAndResearchGPTs: Tool[] = [
     category: "Science & Research",
     rating: 4.7,
     totalVotes: 5123
+  },
+  {
+    icon: Database,
+    title: "Consensus",
+    description: "AI-powered academic search engine that finds and summarizes scientific research. Consensus uses AI to extract key findings from peer-reviewed papers and provides evidence-based answers to research questions with proper citations.",
+    emoji: "📊",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://consensus.app",
+    tags: ["academic search", "research", "citations", "peer review", "scientific papers", "evidence-based"],
+    category: "Science & Research",
+    rating: 4.6,
+    totalVotes: 3421
+  },
+  {
+    icon: Lightbulb,
+    title: "Elicit",
+    description: "AI research assistant that helps you find relevant papers, extract key claims, and synthesize findings. Elicit automates parts of the research workflow using language models to help researchers work more efficiently.",
+    emoji: "🔬",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://elicit.org",
+    tags: ["research assistant", "paper discovery", "claim extraction", "research workflow", "literature review", "academic"],
+    category: "Science & Research",
+    rating: 4.5,
+    totalVotes: 2876
+  },
+  {
+    icon: Globe,
+    title: "Semantic Scholar",
+    description: "AI-powered academic search engine by Allen Institute that helps researchers discover relevant scientific literature. Uses machine learning to understand paper content and provide intelligent recommendations and insights.",
+    emoji: "🌐",
+    color: "from-teal-500 to-green-600",
+    directUrl: "https://semanticscholar.org",
+    tags: ["academic search", "ai research", "paper discovery", "machine learning", "scholarly articles", "citations"],
+    category: "Science & Research",
+    rating: 4.7,
+    totalVotes: 5234
+  },
+  {
+    icon: TestTube,
+    title: "Research Rabbit",
+    description: "AI-powered research discovery platform that helps you explore academic literature through interactive visualizations. Find connected papers, discover new research directions, and collaborate with other researchers.",
+    emoji: "🐰",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://researchrabbitapp.com",
+    tags: ["research discovery", "paper connections", "visualization", "collaboration", "academic network", "literature mapping"],
+    category: "Science & Research",
+    rating: 4.4,
+    totalVotes: 1987
+  },
+  {
+    icon: Calculator,
+    title: "Connected Papers",
+    description: "Visual tool to help researchers find and explore papers relevant to their work. Creates interactive graphs showing connections between academic papers based on citations and semantic similarity.",
+    emoji: "🔗",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://connectedpapers.com",
+    tags: ["paper visualization", "research mapping", "citation network", "academic discovery", "paper connections", "literature review"],
+    category: "Science & Research",
+    rating: 4.6,
+    totalVotes: 3654
   }
 ];

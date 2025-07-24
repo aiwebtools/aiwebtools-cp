@@ -239,4 +239,64 @@ export const businessAndFinanceGPTs: Tool[] = [
     rating: 4.5,
     totalVotes: 1234
   },
+  {
+    icon: FileText,
+    title: "Jasper AI",
+    description: "AI-powered content creation platform for marketing teams and businesses. Jasper helps create high-quality blog posts, social media content, ad copy, and marketing materials with brand voice consistency and SEO optimization.",
+    emoji: "✍️",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://jasper.ai",
+    tags: ["content creation", "marketing", "copywriting", "ai writing", "brand voice", "seo"],
+    category: "Business & Finance",
+    rating: 4.6,
+    totalVotes: 5678
+  },
+  {
+    icon: Briefcase,
+    title: "Copy.ai",
+    description: "AI writing assistant that helps create marketing copy, sales content, and business communications. Copy.ai offers templates and tools for email campaigns, product descriptions, and various business writing needs.",
+    emoji: "📝",
+    color: "from-teal-500 to-green-600",
+    directUrl: "https://copy.ai",
+    tags: ["copywriting", "marketing copy", "business writing", "ai assistant", "sales content", "email campaigns"],
+    category: "Business & Finance",
+    rating: 4.5,
+    totalVotes: 4321
+  },
+  {
+    icon: Zap,
+    title: "Zapier",
+    description: "Automation platform that connects different apps and services to streamline workflows. Zapier enables businesses to automate repetitive tasks and integrate various tools for improved productivity and efficiency.",
+    emoji: "🔗",
+    color: "from-orange-500 to-yellow-600",
+    directUrl: "https://zapier.com",
+    tags: ["automation", "workflow", "integration", "productivity", "business tools", "app connections"],
+    category: "Business & Finance",
+    rating: 4.7,
+    totalVotes: 8901
+  },
+  {
+    icon: Users,
+    title: "Notion AI",
+    description: "AI-powered workspace and productivity platform that combines notes, tasks, databases, and collaboration tools. Notion AI helps teams organize information, manage projects, and enhance productivity with intelligent assistance.",
+    emoji: "📊",
+    color: "from-gray-500 to-blue-600",
+    directUrl: "https://notion.so",
+    tags: ["productivity", "workspace", "collaboration", "project management", "notes", "ai assistant"],
+    category: "Business & Finance",
+    rating: 4.6,
+    totalVotes: 7234
+  },
+  {
+    icon: PieChart,
+    title: "Grammarly Business",
+    description: "AI-powered writing assistant for business communications that helps improve clarity, tone, and correctness. Grammarly ensures professional writing across emails, documents, and marketing materials with real-time suggestions.",
+    emoji: "✅",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://grammarly.com/business",
+    tags: ["writing assistant", "business communication", "grammar check", "professional writing", "editing", "tone adjustment"],
+    category: "Business & Finance",
+    rating: 4.5,
+    totalVotes: 6789
+  }
 ];
