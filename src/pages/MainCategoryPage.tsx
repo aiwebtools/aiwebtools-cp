@@ -4,6 +4,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import ScrollToTop from "@/components/ui/scroll-to-top";
+import { ToolGridSkeleton } from "@/components/ui/loading-skeleton";
 import SEOHead from "@/components/SEOHead";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import SearchBar from "@/components/tools/SearchBar";
@@ -105,11 +107,11 @@ const MainCategoryPage = () => {
     
     setIsLoading(true);
     
-    // Reduced timeout for faster loading
+    // Faster loading with better user feedback
     setTimeout(() => {
       setDisplayedCount(prev => prev + 48);
       setIsLoading(false);
-    }, 50);
+    }, 100);
   }, [isLoading]);
 
   const handleSearchChange = useCallback((value: string) => {
@@ -157,10 +159,12 @@ const MainCategoryPage = () => {
         <div className="relative z-10 cyber-grid">
           <Header />
           <main className="container mx-auto px-4 py-8">
-            <div className="text-center">
-              <div className="text-6xl mb-4">⏳</div>
-              <h1 className="text-2xl font-bold text-cyan-100">Loading...</h1>
+            <div className="text-center mb-8">
+              <div className="text-6xl mb-4 animate-pulse">⏳</div>
+              <h1 className="text-2xl font-bold text-cyan-100 mb-4">Loading AI Tools...</h1>
+              <p className="text-gray-400">Preparing your ultimate AI experience</p>
             </div>
+            <ToolGridSkeleton count={8} />
           </main>
           <Footer />
         </div>
@@ -195,6 +199,24 @@ const MainCategoryPage = () => {
             <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
               {mainCategory.description}
             </p>
+            
+            {/* Breadcrumb Navigation */}
+            <nav aria-label="Breadcrumb" className="mb-6">
+              <ol className="flex items-center justify-center space-x-2 text-sm text-gray-400">
+                <li>
+                  <button 
+                    onClick={() => navigate('/')}
+                    className="hover:text-cyan-400 transition-colors duration-200 focus:outline-none focus:text-cyan-400"
+                  >
+                    Home
+                  </button>
+                </li>
+                <li>
+                  <span className="mx-2">›</span>
+                  <span className="text-cyan-400">{decodedCategoryName}</span>
+                </li>
+              </ol>
+            </nav>
           </div>
 
           {/* Main Search Bar - Full functionality restored */}
@@ -260,6 +282,7 @@ const MainCategoryPage = () => {
           </div>
         </main>
         
+        <ScrollToTop />
         <Footer />
       </div>
     </div>

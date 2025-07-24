@@ -7,6 +7,7 @@ import CategoryPageSelection from "@/components/CategoryPageSelection";
 import SpecialServices from "@/components/SpecialServices";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import ScrollToTop from "@/components/ui/scroll-to-top";
 import SEOHead from "@/components/SEOHead";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import { Button } from "@/components/ui/button";
@@ -159,6 +160,7 @@ const Index = () => {
         )}
         
         <SpecialServices />
+        <ScrollToTop />
         <Footer />
       </div>
     </div>

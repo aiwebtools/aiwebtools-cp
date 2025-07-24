@@ -4,6 +4,7 @@ import { useFeaturedToolsState } from "@/hooks/useFeaturedToolsState";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import ScrollToTop from "@/components/ui/scroll-to-top";
 import EnhancedSEOHead from "@/components/seo/EnhancedSEOHead";
 import CategoryFilters from "@/components/tools/CategoryFilters";
 import ToolsGrid from "@/components/tools/ToolsGrid";
@@ -177,6 +178,7 @@ const HomePage = () => {
           </div>
         </main>
         
+        <ScrollToTop />
         <Footer />
       </div>
     </div>

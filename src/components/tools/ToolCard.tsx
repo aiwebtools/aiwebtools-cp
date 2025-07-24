@@ -44,13 +44,16 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
 
   return (
     <Card 
-      className="group relative bg-gradient-to-br from-gray-900/80 to-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl p-4 sm:p-6 transition-all duration-300 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105 h-full flex flex-col"
+      className="group relative bg-gradient-to-br from-gray-900/80 to-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl p-4 sm:p-6 transition-all duration-300 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105 h-full flex flex-col focus-within:border-cyan-400 focus-within:shadow-cyan-400/20"
       style={{
         // Optimize rendering with contain property
         contain: 'layout style paint',
         // Improve scroll performance
         willChange: 'transform',
       }}
+      tabIndex={0}
+      role="article"
+      aria-label={`AI Tool: ${tool.title}`}
     >
       <ToolCardHeader 
         tool={tool}
