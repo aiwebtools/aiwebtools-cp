@@ -59,7 +59,7 @@ export const fuzzyMatchTool = (tool: Tool, searchTerm: string): { score: number;
         if (similarity >= 0.6) { // Lowered threshold for better misspelling support
           matched = true;
           totalScore += similarity * 3500; // Higher score for title matches
-          console.log(`🎯 Fuzzy title match: "${searchWord}" ~ "${titleWord}" (${similarity.toFixed(2)})`);
+          // Removed console.log for performance
         }
       }
     }
@@ -75,7 +75,7 @@ export const fuzzyMatchTool = (tool: Tool, searchTerm: string): { score: number;
           if (similarity >= 0.7) { // Threshold for description
             matched = true;
             totalScore += similarity * 1800; // Medium score for description matches
-            console.log(`🎯 Fuzzy desc match: "${searchWord}" ~ "${descWord}" (${similarity.toFixed(2)})`);
+            // Removed console.log for performance
           }
         }
       }
@@ -92,7 +92,7 @@ export const fuzzyMatchTool = (tool: Tool, searchTerm: string): { score: number;
           if (similarity >= 0.75) {
             matched = true;
             totalScore += similarity * 1200;
-            console.log(`🎯 Fuzzy category match: "${searchWord}" ~ "${catWord}" (${similarity.toFixed(2)})`);
+            // Removed console.log for performance
           }
         }
       }
@@ -110,7 +110,7 @@ export const fuzzyMatchTool = (tool: Tool, searchTerm: string): { score: number;
             if (similarity >= 0.7) {
               matched = true;
               totalScore += similarity * 900;
-              console.log(`🎯 Fuzzy tag match: "${searchWord}" ~ "${tagWord}" (${similarity.toFixed(2)})`);
+              // Removed console.log for performance
             }
           }
         }

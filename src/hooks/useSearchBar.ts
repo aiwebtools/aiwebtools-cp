@@ -13,34 +13,57 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   const [isOpen, setIsOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(30);
   
-  // SUPER FAST search results - optimized for instant typing
+  // ULTRA FAST search results - optimized for instant typing without lag
   const searchResults = useMemo(() => {
     const trimmedTerm = searchTerm.trim();
     
     // No search for empty or very short terms
     if (!trimmedTerm || trimmedTerm.length < 2) return [];
     
-    // LIGHTNING FAST 2-character search - title starts with only
+    const lowerTerm = trimmedTerm.toLowerCase();
+    
+    // INSTANT 2-character search - title starts with only (ultra fast)
     if (trimmedTerm.length === 2) {
       return allTools.filter(tool => 
-        tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
-      ); // No limit - show all matching tools
+        tool.title.toLowerCase().startsWith(lowerTerm)
+      ).slice(0, 50); // Limit for performance
     }
     
-    // OPTIMIZED 3-character search - use simple matching instead of heavy searchTools
+    // FAST 3-character search - simple matching only (no heavy processing)
     if (trimmedTerm.length === 3) {
       return allTools.filter(tool => {
         const lowerTitle = tool.title.toLowerCase();
-        const lowerTerm = trimmedTerm.toLowerCase();
         return lowerTitle.startsWith(lowerTerm) || 
                lowerTitle.includes(lowerTerm) ||
-               tool.category?.toLowerCase().includes(lowerTerm);
-      }); // No limit - show all matching tools
+               (tool.category?.toLowerCase().includes(lowerTerm));
+      }).slice(0, 75); // Slightly more results
     }
     
-    // For 4+ characters, use full search with unlimited results
-    const results = searchTools(allTools, trimmedTerm);
-    return results; // No limit - show all matching tools
+    // OPTIMIZED 4+ character search - still fast but more comprehensive
+    if (trimmedTerm.length >= 4) {
+      // Quick filtering first to reduce dataset
+      const quickFiltered = allTools.filter(tool => {
+        const lowerTitle = tool.title.toLowerCase();
+        const lowerDesc = tool.description.toLowerCase();
+        const lowerCat = tool.category?.toLowerCase() || '';
+        
+        return lowerTitle.includes(lowerTerm) ||
+               lowerDesc.includes(lowerTerm) ||
+               lowerCat.includes(lowerTerm) ||
+               (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(lowerTerm)));
+      });
+      
+      // Only use heavy search function if we have manageable results
+      if (quickFiltered.length <= 200) {
+        const results = searchTools(quickFiltered, trimmedTerm);
+        return results.slice(0, 100);
+      } else {
+        // For large result sets, stick to simple matching for speed
+        return quickFiltered.slice(0, 100);
+      }
+    }
+    
+    return [];
   }, [searchTerm]);
 
   // Display results with performance limits for rendering only

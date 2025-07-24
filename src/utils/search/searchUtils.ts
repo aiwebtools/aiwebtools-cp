@@ -47,21 +47,19 @@ const detectIntent = (searchTerm: string): string | null => {
   return null;
 };
 
-// Enhanced search function with intent detection and fuzzy matching
+// Enhanced search function with intent detection and optimized performance
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
     return tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title));
   }
 
-  console.log('🔍 Enhanced Search invoked with term:', searchTerm);
   const normalizedSearchTerm = searchTerm.toLowerCase().trim();
   const searchWords = normalizedSearchTerm.split(/[\s,.-]+/).filter(word => word.length > 1);
   
-  // Get phonetic variations and synonyms
-  const phoneticVariations = phoneticMatch(normalizedSearchTerm);
-  console.log('🎯 Phonetic variations:', phoneticVariations);
+  // Fast phonetic variations (only for performance-critical terms)
+  const phoneticVariations = searchTerm.length <= 6 ? phoneticMatch(normalizedSearchTerm) : [];
   
-  // Detect user intent
+  // Quick intent detection without heavy processing
   const userIntent = detectIntent(normalizedSearchTerm);
   const intentConfig = userIntent ? INTENT_PATTERNS[userIntent as keyof typeof INTENT_PATTERNS] : null;
   
@@ -160,12 +158,14 @@ const performEnhancedSearch = (
         }
       }
 
-      // FUZZY MATCHING for misspellings
-      const fuzzyResult = fuzzyMatchTool(tool, searchTerm);
-      if (fuzzyResult.matched) {
-        matched = true;
-        score += fuzzyResult.score;
-        console.log(`🎯 Fuzzy match for: ${tool.title} (score: ${fuzzyResult.score})`);
+      // Fuzzy matching only for longer terms to avoid performance issues
+      if (normalizedSearchTerm.length >= 5) {
+        const fuzzyResult = fuzzyMatchTool(tool, searchTerm);
+        if (fuzzyResult.matched) {
+          matched = true;
+          score += fuzzyResult.score;
+          // Removed console.log for performance
+        }
       }
 
       // MEDIUM-HIGH PRIORITY: Description contains exact term
@@ -225,7 +225,7 @@ const performEnhancedSearch = (
     })
     .map(result => result.tool);
 
-  console.log(`🔍 Search for "${searchTerm}" returned ${results.length} results`);
+  // Removed console.log for performance
   return results;
 };
 
