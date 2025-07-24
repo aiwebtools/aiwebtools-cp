@@ -5,14 +5,15 @@ const AnimatedBackground = () => {
   const starsRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
   const shootingStarsRef = useRef<HTMLDivElement>(null);
+  const matrixRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Create stars - reduced to 300 for better performance
+    // Create stars - optimized for performance
     const createStars = () => {
       const starsContainer = starsRef.current;
       if (!starsContainer) return;
 
-      for (let i = 0; i < 300; i++) {
+      for (let i = 0; i < 200; i++) {
         const star = document.createElement('div');
         star.className = 'star';
         star.style.left = Math.random() * 100 + '%';
@@ -25,12 +26,12 @@ const AnimatedBackground = () => {
       }
     };
 
-    // Create floating particles - reduced to 30 for better performance
+    // Create floating particles - optimized
     const createParticles = () => {
       const particlesContainer = particlesRef.current;
       if (!particlesContainer) return;
 
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 20; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * 100 + '%';
@@ -42,12 +43,12 @@ const AnimatedBackground = () => {
       }
     };
 
-    // Create shooting stars - reduced to 15 for better performance
+    // Create shooting stars - optimized
     const createShootingStars = () => {
       const shootingStarsContainer = shootingStarsRef.current;
       if (!shootingStarsContainer) return;
 
-      for (let i = 0; i < 15; i++) {
+      for (let i = 0; i < 10; i++) {
         const shootingStar = document.createElement('div');
         shootingStar.className = 'shooting-star';
         shootingStar.style.left = Math.random() * 100 + '%';
@@ -58,14 +59,63 @@ const AnimatedBackground = () => {
       }
     };
 
+    // Create Matrix-style falling code
+    const createMatrixCode = () => {
+      const matrixContainer = matrixRef.current;
+      if (!matrixContainer) return;
+
+      // Matrix characters for the code rain
+      const matrixChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+-=[]{}|;:,.<>?';
+      const columns = Math.floor(window.innerWidth / 20); // Column width of 20px
+
+      for (let i = 0; i < columns; i++) {
+        const column = document.createElement('div');
+        column.className = 'matrix-column';
+        column.style.left = i * 20 + 'px';
+        column.style.animationDelay = Math.random() * 5 + 's';
+        column.style.animationDuration = (Math.random() * 3 + 4) + 's';
+
+        // Create multiple characters per column
+        const charCount = Math.floor(Math.random() * 20) + 10;
+        for (let j = 0; j < charCount; j++) {
+          const char = document.createElement('span');
+          char.className = 'matrix-char';
+          char.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+          char.style.opacity = Math.random() * 0.8 + 0.2 + '';
+          char.style.animationDelay = (j * 0.1) + 's';
+          column.appendChild(char);
+        }
+
+        matrixContainer.appendChild(column);
+      }
+    };
+
+    // Debounced resize handler for Matrix columns
+    let resizeTimeout: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (matrixRef.current) {
+          matrixRef.current.innerHTML = '';
+          createMatrixCode();
+        }
+      }, 250);
+    };
+
     createStars();
     createParticles();
     createShootingStars();
+    createMatrixCode();
+
+    window.addEventListener('resize', handleResize);
 
     return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimeout);
       if (starsRef.current) starsRef.current.innerHTML = '';
       if (particlesRef.current) particlesRef.current.innerHTML = '';
       if (shootingStarsRef.current) shootingStarsRef.current.innerHTML = '';
+      if (matrixRef.current) matrixRef.current.innerHTML = '';
     };
   }, []);
 
@@ -74,6 +124,7 @@ const AnimatedBackground = () => {
       <div ref={starsRef} className="moving-stars" />
       <div ref={particlesRef} className="floating-particles" />
       <div ref={shootingStarsRef} className="shooting-stars-container" />
+      <div ref={matrixRef} className="matrix-background" />
     </>
   );
 };
