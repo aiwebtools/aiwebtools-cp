@@ -558,18 +558,6 @@ export const moreRealAITools: Tool[] = [
   },
   // AI Education Tools
   {
-    icon: GraduationCap,
-    title: "Carnegie Learning",
-    description: "AI-powered adaptive learning platform for mathematics education.",
-    emoji: "🎓",
-    color: "from-blue-500 to-green-600",
-    directUrl: "https://carnegielearning.com/?via=aiwebtools",
-    tags: ["adaptive learning", "mathematics education", "AI tutoring", "personalized learning", "education technology"],
-    category: "Education & Learning",
-    rating: 4.4,
-    totalVotes: 4321
-  },
-  {
     icon: BookOpen,
     title: "Squirrel AI",
     description: "AI-powered adaptive learning system for personalized education.",

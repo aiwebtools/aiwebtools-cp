@@ -816,30 +816,6 @@ export const additionalRealAITools: Tool[] = [
     totalVotes: 2987
   },
   {
-    icon: Globe,
-    title: "Weights & Biases",
-    description: "MLOps platform for experiment tracking, model management, and collaboration.",
-    emoji: "⚖️",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://wandb.ai/?via=aiwebtools",
-    tags: ["MLOps", "experiment tracking", "model management", "machine learning", "collaboration"],
-    category: "ML Operations",
-    rating: 4.7,
-    totalVotes: 4567
-  },
-  {
-    icon: Building,
-    title: "Hugging Face",
-    description: "Open-source platform for machine learning models, datasets, and AI collaboration.",
-    emoji: "🤗",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://huggingface.co/?via=aiwebtools",
-    tags: ["open source", "ML models", "datasets", "AI community", "transformers"],
-    category: "AI Community Platform",
-    rating: 4.8,
-    totalVotes: 8901
-  },
-  {
     icon: Zap,
     title: "Cohere AI",
     description: "Enterprise AI platform providing large language models for business applications.",
@@ -887,54 +863,6 @@ export const additionalRealAITools: Tool[] = [
     rating: 4.3,
     totalVotes: 2456
   },
-  {
-    icon: Settings,
-    title: "MLflow",
-    description: "Open-source platform for managing the complete machine learning lifecycle.",
-    emoji: "⚙️",
-    color: "from-blue-500 to-green-600",
-    directUrl: "https://mlflow.org/?via=aiwebtools",
-    tags: ["MLOps", "model management", "experiment tracking", "open source", "lifecycle management"],
-    category: "ML Lifecycle Management",
-    rating: 4.6,
-    totalVotes: 4123
-  },
-  {
-    icon: Target,
-    title: "Evidently AI",
-    description: "Open-source tool for monitoring and debugging machine learning models in production.",
-    emoji: "🎯",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://evidentlyai.com/?via=aiwebtools",
-    tags: ["ML monitoring", "model debugging", "production AI", "open source", "data drift"],
-    category: "AI Monitoring",
-    rating: 4.4,
-    totalVotes: 2789
-  },
-  {
-    icon: Cpu,
-    title: "TensorFlow",
-    description: "Open-source machine learning platform for building and deploying AI applications.",
-    emoji: "🔧",
-    color: "from-orange-500 to-yellow-600",
-    directUrl: "https://tensorflow.org/?via=aiwebtools",
-    tags: ["machine learning", "deep learning", "open source", "Google", "AI framework"],
-    category: "AI Frameworks",
-    rating: 4.7,
-    totalVotes: 12345
-  },
-  {
-    icon: Bot,
-    title: "PyTorch",
-    description: "Open-source deep learning framework for research and production AI applications.",
-    emoji: "🔥",
-    color: "from-red-500 to-orange-600",
-    directUrl: "https://pytorch.org/?via=aiwebtools",
-    tags: ["deep learning", "research", "open source", "Facebook", "neural networks"],
-    category: "Deep Learning Frameworks",
-    rating: 4.8,
-    totalVotes: 10987
-  }
 ];
 
 console.log(`🚀 Added ${additionalRealAITools.length} real AI tools to the database`);
