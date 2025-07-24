@@ -1,8 +1,10 @@
 
 import { useState, useCallback, useMemo } from "react";
 import { allTools } from "@/data/toolsData";
-import { searchTools } from "@/utils/searchUtils";
+import { searchTools, removeDuplicateTools } from "@/utils/search/searchUtils";
 import { getCurrentToolCount } from "@/utils/toolCounter";
+import { enhancedKeywordMatching, enhancedToolScoring } from "@/utils/search/enhancedKeywordMatching";
+import { predictUserIntent, generateAutoComplete } from "@/utils/search/core/intelligentPrediction";
 
 interface UseSearchBarProps {
   searchTerm: string;
@@ -13,68 +15,79 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   const [isOpen, setIsOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(30);
   
-  // ULTRA FAST search results - optimized for instant typing without lag
+  // INTELLIGENT search results with comprehensive matching
   const searchResults = useMemo(() => {
     const trimmedTerm = searchTerm.trim();
     
-    // No search for empty or very short terms
-    if (!trimmedTerm || trimmedTerm.length < 2) return [];
+    // No search for empty terms
+    if (!trimmedTerm) return [];
     
     const lowerTerm = trimmedTerm.toLowerCase();
     
-    // INSTANT 2-character search - title starts with only (ultra fast)
+    // INSTANT 2-character search with intelligent predictions
     if (trimmedTerm.length === 2) {
-      return allTools.filter(tool => 
-        tool.title.toLowerCase().startsWith(lowerTerm)
-      ).slice(0, 50); // Limit for performance
+      const predictions = generateAutoComplete(trimmedTerm, allTools);
+      const titleMatches = allTools.filter(tool => 
+        tool.title.toLowerCase().startsWith(lowerTerm) ||
+        predictions.some(pred => tool.title.toLowerCase().includes(pred.toLowerCase()))
+      );
+      return titleMatches.slice(0, 50);
     }
     
-    // FAST 3-character search - simple matching only (no heavy processing)
+    // SMART 3-character search with enhanced matching
     if (trimmedTerm.length === 3) {
-      return allTools.filter(tool => {
-        const lowerTitle = tool.title.toLowerCase();
-        return lowerTitle.startsWith(lowerTerm) || 
-               lowerTitle.includes(lowerTerm) ||
-               (tool.category?.toLowerCase().includes(lowerTerm));
-      }).slice(0, 75); // Slightly more results
-    }
-    
-    // OPTIMIZED 4+ character search - still fast but more comprehensive
-    if (trimmedTerm.length >= 4) {
-      // Quick filtering first to reduce dataset
-      const quickFiltered = allTools.filter(tool => {
+      const quickResults = allTools.filter(tool => {
         const lowerTitle = tool.title.toLowerCase();
         const lowerDesc = tool.description.toLowerCase();
         const lowerCat = tool.category?.toLowerCase() || '';
+        const lowerTags = (tool.tags || []).join(' ').toLowerCase();
         
-        return lowerTitle.includes(lowerTerm) ||
-               lowerDesc.includes(lowerTerm) ||
+        return lowerTitle.startsWith(lowerTerm) || 
+               lowerTitle.includes(lowerTerm) ||
                lowerCat.includes(lowerTerm) ||
-               (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(lowerTerm)));
+               lowerDesc.includes(lowerTerm) ||
+               lowerTags.includes(lowerTerm) ||
+               enhancedKeywordMatching(tool, trimmedTerm);
       });
       
-      // Only use heavy search function if we have manageable results
-      if (quickFiltered.length <= 200) {
-        const results = searchTools(quickFiltered, trimmedTerm);
-        return results.slice(0, 100);
-      } else {
-        // For large result sets, stick to simple matching for speed
-        return quickFiltered.slice(0, 100);
-      }
+      // Score and sort for better relevance
+      return quickResults
+        .map(tool => ({
+          tool,
+          score: enhancedToolScoring(tool, trimmedTerm) + (tool.title.toLowerCase().startsWith(lowerTerm) ? 10000 : 0)
+        }))
+        .sort((a, b) => b.score - a.score)
+        .map(result => result.tool)
+        .slice(0, 75);
+    }
+    
+    // COMPREHENSIVE 4+ character search with full intelligence
+    if (trimmedTerm.length >= 4) {
+      // Use the enhanced search function for comprehensive results
+      const results = searchTools(allTools, trimmedTerm);
+      return removeDuplicateTools(results).slice(0, 100);
     }
     
     return [];
   }, [searchTerm]);
 
-  // Display results with performance limits for rendering only
+  // Display results with performance limits for rendering
   const displayedResults = useMemo(() => 
-    searchResults.slice(0, Math.min(displayedCount, 100)), // Only limit display for performance
+    searchResults.slice(0, Math.min(displayedCount, 100)),
     [searchResults, displayedCount]
   );
 
+  // User intent predictions for better UX
+  const userIntentPredictions = useMemo(() => {
+    if (searchTerm.trim().length >= 3) {
+      return predictUserIntent(searchTerm.trim(), allTools);
+    }
+    return [];
+  }, [searchTerm]);
+
   const shouldShowResults = searchResults.length > 0 && searchTerm.trim().length >= 2;
 
-  // INSTANT search change handler - no delays
+  // INSTANT search change handler with intelligent suggestions
   const handleSearchChange = useCallback((value: string) => {
     onSearchChange(value);
     const trimmed = value.trim();
@@ -118,7 +131,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     if (scrollHeight - scrollTop <= clientHeight + 30 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 20, searchResults.length)); // Load more in chunks
+      setDisplayedCount(prev => Math.min(prev + 20, searchResults.length));
     }
   }, [displayedCount, searchResults.length]);
 
@@ -130,6 +143,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     toolStats,
     searchResults,
     displayedResults,
+    userIntentPredictions,
     shouldShowResults,
     handleSearchChange,
     handleResultClick,

@@ -9,27 +9,47 @@ const EXCLUDED_TOOLS = [
   "personal financial advisor"
 ];
 
-// Intent detection patterns for better search prioritization
+// Intent detection patterns for better search prioritization - EXPANDED FOR ALL CATEGORIES
 const INTENT_PATTERNS = {
   education: {
-    triggers: ['college', 'university', 'degree', 'education', 'learn', 'study', 'course', 'school', 'academic', 'skill', 'training', 'lesson', 'class', 'homework', 'tutor', 'teacher'],
-    priority: ['COLLEGE DEGREE GPT', 'LEARN ANY SKILL GPT', 'LEARN ANY COURSE GPT', 'Home-Schooling Assistant GPT', 'HomeSchool GPT'],
-    categories: ['Education & Research Tools', 'Learning & Education', 'Educational Tools']
+    triggers: ['college', 'university', 'degree', 'education', 'learn', 'study', 'course', 'school', 'academic', 'skill', 'training', 'lesson', 'class', 'homework', 'tutor', 'teacher', 'student'],
+    priority: ['COLLEGE DEGREE GPT', 'LEARN ANY SKILL GPT', 'LEARN ANY COURSE GPT', 'Home-Schooling Assistant GPT', 'HomeSchool GPT', 'Quiz Maker Ai', 'Course Maker GPT'],
+    categories: ['Education & Research Tools', 'Learning & Education', 'Educational Tools', 'Education & Learning']
   },
   creative: {
-    triggers: ['book', 'write', 'writing', 'author', 'story', 'novel', 'script', 'content', 'blog', 'article'],
-    priority: ['BOOK WRITER GPT', 'Movie Script Writer GPT', 'Article and Blog Rewriter GPT', 'Creative Writing Tools'],
-    categories: ['Writing & Text Generation', 'Content Creation', 'Creative Tools']
+    triggers: ['book', 'write', 'writing', 'author', 'story', 'novel', 'script', 'content', 'blog', 'article', 'creative', 'design', 'art', 'graphic', 'logo', 'image', 'video', 'movie', 'music'],
+    priority: ['BOOK WRITER GPT', 'Movie Script Writer GPT', 'Article and Blog Rewriter GPT', 'Graphic & Cover Design GPT', 'Movie Maker Studio AI SUITE', 'Music Video Maker AI Studio', 'RESTYLE ME GPT', 'Sketch Artist GPT'],
+    categories: ['Writing & Text Generation', 'Content Creation', 'Creative Tools', 'Creative & Media', 'Creative & Design']
   },
   health: {
-    triggers: ['doctor', 'health', 'medical', 'wellness', 'fitness', 'nutrition', 'therapy', 'mental'],
-    priority: ['Personalized DR. GPT (Doctor GPT)', 'Mental Wellness GPT', 'Veterinarian GPT'],
-    categories: ['Health & Wellness', 'Healthcare', 'Medical Tools']
+    triggers: ['doctor', 'health', 'medical', 'wellness', 'fitness', 'nutrition', 'therapy', 'mental', 'dental', 'veterinarian', 'pet', 'medicine', 'pharmaceutical'],
+    priority: ['Personalized DR. GPT (Doctor GPT)', 'Mental Wellness GPT', 'Veterinarian GPT', 'Pharmaceutical Assistant GPT', 'DENTAL GPT', 'SKIN CARE GPT'],
+    categories: ['Health & Wellness', 'Healthcare', 'Medical Tools', 'Health, Wellness & Personal Lifestyle']
   },
   business: {
-    triggers: ['business', 'marketing', 'finance', 'trading', 'investment', 'money', 'budget', 'startup'],
-    priority: ['Business Plan Generator GPT', 'Startup Validator GPT', 'Trader GPT', 'MicroSaaS GPT'],
-    categories: ['Business & Productivity', 'Finance & Trading', 'Marketing Tools']
+    triggers: ['business', 'marketing', 'finance', 'trading', 'investment', 'money', 'budget', 'startup', 'entrepreneur', 'sales', 'management', 'productivity', 'resume', 'job'],
+    priority: ['Business Plan Generator GPT', 'Startup Validator GPT', 'Trader GPT', 'MicroSaaS GPT', 'The Resume & Job Finder Ai Suite', 'Taxes GPT', 'Insurance Claims GPT'],
+    categories: ['Business & Productivity', 'Finance & Trading', 'Marketing Tools', 'Business & Finance', 'Business Tools']
+  },
+  science: {
+    triggers: ['science', 'research', 'analysis', 'data', 'laboratory', 'experiment', 'scientific', 'genome', 'dna', 'physics', 'chemistry', 'biology', 'space', 'astronomy'],
+    priority: ['Nikola Tesla GPT', 'Stellaris: 🚀AI Space Explorer', 'Genome GPT', 'Alchemist Scientist GPT', 'Data Research Analysis Report GPT'],
+    categories: ['Science & Research', 'Research & Learning', 'Scientific Tools', 'Data Analytics']
+  },
+  technology: {
+    triggers: ['ai', 'artificial intelligence', 'machine learning', 'automation', 'coding', 'programming', 'development', 'software', 'tech', 'computer', 'app', 'website'],
+    priority: ['GODMODE GPT', 'Engineering GPT AI Suite', 'MULTITASKER GPT', 'Customizable GPT Maker'],
+    categories: ['AI & Development', 'Technology Tools', 'Development Tools', 'AI Tools']
+  },
+  legal: {
+    triggers: ['legal', 'law', 'attorney', 'lawyer', 'contract', 'legislation', 'government', 'civic', 'political', 'testimony', 'defender'],
+    priority: ['Legal Draftsmith GPT', 'Public Defender GPT', 'Legislation Writer GPT', 'Public Testimony Writer GPT', 'Contract Review Bot'],
+    categories: ['Legal & Government', 'Legal Tools', 'Government & Civic']
+  },
+  entertainment: {
+    triggers: ['game', 'gaming', 'entertainment', 'fun', 'trivia', 'celebrity', 'movie', 'film', 'music', 'meme', 'comic'],
+    priority: ['Game Design Document / Developer GPT', 'Trivia Night GPT', 'Celebrity Chatline GPT', 'MEME GENERATOR GPT', 'Comic Book Generator GPT'],
+    categories: ['Entertainment & Gaming', 'Gaming Tools', 'Entertainment Tools']
   }
 };
 
@@ -81,7 +101,60 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return [...scoredAIWebTools, ...regularResults];
   }
   
-  // Regular enhanced search
+  // CATEGORY-SPECIFIC PRIORITY MATCHING
+  // Health/Medical searches
+  if (normalizedSearchTerm.includes('health') || normalizedSearchTerm.includes('medical') || 
+      normalizedSearchTerm.includes('doctor') || normalizedSearchTerm.includes('wellness')) {
+    const healthTools = tools.filter(tool => 
+      tool.category?.toLowerCase().includes('health') ||
+      tool.category?.toLowerCase().includes('wellness') ||
+      tool.title.toLowerCase().includes('health') ||
+      tool.title.toLowerCase().includes('medical') ||
+      tool.title.toLowerCase().includes('doctor')
+    );
+    return performEnhancedSearch([...healthTools, ...tools.filter(t => !healthTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+  
+  // Business/Finance searches
+  if (normalizedSearchTerm.includes('business') || normalizedSearchTerm.includes('finance') || 
+      normalizedSearchTerm.includes('money') || normalizedSearchTerm.includes('trading')) {
+    const businessTools = tools.filter(tool => 
+      tool.category?.toLowerCase().includes('business') ||
+      tool.category?.toLowerCase().includes('finance') ||
+      tool.title.toLowerCase().includes('business') ||
+      tool.title.toLowerCase().includes('finance')
+    );
+    return performEnhancedSearch([...businessTools, ...tools.filter(t => !businessTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+  
+  // Creative/Media searches
+  if (normalizedSearchTerm.includes('creative') || normalizedSearchTerm.includes('media') || 
+      normalizedSearchTerm.includes('video') || normalizedSearchTerm.includes('music') ||
+      normalizedSearchTerm.includes('art') || normalizedSearchTerm.includes('design')) {
+    const creativeTools = tools.filter(tool => 
+      tool.category?.toLowerCase().includes('creative') ||
+      tool.category?.toLowerCase().includes('media') ||
+      tool.title.toLowerCase().includes('video') ||
+      tool.title.toLowerCase().includes('music') ||
+      tool.title.toLowerCase().includes('art') ||
+      tool.title.toLowerCase().includes('design')
+    );
+    return performEnhancedSearch([...creativeTools, ...tools.filter(t => !creativeTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+  
+  // Education/Learning searches
+  if (normalizedSearchTerm.includes('learn') || normalizedSearchTerm.includes('education') || 
+      normalizedSearchTerm.includes('course') || normalizedSearchTerm.includes('school')) {
+    const educationTools = tools.filter(tool => 
+      tool.category?.toLowerCase().includes('education') ||
+      tool.category?.toLowerCase().includes('learning') ||
+      tool.title.toLowerCase().includes('learn') ||
+      tool.title.toLowerCase().includes('education')
+    );
+    return performEnhancedSearch([...educationTools, ...tools.filter(t => !educationTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+  
+  // Regular enhanced search with improved scoring
   return performEnhancedSearch(tools, searchTerm, searchWords, phoneticVariations, intentConfig);
 };
 
@@ -106,6 +179,14 @@ const performEnhancedSearch = (
       let score = 0;
       let matched = false;
 
+      // AIWEBTOOLS PRIORITY BOOST - Special handling for our custom GPTs
+      if (tool.directUrl?.includes('aiwebtools') || tool.tags?.includes('aiwebtools')) {
+        score += 2000; // Base boost for AI Web Tools
+        if (lowerTitle.includes(normalizedSearchTerm)) {
+          score += 3000; // Additional boost for matching AI Web Tools
+        }
+      }
+
       // INTENT PRIORITY BOOST: If we detected intent, boost priority tools
       if (intentConfig) {
         // Massive boost for priority tools
@@ -115,7 +196,6 @@ const performEnhancedSearch = (
         )) {
           matched = true;
           score += 25000; // Highest priority
-          console.log(`🚀 Intent priority boost for: ${tool.title}`);
         }
         
         // Boost for matching categories
@@ -125,7 +205,6 @@ const performEnhancedSearch = (
         )) {
           matched = true;
           score += 5000;
-          console.log(`📂 Category boost for: ${tool.title}`);
         }
       }
 
@@ -145,12 +224,11 @@ const performEnhancedSearch = (
         score += 10000;
       }
 
-      // PHONETIC AND SYNONYM MATCHING
+      // SPELLING CORRECTION AND PHONETIC MATCHING
       for (const variation of phoneticVariations) {
         if (lowerTitle.includes(variation.toLowerCase())) {
           matched = true;
           score += 8000;
-          console.log(`🔤 Phonetic match: ${variation} in ${tool.title}`);
         }
         if (lowerDescription.includes(variation.toLowerCase())) {
           matched = true;
@@ -164,7 +242,6 @@ const performEnhancedSearch = (
         if (fuzzyResult.matched) {
           matched = true;
           score += fuzzyResult.score;
-          // Removed console.log for performance
         }
       }
 
@@ -225,7 +302,6 @@ const performEnhancedSearch = (
     })
     .map(result => result.tool);
 
-  // Removed console.log for performance
   return results;
 };
 
