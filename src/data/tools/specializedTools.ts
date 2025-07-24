@@ -130,54 +130,6 @@ export const specializedTools: Tool[] = [
     totalVotes: 2345
   },
   {
-    icon: Bug,
-    title: "Insect Study Tool",
-    description: "Educational platform for studying insects and entomology with AI-powered identification.",
-    emoji: "🐛",
-    color: "from-green-500 to-yellow-600",
-    directUrl: "https://example.com/insects",
-    tags: ["entomology", "insects", "education", "identification"],
-    category: "Education",
-    rating: 4.0,
-    totalVotes: 1234
-  },
-  {
-    icon: Apple,
-    title: "Fruit Nutrition Guide",
-    description: "Comprehensive nutrition information for various fruits with AI-powered dietary recommendations.",
-    emoji: "🍎",
-    color: "from-red-500 to-green-600",
-    directUrl: "https://example.com/fruits",
-    tags: ["nutrition", "fruits", "health", "diet"],
-    category: "Health",
-    rating: 4.1,
-    totalVotes: 987
-  },
-  {
-    icon: Wheat,
-    title: "Agricultural Assistant",
-    description: "AI-powered farming and agriculture guidance for crop management and optimization.",
-    emoji: "🌾",
-    color: "from-yellow-500 to-green-600",
-    directUrl: "https://example.com/agriculture",
-    tags: ["agriculture", "farming", "crops", "optimization"],
-    category: "Agriculture",
-    rating: 4.3,
-    totalVotes: 1543
-  },
-  {
-    icon: Utensils,
-    title: "Recipe Generator",
-    description: "AI-powered recipe creation and meal planning with nutritional analysis.",
-    emoji: "🍽️",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://example.com/recipes",
-    tags: ["recipes", "cooking", "meal planning", "nutrition"],
-    category: "Food & Cooking",
-    rating: 4.2,
-    totalVotes: 2156
-  },
-  {
     icon: Bot,
     title: "Replicate",
     description: "Run open-source machine learning models in the cloud. Deploy and scale AI models without managing infrastructure.",
