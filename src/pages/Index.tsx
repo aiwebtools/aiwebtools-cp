@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import { useVideoManager } from "@/hooks/useVideoManager";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import CategoryPageSelection from "@/components/CategoryPageSelection";
@@ -17,6 +18,9 @@ const Index = () => {
   const [showAllTools, setShowAllTools] = useState(false);
   const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(24);
   const [isLoading, setIsLoading] = useState(false);
+  
+  // Use video manager for main page video
+  const mainVideoRef = useVideoManager('main-page-video');
 
   useEffect(() => {
     // Simple tool count
@@ -85,12 +89,14 @@ const Index = () => {
             <div className="max-w-6xl mx-auto">
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
+                  ref={mainVideoRef}
                   className="absolute top-0 left-0 w-full h-full rounded-xl border border-cyan-500/30"
-                  src="https://www.youtube.com/embed/drUyFiVayaw?autoplay=1&mute=0&controls=1&rel=0&loop=1&playlist=drUyFiVayaw&hd=1"
+                  src="https://www.youtube.com/embed/drUyFiVayaw?autoplay=1&mute=0&controls=1&rel=0&loop=1&playlist=drUyFiVayaw&hd=1&vq=hd1080&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&autohide=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark"
                   title="AI Web Tools Featured Video"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  loading="eager"
                 ></iframe>
               </div>
             </div>
