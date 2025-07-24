@@ -109,6 +109,15 @@ export const matchNewAITools = (tool: Tool, searchTerm: string): boolean => {
            lowerDescription.includes('research assistant');
   }
 
+  // Illuminous World Data Explorer - truth seeking and predictions
+  if (lowerSearchTerm.includes('truth') || lowerSearchTerm.includes('illuminous') || lowerSearchTerm.includes('data explorer') || lowerSearchTerm.includes('predictions')) {
+    return lowerTitle.includes('illuminous') || 
+           lowerTitle.includes('world data explorer') ||
+           lowerDescription.includes('predictions') ||
+           lowerDescription.includes('data analysis') ||
+           lowerDescription.includes('truth');
+  }
+
   return false;
 };
 
@@ -151,6 +160,11 @@ export const scoreNewAITools = (tool: Tool, searchTerm: string): number => {
 
   if (lowerSearchTerm.includes('business') && (lowerTitle.includes('business') || lowerDescription.includes('business'))) {
     score += 3000;
+  }
+
+  // Truth and predictions - Illuminous World Data Explorer
+  if (lowerSearchTerm.includes('truth') && (lowerTitle.includes('illuminous') || lowerDescription.includes('predictions'))) {
+    score += 5000; // High priority for truth searches
   }
 
   return score;
