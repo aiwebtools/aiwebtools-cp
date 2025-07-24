@@ -289,5 +289,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 2200
+  },
+  {
+    icon: Bot,
+    title: "Warmwind.Space Agent",
+    description: "Advanced AI agent platform providing intelligent automation and task execution capabilities. Features sophisticated agent workflows for complex problem-solving and automated processes.",
+    emoji: "🌪️",
+    color: "from-teal-500 to-blue-600",
+    directUrl: "https://warmwind.space/",
+    tags: ["AI agent", "automation", "task execution", "intelligent workflows", "problem-solving", "agent platform"],
+    category: "AI Agents",
+    rating: 4.5,
+    totalVotes: 1800
   }
 ];

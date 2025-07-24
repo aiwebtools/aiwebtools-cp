@@ -133,5 +133,17 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Audio & Voice",
     rating: 4.4,
     totalVotes: 2876
+  },
+  {
+    icon: Volume2,
+    title: "Hume Lifelike Voice AI",
+    description: "Advanced AI platform creating emotionally intelligent and lifelike voice interactions. Features natural conversational AI with emotional understanding and human-like speech patterns.",
+    emoji: "🎭",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://www.hume.ai/",
+    tags: ["emotional AI", "lifelike voice", "conversational AI", "voice interaction", "emotion recognition", "natural speech"],
+    category: "Audio & Voice",
+    rating: 4.6,
+    totalVotes: 2100
   }
 ];
