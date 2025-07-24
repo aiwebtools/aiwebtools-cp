@@ -8,13 +8,13 @@ import GlobalSearchBar from "./GlobalSearchBar";
 const Header = () => {
   return (
     <header className="relative bg-black/95 backdrop-blur-md border-b border-cyan-500/30 fixed top-0 w-full z-50 shadow-lg shadow-cyan-500/10 overflow-hidden">
-      {/* Matrix effect background */}
-      <div className="absolute inset-0 opacity-10">
+      {/* Matrix effect background - overlays nav */}
+      <div className="absolute inset-0 opacity-10 z-20 pointer-events-none">
         <div className="matrix-rain absolute inset-0"></div>
       </div>
       
-      {/* Moving background particles */}
-      <div className="absolute inset-0 opacity-20">
+      {/* Moving background particles - overlays nav */}
+      <div className="absolute inset-0 opacity-20 z-20 pointer-events-none">
         <div className="absolute w-1 h-1 bg-cyan-400/30 rounded-full animate-bounce" style={{top: '20%', left: '10%', animationDelay: '0s', animationDuration: '3s'}}></div>
         <div className="absolute w-1 h-1 bg-cyan-300/40 rounded-full animate-bounce" style={{top: '60%', left: '30%', animationDelay: '1s', animationDuration: '4s'}}></div>
         <div className="absolute w-1 h-1 bg-cyan-500/30 rounded-full animate-bounce" style={{top: '40%', left: '70%', animationDelay: '2s', animationDuration: '3.5s'}}></div>
