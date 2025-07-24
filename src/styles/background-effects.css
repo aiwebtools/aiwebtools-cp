@@ -118,7 +118,7 @@
     }
   }
 
-  /* Matrix background effect */
+  /* Optimized Matrix background effect */
   .matrix-background {
     position: fixed;
     top: 0;
@@ -129,78 +129,67 @@
     z-index: 0;
     overflow: hidden;
     will-change: auto;
+    opacity: 0.6; /* Reduce overall opacity for subtlety */
   }
 
   .matrix-column {
     position: absolute;
-    top: -100px;
-    width: 20px;
+    top: -50px;
+    width: 30px;
     height: 100vh;
     font-family: 'Courier New', monospace;
-    font-size: 14px;
+    font-size: 16px;
     color: #00ff00;
-    text-shadow: 0 0 8px #00ff00;
-    animation: matrixFall 7s infinite linear;
+    text-shadow: 0 0 5px #00ff00;
+    animation: matrixFall 8s infinite linear;
     white-space: nowrap;
     overflow: hidden;
     will-change: transform;
-    line-height: 1.2;
+    line-height: 1.4;
+    contain: layout style paint; /* Improve rendering performance */
   }
 
   .matrix-char {
     display: block;
     font-weight: bold;
-    animation: matrixGlow 2s infinite ease-in-out;
-    transition: opacity 0.1s ease;
+    will-change: auto; /* Remove expensive will-change */
+    transition: none; /* Remove transitions for performance */
   }
 
   @keyframes matrixFall {
     0% {
-      transform: translateY(-100vh);
+      transform: translateY(-100vh) translateZ(0); /* Add translateZ for GPU acceleration */
       opacity: 0;
     }
-    5% {
+    10% {
       opacity: 1;
     }
-    95% {
+    90% {
       opacity: 1;
     }
     100% {
-      transform: translateY(100vh);
+      transform: translateY(100vh) translateZ(0);
       opacity: 0;
-    }
-  }
-
-  @keyframes matrixGlow {
-    0%, 100% {
-      text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
-      opacity: 0.4;
-    }
-    50% {
-      text-shadow: 0 0 8px #00ff00, 0 0 16px #00ff00, 0 0 24px #00ff00;
-      opacity: 1;
     }
   }
 
   /* Mobile optimizations for Matrix effect */
   @media (max-width: 768px) {
-    .matrix-column {
-      font-size: 12px;
-      width: 16px;
-      animation-duration: 8s;
+    .matrix-background {
+      opacity: 0.4; /* Further reduce opacity on mobile */
     }
     
-    .matrix-char {
-      animation-duration: 3s;
+    .matrix-column {
+      font-size: 14px;
+      width: 25px;
+      animation-duration: 10s; /* Slower animation on mobile */
     }
   }
 
-  /* Reduce motion for accessibility */
+  /* Reduce motion for accessibility and performance */
   @media (prefers-reduced-motion: reduce) {
-    .matrix-column,
-    .matrix-char {
-      animation-duration: 15s;
-      animation-iteration-count: 1;
+    .matrix-background {
+      display: none; /* Hide Matrix effect for users who prefer reduced motion */
     }
   }
 

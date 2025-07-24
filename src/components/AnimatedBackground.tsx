@@ -59,30 +59,31 @@ const AnimatedBackground = () => {
       }
     };
 
-    // Create Matrix-style falling code
+    // Create optimized Matrix-style falling code
     const createMatrixCode = () => {
       const matrixContainer = matrixRef.current;
       if (!matrixContainer) return;
 
       // Matrix characters for the code rain
-      const matrixChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+-=[]{}|;:,.<>?';
-      const columns = Math.floor(window.innerWidth / 20); // Column width of 20px
+      const matrixChars = '01ABCXYZ';  // Simplified character set for performance
+      const isMobile = window.innerWidth < 768;
+      const columnWidth = isMobile ? 25 : 30;
+      const columns = Math.min(Math.floor(window.innerWidth / columnWidth), isMobile ? 20 : 40); // Limit columns
 
       for (let i = 0; i < columns; i++) {
         const column = document.createElement('div');
         column.className = 'matrix-column';
-        column.style.left = i * 20 + 'px';
-        column.style.animationDelay = Math.random() * 5 + 's';
-        column.style.animationDuration = (Math.random() * 3 + 4) + 's';
+        column.style.left = i * columnWidth + 'px';
+        column.style.animationDelay = Math.random() * 8 + 's';
+        column.style.animationDuration = (Math.random() * 2 + 6) + 's';
 
-        // Create multiple characters per column
-        const charCount = Math.floor(Math.random() * 20) + 10;
+        // Reduced characters per column for performance
+        const charCount = isMobile ? Math.floor(Math.random() * 8) + 4 : Math.floor(Math.random() * 12) + 6;
         for (let j = 0; j < charCount; j++) {
           const char = document.createElement('span');
           char.className = 'matrix-char';
           char.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-          char.style.opacity = Math.random() * 0.8 + 0.2 + '';
-          char.style.animationDelay = (j * 0.1) + 's';
+          char.style.opacity = (Math.random() * 0.6 + 0.2) + '';
           column.appendChild(char);
         }
 

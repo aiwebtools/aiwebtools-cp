@@ -14,12 +14,17 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
     window.location.href = 'https://aiwebtools.ai/main-category/ALL%20AI%20TOOLS';
   };
 
+  const handleViewPortfolio = (e: React.MouseEvent) => {
+    e.preventDefault();
+    handleExternalLink('https://aiwebtools.ai', e);
+  };
+
   return (
     <div className="text-center mb-16">
       <h3 className="text-2xl font-bold text-cyan-300 mb-6 cyber-glow">
         🚀 Discover More AI Tools
       </h3>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-4xl mx-auto">
+      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-5xl mx-auto">
         <Button
           onClick={handleViewAllTools}
           variant="outline"
@@ -28,6 +33,16 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
         >
           <Search className="mr-2 h-5 w-5" />
           VIEW ALL AI TOOLS
+        </Button>
+        
+        <Button
+          onClick={handleViewPortfolio}
+          variant="outline"
+          size="lg"
+          className="w-full sm:w-auto border-yellow-500 text-yellow-300 hover:bg-yellow-500/20 hover:text-white transition-all duration-300"
+        >
+          <ExternalLink className="mr-2 h-5 w-5" />
+          VIEW AI WEB TOOLS PERSONAL PORTFOLIO
         </Button>
         
         <Button
