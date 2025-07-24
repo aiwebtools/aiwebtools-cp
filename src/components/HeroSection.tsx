@@ -73,7 +73,8 @@ const HeroSection = () => {
           {/* Updated tagline */}
           <div className="mb-6">
             <p className="text-sm md:text-base text-cyan-300/80 font-light italic tracking-wide">
-              "Life is but a prompt for you to carve your reality and define your ultimate meaning" <span className="text-cyan-400/60">-K.B. Founder AI WEB TOOLS LLC</span>
+              "Life is but a sacred prompt — a chance to carve your own reality and define a meaning no one else can write but you." 🔑<br />
+              <span className="text-cyan-400/60">— K.B., Founder, AI Web Tools LLC</span>
             </p>
           </div>
           
