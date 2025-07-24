@@ -47,17 +47,6 @@ const GlobalSearchResults = ({
         onScroll={onScroll}
       >
       <CardContent className="p-0">
-        <div className="px-3 py-3 border-b border-cyan-500/20 sticky top-0 bg-black/95 text-red-400 z-10" style={{ fontSize: '10px' }}>
-          <div className="leading-tight mb-1">
-            {searchResults.length} Total Tools - Showing {displayedCount}
-            {hasMoreToLoad && " - Scroll for endless discovery!"}
-          </div>
-          {searchResults.length > 0 && (
-            <div className="text-xs opacity-80 mb-2">
-              Press Enter to open top result • Endless scroll through all AI tools
-            </div>
-          )}
-        </div>
         <div className="p-2 pt-4">
           {displayedResults.map((tool, index) => {
             const toolIndex = allTools.findIndex(t => t.title === tool.title);
