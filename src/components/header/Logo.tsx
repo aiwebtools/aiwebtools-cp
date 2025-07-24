@@ -28,7 +28,7 @@ const Logo = () => {
     <div className="flex items-center space-x-4 flex-shrink-0">
       <div className="text-center">
         <div className="text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent glow-text-effect animate-pulse">
-          AITOOLS.STUDIO
+          AI TOOL DIRECTORY
         </div>
         <div className="text-xs md:text-sm text-gray-400">
           Presented by{" "}
@@ -36,7 +36,7 @@ const Logo = () => {
             onClick={(e) => handleExternalLink("https://aitools.company", e)}
             className="text-cyan-400 hover:text-cyan-300 transition-colors underline"
           >
-            AiWebTools.AI
+            aiwebtools.ai
           </button>
         </div>
         <div className="text-xs text-gray-500">
