@@ -45,6 +45,11 @@ const GlobalSearchResults = ({
         ref={scrollRef}
         className="absolute top-full left-0 right-0 mt-2 bg-black/95 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-50 max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
         onScroll={onScroll}
+        style={{
+          WebkitOverflowScrolling: 'touch',
+          overscrollBehavior: 'contain',
+          touchAction: 'pan-y'
+        }}
       >
       <CardContent className="p-0">
         <div className="p-2 pt-4">
