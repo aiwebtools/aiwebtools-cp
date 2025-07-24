@@ -14,6 +14,9 @@ const FooterCompanyInfo = () => {
       {/* Logo section matching header */}
       <div className="text-center">
         <div className="text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent glow-text-effect animate-pulse">
+          AITOOLS.STUDIO
+        </div>
+        <div className="text-xs text-gray-300 -mt-1">
           AI TOOL DIRECTORY
         </div>
         <div className="text-xs md:text-sm text-gray-400">
