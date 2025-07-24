@@ -113,40 +113,104 @@ export const keywordMapping: Record<string, string[]> = {
   "tts": ["text to speech", "voice", "speech", "audio", "eleven labs", "murf", "speechify", "voice generation", "speech synthesis", "ai voice", "voice ai"],
   "text to speech": ["tts", "voice", "speech", "audio", "eleven labs", "murf", "speechify", "voice generation", "speech synthesis", "ai voice", "voice ai"],
   
-  // Enhanced Book Writing keywords - NEW ADDITION
-  "write a book": ["book writer gpt", "book writing", "novel creation", "storytelling", "author tools", "creative writing", "manuscript", "book creation"],
-  "book writing": ["book writer gpt", "novel creation", "storytelling", "author tools", "creative writing", "manuscript", "book creation"],
-  "write book": ["book writer gpt", "book writing", "novel creation", "storytelling", "author tools", "creative writing"],
+  // Enhanced Book Writing keywords - HIGHEST PRIORITY FOR BOOK SEARCHES
+  "write a book": ["book writer gpt", "book writing", "novel creation", "storytelling", "author tools", "creative writing", "manuscript", "book creation", "write book", "author", "novelist", "publishing", "self-publishing", "ebook creation", "children's picture book maker"],
+  "book writing": ["book writer gpt", "write a book", "novel creation", "storytelling", "author tools", "creative writing", "manuscript", "book creation", "children's picture book maker"],
+  "write book": ["book writer gpt", "book writing", "write a book", "novel creation", "storytelling", "author tools", "creative writing"],
+  "book": ["book writer gpt", "children's picture book maker", "write a book", "book writing", "novel", "author", "publishing", "ebook", "story", "manuscript"],
+  "novel": ["book writer gpt", "book", "story", "creative writing", "author", "novelist", "fiction writing"],
+  "author": ["book writer gpt", "book", "novel", "writing", "publishing", "creative writing", "author tools"],
+  "story": ["book writer gpt", "novel", "storytelling", "creative writing", "narrative", "plot", "fiction"],
+  "storytelling": ["book writer gpt", "story", "narrative", "creative writing", "plot development"],
+  "manuscript": ["book writer gpt", "book", "writing", "author", "publishing", "draft"],
+  "publishing": ["book writer gpt", "author", "book", "self-publishing", "manuscript", "ebook"],
+  "ebook": ["book writer gpt", "book", "digital book", "publishing", "e-book", "electronic book"],
+  "children's book": ["children's picture book maker", "kids book", "picture book", "children's story", "book writer gpt"],
+  "picture book": ["children's picture book maker", "children's book", "kids book", "illustrated book", "story book"],
   
-  // Enhanced Training and Employee keywords - NEW ADDITION
-  "train employees": ["training manual generator gpt", "employee training", "staff training", "training materials", "business training", "onboarding", "training development"],
+  // Enhanced Learning Keywords - ULTRA HIGH PRIORITY FOR EDUCATION SEARCHES
+  "learn": ["learn any course", "learn any skill gpt", "college degree gpt", "education", "learning", "study", "course", "skill development", "tutorial", "training", "knowledge", "academic", "homeschool gpt", "course maker gpt", "quiz maker ai", "training manual generator gpt"],
+  "learningkeyword": ["learn", "education", "study", "course", "skill development", "academic", "knowledge acquisition", "learn any course", "learn any skill gpt", "college degree gpt"],
+  "educationkeyword": ["learn", "learning", "academic", "school", "university", "college", "study", "course", "learn any course", "college degree gpt", "homeschool gpt"],
+  "studykeyword": ["learn", "learning", "education", "academic", "course", "knowledge", "research", "examination"],
+  "coursekeyword": ["learn any course", "education", "learning", "class", "lesson", "curriculum", "course maker gpt", "training"],
+  "skillkeyword": ["learn any skill gpt", "skill development", "competency", "ability", "expertise", "proficiency", "training"],
+  "tutorialkeyword": ["learn", "learning", "education", "guide", "instruction", "lesson", "how-to"],
+  "trainingkeyword": ["learn", "education", "skill development", "instruction", "coaching", "training manual generator gpt"],
+  "knowledgekeyword": ["learn", "learning", "education", "information", "understanding", "wisdom", "intelligence"],
+  "academickeyword": ["education", "learning", "university", "college", "scholarly", "educational", "academic research"],
+  "curriculumkeyword": ["education", "course", "learning", "academic", "syllabus", "program"],
+  "homeworkkeyword": ["education", "learning", "study", "assignment", "academic", "school work"],
+  "assignmentkeyword": ["education", "learning", "homework", "task", "project", "academic work"],
+  "quizkeyword": ["quiz maker ai", "test", "examination", "assessment", "education", "learning"],
+  "testkeyword": ["quiz", "examination", "assessment", "evaluation", "quiz maker ai"],
+  "examkeyword": ["test", "quiz", "examination", "assessment", "evaluation"],
+  "degreekeyword": ["college degree gpt", "diploma", "certification", "qualification", "academic credential"],
+  "diplomakeyword": ["degree", "certification", "qualification", "academic credential"],
+  "collegekeyword": ["college degree gpt", "university", "higher education", "academic institution", "education"],
+  "universitykeyword": ["college", "higher education", "academic institution", "education"],
+  "schoolkeyword": ["education", "learning", "academic", "educational institution", "homeschool gpt"],
+  "homeschoolkeyword": ["homeschool gpt", "home education", "home schooling", "alternative education"],
+  "teachkeyword": ["teaching", "education", "instruction", "training", "tutor", "educator"],
+  "teachingkeyword": ["teach", "education", "instruction", "training", "pedagogy"],
+  "tutorkeyword": ["tutoring", "teaching", "education", "instruction", "mentor"],
+  
+  // Enhanced Training and Employee keywords - EXPANDED
+  "train employees": ["training manual generator gpt", "employee training", "staff training", "training materials", "business training", "onboarding", "training development", "workforce development"],
   "employee training": ["training manual generator gpt", "staff training", "training materials", "business training", "onboarding", "training development"],
-  "training manual": ["training manual generator gpt", "employee training", "training materials", "business training", "training guide"],
+  "training manual": ["training manual generator gpt", "employee training", "training materials", "business training", "training guide", "instructional manual"],
   "staff training": ["training manual generator gpt", "employee training", "training materials", "business training", "onboarding"],
+  "business training": ["training manual generator gpt", "employee training", "corporate training", "professional development"],
+  "onboarding": ["employee training", "new hire training", "orientation", "staff integration"],
+  "workforce development": ["employee training", "staff development", "professional growth", "skill building"],
   
-  // Enhanced Image and Visual AI Tools
-  "image": ["dalle", "midjourney", "stable diffusion", "leonardo ai", "runway", "firefly", "image generation", "ai art", "art generator", "visual ai", "photo generator", "picture generator", "image creator", "ai image", "graphics", "design", "visual tools"],
-  "art": ["dalle", "midjourney", "image generation", "ai art", "art generator", "creative", "design", "visual", "drawing", "painting", "illustration", "artistic", "sketch", "graphics"],
+  // Enhanced Image and Visual AI Tools - COMPREHENSIVE
+  "image": ["dalle", "midjourney", "stable diffusion", "leonardo ai", "runway", "firefly", "image generation", "ai art", "art generator", "visual ai", "photo generator", "picture generator", "image creator", "ai image", "graphics", "design", "visual tools", "restyle me gpt", "graphic design gpt"],
+  "art": ["dalle", "midjourney", "image generation", "ai art", "art generator", "creative", "design", "visual", "drawing", "painting", "illustration", "artistic", "sketch", "graphics", "restyle me gpt"],
   "generate": ["generation", "create", "make", "produce", "build", "ai generator", "generator", "creator", "maker"],
+  "photo": ["photography", "image", "picture", "visual", "photo editing", "photo generation"],
+  "picture": ["image", "photo", "visual", "graphic", "illustration"],
+  "drawing": ["art", "sketch", "illustration", "creative", "artistic"],
+  "painting": ["art", "artistic", "creative", "visual art", "fine art"],
+  "illustration": ["art", "drawing", "graphic", "visual", "design"],
+  "sketch": ["drawing", "art", "illustration", "rough drawing"],
+  "graphic": ["graphics", "design", "visual", "illustration", "graphic design gpt"],
+  "graphics": ["graphic", "design", "visual", "illustration", "visual design"],
+  "visual": ["image", "graphic", "design", "visual design", "visual art"],
   
-  // Enhanced Video AI Tools
-  "video": ["luma dream machine", "pika labs", "runway", "sora", "video generation", "ai video", "video creator", "video maker", "video ai", "video tools", "movie maker", "film maker"],
-  "film": ["video", "movie", "cinema", "film maker", "video creation", "video tools", "movie maker", "video ai"],
+  // Enhanced Video AI Tools - COMPREHENSIVE  
+  "video": ["luma dream machine", "pika labs", "runway", "sora", "video generation", "ai video", "video creator", "video maker", "video ai", "video tools", "movie maker", "film maker", "movie script writer gpt", "movie scene maker gpt", "music video maker"],
+  "film": ["video", "movie", "cinema", "film maker", "video creation", "video tools", "movie maker", "video ai", "movie script writer gpt"],
+  "movie": ["film", "video", "cinema", "movie maker", "movie script writer gpt", "movie scene maker gpt", "video creation"],
+  "cinema": ["film", "movie", "video", "cinematic", "film making"],
+  "scene": ["movie scene maker gpt", "film scene", "video scene", "cinematic scene"],
+  "script": ["movie script writer gpt", "screenplay", "writing", "film script", "video script"],
+  "screenplay": ["script", "movie script writer gpt", "film script", "screenwriting"],
   
-  // Enhanced Text and Writing AI Tools
-  "write": ["writing", "content", "text", "copywriting", "article", "blog", "script", "book writer gpt", "creative writing", "content creation", "writing tools", "text generation"],
-  "content": ["writing", "creation", "text", "article", "blog", "content creation", "content tools", "copywriting"],
+  // Enhanced Text and Writing AI Tools - COMPREHENSIVE
+  "write": ["writing", "content", "text", "copywriting", "article", "blog", "script", "book writer gpt", "creative writing", "content creation", "writing tools", "text generation", "article and blog rewriter gpt"],
+  "content": ["writing", "creation", "text", "article", "blog", "content creation", "content tools", "copywriting", "article and blog rewriter gpt"],
   "text": ["writing", "content", "text generation", "copywriting", "article", "blog", "text tools"],
+  "article": ["writing", "content", "blog", "journalism", "article writing", "article and blog rewriter gpt"],
+  "blog": ["blogging", "article", "content", "writing", "blog post", "article and blog rewriter gpt"],
+  "copywriting": ["copy", "writing", "content", "marketing copy", "advertising copy"],
   
-  // Enhanced Chat and Communication AI Tools
-  "chat": ["chatgpt", "claude", "conversation", "ai chat", "chatbot", "assistant", "communication", "talk", "speak", "dialogue"],
+  // Enhanced Chat and Communication AI Tools - COMPREHENSIVE
+  "chat": ["chatgpt", "claude", "conversation", "ai chat", "chatbot", "assistant", "communication", "talk", "speak", "dialogue", "celebrity chatline gpt"],
   "assistant": ["ai assistant", "helper", "support", "guide", "chatbot", "ai agent", "personal assistant"],
+  "talk": ["chat", "conversation", "speak", "dialogue", "communication", "talk to history gpt", "talk to the gods gpt"],
+  "conversation": ["chat", "talk", "dialogue", "discussion", "communication"],
+  "speak": ["talk", "chat", "voice", "speech", "communication"],
+  "dialogue": ["conversation", "chat", "talk", "discussion"],
   
-  // Enhanced Design AI Tools
-  "design": ["canva", "figma", "adobe", "graphic design", "ui design", "ux design", "web design", "logo design", "design tools", "creative design", "visual design"],
+  // Enhanced Design AI Tools - COMPREHENSIVE
+  "design": ["canva", "figma", "adobe", "graphic design", "ui design", "ux design", "web design", "logo design", "design tools", "creative design", "visual design", "graphic design gpt"],
   "logo": ["logo design", "branding", "graphic design", "design", "visual identity", "brand design"],
+  "branding": ["logo", "brand design", "visual identity", "marketing", "brand strategy"],
+  "ui": ["user interface", "interface design", "ui design", "web design"],
+  "ux": ["user experience", "ux design", "usability", "user research"],
   
-  // Enhanced Code and Development AI Tools
+  // Enhanced Code and Development AI Tools - COMPREHENSIVE
   "code": ["coding", "programming", "development", "github copilot", "code generation", "ai coding", "programming tools", "developer tools", "code assistant", "cursor", "lovable.dev", "bolt.new"],
   "programming": ["coding", "code", "development", "software", "programming tools", "developer tools", "ai coding", "cursor", "lovable.dev"],
   "coding": ["code", "programming", "development", "ai coding", "code assistant", "cursor", "lovable.dev", "bolt.new"],
@@ -159,7 +223,7 @@ export const keywordMapping: Record<string, string[]> = {
   "phone": ["call", "voice", "communication", "telephone", "mobile", "cellular", "calling", "dial", "contact", "chat", "conversation", "talk", "speak", "call center", "call agent", "inbound", "outbound", "nucleus", "ai agent", "phone agent", "voice agent", "nucleus ai inbound call agents platform", "nucleus ai", "phone automation", "call automation", "voice ai", "call ai", "phone ai"],
   "call": ["phone", "voice", "calling", "telephone", "communication", "dial", "contact", "conversation", "chat", "talk", "call center", "call agent", "inbound", "outbound", "nucleus", "ai agent", "phone agent", "voice agent", "nucleus ai inbound call agents platform", "nucleus ai", "phone automation", "call automation", "voice ai", "call ai", "phone ai"],
   "nucleus": ["nucleus ai", "nucleus ai inbound call agents platform", "call agent", "phone agent", "voice agent", "inbound", "outbound", "call center", "phone automation", "call automation", "ai agent", "phone", "call", "voice"],
-  "talk": ["speak", "voice", "conversation", "chat", "communication", "dialogue", "discussion", "call"],
+  "talksynonym": ["speak", "voice", "conversation", "chat", "communication", "dialogue", "discussion", "call"],
   "phonecall": ["phone", "call", "voice", "telephone", "communication", "call agent", "phone agent", "voice agent", "nucleus", "nucleus ai"],
   "telephone": ["phone", "call", "voice", "communication", "landline", "call agent", "phone agent", "voice agent", "nucleus", "nucleus ai"],
   

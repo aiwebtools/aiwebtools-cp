@@ -23,6 +23,12 @@ import {
   matchTravel, scoreTravel 
 } from "./matching/specialtyMatching";
 import { 
+  matchEducation, scoreEducation 
+} from "./matching/educationMatching";
+import { 
+  matchBookWriting, scoreBookWriting 
+} from "./matching/bookWritingMatching";
+import { 
   matchPolitical, scorePolitical 
 } from "./matching/politicalMatching";
 
@@ -40,7 +46,9 @@ export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean
          matchLearning(tool, searchTerm) ||
          matchMedical(tool, searchTerm) ||
          matchTravel(tool, searchTerm) ||
-         matchPolitical(tool, searchTerm);
+         matchPolitical(tool, searchTerm) ||
+         matchEducation(tool, searchTerm) ||
+         matchBookWriting(tool, searchTerm);
 };
 
 export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
@@ -59,6 +67,8 @@ export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
   totalScore += scoreMedical(tool, searchTerm);
   totalScore += scoreTravel(tool, searchTerm);
   totalScore += scorePolitical(tool, searchTerm);
+  totalScore += scoreEducation(tool, searchTerm);
+  totalScore += scoreBookWriting(tool, searchTerm);
   
   return totalScore;
 };
