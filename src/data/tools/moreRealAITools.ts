@@ -621,18 +621,6 @@ export const moreRealAITools: Tool[] = [
   },
   // AI Agriculture Tools
   {
-    icon: Target,
-    title: "Blue River Technology",
-    description: "AI-powered precision agriculture platform for crop monitoring and treatment.",
-    emoji: "🌾",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://bluerivertechnology.com/?via=aiwebtools",
-    tags: ["precision agriculture", "crop monitoring", "AI farming", "agricultural technology", "sustainable farming"],
-    category: "Agriculture",
-    rating: 4.3,
-    totalVotes: 1234
-  },
-  {
     icon: Eye,
     title: "Taranis",
     description: "AI-powered agricultural intelligence platform for crop monitoring and yield prediction.",

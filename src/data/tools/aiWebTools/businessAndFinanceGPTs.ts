@@ -120,18 +120,6 @@ export const businessAndFinanceGPTs: Tool[] = [
     totalVotes: 1921
   },
   {
-    icon: Coins,
-    title: "Investment Portfolio Manager",
-    description: "Manages investment portfolios, providing personalized recommendations based on risk tolerance and financial goals.",
-    emoji: "💰",
-    color: "from-teal-500 to-green-600",
-    directUrl: "https://chat.openai.com/g/g-fuKXy9t9Z-investment-portfolio-manager",
-    tags: ["investment portfolio", "risk tolerance", "financial goals", "investment recommendations"],
-    category: "Business & Finance",
-    rating: 4.8,
-    totalVotes: 2576
-  },
-  {
     icon: Receipt,
     title: "Accounting & Bookkeeping Assistant",
     description: "Helps with accounting and bookkeeping tasks, ensuring accurate financial records and compliance with accounting standards.",
@@ -202,18 +190,6 @@ export const businessAndFinanceGPTs: Tool[] = [
     category: "Business & Finance",
     rating: 4.4,
     totalVotes: 1723
-  },
-  {
-    icon: Users,
-    title: "Customer Relationship Manager",
-    description: "Manages customer relationships, providing tools to track interactions and improve customer satisfaction.",
-    emoji: "🧑‍🤝‍🧑",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://chat.openai.com/g/g-9y6w4x2z7-customer-relationship-manager",
-    tags: ["customer relationships", "customer satisfaction", "interaction tracking", "CRM"],
-    category: "Business & Finance",
-    rating: 4.8,
-    totalVotes: 2487
   },
   {
     icon: Globe,

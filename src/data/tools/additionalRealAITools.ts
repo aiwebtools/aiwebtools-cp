@@ -444,30 +444,6 @@ export const additionalRealAITools: Tool[] = [
     totalVotes: 3456
   },
   {
-    icon: Rocket,
-    title: "Startup AI Tools",
-    description: "Collection of AI tools specifically designed for startup founders and entrepreneurs.",
-    emoji: "🚀",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://startupaitools.com/?via=aiwebtools",
-    tags: ["startup tools", "entrepreneurship", "business AI", "founder tools", "innovation"],
-    category: "Business & Startup",
-    rating: 4.3,
-    totalVotes: 2789
-  },
-  {
-    icon: Star,
-    title: "AI Review Generator",
-    description: "AI tool that helps businesses generate authentic-sounding customer reviews and testimonials.",
-    emoji: "⭐",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://reviewgenerator.ai/?via=aiwebtools",
-    tags: ["reviews", "testimonials", "marketing", "business", "customer feedback"],
-    category: "Marketing Tools",
-    rating: 4.2,
-    totalVotes: 1876
-  },
-  {
     icon: Filter,
     title: "AI Content Detector",
     description: "Tool that detects AI-generated content to ensure authenticity and originality.",
