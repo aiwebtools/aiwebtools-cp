@@ -139,9 +139,9 @@ const GlobalSearchResults = ({
       </CardContent>
     </Card>
 
-    {/* Arrow Scroller Buttons */}
+    {/* Arrow Scroller Buttons - Hidden on mobile, only show on desktop */}
     {searchResults.length > 5 && (
-      <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex flex-col space-y-1 z-[60]">
+      <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex-col space-y-1 z-[60] hidden md:flex">
         <Button
           onClick={scrollToTop}
           size="sm"
