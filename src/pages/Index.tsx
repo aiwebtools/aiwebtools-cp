@@ -73,7 +73,7 @@ const Index = () => {
           <CategoryPageSelection />
         </div>
         
-        {/* Featured Video Section - Two Videos */}
+        {/* Featured Video Section - Simplified */}
         <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
@@ -82,27 +82,12 @@ const Index = () => {
               </h2>
             </div>
             
-            {/* First Video */}
-            <div className="max-w-6xl mx-auto mb-12">
+            <div className="max-w-6xl mx-auto">
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   className="absolute top-0 left-0 w-full h-full rounded-xl border border-cyan-500/30"
                   src="https://www.youtube.com/embed/drUyFiVayaw?mute=0&controls=1&rel=0"
                   title="AI Web Tools Featured Video"
-                  frameBorder="0"
-                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </div>
-
-            {/* Second Video */}
-            <div className="max-w-6xl mx-auto">
-              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-                <iframe
-                  className="absolute top-0 left-0 w-full h-full rounded-xl border border-cyan-500/30"
-                  src="https://www.youtube.com/embed/k1aYXaaAkho?mute=0&controls=1&rel=0"
-                  title="AI Web Tools Collection Video"
                   frameBorder="0"
                   allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
