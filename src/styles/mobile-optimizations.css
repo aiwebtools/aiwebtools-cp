@@ -1,0 +1,183 @@
+/* Mobile Performance Optimizations */
+
+/* Disable animations on low-performance devices */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Hardware acceleration for mobile */
+@media (max-width: 768px) {
+  .tool-card,
+  .category-filter,
+  .search-input {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Optimize touch interactions */
+  .tool-card {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  /* Reduce animation complexity on mobile */
+  .animate-fade-in {
+    animation: mobile-fade-in 0.2s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: mobile-scale-in 0.15s ease-out;
+  }
+
+  /* Optimize scrolling performance */
+  .tools-grid {
+    contain: layout style paint;
+    content-visibility: auto;
+    contain-intrinsic-size: 300px 400px;
+  }
+
+  /* Reduce reflow/repaint on mobile */
+  .hero-section {
+    contain: layout style;
+    will-change: auto;
+  }
+
+  /* Optimize image rendering */
+  img {
+    image-rendering: optimizeSpeed;
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* Ultra-lightweight animations for mobile */
+@keyframes mobile-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mobile-scale-in {
+  from {
+    transform: scale(0.98);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Viewport optimizations */
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+}
+
+/* Prevent layout shifts */
+.layout-stable {
+  contain: layout;
+  min-height: 0;
+}
+
+/* GPU layer promotion for smooth animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Optimize for 60fps on mobile */
+@media (max-width: 768px) {
+  .smooth-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: auto;
+  }
+
+  /* Reduce paint complexity */
+  .complex-gradient {
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  }
+
+  /* Simplify box shadows for mobile */
+  .mobile-shadow {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Critical rendering path optimization */
+.above-fold {
+  contain: layout style paint;
+  content-visibility: visible;
+}
+
+.below-fold {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* Reduce composite layers */
+.composite-safe {
+  transform: translateZ(0);
+  isolation: isolate;
+}
+
+/* Touch-friendly button sizes */
+@media (max-width: 768px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px;
+  }
+
+  .touch-action-optimized {
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}
+
+/* Memory-efficient grid layouts */
+.efficient-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  contain: layout;
+}
+
+@media (max-width: 640px) {
+  .efficient-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+/* Optimize font rendering */
+.optimized-text {
+  font-display: swap;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reduce layout thrashing */
+.stable-width {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Efficient image loading */
+.lazy-image {
+  loading: lazy;
+  decoding: async;
+  content-visibility: auto;
+}

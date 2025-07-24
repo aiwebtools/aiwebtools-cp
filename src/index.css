@@ -4,6 +4,7 @@
 @import url("./styles/animations.css");
 @import url("./styles/background-effects.css");
 @import url("./styles/timeEffects.css");
+@import url("./styles/mobile-optimizations.css");
 
 @tailwind base;
 @tailwind components;

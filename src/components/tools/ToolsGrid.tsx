@@ -147,15 +147,15 @@ const ToolsGrid = memo(({
         </Suspense>
       ) : (
         <div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-0" 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 px-3 sm:px-4 lg:px-0 efficient-grid" 
           style={{ 
             contain: 'layout style',
             contentVisibility: 'auto',
             containIntrinsicSize: '300px 400px'
           }}
         >
-          {toolsWithStableKeys.map((tool) => (
-            <ToolCard key={tool.stableKey} tool={tool} />
+          {toolsWithStableKeys.map((tool, index) => (
+            <ToolCard key={tool.stableKey} tool={tool} index={index} />
           ))}
         </div>
       )}

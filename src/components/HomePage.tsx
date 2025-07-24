@@ -1,6 +1,8 @@
 
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useFeaturedToolsState } from "@/hooks/useFeaturedToolsState";
+import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
+import { useMobile } from "@/hooks/useMobile";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
@@ -27,22 +29,45 @@ const HomePage = () => {
     hasMoreTools
   } = useFeaturedToolsState();
 
+  const { isMobile } = useMobile();
+  const { 
+    enableReducedMotion, 
+    createThrottledScrollHandler,
+    measurePerformance 
+  } = usePerformanceOptimization();
+
   // Run tool verification on homepage load for SEO optimization
   useEffect(() => {
-    runFullToolVerification(searchTools);
-  }, []);
+    measurePerformance('tool-verification', () => {
+      runFullToolVerification(searchTools);
+    });
+  }, [measurePerformance]);
 
-  const handleLoadMore = () => {
-    if (isLoading || !hasMoreTools) return;
-    
-    setIsLoading(true);
-    setTimeout(() => {
-      setDisplayedCount(prev => prev + 60);
-      setIsLoading(false);
-    }, 100);
-  };
+  // Optimized load more with performance considerations
+  const handleLoadMore = useMemo(() => 
+    createThrottledScrollHandler(() => {
+      if (isLoading || !hasMoreTools) return;
+      
+      setIsLoading(true);
+      
+      // Reduce batch size on mobile for smoother performance
+      const batchSize = isMobile ? 30 : 60;
+      
+      // Use shorter delay on mobile to feel more responsive
+      const delay = isMobile ? 50 : 100;
+      
+      setTimeout(() => {
+        setDisplayedCount(prev => prev + batchSize);
+        setIsLoading(false);
+      }, delay);
+    }), 
+    [createThrottledScrollHandler, isLoading, hasMoreTools, isMobile, setIsLoading, setDisplayedCount]
+  );
 
-  const displayedTools = filteredTools.slice(0, displayedCount);
+  const displayedTools = useMemo(() => 
+    filteredTools.slice(0, displayedCount),
+    [filteredTools, displayedCount]
+  );
 
   // Convert categoriesWithCounts to the format expected by CategoryFilters
   const categoriesRecord = categoriesWithCounts.reduce((acc, cat) => {
@@ -50,8 +75,20 @@ const HomePage = () => {
     return acc;
   }, {} as Record<string, number>);
 
+  // Memoized component structure for better performance
+  const backgroundComponent = useMemo(() => 
+    enableReducedMotion ? null : <AnimatedBackground />,
+    [enableReducedMotion]
+  );
+
   return (
-    <div className="min-h-screen bg-black relative overflow-x-hidden">
+    <div 
+      className="min-h-screen bg-black relative overflow-x-hidden"
+      style={{ 
+        contain: 'layout style',
+        willChange: 'auto'
+      }}
+    >
       <EnhancedSEOHead 
         pageType="homepage"
         description="🏆 #1 AI Tools Directory with 1000+ verified tools. Better than Toolify, Futurepedia & competitors. Expert reviews, ratings & guides. Trusted by 100K+ professionals. Find ChatGPT alternatives & top AI tools 2025."
@@ -67,7 +104,7 @@ const HomePage = () => {
         ]}
       />
       
-      <AnimatedBackground />
+      {backgroundComponent}
       
       <div className="relative z-10 cyber-grid">
         <Header />

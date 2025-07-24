@@ -1,7 +1,9 @@
 
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { Tool } from "@/types/tools";
 import { Card } from "@/components/ui/card";
+import { useMobile } from "@/hooks/useMobile";
+import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
 import ToolCardHeader from "./ToolCardHeader";
 import ToolCardContent from "./ToolCardContent";
 
@@ -12,15 +14,24 @@ interface ToolCardProps {
 
 // Memoized ToolCard for performance with large lists
 const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
+  const { isMobile, isTouch } = useMobile();
+  const { enableReducedMotion, getOptimizedStyles } = usePerformanceOptimization();
+  
   // Determine if this is an AIWebTools original
   const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
   
-  // Dynamic sizing based on featured status
+  // Dynamic sizing based on featured status and mobile optimization
   const isFeatured = index < 12; // First 12 tools are considered featured
-  const cardSize = isFeatured ? "w-16 h-16" : "w-12 h-12";
-  const titleSize = isFeatured ? "text-lg sm:text-xl" : "text-base sm:text-lg";
+  const cardSize = isMobile 
+    ? (isFeatured ? "w-12 h-12" : "w-10 h-10") // Smaller on mobile
+    : (isFeatured ? "w-16 h-16" : "w-12 h-12");
+  const titleSize = isMobile 
+    ? (isFeatured ? "text-base" : "text-sm") // Smaller text on mobile
+    : (isFeatured ? "text-lg sm:text-xl" : "text-base sm:text-lg");
   const buttonSize = isFeatured ? "default" : "sm";
-  const imageHeight = isFeatured ? "200px" : "160px";
+  const imageHeight = isMobile 
+    ? (isFeatured ? "160px" : "140px") // Smaller images on mobile
+    : (isFeatured ? "200px" : "160px");
   
   // Enhanced rating calculation
   const baseRating = tool.rating || 4.2;
@@ -42,15 +53,35 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
       : truncated + "...";
   };
 
+  // Memoized optimized styles
+  const optimizedStyles = useMemo(() => {
+    const styles = getOptimizedStyles();
+    return {
+      ...styles,
+      // Optimize rendering with contain property
+      contain: 'layout style paint' as const,
+      // Improve scroll performance 
+      willChange: isMobile ? 'auto' : 'transform',
+      // Hardware acceleration for mobile
+      transform: isMobile ? 'translateZ(0)' : undefined,
+      backfaceVisibility: isMobile ? ('hidden' as const) : undefined,
+    };
+  }, [getOptimizedStyles, isMobile]);
+
   return (
     <Card 
-      className="group relative bg-gradient-to-br from-gray-900/80 to-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl p-4 sm:p-6 transition-all duration-300 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105 h-full flex flex-col focus-within:border-cyan-400 focus-within:shadow-cyan-400/20"
-      style={{
-        // Optimize rendering with contain property
-        contain: 'layout style paint',
-        // Improve scroll performance
-        willChange: 'transform',
-      }}
+      className={`group relative bg-gradient-to-br from-gray-900/80 to-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 lg:p-6 h-full flex flex-col focus-within:border-cyan-400 focus-within:shadow-cyan-400/20 ${
+        enableReducedMotion 
+          ? 'transition-none' 
+          : 'transition-all duration-300'
+      } ${
+        !isTouch 
+          ? 'hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105' 
+          : 'active:bg-gray-800/70'
+      } ${
+        isMobile ? 'touch-manipulation' : ''
+      }`}
+      style={optimizedStyles}
       tabIndex={0}
       role="article"
       aria-label={`AI Tool: ${tool.title}`}
