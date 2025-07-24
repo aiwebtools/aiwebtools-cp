@@ -238,5 +238,17 @@ export const learningAndEducation: Tool[] = [
     category: "Education & Learning",
     rating: 4.2,
     totalVotes: 2234
+  },
+  {
+    icon: BookOpen,
+    title: "Study Fetch",
+    description: "AI-powered platform that transforms your course materials into interactive study tools in seconds. Perfect for students, educators, and institutions looking to enhance learning through AI-generated content from existing materials.",
+    emoji: "📖",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://www.StudyFetch.com",
+    tags: ["course materials", "AI study tools", "interactive learning", "students", "educators", "study assistance", "learning enhancement"],
+    category: "Education & Learning",
+    rating: 4.5,
+    totalVotes: 2100
   }
 ];
