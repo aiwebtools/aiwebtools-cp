@@ -34,10 +34,16 @@ import {
 import { 
   matchAppBuilding, scoreAppBuilding 
 } from "./matching/appBuildingMatching";
+import { 
+  matchVideoGeneration, scoreVideoGeneration 
+} from "./matching/videoGenerationMatching";
+import { 
+  matchChatAssistant, scoreChatAssistant 
+} from "./matching/chatAssistantMatching";
 
-// Enhanced keyword matching for specific tool categories including app building and agents
+// Enhanced keyword matching for specific tool categories including video generation and chat assistants
 export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean => {
-  // Check all matching functions including app building and enhanced agents - CRITICAL FOR SEARCH BAR
+  // Check all matching functions with AI Web Tools prioritization - CRITICAL FOR SEARCH BAR
   return matchAgents(tool, searchTerm) ||
          matchCodingAgents(tool, searchTerm) ||
          matchWebDesign(tool, searchTerm) ||
@@ -52,13 +58,15 @@ export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean
          matchPolitical(tool, searchTerm) ||
          matchEducation(tool, searchTerm) ||
          matchBookWriting(tool, searchTerm) ||
-         matchAppBuilding(tool, searchTerm);
+         matchAppBuilding(tool, searchTerm) ||
+         matchVideoGeneration(tool, searchTerm) ||
+         matchChatAssistant(tool, searchTerm);
 };
 
 export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
   let totalScore = 0;
   
-  // Add scores from all scoring functions including app building and enhanced agents - CRITICAL FOR RANKING
+  // Add scores from all scoring functions with AI Web Tools prioritization - CRITICAL FOR RANKING
   totalScore += scoreAgents(tool, searchTerm);
   totalScore += scoreCodingAgents(tool, searchTerm);
   totalScore += scoreWebDesign(tool, searchTerm);
@@ -74,6 +82,8 @@ export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
   totalScore += scoreEducation(tool, searchTerm);
   totalScore += scoreBookWriting(tool, searchTerm);
   totalScore += scoreAppBuilding(tool, searchTerm);
+  totalScore += scoreVideoGeneration(tool, searchTerm);
+  totalScore += scoreChatAssistant(tool, searchTerm);
   
   return totalScore;
 };
