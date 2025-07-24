@@ -22,21 +22,39 @@ export const matchAgents = (tool: Tool, searchTerm: string): boolean => {
       'agentgpt',
       'ai town',
       'god mode gpt',
+      'godmode gpt',
       'ai agents',
       'autonomous agent',
       'call agent',
       'phone agent',
-      'voice agent'
+      'voice agent',
+      'ai steve',
+      'ai legion',
+      'ai matrix',
+      'private llm agents'
     ];
     
     if (priorityAgents.some(agent => lowerTitle.includes(agent))) {
       return true;
     }
     
-    // General agent-related matching
+    // General agent-related matching - more comprehensive
     if (lowerTitle.includes('agent') || lowerDescription.includes('agent') || 
         lowerTitle.includes('autonomous') || lowerDescription.includes('autonomous') ||
-        lowerCategory.includes('agent') || lowerTags.some(tag => tag.includes('agent'))) {
+        lowerCategory.includes('agent') || lowerTags.some(tag => tag.includes('agent')) ||
+        lowerCategory === 'ai agents' || lowerCategory.includes('ai agents')) {
+      return true;
+    }
+    
+    // Assistant and automation tools that act like agents
+    const agentLikeTerms = [
+      'assistant', 'automation', 'autonomous', 'bot', 'chatbot', 
+      'virtual assistant', 'ai assistant', 'automated'
+    ];
+    
+    if (agentLikeTerms.some(term => 
+      lowerTitle.includes(term) || lowerDescription.includes(term)
+    )) {
       return true;
     }
   }

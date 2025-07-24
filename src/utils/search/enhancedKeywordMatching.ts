@@ -31,10 +31,13 @@ import {
 import { 
   matchPolitical, scorePolitical 
 } from "./matching/politicalMatching";
+import { 
+  matchAppBuilding, scoreAppBuilding 
+} from "./matching/appBuildingMatching";
 
-// Enhanced keyword matching for specific tool categories including companion tools
+// Enhanced keyword matching for specific tool categories including app building and agents
 export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean => {
-  // Check all matching functions including companion tools - CRITICAL FOR SEARCH BAR
+  // Check all matching functions including app building and enhanced agents - CRITICAL FOR SEARCH BAR
   return matchAgents(tool, searchTerm) ||
          matchCodingAgents(tool, searchTerm) ||
          matchWebDesign(tool, searchTerm) ||
@@ -48,13 +51,14 @@ export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean
          matchTravel(tool, searchTerm) ||
          matchPolitical(tool, searchTerm) ||
          matchEducation(tool, searchTerm) ||
-         matchBookWriting(tool, searchTerm);
+         matchBookWriting(tool, searchTerm) ||
+         matchAppBuilding(tool, searchTerm);
 };
 
 export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
   let totalScore = 0;
   
-  // Add scores from all scoring functions including companion tools - CRITICAL FOR RANKING
+  // Add scores from all scoring functions including app building and enhanced agents - CRITICAL FOR RANKING
   totalScore += scoreAgents(tool, searchTerm);
   totalScore += scoreCodingAgents(tool, searchTerm);
   totalScore += scoreWebDesign(tool, searchTerm);
@@ -69,6 +73,7 @@ export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
   totalScore += scorePolitical(tool, searchTerm);
   totalScore += scoreEducation(tool, searchTerm);
   totalScore += scoreBookWriting(tool, searchTerm);
+  totalScore += scoreAppBuilding(tool, searchTerm);
   
   return totalScore;
 };
