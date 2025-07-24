@@ -150,5 +150,29 @@ export const aiChatPlatforms: Tool[] = [
     category: "AI CHAT & ASSISTANTS",
     rating: 4.6,
     totalVotes: 3200
+  },
+  {
+    icon: Bot,
+    title: "Emergent Agent",
+    description: "Advanced AI agent platform providing intelligent automation, task execution, and autonomous workflows. Features sophisticated agent capabilities for complex problem-solving and automated processes.",
+    emoji: "🌟",
+    color: "from-emerald-500 to-teal-600",
+    directUrl: "https://www.emergent.sh",
+    tags: ["AI agent", "automation", "task execution", "autonomous workflows", "intelligent agent", "problem-solving"],
+    category: "AI CHAT & ASSISTANTS",
+    rating: 4.5,
+    totalVotes: 1900
+  },
+  {
+    icon: Settings,
+    title: "BuildThatIdea Platform",
+    description: "Comprehensive AI-powered platform for turning ideas into reality. Features intelligent project planning, development assistance, and idea validation tools with chat-based interface.",
+    emoji: "💡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://www.buildthatidea.com",
+    tags: ["idea development", "project planning", "AI assistant", "idea validation", "development tools", "chat interface"],
+    category: "AI CHAT & ASSISTANTS",
+    rating: 4.4,
+    totalVotes: 1600
   }
 ];

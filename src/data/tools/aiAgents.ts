@@ -301,5 +301,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.5,
     totalVotes: 1800
+  },
+  {
+    icon: Bot,
+    title: "Emergent Agent",
+    description: "Advanced AI agent platform providing intelligent automation, task execution, and autonomous workflows. Features sophisticated agent capabilities for complex problem-solving and automated processes.",
+    emoji: "🌟",
+    color: "from-emerald-500 to-teal-600",
+    directUrl: "https://www.emergent.sh",
+    tags: ["AI agent", "automation", "task execution", "autonomous workflows", "intelligent agent", "problem-solving"],
+    category: "AI Agents", 
+    rating: 4.5,
+    totalVotes: 1900
   }
 ];
