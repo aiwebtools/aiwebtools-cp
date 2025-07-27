@@ -12,7 +12,8 @@ import {
   Brain,
   Lightbulb,
   Database,
-  Zap
+  Zap,
+  Recycle
 } from "lucide-react";
 
 export const scienceAndResearchGPTs: Tool[] = [
@@ -127,5 +128,17 @@ export const scienceAndResearchGPTs: Tool[] = [
     category: "Science & Research",
     rating: 4.6,
     totalVotes: 3654
+  },
+  {
+    icon: Recycle,
+    title: "Plastoline GPT - Inspired by Julian Brown",
+    description: "Innovative AI tool that helps learn how to convert plastic waste into usable fuel. Inspired by Julian Brown's research, this GPT provides guidance on plastic-to-fuel conversion technologies, waste management solutions, and sustainable energy practices. Learn about pyrolysis processes, plastic sorting, and environmental impact reduction through practical fuel production methods.",
+    emoji: "♻️",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://plastolinegpt.lovable.app/?via=aiwebtools",
+    tags: ["plastic recycling", "waste to fuel", "environmental science", "sustainability", "green energy", "waste management", "aiwebtools"],
+    category: "Science & Research",
+    rating: 4.5,
+    totalVotes: 2156
   }
 ];
