@@ -313,5 +313,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents", 
     rating: 4.5,
     totalVotes: 1900
+  },
+  {
+    icon: Bot,
+    title: "MGX AI Agent",
+    description: "Advanced AI agent platform providing intelligent automation and sophisticated task execution capabilities. Features cutting-edge agent technology for complex workflows and autonomous problem-solving across various domains.",
+    emoji: "🤖",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://mgx.dev/?via=aiwebtools",
+    tags: ["AI agent", "automation", "task execution", "intelligent workflows", "advanced AI", "autonomous agent"],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 2100
   }
 ];
