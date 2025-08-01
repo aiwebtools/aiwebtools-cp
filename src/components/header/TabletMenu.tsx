@@ -203,8 +203,8 @@ const TabletMenu = () => {
               
               {/* Footer */}
               <div className="space-y-1">
-                <DropdownMenuItem onClick={() => window.location.href = '#services'} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
-                  More Services
+                <DropdownMenuItem onClick={(e) => { e.preventDefault(); createTimePortalEffect('https://www.aitools.company'); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
+                  ABOUT AI WEB TOOLS LLC
                 </DropdownMenuItem>
                 <DropdownMenuItem className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   <Phone className="w-4 h-4 mr-2" />
