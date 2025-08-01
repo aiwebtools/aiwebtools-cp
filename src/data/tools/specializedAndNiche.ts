@@ -8,7 +8,7 @@ export const specializedAndNiche: Tool[] = [
   {
     icon: Car,
     title: "AUTOMOBILE GPT",
-    description: "Comprehensive automotive assistant for car enthusiasts, mechanics, and buyers with detailed vehicle information and diagnostics.",
+    description: "Automobile GPT is your ultimate, all-encompassing Ai automotive expert, designed to guide you through every aspect of the automotive world with precision. Whether you're searching for the best deals at local dealerships, need detailed repair cost assessments, or seek expert advice on maintenance and upgrades, Automobile GPT offers unmatched accuracy and thoroughness. It's your indispensable partner for making informed, precise decisions about your vehicle.",
     emoji: "🚗",
     color: "from-blue-500 to-gray-600",
     directUrl: "https://automobilegpt.lovable.app/?via=aiwebtools",
@@ -48,7 +48,7 @@ export const specializedAndNiche: Tool[] = [
   {
     icon: Shield,
     title: "Survivalist GPT",
-    description: "Wilderness survival guide and emergency preparedness assistant with practical survival skills and techniques.",
+    description: "Congratulations! You now have a survival expert in your pocket. Imagine a robot with vast knowledge and experience in survival techniques, ready to assist you anytime. This GPT, offers step-by-step guidance, practical strategies, and personalized support for any survival or battlefield scenario. It's the ultimate survival companion, always by your side. Remember, with Survivalist GPT, you're never alone.",
     emoji: "🏕️",
     color: "from-green-500 to-brown-600",
     directUrl: "https://survivalistgpt.lovable.app/?via=aiwebtools",

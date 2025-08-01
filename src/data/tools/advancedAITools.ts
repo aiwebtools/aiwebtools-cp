@@ -6,7 +6,7 @@ export const advancedAITools: Tool[] = [
   {
     icon: Crown,
     title: "GODMODE GPT",
-    description: "Ultimate AI assistant with advanced capabilities for complex problem-solving, creative tasks, and comprehensive analysis across multiple domains with unrestricted potential.",
+    description: "Imagine having an AI companion so powerful and versatile that it seamlessly transforms to meet every need you have—introducing GodMode GPT",
     emoji: "👑",
     color: "from-gold-500 to-yellow-600",
     directUrl: "https://godmodegpt.lovable.app/?via=aiwebtools",
@@ -32,7 +32,7 @@ export const advancedAITools: Tool[] = [
   {
     icon: Zap,
     title: "PERFECT PROMPT ENGINE",
-    description: "Advanced prompt engineering tool for creating highly effective AI prompts, optimizing AI interactions, and maximizing performance across different AI platforms.",
+    description: "The Prompt Perfect Engine effortlessly optimizes all your chat prompts. Crafted by prompt engineers, it's perfect for maximizing your potential, whether you're a beginner or aiming for perfection. Additionally, it can execute tasks flawlessly based on the generated prompts. Prompt Perfect Engine is your #1 personal prompt engineer, designed to fit in your pocket and ensure your success.",
     emoji: "⚡",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://perfectpromptengine.lovable.app/?via=aiwebtools",
@@ -45,7 +45,7 @@ export const advancedAITools: Tool[] = [
   {
     icon: Globe,
     title: "Illuminous World Data Explorer GPT",
-    description: "Advanced data exploration and analysis tool for discovering insights, patterns, and trends in global datasets with comprehensive visualization capabilities.",
+    description: "Illuminous specializes in data analysis and global data retrieval, designed to make accurate predictions about anything. This GPT offers real-time global data analysis, creating stunning infographics to turn complex information into clear insights and predictions. Illuminate the future of prediction with Illuminous.",
     emoji: "🌍",
     color: "from-green-500 to-blue-600",
     directUrl: "https://illuminous.lovable.app/?via=aiwebtools",
@@ -58,7 +58,7 @@ export const advancedAITools: Tool[] = [
   {
     icon: Star,
     title: "Phenomenon Explorer AI Suite",
-    description: "Comprehensive suite for exploring mysterious phenomena, unexplained events, and scientific anomalies with advanced research and analysis capabilities.",
+    description: "Unveil the unexplained with AI precision using the Phenomenon Explorer AI Suite. This powerful collection of specialized AI tools enables users to investigate paranormal phenomena, document cryptid sightings, analyze supernatural myths, and conduct ghost hunts with scientific accuracy and analytical depth. Whether you're a UFO researcher, a paranormal investigator, a folklore scholar, or just someone intrigued by the unknown, our suite of tools—UFO Investigation GPT, Supernatural Myths GPT, Cryptozoology Report GPT, and Ghost Hunting GPT—guides you through structured methodologies and evidence-based approaches to uncover the truth behind some of the world's most mysterious occurrences. Each tool provides tailored support for your investigative journey, combining cutting-edge AI technology with expert-level analysis to offer you a clearer understanding of the unexplained. Start exploring today and see how AI can help illuminate the unknown.",
     emoji: "🛸",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
@@ -84,7 +84,7 @@ export const advancedAITools: Tool[] = [
   {
     icon: Target,
     title: "ImmortalizeME",
-    description: "Advanced digital immortalization platform creating lasting digital legacies, AI avatars, and preserved memories for future generations.",
+    description: "ImmortalizeMe ™ is an AI service offered by AIWebTools.AI that creates fully interactive digital clones of individuals using their voice, personality, and life stories. The team at AI Web Tools handles the entire process—from voice cloning to knowledge integration—based on the data you provide. Your digital twin can engage in real-time voice conversations and reflect your unique mannerisms and memories. It's a hands-free, done-for-you solution to preserve your legacy for future generations.",
     emoji: "♾️",
     color: "from-violet-500 to-purple-600",
     directUrl: "https://immortalizeme.lovable.app/?via=aiwebtools",
@@ -123,7 +123,7 @@ export const advancedAITools: Tool[] = [
   {
     icon: Wand2,
     title: "Resurrection GPT",
-    description: "Advanced AI for digital resurrection of historical figures, deceased personalities, and lost knowledge through sophisticated personality reconstruction and historical analysis.",
+    description: "Resurrection GPT offers a unique opportunity to simulate reconnecting with the memories of loved ones who have passed, providing comfort and a sense of presence through simulated conversations. By capturing the essence of those who have departed, this AI tool supports emotional healing and offers closure during times of loss. Disclaimer: The intent of this tool is to provide comfort and emotional support, and it's important to know that, even though it may feel very real, it is a simulation and not a replacement for mental health or grief counseling in a real-life setting.",
     emoji: "⚰️",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://resurrectiongpt.lovable.app/?via=aiwebtools",

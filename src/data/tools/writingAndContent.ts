@@ -68,8 +68,8 @@ export const writingAndContent: Tool[] = [
   },
   {
     icon: Eye,
-    title: "Clarity Omni",
-    description: "Advanced writing assistant that provides comprehensive clarity analysis, readability enhancement, and content optimization for all types of written communication.",
+    title: "Clarity Omni GPT",
+    description: "Clarity Omni GPT is an AI tool designed to rewrite text for improved clarity while preserving the original meaning and intent. It can either maintain the exact wording of the input or make adjustments to the wording, tone, and structure to enhance readability. Regardless of the approach, this AI ensures that every detail is retained, delivering a refined version of the text that stays true to the user's purpose.",
     emoji: "🔍",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://clarityomni.lovable.app/?via=aiwebtools",

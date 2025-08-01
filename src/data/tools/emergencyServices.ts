@@ -30,7 +30,7 @@ export const emergencyServices: Tool[] = [
   {
     icon: Shield,
     title: "Survivalist GPT",
-    description: "Comprehensive survival guidance covering wilderness survival, emergency preparedness, survival skills, outdoor safety, and crisis management techniques.",
+    description: "Congratulations! You now have a survival expert in your pocket. Imagine a robot with vast knowledge and experience in survival techniques, ready to assist you anytime. This GPT, offers step-by-step guidance, practical strategies, and personalized support for any survival or battlefield scenario. It's the ultimate survival companion, always by your side. Remember, with Survivalist GPT, you're never alone.",
     emoji: "🏕️",
     color: "from-green-500 to-brown-600",
     directUrl: "https://survivalistgpt.lovable.app/?via=aiwebtools",
