@@ -45,7 +45,7 @@ const Navigation = () => {
       </button>
 
       <button 
-        onClick={(e) => handleExternalLink("https://aitools.company/hire-us-to-build-your-ai-1", e)}
+        onClick={(e) => handleExternalLink("https://www.aitools.company", e)}
         className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
       >
         🚀 More Services

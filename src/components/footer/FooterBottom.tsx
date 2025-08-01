@@ -10,7 +10,7 @@ const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
     <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
       <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
         <button 
-          onClick={(e) => handleExternalLink("https://www.AiWebTools.AI", e)}
+          onClick={(e) => handleExternalLink("https://www.aitools.company", e)}
           className="text-cyan-300 hover:text-cyan-400 transition-colors"
         >
           © 2025 AI WEB TOOLS LLC All rights reserved.

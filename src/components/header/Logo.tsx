@@ -36,7 +36,7 @@ const Logo = () => {
         <div className="text-xs md:text-sm text-gray-400">
           Presented by{" "}
           <button 
-            onClick={(e) => handleExternalLink("https://aiwebtools.ai", e)}
+            onClick={(e) => handleExternalLink("https://www.aitools.company", e)}
             className="text-cyan-400 hover:text-cyan-300 transition-colors underline"
           >
             AIWEBTOOLS.AI
@@ -44,7 +44,7 @@ const Logo = () => {
         </div>
         <div className="text-xs text-gray-500">
           <button 
-            onClick={(e) => handleExternalLink("https://aiwebtools.ai", e)}
+            onClick={(e) => handleExternalLink("https://www.aitools.company", e)}
             className="text-gray-500 hover:text-cyan-400 transition-colors"
           >
             An AiTools.Company
