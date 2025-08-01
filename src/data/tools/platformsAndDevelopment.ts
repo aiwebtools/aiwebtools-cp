@@ -71,7 +71,7 @@ export const platformsAndDevelopment: Tool[] = [
   {
     icon: Target,
     title: "Solar Land Assessor GPT",
-    description: "Evaluate land suitability for solar installations with comprehensive analysis of solar potential, terrain, and regulatory considerations.",
+    description: "I assist Solar Professionals with assessing land properties for future solar installation projects.",
     emoji: "☀️",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://solarlandgpt.lovable.app/?via=aiwebtools",

@@ -110,7 +110,7 @@ export const businessAndTeamTools: Tool[] = [
   {
     icon: Building,
     title: "Solar Land Assessor GPT",
-    description: "Professional solar energy and land assessment tool for evaluating solar potential, land suitability, and renewable energy project feasibility.",
+    description: "I assist Solar Professionals with assessing land properties for future solar installation projects.",
     emoji: "☀️",
     color: "from-yellow-500 to-green-600",
     directUrl: "https://solarlandgpt.lovable.app/?via=aiwebtools",

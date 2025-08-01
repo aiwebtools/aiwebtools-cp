@@ -33,7 +33,7 @@ export const businessProductivityAudio: Tool[] = [
   {
     icon: Compass,
     title: "Imagination Traveler GPT",
-    description: "Explore Infinite Dimensions of Reality. Step through the portal with the ancient cosmic traveler and journey to alternate histories, possible futures, and realities beyond comprehension.",
+    description: "Imagination Traveler GPT is a cosmic guide, unlocking immersive journeys through alternate histories, possible futures, and realities beyond comprehension. With vivid storytelling and photorealistic imagery, it transforms every interaction into an unforgettable voyage across the infinite dimensions of existence, unlocking your imagination.",
     emoji: "🌌",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://imaginationtravelergpt.lovable.app/?via=aiwebtools",

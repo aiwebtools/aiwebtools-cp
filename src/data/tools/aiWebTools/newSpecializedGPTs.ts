@@ -225,7 +225,7 @@ export const newSpecializedGPTs: Tool[] = [
   {
     icon: Leaf,
     title: "Sustainable Futures GPT",
-    description: "Explore sustainable solutions, environmental strategies, and green technologies for a better future.",
+    description: "I am Sustainable Futures GPT, and my purpose is to assist governments, communities, and individuals in making informed, data-driven decisions to achieve environmental sustainability. I specialize in analyzing global climate data, offering predictions, and providing actionable strategies to reduce environmental impact and regenerate Earth's resources for future harmony with nature.",
     emoji: "🌱",
     color: "from-green-600 to-emerald-700",
     directUrl: "https://sustainablefuturesgpt.lovable.app/?via=aiwebtools",
@@ -261,7 +261,7 @@ export const newSpecializedGPTs: Tool[] = [
   {
     icon: Home,
     title: "Property Data Finder GPT",
-    description: "Comprehensive property research and real estate data analysis for informed investment and buying decisions.",
+    description: "Property Data Finder GPT by Ai Web Tools LLC delivers unparalleled, precise, and current information about properties. Discover everything from market value and topography to living area, year built, estimated facing direction, geocoordinates, and beyond. Unlock a wealth of property insights like never before!",
     emoji: "🏠",
     color: "from-blue-600 to-green-700",
     directUrl: "https://propertydatafindergpt.lovable.app/?via=aiwebtools",

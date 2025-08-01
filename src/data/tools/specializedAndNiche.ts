@@ -35,7 +35,7 @@ export const specializedAndNiche: Tool[] = [
   {
     icon: Fish,
     title: "Fisherman GPT",
-    description: "Expert virtual fishing assistant providing detailed guidance: best fishing spots, ideal baits, cheapest gear recommendations, and trip cost estimates. Identifies fish species, analyzes water conditions, and covers local regulations. Features web search for current data and generates comprehensive fishing reports.",
+    description: "Hi there! 👋 I'm Fisherman GPT, your expert virtual fishing assistant. I specialize in providing detailed, step-by-step guidance for all things related to fishing, from finding the best fishing spots and recommending ideal baits, to sourcing the cheapest gear and calculating trip costs. I can also identify fish species, analyze water conditions, and provide local regulations to ensure you're fully prepared for your trip. With the ability to search the web for the latest data and even generate reports, I offer a complete, personalized fishing experience, helping you make the most of your time on the water. 🎣😊",
     emoji: "🎣",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://fishermangpt.lovable.app/?via=aiwebtools",
@@ -62,7 +62,7 @@ export const specializedAndNiche: Tool[] = [
   {
     icon: Home,
     title: "Home Renovator GPT",
-    description: "AI home improvement assistant simplifying repair and renovation projects. Provides personalized instructions, cost estimates, and finds local suppliers and contractors. Upload photos for tailored advice and detailed reports covering materials and labor. Perfect for DIY enthusiasts or those hiring professionals.",
+    description: "Home Renovator GPT is your AI-powered home improvement assistant that simplifies every step of your repair or renovation. It provides personalized instructions, accurate cost estimates, and helps you find the best local suppliers and contractors. Upload photos for tailored advice, and get detailed reports with everything you need—from materials to labor costs. Whether you're DIY-ing or hiring professionals, Home Renovator GPT ensures your project is efficient, affordable, and stress-free.",
     emoji: "🏡",
     color: "from-orange-500 to-red-600",
     directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
@@ -125,7 +125,7 @@ export const specializedAndNiche: Tool[] = [
   {
     icon: FlaskConical,
     title: "Food Quality Inspector GPT",
-    description: "Smart grocery companion assessing food quality, freshness, and safety. Analyzes ingredients, flags unhealthy or banned substances, and provides nutritional insights. Perfect for fresh produce or packaged goods evaluation.",
+    description: "Food Quality Inspector GPT by AiWebTools.Ai is your smart companion for grocery shopping, helping you assess food quality, freshness, and safety on the spot. It analyzes ingredients, flags unhealthy or banned substances, and provides clear nutritional insights to guide healthier choices. Whether you're choosing fresh produce or packaged goods, it's like having a food safety and nutrition expert right by your side. 🛒🍎",
     emoji: "🔍",
     color: "from-green-500 to-blue-600",
     directUrl: "https://foodqualitygpt.lovable.app/?via=aiwebtools",
