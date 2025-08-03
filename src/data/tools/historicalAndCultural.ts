@@ -13,7 +13,8 @@ import {
   Star,
   User,
   History,
-  Map
+  Map,
+  Library
 } from "lucide-react";
 
 export const historicalAndCultural: Tool[] = [
@@ -158,5 +159,17 @@ export const historicalAndCultural: Tool[] = [
     tags: ["historical medicine", "apothecary", "herbal remedies", "traditional healing"],
     rating: 4.3,
     totalVotes: 1765
+  },
+  {
+    icon: Library,
+    title: "Ancient Knowledge GPT",
+    description: "Explore ancient wisdom, lost civilizations, and timeless knowledge from across human history. Delve into mysterious texts, forgotten teachings, and the accumulated wisdom of ages past.",
+    emoji: "📜",
+    color: "from-amber-600 to-brown-800",
+    directUrl: "https://chatgpt.com/g/g-688e9f50b7b8819185b2a354bbcb0bb1-ancient-knowledge-gpt",
+    category: "Ancient Wisdom",
+    tags: ["ancient knowledge", "wisdom", "lost civilizations", "historical texts", "ancient mysteries"],
+    rating: 4.5,
+    totalVotes: 2156
   }
 ];
