@@ -122,6 +122,9 @@ import { additionalRealAITools } from './tools/additionalRealAITools';
 // Import the NEWEST additional real AI tools
 import { moreRealAITools } from './tools/moreRealAITools';
 
+// Import historical and cultural tools
+import { historicalAndCultural } from './tools/historicalAndCultural';
+
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
@@ -241,6 +244,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...additionalRealAITools,
     
     // NEWEST: More real AI tools (100 additional tools)
-    ...moreRealAITools
+    ...moreRealAITools,
+    
+    // Historical and Cultural tools
+    ...historicalAndCultural
   ];
 };
