@@ -115,5 +115,17 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 4567
+  },
+  {
+    icon: Brain,
+    title: "Mediation Guidance GPT",
+    description: "Mediation Guidance GPT is your personal AI meditation and mindfulness coach, designed to guide you through personalized meditation practices, breathing exercises, and mindfulness techniques. Whether you're a beginner seeking to start your meditation journey or an experienced practitioner looking to deepen your practice, this AI provides tailored guidance, meditation scripts, and mindfulness exercises to help you achieve inner peace, reduce stress, and enhance mental clarity. Features include guided meditation sessions, breathing technique instructions, mindfulness exercises for daily life, stress reduction strategies, and personalized meditation recommendations based on your goals and experience level.",
+    emoji: "🧘",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-688ea843f0ac81918fb4b8d60d7dc4ef-meditation-guidance-gpt",
+    tags: ["meditation", "mindfulness", "stress relief", "mental wellness", "breathing exercises", "inner peace", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.7,
+    totalVotes: 2890
   }
 ];
