@@ -33,7 +33,7 @@ export const useGlobalSearch = () => {
     if (trimmedTerm.length === 2) {
       const results = allTools.filter(tool => 
         tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
-      );
+      ).sort((a, b) => a.title.localeCompare(b.title));
       setSearchResults(results);
       setDisplayedCount(30);
       setIsOpen(true);
@@ -48,7 +48,7 @@ export const useGlobalSearch = () => {
         return lowerTitle.startsWith(lowerTerm) || 
                lowerTitle.includes(lowerTerm) ||
                tool.category?.toLowerCase().includes(lowerTerm);
-      });
+      }).sort((a, b) => a.title.localeCompare(b.title));
       setSearchResults(results);
       setDisplayedCount(30);
       setIsOpen(true);

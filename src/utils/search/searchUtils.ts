@@ -89,7 +89,14 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     
     const scoredAIWebTools = aiWebToolsResults
       .map(tool => ({ tool, score: scoreAIWebToolsGPT(tool, searchTerm) }))
-      .sort((a, b) => b.score - a.score)
+      .sort((a, b) => {
+        // First sort by score (highest first)
+        if (b.score !== a.score) {
+          return b.score - a.score;
+        }
+        // Then alphabetically by title
+        return a.tool.title.localeCompare(b.tool.title);
+      })
       .map(result => result.tool);
     
     const remainingTools = tools.filter(tool => 
@@ -297,8 +304,8 @@ const performEnhancedSearch = (
       if (b.score !== a.score) {
         return b.score - a.score;
       }
-      // Then by title length (shorter titles first, often more relevant)
-      return a.tool.title.length - b.tool.title.length;
+      // Then alphabetically by title
+      return a.tool.title.localeCompare(b.tool.title);
     })
     .map(result => result.tool);
 
