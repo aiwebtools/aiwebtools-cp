@@ -13,7 +13,8 @@ import {
   Lightbulb,
   Database,
   Zap,
-  Recycle
+  Recycle,
+  Mountain
 } from "lucide-react";
 
 export const scienceAndResearchGPTs: Tool[] = [
@@ -140,5 +141,17 @@ export const scienceAndResearchGPTs: Tool[] = [
     category: "Science & Research",
     rating: 4.5,
     totalVotes: 2156
+  },
+  {
+    icon: Mountain,
+    title: "Geology & Rock Identification GPT",
+    description: "Geology & Rock Identification GPT is your expert AI companion for geological exploration and rock identification. This specialized tool helps geologists, students, and enthusiasts identify minerals, rocks, and geological formations through detailed analysis and visual examination. Whether you're studying sedimentary, igneous, or metamorphic rocks, this GPT provides comprehensive geological insights, formation processes, and practical field identification techniques. Perfect for geological surveys, educational purposes, and amateur rock collecting adventures.",
+    emoji: "🪨",
+    color: "from-amber-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-689005f62df881918961b6c93ad5b19e-geology-rock-identification-gpt",
+    tags: ["geology", "rock identification", "minerals", "earth science", "geological formations", "field geology", "petrology", "aiwebtools"],
+    category: "Science & Research",
+    rating: 4.6,
+    totalVotes: 3245
   }
 ];
