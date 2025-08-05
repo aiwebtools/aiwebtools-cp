@@ -54,7 +54,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     description: "AI Calculator is an advanced computational tool that leverages artificial intelligence to solve complex mathematical problems, perform scientific calculations, and provide step-by-step solutions. Whether you're a student, engineer, or researcher, this AI-powered calculator simplifies intricate equations, offers detailed explanations, and enhances your problem-solving capabilities.",
     emoji: "🧮",
     color: "from-yellow-500 to-orange-600",
-    directUrl: "https://chatgpt.com/g/g-7XJ9JPiSm-ai-calculator",
+    directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
     tags: ["mathematical calculations", "scientific computations", "problem-solving", "step-by-step solutions", "AI assistance"],
     category: "Utility & Productivity",
     rating: 4.5,
