@@ -1,5 +1,5 @@
 
-import { Menu, Phone, Search, X } from "lucide-react";
+import { Menu, Phone, Search, X, Globe } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -205,6 +205,10 @@ const TabletMenu = () => {
               <div className="space-y-1">
                 <DropdownMenuItem onClick={(e) => { e.preventDefault(); createTimePortalEffect('https://www.aitools.company'); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   ABOUT AI WEB TOOLS LLC
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={(e) => { e.preventDefault(); createTimePortalEffect('https://freename.com/result/?search=.worldtrade&type=WEB3_SLD/?ref=olive-ears-obey'); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
+                  <Globe className="w-4 h-4 mr-2" />
+                  Register WEB3 Domains
                 </DropdownMenuItem>
                 <DropdownMenuItem className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   <Phone className="w-4 h-4 mr-2" />

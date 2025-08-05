@@ -1,5 +1,5 @@
 
-import { Phone } from "lucide-react";
+import { Phone, Globe } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 
@@ -49,6 +49,14 @@ const Navigation = () => {
         className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
       >
         ABOUT AI WEB TOOLS LLC
+      </button>
+
+      <button 
+        onClick={(e) => handleExternalLink("https://freename.com/result/?search=.worldtrade&type=WEB3_SLD/?ref=olive-ears-obey", e)}
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center space-x-1"
+      >
+        <Globe className="w-4 h-4" />
+        <span>Register WEB3 Domains</span>
       </button>
       
       <div className="flex items-center space-x-2 text-cyan-100 whitespace-nowrap">

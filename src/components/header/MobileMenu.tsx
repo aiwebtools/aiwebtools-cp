@@ -1,5 +1,5 @@
 
-import { Menu, Phone, Search, X, FileText } from "lucide-react";
+import { Menu, Phone, Search, X, FileText, Globe } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -231,6 +231,15 @@ const MobileMenu = () => {
               <div className="space-y-1">
                 <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.aitools.company', e)} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   ABOUT AI WEB TOOLS LLC
+                </DropdownMenuItem>
+                
+                {/* Register WEB3 Domains Button */}
+                <DropdownMenuItem 
+                  onClick={(e) => handleExternalLink('https://freename.com/result/?search=.worldtrade&type=WEB3_SLD/?ref=olive-ears-obey', e)} 
+                  className="text-cyan-100 hover:bg-cyan-500/20 rounded"
+                >
+                  <Globe className="w-4 h-4 mr-2" />
+                  Register WEB3 Domains
                 </DropdownMenuItem>
                 
                 {/* Terms & Disclaimer Button */}
