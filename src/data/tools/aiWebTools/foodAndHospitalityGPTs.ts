@@ -1,6 +1,6 @@
 
 import { Tool } from "@/types/tools";
-import { ChefHat, Wine, Menu } from "lucide-react";
+import { ChefHat, Wine, Menu, UtensilsCrossed } from "lucide-react";
 
 export const foodAndHospitalityGPTs: Tool[] = [
   {
@@ -41,5 +41,17 @@ export const foodAndHospitalityGPTs: Tool[] = [
     category: "Food & Hospitality",
     rating: 4.6,
     totalVotes: 4321
+  },
+  {
+    icon: UtensilsCrossed,
+    title: "Culinary Master GPT",
+    description: "Culinary Master GPT is your expert AI kitchen companion, designed to elevate your cooking experience through comprehensive culinary guidance and personalized recipe assistance. This specialized cooking assistant provides professional-level culinary knowledge, helping both novice cooks and experienced chefs master the art of cooking with confidence and creativity. Whether you're planning weeknight dinners, preparing for special occasions, or exploring new cuisines, Culinary Master GPT offers detailed recipe instructions, cooking technique explanations, and ingredient substitution recommendations tailored to your preferences and dietary needs. The AI analyzes your cooking skill level, available ingredients, and flavor preferences to suggest perfectly matched recipes with step-by-step guidance and professional tips. Features include meal planning assistance, cooking time optimization, nutritional analysis, wine pairing suggestions, and troubleshooting for common cooking challenges. Perfect for home cooks seeking to expand their culinary repertoire, food enthusiasts exploring international flavors, and anyone wanting to create memorable dining experiences. Culinary Master GPT transforms your kitchen into a space of culinary discovery and mastery.",
+    emoji: "🍳",
+    color: "from-amber-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-689239ba1cb0819197ae06454a25cee5-culinary-master-gpt",
+    tags: ["cooking", "culinary arts", "recipe assistant", "kitchen companion", "meal planning", "food preparation", "aiwebtools"],
+    category: "Food & Hospitality",
+    rating: 4.7,
+    totalVotes: 4892
   }
 ];
