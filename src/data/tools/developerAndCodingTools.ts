@@ -21,7 +21,7 @@ export const developerAndCodingTools: Tool[] = [
     description: "Revolutionary AI-powered web application builder that creates full-stack React applications from natural language prompts. Build complete web apps with modern tech stack including React, TypeScript, and Tailwind CSS in minutes. Perfect for 'make an app' queries.",
     emoji: "🌐",
     color: "from-purple-500 to-pink-600",
-    directUrl: "https://lovable.dev/?via=aiwebtools",
+    directUrl: "https://lovable.dev/invite/48176b65-a300-48a8-895b-ee9a0ea517e6/?via=aiwebtools",
     tags: ["AI web builder", "React", "TypeScript", "full-stack", "web development", "no-code", "lovable", "make an app", "create app", "build app", "app builder"],
     category: "DEVELOPMENT & CODING",
     rating: 4.9,
