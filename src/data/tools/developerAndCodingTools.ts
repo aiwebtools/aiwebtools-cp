@@ -100,5 +100,17 @@ export const developerAndCodingTools: Tool[] = [
     category: "DEVELOPMENT & CODING",
     rating: 4.7,
     totalVotes: 3120
+  },
+  {
+    icon: Cpu,
+    title: "Base44 AI Agent",
+    description: "Base44 is a vibe coding AI agent similar to Lovable.dev—turn ideas into production-ready apps fast with agentic building and iterative edits.",
+    emoji: "🧠",
+    color: "from-teal-500 to-emerald-600",
+    directUrl: "https://base44.com/?via=aiwebtools",
+    tags: ["vibe coding", "AI web builder", "agent", "app builder", "no-code", "low-code", "full-stack", "development", "base44"],
+    category: "DEVELOPMENT & CODING",
+    rating: 4.5,
+    totalVotes: 1200
   }
 ];

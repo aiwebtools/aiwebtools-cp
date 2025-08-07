@@ -34,7 +34,8 @@ export const matchVibeCoding = (tool: Tool, searchTerm: string): boolean => {
       'launch.today',
       'launch today',
       'surf.new',
-      'surf'
+      'surf',
+      'base44'
     ];
     
     if (vibecodingAgents.some(agent => lowerTitle.includes(agent))) {
