@@ -174,5 +174,17 @@ export const aiChatPlatforms: Tool[] = [
     category: "AI CHAT & ASSISTANTS",
     rating: 4.4,
     totalVotes: 1600
+  },
+  {
+    icon: MessageSquare,
+    title: "Chatbase Chatbot Builder",
+    description: "Build and train custom chatbots on your data. Deploy on your website with an embeddable widget and analytics—no code required.",
+    emoji: "💬",
+    color: "from-sky-500 to-indigo-600",
+    directUrl: "https://chatbase.co/?via=aiwebtools",
+    tags: ["chatbase", "chatbot builder", "website widget", "train on data", "no-code", "customer support", "AI chat"],
+    category: "AI CHAT & ASSISTANTS",
+    rating: 4.5,
+    totalVotes: 4100
   }
 ];
