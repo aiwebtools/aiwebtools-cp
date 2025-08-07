@@ -15,6 +15,21 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   const [isOpen, setIsOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(30);
   
+  // Prefix-based priority scoring for ultra-short queries (e.g., "co", "coll")
+  const prefixPriorityScore = useCallback((title: string, term: string) => {
+    const t = term.toLowerCase();
+    const tl = title.toLowerCase();
+
+    // Strongly prioritize "College Degree GPT" for common beginnings
+    const collegePrefixes = ["co", "col", "coll", "colle", "colleg"];
+    if (collegePrefixes.includes(t)) {
+      if (tl.includes("college degree gpt")) return 30000;
+      if (tl.includes("college")) return 20000;
+    }
+
+    return 0;
+  }, []);
+  
   // INTELLIGENT search results with comprehensive matching
   const searchResults = useMemo(() => {
     const trimmedTerm = searchTerm.trim();
@@ -31,7 +46,17 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
         tool.title.toLowerCase().startsWith(lowerTerm) ||
         predictions.some(pred => tool.title.toLowerCase().includes(pred.toLowerCase()))
       );
-      return titleMatches.slice(0, 50);
+      // Score and sort so top-intent tools (e.g., College Degree GPT) appear first
+      return titleMatches
+        .map(tool => ({
+          tool,
+          score:
+            (tool.title.toLowerCase().startsWith(lowerTerm) ? 10000 : 0) +
+            prefixPriorityScore(tool.title, trimmedTerm)
+        }))
+        .sort((a, b) => b.score - a.score)
+        .map(r => r.tool)
+        .slice(0, 50);
     }
     
     // SMART 3-character search with enhanced matching
@@ -54,7 +79,10 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
       return quickResults
         .map(tool => ({
           tool,
-          score: enhancedToolScoring(tool, trimmedTerm) + (tool.title.toLowerCase().startsWith(lowerTerm) ? 10000 : 0)
+          score:
+            enhancedToolScoring(tool, trimmedTerm) +
+            (tool.title.toLowerCase().startsWith(lowerTerm) ? 10000 : 0) +
+            prefixPriorityScore(tool.title, trimmedTerm)
         }))
         .sort((a, b) => b.score - a.score)
         .map(result => result.tool)
