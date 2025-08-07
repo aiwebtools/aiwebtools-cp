@@ -7,9 +7,11 @@ export const matchVibeCoding = (tool: Tool, searchTerm: string): boolean => {
   const lowerCategory = tool.category?.toLowerCase() || '';
   const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
   
-  // Enhanced "vibe coding" search matching
+  // Enhanced "vibe" search matching - includes standalone "vibe" searches
   if (lowerSearchTerm.includes('vibe coding') || 
       lowerSearchTerm.includes('vibe coding agent') ||
+      lowerSearchTerm === 'vibe' ||
+      lowerSearchTerm.includes('vibe') ||
       (lowerSearchTerm.includes('vibe') && lowerSearchTerm.includes('coding')) ||
       (lowerSearchTerm.includes('vibe') && lowerSearchTerm.includes('agent'))) {
     
@@ -60,6 +62,8 @@ export const scoreVibeCoding = (tool: Tool, searchTerm: string): number => {
   
   if (lowerSearchTerm.includes('vibe coding') || 
       lowerSearchTerm.includes('vibe coding agent') ||
+      lowerSearchTerm === 'vibe' ||
+      lowerSearchTerm.includes('vibe') ||
       (lowerSearchTerm.includes('vibe') && lowerSearchTerm.includes('coding')) ||
       (lowerSearchTerm.includes('vibe') && lowerSearchTerm.includes('agent'))) {
     
