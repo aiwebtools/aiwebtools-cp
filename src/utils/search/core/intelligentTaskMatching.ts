@@ -72,8 +72,10 @@ export const scoreTimeTravel = (tool: Tool, searchTerm: string): number => {
       lowerSearchTerm === 'ancient') {
     
     // Top priority time travel tools
-    if (lowerTitle.includes('time machine gpt')) {
-      score += 5000; // Highest priority
+    const isShortTimeQuery = lowerSearchTerm === 'time' || lowerSearchTerm.startsWith('time ');
+    if (lowerTitle === 'time machine gpt') {
+      score += 9000; // Highest priority - exact original tool
+      if (isShortTimeQuery) score += 4000; // Extra boost for short "time" queries
     }
     if (lowerTitle.includes('native american history time machine gpt')) {
       score += 4900; // Second highest
