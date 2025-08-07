@@ -4,6 +4,7 @@ import { fuzzyMatchTool, phoneticMatch } from "./core/fuzzyMatching";
 import { matchVibeCoding, scoreVibeCoding } from "./matching/vibeCodingMatching";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
 import { matchCodingAgents, scoreCodingAgents } from "./matching/codingMatching";
+import { matchUserTask, smartTypoCorrection, scoreToolByContext } from "./core/intelligentTaskMatching";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -176,7 +177,14 @@ const performEnhancedSearch = (
   phoneticVariations: string[],
   intentConfig: any
 ): Tool[] => {
-  const normalizedSearchTerm = searchTerm.toLowerCase().trim();
+  // Apply intelligent typo correction first
+  const correctedSearchTerm = smartTypoCorrection(searchTerm);
+  const normalizedSearchTerm = correctedSearchTerm.toLowerCase().trim();
+  
+  // Detect user task intent
+  const userTask = matchUserTask(normalizedSearchTerm);
+  
+  console.log(`🧠 Smart search for "${searchTerm}" -> "${correctedSearchTerm}"`, userTask.taskType ? `Task detected: ${userTask.taskType}` : 'No specific task detected');
   
   const results = tools
     .filter(tool => !EXCLUDED_TOOLS.includes(tool.title))
@@ -194,6 +202,15 @@ const performEnhancedSearch = (
         score += 2000; // Base boost for AI Web Tools
         if (lowerTitle.includes(normalizedSearchTerm)) {
           score += 3000; // Additional boost for matching AI Web Tools
+        }
+      }
+
+      // INTELLIGENT TASK-BASED SCORING: Boost tools that match detected user tasks
+      if (userTask.taskType && userTask.score > 0) {
+        const contextScore = scoreToolByContext(tool, normalizedSearchTerm, userTask);
+        if (contextScore > 0) {
+          matched = true;
+          score += contextScore;
         }
       }
 
@@ -264,30 +281,21 @@ const performEnhancedSearch = (
         }
       }
 
-      // Fuzzy matching only for longer terms to avoid performance issues
-      if (normalizedSearchTerm.length >= 5) {
-        const fuzzyResult = fuzzyMatchTool(tool, searchTerm);
-        if (fuzzyResult.matched) {
-          matched = true;
-          score += fuzzyResult.score;
-        }
-      }
-
-      // MEDIUM-HIGH PRIORITY: Description contains exact term
-      if (lowerDescription.includes(normalizedSearchTerm)) {
+      // MEDIUM-HIGH PRIORITY: Description contains exact term (check both original and corrected)
+      if (lowerDescription.includes(normalizedSearchTerm) || lowerDescription.includes(correctedSearchTerm)) {
         matched = true;
         score += 6000;
       }
 
-      // MEDIUM PRIORITY: Category match
-      if (lowerCategory.includes(normalizedSearchTerm)) {
+      // MEDIUM PRIORITY: Category match (check both original and corrected)
+      if (lowerCategory.includes(normalizedSearchTerm) || lowerCategory.includes(correctedSearchTerm)) {
         matched = true;
         score += 4000;
       }
 
-      // MEDIUM PRIORITY: Tag matches
+      // MEDIUM PRIORITY: Tag matches (check both original and corrected)
       for (const tag of lowerTags) {
-        if (tag.includes(normalizedSearchTerm)) {
+        if (tag.includes(normalizedSearchTerm) || tag.includes(correctedSearchTerm)) {
           matched = true;
           score += 3000;
         }
