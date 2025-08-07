@@ -637,6 +637,7 @@ const OurFeaturedSection = () => {
                         title={`${tool.title} Demo`}
                         className="absolute inset-0 w-full h-full"
                         frameBorder="0"
+                        loading="lazy"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       />
@@ -648,6 +649,9 @@ const OurFeaturedSection = () => {
                         alt={`${tool.title} Preview`}
                         className="w-full h-full object-cover"
                         loading="lazy"
+                        decoding="async"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        fetchPriority="low"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';

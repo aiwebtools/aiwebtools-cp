@@ -65,6 +65,9 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
             alt={`${tool.title} screenshot`}
             className="w-full h-full object-cover"
             loading="lazy"
+            decoding="async"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            fetchPriority="low"
             onError={(e) => {
               console.error('Image failed to load for', tool.title, tool.imageUrl);
               // Fallback to emoji display if image fails to load
