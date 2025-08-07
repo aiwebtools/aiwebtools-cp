@@ -5,6 +5,7 @@ import { searchTools, removeDuplicateTools } from "@/utils/search/searchUtils";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { enhancedKeywordMatching, enhancedToolScoring } from "@/utils/search/enhancedKeywordMatching";
 import { predictUserIntent, generateAutoComplete } from "@/utils/search/core/intelligentPrediction";
+import { toolAbbreviations, fuzzyMatches, acronymMatches } from "@/utils/search/toolAbbreviations";
 
 interface UseSearchBarProps {
   searchTerm: string;
@@ -15,22 +16,71 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   const [isOpen, setIsOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(30);
   
-  // Prefix-based priority scoring for ultra-short queries (e.g., "co", "coll")
+  // Prefix-based priority scoring for ultra-short queries (generalized)
   const prefixPriorityScore = useCallback((title: string, term: string) => {
     const t = term.toLowerCase();
     const tl = title.toLowerCase();
+    let score = 0;
 
-    // Strongly prioritize "College Degree GPT" for common beginnings
-    const collegePrefixes = ["co", "col", "coll", "colle", "colleg"];
-    if (collegePrefixes.includes(t)) {
-      if (tl.includes("college degree gpt")) return 30000;
-      if (tl.includes("college")) return 20000;
+    // 1) Generic prefix boosts
+    if (tl.startsWith(t)) score += 20000;
+    else {
+      const words = tl.split(/[^a-z0-9]+/);
+      if (words.some((w) => w.startsWith(t))) score += 12000;
+      else if (tl.includes(t)) score += 3000;
     }
 
-    return 0;
+    // 2) Thematic boosts for popular intents
+    if (t.startsWith("chat")) {
+      if (tl.includes("chatgpt")) score += 15000;
+      if (tl.includes("chat")) score += 8000;
+      if (tl.includes("gpt")) score += 5000; // prioritize your GPTs as chat tools
+    }
+
+    // Common brand anchors by prefix (including previous College behavior)
+    const anchorByPrefix: Record<string, string[]> = {
+      co: ["college degree gpt", "college"],
+      col: ["college degree gpt", "college"],
+      coll: ["college degree gpt", "college"],
+      colle: ["college degree gpt", "college"],
+      colleg: ["college degree gpt", "college"],
+      run: ["runway ml", "runway"],
+      mid: ["midjourney"],
+      cla: ["claude"],
+      gem: ["gemini"],
+      per: ["perplexity"],
+      not: ["notion"],
+      can: ["canva"],
+      fig: ["figma"],
+      pho: ["photoshop"],
+      dee: ["deepseek"],
+    };
+    const anchors = anchorByPrefix[t] || [];
+    for (const a of anchors) {
+      if (tl.includes(a)) score += 15000;
+    }
+
+    // 3) Abbreviation and fuzzy alias dictionaries (lightweight scan)
+    try {
+      const allAliasSets: string[][] = [
+        ...Object.values(toolAbbreviations || {}),
+        ...Object.values(fuzzyMatches || {}),
+        ...Object.values(acronymMatches || {}),
+      ];
+      for (const aliases of allAliasSets) {
+        const lowerAliases = aliases.map((x) => x.toLowerCase());
+        const prefixHit = lowerAliases.some((alias) => alias.startsWith(t));
+        if (prefixHit && lowerAliases.some((alias) => tl.includes(alias))) {
+          score += 10000;
+          break;
+        }
+      }
+    } catch {
+      // no-op safeguard
+    }
+
+    return score;
   }, []);
-  
-  // INTELLIGENT search results with comprehensive matching
   const searchResults = useMemo(() => {
     const trimmedTerm = searchTerm.trim();
     
