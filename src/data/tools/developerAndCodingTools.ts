@@ -88,5 +88,17 @@ export const developerAndCodingTools: Tool[] = [
     category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 2450
+  },
+  {
+    icon: Bot,
+    title: "Devin AI Software Engineer",
+    description: "Devin is an autonomous AI software engineer that plans, writes, and runs code to build real software end-to-end. It reasons through tasks, creates PRs, fixes bugs, and ships features like a real dev.",
+    emoji: "🤖",
+    color: "from-violet-500 to-fuchsia-600",
+    directUrl: "https://devin.ai/?via=aiwebtools",
+    tags: ["devin", "ai coding", "software engineer", "autonomous agent", "developer tools", "code", "programming", "build app"],
+    category: "DEVELOPMENT & CODING",
+    rating: 4.7,
+    totalVotes: 3120
   }
 ];
