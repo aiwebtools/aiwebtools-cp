@@ -1,4 +1,5 @@
 import { Tool } from "@/types/tools";
+import { TYPO_DICTIONARY } from "../typoDictionary";
 
 // Time travel specific matching
 export const matchTimeTravel = (tool: Tool, searchTerm: string): boolean => {
@@ -526,32 +527,32 @@ export const matchUserTask = (searchTerm: string): { taskType: string | null, sc
   return bestMatch;
 };
 
-// Smart typo correction with context
+// Smart typo correction with context (uses centralized dictionary + word-level fixes)
 export const smartTypoCorrection = (searchTerm: string): string => {
-  let corrected = searchTerm.toLowerCase();
-  
-  // Apply advanced misspelling corrections
-  for (const [misspelling, correction] of Object.entries(advancedMisspellings)) {
-    if (corrected.includes(misspelling)) {
-      corrected = corrected.replace(misspelling, correction);
+  const original = searchTerm.trim().toLowerCase();
+  if (!original) return original;
+
+  // Exact phrase correction first
+  if (TYPO_DICTIONARY[original]) {
+    return TYPO_DICTIONARY[original];
+  }
+
+  // Word-by-word correction
+  const words = original.split(/\s+/);
+  const correctedWords = words.map((w) => {
+    if (TYPO_DICTIONARY[w]) return TYPO_DICTIONARY[w];
+    if (advancedMisspellings[w]) return advancedMisspellings[w];
+
+    // Character substitutions (basic leetspeak)
+    const charSubs: Record<string, string> = { '0': 'o', '3': 'e', '1': 'i', '5': 's', '@': 'a', '$': 's' };
+    let out = w;
+    for (const [c, r] of Object.entries(charSubs)) {
+      out = out.replace(new RegExp(c, 'g'), r);
     }
-  }
+    return out;
+  });
 
-  // Handle common character substitutions
-  const charSubstitutions: Record<string, string> = {
-    '0': 'o',
-    '3': 'e', 
-    '1': 'i',
-    '5': 's',
-    '@': 'a',
-    '$': 's'
-  };
-
-  for (const [char, replacement] of Object.entries(charSubstitutions)) {
-    corrected = corrected.replace(new RegExp(char, 'g'), replacement);
-  }
-
-  return corrected;
+  return correctedWords.join(' ');
 };
 
 // Context-aware category inference
