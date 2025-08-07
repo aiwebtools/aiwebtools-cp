@@ -1,4 +1,4 @@
-import { Bot, Globe, Code, Wand2, Zap, Brain, Github, Rocket, Settings, Monitor, Server, HardDrive, Users, Settings2, Database as DatabaseIcon, Terminal as TerminalIcon, Cpu as CpuIcon, Layers } from "lucide-react";
+import { Bot, Globe, Code, Wand2, Zap, Brain, Github, Rocket, Settings, Monitor, Server, HardDrive, Users, Settings2, Database as DatabaseIcon, Terminal as TerminalIcon, Cpu as CpuIcon, Layers, Smartphone } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 export const aiAgents: Tool[] = [
@@ -325,5 +325,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 2100
+  },
+  {
+    icon: Smartphone,
+    title: "RORK Mobile Application Vibe Coding Agent",
+    description: "AI agent created to bring mobile application designs to life with no coding experience necessary. Transform your app ideas into functional mobile applications through intelligent automation and intuitive design-to-code conversion.",
+    emoji: "📱",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://rork.com/?via=AIwebtools",
+    tags: ["mobile app design", "AI agent", "no-code", "app development", "mobile coding", "design to code", "application builder", "iOS", "Android", "mobile UI", "app creation"],
+    category: "AI Agents",
+    rating: 4.7,
+    totalVotes: 1200
   }
 ];
