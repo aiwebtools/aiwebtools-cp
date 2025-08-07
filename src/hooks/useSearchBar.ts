@@ -56,11 +56,41 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
       dee: ["deepseek"],
       lau: ["launch.today", "launch today"],
       de: ["devin"],
-      dev: ["devin"]
+      dev: ["devin"],
+      oi: ["drill baby drill ai suite for oil & gas"],
+      oil: ["drill baby drill ai suite for oil & gas"],
+      ga: ["drill baby drill ai suite for oil & gas"],
+      gas: ["drill baby drill ai suite for oil & gas"],
+      dri: ["drill baby drill ai suite for oil & gas"],
+      drill: ["drill baby drill ai suite for oil & gas"]
     };
     const anchors = anchorByPrefix[t] || [];
     for (const a of anchors) {
       if (tl.includes(a)) score += 15000;
+    }
+
+    // 2.5) Vibe agents priority for 'vibe' queries
+    if (t.includes("vibe")) {
+      const vibeAgents = [
+        "lovable.dev",
+        "lovable",
+        "launch.today",
+        "launch today",
+        "devin",
+        "cursor",
+        "windsurf",
+        "emergent",
+        "emergent agentic coding ai",
+        "surf.new",
+        "same.new",
+        "bolt.new",
+        "rork mobile application vibe coding agent",
+        "openai codex",
+        "agentgpt",
+        "auto-gpt",
+        "chatgpt operator"
+      ];
+      if (vibeAgents.some((a) => tl.includes(a))) score += 16000;
     }
 
     // 3) Abbreviation and fuzzy alias dictionaries (lightweight scan)

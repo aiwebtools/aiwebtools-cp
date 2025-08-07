@@ -20,6 +20,8 @@ export const matchVibeCoding = (tool: Tool, searchTerm: string): boolean => {
       'rork mobile application vibe coding agent',
       'windsurf',
       'lovable.dev',
+      'devin',
+      'cursor',
       'manus autonomous agent',
       'same.new full stack building agent',
       'emergent agentic coding ai',
@@ -30,7 +32,9 @@ export const matchVibeCoding = (tool: Tool, searchTerm: string): boolean => {
       'agentgpt',
       'launch.today ai vibe coding agent',
       'launch.today',
-      'launch today'
+      'launch today',
+      'surf.new',
+      'surf'
     ];
     
     if (vibecodingAgents.some(agent => lowerTitle.includes(agent))) {
