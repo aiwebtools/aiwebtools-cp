@@ -1,6 +1,9 @@
 import { Tool } from "@/types/tools";
 import { searchAIWebToolsGPTs, scoreAIWebToolsGPT } from "./aiWebToolsSearch";
 import { fuzzyMatchTool, phoneticMatch } from "./core/fuzzyMatching";
+import { matchVibeCoding, scoreVibeCoding } from "./matching/vibeCodingMatching";
+import { matchAgents, scoreAgents } from "./matching/agentMatching";
+import { matchCodingAgents, scoreCodingAgents } from "./matching/codingMatching";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -213,6 +216,24 @@ const performEnhancedSearch = (
           matched = true;
           score += 5000;
         }
+      }
+
+      // SPECIAL MATCHING: Vibe Coding Agent searches
+      if (matchVibeCoding(tool, normalizedSearchTerm)) {
+        matched = true;
+        score += scoreVibeCoding(tool, normalizedSearchTerm);
+      }
+
+      // SPECIAL MATCHING: AI Agent searches
+      if (matchAgents(tool, normalizedSearchTerm)) {
+        matched = true;
+        score += scoreAgents(tool, normalizedSearchTerm);
+      }
+
+      // SPECIAL MATCHING: Coding Agent searches
+      if (matchCodingAgents(tool, normalizedSearchTerm)) {
+        matched = true;
+        score += scoreCodingAgents(tool, normalizedSearchTerm);
       }
 
       // HIGHEST PRIORITY: Exact title match

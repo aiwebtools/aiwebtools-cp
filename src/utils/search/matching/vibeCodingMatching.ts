@@ -1,0 +1,123 @@
+import { Tool } from "@/types/tools";
+
+export const matchVibeCoding = (tool: Tool, searchTerm: string): boolean => {
+  const lowerTitle = tool.title.toLowerCase();
+  const lowerDescription = tool.description.toLowerCase();
+  const lowerSearchTerm = searchTerm.toLowerCase();
+  const lowerCategory = tool.category?.toLowerCase() || '';
+  const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+  
+  // Enhanced "vibe coding" search matching
+  if (lowerSearchTerm.includes('vibe coding') || 
+      lowerSearchTerm.includes('vibe coding agent') ||
+      (lowerSearchTerm.includes('vibe') && lowerSearchTerm.includes('coding')) ||
+      (lowerSearchTerm.includes('vibe') && lowerSearchTerm.includes('agent'))) {
+    
+    // Priority vibe coding agent tools
+    const vibecodingAgents = [
+      'rork mobile application vibe coding agent',
+      'windsurf',
+      'lovable.dev',
+      'manus autonomous agent',
+      'same.new full stack building agent',
+      'emergent agentic coding ai',
+      'openai codex coding agent',
+      'chatgpt operator',
+      'bolt.new',
+      'auto-gpt',
+      'agentgpt'
+    ];
+    
+    if (vibecodingAgents.some(agent => lowerTitle.includes(agent))) {
+      return true;
+    }
+    
+    // General vibe and coding-related matching
+    if (lowerTitle.includes('vibe') || lowerDescription.includes('vibe') ||
+        lowerTitle.includes('coding') || lowerDescription.includes('coding') ||
+        lowerTitle.includes('agent') || lowerDescription.includes('agent') ||
+        lowerTitle.includes('mobile') || lowerDescription.includes('mobile') ||
+        lowerTitle.includes('app') || lowerDescription.includes('app') ||
+        lowerCategory.includes('coding') || lowerCategory.includes('development') ||
+        lowerCategory.includes('agent') ||
+        lowerTags.some(tag => tag.includes('vibe') || tag.includes('coding') || 
+                      tag.includes('agent') || tag.includes('mobile'))) {
+      return true;
+    }
+  }
+  
+  return false;
+};
+
+export const scoreVibeCoding = (tool: Tool, searchTerm: string): number => {
+  const lowerTitle = tool.title.toLowerCase();
+  const lowerDescription = tool.description.toLowerCase();
+  const lowerSearchTerm = searchTerm.toLowerCase();
+  const lowerCategory = tool.category?.toLowerCase() || '';
+  const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+  
+  let score = 0;
+  
+  if (lowerSearchTerm.includes('vibe coding') || 
+      lowerSearchTerm.includes('vibe coding agent') ||
+      (lowerSearchTerm.includes('vibe') && lowerSearchTerm.includes('coding')) ||
+      (lowerSearchTerm.includes('vibe') && lowerSearchTerm.includes('agent'))) {
+    
+    // Top priority for exact "vibe coding" matches
+    if (lowerTitle.includes('rork mobile application vibe coding agent')) {
+      score += 3000; // Highest priority for RORK
+    }
+    if (lowerTitle.includes('windsurf')) {
+      score += 2500; // High priority coding agent
+    }
+    if (lowerTitle.includes('lovable.dev')) {
+      score += 2400; // AI web builder agent
+    }
+    if (lowerTitle.includes('manus autonomous agent')) {
+      score += 2300; // Autonomous agent
+    }
+    if (lowerTitle.includes('same.new full stack building agent')) {
+      score += 2200; // Full-stack agent
+    }
+    if (lowerTitle.includes('emergent agentic coding ai')) {
+      score += 2100; // Coding AI agent
+    }
+    if (lowerTitle.includes('openai codex coding agent')) {
+      score += 2000; // OpenAI coding agent
+    }
+    if (lowerTitle.includes('chatgpt operator')) {
+      score += 1900; // ChatGPT agent
+    }
+    if (lowerTitle.includes('bolt.new')) {
+      score += 1800; // Bolt agent
+    }
+    if (lowerTitle.includes('auto-gpt')) {
+      score += 1700; // Auto-GPT
+    }
+    if (lowerTitle.includes('agentgpt')) {
+      score += 1600; // AgentGPT
+    }
+    
+    // Bonus scoring for vibe-related terms
+    if (lowerTitle.includes('vibe') || lowerDescription.includes('vibe')) {
+      score += 1000;
+    }
+    if (lowerTitle.includes('mobile') || lowerDescription.includes('mobile')) {
+      score += 800;
+    }
+    if (lowerTitle.includes('app') || lowerDescription.includes('app')) {
+      score += 700;
+    }
+    if (lowerTitle.includes('coding') || lowerDescription.includes('coding')) {
+      score += 600;
+    }
+    if (lowerTitle.includes('agent') || lowerDescription.includes('agent')) {
+      score += 500;
+    }
+    if (lowerTags.some(tag => tag.includes('vibe') || tag.includes('mobile app'))) {
+      score += 400;
+    }
+  }
+  
+  return score;
+};

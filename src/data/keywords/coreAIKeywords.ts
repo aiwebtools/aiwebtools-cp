@@ -66,6 +66,10 @@ export const coreAIKeywords: Record<string, string[]> = {
   "accurate": ["precise", "reliable", "dependable", "trustworthy", "high-quality", "exact"],
   "efficient": ["optimized", "streamlined", "productive", "effective", "smart", "automated"],
   
+  // Creative and vibe keywords
+  "vibe": ["vibe coding", "creative coding", "intuitive", "feel", "aesthetic", "style", "modern", "cool", "trendy", "vibes"],
+  "creative": ["artistic", "innovative", "imaginative", "design", "aesthetic", "visual", "stylish", "modern"],
+  
   // Market and competitive positioning
   "leading": ["top", "best", "premier", "number one", "industry leader", "market leader"],
   "innovative": ["cutting-edge", "advanced", "modern", "new", "breakthrough", "revolutionary"],

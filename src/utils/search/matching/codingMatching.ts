@@ -8,13 +8,16 @@ export const matchCodingAgents = (tool: Tool, searchTerm: string): boolean => {
   const lowerCategory = tool.category?.toLowerCase() || '';
   const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
   
-  // Enhanced "code" search matching
+  // Enhanced "code" search matching including "vibe coding agent" searches
   if (lowerSearchTerm === 'code' || lowerSearchTerm === 'coding' || 
       lowerSearchTerm.includes('coding agent') || lowerSearchTerm.includes('code agent') ||
-      (lowerSearchTerm.includes('coding') && lowerSearchTerm.includes('agent'))) {
+      lowerSearchTerm.includes('vibe coding') || lowerSearchTerm.includes('vibe coding agent') ||
+      (lowerSearchTerm.includes('coding') && lowerSearchTerm.includes('agent')) ||
+      (lowerSearchTerm.includes('vibe') && lowerSearchTerm.includes('coding'))) {
     
-    // Priority coding agent tools that should appear for "code" searches
+    // Priority coding agent tools that should appear for "code" and "vibe coding" searches
     const priorityCodingAgents = [
+      'rork mobile application vibe coding agent',
       'windsurf',
       'lovable.dev',
       'bolt.new',
@@ -22,6 +25,9 @@ export const matchCodingAgents = (tool: Tool, searchTerm: string): boolean => {
       'manus autonomous agent',
       'auto-gpt',
       'agentgpt',
+      'emergent agentic coding ai',
+      'same.new full stack building agent',
+      'openai codex coding agent',
       'github copilot',
       'tabnine',
       'amazon codewhisperer',
@@ -57,11 +63,16 @@ export const scoreCodingAgents = (tool: Tool, searchTerm: string): number => {
   
   if (lowerSearchTerm === 'code' || lowerSearchTerm === 'coding' || 
       lowerSearchTerm.includes('coding agent') || lowerSearchTerm.includes('code agent') ||
-      (lowerSearchTerm.includes('coding') && lowerSearchTerm.includes('agent'))) {
+      lowerSearchTerm.includes('vibe coding') || lowerSearchTerm.includes('vibe coding agent') ||
+      (lowerSearchTerm.includes('coding') && lowerSearchTerm.includes('agent')) ||
+      (lowerSearchTerm.includes('vibe') && lowerSearchTerm.includes('coding'))) {
     
-    // Top priority coding agent tools for "code" searches
+    // Top priority coding agent tools for "code" and "vibe coding" searches
+    if (lowerTitle.includes('rork mobile application vibe coding agent')) {
+      score += 2100; // Highest priority for "vibe coding" searches
+    }
     if (lowerTitle.includes('windsurf')) {
-      score += 2000; // Highest priority
+      score += 2000; // Highest priority for general coding
     }
     if (lowerTitle.includes('lovable.dev')) {
       score += 1980; // Second highest
@@ -69,14 +80,23 @@ export const scoreCodingAgents = (tool: Tool, searchTerm: string): number => {
     if (lowerTitle.includes('bolt.new')) {
       score += 1950; // Third highest
     }
+    if (lowerTitle.includes('emergent agentic coding ai')) {
+      score += 1920; // Coding agent priority
+    }
+    if (lowerTitle.includes('same.new full stack building agent')) {
+      score += 1900; // Full-stack agent
+    }
+    if (lowerTitle.includes('openai codex coding agent')) {
+      score += 1880; // OpenAI coding agent
+    }
     if (lowerTitle.includes('chatgpt operator')) {
-      score += 1920;
+      score += 1860;
     }
     if (lowerTitle.includes('manus autonomous agent')) {
-      score += 1900;
+      score += 1840;
     }
     if (lowerTitle.includes('auto-gpt')) {
-      score += 1850;
+      score += 1820;
     }
     if (lowerTitle.includes('agentgpt')) {
       score += 1800;
