@@ -37,7 +37,9 @@ export const matchVibeCoding = (tool: Tool, searchTerm: string): boolean => {
       'surf',
       'base44',
       'appchef',
-      'iphone app maker ai agent'
+      'iphone app maker ai agent',
+      'cline',
+      'cline.bot'
     ];
     
     if (vibecodingAgents.some(agent => lowerTitle.includes(agent))) {

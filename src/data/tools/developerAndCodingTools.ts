@@ -124,5 +124,29 @@ export const developerAndCodingTools: Tool[] = [
     category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 1800
+  },
+  {
+    icon: Code,
+    title: "CLINE.BOT Open Source AI Coding Agent",
+    description: "CLINE.BOT is an open-source AI coding agent you can download and run locally. It plans, writes, and iterates on code with agentic workflows—perfect for developers who want full control.",
+    emoji: "🧩",
+    color: "from-zinc-500 to-slate-600",
+    directUrl: "https://cline.bot/?via=aiwebtools",
+    tags: ["vibe coding", "AI coding", "open source", "downloadable", "agent", "developer tools", "programming", "automation"],
+    category: "DEVELOPMENT & CODING",
+    rating: 4.6,
+    totalVotes: 1600
+  },
+  {
+    icon: Zap,
+    title: "Usemotion AI Employees Builder",
+    description: "Usemotion (Motion) helps you build AI-powered workflows and assistants that operate like autonomous employees—planning, prioritizing, and executing tasks to accelerate your team.",
+    emoji: "⚡",
+    color: "from-amber-500 to-orange-600",
+    directUrl: "https://usemotion.com/?via=aiwebtools",
+    tags: ["AI employees", "automation", "productivity", "task management", "project management", "workflow", "scheduler", "teams"],
+    category: "DEVELOPMENT & CODING",
+    rating: 4.5,
+    totalVotes: 2200
   }
 ];
