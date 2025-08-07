@@ -1,7 +1,156 @@
 import { Tool } from "@/types/tools";
 
+// Time travel specific matching
+export const matchTimeTravel = (tool: Tool, searchTerm: string): boolean => {
+  const lowerTitle = tool.title.toLowerCase();
+  const lowerDescription = tool.description.toLowerCase();
+  const lowerSearchTerm = searchTerm.toLowerCase();
+  const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+  
+  // Time-related search detection
+  if (lowerSearchTerm.includes('time') || 
+      lowerSearchTerm.includes('history') || 
+      lowerSearchTerm.includes('historical') ||
+      lowerSearchTerm.includes('ancient') ||
+      lowerSearchTerm.includes('past') ||
+      lowerSearchTerm.includes('travel') ||
+      lowerSearchTerm === 'time' ||
+      lowerSearchTerm === 'history' ||
+      lowerSearchTerm === 'ancient') {
+    
+    // Priority time travel tools
+    const timeTools = [
+      'time machine gpt',
+      'native american history time machine gpt',
+      'talk to history gpt',
+      'historical headlines gpt',
+      'titanic resurrections gpt',
+      'uncovering hidden historical patterns gpt',
+      'historical apothecary gpt',
+      'interpretis',
+      'nikola tesla gpt',
+      'albert einstein gpt',
+      'indiana archeologist gpt',
+      'alan watts gpt',
+      'mary magdalene gpt',
+      'imagination traveler gpt'
+    ];
+    
+    if (timeTools.some(tool => lowerTitle.includes(tool))) {
+      return true;
+    }
+    
+    // General time/history related matching
+    if (lowerTitle.includes('time') || lowerDescription.includes('time') ||
+        lowerTitle.includes('history') || lowerDescription.includes('history') ||
+        lowerTitle.includes('historical') || lowerDescription.includes('historical') ||
+        lowerTitle.includes('ancient') || lowerDescription.includes('ancient') ||
+        lowerTitle.includes('past') || lowerDescription.includes('past') ||
+        lowerTags.some(tag => tag.includes('time') || tag.includes('history') || 
+                      tag.includes('historical') || tag.includes('ancient'))) {
+      return true;
+    }
+  }
+  
+  return false;
+};
+
+export const scoreTimeTravel = (tool: Tool, searchTerm: string): number => {
+  const lowerTitle = tool.title.toLowerCase();
+  const lowerDescription = tool.description.toLowerCase();
+  const lowerSearchTerm = searchTerm.toLowerCase();
+  const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+  
+  let score = 0;
+  
+  if (lowerSearchTerm.includes('time') || 
+      lowerSearchTerm.includes('history') || 
+      lowerSearchTerm.includes('historical') ||
+      lowerSearchTerm.includes('ancient') ||
+      lowerSearchTerm === 'time' ||
+      lowerSearchTerm === 'history' ||
+      lowerSearchTerm === 'ancient') {
+    
+    // Top priority time travel tools
+    if (lowerTitle.includes('time machine gpt')) {
+      score += 5000; // Highest priority
+    }
+    if (lowerTitle.includes('native american history time machine gpt')) {
+      score += 4900; // Second highest
+    }
+    if (lowerTitle.includes('talk to history gpt')) {
+      score += 4800; // Third highest
+    }
+    if (lowerTitle.includes('historical headlines gpt')) {
+      score += 4700;
+    }
+    if (lowerTitle.includes('titanic resurrections gpt')) {
+      score += 4600;
+    }
+    if (lowerTitle.includes('uncovering hidden historical patterns gpt')) {
+      score += 4500;
+    }
+    if (lowerTitle.includes('historical apothecary gpt')) {
+      score += 4400;
+    }
+    if (lowerTitle.includes('interpretis')) {
+      score += 4300;
+    }
+    if (lowerTitle.includes('nikola tesla gpt')) {
+      score += 4200;
+    }
+    if (lowerTitle.includes('albert einstein gpt')) {
+      score += 4100;
+    }
+    if (lowerTitle.includes('indiana archeologist gpt')) {
+      score += 4000;
+    }
+    if (lowerTitle.includes('alan watts gpt')) {
+      score += 3900;
+    }
+    if (lowerTitle.includes('mary magdalene gpt')) {
+      score += 3800;
+    }
+    if (lowerTitle.includes('imagination traveler gpt')) {
+      score += 3700;
+    }
+    
+    // Bonus scoring for time-related terms
+    if (lowerTitle.includes('time')) {
+      score += 2000;
+    }
+    if (lowerDescription.includes('time')) {
+      score += 1500;
+    }
+    if (lowerTitle.includes('history') || lowerTitle.includes('historical')) {
+      score += 1800;
+    }
+    if (lowerDescription.includes('history') || lowerDescription.includes('historical')) {
+      score += 1200;
+    }
+    if (lowerTitle.includes('ancient')) {
+      score += 1600;
+    }
+    if (lowerDescription.includes('ancient')) {
+      score += 1000;
+    }
+    if (lowerTags.some(tag => tag.includes('time') || tag.includes('history'))) {
+      score += 1400;
+    }
+  }
+  
+  return score;
+};
+
 // Task-based intelligent matching for user intents
 export const taskToToolMapping: Record<string, { keywords: string[], priority: string[], score: number }> = {
+  // Time Travel Tasks
+  'time_travel': {
+    keywords: ['time', 'time machine', 'time travel', 'history', 'historical', 'ancient', 'past', 'talk to history', 'native american', 'titanic', 'tesla', 'einstein'],
+    priority: ['TIME MACHINE GPT', 'Native American History Time Machine GPT', 'TALK TO HISTORY GPT', 'Historical Headlines GPT', 'Titanic Resurrections GPT', 'Nikola Tesla GPT', 'Albert Einstein GPT'],
+    score: 3500
+  },
+
   // App Building Tasks
   'build_app': {
     keywords: ['make an app', 'build an app', 'create an app', 'develop an app', 'app development', 'mobile app', 'web app', 'application', 'no code', 'app builder'],
@@ -9,7 +158,7 @@ export const taskToToolMapping: Record<string, { keywords: string[], priority: s
     score: 3000
   },
 
-  // Writing Tasks  
+  // Writing Tasks
   'write_book': {
     keywords: ['write a book', 'book writing', 'author', 'novel', 'story', 'manuscript', 'publish book', 'book creator'],
     priority: ['BOOK WRITER GPT', 'Article and Blog Rewriter GPT', 'Creative Writing Assistant'],

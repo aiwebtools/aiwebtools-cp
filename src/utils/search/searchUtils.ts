@@ -4,7 +4,7 @@ import { fuzzyMatchTool, phoneticMatch } from "./core/fuzzyMatching";
 import { matchVibeCoding, scoreVibeCoding } from "./matching/vibeCodingMatching";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
 import { matchCodingAgents, scoreCodingAgents } from "./matching/codingMatching";
-import { matchUserTask, smartTypoCorrection, scoreToolByContext } from "./core/intelligentTaskMatching";
+import { matchUserTask, smartTypoCorrection, scoreToolByContext, matchTimeTravel, scoreTimeTravel } from "./core/intelligentTaskMatching";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -233,6 +233,12 @@ const performEnhancedSearch = (
           matched = true;
           score += 5000;
         }
+      }
+
+      // SPECIAL MATCHING: Time Travel searches - HIGHEST PRIORITY
+      if (matchTimeTravel(tool, normalizedSearchTerm)) {
+        matched = true;
+        score += scoreTimeTravel(tool, normalizedSearchTerm);
       }
 
       // SPECIAL MATCHING: Vibe Coding Agent searches
