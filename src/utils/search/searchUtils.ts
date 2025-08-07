@@ -4,7 +4,7 @@ import { fuzzyMatchTool, phoneticMatch } from "./core/fuzzyMatching";
 import { matchVibeCoding, scoreVibeCoding } from "./matching/vibeCodingMatching";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
 import { matchCodingAgents, scoreCodingAgents } from "./matching/codingMatching";
-import { matchUserTask, smartTypoCorrection, scoreToolByContext, matchTimeTravel, scoreTimeTravel } from "./core/intelligentTaskMatching";
+import { matchUserTask, smartTypoCorrection, scoreToolByContext, matchTimeTravel, scoreTimeTravel, matchWriting, scoreWriting } from "./core/intelligentTaskMatching";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -239,6 +239,12 @@ const performEnhancedSearch = (
       if (matchTimeTravel(tool, normalizedSearchTerm)) {
         matched = true;
         score += scoreTimeTravel(tool, normalizedSearchTerm);
+      }
+
+      // SPECIAL MATCHING: Creative Writing searches - HIGH PRIORITY
+      if (matchWriting(tool, normalizedSearchTerm)) {
+        matched = true;
+        score += scoreWriting(tool, normalizedSearchTerm);
       }
 
       // SPECIAL MATCHING: Vibe Coding Agent searches

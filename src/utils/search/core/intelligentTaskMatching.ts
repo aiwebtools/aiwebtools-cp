@@ -142,6 +142,172 @@ export const scoreTimeTravel = (tool: Tool, searchTerm: string): number => {
   return score;
 };
 
+// Creative writing specific matching
+export const matchWriting = (tool: Tool, searchTerm: string): boolean => {
+  const lowerTitle = tool.title.toLowerCase();
+  const lowerDescription = tool.description.toLowerCase();
+  const lowerSearchTerm = searchTerm.toLowerCase();
+  const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+  
+  // Writing-related search detection
+  if (lowerSearchTerm.includes('write') || 
+      lowerSearchTerm.includes('writer') || 
+      lowerSearchTerm.includes('writing') ||
+      lowerSearchTerm.includes('book') ||
+      lowerSearchTerm.includes('script') ||
+      lowerSearchTerm.includes('content') ||
+      lowerSearchTerm.includes('article') ||
+      lowerSearchTerm.includes('blog') ||
+      lowerSearchTerm === 'write' ||
+      lowerSearchTerm === 'writer' ||
+      lowerSearchTerm === 'writing') {
+    
+    // Priority writing tools
+    const writingTools = [
+      'book writer gpt',
+      'movie script writer gpt',
+      'children\'s picture book maker gpt',
+      'article and blog rewriter gpt',
+      'podcast script writer gpt',
+      'playwriter gpt',
+      'creative writing',
+      'content creation',
+      'blog writer',
+      'script writer',
+      'story writer',
+      'novel writer',
+      'copywriter'
+    ];
+    
+    if (writingTools.some(tool => lowerTitle.includes(tool))) {
+      return true;
+    }
+    
+    // General writing related matching
+    if (lowerTitle.includes('write') || lowerDescription.includes('write') ||
+        lowerTitle.includes('writer') || lowerDescription.includes('writer') ||
+        lowerTitle.includes('writing') || lowerDescription.includes('writing') ||
+        lowerTitle.includes('book') || lowerDescription.includes('book') ||
+        lowerTitle.includes('script') || lowerDescription.includes('script') ||
+        lowerTitle.includes('content') || lowerDescription.includes('content') ||
+        lowerTitle.includes('article') || lowerDescription.includes('article') ||
+        lowerTitle.includes('blog') || lowerDescription.includes('blog') ||
+        lowerTags.some(tag => tag.includes('write') || tag.includes('writer') || 
+                      tag.includes('writing') || tag.includes('book') || tag.includes('content'))) {
+      return true;
+    }
+  }
+  
+  return false;
+};
+
+export const scoreWriting = (tool: Tool, searchTerm: string): number => {
+  const lowerTitle = tool.title.toLowerCase();
+  const lowerDescription = tool.description.toLowerCase();
+  const lowerSearchTerm = searchTerm.toLowerCase();
+  const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+  
+  let score = 0;
+  
+  if (lowerSearchTerm.includes('write') || 
+      lowerSearchTerm.includes('writer') || 
+      lowerSearchTerm.includes('writing') ||
+      lowerSearchTerm.includes('book') ||
+      lowerSearchTerm.includes('script') ||
+      lowerSearchTerm.includes('content') ||
+      lowerSearchTerm === 'write' ||
+      lowerSearchTerm === 'writer' ||
+      lowerSearchTerm === 'writing') {
+    
+    // Top priority writing tools
+    if (lowerTitle.includes('book writer gpt')) {
+      score += 5000; // Highest priority
+    }
+    if (lowerTitle.includes('movie script writer gpt')) {
+      score += 4900; // Second highest
+    }
+    if (lowerTitle.includes('children\'s picture book maker gpt')) {
+      score += 4800; // Third highest
+    }
+    if (lowerTitle.includes('article and blog rewriter gpt')) {
+      score += 4700;
+    }
+    if (lowerTitle.includes('podcast script writer gpt')) {
+      score += 4600;
+    }
+    if (lowerTitle.includes('playwriter gpt') || lowerTitle.includes('🎭 playwriter gpt')) {
+      score += 4500;
+    }
+    if (lowerTitle.includes('perfect prompt engine')) {
+      score += 4400;
+    }
+    if (lowerTitle.includes('creative writing')) {
+      score += 4300;
+    }
+    if (lowerTitle.includes('content creation')) {
+      score += 4200;
+    }
+    if (lowerTitle.includes('copywriter') || lowerTitle.includes('copy writer')) {
+      score += 4100;
+    }
+    if (lowerTitle.includes('story writer') || lowerTitle.includes('novel writer')) {
+      score += 4000;
+    }
+    if (lowerTitle.includes('blog writer') || lowerTitle.includes('blogger')) {
+      score += 3900;
+    }
+    if (lowerTitle.includes('script writer') || lowerTitle.includes('scriptwriter')) {
+      score += 3800;
+    }
+    if (lowerTitle.includes('grant writer gpt')) {
+      score += 3700;
+    }
+    if (lowerTitle.includes('legislation writer gpt')) {
+      score += 3600;
+    }
+    if (lowerTitle.includes('public testimony writer gpt')) {
+      score += 3500;
+    }
+    
+    // Bonus scoring for writing-related terms
+    if (lowerTitle.includes('write') || lowerTitle.includes('writer')) {
+      score += 2000;
+    }
+    if (lowerDescription.includes('write') || lowerDescription.includes('writer')) {
+      score += 1500;
+    }
+    if (lowerTitle.includes('writing')) {
+      score += 1800;
+    }
+    if (lowerDescription.includes('writing')) {
+      score += 1200;
+    }
+    if (lowerTitle.includes('book')) {
+      score += 1600;
+    }
+    if (lowerDescription.includes('book')) {
+      score += 1000;
+    }
+    if (lowerTitle.includes('script')) {
+      score += 1500;
+    }
+    if (lowerDescription.includes('script')) {
+      score += 900;
+    }
+    if (lowerTitle.includes('content')) {
+      score += 1400;
+    }
+    if (lowerDescription.includes('content')) {
+      score += 800;
+    }
+    if (lowerTags.some(tag => tag.includes('write') || tag.includes('writer') || tag.includes('writing'))) {
+      score += 1300;
+    }
+  }
+  
+  return score;
+};
+
 // Task-based intelligent matching for user intents
 export const taskToToolMapping: Record<string, { keywords: string[], priority: string[], score: number }> = {
   // Time Travel Tasks
@@ -158,7 +324,14 @@ export const taskToToolMapping: Record<string, { keywords: string[], priority: s
     score: 3000
   },
 
-  // Writing Tasks
+  // Creative Writing Tasks
+  'creative_writing': {
+    keywords: ['write', 'writer', 'writing', 'book', 'script', 'content', 'article', 'blog', 'story', 'novel', 'creative writing', 'author', 'manuscript', 'copywriter'],
+    priority: ['BOOK WRITER GPT', 'Movie Script Writer GPT', 'Children\'s Picture Book Maker GPT', 'Article and Blog Rewriter GPT', 'Podcast Script Writer GPT', 'Playwriter GPT', 'Grant Writer GPT'],
+    score: 3200
+  },
+
+  // Writing Tasks  
   'write_book': {
     keywords: ['write a book', 'book writing', 'author', 'novel', 'story', 'manuscript', 'publish book', 'book creator'],
     priority: ['BOOK WRITER GPT', 'Article and Blog Rewriter GPT', 'Creative Writing Assistant'],
