@@ -153,7 +153,7 @@ export const priorityFeaturedGPTs: Tool[] = [
     description: "AI-powered education platform that offers personalized learning experiences and educational resources.",
     emoji: "🎓",
     color: "from-blue-500 to-green-600",
-    directUrl: "https://aiwebtools.com/ai-education",
+    directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
     tags: ["education platform", "personalized learning", "educational resources"],
     category: "AI Assistants & Search",
     rating: 4.6,
