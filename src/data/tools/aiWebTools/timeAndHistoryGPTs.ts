@@ -77,7 +77,19 @@ export const timeAndHistoryGPTs: Tool[] = [
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-advertisement-with-the-eye_C64dU.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
     tags: ["historical analysis", "pattern recognition", "alternative history", "research tool", "historical investigation", "aiwebtools"],
     category: "Time & History",
-    rating: 4.7,
-    totalVotes: 4567
-  }
+      rating: 4.7,
+      totalVotes: 4567
+    },
+    {
+      icon: History,
+      title: "Black History Matters Time Machine GPT",
+      description: "Explore pivotal moments, figures, and movements in Black history across eras. This time machine GPT immerses you in historically grounded narratives and perspectives to deepen understanding and appreciation of Black heritage.",
+      emoji: "⏳",
+      color: "from-amber-600 to-red-600",
+      directUrl: "https://chatgpt.com/g/g-686a172232648191b2fe8d0224e5d997-black-history-matters-time-machine",
+      tags: ["Black history", "time machine", "time travel", "history exploration", "civil rights", "African American history", "historical education"],
+      category: "Time & History",
+      rating: 4.7,
+      totalVotes: 1280
+    }
 ];
