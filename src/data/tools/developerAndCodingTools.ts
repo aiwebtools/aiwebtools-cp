@@ -112,5 +112,17 @@ export const developerAndCodingTools: Tool[] = [
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 1200
+  },
+  {
+    icon: Wand2,
+    title: "iPhone App Maker AI Agent",
+    description: "AppChef is a vibe coding AI agent for building iPhone apps fast—similar to Lovable.dev. Turn ideas into production-ready iOS apps with agentic building.",
+    emoji: "📱",
+    color: "from-sky-500 to-blue-600",
+    directUrl: "https://appchef.ai/?via=aiwebtools",
+    tags: ["vibe coding", "AI web builder", "agent", "app builder", "mobile", "iOS", "iPhone", "AppChef", "low-code", "full-stack", "development"],
+    category: "DEVELOPMENT & CODING",
+    rating: 4.6,
+    totalVotes: 1800
   }
 ];
