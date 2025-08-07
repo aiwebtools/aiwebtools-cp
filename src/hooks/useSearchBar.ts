@@ -54,6 +54,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
       fig: ["figma"],
       pho: ["photoshop"],
       dee: ["deepseek"],
+      lau: ["launch.today", "launch today"]
     };
     const anchors = anchorByPrefix[t] || [];
     for (const a of anchors) {

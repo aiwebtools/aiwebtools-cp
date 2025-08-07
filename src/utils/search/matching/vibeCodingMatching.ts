@@ -27,7 +27,10 @@ export const matchVibeCoding = (tool: Tool, searchTerm: string): boolean => {
       'chatgpt operator',
       'bolt.new',
       'auto-gpt',
-      'agentgpt'
+      'agentgpt',
+      'launch.today ai vibe coding agent',
+      'launch.today',
+      'launch today'
     ];
     
     if (vibecodingAgents.some(agent => lowerTitle.includes(agent))) {
@@ -76,6 +79,9 @@ export const scoreVibeCoding = (tool: Tool, searchTerm: string): number => {
     }
     if (lowerTitle.includes('lovable.dev')) {
       score += 2400; // AI web builder agent
+    }
+    if (lowerTitle.includes('launch.today ai vibe coding agent') || lowerTitle.includes('launch.today') || lowerTitle.includes('launch today')) {
+      score += 2380; // Launch.Today vibe coding agent
     }
     if (lowerTitle.includes('manus autonomous agent')) {
       score += 2300; // Autonomous agent

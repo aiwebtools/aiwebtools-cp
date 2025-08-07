@@ -323,7 +323,7 @@ export const taskToToolMapping: Record<string, { keywords: string[], priority: s
   // App Building Tasks
   'build_app': {
     keywords: ['make an app', 'build an app', 'create an app', 'develop an app', 'app development', 'mobile app', 'web app', 'application', 'no code', 'app builder'],
-    priority: ['RORK Mobile Application Vibe Coding Agent', 'Lovable.dev - AI Web App Builder', 'same.new full stack building agent', 'Windsurf', 'Bolt.new'],
+    priority: ['RORK Mobile Application Vibe Coding Agent', 'Lovable.dev - AI Web App Builder', 'Launch.Today AI Vibe Coding Agent', 'same.new full stack building agent', 'Windsurf', 'Bolt.new'],
     score: 3000
   },
 
