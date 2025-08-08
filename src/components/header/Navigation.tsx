@@ -110,8 +110,23 @@ const Navigation = () => {
               <AccordionContent>
                 <div
                   ref={domainsScrollRef}
+                  onScroll={updateScrollState}
                   className="relative flex flex-col space-y-2 max-h-64 overflow-y-auto pr-1 scroll-smooth"
                 >
+                  {/* Sticky top control for quick up navigation */}
+                  <div className="sticky top-0 z-10 -mt-1 pb-1 flex justify-end pointer-events-none bg-gradient-to-b from-black/40 to-transparent">
+                    {canScrollUp && (
+                      <button
+                        onClick={scrollDomainsUp}
+                        className="pointer-events-auto inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-cyan-200 p-2 shadow-md"
+                        aria-label="Scroll up"
+                        title="Scroll up"
+                      >
+                        <ChevronUp className="h-4 w-4" />
+                      </button>
+                    )}
+                  </div>
+
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/ai-tools?ref=olive-ears-obey", e)}
                     className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
