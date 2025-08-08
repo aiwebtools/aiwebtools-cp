@@ -1,5 +1,5 @@
 
-import { Phone, Globe, FileText } from "lucide-react";
+import { Phone, Globe } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
@@ -44,14 +44,6 @@ const Navigation = () => {
         className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
       >
         🎯 Browse AI Tools
-      </button>
-
-      <button 
-        onClick={(e) => handleExternalLink("https://docs.google.com/document/d/e/2PACX-1vQW1HCKPrEDguchQct7UnoxPg-DW84Q6fKWFbF7IIygEPaNJnQn-N0h8yVD_FzxZg/pub", e)}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center space-x-1"
-      >
-        <FileText className="w-4 h-4" />
-        <span>Download 1000+ AI Tools (Free)</span>
       </button>
 
       <button 

@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Plus, Search, FileText } from "lucide-react";
+import { ExternalLink, Plus, Search } from "lucide-react";
 
 interface FooterActionsProps {
   handleExternalLink: (url: string, e: React.MouseEvent) => void;
@@ -25,16 +25,6 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
         🚀 Discover More AI Tools
       </h3>
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-5xl mx-auto">
-        <Button
-          onClick={(e) => handleExternalLink('https://docs.google.com/document/d/e/2PACX-1vQW1HCKPrEDguchQct7UnoxPg-DW84Q6fKWFbF7IIygEPaNJnQn-N0h8yVD_FzxZg/pub', e)}
-          variant="outline"
-          size="lg"
-          className="w-full sm:w-auto border-blue-500 text-blue-300 hover:bg-blue-500/20 hover:text-white transition-all duration-300"
-        >
-          <FileText className="mr-2 h-5 w-5" />
-          DOWNLOAD 1000+ AI TOOLS (FREE)
-        </Button>
-
         <Button
           onClick={handleViewAllTools}
           variant="outline"
