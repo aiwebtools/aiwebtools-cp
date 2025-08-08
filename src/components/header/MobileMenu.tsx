@@ -26,6 +26,7 @@ const MobileMenu = () => {
   const [displayedCount, setDisplayedCount] = useState(50);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isWeb3Open, setIsWeb3Open] = useState(false);
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const searchRef = useRef(null);
 
@@ -235,23 +236,38 @@ const MobileMenu = () => {
                 </DropdownMenuItem>
                 
                 {/* Register WEB3 Domains Accordion */}
-                <Collapsible>
-                  <CollapsibleTrigger asChild>
-                    <DropdownMenuItem className="text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between">
-                      <span className="flex items-center"><Globe className="w-4 h-4 mr-2" /> Register WEB3 Domains</span>
-                      <ChevronDown className="w-4 h-4 ml-2 transition-transform data-[state=open]:rotate-180" />
-                    </DropdownMenuItem>
+                <Collapsible open={isWeb3Open} onOpenChange={setIsWeb3Open}>
+                  <CollapsibleTrigger 
+                    className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-2 py-1.5 text-sm outline-none focus:bg-cyan-500/20 transition-colors"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setIsWeb3Open(!isWeb3Open);
+                    }}
+                  >
+                    <span className="flex items-center">
+                      <Globe className="w-4 h-4 mr-2" /> Register WEB3 Domains
+                    </span>
+                    <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${isWeb3Open ? 'rotate-180' : ''}`} />
                   </CollapsibleTrigger>
                   <CollapsibleContent className="mt-2 space-y-2 pl-6">
                     <button
-                      onClick={(e) => handleExternalLink('https://freename.io/discover/.aiwebtools?ref=olive-ears-obey', e)}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleExternalLink('https://freename.io/discover/.aiwebtools?ref=olive-ears-obey', e);
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
                     >
                       Register your .AiWEBTOOLS WEB3 DOMAIN
                     </button>
                     <button
-                      onClick={(e) => handleExternalLink('https://freename.io/discover/worldpeace?ref=olive-ears-obey', e)}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleExternalLink('https://freename.io/discover/worldpeace?ref=olive-ears-obey', e);
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
                     >
                       Register your .Worldpeace Web3 Domain
                     </button>
