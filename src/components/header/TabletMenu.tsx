@@ -289,6 +289,16 @@ const TabletMenu = () => {
                       onClick={(e) => { 
                         e.preventDefault(); 
                         e.stopPropagation();
+                        createTimePortalEffect('https://freename.io/discover/robotshop?ref=olive-ears-obey'); 
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
+                    >
+                      🛍️ .robotshop
+                    </button>
+                    <button
+                      onClick={(e) => { 
+                        e.preventDefault(); 
+                        e.stopPropagation();
                         createTimePortalEffect('https://freename.io/discover/aitoolscompany?ref=olive-ears-obey'); 
                       }}
                       className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
