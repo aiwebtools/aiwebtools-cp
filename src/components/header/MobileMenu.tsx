@@ -250,7 +250,7 @@ const MobileMenu = () => {
                     </span>
                     <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${isWeb3Open ? 'rotate-180' : ''}`} />
                   </CollapsibleTrigger>
-                  <CollapsibleContent className="mt-2 space-y-2 pl-6">
+                  <CollapsibleContent className="mt-2 space-y-2 pl-6 max-h-64 overflow-y-auto pr-1">
                     <button
                       onClick={(e) => {
                         e.preventDefault();
@@ -290,6 +290,26 @@ const MobileMenu = () => {
                       className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
                     >
                       💹 .worldtrader
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleExternalLink('https://freename.io/discover/robotstore?ref=olive-ears-obey', e);
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
+                    >
+                      🛒 .robotstore
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleExternalLink('https://freename.io/discover/robotsales?ref=olive-ears-obey', e);
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
+                    >
+                      🦾 .robotsales
                     </button>
                     <button
                       onClick={(e) => {
