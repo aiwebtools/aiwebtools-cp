@@ -1,5 +1,5 @@
 
-import { Menu, Phone, Search, X, Globe, ChevronDown } from "lucide-react";
+import { Menu, Phone, Search, X, Globe, ChevronDown, FileText } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -199,6 +199,14 @@ const TabletMenu = () => {
                 className="text-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 font-medium mb-3 rounded-lg p-3"
               >
                 🎯 Browse AI Tool Categories
+              </DropdownMenuItem>
+
+              <DropdownMenuItem 
+                onClick={(e) => { e.preventDefault(); createTimePortalEffect('https://docs.google.com/document/d/e/2PACX-1vQW1HCKPrEDguchQct7UnoxPg-DW84Q6fKWFbF7IIygEPaNJnQn-N0h8yVD_FzxZg/pub'); }}
+                className="text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center mb-3"
+              >
+                <FileText className="w-4 h-4 mr-2" />
+                Download 1000+ AI Tools (Free)
               </DropdownMenuItem>
               
               <DropdownMenuSeparator className="border-gray-700 mb-3" />

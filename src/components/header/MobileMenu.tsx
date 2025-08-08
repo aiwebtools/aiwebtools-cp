@@ -226,6 +226,14 @@ const MobileMenu = () => {
               >
                 🎯 Browse AI Tools
               </DropdownMenuItem>
+
+              <DropdownMenuItem 
+                onClick={(e) => handleExternalLink('https://docs.google.com/document/d/e/2PACX-1vQW1HCKPrEDguchQct7UnoxPg-DW84Q6fKWFbF7IIygEPaNJnQn-N0h8yVD_FzxZg/pub', e)}
+                className="text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center"
+              >
+                <FileText className="w-4 h-4 mr-2" />
+                Download 1000+ AI Tools (Free)
+              </DropdownMenuItem>
               
               <DropdownMenuSeparator className="border-gray-700 mb-3" />
               
