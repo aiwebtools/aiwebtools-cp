@@ -1,6 +1,6 @@
 
-import { Phone, Globe, ChevronDown } from "lucide-react";
-import { useRef } from "react";
+import { Phone, Globe, ChevronDown, ChevronUp } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
@@ -9,6 +9,17 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 const Navigation = () => {
   const navigate = useNavigate();
   const domainsScrollRef = useRef<HTMLDivElement | null>(null);
+  const [canScrollUp, setCanScrollUp] = useState(false);
+  const [canScrollDown, setCanScrollDown] = useState(true);
+
+  const updateScrollState = () => {
+    const el = domainsScrollRef.current;
+    if (!el) return;
+    const atTop = el.scrollTop <= 0;
+    const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
+    setCanScrollUp(!atTop);
+    setCanScrollDown(!atBottom);
+  };
   const scrollToHome = () => {
     // If we're already on the home page, just scroll to top instantly
     if (window.location.pathname === '/') {
@@ -36,9 +47,29 @@ const Navigation = () => {
     e.stopPropagation();
     const el = domainsScrollRef.current;
     if (!el) return;
+    const step = Math.max(el.clientHeight * 0.5, 100);
     const remaining = el.scrollHeight - el.scrollTop - el.clientHeight;
-    el.scrollBy({ top: Math.min(remaining, 200), behavior: "smooth" });
+    el.scrollBy({ top: Math.min(remaining, step), behavior: "smooth" });
   };
+
+  const scrollDomainsUp = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const el = domainsScrollRef.current;
+    if (!el) return;
+    const step = Math.max(el.clientHeight * 0.5, 100);
+    const current = el.scrollTop;
+    el.scrollBy({ top: -Math.min(current, step), behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const el = domainsScrollRef.current;
+    if (!el) return;
+    const handler = () => updateScrollState();
+    updateScrollState();
+    el.addEventListener("scroll", handler);
+    return () => el.removeEventListener("scroll", handler);
+  }, []);
 
   return (
     <nav className="hidden lg:flex items-center space-x-6 min-w-0">
@@ -142,16 +173,28 @@ const Navigation = () => {
                     🧠 .ai-tools
                   </button>
 
-                  {/* Sticky scroll-down control for easier navigation */}
-                  <div className="sticky bottom-0 mt-2 flex justify-end pointer-events-none">
-                    <button
-                      onClick={scrollDomainsDown}
-                      className="pointer-events-auto inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-cyan-200 p-2 shadow-md"
-                      aria-label="Scroll down"
-                      title="Scroll down"
-                    >
-                      <ChevronDown className="h-4 w-4" />
-                    </button>
+                  {/* Sticky scroll controls for easier navigation */}
+                  <div className="sticky bottom-0 mt-2 flex justify-end gap-2 pointer-events-none">
+                    {canScrollUp && (
+                      <button
+                        onClick={scrollDomainsUp}
+                        className="pointer-events-auto inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-cyan-200 p-2 shadow-md"
+                        aria-label="Scroll up"
+                        title="Scroll up"
+                      >
+                        <ChevronUp className="h-4 w-4" />
+                      </button>
+                    )}
+                    {canScrollDown && (
+                      <button
+                        onClick={scrollDomainsDown}
+                        className="pointer-events-auto inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-cyan-200 p-2 shadow-md"
+                        aria-label="Scroll down"
+                        title="Scroll down"
+                      >
+                        <ChevronDown className="h-4 w-4" />
+                      </button>
+                    )}
                   </div>
                 </div>
               </AccordionContent>
