@@ -245,6 +245,16 @@ const TabletMenu = () => {
                     >
                       Register your .Worldpeace Web3 Domain
                     </button>
+                    <button
+                      onClick={(e) => { 
+                        e.preventDefault(); 
+                        e.stopPropagation();
+                        createTimePortalEffect('https://freename.io/discover/aimainframe?ref=olive-ears-obey'); 
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
+                    >
+                      Register your .AiMainframe Web3 Domain
+                    </button>
                   </CollapsibleContent>
                 </Collapsible>
                 

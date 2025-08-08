@@ -271,6 +271,16 @@ const MobileMenu = () => {
                     >
                       Register your .Worldpeace Web3 Domain
                     </button>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleExternalLink('https://freename.io/discover/aimainframe?ref=olive-ears-obey', e);
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
+                    >
+                      Register your .AiMainframe Web3 Domain
+                    </button>
                   </CollapsibleContent>
                 </Collapsible>
                 
