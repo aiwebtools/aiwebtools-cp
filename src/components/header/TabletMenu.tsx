@@ -1,5 +1,5 @@
 
-import { Menu, Phone, Search, X, Globe } from "lucide-react";
+import { Menu, Phone, Search, X, Globe, ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
@@ -206,10 +207,28 @@ const TabletMenu = () => {
                 <DropdownMenuItem onClick={(e) => { e.preventDefault(); createTimePortalEffect('https://www.aitools.company'); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   ABOUT AI WEB TOOLS LLC
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={(e) => { e.preventDefault(); createTimePortalEffect('https://freename.com/result/?search=.worldtrade&type=WEB3_SLD/?ref=olive-ears-obey'); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
-                  <Globe className="w-4 h-4 mr-2" />
-                  Register WEB3 Domains
-                </DropdownMenuItem>
+                <Collapsible>
+                  <CollapsibleTrigger asChild>
+                    <DropdownMenuItem className="text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between">
+                      <span className="flex items-center"><Globe className="w-4 h-4 mr-2" /> Register WEB3 Domains</span>
+                      <ChevronDown className="w-4 h-4 ml-2 transition-transform data-[state=open]:rotate-180" />
+                    </DropdownMenuItem>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="mt-2 space-y-2 pl-6">
+                    <button
+                      onClick={(e) => { e.preventDefault(); createTimePortalEffect('https://freename.io/discover/.aiwebtools?ref=olive-ears-obey'); }}
+                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
+                    >
+                      Register your .AiWEBTOOLS WEB3 DOMAIN
+                    </button>
+                    <button
+                      onClick={(e) => { e.preventDefault(); createTimePortalEffect('https://freename.io/discover/worldpeace?ref=olive-ears-obey'); }}
+                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
+                    >
+                      Register your .Worldpeace Web3 Domain
+                    </button>
+                  </CollapsibleContent>
+                </Collapsible>
                 <DropdownMenuItem className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   <Phone className="w-4 h-4 mr-2" />
                   <a href="tel:+14758008096">475-800-8096</a>
