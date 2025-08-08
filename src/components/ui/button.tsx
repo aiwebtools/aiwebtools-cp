@@ -19,6 +19,7 @@ const buttonVariants = cva(
           "bg-gradient-to-r from-gray-700 to-gray-600 text-white hover:from-gray-600 hover:to-gray-500",
         ghost: "text-purple-300 hover:bg-purple-500/20 hover:text-white",
         link: "text-purple-400 underline-offset-4 hover:underline hover:text-purple-300",
+        gold: "bg-gradient-to-r from-amber-500 to-yellow-500 text-black hover:from-amber-400 hover:to-yellow-400 gold-glow",
       },
       size: {
         default: "h-10 px-4 py-2 text-sm",

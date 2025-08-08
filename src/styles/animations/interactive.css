@@ -58,4 +58,20 @@
       box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
     }
   }
+
+  /* Golden glow for special CTA buttons */
+  .gold-glow {
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    animation: pulse-gold 3s ease-in-out infinite alternate;
+    will-change: box-shadow;
+  }
+
+  @keyframes pulse-gold {
+    from {
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    }
+    to {
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+    }
+  }
 }
