@@ -1,5 +1,6 @@
 
-import { Phone, Globe } from "lucide-react";
+import { Phone, Globe, ChevronDown } from "lucide-react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
@@ -7,7 +8,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 
 const Navigation = () => {
   const navigate = useNavigate();
-
+  const domainsScrollRef = useRef<HTMLDivElement | null>(null);
   const scrollToHome = () => {
     // If we're already on the home page, just scroll to top instantly
     if (window.location.pathname === '/') {
@@ -28,6 +29,15 @@ const Navigation = () => {
     e.stopPropagation();
     console.log('🌀 External link clicked in navigation:', url);
     createTimePortalEffect(url);
+  };
+
+  const scrollDomainsDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const el = domainsScrollRef.current;
+    if (!el) return;
+    const remaining = el.scrollHeight - el.scrollTop - el.clientHeight;
+    el.scrollBy({ top: Math.min(remaining, 200), behavior: "smooth" });
   };
 
   return (
@@ -67,7 +77,10 @@ const Navigation = () => {
             <AccordionItem value="domains">
               <AccordionTrigger className="text-sm">Register your WEB3 Domain</AccordionTrigger>
               <AccordionContent>
-                <div className="flex flex-col space-y-2 max-h-64 overflow-y-auto pr-1">
+                <div
+                  ref={domainsScrollRef}
+                  className="relative flex flex-col space-y-2 max-h-64 overflow-y-auto pr-1 scroll-smooth"
+                >
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/.aiwebtools?ref=olive-ears-obey", e)}
                     className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
@@ -128,6 +141,18 @@ const Navigation = () => {
                   >
                     🧠 .ai-tools
                   </button>
+
+                  {/* Sticky scroll-down control for easier navigation */}
+                  <div className="sticky bottom-0 mt-2 flex justify-end pointer-events-none">
+                    <button
+                      onClick={scrollDomainsDown}
+                      className="pointer-events-auto inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-cyan-200 p-2 shadow-md"
+                      aria-label="Scroll down"
+                      title="Scroll down"
+                    >
+                      <ChevronDown className="h-4 w-4" />
+                    </button>
+                  </div>
                 </div>
               </AccordionContent>
             </AccordionItem>
