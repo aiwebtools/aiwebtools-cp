@@ -62,29 +62,35 @@ const Navigation = () => {
             <span>Register WEB3 Domains</span>
           </button>
         </PopoverTrigger>
-        <PopoverContent className="w-80" align="end" side="bottom" collisionPadding={16}>
+        <PopoverContent className="w-80 max-h-[70vh] overflow-y-auto" align="end" side="bottom" collisionPadding={16}>
           <Accordion type="single" collapsible defaultValue="domains">
             <AccordionItem value="domains">
-              <AccordionTrigger className="text-sm">Available WEB3 Domains</AccordionTrigger>
+              <AccordionTrigger className="text-sm">Register your WEB3 Domain</AccordionTrigger>
               <AccordionContent>
                 <div className="flex flex-col space-y-2">
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/.aiwebtools?ref=olive-ears-obey", e)}
                     className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
                   >
-                    Register your .AiWEBTOOLS WEB3 DOMAIN
+                    🤖 .aiwebtools
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/worldpeace?ref=olive-ears-obey", e)}
                     className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
                   >
-                    Register your .Worldpeace Web3 Domain
+                    🕊️ .worldpeace
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/aimainframe?ref=olive-ears-obey", e)}
                     className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
                   >
-                    Register your .AiMainframe Web3 Domain
+                    🗄️ .aimainframe
+                  </button>
+                  <button
+                    onClick={(e) => handleExternalLink("https://freename.io/discover/aitoolscompany?ref=olive-ears-obey", e)}
+                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
+                  >
+                    🏢 .aitoolscompany
                   </button>
                 </div>
               </AccordionContent>

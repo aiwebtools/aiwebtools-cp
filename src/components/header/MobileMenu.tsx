@@ -246,7 +246,7 @@ const MobileMenu = () => {
                     }}
                   >
                     <span className="flex items-center">
-                      <Globe className="w-4 h-4 mr-2" /> Register WEB3 Domains
+                      <Globe className="w-4 h-4 mr-2" /> Register your WEB3 Domain
                     </span>
                     <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${isWeb3Open ? 'rotate-180' : ''}`} />
                   </CollapsibleTrigger>
@@ -259,7 +259,7 @@ const MobileMenu = () => {
                       }}
                       className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
                     >
-                      Register your .AiWEBTOOLS WEB3 DOMAIN
+                      🤖 .aiwebtools
                     </button>
                     <button
                       onClick={(e) => {
@@ -269,7 +269,7 @@ const MobileMenu = () => {
                       }}
                       className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
                     >
-                      Register your .Worldpeace Web3 Domain
+                      🕊️ .worldpeace
                     </button>
                     <button
                       onClick={(e) => {
@@ -279,7 +279,17 @@ const MobileMenu = () => {
                       }}
                       className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
                     >
-                      Register your .AiMainframe Web3 Domain
+                      🗄️ .aimainframe
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleExternalLink('https://freename.io/discover/aitoolscompany?ref=olive-ears-obey', e);
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
+                    >
+                      🏢 .aitoolscompany
                     </button>
                   </CollapsibleContent>
                 </Collapsible>
