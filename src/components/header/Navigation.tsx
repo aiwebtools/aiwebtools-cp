@@ -116,6 +116,18 @@ const Navigation = () => {
                   >
                     🏢 .aitoolscompany
                   </button>
+                  <button
+                    onClick={(e) => handleExternalLink("https://freename.io/discover/worldtrade?ref=olive-ears-obey", e)}
+                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
+                  >
+                    🌐 .worldtrade
+                  </button>
+                  <button
+                    onClick={(e) => handleExternalLink("https://freename.io/discover/ai-tools?ref=olive-ears-obey", e)}
+                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
+                  >
+                    🧠 .ai-tools
+                  </button>
                 </div>
               </AccordionContent>
             </AccordionItem>
