@@ -31,7 +31,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="hidden lg:flex items-center space-x-6 flex-shrink-0">
+    <nav className="hidden lg:flex items-center space-x-6 min-w-0">
       <button 
         onClick={scrollToHome}
         className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
@@ -62,7 +62,7 @@ const Navigation = () => {
             <span>Register WEB3 Domains</span>
           </button>
         </PopoverTrigger>
-        <PopoverContent className="w-80" align="end">
+        <PopoverContent className="w-80" align="end" side="bottom" collisionPadding={16}>
           <Accordion type="single" collapsible defaultValue="domains">
             <AccordionItem value="domains">
               <AccordionTrigger className="text-sm">Available WEB3 Domains</AccordionTrigger>
@@ -79,6 +79,12 @@ const Navigation = () => {
                     className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
                   >
                     Register your .Worldpeace Web3 Domain
+                  </button>
+                  <button
+                    onClick={(e) => handleExternalLink("https://freename.io/discover/aimainframe?ref=olive-ears-obey", e)}
+                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
+                  >
+                    Register your .AiMainframe Web3 Domain
                   </button>
                 </div>
               </AccordionContent>
