@@ -2,6 +2,8 @@
 import { Phone, Globe } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -51,13 +53,39 @@ const Navigation = () => {
         ABOUT AI WEB TOOLS LLC
       </button>
 
-      <button 
-        onClick={(e) => handleExternalLink("https://freename.com/result/?search=.worldtrade&type=WEB3_SLD/?ref=olive-ears-obey", e)}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center space-x-1"
-      >
-        <Globe className="w-4 h-4" />
-        <span>Register WEB3 Domains</span>
-      </button>
+      <Popover>
+        <PopoverTrigger asChild>
+          <button 
+            className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center space-x-1"
+          >
+            <Globe className="w-4 h-4" />
+            <span>Register WEB3 Domains</span>
+          </button>
+        </PopoverTrigger>
+        <PopoverContent className="w-80" align="end">
+          <Accordion type="single" collapsible defaultValue="domains">
+            <AccordionItem value="domains">
+              <AccordionTrigger className="text-sm">Available WEB3 Domains</AccordionTrigger>
+              <AccordionContent>
+                <div className="flex flex-col space-y-2">
+                  <button
+                    onClick={(e) => handleExternalLink("https://freename.io/discover/.aiwebtools?ref=olive-ears-obey", e)}
+                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
+                  >
+                    Register your .AiWEBTOOLS WEB3 DOMAIN
+                  </button>
+                  <button
+                    onClick={(e) => handleExternalLink("https://freename.io/discover/worldpeace?ref=olive-ears-obey", e)}
+                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
+                  >
+                    Register your .Worldpeace Web3 Domain
+                  </button>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </PopoverContent>
+      </Popover>
       
       <div className="flex items-center space-x-2 text-cyan-100 whitespace-nowrap">
         <Phone className="w-4 h-4" />
