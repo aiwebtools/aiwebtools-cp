@@ -113,16 +113,16 @@ const Navigation = () => {
                   className="relative flex flex-col space-y-2 max-h-64 overflow-y-auto pr-1 scroll-smooth"
                 >
                   <button
+                    onClick={(e) => handleExternalLink("https://freename.io/discover/ai-tools?ref=olive-ears-obey", e)}
+                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
+                  >
+                    🧠 .ai-tools
+                  </button>
+                  <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/.aiwebtools?ref=olive-ears-obey", e)}
                     className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
                   >
                     🤖 .aiwebtools
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/worldpeace?ref=olive-ears-obey", e)}
-                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
-                  >
-                    🕊️ .worldpeace
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/aimainframe?ref=olive-ears-obey", e)}
@@ -131,16 +131,10 @@ const Navigation = () => {
                     🗄️ .aimainframe
                   </button>
                   <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/.worldtrader?ref=olive-ears-obey", e)}
+                    onClick={(e) => handleExternalLink("https://freename.io/discover/aitoolscompany?ref=olive-ears-obey", e)}
                     className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
                   >
-                    💹 .worldtrader
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/robotstore?ref=olive-ears-obey", e)}
-                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
-                  >
-                    🛒 .robotstore
+                    🏢 .aitoolscompany
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/robotsales?ref=olive-ears-obey", e)}
@@ -155,10 +149,16 @@ const Navigation = () => {
                     🛍️ .robotshop
                   </button>
                   <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/aitoolscompany?ref=olive-ears-obey", e)}
+                    onClick={(e) => handleExternalLink("https://freename.io/discover/robotstore?ref=olive-ears-obey", e)}
                     className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
                   >
-                    🏢 .aitoolscompany
+                    🛒 .robotstore
+                  </button>
+                  <button
+                    onClick={(e) => handleExternalLink("https://freename.io/discover/worldpeace?ref=olive-ears-obey", e)}
+                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
+                  >
+                    🕊️ .worldpeace
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/worldtrade?ref=olive-ears-obey", e)}
@@ -167,10 +167,10 @@ const Navigation = () => {
                     🌐 .worldtrade
                   </button>
                   <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/ai-tools?ref=olive-ears-obey", e)}
+                    onClick={(e) => handleExternalLink("https://freename.io/discover/.worldtrader?ref=olive-ears-obey", e)}
                     className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
                   >
-                    🧠 .ai-tools
+                    💹 .worldtrader
                   </button>
 
                   {/* Sticky scroll controls for easier navigation */}
