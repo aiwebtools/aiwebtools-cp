@@ -113,7 +113,7 @@ const MobileMenu = () => {
               <Menu className="w-4 h-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-[95vw] max-w-[380px] bg-black/95 shadow-xl border border-cyan-500/30 backdrop-blur-md max-h-[85vh] overflow-hidden mx-2">
+          <DropdownMenuContent className="w-[95vw] max-w-[380px] bg-black/95 shadow-xl border border-cyan-500/30 backdrop-blur-md max-h-[85vh] overflow-y-auto mx-2 z-[60]">
             <div className="p-3">
               {/* Header */}
               <div className="text-center mb-4">
