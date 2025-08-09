@@ -1,4 +1,5 @@
 
+import FooterWeb3Domains from "./FooterWeb3Domains";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const FooterLinks = () => {
@@ -54,6 +55,7 @@ const FooterLinks = () => {
           </button>
         </div>
       </div>
+      <FooterWeb3Domains />
     </div>
   );
 };
