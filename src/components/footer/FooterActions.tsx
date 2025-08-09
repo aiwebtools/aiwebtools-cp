@@ -33,7 +33,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           onClick={handleDownloadAIList}
           variant="gold"
           size="lg"
-          className="w-full sm:w-auto"
+          className="w-full sm:w-auto sm:min-w-[240px] px-8 sm:px-10 leading-snug"
         >
           <Download className="mr-2 h-5 w-5" />
           DOWNLOAD 1000+ AI TOOLS (FREE)
@@ -43,7 +43,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           onClick={handleViewAllTools}
           variant="outline"
           size="lg"
-          className="w-full sm:w-auto border-cyan-500 text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-all duration-300"
+          className="w-full sm:w-auto border-cyan-500 text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-all duration-300 sm:min-w-[240px] px-8 sm:px-10 leading-snug sm:whitespace-nowrap"
         >
           <Search className="mr-2 h-5 w-5" />
           VIEW ALL AI TOOLS
@@ -53,7 +53,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           onClick={handleViewPortfolio}
           variant="outline"
           size="lg"
-          className="w-full sm:w-auto border-yellow-500 text-yellow-300 hover:bg-yellow-500/20 hover:text-white transition-all duration-300"
+          className="w-full sm:w-auto border-yellow-500 text-yellow-300 hover:bg-yellow-500/20 hover:text-white transition-all duration-300 sm:min-w-[280px] px-8 sm:px-10 leading-snug"
         >
           <ExternalLink className="mr-2 h-5 w-5" />
           VIEW AI WEB TOOLS PERSONAL PORTFOLIO
@@ -63,7 +63,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           onClick={handleSubmitTool}
           variant="outline" 
           size="lg"
-          className="w-full sm:w-auto border-green-500 text-green-300 hover:bg-green-500/20 hover:text-white transition-all duration-300"
+          className="w-full sm:w-auto border-green-500 text-green-300 hover:bg-green-500/20 hover:text-white transition-all duration-300 sm:min-w-[240px] px-8 sm:px-10 leading-snug sm:whitespace-nowrap"
         >
           <Plus className="mr-2 h-5 w-5" />
           SUBMIT YOUR TOOL
@@ -73,7 +73,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           onClick={handleRequestTool}
           variant="outline"
           size="lg" 
-          className="w-full sm:w-auto border-purple-500 text-purple-300 hover:bg-purple-500/20 hover:text-white transition-all duration-300"
+          className="w-full sm:w-auto border-purple-500 text-purple-300 hover:bg-purple-500/20 hover:text-white transition-all duration-300 sm:min-w-[240px] px-8 sm:px-10 leading-snug sm:whitespace-nowrap"
         >
           <ExternalLink className="mr-2 h-5 w-5" />
           REQUEST CUSTOM TOOL
