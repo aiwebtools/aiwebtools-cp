@@ -10,7 +10,7 @@ interface FooterActionsProps {
 const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool }: FooterActionsProps) => {
   const handleViewAllTools = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.location.href = 'https://aiwebtools.ai/main-category/ALL%20AI%20TOOLS';
+    window.location.href = '/main-category/ALL%20AI%20TOOLS';
   };
 
   const handleViewPortfolio = (e: React.MouseEvent) => {
