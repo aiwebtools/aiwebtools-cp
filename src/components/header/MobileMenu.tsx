@@ -401,7 +401,7 @@ const MobileMenu = () => {
                 {/* Download top 1,000 AI tools CSV - mobile only */}
                 <DropdownMenuItem onClick={handleDownloadTopToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   <Download className="w-4 h-4 mr-2" />
-                  Download 1,000 AI Tools (CSV)
+                  DOWNLOAD 1000+ AI TOOLS (CSV)
                 </DropdownMenuItem>
                 
                 {/* Close Button under phone number */}
