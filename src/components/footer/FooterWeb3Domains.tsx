@@ -124,7 +124,7 @@ const FooterWeb3Domains = () => {
                 🌐 .worldtrade
               </button>
               <button
-                onClick={(e) => handleExternalLink("https://freename.io/discover/.worldtrader?ref=olive-ears-obey", e)}
+                onClick={(e) => handleExternalLink("https://freename.io/discover/worldtrader?ref=olive-ears-obey", e)}
                 className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
               >
                 💹 .worldtrader
