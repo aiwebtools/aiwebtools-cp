@@ -102,11 +102,11 @@ const MobileMenu = () => {
     }
   };
 
-  // Download top 1,000 AI tools as CSV
+  // Download all AI tools as CSV
   const handleDownloadTopToolsCSV = () => {
     try {
       const header = ["Title", "Category", "URL", "Description"];
-      const rows = allTools.slice(0, 1000).map((tool) => [
+      const rows = allTools.map((tool) => [
         tool.title || "",
         tool.category || "",
         tool.directUrl || "",
@@ -121,7 +121,7 @@ const MobileMenu = () => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "ai-tools-1000.csv";
+      a.download = "ai-tools-all.csv";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -398,10 +398,10 @@ const MobileMenu = () => {
                   <a href="tel:+14758008096">475-800-8096</a>
                 </DropdownMenuItem>
 
-                {/* Download top 1,000 AI tools CSV - mobile only */}
+                {/* Download ALL AI tools CSV - mobile only */}
                 <DropdownMenuItem onClick={handleDownloadTopToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   <Download className="w-4 h-4 mr-2" />
-                  DOWNLOAD 1000+ AI TOOLS (CSV)
+                  DOWNLOAD ALL AI TOOLS (CSV)
                 </DropdownMenuItem>
                 
                 {/* Close Button under phone number */}
