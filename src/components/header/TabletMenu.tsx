@@ -1,5 +1,5 @@
 
-import { Menu, Phone, Search, X, Globe, ChevronDown } from "lucide-react";
+import { Menu, Phone, Search, X, Globe, ChevronDown, Download } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -73,6 +73,35 @@ const TabletMenu = () => {
     
     if (scrollHeight - scrollTop <= clientHeight + 50 && displayedCount < searchResults.length) {
       setDisplayedCount(prev => Math.min(prev + 30, searchResults.length));
+    }
+  };
+
+  // Download top 1,000 AI tools as CSV
+  const handleDownloadTopToolsCSV = () => {
+    try {
+      const header = ["Title", "Category", "URL", "Description"];
+      const rows = allTools.slice(0, 1000).map((tool) => [
+        tool.title || "",
+        tool.category || "",
+        tool.directUrl || "",
+        tool.description || "",
+      ]);
+      const escapeCSV = (val: string) => `"${(val || "").replace(/"/g, '""')}"`;
+      const csv = [header, ...rows]
+        .map((r) => r.map((c) => escapeCSV(String(c))).join(","))
+        .join("\n");
+
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "ai-tools-1000.csv";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Failed to generate CSV:", err);
     }
   };
 
@@ -331,6 +360,12 @@ const TabletMenu = () => {
                 <DropdownMenuItem className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   <Phone className="w-4 h-4 mr-2" />
                   <a href="tel:+14758008096">475-800-8096</a>
+                </DropdownMenuItem>
+
+                {/* Download top 1,000 AI tools CSV - tablet only */}
+                <DropdownMenuItem onClick={handleDownloadTopToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
+                  <Download className="w-4 h-4 mr-2" />
+                  Download 1,000 AI Tools (CSV)
                 </DropdownMenuItem>
               </div>
             </div>
