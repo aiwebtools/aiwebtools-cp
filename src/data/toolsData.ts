@@ -52,10 +52,14 @@ import { specializedNicheToolsGPTs } from "./tools/aiWebTools/specializedNicheTo
 // Import new personal development tools
 import { personalDevelopmentTools } from "./tools/personalDevelopmentTools";
 
+// Import WEB3 domains
+import { web3DomainsTools } from "./tools/web3DomainsTools";
+
 // Combine all tool categories and apply consolidation
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
   ...personalDevelopmentTools,
+  ...web3DomainsTools,
   
   // Add the AI Web Tools GPT Collections
   ...priorityFeaturedGPTs,

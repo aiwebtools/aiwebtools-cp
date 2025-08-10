@@ -1,5 +1,5 @@
 
-import { Settings, Code, FileText, Image, Video, Headphones, Building, Zap, TrendingUp, MessageSquare, Search, BarChart3, GraduationCap, Factory, Gamepad2, Heart, Clock, Briefcase } from "lucide-react";
+import { Settings, Code, FileText, Image, Video, Headphones, Building, Zap, TrendingUp, MessageSquare, Search, BarChart3, GraduationCap, Factory, Gamepad2, Heart, Clock, Briefcase, Globe } from "lucide-react";
 import { CategoryStyle } from "./types";
 
 export type { CategoryStyle } from "./types";
@@ -195,6 +195,18 @@ export const categoryStyles: Record<string, CategoryStyle> = {
       selected: "bg-gradient-to-r from-amber-600 to-orange-700"
     },
     icon: Clock
+  },
+
+  // WEB3 & Blockchain - Cyan/Blue futuristic
+  "WEB3 & BLOCKCHAIN": {
+    emoji: "🌐",
+    colors: {
+      bg: "bg-gradient-to-r from-cyan-500/20 to-blue-500/20",
+      border: "border-cyan-500/40",
+      hover: "hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-blue-500/30 hover:border-cyan-400",
+      selected: "bg-gradient-to-r from-cyan-500 to-blue-600"
+    },
+    icon: Globe
   }
 };
 

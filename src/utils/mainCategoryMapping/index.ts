@@ -5,6 +5,7 @@ import { businessCategories } from "./businessCategories";
 import { creativeCategories } from "./creativeCategories";
 import { specializedCategories } from "./specializedCategories";
 import { healthAndWellnessCategories } from "./healthAndWellnessCategories";
+import { web3Categories } from "./web3Categories";
 
 // Combine all main categories with proper ordering - remove duplicate ALL AI TOOLS
 export const mainCategories: MainCategory[] = [
@@ -20,6 +21,9 @@ export const mainCategories: MainCategory[] = [
   // Health and wellness
   ...healthAndWellnessCategories,
   
+  // WEB3 and blockchain future
+  ...web3Categories,
+  
   // Specialized and industry-specific
   ...specializedCategories
 ];
@@ -33,5 +37,6 @@ export {
   businessCategories, 
   creativeCategories, 
   healthAndWellnessCategories,
+  web3Categories,
   specializedCategories 
 };
