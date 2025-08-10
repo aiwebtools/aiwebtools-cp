@@ -373,5 +373,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.4,
     totalVotes: 980
+  },
+  {
+    icon: Layers,
+    title: "Thrive AI PM",
+    description: "AI platform for project managers to build their own junior PM—automates planning, standups, timelines, and stakeholder updates.",
+    emoji: "📋",
+    color: "from-amber-500 to-orange-600",
+    directUrl: "https://thriveai.pm/?via=aiwebtools",
+    tags: ["project management", "junior PM", "automation", "planning", "roadmaps", "status updates", "agent"],
+    category: "AI Agents",
+    rating: 4.5,
+    totalVotes: 860
   }
 ];
