@@ -284,13 +284,13 @@ const MobileMenu = () => {
 <CollapsibleContent className="mt-2 space-y-2 pl-6 max-h-80 overflow-y-auto pr-1 pb-1">
   {[...web3DomainsTools]
     .slice()
-    .sort((a, b) =>
-      a.title.replace(" Domain", "").localeCompare(
-        b.title.replace(" Domain", ""),
-        undefined,
-        { sensitivity: "base" }
-      )
-    )
+    .sort((a, b) => {
+      const an = a.title.replace(" Domain", "");
+      const bn = b.title.replace(" Domain", "");
+      if (an === ".aiwebtools") return -1;
+      if (bn === ".aiwebtools") return 1;
+      return an.localeCompare(bn, undefined, { sensitivity: "base" });
+    })
     .map((t, idx) => (
       <button
         key={`${t.title}-${idx}`}
