@@ -145,5 +145,17 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Audio & Voice",
     rating: 4.6,
     totalVotes: 2100
+  },
+  {
+    icon: Mic,
+    title: "Omakase Website Voice Agents",
+    description: "Turn any business website into a voice agent that talks to visitors, answers questions, and captures leads automatically.",
+    emoji: "🗣️",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://www.omakase.ai/?via=aiwebtools",
+    tags: ["website voice agents", "voice AI", "lead capture", "customer support", "website assistant", "conversational AI"],
+    category: "Audio & Voice",
+    rating: 4.5,
+    totalVotes: 120
   }
 ];
