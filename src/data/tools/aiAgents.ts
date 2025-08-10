@@ -361,5 +361,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.5,
     totalVotes: 3800
+  },
+  {
+    icon: DatabaseIcon,
+    title: "Gibson AI",
+    description: "AI agent specializing in designing, building, and managing databases from natural language—generate schemas, queries, and automations for your app data.",
+    emoji: "🗄️",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://www.gibsonai.com/?via=aiwebtools",
+    tags: ["database", "data modeling", "schema generation", "SQL", "automations", "ETL", "agent"],
+    category: "AI Agents",
+    rating: 4.4,
+    totalVotes: 980
   }
 ];
