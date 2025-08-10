@@ -4,7 +4,7 @@ import { Tool } from "@/types/tools";
 import ToolCard from "@/components/tools/ToolCard";
 import { allTools } from "@/data/toolsData";
 // Removed embla carousel in favor of reliable native scrolling
-import { getContextAwareAdditionalTools } from "@/utils/contextAwareSimilarTools";
+import { getContextAwareAdditionalTools, getHighlyRelevantSimilarTools } from "@/utils/contextAwareSimilarTools";
 
 interface SimilarToolsProps {
   currentTool: Tool;
@@ -14,50 +14,7 @@ interface SimilarToolsProps {
 const SimilarTools = ({ currentTool, currentToolIndex }: SimilarToolsProps) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const recommendations = useMemo(() => {
-    // Base: similar by exact category or tag overlap
-    const baseSimilar = allTools.filter((tool, index) => {
-      if (index === currentToolIndex) return false;
-      const categoryMatch = tool.category === currentTool.category;
-      const tagOverlap = currentTool.tags && tool.tags
-        ? tool.tags.some((tag) => currentTool.tags?.includes(tag))
-        : false;
-      return categoryMatch || tagOverlap;
-    });
-
-    const desired = 12;
-    let result = baseSimilar;
-
-    // Top-up with context-aware tools related to this tool's category/tags
-    const needed = Math.max(desired - result.length, 0);
-    if (needed > 0) {
-      const extras = getContextAwareAdditionalTools(
-        // seed with current result so we avoid dupes
-        result,
-        "",
-        currentTool.category || null,
-        needed
-      );
-      const existingTitles = new Set(result.map((t) => t.title));
-      const uniqueExtras = extras.filter((t) => !existingTitles.has(t.title));
-      result = [...result, ...uniqueExtras];
-    }
-
-    // Final fallback: ensure we always reach desired by filling from allTools (closest by category first)
-    if (result.length < desired) {
-      const existing = new Set(result.map((t) => t.title));
-      const sameCategory = allTools.filter(
-        (t, i) => i !== currentToolIndex && t.category === currentTool.category && !existing.has(t.title)
-      );
-      const others = allTools.filter(
-        (t, i) => i !== currentToolIndex && t.category !== currentTool.category && !existing.has(t.title)
-      );
-      const fill = [...sameCategory, ...others].slice(0, desired - result.length);
-      result = [...result, ...fill];
-    }
-
-    // Dedupe and limit
-    const unique = result.filter((t, i, arr) => arr.findIndex((x) => x.title === t.title) === i);
-    return unique.slice(0, desired);
+    return getHighlyRelevantSimilarTools(currentTool, 12);
   }, [currentTool, currentToolIndex]);
 
   if (recommendations.length === 0) return null;

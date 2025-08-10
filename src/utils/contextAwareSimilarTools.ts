@@ -210,3 +210,71 @@ export const getContextAwareAdditionalTools = (
 export const shouldShowSimilarTools = (toolsCount: number, minRecommendations: number = 6): boolean => {
   return toolsCount < minRecommendations && toolsCount > 0;
 };
+
+// High-relevance recommendations for a single tool page
+export const getHighlyRelevantSimilarTools = (currentTool: Tool, desired: number = 12): Tool[] => {
+  const stopwords = new Set([
+    "the","a","an","and","or","of","to","for","with","in","on","by","from","ai","tool","gpt","app","apps","best","top"
+  ]);
+  const normalize = (s: string = "") => s.toLowerCase();
+  const tokenize = (s: string = "") => Array.from(new Set(
+    normalize(s)
+      .replace(/[^a-z0-9\s]/g, " ")
+      .split(/\s+/)
+      .filter(w => w.length > 2 && !stopwords.has(w))
+  ));
+
+  const currCategory = currentTool.category || "";
+  const related = new Set(getRelatedCategories(currCategory));
+  const currTags = new Set((currentTool.tags || []).map(t => t.toLowerCase()));
+  const currTokens = new Set([
+    ...tokenize(currentTool.title),
+    ...tokenize(currentTool.description),
+    ...Array.from(currTags)
+  ]);
+
+  const scored = allTools
+    .filter(t => t.title !== currentTool.title)
+    .map(t => {
+      let score = 0;
+      // Category signals
+      if (t.category === currCategory) score += 3;
+      else if (related.has(t.category || "")) score += 1.5;
+
+      // Tag overlap (Jaccard)
+      const tTags = new Set((t.tags || []).map(x => x.toLowerCase()));
+      const tagInter = Array.from(tTags).filter(x => currTags.has(x)).length;
+      const tagUnion = new Set([...Array.from(tTags), ...Array.from(currTags)]).size || 1;
+      score += (tagInter / tagUnion) * 2;
+
+      // Keyword overlap
+      const tTokens = new Set([
+        ...tokenize(t.title),
+        ...tokenize(t.description),
+        ...Array.from(tTags)
+      ]);
+      const kwInter = Array.from(tTokens).filter(x => currTokens.has(x)).length;
+      const kwUnion = new Set([...Array.from(tTokens), ...Array.from(currTokens)]).size || 1;
+      score += (kwInter / kwUnion) * 1;
+
+      // Light quality signal
+      const quality = (t.rating || 4) + (t.totalVotes ? Math.min(t.totalVotes / 5000, 1) : 0);
+      score += quality * 0.05;
+
+      return { t, score };
+    })
+    .sort((a, b) => b.score - a.score);
+
+  // Take top N with minimum relevance cutoff; if not enough, fill from same category
+  let result = scored.filter(s => s.score > 0.2).slice(0, desired).map(s => s.t);
+  if (result.length < desired) {
+    const existing = new Set(result.map(x => x.title));
+    const sameCatFill = allTools.filter(x => x.category === currCategory && !existing.has(x.title) && x.title !== currentTool.title)
+      .slice(0, desired - result.length);
+    result = [...result, ...sameCatFill];
+  }
+
+  // Final unique & limit
+  const unique = result.filter((t, i, arr) => arr.findIndex(x => x.title === t.title) === i);
+  return unique.slice(0, desired);
+};
