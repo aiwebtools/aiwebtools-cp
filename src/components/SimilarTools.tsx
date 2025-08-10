@@ -57,21 +57,21 @@ const SimilarTools = ({ currentTool, currentToolIndex }: SimilarToolsProps) => {
 
       <div className="relative">
         <Carousel
-          opts={{ align: "start", loop: true }}
+          opts={{ align: "start", loop: true, dragFree: true, containScroll: "trimSnaps" }}
           className="w-full"
         >
-          <CarouselContent className="-ml-2">
+          <CarouselContent className="-ml-2 touch-pan-x select-none">
             {recommendations.map((tool, index) => (
               <CarouselItem
                 key={`sim-${tool.title}-${index}`}
-                className="pl-2 basis-4/5 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
+                className="pl-2 basis-4/5 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 cursor-grab active:cursor-grabbing"
               >
                 <ToolCard tool={tool} index={index} />
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="border-cyan-500/40 text-cyan-200 bg-black/40 hover:bg-black/60" />
-          <CarouselNext className="border-cyan-500/40 text-cyan-200 bg-black/40 hover:bg-black/60" />
+          <CarouselPrevious className="left-2 top-1/2 -translate-y-1/2 z-10 border-cyan-500/40 text-cyan-200 bg-black/40 hover:bg-black/60" />
+          <CarouselNext className="right-2 top-1/2 -translate-y-1/2 z-10 border-cyan-500/40 text-cyan-200 bg-black/40 hover:bg-black/60" />
         </Carousel>
       </div>
     </section>
