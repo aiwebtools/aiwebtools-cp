@@ -116,5 +116,24 @@ export const useInfiniteScroll = ({
     };
   }, [displayedCount, handleLoadMore, isLoading, showLoadMoreButton, totalTools, searchTerm, selectedCategory, enableInfiniteScroll]);
 
+  // Auto-top-up for short pages (ensure viewport is filled on category pages)
+  useEffect(() => {
+    if (!enableInfiniteScroll || showLoadMoreButton) return;
+
+    const isEndlessCategory = selectedCategory && !searchTerm;
+    if (!isEndlessCategory) return;
+
+    // If content height is not enough to enable scrolling, load more automatically
+    const documentHeight = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight;
+
+    if (!isLoadingRef.current && documentHeight <= windowHeight + 80) {
+      const t = setTimeout(() => {
+        handleLoadMore();
+      }, 60);
+      return () => clearTimeout(t);
+    }
+  }, [displayedCount, enableInfiniteScroll, showLoadMoreButton, selectedCategory, searchTerm, handleLoadMore]);
+
   return { handleLoadMore };
 };
