@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -127,66 +128,25 @@ const Navigation = () => {
                     )}
                   </div>
 
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/ai-tools?ref=olive-ears-obey", e)}
-                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
-                  >
-                    🧠 .ai-tools
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/.aiwebtools?ref=olive-ears-obey", e)}
-                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
-                  >
-                    🤖 .aiwebtools
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/aimainframe?ref=olive-ears-obey", e)}
-                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
-                  >
-                    🗄️ .aimainframe
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/aitoolscompany?ref=olive-ears-obey", e)}
-                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
-                  >
-                    🏢 .aitoolscompany
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/robotsales?ref=olive-ears-obey", e)}
-                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
-                  >
-                    🦾 .robotsales
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/robotshop?ref=olive-ears-obey", e)}
-                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
-                  >
-                    🛍️ .robotshop
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/robotstore?ref=olive-ears-obey", e)}
-                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
-                  >
-                    🛒 .robotstore
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/worldpeace?ref=olive-ears-obey", e)}
-                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
-                  >
-                    🕊️ .worldpeace
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/worldtrade?ref=olive-ears-obey", e)}
-                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
-                  >
-                    🌐 .worldtrade
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/worldtrader?ref=olive-ears-obey", e)}
-                    className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
-                  >
-                    💹 .worldtrader
-                  </button>
+{[...web3DomainsTools]
+  .slice()
+  .sort((a, b) =>
+    a.title.replace(" Domain", "").localeCompare(
+      b.title.replace(" Domain", ""),
+      undefined,
+      { sensitivity: "base" }
+    )
+  )
+  .map((t, idx) => (
+    <button
+      key={`${t.title}-${idx}`}
+      onClick={(e) => handleExternalLink(t.directUrl, e)}
+      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
+    >
+      {t.emoji} {t.title.replace(" Domain", "")}
+    </button>
+  ))}
+
 
                   {/* Sticky scroll controls for easier navigation */}
                   <div className="sticky bottom-0 mt-2 flex justify-end gap-2 pointer-events-none">

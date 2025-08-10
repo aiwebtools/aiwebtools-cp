@@ -18,6 +18,7 @@ import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
+import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
 
 const MobileMenu = () => {
   const navigate = useNavigate();
@@ -280,108 +281,30 @@ const MobileMenu = () => {
                     </span>
                     <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${isWeb3Open ? 'rotate-180' : ''}`} />
                   </CollapsibleTrigger>
-                  <CollapsibleContent className="mt-2 space-y-2 pl-6 max-h-80 overflow-y-auto pr-1 pb-1">
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleExternalLink('https://freename.io/discover/.aiwebtools?ref=olive-ears-obey', e);
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🤖 .aiwebtools
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleExternalLink('https://freename.io/discover/worldpeace?ref=olive-ears-obey', e);
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🕊️ .worldpeace
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleExternalLink('https://freename.io/discover/aimainframe?ref=olive-ears-obey', e);
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🗄️ .aimainframe
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleExternalLink('https://freename.io/discover/worldtrader?ref=olive-ears-obey', e);
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      💹 .worldtrader
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleExternalLink('https://freename.io/discover/robotstore?ref=olive-ears-obey', e);
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🛒 .robotstore
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleExternalLink('https://freename.io/discover/robotsales?ref=olive-ears-obey', e);
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🦾 .robotsales
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleExternalLink('https://freename.io/discover/robotshop?ref=olive-ears-obey', e);
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🛍️ .robotshop
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleExternalLink('https://freename.io/discover/aitoolscompany?ref=olive-ears-obey', e);
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🏢 .aitoolscompany
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleExternalLink('https://freename.io/discover/worldtrade?ref=olive-ears-obey', e);
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🌐 .worldtrade
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleExternalLink('https://freename.io/discover/ai-tools?ref=olive-ears-obey', e);
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🧠 .ai-tools
-                    </button>
-                  </CollapsibleContent>
+<CollapsibleContent className="mt-2 space-y-2 pl-6 max-h-80 overflow-y-auto pr-1 pb-1">
+  {[...web3DomainsTools]
+    .slice()
+    .sort((a, b) =>
+      a.title.replace(" Domain", "").localeCompare(
+        b.title.replace(" Domain", ""),
+        undefined,
+        { sensitivity: "base" }
+      )
+    )
+    .map((t, idx) => (
+      <button
+        key={`${t.title}-${idx}`}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          handleExternalLink(t.directUrl, e);
+        }}
+        className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
+      >
+        {t.emoji} {t.title.replace(" Domain", "")}
+      </button>
+    ))}
+</CollapsibleContent>
                 </Collapsible>
                 
                 {/* Terms & Disclaimer Button */}
