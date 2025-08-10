@@ -349,5 +349,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 2450
+  },
+  {
+    icon: Brain,
+    title: "ClickUp Brain",
+    description: "AI work assistant and knowledge agent inside ClickUp that answers questions, writes, summarizes docs, and automates workflows across your tasks and projects.",
+    emoji: "🧠",
+    color: "from-violet-500 to-purple-600",
+    directUrl: "https://clickup.com/brain?via=aiwebtools",
+    tags: ["AI agent", "work assistant", "project management", "docs", "summaries", "automation", "knowledge base", "clickup"],
+    category: "AI Agents",
+    rating: 4.5,
+    totalVotes: 3800
   }
 ];
