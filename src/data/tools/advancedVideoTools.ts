@@ -363,5 +363,17 @@ export const advancedVideoTools: Tool[] = [
     category: "Advanced Video Tools",
     rating: 4.7,
     totalVotes: 3456
+  },
+  {
+    icon: Film,
+    title: "LTX Studio",
+    description: "AI video creation platform for end-to-end filmmaking—plan scenes, generate shots, and produce cohesive videos with director-level control.",
+    emoji: "🎥",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://ltx.studio/?via=aiwebtools",
+    tags: ["video creation", "storyboarding", "text-to-video", "production", "directing", "AI video"],
+    category: "Advanced Video Tools",
+    rating: 4.6,
+    totalVotes: 2100
   }
 ];
