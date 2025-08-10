@@ -337,5 +337,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.7,
     totalVotes: 1200
+  },
+  {
+    icon: Rocket,
+    title: "Launch.Today AI Vibe Coding Agent",
+    description: "Launch.Today is an AI-powered vibe coding agent—similar to Lovable.dev—that turns ideas into production-ready web and mobile apps from natural language. Bring your product to life fast with agentic building, iterative edits, and seamless deployments.",
+    emoji: "🚀",
+    color: "from-indigo-500 to-cyan-600",
+    directUrl: "https://app.launch.today/?via=aiwebtools",
+    tags: ["vibe coding", "AI web builder", "agent", "app builder", "no-code", "low-code", "full-stack", "development", "launch today", "lovable"],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 2450
   }
 ];
