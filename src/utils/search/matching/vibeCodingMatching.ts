@@ -20,6 +20,8 @@ export const matchVibeCoding = (tool: Tool, searchTerm: string): boolean => {
       'rork mobile application vibe coding agent',
       'windsurf',
       'lovable.dev',
+      'mgx.dev',
+      'mgx.dev team of vibe coding agents',
       'devin',
       'cursor',
       'manus autonomous agent',
@@ -88,6 +90,9 @@ export const scoreVibeCoding = (tool: Tool, searchTerm: string): number => {
     }
     if (lowerTitle.includes('lovable.dev')) {
       score += 2400; // AI web builder agent
+    }
+    if (lowerTitle.includes('mgx.dev') || lowerTitle.includes('mgx.dev team of vibe coding agents')) {
+      score += 2390; // MGX.dev vibe coding agents - near Lovable
     }
     if (lowerTitle.includes('launch.today ai vibe coding agent') || lowerTitle.includes('launch.today') || lowerTitle.includes('launch today')) {
       score += 2380; // Launch.Today vibe coding agent

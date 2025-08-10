@@ -20,6 +20,8 @@ export const matchCodingAgents = (tool: Tool, searchTerm: string): boolean => {
       'rork mobile application vibe coding agent',
       'windsurf',
       'lovable.dev',
+      'mgx.dev',
+      'mgx.dev team of vibe coding agents',
       'bolt.new',
       'chatgpt operator',
       'manus autonomous agent',
@@ -76,6 +78,9 @@ export const scoreCodingAgents = (tool: Tool, searchTerm: string): number => {
     }
     if (lowerTitle.includes('lovable.dev')) {
       score += 1980; // Second highest
+    }
+    if (lowerTitle.includes('mgx.dev') || lowerTitle.includes('mgx.dev team of vibe coding agents')) {
+      score += 1975; // MGX.dev close to Lovable for coding searches
     }
     if (lowerTitle.includes('bolt.new')) {
       score += 1950; // Third highest

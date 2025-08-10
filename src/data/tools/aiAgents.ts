@@ -316,12 +316,12 @@ export const aiAgents: Tool[] = [
   },
   {
     icon: Bot,
-    title: "MGX AI Agent",
-    description: "Advanced AI agent platform providing intelligent automation and sophisticated task execution capabilities. Features cutting-edge agent technology for complex workflows and autonomous problem-solving across various domains.",
+    title: "mgx.dev – Team of Vibe Coding Agents",
+    description: "A coordinated team of vibe coding agents that collaborate like employees to plan, build, and deploy your e‑commerce streams and app ideas end‑to‑end.",
     emoji: "🤖",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://mgx.dev/?via=aiwebtools",
-    tags: ["AI agent", "automation", "task execution", "intelligent workflows", "advanced AI", "autonomous agent"],
+    tags: ["vibe coding", "coding agent", "team agents", "e-commerce", "app builder", "automation", "intelligent workflows"],
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 2100
