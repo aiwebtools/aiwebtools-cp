@@ -158,5 +158,17 @@ export const videoGenerationTools: Tool[] = [
     category: "Video Generation",
     rating: 4.5,
     totalVotes: 1234
+  },
+  {
+    icon: Camera,
+    title: "Syllaby.io",
+    description: "Faceless video generator and more. AI-powered platform to create, organize, and publish content — plan shoots, manage assets, edit with AI, and publish to social all in one place.",
+    emoji: "🎥",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://syllaby.io/?via=aiwebtools",
+    tags: ["faceless video", "text-to-video", "automated creation", "content strategy", "social media", "AI video"],
+    category: "Video Generation",
+    rating: 4.4,
+    totalVotes: 3234
   }
 ];
