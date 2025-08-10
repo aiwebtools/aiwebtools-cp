@@ -85,5 +85,17 @@ export const automationAndWorkflowTools: Tool[] = [
     category: "Automation & Workflow Tools",
     rating: 4.2,
     totalVotes: 2987
+  },
+  {
+    icon: Repeat,
+    title: "Browse AI",
+    description: "Scrape and monitor data from any website at scale—no-code bots extract structured data and track changes reliably.",
+    emoji: "🕸️",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://www.browse.ai/?via=aiwebtools",
+    tags: ["web scraping", "data extraction", "monitoring", "automation", "no-code", "bots"],
+    category: "Automation & Workflow Tools",
+    rating: 4.6,
+    totalVotes: 4100
   }
 ];
