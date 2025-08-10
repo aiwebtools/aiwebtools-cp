@@ -13,7 +13,7 @@ import { allTools } from "@/data/toolsData";
 import { getToolsByCategory } from "@/utils/categoryUtils";
 import { getStandardizedCategoryTitle } from "@/utils/categoryTitles";
 import { generateStructuredData } from "@/utils/seo";
-import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
+import { getContextAwareAdditionalTools } from "@/utils/contextAwareSimilarTools";
 
 const CategoryPage = () => {
   const { categoryName } = useParams();
@@ -56,7 +56,7 @@ const CategoryPage = () => {
     let endlessTools = [...filteredTools];
     const remaining = displayedCount - endlessTools.length;
     if (remaining > 0) {
-      const similar = getContextAwareSimilarTools(
+      const similar = getContextAwareAdditionalTools(
         endlessTools,
         "",
         standardizedCategory,

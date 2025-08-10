@@ -129,6 +129,84 @@ const getRelatedCategories = (category: string): string[] => {
   return categoryGroups[category] || [];
 };
 
+export const getContextAwareAdditionalTools = (
+  currentTools: Tool[],
+  searchTerm: string = "",
+  selectedCategory: string | null = null,
+  neededCount: number = 6
+): Tool[] => {
+  const needed = Math.max(neededCount, 0);
+  if (needed === 0) return [];
+
+  const currentToolTitles = new Set(currentTools.map(t => t.title));
+
+  const aiWebToolsCreations = allTools.filter(tool =>
+    tool.directUrl?.includes('lovable.app') &&
+    !currentToolTitles.has(tool.title)
+  );
+
+  const seenToolTitles = new Set<string>();
+  const candidateTools: Tool[] = [];
+
+  allTools.forEach(tool => {
+    if (currentToolTitles.has(tool.title) || seenToolTitles.has(tool.title)) {
+      return;
+    }
+
+    let shouldInclude = false;
+
+    if (searchTerm) {
+      const lowerSearchTerm = searchTerm.toLowerCase();
+      const toolText = `${tool.title} ${tool.description} ${tool.category} ${tool.tags?.join(' ') || ''}`.toLowerCase();
+      const searchWords = lowerSearchTerm.split(' ').filter(word => word.length > 2);
+      const hasSearchMatch = searchWords.some(word => toolText.includes(word));
+      if (hasSearchMatch) shouldInclude = true;
+    }
+
+    if (selectedCategory && !shouldInclude) {
+      if (tool.category === selectedCategory) shouldInclude = true;
+      const relatedCategories = getRelatedCategories(selectedCategory);
+      if (relatedCategories.includes(tool.category || '')) shouldInclude = true;
+    }
+
+    if (!shouldInclude && !searchTerm && !selectedCategory) {
+      const currentCategories = new Set(currentTools.map(t => t.category));
+      if (currentCategories.has(tool.category)) shouldInclude = true;
+      const currentTags = new Set(
+        currentTools.flatMap(t => t.tags || []).map(tag => tag.toLowerCase())
+      );
+      if (tool.tags?.some(tag => currentTags.has(tag.toLowerCase()))) shouldInclude = true;
+    }
+
+    if (shouldInclude) {
+      candidateTools.push(tool);
+      seenToolTitles.add(tool.title);
+    }
+  });
+
+  const aiWebToolsToInclude = Math.min(Math.ceil(needed * 0.3), 2);
+  const regularToolsNeeded = needed - aiWebToolsToInclude;
+
+  const selectedAIWebTools = aiWebToolsCreations
+    .filter(tool => !seenToolTitles.has(tool.title))
+    .sort(() => Math.random() - 0.5)
+    .slice(0, aiWebToolsToInclude);
+
+  const selectedSimilarTools = candidateTools
+    .filter(tool => !aiWebToolsCreations.some(awt => awt.title === tool.title))
+    .sort(() => Math.random() - 0.5)
+    .slice(0, regularToolsNeeded);
+
+  const finalTools = [...selectedAIWebTools, ...selectedSimilarTools]
+    .sort(() => Math.random() - 0.5);
+
+  const uniqueFinalTools = finalTools.filter((tool, index, arr) =>
+    arr.findIndex(t => t.title === tool.title) === index
+  );
+
+  return uniqueFinalTools.slice(0, needed);
+};
+
 export const shouldShowSimilarTools = (toolsCount: number, minRecommendations: number = 6): boolean => {
   return toolsCount < minRecommendations && toolsCount > 0;
 };

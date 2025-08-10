@@ -15,7 +15,7 @@ import { allTools } from "@/data/toolsData";
 import { getToolsByMainCategory } from "@/utils/categoryUtils";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { Tool } from "@/types/tools";
-import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
+import { getContextAwareAdditionalTools } from "@/utils/contextAwareSimilarTools";
 import { searchTools } from "@/utils/searchUtils";
 
 const MainCategoryPage = () => {
@@ -70,7 +70,7 @@ const MainCategoryPage = () => {
     const remainingCount = displayedCount - baseFilteredTools.length;
     
     if (remainingCount > 0) {
-      const similarTools = getContextAwareSimilarTools(
+      const similarTools = getContextAwareAdditionalTools(
         baseFilteredTools, 
         "", 
         decodedCategoryName, 
