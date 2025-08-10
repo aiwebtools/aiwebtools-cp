@@ -291,19 +291,24 @@ const MobileMenu = () => {
       if (bn === ".aiwebtools") return 1;
       return an.localeCompare(bn, undefined, { sensitivity: "base" });
     })
-    .map((t, idx) => (
-      <button
-        key={`${t.title}-${idx}`}
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          handleExternalLink(t.directUrl, e);
-        }}
-        className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-      >
-        {t.emoji} {t.title.replace(" Domain", "")}
-      </button>
-    ))}
+    .map((t, idx) => {
+      const name = t.title.replace(" Domain", "");
+      return (
+        <button
+          key={`${t.title}-${idx}`}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleExternalLink(t.directUrl, e);
+          }}
+          className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm hover-scale"
+        >
+          <span aria-hidden className="pointer-events-none absolute -inset-x-6 top-1/2 -translate-y-1/2 h-10 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent blur-lg opacity-60 group-hover:opacity-90 transition-opacity"></span>
+          <span className="relative z-10 text-lg mr-6">{t.emoji}</span>
+          <span className="relative z-10 font-medium tracking-wide">{name}</span>
+        </button>
+      );
+    })}
 </CollapsibleContent>
                 </Collapsible>
                 
