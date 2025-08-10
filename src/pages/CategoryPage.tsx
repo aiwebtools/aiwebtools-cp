@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import CategoryHeader from "@/components/category/CategoryHeader";
-import ToolsDisplay from "@/components/category/ToolsDisplay";
+import ToolsGrid from "@/components/tools/ToolsGrid";
 import ScrollToTopButton from "@/components/category/ScrollToTopButton";
 import SEOHead from "@/components/SEOHead";
 import BreadcrumbSEO from "@/components/BreadcrumbSEO";
@@ -13,11 +13,13 @@ import { allTools } from "@/data/toolsData";
 import { getToolsByCategory } from "@/utils/categoryUtils";
 import { getStandardizedCategoryTitle } from "@/utils/categoryTitles";
 import { generateStructuredData } from "@/utils/seo";
+import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
 
 const CategoryPage = () => {
   const { categoryName } = useParams();
   const [searchTerm, setSearchTerm] = useState("");
-  const [displayedCount, setDisplayedCount] = useState(12);
+  const [displayedCount, setDisplayedCount] = useState(48);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Decode and standardize the category name
   const decodedCategory = categoryName ? decodeURIComponent(categoryName) : "";
@@ -48,10 +50,37 @@ const CategoryPage = () => {
     return filtered;
   }, [categoryTools, searchTerm]);
 
+  // Endless tools generation for categories (no search)
+  const finalFilteredTools = useMemo(() => {
+    if (searchTerm.trim()) return filteredTools;
+    let endlessTools = [...filteredTools];
+    const remaining = displayedCount - endlessTools.length;
+    if (remaining > 0) {
+      const similar = getContextAwareSimilarTools(
+        endlessTools,
+        "",
+        standardizedCategory,
+        Math.min(remaining, 100)
+      );
+      const uniqueSimilar = similar.filter(tool => 
+        !endlessTools.some(existing => existing.title === tool.title)
+      );
+      endlessTools = [...endlessTools, ...uniqueSimilar];
+      const stillNeeded = displayedCount - endlessTools.length;
+      if (stillNeeded > 0) {
+        const others = allTools.filter(tool => 
+          !endlessTools.some(existing => existing.title === tool.title)
+        );
+        endlessTools = [...endlessTools, ...others.slice(0, stillNeeded)];
+      }
+    }
+    return endlessTools;
+  }, [filteredTools, displayedCount, searchTerm, standardizedCategory]);
+
   useEffect(() => {
     // Scroll to top when category changes
     window.scrollTo(0, 0);
-    setDisplayedCount(12);
+    setDisplayedCount(48);
     setSearchTerm("");
     
     // Log category page load for verification
@@ -59,7 +88,12 @@ const CategoryPage = () => {
   }, [standardizedCategory, categoryTools.length]);
 
   const handleLoadMore = () => {
-    setDisplayedCount(prev => prev + 12);
+    if (isLoading) return;
+    setIsLoading(true);
+    setTimeout(() => {
+      setDisplayedCount(prev => prev + 48);
+      setIsLoading(false);
+    }, 100);
   };
 
   if (!decodedCategory) {
@@ -121,13 +155,14 @@ const CategoryPage = () => {
           onSearchChange={setSearchTerm}
         />
         
-        <ToolsDisplay 
-          tools={filteredTools}
+        <ToolsGrid 
+          tools={finalFilteredTools}
           displayedCount={displayedCount}
-          onLoadMore={handleLoadMore}
-          hasMoreTools={displayedCount < filteredTools.length}
-          categoryName={standardizedCategory}
+          selectedCategory={standardizedCategory}
           searchTerm={searchTerm}
+          onLoadMore={handleLoadMore}
+          hasInfiniteScroll={true}
+          isLoading={isLoading}
         />
         
         <ScrollToTopButton />

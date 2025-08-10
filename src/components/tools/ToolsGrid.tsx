@@ -67,7 +67,7 @@ const ToolsGrid = memo(({
     isLoading,
     showLoadMoreButton: false, // Never show manual buttons
     displayedCount,
-    totalTools: selectedCategory ? Number.MAX_SAFE_INTEGER : tools.length, // Endless for categories
+    totalTools: (selectedCategory && !searchTerm) ? Number.MAX_SAFE_INTEGER : tools.length, // Endless for categories without search
     onLoadMore,
     searchTerm,
     selectedCategory,
