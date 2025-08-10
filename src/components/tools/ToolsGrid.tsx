@@ -1,4 +1,4 @@
-import React, { useMemo, memo, lazy, Suspense } from "react";
+import React, { useMemo, memo, lazy, Suspense, useEffect, useRef } from "react";
 import { Tool } from "@/types/tools";
 import ToolCard from "@/components/tools/ToolCard";
 import LoadMoreButton from "@/components/tools/LoadMoreButton";
@@ -73,6 +73,21 @@ const ToolsGrid = memo(({
     selectedCategory,
     enableInfiniteScroll: hasInfiniteScroll
   });
+
+  // IntersectionObserver sentinel as a robust fallback to trigger loading
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (!hasInfiniteScroll) return;
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry?.isIntersecting && !isLoading) {
+        onLoadMore();
+      }
+    }, { root: null, rootMargin: '300px', threshold: 0.01 });
+    const el = sentinelRef.current;
+    if (el) observer.observe(el);
+    return () => observer.disconnect();
+  }, [hasInfiniteScroll, isLoading, onLoadMore]);
 
   const getSectionTitle = useMemo(() => {
     if (selectedCategory) {
@@ -223,6 +238,10 @@ const ToolsGrid = memo(({
           totalCount={tools.length}
           onLoadMore={onLoadMore}
         />
+      )}
+
+      {hasInfiniteScroll && (
+        <div ref={sentinelRef} aria-hidden className="h-px w-full" />
       )}
     </>
   );
