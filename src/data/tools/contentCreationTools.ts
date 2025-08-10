@@ -52,5 +52,17 @@ export const contentCreationTools: Tool[] = [
     category: "Content Creation",
     rating: 4.3,
     totalVotes: 1247
+  },
+  {
+    icon: Camera,
+    title: "Flashy.ai",
+    description: "AI-powered platform to create, organize, and publish content. Plan shoots, manage assets, edit with AI, and publish to social—all in one place.",
+    emoji: "⚡",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://www.flashy.ai/?via=aiwebtools",
+    tags: ["content hub", "asset management", "shoot planning", "AI editing", "social publishing", "workflow", "marketing"],
+    category: "Content Creation",
+    rating: 4.5,
+    totalVotes: 1670
   }
 ];
