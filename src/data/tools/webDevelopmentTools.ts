@@ -135,5 +135,17 @@ export const webDevelopmentTools: Tool[] = [
     category: "DEVELOPMENT & CODING",
     rating: 4.3,
     totalVotes: 2123
+  },
+  {
+    icon: Palette,
+    title: "Relume.io",
+    description: "AI website generator that turns sitemaps and prompts into structured pages, wireframes, and copy. Ship to Webflow faster with components and libraries.",
+    emoji: "🧩",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://www.relume.io/?via=aiwebtools",
+    tags: ["website generator", "AI site builder", "wireframe", "sitemap", "copywriting", "Webflow"],
+    category: "DEVELOPMENT & CODING",
+    rating: 4.5,
+    totalVotes: 1987
   }
 ];
