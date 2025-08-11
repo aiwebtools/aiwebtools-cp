@@ -568,6 +568,16 @@ const featuredGPTs = [
     videoUrl: "https://www.youtube.com/watch?v=3HCv5_QldrU",
     imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop",
     emoji: "💑"
+  },
+  {
+    title: ".WorldTrade Web3 Registration",
+    description: "Control global commerce with the .worldtrade Web3 domain. Ideal for international trade platforms, global marketplaces, and world‑spanning business solutions.",
+    badge: "WEB3 DOMAIN",
+    color: "from-cyan-500 to-blue-600",
+    features: ["Premium Web3 TLD", "Blockchain Ownership", "Brand Protection", "Global Commerce"],
+    directUrl: "https://freename.io/discover/worldtrade?ref=olive-ears-obey",
+    videoUrl: "https://youtu.be/Taw41ee9bO8?si=1160QePNZgd6Yfvc",
+    emoji: "🌐"
   }
 ];
 
