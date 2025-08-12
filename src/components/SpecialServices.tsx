@@ -578,6 +578,16 @@ const featuredGPTs = [
     directUrl: "https://freename.io/discover/worldtrade?ref=olive-ears-obey",
     videoUrl: "https://youtu.be/Taw41ee9bO8?si=1160QePNZgd6Yfvc",
     emoji: "🌐"
+  },
+  {
+    title: ".WorldPeace Web3 Registration",
+    description: "Lead a global movement with the .worldpeace Web3 domain. Perfect for peace initiatives, humanitarian coalitions, and global advocacy platforms.",
+    badge: "WEB3 DOMAIN",
+    color: "from-emerald-500 to-teal-600",
+    features: ["Premium Web3 TLD", "Blockchain Ownership", "Brand Protection", "Global Peace"],
+    directUrl: "https://freename.io/discover/worldpeace?ref=olive-ears-obey",
+    videoUrl: "https://youtu.be/bAz1Kq2KDys?si=buJRzC9aTuCWatOY",
+    emoji: "🕊️"
   }
 ];
 
