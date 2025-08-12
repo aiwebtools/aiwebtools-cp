@@ -1,5 +1,5 @@
 
-import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees } from "lucide-react";
+import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -267,6 +267,9 @@ const MobileMenu = () => {
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   <Trees className="w-4 h-4 mr-2" /> Linktree
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.tiktok.com/@aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
+                  <Clapperboard className="w-4 h-4 mr-2" /> TikTok
                 </DropdownMenuItem>
                 
                 {/* Register WEB3 Domains Accordion */}
