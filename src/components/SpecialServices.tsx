@@ -287,6 +287,7 @@ const featuredGPTs = [
     color: "from-green-500 to-teal-600",
     features: ["Food Safety", "Quality Control", "Inspection Procedures", "Regulatory Compliance"],
     directUrl: "https://foodqualitygpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/rHJR4V8iYZI?si=nkXT-PNl8abQDHWE",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298675285626880/foodquality.webp",
     emoji: "🥘"
   },
