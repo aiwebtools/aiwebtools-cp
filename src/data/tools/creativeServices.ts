@@ -91,7 +91,7 @@ export const creativeServices: Tool[] = [
     emoji: "🎨",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://graphicdesigngpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/2e70f2ce-b17e-4b0f-b5d3-f36c9c22a2e3.png/:/cr=t:12.5%25,l:0%25,w:100%25,h:75%25/rs=w:1200,h:600,cg:true",
+    imageUrl: "/lovable-uploads/e6d2f727-a376-43a3-850b-fd2606230975.png",
     tags: ["graphic design", "book covers", "marketing materials", "AI design", "GPT 4o"],
     category: "Creative Suites",
     rating: 4.7,

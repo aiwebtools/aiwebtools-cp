@@ -208,7 +208,7 @@ export const imageAndDesign: Tool[] = [
     emoji: "🎨",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://graphicdesigngpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298677336379464/graphic_design.webp?ex=683874d9&is=68372359&hm=0b2cda59c22d9b0dda2d45cc82a369fb78118212734116aab6879d40dbd5fef8&",
+    imageUrl: "/lovable-uploads/e6d2f727-a376-43a3-850b-fd2606230975.png",
     tags: ["graphic design", "cover design", "branding", "visual design"],
     category: "Image & Design",
     rating: 4.5,

@@ -257,7 +257,7 @@ const featuredGPTs = [
     color: "from-pink-500 to-purple-600",
     features: ["Cover Design", "Logo Creation", "Marketing Materials", "Visual Content"],
     directUrl: "https://graphicdesigngpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298677336379464/graphic_design.webp",
+    imageUrl: "/lovable-uploads/e6d2f727-a376-43a3-850b-fd2606230975.png",
     emoji: "🎨"
   },
   {
