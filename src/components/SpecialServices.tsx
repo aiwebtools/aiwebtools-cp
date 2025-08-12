@@ -632,7 +632,8 @@ const OurFeaturedSection = () => {
     "stagemasteraisuite",
     "talktohistorygpt",
     "timemachinegpt", // duplicate intentionally allowed, will be de-duped
-    "marymagdalenegpt"
+    "marymagdalenegpt",
+    "survivalistgpt"
   ];
   const already = new Set<string>();
   const featuredByNorm = new Map(
