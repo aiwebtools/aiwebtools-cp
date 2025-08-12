@@ -613,16 +613,52 @@ const OurFeaturedSection = () => {
     }, 100);
   };
 
-  // Ordering: show .WorldTrade and .WorldPeace first, then alphabetical
+  // Ordering: show .WorldTrade and .WorldPeace first, then custom priority, then alphabetical
   const topTitles = [".WorldTrade Web3 Registration", ".WorldPeace Web3 Registration"];
   const topOrder = new Map(topTitles.map((t, i) => [t, i] as const));
   const domainTop = featuredGPTs
     .filter((t) => topOrder.has(t.title))
     .sort((a, b) => (topOrder.get(a.title) ?? 0) - (topOrder.get(b.title) ?? 0));
+
+  // Custom priority list requested (case/spacing-insensitive, ignores missing)
+  const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+  const priorityAliases = [
+    "bookwritergpt",
+    "moviemakerstudio",
+    "musicvideomakerstudio",
+    "collegedegreegpt",
+    "timemachinegpt",
+    "moviescriptwritergpt",
+    "stagemasteraisuite",
+    "talktohistorygpt",
+    "timemachinegpt", // duplicate intentionally allowed, will be de-duped
+    "marymagdalenegpt"
+  ];
+  const already = new Set<string>();
+  const featuredByNorm = new Map(
+    featuredGPTs.map((t) => [normalize(t.title), t] as const)
+  );
+  const findMatch = (alias: string) => {
+    // exact normalized match first
+    if (featuredByNorm.has(alias)) return featuredByNorm.get(alias)!;
+    // fallback: find by inclusion
+    return featuredGPTs.find((t) => normalize(t.title).includes(alias));
+  };
+  const priorityPicks = priorityAliases
+    .map((a) => findMatch(a))
+    .filter((t): t is typeof featuredGPTs[number] => !!t)
+    .filter((t) => {
+      const key = normalize(t.title);
+      if (already.has(key) || topOrder.has(t.title)) return false;
+      already.add(key);
+      return true;
+    });
+
   const rest = featuredGPTs
-    .filter((t) => !topOrder.has(t.title))
+    .filter((t) => !topOrder.has(t.title) && !already.has(normalize(t.title)))
     .sort((a, b) => a.title.localeCompare(b.title));
-  const displayGPTs = [...domainTop, ...rest];
+
+  const displayGPTs = [...domainTop, ...priorityPicks, ...rest];
 
   return (
     <section className="py-20 bg-gradient-to-br from-slate-900 to-purple-900">
