@@ -236,7 +236,7 @@ const featuredGPTs = [
     color: "from-gray-600 to-blue-600",
     features: ["Multi-Engineering", "Calculations", "Design Solutions", "Technical Analysis"],
     directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298678326366271/engineering.webp",
+    imageUrl: "/lovable-uploads/d96aa982-9238-415c-b8ae-c2f4b91d5392.png",
     emoji: "⚙️"
   },
   {

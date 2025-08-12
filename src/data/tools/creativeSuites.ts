@@ -74,7 +74,7 @@ export const creativeSuites: Tool[] = [
     emoji: "🏗️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-engineering-_hEePg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    imageUrl: "/lovable-uploads/d96aa982-9238-415c-b8ae-c2f4b91d5392.png",
     tags: ["engineering solutions", "technical calculations", "design optimization", "project management", "professional tools"],
     category: "Technical & Development",
     rating: 4.9,
