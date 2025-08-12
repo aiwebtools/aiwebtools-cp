@@ -624,8 +624,8 @@ const OurFeaturedSection = () => {
   const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
   const priorityAliases = [
     "bookwritergpt",
-    "moviemakerstudio",
-    "musicvideomakerstudio",
+    "moviemakerstudioaisuite",
+    "musicvideomakeraistudio",
     "collegedegreegpt",
     "timemachinegpt",
     "moviescriptwritergpt",
