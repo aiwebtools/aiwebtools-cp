@@ -336,6 +336,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-yellow-600",
     features: ["Market Valuation", "Authenticity Check", "Investment Guide", "Market Trends"],
     directUrl: "https://antiqueappraisalgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/cKHZ7X0qx_Y?si=J8A_oP9MNFC8WhIs",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298536781185136/collectible.webp",
     emoji: "💎"
   },

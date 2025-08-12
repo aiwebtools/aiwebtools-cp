@@ -61,6 +61,7 @@ export const specializedNicheTools: Tool[] = [
     emoji: "🏺",
     color: "from-brown-500 to-yellow-600",
     directUrl: "https://antiqueappraisalgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/cKHZ7X0qx_Y?si=J8A_oP9MNFC8WhIs",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-antique-and-collectibl.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     tags: ["antique appraisal", "collectibles", "vintage items", "market analysis", "authentication"],
     category: "Specialized & Niche Tools",
