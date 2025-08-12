@@ -65,6 +65,7 @@ export const aiResearchTools: Tool[] = [
     emoji: "🔍",
     color: "from-red-500 to-orange-600",
     directUrl: "https://factcheckergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/tCnwnD_Rak0?si=fQwRswX5r2quP3Hk",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-person-holding-a-sign-that-_gfexU.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     tags: ["fact checking", "misinformation detection", "bias analysis", "truth verification", "source validation"],
     category: "AI Research Tools",

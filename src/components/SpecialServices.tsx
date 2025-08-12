@@ -266,6 +266,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Fact Verification", "Claim Analysis", "Misinformation Detection", "Evidence Validation"],
     directUrl: "https://factcheckergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/tCnwnD_Rak0?si=fQwRswX5r2quP3Hk",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298676611022848/factchecker.webp",
     emoji: "✅"
   },
