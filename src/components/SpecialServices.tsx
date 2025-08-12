@@ -577,6 +577,7 @@ const featuredGPTs = [
     features: ["Premium Web3 TLD", "Blockchain Ownership", "Brand Protection", "Global Commerce"],
     directUrl: "https://freename.io/discover/worldtrade?ref=olive-ears-obey",
     videoUrl: "https://youtu.be/Taw41ee9bO8?si=1160QePNZgd6Yfvc",
+    blockchain: "Solana",
     emoji: "🌐"
   },
   {
@@ -587,8 +588,9 @@ const featuredGPTs = [
     features: ["Premium Web3 TLD", "Blockchain Ownership", "Brand Protection", "Global Peace"],
     directUrl: "https://freename.io/discover/worldpeace?ref=olive-ears-obey",
     videoUrl: "https://youtu.be/bAz1Kq2KDys?si=buJRzC9aTuCWatOY",
+    blockchain: "Polygon",
     emoji: "🕊️"
-  }
+  },
 ];
 
 const getVideoId = (url: string) => {
@@ -691,6 +693,15 @@ const OurFeaturedSection = () => {
                     </div>
                   )}
                 </div>
+
+                {/* Blockchain Label (when available) */}
+                {(tool as any).blockchain && (
+                  <div className="mb-3">
+                    <Badge variant="secondary" className="bg-ai-cyan/20 text-ai-cyan border-ai-cyan/50 text-[10px]">
+                      Blockchain: {(tool as any).blockchain}
+                    </Badge>
+                  </div>
+                )}
 
                 {/* Features Grid */}
                 <div className="grid grid-cols-2 gap-1 mb-4">
