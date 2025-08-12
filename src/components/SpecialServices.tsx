@@ -515,17 +515,6 @@ const featuredGPTs = [
     emoji: "⚗️"
   },
   {
-    title: "BOOK WRITER GPT",
-    description: "Professional book writing assistant that helps authors create compelling novels, non-fiction books, and manuscripts with expert guidance on plot development, character creation, and writing techniques.",
-    badge: "WRITING SUITE",
-    color: "from-blue-600 to-purple-600",
-    features: ["Plot Development", "Character Creation", "Writing Guidance", "Manuscript Support"],
-    directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
-    imageUrl: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=200&fit=crop",
-    emoji: "📚"
-  },
-  {
     title: "Personalized DR. GPT",
     description: "Advanced medical assistant providing personalized health guidance, symptom analysis, medical information, and healthcare support with professional medical knowledge.",
     badge: "HEALTHCARE",
