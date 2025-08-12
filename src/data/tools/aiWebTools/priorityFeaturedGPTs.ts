@@ -9,7 +9,7 @@ export const priorityFeaturedGPTs: Tool[] = [
     emoji: "👑",
     color: "from-yellow-400 to-red-500",
     directUrl: "https://godmode.space",
-    videoUrl: "https://www.youtube.com/watch?v=or3JtZsq6Bc",
+    videoUrl: "https://youtu.be/m2crGAhbs5g?si=0U5gA4QC_oQG0KXS",
     tags: ["versatile ai", "all-purpose", "productivity", "godmode", "ultimate assistant"],
     category: "AI Assistants & Search",
     rating: 4.9,

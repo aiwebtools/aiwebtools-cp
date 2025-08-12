@@ -118,7 +118,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-gold-600",
     features: ["Ultimate AI", "Versatile Transform", "Multi-Purpose", "Power Mode"],
     directUrl: "https://godmodegpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=or3JtZsq6Bc",
+    videoUrl: "https://youtu.be/m2crGAhbs5g?si=0U5gA4QC_oQG0KXS",
     imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop",
     emoji: "⚡"
   },
