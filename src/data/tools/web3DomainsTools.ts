@@ -82,7 +82,7 @@ export const web3DomainsTools: Tool[] = [
   {
     icon: Globe,
     title: ".worldpeace Domain",
-    description: "🕊️ Champion global harmony with the .worldpeace domain. Perfect for peace organizations, humanitarian platforms, and initiatives building a better world through technology.",
+    description: "🕊️ Buy and own your .worldpeace domain as a tradable NFT minted to your wallet of choice. Resell it, link it to your website, and send/receive crypto with a human-readable address. Compatible with Phantom, Coinbase Wallet, MetaMask, and more.",
     emoji: "🕊️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/worldpeace?ref=olive-ears-obey",
@@ -93,7 +93,7 @@ export const web3DomainsTools: Tool[] = [
   {
     icon: Globe,
     title: ".worldtrade Domain",
-    description: "🌐 Control global commerce with the .worldtrade domain. Ideal for international trade platforms, global marketplaces, and world-spanning business solutions.",
+    description: "🌐 Buy and own your .worldtrade domain as a tradable NFT minted to your wallet of choice. Resell it, link it to your website, and send/receive crypto with a human-readable address. Compatible with Phantom, Coinbase Wallet, MetaMask, and more.",
     emoji: "🌐",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://freename.io/discover/worldtrade?ref=olive-ears-obey",

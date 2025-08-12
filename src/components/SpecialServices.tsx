@@ -560,7 +560,7 @@ const featuredGPTs = [
   },
   {
     title: ".WorldTrade Web3 Registration",
-    description: "Control global commerce with the .worldtrade Web3 domain. Ideal for international trade platforms, global marketplaces, and world‑spanning business solutions.",
+    description: "Buy and own your .worldtrade domain as a tradable NFT minted to your wallet of choice. Resell it, link it to your website, and send/receive crypto with a human-readable address. Compatible with Phantom, Coinbase Wallet, MetaMask, and more.",
     badge: "WEB3 DOMAIN",
     color: "from-cyan-500 to-blue-600",
     features: ["Premium Web3 TLD", "Blockchain Ownership", "Brand Protection", "Global Commerce"],
@@ -571,7 +571,7 @@ const featuredGPTs = [
   },
   {
     title: ".WorldPeace Web3 Registration",
-    description: "Lead a global movement with the .worldpeace Web3 domain. Perfect for peace initiatives, humanitarian coalitions, and global advocacy platforms.",
+    description: "Buy and own your .worldpeace domain as a tradable NFT minted to your wallet of choice. Resell it, link it to your website, and send/receive crypto with a human-readable address. Compatible with Phantom, Coinbase Wallet, MetaMask, and more.",
     badge: "WEB3 DOMAIN",
     color: "from-emerald-500 to-teal-600",
     features: ["Premium Web3 TLD", "Blockchain Ownership", "Brand Protection", "Global Peace"],
