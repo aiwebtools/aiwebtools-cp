@@ -616,6 +616,17 @@ const OurFeaturedSection = () => {
     }, 100);
   };
 
+  // Ordering: show .WorldTrade and .WorldPeace first, then alphabetical
+  const topTitles = [".WorldTrade Web3 Registration", ".WorldPeace Web3 Registration"];
+  const topOrder = new Map(topTitles.map((t, i) => [t, i] as const));
+  const domainTop = featuredGPTs
+    .filter((t) => topOrder.has(t.title))
+    .sort((a, b) => (topOrder.get(a.title) ?? 0) - (topOrder.get(b.title) ?? 0));
+  const rest = featuredGPTs
+    .filter((t) => !topOrder.has(t.title))
+    .sort((a, b) => a.title.localeCompare(b.title));
+  const displayGPTs = [...domainTop, ...rest];
+
   return (
     <section className="py-20 bg-gradient-to-br from-slate-900 to-purple-900">
       <div className="container mx-auto px-4">
@@ -629,7 +640,7 @@ const OurFeaturedSection = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {featuredGPTs.map((tool, index) => (
+          {displayGPTs.map((tool, index) => (
             <Card key={index} className="group bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 h-full flex flex-col">
               <CardHeader className="pb-4 flex-shrink-0">
                 <div className="flex items-center justify-between mb-4">
