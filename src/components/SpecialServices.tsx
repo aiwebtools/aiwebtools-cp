@@ -594,8 +594,16 @@ const featuredGPTs = [
 ];
 
 const getVideoId = (url: string) => {
-  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
-  return match ? match[1] : null;
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/,
+    /youtube\.com\/shorts\/([^&\n?#/]+)/,
+    /youtube\.com\/embed\/([^&\n?#/]+)/
+  ];
+  for (const p of patterns) {
+    const match = url.match(p);
+    if (match) return match[1];
+  }
+  return null;
 };
 
 const handleAccessTool = (directUrl: string, toolName: string) => {
@@ -666,11 +674,12 @@ const OurFeaturedSection = () => {
                   {tool.videoUrl && getVideoId(tool.videoUrl) ? (
                     <div className="relative w-full h-32 rounded-lg overflow-hidden">
                       <iframe
-                        src={`https://www.youtube.com/embed/${getVideoId(tool.videoUrl)}`}
+                        src={`https://www.youtube-nocookie.com/embed/${getVideoId(tool.videoUrl)}`}
                         title={`${tool.title} Demo`}
                         className="absolute inset-0 w-full h-full"
                         frameBorder="0"
                         loading="lazy"
+                        referrerPolicy="no-referrer"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                       />
@@ -685,6 +694,7 @@ const OurFeaturedSection = () => {
                         decoding="async"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         fetchPriority="low"
+                        referrerPolicy="no-referrer"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';
