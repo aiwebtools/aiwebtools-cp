@@ -246,6 +246,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-pink-600",
     features: ["Phenomenon Analysis", "Scientific Investigation", "Research Methods", "Event Analysis"],
     directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/k1aYXaaAkho?si=Mnn48SWC8f0vtAOD",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298677785428110/phenomon.webp",
     emoji: "🛸"
   },
