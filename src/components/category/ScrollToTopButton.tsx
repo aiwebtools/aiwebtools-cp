@@ -2,18 +2,21 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowUp } from "lucide-react";
+import { useScrollOptimization } from "@/hooks/useScrollOptimization";
 
 const ScrollToTopButton = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const { addOptimizedScrollListener, isMobile } = useScrollOptimization();
 
   useEffect(() => {
-    const handleScroll = () => {
+    const cleanup = addOptimizedScrollListener(window, () => {
       setShowScrollTop(window.scrollY > 300);
-    };
+    }, isMobile ? 32 : 16);
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    return () => {
+      cleanup?.();
+    };
+  }, [addOptimizedScrollListener, isMobile]);
 
   const scrollToTop = () => {
     window.scrollTo({

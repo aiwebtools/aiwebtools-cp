@@ -16,14 +16,16 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   const shouldShowVideo = hasVideo;
   const shouldShowImage = hasImage && !hasVideo;
   
-  console.log('ToolCardMedia for', tool.title, {
-    hasImage,
-    hasVideo,
-    shouldShowImage,
-    shouldShowVideo,
-    videoUrl: tool.videoUrl,
-    imageUrl: tool.imageUrl
-  });
+  if (import.meta.env.DEV) {
+    console.log('ToolCardMedia for', tool.title, {
+      hasImage,
+      hasVideo,
+      shouldShowImage,
+      shouldShowVideo,
+      videoUrl: tool.videoUrl,
+      imageUrl: tool.imageUrl
+    });
+  }
   
   const getOptimizedEmbedUrl = (url: string) => {
     if (url.includes('youtube.com/watch?v=')) {
@@ -78,7 +80,9 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
               }
             }}
             onLoad={() => {
-              console.log('Image loaded successfully for', tool.title);
+              if (import.meta.env.DEV) {
+                console.log('Image loaded successfully for', tool.title);
+              }
             }}
           />
           {/* Hidden emoji fallback */}
