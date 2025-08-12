@@ -25,7 +25,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎬",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=rBQTUrvHcR8&list=TLGGHKS5WME8OJ8yODA1MjAyNQ",
+    videoUrl: "https://youtu.be/_vZhs4FoTco?si=oYk_LS_EynMkLliD",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-dynamic-product-advertisement-showcase_TiaF.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
     tags: ["music video creation", "AI-powered effects", "visual synchronization", "cinematic storytelling", "YouTube content", "TikTok videos", "professional editing", "music visualization"],
     category: "Audio & Music Tools",

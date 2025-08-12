@@ -129,7 +129,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-pink-600",
     features: ["Music Video Creation", "Scene Building", "Band Features", "Cinematic Quality"],
     directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=rBQTUrvHcR8",
+    videoUrl: "https://youtu.be/_vZhs4FoTco?si=oYk_LS_EynMkLliD",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377297324958552105/music_video_maker.webp",
     emoji: "🎵"
   },
@@ -633,7 +633,8 @@ const OurFeaturedSection = () => {
     "talktohistorygpt",
     "timemachinegpt", // duplicate intentionally allowed, will be de-duped
     "marymagdalenegpt",
-    "survivalistgpt"
+    "survivalistgpt",
+    "personalizeddrgpt"
   ];
   const already = new Set<string>();
   const featuredByNorm = new Map(
