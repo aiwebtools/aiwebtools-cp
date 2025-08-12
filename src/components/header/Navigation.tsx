@@ -1,5 +1,5 @@
 
-import { Phone, Globe, ChevronDown, ChevronUp } from "lucide-react";
+import { Phone, Globe, ChevronDown, ChevronUp, Trees } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
@@ -182,6 +182,15 @@ const Navigation = () => {
           </Accordion>
         </PopoverContent>
       </Popover>
+      
+      <button 
+        onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)}
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer inline-flex items-center"
+        aria-label="AI Web Tools Linktree"
+        title="Linktree"
+      >
+        <Trees className="w-4 h-4" />
+      </button>
       
       <div className="flex items-center space-x-2 text-cyan-100 whitespace-nowrap">
         <Phone className="w-4 h-4" />
