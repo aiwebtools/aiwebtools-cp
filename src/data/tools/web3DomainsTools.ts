@@ -145,5 +145,16 @@ export const web3DomainsTools: Tool[] = [
     tags: ["WEB3", "Domain", "Coin Transfer", "Crypto Payments", "Blockchain Finance"],
     category: "WEB3 Domains",
     rating: 5.0
+  },
+  {
+    icon: Globe,
+    title: ".transfercash Domain",
+    description: "💵 Own the .transfercash domain for cash transfer services. Perfect for money remittance platforms, cash payment systems, and financial transfer solutions.",
+    emoji: "💵",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://freename.io/discover/transfercash",
+    tags: ["WEB3", "Domain", "Cash Transfer", "Money Remittance", "Financial Services"],
+    category: "WEB3 Domains",
+    rating: 5.0
   }
 ];
