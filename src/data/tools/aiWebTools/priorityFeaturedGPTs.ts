@@ -267,4 +267,17 @@ export const priorityFeaturedGPTs: Tool[] = [
     rating: 4.3,
     totalVotes: 2901
   },
+  {
+    icon: Globe,
+    title: ".robotshop Domain",
+    description: "🛍️ Build the ultimate robotics shopping destination with the .robotshop domain. Perfect for robotic retail, automated commerce, and futuristic marketplaces.",
+    emoji: "🛍️",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://freename.io/discover/robotshop?ref=olive-ears-obey",
+    videoUrl: "https://youtu.be/_1qcKvXwPbE?si=R9gSMdmfao8u54iR",
+    tags: ["WEB3", "Domain", "Robot Shop", "E-commerce", "Future Commerce"],
+    category: "WEB3 Domains",
+    rating: 5.0,
+    totalVotes: 1247
+  },
 ];
