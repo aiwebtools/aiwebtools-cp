@@ -156,5 +156,16 @@ export const web3DomainsTools: Tool[] = [
     tags: ["WEB3", "Domain", "Cash Transfer", "Money Remittance", "Financial Services"],
     category: "WEB3 Domains",
     rating: 5.0
+  },
+  {
+    icon: Globe,
+    title: ".cashtransfer Domain",
+    description: "💴 Secure the .cashtransfer domain for your financial platform. Ideal for cash remittance services, money transfer apps, and digital cash solutions.",
+    emoji: "💴",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://freename.io/discover/cashtransfer",
+    tags: ["WEB3", "Domain", "Cash Remittance", "Money Transfer", "Digital Cash"],
+    category: "WEB3 Domains",
+    rating: 5.0
   }
 ];
