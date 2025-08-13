@@ -190,10 +190,16 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     !tool.directUrl?.includes('lovable.app') &&
     (tool.rating >= 4.5 || tool.totalVotes >= 3000)
   ).slice(0, 100); // Add some high-quality external tools
+
+  // Get web3 domains for featured section
+  const web3DomainsInFeatured = allTools.filter(tool => 
+    tool.category === "WEB3 Domains" || tool.tags?.includes("WEB3")
+  );
   
-  // Combine: ALL AI Web Tools GPTs first (our portfolio), then additional quality tools
+  // Combine: ALL AI Web Tools GPTs first (our portfolio), then web3 domains, then additional quality tools
   const allFeaturedTools = [
     ...aiWebToolsGPTsInMain,
+    ...web3DomainsInFeatured,
     ...additionalQualityTools
   ];
   
