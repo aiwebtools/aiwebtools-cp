@@ -170,5 +170,17 @@ export const videoGenerationTools: Tool[] = [
     category: "Video Generation",
     rating: 4.4,
     totalVotes: 3234
+  },
+  {
+    icon: Play,
+    title: "Kling AI",
+    description: "State-of-the-art text-to-video generator delivering high-quality, realistic motion and scene dynamics. Create stunning videos from simple prompts.",
+    emoji: "⚡",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://kling.ai/?via=aiwebtools",
+    tags: ["text-to-video", "video generation", "ai video", "kling", "kling ai"],
+    category: "Video Generation",
+    rating: 4.8,
+    totalVotes: 6523
   }
 ];
