@@ -17,8 +17,11 @@ export const matchTextToVideo = (tool: Tool, searchTerm: string): boolean => {
       'pika labs',
       'google veo 3',
       'veo3',
+      'veo 3',
       'kling ai',
       'kling',
+      'hailuo ai',
+      'higgsfield ai',
       'movie maker studio',
       'runwayml gen-2',
       'runwayml',
@@ -47,8 +50,11 @@ export const matchTextToVideo = (tool: Tool, searchTerm: string): boolean => {
       'pika labs',
       'google veo 3',
       'veo3',
+      'veo 3',
       'kling ai',
       'kling',
+      'hailuo ai',
+      'higgsfield ai',
       'movie maker studio',
       'runwayml gen-2',
       'runwayml',
@@ -84,11 +90,17 @@ export const scoreTextToVideo = (tool: Tool, searchTerm: string): number => {
     if (lowerTitle.includes('pika labs')) {
       score += 1750;
     }
-    if (lowerTitle.includes('google veo 3') || lowerTitle.includes('veo3')) {
+    if (lowerTitle.includes('google veo 3') || lowerTitle.includes('veo3') || lowerTitle.includes('veo 3')) {
       score += 1700;
     }
     if (lowerTitle.includes('kling ai') || lowerTitle.includes('kling')) {
       score += 1725;
+    }
+    if (lowerTitle.includes('hailuo ai') || lowerTitle.includes('hailuo')) {
+      score += 1680;
+    }
+    if (lowerTitle.includes('higgsfield ai') || lowerTitle.includes('higgsfield')) {
+      score += 1650;
     }
     if (lowerTitle.includes('movie maker studio')) {
       score += 1650;
@@ -138,11 +150,17 @@ export const scoreTextToVideo = (tool: Tool, searchTerm: string): number => {
     if (lowerTitle.includes('pika labs')) {
       score += 1850;
     }
-    if (lowerTitle.includes('google veo 3') || lowerTitle.includes('veo3')) {
+    if (lowerTitle.includes('google veo 3') || lowerTitle.includes('veo3') || lowerTitle.includes('veo 3')) {
       score += 1800;
     }
     if (lowerTitle.includes('kling ai') || lowerTitle.includes('kling')) {
       score += 1825;
+    }
+    if (lowerTitle.includes('hailuo ai') || lowerTitle.includes('hailuo')) {
+      score += 1775;
+    }
+    if (lowerTitle.includes('higgsfield ai') || lowerTitle.includes('higgsfield')) {
+      score += 1725;
     }
     if (lowerTitle.includes('movie maker studio')) {
       score += 1750;

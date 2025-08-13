@@ -182,5 +182,41 @@ export const videoGenerationTools: Tool[] = [
     category: "Video Generation",
     rating: 4.8,
     totalVotes: 6523
+  },
+  {
+    icon: Film,
+    title: "Hailuo AI Video (MiniMax)",
+    description: "Sora-class text-to-video generator by MiniMax with impressive motion fidelity and creative controls. Also supports music and more.",
+    emoji: "🎭",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://hailuoai.video/?via=aiwebtools",
+    tags: ["text-to-video", "hailuo", "minimax", "video generation", "china ai"],
+    category: "Video Generation",
+    rating: 4.7,
+    totalVotes: 5234
+  },
+  {
+    icon: Camera,
+    title: "Higgsfield AI",
+    description: "Mobile-first AI video generator that turns selfies into realistic characters and scenes via the Diffuse app.",
+    emoji: "🤳",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://higgsfield.ai/?via=aiwebtools",
+    tags: ["selfie-to-video", "personalized", "character", "text-to-video", "mobile"],
+    category: "Video Generation",
+    rating: 4.6,
+    totalVotes: 4123
+  },
+  {
+    icon: Video,
+    title: "Google Veo 3",
+    description: "Google's next‑gen text‑to‑video model for high‑quality, physics‑aware video generation from prompts in VideoFX.",
+    emoji: "🎬",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://labs.google/fx/tools/video-fx?via=aiwebtools",
+    tags: ["text-to-video", "veo 3", "google ai", "video generation", "video fx"],
+    category: "Video Generation",
+    rating: 4.9,
+    totalVotes: 8234
   }
 ];
