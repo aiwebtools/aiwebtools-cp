@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tool } from "@/types/tools";
 import StarRating from "./StarRating";
 import { allTools } from "@/data/toolsData";
+import { Brain, Blocks } from "lucide-react";
 
 interface ToolCardHeaderProps {
   tool: Tool;
@@ -37,6 +38,10 @@ const ToolCardHeader = ({
   // Use the correct index, fallback to provided index if not found
   const linkIndex = correctToolIndex !== -1 ? correctToolIndex : toolIndex;
 
+  // Determine tool type for category badges
+  const isWeb3Tool = tool.category === "WEB3 Domains" || tool.tags?.includes("WEB3") || tool.tags?.includes("Blockchain");
+  const isAITool = !isWeb3Tool;
+
   return (
     <CardHeader className="text-center pb-4 flex-shrink-0 relative z-10">
       {/* FREE Badge for AI Web Tools original tools */}
@@ -55,6 +60,22 @@ const ToolCardHeader = ({
         <CardTitle className={`${titleSize} font-bold text-cyan-200 group-hover:text-cyan-100 transition-colors leading-tight drop-shadow-lg`}>
           {tool.title}
         </CardTitle>
+        
+        {/* Tool Type Badge */}
+        <div className="flex justify-center">
+          {isWeb3Tool ? (
+            <Badge className="text-xs bg-gradient-to-r from-purple-500 to-blue-600 text-white border-0 flex items-center gap-1">
+              <Blocks size={12} />
+              WEB3 DOMAIN
+            </Badge>
+          ) : isAITool && (
+            <Badge className="text-xs bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-0 flex items-center gap-1">
+              <Brain size={12} />
+              AI TOOL
+            </Badge>
+          )}
+        </div>
+        
         {tool.category && (
           <Badge variant="outline" className={`text-xs ${isAIWebToolsOriginal ? 'border-cyan-300 text-cyan-200 bg-cyan-500/20' : 'border-cyan-400 text-cyan-300 bg-cyan-500/10'}`}>
             {tool.category}
