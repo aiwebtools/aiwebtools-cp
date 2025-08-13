@@ -68,7 +68,7 @@ export const resetCache = () => {
   lastToolsLength = 0;
   localStorage.removeItem(CACHE_KEY);
   localStorage.removeItem(CACHE_VERSION_KEY);
-  console.log('🔄 Cache reset - will rebuild on next access');
+  console.log('🔄 Cache reset - will rebuild on next access with WEB3 support');
 };
 
 // Helper function to combine subcategory and specialized tools efficiently
@@ -204,6 +204,17 @@ export const buildToolsCache = (tools: Tool[]) => {
         
       case "COMMUNICATION & COLLABORATION AI TOOLS":
         categoryTools = getCommunicationCollaborationTools(tools, mainCat.name);
+        break;
+        
+      case "WEB3 & BLOCKCHAIN":
+        // Specifically handle WEB3 tools and domains
+        categoryTools = tools.filter(tool => {
+          if (!tool.category) return false;
+          return mainCat.subcategories.some((subcat: string) => 
+            isSimilarCategory(tool.category, subcat)
+          ) || tool.tags?.includes("WEB3") || tool.tags?.includes("Blockchain");
+        });
+        console.log(`🌐 WEB3 & BLOCKCHAIN: Found ${categoryTools.length} tools`);
         break;
         
       default:

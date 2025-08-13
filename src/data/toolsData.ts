@@ -6,6 +6,10 @@ import { createFeaturedTools } from '@/utils/featuredTools';
 import { getCategoriesWithCounts, getToolsByCategory } from '@/utils/categoryUtils';
 import { consolidateTools } from '@/utils/categoryConsolidation';
 import { deduplicateTools } from '@/utils/toolDeduplication';
+import { forceWEB3Reset } from '@/utils/forceWEB3CacheReset';
+
+// Force WEB3 cache reset to ensure .transfermoney appears
+forceWEB3Reset();
 
 // Import AI Web Tools GPTs - PRIORITY FEATURED TOOLS
 import { priorityFeaturedGPTs } from "./tools/aiWebTools/priorityFeaturedGPTs";
