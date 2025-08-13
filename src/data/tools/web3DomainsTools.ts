@@ -134,5 +134,16 @@ export const web3DomainsTools: Tool[] = [
     tags: ["WEB3", "Domain", "Cryptocurrency", "Blockchain", "Digital Assets"],
     category: "WEB3 Domains",
     rating: 5.0
+  },
+  {
+    icon: Globe,
+    title: ".cointransfer Domain",
+    description: "💰 Secure the .cointransfer domain for your cryptocurrency business. Ideal for digital coin transfer services, crypto payment platforms, and blockchain financial solutions.",
+    emoji: "💰",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://freename.io/discover/cointransfer",
+    tags: ["WEB3", "Domain", "Coin Transfer", "Crypto Payments", "Blockchain Finance"],
+    category: "WEB3 Domains",
+    rating: 5.0
   }
 ];

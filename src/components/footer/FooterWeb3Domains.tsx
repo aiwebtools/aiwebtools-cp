@@ -141,6 +141,12 @@ const FooterWeb3Domains = () => {
               >
                 🪙 .transfercoin
               </button>
+              <button
+                onClick={(e) => handleExternalLink("https://freename.io/discover/cointransfer", e)}
+                className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors"
+              >
+                💰 .cointransfer
+              </button>
 
               <div className="sticky bottom-0 mt-2 flex justify-end gap-2 pointer-events-none">
                 {canScrollUp && (
