@@ -57,9 +57,10 @@ import { web3DomainsTools } from "./tools/web3DomainsTools";
 
 // Combine all tool categories and apply consolidation
 const allToolCategories = consolidateTools([
+  // WEB3 domains first so they get priority positioning
+  ...web3DomainsTools,
   ...getAllToolCategories(),
   ...personalDevelopmentTools,
-  ...web3DomainsTools,
   
   // Add the AI Web Tools GPT Collections
   ...priorityFeaturedGPTs,
