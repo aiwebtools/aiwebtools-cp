@@ -62,7 +62,13 @@ const Navigation = () => {
             <span>Register WEB3 Domains</span>
           </button>
         </PopoverTrigger>
-        <PopoverContent className="w-80 max-h-[70vh] overflow-y-auto" align="end" side="bottom" collisionPadding={16}>
+        <PopoverContent className="w-96 max-h-[80vh] overflow-y-auto" align="end" side="bottom" collisionPadding={16}>
+          <div className="mb-4 p-3 bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-lg border border-purple-500/30">
+            <h3 className="text-sm font-bold text-cyan-400 mb-2">🔗 Connect to Your Crypto Wallet</h3>
+            <p className="text-xs text-gray-300 leading-relaxed">
+              Own forever • Resell for profit • Minted as NFT • Connect to wallet • Trade anytime
+            </p>
+          </div>
           <Accordion type="multiple" className="space-y-2">
             {/* Financial & Cash Transfer Domains */}
             <AccordionItem value="financial" className="border border-white/10 rounded-lg">
@@ -73,38 +79,53 @@ const Navigation = () => {
                 <div className="flex flex-col space-y-2">
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/transfermoney", e)}
-                    className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
+                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
                   >
-                    <span className="relative z-10 text-lg mr-6">💸</span>
-                    <span className="relative z-10 font-medium tracking-wide">.transfermoney</span>
+                    <div className="flex items-center">
+                      <span className="relative z-10 text-lg mr-3">💸</span>
+                      <span className="relative z-10 font-medium tracking-wide">.transfermoney</span>
+                    </div>
+                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/transfercoin", e)}
-                    className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
+                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
                   >
-                    <span className="relative z-10 text-lg mr-6">🪙</span>
-                    <span className="relative z-10 font-medium tracking-wide">.transfercoin</span>
+                    <div className="flex items-center">
+                      <span className="relative z-10 text-lg mr-3">🪙</span>
+                      <span className="relative z-10 font-medium tracking-wide">.transfercoin</span>
+                    </div>
+                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/cointransfer", e)}
-                    className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
+                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
                   >
-                    <span className="relative z-10 text-lg mr-6">💰</span>
-                    <span className="relative z-10 font-medium tracking-wide">.cointransfer</span>
+                    <div className="flex items-center">
+                      <span className="relative z-10 text-lg mr-3">💰</span>
+                      <span className="relative z-10 font-medium tracking-wide">.cointransfer</span>
+                    </div>
+                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/transfercash", e)}
-                    className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
+                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
                   >
-                    <span className="relative z-10 text-lg mr-6">💵</span>
-                    <span className="relative z-10 font-medium tracking-wide">.transfercash</span>
+                    <div className="flex items-center">
+                      <span className="relative z-10 text-lg mr-3">💵</span>
+                      <span className="relative z-10 font-medium tracking-wide">.transfercash</span>
+                    </div>
+                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/cashtransfer", e)}
-                    className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
+                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
                   >
-                    <span className="relative z-10 text-lg mr-6">💴</span>
-                    <span className="relative z-10 font-medium tracking-wide">.cashtransfer</span>
+                    <div className="flex items-center">
+                      <span className="relative z-10 text-lg mr-3">💴</span>
+                      <span className="relative z-10 font-medium tracking-wide">.cashtransfer</span>
+                    </div>
+                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
                   </button>
                 </div>
               </AccordionContent>
@@ -119,31 +140,43 @@ const Navigation = () => {
                 <div className="flex flex-col space-y-2">
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/ai-tools?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
+                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
                   >
-                    <span className="relative z-10 text-lg mr-6">🧠</span>
-                    <span className="relative z-10 font-medium tracking-wide">.ai-tools</span>
+                    <div className="flex items-center">
+                      <span className="relative z-10 text-lg mr-3">🧠</span>
+                      <span className="relative z-10 font-medium tracking-wide">.ai-tools</span>
+                    </div>
+                    <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/.aiwebtools?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
+                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
                   >
-                    <span className="relative z-10 text-lg mr-6">🤖</span>
-                    <span className="relative z-10 font-medium tracking-wide">.aiwebtools</span>
+                    <div className="flex items-center">
+                      <span className="relative z-10 text-lg mr-3">🤖</span>
+                      <span className="relative z-10 font-medium tracking-wide">.aiwebtools</span>
+                    </div>
+                    <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/aimainframe?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
+                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
                   >
-                    <span className="relative z-10 text-lg mr-6">🗄️</span>
-                    <span className="relative z-10 font-medium tracking-wide">.aimainframe</span>
+                    <div className="flex items-center">
+                      <span className="relative z-10 text-lg mr-3">🗄️</span>
+                      <span className="relative z-10 font-medium tracking-wide">.aimainframe</span>
+                    </div>
+                    <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/aitoolscompany?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
+                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
                   >
-                    <span className="relative z-10 text-lg mr-6">🏢</span>
-                    <span className="relative z-10 font-medium tracking-wide">.aitoolscompany</span>
+                    <div className="flex items-center">
+                      <span className="relative z-10 text-lg mr-3">🏢</span>
+                      <span className="relative z-10 font-medium tracking-wide">.aitoolscompany</span>
+                    </div>
+                    <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
                   </button>
                 </div>
               </AccordionContent>
@@ -158,24 +191,33 @@ const Navigation = () => {
                 <div className="flex flex-col space-y-2">
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/robotsales?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
+                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
                   >
-                    <span className="relative z-10 text-lg mr-6">🦾</span>
-                    <span className="relative z-10 font-medium tracking-wide">.robotsales</span>
+                    <div className="flex items-center">
+                      <span className="relative z-10 text-lg mr-3">🦾</span>
+                      <span className="relative z-10 font-medium tracking-wide">.robotsales</span>
+                    </div>
+                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/robotshop?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
+                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
                   >
-                    <span className="relative z-10 text-lg mr-6">🛍️</span>
-                    <span className="relative z-10 font-medium tracking-wide">.robotshop</span>
+                    <div className="flex items-center">
+                      <span className="relative z-10 text-lg mr-3">🛍️</span>
+                      <span className="relative z-10 font-medium tracking-wide">.robotshop</span>
+                    </div>
+                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/robotstore?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
+                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
                   >
-                    <span className="relative z-10 text-lg mr-6">🛒</span>
-                    <span className="relative z-10 font-medium tracking-wide">.robotstore</span>
+                    <div className="flex items-center">
+                      <span className="relative z-10 text-lg mr-3">🛒</span>
+                      <span className="relative z-10 font-medium tracking-wide">.robotstore</span>
+                    </div>
+                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
                   </button>
                 </div>
               </AccordionContent>
@@ -190,24 +232,33 @@ const Navigation = () => {
                 <div className="flex flex-col space-y-2">
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/worldpeace?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
+                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
                   >
-                    <span className="relative z-10 text-lg mr-6">🕊️</span>
-                    <span className="relative z-10 font-medium tracking-wide">.worldpeace</span>
+                    <div className="flex items-center">
+                      <span className="relative z-10 text-lg mr-3">🕊️</span>
+                      <span className="relative z-10 font-medium tracking-wide">.worldpeace</span>
+                    </div>
+                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/worldtrade?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
+                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
                   >
-                    <span className="relative z-10 text-lg mr-6">🌐</span>
-                    <span className="relative z-10 font-medium tracking-wide">.worldtrade</span>
+                    <div className="flex items-center">
+                      <span className="relative z-10 text-lg mr-3">🌐</span>
+                      <span className="relative z-10 font-medium tracking-wide">.worldtrade</span>
+                    </div>
+                    <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
                   </button>
                   <button
                     onClick={(e) => handleExternalLink("https://freename.io/discover/worldtrader?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
+                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
                   >
-                    <span className="relative z-10 text-lg mr-6">💹</span>
-                    <span className="relative z-10 font-medium tracking-wide">.worldtrader</span>
+                    <div className="flex items-center">
+                      <span className="relative z-10 text-lg mr-3">💹</span>
+                      <span className="relative z-10 font-medium tracking-wide">.worldtrader</span>
+                    </div>
+                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
                   </button>
                 </div>
               </AccordionContent>

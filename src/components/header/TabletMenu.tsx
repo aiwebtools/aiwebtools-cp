@@ -239,6 +239,12 @@ const TabletMenu = () => {
                 </DropdownMenuItem>
                 
                 {/* Register WEB3 Domains Accordion */}
+                <div className="mb-2 p-2 bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-lg border border-purple-500/30">
+                  <p className="text-xs text-gray-300 leading-relaxed">
+                    🔗 <span className="font-semibold text-cyan-400">Connect to Your Crypto Wallet</span><br/>
+                    Own forever • Resell for profit • Minted as NFT • Trade anytime
+                  </p>
+                </div>
                 <Collapsible open={isWeb3Open} onOpenChange={setIsWeb3Open}>
                   <CollapsibleTrigger 
                     className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-2 py-1.5 text-sm outline-none focus:bg-cyan-500/20 transition-colors"
@@ -255,27 +261,72 @@ const TabletMenu = () => {
                   </CollapsibleTrigger>
                   <CollapsibleContent className="mt-2 space-y-2 pl-6 max-h-64 overflow-y-auto pr-1">
                     <div className="text-xs text-cyan-400 mb-2 font-semibold">💰 Financial & Cash Transfer</div>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/transfermoney'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">💸 .transfermoney</button>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/transfercoin'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🪙 .transfercoin</button>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/cointransfer'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">💰 .cointransfer</button>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/transfercash'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">💵 .transfercash</button>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/cashtransfer'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">💴 .cashtransfer</button>
+                    <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/transfermoney'); }} className="flex-1 text-left">💸 .transfermoney</button>
+                      <span className="text-xs bg-purple-600/20 text-purple-300 px-1 py-0.5 rounded border border-purple-500/30 ml-2">Polygon</span>
+                    </div>
+                    <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/transfercoin'); }} className="flex-1 text-left">🪙 .transfercoin</button>
+                      <span className="text-xs bg-purple-600/20 text-purple-300 px-1 py-0.5 rounded border border-purple-500/30 ml-2">Polygon</span>
+                    </div>
+                    <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/cointransfer'); }} className="flex-1 text-left">💰 .cointransfer</button>
+                      <span className="text-xs bg-purple-600/20 text-purple-300 px-1 py-0.5 rounded border border-purple-500/30 ml-2">Polygon</span>
+                    </div>
+                    <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/transfercash'); }} className="flex-1 text-left">💵 .transfercash</button>
+                      <span className="text-xs bg-purple-600/20 text-purple-300 px-1 py-0.5 rounded border border-purple-500/30 ml-2">Polygon</span>
+                    </div>
+                    <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/cashtransfer'); }} className="flex-1 text-left">💴 .cashtransfer</button>
+                      <span className="text-xs bg-purple-600/20 text-purple-300 px-1 py-0.5 rounded border border-purple-500/30 ml-2">Polygon</span>
+                    </div>
                     
                     <div className="text-xs text-cyan-400 mt-3 mb-2 font-semibold">🤖 AI & Technology</div>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/ai-tools?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🧠 .ai-tools</button>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/.aiwebtools?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🤖 .aiwebtools</button>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/aimainframe?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🗄️ .aimainframe</button>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/aitoolscompany?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🏢 .aitoolscompany</button>
+                    <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/ai-tools?ref=olive-ears-obey'); }} className="flex-1 text-left">🧠 .ai-tools</button>
+                      <span className="text-xs bg-green-600/20 text-green-300 px-1 py-0.5 rounded border border-green-500/30 ml-2">Solana</span>
+                    </div>
+                    <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/.aiwebtools?ref=olive-ears-obey'); }} className="flex-1 text-left">🤖 .aiwebtools</button>
+                      <span className="text-xs bg-green-600/20 text-green-300 px-1 py-0.5 rounded border border-green-500/30 ml-2">Solana</span>
+                    </div>
+                    <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/aimainframe?ref=olive-ears-obey'); }} className="flex-1 text-left">🗄️ .aimainframe</button>
+                      <span className="text-xs bg-green-600/20 text-green-300 px-1 py-0.5 rounded border border-green-500/30 ml-2">Solana</span>
+                    </div>
+                    <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/aitoolscompany?ref=olive-ears-obey'); }} className="flex-1 text-left">🏢 .aitoolscompany</button>
+                      <span className="text-xs bg-green-600/20 text-green-300 px-1 py-0.5 rounded border border-green-500/30 ml-2">Solana</span>
+                    </div>
                     
                     <div className="text-xs text-cyan-400 mt-3 mb-2 font-semibold">🤖 Robotics & Automation</div>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/robotsales?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🦾 .robotsales</button>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/robotshop?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🛍️ .robotshop</button>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/robotstore?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🛒 .robotstore</button>
+                    <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/robotsales?ref=olive-ears-obey'); }} className="flex-1 text-left">🦾 .robotsales</button>
+                      <span className="text-xs bg-purple-600/20 text-purple-300 px-1 py-0.5 rounded border border-purple-500/30 ml-2">Polygon</span>
+                    </div>
+                    <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/robotshop?ref=olive-ears-obey'); }} className="flex-1 text-left">🛍️ .robotshop</button>
+                      <span className="text-xs bg-purple-600/20 text-purple-300 px-1 py-0.5 rounded border border-purple-500/30 ml-2">Polygon</span>
+                    </div>
+                    <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/robotstore?ref=olive-ears-obey'); }} className="flex-1 text-left">🛒 .robotstore</button>
+                      <span className="text-xs bg-purple-600/20 text-purple-300 px-1 py-0.5 rounded border border-purple-500/30 ml-2">Polygon</span>
+                    </div>
                     
                     <div className="text-xs text-cyan-400 mt-3 mb-2 font-semibold">🌍 Global & World</div>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/worldpeace?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🕊️ .worldpeace</button>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/worldtrade?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🌐 .worldtrade</button>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/worldtrader?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">💹 .worldtrader</button>
+                    <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/worldpeace?ref=olive-ears-obey'); }} className="flex-1 text-left">🕊️ .worldpeace</button>
+                      <span className="text-xs bg-purple-600/20 text-purple-300 px-1 py-0.5 rounded border border-purple-500/30 ml-2">Polygon</span>
+                    </div>
+                    <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/worldtrade?ref=olive-ears-obey'); }} className="flex-1 text-left">🌐 .worldtrade</button>
+                      <span className="text-xs bg-green-600/20 text-green-300 px-1 py-0.5 rounded border border-green-500/30 ml-2">Solana</span>
+                    </div>
+                    <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/worldtrader?ref=olive-ears-obey'); }} className="flex-1 text-left">💹 .worldtrader</button>
+                      <span className="text-xs bg-purple-600/20 text-purple-300 px-1 py-0.5 rounded border border-purple-500/30 ml-2">Polygon</span>
+                    </div>
                   </CollapsibleContent>
                 </Collapsible>
                 
