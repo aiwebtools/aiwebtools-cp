@@ -123,5 +123,16 @@ export const web3DomainsTools: Tool[] = [
     tags: ["WEB3", "Domain", "Money Transfer", "Fintech", "Payments"],
     category: "WEB3 Domains",
     rating: 5.0
+  },
+  {
+    icon: Globe,
+    title: ".transfercoin Domain",
+    description: "🪙 Command the cryptocurrency transfer space with the .transfercoin domain. Perfect for crypto exchanges, blockchain platforms, and digital asset transfer services.",
+    emoji: "🪙",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://freename.io/discover/transfercoin",
+    tags: ["WEB3", "Domain", "Cryptocurrency", "Blockchain", "Digital Assets"],
+    category: "WEB3 Domains",
+    rating: 5.0
   }
 ];
