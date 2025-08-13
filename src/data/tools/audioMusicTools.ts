@@ -19,27 +19,13 @@ import {
 
 export const audioMusicTools: Tool[] = [
   {
-    icon: Film,
-    title: "Music Video Maker AI Studio",
-    description: "-Full-Blown Music Video & Music Production Creative Suite- Transform yourself into the star of cinematic-quality music videos with our cutting-edge AI director. Build scene-by-scene visuals where you and even your band are featured in vivid, realistic scenes tied to your music.",
-    emoji: "🎬",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/_vZhs4FoTco?si=oYk_LS_EynMkLliD",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-dynamic-product-advertisement-showcase_TiaF.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    tags: ["music video creation", "AI-powered effects", "visual synchronization", "cinematic storytelling", "YouTube content", "TikTok videos", "professional editing", "music visualization"],
-    category: "Audio & Music Tools",
-    rating: 4.9,
-    totalVotes: 5847
-  },
-  {
     icon: Music,
     title: "Suno AI",
     description: "Revolutionary AI music generator that creates complete songs with vocals and lyrics from simple text prompts. Generate professional-quality music in any genre within seconds.",
     emoji: "🎶",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://suno.ai/",
-    tags: ["AI music generation", "vocals", "lyrics", "text prompts", "complete songs", "professional quality"],
+    tags: ["suno", "AI music generation", "vocals", "lyrics", "text prompts", "complete songs", "professional quality"],
     category: "Audio & Music Tools",
     rating: 4.8,
     totalVotes: 6789
@@ -51,10 +37,24 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎙️",
     color: "from-emerald-500 to-teal-600",
     directUrl: "https://udio.com/",
-    tags: ["high-fidelity audio", "natural vocals", "text to music", "original compositions", "AI instruments", "music generation"],
+    tags: ["udio", "high-fidelity audio", "natural vocals", "text to music", "original compositions", "AI instruments", "music generation"],
     category: "Audio & Music Tools",
     rating: 4.7,
     totalVotes: 5432
+  },
+  {
+    icon: Film,
+    title: "Music Video Maker AI Studio",
+    description: "-Full-Blown Music Video & Music Production Creative Suite- Transform yourself into the star of cinematic-quality music videos with our cutting-edge AI director. Build scene-by-scene visuals where you and even your band are featured in vivid, realistic scenes tied to your music.",
+    emoji: "🎬",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/_vZhs4FoTco?si=oYk_LS_EynMkLliD",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-dynamic-product-advertisement-showcase_TiaF.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg=true/qt=q:98",
+    tags: ["music video creation", "AI-powered effects", "visual synchronization", "cinematic storytelling", "YouTube content", "TikTok videos", "professional editing", "music visualization"],
+    category: "Audio & Music Tools",
+    rating: 4.9,
+    totalVotes: 5847
   },
   {
     icon: Volume2,
