@@ -254,106 +254,28 @@ const TabletMenu = () => {
                     <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${isWeb3Open ? 'rotate-180' : ''}`} />
                   </CollapsibleTrigger>
                   <CollapsibleContent className="mt-2 space-y-2 pl-6 max-h-64 overflow-y-auto pr-1">
-                    <button
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        createTimePortalEffect('https://freename.io/discover/.aiwebtools?ref=olive-ears-obey'); 
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🤖 .aiwebtools
-                    </button>
-                    <button
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        createTimePortalEffect('https://freename.io/discover/worldpeace?ref=olive-ears-obey'); 
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🕊️ .worldpeace
-                    </button>
-                    <button
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        createTimePortalEffect('https://freename.io/discover/aimainframe?ref=olive-ears-obey'); 
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🗄️ .aimainframe
-                    </button>
-                    <button
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        createTimePortalEffect('https://freename.io/discover/worldtrader?ref=olive-ears-obey'); 
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      💹 .worldtrader
-                    </button>
-                    <button
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        createTimePortalEffect('https://freename.io/discover/robotstore?ref=olive-ears-obey'); 
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🛒 .robotstore
-                    </button>
-                    <button
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        createTimePortalEffect('https://freename.io/discover/robotsales?ref=olive-ears-obey'); 
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🦾 .robotsales
-                    </button>
-                    <button
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        createTimePortalEffect('https://freename.io/discover/robotshop?ref=olive-ears-obey'); 
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🛍️ .robotshop
-                    </button>
-                    <button
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        createTimePortalEffect('https://freename.io/discover/aitoolscompany?ref=olive-ears-obey'); 
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🏢 .aitoolscompany
-                    </button>
-                    <button
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        createTimePortalEffect('https://freename.io/discover/worldtrade?ref=olive-ears-obey'); 
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🌐 .worldtrade
-                    </button>
-                    <button
-                      onClick={(e) => { 
-                        e.preventDefault(); 
-                        e.stopPropagation();
-                        createTimePortalEffect('https://freename.io/discover/ai-tools?ref=olive-ears-obey'); 
-                      }}
-                      className="w-full text-left px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm"
-                    >
-                      🧠 .ai-tools
-                    </button>
+                    <div className="text-xs text-cyan-400 mb-2 font-semibold">💰 Financial & Cash Transfer</div>
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/transfermoney'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">💸 .transfermoney</button>
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/transfercoin'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🪙 .transfercoin</button>
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/cointransfer'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">💰 .cointransfer</button>
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/transfercash'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">💵 .transfercash</button>
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/cashtransfer'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">💴 .cashtransfer</button>
+                    
+                    <div className="text-xs text-cyan-400 mt-3 mb-2 font-semibold">🤖 AI & Technology</div>
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/ai-tools?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🧠 .ai-tools</button>
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/.aiwebtools?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🤖 .aiwebtools</button>
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/aimainframe?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🗄️ .aimainframe</button>
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/aitoolscompany?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🏢 .aitoolscompany</button>
+                    
+                    <div className="text-xs text-cyan-400 mt-3 mb-2 font-semibold">🤖 Robotics & Automation</div>
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/robotsales?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🦾 .robotsales</button>
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/robotshop?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🛍️ .robotshop</button>
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/robotstore?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🛒 .robotstore</button>
+                    
+                    <div className="text-xs text-cyan-400 mt-3 mb-2 font-semibold">🌍 Global & World</div>
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/worldpeace?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🕊️ .worldpeace</button>
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/worldtrade?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🌐 .worldtrade</button>
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); createTimePortalEffect('https://freename.io/discover/worldtrader?ref=olive-ears-obey'); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">💹 .worldtrader</button>
                   </CollapsibleContent>
                 </Collapsible>
                 

@@ -288,34 +288,29 @@ const MobileMenu = () => {
                     <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${isWeb3Open ? 'rotate-180' : ''}`} />
                   </CollapsibleTrigger>
 <CollapsibleContent className="mt-2 space-y-2 pl-6 max-h-80 overflow-y-auto pr-1 pb-1">
-  {[...web3DomainsTools]
-    .slice()
-    .sort((a, b) => {
-      const an = a.title.replace(" Domain", "");
-      const bn = b.title.replace(" Domain", "");
-      if (an === ".aiwebtools") return -1;
-      if (bn === ".aiwebtools") return 1;
-      return an.localeCompare(bn, undefined, { sensitivity: "base" });
-    })
-    .map((t, idx) => {
-      const name = t.title.replace(" Domain", "");
-      return (
-        <button
-          key={`${t.title}-${idx}`}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            handleExternalLink(t.directUrl, e);
-          }}
-          className="group relative w-full flex items-center px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm hover-scale"
-        >
-          <span aria-hidden className="pointer-events-none absolute -inset-x-6 top-1/2 -translate-y-1/2 h-10 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent blur-lg opacity-60 group-hover:opacity-90 transition-opacity"></span>
-          <span className="relative z-10 text-lg mr-6">{t.emoji}</span>
-          <span className="relative z-10 font-medium tracking-wide">{name}</span>
-        </button>
-      );
-    })}
-</CollapsibleContent>
+                  <div className="text-xs text-cyan-400 mb-2 font-semibold">💰 Financial & Cash Transfer</div>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/transfermoney", e); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">💸 .transfermoney</button>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/transfercoin", e); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🪙 .transfercoin</button>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/cointransfer", e); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">💰 .cointransfer</button>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/transfercash", e); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">💵 .transfercash</button>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/cashtransfer", e); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">💴 .cashtransfer</button>
+                  
+                  <div className="text-xs text-cyan-400 mt-3 mb-2 font-semibold">🤖 AI & Technology</div>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/ai-tools?ref=olive-ears-obey", e); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🧠 .ai-tools</button>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/.aiwebtools?ref=olive-ears-obey", e); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🤖 .aiwebtools</button>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/aimainframe?ref=olive-ears-obey", e); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🗄️ .aimainframe</button>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/aitoolscompany?ref=olive-ears-obey", e); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🏢 .aitoolscompany</button>
+                  
+                  <div className="text-xs text-cyan-400 mt-3 mb-2 font-semibold">🤖 Robotics & Automation</div>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/robotsales?ref=olive-ears-obey", e); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🦾 .robotsales</button>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/robotshop?ref=olive-ears-obey", e); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🛍️ .robotshop</button>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/robotstore?ref=olive-ears-obey", e); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🛒 .robotstore</button>
+                  
+                  <div className="text-xs text-cyan-400 mt-3 mb-2 font-semibold">🌍 Global & World</div>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/worldpeace?ref=olive-ears-obey", e); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🕊️ .worldpeace</button>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/worldtrade?ref=olive-ears-obey", e); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">🌐 .worldtrade</button>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/worldtrader?ref=olive-ears-obey", e); }} className="w-full text-left px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">💹 .worldtrader</button>
+                </CollapsibleContent>
                 </Collapsible>
                 
                 {/* Terms & Disclaimer Button */}
