@@ -218,5 +218,31 @@ export const videoGenerationTools: Tool[] = [
     category: "Video Generation",
     rating: 4.9,
     totalVotes: 8234
+  },
+  {
+    icon: Video,
+    title: "Movie Maker Studio AI Suite",
+    description: "We proudly present to you Movie Maker Studio which consists of every tool needed for Movie & Motion Picture Production. Consisting of Movie Scripter Writer, Movie Scene Maker, Movie Trailer Poster Maker & more.....we offer you the key and show you the door, unlock your creativity my fellow humans--KB",
+    emoji: "🎬",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://moviemakerstudio.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E&list=TLGGyT65jYe0o6cyODA1MjAyNQ&t",
+    tags: ["movie production", "video creation", "film making", "content creation", "AI studio", "text-to-video"],
+    category: "Video Generation",
+    rating: 4.9,
+    totalVotes: 5678
+  },
+  {
+    icon: Video,
+    title: "Music Video Maker AI Studio",
+    description: "Create stunning music videos with AI. Upload your song and let AI generate a professional-looking video with various styles and effects.",
+    emoji: "🎬",
+    color: "from-red-500 to-pink-600",
+    directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=rBQTUrvHcR8&list=TLGGHKS5WME8OJ8yODA1MjAyNQ",
+    tags: ["music videos", "AI generation", "video effects", "content creation", "entertainment", "text-to-video", "music"],
+    category: "Video Generation",
+    rating: 4.9,
+    totalVotes: 4567
   }
 ];
