@@ -112,5 +112,16 @@ export const web3DomainsTools: Tool[] = [
     tags: ["WEB3", "Domain", "World Trading", "Finance", "Investment"],
     category: "WEB3 Domains",
     rating: 5.0
+  },
+  {
+    icon: Globe,
+    title: ".transfermoney Domain",
+    description: "💸 Revolutionize financial transfers with the .transfermoney domain. Perfect for fintech platforms, money transfer services, and next-generation payment solutions.",
+    emoji: "💸",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://freename.io/discover/transfermoney",
+    tags: ["WEB3", "Domain", "Money Transfer", "Fintech", "Payments"],
+    category: "WEB3 Domains",
+    rating: 5.0
   }
 ];
