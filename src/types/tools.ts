@@ -14,4 +14,5 @@ export interface Tool {
   category?: string;
   rating?: number;
   totalVotes?: number;
+  blockchain?: string;
 }

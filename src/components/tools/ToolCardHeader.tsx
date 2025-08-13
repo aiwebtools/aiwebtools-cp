@@ -62,12 +62,24 @@ const ToolCardHeader = ({
         </CardTitle>
         
         {/* Tool Type Badge */}
-        <div className="flex justify-center">
+        <div className="flex justify-center flex-wrap gap-2">
           {isWeb3Tool ? (
-            <Badge className="text-xs bg-gradient-to-r from-purple-500 to-blue-600 text-white border-0 flex items-center gap-1">
-              <Blocks size={12} />
-              WEB3 DOMAIN
-            </Badge>
+            <>
+              <Badge className="text-xs bg-gradient-to-r from-purple-500 to-blue-600 text-white border-0 flex items-center gap-1">
+                <Blocks size={12} />
+                WEB3 DOMAIN
+              </Badge>
+              {/* Blockchain Indicator */}
+              {tool.blockchain && (
+                <Badge className={`text-xs border-0 flex items-center gap-1 ${
+                  tool.blockchain === 'Solana' 
+                    ? 'bg-gradient-to-r from-green-500 to-green-600 text-white' 
+                    : 'bg-gradient-to-r from-purple-500 to-purple-600 text-white'
+                }`}>
+                  {tool.blockchain}
+                </Badge>
+              )}
+            </>
           ) : isAITool && (
             <Badge className="text-xs bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-0 flex items-center gap-1">
               <Brain size={12} />
