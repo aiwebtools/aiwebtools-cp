@@ -51,9 +51,9 @@ const INTENT_PATTERNS = {
     categories: ['Legal & Government', 'Legal Tools', 'Government & Civic']
   },
   entertainment: {
-    triggers: ['game', 'gaming', 'entertainment', 'fun', 'trivia', 'celebrity', 'movie', 'film', 'music', 'meme', 'comic'],
-    priority: ['Game Design Document / Developer GPT', 'Trivia Night GPT', 'Celebrity Chatline GPT', 'MEME GENERATOR GPT', 'Comic Book Generator GPT'],
-    categories: ['Entertainment & Gaming', 'Gaming Tools', 'Entertainment Tools']
+    triggers: ['game', 'gaming', 'entertainment', 'fun', 'trivia', 'celebrity', 'movie', 'film', 'music', 'meme', 'comic', 'video game', 'videogame', 'game design', 'game development', 'game creation', 'game maker', 'game generator', '3d game', 'ai game', 'seele'],
+    priority: ['Seele Video Game Generator', 'Game Design Document / Developer GPT', 'Trivia Night GPT', 'Celebrity Chatline GPT', 'MEME GENERATOR GPT', 'Comic Book Generator GPT'],
+    categories: ['Entertainment & Gaming', 'Gaming Tools', 'Entertainment Tools', 'GAME DESIGN & DEVELOPMENT']
   }
 };
 
@@ -138,6 +138,27 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return performEnhancedSearch([...businessTools, ...tools.filter(t => !businessTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
   }
   
+  // Game/Entertainment searches - HIGH PRIORITY
+  if (normalizedSearchTerm.includes('game') || normalizedSearchTerm.includes('gaming') || 
+      normalizedSearchTerm.includes('video game') || normalizedSearchTerm.includes('videogame') ||
+      normalizedSearchTerm.includes('game design') || normalizedSearchTerm.includes('game development') ||
+      normalizedSearchTerm.includes('game creation') || normalizedSearchTerm.includes('seele') ||
+      normalizedSearchTerm.includes('entertainment')) {
+    const gameTools = tools.filter(tool => 
+      tool.title.toLowerCase().includes('game') ||
+      tool.title.toLowerCase().includes('seele') ||
+      tool.description.toLowerCase().includes('game') ||
+      tool.category?.toLowerCase().includes('game') ||
+      tool.category?.toLowerCase().includes('entertainment') ||
+      tool.tags?.some(tag => tag.toLowerCase().includes('game')) ||
+      tool.tags?.some(tag => tag.toLowerCase().includes('3d')) ||
+      tool.directUrl?.includes('gamedesigngpt') ||
+      tool.directUrl?.includes('seeles.ai')
+    );
+    console.log(`🎮 Game search prioritized: Found ${gameTools.length} game-related tools`);
+    return performEnhancedSearch([...gameTools, ...tools.filter(t => !gameTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
   // Creative/Media searches
   if (normalizedSearchTerm.includes('creative') || normalizedSearchTerm.includes('media') || 
       normalizedSearchTerm.includes('video') || normalizedSearchTerm.includes('music') ||
