@@ -4,6 +4,7 @@ import { fuzzyMatchTool, phoneticMatch } from "./core/fuzzyMatching";
 import { matchVibeCoding, scoreVibeCoding } from "./matching/vibeCodingMatching";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
 import { matchCodingAgents, scoreCodingAgents } from "./matching/codingMatching";
+import { matchGameTools, scoreGameTools } from "./matching/gameMatching";
 import { matchUserTask, smartTypoCorrection, scoreToolByContext, matchTimeTravel, scoreTimeTravel, matchWriting, scoreWriting } from "./core/intelligentTaskMatching";
 
 // Tools to exclude from search results
@@ -327,6 +328,12 @@ const performEnhancedSearch = (
       if (matchAgents(tool, normalizedSearchTerm)) {
         matched = true;
         score += scoreAgents(tool, normalizedSearchTerm);
+      }
+
+      // SPECIAL MATCHING: Game searches - HIGH PRIORITY for video game tools
+      if (matchGameTools(tool, normalizedSearchTerm)) {
+        matched = true;
+        score += scoreGameTools(tool, normalizedSearchTerm);
       }
 
       // SPECIAL MATCHING: Coding Agent searches
