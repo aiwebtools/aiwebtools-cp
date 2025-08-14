@@ -71,24 +71,11 @@ const HeroSection = () => {
           </h1>
           
           {/* Clear value proposition subtitle */}
-          <div className="mb-6">
+          <div className="mb-8">
             <p className="text-xl md:text-2xl text-cyan-100 font-medium max-w-4xl mx-auto leading-relaxed">
               The largest directory of AI tools for productivity, creativity, and business. 
               <span className="text-cyan-400 font-semibold"> Find the perfect AI tool for any task.</span>
             </p>
-          </div>
-          
-          {/* Quick benefit badges */}
-          <div className="mb-8 flex flex-wrap justify-center gap-3">
-            <span className="px-4 py-2 bg-cyan-500/20 border border-cyan-400/50 rounded-full text-cyan-300 text-sm font-medium">
-              🔍 Instantly Searchable
-            </span>
-            <span className="px-4 py-2 bg-green-500/20 border border-green-400/50 rounded-full text-green-300 text-sm font-medium">
-              ✅ Always Free
-            </span>
-            <span className="px-4 py-2 bg-purple-500/20 border border-purple-400/50 rounded-full text-purple-300 text-sm font-medium">
-              🚀 Updated Daily
-            </span>
           </div>
         </div>
 
