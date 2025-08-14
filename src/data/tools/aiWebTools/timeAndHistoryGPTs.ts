@@ -86,7 +86,7 @@ export const timeAndHistoryGPTs: Tool[] = [
       description: "Explore pivotal moments, figures, and movements in Black history across eras. This time machine GPT immerses you in historically grounded narratives and perspectives to deepen understanding and appreciation of Black heritage.",
       emoji: "⏳",
       color: "from-amber-600 to-red-600",
-      directUrl: "https://chatgpt.com/g/g-686a172232648191b2fe8d0224e5d997-black-history-matters-time-machine",
+      directUrl: "https://blackhistorymattersgpt.lovable.app/?via=aiwebtools",
       tags: ["Black history", "time machine", "time travel", "history exploration", "civil rights", "African American history", "historical education"],
       category: "Time & History",
       rating: 4.7,
