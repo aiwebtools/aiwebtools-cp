@@ -138,25 +138,74 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return performEnhancedSearch([...businessTools, ...tools.filter(t => !businessTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
   }
   
-  // Game/Entertainment searches - HIGH PRIORITY
+  // Game/Entertainment searches - HIGH PRIORITY with expanded video game understanding
   if (normalizedSearchTerm.includes('game') || normalizedSearchTerm.includes('gaming') || 
       normalizedSearchTerm.includes('video game') || normalizedSearchTerm.includes('videogame') ||
       normalizedSearchTerm.includes('game design') || normalizedSearchTerm.includes('game development') ||
-      normalizedSearchTerm.includes('game creation') || normalizedSearchTerm.includes('seele') ||
-      normalizedSearchTerm.includes('entertainment')) {
+      normalizedSearchTerm.includes('game creation') || normalizedSearchTerm.includes('game maker') ||
+      normalizedSearchTerm.includes('game generator') || normalizedSearchTerm.includes('game builder') ||
+      normalizedSearchTerm.includes('seele') || normalizedSearchTerm.includes('rosebud') ||
+      normalizedSearchTerm.includes('entertainment') || normalizedSearchTerm.includes('metaverse') ||
+      (normalizedSearchTerm.includes('video') && normalizedSearchTerm.includes('making')) ||
+      (normalizedSearchTerm.includes('ai') && normalizedSearchTerm.includes('making') && normalizedSearchTerm.includes('video')) ||
+      normalizedSearchTerm.includes('playable') || normalizedSearchTerm.includes('interactive game')) {
+    
     const gameTools = tools.filter(tool => 
+      // Direct title matches
       tool.title.toLowerCase().includes('game') ||
       tool.title.toLowerCase().includes('seele') ||
+      tool.title.toLowerCase().includes('rosebud') ||
+      
+      // Description matches for game creation
       tool.description.toLowerCase().includes('game') ||
+      tool.description.toLowerCase().includes('playable') ||
+      tool.description.toLowerCase().includes('metaverse') ||
+      tool.description.toLowerCase().includes('interactive game') ||
+      tool.description.toLowerCase().includes('3d game') ||
+      tool.description.toLowerCase().includes('video game') ||
+      
+      // Category matches
       tool.category?.toLowerCase().includes('game') ||
       tool.category?.toLowerCase().includes('entertainment') ||
-      tool.tags?.some(tag => tag.toLowerCase().includes('game')) ||
-      tool.tags?.some(tag => tag.toLowerCase().includes('3d')) ||
+      
+      // Tag matches
+      tool.tags?.some(tag => {
+        const lowerTag = tag.toLowerCase();
+        return lowerTag.includes('game') || 
+               lowerTag.includes('3d') || 
+               lowerTag.includes('metaverse') ||
+               lowerTag.includes('interactive') ||
+               lowerTag.includes('playable') ||
+               lowerTag.includes('unity') ||
+               lowerTag.includes('unreal');
+      }) ||
+      
+      // URL matches for specific game tools
       tool.directUrl?.includes('gamedesigngpt') ||
-      tool.directUrl?.includes('seeles.ai')
+      tool.directUrl?.includes('seeles.ai') ||
+      tool.directUrl?.includes('rosebud')
     );
-    console.log(`🎮 Game search prioritized: Found ${gameTools.length} game-related tools`);
-    return performEnhancedSearch([...gameTools, ...tools.filter(t => !gameTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+    
+    // Sort game tools by relevance to video game creation
+    const sortedGameTools = gameTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      // Boost for video game creation tools
+      if (a.title.toLowerCase().includes('seele') || a.title.toLowerCase().includes('video game generator')) scoreA += 1000;
+      if (b.title.toLowerCase().includes('seele') || b.title.toLowerCase().includes('video game generator')) scoreB += 1000;
+      
+      if (a.title.toLowerCase().includes('game design') || a.description.toLowerCase().includes('game development')) scoreA += 800;
+      if (b.title.toLowerCase().includes('game design') || b.description.toLowerCase().includes('game development')) scoreB += 800;
+      
+      if (a.description.toLowerCase().includes('ai') && a.description.toLowerCase().includes('game creation')) scoreA += 700;
+      if (b.description.toLowerCase().includes('ai') && b.description.toLowerCase().includes('game creation')) scoreB += 700;
+      
+      return scoreB - scoreA;
+    });
+    
+    console.log(`🎮 Game search prioritized: Found ${gameTools.length} game-related tools, including:`, 
+                sortedGameTools.slice(0, 3).map(t => t.title));
+    return performEnhancedSearch([...sortedGameTools, ...tools.filter(t => !gameTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
   }
 
   // Creative/Media searches
