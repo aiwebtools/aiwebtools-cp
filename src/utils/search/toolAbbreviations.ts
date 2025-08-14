@@ -122,7 +122,13 @@ export const fuzzyMatches: Record<string, string[]> = {
   'trivia': ['trivia night', 'quiz gpt', 'knowledge game'],
   'veterinarian': ['vet gpt', 'pet care', 'animal doctor'],
   'mixologist': ['bartender', 'cocktail maker', 'drink mixer'],
-  'firefighter': ['fire fighter', 'emergency responder', 'fire safety']
+  'firefighter': ['fire fighter', 'emergency responder', 'fire safety'],
+  'seele': ['seele video game generator', 'video game creator', 'ai game maker'],
+  'gamedesign': ['game design document', 'gdd', 'game development'],
+  'unity': ['unity engine', 'unity3d', 'game engine'],
+  'unreal': ['unreal engine', 'game engine'],
+  'gamemaker': ['game creator', 'game builder', 'game generator'],
+  'videogame': ['video game', 'game creation', 'interactive game']
 };
 
 export const acronymMatches: Record<string, string[]> = {

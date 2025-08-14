@@ -43,6 +43,9 @@ import {
 import { 
   matchNewAITools, scoreNewAITools 
 } from "./matching/newAIToolsMatching";
+import { 
+  matchGameTools, scoreGameTools 
+} from "./matching/gameMatching";
 
 // Enhanced keyword matching for specific tool categories including video generation and chat assistants
 export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean => {
@@ -70,6 +73,7 @@ export const enhancedKeywordMatching = (tool: Tool, searchTerm: string): boolean
   
   // Check all matching functions with AI Web Tools prioritization - CRITICAL FOR SEARCH BAR
   return matchNewAITools(tool, searchTerm) ||
+         matchGameTools(tool, searchTerm) ||
          matchAgents(tool, searchTerm) ||
          matchCodingAgents(tool, searchTerm) ||
          matchWebDesign(tool, searchTerm) ||
@@ -123,9 +127,10 @@ export const enhancedToolScoring = (tool: Tool, searchTerm: string): number => {
   if (realAICompanies.some(company => lowerTitle.includes(company) || lowerDescription.includes(company))) {
     totalScore += 3000;
   }
-  
+   
   // Add scores from all scoring functions with AI Web Tools prioritization - CRITICAL FOR RANKING
   totalScore += scoreNewAITools(tool, searchTerm);
+  totalScore += scoreGameTools(tool, searchTerm);
   totalScore += scoreAgents(tool, searchTerm);
   totalScore += scoreCodingAgents(tool, searchTerm);
   totalScore += scoreWebDesign(tool, searchTerm);
