@@ -28,5 +28,17 @@ export const gameDesignAndDevelopment: Tool[] = [
     category: "COMMUNICATION & COLLABORATION AI TOOLS",
     rating: 4.8,
     totalVotes: 4567
+  },
+  {
+    icon: Gamepad2,
+    title: "Seele Video Game Generator",
+    description: "AI-powered 3D game creation platform that transforms text prompts into playable interactive game worlds. Create and remix 3D games without coding using cutting-edge AI technology backed by Baidu and designed for the metaverse.",
+    emoji: "🎮",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://www.seeles.ai/home?via=aiwebtools",
+    tags: ["3D games", "text to game", "AI game creation", "no coding", "metaverse", "3D worlds"],
+    category: "GAME DESIGN & DEVELOPMENT",
+    rating: 4.6,
+    totalVotes: 1250
   }
 ];
