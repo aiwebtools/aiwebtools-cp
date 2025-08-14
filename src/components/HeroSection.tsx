@@ -8,6 +8,7 @@ import { getCurrentToolCount } from "@/utils/toolCounter";
 const HeroSection = () => {
   const navigate = useNavigate();
   const [currentWord, setCurrentWord] = useState(0);
+  const [showBrandName, setShowBrandName] = useState(false);
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   
   const words = [
@@ -24,11 +25,19 @@ const HeroSection = () => {
     const stats = getCurrentToolCount();
     setToolStats(stats);
     
-    const interval = setInterval(() => {
+    // Animate between tool count and brand name
+    const brandInterval = setInterval(() => {
+      setShowBrandName(prev => !prev);
+    }, 4000); // Switch every 4 seconds
+    
+    const wordInterval = setInterval(() => {
       setCurrentWord((prev) => (prev + 1) % words.length);
     }, 2000);
     
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(brandInterval);
+      clearInterval(wordInterval);
+    };
   }, []);
 
   const handleExploreAITools = () => {
@@ -49,10 +58,23 @@ const HeroSection = () => {
         {/* Main heading with stabilized layout */}
         <div className="mb-6">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            {/* First line - Brand name */}
-            <span className="text-white block mb-3">
-              AI WEB TOOLS
-            </span>
+            {/* First line - Animated between tool count and brand name */}
+            <div className="relative h-20 md:h-24 lg:h-28 mb-3 flex items-center justify-center">
+              <span 
+                className={`absolute text-white transition-all duration-1000 ease-in-out ${
+                  showBrandName ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+                }`}
+              >
+                {toolStats.marketing} TOOLS
+              </span>
+              <span 
+                className={`absolute text-white transition-all duration-1000 ease-in-out ${
+                  showBrandName ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+                }`}
+              >
+                AI WEB TOOLS
+              </span>
+            </div>
             
             {/* Second line with animated word - FIXED width container to prevent jumping */}
             <span className="text-3xl md:text-4xl lg:text-5xl text-white block">
