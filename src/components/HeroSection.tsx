@@ -11,12 +11,12 @@ const HeroSection = () => {
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   
   const words = [
-    "Transform",
-    "Empower", 
-    "Revolutionize",
-    "Accelerate",
-    "Enhance",
-    "Elevate"
+    "Find",
+    "Discover", 
+    "Access",
+    "Explore",
+    "Browse",
+    "Search"
   ];
 
   useEffect(() => {
@@ -49,9 +49,9 @@ const HeroSection = () => {
         {/* Main heading with stabilized layout */}
         <div className="mb-6">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            {/* First line */}
+            {/* First line - clearer value proposition */}
             <span className="text-white block mb-3">
-              AI WEB TOOLS
+              {toolStats.marketing} AI TOOLS
             </span>
             
             {/* Second line with animated word - FIXED width container to prevent jumping */}
@@ -59,29 +59,35 @@ const HeroSection = () => {
               <span 
                 className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow inline-block transitioning-word"
                 style={{ 
-                  width: '280px', // FIXED width for mobile - slightly wider for safety
+                  width: '220px', // Adjusted width for shorter words
                   textAlign: 'center',
                   display: 'inline-block'
                 }}
               >
                 {words[currentWord]}
               </span>
-              <span className="ml-4">Work & Life</span>
+              <span className="ml-4">& Compare</span>
             </span>
           </h1>
           
-          {/* Updated tagline */}
+          {/* Clear value proposition subtitle */}
           <div className="mb-6">
-            <p className="text-sm md:text-base text-cyan-300/80 font-light italic tracking-wide">
-              "Life is but a sacred prompt — a chance to carve your own reality and define a meaning no one else can write but you." 🔑<br />
-              <span className="text-cyan-400/60">— K.B., Founder, AI Web Tools LLC</span>
+            <p className="text-xl md:text-2xl text-cyan-100 font-medium max-w-4xl mx-auto leading-relaxed">
+              The largest directory of AI tools for productivity, creativity, and business. 
+              <span className="text-cyan-400 font-semibold"> Find the perfect AI tool for any task.</span>
             </p>
           </div>
           
-          {/* New tagline - made slightly smaller */}
-          <div className="mb-8">
-            <span className="inline-block px-6 py-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/50 rounded-full text-green-300 font-bold text-base md:text-lg animate-pulse cyber-glow">
-              ✨ NEW AI TOOLS ADDED DAILY ✨
+          {/* Quick benefit badges */}
+          <div className="mb-8 flex flex-wrap justify-center gap-3">
+            <span className="px-4 py-2 bg-cyan-500/20 border border-cyan-400/50 rounded-full text-cyan-300 text-sm font-medium">
+              🔍 Instantly Searchable
+            </span>
+            <span className="px-4 py-2 bg-green-500/20 border border-green-400/50 rounded-full text-green-300 text-sm font-medium">
+              ✅ Always Free
+            </span>
+            <span className="px-4 py-2 bg-purple-500/20 border border-purple-400/50 rounded-full text-purple-300 text-sm font-medium">
+              🚀 Updated Daily
             </span>
           </div>
         </div>
@@ -91,17 +97,26 @@ const HeroSection = () => {
           <GlobalSearchBar />
         </div>
 
-        {/* CTA Button */}
-        <button
-          onClick={handleExploreAITools}
-          className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-lg rounded-full shadow-2xl shadow-cyan-500/40 hover:shadow-cyan-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-cyan-400 hover:border-cyan-300 cyber-glow mb-8"
-        >
-          <span className="flex items-center space-x-3">
-            <Search className="w-6 h-6" />
-            <span>Explore AI Tools</span>
-            <Sparkles className="w-6 h-6 group-hover:animate-spin" />
-          </span>
-        </button>
+        {/* Primary CTA Button */}
+        <div className="mb-6">
+          <button
+            onClick={handleExploreAITools}
+            className="group relative px-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xl rounded-full shadow-2xl shadow-cyan-500/40 hover:shadow-cyan-400/60 transform hover:scale-105 transition-all duration-300 border-2 border-cyan-400 hover:border-cyan-300 cyber-glow"
+          >
+            <span className="flex items-center space-x-3">
+              <Search className="w-7 h-7" />
+              <span>Browse All {toolStats.marketing} AI Tools</span>
+              <Sparkles className="w-7 h-7 group-hover:animate-spin" />
+            </span>
+          </button>
+        </div>
+
+        {/* Secondary CTA - Search hint */}
+        <div className="mb-8">
+          <p className="text-cyan-200/80 text-base">
+            💡 Try searching: "ChatGPT", "image generator", "video editor", or any task
+          </p>
+        </div>
 
         {/* Stats - updated with new verbiage */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
