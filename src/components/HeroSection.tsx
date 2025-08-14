@@ -49,9 +49,9 @@ const HeroSection = () => {
         {/* Main heading with stabilized layout */}
         <div className="mb-6">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            {/* First line - clearer value proposition */}
+            {/* First line - Brand name */}
             <span className="text-white block mb-3">
-              {toolStats.marketing} AI TOOLS
+              AI WEB TOOLS
             </span>
             
             {/* Second line with animated word - FIXED width container to prevent jumping */}
