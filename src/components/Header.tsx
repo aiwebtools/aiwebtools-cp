@@ -29,12 +29,6 @@ const Header = () => {
       <div className="relative container mx-auto px-2 sm:px-4 py-3 sm:py-4 z-10">
         <div className="flex items-center justify-between gap-2 sm:gap-4">
           <Logo />
-          
-          {/* Desktop Search Bar - hidden on mobile/tablet */}
-          <div className="hidden lg:flex flex-1 max-w-md mx-4">
-            <GlobalSearchBar />
-          </div>
-          
           <Navigation />
           <MobileMenu />
           <TabletMenu />
