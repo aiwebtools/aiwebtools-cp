@@ -445,6 +445,7 @@ const featuredGPTs = [
     color: "from-indigo-500 to-purple-600",
     features: ["Expression Generation", "Equation Solving", "Pattern Analysis", "Mathematical Creativity"],
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/FZr-zifwMw4?si=qDtRWKm-8DBmwpZi",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-futuristic-advertisement-for-alg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🔢"
   },
