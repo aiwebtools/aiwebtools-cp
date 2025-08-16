@@ -13,6 +13,7 @@ import ToolsGrid from "@/components/tools/ToolsGrid";
 import { Button } from "@/components/ui/button";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { allTools } from "@/data/toolsData";
+import FloatingBookAd from "@/components/FloatingBookAd";
 
 const Index = () => {
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
@@ -160,6 +161,7 @@ const Index = () => {
         )}
         
         <SpecialServices />
+        <FloatingBookAd />
         <ScrollToTop />
         <Footer />
       </div>
