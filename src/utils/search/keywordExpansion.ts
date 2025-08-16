@@ -282,6 +282,139 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   expandedKeywords.add(searchTerm.toLowerCase().trim());
   expandedKeywords.add(lowerSearchTerm);
   phoneticMatches.forEach(match => expandedKeywords.add(match));
+
+  // DEEPFAKE AND VOICE CLONING SEARCH EXPANSION - HIGH PRIORITY
+  const isDeepfakeOrClone = 
+    lowerSearchTerm.includes('deep fake') || 
+    lowerSearchTerm.includes('deepfake') ||
+    lowerSearchTerm.includes('deep-fake') ||
+    lowerSearchTerm.includes('clone') ||
+    lowerSearchTerm.includes('cloning') ||
+    lowerSearchTerm.includes('voice clone') ||
+    lowerSearchTerm.includes('voice cloning') ||
+    lowerSearchTerm.includes('voice synthesis') ||
+    lowerSearchTerm.includes('voice generation') ||
+    lowerSearchTerm.includes('voice mimicry') ||
+    lowerSearchTerm.includes('voice replica') ||
+    lowerSearchTerm.includes('voice copy') ||
+    lowerSearchTerm.includes('fake voice') ||
+    lowerSearchTerm.includes('ai voice') ||
+    lowerSearchTerm.includes('voice ai') ||
+    lowerSearchTerm.includes('speech synthesis') ||
+    lowerSearchTerm.includes('speech generation') ||
+    lowerSearchTerm.includes('text to speech') ||
+    lowerSearchTerm.includes('tts') ||
+    lowerSearchTerm.includes('avatar') ||
+    lowerSearchTerm.includes('digital avatar') ||
+    lowerSearchTerm.includes('ai avatar') ||
+    lowerSearchTerm.includes('digital person') ||
+    lowerSearchTerm.includes('virtual person') ||
+    lowerSearchTerm.includes('talking head') ||
+    lowerSearchTerm.includes('face swap') ||
+    lowerSearchTerm.includes('face generation') ||
+    lowerSearchTerm.includes('persona') ||
+    lowerSearchTerm.includes('digital twin') ||
+    lowerSearchTerm.includes('virtual identity') ||
+    lowerSearchTerm === 'clone' ||
+    lowerSearchTerm === 'deepfake' ||
+    lowerSearchTerm === 'fake you' ||
+    lowerSearchTerm === 'heygen' ||
+    lowerSearchTerm === 'hey gen' ||
+    lowerSearchTerm === '11 labs' ||
+    lowerSearchTerm === 'eleven labs' ||
+    lowerSearchTerm === 'elevenlabs' ||
+    lowerSearchTerm === 'creatify';
+
+  if (isDeepfakeOrClone) {
+    console.log(`🎭 DEEPFAKE/CLONE SEARCH DETECTED for: "${searchTerm}"`);
+    
+    // Add specific tools and keywords for deepfake/clone searches
+    const deepfakeKeywords = [
+      'heygen',
+      'hey gen',
+      'eleven labs',
+      '11 labs',
+      'elevenlabs',
+      'fake you',
+      'fakeyou',
+      'creatify',
+      'synthesia',
+      'runway',
+      'runway ml',
+      'deepfake',
+      'deep fake',
+      'voice clone',
+      'voice cloning',
+      'voice synthesis',
+      'voice generation',
+      'voice mimicry',
+      'ai voice',
+      'voice ai',
+      'speech synthesis',
+      'text to speech',
+      'tts',
+      'avatar generation',
+      'digital avatar',
+      'ai avatar',
+      'talking avatar',
+      'video avatar',
+      'persona creation',
+      'digital person',
+      'virtual person',
+      'face swap',
+      'face generation',
+      'digital twin',
+      'voice replica',
+      'speech generation',
+      'ai speech',
+      'synthetic voice',
+      'artificial voice',
+      'clone voice',
+      'mimic voice',
+      'replicate voice',
+      'duplicate voice',
+      'copy voice',
+      'voice duplication',
+      'voice replication',
+      'talking head',
+      'lip sync',
+      'lipsync',
+      'video synthesis',
+      'personalized video',
+      'custom avatar',
+      'virtual presenter',
+      'ai presenter',
+      'digital spokesperson',
+      'voice over',
+      'voiceover',
+      'narration',
+      'ai narration',
+      'synthetic speech',
+      'artificial speech',
+      'generated voice',
+      'created voice',
+      'made voice',
+      'fake voice',
+      'false voice',
+      'imitation voice',
+      'simulated voice',
+      'virtual voice',
+      'computer voice',
+      'robot voice',
+      'machine voice',
+      'automated voice',
+      'celebrity voice',
+      'famous voice',
+      'personality voice',
+      'character voice',
+      'actor voice',
+      'actress voice'
+    ];
+    
+    deepfakeKeywords.forEach(keyword => expandedKeywords.add(keyword));
+    
+    return Array.from(expandedKeywords);
+  }
   
   // TIME TRAVEL SEARCH EXPANSION - ABSOLUTE HIGHEST PRIORITY
   // Enhanced detection for "back to the future" and all variations
