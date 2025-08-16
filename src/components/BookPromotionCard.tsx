@@ -1,0 +1,81 @@
+import { BookOpen, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const BookPromotionCard = () => {
+  const handleBuyBook = () => {
+    window.open("https://www.amazon.com/Gospel-Deployable-Robots-Instructions-www-AiWebTools-Ai-ebook/dp/B0DT419F2W?dplnkId=21c79e26-79fa-4837-9c84-4aebe9053749", "_blank");
+  };
+
+  return (
+    <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
+      <div className="container mx-auto px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-gradient-to-r from-purple-900/80 to-blue-900/80 backdrop-blur-sm border border-purple-500/30 rounded-2xl overflow-hidden shadow-2xl">
+            <div className="flex flex-col lg:flex-row items-center">
+              {/* Book Visual */}
+              <div className="lg:w-1/3 p-8 flex justify-center">
+                <div className="relative">
+                  <div className="w-48 h-64 bg-gradient-to-b from-yellow-400 via-orange-500 to-red-600 rounded-lg shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                    <div className="p-4 text-center h-full flex flex-col justify-between">
+                      <div>
+                        <BookOpen className="text-white mx-auto mb-2" size={32} />
+                        <h3 className="text-white font-bold text-lg leading-tight">The Gospel of</h3>
+                        <h3 className="text-white font-bold text-xl leading-tight">Deployable Robots</h3>
+                      </div>
+                      <div className="text-white text-sm">
+                        By AIWebTools.AI
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute -inset-2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg blur-xl -z-10"></div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="lg:w-2/3 p-8">
+                <div className="text-center lg:text-left">
+                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
+                      The Gospel of Deployable Robots
+                    </span>
+                  </h2>
+                  
+                  <p className="text-purple-200 text-lg mb-4">
+                    By <span className="text-cyan-400 font-semibold">AIWebTools.AI</span>
+                  </p>
+                  
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center justify-center lg:justify-start gap-2 text-purple-300">
+                      <span className="text-cyan-400">🤖</span>
+                      <span>Over 60 Deployable Robots & Key AI Insights</span>
+                    </div>
+                    <div className="flex items-center justify-center lg:justify-start gap-2 text-purple-300">
+                      <span className="text-cyan-400">⚡</span>
+                      <span>Put you ahead of the game with cutting-edge AI</span>
+                    </div>
+                    <div className="flex items-center justify-center lg:justify-start gap-2 text-purple-300">
+                      <span className="text-cyan-400">📋</span>
+                      <span>Copy & paste ready prompts for personal AI tool deployment</span>
+                    </div>
+                  </div>
+
+                  <Button
+                    onClick={handleBuyBook}
+                    size="lg"
+                    className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105"
+                  >
+                    <BookOpen className="mr-2" size={20} />
+                    📖 Buy on Amazon
+                    <ExternalLink className="ml-2" size={16} />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default BookPromotionCard;
