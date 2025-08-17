@@ -340,6 +340,11 @@ const TabletMenu = () => {
                   <Download className="w-4 h-4 mr-2" />
                   Download ALL AI Tools (CSV)
                 </DropdownMenuItem>
+                
+                {/* Clone Website Button */}
+                <DropdownMenuItem onClick={(e) => { e.preventDefault(); createTimePortalEffect('https://clone-me-and-make-your-own-aiwebtools.lovable.app/?via=aiwebtools'); }} className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700 font-bold rounded my-2 gold-glow">
+                  🚀 CLONE THE AIWEBTOOLS.AI WEBSITE
+                </DropdownMenuItem>
               </div>
             </div>
           </DropdownMenuContent>
