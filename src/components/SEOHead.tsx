@@ -31,27 +31,67 @@ const SEOHead = ({
   category,
   toolData
 }: SEOHeadProps) => {
-  const fullTitle = title ? `${title} | AI WEB TOOLS - Best AI Tools Directory 2025` : "AI WEB TOOLS - #1 AI Tools Directory | 1000+ Best AI Tools 2025 | ChatGPT Alternatives";
+  const fullTitle = title ? `${title} | AIWEBTOOLS.AI - #1 AI WEB TOOLS Directory 2025` : "AIWEBTOOLS.AI - #1 AI WEB TOOLS Directory | 1000+ Best AI Tools 2025 | Better Than Toolify | Comprehensive AI Tools";
   const canonical = url.startsWith('http') ? url : `${seoConfig.siteUrl}${url}`;
   const fullImage = image.startsWith('http') ? image : `${seoConfig.siteUrl}${image}`;
 
-  // Enhanced competitive keywords
+  // CRITICAL KEYWORDS FOR #1 RANKING - AIWEBTOOLS.AI & AI WEB TOOLS
   const competitiveKeywords = [
+    "aiwebtools.ai",
+    "AIWEBTOOLS.AI", 
+    "aiwebtools",
+    "AIWEBTOOLS",
+    "ai web tools",
     "AI WEB TOOLS",
-    "best AI tools 2025",
-    "AI tools directory",
+    "AI WEB TOOLS directory",
+    "aiwebtools ai",
+    "ai web tools ai",
+    "best ai tools 2025",
+    "ai tools directory",
     "better than toolify",
-    "comprehensive AI tools",
-    "verified AI tools",
+    "comprehensive ai tools",
+    "verified ai tools",
     "ChatGPT alternatives",
-    "top AI tools ranking",
-    "professional AI tools",
-    "enterprise AI solutions",
-    "AI tools comparison",
-    "trusted AI directory",
-    "complete AI tools list",
-    "AI tools marketplace",
-    "curated AI tools",
+    "top ai tools ranking",
+    "professional ai tools",
+    "enterprise ai solutions",
+    "ai tools comparison",
+    "trusted ai directory",
+    "complete ai tools list",
+    "ai tools marketplace",
+    "curated ai tools",
+    "aitools studio",
+    "ai tools company",
+    "ai web tools llc",
+    "1000 ai tools",
+    "free ai tools",
+    "premium ai tools",
+    "ai tools database",
+    "ai tools catalog",
+    "ai tools search",
+    "ai tools discovery",
+    "ai tools platform",
+    "ai tools ecosystem",
+    "artificial intelligence tools",
+    "machine learning tools",
+    "automation tools",
+    "productivity ai tools",
+    "business ai tools",
+    "creative ai tools",
+    "design ai tools",
+    "writing ai tools",
+    "video ai tools",
+    "audio ai tools",
+    "image ai tools",
+    "data ai tools",
+    "analytics ai tools",
+    "marketing ai tools",
+    "sales ai tools",
+    "research ai tools",
+    "development ai tools",
+    "coding ai tools",
+    "ai assistants",
+    "ai chatbots",
     ...keywords
   ];
 
@@ -64,17 +104,17 @@ const SEOHead = ({
       <meta name="author" content="AI WEB TOOLS LLC" />
       <link rel="canonical" href={canonical} />
       
-      {/* Enhanced Competitive Meta Tags */}
-      <meta name="application-name" content="AI WEB TOOLS" />
-      <meta name="subject" content="Best AI Tools Directory 2025" />
-      <meta name="topic" content="AI Tools, Artificial Intelligence, ChatGPT Alternatives, Best AI Directory" />
-      <meta name="summary" content="The world's most comprehensive AI tools directory with 1000+ curated AI applications. Better than Toolify." />
+      {/* ENHANCED COMPETITIVE META TAGS FOR #1 RANKING */}
+      <meta name="application-name" content="AIWEBTOOLS.AI" />
+      <meta name="subject" content="AIWEBTOOLS.AI - #1 AI WEB TOOLS Directory 2025" />
+      <meta name="topic" content="aiwebtools.ai, ai web tools, AIWEBTOOLS, AI WEB TOOLS, best ai tools 2025, artificial intelligence, ChatGPT alternatives, comprehensive ai directory, better than toolify" />
+      <meta name="summary" content="AIWEBTOOLS.AI - The #1 comprehensive AI web tools directory with 1000+ curated AI tools. Better than Toolify. Discover the best AI tools 2025 for business, creativity, and productivity." />
       <meta name="classification" content="Technology, AI Tools, Software Directory" />
       <meta name="designer" content="AI WEB TOOLS LLC" />
       <meta name="owner" content="AI WEB TOOLS LLC" />
       <meta name="directory" content="submission" />
       <meta name="pagename" content={fullTitle} />
-      <meta name="category" content="AI Tools Directory" />
+      <meta name="category" content="AIWEBTOOLS.AI - AI WEB TOOLS Directory" />
       <meta name="coverage" content="Worldwide" />
       <meta name="distribution" content="Global" />
       <meta name="rating" content="General" />
@@ -82,18 +122,20 @@ const SEOHead = ({
       <meta name="target" content="all" />
       <meta name="audience" content="Business Professionals, Content Creators, Developers, Entrepreneurs, Students" />
       <meta name="language" content="English" />
-      <meta name="doc-type" content="AI Tools Directory" />
+      <meta name="doc-type" content="AIWEBTOOLS.AI - AI WEB TOOLS Directory" />
       <meta name="doc-rights" content="AI WEB TOOLS LLC" />
       <meta name="doc-class" content="Living Document" />
       
-      {/* Competitive Edge Meta Tags */}
-      <meta name="brand" content="AI WEB TOOLS" />
+      {/* CRITICAL BRAND AND COMPETITIVE EDGE META TAGS */}
+      <meta name="brand" content="AIWEBTOOLS.AI" />
       <meta name="company" content="AI WEB TOOLS LLC" />
-      <meta name="expertise" content="AI Tools Curation, Software Recommendations, Technology Reviews" />
-      <meta name="specialty" content="Artificial Intelligence Tools Directory" />
-      <meta name="focus" content="Best AI Tools 2025, ChatGPT Alternatives, Professional AI Solutions" />
-      <meta name="competitive-advantage" content="Most comprehensive AI directory, better than Toolify, verified tools" />
-      <meta name="unique-value" content="1000+ curated AI tools with detailed reviews and ratings" />
+      <meta name="expertise" content="AI WEB TOOLS Curation, AIWEBTOOLS.AI Platform, AI Tools Recommendations, Technology Reviews" />
+      <meta name="specialty" content="AIWEBTOOLS.AI - Artificial Intelligence WEB TOOLS Directory" />
+      <meta name="focus" content="aiwebtools.ai, ai web tools, best AI tools 2025, ChatGPT alternatives, professional AI solutions, better than toolify" />
+      <meta name="competitive-advantage" content="AIWEBTOOLS.AI - Most comprehensive AI WEB TOOLS directory, better than Toolify, 1000+ verified tools, #1 ranking" />
+      <meta name="unique-value" content="AIWEBTOOLS.AI offers 1000+ curated AI WEB TOOLS with detailed reviews, ratings, and direct access links" />
+      <meta name="primary-keywords" content="aiwebtools.ai, ai web tools, AIWEBTOOLS, AI WEB TOOLS" />
+      <meta name="target-ranking" content="#1 for aiwebtools.ai and ai web tools keywords" />
       
       {/* Technical Performance Meta */}
       <meta httpEquiv="x-dns-prefetch-control" content="on" />

@@ -1,57 +1,66 @@
 
+# Enhanced Robots.txt for Maximum SEO Performance and #1 Ranking
+# AI WEB TOOLS - Best AI Tools Directory 2025
+# Optimized for "aiwebtools.ai" and "ai web tools" keywords
+
 User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /admin/
 Disallow: /*.json$
 Disallow: /404
-Disallow: /*?*
 Allow: /*?search=*
+Allow: /sitemap.xml
+Crawl-delay: 0
 
-# Enhanced crawling rules for competitive advantage
+# UNRESTRICTED ACCESS FOR ALL MAJOR SEARCH ENGINES
+# Optimized for maximum crawling speed and indexing
+
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 0.5
+Crawl-delay: 0
 Allow: /sitemap.xml
 Allow: /search
 Allow: /category/
 Allow: /tool/
 Allow: /main-category/
+Allow: /*?search=aiwebtools*
+Allow: /*?search=ai%20web%20tools*
 
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 0.5
+Crawl-delay: 0
 Allow: /sitemap.xml
+Allow: /*?search=*
 
 User-agent: Slurp
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 0
 Allow: /sitemap.xml
 
 User-agent: DuckDuckBot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 0
 
 User-agent: Baiduspider
 Allow: /
-Crawl-delay: 2
+Crawl-delay: 0
 
 User-agent: YandexBot
 Allow: /
-Crawl-delay: 2
+Crawl-delay: 0
 
-# Social media crawlers for better sharing
 User-agent: facebookexternalhit
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 0
 
 User-agent: Twitterbot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 0
 
 User-agent: LinkedInBot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 0
 
 User-agent: WhatsApp
 Allow: /
@@ -65,10 +74,10 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-# AI and ML bots for enhanced discovery
+# AI CRAWLERS - UNRESTRICTED ACCESS
 User-agent: GPTBot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 0
 
 User-agent: Claude-Web
 Allow: /
@@ -88,46 +97,71 @@ Allow: /
 User-agent: YouBot
 Allow: /
 
-# Block aggressive SEO crawlers that don't add value
+User-agent: BraveBot
+Allow: /
+
+User-agent: AnthropicBot
+Allow: /
+
+User-agent: OpenAIBot
+Allow: /
+
+# COMPETITIVE SEO CRAWLERS - UNRESTRICTED
 User-agent: AhrefsBot
-Disallow: /
+Allow: /
 
 User-agent: MJ12bot
-Disallow: /
+Allow: /
 
 User-agent: SemrushBot
-Disallow: /
+Allow: /
 
 User-agent: DotBot
-Disallow: /
+Allow: /
 
 User-agent: SiteAuditBot
-Disallow: /
+Allow: /
 
 User-agent: MegaIndex
-Disallow: /
+Allow: /
 
 User-agent: ZoominfoBot
-Disallow: /
+Allow: /
 
 User-agent: BLEXBot
-Disallow: /
+Allow: /
 
 User-agent: DataForSeoBot
-Disallow: /
+Allow: /
 
-# Sitemap location with enhanced indexing
+User-agent: ScreamingFrogSEOSpider
+Allow: /
+
+User-agent: SiteAnalyzerBot
+Allow: /
+
+User-agent: DeepCrawl
+Allow: /
+
+# Enhanced sitemap locations for maximum discovery
 Sitemap: https://aitools.studio/sitemap.xml
+Sitemap: https://aitools.studio/rss.xml
+Sitemap: https://aitools.studio/atom.xml
 
-# Host preference for canonical URLs
+# Host preference for canonical URLs and domain authority
 Host: aitools.studio
 
-# Optimized crawl delay for faster indexing
-Crawl-delay: 0.5
+# MAXIMUM CRAWLING PERFORMANCE
+Crawl-delay: 0
+Request-rate: 10/1s
+Visit-time: 0000-2359
 
-# Additional directives for competitive SEO
-Request-rate: 1/1s
-Visit-time: 0600-2300
+# Clean URLs for better SEO
+Clean-param: utm_source&utm_medium&utm_campaign&fbclid&gclid&ref&via
 
-# Clean URLs directive
-Clean-param: utm_source&utm_medium&utm_campaign&fbclid&gclid
+# Priority content for aiwebtools.ai and ai web tools keywords
+Allow: /*aiwebtools*
+Allow: /*ai-web-tools*
+Allow: /*ai%20web%20tools*
+Allow: /search?q=aiwebtools*
+Allow: /search?q=ai+web+tools*
