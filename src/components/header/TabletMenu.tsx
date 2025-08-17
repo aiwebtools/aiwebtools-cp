@@ -17,6 +17,7 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/component
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import Logo from "./Logo";
 
 const TabletMenu = () => {
   const navigate = useNavigate();
@@ -118,9 +119,11 @@ const TabletMenu = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[400px] bg-black/95 shadow-xl border border-cyan-500/30 backdrop-blur-md max-h-[80vh] overflow-hidden">
             <div className="p-4">
-              {/* Header */}
-              <div className="text-center mb-4">
-                <h3 className="text-xl font-bold text-cyan-400 mb-1">🎯 AI Web Tools</h3>
+              {/* Header with Logo */}
+              <div className="text-center mb-4 border-b border-cyan-500/30 pb-4">
+                <div className="flex justify-center mb-2">
+                  <Logo />
+                </div>
                 <p className="text-sm text-cyan-200">Navigate our platform</p>
               </div>
 

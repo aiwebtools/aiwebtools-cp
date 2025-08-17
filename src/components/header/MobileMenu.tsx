@@ -19,6 +19,7 @@ import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
+import Logo from "./Logo";
 
 const MobileMenu = () => {
   const navigate = useNavigate();
@@ -146,9 +147,11 @@ const MobileMenu = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[95vw] max-w-[380px] bg-black/95 shadow-xl border border-cyan-500/30 backdrop-blur-md max-h-[85vh] overflow-y-auto mx-2 z-[60]">
             <div className="p-3">
-              {/* Header */}
-              <div className="text-center mb-4">
-                <h3 className="text-lg font-bold text-cyan-400 mb-1">🎯 AI Web Tools</h3>
+              {/* Header with Logo */}
+              <div className="text-center mb-4 border-b border-cyan-500/30 pb-4">
+                <div className="flex justify-center mb-2">
+                  <Logo />
+                </div>
                 <p className="text-xs text-cyan-200">Navigate our platform</p>
               </div>
 
