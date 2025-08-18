@@ -125,6 +125,10 @@ import { moreRealAITools } from './tools/moreRealAITools';
 // Import historical and cultural tools
 import { historicalAndCultural } from './tools/historicalAndCultural';
 
+// Import new 2025 marketing and video tools
+import { newMarketingTools2025 } from './tools/newMarketingTools2025';
+import { newVideoMultimediaTools2025 } from './tools/newVideoMultimediaTools2025';
+
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
@@ -245,6 +249,10 @@ export const getAllToolCategories = (): Tool[] => {
     
     // NEWEST: More real AI tools (100 additional tools)
     ...moreRealAITools,
+    
+    // NEW 2025: Marketing and Video Multimedia Tools
+    ...newMarketingTools2025,
+    ...newVideoMultimediaTools2025,
     
     // Historical and Cultural tools
     ...historicalAndCultural

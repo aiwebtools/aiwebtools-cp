@@ -93,12 +93,12 @@ const Index = () => {
                 <iframe
                   ref={mainVideoRef}
                   className="absolute top-0 left-0 w-full h-full rounded-xl border border-cyan-500/30"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&loop=1&playlist=4zflGSSuBcA&hd=1&vq=hd1080&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&autohide=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark"
+                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=1&loop=1&playlist=4zflGSSuBcA&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark&quality=hd720"
                   title="AI Web Tools Featured Video"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                  loading="eager"
+                  loading="lazy"
                 ></iframe>
               </div>
             </div>

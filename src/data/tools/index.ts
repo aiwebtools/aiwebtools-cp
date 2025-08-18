@@ -121,3 +121,7 @@ export { additionalRealAITools } from './additionalRealAITools';
 
 // Export more real AI tools (newest addition)
 export { moreRealAITools } from './moreRealAITools';
+
+// Export new 2025 marketing and video tools
+export { newMarketingTools2025 } from './newMarketingTools2025';
+export { newVideoMultimediaTools2025 } from './newVideoMultimediaTools2025';
