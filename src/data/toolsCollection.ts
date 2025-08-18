@@ -129,6 +129,11 @@ import { historicalAndCultural } from './tools/historicalAndCultural';
 import { newMarketingTools2025 } from './tools/newMarketingTools2025';
 import { newVideoMultimediaTools2025 } from './tools/newVideoMultimediaTools2025';
 
+// Import additional 2025 tools
+import { additionalVideoTools2025 } from './tools/additionalVideoTools2025';
+import { additionalAudioTools2025 } from './tools/additionalAudioTools2025';
+import { creativeExperimentalTools2025 } from './tools/creativeExperimentalTools2025';
+
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
@@ -253,6 +258,11 @@ export const getAllToolCategories = (): Tool[] => {
     // NEW 2025: Marketing and Video Multimedia Tools
     ...newMarketingTools2025,
     ...newVideoMultimediaTools2025,
+    
+    // ADDITIONAL 2025: Video, Audio, and Creative Tools
+    ...additionalVideoTools2025,
+    ...additionalAudioTools2025,
+    ...creativeExperimentalTools2025,
     
     // Historical and Cultural tools
     ...historicalAndCultural

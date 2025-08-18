@@ -125,3 +125,8 @@ export { moreRealAITools } from './moreRealAITools';
 // Export new 2025 marketing and video tools
 export { newMarketingTools2025 } from './newMarketingTools2025';
 export { newVideoMultimediaTools2025 } from './newVideoMultimediaTools2025';
+
+// Export additional 2025 tools
+export { additionalVideoTools2025 } from './additionalVideoTools2025';
+export { additionalAudioTools2025 } from './additionalAudioTools2025';
+export { creativeExperimentalTools2025 } from './creativeExperimentalTools2025';
