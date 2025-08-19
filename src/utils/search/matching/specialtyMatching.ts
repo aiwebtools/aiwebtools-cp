@@ -238,3 +238,64 @@ export const scoreTravel = (tool: Tool, searchTerm: string): number => {
   
   return score;
 };
+
+// Spiritual/Mystical specific matching
+export const matchSpiritual = (tool: Tool, searchTerm: string): boolean => {
+  const lowerSearchTerm = searchTerm.toLowerCase().trim();
+  const spiritualKeywords = [
+    'soul', 'map', 'gematria', 'numerology', 'astrology', 'spiritual', 'mystical',
+    'essence', 'blueprint', 'soul mapping', 'divine', 'cosmic', 'metaphysical',
+    'energy', 'chakra', 'meditation', 'enlightenment', 'wisdom', 'philosophy',
+    'tarot', 'crystals', 'healing', 'consciousness', 'manifestation'
+  ];
+  
+  const searchableText = [
+    tool.title,
+    tool.description,
+    ...(tool.tags || [])
+  ].join(' ').toLowerCase();
+  
+  return spiritualKeywords.some(keyword => 
+    lowerSearchTerm.includes(keyword) || searchableText.includes(keyword)
+  );
+};
+
+export const scoreSpiritual = (tool: Tool, searchTerm: string): number => {
+  const lowerSearchTerm = searchTerm.toLowerCase().trim();
+  let score = 0;
+  
+  // Check if this is the Soul Map GPT specifically
+  if (tool.title.toLowerCase().includes('soul map') || 
+      tool.title.toLowerCase().includes('soul scan') ||
+      tool.description.toLowerCase().includes('gematria')) {
+    score += 25000; // Very high priority for spiritual searches
+  }
+  
+  // High-value spiritual keywords
+  const highValueKeywords = ['soul', 'gematria', 'numerology', 'astrology', 'spiritual', 'soul mapping'];
+  for (const keyword of highValueKeywords) {
+    if (lowerSearchTerm.includes(keyword)) {
+      if (tool.title.toLowerCase().includes(keyword)) {
+        score += 8000;
+      }
+      if (tool.description.toLowerCase().includes(keyword)) {
+        score += 5000;
+      }
+    }
+  }
+  
+  // Medium-value spiritual keywords
+  const mediumValueKeywords = ['mystical', 'essence', 'blueprint', 'divine', 'cosmic', 'metaphysical'];
+  for (const keyword of mediumValueKeywords) {
+    if (lowerSearchTerm.includes(keyword)) {
+      if (tool.title.toLowerCase().includes(keyword)) {
+        score += 4000;
+      }
+      if (tool.description.toLowerCase().includes(keyword)) {
+        score += 2500;
+      }
+    }
+  }
+  
+  return score;
+};

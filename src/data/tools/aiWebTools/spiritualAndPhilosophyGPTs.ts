@@ -1,8 +1,21 @@
 
 import { Tool } from "@/types/tools";
-import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen } from "lucide-react";
+import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, MapPin } from "lucide-react";
 
 export const spiritualAndPhilosophyGPTs: Tool[] = [
+  {
+    icon: MapPin,
+    title: "Soul Map GPT",
+    description: "Soul Map GPT uses Gematria, Numerology, and Soul Mapping based on birthplace, time, and name to perform advanced calculations and read the stars based on your essence. Discover your spiritual blueprint through ancient wisdom and mystical mathematics.",
+    emoji: "🔮",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-soul-scan-gpt-a-way-to-find-your-way-home/?via=aiwebtools",
+    videoUrl: "https://youtu.be/d3uaQz7oRAs?si=erT_Mgpw4vfS5b8k",
+    tags: ["gematria", "numerology", "soul mapping", "astrology", "spiritual blueprint", "essence reading", "mystical mathematics"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 2847
+  },
   {
     icon: Heart,
     title: "🕊️Mary Magdalene GPT",

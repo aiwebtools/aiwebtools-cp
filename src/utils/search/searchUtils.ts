@@ -6,6 +6,7 @@ import { matchAgents, scoreAgents } from "./matching/agentMatching";
 import { matchCodingAgents, scoreCodingAgents } from "./matching/codingMatching";
 import { matchGameTools, scoreGameTools } from "./matching/gameMatching";
 import { matchUserTask, smartTypoCorrection, scoreToolByContext, matchTimeTravel, scoreTimeTravel, matchWriting, scoreWriting } from "./core/intelligentTaskMatching";
+import { matchSpiritual, scoreSpiritual } from "./matching/specialtyMatching";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -55,6 +56,11 @@ const INTENT_PATTERNS = {
     triggers: ['game', 'gaming', 'entertainment', 'fun', 'trivia', 'celebrity', 'movie', 'film', 'music', 'meme', 'comic', 'video game', 'videogame', 'game design', 'game development', 'game creation', 'game maker', 'game generator', '3d game', 'ai game', 'seele'],
     priority: ['Seele Video Game Generator', 'Game Design Document / Developer GPT', 'Trivia Night GPT', 'Celebrity Chatline GPT', 'MEME GENERATOR GPT', 'Comic Book Generator GPT'],
     categories: ['Entertainment & Gaming', 'Gaming Tools', 'Entertainment Tools', 'GAME DESIGN & DEVELOPMENT']
+  },
+  spiritual: {
+    triggers: ['soul', 'spirit', 'spiritual', 'gematria', 'numerology', 'astrology', 'mystical', 'divine', 'cosmic', 'metaphysical', 'essence', 'soul map', 'soul mapping', 'blueprint', 'chakra', 'meditation', 'enlightenment', 'wisdom', 'philosophy', 'tarot', 'crystals', 'healing', 'consciousness', 'manifestation'],
+    priority: ['Soul Map GPT', 'ALAN WATTS GPT', '🕊️Mary Magdalene GPT', 'TALK TO THE GODS GPT', 'Sophia Aeterna AI', 'Interpretis 🕰️'],
+    categories: ['Spirituality & Philosophy', 'Mystical Tools', 'Personal Development', 'Philosophy']
   }
 };
 
@@ -340,6 +346,12 @@ const performEnhancedSearch = (
       if (matchCodingAgents(tool, normalizedSearchTerm)) {
         matched = true;
         score += scoreCodingAgents(tool, normalizedSearchTerm);
+      }
+
+      // SPECIAL MATCHING: Spiritual/Mystical searches - HIGH PRIORITY
+      if (matchSpiritual(tool, normalizedSearchTerm)) {
+        matched = true;
+        score += scoreSpiritual(tool, normalizedSearchTerm);
       }
 
       // HIGHEST PRIORITY: Exact title match

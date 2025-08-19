@@ -116,6 +116,9 @@ import { comprehensiveAITools } from './tools/comprehensiveAITools';
 // Import the new specialized GPTs from AI Web Tools
 import { newSpecializedGPTs } from './tools/aiWebTools/newSpecializedGPTs';
 
+// Import ALL AI Web Tools GPTs - CRITICAL for full indexing
+import { aiWebToolsGPTs } from './tools/aiWebToolsGPTs';
+
 // Import the new additional real AI tools
 import { additionalRealAITools } from './tools/additionalRealAITools';
 
@@ -248,6 +251,9 @@ export const getAllToolCategories = (): Tool[] => {
     
     // NEW: Specialized GPTs added by user request
     ...newSpecializedGPTs,
+    
+    // CRITICAL: ALL AI Web Tools GPTs including Soul Map GPT
+    ...aiWebToolsGPTs,
     
     // NEW: Additional real AI tools (100 more tools)
     ...additionalRealAITools,
