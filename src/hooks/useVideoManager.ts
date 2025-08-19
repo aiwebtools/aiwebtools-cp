@@ -16,8 +16,8 @@ class VideoManager {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Video is visible, play it
-            this.playVideo(iframe);
+            // Video is visible, play it immediately
+            setTimeout(() => this.playVideo(iframe), 100); // Small delay for smoother loading
             this.currentVideo = iframe;
           } else {
             // Video is not visible, pause it
@@ -29,8 +29,8 @@ class VideoManager {
         });
       },
       {
-        threshold: 0.5, // Play when 50% visible
-        rootMargin: '-10px' // Add some margin
+        threshold: 0.1, // Play when just 10% visible for faster response
+        rootMargin: '50px' // Start loading before fully visible
       }
     );
 
@@ -52,11 +52,18 @@ class VideoManager {
 
   private playVideo(iframe: HTMLIFrameElement) {
     try {
-      // Send play command to YouTube iframe
+      // Send play command to YouTube iframe with volume control
       iframe.contentWindow?.postMessage(
         '{"event":"command","func":"playVideo","args":""}',
         '*'
       );
+      // Unmute after playing for better UX
+      setTimeout(() => {
+        iframe.contentWindow?.postMessage(
+          '{"event":"command","func":"unMute","args":""}',
+          '*'
+        );
+      }, 500);
     } catch (error) {
       console.warn('Could not send play command to video:', error);
     }
