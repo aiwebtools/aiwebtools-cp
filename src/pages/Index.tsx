@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import SEOHead from "@/components/SEOHead";
-import ToolsGrid from "@/components/tools/ToolsGrid";
+import FeaturedToolsSection from "@/components/tools/FeaturedToolsSection";
 import { Button } from "@/components/ui/button";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { allTools } from "@/data/toolsData";
@@ -17,9 +17,6 @@ import BookPromotionCard from "@/components/BookPromotionCard";
 
 const Index = () => {
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
-  const [showAllTools, setShowAllTools] = useState(false);
-  const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(24);
-  const [isLoading, setIsLoading] = useState(false);
   
   // Use video manager for main page video
   const mainVideoRef = useVideoManager('main-page-video');
@@ -31,28 +28,8 @@ const Index = () => {
   }, []);
 
   const handleSeeMoreAITools = () => {
-    setShowAllTools(true);
-    setAllToolsDisplayedCount(24);
-    // Simple scroll
-    setTimeout(() => {
-      const toolsSection = document.getElementById('all-tools-section');
-      if (toolsSection) {
-        toolsSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
+    // This function can be removed since FeaturedToolsSection handles it
   };
-
-  const handleAllToolsLoadMore = () => {
-    if (isLoading || allToolsDisplayedCount >= allTools.length) return;
-    
-    setIsLoading(true);
-    setTimeout(() => {
-      setAllToolsDisplayedCount(prev => Math.min(prev + 24, allTools.length));
-      setIsLoading(false);
-    }, 200);
-  };
-
-  const hasMoreTools = allToolsDisplayedCount < allTools.length;
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -105,60 +82,8 @@ const Index = () => {
           </div>
         </section>
 
-        {/* SEE MORE AI TOOLS Button */}
-        {!showAllTools && (
-          <div className="text-center py-12 px-4 bg-gradient-to-br from-slate-900 to-purple-900">
-            <Button
-              onClick={handleSeeMoreAITools}
-              size="lg"
-              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg"
-            >
-              🚀 SEE MORE AI TOOLS
-            </Button>
-            <div className="mt-4 text-cyan-300 text-sm">
-              Explore our collection of {allTools.length}+ AI tools
-            </div>
-          </div>
-        )}
-
-        {/* All Tools Section - Simplified */}
-        {showAllTools && (
-          <div id="all-tools-section" className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
-            <div className="container mx-auto px-4">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  🚀 <span className="text-cyan-400">ALL AI TOOLS COLLECTION</span>
-                </h3>
-                <div className="text-cyan-400 font-semibold">
-                  {allTools.length} total tools available
-                </div>
-              </div>
-
-              <ToolsGrid
-                tools={allTools}
-                displayedCount={allToolsDisplayedCount}
-                selectedCategory={null}
-                searchTerm=""
-                onLoadMore={handleAllToolsLoadMore}
-                hasInfiniteScroll={false}
-                isLoading={isLoading}
-              />
-
-              {/* Load More Button */}
-              {hasMoreTools && (
-                <div className="text-center mt-8">
-                  <Button
-                    onClick={handleAllToolsLoadMore}
-                    disabled={isLoading}
-                    className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-2"
-                  >
-                    {isLoading ? "Loading..." : "Load More Tools"}
-                  </Button>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
+        {/* Featured Tools Section - This shows Soul Map GPT and all featured tools */}
+        <FeaturedToolsSection onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
         
         <BookPromotionCard />
         <SpecialServices />
