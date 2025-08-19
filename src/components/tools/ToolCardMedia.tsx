@@ -28,24 +28,17 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   }
   
   const getOptimizedEmbedUrl = (url: string) => {
-    // Detect connection speed for quality optimization
-    const connection = (navigator as any).connection;
-    const isSlowConnection = connection?.effectiveType === '2g' || connection?.effectiveType === 'slow-2g';
-    
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1].split('&')[0];
-      const quality = isSlowConnection ? '&vq=medium' : '&vq=hd720';
-      return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&mute=1&autoplay=1&controls=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark&enablejsapi=1&origin=${window.location.origin}&preload=metadata${quality}&start=0`;
+      return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&autoplay=0&autohide=1&controls=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
     }
     if (url.includes('youtu.be/')) {
       const videoId = url.split('youtu.be/')[1].split('?')[0];
-      const quality = isSlowConnection ? '&vq=medium' : '&vq=hd720';
-      return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&mute=1&autoplay=1&controls=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark&enablejsapi=1&origin=${window.location.origin}&preload=metadata${quality}&start=0`;
+      return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&autoplay=0&autohide=1&controls=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
     }
     if (url.includes('vimeo.com/')) {
       const videoId = url.split('vimeo.com/')[1].split('?')[0];
-      const quality = isSlowConnection ? '720p' : '1080p';
-      return `https://player.vimeo.com/video/${videoId}?muted=1&autoplay=1&quality=${quality}&preload=metadata`;
+      return `https://player.vimeo.com/video/${videoId}?autoplay=0`;
     }
     return url;
   };
@@ -65,8 +58,7 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
           className="w-full h-full rounded-lg"
-          loading="eager"
-          style={{ border: 'none' }}
+          loading="lazy"
         />
       ) : shouldShowImage ? (
         <>

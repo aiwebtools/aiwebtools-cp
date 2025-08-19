@@ -20,31 +20,24 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   const getOptimizedEmbedUrl = (url: string) => {
     console.log('Processing video URL:', url);
     
-    // Detect connection speed and device capabilities
-    const connection = (navigator as any).connection;
-    const isSlowConnection = connection?.effectiveType === '2g' || connection?.effectiveType === 'slow-2g';
-    const isMobile = /Mobile|Android|iPhone|iPad/.test(navigator.userAgent);
-    const quality = isSlowConnection ? (isMobile ? 'medium' : 'hd720') : 'hd1080';
-    
     // Handle youtu.be short URLs
     if (url.includes('youtu.be/')) {
       const videoId = url.split('youtu.be/')[1].split('?')[0];
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&vq=${quality}&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark&preload=metadata&start=0`;
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&loop=1&playlist=${videoId}&hd=1&vq=hd1080&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&autohide=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
       console.log('YouTube short embed URL:', embedUrl);
       return embedUrl;
     }
     
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1].split('&')[0];
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&vq=${quality}&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark&preload=metadata&start=0`;
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&loop=1&playlist=${videoId}&hd=1&vq=hd1080&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&autohide=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
       console.log('YouTube embed URL:', embedUrl);
       return embedUrl;
     }
     
     if (url.includes('vimeo.com/')) {
       const videoId = url.split('vimeo.com/')[1].split('?')[0];
-      const vimeoQuality = isSlowConnection ? (isMobile ? '540p' : '720p') : '1080p';
-      const embedUrl = `https://player.vimeo.com/video/${videoId}?autoplay=1&quality=${vimeoQuality}&preload=metadata&volume=1`;
+      const embedUrl = `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=1&quality=1080p&volume=1`;
       console.log('Vimeo embed URL:', embedUrl);
       return embedUrl;
     }
