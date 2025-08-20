@@ -56,7 +56,6 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
           onCategoryChange={handleCategoryChange}
           onSearchChange={handleSearchChange}
           searchTerm={searchTerm}
-          hideSearchBar={true}
         />
 
         <ActiveFilters
