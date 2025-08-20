@@ -185,19 +185,8 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     console.warn(`⚠️ Missing AI Web Tools GPTs from featured:`, missingFromFeatured.slice(0, 10).map(t => t.title));
   }
   
-  // Get additional high-quality tools (non-AI Web Tools) but exclude bolt.new and gemini from featured
-  const additionalQualityTools = allTools.filter(tool => 
-    !aiWebToolsGPTsInMain.some(awTool => awTool.title === tool.title) &&
-    !isExcludedFromFeatured(tool) && // Exclude bolt.new and gemini from featured
-    !tool.directUrl?.includes('lovable.app') &&
-    (tool.rating >= 4.5 || tool.totalVotes >= 3000)
-  ).slice(0, 100); // Add some high-quality external tools
-  
-  // Combine: ALL AI Web Tools GPTs first (our portfolio), then additional quality tools
-  const allFeaturedTools = [
-    ...aiWebToolsGPTsInMain,
-    ...additionalQualityTools
-  ];
+  // ONLY show AI Web Tools GPTs (our creations) in featured section
+  const allFeaturedTools = aiWebToolsGPTsInMain;
   
   console.log(`🚀 PORTFOLIO SHOWCASE: ${aiWebToolsGPTsInMain.length} AI Web Tools GPTs in featured section`);
   console.log(`📊 Total featured tools: ${allFeaturedTools.length}`);
