@@ -564,6 +564,16 @@ const featuredGPTs = [
     emoji: "💑"
   },
   {
+    title: "Soul Map GPT",
+    description: "Soul Map GPT uses Gematria, Numerology, and Soul Mapping based on birthplace, time, and name to perform advanced calculations and read the stars based on your essence. Discover your spiritual blueprint through ancient wisdom and mystical mathematics.",
+    badge: "AI GPT",
+    color: "from-indigo-500 to-purple-600",
+    features: ["Gematria Analysis", "Numerology Reading", "Soul Mapping", "Spiritual Blueprint"],
+    directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-soul-scan-gpt-a-way-to-find-your-way-home/?via=aiwebtools",
+    videoUrl: "https://youtu.be/d3uaQz7oRAs?si=erT_Mgpw4vfS5b8k",
+    emoji: "🔮"
+  },
+  {
     title: ".WorldTrade Web3 Registration",
     description: "Buy and own your .worldtrade domain as a tradable NFT minted to your wallet of choice. Resell it, link it to your website, and send/receive crypto with a human-readable address. Compatible with Phantom, Coinbase Wallet, MetaMask, and more.",
     badge: "WEB3 DOMAIN",
@@ -618,8 +628,8 @@ const OurFeaturedSection = () => {
     }, 100);
   };
 
-  // Ordering: show .WorldTrade and .WorldPeace first, then custom priority, then alphabetical
-  const topTitles = [".WorldTrade Web3 Registration", ".WorldPeace Web3 Registration"];
+  // Ordering: show Soul Map GPT first, then .WorldTrade and .WorldPeace, then custom priority
+  const topTitles = ["Soul Map GPT", ".WorldTrade Web3 Registration", ".WorldPeace Web3 Registration"];
   const topOrder = new Map(topTitles.map((t, i) => [t, i] as const));
   const domainTop = featuredGPTs
     .filter((t) => topOrder.has(t.title))
