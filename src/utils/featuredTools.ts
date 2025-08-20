@@ -20,6 +20,9 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
   
   // Priority tools that MUST be in top positions - all AI Web Tools GPTs
   const priorityTitles = [
+    // PRIME POSITION - Soul Map GPT (newest addition)
+    'Soul Map GPT',
+    
     // Core AI Web Tools GPTs with videos/images (our passionate projects)
     'TIME MACHINE GPT',
     'COLLEGE DEGREE GPT', 
@@ -42,7 +45,6 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     'Criminologist GPT',
     'Social Safety Net GPT',
     'Resurrection GPT',
-    'Soul Map GPT', // NEWEST ADDITION - placed after Resurrection GPT
     'PERFECT PROMPT ENGINE',
     'Travel Advisor GPT',
     'Clarity Omni GPT',
