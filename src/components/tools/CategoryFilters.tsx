@@ -17,6 +17,7 @@ interface CategoryFiltersProps {
   onCategoryChange: (category: string | null) => void;
   onSearchChange: (searchTerm: string) => void;
   searchTerm: string;
+  hideSearchBar?: boolean;
 }
 
 const CategoryFilters = ({
@@ -24,7 +25,8 @@ const CategoryFilters = ({
   selectedCategory,
   onCategoryChange,
   onSearchChange,
-  searchTerm
+  searchTerm,
+  hideSearchBar = false
 }: CategoryFiltersProps) => {
   const [viewMode, setViewMode] = useState<'main' | 'sub'>('main');
   const [isExpanded, setIsExpanded] = useState(true);
@@ -51,13 +53,15 @@ const CategoryFilters = ({
   return (
     <div className="mb-8">
       {/* Search Bar - Optimized for instant response */}
-      <div className="mb-6">
-        <SearchBar
-          searchTerm={searchTerm}
-          onSearchChange={onSearchChange}
-          preventAutoNavigation={true}
-        />
-      </div>
+      {!hideSearchBar && (
+        <div className="mb-6">
+          <SearchBar
+            searchTerm={searchTerm}
+            onSearchChange={onSearchChange}
+            preventAutoNavigation={true}
+          />
+        </div>
+      )}
 
       {/* View Toggle */}
       <CategoryViewToggle 
