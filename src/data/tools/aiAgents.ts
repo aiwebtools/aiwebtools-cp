@@ -56,7 +56,7 @@ export const aiAgents: Tool[] = [
     description: "Poignant AI platform reconnecting with departed loved ones through personal stories and memories. Leverages AI technology for emotional healing and connection with the past.",
     emoji: "💫",
     color: "from-purple-500 to-pink-600",
-    directUrl: "https://ai-webtools.com/talk-to-departed-soulsgpt",
+    directUrl: "https://resurrectiongpt.lovable.app/?via=aiwebtools",
     tags: ["emotional healing", "departed loved ones", "grief support", "AI connection", "spiritual comfort"],
     category: "AI Agents",
     rating: 4.2,
