@@ -356,8 +356,11 @@ const performEnhancedSearch = (
 
       // SPECIAL MATCHING: Paranormal/Phenomenon searches - HIGH PRIORITY for UFO/Ghost/Phenomenon
       if (matchParanormal(tool, normalizedSearchTerm)) {
+        console.log(`🛸 PARANORMAL MATCH TRIGGERED for "${tool.title}" with search "${normalizedSearchTerm}"`);
         matched = true;
-        score += scoreParanormal(tool, normalizedSearchTerm);
+        const paranormalScore = scoreParanormal(tool, normalizedSearchTerm);
+        score += paranormalScore;
+        console.log(`🛸 Added paranormal score ${paranormalScore} to ${tool.title}, total: ${score}`);
       }
 
       // HIGHEST PRIORITY: Exact title match

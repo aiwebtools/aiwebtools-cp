@@ -303,6 +303,8 @@ export const scoreSpiritual = (tool: Tool, searchTerm: string): number => {
 // Paranormal/Phenomenon specific matching
 export const matchParanormal = (tool: Tool, searchTerm: string): boolean => {
   const lowerSearchTerm = searchTerm.toLowerCase().trim();
+  console.log(`🛸 Checking paranormal match for "${tool.title}" with search "${searchTerm}"`);
+  
   const paranormalKeywords = [
     'phenomenon', 'paranormal', 'ufo', 'ghost', 'ghosthunting', 'supernatural',
     'unexplained', 'mysterious', 'cryptid', 'investigation', 'investigator',
@@ -317,37 +319,51 @@ export const matchParanormal = (tool: Tool, searchTerm: string): boolean => {
     ...(tool.tags || [])
   ].join(' ').toLowerCase();
   
-  return paranormalKeywords.some(keyword => 
+  const matches = paranormalKeywords.some(keyword => 
     lowerSearchTerm.includes(keyword) || searchableText.includes(keyword)
   );
+  
+  if (matches) {
+    console.log(`🛸 PARANORMAL MATCH FOUND: ${tool.title}`);
+  }
+  
+  return matches;
 };
 
 export const scoreParanormal = (tool: Tool, searchTerm: string): number => {
   const lowerSearchTerm = searchTerm.toLowerCase().trim();
   let score = 0;
   
+  console.log(`🛸 Scoring paranormal for "${tool.title}" with search "${searchTerm}"`);
+  
   // Check if this is the Phenomenon Explorer AI Suite specifically
   if (tool.title.toLowerCase().includes('phenomenon explorer') || 
       tool.title.toLowerCase().includes('phenomenon investigator') ||
       tool.directUrl?.includes('phenomenonexplorer.lovable.app')) {
     score += 30000; // Ultra high priority for paranormal/phenomenon searches
+    console.log(`🛸 PHENOMENON EXPLORER DETECTED: Adding 30000 to score for ${tool.title}`);
   }
   
   // High-value paranormal keywords that should prioritize Phenomenon Explorer
   const highValueKeywords = ['ufo', 'ghost', 'paranormal', 'phenomenon', 'supernatural', 'unexplained'];
   for (const keyword of highValueKeywords) {
     if (lowerSearchTerm.includes(keyword)) {
+      console.log(`🛸 High-value keyword "${keyword}" found in search`);
+      
       // Give massive boost to Phenomenon Explorer for these searches
       if (tool.title.toLowerCase().includes('phenomenon') || 
           tool.directUrl?.includes('phenomenonexplorer.lovable.app')) {
         score += 25000;
+        console.log(`🛸 PHENOMENON TOOL BOOST: Adding 25000 for ${tool.title}`);
       }
       
       if (tool.title.toLowerCase().includes(keyword)) {
         score += 8000;
+        console.log(`🛸 Title keyword match: Adding 8000 for ${tool.title}`);
       }
       if (tool.description.toLowerCase().includes(keyword)) {
         score += 5000;
+        console.log(`🛸 Description keyword match: Adding 5000 for ${tool.title}`);
       }
     }
   }
@@ -359,6 +375,7 @@ export const scoreParanormal = (tool: Tool, searchTerm: string): number => {
       if (tool.title.toLowerCase().includes('phenomenon') || 
           tool.directUrl?.includes('phenomenonexplorer.lovable.app')) {
         score += 15000;
+        console.log(`🛸 Medium keyword boost for phenomenon tool: Adding 15000 for ${tool.title}`);
       }
       
       if (tool.title.toLowerCase().includes(keyword)) {
@@ -370,5 +387,6 @@ export const scoreParanormal = (tool: Tool, searchTerm: string): number => {
     }
   }
   
+  console.log(`🛸 Final paranormal score for "${tool.title}": ${score}`);
   return score;
 };
