@@ -6,7 +6,7 @@ import { matchAgents, scoreAgents } from "./matching/agentMatching";
 import { matchCodingAgents, scoreCodingAgents } from "./matching/codingMatching";
 import { matchGameTools, scoreGameTools } from "./matching/gameMatching";
 import { matchUserTask, smartTypoCorrection, scoreToolByContext, matchTimeTravel, scoreTimeTravel, matchWriting, scoreWriting } from "./core/intelligentTaskMatching";
-import { matchSpiritual, scoreSpiritual } from "./matching/specialtyMatching";
+import { matchSpiritual, scoreSpiritual, matchParanormal, scoreParanormal } from "./matching/specialtyMatching";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -352,6 +352,12 @@ const performEnhancedSearch = (
       if (matchSpiritual(tool, normalizedSearchTerm)) {
         matched = true;
         score += scoreSpiritual(tool, normalizedSearchTerm);
+      }
+
+      // SPECIAL MATCHING: Paranormal/Phenomenon searches - HIGH PRIORITY for UFO/Ghost/Phenomenon
+      if (matchParanormal(tool, normalizedSearchTerm)) {
+        matched = true;
+        score += scoreParanormal(tool, normalizedSearchTerm);
       }
 
       // HIGHEST PRIORITY: Exact title match

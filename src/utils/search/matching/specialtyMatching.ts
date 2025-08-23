@@ -299,3 +299,76 @@ export const scoreSpiritual = (tool: Tool, searchTerm: string): number => {
   
   return score;
 };
+
+// Paranormal/Phenomenon specific matching
+export const matchParanormal = (tool: Tool, searchTerm: string): boolean => {
+  const lowerSearchTerm = searchTerm.toLowerCase().trim();
+  const paranormalKeywords = [
+    'phenomenon', 'paranormal', 'ufo', 'ghost', 'ghosthunting', 'supernatural',
+    'unexplained', 'mysterious', 'cryptid', 'investigation', 'investigator',
+    'explorer', 'phenomena', 'spirits', 'haunted', 'occult', 'mystical',
+    'alien', 'extraterrestrial', 'sighting', 'encounter', 'poltergeist',
+    'apparition', 'specter', 'phantom'
+  ];
+  
+  const searchableText = [
+    tool.title,
+    tool.description,
+    ...(tool.tags || [])
+  ].join(' ').toLowerCase();
+  
+  return paranormalKeywords.some(keyword => 
+    lowerSearchTerm.includes(keyword) || searchableText.includes(keyword)
+  );
+};
+
+export const scoreParanormal = (tool: Tool, searchTerm: string): number => {
+  const lowerSearchTerm = searchTerm.toLowerCase().trim();
+  let score = 0;
+  
+  // Check if this is the Phenomenon Explorer AI Suite specifically
+  if (tool.title.toLowerCase().includes('phenomenon explorer') || 
+      tool.title.toLowerCase().includes('phenomenon investigator') ||
+      tool.directUrl?.includes('phenomenonexplorer.lovable.app')) {
+    score += 30000; // Ultra high priority for paranormal/phenomenon searches
+  }
+  
+  // High-value paranormal keywords that should prioritize Phenomenon Explorer
+  const highValueKeywords = ['ufo', 'ghost', 'paranormal', 'phenomenon', 'supernatural', 'unexplained'];
+  for (const keyword of highValueKeywords) {
+    if (lowerSearchTerm.includes(keyword)) {
+      // Give massive boost to Phenomenon Explorer for these searches
+      if (tool.title.toLowerCase().includes('phenomenon') || 
+          tool.directUrl?.includes('phenomenonexplorer.lovable.app')) {
+        score += 25000;
+      }
+      
+      if (tool.title.toLowerCase().includes(keyword)) {
+        score += 8000;
+      }
+      if (tool.description.toLowerCase().includes(keyword)) {
+        score += 5000;
+      }
+    }
+  }
+  
+  // Medium-value paranormal keywords
+  const mediumValueKeywords = ['investigation', 'investigator', 'explorer', 'cryptid', 'mysterious'];
+  for (const keyword of mediumValueKeywords) {
+    if (lowerSearchTerm.includes(keyword)) {
+      if (tool.title.toLowerCase().includes('phenomenon') || 
+          tool.directUrl?.includes('phenomenonexplorer.lovable.app')) {
+        score += 15000;
+      }
+      
+      if (tool.title.toLowerCase().includes(keyword)) {
+        score += 4000;
+      }
+      if (tool.description.toLowerCase().includes(keyword)) {
+        score += 2500;
+      }
+    }
+  }
+  
+  return score;
+};
