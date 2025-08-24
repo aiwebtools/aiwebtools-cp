@@ -1,7 +1,6 @@
 import { Tool } from "@/types/tools";
 import { searchAIWebToolsGPTs, scoreAIWebToolsGPT } from "./aiWebToolsSearch";
 import { fuzzyMatchTool, phoneticMatch } from "./core/fuzzyMatching";
-import { performSuperIntelligentSearch } from "./core/enhancedSearchEngine";
 import { matchVibeCoding, scoreVibeCoding } from "./matching/vibeCodingMatching";
 import { matchAgents, scoreAgents } from "./matching/agentMatching";
 import { matchCodingAgents, scoreCodingAgents } from "./matching/codingMatching";
@@ -79,41 +78,172 @@ const detectIntent = (searchTerm: string): string | null => {
   return null;
 };
 
-// Enhanced search function with SUPER INTELLIGENT capabilities and optimized performance
+// Enhanced search function with intent detection and optimized performance
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
     return tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title));
   }
 
   const normalizedSearchTerm = searchTerm.toLowerCase().trim();
-  
-  // SUPER INTELLIGENT SEARCH: Use the new enhanced search engine for better results
-  console.log(`🚀 Activating SUPER INTELLIGENT search for: "${searchTerm}"`);
-  
-  // First, try the super intelligent search for partial matching and predictive capabilities
-  const superIntelligentResults = performSuperIntelligentSearch(tools, searchTerm);
-  
-  // If we got good results from super intelligent search, use them
-  if (superIntelligentResults.length > 0) {
-    // Combine with specialized matching for edge cases
-    const filteredTools = tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title));
-    const enhancedResults = performEnhancedSearch(filteredTools, searchTerm, [], [], null);
-    
-    // Merge results intelligently - prioritize super intelligent results but include specialized matches
-    const mergedResults = [...new Set([...superIntelligentResults, ...enhancedResults])];
-    
-    console.log(`🎯 Super intelligent search found ${superIntelligentResults.length} results, enhanced to ${mergedResults.length} total`);
-    return mergedResults;
-  }
-  
-  // Fallback to original enhanced search if super intelligent didn't find matches
   const searchWords = normalizedSearchTerm.split(/[\s,.-]+/).filter(word => word.length > 1);
+  
+  // Fast phonetic variations (only for performance-critical terms)
   const phoneticVariations = searchTerm.length <= 6 ? phoneticMatch(normalizedSearchTerm) : [];
+  
+  // Quick intent detection without heavy processing
   const userIntent = detectIntent(normalizedSearchTerm);
   const intentConfig = userIntent ? INTENT_PATTERNS[userIntent as keyof typeof INTENT_PATTERNS] : null;
   
-  // Continue with category-specific prioritization and enhanced search
-  return performCategoryBasedSearch(tools, searchTerm, searchWords, phoneticVariations, intentConfig);
+  // PRIORITY: For "personal" searches, prioritize AI Web Tools GPTs
+  if (normalizedSearchTerm.includes('personal')) {
+    const aiWebToolsResults = searchAIWebToolsGPTs(tools, searchTerm);
+    
+    const scoredAIWebTools = aiWebToolsResults
+      .map(tool => ({ tool, score: scoreAIWebToolsGPT(tool, searchTerm) }))
+      .sort((a, b) => {
+        // First sort by score (highest first)
+        if (b.score !== a.score) {
+          return b.score - a.score;
+        }
+        // Then alphabetically by title
+        return a.tool.title.localeCompare(b.tool.title);
+      })
+      .map(result => result.tool);
+    
+    const remainingTools = tools.filter(tool => 
+      !EXCLUDED_TOOLS.includes(tool.title) &&
+      !aiWebToolsResults.some(aiTool => aiTool.title === tool.title)
+    );
+    
+    const regularResults = performEnhancedSearch(remainingTools, searchTerm, searchWords, phoneticVariations, intentConfig);
+    return [...scoredAIWebTools, ...regularResults];
+  }
+  
+  // CATEGORY-SPECIFIC PRIORITY MATCHING
+  // Health/Medical searches
+  if (normalizedSearchTerm.includes('health') || normalizedSearchTerm.includes('medical') || 
+      normalizedSearchTerm.includes('doctor') || normalizedSearchTerm.includes('wellness')) {
+    const healthTools = tools.filter(tool => 
+      tool.category?.toLowerCase().includes('health') ||
+      tool.category?.toLowerCase().includes('wellness') ||
+      tool.title.toLowerCase().includes('health') ||
+      tool.title.toLowerCase().includes('medical') ||
+      tool.title.toLowerCase().includes('doctor')
+    );
+    return performEnhancedSearch([...healthTools, ...tools.filter(t => !healthTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+  
+  // Business/Finance searches
+  if (normalizedSearchTerm.includes('business') || normalizedSearchTerm.includes('finance') || 
+      normalizedSearchTerm.includes('money') || normalizedSearchTerm.includes('trading')) {
+    const businessTools = tools.filter(tool => 
+      tool.category?.toLowerCase().includes('business') ||
+      tool.category?.toLowerCase().includes('finance') ||
+      tool.title.toLowerCase().includes('business') ||
+      tool.title.toLowerCase().includes('finance')
+    );
+    return performEnhancedSearch([...businessTools, ...tools.filter(t => !businessTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+  
+  // Game/Entertainment searches - HIGH PRIORITY with expanded video game understanding
+  if (normalizedSearchTerm.includes('game') || normalizedSearchTerm.includes('gaming') || 
+      normalizedSearchTerm.includes('video game') || normalizedSearchTerm.includes('videogame') ||
+      normalizedSearchTerm.includes('game design') || normalizedSearchTerm.includes('game development') ||
+      normalizedSearchTerm.includes('game creation') || normalizedSearchTerm.includes('game maker') ||
+      normalizedSearchTerm.includes('game generator') || normalizedSearchTerm.includes('game builder') ||
+      normalizedSearchTerm.includes('seele') || normalizedSearchTerm.includes('rosebud') ||
+      normalizedSearchTerm.includes('entertainment') || normalizedSearchTerm.includes('metaverse') ||
+      (normalizedSearchTerm.includes('video') && normalizedSearchTerm.includes('making')) ||
+      (normalizedSearchTerm.includes('ai') && normalizedSearchTerm.includes('making') && normalizedSearchTerm.includes('video')) ||
+      normalizedSearchTerm.includes('playable') || normalizedSearchTerm.includes('interactive game')) {
+    
+    const gameTools = tools.filter(tool => 
+      // Direct title matches
+      tool.title.toLowerCase().includes('game') ||
+      tool.title.toLowerCase().includes('seele') ||
+      tool.title.toLowerCase().includes('rosebud') ||
+      
+      // Description matches for game creation
+      tool.description.toLowerCase().includes('game') ||
+      tool.description.toLowerCase().includes('playable') ||
+      tool.description.toLowerCase().includes('metaverse') ||
+      tool.description.toLowerCase().includes('interactive game') ||
+      tool.description.toLowerCase().includes('3d game') ||
+      tool.description.toLowerCase().includes('video game') ||
+      
+      // Category matches
+      tool.category?.toLowerCase().includes('game') ||
+      tool.category?.toLowerCase().includes('entertainment') ||
+      
+      // Tag matches
+      tool.tags?.some(tag => {
+        const lowerTag = tag.toLowerCase();
+        return lowerTag.includes('game') || 
+               lowerTag.includes('3d') || 
+               lowerTag.includes('metaverse') ||
+               lowerTag.includes('interactive') ||
+               lowerTag.includes('playable') ||
+               lowerTag.includes('unity') ||
+               lowerTag.includes('unreal');
+      }) ||
+      
+      // URL matches for specific game tools
+      tool.directUrl?.includes('gamedesigngpt') ||
+      tool.directUrl?.includes('seeles.ai') ||
+      tool.directUrl?.includes('rosebud')
+    );
+    
+    // Sort game tools by relevance to video game creation
+    const sortedGameTools = gameTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      // Boost for video game creation tools
+      if (a.title.toLowerCase().includes('seele') || a.title.toLowerCase().includes('video game generator')) scoreA += 1000;
+      if (b.title.toLowerCase().includes('seele') || b.title.toLowerCase().includes('video game generator')) scoreB += 1000;
+      
+      if (a.title.toLowerCase().includes('game design') || a.description.toLowerCase().includes('game development')) scoreA += 800;
+      if (b.title.toLowerCase().includes('game design') || b.description.toLowerCase().includes('game development')) scoreB += 800;
+      
+      if (a.description.toLowerCase().includes('ai') && a.description.toLowerCase().includes('game creation')) scoreA += 700;
+      if (b.description.toLowerCase().includes('ai') && b.description.toLowerCase().includes('game creation')) scoreB += 700;
+      
+      return scoreB - scoreA;
+    });
+    
+    console.log(`🎮 Game search prioritized: Found ${gameTools.length} game-related tools, including:`, 
+                sortedGameTools.slice(0, 3).map(t => t.title));
+    return performEnhancedSearch([...sortedGameTools, ...tools.filter(t => !gameTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // Creative/Media searches
+  if (normalizedSearchTerm.includes('creative') || normalizedSearchTerm.includes('media') || 
+      normalizedSearchTerm.includes('video') || normalizedSearchTerm.includes('music') ||
+      normalizedSearchTerm.includes('art') || normalizedSearchTerm.includes('design')) {
+    const creativeTools = tools.filter(tool => 
+      tool.category?.toLowerCase().includes('creative') ||
+      tool.category?.toLowerCase().includes('media') ||
+      tool.title.toLowerCase().includes('video') ||
+      tool.title.toLowerCase().includes('music') ||
+      tool.title.toLowerCase().includes('art') ||
+      tool.title.toLowerCase().includes('design')
+    );
+    return performEnhancedSearch([...creativeTools, ...tools.filter(t => !creativeTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+  
+  // Education/Learning searches
+  if (normalizedSearchTerm.includes('learn') || normalizedSearchTerm.includes('education') || 
+      normalizedSearchTerm.includes('course') || normalizedSearchTerm.includes('school')) {
+    const educationTools = tools.filter(tool => 
+      tool.category?.toLowerCase().includes('education') ||
+      tool.category?.toLowerCase().includes('learning') ||
+      tool.title.toLowerCase().includes('learn') ||
+      tool.title.toLowerCase().includes('education')
+    );
+    return performEnhancedSearch([...educationTools, ...tools.filter(t => !educationTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+  
+  // Regular enhanced search with improved scoring
+  return performEnhancedSearch(tools, searchTerm, searchWords, phoneticVariations, intentConfig);
 };
 
 // Perform enhanced search with intent prioritization and fuzzy matching
@@ -319,168 +449,6 @@ const performEnhancedSearch = (
     .map(result => result.tool);
 
   return results;
-};
-
-// Category-based search with intelligent prioritization
-const performCategoryBasedSearch = (
-  tools: Tool[], 
-  searchTerm: string, 
-  searchWords: string[], 
-  phoneticVariations: string[],
-  intentConfig: any
-): Tool[] => {
-  const normalizedSearchTerm = searchTerm.toLowerCase().trim();
-  
-  // PRIORITY: For "personal" searches, prioritize AI Web Tools GPTs
-  if (normalizedSearchTerm.includes('personal')) {
-    const aiWebToolsResults = searchAIWebToolsGPTs(tools, searchTerm);
-    
-    const scoredAIWebTools = aiWebToolsResults
-      .map(tool => ({ tool, score: scoreAIWebToolsGPT(tool, searchTerm) }))
-      .sort((a, b) => {
-        // First sort by score (highest first)
-        if (b.score !== a.score) {
-          return b.score - a.score;
-        }
-        // Then alphabetically by title
-        return a.tool.title.localeCompare(b.tool.title);
-      })
-      .map(result => result.tool);
-    
-    const remainingTools = tools.filter(tool => 
-      !EXCLUDED_TOOLS.includes(tool.title) &&
-      !aiWebToolsResults.some(aiTool => aiTool.title === tool.title)
-    );
-    
-    const regularResults = performEnhancedSearch(remainingTools, searchTerm, searchWords, phoneticVariations, intentConfig);
-    return [...scoredAIWebTools, ...regularResults];
-  }
-  
-  // CATEGORY-SPECIFIC PRIORITY MATCHING
-  // Health/Medical searches
-  if (normalizedSearchTerm.includes('health') || normalizedSearchTerm.includes('medical') || 
-      normalizedSearchTerm.includes('doctor') || normalizedSearchTerm.includes('wellness')) {
-    const healthTools = tools.filter(tool => 
-      tool.category?.toLowerCase().includes('health') ||
-      tool.category?.toLowerCase().includes('wellness') ||
-      tool.title.toLowerCase().includes('health') ||
-      tool.title.toLowerCase().includes('medical') ||
-      tool.title.toLowerCase().includes('doctor')
-    );
-    return performEnhancedSearch([...healthTools, ...tools.filter(t => !healthTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
-  }
-  
-  // Business/Finance searches
-  if (normalizedSearchTerm.includes('business') || normalizedSearchTerm.includes('finance') || 
-      normalizedSearchTerm.includes('money') || normalizedSearchTerm.includes('trading')) {
-    const businessTools = tools.filter(tool => 
-      tool.category?.toLowerCase().includes('business') ||
-      tool.category?.toLowerCase().includes('finance') ||
-      tool.title.toLowerCase().includes('business') ||
-      tool.title.toLowerCase().includes('finance')
-    );
-    return performEnhancedSearch([...businessTools, ...tools.filter(t => !businessTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
-  }
-  
-  // Game/Entertainment searches - HIGH PRIORITY with expanded video game understanding
-  if (normalizedSearchTerm.includes('game') || normalizedSearchTerm.includes('gaming') || 
-      normalizedSearchTerm.includes('video game') || normalizedSearchTerm.includes('videogame') ||
-      normalizedSearchTerm.includes('game design') || normalizedSearchTerm.includes('game development') ||
-      normalizedSearchTerm.includes('game creation') || normalizedSearchTerm.includes('game maker') ||
-      normalizedSearchTerm.includes('game generator') || normalizedSearchTerm.includes('game builder') ||
-      normalizedSearchTerm.includes('seele') || normalizedSearchTerm.includes('rosebud') ||
-      normalizedSearchTerm.includes('entertainment') || normalizedSearchTerm.includes('metaverse') ||
-      (normalizedSearchTerm.includes('video') && normalizedSearchTerm.includes('making')) ||
-      (normalizedSearchTerm.includes('ai') && normalizedSearchTerm.includes('making') && normalizedSearchTerm.includes('video')) ||
-      normalizedSearchTerm.includes('playable') || normalizedSearchTerm.includes('interactive game')) {
-    
-    const gameTools = tools.filter(tool => 
-      // Direct title matches
-      tool.title.toLowerCase().includes('game') ||
-      tool.title.toLowerCase().includes('seele') ||
-      tool.title.toLowerCase().includes('rosebud') ||
-      
-      // Description matches for game creation
-      tool.description.toLowerCase().includes('game') ||
-      tool.description.toLowerCase().includes('playable') ||
-      tool.description.toLowerCase().includes('metaverse') ||
-      tool.description.toLowerCase().includes('interactive game') ||
-      tool.description.toLowerCase().includes('3d game') ||
-      tool.description.toLowerCase().includes('video game') ||
-      
-      // Category matches
-      tool.category?.toLowerCase().includes('game') ||
-      tool.category?.toLowerCase().includes('entertainment') ||
-      
-      // Tag matches
-      tool.tags?.some(tag => {
-        const lowerTag = tag.toLowerCase();
-        return lowerTag.includes('game') || 
-               lowerTag.includes('3d') || 
-               lowerTag.includes('metaverse') ||
-               lowerTag.includes('interactive') ||
-               lowerTag.includes('playable') ||
-               lowerTag.includes('unity') ||
-               lowerTag.includes('unreal');
-      }) ||
-      
-      // URL matches for specific game tools
-      tool.directUrl?.includes('gamedesigngpt') ||
-      tool.directUrl?.includes('seeles.ai') ||
-      tool.directUrl?.includes('rosebud')
-    );
-    
-    // Sort game tools by relevance to video game creation
-    const sortedGameTools = gameTools.sort((a, b) => {
-      let scoreA = 0, scoreB = 0;
-      
-      // Boost for video game creation tools
-      if (a.title.toLowerCase().includes('seele') || a.title.toLowerCase().includes('video game generator')) scoreA += 1000;
-      if (b.title.toLowerCase().includes('seele') || b.title.toLowerCase().includes('video game generator')) scoreB += 1000;
-      
-      if (a.title.toLowerCase().includes('game design') || a.description.toLowerCase().includes('game development')) scoreA += 800;
-      if (b.title.toLowerCase().includes('game design') || b.description.toLowerCase().includes('game development')) scoreB += 800;
-      
-      if (a.description.toLowerCase().includes('ai') && a.description.toLowerCase().includes('game creation')) scoreA += 700;
-      if (b.description.toLowerCase().includes('ai') && b.description.toLowerCase().includes('game creation')) scoreB += 700;
-      
-      return scoreB - scoreA;
-    });
-    
-    console.log(`🎮 Game search prioritized: Found ${gameTools.length} game-related tools, including:`, 
-                sortedGameTools.slice(0, 3).map(t => t.title));
-    return performEnhancedSearch([...sortedGameTools, ...tools.filter(t => !gameTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
-  }
-
-  // Creative/Media searches
-  if (normalizedSearchTerm.includes('creative') || normalizedSearchTerm.includes('media') || 
-      normalizedSearchTerm.includes('video') || normalizedSearchTerm.includes('music') ||
-      normalizedSearchTerm.includes('art') || normalizedSearchTerm.includes('design')) {
-    const creativeTools = tools.filter(tool => 
-      tool.category?.toLowerCase().includes('creative') ||
-      tool.category?.toLowerCase().includes('media') ||
-      tool.title.toLowerCase().includes('video') ||
-      tool.title.toLowerCase().includes('music') ||
-      tool.title.toLowerCase().includes('art') ||
-      tool.title.toLowerCase().includes('design')
-    );
-    return performEnhancedSearch([...creativeTools, ...tools.filter(t => !creativeTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
-  }
-  
-  // Education/Learning searches
-  if (normalizedSearchTerm.includes('learn') || normalizedSearchTerm.includes('education') || 
-      normalizedSearchTerm.includes('course') || normalizedSearchTerm.includes('school')) {
-    const educationTools = tools.filter(tool => 
-      tool.category?.toLowerCase().includes('education') ||
-      tool.category?.toLowerCase().includes('learning') ||
-      tool.title.toLowerCase().includes('learn') ||
-      tool.title.toLowerCase().includes('education')
-    );
-    return performEnhancedSearch([...educationTools, ...tools.filter(t => !educationTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
-  }
-  
-  // Regular enhanced search with improved scoring
-  return performEnhancedSearch(tools, searchTerm, searchWords, phoneticVariations, intentConfig);
 };
 
 // Remove duplicate tools

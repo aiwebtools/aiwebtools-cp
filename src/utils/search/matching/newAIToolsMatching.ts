@@ -32,14 +32,12 @@ export const matchNewAITools = (tool: Tool, searchTerm: string): boolean => {
            lowerDescription.includes('google');
   }
 
-  // Perplexity AI searches - Enhanced for Comet
-  if (lowerSearchTerm.includes('perplexity') || lowerSearchTerm.includes('comet') || lowerSearchTerm.includes('web agent')) {
+  // Perplexity AI searches
+  if (lowerSearchTerm.includes('perplexity') || lowerSearchTerm.includes('comet')) {
     return lowerTitle.includes('perplexity') || 
            lowerTitle.includes('comet') ||
-           lowerTitle.includes('web agent') ||
            lowerDescription.includes('perplexity') ||
-           lowerDescription.includes('comet') ||
-           lowerDescription.includes('web agent');
+           lowerDescription.includes('comet');
   }
 
   // Video generation tools
@@ -132,7 +130,7 @@ export const scoreNewAITools = (tool: Tool, searchTerm: string): number => {
   let score = 0;
 
   // High priority for exact matches of major AI platforms
-  const majorAIPlatforms = ['chatgpt', 'claude', 'gemini', 'perplexity', 'comet', 'web agent', 'runway', 'elevenlabs', 'leonardo', 'synthesia', 'luma'];
+  const majorAIPlatforms = ['chatgpt', 'claude', 'gemini', 'perplexity', 'comet', 'runway', 'elevenlabs', 'leonardo', 'synthesia', 'luma'];
   
   for (const platform of majorAIPlatforms) {
     if (lowerSearchTerm.includes(platform)) {
