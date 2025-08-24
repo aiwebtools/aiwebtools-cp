@@ -385,5 +385,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.5,
     totalVotes: 860
+  },
+  {
+    icon: Globe,
+    title: "Perplexity Comet Web Agent",
+    description: "Advanced AI web agent by Perplexity that autonomously browses the internet, conducts research, and performs complex web-based tasks with intelligent reasoning and real-time information gathering capabilities.",
+    emoji: "☄️",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://www.perplexity.ai/comet",
+    tags: ["web agent", "internet browsing", "research", "real-time information", "autonomous", "perplexity", "web automation"],
+    category: "AI Agents",
+    rating: 4.7,
+    totalVotes: 2890
   }
 ];
