@@ -13,6 +13,13 @@ export const TIER_1_LEGENDARY_GPTS = [
   'PERFECT PROMPT ENGINE',              // AI optimization mastery
   'Movie Maker Studio AI SUITE',       // Complete movie production suite
   'MOVIE MAKER STUDIO',
+  'Music Video Maker AI Studio',       // Complete music video creation suite
+  'BOOK WRITER GPT',                   // Professional book creation system
+  'COLLEGE DEGREE GPT',                // Complete university education system
+  'Legislator Link GPT',               // Political engagement & democracy
+  'Legislation Writer GPT',            // Complete legal document creation
+  'Personalized DR. GPT',              // Advanced medical AI system
+  'Veterinarian GPT',                  // Complete veterinary care system
   'Engineering GPT AI Suite',          // Complete engineering mastery
   'TALK TO THE GODS GPT',              // Divine communication interface
   'Stellaris: 🚀AI Space Explorer',    // Advanced space exploration
@@ -21,42 +28,49 @@ export const TIER_1_LEGENDARY_GPTS = [
   'ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)', // Reality exploration
   'NEO👁️MATRIX GPT',
   'NEOMATRIX GPT',
+  'STAGEMASTER AI SUITE',              // Complete performing arts suite
+  'STAGE MASTER SUITE',
+  'Drill Baby Drill Ai Suite For Oil & Gas', // Complete industry suite
 ];
 
 // TIER 2: Highly Impressive & Powerful GPTs - Professional powerhouses
 export const TIER_2_PROFESSIONAL_GPTS = [
-  'COLLEGE DEGREE GPT',                 // Complete education system
   'Illuminous World Data Explorer GPT', // Global prediction engine  
-  'STAGEMASTER AI SUITE',              // Complete performing arts suite
-  'STAGE MASTER SUITE',
   'Criminologist GPT',                 // Advanced investigation system
   'Nikola Tesla GPT',                  // Scientific innovation engine
   'Data Research Analysis Report GPT',  // Advanced analytics
-  'Engineering GPT AI Suite',         // Technical mastery
   'Cyber Security GPT',                // Security infrastructure
   'FACT CHECKER GPT',                  // Truth verification system
   'Sustainable Futures GPT',          // Environmental solutions
   'Global Peace Restoration Strategist GPT', // World peace engineering
   'Uncovering Hidden Historical Patterns GPT', // Deep pattern recognition
   'IF AI RULED THE WORLD',             // AI governance simulation
+  'Movie Script Writer GPT',          // Professional screenwriting
+  'Resurrection GPT',                 // Memory simulation technology
+  'Social Safety Net GPT',           // Social system design
+  'MULTITASKER GPT',                 // Multi-capability system
+  'Customizable GPT Maker',          // AI creation tool
 ];
 
 // TIER 3: Specialized & Impressive GPTs - Domain experts
 export const TIER_3_SPECIALIST_GPTS = [
   'AUTOMOBILE GPT',                    // Complete automotive expertise
   'Survivalist GPT',                  // Ultimate survival companion
-  'Movie Script Writer GPT',          // Professional screenwriting
-  'BOOK WRITER GPT',                  // Professional authoring
-  'Music Video Maker AI Studio',     // Creative video production
-  'Legislation Writer GPT',           // Legal document creation
   'Graphic & Cover Design GPT',       // Professional design
   'TALK TO HISTORY GPT',             // Historical interaction
-  'Resurrection GPT',                 // Memory simulation
-  'Social Safety Net GPT',           // Social system design
-  'MULTITASKER GPT',                 // Multi-capability system
-  'Customizable GPT Maker',          // AI creation tool
   'The Resume & Job Finder Ai Suite', // Career advancement
-  'Drill Baby Drill Ai Suite For Oil & Gas', // Industry-specific suite
+  'Training Manual Generator GPT',    // Professional training systems
+  'ALAN WATTS GPT',                  // Philosophical wisdom system
+  'Albert Einstein GPT',             // Scientific genius simulation
+  'Trader GPT',                      // Financial trading system
+  'Indiana Archeologist GPT',        // Archaeological exploration
+  'Playwriter GPT',                  // Professional theater creation
+  'Historical Apothecary GPT',       // Traditional medicine system
+  'Tattoo Designer GPT',             // Professional tattoo design
+  'Firearms Safety Instructor GPT',   // Professional safety training
+  'Firefighter GPT',                 // Emergency response system
+  'Genome GPT',                      // Genetic analysis system
+  'Game Design Document / Developer GPT', // Game development system
 ];
 
 // TIER 4: Useful & Solid GPTs - Reliable tools
@@ -68,7 +82,6 @@ export const TIER_4_UTILITY_GPTS = [
   'Fisherman GPT',
   'Agronomus AI Farming Expert',
   'Antique and Collectible Appraisal GPT',
-  'Veterinarian GPT',
   'Insurance Claims GPT',
   'Cannabis GPT',
   'LEARN ANY COURSE GPT',
@@ -78,33 +91,21 @@ export const TIER_4_UTILITY_GPTS = [
   'LEARN ANY SKILL GPT',
   'MATERIAL VALUATION GPT',
   'MicroSaaS GPT',
-  'Albert Einstein GPT',
-  'Trader GPT',
-  'Indiana Archeologist GPT',
   'Marriage Mender GPT',
-  'Training Manual Generator GPT',
-  'ALAN WATTS GPT',
   'Solar Land Assessor GPT',
-  'Playwriter GPT',
-  'Historical Apothecary GPT',
   'Home-Schooling Assistant GPT',
   'Pharmaceutical Assistant GPT',
   'Contract Review Bot',
-  'Tattoo Designer GPT',
-  'Firearms Safety Instructor GPT',
   'Sora Prompt Assistant',
   'PHARMA RESEARCH PRO',
   'Mixologist GPT',
   'Chef "Sizzle" AI Culinary Assistant',
   'RESTYLE ME GPT',
-  'Firefighter GPT',
   'Binary-Text-Image Converter GPT',
   'Luma Dream Machine Prompt Assistant',
   'Restaurant Menu Maker GPT',
   'Course Maker GPT',
   'Taxes GPT',
-  'Genome GPT',
-  'Game Design Document / Developer GPT',
   'Predictive Credit Score Checker GPT',
   'Name Insight Research & Predictor GPT',
   'Coloring Book Generator GPT',
@@ -131,7 +132,6 @@ export const TIER_4_UTILITY_GPTS = [
   'Children\'s Picture Book Maker GPT',
   'Movie Scene Maker GPT',
   'Mental Wellness GPT',
-  'Legislator Link GPT'
 ];
 
 // TIER 5: Entertainment & Simple GPTs - Fun but less complex
