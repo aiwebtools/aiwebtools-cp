@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { allTools } from "@/data/toolsData";
 import BookPromotionCard from "@/components/BookPromotionCard";
+import HomePage from "@/components/HomePage";
 
 const Index = () => {
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
@@ -84,6 +85,25 @@ const Index = () => {
 
         {/* Featured Tools Section - This shows Soul Map GPT and all featured tools */}
         <FeaturedToolsSection onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
+        
+        {/* Bottom Search Portal - positioned below all featured tools */}
+        <section className="py-16 bg-gradient-to-br from-gray-900 to-black relative">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                <span className="text-cyan-400">🔍 SEARCH ALL AI TOOLS</span>
+              </h2>
+              <p className="text-xl text-cyan-200 max-w-3xl mx-auto mb-4">
+                Explore our complete database of AI tools with advanced search and filtering
+              </p>
+            </div>
+            
+            {/* Import and use the HomePage component as search portal */}
+            <div className="max-w-6xl mx-auto">
+              <HomePage />
+            </div>
+          </div>
+        </section>
         
         <BookPromotionCard />
         <SpecialServices />
