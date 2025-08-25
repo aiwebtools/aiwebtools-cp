@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { allTools } from "@/data/toolsData";
 import BookPromotionCard from "@/components/BookPromotionCard";
-import HomePage from "@/components/HomePage";
+import SearchPortal from "@/components/SearchPortal";
 
 const Index = () => {
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
@@ -83,7 +83,7 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Featured Tools Section - This shows Soul Map GPT and all featured tools */}
+        {/* Featured Tools Section - This shows featured tools cards */}
         <FeaturedToolsSection onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
         
         {/* Bottom Search Portal - positioned below all featured tools */}
@@ -98,9 +98,9 @@ const Index = () => {
               </p>
             </div>
             
-            {/* Import and use the HomePage component as search portal */}
+            {/* Search Portal Component */}
             <div className="max-w-6xl mx-auto">
-              <HomePage />
+              <SearchPortal />
             </div>
           </div>
         </section>

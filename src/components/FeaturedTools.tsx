@@ -1,7 +1,5 @@
 
 import React, { memo } from "react";
-import CategoryFilters from "@/components/tools/CategoryFilters";
-import ActiveFilters from "@/components/tools/ActiveFilters";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import ShowMoreFeaturedButton from "@/components/tools/ShowMoreFeaturedButton";
 import LoadMoreSection from "@/components/tools/LoadMoreSection";
@@ -19,52 +17,18 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
     isLoading,
     filteredTools,
     totalToolsCount,
-    categoriesWithCounts,
     hasMoreTools,
     actualDisplayedCount,
     shouldShowFeaturedToolsButton,
     initialDisplayCount,
     handleCategoryChange,
-    handleSearchChange,
     handleLoadMore,
     handleShowMoreFeaturedTools
   } = useFeaturedToolsLogic({ onToolsLoaded });
 
-  // Convert categoriesWithCounts array to Record format if needed
-  const categoriesRecord = Array.isArray(categoriesWithCounts) 
-    ? categoriesWithCounts.reduce((acc, item) => {
-        acc[item.name] = item.count;
-        return acc;
-      }, {} as Record<string, number>)
-    : categoriesWithCounts;
-
   return (
     <div className="w-full">
-      {/* Show More Featured Tools Button - placed above search bar */}
-      {shouldShowFeaturedToolsButton && (
-        <ShowMoreFeaturedButton
-          onClick={handleShowMoreFeaturedTools}
-          toolsCount={filteredTools.length}
-          initialDisplayCount={initialDisplayCount}
-        />
-      )}
-
-      <div className="px-4 sm:px-0">
-        <CategoryFilters
-          categoriesWithCounts={categoriesRecord}
-          selectedCategory={selectedCategory}
-          onCategoryChange={handleCategoryChange}
-          onSearchChange={handleSearchChange}
-          searchTerm={searchTerm}
-        />
-
-        <ActiveFilters
-          selectedCategory={selectedCategory}
-          searchTerm={searchTerm}
-          totalTools={totalToolsCount}
-        />
-      </div>
-
+      {/* Featured Tools Grid - Just show the tools, no search */}
       <ToolsGrid
         tools={filteredTools}
         displayedCount={actualDisplayedCount}
@@ -76,7 +40,7 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
         onCategoryChange={handleCategoryChange}
       />
 
-      {/* Show More Featured Tools Button - appears after Marriage Mender GPT */}
+      {/* Show More Featured Tools Button - appears after featured tools */}
       {shouldShowFeaturedToolsButton && (
         <ShowMoreFeaturedButton
           onClick={handleShowMoreFeaturedTools}
