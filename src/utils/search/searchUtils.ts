@@ -367,11 +367,26 @@ const performEnhancedSearch = (
       if (matchSpiritual(tool, finalNormalizedTerm)) {
         matched = true;
         score += scoreSpiritual(tool, finalNormalizedTerm);
+        console.log(`⚡ SPIRITUAL MATCH: ${tool.title} scored ${scoreSpiritual(tool, finalNormalizedTerm)} for "${finalNormalizedTerm}"`);
       }
       
       if (matchParanormal(tool, finalNormalizedTerm)) {
         matched = true;
         score += scoreParanormal(tool, finalNormalizedTerm);
+      }
+
+      // ENHANCED "GOD" MATCHING for spiritual tools
+      if (finalNormalizedTerm.includes('god') && (
+        tool.title.toLowerCase().includes('god') || 
+        tool.title.toLowerCase().includes('gods') ||
+        tool.description.toLowerCase().includes('god') ||
+        tool.description.toLowerCase().includes('gods') ||
+        tool.description.toLowerCase().includes('deities') ||
+        tool.tags?.some(tag => tag.toLowerCase().includes('god') || tag.toLowerCase().includes('gods'))
+      )) {
+        matched = true;
+        score += 20000; // Very high priority for god-related searches
+        console.log(`⚡ ENHANCED GOD MATCH: ${tool.title} boosted for god search`);
       }
 
       // SUPER INTELLIGENT MATCHING: Context-aware partial matching

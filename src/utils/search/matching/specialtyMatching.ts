@@ -246,7 +246,8 @@ export const matchSpiritual = (tool: Tool, searchTerm: string): boolean => {
     'soul', 'map', 'gematria', 'numerology', 'astrology', 'spiritual', 'mystical',
     'essence', 'blueprint', 'soul mapping', 'divine', 'cosmic', 'metaphysical',
     'energy', 'chakra', 'meditation', 'enlightenment', 'wisdom', 'philosophy',
-    'tarot', 'crystals', 'healing', 'consciousness', 'manifestation'
+    'tarot', 'crystals', 'healing', 'consciousness', 'manifestation',
+    'god', 'gods', 'deities', 'deity', 'religious', 'religion', 'faith', 'prayer'
   ];
   
   const searchableText = [
@@ -255,14 +256,43 @@ export const matchSpiritual = (tool: Tool, searchTerm: string): boolean => {
     ...(tool.tags || [])
   ].join(' ').toLowerCase();
   
-  return spiritualKeywords.some(keyword => 
+  console.log(`⚡ Checking spiritual match for "${tool.title}" with search "${searchTerm}"`);
+  
+  const matches = spiritualKeywords.some(keyword => 
     lowerSearchTerm.includes(keyword) || searchableText.includes(keyword)
   );
+  
+  // Enhanced matching for god-related searches
+  if (lowerSearchTerm.includes('god') && (
+    tool.title.toLowerCase().includes('gods') ||
+    tool.title.toLowerCase().includes('talk to the gods') ||
+    searchableText.includes('gods') ||
+    searchableText.includes('deities')
+  )) {
+    console.log(`⚡ ENHANCED GOD MATCH FOUND: ${tool.title}`);
+    return true;
+  }
+  
+  if (matches) {
+    console.log(`⚡ SPIRITUAL MATCH FOUND: ${tool.title}`);
+  }
+  
+  return matches;
 };
 
 export const scoreSpiritual = (tool: Tool, searchTerm: string): number => {
   const lowerSearchTerm = searchTerm.toLowerCase().trim();
   let score = 0;
+  
+  console.log(`⚡ Scoring spiritual tool "${tool.title}" for search "${searchTerm}"`);
+  
+  // ENHANCED: Special boost for "TALK TO THE GODS GPT" on god searches
+  if ((lowerSearchTerm.includes('god') || lowerSearchTerm.includes('gods')) && 
+      (tool.title.toLowerCase().includes('talk to the gods') || 
+       tool.title.toLowerCase().includes('gods gpt'))) {
+    score += 50000; // Massive boost for god searches
+    console.log(`⚡ GODS GPT SUPER BOOST: Adding 50000 to score for ${tool.title}`);
+  }
   
   // Check if this is the Soul Map GPT specifically
   if (tool.title.toLowerCase().includes('soul map') || 
@@ -272,14 +302,16 @@ export const scoreSpiritual = (tool: Tool, searchTerm: string): number => {
   }
   
   // High-value spiritual keywords
-  const highValueKeywords = ['soul', 'gematria', 'numerology', 'astrology', 'spiritual', 'soul mapping'];
+  const highValueKeywords = ['soul', 'gematria', 'numerology', 'astrology', 'spiritual', 'soul mapping', 'god', 'gods', 'deities'];
   for (const keyword of highValueKeywords) {
     if (lowerSearchTerm.includes(keyword)) {
       if (tool.title.toLowerCase().includes(keyword)) {
         score += 8000;
+        console.log(`⚡ High value keyword "${keyword}" found in title: Adding 8000`);
       }
       if (tool.description.toLowerCase().includes(keyword)) {
         score += 5000;
+        console.log(`⚡ High value keyword "${keyword}" found in description: Adding 5000`);
       }
     }
   }
@@ -297,6 +329,7 @@ export const scoreSpiritual = (tool: Tool, searchTerm: string): number => {
     }
   }
   
+  console.log(`⚡ Final spiritual score for "${tool.title}": ${score}`);
   return score;
 };
 

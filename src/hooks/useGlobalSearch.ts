@@ -109,6 +109,7 @@ export const useGlobalSearch = () => {
     ];
     
     console.log(`🔍 Enhanced search for "${trimmedTerm}": ${intelligentResults.length} direct results + ${similarTools.length} similar + ${remainingTools.length} remaining = ${endlessResults.length} total endless scroll`);
+    console.log(`🔍 First 5 search results:`, intelligentResults.slice(0, 5).map(t => t.title));
     
     setSearchResults(endlessResults);
     setDisplayedCount(30); // Start with 30, then load more
@@ -167,24 +168,29 @@ export const useGlobalSearch = () => {
     }
   }, [searchTerm, searchResults, navigate]);
 
-  // FIXED scroll handler with proper endless loading
+  // FIXED scroll handler with proper endless loading and performance optimization
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
-    // More aggressive loading threshold for smooth endless scroll
-    const threshold = 100;
+    // Performance optimization - throttle scroll events
+    if (isLoadingMore) return;
+    
+    // More responsive loading threshold for smooth endless scroll
+    const threshold = 150;
     const nearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
     
-    if (nearBottom && displayedCount < searchResults.length && !isLoadingMore) {
+    console.log(`📜 Scroll check: ${scrollTop + clientHeight} >= ${scrollHeight - threshold}? ${nearBottom}, Displayed: ${displayedCount}/${searchResults.length}`);
+    
+    if (nearBottom && displayedCount < searchResults.length) {
       setIsLoadingMore(true);
       
-      // Simulate loading delay and then load more tools
+      // Immediate loading with shorter delay for better UX
       setTimeout(() => {
-        const increment = Math.min(20, searchResults.length - displayedCount);
+        const increment = Math.min(25, searchResults.length - displayedCount); // Load more items per batch
         console.log(`📜 Loading ${increment} more tools (${displayedCount + increment}/${searchResults.length})`);
         setDisplayedCount(prev => prev + increment);
         setIsLoadingMore(false);
-      }, 200); // Small delay to show loading state
+      }, 100); // Reduced delay for snappier response
     }
   }, [displayedCount, searchResults.length, isLoadingMore]);
 
