@@ -47,45 +47,56 @@ const CategoryFilter = ({ selectedCategory, onCategorySelect, categoryCounts }: 
 
   return (
     <div className="mb-8">
-      <div className="text-center mb-4">
-        <h3 className="text-lg font-semibold text-cyan-300 mb-2">Browse by Category</h3>
+      <div className="text-center mb-6">
+        <h3 className="text-xl font-bold text-transparent bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text mb-2">
+          Browse by Category
+        </h3>
       </div>
       
-      <div className="flex flex-wrap justify-center gap-3 max-w-6xl mx-auto">
+      <div className="flex flex-wrap justify-center gap-4 max-w-7xl mx-auto">
         {predefinedCategories.map((category) => {
           const count = getCategoryCount(category.name);
           const isSelected = selectedCategory === category.name;
           
           return (
-            <Button
+            <button
               key={category.key}
-              variant={isSelected ? "premium" : "outline"}
-              size="sm"
               onClick={() => onCategorySelect(isSelected ? null : category.name)}
-              className="h-auto p-3 text-sm font-medium transition-all duration-300 hover:scale-105 flex items-center gap-2 min-w-fit"
+              className={`
+                relative px-4 py-3 rounded-xl font-bold text-xs transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2 min-w-fit
+                ${isSelected 
+                  ? 'bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg shadow-cyan-500/30 border border-cyan-400/50' 
+                  : 'bg-gradient-to-r from-slate-800/90 to-slate-700/90 text-cyan-200 border border-cyan-500/20 hover:border-cyan-400/60 hover:shadow-lg hover:shadow-cyan-500/20'
+                }
+                backdrop-blur-sm group
+              `}
             >
-              <span className="text-base">{category.emoji}</span>
-              <span className="text-xs font-medium">{category.name}</span>
-              <Badge 
-                variant="secondary" 
-                className="ml-1 text-xs bg-cyan-500/20 text-cyan-300 border-cyan-500/30"
-              >
+              <span className="text-sm group-hover:animate-pulse">{category.emoji}</span>
+              <span className="font-semibold">{category.name}</span>
+              <span className={`
+                px-2 py-1 rounded-full text-xs font-bold
+                ${isSelected 
+                  ? 'bg-white/20 text-white' 
+                  : 'bg-cyan-500/20 text-cyan-300 group-hover:bg-cyan-400/30 group-hover:text-cyan-100'
+                }
+              `}>
                 {count || 0}
-              </Badge>
-            </Button>
+              </span>
+              {!isSelected && (
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-purple-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              )}
+            </button>
           );
         })}
         
         {/* Clear filter button */}
         {selectedCategory && (
-          <Button
-            variant="ghost"
-            size="sm"
+          <button
             onClick={() => onCategorySelect(null)}
-            className="h-auto p-3 text-sm font-medium text-gray-400 hover:text-white transition-all duration-300"
+            className="px-4 py-3 rounded-xl font-medium text-sm text-gray-400 hover:text-cyan-300 border border-gray-600/50 hover:border-cyan-500/50 transition-all duration-300 bg-slate-800/50 backdrop-blur-sm hover:bg-slate-700/50"
           >
             Clear All
-          </Button>
+          </button>
         )}
       </div>
     </div>
