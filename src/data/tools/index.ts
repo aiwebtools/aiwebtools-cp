@@ -132,3 +132,13 @@ export { creativeExperimentalTools2025 } from './creativeExperimentalTools2025';
 
 // Export Web3 and Blockchain Tools
 export { web3DomainsTools } from './web3DomainsTools';
+
+// Export missing tool categories (non-duplicates only)
+export { aiImageGeneration } from './aiImageGeneration';
+export { businessProductivityAudio } from './businessProductivityAudio';
+export { coreAudioVoiceTools } from './coreAudioVoiceTools';
+export { videoBusinessTools } from './videoBusinessTools';
+export { videoEditingTools } from './videoEditingTools';
+export { videoGenerationTools } from './videoGenerationTools';
+export { videoMarketingTools } from './videoMarketingTools';
+export { professionalGPTsAudio } from './professionalGPTsAudio';

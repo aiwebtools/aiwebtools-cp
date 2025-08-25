@@ -139,6 +139,16 @@ import { creativeExperimentalTools2025 } from './tools/creativeExperimentalTools
 // Import Web3 and Blockchain Tools
 import { web3DomainsTools } from './tools/web3DomainsTools';
 
+// Import missing tool categories (non-duplicates only)
+import { aiImageGeneration } from './tools/aiImageGeneration';
+import { businessProductivityAudio } from './tools/businessProductivityAudio';
+import { coreAudioVoiceTools } from './tools/coreAudioVoiceTools';
+import { videoBusinessTools } from './tools/videoBusinessTools';
+import { videoEditingTools } from './tools/videoEditingTools';
+import { videoGenerationTools } from './tools/videoGenerationTools';
+import { videoMarketingTools } from './tools/videoMarketingTools';
+import { professionalGPTsAudio } from './tools/professionalGPTsAudio';
+
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
@@ -275,6 +285,16 @@ export const getAllToolCategories = (): Tool[] => {
     ...historicalAndCultural,
     
     // WEB3 & BLOCKCHAIN TOOLS
-    ...web3DomainsTools
+    ...web3DomainsTools,
+    
+    // MISSING TOOL CATEGORIES (non-duplicates only)
+    ...aiImageGeneration,
+    ...businessProductivityAudio,
+    ...coreAudioVoiceTools,
+    ...videoBusinessTools,
+    ...videoEditingTools,
+    ...videoGenerationTools,
+    ...videoMarketingTools,
+    ...professionalGPTsAudio
   ];
 };
