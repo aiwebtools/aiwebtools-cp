@@ -7,8 +7,6 @@ import { matchCodingAgents, scoreCodingAgents } from "./matching/codingMatching"
 import { matchGameTools, scoreGameTools } from "./matching/gameMatching";
 import { matchUserTask, smartTypoCorrection, scoreToolByContext, matchTimeTravel, scoreTimeTravel, matchWriting, scoreWriting } from "./core/intelligentTaskMatching";
 import { matchSpiritual, scoreSpiritual, matchParanormal, scoreParanormal } from "./matching/specialtyMatching";
-import { superSmartTypoCorrection, getPartialMatchSuggestions, matchWithContext, superIntelligentScore } from "./core/superIntelligentSearch";
-import { matchWebDevelopment, scoreWebDevelopment } from "./matching/webDevelopmentMatching";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -80,26 +78,19 @@ const detectIntent = (searchTerm: string): string | null => {
   return null;
 };
 
-// Enhanced search function with SUPER INTELLIGENT partial matching and prediction
+// Enhanced search function with intent detection and optimized performance
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
     return tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title));
   }
 
-  // STEP 1: Super intelligent typo correction and expansion
-  const correctedSearchTerm = superSmartTypoCorrection(searchTerm);
-  const partialSuggestions = getPartialMatchSuggestions(searchTerm);
-  
-  console.log(`🧠 SUPER SEARCH: "${searchTerm}" → "${correctedSearchTerm}"`, 
-             partialSuggestions.length > 0 ? `Suggestions: ${partialSuggestions.slice(0, 3).join(', ')}` : '');
-
-  const normalizedSearchTerm = correctedSearchTerm.toLowerCase().trim();
+  const normalizedSearchTerm = searchTerm.toLowerCase().trim();
   const searchWords = normalizedSearchTerm.split(/[\s,.-]+/).filter(word => word.length > 1);
   
-  // Enhanced phonetic variations  
-  const phoneticVariations = searchTerm.length <= 8 ? phoneticMatch(normalizedSearchTerm) : [];
+  // Fast phonetic variations (only for performance-critical terms)
+  const phoneticVariations = searchTerm.length <= 6 ? phoneticMatch(normalizedSearchTerm) : [];
   
-  // Enhanced intent detection
+  // Quick intent detection without heavy processing
   const userIntent = detectIntent(normalizedSearchTerm);
   const intentConfig = userIntent ? INTENT_PATTERNS[userIntent as keyof typeof INTENT_PATTERNS] : null;
   
@@ -264,13 +255,13 @@ const performEnhancedSearch = (
   intentConfig: any
 ): Tool[] => {
   // Apply intelligent typo correction first
-  const processedSearchTerm = superSmartTypoCorrection(searchTerm);
-  const finalNormalizedTerm = processedSearchTerm.toLowerCase().trim();
+  const correctedSearchTerm = smartTypoCorrection(searchTerm);
+  const normalizedSearchTerm = correctedSearchTerm.toLowerCase().trim();
   
   // Detect user task intent
-  const userTask = matchUserTask(finalNormalizedTerm);
+  const userTask = matchUserTask(normalizedSearchTerm);
   
-  console.log(`🧠 Smart search for "${searchTerm}" -> "${processedSearchTerm}"`, userTask.taskType ? `Task detected: ${userTask.taskType}` : 'No specific task detected');
+  console.log(`🧠 Smart search for "${searchTerm}" -> "${correctedSearchTerm}"`, userTask.taskType ? `Task detected: ${userTask.taskType}` : 'No specific task detected');
   
   const results = tools
     .filter(tool => !EXCLUDED_TOOLS.includes(tool.title))
@@ -286,14 +277,14 @@ const performEnhancedSearch = (
       // AIWEBTOOLS PRIORITY BOOST - Special handling for our custom GPTs
       if (tool.directUrl?.includes('aiwebtools') || tool.tags?.includes('aiwebtools')) {
         score += 2000; // Base boost for AI Web Tools
-        if (lowerTitle.includes(finalNormalizedTerm)) {
+        if (lowerTitle.includes(normalizedSearchTerm)) {
           score += 3000; // Additional boost for matching AI Web Tools
         }
       }
 
       // INTELLIGENT TASK-BASED SCORING: Boost tools that match detected user tasks
       if (userTask.taskType && userTask.score > 0) {
-        const contextScore = scoreToolByContext(tool, finalNormalizedTerm, userTask);
+        const contextScore = scoreToolByContext(tool, normalizedSearchTerm, userTask);
         if (contextScore > 0) {
           matched = true;
           score += contextScore;
@@ -322,77 +313,68 @@ const performEnhancedSearch = (
       }
 
       // SPECIAL MATCHING: Time Travel searches - HIGHEST PRIORITY
-      if (matchTimeTravel(tool, finalNormalizedTerm)) {
+      if (matchTimeTravel(tool, normalizedSearchTerm)) {
         matched = true;
-        score += scoreTimeTravel(tool, finalNormalizedTerm);
+        score += scoreTimeTravel(tool, normalizedSearchTerm);
       }
 
       // SPECIAL MATCHING: Creative Writing searches - HIGH PRIORITY
-      if (matchWriting(tool, finalNormalizedTerm)) {
+      if (matchWriting(tool, normalizedSearchTerm)) {
         matched = true;
-        score += scoreWriting(tool, finalNormalizedTerm);
+        score += scoreWriting(tool, normalizedSearchTerm);
       }
 
       // SPECIAL MATCHING: Vibe Coding Agent searches
-      if (matchVibeCoding(tool, finalNormalizedTerm)) {
+      if (matchVibeCoding(tool, normalizedSearchTerm)) {
         matched = true;
-        score += scoreVibeCoding(tool, finalNormalizedTerm);
+        score += scoreVibeCoding(tool, normalizedSearchTerm);
       }
 
       // SPECIAL MATCHING: AI Agent searches
-      if (matchAgents(tool, finalNormalizedTerm)) {
+      if (matchAgents(tool, normalizedSearchTerm)) {
         matched = true;
-        score += scoreAgents(tool, finalNormalizedTerm);
+        score += scoreAgents(tool, normalizedSearchTerm);
       }
 
       // SPECIAL MATCHING: Game searches - HIGH PRIORITY for video game tools
-      if (matchGameTools(tool, finalNormalizedTerm)) {
+      if (matchGameTools(tool, normalizedSearchTerm)) {
         matched = true;
-        score += scoreGameTools(tool, finalNormalizedTerm);
+        score += scoreGameTools(tool, normalizedSearchTerm);
       }
 
       // SPECIAL MATCHING: Coding Agent searches
-      if (matchCodingAgents(tool, finalNormalizedTerm)) {
+      if (matchCodingAgents(tool, normalizedSearchTerm)) {
         matched = true;
-        score += scoreCodingAgents(tool, finalNormalizedTerm);
+        score += scoreCodingAgents(tool, normalizedSearchTerm);
       }
 
-      // SPECIAL MATCHING: Web Development searches - HIGH PRIORITY
-      if (matchWebDevelopment(tool, finalNormalizedTerm)) {
+      // SPECIAL MATCHING: Spiritual/Mystical searches - HIGH PRIORITY
+      if (matchSpiritual(tool, normalizedSearchTerm)) {
         matched = true;
-        score += scoreWebDevelopment(tool, finalNormalizedTerm);
+        score += scoreSpiritual(tool, normalizedSearchTerm);
       }
 
-      // SPECIAL MATCHING: Spiritual/Paranormal searches - HIGH PRIORITY
-      if (matchSpiritual(tool, finalNormalizedTerm)) {
+      // SPECIAL MATCHING: Paranormal/Phenomenon searches - HIGH PRIORITY for UFO/Ghost/Phenomenon
+      if (matchParanormal(tool, normalizedSearchTerm)) {
+        console.log(`🛸 PARANORMAL MATCH TRIGGERED for "${tool.title}" with search "${normalizedSearchTerm}"`);
         matched = true;
-        score += scoreSpiritual(tool, finalNormalizedTerm);
-      }
-      
-      if (matchParanormal(tool, finalNormalizedTerm)) {
-        matched = true;
-        score += scoreParanormal(tool, finalNormalizedTerm);
-      }
-
-      // SUPER INTELLIGENT MATCHING: Context-aware partial matching
-      if (!matched && matchWithContext(tool, searchTerm)) {
-        matched = true;
-        score += superIntelligentScore(tool, searchTerm);
-        console.log(`🤖 SUPER MATCH: ${tool.title} matched via intelligent context`);
+        const paranormalScore = scoreParanormal(tool, normalizedSearchTerm);
+        score += paranormalScore;
+        console.log(`🛸 Added paranormal score ${paranormalScore} to ${tool.title}, total: ${score}`);
       }
 
       // HIGHEST PRIORITY: Exact title match
-      if (lowerTitle === finalNormalizedTerm) {
+      if (lowerTitle === normalizedSearchTerm) {
         matched = true;
         score += 20000;
       }
       // VERY HIGH PRIORITY: Title starts with search term
-      else if (lowerTitle.startsWith(finalNormalizedTerm)) {
+      else if (lowerTitle.startsWith(normalizedSearchTerm)) {
         matched = true;
         score += 15000;
       }
       // HIGH PRIORITY: Title contains search term
-      else if (lowerTitle.includes(finalNormalizedTerm)) {
+      else if (lowerTitle.includes(normalizedSearchTerm)) {
         matched = true;
         score += 10000;
       }
@@ -410,20 +392,20 @@ const performEnhancedSearch = (
       }
 
       // MEDIUM-HIGH PRIORITY: Description contains exact term (check both original and corrected)
-      if (lowerDescription.includes(finalNormalizedTerm) || lowerDescription.includes(processedSearchTerm.toLowerCase())) {
+      if (lowerDescription.includes(normalizedSearchTerm) || lowerDescription.includes(correctedSearchTerm)) {
         matched = true;
         score += 6000;
       }
 
       // MEDIUM PRIORITY: Category match (check both original and corrected)
-      if (lowerCategory.includes(finalNormalizedTerm) || lowerCategory.includes(processedSearchTerm.toLowerCase())) {
+      if (lowerCategory.includes(normalizedSearchTerm) || lowerCategory.includes(correctedSearchTerm)) {
         matched = true;
         score += 4000;
       }
 
       // MEDIUM PRIORITY: Tag matches (check both original and corrected)
       for (const tag of lowerTags) {
-        if (tag.includes(finalNormalizedTerm) || tag.includes(processedSearchTerm.toLowerCase())) {
+        if (tag.includes(normalizedSearchTerm) || tag.includes(correctedSearchTerm)) {
           matched = true;
           score += 3000;
         }
@@ -469,7 +451,7 @@ const performEnhancedSearch = (
   return results;
 };
 
-// Helper function to remove duplicate tools
+// Remove duplicate tools
 export const removeDuplicateTools = (tools: Tool[]): Tool[] => {
   const seen = new Set<string>();
   return tools.filter(tool => {
