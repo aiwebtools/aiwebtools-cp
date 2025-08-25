@@ -86,6 +86,9 @@ export default {
 				'safe-left': 'env(safe-area-inset-left)',
 				'safe-right': 'env(safe-area-inset-right)',
 			},
+			fontFamily: {
+				'cursive': ['Dancing Script', 'cursive'],
+			},
 			keyframes: {
 				'accordion-down': {
 					from: {
