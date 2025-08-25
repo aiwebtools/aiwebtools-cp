@@ -107,6 +107,20 @@ const HeroSection = () => {
           <GlobalSearchBar />
         </div>
 
+        {/* Clone Website Button */}
+        <div className="mb-8 max-w-4xl mx-auto">
+          <button
+            onClick={() => window.open('https://lovable.dev', '_blank')}
+            className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold text-lg rounded-xl shadow-lg shadow-purple-500/30 hover:shadow-purple-400/50 transform hover:scale-105 transition-all duration-300 border border-purple-400/50 hover:border-purple-300"
+          >
+            <span className="flex items-center space-x-3">
+              <Zap className="w-6 h-6" />
+              <span>Clone This Website</span>
+              <Rocket className="w-6 h-6 group-hover:animate-bounce" />
+            </span>
+          </button>
+        </div>
+
         {/* Enhanced Search Filters */}
         <div className="mb-12">
           <SearchFilters />
