@@ -12,6 +12,7 @@ import ToolDetail from "./pages/ToolDetail";
 import SimilarToolsPage from "./pages/SimilarTools";
 import NotFound from "./pages/NotFound";
 import DisclaimersPage from "./pages/DisclaimersPage";
+import FloatingCloneButton from "./components/FloatingCloneButton";
 
 const queryClient = new QueryClient();
 
@@ -32,16 +33,8 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Routes>
             
-            {/* Tiny floating clone button */}
-            <a
-              href="https://lovable.dev/projects/10fbcd5c-0359-4bd0-9c40-9c7ac9b72765/remix"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="fixed bottom-4 right-4 z-50 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-xs px-2 py-1 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 animate-pulse"
-              style={{ fontSize: '8px' }}
-            >
-              CLONE THIS WEBSITE
-            </a>
+            {/* Tiny floating clone button - hides on scroll */}
+            <FloatingCloneButton />
           </BrowserRouter>
         </TooltipProvider>
       </HelmetProvider>
