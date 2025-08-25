@@ -50,14 +50,6 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
       )}
 
       <div className="px-4 sm:px-0">
-        <CategoryFilters
-          categoriesWithCounts={categoriesRecord}
-          selectedCategory={selectedCategory}
-          onCategoryChange={handleCategoryChange}
-          onSearchChange={handleSearchChange}
-          searchTerm={searchTerm}
-        />
-
         <ActiveFilters
           selectedCategory={selectedCategory}
           searchTerm={searchTerm}
