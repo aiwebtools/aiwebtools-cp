@@ -8,23 +8,12 @@ const AnimatedBackground = () => {
   const matrixRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Defer animation creation for better initial load performance
-    const initAnimations = () => {
-      requestAnimationFrame(() => {
-        // Stagger animation creation to avoid blocking
-        setTimeout(createStars, 0);
-        setTimeout(createParticles, 100);
-        setTimeout(createShootingStars, 200);
-        setTimeout(createMatrixCode, 300);
-      });
-    };
-
     // Create stars - optimized for performance
     const createStars = () => {
       const starsContainer = starsRef.current;
       if (!starsContainer) return;
 
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i < 200; i++) {
         const star = document.createElement('div');
         star.className = 'star';
         star.style.left = Math.random() * 100 + '%';
@@ -42,7 +31,7 @@ const AnimatedBackground = () => {
       const particlesContainer = particlesRef.current;
       if (!particlesContainer) return;
 
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < 20; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * 100 + '%';
@@ -59,7 +48,7 @@ const AnimatedBackground = () => {
       const shootingStarsContainer = shootingStarsRef.current;
       if (!shootingStarsContainer) return;
 
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 10; i++) {
         const shootingStar = document.createElement('div');
         shootingStar.className = 'shooting-star';
         shootingStar.style.left = Math.random() * 100 + '%';
@@ -79,7 +68,7 @@ const AnimatedBackground = () => {
       const matrixChars = '01ABCXYZ';  // Simplified character set for performance
       const isMobile = window.innerWidth < 768;
       const columnWidth = isMobile ? 25 : 30;
-      const columns = Math.min(Math.floor(window.innerWidth / columnWidth), isMobile ? 15 : 25); // Reduced columns
+      const columns = Math.min(Math.floor(window.innerWidth / columnWidth), isMobile ? 20 : 40); // Limit columns
 
       for (let i = 0; i < columns; i++) {
         const column = document.createElement('div');
@@ -114,7 +103,10 @@ const AnimatedBackground = () => {
       }, 250);
     };
 
-    initAnimations();
+    createStars();
+    createParticles();
+    createShootingStars();
+    createMatrixCode();
 
     window.addEventListener('resize', handleResize);
 
