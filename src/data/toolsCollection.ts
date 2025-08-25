@@ -136,6 +136,9 @@ import { additionalVideoTools2025 } from './tools/additionalVideoTools2025';
 import { additionalAudioTools2025 } from './tools/additionalAudioTools2025';
 import { creativeExperimentalTools2025 } from './tools/creativeExperimentalTools2025';
 
+// Import Web3 and Blockchain Tools
+import { web3DomainsTools } from './tools/web3DomainsTools';
+
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
@@ -269,6 +272,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...creativeExperimentalTools2025,
     
     // Historical and Cultural tools
-    ...historicalAndCultural
+    ...historicalAndCultural,
+    
+    // WEB3 & BLOCKCHAIN TOOLS
+    ...web3DomainsTools
   ];
 };
