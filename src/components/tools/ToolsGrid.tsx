@@ -1,4 +1,4 @@
-import React, { useMemo, memo, lazy, Suspense, useEffect, useRef } from "react";
+import React, { useMemo, memo, lazy, Suspense, useEffect, useRef, useCallback } from "react";
 import { Tool } from "@/types/tools";
 import ToolCard from "@/components/tools/ToolCard";
 import LoadMoreButton from "@/components/tools/LoadMoreButton";
@@ -7,6 +7,8 @@ import SeeMoreCategoriesButton from "@/components/tools/SeeMoreCategoriesButton"
 import { getContextAwareSimilarTools, shouldShowSimilarTools } from "@/utils/contextAwareSimilarTools";
 import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
+import { resourcePreloader } from "@/utils/resourcePreloader";
+import { performanceMonitor } from "@/utils/performanceMonitoring";
 
 // Lazy load heavy components
 const VirtualizedToolsGrid = lazy(() => import("./VirtualizedToolsGrid"));
@@ -32,7 +34,7 @@ const ToolsGrid = memo(({
   isLoading = false,
   onCategoryChange
 }: ToolsGridProps) => {
-  // Memoize expensive calculations
+  // Memoize expensive calculations with performance tracking
   const { 
     displayTools, 
     shouldShowSimilar, 
@@ -41,26 +43,35 @@ const ToolsGrid = memo(({
     categoriesWithCounts,
     shouldShowCategoriesButton
   } = useMemo(() => {
-    const displayTools = tools.slice(0, displayedCount);
-    const shouldShowSimilar = shouldShowSimilarTools(tools.length) && !searchTerm && !selectedCategory;
-    const similarTools = shouldShowSimilar ? getContextAwareSimilarTools(tools, searchTerm, selectedCategory) : [];
-    
-    // For category pages, always show as having more (endless)
-    // For search, check if there are actually more results
-    const hasMoreTools = selectedCategory ? true : (searchTerm ? displayedCount < tools.length : displayedCount < tools.length);
-    
-    const categoriesWithCounts = getStandardizedCategoriesWithCounts();
-    const shouldShowCategoriesButton = tools.length < 15 && !selectedCategory && !searchTerm;
-    
-    return {
-      displayTools,
-      shouldShowSimilar,
-      similarTools,
-      hasMoreTools,
-      categoriesWithCounts,
-      shouldShowCategoriesButton
-    };
+    return performanceMonitor.measureSearchPerformance(() => {
+      const displayTools = tools.slice(0, displayedCount);
+      const shouldShowSimilar = shouldShowSimilarTools(tools.length) && !searchTerm && !selectedCategory;
+      const similarTools = shouldShowSimilar ? getContextAwareSimilarTools(tools, searchTerm, selectedCategory) : [];
+      
+      // For category pages, always show as having more (endless)
+      // For search, check if there are actually more results
+      const hasMoreTools = selectedCategory ? true : (searchTerm ? displayedCount < tools.length : displayedCount < tools.length);
+      
+      const categoriesWithCounts = getStandardizedCategoriesWithCounts();
+      const shouldShowCategoriesButton = tools.length < 15 && !selectedCategory && !searchTerm;
+      
+      return {
+        displayTools,
+        shouldShowSimilar,
+        similarTools,
+        hasMoreTools,
+        categoriesWithCounts,
+        shouldShowCategoriesButton
+      };
+    });
   }, [tools, displayedCount, searchTerm, selectedCategory]);
+
+  // Preload images for visible tools
+  useEffect(() => {
+    if (displayTools.length > 0) {
+      resourcePreloader.preloadToolImages(displayTools);
+    }
+  }, [displayTools]);
 
   // Enable infinite scroll when hasInfiniteScroll is true
   useInfiniteScroll({
@@ -74,20 +85,30 @@ const ToolsGrid = memo(({
     enableInfiniteScroll: hasInfiniteScroll
   });
 
-  // IntersectionObserver sentinel as a robust fallback to trigger loading
+  // Optimized IntersectionObserver with performance throttling
   const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const throttledLoadMore = useCallback(() => {
+    if (!isLoading) {
+      requestAnimationFrame(() => onLoadMore());
+    }
+  }, [isLoading, onLoadMore]);
+
   useEffect(() => {
     if (!hasInfiniteScroll) return;
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
-      if (entry?.isIntersecting && !isLoading) {
-        onLoadMore();
+      if (entry?.isIntersecting) {
+        throttledLoadMore();
       }
-    }, { root: null, rootMargin: '300px', threshold: 0.01 });
+    }, { 
+      root: null, 
+      rootMargin: '300px', 
+      threshold: 0.01 
+    });
     const el = sentinelRef.current;
     if (el) observer.observe(el);
     return () => observer.disconnect();
-  }, [hasInfiniteScroll, isLoading, onLoadMore]);
+  }, [hasInfiniteScroll, throttledLoadMore]);
 
   const getSectionTitle = useMemo(() => {
     if (selectedCategory) {

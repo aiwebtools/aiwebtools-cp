@@ -1,19 +1,19 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { useVideoManager } from "@/hooks/useVideoManager";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import CategoryPageSelection from "@/components/CategoryPageSelection";
-import SpecialServices from "@/components/SpecialServices";
-import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import SEOHead from "@/components/SEOHead";
-import FeaturedToolsSection from "@/components/tools/FeaturedToolsSection";
-import { Button } from "@/components/ui/button";
 import { getCurrentToolCount } from "@/utils/toolCounter";
-import { allTools } from "@/data/toolsData";
-import BookPromotionCard from "@/components/BookPromotionCard";
+
+// Lazy load non-critical components for faster initial load
+const FeaturedToolsSection = lazy(() => import("@/components/tools/FeaturedToolsSection"));
+const SpecialServices = lazy(() => import("@/components/SpecialServices"));
+const Footer = lazy(() => import("@/components/Footer"));
+const BookPromotionCard = lazy(() => import("@/components/BookPromotionCard"));
 
 const Index = () => {
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
@@ -83,12 +83,27 @@ const Index = () => {
         </section>
 
         {/* Featured Tools Section - This shows Soul Map GPT and all featured tools */}
-        <FeaturedToolsSection onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
+        <Suspense fallback={
+          <div className="flex justify-center items-center py-16">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-500"></div>
+          </div>
+        }>
+          <FeaturedToolsSection onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
+        </Suspense>
         
-        <BookPromotionCard />
-        <SpecialServices />
+        <Suspense fallback={<div className="h-32"></div>}>
+          <BookPromotionCard />
+        </Suspense>
+        
+        <Suspense fallback={<div className="h-64"></div>}>
+          <SpecialServices />
+        </Suspense>
+        
         <ScrollToTop />
-        <Footer />
+        
+        <Suspense fallback={<div className="h-96"></div>}>
+          <Footer />
+        </Suspense>
       </div>
     </div>
   );
