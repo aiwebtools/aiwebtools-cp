@@ -6,6 +6,8 @@ import { Tool } from "@/types/tools";
 import ToolCardMedia from "./ToolCardMedia";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { allTools } from "@/data/toolsData";
+import FeedbackModal from "@/components/FeedbackModal";
+import { useState } from "react";
 
 interface ToolCardContentProps {
   tool: Tool;
@@ -26,6 +28,7 @@ const ToolCardContent = ({
   imageHeight, 
   getDescription 
 }: ToolCardContentProps) => {
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
   
   const handleDirectAccess = (e: React.MouseEvent) => {
     if (tool.directUrl) {
@@ -41,25 +44,7 @@ const ToolCardContent = ({
     e.preventDefault();
     e.stopPropagation();
     console.log('Creator feedback clicked for:', tool.title);
-    
-    // Create feedback email with tool details
-    const subject = encodeURIComponent(`Feedback for ${tool.title} GPT`);
-    const body = encodeURIComponent(`Hi AI Web Tools Team,
-
-I'd like to provide feedback for ${tool.title}:
-
-Tool URL: ${tool.directUrl}
-Category: ${tool.category}
-
-My feedback:
-[Please share your thoughts, suggestions, or issues here]
-
-Thank you for creating amazing AI tools!
-
-Best regards`);
-    
-    const mailtoLink = `mailto:feedback@aiwebtools.ai?subject=${subject}&body=${body}`;
-    window.open(mailtoLink, '_blank');
+    setIsFeedbackModalOpen(true);
   };
 
   // Find the correct index in allTools array
@@ -119,6 +104,15 @@ Best regards`);
           </Button>
         )}
       </div>
+
+      {/* Feedback Modal */}
+      {isAIWebToolsOriginal && (
+        <FeedbackModal
+          isOpen={isFeedbackModalOpen}
+          onClose={() => setIsFeedbackModalOpen(false)}
+          tool={tool}
+        />
+      )}
     </CardContent>
   );
 };
