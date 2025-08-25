@@ -13,7 +13,7 @@ const AnimatedBackground = () => {
       const starsContainer = starsRef.current;
       if (!starsContainer) return;
 
-      for (let i = 0; i < 200; i++) {
+      for (let i = 0; i < 30; i++) {
         const star = document.createElement('div');
         star.className = 'star';
         star.style.left = Math.random() * 100 + '%';
@@ -31,7 +31,7 @@ const AnimatedBackground = () => {
       const particlesContainer = particlesRef.current;
       if (!particlesContainer) return;
 
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 5; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * 100 + '%';
@@ -48,7 +48,7 @@ const AnimatedBackground = () => {
       const shootingStarsContainer = shootingStarsRef.current;
       if (!shootingStarsContainer) return;
 
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 2; i++) {
         const shootingStar = document.createElement('div');
         shootingStar.className = 'shooting-star';
         shootingStar.style.left = Math.random() * 100 + '%';
@@ -68,7 +68,7 @@ const AnimatedBackground = () => {
       const matrixChars = '01ABCXYZ';  // Simplified character set for performance
       const isMobile = window.innerWidth < 768;
       const columnWidth = isMobile ? 25 : 30;
-      const columns = Math.min(Math.floor(window.innerWidth / columnWidth), isMobile ? 20 : 40); // Limit columns
+      const columns = Math.min(Math.floor(window.innerWidth / columnWidth), isMobile ? 8 : 15); // Limit columns
 
       for (let i = 0; i < columns; i++) {
         const column = document.createElement('div');

@@ -1,0 +1,101 @@
+// Performance-first CSS with critical styles
+:root {
+  /* Optimize font loading */
+  font-display: swap;
+  
+  /* Enable hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  
+  /* Optimize scrolling */
+  scroll-behavior: smooth;
+  overflow-anchor: auto;
+}
+
+/* Critical loading optimizations */
+* {
+  /* Reduce layout thrashing */
+  box-sizing: border-box;
+}
+
+/* Optimize images and media */
+img, video, iframe {
+  /* Lazy loading optimization */
+  loading: lazy;
+  decoding: async;
+  
+  /* Prevent layout shift */
+  height: auto;
+  max-width: 100%;
+  
+  /* Hardware acceleration for smooth animations */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimize animations */
+.animate-spin,
+.animate-pulse,
+.animate-bounce {
+  /* Use hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Performance-optimized hover effects */
+.hover\:scale-105:hover {
+  /* Use transform instead of changing layout properties */
+  transform: scale(1.05) translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimize scrolling performance */
+.overflow-y-auto,
+.overflow-x-auto {
+  /* Enable smooth scrolling on mobile */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Critical above-the-fold styles */
+.bg-black { background-color: #000; }
+.text-white { color: #fff; }
+.text-cyan-400 { color: rgb(34 211 238); }
+.text-cyan-500 { color: rgb(6 182 212); }
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimize for high DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Crisp text rendering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Mobile performance optimizations */
+@media (max-width: 768px) {
+  /* Reduce animation complexity on mobile */
+  .animate-spin {
+    animation-duration: 1s;
+  }
+  
+  /* Optimize touch interactions */
+  button, a, [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
