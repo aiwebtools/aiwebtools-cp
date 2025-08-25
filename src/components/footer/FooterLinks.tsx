@@ -15,6 +15,12 @@ const FooterLinks = () => {
       <h3 className="text-lg font-semibold mb-6 text-cyan-400">Quick Links</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-3">
+          <a
+            href="/our-story"
+            className="block text-cyan-200 hover:text-cyan-400 transition-colors text-left"
+          >
+            📖 Our Story
+          </a>
           <button
             onClick={(e) => handleExternalLink("https://aitools.company/hire-us-to-build-your-ai-1", e)}
             className="block text-cyan-200 hover:text-cyan-400 transition-colors text-left"

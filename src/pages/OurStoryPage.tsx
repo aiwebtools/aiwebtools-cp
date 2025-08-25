@@ -9,6 +9,39 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import SEOHead from "@/components/SEOHead";
 
 const OurStoryPage = () => {
+  const handleContactEmail = () => {
+    const subject = encodeURIComponent('Contact AIWebTools.ai - General Inquiry');
+    const body = encodeURIComponent(`Hi AIWebTools.ai Team,
+
+I hope this message finds you well. I'm reaching out regarding:
+
+1. My inquiry/question:
+   [Please describe your question or inquiry here]
+
+2. How I discovered AIWebTools.ai:
+   [Please tell us how you found our platform]
+
+3. My interest in AI tools:
+   [Please share what brings you to explore AI tools]
+
+4. Specific tools or services I'm interested in:
+   [Please list any specific tools or services that caught your attention]
+
+5. How AIWebTools.ai can help me:
+   [Please describe what you're hoping to accomplish with AI tools]
+
+Additional Information:
+[Any other details you'd like to share]
+
+Thank you for your time and for creating such an amazing platform!
+
+Best regards,
+[Your name]
+[Your contact information - optional]`);
+    
+    const mailtoUrl = `mailto:contact@ai-webtools.com?subject=${subject}&body=${body}`;
+    window.location.href = mailtoUrl;
+  };
   return (
     <>
       <SEOHead 
@@ -223,11 +256,9 @@ const OurStoryPage = () => {
                   </Link>
                 </Button>
                 
-                <Button asChild className="bg-green-600 hover:bg-green-500 text-white font-semibold">
-                  <a href="mailto:kb@aiwebtools.ai">
-                    <Mail className="w-4 h-4 mr-2" />
-                    Contact Kenneth
-                  </a>
+                <Button onClick={handleContactEmail} className="bg-green-600 hover:bg-green-500 text-white font-semibold">
+                  <Mail className="w-4 h-4 mr-2" />
+                  Contact AIWebTools.ai
                 </Button>
               </div>
 
