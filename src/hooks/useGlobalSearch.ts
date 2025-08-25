@@ -29,18 +29,78 @@ export const useGlobalSearch = () => {
       return;
     }
 
-    // LIGHTNING FAST 2-character search
+    // SUPER INTELLIGENT 2-character search with predictive matching
     if (trimmedTerm.length === 2) {
-      const results = allTools.filter(tool => 
-        tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
-      ).sort((a, b) => a.title.localeCompare(b.title));
-      setSearchResults(results);
+      const lowerTerm = trimmedTerm.toLowerCase();
+      const results = allTools.filter(tool => {
+        const lowerTitle = tool.title.toLowerCase();
+        const lowerDescription = tool.description?.toLowerCase() || "";
+        const lowerTags = tool.tags?.join(" ").toLowerCase() || "";
+        
+        // Direct starts with match (highest priority)
+        if (lowerTitle.startsWith(lowerTerm)) return true;
+        
+        // Predictive matching for common prefixes
+        const predictions: Record<string, string[]> = {
+          'sc': ['scribe', 'script', 'screen', 'screenplay'],
+          'tr': ['transcribe', 'transcription', 'transcript', 'travel', 'trading', 'trader'],
+          'po': ['podcast', 'policy', 'political', 'poll'],
+          'dr': ['draft', 'draftsman', 'doctor', 'dream'],
+          'co': ['college', 'course', 'content', 'contract', 'coloring'],
+          'le': ['legal', 'learn', 'legislation', 'legislator'],
+          'bl': ['blog', 'blockchain', 'blueprint'],
+          'ar': ['article', 'art', 'artificial', 'architecture'],
+          'gr': ['graphic', 'grant', 'grammar'],
+          'go': ['god', 'gods', 'government', 'goal'],
+          'sp': ['spiritual', 'speech', 'special', 'space'],
+          'ta': ['talk', 'tax', 'tattoo', 'task'],
+          'ho': ['home', 'health', 'hospital', 'house'],
+          'ph': ['pharmaceutical', 'pharmacy', 'phone', 'photo'],
+          're': ['resume', 'research', 'real', 'religion'],
+          'jo': ['job', 'journal', 'journey'],
+          'ca': ['cannabis', 'career', 'card', 'calculator'],
+          'in': ['insurance', 'investment', 'interview', 'invoice']
+        };
+        
+        if (predictions[lowerTerm]) {
+          for (const prediction of predictions[lowerTerm]) {
+            if (lowerTitle.includes(prediction) || 
+                lowerDescription.includes(prediction) ||
+                lowerTags.includes(prediction)) {
+              return true;
+            }
+          }
+        }
+        
+        // Fallback: broader matching
+        return lowerTitle.includes(lowerTerm) || 
+               lowerDescription.includes(lowerTerm) ||
+               lowerTags.includes(lowerTerm);
+      }).sort((a, b) => {
+        const aTitle = a.title.toLowerCase();
+        const bTitle = b.title.toLowerCase();
+        const aStartsWith = aTitle.startsWith(lowerTerm) ? 0 : 1;
+        const bStartsWith = bTitle.startsWith(lowerTerm) ? 0 : 1;
+        // Prioritize tools that start with the term
+        if (aStartsWith !== bStartsWith) return aStartsWith - bStartsWith;
+        return aTitle.localeCompare(bTitle);
+      });
+      
+      // Create endless results for scrolling
+      const remainingTools = allTools.filter(tool => 
+        !results.some(result => result.title === tool.title)
+      );
+      const endlessResults = [...results, ...remainingTools];
+      
+      console.log(`🔍 2-char predictive search for "${trimmedTerm}": ${results.length} matches + ${remainingTools.length} remaining = ${endlessResults.length} total`);
+      
+      setSearchResults(endlessResults);
       setDisplayedCount(30);
       setIsOpen(true);
       return;
     }
 
-    // INTELLIGENT 3-character search with better matching
+    // SUPER INTELLIGENT 3-character search with enhanced predictive matching
     if (trimmedTerm.length === 3) {
       const lowerTerm = trimmedTerm.toLowerCase();
       const results = allTools.filter(tool => {
@@ -49,14 +109,54 @@ export const useGlobalSearch = () => {
         const lowerCategory = tool.category?.toLowerCase() || "";
         const lowerTags = tool.tags?.join(" ").toLowerCase() || "";
         
-        // Priority scoring for better results ordering
-        return lowerTitle.startsWith(lowerTerm) || 
-               lowerTitle.includes(lowerTerm) ||
-               lowerDescription.includes(lowerTerm) ||
-               lowerCategory.includes(lowerTerm) ||
-               lowerTags.includes(lowerTerm) ||
-               // Special word boundary matching for partial words like "god" in "gods"
-               lowerTitle.match(new RegExp(`\\b${lowerTerm}`, 'i')) ||
+        // Enhanced predictive matching for 3-character prefixes
+        const predictions: Record<string, string[]> = {
+          'scr': ['scribe', 'script', 'screenplay', 'transcribe', 'transcription', 'scriptwriter'],
+          'tra': ['transcribe', 'transcription', 'travel', 'trading', 'trader', 'training'],
+          'pod': ['podcast', 'podiatrist'],
+          'dra': ['draft', 'draftsman', 'drama', 'drawing'],
+          'col': ['college', 'coloring', 'color', 'collage'],
+          'leg': ['legal', 'legislation', 'legislator', 'legacy'],
+          'blo': ['blog', 'blockchain', 'blood'],
+          'art': ['article', 'artificial', 'artist', 'artwork'],
+          'gra': ['graphic', 'grant', 'grammar', 'graph'],
+          'god': ['gods', 'goddess', 'godlike'],
+          'spi': ['spiritual', 'spine', 'spirit'],
+          'tal': ['talk', 'talent', 'tale'],
+          'hom': ['home', 'homeschool'],
+          'pha': ['pharmaceutical', 'pharmacy', 'phantom'],
+          'res': ['resume', 'research', 'restaurant', 'results'],
+          'bus': ['business', 'budget'],
+          'can': ['cannabis', 'cancer', 'candidate'],
+          'ins': ['insurance', 'investment', 'instruction'],
+          'gam': ['game', 'gambling'],
+          'vid': ['video'],
+          'mus': ['music', 'museum', 'muscle']
+        };
+        
+        // Direct matching (highest priority)
+        if (lowerTitle.startsWith(lowerTerm) || 
+            lowerTitle.includes(lowerTerm) ||
+            lowerDescription.includes(lowerTerm) ||
+            lowerCategory.includes(lowerTerm) ||
+            lowerTags.includes(lowerTerm)) {
+          return true;
+        }
+        
+        // Predictive matching for 3-char prefixes
+        if (predictions[lowerTerm]) {
+          for (const prediction of predictions[lowerTerm]) {
+            if (lowerTitle.includes(prediction) || 
+                lowerDescription.includes(prediction) ||
+                lowerTags.includes(prediction)) {
+              console.log(`🎯 3-char prediction "${prediction}" matched tool: ${tool.title}`);
+              return true;
+            }
+          }
+        }
+        
+        // Enhanced word boundary matching for partial words like "god" in "gods"
+        return lowerTitle.match(new RegExp(`\\b${lowerTerm}`, 'i')) ||
                lowerDescription.match(new RegExp(`\\b${lowerTerm}`, 'i'));
       }).sort((a, b) => {
         const aTitle = a.title.toLowerCase();
@@ -74,7 +174,7 @@ export const useGlobalSearch = () => {
       );
       const endlessResults = [...results, ...remainingTools];
       
-      console.log(`🔍 3-char search for "${trimmedTerm}": ${results.length} matches + ${remainingTools.length} remaining = ${endlessResults.length} total`);
+      console.log(`🔍 3-char predictive search for "${trimmedTerm}": ${results.length} matches + ${remainingTools.length} remaining = ${endlessResults.length} total`);
       
       setSearchResults(endlessResults);
       setDisplayedCount(30);

@@ -9,6 +9,7 @@ import { matchUserTask, smartTypoCorrection, scoreToolByContext, matchTimeTravel
 import { matchSpiritual, scoreSpiritual, matchParanormal, scoreParanormal } from "./matching/specialtyMatching";
 import { superSmartTypoCorrection, getPartialMatchSuggestions, matchWithContext, superIntelligentScore } from "./core/superIntelligentSearch";
 import { matchWebDevelopment, scoreWebDevelopment } from "./matching/webDevelopmentMatching";
+import { getAdvancedPartialMatches, scoreAdvancedPartialMatch } from "./core/advancedPartialMatching";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -86,12 +87,14 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title));
   }
 
-  // STEP 1: Super intelligent typo correction and expansion
+  // STEP 1: Super intelligent typo correction and advanced partial matching
   const correctedSearchTerm = superSmartTypoCorrection(searchTerm);
   const partialSuggestions = getPartialMatchSuggestions(searchTerm);
+  const advancedPartialMatches = getAdvancedPartialMatches(searchTerm, tools);
   
   console.log(`🧠 SUPER SEARCH: "${searchTerm}" → "${correctedSearchTerm}"`, 
-             partialSuggestions.length > 0 ? `Suggestions: ${partialSuggestions.slice(0, 3).join(', ')}` : '');
+             partialSuggestions.length > 0 ? `Suggestions: ${partialSuggestions.slice(0, 3).join(', ')}` : '',
+             `Advanced matches: ${advancedPartialMatches.length}`);
 
   const normalizedSearchTerm = correctedSearchTerm.toLowerCase().trim();
   const searchWords = normalizedSearchTerm.split(/[\s,.-]+/).filter(word => word.length > 1);
@@ -394,6 +397,16 @@ const performEnhancedSearch = (
         matched = true;
         score += superIntelligentScore(tool, searchTerm);
         console.log(`🤖 SUPER MATCH: ${tool.title} matched via intelligent context`);
+      }
+
+      // ADVANCED PARTIAL MATCHING: Enhanced predictive matching for prefixes like "SCR"  
+      const advancedMatches = getAdvancedPartialMatches(searchTerm, [tool]);
+      if (!matched && advancedMatches.length > 0) {
+        matched = true;
+        const suggestions = getPartialMatchSuggestions(searchTerm);
+        const partialScore = scoreAdvancedPartialMatch(tool, searchTerm, suggestions);
+        score += partialScore;
+        console.log(`🎯 ADVANCED PARTIAL MATCH: ${tool.title} matched via predictive matching (+${partialScore})`);
       }
 
       // HIGHEST PRIORITY: Exact title match
