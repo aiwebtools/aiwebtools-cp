@@ -1,6 +1,5 @@
 import { Tool } from "@/types/tools";
 import { getAllToolCategories } from './toolsCollection';
-import { extractPriorityTools } from './priorityTools';
 import { searchTools } from '@/utils/searchUtils';
 import { createFeaturedTools } from '@/utils/featuredTools';
 import { getCategoriesWithCounts, getToolsByCategory } from '@/utils/categoryUtils';
@@ -107,14 +106,8 @@ const allToolCategories = consolidateTools([
 // Apply deduplication to remove tools that appear in multiple categories
 const deduplicatedTools = deduplicateTools(allToolCategories);
 
-// Extract priority tools and reorder
-const { priorityTools, remainingTools } = extractPriorityTools(deduplicatedTools);
-
-// Combine with priority tools first
-let combinedTools: Tool[] = [
-  ...priorityTools,
-  ...remainingTools
-];
+// Use deduplicatedTools directly (power ranking now handled in featured tools)
+let combinedTools: Tool[] = [...deduplicatedTools];
 
 // SPECIFIC FIX: Ensure Property Data Finder GPT has the correct URL
 combinedTools = combinedTools.map((tool, index) => {
