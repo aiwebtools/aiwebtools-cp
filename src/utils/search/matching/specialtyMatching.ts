@@ -304,15 +304,15 @@ export const scoreSpiritual = (tool: Tool, searchTerm: string): number => {
     const titleLower = tool.title.toLowerCase();
     const descLower = tool.description.toLowerCase();
     
-    // #1 PRIORITY: Mary Magdalene GPT
-    if (titleLower.includes('mary magdalene') || titleLower.includes('🕊️mary magdalene')) {
-      score += 100000; // Highest priority
-      console.log(`⚡ MARY MAGDALENE GPT TOP PRIORITY: Adding 100000 to score for ${tool.title}`);
+    // #1 PRIORITY: Talk to the Gods GPT - FIRST for god searches
+    if (titleLower.includes('talk to the gods') || titleLower.includes('gods gpt')) {
+      score += 100000;
+      console.log(`⚡ TALK TO GODS GPT TOP PRIORITY: Adding 100000 to score for ${tool.title}`);
     }
-    // #2 PRIORITY: Talk to the Gods GPT
-    else if (titleLower.includes('talk to the gods') || titleLower.includes('gods gpt')) {
-      score += 90000;
-      console.log(`⚡ TALK TO GODS GPT HIGH PRIORITY: Adding 90000 to score for ${tool.title}`);
+    // #2 PRIORITY: Mary Magdalene GPT
+    else if (titleLower.includes('mary magdalene') || titleLower.includes('🕊️mary magdalene')) {
+      score += 95000;
+      console.log(`⚡ MARY MAGDALENE GPT HIGH PRIORITY: Adding 95000 to score for ${tool.title}`);
     }
     // #3 PRIORITY: Alan Watts GPT
     else if (titleLower.includes('alan watts')) {

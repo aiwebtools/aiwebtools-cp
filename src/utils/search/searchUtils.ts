@@ -50,7 +50,7 @@ const INTENT_PATTERNS = {
   },
   technology: {
     triggers: ['ai', 'artificial intelligence', 'machine learning', 'automation', 'coding', 'programming', 'development', 'software', 'tech', 'computer', 'app', 'website'],
-    priority: ['GODMODE GPT', 'Engineering GPT AI Suite', 'MULTITASKER GPT', 'Customizable GPT Maker'],
+    priority: ['Engineering GPT AI Suite', 'MULTITASKER GPT', 'Customizable GPT Maker', 'GODMODE GPT'],
     categories: ['AI & Development', 'Technology Tools', 'Development Tools', 'AI Tools']
   },
   legal: {
@@ -65,7 +65,7 @@ const INTENT_PATTERNS = {
   },
   spiritual: {
     triggers: ['soul', 'spirit', 'spiritual', 'gematria', 'numerology', 'astrology', 'mystical', 'divine', 'cosmic', 'metaphysical', 'essence', 'soul map', 'soul mapping', 'blueprint', 'chakra', 'meditation', 'enlightenment', 'wisdom', 'philosophy', 'tarot', 'crystals', 'healing', 'consciousness', 'manifestation', 'god', 'gods', 'deity', 'deities', 'religious', 'religion', 'faith', 'prayer', 'angel', 'angelic', 'demonology', 'luciferian', 'bible', 'quran', 'torah', 'scripture', 'gnostic', 'hermetic', 'kabbalah', 'zen', 'buddhist', 'hindu', 'tao', 'akashic', 'dreams', 'dream interpretation', 'mary magdalene', 'alan watts', 'sophia aeterna', 'oraculum', 'neo matrix', 'immortalize', 'talk to history', 'talk to the gods'],
-    priority: ['🕊️Mary Magdalene GPT', 'TALK TO THE GODS GPT', 'ALAN WATTS GPT', 'Sophia Aeterna AI', 'Oraculum – The Revealer of Hidden "Truths"', 'ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)', 'ImmortalizeME', 'TALK TO HISTORY GPT', 'Soul Map GPT', 'Interpretis 🕰️', 'Fortune Teller GPT', 'Dream Interpreter GPT'],
+    priority: ['TALK TO THE GODS GPT', '🕊️Mary Magdalene GPT', 'ALAN WATTS GPT', 'Sophia Aeterna AI', 'Oraculum – The Revealer of Hidden "Truths"', 'ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)', 'ImmortalizeME', 'TALK TO HISTORY GPT', 'Soul Map GPT', 'Interpretis 🕰️', 'Fortune Teller GPT', 'Dream Interpreter GPT'],
     categories: ['Spirituality & Philosophy', 'Mystical Tools', 'Personal Development', 'Philosophy', 'Time & History']
   }
 };
@@ -84,7 +84,7 @@ const detectIntent = (searchTerm: string): string | null => {
   return null;
 };
 
-// Enhanced search function with SUPER INTELLIGENT partial matching and prediction
+// Enhanced search prioritization for GOD-related searches - Spiritual tools ALWAYS first
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
     return tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title));
@@ -106,6 +106,56 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   // Enhanced intent detection - cached for performance
   const userIntent = detectIntent(normalizedSearchTerm);
   const intentConfig = userIntent ? INTENT_PATTERNS[userIntent as keyof typeof INTENT_PATTERNS] : null;
+  
+  // CRITICAL: For GOD/GODS/DIVINE searches - FORCE spiritual intent and deprioritize non-spiritual tools
+  if (normalizedSearchTerm.includes('god') && !normalizedSearchTerm.includes('godmode')) {
+    console.log(`🙏 GOD SEARCH DETECTED: Forcing spiritual intent for "${searchTerm}"`);
+    
+    // Filter tools to prioritize spiritual ones
+    const spiritualTools = tools.filter(tool => {
+      const titleLower = tool.title.toLowerCase();
+      const descLower = tool.description.toLowerCase();
+      return (
+        titleLower.includes('talk to the gods') ||
+        titleLower.includes('mary magdalene') || 
+        titleLower.includes('alan watts') ||
+        titleLower.includes('sophia aeterna') ||
+        titleLower.includes('oraculum') ||
+        titleLower.includes('immortalize') ||
+        titleLower.includes('neo') && titleLower.includes('matrix') ||
+        titleLower.includes('talk to history') ||
+        titleLower.includes('soul map') ||
+        descLower.includes('spiritual') ||
+        descLower.includes('divine') ||
+        descLower.includes('mystical') ||
+        descLower.includes('gods') ||
+        descLower.includes('deities')
+      );
+    });
+    
+    // Get non-spiritual tools but deprioritize GODMODE for god searches
+    const nonSpiritualTools = tools.filter(tool => 
+      !spiritualTools.some(spiritual => spiritual.title === tool.title) &&
+      !EXCLUDED_TOOLS.includes(tool.title)
+    );
+    
+    // Process spiritual tools first with enhanced scoring
+    const processedSpiritualTools = performEnhancedSearch(spiritualTools, searchTerm, searchWords, phoneticVariations, INTENT_PATTERNS.spiritual);
+    
+    // Process non-spiritual tools with reduced scoring for GODMODE
+    const processedNonSpiritualTools = performEnhancedSearch(nonSpiritualTools, searchTerm, searchWords, phoneticVariations, intentConfig);
+    
+    // Filter out GODMODE tools from non-spiritual results for god searches
+    const filteredNonSpiritual = processedNonSpiritualTools.filter(tool => 
+      !tool.title.toLowerCase().includes('godmode')
+    );
+    
+    // Combine with spiritual tools FIRST
+    return [
+      ...processedSpiritualTools,
+      ...filteredNonSpiritual
+    ];
+  }
   
   // PRIORITY: For "personal" searches, prioritize AI Web Tools GPTs
   if (normalizedSearchTerm.includes('personal')) {
