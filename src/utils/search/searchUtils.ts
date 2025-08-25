@@ -11,6 +11,8 @@ import { superSmartTypoCorrection, getPartialMatchSuggestions, matchWithContext,
 import { matchWebDevelopment, scoreWebDevelopment } from "./matching/webDevelopmentMatching";
 import { getAdvancedPartialMatches, scoreAdvancedPartialMatch } from "./core/advancedPartialMatching";
 import { expandSearchTerms, scoreByIntent, matchesByIntent, getPriorityToolsForIntent } from "./core/intentBasedSearch";
+import { comprehensiveSearchIndex, allSearchTerms, categoryMappings } from "@/data/keywords/comprehensiveSearchIndex";
+import { matchComprehensiveSearch } from "./core/comprehensiveSearchMatching";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -293,6 +295,14 @@ const performEnhancedSearch = (
         if (lowerTitle.includes(finalNormalizedTerm)) {
           score += 3000; // Additional boost for matching AI Web Tools
         }
+      }
+
+      // 🔍 COMPREHENSIVE SEARCH INDEX MATCHING - ULTIMATE PRIORITY
+      const comprehensiveMatch = matchComprehensiveSearch(tool, searchTerm);
+      if (comprehensiveMatch.matched) {
+        matched = true;
+        score += comprehensiveMatch.score;
+        console.log(`🔍 COMPREHENSIVE MATCH: ${tool.title} scored ${comprehensiveMatch.score} in category ${comprehensiveMatch.category}`);
       }
 
       // 🎯 INTENT-BASED SEARCH SCORING - HIGHEST PRIORITY for user intent matching
