@@ -58,7 +58,7 @@ Thank you for creating amazing AI tools!
 
 Best regards`);
     
-    const mailtoLink = `mailto:feedback@aiwebtools.ai?subject=${subject}&body=${body}`;
+    const mailtoLink = `mailto:contact@ai-webtools.com?subject=${subject}&body=${body}`;
     window.open(mailtoLink, '_blank');
   };
 
