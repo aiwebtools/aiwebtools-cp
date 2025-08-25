@@ -43,6 +43,17 @@ export const TYPO_DICTIONARY: Record<string, string> = {
   "colledge": "college",
   "educaton": "education",
 
+  // Website & Web Development
+  "web": "website",
+  "websit": "website", 
+  "webiste": "website",
+  "webstie": "website",
+  "websie": "website",
+  "webte": "website",
+  "webdev": "web development",
+  "webdevelopment": "web development",
+  "web-dev": "web development",
+
   // General common
   "buisness": "business",
   "bussiness": "business",
@@ -50,5 +61,39 @@ export const TYPO_DICTIONARY: Record<string, string> = {
   "develoment": "development",
   "sofware": "software",
   "aplication": "application",
-  "aplicaton": "application"
+  "aplicaton": "application",
+  
+  // Partial word predictions
+  "co": "college",
+  "coll": "college",
+  "tm": "time",
+  "tme": "time machine",
+  "wr": "writer",
+  "wri": "writer",
+  "writ": "writer",
+  "bo": "book",
+  "boo": "book",
+  "vid": "video",
+  "vide": "video",
+  "mus": "music",
+  "musi": "music",
+  "gam": "game",
+  "ga": "game",
+  "ai": "artificial intelligence",
+  "art": "artificial",
+  "bus": "business",
+  "heal": "health",
+  "hea": "health",
+  "med": "medical",
+  "doc": "doctor",
+  "leg": "legal",
+  "law": "legal",
+  "ed": "education",
+  "edu": "education",
+  "cr": "creative",
+  "cre": "creative",
+  "des": "design",
+  "fin": "finance",
+  "tra": "trading",
+  "trd": "trading"
 };

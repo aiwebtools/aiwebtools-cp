@@ -18,6 +18,8 @@ const webDevelopmentKeywords = [
 
 // Specific web development tools to prioritize
 const webDevelopmentTools = [
+  'website gpt 2.0',
+  'website gpt',
   'lovable.dev',
   'bolt.new',
   'vercel v0',
