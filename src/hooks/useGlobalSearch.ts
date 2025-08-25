@@ -40,16 +40,43 @@ export const useGlobalSearch = () => {
       return;
     }
 
-    // OPTIMIZED 3-character search
+    // INTELLIGENT 3-character search with better matching
     if (trimmedTerm.length === 3) {
+      const lowerTerm = trimmedTerm.toLowerCase();
       const results = allTools.filter(tool => {
         const lowerTitle = tool.title.toLowerCase();
-        const lowerTerm = trimmedTerm.toLowerCase();
+        const lowerDescription = tool.description?.toLowerCase() || "";
+        const lowerCategory = tool.category?.toLowerCase() || "";
+        const lowerTags = tool.tags?.join(" ").toLowerCase() || "";
+        
+        // Priority scoring for better results ordering
         return lowerTitle.startsWith(lowerTerm) || 
                lowerTitle.includes(lowerTerm) ||
-               tool.category?.toLowerCase().includes(lowerTerm);
-      }).sort((a, b) => a.title.localeCompare(b.title));
-      setSearchResults(results);
+               lowerDescription.includes(lowerTerm) ||
+               lowerCategory.includes(lowerTerm) ||
+               lowerTags.includes(lowerTerm) ||
+               // Special word boundary matching for partial words like "god" in "gods"
+               lowerTitle.match(new RegExp(`\\b${lowerTerm}`, 'i')) ||
+               lowerDescription.match(new RegExp(`\\b${lowerTerm}`, 'i'));
+      }).sort((a, b) => {
+        const aTitle = a.title.toLowerCase();
+        const bTitle = b.title.toLowerCase();
+        const aStartsWith = aTitle.startsWith(lowerTerm) ? 0 : 1;
+        const bStartsWith = bTitle.startsWith(lowerTerm) ? 0 : 1;
+        // Prioritize tools that start with the term, then alphabetical
+        if (aStartsWith !== bStartsWith) return aStartsWith - bStartsWith;
+        return aTitle.localeCompare(bTitle);
+      });
+      
+      // Create endless results for scrolling
+      const remainingTools = allTools.filter(tool => 
+        !results.some(result => result.title === tool.title)
+      );
+      const endlessResults = [...results, ...remainingTools];
+      
+      console.log(`🔍 3-char search for "${trimmedTerm}": ${results.length} matches + ${remainingTools.length} remaining = ${endlessResults.length} total`);
+      
+      setSearchResults(endlessResults);
       setDisplayedCount(30);
       setIsOpen(true);
       return;
