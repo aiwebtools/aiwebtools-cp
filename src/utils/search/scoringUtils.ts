@@ -12,6 +12,14 @@ export const getToolNameMatchScore = (toolTitle: string, searchTerm: string): nu
   
   let score = 0;
   
+  // EXCLUSIONS FOR GOD SEARCHES - Prevent irrelevant tools from matching
+  if (lowerSearchTerm.includes('god') && !lowerSearchTerm.includes('godmode')) {
+    // Exclude specific tools that shouldn't appear in GOD searches
+    if (lowerTitle.includes('lingoda') || lowerTitle.includes('mongodb') || lowerTitle.includes('atlas')) {
+      return 0; // Completely exclude these tools
+    }
+  }
+  
   // IMAGE SEARCH SPECIAL PRIORITY
   if (lowerSearchTerm.includes('image')) {
     if (lowerTitle.includes('midjourney')) {
@@ -141,6 +149,14 @@ export const calculateIntentScore = (tool: Tool, searchTerm: string): number => 
   const titleWords = lowerTitle.split(' ');
   
   let score = 0;
+  
+  // EXCLUSIONS FOR GOD SEARCHES - Prevent irrelevant tools from matching
+  if (lowerSearchTerm.includes('god') && !lowerSearchTerm.includes('godmode')) {
+    // Exclude specific tools that shouldn't appear in GOD searches
+    if (lowerTitle.includes('lingoda') || lowerTitle.includes('mongodb') || lowerTitle.includes('atlas')) {
+      return 0; // Completely exclude these tools
+    }
+  }
   
   // IMAGE SEARCH SPECIAL PRIORITY
   if (lowerSearchTerm.includes('image')) {
