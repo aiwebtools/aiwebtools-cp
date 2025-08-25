@@ -10,6 +10,7 @@ import { matchSpiritual, scoreSpiritual, matchParanormal, scoreParanormal } from
 import { superSmartTypoCorrection, getPartialMatchSuggestions, matchWithContext, superIntelligentScore } from "./core/superIntelligentSearch";
 import { matchWebDevelopment, scoreWebDevelopment } from "./matching/webDevelopmentMatching";
 import { getAdvancedPartialMatches, scoreAdvancedPartialMatch } from "./core/advancedPartialMatching";
+import { getAIWebToolsPriorityScore, applyAIWebToolsPrioritization } from "@/utils/aiWebToolsPrioritization";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -84,7 +85,8 @@ const detectIntent = (searchTerm: string): string | null => {
 // Enhanced search function with SUPER INTELLIGENT partial matching and prediction
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
-    return tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title));
+    // 🚀 Even for empty searches, apply AI Web Tools prioritization
+    return applyAIWebToolsPrioritization(tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title)));
   }
 
   // STEP 1: Super intelligent typo correction and advanced partial matching
@@ -128,10 +130,12 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     );
     
     const regularResults = performEnhancedSearch(remainingTools, searchTerm, searchWords, phoneticVariations, intentConfig);
-    return [...scoredAIWebTools, ...regularResults];
+    
+    // 🚀 Apply prioritization to combined results
+    return applyAIWebToolsPrioritization([...scoredAIWebTools, ...regularResults]);
   }
   
-  // CATEGORY-SPECIFIC PRIORITY MATCHING
+  // CATEGORY-SPECIFIC PRIORITY MATCHING with AI Web Tools prioritization
   // Health/Medical searches
   if (normalizedSearchTerm.includes('health') || normalizedSearchTerm.includes('medical') || 
       normalizedSearchTerm.includes('doctor') || normalizedSearchTerm.includes('wellness')) {
@@ -142,7 +146,8 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       tool.title.toLowerCase().includes('medical') ||
       tool.title.toLowerCase().includes('doctor')
     );
-    return performEnhancedSearch([...healthTools, ...tools.filter(t => !healthTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+    const prioritizedHealthSearch = [...healthTools, ...tools.filter(t => !healthTools.includes(t))];
+    return applyAIWebToolsPrioritization(performEnhancedSearch(prioritizedHealthSearch, searchTerm, searchWords, phoneticVariations, intentConfig));
   }
   
   // Business/Finance searches
@@ -154,7 +159,8 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       tool.title.toLowerCase().includes('business') ||
       tool.title.toLowerCase().includes('finance')
     );
-    return performEnhancedSearch([...businessTools, ...tools.filter(t => !businessTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+    const prioritizedBusinessSearch = [...businessTools, ...tools.filter(t => !businessTools.includes(t))];
+    return applyAIWebToolsPrioritization(performEnhancedSearch(prioritizedBusinessSearch, searchTerm, searchWords, phoneticVariations, intentConfig));
   }
   
   // Game/Entertainment searches - HIGH PRIORITY with expanded video game understanding
@@ -224,7 +230,8 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     
     console.log(`🎮 Game search prioritized: Found ${gameTools.length} game-related tools, including:`, 
                 sortedGameTools.slice(0, 3).map(t => t.title));
-    return performEnhancedSearch([...sortedGameTools, ...tools.filter(t => !gameTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+    const prioritizedGameSearch = [...sortedGameTools, ...tools.filter(t => !gameTools.includes(t))];
+    return applyAIWebToolsPrioritization(performEnhancedSearch(prioritizedGameSearch, searchTerm, searchWords, phoneticVariations, intentConfig));
   }
 
   // Creative/Media searches
@@ -239,7 +246,8 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       tool.title.toLowerCase().includes('art') ||
       tool.title.toLowerCase().includes('design')
     );
-    return performEnhancedSearch([...creativeTools, ...tools.filter(t => !creativeTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+    const prioritizedCreativeSearch = [...creativeTools, ...tools.filter(t => !creativeTools.includes(t))];
+    return applyAIWebToolsPrioritization(performEnhancedSearch(prioritizedCreativeSearch, searchTerm, searchWords, phoneticVariations, intentConfig));
   }
   
   // Education/Learning searches
@@ -251,11 +259,13 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       tool.title.toLowerCase().includes('learn') ||
       tool.title.toLowerCase().includes('education')
     );
-    return performEnhancedSearch([...educationTools, ...tools.filter(t => !educationTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
+    const prioritizedEducationSearch = [...educationTools, ...tools.filter(t => !educationTools.includes(t))];
+    return applyAIWebToolsPrioritization(performEnhancedSearch(prioritizedEducationSearch, searchTerm, searchWords, phoneticVariations, intentConfig));
   }
   
-  // Regular enhanced search with improved scoring
-  return performEnhancedSearch(tools, searchTerm, searchWords, phoneticVariations, intentConfig);
+  // Regular enhanced search with improved scoring and AI Web Tools prioritization
+  const regularSearchResults = performEnhancedSearch(tools, searchTerm, searchWords, phoneticVariations, intentConfig);
+  return applyAIWebToolsPrioritization(regularSearchResults);
 };
 
 // Perform enhanced search with intent prioritization and fuzzy matching
@@ -287,8 +297,9 @@ const performEnhancedSearch = (
       let matched = false;
 
       // AIWEBTOOLS PRIORITY BOOST - Special handling for our custom GPTs
-      if (tool.directUrl?.includes('aiwebtools') || tool.tags?.includes('aiwebtools')) {
-        score += 2000; // Base boost for AI Web Tools
+      const aiWebToolsPriorityScore = getAIWebToolsPriorityScore(tool);
+      if (aiWebToolsPriorityScore > 0) {
+        score += aiWebToolsPriorityScore;
         if (lowerTitle.includes(finalNormalizedTerm)) {
           score += 3000; // Additional boost for matching AI Web Tools
         }

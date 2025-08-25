@@ -1,11 +1,12 @@
 
 import { Tool } from "@/types/tools";
+import { applyAIWebToolsPrioritization } from "@/utils/aiWebToolsPrioritization";
 
 /**
  * Get tools for Data & Analytics category
  */
 export const getDataAnalyticsTools = (tools: Tool[], categoryName: string): Tool[] => {
-  return tools.filter(tool => {
+  const filtered = tools.filter(tool => {
     const lowerTitle = tool.title.toLowerCase();
     const lowerDescription = tool.description.toLowerCase();
     const lowerCategory = tool.category?.toLowerCase() || '';
@@ -20,13 +21,15 @@ export const getDataAnalyticsTools = (tools: Tool[], categoryName: string): Tool
            lowerDescription.includes('analytics') ||
            lowerDescription.includes('research');
   });
+  
+  return applyAIWebToolsPrioritization(filtered);
 };
 
 /**
  * Get tools for Marketing & Sales category
  */
 export const getMarketingSalesTools = (tools: Tool[], categoryName: string): Tool[] => {
-  return tools.filter(tool => {
+  const filtered = tools.filter(tool => {
     const lowerTitle = tool.title.toLowerCase();
     const lowerDescription = tool.description.toLowerCase();
     const lowerCategory = tool.category?.toLowerCase() || '';
@@ -41,32 +44,38 @@ export const getMarketingSalesTools = (tools: Tool[], categoryName: string): Too
            lowerDescription.includes('sales') ||
            lowerDescription.includes('business');
   });
+  
+  return applyAIWebToolsPrioritization(filtered);
 };
 
 /**
  * Get tools for Communication & Collaboration category
  */
 export const getCommunicationCollaborationTools = (tools: Tool[], categoryName: string): Tool[] => {
-  return tools.filter(tool => {
+  const filtered = tools.filter(tool => {
     const lowerTitle = tool.title.toLowerCase();
     const lowerDescription = tool.description.toLowerCase();
     const lowerCategory = tool.category?.toLowerCase() || '';
     
     return lowerCategory.includes('communication') ||
            lowerCategory.includes('collaboration') ||
+           lowerCategory.includes('chat') ||
            lowerTitle.includes('communication') ||
            lowerTitle.includes('collaboration') ||
            lowerTitle.includes('chat') ||
            lowerDescription.includes('communication') ||
-           lowerDescription.includes('collaboration');
+           lowerDescription.includes('collaboration') ||
+           lowerDescription.includes('chat');
   });
+  
+  return applyAIWebToolsPrioritization(filtered);
 };
 
 /**
  * Get tools for Automation Platforms category
  */
 export const getAutomationPlatformsTools = (tools: Tool[], categoryName: string): Tool[] => {
-  return tools.filter(tool => {
+  const filtered = tools.filter(tool => {
     const lowerTitle = tool.title.toLowerCase();
     const lowerDescription = tool.description.toLowerCase();
     const lowerCategory = tool.category?.toLowerCase() || '';
@@ -78,4 +87,6 @@ export const getAutomationPlatformsTools = (tools: Tool[], categoryName: string)
            lowerDescription.includes('automation') ||
            lowerDescription.includes('workflow');
   });
+  
+  return applyAIWebToolsPrioritization(filtered);
 };

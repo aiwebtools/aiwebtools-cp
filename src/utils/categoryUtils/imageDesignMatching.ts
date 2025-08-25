@@ -1,5 +1,6 @@
 
 import { Tool } from "@/types/tools";
+import { applyAIWebToolsPrioritization } from "@/utils/aiWebToolsPrioritization";
 import { isVideoEntertainmentTool, isCoreImageTool, isPureDesignTool, isCategoryMatch } from "./exclusions";
 
 /**
@@ -57,77 +58,10 @@ export const getImageAndDesignTools = (tools: Tool[], categoryName: string): Too
     return false;
   });
 
-  // Sort with PRIORITY tools at the very top
-  return imageDesignTools.sort((a, b) => {
-    const aTitle = a.title.toLowerCase();
-    const bTitle = b.title.toLowerCase();
-    const aDesc = a.description.toLowerCase();
-    const bDesc = b.description.toLowerCase();
-    
-    // PRIORITY LEVEL 0: Featured Priority Tools (ABSOLUTE TOP PRIORITY)
-    const aIsPriority = isPriorityImageTool(a);
-    const bIsPriority = isPriorityImageTool(b);
-    
-    if (aIsPriority && !bIsPriority) return -1;
-    if (!aIsPriority && bIsPriority) return 1;
-    
-    // Within priority tools, maintain the specified order
-    if (aIsPriority && bIsPriority) {
-      const aIndex = PRIORITY_IMAGE_TOOLS.findIndex(tool => 
-        aTitle.includes(tool.toLowerCase()) || 
-        aTitle.includes(tool.toLowerCase().replace(/\s+/g, ''))
-      );
-      const bIndex = PRIORITY_IMAGE_TOOLS.findIndex(tool => 
-        bTitle.includes(tool.toLowerCase()) || 
-        bTitle.includes(tool.toLowerCase().replace(/\s+/g, ''))
-      );
-      
-      // If both found in priority list, sort by index
-      if (aIndex !== -1 && bIndex !== -1) {
-        return aIndex - bIndex;
-      }
-      
-      // If only one found, prioritize the found one
-      if (aIndex !== -1) return -1;
-      if (bIndex !== -1) return 1;
-    }
-    
-    // Priority Level 1: Core AI Image Generators (HIGH PRIORITY)
-    const aIsCoreImage = isCoreImageTool(a);
-    const bIsCoreImage = isCoreImageTool(b);
-    
-    if (aIsCoreImage && !bIsCoreImage) return -1;
-    if (!aIsCoreImage && bIsCoreImage) return 1;
-    
-    // Priority Level 2: Pure Design Tools (MEDIUM PRIORITY - NO VIDEO/MUSIC)
-    const aIsPureDesign = isPureDesignTool(a);
-    const bIsPureDesign = isPureDesignTool(b);
-    
-    if (aIsPureDesign && !bIsPureDesign) return -1;
-    if (!aIsPureDesign && bIsPureDesign) return 1;
-    
-    // Priority Level 3: Photo/Image Tools (LOWER PRIORITY)
-    const aIsPhoto = (aTitle.includes('photo') || aTitle.includes('image') || aTitle.includes('picture')) &&
-                     !aTitle.includes('movie') && !aTitle.includes('music') && !aTitle.includes('video');
-    const bIsPhoto = (bTitle.includes('photo') || bTitle.includes('image') || bTitle.includes('picture')) &&
-                     !bTitle.includes('movie') && !bTitle.includes('music') && !bTitle.includes('video');
-    
-    if (aIsPhoto && !bIsPhoto) return -1;
-    if (!aIsPhoto && bIsPhoto) return 1;
-    
-    // Priority Level 4: Other Design-related Tools (LOWEST PRIORITY)
-    const aIsOtherDesign = aDesc.includes('design') && !aTitle.includes('movie') && 
-                          !aTitle.includes('music') && !aTitle.includes('video') && !aTitle.includes('stage');
-    const bIsOtherDesign = bDesc.includes('design') && !bTitle.includes('movie') && 
-                          !bTitle.includes('music') && !bTitle.includes('video') && !bTitle.includes('stage');
-    
-    if (aIsOtherDesign && !bIsOtherDesign) return -1;
-    if (!aIsOtherDesign && bIsOtherDesign) return 1;
-    
-    // Within same priority level, sort by rating then alphabetically
-    const ratingDiff = (b.rating || 0) - (a.rating || 0);
-    if (ratingDiff !== 0) return ratingDiff;
-    
-    return aTitle.localeCompare(bTitle);
-  });
+  // 🚀 Apply AI Web Tools GPT prioritization (GPTs with videos/images first)
+  const prioritizedTools = applyAIWebToolsPrioritization(imageDesignTools);
+  
+  console.log(`🎨 Image & Design category: ${prioritizedTools.length} tools with AI Web Tools GPTs prioritized first`);
+  
+  return prioritizedTools;
 };

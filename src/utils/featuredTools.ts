@@ -1,5 +1,6 @@
 import { Tool } from "@/types/tools";
 import { aiWebToolsGPTs } from "@/data/tools/aiWebTools/aiWebToolsGPTs";
+import { applyAIWebToolsPrioritization } from "@/utils/aiWebToolsPrioritization";
 
 export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
   console.log(`🔍 Creating featured tools from ${allTools.length} total tools`);
@@ -187,11 +188,12 @@ export const createFeaturedTools = (allTools: Tool[]): Tool[] => {
     console.warn(`⚠️ Missing AI Web Tools GPTs from featured:`, missingFromFeatured.slice(0, 10).map(t => t.title));
   }
   
-  // ONLY show AI Web Tools GPTs (our creations) in featured section
-  const allFeaturedTools = aiWebToolsGPTsInMain;
+  // ONLY show AI Web Tools GPTs (our creations) in featured section with prioritization
+  const allFeaturedTools = applyAIWebToolsPrioritization(aiWebToolsGPTsInMain);
   
   console.log(`🚀 PORTFOLIO SHOWCASE: ${aiWebToolsGPTsInMain.length} AI Web Tools GPTs in featured section`);
   console.log(`📊 Total featured tools: ${allFeaturedTools.length}`);
+  console.log(`🎬 Priority GPTs with videos/images appear first!`);
   console.log(`✅ bolt.new and gemini excluded from featured but remain searchable`);
   
   // Final verification that bolt.new and gemini are searchable but not featured

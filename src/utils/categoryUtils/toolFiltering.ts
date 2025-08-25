@@ -13,6 +13,7 @@ import {
 import { CategoryCounts, MainCategoryCounts } from "./types";
 import { buildToolsCache, getToolsCacheByMainCategory, isCacheBuilt } from "./cacheManager";
 import { isAIWebToolsGPT } from "./specializedDetection";
+import { applyAIWebToolsPrioritization } from "@/utils/aiWebToolsPrioritization";
 
 export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
   const categoryCounts: CategoryCounts = {};
@@ -28,56 +29,65 @@ export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
 };
 
 export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] => {
+  let filteredTools: Tool[] = [];
+  
   // Special handling for AI Web Tools Originals category
   if (categoryName === "AI WEB TOOLS ORIGINALS" || categoryName === "AI Web Tools Originals") {
-    return tools.filter(tool => isAIWebToolsGPT(tool));
+    filteredTools = tools.filter(tool => isAIWebToolsGPT(tool));
   }
   
   // FIXED: Unified handling for Image & Design category - use ONLY ONE standardized name
-  if (categoryName === "IMAGE & DESIGN AI TOOLS" || 
+  else if (categoryName === "IMAGE & DESIGN AI TOOLS" || 
       categoryName === "Image & Design" || 
       categoryName === "Image & Design Tools" ||
       categoryName === "Image & Design AI Tools") {
-    const imageDesignTools = getImageAndDesignTools(tools, categoryName);
-    console.log(`🎨 FIXED: Found ${imageDesignTools.length} actual Image & Design tools (excluded video/entertainment)`);
-    return imageDesignTools;
+    filteredTools = getImageAndDesignTools(tools, categoryName);
+    console.log(`🎨 FIXED: Found ${filteredTools.length} actual Image & Design tools (excluded video/entertainment)`);
   }
   
   // Special handling for Data & Analytics category
-  if (categoryName === "DATA & ANALYTICS AI TOOLS" || categoryName === "Data & Analytics Tools") {
-    return getDataAnalyticsTools(tools, categoryName);
+  else if (categoryName === "DATA & ANALYTICS AI TOOLS" || categoryName === "Data & Analytics Tools") {
+    filteredTools = getDataAnalyticsTools(tools, categoryName);
   }
   
   // Special handling for Marketing & Sales category
-  if (categoryName === "MARKETING & SALES AI TOOLS" || categoryName === "Marketing & Analytics" || categoryName === "E-commerce & Marketing Tools" || categoryName === "Business & Sales Tools") {
-    return getMarketingSalesTools(tools, categoryName);
+  else if (categoryName === "MARKETING & SALES AI TOOLS" || categoryName === "Marketing & Analytics" || categoryName === "E-commerce & Marketing Tools" || categoryName === "Business & Sales Tools") {
+    filteredTools = getMarketingSalesTools(tools, categoryName);
   }
   
   // Enhanced handling for Communication & Collaboration category
-  if (categoryName === "COMMUNICATION & COLLABORATION AI TOOLS" || categoryName === "Communication & Entertainment" || categoryName === "Communication Tools") {
-    return getCommunicationCollaborationTools(tools, categoryName);
+  else if (categoryName === "COMMUNICATION & COLLABORATION AI TOOLS" || categoryName === "Communication & Entertainment" || categoryName === "Communication Tools") {
+    filteredTools = getCommunicationCollaborationTools(tools, categoryName);
   }
   
   // Special handling for Automation Platforms category
-  if (categoryName === "AUTOMATION PLATFORMS" || categoryName === "Automation Platforms" || categoryName === "Automation & Workflows") {
-    return getAutomationPlatformsTools(tools, categoryName);
+  else if (categoryName === "AUTOMATION PLATFORMS" || categoryName === "Automation Platforms" || categoryName === "Automation & Workflows") {
+    filteredTools = getAutomationPlatformsTools(tools, categoryName);
   }
   
   // Enhanced handling for Health, Wellness & Personal Lifestyle category
-  if (categoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
-    return tools.filter(tool => isHealthAndWellnessTool(tool));
+  else if (categoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
+    filteredTools = tools.filter(tool => isHealthAndWellnessTool(tool));
   }
   
   // Enhanced handling for Creative & Entertainment category - FIXED LOGIC
-  if (categoryName === "CREATIVE & ENTERTAINMENT") {
-    const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
-    console.log(`🎭 FIXED CREATIVE FILTER: Found ${creativeTools.length} tools for Creative & Entertainment`);
-    console.log(`🎭 Sample tools:`, creativeTools.slice(0, 10).map(t => `${t.title} (${t.category})`));
-    return creativeTools;
+  else if (categoryName === "CREATIVE & ENTERTAINMENT") {
+    filteredTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
+    console.log(`🎭 FIXED CREATIVE FILTER: Found ${filteredTools.length} tools for Creative & Entertainment`);
+    console.log(`🎭 Sample tools:`, filteredTools.slice(0, 10).map(t => `${t.title} (${t.category})`));
   }
   
   // Regular category filtering with enhanced similarity matching
-  return tools.filter(tool => tool.category && isSimilarCategory(tool.category, categoryName));
+  else {
+    filteredTools = tools.filter(tool => tool.category && isSimilarCategory(tool.category, categoryName));
+  }
+  
+  // 🚀 PRIORITY: Apply AI Web Tools GPT prioritization to all category results
+  const prioritizedTools = applyAIWebToolsPrioritization(filteredTools);
+  
+  console.log(`🎯 Category "${categoryName}": ${prioritizedTools.length} tools with AI Web Tools GPTs prioritized first`);
+  
+  return prioritizedTools;
 };
 
 export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts => {
@@ -131,38 +141,46 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
 export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string): Tool[] => {
   console.log(`🔍 FIXED RETRIEVAL: Getting tools for "${mainCategoryName}" from ${tools.length} total tools`);
   
+  let categoryTools: Tool[] = [];
+  
   // CORRECTED handling for Health, Wellness & Personal Lifestyle
   if (mainCategoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
-    const healthTools = tools.filter(tool => isHealthAndWellnessTool(tool));
-    console.log(`🏥 CORRECTED COUNT: Found ${healthTools.length} health & wellness tools`);
-    return healthTools;
+    categoryTools = tools.filter(tool => isHealthAndWellnessTool(tool));
+    console.log(`🏥 CORRECTED COUNT: Found ${categoryTools.length} health & wellness tools`);
   }
   
   // CORRECTED handling for Creative & Entertainment
-  if (mainCategoryName === "CREATIVE & ENTERTAINMENT") {
-    const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
-    console.log(`🎭 CORRECTED COUNT: Found ${creativeTools.length} creative & entertainment tools`);
+  else if (mainCategoryName === "CREATIVE & ENTERTAINMENT") {
+    categoryTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
+    console.log(`🎭 CORRECTED COUNT: Found ${categoryTools.length} creative & entertainment tools`);
     
     // Enhanced debug logging for Creative & Entertainment
-    const creativeTitles = creativeTools.slice(0, 15).map(t => `${t.title} (${t.category})`);
+    const creativeTitles = categoryTools.slice(0, 15).map(t => `${t.title} (${t.category})`);
     console.log(`🎭 CORRECTED Sample Creative Tools:`, creativeTitles);
+  }
+  
+  else {
+    // Build cache efficiently if not built yet for other categories
+    buildToolsCache(tools);
     
-    return creativeTools;
+    const toolsCacheByMainCategory = getToolsCacheByMainCategory();
+    
+    // Return cached results instantly for other categories
+    const cachedTools = toolsCacheByMainCategory.get(mainCategoryName);
+    
+    if (cachedTools) {
+      console.log(`⚡ CORRECTED CACHE: ${cachedTools.length} tools for "${mainCategoryName}"`);
+      categoryTools = cachedTools;
+    } else {
+      console.log(`⚠️ No cached tools found for main category: "${mainCategoryName}"`);
+      return [];
+    }
   }
   
-  // Build cache efficiently if not built yet for other categories
-  buildToolsCache(tools);
+  // 🚀 PRIORITY: Apply AI Web Tools GPT prioritization to all main category results
+  const prioritizedTools = applyAIWebToolsPrioritization(categoryTools);
   
-  const toolsCacheByMainCategory = getToolsCacheByMainCategory();
+  console.log(`🎯 Main Category "${mainCategoryName}": ${prioritizedTools.length} tools with AI Web Tools GPTs prioritized first`);
   
-  // Return cached results instantly for other categories
-  const cachedTools = toolsCacheByMainCategory.get(mainCategoryName);
-  
-  if (cachedTools) {
-    console.log(`⚡ CORRECTED CACHE: ${cachedTools.length} tools for "${mainCategoryName}"`);
-    return cachedTools;
-  }
-  
-  console.log(`⚠️ No cached tools found for main category: "${mainCategoryName}"`);
-  return [];
+  return prioritizedTools;
 };
