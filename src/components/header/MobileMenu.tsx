@@ -1,5 +1,5 @@
 
-import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Home } from "lucide-react";
+import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -50,17 +50,6 @@ const MobileMenu = () => {
       setDisplayedCount(50);
     }
   }, [searchTerm]);
-
-  const handleHomeClick = () => {
-    setIsMenuOpen(false);
-    // If we're already on the home page, just scroll to top instantly
-    if (window.location.pathname === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      // Navigate to home page quickly
-      navigate('/');
-    }
-  };
 
   const handleExternalLink = (url: string, e: React.MouseEvent) => {
     e.preventDefault();
@@ -259,8 +248,7 @@ const MobileMenu = () => {
                 )}
               </div>
 
-              <DropdownMenuItem onClick={handleHomeClick} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded flex items-center gap-2">
-                <Home className="w-4 h-4" />
+              <DropdownMenuItem onClick={() => { window.location.href = '#home'; setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
                 Home
               </DropdownMenuItem>
               <DropdownMenuSeparator className="border-gray-700 mb-2" />

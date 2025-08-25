@@ -1,72 +1,35 @@
 
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect } from "react";
 import { useVideoManager } from "@/hooks/useVideoManager";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import CategoryPageSelection from "@/components/CategoryPageSelection";
+import SpecialServices from "@/components/SpecialServices";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import SEOHead from "@/components/SEOHead";
+import FeaturedToolsSection from "@/components/tools/FeaturedToolsSection";
 import { Button } from "@/components/ui/button";
-import { Zap, Rocket } from "lucide-react";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { allTools } from "@/data/toolsData";
-import { preloadCriticalResources, usePerformanceMonitoring, optimizeCSS } from "@/utils/performanceOptimizations";
-
-// Lazy load heavy components for better initial load performance
-const MainCategoryCards = lazy(() => import("@/components/MainCategoryCards"));
-const CategoryFiltersAccordion = lazy(() => import("@/components/CategoryFiltersAccordion"));
-const FeaturedToolsSection = lazy(() => import("@/components/tools/FeaturedToolsSection"));
-const SpecialServices = lazy(() => import("@/components/SpecialServices"));
-const BookPromotionCard = lazy(() => import("@/components/BookPromotionCard"));
+import BookPromotionCard from "@/components/BookPromotionCard";
 
 const Index = () => {
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
-  const [showComponents, setShowComponents] = useState(false);
   
   // Use video manager for main page video
   const mainVideoRef = useVideoManager('main-page-video');
-  
-  // Performance monitoring and optimizations
-  usePerformanceMonitoring();
 
   useEffect(() => {
-    // Preload critical resources immediately
-    preloadCriticalResources();
-    
-    // Optimize CSS
-    optimizeCSS();
-    
     // Simple tool count
     const stats = getCurrentToolCount();
     setToolStats(stats);
-    
-    // Use requestIdleCallback for non-critical components
-    const loadComponents = () => {
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => {
-          setShowComponents(true);
-        }, { timeout: 200 });
-      } else {
-        setTimeout(() => {
-          setShowComponents(true);
-        }, 100);
-      }
-    };
-    
-    loadComponents();
   }, []);
 
   const handleSeeMoreAITools = () => {
     // This function can be removed since FeaturedToolsSection handles it
   };
-
-  // Optimized loading fallback component
-  const LoadingFallback = () => (
-    <div className="flex justify-center items-center py-8">
-      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-500"></div>
-    </div>
-  );
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -89,28 +52,11 @@ const Index = () => {
       <div className="relative z-10">
         <Header />
         <HeroSection />
-        
-        {/* Main Category Cards - Clean and organized near the top */}
-        <div id="main-categories-section">
-          {showComponents ? (
-            <Suspense fallback={<LoadingFallback />}>
-              <MainCategoryCards />
-            </Suspense>
-          ) : (
-            <LoadingFallback />
-          )}
+        <div id="categories-section">
+          <CategoryPageSelection />
         </div>
         
-        {/* Advanced Category Filters - Right above video section */}
-        <div id="category-filters-section">
-          {showComponents && (
-            <Suspense fallback={<LoadingFallback />}>
-              <CategoryFiltersAccordion />
-            </Suspense>
-          )}
-        </div>
-        
-        {/* Featured Video Section - Optimized for loading */}
+        {/* Featured Video Section - Simplified */}
         <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
@@ -124,46 +70,23 @@ const Index = () => {
                 <iframe
                   ref={mainVideoRef}
                   className="absolute top-0 left-0 w-full h-full rounded-xl border border-cyan-500/30"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=0&loop=1&playlist=4zflGSSuBcA&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark&quality=hd720"
+                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&loop=1&playlist=4zflGSSuBcA&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark&quality=hd720"
                   title="AI Web Tools Featured Video"
                   frameBorder="0"
-                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   loading="lazy"
                 ></iframe>
               </div>
             </div>
-
-            {/* Clone Website Button */}
-            <div className="text-center mt-12">
-              <button
-                onClick={() => window.open('https://lovable.dev', '_blank')}
-                className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold text-lg rounded-xl shadow-lg shadow-purple-500/30 hover:shadow-purple-400/50 transform hover:scale-105 transition-all duration-300 border border-purple-400/50 hover:border-purple-300"
-              >
-                <span className="flex items-center space-x-3">
-                  <Zap className="w-6 h-6" />
-                  <span>Clone This Website</span>
-                  <Rocket className="w-6 h-6 group-hover:animate-bounce" />
-                </span>
-              </button>
-            </div>
           </div>
         </section>
 
-        {/* Featured Tools Section - Lazy loaded */}
-        {showComponents && (
-          <Suspense fallback={<LoadingFallback />}>
-            <FeaturedToolsSection onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
-          </Suspense>
-        )}
+        {/* Featured Tools Section - This shows Soul Map GPT and all featured tools */}
+        <FeaturedToolsSection onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
         
-        {/* Additional sections - Lazy loaded */}
-        {showComponents && (
-          <Suspense fallback={<LoadingFallback />}>
-            <BookPromotionCard />
-            <SpecialServices />
-          </Suspense>
-        )}
+        <BookPromotionCard />
+        <SpecialServices />
         <ScrollToTop />
         <Footer />
       </div>

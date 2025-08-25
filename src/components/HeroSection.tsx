@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { Search, Sparkles, Zap, Brain, Rocket, Stars } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "./GlobalSearchBar";
-import SearchFilters from "./search/SearchFilters";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 
 const HeroSection = () => {
@@ -105,11 +104,6 @@ const HeroSection = () => {
         {/* Search section with stable positioning */}
         <div className="mb-8 max-w-4xl mx-auto" style={{ minHeight: '80px' }}>
           <GlobalSearchBar />
-        </div>
-
-        {/* Enhanced Search Filters */}
-        <div className="mb-12">
-          <SearchFilters />
         </div>
 
         {/* Primary CTA Button */}

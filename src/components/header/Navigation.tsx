@@ -1,5 +1,5 @@
 
-import { Phone, Globe, Trees, Clapperboard, Home } from "lucide-react";
+import { Phone, Globe, Trees, Clapperboard } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
@@ -34,10 +34,9 @@ const Navigation = () => {
     <nav className="hidden lg:flex items-center space-x-6 min-w-0">
       <button 
         onClick={scrollToHome}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center gap-2"
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
       >
-        <Home className="w-4 h-4" />
-        <span>Home</span>
+        Home
       </button>
       
       <button 

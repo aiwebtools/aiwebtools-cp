@@ -50,6 +50,14 @@ const CategoryFilters = ({
 
   return (
     <div className="mb-8">
+      {/* Search Bar - Optimized for instant response */}
+      <div className="mb-6">
+        <SearchBar
+          searchTerm={searchTerm}
+          onSearchChange={onSearchChange}
+          preventAutoNavigation={true}
+        />
+      </div>
 
       {/* View Toggle */}
       <CategoryViewToggle 
