@@ -12,7 +12,7 @@ export const entertainmentAndGamingGPTs: Tool[] = [
     directUrl: "https://trivianightgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/trivanight.jpg/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     tags: ["trivia games", "entertainment", "knowledge testing", "family fun", "interactive games"],
-    category: "Business & Productivity",
+    category: "Entertainment & Gaming",
     rating: 4.7,
     totalVotes: 3890
   },
@@ -25,7 +25,7 @@ export const entertainmentAndGamingGPTs: Tool[] = [
     directUrl: "https://fortunetellergpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-fortune-teller-gpt-_kRpji.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     tags: ["predictive analytics", "trend analysis", "data insights", "forecasting", "pattern recognition"],
-    category: "Business & Productivity",
+    category: "Entertainment & Gaming",
     rating: 4.6,
     totalVotes: 4123
   },
@@ -38,7 +38,7 @@ export const entertainmentAndGamingGPTs: Tool[] = [
     directUrl: "https://imaginationtravelergpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-advertisement-for-imaginati_E4k--.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     tags: ["imagination", "storytelling", "alternate realities", "creative journeys", "immersive experiences"],
-    category: "Business & Productivity",
+    category: "Entertainment & Gaming",
     rating: 4.7,
     totalVotes: 4123
   },

@@ -20,6 +20,7 @@ import {
   isContentCreationTool,
   isDataAnalyticsTool
 } from "./specializedDetection";
+import { filterBusinessTools } from "./businessCategoryFiltering";
 
 // Ultra-optimized cache with persistent storage and lazy loading
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
@@ -68,8 +69,11 @@ export const resetCache = () => {
   lastToolsLength = 0;
   localStorage.removeItem(CACHE_KEY);
   localStorage.removeItem(CACHE_VERSION_KEY);
-  console.log('🔄 Cache reset - will rebuild on next access with WEB3 support');
+  console.log('🔄 Cache reset - will rebuild with business category filtering');
 };
+
+// Force immediate cache reset for business filtering update
+resetCache();
 
 // Helper function to combine subcategory and specialized tools efficiently
 const getCombinedTools = (tools: Tool[], mainCat: any, specializedTools: Tool[]) => {
@@ -204,6 +208,18 @@ export const buildToolsCache = (tools: Tool[]) => {
         
       case "COMMUNICATION & COLLABORATION AI TOOLS":
         categoryTools = getCommunicationCollaborationTools(tools, mainCat.name);
+        break;
+        
+      case "BUSINESS OPERATIONS & PRODUCTIVITY":
+        // Apply business filtering to exclude entertainment tools
+        const businessCandidates = tools.filter(tool => {
+          if (!tool.category) return false;
+          return mainCat.subcategories.some((subcat: string) => 
+            isSimilarCategory(tool.category, subcat)
+          );
+        });
+        categoryTools = filterBusinessTools(businessCandidates);
+        console.log(`🏢 BUSINESS OPERATIONS & PRODUCTIVITY: Filtered ${businessCandidates.length} candidates to ${categoryTools.length} actual business tools`);
         break;
         
       case "WEB3 & BLOCKCHAIN":

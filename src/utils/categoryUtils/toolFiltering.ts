@@ -14,6 +14,7 @@ import { CategoryCounts, MainCategoryCounts } from "./types";
 import { buildToolsCache, getToolsCacheByMainCategory, isCacheBuilt } from "./cacheManager";
 import { isAIWebToolsGPT } from "./specializedDetection";
 import { applyAIWebToolsPrioritization } from "@/utils/aiWebToolsPrioritization";
+import { filterBusinessTools } from "./businessCategoryFiltering";
 
 export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
   const categoryCounts: CategoryCounts = {};
@@ -31,8 +32,15 @@ export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
 export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] => {
   let filteredTools: Tool[] = [];
   
+  // 🚀 ENHANCED: Apply proper business filtering for Business Operations & Productivity category
+  if (categoryName === "BUSINESS OPERATIONS & PRODUCTIVITY") {
+    const businessCandidates = tools.filter(tool => tool.category && isSimilarCategory(tool.category, categoryName));
+    filteredTools = filterBusinessTools(businessCandidates);
+    console.log(`🏢 BUSINESS OPERATIONS & PRODUCTIVITY: Filtered ${businessCandidates.length} candidates to ${filteredTools.length} actual business tools`);
+  }
+  
   // Special handling for AI Web Tools Originals category
-  if (categoryName === "AI WEB TOOLS ORIGINALS" || categoryName === "AI Web Tools Originals") {
+  else if (categoryName === "AI WEB TOOLS ORIGINALS" || categoryName === "AI Web Tools Originals") {
     filteredTools = tools.filter(tool => isAIWebToolsGPT(tool));
   }
   
