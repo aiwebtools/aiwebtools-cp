@@ -40,15 +40,6 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
 
   return (
     <div className="w-full">
-      {/* Show More Featured Tools Button - placed above search bar */}
-      {shouldShowFeaturedToolsButton && (
-        <ShowMoreFeaturedButton
-          onClick={handleShowMoreFeaturedTools}
-          toolsCount={filteredTools.length}
-          initialDisplayCount={initialDisplayCount}
-        />
-      )}
-
       <div className="px-4 sm:px-0">
         <ActiveFilters
           selectedCategory={selectedCategory}
@@ -68,12 +59,12 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
         onCategoryChange={handleCategoryChange}
       />
 
-      {/* Show More Featured Tools Button - appears after Marriage Mender GPT */}
+      {/* Show More Featured Tools Button - appears after tools cards */}
       {shouldShowFeaturedToolsButton && (
         <ShowMoreFeaturedButton
           onClick={handleShowMoreFeaturedTools}
-          toolsCount={filteredTools.length}
-          initialDisplayCount={initialDisplayCount}
+          toolsCount={totalToolsCount}
+          initialDisplayCount={actualDisplayedCount}
           className="mt-8"
         />
       )}
