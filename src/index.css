@@ -5,6 +5,7 @@
 @import url("./styles/background-effects.css");
 @import url("./styles/timeEffects.css");
 @import url("./styles/mobile-optimizations.css");
+@import url("./styles/glow-animations.css");
 
 @tailwind base;
 @tailwind components;
