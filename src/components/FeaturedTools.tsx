@@ -1,6 +1,6 @@
 
 import React, { memo } from "react";
-import CategoryFilters from "@/components/tools/CategoryFilters";
+import SimpleToolsDisplay from "@/components/tools/SimpleToolsDisplay";
 import ActiveFilters from "@/components/tools/ActiveFilters";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import ShowMoreFeaturedButton from "@/components/tools/ShowMoreFeaturedButton";
@@ -30,17 +30,11 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
     handleShowMoreFeaturedTools
   } = useFeaturedToolsLogic({ onToolsLoaded });
 
-  // Convert categoriesWithCounts array to Record format if needed
-  const categoriesRecord = Array.isArray(categoriesWithCounts) 
-    ? categoriesWithCounts.reduce((acc, item) => {
-        acc[item.name] = item.count;
-        return acc;
-      }, {} as Record<string, number>)
-    : categoriesWithCounts;
+  // Simplified without duplicate category filters
 
   return (
     <div className="w-full">
-      {/* Show More Featured Tools Button - placed above search bar */}
+      {/* Show More Featured Tools Button - placed above tools display */}
       {shouldShowFeaturedToolsButton && (
         <ShowMoreFeaturedButton
           onClick={handleShowMoreFeaturedTools}
@@ -50,12 +44,10 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
       )}
 
       <div className="px-4 sm:px-0">
-        <CategoryFilters
-          categoriesWithCounts={categoriesRecord}
-          selectedCategory={selectedCategory}
-          onCategoryChange={handleCategoryChange}
-          onSearchChange={handleSearchChange}
+        <SimpleToolsDisplay
+          totalToolsCount={totalToolsCount}
           searchTerm={searchTerm}
+          selectedCategory={selectedCategory}
         />
 
         <ActiveFilters
