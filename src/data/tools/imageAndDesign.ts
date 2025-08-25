@@ -124,19 +124,6 @@ export const imageAndDesign: Tool[] = [
     totalVotes: 3876
   },
   {
-    icon: Wand2,
-    title: "AI Avatar Generator GPT",
-    description: "Create personalized AI avatars with customizable features and styles for virtual representation.",
-    emoji: "🤖",
-    color: "from-purple-500 to-indigo-600",
-    directUrl: "https://moviescenemakergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=4vjdz-kzlEQ",
-    tags: ["AI avatars", "virtual representation", "customization", "AI"],
-    category: "Image & Design",
-    rating: 4.2,
-    totalVotes: 2765
-  },
-  {
     icon: Camera,
     title: "Fashion Design Assistant GPT",
     description: "AI-powered fashion design assistant for generating innovative clothing designs and style recommendations.",
@@ -174,19 +161,6 @@ export const imageAndDesign: Tool[] = [
     category: "Image & Design",
     rating: 4.6,
     totalVotes: 3345
-  },
-  {
-    icon: Filter,
-    title: "Photo Filter AI",
-    description: "Transform your photos with AI-powered filters and effects for stunning visual enhancements.",
-    emoji: "📸",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://photofilterai.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=B-WtRbE9BlE",
-    tags: ["photo filters", "visual effects", "AI", "image enhancement"],
-    category: "Image & Design",
-    rating: 4.5,
-    totalVotes: 3123
   },
   {
     icon: Sparkles,
