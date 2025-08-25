@@ -5,40 +5,57 @@ export const isHealthAndWellnessTool = (tool: Tool): boolean => {
   const title = tool.title.toLowerCase();
   const description = tool.description.toLowerCase();
   const category = tool.category?.toLowerCase() || "";
-  const tags = tool.tags?.map(tag => tag.toLowerCase()) || [];
 
-  // Health and wellness keywords
-  const healthKeywords = [
-    'health', 'wellness', 'medical', 'healthcare', 'fitness', 'nutrition', 'diet',
-    'mental health', 'therapy', 'doctor', 'patient', 'clinical', 'pharmaceutical',
-    'medicine', 'treatment', 'diagnosis', 'symptom', 'disease', 'hospital',
-    'veterinarian', 'vet', 'pet care', 'animal health', 'meditation', 'mindfulness',
-    'exercise', 'workout', 'yoga', 'stress', 'anxiety', 'depression', 'counseling',
-    'insurance', 'claims', 'pharmacy', 'drug', 'supplement', 'vitamin'
+  // MUCH MORE RESTRICTIVE - Only tools PRIMARILY focused on health/wellness
+  const strictHealthKeywords = [
+    // Medical & Healthcare (specific)
+    'doctor', 'medical', 'healthcare', 'hospital', 'clinic', 'physician', 'nurse',
+    'diagnosis', 'treatment', 'therapy', 'patient care', 'clinical',
+    
+    // Veterinary (specific)
+    'veterinarian', 'vet', 'pet care', 'animal health', 'animal doctor',
+    
+    // Mental Health (specific)  
+    'mental health', 'mental wellness', 'therapy', 'counseling', 'psychology',
+    'psychiatry', 'depression', 'anxiety', 'stress management',
+    
+    // Fitness & Wellness (specific)
+    'fitness', 'workout', 'exercise', 'gym', 'training', 'nutrition',
+    'diet', 'weight loss', 'health coach', 'wellness coach',
+    
+    // Pharmaceutical (specific)
+    'pharmaceutical', 'pharmacy', 'drug', 'medication', 'prescription',
+    'medicine', 'supplement', 'vitamin',
+    
+    // Insurance (specific)
+    'insurance', 'health insurance', 'medical insurance', 'claims'
   ];
 
-  // Check if any health keywords are present
-  const hasHealthKeywords = healthKeywords.some(keyword =>
-    title.includes(keyword) ||
-    description.includes(keyword) ||
-    category.includes(keyword) ||
-    tags.some(tag => tag.includes(keyword))
-  );
-
-  // Specific health-related categories
-  const healthCategories = [
-    'health', 'wellness', 'medical', 'healthcare', 'fitness',
-    'veterinarian', 'insurance', 'pharmacy', 'mental wellness'
+  // RESTRICTIVE Health categories - only obviously health-related ones
+  const strictHealthCategories = [
+    'health', 'healthcare', 'medical', 'wellness', 'fitness',
+    'mental health', 'veterinary', 'pharmacy', 'pharmaceutical',
+    'insurance', 'health & wellness', 'healthcare professionals'
   ];
 
-  const isHealthCategory = healthCategories.some(healthCat =>
-    category.includes(healthCat)
+  // Must have STRONG health indicators in title or be clearly health category
+  const hasStrongHealthKeywords = strictHealthKeywords.some(keyword =>
+    title.includes(keyword) || description.includes(keyword)
   );
 
-  const isHealthTool = hasHealthKeywords || isHealthCategory;
+  const isStrictlyHealthCategory = strictHealthCategories.some(healthCat =>
+    category.includes(healthCat) || category === healthCat
+  );
+
+  // Only count if it's obviously health-related
+  const isObviouslyHealth = title.includes('health') || title.includes('medical') || 
+    title.includes('doctor') || title.includes('vet') || title.includes('fitness') ||
+    title.includes('wellness') || title.includes('therapy');
+
+  const isHealthTool = (hasStrongHealthKeywords && isStrictlyHealthCategory) || isObviouslyHealth;
 
   if (isHealthTool) {
-    console.log(`🏥 HEALTH & WELLNESS: Detected tool: ${tool.title} (Category: ${tool.category})`);
+    console.log(`🏥 HEALTH & WELLNESS (STRICT): ${tool.title} (${tool.category})`);
   }
 
   return isHealthTool;
@@ -50,134 +67,62 @@ export const isCreativeAndEntertainmentTool = (tool: Tool): boolean => {
   const category = tool.category?.toLowerCase() || "";
   const tags = tool.tags?.map(tag => tag.toLowerCase()) || [];
 
-  // EXPANDED Creative and entertainment keywords
-  const creativeKeywords = [
-    // Core Creative
-    'creative', 'art', 'design', 'graphics', 'visual', 'aesthetic', 'artistic',
-    'drawing', 'painting', 'illustration', 'sketch', 'canvas', 'brush', 'color',
-    'palette', 'creative design', 'graphic design', 'cover design',
+  // MUCH MORE RESTRICTIVE - Only tools PRIMARILY focused on creativity/entertainment
+  const coreCreativeKeywords = [
+    // Art & Design (specific)
+    'art generator', 'digital art', 'artwork', 'illustration', 'drawing', 'painting', 'sketch artist',
+    'graphic design', 'logo design', 'poster design', 'creative design', 'visual art',
     
-    // Writing & Content
-    'writing', 'writer', 'author', 'book', 'novel', 'story', 'script', 'screenplay',
-    'content', 'blog', 'article', 'copywriting', 'creative writing', 'storytelling',
-    'narrative', 'character', 'plot', 'dialogue', 'prose', 'poetry', 'poem',
-    'children\'s book', 'picture book', 'coloring book',
+    // Entertainment & Gaming (specific)  
+    'game', 'gaming', 'entertainment', 'fun', 'play', 'trivia', 'joke', 'humor', 'meme',
+    'movie maker', 'film maker', 'animation', 'cartoon', 'character creation',
     
-    // Entertainment & Media
-    'entertainment', 'game', 'gaming', 'play', 'fun', 'movie', 'film', 'cinema',
-    'video', 'multimedia', 'animation', 'cartoon', 'character', 'avatar',
-    'music', 'audio', 'sound', 'song', 'melody', 'rhythm', 'beat', 'composer',
-    'musician', 'instrument', 'recording', 'studio', 'producer',
+    // Music & Audio Creative (specific)
+    'music creation', 'music maker', 'song', 'composer', 'music video', 'audio creation',
+    'sound effects', 'music generation', 'beat maker', 'melody',
     
-    // Theater & Performance
-    'theater', 'theatre', 'stage', 'performance', 'actor', 'acting', 'drama',
-    'comedy', 'musical', 'opera', 'dance', 'choreography', 'performer',
-    'stagemaster', 'performing arts', 'play', 'playwright', 'script',
+    // Writing Creative (specific)
+    'story', 'novel', 'book writer', 'creative writing', 'script writer', 'playwright',
+    'poetry', 'children\'s book', 'coloring book', 'comic',
     
-    // Digital Media
-    'digital art', 'pixel art', 'digital design', 'web design', 'ui design',
-    'logo', 'branding', 'poster', 'banner', 'flyer', 'card', 'template',
-    'mockup', 'prototype', 'wireframe',
-    
-    // Photography & Visual
-    'photo', 'photography', 'camera', 'image', 'picture', 'visual', 'snapshot',
-    'portrait', 'landscape', 'studio', 'editing', 'filter', 'effects',
-    
-    // Innovation & Imagination
-    'imagination', 'imaginary', 'fantasy', 'magical', 'mystical', 'adventure',
-    'journey', 'exploration', 'discovery', 'wonder', 'mystery', 'dream',
-    'vision', 'concept', 'idea', 'brainstorm', 'innovation', 'invention',
-    
-    // Specialized Creative
-    'tattoo', 'fashion', 'style', 'trend', 'beauty', 'makeover', 'restyle',
-    'interior design', 'architecture', 'landscaping', 'decoration',
-    'craft', 'diy', 'hobby', 'collection', 'vintage', 'antique',
-    
-    // Spiritual & Philosophical (Creative aspects)
-    'spiritual', 'mystical', 'philosophical', 'wisdom', 'enlightenment',
-    'meditation', 'mindfulness', 'consciousness', 'awakening', 'transformation',
-    'divination', 'fortune', 'tarot', 'prophecy', 'oracle', 'revelation',
-    
-    // Historical & Cultural (Creative aspects)
-    'historical', 'history', 'culture', 'heritage', 'tradition', 'legend',
-    'mythology', 'folklore', 'ancient', 'classical', 'renaissance', 'vintage',
-    'time travel', 'time machine', 'historical figures', 'past', 'era',
-    
-    // Educational Creative
-    'tutorial', 'lesson', 'course', 'learn', 'teach', 'guide', 'instruction',
-    'training', 'skill', 'technique', 'method', 'practice', 'exercise',
-    
-    // Technology Creative
-    'ai art', 'generative', 'neural', 'algorithm', 'procedural', 'automated',
-    'machine learning', 'artificial intelligence', 'deep learning', 'gpt',
-    
-    // Social & Communication Creative
-    'social', 'community', 'sharing', 'collaboration', 'interactive', 'engaging',
-    'conversation', 'chat', 'dialogue', 'communication', 'expression'
+    // Performance & Theater (specific)
+    'theater', 'stage', 'performance', 'actor', 'drama', 'comedy', 'musical',
+    'performing arts', 'dance', 'choreography'
   ];
 
-  // EXPANDED Creative categories
-  const creativeCategories = [
-    // Core Creative
-    'creative', 'art', 'design', 'graphics', 'visual arts', 'creative design',
-    'graphic design', 'creative & design', 'creative & entertainment',
-    
-    // Writing & Content
-    'writing', 'content creation', 'content', 'storytelling', 'creative writing',
-    'writing & text generation', 'content creation & writing', 'text generation',
-    'book writing', 'script writing', 'copywriting', 'blog writing',
-    
-    // Entertainment & Media
-    'entertainment', 'gaming', 'games', 'multimedia', 'media', 'video',
-    'animation', 'cinema', 'film', 'movie', 'entertainment & media',
-    'video & multimedia', 'audio & voice', 'music', 'sound',
-    
-    // Educational Creative
-    'education', 'learning', 'educational', 'tutorial', 'course', 'training',
-    'education & research', 'education & learning', 'educational tools',
-    
-    // Historical & Cultural
-    'historical', 'history', 'cultural', 'time-based', 'heritage',
-    'historical & time-based', 'historical & cultural', 'spirituality',
-    'spirituality tools', 'philosophy', 'mysticism',
-    
-    // Industry Specific Creative
-    'industry specific', 'specialized', 'niche', 'custom', 'personalized',
-    'professional services', 'creative services', 'artistic services',
-    
-    // AI Development (Creative)
-    'ai development', 'ai platforms', 'generative', 'artificial intelligence',
-    'machine learning', 'ai tools', 'automation', 'innovation',
-    
-    // Communication Creative
-    'communication', 'collaboration', 'social', 'interactive', 'engagement',
-    'communication & collaboration', 'community', 'sharing'
+  // RESTRICTIVE Creative categories - only obviously creative ones
+  const strictCreativeCategories = [
+    'creative & entertainment',
+    'creative design', 
+    'art', 'arts',
+    'entertainment',
+    'gaming', 'games',
+    'music creation',
+    'creative writing',
+    'design & graphics',
+    'multimedia & creative'
   ];
 
-  // Check for creative keywords in any field
-  const hasCreativeKeywords = creativeKeywords.some(keyword =>
+  // Must have STRONG creative indicators
+  const hasStrongCreativeKeywords = coreCreativeKeywords.some(keyword =>
     title.includes(keyword) ||
-    description.includes(keyword) ||
-    category.includes(keyword) ||
-    tags.some(tag => tag.includes(keyword))
+    description.includes(keyword)
   );
 
-  // Check for creative categories
-  const isCreativeCategory = creativeCategories.some(creativeCat =>
-    category.includes(creativeCat)
+  // Must be in a clearly creative category
+  const isStrictlyCreativeCategory = strictCreativeCategories.some(creativeCat =>
+    category.includes(creativeCat) || category === creativeCat
   );
 
-  // Special handling for AI Web Tools GPTs (many are creative)
-  const isAIWebToolsCreative = (
-    (title.includes('gpt') || description.includes('gpt') || tags.includes('aiwebtools')) &&
-    (hasCreativeKeywords || isCreativeCategory)
-  );
+  // Only count if BOTH conditions are met OR if it's obviously creative by title
+  const isObviouslyCreative = title.includes('art') || title.includes('design') || 
+    title.includes('game') || title.includes('entertainment') || title.includes('creative') ||
+    title.includes('music') || title.includes('video maker') || title.includes('animation');
 
-  // Combine all checks
-  const isCreativeTool = hasCreativeKeywords || isCreativeCategory || isAIWebToolsCreative;
+  const isCreativeTool = (hasStrongCreativeKeywords && isStrictlyCreativeCategory) || isObviouslyCreative;
 
   if (isCreativeTool) {
-    console.log(`🎭 CREATIVE & ENTERTAINMENT: Detected tool: ${tool.title} (Category: ${tool.category})`);
+    console.log(`🎭 CREATIVE & ENTERTAINMENT (STRICT): ${tool.title} (${tool.category})`);
   }
 
   return isCreativeTool;
