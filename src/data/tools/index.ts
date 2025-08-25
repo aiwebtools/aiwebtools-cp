@@ -20,7 +20,6 @@ export { healthcareProfessionals } from './healthcareProfessionals';
 export { legalProfessionals } from './legalProfessionals';
 export { emergencyServices } from './emergencyServices';
 export { creativeServices } from './creativeServices';
-export { personalServices } from './personalServices';
 export { specializedPolicyTools } from './specializedPolicyTools';
 export { artAndCollectibles } from './artAndCollectibles';
 export { aiChatPlatforms } from './aiChatPlatforms';
