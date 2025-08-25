@@ -1,20 +1,21 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { useVideoManager } from "@/hooks/useVideoManager";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import CategoryPageSelection from "@/components/CategoryPageSelection";
-import SpecialServices from "@/components/SpecialServices";
-import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import SEOHead from "@/components/SEOHead";
-import FeaturedToolsSection from "@/components/tools/FeaturedToolsSection";
 import { Button } from "@/components/ui/button";
 import { Zap, Rocket } from "lucide-react";
 import { getCurrentToolCount } from "@/utils/toolCounter";
-import { allTools } from "@/data/toolsData";
-import BookPromotionCard from "@/components/BookPromotionCard";
+
+// Lazy load heavy components that are below the fold
+const FeaturedToolsSection = lazy(() => import("@/components/tools/FeaturedToolsSection"));
+const BookPromotionCard = lazy(() => import("@/components/BookPromotionCard"));
+const SpecialServices = lazy(() => import("@/components/SpecialServices"));
+const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
@@ -71,7 +72,7 @@ const Index = () => {
                 <iframe
                   ref={mainVideoRef}
                   className="absolute top-0 left-0 w-full h-full rounded-xl border border-cyan-500/30"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&loop=1&playlist=4zflGSSuBcA&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark&quality=hd720"
+                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=1&loop=1&playlist=4zflGSSuBcA&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark"
                   title="AI Web Tools Featured Video"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -97,13 +98,24 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Featured Tools Section - This shows Soul Map GPT and all featured tools */}
-        <FeaturedToolsSection onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
+        {/* Featured Tools Section - Lazy loaded */}
+        <Suspense fallback={<div className="py-16 text-center text-white">Loading featured tools...</div>}>
+          <FeaturedToolsSection onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
+        </Suspense>
         
-        <BookPromotionCard />
-        <SpecialServices />
+        <Suspense fallback={<div className="py-8"></div>}>
+          <BookPromotionCard />
+        </Suspense>
+        
+        <Suspense fallback={<div className="py-8"></div>}>
+          <SpecialServices />
+        </Suspense>
+        
         <ScrollToTop />
-        <Footer />
+        
+        <Suspense fallback={<div className="py-8"></div>}>
+          <Footer />
+        </Suspense>
       </div>
     </div>
   );
