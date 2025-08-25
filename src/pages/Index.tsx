@@ -11,6 +11,7 @@ import ScrollToTop from "@/components/ui/scroll-to-top";
 import SEOHead from "@/components/SEOHead";
 import FeaturedToolsSection from "@/components/tools/FeaturedToolsSection";
 import { Button } from "@/components/ui/button";
+import { Zap, Rocket } from "lucide-react";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { allTools } from "@/data/toolsData";
 import BookPromotionCard from "@/components/BookPromotionCard";
@@ -78,6 +79,20 @@ const Index = () => {
                   loading="lazy"
                 ></iframe>
               </div>
+            </div>
+
+            {/* Clone Website Button */}
+            <div className="text-center mt-12">
+              <button
+                onClick={() => window.open('https://lovable.dev', '_blank')}
+                className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold text-lg rounded-xl shadow-lg shadow-purple-500/30 hover:shadow-purple-400/50 transform hover:scale-105 transition-all duration-300 border border-purple-400/50 hover:border-purple-300"
+              >
+                <span className="flex items-center space-x-3">
+                  <Zap className="w-6 h-6" />
+                  <span>Clone This Website</span>
+                  <Rocket className="w-6 h-6 group-hover:animate-bounce" />
+                </span>
+              </button>
             </div>
           </div>
         </section>
