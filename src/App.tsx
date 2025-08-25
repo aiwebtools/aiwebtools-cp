@@ -12,6 +12,7 @@ import ToolDetail from "./pages/ToolDetail";
 import SimilarToolsPage from "./pages/SimilarTools";
 import NotFound from "./pages/NotFound";
 import DisclaimersPage from "./pages/DisclaimersPage";
+import OurStoryPage from "./pages/OurStoryPage";
 import FloatingCloneButton from "./components/FloatingCloneButton";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ function App() {
               <Route path="/tool/:toolId" element={<ToolDetail />} />
               <Route path="/similar-tools/:toolId" element={<SimilarToolsPage />} />
               <Route path="/disclaimers" element={<DisclaimersPage />} />
+              <Route path="/our-story" element={<OurStoryPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             
