@@ -10,10 +10,11 @@ const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
     <div className="space-y-6">
       {/* Founder Quote */}
       <div className="text-center border-t border-cyan-500/20 pt-6">
-        <p className="text-sm md:text-base text-cyan-300/80 font-light italic tracking-wide max-w-4xl mx-auto">
-          "Life is but a sacred prompt — a chance to carve your own reality and define a meaning no one else can write but you." 🔑
+        <p className="text-sm md:text-base text-cyan-300/80 font-light italic tracking-wide max-w-5xl mx-auto leading-relaxed">
+          "This page and the tools on it were built and gathered with relentless diligence over two years of non-stop grind—by one person—and given away for free. Love others as yourself. Imagine what you can do. Unlock your dreams. I built these tools to elevate humanity—mentally, spiritually, and physically. Carve the future with me."
         </p>
-        <p className="text-cyan-400/60 text-sm mt-2">— K.B., Founder, AI Web Tools LLC</p>
+        <p className="text-cyan-400/60 text-sm mt-3">— Kenneth Bastian, Founder & Creator/Developer, AIWebTools.ai</p>
+        <p className="text-cyan-300 text-sm font-semibold mt-2 tracking-wider">BUILD YOUR WORLD.</p>
       </div>
       
       {/* Copyright and Links */}
