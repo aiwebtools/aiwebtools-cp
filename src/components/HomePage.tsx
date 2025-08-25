@@ -8,8 +8,8 @@ import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import EnhancedSEOHead from "@/components/seo/EnhancedSEOHead";
+import CategoryFilters from "@/components/tools/CategoryFilters";
 import ToolsGrid from "@/components/tools/ToolsGrid";
-import SimpleToolsDisplay from "@/components/tools/SimpleToolsDisplay";
 import { runFullToolVerification } from "@/utils/toolIndexing";
 import { searchTools } from "@/utils/searchUtils";
 
@@ -69,7 +69,11 @@ const HomePage = () => {
     [filteredTools, displayedCount]
   );
 
-  // Simplified without category filters since we use header search only
+  // Convert categoriesWithCounts to the format expected by CategoryFilters
+  const categoriesRecord = categoriesWithCounts.reduce((acc, cat) => {
+    acc[cat.name] = cat.count;
+    return acc;
+  }, {} as Record<string, number>);
 
   // Memoized component structure for better performance
   const backgroundComponent = useMemo(() => 
@@ -128,12 +132,32 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* Simple Tools Count Display */}
-          <SimpleToolsDisplay
-            totalToolsCount={totalToolsCount}
-            searchTerm={searchTerm}
+          {/* Category Filters with Search */}
+          <CategoryFilters
+            categoriesWithCounts={categoriesRecord}
             selectedCategory={selectedCategory}
+            onCategoryChange={handleCategoryChange}
+            onSearchChange={handleSearchChange}
+            searchTerm={searchTerm}
           />
+
+          {/* Tools Count Display */}
+          <div className="text-center mb-8">
+            <div className="text-cyan-400 font-semibold text-lg">
+              {searchTerm ? (
+                `${totalToolsCount} AI tools found for "${searchTerm}"`
+              ) : selectedCategory ? (
+                `${totalToolsCount} tools in ${selectedCategory}`
+              ) : (
+                `Discover ${totalToolsCount}+ curated AI tools`
+              )}
+            </div>
+            {!searchTerm && !selectedCategory && (
+              <div className="text-gray-400 text-sm mt-1">
+                Featuring the best AI tools, ChatGPT alternatives, and cutting-edge artificial intelligence solutions
+              </div>
+            )}
+          </div>
 
           {/* Tools Grid */}
           <div id="tools-section">

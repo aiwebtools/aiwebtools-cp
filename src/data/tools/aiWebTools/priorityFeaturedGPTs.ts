@@ -3,6 +3,19 @@ import { Bot, Brain, Clock, Microscope, Heart, Zap, Users, Crown, Sparkles, Glob
 
 export const priorityFeaturedGPTs: Tool[] = [
   {
+    icon: Crown,
+    title: "GODMODE.SPACE",
+    description: "Imagine having an AI companion so powerful and versatile that it seamlessly transforms to meet every need you have—introducing GodMode from godmode.space. This revolutionary AI assistant adapts to any task, providing unmatched capabilities across all domains of knowledge and productivity.",
+    emoji: "👑",
+    color: "from-yellow-400 to-red-500",
+    directUrl: "https://godmode.space",
+    videoUrl: "https://youtu.be/m2crGAhbs5g?si=0U5gA4QC_oQG0KXS",
+    tags: ["versatile ai", "all-purpose", "productivity", "godmode", "ultimate assistant"],
+    category: "AI Assistants & Search",
+    rating: 4.9,
+    totalVotes: 6500
+  },
+  {
     icon: Bot,
     title: "AI Chatbot",
     description: "Engage in natural language conversations with an AI. Get answers, advice, and companionship anytime you need it.",

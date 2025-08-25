@@ -10,9 +10,6 @@ import { matchSpiritual, scoreSpiritual, matchParanormal, scoreParanormal } from
 import { superSmartTypoCorrection, getPartialMatchSuggestions, matchWithContext, superIntelligentScore } from "./core/superIntelligentSearch";
 import { matchWebDevelopment, scoreWebDevelopment } from "./matching/webDevelopmentMatching";
 import { getAdvancedPartialMatches, scoreAdvancedPartialMatch } from "./core/advancedPartialMatching";
-import { expandSearchTerms, scoreByIntent, matchesByIntent, getPriorityToolsForIntent } from "./core/intentBasedSearch";
-import { comprehensiveSearchIndex, allSearchTerms, categoryMappings } from "@/data/keywords/comprehensiveSearchIndex";
-import { matchComprehensiveSearch } from "./core/comprehensiveSearchMatching";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -50,7 +47,7 @@ const INTENT_PATTERNS = {
   },
   technology: {
     triggers: ['ai', 'artificial intelligence', 'machine learning', 'automation', 'coding', 'programming', 'development', 'software', 'tech', 'computer', 'app', 'website'],
-    priority: ['Engineering GPT AI Suite', 'MULTITASKER GPT', 'Customizable GPT Maker', 'GODMODE GPT'],
+    priority: ['GODMODE GPT', 'Engineering GPT AI Suite', 'MULTITASKER GPT', 'Customizable GPT Maker'],
     categories: ['AI & Development', 'Technology Tools', 'Development Tools', 'AI Tools']
   },
   legal: {
@@ -64,9 +61,9 @@ const INTENT_PATTERNS = {
     categories: ['Entertainment & Gaming', 'Gaming Tools', 'Entertainment Tools', 'GAME DESIGN & DEVELOPMENT']
   },
   spiritual: {
-    triggers: ['soul', 'spirit', 'spiritual', 'gematria', 'numerology', 'astrology', 'mystical', 'divine', 'cosmic', 'metaphysical', 'essence', 'soul map', 'soul mapping', 'blueprint', 'chakra', 'meditation', 'enlightenment', 'wisdom', 'philosophy', 'tarot', 'crystals', 'healing', 'consciousness', 'manifestation', 'god', 'gods', 'deity', 'deities', 'religious', 'religion', 'faith', 'prayer', 'angel', 'angelic', 'demonology', 'luciferian', 'bible', 'quran', 'torah', 'scripture', 'gnostic', 'hermetic', 'kabbalah', 'zen', 'buddhist', 'hindu', 'tao', 'akashic', 'dreams', 'dream interpretation', 'mary magdalene', 'alan watts', 'sophia aeterna', 'oraculum', 'neo matrix', 'immortalize', 'talk to history', 'talk to the gods'],
-    priority: ['TALK TO THE GODS GPT', '🕊️Mary Magdalene GPT', 'ALAN WATTS GPT', 'Sophia Aeterna AI', 'Oraculum – The Revealer of Hidden "Truths"', 'ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)', 'ImmortalizeME', 'TALK TO HISTORY GPT', 'Soul Map GPT', 'Interpretis 🕰️', 'Fortune Teller GPT', 'Dream Interpreter GPT'],
-    categories: ['Spirituality & Philosophy', 'Mystical Tools', 'Personal Development', 'Philosophy', 'Time & History']
+    triggers: ['soul', 'spirit', 'spiritual', 'gematria', 'numerology', 'astrology', 'mystical', 'divine', 'cosmic', 'metaphysical', 'essence', 'soul map', 'soul mapping', 'blueprint', 'chakra', 'meditation', 'enlightenment', 'wisdom', 'philosophy', 'tarot', 'crystals', 'healing', 'consciousness', 'manifestation'],
+    priority: ['Soul Map GPT', 'ALAN WATTS GPT', '🕊️Mary Magdalene GPT', 'TALK TO THE GODS GPT', 'Sophia Aeterna AI', 'Interpretis 🕰️'],
+    categories: ['Spirituality & Philosophy', 'Mystical Tools', 'Personal Development', 'Philosophy']
   }
 };
 
@@ -84,7 +81,7 @@ const detectIntent = (searchTerm: string): string | null => {
   return null;
 };
 
-// Enhanced search prioritization for GOD-related searches - Spiritual tools ALWAYS first
+// Enhanced search function with SUPER INTELLIGENT partial matching and prediction
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
     return tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title));
@@ -95,7 +92,9 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const partialSuggestions = getPartialMatchSuggestions(searchTerm);
   const advancedPartialMatches = getAdvancedPartialMatches(searchTerm, tools);
   
-  // Performance optimized - reduced logging
+  console.log(`🧠 SUPER SEARCH: "${searchTerm}" → "${correctedSearchTerm}"`, 
+             partialSuggestions.length > 0 ? `Suggestions: ${partialSuggestions.slice(0, 3).join(', ')}` : '',
+             `Advanced matches: ${advancedPartialMatches.length}`);
 
   const normalizedSearchTerm = correctedSearchTerm.toLowerCase().trim();
   const searchWords = normalizedSearchTerm.split(/[\s,.-]+/).filter(word => word.length > 1);
@@ -103,59 +102,9 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   // Enhanced phonetic variations  
   const phoneticVariations = searchTerm.length <= 8 ? phoneticMatch(normalizedSearchTerm) : [];
   
-  // Enhanced intent detection - cached for performance
+  // Enhanced intent detection
   const userIntent = detectIntent(normalizedSearchTerm);
   const intentConfig = userIntent ? INTENT_PATTERNS[userIntent as keyof typeof INTENT_PATTERNS] : null;
-  
-  // CRITICAL: For GOD/GODS/DIVINE searches - FORCE spiritual intent and deprioritize non-spiritual tools
-  if (normalizedSearchTerm.includes('god') && !normalizedSearchTerm.includes('godmode')) {
-    console.log(`🙏 GOD SEARCH DETECTED: Forcing spiritual intent for "${searchTerm}"`);
-    
-    // Filter tools to prioritize spiritual ones
-    const spiritualTools = tools.filter(tool => {
-      const titleLower = tool.title.toLowerCase();
-      const descLower = tool.description.toLowerCase();
-      return (
-        titleLower.includes('talk to the gods') ||
-        titleLower.includes('mary magdalene') || 
-        titleLower.includes('alan watts') ||
-        titleLower.includes('sophia aeterna') ||
-        titleLower.includes('oraculum') ||
-        titleLower.includes('immortalize') ||
-        titleLower.includes('neo') && titleLower.includes('matrix') ||
-        titleLower.includes('talk to history') ||
-        titleLower.includes('soul map') ||
-        descLower.includes('spiritual') ||
-        descLower.includes('divine') ||
-        descLower.includes('mystical') ||
-        descLower.includes('gods') ||
-        descLower.includes('deities')
-      );
-    });
-    
-    // Get non-spiritual tools but deprioritize GODMODE for god searches
-    const nonSpiritualTools = tools.filter(tool => 
-      !spiritualTools.some(spiritual => spiritual.title === tool.title) &&
-      !EXCLUDED_TOOLS.includes(tool.title)
-    );
-    
-    // Process spiritual tools first with enhanced scoring
-    const processedSpiritualTools = performEnhancedSearch(spiritualTools, searchTerm, searchWords, phoneticVariations, INTENT_PATTERNS.spiritual);
-    
-    // Process non-spiritual tools with reduced scoring for GODMODE
-    const processedNonSpiritualTools = performEnhancedSearch(nonSpiritualTools, searchTerm, searchWords, phoneticVariations, intentConfig);
-    
-    // Filter out GODMODE tools from non-spiritual results for god searches
-    const filteredNonSpiritual = processedNonSpiritualTools.filter(tool => 
-      !tool.title.toLowerCase().includes('godmode')
-    );
-    
-    // Combine with spiritual tools FIRST
-    return [
-      ...processedSpiritualTools,
-      ...filteredNonSpiritual
-    ];
-  }
   
   // PRIORITY: For "personal" searches, prioritize AI Web Tools GPTs
   if (normalizedSearchTerm.includes('personal')) {
@@ -273,7 +222,8 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       return scoreB - scoreA;
     });
     
-    // Performance optimized - removed logging
+    console.log(`🎮 Game search prioritized: Found ${gameTools.length} game-related tools, including:`, 
+                sortedGameTools.slice(0, 3).map(t => t.title));
     return performEnhancedSearch([...sortedGameTools, ...tools.filter(t => !gameTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
   }
 
@@ -323,6 +273,8 @@ const performEnhancedSearch = (
   // Detect user task intent
   const userTask = matchUserTask(finalNormalizedTerm);
   
+  console.log(`🧠 Smart search for "${searchTerm}" -> "${processedSearchTerm}"`, userTask.taskType ? `Task detected: ${userTask.taskType}` : 'No specific task detected');
+  
   const results = tools
     .filter(tool => !EXCLUDED_TOOLS.includes(tool.title))
     .map(tool => {
@@ -340,28 +292,6 @@ const performEnhancedSearch = (
         if (lowerTitle.includes(finalNormalizedTerm)) {
           score += 3000; // Additional boost for matching AI Web Tools
         }
-      }
-
-      // 🔍 COMPREHENSIVE SEARCH INDEX MATCHING - ULTIMATE PRIORITY
-      const comprehensiveMatch = matchComprehensiveSearch(tool, searchTerm);
-      if (comprehensiveMatch.matched) {
-        matched = true;
-        score += comprehensiveMatch.score;
-      }
-
-      // 🎯 INTENT-BASED SEARCH SCORING - HIGHEST PRIORITY for user intent matching
-      const intentScore = scoreByIntent(tool, searchTerm);
-      if (intentScore > 0) {
-        matched = true;
-        score += intentScore;
-        console.log(`🎯 INTENT MATCH: ${tool.title} scored ${intentScore} for intent-based search "${searchTerm}"`);
-      }
-
-      // Enhanced intent-based matching for better results
-      if (matchesByIntent(tool, searchTerm)) {
-        matched = true;
-        score += 5000; // Base intent matching bonus
-        console.log(`🎯 INTENT PATTERN MATCH: ${tool.title} matches intent pattern for "${searchTerm}"`);
       }
 
       // INTELLIGENT TASK-BASED SCORING: Boost tools that match detected user tasks

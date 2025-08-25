@@ -6,7 +6,6 @@ import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
-import { useDebounce } from "@/hooks/useDebounce";
 
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -18,11 +17,10 @@ export const useGlobalSearch = () => {
   const navigate = useNavigate();
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
-  const debouncedSearchTerm = useDebounce(searchTerm, 150); // Debounce search by 150ms
 
-  // ENHANCED search effect with endless scroll capability - OPTIMIZED FOR SPEED
+  // ENHANCED search effect with endless scroll capability
   useEffect(() => {
-    const trimmedTerm = debouncedSearchTerm.trim();
+    const trimmedTerm = searchTerm.trim();
     
     if (!trimmedTerm || trimmedTerm.length < 2) {
       setSearchResults([]);
@@ -94,7 +92,7 @@ export const useGlobalSearch = () => {
       );
       const endlessResults = [...results, ...remainingTools];
       
-      // Performance optimized - removed excessive logging
+      console.log(`🔍 2-char predictive search for "${trimmedTerm}": ${results.length} matches + ${remainingTools.length} remaining = ${endlessResults.length} total`);
       
       setSearchResults(endlessResults);
       setDisplayedCount(30);
@@ -151,6 +149,7 @@ export const useGlobalSearch = () => {
             if (lowerTitle.includes(prediction) || 
                 lowerDescription.includes(prediction) ||
                 lowerTags.includes(prediction)) {
+              console.log(`🎯 3-char prediction "${prediction}" matched tool: ${tool.title}`);
               return true;
             }
           }
@@ -175,7 +174,7 @@ export const useGlobalSearch = () => {
       );
       const endlessResults = [...results, ...remainingTools];
       
-      // Performance optimized - removed excessive logging
+      console.log(`🔍 3-char predictive search for "${trimmedTerm}": ${results.length} matches + ${remainingTools.length} remaining = ${endlessResults.length} total`);
       
       setSearchResults(endlessResults);
       setDisplayedCount(30);
@@ -209,12 +208,13 @@ export const useGlobalSearch = () => {
       ...remainingTools
     ];
     
-    // Performance optimized - removed excessive logging
+    console.log(`🔍 Enhanced search for "${trimmedTerm}": ${intelligentResults.length} direct results + ${similarTools.length} similar + ${remainingTools.length} remaining = ${endlessResults.length} total endless scroll`);
+    console.log(`🔍 First 5 search results:`, intelligentResults.slice(0, 5).map(t => t.title));
     
     setSearchResults(endlessResults);
     setDisplayedCount(30); // Start with 30, then load more
     setIsOpen(true);
-  }, [debouncedSearchTerm]); // Use debounced term for better performance
+  }, [searchTerm]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -237,6 +237,7 @@ export const useGlobalSearch = () => {
     if (tool.directUrl) {
       e.preventDefault();
       e.stopPropagation();
+      console.log('🌀 Direct access clicked in global search for:', tool.title);
       createTimePortalEffect(tool.directUrl);
       setIsOpen(false);
       setSearchTerm("");
@@ -278,15 +279,18 @@ export const useGlobalSearch = () => {
     const threshold = 150;
     const nearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
     
+    console.log(`📜 Scroll check: ${scrollTop + clientHeight} >= ${scrollHeight - threshold}? ${nearBottom}, Displayed: ${displayedCount}/${searchResults.length}`);
+    
     if (nearBottom && displayedCount < searchResults.length) {
       setIsLoadingMore(true);
       
-      // Immediate loading for snappier response
-      requestAnimationFrame(() => {
-        const increment = Math.min(30, searchResults.length - displayedCount);
+      // Immediate loading with shorter delay for better UX
+      setTimeout(() => {
+        const increment = Math.min(25, searchResults.length - displayedCount); // Load more items per batch
+        console.log(`📜 Loading ${increment} more tools (${displayedCount + increment}/${searchResults.length})`);
         setDisplayedCount(prev => prev + increment);
         setIsLoadingMore(false);
-      });
+      }, 100); // Reduced delay for snappier response
     }
   }, [displayedCount, searchResults.length, isLoadingMore]);
 
