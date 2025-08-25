@@ -42,6 +42,8 @@ const FloatingCloneButton = () => {
       <span className="text-center px-1">
         CLONE
         <br />
+        THIS
+        <br />
         SITE
       </span>
     </a>
