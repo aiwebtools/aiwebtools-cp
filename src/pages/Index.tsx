@@ -14,7 +14,8 @@ import { allTools } from "@/data/toolsData";
 import { preloadCriticalResources, usePerformanceMonitoring, optimizeCSS } from "@/utils/performanceOptimizations";
 
 // Lazy load heavy components for better initial load performance
-const CategoryPageSelection = lazy(() => import("@/components/CategoryPageSelection"));
+const MainCategoryCards = lazy(() => import("@/components/MainCategoryCards"));
+const CategoryFiltersAccordion = lazy(() => import("@/components/CategoryFiltersAccordion"));
 const FeaturedToolsSection = lazy(() => import("@/components/tools/FeaturedToolsSection"));
 const SpecialServices = lazy(() => import("@/components/SpecialServices"));
 const BookPromotionCard = lazy(() => import("@/components/BookPromotionCard"));
@@ -88,13 +89,24 @@ const Index = () => {
       <div className="relative z-10">
         <Header />
         <HeroSection />
-        <div id="categories-section">
+        
+        {/* Main Category Cards - Clean and organized near the top */}
+        <div id="main-categories-section">
           {showComponents ? (
             <Suspense fallback={<LoadingFallback />}>
-              <CategoryPageSelection />
+              <MainCategoryCards />
             </Suspense>
           ) : (
             <LoadingFallback />
+          )}
+        </div>
+        
+        {/* Advanced Category Filters - Right above video section */}
+        <div id="category-filters-section">
+          {showComponents && (
+            <Suspense fallback={<LoadingFallback />}>
+              <CategoryFiltersAccordion />
+            </Suspense>
           )}
         </div>
         
