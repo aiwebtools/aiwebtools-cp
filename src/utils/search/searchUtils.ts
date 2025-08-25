@@ -10,6 +10,7 @@ import { matchSpiritual, scoreSpiritual, matchParanormal, scoreParanormal } from
 import { superSmartTypoCorrection, getPartialMatchSuggestions, matchWithContext, superIntelligentScore } from "./core/superIntelligentSearch";
 import { matchWebDevelopment, scoreWebDevelopment } from "./matching/webDevelopmentMatching";
 import { getAdvancedPartialMatches, scoreAdvancedPartialMatch } from "./core/advancedPartialMatching";
+import { expandSearchTerms, scoreByIntent, matchesByIntent, getPriorityToolsForIntent } from "./core/intentBasedSearch";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -61,9 +62,9 @@ const INTENT_PATTERNS = {
     categories: ['Entertainment & Gaming', 'Gaming Tools', 'Entertainment Tools', 'GAME DESIGN & DEVELOPMENT']
   },
   spiritual: {
-    triggers: ['soul', 'spirit', 'spiritual', 'gematria', 'numerology', 'astrology', 'mystical', 'divine', 'cosmic', 'metaphysical', 'essence', 'soul map', 'soul mapping', 'blueprint', 'chakra', 'meditation', 'enlightenment', 'wisdom', 'philosophy', 'tarot', 'crystals', 'healing', 'consciousness', 'manifestation'],
-    priority: ['Soul Map GPT', 'ALAN WATTS GPT', '🕊️Mary Magdalene GPT', 'TALK TO THE GODS GPT', 'Sophia Aeterna AI', 'Interpretis 🕰️'],
-    categories: ['Spirituality & Philosophy', 'Mystical Tools', 'Personal Development', 'Philosophy']
+    triggers: ['soul', 'spirit', 'spiritual', 'gematria', 'numerology', 'astrology', 'mystical', 'divine', 'cosmic', 'metaphysical', 'essence', 'soul map', 'soul mapping', 'blueprint', 'chakra', 'meditation', 'enlightenment', 'wisdom', 'philosophy', 'tarot', 'crystals', 'healing', 'consciousness', 'manifestation', 'god', 'gods', 'deity', 'deities', 'religious', 'religion', 'faith', 'prayer', 'angel', 'angelic', 'demonology', 'luciferian', 'bible', 'quran', 'torah', 'scripture', 'gnostic', 'hermetic', 'kabbalah', 'zen', 'buddhist', 'hindu', 'tao', 'akashic', 'dreams', 'dream interpretation', 'mary magdalene', 'alan watts', 'sophia aeterna', 'oraculum', 'neo matrix', 'immortalize', 'talk to history', 'talk to the gods'],
+    priority: ['🕊️Mary Magdalene GPT', 'TALK TO THE GODS GPT', 'ALAN WATTS GPT', 'Sophia Aeterna AI', 'Oraculum – The Revealer of Hidden "Truths"', 'ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)', 'ImmortalizeME', 'TALK TO HISTORY GPT', 'Soul Map GPT', 'Interpretis 🕰️', 'Fortune Teller GPT', 'Dream Interpreter GPT'],
+    categories: ['Spirituality & Philosophy', 'Mystical Tools', 'Personal Development', 'Philosophy', 'Time & History']
   }
 };
 
@@ -292,6 +293,21 @@ const performEnhancedSearch = (
         if (lowerTitle.includes(finalNormalizedTerm)) {
           score += 3000; // Additional boost for matching AI Web Tools
         }
+      }
+
+      // 🎯 INTENT-BASED SEARCH SCORING - HIGHEST PRIORITY for user intent matching
+      const intentScore = scoreByIntent(tool, searchTerm);
+      if (intentScore > 0) {
+        matched = true;
+        score += intentScore;
+        console.log(`🎯 INTENT MATCH: ${tool.title} scored ${intentScore} for intent-based search "${searchTerm}"`);
+      }
+
+      // Enhanced intent-based matching for better results
+      if (matchesByIntent(tool, searchTerm)) {
+        matched = true;
+        score += 5000; // Base intent matching bonus
+        console.log(`🎯 INTENT PATTERN MATCH: ${tool.title} matches intent pattern for "${searchTerm}"`);
       }
 
       // INTELLIGENT TASK-BASED SCORING: Boost tools that match detected user tasks
