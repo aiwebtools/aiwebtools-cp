@@ -127,20 +127,18 @@ export const loadComponentWhenNeeded = <T extends React.ComponentType<any>>(
 
 // CSS optimization
 export const optimizeCSS = () => {
-  useEffect(() => {
-    // Remove unused CSS (in production)
-    if (import.meta.env.PROD) {
-      // Add critical CSS inlining logic here if needed
-      const style = document.createElement('style');
-      style.textContent = `
-        /* Critical above-the-fold CSS */
-        body { font-family: Inter, system-ui, sans-serif; }
-        .bg-black { background-color: #000; }
-        .text-white { color: #fff; }
-      `;
-      document.head.appendChild(style);
-    }
-  }, []);
+  // Remove unused CSS (in production)
+  if (import.meta.env.PROD) {
+    // Add critical CSS inlining logic here if needed
+    const style = document.createElement('style');
+    style.textContent = `
+      /* Critical above-the-fold CSS */
+      body { font-family: Inter, system-ui, sans-serif; }
+      .bg-black { background-color: #000; }
+      .text-white { color: #fff; }
+    `;
+    document.head.appendChild(style);
+  }
 };
 
 // Network optimization
