@@ -152,6 +152,8 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     
     const lowerTerm = trimmedTerm.toLowerCase();
     
+    console.log(`🔍 BOTTOM SEARCH BAR: Searching for "${trimmedTerm}" (${trimmedTerm.length} chars)`);
+    
     // INSTANT 2-character search with intelligent predictions
     if (trimmedTerm.length === 2) {
       const predictions = generateAutoComplete(trimmedTerm, allTools);
@@ -159,6 +161,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
         tool.title.toLowerCase().startsWith(lowerTerm) ||
         predictions.some(pred => tool.title.toLowerCase().includes(pred.toLowerCase()))
       );
+      console.log(`🔍 2-CHAR SEARCH: Found ${titleMatches.length} matches for "${trimmedTerm}"`);
       // Score and sort so top-intent tools (e.g., College Degree GPT) appear first
       return titleMatches
         .map(tool => ({
@@ -188,6 +191,8 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
                enhancedKeywordMatching(tool, trimmedTerm);
       });
       
+      console.log(`🔍 3-CHAR SEARCH: Found ${quickResults.length} matches for "${trimmedTerm}"`);
+      
       // Score and sort for better relevance
       return quickResults
         .map(tool => ({
@@ -204,8 +209,51 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     
     // COMPREHENSIVE 4+ character search with full intelligence
     if (trimmedTerm.length >= 4) {
+      console.log(`🔍 4+ CHAR SEARCH: Starting intelligent search for "${trimmedTerm}"`);
+      
+      // For "learn" queries, do a simple direct search first
+      if (lowerTerm.includes('learn')) {
+        const learnMatches = allTools.filter(tool => {
+          const lowerTitle = tool.title.toLowerCase();
+          const lowerDesc = tool.description?.toLowerCase() || '';
+          const lowerCat = tool.category?.toLowerCase() || '';
+          const lowerTags = (tool.tags || []).join(' ').toLowerCase();
+          
+          // Check if any word in the search matches the tool
+          const searchWords = lowerTerm.split(' ').filter(word => word.length > 1);
+          return searchWords.some(word => 
+            lowerTitle.includes(word) ||
+            lowerDesc.includes(word) ||
+            lowerCat.includes(word) ||
+            lowerTags.includes(word)
+          );
+        });
+        
+        console.log(`🔍 LEARN SEARCH: Found ${learnMatches.length} direct matches for "${trimmedTerm}"`, 
+                   learnMatches.slice(0, 5).map(t => t.title));
+        
+        if (learnMatches.length > 0) {
+          // Sort by relevance (title matches first, then others)
+          return learnMatches
+            .sort((a, b) => {
+              const aTitle = a.title.toLowerCase();
+              const bTitle = b.title.toLowerCase();
+              const aHasLearn = aTitle.includes('learn');
+              const bHasLearn = bTitle.includes('learn');
+              
+              if (aHasLearn && !bHasLearn) return -1;
+              if (!aHasLearn && bHasLearn) return 1;
+              
+              return aTitle.localeCompare(bTitle);
+            })
+            .slice(0, 100);
+        }
+      }
+      
       // Use the enhanced search function for comprehensive results
       const results = searchTools(allTools, trimmedTerm);
+      console.log(`🔍 ENHANCED SEARCH: Found ${results.length} results for "${trimmedTerm}"`, 
+                 results.slice(0, 5).map(t => t.title));
       return removeDuplicateTools(results).slice(0, 100);
     }
     
