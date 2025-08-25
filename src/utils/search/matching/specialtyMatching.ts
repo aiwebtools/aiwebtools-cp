@@ -247,7 +247,9 @@ export const matchSpiritual = (tool: Tool, searchTerm: string): boolean => {
     'essence', 'blueprint', 'soul mapping', 'divine', 'cosmic', 'metaphysical',
     'energy', 'chakra', 'meditation', 'enlightenment', 'wisdom', 'philosophy',
     'tarot', 'crystals', 'healing', 'consciousness', 'manifestation',
-    'god', 'gods', 'deities', 'deity', 'religious', 'religion', 'faith', 'prayer'
+    'god', 'gods', 'deities', 'deity', 'religious', 'religion', 'faith', 'prayer',
+    'mary magdalene', 'alan watts', 'sophia aeterna', 'oraculum', 'neo matrix',
+    'immortalize', 'talk to history', 'talk to the gods'
   ];
   
   const searchableText = [
@@ -262,15 +264,26 @@ export const matchSpiritual = (tool: Tool, searchTerm: string): boolean => {
     lowerSearchTerm.includes(keyword) || searchableText.includes(keyword)
   );
   
-  // Enhanced matching for god-related searches
-  if (lowerSearchTerm.includes('god') && (
-    tool.title.toLowerCase().includes('gods') ||
-    tool.title.toLowerCase().includes('talk to the gods') ||
-    searchableText.includes('gods') ||
-    searchableText.includes('deities')
-  )) {
-    console.log(`⚡ ENHANCED GOD MATCH FOUND: ${tool.title}`);
-    return true;
+  // Enhanced matching for god-related searches - catch ALL spiritual tools for "god" search
+  if (lowerSearchTerm.includes('god')) {
+    const titleLower = tool.title.toLowerCase();
+    if (
+      // Primary spiritual tools
+      titleLower.includes('mary magdalene') || titleLower.includes('🕊️mary magdalene') ||
+      titleLower.includes('talk to the gods') || titleLower.includes('gods gpt') ||
+      titleLower.includes('alan watts') || titleLower.includes('sophia aeterna') ||
+      titleLower.includes('oraculum') || 
+      (titleLower.includes('neo') && titleLower.includes('matrix')) ||
+      titleLower.includes('immortalizeme') || titleLower.includes('immortalize me') ||
+      titleLower.includes('talk to history') || titleLower.includes('soul map') ||
+      // Additional spiritual indicators
+      searchableText.includes('gods') || searchableText.includes('deities') ||
+      searchableText.includes('spiritual') || searchableText.includes('divine') ||
+      searchableText.includes('mystical') || searchableText.includes('enlightenment')
+    ) {
+      console.log(`⚡ ENHANCED GOD MATCH FOUND: ${tool.title}`);
+      return true;
+    }
   }
   
   if (matches) {
@@ -286,19 +299,56 @@ export const scoreSpiritual = (tool: Tool, searchTerm: string): number => {
   
   console.log(`⚡ Scoring spiritual tool "${tool.title}" for search "${searchTerm}"`);
   
-  // ENHANCED: Special boost for "TALK TO THE GODS GPT" on god searches
-  if ((lowerSearchTerm.includes('god') || lowerSearchTerm.includes('gods')) && 
-      (tool.title.toLowerCase().includes('talk to the gods') || 
-       tool.title.toLowerCase().includes('gods gpt'))) {
-    score += 50000; // Massive boost for god searches
-    console.log(`⚡ GODS GPT SUPER BOOST: Adding 50000 to score for ${tool.title}`);
-  }
-  
-  // Check if this is the Soul Map GPT specifically
-  if (tool.title.toLowerCase().includes('soul map') || 
-      tool.title.toLowerCase().includes('soul scan') ||
-      tool.description.toLowerCase().includes('gematria')) {
-    score += 25000; // Very high priority for spiritual searches
+  // PRIORITY ORDER for "god" searches - Mary Magdalene GPT FIRST
+  if (lowerSearchTerm.includes('god') || lowerSearchTerm.includes('gods') || lowerSearchTerm.includes('divine')) {
+    const titleLower = tool.title.toLowerCase();
+    const descLower = tool.description.toLowerCase();
+    
+    // #1 PRIORITY: Mary Magdalene GPT
+    if (titleLower.includes('mary magdalene') || titleLower.includes('🕊️mary magdalene')) {
+      score += 100000; // Highest priority
+      console.log(`⚡ MARY MAGDALENE GPT TOP PRIORITY: Adding 100000 to score for ${tool.title}`);
+    }
+    // #2 PRIORITY: Talk to the Gods GPT
+    else if (titleLower.includes('talk to the gods') || titleLower.includes('gods gpt')) {
+      score += 90000;
+      console.log(`⚡ TALK TO GODS GPT HIGH PRIORITY: Adding 90000 to score for ${tool.title}`);
+    }
+    // #3 PRIORITY: Alan Watts GPT
+    else if (titleLower.includes('alan watts')) {
+      score += 85000;
+      console.log(`⚡ ALAN WATTS GPT HIGH PRIORITY: Adding 85000 to score for ${tool.title}`);
+    }
+    // #4 PRIORITY: Sophia Aeterna AI
+    else if (titleLower.includes('sophia aeterna')) {
+      score += 80000;
+      console.log(`⚡ SOPHIA AETERNA HIGH PRIORITY: Adding 80000 to score for ${tool.title}`);
+    }
+    // #5 PRIORITY: Oraculum
+    else if (titleLower.includes('oraculum') || descLower.includes('oraculum')) {
+      score += 75000;
+      console.log(`⚡ ORACULUM HIGH PRIORITY: Adding 75000 to score for ${tool.title}`);
+    }
+    // #6 PRIORITY: Neo Matrix GPT
+    else if (titleLower.includes('neo') && (titleLower.includes('matrix') || titleLower.includes('👁️matrix'))) {
+      score += 70000;
+      console.log(`⚡ NEO MATRIX HIGH PRIORITY: Adding 70000 to score for ${tool.title}`);
+    }
+    // #7 PRIORITY: ImmortalizeME
+    else if (titleLower.includes('immortalizeme') || titleLower.includes('immortalize me')) {
+      score += 65000;
+      console.log(`⚡ IMMORTALIZEME HIGH PRIORITY: Adding 65000 to score for ${tool.title}`);
+    }
+    // #8 PRIORITY: Talk to History GPT
+    else if (titleLower.includes('talk to history')) {
+      score += 60000;
+      console.log(`⚡ TALK TO HISTORY HIGH PRIORITY: Adding 60000 to score for ${tool.title}`);
+    }
+    // Other spiritual tools get medium priority
+    else if (titleLower.includes('soul map') || titleLower.includes('soul scan') || descLower.includes('gematria')) {
+      score += 55000;
+      console.log(`⚡ SOUL MAP HIGH PRIORITY: Adding 55000 to score for ${tool.title}`);
+    }
   }
   
   // High-value spiritual keywords
