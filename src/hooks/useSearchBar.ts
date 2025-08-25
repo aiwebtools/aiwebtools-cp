@@ -6,6 +6,7 @@ import { getCurrentToolCount } from "@/utils/toolCounter";
 import { enhancedKeywordMatching, enhancedToolScoring } from "@/utils/search/enhancedKeywordMatching";
 import { predictUserIntent, generateAutoComplete } from "@/utils/search/core/intelligentPrediction";
 import { toolAbbreviations, fuzzyMatches, acronymMatches } from "@/utils/search/toolAbbreviations";
+import { useDebounce } from "@/hooks/useDebounce";
 
 interface UseSearchBarProps {
   searchTerm: string;
@@ -15,6 +16,8 @@ interface UseSearchBarProps {
 export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(30);
+  
+  const debouncedSearchTerm = useDebounce(searchTerm, 100); // Faster debounce for search bar
   
   // Prefix-based priority scoring for ultra-short queries (generalized)
   const prefixPriorityScore = useCallback((title: string, term: string) => {
@@ -145,7 +148,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     return score;
   }, []);
   const searchResults = useMemo(() => {
-    const trimmedTerm = searchTerm.trim();
+    const trimmedTerm = debouncedSearchTerm.trim();
     
     // No search for empty terms
     if (!trimmedTerm) return [];
@@ -210,7 +213,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     }
     
     return [];
-  }, [searchTerm]);
+  }, [debouncedSearchTerm]); // Use debounced term for better performance
 
   // Display results with performance limits for rendering
   const displayedResults = useMemo(() => 
@@ -218,13 +221,13 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     [searchResults, displayedCount]
   );
 
-  // User intent predictions for better UX
+  // User intent predictions for better UX - optimized
   const userIntentPredictions = useMemo(() => {
-    if (searchTerm.trim().length >= 3) {
-      return predictUserIntent(searchTerm.trim(), allTools);
+    if (debouncedSearchTerm.trim().length >= 4) { // Increased threshold for performance
+      return predictUserIntent(debouncedSearchTerm.trim(), allTools);
     }
     return [];
-  }, [searchTerm]);
+  }, [debouncedSearchTerm]);
 
   const shouldShowResults = searchResults.length > 0 && searchTerm.trim().length >= 2;
 
@@ -237,7 +240,6 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   }, [onSearchChange]);
 
   const handleResultClick = useCallback(() => {
-    console.log('🔍 Search result clicked - closing dropdown and clearing search');
     setIsOpen(false);
     onSearchChange("");
     setDisplayedCount(30);

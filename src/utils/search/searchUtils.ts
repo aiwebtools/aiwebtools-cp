@@ -95,9 +95,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const partialSuggestions = getPartialMatchSuggestions(searchTerm);
   const advancedPartialMatches = getAdvancedPartialMatches(searchTerm, tools);
   
-  console.log(`🧠 SUPER SEARCH: "${searchTerm}" → "${correctedSearchTerm}"`, 
-             partialSuggestions.length > 0 ? `Suggestions: ${partialSuggestions.slice(0, 3).join(', ')}` : '',
-             `Advanced matches: ${advancedPartialMatches.length}`);
+  // Performance optimized - reduced logging
 
   const normalizedSearchTerm = correctedSearchTerm.toLowerCase().trim();
   const searchWords = normalizedSearchTerm.split(/[\s,.-]+/).filter(word => word.length > 1);
@@ -105,7 +103,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   // Enhanced phonetic variations  
   const phoneticVariations = searchTerm.length <= 8 ? phoneticMatch(normalizedSearchTerm) : [];
   
-  // Enhanced intent detection
+  // Enhanced intent detection - cached for performance
   const userIntent = detectIntent(normalizedSearchTerm);
   const intentConfig = userIntent ? INTENT_PATTERNS[userIntent as keyof typeof INTENT_PATTERNS] : null;
   
@@ -225,8 +223,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       return scoreB - scoreA;
     });
     
-    console.log(`🎮 Game search prioritized: Found ${gameTools.length} game-related tools, including:`, 
-                sortedGameTools.slice(0, 3).map(t => t.title));
+    // Performance optimized - removed logging
     return performEnhancedSearch([...sortedGameTools, ...tools.filter(t => !gameTools.includes(t))], searchTerm, searchWords, phoneticVariations, intentConfig);
   }
 
@@ -276,8 +273,6 @@ const performEnhancedSearch = (
   // Detect user task intent
   const userTask = matchUserTask(finalNormalizedTerm);
   
-  console.log(`🧠 Smart search for "${searchTerm}" -> "${processedSearchTerm}"`, userTask.taskType ? `Task detected: ${userTask.taskType}` : 'No specific task detected');
-  
   const results = tools
     .filter(tool => !EXCLUDED_TOOLS.includes(tool.title))
     .map(tool => {
@@ -302,7 +297,6 @@ const performEnhancedSearch = (
       if (comprehensiveMatch.matched) {
         matched = true;
         score += comprehensiveMatch.score;
-        console.log(`🔍 COMPREHENSIVE MATCH: ${tool.title} scored ${comprehensiveMatch.score} in category ${comprehensiveMatch.category}`);
       }
 
       // 🎯 INTENT-BASED SEARCH SCORING - HIGHEST PRIORITY for user intent matching
