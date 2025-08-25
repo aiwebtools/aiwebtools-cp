@@ -1,5 +1,5 @@
 
-import { Menu, Phone, Search, X, Globe, ChevronDown, Download } from "lucide-react";
+import { Menu, Phone, Search, X, Globe, ChevronDown, Download, Home } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -40,6 +40,16 @@ const TabletMenu = () => {
       setDisplayedCount(50);
     }
   }, [searchTerm]);
+
+  const handleHomeClick = () => {
+    // If we're already on the home page, just scroll to top instantly
+    if (window.location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // Navigate to home page quickly
+      navigate('/');
+    }
+  };
 
   const handleBrowseAITools = () => {
     // Navigate to ALL AI TOOLS main category page
@@ -220,7 +230,8 @@ const TabletMenu = () => {
                 )}
               </div>
 
-              <DropdownMenuItem onClick={() => window.location.href = '#home'} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
+              <DropdownMenuItem onClick={handleHomeClick} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded flex items-center gap-2">
+                <Home className="w-4 h-4" />
                 Home
               </DropdownMenuItem>
               <DropdownMenuSeparator className="border-gray-700 mb-2" />
