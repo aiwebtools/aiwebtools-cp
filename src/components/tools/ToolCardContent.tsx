@@ -37,6 +37,31 @@ const ToolCardContent = ({
     }
   };
 
+  const handleCreatorFeedback = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Creator feedback clicked for:', tool.title);
+    
+    // Create feedback email with tool details
+    const subject = encodeURIComponent(`Feedback for ${tool.title} GPT`);
+    const body = encodeURIComponent(`Hi AI Web Tools Team,
+
+I'd like to provide feedback for ${tool.title}:
+
+Tool URL: ${tool.directUrl}
+Category: ${tool.category}
+
+My feedback:
+[Please share your thoughts, suggestions, or issues here]
+
+Thank you for creating amazing AI tools!
+
+Best regards`);
+    
+    const mailtoLink = `mailto:feedback@aiwebtools.ai?subject=${subject}&body=${body}`;
+    window.open(mailtoLink, '_blank');
+  };
+
   // Find the correct index in allTools array
   const correctToolIndex = allTools.findIndex(t => 
     t.title === tool.title && 
@@ -79,6 +104,18 @@ const ToolCardContent = ({
             className="w-full border-green-500/50 bg-green-500/10 text-green-300 hover:bg-green-500/20 hover:border-green-400 transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             🚀 USE IT NOW
+          </Button>
+        )}
+        
+        {/* Creator Feedback Button - only show for AI Web Tools original GPTs */}
+        {isAIWebToolsOriginal && (
+          <Button 
+            size={buttonSize as any}
+            onClick={handleCreatorFeedback}
+            variant="outline"
+            className="w-full border-purple-500/50 bg-purple-500/10 text-purple-300 hover:bg-purple-500/20 hover:border-purple-400 transition-all duration-300 transform hover:scale-105 shadow-lg"
+          >
+            💬 Send Creator Feedback
           </Button>
         )}
       </div>
