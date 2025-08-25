@@ -252,18 +252,6 @@ export const businessAndFinanceGPTs: Tool[] = [
     totalVotes: 5678
   },
   {
-    icon: Briefcase,
-    title: "Copy.ai",
-    description: "AI writing assistant that helps create marketing copy, sales content, and business communications. Copy.ai offers templates and tools for email campaigns, product descriptions, and various business writing needs.",
-    emoji: "📝",
-    color: "from-teal-500 to-green-600",
-    directUrl: "https://copy.ai",
-    tags: ["copywriting", "marketing copy", "business writing", "ai assistant", "sales content", "email campaigns"],
-    category: "Business & Finance",
-    rating: 4.5,
-    totalVotes: 4321
-  },
-  {
     icon: Zap,
     title: "Zapier",
     description: "Automation platform that connects different apps and services to streamline workflows. Zapier enables businesses to automate repetitive tasks and integrate various tools for improved productivity and efficiency.",

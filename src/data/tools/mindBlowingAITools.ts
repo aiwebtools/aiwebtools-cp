@@ -361,18 +361,6 @@ export const mindBlowingAITools: Tool[] = [
     totalVotes: 29000
   },
   {
-    icon: Lightbulb,
-    title: "Copy.ai",
-    description: "AI copywriter that generates marketing copy, blog posts, emails, and social media content that converts readers into customers. FREE plan available, Pro at $36/month.",
-    emoji: "✨",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://copy.ai/?via=aiwebtools",
-    tags: ["AI copywriting", "marketing copy", "content creation", "conversion", "freemium"],
-    category: "Marketing AI",
-    rating: 4.2,
-    totalVotes: 67000
-  },
-  {
     icon: Wand,
     title: "Clipdrop",
     description: "AI-powered image editing ecosystem. Remove objects, change backgrounds, upscale images, and create stunning visuals instantly. FREE tier with Pro features available.",

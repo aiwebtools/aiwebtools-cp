@@ -23,18 +23,6 @@ export const aiContentGenerators: Tool[] = [
     totalVotes: 4234
   },
   {
-    icon: PenTool,
-    title: "Copy.ai",
-    description: "AI copywriting tool that generates marketing copy, product descriptions, emails, and social media content. Templates for various content types.",
-    emoji: "✍️",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://www.copy.ai/?via=aiwebtools",
-    tags: ["copywriting", "marketing copy", "product descriptions", "emails", "templates"],
-    category: "Writing & Content Enhancement",
-    rating: 4.5,
-    totalVotes: 3876
-  },
-  {
     icon: FileText,
     title: "Writesonic",
     description: "AI writing platform for creating articles, ads, product descriptions, and landing pages. GPT-powered content generation with SEO optimization.",

@@ -87,18 +87,6 @@ export const writingAndContentEnhancement: Tool[] = [
     totalVotes: 3210
   },
   {
-    icon: MessageSquare,
-    title: "Copy.ai",
-    description: "AI-powered copywriting tool that generates high-converting copy for ads, emails, and websites, boosting your marketing ROI.",
-    emoji: "💬",
-    color: "from-pink-500 to-purple-600",
-    directUrl: "https://www.copy.ai/?via=aiwebtools",
-    tags: ["copywriting", "marketing", "advertising", "email marketing", "conversion"],
-    category: "Writing & Content Enhancement",
-    rating: 4.7,
-    totalVotes: 4123
-  },
-  {
     icon: Mail,
     title: "Anyword",
     description: "AI-driven marketing copy optimization platform that analyzes and improves your messaging for better engagement and conversions.",

@@ -208,18 +208,6 @@ export const aiAssistants: Tool[] = [
     totalVotes: 5890
   },
   {
-    icon: Smartphone,
-    title: "Copy.ai",
-    description: "AI-powered copywriting tool for creating marketing content, emails, and social media posts.",
-    emoji: "📋",
-    color: "from-green-500 to-teal-600",
-    directUrl: "https://copy.ai",
-    category: "AI Writing Assistants",
-    tags: ["copywriting", "marketing", "social media", "emails"],
-    rating: 4.2,
-    totalVotes: 4560
-  },
-  {
     icon: Globe,
     title: "Grammarly",
     description: "AI-powered writing assistant that checks grammar, spelling, and style across multiple platforms.",

@@ -18,18 +18,6 @@ export const contentCreationTools: Tool[] = [
     totalVotes: 3456
   },
   {
-    icon: Edit3,
-    title: "Copy.ai",
-    description: "AI-powered copywriting tool for creating marketing content, emails, and social media posts in seconds.",
-    emoji: "📝",
-    color: "from-blue-500 to-green-600",
-    directUrl: "https://copy.ai/?via=aiwebtools",
-    tags: ["copywriting", "marketing content", "email copy", "social media", "AI writing"],
-    category: "Content Creation",
-    rating: 4.3,
-    totalVotes: 2891
-  },
-  {
     icon: BookOpen,
     title: "Writesonic",
     description: "AI writing platform for creating articles, ads, emails, and website copy with SEO optimization.",
