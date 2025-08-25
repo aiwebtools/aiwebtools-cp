@@ -118,6 +118,42 @@ import { newSpecializedGPTs } from './tools/aiWebTools/newSpecializedGPTs';
 // Import ALL AI Web Tools GPTs - CRITICAL for full indexing
 import { aiWebToolsGPTs } from './tools/aiWebToolsGPTs';
 
+// Import ALL AI Web Tools GPT Collections to match toolsData.ts
+import { priorityFeaturedGPTs } from "./tools/aiWebTools/priorityFeaturedGPTs";
+import { secondPriorityFeaturedGPTs } from "./tools/aiWebTools/secondPriorityFeaturedGPTs";
+import { thirdPriorityFeaturedGPTs } from "./tools/aiWebTools/thirdPriorityFeaturedGPTs";
+import { fourthPriorityFeaturedGPTs } from "./tools/aiWebTools/fourthPriorityFeaturedGPTs";
+import { advancedSpecialtyGPTs } from "./tools/aiWebTools/advancedSpecialtyGPTs";
+import { additionalSpecializedGPTs } from "./tools/aiWebTools/additionalSpecializedGPTs";
+import { finalSpecializedGPTs } from "./tools/aiWebTools/finalSpecializedGPTs";
+import { personalDevelopmentGPTs } from "./tools/aiWebTools/personalDevelopmentGPTs";
+import { educationAndLearningGPTs } from "./tools/aiWebTools/educationAndLearningGPTs";
+import { educationalToolsGPTs } from "./tools/aiWebTools/educationalToolsGPTs";
+import { healthAndWellnessGPTs } from "./tools/aiWebTools/healthAndWellnessGPTs";
+import { researchAndPharmaceuticalGPTs } from "./tools/aiWebTools/researchAndPharmaceuticalGPTs";
+import { scienceAndResearchGPTs } from "./tools/aiWebTools/scienceAndResearchGPTs";
+import { businessAndFinanceGPTs } from "./tools/aiWebTools/businessAndFinanceGPTs";
+import { businessStrategyGPTs } from "./tools/aiWebTools/businessStrategyGPTs";
+import { legalAndGovernmentGPTs } from "./tools/aiWebTools/legalAndGovernmentGPTs";
+import { governmentCivicGPTs } from "./tools/aiWebTools/governmentCivicGPTs";
+import { professionalServicesGPTs } from "./tools/aiWebTools/professionalServicesGPTs";
+import { utilityAndProductivityGPTs } from "./tools/aiWebTools/utilityAndProductivityGPTs";
+import { creativeAndMediaGPTs } from "./tools/aiWebTools/creativeAndMediaGPTs";
+import { contentCreationToolsGPTs } from "./tools/aiWebTools/contentCreationToolsGPTs";
+import { multimediaAndContentGPTs } from "./tools/aiWebTools/multimediaAndContentGPTs";
+import { artAndCreativeGPTs } from "./tools/aiWebTools/artAndCreativeGPTs";
+import { aiPromptingAndGenerationGPTs } from "./tools/aiWebTools/aiPromptingAndGenerationGPTs";
+import { communicationAndEntertainmentGPTs } from "./tools/aiWebTools/communicationAndEntertainmentGPTs";
+import { entertainmentAndGamingGPTs } from "./tools/aiWebTools/entertainmentAndGamingGPTs";
+import { foodAndHospitalityGPTs } from "./tools/aiWebTools/foodAndHospitalityGPTs";
+import { investigativeAndAnalysisGPTs } from "./tools/aiWebTools/investigativeAndAnalysisGPTs";
+import { appraisalAndValuationGPTs } from "./tools/aiWebTools/appraisalAndValuationGPTs";
+import { mysteriousAndUnusualGPTs } from "./tools/aiWebTools/mysteriousAndUnusualGPTs";
+import { spiritualAndPhilosophyGPTs } from "./tools/aiWebTools/spiritualAndPhilosophyGPTs";
+import { timeAndHistoryGPTs } from "./tools/aiWebTools/timeAndHistoryGPTs";
+import { technologyInnovationGPTs } from "./tools/aiWebTools/technologyInnovationGPTs";
+import { specializedNicheToolsGPTs } from "./tools/aiWebTools/specializedNicheToolsGPTs";
+
 // Import the new additional real AI tools
 import { additionalRealAITools } from './tools/additionalRealAITools';
 
@@ -265,6 +301,42 @@ export const getAllToolCategories = (): Tool[] => {
     
     // CRITICAL: ALL AI Web Tools GPTs including Soul Map GPT
     ...aiWebToolsGPTs,
+    
+    // ALL AI WEB TOOLS GPT COLLECTIONS to match toolsData.ts
+    ...priorityFeaturedGPTs,
+    ...secondPriorityFeaturedGPTs,
+    ...thirdPriorityFeaturedGPTs,
+    ...fourthPriorityFeaturedGPTs,
+    ...advancedSpecialtyGPTs,
+    ...additionalSpecializedGPTs,
+    ...finalSpecializedGPTs,
+    ...personalDevelopmentGPTs,
+    ...educationAndLearningGPTs,
+    ...educationalToolsGPTs,
+    ...healthAndWellnessGPTs,
+    ...researchAndPharmaceuticalGPTs,
+    ...scienceAndResearchGPTs,
+    ...businessAndFinanceGPTs,
+    ...businessStrategyGPTs,
+    ...legalAndGovernmentGPTs,
+    ...governmentCivicGPTs,
+    ...professionalServicesGPTs,
+    ...utilityAndProductivityGPTs,
+    ...creativeAndMediaGPTs,
+    ...contentCreationToolsGPTs,
+    ...multimediaAndContentGPTs,
+    ...artAndCreativeGPTs,
+    ...aiPromptingAndGenerationGPTs,
+    ...communicationAndEntertainmentGPTs,
+    ...entertainmentAndGamingGPTs,
+    ...foodAndHospitalityGPTs,
+    ...investigativeAndAnalysisGPTs,
+    ...appraisalAndValuationGPTs,
+    ...mysteriousAndUnusualGPTs,
+    ...spiritualAndPhilosophyGPTs,
+    ...timeAndHistoryGPTs,
+    ...technologyInnovationGPTs,
+    ...specializedNicheToolsGPTs,
     
     // NEW: Additional real AI tools (100 more tools)
     ...additionalRealAITools,
