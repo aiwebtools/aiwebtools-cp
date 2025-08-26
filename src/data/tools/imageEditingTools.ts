@@ -24,6 +24,18 @@ import {
 
 export const imageEditingTools: Tool[] = [
   {
+    icon: Edit3,
+    title: "Nano Banana Image Editing Suite",
+    description: "Comprehensive AI-powered image editing suite offering advanced editing capabilities with intuitive interface. Features multiple AI tools for image enhancement, creative editing, and professional-grade image manipulation.",
+    emoji: "🍌",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://ainanobanana.ai/?via=aiwebtools",
+    tags: ["image editing", "AI enhancement", "creative editing", "professional tools", "image manipulation", "editing suite"],
+    category: "Image Generation Platforms",
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
     icon: Upload,
     title: "LetsEnhance.io",
     description: "Go-to solution for enhancing and upscaling images with ease. Increase resolution, improve quality, add clarity with one click. Generate captivating AI art in high quality with free start and API access options.",
