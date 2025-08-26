@@ -101,15 +101,39 @@ export const getAIWebToolsPriorityScore = (tool: Tool): number => {
 export const applyAIWebToolsPrioritization = (tools: Tool[]): Tool[] => {
   if (!tools || tools.length === 0) return tools;
   
+  console.log(`🔧 PRIORITIZATION: Processing ${tools.length} tools`);
+  
   const soulMapGPTs = tools.filter(isSoulMapGPT);
   const priorityGPTs = tools.filter(tool => isPriorityAIWebToolsGPT(tool) && !isSoulMapGPT(tool));
   const otherAIWebToolsGPTs = tools.filter(tool => isAIWebToolsGPT(tool) && !isPriorityAIWebToolsGPT(tool) && !isSoulMapGPT(tool));
   const toolsWithMedia = tools.filter(tool => !isAIWebToolsGPT(tool) && hasVideoOrImageMedia(tool));
   const otherTools = tools.filter(tool => !isAIWebToolsGPT(tool) && !hasVideoOrImageMedia(tool));
   
-  // Sort each AI Web Tools group by power ranking
-  const sortAIWebToolsByPowerAndRating = (toolsArray: Tool[]) => {
-    return sortGPTsByPowerRanking([...toolsArray]);
+  console.log(`🔮 Soul Map GPTs: ${soulMapGPTs.length}`);
+  console.log(`🎬 Priority GPTs (with media): ${priorityGPTs.length}`);
+  console.log(`🚀 Other AI Web Tools GPTs: ${otherAIWebToolsGPTs.length}`);
+  console.log(`📺 Third-party tools with media: ${toolsWithMedia.length}`);
+  console.log(`📝 Other tools: ${otherTools.length}`);
+  
+  // Log some examples of priority GPTs with media
+  if (priorityGPTs.length > 0) {
+    console.log(`🎥 TOP PRIORITY GPTs with videos/images:`, 
+      priorityGPTs.slice(0, 10).map(t => `${t.title} (${t.videoUrl ? 'VIDEO' : ''}${t.imageUrl ? ' IMAGE' : ''})`));
+  }
+  
+  // Sort each AI Web Tools group - videos/images first within power tiers
+  const sortAIWebToolsByMediaAndPower = (toolsArray: Tool[]) => {
+    return toolsArray.sort((a, b) => {
+      // First priority: tools with videos/images
+      const aHasMedia = hasVideoOrImageMedia(a);
+      const bHasMedia = hasVideoOrImageMedia(b);
+      
+      if (aHasMedia && !bHasMedia) return -1;
+      if (!aHasMedia && bHasMedia) return 1;
+      
+      // Within same media status, sort by power ranking
+      return sortGPTsByPowerRanking([a, b]).indexOf(a) - sortGPTsByPowerRanking([a, b]).indexOf(b);
+    });
   };
   
   // Sort non-AI Web Tools by rating and title only
@@ -120,13 +144,18 @@ export const applyAIWebToolsPrioritization = (tools: Tool[]): Tool[] => {
       return a.title.localeCompare(b.title);
     });
   
-  return [
-    ...sortAIWebToolsByPowerAndRating(soulMapGPTs),         // Soul Map GPT always first!
-    ...sortAIWebToolsByPowerAndRating(priorityGPTs),        // Legendary GPTs with media second
-    ...sortAIWebToolsByPowerAndRating(otherAIWebToolsGPTs), // All other GPTs by power ranking
-    ...sortByRatingAndTitle([...toolsWithMedia]),           // Third-party tools with media
-    ...sortByRatingAndTitle([...otherTools])                // Everything else
+  const finalResult = [
+    ...sortAIWebToolsByMediaAndPower(soulMapGPTs),         // Soul Map GPT always first!
+    ...sortAIWebToolsByMediaAndPower(priorityGPTs),        // AI Web Tools with media (videos/images first)
+    ...sortAIWebToolsByMediaAndPower(otherAIWebToolsGPTs), // All other AI Web Tools (videos/images first)
+    ...sortByRatingAndTitle([...toolsWithMedia]),          // Third-party tools with media
+    ...sortByRatingAndTitle([...otherTools])               // Everything else
   ];
+  
+  console.log(`✅ FINAL ORDER - Top 10:`, finalResult.slice(0, 10).map(t => 
+    `${t.title} (${t.videoUrl ? 'VIDEO' : ''}${t.imageUrl ? ' IMAGE' : ''})`));
+  
+  return finalResult;
 };
 
 console.log('🔮 Soul Map GPT will reign supreme! AI Web Tools Prioritization system loaded - Soul Map GPT always first!');
