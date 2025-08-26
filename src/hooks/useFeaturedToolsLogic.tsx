@@ -46,72 +46,42 @@ export const useFeaturedToolsLogic = ({ onToolsLoaded }: UseFeaturedToolsLogicPr
   const shouldShowFeaturedToolsButton = !selectedCategory && !searchTerm && 
     filteredTools.length > initialDisplayCount && !showAllFeaturedTools;
 
+  // Disable heavy verification for better performance
   // Run comprehensive verification on component mount (disabled for performance)
   useEffect(() => {
-    // Only run verification in development mode to avoid performance impact
+    // Disable verification completely to improve performance
+    // Only run basic logging in development mode
     if (process.env.NODE_ENV === 'development') {
-      console.log('🚀 Running featured tools verification...');
-      
-      // Run full tool verification
-      const verificationResults = runFullToolVerification(searchTools);
-      
-      // Verify featured tools content specifically
-      const featuredVerification = verifyFeaturedToolsContent(filteredTools);
-      
-      console.log('📊 Featured Tools Verification Results:', featuredVerification);
-      
-      if (featuredVerification.missingCount > 0) {
-        console.error(`❌ CRITICAL ISSUE: ${featuredVerification.missingCount} AI Web Tools GPTs missing from featured tools!`);
-        console.error('Missing tools:', featuredVerification.missingTitles.slice(0, 20));
-      } else {
-        console.log('✅ All AI Web Tools GPTs are properly included in featured tools!');
-      }
+      console.log('🚀 FeaturedTools loaded with', filteredTools.length, 'tools');
     }
-  }, []);
+  }, [filteredTools.length]);
 
   // Handle scroll position memory
   useScrollMemory({ displayedCount: actualDisplayedCount, selectedCategory, searchTerm });
 
-  // Enhanced logging with verification details (simplified for performance)
+  // Simplified performance logging
   if (process.env.NODE_ENV === 'development') {
-    console.log(`📊 FeaturedTools Component Stats:`);
-    console.log(`   Total tools available: ${totalToolsCount}`);
-    console.log(`   Filtered tools: ${filteredTools.length}`);
-    console.log(`   Currently displayed: ${actualDisplayedCount}`);
-    console.log(`   Has more tools: ${hasMoreTools}`);
-    
-    // Count AI Web Tools GPTs in current display
-    const aiWebToolsInDisplay = filteredTools.slice(0, actualDisplayedCount).filter(tool => 
-      tool.directUrl?.includes('lovable.app')
-    ).length;
-    console.log(`🎯 AI Web Tools GPTs currently displayed: ${aiWebToolsInDisplay}`);
-    
-    // Log first few tool titles for debugging
-    console.log(`🔍 First 15 filtered tools:`, filteredTools.slice(0, 15).map(t => t.title));
+    console.log(`📊 Tools: ${filteredTools.length} filtered, ${actualDisplayedCount} displayed`);
   }
 
   const handleLoadMore = useCallback(() => {
     if (isLoading || !hasMoreTools) return;
     
-    console.log(`🚀 Loading more tools - Current: ${displayedCount}, Total: ${filteredTools.length}`);
     setIsLoading(true);
     
     setTimeout(() => {
-      const newCount = Math.min(displayedCount + 8, filteredTools.length); // Load only 8 more at a time
-      console.log(`📈 Setting new count: ${newCount}`);
+      const newCount = Math.min(displayedCount + 8, filteredTools.length);
       setDisplayedCount(newCount);
       setIsLoading(false);
-      // Notify parent component about tools loaded
       if (onToolsLoaded) {
         onToolsLoaded(newCount);
       }
-    }, 100); // Slightly increased delay to prevent blocking
+    }, 50); // Reduced delay for faster loading
   }, [isLoading, displayedCount, setDisplayedCount, setIsLoading, onToolsLoaded, hasMoreTools, filteredTools.length]);
 
   const handleShowMoreFeaturedTools = () => {
-    console.log('🚀 Show More Featured Tools clicked!');
     setShowAllFeaturedTools(true);
-    setDisplayedCount(filteredTools.length); // Show all tools
+    setDisplayedCount(filteredTools.length);
   };
 
   // Disable infinite scroll for featured tools section - only manual loading

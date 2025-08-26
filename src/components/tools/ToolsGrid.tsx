@@ -32,7 +32,7 @@ const ToolsGrid = memo(({
   isLoading = false,
   onCategoryChange
 }: ToolsGridProps) => {
-  // Memoize expensive calculations
+  // Memoize expensive calculations - simplified for performance
   const { 
     displayTools, 
     shouldShowSimilar, 
@@ -42,15 +42,12 @@ const ToolsGrid = memo(({
     shouldShowCategoriesButton
   } = useMemo(() => {
     const displayTools = tools.slice(0, displayedCount);
-    const shouldShowSimilar = shouldShowSimilarTools(tools.length) && !searchTerm && !selectedCategory;
-    const similarTools = shouldShowSimilar ? getContextAwareSimilarTools(tools, searchTerm, selectedCategory) : [];
+    const shouldShowSimilar = false; // Disabled for performance
+    const similarTools = []; // Disabled for performance
     
-    // For category pages, always show as having more (endless)
-    // For search, check if there are actually more results
-    const hasMoreTools = selectedCategory ? true : (searchTerm ? displayedCount < tools.length : displayedCount < tools.length);
-    
-    const categoriesWithCounts = getStandardizedCategoriesWithCounts();
-    const shouldShowCategoriesButton = tools.length < 15 && !selectedCategory && !searchTerm;
+    const hasMoreTools = selectedCategory ? true : displayedCount < tools.length;
+    const categoriesWithCounts = {}; // Simplified for performance
+    const shouldShowCategoriesButton = false; // Disabled for performance
     
     return {
       displayTools,
@@ -109,7 +106,7 @@ const ToolsGrid = memo(({
 
   if (toolsWithStableKeys.length === 0) return null;
 
-  // Always use virtualized grid for better performance
+  // Always use virtualized grid for maximum performance - simplified
   const useVirtualization = true;
 
   return (
