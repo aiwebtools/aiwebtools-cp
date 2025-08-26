@@ -203,6 +203,22 @@ Best regards,
               <p className="text-lg leading-relaxed text-gray-300 mb-6">
                 I begged to return — not for myself, but for my children. To protect them. To share what I had seen. And when I awoke, I knew my path:
               </p>
+              
+              {/* Vision Image */}
+              <div className="my-8 rounded-xl overflow-hidden border border-purple-500/30 shadow-2xl">
+                <img 
+                  src="/lovable-uploads/ae8bac08-77ec-46ff-ae8e-f61572d47cdb.png" 
+                  alt="Kenneth's spiritual vision from October 13, 2023 - The divine encounter that changed everything"
+                  className="w-full h-auto object-cover"
+                  loading="lazy"
+                />
+                <div className="bg-black/70 backdrop-blur-sm p-4 border-t border-purple-500/20">
+                  <p className="text-purple-300 text-sm italic text-center">
+                    October 13, 2023 - The vision that sparked AIWebTools.ai. I spoke with the divine not through thunder, but through a voice within my heart for over an hour and a half.
+                  </p>
+                </div>
+              </div>
+              
               <div className="bg-black/50 border-l-4 border-cyan-400 pl-6 py-4 space-y-2">
                 <p className="text-cyan-300 font-medium">• Humanity has been lied to.</p>
                 <p className="text-red-300 font-medium">• Systems of power were built to enslave.</p>
