@@ -8,16 +8,19 @@ interface FooterBottomProps {
 const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
   return (
     <div className="space-y-6">
-      {/* Founder Quote */}
+      {/* Founder Quote - Cyberpunk Neon Style */}
       <div className="text-center border-t border-cyan-500/20 pt-6">
-        <p className="text-sm md:text-base text-cyan-300/80 font-light italic tracking-wide max-w-5xl mx-auto leading-relaxed">
-          "This page and the tools here were put together with care and persistence over the past two years, and they're offered freely. Love others as yourself. Imagine what you can create. Unlock your dreams. These tools were made to help lift us all—mentally, spiritually, and physically. Let's shape the future together."
-        </p>
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 blur-xl"></div>
+          <p className="relative text-sm md:text-base text-cyan-300 font-light italic tracking-wide max-w-5xl mx-auto leading-relaxed border border-cyan-500/30 bg-black/60 backdrop-blur-sm rounded-lg p-6 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+            <span className="text-cyan-400 text-lg">"</span>This page and the tools here were put together with care and persistence over the past two years, and they're offered freely. Love others as yourself. Imagine what you can create. Unlock your dreams. These tools were made to help lift us all—mentally, spiritually, and physically. Let's shape the future together.<span className="text-cyan-400 text-lg">"</span>
+          </p>
+        </div>
         <p className="text-cyan-400/60 text-sm mt-3">— <span 
-            className="font-cursive text-lg cursor-pointer text-yellow-400 hover:text-yellow-300 animate-pulse hover:animate-none transition-all duration-300 hover:scale-105"
+            className="font-cursive text-lg cursor-pointer text-yellow-400 hover:text-yellow-300 animate-[pulse_3s_ease-in-out_infinite] hover:animate-none transition-all duration-300 hover:scale-105 drop-shadow-[0_0_8px_rgba(255,255,0,0.6)]"
             onClick={() => window.open('https://www.aitools.company', '_blank')}
           >Kenneth Bastian</span>, AIWebTools.ai</p>
-        <p className="text-white text-2xl font-black mt-3 tracking-[0.3em] animate-flash cursor-pointer hover:scale-105 transition-transform duration-200">BUILD YOUR WORLD.</p>
+        <p className="text-white text-2xl font-black mt-3 tracking-[0.3em] animate-pulse cursor-pointer hover:scale-105 transition-transform duration-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]">BUILD YOUR WORLD.</p>
       </div>
       
       {/* Copyright and Links */}

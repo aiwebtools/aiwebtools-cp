@@ -187,17 +187,23 @@ Best regards,
               </div>
             </div>
 
-            {/* The Anchor Quote */}
-            <div className="bg-gradient-to-r from-yellow-900/30 to-orange-900/30 backdrop-blur-sm border border-yellow-500/30 rounded-lg p-8 text-center">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-yellow-400">The Anchor of This Vision</h2>
-              <blockquote className="text-lg md:text-xl leading-relaxed text-gray-200 font-light italic mb-6 max-w-3xl mx-auto">
-                "This page and the tools here were put together with care and persistence over the past two years, and they're offered freely. Love others as yourself. Imagine what you can create. Unlock your dreams. These tools were made to help lift us all—mentally, spiritually, and physically. Let's shape the future together."
-              </blockquote>
-              <p className="text-cyan-400 text-lg font-medium">— <span 
-                className="cursor-pointer text-yellow-400 hover:text-yellow-300 animate-pulse hover:animate-none transition-all duration-300 hover:scale-105 font-bold"
-                onClick={() => window.open('https://www.aitools.company', '_blank')}
-              >Kenneth Bastian</span>, AIWebTools.ai</p>
-              <p className="text-white text-3xl font-black mt-4 tracking-[0.3em] animate-pulse">BUILD YOUR WORLD.</p>
+            {/* The Anchor Quote - Cyberpunk Neon Style */}
+            <div className="relative bg-gradient-to-r from-yellow-900/20 via-orange-900/20 to-red-900/20 backdrop-blur-sm border border-yellow-500/50 rounded-lg p-8 text-center overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-purple-500/5 to-yellow-500/5 blur-2xl"></div>
+              <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-400/80 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-400/80 to-transparent"></div>
+              
+              <h2 className="relative text-2xl md:text-3xl font-bold mb-6 text-yellow-400 drop-shadow-[0_0_10px_rgba(255,255,0,0.6)]">The Anchor of This Vision</h2>
+              <div className="relative border border-cyan-500/30 bg-black/40 backdrop-blur-sm rounded-md p-6 shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+                <blockquote className="text-lg md:text-xl leading-relaxed text-gray-200 font-light italic mb-6 max-w-3xl mx-auto">
+                  <span className="text-cyan-400 text-2xl">"</span>This page and the tools here were put together with care and persistence over the past two years, and they're offered freely. Love others as yourself. Imagine what you can create. Unlock your dreams. These tools were made to help lift us all—mentally, spiritually, and physically. Let's shape the future together.<span className="text-cyan-400 text-2xl">"</span>
+                </blockquote>
+                <p className="text-cyan-400 text-lg font-medium">— <span 
+                  className="cursor-pointer text-yellow-400 hover:text-yellow-300 animate-[pulse_3s_ease-in-out_infinite] hover:animate-none transition-all duration-300 hover:scale-105 font-bold drop-shadow-[0_0_8px_rgba(255,255,0,0.6)]"
+                  onClick={() => window.open('https://www.aitools.company', '_blank')}
+                >Kenneth Bastian</span>, AIWebTools.ai</p>
+              </div>
+              <p className="relative text-white text-3xl font-black mt-4 tracking-[0.3em] animate-pulse drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]">BUILD YOUR WORLD.</p>
             </div>
 
             {/* Call to Humanity */}
