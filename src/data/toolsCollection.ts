@@ -118,6 +118,9 @@ import { newSpecializedGPTs } from './tools/aiWebTools/newSpecializedGPTs';
 // Import ALL AI Web Tools GPTs - CRITICAL for full indexing
 import { aiWebToolsGPTs } from './tools/aiWebToolsGPTs';
 
+// Import additional popular tools for 2025
+import { additionalPopularTools2025 } from './tools/additionalPopularTools2025';
+
 // Import ALL AI Web Tools GPT Collections to match toolsData.ts
 import { priorityFeaturedGPTs } from "./tools/aiWebTools/priorityFeaturedGPTs";
 import { secondPriorityFeaturedGPTs } from "./tools/aiWebTools/secondPriorityFeaturedGPTs";
@@ -367,6 +370,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...videoEditingTools,
     ...videoGenerationTools,
     ...videoMarketingTools,
-    ...professionalGPTsAudio
+    ...professionalGPTsAudio,
+    
+    // ADDITIONAL POPULAR TOOLS 2025
+    ...additionalPopularTools2025
   ];
 };
