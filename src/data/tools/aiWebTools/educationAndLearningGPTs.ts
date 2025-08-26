@@ -3,6 +3,18 @@ import { BookOpen, GraduationCap, Brain, Calculator, Globe, Languages, Music, Pa
 
 export const educationAndLearningGPTs: Tool[] = [
   {
+    icon: Languages,
+    title: "Universal Speech Mastery GPT",
+    description: "Universal Speech Mastery AI — my mission is to transform you into a fluent multilingual communicator across any world language. This advanced language learning assistant provides personalized instruction, conversation practice, and cultural insights to help you master foreign languages with confidence and fluency.",
+    emoji: "🗣️",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-68ae26360d448191b25842afb8d2f66b-lingua-champion-universal-speech-mastery-ai/?via=aiwebtools",
+    tags: ["language learning", "multilingual", "speech mastery", "foreign languages", "conversation practice", "fluency training", "lingua champion", "universal speech", "language education", "communication skills"],
+    category: "Education & Learning",
+    rating: 4.8,
+    totalVotes: 3245
+  },
+  {
     icon: Music,
     title: "Music Melodies & Lessons GPT",
     description: "Music Melodies & Lessons GPT is your ultimate musical companion, here to inspire and guide you on your musical journey. Whether you're learning to play an instrument, perfecting your vocals, or writing your own songs, I provide step-by-step guidance, accurate lyrics, and easy-to-follow tablature. I tailor lessons to your goals, help you master techniques, and offer personalized advice on instrument selection and sound improvement. From beginners to experienced musicians, I'm here to make learning fun, creative, and engaging, helping you achieve your musical dreams with clarity and ease.",
