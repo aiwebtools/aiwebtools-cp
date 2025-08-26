@@ -37,7 +37,7 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
         selectedCategory={selectedCategory}
         searchTerm={searchTerm}
         onLoadMore={handleLoadMore}
-        hasInfiniteScroll={false}
+        hasInfiniteScroll={showAllFeaturedTools}
         isLoading={isLoading}
         onCategoryChange={handleCategoryChange}
       />
@@ -52,19 +52,11 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
         />
       )}
 
-      {/* Only show LoadMoreSection when NOT showing the featured button */}
-      {!shouldShowFeaturedToolsButton && showAllFeaturedTools && (
-        <LoadMoreSection
-          showLoadMoreButton={showLoadMoreButton}
-          hasMoreTools={hasMoreTools}
-          isLoading={false}
-          selectedCategory={selectedCategory}
-          searchTerm={searchTerm}
-          showAllFeaturedTools={showAllFeaturedTools}
-          actualDisplayedCount={actualDisplayedCount}
-          totalToolsCount={totalToolsCount}
-          onLoadMore={handleLoadMore}
-        />
+      {/* Only infinite scroll after featured tools are expanded - no manual buttons */}
+      {showAllFeaturedTools && (
+        <div className="text-center mt-8 mb-8 px-4 text-cyan-300 text-sm">
+          Keep scrolling - more tools load automatically!
+        </div>
       )}
     </div>
   );
