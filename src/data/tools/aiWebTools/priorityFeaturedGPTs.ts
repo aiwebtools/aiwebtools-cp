@@ -117,7 +117,7 @@ export const priorityFeaturedGPTs: Tool[] = [
     description: "AI-driven wellness coach that provides personalized fitness plans, nutrition advice, and mental health support.",
     emoji: "❤️",
     color: "from-red-500 to-pink-600",
-    directUrl: "https://aiwebtools.com/ai-wellness",
+    directUrl: "https://chatgpt.com/g/g-68ae1e75dd988191b4629abab71e625f-wellness-warrior-ai-coach-mentor-gpt",
     tags: ["wellness coach", "fitness plans", "nutrition advice", "mental health"],
     category: "AI Assistants & Search",
     rating: 4.4,
