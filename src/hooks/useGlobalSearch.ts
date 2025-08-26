@@ -276,7 +276,7 @@ export const useGlobalSearch = () => {
     if (isLoadingMore) return;
     
     // More responsive loading threshold for smooth endless scroll
-    const threshold = 150;
+    const threshold = 100;
     const nearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
     
     console.log(`📜 Scroll check: ${scrollTop + clientHeight} >= ${scrollHeight - threshold}? ${nearBottom}, Displayed: ${displayedCount}/${searchResults.length}`);
