@@ -9,12 +9,11 @@ import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import SEOHead from "@/components/SEOHead";
-import FeaturedToolsSection from "@/components/tools/FeaturedToolsSection";
+import LazyFeaturedTools from "@/components/LazyFeaturedTools";
+import LazySearchPortal from "@/components/LazySearchPortal";
 import { Button } from "@/components/ui/button";
 import { getCurrentToolCount } from "@/utils/toolCounter";
-import { allTools } from "@/data/toolsData";
 import BookPromotionCard from "@/components/BookPromotionCard";
-import SearchPortal from "@/components/SearchPortal";
 
 const Index = () => {
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
@@ -23,9 +22,13 @@ const Index = () => {
   const mainVideoRef = useVideoManager('main-page-video');
 
   useEffect(() => {
-    // Simple tool count
-    const stats = getCurrentToolCount();
-    setToolStats(stats);
+    // Defer tool count calculation to avoid blocking initial render
+    const timer = setTimeout(() => {
+      const stats = getCurrentToolCount();
+      setToolStats(stats);
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const handleSeeMoreAITools = () => {
@@ -83,8 +86,8 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Featured Tools Section - This shows featured tools cards */}
-        <FeaturedToolsSection onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
+        {/* Featured Tools Section - Lazy loaded for better performance */}
+        <LazyFeaturedTools onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
         
         {/* Bottom Search Portal - positioned below all featured tools */}
         <section className="py-16 bg-gradient-to-br from-gray-900 to-black relative">
@@ -98,10 +101,8 @@ const Index = () => {
               </p>
             </div>
             
-            {/* Search Portal Component */}
-            <div className="max-w-6xl mx-auto">
-              <SearchPortal />
-            </div>
+            {/* Search Portal Component - Lazy loaded */}
+            <LazySearchPortal />
           </div>
         </section>
         
