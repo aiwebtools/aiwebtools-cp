@@ -409,5 +409,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 3200
+  },
+  {
+    icon: Zap,
+    title: "MACARON",
+    description: "Advanced productivity AI agent designed to streamline workflows, automate tasks, and enhance productivity. Intelligent agent platform for efficient task management, automation, and intelligent workflow optimization.",
+    emoji: "🍪",
+    color: "from-orange-500 to-yellow-600",
+    directUrl: "https://macaron.im/en?via=aiwebtools",
+    tags: ["productivity agent", "workflow automation", "task management", "AI productivity", "intelligent automation", "workflow optimization", "productivity tools"],
+    category: "AI Agents",
+    rating: 4.5,
+    totalVotes: 2800
   }
 ];
