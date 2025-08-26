@@ -22,18 +22,30 @@ export const hasVideoOrImageMedia = (tool: Tool): boolean => {
   return hasVideo || hasImage;
 };
 
+// Check if tool is Soul Map GPT (ultimate priority)
+export const isSoulMapGPT = (tool: Tool): boolean => {
+  return tool.title.toLowerCase().includes('soul map') || 
+         tool.title.toLowerCase().includes('soul scan');
+};
+
 // Check if tool is a priority AI Web Tools GPT (has media)
 export const isPriorityAIWebToolsGPT = (tool: Tool): boolean => {
   return isAIWebToolsGPT(tool) && hasVideoOrImageMedia(tool);
 };
 
-// Sort tools to prioritize AI Web Tools GPTs with media first, using power rankings
+// Sort tools to prioritize Soul Map GPT first, then AI Web Tools GPTs with media, using power rankings
 export const sortWithAIWebToolsPriority = (tools: Tool[]): Tool[] => {
   return tools.sort((a, b) => {
+    const aIsSoulMap = isSoulMapGPT(a);
+    const bIsSoulMap = isSoulMapGPT(b);
     const aIsPriority = isPriorityAIWebToolsGPT(a);
     const bIsPriority = isPriorityAIWebToolsGPT(b);
     const aIsAIWebTools = isAIWebToolsGPT(a);
     const bIsAIWebTools = isAIWebToolsGPT(b);
+    
+    // Priority 0: Soul Map GPT always first
+    if (aIsSoulMap && !bIsSoulMap) return -1;
+    if (!aIsSoulMap && bIsSoulMap) return 1;
     
     // Priority 1: AI Web Tools GPTs with media (sorted by power ranking)
     if (aIsPriority && !bIsPriority) return -1;
@@ -72,7 +84,9 @@ export const sortWithAIWebToolsPriority = (tools: Tool[]): Tool[] => {
 export const getAIWebToolsPriorityScore = (tool: Tool): number => {
   let score = 0;
   
-  if (isPriorityAIWebToolsGPT(tool)) {
+  if (isSoulMapGPT(tool)) {
+    score += 50000; // Ultimate priority for Soul Map GPT
+  } else if (isPriorityAIWebToolsGPT(tool)) {
     score += 10000; // Highest priority for AI Web Tools GPTs with media
   } else if (isAIWebToolsGPT(tool)) {
     score += 5000; // High priority for all AI Web Tools GPTs
@@ -87,8 +101,9 @@ export const getAIWebToolsPriorityScore = (tool: Tool): number => {
 export const applyAIWebToolsPrioritization = (tools: Tool[]): Tool[] => {
   if (!tools || tools.length === 0) return tools;
   
-  const priorityGPTs = tools.filter(isPriorityAIWebToolsGPT);
-  const otherAIWebToolsGPTs = tools.filter(tool => isAIWebToolsGPT(tool) && !isPriorityAIWebToolsGPT(tool));
+  const soulMapGPTs = tools.filter(isSoulMapGPT);
+  const priorityGPTs = tools.filter(tool => isPriorityAIWebToolsGPT(tool) && !isSoulMapGPT(tool));
+  const otherAIWebToolsGPTs = tools.filter(tool => isAIWebToolsGPT(tool) && !isPriorityAIWebToolsGPT(tool) && !isSoulMapGPT(tool));
   const toolsWithMedia = tools.filter(tool => !isAIWebToolsGPT(tool) && hasVideoOrImageMedia(tool));
   const otherTools = tools.filter(tool => !isAIWebToolsGPT(tool) && !hasVideoOrImageMedia(tool));
   
@@ -106,11 +121,12 @@ export const applyAIWebToolsPrioritization = (tools: Tool[]): Tool[] => {
     });
   
   return [
-    ...sortAIWebToolsByPowerAndRating(priorityGPTs),      // Legendary GPTs with media first
+    ...sortAIWebToolsByPowerAndRating(soulMapGPTs),         // Soul Map GPT always first!
+    ...sortAIWebToolsByPowerAndRating(priorityGPTs),        // Legendary GPTs with media second
     ...sortAIWebToolsByPowerAndRating(otherAIWebToolsGPTs), // All other GPTs by power ranking
-    ...sortByRatingAndTitle([...toolsWithMedia]),         // Third-party tools with media
-    ...sortByRatingAndTitle([...otherTools])              // Everything else
+    ...sortByRatingAndTitle([...toolsWithMedia]),           // Third-party tools with media
+    ...sortByRatingAndTitle([...otherTools])                // Everything else
   ];
 };
 
-console.log('🚀 AI Web Tools Prioritization system loaded - Legendary GPTs will dominate the featured section!');
+console.log('🔮 Soul Map GPT will reign supreme! AI Web Tools Prioritization system loaded - Soul Map GPT always first!');
