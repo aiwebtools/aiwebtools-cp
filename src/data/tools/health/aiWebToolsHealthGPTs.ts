@@ -12,6 +12,18 @@ import {
 
 export const aiWebToolsHealthGPTs: Tool[] = [
   {
+    icon: Brain,
+    title: "MIND & BODY GPT",
+    description: "MIND & BODY GPT (Neurophysical Titan) is an advanced AI specialist that integrates mental and physical wellness approaches. This comprehensive health assistant provides personalized guidance for optimizing both cognitive function and physical performance, offering evidence-based strategies for mind-body connection, stress management, fitness optimization, and holistic wellness. Perfect for those seeking to achieve peak mental and physical performance through integrated neurophysical approaches.",
+    emoji: "🧠",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://chatgpt.com/g/g-68ae286601288191825384507ac74512-neurophysical-titan/?via=aiwebtools",
+    tags: ["mind body connection", "neurophysical health", "mental performance", "physical wellness", "holistic health", "cognitive optimization", "fitness", "stress management", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.8,
+    totalVotes: 4156
+  },
+  {
     icon: Sparkles,
     title: "Mental Wellness GPT",
     description: "Mental Wellness GPT is a virtual chat tool for emotional support and mental well-being, offering empathetic guidance rooted in cognitive behavioral therapy (CBT) principles. Designed to help navigate stress, anxiety, and life's challenges, I provide practical tools, coping strategies, and a safe, judgment-free space for personal growth. While not a licensed therapist, I aim to complement your journey toward resilience and self-care with meaningful insights and support. Disclaimer: These AI-driven tools are designed for creative and emotional support purposes only and should not be considered as replacements for professional mental health care, therapy, or diagnosis.",
