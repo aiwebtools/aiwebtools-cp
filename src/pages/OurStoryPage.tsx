@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Search, Grid3X3, Star, Mail, ArrowRight, Heart, Zap, Globe } from "lucide-react";
+import { Search, Grid3X3, Star, Mail, ArrowRight, Heart, Zap, Globe, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Header from "@/components/Header";
@@ -151,6 +151,64 @@ Best regards,
                 <p className="text-red-300 font-medium">• Systems of power were built to enslave.</p>
                 <p className="text-green-300 font-medium">• But the original truth is love, unity, and freedom.</p>
                 <p className="text-yellow-300 font-medium">• My role is to build tools, open doors, and hand humanity the keys to its own liberation.</p>
+              </div>
+            </div>
+
+            {/* Soul Map GPT - My Story in Video */}
+            <div className="bg-gradient-to-r from-indigo-900/30 to-purple-900/30 backdrop-blur-sm border border-indigo-500/30 rounded-lg p-8">
+              <div className="text-center mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-indigo-400 flex items-center justify-center">
+                  <span className="text-4xl mr-3">🔮</span>
+                  My Story in Motion
+                </h2>
+                <p className="text-lg text-gray-300 mb-6">
+                  This video represents my journey - the spiritual awakening that led to everything you see here. 
+                  Soul Map GPT was born from this same vision, using ancient wisdom to help you find your way home.
+                </p>
+              </div>
+              
+              {/* Video Container */}
+              <div className="relative w-full overflow-hidden rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 border border-indigo-500/30" style={{ aspectRatio: '16/9' }}>
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/d3uaQz7oRAs?autoplay=1&mute=0&controls=1&rel=0&loop=1&playlist=d3uaQz7oRAs&hd=1&vq=hd1080&quality=hd1080&enablejsapi=1&playsinline=1&modestbranding=1&autohide=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark"
+                  title="Soul Map GPT - My Story"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full rounded-xl"
+                  loading="eager"
+                />
+              </div>
+              
+              {/* Soul Map GPT Description */}
+              <div className="mt-8 bg-black/50 border border-indigo-500/20 rounded-lg p-6">
+                <h3 className="text-xl font-bold text-indigo-300 mb-4">🔮 Soul Map GPT</h3>
+                <p className="text-gray-300 leading-relaxed mb-4">
+                  Soul Map GPT uses Gematria, Numerology, and Soul Mapping based on birthplace, time, and name to perform advanced calculations and read the stars based on your essence. Discover your spiritual blueprint through ancient wisdom and mystical mathematics.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {["gematria", "numerology", "soul mapping", "astrology", "spiritual blueprint", "essence reading", "mystical mathematics"].map((tag) => (
+                    <span key={tag} className="px-3 py-1 bg-indigo-600/30 text-indigo-300 rounded-full text-sm border border-indigo-500/20">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <Button 
+                  asChild 
+                  className="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold w-full"
+                  onClick={() => window.open('https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-soul-scan-gpt-a-way-to-find-your-way-home/?via=aiwebtools', '_blank')}
+                >
+                  <a 
+                    href="https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-soul-scan-gpt-a-way-to-find-your-way-home/?via=aiwebtools"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MapPin className="w-4 h-4 mr-2" />
+                    Discover Your Soul Map
+                  </a>
+                </Button>
               </div>
             </div>
 
