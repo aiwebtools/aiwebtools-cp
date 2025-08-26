@@ -134,18 +134,18 @@ Best regards,
 
             {/* One Man Mission */}
             <div className="text-center bg-black/70 border border-yellow-500/30 rounded-lg p-8">
-              <h2 className="text-3xl md:text-4xl font-black mb-6 text-yellow-400">One Man. One Mission.</h2>
+              <h2 className="text-3xl md:text-4xl font-black mb-6 text-yellow-400">A Solo Vision.</h2>
               <p className="text-lg leading-relaxed text-gray-300 mb-4">
                 This site is not a company project. It's not a startup chasing profit.
               </p>
               <p className="text-xl font-medium text-white mb-4">
-                It's the result of a <span className="text-red-400">non-stop grind</span> by <span className="text-cyan-400">one man</span>.
+                It's the result of a <span className="text-red-400">relentless journey</span> by <span className="text-cyan-400">someone who believed</span> in humanity's potential.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-6">
-                Every page you see. Every AI tool gathered. Every resource curated. All of it was done with diligence, vision, and sacrifice — to give it away for free.
+                Every page you see. Every AI tool gathered. Every resource curated. All of it was crafted with diligence, vision, and sacrifice — to give it away for free.
               </p>
               <div className="text-2xl font-bold text-cyan-400 mb-4">
-                Because if one man can build this, imagine what <span className="text-yellow-400">you</span> can do.
+                Because if this vision can become reality, imagine what <span className="text-yellow-400">you</span> can accomplish.
               </div>
             </div>
 
@@ -224,7 +224,7 @@ Best regards,
                 Build With Me
               </h2>
               <p className="text-lg leading-relaxed text-gray-300 mb-6">
-                I built this alone. Now I invite you to step in.
+                This platform was built through dedication and vision. Now I invite you to step in.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-8">
                 Explore the tools. Share them. Use them to create businesses, art, music, freedom, connection. Hand them to your kids and let them dream.
@@ -243,14 +243,14 @@ Best regards,
                 </Button>
                 
                 <Button asChild className="bg-purple-600 hover:bg-purple-500 text-white font-semibold">
-                  <Link to="/category/business-productivity">
+                  <Link to="/#categories">
                     <Grid3X3 className="w-4 h-4 mr-2" />
                     Search by Category
                   </Link>
                 </Button>
                 
                 <Button asChild className="bg-yellow-600 hover:bg-yellow-500 text-black font-semibold">
-                  <Link to="/category/ai-originals">
+                  <Link to="/category/AIWebTools%20GPTs%20Collection">
                     <Star className="w-4 h-4 mr-2" />
                     AIWebTools Originals
                   </Link>

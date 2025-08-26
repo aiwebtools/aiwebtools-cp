@@ -1,5 +1,6 @@
 import { Tool } from "@/types/tools";
 import { TYPO_DICTIONARY } from "../typoDictionary";
+import { calculatePeopleSearchScore } from "../matching/peopleSearchMatching";
 
 // Super intelligent partial matching patterns
 const PARTIAL_PATTERNS: Record<string, string[]> = {
@@ -72,7 +73,7 @@ const PARTIAL_PATTERNS: Record<string, string[]> = {
   "desi": ["design", "designer"],
   "design": ["graphic design", "web design"],
   
-  "fin": ["finance", "financial"],
+  "fin": ["finance", "financial", "finder"],
   "fina": ["finance", "financial"],
   "finance": ["financial tools", "finance gpt"],
   
@@ -91,7 +92,19 @@ const PARTIAL_PATTERNS: Record<string, string[]> = {
   
   "com": ["comet", "company", "commerce"],
   "come": ["comet"],
-  "comet": ["perplexity comet"]
+  "comet": ["perplexity comet"],
+  
+  // Person/People search patterns
+  "per": ["person", "personal", "perplexity"],
+  "pers": ["person", "personal"],
+  "perso": ["person", "personal"],
+  "person": ["person information finder", "person finder", "personal"],
+  "people": ["people search", "person finder", "people finder"],
+  "find": ["finder"],
+  "finder": ["person finder", "information finder"],
+  "info": ["information", "information finder"],
+  "inform": ["information", "information finder"],
+  "information": ["person information finder", "information finder"]
 };
 
 // Advanced fuzzy matching with Levenshtein distance
@@ -250,6 +263,9 @@ export function superIntelligentScore(tool: Tool, searchTerm: string): number {
   
   // Base partial match scoring
   score += scorePartialMatch(tool, searchTerm, suggestions);
+  
+  // People search matching
+  score += calculatePeopleSearchScore(tool, searchTerm);
   
   // Typo correction bonus
   if (correctedTerm !== searchTerm.toLowerCase()) {
