@@ -250,5 +250,17 @@ export const learningAndEducation: Tool[] = [
     category: "Education & Learning",
     rating: 4.5,
     totalVotes: 2100
+  },
+  {
+    icon: Brain,
+    title: "GetRecall AI",
+    description: "Learn Faster. Retain More. Your self-organizing knowledge base, where you can summarize and chat with any online content. Get instant summaries of all your content and enhance your learning with AI-powered organization.",
+    emoji: "🧠",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://www.getrecall.ai/?via=aiwebtools",
+    tags: ["knowledge base", "content summarization", "learning organization", "AI chat", "study tools", "content retention", "educational AI"],
+    category: "Education & Learning",
+    rating: 4.6,
+    totalVotes: 2890
   }
 ];
