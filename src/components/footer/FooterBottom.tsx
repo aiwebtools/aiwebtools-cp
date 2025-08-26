@@ -11,9 +11,9 @@ const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
       {/* Founder Quote */}
       <div className="text-center border-t border-cyan-500/20 pt-6">
         <p className="text-sm md:text-base text-cyan-300/80 font-light italic tracking-wide max-w-5xl mx-auto leading-relaxed">
-          "This page and the tools on it were built and gathered with relentless diligence over two years of non-stop grind—by one person—and given away for free. Love others as yourself. Imagine what you can do. Unlock your dreams. I built these tools to elevate humanity—mentally, spiritually, and physically. Carve the future with me."
+          "This page and the tools here were put together with care and persistence over the past two years, and they're offered freely. Love others as yourself. Imagine what you can create. Unlock your dreams. These tools were made to help lift us all—mentally, spiritually, and physically. Let's shape the future together."
         </p>
-        <p className="text-cyan-400/60 text-sm mt-3">— <span className="font-cursive text-lg">Kenneth Bastian</span>, Founder & Creator/Developer, AIWebTools.ai</p>
+        <p className="text-cyan-400/60 text-sm mt-3">— <span className="font-cursive text-lg">Kenneth Bastian</span>, AIWebTools.ai</p>
         <p className="text-white text-2xl font-black mt-3 tracking-[0.3em] animate-flash cursor-pointer hover:scale-105 transition-transform duration-200">BUILD YOUR WORLD.</p>
       </div>
       
