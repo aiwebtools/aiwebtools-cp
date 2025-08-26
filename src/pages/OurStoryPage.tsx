@@ -358,7 +358,7 @@ Best regards,
               </div>
               <p className="relative text-white text-3xl font-black mt-4 tracking-[0.3em] animate-pulse drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]">BUILD YOUR WORLD.</p>
               <p className="text-center text-gray-400 italic text-sm mt-2 tracking-wide">
-                "Two years, one vision, 1,300+ tools - built one line of code at a time." — Kenneth Bastian
+                "When we remember we are ROME we remember we are ONE EARTH, ONE GOD, ONE LIGHT, ONE CODE." — Kenneth Bastian
               </p>
             </div>
 
@@ -433,7 +433,7 @@ Best regards,
                   BUILD YOUR WORLD.
                 </p>
                 <p className="text-center text-gray-400 italic text-lg mt-4 tracking-wide">
-                  "When you build something with love and purpose, every line of code becomes a prayer." — Kenneth Bastian
+                  "When we remember we are ROME we remember we are ONE EARTH, ONE GOD, ONE LIGHT, ONE CODE." — Kenneth Bastian
                 </p>
               </div>
             </div>
