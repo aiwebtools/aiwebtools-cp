@@ -248,7 +248,7 @@ const MobileMenu = () => {
                 )}
               </div>
 
-              <DropdownMenuItem onClick={() => { window.location.href = '#home'; setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
+              <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
                 Home
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
