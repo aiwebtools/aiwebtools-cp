@@ -1,4 +1,3 @@
-
 import React, { memo } from "react";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import ShowMoreFeaturedButton from "@/components/tools/ShowMoreFeaturedButton";
@@ -11,6 +10,8 @@ interface FeaturedToolsProps {
 }
 
 const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: FeaturedToolsProps) => {
+  const hookData = useFeaturedToolsLogic({ onToolsLoaded });
+  
   const {
     selectedCategory,
     searchTerm,
@@ -25,7 +26,7 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
     handleCategoryChange,
     handleLoadMore,
     handleShowMoreFeaturedTools
-  } = useFeaturedToolsLogic({ onToolsLoaded });
+  } = hookData;
 
   return (
     <div className="w-full">
@@ -52,7 +53,7 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
       )}
 
       {/* Only show LoadMoreSection when NOT showing the featured button */}
-      {!shouldShowFeaturedToolsButton && (
+      {!shouldShowFeaturedToolsButton && showAllFeaturedTools && (
         <LoadMoreSection
           showLoadMoreButton={showLoadMoreButton}
           hasMoreTools={hasMoreTools}

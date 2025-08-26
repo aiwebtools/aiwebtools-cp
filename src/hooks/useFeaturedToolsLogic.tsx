@@ -79,10 +79,10 @@ export const useFeaturedToolsLogic = ({ onToolsLoaded }: UseFeaturedToolsLogicPr
     }, 50); // Reduced delay for faster loading
   }, [isLoading, displayedCount, setDisplayedCount, setIsLoading, onToolsLoaded, hasMoreTools, filteredTools.length]);
 
-  const handleShowMoreFeaturedTools = () => {
+  const handleShowMoreFeaturedTools = useCallback(() => {
     setShowAllFeaturedTools(true);
     setDisplayedCount(filteredTools.length);
-  };
+  }, [setDisplayedCount, filteredTools.length]);
 
   // Disable infinite scroll for featured tools section - only manual loading
   // This prevents the jumping/glitching behavior
