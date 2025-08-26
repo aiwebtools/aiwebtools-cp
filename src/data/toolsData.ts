@@ -133,6 +133,15 @@ const filteredTools = combinedTools.filter((tool, index) => {
   return true;
 });
 
+// DEBUG: Check if ElevenLabs and Suno tools are in the final collection
+const elevenLabsInFinal = filteredTools.filter(tool => tool.title.toLowerCase().includes('eleven'));
+const sunoInFinal = filteredTools.filter(tool => tool.title.toLowerCase().includes('suno'));
+
+console.log(`🔍 FINAL TOOLS DEBUG:`);
+console.log(`   Total tools in final collection: ${filteredTools.length}`);
+console.log(`   ElevenLabs tools found: ${elevenLabsInFinal.length}`, elevenLabsInFinal.map(t => t.title));
+console.log(`   Suno tools found: ${sunoInFinal.length}`, sunoInFinal.map(t => t.title));
+
 export const allTools: Tool[] = filteredTools;
 
 // DEBUG: Find Property Data Finder GPT and log its details

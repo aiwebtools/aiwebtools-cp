@@ -82,26 +82,24 @@ const detectIntent = (searchTerm: string): string | null => {
   return null;
 };
 
-// Enhanced search function with SUPER INTELLIGENT partial matching and prediction
+  // Enhanced search function with SUPER INTELLIGENT partial matching and prediction
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
     // 🚀 Even for empty searches, apply AI Web Tools prioritization
     return applyAIWebToolsPrioritization(tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title)));
   }
 
-  console.log(`🔍 SEARCH DEBUG: Original search term: "${searchTerm}"`);
-  console.log(`🔍 SEARCH DEBUG: Total tools available: ${tools.length}`);
-  
-  // Debug: Check if ElevenLabs and Suno are in the tools array
-  const elevenLabsTools = tools.filter(tool => tool.title.toLowerCase().includes('eleven'));
-  const sunoTools = tools.filter(tool => tool.title.toLowerCase().includes('suno'));
-  console.log(`🔍 SEARCH DEBUG: ElevenLabs tools found: ${elevenLabsTools.length}`, elevenLabsTools.map(t => t.title));
-  console.log(`🔍 SEARCH DEBUG: Suno tools found: ${sunoTools.length}`, sunoTools.map(t => t.title));
+  // DEBUG: Check if ElevenLabs and Suno are in the tools array when searching for them
+  if (searchTerm.toLowerCase().includes('eleven') || searchTerm.toLowerCase().includes('suno')) {
+    const elevenLabsTools = tools.filter(tool => tool.title.toLowerCase().includes('eleven'));
+    const sunoTools = tools.filter(tool => tool.title.toLowerCase().includes('suno'));
+    console.log(`🔍 SEARCH DEBUG for "${searchTerm}": Total tools: ${tools.length}`);
+    console.log(`🔍 ElevenLabs tools found: ${elevenLabsTools.length}`, elevenLabsTools.map(t => t.title));
+    console.log(`🔍 Suno tools found: ${sunoTools.length}`, sunoTools.map(t => t.title));
+  }
 
   // STEP 1: Super intelligent typo correction and advanced partial matching
   const correctedSearchTerm = superSmartTypoCorrection(searchTerm);
-  console.log(`🔍 SEARCH DEBUG: Corrected search term: "${correctedSearchTerm}"`);
-  
   const partialSuggestions = getPartialMatchSuggestions(searchTerm);
   const advancedPartialMatches = getAdvancedPartialMatches(searchTerm, tools);
   
@@ -111,7 +109,6 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
 
   const normalizedSearchTerm = correctedSearchTerm.toLowerCase().trim();
   const searchWords = normalizedSearchTerm.split(/[\s,.-]+/).filter(word => word.length > 1);
-  console.log(`🔍 SEARCH DEBUG: Normalized term: "${normalizedSearchTerm}", Search words:`, searchWords);
   
   // Enhanced phonetic variations  
   const phoneticVariations = searchTerm.length <= 8 ? phoneticMatch(normalizedSearchTerm) : [];
