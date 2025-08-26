@@ -1,7 +1,7 @@
 import { Tool } from "@/types/tools";
 import { 
   FileText, Edit3, BookOpen, Camera, Video, Mic, 
-  Image, Brush, PenTool, Layers, Type, Wand2 
+  Image, Brush, PenTool, Layers, Type, Wand2, Zap
 } from "lucide-react";
 
 export const contentCreationTools: Tool[] = [
@@ -52,5 +52,17 @@ export const contentCreationTools: Tool[] = [
     category: "Content Creation",
     rating: 4.5,
     totalVotes: 1670
+  },
+  {
+    icon: Zap,
+    title: "VortexAI",
+    description: "Go viral with AI - From prompt to profit. VortexAI transforms your ideas into stunning, shareable content that captivates audiences and fuels your growth. Create viral content that drives engagement and monetization.",
+    emoji: "🌪️",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://vortex.channel/?via=aiwebtools",
+    tags: ["viral content", "AI content creation", "social media", "viral marketing", "content monetization", "shareable content", "audience growth", "prompt to profit", "vortex", "go viral"],
+    category: "Content Creation",
+    rating: 4.6,
+    totalVotes: 2340
   }
 ];
