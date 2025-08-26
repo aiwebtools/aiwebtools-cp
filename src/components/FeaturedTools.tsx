@@ -35,7 +35,7 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
         selectedCategory={selectedCategory}
         searchTerm={searchTerm}
         onLoadMore={handleLoadMore}
-        hasInfiniteScroll={true}
+        hasInfiniteScroll={false}
         isLoading={isLoading}
         onCategoryChange={handleCategoryChange}
       />
@@ -53,7 +53,7 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
       <LoadMoreSection
         showLoadMoreButton={showLoadMoreButton}
         hasMoreTools={hasMoreTools}
-        isLoading={isLoading}
+        isLoading={false}
         selectedCategory={selectedCategory}
         searchTerm={searchTerm}
         showAllFeaturedTools={true}

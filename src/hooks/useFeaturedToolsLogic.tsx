@@ -114,21 +114,8 @@ export const useFeaturedToolsLogic = ({ onToolsLoaded }: UseFeaturedToolsLogicPr
     setDisplayedCount(filteredTools.length); // Show all tools
   };
 
-  // Enable infinite scroll for homepage - always active when not filtering
-  const enableInfiniteScroll = !selectedCategory && !searchTerm;
-  
-  if (process.env.NODE_ENV === 'development') {
-    console.log(`🔄 Infinite scroll enabled: ${enableInfiniteScroll}, Has more tools: ${hasMoreTools}`);
-  }
-
-  // Handle infinite scroll - enabled for homepage
-  useInfiniteScroll({
-    isLoading,
-    showLoadMoreButton: false, // Always use infinite scroll for homepage
-    displayedCount: actualDisplayedCount,
-    totalTools: filteredTools.length,
-    onLoadMore: handleLoadMore
-  });
+  // Disable infinite scroll for featured tools section - only manual loading
+  // This prevents the jumping/glitching behavior
 
   return {
     // State
