@@ -12,7 +12,8 @@ import {
   Cpu,
   Layers,
   FileText,
-  Joystick
+  Joystick,
+  Globe
 } from "lucide-react";
 
 export const gameDesignAndDevelopment: Tool[] = [
@@ -40,5 +41,17 @@ export const gameDesignAndDevelopment: Tool[] = [
     category: "GAME DESIGN & DEVELOPMENT",
     rating: 4.6,
     totalVotes: 1250
+  },
+  {
+    icon: Globe,
+    title: "Mirage 2 - Generative World Engine",
+    description: "Research demonstration of AI-powered generative world engine for creating dynamic game environments. Limited-time availability research project showcasing advanced procedural world generation capabilities. Not endorsed by video game studios and is purely for research purposes.",
+    emoji: "🌍",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://demo.dynamicslab.ai/",
+    tags: ["world generation", "procedural generation", "research demo", "AI worlds", "game environments", "experimental"],
+    category: "GAME DESIGN & DEVELOPMENT",
+    rating: 4.4,
+    totalVotes: 890
   }
 ];
