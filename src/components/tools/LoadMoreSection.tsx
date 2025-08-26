@@ -31,8 +31,8 @@ const LoadMoreSection = ({
 
   return (
     <>
-      {/* Enhanced SEE MORE AI TOOLS Button - backup for when infinite scroll doesn't trigger */}
-      {showLoadMoreButton && hasMoreTools && (
+      {/* Enhanced SEE MORE AI TOOLS Button - only show when needed and not loading */}
+      {showLoadMoreButton && hasMoreTools && !isLoading && (
         <div className="text-center mt-12 mb-16 px-4">
           <Button
             onClick={handleLoadMoreButton}
@@ -40,14 +40,7 @@ const LoadMoreSection = ({
             disabled={isLoading}
             className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
           >
-            {isLoading ? (
-              <div className="flex items-center space-x-3">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                <span>Loading More Tools...</span>
-              </div>
-            ) : (
-              <>🚀 SEE MORE AI TOOLS</>
-            )}
+            🚀 SEE MORE AI TOOLS
           </Button>
           <div className="mt-4 text-cyan-300 text-sm">
             Showing {actualDisplayedCount} of {totalToolsCount} amazing AI tools
@@ -55,24 +48,16 @@ const LoadMoreSection = ({
         </div>
       )}
 
-      {/* Always visible Load More Button for homepage when there are more tools */}
-      {!showLoadMoreButton && hasMoreTools && !selectedCategory && !searchTerm && showAllFeaturedTools && (
+      {/* Homepage load more button - only when no category/search and showing all featured tools */}
+      {!showLoadMoreButton && hasMoreTools && !selectedCategory && !searchTerm && showAllFeaturedTools && !isLoading && (
         <div className="text-center mt-8 mb-8 px-4">
           <Button
             onClick={onLoadMore}
             size="lg"
-            disabled={isLoading}
             className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-6 py-3 rounded-xl transition-all duration-300"
             data-load-more-trigger
           >
-            {isLoading ? (
-              <div className="flex items-center space-x-2">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                <span>Loading More Tools...</span>
-              </div>
-            ) : (
-              "Load More AI Web Tools GPTs"
-            )}
+            Load More AI Web Tools GPTs
           </Button>
           <div className="mt-3 text-cyan-300 text-sm">
             {actualDisplayedCount} of {totalToolsCount} AI Web Tools GPTs loaded

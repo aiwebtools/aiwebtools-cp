@@ -12,6 +12,7 @@ interface FeaturedToolsProps {
 
 const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: FeaturedToolsProps) => {
   const {
+    showAllFeaturedTools,
     selectedCategory,
     searchTerm,
     isLoading,
@@ -41,7 +42,8 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
       />
 
       {/* Show More Featured Tools Button - appears after featured tools */}
-      {shouldShowFeaturedToolsButton && (
+      {/* Only show featured tools button when not showing all tools and not loading */}
+      {shouldShowFeaturedToolsButton && !isLoading && (
         <ShowMoreFeaturedButton
           onClick={handleShowMoreFeaturedTools}
           toolsCount={filteredTools.length}
@@ -50,17 +52,20 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
         />
       )}
 
-      <LoadMoreSection
-        showLoadMoreButton={showLoadMoreButton}
-        hasMoreTools={hasMoreTools}
-        isLoading={isLoading}
-        selectedCategory={selectedCategory}
-        searchTerm={searchTerm}
-        showAllFeaturedTools={true}
-        actualDisplayedCount={actualDisplayedCount}
-        totalToolsCount={totalToolsCount}
-        onLoadMore={handleLoadMore}
-      />
+      {/* Only show LoadMoreSection when showing all featured tools and no other buttons are active */}
+      {showAllFeaturedTools && !shouldShowFeaturedToolsButton && (
+        <LoadMoreSection
+          showLoadMoreButton={showLoadMoreButton}
+          hasMoreTools={hasMoreTools}
+          isLoading={isLoading}
+          selectedCategory={selectedCategory}
+          searchTerm={searchTerm}
+          showAllFeaturedTools={showAllFeaturedTools}
+          actualDisplayedCount={actualDisplayedCount}
+          totalToolsCount={totalToolsCount}
+          onLoadMore={handleLoadMore}
+        />
+      )}
     </div>
   );
 }, (prevProps, nextProps) => {

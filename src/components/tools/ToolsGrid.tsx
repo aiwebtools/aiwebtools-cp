@@ -193,8 +193,8 @@ const ToolsGrid = memo(({
         />
       )}
 
-      {/* Smooth loading indicator for infinite scroll */}
-      {hasInfiniteScroll && isLoading && (
+      {/* Smooth loading indicator for infinite scroll - only show when actually loading */}
+      {hasInfiniteScroll && isLoading && hasMoreTools && (
         <div className="text-center mt-8 py-8">
           <div className="flex items-center justify-center space-x-3">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-500"></div>
@@ -219,7 +219,7 @@ const ToolsGrid = memo(({
       )}
 
       {/* Endless scroll encouragement for categories (no end message ever) */}
-      {hasInfiniteScroll && selectedCategory && !searchTerm && displayTools.length > 100 && !isLoading && (
+      {hasInfiniteScroll && selectedCategory && !searchTerm && displayTools.length > 100 && !isLoading && hasMoreTools && (
         <div className="text-center mt-12 py-8 text-cyan-300">
           <div className="text-2xl mb-2">🌟</div>
           <div className="text-lg font-semibold mb-2">
@@ -231,8 +231,8 @@ const ToolsGrid = memo(({
         </div>
       )}
 
-      {/* NO MANUAL LOAD MORE BUTTONS for category pages with infinite scroll */}
-      {!hasInfiniteScroll && !selectedCategory && (
+      {/* Manual load more button only when infinite scroll is disabled and there are more tools */}
+      {!hasInfiniteScroll && hasMoreTools && !isLoading && (
         <LoadMoreButton 
           displayedCount={displayedCount}
           totalCount={tools.length}
