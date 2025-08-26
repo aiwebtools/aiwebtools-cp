@@ -63,9 +63,6 @@ const Index = () => {
           <CategoryPageSelection />
         </div>
         
-        {/* Featured Tools Section - Moved up for better visibility */}
-        <LazyFeaturedTools onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
-        
         {/* Featured Video Section - Lazy loaded */}
         <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
           <div className="container mx-auto px-4">
@@ -91,6 +88,12 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        {/* Featured Tools Section - Lazy loaded for better performance */}
+        <LazyFeaturedTools onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
+        
+        <BookPromotionCard />
+        <SpecialServices />
         
         {/* Bottom Search Portal - positioned below all featured tools */}
         <section className="py-16 bg-gradient-to-br from-gray-900 to-black relative">
@@ -109,8 +112,6 @@ const Index = () => {
           </div>
         </section>
         
-        <BookPromotionCard />
-        <SpecialServices />
         <ScrollToTop />
         <Footer />
       </div>
