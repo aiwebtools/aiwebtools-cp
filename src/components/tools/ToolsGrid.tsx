@@ -1,7 +1,6 @@
 import React, { useMemo, memo, lazy, Suspense, useEffect, useRef } from "react";
 import { Tool } from "@/types/tools";
 import ToolCard from "@/components/tools/ToolCard";
-import LoadMoreButton from "@/components/tools/LoadMoreButton";
 import SimilarToolsRecommendation from "@/components/tools/SimilarToolsRecommendation";
 import SeeMoreCategoriesButton from "@/components/tools/SeeMoreCategoriesButton";
 import { getContextAwareSimilarTools, shouldShowSimilarTools } from "@/utils/contextAwareSimilarTools";
@@ -228,14 +227,7 @@ const ToolsGrid = memo(({
         </div>
       )}
 
-      {/* NO MANUAL LOAD MORE BUTTONS for category pages with infinite scroll */}
-      {!hasInfiniteScroll && !selectedCategory && (
-        <LoadMoreButton 
-          displayedCount={displayedCount}
-          totalCount={tools.length}
-          onLoadMore={onLoadMore}
-        />
-      )}
+      {/* COMPLETELY DISABLE MANUAL LOAD MORE BUTTONS - Use infinite scroll or featured button only */}
 
       {hasInfiniteScroll && (
         <div ref={sentinelRef} aria-hidden className="h-px w-full" />
