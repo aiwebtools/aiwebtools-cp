@@ -143,7 +143,7 @@ Best regards,
                 </h2>
                 <p className="text-lg text-gray-300 mb-6">
                   Born from the corruption I witnessed, this tool empowers <span className="text-blue-400 font-bold">WE THE PEOPLE</span> to draft our own legislation. 
-                  No longer do we need to rely on corrupt systems - we can write the laws ourselves.
+                  Now that we can write the laws ourselves, lawmakers must ask what purpose they serve if they don't serve their people.
                 </p>
               </div>
               
