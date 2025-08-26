@@ -45,13 +45,13 @@ export const coreAudioVoiceTools: Tool[] = [
   },
   {
     icon: Mic,
-    title: "Eleven Labs Text to Speech & Sound Effect Generation Platform",
-    description: "Advanced AI-powered text-to-speech and sound effect generation platform. Create realistic human voices, clone voices, and generate professional sound effects for any project.",
+    title: "ElevenLabs - AI Voice Platform",
+    description: "Leading AI voice platform offering advanced text-to-speech, conversational AI agents, voice cloning, dubbing, speech-to-text transcription, and ElevenReader for audiobook creation. Generate realistic human voices, create AI conversations, clone voices, and produce professional audio content for any project.",
     emoji: "🎤",
     color: "from-purple-500 to-blue-600",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377368060364849193/image.png?ex=6838b577&is=683763f7&hm=5d7af47618e4e284baa269ee596a3b68f2ee26e23dd13ed84be94a092aff4f44&",
     directUrl: "https://elevenlabs.io/?from=kennybastian5304&via=aiwebtools",
-    tags: ["text to speech", "tts", "voice generation", "sound effects", "voice cloning", "ai voice", "speech synthesis", "eleven labs", "elevenlabs", "sound generation", "audio ai", "voice ai", "speech ai", "professional voice", "realistic voice", "human voice", "voice over", "narration", "audio production"],
+    tags: ["text to speech", "tts", "conversational ai", "voice cloning", "dubbing", "speech to text", "elevenreader", "voice generation", "sound effects", "ai voice", "speech synthesis", "eleven labs", "elevenlabs", "music generation", "sound generation", "audio ai", "voice ai", "speech ai", "professional voice", "realistic voice", "human voice", "voice over", "narration", "audio production", "audiobook", "ai conversation", "voice chat", "ai dubbing", "transcription"],
     category: "Audio & Voice Tools",
     rating: 4.8,
     totalVotes: 5432
