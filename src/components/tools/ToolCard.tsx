@@ -4,6 +4,8 @@ import { Tool } from "@/types/tools";
 import { Card } from "@/components/ui/card";
 import { useMobile } from "@/hooks/useMobile";
 import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
+import { useNavigate } from "react-router-dom";
+import { allTools } from "@/data/toolsData";
 import ToolCardHeader from "./ToolCardHeader";
 import ToolCardContent from "./ToolCardContent";
 
@@ -16,9 +18,29 @@ interface ToolCardProps {
 const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
   const { isMobile, isTouch } = useMobile();
   const { enableReducedMotion, getOptimizedStyles } = usePerformanceOptimization();
+  const navigate = useNavigate();
   
   // Determine if this is an AIWebTools original
   const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
+  
+  // Find the correct index in allTools array for navigation
+  const correctToolIndex = allTools.findIndex(t => 
+    t.title === tool.title && 
+    t.directUrl === tool.directUrl && 
+    t.category === tool.category
+  );
+  const linkIndex = correctToolIndex !== -1 ? correctToolIndex : index;
+  
+  // Handle card click to navigate to tool detail page
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Don't navigate if clicking on buttons or interactive elements
+    const target = e.target as HTMLElement;
+    const isButton = target.closest('button') || target.closest('a');
+    
+    if (!isButton) {
+      navigate(`/tool/${linkIndex}`);
+    }
+  };
   
   // Dynamic sizing based on featured status and mobile optimization
   const isFeatured = index < 12; // First 12 tools are considered featured
@@ -73,7 +95,7 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
 
   return (
     <Card 
-      className={`group relative bg-gradient-to-br from-gray-900/80 to-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 lg:p-6 h-full flex flex-col focus-within:border-cyan-400 focus-within:shadow-cyan-400/20 ${
+      className={`group relative bg-gradient-to-br from-gray-900/80 to-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 lg:p-6 h-full flex flex-col focus-within:border-cyan-400 focus-within:shadow-cyan-400/20 cursor-pointer ${
         enableReducedMotion 
           ? 'transition-none' 
           : 'transition-all duration-300'
@@ -85,9 +107,16 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
         isMobile ? 'touch-manipulation' : ''
       }`}
       style={optimizedStyles}
+      onClick={handleCardClick}
       tabIndex={0}
       role="article"
-      aria-label={`AI Tool: ${tool.title}`}
+      aria-label={`AI Tool: ${tool.title} - Click to view details`}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          navigate(`/tool/${linkIndex}`);
+        }
+      }}
     >
       <ToolCardHeader 
         tool={tool}
