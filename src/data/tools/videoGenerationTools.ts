@@ -244,5 +244,17 @@ export const videoGenerationTools: Tool[] = [
     category: "Video Generation",
     rating: 4.9,
     totalVotes: 4567
+  },
+  {
+    icon: Camera,
+    title: "Lemon Slice AI",
+    description: "Lemon Slice AI turns your photos into talking videos in seconds. Lemon Slice is on a mission to empower everyone to bring their stories to life through innovative photo-to-video AI technology.",
+    emoji: "🍋",
+    color: "from-yellow-500 to-green-600",
+    directUrl: "https://lemonslice.com/?via=aiwebtools",
+    tags: ["photo to video", "talking videos", "storytelling", "AI animation", "photo animation", "video creation"],
+    category: "Video Generation",
+    rating: 4.5,
+    totalVotes: 2890
   }
 ];
