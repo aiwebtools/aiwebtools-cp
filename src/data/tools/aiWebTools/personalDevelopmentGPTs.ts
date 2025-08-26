@@ -209,18 +209,6 @@ export const personalDevelopmentGPTs: Tool[] = [
     totalVotes: 900
   },
   {
-    icon: Gem,
-    title: "Inner Child Healer GPT",
-    description: "Heal your inner child with the Inner Child Healer GPT. This AI tool provides exercises, affirmations, and support to help you connect with your younger self, release past traumas, and cultivate self-compassion. Nurture your inner child and create a brighter future.",
-    emoji: "💎",
-    color: "from-pink-400 to-yellow-500",
-    directUrl: "https://chat.openai.com/g/g-V9X6w7Z5z-inner-child-healer",
-    tags: ["inner child", "healing", "trauma release", "self-compassion", "nurturing"],
-    category: "Personal Development & Self-Discovery",
-    rating: 3.6,
-    totalVotes: 700
-  },
-  {
     icon: Flame,
     title: "Passion Igniter GPT",
     description: "Ignite your passions with the Passion Igniter GPT. This AI tool helps you explore your interests, identify your strengths, and discover activities that bring you joy and fulfillment. Rekindle your zest for life and pursue your dreams with enthusiasm.",
