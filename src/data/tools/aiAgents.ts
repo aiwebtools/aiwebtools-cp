@@ -1,4 +1,4 @@
-import { Bot, Globe, Code, Wand2, Zap, Brain, Github, Rocket, Settings, Monitor, Server, HardDrive, Users, Settings2, Database as DatabaseIcon, Terminal as TerminalIcon, Cpu as CpuIcon, Layers, Smartphone } from "lucide-react";
+import { Bot, Globe, Code, Wand2, Zap, Brain, Github, Rocket, Settings, Monitor, Server, HardDrive, Users, Settings2, Database as DatabaseIcon, Terminal as TerminalIcon, Cpu as CpuIcon, Layers, Smartphone, Video } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 export const aiAgents: Tool[] = [
@@ -421,5 +421,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.5,
     totalVotes: 2800
+  },
+  {
+    icon: Video,
+    title: "Descript Video Editing Agent",
+    description: "AI-powered video editing agent that automates video production workflows, transcription, voice cloning, and collaborative editing. Intelligent agent for streamlined video content creation with advanced AI capabilities.",
+    emoji: "🎬",
+    color: "from-red-500 to-purple-600",
+    directUrl: "https://descript.com/?via=aiwebtools",
+    tags: ["video editing agent", "AI video production", "transcription", "voice cloning", "collaborative editing", "video automation", "content creation"],
+    category: "AI Agents",
+    rating: 4.7,
+    totalVotes: 3400
   }
 ];
