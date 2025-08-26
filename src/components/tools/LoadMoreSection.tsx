@@ -24,26 +24,19 @@ const LoadMoreSection = ({
   totalToolsCount,
   onLoadMore
 }: LoadMoreSectionProps) => {
-  const handleLoadMoreButton = () => {
-    onLoadMore();
-  };
-
-  // Only show ONE button at a time to avoid confusion
-  // Priority: Show More Featured > Load More (if enabled) > Nothing
   
-  // Don't show anything if we're loading or no more tools
+  // Don't show anything if loading or no more tools
   if (isLoading || !hasMoreTools) return null;
   
-  // Don't show multiple buttons - this was causing the confusion
-  if (!showLoadMoreButton && (!selectedCategory && !searchTerm && showAllFeaturedTools)) {
+  // Only show the load more button when we've expanded past featured tools
+  // And only on homepage (no category/search)
+  if (!selectedCategory && !searchTerm && showAllFeaturedTools && actualDisplayedCount > 8) {
     return (
       <div className="text-center mt-8 mb-8 px-4">
         <Button
           onClick={onLoadMore}
           size="lg"
-          disabled={isLoading}
           className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-6 py-3 rounded-xl transition-all duration-300"
-          data-load-more-trigger
         >
           Load More AI Web Tools GPTs
         </Button>

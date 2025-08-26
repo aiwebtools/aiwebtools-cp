@@ -21,6 +21,7 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
     actualDisplayedCount,
     shouldShowFeaturedToolsButton,
     initialDisplayCount,
+    showAllFeaturedTools,
     handleCategoryChange,
     handleLoadMore,
     handleShowMoreFeaturedTools
@@ -50,17 +51,20 @@ const FeaturedTools = memo(({ showLoadMoreButton = false, onToolsLoaded }: Featu
         />
       )}
 
-      <LoadMoreSection
-        showLoadMoreButton={showLoadMoreButton}
-        hasMoreTools={hasMoreTools}
-        isLoading={false}
-        selectedCategory={selectedCategory}
-        searchTerm={searchTerm}
-        showAllFeaturedTools={true}
-        actualDisplayedCount={actualDisplayedCount}
-        totalToolsCount={totalToolsCount}
-        onLoadMore={handleLoadMore}
-      />
+      {/* Only show LoadMoreSection when NOT showing the featured button */}
+      {!shouldShowFeaturedToolsButton && (
+        <LoadMoreSection
+          showLoadMoreButton={showLoadMoreButton}
+          hasMoreTools={hasMoreTools}
+          isLoading={false}
+          selectedCategory={selectedCategory}
+          searchTerm={searchTerm}
+          showAllFeaturedTools={showAllFeaturedTools}
+          actualDisplayedCount={actualDisplayedCount}
+          totalToolsCount={totalToolsCount}
+          onLoadMore={handleLoadMore}
+        />
+      )}
     </div>
   );
 }, (prevProps, nextProps) => {
