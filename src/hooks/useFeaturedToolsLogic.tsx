@@ -42,9 +42,9 @@ export const useFeaturedToolsLogic = ({ onToolsLoaded }: UseFeaturedToolsLogicPr
     ? Math.min(initialDisplayCount, filteredTools.length)
     : displayedCount;
 
-  // Check if we should show the "Show More Featured Tools" button
   const shouldShowFeaturedToolsButton = !selectedCategory && !searchTerm && 
-    filteredTools.length > initialDisplayCount && !showAllFeaturedTools;
+    filteredTools.length > initialDisplayCount && !showAllFeaturedTools && 
+    actualDisplayedCount <= initialDisplayCount;
 
   // Disable heavy verification for better performance
   // Run comprehensive verification on component mount (disabled for performance)
