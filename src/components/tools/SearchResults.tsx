@@ -36,7 +36,7 @@ const SearchResults = memo(({
 
   return (
     <div 
-      className="absolute top-full left-0 right-0 mt-2 bg-background/95 backdrop-blur-md border border-border rounded-xl shadow-2xl z-[9999] max-h-96 overflow-hidden"
+      className="absolute top-full left-0 right-0 mt-2 bg-background/95 backdrop-blur-md border border-border rounded-xl shadow-2xl z-[9999] max-h-[70vh] min-h-96 overflow-hidden"
       style={{
         // Fix positioning and prevent bouncing
         position: 'absolute',

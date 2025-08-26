@@ -319,8 +319,13 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
 
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-    if (scrollHeight - scrollTop <= clientHeight + 30 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 20, searchResults.length));
+    
+    // More responsive threshold for better endless scrolling
+    const threshold = 80;
+    const nearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
+    
+    if (nearBottom && displayedCount < searchResults.length) {
+      setDisplayedCount(prev => Math.min(prev + 25, searchResults.length));
     }
   }, [displayedCount, searchResults.length]);
 
