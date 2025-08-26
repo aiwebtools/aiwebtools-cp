@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Search, Grid3X3, Star, Mail, ArrowRight, Heart, Zap, Globe, MapPin } from "lucide-react";
+import { Search, Grid3X3, Star, Mail, ArrowRight, Heart, Zap, Globe, MapPin, Scale } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Header from "@/components/Header";
@@ -131,6 +131,63 @@ Best regards,
                 <p className="text-orange-300 font-bold italic text-xl">
                   "Every act of tyranny creates its own resistance. Every lie births a truth-teller. Every attack on freedom forges a liberator."
                 </p>
+              </div>
+            </div>
+
+            {/* Legislation Writer GPT - WE THE PEOPLE AI */}
+            <div className="bg-gradient-to-r from-blue-900/30 to-gray-900/30 backdrop-blur-sm border border-blue-500/30 rounded-lg p-8">
+              <div className="text-center mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-blue-400 flex items-center justify-center">
+                  <span className="text-4xl mr-3">⚖️</span>
+                  The People's Legislative Tool
+                </h2>
+                <p className="text-lg text-gray-300 mb-6">
+                  Born from the corruption I witnessed, this tool empowers <span className="text-blue-400 font-bold">WE THE PEOPLE</span> to draft our own legislation. 
+                  No longer do we need to rely on corrupt systems - we can write the laws ourselves.
+                </p>
+              </div>
+              
+              {/* Video Container */}
+              <div className="relative w-full overflow-hidden rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 border border-blue-500/30" style={{ aspectRatio: '16/9' }}>
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/poOGR-6bb2g?autoplay=0&mute=0&controls=1&rel=0&hd=1&vq=hd1080&quality=hd1080&enablejsapi=1&playsinline=1&modestbranding=1&autohide=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark"
+                  title="Legislation Writer GPT - WE THE PEOPLE AI"
+                  frameBorder="0"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full rounded-xl"
+                  loading="lazy"
+                />
+              </div>
+              
+              {/* Legislation Writer GPT Description */}
+              <div className="mt-8 bg-black/50 border border-blue-500/20 rounded-lg p-6">
+                <h3 className="text-xl font-bold text-blue-300 mb-4">⚖️ Legislation Writer GPT</h3>
+                <p className="text-gray-300 leading-relaxed mb-4">
+                  I assist in drafting complete legislation page by page with clear, precise legal language and seamless continuity. This tool empowers citizens to draft their own bills, statutes, and legal frameworks that meet legislative standards.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {["legislation", "legal writing", "government", "policy", "law", "political", "civic", "we the people"].map((tag) => (
+                    <span key={tag} className="px-3 py-1 bg-blue-600/30 text-blue-300 rounded-full text-sm border border-blue-500/20">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <Button 
+                  asChild 
+                  className="bg-blue-600 hover:bg-blue-500 text-white font-bold w-full text-lg py-6"
+                >
+                  <a 
+                    href="https://legislationwritergpt.lovable.app/?via=aiwebtools"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Scale className="w-5 h-5 mr-3" />
+                    WE THE PEOPLE AI
+                  </a>
+                </Button>
               </div>
             </div>
 
