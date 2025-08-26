@@ -2,17 +2,15 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ChevronLeft, Grid3X3, Search } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { ChevronLeft, Grid3X3 } from "lucide-react";
+import GlobalSearchBar from "@/components/GlobalSearchBar";
 
 interface CategoryHeaderProps {
   categoryName: string;
   toolCount: number;
-  searchTerm: string;
-  onSearchChange: (value: string) => void;
 }
 
-const CategoryHeader = ({ categoryName, toolCount, searchTerm, onSearchChange }: CategoryHeaderProps) => {
+const CategoryHeader = ({ categoryName, toolCount }: CategoryHeaderProps) => {
   const navigate = useNavigate();
 
   const goBack = () => {
@@ -45,18 +43,9 @@ const CategoryHeader = ({ categoryName, toolCount, searchTerm, onSearchChange }:
         {toolCount} Tools Available
       </Badge>
 
-      {/* Search bar for category page */}
-      <div className="max-w-md mx-auto">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-          <Input
-            type="text"
-            placeholder="Search AI tools..."
-            value={searchTerm}
-            onChange={(e) => onSearchChange(e.target.value)}
-            className="pl-10 bg-gray-900/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500"
-          />
-        </div>
+      {/* Global Search Bar - Same as main page */}
+      <div className="max-w-2xl mx-auto">
+        <GlobalSearchBar />
       </div>
     </div>
   );

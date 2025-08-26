@@ -8,7 +8,7 @@ import ScrollToTop from "@/components/ui/scroll-to-top";
 import { ToolGridSkeleton } from "@/components/ui/loading-skeleton";
 import SEOHead from "@/components/SEOHead";
 import ToolsGrid from "@/components/tools/ToolsGrid";
-import SearchBar from "@/components/tools/SearchBar";
+import GlobalSearchBar from "@/components/GlobalSearchBar";
 import MainCategoryFilter from "@/components/category/MainCategoryFilter";
 import { Button } from "@/components/ui/button";
 import { allTools } from "@/data/toolsData";
@@ -16,14 +16,12 @@ import { getToolsByMainCategory } from "@/utils/categoryUtils";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { Tool } from "@/types/tools";
 import { getContextAwareAdditionalTools } from "@/utils/contextAwareSimilarTools";
-import { searchTools } from "@/utils/searchUtils";
 
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
   const navigate = useNavigate();
   
   // ALL HOOKS MUST BE DECLARED AT THE TOP - NO CONDITIONAL HOOKS
-  const [searchTerm, setSearchTerm] = useState("");
   const [displayedCount, setDisplayedCount] = useState(48);
   const [filteredToolsByCategory, setFilteredToolsByCategory] = useState<Tool[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -47,31 +45,14 @@ const MainCategoryPage = () => {
   // Use filtered tools from category filter, fallback to original category tools
   const toolsToShow = filteredToolsByCategory.length > 0 ? filteredToolsByCategory : categoryTools;
   
-  // FULL INTELLIGENT SEARCH across ALL TOOLS - restored functionality
-  const baseFilteredTools = useMemo(() => {
-    const trimmedTerm = searchTerm.trim();
-    if (!trimmedTerm) return toolsToShow;
-    
-    // Use the FULL intelligent search system across ALL tools
-    console.log(`🧠 Running intelligent search for "${trimmedTerm}" across all ${allTools.length} tools`);
-    const searchResults = searchTools(allTools, trimmedTerm);
-    console.log(`✅ Found ${searchResults.length} results for "${trimmedTerm}"`);
-    
-    return searchResults;
-  }, [toolsToShow, searchTerm]); // Direct dependency on searchTerm for instant response
-
   // Create endless tools list with better performance
   const finalFilteredTools = useMemo(() => {
-    if (searchTerm.trim()) {
-      return baseFilteredTools;
-    }
-    
-    let endlessTools = [...baseFilteredTools];
-    const remainingCount = displayedCount - baseFilteredTools.length;
+    let endlessTools = [...toolsToShow];
+    const remainingCount = displayedCount - toolsToShow.length;
     
     if (remainingCount > 0) {
       const similarTools = getContextAwareAdditionalTools(
-        baseFilteredTools, 
+        toolsToShow, 
         "", 
         decodedCategoryName, 
         Math.min(remainingCount, 100)
@@ -94,7 +75,7 @@ const MainCategoryPage = () => {
     }
     
     return endlessTools;
-  }, [baseFilteredTools, displayedCount, searchTerm, decodedCategoryName]);
+  }, [toolsToShow, displayedCount, decodedCategoryName]);
 
   const displayedTools = useMemo(() => 
     finalFilteredTools.slice(0, displayedCount), 
@@ -113,10 +94,6 @@ const MainCategoryPage = () => {
       setIsLoading(false);
     }, 100);
   }, [isLoading]);
-
-  const handleSearchChange = useCallback((value: string) => {
-    setSearchTerm(value);
-  }, []);
 
   const handleFilteredToolsChange = useCallback((filtered: Tool[]) => {
     setFilteredToolsByCategory(filtered);
@@ -146,10 +123,10 @@ const MainCategoryPage = () => {
     }
   }, [categoryTools, filteredToolsByCategory.length]);
 
-  // Reset displayed count when base filtered tools change
+  // Reset displayed count when filtered tools change
   useEffect(() => {
     setDisplayedCount(48);
-  }, [baseFilteredTools.length]);
+  }, [toolsToShow.length]);
 
   // CONDITIONAL RENDERING ONLY AFTER ALL HOOKS
   if (!isInitialized) {
@@ -219,16 +196,12 @@ const MainCategoryPage = () => {
             </nav>
           </div>
 
-          {/* Main Search Bar - Full functionality restored */}
+          {/* Main Search Bar - Same as homepage */}
           <div className="max-w-2xl mx-auto mb-8">
             <h3 className="text-xl font-bold text-white mb-4 text-center">
               🔍 Search All AI Tools
             </h3>
-            <SearchBar
-              searchTerm={searchTerm}
-              onSearchChange={handleSearchChange}
-              preventAutoNavigation={true}
-            />
+            <GlobalSearchBar />
           </div>
 
           {/* Category Filter Component */}
@@ -241,9 +214,7 @@ const MainCategoryPage = () => {
           {/* Tools Count Display - Real counter format */}
           <div className="text-center mb-8">
             <div className="text-cyan-400 font-semibold">
-              {searchTerm
-                ? `${baseFilteredTools.length} tools found for "${searchTerm}"`
-                : `${displayedTools.length} tools shown — endless recommendations continue as you scroll`}
+              {displayedTools.length} tools shown — endless recommendations continue as you scroll
             </div>
           </div>
 
@@ -254,7 +225,7 @@ const MainCategoryPage = () => {
                 tools={finalFilteredTools}
                 displayedCount={displayedCount}
                 selectedCategory={decodedCategoryName}
-                searchTerm={searchTerm}
+                searchTerm=""
                 onLoadMore={handleLoadMore}
                 hasInfiniteScroll={true}
                 isLoading={isLoading}
@@ -264,10 +235,7 @@ const MainCategoryPage = () => {
                 <div className="text-4xl mb-4">🔍</div>
                 <h3 className="text-2xl font-bold text-cyan-100 mb-4">No tools found</h3>
                 <p className="text-gray-300 mb-8">
-                  {searchTerm 
-                    ? `No tools found for "${searchTerm}" across all categories.`
-                    : `No tools available with the selected filters in ${decodedCategoryName}.`
-                  }
+                  No tools available with the selected filters in {decodedCategoryName}.
                 </p>
                 <Button
                   onClick={() => navigate('/')}

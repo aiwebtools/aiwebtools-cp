@@ -17,7 +17,6 @@ import { getContextAwareAdditionalTools } from "@/utils/contextAwareSimilarTools
 
 const CategoryPage = () => {
   const { categoryName } = useParams();
-  const [searchTerm, setSearchTerm] = useState("");
   const [displayedCount, setDisplayedCount] = useState(48);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,27 +32,9 @@ const CategoryPage = () => {
     return tools;
   }, [standardizedCategory]);
 
-  // Filter tools by search if search term exists
-  const filteredTools = useMemo(() => {
-    if (!searchTerm.trim()) {
-      return categoryTools;
-    }
-    
-    const term = searchTerm.toLowerCase();
-    const filtered = categoryTools.filter(tool => 
-      tool.title.toLowerCase().includes(term) ||
-      tool.description.toLowerCase().includes(term) ||
-      tool.tags?.some(tag => tag.toLowerCase().includes(term))
-    );
-    
-    console.log(`🔍 Filtered category "${standardizedCategory}" with search "${searchTerm}": ${filtered.length} tools`);
-    return filtered;
-  }, [categoryTools, searchTerm]);
-
-  // Endless tools generation for categories (no search)
+  // Endless tools generation for categories
   const finalFilteredTools = useMemo(() => {
-    if (searchTerm.trim()) return filteredTools;
-    let endlessTools = [...filteredTools];
+    let endlessTools = [...categoryTools];
     const remaining = displayedCount - endlessTools.length;
     if (remaining > 0) {
       const similar = getContextAwareAdditionalTools(
@@ -75,13 +56,12 @@ const CategoryPage = () => {
       }
     }
     return endlessTools;
-  }, [filteredTools, displayedCount, searchTerm, standardizedCategory]);
+  }, [categoryTools, displayedCount, standardizedCategory]);
 
   useEffect(() => {
     // Scroll to top when category changes
     window.scrollTo(0, 0);
     setDisplayedCount(48);
-    setSearchTerm("");
     
     // Log category page load for verification
     console.log(`📄 Category page loaded: "${standardizedCategory}" (${categoryTools.length} tools)`);
@@ -151,15 +131,13 @@ const CategoryPage = () => {
         <CategoryHeader 
           categoryName={standardizedCategory}
           toolCount={categoryTools.length}
-          searchTerm={searchTerm}
-          onSearchChange={setSearchTerm}
         />
         
         <ToolsGrid 
           tools={finalFilteredTools}
           displayedCount={displayedCount}
           selectedCategory={standardizedCategory}
-          searchTerm={searchTerm}
+          searchTerm=""
           onLoadMore={handleLoadMore}
           hasInfiniteScroll={true}
           isLoading={isLoading}
