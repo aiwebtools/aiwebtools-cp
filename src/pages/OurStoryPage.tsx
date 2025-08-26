@@ -276,6 +276,13 @@ Best regards,
                 Kenneth — this is your story. It's personal, cosmic, and grounded in your own lived truth. 
                 It connects CT Hemp Shop → your vision → your experience → your mission → the tools.
               </p>
+              
+              {/* Tiny meaningful quote */}
+              <div className="mt-8 pt-4 border-t border-gray-800/50">
+                <p className="text-xs text-gray-500 italic opacity-60">
+                  "When we remember we are ROME we remember we are ONE EARTH, ONE GOD, ONE LIGHT, ONE CODE."
+                </p>
+              </div>
             </div>
 
           </div>
