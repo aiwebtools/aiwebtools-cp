@@ -40,8 +40,12 @@ export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] 
   }
   
   // Special handling for AI Web Tools Originals category
-  else if (categoryName === "AI WEB TOOLS ORIGINALS" || categoryName === "AI Web Tools Originals") {
+  else if (categoryName === "AI WEB TOOLS ORIGINALS" || 
+           categoryName === "AI Web Tools Originals" || 
+           categoryName === "AIWebTools GPTs Collection" ||
+           categoryName === "ai-originals") {
     filteredTools = tools.filter(tool => isAIWebToolsGPT(tool));
+    console.log(`🎯 AI Originals: Found ${filteredTools.length} AIWebTools GPTs`);
   }
   
   // FIXED: Unified handling for Image & Design category - use ONLY ONE standardized name

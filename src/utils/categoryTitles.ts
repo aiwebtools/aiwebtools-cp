@@ -20,7 +20,11 @@ export const CATEGORY_TITLES = {
   "Industry-Specific Solutions": "Industry-Specific Solutions",
   "Creative & Entertainment (General & Gaming)": "Creative & Entertainment (General & Gaming)",
   "Health, Wellness & Personal Lifestyle": "Health, Wellness & Personal Lifestyle",
-  "Historical & Time-Based AI Tools": "Historical & Time-Based AI Tools"
+  "Historical & Time-Based AI Tools": "Historical & Time-Based AI Tools",
+  
+  // Special categories
+  "ai-originals": "AIWebTools GPTs Collection",
+  "AIWebTools GPTs Collection": "AIWebTools GPTs Collection"
 } as const;
 
 // Function to get standardized category title
