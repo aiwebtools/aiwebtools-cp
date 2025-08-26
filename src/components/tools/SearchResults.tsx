@@ -47,13 +47,23 @@ const SearchResults = memo(({
         className="h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
         onScroll={onScroll}
         style={{
-          // Smooth scrolling optimizations
+          // Enhanced mobile scrolling optimizations
           scrollBehavior: 'smooth',
           overscrollBehavior: 'contain',
           WebkitOverflowScrolling: 'touch',
+          touchAction: 'pan-y',
+          transform: 'translateZ(0)',
+          willChange: 'scroll-position',
+          backfaceVisibility: 'hidden',
+          perspective: '1000px',
         }}
       >
-        <div className="px-3 py-3 border-b border-border/50 sticky top-0 bg-background/95 backdrop-blur-md text-muted-foreground z-10" style={{ fontSize: '10px' }}>
+        <div className="px-3 py-3 border-b border-border/50 sticky top-0 bg-background/95 backdrop-blur-md text-muted-foreground z-10" 
+             style={{ 
+               fontSize: '10px',
+               transform: 'translateZ(0)',
+               willChange: 'transform'
+             }}>
           <div className="leading-tight mb-1">
             Search Results ({searchResults.length} total) - Showing {displayedResults.length}
           </div>
@@ -61,7 +71,7 @@ const SearchResults = memo(({
             <div className="text-xs opacity-80 mb-2">Scroll for more...</div>
           )}
         </div>
-        <div className="p-2 pt-4">
+        <div className="p-2 pt-4" style={{ transform: 'translateZ(0)' }}>
           {displayedResults.map((tool, index) => {
             const toolIndex = allTools.findIndex(t => t.title === tool.title);
             return (
@@ -69,7 +79,13 @@ const SearchResults = memo(({
                 <TooltipTrigger asChild>
                   <div
                     onClick={(e) => handleToolClick(tool, e)}
-                    className="flex items-center space-x-3 p-3 hover:bg-accent/50 transition-colors duration-150 border-b border-border/20 last:border-b-0 rounded-lg mx-1 cursor-pointer"
+                    className="flex items-center space-x-3 p-3 hover:bg-accent/50 active:bg-accent/70 transition-colors duration-150 border-b border-border/20 last:border-b-0 rounded-lg mx-1 cursor-pointer"
+                    style={{
+                      touchAction: 'manipulation',
+                      WebkitTouchCallout: 'none',
+                      WebkitUserSelect: 'none',
+                      userSelect: 'none'
+                    }}
                   >
                     <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white text-sm sm:text-lg flex-shrink-0">
                       {tool.emoji}
