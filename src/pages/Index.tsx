@@ -73,16 +73,16 @@ const Index = () => {
             </div>
             
             <div className="max-w-6xl mx-auto">
-              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <div className="relative w-full aspect-video">
                 <iframe
                   ref={mainVideoRef}
-                  className="absolute top-0 left-0 w-full h-full rounded-xl border border-cyan-500/30"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=1&loop=1&playlist=4zflGSSuBcA&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark"
-                  title="AI Web Tools Featured Video"
+                  className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
+                  src="https://www.youtube.com/embed/rXXScpdUWQo?controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1"
+                  title="Time Machine GPT - AI Web Tools Featured Video"
                   frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
-                  loading="lazy"
+                  loading="eager"
                 ></iframe>
               </div>
             </div>
