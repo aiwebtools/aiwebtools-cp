@@ -15,17 +15,11 @@ const FeaturedToolsSection = ({ onToolsLoaded }: FeaturedToolsSectionProps) => {
   const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(24);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSeeMoreAITools = () => {
-    console.log(`🚀 See More AI Tools clicked! Total tools available: ${allTools.length}`);
+  // Auto-show all tools after featured tools are expanded
+  // This eliminates the need for multiple buttons
+  const handleAutoExpansion = () => {
     setShowAllTools(true);
-    setAllToolsDisplayedCount(24); // Start with 24 tools and let infinite scroll handle the rest
-    // Scroll to the tools section
-    setTimeout(() => {
-      const toolsSection = document.getElementById('all-tools-section');
-      if (toolsSection) {
-        toolsSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
+    setAllToolsDisplayedCount(24);
   };
 
   const handleAllToolsLoadMore = () => {
@@ -71,25 +65,17 @@ const FeaturedToolsSection = ({ onToolsLoaded }: FeaturedToolsSectionProps) => {
           </div>
         </div>
         
-        <FeaturedTools onToolsLoaded={onToolsLoaded} />
+        <FeaturedTools 
+          onToolsLoaded={(count) => {
+            onToolsLoaded?.(count);
+            // Auto-expand to all tools when featured tools are fully expanded
+            if (count > 50) { // Arbitrary threshold when featured tools are fully shown
+              setTimeout(() => handleAutoExpansion(), 1000);
+            }
+          }} 
+        />
 
-        {/* SEE MORE AI TOOLS Button - positioned above the three existing buttons */}
-        {!showAllTools && (
-          <div className="text-center mt-12 mb-8 px-4">
-            <Button
-              onClick={handleSeeMoreAITools}
-              size="lg"
-              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
-            >
-              🚀 SEE MORE AI TOOLS
-            </Button>
-            <div className="mt-4 text-cyan-300 text-sm">
-              Explore our complete collection of {allTools.length}+ amazing AI tools
-            </div>
-          </div>
-        )}
-
-        {/* All Tools Section with Infinite Scroll */}
+        {/* All Tools Section with Infinite Scroll - only show after featured tools are fully expanded */}
         {showAllTools && (
           <div id="all-tools-section" className="mt-12">
             <div className="text-center mb-8">
