@@ -24,6 +24,18 @@ import {
 
 export const businessAndFinanceGPTs: Tool[] = [
   {
+    icon: DollarSign,
+    title: "POVERTY CRUSHER - Economic Empowerment GPT",
+    description: "POVERTY CRUSHER - Economic Empowerment AI is a comprehensive financial empowerment assistant designed to help individuals break the cycle of poverty through practical financial strategies, wealth-building techniques, and economic education. This powerful AI provides personalized guidance on budgeting, debt elimination, income generation, investment basics, and financial literacy to help users achieve economic independence and financial freedom.",
+    emoji: "💪",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-68ae2ab2c55c8191afdc979301179fa9-poverty-crusher-economic-empowerment-ai/?via=aiwebtools",
+    tags: ["poverty reduction", "economic empowerment", "financial literacy", "wealth building", "debt elimination", "income generation", "financial freedom", "budgeting", "investment education", "aiwebtools"],
+    category: "Business & Finance",
+    rating: 4.9,
+    totalVotes: 5823
+  },
+  {
     icon: TrendingUp,
     title: "Bull or Bear AI",
     description: "Analyzes news sentiment to predict stock trends, providing insights into whether market sentiment is bullish or bearish.",
