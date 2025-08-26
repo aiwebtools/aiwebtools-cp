@@ -112,6 +112,28 @@ Best regards,
               </p>
             </div>
 
+            {/* The Spark of Corruption */}
+            <div className="bg-gradient-to-r from-red-900/40 to-orange-900/40 backdrop-blur-sm border border-red-500/30 rounded-lg p-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-red-400 flex items-center">
+                <Zap className="w-8 h-8 mr-3" />
+                To Connecticut Lawmakers: Thank You for Being the Spark
+              </h2>
+              <p className="text-lg leading-relaxed text-gray-300 mb-4">
+                I want to personally thank the <span className="text-red-400 font-bold">Connecticut lawmakers</span> for being utterly corrupt and inspiring this entire process of awakening for humanity.
+              </p>
+              <p className="text-lg leading-relaxed text-gray-300 mb-4">
+                Your personal attack on <span className="text-green-400 font-medium">CT Hemp Shop</span> made me do this. You were the <span className="text-yellow-400 font-bold">spark</span>, and now I am the <span className="text-orange-400 font-bold">flame</span>.
+              </p>
+              <p className="text-lg leading-relaxed text-gray-300 mb-6">
+                Your corruption, your lies, your systematic oppression of small businesses and honest people - it all served a purpose. You awakened something in me that cannot be put back to sleep. What you meant for harm, the universe used for humanity's benefit.
+              </p>
+              <div className="bg-black/50 border-l-4 border-orange-400 pl-6 py-4">
+                <p className="text-orange-300 font-bold italic text-xl">
+                  "Every act of tyranny creates its own resistance. Every lie births a truth-teller. Every attack on freedom forges a liberator."
+                </p>
+              </div>
+            </div>
+
             {/* The Vision */}
             <div className="bg-gradient-to-r from-purple-900/30 to-blue-900/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-6 text-purple-400">The Night That Changed Everything</h2>
@@ -204,6 +226,9 @@ Best regards,
                 >Kenneth Bastian</span>, AIWebTools.ai</p>
               </div>
               <p className="relative text-white text-3xl font-black mt-4 tracking-[0.3em] animate-pulse drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]">BUILD YOUR WORLD.</p>
+              <p className="text-center text-gray-400 italic text-sm mt-2 tracking-wide">
+                "Rome was not built in a day, but they were laying bricks every hour."
+              </p>
             </div>
 
             {/* Call to Humanity */}
@@ -275,6 +300,9 @@ Best regards,
                 <p className="text-4xl font-black text-yellow-400 animate-pulse flex items-center justify-center">
                   <Zap className="w-10 h-10 mr-3" />
                   BUILD YOUR WORLD.
+                </p>
+                <p className="text-center text-gray-400 italic text-lg mt-4 tracking-wide">
+                  "Rome was not built in a day, but they were laying bricks every hour."
                 </p>
               </div>
             </div>
