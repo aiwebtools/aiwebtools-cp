@@ -13,7 +13,8 @@ import {
   Building,
   CheckSquare,
   Globe,
-  Zap
+  Zap,
+  Database
 } from "lucide-react";
 
 export const businessAndProductivity: Tool[] = [
@@ -196,5 +197,17 @@ export const businessAndProductivity: Tool[] = [
     category: "Business & Productivity",
     rating: 4.7,
     totalVotes: 3245
+  },
+  {
+    icon: Database,
+    title: "AutoForm AI",
+    description: "AI-powered data entry agent that automates form filling, data extraction, and document processing. Streamlines data entry workflows with intelligent automation and accuracy.",
+    emoji: "📋",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://autoform.ai/?via=aiwebtools",
+    tags: ["data entry", "form automation", "AI agent", "document processing", "data extraction", "productivity", "automation"],
+    category: "Business & Productivity",
+    rating: 4.5,
+    totalVotes: 2200
   },
 ];
