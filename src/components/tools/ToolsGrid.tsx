@@ -109,8 +109,8 @@ const ToolsGrid = memo(({
 
   if (toolsWithStableKeys.length === 0) return null;
 
-  // Use virtualized grid for large lists (>100 tools)
-  const useVirtualization = tools.length > 100;
+  // Always use virtualized grid for better performance
+  const useVirtualization = true;
 
   return (
     <>

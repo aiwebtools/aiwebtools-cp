@@ -34,8 +34,8 @@ export const useFeaturedToolsLogic = ({ onToolsLoaded }: UseFeaturedToolsLogicPr
     tool.title.toLowerCase().includes('marriage') && tool.title.toLowerCase().includes('mender')
   );
   
-  // Set initial display count based on Marriage Mender GPT position or default to 12 (faster loading)
-  const initialDisplayCount = marriageMenderIndex !== -1 ? Math.min(marriageMenderIndex + 1, 16) : 12;
+  // Set initial display count to minimal for instant loading
+  const initialDisplayCount = 8;
 
   // Calculate actual displayed count based on show more state
   const actualDisplayedCount = (!selectedCategory && !searchTerm && !showAllFeaturedTools) 
@@ -97,7 +97,7 @@ export const useFeaturedToolsLogic = ({ onToolsLoaded }: UseFeaturedToolsLogicPr
     setIsLoading(true);
     
     setTimeout(() => {
-      const newCount = Math.min(displayedCount + 12, filteredTools.length); // Load 12 more tools at a time (faster)
+      const newCount = Math.min(displayedCount + 8, filteredTools.length); // Load only 8 more at a time
       console.log(`📈 Setting new count: ${newCount}`);
       setDisplayedCount(newCount);
       setIsLoading(false);
@@ -105,7 +105,7 @@ export const useFeaturedToolsLogic = ({ onToolsLoaded }: UseFeaturedToolsLogicPr
       if (onToolsLoaded) {
         onToolsLoaded(newCount);
       }
-    }, 50); // Reduced delay for faster loading
+    }, 100); // Slightly increased delay to prevent blocking
   }, [isLoading, displayedCount, setDisplayedCount, setIsLoading, onToolsLoaded, hasMoreTools, filteredTools.length]);
 
   const handleShowMoreFeaturedTools = () => {

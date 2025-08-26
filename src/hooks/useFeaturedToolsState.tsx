@@ -10,21 +10,21 @@ import { createFeaturedTools } from "@/utils/featuredTools";
 export const useFeaturedToolsState = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [displayedCount, setDisplayedCount] = useState<number>(20); // Reduced for faster initial loading
+  const [displayedCount, setDisplayedCount] = useState<number>(8); // Drastically reduced for immediate responsiveness
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleCategoryChange = useCallback((category: string | null) => {
     console.log('🏷️ Category change requested:', category);
     setSelectedCategory(category);
     setSearchTerm("");
-    setDisplayedCount(20); // Reduced for faster loading
+    setDisplayedCount(8); // Minimal for instant response
     setIsLoading(false);
   }, []);
 
   const handleSearchChange = useCallback((term: string) => {
     setSearchTerm(term);
     setSelectedCategory(null);
-    setDisplayedCount(20); // Reduced for faster loading
+    setDisplayedCount(8); // Minimal for instant response
     setIsLoading(false);
   }, []);
 
@@ -39,23 +39,24 @@ export const useFeaturedToolsState = () => {
     } else if (searchTerm) {
       const trimmedTerm = searchTerm.trim();
       
-      // LIGHTNING FAST simple matching for homepage
+      // ULTRA FAST simple matching - minimal processing
       if (trimmedTerm.length === 1) {
         tools = allTools.filter(tool => 
           tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
-        ).slice(0, 50); // Limit for speed
+        ).slice(0, 20); // Severely limited for speed
       }
       // Fast matching for two characters
       else if (trimmedTerm.length === 2) {
         tools = allTools.filter(tool => 
-          tool.title.toLowerCase().includes(trimmedTerm.toLowerCase()) ||
-          tool.category?.toLowerCase().includes(trimmedTerm.toLowerCase())
-        ).slice(0, 100); // Limit for speed
+          tool.title.toLowerCase().includes(trimmedTerm.toLowerCase())
+        ).slice(0, 30); // Limited for speed
       }
-      // Optimized search for longer terms
-      else {
-        const results = searchTools(allTools, searchTerm);
-        tools = results.slice(0, 200); // Performance limit
+      // Very limited search for longer terms
+      else if (trimmedTerm.length >= 3) {
+        tools = allTools.filter(tool => 
+          tool.title.toLowerCase().includes(trimmedTerm.toLowerCase()) ||
+          tool.description.toLowerCase().includes(trimmedTerm.toLowerCase())
+        ).slice(0, 50); // Performance limit
       }
     } else {
       tools = createFeaturedTools(allTools);
