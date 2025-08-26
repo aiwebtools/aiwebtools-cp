@@ -12,21 +12,24 @@ import SEOHead from "@/components/SEOHead";
 import LazyFeaturedTools from "@/components/LazyFeaturedTools";
 import LazySearchPortal from "@/components/LazySearchPortal";
 import { Button } from "@/components/ui/button";
+import { getFastToolCount, updateCachedStats } from "@/utils/fastToolCounter";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import BookPromotionCard from "@/components/BookPromotionCard";
 
 const Index = () => {
-  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
+  // Use fast cached stats initially for better performance
+  const [toolStats, setToolStats] = useState(getFastToolCount());
   
   // Use video manager for main page video
   const mainVideoRef = useVideoManager('main-page-video');
 
   useEffect(() => {
-    // Defer tool count calculation to avoid blocking initial render
+    // Load actual stats in background after page renders
     const timer = setTimeout(() => {
       const stats = getCurrentToolCount();
       setToolStats(stats);
-    }, 0);
+      updateCachedStats(stats);
+    }, 2000); // Delay to let page render first
 
     return () => clearTimeout(timer);
   }, []);
@@ -60,7 +63,7 @@ const Index = () => {
           <CategoryPageSelection />
         </div>
         
-        {/* Featured Video Section - Simplified */}
+        {/* Featured Video Section - Lazy loaded */}
         <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
@@ -74,11 +77,12 @@ const Index = () => {
                 <iframe
                   ref={mainVideoRef}
                   className="absolute top-0 left-0 w-full h-full rounded-xl border border-cyan-500/30"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=1&loop=1&playlist=4zflGSSuBcA&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark"
+                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=1&loop=1&playlist=4zflGSSuBcA&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark"
                   title="AI Web Tools Featured Video"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  loading="lazy"
                 ></iframe>
               </div>
             </div>

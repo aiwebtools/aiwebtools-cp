@@ -10,21 +10,21 @@ import { createFeaturedTools } from "@/utils/featuredTools";
 export const useFeaturedToolsState = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [displayedCount, setDisplayedCount] = useState<number>(60);
+  const [displayedCount, setDisplayedCount] = useState<number>(20); // Reduced for faster initial loading
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleCategoryChange = useCallback((category: string | null) => {
     console.log('🏷️ Category change requested:', category);
     setSelectedCategory(category);
     setSearchTerm("");
-    setDisplayedCount(60);
+    setDisplayedCount(20); // Reduced for faster loading
     setIsLoading(false);
   }, []);
 
   const handleSearchChange = useCallback((term: string) => {
     setSearchTerm(term);
     setSelectedCategory(null);
-    setDisplayedCount(60);
+    setDisplayedCount(20); // Reduced for faster loading
     setIsLoading(false);
   }, []);
 
