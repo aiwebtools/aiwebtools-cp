@@ -391,7 +391,7 @@ const MobileMenu = () => {
                 </DropdownMenuItem>
                 
                 {/* Clone Website Button */}
-                <DropdownMenuItem onClick={(e) => handleExternalLink('https://clone-me-and-make-your-own-aiwebtools.lovable.app/?via=aiwebtools', e)} className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700 font-bold rounded my-2 gold-glow">
+                <DropdownMenuItem onClick={(e) => handleExternalLink('https://cloneaiwebtools.lovable.app/?via=aiwebtools', e)} className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700 font-bold rounded my-2 gold-glow">
                   🚀 CLONE THE AIWEBTOOLS.AI WEBSITE
                 </DropdownMenuItem>
                 
