@@ -397,5 +397,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.7,
     totalVotes: 2890
+  },
+  {
+    icon: Wand2,
+    title: "FOTOR IMAGE EDITING AGENT",
+    description: "AI-powered image editing agent that automates photo enhancement, background removal, object editing, and creative design tasks. Intelligent agent for streamlined photo editing workflows with advanced AI capabilities.",
+    emoji: "🎨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://fotor.com/?via=aiwebtools",
+    tags: ["image editing agent", "photo enhancement", "AI editing", "background removal", "automated editing", "design agent", "photo automation"],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 3200
   }
 ];
