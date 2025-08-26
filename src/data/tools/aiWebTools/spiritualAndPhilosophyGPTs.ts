@@ -4,6 +4,18 @@ import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, M
 
 export const spiritualAndPhilosophyGPTs: Tool[] = [
   {
+    icon: Star,
+    title: "Paramahansa Yogananda GPT",
+    description: "Connect with the wisdom of Paramahansa Yogananda, the renowned spiritual teacher and author of 'Autobiography of a Yogi'. This GPT embodies his teachings on Kriya Yoga, Self-Realization, meditation practices, and the unity of all religions. Explore profound spiritual insights, receive guidance on the path to Self-realization, and discover the scientific approach to God-realization through his timeless wisdom and practical spirituality.",
+    emoji: "🕉️",
+    color: "from-orange-500 to-yellow-600",
+    directUrl: "https://chatgpt.com/g/g-68ae302e79b88191a52219eaaccbfcc3-paramahansa-yogananda-gpt/?via=aiwebtools",
+    tags: ["yoga", "meditation", "self-realization", "kriya yoga", "spiritual teachings", "autobiography of a yogi", "eastern philosophy", "divine wisdom", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 4521
+  },
+  {
     icon: MapPin,
     title: "Soul Map GPT",
     description: "Soul Map GPT uses Gematria, Numerology, and Soul Mapping based on birthplace, time, and name to perform advanced calculations and read the stars based on your essence. Discover your spiritual blueprint through ancient wisdom and mystical mathematics.",
