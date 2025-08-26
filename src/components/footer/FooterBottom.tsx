@@ -13,7 +13,10 @@ const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
         <p className="text-sm md:text-base text-cyan-300/80 font-light italic tracking-wide max-w-5xl mx-auto leading-relaxed">
           "This page and the tools here were put together with care and persistence over the past two years, and they're offered freely. Love others as yourself. Imagine what you can create. Unlock your dreams. These tools were made to help lift us all—mentally, spiritually, and physically. Let's shape the future together."
         </p>
-        <p className="text-cyan-400/60 text-sm mt-3">— <span className="font-cursive text-lg">Kenneth Bastian</span>, AIWebTools.ai</p>
+        <p className="text-cyan-400/60 text-sm mt-3">— <span 
+            className="font-cursive text-lg cursor-pointer text-yellow-400 hover:text-yellow-300 animate-pulse hover:animate-none transition-all duration-300 hover:scale-105"
+            onClick={() => window.open('https://www.aitools.company', '_blank')}
+          >Kenneth Bastian</span>, AIWebTools.ai</p>
         <p className="text-white text-2xl font-black mt-3 tracking-[0.3em] animate-flash cursor-pointer hover:scale-105 transition-transform duration-200">BUILD YOUR WORLD.</p>
       </div>
       

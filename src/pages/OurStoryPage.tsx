@@ -193,7 +193,10 @@ Best regards,
               <blockquote className="text-lg md:text-xl leading-relaxed text-gray-200 font-light italic mb-6 max-w-3xl mx-auto">
                 "This page and the tools here were put together with care and persistence over the past two years, and they're offered freely. Love others as yourself. Imagine what you can create. Unlock your dreams. These tools were made to help lift us all—mentally, spiritually, and physically. Let's shape the future together."
               </blockquote>
-              <p className="text-cyan-400 text-lg font-medium">— Kenneth Bastian, AIWebTools.ai</p>
+              <p className="text-cyan-400 text-lg font-medium">— <span 
+                className="cursor-pointer text-yellow-400 hover:text-yellow-300 animate-pulse hover:animate-none transition-all duration-300 hover:scale-105 font-bold"
+                onClick={() => window.open('https://www.aitools.company', '_blank')}
+              >Kenneth Bastian</span>, AIWebTools.ai</p>
               <p className="text-white text-3xl font-black mt-4 tracking-[0.3em] animate-pulse">BUILD YOUR WORLD.</p>
             </div>
 
