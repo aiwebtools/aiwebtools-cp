@@ -29,17 +29,19 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
     t.directUrl === tool.directUrl && 
     t.category === tool.category
   );
+
+  // Use the correct index, fallback to provided index if not found
   const linkIndex = correctToolIndex !== -1 ? correctToolIndex : index;
-  
-  // Handle card click to navigate to tool detail page
+
+  // Handle card click to navigate to detail page
   const handleCardClick = (e: React.MouseEvent) => {
     // Don't navigate if clicking on buttons or interactive elements
-    const target = e.target as HTMLElement;
-    const isButton = target.closest('button') || target.closest('a');
-    
-    if (!isButton) {
-      navigate(`/tool/${linkIndex}`);
+    if ((e.target as HTMLElement).closest('button, a')) {
+      return;
     }
+    
+    console.log(`🔍 Card clicked for ${tool.title}, navigating to /tool/${linkIndex}`);
+    navigate(`/tool/${linkIndex}`);
   };
   
   // Dynamic sizing based on featured status and mobile optimization
@@ -107,14 +109,14 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
         isMobile ? 'touch-manipulation' : ''
       }`}
       style={optimizedStyles}
-      onClick={handleCardClick}
       tabIndex={0}
       role="article"
       aria-label={`AI Tool: ${tool.title} - Click to view details`}
+      onClick={handleCardClick}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          navigate(`/tool/${linkIndex}`);
+          handleCardClick(e as any);
         }
       }}
     >
