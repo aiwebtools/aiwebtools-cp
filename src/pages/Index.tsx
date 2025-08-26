@@ -77,8 +77,8 @@ const Index = () => {
                 <iframe
                   ref={mainVideoRef}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src="https://www.youtube.com/embed/rXXScpdUWQo?controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1"
-                  title="Time Machine GPT - AI Web Tools Featured Video"
+                  src="https://www.youtube.com/embed/4zflGSSuBcA?controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1"
+                  title="AI Web Tools Featured Video"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
