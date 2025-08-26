@@ -70,7 +70,7 @@ Best regards,
                 asChild 
                 className="bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/30 text-cyan-300"
               >
-                <Link to="/">
+                <Link to="/main-category/ALL%20AI%20TOOLS">
                   <Grid3X3 className="w-4 h-4 mr-2" />
                   Browse All Tools
                 </Link>
@@ -245,7 +245,7 @@ Best regards,
               {/* Action Buttons */}
               <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
                 <Button asChild className="bg-cyan-600 hover:bg-cyan-500 text-white font-semibold">
-                  <Link to="/">
+                  <Link to="/main-category/ALL%20AI%20TOOLS">
                     <Search className="w-4 h-4 mr-2" />
                     Browse All Tools
                   </Link>
