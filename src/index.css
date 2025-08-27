@@ -10,3 +10,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Critical mobile fixes */
+@media (max-width: 768px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  body {
+    overflow-x: hidden;
+    width: 100vw;
+    position: relative;
+  }
+  
+  /* Prevent zoom and orientation issues */
+  input, textarea, select {
+    font-size: 16px !important;
+    transform: translateZ(0);
+  }
+}

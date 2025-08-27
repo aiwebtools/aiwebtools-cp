@@ -76,10 +76,20 @@
   }
 }
 
-/* Viewport optimizations */
-@viewport {
-  width: device-width;
-  zoom: 1.0;
+/* Mobile portrait orientation lock */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100vw;
+    max-width: 100%;
+    position: relative;
+  }
+  
+  /* Prevent horizontal scroll */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 }
 
 /* Prevent layout shifts */
