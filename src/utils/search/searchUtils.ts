@@ -168,36 +168,181 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   }
   
   // AUDIO/MUSIC TOOL PRIORITY - Enhanced detection
-  if (normalizedSearchTerm.includes('audio') || normalizedSearchTerm.includes('music') || 
-      normalizedSearchTerm.includes('sound') || normalizedSearchTerm.includes('voice')) {
+  if (normalizedSearchTerm === 'audio' || normalizedSearchTerm.includes('audio') || 
+      normalizedSearchTerm.includes('music') || normalizedSearchTerm.includes('sound') || 
+      normalizedSearchTerm.includes('voice')) {
+    console.log('🎵 AUDIO SEARCH DETECTED - Filtering for audio tools only');
     
     const audioTools = tools.filter(tool => {
-      const searchableText = [tool.title, tool.description, ...(tool.tags || [])].join(' ').toLowerCase();
-      return searchableText.includes('audio') || 
-             searchableText.includes('music') || 
-             searchableText.includes('sound') ||
-             searchableText.includes('voice') ||
-             tool.category?.toLowerCase().includes('audio') ||
-             tool.category?.toLowerCase().includes('music');
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('audio') || lowerTitle.includes('music') || 
+             lowerTitle.includes('sound') || lowerTitle.includes('voice') ||
+             lowerDescription.includes('audio') || lowerDescription.includes('music') ||
+             lowerDescription.includes('sound') || lowerDescription.includes('voice') ||
+             lowerCategory.includes('audio') || lowerCategory.includes('music') ||
+             lowerTags.some(tag => tag.includes('audio') || tag.includes('music') || 
+                                  tag.includes('sound') || tag.includes('voice'));
     });
+    
+    console.log(`🎵 Found ${audioTools.length} audio tools:`, audioTools.slice(0, 5).map(t => t.title));
     
     const sortedAudioTools = audioTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
       
-      if (normalizedSearchTerm.includes('audio')) {
-        if (a.title.toLowerCase().includes('audio')) scoreA += 5000;
-        if (b.title.toLowerCase().includes('audio')) scoreB += 5000;
-      }
-      if (normalizedSearchTerm.includes('music')) {
-        if (a.title.toLowerCase().includes('music')) scoreA += 5000;
-        if (b.title.toLowerCase().includes('music')) scoreB += 5000;
-      }
+      // Exact term match in title gets highest priority
+      if (normalizedSearchTerm.includes('audio') && a.title.toLowerCase().includes('audio')) scoreA += 10000;
+      if (normalizedSearchTerm.includes('audio') && b.title.toLowerCase().includes('audio')) scoreB += 10000;
+      if (normalizedSearchTerm.includes('music') && a.title.toLowerCase().includes('music')) scoreA += 10000;
+      if (normalizedSearchTerm.includes('music') && b.title.toLowerCase().includes('music')) scoreB += 10000;
+      if (normalizedSearchTerm.includes('voice') && a.title.toLowerCase().includes('voice')) scoreA += 10000;
+      if (normalizedSearchTerm.includes('voice') && b.title.toLowerCase().includes('voice')) scoreB += 10000;
+      if (normalizedSearchTerm.includes('sound') && a.title.toLowerCase().includes('sound')) scoreA += 10000;
+      if (normalizedSearchTerm.includes('sound') && b.title.toLowerCase().includes('sound')) scoreB += 10000;
       
       return scoreB - scoreA;
     });
     
-    const prioritizedAudioSearch = [...sortedAudioTools, ...tools.filter(t => !audioTools.includes(t))];
-    return applyAIWebToolsPrioritization(performEnhancedSearch(prioritizedAudioSearch, searchTerm, searchWords, phoneticVariations, intentConfig));
+    const nonAudioTools = tools.filter(tool => !audioTools.includes(tool));
+    const finalAudioResults = [...sortedAudioTools, ...nonAudioTools];
+    return performEnhancedSearch(finalAudioResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // EDUCATION/LEARNING TOOL PRIORITY - Enhanced detection  
+  if (normalizedSearchTerm === 'education' || normalizedSearchTerm.includes('education') ||
+      normalizedSearchTerm === 'learn' || normalizedSearchTerm.includes('learn') ||
+      normalizedSearchTerm === 'course' || normalizedSearchTerm.includes('course') ||
+      normalizedSearchTerm === 'school' || normalizedSearchTerm.includes('school')) {
+    console.log('🎓 EDUCATION SEARCH DETECTED - Filtering for education tools only');
+    
+    const educationTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('education') || lowerTitle.includes('learn') || 
+             lowerTitle.includes('course') || lowerTitle.includes('school') ||
+             lowerTitle.includes('college') || lowerTitle.includes('skill') ||
+             lowerTitle.includes('training') || lowerTitle.includes('tutorial') ||
+             lowerDescription.includes('education') || lowerDescription.includes('learn') ||
+             lowerDescription.includes('course') || lowerDescription.includes('school') ||
+             lowerCategory.includes('education') || lowerCategory.includes('learning') ||
+             lowerTags.some(tag => tag.includes('education') || tag.includes('learning') || 
+                                  tag.includes('course') || tag.includes('skill'));
+    });
+    
+    console.log(`🎓 Found ${educationTools.length} education tools:`, educationTools.slice(0, 5).map(t => t.title));
+    
+    const sortedEducationTools = educationTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      // Priority for AI Web Tools education GPTs
+      if (a.title.toLowerCase().includes('learn any skill gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('learn any skill gpt')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('learn any course gpt')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('learn any course gpt')) scoreB += 11000;
+      if (a.title.toLowerCase().includes('college degree gpt')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('college degree gpt')) scoreB += 10000;
+      
+      // Exact term matches in title
+      if (normalizedSearchTerm.includes('education') && a.title.toLowerCase().includes('education')) scoreA += 9000;
+      if (normalizedSearchTerm.includes('education') && b.title.toLowerCase().includes('education')) scoreB += 9000;
+      if (normalizedSearchTerm.includes('learn') && a.title.toLowerCase().includes('learn')) scoreA += 9000;
+      if (normalizedSearchTerm.includes('learn') && b.title.toLowerCase().includes('learn')) scoreB += 9000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonEducationTools = tools.filter(tool => !educationTools.includes(tool));
+    const finalEducationResults = [...sortedEducationTools, ...nonEducationTools];
+    return performEnhancedSearch(finalEducationResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // CHAT TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'chat' || normalizedSearchTerm.includes('chat') ||
+      normalizedSearchTerm.includes('conversation') || normalizedSearchTerm.includes('chatbot')) {
+    console.log('💬 CHAT SEARCH DETECTED - Filtering for chat tools only');
+    
+    const chatTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('chat') || lowerTitle.includes('conversation') || 
+             lowerTitle.includes('talk') || lowerTitle.includes('assistant') ||
+             lowerTitle.includes('gpt') || lowerTitle.includes('ai') ||
+             lowerDescription.includes('chat') || lowerDescription.includes('conversation') ||
+             lowerDescription.includes('talk') || lowerDescription.includes('assistant') ||
+             lowerCategory.includes('chat') || lowerCategory.includes('assistant') ||
+             lowerTags.some(tag => tag.includes('chat') || tag.includes('conversation') || 
+                                  tag.includes('assistant') || tag.includes('ai'));
+    });
+    
+    console.log(`💬 Found ${chatTools.length} chat tools:`, chatTools.slice(0, 5).map(t => t.title));
+    
+    const sortedChatTools = chatTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      // Exact "chat" in title gets highest priority
+      if (a.title.toLowerCase().includes('chat')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('chat')) scoreB += 10000;
+      
+      // GPT tools get high priority for chat searches
+      if (a.title.toLowerCase().includes('gpt')) scoreA += 8000;
+      if (b.title.toLowerCase().includes('gpt')) scoreB += 8000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonChatTools = tools.filter(tool => !chatTools.includes(tool));
+    const finalChatResults = [...sortedChatTools, ...nonChatTools];
+    return performEnhancedSearch(finalChatResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // AGENT TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'agent' || normalizedSearchTerm.includes('agent') ||
+      normalizedSearchTerm.includes('assistant') || normalizedSearchTerm.includes('ai assistant')) {
+    console.log('🤖 AGENT SEARCH DETECTED - Filtering for agent tools only');
+    
+    const agentTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('agent') || lowerTitle.includes('assistant') || 
+             lowerTitle.includes('gpt') || lowerTitle.includes('ai') ||
+             lowerDescription.includes('agent') || lowerDescription.includes('assistant') ||
+             lowerDescription.includes('ai assistant') || lowerDescription.includes('ai agent') ||
+             lowerCategory.includes('agent') || lowerCategory.includes('assistant') ||
+             lowerTags.some(tag => tag.includes('agent') || tag.includes('assistant') || 
+                                  tag.includes('ai'));
+    });
+    
+    console.log(`🤖 Found ${agentTools.length} agent tools:`, agentTools.slice(0, 5).map(t => t.title));
+    
+    const sortedAgentTools = agentTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      // Exact "agent" in title gets highest priority
+      if (a.title.toLowerCase().includes('agent')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('agent')) scoreB += 10000;
+      
+      // "Assistant" in title gets high priority
+      if (a.title.toLowerCase().includes('assistant')) scoreA += 9000;
+      if (b.title.toLowerCase().includes('assistant')) scoreB += 9000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonAgentTools = tools.filter(tool => !agentTools.includes(tool));
+    const finalAgentResults = [...sortedAgentTools, ...nonAgentTools];
+    return performEnhancedSearch(finalAgentResults, searchTerm, searchWords, phoneticVariations, intentConfig);
   }
   
   // PRIORITY: For "personal" searches, prioritize AI Web Tools GPTs
