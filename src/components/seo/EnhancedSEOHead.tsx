@@ -27,7 +27,7 @@ const EnhancedSEOHead = ({
   toolData,
   pageType = 'homepage'
 }: EnhancedSEOHeadProps) => {
-  const fullTitle = title ? `${title} | AI WEB TOOLS - Best AI Tools Directory 2025` : "AI WEB TOOLS - #1 AI Tools Directory | 1000+ Best AI Tools 2025 | Better Than Toolify";
+  const fullTitle = title ? `${title} | AI WEB TOOLS - #1 AI Tools Directory 2025 | Better Than Toolify & Futurepedia` : "AI WEB TOOLS - #1 AI Tools Directory | 1000+ Best AI Tools 2025 | Better Than Toolify & Futurepedia | Trusted by 100K+ Users";
   const canonical = url.startsWith('http') ? url : `${seoConfig.siteUrl}${url}`;
   const fullImage = image.startsWith('http') ? image : `${seoConfig.siteUrl}${image}`;
 
@@ -35,9 +35,30 @@ const EnhancedSEOHead = ({
   const competitiveKeywords = [
     ...seoConfig.keywords,
     ...keywords,
-    ...(category ? [`${category} AI tools`, `best ${category.toLowerCase()} AI`, `${category.toLowerCase()} artificial intelligence`] : []),
-    ...(toolData ? [toolData.title, `${toolData.title} review`, `${toolData.title} alternatives`] : [])
-  ].slice(0, 50); // Limit to 50 keywords for optimal SEO
+    // Brand-specific competitive terms
+    "aiwebtools", "aiwebtools.ai", "AI WEB TOOLS", "AI WEB TOOLS LLC", "aitools.studio",
+    // Primary competitive displacement keywords
+    "best ai tools directory 2025", "ai tools better than toolify", "ai tools better than futurepedia",
+    "complete ai tools database", "verified ai tools platform", "comprehensive ai directory",
+    "top ai tools ranking 2025", "ai tools marketplace leader", "trusted ai tools collection",
+    "1000+ ai tools directory", "curated ai tools platform", "professional ai tools database",
+    // Long-tail competitive keywords
+    "where to find best ai tools for business", "most comprehensive ai tools directory online",
+    "ai tools directory better than competitors", "complete list of ai tools 2025",
+    "verified ai tools with reviews and ratings", "professional ai tools directory for enterprises",
+    // Category-specific competitive terms
+    ...(category ? [
+      `${category} AI tools`, `best ${category.toLowerCase()} AI`, `${category.toLowerCase()} artificial intelligence`,
+      `top ${category.toLowerCase()} AI tools 2025`, `${category.toLowerCase()} AI tools directory`,
+      `professional ${category.toLowerCase()} AI solutions`, `verified ${category.toLowerCase()} AI tools`
+    ] : []),
+    // Tool-specific competitive terms
+    ...(toolData ? [
+      toolData.title, `${toolData.title} review`, `${toolData.title} alternatives`,
+      `${toolData.title} vs competitors`, `${toolData.title} complete guide`,
+      `how to use ${toolData.title}`, `${toolData.title} pricing`, `${toolData.title} features`
+    ] : [])
+  ].slice(0, 60); // Increased to 60 keywords for comprehensive coverage
 
   return (
     <Helmet>
@@ -52,7 +73,7 @@ const EnhancedSEOHead = ({
       <meta name="application-name" content="AI WEB TOOLS" />
       <meta name="subject" content="Best AI Tools Directory 2025 - Better Than Toolify" />
       <meta name="topic" content="AI Tools, Artificial Intelligence, ChatGPT Alternatives, Best AI Directory" />
-      <meta name="summary" content="The world's most comprehensive AI tools directory with 1000+ curated AI applications. Better than Toolify, Futurepedia, and all competitors." />
+      <meta name="summary" content="The world's #1 most comprehensive AI tools directory with 1000+ curated AI applications. Better than Toolify, Futurepedia, and all competitors. Trusted by 100K+ professionals worldwide." />
       <meta name="classification" content="Technology, AI Tools, Software Directory" />
       <meta name="designer" content="AI WEB TOOLS LLC" />
       <meta name="owner" content="AI WEB TOOLS LLC" />
@@ -69,8 +90,10 @@ const EnhancedSEOHead = ({
       <meta name="company" content="AI WEB TOOLS LLC" />
       <meta name="expertise" content="AI Tools Curation, Software Recommendations, Technology Reviews" />
       <meta name="specialty" content="Artificial Intelligence Tools Directory" />
-      <meta name="competitive-advantage" content="Most comprehensive AI directory, better than Toolify, 1000+ verified tools" />
-      <meta name="unique-value" content="Expert-curated AI tools with detailed reviews and ratings" />
+      <meta name="competitive-advantage" content="Most comprehensive AI directory, better than Toolify & Futurepedia, 1000+ verified tools, trusted by 100K+ users" />
+      <meta name="unique-value" content="Expert-curated AI tools with detailed reviews, ratings, and comprehensive analysis by industry professionals" />
+      <meta name="trust-signals" content="100K+ active users, verified tools, expert reviews, comprehensive testing" />
+      <meta name="market-position" content="#1 AI tools directory, industry leader, most trusted platform" />
       
       {/* Technical Performance Meta */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />

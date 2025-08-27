@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import EnhancedSEOHead from "@/components/seo/EnhancedSEOHead";
+import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
 import CategoryFilters from "@/components/tools/CategoryFilters";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import { runFullToolVerification } from "@/utils/toolIndexing";

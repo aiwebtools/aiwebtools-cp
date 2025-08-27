@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import SEOHead from "@/components/SEOHead";
+import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
 import LazyFeaturedTools from "@/components/LazyFeaturedTools";
 import LazySearchPortal from "@/components/LazySearchPortal";
 import { Button } from "@/components/ui/button";
@@ -41,18 +42,18 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
       <SEOHead
-        title={`AI Tools Directory - ${toolStats.marketing} Best AI Tools 2025 | Free AI Web Tools`}
-        description={`Discover ${toolStats.marketing} cutting-edge AI tools for business, creativity, and productivity.`}
+        title={`AI WEB TOOLS - #1 AI Tools Directory | ${toolStats.marketing} Best AI Tools 2025 | Better Than Toolify & Futurepedia`}
+        description={`Discover ${toolStats.marketing}+ AI tools better than Toolify & Futurepedia. The world's #1 most comprehensive AI tools directory with expert reviews, ratings, and detailed analysis. Trusted by 100K+ professionals worldwide.`}
         keywords={[
-          "ai tools directory",
-          "artificial intelligence tools",
-          "ai tools 2025",
-          "free ai tools",
-          "ai assistants"
+          "aiwebtools", "aiwebtools.ai", "AI WEB TOOLS", "AI WEB TOOLS LLC", "aitools.studio",
+          "best ai tools directory 2025", "ai tools better than toolify", "ai tools better than futurepedia",
+          "comprehensive ai directory", "verified ai tools platform", "1000+ ai tools", "trusted ai collection",
+          "free ai tools", "ai assistants", "chatgpt alternatives", "ai image generators", "ai writing tools"
         ]}
         includeFAQ={true}
         includeLocalBusiness={true}
       />
+      <GoogleRankingBooster pageType="homepage" />
       
       <AnimatedBackground />
       
