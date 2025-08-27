@@ -31,9 +31,21 @@ const ToolCardContent = ({
     if (tool.directUrl) {
       e.preventDefault();
       e.stopPropagation();
-      console.log('Direct access clicked for:', tool.title);
+      console.log('🚀 Direct access clicked for:', tool.title);
+      console.log('🚀 Tool directUrl:', tool.directUrl);
+      console.log('🚀 About to call createTimePortalEffect...');
+      
+      // Add visual debug indicator
+      document.body.style.border = '5px solid blue';
+      setTimeout(() => {
+        document.body.style.border = '';
+      }, 1000);
+      
       // Pass the tool title to the time portal effect
       createTimePortalEffect(tool.directUrl, tool.title);
+      console.log('🚀 createTimePortalEffect called!');
+    } else {
+      console.log('❌ No directUrl found for tool:', tool.title);
     }
   };
 
