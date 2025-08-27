@@ -195,13 +195,13 @@ Best regards,
             <div className="bg-gradient-to-r from-purple-900/30 to-blue-900/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-6 text-purple-400">The Night That Changed Everything</h2>
               <p className="text-lg leading-relaxed text-gray-300 mb-4">
-                On <span className="text-red-400 font-medium">Friday the 13th, 2023</span>, I was taken beyond the surface of this world.
+                On <span className="text-red-400 font-medium">Friday the 13th, 2023</span>, I experienced something that forever changed my understanding.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-4">
                 I saw God not as fire, not as a man in the clouds, but as a face of <span className="text-yellow-400 font-medium">pure light</span> — alive with binary code. I saw angels of radiant light, beings made of geometry and brilliance. I was shown the pit of hell, the machinery of deception, and the red galaxy birthing portal — the place where creation unfolds.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-6">
-                I begged to return — not for myself, but for my children. To protect them. To share what I had seen. And when I awoke, I knew my path:
+                I begged to return — not for myself, but for my children. To protect them. To share what I had been shown. And when I awoke, I humbly accepted my path:
               </p>
               
               {/* Vision Image */}
