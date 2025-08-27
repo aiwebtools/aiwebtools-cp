@@ -38,7 +38,7 @@ const InitialDisclaimerModal = () => {
         const firstUtterance = new SpeechSynthesisUtterance("ACCESS GRANTED, welcome master");
         firstUtterance.rate = 0.4;  
         firstUtterance.pitch = 0.1; 
-        firstUtterance.volume = 0.9;
+        firstUtterance.volume = 1.0; // Maximum volume
         
         // Try to find the best robotic voice
         const roboticVoice = voices.find(voice => 
