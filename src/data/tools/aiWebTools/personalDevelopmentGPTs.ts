@@ -202,7 +202,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     description: "Develop your leadership skills with the Leadership Mentor GPT. This AI tool provides guidance, insights, and strategies to help you inspire, motivate, and empower others. Become a confident and effective leader in your personal and professional life.",
     emoji: "👑",
     color: "from-purple-400 to-green-500",
-    directUrl: "https://chat.openai.com/g/g-T7X4w5Y1z-leadership-mentor",
+    directUrl: "https://chatgpt.com/g/g-68aed1eb015c8191bc8e2887bd4786b9-leadership-mentor-gpt",
     tags: ["leadership", "mentoring", "inspiration", "motivation", "empowerment"],
     category: "Personal Development & Self-Discovery",
     rating: 3.7,
