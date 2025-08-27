@@ -148,8 +148,19 @@ const MobileMenu = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[95vw] max-w-[380px] bg-black/95 shadow-xl border border-cyan-500/30 backdrop-blur-md max-h-[85vh] overflow-y-auto mx-2 z-[60]">
             <div className="p-3">
-              {/* Header with Logo */}
-              <div className="text-center mb-4 border-b border-cyan-500/30 pb-4">
+              {/* Header with Logo and Close Button */}
+              <div className="text-center mb-4 border-b border-cyan-500/30 pb-4 relative">
+                {/* Close Button - Top Right */}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={closeMenu}
+                  className="absolute top-0 right-0 h-8 w-8 p-0 text-gray-400 hover:text-white hover:bg-red-500/20 border border-red-500/30 rounded-full transition-all duration-200"
+                  aria-label="Close menu"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+                
                 <div className="flex justify-center mb-2">
                   <Logo />
                 </div>
