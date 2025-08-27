@@ -50,17 +50,32 @@ const WelcomeVoiceSystem = () => {
       
       // Create second message: "YOU'VE GOT TOOLS"
       const toolsMsg = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS");
-      toolsMsg.rate = isMobile ? 0.8 : 0.7;
-      toolsMsg.pitch = isMobile ? 0.6 : 0.5;
-      toolsMsg.volume = 1.0;
+      toolsMsg.rate = isMobile ? 0.9 : 0.8;  // Slightly faster for that classic AOL feel
+      toolsMsg.pitch = isMobile ? 1.1 : 1.0; // Higher pitch for British female sound
+      toolsMsg.volume = 1.0; // MAXIMUM VOLUME
       
-      // Find female voice for tools message
-      const femaleVoice = voices.find(v => 
+      // Find British female voice for AOL-style tools message
+      const britishFemaleVoice = voices.find(v => 
+        // First priority: British voices
+        (v.lang.includes('en-GB') && v.name.toLowerCase().includes('female')) ||
+        v.name.toLowerCase().includes('british') ||
+        v.name.toLowerCase().includes('kate') ||
+        v.name.toLowerCase().includes('serena') ||
+        v.name.toLowerCase().includes('tessa') ||
+        // Second priority: Any female voice that sounds good
         v.name.toLowerCase().includes('female') ||
         v.name.toLowerCase().includes('samantha') ||
-        v.name.toLowerCase().includes('karen')
+        v.name.toLowerCase().includes('karen') ||
+        v.name.toLowerCase().includes('victoria') ||
+        v.name.toLowerCase().includes('susan')
       );
-      if (femaleVoice) toolsMsg.voice = femaleVoice;
+      
+      if (britishFemaleVoice) {
+        console.log('🇬🇧 Using British/AOL-style voice for tools:', britishFemaleVoice.name);
+        toolsMsg.voice = britishFemaleVoice;
+      } else {
+        console.log('🔍 No British female voice found, using best available female voice');
+      }
       
       // Set up sequence timing
       welcomeMsg.onstart = () => console.log('🤖 Playing: "WELCOME MASTER"');
@@ -71,7 +86,10 @@ const WelcomeVoiceSystem = () => {
         }, isMobile ? 600 : 800);
       };
       
-      toolsMsg.onstart = () => console.log('📬 Playing: "YOU\'VE GOT TOOLS"');
+      toolsMsg.onstart = () => {
+        console.log('🇬🇧 Playing AOL-style: "YOU\'VE GOT TOOLS"');
+        console.log('🔊 Volume set to MAXIMUM for British AOL voice');
+      };
       toolsMsg.onend = () => console.log('🎉 Welcome sequence complete!');
       
       // Error handling
