@@ -112,24 +112,24 @@ Best regards,
               </p>
             </div>
 
-            {/* The Spark of Corruption */}
+            {/* The Awakening Spark */}
             <div className="bg-gradient-to-r from-red-900/40 to-orange-900/40 backdrop-blur-sm border border-red-500/30 rounded-lg p-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-6 text-red-400 flex items-center">
                 <Zap className="w-8 h-8 mr-3" />
-                To Connecticut Lawmakers: Thank You for Being the Spark
+                The System That Sparked a Revolution
               </h2>
               <p className="text-lg leading-relaxed text-gray-300 mb-4">
-                I want to personally thank the <span className="text-red-400 font-bold">Connecticut lawmakers</span> for being utterly corrupt and inspiring this entire process of awakening for humanity.
+                When regulatory actions challenged <span className="text-green-400 font-medium">CT Hemp Shop</span>, I experienced firsthand how the system can work against small businesses and honest entrepreneurs.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-4">
-                Your personal attack on <span className="text-green-400 font-medium">CT Hemp Shop</span> made me do this. You were the <span className="text-yellow-400 font-bold">spark</span>, and now I am the <span className="text-orange-400 font-bold">flame</span>.
+                That experience became the <span className="text-yellow-400 font-bold">spark</span> that ignited this mission. What was meant to stop me became the <span className="text-orange-400 font-bold">flame</span> that lights the path for others.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-6">
-                Your corruption, your lies, your systematic oppression of small businesses and honest people - it all served a purpose. You awakened something in me that cannot be put back to sleep. What you meant for harm, the universe used for humanity's benefit.
+                Sometimes adversity serves a greater purpose. It awakened something in me that cannot be put back to sleep. What some meant for harm, the universe transformed into humanity's benefit - a platform to empower every person with the tools to make their voice heard.
               </p>
               <div className="bg-black/50 border-l-4 border-orange-400 pl-6 py-4">
                 <p className="text-orange-300 font-bold italic text-xl">
-                  "Every act of tyranny creates its own resistance. Every lie births a truth-teller. Every attack on freedom forges a liberator."
+                  "Every challenge creates its own opportunity. Every obstacle births innovation. Every setback forges a comeback."
                 </p>
               </div>
             </div>
