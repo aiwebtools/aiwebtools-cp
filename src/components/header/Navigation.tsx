@@ -38,13 +38,6 @@ const Navigation = () => {
       >
         Home
       </button>
-
-      <button 
-        onClick={() => navigate('/our-story')}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
-      >
-        📖 Our Story
-      </button>
       
       <button 
         onClick={handleBrowseAITools}
@@ -301,6 +294,13 @@ const Navigation = () => {
           475-800-8096
         </a>
       </div>
+
+      <button 
+        onClick={() => navigate('/our-story')}
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
+      >
+        📖 Our Story
+      </button>
     </nav>
   );
 };

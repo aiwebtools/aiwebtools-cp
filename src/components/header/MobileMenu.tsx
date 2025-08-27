@@ -251,9 +251,6 @@ const MobileMenu = () => {
               <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
                 Home
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
-                📖 Our Story
-              </DropdownMenuItem>
               <DropdownMenuSeparator className="border-gray-700 mb-2" />
               
               {/* Browse Categories */}
@@ -393,6 +390,11 @@ const MobileMenu = () => {
                 {/* Clone Website Button */}
                 <DropdownMenuItem onClick={(e) => handleExternalLink('https://cloneaiwebtools.lovable.app/?via=aiwebtools', e)} className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700 font-bold rounded my-2 gold-glow">
                   🚀 CLONE THE AIWEBTOOLS.AI WEBSITE
+                </DropdownMenuItem>
+                
+                {/* Our Story - moved to bottom of mobile menu */}
+                <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
+                  📖 Our Story
                 </DropdownMenuItem>
                 
                 {/* Close Button under phone number */}
