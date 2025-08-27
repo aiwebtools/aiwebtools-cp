@@ -136,7 +136,7 @@ export const scoreEducation = (tool: Tool, searchTerm: string): number => {
     for (const coreeTool of coreEducationTools) {
       if (tool.title.toLowerCase().includes(coreeTool)) {
         score += 10000; // Massive boost for core education tools
-        // Core education tool match - performance optimized
+        console.log(`🎓 CORE EDUCATION MATCH: ${tool.title} gets 10000 points`);
         break;
       }
     }
@@ -145,7 +145,7 @@ export const scoreEducation = (tool: Tool, searchTerm: string): number => {
     for (const keyword of educationKeywords) {
       if (tool.title.toLowerCase().includes(keyword)) {
         score += 8000;
-        // Education title match - performance optimized
+        console.log(`🎓 EDUCATION TITLE MATCH: ${tool.title} gets 8000 points for ${keyword}`);
         break;
       }
     }
@@ -154,7 +154,7 @@ export const scoreEducation = (tool: Tool, searchTerm: string): number => {
     for (const desc of educationDescriptions) {
       if (tool.description.toLowerCase().includes(desc)) {
         score += 6000;
-        // Education description match - performance optimized
+        console.log(`🎓 EDUCATION DESC MATCH: ${tool.title} gets 6000 points for ${desc}`);
         break;
       }
     }
@@ -163,7 +163,7 @@ export const scoreEducation = (tool: Tool, searchTerm: string): number => {
     if (tool.category?.toLowerCase().includes('education') || 
         tool.category?.toLowerCase().includes('learning')) {
       score += 5000;
-      // Education category match - performance optimized
+      console.log(`🎓 EDUCATION CATEGORY MATCH: ${tool.title} gets 5000 points`);
     }
   } else {
     // Original scoring for non-education searches

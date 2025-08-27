@@ -125,6 +125,6 @@ export const scoreCannabis = (tool: Tool, searchTerm: string): number => {
     score += 2000;
   }
 
-  // Cannabis search scoring - optimized for performance
+  console.log(`🌿 Cannabis search match for "${tool.title}" with score: ${score}`);
   return score;
 };

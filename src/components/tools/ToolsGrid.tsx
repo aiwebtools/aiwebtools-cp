@@ -31,7 +31,7 @@ const ToolsGrid = memo(({
   isLoading = false,
   onCategoryChange
 }: ToolsGridProps) => {
-  // Memoize expensive calculations - optimized for maximum performance
+  // Memoize expensive calculations - simplified for performance
   const { 
     displayTools, 
     shouldShowSimilar, 
@@ -41,13 +41,12 @@ const ToolsGrid = memo(({
     shouldShowCategoriesButton
   } = useMemo(() => {
     const displayTools = tools.slice(0, displayedCount);
+    const shouldShowSimilar = false; // Disabled for performance
+    const similarTools = []; // Disabled for performance
     
-    // Disable expensive computations for better performance
-    const shouldShowSimilar = false;
-    const similarTools = [];
-    const hasMoreTools = displayedCount < tools.length;
-    const categoriesWithCounts = {};
-    const shouldShowCategoriesButton = false;
+    const hasMoreTools = selectedCategory ? true : displayedCount < tools.length;
+    const categoriesWithCounts = {}; // Simplified for performance
+    const shouldShowCategoriesButton = false; // Disabled for performance
     
     return {
       displayTools,
@@ -57,7 +56,7 @@ const ToolsGrid = memo(({
       categoriesWithCounts,
       shouldShowCategoriesButton
     };
-  }, [tools.length, displayedCount]); // Simplified dependencies for better performance
+  }, [tools, displayedCount, searchTerm, selectedCategory]);
 
   // Enable infinite scroll when hasInfiniteScroll is true
   useInfiniteScroll({
@@ -106,7 +105,7 @@ const ToolsGrid = memo(({
 
   if (toolsWithStableKeys.length === 0) return null;
 
-  // Always use virtualized grid for maximum performance
+  // Always use virtualized grid for maximum performance - simplified
   const useVirtualization = true;
 
   return (
