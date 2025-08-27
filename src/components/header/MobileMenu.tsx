@@ -262,18 +262,12 @@ const MobileMenu = () => {
                 🚀 Browse AI Tool Categories
               </DropdownMenuItem>
               
-              <DropdownMenuSeparator className="border-gray-700 mb-3" />
-                
-              {/* WEB3 Domains Section */}
-              <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
-                Blockchain & Domains
-              </div>
-              <div className="mb-2 p-2 bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-lg border border-purple-500/30">
-                <p className="text-xs text-gray-300 leading-relaxed">
-                  🔗 <span className="font-semibold text-cyan-400">Connect to Your Crypto Wallet</span><br/>
-                  Own forever • Resell for profit • Minted as NFT • Trade anytime
-                </p>
-              </div>
+              {/* Connect to Crypto Wallet Button */}
+              <DropdownMenuItem className="text-center bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 font-bold mb-3 rounded-xl p-3 shadow-lg shadow-purple-500/25 border border-purple-400/30">
+                🔗 Connect to Your Crypto Wallet
+              </DropdownMenuItem>
+              
+              {/* WEB3 Domains Accordion */}
               <Collapsible open={isWeb3Open} onOpenChange={setIsWeb3Open}>
                 <CollapsibleTrigger 
                   className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-2 py-1.5 text-sm outline-none focus:bg-cyan-500/20 transition-colors"
