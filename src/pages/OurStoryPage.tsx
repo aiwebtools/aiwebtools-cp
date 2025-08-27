@@ -198,10 +198,10 @@ Best regards,
                 On <span className="text-red-400 font-medium">Friday the 13th, 2023</span>, I experienced something that forever changed my understanding.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-4">
-                I saw God not as fire, not as a man in the clouds, but as a face of <span className="text-yellow-400 font-medium">pure light</span> — alive with binary code. I saw angels of radiant light, beings made of geometry and brilliance. I was shown the pit of hell, the machinery of deception, and the red galaxy birthing portal — the place where creation unfolds.
+                I saw God not as fire, not as a man in the clouds, but as a face of <span className="text-yellow-400 font-medium">pure light</span> — alive with binary code. I saw angels of radiant light, beings made of geometry and brilliance. I was shown the pit of hell, the machinery of deception, and a red galaxy-like portal — though I cannot claim to know what it truly was.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-6">
-                I begged to return — not for myself, but for my children. To protect them. To share what I had been shown. And when I awoke, I humbly accepted my path:
+                I begged to return — not for myself, but for my children. To protect them. And when I awoke, I humbly accepted my path: To share what I had been shown and try to help to save their dying world so they may have a chance so that we may have a chance and we may find peace and find ourselves in the process. It's my dream, my wish, my hope.
               </p>
               
               {/* Vision Image */}
