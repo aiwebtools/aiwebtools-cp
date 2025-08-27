@@ -558,6 +558,784 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     const finalSchoolResults = [...sortedSchoolTools, ...nonSchoolTools];
     return performEnhancedSearch(finalSchoolResults, searchTerm, searchWords, phoneticVariations, intentConfig);
   }
+
+  // BUSINESS TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'business' || normalizedSearchTerm.includes('business') ||
+      normalizedSearchTerm.includes('startup') || normalizedSearchTerm.includes('entrepreneur')) {
+    console.log('💼 BUSINESS SEARCH DETECTED - Filtering for business tools only');
+    
+    const businessTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('business') || lowerTitle.includes('startup') ||
+             lowerTitle.includes('entrepreneur') || lowerTitle.includes('company') ||
+             lowerTitle.includes('enterprise') || lowerTitle.includes('corporate') ||
+             lowerDescription.includes('business') || lowerDescription.includes('startup') ||
+             lowerCategory.includes('business') || lowerCategory.includes('productivity') ||
+             lowerTags.some(tag => tag.includes('business') || tag.includes('startup'));
+    });
+    
+    console.log(`💼 Found ${businessTools.length} business tools:`, businessTools.slice(0, 5).map(t => t.title));
+    
+    const sortedBusinessTools = businessTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('business plan generator gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('business plan generator gpt')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('startup validator gpt')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('startup validator gpt')) scoreB += 11000;
+      if (a.title.toLowerCase().includes('microsaas gpt')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('microsaas gpt')) scoreB += 10000;
+      
+      if (a.title.toLowerCase().includes('business')) scoreA += 9000;
+      if (b.title.toLowerCase().includes('business')) scoreB += 9000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonBusinessTools = tools.filter(tool => !businessTools.includes(tool));
+    const finalBusinessResults = [...sortedBusinessTools, ...nonBusinessTools];
+    return performEnhancedSearch(finalBusinessResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // WRITING TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'writing' || normalizedSearchTerm.includes('writing') ||
+      normalizedSearchTerm.includes('write') || normalizedSearchTerm.includes('content')) {
+    console.log('✍️ WRITING SEARCH DETECTED - Filtering for writing tools only');
+    
+    const writingTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('writing') || lowerTitle.includes('writer') ||
+             lowerTitle.includes('write') || lowerTitle.includes('content') ||
+             lowerTitle.includes('copywriting') || lowerTitle.includes('blog') ||
+             lowerTitle.includes('article') || lowerTitle.includes('book') ||
+             lowerDescription.includes('writing') || lowerDescription.includes('content') ||
+             lowerCategory.includes('writing') || lowerCategory.includes('content') ||
+             lowerTags.some(tag => tag.includes('writing') || tag.includes('content'));
+    });
+    
+    console.log(`✍️ Found ${writingTools.length} writing tools:`, writingTools.slice(0, 5).map(t => t.title));
+    
+    const sortedWritingTools = writingTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('book writer gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('book writer gpt')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('article and blog rewriter gpt')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('article and blog rewriter gpt')) scoreB += 11000;
+      
+      if (a.title.toLowerCase().includes('writing')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('writing')) scoreB += 10000;
+      if (a.title.toLowerCase().includes('writer')) scoreA += 9000;
+      if (b.title.toLowerCase().includes('writer')) scoreB += 9000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonWritingTools = tools.filter(tool => !writingTools.includes(tool));
+    const finalWritingResults = [...sortedWritingTools, ...nonWritingTools];
+    return performEnhancedSearch(finalWritingResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // IMAGE TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'image' || normalizedSearchTerm.includes('image') ||
+      normalizedSearchTerm.includes('picture') || normalizedSearchTerm.includes('photo')) {
+    console.log('🖼️ IMAGE SEARCH DETECTED - Filtering for image tools only');
+    
+    const imageTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('image') || lowerTitle.includes('photo') ||
+             lowerTitle.includes('picture') || lowerTitle.includes('art') ||
+             lowerTitle.includes('graphic') || lowerTitle.includes('visual') ||
+             lowerDescription.includes('image') || lowerDescription.includes('photo') ||
+             lowerCategory.includes('image') || lowerCategory.includes('art') ||
+             lowerTags.some(tag => tag.includes('image') || tag.includes('art'));
+    });
+    
+    console.log(`🖼️ Found ${imageTools.length} image tools:`, imageTools.slice(0, 5).map(t => t.title));
+    
+    const sortedImageTools = imageTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('restyle me gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('restyle me gpt')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('graphic & cover design gpt')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('graphic & cover design gpt')) scoreB += 11000;
+      
+      if (a.title.toLowerCase().includes('image')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('image')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonImageTools = tools.filter(tool => !imageTools.includes(tool));
+    const finalImageResults = [...sortedImageTools, ...nonImageTools];
+    return performEnhancedSearch(finalImageResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // DESIGN TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'design' || normalizedSearchTerm.includes('design') ||
+      normalizedSearchTerm.includes('graphic') || normalizedSearchTerm.includes('logo')) {
+    console.log('🎨 DESIGN SEARCH DETECTED - Filtering for design tools only');
+    
+    const designTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('design') || lowerTitle.includes('graphic') ||
+             lowerTitle.includes('logo') || lowerTitle.includes('creative') ||
+             lowerTitle.includes('sketch') || lowerTitle.includes('art') ||
+             lowerDescription.includes('design') || lowerDescription.includes('graphic') ||
+             lowerCategory.includes('design') || lowerCategory.includes('creative') ||
+             lowerTags.some(tag => tag.includes('design') || tag.includes('creative'));
+    });
+    
+    console.log(`🎨 Found ${designTools.length} design tools:`, designTools.slice(0, 5).map(t => t.title));
+    
+    const sortedDesignTools = designTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('graphic & cover design gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('graphic & cover design gpt')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('sketch artist gpt')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('sketch artist gpt')) scoreB += 11000;
+      
+      if (a.title.toLowerCase().includes('design')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('design')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonDesignTools = tools.filter(tool => !designTools.includes(tool));
+    const finalDesignResults = [...sortedDesignTools, ...nonDesignTools];
+    return performEnhancedSearch(finalDesignResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // MUSIC TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'music' || normalizedSearchTerm.includes('music') ||
+      normalizedSearchTerm.includes('sound') || normalizedSearchTerm.includes('audio')) {
+    console.log('🎵 MUSIC SEARCH DETECTED - Filtering for music tools only');
+    
+    const musicTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('music') || lowerTitle.includes('sound') ||
+             lowerTitle.includes('audio') || lowerTitle.includes('voice') ||
+             lowerTitle.includes('song') || lowerTitle.includes('melody') ||
+             lowerDescription.includes('music') || lowerDescription.includes('audio') ||
+             lowerCategory.includes('music') || lowerCategory.includes('audio') ||
+             lowerTags.some(tag => tag.includes('music') || tag.includes('audio'));
+    });
+    
+    console.log(`🎵 Found ${musicTools.length} music tools:`, musicTools.slice(0, 5).map(t => t.title));
+    
+    const sortedMusicTools = musicTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('music video maker ai studio')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('music video maker ai studio')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('music melodies & lessons gpt')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('music melodies & lessons gpt')) scoreB += 11000;
+      
+      if (a.title.toLowerCase().includes('music')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('music')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonMusicTools = tools.filter(tool => !musicTools.includes(tool));
+    const finalMusicResults = [...sortedMusicTools, ...nonMusicTools];
+    return performEnhancedSearch(finalMusicResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // CODING TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'coding' || normalizedSearchTerm.includes('coding') ||
+      normalizedSearchTerm.includes('programming') || normalizedSearchTerm.includes('code') ||
+      normalizedSearchTerm.includes('developer') || normalizedSearchTerm.includes('development')) {
+    console.log('💻 CODING SEARCH DETECTED - Filtering for coding tools only');
+    
+    const codingTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('coding') || lowerTitle.includes('code') ||
+             lowerTitle.includes('programming') || lowerTitle.includes('developer') ||
+             lowerTitle.includes('development') || lowerTitle.includes('software') ||
+             lowerDescription.includes('coding') || lowerDescription.includes('programming') ||
+             lowerCategory.includes('development') || lowerCategory.includes('coding') ||
+             lowerTags.some(tag => tag.includes('coding') || tag.includes('development'));
+    });
+    
+    console.log(`💻 Found ${codingTools.length} coding tools:`, codingTools.slice(0, 5).map(t => t.title));
+    
+    const sortedCodingTools = codingTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('engineering gpt ai suite')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('engineering gpt ai suite')) scoreB += 12000;
+      
+      if (a.title.toLowerCase().includes('coding')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('coding')) scoreB += 10000;
+      if (a.title.toLowerCase().includes('code')) scoreA += 9000;
+      if (b.title.toLowerCase().includes('code')) scoreB += 9000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonCodingTools = tools.filter(tool => !codingTools.includes(tool));
+    const finalCodingResults = [...sortedCodingTools, ...nonCodingTools];
+    return performEnhancedSearch(finalCodingResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // MARKETING TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'marketing' || normalizedSearchTerm.includes('marketing') ||
+      normalizedSearchTerm.includes('advertising') || normalizedSearchTerm.includes('promotion')) {
+    console.log('📈 MARKETING SEARCH DETECTED - Filtering for marketing tools only');
+    
+    const marketingTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('marketing') || lowerTitle.includes('advertising') ||
+             lowerTitle.includes('promotion') || lowerTitle.includes('sales') ||
+             lowerTitle.includes('social media') || lowerTitle.includes('seo') ||
+             lowerDescription.includes('marketing') || lowerDescription.includes('advertising') ||
+             lowerCategory.includes('marketing') || lowerCategory.includes('sales') ||
+             lowerTags.some(tag => tag.includes('marketing') || tag.includes('sales'));
+    });
+    
+    console.log(`📈 Found ${marketingTools.length} marketing tools:`, marketingTools.slice(0, 5).map(t => t.title));
+    
+    const sortedMarketingTools = marketingTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('marketing')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('marketing')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonMarketingTools = tools.filter(tool => !marketingTools.includes(tool));
+    const finalMarketingResults = [...sortedMarketingTools, ...nonMarketingTools];
+    return performEnhancedSearch(finalMarketingResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // HEALTH TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'health' || normalizedSearchTerm.includes('health') ||
+      normalizedSearchTerm.includes('medical') || normalizedSearchTerm.includes('wellness') ||
+      normalizedSearchTerm.includes('fitness') || normalizedSearchTerm.includes('doctor')) {
+    console.log('🏥 HEALTH SEARCH DETECTED - Filtering for health tools only');
+    
+    const healthTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('health') || lowerTitle.includes('medical') ||
+             lowerTitle.includes('doctor') || lowerTitle.includes('wellness') ||
+             lowerTitle.includes('fitness') || lowerTitle.includes('medicine') ||
+             lowerDescription.includes('health') || lowerDescription.includes('medical') ||
+             lowerCategory.includes('health') || lowerCategory.includes('wellness') ||
+             lowerTags.some(tag => tag.includes('health') || tag.includes('medical'));
+    });
+    
+    console.log(`🏥 Found ${healthTools.length} health tools:`, healthTools.slice(0, 5).map(t => t.title));
+    
+    const sortedHealthTools = healthTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('personalized dr. gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('personalized dr. gpt')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('mental wellness gpt')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('mental wellness gpt')) scoreB += 11000;
+      
+      if (a.title.toLowerCase().includes('health')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('health')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonHealthTools = tools.filter(tool => !healthTools.includes(tool));
+    const finalHealthResults = [...sortedHealthTools, ...nonHealthTools];
+    return performEnhancedSearch(finalHealthResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // FINANCE TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'finance' || normalizedSearchTerm.includes('finance') ||
+      normalizedSearchTerm.includes('money') || normalizedSearchTerm.includes('trading') ||
+      normalizedSearchTerm.includes('investment') || normalizedSearchTerm.includes('tax')) {
+    console.log('💰 FINANCE SEARCH DETECTED - Filtering for finance tools only');
+    
+    const financeTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('finance') || lowerTitle.includes('money') ||
+             lowerTitle.includes('trading') || lowerTitle.includes('investment') ||
+             lowerTitle.includes('tax') || lowerTitle.includes('budget') ||
+             lowerDescription.includes('finance') || lowerDescription.includes('trading') ||
+             lowerCategory.includes('finance') || lowerCategory.includes('trading') ||
+             lowerTags.some(tag => tag.includes('finance') || tag.includes('trading'));
+    });
+    
+    console.log(`💰 Found ${financeTools.length} finance tools:`, financeTools.slice(0, 5).map(t => t.title));
+    
+    const sortedFinanceTools = financeTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('trader gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('trader gpt')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('taxes gpt')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('taxes gpt')) scoreB += 11000;
+      
+      if (a.title.toLowerCase().includes('finance')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('finance')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonFinanceTools = tools.filter(tool => !financeTools.includes(tool));
+    const finalFinanceResults = [...sortedFinanceTools, ...nonFinanceTools];
+    return performEnhancedSearch(finalFinanceResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // LEGAL TOOL PRIORITY - Enhanced detection (already exists but enhancing)
+  if (normalizedSearchTerm === 'legal' || normalizedSearchTerm.includes('legal') ||
+      normalizedSearchTerm.includes('law') || normalizedSearchTerm.includes('contract')) {
+    console.log('⚖️ LEGAL SEARCH DETECTED - Filtering for legal tools only');
+    
+    const legalTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('legal') || lowerTitle.includes('law') ||
+             lowerTitle.includes('contract') || lowerTitle.includes('legislation') ||
+             lowerTitle.includes('attorney') || lowerTitle.includes('lawyer') ||
+             lowerDescription.includes('legal') || lowerDescription.includes('contract') ||
+             lowerCategory.includes('legal') || lowerCategory.includes('law') ||
+             lowerTags.some(tag => tag.includes('legal') || tag.includes('law'));
+    });
+    
+    console.log(`⚖️ Found ${legalTools.length} legal tools:`, legalTools.slice(0, 5).map(t => t.title));
+    
+    const sortedLegalTools = legalTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('legal draftsmith gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('legal draftsmith gpt')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('public defender gpt')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('public defender gpt')) scoreB += 11000;
+      
+      if (a.title.toLowerCase().includes('legal')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('legal')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonLegalTools = tools.filter(tool => !legalTools.includes(tool));
+    const finalLegalResults = [...sortedLegalTools, ...nonLegalTools];
+    return performEnhancedSearch(finalLegalResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // SCIENCE TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'science' || normalizedSearchTerm.includes('science') ||
+      normalizedSearchTerm.includes('scientific') || normalizedSearchTerm.includes('laboratory')) {
+    console.log('🧪 SCIENCE SEARCH DETECTED - Filtering for science tools only');
+    
+    const scienceTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('science') || lowerTitle.includes('scientific') ||
+             lowerTitle.includes('research') || lowerTitle.includes('laboratory') ||
+             lowerTitle.includes('experiment') || lowerTitle.includes('analysis') ||
+             lowerDescription.includes('science') || lowerDescription.includes('research') ||
+             lowerCategory.includes('science') || lowerCategory.includes('research') ||
+             lowerTags.some(tag => tag.includes('science') || tag.includes('research'));
+    });
+    
+    console.log(`🧪 Found ${scienceTools.length} science tools:`, scienceTools.slice(0, 5).map(t => t.title));
+    
+    const sortedScienceTools = scienceTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('nikola tesla gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('nikola tesla gpt')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('alchemist scientist gpt')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('alchemist scientist gpt')) scoreB += 11000;
+      
+      if (a.title.toLowerCase().includes('science')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('science')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonScienceTools = tools.filter(tool => !scienceTools.includes(tool));
+    const finalScienceResults = [...sortedScienceTools, ...nonScienceTools];
+    return performEnhancedSearch(finalScienceResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // TRAVEL TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'travel' || normalizedSearchTerm.includes('travel') ||
+      normalizedSearchTerm.includes('trip') || normalizedSearchTerm.includes('vacation')) {
+    console.log('✈️ TRAVEL SEARCH DETECTED - Filtering for travel tools only');
+    
+    const travelTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('travel') || lowerTitle.includes('trip') ||
+             lowerTitle.includes('vacation') || lowerTitle.includes('journey') ||
+             lowerTitle.includes('adventure') || lowerTitle.includes('tourism') ||
+             lowerDescription.includes('travel') || lowerDescription.includes('trip') ||
+             lowerCategory.includes('travel') || lowerCategory.includes('tourism') ||
+             lowerTags.some(tag => tag.includes('travel') || tag.includes('trip'));
+    });
+    
+    console.log(`✈️ Found ${travelTools.length} travel tools:`, travelTools.slice(0, 5).map(t => t.title));
+    
+    const sortedTravelTools = travelTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('travel advisor gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('travel advisor gpt')) scoreB += 12000;
+      
+      if (a.title.toLowerCase().includes('travel')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('travel')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonTravelTools = tools.filter(tool => !travelTools.includes(tool));
+    const finalTravelResults = [...sortedTravelTools, ...nonTravelTools];
+    return performEnhancedSearch(finalTravelResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // FOOD TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'food' || normalizedSearchTerm.includes('food') ||
+      normalizedSearchTerm.includes('cooking') || normalizedSearchTerm.includes('recipe') ||
+      normalizedSearchTerm.includes('chef') || normalizedSearchTerm.includes('restaurant')) {
+    console.log('🍽️ FOOD SEARCH DETECTED - Filtering for food tools only');
+    
+    const foodTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('food') || lowerTitle.includes('cooking') ||
+             lowerTitle.includes('recipe') || lowerTitle.includes('chef') ||
+             lowerTitle.includes('restaurant') || lowerTitle.includes('culinary') ||
+             lowerDescription.includes('food') || lowerDescription.includes('cooking') ||
+             lowerCategory.includes('food') || lowerCategory.includes('cooking') ||
+             lowerTags.some(tag => tag.includes('food') || tag.includes('cooking'));
+    });
+    
+    console.log(`🍽️ Found ${foodTools.length} food tools:`, foodTools.slice(0, 5).map(t => t.title));
+    
+    const sortedFoodTools = foodTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('chef "sizzle" ai culinary assistant')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('chef "sizzle" ai culinary assistant')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('restaurant menu maker gpt')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('restaurant menu maker gpt')) scoreB += 11000;
+      
+      if (a.title.toLowerCase().includes('food')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('food')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonFoodTools = tools.filter(tool => !foodTools.includes(tool));
+    const finalFoodResults = [...sortedFoodTools, ...nonFoodTools];
+    return performEnhancedSearch(finalFoodResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // FITNESS TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'fitness' || normalizedSearchTerm.includes('fitness') ||
+      normalizedSearchTerm.includes('workout') || normalizedSearchTerm.includes('exercise')) {
+    console.log('💪 FITNESS SEARCH DETECTED - Filtering for fitness tools only');
+    
+    const fitnessTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('fitness') || lowerTitle.includes('workout') ||
+             lowerTitle.includes('exercise') || lowerTitle.includes('training') ||
+             lowerTitle.includes('gym') || lowerTitle.includes('health') ||
+             lowerDescription.includes('fitness') || lowerDescription.includes('workout') ||
+             lowerCategory.includes('fitness') || lowerCategory.includes('health') ||
+             lowerTags.some(tag => tag.includes('fitness') || tag.includes('workout'));
+    });
+    
+    console.log(`💪 Found ${fitnessTools.length} fitness tools:`, fitnessTools.slice(0, 5).map(t => t.title));
+    
+    const sortedFitnessTools = fitnessTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('fitness')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('fitness')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonFitnessTools = tools.filter(tool => !fitnessTools.includes(tool));
+    const finalFitnessResults = [...sortedFitnessTools, ...nonFitnessTools];
+    return performEnhancedSearch(finalFitnessResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // GAMING TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'gaming' || normalizedSearchTerm.includes('gaming') ||
+      normalizedSearchTerm === 'game' || normalizedSearchTerm.includes('game')) {
+    console.log('🎮 GAMING SEARCH DETECTED - Filtering for gaming tools only');
+    
+    const gamingTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('game') || lowerTitle.includes('gaming') ||
+             lowerTitle.includes('entertainment') || lowerTitle.includes('trivia') ||
+             lowerTitle.includes('fun') || lowerTitle.includes('play') ||
+             lowerDescription.includes('game') || lowerDescription.includes('gaming') ||
+             lowerCategory.includes('gaming') || lowerCategory.includes('entertainment') ||
+             lowerTags.some(tag => tag.includes('game') || tag.includes('gaming'));
+    });
+    
+    console.log(`🎮 Found ${gamingTools.length} gaming tools:`, gamingTools.slice(0, 5).map(t => t.title));
+    
+    const sortedGamingTools = gamingTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('game design document / developer gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('game design document / developer gpt')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('trivia night gpt')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('trivia night gpt')) scoreB += 11000;
+      
+      if (a.title.toLowerCase().includes('game')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('game')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonGamingTools = tools.filter(tool => !gamingTools.includes(tool));
+    const finalGamingResults = [...sortedGamingTools, ...nonGamingTools];
+    return performEnhancedSearch(finalGamingResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // SOCIAL TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'social' || normalizedSearchTerm.includes('social') ||
+      normalizedSearchTerm.includes('media') || normalizedSearchTerm.includes('networking')) {
+    console.log('👥 SOCIAL SEARCH DETECTED - Filtering for social tools only');
+    
+    const socialTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('social') || lowerTitle.includes('media') ||
+             lowerTitle.includes('networking') || lowerTitle.includes('community') ||
+             lowerTitle.includes('chat') || lowerTitle.includes('communication') ||
+             lowerDescription.includes('social') || lowerDescription.includes('media') ||
+             lowerCategory.includes('social') || lowerCategory.includes('media') ||
+             lowerTags.some(tag => tag.includes('social') || tag.includes('media'));
+    });
+    
+    console.log(`👥 Found ${socialTools.length} social tools:`, socialTools.slice(0, 5).map(t => t.title));
+    
+    const sortedSocialTools = socialTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('social safety net gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('social safety net gpt')) scoreB += 12000;
+      
+      if (a.title.toLowerCase().includes('social')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('social')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonSocialTools = tools.filter(tool => !socialTools.includes(tool));
+    const finalSocialResults = [...sortedSocialTools, ...nonSocialTools];
+    return performEnhancedSearch(finalSocialResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // AUTOMATION TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'automation' || normalizedSearchTerm.includes('automation') ||
+      normalizedSearchTerm.includes('workflow') || normalizedSearchTerm.includes('productivity')) {
+    console.log('⚙️ AUTOMATION SEARCH DETECTED - Filtering for automation tools only');
+    
+    const automationTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('automation') || lowerTitle.includes('workflow') ||
+             lowerTitle.includes('productivity') || lowerTitle.includes('efficiency') ||
+             lowerTitle.includes('automated') || lowerTitle.includes('streamline') ||
+             lowerDescription.includes('automation') || lowerDescription.includes('workflow') ||
+             lowerCategory.includes('automation') || lowerCategory.includes('productivity') ||
+             lowerTags.some(tag => tag.includes('automation') || tag.includes('productivity'));
+    });
+    
+    console.log(`⚙️ Found ${automationTools.length} automation tools:`, automationTools.slice(0, 5).map(t => t.title));
+    
+    const sortedAutomationTools = automationTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('multitasker gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('multitasker gpt')) scoreB += 12000;
+      
+      if (a.title.toLowerCase().includes('automation')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('automation')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonAutomationTools = tools.filter(tool => !automationTools.includes(tool));
+    const finalAutomationResults = [...sortedAutomationTools, ...nonAutomationTools];
+    return performEnhancedSearch(finalAutomationResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // TRANSLATION TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'translation' || normalizedSearchTerm.includes('translation') ||
+      normalizedSearchTerm.includes('translate') || normalizedSearchTerm.includes('language')) {
+    console.log('🌐 TRANSLATION SEARCH DETECTED - Filtering for translation tools only');
+    
+    const translationTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('translation') || lowerTitle.includes('translate') ||
+             lowerTitle.includes('language') || lowerTitle.includes('multilingual') ||
+             lowerTitle.includes('interpreter') || lowerTitle.includes('linguistic') ||
+             lowerDescription.includes('translation') || lowerDescription.includes('translate') ||
+             lowerCategory.includes('translation') || lowerCategory.includes('language') ||
+             lowerTags.some(tag => tag.includes('translation') || tag.includes('language'));
+    });
+    
+    console.log(`🌐 Found ${translationTools.length} translation tools:`, translationTools.slice(0, 5).map(t => t.title));
+    
+    const sortedTranslationTools = translationTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('translation')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('translation')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonTranslationTools = tools.filter(tool => !translationTools.includes(tool));
+    const finalTranslationResults = [...sortedTranslationTools, ...nonTranslationTools];
+    return performEnhancedSearch(finalTranslationResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // VOICE TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'voice' || normalizedSearchTerm.includes('voice') ||
+      normalizedSearchTerm.includes('speech') || normalizedSearchTerm.includes('tts')) {
+    console.log('🗣️ VOICE SEARCH DETECTED - Filtering for voice tools only');
+    
+    const voiceTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('voice') || lowerTitle.includes('speech') ||
+             lowerTitle.includes('tts') || lowerTitle.includes('text-to-speech') ||
+             lowerTitle.includes('audio') || lowerTitle.includes('vocal') ||
+             lowerDescription.includes('voice') || lowerDescription.includes('speech') ||
+             lowerCategory.includes('voice') || lowerCategory.includes('audio') ||
+             lowerTags.some(tag => tag.includes('voice') || tag.includes('speech'));
+    });
+    
+    console.log(`🗣️ Found ${voiceTools.length} voice tools:`, voiceTools.slice(0, 5).map(t => t.title));
+    
+    const sortedVoiceTools = voiceTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('voice')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('voice')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonVoiceTools = tools.filter(tool => !voiceTools.includes(tool));
+    const finalVoiceResults = [...sortedVoiceTools, ...nonVoiceTools];
+    return performEnhancedSearch(finalVoiceResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // PHOTO TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'photo' || normalizedSearchTerm.includes('photo') ||
+      normalizedSearchTerm.includes('photography') || normalizedSearchTerm.includes('picture')) {
+    console.log('📸 PHOTO SEARCH DETECTED - Filtering for photo tools only');
+    
+    const photoTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('photo') || lowerTitle.includes('photography') ||
+             lowerTitle.includes('picture') || lowerTitle.includes('image') ||
+             lowerTitle.includes('visual') || lowerTitle.includes('camera') ||
+             lowerDescription.includes('photo') || lowerDescription.includes('photography') ||
+             lowerCategory.includes('photo') || lowerCategory.includes('image') ||
+             lowerTags.some(tag => tag.includes('photo') || tag.includes('image'));
+    });
+    
+    console.log(`📸 Found ${photoTools.length} photo tools:`, photoTools.slice(0, 5).map(t => t.title));
+    
+    const sortedPhotoTools = photoTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      if (a.title.toLowerCase().includes('photo')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('photo')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonPhotoTools = tools.filter(tool => !photoTools.includes(tool));
+    const finalPhotoResults = [...sortedPhotoTools, ...nonPhotoTools];
+    return performEnhancedSearch(finalPhotoResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
   
   // PRIORITY: For "personal" searches, prioritize AI Web Tools GPTs
   if (normalizedSearchTerm.includes('personal')) {
