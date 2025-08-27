@@ -344,6 +344,120 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     const finalAgentResults = [...sortedAgentTools, ...nonAgentTools];
     return performEnhancedSearch(finalAgentResults, searchTerm, searchWords, phoneticVariations, intentConfig);
   }
+
+  // RESEARCH TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'research' || normalizedSearchTerm.includes('research') ||
+      normalizedSearchTerm.includes('analysis') || normalizedSearchTerm.includes('data')) {
+    console.log('🔬 RESEARCH SEARCH DETECTED - Filtering for research tools only');
+    
+    const researchTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('research') || lowerTitle.includes('analysis') || 
+             lowerTitle.includes('data') || lowerTitle.includes('investigat') ||
+             lowerTitle.includes('study') || lowerTitle.includes('report') ||
+             lowerTitle.includes('science') || lowerTitle.includes('academic') ||
+             lowerDescription.includes('research') || lowerDescription.includes('analysis') ||
+             lowerDescription.includes('data') || lowerDescription.includes('investigat') ||
+             lowerCategory.includes('research') || lowerCategory.includes('analysis') ||
+             lowerCategory.includes('science') || lowerCategory.includes('data') ||
+             lowerTags.some(tag => tag.includes('research') || tag.includes('analysis') || 
+                                  tag.includes('data') || tag.includes('science'));
+    });
+    
+    console.log(`🔬 Found ${researchTools.length} research tools:`, researchTools.slice(0, 5).map(t => t.title));
+    
+    const sortedResearchTools = researchTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      // Priority for AI Web Tools research GPTs
+      if (a.title.toLowerCase().includes('data research analysis report gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('data research analysis report gpt')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('pharma research pro')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('pharma research pro')) scoreB += 11000;
+      
+      // Exact "research" in title gets highest priority
+      if (a.title.toLowerCase().includes('research')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('research')) scoreB += 10000;
+      
+      // Analysis and data tools get high priority
+      if (a.title.toLowerCase().includes('analysis')) scoreA += 9000;
+      if (b.title.toLowerCase().includes('analysis')) scoreB += 9000;
+      if (a.title.toLowerCase().includes('data')) scoreA += 8000;
+      if (b.title.toLowerCase().includes('data')) scoreB += 8000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonResearchTools = tools.filter(tool => !researchTools.includes(tool));
+    const finalResearchResults = [...sortedResearchTools, ...nonResearchTools];
+    return performEnhancedSearch(finalResearchResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // GPTS TOOL PRIORITY - Enhanced detection (show all GPTs and AI assistants)
+  if (normalizedSearchTerm === 'gpt' || normalizedSearchTerm === 'gpts' || 
+      normalizedSearchTerm.includes('gpt') || normalizedSearchTerm.includes('chatgpt') ||
+      normalizedSearchTerm.includes('claude') || normalizedSearchTerm.includes('gemini') ||
+      normalizedSearchTerm.includes('ai assistant') || normalizedSearchTerm.includes('custom gpt')) {
+    console.log('🤖 GPT SEARCH DETECTED - Prioritizing all GPTs and AI assistants');
+    
+    const gptTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('gpt') || lowerTitle.includes('chatgpt') || 
+             lowerTitle.includes('claude') || lowerTitle.includes('gemini') ||
+             lowerTitle.includes('assistant') || lowerTitle.includes('ai') ||
+             lowerTitle.includes('openai') || lowerTitle.includes('anthropic') ||
+             lowerDescription.includes('gpt') || lowerDescription.includes('chatgpt') ||
+             lowerDescription.includes('claude') || lowerDescription.includes('gemini') ||
+             lowerDescription.includes('ai assistant') || lowerDescription.includes('custom gpt') ||
+             lowerCategory.includes('ai') || lowerCategory.includes('assistant') ||
+             lowerTags.some(tag => tag.includes('gpt') || tag.includes('ai') || 
+                                  tag.includes('assistant') || tag.includes('chatbot')) ||
+             // Include all AI Web Tools GPTs
+             tool.directUrl?.includes('lovable.app') || tool.directUrl?.includes('aiwebtools');
+    });
+    
+    console.log(`🤖 Found ${gptTools.length} GPT/AI tools:`, gptTools.slice(0, 5).map(t => t.title));
+    
+    const sortedGPTTools = gptTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      // HIGHEST PRIORITY: All AI Web Tools GPTs
+      if (a.directUrl?.includes('lovable.app') || a.directUrl?.includes('aiwebtools')) scoreA += 15000;
+      if (b.directUrl?.includes('lovable.app') || b.directUrl?.includes('aiwebtools')) scoreB += 15000;
+      
+      // HIGH PRIORITY: Major AI assistants
+      if (a.title.toLowerCase().includes('chatgpt') || a.title.toLowerCase().includes('openai')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('chatgpt') || b.title.toLowerCase().includes('openai')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('claude') || a.title.toLowerCase().includes('anthropic')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('claude') || b.title.toLowerCase().includes('anthropic')) scoreB += 11000;
+      if (a.title.toLowerCase().includes('gemini') || a.title.toLowerCase().includes('google ai')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('gemini') || b.title.toLowerCase().includes('google ai')) scoreB += 10000;
+      
+      // MEDIUM PRIORITY: GPT in title
+      if (a.title.toLowerCase().includes('gpt')) scoreA += 9000;
+      if (b.title.toLowerCase().includes('gpt')) scoreB += 9000;
+      
+      // LOWER PRIORITY: AI assistants
+      if (a.title.toLowerCase().includes('assistant')) scoreA += 8000;
+      if (b.title.toLowerCase().includes('assistant')) scoreB += 8000;
+      if (a.title.toLowerCase().includes('ai')) scoreA += 7000;
+      if (b.title.toLowerCase().includes('ai')) scoreB += 7000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonGPTTools = tools.filter(tool => !gptTools.includes(tool));
+    const finalGPTResults = [...sortedGPTTools, ...nonGPTTools];
+    return performEnhancedSearch(finalGPTResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
   
   // PRIORITY: For "personal" searches, prioritize AI Web Tools GPTs
   if (normalizedSearchTerm.includes('personal')) {
