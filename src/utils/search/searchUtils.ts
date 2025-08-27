@@ -350,8 +350,8 @@ const performEnhancedSearch = (
       let score = 0;
       let matched = false;
 
-      // AIWEBTOOLS PRIORITY BOOST - Special handling for our custom GPTs
-      const aiWebToolsPriorityScore = getAIWebToolsPriorityScore(tool);
+      // AIWEBTOOLS PRIORITY BOOST - Special handling for our custom GPTs (with relevance checking)
+      const aiWebToolsPriorityScore = getAIWebToolsPriorityScore(tool, searchTerm);
       if (aiWebToolsPriorityScore > 0) {
         score += aiWebToolsPriorityScore;
         if (lowerTitle.includes(finalNormalizedTerm)) {

@@ -80,17 +80,64 @@ export const sortWithAIWebToolsPriority = (tools: Tool[]): Tool[] => {
   });
 };
 
-// Get priority score for search results (enhanced with power ranking)
-export const getAIWebToolsPriorityScore = (tool: Tool): number => {
+// Get priority score for search results (enhanced with relevance checking)
+export const getAIWebToolsPriorityScore = (tool: Tool, searchTerm?: string): number => {
   let score = 0;
   
-  if (isSoulMapGPT(tool)) {
-    score += 50000; // Ultimate priority for Soul Map GPT
-  } else if (isPriorityAIWebToolsGPT(tool)) {
-    score += 10000; // Highest priority for AI Web Tools GPTs with media
-  } else if (isAIWebToolsGPT(tool)) {
-    score += 5000; // High priority for all AI Web Tools GPTs
-  } else if (hasVideoOrImageMedia(tool)) {
+  // If no search term, apply normal prioritization
+  if (!searchTerm) {
+    if (isSoulMapGPT(tool)) {
+      score += 50000; // Ultimate priority for Soul Map GPT
+    } else if (isPriorityAIWebToolsGPT(tool)) {
+      score += 10000; // Highest priority for AI Web Tools GPTs with media
+    } else if (isAIWebToolsGPT(tool)) {
+      score += 5000; // High priority for all AI Web Tools GPTs
+    } else if (hasVideoOrImageMedia(tool)) {
+      score += 1000; // Medium priority for tools with media
+    }
+    return score;
+  }
+  
+  // Check if the tool is actually relevant to the search term
+  const lowerTitle = tool.title.toLowerCase();
+  const lowerDescription = tool.description.toLowerCase();
+  const lowerCategory = tool.category?.toLowerCase() || '';
+  const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+  const lowerSearchTerm = searchTerm.toLowerCase();
+  
+  // Check for relevance - tool should contain search term or related keywords
+  const isRelevant = 
+    lowerTitle.includes(lowerSearchTerm) ||
+    lowerDescription.includes(lowerSearchTerm) ||
+    lowerCategory.includes(lowerSearchTerm) ||
+    lowerTags.some(tag => tag.includes(lowerSearchTerm)) ||
+    // Check for related keywords
+    (lowerSearchTerm.includes('video') && (
+      lowerTitle.includes('video') || lowerTitle.includes('movie') || lowerTitle.includes('film') ||
+      lowerDescription.includes('video') || lowerDescription.includes('movie') || lowerDescription.includes('film')
+    )) ||
+    (lowerSearchTerm.includes('learn') && (
+      lowerTitle.includes('learn') || lowerTitle.includes('course') || lowerTitle.includes('education') ||
+      lowerDescription.includes('learn') || lowerDescription.includes('course') || lowerDescription.includes('education')
+    )) ||
+    (lowerSearchTerm.includes('health') && (
+      lowerTitle.includes('health') || lowerTitle.includes('medical') || lowerTitle.includes('doctor') ||
+      lowerDescription.includes('health') || lowerDescription.includes('medical') || lowerDescription.includes('doctor')
+    ));
+  
+  // Only give priority if the tool is relevant to the search
+  if (isRelevant) {
+    if (isSoulMapGPT(tool)) {
+      score += 50000; // Ultimate priority for Soul Map GPT
+    } else if (isPriorityAIWebToolsGPT(tool)) {
+      score += 10000; // Highest priority for AI Web Tools GPTs with media
+    } else if (isAIWebToolsGPT(tool)) {
+      score += 5000; // High priority for all AI Web Tools GPTs
+    }
+  }
+  
+  // Always give some boost for media content
+  if (hasVideoOrImageMedia(tool)) {
     score += 1000; // Medium priority for tools with media
   }
   
