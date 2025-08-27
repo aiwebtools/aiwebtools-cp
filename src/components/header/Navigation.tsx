@@ -48,13 +48,6 @@ const Navigation = () => {
         🎯 Browse AI Tools
       </button>
 
-      <button 
-        onClick={(e) => handleExternalLink("https://www.aitools.company", e)}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
-      >
-        ABOUT AI WEB TOOLS LLC
-      </button>
-
       <Popover>
         <PopoverTrigger asChild>
           <button 
@@ -64,7 +57,7 @@ const Navigation = () => {
             <span>Register WEB3 Domains</span>
           </button>
         </PopoverTrigger>
-        <PopoverContent className="w-96 max-h-[80vh] overflow-y-auto" align="end" side="bottom" collisionPadding={16}>
+        <PopoverContent className="w-96 max-h-[80vh] overflow-y-auto bg-black/95 border border-cyan-500/30 backdrop-blur-md z-[70]" align="end" side="bottom" collisionPadding={16}>
           <div className="mb-4 p-3 bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-lg border border-purple-500/30">
             <h3 className="text-sm font-bold text-cyan-400 mb-2">🔗 Connect to Your Crypto Wallet</h3>
             <p className="text-xs text-gray-300 leading-relaxed">
@@ -268,6 +261,13 @@ const Navigation = () => {
           </Accordion>
         </PopoverContent>
       </Popover>
+
+      <button 
+        onClick={(e) => handleExternalLink("https://www.aitools.company", e)}
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
+      >
+        ABOUT AI WEB TOOLS LLC
+      </button>
       
       <button 
         onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)}
