@@ -118,7 +118,12 @@ const WelcomeVoiceSystem = () => {
     const sessionKey = "welcomeVoicePlayed";
     const hasPlayedThisSession = sessionStorage.getItem(sessionKey);
     
-    if (!hasPlayedThisSession && !hasPlayed) {
+    console.log('🔍 Voice system check:', { hasPlayedThisSession, hasPlayed });
+    
+    // TEMPORARY: Clear session storage to test voice system
+    sessionStorage.removeItem(sessionKey);
+    
+    if (!hasPlayed) {
       console.log('🚀 First visit - preparing welcome sequence');
       
       const isMobile = isMobileDevice();
@@ -151,6 +156,8 @@ const WelcomeVoiceSystem = () => {
         document.removeEventListener('click', handleUserClick);
         document.removeEventListener('touchstart', handleUserClick);
       };
+    } else {
+      console.log('❌ Voice system skipped - already played this session');
     }
   }, [hasPlayed]);
 
