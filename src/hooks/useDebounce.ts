@@ -2,17 +2,39 @@
 import { useState, useEffect, useRef } from 'react';
 
 export function useDebounce<T>(value: T, delay: number): T {
-  // INSTANT RESPONSE - NO DEBOUNCING FOR LIGHTNING SPEED
-  return value;
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
 }
 
-// LIGHTNING FAST search - NO debouncing at all for instant response
-export function useSearchDebounce<T>(value: T, delay: number): T {
-  // RETURN VALUE IMMEDIATELY for lightning fast search
-  return value;
+// Search-specific debounce with shorter delay for better UX
+export function useSearchDebounce<T>(value: T, delay: number = 200): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
 }
 
-// INSTANT response hook for lightning fast typing
+// For instant display updates while still debouncing search
 export function useInstantSearch<T>(value: T): T {
-  return value; // NO delay whatsoever for lightning speed
+  return value; // Display immediately, but search is still debounced separately
 }

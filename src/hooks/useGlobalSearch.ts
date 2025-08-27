@@ -19,8 +19,8 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
-  // Add debouncing for better performance
-  const debouncedSearchTerm = useDebounce(searchTerm, 150);
+  // Add debouncing for better performance - increased delay to reduce computation
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
   // OPTIMIZED search effect with performance improvements
   useEffect(() => {
