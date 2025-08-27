@@ -20,10 +20,6 @@ const InitialDisclaimerModal = () => {
   const [isReady, setIsReady] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Clear localStorage for testing - remove this line after testing!
-  localStorage.removeItem("initialDisclaimerAccepted");
-  console.log('🗑️ Cleared localStorage for testing');
-
   useEffect(() => {
     console.log('🚀 InitialDisclaimerModal - useEffect triggered');
     
@@ -51,7 +47,7 @@ const InitialDisclaimerModal = () => {
         }
         setIsReady(true);
         console.log('✅ Modal ready state set to true');
-      }, 100);
+      }, 500);
 
       return () => {
         console.log('🧹 Cleanup timer');
