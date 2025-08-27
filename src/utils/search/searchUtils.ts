@@ -103,9 +103,10 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const partialSuggestions = getPartialMatchSuggestions(searchTerm);
   const advancedPartialMatches = getAdvancedPartialMatches(searchTerm, tools);
   
-  console.log(`🧠 SUPER SEARCH: "${searchTerm}" → "${correctedSearchTerm}"`, 
-             partialSuggestions.length > 0 ? `Suggestions: ${partialSuggestions.slice(0, 3).join(', ')}` : '',
-             `Advanced matches: ${advancedPartialMatches.length}`);
+  // Reduced console logging for performance - only for critical debugging
+  if (searchTerm.toLowerCase().includes('debug')) {
+    console.log(`🧠 SUPER SEARCH: "${searchTerm}" → "${correctedSearchTerm}"`);
+  }
 
   const normalizedSearchTerm = correctedSearchTerm.toLowerCase().trim();
   const searchWords = normalizedSearchTerm.split(/[\s,.-]+/).filter(word => word.length > 1);
@@ -116,6 +117,48 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   // Enhanced intent detection
   const userIntent = detectIntent(normalizedSearchTerm);
   const intentConfig = userIntent ? INTENT_PATTERNS[userIntent as keyof typeof INTENT_PATTERNS] : null;
+  
+  // VIDEO/AUDIO TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm.includes('video') || normalizedSearchTerm.includes('audio') || 
+      normalizedSearchTerm.includes('music') || normalizedSearchTerm.includes('sound') ||
+      normalizedSearchTerm.includes('editor') || normalizedSearchTerm.includes('editing')) {
+    
+    const videoAudioTools = tools.filter(tool => {
+      const searchableText = [tool.title, tool.description, ...(tool.tags || [])].join(' ').toLowerCase();
+      return searchableText.includes('video') || 
+             searchableText.includes('audio') || 
+             searchableText.includes('music') || 
+             searchableText.includes('sound') ||
+             searchableText.includes('editor') ||
+             searchableText.includes('editing') ||
+             tool.category?.toLowerCase().includes('video') ||
+             tool.category?.toLowerCase().includes('audio') ||
+             tool.category?.toLowerCase().includes('media');
+    });
+    
+    const sortedVideoAudioTools = videoAudioTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      // Boost for exact term matches
+      if (normalizedSearchTerm.includes('video')) {
+        if (a.title.toLowerCase().includes('video')) scoreA += 5000;
+        if (b.title.toLowerCase().includes('video')) scoreB += 5000;
+      }
+      if (normalizedSearchTerm.includes('audio')) {
+        if (a.title.toLowerCase().includes('audio')) scoreA += 5000;
+        if (b.title.toLowerCase().includes('audio')) scoreB += 5000;
+      }
+      if (normalizedSearchTerm.includes('music')) {
+        if (a.title.toLowerCase().includes('music')) scoreA += 5000;
+        if (b.title.toLowerCase().includes('music')) scoreB += 5000;
+      }
+      
+      return scoreB - scoreA;
+    });
+    
+    const prioritizedVideoAudioSearch = [...sortedVideoAudioTools, ...tools.filter(t => !videoAudioTools.includes(t))];
+    return applyAIWebToolsPrioritization(performEnhancedSearch(prioritizedVideoAudioSearch, searchTerm, searchWords, phoneticVariations, intentConfig));
+  }
   
   // PRIORITY: For "personal" searches, prioritize AI Web Tools GPTs
   if (normalizedSearchTerm.includes('personal')) {
@@ -237,8 +280,10 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       return scoreB - scoreA;
     });
     
-    console.log(`🎮 Game search prioritized: Found ${gameTools.length} game-related tools, including:`, 
-                sortedGameTools.slice(0, 3).map(t => t.title));
+      // Enhanced gaming/video game prioritization
+    if (searchTerm.toLowerCase().includes('debug')) {
+      console.log(`🎮 Game search prioritized: Found ${gameTools.length} game-related tools`);
+    }
     const prioritizedGameSearch = [...sortedGameTools, ...tools.filter(t => !gameTools.includes(t))];
     return applyAIWebToolsPrioritization(performEnhancedSearch(prioritizedGameSearch, searchTerm, searchWords, phoneticVariations, intentConfig));
   }
@@ -292,7 +337,7 @@ const performEnhancedSearch = (
   // Detect user task intent
   const userTask = matchUserTask(finalNormalizedTerm);
   
-  console.log(`🧠 Smart search for "${searchTerm}" -> "${processedSearchTerm}"`, userTask.taskType ? `Task detected: ${userTask.taskType}` : 'No specific task detected');
+  // Reduced console logging for performance
   
   const results = tools
     .filter(tool => !EXCLUDED_TOOLS.includes(tool.title))
@@ -386,11 +431,10 @@ const performEnhancedSearch = (
         score += scoreWebDevelopment(tool, finalNormalizedTerm);
       }
 
-      // SPECIAL MATCHING: Spiritual/Paranormal searches - HIGH PRIORITY
+      // SPECIAL MATCHING: Spiritual/Paranormal searches - REDUCED PRIORITY
       if (matchSpiritual(tool, finalNormalizedTerm)) {
         matched = true;
         score += scoreSpiritual(tool, finalNormalizedTerm);
-        console.log(`⚡ SPIRITUAL MATCH: ${tool.title} scored ${scoreSpiritual(tool, finalNormalizedTerm)} for "${finalNormalizedTerm}"`);
       }
       
       if (matchParanormal(tool, finalNormalizedTerm)) {
@@ -398,7 +442,7 @@ const performEnhancedSearch = (
         score += scoreParanormal(tool, finalNormalizedTerm);
       }
 
-      // ENHANCED "GOD" MATCHING for spiritual tools
+      // ENHANCED "GOD" MATCHING for spiritual tools - REDUCED BOOST
       if (finalNormalizedTerm.includes('god') && (
         tool.title.toLowerCase().includes('god') || 
         tool.title.toLowerCase().includes('gods') ||
@@ -408,25 +452,22 @@ const performEnhancedSearch = (
         tool.tags?.some(tag => tag.toLowerCase().includes('god') || tag.toLowerCase().includes('gods'))
       )) {
         matched = true;
-        score += 20000; // Very high priority for god-related searches
-        console.log(`⚡ ENHANCED GOD MATCH: ${tool.title} boosted for god search`);
+        score += 8000; // Reduced from 20000
       }
 
       // SUPER INTELLIGENT MATCHING: Context-aware partial matching
       if (!matched && matchWithContext(tool, searchTerm)) {
         matched = true;
         score += superIntelligentScore(tool, searchTerm);
-        console.log(`🤖 SUPER MATCH: ${tool.title} matched via intelligent context`);
       }
 
-      // ADVANCED PARTIAL MATCHING: Enhanced predictive matching for prefixes like "SCR"  
+      // ADVANCED PARTIAL MATCHING: Enhanced predictive matching for prefixes
       const advancedMatches = getAdvancedPartialMatches(searchTerm, [tool]);
       if (!matched && advancedMatches.length > 0) {
         matched = true;
         const suggestions = getPartialMatchSuggestions(searchTerm);
         const partialScore = scoreAdvancedPartialMatch(tool, searchTerm, suggestions);
         score += partialScore;
-        console.log(`🎯 ADVANCED PARTIAL MATCH: ${tool.title} matched via predictive matching (+${partialScore})`);
       }
 
       // HIGHEST PRIORITY: Exact title match

@@ -6,6 +6,7 @@ import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
+import { useDebounce } from "@/hooks/useDebounce";
 
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,10 +18,13 @@ export const useGlobalSearch = () => {
   const navigate = useNavigate();
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
+  
+  // Add debouncing for better performance
+  const debouncedSearchTerm = useDebounce(searchTerm, 150);
 
-  // ENHANCED search effect with endless scroll capability
+  // OPTIMIZED search effect with performance improvements
   useEffect(() => {
-    const trimmedTerm = searchTerm.trim();
+    const trimmedTerm = debouncedSearchTerm.trim();
     
     if (!trimmedTerm || trimmedTerm.length < 2) {
       setSearchResults([]);
@@ -92,7 +96,7 @@ export const useGlobalSearch = () => {
       );
       const endlessResults = [...results, ...remainingTools];
       
-      console.log(`🔍 2-char predictive search for "${trimmedTerm}": ${results.length} matches + ${remainingTools.length} remaining = ${endlessResults.length} total`);
+      // Removed console.log for performance
       
       setSearchResults(endlessResults);
       setDisplayedCount(30);
@@ -149,7 +153,7 @@ export const useGlobalSearch = () => {
             if (lowerTitle.includes(prediction) || 
                 lowerDescription.includes(prediction) ||
                 lowerTags.includes(prediction)) {
-              console.log(`🎯 3-char prediction "${prediction}" matched tool: ${tool.title}`);
+              // Removed console.log for performance
               return true;
             }
           }
@@ -174,7 +178,7 @@ export const useGlobalSearch = () => {
       );
       const endlessResults = [...results, ...remainingTools];
       
-      console.log(`🔍 3-char predictive search for "${trimmedTerm}": ${results.length} matches + ${remainingTools.length} remaining = ${endlessResults.length} total`);
+      // Removed console.log for performance
       
       setSearchResults(endlessResults);
       setDisplayedCount(30);
@@ -208,13 +212,12 @@ export const useGlobalSearch = () => {
       ...remainingTools
     ];
     
-    console.log(`🔍 Enhanced search for "${trimmedTerm}": ${intelligentResults.length} direct results + ${similarTools.length} similar + ${remainingTools.length} remaining = ${endlessResults.length} total endless scroll`);
-    console.log(`🔍 First 5 search results:`, intelligentResults.slice(0, 5).map(t => t.title));
+    // Removed console.logs for performance
     
     setSearchResults(endlessResults);
     setDisplayedCount(30); // Start with 30, then load more
     setIsOpen(true);
-  }, [searchTerm]);
+  }, [debouncedSearchTerm]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -279,7 +282,7 @@ export const useGlobalSearch = () => {
     const threshold = 100;
     const nearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
     
-    console.log(`📜 Scroll check: ${scrollTop + clientHeight} >= ${scrollHeight - threshold}? ${nearBottom}, Displayed: ${displayedCount}/${searchResults.length}`);
+    // Removed console.log for performance
     
     if (nearBottom && displayedCount < searchResults.length) {
       setIsLoadingMore(true);
@@ -287,7 +290,7 @@ export const useGlobalSearch = () => {
       // Immediate loading with shorter delay for better UX
       setTimeout(() => {
         const increment = Math.min(25, searchResults.length - displayedCount); // Load more items per batch
-        console.log(`📜 Loading ${increment} more tools (${displayedCount + increment}/${searchResults.length})`);
+        // Removed console.log for performance
         setDisplayedCount(prev => prev + increment);
         setIsLoadingMore(false);
       }, 100); // Reduced delay for snappier response

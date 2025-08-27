@@ -239,9 +239,11 @@ export const scoreTravel = (tool: Tool, searchTerm: string): number => {
   return score;
 };
 
-// Spiritual/Mystical specific matching
+// Spiritual/Mystical specific matching - OPTIMIZED FOR ACCURACY
 export const matchSpiritual = (tool: Tool, searchTerm: string): boolean => {
   const lowerSearchTerm = searchTerm.toLowerCase().trim();
+  
+  // Only match if the search term contains spiritual keywords
   const spiritualKeywords = [
     'soul', 'map', 'gematria', 'numerology', 'astrology', 'spiritual', 'mystical',
     'essence', 'blueprint', 'soul mapping', 'divine', 'cosmic', 'metaphysical',
@@ -250,55 +252,51 @@ export const matchSpiritual = (tool: Tool, searchTerm: string): boolean => {
     'god', 'gods', 'deities', 'deity', 'religious', 'religion', 'faith', 'prayer'
   ];
   
+  // STRICT CHECK: Only match if search term contains spiritual keywords
+  const searchContainsSpiritualKeywords = spiritualKeywords.some(keyword => 
+    lowerSearchTerm.includes(keyword)
+  );
+  
+  if (!searchContainsSpiritualKeywords) {
+    return false; // Don't match spiritual tools for non-spiritual searches
+  }
+  
   const searchableText = [
     tool.title,
     tool.description,
     ...(tool.tags || [])
   ].join(' ').toLowerCase();
   
-  console.log(`⚡ Checking spiritual match for "${tool.title}" with search "${searchTerm}"`);
-  
-  const matches = spiritualKeywords.some(keyword => 
-    lowerSearchTerm.includes(keyword) || searchableText.includes(keyword)
-  );
-  
-  // Enhanced matching for god-related searches
+  // Enhanced matching for god-related searches only when searching for "god"
   if (lowerSearchTerm.includes('god') && (
     tool.title.toLowerCase().includes('gods') ||
     tool.title.toLowerCase().includes('talk to the gods') ||
     searchableText.includes('gods') ||
     searchableText.includes('deities')
   )) {
-    console.log(`⚡ ENHANCED GOD MATCH FOUND: ${tool.title}`);
     return true;
   }
   
-  if (matches) {
-    console.log(`⚡ SPIRITUAL MATCH FOUND: ${tool.title}`);
-  }
-  
-  return matches;
+  // Only return true if tool actually contains spiritual content
+  return spiritualKeywords.some(keyword => searchableText.includes(keyword));
 };
 
 export const scoreSpiritual = (tool: Tool, searchTerm: string): number => {
   const lowerSearchTerm = searchTerm.toLowerCase().trim();
   let score = 0;
   
-  console.log(`⚡ Scoring spiritual tool "${tool.title}" for search "${searchTerm}"`);
-  
-  // ENHANCED: Special boost for "TALK TO THE GODS GPT" on god searches
+  // REDUCED: More reasonable boost for "TALK TO THE GODS GPT" on god searches
   if ((lowerSearchTerm.includes('god') || lowerSearchTerm.includes('gods')) && 
       (tool.title.toLowerCase().includes('talk to the gods') || 
        tool.title.toLowerCase().includes('gods gpt'))) {
-    score += 50000; // Massive boost for god searches
-    console.log(`⚡ GODS GPT SUPER BOOST: Adding 50000 to score for ${tool.title}`);
+    score += 15000; // Reduced from 50000 to 15000
   }
   
   // Check if this is the Soul Map GPT specifically
   if (tool.title.toLowerCase().includes('soul map') || 
       tool.title.toLowerCase().includes('soul scan') ||
       tool.description.toLowerCase().includes('gematria')) {
-    score += 25000; // Very high priority for spiritual searches
+    score += 12000; // Reduced from 25000 to 12000
   }
   
   // High-value spiritual keywords
@@ -306,12 +304,10 @@ export const scoreSpiritual = (tool: Tool, searchTerm: string): number => {
   for (const keyword of highValueKeywords) {
     if (lowerSearchTerm.includes(keyword)) {
       if (tool.title.toLowerCase().includes(keyword)) {
-        score += 8000;
-        console.log(`⚡ High value keyword "${keyword}" found in title: Adding 8000`);
+        score += 4000; // Reduced from 8000
       }
       if (tool.description.toLowerCase().includes(keyword)) {
-        score += 5000;
-        console.log(`⚡ High value keyword "${keyword}" found in description: Adding 5000`);
+        score += 2500; // Reduced from 5000
       }
     }
   }
@@ -321,22 +317,20 @@ export const scoreSpiritual = (tool: Tool, searchTerm: string): number => {
   for (const keyword of mediumValueKeywords) {
     if (lowerSearchTerm.includes(keyword)) {
       if (tool.title.toLowerCase().includes(keyword)) {
-        score += 4000;
+        score += 2000; // Reduced from 4000
       }
       if (tool.description.toLowerCase().includes(keyword)) {
-        score += 2500;
+        score += 1250; // Reduced from 2500
       }
     }
   }
   
-  console.log(`⚡ Final spiritual score for "${tool.title}": ${score}`);
   return score;
 };
 
-// Paranormal/Phenomenon specific matching
+// Paranormal/Phenomenon specific matching - OPTIMIZED FOR ACCURACY
 export const matchParanormal = (tool: Tool, searchTerm: string): boolean => {
   const lowerSearchTerm = searchTerm.toLowerCase().trim();
-  console.log(`🛸 Checking paranormal match for "${tool.title}" with search "${searchTerm}"`);
   
   const paranormalKeywords = [
     'phenomenon', 'paranormal', 'ufo', 'ghost', 'ghosthunting', 'supernatural',
@@ -346,57 +340,50 @@ export const matchParanormal = (tool: Tool, searchTerm: string): boolean => {
     'apparition', 'specter', 'phantom'
   ];
   
+  // STRICT CHECK: Only match if search term contains paranormal keywords
+  const searchContainsParanormalKeywords = paranormalKeywords.some(keyword => 
+    lowerSearchTerm.includes(keyword)
+  );
+  
+  if (!searchContainsParanormalKeywords) {
+    return false; // Don't match paranormal tools for non-paranormal searches
+  }
+  
   const searchableText = [
     tool.title,
     tool.description,
     ...(tool.tags || [])
   ].join(' ').toLowerCase();
   
-  const matches = paranormalKeywords.some(keyword => 
-    lowerSearchTerm.includes(keyword) || searchableText.includes(keyword)
-  );
-  
-  if (matches) {
-    console.log(`🛸 PARANORMAL MATCH FOUND: ${tool.title}`);
-  }
-  
-  return matches;
+  return paranormalKeywords.some(keyword => searchableText.includes(keyword));
 };
 
 export const scoreParanormal = (tool: Tool, searchTerm: string): number => {
   const lowerSearchTerm = searchTerm.toLowerCase().trim();
   let score = 0;
   
-  console.log(`🛸 Scoring paranormal for "${tool.title}" with search "${searchTerm}"`);
-  
   // Check if this is the Phenomenon Explorer AI Suite specifically
   if (tool.title.toLowerCase().includes('phenomenon explorer') || 
       tool.title.toLowerCase().includes('phenomenon investigator') ||
       tool.directUrl?.includes('phenomenonexplorer.lovable.app')) {
-    score += 30000; // Ultra high priority for paranormal/phenomenon searches
-    console.log(`🛸 PHENOMENON EXPLORER DETECTED: Adding 30000 to score for ${tool.title}`);
+    score += 15000; // Reduced from 30000
   }
   
   // High-value paranormal keywords that should prioritize Phenomenon Explorer
   const highValueKeywords = ['ufo', 'ghost', 'paranormal', 'phenomenon', 'supernatural', 'unexplained'];
   for (const keyword of highValueKeywords) {
     if (lowerSearchTerm.includes(keyword)) {
-      console.log(`🛸 High-value keyword "${keyword}" found in search`);
-      
-      // Give massive boost to Phenomenon Explorer for these searches
+      // Give reasonable boost to Phenomenon Explorer for these searches
       if (tool.title.toLowerCase().includes('phenomenon') || 
           tool.directUrl?.includes('phenomenonexplorer.lovable.app')) {
-        score += 25000;
-        console.log(`🛸 PHENOMENON TOOL BOOST: Adding 25000 for ${tool.title}`);
+        score += 8000; // Reduced from 25000
       }
       
       if (tool.title.toLowerCase().includes(keyword)) {
-        score += 8000;
-        console.log(`🛸 Title keyword match: Adding 8000 for ${tool.title}`);
+        score += 4000; // Reduced from 8000
       }
       if (tool.description.toLowerCase().includes(keyword)) {
-        score += 5000;
-        console.log(`🛸 Description keyword match: Adding 5000 for ${tool.title}`);
+        score += 2500; // Reduced from 5000
       }
     }
   }
@@ -407,19 +394,17 @@ export const scoreParanormal = (tool: Tool, searchTerm: string): number => {
     if (lowerSearchTerm.includes(keyword)) {
       if (tool.title.toLowerCase().includes('phenomenon') || 
           tool.directUrl?.includes('phenomenonexplorer.lovable.app')) {
-        score += 15000;
-        console.log(`🛸 Medium keyword boost for phenomenon tool: Adding 15000 for ${tool.title}`);
+        score += 5000; // Reduced from 15000
       }
       
       if (tool.title.toLowerCase().includes(keyword)) {
-        score += 4000;
+        score += 2000; // Reduced from 4000
       }
       if (tool.description.toLowerCase().includes(keyword)) {
-        score += 2500;
+        score += 1250; // Reduced from 2500
       }
     }
   }
   
-  console.log(`🛸 Final paranormal score for "${tool.title}": ${score}`);
   return score;
 };
