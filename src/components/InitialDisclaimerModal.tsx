@@ -106,8 +106,11 @@ const InitialDisclaimerModal = () => {
     }
   };
 
-  const handleAccept = () => {
+  const handleAccept = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     console.log('🤖 User accepting initial disclaimer - activating robot voices...');
+    console.log('📱 Event type:', e.type, 'Target:', e.target);
     
     // Play the robot voices
     createRobotVoices();
@@ -117,6 +120,19 @@ const InitialDisclaimerModal = () => {
     setIsOpen(false);
   };
 
+  const handleBackdropClick = (e: React.MouseEvent | React.TouchEvent) => {
+    // Don't close on backdrop click - force user to accept
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('📱 Backdrop clicked - preventing close');
+  };
+
+  const handleModalClick = (e: React.MouseEvent | React.TouchEvent) => {
+    // Prevent event bubbling to backdrop
+    e.stopPropagation();
+    console.log('📱 Modal content clicked - allowing interaction');
+  };
+
   // Don't render anything until ready to prevent flickering
   if (!isReady || !isOpen) {
     return null;
@@ -124,28 +140,39 @@ const InitialDisclaimerModal = () => {
 
   return (
     <div 
-      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-4"
-      style={{ backdropFilter: 'blur(8px)' }}
+      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 touch-none"
+      style={{ 
+        backdropFilter: 'blur(8px)',
+        WebkitBackdropFilter: 'blur(8px)',
+        touchAction: 'none'
+      }}
+      onClick={handleBackdropClick}
+      onTouchStart={handleBackdropClick}
     >
-      <div className="bg-gradient-to-br from-gray-900/95 to-gray-800/95 border border-cyan-500/30 rounded-xl p-6 max-w-md w-full mx-4 shadow-2xl shadow-cyan-500/20">
+      <div 
+        className="bg-gradient-to-br from-gray-900/95 to-gray-800/95 border border-cyan-500/30 rounded-xl p-4 sm:p-6 max-w-sm sm:max-w-md w-full mx-4 shadow-2xl shadow-cyan-500/20 touch-auto"
+        style={{ touchAction: 'auto' }}
+        onClick={handleModalClick}
+        onTouchStart={handleModalClick}
+      >
         
         {/* Header */}
         <div className="flex items-center gap-3 mb-4">
-          <AlertTriangle className="w-6 h-6 text-yellow-400 flex-shrink-0" />
-          <h2 className="text-xl font-bold text-cyan-400">Welcome to AI Web Tools</h2>
+          <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 flex-shrink-0" />
+          <h2 className="text-lg sm:text-xl font-bold text-cyan-400">Welcome to AI Web Tools</h2>
         </div>
         
         {/* Content */}
-        <div className="space-y-4 text-gray-300">
-          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
-            <h3 className="font-semibold text-yellow-400 mb-2">Important Notice</h3>
-            <p className="text-sm leading-relaxed">
+        <div className="space-y-3 sm:space-y-4 text-gray-300">
+          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 sm:p-4">
+            <h3 className="font-semibold text-yellow-400 mb-2 text-sm sm:text-base">Important Notice</h3>
+            <p className="text-xs sm:text-sm leading-relaxed">
               These AI tools are for <span className="text-cyan-400 font-semibold">educational and informational purposes only</span>. 
               Some tools are experimental in nature and do not constitute real human or professional advice.
             </p>
           </div>
           
-          <div className="text-sm text-gray-400">
+          <div className="text-xs sm:text-sm text-gray-400">
             <p>
               By continuing, you acknowledge that you understand these tools are AI-powered services 
               and should not replace professional consultation when needed.
@@ -154,12 +181,20 @@ const InitialDisclaimerModal = () => {
         </div>
         
         {/* Button */}
-        <div className="mt-6">
+        <div className="mt-4 sm:mt-6">
           <button 
             onClick={handleAccept}
-            className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/30"
+            onTouchEnd={handleAccept}
+            className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 active:from-cyan-800 active:to-blue-800 text-white font-semibold py-3 px-4 sm:px-6 text-sm sm:text-base rounded-lg transition-all duration-200 shadow-lg hover:shadow-cyan-500/30 touch-manipulation cursor-pointer select-none"
+            style={{ 
+              touchAction: 'manipulation',
+              WebkitTapHighlightColor: 'transparent',
+              WebkitTouchCallout: 'none',
+              WebkitUserSelect: 'none'
+            }}
+            type="button"
           >
-            I AGREE - Enter AI Web Tools
+            🤖 I AGREE - Enter AI Web Tools
           </button>
         </div>
       </div>
