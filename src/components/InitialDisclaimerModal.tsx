@@ -18,6 +18,8 @@ const InitialDisclaimerModal = () => {
   const [hasAttemptedVoices, setHasAttemptedVoices] = useState(false);
 
   const createRobotVoices = () => {
+    console.log('🎵 createRobotVoices called');
+    
     if (!('speechSynthesis' in window)) {
       console.log('❌ Speech synthesis not supported in this browser');
       return;
@@ -26,13 +28,20 @@ const InitialDisclaimerModal = () => {
     try {
       console.log('🤖 Starting ENHANCED robot voice sequence...');
 
-      // Cancel any ongoing speech
+      // Cancel any ongoing speech first
       speechSynthesis.cancel();
+      console.log('🔄 Cancelled any existing speech synthesis');
 
       const playVoices = () => {
         const voices = speechSynthesis.getVoices();
         console.log('🗣️ Available voices count:', voices.length);
-        console.log('🗣️ Voice names:', voices.map(v => v.name));
+        console.log('🗣️ Voice names:', voices.map(v => `${v.name} (${v.lang})`));
+
+        if (voices.length === 0) {
+          console.log('❌ No voices available yet, retrying in 500ms...');
+          setTimeout(playVoices, 500);
+          return;
+        }
 
         // First voice: "ACCESS GRANTED, welcome master" - DEEP ROBOTIC
         const firstUtterance = new SpeechSynthesisUtterance("ACCESS GRANTED, welcome master");
@@ -117,17 +126,9 @@ const InitialDisclaimerModal = () => {
         speechSynthesis.speak(firstUtterance);
       };
 
-      // Wait for voices to load if needed
-      if (speechSynthesis.getVoices().length === 0) {
-        console.log('⏳ Waiting for voices to load...');
-        speechSynthesis.onvoiceschanged = () => {
-          console.log('✅ Voices loaded, starting sequence');
-          playVoices();
-        };
-      } else {
-        console.log('✅ Voices already available, starting immediately');
-        playVoices();
-      }
+      // Always try to play voices, with retry logic
+      console.log('🔄 Attempting to play voices...');
+      playVoices();
 
     } catch (error) {
       console.log('🤖 ❌ Robot voice system error:', error);
@@ -139,6 +140,7 @@ const InitialDisclaimerModal = () => {
     if (!hasAttemptedVoices) {
       console.log('👆 User interaction detected, triggering voice sequence');
       createRobotVoices();
+      sessionStorage.setItem("voicesPlayedThisSession", "true");
       setHasAttemptedVoices(true);
       // Remove listener after first use
       document.removeEventListener('click', handleUserInteraction);
@@ -148,30 +150,41 @@ const InitialDisclaimerModal = () => {
 
   useEffect(() => {
     console.log('🚀 Enhanced voice system - useEffect triggered');
+    console.log('🔍 Current hasAttemptedVoices:', hasAttemptedVoices);
     
     // Check if voices have been played this session
     const hasPlayedThisSession = sessionStorage.getItem("voicesPlayedThisSession");
+    console.log('🔍 Session storage check:', hasPlayedThisSession);
     
     if (!hasPlayedThisSession && !hasAttemptedVoices) {
-      console.log('🎵 First visit this session - starting voice sequence...');
-      const timer = setTimeout(() => {
+      console.log('🎵 ✅ First visit this session - starting voice sequence...');
+      
+      // Try multiple approaches for maximum compatibility
+      const attemptVoices = () => {
+        console.log('🎯 Attempting voice playback...');
         createRobotVoices();
         sessionStorage.setItem("voicesPlayedThisSession", "true");
         setHasAttemptedVoices(true);
-      }, 1000);
+      };
+
+      // Immediate attempt
+      console.log('⚡ Immediate voice attempt');
+      const immediateTimer = setTimeout(attemptVoices, 100);
 
       // Setup fallback for user interaction if autoplay fails
       console.log('🎯 Setting up user interaction fallback...');
       document.addEventListener('click', handleUserInteraction);
       document.addEventListener('touchstart', handleUserInteraction);
+      document.addEventListener('keydown', handleUserInteraction);
 
       return () => {
-        clearTimeout(timer);
+        clearTimeout(immediateTimer);
         document.removeEventListener('click', handleUserInteraction);
         document.removeEventListener('touchstart', handleUserInteraction);
+        document.removeEventListener('keydown', handleUserInteraction);
       };
     } else {
-      console.log('🚫 Voices already played this session - skipping');
+      console.log('🚫 Voices already played this session or already attempted - skipping');
       setHasAttemptedVoices(true);
     }
   }, [hasAttemptedVoices]);
