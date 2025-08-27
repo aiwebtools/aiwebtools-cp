@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { Tool } from "@/types/tools";
 import { Card, CardContent } from "@/components/ui/card";
+import { createTimePortalEffect } from "@/utils/timeEffects";
 
 interface MinimalToolCardProps {
   tool: Tool;
@@ -8,9 +9,12 @@ interface MinimalToolCardProps {
 }
 
 const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
     if (tool.directUrl) {
-      window.open(tool.directUrl, '_blank', 'noopener,noreferrer');
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('🌀 MinimalToolCard clicked - triggering time warp for:', tool.title);
+      createTimePortalEffect(tool.directUrl, tool.title);
     }
   };
 

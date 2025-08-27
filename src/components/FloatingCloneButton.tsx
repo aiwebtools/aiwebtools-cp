@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createTimePortalEffect } from '@/utils/timeEffects';
 
 const FloatingCloneButton = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -29,10 +30,10 @@ const FloatingCloneButton = () => {
       target="_blank"
       rel="noopener noreferrer"
       onClick={(e) => {
-        console.log('FloatingCloneButton clicked, URL:', 'https://cloneaiwebtools.lovable.app/?via=aiwebtools');
-        // Force the correct URL in case of any caching issues
-        window.open('https://cloneaiwebtools.lovable.app/?via=aiwebtools', '_blank');
         e.preventDefault();
+        e.stopPropagation();
+        console.log('🌀 FloatingCloneButton clicked - triggering time warp');
+        createTimePortalEffect('https://cloneaiwebtools.lovable.app/?via=aiwebtools', 'Clone AI Web Tools');
       }}
       className={`fixed bottom-4 left-4 z-50 w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-full transition-all duration-300 transform hover:scale-105 flex items-center justify-center ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'

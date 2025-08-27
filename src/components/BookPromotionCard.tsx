@@ -1,9 +1,13 @@
 import { BookOpen, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const BookPromotionCard = () => {
-  const handleBuyBook = () => {
-    window.open("https://www.amazon.com/Gospel-Deployable-Robots-Instructions-www-AiWebTools-Ai-ebook/dp/B0DT419F2W?dplnkId=21c79e26-79fa-4837-9c84-4aebe9053749", "_blank");
+  const handleBuyBook = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('🌀 Book purchase clicked - triggering time warp');
+    createTimePortalEffect("https://www.amazon.com/Gospel-Deployable-Robots-Instructions-www-AiWebTools-Ai-ebook/dp/B0DT419F2W?dplnkId=21c79e26-79fa-4837-9c84-4aebe9053749", "Gospel of Deployable Robots Book");
   };
 
   return (

@@ -4,6 +4,7 @@ import { Tool } from "@/types/tools";
 import { Card } from "@/components/ui/card";
 import { useMobile } from "@/hooks/useMobile";
 import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
+import { createTimePortalEffect } from "@/utils/timeEffects";
 import ToolCardHeader from "./ToolCardHeader";
 import ToolCardContent from "./ToolCardContent";
 
@@ -19,6 +20,23 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
   
   // Determine if this is an AIWebTools original
   const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
+  
+  // Handle card click - trigger time warp effect for external tools
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Don't trigger if clicking on buttons or interactive elements
+    const target = e.target as HTMLElement;
+    if (target.tagName === 'BUTTON' || target.closest('button') || target.closest('a')) {
+      return;
+    }
+    
+    // If tool has external URL, trigger time warp effect
+    if (tool.directUrl) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('🌀 Tool card clicked - triggering time warp for:', tool.title);
+      createTimePortalEffect(tool.directUrl, tool.title);
+    }
+  };
   
   // Dynamic sizing based on featured status and mobile optimization
   const isFeatured = index < 12; // First 12 tools are considered featured
@@ -79,7 +97,7 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
           : 'transition-all duration-300'
       } ${
         !isTouch 
-          ? 'hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105' 
+          ? 'hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105 cursor-pointer' 
           : 'active:bg-gray-800/70'
       } ${
         isMobile ? 'touch-manipulation' : ''
@@ -88,6 +106,7 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
       tabIndex={0}
       role="article"
       aria-label={`AI Tool: ${tool.title}`}
+      onClick={handleCardClick}
     >
       <ToolCardHeader 
         tool={tool}
