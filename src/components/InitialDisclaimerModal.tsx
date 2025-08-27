@@ -6,17 +6,37 @@ const InitialDisclaimerModal = () => {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    console.log('🚀 InitialDisclaimerModal - useEffect triggered');
+    
     // Check if user has already agreed to the initial disclaimer
     const timer = setTimeout(() => {
       const hasAcceptedInitialDisclaimer = localStorage.getItem("initialDisclaimerAccepted");
+      console.log('📱 localStorage check:', {
+        key: 'initialDisclaimerAccepted',
+        value: hasAcceptedInitialDisclaimer,
+        shouldShow: !hasAcceptedInitialDisclaimer
+      });
+      
       if (!hasAcceptedInitialDisclaimer) {
+        console.log('✅ Showing initial disclaimer modal');
         setIsOpen(true);
+      } else {
+        console.log('❌ Disclaimer already accepted, not showing');
       }
       setIsReady(true);
+      console.log('✅ Modal ready state set to true');
     }, 100);
 
-    return () => clearTimeout(timer);
+    return () => {
+      console.log('🧹 Cleanup timer');
+      clearTimeout(timer);
+    };
   }, []);
+
+  // Debug state changes
+  useEffect(() => {
+    console.log('📊 Modal state changed:', { isOpen, isReady });
+  }, [isOpen, isReady]);
 
   const createRobotVoices = () => {
     if (!('speechSynthesis' in window)) {
@@ -111,13 +131,16 @@ const InitialDisclaimerModal = () => {
     e.stopPropagation();
     console.log('🤖 User accepting initial disclaimer - activating robot voices...');
     console.log('📱 Event type:', e.type, 'Target:', e.target);
+    console.log('📊 Current state before accept:', { isOpen, isReady });
     
     // Play the robot voices
     createRobotVoices();
     
     // Store acceptance and close modal
     localStorage.setItem("initialDisclaimerAccepted", "true");
+    console.log('💾 Stored "initialDisclaimerAccepted" = "true" in localStorage');
     setIsOpen(false);
+    console.log('❌ Set modal isOpen to false');
   };
 
   const handleBackdropClick = (e: React.MouseEvent | React.TouchEvent) => {
@@ -135,8 +158,11 @@ const InitialDisclaimerModal = () => {
 
   // Don't render anything until ready to prevent flickering
   if (!isReady || !isOpen) {
+    console.log('🚫 Not rendering modal:', { isReady, isOpen });
     return null;
   }
+
+  console.log('✅ Rendering modal - should be visible now');
 
   return (
     <div 
