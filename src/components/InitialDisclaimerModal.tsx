@@ -24,18 +24,11 @@ const InitialDisclaimerModal = () => {
     }
 
     const isMobile = isMobileDevice();
-    console.log(`🤖 Starting ENHANCED robot voice sequence... (Mobile: ${isMobile})`);
+    console.log(`🤖 Starting robot voice sequence... (Mobile: ${isMobile})`);
 
     try {
       // Cancel any ongoing speech
       speechSynthesis.cancel();
-      
-      // Mobile-specific initialization
-      if (isMobile) {
-        console.log('📱 Mobile device detected - using mobile-optimized voice system');
-        // Ensure speech synthesis is ready on mobile
-        speechSynthesis.getVoices();
-      }
 
       const playVoices = () => {
         const voices = speechSynthesis.getVoices();
@@ -73,8 +66,8 @@ const InitialDisclaimerModal = () => {
 
         // Second voice: "You've got tools" - DIFFERENT VOICE
         const secondUtterance = new SpeechSynthesisUtterance("You've got tools");
-        secondUtterance.rate = isMobile ? 0.7 : 0.6;  // Slightly faster on mobile
-        secondUtterance.pitch = isMobile ? 0.4 : 0.3; // Higher pitch on mobile
+        secondUtterance.rate = isMobile ? 0.8 : 0.7;  // Slightly faster on mobile
+        secondUtterance.pitch = isMobile ? 0.6 : 0.5; // Higher pitch on mobile
         secondUtterance.volume = 1.0;
         
         // Try to find a female voice for AOL effect
@@ -93,12 +86,11 @@ const InitialDisclaimerModal = () => {
           console.log('📬 No specific AOL voice found, using default');
         }
 
-        // Enhanced event listeners
+        // Enhanced event listeners with mobile optimization
         firstUtterance.onstart = () => {
-          console.log('🤖 ✅ ROBOTIC VOICE STARTED: "ACCESS GRANTED, welcome master"');
+          console.log('🤖 ✅ FIRST VOICE STARTED: "ACCESS GRANTED, welcome master"');
         };
-        
-        // CRUCIAL: Enhanced timing for the sequence with mobile optimization
+
         firstUtterance.onend = () => {
           console.log('🎤 First voice completed, starting second voice after pause...');
           const pauseDuration = isMobile ? 600 : 800; // Shorter pause on mobile
@@ -108,24 +100,30 @@ const InitialDisclaimerModal = () => {
           }, pauseDuration);
         };
 
-        // Mobile-specific: Add error handling and retry logic
-        const speakWithRetry = (utterance: SpeechSynthesisUtterance, retries = 2) => {
-          utterance.onerror = (event) => {
-            console.log('🔴 Speech error:', event.error);
-            if (retries > 0 && isMobile) {
-              console.log(`🔄 Retrying speech on mobile... (${retries} attempts left)`);
-              setTimeout(() => speakWithRetry(utterance, retries - 1), 500);
-            }
-          };
-          speechSynthesis.speak(utterance);
+        firstUtterance.onerror = (error) => {
+          console.log('🤖 ❌ First voice error:', error);
+          // Try to play second voice anyway after a short delay
+          setTimeout(() => {
+            console.log('🎵 Trying second voice after first voice error...');
+            speechSynthesis.speak(secondUtterance);
+          }, 500);
         };
 
-        console.log('🎵 Playing first voice: "ACCESS GRANTED, welcome master"');
-        if (isMobile) {
-          speakWithRetry(firstUtterance);
-        } else {
-          speechSynthesis.speak(firstUtterance);
-        }
+        secondUtterance.onstart = () => {
+          console.log('📬 ✅ SECOND VOICE STARTED: "You\'ve got tools"');
+        };
+        
+        secondUtterance.onend = () => {
+          console.log('📬 ✅ Second voice ended - VOICE SEQUENCE COMPLETE! 🎉');
+        };
+        
+        secondUtterance.onerror = (error) => {
+          console.log('📬 ❌ Second voice error:', error);
+        };
+
+        // Start the sequence - simplified approach
+        console.log('🎵 🚀 STARTING VOICE SEQUENCE NOW...');
+        speechSynthesis.speak(firstUtterance);
       };
 
       // ROBUST voice loading with multiple fallbacks
@@ -177,6 +175,7 @@ const InitialDisclaimerModal = () => {
       console.log('👆 User interaction detected, triggering voice sequence');
       createRobotVoices();
       setHasAttemptedVoices(true);
+      sessionStorage.setItem("voicesPlayedThisSession", "true");
       // Remove listener after first use
       document.removeEventListener('click', handleUserInteraction);
       document.removeEventListener('touchstart', handleUserInteraction);
