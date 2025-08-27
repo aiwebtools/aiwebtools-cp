@@ -20,6 +20,12 @@ const InitialDisclaimerModal = () => {
   const [isReady, setIsReady] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
+  // FOR TESTING - clear localStorage every time in dev
+  if (window.location.hostname === 'localhost' || window.location.hostname.includes('lovable')) {
+    localStorage.removeItem("initialDisclaimerAccepted");
+    console.log('🗑️ Development mode - cleared localStorage for testing');
+  }
+
   useEffect(() => {
     console.log('🚀 InitialDisclaimerModal - useEffect triggered');
     
@@ -184,12 +190,20 @@ const InitialDisclaimerModal = () => {
 
   // Don't render anything until ready to prevent flickering
   // Don't show on mobile devices at all
-  if (!isReady || !isOpen || isMobile) {
-    if (isMobile) {
-      console.log('📱 Mobile device - modal disabled');
-    } else {
-      console.log('🚫 Not rendering modal:', { isReady, isOpen });
-    }
+  console.log('🎯 Render check:', { isReady, isOpen, isMobile });
+  
+  if (!isReady) {
+    console.log('⏳ Not ready yet, not rendering');
+    return null;
+  }
+  
+  if (isMobile) {
+    console.log('📱 Mobile device - modal disabled');
+    return null;
+  }
+  
+  if (!isOpen) {
+    console.log('🚫 Modal not open, not rendering');
     return null;
   }
 
