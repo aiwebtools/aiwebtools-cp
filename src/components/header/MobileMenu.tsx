@@ -259,7 +259,7 @@ const MobileMenu = () => {
                 onClick={handleBrowseAITools}
                 className="text-center bg-gradient-to-r from-cyan-400 to-blue-500 text-white hover:from-cyan-500 hover:to-blue-600 font-bold mb-3 rounded-xl p-4 text-lg shadow-lg shadow-cyan-500/25 border border-cyan-400/30"
               >
-                🚀 All AI Tools
+                🎯 Browse AI Tool Categories
               </DropdownMenuItem>
               
               <DropdownMenuSeparator className="border-gray-700 mb-3" />
