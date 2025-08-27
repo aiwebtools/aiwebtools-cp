@@ -118,32 +118,72 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const userIntent = detectIntent(normalizedSearchTerm);
   const intentConfig = userIntent ? INTENT_PATTERNS[userIntent as keyof typeof INTENT_PATTERNS] : null;
   
-  // VIDEO/AUDIO TOOL PRIORITY - Enhanced detection
-  if (normalizedSearchTerm.includes('video') || normalizedSearchTerm.includes('audio') || 
-      normalizedSearchTerm.includes('music') || normalizedSearchTerm.includes('sound') ||
-      normalizedSearchTerm.includes('editor') || normalizedSearchTerm.includes('editing')) {
+  // VIDEO SEARCH PRIORITY - Strict video tool filtering
+  if (normalizedSearchTerm === 'video' || normalizedSearchTerm.includes('video')) {
+    console.log('🎬 VIDEO SEARCH DETECTED - Filtering for video tools only');
     
-    const videoAudioTools = tools.filter(tool => {
-      const searchableText = [tool.title, tool.description, ...(tool.tags || [])].join(' ').toLowerCase();
-      return searchableText.includes('video') || 
-             searchableText.includes('audio') || 
-             searchableText.includes('music') || 
-             searchableText.includes('sound') ||
-             searchableText.includes('editor') ||
-             searchableText.includes('editing') ||
-             tool.category?.toLowerCase().includes('video') ||
-             tool.category?.toLowerCase().includes('audio') ||
-             tool.category?.toLowerCase().includes('media');
+    // First, find all tools with "video" in title, description, category, or tags
+    const videoTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('video') || 
+             lowerDescription.includes('video') ||
+             lowerCategory.includes('video') ||
+             lowerTags.some(tag => tag.includes('video'));
     });
     
-    const sortedVideoAudioTools = videoAudioTools.sort((a, b) => {
+    console.log(`🎬 Found ${videoTools.length} video tools:`, videoTools.slice(0, 5).map(t => t.title));
+    
+    // Sort video tools by relevance - exact title matches first
+    const sortedVideoTools = videoTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
       
-      // Boost for exact term matches
-      if (normalizedSearchTerm.includes('video')) {
-        if (a.title.toLowerCase().includes('video')) scoreA += 5000;
-        if (b.title.toLowerCase().includes('video')) scoreB += 5000;
-      }
+      // Highest priority: "video" in title
+      if (a.title.toLowerCase().includes('video')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('video')) scoreB += 10000;
+      
+      // High priority: video generation/creation tools
+      if (a.title.toLowerCase().includes('video generat') || a.title.toLowerCase().includes('video maker') || a.title.toLowerCase().includes('video creator')) scoreA += 8000;
+      if (b.title.toLowerCase().includes('video generat') || b.title.toLowerCase().includes('video maker') || b.title.toLowerCase().includes('video creator')) scoreB += 8000;
+      
+      // Medium priority: AI Web Tools video GPTs (only if they contain "video")
+      if (a.directUrl?.includes('lovable.app') && a.title.toLowerCase().includes('video')) scoreA += 6000;
+      if (b.directUrl?.includes('lovable.app') && b.title.toLowerCase().includes('video')) scoreB += 6000;
+      
+      // Lower priority: video in description
+      if (a.description.toLowerCase().includes('video')) scoreA += 3000;
+      if (b.description.toLowerCase().includes('video')) scoreB += 3000;
+      
+      return scoreB - scoreA;
+    });
+    
+    // Add remaining non-video tools at the end with much lower priority
+    const nonVideoTools = tools.filter(tool => !videoTools.includes(tool));
+    const finalVideoResults = [...sortedVideoTools, ...nonVideoTools];
+    
+    return performEnhancedSearch(finalVideoResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+  
+  // AUDIO/MUSIC TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm.includes('audio') || normalizedSearchTerm.includes('music') || 
+      normalizedSearchTerm.includes('sound') || normalizedSearchTerm.includes('voice')) {
+    
+    const audioTools = tools.filter(tool => {
+      const searchableText = [tool.title, tool.description, ...(tool.tags || [])].join(' ').toLowerCase();
+      return searchableText.includes('audio') || 
+             searchableText.includes('music') || 
+             searchableText.includes('sound') ||
+             searchableText.includes('voice') ||
+             tool.category?.toLowerCase().includes('audio') ||
+             tool.category?.toLowerCase().includes('music');
+    });
+    
+    const sortedAudioTools = audioTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
       if (normalizedSearchTerm.includes('audio')) {
         if (a.title.toLowerCase().includes('audio')) scoreA += 5000;
         if (b.title.toLowerCase().includes('audio')) scoreB += 5000;
@@ -156,8 +196,8 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       return scoreB - scoreA;
     });
     
-    const prioritizedVideoAudioSearch = [...sortedVideoAudioTools, ...tools.filter(t => !videoAudioTools.includes(t))];
-    return applyAIWebToolsPrioritization(performEnhancedSearch(prioritizedVideoAudioSearch, searchTerm, searchWords, phoneticVariations, intentConfig));
+    const prioritizedAudioSearch = [...sortedAudioTools, ...tools.filter(t => !audioTools.includes(t))];
+    return applyAIWebToolsPrioritization(performEnhancedSearch(prioritizedAudioSearch, searchTerm, searchWords, phoneticVariations, intentConfig));
   }
   
   // PRIORITY: For "personal" searches, prioritize AI Web Tools GPTs
