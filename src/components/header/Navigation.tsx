@@ -29,14 +29,6 @@ const Navigation = () => {
     e.preventDefault();
     e.stopPropagation();
     console.log('🌀 External link clicked in navigation:', url);
-    console.log('🎯 About to create time portal effect...');
-    
-    // Add visual indicator for debugging
-    document.body.style.border = '5px solid red';
-    setTimeout(() => {
-      document.body.style.border = '';
-    }, 1000);
-    
     createTimePortalEffect(url);
   };
 
