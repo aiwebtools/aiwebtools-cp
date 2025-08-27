@@ -3,6 +3,7 @@ import { CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tool } from "@/types/tools";
 import StarRating from "./StarRating";
+import { FavoritesButton } from "@/components/favorites/FavoritesButton";
 import { allTools } from "@/data/toolsData";
 import { Brain, Blocks } from "lucide-react";
 
@@ -44,7 +45,12 @@ const ToolCardHeader = ({
 
   return (
     <CardHeader className="text-center pb-4 flex-shrink-0 relative z-10">
-      {/* FREE Badge for AI Web Tools original tools */}
+      {/* Favorites Button - top left */}
+      <div className="absolute top-2 left-2 z-30">
+        <FavoritesButton tool={tool} size="sm" />
+      </div>
+      
+      {/* FREE Badge for AI Web Tools original tools - top right */}
       {isAIWebToolsOriginal && (
         <div className="absolute top-0 right-0 z-20">
           <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-2 py-1 rounded-bl-lg rounded-tr-xl text-xs font-bold shadow-lg transform animate-pulse">

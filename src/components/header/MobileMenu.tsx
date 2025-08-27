@@ -1,4 +1,4 @@
-import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard } from "lucide-react";
+import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
+import { useFavorites } from "@/hooks/useFavorites";
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
@@ -22,6 +23,7 @@ import Logo from "./Logo";
 
 const MobileMenu = () => {
   const navigate = useNavigate();
+  const { getFavoritesCount } = useFavorites();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [displayedCount, setDisplayedCount] = useState(50);
@@ -408,6 +410,12 @@ const MobileMenu = () => {
               </div>
               
               <DropdownMenuSeparator className="border-gray-700 my-3" />
+              
+              {/* Favorites - added before Our Story */}
+              <DropdownMenuItem onClick={() => { navigate('/favorites'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded flex items-center space-x-2">
+                <Heart className="w-4 h-4 fill-current text-red-500" />
+                <span>Favorites ({getFavoritesCount()})</span>
+              </DropdownMenuItem>
               
               {/* Our Story - moved to bottom of mobile menu */}
               <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">

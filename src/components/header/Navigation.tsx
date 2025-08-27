@@ -1,12 +1,14 @@
 
-import { Phone, Globe, Trees, Clapperboard } from "lucide-react";
+import { Phone, Globe, Trees, Clapperboard, Heart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { useFavorites } from "@/hooks/useFavorites";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 
 const Navigation = () => {
   const navigate = useNavigate();
+  const { getFavoritesCount } = useFavorites();
 
   const scrollToHome = () => {
     // If we're already on the home page, just scroll to top instantly
@@ -294,6 +296,14 @@ const Navigation = () => {
           475-800-8096
         </a>
       </div>
+
+      <button 
+        onClick={() => navigate('/favorites')}
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center gap-2"
+      >
+        <Heart className="h-4 w-4 fill-current text-red-500" />
+        Favorites ({getFavoritesCount()})
+      </button>
 
       <button 
         onClick={() => navigate('/our-story')}
