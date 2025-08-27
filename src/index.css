@@ -10,3 +10,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Mobile viewport fix */
+@layer base {
+  html {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  
+  #root {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  
+  /* Prevent horizontal scrolling on mobile */
+  @media (max-width: 768px) {
+    * {
+      max-width: 100vw;
+    }
+    
+    body, html, #root {
+      position: relative;
+      overflow-x: hidden !important;
+    }
+  }
+}
