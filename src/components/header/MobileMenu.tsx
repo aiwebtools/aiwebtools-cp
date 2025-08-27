@@ -259,12 +259,49 @@ const MobileMenu = () => {
                 onClick={handleBrowseAITools}
                 className="text-center bg-gradient-to-r from-cyan-400 to-blue-500 text-white hover:from-cyan-500 hover:to-blue-600 font-bold mb-3 rounded-xl p-4 text-lg shadow-lg shadow-cyan-500/25 border border-cyan-400/30"
               >
-                🚀 Browse AI Tool Categories
+                🚀 All AI Tools
+              </DropdownMenuItem>
+              
+              <DropdownMenuSeparator className="border-gray-700 mb-3" />
+              
+              {/* Company & About Section */}
+              <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
+                About & Company
+              </div>
+              <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.aitools.company', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded">
+                🏢 About AI Web Tools LLC
+              </DropdownMenuItem>
+              
+              <DropdownMenuSeparator className="border-gray-700 mb-3" />
+              
+              {/* Social & External Links */}
+              <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
+                Connect With Us
+              </div>
+              <DropdownMenuItem onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded">
+                <Trees className="w-4 h-4 mr-2" /> Linktree
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.tiktok.com/@aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
+                <Clapperboard className="w-4 h-4 mr-2" /> TikTok
+              </DropdownMenuItem>
+              
+              <DropdownMenuSeparator className="border-gray-700 mb-3" />
+              
+              {/* Tools & Downloads */}
+              <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
+                Tools & Downloads
+              </div>
+              <DropdownMenuItem onClick={handleDownloadTopToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded">
+                <Download className="w-4 h-4 mr-2" />
+                Download All AI Tools CSV
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={(e) => handleExternalLink('https://cloneaiwebtools.lovable.app/?via=aiwebtools', e)} className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700 font-bold rounded mb-2 gold-glow">
+                🚀 Clone This Website
               </DropdownMenuItem>
               
               <DropdownMenuSeparator className="border-gray-700 mb-3" />
                 
-              {/* WEB3 Domains Section - Connect to Your Crypto Wallet */}
+              {/* WEB3 Domains Section */}
               <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
                 Blockchain & Domains
               </div>
@@ -361,50 +398,6 @@ const MobileMenu = () => {
               
               <DropdownMenuSeparator className="border-gray-700 my-3" />
               
-              {/* Our Story */}
-              <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
-                📖 Our Story
-              </DropdownMenuItem>
-              
-              <DropdownMenuSeparator className="border-gray-700 mb-3" />
-              
-              {/* Company & About Section */}
-              <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
-                About & Company
-              </div>
-              <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.aitools.company', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded">
-                🏢 About AI Web Tools LLC
-              </DropdownMenuItem>
-              
-              <DropdownMenuSeparator className="border-gray-700 mb-3" />
-              
-              {/* Social & External Links */}
-              <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
-                Connect With Us
-              </div>
-              <DropdownMenuItem onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded">
-                <Trees className="w-4 h-4 mr-2" /> Linktree
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.tiktok.com/@aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
-                <Clapperboard className="w-4 h-4 mr-2" /> TikTok
-              </DropdownMenuItem>
-              
-              <DropdownMenuSeparator className="border-gray-700 mb-3" />
-              
-              {/* Tools & Downloads */}
-              <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
-                Tools & Downloads
-              </div>
-              <DropdownMenuItem onClick={handleDownloadTopToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded">
-                <Download className="w-4 h-4 mr-2" />
-                Download All AI Tools CSV
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={(e) => handleExternalLink('https://cloneaiwebtools.lovable.app/?via=aiwebtools', e)} className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700 font-bold rounded mb-2 gold-glow">
-                🚀 Clone This Website
-              </DropdownMenuItem>
-              
-              <DropdownMenuSeparator className="border-gray-700 mb-3" />
-              
               {/* Contact Section */}
               <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
                 Contact
@@ -418,10 +411,15 @@ const MobileMenu = () => {
               
               <DropdownMenuSeparator className="border-gray-700 my-3" />
               
-              {/* Favorites */}
+              {/* Favorites - added before Our Story */}
               <DropdownMenuItem onClick={() => { navigate('/favorites'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded flex items-center space-x-2">
                 <Heart className="w-4 h-4 fill-current text-red-500" />
                 <span>Favorites ({getFavoritesCount()})</span>
+              </DropdownMenuItem>
+              
+              {/* Our Story - moved to bottom of mobile menu */}
+              <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
+                📖 Our Story
               </DropdownMenuItem>
               
               {/* Close Button */}
