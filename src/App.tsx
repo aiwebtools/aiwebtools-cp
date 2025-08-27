@@ -16,7 +16,7 @@ import NotFound from "./pages/NotFound";
 import DisclaimersPage from "./pages/DisclaimersPage";
 import OurStoryPage from "./pages/OurStoryPage";
 import FloatingCloneButton from "./components/FloatingCloneButton";
-import InitialDisclaimerModal from "./components/InitialDisclaimerModal";
+import WelcomeVoiceSystem from "./components/WelcomeVoiceSystem";
 
 const queryClient = new QueryClient();
 
@@ -27,7 +27,7 @@ function App() {
         <FavoritesProvider>
           <TooltipProvider>
             <Toaster />
-            <InitialDisclaimerModal />
+            <WelcomeVoiceSystem />
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Index />} />
