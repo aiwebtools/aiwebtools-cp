@@ -148,18 +148,6 @@ export const aiAgents: Tool[] = [
   },
   {
     icon: Bot,
-    title: "AI Steve",
-    description: "AI Steve is an AI agent that can perform various tasks. It allows users to create and manage AI agents for specific purposes.",
-    emoji: "🤖",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://www.ai-steve.com/",
-    tags: ["task performance", "AI agent", "customization", "management", "automation"],
-    category: "AI Agents",
-    rating: 4.4,
-    totalVotes: 2500
-  },
-  {
-    icon: Bot,
     title: "AI Legion",
     description: "AI Legion is an AI agent that can perform various tasks. It allows users to create and manage AI agents for specific purposes.",
     emoji: "🤖",
