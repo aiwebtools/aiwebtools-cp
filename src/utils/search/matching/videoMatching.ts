@@ -42,8 +42,29 @@ export const matchTextToVideo = (tool: Tool, searchTerm: string): boolean => {
     }
   }
   
-  // Enhanced video search - prioritize text-to-video generators
+  // Enhanced video search - match ANY tool with video in title/description/category/tags
   if (lowerSearchTerm === 'video' || lowerSearchTerm.includes('video')) {
+    // Check if title contains "video"
+    if (lowerTitle.includes('video')) {
+      return true;
+    }
+    
+    // Check if description contains "video"
+    if (lowerDescription.includes('video')) {
+      return true;
+    }
+    
+    // Check if category contains "video"
+    if (lowerCategory.includes('video')) {
+      return true;
+    }
+    
+    // Check if tags contain "video"
+    if (lowerTags.some(tag => tag.includes('video'))) {
+      return true;
+    }
+    
+    // Priority text-to-video tools for higher scoring
     const textToVideoTools = [
       'luma labs dream machine',
       'luma dream machine', 
