@@ -43,8 +43,8 @@ const InitialDisclaimerModal = () => {
           return;
         }
 
-        // First voice: "YOU'VE GOT TOOLS" - DEEP ROBOTIC
-        const firstUtterance = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS");
+        // First voice: "ACCESS GRANTED, welcome master" - DEEP ROBOTIC
+        const firstUtterance = new SpeechSynthesisUtterance("ACCESS GRANTED, welcome master");
         firstUtterance.rate = 0.4;  
         firstUtterance.pitch = 0.1; 
         firstUtterance.volume = 1.0; // Maximum volume
@@ -65,61 +65,60 @@ const InitialDisclaimerModal = () => {
           console.log('🤖 No specific robotic voice found, using default');
         }
 
-        // Second voice: "ACCESS GRANTED, welcome master" - BRITISH/AOL STYLE
-        const secondUtterance = new SpeechSynthesisUtterance("ACCESS GRANTED, welcome master");
+        // Second voice: AOL-style "YOU'VE GOT TOOLS" - CLASSIC AOL FEMALE
+        const secondUtterance = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS");
         secondUtterance.rate = 0.8;   
         secondUtterance.pitch = 1.2;  
         secondUtterance.volume = 1.0;
         
-        // Try to find a British or female voice
-        const britishVoice = voices.find(voice => 
+        // Try to find a female voice for AOL effect
+        const aolVoice = voices.find(voice => 
           voice.name.toLowerCase().includes('female') ||
           voice.name.toLowerCase().includes('samantha') ||
           voice.name.toLowerCase().includes('karen') ||
           voice.name.toLowerCase().includes('susan') ||
-          voice.name.toLowerCase().includes('victoria') ||
-          voice.name.toLowerCase().includes('british')
+          voice.name.toLowerCase().includes('victoria')
         ) || voices.find(voice => voice.lang.startsWith('en') && voice !== roboticVoice);
         
-        if (britishVoice) {
-          console.log('🇬🇧 Using British-style voice:', britishVoice.name);
-          secondUtterance.voice = britishVoice;
+        if (aolVoice) {
+          console.log('📬 Using AOL-style voice:', aolVoice.name);
+          secondUtterance.voice = aolVoice;
         } else {
-          console.log('🇬🇧 No specific British voice found, using default');
+          console.log('📬 No specific AOL voice found, using default');
         }
 
         // Enhanced event listeners
         firstUtterance.onstart = () => {
-          console.log('🤖 ✅ ROBOTIC VOICE STARTED: "YOU\'VE GOT TOOLS"');
+          console.log('🤖 ✅ ROBOTIC VOICE STARTED: "ACCESS GRANTED, welcome master"');
         };
         
         firstUtterance.onend = () => {
-          console.log('🤖 ✅ Robotic voice ended, starting British voice in 800ms...');
+          console.log('🤖 ✅ Robotic voice ended, starting AOL voice in 800ms...');
           setTimeout(() => {
-            console.log('🇬🇧 Playing British voice...');
+            console.log('📬 Playing AOL voice...');
             speechSynthesis.speak(secondUtterance);
           }, 800);
         };
         
         firstUtterance.onerror = (error) => {
           console.log('🤖 ❌ Robotic voice error:', error);
-          // Try to play British voice anyway
+          // Try to play AOL voice anyway
           setTimeout(() => {
-            console.log('🇬🇧 Trying British voice after robotic error...');
+            console.log('📬 Trying AOL voice after robotic error...');
             speechSynthesis.speak(secondUtterance);
           }, 500);
         };
 
         secondUtterance.onstart = () => {
-          console.log('🇬🇧 ✅ BRITISH VOICE STARTED: "ACCESS GRANTED, welcome master"');
+          console.log('📬 ✅ AOL VOICE STARTED: "YOU\'VE GOT TOOLS"');
         };
         
         secondUtterance.onend = () => {
-          console.log('🇬🇧 ✅ British voice ended - VOICE SEQUENCE COMPLETE! 🎉');
+          console.log('📬 ✅ AOL voice ended - VOICE SEQUENCE COMPLETE! 🎉');
         };
         
         secondUtterance.onerror = (error) => {
-          console.log('🇬🇧 ❌ British voice error:', error);
+          console.log('📬 ❌ AOL voice error:', error);
         };
 
         // Start the sequence
