@@ -9,6 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 // Robot voice effects for the disclaimer popup
 const playAccessGrantedVoices = () => {
@@ -105,6 +106,7 @@ const enableVideoAutoplay = () => {
 
 const InitialDisclaimerPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     // Check if user has already seen the disclaimer
@@ -139,21 +141,26 @@ const InitialDisclaimerPopup = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-md bg-black/95 border border-yellow-500/30 text-white">
+      <DialogContent className={`
+        ${isMobile ? 'w-[95vw] max-w-[95vw] h-auto max-h-[90vh]' : 'sm:max-w-md'} 
+        bg-black/95 border border-yellow-500/30 text-white 
+        ${isMobile ? 'mx-2 my-auto' : ''} 
+        overflow-y-auto
+      `}>
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-yellow-400">
-            <AlertTriangle className="w-5 h-5" />
+          <DialogTitle className={`flex items-center gap-2 text-yellow-400 ${isMobile ? 'text-lg' : ''}`}>
+            <AlertTriangle className={`${isMobile ? 'w-4 h-4' : 'w-5 h-5'}`} />
             Important Notice
           </DialogTitle>
           <DialogDescription className="text-gray-300 text-sm leading-relaxed">
-            <div className="space-y-3">
-              <p>
+            <div className={`space-y-3 ${isMobile ? 'space-y-2' : ''}`}>
+              <p className={isMobile ? 'text-sm' : ''}>
                 Welcome to <span className="text-cyan-400 font-semibold">AIWebTools.AI</span>! 
                 Please understand that:
               </p>
               
-              <div className="bg-gray-900/50 rounded-lg p-3 border border-gray-700">
-                <ul className="space-y-1 text-xs">
+              <div className={`bg-gray-900/50 rounded-lg p-3 border border-gray-700 ${isMobile ? 'p-2' : ''}`}>
+                <ul className={`space-y-1 ${isMobile ? 'text-xs space-y-0.5' : 'text-xs'}`}>
                   <li>• All AI tools are for <span className="text-blue-300 font-medium">educational and informational purposes only</span></li>
                   <li>• Some tools are <span className="text-orange-300 font-medium">experimental in nature</span></li>
                   <li>• These do <span className="text-red-300 font-medium">NOT constitute real human or professional advice</span></li>
@@ -161,29 +168,29 @@ const InitialDisclaimerPopup = () => {
                 </ul>
               </div>
 
-              <p className="text-xs text-gray-400">
+              <p className={`text-xs text-gray-400 ${isMobile ? 'text-[10px]' : ''}`}>
                 By using this platform, you acknowledge these limitations and use all tools at your own discretion.
               </p>
             </div>
           </DialogDescription>
         </DialogHeader>
         
-        <DialogFooter className="flex gap-2 sm:gap-0">
+        <DialogFooter className={`flex gap-2 ${isMobile ? 'flex-col space-y-2' : 'sm:gap-0'}`}>
           <Button
             variant="outline"
-            size="sm"
+            size={isMobile ? "default" : "sm"}
             onClick={handleClose}
-            className="border-gray-600 text-gray-300 hover:bg-gray-800"
+            className={`border-gray-600 text-gray-300 hover:bg-gray-800 ${isMobile ? 'w-full' : ''}`}
           >
-            <X className="w-3 h-3 mr-1" />
+            <X className={`${isMobile ? 'w-4 h-4 mr-2' : 'w-3 h-3 mr-1'}`} />
             Close
           </Button>
           <Button
-            size="sm"
+            size={isMobile ? "default" : "sm"}
             onClick={handleAccept}
-            className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white"
+            className={`bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white ${isMobile ? 'w-full' : ''}`}
           >
-            <Check className="w-3 h-3 mr-1" />
+            <Check className={`${isMobile ? 'w-4 h-4 mr-2' : 'w-3 h-3 mr-1'}`} />
             I Understand
           </Button>
         </DialogFooter>
