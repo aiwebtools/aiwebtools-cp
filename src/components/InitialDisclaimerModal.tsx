@@ -1,36 +1,60 @@
 import { useState, useEffect } from "react";
 import { AlertTriangle } from "lucide-react";
 
+// Simple mobile detection
+const isMobileDevice = () => {
+  if (typeof window === 'undefined') return false;
+  
+  return (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+    ('ontouchstart' in window) ||
+    (navigator.maxTouchPoints > 0) ||
+    window.innerWidth <= 768
+  );
+};
+
 const InitialDisclaimerModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     console.log('🚀 InitialDisclaimerModal - useEffect triggered');
     
-    // Check if user has already agreed to the initial disclaimer
-    const timer = setTimeout(() => {
-      const hasAcceptedInitialDisclaimer = localStorage.getItem("initialDisclaimerAccepted");
-      console.log('📱 localStorage check:', {
-        key: 'initialDisclaimerAccepted',
-        value: hasAcceptedInitialDisclaimer,
-        shouldShow: !hasAcceptedInitialDisclaimer
-      });
-      
-      if (!hasAcceptedInitialDisclaimer) {
-        console.log('✅ Showing initial disclaimer modal');
-        setIsOpen(true);
-      } else {
-        console.log('❌ Disclaimer already accepted, not showing');
-      }
-      setIsReady(true);
-      console.log('✅ Modal ready state set to true');
-    }, 100);
+    // Check if it's a mobile device
+    const mobile = isMobileDevice();
+    setIsMobile(mobile);
+    console.log('📱 Mobile device detected:', mobile);
+    
+    // Only show on desktop devices
+    if (!mobile) {
+      // Check if user has already agreed to the initial disclaimer
+      const timer = setTimeout(() => {
+        const hasAcceptedInitialDisclaimer = localStorage.getItem("initialDisclaimerAccepted");
+        console.log('🖥️ Desktop - localStorage check:', {
+          key: 'initialDisclaimerAccepted',
+          value: hasAcceptedInitialDisclaimer,
+          shouldShow: !hasAcceptedInitialDisclaimer
+        });
+        
+        if (!hasAcceptedInitialDisclaimer) {
+          console.log('✅ Showing initial disclaimer modal on desktop');
+          setIsOpen(true);
+        } else {
+          console.log('❌ Disclaimer already accepted, not showing');
+        }
+        setIsReady(true);
+        console.log('✅ Modal ready state set to true');
+      }, 100);
 
-    return () => {
-      console.log('🧹 Cleanup timer');
-      clearTimeout(timer);
-    };
+      return () => {
+        console.log('🧹 Cleanup timer');
+        clearTimeout(timer);
+      };
+    } else {
+      console.log('📱 Mobile device - skipping disclaimer modal');
+      setIsReady(true);
+    }
   }, []);
 
   // Debug state changes
@@ -157,12 +181,17 @@ const InitialDisclaimerModal = () => {
   };
 
   // Don't render anything until ready to prevent flickering
-  if (!isReady || !isOpen) {
-    console.log('🚫 Not rendering modal:', { isReady, isOpen });
+  // Don't show on mobile devices at all
+  if (!isReady || !isOpen || isMobile) {
+    if (isMobile) {
+      console.log('📱 Mobile device - modal disabled');
+    } else {
+      console.log('🚫 Not rendering modal:', { isReady, isOpen });
+    }
     return null;
   }
 
-  console.log('✅ Rendering modal - should be visible now');
+  console.log('🖥️ Rendering desktop modal - should be visible now');
 
   return (
     <div 
