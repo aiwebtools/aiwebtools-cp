@@ -1,14 +1,5 @@
 import { useState, useEffect } from 'react';
 import { AlertTriangle, X, Check } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
 
 // Robot voice effects for the disclaimer popup
 const playAccessGrantedVoices = () => {
@@ -137,66 +128,71 @@ const InitialDisclaimerPopup = () => {
     setIsOpen(false);
   };
 
-  return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="
-        w-[95vw] max-w-[95vw] sm:max-w-md 
-        h-auto max-h-[90vh] sm:max-h-none
-        bg-black/95 border border-yellow-500/30 text-white 
-        mx-2 sm:mx-auto my-auto
-        overflow-y-auto
-        p-4 sm:p-6
-        z-50
-      ">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-yellow-400 text-base sm:text-lg">
-            <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5" />
-            Important Notice
-          </DialogTitle>
-          <DialogDescription className="text-gray-300 text-sm leading-relaxed">
-            <div className="space-y-2 sm:space-y-3">
-              <p className="text-sm">
-                Welcome to <span className="text-cyan-400 font-semibold">AIWebTools.AI</span>! 
-                Please understand that:
-              </p>
-              
-              <div className="bg-gray-900/50 rounded-lg p-2 sm:p-3 border border-gray-700">
-                <ul className="space-y-0.5 sm:space-y-1 text-xs">
-                  <li>• All AI tools are for <span className="text-blue-300 font-medium">educational and informational purposes only</span></li>
-                  <li>• Some tools are <span className="text-orange-300 font-medium">experimental in nature</span></li>
-                  <li>• These do <span className="text-red-300 font-medium">NOT constitute real human or professional advice</span></li>
-                  <li>• Always consult qualified professionals for important decisions</li>
-                </ul>
-              </div>
+  if (!isOpen) return null;
 
-              <p className="text-[10px] sm:text-xs text-gray-400">
-                By using this platform, you acknowledge these limitations and use all tools at your own discretion.
-              </p>
-            </div>
-          </DialogDescription>
-        </DialogHeader>
+  return (
+    <div 
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+      style={{
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        backdropFilter: 'blur(4px)',
+      }}
+    >
+      <div 
+        className="w-full max-w-md mx-auto bg-black border border-yellow-500/30 rounded-lg p-6 text-white relative"
+        style={{
+          maxHeight: '90vh',
+          overflowY: 'auto',
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.8)',
+        }}
+      >
+        {/* Header */}
+        <div className="flex items-center gap-2 text-yellow-400 mb-4">
+          <AlertTriangle className="w-5 h-5" />
+          <h2 className="text-lg font-semibold">Important Notice</h2>
+        </div>
+
+        {/* Content */}
+        <div className="space-y-4 text-gray-300 text-sm leading-relaxed mb-6">
+          <p>
+            Welcome to <span className="text-cyan-400 font-semibold">AIWebTools.AI</span>! 
+            Please understand that:
+          </p>
+          
+          <div className="bg-gray-900/50 rounded-lg p-3 border border-gray-700">
+            <ul className="space-y-1 text-xs">
+              <li>• All AI tools are for <span className="text-blue-300 font-medium">educational and informational purposes only</span></li>
+              <li>• Some tools are <span className="text-orange-300 font-medium">experimental in nature</span></li>
+              <li>• These do <span className="text-red-300 font-medium">NOT constitute real human or professional advice</span></li>
+              <li>• Always consult qualified professionals for important decisions</li>
+            </ul>
+          </div>
+
+          <p className="text-xs text-gray-400">
+            By using this platform, you acknowledge these limitations and use all tools at your own discretion.
+          </p>
+        </div>
         
-        <DialogFooter className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:gap-2 mt-4">
-          <Button
-            variant="outline"
-            size="default"
-            onClick={handleClose}
-            className="w-full sm:w-auto border-gray-600 text-gray-300 hover:bg-gray-800"
-          >
-            <X className="w-4 h-4 mr-2 sm:w-3 sm:h-3 sm:mr-1" />
-            Close
-          </Button>
-          <Button
-            size="default"
+        {/* Buttons */}
+        <div className="flex flex-col gap-3">
+          <button
             onClick={handleAccept}
-            className="w-full sm:w-auto bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white"
+            className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2"
           >
-            <Check className="w-4 h-4 mr-2 sm:w-3 sm:h-3 sm:mr-1" />
+            <Check className="w-4 h-4" />
             I Understand
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+          </button>
+          
+          <button
+            onClick={handleClose}
+            className="w-full border border-gray-600 text-gray-300 hover:bg-gray-800 py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+          >
+            <X className="w-4 h-4" />
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
