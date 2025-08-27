@@ -421,5 +421,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.7,
     totalVotes: 3400
+  },
+  {
+    icon: Rocket,
+    title: "Rocket.New Vibe Coder",
+    description: "AI-powered vibe coding agent that transforms ideas into production-ready applications. Features intelligent code generation, rapid prototyping, and seamless deployment with modern development workflows.",
+    emoji: "🚀",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://www.rocket.new/?via=aiwebtools",
+    tags: ["vibe coding", "AI agent", "code generation", "rapid prototyping", "app development", "deployment", "coding assistant"],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 1500
   }
 ];
