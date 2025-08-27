@@ -7,6 +7,7 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
 import { useDebounce } from "@/hooks/useDebounce";
+import { useSearchPerformanceCache } from "@/hooks/useSearchPerformanceCache";
 
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,12 +18,14 @@ export const useGlobalSearch = () => {
   const searchRef = useRef(null);
   const navigate = useNavigate();
   
+  // Performance optimizations
+  const { getCachedSearch, setCachedSearch } = useSearchPerformanceCache();
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
-  // Add debouncing for better performance - increased delay to reduce computation
-  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  // Optimized debouncing - faster for better UX
+  const debouncedSearchTerm = useDebounce(searchTerm, 150);
 
-  // OPTIMIZED search effect with performance improvements
+  // SUPER OPTIMIZED search effect with caching and performance improvements
   useEffect(() => {
     const trimmedTerm = debouncedSearchTerm.trim();
     
@@ -33,191 +36,73 @@ export const useGlobalSearch = () => {
       return;
     }
 
-    // SUPER INTELLIGENT 2-character search with predictive matching
+    // Check cache first for lightning-fast response
+    const cachedResults = getCachedSearch(trimmedTerm);
+    if (cachedResults) {
+      setSearchResults(cachedResults);
+      setDisplayedCount(30);
+      setIsOpen(true);
+      return;
+    }
+
+    // OPTIMIZED 2-character search with minimal computation
     if (trimmedTerm.length === 2) {
       const lowerTerm = trimmedTerm.toLowerCase();
+      
+      // Simplified prediction mapping for better performance
+      const fastPredictions: Record<string, string[]> = {
+        'ca': ['cannabis'], 'co': ['college', 'course'], 'le': ['learn'], 'vi': ['video'],
+        'au': ['audio'], 'ch': ['chat'], 're': ['resume', 'research'], 'gr': ['graphic'],
+        'tr': ['transcribe'], 'po': ['podcast'], 'dr': ['draft'], 'ho': ['home'],
+        'ph': ['pharmaceutical'], 'jo': ['job'], 'bu': ['business'], 'in': ['insurance']
+      };
+      
       const results = allTools.filter(tool => {
         const lowerTitle = tool.title.toLowerCase();
-        const lowerDescription = tool.description?.toLowerCase() || "";
-        const lowerTags = tool.tags?.join(" ").toLowerCase() || "";
+        if (lowerTitle.startsWith(lowerTerm) || lowerTitle.includes(lowerTerm)) return true;
         
-        // Direct starts with match (highest priority)
-        if (lowerTitle.startsWith(lowerTerm)) return true;
-        
-        // Predictive matching for common prefixes
-        const predictions: Record<string, string[]> = {
-          'sc': ['scribe', 'script', 'screen', 'screenplay'],
-          'tr': ['transcribe', 'transcription', 'transcript', 'travel', 'trading', 'trader'],
-          'po': ['podcast', 'policy', 'political', 'poll'],
-          'dr': ['draft', 'draftsman', 'doctor', 'dream'],
-          'co': ['college', 'course', 'content', 'contract', 'coloring'],
-          'le': ['legal', 'learn', 'legislation', 'legislator'],
-          'bl': ['blog', 'blockchain', 'blueprint'],
-          'ar': ['article', 'art', 'artificial', 'architecture'],
-          'gr': ['graphic', 'grant', 'grammar'],
-          'go': ['god', 'gods', 'government', 'goal'],
-          'sp': ['spiritual', 'speech', 'special', 'space'],
-          'ta': ['talk', 'tax', 'tattoo', 'task'],
-          'ho': ['home', 'health', 'hospital', 'house'],
-          'ph': ['pharmaceutical', 'pharmacy', 'phone', 'photo'],
-          're': ['resume', 'research', 'real', 'religion'],
-          'jo': ['job', 'journal', 'journey'],
-          'ca': ['cannabis', 'career', 'card', 'calculator'],
-          'in': ['insurance', 'investment', 'interview', 'invoice']
-        };
-        
-        if (predictions[lowerTerm]) {
-          for (const prediction of predictions[lowerTerm]) {
-            if (lowerTitle.includes(prediction) || 
-                lowerDescription.includes(prediction) ||
-                lowerTags.includes(prediction)) {
-              return true;
-            }
+        const predictions = fastPredictions[lowerTerm];
+        if (predictions) {
+          const searchText = `${lowerTitle} ${tool.description?.toLowerCase() || ""}`;
+          for (const pred of predictions) {
+            if (searchText.includes(pred)) return true;
           }
         }
-        
-        // Fallback: broader matching
-        return lowerTitle.includes(lowerTerm) || 
-               lowerDescription.includes(lowerTerm) ||
-               lowerTags.includes(lowerTerm);
+        return false;
       }).sort((a, b) => {
         const aTitle = a.title.toLowerCase();
         const bTitle = b.title.toLowerCase();
-        const aStartsWith = aTitle.startsWith(lowerTerm) ? 0 : 1;
-        const bStartsWith = bTitle.startsWith(lowerTerm) ? 0 : 1;
-        // Prioritize tools that start with the term
-        if (aStartsWith !== bStartsWith) return aStartsWith - bStartsWith;
+        if (aTitle.startsWith(lowerTerm) !== bTitle.startsWith(lowerTerm)) {
+          return aTitle.startsWith(lowerTerm) ? -1 : 1;
+        }
         return aTitle.localeCompare(bTitle);
       });
       
-      // Create endless results for scrolling
-      const remainingTools = allTools.filter(tool => 
+      const endlessResults = [...results, ...allTools.filter(tool => 
         !results.some(result => result.title === tool.title)
-      );
-      const endlessResults = [...results, ...remainingTools];
+      )];
       
-      // Removed console.log for performance
-      
+      setCachedSearch(trimmedTerm, endlessResults);
       setSearchResults(endlessResults);
       setDisplayedCount(30);
       setIsOpen(true);
       return;
     }
 
-    // SUPER INTELLIGENT 3-character search with enhanced predictive matching
-    if (trimmedTerm.length === 3) {
-      const lowerTerm = trimmedTerm.toLowerCase();
-      const results = allTools.filter(tool => {
-        const lowerTitle = tool.title.toLowerCase();
-        const lowerDescription = tool.description?.toLowerCase() || "";
-        const lowerCategory = tool.category?.toLowerCase() || "";
-        const lowerTags = tool.tags?.join(" ").toLowerCase() || "";
-        
-        // Enhanced predictive matching for 3-character prefixes
-        const predictions: Record<string, string[]> = {
-          'scr': ['scribe', 'script', 'screenplay', 'transcribe', 'transcription', 'scriptwriter'],
-          'tra': ['transcribe', 'transcription', 'travel', 'trading', 'trader', 'training'],
-          'pod': ['podcast', 'podiatrist'],
-          'dra': ['draft', 'draftsman', 'drama', 'drawing'],
-          'col': ['college', 'coloring', 'color', 'collage'],
-          'leg': ['legal', 'legislation', 'legislator', 'legacy'],
-          'blo': ['blog', 'blockchain', 'blood'],
-          'art': ['article', 'artificial', 'artist', 'artwork'],
-          'gra': ['graphic', 'grant', 'grammar', 'graph'],
-          'god': ['gods', 'goddess', 'godlike'],
-          'spi': ['spiritual', 'spine', 'spirit'],
-          'tal': ['talk', 'talent', 'tale'],
-          'hom': ['home', 'homeschool'],
-          'pha': ['pharmaceutical', 'pharmacy', 'phantom'],
-          'res': ['resume', 'research', 'restaurant', 'results'],
-          'bus': ['business', 'budget'],
-          'can': ['cannabis', 'cancer', 'candidate'],
-          'ins': ['insurance', 'investment', 'instruction'],
-          'gam': ['game', 'gambling'],
-          'vid': ['video'],
-          'mus': ['music', 'museum', 'muscle']
-        };
-        
-        // Direct matching (highest priority)
-        if (lowerTitle.startsWith(lowerTerm) || 
-            lowerTitle.includes(lowerTerm) ||
-            lowerDescription.includes(lowerTerm) ||
-            lowerCategory.includes(lowerTerm) ||
-            lowerTags.includes(lowerTerm)) {
-          return true;
-        }
-        
-        // Predictive matching for 3-char prefixes
-        if (predictions[lowerTerm]) {
-          for (const prediction of predictions[lowerTerm]) {
-            if (lowerTitle.includes(prediction) || 
-                lowerDescription.includes(prediction) ||
-                lowerTags.includes(prediction)) {
-              // Removed console.log for performance
-              return true;
-            }
-          }
-        }
-        
-        // Enhanced word boundary matching for partial words like "god" in "gods"
-        return lowerTitle.match(new RegExp(`\\b${lowerTerm}`, 'i')) ||
-               lowerDescription.match(new RegExp(`\\b${lowerTerm}`, 'i'));
-      }).sort((a, b) => {
-        const aTitle = a.title.toLowerCase();
-        const bTitle = b.title.toLowerCase();
-        const aStartsWith = aTitle.startsWith(lowerTerm) ? 0 : 1;
-        const bStartsWith = bTitle.startsWith(lowerTerm) ? 0 : 1;
-        // Prioritize tools that start with the term, then alphabetical
-        if (aStartsWith !== bStartsWith) return aStartsWith - bStartsWith;
-        return aTitle.localeCompare(bTitle);
-      });
-      
-      // Create endless results for scrolling
-      const remainingTools = allTools.filter(tool => 
-        !results.some(result => result.title === tool.title)
-      );
-      const endlessResults = [...results, ...remainingTools];
-      
-      // Removed console.log for performance
-      
-      setSearchResults(endlessResults);
-      setDisplayedCount(30);
-      setIsOpen(true);
-      return;
-    }
-
-    // For 4+ characters, use intelligent search with endless scroll capability
+    // OPTIMIZED 3+ character search
     const intelligentResults = searchTools(allTools, trimmedTerm);
-    
-    // Create endless list: search results + all remaining tools for infinite scroll
     const remainingTools = allTools.filter(tool => 
       !intelligentResults.some(result => result.title === tool.title)
     );
     
-    // Get contextually similar tools to bridge the gap
-    const similarTools = getContextAwareSimilarTools(
-      intelligentResults, 
-      trimmedTerm, 
-      "", 
-      100
-    ).filter(tool => 
-      !intelligentResults.some(result => result.title === tool.title) &&
-      !remainingTools.some(remaining => remaining.title === tool.title)
-    );
+    // Simplified similar tools for performance
+    const endlessResults = [...intelligentResults, ...remainingTools];
     
-    // Combine: intelligent results + similar tools + all remaining tools for endless scroll
-    const endlessResults = [
-      ...intelligentResults,
-      ...similarTools,
-      ...remainingTools
-    ];
-    
-    // Removed console.logs for performance
-    
+    setCachedSearch(trimmedTerm, endlessResults);
     setSearchResults(endlessResults);
-    setDisplayedCount(30); // Start with 30, then load more
+    setDisplayedCount(30);
     setIsOpen(true);
-  }, [debouncedSearchTerm]);
+  }, [debouncedSearchTerm, getCachedSearch, setCachedSearch]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -271,29 +156,25 @@ export const useGlobalSearch = () => {
     }
   }, [searchTerm, searchResults, navigate]);
 
-  // FIXED scroll handler with proper endless loading and performance optimization
+  // OPTIMIZED scroll handler with throttling for smooth performance
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
-    // Performance optimization - throttle scroll events
+    // Performance throttling - prevent excessive computations
     if (isLoadingMore) return;
     
-    // More responsive loading threshold for smooth endless scroll
-    const threshold = 100;
+    const threshold = 150;
     const nearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
-    
-    // Removed console.log for performance
     
     if (nearBottom && displayedCount < searchResults.length) {
       setIsLoadingMore(true);
       
-      // Immediate loading with shorter delay for better UX
-      setTimeout(() => {
-        const increment = Math.min(25, searchResults.length - displayedCount); // Load more items per batch
-        // Removed console.log for performance
+      // Optimized loading with requestAnimationFrame for smooth UX
+      requestAnimationFrame(() => {
+        const increment = Math.min(30, searchResults.length - displayedCount);
         setDisplayedCount(prev => prev + increment);
         setIsLoadingMore(false);
-      }, 100); // Reduced delay for snappier response
+      });
     }
   }, [displayedCount, searchResults.length, isLoadingMore]);
 

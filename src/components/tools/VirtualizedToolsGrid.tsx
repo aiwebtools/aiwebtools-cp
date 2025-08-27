@@ -1,7 +1,7 @@
 
 import React, { memo } from "react";
 import { Tool } from "@/types/tools";
-import MinimalToolCard from "../MinimalToolCard";
+import PerformanceOptimizedCard from "../ui/performance-optimized-card";
 
 interface VirtualizedToolsGridProps {
   tools: Tool[];
@@ -10,18 +10,28 @@ interface VirtualizedToolsGridProps {
   selectedCategory: string | null;
 }
 
-// Ultra-simplified grid for maximum performance
+// Ultra-optimized grid with performance-first design
 const VirtualizedToolsGrid = memo(({ 
   tools, 
   displayedCount 
 }: VirtualizedToolsGridProps) => {
-  // Minimal slicing without complex virtualization
+  // Optimized slicing with minimal computation
   const toolsToDisplay = tools.slice(0, Math.min(displayedCount, tools.length));
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+    <div 
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4"
+      style={{ 
+        contain: 'layout style',
+        contentVisibility: 'auto'
+      }}
+    >
       {toolsToDisplay.map((tool, index) => (
-        <MinimalToolCard key={`${tool.title}-${index}`} tool={tool} index={index} />
+        <PerformanceOptimizedCard 
+          key={`${tool.title}-${index}`} 
+          tool={tool} 
+          index={index} 
+        />
       ))}
     </div>
   );

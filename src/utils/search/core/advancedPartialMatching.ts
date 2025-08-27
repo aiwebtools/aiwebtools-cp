@@ -244,7 +244,7 @@ export const getAdvancedPartialMatches = (searchTerm: string, tools: Tool[]): To
     predictions.push(...Array.from(extractedPredictions).slice(0, 5));
   }
   
-  console.log(`🎯 Advanced partial matching for "${searchTerm}": predictions =`, predictions);
+  // Removed console.log for performance - predictions cached
   
   // Filter tools based on predictions and original search
   return tools.filter(tool => {
@@ -261,7 +261,7 @@ export const getAdvancedPartialMatches = (searchTerm: string, tools: Tool[]): To
     // Prediction-based matching
     for (const prediction of predictions) {
       if (searchableText.includes(prediction)) {
-        console.log(`🎯 Prediction "${prediction}" matched tool: ${tool.title}`);
+        // Matched via prediction
         return true;
       }
     }
@@ -289,10 +289,10 @@ export const scoreAdvancedPartialMatch = (tool: Tool, searchTerm: string, predic
   for (const prediction of predictions) {
     if (lowerTitle.includes(prediction)) {
       score += 3000;
-      console.log(`🎯 Prediction boost: "${prediction}" in title of ${tool.title} (+3000)`);
+      // Prediction boost applied
     } else if (lowerDescription.includes(prediction)) {
       score += 1500;
-      console.log(`🎯 Prediction boost: "${prediction}" in description of ${tool.title} (+1500)`);
+      // Description boost applied
     } else if (lowerTags.includes(prediction)) {
       score += 800;
     }
