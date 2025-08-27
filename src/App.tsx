@@ -16,6 +16,7 @@ import NotFound from "./pages/NotFound";
 import DisclaimersPage from "./pages/DisclaimersPage";
 import OurStoryPage from "./pages/OurStoryPage";
 import FloatingCloneButton from "./components/FloatingCloneButton";
+import InitialDisclaimerPopup from "./components/InitialDisclaimerPopup";
 
 const queryClient = new QueryClient();
 
