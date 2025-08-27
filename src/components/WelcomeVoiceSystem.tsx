@@ -50,17 +50,26 @@ const WelcomeVoiceSystem = () => {
       
       // Create second message: "YOU'VE GOT TOOLS"
       const toolsMsg = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS");
-      toolsMsg.rate = isMobile ? 0.8 : 0.7;
-      toolsMsg.pitch = isMobile ? 0.6 : 0.5;
+      toolsMsg.rate = isMobile ? 0.9 : 0.8;
+      toolsMsg.pitch = isMobile ? 1.2 : 1.1;
       toolsMsg.volume = 1.0;
       
-      // Find female voice for tools message
-      const femaleVoice = voices.find(v => 
+      // Find British female voice for tools message (AOL-style)
+      const britishFemaleVoice = voices.find(v => 
+        v.lang.toLowerCase().includes('en-gb') ||
+        v.name.toLowerCase().includes('british') ||
+        v.name.toLowerCase().includes('uk') ||
+        v.name.toLowerCase().includes('victoria') ||
+        v.name.toLowerCase().includes('emma') ||
+        v.name.toLowerCase().includes('fiona')
+      ) || voices.find(v => 
         v.name.toLowerCase().includes('female') ||
         v.name.toLowerCase().includes('samantha') ||
-        v.name.toLowerCase().includes('karen')
+        v.name.toLowerCase().includes('karen') ||
+        v.name.toLowerCase().includes('susan') ||
+        v.name.toLowerCase().includes('anna')
       );
-      if (femaleVoice) toolsMsg.voice = femaleVoice;
+      if (britishFemaleVoice) toolsMsg.voice = britishFemaleVoice;
       
       // Set up sequence timing
       welcomeMsg.onstart = () => console.log('🤖 Playing: "WELCOME MASTER"');
