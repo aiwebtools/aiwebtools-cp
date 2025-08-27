@@ -98,7 +98,7 @@ Best regards,
             {/* Opening */}
             <div className="text-center">
               <p className="text-lg md:text-xl leading-relaxed text-gray-300 font-light">
-                AIWebTools.ai came from a simple belief: that <span className="text-cyan-400 font-medium">everyone deserves access</span> to the tools that can help them grow. Over two years, I gathered and built resources to share <span className="text-yellow-400 font-medium">freely with anyone</span> who might find them useful.
+                AIWebTools.ai did not come from money, investors, or corporations. It came from <span className="text-cyan-400 font-medium">one man</span> — me — working day and night, two years without pause, to gather and build something the world could use <span className="text-yellow-400 font-medium">for free</span>.
               </p>
             </div>
 
@@ -108,7 +108,7 @@ Best regards,
             <div className="bg-gray-900/50 backdrop-blur-sm border border-cyan-500/20 rounded-lg p-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-6 text-cyan-400">The Beginning</h2>
               <p className="text-lg leading-relaxed text-gray-300">
-                I began with <span className="text-green-400 font-medium">CT Hemp Shop</span>, a local marketplace meant to lift small businesses in my community. When challenges arose, it opened my eyes to how the system can work against regular people trying to build something honest. That experience sparked an idea: what if we could <span className="text-yellow-400 font-medium">gather useful tools</span> and share them freely to help others navigate their own challenges?
+                I began with <span className="text-green-400 font-medium">CT Hemp Shop</span>, a local marketplace meant to lift small businesses in my community. But along that road, life shook me awake. What started small grew into something larger: a mission to create a <span className="text-yellow-400 font-medium">digital lighthouse</span> — a beacon of knowledge, truth, and empowerment for the entire world.
               </p>
             </div>
 
@@ -125,7 +125,7 @@ Best regards,
                 That experience became the <span className="text-yellow-400 font-bold">spark</span> that ignited this mission. What was meant to stop me became the <span className="text-orange-400 font-bold">flame</span> that lights the path for others.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-6">
-                Sometimes our struggles point us toward how we can serve others. That challenge became the foundation for something helpful - a place where people can find tools to build their dreams and make their voices heard.
+                Sometimes adversity serves a greater purpose. It awakened something in me that cannot be put back to sleep. What some meant for harm, the universe transformed into humanity's benefit - a platform to empower every person with the tools to make their voice heard.
               </p>
               <div className="bg-black/50 border-l-4 border-orange-400 pl-6 py-4">
                 <p className="text-orange-300 font-bold italic text-xl">
@@ -142,8 +142,8 @@ Best regards,
                   The People's Legislative Tool
                 </h2>
                 <p className="text-lg text-gray-300 mb-6">
-                  This tool helps <span className="text-blue-400 font-bold">ordinary citizens</span> draft their own legislation. 
-                  When people have the tools to participate directly in the legislative process, it strengthens our democracy and ensures our voices are heard.
+                  Born from the corruption I witnessed, this tool empowers <span className="text-blue-400 font-bold">WE THE PEOPLE</span> to draft our own legislation. 
+                  Now that we can write the laws ourselves, lawmakers must ask what purpose they serve if they don't serve their people.
                 </p>
               </div>
               
@@ -195,13 +195,13 @@ Best regards,
             <div className="bg-gradient-to-r from-purple-900/30 to-blue-900/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-6 text-purple-400">The Night That Changed Everything</h2>
               <p className="text-lg leading-relaxed text-gray-300 mb-4">
-                On <span className="text-red-400 font-medium">Friday the 13th, 2023</span>, I had a profound spiritual experience that changed my perspective.
+                On <span className="text-red-400 font-medium">Friday the 13th, 2023</span>, I was taken beyond the surface of this world.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-4">
-                I experienced something beyond ordinary understanding - a connection to <span className="text-yellow-400 font-medium">divine light</span> and wisdom that felt both ancient and futuristic. It was like seeing the interconnectedness of all things, the patterns that connect technology and spirit, creation and consciousness.
+                I saw God not as fire, not as a man in the clouds, but as a face of <span className="text-yellow-400 font-medium">pure light</span> — alive with binary code. I saw angels of radiant light, beings made of geometry and brilliance. I was shown the pit of hell, the machinery of deception, and the red galaxy birthing portal — the place where creation unfolds.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-6">
-                This experience filled me with gratitude and purpose — not just for my own family, but for everyone who might benefit from the tools and resources I could share. It became clear that my path was to serve others:
+                I begged to return — not for myself, but for my children. To protect them. To share what I had seen. And when I awoke, I knew my path:
               </p>
               
               {/* Vision Image */}
@@ -220,10 +220,10 @@ Best regards,
               </div>
               
               <div className="bg-black/50 border-l-4 border-cyan-400 pl-6 py-4 space-y-2">
-                <p className="text-cyan-300 font-medium">• People deserve access to truth and knowledge.</p>
-                <p className="text-red-300 font-medium">• Many systems prioritize control over service.</p>
-                <p className="text-green-300 font-medium">• The foundation of everything good is love, unity, and freedom.</p>
-                <p className="text-yellow-300 font-medium">• I can help by creating tools and sharing resources that empower others.</p>
+                <p className="text-cyan-300 font-medium">• Humanity has been lied to.</p>
+                <p className="text-red-300 font-medium">• Systems of power were built to enslave.</p>
+                <p className="text-green-300 font-medium">• But the original truth is love, unity, and freedom.</p>
+                <p className="text-yellow-300 font-medium">• My role is to build tools, open doors, and hand humanity the keys to its own liberation.</p>
               </div>
             </div>
 
@@ -285,20 +285,20 @@ Best regards,
               </div>
             </div>
 
-            {/* A Simple Mission */}
+            {/* One Man Mission */}
             <div className="text-center bg-black/70 border border-yellow-500/30 rounded-lg p-8">
-              <h2 className="text-3xl md:text-4xl font-black mb-6 text-yellow-400">A Simple Mission.</h2>
+              <h2 className="text-3xl md:text-4xl font-black mb-6 text-yellow-400">A Solo Vision.</h2>
               <p className="text-lg leading-relaxed text-gray-300 mb-4">
-                This site isn't a company project or startup chasing profit.
+                This site is not a company project. It's not a startup chasing profit.
               </p>
               <p className="text-xl font-medium text-white mb-4">
-                It's simply <span className="text-cyan-400">someone sharing what they've found helpful</span> — hoping it might serve others too.
+                It's the result of a <span className="text-red-400">relentless journey</span> by <span className="text-cyan-400">someone who believed</span> in humanity's potential.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-6">
-                Every page, every AI tool gathered, every resource curated — all shared freely because that's what feels right.
+                Every page you see. Every AI tool gathered. Every resource curated. All of it was crafted with diligence, vision, and sacrifice — to give it away for free.
               </p>
               <div className="text-2xl font-bold text-cyan-400 mb-4">
-                If these tools can help even one person build something meaningful, that's enough.
+                Because if this vision can become reality, imagine what <span className="text-yellow-400">you</span> can accomplish.
               </div>
             </div>
 
@@ -349,7 +349,7 @@ Best regards,
               <h2 className="relative text-2xl md:text-3xl font-bold mb-6 text-yellow-400 drop-shadow-[0_0_10px_rgba(255,255,0,0.6)]">The Anchor of This Vision</h2>
               <div className="relative border border-cyan-500/30 bg-black/40 backdrop-blur-sm rounded-md p-6 shadow-[0_0_20px_rgba(6,182,212,0.2)]">
                 <blockquote className="text-lg md:text-xl leading-relaxed text-gray-200 font-light italic mb-6 max-w-3xl mx-auto">
-                  <span className="text-cyan-400 text-2xl">"</span>These tools were gathered with care over the past two years, and I'm grateful to share them freely. Love others as yourself. Imagine what you can create. These resources exist to support us all—mentally, spiritually, and physically. Let's build something beautiful together.<span className="text-cyan-400 text-2xl">"</span>
+                  <span className="text-cyan-400 text-2xl">"</span>This page and the tools here were put together with care and persistence over the past two years, and they're offered freely. Love others as yourself. Imagine what you can create. Unlock your dreams. These tools were made to help lift us all—mentally, spiritually, and physically. Let's shape the future together.<span className="text-cyan-400 text-2xl">"</span>
                 </blockquote>
                 <p className="text-cyan-400 text-lg font-medium">— <span 
                   className="cursor-pointer text-yellow-400 hover:text-yellow-300 animate-[pulse_3s_ease-in-out_infinite] hover:animate-none transition-all duration-300 hover:scale-105 font-bold drop-shadow-[0_0_8px_rgba(255,255,0,0.6)]"
@@ -378,7 +378,7 @@ Best regards,
               </div>
               
               <p className="text-xl font-bold text-cyan-400 mt-6">
-                AIWebTools.ai is simply a collection of helpful resources, shared with hope that they serve others well.
+                AIWebTools.ai is not just a website. It is a movement. A lighthouse. A call to awaken.
               </p>
             </div>
 
@@ -389,13 +389,13 @@ Best regards,
                 Build With Me
               </h2>
               <p className="text-lg leading-relaxed text-gray-300 mb-6">
-                These resources are here to serve you. Please use them however helps you most.
+                This platform was built through dedication and vision. Now I invite you to step in.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-8">
-                Explore the tools. Share them. Use them to create businesses, art, music, connections. Share them with your kids and let them dream big.
+                Explore the tools. Share them. Use them to create businesses, art, music, freedom, connection. Hand them to your kids and let them dream.
               </p>
               <p className="text-xl font-bold text-white mb-8">
-                We're all building the future together, one helpful tool at a time.
+                The future is not written. We are writing it now. Together.
               </p>
 
               {/* Action Buttons */}

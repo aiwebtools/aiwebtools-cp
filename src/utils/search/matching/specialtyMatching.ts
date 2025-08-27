@@ -10,27 +10,15 @@ export const matchFarming = (tool: Tool, searchTerm: string): boolean => {
     'farm management', 'precision farming', 'sustainable farming'
   ];
   
-  // FIXED: Only match if the SEARCH TERM contains farming keywords
-  const searchTermHasFarmingKeywords = farmingKeywords.some(keyword => 
-    lowerSearchTerm.includes(keyword)
-  );
-  
-  if (!searchTermHasFarmingKeywords) {
-    return false;
-  }
-  
-  // If search term has farming keywords, then check if tool is relevant
   const searchableText = [
     tool.title,
     tool.description,
     ...(tool.tags || [])
   ].join(' ').toLowerCase();
   
-  const toolHasFarmingContent = farmingKeywords.some(keyword => 
-    searchableText.includes(keyword)
+  return farmingKeywords.some(keyword => 
+    lowerSearchTerm.includes(keyword) || searchableText.includes(keyword)
   );
-  
-  return toolHasFarmingContent;
 };
 
 export const scoreFarming = (tool: Tool, searchTerm: string): number => {
@@ -81,27 +69,15 @@ export const matchHealth = (tool: Tool, searchTerm: string): boolean => {
     'diagnosis', 'treatment', 'therapy', 'clinical', 'patient', 'hospital'
   ];
   
-  // FIXED: Only match if the SEARCH TERM contains health keywords
-  const searchTermHasHealthKeywords = healthKeywords.some(keyword => 
-    lowerSearchTerm.includes(keyword)
-  );
-  
-  if (!searchTermHasHealthKeywords) {
-    return false;
-  }
-  
-  // If search term has health keywords, then check if tool is relevant
   const searchableText = [
     tool.title,
     tool.description,
     ...(tool.tags || [])
   ].join(' ').toLowerCase();
   
-  const toolHasHealthContent = healthKeywords.some(keyword => 
-    searchableText.includes(keyword)
+  return healthKeywords.some(keyword => 
+    lowerSearchTerm.includes(keyword) || searchableText.includes(keyword)
   );
-  
-  return toolHasHealthContent;
 };
 
 export const scoreHealth = (tool: Tool, searchTerm: string): number => {
@@ -132,27 +108,15 @@ export const matchLearning = (tool: Tool, searchTerm: string): boolean => {
     'teaching', 'lesson', 'skill', 'knowledge', 'academic', 'school'
   ];
   
-  // FIXED: Only match if the SEARCH TERM contains learning keywords
-  const searchTermHasLearningKeywords = learningKeywords.some(keyword => 
-    lowerSearchTerm.includes(keyword)
-  );
-  
-  if (!searchTermHasLearningKeywords) {
-    return false;
-  }
-  
-  // If search term has learning keywords, then check if tool is relevant
   const searchableText = [
     tool.title,
     tool.description,
     ...(tool.tags || [])
   ].join(' ').toLowerCase();
   
-  const toolHasLearningContent = learningKeywords.some(keyword => 
-    searchableText.includes(keyword)
+  return learningKeywords.some(keyword => 
+    lowerSearchTerm.includes(keyword) || searchableText.includes(keyword)
   );
-  
-  return toolHasLearningContent;
 };
 
 export const scoreLearning = (tool: Tool, searchTerm: string): number => {
@@ -183,27 +147,15 @@ export const matchMedical = (tool: Tool, searchTerm: string): boolean => {
     'diagnosis', 'treatment', 'clinical', 'therapeutic', 'pharmacy'
   ];
   
-  // FIXED: Only match if the SEARCH TERM contains medical keywords
-  const searchTermHasMedicalKeywords = medicalKeywords.some(keyword => 
-    lowerSearchTerm.includes(keyword)
-  );
-  
-  if (!searchTermHasMedicalKeywords) {
-    return false;
-  }
-  
-  // If search term has medical keywords, then check if tool is relevant
   const searchableText = [
     tool.title,
     tool.description,
     ...(tool.tags || [])
   ].join(' ').toLowerCase();
   
-  const toolHasMedicalContent = medicalKeywords.some(keyword => 
-    searchableText.includes(keyword)
+  return medicalKeywords.some(keyword => 
+    lowerSearchTerm.includes(keyword) || searchableText.includes(keyword)
   );
-  
-  return toolHasMedicalContent;
 };
 
 export const scoreMedical = (tool: Tool, searchTerm: string): number => {
@@ -236,27 +188,15 @@ export const matchTravel = (tool: Tool, searchTerm: string): boolean => {
     'tour', 'adventure', 'explore', 'wanderlust', 'globe'
   ];
   
-  // FIXED: Only match if the SEARCH TERM contains travel keywords
-  const searchTermHasTravelKeywords = travelKeywords.some(keyword => 
-    lowerSearchTerm.includes(keyword)
-  );
-  
-  if (!searchTermHasTravelKeywords) {
-    return false;
-  }
-  
-  // If search term has travel keywords, then check if tool is relevant
   const searchableText = [
     tool.title,
     tool.description,
     ...(tool.tags || [])
   ].join(' ').toLowerCase();
   
-  const toolHasTravelContent = travelKeywords.some(keyword => 
-    searchableText.includes(keyword)
+  return travelKeywords.some(keyword => 
+    lowerSearchTerm.includes(keyword) || searchableText.includes(keyword)
   );
-  
-  return toolHasTravelContent;
 };
 
 export const scoreTravel = (tool: Tool, searchTerm: string): number => {
@@ -310,25 +250,16 @@ export const matchSpiritual = (tool: Tool, searchTerm: string): boolean => {
     'god', 'gods', 'deities', 'deity', 'religious', 'religion', 'faith', 'prayer'
   ];
   
-  // FIXED: Only match if the SEARCH TERM contains spiritual keywords
-  // Don't match just because the tool contains spiritual content
-  const searchTermHasSpiritualKeywords = spiritualKeywords.some(keyword => 
-    lowerSearchTerm.includes(keyword)
-  );
-  
-  if (!searchTermHasSpiritualKeywords) {
-    return false;
-  }
-  
-  // If search term has spiritual keywords, then check if tool is relevant
   const searchableText = [
     tool.title,
     tool.description,
     ...(tool.tags || [])
   ].join(' ').toLowerCase();
   
-  const toolHasSpiritualContent = spiritualKeywords.some(keyword => 
-    searchableText.includes(keyword)
+  console.log(`⚡ Checking spiritual match for "${tool.title}" with search "${searchTerm}"`);
+  
+  const matches = spiritualKeywords.some(keyword => 
+    lowerSearchTerm.includes(keyword) || searchableText.includes(keyword)
   );
   
   // Enhanced matching for god-related searches
@@ -338,10 +269,15 @@ export const matchSpiritual = (tool: Tool, searchTerm: string): boolean => {
     searchableText.includes('gods') ||
     searchableText.includes('deities')
   )) {
+    console.log(`⚡ ENHANCED GOD MATCH FOUND: ${tool.title}`);
     return true;
   }
   
-  return toolHasSpiritualContent;
+  if (matches) {
+    console.log(`⚡ SPIRITUAL MATCH FOUND: ${tool.title}`);
+  }
+  
+  return matches;
 };
 
 export const scoreSpiritual = (tool: Tool, searchTerm: string): number => {
@@ -400,6 +336,7 @@ export const scoreSpiritual = (tool: Tool, searchTerm: string): number => {
 // Paranormal/Phenomenon specific matching
 export const matchParanormal = (tool: Tool, searchTerm: string): boolean => {
   const lowerSearchTerm = searchTerm.toLowerCase().trim();
+  console.log(`🛸 Checking paranormal match for "${tool.title}" with search "${searchTerm}"`);
   
   const paranormalKeywords = [
     'phenomenon', 'paranormal', 'ufo', 'ghost', 'ghosthunting', 'supernatural',
@@ -409,137 +346,57 @@ export const matchParanormal = (tool: Tool, searchTerm: string): boolean => {
     'apparition', 'specter', 'phantom'
   ];
   
-  // FIXED: Only match if the SEARCH TERM contains paranormal keywords
-  const searchTermHasParanormalKeywords = paranormalKeywords.some(keyword => 
-    lowerSearchTerm.includes(keyword)
-  );
-  
-  if (!searchTermHasParanormalKeywords) {
-    return false;
-  }
-  
-  // If search term has paranormal keywords, then check if tool is relevant
   const searchableText = [
     tool.title,
     tool.description,
     ...(tool.tags || [])
   ].join(' ').toLowerCase();
   
-  const toolHasParanormalContent = paranormalKeywords.some(keyword => 
-    searchableText.includes(keyword)
+  const matches = paranormalKeywords.some(keyword => 
+    lowerSearchTerm.includes(keyword) || searchableText.includes(keyword)
   );
   
-  return toolHasParanormalContent;
-};
-
-// Math/Science specific matching
-export const matchMathScience = (tool: Tool, searchTerm: string): boolean => {
-  const lowerSearchTerm = searchTerm.toLowerCase().trim();
-  const mathKeywords = [
-    'math', 'mathematics', 'algebra', 'calculus', 'geometry', 'statistics', 'equation',
-    'formula', 'calculation', 'algorithm', 'number', 'probability', 'trigonometry',
-    'physics', 'chemistry', 'biology', 'science', 'scientific', 'research'
-  ];
-  
-  // FIXED: Only match if the SEARCH TERM contains math/science keywords
-  const searchTermHasMathKeywords = mathKeywords.some(keyword => 
-    lowerSearchTerm.includes(keyword)
-  );
-  
-  if (!searchTermHasMathKeywords) {
-    return false;
+  if (matches) {
+    console.log(`🛸 PARANORMAL MATCH FOUND: ${tool.title}`);
   }
   
-  // If search term has math keywords, then check if tool is relevant
-  const searchableText = [
-    tool.title,
-    tool.description,
-    ...(tool.tags || [])
-  ].join(' ').toLowerCase();
-  
-  const toolHasMathContent = mathKeywords.some(keyword => 
-    searchableText.includes(keyword)
-  ) || 
-  // Also check for specific math-related tools
-  tool.title.toLowerCase().includes('algebraic') ||
-  tool.title.toLowerCase().includes('expression') ||
-  tool.title.toLowerCase().includes('inventor') ||
-  tool.title.toLowerCase().includes('calculation') ||
-  tool.title.toLowerCase().includes('probability') ||
-  tool.category?.toLowerCase().includes('education') ||
-  tool.category?.toLowerCase().includes('learning') ||
-  tool.category?.toLowerCase().includes('research');
-  
-  return toolHasMathContent;
-};
-
-export const scoreMathScience = (tool: Tool, searchTerm: string): number => {
-  const lowerSearchTerm = searchTerm.toLowerCase().trim();
-  let score = 0;
-  
-  // Check if this is the Algebraic Expression Inventor specifically
-  if (tool.title.toLowerCase().includes('algebraic expression inventor') || 
-      tool.title.toLowerCase().includes('probability gpt') ||
-      tool.directUrl?.includes('algebraicexpressioninventor.lovable.app') ||
-      tool.directUrl?.includes('probabilitygpt.lovable.app')) {
-    score += 30000; // Very high priority for math searches
-  }
-  
-  // High-value math keywords
-  const highValueKeywords = ['math', 'mathematics', 'algebra', 'calculus', 'probability', 'equation', 'formula'];
-  for (const keyword of highValueKeywords) {
-    if (lowerSearchTerm.includes(keyword)) {
-      if (tool.title.toLowerCase().includes(keyword)) {
-        score += 8000;
-      }
-      if (tool.description.toLowerCase().includes(keyword)) {
-        score += 5000;
-      }
-    }
-  }
-  
-  // Medium-value science keywords
-  const mediumValueKeywords = ['science', 'scientific', 'research', 'calculation', 'algorithm'];
-  for (const keyword of mediumValueKeywords) {
-    if (lowerSearchTerm.includes(keyword)) {
-      if (tool.title.toLowerCase().includes(keyword)) {
-        score += 4000;
-      }
-      if (tool.description.toLowerCase().includes(keyword)) {
-        score += 2500;
-      }
-    }
-  }
-  
-  return score;
+  return matches;
 };
 
 export const scoreParanormal = (tool: Tool, searchTerm: string): number => {
   const lowerSearchTerm = searchTerm.toLowerCase().trim();
   let score = 0;
   
+  console.log(`🛸 Scoring paranormal for "${tool.title}" with search "${searchTerm}"`);
+  
   // Check if this is the Phenomenon Explorer AI Suite specifically
   if (tool.title.toLowerCase().includes('phenomenon explorer') || 
       tool.title.toLowerCase().includes('phenomenon investigator') ||
       tool.directUrl?.includes('phenomenonexplorer.lovable.app')) {
     score += 30000; // Ultra high priority for paranormal/phenomenon searches
+    console.log(`🛸 PHENOMENON EXPLORER DETECTED: Adding 30000 to score for ${tool.title}`);
   }
   
   // High-value paranormal keywords that should prioritize Phenomenon Explorer
   const highValueKeywords = ['ufo', 'ghost', 'paranormal', 'phenomenon', 'supernatural', 'unexplained'];
   for (const keyword of highValueKeywords) {
     if (lowerSearchTerm.includes(keyword)) {
+      console.log(`🛸 High-value keyword "${keyword}" found in search`);
+      
       // Give massive boost to Phenomenon Explorer for these searches
       if (tool.title.toLowerCase().includes('phenomenon') || 
           tool.directUrl?.includes('phenomenonexplorer.lovable.app')) {
         score += 25000;
+        console.log(`🛸 PHENOMENON TOOL BOOST: Adding 25000 for ${tool.title}`);
       }
       
       if (tool.title.toLowerCase().includes(keyword)) {
         score += 8000;
+        console.log(`🛸 Title keyword match: Adding 8000 for ${tool.title}`);
       }
       if (tool.description.toLowerCase().includes(keyword)) {
         score += 5000;
+        console.log(`🛸 Description keyword match: Adding 5000 for ${tool.title}`);
       }
     }
   }
@@ -551,6 +408,7 @@ export const scoreParanormal = (tool: Tool, searchTerm: string): number => {
       if (tool.title.toLowerCase().includes('phenomenon') || 
           tool.directUrl?.includes('phenomenonexplorer.lovable.app')) {
         score += 15000;
+        console.log(`🛸 Medium keyword boost for phenomenon tool: Adding 15000 for ${tool.title}`);
       }
       
       if (tool.title.toLowerCase().includes(keyword)) {
@@ -562,6 +420,6 @@ export const scoreParanormal = (tool: Tool, searchTerm: string): number => {
     }
   }
   
+  console.log(`🛸 Final paranormal score for "${tool.title}": ${score}`);
   return score;
 };
-
