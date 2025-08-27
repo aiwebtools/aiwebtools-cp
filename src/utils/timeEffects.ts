@@ -231,11 +231,18 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   // Create portal sounds (keeping existing timing) - NO ROBOT VOICE
   createPortalSounds();
 
+  // Log for debugging
+  console.log('🌀 Portal effect created, opening URL in:', 1750, 'ms');
+
   // Cleanup and open in new tab after ~1.75 seconds (faster while keeping effect/sound)
   setTimeout(() => {
     console.log('🧹 Cleaning up effects and opening in new window:', destinationUrl);
     cleanupEffects(effectsContainer);
     // Ensure it always opens in new window to keep users on our website
-    openDestinationUrl(destinationUrl);
+    if (destinationUrl && destinationUrl.trim()) {
+      openDestinationUrl(destinationUrl);
+    } else {
+      console.log('⚠️ No destination URL provided - portal effect only');
+    }
   }, 1750);
 };
