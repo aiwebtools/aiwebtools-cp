@@ -21,7 +21,7 @@ export function FavoritesList() {
           Start building your personal AI tools collection by clicking the heart icon on any tool you love!
         </p>
         <Button asChild>
-          <Link to="/">
+          <Link to="/main-category/ALL%20AI%20TOOLS">
             Discover AI Tools
           </Link>
         </Button>
