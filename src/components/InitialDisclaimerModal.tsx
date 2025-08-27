@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { AlertTriangle } from "lucide-react";
 
 // Simple mobile detection
 const isMobileDevice = () => {
@@ -14,61 +13,10 @@ const isMobileDevice = () => {
 };
 
 const InitialDisclaimerModal = () => {
-  console.log('🚀 InitialDisclaimerModal component mounting...');
+  console.log('🚀 InitialDisclaimerModal - Auto voice system initializing...');
   
-  const [isOpen, setIsOpen] = useState(false);
-  const [isReady, setIsReady] = useState(false);
+  const [hasPlayedVoices, setHasPlayedVoices] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
-  // FOR TESTING - clear localStorage every time in dev
-  if (window.location.hostname === 'localhost' || window.location.hostname.includes('lovable')) {
-    localStorage.removeItem("initialDisclaimerAccepted");
-    console.log('🗑️ Development mode - cleared localStorage for testing');
-  }
-
-  useEffect(() => {
-    console.log('🚀 InitialDisclaimerModal - useEffect triggered');
-    
-    // Check if it's a mobile device
-    const mobile = isMobileDevice();
-    setIsMobile(mobile);
-    console.log('📱 Mobile device detected:', mobile);
-    
-    // Only show on desktop devices
-    if (!mobile) {
-      // Check if user has already agreed to the initial disclaimer
-      const timer = setTimeout(() => {
-        const hasAcceptedInitialDisclaimer = localStorage.getItem("initialDisclaimerAccepted");
-        console.log('🖥️ Desktop - localStorage check:', {
-          key: 'initialDisclaimerAccepted',
-          value: hasAcceptedInitialDisclaimer,
-          shouldShow: !hasAcceptedInitialDisclaimer
-        });
-        
-        if (!hasAcceptedInitialDisclaimer) {
-          console.log('✅ Showing initial disclaimer modal on desktop');
-          setIsOpen(true);
-        } else {
-          console.log('❌ Disclaimer already accepted, not showing');
-        }
-        setIsReady(true);
-        console.log('✅ Modal ready state set to true');
-      }, 500);
-
-      return () => {
-        console.log('🧹 Cleanup timer');
-        clearTimeout(timer);
-      };
-    } else {
-      console.log('📱 Mobile device - skipping disclaimer modal');
-      setIsReady(true);
-    }
-  }, []);
-
-  // Debug state changes
-  useEffect(() => {
-    console.log('📊 Modal state changed:', { isOpen, isReady });
-  }, [isOpen, isReady]);
 
   const createRobotVoices = () => {
     if (!('speechSynthesis' in window)) {
@@ -77,200 +25,137 @@ const InitialDisclaimerModal = () => {
     }
 
     try {
-      console.log('🤖 Starting robot voice sequence...');
+      console.log('🤖 Starting ENHANCED robot voice sequence...');
 
       const playVoices = () => {
         const voices = speechSynthesis.getVoices();
         console.log('🗣️ Available voices:', voices.length);
 
-        // First voice: "ACCESS GRANTED, welcome master"
+        // First voice: "ACCESS GRANTED, welcome master" - DEEP ROBOTIC
         const firstUtterance = new SpeechSynthesisUtterance("ACCESS GRANTED, welcome master");
-        firstUtterance.rate = 0.5;
-        firstUtterance.pitch = 0.4;
-        firstUtterance.volume = 0.8;
+        firstUtterance.rate = 0.4;  // Much slower for robotic effect
+        firstUtterance.pitch = 0.1; // Much lower pitch for deep robot voice
+        firstUtterance.volume = 0.9;
         
-        // Try to find a robotic/male voice
+        // Try to find the deepest/most robotic voice available
         const roboticVoice = voices.find(voice => 
           voice.name.toLowerCase().includes('male') ||
           voice.name.toLowerCase().includes('david') ||
           voice.name.toLowerCase().includes('alex') ||
-          voice.name.toLowerCase().includes('daniel')
+          voice.name.toLowerCase().includes('daniel') ||
+          voice.name.toLowerCase().includes('mark')
         ) || voices.find(voice => voice.lang.startsWith('en'));
         
         if (roboticVoice) {
-          console.log('🤖 Using robotic voice:', roboticVoice.name);
+          console.log('🤖 Using deep robotic voice:', roboticVoice.name);
           firstUtterance.voice = roboticVoice;
         }
 
-        // Second voice: AOL-style "YOU'VE GOT TOOLS"
+        // Second voice: AOL-style "YOU'VE GOT TOOLS" - CLASSIC AOL FEMALE
         const secondUtterance = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS");
-        secondUtterance.rate = 0.7;
-        secondUtterance.pitch = 0.8;
-        secondUtterance.volume = 0.9;
+        secondUtterance.rate = 0.8;   // Faster, more energetic like AOL
+        secondUtterance.pitch = 1.2;  // Higher pitch for classic AOL feel
+        secondUtterance.volume = 1.0;
         
-        // Try to find a different voice for variety
+        // Try to find a classic female voice for AOL effect
         const aolVoice = voices.find(voice => 
           voice.name.toLowerCase().includes('female') ||
           voice.name.toLowerCase().includes('samantha') ||
-          voice.name.toLowerCase().includes('karen')
-        ) || voices.find(voice => voice.lang.startsWith('en'));
+          voice.name.toLowerCase().includes('karen') ||
+          voice.name.toLowerCase().includes('susan') ||
+          voice.name.toLowerCase().includes('victoria')
+        ) || voices.find(voice => voice.lang.startsWith('en') && voice !== roboticVoice);
         
         if (aolVoice) {
-          console.log('📬 Using AOL voice:', aolVoice.name);
+          console.log('📬 Using AOL-style voice:', aolVoice.name);
           secondUtterance.voice = aolVoice;
         }
 
-        // Add event listeners for debugging
-        firstUtterance.onstart = () => console.log('🤖 First voice started');
-        firstUtterance.onend = () => {
-          console.log('🤖 First voice ended, starting second...');
-          setTimeout(() => {
-            speechSynthesis.speak(secondUtterance);
-          }, 500);
+        // Enhanced event listeners for better debugging and timing
+        firstUtterance.onstart = () => {
+          console.log('🤖 ROBOTIC VOICE STARTED: "ACCESS GRANTED, welcome master"');
         };
-        firstUtterance.onerror = (error) => console.log('🤖 First voice error:', error);
+        
+        firstUtterance.onend = () => {
+          console.log('🤖 Robotic voice ended, starting AOL voice in 800ms...');
+          setTimeout(() => {
+            console.log('📬 Playing AOL voice...');
+            speechSynthesis.speak(secondUtterance);
+          }, 800); // Longer pause for dramatic effect
+        };
+        
+        firstUtterance.onerror = (error) => console.log('🤖 Robotic voice error:', error);
 
-        secondUtterance.onstart = () => console.log('📬 Second voice started');
-        secondUtterance.onend = () => console.log('📬 Voice sequence complete!');
-        secondUtterance.onerror = (error) => console.log('📬 Second voice error:', error);
+        secondUtterance.onstart = () => {
+          console.log('📬 AOL VOICE STARTED: "YOU\'VE GOT TOOLS"');
+        };
+        
+        secondUtterance.onend = () => {
+          console.log('📬 AOL voice ended - VOICE SEQUENCE COMPLETE! 🎉');
+          console.log('🎬 Video should start playing now...');
+        };
+        
+        secondUtterance.onerror = (error) => console.log('📬 AOL voice error:', error);
 
-        // Start the sequence
-        setTimeout(() => {
-          console.log('🎵 Playing first voice...');
-          speechSynthesis.speak(firstUtterance);
-        }, 300);
+        // Start the robotic sequence immediately
+        console.log('🎵 Starting robotic voice sequence NOW...');
+        speechSynthesis.speak(firstUtterance);
       };
 
       // Wait for voices to load if they haven't already
       if (speechSynthesis.getVoices().length === 0) {
         console.log('⏳ Waiting for voices to load...');
         speechSynthesis.onvoiceschanged = () => {
-          console.log('✅ Voices loaded, starting playback');
+          console.log('✅ Voices loaded, starting robotic sequence');
           playVoices();
         };
       } else {
-        console.log('✅ Voices already available');
+        console.log('✅ Voices already available, starting immediately');
         playVoices();
       }
 
     } catch (error) {
-      console.log('Robot voice error:', error);
+      console.log('🤖 Robot voice error:', error);
     }
   };
 
-  const handleAccept = (e: React.MouseEvent | React.TouchEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('🤖 User accepting initial disclaimer - activating robot voices...');
-    console.log('📱 Event type:', e.type, 'Target:', e.target);
-    console.log('📊 Current state before accept:', { isOpen, isReady });
+  useEffect(() => {
+    console.log('🚀 Auto voice system - useEffect triggered');
     
-    // Play the robot voices
-    createRobotVoices();
+    // Check if it's a mobile device
+    const mobile = isMobileDevice();
+    setIsMobile(mobile);
+    console.log('📱 Mobile device detected:', mobile);
     
-    // Store acceptance and close modal
-    localStorage.setItem("initialDisclaimerAccepted", "true");
-    console.log('💾 Stored "initialDisclaimerAccepted" = "true" in localStorage');
-    setIsOpen(false);
-    console.log('❌ Set modal isOpen to false');
-  };
+    // Only auto-play on desktop devices and only once per session
+    if (!mobile && !hasPlayedVoices) {
+      const hasPlayedThisSession = sessionStorage.getItem("voicesPlayedThisSession");
+      
+      if (!hasPlayedThisSession) {
+        console.log('🎵 Starting auto voice sequence in 1 second...');
+        const timer = setTimeout(() => {
+          console.log('🤖 Auto-playing robot voices on page load');
+          createRobotVoices();
+          sessionStorage.setItem("voicesPlayedThisSession", "true");
+          setHasPlayedVoices(true);
+        }, 1000); // 1 second delay to let page settle
 
-  const handleBackdropClick = (e: React.MouseEvent | React.TouchEvent) => {
-    // Don't close on backdrop click - force user to accept
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('📱 Backdrop clicked - preventing close');
-  };
+        return () => {
+          console.log('🧹 Cleanup timer');
+          clearTimeout(timer);
+        };
+      } else {
+        console.log('🚫 Voices already played this session');
+        setHasPlayedVoices(true);
+      }
+    } else {
+      console.log('📱 Mobile device - skipping auto voices');
+      setHasPlayedVoices(true);
+    }
+  }, [hasPlayedVoices]);
 
-  const handleModalClick = (e: React.MouseEvent | React.TouchEvent) => {
-    // Prevent event bubbling to backdrop
-    e.stopPropagation();
-    console.log('📱 Modal content clicked - allowing interaction');
-  };
-
-  // Don't render anything until ready to prevent flickering
-  // Don't show on mobile devices at all
-  console.log('🎯 Render check:', { isReady, isOpen, isMobile });
-  
-  if (!isReady) {
-    console.log('⏳ Not ready yet, not rendering');
-    return null;
-  }
-  
-  if (isMobile) {
-    console.log('📱 Mobile device - modal disabled');
-    return null;
-  }
-  
-  if (!isOpen) {
-    console.log('🚫 Modal not open, not rendering');
-    return null;
-  }
-
-  console.log('🖥️ Rendering desktop modal - should be visible now');
-
-  return (
-    <div 
-      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 touch-none"
-      style={{ 
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
-        touchAction: 'none'
-      }}
-      onClick={handleBackdropClick}
-      onTouchStart={handleBackdropClick}
-    >
-      <div 
-        className="bg-gradient-to-br from-gray-900/95 to-gray-800/95 border border-cyan-500/30 rounded-xl p-4 sm:p-6 max-w-sm sm:max-w-md w-full mx-4 shadow-2xl shadow-cyan-500/20 touch-auto"
-        style={{ touchAction: 'auto' }}
-        onClick={handleModalClick}
-        onTouchStart={handleModalClick}
-      >
-        
-        {/* Header */}
-        <div className="flex items-center gap-3 mb-4">
-          <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 flex-shrink-0" />
-          <h2 className="text-lg sm:text-xl font-bold text-cyan-400">Welcome to AI Web Tools</h2>
-        </div>
-        
-        {/* Content */}
-        <div className="space-y-3 sm:space-y-4 text-gray-300">
-          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 sm:p-4">
-            <h3 className="font-semibold text-yellow-400 mb-2 text-sm sm:text-base">Important Notice</h3>
-            <p className="text-xs sm:text-sm leading-relaxed">
-              These AI tools are for <span className="text-cyan-400 font-semibold">educational and informational purposes only</span>. 
-              Some tools are experimental in nature and do not constitute real human or professional advice.
-            </p>
-          </div>
-          
-          <div className="text-xs sm:text-sm text-gray-400">
-            <p>
-              By continuing, you acknowledge that you understand these tools are AI-powered services 
-              and should not replace professional consultation when needed.
-            </p>
-          </div>
-        </div>
-        
-        {/* Button */}
-        <div className="mt-4 sm:mt-6">
-          <button 
-            onClick={handleAccept}
-            onTouchEnd={handleAccept}
-            className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 active:from-cyan-800 active:to-blue-800 text-white font-semibold py-3 px-4 sm:px-6 text-sm sm:text-base rounded-lg transition-all duration-200 shadow-lg hover:shadow-cyan-500/30 touch-manipulation cursor-pointer select-none"
-            style={{ 
-              touchAction: 'manipulation',
-              WebkitTapHighlightColor: 'transparent',
-              WebkitTouchCallout: 'none',
-              WebkitUserSelect: 'none'
-            }}
-            type="button"
-          >
-            🤖 I AGREE - Enter AI Web Tools
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+  // Never render any UI - this is now a background voice system only
+  return null;
 };
 
 export default InitialDisclaimerModal;
