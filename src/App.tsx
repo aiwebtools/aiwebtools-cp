@@ -40,6 +40,9 @@ function App() {
                 <Route path="*" element={<NotFound />} />
               </Routes>
               
+              {/* Initial disclaimer popup */}
+              <InitialDisclaimerPopup />
+              
               {/* Tiny floating clone button - hides on scroll */}
               <FloatingCloneButton />
             </BrowserRouter>

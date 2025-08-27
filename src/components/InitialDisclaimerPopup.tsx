@@ -10,6 +10,75 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 
+// Robot voice effects for the disclaimer popup
+const playAccessGrantedVoices = () => {
+  console.log('🤖 Playing access granted voices');
+  
+  // First robotic voice: "ACCESS GRANTED, welcome master"
+  const playRoboticVoice = () => {
+    if ('speechSynthesis' in window) {
+      const utterance1 = new SpeechSynthesisUtterance('ACCESS GRANTED, welcome master');
+      
+      // Configure for robotic sound
+      utterance1.rate = 0.7; // Slower
+      utterance1.pitch = 0.3; // Lower pitch
+      utterance1.volume = 0.8;
+      
+      // Try to find a robotic-sounding voice
+      const voices = speechSynthesis.getVoices();
+      const roboticVoice = voices.find(voice => 
+        voice.name.toLowerCase().includes('daniel') || 
+        voice.name.toLowerCase().includes('fred') ||
+        voice.name.toLowerCase().includes('junior') ||
+        voice.name.toLowerCase().includes('bad news') ||
+        voice.lang.includes('en')
+      );
+      
+      if (roboticVoice) {
+        utterance1.voice = roboticVoice;
+      }
+      
+      speechSynthesis.speak(utterance1);
+      
+      // Second AOL-style voice: "YOU'VE GOT TOOLS" after first one finishes
+      utterance1.onend = () => {
+        setTimeout(() => {
+          const utterance2 = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS");
+          
+          // Configure for AOL-style sound (more upbeat)
+          utterance2.rate = 1.1;
+          utterance2.pitch = 1.2; // Higher pitch for AOL style
+          utterance2.volume = 0.9;
+          
+          // Try to find a friendlier voice for AOL style
+          const aolVoice = voices.find(voice => 
+            voice.name.toLowerCase().includes('samantha') || 
+            voice.name.toLowerCase().includes('alex') ||
+            voice.name.toLowerCase().includes('karen') ||
+            voice.name.toLowerCase().includes('victoria') ||
+            (voice.lang.includes('en') && voice.name.toLowerCase().includes('female'))
+          );
+          
+          if (aolVoice) {
+            utterance2.voice = aolVoice;
+          }
+          
+          speechSynthesis.speak(utterance2);
+        }, 500); // Small delay between voices
+      };
+    }
+  };
+
+  // Ensure voices are loaded before playing
+  if (speechSynthesis.getVoices().length === 0) {
+    speechSynthesis.addEventListener('voiceschanged', () => {
+      playRoboticVoice();
+    }, { once: true });
+  } else {
+    playRoboticVoice();
+  }
+};
+
 const InitialDisclaimerPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -28,6 +97,9 @@ const InitialDisclaimerPopup = () => {
   }, []);
 
   const handleAccept = () => {
+    // Play the robotic voices
+    playAccessGrantedVoices();
+    
     // Mark disclaimer as seen
     localStorage.setItem('aiwebtools-disclaimer-seen', 'true');
     setIsOpen(false);
