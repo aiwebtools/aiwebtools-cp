@@ -149,15 +149,18 @@ const InitialDisclaimerModal = () => {
   useEffect(() => {
     console.log('🚀 Enhanced voice system - useEffect triggered');
     
-    if (!hasAttemptedVoices) {
-      // Try immediate autoplay first
-      console.log('🎵 Attempting immediate voice autoplay...');
+    // Check if voices have been played this session
+    const hasPlayedThisSession = sessionStorage.getItem("voicesPlayedThisSession");
+    
+    if (!hasPlayedThisSession && !hasAttemptedVoices) {
+      console.log('🎵 First visit this session - starting voice sequence...');
       const timer = setTimeout(() => {
         createRobotVoices();
+        sessionStorage.setItem("voicesPlayedThisSession", "true");
         setHasAttemptedVoices(true);
-      }, 500); // Shorter delay
+      }, 1000);
 
-      // Setup fallback for user interaction
+      // Setup fallback for user interaction if autoplay fails
       console.log('🎯 Setting up user interaction fallback...');
       document.addEventListener('click', handleUserInteraction);
       document.addEventListener('touchstart', handleUserInteraction);
@@ -167,6 +170,9 @@ const InitialDisclaimerModal = () => {
         document.removeEventListener('click', handleUserInteraction);
         document.removeEventListener('touchstart', handleUserInteraction);
       };
+    } else {
+      console.log('🚫 Voices already played this session - skipping');
+      setHasAttemptedVoices(true);
     }
   }, [hasAttemptedVoices]);
 
