@@ -426,5 +426,17 @@ export const newSpecializedGPTs: Tool[] = [
     tags: ["cannabis", "recipes", "cooking", "cultivation", "home grow", "cannabis recipes", "hemp", "cannabis cooking", "growing guide", "cannabis cultivation"],
     rating: 4.8,
     totalVotes: 2234
+  },
+  {
+    icon: GraduationCap,
+    title: "Cannabis Educational Course Maker",
+    description: "Comprehensive cannabis education course creator that develops structured learning programs covering cultivation, compliance, safety, and industry best practices for educational institutions and training programs.",
+    emoji: "🌿",
+    color: "from-green-600 to-emerald-700",
+    directUrl: "https://chatgpt.com/g/g-07O3FDu6R-canna-course-creator?via=aiwebtools",
+    category: "Cannabis & Hemp Industry",
+    tags: ["cannabis", "education", "course creation", "training", "compliance", "learning", "hemp", "cannabis education", "cannabis training", "educational content"],
+    rating: 4.7,
+    totalVotes: 1456
   }
 ];

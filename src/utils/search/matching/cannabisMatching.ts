@@ -85,6 +85,9 @@ export const scoreCannabis = (tool: Tool, searchTerm: string): number => {
   if (tool.title.toLowerCase().includes('cannaeats gpt')) {
     score += 12500;
   }
+  if (tool.title.toLowerCase().includes('cannabis educational course maker')) {
+    score += 12000;
+  }
 
   // Title contains cannabis or hemp
   if (tool.title.toLowerCase().includes('cannabis') || tool.title.toLowerCase().includes('hemp')) {
