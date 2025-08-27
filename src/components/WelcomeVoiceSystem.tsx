@@ -114,51 +114,36 @@ const WelcomeVoiceSystem = () => {
   };
 
   useEffect(() => {
-    // Check if already played this session
-    const sessionKey = "welcomeVoicePlayed";
-    const hasPlayedThisSession = sessionStorage.getItem(sessionKey);
+    console.log('🚀 Voice system starting - will play every visit');
     
-    console.log('🔍 Voice system check:', { hasPlayedThisSession, hasPlayed });
+    const isMobile = isMobileDevice();
+    const delay = isMobile ? 800 : 1000; // Shorter delay on mobile
     
-    // TEMPORARY: Clear session storage to test voice system
-    sessionStorage.removeItem(sessionKey);
+    // Play welcome sequence every time
+    const timer = setTimeout(() => {
+      setHasPlayed(true);
+      initializeVoices();
+    }, delay);
     
-    if (!hasPlayed) {
-      console.log('🚀 First visit - preparing welcome sequence');
-      
-      const isMobile = isMobileDevice();
-      const delay = isMobile ? 800 : 1000; // Shorter delay on mobile
-      
-      // Single reliable attempt
-      const timer = setTimeout(() => {
+    // Fallback for user interaction
+    const handleUserClick = () => {
+      if (!hasPlayed) {
+        console.log('👆 User clicked - triggering welcome');
         setHasPlayed(true);
-        sessionStorage.setItem(sessionKey, "true");
         initializeVoices();
-      }, delay);
-      
-      // Fallback for user interaction
-      const handleUserClick = () => {
-        if (!hasPlayed) {
-          console.log('👆 User clicked - triggering welcome');
-          setHasPlayed(true);
-          sessionStorage.setItem(sessionKey, "true");
-          initializeVoices();
-          document.removeEventListener('click', handleUserClick);
-          document.removeEventListener('touchstart', handleUserClick);
-        }
-      };
-      
-      document.addEventListener('click', handleUserClick);
-      document.addEventListener('touchstart', handleUserClick);
-      
-      return () => {
-        clearTimeout(timer);
         document.removeEventListener('click', handleUserClick);
         document.removeEventListener('touchstart', handleUserClick);
-      };
-    } else {
-      console.log('❌ Voice system skipped - already played this session');
-    }
+      }
+    };
+    
+    document.addEventListener('click', handleUserClick);
+    document.addEventListener('touchstart', handleUserClick);
+    
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('click', handleUserClick);
+      document.removeEventListener('touchstart', handleUserClick);
+    };
   }, [hasPlayed]);
 
   // This component renders nothing - it's just for voice functionality
