@@ -22,7 +22,7 @@ export const useGlobalSearch = () => {
   // Add debouncing for better performance - increased delay to reduce computation
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
-  // OPTIMIZED search effect with performance improvements
+  // OPTIMIZED search effect with EXACT MATCHING PRIORITY
   useEffect(() => {
     const trimmedTerm = debouncedSearchTerm.trim();
     
@@ -33,186 +33,72 @@ export const useGlobalSearch = () => {
       return;
     }
 
-    // SUPER INTELLIGENT 2-character search with predictive matching
-    if (trimmedTerm.length === 2) {
-      const lowerTerm = trimmedTerm.toLowerCase();
-      const results = allTools.filter(tool => {
-        const lowerTitle = tool.title.toLowerCase();
-        const lowerDescription = tool.description?.toLowerCase() || "";
-        const lowerTags = tool.tags?.join(" ").toLowerCase() || "";
-        
-        // Direct starts with match (highest priority)
-        if (lowerTitle.startsWith(lowerTerm)) return true;
-        
-        // Predictive matching for common prefixes
-        const predictions: Record<string, string[]> = {
-          'sc': ['scribe', 'script', 'screen', 'screenplay'],
-          'tr': ['transcribe', 'transcription', 'transcript', 'travel', 'trading', 'trader'],
-          'po': ['podcast', 'policy', 'political', 'poll'],
-          'dr': ['draft', 'draftsman', 'doctor', 'dream'],
-          'co': ['college', 'course', 'content', 'contract', 'coloring'],
-          'le': ['legal', 'learn', 'legislation', 'legislator'],
-          'bl': ['blog', 'blockchain', 'blueprint'],
-          'ar': ['article', 'art', 'artificial', 'architecture'],
-          'gr': ['graphic', 'grant', 'grammar'],
-          'go': ['god', 'gods', 'government', 'goal'],
-          'sp': ['spiritual', 'speech', 'special', 'space'],
-          'ta': ['talk', 'tax', 'tattoo', 'task'],
-          'ho': ['home', 'health', 'hospital', 'house'],
-          'ph': ['pharmaceutical', 'pharmacy', 'phone', 'photo'],
-          're': ['resume', 'research', 'real', 'religion'],
-          'jo': ['job', 'journal', 'journey'],
-          'ca': ['cannabis', 'career', 'card', 'calculator'],
-          'in': ['insurance', 'investment', 'interview', 'invoice']
-        };
-        
-        if (predictions[lowerTerm]) {
-          for (const prediction of predictions[lowerTerm]) {
-            if (lowerTitle.includes(prediction) || 
-                lowerDescription.includes(prediction) ||
-                lowerTags.includes(prediction)) {
-              return true;
-            }
-          }
-        }
-        
-        // Fallback: broader matching
-        return lowerTitle.includes(lowerTerm) || 
-               lowerDescription.includes(lowerTerm) ||
-               lowerTags.includes(lowerTerm);
-      }).sort((a, b) => {
-        const aTitle = a.title.toLowerCase();
-        const bTitle = b.title.toLowerCase();
-        const aStartsWith = aTitle.startsWith(lowerTerm) ? 0 : 1;
-        const bStartsWith = bTitle.startsWith(lowerTerm) ? 0 : 1;
-        // Prioritize tools that start with the term
-        if (aStartsWith !== bStartsWith) return aStartsWith - bStartsWith;
-        return aTitle.localeCompare(bTitle);
-      });
+    const lowerTerm = trimmedTerm.toLowerCase();
+    
+    // UNIVERSAL EXACT MATCHING LOGIC for all search lengths
+    const exactMatches = allTools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      return lowerTitle === lowerTerm || lowerTitle.includes(lowerTerm);
+    });
+
+    const partialMatches = allTools.filter(tool => {
+      if (exactMatches.some(exact => exact.title === tool.title)) return false;
       
-      // Create endless results for scrolling
-      const remainingTools = allTools.filter(tool => 
-        !results.some(result => result.title === tool.title)
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description?.toLowerCase() || "";
+      const lowerCategory = tool.category?.toLowerCase() || "";
+      const lowerTags = tool.tags?.join(" ").toLowerCase() || "";
+      
+      // Check all searchable fields
+      return lowerTitle.includes(lowerTerm) ||
+             lowerDescription.includes(lowerTerm) ||
+             lowerCategory.includes(lowerTerm) ||
+             lowerTags.includes(lowerTerm) ||
+             // Word boundary matching
+             lowerTitle.match(new RegExp(`\\b${lowerTerm}`, 'i')) ||
+             lowerDescription.match(new RegExp(`\\b${lowerTerm}`, 'i'));
+    });
+
+    // For 4+ characters, also use intelligent search
+    let intelligentResults = [];
+    if (trimmedTerm.length >= 4) {
+      intelligentResults = searchTools(allTools, trimmedTerm).filter(tool => 
+        !exactMatches.some(exact => exact.title === tool.title) &&
+        !partialMatches.some(partial => partial.title === tool.title)
       );
-      const endlessResults = [...results, ...remainingTools];
-      
-      // Removed console.log for performance
-      
-      setSearchResults(endlessResults);
-      setDisplayedCount(30);
-      setIsOpen(true);
-      return;
     }
 
-    // SUPER INTELLIGENT 3-character search with enhanced predictive matching
-    if (trimmedTerm.length === 3) {
-      const lowerTerm = trimmedTerm.toLowerCase();
-      const results = allTools.filter(tool => {
-        const lowerTitle = tool.title.toLowerCase();
-        const lowerDescription = tool.description?.toLowerCase() || "";
-        const lowerCategory = tool.category?.toLowerCase() || "";
-        const lowerTags = tool.tags?.join(" ").toLowerCase() || "";
-        
-        // Enhanced predictive matching for 3-character prefixes
-        const predictions: Record<string, string[]> = {
-          'scr': ['scribe', 'script', 'screenplay', 'transcribe', 'transcription', 'scriptwriter'],
-          'tra': ['transcribe', 'transcription', 'travel', 'trading', 'trader', 'training'],
-          'pod': ['podcast', 'podiatrist'],
-          'dra': ['draft', 'draftsman', 'drama', 'drawing'],
-          'col': ['college', 'coloring', 'color', 'collage'],
-          'leg': ['legal', 'legislation', 'legislator', 'legacy'],
-          'blo': ['blog', 'blockchain', 'blood'],
-          'art': ['article', 'artificial', 'artist', 'artwork'],
-          'gra': ['graphic', 'grant', 'grammar', 'graph'],
-          'god': ['gods', 'goddess', 'godlike'],
-          'spi': ['spiritual', 'spine', 'spirit'],
-          'tal': ['talk', 'talent', 'tale'],
-          'hom': ['home', 'homeschool'],
-          'pha': ['pharmaceutical', 'pharmacy', 'phantom'],
-          'res': ['resume', 'research', 'restaurant', 'results'],
-          'bus': ['business', 'budget'],
-          'can': ['cannabis', 'cancer', 'candidate'],
-          'ins': ['insurance', 'investment', 'instruction'],
-          'gam': ['game', 'gambling'],
-          'vid': ['video'],
-          'mus': ['music', 'museum', 'muscle']
-        };
-        
-        // Direct matching (highest priority)
-        if (lowerTitle.startsWith(lowerTerm) || 
-            lowerTitle.includes(lowerTerm) ||
-            lowerDescription.includes(lowerTerm) ||
-            lowerCategory.includes(lowerTerm) ||
-            lowerTags.includes(lowerTerm)) {
-          return true;
-        }
-        
-        // Predictive matching for 3-char prefixes
-        if (predictions[lowerTerm]) {
-          for (const prediction of predictions[lowerTerm]) {
-            if (lowerTitle.includes(prediction) || 
-                lowerDescription.includes(prediction) ||
-                lowerTags.includes(prediction)) {
-              // Removed console.log for performance
-              return true;
-            }
-          }
-        }
-        
-        // Enhanced word boundary matching for partial words like "god" in "gods"
-        return lowerTitle.match(new RegExp(`\\b${lowerTerm}`, 'i')) ||
-               lowerDescription.match(new RegExp(`\\b${lowerTerm}`, 'i'));
-      }).sort((a, b) => {
-        const aTitle = a.title.toLowerCase();
-        const bTitle = b.title.toLowerCase();
-        const aStartsWith = aTitle.startsWith(lowerTerm) ? 0 : 1;
-        const bStartsWith = bTitle.startsWith(lowerTerm) ? 0 : 1;
-        // Prioritize tools that start with the term, then alphabetical
-        if (aStartsWith !== bStartsWith) return aStartsWith - bStartsWith;
-        return aTitle.localeCompare(bTitle);
-      });
+    // Sort exact matches by relevance
+    const sortedExact = exactMatches.sort((a, b) => {
+      const aTitle = a.title.toLowerCase();
+      const bTitle = b.title.toLowerCase();
       
-      // Create endless results for scrolling
-      const remainingTools = allTools.filter(tool => 
-        !results.some(result => result.title === tool.title)
-      );
-      const endlessResults = [...results, ...remainingTools];
+      // Perfect match first
+      if (aTitle === lowerTerm && bTitle !== lowerTerm) return -1;
+      if (bTitle === lowerTerm && aTitle !== lowerTerm) return 1;
       
-      // Removed console.log for performance
+      // Starts with term
+      const aStarts = aTitle.startsWith(lowerTerm);
+      const bStarts = bTitle.startsWith(lowerTerm);
+      if (aStarts && !bStarts) return -1;
+      if (bStarts && !aStarts) return 1;
       
-      setSearchResults(endlessResults);
-      setDisplayedCount(30);
-      setIsOpen(true);
-      return;
-    }
+      return aTitle.localeCompare(bTitle);
+    });
 
-    // For 4+ characters, use intelligent search with endless scroll capability
-    const intelligentResults = searchTools(allTools, trimmedTerm);
-    
-    // Create endless list: search results + all remaining tools for infinite scroll
-    const remainingTools = allTools.filter(tool => 
-      !intelligentResults.some(result => result.title === tool.title)
-    );
-    
-    // Get contextually similar tools to bridge the gap
-    const similarTools = getContextAwareSimilarTools(
-      intelligentResults, 
-      trimmedTerm, 
-      "", 
-      100
-    ).filter(tool => 
-      !intelligentResults.some(result => result.title === tool.title) &&
-      !remainingTools.some(remaining => remaining.title === tool.title)
-    );
-    
-    // Combine: intelligent results + similar tools + all remaining tools for endless scroll
-    const endlessResults = [
-      ...intelligentResults,
-      ...similarTools,
-      ...remainingTools
+    // Combine results with exact matches first
+    const finalResults = [
+      ...sortedExact,
+      ...partialMatches.sort((a, b) => a.title.localeCompare(b.title)),
+      ...intelligentResults
     ];
+
+    // Add remaining tools for endless scroll
+    const remainingTools = allTools.filter(tool => 
+      !finalResults.some(result => result.title === tool.title)
+    );
     
-    // Removed console.logs for performance
+    const endlessResults = [...finalResults, ...remainingTools];
     
     setSearchResults(endlessResults);
     setDisplayedCount(30); // Start with 30, then load more

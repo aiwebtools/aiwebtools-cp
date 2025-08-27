@@ -152,113 +152,64 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     
     const lowerTerm = trimmedTerm.toLowerCase();
     
-    console.log(`🔍 BOTTOM SEARCH BAR: Searching for "${trimmedTerm}" (${trimmedTerm.length} chars)`);
-    
-    // INSTANT 2-character search with intelligent predictions
-    if (trimmedTerm.length === 2) {
-      const predictions = generateAutoComplete(trimmedTerm, allTools);
-      const titleMatches = allTools.filter(tool => 
-        tool.title.toLowerCase().startsWith(lowerTerm) ||
-        predictions.some(pred => tool.title.toLowerCase().includes(pred.toLowerCase()))
-      );
-      console.log(`🔍 2-CHAR SEARCH: Found ${titleMatches.length} matches for "${trimmedTerm}"`);
-      // Score and sort so top-intent tools (e.g., College Degree GPT) appear first
-      return titleMatches
-        .map(tool => ({
-          tool,
-          score:
-            (tool.title.toLowerCase().startsWith(lowerTerm) ? 10000 : 0) +
-            prefixPriorityScore(tool.title, trimmedTerm)
-        }))
-        .sort((a, b) => b.score - a.score)
-        .map(r => r.tool)
-        .slice(0, 50);
-    }
-    
-    // SMART 3-character search with enhanced matching
-    if (trimmedTerm.length === 3) {
-      const quickResults = allTools.filter(tool => {
-        const lowerTitle = tool.title.toLowerCase();
-        const lowerDesc = tool.description.toLowerCase();
-        const lowerCat = tool.category?.toLowerCase() || '';
-        const lowerTags = (tool.tags || []).join(' ').toLowerCase();
-        
-        return lowerTitle.startsWith(lowerTerm) || 
-               lowerTitle.includes(lowerTerm) ||
-               lowerCat.includes(lowerTerm) ||
-               lowerDesc.includes(lowerTerm) ||
-               lowerTags.includes(lowerTerm) ||
-               enhancedKeywordMatching(tool, trimmedTerm);
-      });
+    // EXACT MATCHING FIRST - Universal for all search lengths
+    const exactMatches = allTools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      return lowerTitle === lowerTerm || lowerTitle.includes(lowerTerm);
+    });
+
+    const partialMatches = allTools.filter(tool => {
+      if (exactMatches.some(exact => exact.title === tool.title)) return false;
       
-      console.log(`🔍 3-CHAR SEARCH: Found ${quickResults.length} matches for "${trimmedTerm}"`);
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDesc = tool.description?.toLowerCase() || '';
+      const lowerCat = tool.category?.toLowerCase() || '';
+      const lowerTags = (tool.tags || []).join(' ').toLowerCase();
       
-      // Score and sort for better relevance
-      return quickResults
-        .map(tool => ({
-          tool,
-          score:
-            enhancedToolScoring(tool, trimmedTerm) +
-            (tool.title.toLowerCase().startsWith(lowerTerm) ? 10000 : 0) +
-            prefixPriorityScore(tool.title, trimmedTerm)
-        }))
-        .sort((a, b) => b.score - a.score)
-        .map(result => result.tool)
-        .slice(0, 75);
-    }
-    
-    // COMPREHENSIVE 4+ character search with full intelligence
+      return lowerTitle.startsWith(lowerTerm) || 
+             lowerDesc.includes(lowerTerm) ||
+             lowerCat.includes(lowerTerm) ||
+             lowerTags.includes(lowerTerm) ||
+             enhancedKeywordMatching(tool, trimmedTerm);
+    });
+
+    // For longer searches, add intelligent results
+    let intelligentResults = [];
     if (trimmedTerm.length >= 4) {
-      console.log(`🔍 4+ CHAR SEARCH: Starting intelligent search for "${trimmedTerm}"`);
-      
-      // For "learn" queries, do a simple direct search first
-      if (lowerTerm.includes('learn')) {
-        const learnMatches = allTools.filter(tool => {
-          const lowerTitle = tool.title.toLowerCase();
-          const lowerDesc = tool.description?.toLowerCase() || '';
-          const lowerCat = tool.category?.toLowerCase() || '';
-          const lowerTags = (tool.tags || []).join(' ').toLowerCase();
-          
-          // Check if any word in the search matches the tool
-          const searchWords = lowerTerm.split(' ').filter(word => word.length > 1);
-          return searchWords.some(word => 
-            lowerTitle.includes(word) ||
-            lowerDesc.includes(word) ||
-            lowerCat.includes(word) ||
-            lowerTags.includes(word)
-          );
-        });
-        
-        console.log(`🔍 LEARN SEARCH: Found ${learnMatches.length} direct matches for "${trimmedTerm}"`, 
-                   learnMatches.slice(0, 5).map(t => t.title));
-        
-        if (learnMatches.length > 0) {
-          // Sort by relevance (title matches first, then others)
-          return learnMatches
-            .sort((a, b) => {
-              const aTitle = a.title.toLowerCase();
-              const bTitle = b.title.toLowerCase();
-              const aHasLearn = aTitle.includes('learn');
-              const bHasLearn = bTitle.includes('learn');
-              
-              if (aHasLearn && !bHasLearn) return -1;
-              if (!aHasLearn && bHasLearn) return 1;
-              
-              return aTitle.localeCompare(bTitle);
-            })
-            .slice(0, 100);
-        }
-      }
-      
-      // Use the enhanced search function for comprehensive results
-      const results = searchTools(allTools, trimmedTerm);
-      console.log(`🔍 ENHANCED SEARCH: Found ${results.length} results for "${trimmedTerm}"`, 
-                 results.slice(0, 5).map(t => t.title));
-      return removeDuplicateTools(results).slice(0, 100);
+      intelligentResults = searchTools(allTools, trimmedTerm).filter(tool => 
+        !exactMatches.some(exact => exact.title === tool.title) &&
+        !partialMatches.some(partial => partial.title === tool.title)
+      );
     }
-    
-    return [];
-  }, [searchTerm]);
+
+    // Sort exact matches by relevance
+    const sortedExact = exactMatches.sort((a, b) => {
+      const aTitle = a.title.toLowerCase();
+      const bTitle = b.title.toLowerCase();
+      
+      // Perfect match first
+      if (aTitle === lowerTerm && bTitle !== lowerTerm) return -1;
+      if (bTitle === lowerTerm && aTitle !== lowerTerm) return 1;
+      
+      // Then by prefix priority score
+      const aScore = prefixPriorityScore(a.title, trimmedTerm);
+      const bScore = prefixPriorityScore(b.title, trimmedTerm);
+      if (aScore !== bScore) return bScore - aScore;
+      
+      return aTitle.localeCompare(bTitle);
+    });
+
+    // Combine all results with exact matches first
+    return [
+      ...sortedExact,
+      ...partialMatches.sort((a, b) => {
+        const aScore = enhancedToolScoring(a, trimmedTerm) + prefixPriorityScore(a.title, trimmedTerm);
+        const bScore = enhancedToolScoring(b, trimmedTerm) + prefixPriorityScore(b.title, trimmedTerm);
+        return bScore - aScore;
+      }),
+      ...intelligentResults
+    ].slice(0, 100);
+  }, [searchTerm, prefixPriorityScore]);
 
   // Display results with performance limits for rendering
   const displayedResults = useMemo(() => 
