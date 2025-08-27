@@ -25,7 +25,8 @@ import {
   Calendar,
   Eye,
   Phone,
-  Database
+  Database,
+  Shield
 } from "lucide-react";
 
 // NEW TOOLS ONLY - as specifically requested by the user
@@ -377,5 +378,53 @@ export const newSpecializedGPTs: Tool[] = [
     tags: ["Connecticut", "legislators", "government", "contact info"],
     rating: 4.3,
     totalVotes: 1234
+  },
+  {
+    icon: Leaf,
+    title: "Greenleaf Logistics GPT",
+    description: "End-to-End Cannabis Logistics Solutions | State-Specific Compliance, Live Regulatory Updates & Advanced Data Analytics for comprehensive cannabis supply chain management and regulatory compliance.",
+    emoji: "🌿",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://chatgpt.com/g/g-KmP6rX2Oh-greenleaf-logistics-gpt",
+    category: "Cannabis & Hemp Industry",
+    tags: ["cannabis", "logistics", "compliance", "supply chain", "hemp", "cannabis industry", "regulatory", "analytics", "transport", "distribution"],
+    rating: 4.6,
+    totalVotes: 1892
+  },
+  {
+    icon: Shield,
+    title: "The Cannabis Compliance Guide AI",
+    description: "Expert guidance on hemp and cannabis compliance regulations, legal requirements, and industry standards to ensure full regulatory adherence.",
+    emoji: "🛡️",
+    color: "from-green-600 to-blue-600",
+    directUrl: "https://chat.openai.com/g/g-R3amzxPyZ-hemp-and-cannabis-compliance-helper",
+    category: "Cannabis & Hemp Industry",
+    tags: ["cannabis", "compliance", "hemp", "legal", "regulations", "cannabis law", "industry standards", "regulatory guidance", "legal compliance", "cannabis regulations"],
+    rating: 4.7,
+    totalVotes: 2156
+  },
+  {
+    icon: Calculator,
+    title: "Cannabis Edible Dosage Determinator 2.0",
+    description: "Advanced cannabis edible dosage calculator and guidance system for safe and effective cannabis consumption with precise dosing recommendations.",
+    emoji: "🍪",
+    color: "from-purple-500 to-green-600",
+    directUrl: "https://chatgpt.com/g/g-1IE3qk0yq-cannabis-edible-dosage-determinator-2-0",
+    category: "Cannabis & Hemp Industry",
+    tags: ["cannabis", "edibles", "dosage", "cannabis consumption", "hemp", "cannabis dosing", "edible calculator", "cannabis safety", "microdosing", "cannabis products"],
+    rating: 4.5,
+    totalVotes: 1743
+  },
+  {
+    icon: Leaf,
+    title: "CannaEats GPT 2.0",
+    description: "Cannabis Recipe Assistant and Home Grow Consultant providing expert guidance on cannabis-infused cooking, growing techniques, and cultivation advice.",
+    emoji: "👨‍🍳",
+    color: "from-green-500 to-yellow-600",
+    directUrl: "https://chatgpt.com/g/g-cNa9aO7uh-cannaeats-gpt-2-0",
+    category: "Cannabis & Hemp Industry",
+    tags: ["cannabis", "recipes", "cooking", "cultivation", "home grow", "cannabis recipes", "hemp", "cannabis cooking", "growing guide", "cannabis cultivation"],
+    rating: 4.8,
+    totalVotes: 2234
   }
 ];

@@ -41,8 +41,15 @@ export const matchCannabis = (tool: Tool, searchTerm: string): boolean => {
     searchableText.includes('cannabis') ||
     searchableText.includes('hemp') ||
     searchableText.includes('🌿') ||
+    searchableText.includes('greenleaf') ||
+    searchableText.includes('cannaeats') ||
+    searchableText.includes('dosage determinator') ||
+    searchableText.includes('compliance guide') ||
     tool.title.toLowerCase().includes('cannabis') ||
-    tool.description.toLowerCase().includes('cannabis');
+    tool.title.toLowerCase().includes('hemp') ||
+    tool.description.toLowerCase().includes('cannabis') ||
+    tool.description.toLowerCase().includes('hemp') ||
+    tool.category?.toLowerCase().includes('cannabis');
 
   return isCannabisRelated;
 };
@@ -63,6 +70,20 @@ export const scoreCannabis = (tool: Tool, searchTerm: string): number => {
   // Exact title match for Cannabis GPT
   if (tool.title.toLowerCase().includes('cannabis gpt')) {
     score += 15000;
+  }
+
+  // Specific tool matches for new cannabis tools
+  if (tool.title.toLowerCase().includes('greenleaf logistics gpt')) {
+    score += 14000;
+  }
+  if (tool.title.toLowerCase().includes('cannabis compliance guide')) {
+    score += 13500;
+  }
+  if (tool.title.toLowerCase().includes('cannabis edible dosage')) {
+    score += 13000;
+  }
+  if (tool.title.toLowerCase().includes('cannaeats gpt')) {
+    score += 12500;
   }
 
   // Title contains cannabis or hemp
