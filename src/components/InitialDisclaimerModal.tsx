@@ -34,6 +34,13 @@ const InitialDisclaimerModal = () => {
         console.log('🗣️ Available voices count:', voices.length);
         console.log('🗣️ Voice names:', voices.map(v => v.name));
 
+        // If no voices available, try again with delay
+        if (voices.length === 0) {
+          console.log('⚠️ No voices available, retrying in 500ms...');
+          setTimeout(() => createRobotVoices(), 500);
+          return;
+        }
+
         // First voice: "ACCESS GRANTED, welcome master" - DEEP ROBOTIC
         const firstUtterance = new SpeechSynthesisUtterance("ACCESS GRANTED, welcome master");
         firstUtterance.rate = 0.4;  
@@ -117,17 +124,43 @@ const InitialDisclaimerModal = () => {
         speechSynthesis.speak(firstUtterance);
       };
 
-      // Wait for voices to load if needed
-      if (speechSynthesis.getVoices().length === 0) {
-        console.log('⏳ Waiting for voices to load...');
-        speechSynthesis.onvoiceschanged = () => {
-          console.log('✅ Voices loaded, starting sequence');
+      // ROBUST voice loading with multiple fallbacks
+      const waitForVoices = (retryCount = 0, maxRetries = 5) => {
+        const voices = speechSynthesis.getVoices();
+        
+        if (voices.length > 0) {
+          console.log('✅ Voices available, starting sequence');
+          playVoices();
+          return;
+        }
+        
+        if (retryCount >= maxRetries) {
+          console.log('⚠️ Max retries reached, playing without voice selection');
+          playVoices();
+          return;
+        }
+        
+        console.log(`⏳ Waiting for voices... attempt ${retryCount + 1}/${maxRetries + 1}`);
+        
+        // Set up one-time voice change listener
+        const voiceChangeHandler = () => {
+          console.log('✅ Voices loaded via event, starting sequence');
+          speechSynthesis.onvoiceschanged = null; // Clear the listener
           playVoices();
         };
-      } else {
-        console.log('✅ Voices already available, starting immediately');
-        playVoices();
-      }
+        
+        speechSynthesis.onvoiceschanged = voiceChangeHandler;
+        
+        // Also retry after delay as fallback
+        setTimeout(() => {
+          if (speechSynthesis.onvoiceschanged === voiceChangeHandler) {
+            speechSynthesis.onvoiceschanged = null; // Clear if still waiting
+            waitForVoices(retryCount + 1, maxRetries);
+          }
+        }, 300);
+      };
+
+      waitForVoices();
 
     } catch (error) {
       console.log('🤖 ❌ Robot voice system error:', error);
@@ -154,11 +187,39 @@ const InitialDisclaimerModal = () => {
     
     if (!hasPlayedThisSession && !hasAttemptedVoices) {
       console.log('🎵 First visit this session - starting voice sequence...');
-      const timer = setTimeout(() => {
-        createRobotVoices();
-        sessionStorage.setItem("voicesPlayedThisSession", "true");
-        setHasAttemptedVoices(true);
-      }, 1000);
+      
+      // Multiple timing attempts for better reliability
+      const timers = [
+        // First attempt - quick start
+        setTimeout(() => {
+          if (!hasAttemptedVoices) {
+            console.log('🚀 First attempt - 500ms delay');
+            createRobotVoices();
+            sessionStorage.setItem("voicesPlayedThisSession", "true");
+            setHasAttemptedVoices(true);
+          }
+        }, 500),
+        
+        // Second attempt - standard timing
+        setTimeout(() => {
+          if (!hasAttemptedVoices) {
+            console.log('🚀 Second attempt - 1500ms delay');
+            createRobotVoices();
+            sessionStorage.setItem("voicesPlayedThisSession", "true");
+            setHasAttemptedVoices(true);
+          }
+        }, 1500),
+        
+        // Third attempt - final fallback
+        setTimeout(() => {
+          if (!hasAttemptedVoices) {
+            console.log('🚀 Final attempt - 3000ms delay');
+            createRobotVoices();
+            sessionStorage.setItem("voicesPlayedThisSession", "true");
+            setHasAttemptedVoices(true);
+          }
+        }, 3000)
+      ];
 
       // Setup fallback for user interaction if autoplay fails
       console.log('🎯 Setting up user interaction fallback...');
@@ -166,9 +227,11 @@ const InitialDisclaimerModal = () => {
       document.addEventListener('touchstart', handleUserInteraction);
 
       return () => {
-        clearTimeout(timer);
+        timers.forEach(timer => clearTimeout(timer));
         document.removeEventListener('click', handleUserInteraction);
         document.removeEventListener('touchstart', handleUserInteraction);
+        // Clean up any pending voice change listeners
+        speechSynthesis.onvoiceschanged = null;
       };
     } else {
       console.log('🚫 Voices already played this session - skipping');
