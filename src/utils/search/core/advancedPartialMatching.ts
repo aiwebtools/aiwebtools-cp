@@ -6,8 +6,106 @@ export const getAdvancedPartialMatches = (searchTerm: string, tools: Tool[]): To
   
   // Enhanced prefix prediction mapping
   const prefixPredictions: Record<string, string[]> = {
+    // COLLEGE/EDUCATION family - Enhanced for "college" partial typing
+    'c': ['college', 'course', 'content', 'chat', 'cannabis', 'creative'],
+    'co': ['college', 'course', 'content', 'contract', 'coloring', 'comic', 'coding'],
+    'col': ['college', 'coloring', 'collectible'],
+    'coll': ['college', 'collectible'],
+    'colle': ['college'],
+    'colleg': ['college'],
+    'college': ['college degree'],
+    
+    // LEARNING family - Enhanced
+    'l': ['learn', 'legal', 'legislation', 'logo'],
+    'le': ['learn', 'legal', 'legislation', 'legislator', 'learning'],
+    'lea': ['learn', 'learning'],
+    'lear': ['learn', 'learning'],
+    'learn': ['learning', 'learner'],
+    'learni': ['learning'],
+    'learning': ['learner'],
+    
+    // VIDEO family - Enhanced  
+    'v': ['video', 'voice', 'virtual', 'vet'],
+    'vi': ['video', 'virtual', 'visual', 'vision'],
+    'vid': ['video'],
+    'vide': ['video'],
+    'video': ['videos'],
+    
+    // AUDIO family - Enhanced
+    'a': ['audio', 'ai', 'art', 'agent', 'assistant'],
+    'au': ['audio', 'automobile'],
+    'aud': ['audio'],
+    'audi': ['audio'],
+    'audio': ['audios'],
+    
+    // CHAT family - Enhanced
+    'ch': ['chat', 'chef', 'chemistry'],
+    'cha': ['chat', 'character'],
+    'chat': ['chatbot', 'chatgpt'],
+    
+    // AGENT family - Enhanced
+    'ag': ['agent', 'agriculture'],
+    'age': ['agent'],
+    'agen': ['agent'],
+    'agent': ['agents'],
+    
+    // RESEARCH family - Enhanced
+    'r': ['research', 'resume', 'real', 'religion'],
+    're': ['resume', 'research', 'real', 'religion', 'restaurant'],
+    'res': ['resume', 'research', 'restaurant', 'results'],
+    'rese': ['research'],
+    'resea': ['research'],
+    'resear': ['research'],
+    'research': ['researcher'],
+    
+    // GPT family - Enhanced
+    'g': ['gpt', 'game', 'graphic', 'god'],
+    'gp': ['gpt'],
+    'gpt': ['gpts'],
+    
+    // SPIRITUAL family - Enhanced  
+    's': ['spiritual', 'soul', 'school', 'science'],
+    'sp': ['spiritual', 'speech', 'special', 'space'],
+    'spi': ['spiritual', 'spine', 'spirit'],
+    'spir': ['spiritual', 'spirit'],
+    'spiri': ['spiritual', 'spirit'],
+    'spirit': ['spiritual'],
+    'spiritu': ['spiritual'],
+    'spiritua': ['spiritual'],
+    'spiritual': ['spirituality'],
+    
+    // SOUL family - Enhanced
+    'so': ['soul', 'social', 'solar'],
+    'sou': ['soul', 'sound'],
+    'soul': ['souls'],
+    
+    // SCHOOL family - Enhanced
+    'sc': ['school', 'science', 'script'],
+    'sch': ['school', 'schedule'],
+    'scho': ['school'],
+    'schoo': ['school'],
+    'school': ['schools'],
+    
+    // RELIGION/ANCIENT/WISDOM family - Enhanced
+    'rel': ['religion', 'religious'],
+    'reli': ['religion', 'religious'],
+    'relig': ['religion', 'religious'],
+    'religio': ['religion', 'religious'],
+    'religion': ['religious'],
+    'an': ['ancient', 'analysis', 'animal'],
+    'anc': ['ancient'],
+    'anci': ['ancient'],
+    'ancie': ['ancient'],
+    'ancien': ['ancient'],
+    'ancient': ['ancients'],
+    'w': ['wisdom', 'writer', 'wellness'],
+    'wi': ['wisdom', 'writer'],
+    'wis': ['wisdom'],
+    'wisd': ['wisdom'],
+    'wisdo': ['wisdom'],
+    'wisdom': ['wise'],
+    
     // SCR family - ENHANCED for transcription, scribing, scripts
-    'sc': ['scribe', 'script', 'screen', 'screenplay', 'schedule', 'school'],
     'scr': ['scribe', 'script', 'screenplay', 'transcribe', 'transcription', 'scriptwriter'],
     'scri': ['scribe', 'script', 'scriptwriter', 'transcribe', 'manuscript'],
     'scrip': ['script', 'scriptwriter', 'prescription', 'transcript'],
@@ -21,7 +119,6 @@ export const getAdvancedPartialMatches = (searchTerm: string, tools: Tool[]): To
     'transcr': ['transcribe', 'transcription', 'transcript'],
     
     // Legal/Document family
-    'le': ['legal', 'legislation', 'legislator', 'learn', 'learning'],
     'leg': ['legal', 'legislation', 'legislator', 'legacy'],
     'lega': ['legal', 'legislation', 'legacy'],
     'legal': ['legislation', 'legislator'],
@@ -31,7 +128,6 @@ export const getAdvancedPartialMatches = (searchTerm: string, tools: Tool[]): To
     'draft': ['draftsman', 'draftsmith'],
     
     // Content creation family
-    'co': ['college', 'course', 'content', 'contract', 'coloring', 'comic', 'coding'],
     'con': ['content', 'contract', 'conversation', 'conversion', 'consultant'],
     'cont': ['content', 'contract', 'conversation', 'controller'],
     'conte': ['content', 'contest', 'context'],
@@ -68,16 +164,10 @@ export const getAdvancedPartialMatches = (searchTerm: string, tools: Tool[]): To
     'graph': ['graphic', 'graphics'],
     'graphic': ['graphics'],
     
-    // Spiritual family
+    // Spiritual family (additional)
     'go': ['god', 'gods', 'government', 'goal', 'gospel'],
     'god': ['gods', 'goddess'],
     'gods': ['godlike'],
-    
-    'sp': ['spiritual', 'speech', 'special', 'space', 'spanish'],
-    'spi': ['spiritual', 'spine', 'spirit'],
-    'spir': ['spiritual', 'spirit'],
-    'spiri': ['spiritual', 'spirit'],
-    'spirit': ['spiritual'],
     
     // Communication family
     'ta': ['talk', 'tax', 'tattoo', 'task', 'table'],
@@ -96,8 +186,6 @@ export const getAdvancedPartialMatches = (searchTerm: string, tools: Tool[]): To
     'pharma': ['pharmaceutical'],
     
     // Career family
-    're': ['resume', 'research', 'real', 'religion', 'restaurant'],
-    'res': ['resume', 'research', 'restaurant', 'results'],
     'resu': ['resume', 'results'],
     'resume': ['resumes'],
     
@@ -131,13 +219,7 @@ export const getAdvancedPartialMatches = (searchTerm: string, tools: Tool[]): To
     // Game family
     'ga': ['game', 'gambling', 'garage'],
     'gam': ['game', 'gambling'],
-    'game': ['games', 'gamer', 'gaming'],
-    
-    // Video family
-    'vi': ['video', 'virtual', 'visual', 'vision'],
-    'vid': ['video'],
-    'vide': ['video'],
-    'video': ['videos']
+    'game': ['games', 'gamer', 'gaming']
   };
   
   // Get predictions for the current search term

@@ -458,6 +458,106 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     const finalGPTResults = [...sortedGPTTools, ...nonGPTTools];
     return performEnhancedSearch(finalGPTResults, searchTerm, searchWords, phoneticVariations, intentConfig);
   }
+
+  // SPIRITUALITY/RELIGION TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm.includes('spiritual') || normalizedSearchTerm.includes('religion') ||
+      normalizedSearchTerm.includes('ancient') || normalizedSearchTerm.includes('wisdom') ||
+      normalizedSearchTerm.includes('mystical') || normalizedSearchTerm.includes('divine') ||
+      normalizedSearchTerm.includes('soul') || normalizedSearchTerm.includes('meditation') ||
+      normalizedSearchTerm.includes('philosophy') || normalizedSearchTerm.includes('enlighten')) {
+    console.log('🕉️ SPIRITUALITY SEARCH DETECTED - Filtering for spiritual/religious tools');
+    
+    const spiritualTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('spiritual') || lowerTitle.includes('soul') ||
+             lowerTitle.includes('divine') || lowerTitle.includes('mystical') ||
+             lowerTitle.includes('ancient') || lowerTitle.includes('wisdom') ||
+             lowerTitle.includes('meditation') || lowerTitle.includes('philosophy') ||
+             lowerTitle.includes('religion') || lowerTitle.includes('god') ||
+             lowerTitle.includes('enlighten') || lowerTitle.includes('cosmic') ||
+             lowerDescription.includes('spiritual') || lowerDescription.includes('soul') ||
+             lowerDescription.includes('divine') || lowerDescription.includes('mystical') ||
+             lowerCategory.includes('spiritual') || lowerCategory.includes('philosophy') ||
+             lowerTags.some(tag => tag.includes('spiritual') || tag.includes('soul') ||
+                                  tag.includes('philosophy') || tag.includes('wisdom'));
+    });
+    
+    console.log(`🕉️ Found ${spiritualTools.length} spiritual tools:`, spiritualTools.slice(0, 5).map(t => t.title));
+    
+    const sortedSpiritualTools = spiritualTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      // Priority for AI Web Tools spiritual GPTs
+      if (a.title.toLowerCase().includes('soul map gpt')) scoreA += 15000;
+      if (b.title.toLowerCase().includes('soul map gpt')) scoreB += 15000;
+      if (a.title.toLowerCase().includes('alan watts gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('alan watts gpt')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('mary magdalene gpt')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('mary magdalene gpt')) scoreB += 11000;
+      if (a.title.toLowerCase().includes('talk to the gods gpt')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('talk to the gods gpt')) scoreB += 10000;
+      if (a.title.toLowerCase().includes('sophia aeterna')) scoreA += 9000;
+      if (b.title.toLowerCase().includes('sophia aeterna')) scoreB += 9000;
+      
+      // Exact matches get high priority
+      if (normalizedSearchTerm.includes('spiritual') && a.title.toLowerCase().includes('spiritual')) scoreA += 8000;
+      if (normalizedSearchTerm.includes('spiritual') && b.title.toLowerCase().includes('spiritual')) scoreB += 8000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonSpiritualTools = tools.filter(tool => !spiritualTools.includes(tool));
+    const finalSpiritualResults = [...sortedSpiritualTools, ...nonSpiritualTools];
+    return performEnhancedSearch(finalSpiritualResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
+
+  // SCHOOL TOOL PRIORITY - Enhanced detection
+  if (normalizedSearchTerm === 'school' || normalizedSearchTerm.includes('school') ||
+      normalizedSearchTerm.includes('homeschool') || normalizedSearchTerm.includes('classroom')) {
+    console.log('🏫 SCHOOL SEARCH DETECTED - Filtering for school/education tools');
+    
+    const schoolTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('school') || lowerTitle.includes('homeschool') ||
+             lowerTitle.includes('education') || lowerTitle.includes('classroom') ||
+             lowerTitle.includes('teacher') || lowerTitle.includes('student') ||
+             lowerTitle.includes('learn') || lowerTitle.includes('course') ||
+             lowerDescription.includes('school') || lowerDescription.includes('education') ||
+             lowerCategory.includes('education') || lowerCategory.includes('learning') ||
+             lowerTags.some(tag => tag.includes('education') || tag.includes('school') ||
+                                  tag.includes('learning'));
+    });
+    
+    console.log(`🏫 Found ${schoolTools.length} school tools:`, schoolTools.slice(0, 5).map(t => t.title));
+    
+    const sortedSchoolTools = schoolTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      
+      // Priority for AI Web Tools school GPTs
+      if (a.title.toLowerCase().includes('home-schooling assistant gpt') || a.title.toLowerCase().includes('homeschool gpt')) scoreA += 12000;
+      if (b.title.toLowerCase().includes('home-schooling assistant gpt') || b.title.toLowerCase().includes('homeschool gpt')) scoreB += 12000;
+      if (a.title.toLowerCase().includes('college degree gpt')) scoreA += 11000;
+      if (b.title.toLowerCase().includes('college degree gpt')) scoreB += 11000;
+      
+      // Exact "school" in title
+      if (a.title.toLowerCase().includes('school')) scoreA += 10000;
+      if (b.title.toLowerCase().includes('school')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonSchoolTools = tools.filter(tool => !schoolTools.includes(tool));
+    const finalSchoolResults = [...sortedSchoolTools, ...nonSchoolTools];
+    return performEnhancedSearch(finalSchoolResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+  }
   
   // PRIORITY: For "personal" searches, prioritize AI Web Tools GPTs
   if (normalizedSearchTerm.includes('personal')) {
