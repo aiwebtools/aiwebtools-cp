@@ -14,9 +14,15 @@ const isMobileDevice = () => {
 };
 
 const InitialDisclaimerModal = () => {
+  console.log('🚀 InitialDisclaimerModal component mounting...');
+  
   const [isOpen, setIsOpen] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Clear localStorage for testing - remove this line after testing!
+  localStorage.removeItem("initialDisclaimerAccepted");
+  console.log('🗑️ Cleared localStorage for testing');
 
   useEffect(() => {
     console.log('🚀 InitialDisclaimerModal - useEffect triggered');
