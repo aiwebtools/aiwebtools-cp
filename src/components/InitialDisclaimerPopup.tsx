@@ -79,6 +79,30 @@ const playAccessGrantedVoices = () => {
   }
 };
 
+// Function to enable autoplay on videos after user interaction
+const enableVideoAutoplay = () => {
+  console.log('🎥 Enabling video autoplay after user interaction');
+  
+  // Find all YouTube iframes and trigger play
+  const iframes = document.querySelectorAll('iframe[src*="youtube.com"], iframe[src*="youtu.be"]');
+  iframes.forEach((iframe) => {
+    const src = iframe.getAttribute('src');
+    if (src && src.includes('autoplay=1')) {
+      // Reload the iframe to trigger autoplay now that we have user interaction
+      iframe.setAttribute('src', src);
+      console.log('🎥 Reloaded iframe to enable autoplay:', src);
+    }
+  });
+
+  // Also try to play any HTML5 video elements
+  const videos = document.querySelectorAll('video');
+  videos.forEach((video) => {
+    if (video.autoplay) {
+      video.play().catch(e => console.log('Video play failed:', e));
+    }
+  });
+};
+
 const InitialDisclaimerPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -99,6 +123,9 @@ const InitialDisclaimerPopup = () => {
   const handleAccept = () => {
     // Play the robotic voices
     playAccessGrantedVoices();
+    
+    // Enable video autoplay after user interaction
+    enableVideoAutoplay();
     
     // Mark disclaimer as seen
     localStorage.setItem('aiwebtools-disclaimer-seen', 'true');
