@@ -30,15 +30,4 @@
     font-size: 16px !important;
     transform: translateZ(0);
   }
-  
-  /* ElevenLabs widget mobile fixes */
-  elevenlabs-convai {
-    z-index: 40 !important;
-    position: fixed !important;
-    bottom: 80px !important;
-    right: 16px !important;
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
 }
