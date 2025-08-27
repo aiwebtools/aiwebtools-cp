@@ -23,11 +23,19 @@ const InitialDisclaimerModal = () => {
       return;
     }
 
-    try {
-      console.log('🤖 Starting ENHANCED robot voice sequence...');
+    const isMobile = isMobileDevice();
+    console.log(`🤖 Starting ENHANCED robot voice sequence... (Mobile: ${isMobile})`);
 
+    try {
       // Cancel any ongoing speech
       speechSynthesis.cancel();
+      
+      // Mobile-specific initialization
+      if (isMobile) {
+        console.log('📱 Mobile device detected - using mobile-optimized voice system');
+        // Ensure speech synthesis is ready on mobile
+        speechSynthesis.getVoices();
+      }
 
       const playVoices = () => {
         const voices = speechSynthesis.getVoices();
@@ -43,8 +51,8 @@ const InitialDisclaimerModal = () => {
 
         // First voice: "ACCESS GRANTED, welcome master" - DEEP ROBOTIC
         const firstUtterance = new SpeechSynthesisUtterance("ACCESS GRANTED, welcome master");
-        firstUtterance.rate = 0.4;  
-        firstUtterance.pitch = 0.1; 
+        firstUtterance.rate = isMobile ? 0.5 : 0.4;  // Slightly faster on mobile
+        firstUtterance.pitch = isMobile ? 0.2 : 0.1; // Slightly higher pitch on mobile for clarity
         firstUtterance.volume = 1.0; // Maximum volume
         
         // Try to find the best robotic voice
@@ -63,10 +71,10 @@ const InitialDisclaimerModal = () => {
           console.log('🤖 No specific robotic voice found, using default');
         }
 
-        // Second voice: AOL-style "YOU'VE GOT TOOLS" - CLASSIC AOL FEMALE
-        const secondUtterance = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS");
-        secondUtterance.rate = 0.8;   
-        secondUtterance.pitch = 1.2;  
+        // Second voice: "You've got tools" - DIFFERENT VOICE
+        const secondUtterance = new SpeechSynthesisUtterance("You've got tools");
+        secondUtterance.rate = isMobile ? 0.7 : 0.6;  // Slightly faster on mobile
+        secondUtterance.pitch = isMobile ? 0.4 : 0.3; // Higher pitch on mobile
         secondUtterance.volume = 1.0;
         
         // Try to find a female voice for AOL effect
@@ -90,38 +98,34 @@ const InitialDisclaimerModal = () => {
           console.log('🤖 ✅ ROBOTIC VOICE STARTED: "ACCESS GRANTED, welcome master"');
         };
         
+        // CRUCIAL: Enhanced timing for the sequence with mobile optimization
         firstUtterance.onend = () => {
-          console.log('🤖 ✅ Robotic voice ended, starting AOL voice in 800ms...');
+          console.log('🎤 First voice completed, starting second voice after pause...');
+          const pauseDuration = isMobile ? 600 : 800; // Shorter pause on mobile
           setTimeout(() => {
-            console.log('📬 Playing AOL voice...');
+            console.log('🎵 Playing second voice: "You\'ve got tools"');
             speechSynthesis.speak(secondUtterance);
-          }, 800);
-        };
-        
-        firstUtterance.onerror = (error) => {
-          console.log('🤖 ❌ Robotic voice error:', error);
-          // Try to play AOL voice anyway
-          setTimeout(() => {
-            console.log('📬 Trying AOL voice after robotic error...');
-            speechSynthesis.speak(secondUtterance);
-          }, 500);
+          }, pauseDuration);
         };
 
-        secondUtterance.onstart = () => {
-          console.log('📬 ✅ AOL VOICE STARTED: "YOU\'VE GOT TOOLS"');
-        };
-        
-        secondUtterance.onend = () => {
-          console.log('📬 ✅ AOL voice ended - VOICE SEQUENCE COMPLETE! 🎉');
-        };
-        
-        secondUtterance.onerror = (error) => {
-          console.log('📬 ❌ AOL voice error:', error);
+        // Mobile-specific: Add error handling and retry logic
+        const speakWithRetry = (utterance: SpeechSynthesisUtterance, retries = 2) => {
+          utterance.onerror = (event) => {
+            console.log('🔴 Speech error:', event.error);
+            if (retries > 0 && isMobile) {
+              console.log(`🔄 Retrying speech on mobile... (${retries} attempts left)`);
+              setTimeout(() => speakWithRetry(utterance, retries - 1), 500);
+            }
+          };
+          speechSynthesis.speak(utterance);
         };
 
-        // Start the sequence
-        console.log('🎵 🚀 STARTING ROBOTIC VOICE SEQUENCE NOW...');
-        speechSynthesis.speak(firstUtterance);
+        console.log('🎵 Playing first voice: "ACCESS GRANTED, welcome master"');
+        if (isMobile) {
+          speakWithRetry(firstUtterance);
+        } else {
+          speechSynthesis.speak(firstUtterance);
+        }
       };
 
       // ROBUST voice loading with multiple fallbacks
@@ -188,38 +192,24 @@ const InitialDisclaimerModal = () => {
     if (!hasPlayedThisSession && !hasAttemptedVoices) {
       console.log('🎵 First visit this session - starting voice sequence...');
       
-      // Multiple timing attempts for better reliability
-      const timers = [
-        // First attempt - quick start
+      const isMobile = isMobileDevice();
+      console.log(`📱 Device type: ${isMobile ? 'Mobile' : 'Desktop'}`);
+      
+      // Mobile-optimized timing attempts
+      const mobileDelays = [300, 1000, 2500]; // Faster attempts for mobile
+      const desktopDelays = [500, 1500, 3000]; // Original timing for desktop
+      const delays = isMobile ? mobileDelays : desktopDelays;
+      
+      const timers = delays.map((delay, index) => 
         setTimeout(() => {
           if (!hasAttemptedVoices) {
-            console.log('🚀 First attempt - 500ms delay');
+            console.log(`🚀 ${isMobile ? 'Mobile' : 'Desktop'} attempt ${index + 1} - ${delay}ms delay`);
             createRobotVoices();
             sessionStorage.setItem("voicesPlayedThisSession", "true");
             setHasAttemptedVoices(true);
           }
-        }, 500),
-        
-        // Second attempt - standard timing
-        setTimeout(() => {
-          if (!hasAttemptedVoices) {
-            console.log('🚀 Second attempt - 1500ms delay');
-            createRobotVoices();
-            sessionStorage.setItem("voicesPlayedThisSession", "true");
-            setHasAttemptedVoices(true);
-          }
-        }, 1500),
-        
-        // Third attempt - final fallback
-        setTimeout(() => {
-          if (!hasAttemptedVoices) {
-            console.log('🚀 Final attempt - 3000ms delay');
-            createRobotVoices();
-            sessionStorage.setItem("voicesPlayedThisSession", "true");
-            setHasAttemptedVoices(true);
-          }
-        }, 3000)
-      ];
+        }, delay)
+      );
 
       // Setup fallback for user interaction if autoplay fails
       console.log('🎯 Setting up user interaction fallback...');

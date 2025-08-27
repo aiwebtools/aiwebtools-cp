@@ -13,7 +13,7 @@ import {
 import { CategoryCounts, MainCategoryCounts } from "./types";
 import { buildToolsCache, getToolsCacheByMainCategory, isCacheBuilt } from "./cacheManager";
 import { isAIWebToolsGPT } from "./specializedDetection";
-import { applyAIWebToolsPrioritization } from "@/utils/aiWebToolsPrioritization";
+import { applyAIWebToolsPrioritization, getAIWebToolsPriorityScore } from "@/utils/aiWebToolsPrioritization";
 import { filterBusinessTools } from "./businessCategoryFiltering";
 
 export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
@@ -30,76 +30,111 @@ export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
 };
 
 export const getToolsByCategory = (tools: Tool[], categoryName: string): Tool[] => {
-  let filteredTools: Tool[] = [];
+  let categoryRelevantTools: Tool[] = [];
+  let otherTools: Tool[] = [];
   
-  // 🚀 ENHANCED: Apply proper business filtering for Business Operations & Productivity category
-  if (categoryName === "BUSINESS OPERATIONS & PRODUCTIVITY") {
-    const businessCandidates = tools.filter(tool => tool.category && isSimilarCategory(tool.category, categoryName));
-    filteredTools = filterBusinessTools(businessCandidates);
-    console.log(`🏢 BUSINESS OPERATIONS & PRODUCTIVITY: Filtered ${businessCandidates.length} candidates to ${filteredTools.length} actual business tools`);
-  }
+  // First, separate tools into category-relevant and others
+  const allFilteredTools = (() => {
+    // 🚀 ENHANCED: Apply proper business filtering for Business Operations & Productivity category
+    if (categoryName === "BUSINESS OPERATIONS & PRODUCTIVITY") {
+      const businessCandidates = tools.filter(tool => tool.category && isSimilarCategory(tool.category, categoryName));
+      return filterBusinessTools(businessCandidates);
+    }
+    
+    // Special handling for AI Web Tools Originals category
+    else if (categoryName === "AI WEB TOOLS ORIGINALS" || 
+             categoryName === "AI Web Tools Originals" || 
+             categoryName === "AIWebTools GPTs Collection" ||
+             categoryName === "ai-originals") {
+      return tools.filter(tool => isAIWebToolsGPT(tool));
+    }
+    
+    // FIXED: Unified handling for Image & Design category - use ONLY ONE standardized name
+    else if (categoryName === "IMAGE & DESIGN AI TOOLS" || 
+        categoryName === "Image & Design" || 
+        categoryName === "Image & Design Tools" ||
+        categoryName === "Image & Design AI Tools") {
+      return getImageAndDesignTools(tools, categoryName);
+    }
+    
+    // Special handling for Data & Analytics category
+    else if (categoryName === "DATA & ANALYTICS AI TOOLS" || categoryName === "Data & Analytics Tools") {
+      return getDataAnalyticsTools(tools, categoryName);
+    }
+    
+    // Special handling for Marketing & Sales category
+    else if (categoryName === "MARKETING & SALES AI TOOLS" || categoryName === "Marketing & Analytics" || categoryName === "E-commerce & Marketing Tools" || categoryName === "Business & Sales Tools") {
+      return getMarketingSalesTools(tools, categoryName);
+    }
+    
+    // Enhanced handling for Communication & Collaboration category
+    else if (categoryName === "COMMUNICATION & COLLABORATION AI TOOLS" || categoryName === "Communication & Entertainment" || categoryName === "Communication Tools") {
+      return getCommunicationCollaborationTools(tools, categoryName);
+    }
+    
+    // Special handling for Automation Platforms category
+    else if (categoryName === "AUTOMATION PLATFORMS" || categoryName === "Automation Platforms" || categoryName === "Automation & Workflows") {
+      return getAutomationPlatformsTools(tools, categoryName);
+    }
+    
+    // Enhanced handling for Health, Wellness & Personal Lifestyle category
+    else if (categoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
+      return tools.filter(tool => isHealthAndWellnessTool(tool));
+    }
+    
+    // Enhanced handling for Creative & Entertainment category - FIXED LOGIC
+    else if (categoryName === "CREATIVE & ENTERTAINMENT") {
+      return tools.filter(tool => isCreativeAndEntertainmentTool(tool));
+    }
+    
+    // Regular category filtering with enhanced similarity matching
+    else {
+      return tools.filter(tool => tool.category && isSimilarCategory(tool.category, categoryName));
+    }
+  })();
+
+  // Separate strictly relevant tools from loosely related ones
+  allFilteredTools.forEach(tool => {
+    const isStrictlyRelevant = tool.category && isSimilarCategory(tool.category, categoryName);
+    if (isStrictlyRelevant) {
+      categoryRelevantTools.push(tool);
+    } else {
+      otherTools.push(tool);
+    }
+  });
+
+  // Add some randomization to prevent same ordering while preserving priorities
+  const addRandomization = (toolsArray: Tool[]) => {
+    return toolsArray.sort((a, b) => {
+      // First by priority scores (existing logic)
+      const aPriority = getAIWebToolsPriorityScore(a);
+      const bPriority = getAIWebToolsPriorityScore(b);
+      if (aPriority !== bPriority) return bPriority - aPriority;
+      
+      // Then by rating
+      const ratingDiff = (b.rating || 0) - (a.rating || 0);
+      if (ratingDiff !== 0) return ratingDiff;
+      
+      // Add subtle randomization factor (keeps similar tools somewhat randomized)
+      const randomFactor = (Math.sin(a.title.length + b.title.length + Date.now()) * 0.1);
+      
+      // Finally by title with randomization
+      return a.title.localeCompare(b.title) + randomFactor;
+    });
+  };
+
+  // Apply prioritization and randomization to both groups
+  const prioritizedCategoryTools = applyAIWebToolsPrioritization(addRandomization([...categoryRelevantTools]));
+  const prioritizedOtherTools = applyAIWebToolsPrioritization(addRandomization([...otherTools]));
   
-  // Special handling for AI Web Tools Originals category
-  else if (categoryName === "AI WEB TOOLS ORIGINALS" || 
-           categoryName === "AI Web Tools Originals" || 
-           categoryName === "AIWebTools GPTs Collection" ||
-           categoryName === "ai-originals") {
-    filteredTools = tools.filter(tool => isAIWebToolsGPT(tool));
-    console.log(`🎯 AI Originals: Found ${filteredTools.length} AIWebTools GPTs`);
-  }
+  // Combine: category-relevant tools first, then others
+  const finalResult = [...prioritizedCategoryTools, ...prioritizedOtherTools];
   
-  // FIXED: Unified handling for Image & Design category - use ONLY ONE standardized name
-  else if (categoryName === "IMAGE & DESIGN AI TOOLS" || 
-      categoryName === "Image & Design" || 
-      categoryName === "Image & Design Tools" ||
-      categoryName === "Image & Design AI Tools") {
-    filteredTools = getImageAndDesignTools(tools, categoryName);
-    console.log(`🎨 FIXED: Found ${filteredTools.length} actual Image & Design tools (excluded video/entertainment)`);
-  }
+  console.log(`🎯 Category "${categoryName}": ${finalResult.length} total tools`);
+  console.log(`   📂 Category-relevant: ${prioritizedCategoryTools.length} tools`);
+  console.log(`   🔗 Related/other: ${prioritizedOtherTools.length} tools`);
   
-  // Special handling for Data & Analytics category
-  else if (categoryName === "DATA & ANALYTICS AI TOOLS" || categoryName === "Data & Analytics Tools") {
-    filteredTools = getDataAnalyticsTools(tools, categoryName);
-  }
-  
-  // Special handling for Marketing & Sales category
-  else if (categoryName === "MARKETING & SALES AI TOOLS" || categoryName === "Marketing & Analytics" || categoryName === "E-commerce & Marketing Tools" || categoryName === "Business & Sales Tools") {
-    filteredTools = getMarketingSalesTools(tools, categoryName);
-  }
-  
-  // Enhanced handling for Communication & Collaboration category
-  else if (categoryName === "COMMUNICATION & COLLABORATION AI TOOLS" || categoryName === "Communication & Entertainment" || categoryName === "Communication Tools") {
-    filteredTools = getCommunicationCollaborationTools(tools, categoryName);
-  }
-  
-  // Special handling for Automation Platforms category
-  else if (categoryName === "AUTOMATION PLATFORMS" || categoryName === "Automation Platforms" || categoryName === "Automation & Workflows") {
-    filteredTools = getAutomationPlatformsTools(tools, categoryName);
-  }
-  
-  // Enhanced handling for Health, Wellness & Personal Lifestyle category
-  else if (categoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
-    filteredTools = tools.filter(tool => isHealthAndWellnessTool(tool));
-  }
-  
-  // Enhanced handling for Creative & Entertainment category - FIXED LOGIC
-  else if (categoryName === "CREATIVE & ENTERTAINMENT") {
-    filteredTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
-    console.log(`🎭 FIXED CREATIVE FILTER: Found ${filteredTools.length} tools for Creative & Entertainment`);
-    console.log(`🎭 Sample tools:`, filteredTools.slice(0, 10).map(t => `${t.title} (${t.category})`));
-  }
-  
-  // Regular category filtering with enhanced similarity matching
-  else {
-    filteredTools = tools.filter(tool => tool.category && isSimilarCategory(tool.category, categoryName));
-  }
-  
-  // 🚀 PRIORITY: Apply AI Web Tools GPT prioritization to all category results
-  const prioritizedTools = applyAIWebToolsPrioritization(filteredTools);
-  
-  console.log(`🎯 Category "${categoryName}": ${prioritizedTools.length} tools with AI Web Tools GPTs prioritized first`);
-  
-  return prioritizedTools;
+  return finalResult;
 };
 
 export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts => {
