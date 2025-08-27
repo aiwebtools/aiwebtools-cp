@@ -6,7 +6,7 @@ import { matchAgents, scoreAgents } from "./matching/agentMatching";
 import { matchCodingAgents, scoreCodingAgents } from "./matching/codingMatching";
 import { matchGameTools, scoreGameTools } from "./matching/gameMatching";
 import { matchUserTask, smartTypoCorrection, scoreToolByContext, matchTimeTravel, scoreTimeTravel, matchWriting, scoreWriting } from "./core/intelligentTaskMatching";
-import { matchSpiritual, scoreSpiritual, matchParanormal, scoreParanormal } from "./matching/specialtyMatching";
+import { matchSpiritual, scoreSpiritual, matchParanormal, scoreParanormal, matchMathScience, scoreMathScience } from "./matching/specialtyMatching";
 import { superSmartTypoCorrection, getPartialMatchSuggestions, matchWithContext, superIntelligentScore } from "./core/superIntelligentSearch";
 import { matchWebDevelopment, scoreWebDevelopment } from "./matching/webDevelopmentMatching";
 import { getAdvancedPartialMatches, scoreAdvancedPartialMatch } from "./core/advancedPartialMatching";
@@ -22,8 +22,8 @@ const EXCLUDED_TOOLS = [
 // Intent detection patterns for better search prioritization - EXPANDED FOR ALL CATEGORIES
 const INTENT_PATTERNS = {
   education: {
-    triggers: ['college', 'university', 'degree', 'education', 'learn', 'study', 'course', 'school', 'academic', 'skill', 'training', 'lesson', 'class', 'homework', 'tutor', 'teacher', 'student'],
-    priority: ['COLLEGE DEGREE GPT', 'LEARN ANY SKILL GPT', 'LEARN ANY COURSE GPT', 'Home-Schooling Assistant GPT', 'HomeSchool GPT', 'Quiz Maker Ai', 'Course Maker GPT'],
+    triggers: ['college', 'university', 'degree', 'education', 'learn', 'study', 'course', 'school', 'academic', 'skill', 'training', 'lesson', 'class', 'homework', 'tutor', 'teacher', 'student', 'math', 'mathematics', 'algebra', 'calculus', 'geometry', 'statistics', 'physics', 'chemistry', 'biology', 'science'],
+    priority: ['COLLEGE DEGREE GPT', 'LEARN ANY SKILL GPT', 'LEARN ANY COURSE GPT', 'Home-Schooling Assistant GPT', 'HomeSchool GPT', 'Quiz Maker Ai', 'Course Maker GPT', 'Algebraic Expression Inventor GPT'],
     categories: ['Education & Research Tools', 'Learning & Education', 'Educational Tools', 'Education & Learning']
   },
   creative: {
@@ -42,8 +42,8 @@ const INTENT_PATTERNS = {
     categories: ['Business & Productivity', 'Finance & Trading', 'Marketing Tools', 'Business & Finance', 'Business Tools']
   },
   science: {
-    triggers: ['science', 'research', 'analysis', 'data', 'laboratory', 'experiment', 'scientific', 'genome', 'dna', 'physics', 'chemistry', 'biology', 'space', 'astronomy'],
-    priority: ['Nikola Tesla GPT', 'Stellaris: 🚀AI Space Explorer', 'Genome GPT', 'Alchemist Scientist GPT', 'Data Research Analysis Report GPT'],
+    triggers: ['science', 'research', 'analysis', 'data', 'laboratory', 'experiment', 'scientific', 'genome', 'dna', 'physics', 'chemistry', 'biology', 'space', 'astronomy', 'math', 'mathematics', 'algebra', 'calculus', 'geometry', 'statistics', 'equation', 'formula', 'calculation'],
+    priority: ['Nikola Tesla GPT', 'Stellaris: 🚀AI Space Explorer', 'Genome GPT', 'Alchemist Scientist GPT', 'Data Research Analysis Report GPT', 'Algebraic Expression Inventor GPT'],
     categories: ['Science & Research', 'Research & Learning', 'Scientific Tools', 'Data Analytics']
   },
   technology: {
@@ -384,6 +384,12 @@ const performEnhancedSearch = (
       if (matchWebDevelopment(tool, finalNormalizedTerm)) {
         matched = true;
         score += scoreWebDevelopment(tool, finalNormalizedTerm);
+      }
+
+      // SPECIAL MATCHING: Math/Science searches - HIGH PRIORITY for educational tools
+      if (matchMathScience(tool, finalNormalizedTerm)) {
+        matched = true;
+        score += scoreMathScience(tool, finalNormalizedTerm);
       }
 
       // SPECIAL MATCHING: Spiritual/Paranormal searches - HIGH PRIORITY
