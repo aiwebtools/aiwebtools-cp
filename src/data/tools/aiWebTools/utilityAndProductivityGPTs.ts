@@ -109,18 +109,6 @@ export const utilityAndProductivityGPTs: Tool[] = [
     totalVotes: 4789
   },
   {
-    icon: Calendar,
-    title: "Personal Calendar",
-    description: "Manages personal schedules, sets reminders, and organizes daily activities efficiently.",
-    emoji: "📅",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://chat.openai.com/g/g-B8nr9C1JE-personal-calendar",
-    tags: ["personal scheduling", "reminder setting", "daily organization", "calendar management"],
-    category: "Utility & Productivity",
-    rating: 4.3,
-    totalVotes: 4234
-  },
-  {
     icon: Mail,
     title: "Email Assistant",
     description: "Helps draft professional emails, manage inboxes, and prioritize important messages.",

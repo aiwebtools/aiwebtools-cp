@@ -2,6 +2,7 @@
 import { useParams } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { allTools } from "@/data/toolsData";
+import { getToolIndexBySlug, generateToolSlug } from "@/utils/urlGenerator";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SimilarTools from "@/components/SimilarTools";
@@ -24,8 +25,21 @@ import ToolSearch from "@/components/tool-detail/ToolSearch";
 import MoreToolsSection from "@/components/tool-detail/MoreToolsSection";
 
 const ToolDetail = () => {
-  const { toolId } = useParams();
-  const toolIndex = parseInt(toolId || "0");
+  const { toolId, toolSlug } = useParams();
+  
+  // Handle both numeric IDs and SEO-friendly slugs
+  let toolIndex: number;
+  if (toolSlug) {
+    toolIndex = getToolIndexBySlug(allTools, toolSlug);
+    if (toolIndex === -1) {
+      // Fallback: try to find by title match
+      toolIndex = allTools.findIndex(tool => 
+        generateToolSlug(tool.title) === toolSlug
+      );
+    }
+  } else {
+    toolIndex = parseInt(toolId || "0");
+  }
   
   const {
     tool,

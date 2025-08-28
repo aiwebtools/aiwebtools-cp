@@ -34,6 +34,7 @@ function App() {
                 <Route path="/category/:categoryName" element={<CategoryPage />} />
                 <Route path="/main-category/:mainCategoryName" element={<MainCategoryPage />} />
                 <Route path="/tool/:toolId" element={<ToolDetail />} />
+                <Route path="/:toolSlug" element={<ToolDetail />} />
                 <Route path="/similar-tools/:toolId" element={<SimilarToolsPage />} />
                 <Route path="/favorites" element={<FavoritesPage />} />
                 <Route path="/disclaimers" element={<DisclaimersPage />} />

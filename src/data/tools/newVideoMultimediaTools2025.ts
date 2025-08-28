@@ -127,18 +127,6 @@ export const newVideoMultimediaTools2025: Tool[] = [
     totalVotes: 2730
   },
   {
-    icon: Mic,
-    title: "Movio",
-    description: "AI video generator that turns text or blog posts into spokeswoman or spokesman video presentations.",
-    emoji: "🎙️",
-    color: "from-green-500 to-teal-500",
-    directUrl: "https://movio.la/?via=aiwebtools",
-    tags: ["Text-to-Video", "Spokesperson", "Presentations", "AI Avatars"],
-    category: "VIDEO & MULTIMEDIA",
-    rating: 4.2,
-    totalVotes: 1680
-  },
-  {
     icon: ImageIcon,
     title: "Pictory",
     description: "Video creation platform that turns long-form content into short, shareable video highlights.",

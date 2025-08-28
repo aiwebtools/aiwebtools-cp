@@ -238,7 +238,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     description: "Practice mindfulness with the Mindfulness Mentor GPT. This AI tool provides guided meditations, breathing exercises, and mindfulness techniques to help you stay present, reduce stress, and cultivate inner peace. Find calm in the midst of chaos and live in the moment.",
     emoji: "🌙",
     color: "from-blue-400 to-gray-500",
-    directUrl: "https://chat.openai.com/g/g-Y5B2w3Z1z-mindfulness-mentor",
+    directUrl: "https://chatgpt.com/g/g-68af9dc3d0688191830cd5a3d71e39df-mindfulness-mentor-gpt",
     tags: ["mindfulness", "meditation", "breathing exercises", "stress reduction", "inner peace"],
     category: "Personal Development & Self-Discovery",
     rating: 3.3,

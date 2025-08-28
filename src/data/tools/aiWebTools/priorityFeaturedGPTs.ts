@@ -100,18 +100,6 @@ export const priorityFeaturedGPTs: Tool[] = [
     totalVotes: 2987
   },
   {
-    icon: Users,
-    title: "AI Social Connector",
-    description: "AI-powered social networking tool that helps you connect with like-minded people and build communities.",
-    emoji: "🧑‍🤝‍🧑",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://aiwebtools.com/ai-social",
-    tags: ["social networking", "community building", "ai connections", "social media"],
-    category: "AI Assistants & Search",
-    rating: 4.2,
-    totalVotes: 2654
-  },
-  {
     icon: Heart,
     title: "AI Wellness Coach",
     description: "AI-driven wellness coach that provides personalized fitness plans, nutrition advice, and mental health support.",
@@ -218,18 +206,6 @@ export const priorityFeaturedGPTs: Tool[] = [
     category: "AI Assistants & Search",
     rating: 4.6,
     totalVotes: 3456
-  },
-  {
-    icon: Music,
-    title: "AI Music Composer",
-    description: "AI tool that composes music for you, such as songs, soundtracks, and more.",
-    emoji: "🎵",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://aiwebtools.com/ai-music",
-    tags: ["music composer", "songs", "soundtracks"],
-    category: "AI Assistants & Search",
-    rating: 4.2,
-    totalVotes: 2567
   },
   {
     icon: Palette,

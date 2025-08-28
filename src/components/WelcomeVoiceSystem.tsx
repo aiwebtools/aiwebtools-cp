@@ -114,14 +114,8 @@ const WelcomeVoiceSystem = () => {
   };
 
   useEffect(() => {
-    // Check if already played this session
-    const sessionKey = "welcomeVoicePlayed";
-    const hasPlayedThisSession = sessionStorage.getItem(sessionKey);
-    
-    console.log('🔍 Voice system check:', { hasPlayedThisSession, hasPlayed });
-    
-    // TEMPORARY: Clear session storage to test voice system
-    sessionStorage.removeItem(sessionKey);
+    // Always play the welcome - removed session storage check
+    console.log('🔍 Voice system check: Playing on every visit');
     
     if (!hasPlayed) {
       console.log('🚀 First visit - preparing welcome sequence');
@@ -132,7 +126,6 @@ const WelcomeVoiceSystem = () => {
       // Single reliable attempt
       const timer = setTimeout(() => {
         setHasPlayed(true);
-        sessionStorage.setItem(sessionKey, "true");
         initializeVoices();
       }, delay);
       
@@ -141,7 +134,6 @@ const WelcomeVoiceSystem = () => {
         if (!hasPlayed) {
           console.log('👆 User clicked - triggering welcome');
           setHasPlayed(true);
-          sessionStorage.setItem(sessionKey, "true");
           initializeVoices();
           document.removeEventListener('click', handleUserClick);
           document.removeEventListener('touchstart', handleUserClick);

@@ -52,16 +52,14 @@ import { timeAndHistoryGPTs } from "./tools/aiWebTools/timeAndHistoryGPTs";
 import { technologyInnovationGPTs } from "./tools/aiWebTools/technologyInnovationGPTs";
 import { specializedNicheToolsGPTs } from "./tools/aiWebTools/specializedNicheToolsGPTs";
 
-// Import new personal development tools
-import { personalDevelopmentTools } from "./tools/personalDevelopmentTools";
+import { newPersonalDevelopmentTools } from "./tools/newPersonalDevelopmentTools";
 
 // Import WEB3 domains
 import { web3DomainsTools } from "./tools/web3DomainsTools";
 
-// Combine all tool categories and apply consolidation
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
-  ...personalDevelopmentTools,
+  ...newPersonalDevelopmentTools,
   ...web3DomainsTools,
   
   // Add the AI Web Tools GPT Collections
