@@ -14,8 +14,7 @@ import ToolDescription from "@/components/tool-detail/ToolDescription";
 import ToolMedia from "@/components/tool-detail/ToolMedia";
 import ToolTags from "@/components/tool-detail/ToolTags";
 import ToolActions from "@/components/tool-detail/ToolActions";
-import SEOHead from "@/components/SEOHead";
-import AdvancedSEOHead from "@/components/AdvancedSEOHead";
+import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import BreadcrumbSEO from "@/components/BreadcrumbSEO";
 import { generateStructuredData } from "@/utils/seo";
 import { useToolDetail } from "@/hooks/useToolDetail";
@@ -84,27 +83,7 @@ const ToolDetail = () => {
 
   return (
     <div className="min-h-screen bg-black relative">
-      <SEOHead
-        title={`${tool.title} - AI Tool Review & Access | Free AI Tools 2025`}
-        description={`${tool.description} Access ${tool.title}, a powerful AI tool in the ${tool.category} category. Read comprehensive reviews, features, pricing, and get direct access to this ${tool.category} AI tool.`}
-        keywords={[
-          tool.title.toLowerCase(),
-          `${tool.category?.toLowerCase()} ai tool`,
-          "ai tool review",
-          "artificial intelligence",
-          "free ai tools",
-          "ai tools 2025",
-          `best ${tool.category?.toLowerCase()} tools`,
-          "ai tool comparison",
-          "ai software review",
-          ...(tool.tags || [])
-        ]}
-        url={`/tool/${toolIndex}`}
-        type="article"
-        structuredData={toolStructuredData}
-      />
-      
-      <AdvancedSEOHead tool={tool} toolIndex={toolIndex} pageType="tool" />
+      <ImprovedSEOHead pageType="tool" tool={tool} />
       <BreadcrumbSEO items={breadcrumbItems} />
       
       <AnimatedBackground />

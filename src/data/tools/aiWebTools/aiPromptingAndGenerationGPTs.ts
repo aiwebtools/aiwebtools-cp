@@ -41,18 +41,6 @@ export const aiPromptingAndGenerationGPTs: Tool[] = [
     totalVotes: 15420
   },
   {
-    icon: Brain,
-    title: "Claude",
-    description: "Anthropic's AI assistant known for being helpful, harmless, and honest. Claude excels at analysis, writing, math, coding, and creative tasks with a focus on safety and constitutional AI principles.",
-    emoji: "🧠",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://claude.ai",
-    tags: ["ai assistant", "anthropic", "safety", "analysis", "writing", "coding"],
-    category: "AI Prompting & Generation",
-    rating: 4.7,
-    totalVotes: 8934
-  },
-  {
     icon: Sparkles,
     title: "Perplexity AI",
     description: "An AI-powered search engine that provides accurate, real-time answers with citations. Perplexity combines the power of large language models with up-to-date web search to deliver comprehensive responses to complex questions.",

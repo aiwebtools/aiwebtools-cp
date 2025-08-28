@@ -96,18 +96,6 @@ export const additionalRealAITools: Tool[] = [
     totalVotes: 3421
   },
   {
-    icon: Music,
-    title: "Suno AI",
-    description: "Create original songs and music with AI using simple text prompts in seconds.",
-    emoji: "🎼",
-    color: "from-red-500 to-orange-600",
-    directUrl: "https://suno.ai/?via=aiwebtools",
-    tags: ["music creation", "song generation", "AI composer", "audio", "lyrics"],
-    category: "Audio & Music",
-    rating: 4.3,
-    totalVotes: 2856
-  },
-  {
     icon: Code,
     title: "GitHub Copilot",
     description: "AI pair programmer that suggests code and entire functions in real-time as you type.",

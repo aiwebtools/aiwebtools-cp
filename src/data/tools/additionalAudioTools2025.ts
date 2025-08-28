@@ -247,18 +247,6 @@ export const additionalAudioTools2025: Tool[] = [
     totalVotes: 4920
   },
   {
-    icon: Play,
-    title: "Suno v3",
-    description: "Updated version of Suno's AI music generator with enhanced capabilities and improved audio quality.",
-    emoji: "🎼",
-    color: "from-pink-500 to-red-500",
-    directUrl: "https://app.suno.ai/?via=aiwebtools",
-    tags: ["Suno v3", "Enhanced AI", "Music Generator", "Improved Quality", "Advanced Features"],
-    category: "AUDIO & VOICE TOOLS",
-    rating: 4.9,
-    totalVotes: 5480
-  },
-  {
     icon: Mic,
     title: "Synthesizer V",
     description: "AI singing voice synthesizer that allows musicians to create realistic vocal tracks with customizable voices.",

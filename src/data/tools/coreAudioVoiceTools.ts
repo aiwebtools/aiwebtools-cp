@@ -19,19 +19,6 @@ import {
 export const coreAudioVoiceTools: Tool[] = [
   {
     icon: Music,
-    title: "Suno AI Music Generator",
-    description: "Create complete songs with vocals and instruments using AI. Generate music in any style, from pop to classical, with professional quality output and custom lyrics.",
-    emoji: "🎵",
-    color: "from-purple-500 to-pink-600",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377364206441070592/image.png?ex=6838b1e1&is=68376061&hm=4872d401aedf46706d1213c2a93ce9ca260725cec15f98b2186eb25746fda56f&",
-    directUrl: "https://suno.com/?via=aiwebtools",
-    tags: ["music generation", "ai music", "song creation", "vocals", "instruments", "suno", "music ai", "audio production"],
-    category: "Audio & Voice Tools",
-    rating: 4.9,
-    totalVotes: 8765
-  },
-  {
-    icon: Music,
     title: "UDIO AI Music Generator",
     description: "Advanced AI music creation platform for generating high-quality music tracks. Create songs with vocals, instruments, and professional mixing using cutting-edge AI technology.",
     emoji: "🎼",

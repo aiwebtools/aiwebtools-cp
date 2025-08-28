@@ -751,7 +751,7 @@ export const moreRealAITools: Tool[] = [
     description: "AI-powered photo enhancement software for noise reduction and upscaling.",
     emoji: "✨",
     color: "from-blue-500 to-green-600",
-    directUrl: "https://topazlabs.com/?via=aiwebtools",
+    directUrl: "https://topazlabs.com/",
     tags: ["photo enhancement", "noise reduction", "image upscaling", "AI photography", "image quality"],
     category: "Photography",
     rating: 4.5,

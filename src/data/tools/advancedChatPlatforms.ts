@@ -30,18 +30,6 @@ export const advancedChatPlatforms: Tool[] = [
     totalVotes: 15420
   },
   {
-    icon: Bot,
-    title: "Claude",
-    description: "AI assistant by Anthropic focused on being helpful, harmless, and honest in conversations.",
-    emoji: "🤖",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://claude.ai/",
-    tags: ["assistant", "conversation", "helpful", "analysis"],
-    category: "Advanced Chat Platforms",
-    rating: 4.7,
-    totalVotes: 8930
-  },
-  {
     icon: MessageSquare,
     title: "YesChat.ai",
     description: "All-in-one solution harnessing the power of cutting-edge AI models including GPT-4, Dalle3, and Claude2. Access up to 50 GPT-4 messages every 3 hours, engage with documents, images, and real-time information.",

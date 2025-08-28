@@ -18,18 +18,6 @@ import {
 
 export const dataAnalyticsTools: Tool[] = [
   {
-    icon: Brain,
-    title: "Claude",
-    description: "Anthropic's advanced AI assistant with superior analytical capabilities for data interpretation, research analysis, and complex problem-solving. Excels at breaking down large datasets, statistical analysis, and providing detailed insights from complex information.",
-    emoji: "🧠",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://claude.ai/",
-    tags: ["AI assistant", "data analysis", "research", "statistical analysis", "anthropic", "advanced reasoning"],
-    category: "Data & Analytics Tools",
-    rating: 4.8,
-    totalVotes: 12543
-  },
-  {
     icon: MessageSquare,
     title: "ChatGPT",
     description: "OpenAI's powerful conversational AI with strong analytical capabilities for data interpretation, trend analysis, and generating insights from complex datasets. Features advanced reasoning and can process and analyze various data formats.",

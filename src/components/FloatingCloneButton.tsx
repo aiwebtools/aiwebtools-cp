@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { MessageCircle } from 'lucide-react';
 import { createTimePortalEffect } from '@/utils/timeEffects';
 
 const FloatingCloneButton = () => {
@@ -35,24 +36,16 @@ const FloatingCloneButton = () => {
         console.log('🌀 FloatingCloneButton clicked - triggering time warp');
         createTimePortalEffect('https://cloneaiwebtools.lovable.app/?via=aiwebtools', 'Clone AI Web Tools');
       }}
-      className={`fixed bottom-4 left-4 z-50 w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-full transition-all duration-300 transform hover:scale-105 flex items-center justify-center ${
+      className={`fixed bottom-4 right-4 z-50 w-14 h-14 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-full transition-all duration-300 transform hover:scale-105 flex items-center justify-center shadow-2xl ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
       }`}
       style={{ 
-        fontSize: '6px', 
-        lineHeight: '1',
-        boxShadow: '0 0 20px rgba(147, 51, 234, 0.6), 0 0 40px rgba(147, 51, 234, 0.4), 0 0 60px rgba(147, 51, 234, 0.2)',
-        animation: 'glow 2s ease-in-out infinite alternate'
+        boxShadow: '0 0 20px rgba(6, 182, 212, 0.4), 0 0 40px rgba(6, 182, 212, 0.2)',
+        animation: 'pulse 2s ease-in-out infinite'
       }}
-      title="Clone this website"
+      title="Get Support & Clone This Site"
     >
-      <span className="text-center px-1">
-        CLONE
-        <br />
-        THIS
-        <br />
-        SITE
-      </span>
+      <MessageCircle className="w-6 h-6" />
     </a>
   );
 };

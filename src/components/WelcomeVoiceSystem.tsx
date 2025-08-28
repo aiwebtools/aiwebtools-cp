@@ -123,11 +123,19 @@ const WelcomeVoiceSystem = () => {
       const isMobile = isMobileDevice();
       const delay = isMobile ? 800 : 1000; // Shorter delay on mobile
       
-      // Single reliable attempt
       const timer = setTimeout(() => {
         setHasPlayed(true);
         initializeVoices();
       }, delay);
+      
+      // Add video autoplay after 5.5 seconds
+      const videoTimer = setTimeout(() => {
+        const video = document.querySelector('video');
+        if (video && video.paused) {
+          video.muted = false;
+          video.play().catch(console.log);
+        }
+      }, 5500);
       
       // Fallback for user interaction
       const handleUserClick = () => {
@@ -145,6 +153,7 @@ const WelcomeVoiceSystem = () => {
       
       return () => {
         clearTimeout(timer);
+        clearTimeout(videoTimer);
         document.removeEventListener('click', handleUserClick);
         document.removeEventListener('touchstart', handleUserClick);
       };

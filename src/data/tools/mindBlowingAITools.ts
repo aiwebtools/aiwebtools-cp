@@ -138,7 +138,7 @@ export const mindBlowingAITools: Tool[] = [
     description: "Upscale and enhance videos to 8K resolution with AI. Transform old, blurry videos into crystal-clear high-definition masterpieces. One-time purchase $199-$299.",
     emoji: "📹",
     color: "from-blue-500 to-cyan-600",
-    directUrl: "https://topazlabs.com/video-ai/?via=aiwebtools",
+    directUrl: "https://topazlabs.com/video-ai/",
     tags: ["video upscaling", "AI enhancement", "4K", "8K", "video quality", "paid"],
     category: "Video Enhancement",
     rating: 4.7,
