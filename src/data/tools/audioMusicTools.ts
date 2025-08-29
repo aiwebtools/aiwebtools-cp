@@ -19,18 +19,6 @@ import {
 
 export const audioMusicTools: Tool[] = [
   {
-    icon: Music,
-    title: "Suno AI",
-    description: "Revolutionary AI music generator that creates complete songs with vocals and lyrics from simple text prompts. Generate professional-quality music in any genre within seconds.",
-    emoji: "🎶",
-    color: "from-indigo-500 to-purple-600",
-    directUrl: "https://suno.ai/",
-    tags: ["suno", "AI music generation", "vocals", "lyrics", "text prompts", "complete songs", "professional quality"],
-    category: "Audio & Music Tools",
-    rating: 4.8,
-    totalVotes: 6789
-  },
-  {
     icon: Mic,
     title: "Udio",
     description: "Advanced AI music creation platform that generates high-fidelity audio tracks with natural-sounding vocals and instruments. Create original music from text descriptions.",

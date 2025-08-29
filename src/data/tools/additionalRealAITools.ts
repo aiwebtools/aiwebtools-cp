@@ -696,18 +696,6 @@ export const additionalRealAITools: Tool[] = [
     totalVotes: 6789
   },
   {
-    icon: Brain,
-    title: "Anthropic Claude Pro",
-    description: "Advanced version of Claude AI with enhanced capabilities for complex reasoning and analysis.",
-    emoji: "🧠",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://claude.ai/pro/?via=aiwebtools",
-    tags: ["advanced AI", "reasoning", "analysis", "premium AI", "professional"],
-    category: "Premium AI Assistants",
-    rating: 4.7,
-    totalVotes: 3456
-  },
-  {
     icon: Code,
     title: "CodeT5",
     description: "AI model specifically designed for code understanding and generation tasks.",

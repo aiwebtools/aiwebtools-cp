@@ -52,6 +52,7 @@ import { timeAndHistoryGPTs } from "./tools/aiWebTools/timeAndHistoryGPTs";
 import { technologyInnovationGPTs } from "./tools/aiWebTools/technologyInnovationGPTs";
 import { specializedNicheToolsGPTs } from "./tools/aiWebTools/specializedNicheToolsGPTs";
 
+import { newAffiliatePlatforms2025 } from "./tools/newAffiliatePlatforms2025";
 import { newPersonalDevelopmentTools } from "./tools/newPersonalDevelopmentTools";
 
 // Import WEB3 domains
@@ -59,6 +60,7 @@ import { web3DomainsTools } from "./tools/web3DomainsTools";
 
 const allToolCategories = consolidateTools([
   ...getAllToolCategories(),
+  ...newAffiliatePlatforms2025,
   ...newPersonalDevelopmentTools,
   ...web3DomainsTools,
   
