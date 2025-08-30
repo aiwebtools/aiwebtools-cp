@@ -21,14 +21,14 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
-  // Balanced debounce for smooth typing + reasonable search performance
-  const debouncedSearchTerm = useDebounce(searchTerm, 150);
+  // Instant visual feedback with minimal delay
+  const debouncedSearchTerm = useDebounce(searchTerm, 80);
 
-  // LIGHTWEIGHT search effect with performance priority
+  // INSTANT search effect - show results immediately as user types
   useEffect(() => {
     const trimmedTerm = debouncedSearchTerm.trim();
     
-    if (!trimmedTerm || trimmedTerm.length < 2) {
+    if (!trimmedTerm || trimmedTerm.length < 1) {
       setSearchResults([]);
       setIsOpen(false);
       setDisplayedCount(30);
@@ -37,57 +37,15 @@ export const useGlobalSearch = () => {
 
     const lowerTerm = trimmedTerm.toLowerCase();
     
-    // SIMPLE exact matching for performance
-    const exactMatches = allTools.filter(tool => {
-      const lowerTitle = tool.title.toLowerCase();
-      return lowerTitle.includes(lowerTerm);
-    });
+    // Ultra-fast exact title matching for instant feedback
+    const quickMatches = allTools.filter(tool => 
+      tool.title.toLowerCase().includes(lowerTerm)
+    ).slice(0, 50);
 
-    // Quick partial matches only if needed
-    let partialMatches = [];
-    if (exactMatches.length < 10) {
-      partialMatches = allTools.filter(tool => {
-        if (exactMatches.some(exact => exact.title === tool.title)) return false;
-        
-        const lowerDescription = tool.description?.toLowerCase() || "";
-        const lowerCategory = tool.category?.toLowerCase() || "";
-        
-        return lowerDescription.includes(lowerTerm) || lowerCategory.includes(lowerTerm);
-      }).slice(0, 20); // Limit for performance
-    }
-
-    // Use intelligent search only for longer terms and if we need more results
-    let intelligentResults = [];
-    if (trimmedTerm.length >= 4 && (exactMatches.length + partialMatches.length) < 15) {
-      intelligentResults = searchTools(allTools, trimmedTerm).filter(tool => 
-        !exactMatches.some(exact => exact.title === tool.title) &&
-        !partialMatches.some(partial => partial.title === tool.title)
-      ).slice(0, 10); // Limit for performance
-    }
-
-    // Simple sorting - exact matches first
-    const sortedExact = exactMatches.sort((a, b) => {
-      const aTitle = a.title.toLowerCase();
-      const bTitle = b.title.toLowerCase();
-      
-      if (aTitle === lowerTerm && bTitle !== lowerTerm) return -1;
-      if (bTitle === lowerTerm && aTitle !== lowerTerm) return 1;
-      if (aTitle.startsWith(lowerTerm) && !bTitle.startsWith(lowerTerm)) return -1;
-      if (bTitle.startsWith(lowerTerm) && !aTitle.startsWith(lowerTerm)) return 1;
-      
-      return aTitle.localeCompare(bTitle);
-    });
-
-    const finalResults = [...sortedExact, ...partialMatches, ...intelligentResults];
-    
-    // Add remaining tools for endless scroll
-    const remainingTools = allTools.filter(tool => 
-      !finalResults.some(result => result.title === tool.title)
-    );
-    
-    const endlessResults = [...finalResults, ...remainingTools];
-    
-    setSearchResults(endlessResults);
+    // Show quick results immediately
+    setSearchResults([...quickMatches, ...allTools.filter(tool => 
+      !quickMatches.some(quick => quick.title === tool.title)
+    )]);
     setDisplayedCount(30);
     setIsOpen(true);
   }, [debouncedSearchTerm]);
