@@ -21,7 +21,14 @@ const WelcomeVoiceSystem = () => {
       return;
     }
 
+    // Prevent multiple playbacks
+    if (hasPlayed) {
+      console.log('🔄 Voice sequence already played, skipping...');
+      return;
+    }
+
     console.log('🎵 Starting welcome voice sequence...');
+    setHasPlayed(true); // Mark as played immediately to prevent duplicates
     
     try {
       // Cancel any existing speech
@@ -100,6 +107,12 @@ const WelcomeVoiceSystem = () => {
   };
   
   const initializeVoices = () => {
+    // Prevent multiple initializations
+    if (hasPlayed) {
+      console.log('🔄 Voice system already initialized, skipping...');
+      return;
+    }
+
     const isMobile = isMobileDevice();
     
     if (isMobile) {
@@ -170,42 +183,43 @@ const WelcomeVoiceSystem = () => {
   };
 
   useEffect(() => {
-    // Always play the welcome on every page load
-    console.log('🔍 Voice system check: Playing welcome sequence');
+    // Only play once per page load
+    if (hasPlayed) {
+      console.log('🔄 Voice already played for this page load');
+      return;
+    }
+
+    console.log('🔍 Voice system check: Setting up welcome sequence');
     
     const isMobile = isMobileDevice();
-    const delay = isMobile ? 500 : 800; // Shorter delay for immediate effect
+    const delay = isMobile ? 500 : 800;
     
     const timer = setTimeout(() => {
-      console.log('🚀 Initializing welcome sequence');
+      console.log('🚀 Timer: Initializing welcome sequence');
       initializeVoices();
     }, delay);
     
     // Enhanced mobile support - immediate user interaction handling
     const handleUserInteraction = () => {
+      if (hasPlayed) return; // Prevent multiple triggers
+      
       console.log('👆 User interaction detected - triggering welcome immediately');
       clearTimeout(timer);
       
-      if (isMobile) {
-        // Mobile: Immediate initialization without delays
-        console.log('📱 Mobile: Starting immediate speech unlock...');
-        initializeVoices();
-      } else {
-        // Desktop: Can use normal initialization
-        initializeVoices();
-      }
+      initializeVoices();
       
+      // Remove listeners after first interaction
       document.removeEventListener('click', handleUserInteraction);
       document.removeEventListener('touchstart', handleUserInteraction);
       document.removeEventListener('touchend', handleUserInteraction);
       document.removeEventListener('keydown', handleUserInteraction);
     };
     
-    // More comprehensive event listening for all interactions
-    document.addEventListener('click', handleUserInteraction);
-    document.addEventListener('touchstart', handleUserInteraction, { passive: true });
-    document.addEventListener('touchend', handleUserInteraction, { passive: true });
-    document.addEventListener('keydown', handleUserInteraction);
+    // Add event listeners for user interaction
+    document.addEventListener('click', handleUserInteraction, { once: true });
+    document.addEventListener('touchstart', handleUserInteraction, { passive: true, once: true });
+    document.addEventListener('touchend', handleUserInteraction, { passive: true, once: true });
+    document.addEventListener('keydown', handleUserInteraction, { once: true });
     
     return () => {
       clearTimeout(timer);
@@ -214,7 +228,7 @@ const WelcomeVoiceSystem = () => {
       document.removeEventListener('touchend', handleUserInteraction);
       document.removeEventListener('keydown', handleUserInteraction);
     };
-  }, []); // Remove hasPlayed dependency to always run
+  }, [hasPlayed]); // Include hasPlayed to prevent multiple runs
 
   // This component renders nothing - it's just for voice functionality
   return null;
