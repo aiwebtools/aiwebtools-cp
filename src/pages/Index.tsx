@@ -64,16 +64,16 @@ const Index = () => {
             
             <div className="max-w-6xl mx-auto">
               <div className="relative w-full aspect-video">
-                <iframe
-                  ref={mainVideoRef}
-                  className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&loop=0"
-                  title="AI Web Tools Featured Video"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen; autoplay"
-                  allowFullScreen
-                  loading="eager"
-                ></iframe>
+        <iframe
+          ref={mainVideoRef}
+          className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
+          src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd720&loop=0"
+          title="AI Web Tools Featured Video"
+          frameBorder="0"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+          allowFullScreen
+          loading="lazy"
+        ></iframe>
               </div>
             </div>
           </div>

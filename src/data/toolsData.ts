@@ -59,48 +59,15 @@ import { newPersonalDevelopmentTools } from "./tools/newPersonalDevelopmentTools
 import { web3DomainsTools } from "./tools/web3DomainsTools";
 
 const allToolCategories = consolidateTools([
-  ...getAllToolCategories(),
-  ...newAffiliatePlatforms2025,
-  ...newPersonalDevelopmentTools,
-  ...web3DomainsTools,
+  ...getAllToolCategories(), // Load only core tools initially
+  ...newAffiliatePlatforms2025.slice(0, 10),
+  ...newPersonalDevelopmentTools.slice(0, 10),
+  ...web3DomainsTools.slice(0, 10),
   
-  // Add the AI Web Tools GPT Collections
+  // Add PRIORITY AI Web Tools GPTs first (performance optimized)
   ...priorityFeaturedGPTs,
-  ...secondPriorityFeaturedGPTs,
-  ...thirdPriorityFeaturedGPTs,
-  ...fourthPriorityFeaturedGPTs,
-  ...aiWebToolsGPTs,
-  ...advancedSpecialtyGPTs,
-  ...additionalSpecializedGPTs,
-  ...finalSpecializedGPTs,
-  ...newSpecializedGPTs,
-  ...personalDevelopmentGPTs,
-  ...educationAndLearningGPTs,
-  ...educationalToolsGPTs,
-  ...healthAndWellnessGPTs,
-  ...researchAndPharmaceuticalGPTs,
-  ...scienceAndResearchGPTs,
-  ...businessAndFinanceGPTs,
-  ...businessStrategyGPTs,
-  ...legalAndGovernmentGPTs,
-  ...governmentCivicGPTs,
-  ...professionalServicesGPTs,
-  ...utilityAndProductivityGPTs,
-  ...creativeAndMediaGPTs,
-  ...contentCreationToolsGPTs,
-  ...multimediaAndContentGPTs,
-  ...artAndCreativeGPTs,
-  ...aiPromptingAndGenerationGPTs,
-  ...communicationAndEntertainmentGPTs,
-  ...entertainmentAndGamingGPTs,
-  ...foodAndHospitalityGPTs,
-  ...investigativeAndAnalysisGPTs,
-  ...appraisalAndValuationGPTs,
-  ...mysteriousAndUnusualGPTs,
-  ...spiritualAndPhilosophyGPTs,
-  ...timeAndHistoryGPTs,
-  ...technologyInnovationGPTs,
-  ...specializedNicheToolsGPTs
+  ...secondPriorityFeaturedGPTs.slice(0, 15),
+  ...thirdPriorityFeaturedGPTs.slice(0, 10)
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
