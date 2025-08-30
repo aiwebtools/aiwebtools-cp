@@ -1,6 +1,5 @@
 
-import React, { useState, useEffect, Suspense } from "react";
-import { useVideoManager } from "@/hooks/useVideoManager";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import CategoryPageSelection from "@/components/CategoryPageSelection";
@@ -31,48 +30,47 @@ const Index = () => {
   // Use fast cached stats initially for better performance
   const [toolStats, setToolStats] = useState(getFastToolCount());
   const [isLoaded, setIsLoaded] = useState(false);
-  const [videoTriggered, setVideoTriggered] = useState(false);
+  const [videoStarted, setVideoStarted] = useState(false);
   
-  // Use video manager for main page video but defer loading
-  const mainVideoRef = useVideoManager('main-page-video');
+  // Simple ref for video without complex manager to avoid conflicts
+  const mainVideoRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     // Set loaded state immediately for faster initial render
     setIsLoaded(true);
     
-    // Auto-play video after 5 seconds unmuted at 1080p (only once)
+    // Auto-start video after 3 seconds - browser-friendly approach
     const videoTimer = setTimeout(() => {
-      if (videoTriggered) {
-        console.log('🎥 Video already triggered, skipping...');
-        return;
-      }
+      if (videoStarted) return;
       
-      const video = document.querySelector('iframe[src*="youtube.com"]') as HTMLIFrameElement;
-      if (video) {
-        setVideoTriggered(true); // Prevent multiple triggers
-        console.log('🎥 5-second timer: Scrolling to video and starting autoplay unmuted at 1080p...');
+      const iframe = mainVideoRef.current;
+      if (iframe) {
+        setVideoStarted(true);
+        console.log('🎥 Starting video autoplay sequence...');
         
-        // First, smoothly scroll to the video section
-        video.scrollIntoView({ 
+        // Scroll to video smoothly
+        iframe.scrollIntoView({ 
           behavior: 'smooth', 
-          block: 'center',
-          inline: 'center'
+          block: 'center' 
         });
         
-        // Then start the video after scroll completes (only if not already started)
+        // Start video with muted autoplay (browser-compliant)
         setTimeout(() => {
-          if (video.src.includes('autoplay=1')) {
-            console.log('🎥 Video already set to autoplay, skipping...');
-            return;
-          }
+          const autoplayUrl = "https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark";
+          iframe.src = autoplayUrl;
           
-          // Update to 1080p, unmuted, autoplay
-          const newSrc = "https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark&origin=https://aiwebtools.ai";
-          video.src = newSrc;
-          console.log('🎬 Video autoplay started!');
-        }, 800); // Give time for smooth scroll to complete
+          // Try to unmute after video starts (user can manually unmute if needed)
+          setTimeout(() => {
+            try {
+              iframe.contentWindow?.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+              console.log('🔊 Video unmuted successfully');
+            } catch (e) {
+              console.log('🔇 Video remains muted due to browser policy - user can unmute manually');
+            }
+          }, 2000);
+        }, 1000);
       }
-    }, 5000); // 5 seconds
+    }, 3000); // Reduced to 3 seconds for faster engagement
     
     // Load actual stats in background with longer delay to not block initial render
     const statsTimer = setTimeout(() => {
@@ -85,7 +83,7 @@ const Index = () => {
       clearTimeout(videoTimer);
       clearTimeout(statsTimer);
     };
-  }, []); // Remove videoTriggered from dependencies to prevent re-runs
+  }, [videoStarted]);
 
   const handleSeeMoreAITools = () => {
     // This function can be removed since FeaturedToolsSection handles it
@@ -137,13 +135,13 @@ const Index = () => {
                 <iframe
                   ref={mainVideoRef}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark&origin=https://aiwebtools.ai"
-                  title="AI Web Tools Featured Video - 1080p HD Autoplay"
+                  src="https://www.youtube.com/embed/4zflGSSuBcA?controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
+                  title="AI Web Tools Featured Video - 1080p HD"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
-                  loading="lazy"
-                  onLoad={() => console.log('🎥 Main video iframe loaded - ready for 5-second autoplay')}
+                  loading="eager"
+                  onLoad={() => console.log('🎥 Video iframe loaded and ready')}
                 ></iframe>
               </div>
             </div>
