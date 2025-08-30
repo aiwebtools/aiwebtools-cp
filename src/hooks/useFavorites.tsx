@@ -8,6 +8,7 @@ interface FavoritesContextType {
   isFavorite: (toolTitle: string) => boolean;
   toggleFavorite: (tool: Tool) => void;
   getFavoritesCount: () => number;
+  clearFavorites: () => void;
 }
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
@@ -66,6 +67,10 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
 
   const getFavoritesCount = () => favorites.length;
 
+  const clearFavorites = () => {
+    setFavorites([]);
+  };
+
   return (
     <FavoritesContext.Provider value={{
       favorites,
@@ -73,7 +78,8 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
       removeFavorite,
       isFavorite,
       toggleFavorite,
-      getFavoritesCount
+      getFavoritesCount,
+      clearFavorites
     }}>
       {children}
     </FavoritesContext.Provider>
