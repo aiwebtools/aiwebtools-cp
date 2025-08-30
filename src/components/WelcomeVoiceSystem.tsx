@@ -48,10 +48,10 @@ const WelcomeVoiceSystem = () => {
       );
       if (maleVoice) welcomeMsg.voice = maleVoice;
       
-      // Create second message: "YOU'VE GOT TOOLS" - slower, more relaxed and happy
+      // Create second message: "YOU'VE GOT TOOLS" - relaxed and happy pace
       const toolsMsg = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS");
-      toolsMsg.rate = isMobile ? 0.6 : 0.5; // Much slower for relaxed delivery
-      toolsMsg.pitch = isMobile ? 1.3 : 1.4; // Higher pitch for happier tone
+      toolsMsg.rate = isMobile ? 0.85 : 0.75; // Faster than previous but still relaxed
+      toolsMsg.pitch = isMobile ? 1.3 : 1.4; // Keep higher pitch for happier tone
       toolsMsg.volume = isMobile ? 0.9 : 1.0; // Slightly lower volume on mobile
       
       // Find British female voice for tools message (AOL-style)
@@ -77,7 +77,7 @@ const WelcomeVoiceSystem = () => {
         console.log('✅ Welcome message complete, playing tools message...');
         setTimeout(() => {
           speechSynthesis.speak(toolsMsg);
-        }, isMobile ? 800 : 1000); // Slightly longer pause for more relaxed delivery
+        }, isMobile ? 600 : 700); // Quicker transition
       };
       
       toolsMsg.onstart = () => console.log('📬 Playing: "YOU\'VE GOT TOOLS"');
