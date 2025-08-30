@@ -1,38 +1,50 @@
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useVideoManager } from "@/hooks/useVideoManager";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import CategoryPageSelection from "@/components/CategoryPageSelection";
 import SpecialServices from "@/components/SpecialServices";
 import Footer from "@/components/Footer";
-import InteractiveMatrixBackground from "@/components/InteractiveMatrixBackground";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
 import ConsentPopup from "@/components/ConsentPopup";
-import LazyFeaturedTools from "@/components/LazyFeaturedTools";
-import LazySearchPortal from "@/components/LazySearchPortal";
 import { Button } from "@/components/ui/button";
 import { getFastToolCount, updateCachedStats } from "@/utils/fastToolCounter";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import BookPromotionCard from "@/components/BookPromotionCard";
 
+// Lazy load heavy components for better performance
+const LazyFeaturedTools = React.lazy(() => import("@/components/LazyFeaturedTools"));
+const LazySearchPortal = React.lazy(() => import("@/components/LazySearchPortal"));
+const InteractiveMatrixBackground = React.lazy(() => import("@/components/InteractiveMatrixBackground"));
+const AnimatedBackground = React.lazy(() => import("@/components/AnimatedBackground"));
+
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center min-h-[200px]">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-400"></div>
+  </div>
+);
+
 const Index = () => {
   // Use fast cached stats initially for better performance
   const [toolStats, setToolStats] = useState(getFastToolCount());
+  const [isLoaded, setIsLoaded] = useState(false);
   
-  // Use video manager for main page video
+  // Use video manager for main page video but defer loading
   const mainVideoRef = useVideoManager('main-page-video');
 
   useEffect(() => {
+    // Set loaded state immediately for faster initial render
+    setIsLoaded(true);
+    
     // Load actual stats in background after page renders
     const timer = setTimeout(() => {
       const stats = getCurrentToolCount();
       setToolStats(stats);
       updateCachedStats(stats);
-    }, 2000); // Delay to let page render first
+    }, 3000); // Increased delay to let page render completely first
 
     return () => clearTimeout(timer);
   }, []);
@@ -41,13 +53,28 @@ const Index = () => {
     // This function can be removed since FeaturedToolsSection handles it
   };
 
+  // Early return with loading state if not ready
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-cyan-400 mx-auto mb-4"></div>
+          <p className="text-cyan-400 text-lg">Loading AI Web Tools...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
       <ImprovedSEOHead pageType="homepage" />
       <GoogleRankingBooster pageType="homepage" />
       
-      <InteractiveMatrixBackground />
-      <AnimatedBackground />
+      {/* Lazy load background effects */}
+      <Suspense fallback={null}>
+        <InteractiveMatrixBackground />
+        <AnimatedBackground />
+      </Suspense>
       
       {/* Fixed Header - outside of relative container */}
       <Header />
@@ -58,7 +85,7 @@ const Index = () => {
           <CategoryPageSelection />
         </div>
         
-        {/* Featured Video Section - Lazy loaded */}
+        {/* Featured Video Section - Lazy loaded and deferred */}
         <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
@@ -72,13 +99,13 @@ const Index = () => {
                 <iframe
                   ref={mainVideoRef}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark&origin=https://aiwebtools.ai"
-                  title="AI Web Tools Featured Video - 1080p HD Mobile Optimized"
+                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd720&quality=hd720&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark&origin=https://aiwebtools.ai"
+                  title="AI Web Tools Featured Video - Mobile Optimized"
                   frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
-                  loading="eager"
-                  onLoad={() => console.log('🎥 Main video loaded successfully - 1080p HD Mobile Ready')}
+                  loading="lazy"
+                  onLoad={() => console.log('🎥 Main video loaded successfully')}
                 ></iframe>
               </div>
             </div>
@@ -86,7 +113,9 @@ const Index = () => {
         </section>
 
         {/* Featured Tools Section - Lazy loaded for better performance */}
-        <LazyFeaturedTools onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
+        <Suspense fallback={<LoadingSpinner />}>
+          <LazyFeaturedTools onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
+        </Suspense>
         
         <BookPromotionCard />
         <SpecialServices />
@@ -104,7 +133,9 @@ const Index = () => {
             </div>
             
             {/* Search Portal Component - Lazy loaded */}
-            <LazySearchPortal />
+            <Suspense fallback={<LoadingSpinner />}>
+              <LazySearchPortal />
+            </Suspense>
           </div>
         </section>
         
