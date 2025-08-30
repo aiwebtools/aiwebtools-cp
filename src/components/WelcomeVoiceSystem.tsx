@@ -89,22 +89,9 @@ const WelcomeVoiceSystem = () => {
       
       toolsMsg.onstart = () => console.log('📬 Playing: "YOU\'VE GOT TOOLS"');
       toolsMsg.onend = () => {
-        console.log('🎉 Welcome sequence complete! Starting video autoplay...');
-        
-        // Trigger video autoplay after voice completes
-        setTimeout(() => {
-          const video = document.querySelector('iframe[src*="youtube.com"]') as HTMLIFrameElement;
-          if (video) {
-            // Update the src to enable autoplay and unmuted
-            const currentSrc = video.src;
-            const newSrc = currentSrc
-              .replace('autoplay=0', 'autoplay=1')
-              .replace('mute=1', 'mute=0');
-            
-            console.log('🎥 Triggering video autoplay unmuted...');
-            video.src = newSrc;
-          }
-        }, 500); // Small delay to ensure smooth transition
+        console.log('🎉 Welcome sequence complete!');
+        // Remove the video trigger from voice system to prevent conflicts
+        // Video will be handled by the 5-second timer in Index component
       };
       
       // Error handling

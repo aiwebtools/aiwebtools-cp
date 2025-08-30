@@ -31,6 +31,7 @@ const Index = () => {
   // Use fast cached stats initially for better performance
   const [toolStats, setToolStats] = useState(getFastToolCount());
   const [isLoaded, setIsLoaded] = useState(false);
+  const [videoTriggered, setVideoTriggered] = useState(false);
   
   // Use video manager for main page video but defer loading
   const mainVideoRef = useVideoManager('main-page-video');
@@ -39,10 +40,16 @@ const Index = () => {
     // Set loaded state immediately for faster initial render
     setIsLoaded(true);
     
-    // Auto-play video after 5 seconds unmuted at 1080p
+    // Auto-play video after 5 seconds unmuted at 1080p (only once)
     const videoTimer = setTimeout(() => {
+      if (videoTriggered) {
+        console.log('🎥 Video already triggered, skipping...');
+        return;
+      }
+      
       const video = document.querySelector('iframe[src*="youtube.com"]') as HTMLIFrameElement;
       if (video) {
+        setVideoTriggered(true); // Prevent multiple triggers
         console.log('🎥 5-second timer: Scrolling to video and starting autoplay unmuted at 1080p...');
         
         // First, smoothly scroll to the video section
@@ -52,8 +59,13 @@ const Index = () => {
           inline: 'center'
         });
         
-        // Then start the video after scroll completes
+        // Then start the video after scroll completes (only if not already started)
         setTimeout(() => {
+          if (video.src.includes('autoplay=1')) {
+            console.log('🎥 Video already set to autoplay, skipping...');
+            return;
+          }
+          
           // Update to 1080p, unmuted, autoplay
           const newSrc = "https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark&origin=https://aiwebtools.ai";
           video.src = newSrc;
@@ -62,30 +74,30 @@ const Index = () => {
       }
     }, 5000); // 5 seconds
     
-    // Load actual stats in background after page renders
+    // Load actual stats in background with longer delay to not block initial render
     const statsTimer = setTimeout(() => {
       const stats = getCurrentToolCount();
       setToolStats(stats);
       updateCachedStats(stats);
-    }, 3000); // Increased delay to let page render completely first
+    }, 8000); // Much longer delay to prioritize page load speed
 
     return () => {
       clearTimeout(videoTimer);
       clearTimeout(statsTimer);
     };
-  }, []);
+  }, []); // Remove videoTriggered from dependencies to prevent re-runs
 
   const handleSeeMoreAITools = () => {
     // This function can be removed since FeaturedToolsSection handles it
   };
 
-  // Early return with loading state if not ready
+  // Early return with minimal loading state if not ready
   if (!isLoaded) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-cyan-400 mx-auto mb-4"></div>
-          <p className="text-cyan-400 text-lg">Loading AI Web Tools...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-400 mx-auto mb-3"></div>
+          <p className="text-cyan-400 text-sm">Loading...</p>
         </div>
       </div>
     );
