@@ -1,5 +1,5 @@
 import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,45 +20,41 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
 import Logo from "./Logo";
+import { useDebounce } from "@/hooks/useDebounce";
 
 const MobileMenu = () => {
   const navigate = useNavigate();
   const { getFavoritesCount } = useFavorites();
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [displayedCount, setDisplayedCount] = useState(50);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [displayedCount, setDisplayedCount] = useState(20);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  // Debug logging
-  console.log('MobileMenu render - isMenuOpen:', isMenuOpen);
-
-  const handleMenuToggle = (open: boolean) => {
-    console.log('MobileMenu toggle called:', open);
-    setIsMenuOpen(open);
-  };
   const [isWeb3Open, setIsWeb3Open] = useState(false);
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const searchRef = useRef(null);
+  
+  // Debounce search term for better performance
+  const debouncedSearchTerm = useDebounce(searchTerm, 150);
+
+  const handleMenuToggle = useCallback((open: boolean) => {
+    setIsMenuOpen(open);
+    if (!open) {
+      setSearchTerm("");
+      setDisplayedCount(20);
+    }
+  }, []);
+
+  // Memoized search results for better performance
+  const searchResults = useMemo(() => {
+    if (!debouncedSearchTerm.trim()) return [];
+    return searchTools(allTools, debouncedSearchTerm);
+  }, [debouncedSearchTerm]);
+
+  const isSearchOpen = searchResults.length > 0 && debouncedSearchTerm.trim().length > 0;
 
   useEffect(() => {
-    // Get accurate tool count
     const stats = getCurrentToolCount();
     setToolStats(stats);
   }, []);
-
-  useEffect(() => {
-    if (searchTerm.trim()) {
-      const results = searchTools(allTools, searchTerm); // Get ALL results
-      setSearchResults(results);
-      setDisplayedCount(50); // Reset display count
-      setIsSearchOpen(true);
-    } else {
-      setSearchResults([]);
-      setIsSearchOpen(false);
-      setDisplayedCount(50);
-    }
-  }, [searchTerm]);
 
   const handleExternalLink = (url: string, e: React.MouseEvent) => {
     e.preventDefault();
@@ -68,42 +64,33 @@ const MobileMenu = () => {
     setIsMenuOpen(false);
   };
 
-  const handleBrowseAITools = () => {
-    // Navigate to ALL AI TOOLS main category page
+  const handleBrowseAITools = useCallback(() => {
     navigate('/main-category/ALL%20AI%20TOOLS');
-    setIsMenuOpen(false);
-  };
+    handleMenuToggle(false);
+  }, [navigate, handleMenuToggle]);
 
-  const handleToolClick = (toolIndex: number) => {
-    setSearchTerm("");
-    setIsSearchOpen(false);
-    setIsMenuOpen(false);
+  const handleToolClick = useCallback((toolIndex: number) => {
     navigate(`/tool/${toolIndex}`);
-  };
+    handleMenuToggle(false);
+  }, [navigate, handleMenuToggle]);
 
-  const handleDirectAccess = (tool: any, e: React.MouseEvent) => {
+  const handleDirectAccess = useCallback((tool: any, e: React.MouseEvent) => {
     if (tool.directUrl) {
       e.preventDefault();
       e.stopPropagation();
-      console.log('🌀 Direct access clicked in mobile menu for:', tool.title);
       createTimePortalEffect(tool.directUrl);
-      setSearchTerm("");
-      setIsSearchOpen(false);
-      setIsMenuOpen(false);
+      handleMenuToggle(false);
     }
-  };
+  }, [handleMenuToggle]);
 
-  const clearSearch = () => {
+  const clearSearch = useCallback(() => {
     setSearchTerm("");
-    setIsSearchOpen(false);
-    setDisplayedCount(30);
-  };
+    setDisplayedCount(20);
+  }, []);
 
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-    setSearchTerm("");
-    setIsSearchOpen(false);
-  };
+  const closeMenu = useCallback(() => {
+    handleMenuToggle(false);
+  }, [handleMenuToggle]);
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
@@ -162,72 +149,71 @@ const MobileMenu = () => {
               <Menu className="w-5 h-5" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-[95vw] max-w-[380px] bg-black shadow-xl border border-cyan-500/30 backdrop-blur-md max-h-[85vh] overflow-y-auto mx-2 z-[110]">
-            <div className="p-3">
-              {/* Header with Logo and Close Button */}
-              <div className="text-center mb-4 border-b border-cyan-500/30 pb-4 relative">
-                {/* Close Button - Top Right */}
+          <DropdownMenuContent className="w-[92vw] max-w-[350px] bg-black shadow-xl border border-cyan-500/30 backdrop-blur-md max-h-[70vh] overflow-y-auto mx-2 z-[110]">
+            <div className="p-2">
+              {/* Header with Close Button */}
+              <div className="text-center mb-3 border-b border-cyan-500/30 pb-3 relative">
+                {/* Close Button - Top Right - Make it larger and easier to tap */}
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={closeMenu}
-                  className="absolute top-0 right-0 h-8 w-8 p-0 text-gray-400 hover:text-white hover:bg-red-500/20 border border-red-500/30 rounded-full transition-all duration-200"
+                  className="absolute -top-1 -right-1 h-10 w-10 p-0 text-gray-400 hover:text-white hover:bg-red-500/30 border border-red-500/50 rounded-full transition-all duration-200 touch-target"
                   aria-label="Close menu"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="w-5 h-5" />
                 </Button>
                 
-                <div className="flex justify-center mb-2">
-                  <Logo />
+                <div className="text-sm font-bold text-cyan-400 mb-1">
+                  AI TOOLS STUDIO
                 </div>
-                <p className="text-xs text-cyan-200">Navigate our platform</p>
+                <p className="text-xs text-cyan-200/70">Quick Navigation</p>
               </div>
 
-              {/* Search Bar */}
-              <div ref={searchRef} className="relative mb-4">
+              {/* Optimized Search Bar */}
+              <div ref={searchRef} className="relative mb-3">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                   <Input
                     type="text"
-                    placeholder={`Search ${toolStats.marketing} AI tools...`}
+                    placeholder={`Quick search ${toolStats.marketing} tools...`}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 pr-10 bg-gray-900/50 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-cyan-500 text-sm"
+                    className="pl-10 pr-10 bg-gray-900/70 border-gray-600 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-cyan-400 text-sm h-10"
                   />
                   {searchTerm && (
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={clearSearch}
-                      className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-gray-400 hover:text-white"
+                      className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 text-gray-400 hover:text-white touch-target"
                     >
-                      <X className="w-3 h-3" />
+                      <X className="w-4 h-4" />
                     </Button>
                   )}
                 </div>
 
                 {/* Search Results */}
-                {isSearchOpen && searchResults.length > 0 && (
-                  <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-cyan-500/30 shadow-2xl z-50 max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" onScroll={handleScroll}>
-                    <CardContent className="p-2">
-                      <div className="text-xs text-cyan-400 px-3 py-2 border-b border-gray-700 sticky top-0 bg-gray-900/95">
-                        {searchResults.length} Results - Showing {displayedCount}
-                        {displayedCount < searchResults.length && " - Scroll for more"}
+                {isSearchOpen && (
+                  <Card className="absolute top-full left-0 right-0 mt-1 bg-gray-900 border border-cyan-500/40 shadow-2xl z-50 max-h-[40vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" onScroll={handleScroll}>
+                    <CardContent className="p-1">
+                      <div className="text-xs text-cyan-400 px-2 py-1 border-b border-gray-700 sticky top-0 bg-gray-900">
+                        {searchResults.length} results {displayedCount < searchResults.length && `(${displayedCount} shown)`}
                       </div>
-                      {displayedResults.map((tool, index) => {
+                      {searchResults.slice(0, displayedCount).map((tool, index) => {
                         const toolIndex = allTools.findIndex(t => t.title === tool.title);
                         return (
                           <Tooltip key={`mobile-search-${tool.title}-${index}`} delayDuration={300}>
                             <TooltipTrigger asChild>
                               <div 
-                                className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-800/50 cursor-pointer group transition-all duration-200"
+                                className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-800/60 cursor-pointer group transition-colors duration-150 touch-target"
                                 onClick={() => handleToolClick(toolIndex)}
                               >
-                                <div className={`w-6 h-6 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-xs flex-shrink-0`}>
+                                <div className={`w-5 h-5 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-xs flex-shrink-0`}>
                                   {tool.emoji}
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                  <h3 className="font-medium text-white text-xs leading-tight mb-1 group-hover:text-cyan-400 transition-colors">
+                                  <h3 className="font-medium text-white text-xs leading-tight mb-0.5 group-hover:text-cyan-400 transition-colors truncate">
                                     {tool.title}
                                   </h3>
                                   {tool.category && (
@@ -239,7 +225,7 @@ const MobileMenu = () => {
                                   <Button 
                                     size="sm"
                                     variant="outline"
-                                    className="border-green-500/50 bg-green-500/10 text-green-300 hover:bg-green-500/20 text-xs px-1 py-0 h-auto flex-shrink-0"
+                                    className="border-green-500/50 bg-green-500/10 text-green-300 hover:bg-green-500/20 text-xs px-1 py-0 h-6 flex-shrink-0"
                                     onClick={(e) => handleDirectAccess(tool, e)}
                                   >
                                     🚀
@@ -249,15 +235,15 @@ const MobileMenu = () => {
                             </TooltipTrigger>
                             <TooltipContent 
                               side="right" 
-                              className="max-w-sm p-3 bg-gray-800 text-white border-gray-600 shadow-xl z-[60]"
+                              className="max-w-xs p-2 bg-gray-800 text-white border-gray-600 shadow-xl z-[70]"
                               sideOffset={10}
                             >
-                              <div className="space-y-2">
+                              <div className="space-y-1">
                                 <div className="flex items-center space-x-2">
                                   <span className="text-sm">{tool.emoji}</span>
-                                  <span className="font-semibold text-cyan-400 text-sm">{tool.title}</span>
+                                  <span className="font-semibold text-cyan-400 text-xs">{tool.title}</span>
                                 </div>
-                                <p className="text-xs text-gray-300 leading-relaxed">
+                                <p className="text-xs text-gray-300 leading-relaxed line-clamp-3">
                                   {tool.description}
                                 </p>
                               </div>
@@ -266,9 +252,8 @@ const MobileMenu = () => {
                         );
                       })}
                       {displayedCount < searchResults.length && (
-                        <div className="text-center py-3 text-gray-400 text-xs">
-                          <div className="animate-pulse">Loading more...</div>
-                          <div className="mt-1">{searchResults.length - displayedCount} more tools available</div>
+                        <div className="text-center py-2 text-gray-400 text-xs">
+                          <div className="animate-pulse">Scroll for more...</div>
                         </div>
                       )}
                     </CardContent>
