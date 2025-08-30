@@ -25,30 +25,27 @@ const Logo = () => {
   };
 
   return (
-    <div className="flex items-center space-x-4 flex-shrink-0">
-      <div className="text-center">
-        <div className="text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent glow-text-effect animate-pulse">
+    <div className="flex items-center space-x-2 flex-shrink-0">
+      <div className="text-left">
+        <div className="text-sm md:text-base font-bold bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent glow-text-effect">
           AiTools.Studio
         </div>
-        <div className="text-xs md:text-sm text-gray-400">
+        <div className="text-xs text-gray-400 leading-tight -mt-0.5">
           presented by{" "}
           <button 
             onClick={(e) => handleExternalLink("https://www.aiwebtools.ai", e)}
-            className="text-cyan-400 hover:text-cyan-300 transition-colors underline"
+            className="text-cyan-400 hover:text-cyan-300 transition-colors"
           >
             Aiwebtools.ai
           </button>
         </div>
-        <div className="text-xs text-gray-500">
-          An AI tools company
-        </div>
       </div>
       <button
         onClick={scrollToHome}
-        className="p-2 rounded-full bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-400 hover:to-cyan-500 transition-all duration-300 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 glow-effect"
+        className="p-1.5 rounded-full bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-400 hover:to-cyan-500 transition-all duration-300 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 glow-effect"
         title="Go to Home"
       >
-        <Home className="w-5 h-5 text-white" />
+        <Home className="w-4 h-4 text-white" />
       </button>
     </div>
   );

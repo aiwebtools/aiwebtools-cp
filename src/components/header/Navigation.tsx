@@ -33,28 +33,21 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="hidden lg:flex items-center space-x-6 min-w-0">
-      <button 
-        onClick={scrollToHome}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
-      >
-        Home
-      </button>
-      
+    <nav className="hidden lg:flex items-center space-x-3 min-w-0">
       <button 
         onClick={handleBrowseAITools}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer px-2 py-1 rounded text-sm"
       >
-        🎯 Browse AI Tools
+        🎯 Browse Tools
       </button>
 
       <Popover>
         <PopoverTrigger asChild>
           <button 
-            className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center space-x-1"
+            className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center space-x-1 px-2 py-1 rounded text-sm"
           >
             <Globe className="w-4 h-4" />
-            <span>Register WEB3 Domains</span>
+            <span className="hidden xl:inline">Domains</span>
           </button>
         </PopoverTrigger>
         <PopoverContent className="w-96 max-h-[80vh] overflow-y-auto bg-black/95 border border-cyan-500/30 backdrop-blur-md z-[70]" align="end" side="bottom" collisionPadding={16}>
@@ -65,67 +58,6 @@ const Navigation = () => {
             </p>
           </div>
           <Accordion type="multiple" className="space-y-2">
-            {/* Financial & Cash Transfer Domains */}
-            <AccordionItem value="financial" className="border border-white/10 rounded-lg">
-              <AccordionTrigger className="text-sm px-3 hover:no-underline">
-                💰 Financial & Cash Transfer
-              </AccordionTrigger>
-              <AccordionContent className="px-3">
-                <div className="flex flex-col space-y-2">
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/transfermoney", e)}
-                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
-                  >
-                    <div className="flex items-center">
-                      <span className="relative z-10 text-lg mr-3">💸</span>
-                      <span className="relative z-10 font-medium tracking-wide">.transfermoney</span>
-                    </div>
-                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/transfercoin", e)}
-                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
-                  >
-                    <div className="flex items-center">
-                      <span className="relative z-10 text-lg mr-3">🪙</span>
-                      <span className="relative z-10 font-medium tracking-wide">.transfercoin</span>
-                    </div>
-                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/cointransfer", e)}
-                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
-                  >
-                    <div className="flex items-center">
-                      <span className="relative z-10 text-lg mr-3">💰</span>
-                      <span className="relative z-10 font-medium tracking-wide">.cointransfer</span>
-                    </div>
-                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/transfercash", e)}
-                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
-                  >
-                    <div className="flex items-center">
-                      <span className="relative z-10 text-lg mr-3">💵</span>
-                      <span className="relative z-10 font-medium tracking-wide">.transfercash</span>
-                    </div>
-                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/cashtransfer", e)}
-                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
-                  >
-                    <div className="flex items-center">
-                      <span className="relative z-10 text-lg mr-3">💴</span>
-                      <span className="relative z-10 font-medium tracking-wide">.cashtransfer</span>
-                    </div>
-                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
-                  </button>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-
             {/* AI & Technology Domains */}
             <AccordionItem value="ai" className="border border-white/10 rounded-lg">
               <AccordionTrigger className="text-sm px-3 hover:no-underline">
@@ -153,125 +85,16 @@ const Navigation = () => {
                     </div>
                     <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
                   </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/aimainframe?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
-                  >
-                    <div className="flex items-center">
-                      <span className="relative z-10 text-lg mr-3">🗄️</span>
-                      <span className="relative z-10 font-medium tracking-wide">.aimainframe</span>
-                    </div>
-                    <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/aitoolscompany?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
-                  >
-                    <div className="flex items-center">
-                      <span className="relative z-10 text-lg mr-3">🏢</span>
-                      <span className="relative z-10 font-medium tracking-wide">.aitoolscompany</span>
-                    </div>
-                    <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
-                  </button>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* Robotics Domains */}
-            <AccordionItem value="robotics" className="border border-white/10 rounded-lg">
-              <AccordionTrigger className="text-sm px-3 hover:no-underline">
-                🤖 Robotics & Automation
-              </AccordionTrigger>
-              <AccordionContent className="px-3">
-                <div className="flex flex-col space-y-2">
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/robotsales?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
-                  >
-                    <div className="flex items-center">
-                      <span className="relative z-10 text-lg mr-3">🦾</span>
-                      <span className="relative z-10 font-medium tracking-wide">.robotsales</span>
-                    </div>
-                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/robotshop?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
-                  >
-                    <div className="flex items-center">
-                      <span className="relative z-10 text-lg mr-3">🛍️</span>
-                      <span className="relative z-10 font-medium tracking-wide">.robotshop</span>
-                    </div>
-                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/robotstore?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
-                  >
-                    <div className="flex items-center">
-                      <span className="relative z-10 text-lg mr-3">🛒</span>
-                      <span className="relative z-10 font-medium tracking-wide">.robotstore</span>
-                    </div>
-                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
-                  </button>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-
-            {/* Global & World Domains */}
-            <AccordionItem value="global" className="border border-white/10 rounded-lg">
-              <AccordionTrigger className="text-sm px-3 hover:no-underline">
-                🌍 Global & World
-              </AccordionTrigger>
-              <AccordionContent className="px-3">
-                <div className="flex flex-col space-y-2">
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/worldpeace?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
-                  >
-                    <div className="flex items-center">
-                      <span className="relative z-10 text-lg mr-3">🕊️</span>
-                      <span className="relative z-10 font-medium tracking-wide">.worldpeace</span>
-                    </div>
-                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/worldtrade?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
-                  >
-                    <div className="flex items-center">
-                      <span className="relative z-10 text-lg mr-3">🌐</span>
-                      <span className="relative z-10 font-medium tracking-wide">.worldtrade</span>
-                    </div>
-                    <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
-                  </button>
-                  <button
-                    onClick={(e) => handleExternalLink("https://freename.io/discover/worldtrader?ref=olive-ears-obey", e)}
-                    className="group relative w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors hover-scale"
-                  >
-                    <div className="flex items-center">
-                      <span className="relative z-10 text-lg mr-3">💹</span>
-                      <span className="relative z-10 font-medium tracking-wide">.worldtrader</span>
-                    </div>
-                    <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
-                  </button>
                 </div>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
         </PopoverContent>
       </Popover>
-
-      <button 
-        onClick={(e) => handleExternalLink("https://www.aitools.company", e)}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
-      >
-        ABOUT AI WEB TOOLS LLC
-      </button>
       
       <button 
         onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer inline-flex items-center"
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer inline-flex items-center px-2 py-1 rounded text-sm"
         aria-label="AI Web Tools Linktree"
         title="Linktree"
       >
@@ -279,37 +102,11 @@ const Navigation = () => {
       </button>
       
       <button 
-        onClick={(e) => handleExternalLink('https://www.tiktok.com/@aiwebtools', e)}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer inline-flex items-center"
-        aria-label="TikTok"
-        title="TikTok"
-      >
-        <Clapperboard className="w-4 h-4" />
-      </button>
-      
-      <div className="flex items-center space-x-2 text-cyan-100 whitespace-nowrap">
-        <Phone className="w-4 h-4" />
-        <a 
-          href="tel:+14758008096" 
-          className="hover:text-cyan-400 transition-colors cursor-pointer"
-        >
-          475-800-8096
-        </a>
-      </div>
-
-      <button 
         onClick={() => navigate('/favorites')}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center gap-2"
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center gap-1 px-2 py-1 rounded text-sm"
       >
         <Heart className="h-4 w-4 fill-current text-red-500" />
-        Favorites ({getFavoritesCount()})
-      </button>
-
-      <button 
-        onClick={() => navigate('/our-story')}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
-      >
-        📖 Our Story
+        <span className="hidden xl:inline">({getFavoritesCount()})</span>
       </button>
     </nav>
   );
