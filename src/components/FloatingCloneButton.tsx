@@ -27,7 +27,7 @@ const FloatingCloneButton = () => {
 
   return (
     <div
-      className={`fixed left-2 sm:left-4 top-1/2 -translate-y-1/2 z-40 transition-all duration-300 ${
+      className={`fixed left-4 top-20 z-40 transition-all duration-300 ${
         isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'
       }`}
     >
@@ -41,7 +41,7 @@ const FloatingCloneButton = () => {
           console.log('🌀 Clone Website Button clicked - triggering time warp');
           createTimePortalEffect('https://cloneaiwebtools.lovable.app/?via=aiwebtools', 'Clone AI Web Tools');
         }}
-        className="group bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 hover:from-purple-500 hover:via-blue-500 hover:to-cyan-400 text-white px-2 sm:px-3 py-2 rounded-r-lg shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-medium relative overflow-hidden min-w-0"
+        className="group bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 hover:from-purple-500 hover:via-blue-500 hover:to-cyan-400 text-white w-12 h-12 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center relative overflow-hidden"
         style={{ 
           boxShadow: '0 8px 32px rgba(139, 92, 246, 0.3), 0 4px 16px rgba(59, 130, 246, 0.2)',
           backdropFilter: 'blur(8px)',
@@ -49,18 +49,15 @@ const FloatingCloneButton = () => {
         title="Clone This AI Tools Website"
       >
         {/* Animated background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-blue-600/20 to-cyan-500/20 animate-pulse" />
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-blue-600/20 to-cyan-500/20 animate-pulse rounded-full" />
         
         {/* Content */}
-        <div className="relative flex items-center gap-1 sm:gap-2 min-w-0">
-          <Copy className="w-3 h-3 sm:w-4 sm:h-4 group-hover:animate-bounce flex-shrink-0" />
-          <span className="hidden md:inline whitespace-nowrap">CLONE THIS SITE-FREE</span>
-          <span className="md:hidden text-xs font-bold whitespace-nowrap">CLONE</span>
-          <Code className="w-3 h-3 sm:w-4 sm:h-4 group-hover:animate-pulse hidden md:inline flex-shrink-0" />
+        <div className="relative flex items-center justify-center">
+          <Copy className="w-5 h-5 group-hover:animate-bounce" />
         </div>
         
         {/* Shine effect on hover */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-700 rounded-full" />
       </a>
     </div>
   );
