@@ -85,10 +85,45 @@
   }
 }
 
-/* Ensure animations are performant */
-.cyber-glow,
-.glow-effect,
-.interactive-button {
-  will-change: text-shadow, box-shadow, transform;
-  backface-visibility: hidden;
+/* Mobile-specific optimizations for neon effects */
+@media (max-width: 768px) {
+  /* Reduce neon effects on mobile for better performance */
+  .cyber-glow {
+    text-shadow: 
+      0 0 3px rgba(6, 182, 212, 0.6),
+      0 0 6px rgba(6, 182, 212, 0.4);
+    animation: none; /* Disable animation on mobile */
+  }
+
+  .glow-effect {
+    box-shadow: 0 0 8px rgba(6, 182, 212, 0.2);
+    animation: none; /* Disable animation on mobile */
+  }
+
+  /* Simplified interactive effects for mobile */
+  .interactive-button::before {
+    display: none; /* Disable sweep effect on mobile */
+  }
+
+  .interactive-button:hover {
+    transform: none; /* Disable hover transform on mobile */
+  }
+
+  /* Ensure touch-friendly sizes */
+  .mobile-touch-target {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 12px;
+    touch-action: manipulation;
+  }
+}
+
+/* Reduce motion for better mobile performance */
+@media (prefers-reduced-motion: reduce) {
+  .cyber-glow,
+  .glow-effect,
+  .interactive-button {
+    animation: none !important;
+    transition: none !important;
+  }
 }

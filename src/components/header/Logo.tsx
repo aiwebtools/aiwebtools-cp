@@ -51,7 +51,7 @@ const Logo = () => {
       </div>
       <button
         onClick={scrollToHome}
-        className="p-3 rounded-xl bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-500 hover:to-cyan-600 transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/60 hover:scale-110 flex-shrink-0 interactive-button glow-effect relative z-10"
+        className="p-3 rounded-xl bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-500 hover:to-cyan-600 transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/60 hover:scale-110 flex-shrink-0 interactive-button glow-effect relative z-10 mobile-touch-target"
         title="Go to Home"
       >
         <Home className="w-5 h-5 text-white drop-shadow-lg" />
