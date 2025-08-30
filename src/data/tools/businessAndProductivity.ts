@@ -156,7 +156,7 @@ export const businessAndProductivity: Tool[] = [
     description: "AI voice generator for professional voiceovers.",
     emoji: "🏢",
     color: "from-green-500 to-yellow-500",
-    directUrl: "https://murf.ai/?via=aiwebtools",
+    directUrl: "https://get.murf.ai/1uvb0e8dznua",
     tags: ["voice generator", "voiceovers", "productivity", "ai"],
     category: "Business & Productivity",
     rating: 4.1,

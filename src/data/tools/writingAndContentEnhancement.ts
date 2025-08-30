@@ -128,7 +128,7 @@ export const writingAndContentEnhancement: Tool[] = [
     description: "AI voice generator that creates realistic voiceovers for videos, presentations, and more, enhancing your content with professional audio.",
     emoji: "🎤",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://murf.ai/?via=aiwebtools",
+    directUrl: "https://get.murf.ai/1uvb0e8dznua",
     tags: ["voice generator", "voiceovers", "audio enhancement", "AI voice", "professional audio"],
     category: "Writing & Content Enhancement",
     rating: 4.7,

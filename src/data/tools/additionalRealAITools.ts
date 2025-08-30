@@ -161,7 +161,7 @@ export const additionalRealAITools: Tool[] = [
     description: "AI voice generation and cloning platform for creating realistic speech in multiple languages.",
     emoji: "🗣️",
     color: "from-orange-500 to-red-600",
-    directUrl: "https://elevenlabs.io/?via=aiwebtools",
+    directUrl: "https://try.elevenlabs.io/aiwebtools",
     tags: ["voice generation", "text-to-speech", "voice cloning", "audio", "AI voices"],
     category: "Audio & Voice",
     rating: 4.7,

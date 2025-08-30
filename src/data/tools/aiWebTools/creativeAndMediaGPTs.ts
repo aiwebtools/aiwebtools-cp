@@ -246,7 +246,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     description: "AI voice generation and cloning platform that creates realistic human-like speech from text. ElevenLabs offers advanced voice synthesis technology for podcasts, audiobooks, dubbing, and content creation with natural-sounding AI voices.",
     emoji: "🎤",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://elevenlabs.io",
+    directUrl: "https://try.elevenlabs.io/aiwebtools",
     tags: ["voice generation", "ai voice", "speech synthesis", "voice cloning", "audio content", "text to speech"],
     category: "Creative & Media",
     rating: 4.7,

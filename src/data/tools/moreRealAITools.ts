@@ -141,7 +141,7 @@ export const moreRealAITools: Tool[] = [
     description: "AI voice generator with realistic voices for voiceovers, podcasts, and presentations.",
     emoji: "🎤",
     color: "from-blue-500 to-purple-600",
-    directUrl: "https://murf.ai/?via=aiwebtools",
+    directUrl: "https://get.murf.ai/1uvb0e8dznua",
     tags: ["voice generation", "text-to-speech", "voiceovers", "podcasts", "AI voices"],
     category: "Audio & Voice",
     rating: 4.6,

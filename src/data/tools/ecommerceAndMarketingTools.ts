@@ -644,7 +644,7 @@ export const ecommerceAndMarketingTools: Tool[] = [
     description: "Cutting-edge AI-powered ad management platform that empowers businesses to optimize and scale their advertising efforts efficiently. With features like ad spend optimization, time savings on ad management tasks, and the ability to create custom metrics using external data.",
     emoji: "🤖",
     color: "from-blue-500 to-cyan-600",
-    directUrl: "https://reveal.grsm.io/aiwebtools",
+    directUrl: "https://join.bir.ch/aiwebtools",
     tags: ["ad management", "AI-powered", "spend optimization", "custom metrics", "campaign automation"],
     category: "E-commerce & Marketing Tools",
     rating: 4.5,

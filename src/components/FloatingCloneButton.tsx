@@ -54,7 +54,7 @@ const FloatingCloneButton = () => {
         {/* Content */}
         <div className="relative flex items-center gap-2">
           <Copy className="w-4 h-4 group-hover:animate-bounce" />
-          <span className="hidden sm:inline whitespace-nowrap">CLONE THIS</span>
+          <span className="hidden sm:inline whitespace-nowrap">CLONE THIS SITE-FREE</span>
           <span className="sm:hidden">CLONE</span>
           <Code className="w-4 h-4 group-hover:animate-pulse hidden sm:inline" />
         </div>

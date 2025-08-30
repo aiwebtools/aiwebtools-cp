@@ -162,7 +162,7 @@ export const mindBlowingAITools: Tool[] = [
     description: "Generate studio-quality voiceovers from text in 120+ voices and 20+ languages. Create professional narrations without recording. Free trial, plans from $19/month.",
     emoji: "🎙️",
     color: "from-orange-500 to-red-600",
-    directUrl: "https://murf.ai/?via=aiwebtools",
+    directUrl: "https://get.murf.ai/1uvb0e8dznua",
     tags: ["text-to-speech", "voiceover", "AI voice", "narration", "freemium"],
     category: "Audio Generation",
     rating: 4.5,

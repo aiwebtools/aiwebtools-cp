@@ -137,25 +137,37 @@ const WelcomeVoiceSystem = () => {
         }
       }, 5500);
       
-      // Fallback for user interaction
-      const handleUserClick = () => {
+      // Enhanced mobile support - more aggressive user interaction handling
+      const handleUserInteraction = () => {
         if (!hasPlayed) {
-          console.log('👆 User clicked - triggering welcome');
+          console.log('👆 User interaction detected - triggering welcome for mobile');
           setHasPlayed(true);
-          initializeVoices();
-          document.removeEventListener('click', handleUserClick);
-          document.removeEventListener('touchstart', handleUserClick);
+          // Additional mobile-specific initialization
+          if (isMobile) {
+            // Create a simple test utterance first on mobile
+            const testMsg = new SpeechSynthesisUtterance("");
+            speechSynthesis.speak(testMsg);
+            setTimeout(initializeVoices, 100);
+          } else {
+            initializeVoices();
+          }
+          document.removeEventListener('click', handleUserInteraction);
+          document.removeEventListener('touchstart', handleUserInteraction);
+          document.removeEventListener('touchend', handleUserInteraction);
         }
       };
       
-      document.addEventListener('click', handleUserClick);
-      document.addEventListener('touchstart', handleUserClick);
+      // More comprehensive event listening for mobile
+      document.addEventListener('click', handleUserInteraction);
+      document.addEventListener('touchstart', handleUserInteraction);
+      document.addEventListener('touchend', handleUserInteraction);
       
       return () => {
         clearTimeout(timer);
         clearTimeout(videoTimer);
-        document.removeEventListener('click', handleUserClick);
-        document.removeEventListener('touchstart', handleUserClick);
+        document.removeEventListener('click', handleUserInteraction);
+        document.removeEventListener('touchstart', handleUserInteraction);
+        document.removeEventListener('touchend', handleUserInteraction);
       };
     } else {
       console.log('❌ Voice system skipped - already played this session');
