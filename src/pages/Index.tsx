@@ -7,6 +7,7 @@ import CategoryPageSelection from "@/components/CategoryPageSelection";
 import SpecialServices from "@/components/SpecialServices";
 import Footer from "@/components/Footer";
 import InteractiveMatrixBackground from "@/components/InteractiveMatrixBackground";
+import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
@@ -45,9 +46,12 @@ const Index = () => {
       <GoogleRankingBooster pageType="homepage" />
       
       <InteractiveMatrixBackground />
+      <AnimatedBackground />
+      
+      {/* Fixed Header - outside of relative container */}
+      <Header />
       
       <div className="relative z-10">
-        <Header />
         <HeroSection />
         <div id="categories-section">
           <CategoryPageSelection />
