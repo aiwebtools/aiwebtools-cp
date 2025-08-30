@@ -149,21 +149,16 @@
   /* 3D Hero Text Effects */
   .hero-3d-text {
     text-shadow: 
-      /* Multiple layers for depth */
-      0 1px 0 #000000,
-      0 2px 0 #111111,
-      0 3px 0 #222222,
-      0 4px 0 #333333,
-      0 5px 0 #444444,
-      0 6px 0 #555555,
-      0 7px 0 #666666,
-      0 8px 0 #777777,
-      0 0 20px #00ff41,
-      0 0 40px #00ff41,
-      0 0 60px #00ff41;
+      /* Sharp, defined shadows for depth */
+      1px 1px 0 #000000,
+      2px 2px 0 #000000,
+      3px 3px 0 #000000,
+      4px 4px 8px #000000,
+      0 0 15px #00ff41;
     transform: translateZ(0);
     position: relative;
     z-index: 100;
+    filter: drop-shadow(2px 2px 4px #000000);
   }
 
   .hero-3d-text::before {
@@ -182,43 +177,39 @@
 
   .hero-3d-glow {
     text-shadow: 
-      0 0 5px #ffffff,
-      0 0 10px #ffffff,
-      0 0 15px #00ff41,
-      0 0 20px #00ff41,
-      0 0 35px #00ff41,
-      0 0 40px #00ff41,
+      1px 1px 0 #000000,
       2px 2px 0 #000000,
-      4px 4px 0 #111111,
-      6px 6px 0 #222222,
-      8px 8px 0 #333333;
+      3px 3px 0 #000000,
+      4px 4px 6px #000000,
+      0 0 8px #00ff41,
+      0 0 16px #00ff41;
     position: relative;
     z-index: 100;
     transform: translateZ(0);
+    filter: drop-shadow(2px 2px 4px #000000);
   }
 
   .hero-animated-word {
     text-shadow: 
-      0 0 10px #00ffff,
-      0 0 20px #00ffff,
-      0 0 30px #00ffff,
-      0 0 40px #00ffff,
+      1px 1px 0 #000000,
       2px 2px 0 #000000,
-      4px 4px 0 #111111,
-      6px 6px 0 #222222;
+      3px 3px 0 #000000,
+      4px 4px 6px #000000,
+      0 0 8px #00ffff,
+      0 0 16px #00ffff;
     position: relative;
     z-index: 100;
     transform: translateZ(0);
+    filter: drop-shadow(2px 2px 4px #000000);
   }
 
   /* Enhanced border stroke effect */
   .hero-stroke-text {
-    -webkit-text-stroke: 4px #000000;
-    text-stroke: 4px #000000;
+    -webkit-text-stroke: 1px #000000;
+    text-stroke: 1px #000000;
     paint-order: stroke fill;
     position: relative;
     z-index: 100;
-    filter: drop-shadow(0 0 8px #000000) drop-shadow(2px 2px 4px #000000);
   }
 
   /* Layered text effect for maximum pop */
