@@ -28,10 +28,8 @@ const InteractiveMatrixBackground = () => {
   const { isMobile } = useMobile();
   const { performanceTier, addOptimizedEventListener } = useCrossBrowserOptimization();
 
-  // Matrix characters - authentic Matrix digital rain
-  const matrixChars = useMobile().isMobile ? 
-    '01ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ' : // Mobile: Binary + half-width katakana
-    '01ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ012345ABCDEFGHIJKLMNOPQRSTUVWXYZｧｨｩｪｫｯｬｭｮ';
+  // Matrix characters - identical for desktop and mobile
+  const matrixChars = '01ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ012345ABCDEFGHIJKLMNOPQRSTUVWXYZｧｨｩｪｫｯｬｭｮ';
 
   const initializeCanvas = useCallback(() => {
     const canvas = canvasRef.current;
@@ -68,7 +66,7 @@ const InteractiveMatrixBackground = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const fontSize = isMobile ? 14 : 18;
+    const fontSize = 16;
     const columns = Math.floor(canvas.width / fontSize);
     const maxDrops = performanceTier === 'high' ? columns : 
                      performanceTier === 'medium' ? Math.min(columns, 50) : 
@@ -80,10 +78,10 @@ const InteractiveMatrixBackground = () => {
       const drop: MatrixDrop = {
         x: (i * fontSize) + (Math.random() * fontSize * 0.5),
         y: Math.random() * -canvas.height,
-        speed: (Math.random() * 2 + 1) * (isMobile ? 0.8 : 1),
+        speed: (Math.random() * 2 + 1),
         chars: [],
         opacity: Math.random() * 0.8 + 0.2,
-        length: Math.floor(Math.random() * (isMobile ? 6 : 10)) + 3
+        length: Math.floor(Math.random() * 15) + 5
       };
 
       // Generate random characters for this drop
@@ -100,7 +98,7 @@ const InteractiveMatrixBackground = () => {
     const interactionPoint: InteractionPoint = {
       x,
       y,
-      radius: isMobile ? 80 : 120,
+      radius: 120,
       decay: 0.95,
       intensity: 1.5
     };
@@ -108,7 +106,7 @@ const InteractiveMatrixBackground = () => {
     interactionPointsRef.current.push(interactionPoint);
 
     // Limit number of interaction points for performance
-    if (interactionPointsRef.current.length > (isMobile ? 3 : 5)) {
+    if (interactionPointsRef.current.length > 5) {
       interactionPointsRef.current.shift();
     }
 
@@ -123,8 +121,8 @@ const InteractiveMatrixBackground = () => {
           drop.speed *= 1.8;
           drop.opacity = Math.min(1, drop.opacity + 0.4);
           
-          // Randomize characters for ripple effect - more dramatic on mobile
-          if (Math.random() < (isMobile ? 0.5 : 0.3)) {
+          // Randomize characters for ripple effect
+          if (Math.random() < 0.3) {
             drop.chars = drop.chars.map(() => 
               matrixChars[Math.floor(Math.random() * matrixChars.length)]
             );
@@ -133,7 +131,7 @@ const InteractiveMatrixBackground = () => {
       });
 
       // Add multiple new drops at interaction point for dramatic effect
-      const newDropCount = isMobile ? 2 : 3;
+      const newDropCount = 3;
       for (let i = 0; i < newDropCount; i++) {
         if (Math.random() < 0.8) {
           const newDrop: MatrixDrop = {
@@ -176,7 +174,7 @@ const InteractiveMatrixBackground = () => {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    const fontSize = isMobile ? 14 : 18;
+    const fontSize = 16;
 
     // Update and render drops
     dropsRef.current = dropsRef.current.filter(drop => {
@@ -187,7 +185,7 @@ const InteractiveMatrixBackground = () => {
       if (drop.y > canvas.height + drop.length * (fontSize * 1.2)) {
         drop.y = -drop.length * (fontSize * 1.2);
         drop.x = Math.random() * canvas.width;
-        drop.speed = (Math.random() * 2 + 1) * (isMobile ? 0.8 : 1);
+        drop.speed = (Math.random() * 2 + 1);
         drop.opacity = Math.random() * 0.8 + 0.2;
       }
 
@@ -285,7 +283,7 @@ const InteractiveMatrixBackground = () => {
     // Touch interaction
     const handleTouchMove = (e: TouchEvent) => {
       e.preventDefault();
-      if (e.touches.length > 0 && Math.random() < 0.2) { // Throttle more on mobile
+      if (e.touches.length > 0 && Math.random() < 0.1) { // Same throttle as desktop
         const touch = e.touches[0];
         handleInteraction(touch.clientX, touch.clientY);
       }
