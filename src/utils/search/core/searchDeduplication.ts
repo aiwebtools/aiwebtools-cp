@@ -15,7 +15,7 @@ const normalizeTitle = (title: string): string => {
 
 /**
  * Calculate similarity score between two normalized titles
- * Enhanced to better handle emoji prefix variations
+ * Enhanced to better handle emoji prefix variations and tool variants
  */
 const calculateSimilarity = (title1: string, title2: string): number => {
   const norm1 = normalizeTitle(title1);
@@ -24,16 +24,44 @@ const calculateSimilarity = (title1: string, title2: string): number => {
   // Exact match after normalization
   if (norm1 === norm2) return 1.0;
   
-  // One contains the other (like "Grammarly" vs "Grammarly Business")
+  // Enhanced subset detection for tool variants
+  // Handle cases like "Copy.ai" vs "Copy.ai for Teams", "Grammarly" vs "Grammarly Business"
   if (norm1.includes(norm2) || norm2.includes(norm1)) {
     const shorter = Math.min(norm1.length, norm2.length);
     const longer = Math.max(norm1.length, norm2.length);
-    return shorter / longer; // Higher similarity for closer lengths
+    const ratio = shorter / longer;
+    
+    // If the shorter title is at least 70% of the longer one, it's likely a variant
+    if (ratio >= 0.7) return 0.95; // Very high similarity for variants
+    
+    return ratio;
+  }
+  
+  // Special handling for common tool variants
+  const commonVariants = ['for teams', 'business', 'pro', 'premium', 'enterprise', 'plus', 'advanced'];
+  const norm1Words = norm1.split(' ');
+  const norm2Words = norm2.split(' ');
+  
+  // Check if one is just the other plus a common variant
+  for (const variant of commonVariants) {
+    const variantWords = variant.split(' ');
+    
+    // Check if norm1 = norm2 + variant
+    if (norm1Words.length === norm2Words.length + variantWords.length) {
+      const withoutVariant = norm1Words.slice(0, -variantWords.length).join(' ');
+      if (withoutVariant === norm2) return 0.9;
+    }
+    
+    // Check if norm2 = norm1 + variant  
+    if (norm2Words.length === norm1Words.length + variantWords.length) {
+      const withoutVariant = norm2Words.slice(0, -variantWords.length).join(' ');
+      if (withoutVariant === norm1) return 0.9;
+    }
   }
   
   // Word-based similarity for tools like "Copy.ai" vs "Copy AI"
-  const words1 = norm1.split(' ').filter(w => w.length > 0);
-  const words2 = norm2.split(' ').filter(w => w.length > 0);
+  const words1 = norm1Words.filter(w => w.length > 0);
+  const words2 = norm2Words.filter(w => w.length > 0);
   
   if (words1.length === 0 || words2.length === 0) return 0;
   
