@@ -17,7 +17,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: Bot,
-    title: "AI Chatbot",
+    title: "🤖 AI Chatbot",
     description: "Engage in natural language conversations with an AI. Get answers, advice, and companionship anytime you need it.",
     emoji: "💬",
     color: "from-green-500 to-blue-600",
@@ -65,7 +65,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: Sparkles,
-    title: "AI Productivity Tool",
+    title: "⚡ AI Productivity Tool",
     description: "Maximize your productivity with AI-driven tools for time management, focus enhancement, and goal setting.",
     emoji: "🌟",
     color: "from-indigo-500 to-purple-600",
@@ -77,7 +77,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: Globe,
-    title: "AI Language Translator",
+    title: "🌐 AI Language Translator",
     description: "Learn new languages with AI-powered tutoring, personalized lessons, and real-time feedback.",
     emoji: "🌍",
     color: "from-teal-500 to-blue-600",
@@ -89,7 +89,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: Search,
-    title: "AI Smart Search",
+    title: "🔎 AI Smart Search",
     description: "Intelligent search engine that understands context and provides accurate, relevant results.",
     emoji: "🔍",
     color: "from-gray-500 to-blue-600",
@@ -101,7 +101,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: Heart,
-    title: "AI Wellness Coach",
+    title: "💪 AI Wellness Coach",
     description: "AI-driven wellness coach that provides personalized fitness plans, nutrition advice, and mental health support.",
     emoji: "❤️",
     color: "from-red-500 to-pink-600",
@@ -113,7 +113,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: Shield,
-    title: "AI Security Guardian",
+    title: "🔒 AI Security Guardian",
     description: "AI-powered security tool that protects your data, devices, and online privacy from threats.",
     emoji: "🛡️",
     color: "from-green-500 to-blue-600",
@@ -125,7 +125,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: Car,
-    title: "AI Driving Assistant",
+    title: "🚗 AI Driving Assistant",
     description: "AI assistant for drivers that provides real-time traffic updates, navigation, and safety alerts.",
     emoji: "🚗",
     color: "from-purple-500 to-blue-600",
@@ -137,7 +137,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: GraduationCap,
-    title: "AI Education Platform",
+    title: "🎓 AI Education Platform",
     description: "AI-powered education platform that offers personalized learning experiences and educational resources.",
     emoji: "🎓",
     color: "from-blue-500 to-green-600",
@@ -149,7 +149,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: Wand2,
-    title: "AI Magic Tool",
+    title: "🪄 AI Magic Tool",
     description: "AI tool that performs various magical tasks, such as generating spells, predicting the future, and more.",
     emoji: "🪄",
     color: "from-pink-500 to-purple-600",
@@ -161,7 +161,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: MessageSquare,
-    title: "AI Communication Tool",
+    title: "💬 AI Communication Tool",
     description: "AI tool that helps you communicate more effectively with others, such as generating emails, writing letters, and more.",
     emoji: "✉️",
     color: "from-orange-500 to-yellow-600",
@@ -173,7 +173,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: History,
-    title: "AI History Expert",
+    title: "📜 AI History Expert",
     description: "AI tool that provides you with information about historical events, figures, and more.",
     emoji: "📜",
     color: "from-blue-500 to-gray-600",
@@ -185,7 +185,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: Calculator,
-    title: "AI Math Solver",
+    title: "🧮 AI Math Solver",
     description: "AI tool that solves math problems for you, such as algebra, calculus, and more.",
     emoji: "🧮",
     color: "from-green-500 to-yellow-600",
@@ -197,7 +197,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: FileText,
-    title: "AI Document Generator",
+    title: "📄 AI Document Generator",
     description: "AI tool that generates documents for you, such as reports, essays, and more.",
     emoji: "📄",
     color: "from-purple-500 to-pink-600",
@@ -209,7 +209,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: Palette,
-    title: "AI Art Generator",
+    title: "🎨 AI Art Generator",
     description: "AI tool that generates art for you, such as paintings, drawings, and more.",
     emoji: "🎨",
     color: "from-blue-500 to-purple-600",
@@ -221,7 +221,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: Code,
-    title: "AI Code Generator",
+    title: "💻 AI Code Generator",
     description: "AI tool that generates code for you, such as HTML, CSS, and more.",
     emoji: "💻",
     color: "from-green-500 to-blue-600",
@@ -233,7 +233,7 @@ export const priorityFeaturedGPTs: Tool[] = [
   },
   {
     icon: Lightbulb,
-    title: "AI Idea Generator",
+    title: "💡 AI Idea Generator",
     description: "AI tool that generates ideas for you, such as business ideas, product ideas, and more.",
     emoji: "💡",
     color: "from-yellow-500 to-orange-600",

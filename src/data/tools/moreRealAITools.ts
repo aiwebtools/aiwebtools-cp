@@ -635,7 +635,7 @@ export const moreRealAITools: Tool[] = [
   // AI Gaming Tools
   {
     icon: Target,
-    title: "AI Dungeon",
+    title: "🎲 AI Dungeon",
     description: "AI-powered text adventure game with infinite storytelling possibilities.",
     emoji: "🎲",
     color: "from-purple-500 to-pink-600",

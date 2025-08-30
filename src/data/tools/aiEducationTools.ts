@@ -68,7 +68,7 @@ export const aiEducationTools: Tool[] = [
   },
   {
     icon: MessageSquare,
-    title: "AI Essay Writer",
+    title: "✍️ AI Essay Writer",
     description: "Automated essay writing tool with AI-powered research, content generation, and citation assistance.",
     emoji: "💬",
     color: "from-cyan-500 to-blue-600",

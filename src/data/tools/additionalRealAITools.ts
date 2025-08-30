@@ -433,7 +433,7 @@ export const additionalRealAITools: Tool[] = [
   },
   {
     icon: Filter,
-    title: "AI Content Detector",
+    title: "🔍 AI Content Detector",
     description: "Tool that detects AI-generated content to ensure authenticity and originality.",
     emoji: "🔍",
     color: "from-red-500 to-pink-600",
@@ -565,7 +565,7 @@ export const additionalRealAITools: Tool[] = [
   },
   {
     icon: Sparkles,
-    title: "AI Dungeon",
+    title: "🎲 AI Dungeon",
     description: "AI-powered text adventure game that creates infinite stories based on your choices.",
     emoji: "🎲",
     color: "from-purple-500 to-pink-600",
