@@ -68,9 +68,9 @@ const InteractiveMatrixBackground = () => {
 
     const fontSize = 16;
     const columns = Math.floor(canvas.width / fontSize);
-    const maxDrops = performanceTier === 'high' ? columns : 
-                     performanceTier === 'medium' ? Math.min(columns, 50) : 
-                     Math.min(columns, 30);
+    const maxDrops = performanceTier === 'high' ? columns * 1.5 : 
+                     performanceTier === 'medium' ? columns : 
+                     Math.min(columns * 0.8, 60);
 
     dropsRef.current = [];
 
@@ -130,10 +130,10 @@ const InteractiveMatrixBackground = () => {
         }
       });
 
-      // Add multiple new drops at interaction point for dramatic effect
-      const newDropCount = 3;
+      // Add multiple new drops at interaction point for more streaks
+      const newDropCount = 5;
       for (let i = 0; i < newDropCount; i++) {
-        if (Math.random() < 0.8) {
+        if (Math.random() < 0.9) {
           const newDrop: MatrixDrop = {
             x: x + (Math.random() - 0.5) * 60,
             y: y - Math.random() * 80,
@@ -249,10 +249,10 @@ const InteractiveMatrixBackground = () => {
       ctx.stroke();
     });
 
-    // Clean up excess drops for performance
-    const maxDrops = performanceTier === 'high' ? 100 : performanceTier === 'medium' ? 60 : 40;
-    if (dropsRef.current.length > maxDrops) {
-      dropsRef.current = dropsRef.current.slice(0, maxDrops);
+    // Clean up excess drops for performance but allow more streaks
+    const maxActiveDrops = performanceTier === 'high' ? 150 : performanceTier === 'medium' ? 100 : 80;
+    if (dropsRef.current.length > maxActiveDrops) {
+      dropsRef.current = dropsRef.current.slice(0, maxActiveDrops);
     }
 
     animationFrameRef.current = requestAnimationFrame(animate);
