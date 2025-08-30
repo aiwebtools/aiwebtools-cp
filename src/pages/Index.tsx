@@ -11,6 +11,7 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
+import ConsentPopup from "@/components/ConsentPopup";
 import LazyFeaturedTools from "@/components/LazyFeaturedTools";
 import LazySearchPortal from "@/components/LazySearchPortal";
 import { Button } from "@/components/ui/button";
@@ -110,6 +111,8 @@ const Index = () => {
         <ScrollToTop />
         <Footer />
       </div>
+      
+      <ConsentPopup />
     </div>
   );
 };
