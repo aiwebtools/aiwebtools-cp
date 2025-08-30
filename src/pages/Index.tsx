@@ -43,10 +43,22 @@ const Index = () => {
     const videoTimer = setTimeout(() => {
       const video = document.querySelector('iframe[src*="youtube.com"]') as HTMLIFrameElement;
       if (video) {
-        console.log('🎥 5-second timer: Starting video autoplay unmuted at 1080p...');
-        // Update to 1080p, unmuted, autoplay
-        const newSrc = "https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark&origin=https://aiwebtools.ai";
-        video.src = newSrc;
+        console.log('🎥 5-second timer: Scrolling to video and starting autoplay unmuted at 1080p...');
+        
+        // First, smoothly scroll to the video section
+        video.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center',
+          inline: 'center'
+        });
+        
+        // Then start the video after scroll completes
+        setTimeout(() => {
+          // Update to 1080p, unmuted, autoplay
+          const newSrc = "https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark&origin=https://aiwebtools.ai";
+          video.src = newSrc;
+          console.log('🎬 Video autoplay started!');
+        }, 800); // Give time for smooth scroll to complete
       }
     }, 5000); // 5 seconds
     
