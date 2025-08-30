@@ -33,49 +33,71 @@ const normalizeUrl = (url: string): string => {
 };
 
 /**
+ * Check if two tools are similar enough to be considered duplicates
+ */
+const areSimilarTools = (tool1: Tool, tool2: Tool): boolean => {
+  // Exact title and URL match
+  const exactMatch = tool1.title.toLowerCase().trim() === tool2.title.toLowerCase().trim() &&
+                    (tool1.directUrl?.toLowerCase().trim() || '') === (tool2.directUrl?.toLowerCase().trim() || '');
+  
+  if (exactMatch) return true;
+  
+  // Special case: Preserve Perplexity Comet as separate from Perplexity AI
+  const isPerplexityComet1 = tool1.title.toLowerCase().includes('comet');
+  const isPerplexityComet2 = tool2.title.toLowerCase().includes('comet');
+  const isPerplexityAI1 = tool1.title.toLowerCase().includes('perplexity') && !isPerplexityComet1;
+  const isPerplexityAI2 = tool2.title.toLowerCase().includes('perplexity') && !isPerplexityComet2;
+  
+  // Keep Perplexity AI and Perplexity Comet separate
+  if ((isPerplexityComet1 && isPerplexityAI2) || (isPerplexityAI1 && isPerplexityComet2)) {
+    return false;
+  }
+  
+  // Normalize titles and URLs for comparison
+  const normalizedTitle1 = normalizeTitle(tool1.title);
+  const normalizedTitle2 = normalizeTitle(tool2.title);
+  const normalizedUrl1 = normalizeUrl(tool1.directUrl || '');
+  const normalizedUrl2 = normalizeUrl(tool2.directUrl || '');
+  
+  // Consider similar if normalized titles match and URLs are similar
+  const titleMatch = normalizedTitle1 === normalizedTitle2;
+  const urlMatch = normalizedUrl1 === normalizedUrl2;
+  
+  return titleMatch && urlMatch;
+};
+
+/**
  * ENHANCED INTELLIGENT deduplication - removes exact duplicates and obvious variations
  */
 export const deduplicateTools = (tools: Tool[]): Tool[] => {
-  const seen = new Map<string, Tool>();
+  const uniqueTools: Tool[] = [];
   const removedTools: Tool[] = [];
   
   console.log(`🔍 ENHANCED INTELLIGENT DEDUPLICATION STARTING: ${tools.length} tools`);
   
   for (const tool of tools) {
-    // First check for exact duplicates (title + URL)
-    const exactKey = `${tool.title.toLowerCase().trim()}|||${tool.directUrl?.toLowerCase().trim() || 'no-url'}`;
-    
-    // Then check for normalized duplicates (similar titles or same domain)
-    const normalizedTitle = normalizeTitle(tool.title);
-    const normalizedUrl = normalizeUrl(tool.directUrl || '');
-    const normalizedKey = `${normalizedTitle}|||${normalizedUrl}`;
-    
-    // Check if we've seen either the exact or normalized version
-    const existingTool = seen.get(exactKey) || seen.get(normalizedKey);
+    // Check if this tool is similar to any existing tool
+    const existingTool = uniqueTools.find(existing => areSimilarTools(tool, existing));
     
     if (!existingTool) {
-      // New tool - add both keys to prevent future duplicates
-      seen.set(exactKey, tool);
-      seen.set(normalizedKey, tool);
+      // New unique tool
+      uniqueTools.push(tool);
     } else {
-      // Duplicate found - keep the better version
+      // Similar tool found - choose the better version
       removedTools.push(tool);
       console.log(`🗑️ Removing duplicate: "${tool.title}" (${tool.category}) - similar to "${existingTool.title}"`);
       
       // If the new tool has a better URL (with affiliate), replace the existing one
       if (tool.directUrl?.includes('via=aiwebtools') && !existingTool.directUrl?.includes('via=aiwebtools')) {
         console.log(`🔄 Upgrading to affiliate URL: "${tool.title}"`);
-        seen.set(exactKey, tool);
-        seen.set(normalizedKey, tool);
-        // Remove the old tool from removedTools and add the existing one
+        const existingIndex = uniqueTools.findIndex(t => t === existingTool);
+        uniqueTools[existingIndex] = tool;
+        // Remove the new tool from removedTools and add the existing one
         removedTools.pop();
         removedTools.push(existingTool);
       }
     }
   }
-  
-  // Get all unique tools
-  const uniqueTools = Array.from(new Set(seen.values()));
   
   console.log(`🎯 ENHANCED INTELLIGENT DEDUPLICATION RESULTS:`);
   console.log(`   Input tools: ${tools.length}`);
@@ -92,15 +114,13 @@ export const deduplicateTools = (tools: Tool[]): Tool[] => {
     }
   }
   
-  // Verify our newly added tools are still there
-  const teamAI = uniqueTools.find(t => t.title.includes('TeamAI'));
-  const orchard = uniqueTools.find(t => t.title.includes('Orchard'));
-  const bitAI = uniqueTools.find(t => t.title.includes('Bit.ai'));
+  // Verify both Perplexity tools are preserved
+  const perplexityAI = uniqueTools.find(t => t.title.toLowerCase().includes('perplexity') && !t.title.toLowerCase().includes('comet'));
+  const perplexityComet = uniqueTools.find(t => t.title.toLowerCase().includes('perplexity') && t.title.toLowerCase().includes('comet'));
   
-  console.log(`✅ NEWLY ADDED TOOLS VERIFICATION AFTER DEDUPLICATION:`);
-  console.log(`   TeamAI preserved: ${!!teamAI} ${teamAI ? `(${teamAI.category})` : ''}`);
-  console.log(`   Orchard.ink preserved: ${!!orchard} ${orchard ? `(${orchard.category})` : ''}`);
-  console.log(`   Bit.ai preserved: ${!!bitAI} ${bitAI ? `(${bitAI.category})` : ''}`);
+  console.log(`✅ PERPLEXITY TOOLS VERIFICATION:`);
+  console.log(`   Perplexity AI preserved: ${!!perplexityAI} ${perplexityAI ? `"${perplexityAI.title}"` : ''}`);
+  console.log(`   Perplexity Comet preserved: ${!!perplexityComet} ${perplexityComet ? `"${perplexityComet.title}"` : ''}`);
   
   return uniqueTools;
 };
