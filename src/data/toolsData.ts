@@ -252,7 +252,22 @@ preservationReport.integrityScore >= 85 ?
   return toolCountAnalysis;
 };
 
-// Initialize the analysis asynchronously to avoid blocking
+// Initialize the analysis and run verification asynchronously to avoid blocking
 setTimeout(() => {
   getToolCountAnalysis();
+  
+  // Run comprehensive verification test
+  console.log('\n🚀 RUNNING COMPREHENSIVE SYSTEM VERIFICATION...');
+  import('@/utils/verificationTest').then(({ runVerificationTest }) => {
+    const verificationResults = runVerificationTest();
+    
+    console.log(`\n📊 FINAL VERIFICATION SUMMARY:`);
+    console.log(`✅ Total AI Tools: ${verificationResults.totalTools}`);
+    console.log(`✅ AI Web Tools GPTs: ${verificationResults.aiWebToolsCount}`);
+    console.log(`✅ Categories: ${verificationResults.categoriesCount}`);
+    console.log(`✅ Search Working: ${verificationResults.searchWorking ? 'YES' : 'NO'}`);
+    console.log(`🎯 System Health: ${verificationResults.verificationScore}/100`);
+  }).catch(error => {
+    console.error('Verification test failed:', error);
+  });
 }, 0);
