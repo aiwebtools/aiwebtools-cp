@@ -21,19 +21,17 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
-  // Immediate response for typing, debounced for full processing
-  const debouncedSearchTerm = useDebounce(searchTerm, 250);
+  // Always call debounce hook to maintain hook order
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
-  // Fast search effect for immediate response while typing
+  // OPTIMIZED search effect with EXACT MATCHING PRIORITY
   useEffect(() => {
-    const trimmedTerm = searchTerm.trim();
+    const trimmedTerm = debouncedSearchTerm.trim();
     
     if (!trimmedTerm || trimmedTerm.length < 2) {
-      if (debouncedSearchTerm.trim().length < 2) {
-        setSearchResults([]);
-        setIsOpen(false);
-        setDisplayedCount(30);
-      }
+      setSearchResults([]);
+      setIsOpen(false);
+      setDisplayedCount(30);
       return;
     }
 
@@ -101,52 +99,27 @@ export const useGlobalSearch = () => {
       return keyA.localeCompare(keyB);
     });
 
-    // Combine results and apply QUICK deduplication for lightning-fast response
+    // Combine results with exact matches first and apply deduplication
     const finalResults = [
       ...sortedExact,
       ...sortedPartial,
       ...intelligentResults
     ];
 
-    // Use quick deduplication for instant response
-    const quickResults = quickDeduplicateSearchResults(finalResults);
+    // Apply deduplication to remove duplicate tools from search results
+    const deduplicatedResults = deduplicateSearchResults(finalResults);
     
     // Add remaining tools for endless scroll
     const remainingTools = allTools.filter(tool => 
-      !quickResults.some(result => result.title === tool.title)
+      !deduplicatedResults.some(result => result.title === tool.title)
     );
     
-    const endlessResults = [...quickResults, ...remainingTools];
+    const endlessResults = [...deduplicatedResults, ...remainingTools];
     
     setSearchResults(endlessResults);
-    setDisplayedCount(30);
+    setDisplayedCount(30); // Start with 30, then load more
     setIsOpen(true);
-  }, [searchTerm]);
-
-  // Full deduplication effect for final results (debounced)
-  useEffect(() => {
-    const trimmedTerm = debouncedSearchTerm.trim();
-    
-    if (!trimmedTerm || trimmedTerm.length < 2) return;
-    
-    // Only apply full deduplication if we have search results and term matches debounced term
-    if (searchResults.length > 0 && searchTerm === debouncedSearchTerm) {
-      const currentResults = searchResults.slice(0, 100); // Get current visible results
-      const fullyDeduplicated = deduplicateSearchResults(currentResults);
-      
-      // Add remaining tools back
-      const remainingTools = allTools.filter(tool => 
-        !fullyDeduplicated.some(result => result.title === tool.title)
-      );
-      
-      const finalResults = [...fullyDeduplicated, ...remainingTools];
-      
-      if (finalResults.length !== searchResults.length) {
-        setSearchResults(finalResults);
-        console.log(`🔍 Applied full deduplication: ${currentResults.length} → ${fullyDeduplicated.length} tools`);
-      }
-    }
-  }, [debouncedSearchTerm, searchTerm]);
+  }, [debouncedSearchTerm]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
