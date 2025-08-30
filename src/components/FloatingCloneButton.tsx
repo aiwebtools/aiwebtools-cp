@@ -9,12 +9,16 @@ const FloatingCloneButton = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const isMobile = window.innerWidth < 768; // md breakpoint
       
-      if (currentScrollY > lastScrollY && currentScrollY > 200) {
-        // Scrolling down and past 200px
+      if (isMobile && currentScrollY > lastScrollY && currentScrollY > 200) {
+        // Only hide on mobile when scrolling down and past 200px
         setIsVisible(false);
-      } else if (currentScrollY < lastScrollY) {
-        // Scrolling up
+      } else if (isMobile && currentScrollY < lastScrollY) {
+        // Only show/hide logic on mobile when scrolling up
+        setIsVisible(true);
+      } else if (!isMobile) {
+        // Always visible on desktop
         setIsVisible(true);
       }
       
@@ -22,7 +26,11 @@ const FloatingCloneButton = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll, { passive: true }); // Handle resize events
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, [lastScrollY]);
 
   return (
