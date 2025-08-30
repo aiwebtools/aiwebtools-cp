@@ -129,66 +129,51 @@ const WelcomeVoiceSystem = () => {
   };
 
   useEffect(() => {
-    // Always play the welcome - removed session storage check
-    console.log('🔍 Voice system check: Playing on every visit');
+    // Always play the welcome on every page load
+    console.log('🔍 Voice system check: Playing welcome sequence');
     
-    if (!hasPlayed) {
-      console.log('🚀 First visit - preparing welcome sequence');
+    const isMobile = isMobileDevice();
+    const delay = isMobile ? 500 : 800; // Shorter delay for immediate effect
+    
+    const timer = setTimeout(() => {
+      console.log('🚀 Initializing welcome sequence');
+      initializeVoices();
+    }, delay);
+    
+    // Enhanced mobile support - immediate user interaction handling
+    const handleUserInteraction = () => {
+      console.log('👆 User interaction detected - triggering welcome immediately');
+      clearTimeout(timer);
       
-      const isMobile = isMobileDevice();
-      const delay = isMobile ? 800 : 1000; // Shorter delay on mobile
-      
-      const timer = setTimeout(() => {
-        setHasPlayed(true);
+      if (isMobile) {
+        // Mobile: Immediate initialization without delays
+        console.log('📱 Mobile: Starting immediate speech unlock...');
         initializeVoices();
-      }, delay);
+      } else {
+        // Desktop: Can use normal initialization
+        initializeVoices();
+      }
       
-      // Add video autoplay after 5.5 seconds
-      const videoTimer = setTimeout(() => {
-        const video = document.querySelector('video');
-        if (video && video.paused) {
-          video.muted = false;
-          video.play().catch(console.log);
-        }
-      }, 5500);
-      
-      // Enhanced mobile support - immediate user interaction handling
-      const handleUserInteraction = () => {
-        if (!hasPlayed) {
-          console.log('👆 User interaction detected - triggering welcome');
-          setHasPlayed(true);
-          
-          if (isMobile) {
-            // Mobile: Immediate initialization without delays
-            console.log('📱 Mobile: Starting immediate speech unlock...');
-            initializeVoices();
-          } else {
-            // Desktop: Can use normal initialization
-            initializeVoices();
-          }
-          
-          document.removeEventListener('click', handleUserInteraction);
-          document.removeEventListener('touchstart', handleUserInteraction);
-          document.removeEventListener('touchend', handleUserInteraction);
-        }
-      };
-      
-      // More comprehensive event listening for mobile
-      document.addEventListener('click', handleUserInteraction);
-      document.addEventListener('touchstart', handleUserInteraction);
-      document.addEventListener('touchend', handleUserInteraction);
-      
-      return () => {
-        clearTimeout(timer);
-        clearTimeout(videoTimer);
-        document.removeEventListener('click', handleUserInteraction);
-        document.removeEventListener('touchstart', handleUserInteraction);
-        document.removeEventListener('touchend', handleUserInteraction);
-      };
-    } else {
-      console.log('❌ Voice system skipped - already played this session');
-    }
-  }, [hasPlayed]);
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('touchend', handleUserInteraction);
+      document.removeEventListener('keydown', handleUserInteraction);
+    };
+    
+    // More comprehensive event listening for all interactions
+    document.addEventListener('click', handleUserInteraction);
+    document.addEventListener('touchstart', handleUserInteraction, { passive: true });
+    document.addEventListener('touchend', handleUserInteraction, { passive: true });
+    document.addEventListener('keydown', handleUserInteraction);
+    
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('touchend', handleUserInteraction);
+      document.removeEventListener('keydown', handleUserInteraction);
+    };
+  }, []); // Remove hasPlayed dependency to always run
 
   // This component renders nothing - it's just for voice functionality
   return null;
