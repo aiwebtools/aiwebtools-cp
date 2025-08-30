@@ -65,10 +65,10 @@ const SearchResults = memo(({
                willChange: 'transform'
              }}>
           <div className="leading-tight mb-1">
-            Search Results ({searchResults.length} total) - Showing {displayedResults.length}
+            ⚡ Found {searchResults.length} {searchResults.length === 1 ? 'result' : 'results'} • Showing first {displayedResults.length}
           </div>
           {displayedCount < searchResults.length && (
-            <div className="text-xs opacity-80 mb-2">Scroll for more...</div>
+            <div className="text-xs opacity-80 mb-2">Scroll to see more results</div>
           )}
         </div>
         <div className="p-2 pt-4" style={{ transform: 'translateZ(0)' }}>

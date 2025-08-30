@@ -118,8 +118,8 @@ const ToolsGrid = memo(({
           </h3>
           {searchTerm && (
             <p className="text-gray-300 text-sm">
-              Found {tools.length} tools matching "{searchTerm}"
-              {tools.length > displayTools.length && " - scroll down for more results!"}
+              Found {tools.length} {tools.length === 1 ? 'tool' : 'tools'} matching "{searchTerm}"
+              {tools.length > displayTools.length && " • Scroll down to see more results"}
             </p>
           )}
           {selectedCategory && !searchTerm && (

@@ -91,8 +91,8 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
             </div>
 
             <div className="mb-4 text-center text-sm text-cyan-400">
-              {searchTerm ? `${searchResults.length} tools found` : `Browsing ${searchResults.length} tools`} 
-              {displayedCount < searchResults.length && ` - Showing ${displayedCount}, scroll for more`}
+              {searchTerm ? `Found ${searchResults.length} ${searchResults.length === 1 ? 'tool' : 'tools'}` : `Browsing ${searchResults.length} tools`}
+              {displayedCount < searchResults.length && ` • Showing first ${displayedCount}`}
             </div>
 
             <div 
