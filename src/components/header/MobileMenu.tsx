@@ -293,7 +293,8 @@ const MobileMenu = () => {
                   <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-cyan-500/50 shadow-2xl z-60 max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/60 scrollbar-track-gray-800 rounded-xl backdrop-blur-xl" onScroll={handleScroll}>
                     <CardContent className="p-2">
                       <div className="text-sm text-cyan-400 px-3 py-2 border-b border-gray-700 sticky top-0 bg-gray-900/95 backdrop-blur-sm font-medium">
-                        ⚡ {searchResults.length} results {displayedCount < searchResults.length && `(showing ${displayedCount})`}
+                        ⚡ Found {searchResults.length} {searchResults.length === 1 ? 'result' : 'results'}
+                        {displayedCount < searchResults.length && ` • Showing first ${displayedCount}`}
                       </div>
                       {searchResults.slice(0, displayedCount).map((tool, index) => {
                         const toolIndex = allTools.findIndex(t => t.title === tool.title);
@@ -348,7 +349,7 @@ const MobileMenu = () => {
                       })}
                       {displayedCount < searchResults.length && (
                         <div className="text-center py-2 text-gray-400 text-xs">
-                          <div className="animate-pulse">Scroll for more...</div>
+                          <div className="animate-pulse">Scroll to see more results</div>
                         </div>
                       )}
                     </CardContent>

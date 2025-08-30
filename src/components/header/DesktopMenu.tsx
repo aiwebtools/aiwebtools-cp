@@ -283,7 +283,8 @@ const DesktopMenu = () => {
                   <Card className="absolute top-full left-0 right-0 mt-3 bg-gray-900/95 border border-cyan-500/50 shadow-2xl z-60 max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/60 scrollbar-track-gray-800 rounded-xl backdrop-blur-xl" onScroll={handleScroll}>
                     <CardContent className="p-3">
                       <div className="text-base text-cyan-400 px-4 py-3 border-b border-gray-700 sticky top-0 bg-gray-900/95 backdrop-blur-sm font-medium">
-                        ⚡ {searchResults.length} results {displayedCount < searchResults.length && `(showing ${displayedCount})`}
+                        ⚡ Found {searchResults.length} {searchResults.length === 1 ? 'result' : 'results'}
+                        {displayedCount < searchResults.length && ` • Showing first ${displayedCount}`}
                       </div>
                       <div className="grid grid-cols-1 gap-2 mt-3">
                         {searchResults.slice(0, displayedCount).map((tool, index) => {
@@ -340,7 +341,7 @@ const DesktopMenu = () => {
                       </div>
                       {displayedCount < searchResults.length && (
                         <div className="text-center py-3 text-gray-400 text-sm">
-                          <div className="animate-pulse">Scroll for more results...</div>
+                          <div className="animate-pulse">Scroll down to see more results</div>
                         </div>
                       )}
                     </CardContent>
