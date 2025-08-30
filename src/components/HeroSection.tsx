@@ -61,16 +61,18 @@ const HeroSection = () => {
             {/* First line - Animated between tool count and brand name */}
             <div className="relative h-20 md:h-24 lg:h-28 mb-3 flex items-center justify-center">
               <span 
-                className={`absolute text-white transition-all duration-1000 ease-in-out ${
+                className={`absolute text-white hero-3d-text hero-stroke-text transition-all duration-1000 ease-in-out ${
                   showBrandName ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
                 }`}
+                data-text={`${toolStats.marketing} TOOLS`}
               >
                 {toolStats.marketing} TOOLS
               </span>
               <span 
-                className={`absolute text-white transition-all duration-1000 ease-in-out ${
+                className={`absolute text-white hero-3d-glow hero-stroke-text transition-all duration-1000 ease-in-out ${
                   showBrandName ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
                 }`}
+                data-text="AI WEB TOOLS"
               >
                 AI WEB TOOLS
               </span>
@@ -79,16 +81,17 @@ const HeroSection = () => {
             {/* Second line with animated word - FIXED width container to prevent jumping */}
             <span className="text-3xl md:text-4xl lg:text-5xl text-white block">
               <span 
-                className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow inline-block transitioning-word"
+                className="bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent hero-animated-word hero-stroke-text inline-block transitioning-word"
                 style={{ 
                   width: '220px', // Adjusted width for shorter words
                   textAlign: 'center',
                   display: 'inline-block'
                 }}
+                data-text={words[currentWord]}
               >
                 {words[currentWord]}
               </span>
-              <span className="ml-4">& Compare</span>
+              <span className="ml-4 hero-3d-glow hero-stroke-text" data-text="& Compare">& Compare</span>
             </span>
           </h1>
           
