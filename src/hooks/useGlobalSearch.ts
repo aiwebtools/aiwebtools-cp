@@ -7,7 +7,7 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
 import { useDebounce } from "@/hooks/useDebounce";
-import { deduplicateSearchResults } from "@/utils/search/core/searchDeduplication";
+import { deduplicateSearchResults, quickDeduplicateSearchResults } from "@/utils/search/core/searchDeduplication";
 import { sortToolsAlphabetically, getAlphabeticalSortKey } from "@/utils/search/alphabeticalSorting";
 
 export const useGlobalSearch = () => {
@@ -21,17 +21,19 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
-  // Add debouncing for better performance - increased delay to reduce computation
-  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  // Immediate response for typing, debounced for full processing
+  const debouncedSearchTerm = useDebounce(searchTerm, 250);
 
-  // OPTIMIZED search effect with EXACT MATCHING PRIORITY
+  // Fast search effect for immediate response while typing
   useEffect(() => {
-    const trimmedTerm = debouncedSearchTerm.trim();
+    const trimmedTerm = searchTerm.trim();
     
     if (!trimmedTerm || trimmedTerm.length < 2) {
-      setSearchResults([]);
-      setIsOpen(false);
-      setDisplayedCount(30);
+      if (debouncedSearchTerm.trim().length < 2) {
+        setSearchResults([]);
+        setIsOpen(false);
+        setDisplayedCount(30);
+      }
       return;
     }
 
@@ -99,27 +101,52 @@ export const useGlobalSearch = () => {
       return keyA.localeCompare(keyB);
     });
 
-    // Combine results with exact matches first and apply deduplication
+    // Combine results and apply QUICK deduplication for lightning-fast response
     const finalResults = [
       ...sortedExact,
       ...sortedPartial,
       ...intelligentResults
     ];
 
-    // Apply deduplication to remove duplicate tools from search results
-    const deduplicatedResults = deduplicateSearchResults(finalResults);
+    // Use quick deduplication for instant response
+    const quickResults = quickDeduplicateSearchResults(finalResults);
     
     // Add remaining tools for endless scroll
     const remainingTools = allTools.filter(tool => 
-      !deduplicatedResults.some(result => result.title === tool.title)
+      !quickResults.some(result => result.title === tool.title)
     );
     
-    const endlessResults = [...deduplicatedResults, ...remainingTools];
+    const endlessResults = [...quickResults, ...remainingTools];
     
     setSearchResults(endlessResults);
-    setDisplayedCount(30); // Start with 30, then load more
+    setDisplayedCount(30);
     setIsOpen(true);
-  }, [debouncedSearchTerm]);
+  }, [searchTerm]);
+
+  // Full deduplication effect for final results (debounced)
+  useEffect(() => {
+    const trimmedTerm = debouncedSearchTerm.trim();
+    
+    if (!trimmedTerm || trimmedTerm.length < 2) return;
+    
+    // Only apply full deduplication if we have search results and term matches debounced term
+    if (searchResults.length > 0 && searchTerm === debouncedSearchTerm) {
+      const currentResults = searchResults.slice(0, 100); // Get current visible results
+      const fullyDeduplicated = deduplicateSearchResults(currentResults);
+      
+      // Add remaining tools back
+      const remainingTools = allTools.filter(tool => 
+        !fullyDeduplicated.some(result => result.title === tool.title)
+      );
+      
+      const finalResults = [...fullyDeduplicated, ...remainingTools];
+      
+      if (finalResults.length !== searchResults.length) {
+        setSearchResults(finalResults);
+        console.log(`🔍 Applied full deduplication: ${currentResults.length} → ${fullyDeduplicated.length} tools`);
+      }
+    }
+  }, [debouncedSearchTerm, searchTerm]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

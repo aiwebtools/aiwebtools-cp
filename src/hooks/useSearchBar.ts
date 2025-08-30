@@ -6,7 +6,8 @@ import { getCurrentToolCount } from "@/utils/toolCounter";
 import { enhancedKeywordMatching, enhancedToolScoring } from "@/utils/search/enhancedKeywordMatching";
 import { predictUserIntent, generateAutoComplete } from "@/utils/search/core/intelligentPrediction";
 import { toolAbbreviations, fuzzyMatches, acronymMatches } from "@/utils/search/toolAbbreviations";
-import { deduplicateSearchResults } from "@/utils/search/core/searchDeduplication";
+import { deduplicateSearchResults, quickDeduplicateSearchResults } from "@/utils/search/core/searchDeduplication";
+import { useDebounce } from "@/hooks/useDebounce";
 import { sortToolsAlphabetically, getAlphabeticalSortKey } from "@/utils/search/alphabeticalSorting";
 
 interface UseSearchBarProps {
@@ -17,6 +18,9 @@ interface UseSearchBarProps {
 export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(30);
+  
+  // Debounce for expensive deduplication - immediate for typing, delayed for full processing
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
   
   // Prefix-based priority scoring for ultra-short queries (generalized)
   const prefixPriorityScore = useCallback((title: string, term: string) => {
@@ -146,7 +150,8 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
 
     return score;
   }, []);
-  const searchResults = useMemo(() => {
+  // Fast search results for immediate display (quick deduplication only)
+  const fastSearchResults = useMemo(() => {
     const trimmedTerm = searchTerm.trim();
     
     // No search for empty terms
@@ -204,7 +209,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
       return keyA.localeCompare(keyB);
     });
 
-    // Combine all results with exact matches first and apply deduplication
+    // Combine all results with exact matches first and apply QUICK deduplication for speed
     const combinedResults = [
       ...sortedExact,
       ...partialMatches.sort((a, b) => {
@@ -221,12 +226,33 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
       ...intelligentResults
     ];
 
-    // Apply deduplication to remove duplicate tools from search results
-    const deduplicatedResults = deduplicateSearchResults(combinedResults);
-    console.log(`🔍 Search Bar deduplication: ${combinedResults.length} → ${deduplicatedResults.length} tools`);
+    // Apply QUICK deduplication for lightning-fast typing response
+    const quickDeduplicated = quickDeduplicateSearchResults(combinedResults);
     
-    return deduplicatedResults.slice(0, 100);
+    return quickDeduplicated.slice(0, 100);
   }, [searchTerm, prefixPriorityScore]);
+
+  // Full search results with complete deduplication (debounced for performance)
+  const fullSearchResults = useMemo(() => {
+    const trimmedTerm = debouncedSearchTerm.trim();
+    
+    if (!trimmedTerm) return [];
+    
+    // Use the fast results as base, then apply full deduplication
+    const baseResults = fastSearchResults;
+    
+    // Apply full deduplication only on debounced term for performance
+    if (baseResults.length > 0) {
+      const fullyDeduplicated = deduplicateSearchResults(baseResults);
+      console.log(`🔍 Full deduplication: ${baseResults.length} → ${fullyDeduplicated.length} tools`);
+      return fullyDeduplicated;
+    }
+    
+    return baseResults;
+  }, [debouncedSearchTerm, fastSearchResults]);
+
+  // Use fast results while typing, full results when settled
+  const searchResults = searchTerm === debouncedSearchTerm ? fullSearchResults : fastSearchResults;
 
   // Display results with performance limits for rendering
   const displayedResults = useMemo(() => 
