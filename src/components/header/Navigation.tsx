@@ -33,10 +33,10 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="hidden md:flex items-center space-x-2 min-w-0">
+    <nav className="hidden md:flex items-center space-x-1 min-w-0">
       <button 
         onClick={handleBrowseAITools}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer px-2 py-1 rounded text-sm"
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer px-2 py-1 rounded text-xs font-medium"
       >
         🎯 Browse Tools
       </button>
@@ -44,9 +44,9 @@ const Navigation = () => {
       <Popover>
         <PopoverTrigger asChild>
           <button 
-            className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center space-x-1 px-2 py-1 rounded text-sm"
+            className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center space-x-1 px-2 py-1 rounded text-xs font-medium"
           >
-            <Globe className="w-4 h-4" />
+            <Globe className="w-3 h-3" />
             <span className="hidden xl:inline">Domains</span>
           </button>
         </PopoverTrigger>
@@ -94,18 +94,18 @@ const Navigation = () => {
       
       <button 
         onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer inline-flex items-center px-2 py-1 rounded text-sm"
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer inline-flex items-center px-2 py-1 rounded text-xs font-medium"
         aria-label="AI Web Tools Linktree"
         title="Linktree"
       >
-        <Trees className="w-4 h-4" />
+        <Trees className="w-3 h-3" />
       </button>
       
       <button 
         onClick={() => navigate('/favorites')}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center gap-1 px-2 py-1 rounded text-sm"
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center gap-1 px-2 py-1 rounded text-xs font-medium"
       >
-        <Heart className="h-4 w-4 fill-current text-red-500" />
+        <Heart className="h-3 w-3 fill-current text-red-500" />
         <span className="hidden xl:inline">({getFavoritesCount()})</span>
       </button>
     </nav>
