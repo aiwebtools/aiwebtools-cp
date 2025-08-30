@@ -8,6 +8,7 @@
 @import url("./styles/glow-animations.css");
 @import url("./styles/neon-effects.css");
 @import url("./styles/cross-browser.css");
+@import url("./styles/matrix-effects.css");
 
 @tailwind base;
 @tailwind components;

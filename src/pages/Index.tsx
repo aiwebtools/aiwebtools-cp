@@ -6,7 +6,7 @@ import HeroSection from "@/components/HeroSection";
 import CategoryPageSelection from "@/components/CategoryPageSelection";
 import SpecialServices from "@/components/SpecialServices";
 import Footer from "@/components/Footer";
-import AnimatedBackground from "@/components/AnimatedBackground";
+import InteractiveMatrixBackground from "@/components/InteractiveMatrixBackground";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
@@ -44,7 +44,7 @@ const Index = () => {
       <ImprovedSEOHead pageType="homepage" />
       <GoogleRankingBooster pageType="homepage" />
       
-      <AnimatedBackground />
+      <InteractiveMatrixBackground />
       
       <div className="relative z-10">
         <Header />
