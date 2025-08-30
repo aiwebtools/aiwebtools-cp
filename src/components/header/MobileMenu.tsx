@@ -29,6 +29,14 @@ const MobileMenu = () => {
   const [displayedCount, setDisplayedCount] = useState(50);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Debug logging
+  console.log('MobileMenu render - isMenuOpen:', isMenuOpen);
+
+  const handleMenuToggle = (open: boolean) => {
+    console.log('MobileMenu toggle called:', open);
+    setIsMenuOpen(open);
+  };
   const [isWeb3Open, setIsWeb3Open] = useState(false);
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const searchRef = useRef(null);
@@ -140,9 +148,17 @@ const MobileMenu = () => {
   return (
     <TooltipProvider>
       <div className="md:hidden">
-        <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+        <DropdownMenu open={isMenuOpen} onOpenChange={handleMenuToggle}>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="default" className="border-cyan-500/30 bg-black/80 text-cyan-100 hover:bg-cyan-500/20 px-3 py-2">
+            <Button 
+              variant="outline" 
+              size="default" 
+              className="border-cyan-500/30 bg-black/80 text-cyan-100 hover:bg-cyan-500/20 px-3 py-2"
+              onClick={() => {
+                console.log('Menu button clicked - current state:', isMenuOpen);
+                handleMenuToggle(!isMenuOpen);
+              }}
+            >
               <Menu className="w-5 h-5" />
             </Button>
           </DropdownMenuTrigger>
