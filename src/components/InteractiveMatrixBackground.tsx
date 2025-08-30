@@ -81,7 +81,7 @@ const InteractiveMatrixBackground = () => {
         speed: (Math.random() * 2 + 1),
         chars: [],
         opacity: Math.random() * 0.8 + 0.2,
-        length: Math.floor(Math.random() * 15) + 5
+        length: Math.floor(Math.random() * 10) + 4
       };
 
       // Generate random characters for this drop
@@ -170,8 +170,8 @@ const InteractiveMatrixBackground = () => {
 
     lastTimeRef.current = currentTime;
 
-    // Clear with stronger fade to prevent streaks
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+    // Clear with stronger fade to prevent streaks and make symbols defined
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const fontSize = 16;
@@ -181,9 +181,9 @@ const InteractiveMatrixBackground = () => {
       // Update position
       drop.y += drop.speed;
 
-      // Reset drop when it goes off screen
-      if (drop.y > canvas.height + drop.length * (fontSize * 1.2)) {
-        drop.y = -drop.length * (fontSize * 1.2);
+      // Reset drop when it goes off screen with proper spacing
+      if (drop.y > canvas.height + drop.length * (fontSize * 1.4)) {
+        drop.y = -drop.length * (fontSize * 1.4);
         drop.x = Math.random() * canvas.width;
         drop.speed = (Math.random() * 2 + 1);
         drop.opacity = Math.random() * 0.8 + 0.2;
@@ -193,39 +193,38 @@ const InteractiveMatrixBackground = () => {
       drop.speed = Math.max(drop.speed * 0.99, 1);
       drop.opacity = Math.max(drop.opacity * 0.998, 0.3);
 
-      // Render drop with crisp Matrix characters and proper spacing
-      ctx.font = `bold ${fontSize}px 'Courier New', 'MS Gothic', monospace`;
+      // Render drop with defined Matrix characters
+      ctx.font = `bold ${fontSize}px 'Courier New', 'Lucida Console', monospace`;
       ctx.textBaseline = 'top';
+      ctx.textAlign = 'center';
       
       for (let i = 0; i < drop.chars.length; i++) {
-        const charY = drop.y + i * (fontSize * 1.2); // Add spacing between characters
+        const charY = drop.y + i * (fontSize * 1.4); // More spacing for definition
         if (charY > 0 && charY < canvas.height + fontSize) {
-          // Fade effect from head to tail
-          const fadeMultiplier = Math.max(0, 1 - (i / drop.length));
+          // Stronger fade effect for more definition
+          const fadeMultiplier = Math.max(0, 1 - (i / drop.length) * 1.5);
           const alpha = drop.opacity * fadeMultiplier;
           
-          // Skip very faint characters to prevent streaks
-          if (alpha < 0.1) continue;
+          // Skip very faint characters
+          if (alpha < 0.2) continue;
           
-          // Clear crisp characters without blur
+          // No blur for crisp definition
           ctx.shadowBlur = 0;
           
-          // Head of the drop is bright white for contrast
+          // Head character is bright white and dominant
           if (i === 0) {
-            ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(alpha, 0.9)})`;
-          } else if (i === 1) {
-            // Second character bright green
-            ctx.fillStyle = `rgba(0, 255, 65, ${Math.min(alpha * 0.8, 0.7)})`;
+            ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(alpha, 0.95)})`;
+          } else if (i <= 2) {
+            // First few characters are bright green
+            ctx.fillStyle = `rgba(0, 255, 65, ${Math.min(alpha * 0.9, 0.8)})`;
           } else {
-            // Body characters fade to darker green with more spacing
-            const greenIntensity = Math.max(50, 200 * alpha);
-            ctx.fillStyle = `rgba(0, ${greenIntensity}, 30, ${alpha * 0.6})`;
+            // Body characters with defined green
+            const greenIntensity = Math.max(150, 255 * alpha);
+            ctx.fillStyle = `rgba(0, ${greenIntensity}, 50, ${alpha * 0.7})`;
           }
           
-          // Only render if character is visible enough
-          if (alpha > 0.15) {
-            ctx.fillText(drop.chars[i], Math.floor(drop.x), Math.floor(charY));
-          }
+          // Render defined characters
+          ctx.fillText(drop.chars[i], Math.floor(drop.x), Math.floor(charY));
         }
       }
 
