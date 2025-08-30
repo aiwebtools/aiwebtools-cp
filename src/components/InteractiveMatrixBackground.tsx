@@ -83,7 +83,7 @@ const InteractiveMatrixBackground = () => {
         speed: (Math.random() * 2 + 1) * (isMobile ? 0.8 : 1),
         chars: [],
         opacity: Math.random() * 0.8 + 0.2,
-        length: Math.floor(Math.random() * (isMobile ? 8 : 15)) + 5
+        length: Math.floor(Math.random() * (isMobile ? 6 : 10)) + 3
       };
 
       // Generate random characters for this drop
@@ -172,8 +172,8 @@ const InteractiveMatrixBackground = () => {
 
     lastTimeRef.current = currentTime;
 
-    // Clear with fade effect for trails
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    // Clear with stronger fade to prevent streaks
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const fontSize = isMobile ? 14 : 18;
@@ -184,8 +184,8 @@ const InteractiveMatrixBackground = () => {
       drop.y += drop.speed;
 
       // Reset drop when it goes off screen
-      if (drop.y > canvas.height + drop.length * fontSize) {
-        drop.y = -drop.length * fontSize;
+      if (drop.y > canvas.height + drop.length * (fontSize * 1.2)) {
+        drop.y = -drop.length * (fontSize * 1.2);
         drop.x = Math.random() * canvas.width;
         drop.speed = (Math.random() * 2 + 1) * (isMobile ? 0.8 : 1);
         drop.opacity = Math.random() * 0.8 + 0.2;
@@ -195,33 +195,39 @@ const InteractiveMatrixBackground = () => {
       drop.speed = Math.max(drop.speed * 0.99, 1);
       drop.opacity = Math.max(drop.opacity * 0.998, 0.3);
 
-      // Render drop with crisp Matrix characters
+      // Render drop with crisp Matrix characters and proper spacing
       ctx.font = `bold ${fontSize}px 'Courier New', 'MS Gothic', monospace`;
       ctx.textBaseline = 'top';
       
       for (let i = 0; i < drop.chars.length; i++) {
-        const charY = drop.y + i * fontSize;
+        const charY = drop.y + i * (fontSize * 1.2); // Add spacing between characters
         if (charY > 0 && charY < canvas.height + fontSize) {
           // Fade effect from head to tail
           const fadeMultiplier = Math.max(0, 1 - (i / drop.length));
           const alpha = drop.opacity * fadeMultiplier;
+          
+          // Skip very faint characters to prevent streaks
+          if (alpha < 0.1) continue;
           
           // Clear crisp characters without blur
           ctx.shadowBlur = 0;
           
           // Head of the drop is bright white for contrast
           if (i === 0) {
-            ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(alpha * 1.5, 1)})`;
+            ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(alpha, 0.9)})`;
           } else if (i === 1) {
             // Second character bright green
-            ctx.fillStyle = `rgba(0, 255, 65, ${Math.min(alpha * 1.2, 1)})`;
+            ctx.fillStyle = `rgba(0, 255, 65, ${Math.min(alpha * 0.8, 0.7)})`;
           } else {
-            // Body characters fade to darker green
-            const greenIntensity = Math.max(100, 255 * alpha * 0.8);
-            ctx.fillStyle = `rgba(0, ${greenIntensity}, 65, ${alpha})`;
+            // Body characters fade to darker green with more spacing
+            const greenIntensity = Math.max(50, 200 * alpha);
+            ctx.fillStyle = `rgba(0, ${greenIntensity}, 30, ${alpha * 0.6})`;
           }
           
-          ctx.fillText(drop.chars[i], Math.floor(drop.x), Math.floor(charY));
+          // Only render if character is visible enough
+          if (alpha > 0.15) {
+            ctx.fillText(drop.chars[i], Math.floor(drop.x), Math.floor(charY));
+          }
         }
       }
 
