@@ -11,7 +11,6 @@ import { superSmartTypoCorrection, getPartialMatchSuggestions, matchWithContext,
 import { matchWebDevelopment, scoreWebDevelopment } from "./matching/webDevelopmentMatching";
 import { getAdvancedPartialMatches, scoreAdvancedPartialMatch } from "./core/advancedPartialMatching";
 import { getAIWebToolsPriorityScore, applyAIWebToolsPrioritization } from "@/utils/aiWebToolsPrioritization";
-import { expandSearchTerm } from "./enhancedKeywords";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -20,35 +19,35 @@ const EXCLUDED_TOOLS = [
   "personal financial advisor"
 ];
 
-// Intent detection patterns for better search prioritization - EXPANDED FOR ALL CATEGORIES WITH INTELLIGENT SEARCH TERMS
+// Intent detection patterns for better search prioritization - EXPANDED FOR ALL CATEGORIES
 const INTENT_PATTERNS = {
   education: {
-    triggers: ['college', 'university', 'degree', 'education', 'learn', 'study', 'course', 'school', 'academic', 'skill', 'training', 'lesson', 'class', 'homework', 'tutor', 'teacher', 'student', 'teaching', 'curriculum', 'syllabus', 'textbook', 'exam', 'test', 'quiz', 'grade', 'diploma', 'certificate', 'classroom', 'lecture', 'seminar', 'workshop'],
+    triggers: ['college', 'university', 'degree', 'education', 'learn', 'study', 'course', 'school', 'academic', 'skill', 'training', 'lesson', 'class', 'homework', 'tutor', 'teacher', 'student'],
     priority: ['COLLEGE DEGREE GPT', 'LEARN ANY SKILL GPT', 'LEARN ANY COURSE GPT', 'Home-Schooling Assistant GPT', 'HomeSchool GPT', 'Quiz Maker Ai', 'Course Maker GPT'],
     categories: ['Education & Research Tools', 'Learning & Education', 'Educational Tools', 'Education & Learning']
   },
   creative: {
-    triggers: ['book', 'write', 'writing', 'author', 'story', 'novel', 'script', 'content', 'blog', 'article', 'creative', 'design', 'art', 'graphic', 'logo', 'image', 'video', 'movie', 'music', 'paint', 'draw', 'sketch', 'illustration', 'photography', 'film', 'cinema', 'animation', 'cartoon', 'comic', 'manga', 'poetry', 'lyrics', 'song', 'melody', 'composition', 'masterpiece', 'artwork', 'gallery'],
+    triggers: ['book', 'write', 'writing', 'author', 'story', 'novel', 'script', 'content', 'blog', 'article', 'creative', 'design', 'art', 'graphic', 'logo', 'image', 'video', 'movie', 'music'],
     priority: ['BOOK WRITER GPT', 'Movie Script Writer GPT', 'Article and Blog Rewriter GPT', 'Graphic & Cover Design GPT', 'Movie Maker Studio AI SUITE', 'Music Video Maker AI Studio', 'RESTYLE ME GPT', 'Sketch Artist GPT'],
     categories: ['Writing & Text Generation', 'Content Creation', 'Creative Tools', 'Creative & Media', 'Creative & Design']
   },
   health: {
-    triggers: ['doctor', 'health', 'medical', 'wellness', 'fitness', 'nutrition', 'therapy', 'mental', 'dental', 'veterinarian', 'pet', 'medicine', 'pharmaceutical', 'hospital', 'clinic', 'diagnosis', 'treatment', 'surgery', 'prescription', 'vaccine', 'immunity', 'disease', 'symptoms', 'recovery', 'healing', 'physiology', 'anatomy', 'psychology', 'psychiatry', 'counseling', 'rehabilitation'],
+    triggers: ['doctor', 'health', 'medical', 'wellness', 'fitness', 'nutrition', 'therapy', 'mental', 'dental', 'veterinarian', 'pet', 'medicine', 'pharmaceutical'],
     priority: ['Personalized DR. GPT (Doctor GPT)', 'Mental Wellness GPT', 'Veterinarian GPT', 'Pharmaceutical Assistant GPT', 'DENTAL GPT', 'SKIN CARE GPT'],
     categories: ['Health & Wellness', 'Healthcare', 'Medical Tools', 'Health, Wellness & Personal Lifestyle']
   },
   business: {
-    triggers: ['business', 'marketing', 'finance', 'trading', 'investment', 'money', 'budget', 'startup', 'entrepreneur', 'sales', 'management', 'productivity', 'resume', 'job', 'commerce', 'economy', 'profit', 'revenue', 'accounting', 'bookkeeping', 'analytics', 'metrics', 'roi', 'kpi', 'strategy', 'planning', 'execution', 'leadership', 'team', 'hiring', 'hr', 'payroll', 'invoice', 'billing', 'customer', 'client', 'market', 'competition', 'branding', 'advertising', 'campaign'],
+    triggers: ['business', 'marketing', 'finance', 'trading', 'investment', 'money', 'budget', 'startup', 'entrepreneur', 'sales', 'management', 'productivity', 'resume', 'job'],
     priority: ['Business Plan Generator GPT', 'Startup Validator GPT', 'Trader GPT', 'MicroSaaS GPT', 'The Resume & Job Finder Ai Suite', 'Taxes GPT', 'Insurance Claims GPT'],
     categories: ['Business & Productivity', 'Finance & Trading', 'Marketing Tools', 'Business & Finance', 'Business Tools']
   },
   science: {
-    triggers: ['science', 'research', 'analysis', 'data', 'laboratory', 'experiment', 'scientific', 'genome', 'dna', 'physics', 'chemistry', 'biology', 'space', 'astronomy', 'mathematics', 'statistics', 'engineering', 'technology', 'innovation', 'discovery', 'hypothesis', 'theory', 'evidence', 'methodology', 'observation', 'measurement', 'calculation', 'formula', 'equation', 'algorithm', 'molecular', 'atomic', 'quantum', 'cosmos', 'universe', 'galaxy', 'planet', 'telescope', 'microscope'],
+    triggers: ['science', 'research', 'analysis', 'data', 'laboratory', 'experiment', 'scientific', 'genome', 'dna', 'physics', 'chemistry', 'biology', 'space', 'astronomy'],
     priority: ['Nikola Tesla GPT', 'Stellaris: 🚀AI Space Explorer', 'Genome GPT', 'Alchemist Scientist GPT', 'Data Research Analysis Report GPT'],
     categories: ['Science & Research', 'Research & Learning', 'Scientific Tools', 'Data Analytics']
   },
   technology: {
-    triggers: ['ai', 'artificial intelligence', 'machine learning', 'automation', 'coding', 'programming', 'development', 'software', 'tech', 'computer', 'app', 'website', 'digital', 'cyber', 'internet', 'online', 'cloud', 'server', 'database', 'network', 'blockchain', 'cryptocurrency', 'bitcoin', 'ethereum', 'nft', 'metaverse', 'vr', 'ar', 'virtual reality', 'augmented reality', 'robotics', 'iot', 'api', 'framework', 'library', 'platform', 'interface', 'mobile', 'responsive', 'frontend', 'backend', 'fullstack'],
+    triggers: ['ai', 'artificial intelligence', 'machine learning', 'automation', 'coding', 'programming', 'development', 'software', 'tech', 'computer', 'app', 'website'],
     priority: ['GODMODE GPT', 'Engineering GPT AI Suite', 'MULTITASKER GPT', 'Customizable GPT Maker'],
     categories: ['AI & Development', 'Technology Tools', 'Development Tools', 'AI Tools']
   },
@@ -58,30 +57,14 @@ const INTENT_PATTERNS = {
     categories: ['Legal & Government', 'Legal Tools', 'Government & Civic']
   },
   entertainment: {
-    triggers: ['game', 'gaming', 'entertainment', 'fun', 'trivia', 'celebrity', 'movie', 'film', 'music', 'meme', 'comic', 'video game', 'videogame', 'game design', 'game development', 'game creation', 'game maker', 'game generator', '3d game', 'ai game', 'seele', 'console', 'pc gaming', 'mobile game', 'arcade', 'puzzle', 'adventure', 'rpg', 'action', 'strategy', 'simulation', 'racing', 'sports game', 'multiplayer', 'single player', 'indie game', 'steam', 'playstation', 'xbox', 'nintendo', 'streaming', 'twitch', 'youtube', 'podcast', 'radio', 'television', 'netflix', 'disney'],
+    triggers: ['game', 'gaming', 'entertainment', 'fun', 'trivia', 'celebrity', 'movie', 'film', 'music', 'meme', 'comic', 'video game', 'videogame', 'game design', 'game development', 'game creation', 'game maker', 'game generator', '3d game', 'ai game', 'seele'],
     priority: ['Seele Video Game Generator', 'Game Design Document / Developer GPT', 'Trivia Night GPT', 'Celebrity Chatline GPT', 'MEME GENERATOR GPT', 'Comic Book Generator GPT'],
     categories: ['Entertainment & Gaming', 'Gaming Tools', 'Entertainment Tools', 'GAME DESIGN & DEVELOPMENT']
   },
   spiritual: {
-    triggers: ['soul', 'spirit', 'spiritual', 'gematria', 'numerology', 'astrology', 'mystical', 'divine', 'cosmic', 'metaphysical', 'essence', 'soul map', 'soul mapping', 'blueprint', 'chakra', 'meditation', 'enlightenment', 'wisdom', 'philosophy', 'tarot', 'crystals', 'healing', 'consciousness', 'manifestation', 'energy', 'aura', 'psychic', 'intuition', 'karma', 'zen', 'buddhism', 'hinduism', 'christianity', 'islam', 'judaism', 'faith', 'prayer', 'devotion', 'sacred', 'holy', 'blessed', 'mindfulness', 'inner peace', 'transcendence', 'awakening', 'transformation', 'self discovery'],
+    triggers: ['soul', 'spirit', 'spiritual', 'gematria', 'numerology', 'astrology', 'mystical', 'divine', 'cosmic', 'metaphysical', 'essence', 'soul map', 'soul mapping', 'blueprint', 'chakra', 'meditation', 'enlightenment', 'wisdom', 'philosophy', 'tarot', 'crystals', 'healing', 'consciousness', 'manifestation'],
     priority: ['Soul Map GPT', 'ALAN WATTS GPT', '🕊️Mary Magdalene GPT', 'TALK TO THE GODS GPT', 'Sophia Aeterna AI', 'Interpretis 🕰️'],
     categories: ['Spirituality & Philosophy', 'Mystical Tools', 'Personal Development', 'Philosophy']
-  },
-  // NEW: Enhanced search categories for comprehensive coverage
-  productivity: {
-    triggers: ['productivity', 'efficiency', 'organization', 'planning', 'scheduling', 'calendar', 'task', 'todo', 'reminder', 'note', 'notebook', 'journal', 'workflow', 'collaboration', 'team work', 'project management', 'time management', 'deadline', 'priority', 'focus', 'concentration', 'distraction'],
-    priority: ['MULTITASKER GPT', 'Business Plan Generator GPT', 'Training Manual Generator GPT'],
-    categories: ['Business & Productivity', 'Productivity Tools', 'Workflow Tools']
-  },
-  lifestyle: {
-    triggers: ['lifestyle', 'personal', 'home', 'family', 'relationship', 'dating', 'marriage', 'parenting', 'cooking', 'recipe', 'fashion', 'style', 'beauty', 'skincare', 'fitness', 'exercise', 'diet', 'weight loss', 'hobby', 'interest', 'passion', 'recreation'],
-    priority: ['Marriage Mender GPT', 'Home Renovator GPT', 'Chef "Sizzle" AI Culinary Assistant', 'RESTYLE ME GPT'],
-    categories: ['Health & Wellness', 'Lifestyle Tools', 'Personal Development']
-  },
-  communication: {
-    triggers: ['communication', 'chat', 'message', 'email', 'letter', 'conversation', 'dialogue', 'discussion', 'meeting', 'conference', 'presentation', 'speech', 'talk', 'interview', 'negotiation', 'persuasion', 'storytelling', 'narrative'],
-    priority: ['Celebrity Chatline GPT', 'TALK TO HISTORY GPT', 'Public Testimony Writer GPT'],
-    categories: ['Communication Tools', 'Social Tools', 'Professional Tools']
   }
 };
 
@@ -115,34 +98,24 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     console.log(`🔍 Suno tools found: ${sunoTools.length}`, sunoTools.map(t => t.title));
   }
 
-  // STEP 1: Enhanced search term expansion with intelligent keywords
-  const expandedTerms = expandSearchTerm(searchTerm);
+  // STEP 1: Super intelligent typo correction and advanced partial matching
   const correctedSearchTerm = superSmartTypoCorrection(searchTerm);
   const partialSuggestions = getPartialMatchSuggestions(searchTerm);
   const advancedPartialMatches = getAdvancedPartialMatches(searchTerm, tools);
   
-  // Enhanced search with expanded terms for better matching
-  const allSearchTerms = [...new Set([searchTerm, correctedSearchTerm, ...expandedTerms, ...partialSuggestions])];
-  
   // Reduced console logging for performance - only for critical debugging
   if (searchTerm.toLowerCase().includes('debug')) {
-    console.log(`🧠 SUPER SEARCH: "${searchTerm}" → Enhanced terms:`, allSearchTerms.slice(0, 10));
+    console.log(`🧠 SUPER SEARCH: "${searchTerm}" → "${correctedSearchTerm}"`);
   }
 
   const normalizedSearchTerm = correctedSearchTerm.toLowerCase().trim();
   const searchWords = normalizedSearchTerm.split(/[\s,.-]+/).filter(word => word.length > 1);
   
-  // Enhanced search words from expanded terms
-  const allSearchWords = [...new Set([
-    ...searchWords,
-    ...allSearchTerms.flatMap(term => term.toLowerCase().split(/[\s,.-]+/).filter(word => word.length > 1))
-  ])];
-  
-  // Enhanced phonetic variations with expanded terms
+  // Enhanced phonetic variations  
   const phoneticVariations = searchTerm.length <= 8 ? phoneticMatch(normalizedSearchTerm) : [];
   
-  // Enhanced intent detection with expanded terms
-  const userIntent = detectIntent(allSearchTerms.join(' '));
+  // Enhanced intent detection
+  const userIntent = detectIntent(normalizedSearchTerm);
   const intentConfig = userIntent ? INTENT_PATTERNS[userIntent as keyof typeof INTENT_PATTERNS] : null;
   
   // VIDEO SEARCH PRIORITY - Strict video tool filtering
@@ -191,7 +164,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     const nonVideoTools = tools.filter(tool => !videoTools.includes(tool));
     const finalVideoResults = [...sortedVideoTools, ...nonVideoTools];
     
-    return performEnhancedSearch(finalVideoResults, searchTerm, allSearchWords, phoneticVariations, intentConfig);
+    return performEnhancedSearch(finalVideoResults, searchTerm, searchWords, phoneticVariations, intentConfig);
   }
   
   // AUDIO/MUSIC TOOL PRIORITY - Enhanced detection
@@ -235,7 +208,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     
     const nonAudioTools = tools.filter(tool => !audioTools.includes(tool));
     const finalAudioResults = [...sortedAudioTools, ...nonAudioTools];
-    return performEnhancedSearch(finalAudioResults, searchTerm, allSearchWords, phoneticVariations, intentConfig);
+    return performEnhancedSearch(finalAudioResults, searchTerm, searchWords, phoneticVariations, intentConfig);
   }
 
   // EDUCATION/LEARNING TOOL PRIORITY - Enhanced detection  
@@ -286,7 +259,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     
     const nonEducationTools = tools.filter(tool => !educationTools.includes(tool));
     const finalEducationResults = [...sortedEducationTools, ...nonEducationTools];
-    return performEnhancedSearch(finalEducationResults, searchTerm, allSearchWords, phoneticVariations, intentConfig);
+    return performEnhancedSearch(finalEducationResults, searchTerm, searchWords, phoneticVariations, intentConfig);
   }
 
   // CHAT TOOL PRIORITY - Enhanced detection
@@ -1385,7 +1358,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       !aiWebToolsResults.some(aiTool => aiTool.title === tool.title)
     );
     
-    const regularResults = performEnhancedSearch(remainingTools, searchTerm, allSearchWords, phoneticVariations, intentConfig);
+    const regularResults = performEnhancedSearch(remainingTools, searchTerm, searchWords, phoneticVariations, intentConfig);
     
     // 🚀 Apply prioritization to combined results
     return applyAIWebToolsPrioritization([...scoredAIWebTools, ...regularResults]);
@@ -1518,15 +1491,15 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       tool.title.toLowerCase().includes('education')
     );
     const prioritizedEducationSearch = [...educationTools, ...tools.filter(t => !educationTools.includes(t))];
-    return applyAIWebToolsPrioritization(performEnhancedSearch(prioritizedEducationSearch, searchTerm, allSearchWords, phoneticVariations, intentConfig));
+    return applyAIWebToolsPrioritization(performEnhancedSearch(prioritizedEducationSearch, searchTerm, searchWords, phoneticVariations, intentConfig));
   }
   
   // Regular enhanced search with improved scoring and AI Web Tools prioritization
-  const regularSearchResults = performEnhancedSearch(tools, searchTerm, allSearchWords, phoneticVariations, intentConfig);
+  const regularSearchResults = performEnhancedSearch(tools, searchTerm, searchWords, phoneticVariations, intentConfig);
   return applyAIWebToolsPrioritization(regularSearchResults);
 };
 
-// Perform enhanced search with intent prioritization and fuzzy matching - NOW WITH ENHANCED KEYWORDS
+// Perform enhanced search with intent prioritization and fuzzy matching
 const performEnhancedSearch = (
   tools: Tool[], 
   searchTerm: string, 
