@@ -11,6 +11,12 @@ interface MinimalToolCardProps {
 
 const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
   const handleClick = (e: React.MouseEvent) => {
+    // Don't trigger if clicking on buttons or interactive elements
+    const target = e.target as HTMLElement;
+    if (target.tagName === 'BUTTON' || target.closest('button') || target.closest('a')) {
+      return;
+    }
+    
     if (tool.directUrl) {
       e.preventDefault();
       e.stopPropagation();
@@ -25,9 +31,7 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
       onClick={handleClick}
     >
       {/* Favorite Button */}
-      <div className="absolute top-2 right-2 z-20">
-        <FavoriteButton tool={tool} size="sm" />
-      </div>
+      <FavoriteButton tool={tool} size="sm" className="top-1 right-1 z-30" />
       
       <CardContent className="p-4">
         <div className="flex items-start space-x-3">

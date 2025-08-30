@@ -25,15 +25,15 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({
   };
 
   const sizeClasses = {
-    sm: 'w-6 h-6 p-1',
-    md: 'w-8 h-8 p-1.5',
-    lg: 'w-10 h-10 p-2'
+    sm: 'w-5 h-5 p-1',
+    md: 'w-6 h-6 p-1',
+    lg: 'w-7 h-7 p-1.5'
   };
 
   const iconSizes = {
-    sm: 12,
-    md: 16,
-    lg: 20
+    sm: 10,
+    md: 12,
+    lg: 14
   };
 
   return (
@@ -42,12 +42,12 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({
       variant="ghost"
       size="icon"
       className={`
-        absolute top-2 right-2 z-10 rounded-full backdrop-blur-sm
+        absolute top-1.5 right-1.5 z-30 rounded-full backdrop-blur-sm pointer-events-auto
         ${isToolFavorite 
-          ? 'bg-red-500/90 hover:bg-red-600/90 text-white border border-red-400/50' 
-          : 'bg-gray-800/90 hover:bg-gray-700/90 text-gray-300 hover:text-red-400 border border-gray-600/50'
+          ? 'bg-red-500/95 hover:bg-red-600/95 text-white border border-red-400/60 shadow-lg' 
+          : 'bg-gray-800/95 hover:bg-gray-700/95 text-gray-300 hover:text-red-400 border border-gray-600/60'
         }
-        transition-all duration-200 hover:scale-110 active:scale-95
+        transition-all duration-200 hover:scale-105 active:scale-95
         ${sizeClasses[size]}
         ${className}
       `}

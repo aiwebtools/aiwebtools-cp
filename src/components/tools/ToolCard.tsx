@@ -121,9 +121,7 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
       />
       
       {/* Favorite Button */}
-      <div className="absolute top-2 right-2 z-20">
-        <FavoriteButton tool={tool} size="md" />
-      </div>
+      <FavoriteButton tool={tool} size="sm" className="top-1.5 right-1.5 z-30" />
       
       <ToolCardContent 
         tool={tool}
