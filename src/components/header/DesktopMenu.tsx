@@ -32,8 +32,8 @@ const DesktopMenu = () => {
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const searchRef = useRef(null);
   
-  // Optimized debounce for instant responsiveness
-  const debouncedSearchTerm = useDebounce(searchTerm, 100);
+  // Ultra-fast debounce to match hero search performance
+  const debouncedSearchTerm = useDebounce(searchTerm, 80);
 
   const handleMenuToggle = useCallback((open: boolean) => {
     setIsMenuOpen(open);
@@ -47,7 +47,7 @@ const DesktopMenu = () => {
   const searchResults = useMemo(() => {
     const trimmedTerm = debouncedSearchTerm.trim();
     
-    if (!trimmedTerm || trimmedTerm.length < 2) return [];
+    if (!trimmedTerm || trimmedTerm.length < 1) return [];
 
     const lowerTerm = trimmedTerm.toLowerCase();
     
