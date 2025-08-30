@@ -33,7 +33,7 @@ const GlobalSearchInput = memo(({
         value={searchTerm}
         onChange={handleChange}
         onKeyDown={onKeyDown}
-        className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg backdrop-blur-sm focus:bg-black/80 transition-all duration-75"
+        className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg backdrop-blur-sm focus:bg-black/80"
         autoComplete="off"
         spellCheck={false}
         inputMode="search"
@@ -52,7 +52,7 @@ const GlobalSearchInput = memo(({
           variant="ghost"
           size="sm"
           onClick={onClear}
-          className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-gray-300 hover:text-white hover:bg-white/10 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none"
+          className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-gray-300 hover:text-white hover:bg-white/10"
           aria-label="Clear search"
         >
           <X className="w-3 h-3" />

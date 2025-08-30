@@ -21,8 +21,8 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
-  // Always call debounce hook to maintain hook order - ULTRA FAST for smooth typing
-  const debouncedSearchTerm = useDebounce(searchTerm, 50);
+  // Always call debounce hook to maintain hook order - INSTANT typing response
+  const debouncedSearchTerm = useDebounce(searchTerm, 30);
 
   // OPTIMIZED search effect with EXACT MATCHING PRIORITY
   useEffect(() => {
