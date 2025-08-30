@@ -1,6 +1,6 @@
 
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { useGlobalSearch } from "@/hooks/useGlobalSearch";
+import { useOptimizedGlobalSearch } from "@/hooks/useOptimizedGlobalSearch";
 import GlobalSearchInput from "@/components/search/GlobalSearchInput";
 import GlobalSearchResults from "@/components/search/GlobalSearchResults";
 
@@ -12,6 +12,7 @@ const GlobalSearchBar = () => {
     displayedCount,
     isOpen,
     isLoadingMore,
+    isSearching,
     toolStats,
     searchRef,
     handleToolClick,
@@ -19,7 +20,7 @@ const GlobalSearchBar = () => {
     clearSearch,
     handleKeyDown,
     handleScroll,
-  } = useGlobalSearch();
+  } = useOptimizedGlobalSearch();
 
   return (
     <TooltipProvider>
@@ -31,6 +32,7 @@ const GlobalSearchBar = () => {
           onSearchChange={setSearchTerm}
           onKeyDown={handleKeyDown}
           onClear={clearSearch}
+          isSearching={isSearching}
         />
 
         {isOpen && searchResults.length > 0 && (

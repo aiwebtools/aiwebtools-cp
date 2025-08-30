@@ -10,6 +10,7 @@ interface GlobalSearchInputProps {
   onSearchChange: (value: string) => void;
   onKeyDown: (e: React.KeyboardEvent) => void;
   onClear: () => void;
+  isSearching?: boolean;
 }
 
 const GlobalSearchInput = memo(({
@@ -18,15 +19,16 @@ const GlobalSearchInput = memo(({
   onSearchChange,
   onKeyDown,
   onClear,
+  isSearching = false,
 }: GlobalSearchInputProps) => {
-  // Direct onChange handler for maximum speed
+  // Direct onChange handler for maximum speed - no extra processing
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     onSearchChange(e.target.value);
   }, [onSearchChange]);
 
   return (
     <div className="relative rounded-lg border-2 border-white shadow-[0_0_20px_rgba(255,255,255,0.8),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(255,255,255,0.4)]">
-      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 w-4 h-4 pointer-events-none" />
+      <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 w-4 h-4 pointer-events-none ${isSearching ? 'animate-pulse text-cyan-400' : ''}`} />
       <Input
         type="text"
         placeholder={`Search ${toolStats.marketing} AI tools...`}
