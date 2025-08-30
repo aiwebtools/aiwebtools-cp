@@ -157,8 +157,8 @@ const TabletMenu = () => {
             <div className="p-4">
               {/* Header with Logo */}
               <div className="text-center mb-4 border-b border-cyan-500/30 pb-4">
-                <div className="flex justify-center mb-2">
-                  <Logo />
+                <div className="flex justify-center mb-1">
+                  <Logo compact={true} />
                 </div>
                 <p className="text-sm text-cyan-200">Navigate our platform</p>
               </div>

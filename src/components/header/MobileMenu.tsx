@@ -258,8 +258,8 @@ const MobileMenu = () => {
                   <X className="w-6 h-6" />
                 </Button>
                 
-                <div className="flex flex-col items-center mb-3">
-                  <Logo />
+                <div className="flex flex-col items-center mb-2">
+                  <Logo compact={true} />
                 </div>
                 <div className="text-lg md:text-xl font-bold text-cyan-400 mb-2">
                   Navigate our platform

@@ -248,8 +248,8 @@ const DesktopMenu = () => {
                   <X className="w-6 h-6" />
                 </Button>
                 
-                <div className="flex flex-col items-center mb-4">
-                  <Logo />
+                <div className="flex flex-col items-center mb-3">
+                  <Logo compact={true} />
                 </div>
                 <div className="text-2xl font-bold text-cyan-400 mb-3">
                   Navigate our platform
