@@ -7,8 +7,8 @@ import GlobalSearchBar from "./GlobalSearchBar";
 
 const Header = () => {
   return (
-    <header className="fixed top-0 w-full z-[100] bg-black/95 border-b border-cyan-500/30 shadow-lg backdrop-blur-sm">
-      <div className="container mx-auto px-4 py-4">
+    <header className="fixed top-0 left-0 right-0 w-full z-[100] bg-black/95 border-b border-cyan-500/30 shadow-2xl backdrop-blur-md transition-all duration-200">
+      <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between min-h-[60px]">
           <Logo />
           
