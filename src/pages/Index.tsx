@@ -25,8 +25,6 @@ const LoadingSpinner = () => (
 );
 
 const Index = () => {
-  console.log('🏠 Index page component starting...');
-  
   // Use fast cached stats initially for better performance
   const [toolStats, setToolStats] = useState(getFastToolCount());
   const [isLoaded, setIsLoaded] = useState(false);
