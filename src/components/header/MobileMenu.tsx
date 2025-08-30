@@ -207,56 +207,65 @@ const MobileMenu = () => {
               <Menu className="w-5 h-5" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-[92vw] max-w-[350px] bg-black shadow-xl border border-cyan-500/30 backdrop-blur-md max-h-[70vh] overflow-y-auto mx-2 z-[110]">
-            <div className="p-2">
+          <DropdownMenuContent 
+            className="w-[95vw] max-w-[380px] bg-black/95 shadow-2xl border border-cyan-500/40 backdrop-blur-xl max-h-[80vh] overflow-y-auto z-[110]"
+            align="end"
+            alignOffset={-10}
+            sideOffset={8}
+            avoidCollisions={true}
+            sticky="always"
+          >
+            <div className="p-3">
               {/* Header with Close Button */}
-              <div className="text-center mb-3 border-b border-cyan-500/30 pb-3 relative">
-                {/* Close Button - Top Right - Make it larger and easier to tap */}
+              <div className="text-center mb-4 border-b border-cyan-500/30 pb-3 relative">
+                {/* Close Button - Top Right - Optimized for touch */}
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={closeMenu}
-                  className="absolute -top-1 -right-1 h-10 w-10 p-0 text-gray-400 hover:text-white hover:bg-red-500/30 border border-red-500/50 rounded-full transition-all duration-200 touch-target"
+                  className="absolute -top-2 -right-2 h-12 w-12 p-0 text-gray-400 hover:text-white hover:bg-red-500/40 border border-red-500/60 rounded-full transition-all duration-200 shadow-lg backdrop-blur-sm"
                   aria-label="Close menu"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-6 h-6" />
                 </Button>
                 
-                <div className="text-sm font-bold text-cyan-400 mb-1">
+                <div className="text-base font-bold text-cyan-400 mb-2">
                   AI TOOLS STUDIO
                 </div>
-                <p className="text-xs text-cyan-200/70">Quick Navigation</p>
+                <p className="text-sm text-cyan-200/80">Quick Navigation & Search</p>
               </div>
 
-              {/* Optimized Search Bar */}
-              <div ref={searchRef} className="relative mb-3">
+              {/* Ultra-Fast Search Bar */}
+              <div ref={searchRef} className="relative mb-4">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-cyan-400 w-5 h-5" />
                   <Input
                     type="text"
-                    placeholder={`Quick search ${toolStats.marketing} tools...`}
+                    placeholder={`Lightning search ${toolStats.marketing} tools...`}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 pr-10 bg-gray-900/70 border-gray-600 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-cyan-400 text-sm h-10"
+                    className="pl-12 pr-12 bg-gray-900/80 border-cyan-500/40 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-cyan-400/50 text-base h-12 rounded-xl backdrop-blur-sm"
+                    autoComplete="off"
+                    spellCheck={false}
                   />
                   {searchTerm && (
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={clearSearch}
-                      className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 text-gray-400 hover:text-white touch-target"
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 h-8 w-8 p-0 text-gray-400 hover:text-white hover:bg-white/10 rounded-lg"
                     >
-                      <X className="w-4 h-4" />
+                      <X className="w-5 h-5" />
                     </Button>
                   )}
                 </div>
 
-                {/* Search Results */}
+                {/* Lightning Fast Search Results */}
                 {isSearchOpen && (
-                  <Card className="absolute top-full left-0 right-0 mt-1 bg-gray-900 border border-cyan-500/40 shadow-2xl z-50 max-h-[45vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" onScroll={handleScroll}>
-                    <CardContent className="p-1">
-                      <div className="text-xs text-cyan-400 px-2 py-1 border-b border-gray-700 sticky top-0 bg-gray-900">
-                        {searchResults.length} results {displayedCount < searchResults.length && `(${displayedCount} shown)`}
+                  <Card className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 border border-cyan-500/50 shadow-2xl z-60 max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/60 scrollbar-track-gray-800 rounded-xl backdrop-blur-xl" onScroll={handleScroll}>
+                    <CardContent className="p-2">
+                      <div className="text-sm text-cyan-400 px-3 py-2 border-b border-gray-700 sticky top-0 bg-gray-900/95 backdrop-blur-sm font-medium">
+                        ⚡ {searchResults.length} results {displayedCount < searchResults.length && `(showing ${displayedCount})`}
                       </div>
                       {searchResults.slice(0, displayedCount).map((tool, index) => {
                         const toolIndex = allTools.findIndex(t => t.title === tool.title);
@@ -264,14 +273,14 @@ const MobileMenu = () => {
                           <Tooltip key={`mobile-search-${tool.title}-${index}`} delayDuration={300}>
                             <TooltipTrigger asChild>
                               <div 
-                                className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-800/60 cursor-pointer group transition-colors duration-150 touch-target"
+                                className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-800/80 cursor-pointer group transition-all duration-200 border border-transparent hover:border-cyan-500/30"
                                 onClick={() => handleToolClick(toolIndex)}
                               >
-                                <div className={`w-5 h-5 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-xs flex-shrink-0`}>
+                                <div className={`w-8 h-8 rounded-xl bg-gradient-to-r ${tool.color} flex items-center justify-center text-sm flex-shrink-0 shadow-md`}>
                                   {tool.emoji}
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                  <h3 className="font-medium text-white text-xs leading-tight mb-0.5 group-hover:text-cyan-400 transition-colors truncate">
+                                  <h3 className="font-semibold text-white text-sm leading-tight mb-1 group-hover:text-cyan-400 transition-colors truncate">
                                     {tool.title}
                                   </h3>
                                   {tool.category && (
@@ -283,7 +292,7 @@ const MobileMenu = () => {
                                   <Button 
                                     size="sm"
                                     variant="outline"
-                                    className="border-green-500/50 bg-green-500/10 text-green-300 hover:bg-green-500/20 text-xs px-1 py-0 h-6 flex-shrink-0"
+                                    className="border-green-500/60 bg-green-500/20 text-green-300 hover:bg-green-500/30 text-sm px-2 py-1 h-8 flex-shrink-0 rounded-lg shadow-sm"
                                     onClick={(e) => handleDirectAccess(tool, e)}
                                   >
                                     🚀
@@ -320,16 +329,16 @@ const MobileMenu = () => {
               </div>
 
               {/* Navigation Section */}
-              <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
-                🏠 Home
+              <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-3 rounded-lg h-12 text-base font-medium">
+                <span className="mr-3">🏠</span> Home
               </DropdownMenuItem>
               
               {/* Browse Categories - Featured */}
               <DropdownMenuItem
                 onClick={handleBrowseAITools}
-                className="text-center bg-gradient-to-r from-cyan-400 to-blue-500 text-white hover:from-cyan-500 hover:to-blue-600 font-bold mb-3 rounded-xl p-4 text-lg shadow-lg shadow-cyan-500/25 border border-cyan-400/30"
+                className="text-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 font-bold mb-4 rounded-xl p-5 text-lg shadow-xl shadow-cyan-500/30 border border-cyan-400/50 transition-all duration-200"
               >
-                🎯 Browse AI Tool Categories
+                <span className="mr-2">🎯</span> Browse AI Tool Categories
               </DropdownMenuItem>
               
               <DropdownMenuSeparator className="border-gray-700 mb-3" />
