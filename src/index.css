@@ -6,6 +6,7 @@
 @import url("./styles/timeEffects.css");
 @import url("./styles/mobile-optimizations.css");
 @import url("./styles/glow-animations.css");
+@import url("./styles/neon-effects.css");
 
 @tailwind base;
 @tailwind components;

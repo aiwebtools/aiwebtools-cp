@@ -1,0 +1,94 @@
+@layer components {
+  /* Matrix-style neon glow effects */
+  .cyber-glow {
+    text-shadow: 
+      0 0 5px rgba(6, 182, 212, 0.8),
+      0 0 10px rgba(6, 182, 212, 0.6),
+      0 0 15px rgba(6, 182, 212, 0.4),
+      0 0 20px rgba(6, 182, 212, 0.3);
+    animation: neon-pulse 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes neon-pulse {
+    0% {
+      text-shadow: 
+        0 0 5px rgba(6, 182, 212, 0.8),
+        0 0 10px rgba(6, 182, 212, 0.6),
+        0 0 15px rgba(6, 182, 212, 0.4),
+        0 0 20px rgba(6, 182, 212, 0.3);
+    }
+    100% {
+      text-shadow: 
+        0 0 8px rgba(6, 182, 212, 1),
+        0 0 16px rgba(6, 182, 212, 0.8),
+        0 0 24px rgba(6, 182, 212, 0.6),
+        0 0 32px rgba(6, 182, 212, 0.4),
+        0 0 40px rgba(6, 182, 212, 0.2);
+    }
+  }
+
+  /* Improved glow effect for buttons */
+  .glow-effect {
+    box-shadow: 
+      0 0 10px rgba(6, 182, 212, 0.3),
+      0 0 20px rgba(6, 182, 212, 0.2);
+    animation: button-glow 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes button-glow {
+    0% {
+      box-shadow: 
+        0 0 10px rgba(6, 182, 212, 0.3),
+        0 0 20px rgba(6, 182, 212, 0.2);
+    }
+    100% {
+      box-shadow: 
+        0 0 15px rgba(6, 182, 212, 0.5),
+        0 0 30px rgba(6, 182, 212, 0.3),
+        0 0 40px rgba(6, 182, 212, 0.1);
+    }
+  }
+
+  /* Text shadow glow for hover effects */
+  .hover\\:text-shadow-glow:hover {
+    text-shadow: 
+      0 0 8px rgba(6, 182, 212, 0.8),
+      0 0 16px rgba(6, 182, 212, 0.4);
+    transition: text-shadow 0.3s ease;
+  }
+
+  /* Letter spacing utilities */
+  .letter-spacing-wide {
+    letter-spacing: 0.1em;
+  }
+
+  /* Interactive button enhancements */
+  .interactive-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .interactive-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .interactive-button:hover::before {
+    left: 100%;
+  }
+}
+
+/* Ensure animations are performant */
+.cyber-glow,
+.glow-effect,
+.interactive-button {
+  will-change: text-shadow, box-shadow, transform;
+  backface-visibility: hidden;
+}
