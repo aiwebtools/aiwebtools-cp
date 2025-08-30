@@ -1,7 +1,7 @@
 
 import FeaturedTools from "@/components/FeaturedTools";
 import { Button } from "@/components/ui/button";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import { allTools } from "@/data/toolsData";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
@@ -10,97 +10,42 @@ interface FeaturedToolsSectionProps {
   onToolsLoaded?: (count: number) => void;
 }
 
-// Fisher-Yates shuffle algorithm for randomizing tools
-const shuffleArray = <T,>(array: T[]): T[] => {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-};
-
 const FeaturedToolsSection = ({ onToolsLoaded }: FeaturedToolsSectionProps) => {
   const [showAllTools, setShowAllTools] = useState(false);
   const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(24);
   const [isLoading, setIsLoading] = useState(false);
-  const [shuffledTools, setShuffledTools] = useState<typeof allTools>([]);
-  const [cycleCount, setCycleCount] = useState(0);
-
-  // Initialize shuffled tools when component mounts
-  const initializeShuffledTools = useCallback(() => {
-    if (shuffledTools.length === 0) {
-      const shuffled = shuffleArray(allTools);
-      setShuffledTools(shuffled);
-      console.log(`🎲 Initialized shuffled tools: ${shuffled.length} total tools available for forever scroll`);
-    }
-  }, [shuffledTools.length]);
 
   // Auto-show all tools after featured tools are expanded
+  // This eliminates the need for multiple buttons
   const handleAutoExpansion = () => {
     setShowAllTools(true);
     setAllToolsDisplayedCount(24);
-    initializeShuffledTools();
   };
 
   const handleAllToolsLoadMore = () => {
-    if (isLoading) return;
+    if (isLoading || allToolsDisplayedCount >= allTools.length) return;
+    
+    console.log(`🚀 Loading more tools: ${allToolsDisplayedCount} -> ${Math.min(allToolsDisplayedCount + 24, allTools.length)} of ${allTools.length}`);
     
     setIsLoading(true);
-    
     setTimeout(() => {
-      setAllToolsDisplayedCount(prev => {
-        const increment = 24;
-        let newCount = prev + increment;
-        
-        // When we've shown all tools in the current cycle, start a new cycle
-        if (newCount >= allTools.length) {
-          const newCycleCount = cycleCount + 1;
-          setCycleCount(newCycleCount);
-          
-          // Reshuffle tools for the new cycle to show different order
-          const newShuffled = shuffleArray(allTools);
-          setShuffledTools(newShuffled);
-          
-          // Continue from where we left off in the new cycle
-          newCount = (newCount - allTools.length) + increment;
-          
-          console.log(`🔄 Starting cycle ${newCycleCount + 1} with ${newShuffled.length} reshuffled tools, showing ${newCount} tools`);
-        }
-        
-        console.log(`🚀 Forever scroll: Cycle ${cycleCount + 1}, showing ${Math.min(newCount, allTools.length)} of ${allTools.length} tools (total displayed: ${newCount})`);
-        return newCount;
-      });
+      setAllToolsDisplayedCount(prev => Math.min(prev + 24, allTools.length));
       setIsLoading(false);
     }, 300);
   };
 
-  // Setup infinite scroll for all tools with forever scroll support
+  // Setup infinite scroll for all tools
   useInfiniteScroll({
     isLoading,
     showLoadMoreButton: false,
     displayedCount: allToolsDisplayedCount,
-    totalTools: Number.MAX_SAFE_INTEGER, // Enable forever scroll
+    totalTools: allTools.length,
     onLoadMore: handleAllToolsLoadMore,
-    searchTerm: "",
-    tools: allTools
+    searchTerm: ""
   });
 
-  // Get the current tools to display (handles cycling through shuffled tools)
-  const getCurrentDisplayedTools = () => {
-    if (shuffledTools.length === 0) return allTools.slice(0, allToolsDisplayedCount);
-    
-    const result = [];
-    for (let i = 0; i < allToolsDisplayedCount; i++) {
-      const toolIndex = i % shuffledTools.length;
-      result.push(shuffledTools[toolIndex]);
-    }
-    return result;
-  };
-
-  const currentDisplayedTools = getCurrentDisplayedTools();
-  const currentCyclePosition = allToolsDisplayedCount % allTools.length;
-  const totalCycles = Math.floor(allToolsDisplayedCount / allTools.length) + 1;
+  const hasMoreTools = allToolsDisplayedCount < allTools.length;
+  const showCompletionMessage = !hasMoreTools && !isLoading && allTools.length > 20;
 
   return (
     <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900 relative overflow-hidden">
@@ -130,24 +75,21 @@ const FeaturedToolsSection = ({ onToolsLoaded }: FeaturedToolsSectionProps) => {
           }} 
         />
 
-        {/* All Tools Section with Forever Scroll */}
+        {/* All Tools Section with Infinite Scroll - only show after featured tools are fully expanded */}
         {showAllTools && (
           <div id="all-tools-section" className="mt-12">
             <div className="text-center mb-8">
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 cyber-glow">
-                🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">ALL AI TOOLS COLLECTION - FOREVER SCROLL</span>
+                🚀 <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">ALL AI TOOLS COLLECTION</span>
               </h3>
-              <div className="text-cyan-400 font-semibold space-y-2">
-                <div>{allTools.length} unique tools • Cycle {totalCycles} • Never-ending discovery</div>
-                <div className="text-sm text-cyan-300 opacity-80">
-                  🔄 Tools reshuffle each cycle • Position: {currentCyclePosition}/{allTools.length} • Total viewed: {allToolsDisplayedCount}
-                </div>
+              <div className="text-cyan-400 font-semibold">
+                {allTools.length} total tools available
               </div>
             </div>
 
             <ToolsGrid
-              tools={currentDisplayedTools}
-              displayedCount={currentDisplayedTools.length}
+              tools={allTools}
+              displayedCount={allToolsDisplayedCount}
               selectedCategory={null}
               searchTerm=""
               onLoadMore={handleAllToolsLoadMore}
@@ -155,15 +97,18 @@ const FeaturedToolsSection = ({ onToolsLoaded }: FeaturedToolsSectionProps) => {
               isLoading={isLoading}
             />
 
-            {/* Forever scroll status */}
-            <div className="text-center mt-8 px-4 text-cyan-300">
-              <div className="text-sm opacity-80 mb-4">
-                🌟 Forever Scroll Active - Keep scrolling to discover more AI tools!
+            {/* Enhanced completion message */}
+            {showCompletionMessage && (
+              <div className="text-center mt-12 mb-16 px-4 text-cyan-300">
+                <div className="text-2xl mb-4">🎉</div>
+                <div className="text-lg font-semibold mb-4">
+                  You've explored all {allTools.length} tools in our database!
+                </div>
+                <div className="text-sm opacity-80 mb-8">
+                  Try searching or filtering by category to discover specific tools.
+                </div>
               </div>
-              <div className="text-xs opacity-60">
-                Each cycle reshuffles tools for new discoveries • Total unique tools: {allTools.length}
-              </div>
-            </div>
+            )}
           </div>
         )}
       </div>
