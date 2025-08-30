@@ -14,11 +14,10 @@ import { getToolsByCategory } from "@/utils/categoryUtils";
 import { getStandardizedCategoryTitle } from "@/utils/categoryTitles";
 import { generateStructuredData } from "@/utils/seo";
 import { getContextAwareAdditionalTools } from "@/utils/contextAwareSimilarTools";
+import { useForeverScroll } from "@/components/category/ForeverScrollManager";
 
 const CategoryPage = () => {
   const { categoryName } = useParams();
-  const [displayedCount, setDisplayedCount] = useState(48);
-  const [isLoading, setIsLoading] = useState(false);
 
   // Decode and standardize the category name
   const decodedCategory = categoryName ? decodeURIComponent(categoryName) : "";
@@ -32,49 +31,28 @@ const CategoryPage = () => {
     return tools;
   }, [standardizedCategory]);
 
-  // Endless tools generation for categories
-  const finalFilteredTools = useMemo(() => {
-    let endlessTools = [...categoryTools];
-    const remaining = displayedCount - endlessTools.length;
-    if (remaining > 0) {
-      const similar = getContextAwareAdditionalTools(
-        endlessTools,
-        "",
-        standardizedCategory,
-        Math.min(remaining, 100)
-      );
-      const uniqueSimilar = similar.filter(tool => 
-        !endlessTools.some(existing => existing.title === tool.title)
-      );
-      endlessTools = [...endlessTools, ...uniqueSimilar];
-      const stillNeeded = displayedCount - endlessTools.length;
-      if (stillNeeded > 0) {
-        const others = allTools.filter(tool => 
-          !endlessTools.some(existing => existing.title === tool.title)
-        );
-        endlessTools = [...endlessTools, ...others.slice(0, stillNeeded)];
-      }
-    }
-    return endlessTools;
-  }, [categoryTools, displayedCount, standardizedCategory]);
+  // Use forever scroll manager
+  const {
+    displayedTools,
+    displayedCount,
+    totalCycles,
+    currentCyclePosition,
+    isLoading,
+    loadMore,
+    cycleCount
+  } = useForeverScroll({
+    tools: categoryTools,
+    initialDisplayCount: 48,
+    increment: 48
+  });
 
   useEffect(() => {
     // Scroll to top when category changes
     window.scrollTo(0, 0);
-    setDisplayedCount(48);
     
     // Log category page load for verification
     console.log(`📄 Category page loaded: "${standardizedCategory}" (${categoryTools.length} tools)`);
   }, [standardizedCategory, categoryTools.length]);
-
-  const handleLoadMore = () => {
-    if (isLoading) return;
-    setIsLoading(true);
-    setTimeout(() => {
-      setDisplayedCount(prev => prev + 48);
-      setIsLoading(false);
-    }, 100);
-  };
 
   if (!decodedCategory) {
     return (
@@ -107,7 +85,7 @@ const CategoryPage = () => {
     <div className="min-h-screen bg-black relative">
       <SEOHead
         title={`${standardizedCategory} AI Tools - Best ${standardizedCategory} Tools 2025`}
-        description={`Discover ${categoryTools.length} premium ${standardizedCategory.toLowerCase()} AI tools. Find the best artificial intelligence solutions for ${standardizedCategory.toLowerCase()} tasks and workflows.`}
+        description={`Discover ${categoryTools.length} premium ${standardizedCategory.toLowerCase()} AI tools. Find the best artificial intelligence solutions for ${standardizedCategory.toLowerCase()} tasks and workflows. Forever scroll through endless discoveries.`}
         keywords={[
           `${standardizedCategory.toLowerCase()} ai tools`,
           `best ${standardizedCategory.toLowerCase()} tools`,
@@ -115,7 +93,8 @@ const CategoryPage = () => {
           `ai ${standardizedCategory.toLowerCase()} software`,
           "ai tools directory",
           "artificial intelligence tools",
-          "ai tools 2025"
+          "ai tools 2025",
+          "forever scroll ai tools"
         ]}
         url={`/category/${encodeURIComponent(standardizedCategory)}`}
         structuredData={categoryStructuredData}
@@ -128,17 +107,39 @@ const CategoryPage = () => {
       <div className="relative z-10 cyber-grid">
         <Header />
         
-        <CategoryHeader 
-          categoryName={standardizedCategory}
-          toolCount={categoryTools.length}
-        />
+        {/* Enhanced Category Header with Forever Scroll Info */}
+        <div className="py-16 bg-gradient-to-br from-slate-900 to-purple-900 relative overflow-hidden">
+          <div className="container mx-auto text-center px-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 cyber-glow">
+              <span className="bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">
+                {standardizedCategory} AI TOOLS
+              </span>
+            </h1>
+            
+            <div className="text-cyan-300 text-lg font-semibold space-y-2 mb-4">
+              <div>
+                {categoryTools.length} unique tools • Cycle {cycleCount} • Forever Discovery Mode
+              </div>
+              
+              {categoryTools.length > 0 && (
+                <div className="text-sm text-cyan-300 opacity-80">
+                  🔄 Position: {currentCyclePosition}/{categoryTools.length} • Total viewed: {displayedCount} • Never-ending exploration
+                </div>
+              )}
+            </div>
+            
+            <div className="text-cyan-200 text-sm opacity-70">
+              🌟 Forever Scroll Active - Tools reshuffle each cycle for continuous discovery!
+            </div>
+          </div>
+        </div>
         
         <ToolsGrid 
-          tools={finalFilteredTools}
-          displayedCount={displayedCount}
+          tools={displayedTools}
+          displayedCount={displayedTools.length}
           selectedCategory={standardizedCategory}
           searchTerm=""
-          onLoadMore={handleLoadMore}
+          onLoadMore={loadMore}
           hasInfiniteScroll={true}
           isLoading={isLoading}
         />

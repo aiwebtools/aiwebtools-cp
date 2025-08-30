@@ -1,5 +1,6 @@
 
 import { useEffect, useCallback, useRef } from "react";
+import { Tool } from "@/types/tools";
 
 interface UseInfiniteScrollProps {
   isLoading: boolean;
@@ -10,6 +11,7 @@ interface UseInfiniteScrollProps {
   searchTerm?: string;
   selectedCategory?: string | null;
   enableInfiniteScroll?: boolean;
+  tools?: Tool[]; // Add tools for forever scroll cycling
 }
 
 export const useInfiniteScroll = ({ 
@@ -20,7 +22,8 @@ export const useInfiniteScroll = ({
   onLoadMore,
   searchTerm = "",
   selectedCategory = null,
-  enableInfiniteScroll = true
+  enableInfiniteScroll = true,
+  tools = []
 }: UseInfiniteScrollProps) => {
   // Use refs to prevent unnecessary re-renders and maintain performance
   const isLoadingRef = useRef(isLoading);
@@ -34,27 +37,27 @@ export const useInfiniteScroll = ({
   totalToolsRef.current = totalTools;
 
   const handleLoadMore = useCallback(() => {
-    // For endless scroll (categories), don't check against totalTools since it can be infinite
-    const isEndlessScroll = selectedCategory && !searchTerm && totalTools === Number.MAX_SAFE_INTEGER;
-    
     if (isLoadingRef.current) return;
-    if (!isEndlessScroll && displayedCountRef.current >= totalToolsRef.current) return;
     
-    console.log(`🔄 Infinite scroll triggered - Loading more tools... Search: "${searchTerm}", Category: "${selectedCategory}", Endless: ${isEndlessScroll}`);
+    // For search results with limited tools, check if we've reached the end
+    if (searchTerm && displayedCountRef.current >= totalToolsRef.current) return;
+    
+    // For categories or main page, enable forever scroll by never stopping
+    const isForeverScroll = !searchTerm && tools.length > 0;
+    
+    if (!isForeverScroll && displayedCountRef.current >= totalToolsRef.current) return;
+    
+    console.log(`🔄 ${isForeverScroll ? 'Forever' : 'Regular'} scroll triggered - Loading more tools... Search: "${searchTerm}", Category: "${selectedCategory}"`);
     onLoadMore();
-  }, [onLoadMore, searchTerm, selectedCategory, totalTools]);
+  }, [onLoadMore, searchTerm, selectedCategory, totalTools, tools.length]);
 
-  // Enhanced infinite scroll with performance optimizations
+  // Enhanced infinite scroll with forever scroll support
   useEffect(() => {
     // Don't enable infinite scroll if explicitly disabled or if load more button is preferred
     if (!enableInfiniteScroll || showLoadMoreButton) return;
     
     // For search results, only enable if there are more tools to load
     if (searchTerm && displayedCount >= totalTools) return;
-    
-    // For endless scroll (categories), always enable
-    const isEndlessScroll = selectedCategory && !searchTerm;
-    if (!isEndlessScroll && (displayedCount >= totalTools || isLoading)) return;
     
     let ticking = false;
     let timeoutId: NodeJS.Timeout;
@@ -80,18 +83,25 @@ export const useInfiniteScroll = ({
           let threshold = 800; // Default for main page
           if (searchTerm) {
             threshold = 400; // More aggressive for search results
-          } else if (selectedCategory) {
-            threshold = 600; // Medium aggressive for categories with endless scroll
+          } else if (selectedCategory || !searchTerm) {
+            threshold = 600; // Medium aggressive for categories with forever scroll
           }
           
           const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
           
           if (nearBottom && !isLoadingRef.current) {
-            const isEndlessScrollCheck = selectedCategory && !searchTerm && totalToolsRef.current === Number.MAX_SAFE_INTEGER;
-            const shouldLoad = isEndlessScrollCheck || displayedCountRef.current < totalToolsRef.current;
+            // For search results, respect the total count
+            if (searchTerm && displayedCountRef.current >= totalToolsRef.current) {
+              ticking = false;
+              return;
+            }
+            
+            // For categories or main page with no search, enable forever scroll
+            const shouldLoad = !searchTerm || displayedCountRef.current < totalToolsRef.current;
             
             if (shouldLoad) {
-              console.log(`🎯 Auto-loading more tools - Context: ${searchTerm ? 'Search' : selectedCategory ? 'Category (Endless)' : 'Main'}, Displayed: ${displayedCountRef.current}/${totalToolsRef.current}`);
+              const scrollType = searchTerm ? 'Search' : selectedCategory ? 'Category (Forever)' : 'Main (Forever)';
+              console.log(`🎯 Auto-loading more tools - Context: ${scrollType}, Displayed: ${displayedCountRef.current}/${totalToolsRef.current}`);
               
               // Small delay to prevent rapid fire requests
               clearTimeout(timeoutId);
@@ -116,12 +126,9 @@ export const useInfiniteScroll = ({
     };
   }, [displayedCount, handleLoadMore, isLoading, showLoadMoreButton, totalTools, searchTerm, selectedCategory, enableInfiniteScroll]);
 
-  // Auto-top-up for short pages (ensure viewport is filled on category pages)
+  // Auto-top-up for short pages (ensure viewport is filled)
   useEffect(() => {
     if (!enableInfiniteScroll || showLoadMoreButton) return;
-
-    const isEndlessCategory = selectedCategory && !searchTerm;
-    if (!isEndlessCategory) return;
 
     // If content height is not enough to enable scrolling, load more automatically
     const documentHeight = document.documentElement.scrollHeight;
@@ -133,7 +140,7 @@ export const useInfiniteScroll = ({
       }, 60);
       return () => clearTimeout(t);
     }
-  }, [displayedCount, enableInfiniteScroll, showLoadMoreButton, selectedCategory, searchTerm, handleLoadMore]);
+  }, [displayedCount, enableInfiniteScroll, showLoadMoreButton, handleLoadMore]);
 
   return { handleLoadMore };
 };

@@ -63,11 +63,12 @@ const ToolsGrid = memo(({
     isLoading,
     showLoadMoreButton: false, // Never show manual buttons
     displayedCount,
-    totalTools: (selectedCategory && !searchTerm) ? Number.MAX_SAFE_INTEGER : tools.length, // Endless for categories without search
+    totalTools: (selectedCategory && !searchTerm) ? Number.MAX_SAFE_INTEGER : tools.length, // Forever scroll for categories
     onLoadMore,
     searchTerm,
     selectedCategory,
-    enableInfiniteScroll: hasInfiniteScroll
+    enableInfiniteScroll: hasInfiniteScroll,
+    tools: tools // Pass tools for forever scroll cycling
   });
 
   // IntersectionObserver sentinel as a robust fallback to trigger loading
