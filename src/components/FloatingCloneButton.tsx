@@ -27,10 +27,9 @@ const FloatingCloneButton = () => {
 
   return (
     <div
-      className={`fixed left-2 z-40 transition-all duration-300 ${
+      className={`fixed left-2 top-20 z-40 transition-all duration-300 ${
         isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'
       }`}
-      style={{ top: 'clamp(120px, 15vh, 140px)' }}
     >
       <a
         href="https://cloneaiwebtools.lovable.app/?via=aiwebtools"

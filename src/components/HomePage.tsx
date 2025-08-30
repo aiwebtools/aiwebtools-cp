@@ -37,18 +37,11 @@ const HomePage = () => {
     measurePerformance 
   } = usePerformanceOptimization();
 
-  // Only run tool verification in development mode to avoid performance issues
+  // Run tool verification on homepage load for SEO optimization
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      // Delay verification to not block initial page load
-      const timer = setTimeout(() => {
-        measurePerformance('tool-verification', () => {
-          runFullToolVerification(searchTools);
-        });
-      }, 5000);
-      
-      return () => clearTimeout(timer);
-    }
+    measurePerformance('tool-verification', () => {
+      runFullToolVerification(searchTools);
+    });
   }, [measurePerformance]);
 
   // Optimized load more with performance considerations

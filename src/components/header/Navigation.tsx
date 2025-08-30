@@ -33,7 +33,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="hidden lg:flex items-center space-x-3 min-w-0 text-sm">
+    <nav className="hidden lg:flex items-center space-x-6 min-w-0">
       <button 
         onClick={scrollToHome}
         className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
@@ -264,9 +264,9 @@ const Navigation = () => {
 
       <button 
         onClick={(e) => handleExternalLink("https://www.aitools.company", e)}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer text-xs"
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
       >
-        ABOUT
+        ABOUT AI WEB TOOLS LLC
       </button>
       
       <button 
@@ -307,9 +307,9 @@ const Navigation = () => {
 
       <button 
         onClick={() => navigate('/our-story')}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer text-xs"
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer"
       >
-        📖 Story
+        📖 Our Story
       </button>
     </nav>
   );

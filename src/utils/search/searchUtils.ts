@@ -106,11 +106,13 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return applyAIWebToolsPrioritization(tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title)));
   }
 
-  // DEBUG: Check if ElevenLabs and Suno are in the tools array - ONLY when specifically searching for them
+  // DEBUG: Check if ElevenLabs and Suno are in the tools array when searching for them
   if (searchTerm.toLowerCase().includes('eleven') || searchTerm.toLowerCase().includes('suno')) {
     const elevenLabsTools = tools.filter(tool => tool.title.toLowerCase().includes('eleven'));
     const sunoTools = tools.filter(tool => tool.title.toLowerCase().includes('suno'));
-    console.log(`🔍 Found: ${elevenLabsTools.length} ElevenLabs, ${sunoTools.length} Suno tools`);
+    console.log(`🔍 SEARCH DEBUG for "${searchTerm}": Total tools: ${tools.length}`);
+    console.log(`🔍 ElevenLabs tools found: ${elevenLabsTools.length}`, elevenLabsTools.map(t => t.title));
+    console.log(`🔍 Suno tools found: ${sunoTools.length}`, sunoTools.map(t => t.title));
   }
 
   // STEP 1: Enhanced search term expansion with intelligent keywords
@@ -124,7 +126,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   
   // Reduced console logging for performance - only for critical debugging
   if (searchTerm.toLowerCase().includes('debug')) {
-    console.log(`🧠 SEARCH: "${searchTerm}" → ${allSearchTerms.length} terms`);
+    console.log(`🧠 SUPER SEARCH: "${searchTerm}" → Enhanced terms:`, allSearchTerms.slice(0, 10));
   }
 
   const normalizedSearchTerm = correctedSearchTerm.toLowerCase().trim();
@@ -143,22 +145,52 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const userIntent = detectIntent(allSearchTerms.join(' '));
   const intentConfig = userIntent ? INTENT_PATTERNS[userIntent as keyof typeof INTENT_PATTERNS] : null;
   
-  // VIDEO SEARCH PRIORITY - Optimized filtering
+  // VIDEO SEARCH PRIORITY - Strict video tool filtering
   if (normalizedSearchTerm === 'video' || normalizedSearchTerm.includes('video')) {
+    console.log('🎬 VIDEO SEARCH DETECTED - Filtering for video tools only');
+    
+    // First, find all tools with "video" in title, description, category, or tags
     const videoTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
       const lowerDescription = tool.description.toLowerCase();
-      return lowerTitle.includes('video') || lowerDescription.includes('video');
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('video') || 
+             lowerDescription.includes('video') ||
+             lowerCategory.includes('video') ||
+             lowerTags.some(tag => tag.includes('video'));
     });
     
+    console.log(`🎬 Found ${videoTools.length} video tools:`, videoTools.slice(0, 5).map(t => t.title));
+    
+    // Sort video tools by relevance - exact title matches first
     const sortedVideoTools = videoTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
+      
+      // Highest priority: "video" in title
       if (a.title.toLowerCase().includes('video')) scoreA += 10000;
       if (b.title.toLowerCase().includes('video')) scoreB += 10000;
+      
+      // High priority: video generation/creation tools
+      if (a.title.toLowerCase().includes('video generat') || a.title.toLowerCase().includes('video maker') || a.title.toLowerCase().includes('video creator')) scoreA += 8000;
+      if (b.title.toLowerCase().includes('video generat') || b.title.toLowerCase().includes('video maker') || b.title.toLowerCase().includes('video creator')) scoreB += 8000;
+      
+      // Medium priority: AI Web Tools video GPTs (only if they contain "video")
+      if (a.directUrl?.includes('lovable.app') && a.title.toLowerCase().includes('video')) scoreA += 6000;
+      if (b.directUrl?.includes('lovable.app') && b.title.toLowerCase().includes('video')) scoreB += 6000;
+      
+      // Lower priority: video in description
+      if (a.description.toLowerCase().includes('video')) scoreA += 3000;
+      if (b.description.toLowerCase().includes('video')) scoreB += 3000;
+      
       return scoreB - scoreA;
     });
     
-    const finalVideoResults = [...sortedVideoTools, ...tools.filter(tool => !videoTools.includes(tool))];
+    // Add remaining non-video tools at the end with much lower priority
+    const nonVideoTools = tools.filter(tool => !videoTools.includes(tool));
+    const finalVideoResults = [...sortedVideoTools, ...nonVideoTools];
+    
     return performEnhancedSearch(finalVideoResults, searchTerm, allSearchWords, phoneticVariations, intentConfig);
   }
   

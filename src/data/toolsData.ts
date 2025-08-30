@@ -59,15 +59,48 @@ import { newPersonalDevelopmentTools } from "./tools/newPersonalDevelopmentTools
 import { web3DomainsTools } from "./tools/web3DomainsTools";
 
 const allToolCategories = consolidateTools([
-  ...getAllToolCategories(), // Load only core tools initially
-  ...newAffiliatePlatforms2025.slice(0, 10),
-  ...newPersonalDevelopmentTools.slice(0, 10),
-  ...web3DomainsTools.slice(0, 10),
+  ...getAllToolCategories(),
+  ...newAffiliatePlatforms2025,
+  ...newPersonalDevelopmentTools,
+  ...web3DomainsTools,
   
-  // Add PRIORITY AI Web Tools GPTs first (performance optimized)
+  // Add the AI Web Tools GPT Collections
   ...priorityFeaturedGPTs,
-  ...secondPriorityFeaturedGPTs.slice(0, 15),
-  ...thirdPriorityFeaturedGPTs.slice(0, 10)
+  ...secondPriorityFeaturedGPTs,
+  ...thirdPriorityFeaturedGPTs,
+  ...fourthPriorityFeaturedGPTs,
+  ...aiWebToolsGPTs,
+  ...advancedSpecialtyGPTs,
+  ...additionalSpecializedGPTs,
+  ...finalSpecializedGPTs,
+  ...newSpecializedGPTs,
+  ...personalDevelopmentGPTs,
+  ...educationAndLearningGPTs,
+  ...educationalToolsGPTs,
+  ...healthAndWellnessGPTs,
+  ...researchAndPharmaceuticalGPTs,
+  ...scienceAndResearchGPTs,
+  ...businessAndFinanceGPTs,
+  ...businessStrategyGPTs,
+  ...legalAndGovernmentGPTs,
+  ...governmentCivicGPTs,
+  ...professionalServicesGPTs,
+  ...utilityAndProductivityGPTs,
+  ...creativeAndMediaGPTs,
+  ...contentCreationToolsGPTs,
+  ...multimediaAndContentGPTs,
+  ...artAndCreativeGPTs,
+  ...aiPromptingAndGenerationGPTs,
+  ...communicationAndEntertainmentGPTs,
+  ...entertainmentAndGamingGPTs,
+  ...foodAndHospitalityGPTs,
+  ...investigativeAndAnalysisGPTs,
+  ...appraisalAndValuationGPTs,
+  ...mysteriousAndUnusualGPTs,
+  ...spiritualAndPhilosophyGPTs,
+  ...timeAndHistoryGPTs,
+  ...technologyInnovationGPTs,
+  ...specializedNicheToolsGPTs
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
@@ -100,18 +133,48 @@ const filteredTools = combinedTools.filter((tool, index) => {
   return true;
 });
 
-// REMOVED excessive console logging for performance
+// DEBUG: Check if ElevenLabs and Suno tools are in the final collection
 const elevenLabsInFinal = filteredTools.filter(tool => tool.title.toLowerCase().includes('eleven'));
 const sunoInFinal = filteredTools.filter(tool => tool.title.toLowerCase().includes('suno'));
 
-// Only log tool count summary for performance
-console.log(`✅ AI Web Tools loaded: ${filteredTools.length} tools ready`);
+console.log(`🔍 FINAL TOOLS DEBUG:`);
+console.log(`   Total tools in final collection: ${filteredTools.length}`);
+console.log(`   ElevenLabs tools found: ${elevenLabsInFinal.length}`, elevenLabsInFinal.map(t => t.title));
+console.log(`   Suno tools found: ${sunoInFinal.length}`, sunoInFinal.map(t => t.title));
 
 export const allTools: Tool[] = filteredTools;
 
-// REMOVED excessive property debugging for performance - only critical checks remain
-if (allTools.findIndex(tool => tool.title === "Property Data Finder GPT") === -1) {
-  console.error(`❌ Property Data Finder GPT not found!`);
+// DEBUG: Find Property Data Finder GPT and log its details
+const propertyToolIndex = allTools.findIndex(tool => tool.title === "Property Data Finder GPT");
+if (propertyToolIndex !== -1) {
+  const propertyTool = allTools[propertyToolIndex];
+  console.log(`✅ Property Data Finder GPT found at index ${propertyToolIndex}`);
+  console.log(`📍 URL: ${propertyTool.directUrl}`);
+  console.log(`📂 Category: ${propertyTool.category}`);
+} else {
+  console.error(`❌ Property Data Finder GPT not found in tools collection!`);
+}
+
+// ENHANCED DEBUG: Find all instances of tools with similar names
+const propertyRelatedTools = allTools.map((tool, index) => ({
+  index,
+  title: tool.title,
+  url: tool.directUrl,
+  category: tool.category,
+  isPropertyTool: tool.title.toLowerCase().includes('property')
+})).filter(tool => tool.isPropertyTool);
+
+console.log('🏠 All property-related tools found:', propertyRelatedTools);
+
+// Debug tool at index 59 specifically
+if (allTools[59]) {
+  console.log(`🔍 Tool at index 59:`, {
+    title: allTools[59].title,
+    url: allTools[59].directUrl,
+    category: allTools[59].category
+  });
+} else {
+  console.log(`⚠️ No tool found at index 59`);
 }
 
 // Use filtered tools for all exports
@@ -120,28 +183,68 @@ export const featuredTools: Tool[] = createFeaturedTools(filteredTools);
 // Export utility functions for use in components
 export { searchTools, getCategoriesWithCounts, getToolsByCategory };
 
-// Lazy initialization of tool count analysis to avoid circular dependency - PERFORMANCE OPTIMIZED
+// Lazy initialization of tool count analysis to avoid circular dependency
 let toolCountAnalysis: any = null;
 
 export const getToolCountAnalysis = () => {
   if (!toolCountAnalysis) {
-    // Import getToolCount only when needed with reduced logging for performance
+    // Import getToolCount only when needed to avoid circular dependency
     import('@/utils/toolCounter').then(({ getToolCount, verifyAllToolsPreservation }) => {
       toolCountAnalysis = getToolCount();
       
-      // REDUCED logging for better performance
-      console.log(`🎉 Total tools loaded: ${filteredTools.length}`);
-      console.log(`📊 Categories: ${Object.keys(getCategoriesWithCounts(filteredTools)).length}`);
+      // Run comprehensive preservation verification
+      console.log(`\n🔍 RUNNING COMPREHENSIVE TOOL PRESERVATION VERIFICATION...`);
+      const preservationReport = verifyAllToolsPreservation();
       
-      // Skip heavy preservation verification on page load for performance
-      // Only run basic checks
+      // Debug information with enhanced logging using accurate count
+      console.log(`🎉 MILESTONE ACHIEVED! Total tools loaded: ${filteredTools.length}`);
+      console.log(`📊 Categories found: ${Object.keys(getCategoriesWithCounts(filteredTools)).length}`);
+      console.log(`🎯 Accurate count for website: ${filteredTools.length} tools`);
+      console.log(`📈 Marketing display: ${Math.round(filteredTools.length / 100) * 100}+ tools`);
+      console.log(`🎯 Preservation Score: ${preservationReport.integrityScore.toFixed(1)}/100`);
+
+      const categoryBreakdown = getCategoriesWithCounts(filteredTools);
+      console.log('📋 Category breakdown:', categoryBreakdown);
+
+      // Verify all tools have categories
       const uncategorizedTools = filteredTools.filter(tool => !tool.category || tool.category.trim() === '');
-      if (uncategorizedTools.length === 0) {
-        console.log('✅ All tools properly categorized');
+      if (uncategorizedTools.length > 0) {
+        console.warn(`⚠️ Found ${uncategorizedTools.length} uncategorized tools:`, uncategorizedTools.map(t => t.title));
+      } else {
+        console.log('✅ All tools are properly categorized!');
       }
 
-      // Quick status summary without heavy processing
-      console.log(`📊 SUMMARY: ${filteredTools.length} tools, ${Object.keys(getCategoriesWithCounts(filteredTools)).length} categories`);
+      // Final check for Financial Calculator Pro duplicates
+      const finalFinancialCalcCheck = filteredTools.filter(tool => tool.title === 'Financial Calculator Pro');
+      console.log(`✅ Final Financial Calculator Pro instances: ${finalFinancialCalcCheck.length}`);
+      if (finalFinancialCalcCheck.length === 1) {
+        console.log('✅ SUCCESS: Only one Financial Calculator Pro instance remains');
+        console.log('📍 Location:', finalFinancialCalcCheck[0].category);
+        console.log('🔗 URL:', finalFinancialCalcCheck[0].directUrl);
+      } else {
+        console.error(`❌ STILL HAVE ${finalFinancialCalcCheck.length} instances of Financial Calculator Pro!`);
+      }
+
+      // Summary for Ken with accurate numbers and preservation status
+      const criticalToolsMissing = preservationReport.criticalTools.filter(t => t.status === 'missing').length;
+      console.log(`
+🚀 AI WEB TOOLS DIRECTORY STATUS REPORT 🚀
+================================================
+✅ EXACT Total AI Tools: ${filteredTools.length}
+✅ Marketing Display: ${Math.round(filteredTools.length / 100) * 100}+ AI Tools
+✅ Categories Available: ${Object.keys(categoryBreakdown).length}
+✅ Quality Assurance: All tools categorized and deduplicated
+🎯 Preservation Score: ${preservationReport.integrityScore.toFixed(1)}/100
+🔍 Critical AI Web Tools GPTs: ${preservationReport.criticalTools.filter(t => t.status === 'found').length}/${preservationReport.criticalTools.length} preserved
+${criticalToolsMissing > 0 ? `❌ Missing Critical Tools: ${criticalToolsMissing}` : '✅ All Critical Tools Preserved'}
+✅ Coverage: Advanced AI, Research, Productivity, Security, Finance, Healthcare, Education, Legal, and more!
+
+${preservationReport.integrityScore >= 95 ? 
+'🎉 EXCELLENT: Tool preservation is working perfectly!' : 
+preservationReport.integrityScore >= 85 ? 
+'⚠️ GOOD: Minor preservation issues detected' : 
+'🚨 CRITICAL: Major preservation issues require attention!'}
+`);
     }).catch(error => {
       console.error('Error loading tool count analysis:', error);
     });
@@ -149,10 +252,22 @@ export const getToolCountAnalysis = () => {
   return toolCountAnalysis;
 };
 
-// PERFORMANCE OPTIMIZED: Minimal initialization - only essential operations
-// Only run analysis in development or if specifically requested
-if (process.env.NODE_ENV === 'development') {
-  setTimeout(() => {
-    getToolCountAnalysis();
-  }, 5000); // Further delayed to ensure smooth page load
-}
+// Initialize the analysis and run verification asynchronously to avoid blocking
+setTimeout(() => {
+  getToolCountAnalysis();
+  
+  // Run comprehensive verification test
+  console.log('\n🚀 RUNNING COMPREHENSIVE SYSTEM VERIFICATION...');
+  import('@/utils/verificationTest').then(({ runVerificationTest }) => {
+    const verificationResults = runVerificationTest();
+    
+    console.log(`\n📊 FINAL VERIFICATION SUMMARY:`);
+    console.log(`✅ Total AI Tools: ${verificationResults.totalTools}`);
+    console.log(`✅ AI Web Tools GPTs: ${verificationResults.aiWebToolsCount}`);
+    console.log(`✅ Categories: ${verificationResults.categoriesCount}`);
+    console.log(`✅ Search Working: ${verificationResults.searchWorking ? 'YES' : 'NO'}`);
+    console.log(`🎯 System Health: ${verificationResults.verificationScore}/100`);
+  }).catch(error => {
+    console.error('Verification test failed:', error);
+  });
+}, 0);

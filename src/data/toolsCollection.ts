@@ -188,60 +188,191 @@ import { videoGenerationTools } from './tools/videoGenerationTools';
 import { videoMarketingTools } from './tools/videoMarketingTools';
 import { professionalGPTsAudio } from './tools/professionalGPTsAudio';
 
-// Combine all tool categories - LAZY LOADED for performance
+// Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
-  // Only return a minimal set of core tools initially
   return [
-    ...aiAssistants.slice(0, 20),
-    ...videoTools.slice(0, 10),
-    ...aiArtTools.slice(0, 10),
-    ...businessTools.slice(0, 15),
-    ...contentCreationTools.slice(0, 10)
+    // ... keep existing code (existing tool category imports)
+    ...spiritualityTools,
+    ...advancedAITools,
+    ...timeAndHistory,
+    ...creativeSuites,
+    ...learningAndEducation,
+    ...gameDesignAndDevelopment,
+    ...emergencyServices,
+    ...professionalServices,
+    ...legalProfessionals,
+    ...healthcareProfessionals,
+    ...creativeServices,
+    ...technicalAndUtilityTools,
+    ...aiChatPlatforms,
+    ...aiDevelopmentTools,
+    ...aiAgents,
+    ...localAISolutions,
+    ...aiInferencePlatforms,
+    ...imageGenerationPlatforms,
+    ...aiProductivityTools,
+    ...openSourceAIModels,
+    ...aiToolsAndDevelopment,
+    ...aiToolsAndUtilities,
+    ...aiAssistants,
+    ...aiArtTools,
+    ...advancedChatPlatforms,
+    ...developerAndCodingTools,
+    ...writingAndContent,
+    ...writingAndContentEnhancement,
+    ...imageAndDesign,
+    ...designAndGraphicsTools,
+    ...videoTools,
+    ...videoAndContentTools,
+    ...videoEditingAndContentTools,
+    ...advancedVideoTools,
+    ...audioMusicTools,
+    ...audioAndVoiceTools,
+    ...contentCreationTools,
+    ...contentCreationAndWritingTools,
+    ...contentDetectionTools,
+    ...documentAndResearchTools,
+    ...coreImageGenerators,
+    ...imageEditingTools,
+    ...specializedImageTools,
+    ...backgroundAndObjectTools,
+    ...businessAndProductivity,
+    ...businessTools,
+    ...businessAndTeamTools,
+    ...businessSalesTools,
+    ...searchAndProductivityTools,
+    ...ecommerceAndMarketingTools,
+    ...platformsAndDevelopment,
+    ...resumeAndCareerTools,
+    ...emailManagementTools,
+    ...webDevelopmentTools,
+    ...meetingAndTranscriptionTools,
+    ...creativeDesignTools,
+    ...specializedAITools,
+    ...entertainmentMediaTools,
+    ...specializedAndNiche,
+    ...specializedTools,
+    ...creativeAndEntertainment,
+    ...researchAndLearning,
+    ...specializedPolicyTools,
+    ...artAndCollectibles,
+    ...financialAndTradingTools,
+    ...specializedNicheTools,
+    ...educationAndLearning,
+    ...threeDAndVisualizationTools,
+    ...dataAnalyticsTools,
+    ...automationAndWorkflowTools,
+    
+    // New tool categories (100 additional tools)
+    ...socialMediaTools,
+    ...collaborationTools,
+    ...marketingTools,
+    ...utilitiesTools,
+    ...creativePlatforms,
+    ...learningPlatforms,
+    ...cloudServices,
+    ...developerTools,
+    ...communicationTools,
+    ...entertainmentTools,
+    ...newsAndInformationTools,
+    ...healthAndWellness,
+    
+    // Robotics companies category
+    ...roboticsCompanies,
+    
+    // NEW comprehensive AI tool categories to reach 1000+
+    ...aiGenerativeTools,
+    ...aiResearchTools,
+    ...aiProductivitySuite,
+    ...aiSecurityTools,
+    ...aiFinanceTools,
+    ...aiHealthcareTools,
+    ...aiEducationTools,
+    ...aiLegalTools,
+    
+    // NEW: 50 mind-blowing AI tools for everyday users
+    ...mindBlowingAITools,
+    
+    // NEW: Design assistant tools
+    ...designAssistantTools,
+    
+    // NEW: Comprehensive AI tools collection (120+ additional tools)
+    ...comprehensiveAITools,
+    
+    // NEW: Specialized GPTs added by user request
+    ...newSpecializedGPTs,
+    
+    // CRITICAL: ALL AI Web Tools GPTs including Soul Map GPT
+    ...aiWebToolsGPTs,
+    
+    // ALL AI WEB TOOLS GPT COLLECTIONS to match toolsData.ts
+    ...priorityFeaturedGPTs,
+    ...secondPriorityFeaturedGPTs,
+    ...thirdPriorityFeaturedGPTs,
+    ...fourthPriorityFeaturedGPTs,
+    ...advancedSpecialtyGPTs,
+    ...additionalSpecializedGPTs,
+    ...finalSpecializedGPTs,
+    ...personalDevelopmentGPTs,
+    ...educationAndLearningGPTs,
+    ...educationalToolsGPTs,
+    ...healthAndWellnessGPTs,
+    ...researchAndPharmaceuticalGPTs,
+    ...scienceAndResearchGPTs,
+    ...businessAndFinanceGPTs,
+    ...businessStrategyGPTs,
+    ...legalAndGovernmentGPTs,
+    ...governmentCivicGPTs,
+    ...professionalServicesGPTs,
+    ...utilityAndProductivityGPTs,
+    ...creativeAndMediaGPTs,
+    ...contentCreationToolsGPTs,
+    ...multimediaAndContentGPTs,
+    ...artAndCreativeGPTs,
+    ...aiPromptingAndGenerationGPTs,
+    ...communicationAndEntertainmentGPTs,
+    ...entertainmentAndGamingGPTs,
+    ...foodAndHospitalityGPTs,
+    ...investigativeAndAnalysisGPTs,
+    ...appraisalAndValuationGPTs,
+    ...mysteriousAndUnusualGPTs,
+    ...spiritualAndPhilosophyGPTs,
+    ...timeAndHistoryGPTs,
+    ...technologyInnovationGPTs,
+    ...specializedNicheToolsGPTs,
+    
+    // NEW: Additional real AI tools (100 more tools)
+    ...additionalRealAITools,
+    
+    // NEWEST: More real AI tools (100 additional tools)
+    ...moreRealAITools,
+    
+    // NEW 2025: Marketing and Video Multimedia Tools
+    ...newMarketingTools2025,
+    ...newVideoMultimediaTools2025,
+    
+    // ADDITIONAL 2025: Video, Audio, and Creative Tools
+    ...additionalVideoTools2025,
+    ...additionalAudioTools2025,
+    ...creativeExperimentalTools2025,
+    
+    // Historical and Cultural tools
+    ...historicalAndCultural,
+    
+    // WEB3 & BLOCKCHAIN TOOLS
+    ...web3DomainsTools,
+    
+    // MISSING TOOL CATEGORIES (non-duplicates only)
+    ...aiImageGeneration,
+    ...businessProductivityAudio,
+    ...coreAudioVoiceTools,
+    ...videoBusinessTools,
+    ...videoEditingTools,
+    ...videoGenerationTools,
+    ...videoMarketingTools,
+    ...professionalGPTsAudio,
+    
+    // ADDITIONAL POPULAR TOOLS 2025
+    ...additionalPopularTools2025
   ];
-};
-
-// PERFORMANCE OPTIMIZED: Lazy load full tool collection
-let fullToolsCache: Tool[] | null = null;
-
-export const getAllToolCategoriesAsync = async (): Promise<Tool[]> => {
-  if (fullToolsCache) {
-    return fullToolsCache;
-  }
-
-  // Load tools in chunks to avoid blocking
-  const loadChunk = (tools: Tool[]) => new Promise<Tool[]>(resolve => {
-    setTimeout(() => resolve(tools), 0);
-  });
-
-  try {
-    const chunks = await Promise.all([
-      loadChunk([
-        ...businessTools,
-        ...aiAssistants,
-        ...videoTools,
-        ...aiArtTools,
-        ...audioMusicTools,
-        ...contentCreationTools,
-        ...writingAndContent,
-        ...imageAndDesign,
-        ...businessAndProductivity
-      ]),
-      loadChunk([
-        ...specializedAndNiche,
-        ...educationAndLearning,
-        ...creativeAndEntertainment,
-        ...researchAndLearning,
-        ...aiToolsAndUtilities,
-        ...healthcareProfessionals,
-        ...legalProfessionals,
-        ...emergencyServices
-      ])
-    ]);
-
-    fullToolsCache = chunks.flat();
-    return fullToolsCache;
-  } catch (error) {
-    console.error('Error loading full tool categories:', error);
-    return getAllToolCategories(); // Fallback to minimal set
-  }
 };
