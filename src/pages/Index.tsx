@@ -46,8 +46,10 @@ const Index = () => {
       
       <InteractiveMatrixBackground />
       
+      {/* Header outside of relative container so it can be truly fixed */}
+      <Header />
+      
       <div className="relative z-10">
-        <Header />
         <HeroSection />
         <div id="categories-section">
           <CategoryPageSelection />
