@@ -19,8 +19,8 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   const [isOpen, setIsOpen] = useState(false);
   const [displayedCount, setDisplayedCount] = useState(30);
   
-  // Always call debounce hook first to maintain hook order
-  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  // Instant visual feedback with minimal delay - same as hero search
+  const debouncedSearchTerm = useDebounce(searchTerm, 80);
   
   // Prefix-based priority scoring for ultra-short queries (generalized)
   const prefixPriorityScore = useCallback((title: string, term: string) => {
@@ -150,87 +150,28 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
 
     return score;
   }, []);
-  // Simplified search results to fix hooks order issue
+  // Ultra-fast search results - same logic as hero search for consistency
   const searchResults = useMemo(() => {
     const trimmedTerm = debouncedSearchTerm.trim();
     
-    // No search for empty terms
-    if (!trimmedTerm) return [];
-    
-    const lowerTerm = trimmedTerm.toLowerCase();
-    
-    // EXACT MATCHING FIRST - Universal for all search lengths
-    const exactMatches = allTools.filter(tool => {
-      const lowerTitle = tool.title.toLowerCase();
-      return lowerTitle === lowerTerm || lowerTitle.includes(lowerTerm);
-    });
-
-    const partialMatches = allTools.filter(tool => {
-      if (exactMatches.some(exact => exact.title === tool.title)) return false;
-      
-      const lowerTitle = tool.title.toLowerCase();
-      const lowerDesc = tool.description?.toLowerCase() || '';
-      const lowerCat = tool.category?.toLowerCase() || '';
-      const lowerTags = (tool.tags || []).join(' ').toLowerCase();
-      
-      return lowerTitle.startsWith(lowerTerm) || 
-             lowerDesc.includes(lowerTerm) ||
-             lowerCat.includes(lowerTerm) ||
-             lowerTags.includes(lowerTerm) ||
-             enhancedKeywordMatching(tool, trimmedTerm);
-    });
-
-    // For longer searches, add intelligent results
-    let intelligentResults = [];
-    if (trimmedTerm.length >= 4) {
-      intelligentResults = searchTools(allTools, trimmedTerm).filter(tool => 
-        !exactMatches.some(exact => exact.title === tool.title) &&
-        !partialMatches.some(partial => partial.title === tool.title)
-      );
+    if (!trimmedTerm || trimmedTerm.length < 1) {
+      return [];
     }
 
-    // Sort exact matches by relevance with better AI tool handling
-    const sortedExact = exactMatches.sort((a, b) => {
-      const aTitle = a.title.toLowerCase();
-      const bTitle = b.title.toLowerCase();
-      
-      // Perfect match first
-      if (aTitle === lowerTerm && bTitle !== lowerTerm) return -1;
-      if (bTitle === lowerTerm && aTitle !== lowerTerm) return 1;
-      
-      // Then by prefix priority score
-      const aScore = prefixPriorityScore(a.title, trimmedTerm);
-      const bScore = prefixPriorityScore(b.title, trimmedTerm);
-      if (aScore !== bScore) return bScore - aScore;
-      
-      // Finally by alphabetical sort key (emoji+AI tools go to end)
-      const keyA = getAlphabeticalSortKey(a.title);
-      const keyB = getAlphabeticalSortKey(b.title);
-      return keyA.localeCompare(keyB);
-    });
-
-    // Combine all results with exact matches first
-    const combinedResults = [
-      ...sortedExact,
-      ...partialMatches.sort((a, b) => {
-        // First by enhanced scoring
-        const aScore = enhancedToolScoring(a, trimmedTerm) + prefixPriorityScore(a.title, trimmedTerm);
-        const bScore = enhancedToolScoring(b, trimmedTerm) + prefixPriorityScore(b.title, trimmedTerm);
-        if (aScore !== bScore) return bScore - aScore;
-        
-        // Then by alphabetical sort key (emoji+AI tools go to end)
-        const keyA = getAlphabeticalSortKey(a.title);
-        const keyB = getAlphabeticalSortKey(b.title);
-        return keyA.localeCompare(keyB);
-      }),
-      ...intelligentResults
-    ];
-
-    // Apply deduplication to remove duplicate tools from search results
-    const deduplicatedResults = deduplicateSearchResults(combinedResults);
+    const lowerTerm = trimmedTerm.toLowerCase();
     
-    return deduplicatedResults.slice(0, 100);
-  }, [debouncedSearchTerm, prefixPriorityScore]);
+    // Ultra-fast exact title matching for instant feedback
+    const quickMatches = allTools.filter(tool => 
+      tool.title.toLowerCase().includes(lowerTerm)
+    ).slice(0, 50);
+
+    // Simple combined results for immediate display
+    const allResults = [...quickMatches, ...allTools.filter(tool => 
+      !quickMatches.some(quick => quick.title === tool.title)
+    )];
+    
+    return allResults.slice(0, 100);
+  }, [debouncedSearchTerm]);
 
   // Display results with performance limits for rendering
   const displayedResults = useMemo(() => 
@@ -246,13 +187,13 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
     return [];
   }, [searchTerm]);
 
-  const shouldShowResults = searchResults.length > 0 && searchTerm.trim().length >= 2;
+  const shouldShowResults = searchResults.length > 0 && searchTerm.trim().length >= 1;
 
   // INSTANT search change handler with intelligent suggestions
   const handleSearchChange = useCallback((value: string) => {
     onSearchChange(value);
     const trimmed = value.trim();
-    setIsOpen(trimmed.length >= 2);
+    setIsOpen(trimmed.length >= 1);
     if (!trimmed) setDisplayedCount(30);
   }, [onSearchChange]);
 
@@ -284,7 +225,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
   }, []);
 
   const handleInputFocus = useCallback(() => {
-    if (searchTerm.trim().length >= 2 && searchResults.length > 0) {
+    if (searchTerm.trim().length >= 1 && searchResults.length > 0) {
       setIsOpen(true);
     }
   }, [searchTerm, searchResults.length]);
