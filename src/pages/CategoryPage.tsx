@@ -128,20 +128,22 @@ const CategoryPage = () => {
       <div className="relative z-10 cyber-grid">
         <Header />
         
-        <CategoryHeader 
-          categoryName={standardizedCategory}
-          toolCount={categoryTools.length}
-        />
-        
-        <ToolsGrid 
-          tools={finalFilteredTools}
-          displayedCount={displayedCount}
-          selectedCategory={standardizedCategory}
-          searchTerm=""
-          onLoadMore={handleLoadMore}
-          hasInfiniteScroll={true}
-          isLoading={isLoading}
-        />
+        <div className="pt-32 md:pt-36 lg:pt-40">
+          <CategoryHeader 
+            categoryName={standardizedCategory}
+            toolCount={categoryTools.length}
+          />
+          
+          <ToolsGrid 
+            tools={finalFilteredTools}
+            displayedCount={displayedCount}
+            selectedCategory={standardizedCategory}
+            searchTerm=""
+            onLoadMore={handleLoadMore}
+            hasInfiniteScroll={true}
+            isLoading={isLoading}
+          />
+        </div>
         
         <ScrollToTopButton />
         <Footer />
