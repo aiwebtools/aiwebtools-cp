@@ -237,10 +237,10 @@ const MobileMenu = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent 
-            className="w-[95vw] max-w-[380px] bg-black/95 shadow-2xl border border-cyan-500/40 backdrop-blur-xl max-h-[80vh] overflow-y-auto z-[110]"
+            className="w-[92vw] max-w-[360px] bg-black/95 shadow-2xl border border-cyan-500/40 backdrop-blur-xl max-h-[70vh] overflow-y-auto z-[110]"
             align="end"
-            alignOffset={-10}
-            sideOffset={8}
+            alignOffset={-5}
+            sideOffset={10}
             avoidCollisions={true}
             sticky="always"
           >
