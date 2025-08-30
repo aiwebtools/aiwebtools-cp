@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef, Suspense } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import CategoryPageSelection from "@/components/CategoryPageSelection";
@@ -13,12 +13,10 @@ import { Button } from "@/components/ui/button";
 import { getFastToolCount, updateCachedStats } from "@/utils/fastToolCounter";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import BookPromotionCard from "@/components/BookPromotionCard";
-
-// Lazy load heavy components for better performance
-const LazyFeaturedTools = React.lazy(() => import("@/components/LazyFeaturedTools"));
-const LazySearchPortal = React.lazy(() => import("@/components/LazySearchPortal"));
-const InteractiveMatrixBackground = React.lazy(() => import("@/components/InteractiveMatrixBackground"));
-const AnimatedBackground = React.lazy(() => import("@/components/AnimatedBackground"));
+import LazyFeaturedTools from "@/components/LazyFeaturedTools";
+import LazySearchPortal from "@/components/LazySearchPortal";
+import InteractiveMatrixBackground from "@/components/InteractiveMatrixBackground";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-[200px]">
@@ -100,11 +98,9 @@ const Index = () => {
       <ImprovedSEOHead pageType="homepage" />
       <GoogleRankingBooster pageType="homepage" />
       
-      {/* Lazy load background effects */}
-      <Suspense fallback={null}>
-        <InteractiveMatrixBackground />
-        <AnimatedBackground />
-      </Suspense>
+      {/* Background effects */}
+      <InteractiveMatrixBackground />
+      <AnimatedBackground />
       
       {/* Fixed Header - outside of relative container */}
       <Header />
@@ -142,10 +138,8 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Featured Tools Section - Lazy loaded for better performance */}
-        <Suspense fallback={<LoadingSpinner />}>
-          <LazyFeaturedTools onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
-        </Suspense>
+        {/* Featured Tools Section */}
+        <LazyFeaturedTools onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
         
         <BookPromotionCard />
         <SpecialServices />
@@ -162,10 +156,8 @@ const Index = () => {
               </p>
             </div>
             
-            {/* Search Portal Component - Lazy loaded */}
-            <Suspense fallback={<LoadingSpinner />}>
-              <LazySearchPortal />
-            </Suspense>
+            {/* Search Portal Component */}
+            <LazySearchPortal />
           </div>
         </section>
         
