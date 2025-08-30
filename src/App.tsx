@@ -26,8 +26,12 @@ import ChatGPTAlternatives from "./pages/ChatGPTAlternatives";
 const queryClient = new QueryClient();
 
 function App() {
+  console.log('🚀 App component starting...');
+  
   // Initialize cross-browser optimizations
   useCrossBrowserOptimization();
+  
+  console.log('✅ App component initialized successfully');
 
   return (
     <ErrorBoundary>

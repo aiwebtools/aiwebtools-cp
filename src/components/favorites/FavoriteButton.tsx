@@ -15,6 +15,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({
   className = '', 
   size = 'md' 
 }) => {
+  console.log('❤️ FavoriteButton rendering for tool:', tool.title);
   const { isFavorite, toggleFavorite } = useFavorites();
   const isToolFavorite = isFavorite(tool.title);
 

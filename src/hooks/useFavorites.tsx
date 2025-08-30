@@ -16,6 +16,7 @@ const FavoritesContext = createContext<FavoritesContextType | undefined>(undefin
 const FAVORITES_STORAGE_KEY = 'aiwebtools-favorites';
 
 export function FavoritesProvider({ children }: { children: ReactNode }) {
+  console.log('🔧 FavoritesProvider initializing...');
   const [favorites, setFavorites] = useState<Tool[]>([]);
 
   // Load favorites from localStorage on mount
