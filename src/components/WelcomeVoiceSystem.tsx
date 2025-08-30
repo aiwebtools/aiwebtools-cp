@@ -36,9 +36,9 @@ const WelcomeVoiceSystem = () => {
       
       // Create first message: "WELCOME MASTER"
       const welcomeMsg = new SpeechSynthesisUtterance("WELCOME MASTER");
-      welcomeMsg.rate = isMobile ? 0.5 : 0.4;
-      welcomeMsg.pitch = isMobile ? 0.2 : 0.1;
-      welcomeMsg.volume = 1.0;
+      welcomeMsg.rate = isMobile ? 0.6 : 0.4;
+      welcomeMsg.pitch = isMobile ? 0.3 : 0.1;
+      welcomeMsg.volume = isMobile ? 0.8 : 1.0; // Slightly lower volume on mobile
       
       // Find deep male voice for welcome
       const maleVoice = voices.find(v => 
@@ -50,9 +50,9 @@ const WelcomeVoiceSystem = () => {
       
       // Create second message: "YOU'VE GOT TOOLS"
       const toolsMsg = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS");
-      toolsMsg.rate = isMobile ? 0.9 : 0.8;
-      toolsMsg.pitch = isMobile ? 1.2 : 1.1;
-      toolsMsg.volume = 1.0;
+      toolsMsg.rate = isMobile ? 1.0 : 0.8;
+      toolsMsg.pitch = isMobile ? 1.1 : 1.1;
+      toolsMsg.volume = isMobile ? 0.9 : 1.0; // Slightly lower volume on mobile
       
       // Find British female voice for tools message (AOL-style)
       const britishFemaleVoice = voices.find(v => 
@@ -103,27 +103,68 @@ const WelcomeVoiceSystem = () => {
     const isMobile = isMobileDevice();
     
     if (isMobile) {
-      // Mobile: Create an immediate silent utterance to unlock speech synthesis
+      // Mobile: Multiple unlock attempts for better compatibility
       console.log('📱 Mobile detected - unlocking speech synthesis...');
-      const unlockMsg = new SpeechSynthesisUtterance(" ");
-      unlockMsg.volume = 0.01; // Nearly silent but not muted
-      speechSynthesis.speak(unlockMsg);
       
-      // Wait for unlock then play sequence
-      unlockMsg.onend = () => {
-        console.log('🔓 Mobile speech unlocked, starting sequence...');
-        setTimeout(playWelcomeSequence, 100);
+      // Try multiple unlock methods for different mobile browsers
+      const unlockMethods = [
+        () => {
+          const unlockMsg = new SpeechSynthesisUtterance(" ");
+          unlockMsg.volume = 0.01;
+          unlockMsg.rate = 10; // Very fast to minimize sound
+          speechSynthesis.speak(unlockMsg);
+          return unlockMsg;
+        },
+        () => {
+          const unlockMsg = new SpeechSynthesisUtterance(".");
+          unlockMsg.volume = 0.001;
+          unlockMsg.pitch = 0.1;
+          speechSynthesis.speak(unlockMsg);
+          return unlockMsg;
+        }
+      ];
+      
+      let unlockAttempt = 0;
+      const tryUnlock = () => {
+        if (unlockAttempt < unlockMethods.length) {
+          const unlockMsg = unlockMethods[unlockAttempt]();
+          unlockAttempt++;
+          
+          unlockMsg.onend = () => {
+            console.log('🔓 Mobile speech unlocked, starting sequence...');
+            setTimeout(playWelcomeSequence, 200);
+          };
+          
+          unlockMsg.onerror = () => {
+            console.log(`❌ Unlock attempt ${unlockAttempt} failed, trying next...`);
+            setTimeout(tryUnlock, 100);
+          };
+        } else {
+          // If all unlock attempts fail, try direct playback
+          console.log('⚠️ All unlock attempts failed, trying direct playback...');
+          setTimeout(playWelcomeSequence, 300);
+        }
       };
+      
+      tryUnlock();
     } else {
-      // Desktop: Normal voice loading
+      // Desktop: Normal voice loading with enhanced compatibility
       const voices = speechSynthesis.getVoices();
       if (voices.length > 0) {
         playWelcomeSequence();
       } else {
         speechSynthesis.onvoiceschanged = () => {
           speechSynthesis.onvoiceschanged = null;
-          playWelcomeSequence();
+          setTimeout(playWelcomeSequence, 100);
         };
+        
+        // Fallback timeout for slow voice loading
+        setTimeout(() => {
+          if (speechSynthesis.onvoiceschanged) {
+            speechSynthesis.onvoiceschanged = null;
+            playWelcomeSequence();
+          }
+        }, 2000);
       }
     }
   };

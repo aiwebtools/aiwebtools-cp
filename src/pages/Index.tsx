@@ -67,13 +67,13 @@ const Index = () => {
                 <iframe
                   ref={mainVideoRef}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
-                  title="AI Web Tools Featured Video - 1080p HD"
+                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark&origin=https://aiwebtools.ai"
+                  title="AI Web Tools Featured Video - 1080p HD Mobile Optimized"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
                   loading="eager"
-                  onLoad={() => console.log('🎥 Main video loaded successfully - 1080p HD')}
+                  onLoad={() => console.log('🎥 Main video loaded successfully - 1080p HD Mobile Ready')}
                 ></iframe>
               </div>
             </div>

@@ -11,14 +11,38 @@ class VideoManager {
       this.pauseVideo(this.currentVideo);
     }
 
+    // Mobile-specific video handling
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
     // Set up intersection observer to play/pause based on visibility
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Video is visible, play it
-            this.playVideo(iframe);
-            this.currentVideo = iframe;
+            // Video is visible
+            console.log(`🎥 Video ${toolId} visible - attempting play`);
+            
+            if (isMobile) {
+              // Mobile: Add user interaction listener for autoplay
+              const handleMobilePlay = () => {
+                this.playVideo(iframe);
+                this.currentVideo = iframe;
+                document.removeEventListener('touchstart', handleMobilePlay);
+                document.removeEventListener('click', handleMobilePlay);
+              };
+              
+              // Try immediate play first
+              this.playVideo(iframe);
+              this.currentVideo = iframe;
+              
+              // Add interaction listeners as backup
+              document.addEventListener('touchstart', handleMobilePlay, { once: true, passive: true });
+              document.addEventListener('click', handleMobilePlay, { once: true });
+            } else {
+              // Desktop: Direct play
+              this.playVideo(iframe);
+              this.currentVideo = iframe;
+            }
           } else {
             // Video is not visible, pause it
             this.pauseVideo(iframe);
@@ -29,8 +53,8 @@ class VideoManager {
         });
       },
       {
-        threshold: 0.5, // Play when 50% visible
-        rootMargin: '-10px' // Add some margin
+        threshold: isMobile ? 0.3 : 0.5, // Lower threshold for mobile
+        rootMargin: isMobile ? '-5px' : '-10px' // Smaller margin for mobile
       }
     );
 
@@ -52,11 +76,38 @@ class VideoManager {
 
   private playVideo(iframe: HTMLIFrameElement) {
     try {
-      // Send play command to YouTube iframe
-      iframe.contentWindow?.postMessage(
-        '{"event":"command","func":"playVideo","args":""}',
-        '*'
-      );
+      // Mobile-optimized video play commands
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      if (isMobile) {
+        // For mobile: Try multiple methods to ensure playback
+        console.log('📱 Mobile video play attempt');
+        
+        // Method 1: Standard YouTube API command
+        iframe.contentWindow?.postMessage(
+          '{"event":"command","func":"playVideo","args":""}',
+          '*'
+        );
+        
+        // Method 2: Fallback with user interaction trigger
+        setTimeout(() => {
+          iframe.contentWindow?.postMessage(
+            '{"event":"command","func":"unMute","args":""}',
+            '*'
+          );
+          iframe.contentWindow?.postMessage(
+            '{"event":"command","func":"setVolume","args":"100"}',
+            '*'
+          );
+        }, 500);
+        
+      } else {
+        // Desktop: Standard play command
+        iframe.contentWindow?.postMessage(
+          '{"event":"command","func":"playVideo","args":""}',
+          '*'
+        );
+      }
     } catch (error) {
       console.warn('Could not send play command to video:', error);
     }
