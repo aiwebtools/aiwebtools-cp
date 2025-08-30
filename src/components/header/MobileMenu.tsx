@@ -221,7 +221,7 @@ const MobileMenu = () => {
 
   return (
     <TooltipProvider>
-      <div className="md:hidden">
+      <div className="md:block lg:hidden">  {/* Show on tablet and mobile, hide on large desktop */}
         <DropdownMenu open={isMenuOpen} onOpenChange={handleMenuToggle}>
           <DropdownMenuTrigger asChild>
             <Button 
@@ -237,35 +237,38 @@ const MobileMenu = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent 
-            className="w-[90vw] max-w-[340px] bg-black/95 shadow-2xl border border-cyan-500/40 backdrop-blur-xl max-h-[65vh] overflow-y-auto z-[110] mr-4"
+            className="w-[90vw] md:w-[420px] max-w-[420px] bg-black/98 shadow-2xl border-2 border-cyan-500/50 backdrop-blur-xl max-h-[70vh] md:max-h-[80vh] overflow-y-auto z-[110] mr-4"
             align="end"
             alignOffset={0}
-            sideOffset={4}
+            sideOffset={8}
             avoidCollisions={true}
             sticky="always"
           >
-            <div className="p-3">
+            <div className="p-4 md:p-6">
               {/* Header with Close Button */}
-              <div className="text-center mb-4 border-b border-cyan-500/30 pb-3 relative">
+              <div className="text-center mb-6 border-b border-cyan-500/30 pb-4 relative">
                 {/* Close Button - Top Right - Optimized for touch */}
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={closeMenu}
-                  className="absolute -top-2 -right-2 h-12 w-12 p-0 text-gray-400 hover:text-white hover:bg-red-500/40 border border-red-500/60 rounded-full transition-all duration-200 shadow-lg backdrop-blur-sm"
+                  className="absolute -top-2 -right-2 h-12 w-12 p-0 text-gray-400 hover:text-white hover:bg-red-500/40 border border-red-500/60 rounded-full transition-all duration-200 shadow-lg backdrop-blur-sm z-[120]"
                   aria-label="Close menu"
                 >
                   <X className="w-6 h-6" />
                 </Button>
                 
-                <div className="text-base font-bold text-cyan-400 mb-2">
-                  AI TOOLS STUDIO
+                <div className="flex flex-col items-center mb-3">
+                  <Logo />
                 </div>
-                <p className="text-sm text-cyan-200/80">Quick Navigation & Search</p>
+                <div className="text-lg md:text-xl font-bold text-cyan-400 mb-2">
+                  Navigate our platform
+                </div>
+                <p className="text-sm md:text-base text-cyan-200/80">Quick Navigation & Search</p>
               </div>
 
               {/* Ultra-Fast Search Bar */}
-              <div ref={searchRef} className="relative mb-4">
+              <div ref={searchRef} className="relative mb-6">
                 <div className="relative">
                   <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-cyan-400 w-5 h-5" />
                   <Input
@@ -358,16 +361,16 @@ const MobileMenu = () => {
               </div>
 
               {/* Navigation Section */}
-              <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-3 rounded-lg h-12 text-base font-medium">
-                <span className="mr-3">🏠</span> Home
+              <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-4 rounded-lg h-14 text-base md:text-lg font-medium px-4">
+                <span className="mr-4 text-xl">🏠</span> Home
               </DropdownMenuItem>
               
               {/* Browse Categories - Featured */}
               <DropdownMenuItem
                 onClick={handleBrowseAITools}
-                className="text-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 font-bold mb-4 rounded-xl p-5 text-lg shadow-xl shadow-cyan-500/30 border border-cyan-400/50 transition-all duration-200"
+                className="text-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 font-bold mb-6 rounded-xl p-6 text-lg md:text-xl shadow-xl shadow-cyan-500/30 border border-cyan-400/50 transition-all duration-200"
               >
-                <span className="mr-2">🎯</span> Browse AI Tool Categories
+                <span className="mr-3 text-xl">🎯</span> Browse AI Tool Categories
               </DropdownMenuItem>
               
               <DropdownMenuSeparator className="border-gray-700 mb-3" />
