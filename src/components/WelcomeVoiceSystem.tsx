@@ -100,16 +100,31 @@ const WelcomeVoiceSystem = () => {
   };
   
   const initializeVoices = () => {
-    // Wait for voices to load
-    const voices = speechSynthesis.getVoices();
-    if (voices.length > 0) {
-      playWelcomeSequence();
-    } else {
-      // Wait for voices to load
-      speechSynthesis.onvoiceschanged = () => {
-        speechSynthesis.onvoiceschanged = null; // Remove listener
-        playWelcomeSequence();
+    const isMobile = isMobileDevice();
+    
+    if (isMobile) {
+      // Mobile: Create an immediate silent utterance to unlock speech synthesis
+      console.log('📱 Mobile detected - unlocking speech synthesis...');
+      const unlockMsg = new SpeechSynthesisUtterance(" ");
+      unlockMsg.volume = 0.01; // Nearly silent but not muted
+      speechSynthesis.speak(unlockMsg);
+      
+      // Wait for unlock then play sequence
+      unlockMsg.onend = () => {
+        console.log('🔓 Mobile speech unlocked, starting sequence...');
+        setTimeout(playWelcomeSequence, 100);
       };
+    } else {
+      // Desktop: Normal voice loading
+      const voices = speechSynthesis.getVoices();
+      if (voices.length > 0) {
+        playWelcomeSequence();
+      } else {
+        speechSynthesis.onvoiceschanged = () => {
+          speechSynthesis.onvoiceschanged = null;
+          playWelcomeSequence();
+        };
+      }
     }
   };
 
@@ -137,20 +152,21 @@ const WelcomeVoiceSystem = () => {
         }
       }, 5500);
       
-      // Enhanced mobile support - more aggressive user interaction handling
+      // Enhanced mobile support - immediate user interaction handling
       const handleUserInteraction = () => {
         if (!hasPlayed) {
-          console.log('👆 User interaction detected - triggering welcome for mobile');
+          console.log('👆 User interaction detected - triggering welcome');
           setHasPlayed(true);
-          // Additional mobile-specific initialization
+          
           if (isMobile) {
-            // Create a simple test utterance first on mobile
-            const testMsg = new SpeechSynthesisUtterance("");
-            speechSynthesis.speak(testMsg);
-            setTimeout(initializeVoices, 100);
+            // Mobile: Immediate initialization without delays
+            console.log('📱 Mobile: Starting immediate speech unlock...');
+            initializeVoices();
           } else {
+            // Desktop: Can use normal initialization
             initializeVoices();
           }
+          
           document.removeEventListener('click', handleUserInteraction);
           document.removeEventListener('touchstart', handleUserInteraction);
           document.removeEventListener('touchend', handleUserInteraction);
