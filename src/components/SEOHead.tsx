@@ -35,7 +35,7 @@ const SEOHead = ({
   const canonical = url.startsWith('http') ? url : `${seoConfig.siteUrl}${url}`;
   const fullImage = image.startsWith('http') ? image : `${seoConfig.siteUrl}${image}`;
 
-  // CRITICAL KEYWORDS FOR #1 RANKING - AIWEBTOOLS.AI & AI WEB TOOLS
+  // ULTRA-COMPREHENSIVE SEO KEYWORDS - DOMINATE ALL AI SEARCHES
   const competitiveKeywords = [
     "aiwebtools.ai",
     "AIWEBTOOLS.AI", 
@@ -74,26 +74,121 @@ const SEOHead = ({
     "ai tools discovery",
     "ai tools platform",
     "ai tools ecosystem",
+    // CORE AI TERMS - CAST THE WIDEST NET
     "artificial intelligence tools",
+    "AI software",
+    "AI applications",
+    "AI platforms",
+    "AI solutions",
+    "AI technology",
+    "AI services",
+    "AI products",
+    "AI systems",
+    "AI programs",
+    "AI utilities",
+    "AI resources",
+    "AI innovations",
+    "AI breakthroughs",
+    "AI advances",
+    // AI AGENTS & ASSISTANTS
+    "ai agents",
+    "AI assistants",
+    "ai chatbots",
+    "conversational ai",
+    "virtual assistants",
+    "ai companions",
+    "smart assistants",
+    "ai helpers",
+    "digital assistants",
+    "automated assistants",
+    // MACHINE LEARNING & TECH
     "machine learning tools",
+    "deep learning applications",
+    "neural network software",
     "automation tools",
+    "intelligent automation",
+    "smart automation",
+    "workflow automation",
+    "process automation",
+    "robotic process automation",
+    "AI automation",
+    // BUSINESS & PRODUCTIVITY
     "productivity ai tools",
     "business ai tools",
+    "enterprise ai",
+    "ai for business",
+    "ai productivity",
+    "work automation",
+    "business automation",
+    "office ai tools",
+    "professional ai",
+    "corporate ai solutions",
+    // CREATIVE & CONTENT
     "creative ai tools",
+    "content creation ai",
+    "ai content generators",
+    "ai writing tools",
+    "ai copywriting",
+    "ai content marketing",
+    "creative automation",
     "design ai tools",
-    "writing ai tools",
+    "ai graphic design",
+    "ai art generators",
+    // MEDIA & MULTIMEDIA
     "video ai tools",
+    "ai video editing",
+    "ai video creation",
     "audio ai tools",
+    "ai music generation",
+    "ai voice synthesis",
     "image ai tools",
+    "ai photo editing",
+    "ai image generation",
+    "ai image enhancement",
+    // DATA & ANALYTICS
     "data ai tools",
-    "analytics ai tools",
+    "ai analytics",
+    "ai data analysis",
+    "predictive analytics",
+    "ai insights",
+    "business intelligence ai",
+    "ai reporting",
+    "data science tools",
+    "ai statistics",
+    "smart analytics",
+    // MARKETING & SALES
     "marketing ai tools",
+    "ai marketing",
     "sales ai tools",
+    "ai sales automation",
+    "digital marketing ai",
+    "ai advertising",
+    "marketing automation",
+    "lead generation ai",
+    "customer service ai",
+    "crm ai tools",
+    // RESEARCH & DEVELOPMENT
     "research ai tools",
+    "ai research",
+    "academic ai tools",
+    "scientific ai",
+    "ai for research",
     "development ai tools",
     "coding ai tools",
-    "ai assistants",
-    "ai chatbots",
+    "programming ai",
+    "developer ai tools",
+    "ai code generation",
+    // COMPETITIVE TERMS
+    "ai directory",
+    "ai tool finder",
+    "ai software directory",
+    "find ai tools",
+    "discover ai tools",
+    "ai tools list",
+    "ai tools collection",
+    "ai tools hub",
+    "ai tools repository",
+    "ai tools archive",
     ...keywords
   ];
 
@@ -194,15 +289,15 @@ const SEOHead = ({
         </>
       )}
       
-      {/* Comprehensive Open Graph */}
-      <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={fullImage} />
+      {/* OPTIMIZED SOCIAL MEDIA META TAGS FOR AI WEB TOOLS */}
+      <meta property="og:title" content="🤖 AI WEB TOOLS - #1 AI Tools Directory | 1000+ Best AI Tools 2025 | Better Than Toolify" />
+      <meta property="og:description" content="🚀 Discover 1000+ verified AI tools, agents & ChatGPT alternatives. Expert-curated directory trusted by 100K+ professionals. Better than Toolify & competitors. Find the perfect AI solution for your needs!" />
+      <meta property="og:image" content="https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-ai-robot-with-glowing-blue-eyes-su.png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content={fullTitle} />
+      <meta property="og:image:alt" content="AI WEB TOOLS - The Ultimate AI Tools Directory with 1000+ Curated AI Applications" />
       <meta property="og:image:type" content="image/png" />
-      <meta property="og:image:secure_url" content={fullImage} />
+      <meta property="og:image:secure_url" content="https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-ai-robot-with-glowing-blue-eyes-su.png" />
       <meta property="og:url" content={canonical} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="AI WEB TOOLS - Best AI Tools Directory" />
@@ -215,12 +310,12 @@ const SEOHead = ({
       <meta property="og:see_also" content="https://AItoolwebsites.com" />
       <meta property="fb:app_id" content={seoConfig.facebookAppId} />
       
-      {/* Enhanced Twitter Card */}
+      {/* OPTIMIZED TWITTER CARD FOR AI WEB TOOLS */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={fullImage} />
-      <meta name="twitter:image:alt" content={fullTitle} />
+      <meta name="twitter:title" content="🤖 AI WEB TOOLS - #1 AI Tools Directory | 1000+ Best AI Tools 2025" />
+      <meta name="twitter:description" content="🚀 Discover 1000+ verified AI tools & ChatGPT alternatives. Expert-curated directory better than Toolify. Trusted by 100K+ professionals worldwide!" />
+      <meta name="twitter:image" content="https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-ai-robot-with-glowing-blue-eyes-su.png" />
+      <meta name="twitter:image:alt" content="AI WEB TOOLS - Ultimate AI Tools Directory with 1000+ Curated AI Applications" />
       <meta name="twitter:site" content={seoConfig.twitterHandle} />
       <meta name="twitter:creator" content={seoConfig.twitterHandle} />
       <meta name="twitter:domain" content="aitools.studio" />

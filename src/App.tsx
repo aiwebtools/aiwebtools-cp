@@ -17,6 +17,9 @@ import DisclaimersPage from "./pages/DisclaimersPage";
 import OurStoryPage from "./pages/OurStoryPage";
 import FloatingCloneButton from "./components/FloatingCloneButton";
 import WelcomeVoiceSystem from "./components/WelcomeVoiceSystem";
+import AIToolsHub from "./pages/AIToolsHub";
+import AIAgentsDirectory from "./pages/AIAgentsDirectory";
+import ChatGPTAlternatives from "./pages/ChatGPTAlternatives";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +39,9 @@ function App() {
                 <Route path="/tool/:toolId" element={<ToolDetail />} />
                 <Route path="/:toolSlug" element={<ToolDetail />} />
                 <Route path="/similar-tools/:toolId" element={<SimilarToolsPage />} />
+                <Route path="/ai-tools-hub" element={<AIToolsHub />} />
+                <Route path="/ai-agents-directory" element={<AIAgentsDirectory />} />
+                <Route path="/chatgpt-alternatives" element={<ChatGPTAlternatives />} />
                 <Route path="/favorites" element={<FavoritesPage />} />
                 <Route path="/disclaimers" element={<DisclaimersPage />} />
                 <Route path="/our-story" element={<OurStoryPage />} />
