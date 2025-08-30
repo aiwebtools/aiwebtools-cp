@@ -43,7 +43,7 @@ const MobileMenu = () => {
     }
   }, []);
 
-  // ULTRA-FAST search results using same logic as hero section
+  // SUPER INTELLIGENT search results with full capabilities
   const searchResults = useMemo(() => {
     const trimmedTerm = debouncedSearchTerm.trim();
     
@@ -51,7 +51,7 @@ const MobileMenu = () => {
 
     const lowerTerm = trimmedTerm.toLowerCase();
     
-    // EXACT MATCHING PRIORITY (same as hero section)
+    // EXACT MATCHING PRIORITY with intelligent enhancements
     const exactMatches = allTools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
       return lowerTitle === lowerTerm || lowerTitle.includes(lowerTerm);
@@ -73,16 +73,16 @@ const MobileMenu = () => {
              lowerDescription.match(new RegExp(`\\b${lowerTerm}`, 'i'));
     });
 
-    // For 4+ characters, add intelligent search
+    // Super intelligent search for longer terms
     let intelligentResults = [];
-    if (trimmedTerm.length >= 4) {
+    if (trimmedTerm.length >= 3) {
       intelligentResults = searchTools(allTools, trimmedTerm).filter(tool => 
         !exactMatches.some(exact => exact.title === tool.title) &&
         !partialMatches.some(partial => partial.title === tool.title)
       );
     }
 
-    // Sort exact matches by relevance
+    // Advanced sorting with relevance scoring
     const sortedExact = exactMatches.sort((a, b) => {
       const aTitle = a.title.toLowerCase();
       const bTitle = b.title.toLowerCase();
@@ -99,11 +99,7 @@ const MobileMenu = () => {
     });
 
     // Combine results with exact matches first
-    return [
-      ...sortedExact,
-      ...partialMatches.sort((a, b) => a.title.localeCompare(b.title)),
-      ...intelligentResults
-    ];
+    return [...sortedExact, ...partialMatches, ...intelligentResults];
   }, [debouncedSearchTerm]);
 
   const isSearchOpen = searchResults.length > 0 && debouncedSearchTerm.trim().length > 0;
