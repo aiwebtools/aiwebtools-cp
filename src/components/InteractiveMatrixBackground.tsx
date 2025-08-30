@@ -28,10 +28,10 @@ const InteractiveMatrixBackground = () => {
   const { isMobile } = useMobile();
   const { performanceTier, addOptimizedEventListener } = useCrossBrowserOptimization();
 
-  // Matrix characters - authentic Matrix feel
+  // Matrix characters - authentic Matrix digital rain
   const matrixChars = useMobile().isMobile ? 
-    '0123456789アイウエオカキクケコサシスセソタチツテト' : // Mobile: Mix of numbers and katakana
-    '0123456789アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()';
+    '01ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ' : // Mobile: Binary + half-width katakana
+    '01ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ012345ABCDEFGHIJKLMNOPQRSTUVWXYZｧｨｩｪｫｯｬｭｮ';
 
   const initializeCanvas = useCallback(() => {
     const canvas = canvasRef.current;
@@ -68,7 +68,7 @@ const InteractiveMatrixBackground = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const fontSize = isMobile ? 12 : 16;
+    const fontSize = isMobile ? 14 : 18;
     const columns = Math.floor(canvas.width / fontSize);
     const maxDrops = performanceTier === 'high' ? columns : 
                      performanceTier === 'medium' ? Math.min(columns, 50) : 
@@ -176,7 +176,7 @@ const InteractiveMatrixBackground = () => {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    const fontSize = isMobile ? 12 : 16;
+    const fontSize = isMobile ? 14 : 18;
 
     // Update and render drops
     dropsRef.current = dropsRef.current.filter(drop => {
@@ -195,8 +195,9 @@ const InteractiveMatrixBackground = () => {
       drop.speed = Math.max(drop.speed * 0.99, 1);
       drop.opacity = Math.max(drop.opacity * 0.998, 0.3);
 
-      // Render drop
-      ctx.font = `${fontSize}px 'Courier New', monospace`;
+      // Render drop with crisp Matrix characters
+      ctx.font = `bold ${fontSize}px 'Courier New', 'MS Gothic', monospace`;
+      ctx.textBaseline = 'top';
       
       for (let i = 0; i < drop.chars.length; i++) {
         const charY = drop.y + i * fontSize;
@@ -205,19 +206,22 @@ const InteractiveMatrixBackground = () => {
           const fadeMultiplier = Math.max(0, 1 - (i / drop.length));
           const alpha = drop.opacity * fadeMultiplier;
           
-          // Head of the drop is brighter Matrix green
+          // Clear crisp characters without blur
+          ctx.shadowBlur = 0;
+          
+          // Head of the drop is bright white for contrast
           if (i === 0) {
-            ctx.fillStyle = `rgba(0, 255, 65, ${Math.min(alpha * 1.8, 1)})`;
-            ctx.shadowColor = '#00ff41';
-            ctx.shadowBlur = 15;
+            ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(alpha * 1.5, 1)})`;
+          } else if (i === 1) {
+            // Second character bright green
+            ctx.fillStyle = `rgba(0, 255, 65, ${Math.min(alpha * 1.2, 1)})`;
           } else {
-            // Body is classic Matrix green with fade
-            ctx.fillStyle = `rgba(0, 255, 65, ${alpha * 0.8})`;
-            ctx.shadowColor = '#00ff41';
-            ctx.shadowBlur = 8;
+            // Body characters fade to darker green
+            const greenIntensity = Math.max(100, 255 * alpha * 0.8);
+            ctx.fillStyle = `rgba(0, ${greenIntensity}, 65, ${alpha})`;
           }
           
-          ctx.fillText(drop.chars[i], drop.x, charY);
+          ctx.fillText(drop.chars[i], Math.floor(drop.x), Math.floor(charY));
         }
       }
 
@@ -232,16 +236,14 @@ const InteractiveMatrixBackground = () => {
       return point.intensity > 0.1;
     });
 
-    // Render interaction ripples in Matrix green
+    // Render interaction ripples - clean circles
     interactionPointsRef.current.forEach(point => {
-      ctx.strokeStyle = `rgba(0, 255, 65, ${point.intensity * 0.4})`;
-      ctx.lineWidth = 3;
-      ctx.shadowColor = '#00ff41';
-      ctx.shadowBlur = 10;
+      ctx.strokeStyle = `rgba(0, 255, 65, ${point.intensity * 0.6})`;
+      ctx.lineWidth = 2;
+      ctx.shadowBlur = 0;
       ctx.beginPath();
       ctx.arc(point.x, point.y, point.radius, 0, Math.PI * 2);
       ctx.stroke();
-      ctx.shadowBlur = 0;
     });
 
     // Clean up excess drops for performance
