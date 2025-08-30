@@ -158,18 +158,45 @@ const MobileMenu = () => {
     }
   }, [displayedCount, searchResults.length]);
 
-  // Download all AI tools as CSV
-  const handleDownloadTopToolsCSV = () => {
+  // Enhanced CSV download with all comprehensive data fields
+  const handleDownloadAllToolsCSV = () => {
     try {
-      const header = ["Title", "Category", "URL", "Description"];
-      const rows = allTools.map((tool) => [
+      console.log(`📊 Generating comprehensive CSV with ${allTools.length} tools...`);
+      
+      // Enhanced headers with all available data fields
+      const headers = [
+        "Title", 
+        "Category", 
+        "URL", 
+        "Description", 
+        "Emoji", 
+        "Tags", 
+        "Rating", 
+        "Total Votes",
+        "Color Scheme",
+        "Pricing"
+      ];
+      
+      // Enhanced data extraction with all fields
+      const rows = allTools.map((tool, index) => [
         tool.title || "",
         tool.category || "",
         tool.directUrl || "",
         tool.description || "",
+        tool.emoji || "",
+        (tool.tags || []).join("; "),
+        tool.rating?.toString() || "",
+        tool.totalVotes?.toString() || "",
+        tool.color || "",
+        (tool.tags || []).find(tag => 
+          tag.toLowerCase().includes('free') || 
+          tag.toLowerCase().includes('premium') || 
+          tag.toLowerCase().includes('freemium')
+        ) || "Not specified"
       ]);
+      
       const escapeCSV = (val: string) => `"${(val || "").replace(/"/g, '""')}"`;
-      const csv = [header, ...rows]
+      const csv = [headers, ...rows]
         .map((r) => r.map((c) => escapeCSV(String(c))).join(","))
         .join("\n");
 
@@ -177,14 +204,16 @@ const MobileMenu = () => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "ai-tools-all.csv";
+      a.download = `ai-tools-complete-${allTools.length}-tools-${new Date().toISOString().split('T')[0]}.csv`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+      
+      console.log(`✅ CSV download complete! ${allTools.length} tools exported with enhanced data`);
       setIsMenuOpen(false);
     } catch (err) {
-      console.error("Failed to generate CSV:", err);
+      console.error("Failed to generate comprehensive CSV:", err);
     }
   };
 
@@ -467,10 +496,10 @@ const MobileMenu = () => {
               <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
                 Tools & Downloads
               </div>
-              <DropdownMenuItem onClick={handleDownloadTopToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded">
-                <Download className="w-4 h-4 mr-2" />
-                Download All AI Tools CSV
-              </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleDownloadAllToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded">
+                  <Download className="w-4 h-4 mr-2" />
+                  📊 Download ALL {toolStats.marketing} AI Tools (CSV)
+                </DropdownMenuItem>
               <DropdownMenuItem onClick={(e) => handleExternalLink('https://cloneaiwebtools.lovable.app/?via=aiwebtools', e)} className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700 font-bold rounded mb-2 gold-glow">
                 🚀 Clone This Website
               </DropdownMenuItem>

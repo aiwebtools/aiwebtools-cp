@@ -17,6 +17,7 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/component
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { getCurrentToolCount } from "@/utils/toolCounter";
 import Logo from "./Logo";
 
 const TabletMenu = () => {
@@ -26,7 +27,13 @@ const TabletMenu = () => {
   const [displayedCount, setDisplayedCount] = useState(50); // Start with 50 results
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isWeb3Open, setIsWeb3Open] = useState(false);
+  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const searchRef = useRef(null);
+
+  useEffect(() => {
+    const stats = getCurrentToolCount();
+    setToolStats(stats);
+  }, []);
 
   useEffect(() => {
     if (searchTerm.trim()) {
@@ -77,18 +84,45 @@ const TabletMenu = () => {
     }
   };
 
-  // Download all AI tools as CSV
-  const handleDownloadTopToolsCSV = () => {
+  // Enhanced CSV download with all comprehensive data fields
+  const handleDownloadAllToolsCSV = () => {
     try {
-      const header = ["Title", "Category", "URL", "Description"];
-      const rows = allTools.map((tool) => [
+      console.log(`📊 Generating comprehensive CSV with ${allTools.length} tools...`);
+      
+      // Enhanced headers with all available data fields
+      const headers = [
+        "Title", 
+        "Category", 
+        "URL", 
+        "Description", 
+        "Emoji", 
+        "Tags", 
+        "Rating", 
+        "Total Votes",
+        "Color Scheme",
+        "Pricing"
+      ];
+      
+      // Enhanced data extraction with all fields
+      const rows = allTools.map((tool, index) => [
         tool.title || "",
         tool.category || "",
         tool.directUrl || "",
         tool.description || "",
+        tool.emoji || "",
+        (tool.tags || []).join("; "),
+        tool.rating?.toString() || "",
+        tool.totalVotes?.toString() || "",
+        tool.color || "",
+        (tool.tags || []).find(tag => 
+          tag.toLowerCase().includes('free') || 
+          tag.toLowerCase().includes('premium') || 
+          tag.toLowerCase().includes('freemium')
+        ) || "Not specified"
       ]);
+      
       const escapeCSV = (val: string) => `"${(val || "").replace(/"/g, '""')}"`;
-      const csv = [header, ...rows]
+      const csv = [headers, ...rows]
         .map((r) => r.map((c) => escapeCSV(String(c))).join(","))
         .join("\n");
 
@@ -96,13 +130,15 @@ const TabletMenu = () => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "ai-tools-all.csv";
+      a.download = `ai-tools-complete-${allTools.length}-tools-${new Date().toISOString().split('T')[0]}.csv`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+      
+      console.log(`✅ CSV download complete! ${allTools.length} tools exported with enhanced data`);
     } catch (err) {
-      console.error("Failed to generate CSV:", err);
+      console.error("Failed to generate comprehensive CSV:", err);
     }
   };
 
@@ -342,9 +378,9 @@ const TabletMenu = () => {
                 </DropdownMenuItem>
 
                 {/* Download ALL AI tools CSV - tablet only */}
-                <DropdownMenuItem onClick={handleDownloadTopToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
+                <DropdownMenuItem onClick={handleDownloadAllToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 rounded">
                   <Download className="w-4 h-4 mr-2" />
-                  Download ALL AI Tools (CSV)
+                  📊 Download ALL {toolStats.marketing} AI Tools (CSV)
                 </DropdownMenuItem>
                 
                 {/* Clone Website Button */}

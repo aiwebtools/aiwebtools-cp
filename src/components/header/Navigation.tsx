@@ -1,14 +1,81 @@
 
-import { Phone, Globe, Trees, Clapperboard, Heart } from "lucide-react";
+import { Phone, Globe, Trees, Clapperboard, Heart, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { useFavorites } from "@/hooks/useFavorites";
+import { allTools } from "@/data/toolsData";
+import { getCurrentToolCount } from "@/utils/toolCounter";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import { useState, useEffect } from "react";
 
 const Navigation = () => {
   const navigate = useNavigate();
   const { getFavoritesCount } = useFavorites();
+  const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
+
+  useEffect(() => {
+    const stats = getCurrentToolCount();
+    setToolStats(stats);
+  }, []);
+
+  // Enhanced CSV download with all comprehensive data fields
+  const handleDownloadAllToolsCSV = () => {
+    try {
+      console.log(`📊 Generating comprehensive CSV with ${allTools.length} tools...`);
+      
+      // Enhanced headers with all available data fields
+      const headers = [
+        "Title", 
+        "Category", 
+        "URL", 
+        "Description", 
+        "Emoji", 
+        "Tags", 
+        "Rating", 
+        "Total Votes",
+        "Color Scheme",
+        "Pricing"
+      ];
+      
+      // Enhanced data extraction with all fields
+      const rows = allTools.map((tool, index) => [
+        tool.title || "",
+        tool.category || "",
+        tool.directUrl || "",
+        tool.description || "",
+        tool.emoji || "",
+        (tool.tags || []).join("; "),
+        tool.rating?.toString() || "",
+        tool.totalVotes?.toString() || "",
+        tool.color || "",
+        (tool.tags || []).find(tag => 
+          tag.toLowerCase().includes('free') || 
+          tag.toLowerCase().includes('premium') || 
+          tag.toLowerCase().includes('freemium')
+        ) || "Not specified"
+      ]);
+      
+      const escapeCSV = (val: string) => `"${(val || "").replace(/"/g, '""')}"`;
+      const csv = [headers, ...rows]
+        .map((r) => r.map((c) => escapeCSV(String(c))).join(","))
+        .join("\n");
+
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `ai-tools-complete-${allTools.length}-tools-${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      console.log(`✅ CSV download complete! ${allTools.length} tools exported with enhanced data`);
+    } catch (err) {
+      console.error("Failed to generate comprehensive CSV:", err);
+    }
+  };
 
   const scrollToHome = () => {
     // If we're already on the home page, just scroll to top instantly
@@ -39,6 +106,15 @@ const Navigation = () => {
         className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer px-2 py-1 rounded text-xs font-medium"
       >
         🎯 Browse Tools
+      </button>
+
+      <button 
+        onClick={handleDownloadAllToolsCSV}
+        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center space-x-1 px-2 py-1 rounded text-xs font-medium"
+        title={`Download all ${toolStats.marketing} AI tools as CSV`}
+      >
+        <Download className="w-3 h-3" />
+        <span className="hidden xl:inline">CSV</span>
       </button>
 
       <Popover>
