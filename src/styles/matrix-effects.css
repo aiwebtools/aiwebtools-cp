@@ -212,6 +212,16 @@
     z-index: 100;
   }
 
+  /* White outline for better contrast */
+  .hero-white-stroke {
+    -webkit-text-stroke: 1px #ffffff;
+    text-stroke: 1px #ffffff;
+    paint-order: stroke fill;
+    position: relative;
+    z-index: 100;
+    filter: drop-shadow(1px 1px 2px #000000);
+  }
+
   /* Layered text effect for maximum pop */
   .hero-layered-text {
     position: relative;

@@ -97,9 +97,9 @@ const HeroSection = () => {
           
           {/* Clear value proposition subtitle */}
           <div className="mb-8">
-            <p className="text-xl md:text-2xl text-cyan-100 font-medium max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-cyan-100 font-medium max-w-4xl mx-auto leading-relaxed hero-white-stroke">
               The largest directory of AI tools for productivity, creativity, and business. 
-              <span className="text-cyan-400 font-semibold"> Find the perfect AI tool for any task.</span>
+              <span className="text-cyan-400 font-semibold hero-white-stroke"> Find the perfect AI tool for any task.</span>
             </p>
           </div>
         </div>
