@@ -205,16 +205,16 @@ const InteractiveMatrixBackground = () => {
           const fadeMultiplier = Math.max(0, 1 - (i / drop.length));
           const alpha = drop.opacity * fadeMultiplier;
           
-          // Head of the drop is brighter white/cyan
+          // Head of the drop is brighter Matrix green
           if (i === 0) {
-            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-            ctx.shadowColor = '#00ffff';
-            ctx.shadowBlur = 10;
-          } else {
-            // Body is green matrix color
-            ctx.fillStyle = `rgba(0, 255, 65, ${alpha})`;
+            ctx.fillStyle = `rgba(0, 255, 65, ${Math.min(alpha * 1.8, 1)})`;
             ctx.shadowColor = '#00ff41';
-            ctx.shadowBlur = 5;
+            ctx.shadowBlur = 15;
+          } else {
+            // Body is classic Matrix green with fade
+            ctx.fillStyle = `rgba(0, 255, 65, ${alpha * 0.8})`;
+            ctx.shadowColor = '#00ff41';
+            ctx.shadowBlur = 8;
           }
           
           ctx.fillText(drop.chars[i], drop.x, charY);
@@ -232,13 +232,16 @@ const InteractiveMatrixBackground = () => {
       return point.intensity > 0.1;
     });
 
-    // Render interaction ripples
+    // Render interaction ripples in Matrix green
     interactionPointsRef.current.forEach(point => {
-      ctx.strokeStyle = `rgba(0, 255, 255, ${point.intensity * 0.3})`;
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = `rgba(0, 255, 65, ${point.intensity * 0.4})`;
+      ctx.lineWidth = 3;
+      ctx.shadowColor = '#00ff41';
+      ctx.shadowBlur = 10;
       ctx.beginPath();
       ctx.arc(point.x, point.y, point.radius, 0, Math.PI * 2);
       ctx.stroke();
+      ctx.shadowBlur = 0;
     });
 
     // Clean up excess drops for performance
@@ -310,7 +313,7 @@ const InteractiveMatrixBackground = () => {
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-full pointer-events-auto z-0"
       style={{
-        background: 'linear-gradient(135deg, #000000 0%, #001100 50%, #000000 100%)',
+        background: 'radial-gradient(ellipse at center, #000000 0%, #001a00 50%, #000000 100%)',
         touchAction: 'none' // Prevent default touch behaviors
       }}
     />
