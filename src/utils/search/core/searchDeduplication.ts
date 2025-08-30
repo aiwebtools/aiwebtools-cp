@@ -1,18 +1,21 @@
 import { Tool } from "@/types/tools";
 
 /**
- * Normalize tool title for duplicate detection
+ * Normalize tool title for duplicate detection - handles emoji prefixes
  */
 const normalizeTitle = (title: string): string => {
   return title
     .toLowerCase()
-    .replace(/[^\w\s]/g, '') // Remove special characters
+    // Remove leading non-alphanumeric characters (including emojis)
+    .replace(/^[^\w]+\s*/g, '')
+    .replace(/[^\w\s]/g, '') // Remove remaining special characters
     .replace(/\s+/g, ' ') // Normalize spaces
     .trim();
 };
 
 /**
  * Calculate similarity score between two normalized titles
+ * Enhanced to better handle emoji prefix variations
  */
 const calculateSimilarity = (title1: string, title2: string): number => {
   const norm1 = normalizeTitle(title1);
@@ -38,17 +41,33 @@ const calculateSimilarity = (title1: string, title2: string): number => {
     words2.some(w2 => w2.includes(w1) || w1.includes(w2))
   );
   
-  return commonWords.length / Math.max(words1.length, words2.length);
+  // Higher threshold for exact word matches
+  const similarity = commonWords.length / Math.max(words1.length, words2.length);
+  
+  // Bonus for very similar titles (accounts for emoji prefix differences)
+  if (similarity > 0.7 && Math.abs(norm1.length - norm2.length) <= 3) {
+    return Math.min(1.0, similarity + 0.2);
+  }
+  
+  return similarity;
 };
 
 /**
  * Determine if two tools are duplicates based on title similarity
+ * Enhanced thresholds for better duplicate detection
  */
 const areDuplicates = (tool1: Tool, tool2: Tool): boolean => {
   const similarity = calculateSimilarity(tool1.title, tool2.title);
   
-  // High similarity threshold for duplicate detection
-  return similarity >= 0.85;
+  // Lower similarity threshold to catch more emoji prefix variations
+  const threshold = 0.80;
+  
+  if (similarity >= threshold) {
+    console.log(`🔍 Duplicate detected: "${tool1.title}" vs "${tool2.title}" (similarity: ${similarity.toFixed(2)})`);
+    return true;
+  }
+  
+  return false;
 };
 
 /**
@@ -75,9 +94,16 @@ const selectBestRepresentative = (duplicates: Tool[]): Tool => {
     // Prioritize shorter, cleaner titles (usually the main version)
     score += Math.max(0, 100 - tool.title.length);
     
-    // Prioritize tools without special characters in titles
-    if (!/[^\w\s]/.test(tool.title)) {
-      score += 50;
+    // Prioritize tools without emoji prefixes (cleaner titles)
+    const hasEmojiPrefix = /^[^\w]/.test(tool.title);
+    if (!hasEmojiPrefix) {
+      score += 200;
+    }
+    
+    // Prioritize tools that don't start with "AI " (to avoid generic AI tools dominating)
+    const normalizedAfterEmoji = tool.title.replace(/^[^\w]+\s*/g, '').toLowerCase();
+    if (!normalizedAfterEmoji.startsWith('ai ')) {
+      score += 300;
     }
     
     // Prioritize specific categories

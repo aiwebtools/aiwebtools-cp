@@ -7,6 +7,7 @@ import { enhancedKeywordMatching, enhancedToolScoring } from "@/utils/search/enh
 import { predictUserIntent, generateAutoComplete } from "@/utils/search/core/intelligentPrediction";
 import { toolAbbreviations, fuzzyMatches, acronymMatches } from "@/utils/search/toolAbbreviations";
 import { deduplicateSearchResults } from "@/utils/search/core/searchDeduplication";
+import { sortToolsAlphabetically, getAlphabeticalSortKey } from "@/utils/search/alphabeticalSorting";
 
 interface UseSearchBarProps {
   searchTerm: string;
@@ -183,7 +184,7 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
       );
     }
 
-    // Sort exact matches by relevance
+    // Sort exact matches by relevance with better AI tool handling
     const sortedExact = exactMatches.sort((a, b) => {
       const aTitle = a.title.toLowerCase();
       const bTitle = b.title.toLowerCase();
@@ -197,22 +198,34 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
       const bScore = prefixPriorityScore(b.title, trimmedTerm);
       if (aScore !== bScore) return bScore - aScore;
       
-      return aTitle.localeCompare(bTitle);
+      // Finally by alphabetical sort key (emoji+AI tools go to end)
+      const keyA = getAlphabeticalSortKey(a.title);
+      const keyB = getAlphabeticalSortKey(b.title);
+      return keyA.localeCompare(keyB);
     });
 
     // Combine all results with exact matches first and apply deduplication
     const combinedResults = [
       ...sortedExact,
       ...partialMatches.sort((a, b) => {
+        // First by enhanced scoring
         const aScore = enhancedToolScoring(a, trimmedTerm) + prefixPriorityScore(a.title, trimmedTerm);
         const bScore = enhancedToolScoring(b, trimmedTerm) + prefixPriorityScore(b.title, trimmedTerm);
-        return bScore - aScore;
+        if (aScore !== bScore) return bScore - aScore;
+        
+        // Then by alphabetical sort key (emoji+AI tools go to end)
+        const keyA = getAlphabeticalSortKey(a.title);
+        const keyB = getAlphabeticalSortKey(b.title);
+        return keyA.localeCompare(keyB);
       }),
       ...intelligentResults
     ];
 
     // Apply deduplication to remove duplicate tools from search results
-    return deduplicateSearchResults(combinedResults).slice(0, 100);
+    const deduplicatedResults = deduplicateSearchResults(combinedResults);
+    console.log(`🔍 Search Bar deduplication: ${combinedResults.length} → ${deduplicatedResults.length} tools`);
+    
+    return deduplicatedResults.slice(0, 100);
   }, [searchTerm, prefixPriorityScore]);
 
   // Display results with performance limits for rendering

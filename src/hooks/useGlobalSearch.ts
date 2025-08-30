@@ -8,6 +8,7 @@ import { getCurrentToolCount } from "@/utils/toolCounter";
 import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
 import { useDebounce } from "@/hooks/useDebounce";
 import { deduplicateSearchResults } from "@/utils/search/core/searchDeduplication";
+import { sortToolsAlphabetically, getAlphabeticalSortKey } from "@/utils/search/alphabeticalSorting";
 
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -69,7 +70,7 @@ export const useGlobalSearch = () => {
       );
     }
 
-    // Sort exact matches by relevance
+    // Sort exact matches by relevance with better AI tool handling
     const sortedExact = exactMatches.sort((a, b) => {
       const aTitle = a.title.toLowerCase();
       const bTitle = b.title.toLowerCase();
@@ -84,13 +85,24 @@ export const useGlobalSearch = () => {
       if (aStarts && !bStarts) return -1;
       if (bStarts && !aStarts) return 1;
       
-      return aTitle.localeCompare(bTitle);
+      // Finally by alphabetical sort key (emoji+AI tools go to end)
+      const keyA = getAlphabeticalSortKey(a.title);
+      const keyB = getAlphabeticalSortKey(b.title);
+      return keyA.localeCompare(keyB);
     });
 
-    // Combine results with exact matches first
+    // Sort partial matches with better alphabetical handling
+    const sortedPartial = partialMatches.sort((a, b) => {
+      // First by alphabetical sort key (emoji+AI tools go to end)
+      const keyA = getAlphabeticalSortKey(a.title);
+      const keyB = getAlphabeticalSortKey(b.title);
+      return keyA.localeCompare(keyB);
+    });
+
+    // Combine results with exact matches first and apply deduplication
     const finalResults = [
       ...sortedExact,
-      ...partialMatches.sort((a, b) => a.title.localeCompare(b.title)),
+      ...sortedPartial,
       ...intelligentResults
     ];
 

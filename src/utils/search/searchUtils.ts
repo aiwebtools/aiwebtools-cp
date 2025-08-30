@@ -12,6 +12,7 @@ import { matchWebDevelopment, scoreWebDevelopment } from "./matching/webDevelopm
 import { getAdvancedPartialMatches, scoreAdvancedPartialMatch } from "./core/advancedPartialMatching";
 import { getAIWebToolsPriorityScore, applyAIWebToolsPrioritization } from "@/utils/aiWebToolsPrioritization";
 import { deduplicateSearchResults } from "./core/searchDeduplication";
+import { getAlphabeticalSortKey, sortToolsAlphabetically } from "./alphabeticalSorting";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
