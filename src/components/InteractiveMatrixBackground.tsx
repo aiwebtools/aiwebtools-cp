@@ -78,7 +78,7 @@ const InteractiveMatrixBackground = () => {
       const drop: MatrixDrop = {
         x: (i * fontSize) + (Math.random() * fontSize * 0.5),
         y: Math.random() * -canvas.height,
-        speed: (Math.random() * 2 + 1),
+        speed: (Math.random() * 4 + 2),
         chars: [],
         opacity: Math.random() * 0.8 + 0.2,
         length: Math.floor(Math.random() * 10) + 4
@@ -117,8 +117,8 @@ const InteractiveMatrixBackground = () => {
         );
 
         if (distance < interactionPoint.radius) {
-          // Speed up drops near interaction
-          drop.speed *= 1.8;
+          // Speed up drops near interaction - more dramatic
+          drop.speed *= 2.2;
           drop.opacity = Math.min(1, drop.opacity + 0.4);
           
           // Randomize characters for ripple effect
@@ -137,7 +137,7 @@ const InteractiveMatrixBackground = () => {
           const newDrop: MatrixDrop = {
             x: x + (Math.random() - 0.5) * 60,
             y: y - Math.random() * 80,
-            speed: Math.random() * 4 + 3,
+            speed: Math.random() * 6 + 4,
             chars: [],
             opacity: 1,
             length: Math.floor(Math.random() * 12) + 8
@@ -185,7 +185,7 @@ const InteractiveMatrixBackground = () => {
       if (drop.y > canvas.height + drop.length * (fontSize * 1.4)) {
         drop.y = -drop.length * (fontSize * 1.4);
         drop.x = Math.random() * canvas.width;
-        drop.speed = (Math.random() * 2 + 1);
+        drop.speed = (Math.random() * 4 + 2);
         drop.opacity = Math.random() * 0.8 + 0.2;
       }
 
