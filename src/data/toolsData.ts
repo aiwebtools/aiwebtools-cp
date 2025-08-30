@@ -183,6 +183,9 @@ export const getToolCountAnalysis = () => {
 };
 
 // PERFORMANCE OPTIMIZED: Minimal initialization - only essential operations
-setTimeout(() => {
-  getToolCountAnalysis();
-}, 3000); // Further delayed to ensure smooth page load
+// Only run analysis in development or if specifically requested
+if (process.env.NODE_ENV === 'development') {
+  setTimeout(() => {
+    getToolCountAnalysis();
+  }, 5000); // Further delayed to ensure smooth page load
+}
