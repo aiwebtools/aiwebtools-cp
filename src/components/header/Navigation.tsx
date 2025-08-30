@@ -11,7 +11,17 @@ import { useState, useEffect } from "react";
 
 const Navigation = () => {
   const navigate = useNavigate();
-  const { getFavoritesCount } = useFavorites();
+  
+  // Safe hook usage with error handling
+  let getFavoritesCount;
+  try {
+    const favoritesContext = useFavorites();
+    getFavoritesCount = favoritesContext.getFavoritesCount;
+  } catch (error) {
+    console.warn('useFavorites hook not available, using fallback');
+    getFavoritesCount = () => 0;
+  }
+  
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
 
   useEffect(() => {

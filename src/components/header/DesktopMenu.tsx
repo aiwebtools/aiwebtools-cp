@@ -24,7 +24,17 @@ import { useDebounce } from "@/hooks/useDebounce";
 
 const DesktopMenu = () => {
   const navigate = useNavigate();
-  const { getFavoritesCount } = useFavorites();
+  
+  // Safe hook usage with error handling
+  let getFavoritesCount;
+  try {
+    const favoritesContext = useFavorites();
+    getFavoritesCount = favoritesContext.getFavoritesCount;
+  } catch (error) {
+    console.warn('useFavorites hook not available in DesktopMenu, using fallback');
+    getFavoritesCount = () => 0;
+  }
+  
   const [searchTerm, setSearchTerm] = useState("");
   const [displayedCount, setDisplayedCount] = useState(50);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
