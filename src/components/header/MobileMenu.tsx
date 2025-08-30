@@ -26,27 +26,84 @@ const MobileMenu = () => {
   const navigate = useNavigate();
   const { getFavoritesCount } = useFavorites();
   const [searchTerm, setSearchTerm] = useState("");
-  const [displayedCount, setDisplayedCount] = useState(20);
+  const [displayedCount, setDisplayedCount] = useState(50);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isWeb3Open, setIsWeb3Open] = useState(false);
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const searchRef = useRef(null);
   
-  // Debounce search term for better performance
-  const debouncedSearchTerm = useDebounce(searchTerm, 150);
+  // Optimized debounce for instant responsiveness
+  const debouncedSearchTerm = useDebounce(searchTerm, 100);
 
   const handleMenuToggle = useCallback((open: boolean) => {
     setIsMenuOpen(open);
     if (!open) {
       setSearchTerm("");
-      setDisplayedCount(20);
+      setDisplayedCount(50);
     }
   }, []);
 
-  // Memoized search results for better performance
+  // ULTRA-FAST search results using same logic as hero section
   const searchResults = useMemo(() => {
-    if (!debouncedSearchTerm.trim()) return [];
-    return searchTools(allTools, debouncedSearchTerm);
+    const trimmedTerm = debouncedSearchTerm.trim();
+    
+    if (!trimmedTerm || trimmedTerm.length < 2) return [];
+
+    const lowerTerm = trimmedTerm.toLowerCase();
+    
+    // EXACT MATCHING PRIORITY (same as hero section)
+    const exactMatches = allTools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      return lowerTitle === lowerTerm || lowerTitle.includes(lowerTerm);
+    });
+
+    const partialMatches = allTools.filter(tool => {
+      if (exactMatches.some(exact => exact.title === tool.title)) return false;
+      
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description?.toLowerCase() || "";
+      const lowerCategory = tool.category?.toLowerCase() || "";
+      const lowerTags = tool.tags?.join(" ").toLowerCase() || "";
+      
+      return lowerTitle.includes(lowerTerm) ||
+             lowerDescription.includes(lowerTerm) ||
+             lowerCategory.includes(lowerTerm) ||
+             lowerTags.includes(lowerTerm) ||
+             lowerTitle.match(new RegExp(`\\b${lowerTerm}`, 'i')) ||
+             lowerDescription.match(new RegExp(`\\b${lowerTerm}`, 'i'));
+    });
+
+    // For 4+ characters, add intelligent search
+    let intelligentResults = [];
+    if (trimmedTerm.length >= 4) {
+      intelligentResults = searchTools(allTools, trimmedTerm).filter(tool => 
+        !exactMatches.some(exact => exact.title === tool.title) &&
+        !partialMatches.some(partial => partial.title === tool.title)
+      );
+    }
+
+    // Sort exact matches by relevance
+    const sortedExact = exactMatches.sort((a, b) => {
+      const aTitle = a.title.toLowerCase();
+      const bTitle = b.title.toLowerCase();
+      
+      if (aTitle === lowerTerm && bTitle !== lowerTerm) return -1;
+      if (bTitle === lowerTerm && aTitle !== lowerTerm) return 1;
+      
+      const aStarts = aTitle.startsWith(lowerTerm);
+      const bStarts = bTitle.startsWith(lowerTerm);
+      if (aStarts && !bStarts) return -1;
+      if (bStarts && !aStarts) return 1;
+      
+      return aTitle.localeCompare(bTitle);
+    });
+
+    // Combine results with exact matches first
+    return [
+      ...sortedExact,
+      ...partialMatches.sort((a, b) => a.title.localeCompare(b.title)),
+      ...intelligentResults
+    ];
   }, [debouncedSearchTerm]);
 
   const isSearchOpen = searchResults.length > 0 && debouncedSearchTerm.trim().length > 0;
@@ -85,20 +142,21 @@ const MobileMenu = () => {
 
   const clearSearch = useCallback(() => {
     setSearchTerm("");
-    setDisplayedCount(20);
+    setDisplayedCount(50);
   }, []);
 
   const closeMenu = useCallback(() => {
     handleMenuToggle(false);
   }, [handleMenuToggle]);
 
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+  const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
-    if (scrollHeight - scrollTop <= clientHeight + 50 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 30, searchResults.length));
+    // Load more results with better performance
+    if (scrollHeight - scrollTop <= clientHeight + 100 && displayedCount < searchResults.length) {
+      setDisplayedCount(prev => Math.min(prev + 50, searchResults.length));
     }
-  };
+  }, [displayedCount, searchResults.length]);
 
   // Download all AI tools as CSV
   const handleDownloadTopToolsCSV = () => {
@@ -195,7 +253,7 @@ const MobileMenu = () => {
 
                 {/* Search Results */}
                 {isSearchOpen && (
-                  <Card className="absolute top-full left-0 right-0 mt-1 bg-gray-900 border border-cyan-500/40 shadow-2xl z-50 max-h-[40vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" onScroll={handleScroll}>
+                  <Card className="absolute top-full left-0 right-0 mt-1 bg-gray-900 border border-cyan-500/40 shadow-2xl z-50 max-h-[45vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" onScroll={handleScroll}>
                     <CardContent className="p-1">
                       <div className="text-xs text-cyan-400 px-2 py-1 border-b border-gray-700 sticky top-0 bg-gray-900">
                         {searchResults.length} results {displayedCount < searchResults.length && `(${displayedCount} shown)`}
