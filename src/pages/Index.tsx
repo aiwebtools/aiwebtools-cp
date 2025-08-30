@@ -39,14 +39,28 @@ const Index = () => {
     // Set loaded state immediately for faster initial render
     setIsLoaded(true);
     
+    // Auto-play video after 5 seconds unmuted at 1080p
+    const videoTimer = setTimeout(() => {
+      const video = document.querySelector('iframe[src*="youtube.com"]') as HTMLIFrameElement;
+      if (video) {
+        console.log('🎥 5-second timer: Starting video autoplay unmuted at 1080p...');
+        // Update to 1080p, unmuted, autoplay
+        const newSrc = "https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark&origin=https://aiwebtools.ai";
+        video.src = newSrc;
+      }
+    }, 5000); // 5 seconds
+    
     // Load actual stats in background after page renders
-    const timer = setTimeout(() => {
+    const statsTimer = setTimeout(() => {
       const stats = getCurrentToolCount();
       setToolStats(stats);
       updateCachedStats(stats);
     }, 3000); // Increased delay to let page render completely first
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(videoTimer);
+      clearTimeout(statsTimer);
+    };
   }, []);
 
   const handleSeeMoreAITools = () => {
@@ -99,13 +113,13 @@ const Index = () => {
                 <iframe
                   ref={mainVideoRef}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd720&quality=hd720&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark&origin=https://aiwebtools.ai"
-                  title="AI Web Tools Featured Video - Mobile Optimized"
+                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark&origin=https://aiwebtools.ai"
+                  title="AI Web Tools Featured Video - 1080p HD Autoplay"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
                   loading="lazy"
-                  onLoad={() => console.log('🎥 Main video loaded successfully')}
+                  onLoad={() => console.log('🎥 Main video iframe loaded - ready for 5-second autoplay')}
                 ></iframe>
               </div>
             </div>
