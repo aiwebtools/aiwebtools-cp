@@ -33,7 +33,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="hidden lg:flex items-center space-x-3 min-w-0">
+    <nav className="hidden md:flex items-center space-x-2 min-w-0">
       <button 
         onClick={handleBrowseAITools}
         className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer px-2 py-1 rounded text-sm"
