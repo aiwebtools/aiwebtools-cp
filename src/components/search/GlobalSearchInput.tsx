@@ -25,7 +25,7 @@ const GlobalSearchInput = memo(({
   }, [onSearchChange]);
 
   return (
-    <div className="relative rounded-lg border border-gray-600">
+    <div className="relative rounded-lg border-2 border-white shadow-[0_0_20px_rgba(255,255,255,0.8),0_0_40px_rgba(255,255,255,0.6),0_0_80px_rgba(255,255,255,0.4)] animate-pulse">
       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 w-4 h-4 pointer-events-none" />
       <Input
         type="text"
