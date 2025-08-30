@@ -11,6 +11,7 @@ import { superSmartTypoCorrection, getPartialMatchSuggestions, matchWithContext,
 import { matchWebDevelopment, scoreWebDevelopment } from "./matching/webDevelopmentMatching";
 import { getAdvancedPartialMatches, scoreAdvancedPartialMatch } from "./core/advancedPartialMatching";
 import { getAIWebToolsPriorityScore, applyAIWebToolsPrioritization } from "@/utils/aiWebToolsPrioritization";
+import { deduplicateSearchResults } from "./core/searchDeduplication";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -85,8 +86,10 @@ const detectIntent = (searchTerm: string): string | null => {
   // Enhanced search function with SUPER INTELLIGENT partial matching and prediction
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
-    // 🚀 Even for empty searches, apply AI Web Tools prioritization
-    return applyAIWebToolsPrioritization(tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title)));
+    // 🚀 Even for empty searches, apply AI Web Tools prioritization and deduplication
+    const filtered = tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title));
+    const prioritized = applyAIWebToolsPrioritization(filtered);
+    return deduplicateSearchResults(prioritized);
   }
 
   // DEBUG: Check if ElevenLabs and Suno are in the tools array when searching for them
@@ -1496,7 +1499,15 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   
   // Regular enhanced search with improved scoring and AI Web Tools prioritization
   const regularSearchResults = performEnhancedSearch(tools, searchTerm, searchWords, phoneticVariations, intentConfig);
-  return applyAIWebToolsPrioritization(regularSearchResults);
+  // 🚀 Apply AI Web Tools prioritization and deduplication to final results
+  const prioritizedResults = applyAIWebToolsPrioritization(regularSearchResults);
+  
+  // 🧹 FINAL STEP: Apply search deduplication to remove duplicate tools
+  console.log(`🔍 Before deduplication: ${prioritizedResults.length} results`);
+  const deduplicatedResults = deduplicateSearchResults(prioritizedResults);
+  console.log(`🔍 After deduplication: ${deduplicatedResults.length} results`);
+  
+  return deduplicatedResults;
 };
 
 // Perform enhanced search with intent prioritization and fuzzy matching
@@ -1732,7 +1743,11 @@ const performEnhancedSearch = (
     })
     .map(result => result.tool);
 
-  return results;
+  // Apply deduplication to enhance search results and avoid showing duplicate tools
+  const deduplicatedResults = deduplicateSearchResults(results);
+  console.log(`🔍 Enhanced search: ${results.length} → ${deduplicatedResults.length} (removed ${results.length - deduplicatedResults.length} duplicates)`);
+  
+  return deduplicatedResults;
 };
 
 // Helper function to remove duplicate tools

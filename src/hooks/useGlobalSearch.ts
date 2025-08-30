@@ -7,6 +7,7 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
 import { useDebounce } from "@/hooks/useDebounce";
+import { deduplicateSearchResults } from "@/utils/search/core/searchDeduplication";
 
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -93,12 +94,15 @@ export const useGlobalSearch = () => {
       ...intelligentResults
     ];
 
+    // Apply deduplication to remove duplicate tools from search results
+    const deduplicatedResults = deduplicateSearchResults(finalResults);
+    
     // Add remaining tools for endless scroll
     const remainingTools = allTools.filter(tool => 
-      !finalResults.some(result => result.title === tool.title)
+      !deduplicatedResults.some(result => result.title === tool.title)
     );
     
-    const endlessResults = [...finalResults, ...remainingTools];
+    const endlessResults = [...deduplicatedResults, ...remainingTools];
     
     setSearchResults(endlessResults);
     setDisplayedCount(30); // Start with 30, then load more

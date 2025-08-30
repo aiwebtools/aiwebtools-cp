@@ -6,6 +6,7 @@ import { getCurrentToolCount } from "@/utils/toolCounter";
 import { enhancedKeywordMatching, enhancedToolScoring } from "@/utils/search/enhancedKeywordMatching";
 import { predictUserIntent, generateAutoComplete } from "@/utils/search/core/intelligentPrediction";
 import { toolAbbreviations, fuzzyMatches, acronymMatches } from "@/utils/search/toolAbbreviations";
+import { deduplicateSearchResults } from "@/utils/search/core/searchDeduplication";
 
 interface UseSearchBarProps {
   searchTerm: string;
@@ -199,8 +200,8 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
       return aTitle.localeCompare(bTitle);
     });
 
-    // Combine all results with exact matches first
-    return [
+    // Combine all results with exact matches first and apply deduplication
+    const combinedResults = [
       ...sortedExact,
       ...partialMatches.sort((a, b) => {
         const aScore = enhancedToolScoring(a, trimmedTerm) + prefixPriorityScore(a.title, trimmedTerm);
@@ -208,7 +209,10 @@ export const useSearchBar = ({ searchTerm, onSearchChange }: UseSearchBarProps) 
         return bScore - aScore;
       }),
       ...intelligentResults
-    ].slice(0, 100);
+    ];
+
+    // Apply deduplication to remove duplicate tools from search results
+    return deduplicateSearchResults(combinedResults).slice(0, 100);
   }, [searchTerm, prefixPriorityScore]);
 
   // Display results with performance limits for rendering
