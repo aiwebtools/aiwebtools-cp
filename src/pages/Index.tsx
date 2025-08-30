@@ -102,7 +102,7 @@ const Index = () => {
                   src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd720&quality=hd720&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark&origin=https://aiwebtools.ai"
                   title="AI Web Tools Featured Video - Mobile Optimized"
                   frameBorder="0"
-                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
                   loading="lazy"
                   onLoad={() => console.log('🎥 Main video loaded successfully')}
