@@ -21,7 +21,7 @@ export const specializedPolicyTools: Tool[] = [
     description: "Navigate complex regulatory requirements across industries. Expert guidance on compliance strategies, regulatory interpretation, and risk management for regulatory adherence.",
     emoji: "📋",
     color: "from-green-500 to-teal-600",
-    directUrl: "https://chatgpt.com/g/g-68af51544cf08191b21b45c4f91c17e3-regulatory-compliance-advisor-gpt",
+    directUrl: "https://regulatorycomplianceadvisorgpt.lovable.app/?via=aiwebtools",
     tags: ["regulatory compliance", "risk management", "regulatory interpretation", "compliance strategy", "industry regulations"],
     category: "Specialized Policy Tools",
     rating: 4.6,
