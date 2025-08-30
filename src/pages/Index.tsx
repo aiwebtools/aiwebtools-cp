@@ -46,29 +46,21 @@ const Index = () => {
       const iframe = mainVideoRef.current;
       if (iframe) {
         setVideoStarted(true);
-        console.log('🎥 Starting video autoplay sequence...');
+        console.log('🎥 Starting video autoplay in place...');
         
-        // Scroll to video smoothly
-        iframe.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'center' 
-        });
+        // Start video with muted autoplay (browser-compliant) - no scrolling
+        const autoplayUrl = "https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark";
+        iframe.src = autoplayUrl;
         
-        // Start video with muted autoplay (browser-compliant)
+        // Try to unmute after video starts (user can manually unmute if needed)
         setTimeout(() => {
-          const autoplayUrl = "https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark";
-          iframe.src = autoplayUrl;
-          
-          // Try to unmute after video starts (user can manually unmute if needed)
-          setTimeout(() => {
-            try {
-              iframe.contentWindow?.postMessage('{"event":"command","func":"unMute","args":""}', '*');
-              console.log('🔊 Video unmuted successfully');
-            } catch (e) {
-              console.log('🔇 Video remains muted due to browser policy - user can unmute manually');
-            }
-          }, 2000);
-        }, 1000);
+          try {
+            iframe.contentWindow?.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+            console.log('🔊 Video unmuted successfully');
+          } catch (e) {
+            console.log('🔇 Video remains muted due to browser policy - user can unmute manually');
+          }
+        }, 2000);
       }
     }, 3000); // Reduced to 3 seconds for faster engagement
     
