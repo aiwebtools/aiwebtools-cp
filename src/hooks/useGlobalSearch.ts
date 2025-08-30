@@ -21,10 +21,10 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
-  // Always call debounce hook to maintain hook order - INSTANT typing response
-  const debouncedSearchTerm = useDebounce(searchTerm, 30);
+  // Balanced debounce for smooth typing + reasonable search performance
+  const debouncedSearchTerm = useDebounce(searchTerm, 150);
 
-  // OPTIMIZED search effect with EXACT MATCHING PRIORITY
+  // LIGHTWEIGHT search effect with performance priority
   useEffect(() => {
     const trimmedTerm = debouncedSearchTerm.trim();
     
@@ -37,87 +37,58 @@ export const useGlobalSearch = () => {
 
     const lowerTerm = trimmedTerm.toLowerCase();
     
-    // UNIVERSAL EXACT MATCHING LOGIC for all search lengths
+    // SIMPLE exact matching for performance
     const exactMatches = allTools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
-      return lowerTitle === lowerTerm || lowerTitle.includes(lowerTerm);
+      return lowerTitle.includes(lowerTerm);
     });
 
-    const partialMatches = allTools.filter(tool => {
-      if (exactMatches.some(exact => exact.title === tool.title)) return false;
-      
-      const lowerTitle = tool.title.toLowerCase();
-      const lowerDescription = tool.description?.toLowerCase() || "";
-      const lowerCategory = tool.category?.toLowerCase() || "";
-      const lowerTags = tool.tags?.join(" ").toLowerCase() || "";
-      
-      // Check all searchable fields
-      return lowerTitle.includes(lowerTerm) ||
-             lowerDescription.includes(lowerTerm) ||
-             lowerCategory.includes(lowerTerm) ||
-             lowerTags.includes(lowerTerm) ||
-             // Word boundary matching
-             lowerTitle.match(new RegExp(`\\b${lowerTerm}`, 'i')) ||
-             lowerDescription.match(new RegExp(`\\b${lowerTerm}`, 'i'));
-    });
+    // Quick partial matches only if needed
+    let partialMatches = [];
+    if (exactMatches.length < 10) {
+      partialMatches = allTools.filter(tool => {
+        if (exactMatches.some(exact => exact.title === tool.title)) return false;
+        
+        const lowerDescription = tool.description?.toLowerCase() || "";
+        const lowerCategory = tool.category?.toLowerCase() || "";
+        
+        return lowerDescription.includes(lowerTerm) || lowerCategory.includes(lowerTerm);
+      }).slice(0, 20); // Limit for performance
+    }
 
-    // For 4+ characters, also use intelligent search
+    // Use intelligent search only for longer terms and if we need more results
     let intelligentResults = [];
-    if (trimmedTerm.length >= 4) {
+    if (trimmedTerm.length >= 4 && (exactMatches.length + partialMatches.length) < 15) {
       intelligentResults = searchTools(allTools, trimmedTerm).filter(tool => 
         !exactMatches.some(exact => exact.title === tool.title) &&
         !partialMatches.some(partial => partial.title === tool.title)
-      );
+      ).slice(0, 10); // Limit for performance
     }
 
-    // Sort exact matches by relevance with better AI tool handling
+    // Simple sorting - exact matches first
     const sortedExact = exactMatches.sort((a, b) => {
       const aTitle = a.title.toLowerCase();
       const bTitle = b.title.toLowerCase();
       
-      // Perfect match first
       if (aTitle === lowerTerm && bTitle !== lowerTerm) return -1;
       if (bTitle === lowerTerm && aTitle !== lowerTerm) return 1;
+      if (aTitle.startsWith(lowerTerm) && !bTitle.startsWith(lowerTerm)) return -1;
+      if (bTitle.startsWith(lowerTerm) && !aTitle.startsWith(lowerTerm)) return 1;
       
-      // Starts with term
-      const aStarts = aTitle.startsWith(lowerTerm);
-      const bStarts = bTitle.startsWith(lowerTerm);
-      if (aStarts && !bStarts) return -1;
-      if (bStarts && !aStarts) return 1;
-      
-      // Finally by alphabetical sort key (emoji+AI tools go to end)
-      const keyA = getAlphabeticalSortKey(a.title);
-      const keyB = getAlphabeticalSortKey(b.title);
-      return keyA.localeCompare(keyB);
+      return aTitle.localeCompare(bTitle);
     });
 
-    // Sort partial matches with better alphabetical handling
-    const sortedPartial = partialMatches.sort((a, b) => {
-      // First by alphabetical sort key (emoji+AI tools go to end)
-      const keyA = getAlphabeticalSortKey(a.title);
-      const keyB = getAlphabeticalSortKey(b.title);
-      return keyA.localeCompare(keyB);
-    });
-
-    // Combine results with exact matches first and apply deduplication
-    const finalResults = [
-      ...sortedExact,
-      ...sortedPartial,
-      ...intelligentResults
-    ];
-
-    // Apply deduplication to remove duplicate tools from search results
-    const deduplicatedResults = deduplicateSearchResults(finalResults);
+    const finalResults = [...sortedExact, ...partialMatches, ...intelligentResults];
     
     // Add remaining tools for endless scroll
     const remainingTools = allTools.filter(tool => 
-      !deduplicatedResults.some(result => result.title === tool.title)
+      !finalResults.some(result => result.title === tool.title)
     );
     
-    const endlessResults = [...deduplicatedResults, ...remainingTools];
+    const endlessResults = [...finalResults, ...remainingTools];
     
     setSearchResults(endlessResults);
-    setDisplayedCount(30); // Start with 30, then load more
+    setDisplayedCount(30);
     setIsOpen(true);
   }, [debouncedSearchTerm]);
 
