@@ -19,17 +19,24 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   // Debug logging removed to reduce console noise
   
   const getOptimizedEmbedUrl = (url: string) => {
+    // Detect device capabilities for optimal video quality
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isLowEnd = navigator.hardwareConcurrency <= 2 || (navigator as any).deviceMemory <= 2;
+    const quality = (isMobile || isLowEnd) ? 'hd720' : 'hd1080';
+    const vq = (isMobile || isLowEnd) ? 'hd720' : 'hd1080';
+
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1].split('&')[0];
-      return `https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0&controls=1&rel=0&hd=1&vq=hd1080&quality=hd1080&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&autohide=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
+      return `https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0&controls=1&rel=0&hd=1&vq=${vq}&quality=${quality}&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&modestbranding=1&autohide=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
     }
     if (url.includes('youtu.be/')) {
       const videoId = url.split('youtu.be/')[1].split('?')[0];
-      return `https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0&controls=1&rel=0&hd=1&vq=hd1080&quality=hd1080&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&autohide=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
+      return `https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0&controls=1&rel=0&hd=1&vq=${vq}&quality=${quality}&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&modestbranding=1&autohide=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
     }
     if (url.includes('vimeo.com/')) {
       const videoId = url.split('vimeo.com/')[1].split('?')[0];
-      return `https://player.vimeo.com/video/${videoId}?autoplay=0&quality=1080p&volume=1&muted=0`;
+      const vimeoQuality = (isMobile || isLowEnd) ? '720p' : '1080p';
+      return `https://player.vimeo.com/video/${videoId}?autoplay=0&quality=${vimeoQuality}&volume=1&muted=0`;
     }
     return url;
   };
@@ -46,10 +53,13 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
           src={getOptimizedEmbedUrl(tool.videoUrl!)}
           title={`${tool.title} Demo`}
           frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
           allowFullScreen
           className="w-full h-full rounded-lg"
           loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-presentation"
+          onLoad={() => console.log(`✅ Video loaded: ${tool.title}`)}
+          onError={() => console.error(`❌ Video failed: ${tool.title}`)}
         />
       ) : shouldShowImage ? (
         <>

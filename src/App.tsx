@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { FavoritesProvider } from "@/hooks/useFavorites";
+import { useCrossBrowserOptimization } from "@/hooks/useCrossBrowserOptimization";
 import Index from "./pages/Index";
 import CategoryPage from "./pages/CategoryPage";
 import MainCategoryPage from "./pages/MainCategoryPage";
@@ -24,6 +25,9 @@ import ChatGPTAlternatives from "./pages/ChatGPTAlternatives";
 const queryClient = new QueryClient();
 
 function App() {
+  // Initialize cross-browser optimizations
+  useCrossBrowserOptimization();
+
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
