@@ -368,7 +368,7 @@ const DesktopMenu = () => {
               
               <DropdownMenuSeparator className="border-gray-700 mb-6" />
                 
-              {/* WEB3 Domains Section */}
+              {/* WEB3 Domains Section - Full Accordion Structure */}
               <div className="mb-6">
                 <div className="px-2 py-2 text-sm text-cyan-400/70 font-semibold uppercase tracking-wider">
                   💰 Register WEB3 Domains
@@ -379,41 +379,154 @@ const DesktopMenu = () => {
                     Own forever • Resell for profit • Minted as NFT • Trade anytime
                   </p>
                 </div>
-                <Collapsible open={isWeb3Open} onOpenChange={setIsWeb3Open}>
-                  <CollapsibleTrigger 
-                    className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-4 py-3 text-lg outline-none focus:bg-cyan-500/20 transition-colors"
-                  >
-                    <span className="flex items-center">
-                      <Globe className="w-5 h-5 mr-3" /> Browse WEB3 Domains ({web3DomainsTools.length})
-                    </span>
-                    <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${isWeb3Open ? 'rotate-180' : ''}`} />
-                  </CollapsibleTrigger>
-                  <CollapsibleContent className="mt-2">
-                    <div className="space-y-2 pl-4 max-h-60 overflow-y-auto">
-                      {web3DomainsTools.map((tool, index) => (
-                        <div key={index} className="p-3 bg-gray-800/60 rounded-lg hover:bg-gray-800/80 transition-colors">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-3">
-                              <span className="text-xl">{tool.emoji}</span>
-                              <div>
-                                <div className="font-semibold text-cyan-400 text-base">{tool.title}</div>
-                                <div className="text-sm text-gray-400">{tool.category}</div>
-                              </div>
-                            </div>
-                            <Button 
-                              size="sm"
-                              variant="outline"
-                              className="border-purple-500/60 bg-purple-500/20 text-purple-300 hover:bg-purple-500/30"
-                              onClick={(e) => handleExternalLink(tool.directUrl, e)}
-                            >
-                              Register
-                            </Button>
-                          </div>
+                
+                <div className="space-y-2">
+                  {/* Financial & Cash Transfer Domains */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded-lg flex items-center justify-between px-4 py-3 text-base border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors">
+                      <span className="flex items-center">
+                        💰 Financial & Cash Transfer Domains
+                      </span>
+                      <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="mt-1">
+                      <div className="bg-gray-900/50 rounded-lg border border-white/5 p-3 space-y-2">
+                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/transfermoney", e)} className="flex items-center flex-1 text-left text-sm">
+                            💸 .transfermoney
+                          </button>
+                          <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
                         </div>
-                      ))}
-                    </div>
-                  </CollapsibleContent>
-                </Collapsible>
+                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/transfercoin", e)} className="flex items-center flex-1 text-left text-sm">
+                            🪙 .transfercoin
+                          </button>
+                          <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
+                        </div>
+                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/cointransfer", e)} className="flex items-center flex-1 text-left text-sm">
+                            💰 .cointransfer
+                          </button>
+                          <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
+                        </div>
+                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/transfercash", e)} className="flex items-center flex-1 text-left text-sm">
+                            💵 .transfercash
+                          </button>
+                          <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
+                        </div>
+                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/cashtransfer", e)} className="flex items-center flex-1 text-left text-sm">
+                            💴 .cashtransfer
+                          </button>
+                          <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
+                        </div>
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+
+                  {/* AI & Technology Domains */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded-lg flex items-center justify-between px-4 py-3 text-base border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors">
+                      <span className="flex items-center">
+                        🤖 AI & Technology Domains
+                      </span>
+                      <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="mt-1">
+                      <div className="bg-gray-900/50 rounded-lg border border-white/5 p-3 space-y-2">
+                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/ai-tools?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
+                            🧠 .ai-tools
+                          </button>
+                          <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
+                        </div>
+                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/.aiwebtools?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
+                            🤖 .aiwebtools
+                          </button>
+                          <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
+                        </div>
+                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/aimainframe?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
+                            🗄️ .aimainframe
+                          </button>
+                          <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
+                        </div>
+                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/aitoolscompany?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
+                            🏢 .aitoolscompany
+                          </button>
+                          <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
+                        </div>
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+
+                  {/* Robotics & Automation Domains */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded-lg flex items-center justify-between px-4 py-3 text-base border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors">
+                      <span className="flex items-center">
+                        🤖 Robotics & Automation Domains
+                      </span>
+                      <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="mt-1">
+                      <div className="bg-gray-900/50 rounded-lg border border-white/5 p-3 space-y-2">
+                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/robotsales?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
+                            🦾 .robotsales
+                          </button>
+                          <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
+                        </div>
+                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/robotshop?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
+                            🛍️ .robotshop
+                          </button>
+                          <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
+                        </div>
+                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/robotstore?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
+                            🛒 .robotstore
+                          </button>
+                          <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
+                        </div>
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+
+                  {/* Global & World Domains */}
+                  <Collapsible>
+                    <CollapsibleTrigger className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded-lg flex items-center justify-between px-4 py-3 text-base border border-white/10 outline-none focus:bg-cyan-500/20 transition-colors">
+                      <span className="flex items-center">
+                        🌍 Global & World Domains
+                      </span>
+                      <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="mt-1">
+                      <div className="bg-gray-900/50 rounded-lg border border-white/5 p-3 space-y-2">
+                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/worldpeace?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
+                            🕊️ .worldpeace
+                          </button>
+                          <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
+                        </div>
+                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/worldtrade?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
+                            🌐 .worldtrade
+                          </button>
+                          <span className="text-xs bg-green-600/20 text-green-300 px-2 py-1 rounded border border-green-500/30">Solana</span>
+                        </div>
+                        <div className="flex items-center justify-between w-full px-3 py-2 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors">
+                          <button onClick={(e) => handleExternalLink("https://freename.io/discover/worldtrader?ref=olive-ears-obey", e)} className="flex items-center flex-1 text-left text-sm">
+                            💹 .worldtrader
+                          </button>
+                          <span className="text-xs bg-purple-600/20 text-purple-300 px-2 py-1 rounded border border-purple-500/30">Polygon</span>
+                        </div>
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                </div>
               </div>
 
               <DropdownMenuSeparator className="border-gray-700 mb-6" />
