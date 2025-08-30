@@ -142,8 +142,8 @@ const MobileMenu = () => {
       <div className="md:hidden">
         <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="sm" className="border-cyan-500/30 bg-black/80 text-cyan-100 hover:bg-cyan-500/20 flex-shrink-0">
-              <Menu className="w-4 h-4" />
+            <Button variant="outline" size="default" className="border-cyan-500/30 bg-black/80 text-cyan-100 hover:bg-cyan-500/20 px-3 py-2">
+              <Menu className="w-5 h-5" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[95vw] max-w-[380px] bg-black/95 shadow-xl border border-cyan-500/30 backdrop-blur-md max-h-[85vh] overflow-y-auto mx-2 z-[60]">
