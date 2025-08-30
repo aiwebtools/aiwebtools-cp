@@ -7,6 +7,7 @@ import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import ToolCardHeader from "./ToolCardHeader";
 import ToolCardContent from "./ToolCardContent";
+import FavoriteButton from "@/components/favorites/FavoriteButton";
 
 interface ToolCardProps {
   tool: Tool;
@@ -118,6 +119,11 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
         boostedRating={boostedRating}
         defaultVotes={defaultVotes}
       />
+      
+      {/* Favorite Button */}
+      <div className="absolute top-2 right-2 z-20">
+        <FavoriteButton tool={tool} size="md" />
+      </div>
       
       <ToolCardContent 
         tool={tool}

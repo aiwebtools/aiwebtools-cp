@@ -102,6 +102,20 @@ const Navigation = () => {
   return (
     <nav className="hidden md:flex items-center space-x-1 min-w-0">
       <button 
+        onClick={() => navigate('/favorites')}
+        className="text-cyan-100 hover:text-pink-400 transition-colors whitespace-nowrap cursor-pointer flex items-center space-x-1 px-2 py-1 rounded text-xs font-medium"
+        title={`My Favorites (${getFavoritesCount()})`}
+      >
+        <Heart className="w-3 h-3" fill={getFavoritesCount() > 0 ? 'currentColor' : 'none'} />
+        <span className="hidden xl:inline">Favorites</span>
+        {getFavoritesCount() > 0 && (
+          <span className="bg-pink-500 text-white text-xs rounded-full px-1.5 py-0.5 min-w-[16px] text-center">
+            {getFavoritesCount()}
+          </span>
+        )}
+      </button>
+      
+      <button 
         onClick={handleBrowseAITools}
         className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer px-2 py-1 rounded text-xs font-medium"
       >
@@ -352,14 +366,6 @@ const Navigation = () => {
         title="Linktree"
       >
         <Trees className="w-3 h-3" />
-      </button>
-      
-      <button 
-        onClick={() => navigate('/favorites')}
-        className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center gap-1 px-2 py-1 rounded text-xs font-medium"
-      >
-        <Heart className="h-3 w-3 fill-current text-red-500" />
-        <span className="hidden xl:inline">({getFavoritesCount()})</span>
       </button>
     </nav>
   );

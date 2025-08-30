@@ -538,7 +538,10 @@ const DesktopMenu = () => {
                   Download CSV
                 </DropdownMenuItem>
 
-                <DropdownMenuItem className="text-red-100 hover:bg-red-500/20 rounded-lg h-14 text-lg font-medium px-4">
+                <DropdownMenuItem 
+                  onClick={() => { navigate('/favorites'); setIsMenuOpen(false); }}
+                  className="text-red-100 hover:bg-red-500/20 rounded-lg h-14 text-lg font-medium px-4"
+                >
                   <Heart className="w-5 h-5 mr-3 fill-current" />
                   Favorites ({getFavoritesCount()})
                 </DropdownMenuItem>

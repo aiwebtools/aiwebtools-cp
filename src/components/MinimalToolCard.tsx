@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { Tool } from "@/types/tools";
 import { Card, CardContent } from "@/components/ui/card";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import FavoriteButton from "@/components/favorites/FavoriteButton";
 
 interface MinimalToolCardProps {
   tool: Tool;
@@ -20,9 +21,14 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
 
   return (
     <Card 
-      className="group cursor-pointer hover:shadow-lg transition-all duration-200 border-gray-800 bg-gray-900/50 hover:bg-gray-800/70"
+      className="group cursor-pointer hover:shadow-lg transition-all duration-200 border-gray-800 bg-gray-900/50 hover:bg-gray-800/70 relative"
       onClick={handleClick}
     >
+      {/* Favorite Button */}
+      <div className="absolute top-2 right-2 z-20">
+        <FavoriteButton tool={tool} size="sm" />
+      </div>
+      
       <CardContent className="p-4">
         <div className="flex items-start space-x-3">
           <div className="text-2xl flex-shrink-0">
