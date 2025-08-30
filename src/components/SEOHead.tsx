@@ -41,6 +41,8 @@ const SEOHead = ({
     "AIWEBTOOLS.AI", 
     "aiwebtools",
     "AIWEBTOOLS",
+    "aitoolwebsites.com",
+    "AItoolwebsites.com",
     "ai web tools",
     "AI WEB TOOLS",
     "AI WEB TOOLS directory",
@@ -210,6 +212,7 @@ const SEOHead = ({
       <meta property="og:updated_time" content={new Date().toISOString()} />
       <meta property="og:see_also" content="https://aitools.company" />
       <meta property="og:see_also" content="https://www.aiwebtools.ai" />
+      <meta property="og:see_also" content="https://AItoolwebsites.com" />
       <meta property="fb:app_id" content={seoConfig.facebookAppId} />
       
       {/* Enhanced Twitter Card */}
@@ -228,7 +231,7 @@ const SEOHead = ({
       <meta name="twitter:label2" content="Pricing" />
       
       {/* Article and Content Meta */}
-      <meta property="article:publisher" content="https://aitools.company" />
+      <meta property="article:publisher" content="https://aitoolwebsites.com" />
       <meta property="article:author" content="AI WEB TOOLS LLC" />
       <meta property="article:published_time" content="2024-01-01T00:00:00Z" />
       <meta property="article:modified_time" content={new Date().toISOString()} />
@@ -259,6 +262,7 @@ const SEOHead = ({
       <link rel="dns-prefetch" href="//fonts.gstatic.com" />
       <link rel="dns-prefetch" href="//aitools.company" />
       <link rel="dns-prefetch" href="//www.aiwebtools.ai" />
+      <link rel="dns-prefetch" href="//aitoolwebsites.com" />
       <link rel="dns-prefetch" href="//www.google.com" />
       <link rel="dns-prefetch" href="//www.bing.com" />
       <link rel="dns-prefetch" href="//search.yahoo.com" />
@@ -268,6 +272,7 @@ const SEOHead = ({
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link rel="preconnect" href="https://aitools.company" />
       <link rel="preconnect" href="https://www.aiwebtools.ai" />
+      <link rel="preconnect" href="https://aitoolwebsites.com" />
       
       {/* Resource Hints for Performance */}
       <link rel="preload" href="/favicon.ico" as="image" type="image/x-icon" />

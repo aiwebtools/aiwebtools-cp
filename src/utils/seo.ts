@@ -57,7 +57,8 @@ export const generateStructuredData = (page: string = "homepage") => {
     },
     "sameAs": [
       "https://aitools.company",
-      "https://www.aiwebtools.ai"
+      "https://www.aiwebtools.ai",
+      "https://aitoolwebsites.com"
     ]
   };
 
@@ -144,7 +145,8 @@ export const generateLocalBusinessStructuredData = () => {
     },
     "sameAs": [
       "https://aitools.company",
-      "https://www.aiwebtools.ai"
+      "https://www.aiwebtools.ai",
+      "https://aitoolwebsites.com"
     ]
   };
 };

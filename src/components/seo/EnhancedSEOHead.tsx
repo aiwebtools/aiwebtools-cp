@@ -36,7 +36,7 @@ const EnhancedSEOHead = ({
     ...seoConfig.keywords,
     ...keywords,
     // Brand-specific competitive terms
-    "aiwebtools", "aiwebtools.ai", "AI WEB TOOLS", "AI WEB TOOLS LLC", "aitools.studio",
+    "aiwebtools", "aiwebtools.ai", "AI WEB TOOLS", "AI WEB TOOLS LLC", "aitools.studio", "aitoolwebsites.com", "AItoolwebsites.com",
     // Primary competitive displacement keywords
     "best ai tools directory 2025", "ai tools better than toolify", "ai tools better than futurepedia",
     "complete ai tools database", "verified ai tools platform", "comprehensive ai directory",
@@ -140,7 +140,7 @@ const EnhancedSEOHead = ({
       <meta name="twitter:creator" content={seoConfig.twitterHandle} />
       
       {/* Article Meta */}
-      <meta property="article:publisher" content="https://aitools.company" />
+      <meta property="article:publisher" content="https://aitoolwebsites.com" />
       <meta property="article:author" content="AI WEB TOOLS LLC" />
       <meta property="article:published_time" content="2024-01-01T00:00:00Z" />
       <meta property="article:modified_time" content={new Date().toISOString()} />
