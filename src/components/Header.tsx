@@ -26,7 +26,7 @@ const Header = () => {
         <div className="absolute w-2 h-2 border border-cyan-300/25 rotate-12 animate-pulse" style={{top: '70%', left: '60%', animationDelay: '3s'}}></div>
         <div className="absolute w-1.5 h-1.5 bg-cyan-500/15 rotate-45 animate-pulse" style={{top: '50%', left: '90%', animationDelay: '1s'}}></div>
       </div>
-      <div className="relative container mx-auto px-3 sm:px-4 py-1.5 sm:py-2 z-10">
+      <div className="relative container mx-auto px-2 sm:px-4 py-1 sm:py-1.5 z-10">
         <div className="flex items-center justify-between gap-3 sm:gap-4">
           <Logo />
           

@@ -35,7 +35,7 @@ const FloatingCloneButton = () => {
 
   return (
     <div
-      className={`fixed left-4 top-36 z-40 transition-all duration-300 ${
+      className={`fixed left-2 top-16 z-40 transition-all duration-300 ${
         isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'
       }`}
     >
@@ -49,7 +49,7 @@ const FloatingCloneButton = () => {
           console.log('🌀 Clone Website Button clicked - triggering time warp');
           createTimePortalEffect('https://cloneaiwebtools.lovable.app/?via=aiwebtools', 'Clone AI Web Tools');
         }}
-        className="group bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-600 hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 text-white w-16 h-16 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex flex-col items-center justify-center relative overflow-hidden"
+        className="group bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-600 hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 text-white w-14 h-14 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex flex-col items-center justify-center relative overflow-hidden"
         style={{ 
           boxShadow: '0 8px 32px rgba(6, 182, 212, 0.4), 0 4px 16px rgba(59, 130, 246, 0.3)',
           backdropFilter: 'blur(8px)',
@@ -61,8 +61,8 @@ const FloatingCloneButton = () => {
         
         {/* Content */}
         <div className="relative flex flex-col items-center justify-center text-center">
-          <Copy className="w-4 h-4 group-hover:animate-bounce mb-1" />
-          <div className="text-[8px] font-bold leading-none">
+          <Copy className="w-3 h-3 group-hover:animate-bounce mb-0.5" />
+          <div className="text-[7px] font-bold leading-none">
             <div>CLONE</div>
             <div>SITE</div>
             <div>FREE</div>
