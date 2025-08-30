@@ -150,6 +150,7 @@ export const matchWriting = (tool: Tool, searchTerm: string): boolean => {
   const lowerTitle = tool.title.toLowerCase();
   const lowerDescription = tool.description.toLowerCase();
   const lowerSearchTerm = searchTerm.toLowerCase();
+  const lowerCategory = tool.category?.toLowerCase() || '';
   const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
   
   // Writing-related search detection
@@ -165,40 +166,78 @@ export const matchWriting = (tool: Tool, searchTerm: string): boolean => {
       lowerSearchTerm === 'writer' ||
       lowerSearchTerm === 'writing') {
     
-    // Priority writing tools
+    // EXCLUDE gaming/entertainment tools from writing searches
+    const excludedCategories = [
+      'gaming', 'entertainment', 'game', 'video game', 'gaming & entertainment',
+      'entertainment & gaming', 'entertainment tools', 'gaming tools'
+    ];
+    
+    const excludedTitles = [
+      'ai dungeon', 'dungeon', 'game', 'gaming', 'entertainment', 'trivia',
+      'ai communication tool', 'communication tool', 'assistant & search'
+    ];
+    
+    // Skip gaming/entertainment tools completely
+    if (excludedCategories.some(cat => lowerCategory.includes(cat)) ||
+        excludedTitles.some(title => lowerTitle.includes(title))) {
+      return false;
+    }
+    
+    // Priority writing tools - most relevant for general writing
     const writingTools = [
       'book writer gpt',
+      'article and blog rewriter gpt',
       'movie script writer gpt',
       'children\'s picture book maker gpt',
-      'article and blog rewriter gpt',
       'podcast script writer gpt',
-      'playwriter gpt',
+      'grant writer gpt',
+      'legislation writer gpt', 
+      'public testimony writer gpt',
       'creative writing',
       'content creation',
       'blog writer',
-      'script writer',
-      'story writer',
-      'novel writer',
-      'copywriter'
+      'copywriter',
+      'copy writer',
+      'content writer',
+      'technical writer'
     ];
     
     if (writingTools.some(tool => lowerTitle.includes(tool))) {
       return true;
     }
     
-    // General writing related matching
-    if (lowerTitle.includes('write') || lowerDescription.includes('write') ||
-        lowerTitle.includes('writer') || lowerDescription.includes('writer') ||
-        lowerTitle.includes('writing') || lowerDescription.includes('writing') ||
-        lowerTitle.includes('book') || lowerDescription.includes('book') ||
-        lowerTitle.includes('script') || lowerDescription.includes('script') ||
-        lowerTitle.includes('content') || lowerDescription.includes('content') ||
-        lowerTitle.includes('article') || lowerDescription.includes('article') ||
-        lowerTitle.includes('blog') || lowerDescription.includes('blog') ||
-        lowerTags.some(tag => tag.includes('write') || tag.includes('writer') || 
-                      tag.includes('writing') || tag.includes('book') || tag.includes('content'))) {
-      return true;
+    // For pure "writing" searches, prioritize general writing tools
+    if (lowerSearchTerm === 'writing' || lowerSearchTerm === 'write' || lowerSearchTerm === 'writer') {
+      // Exclude very specific/niche writing tools for general searches
+      const tooSpecific = [
+        'playwriter', 'playwright', 'dungeon master', 'game master'
+      ];
+      
+      if (tooSpecific.some(specific => lowerTitle.includes(specific))) {
+        return false;
+      }
     }
+    
+    // Check if tool is actually writing-focused
+    const writingIndicators = [
+      'write', 'writer', 'writing', 'author', 'book', 'script', 'content',
+      'article', 'blog', 'copy', 'manuscript', 'document', 'text'
+    ];
+    
+    const hasWritingFocus = writingIndicators.some(indicator =>
+      lowerTitle.includes(indicator) || lowerDescription.includes(indicator)
+    );
+    
+    // Additional check for writing categories
+    const writingCategories = [
+      'writing', 'content creation', 'content', 'creative', 'professional'
+    ];
+    
+    const isWritingCategory = writingCategories.some(cat => 
+      lowerCategory.includes(cat)
+    );
+    
+    return hasWritingFocus || isWritingCategory;
   }
   
   return false;
@@ -208,6 +247,7 @@ export const scoreWriting = (tool: Tool, searchTerm: string): number => {
   const lowerTitle = tool.title.toLowerCase();
   const lowerDescription = tool.description.toLowerCase();
   const lowerSearchTerm = searchTerm.toLowerCase();
+  const lowerCategory = tool.category?.toLowerCase() || '';
   const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
   
   let score = 0;
@@ -222,36 +262,106 @@ export const scoreWriting = (tool: Tool, searchTerm: string): number => {
       lowerSearchTerm === 'writer' ||
       lowerSearchTerm === 'writing') {
     
-    // Top priority writing tools
-    if (lowerTitle.includes('book writer gpt')) {
-      score += 5000; // Highest priority
+    // PENALTY for gaming/entertainment tools
+    const excludedCategories = [
+      'gaming', 'entertainment', 'game', 'video game', 'gaming & entertainment'
+    ];
+    const excludedTitles = [
+      'ai dungeon', 'dungeon', 'game', 'gaming', 'entertainment', 'trivia',
+      'ai communication tool', 'communication tool'
+    ];
+    
+    if (excludedCategories.some(cat => lowerCategory.includes(cat)) ||
+        excludedTitles.some(title => lowerTitle.includes(title))) {
+      return 0; // No score for gaming/entertainment tools
     }
-    if (lowerTitle.includes('movie script writer gpt')) {
-      score += 4900; // Second highest
+    
+    // MASSIVE BOOST for general writing searches - prioritize most useful tools
+    if (lowerSearchTerm === 'writing' || lowerSearchTerm === 'write' || lowerSearchTerm === 'writer') {
+      // Top tier: Most useful general writing tools
+      if (lowerTitle.includes('book writer gpt')) {
+        score += 8000;
+      }
+      if (lowerTitle.includes('article and blog rewriter gpt')) {
+        score += 7500; // Higher for general writing
+      }
+      if (lowerTitle.includes('perfect prompt engine')) {
+        score += 7000;
+      }
+      if (lowerTitle.includes('content creation') || lowerTitle.includes('content writer')) {
+        score += 6500;
+      }
+      if (lowerTitle.includes('copywriter') || lowerTitle.includes('copy writer')) {
+        score += 6000;
+      }
+      
+      // Second tier: Specific but still useful
+      if (lowerTitle.includes('movie script writer gpt')) {
+        score += 5500;
+      }
+      if (lowerTitle.includes('grant writer gpt')) {
+        score += 5200;
+      }
+      if (lowerTitle.includes('legislation writer gpt')) {
+        score += 5000;
+      }
+      if (lowerTitle.includes('podcast script writer gpt')) {
+        score += 4800;
+      }
+      
+      // Lower tier: Very specific tools
+      if (lowerTitle.includes('children\'s picture book maker gpt')) {
+        score += 4000;
+      }
+      if (lowerTitle.includes('playwriter gpt') || lowerTitle.includes('🎭 playwriter gpt')) {
+        score += 3000; // Lower for general writing searches
+      }
+      if (lowerTitle.includes('public testimony writer gpt')) {
+        score += 2500;
+      }
+    } else {
+      // Standard scoring for specific searches
+      if (lowerTitle.includes('book writer gpt')) {
+        score += 5000;
+      }
+      if (lowerTitle.includes('article and blog rewriter gpt')) {
+        score += 4700;
+      }
+      if (lowerTitle.includes('movie script writer gpt')) {
+        score += 4900;
+      }
+      if (lowerTitle.includes('children\'s picture book maker gpt')) {
+        score += 4800;
+      }
+      if (lowerTitle.includes('podcast script writer gpt')) {
+        score += 4600;
+      }
+      if (lowerTitle.includes('playwriter gpt') || lowerTitle.includes('🎭 playwriter gpt')) {
+        score += 4500;
+      }
+      if (lowerTitle.includes('grant writer gpt')) {
+        score += 3700;
+      }
+      if (lowerTitle.includes('legislation writer gpt')) {
+        score += 3600;
+      }
+      if (lowerTitle.includes('public testimony writer gpt')) {
+        score += 3500;
+      }
     }
-    if (lowerTitle.includes('children\'s picture book maker gpt')) {
-      score += 4800; // Third highest
-    }
-    if (lowerTitle.includes('article and blog rewriter gpt')) {
-      score += 4700;
-    }
-    if (lowerTitle.includes('podcast script writer gpt')) {
-      score += 4600;
-    }
-    if (lowerTitle.includes('playwriter gpt') || lowerTitle.includes('🎭 playwriter gpt')) {
-      score += 4500;
-    }
+    
+    // General writing bonuses
     if (lowerTitle.includes('perfect prompt engine')) {
       score += 4400;
-    }
-    if (lowerTitle.includes('creative writing')) {
-      score += 4300;
     }
     if (lowerTitle.includes('content creation')) {
       score += 4200;
     }
     if (lowerTitle.includes('copywriter') || lowerTitle.includes('copy writer')) {
       score += 4100;
+    }
+    if (lowerTitle.includes('creative writing')) {
+      score += 4300;
     }
     if (lowerTitle.includes('story writer') || lowerTitle.includes('novel writer')) {
       score += 4000;
@@ -261,15 +371,6 @@ export const scoreWriting = (tool: Tool, searchTerm: string): number => {
     }
     if (lowerTitle.includes('script writer') || lowerTitle.includes('scriptwriter')) {
       score += 3800;
-    }
-    if (lowerTitle.includes('grant writer gpt')) {
-      score += 3700;
-    }
-    if (lowerTitle.includes('legislation writer gpt')) {
-      score += 3600;
-    }
-    if (lowerTitle.includes('public testimony writer gpt')) {
-      score += 3500;
     }
     
     // Bonus scoring for writing-related terms
