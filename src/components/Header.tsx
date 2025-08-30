@@ -2,6 +2,7 @@
 import Logo from "./header/Logo";
 import Navigation from "./header/Navigation";
 import MobileMenu from "./header/MobileMenu";
+import DesktopMenu from "./header/DesktopMenu";
 import TabletMenu from "./header/TabletMenu";
 import GlobalSearchBar from "./GlobalSearchBar";
 
@@ -15,6 +16,7 @@ const Header = () => {
           <div className="flex items-center gap-3">
             <Navigation />
             <MobileMenu />
+            <DesktopMenu />
             <TabletMenu />
           </div>
         </div>

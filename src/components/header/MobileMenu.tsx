@@ -221,7 +221,7 @@ const MobileMenu = () => {
 
   return (
     <TooltipProvider>
-      <div className="md:block lg:hidden">  {/* Show on tablet and mobile, hide on large desktop */}
+      <div className="md:hidden">  {/* Show on mobile only */}
         <DropdownMenu open={isMenuOpen} onOpenChange={handleMenuToggle}>
           <DropdownMenuTrigger asChild>
             <Button 
