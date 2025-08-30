@@ -214,7 +214,7 @@ const MainCategoryPage = () => {
           {/* Tools Count Display - Real counter format */}
           <div className="text-center mb-8">
             <div className="text-cyan-400 font-semibold">
-              {displayedTools.length} tools shown — endless recommendations continue as you scroll
+              {Math.min(displayedCount, finalFilteredTools.length)} tools shown — endless recommendations continue as you scroll
             </div>
           </div>
 
