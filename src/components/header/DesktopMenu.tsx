@@ -290,9 +290,9 @@ const DesktopMenu = () => {
 
                 {/* Search Results */}
                 {isSearchOpen && (
-                  <Card className="absolute top-full left-0 right-0 mt-3 bg-gray-900/95 border border-cyan-500/50 shadow-2xl z-60 max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/60 scrollbar-track-gray-800 rounded-xl backdrop-blur-xl" onScroll={handleScroll}>
+                  <Card className="absolute top-full left-0 right-0 mt-3 bg-gray-900 border border-cyan-500/50 shadow-2xl z-[200] max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/60 scrollbar-track-gray-800 rounded-xl" onScroll={handleScroll}>
                     <CardContent className="p-3">
-                      <div className="text-base text-cyan-400 px-4 py-3 border-b border-gray-700 sticky top-0 bg-gray-900/95 backdrop-blur-sm font-medium">
+                      <div className="text-base text-cyan-400 px-4 py-3 border-b border-gray-700 sticky top-0 bg-gray-900 font-medium">
                         ⚡ Found {searchResults.length} {searchResults.length === 1 ? 'result' : 'results'}
                         {displayedCount < searchResults.length && ` • Showing first ${displayedCount}`}
                       </div>
@@ -332,7 +332,7 @@ const DesktopMenu = () => {
                               </TooltipTrigger>
                               <TooltipContent 
                                 side="right" 
-                                className="max-w-sm p-3 bg-gray-800 text-white border-gray-600 shadow-xl z-[70]"
+                                className="max-w-sm p-3 bg-gray-800 text-white border-gray-600 shadow-xl z-[250]"
                                 sideOffset={10}
                               >
                                 <div className="space-y-2">
