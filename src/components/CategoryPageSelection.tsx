@@ -26,7 +26,7 @@ const CategoryPageSelection = () => {
   console.log('📊 CategoryPageSelection: Main category counts:', mainCategoryCounts);
 
   return (
-    <section className="py-16 px-4 relative z-10">
+    <section className="py-16 px-4 relative">
       <div className="max-w-7xl mx-auto text-center">
         {/* Enhanced Philosophical Disclaimer */}
         <div className="mb-8 max-w-3xl mx-auto">
