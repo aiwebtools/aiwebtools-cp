@@ -1650,14 +1650,10 @@ const performEnhancedSearch = (
         score += superIntelligentScore(tool, searchTerm);
       }
 
-      // ADVANCED PARTIAL MATCHING: Enhanced predictive matching for prefixes
-      const advancedMatches = getAdvancedPartialMatches(searchTerm, [tool]);
-      if (!matched && advancedMatches.length > 0) {
-        matched = true;
-        const suggestions = getPartialMatchSuggestions(searchTerm);
-        const partialScore = scoreAdvancedPartialMatch(tool, searchTerm, suggestions);
-        score += partialScore;
-      }
+      // ADVANCED PARTIAL MATCHING: Enhanced predictive matching for prefixes - REMOVED FOR PERFORMANCE
+      // Performance fix: This was calling getAdvancedPartialMatches for each tool individually
+      // The function is already called once at the beginning for all tools (line 108)
+      // Removing this section that was causing 48+ function calls per keystroke
 
       // HIGHEST PRIORITY: Exact title match
       if (lowerTitle === finalNormalizedTerm) {
