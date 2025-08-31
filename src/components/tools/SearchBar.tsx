@@ -1,9 +1,6 @@
-
+import React from "react";
+import GlobalSearchBar from "@/components/GlobalSearchBar";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { useSearchBar } from "@/hooks/useSearchBar";
-import SearchInput from "./SearchInput";
-import SearchResults from "./SearchResults";
-import { memo } from "react";
 
 interface SearchBarProps {
   searchTerm: string;
@@ -11,46 +8,17 @@ interface SearchBarProps {
   preventAutoNavigation?: boolean;
 }
 
-const SearchBar = memo(({ searchTerm, onSearchChange, preventAutoNavigation = false }: SearchBarProps) => {
-  const {
-    isOpen,
-    toolStats,
-    searchResults,
-    displayedResults,
-    shouldShowResults,
-    handleSearchChange,
-    handleResultClick,
-    handleKeyDown,
-    handleInputBlur,
-    handleInputFocus,
-    handleScroll,
-  } = useSearchBar({ searchTerm, onSearchChange });
-
+const SearchBar = ({ searchTerm, onSearchChange, preventAutoNavigation = false }: SearchBarProps) => {
+  // Use the exact same GlobalSearchBar as the hero - maintaining complete consistency
+  // The searchTerm and onSearchChange props are ignored since GlobalSearchBar manages its own state
+  // This ensures 100% consistency with the hero search performance
   return (
     <TooltipProvider>
-      <div className="max-w-2xl mx-auto relative" data-search-dropdown>
-        <SearchInput
-          searchTerm={searchTerm}
-          placeholder={`Search ${toolStats.marketing} AI tools... Try: 'chatgpt', 'midjourney', 'notion'`}
-          onSearchChange={handleSearchChange}
-          onKeyDown={handleKeyDown}
-          onBlur={handleInputBlur}
-          onFocus={handleInputFocus}
-        />
-
-        {isOpen && shouldShowResults && (
-          <SearchResults
-            searchResults={searchResults}
-            displayedResults={displayedResults}
-            displayedCount={displayedResults.length}
-            onResultClick={handleResultClick}
-            onScroll={handleScroll}
-          />
-        )}
+      <div className="w-full">
+        <GlobalSearchBar />
       </div>
     </TooltipProvider>
   );
-});
+};
 
-SearchBar.displayName = "SearchBar";
 export default SearchBar;
