@@ -43,7 +43,7 @@ const GlobalSearchResults = ({
     <div className="relative">
       <Card 
         ref={scrollRef}
-        className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[999] max-h-[25vh] min-h-32 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800"
+        className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[999] max-h-[45vh] min-h-32 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800"
         onScroll={onScroll}
         style={{
           WebkitOverflowScrolling: 'touch',
