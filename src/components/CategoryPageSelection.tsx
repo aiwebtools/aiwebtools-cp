@@ -28,6 +28,14 @@ const CategoryPageSelection = () => {
   return (
     <section className="py-16 px-4 relative">
       <div className="max-w-7xl mx-auto text-center">
+        {/* Small Disclaimer - positioned above category selection */}
+        <div className="mb-8 max-w-2xl mx-auto">
+          <div className="inline-flex items-center gap-2 bg-gray-800/40 backdrop-blur-sm border border-cyan-400/20 rounded-full px-4 py-2 text-xs text-gray-300">
+            <span className="text-amber-400">⚠️</span>
+            <span>Educational use only • Not professional advice • Ages 18+</span>
+          </div>
+        </div>
+
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
           🎯 Choose Your AI Tool Category
         </h2>

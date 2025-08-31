@@ -109,34 +109,6 @@ const HeroSection = () => {
           <GlobalSearchBar />
         </div>
 
-        {/* Disclaimer Tag */}
-        <div className="mb-6 max-w-4xl mx-auto">
-          <div className="relative">
-            {/* Subtle glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-xl blur-sm opacity-60"></div>
-            
-            {/* Main disclaimer container */}
-            <div className="relative bg-gradient-to-r from-gray-900/60 via-gray-800/70 to-gray-900/60 backdrop-blur-md border border-cyan-400/20 rounded-xl px-6 py-4 text-center shadow-lg">
-              <div className="flex items-center justify-center gap-3">
-                <div className="flex-shrink-0">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 flex items-center justify-center text-white text-sm font-bold shadow-lg">
-                    ⚠️
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <p className="text-gray-200 text-sm leading-relaxed">
-                    <span className="font-semibold text-cyan-200">Educational & Informational Use Only</span>
-                    <span className="text-gray-300 mx-2">•</span>
-                    <span className="text-gray-300">Not a substitute for professional advice</span>
-                    <span className="text-gray-300 mx-2">•</span>
-                    <span className="text-amber-200 font-medium">Ages 18+ Only</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Primary CTA Button */}
         <div className="mb-6">
           <button
