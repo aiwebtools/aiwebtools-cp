@@ -37,37 +37,109 @@ const Index = () => {
     // Set loaded state immediately for faster initial render
     setIsLoaded(true);
     
-    // Auto-start video after 3 seconds - browser-friendly approach
-    const videoTimer = setTimeout(() => {
+    // Enhanced video autoplay with cross-browser compatibility
+    const startVideoAutoplay = () => {
       if (videoStarted) return;
       
       const iframe = mainVideoRef.current;
-      if (iframe) {
-        setVideoStarted(true);
-        console.log('🎥 Starting video autoplay in place...');
+      if (!iframe) return;
+      
+      setVideoStarted(true);
+      console.log('🎥 Starting enhanced video autoplay...');
+      
+      // Detect if user is on mobile for different handling
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+      
+      // Enhanced autoplay URL with better browser compatibility
+      const autoplayParams = new URLSearchParams({
+        autoplay: '1',
+        mute: '1', // Always start muted for browser compliance
+        controls: '1',
+        rel: '0',
+        modestbranding: '1',
+        enablejsapi: '1',
+        playsinline: '1', // Critical for mobile
+        hd: '1',
+        vq: 'hd1080',
+        quality: 'hd1080',
+        loop: '0',
+        iv_load_policy: '3',
+        cc_load_policy: '0',
+        fs: '1',
+        color: 'red',
+        theme: 'dark',
+        origin: window.location.origin,
+        widget_referrer: window.location.href
+      });
+      
+      const autoplayUrl = `https://www.youtube.com/embed/4zflGSSuBcA?${autoplayParams.toString()}`;
+      iframe.src = autoplayUrl;
+      
+      // Enhanced unmute strategy with multiple attempts
+      const attemptUnmute = (attempts = 0) => {
+        if (attempts >= 3) {
+          console.log('🔇 Video remains muted - browser policy enforced');
+          return;
+        }
         
-        // Start video with muted autoplay (browser-compliant) - no scrolling
-        const autoplayUrl = "https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark";
-        iframe.src = autoplayUrl;
-        
-        // Try to unmute after video starts (user can manually unmute if needed)
         setTimeout(() => {
           try {
-            iframe.contentWindow?.postMessage('{"event":"command","func":"unMute","args":""}', '*');
-            console.log('🔊 Video unmuted successfully');
+            // Multiple methods to attempt unmuting
+            const commands = [
+              '{"event":"command","func":"unMute","args":""}',
+              '{"event":"command","func":"setVolume","args":[100]}',
+              '{"event":"command","func":"playVideo","args":""}'
+            ];
+            
+            commands.forEach(command => {
+              iframe.contentWindow?.postMessage(command, '*');
+            });
+            
+            console.log(`🔊 Unmute attempt ${attempts + 1}/3`);
+            
+            // Retry if needed
+            if (attempts < 2) {
+              attemptUnmute(attempts + 1);
+            }
           } catch (e) {
-            console.log('🔇 Video remains muted due to browser policy - user can unmute manually');
+            console.log(`🔇 Unmute attempt ${attempts + 1} failed:`, e.message);
+            if (attempts < 2) {
+              attemptUnmute(attempts + 1);
+            }
           }
-        }, 2000);
+        }, 1500 + (attempts * 1000)); // Staggered delays
+      };
+      
+      // Start unmute attempts
+      if (!isMobile) {
+        attemptUnmute();
       }
-    }, 3000); // Reduced to 3 seconds for faster engagement
+      
+      // Fallback: Listen for user interaction to enable sound
+      const enableSoundOnInteraction = () => {
+        try {
+          iframe.contentWindow?.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+          console.log('🔊 Sound enabled via user interaction');
+        } catch (e) {
+          console.log('🔇 Sound enable failed:', e.message);
+        }
+      };
+      
+      // Add interaction listeners
+      ['click', 'touchstart', 'keydown'].forEach(event => {
+        document.addEventListener(event, enableSoundOnInteraction, { once: true, passive: true });
+      });
+    };
+
+    // Start video with proper timing
+    const videoTimer = setTimeout(startVideoAutoplay, 2000); // Reduced delay for faster start
     
-    // Load actual stats in background with longer delay to not block initial render
+    // Load actual stats in background
     const statsTimer = setTimeout(() => {
       const stats = getCurrentToolCount();
       setToolStats(stats);
       updateCachedStats(stats);
-    }, 8000); // Much longer delay to prioritize page load speed
+    }, 8000);
 
     return () => {
       clearTimeout(videoTimer);

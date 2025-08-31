@@ -39,42 +39,74 @@ const ConsentPopup = () => {
   }, []);
 
   const speakWelcomeMessage = () => {
-    if ('speechSynthesis' in window && isVoiceEnabled && !isMobile) {
+    // Check for speech synthesis support and ensure we're on desktop
+    if (!('speechSynthesis' in window) || isMobile) return;
+    
+    try {
       // Cancel any ongoing speech
       window.speechSynthesis.cancel();
       
-      const utterance = new SpeechSynthesisUtterance(
-        "Welcome to AI Web Tools! Please review our important guidelines before continuing. You must be 21 or older to access our platform."
-      );
+      // Wait for voices to load
+      const speak = () => {
+        const utterance = new SpeechSynthesisUtterance(
+          "Welcome to AI Web Tools! Please review our important guidelines before continuing. You must be 21 or older to access our platform."
+        );
+        
+        // Configure voice settings for robot-like sound
+        utterance.rate = 0.8;
+        utterance.pitch = 0.7;
+        utterance.volume = 0.8;
+        utterance.lang = 'en-US';
+        
+        // Enhanced voice selection for better robot effect
+        const voices = window.speechSynthesis.getVoices();
+        const robotVoice = voices.find(voice => 
+          voice.name.toLowerCase().includes('male') || 
+          voice.name.toLowerCase().includes('alex') ||
+          voice.name.toLowerCase().includes('daniel') ||
+          voice.name.toLowerCase().includes('fred') ||
+          voice.name.toLowerCase().includes('google')
+        );
+        
+        if (robotVoice) {
+          utterance.voice = robotVoice;
+        }
+        
+        // Add error handling
+        utterance.onerror = (e) => {
+          console.log('🔇 Speech synthesis error:', e.error);
+        };
+        
+        utterance.onstart = () => {
+          console.log('🤖 Robot voice started');
+        };
+        
+        window.speechSynthesis.speak(utterance);
+      };
       
-      // Configure voice settings for robot-like sound
-      utterance.rate = 0.8; // Slightly slower
-      utterance.pitch = 0.7; // Lower pitch for robot effect
-      utterance.volume = 0.8;
-      
-      // Try to use a more robotic voice if available
-      const voices = window.speechSynthesis.getVoices();
-      const robotVoice = voices.find(voice => 
-        voice.name.toLowerCase().includes('male') || 
-        voice.name.toLowerCase().includes('alex') ||
-        voice.name.toLowerCase().includes('daniel')
-      );
-      
-      if (robotVoice) {
-        utterance.voice = robotVoice;
+      // Handle voices loading
+      if (window.speechSynthesis.getVoices().length === 0) {
+        window.speechSynthesis.addEventListener('voiceschanged', speak, { once: true });
+      } else {
+        speak();
       }
       
-      window.speechSynthesis.speak(utterance);
+    } catch (error) {
+      console.log('🔇 Speech synthesis not available:', error);
     }
   };
 
   const toggleVoice = () => {
-    if ('speechSynthesis' in window && !isMobile) {
+    if (!('speechSynthesis' in window) || isMobile) return;
+    
+    try {
       if (window.speechSynthesis.speaking) {
         window.speechSynthesis.cancel();
       } else {
         speakWelcomeMessage();
       }
+    } catch (error) {
+      console.log('🔇 Voice toggle error:', error);
     }
   };
 
@@ -86,23 +118,45 @@ const ConsentPopup = () => {
       window.speechSynthesis.cancel();
     }
     
-    // Speak acceptance message for desktop only
+    // Enhanced acceptance speech for desktop only
     if (isVoiceEnabled && !isMobile) {
-      const utterance = new SpeechSynthesisUtterance("Welcome to the AI Web Tools portal! Initializing...");
-      utterance.rate = 0.8;
-      utterance.pitch = 0.7;
-      utterance.volume = 0.8;
-      window.speechSynthesis.speak(utterance);
+      try {
+        const utterance = new SpeechSynthesisUtterance("Welcome to the AI Web Tools portal! Initializing your AI experience...");
+        utterance.rate = 0.8;
+        utterance.pitch = 0.7;
+        utterance.volume = 0.8;
+        utterance.lang = 'en-US';
+        
+        // Use better voice if available
+        const voices = window.speechSynthesis.getVoices();
+        const robotVoice = voices.find(voice => 
+          voice.name.toLowerCase().includes('male') || 
+          voice.name.toLowerCase().includes('alex') ||
+          voice.name.toLowerCase().includes('daniel') ||
+          voice.name.toLowerCase().includes('google')
+        );
+        
+        if (robotVoice) {
+          utterance.voice = robotVoice;
+        }
+        
+        utterance.onstart = () => console.log('🤖 Acceptance speech started');
+        utterance.onerror = (e) => console.log('🔇 Acceptance speech error:', e.error);
+        
+        window.speechSynthesis.speak(utterance);
+      } catch (error) {
+        console.log('🔇 Acceptance speech failed:', error);
+      }
     }
     
-    // Create time portal effect for dramatic consent acceptance (desktop only)
+    // Create time portal effect for desktop only
     if (!isMobile) {
       createTimePortalEffect('', 'AI Tools Consent Portal');
     }
     
     localStorage.setItem('aitools-consent-seen', 'true');
     
-    // Delay hiding the popup to let the effect play
+    // Adaptive delay based on device
     setTimeout(() => {
       setShowConsent(false);
     }, isMobile ? 200 : 800);
