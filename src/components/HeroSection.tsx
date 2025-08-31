@@ -109,6 +109,15 @@ const HeroSection = () => {
           <GlobalSearchBar />
         </div>
 
+        {/* Disclaimer Tag */}
+        <div className="mb-6 max-w-3xl mx-auto">
+          <div className="inline-block bg-gray-800/80 backdrop-blur-sm border border-cyan-500/30 rounded-full px-6 py-3 text-center">
+            <p className="text-cyan-200/90 text-sm font-medium">
+              ⚠️ All tools are presented for educational & informational purposes only and is not a substitute for professional advice. All tools are designed for ages 18+ only.
+            </p>
+          </div>
+        </div>
+
         {/* Primary CTA Button */}
         <div className="mb-6">
           <button
