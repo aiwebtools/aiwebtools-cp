@@ -259,57 +259,69 @@ const InteractiveMatrixBackground = () => {
   }, [isMobile, performanceTier]);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    // Add delay to prevent early DOM manipulation conflicts with Lovable platform
+    const initTimeout = setTimeout(() => {
+      try {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
 
-    initializeCanvas();
-    initializeDrops();
+        initializeCanvas();
+        initializeDrops();
 
-    // Start animation
-    animationFrameRef.current = requestAnimationFrame(animate);
+        // Start animation
+        animationFrameRef.current = requestAnimationFrame(animate);
 
-    // Mouse interaction
-    const handleMouseMove = (e: MouseEvent) => {
-      if (Math.random() < 0.1) { // Throttle for performance
-        handleInteraction(e.clientX, e.clientY);
+        // Mouse interaction
+        const handleMouseMove = (e: MouseEvent) => {
+          if (Math.random() < 0.1) { // Throttle for performance
+            handleInteraction(e.clientX, e.clientY);
+          }
+        };
+
+        const handleClick = (e: MouseEvent) => {
+          handleInteraction(e.clientX, e.clientY);
+        };
+
+        // Touch interaction
+        const handleTouchMove = (e: TouchEvent) => {
+          e.preventDefault();
+          if (e.touches.length > 0 && Math.random() < 0.1) { // Same throttle as desktop
+            const touch = e.touches[0];
+            handleInteraction(touch.clientX, touch.clientY);
+          }
+        };
+
+        const handleTouchStart = (e: TouchEvent) => {
+          e.preventDefault();
+          if (e.touches.length > 0) {
+            const touch = e.touches[0];
+            handleInteraction(touch.clientX, touch.clientY);
+          }
+        };
+
+        // Add event listeners with optimization
+        const removeMouseMove = addOptimizedEventListener(canvas, 'mousemove', handleMouseMove);
+        const removeClick = addOptimizedEventListener(canvas, 'click', handleClick);
+        const removeTouchMove = addOptimizedEventListener(canvas, 'touchmove', handleTouchMove);
+        const removeTouchStart = addOptimizedEventListener(canvas, 'touchstart', handleTouchStart);
+
+        return () => {
+          if (animationFrameRef.current) {
+            cancelAnimationFrame(animationFrameRef.current);
+          }
+          removeMouseMove?.();
+          removeClick?.();
+          removeTouchMove?.();
+          removeTouchStart?.();
+        };
+        
+      } catch (error) {
+        console.warn('InteractiveMatrixBackground initialization error:', error);
       }
-    };
-
-    const handleClick = (e: MouseEvent) => {
-      handleInteraction(e.clientX, e.clientY);
-    };
-
-    // Touch interaction
-    const handleTouchMove = (e: TouchEvent) => {
-      e.preventDefault();
-      if (e.touches.length > 0 && Math.random() < 0.1) { // Same throttle as desktop
-        const touch = e.touches[0];
-        handleInteraction(touch.clientX, touch.clientY);
-      }
-    };
-
-    const handleTouchStart = (e: TouchEvent) => {
-      e.preventDefault();
-      if (e.touches.length > 0) {
-        const touch = e.touches[0];
-        handleInteraction(touch.clientX, touch.clientY);
-      }
-    };
-
-    // Add event listeners with optimization
-    const removeMouseMove = addOptimizedEventListener(canvas, 'mousemove', handleMouseMove);
-    const removeClick = addOptimizedEventListener(canvas, 'click', handleClick);
-    const removeTouchMove = addOptimizedEventListener(canvas, 'touchmove', handleTouchMove);
-    const removeTouchStart = addOptimizedEventListener(canvas, 'touchstart', handleTouchStart);
+    }, 120); // Delay to ensure DOM is ready and prevent conflicts
 
     return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-      removeMouseMove?.();
-      removeClick?.();
-      removeTouchMove?.();
-      removeTouchStart?.();
+      clearTimeout(initTimeout);
     };
   }, [initializeCanvas, initializeDrops, animate, handleInteraction, addOptimizedEventListener]);
 
