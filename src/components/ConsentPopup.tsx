@@ -30,7 +30,7 @@ const ConsentPopup = () => {
   if (!showConsent) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-[9999] flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-black/90 md:backdrop-blur-md z-[9999] flex items-center justify-center p-4">
       <div className="bg-gradient-to-br from-slate-900 via-gray-900 to-black border-2 border-cyan-500/60 rounded-xl p-8 max-w-lg w-full shadow-2xl shadow-cyan-500/30 animate-scale-in relative overflow-hidden">
         
         {/* Animated background pattern */}
