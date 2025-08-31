@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
+import { FavoritesButton } from "@/components/favorites/FavoritesButton";
+import { Tool } from "@/types/tools";
 
 // =============================================================================
 // OUR FEATURED SECTION - Portfolio showcase of AI Web Tools GPTs
@@ -690,9 +692,31 @@ const OurFeaturedSection = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {displayGPTs.map((tool, index) => (
-            <Card key={index} className="group bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 h-full flex flex-col">
-              <CardHeader className="pb-4 flex-shrink-0">
+          {displayGPTs.map((tool, index) => {
+            // Convert to Tool format for favorites
+            const toolForFavorites: Tool = {
+              icon: undefined, // Not used for display but required by type
+              title: tool.title,
+              description: tool.description,
+              emoji: tool.emoji,
+              color: tool.color,
+              directUrl: tool.directUrl,
+              videoUrl: tool.videoUrl,
+              imageUrl: tool.imageUrl,
+              tags: tool.features,
+              category: tool.badge,
+              rating: 5.0,
+              blockchain: (tool as any).blockchain
+            };
+
+            return (
+              <Card key={index} className="group bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 h-full flex flex-col relative">
+                {/* Favorites Button */}
+                <div className="absolute top-2 left-2 z-30">
+                  <FavoritesButton tool={toolForFavorites} size="sm" />
+                </div>
+                
+                <CardHeader className="pb-4 flex-shrink-0">
                 <div className="flex items-center justify-between mb-4">
                   <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300 text-2xl`}>
                     {tool.emoji}
@@ -787,7 +811,8 @@ const OurFeaturedSection = () => {
                 </div>
               </CardContent>
             </Card>
-          ))}
+            );
+          })}
         </div>
 
         {/* New Section with Search Bar and Show Categories Button */}
