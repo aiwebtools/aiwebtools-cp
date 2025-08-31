@@ -2,7 +2,6 @@ import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, 
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import {
@@ -15,12 +14,11 @@ import {
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { useFavorites } from "@/hooks/useFavorites";
 import { allTools } from "@/data/toolsData";
-import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
 import Logo from "./Logo";
-import { useDebounce } from "@/hooks/useDebounce";
+import GlobalSearchBar from "@/components/GlobalSearchBar";
 
 const DesktopMenu = () => {
   const navigate = useNavigate();
@@ -35,84 +33,13 @@ const DesktopMenu = () => {
     getFavoritesCount = () => 0;
   }
   
-  const [searchTerm, setSearchTerm] = useState("");
-  const [displayedCount, setDisplayedCount] = useState(50);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isWeb3Open, setIsWeb3Open] = useState(false);
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
-  const searchRef = useRef(null);
-  
-  // Ultra-fast debounce to match hero search performance
-  const debouncedSearchTerm = useDebounce(searchTerm, 80);
 
   const handleMenuToggle = useCallback((open: boolean) => {
     setIsMenuOpen(open);
-    if (!open) {
-      setSearchTerm("");
-      setDisplayedCount(50);
-    }
   }, []);
-
-  // SUPER INTELLIGENT search results with simplified logic to match hero performance
-  const searchResults = useMemo(() => {
-    const trimmedTerm = debouncedSearchTerm.trim();
-    
-    if (!trimmedTerm || trimmedTerm.length < 1) return [];
-
-    const lowerTerm = trimmedTerm.toLowerCase();
-    
-    // EXACT MATCHING PRIORITY - same as hero search
-    const exactMatches = allTools.filter(tool => {
-      const lowerTitle = tool.title.toLowerCase();
-      return lowerTitle === lowerTerm || lowerTitle.includes(lowerTerm);
-    });
-
-    const partialMatches = allTools.filter(tool => {
-      if (exactMatches.some(exact => exact.title === tool.title)) return false;
-      
-      const lowerTitle = tool.title.toLowerCase();
-      const lowerDescription = tool.description?.toLowerCase() || "";
-      const lowerCategory = tool.category?.toLowerCase() || "";
-      const lowerTags = tool.tags?.join(" ").toLowerCase() || "";
-      
-      return lowerTitle.includes(lowerTerm) ||
-             lowerDescription.includes(lowerTerm) ||
-             lowerCategory.includes(lowerTerm) ||
-             lowerTags.includes(lowerTerm) ||
-             lowerTitle.match(new RegExp(`\\b${lowerTerm}`, 'i')) ||
-             lowerDescription.match(new RegExp(`\\b${lowerTerm}`, 'i'));
-    });
-
-    // Only use heavy search for longer terms - exactly like hero
-    let intelligentResults = [];
-    if (trimmedTerm.length >= 3) {
-      intelligentResults = searchTools(allTools, trimmedTerm).filter(tool => 
-        !exactMatches.some(exact => exact.title === tool.title) &&
-        !partialMatches.some(partial => partial.title === tool.title)
-      );
-    }
-
-    // Advanced sorting with relevance scoring - same as hero
-    const sortedExact = exactMatches.sort((a, b) => {
-      const aTitle = a.title.toLowerCase();
-      const bTitle = b.title.toLowerCase();
-      
-      if (aTitle === lowerTerm && bTitle !== lowerTerm) return -1;
-      if (bTitle === lowerTerm && aTitle !== lowerTerm) return 1;
-      
-      const aStarts = aTitle.startsWith(lowerTerm);
-      const bStarts = bTitle.startsWith(lowerTerm);
-      if (aStarts && !bStarts) return -1;
-      if (bStarts && !aStarts) return 1;
-      
-      return aTitle.localeCompare(bTitle);
-    });
-
-    // Combine results with exact matches first - exactly like hero
-    return [...sortedExact, ...partialMatches, ...intelligentResults];
-  }, [debouncedSearchTerm]);
-
-  const isSearchOpen = searchResults.length > 0 && debouncedSearchTerm.trim().length > 0;
 
   useEffect(() => {
     const stats = getCurrentToolCount();
@@ -132,36 +59,9 @@ const DesktopMenu = () => {
     handleMenuToggle(false);
   }, [navigate, handleMenuToggle]);
 
-  const handleToolClick = useCallback((toolIndex: number) => {
-    navigate(`/tool/${toolIndex}`);
-    handleMenuToggle(false);
-  }, [navigate, handleMenuToggle]);
-
-  const handleDirectAccess = useCallback((tool: any, e: React.MouseEvent) => {
-    if (tool.directUrl) {
-      e.preventDefault();
-      e.stopPropagation();
-      createTimePortalEffect(tool.directUrl);
-      handleMenuToggle(false);
-    }
-  }, [handleMenuToggle]);
-
-  const clearSearch = useCallback(() => {
-    setSearchTerm("");
-    setDisplayedCount(50);
-  }, []);
-
   const closeMenu = useCallback(() => {
     handleMenuToggle(false);
   }, [handleMenuToggle]);
-
-  const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-    
-    if (scrollHeight - scrollTop <= clientHeight + 100 && displayedCount < searchResults.length) {
-      setDisplayedCount(prev => Math.min(prev + 50, searchResults.length));
-    }
-  }, [displayedCount, searchResults.length]);
 
   // Enhanced CSV download
   const handleDownloadAllToolsCSV = () => {
@@ -263,100 +163,9 @@ const DesktopMenu = () => {
                 <p className="text-lg text-cyan-200/80">Full Desktop Navigation & Search</p>
               </div>
 
-              {/* Ultra-Fast Search Bar */}
-              <div ref={searchRef} className="relative mb-8">
-                <div className="relative">
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-cyan-400 w-6 h-6" />
-                  <Input
-                    type="text"
-                    placeholder={`Search ${toolStats.marketing} AI tools...`}
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-14 pr-14 bg-gray-900/80 border-cyan-500/40 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-cyan-400/50 text-lg h-14 rounded-xl backdrop-blur-sm"
-                    autoComplete="off"
-                    spellCheck={false}
-                  />
-                  {searchTerm && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={clearSearch}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 h-10 w-10 p-0 text-gray-400 hover:text-white hover:bg-white/10 rounded-lg"
-                    >
-                      <X className="w-6 h-6" />
-                    </Button>
-                  )}
-                </div>
-
-                {/* Search Results */}
-                {isSearchOpen && (
-                  <Card className="absolute top-full left-0 right-0 mt-3 bg-gray-900 border border-cyan-500/50 shadow-2xl z-[200] max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/60 scrollbar-track-gray-800 rounded-xl" onScroll={handleScroll}>
-                    <CardContent className="p-3">
-                      <div className="text-base text-cyan-400 px-4 py-3 border-b border-gray-700 sticky top-0 bg-gray-900 font-medium">
-                        ⚡ Found {searchResults.length} {searchResults.length === 1 ? 'result' : 'results'}
-                        {displayedCount < searchResults.length && ` • Showing first ${displayedCount}`}
-                      </div>
-                      <div className="grid grid-cols-1 gap-2 mt-3">
-                        {searchResults.slice(0, displayedCount).map((tool, index) => {
-                          const toolIndex = allTools.findIndex(t => t.title === tool.title);
-                          return (
-                            <Tooltip key={`desktop-search-${tool.title}-${index}`} delayDuration={300}>
-                              <TooltipTrigger asChild>
-                                <div 
-                                  className="flex items-center space-x-4 p-4 rounded-lg hover:bg-gray-800/80 cursor-pointer group transition-all duration-200 border border-transparent hover:border-cyan-500/30"
-                                  onClick={() => handleToolClick(toolIndex)}
-                                >
-                                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${tool.color} flex items-center justify-center text-lg flex-shrink-0 shadow-md`}>
-                                    {tool.emoji}
-                                  </div>
-                                  <div className="flex-1 min-w-0">
-                                    <h3 className="font-semibold text-white text-lg leading-tight mb-1 group-hover:text-cyan-400 transition-colors">
-                                      {tool.title}
-                                    </h3>
-                                    {tool.category && (
-                                      <p className="text-sm text-gray-400">{tool.category}</p>
-                                    )}
-                                  </div>
-                                  
-                                  {tool.directUrl && (
-                                    <Button 
-                                      size="sm"
-                                      variant="outline"
-                                      className="border-green-500/60 bg-green-500/20 text-green-300 hover:bg-green-500/30 text-base px-4 py-2 h-10 flex-shrink-0 rounded-lg shadow-sm"
-                                      onClick={(e) => handleDirectAccess(tool, e)}
-                                    >
-                                      🚀 Launch
-                                    </Button>
-                                  )}
-                                </div>
-                              </TooltipTrigger>
-                              <TooltipContent 
-                                side="right" 
-                                className="max-w-sm p-3 bg-gray-800 text-white border-gray-600 shadow-xl z-[250]"
-                                sideOffset={10}
-                              >
-                                <div className="space-y-2">
-                                  <div className="flex items-center space-x-2">
-                                    <span className="text-base">{tool.emoji}</span>
-                                    <span className="font-semibold text-cyan-400 text-sm">{tool.title}</span>
-                                  </div>
-                                  <p className="text-sm text-gray-300 leading-relaxed">
-                                    {tool.description}
-                                  </p>
-                                </div>
-                              </TooltipContent>
-                            </Tooltip>
-                          );
-                        })}
-                      </div>
-                      {displayedCount < searchResults.length && (
-                        <div className="text-center py-3 text-gray-400 text-sm">
-                          <div className="animate-pulse">Scroll down to see more results</div>
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
-                )}
+              {/* Ultra-Fast Hero Search Bar - EXACT SAME AS HERO */}
+              <div className="mb-8">
+                <GlobalSearchBar />
               </div>
 
               {/* Navigation Grid - Desktop Layout */}
