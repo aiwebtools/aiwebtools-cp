@@ -31,9 +31,9 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
       onClick={handleClick}
     >
       {/* Favorite Button */}
-      <FavoriteButton tool={tool} size="sm" className="top-1 right-1 z-30" />
+      <FavoriteButton tool={tool} size="sm" className="top-2 right-2 z-30" />
       
-      <CardContent className="p-4">
+      <CardContent className="p-4 pr-10">
         <div className="flex items-start space-x-3">
           <div className="text-2xl flex-shrink-0">
             {tool.emoji}
