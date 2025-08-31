@@ -43,7 +43,7 @@ const GlobalSearchResults = ({
     <div className="relative">
       <Card 
         ref={scrollRef}
-        className="absolute top-full left-0 right-0 mt-2 bg-black/95 backdrop-blur-md border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[999] max-h-[70vh] min-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
+        className="absolute top-full left-0 right-0 mt-2 bg-black/98 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[100] max-h-[70vh] min-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
         onScroll={onScroll}
         style={{
           WebkitOverflowScrolling: 'touch',
@@ -92,7 +92,7 @@ const GlobalSearchResults = ({
                 </TooltipTrigger>
                 <TooltipContent 
                   side="right" 
-                  className="max-w-sm p-3 bg-gray-900/95 text-cyan-100 border-cyan-500/30 shadow-xl z-[1000]"
+                  className="max-w-sm p-3 bg-gray-900/95 text-cyan-100 border-cyan-500/30 shadow-xl z-[110]"
                   sideOffset={10}
                 >
                   <div className="space-y-2">
@@ -145,7 +145,7 @@ const GlobalSearchResults = ({
 
     {/* Arrow Scroller Buttons - Hidden on mobile, only show on desktop */}
     {searchResults.length > 5 && (
-      <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex-col space-y-1 z-[1000] hidden md:flex">
+      <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex-col space-y-1 z-[110] hidden md:flex">
         <Button
           onClick={scrollToTop}
           size="sm"

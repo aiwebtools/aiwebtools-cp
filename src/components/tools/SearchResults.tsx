@@ -36,11 +36,11 @@ const SearchResults = memo(({
 
   return (
     <div 
-      className="absolute top-full left-0 right-0 mt-2 bg-background/98 backdrop-blur-md border border-border rounded-xl shadow-2xl z-[9999] max-h-[70vh] min-h-96 overflow-hidden"
+      className="absolute top-full left-0 right-0 mt-2 bg-background/99 border border-border rounded-xl shadow-2xl z-[50] max-h-[70vh] min-h-96 overflow-hidden"
       style={{
         // Fix positioning and prevent bouncing
         position: 'absolute',
-        zIndex: 9999,
+        zIndex: 50,
       }}
     >
       <div 
@@ -58,7 +58,7 @@ const SearchResults = memo(({
           perspective: '1000px',
         }}
       >
-        <div className="px-3 py-3 border-b border-border/50 sticky top-0 bg-background/98 backdrop-blur-md text-muted-foreground z-10" 
+        <div className="px-3 py-3 border-b border-border/50 sticky top-0 bg-background/99 text-muted-foreground z-10" 
              style={{ 
                fontSize: '10px',
                transform: 'translateZ(0)',
@@ -103,7 +103,7 @@ const SearchResults = memo(({
                 </TooltipTrigger>
                 <TooltipContent 
                   side="right" 
-                  className="max-w-sm p-3 bg-popover text-popover-foreground border shadow-xl z-[10000]"
+                  className="max-w-sm p-3 bg-popover text-popover-foreground border shadow-xl z-[60]"
                   sideOffset={10}
                 >
                   <div className="space-y-2">
