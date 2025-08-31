@@ -15,12 +15,12 @@ const ConsentPopup = () => {
     };
     
     checkMobile();
-    window.addEventListener('resize', checkMobile);
     
-    // Only show consent popup on desktop devices
-    if (!isMobile) {
-      const hasSeenConsent = localStorage.getItem('aitools-consent-seen');
-      if (!hasSeenConsent) {
+    // Check consent for all devices, but only show popup on desktop
+    const hasSeenConsent = localStorage.getItem('aitools-consent-seen');
+    if (!hasSeenConsent) {
+      if (!isMobile) {
+        // Only show popup on desktop
         setShowConsent(true);
         // Enable voice for desktop devices
         if ('speechSynthesis' in window) {
@@ -33,8 +33,10 @@ const ConsentPopup = () => {
       }
     }
 
-    return () => window.removeEventListener('resize', checkMobile);
-  }, [isMobile]);
+    const handleResize = () => checkMobile();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const speakWelcomeMessage = () => {
     if ('speechSynthesis' in window && isVoiceEnabled && !isMobile) {
