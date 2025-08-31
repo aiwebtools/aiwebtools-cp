@@ -13,7 +13,7 @@ import { sortToolsAlphabetically, getAlphabeticalSortKey } from "@/utils/search/
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [displayedCount, setDisplayedCount] = useState(100);
+  const [displayedCount, setDisplayedCount] = useState(30);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const searchRef = useRef(null);
@@ -31,7 +31,7 @@ export const useGlobalSearch = () => {
     if (!trimmedTerm || trimmedTerm.length < 1) {
       setSearchResults([]);
       setIsOpen(false);
-      setDisplayedCount(100);
+      setDisplayedCount(30);
       return;
     }
 
@@ -94,7 +94,7 @@ export const useGlobalSearch = () => {
     const endlessResults = [...finalResults, ...remainingTools];
     
     setSearchResults(endlessResults);
-    setDisplayedCount(100);
+    setDisplayedCount(30);
     setIsOpen(true);
   }, [debouncedSearchTerm]);
 
@@ -129,14 +129,14 @@ export const useGlobalSearch = () => {
   const clearSearch = useCallback(() => {
     setSearchTerm("");
     setIsOpen(false);
-    setDisplayedCount(100);
+    setDisplayedCount(30);
   }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       setSearchTerm("");
-      setDisplayedCount(100);
+      setDisplayedCount(30);
     } else if (e.key === 'Enter' && searchTerm.trim()) {
       if (searchResults.length > 0) {
         const topResult = searchResults[0];

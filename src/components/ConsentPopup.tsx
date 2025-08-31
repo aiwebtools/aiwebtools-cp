@@ -118,7 +118,36 @@ const ConsentPopup = () => {
       window.speechSynthesis.cancel();
     }
     
-    // Robot voice removed as requested - keeping only "WELCOME MASTER" and "YOU'VE GOT TOOLS"
+    // Enhanced acceptance speech for desktop only
+    if (isVoiceEnabled && !isMobile) {
+      try {
+        const utterance = new SpeechSynthesisUtterance("Welcome to the AI Web Tools portal! Initializing your AI experience...");
+        utterance.rate = 0.8;
+        utterance.pitch = 0.7;
+        utterance.volume = 0.8;
+        utterance.lang = 'en-US';
+        
+        // Use better voice if available
+        const voices = window.speechSynthesis.getVoices();
+        const robotVoice = voices.find(voice => 
+          voice.name.toLowerCase().includes('male') || 
+          voice.name.toLowerCase().includes('alex') ||
+          voice.name.toLowerCase().includes('daniel') ||
+          voice.name.toLowerCase().includes('google')
+        );
+        
+        if (robotVoice) {
+          utterance.voice = robotVoice;
+        }
+        
+        utterance.onstart = () => console.log('🤖 Acceptance speech started');
+        utterance.onerror = (e) => console.log('🔇 Acceptance speech error:', e.error);
+        
+        window.speechSynthesis.speak(utterance);
+      } catch (error) {
+        console.log('🔇 Acceptance speech failed:', error);
+      }
+    }
     
     // Create time portal effect for desktop only
     if (!isMobile) {

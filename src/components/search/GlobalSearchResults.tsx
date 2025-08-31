@@ -43,7 +43,7 @@ const GlobalSearchResults = ({
     <div className="relative">
       <Card 
         ref={scrollRef}
-        className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[999] max-h-[70vh] min-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800"
+        className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[999] max-h-[70vh] min-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
         onScroll={onScroll}
         style={{
           WebkitOverflowScrolling: 'touch',
@@ -56,14 +56,14 @@ const GlobalSearchResults = ({
         }}
       >
       <CardContent className="p-0" style={{ transform: 'translateZ(0)' }}>
-        <div className="p-1" style={{ transform: 'translateZ(0)' }}>
+        <div className="p-2 pt-4" style={{ transform: 'translateZ(0)' }}>
           {displayedResults.map((tool, index) => {
             const toolIndex = allTools.findIndex(t => t.title === tool.title);
             return (
               <Tooltip key={`global-search-${tool.title}-${index}`} delayDuration={300}>
                 <TooltipTrigger asChild>
                   <div 
-                    className="flex items-center space-x-2 p-1.5 rounded-lg hover:bg-cyan-500/10 cursor-pointer group transition-all duration-200 border border-transparent hover:border-cyan-500/30"
+                    className="flex items-center space-x-3 p-3 rounded-lg hover:bg-cyan-500/10 cursor-pointer group transition-all duration-200 border border-transparent hover:border-cyan-500/30"
                     onClick={() => onToolClick(toolIndex)}
                   >
                     <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-xs sm:text-sm flex-shrink-0`}>
