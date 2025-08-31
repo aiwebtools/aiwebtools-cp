@@ -6,14 +6,23 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 const ConsentPopup = () => {
   const [showConsent, setShowConsent] = useState(false);
   const [isVoiceEnabled, setIsVoiceEnabled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Detect if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
     // Check if user has already seen the consent popup
     const hasSeenConsent = localStorage.getItem('aitools-consent-seen');
     if (!hasSeenConsent) {
       setShowConsent(true);
-      // Enable voice for mobile devices
-      if ('speechSynthesis' in window) {
+      // Enable voice for non-mobile devices only
+      if ('speechSynthesis' in window && !isMobile) {
         setIsVoiceEnabled(true);
         // Speak welcome message after a short delay
         setTimeout(() => {
@@ -21,10 +30,12 @@ const ConsentPopup = () => {
         }, 1000);
       }
     }
+
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const speakWelcomeMessage = () => {
-    if ('speechSynthesis' in window && isVoiceEnabled) {
+    if ('speechSynthesis' in window && isVoiceEnabled && !isMobile) {
       // Cancel any ongoing speech
       window.speechSynthesis.cancel();
       
@@ -54,7 +65,7 @@ const ConsentPopup = () => {
   };
 
   const toggleVoice = () => {
-    if ('speechSynthesis' in window) {
+    if ('speechSynthesis' in window && !isMobile) {
       if (window.speechSynthesis.speaking) {
         window.speechSynthesis.cancel();
       } else {
@@ -71,8 +82,8 @@ const ConsentPopup = () => {
       window.speechSynthesis.cancel();
     }
     
-    // Speak acceptance message
-    if (isVoiceEnabled) {
+    // Speak acceptance message for desktop only
+    if (isVoiceEnabled && !isMobile) {
       const utterance = new SpeechSynthesisUtterance("Welcome to the AI Web Tools portal! Initializing...");
       utterance.rate = 0.8;
       utterance.pitch = 0.7;
@@ -80,18 +91,60 @@ const ConsentPopup = () => {
       window.speechSynthesis.speak(utterance);
     }
     
-    // Create time portal effect for dramatic consent acceptance
-    createTimePortalEffect('', 'AI Tools Consent Portal');
+    // Create time portal effect for dramatic consent acceptance (desktop only)
+    if (!isMobile) {
+      createTimePortalEffect('', 'AI Tools Consent Portal');
+    }
     
     localStorage.setItem('aitools-consent-seen', 'true');
     
     // Delay hiding the popup to let the effect play
     setTimeout(() => {
       setShowConsent(false);
-    }, 800);
+    }, isMobile ? 200 : 800);
   };
 
   if (!showConsent) return null;
+
+  // Mobile version - much simpler
+  if (isMobile) {
+    return (
+      <div className="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-4">
+        <div className="bg-gray-900 border border-cyan-400 rounded-lg p-6 w-full max-w-sm shadow-xl">
+          <div className="text-center mb-4">
+            <div className="mb-3">
+              <Sparkles className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
+              <h3 className="text-lg font-bold text-white">AI Web Tools</h3>
+            </div>
+            <p className="text-gray-300 text-sm">Welcome! Please confirm you're 21+ to continue.</p>
+          </div>
+          
+          <div className="space-y-3 mb-6 text-xs text-gray-400">
+            <div className="flex items-center gap-2">
+              <span>🔞</span>
+              <span>Must be 21+ years old</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span>📚</span>
+              <span>Educational purposes only</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span>⚠️</span>
+              <span>Always verify AI information</span>
+            </div>
+          </div>
+          
+          <Button
+            onClick={handleAccept}
+            className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-200 min-h-[48px] text-base"
+          >
+            <Check className="w-5 h-5 mr-2" />
+            I Understand & Continue
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-4 md:p-6">
