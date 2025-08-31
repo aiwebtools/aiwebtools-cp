@@ -1,4 +1,4 @@
-import React, { useMemo, memo, lazy, Suspense, useEffect, useRef } from "react";
+import React, { useMemo, memo, useEffect, useRef } from "react";
 import { Tool } from "@/types/tools";
 import ToolCard from "@/components/tools/ToolCard";
 import SimilarToolsRecommendation from "@/components/tools/SimilarToolsRecommendation";
@@ -7,8 +7,8 @@ import { getContextAwareSimilarTools, shouldShowSimilarTools } from "@/utils/con
 import { getStandardizedCategoriesWithCounts } from "@/utils/categoryTitles";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 
-// Lazy load heavy components
-const VirtualizedToolsGrid = lazy(() => import("./VirtualizedToolsGrid"));
+// Regular import instead of lazy loading to prevent module loading errors
+import VirtualizedToolsGrid from "./VirtualizedToolsGrid";
 
 interface ToolsGridProps {
   tools: Tool[];
@@ -142,20 +142,14 @@ const ToolsGrid = memo(({
         </div>
       )}
 
-      {/* Optimized grid with conditional virtualization */}
+      {/* Direct VirtualizedToolsGrid without Suspense */}
       {useVirtualization ? (
-        <Suspense fallback={
-          <div className="flex justify-center items-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-500"></div>
-          </div>
-        }>
-          <VirtualizedToolsGrid
-            tools={tools}
-            displayedCount={displayedCount}
-            searchTerm={searchTerm}
-            selectedCategory={selectedCategory}
-          />
-        </Suspense>
+        <VirtualizedToolsGrid
+          tools={tools}
+          displayedCount={displayedCount}
+          searchTerm={searchTerm}
+          selectedCategory={selectedCategory}
+        />
       ) : (
         <div 
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 px-3 sm:px-4 lg:px-0 efficient-grid" 
