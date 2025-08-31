@@ -21,15 +21,15 @@ export function FavoritesButton({ tool, size = 'sm', className }: FavoritesButto
   };
 
   const sizeClasses = {
-    sm: 'h-8 w-8',
-    md: 'h-9 w-9', 
-    lg: 'h-10 w-10'
+    sm: 'h-6 w-6',
+    md: 'h-7 w-7', 
+    lg: 'h-8 w-8'
   };
 
   const iconSizes = {
-    sm: 'h-4 w-4',
-    md: 'h-5 w-5',
-    lg: 'h-6 w-6'
+    sm: 'h-3 w-3',
+    md: 'h-4 w-4',
+    lg: 'h-5 w-5'
   };
 
   return (
