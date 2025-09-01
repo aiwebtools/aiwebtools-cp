@@ -25,10 +25,10 @@ const ConsentPopup = () => {
         // Enable voice for desktop devices
         if ('speechSynthesis' in window) {
           setIsVoiceEnabled(true);
-          // Speak welcome message after a short delay
+          // Speak welcome message after a short delay - FIRST VOICE
           setTimeout(() => {
             speakWelcomeMessage();
-          }, 1000);
+          }, 2000); // Delayed to be first in sequence
         }
       }
     }
@@ -118,12 +118,12 @@ const ConsentPopup = () => {
       window.speechSynthesis.cancel();
     }
     
-    // Enhanced acceptance speech for desktop only
+    // SECOND VOICE: Brief acceptance message
     if (isVoiceEnabled && !isMobile) {
       try {
-        const utterance = new SpeechSynthesisUtterance("Welcome to the AI Web Tools portal! Initializing your AI experience...");
-        utterance.rate = 0.8;
-        utterance.pitch = 0.7;
+        const utterance = new SpeechSynthesisUtterance("Access granted! Initializing portal...");
+        utterance.rate = 0.9;
+        utterance.pitch = 0.8;
         utterance.volume = 0.8;
         utterance.lang = 'en-US';
         
@@ -142,11 +142,25 @@ const ConsentPopup = () => {
         
         utterance.onstart = () => console.log('🤖 Acceptance speech started');
         utterance.onerror = (e) => console.log('🔇 Acceptance speech error:', e.error);
+        utterance.onend = () => {
+          console.log('✅ Acceptance speech complete, triggering welcome system...');
+          // Trigger the welcome voice system after acceptance
+          window.dispatchEvent(new CustomEvent('consent-accepted'));
+        };
         
         window.speechSynthesis.speak(utterance);
       } catch (error) {
         console.log('🔇 Acceptance speech failed:', error);
+        // Still trigger welcome system even if speech fails
+        setTimeout(() => {
+          window.dispatchEvent(new CustomEvent('consent-accepted'));
+        }, 500);
       }
+    } else {
+      // No voice, just trigger welcome system
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('consent-accepted'));
+      }, 200);
     }
     
     // Create time portal effect for desktop only
