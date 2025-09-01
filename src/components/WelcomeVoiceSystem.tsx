@@ -89,11 +89,9 @@ const WelcomeVoiceSystem = () => {
       
       toolsMsg.onstart = () => console.log('📬 Playing: "YOU\'VE GOT TOOLS"');
       toolsMsg.onend = () => {
-        console.log('🎉 Welcome sequence complete! Triggering video in 3 seconds...');
-        // Trigger video after welcome sequence - FOURTH EVENT
-        setTimeout(() => {
-          window.dispatchEvent(new CustomEvent('welcome-sequence-complete'));
-        }, 3000); // 3 second delay before video starts
+        console.log('🎉 Welcome sequence complete!');
+        // Remove the video trigger from voice system to prevent conflicts
+        // Video will be handled by the 5-second timer in Index component
       };
       
       // Error handling
@@ -198,60 +196,42 @@ const WelcomeVoiceSystem = () => {
     console.log('🔍 Voice system check: Setting up welcome sequence');
     
     const isMobile = isMobileDevice();
+    const delay = isMobile ? 500 : 800;
     
-    // Listen for consent acceptance - THIRD VOICE SYSTEM
-    const handleConsentAccepted = () => {
-      console.log('🎉 Consent accepted! Starting welcome sequence...');
-      setTimeout(() => {
-        if (!hasPlayed) {
-          initializeVoices();
-        }
-      }, 1500); // Wait 1.5 seconds after consent acceptance
+    const timer = setTimeout(() => {
+      console.log('🚀 Timer: Initializing welcome sequence');
+      initializeVoices();
+    }, delay);
+    
+    // Enhanced mobile support - immediate user interaction handling
+    const handleUserInteraction = () => {
+      if (hasPlayed) return; // Prevent multiple triggers
+      
+      console.log('👆 User interaction detected - triggering welcome immediately');
+      clearTimeout(timer);
+      
+      initializeVoices();
+      
+      // Remove listeners after first interaction
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('touchend', handleUserInteraction);
+      document.removeEventListener('keydown', handleUserInteraction);
     };
     
-    // Check if consent was already given
-    const hasSeenConsent = localStorage.getItem('aitools-consent-seen');
+    // Add event listeners for user interaction
+    document.addEventListener('click', handleUserInteraction, { once: true });
+    document.addEventListener('touchstart', handleUserInteraction, { passive: true, once: true });
+    document.addEventListener('touchend', handleUserInteraction, { passive: true, once: true });
+    document.addEventListener('keydown', handleUserInteraction, { once: true });
     
-    if (hasSeenConsent && !isMobile) {
-      // If consent already given, play immediately (returning user)
-      const delay = 800;
-      const timer = setTimeout(() => {
-        console.log('🚀 Returning user - starting welcome sequence');
-        initializeVoices();
-      }, delay);
-      
-      return () => clearTimeout(timer);
-    } else {
-      // New user - wait for consent acceptance
-      window.addEventListener('consent-accepted', handleConsentAccepted);
-      
-      // Enhanced mobile support - immediate user interaction handling
-      const handleUserInteraction = () => {
-        if (hasPlayed) return; // Prevent multiple triggers
-        
-        console.log('👆 User interaction detected on new user - waiting for consent...');
-        
-        // Remove listeners after first interaction
-        document.removeEventListener('click', handleUserInteraction);
-        document.removeEventListener('touchstart', handleUserInteraction);
-        document.removeEventListener('touchend', handleUserInteraction);
-        document.removeEventListener('keydown', handleUserInteraction);
-      };
-      
-      // Add event listeners for user interaction
-      document.addEventListener('click', handleUserInteraction, { once: true });
-      document.addEventListener('touchstart', handleUserInteraction, { passive: true, once: true });
-      document.addEventListener('touchend', handleUserInteraction, { passive: true, once: true });
-      document.addEventListener('keydown', handleUserInteraction, { once: true });
-      
-      return () => {
-        window.removeEventListener('consent-accepted', handleConsentAccepted);
-        document.removeEventListener('click', handleUserInteraction);
-        document.removeEventListener('touchstart', handleUserInteraction);
-        document.removeEventListener('touchend', handleUserInteraction);
-        document.removeEventListener('keydown', handleUserInteraction);
-      };
-    }
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('touchend', handleUserInteraction);
+      document.removeEventListener('keydown', handleUserInteraction);
+    };
   }, [hasPlayed]); // Include hasPlayed to prevent multiple runs
 
   // This component renders nothing - it's just for voice functionality

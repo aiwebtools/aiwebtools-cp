@@ -9,7 +9,6 @@ import ScrollToTop from "@/components/ui/scroll-to-top";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
 import ConsentPopup from "@/components/ConsentPopup";
-import WelcomeVoiceSystem from "@/components/WelcomeVoiceSystem";
 import { Button } from "@/components/ui/button";
 import { getFastToolCount, updateCachedStats } from "@/utils/fastToolCounter";
 import { getCurrentToolCount } from "@/utils/toolCounter";
@@ -132,46 +131,20 @@ const Index = () => {
       });
     };
 
-    // FOURTH EVENT: Listen for welcome sequence completion to start video
-    const handleWelcomeComplete = () => {
-      console.log('🎬 Welcome sequence complete! Starting video...');
-      startVideoAutoplay();
-    };
-
-    // Check if consent already exists (returning user)
-    const hasSeenConsent = localStorage.getItem('aitools-consent-seen');
+    // Start video with proper timing
+    const videoTimer = setTimeout(startVideoAutoplay, 2000); // Reduced delay for faster start
     
-    if (hasSeenConsent) {
-      // Returning user - start video immediately with short delay
-      const videoTimer = setTimeout(startVideoAutoplay, 1000);
-      
-      // Load actual stats in background
-      const statsTimer = setTimeout(() => {
-        const stats = getCurrentToolCount();
-        setToolStats(stats);
-        updateCachedStats(stats);
-      }, 8000);
+    // Load actual stats in background
+    const statsTimer = setTimeout(() => {
+      const stats = getCurrentToolCount();
+      setToolStats(stats);
+      updateCachedStats(stats);
+    }, 8000);
 
-      return () => {
-        clearTimeout(videoTimer);
-        clearTimeout(statsTimer);
-      };
-    } else {
-      // New user - wait for welcome sequence to complete
-      window.addEventListener('welcome-sequence-complete', handleWelcomeComplete);
-      
-      // Load actual stats in background
-      const statsTimer = setTimeout(() => {
-        const stats = getCurrentToolCount();
-        setToolStats(stats);
-        updateCachedStats(stats);
-      }, 8000);
-
-      return () => {
-        window.removeEventListener('welcome-sequence-complete', handleWelcomeComplete);
-        clearTimeout(statsTimer);
-      };
-    }
+    return () => {
+      clearTimeout(videoTimer);
+      clearTimeout(statsTimer);
+    };
   }, [videoStarted]);
 
   const handleSeeMoreAITools = () => {
@@ -263,7 +236,6 @@ const Index = () => {
       </div>
       
       <ConsentPopup />
-      <WelcomeVoiceSystem />
     </div>
   );
 };
