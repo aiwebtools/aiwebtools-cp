@@ -165,5 +165,17 @@ export const healthAndWellnessGPTs: Tool[] = [
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.4,
     totalVotes: 6543
+  },
+  {
+    icon: Activity,
+    title: "FITNESS COACH AI",
+    description: "Your comprehensive AI-powered fitness coach providing personalized workout plans, nutrition guidance, and fitness goal tracking. This advanced fitness assistant helps you achieve your health and fitness objectives with customized training programs, exercise form guidance, and progress monitoring tailored to your fitness level and goals.",
+    emoji: "💪",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://chatgpt.com/g/g-68afaae3f8e881918d8b84b7ca85a413-fitness-coach/?via=aiwebtools",
+    tags: ["fitness coaching", "workout plans", "personal training", "nutrition guidance", "fitness goals", "exercise", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.7,
+    totalVotes: 3456
   }
 ];

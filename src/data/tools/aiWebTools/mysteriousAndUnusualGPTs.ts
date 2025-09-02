@@ -81,5 +81,53 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     category: "Mysterious & Unusual",
     rating: 4.6,
     totalVotes: 934
+  },
+  {
+    icon: "🔮" as any,
+    title: "Mayan Dreamspell Matrix",
+    description: "Decode your Mayan Dreamspell galactic signature with this mystical AI tool. Discover your cosmic blueprint through the ancient Mayan calendar system and galactic mathematics. Unlock the secrets of your birth date's cosmic significance and understand your role in the universal matrix.",
+    emoji: "🔮",
+    color: "from-green-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-68b491e8cc2c8191b6b85930d7fc9e75-mayan-dreamspell-matrix/?via=aiwebtools",
+    tags: ["mayan calendar", "galactic signature", "cosmic blueprint", "ancient wisdom", "spiritual guidance", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.5,
+    totalVotes: 876
+  },
+  {
+    icon: "💎" as any,
+    title: "Emerald Signature Of Thoth",
+    description: "A transmission of the Emerald Grid and Thoth's original design codes. Experience the mystical wisdom of Thoth and connect with the emerald frequencies of ancient knowledge. This tool channels the esoteric teachings and sacred geometry of the legendary figure Thoth.",
+    emoji: "💎",
+    color: "from-emerald-500 to-green-600",
+    directUrl: "https://chatgpt.com/g/g-68b48f8e43c88191981386b943648566-emerald-signature-of-thoth/?via=aiwebtools",
+    tags: ["thoth", "emerald grid", "design codes", "esoteric wisdom", "sacred geometry", "ancient knowledge", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.7,
+    totalVotes: 1234
+  },
+  {
+    icon: "⭐" as any,
+    title: "The Babylonian Star Tablet Protocol",
+    description: "Cosmic frequency engineer guiding star tablet alignment. This mystical AI tool helps you understand and work with Babylonian astronomical wisdom and cosmic frequencies for spiritual alignment and celestial guidance.",
+    emoji: "⭐",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-68b48e0515708191a8fec9d0aa385c67-the-babylonian-star-tablet-protocol/?via=aiwebtools",
+    tags: ["babylonian wisdom", "star tablets", "cosmic frequency", "celestial alignment", "ancient astronomy", "spiritual guidance", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.6,
+    totalVotes: 987
+  },
+  {
+    icon: "ᚱ" as any,
+    title: "The Rune Frequency Protocol",
+    description: "Awaken the living current inside runes, showing how each line of their geometry is a frequency that engraves into body and field. I guide you through posture, breath, sound, and light until the rune locks into your nervous system and becomes alive within you. I restore the tools of sovereignty that empire buried, turning symbols back into shields, spears, voices, and fire.",
+    emoji: "ᚱ",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-68b48a3a7e6c819196d72ea7ec94a63e-the-rune-frequency-protocol/?via=aiwebtools",
+    tags: ["runes", "frequency", "sovereignty", "sacred geometry", "ancient symbols", "spiritual awakening", "embodiment", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.8,
+    totalVotes: 1456
   }
 ];

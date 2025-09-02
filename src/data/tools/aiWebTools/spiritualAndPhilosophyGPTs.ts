@@ -92,5 +92,53 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     category: "Spirituality & Philosophy",
     rating: 4.6,
     totalVotes: 3456
+  },
+  {
+    icon: "🔷" as any,
+    title: "Essene Qodesh Code",
+    description: "Ancient meditation guidance type tool connecting you with the sacred wisdom of the Essenes. This mystical AI guide helps you explore the Qodesh (sacred) codes and ancient spiritual practices for deeper meditation and spiritual connection.",
+    emoji: "🔷",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://chatgpt.com/g/g-68b490b403a08191b3f3f6ac126b0b77-essene-qodesh-code/?via=aiwebtools",
+    tags: ["essenes", "sacred codes", "meditation guidance", "ancient wisdom", "spiritual practices", "qodesh", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.7,
+    totalVotes: 892
+  },
+  {
+    icon: "💨" as any,
+    title: "The Breathlight Codex",
+    description: "Operating manual: unite breath and light, ignite Christos spark, restore coherence. This transformative spiritual tool guides you through the sacred practice of combining breathwork with light consciousness to awaken your inner divine spark.",
+    emoji: "💨",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-68b4847aa1fc81918c4a8796ed1bae00-the-breathlight-codex/?via=aiwebtools",
+    tags: ["breathwork", "light consciousness", "christos spark", "coherence", "spiritual awakening", "divine spark", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.8,
+    totalVotes: 1123
+  },
+  {
+    icon: "⚖️" as any,
+    title: "The Harmonic Axis Protocol",
+    description: "Law of alignment: root, trunk, crown, Christos spark. This spiritual alignment tool guides you through the sacred geometry of human consciousness, helping you align your energy centers and awaken your divine potential through harmonic principles.",
+    emoji: "⚖️",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://chatgpt.com/g/g-68b48909161881918ec5fdb00f56cd75-the-harmonic-axis-protocol/?via=aiwebtools",
+    tags: ["harmonic alignment", "energy centers", "christos spark", "sacred geometry", "consciousness", "spiritual alignment", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.6,
+    totalVotes: 756
+  },
+  {
+    icon: "🎵" as any,
+    title: "The Sound Geometry Protocol",
+    description: "A chamber of sound and geometry that forges coherence. This is not math this is philosophy. Experience the transformative power of sound frequencies combined with sacred geometry to create coherence and harmony in consciousness and being.",
+    emoji: "🎵",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://chatgpt.com/g/g-68b47f2f5bb8819193121ad5a657dbff-the-sound-geometry-protocol/?via=aiwebtools",
+    tags: ["sound geometry", "sacred frequencies", "coherence", "philosophy", "consciousness", "harmonic healing", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.7,
+    totalVotes: 1034
   }
 ];
