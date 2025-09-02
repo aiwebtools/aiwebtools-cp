@@ -37,43 +37,13 @@ const Index = () => {
     // Set loaded state immediately for faster initial render
     setIsLoaded(true);
     
-    // Enhanced video autoplay with cross-browser compatibility
-    const startVideoAutoplay = () => {
-      if (videoStarted) return;
-      
+    // Simplified video autoplay with immediate unmute attempts
+    const startVideoUnmute = () => {
       const iframe = mainVideoRef.current;
-      if (!iframe) return;
+      if (!iframe || videoStarted) return;
       
       setVideoStarted(true);
-      console.log('🎥 Starting enhanced video autoplay...');
-      
-      // Detect if user is on mobile for different handling
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
-      
-      // Enhanced autoplay URL with better browser compatibility
-      const autoplayParams = new URLSearchParams({
-        autoplay: '1',
-        mute: '1', // Always start muted for browser compliance
-        controls: '1',
-        rel: '0',
-        modestbranding: '1',
-        enablejsapi: '1',
-        playsinline: '1', // Critical for mobile
-        hd: '1',
-        vq: 'hd1080',
-        quality: 'hd1080',
-        loop: '0',
-        iv_load_policy: '3',
-        cc_load_policy: '0',
-        fs: '1',
-        color: 'red',
-        theme: 'dark',
-        origin: window.location.origin,
-        widget_referrer: window.location.href
-      });
-      
-      const autoplayUrl = `https://www.youtube.com/embed/4zflGSSuBcA?${autoplayParams.toString()}`;
-      iframe.src = autoplayUrl;
+      console.log('🎥 Video loaded, attempting to unmute...');
       
       // Enhanced unmute strategy with multiple attempts
       const attemptUnmute = (attempts = 0) => {
@@ -87,7 +57,7 @@ const Index = () => {
             // Multiple methods to attempt unmuting
             const commands = [
               '{"event":"command","func":"unMute","args":""}',
-              '{"event":"command","func":"setVolume","args":[100]}',
+              '{"event":"command","func":"setVolume","args":[75]}',
               '{"event":"command","func":"playVideo","args":""}'
             ];
             
@@ -107,13 +77,11 @@ const Index = () => {
               attemptUnmute(attempts + 1);
             }
           }
-        }, 1500 + (attempts * 1000)); // Staggered delays
+        }, 1000 + (attempts * 500)); // Staggered delays
       };
       
-      // Start unmute attempts
-      if (!isMobile) {
-        attemptUnmute();
-      }
+      // Start unmute attempts after iframe is fully loaded
+      attemptUnmute();
       
       // Fallback: Listen for user interaction to enable sound
       const enableSoundOnInteraction = () => {
@@ -131,8 +99,8 @@ const Index = () => {
       });
     };
 
-    // Start video with proper timing
-    const videoTimer = setTimeout(startVideoAutoplay, 2000); // Reduced delay for faster start
+    // Start video unmute attempts after short delay to ensure iframe is loaded
+    const videoTimer = setTimeout(startVideoUnmute, 1500);
     
     // Load actual stats in background
     const statsTimer = setTimeout(() => {
@@ -195,7 +163,7 @@ const Index = () => {
                 <iframe
                   ref={mainVideoRef}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
+                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
                   title="AI Web Tools Featured Video - 1080p HD"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
