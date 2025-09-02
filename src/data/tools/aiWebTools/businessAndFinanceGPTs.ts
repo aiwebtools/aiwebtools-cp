@@ -298,5 +298,17 @@ export const businessAndFinanceGPTs: Tool[] = [
     category: "Business & Finance",
     rating: 4.5,
     totalVotes: 6789
+  },
+  {
+    icon: Calculator,
+    title: "FIAT TO CRYPTO AI VALUE CALCULATOR –For Businesses",
+    description: "Advanced AI-powered calculator for businesses to convert fiat currencies to cryptocurrency values with real-time exchange rates, tax implications, and profit/loss analysis. Perfect for companies managing crypto portfolios, conducting international transactions, or making investment decisions.",
+    emoji: "💱",
+    color: "from-orange-500 to-yellow-600",
+    directUrl: "https://chatgpt.com/g/g-68b5b20784788191acd980be0388935d-fiat-to-crypto-ai-value-calculator-for-businesses/?via=aiwebtools",
+    tags: ["cryptocurrency", "fiat currency", "exchange calculator", "business finance", "crypto conversion", "investment analysis", "aiwebtools"],
+    category: "Business & Finance",
+    rating: 4.7,
+    totalVotes: 1567
   }
 ];
