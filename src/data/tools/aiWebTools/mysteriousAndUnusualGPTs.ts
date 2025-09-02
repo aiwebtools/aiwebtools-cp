@@ -1,5 +1,8 @@
 
 import { Tool } from "@/types/tools";
+import { 
+  Waves
+} from "lucide-react";
 
 export const mysteriousAndUnusualGPTs: Tool[] = [
   {
@@ -66,5 +69,17 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     category: "Mysterious & Unusual",
     rating: 4.5,
     totalVotes: 1287
+  },
+  {
+    icon: Waves,
+    title: "Atlantean Memory Keeper",
+    description: "Dive deep into the lost ancient knowledge of Atlantis with the Atlantean Memory Keeper. This mystical AI guide helps you explore forgotten wisdom, ancient technologies, and hidden truths from the legendary civilization of Atlantis. Uncover sacred knowledge, ancient mysteries, and timeless wisdom that has been lost to history.",
+    emoji: "🏛️",
+    color: "from-blue-600 to-cyan-700",
+    directUrl: "https://chatgpt.com/g/g-68b496eea38481919c1700ed3ef675dd-atlantean-memory-keeper/?via=aiwebtools",
+    tags: ["atlantis", "ancient knowledge", "lost civilization", "mysteries", "ancient wisdom", "forgotten history", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.6,
+    totalVotes: 934
   }
 ];
