@@ -31,7 +31,7 @@ const WelcomeVoiceSystem = () => {
     setHasPlayed(true); // Mark as played immediately to prevent duplicates
     
     try {
-      // Cancel any existing speech
+      // Cancel any existing speech to prevent conflicts
       speechSynthesis.cancel();
       
       const isMobile = isMobileDevice();
@@ -41,29 +41,33 @@ const WelcomeVoiceSystem = () => {
       const voices = speechSynthesis.getVoices();
       console.log(`🗣️ Found ${voices.length} voices`);
       
-      // Create first message: "WELCOME MASTER"
+      // Create first message: "WELCOME MASTER" - deep robot voice
       const welcomeMsg = new SpeechSynthesisUtterance("WELCOME MASTER");
-      welcomeMsg.rate = isMobile ? 0.6 : 0.4;
-      welcomeMsg.pitch = isMobile ? 0.3 : 0.1;
-      welcomeMsg.volume = isMobile ? 0.8 : 1.0; // Slightly lower volume on mobile
+      welcomeMsg.rate = 0.4; // Slow and deliberate
+      welcomeMsg.pitch = 0.1; // Very low pitch for robot effect
+      welcomeMsg.volume = 0.9; // Full but not overwhelming
       
-      // Find deep male voice for welcome
+      // Find deep male voice for welcome - prioritize robot-like voices
       const maleVoice = voices.find(v => 
+        v.name.toLowerCase().includes('alex') ||
+        v.name.toLowerCase().includes('daniel') ||
         v.name.toLowerCase().includes('male') ||
-        v.name.toLowerCase().includes('david') ||
-        v.name.toLowerCase().includes('alex')
+        v.name.toLowerCase().includes('fred')
       );
-      if (maleVoice) welcomeMsg.voice = maleVoice;
+      if (maleVoice) {
+        welcomeMsg.voice = maleVoice;
+        console.log('🤖 Selected male voice:', maleVoice.name);
+      }
       
-      // Create second message: "YOU'VE GOT TOOLS" - relaxed and happy pace
+      // Create second message: "YOU'VE GOT TOOLS" - British female AOL-style
       const toolsMsg = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS");
-      toolsMsg.rate = isMobile ? 0.85 : 0.75; // Faster than previous but still relaxed
-      toolsMsg.pitch = isMobile ? 1.3 : 1.4; // Keep higher pitch for happier tone
-      toolsMsg.volume = isMobile ? 0.9 : 1.0; // Slightly lower volume on mobile
+      toolsMsg.rate = 0.8; // Normal conversational pace
+      toolsMsg.pitch = 1.2; // Pleasant feminine pitch
+      toolsMsg.volume = 0.95; // Clear and friendly
       
-      // Find British female voice for tools message (AOL-style)
+      // Find British female voice for AOL-style announcement
       const britishFemaleVoice = voices.find(v => 
-        v.lang.toLowerCase().includes('en-gb') ||
+        (v.lang && v.lang.toLowerCase().includes('en-gb')) ||
         v.name.toLowerCase().includes('british') ||
         v.name.toLowerCase().includes('uk') ||
         v.name.toLowerCase().includes('victoria') ||
@@ -74,35 +78,49 @@ const WelcomeVoiceSystem = () => {
         v.name.toLowerCase().includes('samantha') ||
         v.name.toLowerCase().includes('karen') ||
         v.name.toLowerCase().includes('susan') ||
-        v.name.toLowerCase().includes('anna')
+        v.name.toLowerCase().includes('anna') ||
+        v.name.toLowerCase().includes('catherine')
       );
-      if (britishFemaleVoice) toolsMsg.voice = britishFemaleVoice;
       
-      // Set up sequence timing
+      if (britishFemaleVoice) {
+        toolsMsg.voice = britishFemaleVoice;
+        console.log('📬 Selected female voice:', britishFemaleVoice.name);
+      }
+      
+      // Set up sequence timing with proper synchronization
       welcomeMsg.onstart = () => console.log('🤖 Playing: "WELCOME MASTER"');
       welcomeMsg.onend = () => {
-        console.log('✅ Welcome message complete, playing tools message...');
+        console.log('✅ Welcome message complete, preparing tools message...');
+        // Wait for welcome to fully complete before starting tools message
         setTimeout(() => {
+          console.log('📬 Starting: "YOU\'VE GOT TOOLS"');
           speechSynthesis.speak(toolsMsg);
-        }, isMobile ? 600 : 700); // Quicker transition
+        }, 800); // Proper pause between messages
       };
       
-      toolsMsg.onstart = () => console.log('📬 Playing: "YOU\'VE GOT TOOLS"');
+      toolsMsg.onstart = () => console.log('📬 Playing: "YOU\'VE GOT TOOLS" (AOL-style)');
       toolsMsg.onend = () => {
-        console.log('🎉 Welcome sequence complete!');
-        // Remove the video trigger from voice system to prevent conflicts
-        // Video will be handled by the 5-second timer in Index component
+        console.log('🎉 Welcome sequence complete - no overlapping voices!');
+        // Voice system is now complete and won't interfere with video
       };
       
-      // Error handling
+      // Comprehensive error handling
       welcomeMsg.onerror = (e) => {
         console.log('❌ Welcome message error:', e);
-        setTimeout(() => speechSynthesis.speak(toolsMsg), 500);
+        // Still try tools message even if welcome fails
+        setTimeout(() => {
+          console.log('🔄 Attempting tools message after welcome error...');
+          speechSynthesis.speak(toolsMsg);
+        }, 500);
       };
       
-      toolsMsg.onerror = (e) => console.log('❌ Tools message error:', e);
+      toolsMsg.onerror = (e) => {
+        console.log('❌ Tools message error:', e);
+        console.log('✅ Voice sequence completed (with error)');
+      };
       
-      // Start the sequence
+      // Start the carefully timed sequence
+      console.log('🚀 Starting welcome message...');
       speechSynthesis.speak(welcomeMsg);
       
     } catch (error) {
@@ -187,30 +205,34 @@ const WelcomeVoiceSystem = () => {
   };
 
   useEffect(() => {
-    // Only play once per page load
+    // Only play once per page load - prevent multiple voice overlaps
     if (hasPlayed) {
       console.log('🔄 Voice already played for this page load');
       return;
     }
 
-    console.log('🔍 Voice system check: Setting up welcome sequence');
+    console.log('🔍 Voice system check: Setting up welcome sequence (timed with video)');
     
     const isMobile = isMobileDevice();
-    const delay = isMobile ? 500 : 800;
+    // Coordinate with video timing - voice starts AFTER video begins
+    const delay = 3000; // 3 seconds to let video start first
     
     const timer = setTimeout(() => {
-      console.log('🚀 Timer: Initializing welcome sequence');
+      console.log('🚀 Timer: Initializing welcome sequence (video should be playing)');
       initializeVoices();
     }, delay);
     
-    // Enhanced mobile support - immediate user interaction handling
+    // Enhanced mobile support - but only after video has had time to start
     const handleUserInteraction = () => {
       if (hasPlayed) return; // Prevent multiple triggers
       
-      console.log('👆 User interaction detected - triggering welcome immediately');
+      console.log('👆 User interaction detected - triggering welcome with proper timing');
       clearTimeout(timer);
       
-      initializeVoices();
+      // Ensure video has time to start before voice begins
+      setTimeout(() => {
+        initializeVoices();
+      }, 1500);
       
       // Remove listeners after first interaction
       document.removeEventListener('click', handleUserInteraction);
@@ -219,7 +241,7 @@ const WelcomeVoiceSystem = () => {
       document.removeEventListener('keydown', handleUserInteraction);
     };
     
-    // Add event listeners for user interaction
+    // Add event listeners for user interaction (but with timing)
     document.addEventListener('click', handleUserInteraction, { once: true });
     document.addEventListener('touchstart', handleUserInteraction, { passive: true, once: true });
     document.addEventListener('touchend', handleUserInteraction, { passive: true, once: true });

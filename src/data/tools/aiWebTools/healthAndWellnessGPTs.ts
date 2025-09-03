@@ -173,6 +173,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "💪",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-68afaae3f8e881918d8b84b7ca85a413-fitness-coach/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=eHInYKxyKm4",
     tags: ["fitness coaching", "workout plans", "personal training", "nutrition guidance", "fitness goals", "exercise", "aiwebtools"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,

@@ -1,7 +1,10 @@
 
 import { Tool } from "@/types/tools";
 import { 
-  Waves
+  Waves,
+  Stars,
+  Sparkles,
+  Star
 } from "lucide-react";
 
 export const mysteriousAndUnusualGPTs: Tool[] = [
@@ -83,40 +86,40 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     totalVotes: 934
   },
   {
-    icon: "🔮" as any,
+    icon: Stars,
     title: "Mayan Dreamspell Matrix",
-    description: "Decode your Mayan Dreamspell galactic signature with this mystical AI tool. Discover your cosmic blueprint through the ancient Mayan calendar system and galactic mathematics. Unlock the secrets of your birth date's cosmic significance and understand your role in the universal matrix.",
+    description: "Decode your Mayan Dreamspell galactic signature and discover your cosmic blueprint through ancient Mayan calendar wisdom. This advanced AI tool helps you understand your galactic identity, life purpose, and spiritual path according to the sacred Dreamspell system.",
     emoji: "🔮",
-    color: "from-green-500 to-purple-600",
+    color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-68b491e8cc2c8191b6b85930d7fc9e75-mayan-dreamspell-matrix/?via=aiwebtools",
-    tags: ["mayan calendar", "galactic signature", "cosmic blueprint", "ancient wisdom", "spiritual guidance", "aiwebtools"],
-    category: "Mysterious & Unusual",
-    rating: 4.5,
-    totalVotes: 876
-  },
-  {
-    icon: "💎" as any,
-    title: "Emerald Signature Of Thoth",
-    description: "A transmission of the Emerald Grid and Thoth's original design codes. Experience the mystical wisdom of Thoth and connect with the emerald frequencies of ancient knowledge. This tool channels the esoteric teachings and sacred geometry of the legendary figure Thoth.",
-    emoji: "💎",
-    color: "from-emerald-500 to-green-600",
-    directUrl: "https://chatgpt.com/g/g-68b48f8e43c88191981386b943648566-emerald-signature-of-thoth/?via=aiwebtools",
-    tags: ["thoth", "emerald grid", "design codes", "esoteric wisdom", "sacred geometry", "ancient knowledge", "aiwebtools"],
-    category: "Mysterious & Unusual",
-    rating: 4.7,
-    totalVotes: 1234
-  },
-  {
-    icon: "⭐" as any,
-    title: "The Babylonian Star Tablet Protocol",
-    description: "Cosmic frequency engineer guiding star tablet alignment. This mystical AI tool helps you understand and work with Babylonian astronomical wisdom and cosmic frequencies for spiritual alignment and celestial guidance.",
-    emoji: "⭐",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://chatgpt.com/g/g-68b48e0515708191a8fec9d0aa385c67-the-babylonian-star-tablet-protocol/?via=aiwebtools",
-    tags: ["babylonian wisdom", "star tablets", "cosmic frequency", "celestial alignment", "ancient astronomy", "spiritual guidance", "aiwebtools"],
+    tags: ["mayan calendar", "dreamspell", "galactic signature", "cosmic wisdom", "spiritual guidance", "ancient knowledge", "aiwebtools"],
     category: "Mysterious & Unusual",
     rating: 4.6,
-    totalVotes: 987
+    totalVotes: 2341
+  },
+  {
+    icon: Sparkles,
+    title: "Emerald Signature of Thoth",
+    description: "A transmission of the Emerald Grid and Thoth's original design codes by AiWebTools.Ai. Access ancient wisdom and hermetic knowledge through this mystical AI that channels the emerald frequencies of divine wisdom and cosmic understanding.",
+    emoji: "💎",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://chatgpt.com/g/g-68b48f8e43c88191981386b943648566-emerald-signature-of-thoth/?via=aiwebtools",
+    tags: ["hermetic wisdom", "thoth", "emerald tablets", "ancient codes", "mystical knowledge", "spiritual transmission", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.8,
+    totalVotes: 1967
+  },
+  {
+    icon: Star,
+    title: "The Babylonian Star Tablet Protocol",
+    description: "Cosmic frequency engineer guiding star tablet alignment. This mystical AI helps you understand ancient Babylonian star wisdom, celestial alignments, and cosmic frequencies for spiritual awakening and divine connection.",
+    emoji: "⭐",
+    color: "from-purple-500 to-indigo-600",
+    directUrl: "https://chatgpt.com/g/g-68b48e0515708191a8fec9d0aa385c67-the-babylonian-star-tablet-protocol/?via=aiwebtools",
+    tags: ["babylonian wisdom", "star tablets", "cosmic alignment", "celestial frequencies", "ancient astronomy", "spiritual awakening", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.7,
+    totalVotes: 1834
   },
   {
     icon: "ᚱ" as any,

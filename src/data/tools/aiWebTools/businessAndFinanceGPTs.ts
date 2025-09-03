@@ -306,6 +306,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "💱",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-68b5b20784788191acd980be0388935d-fiat-to-crypto-ai-value-calculator-for-businesses/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=k0NlolajEYs",
     tags: ["cryptocurrency", "fiat currency", "exchange calculator", "business finance", "crypto conversion", "investment analysis", "aiwebtools"],
     category: "Business & Finance",
     rating: 4.7,

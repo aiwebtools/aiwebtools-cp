@@ -107,5 +107,17 @@ export const legalAndGovernmentGPTs: Tool[] = [
     category: "Legal & Government",
     rating: 4.6,
     totalVotes: 3567
+  },
+  {
+    icon: Shield,
+    title: "Human Rights & AI Ethics Guardian GPT",
+    description: "Human Rights & AI Ethics Guardian GPT by AiWebTools.Ai is your comprehensive advisor for AI governance, rights protection, and ethical frameworks in the digital age. This essential tool provides expert guidance on AI ethics, human rights protection, regulatory compliance, and responsible AI development to ensure technology serves humanity's best interests while protecting fundamental freedoms and dignity.",
+    emoji: "🛡️",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-68afb37322748191aed5905a1d5193ee-human-rights-ai-ethics-guardian/?via=aiwebtools",
+    tags: ["ai ethics", "human rights", "ai governance", "digital rights", "responsible ai", "ethical frameworks", "technology policy", "aiwebtools"],
+    category: "Legal & Government",
+    rating: 4.8,
+    totalVotes: 2134
   }
 ];

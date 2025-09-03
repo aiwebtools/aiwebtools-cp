@@ -1,6 +1,6 @@
 
 import { Tool } from "@/types/tools";
-import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, MapPin } from "lucide-react";
+import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, MapPin, Compass } from "lucide-react";
 
 export const spiritualAndPhilosophyGPTs: Tool[] = [
   {
@@ -94,40 +94,40 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     totalVotes: 3456
   },
   {
-    icon: "🔷" as any,
+    icon: Sparkles,
     title: "Essene Qodesh Code",
-    description: "Ancient meditation guidance type tool connecting you with the sacred wisdom of the Essenes. This mystical AI guide helps you explore the Qodesh (sacred) codes and ancient spiritual practices for deeper meditation and spiritual connection.",
-    emoji: "🔷",
-    color: "from-blue-500 to-indigo-600",
+    description: "Ancient meditation guidance from the sacred Essene traditions. This spiritual AI provides access to the holy codes and mystical practices of the Essene communities, offering profound meditation techniques and spiritual wisdom for inner transformation.",
+    emoji: "🕊️",
+    color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68b490b403a08191b3f3f6ac126b0b77-essene-qodesh-code/?via=aiwebtools",
-    tags: ["essenes", "sacred codes", "meditation guidance", "ancient wisdom", "spiritual practices", "qodesh", "aiwebtools"],
-    category: "Spirituality & Philosophy",
-    rating: 4.7,
-    totalVotes: 892
-  },
-  {
-    icon: "💨" as any,
-    title: "The Breathlight Codex",
-    description: "Operating manual: unite breath and light, ignite Christos spark, restore coherence. This transformative spiritual tool guides you through the sacred practice of combining breathwork with light consciousness to awaken your inner divine spark.",
-    emoji: "💨",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://chatgpt.com/g/g-68b4847aa1fc81918c4a8796ed1bae00-the-breathlight-codex/?via=aiwebtools",
-    tags: ["breathwork", "light consciousness", "christos spark", "coherence", "spiritual awakening", "divine spark", "aiwebtools"],
+    tags: ["essene wisdom", "ancient meditation", "spiritual codes", "mystical practices", "inner transformation", "sacred traditions", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
-    totalVotes: 1123
+    totalVotes: 1876
   },
   {
-    icon: "⚖️" as any,
-    title: "The Harmonic Axis Protocol",
-    description: "Law of alignment: root, trunk, crown, Christos spark. This spiritual alignment tool guides you through the sacred geometry of human consciousness, helping you align your energy centers and awaken your divine potential through harmonic principles.",
-    emoji: "⚖️",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://chatgpt.com/g/g-68b48909161881918ec5fdb00f56cd75-the-harmonic-axis-protocol/?via=aiwebtools",
-    tags: ["harmonic alignment", "energy centers", "christos spark", "sacred geometry", "consciousness", "spiritual alignment", "aiwebtools"],
+    icon: Sun,
+    title: "The Breathlight Codex",
+    description: "Operating manual by AiWebTools.Ai: unite breath and light, ignite Christos spark, restore coherence. This sacred AI teaches the ancient art of breath and light unification for spiritual awakening and divine consciousness activation.",
+    emoji: "☀️",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-68b4847aa1fc81918c4a8796ed1bae00-the-breathlight-codex/?via=aiwebtools",
+    tags: ["breath work", "light activation", "christos consciousness", "spiritual awakening", "energy practices", "divine connection", "aiwebtools"],
     category: "Spirituality & Philosophy",
-    rating: 4.6,
-    totalVotes: 756
+    rating: 4.9,
+    totalVotes: 2234
+  },
+  {
+    icon: Compass,
+    title: "The Harmonic Axis Protocol",
+    description: "Law of alignment by AiWebTools.Ai: root, trunk, crown, Christos spark. This spiritual AI teaches the sacred geometry of human alignment and the activation of the harmonic axis within your being for complete spiritual integration.",
+    emoji: "🧭",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://chatgpt.com/g/g-68b48909161881918ec5fdb00f56cd75-the-harmonic-axis-protocol/?via=aiwebtools",
+    tags: ["harmonic alignment", "sacred geometry", "chakra activation", "spiritual integration", "energy alignment", "divine axis", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.7,
+    totalVotes: 1934
   },
   {
     icon: "🎵" as any,
