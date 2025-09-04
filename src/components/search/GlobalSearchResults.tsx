@@ -90,10 +90,9 @@ const GlobalSearchResults = ({
                   </div>
                 </TooltipTrigger>
                 <TooltipContent 
-                  side="left" 
-                  className="max-w-xs p-3 bg-gray-900/98 text-cyan-100 border-cyan-500/30 shadow-xl z-[70] cursor-pointer hover:bg-gray-800/98 transition-colors"
-                  sideOffset={15}
-                  onClick={() => onToolClick(toolIndex)}
+                  side="right" 
+                  className="max-w-sm p-3 bg-gray-900/95 text-cyan-100 border-cyan-500/30 shadow-xl z-[60]"
+                  sideOffset={10}
                 >
                   <div className="space-y-2">
                     <div className="flex items-center space-x-2">
@@ -115,9 +114,6 @@ const GlobalSearchResults = ({
                         ))}
                       </div>
                     )}
-                    <div className="text-xs text-cyan-400/60 mt-2 font-medium">
-                      👆 Click to open tool
-                    </div>
                   </div>
                 </TooltipContent>
               </Tooltip>
