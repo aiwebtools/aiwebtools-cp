@@ -23,10 +23,15 @@ const ToolsDisplay = memo(forwardRef<HTMLDivElement, ToolsDisplayProps>(
       navigate('/');
     };
 
-    // Memoize deduplication to prevent unnecessary recalculation
+    // Memoize deduplication to prevent unnecessary recalculation - PRESERVE ALL TOOLS FOR "ALL AI TOOLS" CATEGORY
     const deduplicatedTools = useMemo(() => {
+      // For "ALL AI TOOLS" category, skip aggressive deduplication to preserve all legitimate tools
+      if (categoryName === "ALL AI TOOLS") {
+        console.log(`🌟 ALL AI TOOLS: Preserving all ${tools.length} tools without aggressive deduplication`);
+        return tools;
+      }
       return createDeduplicatedToolsList(tools, 8);
-    }, [tools]);
+    }, [tools, categoryName]);
 
     // Memoize tools to display
     const toolsToDisplay = useMemo(() => {

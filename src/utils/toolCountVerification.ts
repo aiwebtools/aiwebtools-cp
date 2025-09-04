@@ -8,6 +8,26 @@ export const verifyToolCount = () => {
   const totalTools = allTools.length;
   console.log(`📊 Total tools in database: ${totalTools}`);
   
+  // Enhanced verification for fake tools
+  const suspiciousTools = allTools.filter(tool => 
+    !tool.directUrl || 
+    tool.directUrl === '' || 
+    tool.directUrl.includes('example.com') ||
+    tool.directUrl.includes('placeholder') ||
+    tool.title.toLowerCase().includes('example') ||
+    tool.title.toLowerCase().includes('test tool') ||
+    tool.title.toLowerCase().includes('placeholder')
+  );
+  
+  if (suspiciousTools.length > 0) {
+    console.warn(`🚨 FOUND ${suspiciousTools.length} SUSPICIOUS/FAKE TOOLS:`);
+    suspiciousTools.forEach(tool => {
+      console.log(`   ❌ "${tool.title}" - ${tool.directUrl || 'NO URL'} (${tool.category || 'NO CATEGORY'})`);
+    });
+  } else {
+    console.log('✅ No suspicious/fake tools detected');
+  }
+  
   // Check for duplicates
   const titles = allTools.map(tool => tool.title);
   const uniqueTitles = new Set(titles);
@@ -67,6 +87,20 @@ export const verifyToolCount = () => {
   
   console.log(`\n🤖 AI Web Tools GPTs: ${aiWebToolsGPTs.length}`);
   
+  // Verify legitimate popular tools exist
+  const legitimateToolChecks = [
+    'Claude', 'ChatGPT', 'Gemini', 'Midjourney', 'DALL-E', 'Runway',
+    'ElevenLabs', 'Suno', 'Perplexity', 'Anthropic', 'OpenAI'
+  ];
+  
+  console.log('\n🔍 LEGITIMATE TOOL VERIFICATION:');
+  legitimateToolChecks.forEach(toolName => {
+    const found = allTools.find(tool => 
+      tool.title.toLowerCase().includes(toolName.toLowerCase())
+    );
+    console.log(`   ${found ? '✅' : '❌'} ${toolName}: ${found ? 'FOUND' : 'MISSING'}`);
+  });
+  
   // Expected vs actual count
   const expectedCount = 2009;
   const difference = totalTools - expectedCount;
@@ -75,6 +109,8 @@ export const verifyToolCount = () => {
   console.log(`   Expected: ${expectedCount} tools`);
   console.log(`   Actual: ${totalTools} tools`);
   console.log(`   Difference: ${difference > 0 ? '+' : ''}${difference}`);
+  console.log(`   Suspicious tools: ${suspiciousTools.length}`);
+  console.log(`   Legitimate tools: ${totalTools - suspiciousTools.length}`);
   
   if (Math.abs(difference) > 50) {
     console.error(`🚨 CRITICAL: Tool count differs by more than 50! Expected ~${expectedCount}, got ${totalTools}`);
@@ -87,6 +123,7 @@ export const verifyToolCount = () => {
   return {
     totalTools,
     duplicates,
+    suspiciousTools: suspiciousTools.length,
     missingFields: missingFields.length,
     categories: Object.keys(categories).length,
     aiWebToolsGPTs: aiWebToolsGPTs.length,
@@ -95,7 +132,5 @@ export const verifyToolCount = () => {
   };
 };
 
-// Auto-run verification
-setTimeout(() => {
-  verifyToolCount();
-}, 1000);
+// Auto-run verification immediately for debugging
+verifyToolCount();
