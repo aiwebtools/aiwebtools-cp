@@ -13,6 +13,7 @@ import { getAdvancedPartialMatches, scoreAdvancedPartialMatch } from "./core/adv
 import { getAIWebToolsPriorityScore, applyAIWebToolsPrioritization } from "@/utils/aiWebToolsPrioritization";
 import { deduplicateSearchResults } from "./core/searchDeduplication";
 import { getAlphabeticalSortKey, sortToolsAlphabetically } from "./alphabeticalSorting";
+import { performSimpleSearch } from "./simpleSearch";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -84,13 +85,18 @@ const detectIntent = (searchTerm: string): string | null => {
   return null;
 };
 
-  // Enhanced search function with SUPER INTELLIGENT partial matching and prediction
+  // Optimized search function with performance safeguards
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
-    // 🚀 Even for empty searches, apply AI Web Tools prioritization and deduplication
     const filtered = tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title));
     const prioritized = applyAIWebToolsPrioritization(filtered);
     return deduplicateSearchResults(prioritized);
+  }
+
+  // Performance guard - limit complex searches
+  const trimmed = searchTerm.trim();
+  if (trimmed.length > 20 || (trimmed.length > 10 && !/^[a-zA-Z\s]{3,}/.test(trimmed))) {
+    return performSimpleSearch(tools, searchTerm);
   }
 
   // DEBUG: Check if ElevenLabs and Suno are in the tools array when searching for them
@@ -102,15 +108,12 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     console.log(`🔍 Suno tools found: ${sunoTools.length}`, sunoTools.map(t => t.title));
   }
 
-  // STEP 1: Super intelligent typo correction and advanced partial matching
-  const correctedSearchTerm = superSmartTypoCorrection(searchTerm);
-  const partialSuggestions = getPartialMatchSuggestions(searchTerm);
-  const advancedPartialMatches = getAdvancedPartialMatches(searchTerm, tools);
+  // Simplified search for better performance - only use complex matching for short, clean queries
+  const shouldUseAdvancedSearch = trimmed.length <= 10 && /^[a-zA-Z\s]{2,}$/.test(trimmed);
   
-  // Reduced console logging for performance - only for critical debugging
-  if (searchTerm.toLowerCase().includes('debug')) {
-    console.log(`🧠 SUPER SEARCH: "${searchTerm}" → "${correctedSearchTerm}"`);
-  }
+  const correctedSearchTerm = shouldUseAdvancedSearch ? superSmartTypoCorrection(searchTerm) : searchTerm;
+  const partialSuggestions = shouldUseAdvancedSearch ? getPartialMatchSuggestions(searchTerm) : [];
+  const advancedPartialMatches = shouldUseAdvancedSearch ? getAdvancedPartialMatches(searchTerm, tools) : [];
 
   const normalizedSearchTerm = correctedSearchTerm.toLowerCase().trim();
   const searchWords = normalizedSearchTerm.split(/[\s,.-]+/).filter(word => word.length > 1);

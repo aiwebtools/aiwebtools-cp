@@ -21,17 +21,25 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
-  // Instant visual feedback with minimal delay
-  const debouncedSearchTerm = useDebounce(searchTerm, 80);
+  // Optimized debounce for smooth performance
+  const debouncedSearchTerm = useDebounce(searchTerm, 200);
 
-  // SUPER INTELLIGENT search effect with full capabilities
+  // Optimized search with performance safeguards
   useEffect(() => {
     const trimmedTerm = debouncedSearchTerm.trim();
     
+    // Early returns for performance
     if (!trimmedTerm || trimmedTerm.length < 1) {
       setSearchResults([]);
       setIsOpen(false);
       setDisplayedCount(30);
+      return;
+    }
+
+    // Skip malformed queries that cause freezing
+    if (trimmedTerm.length > 15 && !/^[a-zA-Z\s]{3,}/.test(trimmedTerm)) {
+      setSearchResults([]);
+      setIsOpen(false);
       return;
     }
 
@@ -59,13 +67,18 @@ export const useGlobalSearch = () => {
              lowerDescription.match(new RegExp(`\\b${lowerTerm}`, 'i'));
     });
 
-    // Super intelligent search for longer terms
+    // Optimized intelligent search with length restrictions
     let intelligentResults = [];
-    if (trimmedTerm.length >= 3) {
-      intelligentResults = searchTools(allTools, trimmedTerm).filter(tool => 
-        !exactMatches.some(exact => exact.title === tool.title) &&
-        !partialMatches.some(partial => partial.title === tool.title)
-      );
+    if (trimmedTerm.length >= 3 && trimmedTerm.length <= 15) {
+      try {
+        intelligentResults = searchTools(allTools, trimmedTerm).filter(tool => 
+          !exactMatches.some(exact => exact.title === tool.title) &&
+          !partialMatches.some(partial => partial.title === tool.title)
+        );
+      } catch (error) {
+        console.warn('Search error, falling back to basic search:', error);
+        intelligentResults = [];
+      }
     }
 
     // Advanced sorting with relevance scoring
