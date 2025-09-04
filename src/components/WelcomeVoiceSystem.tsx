@@ -41,10 +41,10 @@ const WelcomeVoiceSystem = () => {
       const voices = speechSynthesis.getVoices();
       console.log(`🗣️ Found ${voices.length} voices`);
       
-      // Create first message: "WELCOME MASTER" - deep robot voice
+      // Create first message: "WELCOME MASTER" - deep robot voice (restored slower speed)
       const welcomeMsg = new SpeechSynthesisUtterance("WELCOME MASTER");
-      welcomeMsg.rate = 0.4; // Slow and deliberate
-      welcomeMsg.pitch = 0.1; // Very low pitch for robot effect
+      welcomeMsg.rate = 0.2; // MUCH slower and more robotic (restored user preference)
+      welcomeMsg.pitch = 0.05; // Even lower pitch for deeper robot effect
       welcomeMsg.volume = 0.9; // Full but not overwhelming
       
       // Standardized voice selection for consistent cross-device experience
