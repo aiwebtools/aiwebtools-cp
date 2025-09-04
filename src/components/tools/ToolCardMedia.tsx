@@ -47,20 +47,40 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
       style={{ aspectRatio: '16/9' }}
     >
       {shouldShowVideo ? (
-        <iframe
-          width="100%"
-          height="100%"
-          src={getOptimizedEmbedUrl(tool.videoUrl!)}
-          title={`${tool.title} Demo`}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-          allowFullScreen
-          className="w-full h-full rounded-lg"
-          loading="lazy"
-          sandbox="allow-scripts allow-same-origin allow-presentation"
-          onLoad={() => console.log(`✅ Video loaded: ${tool.title}`)}
-          onError={() => console.error(`❌ Video failed: ${tool.title}`)}
-        />
+        <>
+          <iframe
+            width="100%"
+            height="100%"
+            src={getOptimizedEmbedUrl(tool.videoUrl!)}
+            title={`${tool.title} Demo`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+            allowFullScreen
+            className="w-full h-full rounded-lg"
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin allow-presentation allow-forms"
+            style={{ minHeight: '200px' }}
+            onLoad={() => {
+              console.log(`✅ Video loaded successfully: ${tool.title}`);
+            }}
+            onError={(e) => {
+              console.error(`❌ Video failed to load: ${tool.title}`);
+              // Add fallback handling for failed videos
+              const target = e.target as HTMLIFrameElement;
+              if (target) {
+                target.style.display = 'none';
+                const fallbackDiv = target.nextElementSibling as HTMLElement;
+                if (fallbackDiv) {
+                  fallbackDiv.classList.remove('hidden');
+                }
+              }
+            }}
+          />
+          {/* Video fallback - shown if iframe fails */}
+          <div className="hidden absolute inset-0 flex items-center justify-center text-6xl opacity-50 bg-gradient-to-br from-gray-800 to-gray-900">
+            {tool.emoji}
+          </div>
+        </>
       ) : shouldShowImage ? (
         <>
           <img 
