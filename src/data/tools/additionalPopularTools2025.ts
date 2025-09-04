@@ -14,7 +14,7 @@ export const additionalPopularTools2025: Tool[] = [
     description: "Advanced Chinese AI video generation platform that competes with Sora. Creates high-quality, realistic videos from text prompts with impressive motion and scene understanding.",
     emoji: "🎬",
     color: "from-blue-500 to-purple-600",
-    directUrl: "https://klingai.com/?via=aiwebtools",
+    directUrl: "https://klingai.com/h5-app/invitation?code=7BVDK88SKFUS",
     tags: ["video generation", "AI video", "Chinese AI", "Sora competitor", "text-to-video"],
     category: "Video & Multimedia Tools",
     rating: 4.5,

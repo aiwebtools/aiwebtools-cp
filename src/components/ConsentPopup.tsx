@@ -112,49 +112,18 @@ const ConsentPopup = () => {
 
   const handleAccept = () => {
     console.log('🌀 User accepting consent - initiating time warp entry...');
-    
     // Stop any ongoing speech
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
     }
     
-    // Enhanced acceptance speech for desktop only
-    if (isVoiceEnabled && !isMobile) {
-      try {
-        const utterance = new SpeechSynthesisUtterance("Welcome to the AI Web Tools portal! Initializing your AI experience...");
-        utterance.rate = 0.8;
-        utterance.pitch = 0.7;
-        utterance.volume = 0.8;
-        utterance.lang = 'en-US';
-        
-        // Use better voice if available
-        const voices = window.speechSynthesis.getVoices();
-        const robotVoice = voices.find(voice => 
-          voice.name.toLowerCase().includes('male') || 
-          voice.name.toLowerCase().includes('alex') ||
-          voice.name.toLowerCase().includes('daniel') ||
-          voice.name.toLowerCase().includes('google')
-        );
-        
-        if (robotVoice) {
-          utterance.voice = robotVoice;
-        }
-        
-        utterance.onstart = () => console.log('🤖 Acceptance speech started');
-        utterance.onerror = (e) => console.log('🔇 Acceptance speech error:', e.error);
-        
-        window.speechSynthesis.speak(utterance);
-      } catch (error) {
-        console.log('🔇 Acceptance speech failed:', error);
-      }
-    }
+    // Simple acceptance without any voice
+    localStorage.setItem('aitools-consent-seen', 'true');
     
     // Create time portal effect for desktop only
     if (!isMobile) {
       createTimePortalEffect('', 'AI Tools Consent Portal');
     }
-    
-    localStorage.setItem('aitools-consent-seen', 'true');
     
     // Adaptive delay based on device
     setTimeout(() => {

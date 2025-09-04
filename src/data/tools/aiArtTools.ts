@@ -6,6 +6,16 @@ export const aiArtTools: Tool[] = [
   // Priority: Your image-related GPTs at the top
   {
     icon: BookOpen,
+    title: "Google Nano Banana (AI Studio)",
+    description: "Google's advanced AI Studio for creating high-quality images and visual content. Powerful image generation and editing capabilities with cutting-edge AI technology from Google Labs.",
+    emoji: "🍌",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://aistudio.google.com/",
+    tags: ["Google AI", "image generation", "AI Studio", "visual content", "Google Labs", "image creation"],
+    category: "AI Art"
+  },
+  {
+    icon: BookOpen,
     title: "\"MiddleJourney\" Midjourney Prompting Assistant",
     description: "Optimize your Midjourney prompts for better AI art generation. Create more effective prompts and improve your AI art results. Powered by GPT-4o Image Generation with full coding abilities, image generation, and web search capabilities. Free limited usage available, unrestricted access with ChatGPT Plus membership and higher tiers.",
     emoji: "🎨",

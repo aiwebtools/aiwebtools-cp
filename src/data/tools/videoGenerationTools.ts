@@ -172,12 +172,24 @@ export const videoGenerationTools: Tool[] = [
     totalVotes: 3234
   },
   {
+    icon: Sparkles,
+    title: "Google Flow",
+    description: "Google's experimental video creation tool that allows users to generate AI-powered videos with advanced flow effects and transitions. Create dynamic videos with Google's cutting-edge AI technology.",
+    emoji: "🌊",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://labs.google/fx/tools/flow",
+    tags: ["Google Labs", "video flow", "experimental", "AI video", "Google Flow"],
+    category: "Video Generation Tools",
+    rating: 4.8,
+    totalVotes: 2543
+  },
+  {
     icon: Play,
     title: "Kling AI",
     description: "State-of-the-art text-to-video generator delivering high-quality, realistic motion and scene dynamics. Create stunning videos from simple prompts.",
     emoji: "⚡",
     color: "from-blue-500 to-cyan-600",
-    directUrl: "https://kling.ai/?via=aiwebtools",
+    directUrl: "https://klingai.com/h5-app/invitation?code=7BVDK88SKFUS",
     tags: ["text-to-video", "video generation", "ai video", "kling", "kling ai"],
     category: "Video Generation",
     rating: 4.8,
