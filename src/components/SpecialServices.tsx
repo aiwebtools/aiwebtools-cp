@@ -755,18 +755,18 @@ const OurFeaturedSection = () => {
                   {tool.description}
                 </p>
 
-                {/* Media Section - Video or Image */}
+                {/* Media Section - Video or Image with Auto-Play */}
                 <div className="mb-4">
                   {tool.videoUrl && getVideoId(tool.videoUrl) ? (
                     <div className="relative w-full h-32 rounded-lg overflow-hidden">
                       <iframe
-                        src={`https://www.youtube-nocookie.com/embed/${getVideoId(tool.videoUrl)}`}
+                        src={`https://www.youtube-nocookie.com/embed/${getVideoId(tool.videoUrl)}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&iv_load_policy=3&fs=1&cc_load_policy=0&playsinline=1&enablejsapi=1&origin=${window.location.origin}&vq=hd1080`}
                         title={`${tool.title} Demo`}
                         className="absolute inset-0 w-full h-full"
                         frameBorder="0"
-                        loading="lazy"
+                        loading="eager"
                         referrerPolicy="no-referrer"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                         allowFullScreen
                       />
                     </div>
