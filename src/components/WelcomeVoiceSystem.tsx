@@ -141,13 +141,19 @@ const WelcomeVoiceSystem = () => {
       // Mobile: Multiple unlock attempts for better compatibility
       console.log('📱 Mobile detected - unlocking speech synthesis...');
       
-      // Try silent unlock for mobile - using EXACT desktop voice settings to prevent interference
+      // Try multiple unlock methods for different mobile browsers
       const unlockMethods = [
         () => {
-          const unlockMsg = new SpeechSynthesisUtterance("");
-          unlockMsg.volume = 0.001; // Nearly silent
-          unlockMsg.rate = 0.4; // SAME as desktop WELCOME MASTER
-          unlockMsg.pitch = 0.1; // SAME as desktop WELCOME MASTER
+          const unlockMsg = new SpeechSynthesisUtterance(" ");
+          unlockMsg.volume = 0.01;
+          unlockMsg.rate = 10; // Very fast to minimize sound
+          speechSynthesis.speak(unlockMsg);
+          return unlockMsg;
+        },
+        () => {
+          const unlockMsg = new SpeechSynthesisUtterance(".");
+          unlockMsg.volume = 0.001;
+          unlockMsg.pitch = 0.1;
           speechSynthesis.speak(unlockMsg);
           return unlockMsg;
         }
