@@ -37,8 +37,19 @@ const GlobalSearchResults = ({
       // Additional check for scroll position
       if (scrollRef.current) {
         console.log('🐛 Current scroll position:', scrollRef.current.scrollTop);
-        // Force scroll to top immediately when "C" results render
-        scrollRef.current.scrollTop = 0;
+        // Force scroll to top immediately when "C" results render - mobile specific fix
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+          console.log('🐛 Mobile detected - forcing scroll reset');
+          scrollRef.current.scrollTop = 0;
+          scrollRef.current.scrollTo(0, 0);
+          // Additional mobile fix - prevent any scroll momentum
+          setTimeout(() => {
+            if (scrollRef.current) {
+              scrollRef.current.scrollTop = 0;
+            }
+          }, 10);
+        }
       }
     }
   }, [displayedResults]);
@@ -70,7 +81,18 @@ const GlobalSearchResults = ({
           willChange: 'scroll-position',
           backfaceVisibility: 'hidden',
           perspective: '1000px',
-          scrollBehavior: 'auto'
+          scrollBehavior: 'auto',
+          // Mobile-specific fixes for scroll position
+          scrollSnapType: 'none',
+          scrollbarWidth: 'thin'
+        }}
+        onTouchStart={(e) => {
+          // Prevent mobile touch momentum from affecting scroll
+          const target = e.currentTarget;
+          if (target.scrollTop === 0) {
+            e.preventDefault();
+            target.scrollTop = 0;
+          }
         }}
       >
       <CardContent className="p-0" style={{ transform: 'translateZ(0)' }}>

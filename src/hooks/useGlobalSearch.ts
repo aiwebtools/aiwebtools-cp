@@ -122,12 +122,21 @@ export const useGlobalSearch = () => {
       if (searchRef.current) {
         const scrollContainer = searchRef.current.querySelector('[data-scroll-container]');
         if (scrollContainer) {
+          const isMobile = window.innerWidth <= 768;
           scrollContainer.scrollTop = 0;
           scrollContainer.scrollTo({ top: 0, behavior: 'auto' });
-          // Force scroll reset for "C" case
-          if (trimmedTerm.toLowerCase() === 'c') {
-            console.log('🐛 Forcing scroll to top for "C"');
+          
+          // Enhanced mobile fix for "C" case
+          if (trimmedTerm.toLowerCase() === 'c' && isMobile) {
+            console.log('🐛 Mobile "C" case - aggressive scroll reset');
             scrollContainer.scrollTop = 0;
+            // Multiple attempts to ensure scroll stays at top on mobile
+            setTimeout(() => {
+              if (scrollContainer) scrollContainer.scrollTop = 0;
+            }, 50);
+            setTimeout(() => {
+              if (scrollContainer) scrollContainer.scrollTop = 0;
+            }, 100);
           }
         }
       }
