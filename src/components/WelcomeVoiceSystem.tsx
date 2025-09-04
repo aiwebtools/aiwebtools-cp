@@ -61,56 +61,59 @@ const WelcomeVoiceSystem = () => {
         const voices = speechSynthesis.getVoices();
         console.log(`🗣️ Found ${voices.length} voices`);
         
-        // ===== PHASE 1: SINISTER ROBOT "WELCOME MASTER" =====
+        // ===== PHASE 1: MYSTICAL WELCOMING "WELCOME MASTER" =====
         const welcomeMsg = new SpeechSynthesisUtterance("WELCOME MASTER");
-        welcomeMsg.rate = 0.3; // VERY slow for sinister, thought-provoking effect
-        welcomeMsg.pitch = 0.1; // EXTREMELY low pitch for sinister robot voice
+        welcomeMsg.rate = 0.6; // Slower but not too slow - mystical yet welcoming pace
+        welcomeMsg.pitch = 0.4; // Lower but with warmth - mystical yet welcoming
         welcomeMsg.volume = 1.0; // Maximum volume for commanding presence
         
-        // ENHANCED SINISTER ROBOT VOICE SELECTION
-        const findSinisterRobotVoice = () => {
-          // Priority 1: Find the deepest, most robotic male voices
-          let robotVoice = voices.find(v => {
+        // ENHANCED MYSTICAL WELCOMING VOICE SELECTION
+        const findMysticalWelcomingVoice = () => {
+          // Priority 1: Find warm, rich, mystical male voices
+          let mysticalVoice = voices.find(v => {
             const name = v.name.toLowerCase();
             const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
             return isEnglish && (
-              // Target the deepest, most robotic voices
-              name.includes('fred') || name.includes('albert') || name.includes('bruce') ||
-              name.includes('aaron') || name.includes('daniel') || name.includes('alex') ||
-              name.includes('microsoft david') || name.includes('google uk english male') ||
-              name.includes('enhanced') || name.includes('premium')
+              // Target warm, rich voices with emotional depth
+              name.includes('alex') || name.includes('daniel') || name.includes('david') ||
+              name.includes('tom') || name.includes('ryan') || name.includes('nathan') ||
+              name.includes('aaron') || name.includes('arthur') || name.includes('gordon') ||
+              // Premium voices known for warmth
+              name.includes('microsoft david desktop') || name.includes('google uk english male') ||
+              name.includes('enhanced') || name.includes('premium') || name.includes('natural')
             );
           });
           
-          // Priority 2: Any deep male voice
-          if (!robotVoice) {
-            robotVoice = voices.find(v => {
+          // Priority 2: Any warm English male voice
+          if (!mysticalVoice) {
+            mysticalVoice = voices.find(v => {
               const name = v.name.toLowerCase();
               const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
               return isEnglish && (
                 name.includes('male') || name.includes('man') ||
-                (name.includes('david') || name.includes('alex') || name.includes('daniel'))
+                (name.includes('david') || name.includes('alex') || name.includes('daniel') || name.includes('tom'))
               );
             });
           }
           
-          // Priority 3: Any non-female English voice
-          if (!robotVoice) {
-            robotVoice = voices.find(v => {
+          // Priority 3: Any quality English voice with depth
+          if (!mysticalVoice) {
+            mysticalVoice = voices.find(v => {
               const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
-              return isEnglish && !v.name.toLowerCase().includes('female');
+              const name = v.name.toLowerCase();
+              return isEnglish && !name.includes('female') && !name.includes('high');
             });
           }
           
-          return robotVoice;
+          return mysticalVoice;
         };
         
-        const robotVoice = findSinisterRobotVoice();
-        if (robotVoice) {
-          welcomeMsg.voice = robotVoice;
-          console.log('🤖 Selected SINISTER ROBOT voice:', robotVoice.name, 'Lang:', robotVoice.lang);
+        const mysticalVoice = findMysticalWelcomingVoice();
+        if (mysticalVoice) {
+          welcomeMsg.voice = mysticalVoice;
+          console.log('🧙‍♂️ Selected MYSTICAL WELCOMING voice:', mysticalVoice.name, 'Lang:', mysticalVoice.lang);
         } else {
-          console.log('🤖 Using default voice for SINISTER ROBOT (no suitable voice found)');
+          console.log('🧙‍♂️ Using default voice for MYSTICAL WELCOME (no suitable voice found)');
         }
         
         // ===== PHASE 2: BELL SOUND PREPARATION =====
@@ -153,76 +156,81 @@ const WelcomeVoiceSystem = () => {
           }
         };
         
-        // ===== PHASE 3: BRITISH LADY "YOU'VE GOT TOOLS!" =====
+        // ===== PHASE 3: STABLE NATURAL AOL LADY "YOU'VE GOT TOOLS!" =====
         const playBritishLadyVoice = () => {
-          console.log('🇬🇧 Starting BRITISH LADY AOL voice...');
+          console.log('🇬🇧 Starting STABLE NATURAL AOL lady voice...');
           
           const toolsMsg = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS!");
-          toolsMsg.rate = 0.7; // Slightly faster than robot but still clear and authoritative
-          toolsMsg.pitch = 1.3; // Higher pitch for female voice, but not too high
+          toolsMsg.rate = 0.9; // Natural speaking pace for stability and clarity
+          toolsMsg.pitch = 1.1; // Natural female pitch - not too high, more stable
           toolsMsg.volume = 1.0; // Full volume for AOL-style impact
           
-          // ENHANCED BRITISH LADY VOICE SELECTION
-          const findBritishLadyVoice = () => {
-            // Priority 1: British English female voices
-            let britishVoice = voices.find(v => {
+          // ENHANCED STABLE NATURAL FEMALE VOICE SELECTION
+          const findStableNaturalVoice = () => {
+            // Priority 1: High-quality, stable female voices (any English)
+            let stableVoice = voices.find(v => {
               const name = v.name.toLowerCase();
-              const lang = v.lang ? v.lang.toLowerCase() : '';
+              const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
               
-              return (lang.includes('en-gb') || lang.includes('gb') || lang.includes('uk')) && 
-                     (name.includes('female') || name.includes('woman') || 
-                      name.includes('kate') || name.includes('serena') || name.includes('emma') ||
-                      name.includes('fiona') || name.includes('victoria') || name.includes('susan') ||
-                      name.includes('hazel') || name.includes('karen'));
+              return isEnglish && (
+                // Target most stable, natural female voices
+                name.includes('samantha') || name.includes('susan') || name.includes('karen') ||
+                name.includes('anna') || name.includes('catherine') || name.includes('sarah') ||
+                name.includes('jessica') || name.includes('michelle') || name.includes('amy') ||
+                name.includes('emma') || name.includes('victoria') || name.includes('elizabeth') ||
+                // Platform-specific high-quality voices
+                name.includes('microsoft zira') || name.includes('google us english female') ||
+                name.includes('enhanced') || name.includes('premium') || name.includes('natural')
+              );
             });
             
-            // Priority 2: Any British voice (even if not explicitly female)
-            if (!britishVoice) {
-              britishVoice = voices.find(v => {
+            // Priority 2: British English female voices (if available)
+            if (!stableVoice) {
+              stableVoice = voices.find(v => {
+                const name = v.name.toLowerCase();
                 const lang = v.lang ? v.lang.toLowerCase() : '';
-                return lang.includes('en-gb') || lang.includes('gb') || lang.includes('uk');
-              });
-            }
-            
-            // Priority 3: High-quality female voices (any English)
-            if (!britishVoice) {
-              britishVoice = voices.find(v => {
-                const name = v.name.toLowerCase();
-                const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
                 
-                return isEnglish && (
-                  name.includes('samantha') || name.includes('karen') || name.includes('susan') ||
-                  name.includes('anna') || name.includes('catherine') || name.includes('emma') ||
-                  name.includes('sarah') || name.includes('jessica') || name.includes('michelle') ||
-                  name.includes('microsoft zira') || name.includes('google us english female')
-                );
+                return (lang.includes('en-gb') || lang.includes('gb') || lang.includes('uk')) && 
+                       (name.includes('female') || name.includes('woman') || 
+                        name.includes('kate') || name.includes('serena') || name.includes('emma') ||
+                        name.includes('fiona') || name.includes('hazel') || name.includes('susan'));
               });
             }
             
-            // Priority 4: Any English female voice
-            if (!britishVoice) {
-              britishVoice = voices.find(v => {
+            // Priority 3: Any stable English female voice
+            if (!stableVoice) {
+              stableVoice = voices.find(v => {
                 const name = v.name.toLowerCase();
                 const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
-                return isEnglish && (name.includes('female') || name.includes('woman'));
+                return isEnglish && (name.includes('female') || name.includes('woman')) &&
+                       !name.includes('robot') && !name.includes('synthetic');
               });
             }
             
-            return britishVoice;
+            // Priority 4: Any quality female voice
+            if (!stableVoice) {
+              stableVoice = voices.find(v => {
+                const name = v.name.toLowerCase();
+                return name.includes('female') || name.includes('woman') ||
+                       name.includes('samantha') || name.includes('karen') || name.includes('susan');
+              });
+            }
+            
+            return stableVoice;
           };
           
-          const britishVoice = findBritishLadyVoice();
-          if (britishVoice) {
-            toolsMsg.voice = britishVoice;
-            console.log('🇬🇧 Selected BRITISH LADY voice:', britishVoice.name, 'Lang:', britishVoice.lang);
+          const stableVoice = findStableNaturalVoice();
+          if (stableVoice) {
+            toolsMsg.voice = stableVoice;
+            console.log('🎭 Selected STABLE NATURAL AOL voice:', stableVoice.name, 'Lang:', stableVoice.lang);
           } else {
-            console.log('🇬🇧 Using default voice for BRITISH LADY (no suitable voice found)');
+            console.log('🎭 Using default voice for AOL LADY (no suitable voice found)');
           }
           
-          // British lady voice events
+          // AOL lady voice events
           toolsMsg.onstart = () => {
-            console.log('🎬 🇬🇧 VOICE LOG: Playing "YOU\'VE GOT TOOLS!" - BRITISH LADY AOL-style');
-            console.log('🎛️ British Voice settings:', {
+            console.log('🎬 🎭 VOICE LOG: Playing "YOU\'VE GOT TOOLS!" - STABLE NATURAL AOL-style');
+            console.log('🎛️ Stable AOL Voice settings:', {
               rate: toolsMsg.rate,
               pitch: toolsMsg.pitch,
               volume: toolsMsg.volume,
@@ -232,7 +240,7 @@ const WelcomeVoiceSystem = () => {
           
           toolsMsg.onend = () => {
             console.log('🎉 ✨ VOICE LOG: EPIC Welcome sequence COMPLETE - All phases successful!');
-            console.log('🏁 ROBOT → BELL → BRITISH LADY sequence finished - User entered AI destiny!');
+            console.log('🏁 MYSTICAL WELCOME → BELL → STABLE AOL sequence finished - User entered AI destiny!');
             console.log('🔓 Unlocking voice system after successful completion');
             
             // Reset in-progress flag since sequence completed successfully
@@ -246,7 +254,7 @@ const WelcomeVoiceSystem = () => {
           
           // Error handling for British voice
           toolsMsg.onerror = (e) => {
-            console.log('❌ British lady voice error:', e);
+            console.log('❌ Stable AOL lady voice error:', e);
             console.log('✅ Voice sequence completed (with error)');
             console.log('🔓 Unlocking voice system after error');
             
@@ -258,17 +266,17 @@ const WelcomeVoiceSystem = () => {
             window.dispatchEvent(voiceCompleteEvent);
           };
           
-          // Start British lady voice
-          console.log('🇬🇧 Speaking: "YOU\'VE GOT TOOLS!" (AOL British Lady)');
+          // Start stable AOL lady voice
+          console.log('🎭 Speaking: "YOU\'VE GOT TOOLS!" (Stable Natural AOL Lady)');
           speechSynthesis.speak(toolsMsg);
         };
         
         // ===== START THE SEQUENCE =====
         
-        // Robot voice events
+        // Mystical welcome voice events
         welcomeMsg.onstart = () => {
-          console.log('🎬 🤖 VOICE LOG: Playing "WELCOME MASTER" - SINISTER ROBOT');
-          console.log('🎛️ Robot Voice settings:', {
+          console.log('🎬 🧙‍♂️ VOICE LOG: Playing "WELCOME MASTER" - Mystical Welcoming with Emotion');
+          console.log('🎛️ Mystical Voice settings:', {
             rate: welcomeMsg.rate,
             pitch: welcomeMsg.pitch,
             volume: welcomeMsg.volume,
@@ -277,28 +285,28 @@ const WelcomeVoiceSystem = () => {
         };
         
         welcomeMsg.onend = () => {
-          console.log('✅ 🤖 VOICE LOG: SINISTER ROBOT "WELCOME MASTER" complete - starting BELL...');
+          console.log('✅ 🧙‍♂️ VOICE LOG: MYSTICAL WELCOME "WELCOME MASTER" complete - starting BELL...');
           // Wait a moment then play bell sound
           setTimeout(() => {
             playBellSound();
           }, 800); // Pause before bell for dramatic effect
         };
         
-        // Error handling for robot voice
+        // Error handling for mystical voice
         welcomeMsg.onerror = (e) => {
-          console.log('❌ Sinister robot voice error:', e);
-          console.log('🔓 Unlocking voice system after robot error');
+          console.log('❌ Mystical welcoming voice error:', e);
+          console.log('🔓 Unlocking voice system after mystical voice error');
           globalVoiceInProgress = false;
           
-          // Still try bell and British voice even if robot fails
+          // Still try bell and AOL voice even if mystical welcome fails
           setTimeout(() => {
-            console.log('🔄 Robot failed, proceeding to bell...');
+            console.log('🔄 Mystical welcome failed, proceeding to bell...');
             playBellSound();
           }, 500);
         };
         
         // START THE EPIC SEQUENCE!
-        console.log('🚀 🎬 PHASE 1: Starting SINISTER ROBOT "WELCOME MASTER"...');
+        console.log('🚀 🎬 PHASE 1: Starting MYSTICAL WELCOMING "WELCOME MASTER"...');
         console.log('🔊 Voice system locked - no duplicates possible for 30 seconds');
         speechSynthesis.speak(welcomeMsg);
         
