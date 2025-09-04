@@ -107,16 +107,17 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const partialSuggestions = getPartialMatchSuggestions(searchTerm);
   const advancedPartialMatches = getAdvancedPartialMatches(searchTerm, tools);
   
-  // Reduced console logging for performance - only for critical debugging
-  if (searchTerm.toLowerCase().includes('debug')) {
+  // Performance optimization: minimal logging
+  const isDebugMode = searchTerm.toLowerCase().includes('debug');
+  if (isDebugMode) {
     console.log(`🧠 SUPER SEARCH: "${searchTerm}" → "${correctedSearchTerm}"`);
   }
 
   const normalizedSearchTerm = correctedSearchTerm.toLowerCase().trim();
   const searchWords = normalizedSearchTerm.split(/[\s,.-]+/).filter(word => word.length > 1);
   
-  // Enhanced phonetic variations  
-  const phoneticVariations = searchTerm.length <= 8 ? phoneticMatch(normalizedSearchTerm) : [];
+  // Performance optimized phonetic variations - only for shorter terms
+  const phoneticVariations = searchTerm.length <= 6 && searchTerm.length >= 3 ? phoneticMatch(normalizedSearchTerm) : [];
   
   // Enhanced intent detection
   const userIntent = detectIntent(normalizedSearchTerm);
@@ -139,7 +140,10 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
              lowerTags.some(tag => tag.includes('video'));
     });
     
-    console.log(`🎬 Found ${videoTools.length} video tools:`, videoTools.slice(0, 5).map(t => t.title));
+      // Performance: limit to essential logs during search
+      if (normalizedSearchTerm.includes('video') && videoTools.length > 0) {
+        console.log(`🎬 Found ${videoTools.length} video tools`);
+      }
     
     // Sort video tools by relevance - exact title matches first
     const sortedVideoTools = videoTools.sort((a, b) => {

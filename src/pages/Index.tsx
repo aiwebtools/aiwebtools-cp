@@ -17,6 +17,7 @@ import LazyFeaturedTools from "@/components/LazyFeaturedTools";
 import LazySearchPortal from "@/components/LazySearchPortal";
 import InteractiveMatrixBackground from "@/components/InteractiveMatrixBackground";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import { usePerformanceMonitor } from "@/hooks/usePerformanceMonitor";
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-[200px]">
@@ -25,6 +26,9 @@ const LoadingSpinner = () => (
 );
 
 const Index = () => {
+  // Performance monitoring
+  const { startTimer, endTimer } = usePerformanceMonitor();
+  
   // Use fast cached stats initially for better performance
   const [toolStats, setToolStats] = useState(getFastToolCount());
   const [isLoaded, setIsLoaded] = useState(false);
@@ -34,8 +38,13 @@ const Index = () => {
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
+    // Performance monitoring for initial load
+    const loadStartTime = startTimer('page-load');
+    
     // Set loaded state immediately for faster initial render
     setIsLoaded(true);
+    
+    endTimer(loadStartTime, 'Initial page load', 1000);
     
     // Simplified video autoplay with immediate unmute attempts
     const startVideoUnmute = () => {
