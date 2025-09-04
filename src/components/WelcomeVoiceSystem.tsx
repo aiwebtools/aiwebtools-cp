@@ -101,11 +101,7 @@ const WelcomeVoiceSystem = () => {
       toolsMsg.onstart = () => console.log('📬 Playing: "YOU\'VE GOT TOOLS" (AOL-style)');
       toolsMsg.onend = () => {
         console.log('🎉 Welcome sequence complete - no overlapping voices!');
-        // Trigger controlled video playback after voice sequence
-        setTimeout(() => {
-          const event = new CustomEvent('voiceSequenceComplete');
-          window.dispatchEvent(event);
-        }, 500);
+        // Voice system is now complete and won't interfere with video
       };
       
       // Comprehensive error handling
