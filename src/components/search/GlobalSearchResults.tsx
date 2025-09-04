@@ -27,6 +27,13 @@ const GlobalSearchResults = ({
   const hasMoreToLoad = displayedCount < searchResults.length;
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // Keep scroll at top when new search results load
+  useEffect(() => {
+    if (scrollRef.current && displayedResults.length > 0) {
+      scrollRef.current.scrollTop = 0;
+    }
+  }, [searchResults]);
+
   const scrollToTop = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
@@ -44,7 +51,7 @@ const GlobalSearchResults = ({
       <Card 
         ref={scrollRef}
         data-scroll-container
-        className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[999] max-h-[70vh] min-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
+        className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[999] max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
         onScroll={onScroll}
       >
       <CardContent className="p-0" style={{ transform: 'translateZ(0)' }}>

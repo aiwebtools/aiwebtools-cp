@@ -36,6 +36,22 @@ const MobileMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isWeb3Open, setIsWeb3Open] = useState(false);
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Prevent dropdown from auto-scrolling when search results appear
+  useEffect(() => {
+    if (dropdownRef.current && isMenuOpen) {
+      const scrollTop = dropdownRef.current.scrollTop;
+      const preventScroll = () => {
+        if (dropdownRef.current) {
+          dropdownRef.current.scrollTop = scrollTop;
+        }
+      };
+      
+      const timeoutId = setTimeout(preventScroll, 0);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isMenuOpen]);
 
   const handleMenuToggle = useCallback((open: boolean) => {
     setIsMenuOpen(open);
@@ -138,12 +154,24 @@ const MobileMenu = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent 
+            ref={dropdownRef}
             className="w-[85vw] md:w-[380px] max-w-[380px] bg-black/98 shadow-2xl border-2 border-cyan-500/50 backdrop-blur-xl max-h-[75vh] overflow-y-auto z-[110] mr-2"
             align="end"
             alignOffset={0}
             sideOffset={6}
             avoidCollisions={true}
             sticky="always"
+            onWheel={(e) => {
+              // Prevent scroll when search results are open
+              const searchResults = e.currentTarget.querySelector('[data-scroll-container]');
+              if (searchResults) {
+                e.preventDefault();
+              }
+            }}
+            style={{
+              scrollBehavior: 'auto',
+              overscrollBehavior: 'contain'
+            }}
           >
             <div className="p-3 md:p-4">
               {/* Header with Close Button */}
