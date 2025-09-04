@@ -63,7 +63,7 @@ const WelcomeVoiceSystem = () => {
         
         // ===== PHASE 1: DARK GROWL POWER "WELCOME MASTER" =====
         const welcomeMsg = new SpeechSynthesisUtterance("WELCOME MASTER");
-        welcomeMsg.rate = 0.4; // Slow for dramatic power
+        welcomeMsg.rate = 0.25; // Much slower for dramatic power
         welcomeMsg.pitch = 0.1; // Very low pitch for dark growl power
         welcomeMsg.volume = 1.0; // Maximum volume for commanding presence
         
@@ -125,32 +125,32 @@ const WelcomeVoiceSystem = () => {
             const oscillator = audioContext.createOscillator();
             const gainNode = audioContext.createGain();
             
-            // Bell-like frequency and envelope
-            oscillator.frequency.setValueAtTime(800, audioContext.currentTime); // High bell tone
-            oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.3); // Decay
+            // Peaceful bell-like frequency and envelope
+            oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // Gentler bell tone (A4)
+            oscillator.frequency.exponentialRampToValueAtTime(220, audioContext.currentTime + 0.8); // Slower decay
             
-            gainNode.gain.setValueAtTime(0.8, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.0);
+            gainNode.gain.setValueAtTime(0.4, audioContext.currentTime); // Softer volume
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 2.0); // Longer fade
             
             oscillator.connect(gainNode);
             gainNode.connect(audioContext.destination);
             
             oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + 1.0);
+            oscillator.stop(audioContext.currentTime + 2.0); // Longer duration
             
-            console.log('🔔 BELL SOUND played successfully');
+            console.log('🔔 PEACEFUL BELL SOUND played successfully');
             
             // After bell, start loud British AOL voice
             setTimeout(() => {
               playAOLVoice();
-            }, 1200); // Wait for bell to finish
+            }, 2200); // Wait for peaceful bell to finish
             
           } catch (error) {
             console.log('🔔 Bell sound failed, proceeding to British voice:', error);
             // Fallback: proceed without bell to loud British AOL voice
             setTimeout(() => {
               playAOLVoice();
-            }, 800);
+            }, 1000);
           }
         };
         
@@ -309,7 +309,7 @@ const WelcomeVoiceSystem = () => {
           // Wait a moment then play bell sound
           setTimeout(() => {
             playBellSound();
-          }, 800); // Pause before bell for dramatic effect
+          }, 1200); // Longer pause for slower voice timing
         };
         
         // Error handling for dark growl voice
