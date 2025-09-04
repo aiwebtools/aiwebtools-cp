@@ -39,8 +39,8 @@ const ConsentPopup = () => {
   }, []);
 
   const speakWelcomeMessage = () => {
-    // Check for speech synthesis support and ensure we're on desktop
-    if (!('speechSynthesis' in window) || isMobile) return;
+    // Check for speech synthesis support - NOW WORKS ON ALL DEVICES
+    if (!('speechSynthesis' in window)) return;
     
     try {
       // Cancel any ongoing speech
@@ -97,7 +97,7 @@ const ConsentPopup = () => {
   };
 
   const toggleVoice = () => {
-    if (!('speechSynthesis' in window) || isMobile) return;
+    if (!('speechSynthesis' in window)) return;
     
     try {
       if (window.speechSynthesis.speaking) {

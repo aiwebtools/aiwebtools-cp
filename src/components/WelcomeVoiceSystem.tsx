@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
 
-// Mobile detection utility
-const isMobileDevice = (): boolean => {
-  if (typeof window === 'undefined') return false;
+// Enhanced browser detection for better voice compatibility
+const getBrowserInfo = (): { isMobile: boolean; isSafari: boolean; isChrome: boolean } => {
+  if (typeof window === 'undefined') return { isMobile: false, isSafari: false, isChrome: false };
   
-  return (
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+  const userAgent = navigator.userAgent.toLowerCase();
+  const isMobile = (
+    /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent) ||
     ('ontouchstart' in window) ||
     (navigator.maxTouchPoints > 0) ||
     window.innerWidth <= 768
   );
+  
+  const isSafari = /safari/.test(userAgent) && !/chrome/.test(userAgent);
+  const isChrome = /chrome/.test(userAgent);
+  
+  return { isMobile, isSafari, isChrome };
 };
 
 const WelcomeVoiceSystem = () => {
@@ -27,64 +33,88 @@ const WelcomeVoiceSystem = () => {
       return;
     }
 
-    console.log('🎵 Starting welcome voice sequence...');
+    console.log('🎵 Starting UNIVERSAL welcome voice sequence (same across all devices)...');
     setHasPlayed(true); // Mark as played immediately to prevent duplicates
     
     try {
       // Cancel any existing speech to prevent conflicts
       speechSynthesis.cancel();
       
-      const isMobile = isMobileDevice();
-      console.log(`📱 Device: ${isMobile ? 'Mobile' : 'Desktop'}`);
+      const browserInfo = getBrowserInfo();
+      console.log(`🌐 Browser: ${browserInfo.isSafari ? 'Safari' : browserInfo.isChrome ? 'Chrome' : 'Other'}, Mobile: ${browserInfo.isMobile}`);
       
-      // Get available voices
-      const voices = speechSynthesis.getVoices();
+      // Get available voices with fallback loading
+      let voices = speechSynthesis.getVoices();
       console.log(`🗣️ Found ${voices.length} voices`);
       
-      // Create first message: "WELCOME MASTER" - deep robot voice
+      // UNIFIED DESKTOP VOICE SETTINGS FOR ALL PLATFORMS
+      // Create first message: "WELCOME MASTER" - deep robot voice (SAME SETTINGS EVERYWHERE)
       const welcomeMsg = new SpeechSynthesisUtterance("WELCOME MASTER");
-      welcomeMsg.rate = 0.4; // Slow and deliberate
-      welcomeMsg.pitch = 0.1; // Very low pitch for robot effect
-      welcomeMsg.volume = 0.9; // Full but not overwhelming
+      welcomeMsg.rate = 0.4; // Slow and deliberate - CONSISTENT
+      welcomeMsg.pitch = 0.1; // Very low pitch for robot effect - CONSISTENT
+      welcomeMsg.volume = 0.9; // Full but not overwhelming - CONSISTENT
+      welcomeMsg.lang = 'en-US'; // Ensure English for consistency
       
-      // Find deep male voice for welcome - prioritize robot-like voices
-      const maleVoice = voices.find(v => 
-        v.name.toLowerCase().includes('alex') ||
-        v.name.toLowerCase().includes('daniel') ||
-        v.name.toLowerCase().includes('male') ||
-        v.name.toLowerCase().includes('fred')
-      );
+      // UNIFIED VOICE SELECTION - prioritize desktop-quality voices across all platforms
+      const findBestMaleVoice = (voiceList: SpeechSynthesisVoice[]) => {
+        // Desktop-quality voice preferences (same for mobile and desktop)
+        const desktopPreferred = voiceList.find(v => 
+          v.name.toLowerCase().includes('alex') ||
+          v.name.toLowerCase().includes('daniel') ||
+          v.name.toLowerCase().includes('fred')
+        );
+        
+        if (desktopPreferred) return desktopPreferred;
+        
+        // Fallback to any decent male voice
+        return voiceList.find(v => 
+          v.name.toLowerCase().includes('male') ||
+          v.name.toLowerCase().includes('google') ||
+          v.name.toLowerCase().includes('microsoft')
+        );
+      };
+      
+      const maleVoice = findBestMaleVoice(voices);
       if (maleVoice) {
         welcomeMsg.voice = maleVoice;
-        console.log('🤖 Selected male voice:', maleVoice.name);
+        console.log('🤖 Selected UNIFIED male voice:', maleVoice.name);
       }
       
-      // Create second message: "YOU'VE GOT TOOLS" - British female AOL-style
+      // Create second message: "YOU'VE GOT TOOLS" - British female AOL-style (SAME SETTINGS EVERYWHERE)
       const toolsMsg = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS");
-      toolsMsg.rate = 0.8; // Normal conversational pace
-      toolsMsg.pitch = 1.2; // Pleasant feminine pitch
-      toolsMsg.volume = 0.95; // Clear and friendly
+      toolsMsg.rate = 0.85; // Slightly slower for better clarity on mobile
+      toolsMsg.pitch = 1.2; // Pleasant feminine pitch - CONSISTENT
+      toolsMsg.volume = 0.95; // Clear and friendly - CONSISTENT
+      toolsMsg.lang = 'en-GB'; // British accent preference
       
-      // Find British female voice for AOL-style announcement
-      const britishFemaleVoice = voices.find(v => 
-        (v.lang && v.lang.toLowerCase().includes('en-gb')) ||
-        v.name.toLowerCase().includes('british') ||
-        v.name.toLowerCase().includes('uk') ||
-        v.name.toLowerCase().includes('victoria') ||
-        v.name.toLowerCase().includes('emma') ||
-        v.name.toLowerCase().includes('fiona')
-      ) || voices.find(v => 
-        v.name.toLowerCase().includes('female') ||
-        v.name.toLowerCase().includes('samantha') ||
-        v.name.toLowerCase().includes('karen') ||
-        v.name.toLowerCase().includes('susan') ||
-        v.name.toLowerCase().includes('anna') ||
-        v.name.toLowerCase().includes('catherine')
-      );
+      // UNIFIED FEMALE VOICE SELECTION - same quality across all platforms
+      const findBestFemaleVoice = (voiceList: SpeechSynthesisVoice[]) => {
+        // Desktop-quality British voices (same for mobile and desktop)
+        const britishVoice = voiceList.find(v => 
+          (v.lang && v.lang.toLowerCase().includes('en-gb')) ||
+          v.name.toLowerCase().includes('british') ||
+          v.name.toLowerCase().includes('uk') ||
+          v.name.toLowerCase().includes('victoria') ||
+          v.name.toLowerCase().includes('emma') ||
+          v.name.toLowerCase().includes('fiona')
+        );
+        
+        if (britishVoice) return britishVoice;
+        
+        // Fallback to high-quality female voices
+        return voiceList.find(v => 
+          v.name.toLowerCase().includes('samantha') ||
+          v.name.toLowerCase().includes('karen') ||
+          v.name.toLowerCase().includes('susan') ||
+          v.name.toLowerCase().includes('anna') ||
+          v.name.toLowerCase().includes('female')
+        );
+      };
       
-      if (britishFemaleVoice) {
-        toolsMsg.voice = britishFemaleVoice;
-        console.log('📬 Selected female voice:', britishFemaleVoice.name);
+      const femaleVoice = findBestFemaleVoice(voices);
+      if (femaleVoice) {
+        toolsMsg.voice = femaleVoice;
+        console.log('📬 Selected UNIFIED female voice:', femaleVoice.name);
       }
       
       // Set up sequence timing with proper synchronization
@@ -135,71 +165,105 @@ const WelcomeVoiceSystem = () => {
       return;
     }
 
-    const isMobile = isMobileDevice();
+    const browserInfo = getBrowserInfo();
     
-    if (isMobile) {
-      // Mobile: Multiple unlock attempts for better compatibility
-      console.log('📱 Mobile detected - unlocking speech synthesis...');
+    // UNIFIED VOICE INITIALIZATION - Same approach for all platforms
+    console.log('🌐 UNIVERSAL voice initialization - same quality everywhere...');
+    
+    // Enhanced voice loading with Safari/Chrome specific optimizations
+    const loadVoicesWithFallback = () => {
+      let voices = speechSynthesis.getVoices();
       
-      // Try multiple unlock methods for different mobile browsers
-      const unlockMethods = [
-        () => {
-          const unlockMsg = new SpeechSynthesisUtterance(" ");
-          unlockMsg.volume = 0.01;
-          unlockMsg.rate = 10; // Very fast to minimize sound
-          speechSynthesis.speak(unlockMsg);
-          return unlockMsg;
-        },
-        () => {
-          const unlockMsg = new SpeechSynthesisUtterance(".");
-          unlockMsg.volume = 0.001;
-          unlockMsg.pitch = 0.1;
-          speechSynthesis.speak(unlockMsg);
-          return unlockMsg;
-        }
-      ];
+      // Safari/iOS often needs time to load voices
+      if (voices.length === 0 && browserInfo.isSafari) {
+        console.log('🍎 Safari detected - waiting for voices to load...');
+        return false; // Need to wait
+      }
       
-      let unlockAttempt = 0;
-      const tryUnlock = () => {
-        if (unlockAttempt < unlockMethods.length) {
-          const unlockMsg = unlockMethods[unlockAttempt]();
-          unlockAttempt++;
-          
-          unlockMsg.onend = () => {
-            console.log('🔓 Mobile speech unlocked, starting sequence...');
-            setTimeout(playWelcomeSequence, 200);
-          };
-          
-          unlockMsg.onerror = () => {
-            console.log(`❌ Unlock attempt ${unlockAttempt} failed, trying next...`);
-            setTimeout(tryUnlock, 100);
-          };
-        } else {
-          // If all unlock attempts fail, try direct playback
-          console.log('⚠️ All unlock attempts failed, trying direct playback...');
+      // Chrome usually has voices immediately
+      if (voices.length === 0 && browserInfo.isChrome) {
+        console.log('🌐 Chrome detected - forcing voice reload...');
+        // Force a refresh
+        setTimeout(() => {
+          voices = speechSynthesis.getVoices();
+          if (voices.length > 0) {
+            playWelcomeSequence();
+          }
+        }, 100);
+        return false;
+      }
+      
+      return voices.length > 0;
+    };
+    
+    // Universal unlock for mobile (but use same voice settings as desktop)
+    if (browserInfo.isMobile) {
+      console.log('📱 Mobile detected - using DESKTOP voice settings with mobile unlock...');
+      
+      // Silent unlock for mobile browsers (required for autoplay)
+      const unlockSpeech = () => {
+        const silentMsg = new SpeechSynthesisUtterance(" ");
+        silentMsg.volume = 0.01; // Nearly silent
+        silentMsg.rate = 10; // Very fast
+        silentMsg.pitch = 0.1;
+        
+        silentMsg.onend = () => {
+          console.log('🔓 Mobile speech unlocked - using DESKTOP quality voices...');
+          setTimeout(() => {
+            playWelcomeSequence(); // Same function as desktop
+          }, 200);
+        };
+        
+        silentMsg.onerror = () => {
+          console.log('⚠️ Mobile unlock failed - trying direct playback with desktop settings...');
           setTimeout(playWelcomeSequence, 300);
-        }
+        };
+        
+        speechSynthesis.speak(silentMsg);
       };
       
-      tryUnlock();
+      unlockSpeech();
+      
     } else {
-      // Desktop: Normal voice loading with enhanced compatibility
-      const voices = speechSynthesis.getVoices();
-      if (voices.length > 0) {
+      // Desktop/tablet: Direct initialization
+      console.log('💻 Desktop detected - loading desktop-quality voices...');
+      
+      if (loadVoicesWithFallback()) {
         playWelcomeSequence();
       } else {
+        // Wait for voices to load (common in Safari)
+        let attemptsLeft = 3;
+        
+        const waitForVoices = () => {
+          if (loadVoicesWithFallback()) {
+            playWelcomeSequence();
+          } else if (attemptsLeft > 0) {
+            attemptsLeft--;
+            console.log(`🔄 Waiting for voices... attempts left: ${attemptsLeft}`);
+            setTimeout(waitForVoices, 500);
+          } else {
+            // Force playback even without optimal voices
+            console.log('⚠️ Voice loading timeout - proceeding with available voices...');
+            playWelcomeSequence();
+          }
+        };
+        
+        // Set up voice change listener for Safari
         speechSynthesis.onvoiceschanged = () => {
-          speechSynthesis.onvoiceschanged = null;
+          speechSynthesis.onvoiceschanged = null; // Remove listener
           setTimeout(playWelcomeSequence, 100);
         };
         
-        // Fallback timeout for slow voice loading
+        // Start waiting process
+        setTimeout(waitForVoices, 100);
+        
+        // Ultimate fallback
         setTimeout(() => {
           if (speechSynthesis.onvoiceschanged) {
             speechSynthesis.onvoiceschanged = null;
             playWelcomeSequence();
           }
-        }, 2000);
+        }, 3000);
       }
     }
   };
@@ -211,28 +275,28 @@ const WelcomeVoiceSystem = () => {
       return;
     }
 
-    console.log('🔍 Voice system check: Setting up welcome sequence (timed with video)');
+    console.log('🔍 UNIVERSAL Voice System: Same desktop quality across ALL devices and browsers');
     
-    const isMobile = isMobileDevice();
+    const browserInfo = getBrowserInfo();
     // Coordinate with video timing - voice starts AFTER video begins
-    const delay = 3000; // 3 seconds to let video start first
+    const delay = 2500; // Slightly faster timing for better UX
     
     const timer = setTimeout(() => {
-      console.log('🚀 Timer: Initializing welcome sequence (video should be playing)');
+      console.log('🚀 Timer: Initializing UNIVERSAL welcome sequence (desktop quality everywhere)');
       initializeVoices();
     }, delay);
     
-    // Enhanced mobile support - but only after video has had time to start
+    // Universal interaction support - same timing for all devices
     const handleUserInteraction = () => {
       if (hasPlayed) return; // Prevent multiple triggers
       
-      console.log('👆 User interaction detected - triggering welcome with proper timing');
+      console.log('👆 User interaction detected - triggering DESKTOP-QUALITY voice on all platforms');
       clearTimeout(timer);
       
-      // Ensure video has time to start before voice begins
+      // Quick response for better UX - same timing everywhere
       setTimeout(() => {
         initializeVoices();
-      }, 1500);
+      }, 800);
       
       // Remove listeners after first interaction
       document.removeEventListener('click', handleUserInteraction);
