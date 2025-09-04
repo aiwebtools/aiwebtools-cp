@@ -21,10 +21,10 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
-  // Performance optimized debouncing - faster for simple search, slower for complex
-  const debouncedSearchTerm = useDebounce(searchTerm, searchTerm.length >= 3 ? 300 : 80);
+  // Instant visual feedback with minimal delay
+  const debouncedSearchTerm = useDebounce(searchTerm, 80);
 
-  // Performance optimized search effect with intelligent throttling
+  // SUPER INTELLIGENT search effect with full capabilities
   useEffect(() => {
     const trimmedTerm = debouncedSearchTerm.trim();
     
@@ -34,9 +34,6 @@ export const useGlobalSearch = () => {
       setDisplayedCount(30);
       return;
     }
-
-    // Performance optimization: use requestAnimationFrame for non-blocking search
-    const performSearch = () => {
 
     const lowerTerm = trimmedTerm.toLowerCase();
     
@@ -62,25 +59,13 @@ export const useGlobalSearch = () => {
              lowerDescription.match(new RegExp(`\\b${lowerTerm}`, 'i'));
     });
 
-    // Performance optimized intelligent search - only for reasonable terms with throttling
+    // Super intelligent search for longer terms
     let intelligentResults = [];
-    if (trimmedTerm.length >= 4 && trimmedTerm.length <= 20) { // Reasonable length bounds
-      // Performance safeguard: check if term is mostly valid characters
-      const validCharRatio = (trimmedTerm.match(/[a-z0-9\s]/g) || []).length / trimmedTerm.length;
-      
-      if (validCharRatio >= 0.6) { // Only search if term seems valid
-        const searchStartTime = performance.now();
-        intelligentResults = searchTools(allTools, trimmedTerm).filter(tool => 
-          !exactMatches.some(exact => exact.title === tool.title) &&
-          !partialMatches.some(partial => partial.title === tool.title)
-        );
-        const searchEndTime = performance.now();
-        
-        // Log performance for monitoring (only if slow)
-        if (searchEndTime - searchStartTime > 100) {
-          console.log(`⚡ Search took ${(searchEndTime - searchStartTime).toFixed(2)}ms for "${trimmedTerm}"`);
-        }
-      }
+    if (trimmedTerm.length >= 3) {
+      intelligentResults = searchTools(allTools, trimmedTerm).filter(tool => 
+        !exactMatches.some(exact => exact.title === tool.title) &&
+        !partialMatches.some(partial => partial.title === tool.title)
+      );
     }
 
     // Advanced sorting with relevance scoring
@@ -108,17 +93,9 @@ export const useGlobalSearch = () => {
     
     const endlessResults = [...finalResults, ...remainingTools];
     
-      setSearchResults(endlessResults);
-      setDisplayedCount(30);
-      setIsOpen(true);
-    };
-
-    // Use requestAnimationFrame to prevent blocking the main thread
-    const animationId = requestAnimationFrame(performSearch);
-    
-    return () => {
-      cancelAnimationFrame(animationId);
-    };
+    setSearchResults(endlessResults);
+    setDisplayedCount(30);
+    setIsOpen(true);
   }, [debouncedSearchTerm]);
 
   useEffect(() => {

@@ -142,29 +142,6 @@ export const buildToolsCache = (tools: Tool[]) => {
         
       case "ALL AI TOOLS":
         categoryTools = [...tools];
-        console.log(`🌟 ALL AI TOOLS: Assigned ${categoryTools.length} tools (COMPLETE DATABASE)`);
-        
-        // Verify we have key tools
-        const keyToolsCheck = [
-          'Claude', 'ChatGPT', 'Gemini', 'Midjourney', 'DALL-E', 
-          'ElevenLabs', 'Suno', 'Runway', 'TIME MACHINE GPT', 'GODMODE GPT'
-        ];
-        
-        const foundKeyTools = keyToolsCheck.filter(toolName => 
-          categoryTools.some(tool => tool.title.toLowerCase().includes(toolName.toLowerCase()))
-        );
-        
-        console.log(`🔍 ALL AI TOOLS Key Tools Check: ${foundKeyTools.length}/${keyToolsCheck.length} found`);
-        console.log(`   Found: ${foundKeyTools.join(', ')}`);
-        
-        const missingKeyTools = keyToolsCheck.filter(toolName => 
-          !categoryTools.some(tool => tool.title.toLowerCase().includes(toolName.toLowerCase()))
-        );
-        
-        if (missingKeyTools.length > 0) {
-          console.warn(`   ❌ Missing: ${missingKeyTools.join(', ')}`);
-        }
-        
         break;
         
       case "AI CHAT & ASSISTANTS":

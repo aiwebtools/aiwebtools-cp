@@ -107,35 +107,16 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const partialSuggestions = getPartialMatchSuggestions(searchTerm);
   const advancedPartialMatches = getAdvancedPartialMatches(searchTerm, tools);
   
-  // Performance optimization: minimal logging
-  const isDebugMode = searchTerm.toLowerCase().includes('debug');
-  if (isDebugMode) {
+  // Reduced console logging for performance - only for critical debugging
+  if (searchTerm.toLowerCase().includes('debug')) {
     console.log(`🧠 SUPER SEARCH: "${searchTerm}" → "${correctedSearchTerm}"`);
   }
 
   const normalizedSearchTerm = correctedSearchTerm.toLowerCase().trim();
-
-  // Performance optimization: Early exit for extreme misspellings
-  if (normalizedSearchTerm.length > 30 || normalizedSearchTerm.length < 2) {
-    const filtered = tools.filter(tool => !EXCLUDED_TOOLS.includes(tool.title));
-    return deduplicateSearchResults(filtered.slice(0, 50));
-  }
-
-  // Performance safeguard: Skip complex search for mostly random character strings
-  const validCharRatio = (normalizedSearchTerm.match(/[a-z0-9\s]/g) || []).length / normalizedSearchTerm.length;
-  if (validCharRatio < 0.5) {
-    console.log('🚫 Skipping complex search for random characters:', searchTerm);
-    return tools.filter(tool => 
-      tool.title.toLowerCase().includes(normalizedSearchTerm) ||
-      tool.description.toLowerCase().includes(normalizedSearchTerm)
-    ).slice(0, 20);
-  }
-
   const searchWords = normalizedSearchTerm.split(/[\s,.-]+/).filter(word => word.length > 1);
   
-// Performance optimized phonetic variations - only for reasonable terms
-  const phoneticVariations = searchTerm.length <= 8 && searchTerm.length >= 3 && 
-    !/[^a-z0-9\s]/.test(normalizedSearchTerm) ? phoneticMatch(normalizedSearchTerm) : [];
+  // Enhanced phonetic variations  
+  const phoneticVariations = searchTerm.length <= 8 ? phoneticMatch(normalizedSearchTerm) : [];
   
   // Enhanced intent detection
   const userIntent = detectIntent(normalizedSearchTerm);
@@ -158,10 +139,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
              lowerTags.some(tag => tag.includes('video'));
     });
     
-      // Performance: limit to essential logs during search
-      if (normalizedSearchTerm.includes('video') && videoTools.length > 0) {
-        console.log(`🎬 Found ${videoTools.length} video tools`);
-      }
+    console.log(`🎬 Found ${videoTools.length} video tools:`, videoTools.slice(0, 5).map(t => t.title));
     
     // Sort video tools by relevance - exact title matches first
     const sortedVideoTools = videoTools.sort((a, b) => {

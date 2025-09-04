@@ -52,38 +52,11 @@ export const deduplicateTools = (tools: Tool[]): Tool[] => {
 };
 
 /**
- * MINIMAL deduplication - only remove TRUE exact duplicates with same title, URL AND category
- * For ALL AI TOOLS category, we want to show tools that appear in multiple categories
+ * DISABLED - No distance-based deduplication to preserve all tools
  */
 export const createDeduplicatedToolsList = (tools: Tool[], maxDistance: number = 0): Tool[] => {
-  console.log(`🔍 MINIMAL DEDUPLICATION for ALL AI TOOLS - preserving cross-category tools`);
-  
-  const seen = new Set<string>();
-  const deduplicated: Tool[] = [];
-  const removedTools: Tool[] = [];
-  
-  for (const tool of tools) {
-    // Create a key that includes title, URL AND category to be ultra-precise
-    const titleKey = tool.title.toLowerCase().trim();
-    const urlKey = tool.directUrl?.toLowerCase().trim() || `no-url-${Math.random()}`;
-    const categoryKey = tool.category?.toLowerCase().trim() || 'no-category';
-    const key = `${titleKey}|||${urlKey}|||${categoryKey}`;
-    
-    if (!seen.has(key)) {
-      seen.add(key);
-      deduplicated.push(tool);
-    } else {
-      removedTools.push(tool);
-      console.log(`🗑️ Removing TRUE duplicate: "${tool.title}" (${tool.category}) - ${tool.directUrl}`);
-    }
-  }
-  
-  console.log(`✅ MINIMAL DEDUPLICATION RESULTS:`);
-  console.log(`   Input tools: ${tools.length}`);
-  console.log(`   Output tools: ${deduplicated.length}`);
-  console.log(`   Removed true duplicates: ${removedTools.length}`);
-  
-  return deduplicated;
+  console.log(`🚫 DISTANCE-BASED DEDUPLICATION DISABLED to preserve all tools`);
+  return deduplicateTools(tools); // Just use the conservative deduplication
 };
 
 /**

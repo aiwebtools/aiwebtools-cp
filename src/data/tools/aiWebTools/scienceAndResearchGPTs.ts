@@ -149,7 +149,6 @@ export const scienceAndResearchGPTs: Tool[] = [
     emoji: "🪨",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-689005f62df881918961b6c93ad5b19e-geology-rock-identification-gpt",
-    videoUrl: "https://youtu.be/nmRT6AOVQNg?si=bacR1az2vDwLrT5H",
     tags: ["geology", "rock identification", "minerals", "earth science", "geological formations", "field geology", "petrology", "aiwebtools"],
     category: "Science & Research",
     rating: 4.6,

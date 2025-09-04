@@ -16,6 +16,8 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   const shouldShowVideo = hasVideo;
   const shouldShowImage = hasImage && !hasVideo;
   
+  // Debug logging removed to reduce console noise
+  
   const getOptimizedEmbedUrl = (url: string) => {
     // Detect device capabilities for optimal video quality
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -28,8 +30,7 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
       return `https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0&controls=1&rel=0&hd=1&vq=${vq}&quality=${quality}&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&modestbranding=1&autohide=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
     }
     if (url.includes('youtu.be/')) {
-      // Handle URLs with si parameter or other query parameters
-      const videoId = url.split('youtu.be/')[1].split('?')[0].split('&')[0];
+      const videoId = url.split('youtu.be/')[1].split('?')[0];
       return `https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0&controls=1&rel=0&hd=1&vq=${vq}&quality=${quality}&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&modestbranding=1&autohide=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
     }
     if (url.includes('vimeo.com/')) {
@@ -46,67 +47,48 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
       style={{ aspectRatio: '16/9' }}
     >
       {shouldShowVideo ? (
-        <div className="relative w-full h-full">
-          <iframe
-            width="100%"
-            height="100%"
-            src={getOptimizedEmbedUrl(tool.videoUrl!)}
-            title={`${tool.title} Demo`}
-            frameBorder="0"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-            allowFullScreen
-            className="w-full h-full rounded-lg"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            onLoad={() => console.log(`✅ Video loaded: ${tool.title}`)}
-            onError={(e) => {
-              console.error(`❌ Video failed to load: ${tool.title}`, e);
-              // Hide the iframe and show emoji fallback
-              const iframe = e.target as HTMLIFrameElement;
-              iframe.style.display = 'none';
-              const fallback = iframe.parentElement?.querySelector('.video-fallback') as HTMLElement;
-              if (fallback) {
-                fallback.classList.remove('hidden');
-              }
-            }}
-          />
-          {/* Video loading fallback */}
-          <div className="video-fallback hidden absolute inset-0 flex items-center justify-center text-6xl opacity-50 bg-gradient-to-br from-gray-800 to-gray-900">
-            {tool.emoji}
-          </div>
-        </div>
+        <iframe
+          width="100%"
+          height="100%"
+          src={getOptimizedEmbedUrl(tool.videoUrl!)}
+          title={`${tool.title} Demo`}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+          allowFullScreen
+          className="w-full h-full rounded-lg"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-presentation"
+          onLoad={() => console.log(`✅ Video loaded: ${tool.title}`)}
+          onError={() => console.error(`❌ Video failed: ${tool.title}`)}
+        />
       ) : shouldShowImage ? (
-        <div className="relative w-full h-full">
+        <>
           <img 
             src={tool.imageUrl} 
             alt={`${tool.title} screenshot`}
-            className="w-full h-full object-cover transition-opacity duration-300"
+            className="w-full h-full object-cover"
             loading="lazy"
             decoding="async"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             fetchPriority="low"
             onError={(e) => {
-              console.error('❌ Image failed to load for', tool.title, tool.imageUrl);
+              console.error('Image failed to load for', tool.title, tool.imageUrl);
               // Fallback to emoji display if image fails to load
               const target = e.target as HTMLImageElement;
-              target.style.opacity = '0';
-              const fallback = target.parentElement?.querySelector('.image-fallback') as HTMLElement;
-              if (fallback) {
-                fallback.classList.remove('hidden');
+              target.style.display = 'none';
+              if (target.nextElementSibling) {
+                target.nextElementSibling.classList.remove('hidden');
               }
             }}
-            onLoad={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.opacity = '1';
-              console.log(`✅ Image loaded: ${tool.title}`);
+            onLoad={() => {
+              // Image loaded successfully
             }}
-            style={{ opacity: '0' }}
           />
-          {/* Image loading fallback */}
-          <div className="image-fallback hidden absolute inset-0 flex items-center justify-center text-6xl opacity-50 bg-gradient-to-br from-gray-800 to-gray-900">
+          {/* Hidden emoji fallback */}
+          <div className="hidden absolute inset-0 flex items-center justify-center text-6xl opacity-50">
             {tool.emoji}
           </div>
-        </div>
+        </>
       ) : (
         /* Default emoji display when no image or video */
         <div className="flex items-center justify-center text-6xl opacity-50 w-full h-full">
@@ -116,7 +98,7 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
       
       {/* Overlay gradient for better text readability - only show for images, not videos */}
       {shouldShowImage && (
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
       )}
     </div>
   );

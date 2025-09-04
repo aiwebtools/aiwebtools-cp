@@ -77,11 +77,14 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
     const styles = getOptimizedStyles();
     return {
       ...styles,
-      // Optimize rendering with contain property (only for supported browsers)
-      contain: typeof CSS !== 'undefined' && CSS.supports && CSS.supports('contain', 'layout') ? 'layout style paint' as const : undefined,
+      // Optimize rendering with contain property
+      contain: 'layout style paint' as const,
+      // Avoid rendering offscreen content until needed
+      contentVisibility: 'auto' as any,
+      containIntrinsicSize: '300px 400px' as any,
       // Improve scroll performance 
       willChange: isMobile ? 'auto' : 'transform',
-      // Hardware acceleration for mobile (with fallback)
+      // Hardware acceleration for mobile
       transform: isMobile ? 'translateZ(0)' : undefined,
       backfaceVisibility: isMobile ? ('hidden' as const) : undefined,
     };

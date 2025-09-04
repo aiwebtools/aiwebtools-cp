@@ -23,15 +23,10 @@ const ToolsDisplay = memo(forwardRef<HTMLDivElement, ToolsDisplayProps>(
       navigate('/');
     };
 
-    // Memoize deduplication to prevent unnecessary recalculation - PRESERVE ALL TOOLS FOR "ALL AI TOOLS" CATEGORY
+    // Memoize deduplication to prevent unnecessary recalculation
     const deduplicatedTools = useMemo(() => {
-      // For "ALL AI TOOLS" category, use minimal deduplication to preserve cross-category tools
-      if (categoryName === "ALL AI TOOLS") {
-        console.log(`🌟 ALL AI TOOLS: Using minimal deduplication for ${tools.length} tools to preserve cross-category listings`);
-        return createDeduplicatedToolsList(tools, 0);
-      }
       return createDeduplicatedToolsList(tools, 8);
-    }, [tools, categoryName]);
+    }, [tools]);
 
     // Memoize tools to display
     const toolsToDisplay = useMemo(() => {

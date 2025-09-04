@@ -2,7 +2,6 @@
 import { useEffect, useMemo } from "react";
 import { useFeaturedToolsState } from "@/hooks/useFeaturedToolsState";
 import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
-import { usePerformanceMonitor } from "@/hooks/usePerformanceMonitor";
 import { useMobile } from "@/hooks/useMobile";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -11,14 +10,11 @@ import ScrollToTop from "@/components/ui/scroll-to-top";
 import EnhancedSEOHead from "@/components/seo/EnhancedSEOHead";
 import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
 import CategoryFilters from "@/components/tools/CategoryFilters";
-import { SuspenseToolsGrid } from "@/components/LazyComponents";
+import ToolsGrid from "@/components/tools/ToolsGrid";
 import { runFullToolVerification } from "@/utils/toolIndexing";
 import { searchTools } from "@/utils/searchUtils";
 
 const HomePage = () => {
-  // Performance monitoring
-  const { monitorSearchPerformance, monitorRenderPerformance } = usePerformanceMonitor();
-  
   const {
     selectedCategory,
     searchTerm,
@@ -41,12 +37,12 @@ const HomePage = () => {
     measurePerformance 
   } = usePerformanceOptimization();
 
-  // Run tool verification with performance monitoring
+  // Run tool verification on homepage load for SEO optimization
   useEffect(() => {
-    monitorSearchPerformance(() => {
+    measurePerformance('tool-verification', () => {
       runFullToolVerification(searchTools);
-    }, 'tool-verification');
-  }, [monitorSearchPerformance]);
+    });
+  }, [measurePerformance]);
 
   // Optimized load more with performance considerations
   const handleLoadMore = useMemo(() => 
@@ -118,7 +114,7 @@ const HomePage = () => {
       {/* Tools Grid */}
       <div id="tools-section">
         {displayedTools.length > 0 ? (
-          <SuspenseToolsGrid
+          <ToolsGrid
             tools={filteredTools}
             displayedCount={displayedCount}
             selectedCategory={selectedCategory}

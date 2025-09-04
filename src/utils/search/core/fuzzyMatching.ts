@@ -1,35 +1,21 @@
 
 import { Tool } from "@/types/tools";
 
-// Calculate Levenshtein distance for fuzzy matching with performance limits
+// Calculate Levenshtein distance for fuzzy matching
 export const levenshteinDistance = (str1: string, str2: string): number => {
-  // Performance safeguard: limit string length to prevent freezing
-  const maxLength = 100;
-  const s1 = str1.length > maxLength ? str1.substring(0, maxLength) : str1;
-  const s2 = str2.length > maxLength ? str2.substring(0, maxLength) : str2;
-  
-  // Quick exit for identical strings
-  if (s1 === s2) return 0;
-  
-  // Performance optimization: if strings are too different in length, return early
-  const lengthDiff = Math.abs(s1.length - s2.length);
-  if (lengthDiff > Math.max(s1.length, s2.length) * 0.8) {
-    return Math.max(s1.length, s2.length);
-  }
-  
   const matrix = [];
   
-  for (let i = 0; i <= s2.length; i++) {
+  for (let i = 0; i <= str2.length; i++) {
     matrix[i] = [i];
   }
   
-  for (let j = 0; j <= s1.length; j++) {
+  for (let j = 0; j <= str1.length; j++) {
     matrix[0][j] = j;
   }
   
-  for (let i = 1; i <= s2.length; i++) {
-    for (let j = 1; j <= s1.length; j++) {
-      if (s2.charAt(i - 1) === s1.charAt(j - 1)) {
+  for (let i = 1; i <= str2.length; i++) {
+    for (let j = 1; j <= str1.length; j++) {
+      if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
         matrix[i][j] = matrix[i - 1][j - 1];
       } else {
         matrix[i][j] = Math.min(
@@ -41,7 +27,7 @@ export const levenshteinDistance = (str1: string, str2: string): number => {
     }
   }
   
-  return matrix[s2.length][s1.length];
+  return matrix[str2.length][str1.length];
 };
 
 // Calculate similarity score (0-1, where 1 is perfect match)
@@ -57,21 +43,9 @@ export const calculateSimilarity = (str1: string, str2: string): number => {
   return (longer.length - editDistance) / longer.length;
 };
 
-// Enhanced fuzzy matching for tool searches with performance safeguards
+// Enhanced fuzzy matching for tool searches
 export const fuzzyMatchTool = (tool: Tool, searchTerm: string): { score: number; matched: boolean } => {
   const lowerSearchTerm = searchTerm.toLowerCase().trim();
-  
-  // Performance safeguard: skip fuzzy matching for extremely long or nonsensical terms
-  if (lowerSearchTerm.length > 50 || lowerSearchTerm.length < 2) {
-    return { score: 0, matched: false };
-  }
-  
-  // Performance safeguard: skip if term is mostly random characters
-  const randomCharRatio = (lowerSearchTerm.match(/[^a-z0-9\s]/g) || []).length / lowerSearchTerm.length;
-  if (randomCharRatio > 0.5) {
-    return { score: 0, matched: false };
-  }
-  
   const searchWords = lowerSearchTerm.split(/\s+/);
   let totalScore = 0;
   let matched = false;

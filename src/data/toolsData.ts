@@ -103,11 +103,8 @@ const allToolCategories = consolidateTools([
   ...specializedNicheToolsGPTs
 ]);
 
-// Apply deduplication to remove tools that appear in multiple categories - CONSERVATIVE APPROACH
-console.log(`📊 Before deduplication: ${allToolCategories.length} tools`);
+// Apply deduplication to remove tools that appear in multiple categories
 const deduplicatedTools = deduplicateTools(allToolCategories);
-console.log(`📊 After conservative deduplication: ${deduplicatedTools.length} tools`);
-console.log(`🗑️ Tools removed by deduplication: ${allToolCategories.length - deduplicatedTools.length}`);
 
 // Use deduplicatedTools directly (power ranking now handled in featured tools)
 let combinedTools: Tool[] = [...deduplicatedTools];
