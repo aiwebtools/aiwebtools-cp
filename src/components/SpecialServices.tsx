@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 import { FavoritesButton } from "@/components/favorites/FavoritesButton";
 import { Tool } from "@/types/tools";
+import VideoAutoPlayController from "@/components/VideoAutoPlayController";
 
 // =============================================================================
 // OUR FEATURED SECTION - Portfolio showcase of AI Web Tools GPTs
@@ -701,6 +702,7 @@ const OurFeaturedSection = () => {
 
   return (
     <section className="py-20 bg-gradient-to-br from-slate-900 to-purple-900">
+      <VideoAutoPlayController />
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -755,19 +757,21 @@ const OurFeaturedSection = () => {
                   {tool.description}
                 </p>
 
-                {/* Media Section - Video or Image with Auto-Play */}
+                {/* Media Section - Video or Image with Controlled Auto-Play */}
                 <div className="mb-4">
                   {tool.videoUrl && getVideoId(tool.videoUrl) ? (
                     <div className="relative w-full h-32 rounded-lg overflow-hidden">
                       <iframe
-                        src={`https://www.youtube-nocookie.com/embed/${getVideoId(tool.videoUrl)}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&iv_load_policy=3&fs=1&cc_load_policy=0&playsinline=1&enablejsapi=1&origin=${window.location.origin}&vq=hd1080`}
+                        src={`https://www.youtube-nocookie.com/embed/${getVideoId(tool.videoUrl)}?controls=1&rel=0&modestbranding=1&iv_load_policy=3&fs=1&cc_load_policy=0&playsinline=1&enablejsapi=1&origin=${window.location.origin}&vq=hd1080`}
                         title={`${tool.title} Demo`}
-                        className="absolute inset-0 w-full h-full"
+                        className="absolute inset-0 w-full h-full video-embed"
                         frameBorder="0"
                         loading="eager"
                         referrerPolicy="no-referrer"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                         allowFullScreen
+                        data-video-id={getVideoId(tool.videoUrl)}
+                        data-tool-title={tool.title}
                       />
                     </div>
                   ) : tool.imageUrl ? (
