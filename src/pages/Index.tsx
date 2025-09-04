@@ -122,14 +122,32 @@ const Index = () => {
         }, 800 + (attempts * 400)); // Longer delays for unmuting
       };
       
-      // CRITICAL TIMING: Start autoplay immediately, unmute after voice sequence
+      // CRITICAL TIMING: Start autoplay immediately, wait for voice to finish before unmute
       forceAutoplay();
       
-      // Delay unmuting until AFTER epic voice sequence (approx 6-8 seconds)
+      // Listen for voice completion to coordinate timing
+      let voiceCompleted = false;
+      const handleVoiceCompletion = () => {
+        voiceCompleted = true;
+        console.log('🎵 Voice sequence completed - now safe to unmute video');
+        
+        // Start unmute sequence after voice is done
+        setTimeout(() => {
+          console.log('🔊 Starting video unmute sequence AFTER epic voice...');
+          attemptUnmute();
+        }, 1000);
+      };
+      
+      // Listen for voice completion event
+      window.addEventListener('welcomeVoiceComplete', handleVoiceCompletion);
+      
+      // Fallback: If no voice completion event after 10 seconds, proceed anyway
       setTimeout(() => {
-        console.log('🔊 Starting video unmute sequence AFTER epic voice...');
-        attemptUnmute();
-      }, 8000); // Wait for "WELCOME MASTER" + "YOU'VE GOT TOOLS" to complete
+        if (!voiceCompleted) {
+          console.log('🔄 Voice timeout - proceeding with video unmute (fallback)');
+          attemptUnmute();
+        }
+      }, 10000);
       
       // Enhanced interaction-based sound enabling
       const enableSoundOnInteraction = () => {

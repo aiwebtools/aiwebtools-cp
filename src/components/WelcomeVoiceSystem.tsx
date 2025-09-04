@@ -165,6 +165,11 @@ const WelcomeVoiceSystem = () => {
         toolsMsg.onend = () => {
           console.log('🎉 ✨ VOICE LOG: EPIC Welcome sequence complete - User has entered the destiny of AI tools!');
           console.log('🔇 No more voices will play - video can now proceed without interference');
+          
+          // Dispatch event to let video know voice is complete
+          const voiceCompleteEvent = new CustomEvent('welcomeVoiceComplete');
+          window.dispatchEvent(voiceCompleteEvent);
+          console.log('📢 Dispatched welcomeVoiceComplete event');
         };
         
         // Comprehensive error handling
@@ -273,9 +278,13 @@ const WelcomeVoiceSystem = () => {
     // Reset global flag on every page load for consistent experience
     globalVoicePlayed = false;
     
-    console.log('🎬 EPIC VOICE SYSTEM: Waiting for consent acceptance to trigger WELCOME MASTER sequence');
+    console.log('🎬 EPIC VOICE SYSTEM: Initializing voice system...');
     
-    // Listen for the consent acceptance trigger
+    // Check if user has already accepted consent
+    const hasSeenConsent = localStorage.getItem('aitools-consent-seen');
+    console.log('📋 Consent status:', hasSeenConsent ? 'Already accepted' : 'Not seen yet');
+    
+    // Listen for the consent acceptance trigger (new users)
     const handleConsentTrigger = () => {
       if (hasPlayed || globalVoicePlayed) {
         console.log('🔄 Voice already played, skipping consent trigger');
@@ -293,15 +302,24 @@ const WelcomeVoiceSystem = () => {
     // Listen for the custom event from consent popup
     window.addEventListener('triggerWelcomeVoice', handleConsentTrigger);
     
-    // For users who have already accepted consent, trigger on interaction
-    const hasSeenConsent = localStorage.getItem('aitools-consent-seen');
+    // For returning users - trigger automatically with a small delay
     if (hasSeenConsent) {
-      console.log('🔄 User has already seen consent, setting up interaction triggers');
+      console.log('🔄 Returning user detected - starting voice sequence automatically');
       
+      // Auto-trigger for returning users after page loads
+      const autoTimer = setTimeout(() => {
+        if (!hasPlayed && !globalVoicePlayed) {
+          console.log('🚀 AUTO-TRIGGERING voice for returning user');
+          initializeVoices();
+        }
+      }, 1500); // Give page time to load
+      
+      // Also set up interaction triggers as backup
       const handleUserInteraction = () => {
         if (hasPlayed || globalVoicePlayed) return;
         
-        console.log('👆 User interaction detected - EPIC VOICE STARTING (no consent needed)');
+        console.log('👆 User interaction detected - EPIC VOICE STARTING (returning user)');
+        clearTimeout(autoTimer);
         
         setTimeout(() => {
           initializeVoices();
@@ -313,13 +331,14 @@ const WelcomeVoiceSystem = () => {
         document.removeEventListener('keydown', handleUserInteraction);
       };
       
-      // Add interaction listeners for returning users
+      // Add interaction listeners as backup
       document.addEventListener('click', handleUserInteraction, { once: true });
       document.addEventListener('touchstart', handleUserInteraction, { passive: true, once: true });
       document.addEventListener('keydown', handleUserInteraction, { once: true });
       
       // Cleanup function
       return () => {
+        clearTimeout(autoTimer);
         window.removeEventListener('triggerWelcomeVoice', handleConsentTrigger);
         document.removeEventListener('click', handleUserInteraction);
         document.removeEventListener('touchstart', handleUserInteraction);
