@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-// Browser detection utilities
+// Mobile detection utility
 const isMobileDevice = (): boolean => {
   if (typeof window === 'undefined') return false;
   
@@ -10,11 +10,6 @@ const isMobileDevice = (): boolean => {
     (navigator.maxTouchPoints > 0) ||
     window.innerWidth <= 768
   );
-};
-
-const isFacebookBrowser = (): boolean => {
-  if (typeof window === 'undefined') return false;
-  return /FBAN|FBAV|Instagram/i.test(navigator.userAgent);
 };
 
 const WelcomeVoiceSystem = () => {
@@ -141,31 +136,6 @@ const WelcomeVoiceSystem = () => {
     }
 
     const isMobile = isMobileDevice();
-    const isFacebook = isFacebookBrowser();
-    
-    console.log(`🔍 Voice System - Mobile: ${isMobile}, Facebook: ${isFacebook}`);
-    
-    if (isFacebook) {
-      // Facebook Browser: Requires explicit user interaction and special handling
-      console.log('📘 Facebook browser detected - voice requires user interaction');
-      
-      const handleFacebookVoice = () => {
-        console.log('👆 Facebook: User interaction for voice - attempting playback');
-        setTimeout(playWelcomeSequence, 100);
-        // Remove listeners after use
-        document.removeEventListener('touchstart', handleFacebookVoice);
-        document.removeEventListener('click', handleFacebookVoice);
-        document.removeEventListener('touchend', handleFacebookVoice);
-      };
-      
-      // Facebook requires explicit user interaction for speech
-      document.addEventListener('touchstart', handleFacebookVoice, { once: true, passive: true });
-      document.addEventListener('click', handleFacebookVoice, { once: true });
-      document.addEventListener('touchend', handleFacebookVoice, { once: true, passive: true });
-      
-      console.log('📘 Facebook: Voice system waiting for user interaction...');
-      return;
-    }
     
     if (isMobile) {
       // Mobile: Multiple unlock attempts for better compatibility
@@ -244,11 +214,8 @@ const WelcomeVoiceSystem = () => {
     console.log('🔍 Voice system check: Setting up welcome sequence (timed with video)');
     
     const isMobile = isMobileDevice();
-    const isFacebook = isFacebookBrowser();
-    
     // Coordinate with video timing - voice starts AFTER video begins
-    // Facebook browser needs longer delay due to stricter policies
-    const delay = isFacebook ? 5000 : 3000; // Extra delay for Facebook
+    const delay = 3000; // 3 seconds to let video start first
     
     const timer = setTimeout(() => {
       console.log('🚀 Timer: Initializing welcome sequence (video should be playing)');
