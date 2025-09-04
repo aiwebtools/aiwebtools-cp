@@ -106,39 +106,30 @@ export const useGlobalSearch = () => {
     
     const endlessResults = [...finalResults, ...remainingTools];
     
-    // Debug for mobile scroll issues
-    if (trimmedTerm.length === 1) {
-      console.log('🐛 DEBUG: Single letter typed:', trimmedTerm, 'Results count:', endlessResults.length);
-    }
+    // Set results and immediately lock scroll position on mobile
+    const isMobile = window.innerWidth <= 768;
     
     setSearchResults(endlessResults);
     setDisplayedCount(30);
     setIsOpen(true);
 
-    // Reset scroll to top when new search results load
-    setTimeout(() => {
-      if (searchRef.current) {
-        const scrollContainer = searchRef.current.querySelector('[data-scroll-container]');
-        if (scrollContainer) {
-          const isMobile = window.innerWidth <= 768;
-          scrollContainer.scrollTop = 0;
-          scrollContainer.scrollTo({ top: 0, behavior: 'auto' });
-          
-          // Enhanced mobile fix for single letter searches
-          if (trimmedTerm.length === 1 && isMobile) {
-            console.log('🐛 Mobile single letter case - aggressive scroll reset:', trimmedTerm);
+    // Immediate scroll lock for mobile before any rendering
+    if (isMobile && searchRef.current) {
+      const scrollContainer = searchRef.current.querySelector('[data-scroll-container]');
+      if (scrollContainer) {
+        scrollContainer.scrollTop = 0;
+        // Prevent any scroll events during the update
+        const originalOverflow = scrollContainer.style.overflow;
+        scrollContainer.style.overflow = 'hidden';
+        
+        requestAnimationFrame(() => {
+          if (scrollContainer) {
             scrollContainer.scrollTop = 0;
-            // Multiple attempts to ensure scroll stays at top on mobile
-            setTimeout(() => {
-              if (scrollContainer) scrollContainer.scrollTop = 0;
-            }, 50);
-            setTimeout(() => {
-              if (scrollContainer) scrollContainer.scrollTop = 0;
-            }, 100);
+            scrollContainer.style.overflow = originalOverflow;
           }
-        }
+        });
       }
-    }, 0);
+    }
   }, [debouncedSearchTerm]);
 
   useEffect(() => {

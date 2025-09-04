@@ -27,36 +27,11 @@ const GlobalSearchResults = ({
   const hasMoreToLoad = displayedCount < searchResults.length;
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Debug for mobile scroll issues with single letters
+  // Lock scroll to top on mobile when results change
   useEffect(() => {
-    const firstResult = displayedResults[0];
-    if (firstResult) {
-      const searchTerm = firstResult.title.charAt(0).toLowerCase();
-      // Check if this might be a single letter search causing issues
-      const isSingleLetterSearch = displayedResults.length > 100; // Likely a single letter if many results
-      
-      if (isSingleLetterSearch) {
-        console.log('🐛 Rendering search results for possible single letter:', searchTerm);
-        console.log('🐛 Scroll container ref:', scrollRef.current);
-        
-        // Additional check for scroll position
-        if (scrollRef.current) {
-          console.log('🐛 Current scroll position:', scrollRef.current.scrollTop);
-          // Force scroll to top immediately for single letter searches - mobile specific fix
-          const isMobile = window.innerWidth <= 768;
-          if (isMobile) {
-            console.log('🐛 Mobile detected - forcing scroll reset for single letter');
-            scrollRef.current.scrollTop = 0;
-            scrollRef.current.scrollTo(0, 0);
-            // Additional mobile fix - prevent any scroll momentum
-            setTimeout(() => {
-              if (scrollRef.current) {
-                scrollRef.current.scrollTop = 0;
-              }
-            }, 10);
-          }
-        }
-      }
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile && scrollRef.current && displayedResults.length > 0) {
+      scrollRef.current.scrollTop = 0;
     }
   }, [displayedResults]);
 
@@ -93,10 +68,14 @@ const GlobalSearchResults = ({
           scrollbarWidth: 'thin'
         }}
         onTouchStart={(e) => {
-          // Prevent mobile touch momentum from affecting scroll
+          // Lock scroll position on mobile during typing
           const target = e.currentTarget;
-          if (target.scrollTop === 0) {
-            e.preventDefault();
+          target.scrollTop = 0;
+        }}
+        onTouchMove={(e) => {
+          // Prevent scroll during search typing on mobile
+          const target = e.currentTarget;
+          if (target.scrollTop !== 0) {
             target.scrollTop = 0;
           }
         }}
