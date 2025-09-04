@@ -106,30 +106,20 @@ export const useGlobalSearch = () => {
     
     const endlessResults = [...finalResults, ...remainingTools];
     
-    // Set results and immediately lock scroll position on mobile
-    const isMobile = window.innerWidth <= 768;
-    
     setSearchResults(endlessResults);
     setDisplayedCount(30);
     setIsOpen(true);
 
-    // Immediate scroll lock for mobile before any rendering
-    if (isMobile && searchRef.current) {
-      const scrollContainer = searchRef.current.querySelector('[data-scroll-container]');
-      if (scrollContainer) {
-        scrollContainer.scrollTop = 0;
-        // Prevent any scroll events during the update
-        const originalOverflow = scrollContainer.style.overflow;
-        scrollContainer.style.overflow = 'hidden';
-        
-        requestAnimationFrame(() => {
-          if (scrollContainer) {
-            scrollContainer.scrollTop = 0;
-            scrollContainer.style.overflow = originalOverflow;
-          }
-        });
+    // Reset scroll to top when new search results load
+    setTimeout(() => {
+      if (searchRef.current) {
+        const scrollContainer = searchRef.current.querySelector('[data-scroll-container]');
+        if (scrollContainer) {
+          scrollContainer.scrollTop = 0;
+          scrollContainer.scrollTo({ top: 0, behavior: 'auto' });
+        }
       }
-    }
+    }, 0);
   }, [debouncedSearchTerm]);
 
   useEffect(() => {

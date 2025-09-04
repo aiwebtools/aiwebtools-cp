@@ -27,14 +27,6 @@ const GlobalSearchResults = ({
   const hasMoreToLoad = displayedCount < searchResults.length;
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Lock scroll to top on mobile when results change
-  useEffect(() => {
-    const isMobile = window.innerWidth <= 768;
-    if (isMobile && scrollRef.current && displayedResults.length > 0) {
-      scrollRef.current.scrollTop = 0;
-    }
-  }, [displayedResults]);
-
   const scrollToTop = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
@@ -62,22 +54,7 @@ const GlobalSearchResults = ({
           willChange: 'scroll-position',
           backfaceVisibility: 'hidden',
           perspective: '1000px',
-          scrollBehavior: 'auto',
-          // Mobile-specific fixes for scroll position
-          scrollSnapType: 'none',
-          scrollbarWidth: 'thin'
-        }}
-        onTouchStart={(e) => {
-          // Lock scroll position on mobile during typing
-          const target = e.currentTarget;
-          target.scrollTop = 0;
-        }}
-        onTouchMove={(e) => {
-          // Prevent scroll during search typing on mobile
-          const target = e.currentTarget;
-          if (target.scrollTop !== 0) {
-            target.scrollTop = 0;
-          }
+          scrollBehavior: 'auto'
         }}
       >
       <CardContent className="p-0" style={{ transform: 'translateZ(0)' }}>
