@@ -38,18 +38,11 @@ const MobileMenu = () => {
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Prevent dropdown from auto-scrolling when search results appear
+  // Keep dropdown stable when search results appear
   useEffect(() => {
     if (dropdownRef.current && isMenuOpen) {
-      const scrollTop = dropdownRef.current.scrollTop;
-      const preventScroll = () => {
-        if (dropdownRef.current) {
-          dropdownRef.current.scrollTop = scrollTop;
-        }
-      };
-      
-      const timeoutId = setTimeout(preventScroll, 0);
-      return () => clearTimeout(timeoutId);
+      // Lock scroll position when menu opens
+      dropdownRef.current.scrollTop = 0;
     }
   }, [isMenuOpen]);
 
@@ -155,25 +148,18 @@ const MobileMenu = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent 
             ref={dropdownRef}
-            className="w-[85vw] md:w-[380px] max-w-[380px] bg-black/98 shadow-2xl border-2 border-cyan-500/50 backdrop-blur-xl max-h-[75vh] overflow-y-auto z-[110] mr-2"
+            className="w-[85vw] md:w-[380px] max-w-[380px] bg-black/98 shadow-2xl border-2 border-cyan-500/50 backdrop-blur-xl max-h-[75vh] overflow-hidden z-[110] mr-2"
             align="end"
             alignOffset={0}
             sideOffset={6}
             avoidCollisions={true}
             sticky="always"
-            onWheel={(e) => {
-              // Prevent scroll when search results are open
-              const searchResults = e.currentTarget.querySelector('[data-scroll-container]');
-              if (searchResults) {
-                e.preventDefault();
-              }
-            }}
             style={{
               scrollBehavior: 'auto',
               overscrollBehavior: 'contain'
             }}
           >
-            <div className="p-3 md:p-4">
+            <div className="p-3 md:p-4 overflow-y-auto max-h-[75vh]">
               {/* Header with Close Button */}
               <div className="text-center mb-4 border-b border-cyan-500/30 pb-3 relative">
                 {/* Close Button - Top Right - Optimized for touch */}
