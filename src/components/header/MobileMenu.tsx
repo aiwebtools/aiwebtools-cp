@@ -138,69 +138,69 @@ const MobileMenu = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent 
-            className="w-[90vw] md:w-[420px] max-w-[420px] bg-black/98 shadow-2xl border-2 border-cyan-500/50 backdrop-blur-xl max-h-[70vh] md:max-h-[80vh] overflow-y-auto z-[110] mr-4"
+            className="w-[85vw] md:w-[380px] max-w-[380px] bg-black/98 shadow-2xl border-2 border-cyan-500/50 backdrop-blur-xl max-h-[75vh] overflow-y-auto z-[110] mr-2"
             align="end"
             alignOffset={0}
-            sideOffset={8}
+            sideOffset={6}
             avoidCollisions={true}
             sticky="always"
           >
-            <div className="p-4 md:p-6">
+            <div className="p-3 md:p-4">
               {/* Header with Close Button */}
-              <div className="text-center mb-6 border-b border-cyan-500/30 pb-4 relative">
+              <div className="text-center mb-4 border-b border-cyan-500/30 pb-3 relative">
                 {/* Close Button - Top Right - Optimized for touch */}
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={closeMenu}
-                  className="absolute -top-2 -right-2 h-12 w-12 p-0 text-gray-400 hover:text-white hover:bg-red-500/40 border border-red-500/60 rounded-full transition-all duration-200 shadow-lg backdrop-blur-sm z-[120]"
+                  className="absolute -top-1 -right-1 h-8 w-8 p-0 text-gray-400 hover:text-white hover:bg-red-500/40 border border-red-500/60 rounded-full transition-all duration-200 shadow-lg backdrop-blur-sm z-[120]"
                   aria-label="Close menu"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-4 h-4" />
                 </Button>
                 
                 <div className="flex flex-col items-center mb-2">
                   <Logo compact={true} />
                 </div>
-                <div className="text-lg md:text-xl font-bold text-cyan-400 mb-2">
+                <div className="text-base md:text-lg font-bold text-cyan-400 mb-1">
                   Navigate our platform
                 </div>
-                <p className="text-sm md:text-base text-cyan-200/80">Quick Navigation & Search</p>
+                <p className="text-xs text-cyan-200/80">Quick Navigation & Search</p>
               </div>
 
               {/* Ultra-Fast Hero Search Bar - EXACT SAME AS HERO */}
-              <div className="mb-6">
+              <div className="mb-4">
                 <GlobalSearchBar />
               </div>
 
               {/* Navigation Section */}
-              <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-4 rounded-lg h-14 text-base md:text-lg font-medium px-4">
-                <span className="mr-4 text-xl">🏠</span> Home
+              <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-3 rounded-lg h-12 text-sm font-medium px-3">
+                <span className="mr-3 text-lg">🏠</span> Home
               </DropdownMenuItem>
               
               {/* Browse Categories - Featured */}
               <DropdownMenuItem
                 onClick={handleBrowseAITools}
-                className="text-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 font-bold mb-6 rounded-xl p-6 text-lg md:text-xl shadow-xl shadow-cyan-500/30 border border-cyan-400/50 transition-all duration-200"
+                className="text-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 font-bold mb-4 rounded-xl p-4 text-base shadow-xl shadow-cyan-500/30 border border-cyan-400/50 transition-all duration-200"
               >
-                <span className="mr-3 text-xl">🎯</span> Browse AI Tool Categories
+                <span className="mr-2 text-lg">🎯</span> Browse AI Tool Categories
               </DropdownMenuItem>
               
-              <DropdownMenuSeparator className="border-gray-700 mb-3" />
+              <DropdownMenuSeparator className="border-gray-700 mb-2" />
                 
               {/* WEB3 Domains Section - MOVED UP FOR PRIORITY */}
-              <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
+              <div className="px-1 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
                 💰 Register WEB3 Domains
               </div>
               <div className="mb-2 p-2 bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-lg border border-purple-500/30">
                 <p className="text-xs text-gray-300 leading-relaxed">
                   🔗 <span className="font-semibold text-cyan-400">Connect to Your Crypto Wallet</span><br/>
-                  Own forever • Resell for profit • Minted as NFT • Trade anytime
+                  Own forever • Resell for profit • Minted as NFT
                 </p>
               </div>
               <Collapsible open={isWeb3Open} onOpenChange={setIsWeb3Open}>
                 <CollapsibleTrigger 
-                  className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-2 py-1.5 text-sm outline-none focus:bg-cyan-500/20 transition-colors"
+                  className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-2 py-1 text-sm outline-none focus:bg-cyan-500/20 transition-colors"
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -208,12 +208,12 @@ const MobileMenu = () => {
                   }}
                 >
                   <span className="flex items-center">
-                    <Globe className="w-4 h-4 mr-2" /> Browse WEB3 Domains
+                    <Globe className="w-3 h-3 mr-2" /> Browse WEB3 Domains
                   </span>
-                  <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${isWeb3Open ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-3 h-3 ml-2 transition-transform ${isWeb3Open ? 'rotate-180' : ''}`} />
                 </CollapsibleTrigger>
-                <CollapsibleContent className="mt-2 space-y-2 pl-6 max-h-80 overflow-y-auto pr-1 pb-1">
-                  <div className="text-xs text-cyan-400 mb-2 font-semibold">💰 Financial & Cash Transfer</div>
+                <CollapsibleContent className="mt-1 space-y-1 pl-4 max-h-60 overflow-y-auto pr-1">
+                  <div className="text-xs text-cyan-400 mb-1 font-semibold">💰 Financial & Cash Transfer</div>
                   <div className="flex justify-between items-center w-full px-3 py-1 rounded-md hover:bg-white/5 hover:text-cyan-300 transition-colors text-sm">
                     <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleExternalLink("https://freename.io/discover/transfermoney", e); }} className="flex-1 text-left">💸 .transfermoney</button>
                     <span className="text-xs bg-purple-600/20 text-purple-300 px-1 py-0.5 rounded border border-purple-500/30 ml-2">Polygon</span>
@@ -283,75 +283,71 @@ const MobileMenu = () => {
                 </CollapsibleContent>
               </Collapsible>
               
-              <DropdownMenuSeparator className="border-gray-700 mb-3" />
+              <DropdownMenuSeparator className="border-gray-700 mb-2" />
               
-              {/* Company & About Section - MOVED DOWN */}
-              <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
+              {/* Company & About Section - Compact */}
+              <div className="px-1 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
                 About & Company
               </div>
-              <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.aitools.company', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded">
+              <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.aitools.company', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
                 🏢 About AI Web Tools LLC
               </DropdownMenuItem>
               
-              <DropdownMenuSeparator className="border-gray-700 mb-3" />
-              
-              {/* Social & External Links */}
-              <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
+              {/* Social & External Links - Compact */}
+              <div className="px-1 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
                 Connect With Us
               </div>
-              <DropdownMenuItem onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded">
-                <Trees className="w-4 h-4 mr-2" /> Linktree
+              <DropdownMenuItem onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
+                <Trees className="w-3 h-3 mr-2" /> Linktree
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.tiktok.com/@aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
-                <Clapperboard className="w-4 h-4 mr-2" /> TikTok
+              <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.tiktok.com/@aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
+                <Clapperboard className="w-3 h-3 mr-2" /> TikTok
               </DropdownMenuItem>
               
-              <DropdownMenuSeparator className="border-gray-700 mb-3" />
-              
-              {/* Tools & Downloads */}
-              <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
+              {/* Tools & Downloads - Compact */}
+              <div className="px-1 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
                 Tools & Downloads
               </div>
-                <DropdownMenuItem onClick={handleDownloadAllToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded">
-                  <Download className="w-4 h-4 mr-2" />
-                  📊 Download ALL {toolStats.marketing} AI Tools (CSV)
-                </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleDownloadAllToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
+                <Download className="w-3 h-3 mr-2" />
+                📊 Download ALL {toolStats.marketing} AI Tools (CSV)
+              </DropdownMenuItem>
               
-              <DropdownMenuSeparator className="border-gray-700 my-3" />
+              <DropdownMenuSeparator className="border-gray-700 my-2" />
               
-              {/* Contact Section */}
-              <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
+              {/* Contact Section - Compact */}
+              <div className="px-1 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
                 Contact
               </div>
-              <div className="flex items-center space-x-2 text-cyan-100 px-2 py-2 rounded hover:bg-cyan-500/20 mb-2">
-                <Phone className="w-4 h-4" />
+              <div className="flex items-center space-x-2 text-cyan-100 px-2 py-1 rounded hover:bg-cyan-500/20 mb-2 text-sm">
+                <Phone className="w-3 h-3" />
                 <a href="tel:+14758008096" className="hover:text-cyan-400 transition-colors">
                   475-800-8096
                 </a>
               </div>
               
-              <DropdownMenuSeparator className="border-gray-700 my-3" />
+              <DropdownMenuSeparator className="border-gray-700 my-2" />
               
-              {/* Clone This Site - Gold styling */}
+              {/* Clone This Site - Gold styling - Compact */}
               <DropdownMenuItem 
                 onClick={(e) => { 
                   e.preventDefault();
                   handleExternalLink("https://lovable.dev/projects/ef2fa521-638d-41cf-999c-89d3c4d5c294?utm_source=lovable-badge&via=aiwebtools", e);
                 }} 
-                className="text-yellow-100 hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-amber-500/20 mb-3 rounded flex items-center space-x-2 bg-gradient-to-r from-yellow-600/10 to-amber-600/10 border border-yellow-500/30 p-3"
+                className="text-yellow-100 hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-amber-500/20 mb-2 rounded flex items-center space-x-2 bg-gradient-to-r from-yellow-600/10 to-amber-600/10 border border-yellow-500/30 p-2"
               >
-                <Copy className="w-4 h-4" />
-                <span className="font-semibold">Clone This Site</span>
+                <Copy className="w-3 h-3" />
+                <span className="font-semibold text-sm">Clone This Site</span>
               </DropdownMenuItem>
 
-              {/* Favorites - added before Our Story */}
-              <DropdownMenuItem onClick={() => { navigate('/favorites'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded flex items-center space-x-2">
-                <Heart className="w-4 h-4 fill-current text-red-500" />
+              {/* Favorites - Compact */}
+              <DropdownMenuItem onClick={() => { navigate('/favorites'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded flex items-center space-x-2 text-sm">
+                <Heart className="w-3 h-3 fill-current text-red-500" />
                 <span>Favorites ({getFavoritesCount()})</span>
               </DropdownMenuItem>
               
-              {/* Our Story - moved to bottom of mobile menu */}
-              <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded">
+              {/* Our Story - Compact */}
+              <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded text-sm">
                 📖 Our Story
               </DropdownMenuItem>
               
