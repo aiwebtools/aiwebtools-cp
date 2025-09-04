@@ -11,8 +11,15 @@ class VideoManager {
       this.pauseVideo(this.currentVideo);
     }
 
-    // Mobile-specific video handling
+    // Enhanced browser detection for video handling
+    const userAgent = navigator.userAgent.toLowerCase();
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isRestrictiveBrowser = (
+      userAgent.includes('facebook') ||
+      userAgent.includes('instagram') ||
+      userAgent.includes('twitter') ||
+      !navigator.cookieEnabled
+    );
     
     // Set up intersection observer to play/pause based on visibility
     const observer = new IntersectionObserver(
@@ -22,25 +29,47 @@ class VideoManager {
             // Video is visible
             console.log(`🎥 Video ${toolId} visible - attempting play`);
             
-            if (isMobile) {
-              // Mobile: Add user interaction listener for autoplay
+            if (isRestrictiveBrowser) {
+              // Restrictive browsers: Wait for explicit user interaction
+              console.log(`🚫 Restrictive browser detected - waiting for user interaction for ${toolId}`);
+              
+              const handleRestrictivePlay = () => {
+                console.log(`🎥 User interaction - playing ${toolId} in restrictive browser`);
+                this.playVideo(iframe, true); // Force unmute for restrictive browsers
+                this.currentVideo = iframe;
+                
+                // Remove all listeners
+                document.removeEventListener('click', handleRestrictivePlay);
+                document.removeEventListener('touchstart', handleRestrictivePlay);
+                document.removeEventListener('scroll', handleRestrictivePlay);
+              };
+              
+              // Multiple interaction types for restrictive browsers
+              document.addEventListener('click', handleRestrictivePlay, { once: true });
+              document.addEventListener('touchstart', handleRestrictivePlay, { once: true, passive: true });
+              document.addEventListener('scroll', handleRestrictivePlay, { once: true, passive: true });
+              
+            } else if (isMobile) {
+              // Mobile: Enhanced autoplay handling
               const handleMobilePlay = () => {
-                this.playVideo(iframe);
+                console.log(`📱 Mobile interaction - playing ${toolId}`);
+                this.playVideo(iframe, false);
                 this.currentVideo = iframe;
                 document.removeEventListener('touchstart', handleMobilePlay);
                 document.removeEventListener('click', handleMobilePlay);
               };
               
               // Try immediate play first
-              this.playVideo(iframe);
+              this.playVideo(iframe, false);
               this.currentVideo = iframe;
               
               // Add interaction listeners as backup
               document.addEventListener('touchstart', handleMobilePlay, { once: true, passive: true });
               document.addEventListener('click', handleMobilePlay, { once: true });
             } else {
-              // Desktop: Direct play
-              this.playVideo(iframe);
+              // Desktop: Direct play with cookie independence
+              console.log(`🖥️ Desktop - playing ${toolId}`);
+              this.playVideo(iframe, false);
               this.currentVideo = iframe;
             }
           } else {
@@ -74,40 +103,57 @@ class VideoManager {
     }
   }
 
-  private playVideo(iframe: HTMLIFrameElement) {
+  private playVideo(iframe: HTMLIFrameElement, forceUnmute: boolean = false) {
     try {
-      // Mobile-optimized video play commands
+      const userAgent = navigator.userAgent.toLowerCase();
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const isRestrictiveBrowser = (
+        userAgent.includes('facebook') ||
+        userAgent.includes('instagram') ||
+        userAgent.includes('twitter') ||
+        !navigator.cookieEnabled
+      );
       
-      if (isMobile) {
-        // For mobile: Try multiple methods to ensure playback
-        console.log('📱 Mobile video play attempt');
-        
-        // Method 1: Standard YouTube API command
-        iframe.contentWindow?.postMessage(
-          '{"event":"command","func":"playVideo","args":""}',
-          '*'
-        );
-        
-        // Method 2: Fallback with user interaction trigger
-        setTimeout(() => {
-          iframe.contentWindow?.postMessage(
-            '{"event":"command","func":"unMute","args":""}',
-            '*'
-          );
-          iframe.contentWindow?.postMessage(
-            '{"event":"command","func":"setVolume","args":"100"}',
-            '*'
-          );
-        }, 500);
-        
-      } else {
-        // Desktop: Standard play command
-        iframe.contentWindow?.postMessage(
-          '{"event":"command","func":"playVideo","args":""}',
-          '*'
+      console.log(`🎥 Playing video - Mobile: ${isMobile}, Restrictive: ${isRestrictiveBrowser}, ForceUnmute: ${forceUnmute}`);
+      
+      // Enhanced video commands with cookie independence
+      const commands = [
+        '{"event":"command","func":"playVideo","args":""}',
+      ];
+      
+      if (forceUnmute || isRestrictiveBrowser) {
+        // For restrictive browsers or when explicitly requested
+        commands.push(
+          '{"event":"command","func":"unMute","args":""}',
+          '{"event":"command","func":"setVolume","args":"100"}'
         );
       }
+      
+      // Send commands with staggered timing for better compatibility
+      commands.forEach((command, index) => {
+        setTimeout(() => {
+          try {
+            iframe.contentWindow?.postMessage(command, '*');
+          } catch (cmdError) {
+            console.warn(`Video command ${index} failed:`, cmdError);
+          }
+        }, index * 200);
+      });
+      
+      // Additional retry for restrictive browsers
+      if (isRestrictiveBrowser) {
+        setTimeout(() => {
+          try {
+            iframe.contentWindow?.postMessage(
+              '{"event":"command","func":"playVideo","args":""}',
+              '*'
+            );
+          } catch (retryError) {
+            console.warn('Video retry failed:', retryError);
+          }
+        }, 1000);
+      }
+      
     } catch (error) {
       console.warn('Could not send play command to video:', error);
     }
