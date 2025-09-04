@@ -27,28 +27,34 @@ const GlobalSearchResults = ({
   const hasMoreToLoad = displayedCount < searchResults.length;
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Debug for "C" specific issue
+  // Debug for mobile scroll issues with single letters
   useEffect(() => {
     const firstResult = displayedResults[0];
-    if (firstResult && firstResult.title.toLowerCase().startsWith('c')) {
-      console.log('🐛 Rendering search results starting with "C":', firstResult.title);
-      console.log('🐛 Scroll container ref:', scrollRef.current);
+    if (firstResult) {
+      const searchTerm = firstResult.title.charAt(0).toLowerCase();
+      // Check if this might be a single letter search causing issues
+      const isSingleLetterSearch = displayedResults.length > 100; // Likely a single letter if many results
       
-      // Additional check for scroll position
-      if (scrollRef.current) {
-        console.log('🐛 Current scroll position:', scrollRef.current.scrollTop);
-        // Force scroll to top immediately when "C" results render - mobile specific fix
-        const isMobile = window.innerWidth <= 768;
-        if (isMobile) {
-          console.log('🐛 Mobile detected - forcing scroll reset');
-          scrollRef.current.scrollTop = 0;
-          scrollRef.current.scrollTo(0, 0);
-          // Additional mobile fix - prevent any scroll momentum
-          setTimeout(() => {
-            if (scrollRef.current) {
-              scrollRef.current.scrollTop = 0;
-            }
-          }, 10);
+      if (isSingleLetterSearch) {
+        console.log('🐛 Rendering search results for possible single letter:', searchTerm);
+        console.log('🐛 Scroll container ref:', scrollRef.current);
+        
+        // Additional check for scroll position
+        if (scrollRef.current) {
+          console.log('🐛 Current scroll position:', scrollRef.current.scrollTop);
+          // Force scroll to top immediately for single letter searches - mobile specific fix
+          const isMobile = window.innerWidth <= 768;
+          if (isMobile) {
+            console.log('🐛 Mobile detected - forcing scroll reset for single letter');
+            scrollRef.current.scrollTop = 0;
+            scrollRef.current.scrollTo(0, 0);
+            // Additional mobile fix - prevent any scroll momentum
+            setTimeout(() => {
+              if (scrollRef.current) {
+                scrollRef.current.scrollTop = 0;
+              }
+            }, 10);
+          }
         }
       }
     }

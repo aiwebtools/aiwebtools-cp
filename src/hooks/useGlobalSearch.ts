@@ -106,18 +106,16 @@ export const useGlobalSearch = () => {
     
     const endlessResults = [...finalResults, ...remainingTools];
     
-    // Debug specific case when "C" is typed
-    if (trimmedTerm.toLowerCase() === 'c') {
-      console.log('🐛 DEBUG: Typing "C" - Results:', endlessResults.slice(0, 10).map(t => t.title));
-      console.log('🐛 DEBUG: Total results for "C":', endlessResults.length);
+    // Debug for mobile scroll issues
+    if (trimmedTerm.length === 1) {
+      console.log('🐛 DEBUG: Single letter typed:', trimmedTerm, 'Results count:', endlessResults.length);
     }
     
     setSearchResults(endlessResults);
     setDisplayedCount(30);
     setIsOpen(true);
 
-    // Reset scroll to top when new search results load - more aggressive for "C"
-    const scrollTimeout = trimmedTerm.toLowerCase() === 'c' ? 0 : 0;
+    // Reset scroll to top when new search results load
     setTimeout(() => {
       if (searchRef.current) {
         const scrollContainer = searchRef.current.querySelector('[data-scroll-container]');
@@ -126,9 +124,9 @@ export const useGlobalSearch = () => {
           scrollContainer.scrollTop = 0;
           scrollContainer.scrollTo({ top: 0, behavior: 'auto' });
           
-          // Enhanced mobile fix for "C" case
-          if (trimmedTerm.toLowerCase() === 'c' && isMobile) {
-            console.log('🐛 Mobile "C" case - aggressive scroll reset');
+          // Enhanced mobile fix for single letter searches
+          if (trimmedTerm.length === 1 && isMobile) {
+            console.log('🐛 Mobile single letter case - aggressive scroll reset:', trimmedTerm);
             scrollContainer.scrollTop = 0;
             // Multiple attempts to ensure scroll stays at top on mobile
             setTimeout(() => {
@@ -140,7 +138,7 @@ export const useGlobalSearch = () => {
           }
         }
       }
-    }, scrollTimeout);
+    }, 0);
   }, [debouncedSearchTerm]);
 
   useEffect(() => {
