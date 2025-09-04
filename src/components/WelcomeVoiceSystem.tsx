@@ -47,16 +47,32 @@ const WelcomeVoiceSystem = () => {
       welcomeMsg.pitch = 0.1; // Very low pitch for robot effect
       welcomeMsg.volume = 0.9; // Full but not overwhelming
       
-      // Find deep male voice for welcome - prioritize robot-like voices
-      const maleVoice = voices.find(v => 
-        v.name.toLowerCase().includes('alex') ||
-        v.name.toLowerCase().includes('daniel') ||
-        v.name.toLowerCase().includes('male') ||
-        v.name.toLowerCase().includes('fred')
-      );
+      // Standardized voice selection for consistent cross-device experience
+      
+      // Find deep male voice for "WELCOME MASTER" - robot-like
+      const maleVoice = voices.find(v => {
+        const name = v.name.toLowerCase();
+        const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
+        return isEnglish && (
+          // Common male voices across platforms
+          name.includes('alex') || name.includes('daniel') || name.includes('david') ||
+          name.includes('male') || name.includes('fred') || name.includes('tom') ||
+          name.includes('paul') || name.includes('mark') || name.includes('richard') ||
+          // Platform-specific fallbacks
+          name.includes('microsoft david') || name.includes('google uk english male')
+        );
+      }) || voices.find(v => {
+        // Fallback: any English male voice
+        const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
+        return isEnglish && (v.name.toLowerCase().includes('male') || 
+               (!v.name.toLowerCase().includes('female') && !v.name.toLowerCase().includes('woman')));
+      });
+      
       if (maleVoice) {
         welcomeMsg.voice = maleVoice;
-        console.log('🤖 Selected male voice:', maleVoice.name);
+        console.log('🤖 Selected male voice:', maleVoice.name, 'Lang:', maleVoice.lang);
+      } else {
+        console.log('🤖 Using default voice (no male voice found)');
       }
       
       // Create second message: "YOU'VE GOT TOOLS" - British female AOL-style
@@ -65,26 +81,39 @@ const WelcomeVoiceSystem = () => {
       toolsMsg.pitch = 1.2; // Pleasant feminine pitch
       toolsMsg.volume = 0.95; // Clear and friendly
       
-      // Find British female voice for AOL-style announcement
-      const britishFemaleVoice = voices.find(v => 
-        (v.lang && v.lang.toLowerCase().includes('en-gb')) ||
-        v.name.toLowerCase().includes('british') ||
-        v.name.toLowerCase().includes('uk') ||
-        v.name.toLowerCase().includes('victoria') ||
-        v.name.toLowerCase().includes('emma') ||
-        v.name.toLowerCase().includes('fiona')
-      ) || voices.find(v => 
-        v.name.toLowerCase().includes('female') ||
-        v.name.toLowerCase().includes('samantha') ||
-        v.name.toLowerCase().includes('karen') ||
-        v.name.toLowerCase().includes('susan') ||
-        v.name.toLowerCase().includes('anna') ||
-        v.name.toLowerCase().includes('catherine')
-      );
+      // Find female voice for AOL-style announcement - prioritize quality
+      const femaleVoice = voices.find(v => {
+        const name = v.name.toLowerCase();
+        const lang = v.lang ? v.lang.toLowerCase() : '';
+        
+        // First priority: British English female voices
+        return (lang.includes('en-gb') || lang.includes('gb')) && 
+               (name.includes('female') || name.includes('woman') || 
+                name.includes('kate') || name.includes('serena') || name.includes('emma') ||
+                name.includes('fiona') || name.includes('victoria') || name.includes('susan'));
+      }) || voices.find(v => {
+        const name = v.name.toLowerCase();
+        const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
+        
+        // Second priority: High-quality English female voices
+        return isEnglish && (
+          name.includes('samantha') || name.includes('karen') || name.includes('susan') ||
+          name.includes('anna') || name.includes('catherine') || name.includes('emma') ||
+          name.includes('sarah') || name.includes('jessica') || name.includes('michelle') ||
+          name.includes('microsoft zira') || name.includes('google us english female')
+        );
+      }) || voices.find(v => {
+        // Final fallback: any English female voice
+        const name = v.name.toLowerCase();
+        const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
+        return isEnglish && (name.includes('female') || name.includes('woman'));
+      });
       
-      if (britishFemaleVoice) {
-        toolsMsg.voice = britishFemaleVoice;
-        console.log('📬 Selected female voice:', britishFemaleVoice.name);
+      if (femaleVoice) {
+        toolsMsg.voice = femaleVoice;
+        console.log('📬 Selected female voice:', femaleVoice.name, 'Lang:', femaleVoice.lang);
+      } else {
+        console.log('📬 Using default voice (no female voice found)');
       }
       
       // Set up sequence timing with proper synchronization
