@@ -299,8 +299,8 @@ const featuredGPTs = [
     badge: "FITNESS",
     color: "from-blue-500 to-green-600",
     features: ["Workout Routines", "Exercise Form", "Strength Training", "Fitness Coaching"],
-    directUrl: "https://fitnesstrainergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=9vF8XjQQpS0",
+    directUrl: "https://chatgpt.com/g/g-68afaae3f8e881918d8b84b7ca85a413-fitness-coach/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=eHInYKxyKm4",
     emoji: "🏋️"
   },
   {
