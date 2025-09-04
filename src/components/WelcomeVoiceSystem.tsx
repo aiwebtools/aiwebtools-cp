@@ -12,8 +12,9 @@ const isMobileDevice = (): boolean => {
   );
 };
 
-// Global flag to prevent multiple instances across all components
+// Global flag to prevent multiple instances across ALL components and pages
 let globalVoicePlayed = false;
+let globalVoiceInProgress = false;
 
 const WelcomeVoiceSystem = () => {
   const [hasPlayed, setHasPlayed] = useState(false);
@@ -24,17 +25,28 @@ const WelcomeVoiceSystem = () => {
       return;
     }
 
-    // ENHANCED: Double check both local and global flags
-    if (hasPlayed || globalVoicePlayed) {
-      console.log('🔄 Voice sequence already played (local or global), skipping...');
+    // TRIPLE CHECK: Multiple levels of duplicate prevention
+    if (hasPlayed || globalVoicePlayed || globalVoiceInProgress) {
+      console.log('🚫 BLOCKED: Voice sequence already played or in progress', {
+        hasPlayed,
+        globalVoicePlayed,
+        globalVoiceInProgress
+      });
       return;
     }
 
-    console.log('🎵 Starting EPIC WELCOME MASTER sequence...');
+    console.log('🎵 ✅ STARTING EPIC WELCOME MASTER SEQUENCE - All checks passed!');
     
-    // CRITICAL: Set both flags immediately to prevent any duplicates
+    // IMMEDIATE BLOCKING: Set ALL flags to prevent any possibility of duplicates
     setHasPlayed(true);
     globalVoicePlayed = true;
+    globalVoiceInProgress = true;
+    
+    // EXTRA SAFETY: Block any new attempts for next 30 seconds
+    setTimeout(() => {
+      globalVoiceInProgress = false;
+      console.log('🔓 Voice system ready for next session (if needed)');
+    }, 30000);
     
     try {
       // Cancel any existing speech to prevent conflicts and overlaps
@@ -221,6 +233,10 @@ const WelcomeVoiceSystem = () => {
           toolsMsg.onend = () => {
             console.log('🎉 ✨ VOICE LOG: EPIC Welcome sequence COMPLETE - All phases successful!');
             console.log('🏁 ROBOT → BELL → BRITISH LADY sequence finished - User entered AI destiny!');
+            console.log('🔓 Unlocking voice system after successful completion');
+            
+            // Reset in-progress flag since sequence completed successfully
+            globalVoiceInProgress = false;
             
             // Dispatch event to let video know voice is complete
             const voiceCompleteEvent = new CustomEvent('welcomeVoiceComplete');
@@ -232,6 +248,10 @@ const WelcomeVoiceSystem = () => {
           toolsMsg.onerror = (e) => {
             console.log('❌ British lady voice error:', e);
             console.log('✅ Voice sequence completed (with error)');
+            console.log('🔓 Unlocking voice system after error');
+            
+            // Reset in-progress flag even on error
+            globalVoiceInProgress = false;
             
             // Still dispatch completion event
             const voiceCompleteEvent = new CustomEvent('welcomeVoiceComplete');
@@ -267,6 +287,9 @@ const WelcomeVoiceSystem = () => {
         // Error handling for robot voice
         welcomeMsg.onerror = (e) => {
           console.log('❌ Sinister robot voice error:', e);
+          console.log('🔓 Unlocking voice system after robot error');
+          globalVoiceInProgress = false;
+          
           // Still try bell and British voice even if robot fails
           setTimeout(() => {
             console.log('🔄 Robot failed, proceeding to bell...');
@@ -275,13 +298,16 @@ const WelcomeVoiceSystem = () => {
         };
         
         // START THE EPIC SEQUENCE!
-        console.log('🚀 Starting SINISTER ROBOT: "WELCOME MASTER"...');
+        console.log('🚀 🎬 PHASE 1: Starting SINISTER ROBOT "WELCOME MASTER"...');
+        console.log('🔊 Voice system locked - no duplicates possible for 30 seconds');
         speechSynthesis.speak(welcomeMsg);
         
       }, 100); // Small delay to ensure cancellation is complete
       
     } catch (error) {
       console.log('❌ Voice system error:', error);
+      console.log('🔓 Unlocking voice system after system error');
+      globalVoiceInProgress = false;
       
       // Still dispatch completion event even on error
       setTimeout(() => {
@@ -368,10 +394,19 @@ const WelcomeVoiceSystem = () => {
   };
 
   useEffect(() => {
-    // Reset global flag on every page load for consistent experience
-    globalVoicePlayed = false;
+    // Reset ONLY the played flag, but keep progress flag if in progress
+    if (!globalVoiceInProgress) {
+      globalVoicePlayed = false;
+      console.log('🔄 Reset globalVoicePlayed for new session');
+    } else {
+      console.log('⏳ Voice system busy - maintaining current state');
+    }
     
-    console.log('🎬 EPIC VOICE SYSTEM: Initializing voice system...');
+    console.log('🎬 EPIC VOICE SYSTEM: Initializing...', {
+      hasPlayed,
+      globalVoicePlayed,
+      globalVoiceInProgress
+    });
     
     // Check if user has already accepted consent
     const hasSeenConsent = localStorage.getItem('aitools-consent-seen');
@@ -379,12 +414,16 @@ const WelcomeVoiceSystem = () => {
     
     // Listen for the consent acceptance trigger (new users)
     const handleConsentTrigger = () => {
-      if (hasPlayed || globalVoicePlayed) {
-        console.log('🔄 Voice already played, skipping consent trigger');
+      if (hasPlayed || globalVoicePlayed || globalVoiceInProgress) {
+        console.log('🚫 CONSENT TRIGGER BLOCKED: Voice already played or in progress', {
+          hasPlayed,
+          globalVoicePlayed,
+          globalVoiceInProgress
+        });
         return;
       }
       
-      console.log('🎯 CONSENT TRIGGER RECEIVED: Starting EPIC AOL-style Welcome sequence!');
+      console.log('🎯 ✅ CONSENT TRIGGER ACCEPTED: Starting EPIC AOL-style Welcome sequence!');
       
       // Small delay to let consent popup close
       setTimeout(() => {
@@ -409,9 +448,12 @@ const WelcomeVoiceSystem = () => {
       
       // Also set up interaction triggers as backup
       const handleUserInteraction = () => {
-        if (hasPlayed || globalVoicePlayed) return;
+        if (hasPlayed || globalVoicePlayed || globalVoiceInProgress) {
+          console.log('🚫 INTERACTION BLOCKED: Voice already played or in progress');
+          return;
+        }
         
-        console.log('👆 User interaction detected - EPIC VOICE STARTING (returning user)');
+        console.log('👆 ✅ INTERACTION ACCEPTED: EPIC VOICE STARTING (returning user)');
         clearTimeout(autoTimer);
         
         setTimeout(() => {
