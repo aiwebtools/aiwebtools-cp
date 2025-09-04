@@ -1,5 +1,5 @@
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -26,6 +26,22 @@ const GlobalSearchResults = ({
   const displayedResults = searchResults.slice(0, displayedCount);
   const hasMoreToLoad = displayedCount < searchResults.length;
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Debug for "C" specific issue
+  useEffect(() => {
+    const firstResult = displayedResults[0];
+    if (firstResult && firstResult.title.toLowerCase().startsWith('c')) {
+      console.log('🐛 Rendering search results starting with "C":', firstResult.title);
+      console.log('🐛 Scroll container ref:', scrollRef.current);
+      
+      // Additional check for scroll position
+      if (scrollRef.current) {
+        console.log('🐛 Current scroll position:', scrollRef.current.scrollTop);
+        // Force scroll to top immediately when "C" results render
+        scrollRef.current.scrollTop = 0;
+      }
+    }
+  }, [displayedResults]);
 
   const scrollToTop = () => {
     if (scrollRef.current) {

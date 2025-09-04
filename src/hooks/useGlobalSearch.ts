@@ -106,19 +106,32 @@ export const useGlobalSearch = () => {
     
     const endlessResults = [...finalResults, ...remainingTools];
     
+    // Debug specific case when "C" is typed
+    if (trimmedTerm.toLowerCase() === 'c') {
+      console.log('🐛 DEBUG: Typing "C" - Results:', endlessResults.slice(0, 10).map(t => t.title));
+      console.log('🐛 DEBUG: Total results for "C":', endlessResults.length);
+    }
+    
     setSearchResults(endlessResults);
     setDisplayedCount(30);
     setIsOpen(true);
 
-    // Reset scroll to top when new search results load (fixes mobile auto-scroll issue)
+    // Reset scroll to top when new search results load - more aggressive for "C"
+    const scrollTimeout = trimmedTerm.toLowerCase() === 'c' ? 0 : 0;
     setTimeout(() => {
       if (searchRef.current) {
         const scrollContainer = searchRef.current.querySelector('[data-scroll-container]');
         if (scrollContainer) {
           scrollContainer.scrollTop = 0;
+          scrollContainer.scrollTo({ top: 0, behavior: 'auto' });
+          // Force scroll reset for "C" case
+          if (trimmedTerm.toLowerCase() === 'c') {
+            console.log('🐛 Forcing scroll to top for "C"');
+            scrollContainer.scrollTop = 0;
+          }
         }
       }
-    }, 0);
+    }, scrollTimeout);
   }, [debouncedSearchTerm]);
 
   useEffect(() => {
