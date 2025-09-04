@@ -49,45 +49,53 @@ const WelcomeVoiceSystem = () => {
         const voices = speechSynthesis.getVoices();
         console.log(`🗣️ Found ${voices.length} voices`);
         
-        // Create first message: "WELCOME MASTER" - deep robot voice (restored slower speed)
+        // Create first message: "WELCOME MASTER" - EPIC ROBOTIC INTRO
         const welcomeMsg = new SpeechSynthesisUtterance("WELCOME MASTER");
-        welcomeMsg.rate = 0.2; // MUCH slower and more robotic (restored user preference)
-        welcomeMsg.pitch = 0.05; // Even lower pitch for deeper robot effect
-        welcomeMsg.volume = 0.9; // Full but not overwhelming
+        welcomeMsg.rate = 0.6; // Faster for more impact and authority
+        welcomeMsg.pitch = 0.3; // Low but not too deep for better clarity and epicness
+        welcomeMsg.volume = 1.0; // Maximum volume for commanding presence
         
-        // Standardized voice selection for consistent cross-device experience
+        // Enhanced voice selection for EPIC quality
         
-        // Find deep male voice for "WELCOME MASTER" - robot-like
-        const maleVoice = voices.find(v => {
+        // Priority 1: Find the most epic, authoritative male voice
+        const epicMaleVoice = voices.find(v => {
           const name = v.name.toLowerCase();
           const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
           return isEnglish && (
-            // Common male voices across platforms
+            // Premium quality voices for epic effect
             name.includes('alex') || name.includes('daniel') || name.includes('david') ||
-            name.includes('male') || name.includes('fred') || name.includes('tom') ||
-            name.includes('paul') || name.includes('mark') || name.includes('richard') ||
-            // Platform-specific fallbacks
-            name.includes('microsoft david') || name.includes('google uk english male')
+            name.includes('aaron') || name.includes('arthur') || name.includes('bruce') ||
+            name.includes('gordon') || name.includes('ryan') || name.includes('evan') ||
+            // Platform-specific premium voices
+            name.includes('microsoft david desktop') || name.includes('google uk english male') ||
+            name.includes('enhanced') || name.includes('premium')
           );
         }) || voices.find(v => {
-          // Fallback: any English male voice
+          // Fallback: Best available English male voice
+          const name = v.name.toLowerCase();
           const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
-          return isEnglish && (v.name.toLowerCase().includes('male') || 
-                 (!v.name.toLowerCase().includes('female') && !v.name.toLowerCase().includes('woman')));
+          return isEnglish && (
+            name.includes('male') || 
+            (name.includes('david') || name.includes('alex') || name.includes('daniel'))
+          );
+        }) || voices.find(v => {
+          // Final fallback: Any decent quality voice
+          const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
+          return isEnglish && !v.name.toLowerCase().includes('female');
         });
         
-        if (maleVoice) {
-          welcomeMsg.voice = maleVoice;
-          console.log('🤖 Selected male voice:', maleVoice.name, 'Lang:', maleVoice.lang);
+        if (epicMaleVoice) {
+          welcomeMsg.voice = epicMaleVoice;
+          console.log('🎭 Selected EPIC voice for WELCOME MASTER:', epicMaleVoice.name, 'Lang:', epicMaleVoice.lang);
         } else {
-          console.log('🤖 Using default voice (no male voice found)');
+          console.log('🎭 Using default voice for WELCOME MASTER');
         }
         
-        // Create second message: "YOU'VE GOT TOOLS" - British female AOL-style
+        // Create second message: "YOU'VE GOT TOOLS" - Energetic announcement
         const toolsMsg = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS");
-        toolsMsg.rate = 0.8; // Normal conversational pace
-        toolsMsg.pitch = 1.2; // Pleasant feminine pitch
-        toolsMsg.volume = 0.95; // Clear and friendly
+        toolsMsg.rate = 1.0; // Normal speed for clarity and excitement
+        toolsMsg.pitch = 1.4; // Higher pitch for energy and contrast
+        toolsMsg.volume = 1.0; // Full volume for impact
         
         // Find female voice for AOL-style announcement - prioritize quality
         const femaleVoice = voices.find(v => {
@@ -244,56 +252,75 @@ const WelcomeVoiceSystem = () => {
   };
 
   useEffect(() => {
+    // AGGRESSIVE: Reset global flag on every page load for consistent experience
+    globalVoicePlayed = false;
+    
     // Only play once per page load - prevent multiple voice overlaps
     if (hasPlayed) {
       console.log('🔄 Voice already played for this page load');
       return;
     }
 
-    console.log('🔍 Voice system check: Setting up welcome sequence (timed with video)');
+    console.log('🎬 EPIC VOICE SYSTEM: Setting up WELCOME MASTER sequence');
     
     const isMobile = isMobileDevice();
-    // Coordinate with video timing - voice starts AFTER video begins
-    const delay = 3000; // 3 seconds to let video start first
+    
+    // IMMEDIATE TRIGGER: Start voice system faster for better experience
+    const delay = isMobile ? 1000 : 500; // Faster on desktop, reasonable on mobile
     
     const timer = setTimeout(() => {
-      console.log('🚀 Timer: Initializing welcome sequence (video should be playing)');
+      console.log('🚀 EPIC INTRO: Starting WELCOME MASTER sequence');
       initializeVoices();
     }, delay);
     
-    // Enhanced mobile support - but only after video has had time to start
+    // ENHANCED: Multiple trigger methods for universal compatibility
     const handleUserInteraction = () => {
-      if (hasPlayed) return; // Prevent multiple triggers
+      if (hasPlayed || globalVoicePlayed) return; // Prevent multiple triggers
       
-      console.log('👆 User interaction detected - triggering welcome with proper timing');
+      console.log('👆 User interaction detected - EPIC VOICE STARTING');
       clearTimeout(timer);
       
-      // Ensure video has time to start before voice begins
+      // Immediate voice trigger on interaction
       setTimeout(() => {
         initializeVoices();
-      }, 1500);
+      }, 200); // Much faster response
       
       // Remove listeners after first interaction
       document.removeEventListener('click', handleUserInteraction);
       document.removeEventListener('touchstart', handleUserInteraction);
       document.removeEventListener('touchend', handleUserInteraction);
       document.removeEventListener('keydown', handleUserInteraction);
+      document.removeEventListener('scroll', handleUserInteraction);
+      document.removeEventListener('mousemove', handleUserInteraction);
     };
     
-    // Add event listeners for user interaction (but with timing)
+    // COMPREHENSIVE: Add ALL possible interaction listeners
     document.addEventListener('click', handleUserInteraction, { once: true });
     document.addEventListener('touchstart', handleUserInteraction, { passive: true, once: true });
     document.addEventListener('touchend', handleUserInteraction, { passive: true, once: true });
     document.addEventListener('keydown', handleUserInteraction, { once: true });
+    document.addEventListener('scroll', handleUserInteraction, { passive: true, once: true });
+    document.addEventListener('mousemove', handleUserInteraction, { passive: true, once: true });
+    
+    // FALLBACK: Ensure voice plays even without interaction after reasonable time
+    const fallbackTimer = setTimeout(() => {
+      if (!hasPlayed && !globalVoicePlayed) {
+        console.log('🔄 FALLBACK: Triggering EPIC voice sequence automatically');
+        initializeVoices();
+      }
+    }, 5000); // 5 seconds fallback
     
     return () => {
       clearTimeout(timer);
+      clearTimeout(fallbackTimer);
       document.removeEventListener('click', handleUserInteraction);
       document.removeEventListener('touchstart', handleUserInteraction);
       document.removeEventListener('touchend', handleUserInteraction);
       document.removeEventListener('keydown', handleUserInteraction);
+      document.removeEventListener('scroll', handleUserInteraction);
+      document.removeEventListener('mousemove', handleUserInteraction);
     };
-  }, [hasPlayed]); // Include hasPlayed to prevent multiple runs
+  }, []); // Remove hasPlayed dependency to allow fresh starts
 
   // This component renders nothing - it's just for voice functionality
   return null;

@@ -46,27 +46,60 @@ const Index = () => {
     
     endTimer(loadStartTime, 'Initial page load', 1000);
     
-    // Simplified video autoplay with immediate unmute attempts
+    // EPIC INTRO: Coordinate video autoplay with voice system for perfect timing
     const startVideoUnmute = () => {
       const iframe = mainVideoRef.current;
       if (!iframe || videoStarted) return;
       
       setVideoStarted(true);
-      console.log('🎥 Video loaded, attempting to unmute...');
+      console.log('🎥 EPIC VIDEO: Starting autoplay and preparing for voice coordination...');
       
-      // Enhanced unmute strategy with multiple attempts
-      const attemptUnmute = (attempts = 0) => {
+      // ENHANCED: Force autoplay with multiple attempts for universal compatibility
+      const forceAutoplay = (attempts = 0) => {
         if (attempts >= 3) {
+          console.log('🎥 Video autoplay established');
+          return;
+        }
+        
+        setTimeout(() => {
+          try {
+            const autoplayCommands = [
+              '{"event":"command","func":"playVideo","args":""}',
+              '{"event":"command","func":"setVolume","args":[0]}', // Start muted for autoplay
+              '{"event":"command","func":"seekTo","args":[0, true]}' // Ensure starts from beginning
+            ];
+            
+            autoplayCommands.forEach(command => {
+              iframe.contentWindow?.postMessage(command, '*');
+            });
+            
+            console.log(`🎥 Autoplay attempt ${attempts + 1}/3`);
+            
+            if (attempts < 2) {
+              forceAutoplay(attempts + 1);
+            }
+          } catch (e) {
+            console.log(`🎥 Autoplay attempt ${attempts + 1} failed:`, e.message);
+            if (attempts < 2) {
+              forceAutoplay(attempts + 1);
+            }
+          }
+        }, 500 + (attempts * 300)); // Quick successive attempts
+      };
+
+      // Enhanced unmute strategy AFTER voice sequence completes
+      const attemptUnmute = (attempts = 0) => {
+        if (attempts >= 5) {
           console.log('🔇 Video remains muted - browser policy enforced');
           return;
         }
         
         setTimeout(() => {
           try {
-            // Multiple methods to attempt unmuting
+            // Multiple methods to attempt unmuting AFTER epic voice
             const commands = [
               '{"event":"command","func":"unMute","args":""}',
-              '{"event":"command","func":"setVolume","args":[75]}',
+              '{"event":"command","func":"setVolume","args":[85]}', // Higher volume for impact
               '{"event":"command","func":"playVideo","args":""}'
             ];
             
@@ -74,42 +107,57 @@ const Index = () => {
               iframe.contentWindow?.postMessage(command, '*');
             });
             
-            console.log(`🔊 Unmute attempt ${attempts + 1}/3`);
+            console.log(`🔊 EPIC UNMUTE attempt ${attempts + 1}/5 (coordinated with voice)`);
             
-            // Retry if needed
-            if (attempts < 2) {
+            // Retry if needed with progressive delays
+            if (attempts < 4) {
               attemptUnmute(attempts + 1);
             }
           } catch (e) {
             console.log(`🔇 Unmute attempt ${attempts + 1} failed:`, e.message);
-            if (attempts < 2) {
+            if (attempts < 4) {
               attemptUnmute(attempts + 1);
             }
           }
-        }, 1000 + (attempts * 500)); // Staggered delays
+        }, 800 + (attempts * 400)); // Longer delays for unmuting
       };
       
-      // Start unmute attempts after iframe is fully loaded
-      attemptUnmute();
+      // CRITICAL TIMING: Start autoplay immediately, unmute after voice sequence
+      forceAutoplay();
       
-      // Fallback: Listen for user interaction to enable sound
+      // Delay unmuting until AFTER epic voice sequence (approx 6-8 seconds)
+      setTimeout(() => {
+        console.log('🔊 Starting video unmute sequence AFTER epic voice...');
+        attemptUnmute();
+      }, 8000); // Wait for "WELCOME MASTER" + "YOU'VE GOT TOOLS" to complete
+      
+      // Enhanced interaction-based sound enabling
       const enableSoundOnInteraction = () => {
         try {
-          iframe.contentWindow?.postMessage('{"event":"command","func":"unMute","args":""}', '*');
-          console.log('🔊 Sound enabled via user interaction');
+          const enhancedCommands = [
+            '{"event":"command","func":"unMute","args":""}',
+            '{"event":"command","func":"setVolume","args":[85]}',
+            '{"event":"command","func":"playVideo","args":""}'
+          ];
+          
+          enhancedCommands.forEach(command => {
+            iframe.contentWindow?.postMessage(command, '*');
+          });
+          
+          console.log('🔊 EPIC SOUND: Enabled via user interaction');
         } catch (e) {
           console.log('🔇 Sound enable failed:', e.message);
         }
       };
       
-      // Add interaction listeners
-      ['click', 'touchstart', 'keydown'].forEach(event => {
+      // Add comprehensive interaction listeners for sound
+      ['click', 'touchstart', 'touchend', 'keydown', 'scroll', 'mousemove'].forEach(event => {
         document.addEventListener(event, enableSoundOnInteraction, { once: true, passive: true });
       });
     };
 
-    // Start video unmute attempts after short delay to ensure iframe is loaded
-    const videoTimer = setTimeout(startVideoUnmute, 1500);
+    // IMMEDIATE: Start video autoplay immediately for instant visual impact
+    const videoTimer = setTimeout(startVideoUnmute, 200); // Much faster video start
     
     // Load actual stats in background
     const statsTimer = setTimeout(() => {
