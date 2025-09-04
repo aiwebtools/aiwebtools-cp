@@ -316,9 +316,6 @@ const MobileMenu = () => {
                   <Download className="w-4 h-4 mr-2" />
                   📊 Download ALL {toolStats.marketing} AI Tools (CSV)
                 </DropdownMenuItem>
-              <DropdownMenuItem onClick={(e) => handleExternalLink('https://lovable.dev/projects/ef2fa521-638d-41cf-999c-89d3c4d5c294?utm_source=lovable-badge/?via=aiwebtools', e)} className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700 font-bold rounded mb-2 gold-glow">
-                🚀 Clone This Website
-              </DropdownMenuItem>
               
               <DropdownMenuSeparator className="border-gray-700 my-3" />
               
