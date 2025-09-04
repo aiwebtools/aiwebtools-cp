@@ -25,10 +25,10 @@ const ToolsDisplay = memo(forwardRef<HTMLDivElement, ToolsDisplayProps>(
 
     // Memoize deduplication to prevent unnecessary recalculation - PRESERVE ALL TOOLS FOR "ALL AI TOOLS" CATEGORY
     const deduplicatedTools = useMemo(() => {
-      // For "ALL AI TOOLS" category, skip aggressive deduplication to preserve all legitimate tools
+      // For "ALL AI TOOLS" category, use minimal deduplication to preserve cross-category tools
       if (categoryName === "ALL AI TOOLS") {
-        console.log(`🌟 ALL AI TOOLS: Preserving all ${tools.length} tools without aggressive deduplication`);
-        return tools;
+        console.log(`🌟 ALL AI TOOLS: Using minimal deduplication for ${tools.length} tools to preserve cross-category listings`);
+        return createDeduplicatedToolsList(tools, 0);
       }
       return createDeduplicatedToolsList(tools, 8);
     }, [tools, categoryName]);
