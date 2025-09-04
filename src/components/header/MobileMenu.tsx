@@ -35,6 +35,8 @@ const MobileMenu = () => {
   
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isWeb3Open, setIsWeb3Open] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isToolsOpen, setIsToolsOpen] = useState(false);
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -296,70 +298,77 @@ const MobileMenu = () => {
               
               <DropdownMenuSeparator className="border-gray-700 mb-2" />
               
-              {/* Company & About Section - Compact */}
-              <div className="px-1 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
-                About & Company
-              </div>
-              <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.aitools.company', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
-                🏢 About AI Web Tools LLC
-              </DropdownMenuItem>
-              
-              {/* Social & External Links - Compact */}
-              <div className="px-1 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
-                Connect With Us
-              </div>
-              <DropdownMenuItem onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
-                <Trees className="w-3 h-3 mr-2" /> Linktree
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.tiktok.com/@aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
-                <Clapperboard className="w-3 h-3 mr-2" /> TikTok
-              </DropdownMenuItem>
-              
-              {/* Tools & Downloads - Compact */}
-              <div className="px-1 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
-                Tools & Downloads
-              </div>
-              <DropdownMenuItem onClick={handleDownloadAllToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
-                <Download className="w-3 h-3 mr-2" />
-                📊 Download ALL {toolStats.marketing} AI Tools (CSV)
-              </DropdownMenuItem>
-              
-              <DropdownMenuSeparator className="border-gray-700 my-2" />
-              
-              {/* Contact Section - Compact */}
-              <div className="px-1 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
-                Contact
-              </div>
-              <div className="flex items-center space-x-2 text-cyan-100 px-2 py-1 rounded hover:bg-cyan-500/20 mb-2 text-sm">
-                <Phone className="w-3 h-3" />
-                <a href="tel:+14758008096" className="hover:text-cyan-400 transition-colors">
-                  475-800-8096
-                </a>
-              </div>
-              
-              <DropdownMenuSeparator className="border-gray-700 my-2" />
-              
-              {/* Clone This Site - Gold styling - Compact */}
-              <DropdownMenuItem 
-                onClick={(e) => { 
-                  e.preventDefault();
-                  handleExternalLink("https://lovable.dev/projects/ef2fa521-638d-41cf-999c-89d3c4d5c294?utm_source=lovable-badge&via=aiwebtools", e);
-                }} 
-                className="text-yellow-100 hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-amber-500/20 mb-2 rounded flex items-center space-x-2 bg-gradient-to-r from-yellow-600/10 to-amber-600/10 border border-yellow-500/30 p-2"
-              >
-                <Copy className="w-3 h-3" />
-                <span className="font-semibold text-sm">Clone This Site</span>
-              </DropdownMenuItem>
+              {/* About & Company Accordion */}
+              <Collapsible open={isAboutOpen} onOpenChange={setIsAboutOpen}>
+                <CollapsibleTrigger 
+                  className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-2 py-1 text-sm outline-none focus:bg-cyan-500/20 transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsAboutOpen(!isAboutOpen);
+                  }}
+                >
+                  <span className="flex items-center">
+                    🏢 About & Company
+                  </span>
+                  <ChevronDown className={`w-3 h-3 ml-2 transition-transform ${isAboutOpen ? 'rotate-180' : ''}`} />
+                </CollapsibleTrigger>
+                <CollapsibleContent className="mt-1 space-y-1 pl-2">
+                  <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
+                    📖 About AI Web Tools LLC
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={(e) => handleExternalLink('https://linktr.ee/aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
+                    <Trees className="w-3 h-3 mr-2" /> Linktree
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={(e) => handleExternalLink('https://www.tiktok.com/@aiwebtools', e)} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
+                    <Clapperboard className="w-3 h-3 mr-2" /> TikTok
+                  </DropdownMenuItem>
+                  <div className="flex items-center space-x-2 text-cyan-100 px-3 py-1 rounded hover:bg-cyan-500/20 mb-2 text-sm">
+                    <Phone className="w-3 h-3" />
+                    <a href="tel:+14758008096" className="hover:text-cyan-400 transition-colors">
+                      📞 Contact: 475-800-8096
+                    </a>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
 
-              {/* Favorites - Compact */}
-              <DropdownMenuItem onClick={() => { navigate('/favorites'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded flex items-center space-x-2 text-sm">
+              {/* Tools & Downloads Accordion */}
+              <Collapsible open={isToolsOpen} onOpenChange={setIsToolsOpen}>
+                <CollapsibleTrigger 
+                  className="w-full text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center justify-between px-2 py-1 text-sm outline-none focus:bg-cyan-500/20 transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsToolsOpen(!isToolsOpen);
+                  }}
+                >
+                  <span className="flex items-center">
+                    🔧 Tools & Downloads
+                  </span>
+                  <ChevronDown className={`w-3 h-3 ml-2 transition-transform ${isToolsOpen ? 'rotate-180' : ''}`} />
+                </CollapsibleTrigger>
+                <CollapsibleContent className="mt-1 space-y-1 pl-2">
+                  <DropdownMenuItem onClick={handleDownloadAllToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
+                    <Download className="w-3 h-3 mr-2" />
+                    📊 Download ALL {toolStats.marketing} AI Tools (CSV)
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={(e) => { 
+                      e.preventDefault();
+                      handleExternalLink("https://lovable.dev/projects/ef2fa521-638d-41cf-999c-89d3c4d5c294?utm_source=lovable-badge&via=aiwebtools", e);
+                    }} 
+                    className="text-yellow-100 hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-amber-500/20 mb-2 rounded flex items-center space-x-2 bg-gradient-to-r from-yellow-600/10 to-amber-600/10 border border-yellow-500/30 p-2"
+                  >
+                    <Copy className="w-3 h-3" />
+                    <span className="font-semibold text-sm">Clone This Site</span>
+                  </DropdownMenuItem>
+                </CollapsibleContent>
+              </Collapsible>
+
+              {/* Favorites - Standalone */}
+              <DropdownMenuItem onClick={() => { navigate('/favorites'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded flex items-center space-x-2 text-sm">
                 <Heart className="w-3 h-3 fill-current text-red-500" />
                 <span>Favorites ({getFavoritesCount()})</span>
-              </DropdownMenuItem>
-              
-              {/* Our Story - Compact */}
-              <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded text-sm">
-                📖 Our Story
               </DropdownMenuItem>
               
               {/* Search Bar - Moved to bottom to prevent auto-scroll */}
