@@ -178,5 +178,18 @@ export const healthAndWellnessGPTs: Tool[] = [
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 3456
+  },
+  {
+    icon: Activity,
+    title: "Fitness Trainer GPT",
+    description: "Fitness Trainer GPT is your dedicated AI personal trainer providing customized workout routines, exercise form correction, and comprehensive fitness guidance. Whether you're a beginner starting your fitness journey or an advanced athlete looking to optimize performance, this GPT creates personalized training programs, tracks your progress, and provides expert advice on strength training, cardio, flexibility, and sports-specific conditioning. Get professional fitness coaching with detailed exercise instructions, safety tips, and motivational support.",
+    emoji: "🏋️",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://fitnesstrainergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=9vF8XjQQpS0",
+    tags: ["fitness trainer", "personal training", "workout routines", "exercise form", "strength training", "cardio", "fitness coaching", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.8,
+    totalVotes: 4512
   }
 ];
