@@ -284,6 +284,26 @@ const featuredGPTs = [
     emoji: "🌱"
   },
   {
+    title: "Geology & Rock Identification GPT",
+    description: "Geology & Rock Identification GPT is your expert AI companion for geological exploration and rock identification. This specialized tool helps geologists, students, and enthusiasts identify minerals, rocks, and geological formations through detailed analysis and visual examination.",
+    badge: "GEOLOGY",
+    color: "from-amber-500 to-orange-600",
+    features: ["Rock Identification", "Mineral Analysis", "Geological Formations", "Field Guide"],
+    directUrl: "https://chatgpt.com/g/g-689005f62df881918961b6c93ad5b19e-geology-rock-identification-gpt",
+    videoUrl: "https://youtu.be/nmRT6AOVQNg?si=bacR1az2vDwLr5H",
+    emoji: "🪨"
+  },
+  {
+    title: "Fitness Trainer GPT",
+    description: "Fitness Trainer GPT is your dedicated AI personal trainer providing customized workout routines, exercise form correction, and comprehensive fitness guidance. Whether you're a beginner or advanced athlete, get personalized training programs and expert advice.",
+    badge: "FITNESS",
+    color: "from-blue-500 to-green-600",
+    features: ["Workout Routines", "Exercise Form", "Strength Training", "Fitness Coaching"],
+    directUrl: "https://fitnesstrainergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=9vF8XjQQpS0",
+    emoji: "🏋️"
+  },
+  {
     title: "FOOD QUALITY INSPECTOR GPT",
     description: "Professional food safety and quality inspection guidance covering food safety standards, quality control, inspection procedures, and regulatory compliance.",
     badge: "FOOD SAFETY",
