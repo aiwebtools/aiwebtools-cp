@@ -3,36 +3,68 @@ import { useEffect } from 'react';
 const VideoAutoPlayController = () => {
   useEffect(() => {
     const handleVoiceSequenceComplete = () => {
-      console.log('🎬 Voice sequence complete - starting controlled video playback');
+      console.log('🎬 Voice sequence complete - starting main video only');
       
-      // Find all video embeds in the Special Services section
-      const videoEmbeds = document.querySelectorAll('.video-embed');
+      // Only auto-play the main featured video (first one in the grid)
+      const mainVideo = document.querySelector('.video-embed[data-main-video="true"]') as HTMLIFrameElement;
       
-      if (videoEmbeds.length > 0) {
-        // Start with the first video only to avoid chaos
-        const firstVideo = videoEmbeds[0] as HTMLIFrameElement;
-        const videoId = firstVideo.dataset.videoId;
-        const toolTitle = firstVideo.dataset.toolTitle;
+      if (mainVideo) {
+        const videoId = mainVideo.dataset.videoId;
+        const toolTitle = mainVideo.dataset.toolTitle;
         
-        if (videoId) {
-          console.log(`🎥 Starting video: ${toolTitle}`);
-          
-          // Update src with autoplay for just the first video
-          const newSrc = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&iv_load_policy=3&fs=1&cc_load_policy=0&playsinline=1&enablejsapi=1&origin=${window.location.origin}&vq=hd1080`;
-          firstVideo.src = newSrc;
-        }
+        console.log(`🎥 Starting main video: ${toolTitle}`);
+        
+        // Stop any other videos that might be playing
+        stopAllVideos();
+        
+        // Start the main video with autoplay
+        const newSrc = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&iv_load_policy=3&fs=1&cc_load_policy=0&playsinline=1&enablejsapi=1&origin=${window.location.origin}&vq=hd1080`;
+        mainVideo.src = newSrc;
       }
     };
 
-    // Listen for the voice sequence completion event
+    const stopAllVideos = () => {
+      const allVideos = document.querySelectorAll('.video-embed') as NodeListOf<HTMLIFrameElement>;
+      allVideos.forEach((video) => {
+        const videoId = video.dataset.videoId;
+        if (videoId && video.src.includes('autoplay=1')) {
+          // Reset to non-autoplay version
+          const newSrc = `https://www.youtube-nocookie.com/embed/${videoId}?controls=1&rel=0&modestbranding=1&iv_load_policy=3&fs=1&cc_load_policy=0&playsinline=1&enablejsapi=1&origin=${window.location.origin}&vq=hd1080`;
+          video.src = newSrc;
+        }
+      });
+    };
+
+    // Global event listener to stop other videos when one starts
+    const handleVideoClick = (event: Event) => {
+      const clickedVideo = event.target as HTMLIFrameElement;
+      if (clickedVideo.classList.contains('video-embed')) {
+        setTimeout(() => {
+          const allVideos = document.querySelectorAll('.video-embed') as NodeListOf<HTMLIFrameElement>;
+          allVideos.forEach((video) => {
+            if (video !== clickedVideo) {
+              const videoId = video.dataset.videoId;
+              if (videoId) {
+                const newSrc = `https://www.youtube-nocookie.com/embed/${videoId}?controls=1&rel=0&modestbranding=1&iv_load_policy=3&fs=1&cc_load_policy=0&playsinline=1&enablejsapi=1&origin=${window.location.origin}&vq=hd1080`;
+                video.src = newSrc;
+              }
+            }
+          });
+        }, 100);
+      }
+    };
+
+    // Listen for voice sequence completion and video interactions
     window.addEventListener('voiceSequenceComplete', handleVoiceSequenceComplete);
+    document.addEventListener('click', handleVideoClick);
 
     return () => {
       window.removeEventListener('voiceSequenceComplete', handleVoiceSequenceComplete);
+      document.removeEventListener('click', handleVideoClick);
     };
   }, []);
 
-  return null; // This component only handles logic
+  return null;
 };
 
 export default VideoAutoPlayController;

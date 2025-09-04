@@ -772,6 +772,7 @@ const OurFeaturedSection = () => {
                         allowFullScreen
                         data-video-id={getVideoId(tool.videoUrl)}
                         data-tool-title={tool.title}
+                        data-main-video={index === 0 ? "true" : "false"}
                       />
                     </div>
                   ) : tool.imageUrl ? (
