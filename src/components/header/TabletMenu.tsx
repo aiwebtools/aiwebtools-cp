@@ -384,7 +384,7 @@ const TabletMenu = () => {
                 </DropdownMenuItem>
                 
                 {/* Clone Website Button */}
-                <DropdownMenuItem onClick={(e) => { e.preventDefault(); createTimePortalEffect('https://lovable.dev/projects/2a39347d-b5b4-4ed5-985a-be0d4b766eb2?utm_source=lovable-badge/?via=aiwebtools'); }} className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700 font-bold rounded my-2 gold-glow">
+                <DropdownMenuItem onClick={(e) => { e.preventDefault(); createTimePortalEffect('https://lovable.dev/projects/62f3361a-cf19-4d84-aec6-e34d98aefe41?utm_source=lovable-badge/?via=aiwebtools'); }} className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700 font-bold rounded my-2 gold-glow">
                   🚀 CLONE THE AIWEBTOOLS.AI WEBSITE
                 </DropdownMenuItem>
               </div>
