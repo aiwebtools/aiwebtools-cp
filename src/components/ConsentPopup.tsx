@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { AlertTriangle, Check, Sparkles, Shield, Volume2 } from "lucide-react";
+import { AlertTriangle, Check, Sparkles, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const ConsentPopup = () => {
   const [showConsent, setShowConsent] = useState(false);
-  const [isVoiceEnabled, setIsVoiceEnabled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -22,14 +21,7 @@ const ConsentPopup = () => {
       if (!isMobile) {
         // Only show popup on desktop
         setShowConsent(true);
-        // Enable voice for desktop devices
-        if ('speechSynthesis' in window) {
-          setIsVoiceEnabled(true);
-          // Speak welcome message after a short delay
-          setTimeout(() => {
-            speakWelcomeMessage();
-          }, 1000);
-        }
+        // Voice now handled by WelcomeVoiceSystem when user accepts
       }
     }
 
@@ -38,92 +30,27 @@ const ConsentPopup = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const speakWelcomeMessage = () => {
-    // Check for speech synthesis support and ensure we're on desktop
-    if (!('speechSynthesis' in window) || isMobile) return;
-    
-    try {
-      // Cancel any ongoing speech
-      window.speechSynthesis.cancel();
-      
-      // Wait for voices to load
-      const speak = () => {
-        const utterance = new SpeechSynthesisUtterance(
-          "Welcome to AI Web Tools! Please review our important guidelines before continuing. You must be 21 or older to access our platform."
-        );
-        
-        // Configure voice settings for robot-like sound
-        utterance.rate = 0.8;
-        utterance.pitch = 0.7;
-        utterance.volume = 0.8;
-        utterance.lang = 'en-US';
-        
-        // Enhanced voice selection for better robot effect
-        const voices = window.speechSynthesis.getVoices();
-        const robotVoice = voices.find(voice => 
-          voice.name.toLowerCase().includes('male') || 
-          voice.name.toLowerCase().includes('alex') ||
-          voice.name.toLowerCase().includes('daniel') ||
-          voice.name.toLowerCase().includes('fred') ||
-          voice.name.toLowerCase().includes('google')
-        );
-        
-        if (robotVoice) {
-          utterance.voice = robotVoice;
-        }
-        
-        // Add error handling
-        utterance.onerror = (e) => {
-          console.log('🔇 Speech synthesis error:', e.error);
-        };
-        
-        utterance.onstart = () => {
-          console.log('🤖 Robot voice started');
-        };
-        
-        window.speechSynthesis.speak(utterance);
-      };
-      
-      // Handle voices loading
-      if (window.speechSynthesis.getVoices().length === 0) {
-        window.speechSynthesis.addEventListener('voiceschanged', speak, { once: true });
-      } else {
-        speak();
-      }
-      
-    } catch (error) {
-      console.log('🔇 Speech synthesis not available:', error);
-    }
-  };
-
-  const toggleVoice = () => {
-    if (!('speechSynthesis' in window) || isMobile) return;
-    
-    try {
-      if (window.speechSynthesis.speaking) {
-        window.speechSynthesis.cancel();
-      } else {
-        speakWelcomeMessage();
-      }
-    } catch (error) {
-      console.log('🔇 Voice toggle error:', error);
-    }
-  };
+  // Voice functionality now handled entirely by WelcomeVoiceSystem component
 
   const handleAccept = () => {
-    console.log('🌀 User accepting consent - initiating time warp entry...');
+    console.log('🎯 CONSENT ACCEPTED - Triggering EPIC Welcome Voice Sequence!');
+    
     // Stop any ongoing speech
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
     }
     
-    // Simple acceptance without any voice
     localStorage.setItem('aitools-consent-seen', 'true');
     
     // Create time portal effect for desktop only
     if (!isMobile) {
       createTimePortalEffect('', 'AI Tools Consent Portal');
     }
+    
+    // Trigger the welcome voice system
+    const triggerEvent = new CustomEvent('triggerWelcomeVoice');
+    window.dispatchEvent(triggerEvent);
+    console.log('📢 Dispatched triggerWelcomeVoice event');
     
     // Adaptive delay based on device
     setTimeout(() => {
@@ -138,16 +65,7 @@ const ConsentPopup = () => {
     <div className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-4 md:p-6">
       <div className="bg-gradient-to-br from-slate-800 via-gray-800 to-black border-2 border-cyan-400/80 rounded-xl p-4 md:p-6 w-full max-w-sm md:max-w-lg shadow-2xl shadow-cyan-400/50 animate-scale-in relative overflow-hidden backdrop-blur-sm max-h-[90vh] overflow-y-auto">
         
-        {/* Voice Toggle Button */}
-        {isVoiceEnabled && (
-          <button
-            onClick={toggleVoice}
-            className="absolute top-3 right-3 p-2 bg-cyan-500/20 hover:bg-cyan-500/30 rounded-full transition-colors z-10"
-            aria-label="Toggle voice"
-          >
-            <Volume2 className="w-4 h-4 md:w-5 md:h-5 text-cyan-400" />
-          </button>
-        )}
+        {/* Voice toggle removed - voice now handled by WelcomeVoiceSystem */}
         
         {/* Enhanced animated background pattern for mobile visibility */}
         <div className="absolute inset-0 opacity-20">

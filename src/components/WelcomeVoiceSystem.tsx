@@ -49,10 +49,10 @@ const WelcomeVoiceSystem = () => {
         const voices = speechSynthesis.getVoices();
         console.log(`🗣️ Found ${voices.length} voices`);
         
-        // Create first message: "WELCOME MASTER" - EPIC ROBOTIC INTRO
+        // Create first message: "WELCOME MASTER" - EPIC AOL-STYLE INTRO
         const welcomeMsg = new SpeechSynthesisUtterance("WELCOME MASTER");
-        welcomeMsg.rate = 0.6; // Faster for more impact and authority
-        welcomeMsg.pitch = 0.3; // Low but not too deep for better clarity and epicness
+        welcomeMsg.rate = 0.4; // Much slower for epic, mystical AOL-style login experience
+        welcomeMsg.pitch = 0.2; // Very low pitch for commanding, destiny-like presence
         welcomeMsg.volume = 1.0; // Maximum volume for commanding presence
         
         // Enhanced voice selection for EPIC quality
@@ -91,10 +91,10 @@ const WelcomeVoiceSystem = () => {
           console.log('🎭 Using default voice for WELCOME MASTER');
         }
         
-        // Create second message: "YOU'VE GOT TOOLS" - Energetic announcement
+        // Create second message: "YOU'VE GOT TOOLS" - EPIC AOL-style destiny announcement
         const toolsMsg = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS");
-        toolsMsg.rate = 1.0; // Normal speed for clarity and excitement
-        toolsMsg.pitch = 1.4; // Higher pitch for energy and contrast
+        toolsMsg.rate = 0.5; // Slower for mystical, destiny-revealing experience
+        toolsMsg.pitch = 1.2; // Moderately higher pitch for contrast but still mystical
         toolsMsg.volume = 1.0; // Full volume for impact
         
         // Find female voice for AOL-style announcement - prioritize quality
@@ -132,21 +132,39 @@ const WelcomeVoiceSystem = () => {
           console.log('📬 Using default voice (no female voice found)');
         }
         
-        // Set up sequence timing with proper synchronization
-        welcomeMsg.onstart = () => console.log('🤖 Playing: "WELCOME MASTER"');
-        welcomeMsg.onend = () => {
-          console.log('✅ Welcome message complete, preparing tools message...');
-          // Wait for welcome to fully complete before starting tools message
-          setTimeout(() => {
-            console.log('📬 Starting: "YOU\'VE GOT TOOLS"');
-            speechSynthesis.speak(toolsMsg);
-          }, 800); // Proper pause between messages
+        // Set up sequence timing with proper synchronization and detailed logging
+        welcomeMsg.onstart = () => {
+          console.log('🎬 🤖 VOICE LOG: Playing "WELCOME MASTER" - Epic AOL-style entry');
+          console.log('🎛️ Voice settings:', {
+            rate: welcomeMsg.rate,
+            pitch: welcomeMsg.pitch,
+            volume: welcomeMsg.volume,
+            voice: welcomeMsg.voice?.name || 'default'
+          });
         };
         
-        toolsMsg.onstart = () => console.log('📬 Playing: "YOU\'VE GOT TOOLS" (AOL-style)');
+        welcomeMsg.onend = () => {
+          console.log('✅ 🤖 VOICE LOG: "WELCOME MASTER" complete - preparing destiny revelation...');
+          // Wait for welcome to fully complete before starting tools message - longer pause for epic effect
+          setTimeout(() => {
+            console.log('🎬 📬 VOICE LOG: Starting "YOU\'VE GOT TOOLS" - The destiny is revealed');
+            speechSynthesis.speak(toolsMsg);
+          }, 1200); // Longer pause for more mystical, destiny-like experience
+        };
+        
+        toolsMsg.onstart = () => {
+          console.log('🎬 📬 VOICE LOG: Playing "YOU\'VE GOT TOOLS" - AOL-style destiny announcement');
+          console.log('🎛️ Voice settings:', {
+            rate: toolsMsg.rate,
+            pitch: toolsMsg.pitch,
+            volume: toolsMsg.volume,
+            voice: toolsMsg.voice?.name || 'default'
+          });
+        };
+        
         toolsMsg.onend = () => {
-          console.log('🎉 Welcome sequence complete - no overlapping voices!');
-          // Voice system is now complete and won't interfere with video
+          console.log('🎉 ✨ VOICE LOG: EPIC Welcome sequence complete - User has entered the destiny of AI tools!');
+          console.log('🔇 No more voices will play - video can now proceed without interference');
         };
         
         // Comprehensive error handling
@@ -252,75 +270,67 @@ const WelcomeVoiceSystem = () => {
   };
 
   useEffect(() => {
-    // AGGRESSIVE: Reset global flag on every page load for consistent experience
+    // Reset global flag on every page load for consistent experience
     globalVoicePlayed = false;
     
-    // Only play once per page load - prevent multiple voice overlaps
-    if (hasPlayed) {
-      console.log('🔄 Voice already played for this page load');
-      return;
-    }
-
-    console.log('🎬 EPIC VOICE SYSTEM: Setting up WELCOME MASTER sequence');
+    console.log('🎬 EPIC VOICE SYSTEM: Waiting for consent acceptance to trigger WELCOME MASTER sequence');
     
-    const isMobile = isMobileDevice();
-    
-    // IMMEDIATE TRIGGER: Start voice system faster for better experience
-    const delay = isMobile ? 1000 : 500; // Faster on desktop, reasonable on mobile
-    
-    const timer = setTimeout(() => {
-      console.log('🚀 EPIC INTRO: Starting WELCOME MASTER sequence');
-      initializeVoices();
-    }, delay);
-    
-    // ENHANCED: Multiple trigger methods for universal compatibility
-    const handleUserInteraction = () => {
-      if (hasPlayed || globalVoicePlayed) return; // Prevent multiple triggers
+    // Listen for the consent acceptance trigger
+    const handleConsentTrigger = () => {
+      if (hasPlayed || globalVoicePlayed) {
+        console.log('🔄 Voice already played, skipping consent trigger');
+        return;
+      }
       
-      console.log('👆 User interaction detected - EPIC VOICE STARTING');
-      clearTimeout(timer);
+      console.log('🎯 CONSENT TRIGGER RECEIVED: Starting EPIC AOL-style Welcome sequence!');
       
-      // Immediate voice trigger on interaction
+      // Small delay to let consent popup close
       setTimeout(() => {
         initializeVoices();
-      }, 200); // Much faster response
-      
-      // Remove listeners after first interaction
-      document.removeEventListener('click', handleUserInteraction);
-      document.removeEventListener('touchstart', handleUserInteraction);
-      document.removeEventListener('touchend', handleUserInteraction);
-      document.removeEventListener('keydown', handleUserInteraction);
-      document.removeEventListener('scroll', handleUserInteraction);
-      document.removeEventListener('mousemove', handleUserInteraction);
+      }, 500);
     };
     
-    // COMPREHENSIVE: Add ALL possible interaction listeners
-    document.addEventListener('click', handleUserInteraction, { once: true });
-    document.addEventListener('touchstart', handleUserInteraction, { passive: true, once: true });
-    document.addEventListener('touchend', handleUserInteraction, { passive: true, once: true });
-    document.addEventListener('keydown', handleUserInteraction, { once: true });
-    document.addEventListener('scroll', handleUserInteraction, { passive: true, once: true });
-    document.addEventListener('mousemove', handleUserInteraction, { passive: true, once: true });
+    // Listen for the custom event from consent popup
+    window.addEventListener('triggerWelcomeVoice', handleConsentTrigger);
     
-    // FALLBACK: Ensure voice plays even without interaction after reasonable time
-    const fallbackTimer = setTimeout(() => {
-      if (!hasPlayed && !globalVoicePlayed) {
-        console.log('🔄 FALLBACK: Triggering EPIC voice sequence automatically');
-        initializeVoices();
-      }
-    }, 5000); // 5 seconds fallback
+    // For users who have already accepted consent, trigger on interaction
+    const hasSeenConsent = localStorage.getItem('aitools-consent-seen');
+    if (hasSeenConsent) {
+      console.log('🔄 User has already seen consent, setting up interaction triggers');
+      
+      const handleUserInteraction = () => {
+        if (hasPlayed || globalVoicePlayed) return;
+        
+        console.log('👆 User interaction detected - EPIC VOICE STARTING (no consent needed)');
+        
+        setTimeout(() => {
+          initializeVoices();
+        }, 200);
+        
+        // Remove listeners after first interaction
+        document.removeEventListener('click', handleUserInteraction);
+        document.removeEventListener('touchstart', handleUserInteraction);
+        document.removeEventListener('keydown', handleUserInteraction);
+      };
+      
+      // Add interaction listeners for returning users
+      document.addEventListener('click', handleUserInteraction, { once: true });
+      document.addEventListener('touchstart', handleUserInteraction, { passive: true, once: true });
+      document.addEventListener('keydown', handleUserInteraction, { once: true });
+      
+      // Cleanup function
+      return () => {
+        window.removeEventListener('triggerWelcomeVoice', handleConsentTrigger);
+        document.removeEventListener('click', handleUserInteraction);
+        document.removeEventListener('touchstart', handleUserInteraction);
+        document.removeEventListener('keydown', handleUserInteraction);
+      };
+    }
     
     return () => {
-      clearTimeout(timer);
-      clearTimeout(fallbackTimer);
-      document.removeEventListener('click', handleUserInteraction);
-      document.removeEventListener('touchstart', handleUserInteraction);
-      document.removeEventListener('touchend', handleUserInteraction);
-      document.removeEventListener('keydown', handleUserInteraction);
-      document.removeEventListener('scroll', handleUserInteraction);
-      document.removeEventListener('mousemove', handleUserInteraction);
+      window.removeEventListener('triggerWelcomeVoice', handleConsentTrigger);
     };
-  }, []); // Remove hasPlayed dependency to allow fresh starts
+  }, []);
 
   // This component renders nothing - it's just for voice functionality
   return null;
