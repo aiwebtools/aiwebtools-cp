@@ -51,8 +51,13 @@ const GlobalSearchResults = ({
       <Card 
         ref={scrollRef}
         data-scroll-container
-        className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[999] max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
+        className="absolute top-full left-0 right-0 mt-2 bg-black/95 border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[9999] max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
         onScroll={onScroll}
+        style={{
+          backdropFilter: 'blur(20px)',
+          position: 'absolute',
+          zIndex: 9999
+        }}
       >
       <CardContent className="p-0" style={{ transform: 'translateZ(0)' }}>
         <div className="p-2 pt-4" style={{ transform: 'translateZ(0)' }}>

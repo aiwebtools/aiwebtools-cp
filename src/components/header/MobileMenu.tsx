@@ -196,25 +196,38 @@ const MobileMenu = () => {
                 <p className="text-xs text-cyan-200/80">Quick Navigation & Search</p>
               </div>
 
-              {/* Ultra-Fast Hero Search Bar - EXACT SAME AS HERO */}
-              <div className="mb-4">
+              {/* Ultra-Fast Hero Search Bar - EXACT SAME AS HERO - Fixed positioning */}
+              <div className="mb-4 relative" style={{ zIndex: 10000 }}>
                 <GlobalSearchBar />
               </div>
 
-              {/* Navigation Section */}
-              <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-3 rounded-lg h-12 text-sm font-medium px-3">
-                <span className="mr-3 text-lg">🏠</span> Home
-              </DropdownMenuItem>
-              
-              {/* Browse Categories - Featured */}
-              <DropdownMenuItem
-                onClick={handleBrowseAITools}
-                className="text-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 font-bold mb-4 rounded-xl p-4 text-base shadow-xl shadow-cyan-500/30 border border-cyan-400/50 transition-all duration-200"
-              >
-                <span className="mr-2 text-lg">🎯</span> Browse AI Tool Categories
-              </DropdownMenuItem>
-              
-              <DropdownMenuSeparator className="border-gray-700 mb-2" />
+              {/* Compact Navigation Accordions */}
+              <div className="space-y-1">
+                {/* Quick Actions Accordion */}
+                <Collapsible>
+                  <CollapsibleTrigger asChild>
+                    <Button variant="ghost" className="w-full justify-between text-cyan-100 hover:bg-cyan-500/20 rounded-lg h-9 text-sm font-medium px-3">
+                      <span className="flex items-center">
+                        <span className="mr-2 text-base">⚡</span> Quick Actions
+                      </span>
+                      <ChevronDown className="h-3 w-3" />
+                    </Button>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="space-y-1 pt-1">
+                    <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded-lg h-9 text-sm font-medium px-3 ml-4">
+                      <span className="mr-2 text-base">🏠</span> Home
+                    </DropdownMenuItem>
+                    <div className="ml-4">
+                      <DropdownMenuItem
+                        onClick={handleBrowseAITools}
+                        className="text-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 font-medium rounded-lg p-2 text-sm shadow-lg"
+                      >
+                        <span className="mr-2 text-base">🎯</span> Browse AI Tools
+                      </DropdownMenuItem>
+                    </div>
+                  </CollapsibleContent>
+                </Collapsible>
+              </div>
                 
               {/* WEB3 Domains Section - MOVED UP FOR PRIORITY */}
               <div className="px-1 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
