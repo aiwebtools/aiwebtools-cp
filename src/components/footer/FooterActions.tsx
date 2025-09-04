@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Plus, Search, Download } from "lucide-react";
+import { allTools } from "@/data/toolsData";
 
 interface FooterActionsProps {
   handleExternalLink: (url: string, e: React.MouseEvent) => void;
@@ -18,9 +19,63 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
     handleExternalLink('https://www.aitools.company', e);
   };
 
+  // Complete CSV download with all tools from our database
   const handleDownloadAIList = (e: React.MouseEvent) => {
     e.preventDefault();
-    handleExternalLink('https://docs.google.com/document/d/e/2PACX-1vQW1HCKPrEDguchQct7UnoxPg-DW84Q6fKWFbF7IIygEPaNJnQn-N0h8yVD_FzxZg/pub', e);
+    try {
+      console.log(`📊 Generating complete CSV with ${allTools.length} tools...`);
+      
+      const headers = [
+        "Title", 
+        "Category", 
+        "URL", 
+        "Description", 
+        "Emoji", 
+        "Tags", 
+        "Rating", 
+        "Total Votes",
+        "Color Scheme",
+        "Pricing"
+      ];
+      
+      const rows = allTools.map((tool) => [
+        tool.title || "",
+        tool.category || "",
+        tool.directUrl || "",
+        tool.description || "",
+        tool.emoji || "",
+        (tool.tags || []).join("; "),
+        tool.rating?.toString() || "",
+        tool.totalVotes?.toString() || "",
+        tool.color || "",
+        (tool.tags || []).find(tag => 
+          tag.toLowerCase().includes('free') || 
+          tag.toLowerCase().includes('premium') || 
+          tag.toLowerCase().includes('freemium')
+        ) || "Not specified"
+      ]);
+      
+      const escapeCSV = (val: string) => `"${(val || "").replace(/"/g, '""')}"`;
+      const csv = [headers, ...rows]
+        .map((r) => r.map((c) => escapeCSV(String(c))).join(","))
+        .join("\n");
+
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `ai-tools-complete-database-${allTools.length}-tools-${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      console.log(`✅ CSV download complete! ${allTools.length} tools exported from complete database`);
+    } catch (err) {
+      console.error("Failed to generate CSV:", err);
+      // Fallback to external link if CSV generation fails
+      handleExternalLink('https://docs.google.com/document/d/e/2PACX-1vQW1HCKPrEDguchQct7UnoxPg-DW84Q6fKWFbF7IIygEPaNJnQn-N0h8yVD_FzxZg/pub', e);
+    }
   };
 
   return (
@@ -36,7 +91,7 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           className="w-full sm:w-auto sm:min-w-[240px] px-8 sm:px-10 leading-snug"
         >
           <Download className="mr-2 h-5 w-5" />
-          DOWNLOAD 1000+ AI TOOLS (FREE)
+          DOWNLOAD {allTools.length}+ AI TOOLS (FREE CSV)
         </Button>
         
         <Button
