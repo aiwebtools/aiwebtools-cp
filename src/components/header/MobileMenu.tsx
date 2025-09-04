@@ -182,10 +182,7 @@ const MobileMenu = () => {
                 <p className="text-xs text-cyan-200/80">Quick Navigation & Search</p>
               </div>
 
-              {/* Ultra-Fast Hero Search Bar - EXACT SAME AS HERO */}
-              <div className="mb-4">
-                <GlobalSearchBar />
-              </div>
+              {/* Search moved to bottom after user feedback */}
 
               {/* Navigation Section */}
               <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-3 rounded-lg h-12 text-sm font-medium px-3">
@@ -364,6 +361,12 @@ const MobileMenu = () => {
               <DropdownMenuItem onClick={() => { navigate('/our-story'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded text-sm">
                 📖 Our Story
               </DropdownMenuItem>
+              
+              {/* Search Bar - Moved to bottom to prevent auto-scroll */}
+              <div className="mb-4 mt-4 border-t border-cyan-500/30 pt-4">
+                <div className="text-xs text-cyan-400 mb-2">🔍 Search AI Tools</div>
+                <GlobalSearchBar />
+              </div>
               
               {/* Close Button */}
               <div className="flex justify-center pt-2">
