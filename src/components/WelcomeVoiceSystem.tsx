@@ -61,59 +61,57 @@ const WelcomeVoiceSystem = () => {
         const voices = speechSynthesis.getVoices();
         console.log(`🗣️ Found ${voices.length} voices`);
         
-        // ===== PHASE 1: MYSTICAL WELCOMING "WELCOME MASTER" =====
+        // ===== PHASE 1: DARK GROWL POWER "WELCOME MASTER" =====
         const welcomeMsg = new SpeechSynthesisUtterance("WELCOME MASTER");
-        welcomeMsg.rate = 0.6; // Slower but not too slow - mystical yet welcoming pace
-        welcomeMsg.pitch = 0.4; // Lower but with warmth - mystical yet welcoming
+        welcomeMsg.rate = 0.4; // Slow for dramatic power
+        welcomeMsg.pitch = 0.1; // Very low pitch for dark growl power
         welcomeMsg.volume = 1.0; // Maximum volume for commanding presence
         
-        // ENHANCED MYSTICAL WELCOMING VOICE SELECTION
-        const findMysticalWelcomingVoice = () => {
-          // Priority 1: Find warm, rich, mystical male voices
-          let mysticalVoice = voices.find(v => {
+        // ENHANCED DARK GROWL POWER VOICE SELECTION
+        const findDarkGrowlVoice = () => {
+          // Priority 1: Find the deepest, most powerful male voices
+          let powerVoice = voices.find(v => {
             const name = v.name.toLowerCase();
             const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
             return isEnglish && (
-              // Target warm, rich voices with emotional depth
-              name.includes('alex') || name.includes('daniel') || name.includes('david') ||
-              name.includes('tom') || name.includes('ryan') || name.includes('nathan') ||
-              name.includes('aaron') || name.includes('arthur') || name.includes('gordon') ||
-              // Premium voices known for warmth
-              name.includes('microsoft david desktop') || name.includes('google uk english male') ||
-              name.includes('enhanced') || name.includes('premium') || name.includes('natural')
+              // Target the deepest, most powerful voices
+              name.includes('fred') || name.includes('albert') || name.includes('bruce') ||
+              name.includes('gordon') || name.includes('ralph') || name.includes('nathan') ||
+              name.includes('microsoft david') || name.includes('google uk english male') ||
+              name.includes('deep') || name.includes('bass') || name.includes('low')
             );
           });
           
-          // Priority 2: Any warm English male voice
-          if (!mysticalVoice) {
-            mysticalVoice = voices.find(v => {
+          // Priority 2: Any deep commanding male voice
+          if (!powerVoice) {
+            powerVoice = voices.find(v => {
               const name = v.name.toLowerCase();
               const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
               return isEnglish && (
                 name.includes('male') || name.includes('man') ||
-                (name.includes('david') || name.includes('alex') || name.includes('daniel') || name.includes('tom'))
+                (name.includes('david') || name.includes('alex') || name.includes('daniel')) &&
+                !name.includes('female') && !name.includes('high')
               );
             });
           }
           
-          // Priority 3: Any quality English voice with depth
-          if (!mysticalVoice) {
-            mysticalVoice = voices.find(v => {
+          // Priority 3: Any non-female English voice for power
+          if (!powerVoice) {
+            powerVoice = voices.find(v => {
               const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
-              const name = v.name.toLowerCase();
-              return isEnglish && !name.includes('female') && !name.includes('high');
+              return isEnglish && !v.name.toLowerCase().includes('female');
             });
           }
           
-          return mysticalVoice;
+          return powerVoice;
         };
         
-        const mysticalVoice = findMysticalWelcomingVoice();
-        if (mysticalVoice) {
-          welcomeMsg.voice = mysticalVoice;
-          console.log('🧙‍♂️ Selected MYSTICAL WELCOMING voice:', mysticalVoice.name, 'Lang:', mysticalVoice.lang);
+        const darkGrowlVoice = findDarkGrowlVoice();
+        if (darkGrowlVoice) {
+          welcomeMsg.voice = darkGrowlVoice;
+          console.log('👹 Selected DARK GROWL POWER voice:', darkGrowlVoice.name, 'Lang:', darkGrowlVoice.lang);
         } else {
-          console.log('🧙‍♂️ Using default voice for MYSTICAL WELCOME (no suitable voice found)');
+          console.log('👹 Using default voice for DARK GROWL POWER (no suitable voice found)');
         }
         
         // ===== PHASE 2: BELL SOUND PREPARATION =====
@@ -142,95 +140,92 @@ const WelcomeVoiceSystem = () => {
             
             console.log('🔔 BELL SOUND played successfully');
             
-            // After bell, start British lady voice
+            // After bell, start classic AOL voice
             setTimeout(() => {
-              playBritishLadyVoice();
+              playAOLVoice();
             }, 1200); // Wait for bell to finish
             
           } catch (error) {
             console.log('🔔 Bell sound failed, proceeding to British voice:', error);
-            // Fallback: proceed without bell
+            // Fallback: proceed without bell to AOL voice
             setTimeout(() => {
-              playBritishLadyVoice();
+              playAOLVoice();
             }, 800);
           }
         };
         
-        // ===== PHASE 3: STABLE NATURAL AOL LADY "YOU'VE GOT TOOLS!" =====
-        const playBritishLadyVoice = () => {
-          console.log('🇬🇧 Starting STABLE NATURAL AOL lady voice...');
+        // ===== PHASE 3: CLASSIC AOL "YOU'VE GOT TOOLS!" =====
+        const playAOLVoice = () => {
+          console.log('📬 Starting CLASSIC AOL notification voice...');
           
           const toolsMsg = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS!");
-          toolsMsg.rate = 0.9; // Natural speaking pace for stability and clarity
-          toolsMsg.pitch = 1.1; // Natural female pitch - not too high, more stable
-          toolsMsg.volume = 1.0; // Full volume for AOL-style impact
+          toolsMsg.rate = 1.1; // Slightly faster for that excited AOL notification feel
+          toolsMsg.pitch = 1.4; // Higher pitch for that classic AOL cheerful excitement
+          toolsMsg.volume = 1.0; // Full volume for that classic notification impact
           
-          // ENHANCED STABLE NATURAL FEMALE VOICE SELECTION
-          const findStableNaturalVoice = () => {
-            // Priority 1: High-quality, stable female voices (any English)
-            let stableVoice = voices.find(v => {
+          // ENHANCED CLASSIC AOL VOICE SELECTION
+          const findClassicAOLVoice = () => {
+            // Priority 1: Find excited, cheerful female voices (like classic AOL)
+            let aolVoice = voices.find(v => {
               const name = v.name.toLowerCase();
               const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
               
               return isEnglish && (
-                // Target most stable, natural female voices
-                name.includes('samantha') || name.includes('susan') || name.includes('karen') ||
-                name.includes('anna') || name.includes('catherine') || name.includes('sarah') ||
+                // Target bright, cheerful, clear female voices
+                name.includes('samantha') || name.includes('karen') || name.includes('sarah') ||
                 name.includes('jessica') || name.includes('michelle') || name.includes('amy') ||
-                name.includes('emma') || name.includes('victoria') || name.includes('elizabeth') ||
-                // Platform-specific high-quality voices
+                name.includes('anna') || name.includes('kate') || name.includes('emma') ||
+                name.includes('victoria') || name.includes('elizabeth') || name.includes('susan') ||
+                // Platform-specific clear voices
                 name.includes('microsoft zira') || name.includes('google us english female') ||
-                name.includes('enhanced') || name.includes('premium') || name.includes('natural')
+                name.includes('enhanced') || name.includes('premium') || name.includes('clear')
               );
             });
             
-            // Priority 2: British English female voices (if available)
-            if (!stableVoice) {
-              stableVoice = voices.find(v => {
-                const name = v.name.toLowerCase();
-                const lang = v.lang ? v.lang.toLowerCase() : '';
-                
-                return (lang.includes('en-gb') || lang.includes('gb') || lang.includes('uk')) && 
-                       (name.includes('female') || name.includes('woman') || 
-                        name.includes('kate') || name.includes('serena') || name.includes('emma') ||
-                        name.includes('fiona') || name.includes('hazel') || name.includes('susan'));
-              });
-            }
-            
-            // Priority 3: Any stable English female voice
-            if (!stableVoice) {
-              stableVoice = voices.find(v => {
+            // Priority 2: Any clear, energetic female voice
+            if (!aolVoice) {
+              aolVoice = voices.find(v => {
                 const name = v.name.toLowerCase();
                 const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
                 return isEnglish && (name.includes('female') || name.includes('woman')) &&
-                       !name.includes('robot') && !name.includes('synthetic');
+                       !name.includes('robot') && !name.includes('monotone') && !name.includes('low');
               });
             }
             
-            // Priority 4: Any quality female voice
-            if (!stableVoice) {
-              stableVoice = voices.find(v => {
+            // Priority 3: US English female voices specifically
+            if (!aolVoice) {
+              aolVoice = voices.find(v => {
+                const lang = v.lang ? v.lang.toLowerCase() : '';
                 const name = v.name.toLowerCase();
-                return name.includes('female') || name.includes('woman') ||
-                       name.includes('samantha') || name.includes('karen') || name.includes('susan');
+                return (lang.includes('en-us') || lang.includes('us')) && 
+                       (name.includes('female') || name.includes('woman'));
               });
             }
             
-            return stableVoice;
+            // Priority 4: Any English female voice
+            if (!aolVoice) {
+              aolVoice = voices.find(v => {
+                const name = v.name.toLowerCase();
+                const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
+                return isEnglish && (name.includes('female') || name.includes('woman'));
+              });
+            }
+            
+            return aolVoice;
           };
           
-          const stableVoice = findStableNaturalVoice();
-          if (stableVoice) {
-            toolsMsg.voice = stableVoice;
-            console.log('🎭 Selected STABLE NATURAL AOL voice:', stableVoice.name, 'Lang:', stableVoice.lang);
+          const classicAOLVoice = findClassicAOLVoice();
+          if (classicAOLVoice) {
+            toolsMsg.voice = classicAOLVoice;
+            console.log('📬 Selected CLASSIC AOL voice:', classicAOLVoice.name, 'Lang:', classicAOLVoice.lang);
           } else {
-            console.log('🎭 Using default voice for AOL LADY (no suitable voice found)');
+            console.log('📬 Using default voice for CLASSIC AOL (no suitable voice found)');
           }
           
-          // AOL lady voice events
+          // Classic AOL voice events
           toolsMsg.onstart = () => {
-            console.log('🎬 🎭 VOICE LOG: Playing "YOU\'VE GOT TOOLS!" - STABLE NATURAL AOL-style');
-            console.log('🎛️ Stable AOL Voice settings:', {
+            console.log('🎬 📬 VOICE LOG: Playing "YOU\'VE GOT TOOLS!" - CLASSIC AOL Notification Style');
+            console.log('🎛️ Classic AOL Voice settings:', {
               rate: toolsMsg.rate,
               pitch: toolsMsg.pitch,
               volume: toolsMsg.volume,
@@ -240,7 +235,7 @@ const WelcomeVoiceSystem = () => {
           
           toolsMsg.onend = () => {
             console.log('🎉 ✨ VOICE LOG: EPIC Welcome sequence COMPLETE - All phases successful!');
-            console.log('🏁 MYSTICAL WELCOME → BELL → STABLE AOL sequence finished - User entered AI destiny!');
+            console.log('🏁 DARK GROWL → BELL → CLASSIC AOL sequence finished - User entered AI destiny!');
             console.log('🔓 Unlocking voice system after successful completion');
             
             // Reset in-progress flag since sequence completed successfully
@@ -254,7 +249,7 @@ const WelcomeVoiceSystem = () => {
           
           // Error handling for British voice
           toolsMsg.onerror = (e) => {
-            console.log('❌ Stable AOL lady voice error:', e);
+            console.log('❌ Classic AOL voice error:', e);
             console.log('✅ Voice sequence completed (with error)');
             console.log('🔓 Unlocking voice system after error');
             
@@ -266,17 +261,17 @@ const WelcomeVoiceSystem = () => {
             window.dispatchEvent(voiceCompleteEvent);
           };
           
-          // Start stable AOL lady voice
-          console.log('🎭 Speaking: "YOU\'VE GOT TOOLS!" (Stable Natural AOL Lady)');
+          // Start classic AOL voice
+          console.log('📬 Speaking: "YOU\'VE GOT TOOLS!" (Classic AOL Notification)');
           speechSynthesis.speak(toolsMsg);
         };
         
         // ===== START THE SEQUENCE =====
         
-        // Mystical welcome voice events
+        // Dark growl power voice events
         welcomeMsg.onstart = () => {
-          console.log('🎬 🧙‍♂️ VOICE LOG: Playing "WELCOME MASTER" - Mystical Welcoming with Emotion');
-          console.log('🎛️ Mystical Voice settings:', {
+          console.log('🎬 👹 VOICE LOG: Playing "WELCOME MASTER" - Dark Growl Power Voice');
+          console.log('🎛️ Dark Growl Voice settings:', {
             rate: welcomeMsg.rate,
             pitch: welcomeMsg.pitch,
             volume: welcomeMsg.volume,
@@ -285,28 +280,28 @@ const WelcomeVoiceSystem = () => {
         };
         
         welcomeMsg.onend = () => {
-          console.log('✅ 🧙‍♂️ VOICE LOG: MYSTICAL WELCOME "WELCOME MASTER" complete - starting BELL...');
+          console.log('✅ 👹 VOICE LOG: DARK GROWL POWER "WELCOME MASTER" complete - starting BELL...');
           // Wait a moment then play bell sound
           setTimeout(() => {
             playBellSound();
           }, 800); // Pause before bell for dramatic effect
         };
         
-        // Error handling for mystical voice
+        // Error handling for dark growl voice
         welcomeMsg.onerror = (e) => {
-          console.log('❌ Mystical welcoming voice error:', e);
-          console.log('🔓 Unlocking voice system after mystical voice error');
+          console.log('❌ Dark growl power voice error:', e);
+          console.log('🔓 Unlocking voice system after dark growl error');
           globalVoiceInProgress = false;
           
-          // Still try bell and AOL voice even if mystical welcome fails
+          // Still try bell and AOL voice even if dark growl fails
           setTimeout(() => {
-            console.log('🔄 Mystical welcome failed, proceeding to bell...');
+            console.log('🔄 Dark growl failed, proceeding to bell...');
             playBellSound();
           }, 500);
         };
         
         // START THE EPIC SEQUENCE!
-        console.log('🚀 🎬 PHASE 1: Starting MYSTICAL WELCOMING "WELCOME MASTER"...');
+        console.log('🚀 🎬 PHASE 1: Starting DARK GROWL POWER "WELCOME MASTER"...');
         console.log('🔊 Voice system locked - no duplicates possible for 30 seconds');
         speechSynthesis.speak(welcomeMsg);
         
