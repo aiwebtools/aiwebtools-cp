@@ -62,20 +62,24 @@ export const useGlobalSearch = () => {
              lowerDescription.match(new RegExp(`\\b${lowerTerm}`, 'i'));
     });
 
-    // Performance optimized intelligent search - only for longer terms with throttling
+    // Performance optimized intelligent search - only for reasonable terms with throttling
     let intelligentResults = [];
-    if (trimmedTerm.length >= 4) { // Increased threshold to prevent freezing
-      // Use requestAnimationFrame to prevent UI blocking
-      const searchStartTime = performance.now();
-      intelligentResults = searchTools(allTools, trimmedTerm).filter(tool => 
-        !exactMatches.some(exact => exact.title === tool.title) &&
-        !partialMatches.some(partial => partial.title === tool.title)
-      );
-      const searchEndTime = performance.now();
+    if (trimmedTerm.length >= 4 && trimmedTerm.length <= 20) { // Reasonable length bounds
+      // Performance safeguard: check if term is mostly valid characters
+      const validCharRatio = (trimmedTerm.match(/[a-z0-9\s]/g) || []).length / trimmedTerm.length;
       
-      // Log performance for monitoring (only if slow)
-      if (searchEndTime - searchStartTime > 100) {
-        console.log(`⚡ Search took ${(searchEndTime - searchStartTime).toFixed(2)}ms for "${trimmedTerm}"`);
+      if (validCharRatio >= 0.6) { // Only search if term seems valid
+        const searchStartTime = performance.now();
+        intelligentResults = searchTools(allTools, trimmedTerm).filter(tool => 
+          !exactMatches.some(exact => exact.title === tool.title) &&
+          !partialMatches.some(partial => partial.title === tool.title)
+        );
+        const searchEndTime = performance.now();
+        
+        // Log performance for monitoring (only if slow)
+        if (searchEndTime - searchStartTime > 100) {
+          console.log(`⚡ Search took ${(searchEndTime - searchStartTime).toFixed(2)}ms for "${trimmedTerm}"`);
+        }
       }
     }
 
