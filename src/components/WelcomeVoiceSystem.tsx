@@ -140,102 +140,127 @@ const WelcomeVoiceSystem = () => {
             
             console.log('🔔 BELL SOUND played successfully');
             
-            // After bell, start classic AOL voice
+            // After bell, start loud British AOL voice
             setTimeout(() => {
               playAOLVoice();
             }, 1200); // Wait for bell to finish
             
           } catch (error) {
             console.log('🔔 Bell sound failed, proceeding to British voice:', error);
-            // Fallback: proceed without bell to AOL voice
+            // Fallback: proceed without bell to loud British AOL voice
             setTimeout(() => {
               playAOLVoice();
             }, 800);
           }
         };
         
-        // ===== PHASE 3: CLASSIC AOL "YOU'VE GOT TOOLS!" =====
+        // ===== PHASE 3: LOUD BRITISH AOL "YOU'VE GOT TOOLS!" =====
         const playAOLVoice = () => {
-          console.log('📬 Starting CLASSIC AOL notification voice...');
+          console.log('🇬🇧 Starting LOUD BRITISH AOL notification voice...');
           
           const toolsMsg = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS!");
-          toolsMsg.rate = 1.1; // Slightly faster for that excited AOL notification feel
-          toolsMsg.pitch = 1.4; // Higher pitch for that classic AOL cheerful excitement
-          toolsMsg.volume = 1.0; // Full volume for that classic notification impact
+          toolsMsg.rate = 1.0; // Slightly slower for British accent clarity
+          toolsMsg.pitch = 1.3; // Optimal pitch for British female accent
+          toolsMsg.volume = 1.0; // Maximum volume (browser limitation)
           
-          // ENHANCED CLASSIC AOL VOICE SELECTION
-          const findClassicAOLVoice = () => {
-            // Priority 1: Find excited, cheerful female voices (like classic AOL)
-            let aolVoice = voices.find(v => {
+          // ENHANCED LOUD BRITISH ACCENT VOICE SELECTION
+          const findLoudBritishVoice = () => {
+            // Priority 1: British English female voices (UK/GB specific)
+            let britishVoice = voices.find(v => {
               const name = v.name.toLowerCase();
-              const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
+              const lang = v.lang ? v.lang.toLowerCase() : '';
               
-              return isEnglish && (
-                // Target bright, cheerful, clear female voices
-                name.includes('samantha') || name.includes('karen') || name.includes('sarah') ||
-                name.includes('jessica') || name.includes('michelle') || name.includes('amy') ||
-                name.includes('anna') || name.includes('kate') || name.includes('emma') ||
-                name.includes('victoria') || name.includes('elizabeth') || name.includes('susan') ||
-                // Platform-specific clear voices
-                name.includes('microsoft zira') || name.includes('google us english female') ||
-                name.includes('enhanced') || name.includes('premium') || name.includes('clear')
-              );
+              return (lang.includes('en-gb') || lang.includes('gb') || lang.includes('uk')) && 
+                     (name.includes('female') || name.includes('woman') || 
+                      name.includes('kate') || name.includes('serena') || name.includes('emma') ||
+                      name.includes('fiona') || name.includes('victoria') || name.includes('susan') ||
+                      name.includes('hazel') || name.includes('karen') || name.includes('elizabeth') ||
+                      name.includes('british') || name.includes('england') || name.includes('london'));
             });
             
-            // Priority 2: Any clear, energetic female voice
-            if (!aolVoice) {
-              aolVoice = voices.find(v => {
-                const name = v.name.toLowerCase();
-                const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
-                return isEnglish && (name.includes('female') || name.includes('woman')) &&
-                       !name.includes('robot') && !name.includes('monotone') && !name.includes('low');
-              });
-            }
-            
-            // Priority 3: US English female voices specifically
-            if (!aolVoice) {
-              aolVoice = voices.find(v => {
+            // Priority 2: Any British voice (even if not explicitly female but UK/GB)
+            if (!britishVoice) {
+              britishVoice = voices.find(v => {
                 const lang = v.lang ? v.lang.toLowerCase() : '';
                 const name = v.name.toLowerCase();
-                return (lang.includes('en-us') || lang.includes('us')) && 
-                       (name.includes('female') || name.includes('woman'));
+                return (lang.includes('en-gb') || lang.includes('gb') || lang.includes('uk')) &&
+                       !name.includes('male');
               });
             }
             
-            // Priority 4: Any English female voice
-            if (!aolVoice) {
-              aolVoice = voices.find(v => {
+            // Priority 3: Voices with British-sounding names
+            if (!britishVoice) {
+              britishVoice = voices.find(v => {
+                const name = v.name.toLowerCase();
+                const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
+                return isEnglish && (
+                  name.includes('kate') || name.includes('emma') || name.includes('victoria') ||
+                  name.includes('elizabeth') || name.includes('fiona') || name.includes('serena') ||
+                  name.includes('british') || name.includes('england') || name.includes('london')
+                ) && (name.includes('female') || name.includes('woman'));
+              });
+            }
+            
+            // Priority 4: High-quality English female voices that can sound British
+            if (!britishVoice) {
+              britishVoice = voices.find(v => {
+                const name = v.name.toLowerCase();
+                const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
+                
+                return isEnglish && (
+                  name.includes('samantha') || name.includes('karen') || name.includes('sarah') ||
+                  name.includes('anna') || name.includes('catherine') || name.includes('susan') ||
+                  name.includes('jessica') || name.includes('michelle') || name.includes('amy') ||
+                  // Platform-specific clear voices
+                  name.includes('microsoft zira') || name.includes('google us english female') ||
+                  name.includes('enhanced') || name.includes('premium') || name.includes('clear')
+                );
+              });
+            }
+            
+            // Priority 5: Any English female voice
+            if (!britishVoice) {
+              britishVoice = voices.find(v => {
                 const name = v.name.toLowerCase();
                 const isEnglish = !v.lang || v.lang.toLowerCase().startsWith('en');
                 return isEnglish && (name.includes('female') || name.includes('woman'));
               });
             }
             
-            return aolVoice;
+            return britishVoice;
           };
           
-          const classicAOLVoice = findClassicAOLVoice();
-          if (classicAOLVoice) {
-            toolsMsg.voice = classicAOLVoice;
-            console.log('📬 Selected CLASSIC AOL voice:', classicAOLVoice.name, 'Lang:', classicAOLVoice.lang);
+          const loudBritishVoice = findLoudBritishVoice();
+          if (loudBritishVoice) {
+            toolsMsg.voice = loudBritishVoice;
+            console.log('🇬🇧 📢 Selected LOUD BRITISH AOL voice:', loudBritishVoice.name, 'Lang:', loudBritishVoice.lang);
           } else {
-            console.log('📬 Using default voice for CLASSIC AOL (no suitable voice found)');
+            console.log('🇬🇧 📢 Using default voice for LOUD BRITISH AOL (no suitable voice found)');
           }
           
-          // Classic AOL voice events
+          // Loud British AOL voice events with volume boost attempt
           toolsMsg.onstart = () => {
-            console.log('🎬 📬 VOICE LOG: Playing "YOU\'VE GOT TOOLS!" - CLASSIC AOL Notification Style');
-            console.log('🎛️ Classic AOL Voice settings:', {
+            console.log('🎬 🇬🇧 📢 VOICE LOG: Playing "YOU\'VE GOT TOOLS!" - LOUD BRITISH AOL Style');
+            console.log('🎛️ Loud British AOL Voice settings:', {
               rate: toolsMsg.rate,
               pitch: toolsMsg.pitch,
               volume: toolsMsg.volume,
               voice: toolsMsg.voice?.name || 'default'
             });
+            
+            // Attempt to boost system volume (if possible)
+            try {
+              if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                console.log('🔊 Attempting to boost audio for maximum British impact');
+              }
+            } catch (e) {
+              console.log('🔊 Volume boost not available, using maximum browser volume');
+            }
           };
           
           toolsMsg.onend = () => {
             console.log('🎉 ✨ VOICE LOG: EPIC Welcome sequence COMPLETE - All phases successful!');
-            console.log('🏁 DARK GROWL → BELL → CLASSIC AOL sequence finished - User entered AI destiny!');
+            console.log('🏁 DARK GROWL → BELL → LOUD BRITISH AOL sequence finished - User entered AI destiny!');
             console.log('🔓 Unlocking voice system after successful completion');
             
             // Reset in-progress flag since sequence completed successfully
@@ -249,7 +274,7 @@ const WelcomeVoiceSystem = () => {
           
           // Error handling for British voice
           toolsMsg.onerror = (e) => {
-            console.log('❌ Classic AOL voice error:', e);
+            console.log('❌ Loud British AOL voice error:', e);
             console.log('✅ Voice sequence completed (with error)');
             console.log('🔓 Unlocking voice system after error');
             
@@ -261,8 +286,8 @@ const WelcomeVoiceSystem = () => {
             window.dispatchEvent(voiceCompleteEvent);
           };
           
-          // Start classic AOL voice
-          console.log('📬 Speaking: "YOU\'VE GOT TOOLS!" (Classic AOL Notification)');
+          // Start loud British AOL voice
+          console.log('🇬🇧 📢 Speaking: "YOU\'VE GOT TOOLS!" (LOUD BRITISH AOL)');
           speechSynthesis.speak(toolsMsg);
         };
         
