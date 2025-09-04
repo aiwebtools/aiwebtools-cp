@@ -109,6 +109,16 @@ export const useGlobalSearch = () => {
     setSearchResults(endlessResults);
     setDisplayedCount(30);
     setIsOpen(true);
+
+    // Reset scroll to top when new search results load (fixes mobile auto-scroll issue)
+    setTimeout(() => {
+      if (searchRef.current) {
+        const scrollContainer = searchRef.current.querySelector('[data-scroll-container]');
+        if (scrollContainer) {
+          scrollContainer.scrollTop = 0;
+        }
+      }
+    }, 0);
   }, [debouncedSearchTerm]);
 
   useEffect(() => {
