@@ -1,4 +1,4 @@
-import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart } from "lucide-react";
+import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy } from "lucide-react";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -348,7 +348,7 @@ const DesktopMenu = () => {
               <DropdownMenuSeparator className="border-gray-700 mb-6" />
 
               {/* Bottom Actions Grid */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-3 gap-4">
                 <DropdownMenuItem 
                   onClick={handleDownloadAllToolsCSV}
                   className="text-green-100 hover:bg-green-500/20 rounded-lg h-14 text-lg font-medium px-4"
@@ -363,6 +363,17 @@ const DesktopMenu = () => {
                 >
                   <Heart className="w-5 h-5 mr-3 fill-current" />
                   Favorites ({getFavoritesCount()})
+                </DropdownMenuItem>
+
+                <DropdownMenuItem 
+                  onClick={(e) => { 
+                    e.preventDefault();
+                    handleExternalLink("https://aiwebtools.lovable.app/?via=aiwebtools", e);
+                  }}
+                  className="text-yellow-100 hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-amber-500/20 rounded-lg h-14 text-lg font-medium px-4 bg-gradient-to-r from-yellow-600/10 to-amber-600/10 border border-yellow-500/30"
+                >
+                  <Copy className="w-5 h-5 mr-3" />
+                  Clone This Site
                 </DropdownMenuItem>
               </div>
             </div>

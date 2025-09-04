@@ -1,5 +1,5 @@
 
-import { Menu, Phone, Search, X, Globe, ChevronDown, Download } from "lucide-react";
+import { Menu, Phone, Search, X, Globe, ChevronDown, Download, Copy } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -383,9 +383,16 @@ const TabletMenu = () => {
                   📊 Download ALL {toolStats.marketing} AI Tools (CSV)
                 </DropdownMenuItem>
                 
-                {/* Clone Website Button */}
-                <DropdownMenuItem onClick={(e) => { e.preventDefault(); createTimePortalEffect('https://lovable.dev/projects/ef2fa521-638d-41cf-999c-89d3c4d5c294?utm_source=lovable-badge/?via=aiwebtools'); }} className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700 font-bold rounded my-2 gold-glow">
-                  🚀 CLONE THE AIWEBTOOLS.AI WEBSITE
+                {/* Clone This Site Button with Gold Styling */}
+                <DropdownMenuItem 
+                  onClick={(e) => { 
+                    e.preventDefault(); 
+                    createTimePortalEffect('https://aiwebtools.lovable.app/?via=aiwebtools'); 
+                  }} 
+                  className="text-yellow-100 hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-amber-500/20 rounded flex items-center space-x-2 bg-gradient-to-r from-yellow-600/10 to-amber-600/10 border border-yellow-500/30 p-2 font-semibold"
+                >
+                  <Copy className="w-4 h-4" />
+                  <span>Clone This Site</span>
                 </DropdownMenuItem>
               </div>
             </div>

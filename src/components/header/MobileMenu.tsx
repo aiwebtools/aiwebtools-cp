@@ -1,4 +1,4 @@
-import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart } from "lucide-react";
+import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy } from "lucide-react";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -335,6 +335,18 @@ const MobileMenu = () => {
               
               <DropdownMenuSeparator className="border-gray-700 my-3" />
               
+              {/* Clone This Site - Gold styling */}
+              <DropdownMenuItem 
+                onClick={(e) => { 
+                  e.preventDefault();
+                  handleExternalLink("https://aiwebtools.lovable.app/?via=aiwebtools", e);
+                }} 
+                className="text-yellow-100 hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-amber-500/20 mb-3 rounded flex items-center space-x-2 bg-gradient-to-r from-yellow-600/10 to-amber-600/10 border border-yellow-500/30 p-3"
+              >
+                <Copy className="w-4 h-4" />
+                <span className="font-semibold">Clone This Site</span>
+              </DropdownMenuItem>
+
               {/* Favorites - added before Our Story */}
               <DropdownMenuItem onClick={() => { navigate('/favorites'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-2 rounded flex items-center space-x-2">
                 <Heart className="w-4 h-4 fill-current text-red-500" />
