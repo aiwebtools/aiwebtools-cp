@@ -20,6 +20,14 @@ const WelcomeVoiceSystem = () => {
   const [hasPlayed, setHasPlayed] = useState(false);
 
   const playWelcomeSequence = () => {
+    console.log('🔍 DEBUGGING: playWelcomeSequence called', {
+      hasPlayed,
+      globalVoicePlayed,
+      globalVoiceInProgress,
+      timestamp: new Date().toISOString(),
+      stackTrace: new Error().stack
+    });
+
     if (!('speechSynthesis' in window)) {
       console.log('❌ Speech synthesis not supported');
       return;
@@ -30,7 +38,8 @@ const WelcomeVoiceSystem = () => {
       console.log('🚫 BLOCKED: Voice sequence already played or in progress', {
         hasPlayed,
         globalVoicePlayed,
-        globalVoiceInProgress
+        globalVoiceInProgress,
+        timestamp: new Date().toISOString()
       });
       return;
     }
@@ -159,7 +168,7 @@ const WelcomeVoiceSystem = () => {
           console.log('🇬🇧 Starting LOUD BRITISH AOL notification voice...');
           
           const toolsMsg = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS!");
-          toolsMsg.rate = 1.0; // Slightly slower for British accent clarity
+          toolsMsg.rate = 0.85; // Slower for clearer British accent
           toolsMsg.pitch = 1.3; // Optimal pitch for British female accent
           toolsMsg.volume = 1.0; // Maximum volume (browser limitation)
           
@@ -346,9 +355,21 @@ const WelcomeVoiceSystem = () => {
   };
   
   const initializeVoices = () => {
+    console.log('🔍 DEBUGGING: initializeVoices called', {
+      hasPlayed,
+      globalVoicePlayed,
+      globalVoiceInProgress,
+      timestamp: new Date().toISOString(),
+      stackTrace: new Error().stack
+    });
+
     // Prevent multiple initializations
-    if (hasPlayed) {
-      console.log('🔄 Voice system already initialized, skipping...');
+    if (hasPlayed || globalVoicePlayed || globalVoiceInProgress) {
+      console.log('🔄 Voice system already initialized or in progress, skipping...', {
+        hasPlayed,
+        globalVoicePlayed,
+        globalVoiceInProgress
+      });
       return;
     }
 
@@ -442,6 +463,13 @@ const WelcomeVoiceSystem = () => {
     
     // Listen for the consent acceptance trigger (new users)
     const handleConsentTrigger = () => {
+      console.log('🔍 DEBUGGING: handleConsentTrigger called', {
+        hasPlayed,
+        globalVoicePlayed,
+        globalVoiceInProgress,
+        timestamp: new Date().toISOString()
+      });
+
       if (hasPlayed || globalVoicePlayed || globalVoiceInProgress) {
         console.log('🚫 CONSENT TRIGGER BLOCKED: Voice already played or in progress', {
           hasPlayed,
@@ -476,6 +504,13 @@ const WelcomeVoiceSystem = () => {
       
       // Also set up interaction triggers as backup
       const handleUserInteraction = () => {
+        console.log('🔍 DEBUGGING: handleUserInteraction called', {
+          hasPlayed,
+          globalVoicePlayed,
+          globalVoiceInProgress,
+          timestamp: new Date().toISOString()
+        });
+
         if (hasPlayed || globalVoicePlayed || globalVoiceInProgress) {
           console.log('🚫 INTERACTION BLOCKED: Voice already played or in progress');
           return;
