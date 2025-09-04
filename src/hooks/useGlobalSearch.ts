@@ -109,17 +109,6 @@ export const useGlobalSearch = () => {
     setSearchResults(endlessResults);
     setDisplayedCount(30);
     setIsOpen(true);
-
-    // Reset scroll to top when new search results load
-    setTimeout(() => {
-      if (searchRef.current) {
-        const scrollContainer = searchRef.current.querySelector('[data-scroll-container]');
-        if (scrollContainer) {
-          scrollContainer.scrollTop = 0;
-          scrollContainer.scrollTo({ top: 0, behavior: 'auto' });
-        }
-      }
-    }, 0);
   }, [debouncedSearchTerm]);
 
   useEffect(() => {

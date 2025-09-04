@@ -46,16 +46,6 @@ const GlobalSearchResults = ({
         data-scroll-container
         className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[999] max-h-[70vh] min-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
         onScroll={onScroll}
-        style={{
-          WebkitOverflowScrolling: 'touch',
-          overscrollBehavior: 'auto',
-          touchAction: 'pan-y',
-          transform: 'translateZ(0)',
-          willChange: 'scroll-position',
-          backfaceVisibility: 'hidden',
-          perspective: '1000px',
-          scrollBehavior: 'auto'
-        }}
       >
       <CardContent className="p-0" style={{ transform: 'translateZ(0)' }}>
         <div className="p-2 pt-4" style={{ transform: 'translateZ(0)' }}>
