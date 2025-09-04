@@ -64,13 +64,7 @@ const waitForVoices = (): Promise<SpeechSynthesisVoice[]> => {
 };
 
 const WelcomeVoiceSystem = () => {
-  const [hasPlayed, setHasPlayed] = useState(() => {
-    // Check if voice has already played in this session
-    if (typeof window !== 'undefined') {
-      return sessionStorage.getItem('aiwebtools_voice_played') === 'true';
-    }
-    return false;
-  });
+  const [hasPlayed, setHasPlayed] = useState(false);
 
   const playWelcomeSequence = async () => {
     if (!('speechSynthesis' in window)) {
@@ -86,11 +80,6 @@ const WelcomeVoiceSystem = () => {
 
     console.log('🎵 Starting welcome voice sequence...');
     setHasPlayed(true); // Mark as played immediately to prevent duplicates
-    
-    // Mark as played in session storage to persist across refreshes but reset on tab close
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('aiwebtools_voice_played', 'true');
-    }
     
     try {
       // Cancel any existing speech to prevent conflicts
