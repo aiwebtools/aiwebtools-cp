@@ -2,8 +2,27 @@ import { useEffect } from 'react';
 
 const VideoAutoPlayController = () => {
   useEffect(() => {
+    // Prevent any videos from auto-playing initially
+    const preventAutoPlay = () => {
+      const allVideos = document.querySelectorAll('.video-embed') as NodeListOf<HTMLIFrameElement>;
+      allVideos.forEach((video) => {
+        const videoId = video.dataset.videoId;
+        if (videoId && !video.src.includes('autoplay=0')) {
+          // Ensure all videos start without autoplay
+          const newSrc = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=0&controls=1&rel=0&modestbranding=1&iv_load_policy=3&fs=1&cc_load_policy=0&playsinline=1&enablejsapi=1&origin=${window.location.origin}&vq=hd1080`;
+          video.src = newSrc;
+        }
+      });
+    };
+
+    // Run immediately to prevent any auto-play
+    preventAutoPlay();
+    
     const handleVoiceSequenceComplete = () => {
       console.log('🎬 Voice sequence complete - starting main video only');
+      
+      // Stop all videos first
+      stopAllVideos();
       
       // Only auto-play the main featured video (first one in the grid)
       const mainVideo = document.querySelector('.video-embed[data-main-video="true"]') as HTMLIFrameElement;
@@ -13,9 +32,6 @@ const VideoAutoPlayController = () => {
         const toolTitle = mainVideo.dataset.toolTitle;
         
         console.log(`🎥 Starting main video: ${toolTitle}`);
-        
-        // Stop any other videos that might be playing
-        stopAllVideos();
         
         // Start the main video with autoplay
         const newSrc = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&iv_load_policy=3&fs=1&cc_load_policy=0&playsinline=1&enablejsapi=1&origin=${window.location.origin}&vq=hd1080`;
