@@ -36,7 +36,7 @@ function App() {
           <FavoritesProvider>
             <TooltipProvider>
               <Toaster />
-              <WelcomeVoiceSystem />
+              {/* <WelcomeVoiceSystem /> - Now handled by VideoPlayButton */}
               <BrowserRouter>
                 <Routes>
                   <Route path="/" element={<Index />} />
