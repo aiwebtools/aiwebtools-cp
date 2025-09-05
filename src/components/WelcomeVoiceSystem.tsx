@@ -1,65 +1,207 @@
 import { useEffect, useState } from "react";
 
-// Enhanced browser and device detection
-const getBrowserInfo = () => {
-  if (typeof window === 'undefined') return { isMobile: false, browser: 'unknown' };
+// Define capabilities interface for type safety
+interface BrowserCapabilities {
+  speechSynthesis: boolean;
+  webAudio: boolean;
+  promises: boolean;
+  eventListeners: boolean;
+  localStorage: boolean | Storage;
+  mediaDevices: boolean;
+}
+
+// Universal browser and device detection for maximum compatibility
+const getBrowserInfo = (): {
+  isMobile: boolean;
+  browser: string;
+  isRestrictive: boolean;
+  capabilities: BrowserCapabilities;
+  isChrome: boolean;
+  isSafari: boolean;
+  isFirefox: boolean;
+  isEdge: boolean;
+} => {
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+    return { 
+      isMobile: false, 
+      browser: 'unknown', 
+      isRestrictive: true, 
+      capabilities: {
+        speechSynthesis: false,
+        webAudio: false,
+        promises: false,
+        eventListeners: false,
+        localStorage: false,
+        mediaDevices: false
+      },
+      isChrome: false,
+      isSafari: false,
+      isFirefox: false,
+      isEdge: false
+    };
+  }
   
   const userAgent = navigator.userAgent.toLowerCase();
-  const isMobile = (
-    /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent) ||
+  const platform = navigator.platform?.toLowerCase() || '';
+  
+  // Enhanced mobile detection with multiple methods
+  const isMobile = !!(
+    /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i.test(userAgent) ||
     ('ontouchstart' in window) ||
-    (navigator.maxTouchPoints > 0) ||
-    window.innerWidth <= 768
+    (navigator.maxTouchPoints && navigator.maxTouchPoints > 0) ||
+    ((navigator as any).msMaxTouchPoints && (navigator as any).msMaxTouchPoints > 0) ||
+    window.innerWidth <= 768 ||
+    platform.includes('mobile') ||
+    platform.includes('android')
   );
   
+  // Enhanced browser detection
+  const isChrome = userAgent.includes('chrome') && !userAgent.includes('edg');
+  const isSafari = userAgent.includes('safari') && !userAgent.includes('chrome');
+  const isFirefox = userAgent.includes('firefox');
+  const isEdge = userAgent.includes('edg') || userAgent.includes('edge');
+  const isOpera = userAgent.includes('opera') || userAgent.includes('opr');
+  const isIE = userAgent.includes('trident') || userAgent.includes('msie');
+  
   const browser = 
-    userAgent.includes('facebook') ? 'facebook' :
-    userAgent.includes('chrome') ? 'chrome' :
-    userAgent.includes('safari') ? 'safari' :
-    userAgent.includes('firefox') ? 'firefox' :
-    userAgent.includes('edge') ? 'edge' : 'unknown';
+    userAgent.includes('facebook') || userAgent.includes('fban') ? 'facebook' :
+    userAgent.includes('instagram') || userAgent.includes('ig_') ? 'instagram' :
+    userAgent.includes('twitter') || userAgent.includes('twitterbot') ? 'twitter' :
+    userAgent.includes('linkedin') ? 'linkedin' :
+    userAgent.includes('whatsapp') ? 'whatsapp' :
+    userAgent.includes('telegram') ? 'telegram' :
+    isChrome ? 'chrome' :
+    isSafari ? 'safari' :
+    isFirefox ? 'firefox' :
+    isEdge ? 'edge' :
+    isOpera ? 'opera' :
+    isIE ? 'ie' : 'unknown';
     
-  // Check for restrictive browser environments
-  const isRestrictive = (
+  // Enhanced restrictive environment detection
+  const isRestrictive = !!(
     userAgent.includes('facebook') ||
     userAgent.includes('instagram') ||
     userAgent.includes('twitter') ||
-    !window.navigator.cookieEnabled
+    userAgent.includes('linkedin') ||
+    userAgent.includes('whatsapp') ||
+    userAgent.includes('telegram') ||
+    userAgent.includes('fban') ||
+    userAgent.includes('ig_') ||
+    userAgent.includes('wv') || // WebView
+    !window.navigator.cookieEnabled ||
+    (isSafari && isMobile) || // iOS Safari has strict autoplay
+    isIE // IE has limited support
   );
   
-  return { isMobile, browser, isRestrictive };
+  // Check speech synthesis capabilities
+  const capabilities = {
+    speechSynthesis: !!(window.speechSynthesis && typeof SpeechSynthesisUtterance !== 'undefined'),
+    webAudio: !!(window.AudioContext || (window as any).webkitAudioContext),
+    promises: typeof Promise !== 'undefined',
+    eventListeners: typeof window.addEventListener !== 'undefined',
+    localStorage: (() => {
+      try {
+        return typeof Storage !== 'undefined' && window.localStorage;
+      } catch { return false; }
+    })(),
+    mediaDevices: !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
+  };
+  
+  return { isMobile, browser, isRestrictive, capabilities, isChrome, isSafari, isFirefox, isEdge };
 };
 
-// Check if voices are properly loaded with retries
+// Universal voice loading with comprehensive fallbacks for all browsers
 const waitForVoices = (): Promise<SpeechSynthesisVoice[]> => {
   return new Promise((resolve) => {
-    const getVoices = () => speechSynthesis.getVoices();
+    if (!window.speechSynthesis) {
+      resolve([]);
+      return;
+    }
+
+    const getVoices = () => {
+      try {
+        return speechSynthesis.getVoices() || [];
+      } catch (error) {
+        console.warn('Error getting voices:', error);
+        return [];
+      }
+    };
     
-    if (getVoices().length > 0) {
-      resolve(getVoices());
+    // Immediate check
+    const initialVoices = getVoices();
+    if (initialVoices.length > 0) {
+      resolve(initialVoices);
       return;
     }
     
     let attempts = 0;
+    let eventListenerAdded = false;
+    const maxAttempts = 50; // Increased for slower devices
+    
     const checkVoices = () => {
       attempts++;
       const voices = getVoices();
       
-      if (voices.length > 0 || attempts >= 10) {
+      if (voices.length > 0) {
         resolve(voices);
-      } else {
-        setTimeout(checkVoices, 200);
+        return;
       }
+      
+      if (attempts >= maxAttempts) {
+        console.warn('Voice loading timeout, using fallback');
+        resolve(voices); // Return empty array as last resort
+        return;
+      }
+      
+      // Progressive delay increases for different browsers
+      const delay = attempts < 10 ? 100 : attempts < 20 ? 200 : 500;
+      setTimeout(checkVoices, delay);
     };
     
-    // Listen for voices loaded event
-    speechSynthesis.onvoiceschanged = () => {
-      speechSynthesis.onvoiceschanged = null;
-      resolve(getVoices());
+    // Multiple voice loading strategies for different browsers
+    const setupVoiceLoading = () => {
+      // Strategy 1: onvoiceschanged event (works in most browsers)
+      if (!eventListenerAdded && typeof speechSynthesis.onvoiceschanged !== 'undefined') {
+        eventListenerAdded = true;
+        speechSynthesis.onvoiceschanged = () => {
+          const voices = getVoices();
+          if (voices.length > 0) {
+            speechSynthesis.onvoiceschanged = null;
+            resolve(voices);
+          }
+        };
+      }
+      
+      // Strategy 2: Polling fallback (for browsers with broken events)
+      setTimeout(checkVoices, 50);
+      
+      // Strategy 3: Force speech synthesis activation (helps some browsers)
+      setTimeout(() => {
+        try {
+          const wakeUp = new SpeechSynthesisUtterance('');
+          wakeUp.volume = 0;
+          wakeUp.rate = 10;
+          speechSynthesis.speak(wakeUp);
+        } catch (error) {
+          // Ignore errors in wake-up attempt
+        }
+      }, 100);
+      
+      // Strategy 4: Additional activation methods for stubborn browsers
+      setTimeout(() => {
+        try {
+          speechSynthesis.cancel(); // Sometimes this triggers voice loading
+          const voices = getVoices();
+          if (voices.length > 0) {
+            resolve(voices);
+          }
+        } catch (error) {
+          // Ignore errors
+        }
+      }, 300);
     };
     
-    // Start checking as backup
-    setTimeout(checkVoices, 100);
+    setupVoiceLoading();
   });
 };
 
@@ -68,12 +210,15 @@ const WelcomeVoiceSystem = () => {
   const [retryCount, setRetryCount] = useState(0);
   const MAX_RETRIES = 10;
 
-  // Enhanced bulletproof voice sequence with multiple fallbacks
+  // Universal voice sequence with maximum browser compatibility
   const playWelcomeSequence = async (attempt = 1) => {
-    if (!('speechSynthesis' in window)) {
-      console.log(`❌ Speech synthesis not supported (attempt ${attempt}/${MAX_RETRIES})`);
-      if (attempt < MAX_RETRIES) {
-        setTimeout(() => playWelcomeSequence(attempt + 1), 1000);
+    const { capabilities, browser, isMobile, isRestrictive } = getBrowserInfo();
+    
+    if (!capabilities.speechSynthesis) {
+      console.log(`❌ Speech synthesis not supported in ${browser} (attempt ${attempt}/${MAX_RETRIES})`);
+      if (attempt < MAX_RETRIES && !isRestrictive) {
+        const retryDelay = isMobile ? 2000 : 1000;
+        setTimeout(() => playWelcomeSequence(attempt + 1), retryDelay);
       }
       return;
     }
@@ -98,23 +243,39 @@ const WelcomeVoiceSystem = () => {
       const { isMobile, browser, isRestrictive } = getBrowserInfo();
       console.log(`📱 Device: ${isMobile ? 'Mobile' : 'Desktop'}, Browser: ${browser}, Restrictive: ${isRestrictive}`);
       
-      // Super robust voice loading with multiple fallback strategies
+      // Ultra-robust voice loading with browser-specific strategies
       let voices = [];
-      for (let i = 0; i < 20; i++) {
-        voices = speechSynthesis.getVoices();
-        if (voices.length > 0) break;
+      try {
+        voices = await waitForVoices();
+      } catch (error) {
+        console.warn('Voice loading error, trying fallback:', error);
+        voices = speechSynthesis.getVoices() || [];
+      }
+      
+      // Additional browser-specific activation for stubborn cases
+      if (voices.length === 0) {
+        const activationStrategies = [
+          () => speechSynthesis.cancel(),
+          () => speechSynthesis.pause(),
+          () => speechSynthesis.resume(),
+          () => {
+            const silent = new SpeechSynthesisUtterance('');
+            silent.volume = 0.001;
+            silent.rate = 10;
+            speechSynthesis.speak(silent);
+          }
+        ];
         
-        // Try different wake-up methods
-        if (i === 5) speechSynthesis.onvoiceschanged = () => voices = speechSynthesis.getVoices();
-        if (i === 10) speechSynthesis.cancel(); // Sometimes this helps
-        if (i === 15) { 
-          // Force a silent utterance to wake up the system
-          const wakeup = new SpeechSynthesisUtterance('');
-          wakeup.volume = 0;
-          speechSynthesis.speak(wakeup);
+        for (const strategy of activationStrategies) {
+          try {
+            strategy();
+            await new Promise(resolve => setTimeout(resolve, 200));
+            voices = speechSynthesis.getVoices();
+            if (voices.length > 0) break;
+          } catch (error) {
+            continue;
+          }
         }
-        
-        await new Promise(resolve => setTimeout(resolve, 150));
       }
       
       if (voices.length === 0) {
@@ -129,35 +290,90 @@ const WelcomeVoiceSystem = () => {
       
       console.log(`🗣️ SUCCESS! Found ${voices.length} voices after bulletproof loading (attempt ${attempt})`);
       
-      // Enhanced voice selection with comprehensive fallbacks
+      // Universal voice selection with extensive browser compatibility
       const selectBestVoice = (preferMale = false) => {
+        if (!voices || voices.length === 0) return null;
+        
+        const { browser, isMobile } = getBrowserInfo();
         let candidates = [];
         
-        if (preferMale) {
-          // Male voice priorities
-          candidates = [
-            voices.find(v => v.name.toLowerCase().includes('alex')),
-            voices.find(v => v.name.toLowerCase().includes('daniel')),
-            voices.find(v => v.name.toLowerCase().includes('male')),
-            voices.find(v => v.name.toLowerCase().includes('fred')),
-            voices.find(v => v.name.toLowerCase().includes('tom')),
-            voices.find(v => v.name.toLowerCase().includes('mark')),
-          ];
+        // Browser-specific voice optimization
+        if (browser === 'chrome') {
+          if (preferMale) {
+            candidates = [
+              voices.find(v => v.name.toLowerCase().includes('google us english') && v.name.toLowerCase().includes('male')),
+              voices.find(v => v.name.toLowerCase().includes('alex')),
+              voices.find(v => v.name.toLowerCase().includes('daniel')),
+            ];
+          } else {
+            candidates = [
+              voices.find(v => v.name.toLowerCase().includes('google us english') && v.name.toLowerCase().includes('female')),
+              voices.find(v => v.lang?.toLowerCase().includes('en-gb')),
+              voices.find(v => v.name.toLowerCase().includes('samantha')),
+            ];
+          }
+        } else if (browser === 'safari') {
+          if (preferMale) {
+            candidates = [
+              voices.find(v => v.name.toLowerCase().includes('alex')),
+              voices.find(v => v.name.toLowerCase().includes('fred')),
+              voices.find(v => v.name.toLowerCase().includes('daniel')),
+            ];
+          } else {
+            candidates = [
+              voices.find(v => v.name.toLowerCase().includes('samantha')),
+              voices.find(v => v.name.toLowerCase().includes('victoria')),
+              voices.find(v => v.name.toLowerCase().includes('karen')),
+            ];
+          }
+        } else if (browser === 'firefox') {
+          // Firefox uses system voices
+          if (preferMale) {
+            candidates = [
+              voices.find(v => v.name.toLowerCase().includes('male')),
+              voices.find(v => v.name.toLowerCase().includes('david')),
+            ];
+          } else {
+            candidates = [
+              voices.find(v => v.name.toLowerCase().includes('female')),
+              voices.find(v => v.name.toLowerCase().includes('zira')),
+            ];
+          }
         } else {
-          // Female voice priorities
-          candidates = [
-            voices.find(v => v.lang?.toLowerCase().includes('en-gb')),
-            voices.find(v => v.name.toLowerCase().includes('british')),
-            voices.find(v => v.name.toLowerCase().includes('victoria')),
-            voices.find(v => v.name.toLowerCase().includes('emma')),
-            voices.find(v => v.name.toLowerCase().includes('samantha')),
-            voices.find(v => v.name.toLowerCase().includes('karen')),
-            voices.find(v => v.name.toLowerCase().includes('female')),
-          ];
+          // General fallbacks for other browsers
+          if (preferMale) {
+            candidates = [
+              voices.find(v => v.name.toLowerCase().includes('male')),
+              voices.find(v => v.name.toLowerCase().includes('alex')),
+              voices.find(v => v.name.toLowerCase().includes('daniel')),
+              voices.find(v => v.name.toLowerCase().includes('mark')),
+            ];
+          } else {
+            candidates = [
+              voices.find(v => v.name.toLowerCase().includes('female')),
+              voices.find(v => v.lang?.toLowerCase().includes('en-gb')),
+              voices.find(v => v.name.toLowerCase().includes('samantha')),
+              voices.find(v => v.name.toLowerCase().includes('karen')),
+            ];
+          }
         }
         
-        // Find first available candidate
-        const selected = candidates.find(v => v) || voices.find(v => v.lang?.startsWith('en')) || voices[0];
+        // Enhanced fallback chain
+        const fallbackChain = [
+          ...candidates.filter(v => v),
+          voices.find(v => v.lang?.startsWith('en-US')),
+          voices.find(v => v.lang?.startsWith('en-GB')),
+          voices.find(v => v.lang?.startsWith('en')),
+          voices.find(v => v.default),
+          voices[0]
+        ];
+        
+        const selected = fallbackChain.find(v => v);
+        
+        if (selected) {
+          console.log(`🎤 Selected voice for ${browser}: ${selected.name} (${selected.lang})`);
+        }
+        
         return selected;
       };
 
@@ -188,60 +404,110 @@ const WelcomeVoiceSystem = () => {
         'female'
       );
       
-      // Bulletproof promise-based speech with timeout and retry
-      const speakWithTimeout = (utterance, timeoutMs = 10000) => {
+      // Universal speech with maximum compatibility and error resilience
+      const speakWithTimeout = (utterance, timeoutMs = 15000) => {
         return new Promise((resolve, reject) => {
           let hasResolved = false;
+          let startTime = Date.now();
+          const { browser, isMobile } = getBrowserInfo();
+          
+          // Browser-specific timeout adjustments
+          const adjustedTimeout = isMobile ? timeoutMs * 1.5 : timeoutMs;
           
           const timeout = setTimeout(() => {
             if (!hasResolved) {
               hasResolved = true;
-              speechSynthesis.cancel();
-              reject(new Error('Speech timeout'));
+              try {
+                speechSynthesis.cancel();
+              } catch (e) {}
+              reject(new Error(`Speech timeout after ${adjustedTimeout}ms in ${browser}`));
             }
-          }, timeoutMs);
+          }, adjustedTimeout);
 
-          utterance.onstart = () => {
-            console.log(`🎤 Started: "${utterance.text}"`);
+          // Enhanced event handling with browser-specific workarounds
+          const handleStart = () => {
+            console.log(`🎤 Started: "${utterance.text}" in ${browser}`);
           };
 
-          utterance.onend = () => {
+          const handleEnd = () => {
             if (!hasResolved) {
               hasResolved = true;
               clearTimeout(timeout);
-              console.log(`✅ Completed: "${utterance.text}"`);
+              const duration = Date.now() - startTime;
+              console.log(`✅ Completed: "${utterance.text}" (${duration}ms)`);
               resolve(true);
             }
           };
 
-          utterance.onerror = (error) => {
+          const handleError = (error) => {
             if (!hasResolved) {
               hasResolved = true;
               clearTimeout(timeout);
-              console.error(`❌ Error in "${utterance.text}":`, error);
-              reject(error);
+              console.error(`❌ Speech error in ${browser}:`, error);
+              // Don't reject immediately, try to recover
+              setTimeout(() => reject(error), 100);
             }
           };
 
-          // Multiple speak attempts for reliability
+          // Cross-browser event binding with fallbacks
           try {
-            speechSynthesis.speak(utterance);
+            utterance.onstart = handleStart;
+            utterance.onend = handleEnd;
+            utterance.onerror = handleError;
             
-            // Backup speak attempt if first doesn't trigger onstart
-            setTimeout(() => {
-              if (!hasResolved && !speechSynthesis.speaking) {
-                console.log(`🔄 Backup speak attempt for "${utterance.text}"`);
-                speechSynthesis.speak(utterance);
-              }
-            }, 500);
-            
-          } catch (error) {
-            if (!hasResolved) {
-              hasResolved = true;
-              clearTimeout(timeout);
-              reject(error);
+            // Additional events for better compatibility
+            if (utterance.onboundary) {
+              utterance.onboundary = () => {
+                if (!hasResolved) {
+                  console.log(`📍 Boundary event for "${utterance.text}"`);
+                }
+              };
             }
+          } catch (error) {
+            console.warn('Event binding error:', error);
           }
+
+          // Multi-strategy speak execution
+          const executeSpeech = () => {
+            try {
+              // Strategy 1: Direct speak
+              speechSynthesis.speak(utterance);
+              
+              // Strategy 2: Backup for unresponsive browsers
+              setTimeout(() => {
+                if (!hasResolved && !speechSynthesis.speaking && !speechSynthesis.pending) {
+                  console.log(`🔄 Backup speak for "${utterance.text}" in ${browser}`);
+                  try {
+                    speechSynthesis.speak(utterance);
+                  } catch (e) {
+                    console.warn('Backup speak failed:', e);
+                  }
+                }
+              }, 800);
+              
+              // Strategy 3: Force completion check for problematic browsers
+              setTimeout(() => {
+                if (!hasResolved) {
+                  const isActuallySpeaking = speechSynthesis.speaking || speechSynthesis.pending;
+                  if (!isActuallySpeaking) {
+                    console.log(`🔄 Force completion for "${utterance.text}"`);
+                    handleEnd();
+                  }
+                }
+              }, Math.min(utterance.text.length * 100 + 2000, adjustedTimeout - 1000));
+              
+            } catch (error) {
+              console.error('Speech execution error:', error);
+              if (!hasResolved) {
+                hasResolved = true;
+                clearTimeout(timeout);
+                reject(error);
+              }
+            }
+          };
+
+          // Execute with small delay for browser readiness
+          setTimeout(executeSpeech, browser === 'safari' && isMobile ? 200 : 50);
         });
       };
 
