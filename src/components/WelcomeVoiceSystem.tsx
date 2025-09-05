@@ -65,124 +65,224 @@ const waitForVoices = (): Promise<SpeechSynthesisVoice[]> => {
 
 const WelcomeVoiceSystem = () => {
   const [hasPlayed, setHasPlayed] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
+  const MAX_RETRIES = 10;
 
-  // Debug logging for session detection
-  useEffect(() => {
-    console.log('🔍 WelcomeVoiceSystem mounted, hasPlayed:', hasPlayed);
-    console.log('🔍 Browser:', getBrowserInfo());
-    console.log('🔍 Speech synthesis available:', 'speechSynthesis' in window);
-  }, []);
-
-  const playWelcomeSequence = async () => {
+  // Enhanced bulletproof voice sequence with multiple fallbacks
+  const playWelcomeSequence = async (attempt = 1) => {
     if (!('speechSynthesis' in window)) {
-      console.log('❌ Speech synthesis not supported');
+      console.log(`❌ Speech synthesis not supported (attempt ${attempt}/${MAX_RETRIES})`);
+      if (attempt < MAX_RETRIES) {
+        setTimeout(() => playWelcomeSequence(attempt + 1), 1000);
+      }
       return;
     }
 
-    // Prevent multiple playbacks
-    if (hasPlayed) {
-      console.log('🔄 Voice sequence already played, skipping...');
+    // Prevent multiple successful playbacks but allow retries
+    if (hasPlayed && attempt === 1) {
+      console.log('🔄 Voice sequence already played successfully, skipping...');
       return;
     }
 
-    console.log('🎵 Starting welcome voice sequence...');
-    setHasPlayed(true); // Mark as played immediately to prevent duplicates
+    console.log(`🎵 Starting bulletproof welcome voice sequence... (attempt ${attempt}/${MAX_RETRIES})`);
     
     try {
-      // Cancel any existing speech to prevent conflicts
+      // Force cancel any existing speech - multiple methods for reliability
       speechSynthesis.cancel();
+      if (speechSynthesis.speaking) {
+        speechSynthesis.pause();
+        speechSynthesis.cancel();
+      }
+      await new Promise(resolve => setTimeout(resolve, 100)); // Brief pause
       
       const { isMobile, browser, isRestrictive } = getBrowserInfo();
       console.log(`📱 Device: ${isMobile ? 'Mobile' : 'Desktop'}, Browser: ${browser}, Restrictive: ${isRestrictive}`);
       
-      // Enhanced voice loading with retries for browser compatibility
-      const voices = await waitForVoices();
-      console.log(`🗣️ Found ${voices.length} voices after enhanced loading`);
-      
-      // Create first message: "WELCOME MASTER" - deep robot voice
-      const welcomeMsg = new SpeechSynthesisUtterance("WELCOME MASTER");
-      welcomeMsg.rate = 0.4; // Slow and deliberate
-      welcomeMsg.pitch = 0.1; // Very low pitch for robot effect
-      welcomeMsg.volume = 0.9; // Full but not overwhelming
-      
-      // Find deep male voice for welcome - prioritize robot-like voices
-      const maleVoice = voices.find(v => 
-        v.name.toLowerCase().includes('alex') ||
-        v.name.toLowerCase().includes('daniel') ||
-        v.name.toLowerCase().includes('male') ||
-        v.name.toLowerCase().includes('fred')
-      );
-      if (maleVoice) {
-        welcomeMsg.voice = maleVoice;
-        console.log('🤖 Selected male voice:', maleVoice.name);
+      // Super robust voice loading with multiple fallback strategies
+      let voices = [];
+      for (let i = 0; i < 20; i++) {
+        voices = speechSynthesis.getVoices();
+        if (voices.length > 0) break;
+        
+        // Try different wake-up methods
+        if (i === 5) speechSynthesis.onvoiceschanged = () => voices = speechSynthesis.getVoices();
+        if (i === 10) speechSynthesis.cancel(); // Sometimes this helps
+        if (i === 15) { 
+          // Force a silent utterance to wake up the system
+          const wakeup = new SpeechSynthesisUtterance('');
+          wakeup.volume = 0;
+          speechSynthesis.speak(wakeup);
+        }
+        
+        await new Promise(resolve => setTimeout(resolve, 150));
       }
       
-      // Create second message: "YOU'VE GOT TOOLS" - British female AOL-style
-      const toolsMsg = new SpeechSynthesisUtterance("YOU'VE GOT TOOLS");
-      toolsMsg.rate = 0.8; // Normal conversational pace
-      toolsMsg.pitch = 1.2; // Pleasant feminine pitch
-      toolsMsg.volume = 0.95; // Clear and friendly
-      
-      // Find British female voice for AOL-style announcement
-      const britishFemaleVoice = voices.find(v => 
-        (v.lang && v.lang.toLowerCase().includes('en-gb')) ||
-        v.name.toLowerCase().includes('british') ||
-        v.name.toLowerCase().includes('uk') ||
-        v.name.toLowerCase().includes('victoria') ||
-        v.name.toLowerCase().includes('emma') ||
-        v.name.toLowerCase().includes('fiona')
-      ) || voices.find(v => 
-        v.name.toLowerCase().includes('female') ||
-        v.name.toLowerCase().includes('samantha') ||
-        v.name.toLowerCase().includes('karen') ||
-        v.name.toLowerCase().includes('susan') ||
-        v.name.toLowerCase().includes('anna') ||
-        v.name.toLowerCase().includes('catherine')
-      );
-      
-      if (britishFemaleVoice) {
-        toolsMsg.voice = britishFemaleVoice;
-        console.log('📬 Selected female voice:', britishFemaleVoice.name);
+      if (voices.length === 0) {
+        console.warn(`🎤 No voices found after extensive loading (attempt ${attempt}/${MAX_RETRIES})`);
+        if (attempt < MAX_RETRIES) {
+          setTimeout(() => playWelcomeSequence(attempt + 1), 2000);
+          return;
+        }
+        console.error('🎤 Final failure: No voices available after all attempts');
+        return;
       }
       
-      // Set up sequence timing with proper synchronization
-      welcomeMsg.onstart = () => console.log('🤖 Playing: "WELCOME MASTER"');
-      welcomeMsg.onend = () => {
-        console.log('✅ Welcome message complete, preparing tools message...');
-        // Wait for welcome to fully complete before starting tools message
-        setTimeout(() => {
-          console.log('📬 Starting: "YOU\'VE GOT TOOLS"');
-          speechSynthesis.speak(toolsMsg);
-        }, 800); // Proper pause between messages
-      };
+      console.log(`🗣️ SUCCESS! Found ${voices.length} voices after bulletproof loading (attempt ${attempt})`);
       
-      toolsMsg.onstart = () => console.log('📬 Playing: "YOU\'VE GOT TOOLS" (AOL-style)');
-      toolsMsg.onend = () => {
-        console.log('🎉 Welcome sequence complete - no overlapping voices!');
-        // Voice system is now complete and won't interfere with video
+      // Enhanced voice selection with comprehensive fallbacks
+      const selectBestVoice = (preferMale = false) => {
+        let candidates = [];
+        
+        if (preferMale) {
+          // Male voice priorities
+          candidates = [
+            voices.find(v => v.name.toLowerCase().includes('alex')),
+            voices.find(v => v.name.toLowerCase().includes('daniel')),
+            voices.find(v => v.name.toLowerCase().includes('male')),
+            voices.find(v => v.name.toLowerCase().includes('fred')),
+            voices.find(v => v.name.toLowerCase().includes('tom')),
+            voices.find(v => v.name.toLowerCase().includes('mark')),
+          ];
+        } else {
+          // Female voice priorities
+          candidates = [
+            voices.find(v => v.lang?.toLowerCase().includes('en-gb')),
+            voices.find(v => v.name.toLowerCase().includes('british')),
+            voices.find(v => v.name.toLowerCase().includes('victoria')),
+            voices.find(v => v.name.toLowerCase().includes('emma')),
+            voices.find(v => v.name.toLowerCase().includes('samantha')),
+            voices.find(v => v.name.toLowerCase().includes('karen')),
+            voices.find(v => v.name.toLowerCase().includes('female')),
+          ];
+        }
+        
+        // Find first available candidate
+        const selected = candidates.find(v => v) || voices.find(v => v.lang?.startsWith('en')) || voices[0];
+        return selected;
       };
-      
-      // Comprehensive error handling
-      welcomeMsg.onerror = (e) => {
-        console.log('❌ Welcome message error:', e);
-        // Still try tools message even if welcome fails
-        setTimeout(() => {
-          console.log('🔄 Attempting tools message after welcome error...');
-          speechSynthesis.speak(toolsMsg);
-        }, 500);
+
+      // Create bulletproof utterances with enhanced error handling
+      const createBulletproofUtterance = (text: string, config: { rate?: number; pitch?: number; volume?: number } = {}, voiceType = 'female') => {
+        const utterance = new SpeechSynthesisUtterance(text);
+        const selectedVoice = selectBestVoice(voiceType === 'male');
+        
+        utterance.voice = selectedVoice;
+        utterance.rate = config.rate || 0.7;
+        utterance.pitch = config.pitch || 1.0;
+        utterance.volume = config.volume || 0.9;
+        
+        console.log(`🎤 Created "${text}" with voice: ${selectedVoice?.name || 'Default'} (${selectedVoice?.lang || 'Unknown'})`);
+        return utterance;
       };
+
+      // Create both messages with bulletproof configuration
+      const welcomeMsg = createBulletproofUtterance(
+        "WELCOME MASTER", 
+        { rate: 0.4, pitch: 0.1, volume: 0.9 }, 
+        'male'
+      );
       
-      toolsMsg.onerror = (e) => {
-        console.log('❌ Tools message error:', e);
-        console.log('✅ Voice sequence completed (with error)');
+      const toolsMsg = createBulletproofUtterance(
+        "YOU'VE GOT TOOLS", 
+        { rate: 0.8, pitch: 1.2, volume: 0.95 }, 
+        'female'
+      );
+      
+      // Bulletproof promise-based speech with timeout and retry
+      const speakWithTimeout = (utterance, timeoutMs = 10000) => {
+        return new Promise((resolve, reject) => {
+          let hasResolved = false;
+          
+          const timeout = setTimeout(() => {
+            if (!hasResolved) {
+              hasResolved = true;
+              speechSynthesis.cancel();
+              reject(new Error('Speech timeout'));
+            }
+          }, timeoutMs);
+
+          utterance.onstart = () => {
+            console.log(`🎤 Started: "${utterance.text}"`);
+          };
+
+          utterance.onend = () => {
+            if (!hasResolved) {
+              hasResolved = true;
+              clearTimeout(timeout);
+              console.log(`✅ Completed: "${utterance.text}"`);
+              resolve(true);
+            }
+          };
+
+          utterance.onerror = (error) => {
+            if (!hasResolved) {
+              hasResolved = true;
+              clearTimeout(timeout);
+              console.error(`❌ Error in "${utterance.text}":`, error);
+              reject(error);
+            }
+          };
+
+          // Multiple speak attempts for reliability
+          try {
+            speechSynthesis.speak(utterance);
+            
+            // Backup speak attempt if first doesn't trigger onstart
+            setTimeout(() => {
+              if (!hasResolved && !speechSynthesis.speaking) {
+                console.log(`🔄 Backup speak attempt for "${utterance.text}"`);
+                speechSynthesis.speak(utterance);
+              }
+            }, 500);
+            
+          } catch (error) {
+            if (!hasResolved) {
+              hasResolved = true;
+              clearTimeout(timeout);
+              reject(error);
+            }
+          }
+        });
       };
-      
-      // Start the carefully timed sequence
-      console.log('🚀 Starting welcome message...');
-      speechSynthesis.speak(welcomeMsg);
+
+      // Execute the bulletproof sequence
+      try {
+        console.log('🚀 Starting bulletproof sequence...');
+        
+        // Play welcome message
+        await speakWithTimeout(welcomeMsg, 8000);
+        
+        // Brief pause between messages
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Play tools message
+        await speakWithTimeout(toolsMsg, 8000);
+        
+        console.log('🎉 BULLETPROOF SUCCESS! Welcome sequence completed flawlessly!');
+        setHasPlayed(true); // Mark as successfully played
+        setRetryCount(0); // Reset retry count
+        
+      } catch (error) {
+        console.error(`❌ Speech sequence error (attempt ${attempt}/${MAX_RETRIES}):`, error);
+        
+        if (attempt < MAX_RETRIES) {
+          const retryDelay = Math.min(1000 * attempt, 5000); // Progressive backoff
+          console.log(`🔄 Retrying in ${retryDelay}ms... (${attempt}/${MAX_RETRIES})`);
+          setTimeout(() => {
+            setRetryCount(attempt);
+            playWelcomeSequence(attempt + 1);
+          }, retryDelay);
+        } else {
+          console.error('🛑 FINAL FAILURE: All retry attempts exhausted');
+          setHasPlayed(true); // Prevent further attempts
+        }
+      }
       
     } catch (error) {
-      console.log('❌ Voice system error:', error);
+      console.error(`💥 Fatal error in voice system (attempt ${attempt}):`, error);
+      if (attempt < MAX_RETRIES) {
+        setTimeout(() => playWelcomeSequence(attempt + 1), 2000);
+      }
     }
   };
   
