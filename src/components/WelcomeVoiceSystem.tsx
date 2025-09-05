@@ -66,6 +66,13 @@ const waitForVoices = (): Promise<SpeechSynthesisVoice[]> => {
 const WelcomeVoiceSystem = () => {
   const [hasPlayed, setHasPlayed] = useState(false);
 
+  // Debug logging for session detection
+  useEffect(() => {
+    console.log('🔍 WelcomeVoiceSystem mounted, hasPlayed:', hasPlayed);
+    console.log('🔍 Browser:', getBrowserInfo());
+    console.log('🔍 Speech synthesis available:', 'speechSynthesis' in window);
+  }, []);
+
   const playWelcomeSequence = async () => {
     if (!('speechSynthesis' in window)) {
       console.log('❌ Speech synthesis not supported');
