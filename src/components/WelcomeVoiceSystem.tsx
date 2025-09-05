@@ -64,7 +64,6 @@ const waitForVoices = (): Promise<SpeechSynthesisVoice[]> => {
 };
 
 const WelcomeVoiceSystem = () => {
-  const [hasPlayed, setHasPlayed] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
   const MAX_RETRIES = 10;
 
@@ -78,11 +77,6 @@ const WelcomeVoiceSystem = () => {
       return;
     }
 
-    // Prevent multiple successful playbacks but allow retries
-    if (hasPlayed && attempt === 1) {
-      console.log('🔄 Voice sequence already played successfully, skipping...');
-      return;
-    }
 
     console.log(`🎵 Starting bulletproof welcome voice sequence... (attempt ${attempt}/${MAX_RETRIES})`);
     
@@ -259,7 +253,6 @@ const WelcomeVoiceSystem = () => {
         await speakWithTimeout(toolsMsg, 8000);
         
         console.log('🎉 BULLETPROOF SUCCESS! Welcome sequence completed flawlessly!');
-        setHasPlayed(true); // Mark as successfully played
         setRetryCount(0); // Reset retry count
         
       } catch (error) {
@@ -274,7 +267,6 @@ const WelcomeVoiceSystem = () => {
           }, retryDelay);
         } else {
           console.error('🛑 FINAL FAILURE: All retry attempts exhausted');
-          setHasPlayed(true); // Prevent further attempts
         }
       }
       
@@ -287,11 +279,6 @@ const WelcomeVoiceSystem = () => {
   };
   
   const initializeVoices = async () => {
-    // Prevent multiple initializations
-    if (hasPlayed) {
-      console.log('🔄 Voice system already initialized, skipping...');
-      return;
-    }
 
     const { isMobile, browser, isRestrictive } = getBrowserInfo();
     
@@ -342,12 +329,6 @@ const WelcomeVoiceSystem = () => {
   };
 
   useEffect(() => {
-    // Only play once per page load - prevent multiple voice overlaps
-    if (hasPlayed) {
-      console.log('🔄 Voice already played for this page load');
-      return;
-    }
-
     console.log('🔍 Voice system check: Setting up welcome sequence (timed with video)');
     
     const { isMobile, browser, isRestrictive } = getBrowserInfo();
@@ -362,7 +343,6 @@ const WelcomeVoiceSystem = () => {
     
     // Enhanced interaction handling for restrictive browsers
     const handleUserInteraction = () => {
-      if (hasPlayed) return; // Prevent multiple triggers
       
       console.log(`👆 User interaction detected on ${browser} - triggering welcome`);
       clearTimeout(timer);
@@ -400,7 +380,7 @@ const WelcomeVoiceSystem = () => {
       document.removeEventListener('touchend', handleUserInteraction);
       document.removeEventListener('keydown', handleUserInteraction);
     };
-  }, [hasPlayed]); // Include hasPlayed to prevent multiple runs
+  }, []); // Run only once on component mount
 
   // This component renders nothing - it's just for voice functionality
   return null;
