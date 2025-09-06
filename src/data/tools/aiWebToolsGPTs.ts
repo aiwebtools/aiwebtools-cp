@@ -14,6 +14,7 @@ import { professionalServicesGPTs } from "./aiWebTools/professionalServicesGPTs"
 import { multimediaAndContentGPTs } from "./aiWebTools/multimediaAndContentGPTs";
 import { mysteriousAndUnusualGPTs } from "./aiWebTools/mysteriousAndUnusualGPTs";
 import { newSpecializedGPTs } from "./aiWebTools/newSpecializedGPTs";
+import { inspectorAndSafetyGPTs } from "./aiWebTools/inspectorAndSafetyGPTs";
 
 // Combine all AI Web Tools GPTs from organized categories
 export const aiWebToolsGPTs: Tool[] = [
@@ -30,6 +31,7 @@ export const aiWebToolsGPTs: Tool[] = [
   ...professionalServicesGPTs,
   ...multimediaAndContentGPTs,
   ...mysteriousAndUnusualGPTs,
-  ...newSpecializedGPTs, // Add the new tools
+  ...newSpecializedGPTs,
+  ...inspectorAndSafetyGPTs,
   // Additional GPTs will be added here as new category files are created
 ];

@@ -132,5 +132,17 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     category: "Mysterious & Unusual",
     rating: 4.8,
     totalVotes: 1456
+  },
+  {
+    icon: "🌌" as any,
+    title: "Reality Splitter GPT",
+    description: "Quantum cartographer of choices — splits your decisions into parallel timelines with immersive outcomes and visual maps. Using the creator's recommended model: GPT-4o. Explore alternate realities and decision outcomes.",
+    emoji: "🌌",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-68ba0f7208e08191a48694dcda1543e2-ai-reality-splitter/?via=aiwebtools",
+    tags: ["reality splitting", "parallel timelines", "decision mapping", "quantum choices", "alternate realities", "consciousness", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.9,
+    totalVotes: 2345
   }
 ];

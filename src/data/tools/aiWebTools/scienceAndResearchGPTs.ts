@@ -154,5 +154,17 @@ export const scienceAndResearchGPTs: Tool[] = [
     category: "Science & Research",
     rating: 4.6,
     totalVotes: 3245
+  },
+  {
+    icon: Microscope,
+    title: "Garden & Vision Analysis Plant Doctor GPT",
+    description: "Expert plant health analyst and garden care planner with visual analysis and horticulture tips. Using the creator's recommended model: GPT-4o. Professional plant diagnosis and garden management.",
+    emoji: "🌱",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://chatgpt.com/g/g-68bb73007bd48191a860d2304e3665e6-garden-vision-analysis-plant-doctor-gpt/?via=aiwebtools",
+    tags: ["plant health", "garden care", "horticulture", "plant diagnosis", "gardening", "agriculture", "plant science", "aiwebtools"],
+    category: "Science & Research",
+    rating: 4.7,
+    totalVotes: 2187
   }
 ];

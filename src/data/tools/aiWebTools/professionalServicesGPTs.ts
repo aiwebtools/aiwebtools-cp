@@ -136,7 +136,7 @@ export const professionalServicesGPTs: Tool[] = [
   {
     icon: Users,
     title: "Training Manual Generator GPT",
-    description: "Our AI-powered Training Manual Generator, developed by AIwebtools.ai, creates comprehensive, customized training manuals for your business. This tool ensures perfect alignment with your company's needs, facilitating effective employee training. Enhance your onboarding process with a detailed, tailored training resource.",
+    description: "Our AI-powered Training Manual Generator, developed by AIwebtools.ai, creates comprehensive, customized training manuals for your business. This tool ensures perfect alignment with your company's needs, facilitating effective employee training. Enhance your onboarding process with a detailed, training resource.",
     emoji: "📚",
     color: "from-blue-500 to-green-600",
     directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
@@ -145,5 +145,41 @@ export const professionalServicesGPTs: Tool[] = [
     category: "Professional Services",
     rating: 4.3,
     totalVotes: 2543
+  },
+  {
+    icon: Wrench,
+    title: "DIY REPAIR GPT",
+    description: "Virtual repair advisor, part matcher, and step-by-step DIY guide builder with embedded tutorials. Using the creator's recommended model: GPT-4o. Expert guidance for home and equipment repairs.",
+    emoji: "🔧",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://chatgpt.com/g/g-68bb792558a88191821219353c487bd6-diy-repair-gpt/?via=aiwebtools",
+    tags: ["diy repair", "home repair", "troubleshooting", "repair guide", "maintenance", "professional services", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.5,
+    totalVotes: 2187
+  },
+  {
+    icon: Users,
+    title: "Parent Teacher Advocate GPT",
+    description: "Meeting planner & advocacy partner for parent-teacher conferences, IEP/504, and school reviews. Using the creator's recommended model: GPT-4o. Expert support for educational advocacy.",
+    emoji: "👨‍👩‍👧‍👦",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://chatgpt.com/g/g-68bb75f48218819184ad7aa0198cb983-parent-teacher-advocate-gpt/?via=aiwebtools",
+    tags: ["education advocacy", "parent support", "school meetings", "iep support", "educational rights", "professional services", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.7,
+    totalVotes: 1956
+  },
+  {
+    icon: MapPin,
+    title: "Public Service Finder GPT",
+    description: "Virtual navigator for free/low-cost public services with verified, step-by-step access. Using the creator's recommended model: GPT-4o. Comprehensive public service navigation.",
+    emoji: "🏛️",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-68bb74c1de28819197b7cd6f944efce9-public-service-finder-gpt/?via=aiwebtools",
+    tags: ["public services", "government services", "social services", "community resources", "public assistance", "professional services", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.6,
+    totalVotes: 2234
   }
 ];

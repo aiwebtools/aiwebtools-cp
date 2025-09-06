@@ -311,5 +311,77 @@ export const businessAndFinanceGPTs: Tool[] = [
     category: "Business & Finance",
     rating: 4.7,
     totalVotes: 1567
+  },
+  {
+    icon: Target,
+    title: "Competitor Comparison GPT",
+    description: "Aggressive, real-time competitor businesses competitor real time comparison assistant for business intelligence strategist. Using the creator's recommended model: GPT-4o. Specialized AI for comprehensive competitor analysis and business intelligence.",
+    emoji: "🎯",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-68bb9109085c8191a5ffbe9ed6d339f5-competitor-comparison-gpt/?via=aiwebtools",
+    tags: ["competitor analysis", "business intelligence", "market research", "competitive strategy", "business comparison", "aiwebtools"],
+    category: "Business & Finance",
+    rating: 4.8,
+    totalVotes: 2456
+  },
+  {
+    icon: Lightbulb,
+    title: "Side Hustle & Microbusiness Planner GPT",
+    description: "Aggressive strategist for side hustles & microbusiness launches. Using the creator's recommended model: GPT-4o. Expert guidance for starting and scaling small businesses and side ventures.",
+    emoji: "💼",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://chatgpt.com/g/g-68bb8ba059ec81919253d369d0899f9c-side-hustle-microbusiness-planner-gpt/?via=aiwebtools",
+    tags: ["side hustle", "microbusiness", "entrepreneurship", "business planning", "startup strategy", "aiwebtools"],
+    category: "Business & Finance",
+    rating: 4.7,
+    totalVotes: 1987
+  },
+  {
+    icon: Receipt,
+    title: "Business Expense Deduction Optimizer GPT",
+    description: "Maximizes business expense deductions and generates audit-proof reports. Using the creator's recommended model: GPT-4o. Expert tax optimization for business expenses.",
+    emoji: "🧾",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://chatgpt.com/g/g-68bb7e4c16b881918baeff03dfe97c3a-business-expense-deduction-optimizer-gpt/?via=aiwebtools",
+    tags: ["tax deductions", "business expenses", "tax optimization", "financial planning", "expense management", "aiwebtools"],
+    category: "Business & Finance",
+    rating: 4.6,
+    totalVotes: 2134
+  },
+  {
+    icon: Users,
+    title: "Nonprofit Fundraising Builder GPT",
+    description: "Specialized AI strategist for nonprofit fundraising and grants. Using the creator's recommended model: GPT-4o. Expert assistance for nonprofit organizations seeking funding.",
+    emoji: "🤲",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-68bb7c9e5a78819184e03d06d63483f8-nonprofit-fundraising-builder-gpt/?via=aiwebtools",
+    tags: ["nonprofit", "fundraising", "grants", "charity", "nonprofit management", "aiwebtools"],
+    category: "Business & Finance",
+    rating: 4.5,
+    totalVotes: 1756
+  },
+  {
+    icon: Building,
+    title: "Local Business Grant & Permit GPT",
+    description: "Virtual advisor for business grants, permits, and compliance in the U.S. Using the creator's recommended model: GPT-4o. Expert guidance for business compliance and funding.",
+    emoji: "🏢",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-68bb7aa89f808191ae0bb377d00d1f13-local-business-grant-permit-gpt/?via=aiwebtools",
+    tags: ["business grants", "permits", "compliance", "local business", "business licensing", "aiwebtools"],
+    category: "Business & Finance",
+    rating: 4.4,
+    totalVotes: 1623
+  },
+  {
+    icon: CreditCard,
+    title: "Financial Aid & Tax Credit Navigator GPT",
+    description: "Expert AI for tax credit, deduction, and financial aid discovery and planning. Using the creator's recommended model: GPT-4o. Comprehensive financial assistance navigation.",
+    emoji: "💳",
+    color: "from-teal-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-68bb77efb08819185d5363cdd1a9cac-financial-aid-tax-credit-navigator-gpt/?via=aiwebtools",
+    tags: ["financial aid", "tax credits", "financial assistance", "tax planning", "financial navigation", "aiwebtools"],
+    category: "Business & Finance",
+    rating: 4.7,
+    totalVotes: 2087
   }
 ];

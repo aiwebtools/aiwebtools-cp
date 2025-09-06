@@ -104,5 +104,17 @@ export const educationAndLearningGPTs: Tool[] = [
     category: "Education & Learning",
     rating: 4.7,
     totalVotes: 4321
+  },
+  {
+    icon: GraduationCap,
+    title: "EDUCATIONAL TUTOR GPT",
+    description: "A patient AI tutor that explains step by step and adapts to your learning style. Using the creator's recommended model: GPT-4o. Personalized educational support for all learning levels.",
+    emoji: "👨‍🏫",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-68bb71f1dca88191866a1a0bfdff7ca0-educational-tutor-gpt/?via=aiwebtools",
+    tags: ["tutoring", "personalized learning", "education", "learning support", "academic help", "study assistance", "aiwebtools"],
+    category: "Education & Learning",
+    rating: 4.8,
+    totalVotes: 3456
   }
 ];

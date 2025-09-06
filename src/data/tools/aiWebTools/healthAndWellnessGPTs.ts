@@ -11,7 +11,8 @@ import {
   Plus,
   AlertTriangle,
   Briefcase,
-  Sparkles
+  Sparkles,
+  Home
 } from "lucide-react";
 
 export const healthAndWellnessGPTs: Tool[] = [
@@ -191,5 +192,17 @@ export const healthAndWellnessGPTs: Tool[] = [
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.8,
     totalVotes: 4512
+  },
+  {
+    icon: Home,
+    title: "AI Home Cleanliness & Declutter Coach GPT",
+    description: "Strict home organization and decluttering coach. Using the creator's recommended model: GPT-4o. Expert guidance for creating organized, clean living spaces.",
+    emoji: "🏠",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://chatgpt.com/g/g-68bb80c2c41c8191b3d6e3dda92b6ffb-ai-home-cleanliness-declutter-coach-gpt/?via=aiwebtools",
+    tags: ["home organization", "decluttering", "cleaning", "organization coach", "home improvement", "lifestyle", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.6,
+    totalVotes: 1987
   }
 ];

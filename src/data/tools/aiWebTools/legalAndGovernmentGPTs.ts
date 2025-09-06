@@ -12,7 +12,8 @@ import {
   AlertTriangle,
   Edit,
   PenTool,
-  Calendar
+  Calendar,
+  Briefcase
 } from "lucide-react";
 
 export const legalAndGovernmentGPTs: Tool[] = [
@@ -119,5 +120,65 @@ export const legalAndGovernmentGPTs: Tool[] = [
     category: "Legal & Government",
     rating: 4.8,
     totalVotes: 2134
+  },
+  {
+    icon: Shield,
+    title: "Fraud & Scam Guard",
+    description: "Specialized AI for fraud detection, scam defense, and financial recovery guidance. Using the creator's recommended model: GPT-4o. Expert protection against fraud and financial scams.",
+    emoji: "🛡️",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-68bb8db6194c8191a9cd657b15cb719c-fraud-scam-guard/?via=aiwebtools",
+    tags: ["fraud detection", "scam protection", "financial security", "fraud prevention", "financial recovery", "aiwebtools"],
+    category: "Legal & Government",
+    rating: 4.8,
+    totalVotes: 2567
+  },
+  {
+    icon: Users,
+    title: "Prison to Prosperity Re-Entry Companion GPT",
+    description: "Re-entry strategist for formerly incarcerated citizens. Using the creator's recommended model: GPT-4o. Comprehensive support for successful reintegration into society.",
+    emoji: "🔓",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-68bb89d7780c8191b0340d7cfe01c982-prison-to-prosperity-re-entry-companion-gpt/?via=aiwebtools",
+    tags: ["reentry support", "criminal justice", "rehabilitation", "second chances", "social reintegration", "aiwebtools"],
+    category: "Legal & Government",
+    rating: 4.9,
+    totalVotes: 1834
+  },
+  {
+    icon: Building2,
+    title: "Tenant Rights & Eviction Defender GPT",
+    description: "Aggressive tenant rights defender and eviction analyst. Using the creator's recommended model: GPT-4o. Expert advocacy for tenant rights and eviction defense.",
+    emoji: "🏠",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-68bb87743510819189933ed222fdaf43-tenant-rights-eviction-defender-gpt/?via=aiwebtools",
+    tags: ["tenant rights", "eviction defense", "housing law", "rental rights", "legal advocacy", "aiwebtools"],
+    category: "Legal & Government",
+    rating: 4.7,
+    totalVotes: 2198
+  },
+  {
+    icon: Briefcase,
+    title: "Employment Rights & Wage Recovery GPT",
+    description: "Aggressive U.S. labor law enforcer and wage recovery analyst. Using the creator's recommended model: GPT-4o. Expert support for employment rights and wage recovery.",
+    emoji: "💼",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://chatgpt.com/g/g-68bb85c64784819195a84a01ed3523cc-employment-rights-wage-recovery-gpt/?via=aiwebtools",
+    tags: ["employment rights", "wage recovery", "labor law", "workplace rights", "employment law", "aiwebtools"],
+    category: "Legal & Government",
+    rating: 4.6,
+    totalVotes: 2345
+  },
+  {
+    icon: BookOpen,
+    title: "AI Student Loan Repayment & Forgiveness GPT",
+    description: "Specialized strategist for student loan repayment & forgiveness. Using the creator's recommended model: GPT-4o. Expert guidance for student loan management and forgiveness programs.",
+    emoji: "🎓",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-68bb83c4ca64819195f35bd4e9d34a3e-ai-student-loan-repayment-forgiveness-gpt/?via=aiwebtools",
+    tags: ["student loans", "loan forgiveness", "education finance", "debt management", "financial aid", "aiwebtools"],
+    category: "Legal & Government",
+    rating: 4.8,
+    totalVotes: 3124
   }
 ];
