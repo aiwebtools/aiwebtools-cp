@@ -57,7 +57,7 @@ export const specializedPolicyTools: Tool[] = [
     description: "Comprehensive urban planning and city development policy guidance. Expert advice on zoning, infrastructure, sustainable development, and smart city initiatives.",
     emoji: "🏢",
     color: "from-gray-500 to-slate-600",
-    directUrl: "https://urbanplanningpolicygpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-68bd89d5ca84819199a8a11ce535698c-urban-planning-policy-gpt",
     tags: ["urban planning", "city development", "zoning policy", "infrastructure", "sustainable development"],
     category: "Specialized Policy Tools",
     rating: 4.6,
