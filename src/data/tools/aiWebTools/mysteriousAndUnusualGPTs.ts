@@ -144,5 +144,17 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     category: "Mysterious & Unusual",
     rating: 4.9,
     totalVotes: 2345
+  },
+  {
+    icon: "🌟" as any,
+    title: "AstroTheology Revealer GPT",
+    description: "Decode the hidden astrotheological roots of all religions, myths, and symbols. This specialized AI by AiWebTools.Ai reveals the celestial connections and astronomical foundations underlying world religions, ancient texts, and mythological systems. Using GPT-4o, it explores the cosmic patterns that shaped human spiritual beliefs throughout history.",
+    emoji: "🌟",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-68bd849122b48191963171690f999952-astrotheology-revealer-gpt/?via=aiwebtools",
+    tags: ["astrotheology", "religious analysis", "mythology", "ancient wisdom", "celestial symbolism", "spiritual astronomy", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.8,
+    totalVotes: 1543
   }
 ];

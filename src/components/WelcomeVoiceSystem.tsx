@@ -64,22 +64,13 @@ const waitForVoices = (): Promise<SpeechSynthesisVoice[]> => {
 };
 
 const WelcomeVoiceSystem = () => {
-  const [hasPlayed, setHasPlayed] = useState(false);
-
   const playWelcomeSequence = async () => {
     if (!('speechSynthesis' in window)) {
       console.log('❌ Speech synthesis not supported');
       return;
     }
 
-    // Prevent multiple playbacks
-    if (hasPlayed) {
-      console.log('🔄 Voice sequence already played, skipping...');
-      return;
-    }
-
     console.log('🎵 Starting welcome voice sequence...');
-    setHasPlayed(true); // Mark as played immediately to prevent duplicates
     
     try {
       // Cancel any existing speech to prevent conflicts
@@ -180,11 +171,6 @@ const WelcomeVoiceSystem = () => {
   };
   
   const initializeVoices = async () => {
-    // Prevent multiple initializations
-    if (hasPlayed) {
-      console.log('🔄 Voice system already initialized, skipping...');
-      return;
-    }
 
     const { isMobile, browser, isRestrictive } = getBrowserInfo();
     
@@ -235,11 +221,6 @@ const WelcomeVoiceSystem = () => {
   };
 
   useEffect(() => {
-    // Only play once per page load - prevent multiple voice overlaps
-    if (hasPlayed) {
-      console.log('🔄 Voice already played for this page load');
-      return;
-    }
 
     console.log('🔍 Voice system check: Setting up welcome sequence (timed with video)');
     
@@ -255,7 +236,6 @@ const WelcomeVoiceSystem = () => {
     
     // Enhanced interaction handling for restrictive browsers
     const handleUserInteraction = () => {
-      if (hasPlayed) return; // Prevent multiple triggers
       
       console.log(`👆 User interaction detected on ${browser} - triggering welcome`);
       clearTimeout(timer);
@@ -293,7 +273,7 @@ const WelcomeVoiceSystem = () => {
       document.removeEventListener('touchend', handleUserInteraction);
       document.removeEventListener('keydown', handleUserInteraction);
     };
-  }, [hasPlayed]); // Include hasPlayed to prevent multiple runs
+  }, []); // Run once on mount
 
   // This component renders nothing - it's just for voice functionality
   return null;

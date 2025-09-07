@@ -81,7 +81,7 @@ export const businessTools: Tool[] = [
     description: "Professional urban planning and city development consultation. Assists with zoning analysis, community development, sustainable planning, and municipal project guidance.",
     emoji: "🏙️",
     color: "from-green-500 to-blue-600",
-    directUrl: "https://chatgpt.com/g/g-683b99ab60b48191af08675584ee78e1-urban-planner-gpt",
+    directUrl: "https://chatgpt.com/g/g-68bba6576cb881918abbcf39ac5d6c7b-urban-planner-gpt",
     tags: ["urban planning", "city development", "zoning", "community development", "sustainable planning"],
     category: "Business Tools",
     rating: 4.5,
