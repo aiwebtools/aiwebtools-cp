@@ -221,7 +221,6 @@ const WelcomeVoiceSystem = () => {
   };
 
   useEffect(() => {
-
     console.log('🔍 Voice system check: Setting up welcome sequence (timed with video)');
     
     const { isMobile, browser, isRestrictive } = getBrowserInfo();
