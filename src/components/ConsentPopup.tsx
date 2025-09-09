@@ -22,14 +22,17 @@ const ConsentPopup = () => {
       if (!isMobile) {
         // Only show popup on desktop
         setShowConsent(true);
-        // Enable voice for desktop devices
+        // Enable voice for desktop devices ONLY when popup is actually shown
         if ('speechSynthesis' in window) {
           setIsVoiceEnabled(true);
-          // Speak welcome message after a short delay
+          // Speak welcome message after a short delay, but ONLY on desktop
           setTimeout(() => {
             speakWelcomeMessage();
           }, 1000);
         }
+      } else {
+        // For mobile, just mark consent as seen without showing popup or voice
+        localStorage.setItem('aitools-consent-seen', 'true');
       }
     }
 
@@ -39,8 +42,8 @@ const ConsentPopup = () => {
   }, []);
 
   const speakWelcomeMessage = () => {
-    // Check for speech synthesis support and ensure we're on desktop
-    if (!('speechSynthesis' in window) || isMobile) return;
+    // Check for speech synthesis support and ensure we're on desktop AND popup is showing
+    if (!('speechSynthesis' in window) || isMobile || !showConsent) return;
     
     try {
       // Cancel any ongoing speech

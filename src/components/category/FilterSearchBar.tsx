@@ -36,7 +36,7 @@ const FilterSearchBar = ({
   }, [onFilterSearch]);
 
   return (
-    <div className="w-full max-w-2xl mx-auto mt-6">
+    <div className="w-full max-w-2xl mx-auto mt-6 px-4">
       <div className="text-center mb-3">
         <span className="text-sm font-medium text-purple-300 bg-purple-500/10 px-3 py-1 rounded-full border border-purple-400/30">
           Filter Search
@@ -63,8 +63,8 @@ const FilterSearchBar = ({
               placeholder={placeholder}
               className={cn(
                 "flex-1 border-0 bg-transparent text-white placeholder:text-gray-400",
-                "focus:ring-0 focus:outline-none text-base py-4 px-2",
-                "font-medium tracking-wide"
+                "focus:ring-0 focus:outline-none text-sm sm:text-base py-3 sm:py-4 px-2",
+                "font-medium tracking-wide min-h-[44px]"
               )}
             />
 

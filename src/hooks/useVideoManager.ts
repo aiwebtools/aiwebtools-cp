@@ -6,6 +6,12 @@ class VideoManager {
   private observers: Map<HTMLIFrameElement, IntersectionObserver> = new Map();
 
   registerVideo(iframe: HTMLIFrameElement, toolId: string) {
+    // Prevent duplicate registrations
+    if (this.observers.has(iframe)) {
+      console.log(`⚠️ Video ${toolId} already registered, skipping...`);
+      return;
+    }
+
     // Stop any currently playing video
     if (this.currentVideo && this.currentVideo !== iframe) {
       this.pauseVideo(this.currentVideo);
