@@ -92,5 +92,17 @@ export const videoEditingTools: Tool[] = [
     category: "Video Tools",
     rating: 4.2,
     totalVotes: 2654
+  },
+  {
+    icon: Play,
+    title: "Klap AI",
+    description: "AI-powered video editor that turns long videos into engaging short clips. Automatically finds the best moments and creates viral-ready content for social media platforms.",
+    emoji: "🎬",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://klap.app/?via=Aiwebtools",
+    tags: ["video clipping", "viral content", "social media", "automatic editing", "short clips", "highlights"],
+    category: "Video Tools",
+    rating: 4.3,
+    totalVotes: 2847
   }
 ];
