@@ -19,6 +19,7 @@ interface ToolsGridProps {
   hasInfiniteScroll?: boolean;
   isLoading?: boolean;
   onCategoryChange?: (category: string) => void;
+  isFilterSearch?: boolean; // New prop to identify filter search mode
 }
 
 const ToolsGrid = memo(({ 
@@ -29,7 +30,8 @@ const ToolsGrid = memo(({
   onLoadMore,
   hasInfiniteScroll = false,
   isLoading = false,
-  onCategoryChange
+  onCategoryChange,
+  isFilterSearch = false
 }: ToolsGridProps) => {
   // Memoize expensive calculations - simplified for performance
   const { 
@@ -144,12 +146,32 @@ const ToolsGrid = memo(({
 
       {/* Direct VirtualizedToolsGrid without Suspense */}
       {useVirtualization ? (
-        <VirtualizedToolsGrid
-          tools={tools}
-          displayedCount={displayedCount}
-          searchTerm={searchTerm}
-          selectedCategory={selectedCategory}
-        />
+        <>
+          <VirtualizedToolsGrid
+            tools={tools}
+            displayedCount={displayedCount}
+            searchTerm={searchTerm}
+            selectedCategory={selectedCategory}
+          />
+          
+          {/* Filter Search Separator - Show "More Tools" divider after initial results */}
+          {isFilterSearch && displayedCount > 48 && displayTools.length > 48 && (
+            <div className="w-full flex items-center justify-center my-12">
+              <div className="flex items-center space-x-4 bg-gray-800/50 backdrop-blur-md rounded-2xl px-6 py-4 border border-purple-400/30">
+                <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-purple-400"></div>
+                <div className="text-center">
+                  <span className="text-purple-300 font-semibold text-sm">
+                    More AI Tools
+                  </span>
+                  <div className="text-xs text-gray-400 mt-1">
+                    Additional tools matching your search
+                  </div>
+                </div>
+                <div className="w-12 h-[1px] bg-gradient-to-l from-transparent to-purple-400"></div>
+              </div>
+            </div>
+          )}
+        </>
       ) : (
         <div 
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 px-3 sm:px-4 lg:px-0 efficient-grid" 

@@ -14,11 +14,13 @@ import { getToolsByCategory } from "@/utils/categoryUtils";
 import { getStandardizedCategoryTitle } from "@/utils/categoryTitles";
 import { generateStructuredData } from "@/utils/seo";
 import { getContextAwareAdditionalTools } from "@/utils/contextAwareSimilarTools";
+import { searchTools } from "@/utils/searchUtils";
 
 const CategoryPage = () => {
   const { categoryName } = useParams();
   const [displayedCount, setDisplayedCount] = useState(48);
   const [isLoading, setIsLoading] = useState(false);
+  const [filterSearchTerm, setFilterSearchTerm] = useState("");
 
   // Decode and standardize the category name
   const decodedCategory = categoryName ? decodeURIComponent(categoryName) : "";
@@ -35,33 +37,53 @@ const CategoryPage = () => {
   // Endless tools generation for categories
   const finalFilteredTools = useMemo(() => {
     let endlessTools = [...categoryTools];
-    const remaining = displayedCount - endlessTools.length;
-    if (remaining > 0) {
-      const similar = getContextAwareAdditionalTools(
-        endlessTools,
-        "",
-        standardizedCategory,
-        Math.min(remaining, 100)
-      );
-      const uniqueSimilar = similar.filter(tool => 
-        !endlessTools.some(existing => existing.title === tool.title)
-      );
-      endlessTools = [...endlessTools, ...uniqueSimilar];
-      const stillNeeded = displayedCount - endlessTools.length;
-      if (stillNeeded > 0) {
-        const others = allTools.filter(tool => 
+    
+    // If filter search is active, use intelligent search across ALL tools
+    if (filterSearchTerm.trim()) {
+      console.log(`🔍 Filter search active: "${filterSearchTerm}" - searching all ${allTools.length} tools`);
+      const searchResults = searchTools(allTools, filterSearchTerm);
+      console.log(`🎯 Filter search results: ${searchResults.length} tools found`);
+      
+      // Use search results but still apply endless scroll logic
+      endlessTools = searchResults;
+      const remaining = displayedCount - endlessTools.length;
+      if (remaining > 0) {
+        // Add more tools from the search results if available
+        const additionalResults = searchResults.slice(endlessTools.length, endlessTools.length + remaining);
+        endlessTools = [...endlessTools, ...additionalResults];
+      }
+    } else {
+      // Original category-based logic when no filter is active
+      const remaining = displayedCount - endlessTools.length;
+      if (remaining > 0) {
+        const similar = getContextAwareAdditionalTools(
+          endlessTools,
+          "",
+          standardizedCategory,
+          Math.min(remaining, 100)
+        );
+        const uniqueSimilar = similar.filter(tool => 
           !endlessTools.some(existing => existing.title === tool.title)
         );
-        endlessTools = [...endlessTools, ...others.slice(0, stillNeeded)];
+        endlessTools = [...endlessTools, ...uniqueSimilar];
+        const stillNeeded = displayedCount - endlessTools.length;
+        if (stillNeeded > 0) {
+          const others = allTools.filter(tool => 
+            !endlessTools.some(existing => existing.title === tool.title)
+          );
+          endlessTools = [...endlessTools, ...others.slice(0, stillNeeded)];
+        }
       }
     }
+    
     return endlessTools;
-  }, [categoryTools, displayedCount, standardizedCategory]);
+  }, [categoryTools, displayedCount, standardizedCategory, filterSearchTerm]);
 
   useEffect(() => {
     // Scroll to top when category changes
     window.scrollTo(0, 0);
     setDisplayedCount(48);
+    setFilterSearchTerm(""); // Clear filter when category changes
     
     // Log category page load for verification
     console.log(`📄 Category page loaded: "${standardizedCategory}" (${categoryTools.length} tools)`);
@@ -74,6 +96,13 @@ const CategoryPage = () => {
       setDisplayedCount(prev => prev + 48);
       setIsLoading(false);
     }, 100);
+  };
+
+  const handleFilterSearch = (searchTerm: string) => {
+    console.log(`🔍 Filter search initiated: "${searchTerm}"`);
+    setFilterSearchTerm(searchTerm);
+    setDisplayedCount(48); // Reset count when new filter is applied
+    window.scrollTo(0, 0); // Scroll to top to see results
   };
 
   if (!decodedCategory) {
@@ -132,16 +161,18 @@ const CategoryPage = () => {
           <CategoryHeader 
             categoryName={standardizedCategory}
             toolCount={categoryTools.length}
+            onFilterSearch={handleFilterSearch}
           />
           
           <ToolsGrid 
             tools={finalFilteredTools}
             displayedCount={displayedCount}
-            selectedCategory={standardizedCategory}
-            searchTerm=""
+            selectedCategory={filterSearchTerm ? null : standardizedCategory} // Don't show category when filtering
+            searchTerm={filterSearchTerm} // Pass filter term as search term
             onLoadMore={handleLoadMore}
             hasInfiniteScroll={true}
             isLoading={isLoading}
+            isFilterSearch={!!filterSearchTerm} // Pass filter search flag
           />
         </div>
         

@@ -4,13 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronLeft, Grid3X3 } from "lucide-react";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
+import FilterSearchBar from "@/components/category/FilterSearchBar";
 
 interface CategoryHeaderProps {
   categoryName: string;
   toolCount: number;
+  onFilterSearch?: (searchTerm: string) => void;
 }
 
-const CategoryHeader = ({ categoryName, toolCount }: CategoryHeaderProps) => {
+const CategoryHeader = ({ categoryName, toolCount, onFilterSearch }: CategoryHeaderProps) => {
   const navigate = useNavigate();
 
   const goBack = () => {
@@ -47,6 +49,11 @@ const CategoryHeader = ({ categoryName, toolCount }: CategoryHeaderProps) => {
       <div className="max-w-2xl mx-auto">
         <GlobalSearchBar />
       </div>
+
+      {/* Filter Search Bar - Category-specific filtering */}
+      {onFilterSearch && (
+        <FilterSearchBar onFilterSearch={onFilterSearch} />
+      )}
     </div>
   );
 };
