@@ -1,6 +1,6 @@
 
 import { Tool } from "@/types/tools";
-import { BookOpen, User, Sun, BarChart, Briefcase, Drama, Settings, FlaskConical, Home, Pill } from "lucide-react";
+import { BookOpen, User, Sun, BarChart, Briefcase, Drama, Settings, FlaskConical, Home, Pill, Search } from "lucide-react";
 
 export const thirdPriorityFeaturedGPTs: Tool[] = [
   {
@@ -132,5 +132,18 @@ export const thirdPriorityFeaturedGPTs: Tool[] = [
     rating: 4.6,
     totalVotes: 3700,
     tags: ["pharmaceutical", "medication", "healthcare", "pharmacy", "drug information"]
+  },
+  {
+    icon: Search,
+    title: "World Reality Decoder GPT",
+    description: "World Reality Decoder GPT is an advanced AI tool that decodes the hidden layers of reality by analyzing patterns, symbols, and connections that shape our world. Using sophisticated pattern recognition and critical analysis, it helps users understand the deeper structures and hidden mechanisms behind events, systems, and phenomena. Perfect for researchers, truth seekers, and anyone looking to decode the complex reality around us.",
+    emoji: "🔍",
+    color: "from-indigo-500 to-purple-600",
+    category: "Mysterious & Unusual",
+    directUrl: "https://chatgpt.com/g/g-68c1e9e3b488819193744edfeecf7997-world-reality-decoder-gpt",
+    videoUrl: "https://youtu.be/lGck2bUVFDU?si=ywmO-xNwrfmnJmkW",
+    rating: 4.6,
+    totalVotes: 1234,
+    tags: ["reality decoding", "pattern analysis", "truth seeking", "system analysis", "hidden connections", "critical thinking", "world analysis"]
   }
 ];

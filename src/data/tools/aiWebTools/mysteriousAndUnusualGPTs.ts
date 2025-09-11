@@ -4,7 +4,8 @@ import {
   Waves,
   Stars,
   Sparkles,
-  Star
+  Star,
+  Brain
 } from "lucide-react";
 
 export const mysteriousAndUnusualGPTs: Tool[] = [
@@ -164,9 +165,22 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🔍",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68c1e9e3b488819193744edfeecf7997-world-reality-decoder-gpt",
+    videoUrl: "https://youtu.be/lGck2bUVFDU?si=ywmO-xNwrfmnJmkW",
     tags: ["reality decoding", "pattern analysis", "truth seeking", "system analysis", "hidden connections", "critical thinking", "world analysis"],
     category: "Mysterious & Unusual",
     rating: 4.6,
     totalVotes: 1234
+  },
+  {
+    icon: Brain,
+    title: "Architect Matrix Tool",
+    description: "Engage in mind-bending quantum physics and quantum holography debates with the Architect persona from The Matrix. Experience an awakening journey through deep philosophical discussions about reality, consciousness, and the nature of existence. A transformative tool for those seeking to question the very fabric of reality.",
+    emoji: "🏛️",
+    color: "from-green-600 to-emerald-700",
+    directUrl: "https://neomatrixgpt.lovable.app/architect",
+    tags: ["quantum physics", "quantum holography", "matrix", "architect", "philosophy", "consciousness", "reality", "awakening"],
+    category: "Mysterious & Unusual",
+    rating: 4.9,
+    totalVotes: 2156
   }
 ];
