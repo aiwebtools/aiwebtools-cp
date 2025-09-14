@@ -140,5 +140,17 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     category: "Spirituality & Philosophy",
     rating: 4.7,
     totalVotes: 1034
+  },
+  {
+    icon: BookOpen,
+    title: "Kabbalah GPT",
+    description: "Explore the profound depths of Kabbalah, the ancient Jewish mystical tradition that reveals hidden meanings in sacred texts and the nature of divine creation. This GPT provides insights into Kabbalistic concepts like the Tree of Life, Sefirot, Ein Sof, and the four worlds of existence. Discover the mystical teachings that have guided spiritual seekers for centuries, offering wisdom on meditation, prayer, and the journey toward divine union and enlightenment.",
+    emoji: "🔯",
+    color: "from-purple-500 to-indigo-600",
+    directUrl: "https://chatgpt.com/g/g-68c6ea6143748191bed5360219b0b02a-kabbalah-gpt/?via=aiwebtools",
+    tags: ["kabbalah", "jewish mysticism", "tree of life", "sefirot", "sacred texts", "divine wisdom", "spiritual teachings", "mystical tradition", "meditation", "enlightenment"],
+    category: "Spirituality & Philosophy",
+    rating: 4.8,
+    totalVotes: 3247
   }
 ];
