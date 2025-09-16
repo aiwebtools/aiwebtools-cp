@@ -148,6 +148,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🔯",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://chatgpt.com/g/g-68c6ea6143748191bed5360219b0b02a-kabbalah-gpt/?via=aiwebtools",
+    videoUrl: "https://youtu.be/b8M_eGKwN7o?si=X0vJb6jHtCUHkeQW",
     tags: ["kabbalah", "jewish mysticism", "tree of life", "sefirot", "sacred texts", "divine wisdom", "spiritual teachings", "mystical tradition", "meditation", "enlightenment"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
