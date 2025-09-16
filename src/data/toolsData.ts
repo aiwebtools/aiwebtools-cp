@@ -10,6 +10,9 @@ import { forceWEB3Reset } from '@/utils/forceWEB3CacheReset';
 // Force WEB3 cache reset to ensure .transfermoney appears
 forceWEB3Reset();
 
+// Force data refresh for Kabbalah GPT video
+const KABBALAH_VIDEO_REFRESH = Date.now();
+
 // Import AI Web Tools GPTs - PRIORITY FEATURED TOOLS
 import { priorityFeaturedGPTs } from "./tools/aiWebTools/priorityFeaturedGPTs";
 import { secondPriorityFeaturedGPTs } from "./tools/aiWebTools/secondPriorityFeaturedGPTs";
