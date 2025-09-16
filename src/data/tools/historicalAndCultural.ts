@@ -153,7 +153,7 @@ export const historicalAndCultural: Tool[] = [
     description: "Explore historical medicine, traditional remedies, herbal knowledge, and the evolution of pharmaceutical practices through the ages.",
     emoji: "🏺",
     color: "from-green-600 to-brown-700",
-    directUrl: "https://apothecarygpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-67d839556b848191a7572b1f3e911499-historical-apothecary-gpt/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-the-ai-tool-_kLdMI.png/:/cr=t:0%25,l:7.93%25,w:84.15%25,h:100%25/rs=w:1200,cg:true",
     category: "Historical Medicine",
     tags: ["historical medicine", "apothecary", "herbal remedies", "traditional healing"],
