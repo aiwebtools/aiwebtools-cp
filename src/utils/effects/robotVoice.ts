@@ -186,33 +186,40 @@ export const createRobotVoice = (toolName: string, destinationUrl: string) => {
     
     const utterance = new SpeechSynthesisUtterance(message);
     
-    // Configure voice for mystical whisper effect
-    utterance.rate = 0.4; // Much slower for whisper effect
-    utterance.pitch = 0.3; // Slightly higher pitch for intimate whisper
-    utterance.volume = 0.6; // Lower volume for whisper effect
+    // Configure voice to MATCH welcome message for consistency
+    utterance.rate = 0.4; // Same slow and deliberate pace as WELCOME MASTER
+    utterance.pitch = 0.2; // Lower pitch for robot effect (closer to welcome message)
+    utterance.volume = 0.8; // Higher volume to match welcome message quality
     
-    // Try to find a softer, more intimate voice
+    // Use SAME voice selection logic as welcome system for consistency
     const voices = speechSynthesis.getVoices();
     
-    // Prefer female voices for softer whisper effect
-    const preferredVoices = voices.filter(voice => 
-      voice.name.toLowerCase().includes('female') ||
-      voice.name.toLowerCase().includes('samantha') ||
-      voice.name.toLowerCase().includes('anna') ||
-      voice.name.toLowerCase().includes('karen') ||
-      voice.name.toLowerCase().includes('victoria') ||
-      voice.name.toLowerCase().includes('fiona') ||
-      voice.lang.startsWith('en')
+    // Match the EXACT same voice selection as WELCOME MASTER for consistency
+    const robotVoice = voices.find(v => 
+      v.name.toLowerCase().includes('alex') ||
+      v.name.toLowerCase().includes('daniel') ||
+      v.name.toLowerCase().includes('fred') ||
+      v.name.toLowerCase().includes('male') ||
+      (v.name.toLowerCase().includes('google') && v.name.toLowerCase().includes('male')) ||
+      v.name.toLowerCase().includes('david') ||
+      v.name.toLowerCase().includes('microsoft david') ||
+      v.name.toLowerCase().includes('mark')
+    ) || voices.find(v => 
+      // Fallback to any English male voice with consistent characteristics
+      v.lang && v.lang.startsWith('en') && 
+      (v.name.toLowerCase().includes('male') || 
+       v.name.toLowerCase().includes('man') ||
+       !v.name.toLowerCase().includes('female'))
+    ) || voices.find(v => 
+      // Final fallback to first English voice for consistency
+      v.lang && v.lang.startsWith('en')
     );
     
-    if (preferredVoices.length > 0) {
-      utterance.voice = preferredVoices[0];
-    } else if (voices.length > 0) {
-      // Fallback to first available English voice
-      const englishVoice = voices.find(voice => voice.lang.startsWith('en'));
-      if (englishVoice) {
-        utterance.voice = englishVoice;
-      }
+    if (robotVoice) {
+      utterance.voice = robotVoice;
+      console.log('🤖 Using CONSISTENT robot voice:', robotVoice.name, '| Language:', robotVoice.lang);
+    } else {
+      console.log('⚠️ No suitable robot voice found, using system default');
     }
     
     // Add event listeners for debugging

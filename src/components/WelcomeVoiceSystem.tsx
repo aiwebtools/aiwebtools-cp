@@ -170,16 +170,31 @@ const WelcomeVoiceSystem = () => {
       welcomeMsg.pitch = 0.1; // Very low pitch for robot effect
       welcomeMsg.volume = 0.9; // Full but not overwhelming
       
-      // Find deep male voice for welcome - prioritize robot-like voices
+      // Enhanced deep male voice selection for consistent robot effect across all devices
       const maleVoice = voices.find(v => 
         v.name.toLowerCase().includes('alex') ||
         v.name.toLowerCase().includes('daniel') ||
+        v.name.toLowerCase().includes('fred') ||
         v.name.toLowerCase().includes('male') ||
-        v.name.toLowerCase().includes('fred')
+        (v.name.toLowerCase().includes('google') && v.name.toLowerCase().includes('male')) ||
+        v.name.toLowerCase().includes('david') ||
+        v.name.toLowerCase().includes('microsoft david') ||
+        v.name.toLowerCase().includes('mark')
+      ) || voices.find(v => 
+        // Fallback to any English male voice with consistent characteristics
+        v.lang && v.lang.startsWith('en') && 
+        (v.name.toLowerCase().includes('male') || 
+         v.name.toLowerCase().includes('man') ||
+         !v.name.toLowerCase().includes('female'))
+      ) || voices.find(v => 
+        // Final fallback to first English voice for consistency
+        v.lang && v.lang.startsWith('en')
       );
       if (maleVoice) {
         welcomeMsg.voice = maleVoice;
-        console.log('🤖 Selected male voice:', maleVoice.name);
+        console.log('🤖 Selected CONSISTENT robot voice:', maleVoice.name, '| Language:', maleVoice.lang);
+      } else {
+        console.log('⚠️ No suitable male voice found, using system default (may affect quality)');
       }
       
       // Create second message: "YOU'VE GOT TOOLS" - British female AOL-style
