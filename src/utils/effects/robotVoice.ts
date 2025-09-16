@@ -186,40 +186,36 @@ export const createRobotVoice = (toolName: string, destinationUrl: string) => {
     
     const utterance = new SpeechSynthesisUtterance(message);
     
-    // Configure voice to MATCH welcome message for consistency
-    utterance.rate = 0.4; // Same slow and deliberate pace as WELCOME MASTER
-    utterance.pitch = 0.2; // Lower pitch for robot effect (closer to welcome message)
-    utterance.volume = 0.8; // Higher volume to match welcome message quality
+    // Configure voice to MATCH welcome message - slow British lady
+    utterance.rate = 0.4; // Same slow pace as WELCOME MASTER
+    utterance.pitch = 1.1; // Same pleasant British lady pitch
+    utterance.volume = 0.8; // Clear and consistent volume
     
-    // Use SAME voice selection logic as welcome system for consistency
+    // Use SAME British lady voice as WELCOME MASTER for consistency
     const voices = speechSynthesis.getVoices();
     
-    // Match the EXACT same voice selection as WELCOME MASTER for consistency
-    const robotVoice = voices.find(v => 
-      v.name.toLowerCase().includes('alex') ||
-      v.name.toLowerCase().includes('daniel') ||
-      v.name.toLowerCase().includes('fred') ||
-      v.name.toLowerCase().includes('male') ||
-      (v.name.toLowerCase().includes('google') && v.name.toLowerCase().includes('male')) ||
-      v.name.toLowerCase().includes('david') ||
-      v.name.toLowerCase().includes('microsoft david') ||
-      v.name.toLowerCase().includes('mark')
+    // Match the EXACT same British female voice selection as WELCOME MASTER
+    const britishFemaleVoice = voices.find(v => 
+      (v.lang && v.lang.toLowerCase().includes('en-gb')) ||
+      v.name.toLowerCase().includes('british') ||
+      v.name.toLowerCase().includes('uk') ||
+      v.name.toLowerCase().includes('victoria') ||
+      v.name.toLowerCase().includes('emma') ||
+      v.name.toLowerCase().includes('fiona')
     ) || voices.find(v => 
-      // Fallback to any English male voice with consistent characteristics
-      v.lang && v.lang.startsWith('en') && 
-      (v.name.toLowerCase().includes('male') || 
-       v.name.toLowerCase().includes('man') ||
-       !v.name.toLowerCase().includes('female'))
-    ) || voices.find(v => 
-      // Final fallback to first English voice for consistency
-      v.lang && v.lang.startsWith('en')
+      v.name.toLowerCase().includes('female') ||
+      v.name.toLowerCase().includes('samantha') ||
+      v.name.toLowerCase().includes('karen') ||
+      v.name.toLowerCase().includes('susan') ||
+      v.name.toLowerCase().includes('anna') ||
+      v.name.toLowerCase().includes('catherine')
     );
     
-    if (robotVoice) {
-      utterance.voice = robotVoice;
-      console.log('🤖 Using CONSISTENT robot voice:', robotVoice.name, '| Language:', robotVoice.lang);
+    if (britishFemaleVoice) {
+      utterance.voice = britishFemaleVoice;
+      console.log('🤖 Using CONSISTENT British lady voice:', britishFemaleVoice.name, '| Language:', britishFemaleVoice.lang);
     } else {
-      console.log('⚠️ No suitable robot voice found, using system default');
+      console.log('⚠️ No suitable British female voice found, using system default');
     }
     
     // Add event listeners for debugging
