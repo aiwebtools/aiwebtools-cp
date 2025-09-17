@@ -91,5 +91,17 @@ export const timeAndHistoryGPTs: Tool[] = [
       category: "Time & History",
       rating: 4.7,
       totalVotes: 1280
+    },
+    {
+      icon: BookOpen,
+      title: "Palestinian History Preserver GPT",
+      description: "Palestinian History Preserver GPT is dedicated to documenting, preserving, and sharing Palestinian historical narratives, cultural heritage, and stories. This AI tool helps maintain historical records, explore Palestinian heritage, and educate users about Palestinian history through authentic documentation and storytelling.",
+      emoji: "🏛️",
+      color: "from-green-500 to-red-600",
+      directUrl: "https://chatgpt.com/g/g-68ca033a29508191a8b51668f8bf8e78-palestinian-history-preserver",
+      tags: ["Palestinian history", "cultural preservation", "historical documentation", "Middle Eastern history", "heritage preservation", "historical education"],
+      category: "Time & History",
+      rating: 4.6,
+      totalVotes: 892
     }
 ];

@@ -1,262 +1,262 @@
 
-@layer base {
-  .neon-border {
-    border: 1px solid;
-    border-image: linear-gradient(45deg, #00ffff, #ff00ff) 1;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(255, 0, 255, 0.1);
-  }
+/* Component Styles */
 
-  /* Featured Tools Transparency */
-  .featured-tools-transparent {
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(1px);
-  }
+.neon-border {
+  border: 1px solid;
+  border-image: linear-gradient(45deg, #00ffff, #ff00ff) 1;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(255, 0, 255, 0.1);
+}
 
-  .featured-tools-transparent section {
-    background: transparent !important;
-  }
+/* Featured Tools Transparency */
+.featured-tools-transparent {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(1px);
+}
 
-  .featured-tools-transparent .bg-black {
-    background: rgba(0, 0, 0, 0.4) !important;
-  }
+.featured-tools-transparent section {
+  background: transparent !important;
+}
 
-  .featured-tools-transparent .bg-gray-900 {
-    background: rgba(17, 24, 39, 0.4) !important;
-  }
+.featured-tools-transparent .bg-black {
+  background: rgba(0, 0, 0, 0.4) !important;
+}
 
-  .featured-tools-transparent .bg-slate-900 {
-    background: rgba(15, 23, 42, 0.4) !important;
-  }
+.featured-tools-transparent .bg-gray-900 {
+  background: rgba(17, 24, 39, 0.4) !important;
+}
 
-  /* Optimized Cyberpunk grid overlay - reduced complexity */
+.featured-tools-transparent .bg-slate-900 {
+  background: rgba(15, 23, 42, 0.4) !important;
+}
+
+/* Optimized Cyberpunk grid overlay - reduced complexity */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(0, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100px 100px;
+  will-change: background-position;
+}
+
+/* Reduced animation complexity for better performance */
+@media (min-width: 1024px) {
   .cyber-grid {
-    background-image: 
-      linear-gradient(rgba(0, 255, 255, 0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 100px 100px;
-    will-change: background-position;
+    animation: gridMove 30s infinite linear;
   }
+}
 
-  /* Reduced animation complexity for better performance */
-  @media (min-width: 1024px) {
-    .cyber-grid {
-      animation: gridMove 30s infinite linear;
-    }
+@keyframes gridMove {
+  0% {
+    background-position: 0 0;
   }
-
-  @keyframes gridMove {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 100px 100px;
-    }
+  100% {
+    background-position: 100px 100px;
   }
+}
 
-  /* Optimized sidebar sparkles with better performance */
-  .sidebar-sparkles {
-    position: relative;
-    background: linear-gradient(135deg, 
-      rgba(0, 10, 20, 0.95) 0%, 
-      rgba(5, 15, 30, 0.98) 25%, 
-      rgba(10, 20, 40, 0.95) 50%, 
-      rgba(5, 15, 30, 0.98) 75%, 
-      rgba(0, 10, 20, 0.95) 100%
-    );
-    box-shadow: 
-      inset 0 0 30px rgba(0, 255, 255, 0.1),
-      inset 0 0 60px rgba(255, 0, 255, 0.05),
-      0 0 20px rgba(0, 255, 255, 0.2);
-    border-right: 1px solid rgba(0, 255, 255, 0.3);
+/* Optimized sidebar sparkles with better performance */
+.sidebar-sparkles {
+  position: relative;
+  background: linear-gradient(135deg, 
+    rgba(0, 10, 20, 0.95) 0%, 
+    rgba(5, 15, 30, 0.98) 25%, 
+    rgba(10, 20, 40, 0.95) 50%, 
+    rgba(5, 15, 30, 0.98) 75%, 
+    rgba(0, 10, 20, 0.95) 100%
+  );
+  box-shadow: 
+    inset 0 0 30px rgba(0, 255, 255, 0.1),
+    inset 0 0 60px rgba(255, 0, 255, 0.05),
+    0 0 20px rgba(0, 255, 255, 0.2);
+  border-right: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.sidebar-sparkles::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.06) 0%, transparent 50%),
+              radial-gradient(circle at 40% 90%, rgba(0, 255, 255, 0.04) 0%, transparent 50%);
+  animation: sparkleShimmer 6s ease-in-out infinite;
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.sidebar-sparkles::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(1px 1px at 10px 20px, rgba(0, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 50px 80px, rgba(255, 0, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 80px 40px, rgba(255, 255, 255, 0.5), transparent);
+  background-repeat: repeat;
+  background-size: 200px 250px;
+  animation: sparkleFloat 12s linear infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+
+@keyframes sparkleShimmer {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
   }
-
-  .sidebar-sparkles::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.06) 0%, transparent 50%),
-                radial-gradient(circle at 40% 90%, rgba(0, 255, 255, 0.04) 0%, transparent 50%);
-    animation: sparkleShimmer 6s ease-in-out infinite;
-    pointer-events: none;
-    will-change: opacity, transform;
+  50% {
+    opacity: 1;
+    transform: scale(1.01);
   }
+}
 
-  .sidebar-sparkles::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-      radial-gradient(1px 1px at 10px 20px, rgba(0, 255, 255, 0.6), transparent),
-      radial-gradient(1px 1px at 50px 80px, rgba(255, 0, 255, 0.4), transparent),
-      radial-gradient(1px 1px at 80px 40px, rgba(255, 255, 255, 0.5), transparent);
-    background-repeat: repeat;
-    background-size: 200px 250px;
-    animation: sparkleFloat 12s linear infinite;
-    pointer-events: none;
-    will-change: transform;
+@keyframes sparkleFloat {
+  0% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.5;
   }
-
-  @keyframes sparkleShimmer {
-    0%, 100% {
-      opacity: 0.6;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.01);
-    }
+  25% {
+    transform: translateY(-5px) translateX(3px);
+    opacity: 0.8;
   }
-
-  @keyframes sparkleFloat {
-    0% {
-      transform: translateY(0px) translateX(0px);
-      opacity: 0.5;
-    }
-    25% {
-      transform: translateY(-5px) translateX(3px);
-      opacity: 0.8;
-    }
-    50% {
-      transform: translateY(-3px) translateX(-2px);
-      opacity: 0.6;
-    }
-    75% {
-      transform: translateY(-8px) translateX(5px);
-      opacity: 0.9;
-    }
-    100% {
-      transform: translateY(0px) translateX(0px);
-      opacity: 0.5;
-    }
+  50% {
+    transform: translateY(-3px) translateX(-2px);
+    opacity: 0.6;
   }
-
-  /* Responsive Design Optimization */
-  @media (max-width: 480px) {
-    .cyber-grid {
-      animation: none;
-      background-size: 50px 50px;
-    }
-    
-    .glow-effect {
-      animation: none;
-      box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
-    }
-    
-    .interactive-button {
-      transform: none;
-      transition: background-color 0.2s ease;
-    }
-    
-    .interactive-button:hover {
-      transform: none;
-    }
-
-    .sidebar-sparkles::before,
-    .sidebar-sparkles::after {
-      animation: none;
-    }
+  75% {
+    transform: translateY(-8px) translateX(5px);
+    opacity: 0.9;
   }
-
-  @media (max-width: 768px) {
-    .cyber-grid {
-      background-size: 75px 75px;
-      animation-duration: 40s;
-    }
-    
-    .glow-effect {
-      animation-duration: 3s;
-      box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
-    }
-    
-    .interactive-button {
-      transition: all 0.2s ease;
-    }
-    
-    .interactive-button:hover {
-      transform: scale(1.02);
-    }
-
-    .sidebar-sparkles::before,
-    .sidebar-sparkles::after {
-      animation-duration: 8s;
-    }
+  100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.5;
   }
+}
 
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .cyber-grid {
-      animation-duration: 35s;
-    }
-    
-    .sidebar-sparkles::before,
-    .sidebar-sparkles::after {
-      animation-duration: 6s;
-    }
+/* Responsive Design Optimization */
+@media (max-width: 480px) {
+  .cyber-grid {
+    animation: none;
+    background-size: 50px 50px;
   }
-
-  /* Button optimizations for all screen sizes */
+  
+  .glow-effect {
+    animation: none;
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+  }
+  
   .interactive-button {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    will-change: transform;
-    contain: layout style paint;
+    transform: none;
+    transition: background-color 0.2s ease;
+  }
+  
+  .interactive-button:hover {
+    transform: none;
   }
 
-  /* Text optimization */
-  .cyber-glow {
-    will-change: auto;
-    contain: layout style paint;
+  .sidebar-sparkles::before,
+  .sidebar-sparkles::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .cyber-grid {
+    background-size: 75px 75px;
+    animation-duration: 40s;
+  }
+  
+  .glow-effect {
+    animation-duration: 3s;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+  }
+  
+  .interactive-button {
+    transition: all 0.2s ease;
+  }
+  
+  .interactive-button:hover {
+    transform: scale(1.02);
   }
 
-  /* Image optimization */
-  img {
-    image-rendering: optimizeQuality;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    will-change: auto;
+  .sidebar-sparkles::before,
+  .sidebar-sparkles::after {
+    animation-duration: 8s;
   }
+}
 
-  /* Video optimization */
-  iframe {
-    will-change: transform;
-    backface-visibility: hidden;
-    contain: layout style paint;
+@media (min-width: 769px) and (max-width: 1024px) {
+  .cyber-grid {
+    animation-duration: 35s;
   }
-
-  /* Performance optimizations */
-  @media (prefers-reduced-motion: reduce) {
-    .cyber-grid,
-    .glow-effect,
-    .interactive-button,
-    .sidebar-sparkles::before,
-    .sidebar-sparkles::after {
-      animation: none;
-    }
-    
-    .interactive-button {
-      transition: background-color 0.2s ease;
-    }
+  
+  .sidebar-sparkles::before,
+  .sidebar-sparkles::after {
+    animation-duration: 6s;
   }
+}
 
-  /* Ultra-wide screen support */
-  @media (min-width: 1920px) {
-    .container {
-      max-width: 1600px;
-    }
+/* Button optimizations for all screen sizes */
+.interactive-button {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  will-change: transform;
+  contain: layout style paint;
+}
+
+/* Text optimization */
+.cyber-glow {
+  will-change: auto;
+  contain: layout style paint;
+}
+
+/* Image optimization */
+img {
+  image-rendering: optimizeQuality;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  will-change: auto;
+}
+
+/* Video optimization */
+iframe {
+  will-change: transform;
+  backface-visibility: hidden;
+  contain: layout style paint;
+}
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+  .cyber-grid,
+  .glow-effect,
+  .interactive-button,
+  .sidebar-sparkles::before,
+  .sidebar-sparkles::after {
+    animation: none;
   }
+  
+  .interactive-button {
+    transition: background-color 0.2s ease;
+  }
+}
 
-  /* High DPI displays */
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .glow-effect {
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
-    }
+/* Ultra-wide screen support */
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1600px;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .glow-effect {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
   }
 }
