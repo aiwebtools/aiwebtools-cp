@@ -1,56 +1,57 @@
 
-/* Enhanced particle explosion animation with ultra-bright colors */
-@keyframes particle-explosion {
-  0% {
-    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(0) scale(1);
-    opacity: 1;
-    filter: brightness(3) saturate(4) hue-rotate(0deg);
+@layer utilities {
+  /* Enhanced particle explosion animation with ultra-bright colors */
+  @keyframes particle-explosion {
+    0% {
+      transform: translate(-50%, -50%) rotate(var(--angle)) translateX(0) scale(1);
+      opacity: 1;
+      filter: brightness(3) saturate(4) hue-rotate(0deg);
+    }
+    50% {
+      opacity: 0.9;
+      filter: brightness(4) saturate(5) hue-rotate(180deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--velocity)) scale(0);
+      opacity: 0;
+      filter: brightness(5) saturate(6) hue-rotate(360deg);
+    }
   }
-  50% {
-    opacity: 0.9;
-    filter: brightness(4) saturate(5) hue-rotate(180deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--velocity)) scale(0);
-    opacity: 0;
-    filter: brightness(5) saturate(6) hue-rotate(360deg);
-  }
-}
 
-/* Enhanced vortex ring animation with intense spiral motion */
-@keyframes vortex-spin {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(0deg) scale(1);
-    filter: brightness(3) saturate(4) hue-rotate(0deg);
-    border-width: 2px;
+  /* Enhanced vortex ring animation with intense spiral motion */
+  @keyframes vortex-spin {
+    0% {
+      width: 0;
+      height: 0;
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(0deg) scale(1);
+      filter: brightness(3) saturate(4) hue-rotate(0deg);
+      border-width: 2px;
+    }
+    25% {
+      opacity: 1;
+      filter: brightness(4) saturate(5) hue-rotate(90deg);
+      border-width: 8px;
+    }
+    50% {
+      opacity: 0.9;
+      filter: brightness(5) saturate(6) hue-rotate(180deg);
+      border-width: 12px;
+    }
+    75% {
+      opacity: 0.7;
+      filter: brightness(4) saturate(5) hue-rotate(270deg);
+      border-width: 16px;
+    }
+    100% {
+      width: 1800px;
+      height: 1800px;
+      opacity: 0;
+      transform: translate(-50%, -50%) rotate(1800deg) scale(0.2);
+      filter: brightness(6) saturate(7) hue-rotate(720deg);
+      border-width: 25px;
+    }
   }
-  25% {
-    opacity: 1;
-    filter: brightness(4) saturate(5) hue-rotate(90deg);
-    border-width: 8px;
-  }
-  50% {
-    opacity: 0.9;
-    filter: brightness(5) saturate(6) hue-rotate(180deg);
-    border-width: 12px;
-  }
-  75% {
-    opacity: 0.7;
-    filter: brightness(4) saturate(5) hue-rotate(270deg);
-    border-width: 16px;
-  }
-  100% {
-    width: 1800px;
-    height: 1800px;
-    opacity: 0;
-    transform: translate(-50%, -50%) rotate(1800deg) scale(0.2);
-    filter: brightness(6) saturate(7) hue-rotate(720deg);
-    border-width: 25px;
-  }
-}
 
   /* Intense spiral tunnel effect that fills the entire screen */
   @keyframes spiral-tunnel {
@@ -224,8 +225,9 @@
     backface-visibility: hidden;
   }
 
-/* Enhanced time warp effect class */
-.time-warp-active {
-  animation: time-warp 3.5s ease-in-out;
-  will-change: filter;
+  /* Enhanced time warp effect class */
+  .time-warp-active {
+    animation: time-warp 3.5s ease-in-out;
+    will-change: filter;
+  }
 }
