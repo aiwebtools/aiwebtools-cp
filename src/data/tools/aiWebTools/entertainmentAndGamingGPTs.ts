@@ -54,5 +54,17 @@ export const entertainmentAndGamingGPTs: Tool[] = [
     category: "Business & Productivity",
     rating: 4.3,
     totalVotes: 2456
+  },
+  {
+    icon: Sparkles,
+    title: "1995 Illuminati Card Game GPT",
+    description: "A cunning opponent and oracle for the 1995 Illuminati card game. By AiWebTools.Ai - This AI game recreation brings the classic conspiracy-themed card game to life with strategic gameplay and immersive storytelling.",
+    emoji: "🎴",
+    color: "from-purple-500 to-yellow-600",
+    directUrl: "https://chatgpt.com/g/g-68cadce3e2f08191a9b8203a32fe8846-1995-illuminati-card-game-gpt/?via=aiwebtools",
+    tags: ["card game", "illuminati", "game recreation", "strategy game", "conspiracy", "1995", "gaming", "aiwebtools"],
+    category: "Entertainment & Gaming",
+    rating: 4.5,
+    totalVotes: 1823
   }
 ];

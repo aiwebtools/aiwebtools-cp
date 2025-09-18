@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Enhanced Matrix-themed styles for the interactive background */
 @layer base {
   /* Ensure proper stacking and interaction for the matrix background */

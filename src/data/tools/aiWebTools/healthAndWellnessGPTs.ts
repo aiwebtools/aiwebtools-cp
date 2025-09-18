@@ -204,5 +204,17 @@ export const healthAndWellnessGPTs: Tool[] = [
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 1987
+  },
+  {
+    icon: Sparkles,
+    title: "Apothecary GPT",
+    description: "A historical apothecary sharing authentic herbal and traditional medicine knowledge. By AiWebTools.Ai - This AI brings back natural plant data and information to the people, offering traditional herbal wisdom and botanical knowledge for wellness and education.",
+    emoji: "🌿",
+    color: "from-green-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-68c9e33310148191ae3df594ec4012dd-apothecary-gpt/?via=aiwebtools",
+    tags: ["herbal medicine", "traditional remedies", "botanical knowledge", "plant medicine", "natural healing", "apothecary", "wellness", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.7,
+    totalVotes: 2234
   }
 ];

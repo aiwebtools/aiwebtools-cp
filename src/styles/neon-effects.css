@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer components {
   /* Matrix-style neon glow effects */
   .cyber-glow {

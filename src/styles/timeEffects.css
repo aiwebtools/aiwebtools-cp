@@ -1,4 +1,8 @@
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer utilities {
   /* Enhanced particle explosion animation with ultra-bright colors */
   @keyframes particle-explosion {

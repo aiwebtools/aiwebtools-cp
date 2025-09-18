@@ -1,4 +1,8 @@
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer base {
   /* High contrast text for accessibility */
   .high-contrast-text {
