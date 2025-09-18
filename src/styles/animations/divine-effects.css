@@ -1,8 +1,4 @@
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* Ultra-lightweight effects for maximum performance */
 @layer components {
   /* Simple static border with minimal glow */

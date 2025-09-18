@@ -1,202 +1,198 @@
+
 /* Cross-browser compatibility styles */
-@tailwind base;
-@tailwind components; 
-@tailwind utilities;
 
-@layer base {
-  /* Browser-specific fixes */
-  .is-ios {
-    /* iOS Safari specific fixes */
-    * {
-      -webkit-overflow-scrolling: touch;
-      -webkit-transform: translateZ(0);
-    }
-    
-    input, textarea, select {
-      border-radius: 0;
-      -webkit-appearance: none;
-    }
-  }
-
-  .is-android {
-    /* Android specific optimizations */
-    * {
-      -webkit-tap-highlight-color: transparent;
-    }
-  }
-
-  .is-safari {
-    /* Safari specific fixes */
-    video, iframe {
-      -webkit-mask-image: -webkit-radial-gradient(white, black);
-    }
-  }
-
-  .is-firefox {
-    /* Firefox specific fixes */
-    * {
-      -moz-backface-visibility: hidden;
-    }
-  }
-
-  /* Device performance tiers */
-  .device-low {
-    * {
-      animation-duration: 0.1s !important;
-      transition-duration: 0.1s !important;
-      will-change: auto !important;
-    }
-    
-    .glow-effect,
-    .cyber-glow,
-    .pulse,
-    [class*="animate-"] {
-      animation: none !important;
-    }
-  }
-
-  .device-medium {
-    * {
-      animation-duration: 0.2s;
-      transition-duration: 0.2s;
-    }
-  }
-
-  .device-high {
-    /* Full animations and effects for high-end devices */
-    * {
-      animation-duration: 0.3s;
-      transition-duration: 0.3s;
-    }
-  }
-
-  /* Touch device optimizations */
-  .touch-device {
-    /* Larger touch targets */
-    button, a, [role="button"], [tabindex] {
-      min-height: 44px;
-      min-width: 44px;
-    }
-    
-    /* Remove hover effects on touch devices */
-    .hover\:scale-105:hover {
-      transform: none;
-    }
-    
-    /* Optimize scrolling */
-    * {
-      -webkit-overflow-scrolling: touch;
-      touch-action: manipulation;
-    }
-  }
-
-  /* Reduced motion support */
-  .reduce-motion * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  /* High contrast mode support */
-  @media (prefers-contrast: high) {
-    .cyber-glow,
-    .glow-text-effect {
-      color: #00ffff !important;
-      text-shadow: none !important;
-    }
-    
-    .glow-effect {
-      box-shadow: 0 0 0 2px #00ffff !important;
-    }
-    
-    .divine-glow-border {
-      border: 2px solid #ffffff !important;
-      box-shadow: none !important;
-    }
-  }
-
-  /* Print styles */
-  @media print {
-    * {
-      background: white !important;
-      color: black !important;
-      box-shadow: none !important;
-      text-shadow: none !important;
-    }
-    
-    .no-print {
-      display: none !important;
-    }
-  }
-
-  /* Forced colors mode (Windows high contrast) */
-  @media (forced-colors: active) {
-    * {
-      forced-color-adjust: auto;
-    }
-  }
-
-  /* Vendor prefix fallbacks */
-  .transform-gpu {
+/* Browser-specific fixes */
+.is-ios {
+  /* iOS Safari specific fixes */
+  * {
+    -webkit-overflow-scrolling: touch;
     -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    -o-transform: translateZ(0);
-    transform: translateZ(0);
   }
+  
+  input, textarea, select {
+    border-radius: 0;
+    -webkit-appearance: none;
+  }
+}
 
-  .backface-hidden {
-    -webkit-backface-visibility: hidden;
+.is-android {
+  /* Android specific optimizations */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.is-safari {
+  /* Safari specific fixes */
+  video, iframe {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  }
+}
+
+.is-firefox {
+  /* Firefox specific fixes */
+  * {
     -moz-backface-visibility: hidden;
-    backface-visibility: hidden;
   }
+}
 
-  .perspective-1000 {
-    -webkit-perspective: 1000px;
-    -moz-perspective: 1000px;
-    perspective: 1000px;
+/* Device performance tiers */
+.device-low {
+  * {
+    animation-duration: 0.1s !important;
+    transition-duration: 0.1s !important;
+    will-change: auto !important;
   }
+  
+  .glow-effect,
+  .cyber-glow,
+  .pulse,
+  [class*="animate-"] {
+    animation: none !important;
+  }
+}
 
-  /* Cross-browser flexbox fallbacks */
-  .flex-fallback {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
+.device-medium {
+  * {
+    animation-duration: 0.2s;
+    transition-duration: 0.2s;
   }
+}
 
-  .flex-center-fallback {
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -moz-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+.device-high {
+  /* Full animations and effects for high-end devices */
+  * {
+    animation-duration: 0.3s;
+    transition-duration: 0.3s;
   }
+}
 
-  /* Grid fallbacks */
-  .grid-fallback {
-    display: -ms-grid;
-    display: grid;
+/* Touch device optimizations */
+.touch-device {
+  /* Larger touch targets */
+  button, a, [role="button"], [tabindex] {
+    min-height: 44px;
+    min-width: 44px;
   }
+  
+  /* Remove hover effects on touch devices */
+  .hover\:scale-105:hover {
+    transform: none;
+  }
+  
+  /* Optimize scrolling */
+  * {
+    -webkit-overflow-scrolling: touch;
+    touch-action: manipulation;
+  }
+}
 
-  /* CSS Custom Properties fallbacks */
-  .bg-primary-fallback {
-    background-color: #00ffff; /* Fallback for older browsers */
-    background-color: hsl(var(--primary));
-  }
+/* Reduced motion support */
+.reduce-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
 
-  .text-primary-fallback {
-    color: #00ffff; /* Fallback for older browsers */
-    color: hsl(var(--primary));
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .cyber-glow,
+  .glow-text-effect {
+    color: #00ffff !important;
+    text-shadow: none !important;
   }
+  
+  .glow-effect {
+    box-shadow: 0 0 0 2px #00ffff !important;
+  }
+  
+  .divine-glow-border {
+    border: 2px solid #ffffff !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Forced colors mode (Windows high contrast) */
+@media (forced-colors: active) {
+  * {
+    forced-color-adjust: auto;
+  }
+}
+
+/* Vendor prefix fallbacks */
+.transform-gpu {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.backface-hidden {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.perspective-1000 {
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
+}
+
+/* Cross-browser flexbox fallbacks */
+.flex-fallback {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.flex-center-fallback {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+/* Grid fallbacks */
+.grid-fallback {
+  display: -ms-grid;
+  display: grid;
+}
+
+/* CSS Custom Properties fallbacks */
+.bg-primary-fallback {
+  background-color: #00ffff; /* Fallback for older browsers */
+  background-color: hsl(var(--primary));
+}
+
+.text-primary-fallback {
+  color: #00ffff; /* Fallback for older browsers */
+  color: hsl(var(--primary));
 }
 
 /* Progressive enhancement for modern browsers */

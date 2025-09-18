@@ -1,4 +1,8 @@
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url("./styles/base.css");
 @import url("./styles/components.css");
 @import url("./styles/animations.css");
@@ -9,10 +13,6 @@
 @import url("./styles/neon-effects.css");
 @import url("./styles/cross-browser.css");
 @import url("./styles/matrix-effects.css");
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /* Critical mobile fixes */
 @media (max-width: 768px) {

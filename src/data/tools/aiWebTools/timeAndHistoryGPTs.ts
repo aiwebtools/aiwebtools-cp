@@ -93,27 +93,15 @@ export const timeAndHistoryGPTs: Tool[] = [
       totalVotes: 1280
     },
     {
-      icon: Globe,
-      title: "Palestinian History Preserver",
-      description: "Palestinian History Preserver GPT preserves Palestinian history and ensures their voices are not left untold or unheard. A comprehensive historical record and educational tool dedicated to documenting Palestinian heritage, culture, and experiences throughout history.",
-      emoji: "🇵🇸",
+      icon: BookOpen,
+      title: "Palestinian History Preserver GPT",
+      description: "Palestinian History Preserver GPT is dedicated to documenting, preserving, and sharing Palestinian historical narratives, cultural heritage, and stories. This AI tool helps maintain historical records, explore Palestinian heritage, and educate users about Palestinian history through authentic documentation and storytelling.",
+      emoji: "🏛️",
       color: "from-green-500 to-red-600",
-      directUrl: "https://chatgpt.com/g/g-68ca033a29508191a8b51668f8bf8e78-palestinian-history-preserver/?via=aiwebtools",
-      tags: ["Palestinian history", "Middle East", "cultural preservation", "historical documentation", "heritage", "voice preservation", "aiwebtools"],
+      directUrl: "https://chatgpt.com/g/g-68ca033a29508191a8b51668f8bf8e78-palestinian-history-preserver",
+      tags: ["Palestinian history", "cultural preservation", "historical documentation", "Middle Eastern history", "heritage preservation", "historical education"],
       category: "Time & History",
-      rating: 4.8,
-      totalVotes: 2145
-    },
-    {
-      icon: Globe,
-      title: "Middle East History Guide",
-      description: "Expert guide on Middle Eastern history across all time. By AiWebTools.Ai - A comprehensive AI assistant that provides deep insights into Middle Eastern civilizations, cultures, conflicts, and developments throughout history.",
-      emoji: "🏺",
-      color: "from-amber-500 to-brown-600",
-      directUrl: "https://chatgpt.com/g/g-68c9e5c22f608191bcdd15d802b094b0-middle-east-history-guide/?via=aiwebtools",
-      tags: ["Middle East history", "historical guide", "civilizations", "cultural history", "regional expertise", "historical analysis", "aiwebtools"],
-      category: "Time & History",
-      rating: 4.7,
-      totalVotes: 1876
+      rating: 4.6,
+      totalVotes: 892
     }
 ];

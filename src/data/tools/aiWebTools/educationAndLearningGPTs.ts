@@ -105,28 +105,16 @@ export const educationAndLearningGPTs: Tool[] = [
     rating: 4.7,
     totalVotes: 4321
   },
-    {
-      icon: GraduationCap,
-      title: "EDUCATIONAL TUTOR GPT",
-      description: "A patient AI tutor that explains step by step and adapts to your learning style. Using the creator's recommended model: GPT-4o. Personalized educational support for all learning levels.",
-      emoji: "👨‍🏫",
-      color: "from-green-500 to-blue-600",
-      directUrl: "https://chatgpt.com/g/g-68bb71f1dca88191866a1a0bfdff7ca0-educational-tutor-gpt/?via=aiwebtools",
-      tags: ["tutoring", "personalized learning", "education", "learning support", "academic help", "study assistance", "aiwebtools"],
-      category: "Education & Learning",
-      rating: 4.8,
-      totalVotes: 3456
-    },
-    {
-      icon: BookOpen,
-      title: "Cursive Teacher GPT",
-      description: "Cursive Teacher GPT is a specialized educational AI tool designed to help students learn and master cursive handwriting. This interactive teaching assistant provides step-by-step guidance, practice exercises, and personalized instruction to develop beautiful cursive writing skills.",
-      emoji: "✍️",
-      color: "from-blue-500 to-purple-600",
-      directUrl: "https://chatgpt.com/g/g-68cb403167a88191ae07062124d32bbb-cursive-teacher-gpt/?via=aiwebtools",
-      tags: ["cursive writing", "handwriting", "penmanship", "educational tool", "writing skills", "calligraphy", "learning", "aiwebtools"],
-      category: "Education & Learning",
-      rating: 4.6,
-      totalVotes: 1534
-    }
+  {
+    icon: GraduationCap,
+    title: "EDUCATIONAL TUTOR GPT",
+    description: "A patient AI tutor that explains step by step and adapts to your learning style. Using the creator's recommended model: GPT-4o. Personalized educational support for all learning levels.",
+    emoji: "👨‍🏫",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-68bb71f1dca88191866a1a0bfdff7ca0-educational-tutor-gpt/?via=aiwebtools",
+    tags: ["tutoring", "personalized learning", "education", "learning support", "academic help", "study assistance", "aiwebtools"],
+    category: "Education & Learning",
+    rating: 4.8,
+    totalVotes: 3456
+  }
 ];
