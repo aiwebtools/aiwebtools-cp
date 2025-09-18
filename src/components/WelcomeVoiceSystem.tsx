@@ -164,33 +164,22 @@ const WelcomeVoiceSystem = () => {
         console.log('⚠️ No voices available, using default system voice');
       }
       
-      // Create first message: "WELCOME MASTER" - slow British lady voice
+      // Create first message: "WELCOME MASTER" - deep robot voice
       const welcomeMsg = new SpeechSynthesisUtterance("WELCOME MASTER");
       welcomeMsg.rate = 0.4; // Slow and deliberate
-      welcomeMsg.pitch = 1.1; // Pleasant British lady pitch
+      welcomeMsg.pitch = 0.1; // Very low pitch for robot effect
       welcomeMsg.volume = 0.9; // Full but not overwhelming
       
-      // Find British female voice for welcome - same as tools message
-      const welcomeVoice = voices.find(v => 
-        (v.lang && v.lang.toLowerCase().includes('en-gb')) ||
-        v.name.toLowerCase().includes('british') ||
-        v.name.toLowerCase().includes('uk') ||
-        v.name.toLowerCase().includes('victoria') ||
-        v.name.toLowerCase().includes('emma') ||
-        v.name.toLowerCase().includes('fiona')
-      ) || voices.find(v => 
-        v.name.toLowerCase().includes('female') ||
-        v.name.toLowerCase().includes('samantha') ||
-        v.name.toLowerCase().includes('karen') ||
-        v.name.toLowerCase().includes('susan') ||
-        v.name.toLowerCase().includes('anna') ||
-        v.name.toLowerCase().includes('catherine')
+      // Find deep male voice for welcome - prioritize robot-like voices
+      const maleVoice = voices.find(v => 
+        v.name.toLowerCase().includes('alex') ||
+        v.name.toLowerCase().includes('daniel') ||
+        v.name.toLowerCase().includes('male') ||
+        v.name.toLowerCase().includes('fred')
       );
-      if (welcomeVoice) {
-        welcomeMsg.voice = welcomeVoice;
-        console.log('🤖 Selected British lady voice for WELCOME MASTER:', welcomeVoice.name, '| Language:', welcomeVoice.lang);
-      } else {
-        console.log('⚠️ No suitable British female voice found, using system default');
+      if (maleVoice) {
+        welcomeMsg.voice = maleVoice;
+        console.log('🤖 Selected male voice:', maleVoice.name);
       }
       
       // Create second message: "YOU'VE GOT TOOLS" - British female AOL-style

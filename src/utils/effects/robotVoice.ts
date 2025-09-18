@@ -186,36 +186,33 @@ export const createRobotVoice = (toolName: string, destinationUrl: string) => {
     
     const utterance = new SpeechSynthesisUtterance(message);
     
-    // Configure voice to MATCH welcome message - slow British lady
-    utterance.rate = 0.4; // Same slow pace as WELCOME MASTER
-    utterance.pitch = 1.1; // Same pleasant British lady pitch
-    utterance.volume = 0.8; // Clear and consistent volume
+    // Configure voice for mystical whisper effect
+    utterance.rate = 0.4; // Much slower for whisper effect
+    utterance.pitch = 0.3; // Slightly higher pitch for intimate whisper
+    utterance.volume = 0.6; // Lower volume for whisper effect
     
-    // Use SAME British lady voice as WELCOME MASTER for consistency
+    // Try to find a softer, more intimate voice
     const voices = speechSynthesis.getVoices();
     
-    // Match the EXACT same British female voice selection as WELCOME MASTER
-    const britishFemaleVoice = voices.find(v => 
-      (v.lang && v.lang.toLowerCase().includes('en-gb')) ||
-      v.name.toLowerCase().includes('british') ||
-      v.name.toLowerCase().includes('uk') ||
-      v.name.toLowerCase().includes('victoria') ||
-      v.name.toLowerCase().includes('emma') ||
-      v.name.toLowerCase().includes('fiona')
-    ) || voices.find(v => 
-      v.name.toLowerCase().includes('female') ||
-      v.name.toLowerCase().includes('samantha') ||
-      v.name.toLowerCase().includes('karen') ||
-      v.name.toLowerCase().includes('susan') ||
-      v.name.toLowerCase().includes('anna') ||
-      v.name.toLowerCase().includes('catherine')
+    // Prefer female voices for softer whisper effect
+    const preferredVoices = voices.filter(voice => 
+      voice.name.toLowerCase().includes('female') ||
+      voice.name.toLowerCase().includes('samantha') ||
+      voice.name.toLowerCase().includes('anna') ||
+      voice.name.toLowerCase().includes('karen') ||
+      voice.name.toLowerCase().includes('victoria') ||
+      voice.name.toLowerCase().includes('fiona') ||
+      voice.lang.startsWith('en')
     );
     
-    if (britishFemaleVoice) {
-      utterance.voice = britishFemaleVoice;
-      console.log('🤖 Using CONSISTENT British lady voice:', britishFemaleVoice.name, '| Language:', britishFemaleVoice.lang);
-    } else {
-      console.log('⚠️ No suitable British female voice found, using system default');
+    if (preferredVoices.length > 0) {
+      utterance.voice = preferredVoices[0];
+    } else if (voices.length > 0) {
+      // Fallback to first available English voice
+      const englishVoice = voices.find(voice => voice.lang.startsWith('en'));
+      if (englishVoice) {
+        utterance.voice = englishVoice;
+      }
     }
     
     // Add event listeners for debugging

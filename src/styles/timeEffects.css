@@ -1,6 +1,7 @@
 
-/* Enhanced particle explosion animation with ultra-bright colors */
-@keyframes particle-explosion {
+@layer utilities {
+  /* Enhanced particle explosion animation with ultra-bright colors */
+  @keyframes particle-explosion {
     0% {
       transform: translate(-50%, -50%) rotate(var(--angle)) translateX(0) scale(1);
       opacity: 1;

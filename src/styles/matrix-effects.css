@@ -1,6 +1,7 @@
 /* Enhanced Matrix-themed styles for the interactive background */
-/* Ensure proper stacking and interaction for the matrix background */
-.interactive-matrix {
+@layer base {
+  /* Ensure proper stacking and interaction for the matrix background */
+  .interactive-matrix {
     position: fixed;
     top: 0;
     left: 0;
@@ -250,3 +251,4 @@
     color: #000000;
     opacity: 0.5;
   }
+}

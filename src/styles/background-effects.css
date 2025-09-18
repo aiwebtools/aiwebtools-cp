@@ -1,198 +1,200 @@
 
-.moving-stars {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  will-change: auto;
-}
-
-.star {
-  position: absolute;
-  background: #00ffff;
-  border-radius: 50%;
-  animation: optimizedTwinkle 6s infinite ease-in-out;
-  box-shadow: 0 0 6px #00ffff;
-  will-change: opacity;
-}
-
-@keyframes optimizedTwinkle {
-  0%, 100% { 
-    opacity: 0.3; 
+@layer base {
+  .moving-stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    will-change: auto;
   }
-  50% { 
-    opacity: 1; 
-  }
-}
 
-.floating-particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  will-change: auto;
-}
+  .star {
+    position: absolute;
+    background: #00ffff;
+    border-radius: 50%;
+    animation: optimizedTwinkle 6s infinite ease-in-out;
+    box-shadow: 0 0 6px #00ffff;
+    will-change: opacity;
+  }
 
-.particle {
-  position: absolute;
-  background: rgba(0, 255, 255, 0.6);
-  border-radius: 50%;
-  animation: optimizedFloat 25s infinite linear;
-  box-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
-  will-change: transform;
-}
+  @keyframes optimizedTwinkle {
+    0%, 100% { 
+      opacity: 0.3; 
+    }
+    50% { 
+      opacity: 1; 
+    }
+  }
 
-@keyframes optimizedFloat {
-  0% {
-    transform: translateY(100vh) translateX(0px);
-    opacity: 0;
+  .floating-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    will-change: auto;
   }
-  10% {
-    opacity: 0.8;
-  }
-  90% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(-100vh) translateX(30px);
-    opacity: 0;
-  }
-}
 
-/* Optimized shooting stars */
-.shooting-stars-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  will-change: auto;
-}
-
-.shooting-star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #00ffff;
-  border-radius: 50%;
-  animation: optimizedShootingStar 5s infinite linear;
-  box-shadow: 0 0 8px #00ffff;
-  will-change: transform;
-}
-
-.shooting-star::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 60px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(0, 255, 255, 1) 0%, rgba(0, 255, 255, 0.6) 50%, transparent 100%);
-  transform: translateX(-60px) rotate(-45deg);
-  transform-origin: right center;
-}
-
-@keyframes optimizedShootingStar {
-  0% {
-    transform: translateX(-150px) translateY(-150px);
-    opacity: 0;
+  .particle {
+    position: absolute;
+    background: rgba(0, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: optimizedFloat 25s infinite linear;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
+    will-change: transform;
   }
-  5% {
-    opacity: 1;
-  }
-  95% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(calc(100vw + 150px)) translateY(calc(100vh + 150px));
-    opacity: 0;
-  }
-}
 
-/* Optimized Matrix background effect */
-.matrix-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-  will-change: auto;
-  opacity: 0.6; /* Reduce overall opacity for subtlety */
-}
-
-.matrix-column {
-  position: absolute;
-  top: -50px;
-  width: 30px;
-  height: 100vh;
-  font-family: 'Courier New', monospace;
-  font-size: 16px;
-  color: #00ff00;
-  text-shadow: 0 0 5px #00ff00;
-  animation: matrixFall 8s infinite linear;
-  white-space: nowrap;
-  overflow: hidden;
-  will-change: transform;
-  line-height: 1.4;
-  contain: layout style paint; /* Improve rendering performance */
-}
-
-.matrix-char {
-  display: block;
-  font-weight: bold;
-  will-change: auto; /* Remove expensive will-change */
-  transition: none; /* Remove transitions for performance */
-}
-
-@keyframes matrixFall {
-  0% {
-    transform: translateY(-100vh) translateZ(0); /* Add translateZ for GPU acceleration */
-    opacity: 0;
+  @keyframes optimizedFloat {
+    0% {
+      transform: translateY(100vh) translateX(0px);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.8;
+    }
+    90% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(-100vh) translateX(30px);
+      opacity: 0;
+    }
   }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) translateZ(0);
-    opacity: 0;
-  }
-}
 
-/* Mobile optimizations for Matrix effect */
-@media (max-width: 768px) {
+  /* Optimized shooting stars */
+  .shooting-stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    will-change: auto;
+  }
+
+  .shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #00ffff;
+    border-radius: 50%;
+    animation: optimizedShootingStar 5s infinite linear;
+    box-shadow: 0 0 8px #00ffff;
+    will-change: transform;
+  }
+
+  .shooting-star::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0, 255, 255, 1) 0%, rgba(0, 255, 255, 0.6) 50%, transparent 100%);
+    transform: translateX(-60px) rotate(-45deg);
+    transform-origin: right center;
+  }
+
+  @keyframes optimizedShootingStar {
+    0% {
+      transform: translateX(-150px) translateY(-150px);
+      opacity: 0;
+    }
+    5% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(calc(100vw + 150px)) translateY(calc(100vh + 150px));
+      opacity: 0;
+    }
+  }
+
+  /* Optimized Matrix background effect */
   .matrix-background {
-    opacity: 0.4; /* Further reduce opacity on mobile */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+    will-change: auto;
+    opacity: 0.6; /* Reduce overall opacity for subtlety */
   }
-  
+
   .matrix-column {
-    font-size: 14px;
-    width: 25px;
-    animation-duration: 10s; /* Slower animation on mobile */
+    position: absolute;
+    top: -50px;
+    width: 30px;
+    height: 100vh;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+    animation: matrixFall 8s infinite linear;
+    white-space: nowrap;
+    overflow: hidden;
+    will-change: transform;
+    line-height: 1.4;
+    contain: layout style paint; /* Improve rendering performance */
   }
-}
 
-/* Reduce motion for accessibility and performance */
-@media (prefers-reduced-motion: reduce) {
-  .matrix-background {
-    display: none; /* Hide Matrix effect for users who prefer reduced motion */
+  .matrix-char {
+    display: block;
+    font-weight: bold;
+    will-change: auto; /* Remove expensive will-change */
+    transition: none; /* Remove transitions for performance */
   }
-}
 
-/* Remove heavy effects and unused animations */
-.comets-container {
-  display: none;
+  @keyframes matrixFall {
+    0% {
+      transform: translateY(-100vh) translateZ(0); /* Add translateZ for GPU acceleration */
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) translateZ(0);
+      opacity: 0;
+    }
+  }
+
+  /* Mobile optimizations for Matrix effect */
+  @media (max-width: 768px) {
+    .matrix-background {
+      opacity: 0.4; /* Further reduce opacity on mobile */
+    }
+    
+    .matrix-column {
+      font-size: 14px;
+      width: 25px;
+      animation-duration: 10s; /* Slower animation on mobile */
+    }
+  }
+
+  /* Reduce motion for accessibility and performance */
+  @media (prefers-reduced-motion: reduce) {
+    .matrix-background {
+      display: none; /* Hide Matrix effect for users who prefer reduced motion */
+    }
+  }
+
+  /* Remove heavy effects and unused animations */
+  .comets-container {
+    display: none;
+  }
 }

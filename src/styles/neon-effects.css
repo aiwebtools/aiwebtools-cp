@@ -1,5 +1,6 @@
-/* Matrix-style neon glow effects */
-.cyber-glow {
+@layer components {
+  /* Matrix-style neon glow effects */
+  .cyber-glow {
     text-shadow: 
       0 0 5px rgba(6, 182, 212, 0.8),
       0 0 10px rgba(6, 182, 212, 0.6),
