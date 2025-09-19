@@ -1,70 +1,78 @@
-
 /* Ultra-lightweight effects for maximum performance */
-@layer components {
-  /* Simple static border with minimal glow */
-  .divine-glow-border {
-    border: 1px solid rgba(64, 224, 255, 0.2);
+/* Simple static border with minimal glow */
+.divine-glow-border {
+  border: 1px solid rgba(64, 224, 255, 0.2);
+  transition: none;
+}
+
+.divine-glow-border:hover,
+.divine-glow-border:focus {
+  border-color: rgba(64, 224, 255, 0.4);
+}
+
+/* Minimal glow border with static effects only */
+.divine-glow-border-minimal {
+  border: 1px solid rgba(64, 224, 255, 0.15);
+  box-shadow: 0 0 2px rgba(64, 224, 255, 0.1);
+}
+
+/* High contrast version with no animations */
+.divine-glow-border-contrast {
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.9);
+  box-shadow: none;
+}
+
+/* Enhanced version with more visible but still lightweight effects */
+.divine-glow-border-enhanced {
+  border: 1px solid rgba(64, 224, 255, 0.4);
+  box-shadow: 
+    0 0 5px rgba(64, 224, 255, 0.2),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.divine-glow-border-enhanced:hover,
+.divine-glow-border-enhanced:focus {
+  border-color: rgba(64, 224, 255, 0.6);
+  box-shadow: 
+    0 0 8px rgba(64, 224, 255, 0.3),
+    inset 0 0 8px rgba(255, 255, 255, 0.15);
+}
+
+/* Performance optimized version */
+.divine-glow-border-performance {
+  border: 1px solid rgba(64, 224, 255, 0.1);
+  box-shadow: 
+    0 0 1px rgba(64, 224, 255, 0.1),
+    inset 0 0 1px rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.05);
+  /* All disabled for performance */
+}
+
+/* Remove all GPU acceleration and animations */
+@media (prefers-reduced-motion: reduce) {
+  .divine-glow-border,
+  .divine-glow-border-minimal,
+  .divine-glow-border-enhanced {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Mobile optimizations - static effects only */
+@media (max-width: 768px) {
+  .divine-glow-border,
+  .divine-glow-border-minimal,
+  .divine-glow-border-enhanced {
+    box-shadow: 0 0 2px rgba(64, 224, 255, 0.2);
     transition: none;
   }
   
   .divine-glow-border:hover,
-  .divine-glow-border:focus-within {
-    border-color: rgba(64, 224, 255, 0.3);
-  }
-
-  /* Minimal search border - no animations */
-  .search-glow-optimized {
-    border: 1px solid rgba(64, 224, 255, 0.15);
-    transition: none;
-  }
-  
-  .search-glow-optimized:focus-within {
-    border-color: rgba(64, 224, 255, 0.25);
-  }
-
-  /* Static text color */
-  .cyber-glow {
-    color: rgba(64, 224, 255, 0.9);
-  }
-
-  /* No scale effects */
-  .divine-scale {
-    transition: none;
-  }
-  
-  .divine-scale:hover {
+  .divine-glow-border:focus,
+  .divine-glow-border-enhanced:hover,
+  .divine-glow-border-enhanced:focus {
     transform: none;
-  }
-
-  /* Disable all other effects completely */
-  .divine-pulse,
-  .divine-gradient-shift,
-  .divine-float,
-  .divine-shimmer,
-  .divine-aurora,
-  .divine-special-glow {
-    /* All disabled for performance */
-  }
-}
-
-/* Remove all GPU acceleration and animations */
-.divine-glow-border,
-.search-glow-optimized,
-.cyber-glow,
-.divine-scale {
-  will-change: auto;
-  animation: none !important;
-  transform: none !important;
-  transition: none !important;
-}
-
-/* Ensure no animations on any device */
-@media (max-width: 768px) {
-  .divine-glow-border,
-  .search-glow-optimized,
-  .divine-scale {
-    transition: none !important;
-    transform: none !important;
-    animation: none !important;
+    animation: none;
   }
 }

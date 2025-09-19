@@ -1,6 +1,5 @@
 
-@layer base {
-  /* High contrast mode support */
+/* High contrast mode support */
   @media (prefers-contrast: high) {
     .quote-attribution {
       color: #ffffff;
@@ -23,29 +22,28 @@
     }
   }
 
-  /* Reduced motion preferences */
-  @media (prefers-reduced-motion: reduce) {
-    .glow-text-effect,
-    .cta-banner,
-    .glow-effect,
-    .divine-glow-border {
-      animation: none;
-    }
-    
-    .divine-glow-border {
-      box-shadow: 
-        0 0 20px rgba(255, 215, 0, 0.9),
-        0 0 40px rgba(255, 215, 0, 0.7),
-        0 0 60px rgba(255, 215, 0, 0.5),
-        inset 0 0 15px rgba(255, 255, 255, 0.4);
-    }
-    
-    .interactive-button {
-      transition: background-color 0.2s ease;
-    }
-    
-    .interactive-button:hover {
-      transform: none;
-    }
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .glow-text-effect,
+  .cta-banner,
+  .glow-effect,
+  .divine-glow-border {
+    animation: none;
+  }
+  
+  .divine-glow-border {
+    box-shadow: 
+      0 0 20px rgba(255, 215, 0, 0.9),
+      0 0 40px rgba(255, 215, 0, 0.7),
+      0 0 60px rgba(255, 215, 0, 0.5),
+      inset 0 0 15px rgba(255, 255, 255, 0.4);
+  }
+  
+  .interactive-button {
+    transition: background-color 0.2s ease;
+  }
+  
+  .interactive-button:hover {
+    transform: none;
   }
 }

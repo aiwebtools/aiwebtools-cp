@@ -132,6 +132,12 @@ const WelcomeVoiceSystem = () => {
   const playWelcomeSequence = useCallback(async () => {
     const { supportsVoice, browser, isMobile, isRestrictive } = getBrowserInfo();
     
+    // Disable ALL voices on mobile devices
+    if (isMobile) {
+      console.log('📱 Mobile device detected - voices disabled on mobile');
+      return;
+    }
+    
     if (!supportsVoice) {
       console.log('❌ Speech synthesis not supported in this browser');
       return;
@@ -295,6 +301,12 @@ const WelcomeVoiceSystem = () => {
   const initializeVoices = useCallback(async () => {
     const { isMobile, browser, isRestrictive, supportsVoice } = getBrowserInfo();
     
+    // Disable ALL voices on mobile devices
+    if (isMobile) {
+      console.log('📱 Mobile device detected - voices disabled on mobile');
+      return;
+    }
+    
     if (!supportsVoice) {
       console.log('❌ Speech synthesis not supported, skipping voice initialization');
       return;
@@ -304,46 +316,8 @@ const WelcomeVoiceSystem = () => {
       console.log('⚠️ Restrictive browser detected - will wait for user interaction');
       return;
     }
-    
-    if (isMobile) {
-      console.log('📱 Mobile device detected - enhanced mobile voice initialization...');
-      
-      try {
-        // Enhanced mobile unlock strategy
-        const unlockMsg = new SpeechSynthesisUtterance(" ");
-        unlockMsg.volume = 0.001;
-        unlockMsg.rate = 10;
-        unlockMsg.pitch = 0.1;
-        
-        let unlockCompleted = false;
-        
-        const proceedToWelcome = () => {
-          if (unlockCompleted) return;
-          unlockCompleted = true;
-          console.log('🔓 Mobile speech system ready, starting welcome...');
-          
-          // Enhanced delay for mobile reliability
-          const mobileDelay = browser === 'safari' ? 500 : 300;
-          setTimeout(() => {
-            playWelcomeSequence();
-          }, mobileDelay);
-        };
-        
-        unlockMsg.onend = proceedToWelcome;
-        unlockMsg.onerror = (e) => {
-          console.log('⚠️ Mobile unlock error (proceeding anyway):', e);
-          proceedToWelcome();
-        };
-        
-        // Backup timeout for mobile
-        setTimeout(proceedToWelcome, 1000);
-        
-        speechSynthesis.speak(unlockMsg);
-      } catch (error) {
-        console.log('❌ Mobile initialization error:', error);
-        setTimeout(() => playWelcomeSequence(), 800);
-      }
-    } else {
+    // Desktop browser - proceed with voice initialization
+    {
       console.log('🖥️ Desktop browser detected - direct voice initialization...');
       
       try {
@@ -361,22 +335,25 @@ const WelcomeVoiceSystem = () => {
     
     const { isMobile, browser, isRestrictive, supportsVoice } = getBrowserInfo();
     
+    // Disable ALL voices on mobile devices
+    if (isMobile) {
+      console.log('📱 Mobile device detected - voices completely disabled on mobile');
+      return;
+    }
+    
     if (!supportsVoice) {
       console.log('❌ Speech synthesis not supported in this browser');
       return;
     }
     
-    // Enhanced timing strategy for maximum reliability
+    // Enhanced timing strategy for maximum reliability (desktop only)
     const getOptimalDelay = () => {
       if (isRestrictive) return 0;
-      if (isMobile) {
-        return browser === 'safari' ? 2500 : 2000;
-      }
       return browser === 'firefox' ? 3500 : 3000;
     };
     
     const delay = getOptimalDelay();
-    console.log(`⏰ Setting ${delay}ms delay for ${browser} (mobile: ${isMobile}, restrictive: ${isRestrictive})`);
+    console.log(`⏰ Setting ${delay}ms delay for ${browser} (desktop only, restrictive: ${isRestrictive})`);
     
     const timer = setTimeout(() => {
       console.log(`🚀 Timer fired: Initializing voices for ${browser}...`);
@@ -395,10 +372,9 @@ const WelcomeVoiceSystem = () => {
       
       clearTimeout(timer);
       
-      // Smart delay based on browser and restriction level
+      // Smart delay based on browser and restriction level (desktop only)
       const getInteractionDelay = () => {
         if (isRestrictive) return 200;
-        if (isMobile) return 800;
         return 1000;
       };
       

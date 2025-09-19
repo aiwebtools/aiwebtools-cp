@@ -1,98 +1,97 @@
 /* Cross-browser compatibility styles */
-@layer base {
-  /* Browser-specific fixes */
-  .is-ios {
-    /* iOS Safari specific fixes */
-    * {
-      -webkit-overflow-scrolling: touch;
-      -webkit-transform: translateZ(0);
-    }
-    
-    input, textarea, select {
-      border-radius: 0;
-      -webkit-appearance: none;
-    }
+/* Browser-specific fixes */
+.is-ios {
+  /* iOS Safari specific fixes */
+  * {
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translateZ(0);
   }
+  
+  input, textarea, select {
+    border-radius: 0;
+    -webkit-appearance: none;
+  }
+}
 
-  .is-android {
-    /* Android specific optimizations */
-    * {
-      -webkit-tap-highlight-color: transparent;
-    }
+.is-android {
+  /* Android specific optimizations */
+  * {
+    -webkit-tap-highlight-color: transparent;
   }
+}
 
-  .is-safari {
-    /* Safari specific fixes */
-    video, iframe {
-      -webkit-mask-image: -webkit-radial-gradient(white, black);
-    }
+.is-safari {
+  /* Safari specific fixes */
+  video, iframe {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
   }
+}
 
-  .is-firefox {
-    /* Firefox specific fixes */
-    * {
-      -moz-backface-visibility: hidden;
-    }
+.is-firefox {
+  /* Firefox specific fixes */
+  * {
+    -moz-backface-visibility: hidden;
   }
+}
 
-  /* Device performance tiers */
-  .device-low {
-    * {
-      animation-duration: 0.1s !important;
-      transition-duration: 0.1s !important;
-      will-change: auto !important;
-    }
-    
-    .glow-effect,
-    .cyber-glow,
-    .pulse,
-    [class*="animate-"] {
-      animation: none !important;
-    }
+/* Device performance tiers */
+.device-low {
+  * {
+    animation-duration: 0.1s !important;
+    transition-duration: 0.1s !important;
+    will-change: auto !important;
   }
+  
+  .glow-effect,
+  .cyber-glow,
+  .pulse,
+  [class*="animate-"] {
+    animation: none !important;
+  }
+}
 
-  .device-medium {
-    * {
-      animation-duration: 0.2s;
-      transition-duration: 0.2s;
-    }
+.device-medium {
+  * {
+    animation-duration: 0.2s;
+    transition-duration: 0.2s;
   }
+}
 
-  .device-high {
-    /* Full animations and effects for high-end devices */
-    * {
-      animation-duration: 0.3s;
-      transition-duration: 0.3s;
-    }
+.device-high {
+  /* Full animations and effects for high-end devices */
+  * {
+    animation-duration: 0.3s;
+    transition-duration: 0.3s;
   }
+}
 
-  /* Touch device optimizations */
-  .touch-device {
-    /* Larger touch targets */
-    button, a, [role="button"], [tabindex] {
-      min-height: 44px;
-      min-width: 44px;
-    }
-    
-    /* Remove hover effects on touch devices */
-    .hover\:scale-105:hover {
-      transform: none;
-    }
-    
-    /* Optimize scrolling */
-    * {
-      -webkit-overflow-scrolling: touch;
-      touch-action: manipulation;
-    }
+/* Touch device optimizations */
+.touch-device {
+  /* Larger touch targets */
+  button, a, [role="button"], [tabindex] {
+    min-height: 44px;
+    min-width: 44px;
   }
+  
+  /* Remove hover effects on touch devices */
+  .hover\:scale-105:hover {
+    transform: none;
+  }
+  
+  /* Optimize scrolling */
+  * {
+    -webkit-overflow-scrolling: touch;
+    touch-action: manipulation;
+  }
+}
 
-  /* Reduced motion support */
-  .reduce-motion * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+/* Reduced motion support */
+.reduce-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
 
   /* High contrast mode support */
   @media (prefers-contrast: high) {
@@ -193,7 +192,6 @@
     color: #00ffff; /* Fallback for older browsers */
     color: hsl(var(--primary));
   }
-}
 
 /* Progressive enhancement for modern browsers */
 @supports (display: grid) {
