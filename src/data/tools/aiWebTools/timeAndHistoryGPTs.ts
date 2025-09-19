@@ -91,5 +91,29 @@ export const timeAndHistoryGPTs: Tool[] = [
       category: "Time & History",
       rating: 4.7,
       totalVotes: 1280
+    },
+    {
+      icon: Globe,
+      title: "Palestinian History Preserver",
+      description: "Palestinian History Preserver is dedicated to preserving and sharing Palestinian history, culture, and voices. This educational tool provides comprehensive historical documentation, cultural insights, and personal narratives to ensure Palestinian stories are not forgotten. It serves as a digital archive and educational resource for understanding Palestinian heritage, struggles, and contributions throughout history.",
+      emoji: "🕊️",
+      color: "from-green-500 to-red-600",
+      directUrl: "https://chatgpt.com/g/g-68ca033a29508191a8b51668f8bf8e78-palestinian-history-preserver/?via=aiwebtools",
+      tags: ["Palestinian history", "cultural preservation", "historical documentation", "Middle East history", "heritage", "education", "aiwebtools"],
+      category: "Time & History",
+      rating: 4.8,
+      totalVotes: 2341
+    },
+    {
+      icon: BookOpen,
+      title: "Middle East History Guide",
+      description: "Expert guide on Middle Eastern history across all time periods. This comprehensive AI tool provides in-depth knowledge of Middle Eastern civilizations, cultures, conflicts, and developments from ancient times to the present. Perfect for students, researchers, and anyone seeking to understand the rich and complex history of the Middle East region.",
+      emoji: "🏛️",
+      color: "from-amber-500 to-purple-600",
+      directUrl: "https://chatgpt.com/g/g-68c9e5c22f608191bcdd15d802b094b0-middle-east-history-guide/?via=aiwebtools",
+      tags: ["Middle East history", "historical guide", "ancient civilizations", "regional history", "cultural studies", "education", "aiwebtools"],
+      category: "Time & History",
+      rating: 4.7,
+      totalVotes: 1987
     }
 ];

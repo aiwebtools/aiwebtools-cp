@@ -116,5 +116,17 @@ export const educationAndLearningGPTs: Tool[] = [
     category: "Education & Learning",
     rating: 4.8,
     totalVotes: 3456
+  },
+  {
+    icon: Palette,
+    title: "Cursive Teacher GPT",
+    description: "Cursive Teacher GPT is your specialized AI instructor for learning beautiful cursive handwriting. This educational tool provides step-by-step guidance on cursive letter formation, proper pen grip, writing techniques, and practice exercises. Whether you're a student learning cursive for the first time, a parent helping your child, or an adult wanting to improve your handwriting, this GPT offers personalized instruction and engaging activities to master the art of cursive writing.",
+    emoji: "✍️",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-68cb403167a88191ae07062124d32bbb-cursive-teacher-gpt/?via=aiwebtools",
+    tags: ["cursive writing", "handwriting", "education", "penmanship", "writing skills", "learning", "teaching", "aiwebtools"],
+    category: "Education & Learning",
+    rating: 4.6,
+    totalVotes: 2134
   }
 ];
