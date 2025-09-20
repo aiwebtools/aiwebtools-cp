@@ -216,5 +216,17 @@ export const healthAndWellnessGPTs: Tool[] = [
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 2645
+  },
+  {
+    icon: Shield,
+    title: "Patient Advocate GPT",
+    description: "Patient Advocate GPT is your dedicated healthcare advocacy assistant, designed to help patients navigate the complex healthcare system with confidence. This AI provides guidance on patient rights, medical billing questions, insurance claim assistance, and communication strategies with healthcare providers. Get support for understanding medical procedures, preparing for appointments, organizing medical documents, and advocating for quality care. Perfect for patients seeking empowerment in their healthcare journey, families dealing with complex medical situations, and anyone needing guidance on healthcare navigation and patient advocacy.",
+    emoji: "🛡️",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://chatgpt.com/g/g-68cf22ea994481919206bf9eb0abccbc-patients-advocate-gpt/?via=aiwebtools",
+    tags: ["patient advocacy", "healthcare navigation", "patient rights", "medical billing", "insurance assistance", "healthcare support", "medical guidance", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.6,
+    totalVotes: 1875
   }
 ];
