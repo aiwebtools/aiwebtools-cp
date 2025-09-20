@@ -6,6 +6,13 @@
   contain: layout style paint;
 }
 
+/* Clean logo text without blur effects */
+.logo-text-crisp {
+  text-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+
 /* Enhanced glowing text effect for logo - optimized */
 .glow-text-effect {
   text-shadow: 

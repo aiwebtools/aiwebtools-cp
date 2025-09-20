@@ -28,8 +28,8 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
     <div className={`flex items-center gap-2 flex-shrink-0 relative z-[110] ${compact ? 'scale-75' : ''}`}>
       <div className="text-left flex-1">
         <div className={`flex items-center gap-2 ${compact ? 'mb-0' : 'mb-1'}`}>
-          <div className={`font-bold bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent ${compact ? 'text-base' : 'text-xl'} tracking-wider letter-spacing-wide relative`}>
-            <span className="relative z-10 cyber-glow">AI WEB TOOLS - AITOOLS.STUDIO</span>
+          <div className={`font-bold bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent ${compact ? 'text-base' : 'text-xl'} tracking-wider letter-spacing-wide relative logo-text-crisp`}>
+            <span className="relative z-10">AI WEB TOOLS - AITOOLS.STUDIO</span>
           </div>
           {!compact && (
             <span className="text-xs text-cyan-200/80 font-medium hidden sm:block tracking-wide">
