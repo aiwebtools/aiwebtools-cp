@@ -18,7 +18,6 @@ import NotFound from "./pages/NotFound";
 import DisclaimersPage from "./pages/DisclaimersPage";
 import OurStoryPage from "./pages/OurStoryPage";
 import FloatingCloneButton from "./components/FloatingCloneButton";
-import ScrollingBanner from "./components/ScrollingBanner";
 import WelcomeVoiceSystem from "./components/WelcomeVoiceSystem";
 import AIToolsHub from "./pages/AIToolsHub";
 import AIAgentsDirectory from "./pages/AIAgentsDirectory";
@@ -57,9 +56,6 @@ function App() {
                 
                 {/* Tiny floating clone button - hides on scroll */}
                 <FloatingCloneButton />
-                
-                {/* Scrolling banner at bottom */}
-                <ScrollingBanner />
               </BrowserRouter>
             </TooltipProvider>
           </FavoritesProvider>
