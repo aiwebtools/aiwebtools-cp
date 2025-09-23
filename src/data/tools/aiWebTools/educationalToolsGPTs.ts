@@ -1,6 +1,6 @@
 
 import { Tool } from "@/types/tools";
-import { GraduationCap, BookOpen, Users, Award, Brain, FileText, Lightbulb, Target, Clock, Zap } from "lucide-react";
+import { GraduationCap, BookOpen, Users, Award, Brain, FileText, Lightbulb, Target, Clock, Zap, User } from "lucide-react";
 
 export const educationalToolsGPTs: Tool[] = [
   {
@@ -81,5 +81,17 @@ export const educationalToolsGPTs: Tool[] = [
     category: "Educational Tools",
     rating: 4.9,
     totalVotes: 8765
+  },
+  {
+    icon: User,
+    title: "College Professor GPT",
+    description: "College Professor GPT is your personal AI virtual educational college-level teacher designed for individual exploration and advanced learning. This sophisticated AI educator provides personalized, university-level instruction across diverse academic disciplines, offering the expertise and guidance of a seasoned college professor available 24/7 for your educational journey. Whether you're exploring complex theoretical concepts, seeking deeper understanding of academic subjects, preparing for advanced studies, or pursuing intellectual curiosity, this AI delivers comprehensive, professorial-level instruction tailored to your learning needs and academic goals. The system provides detailed explanations, critical analysis, academic discussion, and scholarly insights that mirror the depth and rigor of college-level education. Input your subject of interest, current knowledge level, and learning objectives to receive personalized academic instruction with detailed explanations, scholarly perspectives, and guided exploration of complex topics. Features include personalized academic instruction, critical thinking development, scholarly discussion facilitation, comprehensive subject coverage, and adaptive teaching methodologies. Perfect for students seeking supplemental academic support, lifelong learners pursuing intellectual growth, professionals advancing their knowledge, and anyone committed to college-level educational exploration and academic achievement.",
+    emoji: "👨‍🏫",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-68c049b652f8819195c722dbd4971797-college-professor-gpt",
+    tags: ["college professor", "virtual teacher", "academic instruction", "educational exploration", "university level", "personalized learning", "scholarly discussion"],
+    category: "Educational Tools",
+    rating: 4.7,
+    totalVotes: 3456
   }
 ];
