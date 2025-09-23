@@ -188,6 +188,9 @@ import { videoGenerationTools } from './tools/videoGenerationTools';
 import { videoMarketingTools } from './tools/videoMarketingTools';
 import { professionalGPTsAudio } from './tools/professionalGPTsAudio';
 
+// Import AI Hardware
+import { aiHardware } from './tools/aiHardware';
+
 // Combine all tool categories
 export const getAllToolCategories = (): Tool[] => {
   return [
@@ -373,6 +376,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...professionalGPTsAudio,
     
     // ADDITIONAL POPULAR TOOLS 2025
-    ...additionalPopularTools2025
+    ...additionalPopularTools2025,
+    
+    // AI HARDWARE
+    ...aiHardware
   ];
 };

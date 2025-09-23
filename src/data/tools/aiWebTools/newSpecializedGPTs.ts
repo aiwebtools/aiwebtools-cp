@@ -230,6 +230,7 @@ export const newSpecializedGPTs: Tool[] = [
     emoji: "🌱",
     color: "from-green-600 to-emerald-700",
     directUrl: "https://sustainablefuturesgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/aPg82f-RCO8?si=IJIJ1aLCaJ_P7b-Y",
     category: "Environmental & Sustainability",
     tags: ["sustainability", "environment", "green technology", "future"],
     rating: 4.6,

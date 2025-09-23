@@ -130,6 +130,9 @@ export { additionalVideoTools2025 } from './additionalVideoTools2025';
 export { additionalAudioTools2025 } from './additionalAudioTools2025';
 export { creativeExperimentalTools2025 } from './creativeExperimentalTools2025';
 
+// Export AI Hardware
+export { aiHardware } from './aiHardware';
+
 // Export Web3 and Blockchain Tools
 export { web3DomainsTools } from './web3DomainsTools';
 
