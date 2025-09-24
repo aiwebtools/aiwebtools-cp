@@ -26,7 +26,8 @@ import {
   Eye,
   Phone,
   Database,
-  Shield
+  Shield,
+  Zap
 } from "lucide-react";
 
 // NEW TOOLS ONLY - as specifically requested by the user
@@ -439,5 +440,17 @@ export const newSpecializedGPTs: Tool[] = [
     tags: ["cannabis", "education", "course creation", "training", "compliance", "learning", "hemp", "cannabis education", "cannabis training", "educational content"],
     rating: 4.7,
     totalVotes: 1456
+  },
+  {
+    icon: Zap,
+    title: "Aether Guide",
+    description: "Aether Guide by AiWebTools.Ai is a specialized AI that explores theories, history, and speculation about aether energy. This fascinating tool delves into the mysterious concept of aether - the theoretical medium once believed to permeate all of space and serve as the carrier of electromagnetic waves. Whether you're interested in historical scientific theories, alternative energy concepts, or speculative physics, Aether Guide provides comprehensive exploration of aether-related topics, from classical ether theory to modern interpretations and fringe science theories. Perfect for researchers, students of alternative science, and curious minds exploring the boundaries of conventional physics.",
+    emoji: "⚡",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-68d044de35b48191a53196a394cff061-aether-guide",
+    category: "Mysterious & Unusual AI Tools",
+    tags: ["aether", "energy theories", "alternative science", "physics speculation", "ether theory", "electromagnetic", "fringe science", "aiwebtools"],
+    rating: 4.5,
+    totalVotes: 987
   }
 ];

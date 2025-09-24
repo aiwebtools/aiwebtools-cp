@@ -7,7 +7,9 @@ import {
   Stethoscope, 
   Pill,
   User,
-  Sparkles
+  Sparkles,
+  Shield,
+  Beaker
 } from "lucide-react";
 
 export const aiWebToolsHealthGPTs: Tool[] = [
@@ -139,5 +141,29 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 2890
+  },
+  {
+    icon: Shield,
+    title: "Petro Product Screener GPT",
+    description: "Petro Product Screener GPT is an advanced AI safety analyzer that allows users to upload product images and receive comprehensive analysis of petrochemical sources, health hazards, and safety assessments. While it specializes in petroleum-based products, this versatile tool can analyze various consumer products to identify chemical compositions, potential health risks, and provide safety grades. It serves as your personal product safety consultant, helping you make informed decisions about product usage and exposure to potentially harmful chemicals. Perfect for health-conscious consumers, parents, and anyone concerned about product safety.",
+    emoji: "🛡️",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://chatgpt.com/g/g-68d28a4d6ad481918869ea60627624de-petro-product-screener-gpt",
+    tags: ["product safety", "chemical analysis", "health hazards", "petrochemicals", "safety screening", "product analyzer", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.6,
+    totalVotes: 1234
+  },
+  {
+    icon: User,
+    title: "Patients Advocate GPT",
+    description: "Patients Advocate GPT by AiWebTools.Ai is an empathetic guide designed to support patients through medical visits and help them understand their rights. This compassionate AI assistant provides guidance on navigating healthcare systems, preparing for medical appointments, understanding patient rights, advocating for proper care, and ensuring patients receive the attention and treatment they deserve. It offers emotional support, practical advice for communicating with healthcare providers, and helps patients feel empowered in their healthcare journey. Whether you're preparing for a doctor's visit, dealing with insurance issues, or need help understanding medical procedures, this advocate stands by your side.",
+    emoji: "🤝",
+    color: "from-blue-500 to-green-600",
+    directUrl: "https://chatgpt.com/g/g-68cf22ea994481919206bf9eb0abccbc-patients-advocate-gpt",
+    tags: ["patient advocacy", "healthcare rights", "medical visits", "patient support", "healthcare navigation", "empowerment", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.8,
+    totalVotes: 2156
   }
 ];

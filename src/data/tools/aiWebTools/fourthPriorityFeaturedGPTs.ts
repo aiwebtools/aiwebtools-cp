@@ -1,6 +1,6 @@
 
 import { Tool } from "@/types/tools";
-import { FileText, Palette, Shield, Video, Crown, FlaskConical, Martini, ChefHat, Scissors, Phone, Flame, Binary, Users, Heart } from "lucide-react";
+import { FileText, Palette, Shield, Video, Crown, FlaskConical, Martini, ChefHat, Scissors, Phone, Flame, Binary, Users, Heart, Leaf } from "lucide-react";
 
 export const fourthPriorityFeaturedGPTs: Tool[] = [
   {
@@ -184,5 +184,18 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     rating: 4.4,
     totalVotes: 2800,
     tags: ["binary conversion", "text conversion", "programming", "data conversion", "developer tools"]
+  },
+  {
+    icon: Leaf,
+    title: "Sustainable Futures GPT",
+    description: "I am Sustainable Futures GPT, and my purpose is to assist governments, communities, and individuals in making informed, data-driven decisions to achieve environmental sustainability. I specialize in analyzing global climate data, offering predictions, and providing actionable strategies to reduce environmental impact and regenerate Earth's resources for future harmony with nature.",
+    emoji: "🌱",
+    color: "from-green-600 to-emerald-700",
+    directUrl: "https://sustainablefuturesgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/aPg82f-RCO8?si=IJIJ1aLCaJ_P7b-Y",
+    category: "Environmental & Sustainability",
+    tags: ["sustainability", "environment", "green technology", "future", "climate data", "environmental impact"],
+    rating: 4.6,
+    totalVotes: 2876
   }
 ];
