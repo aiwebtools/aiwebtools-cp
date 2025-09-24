@@ -287,5 +287,17 @@ export const creativeAndMediaGPTs: Tool[] = [
     category: "Creative & Media",
     rating: 4.6,
     totalVotes: 4987
+  },
+  {
+    icon: Wand2,
+    title: "Lovart Design Agent",
+    description: "Advanced AI design agent specialized in creating stunning images, 3D designs, and videos. This powerful AI agent combines cutting-edge technology with creative intelligence to handle complex design tasks across multiple mediums. Whether you need professional image generation, intricate 3D modeling, or dynamic video content, Lovart Design Agent delivers exceptional results with agent-level autonomy and creative precision.",
+    emoji: "🤖",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://www.lovart.ai/",
+    tags: ["ai agent", "design agent", "image design", "3d design", "video design", "creative agent", "autonomous design", "ai creativity", "design automation", "visual agent"],
+    category: "Creative & Media",
+    rating: 4.7,
+    totalVotes: 3421
   }
 ];
