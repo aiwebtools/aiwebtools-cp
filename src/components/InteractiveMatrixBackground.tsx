@@ -159,19 +159,21 @@ const InteractiveMatrixBackground = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Simplified timing for better browser compatibility (especially Brave)
     const deltaTime = currentTime - lastTimeRef.current;
-    const fps = performanceTier === 'high' ? 60 : performanceTier === 'medium' ? 45 : 30;
-    const frameInterval = 1000 / fps;
+    const targetInterval = performanceTier === 'high' ? 16.67 : performanceTier === 'medium' ? 22.22 : 33.33; // 60fps, 45fps, 30fps
 
-    if (deltaTime < frameInterval) {
+    // Use more consistent frame limiting that works better with Brave's optimizations
+    if (deltaTime < targetInterval && lastTimeRef.current > 0) {
       animationFrameRef.current = requestAnimationFrame(animate);
       return;
     }
 
     lastTimeRef.current = currentTime;
 
-    // Clear with stronger fade to prevent streaks and make symbols defined
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+    // Consistent canvas clearing that works better across Chromium browsers
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const fontSize = 16;
@@ -198,6 +200,11 @@ const InteractiveMatrixBackground = () => {
       ctx.textBaseline = 'top';
       ctx.textAlign = 'center';
       
+      // Set rendering options for better Brave browser compatibility
+      ctx.globalAlpha = 1;
+      ctx.shadowBlur = 0;
+      ctx.shadowColor = 'transparent';
+      
       for (let i = 0; i < drop.chars.length; i++) {
         const charY = drop.y + i * (fontSize * 1.4); // More spacing for definition
         if (charY > 0 && charY < canvas.height + fontSize) {
@@ -208,27 +215,27 @@ const InteractiveMatrixBackground = () => {
           // Skip very faint characters
           if (alpha < 0.2) continue;
           
-          // No blur for crisp definition
-          ctx.shadowBlur = 0;
-          
           // Head character is bright white and dominant
           if (i === 0) {
-            ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(alpha, 0.95)})`;
+            ctx.globalAlpha = Math.min(alpha, 0.95);
+            ctx.fillStyle = '#ffffff';
           } else if (i <= 2) {
             // First few characters are bright green
-            ctx.fillStyle = `rgba(0, 255, 65, ${Math.min(alpha * 0.9, 0.8)})`;
+            ctx.globalAlpha = Math.min(alpha * 0.9, 0.8);
+            ctx.fillStyle = '#00ff41';
           } else {
             // Body characters with defined green
-            const greenIntensity = Math.max(150, 255 * alpha);
-            ctx.fillStyle = `rgba(0, ${greenIntensity}, 50, ${alpha * 0.7})`;
+            ctx.globalAlpha = alpha * 0.7;
+            ctx.fillStyle = '#00cc33';
           }
           
-          // Render defined characters
-          ctx.fillText(drop.chars[i], Math.floor(drop.x), Math.floor(charY));
+          // Render defined characters with pixel-perfect positioning
+          ctx.fillText(drop.chars[i], Math.round(drop.x), Math.round(charY));
         }
       }
 
-      ctx.shadowBlur = 0; // Reset shadow
+      // Reset global alpha for consistency
+      ctx.globalAlpha = 1;
       return true;
     });
 
@@ -239,15 +246,19 @@ const InteractiveMatrixBackground = () => {
       return point.intensity > 0.1;
     });
 
-    // Render interaction ripples - clean circles
+    // Render interaction ripples - clean circles with consistent alpha
+    ctx.globalAlpha = 1;
     interactionPointsRef.current.forEach(point => {
-      ctx.strokeStyle = `rgba(0, 255, 65, ${point.intensity * 0.6})`;
+      ctx.globalAlpha = point.intensity * 0.6;
+      ctx.strokeStyle = '#00ff41';
       ctx.lineWidth = 2;
       ctx.shadowBlur = 0;
+      ctx.shadowColor = 'transparent';
       ctx.beginPath();
-      ctx.arc(point.x, point.y, point.radius, 0, Math.PI * 2);
+      ctx.arc(Math.round(point.x), Math.round(point.y), Math.round(point.radius), 0, Math.PI * 2);
       ctx.stroke();
     });
+    ctx.globalAlpha = 1; // Reset alpha
 
     // Clean up excess drops for performance but allow more streaks
     const maxActiveDrops = performanceTier === 'high' ? 150 : performanceTier === 'medium' ? 100 : 80;
