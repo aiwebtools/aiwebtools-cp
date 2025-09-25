@@ -302,5 +302,17 @@ export const aiAssistants: Tool[] = [
     tags: ["natural language", "code generation", "programming", "openai"],
     rating: 4.4,
     totalVotes: 5890
+  },
+  {
+    icon: Zap,
+    title: "Galaxy AI",
+    description: "Comprehensive AI platform featuring 3,000+ AI tools under one subscription. Access a vast galaxy of AI capabilities including chat assistants, content creation, image generation, data analysis, and specialized tools - all in one unified platform at an affordable price. Perfect for users who want access to multiple AI solutions without managing separate subscriptions.",
+    emoji: "🌌",
+    color: "from-purple-600 to-blue-500",
+    directUrl: "https://galaxy.ai/?via=aiwebtools",
+    category: "AI Assistants & Search",
+    tags: ["ai platform", "multiple ai tools", "chat assistants", "ai suite", "comprehensive ai", "ai subscription", "3000 tools", "unified platform", "ai collection", "galaxy"],
+    rating: 4.8,
+    totalVotes: 15672
   }
 ];
