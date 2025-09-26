@@ -23,7 +23,8 @@ import {
   Telescope,
   Compass,
   Star,
-  Beaker
+  Beaker,
+  Sprout
 } from "lucide-react";
 
 export const aiAssistants: Tool[] = [
@@ -314,5 +315,17 @@ export const aiAssistants: Tool[] = [
     tags: ["ai platform", "multiple ai tools", "chat assistants", "ai suite", "comprehensive ai", "ai subscription", "3000 tools", "unified platform", "ai collection", "galaxy"],
     rating: 4.8,
     totalVotes: 15672
+  },
+  {
+    icon: Sprout,
+    title: "Farm Finder & Barter GPT",
+    description: "Find local farms to support sustainability and local food systems. Assists with bartering, digital currency conversions, farm evaluations, and local sustainability planning for economic resilience and food security.",
+    emoji: "🚜",
+    color: "from-green-600 to-amber-600",
+    directUrl: "https://chatgpt.com/g/g-68d6c0b6cecc8191b38e0d9cf099769d-farm-finder-gpt",
+    category: "AI Assistants & Search",
+    tags: ["farming", "local sustainability", "bartering", "food security", "economic resilience", "local farms", "digital currency", "survival", "community", "agriculture"],
+    rating: 4.7,
+    totalVotes: 89
   }
 ];
