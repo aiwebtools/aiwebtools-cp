@@ -115,6 +115,7 @@ export const historicalAndCultural: Tool[] = [
     emoji: "📰",
     color: "from-gray-600 to-blue-600",
     directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/DgreEEJKynM",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-historical-headline_1Ll1g.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     category: "Historical News",
     tags: ["historical headlines", "news history", "time travel", "journalism"],
