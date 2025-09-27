@@ -24,7 +24,8 @@ import {
   Compass,
   Star,
   Beaker,
-  Sprout
+  Sprout,
+  BookOpen
 } from "lucide-react";
 
 export const aiAssistants: Tool[] = [
@@ -327,5 +328,17 @@ export const aiAssistants: Tool[] = [
     tags: ["farming", "local sustainability", "bartering", "food security", "economic resilience", "local farms", "digital currency", "survival", "community", "agriculture"],
     rating: 4.7,
     totalVotes: 89
+  },
+  {
+    icon: BookOpen,
+    title: "Greek New Testament GPT (Original Version)",
+    description: "Learn and study the New Testament as it was originally written in ancient Greek, before translations altered meanings. Explore the original text, grammar, and theological concepts with detailed explanations of Greek words, cultural context, and historical significance.",
+    emoji: "📜",
+    color: "from-blue-600 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-68d7490469d881919f4df9bc9c63aa90-the-greek-new-testament-gpt-the-original-version",
+    category: "AI Assistants & Search",
+    tags: ["Greek", "New Testament", "Bible", "original text", "ancient Greek", "theology", "biblical studies", "education", "translation", "scripture", "religion", "Christianity"],
+    rating: 4.6,
+    totalVotes: 234
   }
 ];
