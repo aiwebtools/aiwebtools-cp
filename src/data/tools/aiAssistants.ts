@@ -24,8 +24,7 @@ import {
   Compass,
   Star,
   Beaker,
-  Sprout,
-  BookOpen
+  Sprout
 } from "lucide-react";
 
 export const aiAssistants: Tool[] = [
@@ -330,15 +329,15 @@ export const aiAssistants: Tool[] = [
     totalVotes: 89
   },
   {
-    icon: BookOpen,
-    title: "Greek New Testament GPT (Original Version)",
-    description: "Learn and study the New Testament as it was originally written in ancient Greek, before translations altered meanings. Explore the original text, grammar, and theological concepts with detailed explanations of Greek words, cultural context, and historical significance.",
-    emoji: "📜",
-    color: "from-blue-600 to-purple-600",
-    directUrl: "https://chatgpt.com/g/g-68d7490469d881919f4df9bc9c63aa90-the-greek-new-testament-gpt-the-original-version",
+    icon: Sprout,
+    title: "Farm Finder & Barter GPT",
+    description: "Find local farms to support sustainability and local food systems. Assists with bartering, digital currency conversions, farm evaluations, and local sustainability planning for economic resilience and food security.",
+    emoji: "🚜",
+    color: "from-green-600 to-amber-600",
+    directUrl: "https://chatgpt.com/g/g-68d6c0b6cecc8191b38e0d9cf099769d-farm-finder-gpt",
     category: "AI Assistants & Search",
-    tags: ["Greek", "New Testament", "Bible", "original text", "ancient Greek", "theology", "biblical studies", "education", "translation", "scripture", "religion", "Christianity"],
-    rating: 4.6,
-    totalVotes: 234
+    tags: ["farming", "local sustainability", "bartering", "food security", "economic resilience", "local farms", "digital currency", "survival", "community", "agriculture"],
+    rating: 4.7,
+    totalVotes: 89
   }
 ];

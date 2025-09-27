@@ -153,5 +153,17 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 3247
+  },
+  {
+    icon: BookOpen,
+    title: "Greek New Testament GPT (Original Version)",
+    description: "Learn and study the New Testament as it was originally written in ancient Greek, before translations altered meanings. Explore the original text, grammar, and theological concepts with detailed explanations of Greek words, cultural context, and historical significance.",
+    emoji: "📜",
+    color: "from-blue-600 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-68d7490469d881919f4df9bc9c63aa90-the-greek-new-testament-gpt-the-original-version",
+    tags: ["Greek", "New Testament", "Bible", "original text", "ancient Greek", "theology", "biblical studies", "Christianity", "scripture", "translation", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.6,
+    totalVotes: 234
   }
 ];
