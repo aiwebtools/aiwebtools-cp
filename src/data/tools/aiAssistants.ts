@@ -339,5 +339,29 @@ export const aiAssistants: Tool[] = [
     tags: ["farming", "local sustainability", "bartering", "food security", "economic resilience", "local farms", "digital currency", "survival", "community", "agriculture"],
     rating: 4.7,
     totalVotes: 89
+  },
+  {
+    icon: Search,
+    title: "FlowGPT",
+    description: "A platform to discover, share, and use AI prompts and custom GPTs for productivity, business, and creativity. Browse thousands of community-created prompts and AI tools to enhance your workflows.",
+    emoji: "🌊",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://flowgpt.com/?via=aiwebtools",
+    category: "AI Assistants & Search",
+    tags: ["AI prompts", "custom GPTs", "productivity", "business", "creativity", "community", "workflows"],
+    rating: 4.5,
+    totalVotes: 3456
+  },
+  {
+    icon: Eye,
+    title: "Imarena",
+    description: "An AI comparison platform where you can test multiple AI models side-by-side to see which gives the best answers. Compare performance across different language models and AI systems.",
+    emoji: "⚔️",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://imarena.ai/?via=aiwebtools",
+    category: "AI Assistants & Search",
+    tags: ["AI comparison", "model testing", "side-by-side", "performance", "language models", "evaluation"],
+    rating: 4.3,
+    totalVotes: 2134
   }
 ];

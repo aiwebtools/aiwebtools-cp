@@ -136,5 +136,17 @@ export const aiDevelopmentTools: Tool[] = [
     category: "DEVELOPMENT & CODING",
     rating: 4.8,
     totalVotes: 4200
+  },
+  {
+    icon: Database,
+    title: "BrowserAct",
+    description: "An AI web scraping and automation tool that extracts data from any website without coding limits. Automate browser tasks, extract structured data, and perform complex web interactions with AI assistance.",
+    emoji: "🌐",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://browseract.com/?via=aiwebtools",
+    tags: ["web scraping", "automation", "data extraction", "browser automation", "no-code", "AI automation"],
+    category: "DEVELOPMENT & CODING",
+    rating: 4.4,
+    totalVotes: 2345
   }
 ];

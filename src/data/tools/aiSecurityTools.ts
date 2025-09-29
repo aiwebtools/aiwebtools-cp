@@ -85,5 +85,41 @@ export const aiSecurityTools: Tool[] = [
     category: "Specialized Tools",
     rating: 4.8,
     totalVotes: 3210
+  },
+  {
+    icon: Search,
+    title: "Shodan",
+    description: "A search engine that scans the internet for connected devices and systems, often used for cybersecurity research. Discover IoT devices, servers, and network infrastructure worldwide.",
+    emoji: "🔍",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://shodan.io/?via=aiwebtools",
+    tags: ["search engine", "IoT devices", "cybersecurity research", "network scanning", "connected devices"],
+    category: "AI Security Tools",
+    rating: 4.4,
+    totalVotes: 2890
+  },
+  {
+    icon: Eye,
+    title: "FotoForensics",
+    description: "An online tool for forensic image analysis to detect edits, manipulations, and authenticity issues in photos. Analyze digital images for tampering and forensic evidence.",
+    emoji: "🔬",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://fotoforensics.com/?via=aiwebtools",
+    tags: ["image forensics", "photo analysis", "tampering detection", "authenticity", "digital forensics"],
+    category: "AI Security Tools",
+    rating: 4.3,
+    totalVotes: 1567
+  },
+  {
+    icon: Globe,
+    title: "ZoomEye",
+    description: "A cyberspace search engine for discovering internet-connected devices, vulnerabilities, and digital assets. Comprehensive network reconnaissance and security research platform.",
+    emoji: "👁️",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://zoomeye.ai/?via=aiwebtools",
+    tags: ["cyberspace search", "network reconnaissance", "vulnerability discovery", "digital assets", "security research"],
+    category: "AI Security Tools",
+    rating: 4.5,
+    totalVotes: 2234
   }
 ];

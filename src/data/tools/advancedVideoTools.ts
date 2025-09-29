@@ -375,5 +375,17 @@ export const advancedVideoTools: Tool[] = [
     category: "Advanced Video Tools",
     rating: 4.6,
     totalVotes: 2100
+  },
+  {
+    icon: Zap,
+    title: "Parrot AI (TryParrotAI)",
+    description: "An AI video and voice generator for creating funny or entertaining videos using synthetic voices. Transform text into engaging video content with realistic AI-generated voices and characters.",
+    emoji: "🦜",
+    color: "from-green-500 to-yellow-600",
+    directUrl: "https://tryparrotai.com/?via=aiwebtools",
+    tags: ["AI voice", "video generation", "synthetic voices", "entertainment", "funny videos", "text-to-speech"],
+    category: "Advanced Video Tools",
+    rating: 4.2,
+    totalVotes: 1876
   }
 ];
