@@ -1,4 +1,4 @@
-import { BookOpen, ExternalLink } from "lucide-react";
+import { BookOpen, ExternalLink, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 
@@ -8,6 +8,13 @@ const BookPromotionCard = () => {
     e.stopPropagation();
     console.log('🌀 Book purchase clicked - triggering time warp');
     createTimePortalEffect("https://www.amazon.com/Gospel-Deployable-Robots-Instructions-www-AiWebTools-Ai-ebook/dp/B0DT419F2W?dplnkId=21c79e26-79fa-4837-9c84-4aebe9053749", "Gospel of Deployable Robots Book");
+  };
+
+  const handleDownloadBook = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('📥 Free book download clicked');
+    createTimePortalEffect("https://docs.google.com/document/d/18LHLsPXIjjtZgIAaXry5IktOGm9lacTq/edit?usp=sharing&ouid=116187507271950139405&rtpof=true&sd=true", "Free Gospel of Deployable Robots Download");
   };
 
   return (
@@ -63,15 +70,27 @@ const BookPromotionCard = () => {
                     </div>
                   </div>
 
-                  <Button
-                    onClick={handleBuyBook}
-                    size="lg"
-                    className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105"
-                  >
-                    <BookOpen className="mr-2" size={20} />
-                    📖 Buy on Amazon
-                    <ExternalLink className="ml-2" size={16} />
-                  </Button>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button
+                      onClick={handleBuyBook}
+                      size="lg"
+                      className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105"
+                    >
+                      <BookOpen className="mr-2" size={20} />
+                      📖 Buy on Amazon
+                      <ExternalLink className="ml-2" size={16} />
+                    </Button>
+
+                    <Button
+                      onClick={handleDownloadBook}
+                      size="lg"
+                      className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
+                    >
+                      <Download className="mr-2" size={20} />
+                      DOWNLOAD A FREE COPY OF The GOSPEL OF DEPLOYABLE BOTS - COPY AND PASTE READY PROMPTS STARTING IN CHAPTER 3
+                      <ExternalLink className="ml-2" size={16} />
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
