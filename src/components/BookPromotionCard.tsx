@@ -84,10 +84,10 @@ const BookPromotionCard = () => {
                     <Button
                       onClick={handleDownloadBook}
                       size="lg"
-                      className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
+                      className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-6 py-4 rounded-xl text-base shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
                     >
                       <Download className="mr-2" size={20} />
-                      DOWNLOAD A FREE COPY OF The GOSPEL OF DEPLOYABLE BOTS - COPY AND PASTE READY PROMPTS STARTING IN CHAPTER 3
+                      📥 Download Free Copy (DOCX)
                       <ExternalLink className="ml-2" size={16} />
                     </Button>
                   </div>
