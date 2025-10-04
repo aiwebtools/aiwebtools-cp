@@ -228,5 +228,17 @@ export const healthAndWellnessGPTs: Tool[] = [
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 1875
+  },
+  {
+    icon: Sparkles,
+    title: "Branford River Spa GPT",
+    description: "A prototype design for local spa in Branford Connecticut made for spa employees and customers of the spa. This AI assistant provides comprehensive spa services information, appointment guidance, treatment recommendations, and operational support for both staff and clients. Perfect for spa professionals managing daily operations and customers seeking personalized wellness experiences.",
+    emoji: "🧖",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-3WgfLujuW-branford-river-resort-and-spa-gpt/?via=aiwebtools",
+    tags: ["spa", "wellness", "local business", "spa services", "branford", "connecticut", "spa management", "customer service", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.5,
+    totalVotes: 1234
   }
 ];
