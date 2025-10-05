@@ -433,5 +433,17 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 1500
+  },
+  {
+    icon: Video,
+    title: "Hailuo AI Video Agent",
+    description: "Advanced AI video agent platform for autonomous video creation, editing, and production workflows. Features intelligent video generation, automated editing, and seamless video production capabilities with cutting-edge AI technology.",
+    emoji: "🎥",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://hailuoai.video/agent/?via=aiwebtools",
+    tags: ["AI video agent", "video creation", "video editing", "autonomous production", "video automation", "AI production", "video workflows", "hailuo", "agent"],
+    category: "AI Agents",
+    rating: 4.7,
+    totalVotes: 2100
   }
 ];
