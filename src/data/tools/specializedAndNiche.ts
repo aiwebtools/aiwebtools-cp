@@ -155,7 +155,7 @@ export const specializedAndNiche: Tool[] = [
     emoji: "👁️",
     color: "from-purple-500 to-green-600",
     directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/k1aYXaaAkho?si=Mnn48SWC8f0vtAOD",
+    videoUrl: "https://youtu.be/faBkRli0puc?si=Sao0KIfV2iGWLGB-",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298677785428110/phenomon.webp?ex=683874d9&is=68372359&hm=8e55c5c272fab29c3619293bc4785a0efd8b9ce111802a50f51779c0b82c426a&",
     tags: ["paranormal research", "UFO investigation", "ghost hunting", "cryptid research", "unexplained phenomena"],
     category: "Specialized & Niche",

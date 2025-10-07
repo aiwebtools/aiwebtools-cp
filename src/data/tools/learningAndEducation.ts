@@ -197,6 +197,7 @@ export const learningAndEducation: Tool[] = [
     emoji: "⚙️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/kDyI8A2xBe8?si=17__oTLSE7HbbApB",
     imageUrl: "/lovable-uploads/d96aa982-9238-415c-b8ae-c2f4b91d5392.png",
     tags: ["engineering", "AI tools", "design", "calculations", "optimization", "technical analysis", "education", "aiwebtools"],
     category: "Learning & Education",

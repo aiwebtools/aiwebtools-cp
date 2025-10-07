@@ -131,6 +131,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "⚙️",
     color: "from-blue-500 to-green-600",
     directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/kDyI8A2xBe8?si=17__oTLSE7HbbApB",
     imageUrl: "/lovable-uploads/d96aa982-9238-415c-b8ae-c2f4b91d5392.png",
     tags: ["engineering", "calculations", "design", "optimization", "safety protocols", "technical support"],
     category: "DEVELOPMENT & CODING",

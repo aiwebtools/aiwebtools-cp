@@ -62,7 +62,7 @@ export const advancedAITools: Tool[] = [
     emoji: "🛸",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/k1aYXaaAkho?si=Mnn48SWC8f0vtAOD",
+    videoUrl: "https://youtu.be/faBkRli0puc?si=Sao0KIfV2iGWLGB-",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-ufo-hovering-in-the-sky-wit_w8l4l.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     tags: ["mysterious phenomena", "unexplained events", "scientific anomalies", "research analysis", "investigation"],
     category: "Advanced AI Tools",

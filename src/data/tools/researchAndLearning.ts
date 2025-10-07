@@ -35,6 +35,7 @@ export const researchAndLearning: Tool[] = [
     emoji: "⚙️",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/kDyI8A2xBe8?si=17__oTLSE7HbbApB",
     imageUrl: "/lovable-uploads/d96aa982-9238-415c-b8ae-c2f4b91d5392.png",
     tags: ["engineering", "technical analysis", "problem solving", "mechanical engineering", "electrical engineering"],
     category: "Research & Learning",
