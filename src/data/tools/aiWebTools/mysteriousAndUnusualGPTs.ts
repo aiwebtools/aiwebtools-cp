@@ -182,5 +182,17 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     category: "Mysterious & Unusual",
     rating: 4.9,
     totalVotes: 2156
+  },
+  {
+    icon: "🔢" as any,
+    title: "Ancient Gematria Scan GPT",
+    description: "Ancient Gematria Scan GPT is a specialized AI tool that decodes the hidden numerical meanings within words, names, and phrases using ancient gematria systems. By analyzing Hebrew, Greek, and other sacred number systems, it reveals the mystical connections and deeper significance encoded in language. Perfect for spiritual seekers, researchers, and anyone exploring the sacred geometry of words and their cosmic patterns.",
+    emoji: "🔢",
+    color: "from-amber-500 to-yellow-600",
+    directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-ancient-gematria-scan-gpt",
+    tags: ["gematria", "numerology", "sacred geometry", "ancient wisdom", "mystical", "number analysis", "spiritual", "hebrew", "greek"],
+    category: "Mysterious & Unusual",
+    rating: 4.7,
+    totalVotes: 1178
   }
 ];
