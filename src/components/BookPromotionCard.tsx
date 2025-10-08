@@ -1,5 +1,6 @@
-import { BookOpen, ExternalLink, Download } from "lucide-react";
+import { BookOpen, ExternalLink, Download, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const BookPromotionCard = () => {
@@ -70,26 +71,53 @@ const BookPromotionCard = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button
-                      onClick={handleBuyBook}
-                      size="lg"
-                      className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105"
-                    >
-                      <BookOpen className="mr-2" size={20} />
-                      📖 Buy on Amazon
-                      <ExternalLink className="ml-2" size={16} />
-                    </Button>
+                  <div className="flex flex-col gap-4">
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Button
+                        onClick={handleBuyBook}
+                        size="lg"
+                        className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg hover:shadow-orange-500/25 transition-all duration-300 transform hover:scale-105"
+                      >
+                        <BookOpen className="mr-2" size={20} />
+                        📖 Buy on Amazon
+                        <ExternalLink className="ml-2" size={16} />
+                      </Button>
 
-                    <Button
-                      onClick={handleDownloadBook}
-                      size="lg"
-                      className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-6 py-4 rounded-xl text-base shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
-                    >
-                      <Download className="mr-2" size={20} />
-                      📥 Download Free Copy (DOCX)
-                      <ExternalLink className="ml-2" size={16} />
-                    </Button>
+                      <Button
+                        onClick={handleDownloadBook}
+                        size="lg"
+                        className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-6 py-4 rounded-xl text-base shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
+                      >
+                        <Download className="mr-2" size={20} />
+                        📥 Download Free Copy (DOCX)
+                        <ExternalLink className="ml-2" size={16} />
+                      </Button>
+                    </div>
+
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button
+                          size="lg"
+                          className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
+                        >
+                          <Eye className="mr-2" size={20} />
+                          👁️ View Preview
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl h-[80vh]">
+                        <DialogHeader>
+                          <DialogTitle>Gospel of Deployable Robots - Preview</DialogTitle>
+                        </DialogHeader>
+                        <div className="w-full h-full flex items-center justify-center">
+                          <iframe 
+                            src="https://drive.google.com/file/d/18LHLsPXIjjtZgIAaXry5IktOGm9lacTq/preview" 
+                            className="w-full h-full rounded-lg"
+                            allow="autoplay"
+                            title="Gospel of Deployable Robots Preview"
+                          />
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   </div>
                 </div>
               </div>
