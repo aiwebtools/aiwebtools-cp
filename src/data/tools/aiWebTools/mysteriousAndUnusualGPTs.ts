@@ -190,6 +190,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🔢",
     color: "from-amber-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-ancient-gematria-scan-gpt",
+    videoUrl: "https://youtu.be/xuFdqKW34Ww?si=DkxcP9BTjHupDI4x",
     tags: ["gematria", "numerology", "sacred geometry", "ancient wisdom", "mystical", "number analysis", "spiritual", "hebrew", "greek"],
     category: "Mysterious & Unusual",
     rating: 4.7,
