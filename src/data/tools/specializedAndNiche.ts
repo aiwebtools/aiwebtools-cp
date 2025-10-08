@@ -1,7 +1,7 @@
 import { Tool } from "@/types/tools";
 import { 
   Car, Leaf, Fish, Shield, Home, Wrench, Dog, Star, 
-  Mountain, Compass, FlaskConical, Atom, TreePine, Eye
+  Mountain, Compass, FlaskConical, Atom, TreePine, Eye, Droplets
 } from "lucide-react";
 
 export const specializedAndNiche: Tool[] = [
@@ -161,5 +161,17 @@ export const specializedAndNiche: Tool[] = [
     category: "Specialized & Niche",
     rating: 4.3,
     totalVotes: 2156
+  },
+  {
+    icon: Droplets,
+    title: "Desalinization Sentinel GPT",
+    description: "Desalinization Sentinel GPT is an advanced AI tool designed to help communities and organizations plan and implement water desalinization projects for sustainable water security. It provides expert guidance on desalination technologies, environmental impact assessments, cost-benefit analysis, and strategic planning for water decentralization initiatives. Perfect for environmental planners, water resource managers, and sustainability advocates working to ensure clean water access for future generations.",
+    emoji: "💧",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://chatgpt.com/g/g-68e5c8e372c4819190c7d247847c908b-desalinization-sentinel-gpt",
+    tags: ["desalination", "water sustainability", "water security", "environmental planning", "water management", "sustainability", "clean water", "water technology"],
+    category: "Specialized & Niche",
+    rating: 4.5,
+    totalVotes: 1543
   }
 ];
