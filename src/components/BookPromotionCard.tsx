@@ -1,6 +1,6 @@
-import { BookOpen, ExternalLink, Download, Eye } from "lucide-react";
+import { BookOpen, ExternalLink, Download, Eye, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const BookPromotionCard = () => {
@@ -108,13 +108,23 @@ const BookPromotionCard = () => {
                         <DialogHeader>
                           <DialogTitle>Gospel of Deployable Robots - Preview</DialogTitle>
                         </DialogHeader>
-                        <div className="w-full h-full flex items-center justify-center">
+                        <div className="w-full h-full flex flex-col items-center justify-center gap-4">
                           <iframe 
                             src="https://drive.google.com/file/d/18LHLsPXIjjtZgIAaXry5IktOGm9lacTq/preview" 
-                            className="w-full h-full rounded-lg"
+                            className="w-full flex-1 rounded-lg"
                             allow="autoplay"
                             title="Gospel of Deployable Robots Preview"
                           />
+                          <DialogClose asChild>
+                            <Button
+                              variant="outline"
+                              size="lg"
+                              className="bg-red-500/10 hover:bg-red-500/20 border-red-500 text-red-500 hover:text-red-600"
+                            >
+                              <X className="mr-2" size={20} />
+                              Close Preview
+                            </Button>
+                          </DialogClose>
                         </div>
                       </DialogContent>
                     </Dialog>
