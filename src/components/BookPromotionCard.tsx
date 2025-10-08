@@ -111,9 +111,10 @@ const BookPromotionCard = () => {
                         <div className="w-full h-full flex flex-col items-center justify-center gap-4">
                           <iframe 
                             src="https://drive.google.com/file/d/18LHLsPXIjjtZgIAaXry5IktOGm9lacTq/preview" 
-                            className="w-full flex-1 rounded-lg"
+                            className="w-full flex-1 rounded-lg pointer-events-auto select-text"
                             allow="autoplay"
                             title="Gospel of Deployable Robots Preview"
+                            style={{ userSelect: 'text' }}
                           />
                           <DialogClose asChild>
                             <Button
