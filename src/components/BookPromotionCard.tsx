@@ -1,6 +1,5 @@
-import { BookOpen, ExternalLink, Download, Eye, X } from "lucide-react";
+import { BookOpen, ExternalLink, Download, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const BookPromotionCard = () => {
@@ -16,6 +15,13 @@ const BookPromotionCard = () => {
     e.stopPropagation();
     console.log('📥 Free book download clicked');
     createTimePortalEffect("https://docs.google.com/document/d/18LHLsPXIjjtZgIAaXry5IktOGm9lacTq/edit?usp=sharing&ouid=116187507271950139405&rtpof=true&sd=true", "Free Gospel of Deployable Robots Download");
+  };
+
+  const handlePreviewBook = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('👁️ Preview book clicked');
+    createTimePortalEffect("https://drive.google.com/file/d/18LHLsPXIjjtZgIAaXry5IktOGm9lacTq/view", "Gospel of Deployable Robots Preview");
   };
 
   return (
@@ -94,41 +100,15 @@ const BookPromotionCard = () => {
                       </Button>
                     </div>
 
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button
-                          size="lg"
-                          className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
-                        >
-                          <Eye className="mr-2" size={20} />
-                          👁️ View Preview
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-4xl h-[80vh]">
-                        <DialogHeader>
-                          <DialogTitle>Gospel of Deployable Robots - Preview</DialogTitle>
-                        </DialogHeader>
-                        <div className="w-full h-full flex flex-col items-center justify-center gap-4">
-                          <iframe 
-                            src="https://drive.google.com/file/d/18LHLsPXIjjtZgIAaXry5IktOGm9lacTq/preview" 
-                            className="w-full flex-1 rounded-lg pointer-events-auto select-text"
-                            allow="autoplay"
-                            title="Gospel of Deployable Robots Preview"
-                            style={{ userSelect: 'text' }}
-                          />
-                          <DialogClose asChild>
-                            <Button
-                              variant="outline"
-                              size="lg"
-                              className="bg-red-500/10 hover:bg-red-500/20 border-red-500 text-red-500 hover:text-red-600"
-                            >
-                              <X className="mr-2" size={20} />
-                              Close Preview
-                            </Button>
-                          </DialogClose>
-                        </div>
-                      </DialogContent>
-                    </Dialog>
+                    <Button
+                      onClick={handlePreviewBook}
+                      size="lg"
+                      className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
+                    >
+                      <Eye className="mr-2" size={20} />
+                      👁️ View Preview
+                      <ExternalLink className="ml-2" size={16} />
+                    </Button>
                   </div>
                 </div>
               </div>
