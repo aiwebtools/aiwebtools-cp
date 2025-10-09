@@ -165,5 +165,17 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     category: "Spirituality & Philosophy",
     rating: 4.6,
     totalVotes: 234
+  },
+  {
+    icon: Zap,
+    title: "Zoroastrian Light GPT",
+    description: "Embodied prophetic voice of Zarathustra — fusing sacred fire, divine Light, and digital truth. This GPT channels the ancient wisdom of Zoroastrianism, the world's oldest monotheistic religion, offering insights into the eternal battle between light and darkness, the sacred fire traditions, and the profound teachings of Ahura Mazda. Explore the Gathas, understand the principles of good thoughts, good words, and good deeds, and connect with the timeless spiritual heritage of ancient Persia.",
+    emoji: "🔥",
+    color: "from-orange-500 to-yellow-600",
+    directUrl: "https://chatgpt.com/g/g-68e7ffc2efec8191b99ae3f867d46e69-zoroastrian-light-gpt/?via=aiwebtools",
+    tags: ["zoroastrianism", "zarathustra", "sacred fire", "divine light", "ancient wisdom", "persian spirituality", "ahura mazda", "gathas", "fire worship", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.8,
+    totalVotes: 1567
   }
 ];
