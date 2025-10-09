@@ -114,7 +114,7 @@ export const researchAndLearning: Tool[] = [
     emoji: "⚗️",
     color: "from-green-500 to-yellow-600",
     directUrl: "https://alchemicalscientistgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-the-ai-tool-_C4irn.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    videoUrl: "https://youtu.be/3JbmudJu9LM?si=lKMxbzq0a5XgKLAW",
     tags: ["alchemy", "chemistry", "historical science", "experimental techniques", "scientific discovery"],
     category: "Research & Learning",
     rating: 4.2,
