@@ -607,6 +607,16 @@ const featuredGPTs = [
     emoji: "🔮"
   },
   {
+    title: "Ancient Gematria Scan GPT",
+    description: "Ancient Gematria Scan GPT is a specialized AI tool that decodes the hidden numerical meanings within words, names, and phrases using ancient gematria systems. By analyzing Hebrew, Greek, and other sacred number systems, it reveals the mystical connections and deeper significance encoded in language.",
+    badge: "SACRED NUMEROLOGY",
+    color: "from-amber-500 to-yellow-600",
+    features: ["Gematria Decoding", "Sacred Geometry", "Number Analysis", "Ancient Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-ancient-gematria-scan-gpt",
+    videoUrl: "https://youtu.be/xuFdqKW34Ww?si=NsaJmfokvckWhTCv",
+    emoji: "🔢"
+  },
+  {
     title: ".WorldTrade Web3 Registration",
     description: "Buy and own your .worldtrade domain as a tradable NFT minted to your wallet of choice. Resell it, link it to your website, and send/receive crypto with a human-readable address. Compatible with Phantom, Coinbase Wallet, MetaMask, and more.",
     badge: "WEB3 DOMAIN",
