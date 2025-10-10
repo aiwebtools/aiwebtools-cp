@@ -397,6 +397,15 @@ const featuredGPTs = [
     emoji: "🔍"
   },
   {
+    title: "JARVIS – The Steward of Humanity GPT",
+    description: "A post-collapse steward AI guiding humanity's rebirth through wisdom, ethics, and design. JARVIS helps rebuild civilization by providing strategic guidance, ethical frameworks, and practical solutions for communities navigating societal reconstruction.",
+    badge: "HUMANITY STEWARD",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Civilization Rebuilding", "Ethical Guidance", "Strategic Planning", "Community Support"],
+    directUrl: "https://chatgpt.com/g/g-68e939ff278881919b292a679faaac43-jarvis-the-steward-of-humanity-gpt",
+    emoji: "🛡️"
+  },
+  {
     title: "Insurance Claims GPT",
     description: "Expert guidance for insurance claims processing, policy understanding, claim documentation, and insurance dispute resolution for various insurance types.",
     badge: "INSURANCE",
