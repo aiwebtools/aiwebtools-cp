@@ -202,6 +202,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     description: "A post-collapse steward AI guiding humanity's rebirth through wisdom, ethics, and design. JARVIS helps rebuild civilization by providing strategic guidance, ethical frameworks, and practical solutions for communities navigating societal reconstruction. This AI assistant combines philosophical wisdom with actionable strategies to help humanity rise from the ashes and create a better future.",
     emoji: "🛡️",
     color: "from-blue-500 to-cyan-600",
+    videoUrl: "https://youtu.be/6jFoFR9Hags",
     directUrl: "https://chatgpt.com/g/g-68e939ff278881919b292a679faaac43-jarvis-the-steward-of-humanity-gpt",
     tags: ["post-collapse", "humanity", "rebuilding", "ethics", "wisdom", "stewardship", "civilization", "guidance", "chat assistant", "ai assistant"],
     category: "Mysterious & Unusual",

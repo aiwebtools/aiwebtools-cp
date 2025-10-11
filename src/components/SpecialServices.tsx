@@ -403,6 +403,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-cyan-600",
     features: ["Civilization Rebuilding", "Ethical Guidance", "Strategic Planning", "Community Support"],
     directUrl: "https://chatgpt.com/g/g-68e939ff278881919b292a679faaac43-jarvis-the-steward-of-humanity-gpt",
+    videoUrl: "https://youtu.be/6jFoFR9Hags",
     emoji: "🛡️"
   },
   {
