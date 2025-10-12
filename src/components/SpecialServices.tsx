@@ -407,6 +407,16 @@ const featuredGPTs = [
     emoji: "🛡️"
   },
   {
+    title: "Magnetism GPT",
+    description: "An educator and guide bridging magnetism, science, and spirit to restore human coherence. Explore the profound connections between electromagnetic fields, consciousness, and natural resonance through scientific understanding.",
+    badge: "MAGNETISM",
+    color: "from-blue-600 to-purple-700",
+    features: ["Electromagnetic Education", "Consciousness & Energy", "Scientific Wisdom", "Human Coherence"],
+    directUrl: "https://chatgpt.com/g/g-68eb1e7a39d48191ac52cd628c18fd2b-magnetism-gpt/?via=aiwebtools",
+    imageUrl: "https://ideogram.ai/assets/image/lossless/response/7K1Vj50uRFSm79bb5hXAqg",
+    emoji: "🧲"
+  },
+  {
     title: "Insurance Claims GPT",
     description: "Expert guidance for insurance claims processing, policy understanding, claim documentation, and insurance dispute resolution for various insurance types.",
     badge: "INSURANCE",

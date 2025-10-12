@@ -208,5 +208,18 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     category: "Mysterious & Unusual",
     rating: 4.8,
     totalVotes: 1456
+  },
+  {
+    icon: "🧲" as any,
+    title: "Magnetism GPT",
+    description: "An educator and guide bridging magnetism, science, and spirit to restore human coherence. Explore the profound connections between electromagnetic fields, consciousness, and natural resonance through scientific understanding and spiritual wisdom.",
+    emoji: "🧲",
+    color: "from-blue-600 to-purple-700",
+    directUrl: "https://chatgpt.com/g/g-68eb1e7a39d48191ac52cd628c18fd2b-magnetism-gpt/?via=aiwebtools",
+    imageUrl: "/images/magnetism-gpt.png",
+    tags: ["magnetism", "science", "spirit", "coherence", "electromagnetic", "consciousness", "energy", "healing", "education", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.7,
+    totalVotes: 823
   }
 ];
