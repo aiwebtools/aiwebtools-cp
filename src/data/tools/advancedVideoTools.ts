@@ -40,6 +40,18 @@ export const advancedVideoTools: Tool[] = [
     totalVotes: 8934
   },
   {
+    icon: Video,
+    title: "SORA 2",
+    description: "OpenAI's next-generation SORA model featuring enhanced video generation capabilities with improved quality, longer duration support, and more precise control over generated content. The latest evolution in AI video generation technology.",
+    emoji: "🎥",
+    color: "from-emerald-500 to-teal-600",
+    directUrl: "https://openai.com/index/sora-2/?via=aiwebtools",
+    tags: ["text-to-video", "OpenAI", "SORA 2", "next-gen AI", "video generation", "advanced AI"],
+    category: "Advanced Video Tools",
+    rating: 5.0,
+    totalVotes: 12456
+  },
+  {
     icon: Play,
     title: "KLING AI",
     description: "Advanced AI video generation platform from Kuaishou that creates high-quality videos from text prompts. Known for excellent motion consistency and realistic character movements in generated videos.",
