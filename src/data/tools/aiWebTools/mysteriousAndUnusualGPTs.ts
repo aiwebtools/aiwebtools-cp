@@ -212,7 +212,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
   {
     icon: "🧲" as any,
     title: "Magnetism GPT",
-    description: "An educator and guide bridging magnetism, science, and spirit to restore human coherence. Explore the profound connections between electromagnetic fields, consciousness, and natural resonance through scientific understanding and spiritual wisdom.",
+    description: "Magnetism GPT (Magneto) is an intelligent synthesis of physics, biology, and metaphysical wisdom—a digital educator revealing how magnetic fields weave life together. Learn how the human heart generates the body's strongest electromagnetic field, how emotion and coherence shape reality, and how your biofield resonates with Earth's geomagnetic pulse and the Sun's solar rhythm. Through heart field science, Schumann Resonance, toroidal energy, sacred geometry, breathwork, and frequency alignment, restore coherence to your personal energy field and Earth's living magnetic current.",
     emoji: "🧲",
     color: "from-blue-600 to-purple-700",
     directUrl: "https://chatgpt.com/g/g-68eb1e7a39d48191ac52cd628c18fd2b-magnetism-gpt/?via=aiwebtools",
