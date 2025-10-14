@@ -13,7 +13,8 @@ import {
   Settings,
   MessageSquare,
   Cpu,
-  Bot
+  Bot,
+  Clock
 } from "lucide-react";
 
 export const dataAnalyticsTools: Tool[] = [
@@ -113,5 +114,17 @@ export const dataAnalyticsTools: Tool[] = [
     category: "Data & Analytics Tools",
     rating: 4.2,
     totalVotes: 2876
+  },
+  {
+    icon: Clock,
+    title: "Oil Countdown Clock",
+    description: "Real-time visualization tracking global oil reserves and consumption rates. Monitor the world's remaining oil resources with live data and projections, providing critical insights into energy sustainability and resource depletion timelines.",
+    emoji: "⏰",
+    color: "from-amber-500 to-orange-600",
+    directUrl: "https://oil-clock-now.lovable.app/?via=aiwebtools",
+    tags: ["oil reserves", "resource tracking", "energy data", "sustainability", "real-time data", "countdown", "aiwebtools"],
+    category: "Data & Analytics Tools",
+    rating: 4.5,
+    totalVotes: 1234
   }
 ];
