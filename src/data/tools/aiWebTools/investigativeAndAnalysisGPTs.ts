@@ -87,7 +87,7 @@ export const investigativeAndAnalysisGPTs: Tool[] = [
     emoji: "📂",
     color: "from-slate-500 to-gray-700",
     directUrl: "https://chatgpt.com/g/g-68eeaf21bd1481919a34936a27d917a3-declassified-files-explorer-gpt?via=aiwebtools",
-    videoUrl: "https://youtu.be/JsG5srKx-gc",
+    videoUrl: "https://youtu.be/hu7O-fR337I?si=JzXkzxna2tfB0tTE",
     tags: ["declassified files", "government documents", "research", "historical records", "transparency", "intelligence reports", "document analysis", "aiwebtools"],
     category: "Investigative & Analysis",
     rating: 4.6,
