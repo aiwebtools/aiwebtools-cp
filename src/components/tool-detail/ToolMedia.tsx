@@ -23,21 +23,24 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
     // Handle youtu.be short URLs
     if (url.includes('youtu.be/')) {
       const videoId = url.split('youtu.be/')[1].split('?')[0];
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&loop=1&playlist=${videoId}&hd=1&vq=hd1080&quality=hd1080&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&autohide=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
+      // Optimized for smooth HD playback with better buffering
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&loop=1&playlist=${videoId}&vq=hd720&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3`;
       console.log('YouTube short embed URL:', embedUrl);
       return embedUrl;
     }
     
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1].split('&')[0];
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&loop=1&playlist=${videoId}&hd=1&vq=hd1080&quality=hd1080&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&autohide=1&showinfo=0&fs=1&iv_load_policy=3&cc_load_policy=0&hl=en&color=red&theme=dark`;
+      // Optimized for smooth HD playback with better buffering
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&loop=1&playlist=${videoId}&vq=hd720&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3`;
       console.log('YouTube embed URL:', embedUrl);
       return embedUrl;
     }
     
     if (url.includes('vimeo.com/')) {
       const videoId = url.split('vimeo.com/')[1].split('?')[0];
-      const embedUrl = `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=1&quality=1080p&volume=1&muted=0`;
+      // Optimized for smooth playback
+      const embedUrl = `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=1&quality=720p&volume=1&muted=0`;
       console.log('Vimeo embed URL:', embedUrl);
       return embedUrl;
     }

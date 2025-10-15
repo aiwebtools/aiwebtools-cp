@@ -88,8 +88,8 @@ class VideoManager {
         });
       },
       {
-        threshold: isMobile ? 0.3 : 0.5, // Lower threshold for mobile
-        rootMargin: isMobile ? '-5px' : '-10px' // Smaller margin for mobile
+        threshold: isMobile ? 0.5 : 0.6, // Higher threshold for smoother transitions
+        rootMargin: '0px' // No margin to avoid edge cases
       }
     );
 
@@ -112,7 +112,6 @@ class VideoManager {
   private playVideo(iframe: HTMLIFrameElement, forceUnmute: boolean = false) {
     try {
       const userAgent = navigator.userAgent.toLowerCase();
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       const isRestrictiveBrowser = (
         userAgent.includes('facebook') ||
         userAgent.includes('instagram') ||
@@ -120,44 +119,20 @@ class VideoManager {
         !navigator.cookieEnabled
       );
       
-      console.log(`🎥 Playing video - Mobile: ${isMobile}, Restrictive: ${isRestrictiveBrowser}, ForceUnmute: ${forceUnmute}`);
-      
-      // Enhanced video commands with cookie independence
-      const commands = [
+      // Single, clean play command to avoid stuttering
+      iframe.contentWindow?.postMessage(
         '{"event":"command","func":"playVideo","args":""}',
-      ];
+        '*'
+      );
       
+      // Only unmute if specifically needed
       if (forceUnmute || isRestrictiveBrowser) {
-        // For restrictive browsers or when explicitly requested
-        commands.push(
-          '{"event":"command","func":"unMute","args":""}',
-          '{"event":"command","func":"setVolume","args":"100"}'
-        );
-      }
-      
-      // Send commands with staggered timing for better compatibility
-      commands.forEach((command, index) => {
         setTimeout(() => {
-          try {
-            iframe.contentWindow?.postMessage(command, '*');
-          } catch (cmdError) {
-            console.warn(`Video command ${index} failed:`, cmdError);
-          }
-        }, index * 200);
-      });
-      
-      // Additional retry for restrictive browsers
-      if (isRestrictiveBrowser) {
-        setTimeout(() => {
-          try {
-            iframe.contentWindow?.postMessage(
-              '{"event":"command","func":"playVideo","args":""}',
-              '*'
-            );
-          } catch (retryError) {
-            console.warn('Video retry failed:', retryError);
-          }
-        }, 1000);
+          iframe.contentWindow?.postMessage(
+            '{"event":"command","func":"unMute","args":""}',
+            '*'
+          );
+        }, 100);
       }
       
     } catch (error) {
