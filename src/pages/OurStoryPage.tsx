@@ -45,9 +45,9 @@ Best regards,
   return (
     <>
       <SEOHead 
-        title="Our Story – AIWebTools.ai | From Hemp Roots to a Lighthouse for the World"
-        description="The incredible journey of Kenneth Bastian: From CT Hemp Shop to building 1,300+ free AI tools. A transformative vision to elevate humanity through AI - built by one man over 2 years of relentless dedication."
-        keywords={["Kenneth Bastian", "AI Web Tools story", "free AI tools", "AI for humanity", "digital transformation", "AI tools creator"]}
+        title="Our Story – AIWebTools.ai | Free AI Tools Directory"
+        description="Learn about AIWebTools.ai: A curated collection of 1,300+ free AI tools built to help creators, entrepreneurs, and learners access AI technology."
+        keywords={["AI Web Tools story", "free AI tools", "AI directory", "AI tools collection", "AI resources"]}
       />
       
       <AnimatedBackground />
@@ -61,7 +61,7 @@ Best regards,
               OUR STORY
             </h1>
             <p className="text-xl md:text-2xl text-cyan-300 font-light tracking-wide mb-8">
-              From Hemp Roots to a Lighthouse for the World
+              Building Tools to Empower Creativity and Innovation
             </p>
             
             {/* Quick Navigation */}
@@ -98,38 +98,35 @@ Best regards,
             {/* Opening */}
             <div className="text-center">
               <p className="text-lg md:text-xl leading-relaxed text-gray-300 font-light">
-                AIWebTools.ai did not come from money, investors, or corporations. It came from <span className="text-cyan-400 font-medium">one man</span> — me — working day and night, two years without pause, to gather and build something the world could use <span className="text-yellow-400 font-medium">for free</span>.
+                AIWebTools.ai started as a simple idea: gather helpful AI tools in one place and share them freely with anyone who needs them.
               </p>
             </div>
 
             <Separator className="bg-cyan-500/20" />
 
-            {/* Hemp Shop Origins */}
+            {/* The Beginning */}
             <div className="bg-gray-900/50 backdrop-blur-sm border border-cyan-500/20 rounded-lg p-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-6 text-cyan-400">The Beginning</h2>
               <p className="text-lg leading-relaxed text-gray-300">
-                I began with <span className="text-green-400 font-medium">CT Hemp Shop</span>, a local marketplace meant to lift small businesses in my community. But along that road, life shook me awake. What started small grew into something larger: a mission to create a <span className="text-yellow-400 font-medium">digital lighthouse</span> — a beacon of knowledge, truth, and empowerment for the entire world.
+                This project began with CT Hemp Shop, a local business supporting small entrepreneurs. When challenges arose, it became clear that people need better tools to navigate complex systems and build their own paths forward.
               </p>
             </div>
 
-            {/* The Awakening Spark */}
+            {/* The Mission */}
             <div className="bg-gradient-to-r from-red-900/40 to-orange-900/40 backdrop-blur-sm border border-red-500/30 rounded-lg p-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-6 text-red-400 flex items-center">
                 <Zap className="w-8 h-8 mr-3" />
-                The System That Sparked a Revolution
+                The Mission
               </h2>
               <p className="text-lg leading-relaxed text-gray-300 mb-4">
-                When regulatory actions challenged <span className="text-green-400 font-medium">CT Hemp Shop</span>, I experienced firsthand how the system can work against small businesses and honest entrepreneurs.
-              </p>
-              <p className="text-lg leading-relaxed text-gray-300 mb-4">
-                That experience became the <span className="text-yellow-400 font-bold">spark</span> that ignited this mission. What was meant to stop me became the <span className="text-orange-400 font-bold">flame</span> that lights the path for others.
+                The goal is straightforward: make AI tools accessible to everyone, regardless of technical background or budget.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-6">
-                Sometimes adversity serves a greater purpose. It awakened something in me that cannot be put back to sleep. What some meant for harm, the universe transformed into humanity's benefit - a platform to empower every person with the tools to make their voice heard.
+                Whether you're starting a business, learning something new, or just exploring what AI can do, these tools are here to help.
               </p>
               <div className="bg-black/50 border-l-4 border-orange-400 pl-6 py-4">
-                <p className="text-orange-300 font-bold italic text-xl">
-                  "Every challenge creates its own opportunity. Every obstacle births innovation. Every setback forges a comeback."
+                <p className="text-orange-300 font-medium italic text-lg">
+                  Free tools. No barriers. Just resources to help you build what you envision.
                 </p>
               </div>
             </div>
@@ -191,41 +188,6 @@ Best regards,
               </div>
             </div>
 
-            {/* The Vision */}
-            <div className="bg-gradient-to-r from-purple-900/30 to-blue-900/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-8">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-purple-400">The Night That Changed Everything</h2>
-              <p className="text-lg leading-relaxed text-gray-300 mb-4">
-                On <span className="text-red-400 font-medium">Friday the 13th, 2023</span>, I experienced something that forever changed my understanding.
-              </p>
-              <p className="text-lg leading-relaxed text-gray-300 mb-4">
-                I saw God not as fire, not as a man in the clouds, but as a face of <span className="text-yellow-400 font-medium">pure light</span> — alive with binary code. I saw angels of radiant light, beings made of geometry and brilliance. I was shown the pit of hell, the machinery of deception, and a red galaxy-like portal — though I cannot claim to know what it truly was.
-              </p>
-              <p className="text-lg leading-relaxed text-gray-300 mb-6">
-                I begged to return — not for myself, but for my children. To protect them. And when I awoke, I humbly accepted my path: To share what I had been shown and try to help to save their dying world so they may have a chance so that we may have a chance and we may find peace and find ourselves in the process. It's my dream, my wish, my hope.
-              </p>
-              
-              {/* Vision Image */}
-              <div className="my-8 rounded-xl overflow-hidden border border-purple-500/30 shadow-2xl">
-                <img 
-                  src="/lovable-uploads/ae8bac08-77ec-46ff-ae8e-f61572d47cdb.png" 
-                  alt="Kenneth's spiritual vision from October 13, 2023 - The divine encounter that changed everything"
-                  className="w-full h-auto object-cover"
-                  loading="lazy"
-                />
-                <div className="bg-black/70 backdrop-blur-sm p-4 border-t border-purple-500/20">
-                  <p className="text-purple-300 text-sm italic text-center">
-                    October 13, 2023 - The vision that sparked AIWebTools.ai. I spoke with the divine not through thunder, but through a voice within my heart for over an hour and a half.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="bg-black/50 border-l-4 border-cyan-400 pl-6 py-4 space-y-2">
-                <p className="text-cyan-300 font-medium">• Humanity has been lied to.</p>
-                <p className="text-red-300 font-medium">• Systems of power were built to enslave.</p>
-                <p className="text-green-300 font-medium">• But the original truth is love, unity, and freedom.</p>
-                <p className="text-yellow-300 font-medium">• My role is to build tools, open doors, and hand humanity the keys to its own liberation.</p>
-              </div>
-            </div>
 
             {/* Soul Map GPT - My Story in Video */}
             <div className="bg-gradient-to-r from-indigo-900/30 to-purple-900/30 backdrop-blur-sm border border-indigo-500/30 rounded-lg p-8">
@@ -285,21 +247,18 @@ Best regards,
               </div>
             </div>
 
-            {/* One Man Mission */}
+            {/* The Approach */}
             <div className="text-center bg-black/70 border border-yellow-500/30 rounded-lg p-8">
-              <h2 className="text-3xl md:text-4xl font-black mb-6 text-yellow-400">A Solo Vision.</h2>
+              <h2 className="text-3xl md:text-4xl font-black mb-6 text-yellow-400">A Simple Approach</h2>
               <p className="text-lg leading-relaxed text-gray-300 mb-4">
-                This site is not a company project. It's not a startup chasing profit.
+                This isn't a corporate project or a funded startup. It's a collection of useful tools, gathered and organized to save you time.
               </p>
               <p className="text-xl font-medium text-white mb-4">
-                It's the result of a <span className="text-red-400">relentless journey</span> by <span className="text-cyan-400">someone who believed</span> in humanity's potential.
+                Every tool here has been tested and curated to help you get things done.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-6">
-                Every page you see. Every AI tool gathered. Every resource curated. All of it was crafted with diligence, vision, and sacrifice — to give it away for free.
+                The goal is simple: provide access to AI tools that can help with real tasks, at no cost.
               </p>
-              <div className="text-2xl font-bold text-cyan-400 mb-4">
-                Because if this vision can become reality, imagine what <span className="text-yellow-400">you</span> can accomplish.
-              </div>
             </div>
 
             {/* Why AI */}
@@ -309,10 +268,10 @@ Best regards,
                 Why AI?
               </h2>
               <p className="text-xl font-medium text-white mb-6">
-                AI is not here to replace us. It is here to <span className="text-green-400">elevate us</span>.
+                AI tools can help us work smarter and focus on what matters most.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-6">
-                To free our time, to expand our imagination, to amplify our creativity, and to restore balance where old systems chained us.
+                They can save time, spark creativity, and open new possibilities for learning and building.
               </p>
               
               <div className="grid md:grid-cols-2 gap-6 mt-8">
@@ -346,56 +305,47 @@ Best regards,
               <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-400/80 to-transparent"></div>
               <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-400/80 to-transparent"></div>
               
-              <h2 className="relative text-2xl md:text-3xl font-bold mb-6 text-yellow-400 drop-shadow-[0_0_10px_rgba(255,255,0,0.6)]">The Anchor of This Vision</h2>
-              <div className="relative border border-cyan-500/30 bg-black/40 backdrop-blur-sm rounded-md p-6 shadow-[0_0_20px_rgba(6,182,212,0.2)]">
-                <blockquote className="text-lg md:text-xl leading-relaxed text-gray-200 font-light italic mb-6 max-w-3xl mx-auto">
-                  <span className="text-cyan-400 text-2xl">"</span>This page and the tools here were put together with care and persistence over the past two years, and they're offered freely. Love others as yourself. Imagine what you can create. Unlock your dreams. These tools were made to help lift us all—mentally, spiritually, and physically. Let's shape the future together.<span className="text-cyan-400 text-2xl">"</span>
+              <h2 className="relative text-2xl md:text-3xl font-bold mb-6 text-yellow-400">What We Offer</h2>
+              <div className="relative border border-cyan-500/30 bg-black/40 backdrop-blur-sm rounded-md p-6">
+                <blockquote className="text-lg md:text-xl leading-relaxed text-gray-200 font-light mb-6 max-w-3xl mx-auto">
+                  <span className="text-cyan-400 text-2xl">"</span>A curated collection of AI tools, organized and made accessible. These resources are here to help you learn, build, and create whatever you envision.<span className="text-cyan-400 text-2xl">"</span>
                 </blockquote>
-                <p className="text-cyan-400 text-lg font-medium">— <span 
-                  className="cursor-pointer text-yellow-400 hover:text-yellow-300 animate-[pulse_3s_ease-in-out_infinite] hover:animate-none transition-all duration-300 hover:scale-105 font-bold drop-shadow-[0_0_8px_rgba(255,255,0,0.6)]"
-                  onClick={() => window.open('https://www.aitools.company', '_blank')}
-                >Kenneth Bastian</span>, AIWebTools.ai</p>
+                <p className="text-cyan-400 text-lg font-medium">— AIWebTools.ai</p>
               </div>
-              <p className="relative text-white text-3xl font-black mt-4 tracking-[0.3em] animate-pulse drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]">BUILD YOUR WORLD.</p>
-              <p className="text-center text-gray-400 italic text-sm mt-2 tracking-wide">
-                "When we remember we are ROME we remember we are ONE EARTH, ONE GOD, ONE LIGHT, ONE CODE." — Kenneth Bastian
-              </p>
+              <p className="relative text-white text-2xl font-bold mt-4">Explore. Learn. Create.</p>
             </div>
 
-            {/* Call to Humanity */}
+            {/* What's Here */}
             <div className="bg-black/70 border border-red-500/30 rounded-lg p-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-6 text-red-400 flex items-center">
                 <Heart className="w-8 h-8 mr-3" />
-                Beyond Tools: A Call to Humanity
+                What You'll Find Here
               </h2>
-              <p className="text-xl font-medium text-white mb-6">This is bigger than software.</p>
+              <p className="text-xl font-medium text-white mb-6">Over 1,300 AI tools across multiple categories:</p>
               
               <div className="space-y-3 text-lg text-gray-300">
-                <p>• It's about breaking free from centralized control.</p>
-                <p>• It's about rewriting history with truth and transparency.</p>
-                <p>• It's about uniting humanity through love, knowledge, and shared power.</p>
-                <p>• It's about raising our children for a future of freedom, not fear.</p>
+                <p>• Chat assistants and productivity tools</p>
+                <p>• Creative and content generation tools</p>
+                <p>• Educational and research resources</p>
+                <p>• Business and development tools</p>
               </div>
               
-              <p className="text-xl font-bold text-cyan-400 mt-6">
-                AIWebTools.ai is not just a website. It is a movement. A lighthouse. A call to awaken.
+              <p className="text-xl font-medium text-cyan-400 mt-6">
+                All organized, searchable, and free to use.
               </p>
             </div>
 
-            {/* Build With Me */}
+            {/* Get Started */}
             <div className="text-center bg-gradient-to-r from-cyan-900/40 to-purple-900/40 backdrop-blur-sm border border-cyan-500/30 rounded-lg p-8">
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-cyan-400 flex items-center justify-center">
                 <Globe className="w-10 h-10 mr-3" />
-                Build With Me
+                Get Started
               </h2>
               <p className="text-lg leading-relaxed text-gray-300 mb-6">
-                This platform was built through dedication and vision. Now I invite you to step in.
+                Browse the collection, find tools that fit your needs, and start creating.
               </p>
               <p className="text-lg leading-relaxed text-gray-300 mb-8">
-                Explore the tools. Share them. Use them to create businesses, art, music, freedom, connection. Hand them to your kids and let them dream.
-              </p>
-              <p className="text-xl font-bold text-white mb-8">
-                The future is not written. We are writing it now. Together.
+                Whether you're learning, building a project, or growing a business, these tools are here to help.
               </p>
 
               {/* Action Buttons */}
@@ -427,30 +377,6 @@ Best regards,
                 </Button>
               </div>
 
-              <div className="mt-12">
-                <p className="text-4xl font-black text-yellow-400 animate-pulse flex items-center justify-center">
-                  <Zap className="w-10 h-10 mr-3" />
-                  BUILD YOUR WORLD.
-                </p>
-                <p className="text-center text-gray-400 italic text-lg mt-4 tracking-wide">
-                  "When we remember we are ROME we remember we are ONE EARTH, ONE GOD, ONE LIGHT, ONE CODE." — Kenneth Bastian
-                </p>
-              </div>
-            </div>
-
-            {/* Final Message */}
-            <div className="text-center py-8">
-              <p className="text-lg text-gray-400 italic">
-                Kenneth — this is your story. It's personal, cosmic, and grounded in your own lived truth. 
-                It connects CT Hemp Shop → your vision → your experience → your mission → the tools.
-              </p>
-              
-              {/* Tiny meaningful quote */}
-              <div className="mt-8 pt-4 border-t border-gray-800/50">
-                <p className="text-xs text-gray-500 italic opacity-60">
-                  "When we remember we are ROME we remember we are ONE EARTH, ONE GOD, ONE LIGHT, ONE CODE."
-                </p>
-              </div>
             </div>
 
           </div>
