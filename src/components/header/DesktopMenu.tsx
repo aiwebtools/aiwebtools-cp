@@ -409,7 +409,7 @@ const DesktopMenu = () => {
                     <DropdownMenuItem 
                       onClick={(e) => { 
                         e.preventDefault();
-                        handleExternalLink("https://lovable.dev/projects/5016fdfe-90ce-405c-b681-f20c90d30ed9?via=aiwebtools", e);
+                        handleExternalLink("https://lovable.dev/projects/f5c061a4-be09-4cd2-9265-8ff4b0a05d3c?via=aiwebtools", e);
                       }}
                       className="text-yellow-100 hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-amber-500/20 rounded flex items-center space-x-2 bg-gradient-to-r from-yellow-600/10 to-amber-600/10 border border-yellow-500/30 px-3 py-2 text-base"
                     >
