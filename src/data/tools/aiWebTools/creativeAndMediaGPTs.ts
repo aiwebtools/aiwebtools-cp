@@ -299,5 +299,17 @@ export const creativeAndMediaGPTs: Tool[] = [
     category: "Creative & Media",
     rating: 4.7,
     totalVotes: 3421
+  },
+  {
+    icon: Shirt,
+    title: "Epic Tee Designer GPT",
+    description: "Epic Tee Designer GPT is your ultimate AI-powered t-shirt and clothing design assistant using advanced GPT image generation technology. Create stunning custom t-shirt designs, apparel graphics, fashion prints, and clothing patterns with intelligent design suggestions and creative variations. This chat-based design assistant helps you conceptualize, refine, and generate professional-quality clothing designs from concept to completion. Perfect for fashion designers, entrepreneurs, print-on-demand businesses, and anyone looking to create unique wearable art.",
+    emoji: "👕",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-68f255a7c1f88191a88b5d91850b3b73-epic-tee-designer-gpt?via=aiwebtools",
+    tags: ["t-shirt design", "clothing design", "fashion design", "apparel graphics", "custom designs", "print on demand", "fashion technology", "design assistant", "wearable art", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.6,
+    totalVotes: 2134
   }
 ];
