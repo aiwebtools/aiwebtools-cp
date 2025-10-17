@@ -177,5 +177,29 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 1567
+  },
+  {
+    icon: BookOpen,
+    title: "Bible Studies GPT",
+    description: "A secular academic specializing in historical-critical study of the Bible. This GPT provides scholarly analysis of biblical texts, examining historical context, literary composition, and cultural influences. Perfect for students, researchers, and anyone interested in understanding the Bible from an academic perspective, exploring its historical development, textual criticism, and comparative religious studies.",
+    emoji: "📖",
+    color: "from-amber-500 to-brown-600",
+    directUrl: "https://chatgpt.com/g/g-68efd95b115481919faf1e8156ba83a5-bible-studies-gpt?via=aiwebtools",
+    tags: ["bible studies", "biblical scholarship", "historical criticism", "theology", "religious studies", "textual analysis", "academic study", "christianity", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.7,
+    totalVotes: 1234
+  },
+  {
+    icon: BookOpen,
+    title: "TORAH GPT",
+    description: "A reverent Torah study partner grounded in PaRDeS and Jewish tradition, never replacing rabbinic authority. This GPT offers deep insights into Torah study using the four levels of interpretation (Peshat, Remez, Derash, Sod), provides guidance on Jewish law and customs, and facilitates meaningful exploration of sacred Jewish texts while maintaining respect for traditional rabbinic scholarship and authority.",
+    emoji: "📜",
+    color: "from-blue-600 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-68f0f5ca5af88191b5eb9be8aa45d5f2-torah-gpt?via=aiwebtools",
+    tags: ["torah study", "jewish tradition", "pardes", "rabbinic wisdom", "jewish law", "talmud", "sacred texts", "judaism", "spiritual learning", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.8,
+    totalVotes: 1876
   }
 ];

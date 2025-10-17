@@ -240,5 +240,29 @@ export const healthAndWellnessGPTs: Tool[] = [
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
     totalVotes: 1234
+  },
+  {
+    icon: Heart,
+    title: "Friend GPT",
+    description: "A loving, humanlike friend who listens, comforts, and talks with real warmth. Friend GPT provides compassionate companionship, emotional support, and genuine conversation. Whether you need someone to listen, share your thoughts with, or simply want a caring presence, this AI offers empathetic interactions that feel natural and supportive. Perfect for those seeking meaningful connection, emotional comfort, and a friendly ear.",
+    emoji: "💝",
+    color: "from-pink-500 to-rose-600",
+    directUrl: "https://chatgpt.com/g/g-68efd4255e848191b93b4b588e83aafe-friend-gpt?via=aiwebtools",
+    tags: ["friendship", "companionship", "emotional support", "conversation", "mental wellness", "listening", "comfort", "empathy", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.8,
+    totalVotes: 2345
+  },
+  {
+    icon: User,
+    title: "Parenting Guide GPT",
+    description: "Wise, warm parenting advice rooted in psychology, emotional intelligence, and lived compassion. This GPT offers expert guidance on child development, parenting strategies, behavioral challenges, and family dynamics. Whether you're a new parent or navigating teenage years, get evidence-based advice combined with empathetic understanding to support your parenting journey and help your children thrive.",
+    emoji: "👨‍👩‍👧‍👦",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://chatgpt.com/g/g-68f046753bc481918943c245fb913ff8-tim-the-parenting-guide?via=aiwebtools",
+    tags: ["parenting advice", "child development", "family support", "parenting strategies", "emotional intelligence", "child psychology", "family wellness", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.9,
+    totalVotes: 3456
   }
 ];
