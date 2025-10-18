@@ -43,6 +43,18 @@ export const communicationAndEntertainmentGPTs: Tool[] = [
     totalVotes: 6234
   },
   {
+    icon: Gamepad2,
+    title: "GameSaas GPT - Video Game Prompt Generator",
+    description: "GameSaas GPT is your ultimate AI-powered video game prompt generator designed for vibe coding and rapid game development. Similar to MicroSaaS GPT but specialized for video games, this tool creates comprehensive, copy-and-paste-ready game prompts that bring your epic imagination to life. Perfect for developers using AI-assisted coding tools, this GPT generates detailed game concepts, mechanics, features, and technical specifications optimized for quick implementation. From casual mobile games to complex RPG systems, GameSaas GPT streamlines the creative process by providing structured, actionable game development prompts that accelerate your workflow and unleash your creative vision.",
+    emoji: "🎯",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-68f2d08b33cc8191b4e0fb90fa2cbcbb-gamesaas-gpt?via=aiwebtools",
+    tags: ["game prompts", "vibe coding", "game development", "prompt generator", "game design", "ai coding", "game concepts", "rapid development", "aiwebtools"],
+    category: "Communication & Entertainment",
+    rating: 4.7,
+    totalVotes: 2890
+  },
+  {
     icon: Music,
     title: "Mixologist GPT",
     description: "Meet Kenny, the Mixology GPT, your virtual bartender 🍸. He whips up custom cocktails based on your vibe, ingredients, and taste—fun, fresh, and always on point.",

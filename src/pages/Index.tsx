@@ -37,70 +37,80 @@ const Index = () => {
     // Set loaded state immediately for faster initial render
     setIsLoaded(true);
     
-    // Simplified video autoplay with immediate unmute attempts
-    const startVideoUnmute = () => {
-      const iframe = mainVideoRef.current;
-      if (!iframe || videoStarted) return;
-      
-      setVideoStarted(true);
-      console.log('🎥 Video loaded, attempting to unmute...');
-      
-      // Enhanced unmute strategy with multiple attempts
-      const attemptUnmute = (attempts = 0) => {
-        if (attempts >= 3) {
-          console.log('🔇 Video remains muted - browser policy enforced');
-          return;
-        }
+    // Check if video has already played on first visit
+    const hasVideoPlayed = localStorage.getItem('heroVideoPlayed');
+    
+    // Only autoplay on first visit
+    if (!hasVideoPlayed && !videoStarted) {
+      const startVideoUnmute = () => {
+        const iframe = mainVideoRef.current;
+        if (!iframe || videoStarted) return;
         
-        setTimeout(() => {
-          try {
-            // Multiple methods to attempt unmuting
-            const commands = [
-              '{"event":"command","func":"unMute","args":""}',
-              '{"event":"command","func":"setVolume","args":[75]}',
-              '{"event":"command","func":"playVideo","args":""}'
-            ];
-            
-            commands.forEach(command => {
-              iframe.contentWindow?.postMessage(command, '*');
-            });
-            
-            console.log(`🔊 Unmute attempt ${attempts + 1}/3`);
-            
-            // Retry if needed
-            if (attempts < 2) {
-              attemptUnmute(attempts + 1);
-            }
-          } catch (e) {
-            console.log(`🔇 Unmute attempt ${attempts + 1} failed:`, e.message);
-            if (attempts < 2) {
-              attemptUnmute(attempts + 1);
-            }
+        setVideoStarted(true);
+        localStorage.setItem('heroVideoPlayed', 'true');
+        console.log('🎥 Video loaded, attempting to unmute (first visit)...');
+        
+        // Enhanced unmute strategy with multiple attempts
+        const attemptUnmute = (attempts = 0) => {
+          if (attempts >= 3) {
+            console.log('🔇 Video remains muted - browser policy enforced');
+            return;
           }
-        }, 1000 + (attempts * 500)); // Staggered delays
+          
+          setTimeout(() => {
+            try {
+              // Multiple methods to attempt unmuting
+              const commands = [
+                '{"event":"command","func":"unMute","args":""}',
+                '{"event":"command","func":"setVolume","args":[75]}',
+                '{"event":"command","func":"playVideo","args":""}'
+              ];
+              
+              commands.forEach(command => {
+                iframe.contentWindow?.postMessage(command, '*');
+              });
+              
+              console.log(`🔊 Unmute attempt ${attempts + 1}/3`);
+              
+              // Retry if needed
+              if (attempts < 2) {
+                attemptUnmute(attempts + 1);
+              }
+            } catch (e) {
+              console.log(`🔇 Unmute attempt ${attempts + 1} failed:`, e.message);
+              if (attempts < 2) {
+                attemptUnmute(attempts + 1);
+              }
+            }
+          }, 1000 + (attempts * 500)); // Staggered delays
+        };
+        
+        // Start unmute attempts after iframe is fully loaded
+        attemptUnmute();
+        
+        // Fallback: Listen for user interaction to enable sound
+        const enableSoundOnInteraction = () => {
+          try {
+            iframe.contentWindow?.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+            console.log('🔊 Sound enabled via user interaction');
+          } catch (e) {
+            console.log('🔇 Sound enable failed:', e.message);
+          }
+        };
+        
+        // Add interaction listeners
+        ['click', 'touchstart', 'keydown'].forEach(event => {
+          document.addEventListener(event, enableSoundOnInteraction, { once: true, passive: true });
+        });
       };
-      
-      // Start unmute attempts after iframe is fully loaded
-      attemptUnmute();
-      
-      // Fallback: Listen for user interaction to enable sound
-      const enableSoundOnInteraction = () => {
-        try {
-          iframe.contentWindow?.postMessage('{"event":"command","func":"unMute","args":""}', '*');
-          console.log('🔊 Sound enabled via user interaction');
-        } catch (e) {
-          console.log('🔇 Sound enable failed:', e.message);
-        }
-      };
-      
-      // Add interaction listeners
-      ['click', 'touchstart', 'keydown'].forEach(event => {
-        document.addEventListener(event, enableSoundOnInteraction, { once: true, passive: true });
-      });
-    };
 
-    // Start video unmute attempts after short delay to ensure iframe is loaded
-    const videoTimer = setTimeout(startVideoUnmute, 1500);
+      // Start video unmute attempts after short delay to ensure iframe is loaded
+      const videoTimer = setTimeout(startVideoUnmute, 1500);
+      
+      return () => {
+        clearTimeout(videoTimer);
+      };
+    }
     
     // Load actual stats in background
     const statsTimer = setTimeout(() => {
@@ -110,7 +120,6 @@ const Index = () => {
     }, 8000);
 
     return () => {
-      clearTimeout(videoTimer);
       clearTimeout(statsTimer);
     };
   }, [videoStarted]);

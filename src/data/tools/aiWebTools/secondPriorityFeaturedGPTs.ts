@@ -110,19 +110,6 @@ export const secondPriorityFeaturedGPTs: Tool[] = [
     tags: ["farming", "agriculture", "crops", "soil analysis", "sustainable farming"]
   },
   {
-    icon: Gem,
-    title: "Oraculum – The Revealer of Hidden Truths",
-    description: "Oraculum reveals hidden systems, symbols, and histories shaping our world. Through historical insight and symbolic wisdom, it helps seekers uncover patterns, expand knowledge, and think critically. This educational tool encourages exploration of hidden truths and reverse perspectives, showing the power of perspective through interpretive analysis.",
-    emoji: "🔮",
-    color: "from-purple-500 to-pink-600",
-    category: "Mysterious & Unusual AI Tools",
-    directUrl: "https://oraculum.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=dUNrGNj8rhM",
-    rating: 4.4,
-    totalVotes: 2900,
-    tags: ["hidden truths", "symbols", "mysteries", "patterns", "critical thinking"]
-  },
-  {
     icon: Layers,
     title: "MULTITASKER GPT",
     description: "You can give me multiple unrelated tasks at once, and I will work to complete them all for you. Fire away! This versatile AI assistant excels at handling multiple concurrent projects and switching between different types of work seamlessly.",

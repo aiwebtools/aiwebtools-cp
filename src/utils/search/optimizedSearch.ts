@@ -6,9 +6,9 @@ export const performOptimizedSearch = (tools: Tool[], searchTerm: string): Tool[
     return [];
   }
 
-  // Performance safeguard - skip overly complex or malformed queries
+  // Performance optimization - prevent overly long queries
   const trimmed = searchTerm.trim();
-  if (trimmed.length > 20 || (trimmed.length > 10 && !/^[a-zA-Z\s]{3,}/.test(trimmed))) {
+  if (trimmed.length > 50) {
     return [];
   }
 

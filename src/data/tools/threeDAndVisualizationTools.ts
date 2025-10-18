@@ -17,6 +17,18 @@ import {
 
 export const threeDAndVisualizationTools: Tool[] = [
   {
+    icon: Globe,
+    title: "Many-Worlds 3D Environment Generator",
+    description: "ManyWorlds is a revolutionary AI-powered platform that generates immersive VR environments and video game worlds using advanced 3D generation technology. Create stunning virtual reality experiences, game environments, and interactive 3D spaces from text descriptions. Perfect for game developers, VR creators, and digital artists seeking to build expansive virtual worlds with cutting-edge AI technology.",
+    emoji: "🌍",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://www.manyworlds.run/?via=aiwebtools",
+    tags: ["VR environments", "game environments", "3D generation", "virtual reality", "world building", "game development", "3D worlds", "aiwebtools"],
+    category: "3D & VISUALIZATION",
+    rating: 4.9,
+    totalVotes: 4234
+  },
+  {
     icon: Gamepad2,
     title: "ROSEBUD AI - Video Game Generation",
     description: "Revolutionary AI-powered platform that generates complete video games from text descriptions. Create playable games, assets, and interactive experiences using advanced AI technology for game development and creative expression.",

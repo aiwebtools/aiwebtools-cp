@@ -264,5 +264,29 @@ export const healthAndWellnessGPTs: Tool[] = [
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.9,
     totalVotes: 3456
+  },
+  {
+    icon: Sparkles,
+    title: "Soap Crafter GPT",
+    description: "Soap Crafter GPT is your expert AI assistant for professional soap making and at-home soap crafting. Whether you're a professional artisan soap maker or a hobbyist exploring the craft, this specialized GPT provides comprehensive guidance on cold process soap making, hot process techniques, melt and pour methods, soap formulation, ingredient selection, essential oil blending, natural colorants, safety protocols, and creative soap design. Get expert advice on lye calculations, saponification processes, curing times, packaging ideas, and troubleshooting common soap-making issues. Perfect for beginners learning the basics and experienced soap makers looking to refine their craft and create beautiful, high-quality handmade soaps.",
+    emoji: "🧼",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://chatgpt.com/g/g-68e94930f24081918e73c40dfe942fc6-soap-crafter-gpt?via=aiwebtools",
+    tags: ["soap making", "crafting", "handmade soap", "DIY", "artisan soap", "cold process", "soap formulation", "natural products", "hobby", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.6,
+    totalVotes: 1876
+  },
+  {
+    icon: Sparkles,
+    title: "Bible Studies GPT",
+    description: "A secular academic specializing in historical-critical study of the Bible. This GPT provides comprehensive biblical scholarship, textual analysis, historical context, and academic insights into biblical texts. Perfect for students, researchers, and anyone seeking scholarly understanding of biblical literature through an academic lens with historical-critical methodology.",
+    emoji: "📖",
+    color: "from-amber-500 to-yellow-600",
+    directUrl: "https://chatgpt.com/g/g-68efd95b115481919faf1e8156ba83a5-bible-studies-gpt?via=aiwebtools",
+    tags: ["bible study", "biblical scholarship", "historical analysis", "religious texts", "academic study", "biblical criticism", "theology", "scripture", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.7,
+    totalVotes: 3456
   }
 ];
