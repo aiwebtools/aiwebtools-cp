@@ -21,8 +21,17 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
-  // Optimized debounce for smooth performance
-  const debouncedSearchTerm = useDebounce(searchTerm, 200);
+  // Pre-index lowercase fields for fast matching
+  const indexedTools = useMemo(() => allTools.map(t => ({
+    tool: t,
+    titleLower: t.title.toLowerCase(),
+    descriptionLower: (t.description || "").toLowerCase(),
+    categoryLower: (t.category || "").toLowerCase(),
+    tagsLower: (t.tags?.join(" ") || "").toLowerCase(),
+  })), []);
+  
+  // Optimized debounce for ultra-smooth typing
+  const debouncedSearchTerm = useDebounce(searchTerm, 150);
 
   // Optimized search with performance safeguards
   useEffect(() => {
@@ -45,27 +54,16 @@ export const useGlobalSearch = () => {
 
     const lowerTerm = trimmedTerm.toLowerCase();
     
-    // EXACT MATCHING PRIORITY with intelligent enhancements
-    const exactMatches = allTools.filter(tool => {
-      const lowerTitle = tool.title.toLowerCase();
-      return lowerTitle === lowerTerm || lowerTitle.includes(lowerTerm);
-    });
+    // FAST exact/prefix/title contains matching using pre-indexed fields
+    const exactMatches = indexedTools
+      .filter(it => it.titleLower === lowerTerm || it.titleLower.startsWith(lowerTerm) || it.titleLower.includes(lowerTerm))
+      .map(it => it.tool);
 
-    const partialMatches = allTools.filter(tool => {
-      if (exactMatches.some(exact => exact.title === tool.title)) return false;
-      
-      const lowerTitle = tool.title.toLowerCase();
-      const lowerDescription = tool.description?.toLowerCase() || "";
-      const lowerCategory = tool.category?.toLowerCase() || "";
-      const lowerTags = tool.tags?.join(" ").toLowerCase() || "";
-      
-      return lowerTitle.includes(lowerTerm) ||
-             lowerDescription.includes(lowerTerm) ||
-             lowerCategory.includes(lowerTerm) ||
-             lowerTags.includes(lowerTerm) ||
-             lowerTitle.match(new RegExp(`\\b${lowerTerm}`, 'i')) ||
-             lowerDescription.match(new RegExp(`\\b${lowerTerm}`, 'i'));
-    });
+    // Secondary matches across description/category/tags (no regex for speed)
+    const partialMatches = indexedTools
+      .filter(it => !exactMatches.some(ex => ex.title === it.tool.title))
+      .filter(it => it.descriptionLower.includes(lowerTerm) || it.categoryLower.includes(lowerTerm) || it.tagsLower.includes(lowerTerm))
+      .map(it => it.tool);
 
     // Optimized intelligent search with length restrictions
     let intelligentResults = [];
@@ -99,14 +97,7 @@ export const useGlobalSearch = () => {
 
     const finalResults = [...sortedExact, ...partialMatches, ...intelligentResults];
     
-    // Add remaining tools for endless scroll
-    const remainingTools = allTools.filter(tool => 
-      !finalResults.some(result => result.title === tool.title)
-    );
-    
-    const endlessResults = [...finalResults, ...remainingTools];
-    
-    setSearchResults(endlessResults);
+    setSearchResults(finalResults);
     setDisplayedCount(30);
     setIsOpen(true);
   }, [debouncedSearchTerm]);
