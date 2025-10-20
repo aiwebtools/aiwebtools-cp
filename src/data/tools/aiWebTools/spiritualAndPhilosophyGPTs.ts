@@ -147,7 +147,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     description: "Explore the profound depths of Kabbalah, the ancient Jewish mystical tradition that reveals hidden meanings in sacred texts and the nature of divine creation. This GPT provides insights into Kabbalistic concepts like the Tree of Life, Sefirot, Ein Sof, and the four worlds of existence. Discover the mystical teachings that have guided spiritual seekers for centuries, offering wisdom on meditation, prayer, and the journey toward divine union and enlightenment.",
     emoji: "🔯",
     color: "from-purple-500 to-indigo-600",
-    directUrl: "https://chatgpt.com/g/g-68c6ea6143748191bed5360219b0b02a-kabbalah-gpt/?via=aiwebtools",
+    directUrl: "https://jewish-ai.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/b8M_eGKwN7o?si=X0vJb6jHtCUHkeQW", // Kabbalah wisdom video
     tags: ["kabbalah", "jewish mysticism", "tree of life", "sefirot", "sacred texts", "divine wisdom", "spiritual teachings", "mystical tradition", "meditation", "enlightenment"],
     category: "Spirituality & Philosophy",
@@ -197,7 +197,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "📜",
     color: "from-blue-600 to-purple-600",
     imageUrl: "/images/torah-gpt.png",
-    directUrl: "https://chatgpt.com/g/g-68f0f5ca5af88191b5eb9be8aa45d5f2-torah-gpt?via=aiwebtools",
+    directUrl: "https://jewish-ai.lovable.app/?via=aiwebtools",
     tags: ["torah study", "jewish tradition", "pardes", "rabbinic wisdom", "jewish law", "talmud", "sacred texts", "judaism", "spiritual learning", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
