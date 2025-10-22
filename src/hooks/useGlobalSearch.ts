@@ -23,41 +23,100 @@ export const useGlobalSearch = () => {
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
   // Pre-index tools for ultra-fast matching (no regex)
-  const indexedTools = useMemo(() => allTools.map(t => ({
-    tool: t,
-    lt: t.title.toLowerCase(),
-    ld: (t.description || "").toLowerCase(),
-    lc: (t.category || "").toLowerCase(),
-    lta: (t.tags || []).join(" ").toLowerCase(),
-  })), []);
+  const indexedTools = useMemo(() => allTools.map(t => {
+    const lt = t.title.toLowerCase();
+    const ld = (t.description || "").toLowerCase();
+    const lc = (t.category || "").toLowerCase();
+    const lta = (t.tags || []).join(" ").toLowerCase();
+    return { tool: t, lt, ld, lc, lta, all: `${lt} ${ld} ${lc} ${lta}` };
+  }), []);
   
-  // Optimized debounce for smooth performance
-  const debouncedSearchTerm = useDebounce(searchTerm, 120);
-  // Optimized search with performance safeguards
+  // Debounce for heavy scoring stage
+  const heavyTerm = useDebounce(searchTerm, 320);
+  // FAST stage: immediate results while typing (super lightweight)
   useEffect(() => {
-    const trimmedTerm = debouncedSearchTerm.trim();
-    
-    // Early returns for performance
-    if (!trimmedTerm) {
+    const t = searchTerm.trim();
+    if (!t) {
       setSearchResults([]);
       setIsOpen(false);
       setDisplayedCount(30);
       return;
     }
+    const q = t.toLowerCase();
+
+    let fast = indexedTools
+      .filter(ix => ix.lt.includes(q) || ix.lc.includes(q) || ix.ld.includes(q) || ix.lta.includes(q))
+      .map(ix => ix.tool);
+
+    const quickScore = (tool: any) => {
+      const lt = tool.title.toLowerCase();
+      let s = 0;
+      if (lt === q) s += 10000;
+      if (lt.startsWith(q)) s += 800;
+      if (lt.includes(q)) s += 300;
+      return s;
+    };
+
+    fast.sort((a, b) => quickScore(b) - quickScore(a));
+
+    // Intent-like quick prioritization for common phrases
+    const prioritize = (predicate: (tool: any) => boolean) => {
+      const hits: any[] = [];
+      const rest: any[] = [];
+      for (const tool of fast) {
+        (predicate(tool) ? hits : rest).push(tool);
+      }
+      fast = [...hits, ...rest];
+    };
+
+    if (/write.*book|book.*write|\bbook\b/i.test(t)) {
+      prioritize(tool => tool.title.toLowerCase().includes("book writer") ||
+        tool.title.toLowerCase().includes("book") ||
+        (tool.tags || []).join(" ").toLowerCase().includes("book"));
+    }
+
+    if (/make.*movie|movie.*make|\bmovie\b|\bfilm\b/i.test(t)) {
+      prioritize(tool => tool.title.toLowerCase().includes("movie maker") ||
+        tool.title.toLowerCase().includes("movie scene") ||
+        tool.title.toLowerCase().includes("movie script") ||
+        tool.title.toLowerCase().includes("text to video"));
+    }
+
+    if (/make.*app|build.*app|\bapp\b/i.test(t)) {
+      prioritize(tool => tool.title.toLowerCase().includes("microsaas") ||
+        tool.title.toLowerCase().includes("agent") ||
+        tool.title.toLowerCase().includes("app"));
+    }
+
+    if (/website|make.*website|build.*website|\bsite\b/i.test(t)) {
+      prioritize(tool => tool.title.toLowerCase().includes("website") ||
+        tool.title.toLowerCase().includes("site") ||
+        tool.title.toLowerCase().includes("text to website") ||
+        tool.title.toLowerCase().includes("builder"));
+    }
+
+    const limited = fast.slice(0, 60);
+    setSearchResults(limited);
+    setDisplayedCount(30);
+    setIsOpen(true);
+  }, [searchTerm, indexedTools]);
+
+  // HEAVY stage: intent + category-aware smart ranking after short pause
+  useEffect(() => {
+    const trimmedTerm = heavyTerm.trim();
+    if (!trimmedTerm) return; // keep fast results when empty
+    if (trimmedTerm !== searchTerm.trim()) return; // stale guard
 
     const lowerTerm = trimmedTerm.toLowerCase();
 
-    // Fast candidate pre-filter (no regex)
+    // Pre-filter to reduce workload
     const candidates = indexedTools.filter(ix =>
-      ix.lt.includes(lowerTerm) ||
-      ix.ld.includes(lowerTerm) ||
-      ix.lc.includes(lowerTerm) ||
-      ix.lta.includes(lowerTerm)
+      ix.lt.includes(lowerTerm) || ix.ld.includes(lowerTerm) || ix.lc.includes(lowerTerm) || ix.lta.includes(lowerTerm)
     );
 
-    // If no obvious candidates and term is short, broaden via existing intelligent search
+    // If few candidates, broaden via existing intelligent search
     let fallbackResults: any[] = [];
-    if (candidates.length < 5 && trimmedTerm.length >= 3 && trimmedTerm.length <= 15) {
+    if (candidates.length < 5 && trimmedTerm.length >= 3 && trimmedTerm.length <= 20) {
       try {
         fallbackResults = searchTools(allTools, trimmedTerm);
       } catch {
@@ -65,7 +124,6 @@ export const useGlobalSearch = () => {
       }
     }
 
-    // Score and rank the union of candidates/fallback
     const baseList = (candidates.length ? candidates.map(ix => ix.tool) : fallbackResults);
 
     const scored = baseList.map(tool => {
@@ -73,26 +131,41 @@ export const useGlobalSearch = () => {
       const ld = (tool.description || "").toLowerCase();
       const lc = (tool.category || "").toLowerCase();
       const lta = (tool.tags || []).join(" ").toLowerCase();
-
+      
       let score = 0;
+      if (lt === lowerTerm) score += 10000; // exact title
+      if (lt.startsWith(lowerTerm)) score += 1400;
+      if (lt.includes(lowerTerm)) score += 450;
+      if (ld.includes(lowerTerm)) score += 180;
+      if (lc.includes(lowerTerm)) score += 140;
+      if (lta.includes(lowerTerm)) score += 100;
 
-      // Absolute priority: exact title match first
-      if (lt === lowerTerm) score += 10000;
-      // Strong signal: title starts with term
-      if (lt.startsWith(lowerTerm)) score += 1200;
-      // General relevance signals
-      if (lt.includes(lowerTerm)) score += 400;
-      if (ld.includes(lowerTerm)) score += 160;
-      if (lc.includes(lowerTerm)) score += 120;
-      if (lta.includes(lowerTerm)) score += 90;
+      // Manual boosters for key intents to guarantee top picks
+      if (/write.*book|book.*write|\bbook\b/i.test(trimmedTerm)) {
+        if (lt.includes("book writer")) score += 6000;
+        else if (lt.includes("book")) score += 1200;
+      }
+      if (/make.*movie|movie.*make|\bmovie\b|\bfilm\b/i.test(trimmedTerm)) {
+        if (lt.includes("movie maker")) score += 6000;
+        if (lt.includes("text to video")) score += 2800;
+        if (lt.includes("movie script") || lt.includes("movie scene")) score += 2000;
+      }
+      if (/make.*app|build.*app|\bapp\b/i.test(trimmedTerm)) {
+        if (lt.includes("microsaas")) score += 5200;
+        if (lt.includes("agent")) score += 2600;
+        if (lt.includes("app")) score += 900;
+      }
+      if (/website|make.*website|build.*website|\bsite\b/i.test(trimmedTerm)) {
+        if (lt.includes("text to website")) score += 5200;
+        if (lt.includes("website") || lt.includes("site")) score += 1500;
+        if (lt.includes("builder")) score += 1000;
+      }
 
-      // Intent awareness (e.g., "I want to write a book", "make a movie", "make an app", "website")
       try {
         const intent = matchToolByIntent(tool, trimmedTerm);
         if (intent?.matched) score += intent.score;
       } catch {}
-
-      // Enhanced category-aware scoring (aggregates many specific matchers)
+      
       try {
         score += enhancedToolScoring(tool, trimmedTerm) || 0;
       } catch {}
@@ -100,7 +173,6 @@ export const useGlobalSearch = () => {
       return { tool, score };
     });
 
-    // Sort by score desc, then ensure exact match first, then alpha for stability
     scored.sort((a, b) => {
       if (b.score !== a.score) return b.score - a.score;
       const aExact = a.tool.title.toLowerCase() === lowerTerm ? 1 : 0;
@@ -111,14 +183,14 @@ export const useGlobalSearch = () => {
 
     const ranked = scored.map(s => s.tool);
     const deduped = quickDeduplicateSearchResults ? quickDeduplicateSearchResults(ranked) : ranked;
-
-    // Cap results for performance (UI still uses displayedCount for virtualized display)
     const limited = deduped.slice(0, 300);
 
-    setSearchResults(limited);
-    setDisplayedCount(30);
-    setIsOpen(true);
-  }, [debouncedSearchTerm, indexedTools]);
+    if (trimmedTerm === searchTerm.trim()) {
+      setSearchResults(limited);
+      setDisplayedCount(30);
+      setIsOpen(true);
+    }
+  }, [heavyTerm, searchTerm, indexedTools]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
