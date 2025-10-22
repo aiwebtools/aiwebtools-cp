@@ -43,17 +43,39 @@ export const useGlobalSearch = () => {
       return;
     }
     const q = t.toLowerCase();
+    const tokens = q.split(/\s+/).filter(w => w.length >= 3);
 
     let fast = indexedTools
-      .filter(ix => ix.lt.includes(q) || ix.lc.includes(q) || ix.ld.includes(q) || ix.lta.includes(q))
+      .filter(ix => {
+        if (tokens.length > 0) {
+          // token-based match for long phrases
+          return tokens.some(tok => ix.all.includes(tok));
+        }
+        return ix.lt.includes(q) || ix.lc.includes(q) || ix.ld.includes(q) || ix.lta.includes(q);
+      })
       .map(ix => ix.tool);
 
     const quickScore = (tool: any) => {
       const lt = tool.title.toLowerCase();
       let s = 0;
+      // whole-phrase priority when it's short
       if (lt === q) s += 10000;
       if (lt.startsWith(q)) s += 800;
       if (lt.includes(q)) s += 300;
+
+      // token-based scoring for longer sentences
+      for (const tok of tokens) {
+        if (lt === tok) s += 5000;
+        if (lt.startsWith(tok)) s += 600;
+        if (lt.includes(tok)) s += 240;
+      }
+
+      // Special rule: when user types MAKE, prefer "Make Automation Maker"
+      if ((q === "make" || tokens[0] === "make")) {
+        if (lt.startsWith("make ")) s += 3500;
+        if (lt.includes("make automation")) s += 6000;
+      }
+
       return s;
     };
 
@@ -108,10 +130,13 @@ export const useGlobalSearch = () => {
     if (trimmedTerm !== searchTerm.trim()) return; // stale guard
 
     const lowerTerm = trimmedTerm.toLowerCase();
+    const tokens = lowerTerm.split(/\s+/).filter(w => w.length >= 3);
 
     // Pre-filter to reduce workload
     const candidates = indexedTools.filter(ix =>
-      ix.lt.includes(lowerTerm) || ix.ld.includes(lowerTerm) || ix.lc.includes(lowerTerm) || ix.lta.includes(lowerTerm)
+      (tokens.length ? tokens.some(tok => ix.all.includes(tok)) : (
+        ix.lt.includes(lowerTerm) || ix.ld.includes(lowerTerm) || ix.lc.includes(lowerTerm) || ix.lta.includes(lowerTerm)
+      ))
     );
 
     // If few candidates, broaden via existing intelligent search
@@ -139,6 +164,13 @@ export const useGlobalSearch = () => {
       if (ld.includes(lowerTerm)) score += 180;
       if (lc.includes(lowerTerm)) score += 140;
       if (lta.includes(lowerTerm)) score += 100;
+
+      // token-based reinforcement for long sentences
+      for (const tok of tokens) {
+        if (lt === tok) score += 5200;
+        if (lt.startsWith(tok)) score += 700;
+        if (lt.includes(tok)) score += 260;
+      }
 
       // Manual boosters for key intents to guarantee top picks
       if (/write.*book|book.*write|\bbook\b/i.test(trimmedTerm)) {
