@@ -9,7 +9,8 @@ import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
 import { useDebounce } from "@/hooks/useDebounce";
 import { deduplicateSearchResults, quickDeduplicateSearchResults } from "@/utils/search/core/searchDeduplication";
 import { sortToolsAlphabetically, getAlphabeticalSortKey } from "@/utils/search/alphabeticalSorting";
-
+import { enhancedToolScoring } from "@/utils/search/enhancedKeywordMatching";
+import { matchToolByIntent } from "@/utils/search/core/intentBasedMatching";
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -21,95 +22,103 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
+  // Pre-index tools for ultra-fast matching (no regex)
+  const indexedTools = useMemo(() => allTools.map(t => ({
+    tool: t,
+    lt: t.title.toLowerCase(),
+    ld: (t.description || "").toLowerCase(),
+    lc: (t.category || "").toLowerCase(),
+    lta: (t.tags || []).join(" ").toLowerCase(),
+  })), []);
+  
   // Optimized debounce for smooth performance
-  const debouncedSearchTerm = useDebounce(searchTerm, 200);
-
+  const debouncedSearchTerm = useDebounce(searchTerm, 120);
   // Optimized search with performance safeguards
   useEffect(() => {
     const trimmedTerm = debouncedSearchTerm.trim();
     
     // Early returns for performance
-    if (!trimmedTerm || trimmedTerm.length < 1) {
+    if (!trimmedTerm) {
       setSearchResults([]);
       setIsOpen(false);
       setDisplayedCount(30);
       return;
     }
 
-    // Skip malformed queries that cause freezing
-    if (trimmedTerm.length > 15 && !/^[a-zA-Z\s]{3,}/.test(trimmedTerm)) {
-      setSearchResults([]);
-      setIsOpen(false);
-      return;
-    }
-
     const lowerTerm = trimmedTerm.toLowerCase();
-    
-    // EXACT MATCHING PRIORITY with intelligent enhancements
-    const exactMatches = allTools.filter(tool => {
-      const lowerTitle = tool.title.toLowerCase();
-      return lowerTitle === lowerTerm || lowerTitle.includes(lowerTerm);
-    });
 
-    const partialMatches = allTools.filter(tool => {
-      if (exactMatches.some(exact => exact.title === tool.title)) return false;
-      
-      const lowerTitle = tool.title.toLowerCase();
-      const lowerDescription = tool.description?.toLowerCase() || "";
-      const lowerCategory = tool.category?.toLowerCase() || "";
-      const lowerTags = tool.tags?.join(" ").toLowerCase() || "";
-      
-      return lowerTitle.includes(lowerTerm) ||
-             lowerDescription.includes(lowerTerm) ||
-             lowerCategory.includes(lowerTerm) ||
-             lowerTags.includes(lowerTerm) ||
-             lowerTitle.match(new RegExp(`\\b${lowerTerm}`, 'i')) ||
-             lowerDescription.match(new RegExp(`\\b${lowerTerm}`, 'i'));
-    });
+    // Fast candidate pre-filter (no regex)
+    const candidates = indexedTools.filter(ix =>
+      ix.lt.includes(lowerTerm) ||
+      ix.ld.includes(lowerTerm) ||
+      ix.lc.includes(lowerTerm) ||
+      ix.lta.includes(lowerTerm)
+    );
 
-    // Optimized intelligent search with length restrictions
-    let intelligentResults = [];
-    if (trimmedTerm.length >= 3 && trimmedTerm.length <= 15) {
+    // If no obvious candidates and term is short, broaden via existing intelligent search
+    let fallbackResults: any[] = [];
+    if (candidates.length < 5 && trimmedTerm.length >= 3 && trimmedTerm.length <= 15) {
       try {
-        intelligentResults = searchTools(allTools, trimmedTerm).filter(tool => 
-          !exactMatches.some(exact => exact.title === tool.title) &&
-          !partialMatches.some(partial => partial.title === tool.title)
-        );
-      } catch (error) {
-        console.warn('Search error, falling back to basic search:', error);
-        intelligentResults = [];
+        fallbackResults = searchTools(allTools, trimmedTerm);
+      } catch {
+        fallbackResults = [];
       }
     }
 
-    // Advanced sorting with relevance scoring
-    const sortedExact = exactMatches.sort((a, b) => {
-      const aTitle = a.title.toLowerCase();
-      const bTitle = b.title.toLowerCase();
-      
-      if (aTitle === lowerTerm && bTitle !== lowerTerm) return -1;
-      if (bTitle === lowerTerm && aTitle !== lowerTerm) return 1;
-      
-      const aStarts = aTitle.startsWith(lowerTerm);
-      const bStarts = bTitle.startsWith(lowerTerm);
-      if (aStarts && !bStarts) return -1;
-      if (bStarts && !aStarts) return 1;
-      
-      return aTitle.localeCompare(bTitle);
+    // Score and rank the union of candidates/fallback
+    const baseList = (candidates.length ? candidates.map(ix => ix.tool) : fallbackResults);
+
+    const scored = baseList.map(tool => {
+      const lt = tool.title.toLowerCase();
+      const ld = (tool.description || "").toLowerCase();
+      const lc = (tool.category || "").toLowerCase();
+      const lta = (tool.tags || []).join(" ").toLowerCase();
+
+      let score = 0;
+
+      // Absolute priority: exact title match first
+      if (lt === lowerTerm) score += 10000;
+      // Strong signal: title starts with term
+      if (lt.startsWith(lowerTerm)) score += 1200;
+      // General relevance signals
+      if (lt.includes(lowerTerm)) score += 400;
+      if (ld.includes(lowerTerm)) score += 160;
+      if (lc.includes(lowerTerm)) score += 120;
+      if (lta.includes(lowerTerm)) score += 90;
+
+      // Intent awareness (e.g., "I want to write a book", "make a movie", "make an app", "website")
+      try {
+        const intent = matchToolByIntent(tool, trimmedTerm);
+        if (intent?.matched) score += intent.score;
+      } catch {}
+
+      // Enhanced category-aware scoring (aggregates many specific matchers)
+      try {
+        score += enhancedToolScoring(tool, trimmedTerm) || 0;
+      } catch {}
+
+      return { tool, score };
     });
 
-    const finalResults = [...sortedExact, ...partialMatches, ...intelligentResults];
-    
-    // Add remaining tools for endless scroll
-    const remainingTools = allTools.filter(tool => 
-      !finalResults.some(result => result.title === tool.title)
-    );
-    
-    const endlessResults = [...finalResults, ...remainingTools];
-    
-    setSearchResults(endlessResults);
+    // Sort by score desc, then ensure exact match first, then alpha for stability
+    scored.sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      const aExact = a.tool.title.toLowerCase() === lowerTerm ? 1 : 0;
+      const bExact = b.tool.title.toLowerCase() === lowerTerm ? 1 : 0;
+      if (bExact !== aExact) return bExact - aExact;
+      return a.tool.title.localeCompare(b.tool.title);
+    });
+
+    const ranked = scored.map(s => s.tool);
+    const deduped = quickDeduplicateSearchResults ? quickDeduplicateSearchResults(ranked) : ranked;
+
+    // Cap results for performance (UI still uses displayedCount for virtualized display)
+    const limited = deduped.slice(0, 300);
+
+    setSearchResults(limited);
     setDisplayedCount(30);
     setIsOpen(true);
-  }, [debouncedSearchTerm]);
+  }, [debouncedSearchTerm, indexedTools]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
