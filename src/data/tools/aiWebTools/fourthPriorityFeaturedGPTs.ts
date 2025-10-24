@@ -89,7 +89,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     color: "from-blue-500 to-purple-600",
     category: "Science & Research AI Tools",
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=U8TLg15RTg8",
+    videoUrl: "https://youtu.be/aFuAxVNXBvg",
     rating: 4.4,
     totalVotes: 2900,
     tags: ["algebraic expressions", "mathematics", "operational instructions", "variables", "problem solving"]

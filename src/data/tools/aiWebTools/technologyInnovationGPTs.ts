@@ -62,7 +62,7 @@ export const technologyInnovationGPTs: Tool[] = [
     emoji: "👑",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=U8TLg15RTg8",
+    videoUrl: "https://youtu.be/aFuAxVNXBvg",
     tags: ["algebraic expressions", "mathematical conversion", "operational instructions", "variable conversion", "mathematical tools"],
     category: "Technology & Innovation",
     rating: 4.5,

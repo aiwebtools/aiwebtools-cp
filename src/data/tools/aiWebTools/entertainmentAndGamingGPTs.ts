@@ -49,7 +49,7 @@ export const entertainmentAndGamingGPTs: Tool[] = [
     emoji: "👑",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=U8TLg15RTg8",
+    videoUrl: "https://youtu.be/aFuAxVNXBvg",
     tags: ["operational instructions", "algebraic conversion", "process optimization", "variable mapping", "instruction translation"],
     category: "Business & Productivity",
     rating: 4.3,

@@ -101,6 +101,7 @@ export const researchAndLearning: Tool[] = [
     emoji: "🔢",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/aFuAxVNXBvg",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-futuristic-advertisement-for-alg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     tags: ["algebraic expressions", "mathematical creativity", "problem solving", "mathematical concepts", "algebra"],
     category: "Research & Learning",

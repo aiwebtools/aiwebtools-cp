@@ -166,5 +166,41 @@ export const scienceAndResearchGPTs: Tool[] = [
     category: "Science & Research",
     rating: 4.7,
     totalVotes: 2187
+  },
+  {
+    icon: Zap,
+    title: "Microgrid & Power Safety Planning Assistant GPT",
+    description: "Advisory-only microgrid planner that computes, explains, and safeguards off-grid power. This specialized AI assists with microgrid design, renewable energy integration, power safety protocols, and off-grid electrical system planning. Perfect for homeowners, preppers, and communities seeking energy independence and reliable backup power solutions.",
+    emoji: "⚡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-68f8fd43f6fc81918226efa6de613a6a-microgrid-power-safety-planning-assistant-gpt",
+    tags: ["microgrid", "power systems", "off-grid energy", "renewable energy", "electrical safety", "energy independence", "backup power", "solar power", "aiwebtools"],
+    category: "Science & Research",
+    rating: 4.6,
+    totalVotes: 987
+  },
+  {
+    icon: Globe,
+    title: "AQUILA — Water Safety Planning Assistant GPT",
+    description: "Advisory water safety planner by AiWebTools.Ai. Using the creator's recommended model: GPT-5 Thinking. AQUILA provides comprehensive guidance on water safety, purification methods, storage solutions, and emergency water planning. Essential for emergency preparedness, off-grid living, and ensuring access to safe drinking water in any situation.",
+    emoji: "💧",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://chatgpt.com/g/g-68f8f667e0a081918598d64621fea153-aquila-water-safety-planning-assistant-gpt",
+    tags: ["water safety", "water purification", "emergency preparedness", "water storage", "water planning", "off-grid water", "survival", "water security", "aiwebtools"],
+    category: "Science & Research",
+    rating: 4.7,
+    totalVotes: 1123
+  },
+  {
+    icon: Database,
+    title: "WORLD DATA EXPLORER GPT5",
+    description: "Performs deep web data analysis, Python calculations, and global predictions with verified accuracy. By AiWebTools.Ai using the creator's recommended model: GPT-5 Thinking. This advanced AI tool conducts comprehensive data research, statistical analysis, and trend forecasting across global datasets to provide actionable insights and verified predictions.",
+    emoji: "🌍",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-68f8eda5982c8191bef047399d91a056-world-data-explorer-gpt",
+    tags: ["data analysis", "global data", "predictions", "research", "statistical analysis", "data science", "trend forecasting", "python", "aiwebtools"],
+    category: "Science & Research",
+    rating: 4.8,
+    totalVotes: 2345
   }
 ];

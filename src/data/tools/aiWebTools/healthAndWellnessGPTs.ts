@@ -12,7 +12,8 @@ import {
   AlertTriangle,
   Briefcase,
   Sparkles,
-  Home
+  Home,
+  ChefHat
 } from "lucide-react";
 
 export const healthAndWellnessGPTs: Tool[] = [
@@ -23,7 +24,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "👨‍⚕️",
     color: "from-blue-500 to-green-600",
     directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=EKKIttUG0sI",
+    videoUrl: "https://youtu.be/jwjNOKP5mf4?si=XWMe5y7XghCURksD",
     tags: ["medical consultation", "health advice", "doctor simulation", "healthcare", "medical ai", "aiwebtools"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
@@ -102,6 +103,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "🦷",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-67cbcbcf3a38819183974f2d062d5d7f-dental-gpt-expert",
+    videoUrl: "https://youtu.be/jwjNOKP5mf4?si=XWMe5y7XghCURksD",
     tags: ["dental health", "oral care", "dentistry", "dental consultation", "oral hygiene", "dental procedures", "healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
@@ -288,5 +290,17 @@ export const healthAndWellnessGPTs: Tool[] = [
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 3456
+  },
+  {
+    icon: ChefHat,
+    title: "PANTRY GPT — Ration & Meal Planning Assistant",
+    description: "A calm, calculating, and compassionate ration and meal planner designed to help you make the most of what you have. PANTRY GPT provides intelligent meal planning, ration management, and recipe suggestions based on available ingredients. Perfect for emergency preparedness, budget-conscious cooking, and maximizing food resources while minimizing waste.",
+    emoji: "🍽️",
+    color: "from-orange-500 to-yellow-600",
+    directUrl: "https://chatgpt.com/g/g-68f9057585648191aa3e700fedfbc206-pantry-ration-and-meal-planning-assistant",
+    tags: ["meal planning", "ration management", "food planning", "cooking", "recipes", "emergency preparedness", "budget cooking", "food waste reduction", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.7,
+    totalVotes: 1234
   }
 ];
