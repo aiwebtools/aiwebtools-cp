@@ -127,7 +127,7 @@ export const professionalServicesGPTs: Tool[] = [
     emoji: "🚒",
     color: "from-red-500 to-orange-600",
     directUrl: "https://firefightergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=lGsefWkYfq0",
+    videoUrl: "https://youtu.be/kDu2SSP9Glw",
     tags: ["firefighting", "emergency response", "fire management", "safety", "professional services", "aiwebtools"],
     category: "Professional Services",
     rating: 4.8,

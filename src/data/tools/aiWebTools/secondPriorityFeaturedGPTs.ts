@@ -78,7 +78,7 @@ export const secondPriorityFeaturedGPTs: Tool[] = [
     color: "from-blue-600 to-gray-700",
     category: "Legal & Government AI Tools",
     directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=poOGR-6bb2g",
+    videoUrl: "https://youtu.be/mxdJ0gLxGCI?si=Yx0rWtOSmWijtZZC",
     rating: 4.7,
     totalVotes: 3600,
     tags: ["legislation", "legal documents", "law", "government", "policy writing"]
@@ -130,7 +130,7 @@ export const secondPriorityFeaturedGPTs: Tool[] = [
     color: "from-blue-500 to-green-500",
     category: "Education & Research Tools",
     directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=q1AY2LukHrk",
+    videoUrl: "https://youtu.be/0_oIzDL2BB4",
     rating: 4.8,
     totalVotes: 4500,
     tags: ["learning", "skills", "education", "training", "self-improvement"]

@@ -58,16 +58,16 @@ export const useGlobalSearch = () => {
     const quickScore = (tool: any) => {
       const lt = tool.title.toLowerCase();
       let s = 0;
-      // whole-phrase priority when it's short
-      if (lt === q) s += 10000;
-      if (lt.startsWith(q)) s += 800;
-      if (lt.includes(q)) s += 300;
+      // EXACT title match prioritization (super strong boost)
+      if (lt === q) s += 100000; // Perfect exact match gets highest priority
+      if (lt.startsWith(q)) s += 80000;
+      if (lt.includes(q)) s += 30000;
 
       // token-based scoring for longer sentences
       for (const tok of tokens) {
-        if (lt === tok) s += 5000;
-        if (lt.startsWith(tok)) s += 600;
-        if (lt.includes(tok)) s += 240;
+        if (lt === tok) s += 50000; // Exact token match in title
+        if (lt.startsWith(tok)) s += 6000;
+        if (lt.includes(tok)) s += 2400;
       }
 
       // Special rule: when user types MAKE, prefer "Make Automation Maker"

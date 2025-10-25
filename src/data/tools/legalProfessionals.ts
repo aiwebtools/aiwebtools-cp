@@ -34,7 +34,7 @@ export const legalProfessionals: Tool[] = [
     emoji: "⚖️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://publicdefendergpt.lovable.app/",
-    videoUrl: "https://www.youtube.com/watch?v=cQR5eFjsPWw",
+    videoUrl: "https://youtu.be/IYi4mYtDIVA?si=J2aT8BTetKRU-Z6q",
     tags: ["legal defense", "legal research", "evidence analysis", "trial strategy", "legal assistance"],
     category: "Legal Professionals",
     rating: 4.7,
