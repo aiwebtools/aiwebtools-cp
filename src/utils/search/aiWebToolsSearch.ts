@@ -112,7 +112,48 @@ export const scoreAIWebToolsGPT = (tool: Tool, searchTerm: string): number => {
   const lowerSearchTerm = searchTerm.toLowerCase();
   const toolText = `${tool.title} ${tool.description}`.toLowerCase();
   const titleWords = tool.title.toLowerCase().split(' ');
+  
+  // Normalize for better matching
+  const normalizedTitle = tool.title.toLowerCase().replace(/\s+/g, ' ').trim();
+  const normalizedSearch = lowerSearchTerm.replace(/\s+/g, ' ').trim();
+  const titleNoSpaces = normalizedTitle.replace(/\s+/g, '');
+  const searchNoSpaces = normalizedSearch.replace(/\s+/g, '');
+  const searchWords = normalizedSearch.split(/\s+/).filter(w => w.length > 1);
+  
   let score = 0;
+  
+  // PERFECT exact match
+  if (normalizedTitle === normalizedSearch) {
+    score += 100000;
+  }
+  
+  // Check if all search words appear in title in order
+  let allWordsInOrder = true;
+  let lastIndex = -1;
+  for (const word of searchWords) {
+    const index = normalizedTitle.indexOf(word, lastIndex + 1);
+    if (index === -1) {
+      allWordsInOrder = false;
+      break;
+    }
+    lastIndex = index;
+  }
+  if (allWordsInOrder && searchWords.length >= 2) {
+    score += 90000; // Very high for ordered matches
+  }
+  
+  // Number/spacing variation (VEO3 vs VEO 3)
+  if (titleNoSpaces.includes(searchNoSpaces) && searchNoSpaces.length > 3) {
+    score += 85000;
+  }
+  
+  // All search words match title words
+  const matchedWords = searchWords.filter(sw => 
+    titleWords.some(tw => tw === sw || tw.startsWith(sw))
+  );
+  if (matchedWords.length === searchWords.length && searchWords.length >= 2) {
+    score += 80000;
+  }
   
   // PRIORITY BOOST FOR "PERSONAL" SEARCHES - Custom GPTs first
   if (lowerSearchTerm.includes('personal')) {

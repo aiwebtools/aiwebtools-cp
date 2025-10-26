@@ -261,6 +261,54 @@ export function superIntelligentScore(tool: Tool, searchTerm: string): number {
   
   let score = 0;
   
+  // Enhanced exact and near-exact matching
+  const lowerTitle = tool.title.toLowerCase();
+  const lowerDescription = tool.description.toLowerCase();
+  const lowerSearchTerm = searchTerm.toLowerCase();
+  
+  // Normalize for better matching (handle spaces in numbers/words)
+  const normalizedTitle = lowerTitle.replace(/\s+/g, ' ').trim();
+  const normalizedSearch = lowerSearchTerm.replace(/\s+/g, ' ').trim();
+  const titleNoSpaces = normalizedTitle.replace(/\s+/g, '');
+  const searchNoSpaces = normalizedSearch.replace(/\s+/g, '');
+  
+  // Extract words from search query
+  const searchWords = normalizedSearch.split(/\s+/).filter(w => w.length > 1);
+  const titleWords = normalizedTitle.split(/\s+/);
+  
+  // PERFECT exact match
+  if (normalizedTitle === normalizedSearch) {
+    score += 100000;
+  }
+  
+  // Check if all search words appear in title in order (VEO 3 Prompt -> VEO3 TEXT TO VIDEO PROMPT)
+  let allWordsInOrder = true;
+  let lastIndex = -1;
+  for (const word of searchWords) {
+    const index = normalizedTitle.indexOf(word, lastIndex + 1);
+    if (index === -1) {
+      allWordsInOrder = false;
+      break;
+    }
+    lastIndex = index;
+  }
+  if (allWordsInOrder && searchWords.length >= 2) {
+    score += 90000; // Very high for ordered word matches like "VEO 3 Prompt"
+  }
+  
+  // Number/spacing variation handling (VEO3 vs VEO 3)
+  if (titleNoSpaces.includes(searchNoSpaces) && searchNoSpaces.length > 3) {
+    score += 80000;
+  }
+  
+  // All search words match title words exactly
+  const matchedWords = searchWords.filter(sw => 
+    titleWords.some(tw => tw === sw || tw.startsWith(sw))
+  );
+  if (matchedWords.length === searchWords.length && searchWords.length >= 2) {
+    score += 75000;
+  }
+  
   // Base partial match scoring
   score += scorePartialMatch(tool, searchTerm, suggestions);
   
@@ -269,9 +317,6 @@ export function superIntelligentScore(tool: Tool, searchTerm: string): number {
   
   // Typo correction bonus
   if (correctedTerm !== searchTerm.toLowerCase()) {
-    const lowerTitle = tool.title.toLowerCase();
-    const lowerDescription = tool.description.toLowerCase();
-    
     if (lowerTitle.includes(correctedTerm)) {
       score += 7000;
     }

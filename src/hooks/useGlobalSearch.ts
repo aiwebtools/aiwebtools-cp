@@ -57,11 +57,58 @@ export const useGlobalSearch = () => {
 
     const quickScore = (tool: any) => {
       const lt = tool.title.toLowerCase();
+      const ltNormalized = lt.replace(/\s+/g, ' ').trim(); // Normalize spaces
+      const qNormalized = q.replace(/\s+/g, ' ').trim();
+      
+      // Extract key words from search query
+      const queryWords = qNormalized.split(/\s+/).filter(w => w.length > 1);
+      const titleWords = ltNormalized.split(/\s+/);
+      
       let s = 0;
-      // EXACT title match prioritization (super strong boost)
-      if (lt === q) s += 100000; // Perfect exact match gets highest priority
-      if (lt.startsWith(q)) s += 80000;
-      if (lt.includes(q)) s += 30000;
+      
+      // PERFECT EXACT match prioritization (super strong boost)
+      if (ltNormalized === qNormalized) s += 100000;
+      
+      // Check if all query words appear in title in order (high relevance)
+      let allWordsInOrder = true;
+      let lastIndex = -1;
+      for (const word of queryWords) {
+        const index = ltNormalized.indexOf(word, lastIndex + 1);
+        if (index === -1) {
+          allWordsInOrder = false;
+          break;
+        }
+        lastIndex = index;
+      }
+      if (allWordsInOrder && queryWords.length >= 2) {
+        s += 90000; // Very high score for queries like "VEO 3 Prompt" matching "VEO3 TEXT TO VIDEO PROMPT GENERATOR"
+      }
+      
+      // Title starts with query
+      if (ltNormalized.startsWith(qNormalized)) s += 80000;
+      
+      // Check for number variations (e.g., "VEO 3" vs "VEO3")
+      const qNoSpaces = qNormalized.replace(/\s+/g, '');
+      const ltNoSpaces = ltNormalized.replace(/\s+/g, '');
+      if (ltNoSpaces.includes(qNoSpaces)) s += 75000;
+      
+      // All query words match title words (exact word matches)
+      const matchedWords = queryWords.filter(qw => 
+        titleWords.some(tw => tw === qw || tw.startsWith(qw))
+      );
+      if (matchedWords.length === queryWords.length && queryWords.length >= 2) {
+        s += 70000;
+      }
+      
+      // Title contains query
+      if (ltNormalized.includes(qNormalized)) s += 30000;
+      
+      // First word exact match bonus
+      if (queryWords.length > 0 && titleWords.length > 0) {
+        if (titleWords[0] === queryWords[0] || titleWords[0].startsWith(queryWords[0])) {
+          s += 15000;
+        }
+      }
 
       // token-based scoring for longer sentences
       for (const tok of tokens) {
@@ -157,8 +204,49 @@ export const useGlobalSearch = () => {
       const lc = (tool.category || "").toLowerCase();
       const lta = (tool.tags || []).join(" ").toLowerCase();
       
+      // Normalized versions for better matching
+      const ltNormalized = lt.replace(/\s+/g, ' ').trim();
+      const lowerTermNormalized = lowerTerm.replace(/\s+/g, ' ').trim();
+      const queryWords = lowerTermNormalized.split(/\s+/).filter(w => w.length > 1);
+      const titleWords = ltNormalized.split(/\s+/);
+      
       let score = 0;
-      if (lt === lowerTerm) score += 10000; // exact title
+      
+      // PERFECT exact title match
+      if (ltNormalized === lowerTermNormalized) score += 100000;
+      
+      // Check if all query words appear in title in order
+      let allWordsInOrder = true;
+      let lastIndex = -1;
+      for (const word of queryWords) {
+        const index = ltNormalized.indexOf(word, lastIndex + 1);
+        if (index === -1) {
+          allWordsInOrder = false;
+          break;
+        }
+        lastIndex = index;
+      }
+      if (allWordsInOrder && queryWords.length >= 2) {
+        score += 90000; // Very high for ordered word matches
+      }
+      
+      // Number variation matching (VEO 3 vs VEO3)
+      const lowerNoSpaces = lowerTermNormalized.replace(/\s+/g, '');
+      const ltNoSpaces = ltNormalized.replace(/\s+/g, '');
+      if (ltNoSpaces.includes(lowerNoSpaces) && lowerNoSpaces.length > 3) {
+        score += 75000;
+      }
+      
+      // All query words match title words
+      const matchedWords = queryWords.filter(qw => 
+        titleWords.some(tw => tw === qw || tw.startsWith(qw))
+      );
+      if (matchedWords.length === queryWords.length && queryWords.length >= 2) {
+        score += 70000;
+      }
+      
+      // Standard matching
+      if (lt === lowerTerm) score += 10000;
       if (lt.startsWith(lowerTerm)) score += 1400;
       if (lt.includes(lowerTerm)) score += 450;
       if (ld.includes(lowerTerm)) score += 180;
