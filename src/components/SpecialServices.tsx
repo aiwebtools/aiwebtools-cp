@@ -21,7 +21,7 @@ const featuredGPTs = [
     color: "from-amber-600 to-orange-600",
     features: ["Time Travel", "Historical Exploration", "Period Analysis", "Timeline Navigation"],
     directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
+    videoUrl: "https://youtu.be/PC_Q_IQqNd8?si=5pWwdZ-Hg-ty1Oxq",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298793409806528/time.webp",
     emoji: "⏰"
   },

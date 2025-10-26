@@ -100,7 +100,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
     emoji: "🏹",
     color: "from-orange-500 to-red-600",
     directUrl: "https://nativeamerican-timemachine.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=jVFTGCeuNSM",
+    videoUrl: "https://youtu.be/PC_Q_IQqNd8?si=5pWwdZ-Hg-ty1Oxq",
     tags: ["Native American history", "cultural education", "time travel simulation", "historical immersion", "cultural preservation"],
     category: "Specialized Niche Tools",
     rating: 4.8,
