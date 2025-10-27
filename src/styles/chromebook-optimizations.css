@@ -1,0 +1,70 @@
+/* Chromebook and Low-Power Device Optimizations */
+
+/* Reduce animations for better performance */
+.reduce-animations *,
+.chromebook-mode * {
+  animation-duration: 0.2s !important;
+  transition-duration: 0.2s !important;
+}
+
+/* Disable expensive transforms on Chromebooks */
+.chromebook-mode .group-hover\:scale-105,
+.chromebook-mode .hover\:scale-105 {
+  transform: none !important;
+}
+
+/* Simplify backdrop blur effects */
+.chromebook-mode .backdrop-blur-sm,
+.chromebook-mode .backdrop-blur-md,
+.chromebook-mode .backdrop-blur-lg {
+  backdrop-filter: none !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Optimize gradients to solid colors for better rendering */
+.chromebook-mode .bg-gradient-to-br,
+.chromebook-mode .bg-gradient-to-r,
+.chromebook-mode .bg-gradient-to-t {
+  background-image: none !important;
+}
+
+/* Reduce shadow complexity */
+.chromebook-mode .shadow-2xl,
+.chromebook-mode .shadow-xl {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Simplify hover effects */
+.chromebook-mode .group:hover {
+  transform: none !important;
+}
+
+/* Optimize video containers */
+.chromebook-mode iframe {
+  will-change: auto !important;
+  transform: translateZ(0);
+}
+
+/* Disable parallax and complex animations */
+.chromebook-mode [data-parallax],
+.chromebook-mode .animate-pulse,
+.chromebook-mode .animate-bounce {
+  animation: none !important;
+}
+
+/* Force hardware acceleration where beneficial */
+.chromebook-mode .tool-card,
+.chromebook-mode .card {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize scrolling */
+.chromebook-mode {
+  scroll-behavior: auto;
+}
+
+.chromebook-mode * {
+  scroll-behavior: auto;
+}

@@ -21,18 +21,36 @@ export const usePerformanceOptimization = (config: PerformanceConfig = {}) => {
     throttleScrollEvents = isMobile ? 16 : 8
   } = config;
 
-  // Detect low-performance devices
+  // Enhanced device detection including Chromebooks
   useEffect(() => {
     const detectPerformance = () => {
+      const ua = navigator.userAgent.toLowerCase();
+      const platform = navigator.platform?.toLowerCase() || '';
+      
+      // Detect Chromebook
+      const isChromebook = ua.includes('cros') || 
+                          platform.includes('cros') ||
+                          ua.includes('chromebook');
+      
       const hardwareConcurrency = navigator.hardwareConcurrency || 4;
       const deviceMemory = (navigator as any).deviceMemory || 4;
       const connection = (navigator as any).connection;
       
+      // More aggressive detection for low-end devices, especially Chromebooks
       const isLowEnd = 
-        hardwareConcurrency <= 2 ||
-        deviceMemory <= 2 ||
+        isChromebook ||
+        hardwareConcurrency <= 4 ||
+        deviceMemory <= 4 ||
         (connection && connection.effectiveType && 
-         ['slow-2g', '2g', '3g'].includes(connection.effectiveType));
+         ['slow-2g', '2g', '3g', 'slow-3g'].includes(connection.effectiveType));
+      
+      if (isLowEnd) {
+        console.log('🔧 Low-performance device detected, applying optimizations', {
+          isChromebook,
+          hardwareConcurrency,
+          deviceMemory
+        });
+      }
       
       setIsLowPerformanceDevice(isLowEnd);
     };

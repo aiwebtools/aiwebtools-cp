@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { FavoritesProvider } from "@/hooks/useFavorites";
 import { useCrossBrowserOptimization } from "@/hooks/useCrossBrowserOptimization";
+import { useChromebookOptimization } from "@/hooks/useChromebookOptimization";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Index from "./pages/Index";
 import CategoryPage from "./pages/CategoryPage";
@@ -28,6 +29,9 @@ const queryClient = new QueryClient();
 function App() {
   // Initialize cross-browser optimizations
   useCrossBrowserOptimization();
+  
+  // Initialize Chromebook-specific optimizations
+  useChromebookOptimization();
 
   return (
     <ErrorBoundary>

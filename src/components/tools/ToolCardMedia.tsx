@@ -19,8 +19,14 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   // Debug logging removed to reduce console noise
   
   const getOptimizedEmbedUrl = (url: string) => {
-    // Optimized for smooth playback - using 720p for better buffering
-    const quality = 'hd720';
+    // Detect Chromebook or low-power device
+    const ua = navigator.userAgent.toLowerCase();
+    const isChromebook = ua.includes('cros') || ua.includes('chromebook');
+    const hardwareConcurrency = navigator.hardwareConcurrency || 4;
+    const isLowPower = isChromebook || hardwareConcurrency <= 4;
+    
+    // Use lower quality on Chromebooks for better performance
+    const quality = isLowPower ? 'medium' : 'hd720';
 
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1].split('&')[0];
@@ -32,7 +38,8 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
     }
     if (url.includes('vimeo.com/')) {
       const videoId = url.split('vimeo.com/')[1].split('?')[0];
-      return `https://player.vimeo.com/video/${videoId}?autoplay=0&quality=720p&volume=1&muted=0`;
+      const vimeoQuality = isLowPower ? '540p' : '720p';
+      return `https://player.vimeo.com/video/${videoId}?autoplay=0&quality=${vimeoQuality}&volume=1&muted=0`;
     }
     return url;
   };
