@@ -54,7 +54,6 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
             allowFullScreen
             className="w-full h-full rounded-lg"
             loading="lazy"
-            sandbox="allow-scripts allow-same-origin allow-presentation allow-forms"
             style={{ minHeight: '200px' }}
             onLoad={() => {
               console.log(`✅ Video loaded successfully: ${tool.title}`);

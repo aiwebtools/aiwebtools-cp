@@ -164,8 +164,8 @@ export const useGlobalSearch = () => {
         tool.title.toLowerCase().includes("builder"));
     }
 
-    const limited = fast.slice(0, 60);
-    setSearchResults(limited);
+    // Don't limit results - enable endless scrolling
+    setSearchResults(fast);
     setDisplayedCount(30);
     setIsOpen(true);
   }, [searchTerm, indexedTools]);
@@ -303,10 +303,10 @@ export const useGlobalSearch = () => {
 
     const ranked = scored.map(s => s.tool);
     const deduped = quickDeduplicateSearchResults ? quickDeduplicateSearchResults(ranked) : ranked;
-    const limited = deduped.slice(0, 300);
-
+    // Don't limit results - enable endless scrolling for all searches
+    
     if (trimmedTerm === searchTerm.trim()) {
-      setSearchResults(limited);
+      setSearchResults(deduped);
       setDisplayedCount(30);
       setIsOpen(true);
     }
@@ -364,29 +364,27 @@ export const useGlobalSearch = () => {
     }
   }, [searchTerm, searchResults, navigate]);
 
-  // FIXED scroll handler with proper endless loading and performance optimization
+  // ENHANCED scroll handler with proper endless loading and performance optimization
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
     // Performance optimization - throttle scroll events
     if (isLoadingMore) return;
     
-    // More responsive loading threshold for smooth endless scroll
-    const threshold = 100;
+    // More aggressive threshold for smoother endless scroll experience
+    const threshold = 150;
     const nearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
-    
-    // Removed console.log for performance
     
     if (nearBottom && displayedCount < searchResults.length) {
       setIsLoadingMore(true);
       
-      // Immediate loading with shorter delay for better UX
+      // Immediate loading with optimized batch size
       setTimeout(() => {
-        const increment = Math.min(25, searchResults.length - displayedCount); // Load more items per batch
-        // Removed console.log for performance
+        // Load larger batches for better UX (30 items at a time)
+        const increment = Math.min(30, searchResults.length - displayedCount);
         setDisplayedCount(prev => prev + increment);
         setIsLoadingMore(false);
-      }, 100); // Reduced delay for snappier response
+      }, 50); // Faster response time
     }
   }, [displayedCount, searchResults.length, isLoadingMore]);
 
