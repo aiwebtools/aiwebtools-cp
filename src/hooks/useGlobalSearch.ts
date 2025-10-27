@@ -11,7 +11,6 @@ import { deduplicateSearchResults, quickDeduplicateSearchResults } from "@/utils
 import { sortToolsAlphabetically, getAlphabeticalSortKey } from "@/utils/search/alphabeticalSorting";
 import { enhancedToolScoring } from "@/utils/search/enhancedKeywordMatching";
 import { matchToolByIntent } from "@/utils/search/core/intentBasedMatching";
-import { getSemanticTerms, calculateSemanticScore } from "@/utils/search/semanticKeywords";
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -45,31 +44,23 @@ export const useGlobalSearch = () => {
     }
     const q = t.toLowerCase();
     const tokens = q.split(/\s+/).filter(w => w.length >= 3);
-    
-    // Get semantic terms for broader matching
-    const semanticTerms = getSemanticTerms(q);
 
     let fast = indexedTools
       .filter(ix => {
-        // Match against original query or semantic terms
-        const matchesOriginal = tokens.length > 0
-          ? tokens.some(tok => ix.all.includes(tok))
-          : (ix.lt.includes(q) || ix.lc.includes(q) || ix.ld.includes(q) || ix.lta.includes(q));
-        
-        // Match against semantic terms
-        const matchesSemantic = semanticTerms.some(term => 
-          ix.all.includes(term)
-        );
-        
-        return matchesOriginal || matchesSemantic;
+        if (tokens.length > 0) {
+          // token-based match for long phrases
+          return tokens.some(tok => ix.all.includes(tok));
+        }
+        return ix.lt.includes(q) || ix.lc.includes(q) || ix.ld.includes(q) || ix.lta.includes(q);
       })
       .map(ix => ix.tool);
 
     const quickScore = (tool: any) => {
       const lt = tool.title.toLowerCase();
-      const ltNormalized = lt.replace(/\s+/g, ' ').trim();
+      const ltNormalized = lt.replace(/\s+/g, ' ').trim(); // Normalize spaces
       const qNormalized = q.replace(/\s+/g, ' ').trim();
       
+      // Extract key words from search query
       const queryWords = qNormalized.split(/\s+/).filter(w => w.length > 1);
       const titleWords = ltNormalized.split(/\s+/);
       
@@ -90,13 +81,13 @@ export const useGlobalSearch = () => {
         lastIndex = index;
       }
       if (allWordsInOrder && queryWords.length >= 2) {
-        s += 90000;
+        s += 90000; // Very high score for queries like "VEO 3 Prompt" matching "VEO3 TEXT TO VIDEO PROMPT GENERATOR"
       }
       
       // Title starts with query
       if (ltNormalized.startsWith(qNormalized)) s += 80000;
       
-      // Number variations (e.g., "VEO 3" vs "VEO3")
+      // Check for number variations (e.g., "VEO 3" vs "VEO3")
       const qNoSpaces = qNormalized.replace(/\s+/g, '');
       const ltNoSpaces = ltNormalized.replace(/\s+/g, '');
       if (ltNoSpaces.includes(qNoSpaces)) s += 75000;
@@ -121,13 +112,16 @@ export const useGlobalSearch = () => {
 
       // token-based scoring for longer sentences
       for (const tok of tokens) {
-        if (lt === tok) s += 50000;
+        if (lt === tok) s += 50000; // Exact token match in title
         if (lt.startsWith(tok)) s += 6000;
         if (lt.includes(tok)) s += 2400;
       }
-      
-      // Add semantic scoring
-      s += calculateSemanticScore(tool, q, semanticTerms);
+
+      // Special rule: when user types MAKE, prefer "Make Automation Maker"
+      if ((q === "make" || tokens[0] === "make")) {
+        if (lt.startsWith("make ")) s += 3500;
+        if (lt.includes("make automation")) s += 6000;
+      }
 
       return s;
     };
@@ -184,20 +178,13 @@ export const useGlobalSearch = () => {
 
     const lowerTerm = trimmedTerm.toLowerCase();
     const tokens = lowerTerm.split(/\s+/).filter(w => w.length >= 3);
-    
-    // Get semantic terms for broader matching
-    const semanticTerms = getSemanticTerms(lowerTerm);
 
-    // Pre-filter to reduce workload - include semantic matches
-    const candidates = indexedTools.filter(ix => {
-      const matchesOriginal = tokens.length 
-        ? tokens.some(tok => ix.all.includes(tok))
-        : (ix.lt.includes(lowerTerm) || ix.ld.includes(lowerTerm) || ix.lc.includes(lowerTerm) || ix.lta.includes(lowerTerm));
-      
-      const matchesSemantic = semanticTerms.some(term => ix.all.includes(term));
-      
-      return matchesOriginal || matchesSemantic;
-    });
+    // Pre-filter to reduce workload
+    const candidates = indexedTools.filter(ix =>
+      (tokens.length ? tokens.some(tok => ix.all.includes(tok)) : (
+        ix.lt.includes(lowerTerm) || ix.ld.includes(lowerTerm) || ix.lc.includes(lowerTerm) || ix.lta.includes(lowerTerm)
+      ))
+    );
 
     // If few candidates, broaden via existing intelligent search
     let fallbackResults: any[] = [];
@@ -272,9 +259,6 @@ export const useGlobalSearch = () => {
         if (lt.startsWith(tok)) score += 700;
         if (lt.includes(tok)) score += 260;
       }
-      
-      // Add semantic scoring for related terms
-      score += calculateSemanticScore(tool, lowerTerm, semanticTerms);
 
       // Manual boosters for key intents to guarantee top picks
       if (/write.*book|book.*write|\bbook\b/i.test(trimmedTerm)) {
