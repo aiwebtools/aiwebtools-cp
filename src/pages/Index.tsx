@@ -17,6 +17,7 @@ import LazyFeaturedTools from "@/components/LazyFeaturedTools";
 import LazySearchPortal from "@/components/LazySearchPortal";
 import InteractiveMatrixBackground from "@/components/InteractiveMatrixBackground";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import { getShuffledVideoPlaylist, createPlaylistEmbedUrl } from "@/utils/videoPlaylist";
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-[200px]">
@@ -30,8 +31,19 @@ const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [videoStarted, setVideoStarted] = useState(false);
   
+  // Video playlist state
+  const [videoPlaylist, setVideoPlaylist] = useState<string[]>([]);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  
   // Simple ref for video without complex manager to avoid conflicts
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    // Initialize video playlist on mount
+    const playlist = getShuffledVideoPlaylist();
+    setVideoPlaylist(playlist);
+    console.log(`🎬 Initialized video playlist with ${playlist.length} videos`);
+  }, []);
 
   useEffect(() => {
     // Set loaded state immediately for faster initial render
@@ -40,7 +52,7 @@ const Index = () => {
     // Check if video has already played on first visit
     const hasVideoPlayed = localStorage.getItem('heroVideoPlayed');
     
-    // Only autoplay on first visit
+    // Only autoplay and unmute on first visit
     if (!hasVideoPlayed && !videoStarted) {
       const startVideoUnmute = () => {
         const iframe = mainVideoRef.current;
@@ -124,6 +136,40 @@ const Index = () => {
     };
   }, [videoStarted]);
 
+  // Listen for YouTube player events to auto-advance videos
+  useEffect(() => {
+    if (videoPlaylist.length === 0) return;
+
+    const handleMessage = (event: MessageEvent) => {
+      // Listen for YouTube IFrame API messages
+      if (event.origin !== 'https://www.youtube.com') return;
+      
+      try {
+        const data = JSON.parse(event.data);
+        
+        // Video ended (state 0)
+        if (data.event === 'onStateChange' && data.info === 0) {
+          console.log(`🎬 Video ${currentVideoIndex + 1}/${videoPlaylist.length} ended, advancing to next...`);
+          
+          // Move to next video in playlist
+          setCurrentVideoIndex((prevIndex) => {
+            const nextIndex = (prevIndex + 1) % videoPlaylist.length;
+            console.log(`🎬 Now playing video ${nextIndex + 1}/${videoPlaylist.length}`);
+            return nextIndex;
+          });
+        }
+      } catch (e) {
+        // Ignore parsing errors
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, [videoPlaylist, currentVideoIndex]);
+
   const handleSeeMoreAITools = () => {
     // This function can be removed since FeaturedToolsSection handles it
   };
@@ -171,14 +217,15 @@ const Index = () => {
               <div className="relative w-full aspect-video">
                 <iframe
                   ref={mainVideoRef}
+                  key={`video-${currentVideoIndex}`}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
-                  title="AI Web Tools Featured Video - 1080p HD"
+                  src={createPlaylistEmbedUrl(videoPlaylist, currentVideoIndex)}
+                  title={`AI Web Tools Featured Video ${currentVideoIndex + 1}/${videoPlaylist.length} - 1080p HD`}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
                   loading="eager"
-                  onLoad={() => console.log('🎥 Video iframe loaded and ready')}
+                  onLoad={() => console.log(`🎥 Video ${currentVideoIndex + 1}/${videoPlaylist.length} iframe loaded and ready`)}
                 ></iframe>
               </div>
             </div>
