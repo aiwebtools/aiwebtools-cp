@@ -73,7 +73,7 @@ export const emergencyServices: Tool[] = [
     emoji: "🤝",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
+    videoUrl: "https://youtu.be/KMvrXcK46xw",
     tags: ["social services", "welfare programs", "community resources", "social assistance", "support systems"],
     category: "Emergency Services",
     rating: 4.4,

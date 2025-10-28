@@ -77,7 +77,7 @@ export const legalAndGovernmentGPTs: Tool[] = [
     emoji: "🤝",
     color: "from-green-500 to-blue-600",
     directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
+    videoUrl: "https://youtu.be/KMvrXcK46xw",
     tags: ["social services", "government assistance", "public welfare", "social support", "community aid"],
     category: "Legal & Government",
     rating: 4.7,
