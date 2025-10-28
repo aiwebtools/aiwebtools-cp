@@ -380,7 +380,7 @@ export const aiAgents: Tool[] = [
     description: "Advanced AI web agent by Perplexity that autonomously browses the internet, conducts research, and performs complex web-based tasks with intelligent reasoning and real-time information gathering capabilities.",
     emoji: "☄️",
     color: "from-blue-500 to-cyan-600",
-    directUrl: "https://www.perplexity.ai/comet",
+    directUrl: "https://pplx.ai/kgmasterbic1853",
     tags: ["web agent", "internet browsing", "research", "real-time information", "autonomous", "perplexity", "web automation"],
     category: "AI Agents",
     rating: 4.7,
