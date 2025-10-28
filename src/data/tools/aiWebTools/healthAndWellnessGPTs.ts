@@ -264,6 +264,18 @@ export const healthAndWellnessGPTs: Tool[] = [
     directUrl: "https://chatgpt.com/g/g-68f046753bc481918943c245fb913ff8-tim-the-parenting-guide?via=aiwebtools",
     tags: ["parenting advice", "child development", "family support", "parenting strategies", "emotional intelligence", "child psychology", "family wellness", "aiwebtools"],
     category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.7,
+    totalVotes: 2134
+  },
+  {
+    icon: Brain,
+    title: "TBI Recovery Companion GPT",
+    description: "TBI Recovery Companion GPT is a specialized AI assistant providing compassionate support and guidance for traumatic brain injury recovery. This tool offers evidence-based recovery strategies, cognitive rehabilitation exercises, emotional support, and practical advice for navigating the challenges of TBI recovery. Whether you're a TBI survivor, caregiver, or healthcare professional, this GPT provides personalized guidance on recovery milestones, symptom management, cognitive exercises, and wellness strategies to support the healing journey. Features include recovery tracking, rehabilitation exercise recommendations, symptom management tips, emotional support, and caregiver guidance.",
+    emoji: "🧠",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-68fc552d42cc81919858bcdc90eb729b-tbi-recovery-companion",
+    tags: ["traumatic brain injury", "TBI recovery", "cognitive rehabilitation", "brain injury support", "recovery companion", "healthcare", "rehabilitation", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
     rating: 4.9,
     totalVotes: 3456
   },

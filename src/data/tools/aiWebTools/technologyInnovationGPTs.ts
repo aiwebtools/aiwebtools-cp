@@ -67,5 +67,17 @@ export const technologyInnovationGPTs: Tool[] = [
     category: "Technology & Innovation",
     rating: 4.5,
     totalVotes: 3456
+  },
+  {
+    icon: Cpu,
+    title: "CipherEncrypt GPT",
+    description: "CipherEncrypt GPT by AiWebTools.Ai is a sophisticated AI-powered encryption and translation engine that converts between multiple formats with perfect fidelity. This advanced tool seamlessly translates between natural language, Morse code, binary, audio signals, and image data, maintaining complete accuracy throughout the conversion process. Whether you're encrypting sensitive information, decoding mysterious messages, converting data between formats, or exploring cryptography, this GPT provides professional-grade encryption and translation capabilities. Features include multi-format conversion, encryption/decryption tools, Morse code translation, binary encoding/decoding, audio-to-text conversion, and image-based data encoding. Perfect for security professionals, cryptography enthusiasts, data analysts, and anyone working with secure communications and data format conversions.",
+    emoji: "🔐",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-68fc6039822c8191a13c8ab8a66270ef-cipherencrypt-gpt",
+    tags: ["encryption", "cryptography", "morse code", "binary", "translation", "data conversion", "security", "encoding", "aiwebtools"],
+    category: "Technology & Innovation",
+    rating: 4.6,
+    totalVotes: 2134
   }
 ];

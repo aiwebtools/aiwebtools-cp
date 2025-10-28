@@ -222,5 +222,17 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     category: "Mysterious & Unusual",
     rating: 4.7,
     totalVotes: 823
+  },
+  {
+    icon: Stars,
+    title: "The Cosmic Probability GPT",
+    description: "The Cosmic Probability GPT by AiWebTools.Ai is an advanced AI tool that calculates cosmic and personal existence probabilities, then translates complex numbers into meaningful insights. Using the creator's recommended model GPT-4o, this sophisticated tool analyzes the mathematical probabilities of cosmic events, personal existence patterns, and universal phenomena, transforming abstract calculations into comprehensible meaning. Whether you're exploring the likelihood of cosmic events, understanding the probability of your existence, or seeking to decode the statistical nature of reality itself, this GPT provides deep mathematical analysis combined with philosophical interpretation. Perfect for philosophers exploring existence, scientists analyzing cosmic probabilities, and anyone curious about the mathematical nature of reality and their place in the universe.",
+    emoji: "🌌",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-68fb8e9c98188191961129f8c4d120b7-the-cosmic-probability-gpt",
+    tags: ["cosmic probability", "existence analysis", "probability calculation", "universe", "mathematics", "philosophy", "reality decoding", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.8,
+    totalVotes: 1567
   }
 ];
