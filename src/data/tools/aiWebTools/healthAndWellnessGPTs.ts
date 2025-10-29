@@ -314,5 +314,29 @@ export const healthAndWellnessGPTs: Tool[] = [
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 1234
+  },
+  {
+    icon: Brain,
+    title: "EMDR Therapy Assistant GPT",
+    description: "EMDR Therapy Assistant GPT provides comprehensive guidance and support for Eye Movement Desensitization and Reprocessing (EMDR) therapy techniques. This specialized AI assists with EMDR protocols, bilateral stimulation guidance, trauma processing support, and therapeutic exercises. Designed to support mental health professionals and individuals learning about EMDR therapy methods. Disclaimer: This tool is for educational purposes and should not replace professional mental health treatment.",
+    emoji: "🧠",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-oM5YeBpRq-emdr-therapy-assistant-with-full-capabilities/?via=aiwebtools",
+    tags: ["emdr therapy", "mental health", "trauma therapy", "psychological treatment", "therapeutic support", "bilateral stimulation", "mental wellness", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.8,
+    totalVotes: 2456
+  },
+  {
+    icon: Sparkles,
+    title: "Fruit Nutrition Guide GPT",
+    description: "Delivers comprehensive fruit nutrition and health-based suggestions. This expert AI provides detailed nutritional information about fruits, health benefits, vitamin content, dietary recommendations, and fruit selection guidance for optimal wellness and nutrition.",
+    emoji: "🍎",
+    color: "from-green-500 to-yellow-600",
+    directUrl: "https://chatgpt.com/g/g-683dda93599481919fc3736a1c8ebc89-fruit-nutrition-guide-gpt/?via=aiwebtools",
+    tags: ["fruit nutrition", "healthy eating", "nutrition guide", "vitamins", "diet", "wellness", "food health", "nutritional information", "aiwebtools"],
+    category: "Health, Wellness & Personal Lifestyle",
+    rating: 4.6,
+    totalVotes: 1765
   }
 ];

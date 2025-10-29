@@ -186,7 +186,7 @@ const featuredGPTs = [
     color: "from-green-600 to-blue-600",
     features: ["Social Support", "Resource Access", "Community Aid", "Safety Net"],
     directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
+    videoUrl: "https://youtu.be/KMvrXcK46xw",
     imageUrl: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=200&fit=crop",
     emoji: "🤝"
   },
@@ -661,6 +661,7 @@ const featuredGPTs = [
 ];
 
 const getVideoId = (url: string) => {
+  if (!url) return null;
   const patterns = [
     /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/,
     /youtube\.com\/shorts\/([^&\n?#/]+)/,
@@ -668,9 +669,18 @@ const getVideoId = (url: string) => {
   ];
   for (const p of patterns) {
     const match = url.match(p);
-    if (match) return match[1];
+    if (match) return match[1].split('?')[0]; // Remove any trailing parameters
   }
   return null;
+};
+
+const getOptimizedEmbedUrl = (videoUrl: string) => {
+  const videoId = getVideoId(videoUrl);
+  if (!videoId) return null;
+  
+  // Use standard YouTube embed with proper parameters to avoid error 153
+  // These parameters ensure maximum compatibility and avoid embedding restrictions
+  return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&fs=1&iv_load_policy=3&controls=1`;
 };
 
 const handleAccessTool = (directUrl: string, toolName: string) => {
@@ -798,16 +808,15 @@ const OurFeaturedSection = () => {
 
                 {/* Media Section - Video or Image */}
                 <div className="mb-4">
-                  {tool.videoUrl && getVideoId(tool.videoUrl) ? (
-                    <div className="relative w-full h-32 rounded-lg overflow-hidden">
+                  {tool.videoUrl && getOptimizedEmbedUrl(tool.videoUrl) ? (
+                    <div className="relative w-full h-32 rounded-lg overflow-hidden bg-slate-800">
                       <iframe
-                        src={`https://www.youtube-nocookie.com/embed/${getVideoId(tool.videoUrl)}`}
+                        src={getOptimizedEmbedUrl(tool.videoUrl)!}
                         title={`${tool.title} Demo`}
                         className="absolute inset-0 w-full h-full"
                         frameBorder="0"
                         loading="lazy"
-                        referrerPolicy="no-referrer"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
                       />
                     </div>

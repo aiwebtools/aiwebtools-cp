@@ -202,5 +202,41 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 1876
+  },
+  {
+    icon: BookOpen,
+    title: "Religious Studies GPT",
+    description: "This assists in studying different religions and offers a first person interactive learning perspective for educational and exploratory purposes only. Explore the rich diversity of world religions through immersive study and comparative analysis.",
+    emoji: "📿",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-6901478f2bf88191b49298a508bbd486-religious-studies-gpt/?via=aiwebtools",
+    tags: ["religion", "religious studies", "comparative religion", "world religions", "education", "spiritual learning", "theology", "religious education", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.7,
+    totalVotes: 1523
+  },
+  {
+    icon: Star,
+    title: "Stellar Origins GPT",
+    description: "A sacred celestial oracle for exploring starseed origins, soul contracts, and cosmic archetypes. Dive deep into the mysteries of your cosmic heritage and spiritual origins with this specialized guidance system.",
+    emoji: "⭐",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-6876d3b63b108191948709afa101d5af-stellar-origins-gpt/?via=aiwebtools",
+    tags: ["starseed", "cosmic origins", "soul contracts", "spiritual guidance", "celestial wisdom", "cosmic archetypes", "spiritual awakening", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.8,
+    totalVotes: 1876
+  },
+  {
+    icon: Brain,
+    title: "Free Thought Liberator GPT",
+    description: "Engages users in critical thinking, exploring diverse perspectives. This AI tool encourages open dialogue, challenges assumptions, and helps users develop independent thinking skills through Socratic questioning and philosophical exploration.",
+    emoji: "🧠",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-n7yvUUmoT-free-thought-liberator/?via=aiwebtools",
+    tags: ["critical thinking", "philosophy", "free thought", "intellectual exploration", "socratic method", "independent thinking", "reasoning", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.6,
+    totalVotes: 1432
   }
 ];

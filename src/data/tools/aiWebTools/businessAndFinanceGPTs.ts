@@ -383,5 +383,17 @@ export const businessAndFinanceGPTs: Tool[] = [
     category: "Business & Finance",
     rating: 4.7,
     totalVotes: 2087
+  },
+  {
+    icon: BarChart3,
+    title: "Competitive Price Analysis Assistant GPT",
+    description: "Assists with competitor pricing analysis and data retrieval. This powerful AI tool helps businesses analyze market prices, track competitor pricing strategies, perform comparative pricing research, and develop competitive pricing models to optimize business strategy and maximize profitability.",
+    emoji: "📊",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-RX28YIt32-competitive-price-analysis-assistant/?via=aiwebtools",
+    tags: ["price analysis", "competitor analysis", "market research", "pricing strategy", "business intelligence", "competitive analysis", "data analysis", "aiwebtools"],
+    category: "Business & Finance",
+    rating: 4.6,
+    totalVotes: 1876
   }
 ];

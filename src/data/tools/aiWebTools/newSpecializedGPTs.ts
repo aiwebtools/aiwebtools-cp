@@ -454,5 +454,17 @@ export const newSpecializedGPTs: Tool[] = [
     tags: ["aether", "energy theories", "alternative science", "physics speculation", "ether theory", "electromagnetic", "fringe science", "aiwebtools"],
     rating: 4.5,
     totalVotes: 987
+  },
+  {
+    icon: FileText,
+    title: "I-convert Image to Code GPT",
+    description: "Transforms design images into web development code, with user-guided specifications. This powerful AI tool analyzes design mockups, screenshots, and visual layouts to generate clean, production-ready HTML, CSS, and JavaScript code. Perfect for developers, designers, and anyone looking to convert visual designs into functional web code quickly and accurately.",
+    emoji: "🖼️",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-30Z7JKMBW-i-convert-image-to-code-gpt/?via=aiwebtools",
+    tags: ["image to code", "web development", "code generation", "design conversion", "html css", "frontend development", "visual coding", "aiwebtools"],
+    category: "Development & Coding",
+    rating: 4.7,
+    totalVotes: 2345
   }
 ];

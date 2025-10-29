@@ -181,5 +181,53 @@ export const professionalServicesGPTs: Tool[] = [
     category: "Professional Services",
     rating: 4.6,
     totalVotes: 2234
+  },
+  {
+    icon: MapPin,
+    title: "Trail Mapper GPT",
+    description: "Expert trail and survival route planner using compass-based navigation and off-road mapping. Using GPT-5 Thinking model for advanced route optimization and terrain analysis.",
+    emoji: "🧭",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://chatgpt.com/g/g-68f85a4844648191ac4c82f9e1d2b3b0-trail-mapper-gpt/?via=aiwebtools",
+    tags: ["trail mapping", "navigation", "survival", "outdoor recreation", "hiking", "compass navigation", "route planning", "off-road", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.7,
+    totalVotes: 1654
+  },
+  {
+    icon: Hammer,
+    title: "Construction GPT",
+    description: "Comprehensive assistant for construction planning, safety, training, and compliance. Expert guidance for construction professionals covering all aspects of building projects from planning to completion.",
+    emoji: "🏗️",
+    color: "from-orange-500 to-yellow-600",
+    directUrl: "https://chatgpt.com/g/g-Hmgy6x48R-construction-gpt/?via=aiwebtools",
+    tags: ["construction", "building", "safety", "compliance", "project management", "construction planning", "training", "professional services", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.8,
+    totalVotes: 2187
+  },
+  {
+    icon: Wrench,
+    title: "MR. FIX IT (FIX ANYTHING) GPT",
+    description: "Your go-to AI for fixing everything, with a Pennsylvania twang. Expert troubleshooting and repair guidance for household items, appliances, vehicles, and more with friendly, practical advice.",
+    emoji: "🔧",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-oK2iR2dPf-mr-fix-it-gpt/?via=aiwebtools",
+    tags: ["repair", "troubleshooting", "fix it", "diy", "maintenance", "home repair", "appliances", "professional services", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.6,
+    totalVotes: 1876
+  },
+  {
+    icon: Camera,
+    title: "Kitchen and Vision Assistant GPT",
+    description: "Polite, engaging assistant for kitchen and vision needs. This multimodal AI helps with cooking guidance, recipe assistance, and visual analysis of food and kitchen-related images.",
+    emoji: "👨‍🍳",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-2ENWV8WeM-kitchen-and-vision-assistant-gpt/?via=aiwebtools",
+    tags: ["cooking", "kitchen assistant", "recipe help", "food", "culinary", "vision ai", "cooking guidance", "professional services", "aiwebtools"],
+    category: "Professional Services",
+    rating: 4.5,
+    totalVotes: 1543
   }
 ];

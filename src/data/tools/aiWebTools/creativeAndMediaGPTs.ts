@@ -311,5 +311,17 @@ export const creativeAndMediaGPTs: Tool[] = [
     category: "Creative & Media",
     rating: 4.6,
     totalVotes: 2134
+  },
+  {
+    icon: Film,
+    title: "Playwright GPT",
+    description: "I create and write entire theatrical plays ready for production. This AI specializes in dramatic writing, character development, dialogue creation, stage directions, and theatrical storytelling. Perfect for playwrights, theater directors, and anyone interested in creating compelling stage productions from concept to final script.",
+    emoji: "🎭",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://chatgpt.com/g/g-dFFSqWRTs-playwright-gpt/?via=aiwebtools",
+    tags: ["playwright", "theater", "play writing", "dramatic writing", "theatrical production", "stage plays", "scriptwriting", "drama", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.7,
+    totalVotes: 1987
   }
 ];
