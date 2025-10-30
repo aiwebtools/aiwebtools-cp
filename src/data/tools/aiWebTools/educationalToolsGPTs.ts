@@ -10,7 +10,7 @@ export const educationalToolsGPTs: Tool[] = [
     emoji: "🎓",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
+    videoUrl: "https://youtu.be/0_oIzDL2BB4",
     tags: ["online learning", "course creation", "education", "skill development", "self-learning"],
     category: "Educational Tools",
     rating: 4.8,

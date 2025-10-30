@@ -101,7 +101,7 @@ export const professionalServicesGPTs: Tool[] = [
     emoji: "🐾",
     color: "from-green-500 to-blue-600",
     directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=ElAfvB0yLEI",
+    videoUrl: "https://youtu.be/jwjNOKP5mf4",
     tags: ["veterinary", "pet care", "animal health", "pet advice", "professional services", "aiwebtools"],
     category: "Professional Services",
     rating: 4.7,

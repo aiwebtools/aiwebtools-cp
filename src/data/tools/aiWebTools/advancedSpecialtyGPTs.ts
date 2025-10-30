@@ -62,7 +62,7 @@ export const advancedSpecialtyGPTs: Tool[] = [
     emoji: "👁️",
     color: "from-green-500 to-black",
     directUrl: "https://neomatrixgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=BkPCpeu_nSs",
+    videoUrl: "https://youtu.be/qMLF5L_h2xo",
     tags: ["matrix simulation", "philosophy", "reality exploration", "entertainment", "simulation theory"],
     category: "Advanced Specialty",
     rating: 4.7,

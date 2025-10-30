@@ -49,7 +49,7 @@ export const platformsAndDevelopment: Tool[] = [
     emoji: "👨‍⚕️",
     color: "from-green-500 to-blue-600",
     directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=EKKIttUG0sI",
+    videoUrl: "https://youtu.be/jwjNOKP5mf4",
     category: "Healthcare AI",
     tags: ["medical AI", "health advice", "diagnosis", "healthcare"],
     rating: 4.7,

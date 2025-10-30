@@ -13,6 +13,7 @@ export const businessProductivityAudio: Tool[] = [
     emoji: "🌿",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://linktr.ee/ctcannabisalliance/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=zGGdCzxFNS4",
     tags: ["cannabis", "industry tools", "specialized GPTs", "cultivation", "compliance", "business operations", "agriculture", "hemp", "cannabis tech", "industry solutions"],
     category: "Industry-Specific Solutions",
     rating: 4.6,

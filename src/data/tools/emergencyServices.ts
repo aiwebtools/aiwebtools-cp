@@ -47,7 +47,7 @@ export const emergencyServices: Tool[] = [
     emoji: "🐾",
     color: "from-blue-500 to-green-600",
     directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=ElAfvB0yLEI",
+    videoUrl: "https://youtu.be/jwjNOKP5mf4",
     tags: ["veterinary care", "pet health", "animal medicine", "emergency care", "pet wellness"],
     category: "Emergency Services",
     rating: 4.6,

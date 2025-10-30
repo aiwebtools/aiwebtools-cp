@@ -40,7 +40,7 @@ export const learningAndEducation: Tool[] = [
     emoji: "📚",
     color: "from-green-500 to-blue-600",
     directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
+    videoUrl: "https://youtu.be/0_oIzDL2BB4",
     tags: ["course learning", "personalized education", "study materials", "adaptive learning", "skill development"],
     category: "Learning & Education",
     rating: 4.7,

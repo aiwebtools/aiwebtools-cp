@@ -178,6 +178,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🏛️",
     color: "from-green-600 to-emerald-700",
     directUrl: "https://neomatrixgpt.lovable.app/architect",
+    videoUrl: "https://youtu.be/qMLF5L_h2xo",
     tags: ["quantum physics", "quantum holography", "matrix", "architect", "philosophy", "consciousness", "reality", "awakening"],
     category: "Mysterious & Unusual",
     rating: 4.9,
