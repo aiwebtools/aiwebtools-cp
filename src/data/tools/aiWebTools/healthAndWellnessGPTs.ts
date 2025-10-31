@@ -238,7 +238,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "🧖",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-3WgfLujuW-branford-river-resort-and-spa-gpt/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/shorts/sXlTExpz5tk",
+    videoUrl: "https://vimeo.com/1131951831?share=copy&fl=sv&fe=ci",
     tags: ["spa", "wellness", "local business", "spa services", "branford", "connecticut", "spa management", "customer service", "aiwebtools"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
