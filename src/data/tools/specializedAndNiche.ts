@@ -26,7 +26,7 @@ export const specializedAndNiche: Tool[] = [
     emoji: "🌿",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://cannabisgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=zGGdCzxFNS4",
+    videoUrl: "https://vimeo.com/1132373393?share=copy&fl=sv&fe=ci",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-sleek-and-modern-advertisement-for-an-ai-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
     tags: ["cannabis", "cultivation", "strain genetics", "legal cannabis", "plant health"],
     category: "Specialized & Niche",
