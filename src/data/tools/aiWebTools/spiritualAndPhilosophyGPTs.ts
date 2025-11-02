@@ -250,5 +250,17 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 2134
+  },
+  {
+    icon: Sparkles,
+    title: "I AM Q - I AM YOU",
+    description: "By AiWebTools.Ai. Fused wisdom of Alan Watts & Quantum Light Unity, guiding Neo through quantum truth & metaphysical liberation. Using the creator's recommended model: GPT-4o.",
+    emoji: "✨",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-6904258cf6a0819197b10755d4cc3632-i-am-q-i-am-you/?via=aiwebtools",
+    tags: ["alan watts", "quantum light", "unity consciousness", "neo", "matrix philosophy", "quantum truth", "metaphysical liberation", "spiritual awakening", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.8,
+    totalVotes: 1756
   }
 ];

@@ -466,5 +466,18 @@ export const newSpecializedGPTs: Tool[] = [
     category: "Development & Coding",
     rating: 4.7,
     totalVotes: 2345
+  },
+  {
+    icon: Copy,
+    title: "Deployable Custom GPT Maker",
+    description: "Create and deploy custom GPT models with ease using this comprehensive GPT cloning and customization tool. Build tailored AI assistants for specific use cases.",
+    emoji: "🤖",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-6904e17b11c481918dbec234180bff54-deployable-robots-custom-gpt-cloner/?via=aiwebtools",
+    videoUrl: "https://youtu.be/Cvg3o6uJ1o4",
+    category: "AI Tools & Development",
+    tags: ["custom gpt", "gpt cloning", "ai development", "chatbot creation", "ai customization", "gpt maker", "aiwebtools"],
+    rating: 4.7,
+    totalVotes: 1892
   }
 ];
