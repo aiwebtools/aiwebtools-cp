@@ -2,6 +2,7 @@
 import { Helmet } from 'react-helmet-async';
 import { Tool } from '@/types/tools';
 import { enhancedSchemaMarkup, generateCompetitiveContent } from '@/utils/advancedCompetitiveSEO';
+import { enhancedFAQs, socialMediaSEO } from '@/utils/additionalSEO';
 
 interface CompetitiveSEOHeadProps {
   tool?: Tool;
@@ -23,7 +24,11 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         <meta name="description" content="🏆 #1 AI Tools Directory with 1000+ verified tools. Better than Toolify, Futurepedia & competitors. Expert reviews, ratings & guides. Trusted by 100K+ professionals. Find ChatGPT alternatives & top AI tools 2025." />
         
         {/* Competitive keyword targeting */}
-        <meta name="keywords" content="AI WEB TOOLS, best AI tools directory 2025, better than toolify, comprehensive AI tools, verified AI directory, top AI tools ranking, ChatGPT alternatives, professional AI tools, ai tools marketplace, curated AI collection, enterprise AI solutions, AI tools comparison, trusted AI platform, complete AI database, AI tools for business, AI directory leader" />
+        <meta name="keywords" content="AI WEB TOOLS, best AI tools directory 2025, better than toolify, comprehensive AI tools, verified AI directory, top AI tools ranking, ChatGPT alternatives, professional AI tools, ai tools marketplace, curated AI collection, enterprise AI solutions, AI tools comparison, trusted AI platform, complete AI database, AI tools for business, AI directory leader, what is the best ai tool for, how to use ai tools, which ai tool is better, where to find ai tools" />
+        <link rel="canonical" href="https://aitools.studio" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="revisit-after" content="1 days" />
+        <meta name="author" content="AI WEB TOOLS LLC" />
         
         {/* Advanced competitive meta */}
         <meta name="subject" content="World's Most Comprehensive AI Tools Directory - Better Than Any Competitor" />
@@ -37,6 +42,30 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         <meta name="expertise" content="Expert-Curated AI Tools Directory" />
         <meta name="trustworthiness" content="Verified and Trusted by 100K+ Users" />
         <meta name="uniqueness" content="Most Comprehensive AI Directory Available" />
+        
+        {/* Enhanced Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://aitools.studio" />
+        <meta property="og:site_name" content="AI WEB TOOLS" />
+        <meta property="og:title" content="AI WEB TOOLS - #1 AI Tools Directory | Better Than Toolify" />
+        <meta property="og:description" content="Discover 1000+ verified AI tools with expert reviews. The most comprehensive AI directory - better than Toolify & Futurepedia." />
+        <meta property="og:image" content="https://aitools.studio/og-image-homepage.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="AI WEB TOOLS - Best AI Tools Directory 2025" />
+        
+        {/* Enhanced Twitter Cards */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@AIWebTools" />
+        <meta name="twitter:creator" content="@AIWebTools" />
+        <meta name="twitter:title" content="AI WEB TOOLS - #1 AI Tools Directory 2025" />
+        <meta name="twitter:description" content="1000+ verified AI tools with expert reviews and ratings" />
+        <meta name="twitter:image" content="https://aitools.studio/og-image-homepage.jpg" />
+        
+        {/* Mobile optimization */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         
         {/* Enhanced structured data for homepage */}
         <script type="application/ld+json">
@@ -73,6 +102,22 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
             ]
           })}
         </script>
+        
+        {/* Enhanced FAQ Schema for Featured Snippets */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": enhancedFAQs.map(faq => ({
+              "@type": "Question",
+              "name": faq.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+              }
+            }))
+          })}
+        </script>
       </Helmet>
     );
   }
@@ -89,11 +134,27 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         
         {/* Enhanced tool-specific keywords */}
         <meta name="keywords" content={`${tool.title}, ${tool.category}, AI tool review, best AI tools 2025, ${tool.tags?.join(', ') || ''}, AI WEB TOOLS directory, expert analysis, tool comparison, user reviews, professional AI tools`} />
+        <link rel="canonical" href={`https://aitools.studio/tool/${toolIndex}`} />
         
         {/* Tool authority indicators */}
         <meta name="expertise" content={`Expert review and analysis of ${tool.title}`} />
         <meta name="authoritative-source" content="AI WEB TOOLS - Trusted AI Directory" />
         <meta name="comprehensive-review" content={`Complete guide to ${tool.title} with features, pricing, and alternatives`} />
+        
+        {/* Enhanced Open Graph for tools */}
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://aitools.studio/tool/${toolIndex}`} />
+        <meta property="og:title" content={selectedTitle} />
+        <meta property="og:description" content={selectedDescription} />
+        <meta property="og:image" content={`https://aitools.studio/og-image-${tool.title.replace(/\s+/g, '-').toLowerCase()}.jpg`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        
+        {/* Twitter Cards for tools */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={selectedTitle} />
+        <meta name="twitter:description" content={selectedDescription} />
+        <meta name="twitter:image" content={`https://aitools.studio/og-image-${tool.title.replace(/\s+/g, '-').toLowerCase()}.jpg`} />
         
         {/* Enhanced structured data for tools */}
         <script type="application/ld+json">
@@ -136,6 +197,13 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         <title>{category} AI Tools - Best Directory 2025 | AI WEB TOOLS</title>
         <meta name="description" content={`Discover the best ${category.toLowerCase()} AI tools in our comprehensive directory. Expert reviews, ratings, and comparisons. Part of AI WEB TOOLS - the #1 AI directory trusted by professionals.`} />
         <meta name="keywords" content={`${category} AI tools, best ${category.toLowerCase()} AI, ${category.toLowerCase()} artificial intelligence, AI ${category.toLowerCase()} solutions, ${category.toLowerCase()} automation, AI WEB TOOLS directory`} />
+        <link rel="canonical" href={`https://aitools.studio/category/${encodeURIComponent(category)}`} />
+        
+        {/* Category Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://aitools.studio/category/${encodeURIComponent(category)}`} />
+        <meta property="og:title" content={`${category} AI Tools - Best Directory 2025`} />
+        <meta property="og:description" content={`Expert-curated ${category.toLowerCase()} AI tools with reviews and ratings`} />
       </Helmet>
     );
   }
