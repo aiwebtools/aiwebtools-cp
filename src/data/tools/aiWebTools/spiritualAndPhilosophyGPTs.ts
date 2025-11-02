@@ -269,7 +269,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     description: "Interactive spiritual awakening game inspired by Jeopardy. Test your knowledge of consciousness, quantum philosophy, and metaphysical wisdom through an engaging AI-powered chat game experience.",
     emoji: "🎮",
     color: "from-purple-500 to-pink-600",
-    directUrl: "https://chatgpt.com/g/g-690798b2da048191921ca36104ad5666-awakening-jeopardy-gpt/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6907af60440c8191bba8d514b749562a-awakening-jeopardy-gpt/?via=aiwebtools",
     tags: ["spiritual game", "jeopardy", "awakening", "consciousness quiz", "metaphysical game", "interactive learning", "spiritual education", "quiz game", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.7,
