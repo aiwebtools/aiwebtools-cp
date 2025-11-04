@@ -35,6 +35,17 @@ const DisclaimerPopup = () => {
     // Create the time portal effect without a destination URL
     createTimePortalEffect('');
     
+    // Play welcome audio
+    try {
+      const audio = new Audio('/welcome-neo.mp3');
+      audio.volume = 0.7;
+      audio.play().catch(error => {
+        console.log('Audio playback failed:', error);
+      });
+    } catch (error) {
+      console.log('Error playing audio:', error);
+    }
+    
     // Store acceptance and close dialog after a short delay to let the effect start
     setTimeout(() => {
       localStorage.setItem("disclaimerAccepted", "true");
