@@ -479,5 +479,17 @@ export const newSpecializedGPTs: Tool[] = [
     tags: ["custom gpt", "gpt cloning", "ai development", "chatbot creation", "ai customization", "gpt maker", "aiwebtools"],
     rating: 4.7,
     totalVotes: 1892
+  },
+  {
+    icon: Zap,
+    title: "HydroElectric Reclamation GPT",
+    description: "Hydro-electric instructor & design companion uniting technical mastery with natural reverence. By AiWebTools.Ai",
+    emoji: "⚡",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://chatgpt.com/g/g-690a473d14dc8191baced00e65f906b7-hydroelectric-reclamation-gpt",
+    category: "Environmental & Sustainability",
+    tags: ["hydroelectric", "renewable energy", "engineering", "sustainability", "water power", "green energy", "aiwebtools"],
+    rating: 4.7,
+    totalVotes: 1456
   }
 ];
