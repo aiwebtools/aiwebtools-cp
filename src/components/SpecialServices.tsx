@@ -238,7 +238,7 @@ const featuredGPTs = [
     color: "from-gray-600 to-blue-600",
     features: ["Multi-Engineering", "Calculations", "Design Solutions", "Technical Analysis"],
     directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "/lovable-uploads/d96aa982-9238-415c-b8ae-c2f4b91d5392.png",
+    videoUrl: "https://youtu.be/kDyI8A2xBe8?si=17__oTLSE7HbbApB",
     emoji: "⚙️"
   },
   {
@@ -361,7 +361,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-yellow-600",
     features: ["Market Valuation", "Authenticity Check", "Investment Guide", "Market Trends"],
     directUrl: "https://antiqueappraisalgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/cKHZ7X0qx_Y?si=J8A_oP9MNFC8WhIs",
+    videoUrl: "https://youtu.be/azHoiefssJw",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298536781185136/collectible.webp",
     emoji: "💎"
   },
