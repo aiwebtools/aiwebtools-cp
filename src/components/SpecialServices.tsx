@@ -697,6 +697,176 @@ const featuredGPTs = [
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/aFuAxVNXBvg",
     emoji: "🔢"
+  },
+  {
+    title: "ALAN WATTS GPT",
+    description: "Your Free Thought Liberator, designed to inspire critical thinking, unravel illusions, and guide you toward deeper understanding. With the spirit of Alan Watts, explore philosophical, scientific, and cultural questions.",
+    badge: "PHILOSOPHY",
+    color: "from-purple-500 to-orange-500",
+    features: ["Philosophy", "Critical Thinking", "Wisdom", "Consciousness"],
+    directUrl: "https://alanwattsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=zdKfwsQwOLE",
+    emoji: "🧘"
+  },
+  {
+    title: "Solar Land Assessor GPT",
+    description: "Assist Solar Professionals with assessing land properties for future solar installation projects with comprehensive analysis of land suitability, solar potential, and regulatory considerations.",
+    badge: "SOLAR ENERGY",
+    color: "from-yellow-400 to-orange-500",
+    features: ["Land Assessment", "Solar Potential", "Environmental Analysis", "Regulatory Compliance"],
+    directUrl: "https://solarlandgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=CEca8C2GIpY",
+    emoji: "☀️"
+  },
+  {
+    title: "Data Research Analysis Report GPT",
+    description: "Revolutionary tool that transforms complex datasets into actionable insights with advanced statistical methods, trend identification, and predictive modeling for informed decision-making.",
+    badge: "DATA SCIENCE",
+    color: "from-blue-600 to-purple-600",
+    features: ["Data Analysis", "Research Reports", "Statistical Methods", "Predictive Insights"],
+    directUrl: "https://dataanalysisandreportai.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=idxjOwUAD_I",
+    emoji: "📊"
+  },
+  {
+    title: "🎭 Playwriter GPT",
+    description: "Craft professional, fully structured theatrical plays from start to finish. Create original, engaging plays designed to captivate audiences with dramatic structure and character development.",
+    badge: "THEATER",
+    color: "from-red-500 to-purple-600",
+    features: ["Play Writing", "Drama Structure", "Character Development", "Theatrical Formatting"],
+    directUrl: "https://playwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=KKldzg40wEI&list=TLGGGcedR_qZHHYyODA1MjAyNQ",
+    emoji: "🎭"
+  },
+  {
+    title: "Customizable GPT Maker",
+    description: "Customizable AI that transforms into any GPT you imagine, excelling in data analysis, live web data retrieval, and visualizations for precise task completion.",
+    badge: "AI DEVELOPMENT",
+    color: "from-cyan-500 to-blue-600",
+    features: ["Custom AI", "Data Analysis", "Web Retrieval", "Visualization"],
+    directUrl: "https://customgptmaker.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=SmBXfGqXfco",
+    emoji: "🛠️"
+  },
+  {
+    title: "Agronomus AI Farming Expert",
+    description: "Comprehensive agricultural guidance and farming expertise with advanced insights into crop management, soil analysis, and sustainable farming practices for modern farmers.",
+    badge: "AGRICULTURE",
+    color: "from-green-500 to-yellow-500",
+    features: ["Crop Management", "Soil Analysis", "Sustainable Farming", "Agricultural Optimization"],
+    directUrl: "https://agronomus.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=fFbtPFkRERA",
+    emoji: "🌾"
+  },
+  {
+    title: "Indiana Archeologist GPT",
+    description: "Sophisticated AI platform to decipher ancient texts and unravel historical enigmas with investigative archaeology approach. Indiana Jones is now in your pocket!",
+    badge: "ARCHAEOLOGY",
+    color: "from-amber-600 to-brown-600",
+    features: ["Ancient Texts", "Historical Research", "Archaeological Analysis", "Exploration"],
+    directUrl: "https://indianaarchaeologygpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=uf2i_DdaJ7M",
+    emoji: "🏛️"
+  },
+  {
+    title: "Nikola Tesla GPT",
+    description: "Cutting-edge AI inspired by Nikola Tesla's visionary brilliance, designed to investigate scientific mysteries and craft groundbreaking theories with advanced data analysis.",
+    badge: "INNOVATION",
+    color: "from-yellow-500 to-blue-600",
+    features: ["Scientific Research", "Innovation", "Data Analysis", "Theory Crafting"],
+    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=DR_3MvP7Wws",
+    emoji: "⚡"
+  },
+  {
+    title: "Albert Einstein GPT",
+    description: "Advanced AI embodiment of Einstein's intellect, designed to challenge conventional wisdom, foster deep critical thinking, and explore mysteries of physics and mathematics.",
+    badge: "PHYSICS",
+    color: "from-blue-600 to-purple-600",
+    features: ["Physics", "Mathematics", "Critical Thinking", "Scientific Inquiry"],
+    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=kfGyOfjBI0s",
+    emoji: "🧠"
+  },
+  {
+    title: "Tattoo Designer GPT",
+    description: "All-in-one tattoo and piercing assistant providing expert guidance for body art, unique designs, business planning, and comprehensive tattoo shop management.",
+    badge: "BODY ART",
+    color: "from-purple-500 to-pink-600",
+    features: ["Tattoo Design", "Body Art", "Creative Design", "Business Planning"],
+    directUrl: "https://tattoogpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=3dtGbNqXdPY",
+    emoji: "🎨"
+  },
+  {
+    title: "Firefighter GPT",
+    description: "Premier AI ally in wildfire management with real-time data and predictive analytics for precise, actionable guidance to effectively master and extinguish fires.",
+    badge: "FIRE SAFETY",
+    color: "from-red-500 to-orange-600",
+    features: ["Wildfire Management", "Predictive Analytics", "Fire Strategy", "Safety Guidance"],
+    directUrl: "https://firefightergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/kDu2SSP9Glw",
+    emoji: "🚒"
+  },
+  {
+    title: "Children's Picture Book Maker GPT",
+    description: "Create magical picture books for children with AI-powered storytelling that brings your stories to life with vibrant illustrations and engaging narratives.",
+    badge: "CHILDREN'S BOOKS",
+    color: "from-green-500 to-blue-600",
+    features: ["Storytelling", "Illustrations", "Creative Writing", "Educational Content"],
+    directUrl: "https://childrensbookmaker.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=MryAyvg_N0U",
+    emoji: "📚"
+  },
+  {
+    title: "Movie Scene Maker GPT",
+    description: "Transform yourself into a movie star! Create stunning, personalized movie scenes featuring you in any genre, setting, or storyline with AI-powered cinematic creation.",
+    badge: "CINEMATIC",
+    color: "from-red-500 to-purple-600",
+    features: ["Movie Scenes", "Personalized Content", "Cinematic Creation", "Character Starring"],
+    directUrl: "https://moviescenemakergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=9fpWIE20z7s&t",
+    emoji: "🎬"
+  },
+  {
+    title: "Grant Writer GPT",
+    description: "Expert AI-powered partner for crafting compelling, funder-ready grant proposals that maximize your chances of securing funding for nonprofits and research institutions.",
+    badge: "FUNDING",
+    color: "from-green-500 to-blue-600",
+    features: ["Grant Writing", "Funding Proposals", "Nonprofit Support", "Research Grants"],
+    directUrl: "https://grantwritergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-illustration-of-an-advertiseme_7T7dn.png/:/cr=t:10.87%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
+    emoji: "💰"
+  },
+  {
+    title: "Drill Baby Drill AI Suite",
+    description: "Cutting-edge collection of 10 specialized AI tools designed to optimize every aspect of oil and gas operations, from exploration to drilling, safety, and compliance.",
+    badge: "OIL & GAS",
+    color: "from-orange-500 to-black",
+    features: ["Oil & Gas Operations", "Drilling Optimization", "Safety Compliance", "Energy Management"],
+    directUrl: "https://drillbabydrillaisuite.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cartoon-illustration-of-a-man-with-a-h_lmQ_X.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
+    emoji: "🛢️"
+  },
+  {
+    title: "Marriage Mender GPT",
+    description: "Virtual mediation service for facilitating communication and understanding between couples facing relationship challenges with guidance and support.",
+    badge: "RELATIONSHIPS",
+    color: "from-pink-500 to-red-600",
+    features: ["Couples Mediation", "Communication", "Relationship Support", "Guidance"],
+    directUrl: "https://marriagemendergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=3HCv5_QldrU",
+    emoji: "💕"
+  },
+  {
+    title: "TALK TO THE GODS GPT",
+    description: "Versatile AI chat tool to simulate interacting with deities from any religious backgrounds. Explore dialogues and gain insights from gods and deities across diverse mythologies.",
+    badge: "SPIRITUAL",
+    color: "from-yellow-400 to-purple-600",
+    features: ["Religious Dialogue", "Mythology", "Spiritual Guidance", "Deity Interaction"],
+    directUrl: "https://talktothegodsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xoUdjZDgplw",
+    emoji: "⚡"
   }
 ];
 
