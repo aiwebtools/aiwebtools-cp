@@ -859,7 +859,7 @@ const featuredGPTs = [
     emoji: "💕"
   },
   {
-    title: "TALK TO THE GODS GPT",
+    title: "Religious Studies GPT",
     description: "Versatile AI chat tool to simulate interacting with deities from any religious backgrounds. Explore dialogues and gain insights from gods and deities across diverse mythologies.",
     badge: "SPIRITUAL",
     color: "from-yellow-400 to-purple-600",
