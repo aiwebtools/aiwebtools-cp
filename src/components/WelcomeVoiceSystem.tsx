@@ -1,36 +1,57 @@
 import { useEffect, useRef } from 'react';
 
 const playWelcomeAudio = () => {
-  try {
-    const audio = new Audio('/welcome-neo.mp3');
-    audio.volume = 0.7;
-    audio.play().catch(error => {
-      console.log('Audio playback failed (requires user interaction):', error);
-    });
-  } catch (error) {
-    console.log('Error creating audio:', error);
-  }
+  return new Promise<void>((resolve, reject) => {
+    try {
+      const audio = new Audio('/welcome-neo.mp3');
+      audio.volume = 0.7;
+      
+      audio.onended = () => {
+        console.log('✅ Welcome Neo audio finished');
+        // Dispatch custom event to trigger video playback
+        window.dispatchEvent(new CustomEvent('welcomeAudioComplete'));
+        resolve();
+      };
+      
+      audio.onerror = (error) => {
+        console.log('❌ Audio error:', error);
+        reject(error);
+      };
+      
+      audio.play().then(() => {
+        console.log('🎵 Playing Welcome Neo audio...');
+      }).catch(error => {
+        console.log('Audio playback requires user interaction:', error);
+        reject(error);
+      });
+    } catch (error) {
+      console.log('Error creating audio:', error);
+      reject(error);
+    }
+  });
 };
 
 const WelcomeVoiceSystem = () => {
-  const hasPlayedRef = useRef(false);
+  const hasTriedRef = useRef(false);
 
   useEffect(() => {
-    console.log('WelcomeVoiceSystem mounted');
+    console.log('🎭 WelcomeVoiceSystem mounted - will play on every visit');
     
-    // Try to play after short delay
+    // Always try to play after short delay (not just once)
     const timeoutId = setTimeout(() => {
-      if (!hasPlayedRef.current) {
-        playWelcomeAudio();
-        hasPlayedRef.current = true;
+      if (!hasTriedRef.current) {
+        hasTriedRef.current = true;
+        playWelcomeAudio().catch(() => {
+          console.log('Initial audio play failed, waiting for user interaction');
+        });
       }
-    }, 1000);
+    }, 500);
     
-    // Also play on user interaction if not played yet
+    // Also play on first user interaction if initial play failed
     const handleUserInteraction = () => {
-      if (!hasPlayedRef.current) {
-        playWelcomeAudio();
-        hasPlayedRef.current = true;
+      if (!hasTriedRef.current) {
+        hasTriedRef.current = true;
+        playWelcomeAudio().catch(console.error);
       }
     };
     
@@ -44,9 +65,8 @@ const WelcomeVoiceSystem = () => {
       events.forEach(event => {
         window.removeEventListener(event, handleUserInteraction);
       });
-      hasPlayedRef.current = false;
     };
-  }, []);
+  }, []); // Empty dependency array - only runs once per mount
 
   return null;
 };

@@ -37,18 +37,16 @@ const Index = () => {
     // Set loaded state immediately for faster initial render
     setIsLoaded(true);
     
-    // Check if video has already played on first visit
-    const hasVideoPlayed = localStorage.getItem('heroVideoPlayed');
-    
-    // Only autoplay on first visit
-    if (!hasVideoPlayed && !videoStarted) {
+    // Listen for welcome audio completion to trigger video
+    const handleAudioComplete = () => {
+      console.log('🎬 Welcome audio complete, starting video...');
+      
       const startVideoUnmute = () => {
         const iframe = mainVideoRef.current;
         if (!iframe || videoStarted) return;
         
         setVideoStarted(true);
-        localStorage.setItem('heroVideoPlayed', 'true');
-        console.log('🎥 Video loaded, attempting to unmute (first visit)...');
+        console.log('🎥 Starting video playback after audio...');
         
         // Enhanced unmute strategy with multiple attempts
         const attemptUnmute = (attempts = 0) => {
@@ -59,18 +57,18 @@ const Index = () => {
           
           setTimeout(() => {
             try {
-              // Multiple methods to attempt unmuting
+              // Multiple methods to attempt unmuting and playing
               const commands = [
+                '{"event":"command","func":"playVideo","args":""}',
                 '{"event":"command","func":"unMute","args":""}',
-                '{"event":"command","func":"setVolume","args":[75]}',
-                '{"event":"command","func":"playVideo","args":""}'
+                '{"event":"command","func":"setVolume","args":[75]}'
               ];
               
               commands.forEach(command => {
                 iframe.contentWindow?.postMessage(command, '*');
               });
               
-              console.log(`🔊 Unmute attempt ${attempts + 1}/3`);
+              console.log(`🔊 Video unmute attempt ${attempts + 1}/3`);
               
               // Retry if needed
               if (attempts < 2) {
@@ -82,16 +80,17 @@ const Index = () => {
                 attemptUnmute(attempts + 1);
               }
             }
-          }, 1000 + (attempts * 500)); // Staggered delays
+          }, 500 + (attempts * 500)); // Staggered delays
         };
         
-        // Start unmute attempts after iframe is fully loaded
+        // Start unmute attempts immediately
         attemptUnmute();
         
         // Fallback: Listen for user interaction to enable sound
         const enableSoundOnInteraction = () => {
           try {
             iframe.contentWindow?.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+            iframe.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
             console.log('🔊 Sound enabled via user interaction');
           } catch (e) {
             console.log('🔇 Sound enable failed:', e.message);
@@ -104,13 +103,11 @@ const Index = () => {
         });
       };
 
-      // Start video unmute attempts after short delay to ensure iframe is loaded
-      const videoTimer = setTimeout(startVideoUnmute, 1500);
-      
-      return () => {
-        clearTimeout(videoTimer);
-      };
-    }
+      // Start video after short delay
+      setTimeout(startVideoUnmute, 500);
+    };
+
+    window.addEventListener('welcomeAudioComplete', handleAudioComplete);
     
     // Load actual stats in background
     const statsTimer = setTimeout(() => {
@@ -121,6 +118,7 @@ const Index = () => {
 
     return () => {
       clearTimeout(statsTimer);
+      window.removeEventListener('welcomeAudioComplete', handleAudioComplete);
     };
   }, [videoStarted]);
 
@@ -172,7 +170,7 @@ const Index = () => {
                 <iframe
                   ref={mainVideoRef}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
+                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
                   title="AI Web Tools Featured Video - 1080p HD"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
