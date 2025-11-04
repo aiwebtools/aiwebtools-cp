@@ -1,5 +1,4 @@
-
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { allTools } from "@/data/toolsData";
 import { getToolIndexBySlug, generateToolSlug } from "@/utils/urlGenerator";
@@ -28,6 +27,9 @@ const ToolDetail = () => {
   
   // Handle both numeric IDs (legacy) and SEO-friendly slugs
   let toolIndex: number;
+  let shouldRedirect = false;
+  let redirectSlug = '';
+  
   if (toolSlug) {
     // If accessing via slug route (/:toolSlug)
     toolIndex = allTools.findIndex(tool => 
@@ -36,16 +38,29 @@ const ToolDetail = () => {
   } else if (toolId) {
     // If accessing via legacy numeric route (/tool/:toolId)
     const numericId = parseInt(toolId);
-    if (!isNaN(numericId)) {
+    if (!isNaN(numericId) && numericId >= 0 && numericId < allTools.length) {
       toolIndex = numericId;
+      // Redirect old numeric URLs to new slug-based URLs
+      shouldRedirect = true;
+      redirectSlug = generateToolSlug(allTools[numericId].title);
     } else {
       // toolId might actually be a slug on the /tool/ route
       toolIndex = allTools.findIndex(tool => 
         generateToolSlug(tool.title) === toolId
       );
+      if (toolIndex !== -1) {
+        // Redirect /tool/slug to /slug
+        shouldRedirect = true;
+        redirectSlug = toolId;
+      }
     }
   } else {
     toolIndex = -1;
+  }
+  
+  // Redirect to new slug-based URL if accessing via old format
+  if (shouldRedirect && redirectSlug) {
+    return <Navigate to={`/${redirectSlug}`} replace />;
   }
   
   const {
