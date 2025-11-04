@@ -399,5 +399,17 @@ export const advancedVideoTools: Tool[] = [
     category: "Advanced Video Tools",
     rating: 4.2,
     totalVotes: 1876
+  },
+  {
+    icon: Sparkles,
+    title: "Meta AI Video Generator",
+    description: "Meta's comprehensive AI platform featuring video generation, image creation, and chat capabilities powered by Llama. Create stunning videos, generate images, and interact with Meta's advanced AI assistant all in one place.",
+    emoji: "🤖",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://meta.ai/?via=aiwebtools",
+    tags: ["Meta AI", "Llama", "video generation", "image generation", "AI chat", "multimodal AI"],
+    category: "Advanced Video Tools",
+    rating: 4.8,
+    totalVotes: 5234
   }
 ];
