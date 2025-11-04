@@ -31,18 +31,6 @@ export const businessAndProductivity: Tool[] = [
     totalVotes: 2100
   },
   {
-    icon: FileText,
-    title: "QUICK PPTx Maker GPT",
-    description: "Create professional PowerPoint presentations quickly and efficiently with AI-powered design and content generation.",
-    emoji: "📊",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://pptmakergpt.lovable.app/?via=aiwebtools",
-    category: "Business & Productivity",
-    tags: ["presentations", "powerpoint", "business", "design"],
-    rating: 4.6,
-    totalVotes: 2345
-  },
-  {
     icon: DollarSign,
     title: "Grant Writer GPT",
     description: "Professional grant writing assistant to help secure funding for nonprofits, research projects, and business initiatives.",

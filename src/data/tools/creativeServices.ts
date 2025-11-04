@@ -19,19 +19,6 @@ import {
 
 export const creativeServices: Tool[] = [
   {
-    icon: Palette,
-    title: "Coloring Book Generator GPT",
-    description: "Coloring Book Generator GPT creates full coloring books from your imagination.",
-    emoji: "🎨",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://coloringbookmaker.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-coloring-page-of-a-robot-with-a-human-like-b.png/:/cr=t:4.3%25,l:0.78%25,w:94.34%25,h:84.09%25/rs=w:1200,h:600,cg:true,m",
-    tags: ["coloring books", "creative art", "imagination", "children", "artwork"],
-    category: "Creative Services",
-    rating: 4.3,
-    totalVotes: 2567
-  },
-  {
     icon: Utensils,
     title: "Restaurant Menu Maker GPT",
     description: "Restaurant Menu Maker GPT is an advanced AI tool that creates fully customized, professional restaurant menus with visually appealing designs, optimized dish descriptions, and strategic pricing. It works step by step to gather business details, refine menu ideas, and generate a print-ready menu in PDF or DOCX format. The AI seamlessly integrates branding elements like logos, colors, and fonts while offering food pairing suggestions and profitability insights. It also provides QR code integration for digital menus, making it easy for customers to access menus on their devices. Whether you're launching a new restaurant or revamping an existing menu, this AI ensures a polished and engaging dining experience.",

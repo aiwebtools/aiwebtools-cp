@@ -17,19 +17,6 @@ export const businessStrategyGPTs: Tool[] = [
     totalVotes: 6789
   },
   {
-    icon: Briefcase,
-    title: "-Business Plan Generator GPT💼",
-    description: "Business Plan Generator GPT is an AI-driven tool that quickly creates tailored business plans. By gathering key information about your business, it produces a detailed plan that includes market analysis, financial projections, and strategic growth initiatives. Efficient, personalized, and designed to meet your specific business goals.",
-    emoji: "💼",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://businessplanandtrainai.lovable.app//?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-logo-design-with-the-text-business-plan-gene.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
-    tags: ["business planning", "strategic planning", "market analysis", "financial projections", "business development"],
-    category: "Business Strategy",
-    rating: 4.7,
-    totalVotes: 5432
-  },
-  {
     icon: DollarSign,
     title: "Universal Basic Income Strategist GPT",
     description: "UBI Strategist GPT helps you design sustainable, future-ready Universal Basic Income models tailored to your region. It analyzes real-time economic data, automation trends, and societal needs to craft step-by-step implementation roadmaps. From funding strategies to impact forecasts, it covers everything needed to build a fair and abundant future. Ideal for policymakers, researchers, activists, and visionaries shaping a post-AI world.",

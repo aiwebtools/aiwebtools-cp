@@ -23,19 +23,6 @@ export const aiWebToolsCreativeGPTs: Tool[] = [
     totalVotes: 3245
   },
   {
-    icon: Mic,
-    title: "Podcast Script Writer GPT",
-    description: "Create engaging podcast scripts with AI assistance. Generate compelling content, episode outlines, and conversation starters for your podcast.",
-    emoji: "🎙️",
-    color: "from-red-500 to-orange-500",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-illustration-of-a-podcast-host-with-a_HnlUN.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
-    directUrl: "https://podcastwritergpt.lovable.app/?via=aiwebtools",
-    tags: ["podcast", "writing", "scripts", "content creation", "audio", "broadcasting"],
-    category: "Content Creation",
-    rating: 4.2,
-    totalVotes: 1654
-  },
-  {
     icon: Palette,
     title: "AD & LOGO MAKER GPT",
     description: "Create Breathtaking Ads with AI Power. AD MAKER GPT transforms your ideas into high-quality, personalized advertisements in seconds using cutting-edge GPT-4o image generation technology.",

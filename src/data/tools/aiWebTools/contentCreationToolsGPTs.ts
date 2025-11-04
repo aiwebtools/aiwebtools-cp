@@ -44,19 +44,6 @@ export const contentCreationToolsGPTs: Tool[] = [
     totalVotes: 4123
   },
   {
-    icon: Search,
-    title: "Person Information Finder GPT",
-    description: "Person Information Finder GPT is an AI tool that specializes in uncovering detailed public information about individuals by searching the web, social media, news, and public records. Whether you're reconnecting with a lost contact, researching a public figure, or verifying someone's background, this AI compiles comprehensive profiles with precision and speed.",
-    emoji: "🔍",
-    color: "from-blue-500 to-cyan-600",
-    directUrl: "https://personfindergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-p_gHXnM.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
-    tags: ["people search", "background research", "contact finding", "public records", "information gathering"],
-    category: "Content Creation Tools",
-    rating: 4.4,
-    totalVotes: 3456
-  },
-  {
     icon: Presentation,
     title: "PPTx Powerpoint Maker GPT",
     description: "PPT Presentation Crafter is your all-in-one AI assistant for creating beautiful, detailed PowerPoint presentations with zero hassle. Whether you're building an educational deck, a business pitch, or a creative visual story, I generate polished content, custom DALLE visuals, and ready-to-download PPTX slides — slide by slide, in real time. Built by AIWebTools.ai, I'm the ultimate productivity partner for turning knowledge into powerful presentations.",

@@ -104,18 +104,5 @@ export const multimediaAndContentGPTs: Tool[] = [
     category: "Multimedia & Content",
     rating: 4.8,
     totalVotes: 5678
-  },
-  {
-    icon: Palette,
-    title: "Coloring Book Generator GPT",
-    description: "Coloring Book Generator GPT by AI Web Tools LLC is your creative AI-powered artistic publishing platform, transforming imagination into complete coloring book collections through intelligent design generation that creates engaging, educational, and entertaining coloring experiences for all ages and interests. This innovative tool revolutionizes creative publishing by providing comprehensive coloring book creation capabilities that generate themed collections, educational content, and artistic designs that promote creativity, relaxation, and learning through interactive coloring experiences. Whether you're creating educational materials for children, developing therapeutic coloring content for adults, producing themed coloring collections, or building commercial coloring book products, this AI generates complete, professionally designed coloring books that meet publishing standards and audience expectations. The system analyzes creative concepts, generates artistic designs, creates cohesive book themes, and produces print-ready coloring pages that combine artistic quality with educational value and entertainment appeal while ensuring appropriate difficulty levels for target audiences. Input your coloring book themes, target age groups, or specific design concepts to receive complete coloring book collections, themed page designs, educational content integration, and publishing-ready materials. Features include themed collection generation, age-appropriate design creation, educational content integration, artistic style customization, and commercial publishing support tools. Perfect for educators creating classroom materials, therapists developing relaxation resources, publishers producing coloring book products, and creative entrepreneurs building artistic content businesses. This tool ensures every coloring book provides engaging, appropriate, and high-quality content that promotes creativity, learning, and relaxation through carefully designed artistic experiences that entertain and educate users across all age groups and interests.",
-    emoji: "🎨",
-    color: "from-rainbow-500 to-pink-600",
-    directUrl: "https://coloringbookmaker.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-coloring-page-of-a-robot-with-a-human-like-b.png/:/cr=t:4.3%25,l:0.78%25,w:94.34%25,h:84.09%25/rs=w:1200,h:600,cg:true,m",
-    tags: ["coloring books", "artistic creation", "educational materials", "creative publishing", "therapeutic art"],
-    category: "Multimedia & Content",
-    rating: 4.6,
-    totalVotes: 4567
   }
 ];
