@@ -434,7 +434,7 @@ const featuredGPTs = [
     color: "from-green-500 to-lime-600",
     features: ["Cultivation Guide", "Strain Information", "Medical Applications", "Legal Guidance"],
     directUrl: "https://cannabisgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://player.vimeo.com/video/1132373393",
+    videoUrl: "https://vimeo.com/1132373393",
     emoji: "🌿"
   },
   {
@@ -675,6 +675,23 @@ const getVideoId = (url: string) => {
 };
 
 const getOptimizedEmbedUrl = (videoUrl: string) => {
+  if (!videoUrl) return null;
+  
+  // Check if it's a Vimeo URL
+  if (videoUrl.includes('vimeo.com')) {
+    // Extract video ID from Vimeo URL
+    const vimeoMatch = videoUrl.match(/vimeo\.com\/(\d+)/);
+    if (vimeoMatch) {
+      return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=0&loop=0&autopause=1`;
+    }
+    // If it's already a player URL, return it
+    if (videoUrl.includes('player.vimeo.com')) {
+      return videoUrl;
+    }
+    return null;
+  }
+  
+  // Handle YouTube URLs
   const videoId = getVideoId(videoUrl);
   if (!videoId) return null;
   
