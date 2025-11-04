@@ -4,6 +4,7 @@ import { Tool } from '@/types/tools';
 import { enhancedSchemaMarkup, generateCompetitiveContent } from '@/utils/advancedCompetitiveSEO';
 import { enhancedFAQs, socialMediaSEO } from '@/utils/additionalSEO';
 import { generateToolSlug } from '@/utils/urlGenerator';
+import { seoConfig } from '@/utils/seo';
 
 interface CompetitiveSEOHeadProps {
   tool?: Tool;
@@ -128,6 +129,25 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
     const selectedTitle = competitiveContent.metaContent.titleVariations[0];
     const selectedDescription = competitiveContent.metaContent.descriptionVariations[0];
     
+    // Get proper tool image for social sharing
+    const getToolImage = () => {
+      // Priority 1: Tool's direct image
+      if (tool?.imageUrl && tool.imageUrl.trim() !== '') {
+        return tool.imageUrl;
+      }
+      // Priority 2: YouTube thumbnail from videoUrl
+      if (tool?.videoUrl) {
+        const videoId = tool.videoUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
+        if (videoId) {
+          return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        }
+      }
+      // Priority 3: Default AI Web Tools branded image
+      return `${seoConfig.siteUrl}/og-default.jpg`;
+    };
+    
+    const toolImage = getToolImage();
+    
     return (
       <Helmet>
         <title>{selectedTitle}</title>
@@ -147,15 +167,17 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         <meta property="og:url" content={`https://aitools.studio/${generateToolSlug(tool.title)}`} />
         <meta property="og:title" content={selectedTitle} />
         <meta property="og:description" content={selectedDescription} />
-        <meta property="og:image" content={`https://aitools.studio/og-image-${tool.title.replace(/\s+/g, '-').toLowerCase()}.jpg`} />
+        <meta property="og:image" content={toolImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={`${tool.title} - ${tool.category} Preview`} />
         
         {/* Twitter Cards for tools */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={selectedTitle} />
         <meta name="twitter:description" content={selectedDescription} />
-        <meta name="twitter:image" content={`https://aitools.studio/og-image-${tool.title.replace(/\s+/g, '-').toLowerCase()}.jpg`} />
+        <meta name="twitter:image" content={toolImage} />
+        <meta name="twitter:image:alt" content={`${tool.title} - ${tool.category}`} />
         
         {/* Enhanced structured data for tools */}
         <script type="application/ld+json">

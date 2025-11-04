@@ -29,7 +29,29 @@ const EnhancedSEOHead = ({
 }: EnhancedSEOHeadProps) => {
   const fullTitle = title ? `${title} | AI WEB TOOLS - #1 AI Tools Directory 2025 | Better Than Toolify & Futurepedia` : "AI WEB TOOLS - #1 AI Tools Directory | 1000+ Best AI Tools 2025 | Better Than Toolify & Futurepedia | Trusted by 100K+ Users";
   const canonical = url.startsWith('http') ? url : `${seoConfig.siteUrl}${url}`;
-  const fullImage = image.startsWith('http') ? image : `${seoConfig.siteUrl}${image}`;
+  
+  // Get proper Open Graph image for tool pages
+  const getToolImage = () => {
+    if (pageType === 'tool' && toolData) {
+      // Priority 1: Tool's direct image
+      if (toolData?.imageUrl && toolData.imageUrl.trim() !== '') {
+        return toolData.imageUrl;
+      }
+      // Priority 2: YouTube thumbnail from videoUrl
+      if (toolData?.videoUrl) {
+        const videoId = toolData.videoUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
+        if (videoId) {
+          return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        }
+      }
+      // Priority 3: Default AI Web Tools branded image
+      return `${seoConfig.siteUrl}/og-default.jpg`;
+    }
+    // Use provided image or default
+    return image.startsWith('http') ? image : `${seoConfig.siteUrl}${image}`;
+  };
+  
+  const fullImage = getToolImage();
 
   // Enhanced competitive keywords for maximum SEO impact
   const competitiveKeywords = [
