@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -13,6 +12,7 @@ import ToolsGrid from "@/components/tools/ToolsGrid";
 import { useDebounce } from "@/hooks/useDebounce";
 import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
 import EnhancedSEOHead from "@/components/seo/EnhancedSEOHead";
+import { generateToolSlug } from "@/utils/urlGenerator";
 
 const ToolPage = () => {
   const { toolIndex } = useParams<{ toolIndex: string }>();
@@ -77,7 +77,7 @@ const ToolPage = () => {
           ...(tool.tags || [])
         ]}
         image={tool.imageUrl}
-        url={`/tool/${toolIndex}`}
+        url={`/${generateToolSlug(tool.title)}`}
         type="article"
         category={tool.category}
         toolData={tool}

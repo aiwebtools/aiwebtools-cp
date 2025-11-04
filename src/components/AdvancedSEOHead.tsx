@@ -2,6 +2,7 @@
 import { Helmet } from 'react-helmet-async';
 import { generateAdvancedMetaTags, generateArticleStructuredData, generateHowToStructuredData } from '@/utils/advancedSEO';
 import { generateCanonicalUrl, generateAlternateLanguages, generatePreloadTags } from '@/utils/seoHelpers';
+import { generateToolSlug } from '@/utils/urlGenerator';
 
 interface AdvancedSEOHeadProps {
   tool?: any;
@@ -45,7 +46,7 @@ const AdvancedSEOHead = ({ tool, toolIndex, pageType = 'homepage' }: AdvancedSEO
         
         {/* Additional SEO Tags */}
         <meta name="news_keywords" content={`${tool.title}, AI tool, ${tool.category}, artificial intelligence`} />
-        <meta name="standout" content={`https://aitools.studio/tool/${toolIndex}`} />
+        <meta name="standout" content={`https://aitools.studio/${generateToolSlug(tool.title)}`} />
         <meta name="syndication-source" content="https://aitools.studio" />
         <meta name="original-source" content="https://aitools.studio" />
         

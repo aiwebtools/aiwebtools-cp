@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Tool } from '@/types/tools';
 import { enhancedSchemaMarkup, generateCompetitiveContent } from '@/utils/advancedCompetitiveSEO';
 import { enhancedFAQs, socialMediaSEO } from '@/utils/additionalSEO';
+import { generateToolSlug } from '@/utils/urlGenerator';
 
 interface CompetitiveSEOHeadProps {
   tool?: Tool;
@@ -134,7 +135,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         
         {/* Enhanced tool-specific keywords */}
         <meta name="keywords" content={`${tool.title}, ${tool.category}, AI tool review, best AI tools 2025, ${tool.tags?.join(', ') || ''}, AI WEB TOOLS directory, expert analysis, tool comparison, user reviews, professional AI tools`} />
-        <link rel="canonical" href={`https://aitools.studio/tool/${toolIndex}`} />
+        <link rel="canonical" href={`https://aitools.studio/${generateToolSlug(tool.title)}`} />
         
         {/* Tool authority indicators */}
         <meta name="expertise" content={`Expert review and analysis of ${tool.title}`} />
@@ -143,7 +144,7 @@ const CompetitiveSEOHead = ({ tool, toolIndex, category, isHomepage }: Competiti
         
         {/* Enhanced Open Graph for tools */}
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://aitools.studio/tool/${toolIndex}`} />
+        <meta property="og:url" content={`https://aitools.studio/${generateToolSlug(tool.title)}`} />
         <meta property="og:title" content={selectedTitle} />
         <meta property="og:description" content={selectedDescription} />
         <meta property="og:image" content={`https://aitools.studio/og-image-${tool.title.replace(/\s+/g, '-').toLowerCase()}.jpg`} />

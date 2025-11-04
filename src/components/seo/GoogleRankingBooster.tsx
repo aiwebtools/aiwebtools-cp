@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { competitiveAdvantage } from '@/utils/googleRankingOptimizer';
+import { generateToolSlug } from '@/utils/urlGenerator';
 
 interface GoogleRankingBoosterProps {
   pageType?: 'homepage' | 'category' | 'tool' | 'search';
@@ -174,7 +175,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
           "@type": "HowToStep",
           "name": "Access the Tool",
           "text": `Visit the ${toolData.title} website and create an account if required.`,
-          "url": `https://aitools.studio/tool/${toolData.title}`
+          "url": `https://aitools.studio/${generateToolSlug(toolData.title)}`
         },
         {
           "@type": "HowToStep",
