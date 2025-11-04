@@ -17,7 +17,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
   const getTitle = () => {
     switch (pageType) {
       case 'tool':
-        return `${tool?.title} - AI Tool Review & Access | AI Web Tools 2025`;
+        return `${tool?.title} - ${tool?.category || 'AI Tool'} | Free AI Tool Access`;
       case 'category':
         return `${category} AI Tools - Best ${category} Tools 2025 | AI Web Tools`;
       case 'search':
@@ -30,7 +30,9 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
   const getDescription = () => {
     switch (pageType) {
       case 'tool':
-        return `${tool?.description?.substring(0, 150)}... Access ${tool?.title}, reviews, features, and pricing. Compare with similar AI tools.`;
+        const toolDesc = tool?.description || 'Powerful AI tool for enhanced productivity and creativity';
+        const truncatedDesc = toolDesc.length > 150 ? toolDesc.substring(0, 150) + '...' : toolDesc;
+        return `${truncatedDesc} Try ${tool?.title} now - Free access to this ${tool?.category || 'AI'} tool. Get started instantly!`;
       case 'category':
         return `Discover the best ${category?.toLowerCase()} AI tools for 2025. Compare features, pricing, and reviews of top ${category?.toLowerCase()} tools in our comprehensive directory.`;
       case 'search':
@@ -58,7 +60,13 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
   const getCanonicalUrl = () => {
     switch (pageType) {
       case 'tool':
-        return `https://aitools.studio/tool/${tool?.id || tool?.title?.toLowerCase().replace(/\s+/g, '-')}`;
+        // Use clean slug-based URL
+        const slug = tool?.title?.toLowerCase()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-')
+          .replace(/^-+|-+$/g, '');
+        return `https://aitools.studio/${slug}`;
       case 'category':
         return `https://aitools.studio/category/${category?.toLowerCase().replace(/\s+/g, '-')}`;
       case 'search':
@@ -69,8 +77,22 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
   };
 
   const getOgImage = () => {
-    if (pageType === 'tool' && tool?.imageUrl) {
-      return tool.imageUrl;
+    if (pageType === 'tool') {
+      // Use tool's image if available
+      if (tool?.imageUrl && tool.imageUrl.trim() !== '') {
+        return tool.imageUrl;
+      }
+      // If it's a YouTube video, extract thumbnail
+      if (tool?.youtubeUrl) {
+        const videoId = tool.youtubeUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
+        if (videoId) {
+          return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        }
+      }
+      // Generate a dynamic OG image URL with tool info
+      const toolName = encodeURIComponent(tool?.title || 'AI Tool');
+      const category = encodeURIComponent(tool?.category || 'AI Tools');
+      return `https://aitools.studio/api/og?title=${toolName}&category=${category}&emoji=${tool?.emoji || '🤖'}`;
     }
     return 'https://aitools.studio/og-image.jpg';
   };
@@ -148,7 +170,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="theme-color" content="#06b6d4" />
       
-      {/* Enhanced Open Graph */}
+      {/* Enhanced Open Graph - Tool-Specific */}
       <meta property="og:type" content={pageType === 'tool' ? 'product' : 'website'} />
       <meta property="og:url" content={getCanonicalUrl()} />
       <meta property="og:title" content={getTitle()} />
@@ -156,19 +178,35 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       <meta property="og:image" content={getOgImage()} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content={`${getTitle()} - AI Web Tools Preview`} />
+      <meta property="og:image:alt" content={pageType === 'tool' ? `${tool?.title} - ${tool?.category || 'AI Tool'} Preview` : `${getTitle()} - AI Web Tools Preview`} />
       <meta property="og:site_name" content="AI Web Tools" />
       <meta property="og:locale" content="en_US" />
+      {pageType === 'tool' && tool && (
+        <>
+          <meta property="product:category" content={tool.category || 'AI Tools'} />
+          <meta property="product:price:amount" content="0" />
+          <meta property="product:price:currency" content="USD" />
+          <meta property="product:availability" content="in stock" />
+        </>
+      )}
       
-      {/* Twitter Cards */}
+      {/* Twitter Cards - Tool-Specific */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:url" content={getCanonicalUrl()} />
       <meta name="twitter:title" content={getTitle()} />
       <meta name="twitter:description" content={getDescription()} />
       <meta name="twitter:image" content={getOgImage()} />
-      <meta name="twitter:image:alt" content={`${getTitle()} - AI Web Tools Preview`} />
+      <meta name="twitter:image:alt" content={pageType === 'tool' ? `Try ${tool?.title} - ${tool?.category || 'AI Tool'}` : `${getTitle()} - AI Web Tools Preview`} />
       <meta name="twitter:site" content="@aiwebtools" />
       <meta name="twitter:creator" content="@aiwebtools" />
+      {pageType === 'tool' && tool && (
+        <>
+          <meta name="twitter:label1" content="Category" />
+          <meta name="twitter:data1" content={tool.category || 'AI Tools'} />
+          <meta name="twitter:label2" content="Access" />
+          <meta name="twitter:data2" content="Free" />
+        </>
+      )}
       
       {/* Additional SEO Meta */}
       <meta name="author" content="AI Web Tools" />
