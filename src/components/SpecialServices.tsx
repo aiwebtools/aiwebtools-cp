@@ -464,7 +464,7 @@ const featuredGPTs = [
     badge: "LEGAL AID",
     color: "from-purple-500 to-blue-600",
     features: ["Legal Defense", "Rights Guidance", "Court Procedures", "Legal Assistance"],
-    directUrl: "https://publicdefendergpt.lovable.app/",
+    directUrl: "https://publicdefendergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/IYi4mYtDIVA?si=J2aT8BTetKRU-Z6q",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298533241065532/public_defender.webp",
     emoji: "⚖️"
@@ -658,6 +658,46 @@ const featuredGPTs = [
     blockchain: "Polygon",
     emoji: "🕊️"
   },
+  {
+    title: "WE THE PEOPLE AI",
+    description: "Empowering citizens with AI-driven tools for political activism, civic engagement, and grassroots organizing. Connect with your representatives, draft compelling testimony, and make your voice heard in democracy.",
+    badge: "CIVIC ENGAGEMENT",
+    color: "from-blue-600 to-red-600",
+    features: ["Political Activism", "Civic Engagement", "Democracy Tools", "Grassroots Organizing"],
+    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/mxdJ0gLxGCI?si=Yx0rWtOSmWijtZZC",
+    emoji: "🗳️"
+  },
+  {
+    title: "Music Melodies & Lessons GPT",
+    description: "Your ultimate musical companion for learning instruments, perfecting vocals, and writing songs. Get step-by-step guidance, accurate lyrics, and easy-to-follow tablature tailored to your goals.",
+    badge: "MUSIC EDUCATION",
+    color: "from-purple-500 to-pink-600",
+    features: ["Music Lessons", "Instrument Training", "Vocal Coaching", "Song Writing"],
+    directUrl: "https://musicmelodiesandlessonsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/0_oIzDL2BB4",
+    emoji: "🎵"
+  },
+  {
+    title: "Learn Any Skill GPT",
+    description: "Dynamic AI-powered educational assistant that guides you through learning any skill, from beginner to expert. Combines step-by-step explanations, curated videos, and interactive learning experiences.",
+    badge: "SKILL LEARNING",
+    color: "from-green-500 to-blue-600",
+    features: ["Skill Mastery", "Learning Paths", "Practice Exercises", "Expert Guidance"],
+    directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/0_oIzDL2BB4",
+    emoji: "🧠"
+  },
+  {
+    title: "Math Inventor GPT",
+    description: "Advanced mathematical problem solver and equation creator for complex algebraic expressions, calculations, and mathematical concept exploration with innovative AI-powered solutions.",
+    badge: "MATHEMATICS",
+    color: "from-purple-500 to-pink-600",
+    features: ["Algebraic Solutions", "Problem Solving", "Equation Creation", "Math Innovation"],
+    directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/aFuAxVNXBvg",
+    emoji: "🔢"
+  }
 ];
 
 const getVideoId = (url: string) => {
