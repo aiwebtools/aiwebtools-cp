@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { generateToolSlug } from '@/utils/urlGenerator';
 
 interface ImprovedSEOHeadProps {
   pageType?: 'homepage' | 'category' | 'tool' | 'search';
@@ -60,12 +61,8 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
   const getCanonicalUrl = () => {
     switch (pageType) {
       case 'tool':
-        // Use clean slug-based URL
-        const slug = tool?.title?.toLowerCase()
-          .replace(/[^\w\s-]/g, '')
-          .replace(/\s+/g, '-')
-          .replace(/-+/g, '-')
-          .replace(/^-+|-+$/g, '');
+        // Use clean slug-based URL with proper utility
+        const slug = generateToolSlug(tool?.title || '');
         return `https://aitools.studio/${slug}`;
       case 'category':
         return `https://aitools.studio/category/${category?.toLowerCase().replace(/\s+/g, '-')}`;
@@ -99,19 +96,55 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
 
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": pageType === 'tool' ? "Product" : "WebSite",
+    "@type": pageType === 'tool' ? "SoftwareApplication" : "WebSite",
     "name": pageType === 'tool' ? tool?.title : "AI Web Tools",
     "description": getDescription(),
     "url": getCanonicalUrl(),
     ...(pageType === 'tool' && {
-      "category": tool?.category,
+      "applicationCategory": tool?.category || "Artificial Intelligence",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": tool?.rating || 4.5,
-        "reviewCount": tool?.totalVotes || 1000
+        "bestRating": "5",
+        "worstRating": "1",
+        "reviewCount": tool?.totalVotes || 1000,
+        "ratingCount": tool?.totalVotes || 1000
       }
     })
   };
+
+  // Video schema for tools with YouTube URLs
+  const videoSchema = pageType === 'tool' && tool?.youtubeUrl ? (() => {
+    const videoId = tool.youtubeUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
+    if (!videoId) return null;
+    
+    return {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": `${tool.title} - Demo & Tutorial`,
+      "description": tool.description || `Watch how to use ${tool.title}`,
+      "thumbnailUrl": `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+      "uploadDate": new Date().toISOString(),
+      "contentUrl": tool.youtubeUrl,
+      "embedUrl": `https://www.youtube.com/embed/${videoId}`,
+      "duration": "PT5M",
+      "publisher": {
+        "@type": "Organization",
+        "name": "AI Web Tools",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://aitools.studio/logo.png"
+        }
+      }
+    };
+  })() : null;
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -226,6 +259,13 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       <script type="application/ld+json">
         {JSON.stringify(breadcrumbSchema)}
       </script>
+      
+      {/* Video Schema for YouTube Tools */}
+      {videoSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(videoSchema)}
+        </script>
+      )}
       
       {/* Additional JSON-LD for Organization */}
       <script type="application/ld+json">

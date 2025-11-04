@@ -2,6 +2,7 @@
 import { allTools } from "@/data/toolsData";
 import { seoConfig } from "./seo";
 import { getStandardizedCategoriesWithCounts } from "./categoryTitles";
+import { generateToolSlug } from "./urlGenerator";
 
 interface SitemapUrl {
   loc: string;
@@ -17,13 +18,16 @@ export const generateSitemap = () => {
     { loc: seoConfig.siteUrl, changefreq: 'daily', priority: '1.0' },
   ];
 
-  // Generate URLs for ALL tools to ensure they're indexed
-  const toolUrls: SitemapUrl[] = allTools.map((tool, index) => ({
-    loc: `${seoConfig.siteUrl}/tool/${index}`,
-    changefreq: 'weekly',
-    priority: '0.8',
-    lastmod: new Date().toISOString()
-  }));
+  // Generate URLs for ALL tools using slug-based URLs to ensure they're indexed
+  const toolUrls: SitemapUrl[] = allTools.map((tool, index) => {
+    const slug = generateToolSlug(tool.title);
+    return {
+      loc: `${seoConfig.siteUrl}/${slug}`,
+      changefreq: 'weekly',
+      priority: '0.8',
+      lastmod: new Date().toISOString()
+    };
+  });
 
   // Generate category URLs using standardized category titles
   const categoriesWithCounts = getStandardizedCategoriesWithCounts();
@@ -65,13 +69,17 @@ export const downloadSitemap = () => {
 
 // Verify all tools can be accessed via their individual URLs
 export const verifyToolPageUrls = () => {
-  const toolUrls = allTools.map((tool, index) => ({
-    index,
-    title: tool.title,
-    category: tool.category,
-    url: `/tool/${index}`,
-    fullUrl: `${seoConfig.siteUrl}/tool/${index}`
-  }));
+  const toolUrls = allTools.map((tool, index) => {
+    const slug = generateToolSlug(tool.title);
+    return {
+      index,
+      title: tool.title,
+      category: tool.category,
+      slug,
+      url: `/${slug}`,
+      fullUrl: `${seoConfig.siteUrl}/${slug}`
+    };
+  });
 
   console.log(`🔗 Verified ${toolUrls.length} tool page URLs`);
   console.log('📄 Sample tool URLs:', toolUrls.slice(0, 10));
