@@ -51,7 +51,7 @@ export const aiToolsAndDevelopment: Tool[] = [
     color: "from-black-500 to-gray-500",
     videoUrl: "https://www.youtube.com/watch?v=yBI1nPep72Q",
     directUrl: "https://lmstudio.ai/",
-    tags: ["local AI", "models", "desktop", "privacy", "offline", "download"],
+    tags: ["local AI", "models", "desktop", "privacy", "offline", "download", "local models"],
     category: "AI Tools"
   },
   {

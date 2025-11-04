@@ -35,7 +35,7 @@ export const aiDevelopmentTools: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://lmstudio.ai/",
     videoUrl: "https://www.youtube.com/watch?v=yBI1nPep72Q",
-    tags: ["local AI", "LLM deployment", "offline AI", "model hosting", "AI development", "desktop AI"],
+    tags: ["local AI", "LLM deployment", "offline AI", "model hosting", "AI development", "desktop AI", "local models"],
     category: "DEVELOPMENT & CODING",
     rating: 4.7,
     totalVotes: 3789
