@@ -39,24 +39,38 @@ const Index = () => {
     
     // Listen for welcome audio completion to trigger video
     const handleAudioComplete = () => {
-      console.log('🎬 Welcome audio complete, starting video...');
+      console.log('🎬 Welcome audio complete, starting video with sound...');
       
       setTimeout(() => {
         const iframe = mainVideoRef.current;
         if (!iframe || videoStarted) return;
         
         setVideoStarted(true);
-        console.log('🎥 Starting video playback with sound...');
+        console.log('🎥 Unmuting and playing video at full volume...');
         
-        // Send commands to play video with sound
+        // Send multiple commands to ensure video plays with sound
         try {
-          iframe.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-          iframe.contentWindow?.postMessage('{"event":"command","func":"unMute","args":""}', '*');
-          iframe.contentWindow?.postMessage('{"event":"command","func":"setVolume","args":[100]}', '*');
+          iframe.contentWindow?.postMessage(JSON.stringify({
+            event: 'command',
+            func: 'unMute',
+            args: ''
+          }), '*');
+          
+          iframe.contentWindow?.postMessage(JSON.stringify({
+            event: 'command',
+            func: 'setVolume',
+            args: [100]
+          }), '*');
+          
+          iframe.contentWindow?.postMessage(JSON.stringify({
+            event: 'command',
+            func: 'playVideo',
+            args: ''
+          }), '*');
         } catch (e) {
           console.log('Video control error:', e);
         }
-      }, 500);
+      }, 800);
     };
 
     window.addEventListener('welcomeAudioComplete', handleAudioComplete);
@@ -122,7 +136,7 @@ const Index = () => {
                 <iframe
                   ref={mainVideoRef}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
+                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
                   title="AI Web Tools Featured Video - 1080p HD"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
