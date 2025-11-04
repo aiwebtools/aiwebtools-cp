@@ -1,7 +1,8 @@
 import React, { memo } from "react";
+import { useNavigate } from "react-router-dom";
 import { Tool } from "@/types/tools";
 import { Card, CardContent } from "@/components/ui/card";
-import { createTimePortalEffect } from "@/utils/timeEffects";
+import { generateToolSlug } from "@/utils/urlGenerator";
 import FavoriteButton from "@/components/favorites/FavoriteButton";
 
 interface MinimalToolCardProps {
@@ -10,6 +11,8 @@ interface MinimalToolCardProps {
 }
 
 const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
+  const navigate = useNavigate();
+  
   const handleClick = (e: React.MouseEvent) => {
     // Don't trigger if clicking on buttons or interactive elements
     const target = e.target as HTMLElement;
@@ -17,12 +20,10 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
       return;
     }
     
-    if (tool.directUrl) {
-      e.preventDefault();
-      e.stopPropagation();
-      console.log('🌀 MinimalToolCard clicked - triggering time warp for:', tool.title);
-      createTimePortalEffect(tool.directUrl, tool.title);
-    }
+    e.preventDefault();
+    e.stopPropagation();
+    const slug = generateToolSlug(tool.title);
+    navigate(`/tool/${slug}`);
   };
 
   return (
