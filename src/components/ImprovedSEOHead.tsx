@@ -74,24 +74,26 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
   };
 
   const getOgImage = () => {
-    if (pageType === 'tool') {
-      // Use tool's image if available
+    if (pageType === 'tool' && tool) {
+      // Priority 1: Use tool's direct image if available
       if (tool?.imageUrl && tool.imageUrl.trim() !== '') {
         return tool.imageUrl;
       }
-      // If it's a YouTube video, extract thumbnail
+      
+      // Priority 2: Extract YouTube thumbnail if available
       if (tool?.youtubeUrl) {
         const videoId = tool.youtubeUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
         if (videoId) {
           return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
         }
       }
-      // Generate a dynamic OG image URL with tool info
-      const toolName = encodeURIComponent(tool?.title || 'AI Tool');
-      const category = encodeURIComponent(tool?.category || 'AI Tools');
-      return `https://aitools.studio/api/og?title=${toolName}&category=${category}&emoji=${tool?.emoji || '🤖'}`;
+      
+      // Priority 3: Fall back to default AI Web Tools branded image
+      return 'https://aitools.studio/og-default.jpg';
     }
-    return 'https://aitools.studio/og-image.jpg';
+    
+    // Homepage default image
+    return 'https://aitools.studio/og-default.jpg';
   };
 
   const structuredData = {
