@@ -579,7 +579,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Health Guidance", "Symptom Analysis", "Medical Info", "Healthcare Support"],
     directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=EKKIttUG0sI",
+    videoUrl: "https://youtu.be/jwjNOKP5mf4",
     imageUrl: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=200&fit=crop",
     emoji: "👨‍⚕️"
   },
