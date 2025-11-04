@@ -331,7 +331,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-gold-600",
     features: ["Ultimate AI", "Versatile Transform", "Multi-Purpose", "Power Mode"],
     directUrl: "https://godmodegpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/1y3zdPnJfQ4",
+    videoUrl: "https://youtu.be/7U_QmnDQIyE",
     imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop",
     emoji: "⚡"
   },
@@ -917,54 +917,15 @@ const OurFeaturedSection = () => {
     }, 100);
   };
 
-  // Ordering: show Soul Map GPT first, then .WorldTrade and .WorldPeace, then custom priority
-  const topTitles = ["Soul Map GPT", ".WorldTrade Web3 Registration", ".WorldPeace Web3 Registration"];
-  const topOrder = new Map(topTitles.map((t, i) => [t, i] as const));
-  const domainTop = featuredGPTs
-    .filter((t) => topOrder.has(t.title))
-    .sort((a, b) => (topOrder.get(a.title) ?? 0) - (topOrder.get(b.title) ?? 0));
-
-  // Custom priority list requested (case/spacing-insensitive, ignores missing)
-  const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
-  const priorityAliases = [
-    "bookwritergpt",
-    "moviemakerstudioaisuite",
-    "musicvideomakeraistudio",
-    "collegedegreegpt",
-    "timemachinegpt",
-    "moviescriptwritergpt",
-    "stagemasteraisuite",
-    "talktohistorygpt",
-    "timemachinegpt", // duplicate intentionally allowed, will be de-duped
-    "marymagdalenegpt",
-    "survivalistgpt",
-    "personalizeddrgpt"
-  ];
-  const already = new Set<string>();
-  const featuredByNorm = new Map(
-    featuredGPTs.map((t) => [normalize(t.title), t] as const)
+  // Separate Web3 tools
+  const web3Tools = featuredGPTs.filter(t => 
+    t.title.includes("Web3 Registration")
   );
-  const findMatch = (alias: string) => {
-    // exact normalized match first
-    if (featuredByNorm.has(alias)) return featuredByNorm.get(alias)!;
-    // fallback: find by inclusion
-    return featuredGPTs.find((t) => normalize(t.title).includes(alias));
-  };
-  const priorityPicks = priorityAliases
-    .map((a) => findMatch(a))
-    .filter((t): t is typeof featuredGPTs[number] => !!t)
-    .filter((t) => {
-      const key = normalize(t.title);
-      if (already.has(key) || topOrder.has(t.title)) return false;
-      already.add(key);
-      return true;
-    });
 
-  const rest = featuredGPTs
-    .filter((t) => !topOrder.has(t.title) && !already.has(normalize(t.title)))
+  // Get all other tools and sort alphabetically
+  const regularTools = featuredGPTs
+    .filter(t => !t.title.includes("Web3 Registration") && t.title !== "Nucleus Call Agents")
     .sort((a, b) => a.title.localeCompare(b.title));
-
-  const displayGPTs = [...domainTop, ...priorityPicks, ...rest];
 
   return (
     <section className="py-20 bg-gradient-to-br from-slate-900 to-purple-900">
@@ -977,12 +938,134 @@ const OurFeaturedSection = () => {
             Professional-grade AI solutions created by AIWebTools.ai for enterprise and creative professionals
           </p>
         </div>
-        
+
+        {/* Web3 Section */}
+        <div className="mb-16">
+          <div className="text-center mb-8">
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                Decentralized Finance & Web3 Ownership Opportunities
+              </span>
+            </h3>
+            <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
+              Decentralize Your Banking with AiWebTools.Ai web3 domains available. Functions as a bank account in the digital age that you own...not the banks.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {web3Tools.map((tool, index) => {
+              const toolForFavorites: Tool = {
+                icon: undefined,
+                title: tool.title,
+                description: tool.description,
+                emoji: tool.emoji,
+                color: tool.color,
+                directUrl: tool.directUrl,
+                videoUrl: tool.videoUrl,
+                imageUrl: tool.imageUrl,
+                tags: tool.features,
+                category: tool.badge,
+                rating: 5.0,
+                blockchain: (tool as any).blockchain
+              };
+
+              return (
+                <Card key={index} className="group bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-md border-2 border-cyan-400/30 hover:border-cyan-400/60 transition-all duration-300 transform hover:scale-105 h-full flex flex-col relative shadow-xl hover:shadow-cyan-500/20">
+                  <div className="absolute top-2 left-2 z-30">
+                    <FavoritesButton tool={toolForFavorites} size="sm" />
+                  </div>
+                  
+                  <CardHeader className="pb-4 flex-shrink-0">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className={`w-16 h-16 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300 text-3xl shadow-lg`}>
+                        {tool.emoji}
+                      </div>
+                      <Badge variant="secondary" className="bg-cyan-400/20 text-cyan-300 border-cyan-400/50 font-semibold">
+                        {tool.badge}
+                      </Badge>
+                    </div>
+                    <CardTitle className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors leading-tight">
+                      {tool.title}
+                    </CardTitle>
+                  </CardHeader>
+                  
+                  <CardContent className="flex-grow flex flex-col">
+                    <p className="text-gray-300 mb-4 leading-relaxed flex-grow">
+                      {tool.description}
+                    </p>
+
+                    {tool.videoUrl && getOptimizedEmbedUrl(tool.videoUrl) ? (
+                      <div className="relative w-full h-40 rounded-lg overflow-hidden bg-slate-800 mb-4 shadow-lg">
+                        <iframe
+                          src={getOptimizedEmbedUrl(tool.videoUrl)!}
+                          title={`${tool.title} Demo`}
+                          className="absolute inset-0 w-full h-full"
+                          frameBorder="0"
+                          loading="lazy"
+                          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                        />
+                      </div>
+                    ) : tool.imageUrl && (
+                      <div className="relative w-full h-40 rounded-lg overflow-hidden mb-4">
+                        <img
+                          src={tool.imageUrl}
+                          alt={`${tool.title} Preview`}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
+
+                    {(tool as any).blockchain && (
+                      <div className="mb-3">
+                        <Badge variant="secondary" className="bg-cyan-400/20 text-cyan-300 border-cyan-400/50">
+                          Blockchain: {(tool as any).blockchain}
+                        </Badge>
+                      </div>
+                    )}
+
+                    <div className="grid grid-cols-2 gap-2 mb-4">
+                      {tool.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-center space-x-2 text-sm text-gray-300">
+                          <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full flex-shrink-0"></div>
+                          <span className="truncate">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-auto">
+                      <Button 
+                        className={`w-full bg-gradient-to-r ${tool.color} hover:opacity-90 text-white transition-all duration-300 font-semibold shadow-lg`}
+                        onClick={() => handleAccessTool(tool.directUrl, tool.title)}
+                      >
+                        🌐 CLAIM YOUR WEB3 DOMAIN
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="relative my-16">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t-2 border-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
+          </div>
+          <div className="relative flex justify-center">
+            <span className="bg-slate-900 px-6 py-2 text-xl font-bold text-cyan-400 rounded-full border-2 border-cyan-500/50 shadow-lg">
+              ⚡ AI Tools Portfolio ⚡
+            </span>
+          </div>
+        </div>
+
+        {/* Regular Tools Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {displayGPTs.map((tool, index) => {
-            // Convert to Tool format for favorites
+          {regularTools.map((tool, index) => {
             const toolForFavorites: Tool = {
-              icon: undefined, // Not used for display but required by type
+              icon: undefined,
               title: tool.title,
               description: tool.description,
               emoji: tool.emoji,
@@ -998,105 +1081,100 @@ const OurFeaturedSection = () => {
 
             return (
               <Card key={index} className="group bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 h-full flex flex-col relative">
-                {/* Favorites Button */}
                 <div className="absolute top-2 left-2 z-30">
                   <FavoritesButton tool={toolForFavorites} size="sm" />
                 </div>
                 
                 <CardHeader className="pb-4 flex-shrink-0">
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300 text-2xl`}>
-                    {tool.emoji}
-                  </div>
-                  <Badge variant="secondary" className="bg-ai-cyan/20 text-ai-cyan border-ai-cyan/50 text-xs">
-                    {tool.badge}
-                  </Badge>
-                </div>
-                <CardTitle className="text-lg font-bold text-white group-hover:text-ai-cyan transition-colors leading-tight">
-                  {tool.title}
-                </CardTitle>
-              </CardHeader>
-              
-              <CardContent className="flex-grow flex flex-col">
-                <p className="text-gray-300 mb-4 leading-relaxed text-sm flex-grow">
-                  {tool.description}
-                </p>
-
-                {/* Media Section - Video or Image */}
-                <div className="mb-4">
-                  {tool.videoUrl && getOptimizedEmbedUrl(tool.videoUrl) ? (
-                    <div className="relative w-full h-32 rounded-lg overflow-hidden bg-slate-800">
-                      <iframe
-                        src={getOptimizedEmbedUrl(tool.videoUrl)!}
-                        title={`${tool.title} Demo`}
-                        className="absolute inset-0 w-full h-full"
-                        frameBorder="0"
-                        loading="lazy"
-                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                      />
+                  <div className="flex items-center justify-between mb-4">
+                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300 text-2xl`}>
+                      {tool.emoji}
                     </div>
-                  ) : tool.imageUrl ? (
-                    <div className="relative w-full h-32 rounded-lg overflow-hidden">
-                      <img
-                        src={tool.imageUrl}
-                        alt={`${tool.title} Preview`}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        fetchPriority="low"
-                        referrerPolicy="no-referrer"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          const fallback = target.parentElement?.querySelector('.fallback-emoji') as HTMLElement;
-                          if (fallback) {
-                            fallback.style.display = 'flex';
-                          }
-                        }}
-                      />
-                      <div className="fallback-emoji absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-4xl opacity-50 hidden">
-                        {tool.emoji}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="w-full h-32 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-cyan-500/30 rounded-lg">
-                      <span className="text-4xl opacity-50">{tool.emoji}</span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Blockchain Label (when available) */}
-                {(tool as any).blockchain && (
-                  <div className="mb-3">
-                    <Badge variant="secondary" className="bg-ai-cyan/20 text-ai-cyan border-ai-cyan/50 text-[10px]">
-                      Blockchain: {(tool as any).blockchain}
+                    <Badge variant="secondary" className="bg-ai-cyan/20 text-ai-cyan border-ai-cyan/50 text-xs">
+                      {tool.badge}
                     </Badge>
                   </div>
-                )}
+                  <CardTitle className="text-lg font-bold text-white group-hover:text-ai-cyan transition-colors leading-tight">
+                    {tool.title}
+                  </CardTitle>
+                </CardHeader>
+                
+                <CardContent className="flex-grow flex flex-col">
+                  <p className="text-gray-300 mb-4 leading-relaxed text-sm flex-grow">
+                    {tool.description}
+                  </p>
 
-                {/* Features Grid */}
-                <div className="grid grid-cols-2 gap-1 mb-4">
-                  {tool.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center space-x-1 text-xs text-gray-400">
-                      <div className="w-1 h-1 bg-ai-cyan rounded-full flex-shrink-0"></div>
-                      <span className="truncate">{feature}</span>
+                  <div className="mb-4">
+                    {tool.videoUrl && getOptimizedEmbedUrl(tool.videoUrl) ? (
+                      <div className="relative w-full h-32 rounded-lg overflow-hidden bg-slate-800">
+                        <iframe
+                          src={getOptimizedEmbedUrl(tool.videoUrl)!}
+                          title={`${tool.title} Demo`}
+                          className="absolute inset-0 w-full h-full"
+                          frameBorder="0"
+                          loading="lazy"
+                          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                        />
+                      </div>
+                    ) : tool.imageUrl ? (
+                      <div className="relative w-full h-32 rounded-lg overflow-hidden">
+                        <img
+                          src={tool.imageUrl}
+                          alt={`${tool.title} Preview`}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          fetchPriority="low"
+                          referrerPolicy="no-referrer"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            const fallback = target.parentElement?.querySelector('.fallback-emoji') as HTMLElement;
+                            if (fallback) {
+                              fallback.style.display = 'flex';
+                            }
+                          }}
+                        />
+                        <div className="fallback-emoji absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-4xl opacity-50 hidden">
+                          {tool.emoji}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="w-full h-32 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-cyan-500/30 rounded-lg">
+                        <span className="text-4xl opacity-50">{tool.emoji}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {(tool as any).blockchain && (
+                    <div className="mb-3">
+                      <Badge variant="secondary" className="bg-ai-cyan/20 text-ai-cyan border-ai-cyan/50 text-[10px]">
+                        Blockchain: {(tool as any).blockchain}
+                      </Badge>
                     </div>
-                  ))}
-                </div>
+                  )}
 
-                {/* Access Button */}
-                <div className="mt-auto">
-                  <Button 
-                    className={`w-full bg-gradient-to-r ${tool.color} hover:opacity-90 text-white transition-all duration-300 text-sm`}
-                    onClick={() => handleAccessTool(tool.directUrl, tool.title)}
-                  >
-                    🚀 USE NOW
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+                  <div className="grid grid-cols-2 gap-1 mb-4">
+                    {tool.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center space-x-1 text-xs text-gray-400">
+                        <div className="w-1 h-1 bg-ai-cyan rounded-full flex-shrink-0"></div>
+                        <span className="truncate">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-auto">
+                    <Button 
+                      className={`w-full bg-gradient-to-r ${tool.color} hover:opacity-90 text-white transition-all duration-300 text-sm`}
+                      onClick={() => handleAccessTool(tool.directUrl, tool.title)}
+                    >
+                      🚀 USE NOW
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             );
           })}
         </div>
