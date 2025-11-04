@@ -10,7 +10,7 @@ export const advancedAITools: Tool[] = [
     emoji: "👑",
     color: "from-gold-500 to-yellow-600",
     directUrl: "https://godmodegpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/m2crGAhbs5g?si=0U5gA4QC_oQG0KXS",
+    videoUrl: "https://youtu.be/1y3zdPnJfQ4",
     tags: ["advanced AI", "problem solving", "creative tasks", "comprehensive analysis", "unrestricted AI"],
     category: "Advanced AI Tools",
     rating: 4.9,
