@@ -32,41 +32,40 @@ const playWelcomeAudio = () => {
 };
 
 const WelcomeVoiceSystem = () => {
-  const hasTriedRef = useRef(false);
+  const hasPlayedRef = useRef(false);
 
   useEffect(() => {
     console.log('🎭 WelcomeVoiceSystem mounted - will play on every visit');
     
-    // Always try to play after short delay (not just once)
-    const timeoutId = setTimeout(() => {
-      if (!hasTriedRef.current) {
-        hasTriedRef.current = true;
-        playWelcomeAudio().catch(() => {
-          console.log('Initial audio play failed, waiting for user interaction');
-        });
-      }
-    }, 500);
-    
-    // Also play on first user interaction if initial play failed
+    // Handle user interaction to play audio (Chrome requirement)
     const handleUserInteraction = () => {
-      if (!hasTriedRef.current) {
-        hasTriedRef.current = true;
-        playWelcomeAudio().catch(console.error);
+      if (!hasPlayedRef.current) {
+        hasPlayedRef.current = true;
+        console.log('🎵 User interaction detected, playing Welcome Neo audio...');
+        playWelcomeAudio().catch((error) => {
+          console.log('Audio playback failed:', error);
+        });
       }
     };
     
-    const events = ['click', 'touchstart', 'keydown'];
-    events.forEach(event => {
-      window.addEventListener(event, handleUserInteraction, { once: true, passive: true });
-    });
+    // Try immediate playback first (works in some browsers)
+    const timeoutId = setTimeout(() => {
+      playWelcomeAudio().then(() => {
+        hasPlayedRef.current = true;
+      }).catch(() => {
+        console.log('⏳ Audio requires user interaction - waiting for click/tap...');
+        // Wait for user interaction
+        const events = ['click', 'touchstart', 'keydown', 'scroll'];
+        events.forEach(event => {
+          window.addEventListener(event, handleUserInteraction, { once: true, passive: true });
+        });
+      });
+    }, 300);
     
     return () => {
       clearTimeout(timeoutId);
-      events.forEach(event => {
-        window.removeEventListener(event, handleUserInteraction);
-      });
     };
-  }, []); // Empty dependency array - only runs once per mount
+  }, [])
 
   return null;
 };

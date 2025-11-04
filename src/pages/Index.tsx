@@ -41,70 +41,22 @@ const Index = () => {
     const handleAudioComplete = () => {
       console.log('🎬 Welcome audio complete, starting video...');
       
-      const startVideoUnmute = () => {
+      setTimeout(() => {
         const iframe = mainVideoRef.current;
         if (!iframe || videoStarted) return;
         
         setVideoStarted(true);
-        console.log('🎥 Starting video playback after audio...');
+        console.log('🎥 Starting video playback with sound...');
         
-        // Enhanced unmute strategy with multiple attempts
-        const attemptUnmute = (attempts = 0) => {
-          if (attempts >= 3) {
-            console.log('🔇 Video remains muted - browser policy enforced');
-            return;
-          }
-          
-          setTimeout(() => {
-            try {
-              // Multiple methods to attempt unmuting and playing
-              const commands = [
-                '{"event":"command","func":"playVideo","args":""}',
-                '{"event":"command","func":"unMute","args":""}',
-                '{"event":"command","func":"setVolume","args":[75]}'
-              ];
-              
-              commands.forEach(command => {
-                iframe.contentWindow?.postMessage(command, '*');
-              });
-              
-              console.log(`🔊 Video unmute attempt ${attempts + 1}/3`);
-              
-              // Retry if needed
-              if (attempts < 2) {
-                attemptUnmute(attempts + 1);
-              }
-            } catch (e) {
-              console.log(`🔇 Unmute attempt ${attempts + 1} failed:`, e.message);
-              if (attempts < 2) {
-                attemptUnmute(attempts + 1);
-              }
-            }
-          }, 500 + (attempts * 500)); // Staggered delays
-        };
-        
-        // Start unmute attempts immediately
-        attemptUnmute();
-        
-        // Fallback: Listen for user interaction to enable sound
-        const enableSoundOnInteraction = () => {
-          try {
-            iframe.contentWindow?.postMessage('{"event":"command","func":"unMute","args":""}', '*');
-            iframe.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-            console.log('🔊 Sound enabled via user interaction');
-          } catch (e) {
-            console.log('🔇 Sound enable failed:', e.message);
-          }
-        };
-        
-        // Add interaction listeners
-        ['click', 'touchstart', 'keydown'].forEach(event => {
-          document.addEventListener(event, enableSoundOnInteraction, { once: true, passive: true });
-        });
-      };
-
-      // Start video after short delay
-      setTimeout(startVideoUnmute, 500);
+        // Send commands to play video with sound
+        try {
+          iframe.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+          iframe.contentWindow?.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+          iframe.contentWindow?.postMessage('{"event":"command","func":"setVolume","args":[100]}', '*');
+        } catch (e) {
+          console.log('Video control error:', e);
+        }
+      }, 500);
     };
 
     window.addEventListener('welcomeAudioComplete', handleAudioComplete);
@@ -170,7 +122,7 @@ const Index = () => {
                 <iframe
                   ref={mainVideoRef}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
+                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&hd=1&vq=hd1080&quality=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
                   title="AI Web Tools Featured Video - 1080p HD"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
