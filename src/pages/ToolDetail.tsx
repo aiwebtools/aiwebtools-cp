@@ -26,18 +26,26 @@ import MoreToolsSection from "@/components/tool-detail/MoreToolsSection";
 const ToolDetail = () => {
   const { toolId, toolSlug } = useParams();
   
-  // Handle both numeric IDs and SEO-friendly slugs
+  // Handle both numeric IDs (legacy) and SEO-friendly slugs
   let toolIndex: number;
   if (toolSlug) {
-    toolIndex = getToolIndexBySlug(allTools, toolSlug);
-    if (toolIndex === -1) {
-      // Fallback: try to find by title match
+    // If accessing via slug route (/:toolSlug)
+    toolIndex = allTools.findIndex(tool => 
+      generateToolSlug(tool.title) === toolSlug
+    );
+  } else if (toolId) {
+    // If accessing via legacy numeric route (/tool/:toolId)
+    const numericId = parseInt(toolId);
+    if (!isNaN(numericId)) {
+      toolIndex = numericId;
+    } else {
+      // toolId might actually be a slug on the /tool/ route
       toolIndex = allTools.findIndex(tool => 
-        generateToolSlug(tool.title) === toolSlug
+        generateToolSlug(tool.title) === toolId
       );
     }
   } else {
-    toolIndex = parseInt(toolId || "0");
+    toolIndex = -1;
   }
   
   const {
@@ -75,7 +83,7 @@ const ToolDetail = () => {
     { name: "Home", url: "https://aitools.studio" },
     { name: "AI Tools", url: "https://aitools.studio/#tools-section" },
     { name: tool.category || "Tools", url: `https://aitools.studio/category/${encodeURIComponent(tool.category || "")}` },
-    { name: tool.title, url: `https://aitools.studio/tool/${toolIndex}` }
+    { name: tool.title, url: `https://aitools.studio/${generateToolSlug(tool.title)}` }
   ];
 
   // Check if this is an AI Web Tools LLC GPT (has lovable.app in the URL)

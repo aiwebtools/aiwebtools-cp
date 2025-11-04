@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import SEOHead from "@/components/SEOHead";
+import { generateToolSlug } from "@/utils/urlGenerator";
 
 const SimilarTools = () => {
   const { toolId } = useParams();
@@ -163,7 +164,7 @@ const SimilarTools = () => {
             <div className="text-center mb-12">
               <Button 
                 variant="ghost" 
-                onClick={() => navigate(`/tool/${toolIndex}`)}
+                onClick={() => navigate(`/${generateToolSlug(baseTool.title)}`)}
                 className="mb-6 text-cyan-400 hover:text-cyan-300"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />

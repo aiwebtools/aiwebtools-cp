@@ -18,6 +18,7 @@ import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
+import { generateToolSlug } from "@/utils/urlGenerator";
 import Logo from "./Logo";
 
 const TabletMenu = () => {
@@ -53,10 +54,10 @@ const TabletMenu = () => {
     navigate('/main-category/ALL%20AI%20TOOLS');
   };
 
-  const handleToolClick = (toolIndex: number) => {
+  const handleToolClick = (tool: any) => {
     setSearchTerm("");
     setIsSearchOpen(false);
-    navigate(`/tool/${toolIndex}`);
+    navigate(`/${generateToolSlug(tool.title)}`);
   };
 
   const handleDirectAccess = (tool: any, e: React.MouseEvent) => {
@@ -201,7 +202,7 @@ const TabletMenu = () => {
                             <TooltipTrigger asChild>
                               <div 
                                 className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-800/50 cursor-pointer group transition-all duration-200"
-                                onClick={() => handleToolClick(toolIndex)}
+                                onClick={() => handleToolClick(tool)}
                               >
                                 <div className={`w-6 h-6 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-xs flex-shrink-0`}>
                                   {tool.emoji}

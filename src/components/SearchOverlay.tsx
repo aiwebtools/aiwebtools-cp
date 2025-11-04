@@ -8,6 +8,7 @@ import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { generateToolSlug } from "@/utils/urlGenerator";
 
 interface SearchOverlayProps {
   isOpen: boolean;
@@ -33,9 +34,9 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
     }
   }, [searchTerm]);
 
-  const handleToolClick = (toolIndex: number) => {
+  const handleToolClick = (tool: any) => {
     onClose();
-    navigate(`/tool/${toolIndex}`);
+    navigate(`/${generateToolSlug(tool.title)}`);
   };
 
   const handleDirectAccess = (tool: any, e: React.MouseEvent) => {
@@ -105,7 +106,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                   <Card 
                     key={`search-${tool.title}-${index}`}
                     className="bg-gray-800/50 border-gray-600 hover:border-cyan-500/50 transition-all duration-200 cursor-pointer group"
-                    onClick={() => handleToolClick(toolIndex)}
+                    onClick={() => handleToolClick(tool)}
                   >
                     <CardContent className="p-4">
                       <div className="flex items-center space-x-3 mb-3">
@@ -132,7 +133,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                           className="flex-1 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-xs"
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleToolClick(toolIndex);
+                            handleToolClick(tool);
                           }}
                         >
                           View Details
