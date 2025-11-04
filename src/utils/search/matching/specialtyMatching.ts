@@ -7,7 +7,8 @@ export const matchFarming = (tool: Tool, searchTerm: string): boolean => {
   const farmingKeywords = [
     'agro', 'farming', 'agriculture', 'crop', 'soil', 'irrigation', 
     'pest control', 'harvest', 'cultivation', 'agronomist', 'agricultural',
-    'farm management', 'precision farming', 'sustainable farming'
+    'farm management', 'precision farming', 'sustainable farming', 'farm', 'farms',
+    'find farm', 'find farms', 'farm finder', 'farming tools'
   ];
   
   const searchableText = [
@@ -23,7 +24,23 @@ export const matchFarming = (tool: Tool, searchTerm: string): boolean => {
 
 export const scoreFarming = (tool: Tool, searchTerm: string): number => {
   const lowerSearchTerm = searchTerm.toLowerCase().trim();
+  const lowerTitle = tool.title.toLowerCase();
   let score = 0;
+  
+  // ULTIMATE PRIORITY: "find farm" or "find farms" searches should show Farm Finder GPT first
+  if ((lowerSearchTerm.includes('find') && (lowerSearchTerm.includes('farm') || lowerSearchTerm.includes('farms'))) ||
+      lowerSearchTerm.includes('farm finder')) {
+    if (lowerTitle.includes('farm finder') || tool.directUrl?.includes('farmfinder')) {
+      score += 35000; // Highest priority for Farm Finder GPT on "find farm" searches
+    }
+  }
+  
+  // Check if this is the Farm Finder GPT specifically for any farm-related search
+  if (lowerTitle.includes('farm finder') || tool.directUrl?.includes('farmfinder')) {
+    if (lowerSearchTerm.includes('farm') || lowerSearchTerm.includes('farms')) {
+      score += 28000; // Very high priority for farm searches
+    }
+  }
   
   // Check if this is the Agronomus tool specifically
   if (tool.title.toLowerCase().includes('agronomus') || 
@@ -32,8 +49,8 @@ export const scoreFarming = (tool: Tool, searchTerm: string): number => {
     score += 25000; // Very high priority for farming searches
   }
   
-  // High-value farming keywords
-  const highValueKeywords = ['agro', 'farming', 'agriculture', 'agronomist'];
+  // High-value farming keywords with enhanced "farm/farms" detection
+  const highValueKeywords = ['agro', 'farming', 'agriculture', 'agronomist', 'farm', 'farms'];
   for (const keyword of highValueKeywords) {
     if (lowerSearchTerm.includes(keyword)) {
       if (tool.title.toLowerCase().includes(keyword)) {
@@ -46,7 +63,7 @@ export const scoreFarming = (tool: Tool, searchTerm: string): number => {
   }
   
   // Medium-value farming keywords
-  const mediumValueKeywords = ['crop', 'soil', 'irrigation', 'pest control', 'cultivation'];
+  const mediumValueKeywords = ['crop', 'soil', 'irrigation', 'pest control', 'cultivation', 'find farm'];
   for (const keyword of mediumValueKeywords) {
     if (lowerSearchTerm.includes(keyword)) {
       if (tool.title.toLowerCase().includes(keyword)) {
