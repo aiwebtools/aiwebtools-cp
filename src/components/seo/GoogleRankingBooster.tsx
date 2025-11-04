@@ -16,7 +16,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "alternateName": ["AI WEB TOOLS", "AIWebTools", "AITools.Studio"],
       "url": "https://aitools.studio",
       "logo": "https://aitools.studio/favicon.ico",
-      "description": "The world's #1 most comprehensive AI tools directory with 1000+ curated AI applications. Better than Toolify, Futurepedia, and all competitors.",
+      "description": "The world's #1 most comprehensive AI tools directory with 2195+ curated AI applications. Better than Toolify, Futurepedia, and all competitors.",
       "foundingDate": "2023",
       "keywords": competitiveAdvantage.brandDominance.join(", "),
       "slogan": "Better Than Toolify & Futurepedia - The #1 AI Tools Directory",
@@ -38,7 +38,7 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "@type": "WebSite",
       "name": "AI WEB TOOLS - #1 AI Tools Directory",
       "url": "https://aitools.studio",
-      "description": "Discover 1000+ AI tools better than Toolify & Futurepedia. Comprehensive directory with expert reviews, ratings, and detailed analysis.",
+      "description": "Discover 2195+ AI tools better than Toolify & Futurepedia. Comprehensive directory with expert reviews, ratings, and detailed analysis.",
       "publisher": {
         "@type": "Organization",
         "name": "AI WEB TOOLS LLC"
@@ -54,8 +54,8 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "mainEntity": {
         "@type": "ItemList",
         "name": "AI Tools Directory",
-        "description": "Comprehensive collection of 1000+ AI tools",
-        "numberOfItems": "1000+"
+        "description": "Comprehensive collection of 2195+ AI tools",
+        "numberOfItems": "2195+"
       }
     };
 
@@ -108,11 +108,11 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
     const faqs = [
       {
         question: "What is AI WEB TOOLS?",
-        answer: "AI WEB TOOLS is the world's #1 most comprehensive AI tools directory with 1000+ curated AI applications. We provide expert reviews, ratings, and detailed analysis to help you find the perfect AI tools for your needs."
+        answer: "AI WEB TOOLS is the world's #1 most comprehensive AI tools directory with 2195+ curated AI applications. We provide expert reviews, ratings, and detailed analysis to help you find the perfect AI tools for your needs."
       },
       {
         question: "How is AI WEB TOOLS better than Toolify?",
-        answer: "AI WEB TOOLS offers more comprehensive coverage with 1000+ tools vs Toolify's limited selection. We provide expert reviews, detailed ratings, regular updates, and professional-grade analysis that Toolify lacks."
+        answer: "AI WEB TOOLS offers more comprehensive coverage with 2195+ tools vs Toolify's limited selection. We provide expert reviews, detailed ratings, regular updates, and professional-grade analysis that Toolify lacks."
       },
       {
         question: "Are the AI tools on AI WEB TOOLS free?",

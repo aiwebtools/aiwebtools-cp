@@ -23,7 +23,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       case 'search':
         return `${searchTerm} AI Tools - Search Results | AI Web Tools Directory`;
       default:
-        return 'AI Web Tools - #1 AI Tools Directory | 1300+ Best AI Tools 2025';
+        return 'AI Web Tools - #1 AI Tools Directory | 2195+ Best AI Tools 2025';
     }
   };
 
@@ -36,7 +36,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       case 'search':
         return `Find the best AI tools for "${searchTerm}". Browse our comprehensive directory of AI tools with reviews, features, and direct access links.`;
       default:
-        return 'Discover the world\'s largest directory of AI tools for productivity, creativity, and business. Find the perfect AI tool for any task with our comprehensive collection of 1300+ AI tools.';
+        return 'Discover the world\'s largest directory of 2195+ AI tools for productivity, creativity, and business. Find the perfect AI tool for any task with our comprehensive collection updated daily.';
     }
   };
 
@@ -55,12 +55,32 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
     }
   };
 
+  const getCanonicalUrl = () => {
+    switch (pageType) {
+      case 'tool':
+        return `https://aitools.studio/tool/${tool?.id || tool?.title?.toLowerCase().replace(/\s+/g, '-')}`;
+      case 'category':
+        return `https://aitools.studio/category/${category?.toLowerCase().replace(/\s+/g, '-')}`;
+      case 'search':
+        return `https://aitools.studio/search?q=${encodeURIComponent(searchTerm || '')}`;
+      default:
+        return 'https://aitools.studio';
+    }
+  };
+
+  const getOgImage = () => {
+    if (pageType === 'tool' && tool?.imageUrl) {
+      return tool.imageUrl;
+    }
+    return 'https://aitools.studio/og-image.jpg';
+  };
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": pageType === 'tool' ? "Product" : "WebSite",
     "name": pageType === 'tool' ? tool?.title : "AI Web Tools",
     "description": getDescription(),
-    "url": "https://aitools.studio",
+    "url": getCanonicalUrl(),
     ...(pageType === 'tool' && {
       "category": tool?.category,
       "aggregateRating": {
@@ -71,12 +91,45 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
     })
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://aitools.studio"
+      },
+      ...(category ? [{
+        "@type": "ListItem",
+        "position": 2,
+        "name": category,
+        "item": `https://aitools.studio/category/${category.toLowerCase().replace(/\s+/g, '-')}`
+      }] : []),
+      ...(tool ? [{
+        "@type": "ListItem",
+        "position": category ? 3 : 2,
+        "name": tool.title,
+        "item": getCanonicalUrl()
+      }] : [])
+    ]
+  };
+
   return (
     <Helmet>
       {/* Core SEO */}
       <title>{getTitle()}</title>
       <meta name="description" content={getDescription()} />
       <meta name="keywords" content={getKeywords().join(', ')} />
+      
+      {/* Canonical URL */}
+      <link rel="canonical" href={getCanonicalUrl()} />
+      
+      {/* Preload Critical Assets */}
+      <link rel="preload" as="image" href={getOgImage()} />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       
       {/* Improved Crawlability */}
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -97,16 +150,25 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       
       {/* Enhanced Open Graph */}
       <meta property="og:type" content={pageType === 'tool' ? 'product' : 'website'} />
+      <meta property="og:url" content={getCanonicalUrl()} />
       <meta property="og:title" content={getTitle()} />
       <meta property="og:description" content={getDescription()} />
+      <meta property="og:image" content={getOgImage()} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={`${getTitle()} - AI Web Tools Preview`} />
       <meta property="og:site_name" content="AI Web Tools" />
       <meta property="og:locale" content="en_US" />
       
       {/* Twitter Cards */}
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:url" content={getCanonicalUrl()} />
       <meta name="twitter:title" content={getTitle()} />
       <meta name="twitter:description" content={getDescription()} />
+      <meta name="twitter:image" content={getOgImage()} />
+      <meta name="twitter:image:alt" content={`${getTitle()} - AI Web Tools Preview`} />
       <meta name="twitter:site" content="@aiwebtools" />
+      <meta name="twitter:creator" content="@aiwebtools" />
       
       {/* Additional SEO Meta */}
       <meta name="author" content="AI Web Tools" />
@@ -122,6 +184,11 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
         {JSON.stringify(structuredData)}
       </script>
       
+      {/* Breadcrumb Schema */}
+      <script type="application/ld+json">
+        {JSON.stringify(breadcrumbSchema)}
+      </script>
+      
       {/* Additional JSON-LD for Organization */}
       <script type="application/ld+json">
         {JSON.stringify({
@@ -130,11 +197,21 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
           "name": "AI Web Tools",
           "url": "https://aitools.studio",
           "logo": "https://aitools.studio/logo.png",
-          "description": "The world's largest directory of AI tools for productivity, creativity, and business.",
+          "description": "The world's largest directory of 2195+ AI tools for productivity, creativity, and business.",
+          "foundingDate": "2023",
+          "numberOfEmployees": {
+            "@type": "QuantitativeValue",
+            "value": "10-50"
+          },
           "sameAs": [
             "https://twitter.com/aiwebtools",
             "https://facebook.com/aiwebtools"
-          ]
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "availableLanguage": ["English"]
+          }
         })}
       </script>
     </Helmet>
