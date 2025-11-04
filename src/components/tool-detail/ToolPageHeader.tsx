@@ -20,7 +20,7 @@ const ToolPageHeader = ({ totalTools }: ToolPageHeaderProps) => {
   }, [totalTools]);
 
   return (
-    <div className="flex flex-col sm:flex-row gap-4 mb-8 mt-8 pt-4">
+    <div className="flex flex-col sm:flex-row gap-4 mb-8 mt-24 sm:mt-8 pt-4">
       <Link to="/" className="inline-block">
         <Button variant="outline" size="sm" className="border-cyan-500/30 bg-gray-900/80 text-cyan-100 hover:bg-cyan-500/20 transition-all duration-300 interactive-button">
           <ArrowLeft className="w-4 h-4 mr-2" />
