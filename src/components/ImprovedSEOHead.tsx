@@ -80,9 +80,10 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
         return tool.imageUrl;
       }
       
-      // Priority 2: Extract YouTube thumbnail if available
-      if (tool?.youtubeUrl) {
-        const videoId = tool.youtubeUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
+      // Priority 2: Extract YouTube thumbnail if available (check both videoUrl and youtubeUrl)
+      const videoLink = tool?.youtubeUrl || tool?.videoUrl;
+      if (videoLink) {
+        const videoId = videoLink.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
         if (videoId) {
           return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
         }
@@ -123,8 +124,11 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
   };
 
   // Video schema for tools with YouTube URLs
-  const videoSchema = pageType === 'tool' && tool?.youtubeUrl ? (() => {
-    const videoId = tool.youtubeUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
+  const videoSchema = pageType === 'tool' && tool ? (() => {
+    const videoLink = tool?.youtubeUrl || tool?.videoUrl;
+    if (!videoLink) return null;
+    
+    const videoId = videoLink.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)?.[1];
     if (!videoId) return null;
     
     return {
@@ -134,7 +138,7 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       "description": tool.description || `Watch how to use ${tool.title}`,
       "thumbnailUrl": `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
       "uploadDate": new Date().toISOString(),
-      "contentUrl": tool.youtubeUrl,
+      "contentUrl": videoLink,
       "embedUrl": `https://www.youtube.com/embed/${videoId}`,
       "duration": "PT5M",
       "publisher": {
