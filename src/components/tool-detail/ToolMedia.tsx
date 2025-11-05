@@ -23,24 +23,24 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
     // Handle youtu.be short URLs
     if (url.includes('youtu.be/')) {
       const videoId = url.split('youtu.be/')[1].split('?')[0];
-      // Optimized for smooth HD playback with better buffering
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&loop=1&playlist=${videoId}&vq=hd720&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3`;
+      // Optimized for ultra-smooth playback with adaptive quality and proper buffering
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0&controls=1&rel=0&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3&cc_load_policy=0&disablekb=0&widget_referrer=${window.location.origin}`;
       console.log('YouTube short embed URL:', embedUrl);
       return embedUrl;
     }
     
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1].split('&')[0];
-      // Optimized for smooth HD playback with better buffering
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&loop=1&playlist=${videoId}&vq=hd720&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3`;
+      // Optimized for ultra-smooth playback with adaptive quality and proper buffering
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0&controls=1&rel=0&enablejsapi=1&origin=${window.location.origin}&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3&cc_load_policy=0&disablekb=0&widget_referrer=${window.location.origin}`;
       console.log('YouTube embed URL:', embedUrl);
       return embedUrl;
     }
     
     if (url.includes('vimeo.com/')) {
       const videoId = url.split('vimeo.com/')[1].split('?')[0];
-      // Optimized for smooth playback
-      const embedUrl = `https://player.vimeo.com/video/${videoId}?autoplay=1&loop=1&quality=720p&volume=1&muted=0`;
+      // Optimized for smooth playback with adaptive quality
+      const embedUrl = `https://player.vimeo.com/video/${videoId}?autoplay=0&loop=0&autopause=1&volume=1&muted=0&quality_selector=1`;
       console.log('Vimeo embed URL:', embedUrl);
       return embedUrl;
     }
@@ -76,10 +76,16 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
             src={embedUrl}
             title={`${tool.title} Demo`}
             frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
             allowFullScreen
             className="w-full h-full rounded-xl"
             loading="eager"
+            style={{ 
+              border: 'none',
+              willChange: 'transform',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden'
+            }}
             onError={handleVideoError}
             onLoad={() => console.log('Video loaded successfully for:', tool.title)}
           />
