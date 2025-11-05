@@ -1013,7 +1013,7 @@ const OurFeaturedSection = () => {
                           className="absolute inset-0 w-full h-full"
                           frameBorder="0"
                           loading="lazy"
-                          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowFullScreen
                         />
                       </div>
@@ -1124,7 +1124,7 @@ const OurFeaturedSection = () => {
                           className="absolute inset-0 w-full h-full"
                           frameBorder="0"
                           loading="lazy"
-                          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowFullScreen
                         />
                       </div>
