@@ -47,16 +47,6 @@ const featuredGPTs = [
     emoji: "🌐"
   },
   {
-    title: "Agronomus AI Farming Expert",
-    description: "Comprehensive agricultural guidance and farming expertise with advanced insights into crop management, soil analysis, and sustainable farming practices for modern farmers.",
-    badge: "AGRICULTURE",
-    color: "from-green-500 to-yellow-500",
-    features: ["Crop Management", "Soil Analysis", "Sustainable Farming", "Agricultural Optimization"],
-    directUrl: "https://agronomus.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=fFbtPFkRERA",
-    emoji: "🌾"
-  },
-  {
     title: "Farm Finder & Barter GPT",
     description: "Find local farms to support sustainability and local food systems. Assists with bartering, digital currency conversions, farm evaluations, and local sustainability planning for economic resilience and food security.",
     badge: "AGRICULTURE",
@@ -458,6 +448,16 @@ const featuredGPTs = [
     directUrl: "https://chatgpt.com/g/g-68e939ff278881919b292a679faaac43-jarvis-the-steward-of-humanity-gpt",
     videoUrl: "https://youtu.be/6jFoFR9Hags",
     emoji: "🛡️"
+  },
+  {
+    title: "Agronomus AI Farming Expert",
+    description: "Comprehensive agricultural guidance and farming expertise with advanced insights into crop management, soil analysis, and sustainable farming practices for modern farmers.",
+    badge: "AGRICULTURE",
+    color: "from-green-500 to-yellow-500",
+    features: ["Crop Management", "Soil Analysis", "Sustainable Farming", "Agricultural Optimization"],
+    directUrl: "https://agronomus.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=fFbtPFkRERA",
+    emoji: "🌾"
   },
   {
     title: "LEARN ANY COURSE GPT",
