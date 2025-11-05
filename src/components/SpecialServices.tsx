@@ -104,6 +104,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-yellow-600",
     features: ["Gematria Decoding", "Sacred Geometry", "Number Analysis", "Ancient Wisdom"],
     directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-ancient-gematria-scan-gpt",
+    videoUrl: "https://youtu.be/LFMtWqoKqyI",
     imageUrl: "/images/gematria-gpt.png",
     emoji: "🔢"
   },
