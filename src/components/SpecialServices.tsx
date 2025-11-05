@@ -907,7 +907,7 @@ const getOptimizedEmbedUrl = (videoUrl: string) => {
   
   // Use standard YouTube embed with proper parameters to avoid error 153
   // These parameters ensure maximum compatibility and avoid embedding restrictions
-  return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&fs=1&iv_load_policy=3&controls=1`;
+  return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&fs=1&iv_load_policy=3&controls=1&mute=0`;
 };
 
 const handleAccessTool = (directUrl: string, toolName: string) => {
