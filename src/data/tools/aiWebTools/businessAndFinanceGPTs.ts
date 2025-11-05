@@ -77,7 +77,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     description: "Assists in creating detailed business plans, offering guidance on market analysis, financial projections, and operational strategies.",
     emoji: "🏢",
     color: "from-red-500 to-pink-600",
-    directUrl: "https://chat.openai.com/g/g-uxR9mWkzQ-business-plan-architect",
+    directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
     tags: ["business plan", "market analysis", "financial projections", "strategy"],
     category: "Business & Finance",
     rating: 4.4,
