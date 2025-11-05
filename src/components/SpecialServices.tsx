@@ -57,6 +57,16 @@ const featuredGPTs = [
     emoji: "🌾"
   },
   {
+    title: "Farm Finder & Barter GPT",
+    description: "Find local farms to support sustainability and local food systems. Assists with bartering, digital currency conversions, farm evaluations, and local sustainability planning for economic resilience and food security.",
+    badge: "AGRICULTURE",
+    color: "from-green-600 to-amber-600",
+    features: ["Local Farms", "Bartering", "Food Security", "Economic Resilience"],
+    directUrl: "https://chatgpt.com/g/g-68d6c0b6cecc8191b38e0d9cf099769d-farm-finder-gpt",
+    videoUrl: "https://youtu.be/DHVwaf7qMDY",
+    emoji: "🚜"
+  },
+  {
     title: "ALAN WATTS GPT",
     description: "Your Free Thought Liberator, designed to inspire critical thinking, unravel illusions, and guide you toward deeper understanding. With the spirit of Alan Watts, explore philosophical, scientific, and cultural questions.",
     badge: "PHILOSOPHY",
