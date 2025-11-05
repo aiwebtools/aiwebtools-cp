@@ -199,7 +199,7 @@ const featuredGPTs = [
     color: "from-red-600 to-gray-600",
     features: ["Crime Analysis", "Evidence Review", "Investigation Support", "Forensic Insights"],
     directUrl: "https://criminologistgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=jgvqpqmRJi8",
+    videoUrl: "https://youtu.be/iQzgCq-mmtE?si=ma_Vpvvh3ZJQXPhW",
     imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop",
     emoji: "🔍"
   },
