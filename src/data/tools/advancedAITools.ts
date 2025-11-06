@@ -128,7 +128,7 @@ export const advancedAITools: Tool[] = [
     emoji: "⚰️",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://resurrectiongpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=nEuxdGO-RZ4&t=4s",
+    videoUrl: "https://youtu.be/xPQMsNdD51k",
     tags: ["digital resurrection", "historical figures", "personality reconstruction", "historical analysis", "knowledge recovery"],
     category: "Advanced AI Tools",
     rating: 4.5,

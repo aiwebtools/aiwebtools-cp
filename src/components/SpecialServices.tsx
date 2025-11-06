@@ -685,7 +685,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Memory Simulation", "Emotional Healing", "Comfort Support", "Grief Assistance"],
     directUrl: "https://resurrectiongpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=nEuxdGO-RZ4",
+    videoUrl: "https://youtu.be/xPQMsNdD51k",
     imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop",
     emoji: "👼"
   },
