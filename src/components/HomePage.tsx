@@ -13,6 +13,8 @@ import CategoryFilters from "@/components/tools/CategoryFilters";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import { runFullToolVerification } from "@/utils/toolIndexing";
 import { searchTools } from "@/utils/searchUtils";
+import dualityLight from "@/assets/balance-of-duality-light.png";
+import dualityDark from "@/assets/balance-of-duality-dark.png";
 
 const HomePage = () => {
   const {
@@ -165,6 +167,31 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+
+      {/* Duality Images Section - directly under "Why AI WEB TOOLS..." */}
+      <section aria-labelledby="duality-title" className="mt-8 max-w-6xl mx-auto">
+        <h3 id="duality-title" className="sr-only">The Balance of Duality</h3>
+        <figure className="bg-gray-900/40 rounded-xl p-4 md:p-6 border border-white/10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <img
+              src={dualityLight}
+              alt="The Balance of Duality - Matrix of Light diagram showing inner cosmos and two paths"
+              loading="lazy"
+              className="w-full h-auto rounded-lg shadow-lg"
+            />
+            <img
+              src={dualityDark}
+              alt="The Balance of Duality - Middle path artwork with light vs dark symbolism"
+              loading="lazy"
+              className="w-full h-auto rounded-lg shadow-lg"
+            />
+          </div>
+          <figcaption className="text-center mt-4 text-sm md:text-base text-gray-300">
+            The truth of our matrix of light and the spiritual test of two paths.
+            <span className="block mt-1 text-cyan-300 font-medium">— Kenneth George Bastian, Maker of this AI Web Tools page</span>
+          </figcaption>
+        </figure>
+      </section>
     </div>
   );
 };
