@@ -57,11 +57,11 @@ export const aiWebToolsKeywords: Record<string, string[]> = {
   "home renovator": ["renovation", "home improvement", "construction", "repair"],
   "fisherman": ["fishing", "angling", "outdoor", "recreation"],
   "agronomus": ["farming", "agriculture", "crops", "cultivation"],
-  "antique": ["collectibles", "vintage", "appraisal", "valuation"],
+  "antique": ["collectibles", "vintage", "appraisal", "valuation", "old", "historical", "classic"],
   "oraculum": ["oracle", "prophecy", "divination", "mystical"],
-  "trivia": ["quiz", "games", "knowledge", "questions"],
+  "trivia": ["quiz", "games", "knowledge", "questions", "trivia night", "game"],
   "veterinarian": ["pet care", "animal health", "vet", "animals"],
-  "insurance": ["claims", "coverage", "policy", "protection"],
+  "insurance": ["claims", "coverage", "policy", "protection", "insurance claims"],
   "cannabis": ["marijuana", "hemp", "cbd", "thc", "weed"],
   "probability": ["statistics", "likelihood", "chance", "prediction"],
   "learn any course": ["education", "learning", "courses", "study"],
@@ -94,7 +94,7 @@ export const aiWebToolsKeywords: Record<string, string[]> = {
   "homeschool": ["education", "learning", "teaching", "curriculum"],
   "pharmaceutical": ["medicine", "drugs", "pharmacy", "healthcare"],
   "contract review": ["legal", "agreement", "contract", "review"],
-  "tattoo": ["body art", "design", "ink", "artistic"],
+  "tattoo": ["body art", "design", "ink", "artistic", "tattooing", "artwork"],
   "firearms safety": ["gun safety", "weapons", "training", "education"],
   "sora prompt": ["video generation", "ai video", "prompts"],
   "pharma research": ["pharmaceutical", "research", "clinical", "drug development"],
@@ -122,7 +122,7 @@ export const aiWebToolsKeywords: Record<string, string[]> = {
   "business plan": ["business", "planning", "strategy", "entrepreneur"],
   "fungus": ["mushrooms", "mycology", "fungi", "cultivation"],
   "drill baby drill": ["oil", "gas", "energy", "petroleum"],
-  "dream interpreter": ["dreams", "psychology", "interpretation", "sleep"],
+  "dream interpreter": ["dreams", "psychology", "interpretation", "sleep", "nightmare", "nightmares", "dream meaning", "dream analysis", "subconscious", "rem sleep", "lucid dream", "recurring dreams", "bad dreams"],
   "podcast script": ["podcasting", "audio", "script", "media"],
   "person finder": ["people search", "investigation", "research"],
   "powerpoint": ["presentation", "slides", "ppt", "business"],
@@ -141,10 +141,202 @@ export const aiWebToolsKeywords: Record<string, string[]> = {
   "snoop image": ["image detection", "ai detection", "verification"],
   "legal draftsmith": ["legal", "documents", "drafting", "law"],
   "gpt ideas": ["creativity", "brainstorming", "ideas", "innovation"],
-  "music lessons": ["music", "education", "learning", "instruments"],
+  "music lessons": ["music", "education", "learning", "instruments", "piano", "guitar", "singing", "vocals", "music theory", "composition"],
+  
+  // ULTRA PRIORITY MUSIC GENERATION - SUNO & UDIO
+  "suno": ["music generation", "ai music", "song creation", "music maker", "music creator", "generate music", "create music", "compose music", "music ai", "ai songs", "music production", "beat maker", "music generator"],
+  "udio": ["music generation", "ai music", "song creation", "music maker", "music creator", "generate music", "create music", "compose music", "music ai", "ai songs", "music production", "beat maker", "music generator"],
+  "music generation": ["suno", "udio", "ai music", "create music", "music maker", "song creation", "music creator", "generate songs", "music ai", "compose music"],
+  "music generator": ["suno", "udio", "music generation", "ai music", "create music", "song maker", "beat generator", "music creation"],
+  "ai music": ["suno", "udio", "music generation", "music generator", "create music", "music maker", "song creation"],
+  "create music": ["suno", "udio", "music generation", "music generator", "music maker", "compose", "produce music"],
+  "song creation": ["suno", "udio", "music generation", "music generator", "create songs", "write songs", "song maker"],
   "sophia aeterna": ["wisdom", "philosophy", "ancient", "eternal"],
   "children's book": ["kids", "stories", "illustration", "children"],
   "movie scene": ["film", "cinema", "scene creation", "video"],
   "mental wellness": ["mental health", "therapy", "wellness", "cbt"],
-  "legislator link": ["government", "politics", "representatives", "democracy"]
+  "legislator link": ["government", "politics", "representatives", "democracy"],
+  
+  // COMPREHENSIVE SEMANTIC MAPPING FOR ALL AI WEB TOOLS GPTs
+  
+  // Time & History Related
+  "time travel": ["time machine", "past", "future", "historical", "temporal", "era", "period", "century", "ancient", "history"],
+  "past": ["time machine", "history", "historical", "time travel", "vintage", "retro", "ancient", "medieval"],
+  "future": ["time machine", "prediction", "forecast", "futuristic", "time travel", "tomorrow"],
+  "history": ["time machine", "historical", "past", "historian", "heritage", "archaeology", "ancient"],
+  
+  // Writing & Content Creation
+  "nightmare": ["dream interpreter", "dreams", "bad dreams", "sleep", "nightmares", "night terrors", "scary dreams"],
+  "sleep": ["dream interpreter", "dreams", "nightmare", "insomnia", "rest", "bedtime", "sleeping"],
+  "writer": ["book writer", "script writer", "article rewriter", "content", "author", "writing", "novelist"],
+  "author": ["book writer", "writer", "novelist", "writing", "literature", "publication"],
+  "screenplay": ["script writer", "movie script", "playwriter", "film", "cinema", "screenwriting"],
+  "blog": ["article rewriter", "content", "writing", "blogger", "blogging", "posts"],
+  
+  // Medical & Health  
+  "sick": ["doctor", "personalized doctor", "medical", "health", "illness", "disease", "symptoms"],
+  "pain": ["doctor", "personalized doctor", "medical", "health", "injury", "ache", "hurt"],
+  "diagnosis": ["doctor", "personalized doctor", "medical", "health", "symptoms", "condition"],
+  "medicine": ["pharmaceutical", "pharma research", "doctor", "medical", "drugs", "medication", "treatment"],
+  "therapy": ["mental wellness", "counseling", "treatment", "therapist", "psychological"],
+  "anxiety": ["mental wellness", "mental health", "therapy", "stress", "worry", "panic"],
+  "depression": ["mental wellness", "mental health", "therapy", "mood", "sadness"],
+  "pet": ["veterinarian", "animal", "dog", "cat", "pet care", "vet"],
+  "animal": ["veterinarian", "pet", "wildlife", "fauna", "creatures"],
+  
+  // Business & Finance
+  "money": ["trader", "finance", "investment", "business", "wealth", "financial", "income"],
+  "invest": ["trader", "investment", "finance", "stocks", "portfolio", "trading"],
+  "stock": ["trader", "trading", "investment", "market", "equity", "shares"],
+  "entrepreneur": ["startup validator", "business plan", "microsaas", "founder", "business"],
+  "startup": ["startup validator", "business plan", "microsaas", "entrepreneur", "venture"],
+  "company": ["business plan", "startup", "corporation", "business", "enterprise"],
+  
+  // Technology & Development
+  "code": ["coding", "programming", "development", "software", "developer", "engineer"],
+  "programming": ["coding", "code", "development", "software", "developer", "computer"],
+  "software": ["development", "coding", "programming", "app", "application", "tech"],
+  "website": ["web development", "web design", "site", "webpage", "online"],
+  "app": ["application", "software", "development", "mobile", "web app"],
+  
+  // Creative & Design
+  "art": ["graphic design", "artwork", "sketch artist", "creative", "artistic", "drawing", "painting"],
+  "design": ["graphic design", "creative", "designer", "visual", "artistic"],
+  "drawing": ["sketch artist", "art", "illustration", "draw", "artwork"],
+  "paint": ["art", "artwork", "painting", "artistic", "creative"],
+  "logo": ["graphic design", "branding", "design", "identity", "brand"],
+  
+  // Real Estate & Property
+  "house": ["home renovator", "property data", "real estate", "home", "housing", "residence"],
+  "home": ["home renovator", "property data", "real estate", "house", "housing", "residence"],
+  "property": ["property data", "real estate", "home", "house", "land", "estate"],
+  "real estate": ["property data", "property", "housing", "home", "realty"],
+  "renovation": ["home renovator", "remodel", "construction", "repair", "upgrade"],
+  "repair": ["home renovator", "fix", "maintenance", "construction", "handyman"],
+  
+  // Food & Cooking
+  "cook": ["chef sizzle", "cooking", "recipe", "food", "culinary", "kitchen"],
+  "recipe": ["chef sizzle", "cooking", "food", "meal", "cuisine", "dish"],
+  "food": ["chef sizzle", "recipe", "cooking", "meal", "cuisine", "culinary", "restaurant menu", "food quality"],
+  "meal": ["chef sizzle", "food", "recipe", "cooking", "dish", "cuisine"],
+  "restaurant": ["restaurant menu", "food", "dining", "cuisine", "chef"],
+  "drink": ["mixologist", "beverage", "cocktail", "bar", "bartender"],
+  "cocktail": ["mixologist", "drink", "beverage", "bar", "alcohol"],
+  
+  // Travel & Adventure
+  "travel": ["travel advisor", "trip", "vacation", "journey", "tourism", "explore"],
+  "vacation": ["travel advisor", "holiday", "trip", "travel", "getaway", "tourism"],
+  "trip": ["travel advisor", "travel", "vacation", "journey", "tour"],
+  "adventure": ["imagination traveler", "travel", "exploration", "journey", "quest"],
+  
+  // Spirituality & Philosophy
+  "god": ["talk to gods", "divine", "deity", "spiritual", "religious", "worship"],
+  "religion": ["talk to gods", "spiritual", "faith", "belief", "worship", "mary magdalene"],
+  "spiritual": ["sophia aeterna", "alan watts", "soul", "spirit", "consciousness", "enlightenment"],
+  "soul": ["spiritual", "spirit", "essence", "consciousness", "inner self"],
+  "wisdom": ["sophia aeterna", "philosophy", "knowledge", "insight", "enlightenment"],
+  "philosophy": ["alan watts", "sophia aeterna", "wisdom", "thinking", "philosophical"],
+  
+  // Science & Research
+  "experiment": ["science", "research", "laboratory", "scientific", "test", "study"],
+  "laboratory": ["science", "research", "experiment", "lab", "scientific"],
+  "research": ["data analysis", "science", "study", "investigation", "analysis"],
+  "data": ["data analysis", "research", "analytics", "statistics", "information"],
+  "analysis": ["data analysis", "research", "analytics", "examination", "study"],
+  "space": ["stellaris", "astronomy", "cosmos", "universe", "planetary", "galactic"],
+  "astronomy": ["stellaris", "space", "stars", "planets", "cosmos", "universe"],
+  "dna": ["genome", "genetics", "genetic", "biology", "heredity", "genes"],
+  "genetics": ["genome", "dna", "genetic", "heredity", "biology", "genes"],
+  
+  // Legal & Government
+  "law": ["legal draftsmith", "public defender", "legislation", "attorney", "lawyer", "legal"],
+  "lawyer": ["legal draftsmith", "public defender", "attorney", "law", "legal", "counsel"],
+  "attorney": ["legal draftsmith", "public defender", "lawyer", "law", "legal"],
+  "court": ["public defender", "legal", "law", "trial", "justice", "lawsuit"],
+  "contract": ["contract review", "legal", "agreement", "document", "terms"],
+  "government": ["legislation", "legislator link", "public testimony", "civic", "political"],
+  "politics": ["legislator link", "government", "political", "civic", "policy"],
+  
+  // Entertainment & Media
+  "game": ["game design", "gaming", "video game", "entertainment", "play", "videogame"],
+  "gaming": ["game design", "game", "video game", "gamer", "videogame"],
+  "movie": ["movie maker", "movie script", "movie scene", "film", "cinema", "video"],
+  "film": ["movie maker", "movie script", "cinema", "movie", "filmmaking"],
+  "cinema": ["movie maker", "movie script", "film", "movie", "theater"],
+  "video": ["movie maker", "video analysis", "music video", "film", "footage"],
+  "podcast": ["podcast script", "audio", "podcasting", "broadcast", "show"],
+  
+  // Education & Learning
+  "study": ["learn any course", "learn any skill", "college degree", "education", "learning"],
+  "student": ["college degree", "learn any course", "education", "learning", "academic"],
+  "teacher": ["homeschool", "education", "instructor", "tutor", "teaching"],
+  "tutor": ["homeschool", "education", "teacher", "learning", "instruction"],
+  "lesson": ["music lessons", "education", "learning", "course", "teaching"],
+  "course": ["learn any course", "course maker", "education", "learning", "class"],
+  "skill": ["learn any skill", "ability", "talent", "expertise", "training"],
+  "training": ["learn any skill", "training manual", "education", "instruction", "learning"],
+  
+  // Paranormal & Mysterious
+  "ghost": ["paranormal", "phenomenon", "supernatural", "spirit", "haunting"],
+  "paranormal": ["phenomenon", "ghost", "supernatural", "unexplained", "mysterious"],
+  "ufo": ["phenomenon", "alien", "extraterrestrial", "flying saucer", "unexplained"],
+  "alien": ["phenomenon", "ufo", "extraterrestrial", "space", "et"],
+  "mystery": ["phenomenon", "mysterious", "unexplained", "enigma", "puzzle"],
+  
+  // Personal & Lifestyle
+  "style": ["restyle", "fashion", "design", "aesthetic", "look"],
+  "fashion": ["restyle", "style", "clothing", "wardrobe", "trend"],
+  "beauty": ["skin care", "cosmetics", "appearance", "aesthetic"],
+  
+  // Nature & Environment
+  "farm": ["agronomus", "agriculture", "farming", "crops", "cultivation"],
+  "agriculture": ["agronomus", "farming", "crops", "cultivation", "farm"],
+  "plant": ["agronomus", "farming", "vegetation", "flora", "crops"],
+  "fish": ["fisherman", "fishing", "angling", "aquatic", "catch"],
+  "fishing": ["fisherman", "fish", "angling", "catch", "rod"],
+  "environment": ["sustainable", "eco", "green", "nature", "climate"],
+  "climate": ["sustainable", "environment", "weather", "global warming", "eco"],
+  
+  // Emergency & Safety
+  "fire": ["firefighter", "emergency", "blaze", "burning", "flames"],
+  "emergency": ["firefighter", "crisis", "urgent", "disaster", "911"],
+  "safety": ["firearms safety", "firefighter", "security", "protection", "safe"],
+  "gun": ["firearms safety", "weapon", "firearm", "shooting", "rifle"],
+  
+  // Automotive
+  "car": ["automobile", "vehicle", "auto", "automotive", "driving"],
+  "vehicle": ["automobile", "car", "auto", "transportation", "driving"],
+  "auto": ["automobile", "car", "vehicle", "automotive"],
+  
+  // Valuation & Appraisal
+  "appraisal": ["antique", "artwork appraisal", "material valuation", "valuation", "assessment"],
+  "value": ["material valuation", "appraisal", "worth", "valuation", "assessment"],
+  "collectible": ["antique", "collectibles", "rare", "valuable", "vintage"],
+  
+  // Miscellaneous Semantic Connections
+  "quiz": ["trivia", "quiz maker", "test", "questions", "game"],
+  "celebrity": ["celebrity chatline", "famous", "star", "entertainment", "celebrity"],
+  "famous": ["celebrity", "star", "renowned", "celebrity chatline"],
+  "credit": ["credit score", "finance", "credit rating", "financial", "loan"],
+  "image": ["graphic design", "restyle", "sketch artist", "visual", "picture", "photo"],
+  "photo": ["image", "picture", "photography", "snapshot", "visual"],
+  "presentation": ["powerpoint", "ppt", "slides", "slideshow", "deck"],
+  "grant": ["grant writer", "funding", "money", "nonprofit", "proposal"],
+  "testimony": ["public testimony", "court", "witness", "statement", "testimony"],
+  "security": ["cyber security", "protection", "safety", "cybersecurity", "hacking"],
+  "hacking": ["cyber security", "cybersecurity", "security", "breach", "hack"],
+  "mushroom": ["fungus", "fungi", "mushrooms", "mycology", "shrooms"],
+  "fungi": ["fungus", "mushroom", "mycology", "spores"],
+  "oil": ["drill baby drill", "petroleum", "gas", "energy", "fuel"],
+  "gas": ["drill baby drill", "oil", "petroleum", "energy", "fuel"],
+  "energy": ["drill baby drill", "oil", "gas", "power", "renewable", "solar"],
+  "solar": ["solar land", "energy", "renewable", "sun", "solar power"],
+  "binary": ["binary converter", "code", "computer", "programming", "digital"],
+  "matrix": ["matrix neo", "simulation", "reality", "neo", "digital"],
+  "name": ["name insight", "names", "meaning", "identity"],
+  "coloring": ["coloring book", "art", "drawing", "color", "kids"],
+  "native": ["native american", "indigenous", "tribal", "heritage"],
+  "indigenous": ["native american", "native", "tribal", "aboriginal"],
+  "person": ["person finder", "people", "individual", "human", "search"],
+  "people": ["person finder", "person", "individuals", "humans", "folks"]
 };
