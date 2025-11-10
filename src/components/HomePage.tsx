@@ -200,6 +200,20 @@ const HomePage = () => {
               className="w-full h-auto rounded-lg shadow-lg"
             />
           </div>
+          <div className="mt-6 flex justify-center">
+            <a
+              href="https://worldresourceclock.lovable.app/?via=aiwebtools"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white font-semibold rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+            >
+              <svg className="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" strokeWidth="2"/>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6l4 2"/>
+              </svg>
+              <span>Keep an Eye on the Natural Resources Clock</span>
+            </a>
+          </div>
           <figcaption className="text-center mt-4 text-sm md:text-base text-gray-300">
             The truth of our matrix of light and the spiritual test of two paths.
             <span className="block mt-1 text-cyan-300 font-medium">— Kenneth George Bastian, Maker of this AI Web Tools page</span>

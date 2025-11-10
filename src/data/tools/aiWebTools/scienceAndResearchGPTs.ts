@@ -14,7 +14,8 @@ import {
   Database,
   Zap,
   Recycle,
-  Mountain
+  Mountain,
+  Clock
 } from "lucide-react";
 
 export const scienceAndResearchGPTs: Tool[] = [
@@ -202,5 +203,17 @@ export const scienceAndResearchGPTs: Tool[] = [
     category: "Science & Research",
     rating: 4.8,
     totalVotes: 2345
+  },
+  {
+    icon: Clock,
+    title: "World Resource Clock",
+    description: "Keep an eye on the natural resources clock - Track global resource consumption, depletion rates, and sustainability metrics in real-time. Monitor oil, water, forests, minerals, and other critical natural resources with live data visualization and predictive analytics. Essential tool for environmental researchers, policymakers, and sustainability advocates to understand our planet's resource utilization patterns.",
+    emoji: "⏰",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://worldresourceclock.lovable.app/?via=aiwebtools",
+    tags: ["natural resources", "sustainability", "environment", "resource tracking", "climate", "conservation", "global data", "real-time monitoring", "aiwebtools"],
+    category: "Science & Research",
+    rating: 4.9,
+    totalVotes: 3567
   }
 ];
