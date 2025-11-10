@@ -16,6 +16,7 @@ import { searchTools } from "@/utils/searchUtils";
 import dualityLight from "@/assets/balance-of-duality-light.png";
 import dualityDark from "@/assets/balance-of-duality-dark.png";
 import dualityMatrix from "@/assets/balance-of-duality-matrix.png";
+import dualityPath from "@/assets/balance-of-duality-path.png";
 
 const HomePage = () => {
   const {
@@ -173,7 +174,7 @@ const HomePage = () => {
       <section aria-labelledby="duality-title" className="mt-8 max-w-6xl mx-auto">
         <h3 id="duality-title" className="sr-only">The Balance of Duality</h3>
         <figure className="bg-gray-900/40 rounded-xl p-4 md:p-6 border border-white/10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <img
               src={dualityLight}
               alt="The Balance of Duality - Matrix of Light diagram showing inner cosmos and two paths"
@@ -189,6 +190,12 @@ const HomePage = () => {
             <img
               src={dualityMatrix}
               alt="The Balance of Duality - Your Inner Cosmos flowchart and binary code background"
+              loading="lazy"
+              className="w-full h-auto rounded-lg shadow-lg"
+            />
+            <img
+              src={dualityPath}
+              alt="The Path of Duality - consequence and light vs dark choice diagram"
               loading="lazy"
               className="w-full h-auto rounded-lg shadow-lg"
             />
