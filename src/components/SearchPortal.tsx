@@ -8,6 +8,7 @@ import { useMemo } from "react";
 import dualityLight from "@/assets/balance-of-duality-light.png";
 import dualityDark from "@/assets/balance-of-duality-dark.png";
 import dualityMatrix from "@/assets/balance-of-duality-matrix.png";
+import dualityPath from "@/assets/balance-of-duality-path.png";
 
 const SearchPortal = () => {
   const {
