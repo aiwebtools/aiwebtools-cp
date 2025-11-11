@@ -209,6 +209,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     description: "This assists in studying different religions and offers a first person interactive learning perspective for educational and exploratory purposes only. Explore the rich diversity of world religions through immersive study and comparative analysis.",
     emoji: "📿",
     color: "from-purple-500 to-blue-600",
+    videoUrl: "https://youtu.be/XDS4qsb48h0?si=itA17CrdVOfiKTTB",
     directUrl: "https://chatgpt.com/g/g-6901478f2bf88191b49298a508bbd486-religious-studies-gpt/?via=aiwebtools",
     tags: ["religion", "religious studies", "comparative religion", "world religions", "education", "spiritual learning", "theology", "religious education", "aiwebtools"],
     category: "Spirituality & Philosophy",
