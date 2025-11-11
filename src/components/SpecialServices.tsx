@@ -675,7 +675,7 @@ const featuredGPTs = [
     color: "from-yellow-400 to-purple-600",
     features: ["Religious Dialogue", "Mythology", "Spiritual Guidance", "Deity Interaction"],
     directUrl: "https://talktothegodsgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=xoUdjZDgplw",
+    videoUrl: "https://youtu.be/XDS4qsb48h0?si=itA17CrdVOfiKTTB",
     emoji: "⚡"
   },
   {
