@@ -191,7 +191,7 @@ const SearchPortal = () => {
           </div>
           <figcaption className="text-center mt-4 text-sm md:text-base text-gray-300">
             The truth of our matrix of light and the spiritual test of two paths.
-            <span className="block mt-1 text-cyan-300 font-medium">— KGB, Maker of this AI Web Tools page</span>
+            <span className="block mt-1 text-cyan-300 font-medium">— <span className="bg-gradient-to-r from-yellow-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent font-black text-xl tracking-widest animate-pulse drop-shadow-[0_0_10px_rgba(255,255,0,0.5)]">KGB</span>, Maker of this AI Web Tools page</span>
           </figcaption>
         </figure>
       </section>
