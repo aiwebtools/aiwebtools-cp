@@ -191,7 +191,7 @@ const SearchPortal = () => {
           </div>
           <figcaption className="text-center mt-4 text-sm md:text-base text-gray-300">
             The truth of our matrix of light and the spiritual test of two paths.
-            <span className="block mt-1 text-cyan-300 font-medium">— Kenneth George Bastian, Maker of this AI Web Tools page</span>
+            <span className="block mt-1 text-cyan-300 font-medium">— Kenneth George Bastina, Maker of this AI Web Tools page</span>
           </figcaption>
         </figure>
       </section>
