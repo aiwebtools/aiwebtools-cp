@@ -1,0 +1,78 @@
+import { Tool } from "@/types/tools";
+import { BookOpen, Clock, FileText, History, Globe, Video } from "lucide-react";
+
+export const customGeminiGems: Tool[] = [
+  {
+    icon: BookOpen,
+    title: "Book Writer Gemini (Custom Gem)",
+    description: "Custom Gemini gem version of Book Writer GPT for creating professional, well-structured books with seamless page-to-page continuity. Requires a Gemini account to use.",
+    emoji: "📚",
+    color: "from-blue-500 to-green-600",
+    category: "Custom Gemini Gems",
+    directUrl: "https://gemini.google.com/gem/ac3de7972849",
+    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
+    rating: 4.7,
+    totalVotes: 2156,
+    tags: ["gemini", "custom gem", "book writing", "novel creation", "storytelling", "google gemini"]
+  },
+  {
+    icon: Clock,
+    title: "Black History Matter - Time Machine GEMINI",
+    description: "Travel through time to restore truth, mend history, and make the world whole again. Experience Black history like never before through immersive time travel.",
+    emoji: "⏰",
+    color: "from-amber-500 to-red-600",
+    category: "Custom Gemini Gems",
+    directUrl: "https://gemini.google.com/gem/4e45b3038f6c",
+    rating: 4.8,
+    totalVotes: 1892,
+    tags: ["gemini", "custom gem", "time travel", "black history", "education", "history", "google gemini"]
+  },
+  {
+    icon: FileText,
+    title: "Declassified Files Explorer GEMINI",
+    description: "Declassified Files Explorer - Discover and study declassified files released by the government. This tool allows users to study the declassified documents released that were formerly top secret and allows for full transparency.",
+    emoji: "📄",
+    color: "from-gray-500 to-blue-600",
+    category: "Custom Gemini Gems",
+    directUrl: "https://gemini.google.com/gem/52dfeb277b06",
+    rating: 4.6,
+    totalVotes: 1543,
+    tags: ["gemini", "custom gem", "declassified", "government files", "transparency", "research", "google gemini"]
+  },
+  {
+    icon: History,
+    title: "Native American History Time Machine - GEMINI",
+    description: "Step into the sacred currents of time—where every query unveils the buried truths of Native America, one soul-stirring journey at a time. Learn Native American History like never before!",
+    emoji: "🪶",
+    color: "from-orange-500 to-red-600",
+    category: "Custom Gemini Gems",
+    directUrl: "https://gemini.google.com/gem/8410bdacd80e",
+    rating: 4.9,
+    totalVotes: 2341,
+    tags: ["gemini", "custom gem", "time travel", "native american", "history", "education", "google gemini"]
+  },
+  {
+    icon: Globe,
+    title: "OG TIME MACHINE HISTORY EDUCATION (GEM) GEMINI",
+    description: "Father Time Travel Through Time - Experience History Like Never Before in this immersive Time Traveling Journey.",
+    emoji: "🌍",
+    color: "from-purple-500 to-blue-600",
+    category: "Custom Gemini Gems",
+    directUrl: "https://gemini.google.com/gem/18b868221ea1",
+    rating: 4.8,
+    totalVotes: 3127,
+    tags: ["gemini", "custom gem", "time travel", "history", "education", "father time", "google gemini"]
+  },
+  {
+    icon: Video,
+    title: "veo3 prompt maker custom Gem",
+    description: "Custom Gemini gem for creating optimized prompts for Veo 3, Google's advanced video generation model. Craft perfect prompts for stunning AI-generated videos.",
+    emoji: "🎬",
+    color: "from-pink-500 to-purple-600",
+    category: "Custom Gemini Gems",
+    directUrl: "https://gemini.google.com/gem/64b77a9fe1e8",
+    rating: 4.7,
+    totalVotes: 1876,
+    tags: ["gemini", "custom gem", "veo3", "prompt engineering", "video generation", "ai video", "google gemini"]
+  }
+];
