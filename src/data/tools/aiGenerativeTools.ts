@@ -31,18 +31,6 @@ export const aiGenerativeTools: Tool[] = [
     totalVotes: 7654
   },
   {
-    icon: Bot,
-    title: "Gemini Ultra",
-    description: "Google's most capable AI model with advanced multimodal understanding and reasoning across text, code, and images.",
-    emoji: "🤖",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://gemini.google.com/?via=aiwebtools",
-    tags: ["Gemini", "Google", "multimodal", "reasoning", "code"],
-    category: "Advanced AI Tools",
-    rating: 4.7,
-    totalVotes: 6543
-  },
-  {
     icon: Wand2,
     title: "Stable Diffusion XL",
     description: "Advanced open-source image generation model with improved quality, composition, and face generation capabilities.",
