@@ -33,7 +33,7 @@ const CloneOfferPopup = () => {
 
   const handleClone = (e: React.MouseEvent) => {
     e.preventDefault();
-    const cloneUrl = "https://lovable.dev/projects/da00cad7-4ec3-4e5a-8f93-6ee5baec6e95";
+    const cloneUrl = "https://lovable.dev/projects/bdde8922-3051-4bbc-b084-326f95a6d771?via=aiwebtools";
     
     // Create time portal effect (same as FloatingCloneButton)
     const createTimePortalEffect = (targetUrl: string, title: string) => {
