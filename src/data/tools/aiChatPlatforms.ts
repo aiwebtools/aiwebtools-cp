@@ -48,7 +48,7 @@ export const aiChatPlatforms: Tool[] = [
     description: "Google's most advanced AI model with multimodal capabilities, seamlessly processing text, images, video, audio, and code with human-level expertise.",
     emoji: "🧠",
     color: "from-red-500 to-orange-600",
-    directUrl: "https://gemini.google.com/?via=aiwebtools",
+    directUrl: "https://gemini.google.com/g",
     tags: ["Google AI", "Gemini", "multimodal", "text", "images", "video", "audio", "code", "advanced reasoning"],
     category: "AI CHAT & ASSISTANTS",
     rating: 4.7,

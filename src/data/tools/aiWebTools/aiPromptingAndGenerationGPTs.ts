@@ -75,17 +75,5 @@ export const aiPromptingAndGenerationGPTs: Tool[] = [
     category: "AI Prompting & Generation",
     rating: 4.5,
     totalVotes: 4567
-  },
-  {
-    icon: Lightbulb,
-    title: "Google Gemini",
-    description: "Google's advanced AI model that can understand and generate text, code, audio, image, and video. Gemini offers multimodal AI capabilities with integration across Google's ecosystem of products and services.",
-    emoji: "💎",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://gemini.google.com",
-    tags: ["google", "multimodal", "ai assistant", "gemini", "search integration", "productivity"],
-    category: "AI Prompting & Generation",
-    rating: 4.6,
-    totalVotes: 9123
   }
 ];

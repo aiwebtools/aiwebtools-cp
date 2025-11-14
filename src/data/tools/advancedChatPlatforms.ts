@@ -90,18 +90,6 @@ export const advancedChatPlatforms: Tool[] = [
     totalVotes: 2876
   },
   {
-    icon: Sparkles,
-    title: "Gemini by Google",
-    description: "Extraordinary AI tool with unique multimodal capabilities, seamlessly processes text, images, video, audio, and code. Gemini Ultra's human-level expertise surpasses experts in Massive Multitask Language Understanding.",
-    emoji: "💎",
-    color: "from-rainbow-500 to-purple-600",
-    directUrl: "g.co/g1referral/911Z9NTK",
-    tags: ["multimodal", "human-level expertise", "text/image/video/audio", "state-of-the-art", "responsible AI", "transformative"],
-    category: "Advanced Chat Platforms",
-    rating: 4.8,
-    totalVotes: 6789
-  },
-  {
     icon: Bot,
     title: "Custom GPT Store",
     description: "Create a custom GPT using your words having a conversation. Creating individualized AIs for specific tasks has never been so easy. ChatGPT Plus exclusive with monetization opportunities for builders.",
