@@ -2,6 +2,7 @@
 import { Phone, Trees, Clapperboard, Heart, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import { useFavorites } from "@/hooks/useFavorites";
 import { allTools } from "@/data/toolsData";
 import { getCurrentToolCount } from "@/utils/toolCounter";
@@ -29,9 +30,12 @@ const Navigation = () => {
     setToolStats(stats);
   }, []);
 
-  // Enhanced CSV download with all comprehensive data fields
+  // Enhanced CSV download with all comprehensive data fields + GPT Instructions ZIP
   const handleDownloadAllToolsCSV = () => {
     try {
+      // Trigger confetti celebration first
+      createConfettiCelebration();
+      
       console.log(`📊 Generating comprehensive CSV with ${allTools.length} tools...`);
       
       // Enhanced headers with all available data fields
@@ -82,6 +86,18 @@ const Navigation = () => {
       URL.revokeObjectURL(url);
       
       console.log(`✅ CSV download complete! ${allTools.length} tools exported with enhanced data`);
+      
+      // Also download the GPT Instructions ZIP file after a short delay
+      setTimeout(() => {
+        const zipLink = document.createElement('a');
+        zipLink.href = '/downloads/gpt-instructions.zip';
+        zipLink.download = 'AIWebTools-150-GPT-Instructions.zip';
+        document.body.appendChild(zipLink);
+        zipLink.click();
+        document.body.removeChild(zipLink);
+        console.log('🎁 Also downloaded 150+ GPT Instructions ZIP!');
+      }, 500);
+      
     } catch (err) {
       console.error("Failed to generate comprehensive CSV:", err);
     }

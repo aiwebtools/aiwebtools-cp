@@ -69,6 +69,9 @@ const DesktopMenu = () => {
   // Enhanced CSV download
   const handleDownloadAllToolsCSV = () => {
     try {
+      // Trigger confetti celebration first
+      createConfettiCelebration();
+      
       console.log(`📊 Generating comprehensive CSV with ${allTools.length} tools...`);
       
       const headers = [
@@ -117,6 +120,18 @@ const DesktopMenu = () => {
       URL.revokeObjectURL(url);
       
       console.log(`✅ CSV download complete! ${allTools.length} tools exported`);
+      
+      // Also download the GPT Instructions ZIP file
+      setTimeout(() => {
+        const zipLink = document.createElement('a');
+        zipLink.href = '/downloads/gpt-instructions.zip';
+        zipLink.download = 'AIWebTools-150-GPT-Instructions.zip';
+        document.body.appendChild(zipLink);
+        zipLink.click();
+        document.body.removeChild(zipLink);
+        console.log('🎁 Also downloaded 150+ GPT Instructions ZIP!');
+      }, 500);
+      
       setIsMenuOpen(false);
     } catch (err) {
       console.error("Failed to generate CSV:", err);

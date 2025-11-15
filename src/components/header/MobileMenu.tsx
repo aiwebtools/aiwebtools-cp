@@ -1,4 +1,4 @@
-import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy } from "lucide-react";
+import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Gift } from "lucide-react";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,7 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/component
 import { useFavorites } from "@/hooks/useFavorites";
 import { allTools } from "@/data/toolsData";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
 import Logo from "./Logo";
@@ -77,6 +78,9 @@ const MobileMenu = () => {
   // Enhanced CSV download with all comprehensive data fields
   const handleDownloadAllToolsCSV = () => {
     try {
+      // Trigger confetti celebration first
+      createConfettiCelebration();
+      
       console.log(`📊 Generating comprehensive CSV with ${allTools.length} tools...`);
       
       const headers = [
@@ -125,6 +129,18 @@ const MobileMenu = () => {
       URL.revokeObjectURL(url);
       
       console.log(`✅ CSV download complete! ${allTools.length} tools exported with enhanced data`);
+      
+      // Also download the GPT Instructions ZIP file
+      setTimeout(() => {
+        const zipLink = document.createElement('a');
+        zipLink.href = '/downloads/gpt-instructions.zip';
+        zipLink.download = 'AIWebTools-150-GPT-Instructions.zip';
+        document.body.appendChild(zipLink);
+        zipLink.click();
+        document.body.removeChild(zipLink);
+        console.log('🎁 Also downloaded 150+ GPT Instructions ZIP!');
+      }, 500);
+      
       setIsMenuOpen(false);
     } catch (err) {
       console.error("Failed to generate comprehensive CSV:", err);
