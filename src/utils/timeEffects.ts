@@ -1,4 +1,4 @@
-import { createPortalSounds } from './effects/audioEffects';
+import { createPortalSounds, createConfettiCelebration } from './effects/audioEffects';
 import { 
   createParticles, 
   createVortexRings, 
@@ -230,6 +230,13 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   
   // Create portal sounds (keeping existing timing) - NO ROBOT VOICE
   createPortalSounds();
+  
+  // Add confetti celebration for clone actions
+  if (destinationUrl.includes('lovable.dev/projects') || destinationUrl.includes('clone')) {
+    setTimeout(() => {
+      createConfettiCelebration();
+    }, 500);
+  }
 
   // Log for debugging
   console.log('🌀 Portal effect created, opening URL in:', 1750, 'ms');

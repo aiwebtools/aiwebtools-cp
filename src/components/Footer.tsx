@@ -1,9 +1,11 @@
 import { Separator } from "@/components/ui/separator";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import FooterActions from "./footer/FooterActions";
 import FooterCompanyInfo from "./footer/FooterCompanyInfo";
 import FooterLinks from "./footer/FooterLinks";
 import FooterBottom from "./footer/FooterBottom";
+import { Download, Gift } from "lucide-react";
 
 const Footer = () => {
   const handleRequestTool = () => {
@@ -108,6 +110,20 @@ Best regards,
     createTimePortalEffect(url);
   };
 
+  // Download 150+ GPT Operational Instructions
+  const handleDownloadGPTInstructions = () => {
+    createConfettiCelebration();
+    setTimeout(() => {
+      const link = document.createElement('a');
+      link.href = '/downloads/gpt-instructions.zip';
+      link.download = 'AIWebTools-150-GPT-Instructions.zip';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      console.log('🎁 Downloaded 150+ GPT Instructions!');
+    }, 500);
+  };
+
   return (
     <footer className="bg-black text-cyan-100 py-16 border-t border-cyan-500/30">
       <div className="container mx-auto px-4">
@@ -137,6 +153,30 @@ Best regards,
             
             {/* Shine effect on hover */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+          </button>
+        </div>
+
+        {/* Download 150+ GPT Instructions Button */}
+        <div className="flex justify-center mb-16 px-4">
+          <button
+            onClick={handleDownloadGPTInstructions}
+            className="relative px-4 sm:px-8 md:px-12 py-4 sm:py-5 md:py-6 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-600 text-white font-bold text-sm sm:text-base md:text-lg rounded-full shadow-2xl transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-400/50 group overflow-hidden max-w-[90vw] sm:max-w-none"
+          >
+            {/* Animated background shine */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+            
+            {/* Pulsing glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 opacity-50 blur-xl animate-pulse"></div>
+            
+            {/* Button content */}
+            <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3 leading-tight flex-wrap">
+              <Gift className="w-5 h-5 sm:w-6 sm:h-6 animate-bounce" />
+              <span className="text-center">
+                <span className="hidden sm:inline">🎁 FREE GIFT: DOWNLOAD 150+ CUSTOM GPT INSTRUCTIONS</span>
+                <span className="sm:hidden">🎁 FREE: 150+ GPT INSTRUCTIONS</span>
+              </span>
+              <Download className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
+            </span>
           </button>
         </div>
 
