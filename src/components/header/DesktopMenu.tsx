@@ -1,4 +1,4 @@
-import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy } from "lucide-react";
+import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Gift } from "lucide-react";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,7 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/component
 import { useFavorites } from "@/hooks/useFavorites";
 import { allTools } from "@/data/toolsData";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
 import Logo from "./Logo";
@@ -122,6 +123,21 @@ const DesktopMenu = () => {
     }
   };
 
+  // Download 150+ GPT Operational Instructions
+  const handleDownloadGPTInstructions = () => {
+    createConfettiCelebration();
+    setTimeout(() => {
+      const link = document.createElement('a');
+      link.href = '/downloads/gpt-instructions.zip';
+      link.download = 'AIWebTools-150-GPT-Instructions.zip';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      console.log('🎁 Downloaded 150+ GPT Instructions!');
+    }, 500);
+    setIsMenuOpen(false);
+  };
+
   return (
     <TooltipProvider>
       <div className="hidden lg:block">
@@ -182,6 +198,23 @@ const DesktopMenu = () => {
                 >
                   <span className="mr-3 text-2xl">🎯</span> Browse Categories
                 </DropdownMenuItem>
+              </div>
+              
+              {/* Download 150+ GPT Instructions Button */}
+              <div className="mb-6">
+                <button
+                  onClick={handleDownloadGPTInstructions}
+                  className="w-full relative group overflow-hidden bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 hover:from-yellow-500 hover:via-yellow-600 hover:to-yellow-700 text-black font-extrabold py-6 px-8 rounded-xl shadow-2xl shadow-yellow-500/50 transition-all duration-300 transform hover:scale-105 border-2 border-yellow-300 gold-glow"
+                >
+                  {/* Animated background shine */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                  
+                  <span className="relative z-10 flex items-center justify-center gap-3 text-lg">
+                    <Gift className="w-6 h-6 animate-bounce" />
+                    🎁 FREE DOWNLOAD: 150+ Custom GPT Instructions
+                    <Download className="w-6 h-6 animate-pulse" />
+                  </span>
+                </button>
               </div>
               
               <DropdownMenuSeparator className="border-gray-700 mb-6" />

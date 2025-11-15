@@ -1,8 +1,20 @@
 
 import { Tool } from "@/types/tools";
-import { Mic, Video, Image, FileText, Headphones, Camera, Music, Film, Edit, Play, Binary, Palette } from "lucide-react";
+import { Mic, Video, Image, FileText, Headphones, Camera, Music, Film, Edit, Play, Binary, Palette, Copy } from "lucide-react";
 
 export const multimediaAndContentGPTs: Tool[] = [
+  {
+    icon: Copy,
+    title: "AIWEBTOOLS GPT CLONER GPT",
+    description: "Think it, Dream it, Spawn it! Clone any of our GPTs and receive operational instructions ready to deploy, written in the style of the creator of AIWebTools.AI. This powerful tool allows you to replicate the functionality and style of any AI Web Tools GPT, providing you with complete operational instructions that you can deploy on your own model. Perfect for developers, AI enthusiasts, and anyone looking to create their own custom GPT based on proven templates.",
+    emoji: "🔄",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-6904dd7abc788191aff06ba097690983-aiwebtools-ai-gpt-a-w-t-gpt-instructions-cloner",
+    tags: ["gpt cloner", "operational instructions", "ai development", "custom gpts", "prompt engineering", "ai tools"],
+    category: "Multimedia & Content",
+    rating: 4.9,
+    totalVotes: 2345
+  },
   {
     icon: Mic,
     title: "Podcast Script Writer GPT",
