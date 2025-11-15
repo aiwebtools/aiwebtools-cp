@@ -1,5 +1,5 @@
 
-import { Menu, Phone, Search, X, Globe, ChevronDown, Download, Copy } from "lucide-react";
+import { Menu, Phone, Search, X, Globe, ChevronDown, Download, Copy, Gift } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,7 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/component
 import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { generateToolSlug } from "@/utils/urlGenerator";
 import Logo from "./Logo";
@@ -88,6 +89,9 @@ const TabletMenu = () => {
   // Enhanced CSV download with all comprehensive data fields
   const handleDownloadAllToolsCSV = () => {
     try {
+      // Trigger confetti celebration first
+      createConfettiCelebration();
+      
       console.log(`📊 Generating comprehensive CSV with ${allTools.length} tools...`);
       
       // Enhanced headers with all available data fields
@@ -137,7 +141,18 @@ const TabletMenu = () => {
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
       
-      console.log(`✅ CSV download complete! ${allTools.length} tools exported with enhanced data`);
+      console.log(`✅ CSV download complete! ${allTools.length} tools exported with comprehensive data`);
+      
+      // Also download the GPT Instructions ZIP file
+      setTimeout(() => {
+        const zipLink = document.createElement('a');
+        zipLink.href = '/downloads/gpt-instructions.zip';
+        zipLink.download = 'AIWebTools-150-GPT-Instructions.zip';
+        document.body.appendChild(zipLink);
+        zipLink.click();
+        document.body.removeChild(zipLink);
+        console.log('🎁 Also downloaded 150+ GPT Instructions ZIP!');
+      }, 500);
     } catch (err) {
       console.error("Failed to generate comprehensive CSV:", err);
     }
