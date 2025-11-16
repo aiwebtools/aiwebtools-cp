@@ -16,6 +16,8 @@ import ToolDetail from "./pages/ToolDetail";
 import SimilarToolsPage from "./pages/SimilarTools";
 import FavoritesPage from "./pages/FavoritesPage";
 import ToolSubmission from "./pages/ToolSubmission";
+import AdminDashboard from "./pages/AdminDashboard";
+import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import DisclaimersPage from "./pages/DisclaimersPage";
 import OurStoryPage from "./pages/OurStoryPage";
@@ -57,6 +59,8 @@ function App() {
                   <Route path="/disclaimers" element={<DisclaimersPage />} />
                   <Route path="/our-story" element={<OurStoryPage />} />
                   <Route path="/submit-tool" element={<ToolSubmission />} />
+                  <Route path="/admin" element={<AdminDashboard />} />
+                  <Route path="/auth" element={<Auth />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
                 
