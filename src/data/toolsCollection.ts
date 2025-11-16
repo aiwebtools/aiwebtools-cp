@@ -188,6 +188,14 @@ import { videoGenerationTools } from './tools/videoGenerationTools';
 import { videoMarketingTools } from './tools/videoMarketingTools';
 import { professionalGPTsAudio } from './tools/professionalGPTsAudio';
 
+// Import MAJOR AI PLATFORMS - The essentials
+import { majorAIPlatforms } from './tools/majorAIPlatforms';
+import { topImageGenerators } from './tools/topImageGenerators';
+import { topMusicVideoTools } from './tools/topMusicVideoTools';
+import { topProductivityWriting } from './tools/topProductivityWriting';
+import { developerProductivityAI } from './tools/developerProductivityAI';
+
+
 // Import AI Hardware
 import { aiHardware } from './tools/aiHardware';
 
@@ -379,6 +387,13 @@ export const getAllToolCategories = (): Tool[] => {
     ...additionalPopularTools2025,
     
     // AI HARDWARE
-    ...aiHardware
+    ...aiHardware,
+    
+    // MAJOR AI PLATFORMS - The essentials everyone expects
+    ...majorAIPlatforms,
+    ...topImageGenerators,
+    ...topMusicVideoTools,
+    ...topProductivityWriting,
+    ...developerProductivityAI
   ];
 };
