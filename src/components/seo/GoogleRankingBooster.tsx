@@ -17,12 +17,15 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       "alternateName": ["AI WEB TOOLS", "AIWebTools", "AITools.Studio"],
       "url": "https://aitools.studio",
       "logo": "https://aitools.studio/favicon.ico",
-      "description": "The world's #1 most comprehensive AI tools directory with 2195+ curated AI applications. Better than Toolify, Futurepedia, and all competitors.",
+      "description": "The world's #1 most comprehensive AI web tools directory with 2195+ verified AI web tools. Find, compare, and access the best AI web tools for any purpose. Better than competitors with expert reviews and daily updates.",
       "foundingDate": "2023",
-      "keywords": competitiveAdvantage.brandDominance.join(", "),
-      "slogan": "Better Than Toolify & Futurepedia - The #1 AI Tools Directory",
-      "awards": ["#1 AI Tools Directory 2025", "Most Comprehensive AI Database", "Trusted by 100K+ Users"],
+      "keywords": competitiveAdvantage.brandDominance.join(", ") + ", ai web tools, best ai web tools, ai web tools directory, find ai web tools, compare ai web tools",
+      "slogan": "#1 AI Web Tools Directory - Find & Compare 2,195+ AI Web Tools",
+      "awards": ["#1 AI Web Tools Directory 2025", "Most Comprehensive AI Web Tools Database", "Trusted by 100K+ Users"],
       "knowsAbout": [
+        "AI Web Tools",
+        "AI Web Tools Directory",
+        "Best AI Web Tools",
         "Artificial Intelligence Tools",
         "AI Software Directory", 
         "Technology Curation",
@@ -37,9 +40,10 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
 
     const websiteSchema = {
       "@type": "WebSite",
-      "name": "AI WEB TOOLS - #1 AI Tools Directory",
+      "name": "AI WEB TOOLS - #1 AI Web Tools Directory",
+      "alternateName": "AI Web Tools Directory",
       "url": "https://aitools.studio",
-      "description": "Discover 2195+ AI tools better than Toolify & Futurepedia. Comprehensive directory with expert reviews, ratings, and detailed analysis.",
+      "description": "Discover 2,195+ AI web tools in the most comprehensive AI web tools directory. Find and compare the best AI web tools with expert reviews, ratings, and detailed analysis. Your trusted source for AI web tools.",
       "publisher": {
         "@type": "Organization",
         "name": "AI WEB TOOLS LLC"
@@ -54,8 +58,8 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       },
       "mainEntity": {
         "@type": "ItemList",
-        "name": "AI Tools Directory",
-        "description": "Comprehensive collection of 2195+ AI tools",
+        "name": "AI Web Tools Directory",
+        "description": "Comprehensive collection of 2,195+ verified AI web tools",
         "numberOfItems": "2195+"
       }
     };
@@ -108,24 +112,24 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
   const generateFAQSchema = () => {
     const faqs = [
       {
-        question: "What is AI WEB TOOLS?",
-        answer: "AI WEB TOOLS is the world's #1 most comprehensive AI tools directory with 2195+ curated AI applications. We provide expert reviews, ratings, and detailed analysis to help you find the perfect AI tools for your needs."
+        question: "What are AI web tools?",
+        answer: "AI web tools are artificial intelligence-powered applications and software that run in web browsers. AI WEB TOOLS directory features 2,195+ AI web tools for content creation, business automation, data analysis, design, development, and more. These AI web tools help users work smarter and faster."
       },
       {
-        question: "How is AI WEB TOOLS better than Toolify?",
-        answer: "AI WEB TOOLS offers more comprehensive coverage with 2195+ tools vs Toolify's limited selection. We provide expert reviews, detailed ratings, regular updates, and professional-grade analysis that Toolify lacks."
+        question: "How do I find the best AI web tools?",
+        answer: "Use AI WEB TOOLS directory to find and compare the best AI web tools. We provide expert reviews, ratings, pricing information, and detailed analysis for 2,195+ AI web tools. Filter by category, use case, or pricing to discover AI web tools perfect for your needs."
       },
       {
-        question: "Are the AI tools on AI WEB TOOLS free?",
-        answer: "Many AI tools in our directory offer free tiers or completely free access. We clearly indicate pricing for each tool and highlight the best free AI tools available in 2025."
+        question: "Are AI web tools free to use?",
+        answer: "Many AI web tools offer free tiers or completely free access. On AI WEB TOOLS directory, we clearly indicate pricing for each AI web tool and highlight the best free AI web tools available. Browse our collection to find both free and premium AI web tools."
       },
       {
-        question: "How often is AI WEB TOOLS updated?",
-        answer: "We update our AI tools directory daily with new tools, reviews, and ratings. Our team continuously verifies tool availability and updates information to ensure accuracy."
+        question: "What makes AI WEB TOOLS the best AI web tools directory?",
+        answer: "AI WEB TOOLS is the #1 AI web tools directory with 2,195+ verified AI web tools, expert reviews, daily updates, and comprehensive analysis. Unlike competitors, we test every AI web tool, provide detailed comparisons, and help you find the perfect AI web tools for your specific needs."
       },
       {
-        question: "Can I trust the AI tool reviews on AI WEB TOOLS?",
-        answer: "Yes, all reviews are conducted by our expert team with hands-on testing. We provide unbiased analysis, real user feedback, and comprehensive evaluation of each AI tool's features and performance."
+        question: "How often are new AI web tools added to the directory?",
+        answer: "AI WEB TOOLS directory is updated daily with new AI web tools and reviews. Our team continuously discovers, tests, and adds the latest AI web tools to ensure you have access to the most current and innovative AI web tools available in 2025."
       }
     ];
 

@@ -55,9 +55,12 @@ const HeroSection = () => {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
+        {/* SEO-optimized hidden H1 for search engines */}
+        <h1 className="sr-only">AI Web Tools - The #1 AI Tools Directory with 2,195+ Best AI Web Tools for 2025</h1>
+        
         {/* Main heading with stabilized layout */}
         <div className="mb-6">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+          <div className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight" role="heading" aria-level={2}>
             {/* First line - Animated between tool count and brand name */}
             <div className="relative h-20 md:h-24 lg:h-28 mb-3 flex items-center justify-center">
               <span 
@@ -93,7 +96,7 @@ const HeroSection = () => {
               </span>
               <span className="ml-4 hero-3d-glow hero-stroke-text" data-text="& Compare">& Compare</span>
             </span>
-          </h1>
+          </div>
           
           {/* Clear value proposition subtitle */}
           <div className="mb-8">
