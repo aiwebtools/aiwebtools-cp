@@ -1,4 +1,4 @@
-import { Bot, Globe, Code, Wand2, Zap, Brain, Github, Rocket, Settings, Monitor, Server, HardDrive, Users, Settings2, Database as DatabaseIcon, Terminal as TerminalIcon, Cpu as CpuIcon, Layers, Smartphone, Video } from "lucide-react";
+import { Bot, Globe, Code, Wand2, Zap, Brain, Github, Rocket, Settings, Monitor, Server, HardDrive, Users, Settings2, Database as DatabaseIcon, Terminal as TerminalIcon, Cpu as CpuIcon, Layers, Smartphone, Video, Sparkles } from "lucide-react";
 import { Tool } from "@/types/tools";
 
 export const aiAgents: Tool[] = [
@@ -85,6 +85,138 @@ export const aiAgents: Tool[] = [
     category: "AI Agents",
     rating: 4.8,
     totalVotes: 4567
+  },
+  {
+    icon: Code,
+    title: "Replit Agent",
+    description: "AI coding agent that builds complete applications from natural language. Autonomous development agent that writes code, debugs, installs packages, and deploys apps directly in the browser.",
+    emoji: "🚀",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://replit.com/agent?via=aiwebtools",
+    tags: ["coding agent", "AI agent", "development agent", "autonomous coding", "web development", "app builder agent", "browser IDE", "full-stack agent"],
+    category: "AI Agents",
+    rating: 4.8,
+    totalVotes: 4234
+  },
+  {
+    icon: Github,
+    title: "GitHub Copilot Agent",
+    description: "AI pair programming agent by GitHub and OpenAI. Intelligent coding agent that suggests code, writes functions, and helps debug in real-time across multiple programming languages.",
+    emoji: "🐙",
+    color: "from-purple-500 to-blue-600",
+    directUrl: "https://github.com/features/copilot?via=aiwebtools",
+    tags: ["coding agent", "AI agent", "pair programming", "code completion", "GitHub agent", "development assistant", "multi-language", "real-time coding"],
+    category: "AI Agents",
+    rating: 4.9,
+    totalVotes: 8900
+  },
+  {
+    icon: Brain,
+    title: "Claude by Anthropic",
+    description: "Advanced conversational AI agent by Anthropic with extended context window and superior reasoning. Multi-purpose AI agent for analysis, coding, writing, and complex problem-solving tasks.",
+    emoji: "🧠",
+    color: "from-amber-500 to-orange-600",
+    directUrl: "https://claude.ai/?via=aiwebtools",
+    tags: ["conversational agent", "AI agent", "reasoning agent", "analysis agent", "coding assistant", "writing agent", "problem-solving", "large context"],
+    category: "AI Agents",
+    rating: 4.9,
+    totalVotes: 7654
+  },
+  {
+    icon: Sparkles,
+    title: "Google Gemini Agent",
+    description: "Google's most capable multimodal AI agent with advanced reasoning, coding, and creative capabilities. Versatile AI agent that handles text, images, video, and audio inputs.",
+    emoji: "✨",
+    color: "from-blue-500 to-purple-600",
+    directUrl: "https://gemini.google.com/?via=aiwebtools",
+    tags: ["multimodal agent", "AI agent", "Google AI", "reasoning agent", "coding agent", "creative agent", "visual understanding", "versatile AI"],
+    category: "AI Agents",
+    rating: 4.8,
+    totalVotes: 6543
+  },
+  {
+    icon: Code,
+    title: "v0 by Vercel",
+    description: "AI agent for generating React UI components from text prompts. Autonomous design-to-code agent that creates production-ready components with Tailwind CSS and shadcn/ui.",
+    emoji: "⚡",
+    color: "from-black to-gray-600",
+    directUrl: "https://v0.dev/?via=aiwebtools",
+    tags: ["UI agent", "AI agent", "component generator", "React agent", "design agent", "code generation", "Vercel agent", "frontend development"],
+    category: "AI Agents",
+    rating: 4.7,
+    totalVotes: 3890
+  },
+  {
+    icon: Wand2,
+    title: "Devin AI Agent",
+    description: "World's first fully autonomous AI software engineer agent by Cognition AI. Complete development agent that plans, codes, debugs, and deploys entire applications independently.",
+    emoji: "👨‍💻",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://www.cognition-labs.com/devin?via=aiwebtools",
+    tags: ["autonomous agent", "AI engineer", "software development agent", "full-stack agent", "deployment agent", "Cognition AI", "independent coding", "complete apps"],
+    category: "AI Agents",
+    rating: 4.9,
+    totalVotes: 5432
+  },
+  {
+    icon: Zap,
+    title: "Amazon Q Developer",
+    description: "AWS's AI coding agent for building, debugging, and optimizing applications. Enterprise-grade development agent with deep AWS integration and security features.",
+    emoji: "☁️",
+    color: "from-orange-500 to-yellow-600",
+    directUrl: "https://aws.amazon.com/q/developer/?via=aiwebtools",
+    tags: ["coding agent", "AI agent", "AWS agent", "enterprise agent", "development assistant", "debugging agent", "cloud integration", "security"],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 3210
+  },
+  {
+    icon: Code,
+    title: "Tabnine AI Agent",
+    description: "AI code completion agent that learns your coding patterns. Privacy-focused development agent with offline capabilities and team collaboration features.",
+    emoji: "⌨️",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://www.tabnine.com/?via=aiwebtools",
+    tags: ["code completion agent", "AI agent", "development agent", "privacy-focused", "offline agent", "team collaboration", "pattern learning", "coding assistant"],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 2987
+  },
+  {
+    icon: Rocket,
+    title: "Codeium AI Agent",
+    description: "Free AI coding agent with autocomplete, chat, and search capabilities. Fast development agent supporting 70+ programming languages with unlimited usage.",
+    emoji: "🆓",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://codeium.com/?via=aiwebtools",
+    tags: ["coding agent", "AI agent", "free agent", "autocomplete", "multi-language", "development assistant", "unlimited usage", "fast coding"],
+    category: "AI Agents",
+    rating: 4.7,
+    totalVotes: 4123
+  },
+  {
+    icon: Users,
+    title: "CrewAI Multi-Agent System",
+    description: "Framework for orchestrating role-playing autonomous AI agents. Build complex multi-agent systems where specialized agents collaborate to accomplish sophisticated tasks.",
+    emoji: "👥",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.crewai.com/?via=aiwebtools",
+    tags: ["multi-agent system", "AI agents", "orchestration", "role-playing agents", "collaborative AI", "autonomous agents", "task management", "agent framework"],
+    category: "AI Agents",
+    rating: 4.5,
+    totalVotes: 2345
+  },
+  {
+    icon: Brain,
+    title: "SuperAGI",
+    description: "Open-source autonomous AI agent framework for building, managing, and running useful agents. Infrastructure for deploying production-ready autonomous agents at scale.",
+    emoji: "🦸",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://superagi.com/?via=aiwebtools",
+    tags: ["autonomous agent framework", "AI agents", "open-source", "agent infrastructure", "production agents", "scalable agents", "agent management", "deployment"],
+    category: "AI Agents",
+    rating: 4.6,
+    totalVotes: 2678
   },
   {
     icon: Bot,
