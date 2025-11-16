@@ -1,0 +1,125 @@
+import { Tool } from "@/types/tools";
+import { 
+  Music, 
+  Video,
+  Mic,
+  Film,
+  Play,
+  Sparkles,
+  Wand2,
+  Users
+} from "lucide-react";
+
+export const topMusicVideoTools: Tool[] = [
+  // Music Generation
+  {
+    icon: Music,
+    title: "Suno AI",
+    description: "Revolutionary AI music generator creating full songs with vocals and lyrics from text prompts. Generate professional-quality music in any genre with v4 model. Most popular AI music tool.",
+    emoji: "🎵",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://suno.com/?via=aiwebtools",
+    tags: ["Suno", "AI music", "music generation", "vocals", "lyrics", "full songs", "genre music"],
+    category: "AI Music Generation",
+    rating: 4.9,
+    totalVotes: 124000
+  },
+  {
+    icon: Mic,
+    title: "Udio",
+    description: "Advanced AI music generator by ex-DeepMind engineers. Create high-quality music with natural-sounding vocals, precise control, and extend/edit capabilities. Strong Suno competitor.",
+    emoji: "🎤",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://www.udio.com/?via=aiwebtools",
+    tags: ["Udio", "AI music", "music creation", "vocals", "DeepMind", "professional music", "editing"],
+    category: "AI Music Generation",
+    rating: 4.8,
+    totalVotes: 89000
+  },
+  
+  // Video Generation
+  {
+    icon: Film,
+    title: "Sora (OpenAI)",
+    description: "OpenAI's groundbreaking text-to-video AI model creating up to 60-second videos. Currently in limited release, Sora generates highly realistic scenes with complex camera movements and multiple characters.",
+    emoji: "🎬",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://openai.com/sora?via=aiwebtools",
+    tags: ["Sora", "OpenAI", "text-to-video", "AI video", "realistic video", "60 seconds", "groundbreaking"],
+    category: "AI Video Generation",
+    rating: 4.9,
+    totalVotes: 156000
+  },
+  {
+    icon: Video,
+    title: "Runway Gen-3",
+    description: "Industry-leading AI video generation platform. Gen-3 Alpha delivers cinematic quality video from text and images with precise motion control. Used by professionals worldwide.",
+    emoji: "🎥",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://runwayml.com/?via=aiwebtools",
+    tags: ["Runway", "Gen-3", "AI video", "cinematic", "professional", "motion control", "text-to-video"],
+    category: "AI Video Generation",
+    rating: 4.8,
+    totalVotes: 134000
+  },
+  {
+    icon: Play,
+    title: "Pika",
+    description: "Fast AI video generator creating 3-second clips with impressive quality. Pika 2.0 offers character consistency, scene expansion, and rapid iteration for social media content.",
+    emoji: "▶️",
+    color: "from-pink-500 to-purple-600",
+    directUrl: "https://pika.art/?via=aiwebtools",
+    tags: ["Pika", "AI video", "fast generation", "social media", "character consistency", "quick videos"],
+    category: "AI Video Generation",
+    rating: 4.7,
+    totalVotes: 98000
+  },
+  {
+    icon: Sparkles,
+    title: "Luma Dream Machine",
+    description: "Ultra-fast AI video generation with Ray2 model. Create high-quality 5-second videos in 120 seconds. Excellent for quick iterations and creative experimentation.",
+    emoji: "✨",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://lumalabs.ai/dream-machine?via=aiwebtools",
+    tags: ["Luma", "Dream Machine", "fast video", "AI video", "quick generation", "Ray2", "experimentation"],
+    category: "AI Video Generation",
+    rating: 4.7,
+    totalVotes: 89000
+  },
+  {
+    icon: Users,
+    title: "HeyGen",
+    description: "AI avatar video platform creating talking head videos with realistic lip-sync in 40+ languages. Perfect for marketing, training, and personalized video content at scale.",
+    emoji: "👤",
+    color: "from-green-600 to-teal-600",
+    directUrl: "https://www.heygen.com/?via=aiwebtools",
+    tags: ["HeyGen", "AI avatars", "talking head", "lip-sync", "multilingual", "marketing videos", "personalized"],
+    category: "AI Video Generation",
+    rating: 4.8,
+    totalVotes: 112000
+  },
+  {
+    icon: Film,
+    title: "Synthesia",
+    description: "Enterprise AI video platform with 150+ AI avatars and 120+ languages. Create professional training videos, product demos, and corporate communications without cameras or studios.",
+    emoji: "🎭",
+    color: "from-blue-600 to-indigo-600",
+    directUrl: "https://www.synthesia.io/?via=aiwebtools",
+    tags: ["Synthesia", "enterprise video", "AI avatars", "training videos", "corporate", "120 languages", "professional"],
+    category: "AI Video Generation",
+    rating: 4.7,
+    totalVotes: 87000
+  },
+  {
+    icon: Wand2,
+    title: "D-ID",
+    description: "Create talking avatar videos from still images. AI-powered digital humans with natural expressions and movements. Ideal for personalized video messages and creative content.",
+    emoji: "🪄",
+    color: "from-purple-600 to-pink-600",
+    directUrl: "https://www.d-id.com/?via=aiwebtools",
+    tags: ["D-ID", "talking avatars", "digital humans", "photo animation", "personalized videos", "AI faces"],
+    category: "AI Video Generation",
+    rating: 4.6,
+    totalVotes: 76000
+  }
+];

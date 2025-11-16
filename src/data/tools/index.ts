@@ -145,3 +145,9 @@ export { videoEditingTools } from './videoEditingTools';
 export { videoGenerationTools } from './videoGenerationTools';
 export { videoMarketingTools } from './videoMarketingTools';
 export { professionalGPTsAudio } from './professionalGPTsAudio';
+
+// Export MAJOR AI PLATFORMS - The essentials everyone needs
+export { majorAIPlatforms } from './majorAIPlatforms';
+export { topImageGenerators } from './topImageGenerators';
+export { topMusicVideoTools } from './topMusicVideoTools';
+export { topProductivityWriting } from './topProductivityWriting';
