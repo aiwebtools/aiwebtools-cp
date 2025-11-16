@@ -247,3 +247,12 @@ export { aiMusicProductionTools } from './aiMusicProductionTools';
 
 // Export AI Travel & Tourism Tools
 export { aiTravelTourismTools } from './aiTravelTourismTools';
+
+// Export AI Pet Care Tools
+export { aiPetCareTools } from './aiPetCareTools';
+
+// Export AI Agriculture Tools
+export { aiAgricultureTools } from './aiAgricultureTools';
+
+// Export AI Construction Tools
+export { aiConstructionTools } from './aiConstructionTools';
