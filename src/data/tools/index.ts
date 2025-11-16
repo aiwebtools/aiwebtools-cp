@@ -277,3 +277,12 @@ export { aiPhotographyTools } from './aiPhotographyTools';
 
 // Export AI Recruitment & HR Tools
 export { aiRecruitmentHRTools } from './aiRecruitmentHRTools';
+
+// Export AI Sports & Fitness Analytics Tools
+export { aiSportsAnalyticsTools } from './aiSportsAnalyticsTools';
+
+// Export AI Voice Assistant Tools
+export { aiVoiceAssistantTools } from './aiVoiceAssistantTools';
+
+// Export AI Animation Tools
+export { aiAnimationTools } from './aiAnimationTools';
