@@ -48,7 +48,7 @@ export const appraisalAndValuationGPTs: Tool[] = [
     emoji: "⚖️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://materialvaluationgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=tbZu4vnsY_8",
+    videoUrl: "https://youtu.be/vExE6rHQr84?si=yc400LfjEpdPGHZl",
     tags: ["material valuation", "asset valuation", "precious metals", "market analysis", "wealth management", "aiwebtools"],
     category: "Appraisal & Valuation",
     rating: 4.8,
