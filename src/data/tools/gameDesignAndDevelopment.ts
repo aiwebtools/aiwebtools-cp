@@ -53,5 +53,89 @@ export const gameDesignAndDevelopment: Tool[] = [
     category: "GAME DESIGN & DEVELOPMENT",
     rating: 4.4,
     totalVotes: 890
+  },
+  {
+    icon: Paintbrush,
+    title: "Scenario - AI Game Asset Generator",
+    description: "Custom AI-powered game asset generator that creates style-consistent characters, props, environments, and textures. Train your own AI models for unique game art.",
+    emoji: "🎨",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://www.scenario.com/?via=aiwebtools",
+    tags: ["game assets", "character design", "AI art", "style consistency", "custom models", "game development"],
+    category: "GAME DESIGN & DEVELOPMENT",
+    rating: 4.7,
+    totalVotes: 3450
+  },
+  {
+    icon: Joystick,
+    title: "Leonardo.AI for Game Art",
+    description: "AI art generator optimized for game development. Create character designs, concept art, items, and environments with game-focused AI models.",
+    emoji: "🎮",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://leonardo.ai/?via=aiwebtools",
+    tags: ["game art", "character design", "concept art", "AI generation", "game development", "creative"],
+    category: "GAME DESIGN & DEVELOPMENT",
+    rating: 4.6,
+    totalVotes: 4120
+  },
+  {
+    icon: Code,
+    title: "Ludo AI",
+    description: "AI-powered game design platform for ideation and research. Discover game trends, analyze competitors, and generate game concepts with AI assistance.",
+    emoji: "🎲",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://ludo.ai/?via=aiwebtools",
+    tags: ["game design", "game research", "trend analysis", "ideation", "competitive analysis", "AI assistant"],
+    category: "GAME DESIGN & DEVELOPMENT",
+    rating: 4.5,
+    totalVotes: 2780
+  },
+  {
+    icon: Cpu,
+    title: "Charisma.ai",
+    description: "AI-powered interactive storytelling platform for games. Create believable virtual characters with dynamic dialogue and emotional responses.",
+    emoji: "🎭",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://charisma.ai/?via=aiwebtools",
+    tags: ["interactive storytelling", "game dialogue", "virtual characters", "AI NPCs", "narrative design", "game development"],
+    category: "GAME DESIGN & DEVELOPMENT",
+    rating: 4.6,
+    totalVotes: 2340
+  },
+  {
+    icon: Target,
+    title: "Promethean AI",
+    description: "AI assistant for virtual world creation, helping game artists build 3D environments faster. Automates asset placement and environment design.",
+    emoji: "🌎",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://www.prometheanai.com/?via=aiwebtools",
+    tags: ["world building", "environment design", "3D environments", "asset placement", "game development", "automation"],
+    category: "GAME DESIGN & DEVELOPMENT",
+    rating: 4.7,
+    totalVotes: 2890
+  },
+  {
+    icon: Music,
+    title: "Soundraw AI - Game Music",
+    description: "AI music generator for creating custom game soundtracks and background music. Generate royalty-free music tailored to your game's mood and style.",
+    emoji: "🎵",
+    color: "from-pink-500 to-rose-600",
+    directUrl: "https://soundraw.io/?via=aiwebtools",
+    tags: ["game music", "soundtrack generation", "AI music", "royalty-free", "background music", "audio"],
+    category: "GAME DESIGN & DEVELOPMENT",
+    rating: 4.4,
+    totalVotes: 3120
+  },
+  {
+    icon: Zap,
+    title: "Inworld AI",
+    description: "AI engine for creating interactive NPCs with natural conversation, emotional intelligence, and dynamic personalities for games.",
+    emoji: "🤖",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://www.inworld.ai/?via=aiwebtools",
+    tags: ["AI NPCs", "interactive characters", "game AI", "conversational AI", "character intelligence", "game development"],
+    category: "GAME DESIGN & DEVELOPMENT",
+    rating: 4.7,
+    totalVotes: 3560
   }
 ];
