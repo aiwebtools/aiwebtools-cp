@@ -6,6 +6,7 @@ import { getCategoriesWithCounts, getToolsByCategory } from '@/utils/categoryUti
 import { consolidateTools } from '@/utils/categoryConsolidation';
 import { deduplicateTools } from '@/utils/toolDeduplication';
 import { forceWEB3Reset } from '@/utils/forceWEB3CacheReset';
+import { markFreeTools } from '@/utils/toolUtils';
 
 // Force WEB3 cache reset to ensure .transfermoney appears
 forceWEB3Reset();
@@ -146,16 +147,21 @@ console.log(`   📊 Combined tools: ${combinedTools.length}`);
 console.log(`   📊 After filtering: ${filteredTools.length}`);
 console.log(`   📊 Tools removed by filtering: ${combinedTools.length - filteredTools.length}`);
 
+// Mark all AI Web Tools GPTs as free
+const toolsWithFreeFlags = markFreeTools(filteredTools);
+const freeToolsCount = toolsWithFreeFlags.filter(t => t.isFree).length;
+console.log(`   📊 Free AI Web Tools GPTs: ${freeToolsCount}`);
+
 // DEBUG: Check if ElevenLabs and Suno tools are in the final collection
-const elevenLabsInFinal = filteredTools.filter(tool => tool.title.toLowerCase().includes('eleven'));
-const sunoInFinal = filteredTools.filter(tool => tool.title.toLowerCase().includes('suno'));
+const elevenLabsInFinal = toolsWithFreeFlags.filter(tool => tool.title.toLowerCase().includes('eleven'));
+const sunoInFinal = toolsWithFreeFlags.filter(tool => tool.title.toLowerCase().includes('suno'));
 
 console.log(`🔍 FINAL TOOLS DEBUG:`);
-console.log(`   Total tools in final collection: ${filteredTools.length}`);
+console.log(`   Total tools in final collection: ${toolsWithFreeFlags.length}`);
 console.log(`   ElevenLabs tools found: ${elevenLabsInFinal.length}`, elevenLabsInFinal.map(t => t.title));
 console.log(`   Suno tools found: ${sunoInFinal.length}`, sunoInFinal.map(t => t.title));
 
-export const allTools: Tool[] = filteredTools;
+export const allTools: Tool[] = toolsWithFreeFlags;
 
 // DEBUG: Find Property Data Finder GPT and log its details
 const propertyToolIndex = allTools.findIndex(tool => tool.title === "Property Data Finder GPT");

@@ -13,6 +13,9 @@ interface MinimalToolCardProps {
 const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
   const navigate = useNavigate();
   
+  // Determine if this is an AIWebTools original or marked as free
+  const isAIWebToolsOriginal = tool.isFree || tool.directUrl?.includes('lovable.app') || false;
+  
   const handleClick = (e: React.MouseEvent) => {
     // Don't trigger if clicking on buttons or interactive elements
     const target = e.target as HTMLElement;
@@ -34,7 +37,16 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
       {/* Favorite Button */}
       <FavoriteButton tool={tool} size="sm" className="top-2 right-2 z-30" />
       
-      <CardContent className="p-4 pr-10">
+      {/* FREE Badge for AI Web Tools original tools */}
+      {isAIWebToolsOriginal && (
+        <div className="absolute top-0 left-0 z-20">
+          <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-2 py-1 rounded-br-lg rounded-tl-lg text-xs font-bold shadow-lg">
+            FREE
+          </div>
+        </div>
+      )}
+      
+      <CardContent className="p-4 pr-10 pt-6">
         <div className="flex items-start space-x-3">
           <div className="text-2xl flex-shrink-0">
             {tool.emoji}

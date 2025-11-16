@@ -202,3 +202,12 @@ export { aiRealEstateTools } from './aiRealEstateTools';
 
 // Export AI Accounting & Finance Tools
 export { aiAccountingFinanceTools } from './aiAccountingFinanceTools';
+
+// Export AI Fashion & Style Tools
+export { aiFashionStyleTools } from './aiFashionStyleTools';
+
+// Export AI Logistics & Supply Chain Tools
+export { aiLogisticsSupplyChainTools } from './aiLogisticsSupplyChainTools';
+
+// Export AI Mental Health & Wellness Tools
+export { aiMentalHealthWellnessTools } from './aiMentalHealthWellnessTools';
