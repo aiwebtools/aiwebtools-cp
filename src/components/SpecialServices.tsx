@@ -1406,6 +1406,23 @@ const getOptimizedEmbedUrl = (videoUrl: string) => {
   return `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}&playsinline=1&fs=1&iv_load_policy=3&controls=1&mute=0`;
 };
 
+const createEmojiFallbackImage = (title: string, emoji: string) => {
+  const svg = `
+  <svg xmlns='http://www.w3.org/2000/svg' width='800' height='450'>
+    <defs>
+      <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+        <stop offset='0%' stop-color='#0ea5e9'/>
+        <stop offset='50%' stop-color='#7c3aed'/>
+        <stop offset='100%' stop-color='#22d3ee'/>
+      </linearGradient>
+    </defs>
+    <rect width='100%' height='100%' fill='url(#g)'/>
+    <text x='50%' y='52%' dominant-baseline='middle' text-anchor='middle' font-size='150' fill='rgba(255,255,255,0.85)'>${emoji || '✨'}</text>
+    <text x='50%' y='85%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='28' fill='rgba(255,255,255,0.9)'>${title.replace(/&/g,'&amp;')}</text>
+  </svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+};
+
 const handleAccessTool = (directUrl: string, toolName: string) => {
   console.log('🌀 Access Tool clicked:', toolName, 'URL:', directUrl);
   createTimePortalEffect(directUrl, toolName);
@@ -1663,22 +1680,26 @@ const OurFeaturedSection = () => {
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           fetchPriority="low"
                           referrerPolicy="no-referrer"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.style.display = 'none';
-                            const fallback = target.parentElement?.querySelector('.fallback-emoji') as HTMLElement;
-                            if (fallback) {
-                              fallback.style.display = 'flex';
+onError={(e) => {
+                            const img = e.currentTarget as HTMLImageElement;
+                            try {
+                              img.src = createEmojiFallbackImage(tool.title, (tool as any).emoji || '✨');
+                              img.style.display = 'block';
+                            } catch {
+                              img.style.display = 'none';
                             }
                           }}
                         />
-                        <div className="fallback-emoji absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-4xl opacity-50 hidden">
-                          {tool.emoji}
-                        </div>
                       </div>
-                    ) : (
-                      <div className="w-full h-32 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-cyan-500/30 rounded-lg">
-                        <span className="text-4xl opacity-50">{tool.emoji}</span>
+) : (
+                      <div className="relative w-full h-32 rounded-lg overflow-hidden">
+                        <img
+                          src={createEmojiFallbackImage(tool.title, (tool as any).emoji || "✨")}
+                          alt={`${tool.title} Generated Preview`}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
                       </div>
                     )}
                   </div>
