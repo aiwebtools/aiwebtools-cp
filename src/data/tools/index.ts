@@ -268,3 +268,12 @@ export { aiAutomotiveTools } from './aiAutomotiveTools';
 
 // Export Additional Video & Image Generators
 export { additionalVideoImageGenerators } from './additionalVideoImageGenerators';
+
+// Export AI 3D Modeling Tools
+export { ai3DModelingTools } from './ai3DModelingTools';
+
+// Export AI Photography Tools
+export { aiPhotographyTools } from './aiPhotographyTools';
+
+// Export AI Recruitment & HR Tools
+export { aiRecruitmentHRTools } from './aiRecruitmentHRTools';
