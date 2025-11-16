@@ -18,6 +18,7 @@ import LazySearchPortal from "@/components/LazySearchPortal";
 import InteractiveMatrixBackground from "@/components/InteractiveMatrixBackground";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import CloneOfferPopup from "@/components/CloneOfferPopup";
+import AIWebToolsSEOSection from "@/components/seo/AIWebToolsSEOSection";
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-[200px]">
@@ -107,6 +108,10 @@ const Index = () => {
       
       <div className="relative z-10">
         <HeroSection />
+        
+        {/* SEO-optimized AI Web Tools section - Critical for "ai web tools" keyword ranking */}
+        <AIWebToolsSEOSection />
+        
         <div id="categories-section">
           <CategoryPageSelection />
         </div>
