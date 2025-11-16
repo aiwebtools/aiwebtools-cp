@@ -8,27 +8,44 @@ const toolsNeedingImages = [
   {
     title: "Playwriter GPT",
     prompt: "Generate a professional, cinematic advertisement image for Playwriter GPT. Show a theatrical stage with dramatic lighting, red curtains, a spotlight, and floating script pages with elegant text. Include theatrical masks (comedy and tragedy) and a sense of creative drama. Modern, sleek design with gradients from red to purple. High quality, 16:9 aspect ratio.",
-    id: "playwriter"
+    id: "playwriter",
+    targetLine: 24
   },
   {
     title: ".WorldPeace Web3 Registration",
     prompt: "Generate a professional Web3/blockchain advertisement image for .WorldPeace domain registration. Show a glowing globe with digital network connections, blockchain elements, NFT badges, and a dove symbolizing peace. Use emerald and teal gradients. Include crypto wallet icons (MetaMask, Phantom, Coinbase). Modern, futuristic, high-tech aesthetic. 16:9 aspect ratio.",
-    id: "worldpeace"
+    id: "worldpeace",
+    targetLine: 34
   },
   {
     title: ".WorldTrade Web3 Registration",
     prompt: "Generate a professional Web3/blockchain advertisement image for .WorldTrade domain registration. Show a digital globe with trading routes, blockchain connections, cryptocurrency symbols, and commerce icons. Use cyan and blue gradients. Include NFT elements and wallet icons. Modern, professional, global commerce aesthetic. 16:9 aspect ratio.",
-    id: "worldtrade"
+    id: "worldtrade",
+    targetLine: 45
   },
   {
     title: "Farm Finder & Barter GPT",
     prompt: "Generate a professional advertisement image for Farm Finder & Barter GPT. Show a beautiful farm landscape with a red barn, green fields, fresh produce, a farmer's market scene, and digital elements showing bartering/exchange. Include sustainable farming symbols, local food icons, and economic resilience themes. Use green and amber gradients. 16:9 aspect ratio.",
-    id: "farmfinder"
+    id: "farmfinder",
+    targetLine: 56
   },
   {
     title: "ALAN WATTS GPT",
     prompt: "Generate a serene, philosophical advertisement image for ALAN WATTS GPT. Show a peaceful meditation scene with Eastern philosophy elements, zen garden aesthetics, cosmic consciousness imagery, flowing water, and spiritual enlightenment symbols. Use purple and orange gradients. Include philosophical themes and wisdom symbols. Calming, contemplative aesthetic. 16:9 aspect ratio.",
-    id: "alanwatts"
+    id: "alanwatts",
+    targetLine: 66
+  },
+  {
+    title: "Bob Ross GPT",
+    prompt: "Generate a warm, artistic advertisement image for Bob Ross GPT. Show a serene painting studio with mountains, happy trees, fluffy clouds, and an easel. Include Bob Ross-style landscape painting elements, soft brushes, warm earth tones, calming natural scenery. Use gentle blues, greens, and earth tone gradients. Peaceful, creative, inspiring aesthetic. 16:9 aspect ratio.",
+    id: "bobross",
+    targetLine: 0
+  },
+  {
+    title: "Cyber-Kabbalah Light Code Translation Engine GPT",
+    prompt: "Generate a mystical, technological advertisement image for Cyber-Kabbalah Light Code Translation Engine GPT. Show sacred geometry overlaid with digital code, glowing light codes, Hebrew letters merging with binary, quantum patterns, and ethereal energy. Use purple, cyan, and gold gradients. Include mystical tech elements, spiritual symbols, and futuristic aesthetics. 16:9 aspect ratio.",
+    id: "cyberkabbalah",
+    targetLine: 0
   }
 ];
 
