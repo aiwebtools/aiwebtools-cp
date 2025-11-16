@@ -241,6 +241,7 @@ import { aiAnimationTools } from './tools/aiAnimationTools';
 import { aiPodcastTools } from './tools/aiPodcastTools';
 import { aiTranscriptionToolsPro } from './tools/aiTranscriptionToolsPro';
 import { aiMeetingAssistants } from './tools/aiMeetingAssistants';
+import { aiNoteTakingTools } from './tools/aiNoteTakingTools';
 
 
 // Import AI Hardware
@@ -488,6 +489,7 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiAnimationTools,
     ...aiPodcastTools,
     ...aiTranscriptionToolsPro,
-    ...aiMeetingAssistants
+    ...aiMeetingAssistants,
+    ...aiNoteTakingTools
   ];
 };
