@@ -172,3 +172,15 @@ export { aiDataAnalyticsTools } from './aiDataAnalyticsTools';
 
 // Export AI Video Editing Tools
 export { aiVideoEditingTools } from './aiVideoEditingTools';
+
+// Export AI HR & Recruitment Tools
+export { aiHrRecruitmentTools } from './aiHrRecruitmentTools';
+
+// Export AI Translation & Localization Tools
+export { aiTranslationTools } from './aiTranslationTools';
+
+// Export AI Project Management Tools
+export { aiProjectManagementTools } from './aiProjectManagementTools';
+
+// Export AI Educational Tools
+export { aiEducationalTools } from './aiEducationalTools';
