@@ -1443,10 +1443,13 @@ const OurFeaturedSection = () => {
           </p>
           <div className="max-w-4xl mx-auto bg-gradient-to-r from-purple-900/50 to-blue-900/50 border border-purple-500/30 rounded-lg p-6 backdrop-blur-sm">
             <p className="text-lg text-white font-semibold mb-2">
-              ⚡ Enhanced ChatGPT-Powered Tools
+              ⚡ Powered by the Latest OpenAI Models
+            </p>
+            <p className="text-gray-200 mb-3">
+              All of our custom GPTs are enhanced versions of ChatGPT, equipped with the <span className="text-cyan-400 font-semibold">latest OpenAI models</span> and <span className="text-green-400 font-semibold">continuously updated</span>. Each tool features <span className="text-cyan-400 font-semibold">advanced data analysis</span>, <span className="text-blue-400 font-semibold">vision analysis</span>, and <span className="text-purple-400 font-semibold">full coding capabilities</span>.
             </p>
             <p className="text-gray-200">
-              All of our custom GPTs are enhanced versions of ChatGPT, equipped with <span className="text-cyan-400 font-semibold">advanced data analysis</span>, <span className="text-blue-400 font-semibold">vision analysis</span>, and <span className="text-purple-400 font-semibold">full coding capabilities</span> to deliver superior AI-powered solutions for your specific needs.
+              Plus, they all include <span className="text-pink-400 font-semibold">GPT advanced image generation</span> – perfect for creating custom infographics, graphics, and visual content for any niche or purpose.
             </p>
           </div>
         </div>
@@ -1482,7 +1485,14 @@ const OurFeaturedSection = () => {
               };
 
               return (
-                <Card key={index} className="group bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-md border-2 border-cyan-400/30 hover:border-cyan-400/60 transition-all duration-300 transform hover:scale-105 h-full flex flex-col relative shadow-xl hover:shadow-cyan-500/20">
+                <Card 
+                  key={index} 
+                  className="group bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-md border-2 border-cyan-400/30 hover:border-cyan-400/60 transition-all duration-300 transform hover:scale-105 h-full flex flex-col relative shadow-xl hover:shadow-cyan-500/20 cursor-pointer"
+                  onClick={() => {
+                    const slug = tool.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                    navigate(`/tools/${slug}`);
+                  }}
+                >
                   <div className="absolute top-2 left-2 z-30">
                     <FavoritesButton tool={toolForFavorites} size="sm" />
                   </div>
@@ -1549,7 +1559,10 @@ const OurFeaturedSection = () => {
                     <div className="mt-auto">
                       <Button 
                         className={`w-full bg-gradient-to-r ${tool.color} hover:opacity-90 text-white transition-all duration-300 font-semibold shadow-lg`}
-                        onClick={() => handleAccessTool(tool.directUrl, tool.title)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleAccessTool(tool.directUrl, tool.title);
+                        }}
                       >
                         🌐 CLAIM YOUR WEB3 DOMAIN
                       </Button>
@@ -1592,7 +1605,14 @@ const OurFeaturedSection = () => {
             };
 
             return (
-              <Card key={index} className="group bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 h-full flex flex-col relative">
+              <Card 
+                key={index} 
+                className="group bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 h-full flex flex-col relative cursor-pointer"
+                onClick={() => {
+                  const slug = tool.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                  navigate(`/tools/${slug}`);
+                }}
+              >
                 <div className="absolute top-2 left-2 z-30">
                   <FavoritesButton tool={toolForFavorites} size="sm" />
                 </div>
@@ -1680,7 +1700,10 @@ const OurFeaturedSection = () => {
                   <div className="mt-auto">
                     <Button 
                       className={`w-full bg-gradient-to-r ${tool.color} hover:opacity-90 text-white transition-all duration-300 text-sm`}
-                      onClick={() => handleAccessTool(tool.directUrl, tool.title)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAccessTool(tool.directUrl, tool.title);
+                      }}
                     >
                       🚀 USE NOW
                     </Button>
