@@ -58,7 +58,10 @@ export default function GenerateToolImages() {
     setGenerating(tool.id);
     try {
       const { data, error } = await supabase.functions.invoke('generate-tool-images', {
-        body: { prompt: tool.prompt }
+        body: { 
+          prompt: tool.prompt,
+          toolId: tool.id 
+        }
       });
 
       if (error) throw error;
@@ -69,8 +72,8 @@ export default function GenerateToolImages() {
           [tool.id]: data.imageUrl
         }));
         toast({
-          title: "Image Generated!",
-          description: `Successfully generated image for ${tool.title}`,
+          title: "Image Generated & Stored!",
+          description: `Successfully generated and uploaded image for ${tool.title}`,
         });
       }
     } catch (error) {
@@ -153,7 +156,7 @@ export default function GenerateToolImages() {
                     Copy Image URL
                   </Button>
                   <div className="p-2 bg-gray-800 rounded text-xs text-gray-300 break-all max-h-32 overflow-y-auto">
-                    {generatedImages[tool.id].substring(0, 200)}...
+                    {generatedImages[tool.id]}
                   </div>
                 </div>
               )}
@@ -167,9 +170,9 @@ export default function GenerateToolImages() {
         <ol className="list-decimal list-inside space-y-2 text-gray-300">
           <li>Click "Generate All Images" or generate individual images</li>
           <li>Wait for each image to be generated (takes a few seconds)</li>
-          <li>Click "Copy Image URL" to copy the base64 data</li>
+          <li>Click "Copy Image URL" to copy the Supabase Storage URL</li>
           <li>Paste the imageUrl into the corresponding tool object in SpecialServices.tsx</li>
-          <li>The format should be: <code className="bg-gray-700 px-2 py-1 rounded">imageUrl: "data:image/png;base64,..."</code></li>
+          <li>The format should be: <code className="bg-gray-700 px-2 py-1 rounded">imageUrl: "https://...supabase.co/storage/..."</code></li>
         </ol>
       </div>
     </div>
