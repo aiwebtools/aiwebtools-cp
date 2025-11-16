@@ -184,5 +184,89 @@ export const threeDAndVisualizationTools: Tool[] = [
     category: "3D & Visualization Tools",
     rating: 4.8,
     totalVotes: 5678
+  },
+  {
+    icon: Package,
+    title: "Kaedim AI",
+    description: "Convert 2D images into production-ready 3D models in minutes. AI-powered 3D asset generation with human quality control for game development and creative projects.",
+    emoji: "🎯",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://www.kaedim3d.com/?via=aiwebtools",
+    tags: ["2D to 3D", "AI 3D generation", "game assets", "production-ready", "quality control", "image to 3D"],
+    category: "3D & VISUALIZATION",
+    rating: 4.5,
+    totalVotes: 2890
+  },
+  {
+    icon: Sparkles,
+    title: "Alpha3D",
+    description: "Transform 2D images into high-quality 3D models automatically. AI-powered platform for creating 3D assets for AR, VR, gaming, and e-commerce.",
+    emoji: "🔮",
+    color: "from-purple-600 to-pink-600",
+    directUrl: "https://www.alpha3d.io/?via=aiwebtools",
+    tags: ["2D to 3D", "AI 3D models", "AR", "VR", "e-commerce 3D", "game assets"],
+    category: "3D & VISUALIZATION",
+    rating: 4.4,
+    totalVotes: 2345
+  },
+  {
+    icon: Box,
+    title: "CSM.ai",
+    description: "Generate game-ready 3D models from text, images, or sketches. AI-powered 3D asset creation with rigging, texturing, and animation support.",
+    emoji: "🎮",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://csm.ai/?via=aiwebtools",
+    tags: ["game-ready 3D", "text to 3D", "rigging", "texturing", "animation", "game development"],
+    category: "3D & VISUALIZATION",
+    rating: 4.6,
+    totalVotes: 3120
+  },
+  {
+    icon: Layers,
+    title: "Scenario AI",
+    description: "AI-powered game asset generator creating consistent, style-matched art for games. Generate characters, props, environments, and textures with custom trained models.",
+    emoji: "🎨",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://www.scenario.com/?via=aiwebtools",
+    tags: ["game assets", "character design", "AI art", "style consistency", "game development", "textures"],
+    category: "3D & VISUALIZATION",
+    rating: 4.7,
+    totalVotes: 3678
+  },
+  {
+    icon: Wand2,
+    title: "Genmo AI",
+    description: "Create 3D objects, videos, and animations from text descriptions. AI-powered generative platform for immersive 3D content creation.",
+    emoji: "🎬",
+    color: "from-violet-500 to-purple-600",
+    directUrl: "https://www.genmo.ai/?via=aiwebtools",
+    tags: ["3D generation", "AI video", "text to 3D", "animation", "creative AI", "generative"],
+    category: "3D & VISUALIZATION",
+    rating: 4.5,
+    totalVotes: 2567
+  },
+  {
+    icon: Package2,
+    title: "InstantMesh",
+    description: "Open-source AI model for instant 3D mesh generation from single images. Fast, high-quality 3D reconstruction for research and development.",
+    emoji: "⚡",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://github.com/TencentARC/InstantMesh",
+    tags: ["open source", "instant 3D", "mesh generation", "image to 3D", "research", "fast 3D"],
+    category: "3D & VISUALIZATION",
+    rating: 4.3,
+    totalVotes: 1890
+  },
+  {
+    icon: Monitor,
+    title: "3DFY AI",
+    description: "Text-to-3D generation platform creating high-quality 3D models at scale. AI-powered solution for e-commerce, gaming, and enterprise applications.",
+    emoji: "🏢",
+    color: "from-blue-600 to-indigo-600",
+    directUrl: "https://3dfy.ai/?via=aiwebtools",
+    tags: ["text to 3D", "enterprise 3D", "e-commerce", "scalable 3D", "AI generation", "business"],
+    category: "3D & VISUALIZATION",
+    rating: 4.4,
+    totalVotes: 2234
   }
 ];

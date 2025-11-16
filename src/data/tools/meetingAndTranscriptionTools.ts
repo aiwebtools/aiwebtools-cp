@@ -149,5 +149,65 @@ export const meetingAndTranscriptionTools: Tool[] = [
     category: "Meeting & Transcription Tools",
     rating: 4.3,
     totalVotes: 2876
+  },
+  {
+    icon: Video,
+    title: "Grain",
+    description: "AI-powered meeting recorder and note-taker that automatically captures, transcribes, and shares insights from customer conversations. Perfect for sales and customer success teams.",
+    emoji: "🌾",
+    color: "from-amber-500 to-orange-600",
+    directUrl: "https://grain.com/?via=aiwebtools",
+    tags: ["meeting recorder", "customer conversations", "sales insights", "transcription", "collaboration", "deal insights"],
+    category: "Meeting & Transcription Tools",
+    rating: 4.5,
+    totalVotes: 3340
+  },
+  {
+    icon: MessageSquare,
+    title: "Tactiq",
+    description: "Real-time transcription for Google Meet, Zoom, and Teams. Get live meeting transcripts with AI-powered summaries and action items instantly.",
+    emoji: "💬",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://tactiq.io/?via=aiwebtools",
+    tags: ["real-time transcription", "live transcripts", "meeting summaries", "action items", "browser extension", "multi-platform"],
+    category: "Meeting & Transcription Tools",
+    rating: 4.6,
+    totalVotes: 4230
+  },
+  {
+    icon: Headphones,
+    title: "Fathom",
+    description: "Free AI meeting assistant that records, transcribes, and summarizes your meetings. Focus on the conversation while Fathom takes perfect notes.",
+    emoji: "🎧",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://fathom.video/?via=aiwebtools",
+    tags: ["free meeting assistant", "automatic notes", "meeting summaries", "transcription", "focus tool", "productivity"],
+    category: "Meeting & Transcription Tools",
+    rating: 4.7,
+    totalVotes: 5120
+  },
+  {
+    icon: Mic,
+    title: "Krisp",
+    description: "AI-powered noise cancellation for crystal-clear online meetings. Remove background noise, echo, and room noise from both sides of the conversation.",
+    emoji: "🔇",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://krisp.ai/?via=aiwebtools",
+    tags: ["noise cancellation", "audio quality", "background noise", "meeting quality", "AI audio", "clarity"],
+    category: "Meeting & Transcription Tools",
+    rating: 4.8,
+    totalVotes: 6780
+  },
+  {
+    icon: Brain,
+    title: "Avoma",
+    description: "AI meeting assistant and revenue intelligence platform. Automatic recording, transcription, summarization, and analysis for customer-facing teams.",
+    emoji: "🚀",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://www.avoma.com/?via=aiwebtools",
+    tags: ["revenue intelligence", "customer meetings", "sales enablement", "meeting analysis", "conversation intelligence", "CRM integration"],
+    category: "Meeting & Transcription Tools",
+    rating: 4.5,
+    totalVotes: 3890
   }
 ];

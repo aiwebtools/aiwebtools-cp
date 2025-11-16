@@ -280,5 +280,89 @@ export const audioAndVoiceTools: Tool[] = [
     category: "Phone & Voice Agents",
     rating: 4.5,
     totalVotes: 120
+  },
+  {
+    icon: Mic,
+    title: "AssemblyAI",
+    description: "AI-powered speech-to-text API with industry-leading accuracy. Real-time transcription, speaker diarization, sentiment analysis, and content moderation for developers.",
+    emoji: "🎤",
+    color: "from-blue-600 to-indigo-600",
+    directUrl: "https://www.assemblyai.com/?via=aiwebtools",
+    tags: ["speech-to-text", "transcription API", "real-time", "speaker diarization", "sentiment analysis", "developer tools"],
+    category: "Audio & Voice",
+    rating: 4.8,
+    totalVotes: 5240
+  },
+  {
+    icon: AudioLines,
+    title: "Deepgram",
+    description: "Enterprise-grade speech AI platform with lightning-fast transcription API. Real-time and pre-recorded speech recognition with custom model training.",
+    emoji: "⚡",
+    color: "from-cyan-600 to-blue-600",
+    directUrl: "https://deepgram.com/?via=aiwebtools",
+    tags: ["speech recognition", "transcription API", "real-time transcription", "enterprise AI", "custom models", "voice AI"],
+    category: "Audio & Voice",
+    rating: 4.7,
+    totalVotes: 4560
+  },
+  {
+    icon: Volume2,
+    title: "OpenAI Whisper",
+    description: "State-of-the-art open-source speech recognition model by OpenAI. Multilingual transcription and translation with high accuracy across 99 languages.",
+    emoji: "🌐",
+    color: "from-purple-600 to-pink-600",
+    directUrl: "https://openai.com/research/whisper",
+    tags: ["speech recognition", "open source", "multilingual", "transcription", "translation", "99 languages"],
+    category: "Audio & Voice",
+    rating: 4.9,
+    totalVotes: 8920
+  },
+  {
+    icon: Mic,
+    title: "Rev.ai",
+    description: "Accurate speech-to-text API for developers. Automatic transcription with custom vocabulary, async and streaming options, and multiple language support.",
+    emoji: "🔴",
+    color: "from-red-600 to-orange-600",
+    directUrl: "https://www.rev.ai/?via=aiwebtools",
+    tags: ["transcription API", "speech-to-text", "streaming transcription", "custom vocabulary", "developer API", "accurate"],
+    category: "Audio & Voice",
+    rating: 4.6,
+    totalVotes: 3780
+  },
+  {
+    icon: MessageSquare,
+    title: "Sonix",
+    description: "Fast, accurate automated transcription in 40+ languages. AI-powered platform with advanced editing tools, translation, and subtitle generation.",
+    emoji: "📝",
+    color: "from-green-600 to-teal-600",
+    directUrl: "https://sonix.ai/?via=aiwebtools",
+    tags: ["automated transcription", "40+ languages", "subtitle generation", "translation", "editing tools", "fast"],
+    category: "Audio & Voice",
+    rating: 4.5,
+    totalVotes: 4120
+  },
+  {
+    icon: Headphones,
+    title: "Happy Scribe",
+    description: "Automated transcription and subtitling platform supporting 120+ languages. Human-made transcription services combined with AI for maximum accuracy.",
+    emoji: "✍️",
+    color: "from-yellow-600 to-orange-600",
+    directUrl: "https://www.happyscribe.com/?via=aiwebtools",
+    tags: ["transcription", "subtitling", "120+ languages", "human + AI", "accurate", "multilingual"],
+    category: "Audio & Voice",
+    rating: 4.7,
+    totalVotes: 5340
+  },
+  {
+    icon: AudioLines,
+    title: "Trint",
+    description: "AI transcription software trusted by journalists and professionals. Automated transcription with powerful collaboration and editing features.",
+    emoji: "📰",
+    color: "from-indigo-600 to-purple-600",
+    directUrl: "https://trint.com/?via=aiwebtools",
+    tags: ["journalist tools", "professional transcription", "collaboration", "editing", "AI transcription", "workflow"],
+    category: "Audio & Voice",
+    rating: 4.6,
+    totalVotes: 4890
   }
 ];
