@@ -295,3 +295,6 @@ export { aiTranscriptionToolsPro } from './aiTranscriptionToolsPro';
 
 // Export AI Meeting Assistants
 export { aiMeetingAssistants } from './aiMeetingAssistants';
+
+// Export AI Note-Taking Tools
+export { aiNoteTakingTools } from './aiNoteTakingTools';
