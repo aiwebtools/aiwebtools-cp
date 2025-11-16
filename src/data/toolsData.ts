@@ -109,6 +109,11 @@ const allToolCategories = consolidateTools([
 // Apply deduplication to remove tools that appear in multiple categories
 const deduplicatedTools = deduplicateTools(allToolCategories);
 
+console.log(`🔍 TOOL COUNT TRACKING:`);
+console.log(`   📊 Raw tools from collection: ${allToolCategories.length}`);
+console.log(`   📊 After deduplication: ${deduplicatedTools.length}`);
+console.log(`   📊 Tools removed by dedup: ${allToolCategories.length - deduplicatedTools.length}`);
+
 // Use deduplicatedTools directly (power ranking now handled in featured tools)
 let combinedTools: Tool[] = [...deduplicatedTools];
 
@@ -135,6 +140,11 @@ const filteredTools = combinedTools.filter((tool, index) => {
   }
   return true;
 });
+
+console.log(`🔍 FINAL TOOL COUNT:`);
+console.log(`   📊 Combined tools: ${combinedTools.length}`);
+console.log(`   📊 After filtering: ${filteredTools.length}`);
+console.log(`   📊 Tools removed by filtering: ${combinedTools.length - filteredTools.length}`);
 
 // DEBUG: Check if ElevenLabs and Suno tools are in the final collection
 const elevenLabsInFinal = filteredTools.filter(tool => tool.title.toLowerCase().includes('eleven'));
