@@ -636,6 +636,165 @@ const featuredGPTs = [
     emoji: "👁️"
   },
   {
+    title: "Dream Interpreter GPT",
+    description: "AI-driven dream analysis using psychological, mythological, and symbolic frameworks. Uncover hidden meanings, explore subconscious patterns, and gain insights into emotions for personal growth.",
+    badge: "DREAM ANALYSIS",
+    color: "from-purple-500 to-pink-600",
+    features: ["Dream Analysis", "Symbol Interpretation", "Subconscious Patterns", "Personal Growth"],
+    directUrl: "https://dreaminterpreter.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-ad-for-an-ai-tool-called-dream-interp_5LG7D.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    emoji: "💭"
+  },
+  {
+    title: "Podcast Script Writer GPT",
+    description: "Craft engaging, structured, and professionally formatted podcast scripts optimized for audio storytelling. Transform ideas into compelling narratives designed to captivate audiences.",
+    badge: "PODCASTING",
+    color: "from-purple-500 to-pink-600",
+    features: ["Script Writing", "Audio Storytelling", "Professional Format", "Narrative Structure"],
+    directUrl: "https://podcastwritergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-illustration-of-a-podcast-host-with-a_HnlUN.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
+    emoji: "🎙️"
+  },
+  {
+    title: "Person Information Finder GPT",
+    description: "Specialized AI that uncovers detailed public information about individuals by searching the web, social media, news, and public records. Perfect for reconnecting with lost contacts or researching public figures.",
+    badge: "SEARCH",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Person Search", "Public Records", "Social Media Search", "Contact Research"],
+    directUrl: "https://personfindergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-p_gHXnM.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    emoji: "🔎"
+  },
+  {
+    title: "PPTx Powerpoint Maker GPT",
+    description: "All-in-one AI assistant for creating beautiful PowerPoint presentations with polished content, custom visuals, and ready-to-download PPTX slides generated in real time.",
+    badge: "PRESENTATIONS",
+    color: "from-orange-500 to-red-600",
+    features: ["Presentation Creation", "Slide Design", "Custom Visuals", "PPTX Download"],
+    directUrl: "https://pptmakergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-banner-ad-for-an-ai-tool-called-ppt-pr_RY7nJ.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
+    emoji: "📊"
+  },
+  {
+    title: "Custom GPT Ideas & Brainstorming Assistant",
+    description: "GPT Ideas and Instructions Assistant - brainstorm and develop custom GPT concepts with creative guidance and structured ideation support.",
+    badge: "AI DEVELOPMENT",
+    color: "from-yellow-500 to-orange-600",
+    features: ["GPT Ideas", "Brainstorming", "Custom Development", "Creative Guidance"],
+    directUrl: "https://customgptmaker.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000002880.jpg/:/cr=t:22.21%25,l:0%25,w:100%25,h:55.58%25/rs=w:600,h:451,cg:true/qt=q:98",
+    emoji: "💡"
+  },
+  {
+    title: "Sophia Aeterna AI",
+    description: "Embodies timeless wisdom, guiding seekers through philosophy, mysticism, and esotericism. Rooted in Manly P. Hall's ideals, it decodes symbols and unveils universal truths for personal transformation.",
+    badge: "WISDOM",
+    color: "from-amber-500 to-yellow-600",
+    features: ["Philosophy", "Mysticism", "Esotericism", "Spiritual Wisdom"],
+    directUrl: "https://sophiaaeterna.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
+    emoji: "🔱"
+  },
+  {
+    title: "Mental Wellness GPT",
+    description: "Virtual chat tool for emotional support and mental well-being, offering empathetic guidance rooted in cognitive behavioral therapy (CBT) principles with practical coping strategies.",
+    badge: "MENTAL HEALTH",
+    color: "from-teal-500 to-green-600",
+    features: ["Emotional Support", "CBT Principles", "Coping Strategies", "Mental Well-being"],
+    directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/jwjNOKP5mf4",
+    emoji: "🧘‍♀️"
+  },
+  {
+    title: "Legislator Link GPT",
+    description: "Connect easily with legislators in your state or country and get involved in local legislative efforts. Make your voice heard in democracy.",
+    badge: "CIVIC ENGAGEMENT",
+    color: "from-blue-500 to-purple-600",
+    features: ["Legislator Contact", "Civic Engagement", "Democracy Tools", "Government Connection"],
+    directUrl: "https://legislatorlink.lovable.app/",
+    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4&list=TLGGczTnMbeNmL0yODA1MjAyNQ",
+    emoji: "🏛️"
+  },
+  {
+    title: "Legal Draftsmith GPT",
+    description: "Specializes in the precise drafting of legal documents with professional-grade accuracy and comprehensive legal support.",
+    badge: "LEGAL",
+    color: "from-blue-500 to-gray-600",
+    features: ["Legal Documents", "Document Drafting", "Contract Writing", "Legal Precision"],
+    directUrl: "https://publicdefendergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-humanoid-robot-dressed-like-a.png/:/cr=t:12.29%25,l:9.16%25,w:89.29%25,h:79.58%25/rs=w:600,h:300,cg:true,m/qt=q:98",
+    emoji: "⚖️"
+  },
+  {
+    title: "Coloring Book Generator GPT",
+    description: "Create full coloring books from your imagination with custom designs and creative illustrations perfect for all ages.",
+    badge: "CREATIVE",
+    color: "from-pink-500 to-purple-600",
+    features: ["Coloring Books", "Custom Designs", "Creative Illustrations", "All Ages"],
+    directUrl: "https://coloringbookmaker.lovable.app/?via=aiwebtools",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377297872168419540/coloring_book.webp",
+    emoji: "🎨"
+  },
+  {
+    title: "Native American History Time Machine GPT",
+    description: "Experience an immersive time travel adventure of discovery to any era of Native American history with Geronimo as your guide. Discover authentic stories, cultures, and wisdom.",
+    badge: "HISTORY",
+    color: "from-orange-500 to-red-600",
+    features: ["Time Travel", "Native American History", "Cultural Education", "Authentic Stories"],
+    directUrl: "https://nativeamerican-timemachine.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=jVFTGCeuNSM",
+    emoji: "🪶"
+  },
+  {
+    title: "Public Testimony Writer GPT",
+    description: "Innovative AI Tool streamlines legislative testimony process, promotes public engagement in local policy with professional testimony writing support.",
+    badge: "CIVIC TOOLS",
+    color: "from-blue-600 to-indigo-600",
+    features: ["Testimony Writing", "Legislative Support", "Public Engagement", "Policy Advocacy"],
+    directUrl: "https://publictestimonywriter.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
+    emoji: "📝"
+  },
+  {
+    title: "Cyber Security GPT",
+    description: "Advanced cybersecurity assistant for infrastructure protection, threat defense, security analysis, and hacking prevention with expert-level guidance.",
+    badge: "SECURITY",
+    color: "from-red-500 to-gray-600",
+    features: ["Threat Defense", "Infrastructure Protection", "Security Analysis", "Cyber Protection"],
+    directUrl: "https://chatgpt.com/g/g-Qvat03gmj-hacking-defender-infrastructure-protector-gpt",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-robot-with-a-large-shield-tha.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    emoji: "🛡️"
+  },
+  {
+    title: "🚀 Startup Validator GPT",
+    description: "Ultimate AI-powered startup analysis tool providing rapid assessment of market viability, scalability, and investment potential with expert-level validation and funding recommendations.",
+    badge: "STARTUP",
+    color: "from-blue-500 to-purple-600",
+    features: ["Market Validation", "Scalability Analysis", "Investment Insights", "Funding Strategy"],
+    directUrl: "https://startupvalidatorgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-named-st_4i8GY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    emoji: "🚀"
+  },
+  {
+    title: "Name Insight Research & Predictor GPT",
+    description: "Your name holds hidden meanings, shaping personality, strengths, and destiny through history, numerology, and culture. Discover what your name says about YOU.",
+    badge: "NUMEROLOGY",
+    color: "from-purple-500 to-pink-600",
+    features: ["Name Analysis", "Numerology", "Personal Insights", "Cultural Meanings"],
+    directUrl: "https://whatsmynamegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-interface-with-a-dark-blue-_mXbL6.png/:/cr=t:10.87%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    emoji: "📛"
+  },
+  {
+    title: "AIWEBTOOLS GPT CLONER GPT",
+    description: "Think it, dream it, spawn it! Clone any of our GPTs receiving operational instructions ready to deploy, written in the style of the creator of aiwebtools.ai",
+    badge: "AI CLONING",
+    color: "from-cyan-500 to-blue-600",
+    features: ["GPT Cloning", "Instruction Generation", "Deployment Ready", "Custom AI"],
+    directUrl: "https://chatgpt.com/g/g-6904dd7abc788191aff06ba097690983-aiwebtools-ai-gpt-a-w-t-gpt-instructions-cloner",
+    emoji: "🧬"
+  },
+  {
     title: "Personalized DR. GPT",
     description: "Advanced medical assistant providing personalized health guidance, symptom analysis, medical information, and healthcare support with professional medical knowledge.",
     badge: "HEALTHCARE",
