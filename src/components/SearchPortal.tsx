@@ -9,6 +9,7 @@ import dualityLight from "@/assets/balance-of-duality-light.png";
 import dualityDark from "@/assets/balance-of-duality-dark.png";
 import dualityMatrix from "@/assets/balance-of-duality-matrix.png";
 import dualityPath from "@/assets/balance-of-duality-path.png";
+import { LovableAIFeature } from "./LovableAIFeature";
 
 const SearchPortal = () => {
   const {
@@ -146,6 +147,10 @@ const SearchPortal = () => {
       </div>
 
       {/* Duality Images Section - directly under "Why AI WEB TOOLS..." */}
+      <div className="mt-8 max-w-4xl mx-auto">
+        <LovableAIFeature />
+      </div>
+
       <section aria-labelledby="duality-title" className="mt-8 max-w-6xl mx-auto">
         <h3 id="duality-title" className="sr-only">The Balance of Duality</h3>
         <figure className="bg-gray-900/40 rounded-xl p-4 md:p-6 border border-white/10">
