@@ -154,3 +154,12 @@ export { topProductivityWriting } from './topProductivityWriting';
 
 // Export Developer Productivity AI Tools
 export { developerProductivityAI } from './developerProductivityAI';
+
+// Export AI Research & Academic Tools
+export { aiResearchAcademicTools } from './aiResearchAcademicTools';
+
+// Export AI Presentation Tools
+export { aiPresentationTools } from './aiPresentationTools';
+
+// Export AI SEO & Content Marketing Tools
+export { aiSeoContentTools } from './aiSeoContentTools';
