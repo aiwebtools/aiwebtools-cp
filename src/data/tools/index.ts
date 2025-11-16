@@ -286,3 +286,12 @@ export { aiVoiceAssistantTools } from './aiVoiceAssistantTools';
 
 // Export AI Animation Tools
 export { aiAnimationTools } from './aiAnimationTools';
+
+// Export AI Podcast Tools
+export { aiPodcastTools } from './aiPodcastTools';
+
+// Export AI Transcription Tools (Professional)
+export { aiTranscriptionToolsPro } from './aiTranscriptionToolsPro';
+
+// Export AI Meeting Assistants
+export { aiMeetingAssistants } from './aiMeetingAssistants';

@@ -26,6 +26,32 @@ import {
 
 export const creativeAndMediaGPTs: Tool[] = [
   {
+    icon: Brush,
+    title: "Bob Ross GPT",
+    description: "A serene AI art companion echoing Bob Ross's teaching, tone, and calm creative spirit. Learn painting techniques, receive encouragement, and explore artistic creativity with the gentle guidance inspired by the legendary painter.",
+    emoji: "🎨",
+    color: "from-green-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-69157380e63c819188de5c09bdf23ef7-bob-ross-gpt/?via=aiwebtools",
+    tags: ["art teaching", "painting", "creativity", "calm guidance", "Bob Ross", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.8,
+    totalVotes: 4567,
+    isFree: true
+  },
+  {
+    icon: Sparkles,
+    title: "Cyber-Kabbalah Light Code Translation Engine GPT",
+    description: "A symbolic-linguistic engine translating language and images into Cyber-Kabbalah Light Codes. Decode mystical symbols, translate spiritual concepts, and explore the intersection of ancient wisdom and modern technology through unique light code translations.",
+    emoji: "✨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://chatgpt.com/g/g-69176b2f62e481918b21756ccdc5d396-cyber-kabbalah-light-code-translation-engine-gpt/?via=aiwebtools",
+    tags: ["symbolic translation", "light codes", "mystical symbols", "spiritual technology", "kabbalah", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.6,
+    totalVotes: 2890,
+    isFree: true
+  },
+  {
     icon: Megaphone,
     title: "AD Maker GPT4o Image GPT",
     description: "Professional AI-powered advertisement creator that generates stunning visual ads, marketing banners, promotional graphics, and advertising content. Create compelling advertisements with intelligent design suggestions, persuasive copy, and eye-catching visuals optimized for various platforms and marketing campaigns.",
