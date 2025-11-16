@@ -151,3 +151,6 @@ export { majorAIPlatforms } from './majorAIPlatforms';
 export { topImageGenerators } from './topImageGenerators';
 export { topMusicVideoTools } from './topMusicVideoTools';
 export { topProductivityWriting } from './topProductivityWriting';
+
+// Export Developer Productivity AI Tools
+export { developerProductivityAI } from './developerProductivityAI';

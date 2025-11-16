@@ -121,5 +121,17 @@ export const topMusicVideoTools: Tool[] = [
     category: "AI Video Generation",
     rating: 4.6,
     totalVotes: 76000
+  },
+  {
+    icon: Film,
+    title: "Artlist (Sora 2)",
+    description: "Professional creative assets platform now featuring Sora 2 by OpenAI for AI video generation. Access royalty-free stock footage, music, sound effects, plus cutting-edge AI video tools all in one platform.",
+    emoji: "🎬",
+    color: "from-indigo-600 to-purple-600",
+    directUrl: "https://artlist.io/?via=aiwebtools",
+    tags: ["Artlist", "Sora 2", "Sora", "AI video", "OpenAI", "stock footage", "royalty-free", "creative assets", "video generation", "professional"],
+    category: "AI Video Generation",
+    rating: 4.8,
+    totalVotes: 112000
   }
 ];
