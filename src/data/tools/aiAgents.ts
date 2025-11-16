@@ -3,6 +3,90 @@ import { Tool } from "@/types/tools";
 
 export const aiAgents: Tool[] = [
   {
+    icon: Rocket,
+    title: "Lovable AI Agent",
+    description: "Revolutionary AI web building agent that transforms ideas into production-ready applications instantly. Uses advanced agentic AI to build, iterate, and deploy full-stack web apps through conversational interface.",
+    emoji: "💜",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://lovable.dev/?via=aiwebtools",
+    tags: ["AI agent", "web builder agent", "agentic AI", "app development", "no-code agent", "full-stack agent", "conversational AI", "production apps"],
+    category: "AI Agents",
+    rating: 4.9,
+    totalVotes: 5234
+  },
+  {
+    icon: Zap,
+    title: "Bolt.new AI Agent",
+    description: "AI-powered full-stack development agent that builds complete web applications from natural language prompts. Autonomous coding agent that handles frontend, backend, and deployment.",
+    emoji: "⚡",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://bolt.new/?via=aiwebtools",
+    tags: ["AI agent", "full-stack agent", "coding agent", "web development agent", "autonomous development", "natural language coding", "deployment agent"],
+    category: "AI Agents",
+    rating: 4.8,
+    totalVotes: 4890
+  },
+  {
+    icon: Code,
+    title: "Base44 AI Agent",
+    description: "Vibe coding AI agent similar to Lovable - turns ideas into production-ready apps fast with agentic building and iterative edits. Full-stack development agent with intelligent code generation.",
+    emoji: "🧠",
+    color: "from-teal-500 to-emerald-600",
+    directUrl: "https://base44.com/?via=aiwebtools",
+    tags: ["AI agent", "vibe coding agent", "web builder agent", "app builder agent", "full-stack agent", "development agent", "agentic AI", "code generation"],
+    category: "AI Agents",
+    rating: 4.7,
+    totalVotes: 3456
+  },
+  {
+    icon: Code,
+    title: "Cursor AI Coding Agent",
+    description: "Advanced AI-powered coding agent and IDE that enhances developer productivity with intelligent autocompletion, error detection, debugging, and AI-driven code suggestions. The ultimate coding agent for modern development.",
+    emoji: "🎯",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://cursor.sh/?via=aiwebtools",
+    tags: ["coding agent", "AI agent", "code editor agent", "development agent", "autocompletion", "debugging agent", "intelligent coding", "productivity agent"],
+    category: "AI Agents",
+    rating: 4.9,
+    totalVotes: 6789
+  },
+  {
+    icon: Globe,
+    title: "Perplexity AI Agent",
+    description: "Advanced AI search and research agent that provides accurate, real-time answers with sources. Autonomous research agent that browses the web, analyzes information, and delivers comprehensive insights.",
+    emoji: "🔍",
+    color: "from-cyan-500 to-blue-600",
+    directUrl: "https://perplexity.ai/?via=aiwebtools",
+    tags: ["AI agent", "search agent", "research agent", "web browsing agent", "information agent", "real-time search", "autonomous research", "knowledge agent"],
+    category: "AI Agents",
+    rating: 4.8,
+    totalVotes: 5678
+  },
+  {
+    icon: Smartphone,
+    title: "ElevenLabs Voice Agents",
+    description: "Advanced AI voice agents and conversational AI platform for businesses. Create intelligent phone agents that handle customer calls, appointments, and support with ultra-realistic human-like conversation.",
+    emoji: "📞",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://try.elevenlabs.io/aiwebtools",
+    tags: ["voice agent", "phone agent", "AI agent", "conversational agent", "customer service agent", "call center agent", "business automation", "voice AI"],
+    category: "AI Agents",
+    rating: 4.9,
+    totalVotes: 4321
+  },
+  {
+    icon: Video,
+    title: "Unity ML Agents - Game AI",
+    description: "Open-source Unity package for creating intelligent video game agents and NPCs. Train game AI agents using reinforcement learning, imitation learning, and neural networks for autonomous gameplay.",
+    emoji: "🎮",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://github.com/Unity-Technologies/ml-agents",
+    tags: ["game agent", "AI agent", "video game agent", "NPC agent", "reinforcement learning", "game AI", "Unity agent", "autonomous gameplay"],
+    category: "AI Agents",
+    rating: 4.8,
+    totalVotes: 4567
+  },
+  {
     icon: Bot,
     title: "Auto-GPT",
     description: "Autonomous AI agent that can develop and manage businesses, conduct research, and create content without human intervention.",
