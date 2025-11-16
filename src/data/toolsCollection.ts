@@ -194,6 +194,9 @@ import { topImageGenerators } from './tools/topImageGenerators';
 import { topMusicVideoTools } from './tools/topMusicVideoTools';
 import { topProductivityWriting } from './tools/topProductivityWriting';
 import { developerProductivityAI } from './tools/developerProductivityAI';
+import { aiResearchAcademicTools } from './tools/aiResearchAcademicTools';
+import { aiPresentationTools } from './tools/aiPresentationTools';
+import { aiSeoContentTools } from './tools/aiSeoContentTools';
 
 
 // Import AI Hardware
@@ -394,6 +397,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...topImageGenerators,
     ...topMusicVideoTools,
     ...topProductivityWriting,
-    ...developerProductivityAI
+    ...developerProductivityAI,
+    ...aiResearchAcademicTools,
+    ...aiPresentationTools,
+    ...aiSeoContentTools
   ];
 };
