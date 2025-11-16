@@ -287,14 +287,6 @@ const TabletMenu = () => {
               >
                 🎯 Browse AI Tool Categories
               </DropdownMenuItem>
-
-              {/* Submit Your AI Tool */}
-              <DropdownMenuItem
-                onClick={() => navigate('/submit-tool')}
-                className="text-center bg-gradient-to-r from-purple-500 to-pink-600 text-white hover:from-purple-600 hover:to-pink-700 font-medium mb-3 rounded-lg p-3"
-              >
-                🚀 Submit Your AI Tool
-              </DropdownMenuItem>
               
               <DropdownMenuSeparator className="border-gray-700 mb-3" />
               
