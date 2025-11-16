@@ -256,3 +256,15 @@ export { aiAgricultureTools } from './aiAgricultureTools';
 
 // Export AI Construction Tools
 export { aiConstructionTools } from './aiConstructionTools';
+
+// Export AI Shipping & Logistics Tools
+export { aiShippingLogisticsTools } from './aiShippingLogisticsTools';
+
+// Export AI Insurance Tools
+export { aiInsuranceTools } from './aiInsuranceTools';
+
+// Export AI Automotive Tools
+export { aiAutomotiveTools } from './aiAutomotiveTools';
+
+// Export Additional Video & Image Generators
+export { additionalVideoImageGenerators } from './additionalVideoImageGenerators';
