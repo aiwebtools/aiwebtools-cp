@@ -218,6 +218,10 @@ import { aiVoiceSpeechTools } from './tools/aiVoiceSpeechTools';
 import { aiGamingTools } from './tools/aiGamingTools';
 import { aiGptStorePlatforms } from './tools/aiGptStorePlatforms';
 import { aiBotMakingPlatforms } from './tools/aiBotMakingPlatforms';
+import { aiDatingRelationshipTools } from './tools/aiDatingRelationshipTools';
+import { aiFitnessNutritionTools } from './tools/aiFitnessNutritionTools';
+import { aiInteriorDesignTools } from './tools/aiInteriorDesignTools';
+import { aiCryptoTradingTools } from './tools/aiCryptoTradingTools';
 
 
 // Import AI Hardware
@@ -442,6 +446,10 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiVoiceSpeechTools,
     ...aiGamingTools,
     ...aiGptStorePlatforms,
-    ...aiBotMakingPlatforms
+    ...aiBotMakingPlatforms,
+    ...aiDatingRelationshipTools,
+    ...aiFitnessNutritionTools,
+    ...aiInteriorDesignTools,
+    ...aiCryptoTradingTools
   ];
 };

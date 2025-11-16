@@ -226,3 +226,15 @@ export { aiGptStorePlatforms } from './aiGptStorePlatforms';
 
 // Export AI Bot Making Platforms
 export { aiBotMakingPlatforms } from './aiBotMakingPlatforms';
+
+// Export AI Dating & Relationship Tools
+export { aiDatingRelationshipTools } from './aiDatingRelationshipTools';
+
+// Export AI Fitness & Nutrition Tools
+export { aiFitnessNutritionTools } from './aiFitnessNutritionTools';
+
+// Export AI Interior Design Tools
+export { aiInteriorDesignTools } from './aiInteriorDesignTools';
+
+// Export AI Crypto & Trading Tools
+export { aiCryptoTradingTools } from './aiCryptoTradingTools';
