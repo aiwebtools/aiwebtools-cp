@@ -214,6 +214,27 @@ const MobileMenu = () => {
               >
                 <span className="mr-2 text-lg">🎯</span> Browse AI Tool Categories
               </DropdownMenuItem>
+
+              {/* EPIC CLONE BUTTON - Golden & Interactive */}
+              <DropdownMenuItem 
+                onClick={(e) => { 
+                  e.preventDefault();
+                  handleExternalLink("https://lovable.dev/projects/bdde8922-3051-4bbc-b084-326f95a6d771?via=aiwebtools", e);
+                }}
+                className="text-center bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-600 text-black hover:from-yellow-500 hover:via-amber-600 hover:to-yellow-700 font-extrabold mb-4 rounded-xl p-4 text-base shadow-2xl shadow-yellow-500/50 border-2 border-yellow-300 transition-all duration-300 transform hover:scale-105 animate-pulse"
+              >
+                <span className="mr-2 text-xl">✨</span> 
+                <span className="text-lg">CLONE THIS WEBSITE</span>
+                <span className="ml-2 text-xl">✨</span>
+              </DropdownMenuItem>
+
+              {/* Submit Your AI Tool */}
+              <DropdownMenuItem
+                onClick={() => { navigate('/submit-tool'); setIsMenuOpen(false); }}
+                className="text-center bg-gradient-to-r from-purple-500 to-pink-600 text-white hover:from-purple-600 hover:to-pink-700 font-bold mb-4 rounded-xl p-4 text-base shadow-xl shadow-purple-500/30 border border-purple-400/50 transition-all duration-200"
+              >
+                <span className="mr-2 text-lg">🚀</span> Submit Your AI Tool
+              </DropdownMenuItem>
               
               <DropdownMenuSeparator className="border-gray-700 mb-2" />
                 
@@ -367,16 +388,6 @@ const MobileMenu = () => {
                   <DropdownMenuItem onClick={handleDownloadAllToolsCSV} className="text-cyan-100 hover:bg-cyan-500/20 mb-1 rounded text-sm">
                     <Download className="w-3 h-3 mr-2" />
                     📊 Download ALL {toolStats.marketing} AI Tools (CSV)
-                  </DropdownMenuItem>
-                  <DropdownMenuItem 
-                    onClick={(e) => { 
-                      e.preventDefault();
-                      handleExternalLink("https://lovable.dev/projects/bdde8922-3051-4bbc-b084-326f95a6d771?via=aiwebtools", e);
-                    }}
-                    className="text-yellow-100 hover:bg-gradient-to-r hover:from-yellow-500/20 hover:to-amber-500/20 mb-2 rounded flex items-center space-x-2 bg-gradient-to-r from-yellow-600/10 to-amber-600/10 border border-yellow-500/30 p-2"
-                  >
-                    <Copy className="w-3 h-3" />
-                    <span className="font-semibold text-sm">Clone This Site</span>
                   </DropdownMenuItem>
                 </CollapsibleContent>
               </Collapsible>

@@ -149,6 +149,13 @@ const Navigation = () => {
       </button>
 
       <button 
+        onClick={() => navigate('/submit-tool')}
+        className="text-purple-100 hover:text-purple-400 transition-colors whitespace-nowrap cursor-pointer px-2 py-1 rounded text-xs font-medium bg-purple-500/20 border border-purple-500/30"
+      >
+        🚀 Submit Tool
+      </button>
+
+      <button 
         onClick={handleDownloadAllToolsCSV}
         className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer flex items-center space-x-1 px-2 py-1 rounded text-xs font-medium"
         title={`Download all ${toolStats.marketing} AI tools as CSV`}

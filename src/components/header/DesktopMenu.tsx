@@ -213,6 +213,13 @@ const DesktopMenu = () => {
                 >
                   <span className="mr-3 text-2xl">🎯</span> Browse Categories
                 </DropdownMenuItem>
+
+                <DropdownMenuItem
+                  onClick={() => { navigate('/submit-tool'); setIsMenuOpen(false); }}
+                  className="text-center bg-gradient-to-r from-purple-500 to-pink-600 text-white hover:from-purple-600 hover:to-pink-700 font-bold rounded-xl p-6 text-xl shadow-xl shadow-purple-500/30 border border-purple-400/50 transition-all duration-200 col-span-1"
+                >
+                  <span className="mr-3 text-2xl">🚀</span> Submit Your Tool
+                </DropdownMenuItem>
               </div>
               
               {/* Download 150+ GPT Instructions Button */}
