@@ -10,7 +10,10 @@ import {
   Radio,
   Speaker,
   Disc,
-  AudioLines
+  AudioLines,
+  Bot,
+  BarChart3,
+  TrendingUp
 } from "lucide-react";
 
 export const audioAndVoiceTools: Tool[] = [
@@ -34,7 +37,7 @@ export const audioAndVoiceTools: Tool[] = [
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.bland.ai/?via=aiwebtools",
     tags: ["phone agents", "call agents", "voice agents", "AI phone", "phone automation", "call automation", "inbound calls", "outbound calls", "conversational AI", "agent"],
-    category: "Audio & Voice",
+    category: "Phone & Voice Agents",
     rating: 4.7,
     totalVotes: 4200
   },
@@ -46,7 +49,7 @@ export const audioAndVoiceTools: Tool[] = [
     color: "from-violet-500 to-purple-600",
     directUrl: "https://vapi.ai/?via=aiwebtools",
     tags: ["phone agents", "voice agents", "call agents", "AI phone", "voice AI", "phone automation", "conversational AI", "customer support", "sales calls", "agent"],
-    category: "Audio & Voice",
+    category: "Phone & Voice Agents",
     rating: 4.6,
     totalVotes: 3890
   },
@@ -58,7 +61,7 @@ export const audioAndVoiceTools: Tool[] = [
     color: "from-cyan-500 to-teal-600",
     directUrl: "https://www.retellai.com/?via=aiwebtools",
     tags: ["phone agents", "voice agents", "call agents", "AI phone", "conversational AI", "voice AI", "phone automation", "call center", "inbound", "outbound", "agent"],
-    category: "Audio & Voice",
+    category: "Phone & Voice Agents",
     rating: 4.6,
     totalVotes: 3650
   },
@@ -70,7 +73,7 @@ export const audioAndVoiceTools: Tool[] = [
     color: "from-emerald-500 to-green-600",
     directUrl: "https://www.air.ai/?via=aiwebtools",
     tags: ["phone agents", "voice agents", "call agents", "AI phone", "autonomous agents", "sales calls", "customer service", "phone automation", "conversational AI", "agent"],
-    category: "Audio & Voice",
+    category: "Phone & Voice Agents",
     rating: 4.5,
     totalVotes: 3420
   },
@@ -81,10 +84,82 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📞",
     color: "from-green-500 to-blue-600",
     directUrl: "https://synthflow.ai/?via=aiwebtools",
-    tags: ["phone agents", "voice AI", "customer service", "appointment booking", "business automation"],
-    category: "Audio & Voice",
+    tags: ["phone agents", "voice AI", "customer service", "appointment booking", "business automation", "agent"],
+    category: "Phone & Voice Agents",
     rating: 4.6,
     totalVotes: 3456
+  },
+  {
+    icon: Bot,
+    title: "Cognigy",
+    description: "Enterprise conversational AI platform for building intelligent customer service bots across voice and chat channels. Features advanced NLU, dialog management, and omnichannel support.",
+    emoji: "🤖",
+    color: "from-blue-600 to-indigo-600",
+    directUrl: "https://www.cognigy.com/?via=aiwebtools",
+    tags: ["conversational AI", "chatbot platform", "voice agents", "customer service", "enterprise AI", "NLU", "dialog management", "agent"],
+    category: "Phone & Voice Agents",
+    rating: 4.5,
+    totalVotes: 2890
+  },
+  {
+    icon: Bot,
+    title: "Kore.ai",
+    description: "AI-powered conversational platform for building virtual assistants and chatbots. Supports voice, text, and multi-channel deployment with enterprise-grade features.",
+    emoji: "💼",
+    color: "from-purple-600 to-pink-600",
+    directUrl: "https://kore.ai/?via=aiwebtools",
+    tags: ["conversational AI", "virtual assistant", "chatbot", "voice agents", "enterprise AI", "multi-channel", "agent"],
+    category: "Phone & Voice Agents",
+    rating: 4.4,
+    totalVotes: 2650
+  },
+  {
+    icon: Bot,
+    title: "Voiceflow",
+    description: "Visual conversation design platform for building voice and chat assistants. Create, prototype, and deploy conversational AI experiences without code.",
+    emoji: "🎨",
+    color: "from-cyan-600 to-blue-600",
+    directUrl: "https://www.voiceflow.com/?via=aiwebtools",
+    tags: ["conversational AI", "voice assistant", "chatbot builder", "no-code", "conversation design", "prototyping", "agent"],
+    category: "Phone & Voice Agents",
+    rating: 4.6,
+    totalVotes: 3200
+  },
+  {
+    icon: BarChart3,
+    title: "Gong.io",
+    description: "Revenue intelligence platform that analyzes customer conversations. Uses AI to capture, analyze, and deliver insights from sales calls and meetings to improve team performance.",
+    emoji: "📊",
+    color: "from-orange-600 to-red-600",
+    directUrl: "https://www.gong.io/?via=aiwebtools",
+    tags: ["call analytics", "conversation intelligence", "sales analytics", "revenue intelligence", "call recording", "AI insights"],
+    category: "Phone & Voice Agents",
+    rating: 4.7,
+    totalVotes: 4100
+  },
+  {
+    icon: TrendingUp,
+    title: "Chorus.ai",
+    description: "Conversation intelligence platform for sales teams. AI-powered call recording and analysis that helps identify winning behaviors and coaching opportunities.",
+    emoji: "📈",
+    color: "from-green-600 to-teal-600",
+    directUrl: "https://www.chorus.ai/?via=aiwebtools",
+    tags: ["call analytics", "conversation intelligence", "sales coaching", "call recording", "AI analysis", "sales enablement"],
+    category: "Phone & Voice Agents",
+    rating: 4.6,
+    totalVotes: 3750
+  },
+  {
+    icon: Phone,
+    title: "CallRail",
+    description: "Call tracking and analytics platform with AI-powered conversation intelligence. Track marketing campaigns, analyze calls, and optimize customer communications.",
+    emoji: "📞",
+    color: "from-blue-600 to-purple-600",
+    directUrl: "https://www.callrail.com/?via=aiwebtools",
+    tags: ["call tracking", "call analytics", "conversation intelligence", "marketing analytics", "call recording", "AI insights"],
+    category: "Phone & Voice Agents",
+    rating: 4.5,
+    totalVotes: 3400
   },
   {
     icon: Volume2,
@@ -201,8 +276,8 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🗣️",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.omakase.ai/?via=aiwebtools",
-    tags: ["website voice agents", "voice AI", "lead capture", "customer support", "website assistant", "conversational AI"],
-    category: "Audio & Voice",
+    tags: ["website voice agents", "voice AI", "lead capture", "customer support", "website assistant", "conversational AI", "agent"],
+    category: "Phone & Voice Agents",
     rating: 4.5,
     totalVotes: 120
   }
