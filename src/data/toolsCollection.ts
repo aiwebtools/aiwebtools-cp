@@ -200,6 +200,10 @@ import { aiSeoContentTools } from './tools/aiSeoContentTools';
 import { aiCustomerSupportTools } from './tools/aiCustomerSupportTools';
 import { aiDataAnalyticsTools } from './tools/aiDataAnalyticsTools';
 import { aiVideoEditingTools } from './tools/aiVideoEditingTools';
+import { aiHrRecruitmentTools } from './tools/aiHrRecruitmentTools';
+import { aiTranslationTools } from './tools/aiTranslationTools';
+import { aiProjectManagementTools } from './tools/aiProjectManagementTools';
+import { aiEducationalTools } from './tools/aiEducationalTools';
 
 
 // Import AI Hardware
@@ -406,6 +410,10 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiSeoContentTools,
     ...aiCustomerSupportTools,
     ...aiDataAnalyticsTools,
-    ...aiVideoEditingTools
+    ...aiVideoEditingTools,
+    ...aiHrRecruitmentTools,
+    ...aiTranslationTools,
+    ...aiProjectManagementTools,
+    ...aiEducationalTools
   ];
 };
