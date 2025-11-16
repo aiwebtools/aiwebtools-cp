@@ -232,6 +232,9 @@ import { aiShippingLogisticsTools } from './tools/aiShippingLogisticsTools';
 import { aiInsuranceTools } from './tools/aiInsuranceTools';
 import { aiAutomotiveTools } from './tools/aiAutomotiveTools';
 import { additionalVideoImageGenerators } from './tools/additionalVideoImageGenerators';
+import { ai3DModelingTools } from './tools/ai3DModelingTools';
+import { aiPhotographyTools } from './tools/aiPhotographyTools';
+import { aiRecruitmentHRTools } from './tools/aiRecruitmentHRTools';
 
 
 // Import AI Hardware
@@ -470,6 +473,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiShippingLogisticsTools,
     ...aiInsuranceTools,
     ...aiAutomotiveTools,
-    ...additionalVideoImageGenerators
+    ...additionalVideoImageGenerators,
+    ...ai3DModelingTools,
+    ...aiPhotographyTools,
+    ...aiRecruitmentHRTools
   ];
 };
