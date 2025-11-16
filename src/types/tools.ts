@@ -15,4 +15,5 @@ export interface Tool {
   rating?: number;
   totalVotes?: number;
   blockchain?: string;
+  isFree?: boolean; // Flag for free tools from AI Web Tools
 }

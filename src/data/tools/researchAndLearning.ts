@@ -26,7 +26,8 @@ export const researchAndLearning: Tool[] = [
     tags: ["space exploration", "astronomy", "cosmic simulations", "astrophysics", "space missions"],
     category: "Research & Learning",
     rating: 4.8,
-    totalVotes: 4567
+    totalVotes: 4567,
+    isFree: true
   },
   {
     icon: Wrench,
@@ -40,7 +41,8 @@ export const researchAndLearning: Tool[] = [
     tags: ["engineering", "technical analysis", "problem solving", "mechanical engineering", "electrical engineering"],
     category: "Research & Learning",
     rating: 4.7,
-    totalVotes: 3890
+    totalVotes: 3890,
+    isFree: true
   },
   {
     icon: Atom,
@@ -53,7 +55,8 @@ export const researchAndLearning: Tool[] = [
     tags: ["Nikola Tesla", "electrical engineering", "inventions", "scientific discoveries", "innovation"],
     category: "Research & Learning",
     rating: 4.6,
-    totalVotes: 3456
+    totalVotes: 3456,
+    isFree: true
   },
   {
     icon: Brain,
@@ -66,7 +69,8 @@ export const researchAndLearning: Tool[] = [
     tags: ["Albert Einstein", "relativity", "quantum physics", "scientific theories", "physics"],
     category: "Research & Learning",
     rating: 4.8,
-    totalVotes: 4123
+    totalVotes: 4123,
+    isFree: true
   },
   {
     icon: TestTube,
@@ -79,7 +83,8 @@ export const researchAndLearning: Tool[] = [
     tags: ["genomics", "genetics", "DNA analysis", "biotechnology", "molecular biology"],
     category: "Research & Learning",
     rating: 4.5,
-    totalVotes: 3123
+    totalVotes: 3123,
+    isFree: true
   },
   {
     icon: Calculator,
@@ -92,7 +97,8 @@ export const researchAndLearning: Tool[] = [
     tags: ["probability", "statistics", "mathematical modeling", "risk assessment", "data analysis"],
     category: "Research & Learning",
     rating: 4.4,
-    totalVotes: 2987
+    totalVotes: 2987,
+    isFree: true
   },
   {
     icon: Calculator,
@@ -106,7 +112,8 @@ export const researchAndLearning: Tool[] = [
     tags: ["algebraic expressions", "mathematical creativity", "problem solving", "mathematical concepts", "algebra"],
     category: "Research & Learning",
     rating: 4.3,
-    totalVotes: 2876
+    totalVotes: 2876,
+    isFree: true
   },
   {
     icon: TestTube,
@@ -119,6 +126,7 @@ export const researchAndLearning: Tool[] = [
     tags: ["alchemy", "chemistry", "historical science", "experimental techniques", "scientific discovery"],
     category: "Research & Learning",
     rating: 4.2,
-    totalVotes: 2654
+    totalVotes: 2654,
+    isFree: true
   }
 ];

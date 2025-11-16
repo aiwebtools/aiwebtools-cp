@@ -19,8 +19,8 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
   const { isMobile, isTouch } = useMobile();
   const { enableReducedMotion, getOptimizedStyles } = usePerformanceOptimization();
   
-  // Determine if this is an AIWebTools original
-  const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
+  // Determine if this is an AIWebTools original or marked as free
+  const isAIWebToolsOriginal = tool.isFree || tool.directUrl?.includes('lovable.app') || false;
   
   // Handle card click - trigger time warp effect for external tools
   const handleCardClick = (e: React.MouseEvent) => {
