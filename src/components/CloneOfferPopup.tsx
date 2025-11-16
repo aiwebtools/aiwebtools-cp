@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Copy, Sparkles } from "lucide-react";
+import { createConfettiCelebration } from "@/utils/effects/confettiCelebration";
 
 const CloneOfferPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +35,9 @@ const CloneOfferPopup = () => {
   const handleClone = (e: React.MouseEvent) => {
     e.preventDefault();
     const cloneUrl = "https://lovable.dev/projects/bdde8922-3051-4bbc-b084-326f95a6d771?via=aiwebtools";
+    
+    // Trigger confetti celebration
+    createConfettiCelebration();
     
     // Create time portal effect (same as FloatingCloneButton)
     const createTimePortalEffect = (targetUrl: string, title: string) => {

@@ -626,6 +626,16 @@ const featuredGPTs = [
     emoji: "⚖️"
   },
   {
+    title: "ENTER THE MATRIX GPT (NEO👁️MATRIX GPT)",
+    description: "Step into The Matrix as Neo, guided by Morpheus. Awaken to deeper truths hidden in the fabric of reality. Explore Quantum Meaning & Simulation Theory. Follow the White Rabbit 🐇",
+    badge: "MATRIX SIMULATION",
+    color: "from-green-500 to-black",
+    features: ["Reality Exploration", "Simulation Theory", "Quantum Philosophy", "Matrix Experience"],
+    directUrl: "https://neomatrixgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/qMLF5L_h2xo",
+    emoji: "👁️"
+  },
+  {
     title: "Personalized DR. GPT",
     description: "Advanced medical assistant providing personalized health guidance, symptom analysis, medical information, and healthcare support with professional medical knowledge.",
     badge: "HEALTHCARE",
