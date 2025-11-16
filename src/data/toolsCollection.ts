@@ -197,6 +197,9 @@ import { developerProductivityAI } from './tools/developerProductivityAI';
 import { aiResearchAcademicTools } from './tools/aiResearchAcademicTools';
 import { aiPresentationTools } from './tools/aiPresentationTools';
 import { aiSeoContentTools } from './tools/aiSeoContentTools';
+import { aiCustomerSupportTools } from './tools/aiCustomerSupportTools';
+import { aiDataAnalyticsTools } from './tools/aiDataAnalyticsTools';
+import { aiVideoEditingTools } from './tools/aiVideoEditingTools';
 
 
 // Import AI Hardware
@@ -400,6 +403,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...developerProductivityAI,
     ...aiResearchAcademicTools,
     ...aiPresentationTools,
-    ...aiSeoContentTools
+    ...aiSeoContentTools,
+    ...aiCustomerSupportTools,
+    ...aiDataAnalyticsTools,
+    ...aiVideoEditingTools
   ];
 };

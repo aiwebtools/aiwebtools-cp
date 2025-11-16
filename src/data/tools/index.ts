@@ -163,3 +163,12 @@ export { aiPresentationTools } from './aiPresentationTools';
 
 // Export AI SEO & Content Marketing Tools
 export { aiSeoContentTools } from './aiSeoContentTools';
+
+// Export AI Customer Support Tools
+export { aiCustomerSupportTools } from './aiCustomerSupportTools';
+
+// Export AI Data Analytics & BI Tools
+export { aiDataAnalyticsTools } from './aiDataAnalyticsTools';
+
+// Export AI Video Editing Tools
+export { aiVideoEditingTools } from './aiVideoEditingTools';

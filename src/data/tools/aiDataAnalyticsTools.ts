@@ -1,0 +1,77 @@
+import { Tool } from "@/types/tools";
+import { BarChart3, TrendingUp, Database, Sparkles, PieChart } from "lucide-react";
+
+export const aiDataAnalyticsTools: Tool[] = [
+  {
+    icon: BarChart3,
+    title: "Tableau AI",
+    description: "AI-powered data visualization and business intelligence platform. Ask questions in natural language, get instant insights, and create stunning dashboards automatically.",
+    emoji: "📊",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://www.tableau.com/?via=aiwebtools",
+    tags: ["data visualization", "business intelligence", "AI analytics", "dashboards", "data insights", "BI platform"],
+    category: "AI Data Analytics & BI",
+    rating: 4.8,
+    totalVotes: 15234
+  },
+  {
+    icon: TrendingUp,
+    title: "Power BI Copilot",
+    description: "Microsoft's AI-powered business intelligence tool with natural language queries, automated insights, and intelligent data modeling. Transform data into actionable insights.",
+    emoji: "📈",
+    color: "from-yellow-500 to-orange-600",
+    directUrl: "https://powerbi.microsoft.com/?via=aiwebtools",
+    tags: ["business intelligence", "data visualization", "AI copilot", "Microsoft", "analytics", "dashboards", "data insights"],
+    category: "AI Data Analytics & BI",
+    rating: 4.9,
+    totalVotes: 18567
+  },
+  {
+    icon: Sparkles,
+    title: "ThoughtSpot",
+    description: "AI-powered analytics platform with search-driven insights. Ask questions in plain English and get instant answers with interactive visualizations and analysis.",
+    emoji: "✨",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.thoughtspot.com/?via=aiwebtools",
+    tags: ["AI analytics", "search analytics", "business intelligence", "data insights", "natural language", "self-service BI"],
+    category: "AI Data Analytics & BI",
+    rating: 4.7,
+    totalVotes: 8234
+  },
+  {
+    icon: Database,
+    title: "Polymer",
+    description: "AI-powered data analysis tool that transforms spreadsheets into interactive dashboards. No coding required - just upload data and get instant insights with beautiful visualizations.",
+    emoji: "🔮",
+    color: "from-indigo-500 to-purple-600",
+    directUrl: "https://www.polymersearch.com/?via=aiwebtools",
+    tags: ["data analysis", "spreadsheet analytics", "no-code", "AI insights", "data visualization", "automated dashboards"],
+    category: "AI Data Analytics & BI",
+    rating: 4.6,
+    totalVotes: 5678
+  },
+  {
+    icon: PieChart,
+    title: "Looker (Google Cloud)",
+    description: "AI-enhanced business intelligence and analytics platform. Build data-driven applications, create custom reports, and share insights across your organization.",
+    emoji: "🥧",
+    color: "from-green-500 to-teal-600",
+    directUrl: "https://cloud.google.com/looker?via=aiwebtools",
+    tags: ["business intelligence", "data analytics", "Google Cloud", "data modeling", "enterprise BI", "data insights"],
+    category: "AI Data Analytics & BI",
+    rating: 4.7,
+    totalVotes: 9876
+  },
+  {
+    icon: BarChart3,
+    title: "Qlik Sense",
+    description: "AI-powered analytics platform with associative engine and intelligent insights. Discover hidden relationships in data and make data-driven decisions faster.",
+    emoji: "📉",
+    color: "from-emerald-500 to-green-600",
+    directUrl: "https://www.qlik.com/?via=aiwebtools",
+    tags: ["analytics", "business intelligence", "AI insights", "data discovery", "enterprise analytics", "data visualization"],
+    category: "AI Data Analytics & BI",
+    rating: 4.6,
+    totalVotes: 7234
+  }
+];

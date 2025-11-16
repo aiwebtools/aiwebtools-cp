@@ -1,0 +1,65 @@
+import { Tool } from "@/types/tools";
+import { MessageSquare, Headphones, Bot, Sparkles, Users } from "lucide-react";
+
+export const aiCustomerSupportTools: Tool[] = [
+  {
+    icon: MessageSquare,
+    title: "Intercom AI",
+    description: "AI-powered customer support platform with intelligent chatbots, automated responses, and personalized customer engagement. Resolve tickets faster with AI assistance.",
+    emoji: "💬",
+    color: "from-blue-500 to-indigo-600",
+    directUrl: "https://www.intercom.com/?via=aiwebtools",
+    tags: ["customer support", "chatbot", "AI automation", "live chat", "customer engagement", "helpdesk"],
+    category: "AI Customer Support",
+    rating: 4.8,
+    totalVotes: 9234
+  },
+  {
+    icon: Headphones,
+    title: "Zendesk AI",
+    description: "AI-powered customer service platform with intelligent ticket routing, automated responses, and advanced analytics. Enhance support efficiency with machine learning.",
+    emoji: "🎧",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://www.zendesk.com/?via=aiwebtools",
+    tags: ["customer support", "helpdesk", "AI automation", "ticket management", "customer service", "support analytics"],
+    category: "AI Customer Support",
+    rating: 4.7,
+    totalVotes: 12456
+  },
+  {
+    icon: Bot,
+    title: "Ada",
+    description: "AI-powered customer service automation platform. Build intelligent chatbots that handle complex queries, provide instant answers, and scale support operations.",
+    emoji: "🤖",
+    color: "from-purple-500 to-pink-600",
+    directUrl: "https://www.ada.cx/?via=aiwebtools",
+    tags: ["chatbot", "AI automation", "customer support", "conversational AI", "self-service", "support automation"],
+    category: "AI Customer Support",
+    rating: 4.6,
+    totalVotes: 5678
+  },
+  {
+    icon: Sparkles,
+    title: "Kustomer",
+    description: "AI-driven customer service CRM with intelligent routing, automated workflows, and omnichannel support. Deliver personalized experiences at scale.",
+    emoji: "✨",
+    color: "from-orange-500 to-red-600",
+    directUrl: "https://www.kustomer.com/?via=aiwebtools",
+    tags: ["CRM", "customer support", "AI automation", "omnichannel", "customer service", "workflow automation"],
+    category: "AI Customer Support",
+    rating: 4.7,
+    totalVotes: 6234
+  },
+  {
+    icon: Users,
+    title: "Freshdesk AI",
+    description: "AI-powered helpdesk with smart ticket assignment, predictive support, and automated responses. Streamline customer support with intelligent automation.",
+    emoji: "👥",
+    color: "from-teal-500 to-cyan-600",
+    directUrl: "https://freshdesk.com/?via=aiwebtools",
+    tags: ["helpdesk", "customer support", "AI automation", "ticket management", "predictive support", "support analytics"],
+    category: "AI Customer Support",
+    rating: 4.6,
+    totalVotes: 7891
+  }
+];
