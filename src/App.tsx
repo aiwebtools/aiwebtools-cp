@@ -13,6 +13,7 @@ import Index from "./pages/Index";
 import CategoryPage from "./pages/CategoryPage";
 import MainCategoryPage from "./pages/MainCategoryPage";
 import ToolDetail from "./pages/ToolDetail";
+import GenerateToolImages from "./pages/GenerateToolImages";
 import SimilarToolsPage from "./pages/SimilarTools";
 import FavoritesPage from "./pages/FavoritesPage";
 import NotFound from "./pages/NotFound";
@@ -55,6 +56,7 @@ function App() {
                   <Route path="/favorites" element={<FavoritesPage />} />
                   <Route path="/disclaimers" element={<DisclaimersPage />} />
                   <Route path="/our-story" element={<OurStoryPage />} />
+                  <Route path="/generate-tool-images" element={<GenerateToolImages />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
                 
