@@ -238,3 +238,12 @@ export { aiInteriorDesignTools } from './aiInteriorDesignTools';
 
 // Export AI Crypto & Trading Tools
 export { aiCryptoTradingTools } from './aiCryptoTradingTools';
+
+// Export AI Social Media Management Tools
+export { aiSocialMediaTools } from './aiSocialMediaTools';
+
+// Export AI Music Production Tools
+export { aiMusicProductionTools } from './aiMusicProductionTools';
+
+// Export AI Travel & Tourism Tools
+export { aiTravelTourismTools } from './aiTravelTourismTools';
