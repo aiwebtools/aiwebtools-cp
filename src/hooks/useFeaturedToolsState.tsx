@@ -10,21 +10,21 @@ import { createFeaturedTools } from "@/utils/featuredTools";
 export const useFeaturedToolsState = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [displayedCount, setDisplayedCount] = useState<number>(8); // Drastically reduced for immediate responsiveness
+  const [displayedCount, setDisplayedCount] = useState<number>(24); // Initial display count
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleCategoryChange = useCallback((category: string | null) => {
     console.log('🏷️ Category change requested:', category);
     setSelectedCategory(category);
     setSearchTerm("");
-    setDisplayedCount(8); // Minimal for instant response
+    setDisplayedCount(24);
     setIsLoading(false);
   }, []);
 
   const handleSearchChange = useCallback((term: string) => {
     setSearchTerm(term);
     setSelectedCategory(null);
-    setDisplayedCount(8); // Minimal for instant response
+    setDisplayedCount(24);
     setIsLoading(false);
   }, []);
 
@@ -39,24 +39,24 @@ export const useFeaturedToolsState = () => {
     } else if (searchTerm) {
       const trimmedTerm = searchTerm.trim();
       
-      // ULTRA FAST simple matching - minimal processing
+      // Fast matching with no artificial limits - show all results
       if (trimmedTerm.length === 1) {
         tools = allTools.filter(tool => 
           tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
-        ).slice(0, 20); // Severely limited for speed
+        );
       }
       // Fast matching for two characters
       else if (trimmedTerm.length === 2) {
         tools = allTools.filter(tool => 
           tool.title.toLowerCase().includes(trimmedTerm.toLowerCase())
-        ).slice(0, 30); // Limited for speed
+        );
       }
-      // Very limited search for longer terms
+      // Search for longer terms
       else if (trimmedTerm.length >= 3) {
         tools = allTools.filter(tool => 
           tool.title.toLowerCase().includes(trimmedTerm.toLowerCase()) ||
           tool.description.toLowerCase().includes(trimmedTerm.toLowerCase())
-        ).slice(0, 50); // Performance limit
+        );
       }
     } else {
       tools = createFeaturedTools(allTools);
