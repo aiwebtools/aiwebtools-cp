@@ -179,8 +179,8 @@ export const aiAgents: Tool[] = [
     directUrl: "https://github.com/imaurer/privateGPT",
     tags: ["private server", "task performance", "AI agent", "customization", "management"],
     category: "AI Agents",
-    rating: 4.4,
-    totalVotes: 2400
+    rating: 3.8,
+    totalVotes: 890
   },
   {
     icon: Bot,
@@ -191,8 +191,8 @@ export const aiAgents: Tool[] = [
     directUrl: "https://cloud.google.com/products/ai/ml-engine",
     tags: ["Google Cloud", "task performance", "AI agent", "customization", "management"],
     category: "AI Agents",
-    rating: 4.5,
-    totalVotes: 2600
+    rating: 3.9,
+    totalVotes: 950
   },
   {
     icon: Bot,
@@ -203,8 +203,8 @@ export const aiAgents: Tool[] = [
     directUrl: "https://aws.amazon.com/machine-learning/ml-agents/",
     tags: ["AWS", "task performance", "AI agent", "customization", "management"],
     category: "AI Agents",
-    rating: 4.6,
-    totalVotes: 2800
+    rating: 3.9,
+    totalVotes: 1020
   },
   {
     icon: Bot,
@@ -215,8 +215,8 @@ export const aiAgents: Tool[] = [
     directUrl: "https://azure.microsoft.com/en-us/services/machine-learning/",
     tags: ["Azure", "task performance", "AI agent", "customization", "management"],
     category: "AI Agents",
-    rating: 4.7,
-    totalVotes: 3000
+    rating: 3.8,
+    totalVotes: 1100
   },
   {
     icon: Bot,
