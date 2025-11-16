@@ -1438,9 +1438,17 @@ const OurFeaturedSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Our <span className="bg-gradient-to-r from-ai-cyan to-ai-blue bg-clip-text text-transparent">Featured Tools</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-6">
             Professional-grade AI solutions created by AIWebTools.ai for enterprise and creative professionals
           </p>
+          <div className="max-w-4xl mx-auto bg-gradient-to-r from-purple-900/50 to-blue-900/50 border border-purple-500/30 rounded-lg p-6 backdrop-blur-sm">
+            <p className="text-lg text-white font-semibold mb-2">
+              ⚡ Enhanced ChatGPT-Powered Tools
+            </p>
+            <p className="text-gray-200">
+              All of our custom GPTs are enhanced versions of ChatGPT, equipped with <span className="text-cyan-400 font-semibold">advanced data analysis</span>, <span className="text-blue-400 font-semibold">vision analysis</span>, and <span className="text-purple-400 font-semibold">full coding capabilities</span> to deliver superior AI-powered solutions for your specific needs.
+            </p>
+          </div>
         </div>
 
         {/* Web3 Section */}
