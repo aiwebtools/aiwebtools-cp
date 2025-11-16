@@ -193,3 +193,12 @@ export { aiSalesCrmTools } from './aiSalesCrmTools';
 
 // Export AI Legal Tech Tools
 export { aiLegalTechTools } from './aiLegalTechTools';
+
+// Export AI Healthcare Diagnosis Tools
+export { aiHealthcareDiagnosisTools } from './aiHealthcareDiagnosisTools';
+
+// Export AI Real Estate Tools
+export { aiRealEstateTools } from './aiRealEstateTools';
+
+// Export AI Accounting & Finance Tools
+export { aiAccountingFinanceTools } from './aiAccountingFinanceTools';

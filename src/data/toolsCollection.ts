@@ -207,6 +207,9 @@ import { aiEducationalTools } from './tools/aiEducationalTools';
 import { aiCybersecurityTools } from './tools/aiCybersecurityTools';
 import { aiSalesCrmTools } from './tools/aiSalesCrmTools';
 import { aiLegalTechTools } from './tools/aiLegalTechTools';
+import { aiHealthcareDiagnosisTools } from './tools/aiHealthcareDiagnosisTools';
+import { aiRealEstateTools } from './tools/aiRealEstateTools';
+import { aiAccountingFinanceTools } from './tools/aiAccountingFinanceTools';
 
 
 // Import AI Hardware
@@ -420,6 +423,9 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiEducationalTools,
     ...aiCybersecurityTools,
     ...aiSalesCrmTools,
-    ...aiLegalTechTools
+    ...aiLegalTechTools,
+    ...aiHealthcareDiagnosisTools,
+    ...aiRealEstateTools,
+    ...aiAccountingFinanceTools
   ];
 };
