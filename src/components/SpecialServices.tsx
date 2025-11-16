@@ -933,7 +933,8 @@ const featuredGPTs = [
     color: "from-purple-600 to-blue-600",
     features: ["Frame Analysis", "Video Breakdown", "Visual Extraction", "Detailed Review"],
     directUrl: "https://videoanalysisgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377297451278667887/video_second_by_seocnd.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-professional-video-editing-interface-with-timeline.png",
+    videoUrl: "https://www.youtube.com/watch?v=SmBXfGqXfco",
     emoji: "🎥"
   },
   {
@@ -1004,7 +1005,8 @@ const featuredGPTs = [
     color: "from-purple-600 to-pink-600",
     features: ["Prompt Optimization", "Midjourney Expert", "Creative Guidance", "Art Generation"],
     directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377297449965715526/middlejouney.webp",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-stunning-midjourney-style-ai-art-showing-prompt.png",
+    videoUrl: "https://www.youtube.com/watch?v=SmBXfGqXfco",
     emoji: "🎨"
   },
   {
@@ -1064,7 +1066,8 @@ const featuredGPTs = [
     color: "from-blue-600 to-purple-600",
     features: ["Course Creation", "Educational Design", "Learning Paths", "Content Organization"],
     directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377336291427090462/ChatGPT_Image_May_28_2025_01_22_27_PM.png",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-modern-educational-platform-interface-showing.png",
+    videoUrl: "https://www.youtube.com/watch?v=SmBXfGqXfco",
     emoji: "📚"
   },
   {
