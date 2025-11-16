@@ -15,6 +15,7 @@ import MainCategoryPage from "./pages/MainCategoryPage";
 import ToolDetail from "./pages/ToolDetail";
 import SimilarToolsPage from "./pages/SimilarTools";
 import FavoritesPage from "./pages/FavoritesPage";
+import ToolSubmission from "./pages/ToolSubmission";
 import NotFound from "./pages/NotFound";
 import DisclaimersPage from "./pages/DisclaimersPage";
 import OurStoryPage from "./pages/OurStoryPage";
@@ -55,6 +56,7 @@ function App() {
                   <Route path="/favorites" element={<FavoritesPage />} />
                   <Route path="/disclaimers" element={<DisclaimersPage />} />
                   <Route path="/our-story" element={<OurStoryPage />} />
+                  <Route path="/submit-tool" element={<ToolSubmission />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
                 
