@@ -786,6 +786,76 @@ const featuredGPTs = [
     emoji: "📛"
   },
   {
+    title: "Titanic Resurrections GPT",
+    description: "Historically immersive AI bringing Titanic passengers and crew back to life through first-person storytelling and documented historical accuracy.",
+    badge: "HISTORICAL",
+    color: "from-blue-600 to-cyan-600",
+    features: ["Historical Storytelling", "Survivor Testimonies", "Immersive Experience", "Historical Accuracy"],
+    directUrl: "https://titanicresurrectionsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=XlWVaz5bw08",
+    emoji: "🚢"
+  },
+  {
+    title: "Training Manual Generator GPT",
+    description: "AI-powered Training Manual Generator creates comprehensive, customized training manuals for businesses.",
+    badge: "BUSINESS",
+    color: "from-blue-500 to-purple-600",
+    features: ["Training Materials", "Business Manuals", "Employee Onboarding", "Custom Content"],
+    directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298130739138741/training_manual.webp",
+    emoji: "📋"
+  },
+  {
+    title: "Chef Sizzle AI Culinary Assistant",
+    description: "Chef Sizzle crafting award-winning recipes tailored to you—plant-based, meat-loving, or somewhere in between.",
+    badge: "CULINARY",
+    color: "from-orange-500 to-red-600",
+    features: ["Recipe Creation", "Personalized Recipes", "Culinary Expertise", "Dietary Options"],
+    directUrl: "https://chefgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=vJz1HOGtV0I",
+    emoji: "👨‍🍳"
+  },
+  {
+    title: "Mixologist GPT",
+    description: "Kenny, your virtual bartender whipping up custom cocktails based on your vibe, ingredients, and taste.",
+    badge: "BARTENDING",
+    color: "from-purple-500 to-pink-500",
+    features: ["Cocktail Creation", "Custom Drinks", "Mixology", "Bartending Tips"],
+    directUrl: "https://mixologistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-modern-and-stylish-bartender-with.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    emoji: "🍸"
+  },
+  {
+    title: "RESTYLE ME GPT",
+    description: "Transform your images into any artistic style with detailed and stunning effects powered by GPT 4o.",
+    badge: "IMAGE TRANSFORMATION",
+    color: "from-pink-500 to-purple-600",
+    features: ["Image Styling", "Artistic Transformation", "Visual Effects", "Creative Design"],
+    directUrl: "https://restylemegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298037830848612/rerstyle.webp",
+    emoji: "🎨"
+  },
+  {
+    title: "Celebrity Chatline GPT",
+    description: "Lively AI bringing your favorite celebrities straight to your phone for fun simulated conversations!",
+    badge: "ENTERTAINMENT",
+    color: "from-purple-500 to-pink-600",
+    features: ["Celebrity Simulation", "Interactive Chat", "Entertainment", "Fun Conversations"],
+    directUrl: "https://celebritychatline.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-split-screen-image-of-snoop-dogg-talking-on-.png/:/cr=t:0%25,l:0.11%25,w:99.78%25,h:100%25/rs=w:1200,cg:true",
+    emoji: "⭐"
+  },
+  {
+    title: "Restaurant Menu Maker GPT",
+    description: "Create fully customized, professional restaurant menus with optimized designs and QR code integration.",
+    badge: "RESTAURANT",
+    color: "from-orange-500 to-red-600",
+    features: ["Menu Design", "Dish Descriptions", "Pricing Strategy", "QR Codes"],
+    directUrl: "https://restaurantmenumakergpt.lovable.app/",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-restaurant-menu-with-a-vari__Oji1.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    emoji: "🍽️"
+  },
+  {
     title: "AIWEBTOOLS GPT CLONER GPT",
     description: "Think it, dream it, spawn it! Clone any of our GPTs receiving operational instructions ready to deploy, written in the style of the creator of aiwebtools.ai",
     badge: "AI CLONING",
