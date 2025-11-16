@@ -228,6 +228,10 @@ import { aiTravelTourismTools } from './tools/aiTravelTourismTools';
 import { aiPetCareTools } from './tools/aiPetCareTools';
 import { aiAgricultureTools } from './tools/aiAgricultureTools';
 import { aiConstructionTools } from './tools/aiConstructionTools';
+import { aiShippingLogisticsTools } from './tools/aiShippingLogisticsTools';
+import { aiInsuranceTools } from './tools/aiInsuranceTools';
+import { aiAutomotiveTools } from './tools/aiAutomotiveTools';
+import { additionalVideoImageGenerators } from './tools/additionalVideoImageGenerators';
 
 
 // Import AI Hardware
@@ -462,6 +466,10 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiTravelTourismTools,
     ...aiPetCareTools,
     ...aiAgricultureTools,
-    ...aiConstructionTools
+    ...aiConstructionTools,
+    ...aiShippingLogisticsTools,
+    ...aiInsuranceTools,
+    ...aiAutomotiveTools,
+    ...additionalVideoImageGenerators
   ];
 };
