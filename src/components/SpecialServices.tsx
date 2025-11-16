@@ -482,16 +482,6 @@ const featuredGPTs = [
     emoji: "🧠"
   },
   {
-    title: "Leonardo AI",
-    description: "Advanced AI image generation platform for creating stunning artwork, designs, and visual content with professional-grade artistic capabilities.",
-    badge: "AI ART",
-    color: "from-purple-600 to-pink-600",
-    features: ["Image Generation", "Artistic Creation", "Design Tools", "Visual Content"],
-    directUrl: "https://app.leonardo.ai/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/image_converted.jpeg/:/rs=w:1200,h:600,cg:true,m/cr=w:1200,h:600",
-    emoji: "🎨"
-  },
-  {
     title: "Magnetism GPT",
     description: "Magnetism GPT (Magneto) is an intelligent synthesis of physics, biology, and metaphysical wisdom—a digital educator revealing how magnetic fields weave life together. Learn how the human heart generates the body's strongest electromagnetic field, how emotion and coherence shape reality, and how your biofield resonates with Earth's geomagnetic pulse and the Sun's solar rhythm. Through heart field science, Schumann Resonance, toroidal energy, sacred geometry, breathwork, and frequency alignment, restore coherence to your personal energy field and Earth's living magnetic current.",
     badge: "MAGNETISM",
