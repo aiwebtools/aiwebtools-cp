@@ -184,3 +184,12 @@ export { aiProjectManagementTools } from './aiProjectManagementTools';
 
 // Export AI Educational Tools
 export { aiEducationalTools } from './aiEducationalTools';
+
+// Export AI Cybersecurity Tools
+export { aiCybersecurityTools } from './aiCybersecurityTools';
+
+// Export AI Sales & CRM Tools
+export { aiSalesCrmTools } from './aiSalesCrmTools';
+
+// Export AI Legal Tech Tools
+export { aiLegalTechTools } from './aiLegalTechTools';
