@@ -211,3 +211,18 @@ export { aiLogisticsSupplyChainTools } from './aiLogisticsSupplyChainTools';
 
 // Export AI Mental Health & Wellness Tools
 export { aiMentalHealthWellnessTools } from './aiMentalHealthWellnessTools';
+
+// Export AI E-commerce Tools
+export { aiEcommerceTools } from './aiEcommerceTools';
+
+// Export AI Voice & Speech Tools
+export { aiVoiceSpeechTools } from './aiVoiceSpeechTools';
+
+// Export AI Gaming & Game Development Tools
+export { aiGamingTools } from './aiGamingTools';
+
+// Export AI GPT Store & Platforms
+export { aiGptStorePlatforms } from './aiGptStorePlatforms';
+
+// Export AI Bot Making Platforms
+export { aiBotMakingPlatforms } from './aiBotMakingPlatforms';

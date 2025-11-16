@@ -213,6 +213,11 @@ import { aiAccountingFinanceTools } from './tools/aiAccountingFinanceTools';
 import { aiFashionStyleTools } from './tools/aiFashionStyleTools';
 import { aiLogisticsSupplyChainTools } from './tools/aiLogisticsSupplyChainTools';
 import { aiMentalHealthWellnessTools } from './tools/aiMentalHealthWellnessTools';
+import { aiEcommerceTools } from './tools/aiEcommerceTools';
+import { aiVoiceSpeechTools } from './tools/aiVoiceSpeechTools';
+import { aiGamingTools } from './tools/aiGamingTools';
+import { aiGptStorePlatforms } from './tools/aiGptStorePlatforms';
+import { aiBotMakingPlatforms } from './tools/aiBotMakingPlatforms';
 
 
 // Import AI Hardware
@@ -432,6 +437,11 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiAccountingFinanceTools,
     ...aiFashionStyleTools,
     ...aiLogisticsSupplyChainTools,
-    ...aiMentalHealthWellnessTools
+    ...aiMentalHealthWellnessTools,
+    ...aiEcommerceTools,
+    ...aiVoiceSpeechTools,
+    ...aiGamingTools,
+    ...aiGptStorePlatforms,
+    ...aiBotMakingPlatforms
   ];
 };
