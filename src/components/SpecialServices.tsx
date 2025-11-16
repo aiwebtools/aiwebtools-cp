@@ -703,6 +703,7 @@ const featuredGPTs = [
     features: ["Emotional Support", "CBT Principles", "Coping Strategies", "Mental Well-being"],
     directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377362789097803786/image.png?ex=6838b08f&is=68375f0f&hm=f63e1ae446523dd9eff4aa0f95166aa8a5e6119c506b44ab1656322ea4ca47b7&=&format=webp&quality=lossless&width=2646&height=1392",
     emoji: "🧘‍♀️"
   },
   {
@@ -862,6 +863,7 @@ const featuredGPTs = [
     color: "from-cyan-500 to-blue-600",
     features: ["GPT Cloning", "Instruction Generation", "Deployment Ready", "Custom AI"],
     directUrl: "https://chatgpt.com/g/g-6904dd7abc788191aff06ba097690983-aiwebtools-ai-gpt-a-w-t-gpt-instructions-cloner",
+    videoUrl: "https://youtu.be/Cvg3o6uJ1o4",
     emoji: "🧬"
   },
   {
