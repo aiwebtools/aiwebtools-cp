@@ -234,7 +234,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     description: "Coloring Book Generator GPT creates full coloring books from your imagination.",
     emoji: "🖍️",
     color: "from-yellow-500 to-green-600",
-    directUrl: "https://coloringbookmaker.lovable.app/?via=aiwebtools",
+    directUrl: "https://coloringbookgeneratorgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://ideogram.ai/assets/progressive-image/balanced/response/1nn1k06fRwWk3OQIbu7sTw",
     tags: ["coloring books", "creative activities", "children's content", "educational tools", "artistic creation", "aiwebtools"],
     category: "Creative & Media",
