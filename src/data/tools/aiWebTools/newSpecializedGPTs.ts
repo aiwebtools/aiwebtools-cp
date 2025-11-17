@@ -462,7 +462,7 @@ export const newSpecializedGPTs: Tool[] = [
     emoji: "🤖",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-6904e17b11c481918dbec234180bff54-deployable-robots-custom-gpt-cloner/?via=aiwebtools",
-    videoUrl: "https://youtu.be/Cvg3o6uJ1o4",
+    videoUrl: "https://youtu.be/lG1rMaImBNc",
     category: "AI Tools & Development",
     tags: ["custom gpt", "gpt cloning", "ai development", "chatbot creation", "ai customization", "gpt maker", "aiwebtools"],
     rating: 4.7,
