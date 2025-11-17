@@ -24,20 +24,18 @@ const BookPromotionCard = () => {
         <div className="max-w-6xl mx-auto">
           <div className="bg-gradient-to-r from-purple-900/80 to-blue-900/80 backdrop-blur-sm border border-purple-500/30 rounded-2xl overflow-hidden shadow-2xl">
             <div className="flex flex-col lg:flex-row items-center">
-              {/* Book Visual */}
+              {/* Book Visual - YouTube Video */}
               <div className="lg:w-1/3 p-8 flex justify-center">
-                <div className="relative">
-                  <div className="w-48 h-64 bg-gradient-to-b from-yellow-400 via-orange-500 to-red-600 rounded-lg shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
-                    <div className="p-4 text-center h-full flex flex-col justify-between">
-                      <div>
-                        <BookOpen className="text-white mx-auto mb-2" size={32} />
-                        <h3 className="text-white font-bold text-lg leading-tight">The Gospel of</h3>
-                        <h3 className="text-white font-bold text-xl leading-tight">Deployable Robots</h3>
-                      </div>
-                      <div className="text-white text-sm">
-                        By AIWebTools.AI
-                      </div>
-                    </div>
+                <div className="relative w-64">
+                  {/* 9:16 aspect ratio container */}
+                  <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
+                    <iframe
+                      src="https://www.youtube.com/embed/lG1rMaImBNc"
+                      className="absolute inset-0 w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      title="The Gospel of Deployable Robots"
+                    />
                   </div>
                   <div className="absolute -inset-2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg blur-xl -z-10"></div>
                 </div>
