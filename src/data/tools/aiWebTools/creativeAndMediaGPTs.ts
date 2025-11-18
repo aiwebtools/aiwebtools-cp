@@ -235,6 +235,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🖍️",
     color: "from-yellow-500 to-green-600",
     directUrl: "https://coloringbookgeneratorgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/i0zc0aeRCeI?si=UKmD23pR3uCTGXBa",
     imageUrl: "https://ideogram.ai/assets/progressive-image/balanced/response/1nn1k06fRwWk3OQIbu7sTw",
     tags: ["coloring books", "creative activities", "children's content", "educational tools", "artistic creation", "aiwebtools"],
     category: "Creative & Media",

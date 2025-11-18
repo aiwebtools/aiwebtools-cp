@@ -23,7 +23,7 @@ export const foodAndHospitalityGPTs: Tool[] = [
     emoji: "👨‍🍳",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chefgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=vJz1HOGtV0I",
+    videoUrl: "https://youtu.be/S_0SSog3tNo?si=ju2OACpfAjzvQIda",
     tags: ["cooking", "recipes", "culinary arts", "chef assistant", "food preparation"],
     category: "Food & Hospitality",
     rating: 4.8,
