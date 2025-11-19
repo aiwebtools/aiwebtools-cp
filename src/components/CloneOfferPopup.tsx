@@ -143,18 +143,22 @@ const CloneOfferPopup = () => {
         </DialogHeader>
         
         {/* Video Section */}
-        <div className="w-full aspect-video rounded-lg overflow-hidden mb-4">
+        <div className="w-full aspect-video rounded-lg overflow-hidden mb-4 bg-black">
           <iframe
             width="100%"
             height="100%"
-            src="https://www.youtube.com/embed/S_0SSog3tNo?autoplay=1&mute=0"
+            src="https://www.youtube.com/embed/S_0SSog3tNo?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
             title="Clone This Website"
             frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="w-full h-full"
+            loading="eager"
           ></iframe>
         </div>
+        <p className="text-xs text-muted-foreground text-center -mt-2 mb-2">
+          🔊 Click the video to unmute and hear the full message
+        </p>
 
         <div className="flex flex-col gap-4 py-4">
           <p className="text-sm text-muted-foreground">
