@@ -88,7 +88,7 @@ export const professionalServicesGPTs: Tool[] = [
     emoji: "🎨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://tattoogpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=3dtGbNqXdPY",
+    videoUrl: "https://youtu.be/hB_fKF_5GOI",
     tags: ["tattoo design", "body art", "piercing", "tattoo artist", "design", "professional services", "aiwebtools"],
     category: "Professional Services",
     rating: 4.6,
