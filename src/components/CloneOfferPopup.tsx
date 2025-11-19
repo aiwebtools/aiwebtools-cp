@@ -12,22 +12,47 @@ import { createConfettiCelebration } from "@/utils/effects/confettiCelebration";
 
 const CloneOfferPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [hasShown, setHasShown] = useState(false);
+  const [showCount, setShowCount] = useState(0);
+
+  // Function to mute all videos on the page
+  const muteAllVideos = () => {
+    const videos = document.querySelectorAll('video, iframe');
+    videos.forEach((video) => {
+      if (video instanceof HTMLVideoElement) {
+        video.muted = true;
+      } else if (video instanceof HTMLIFrameElement) {
+        // For YouTube iframes, we can try to pause them
+        const src = video.src;
+        if (src.includes('youtube.com') || src.includes('youtu.be')) {
+          // Pause YouTube videos by modifying src
+          if (!src.includes('autoplay=0')) {
+            video.src = src.includes('?') ? `${src}&autoplay=0` : `${src}?autoplay=0`;
+          }
+        }
+      }
+    });
+  };
 
   useEffect(() => {
-    // Check if popup has already been shown in this session
-    const alreadyShown = sessionStorage.getItem('cloneOfferShown');
-    if (alreadyShown) {
-      setHasShown(true);
+    // Check how many times popup has been shown
+    const shownCount = parseInt(sessionStorage.getItem('cloneOfferShowCount') || '0');
+    setShowCount(shownCount);
+
+    // If already shown twice, don't show again
+    if (shownCount >= 2) {
       return;
     }
 
-    // Show popup after 3 minutes (180,000 milliseconds)
+    // Determine the delay: 3 minutes for first show, 7 minutes for second show
+    const delay = shownCount === 0 ? 180000 : 420000; // 3 min (180000ms) or 7 min (420000ms)
+
     const timer = setTimeout(() => {
+      muteAllVideos();
       setIsOpen(true);
-      setHasShown(true);
-      sessionStorage.setItem('cloneOfferShown', 'true');
-    }, 180000);
+      const newCount = shownCount + 1;
+      setShowCount(newCount);
+      sessionStorage.setItem('cloneOfferShowCount', newCount.toString());
+    }, delay);
 
     return () => clearTimeout(timer);
   }, []);
@@ -100,20 +125,37 @@ const CloneOfferPopup = () => {
     setIsOpen(false);
   };
 
-  if (hasShown && !isOpen) return null;
-
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-md bg-gradient-to-br from-background to-accent/5 border-primary/20">
+      <DialogContent className="sm:max-w-2xl bg-gradient-to-br from-background to-accent/5 border-primary/20">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-2xl">
             <Sparkles className="w-6 h-6 text-primary animate-pulse" />
             Your AI Empire Awaits!
           </DialogTitle>
           <DialogDescription className="text-base pt-2">
-            Hey, we're glad you like this website. <span className="text-primary font-semibold">It's actually yours</span> — you just don't know it yet. 
+            {showCount === 1 ? (
+              <>Hey, we're glad you like this website. <span className="text-primary font-semibold">It's actually yours</span> — you just don't know it yet.</>
+            ) : (
+              <>Just a friendly reminder: This website can be <span className="text-primary font-semibold">100% yours</span> with just one click!</>
+            )}
           </DialogDescription>
         </DialogHeader>
+        
+        {/* Video Section */}
+        <div className="w-full aspect-video rounded-lg overflow-hidden mb-4">
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://www.youtube.com/embed/S_0SSog3tNo?autoplay=1&mute=0"
+            title="Clone This Website"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full"
+          ></iframe>
+        </div>
+
         <div className="flex flex-col gap-4 py-4">
           <p className="text-sm text-muted-foreground">
             Click below to claim it by cloning it now and start building your own AI tools directory!
