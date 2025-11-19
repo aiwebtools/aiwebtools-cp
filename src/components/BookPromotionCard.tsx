@@ -8,14 +8,14 @@ const BookPromotionCard = () => {
     e.preventDefault();
     e.stopPropagation();
     console.log('🌀 Book purchase clicked - triggering time warp');
-    createTimePortalEffect("https://www.amazon.com/Gospel-Deployable-Robots-Instructions-www-AiWebTools-Ai-ebook/dp/B0DT419F2W?dplnkId=21c79e26-79fa-4837-9c84-4aebe9053749", "Gospel of Deployable Robots Book");
+    createTimePortalEffect("https://www.amazon.com/Gospel-Deployable-Robots-Instructions-www-AiWebTools-Ai-ebook/dp/B0DT419F2W?dplnkId=21c79e26-79fa-4837-9c84-4aebe9053749", "The Book Of Deployable Robot Prompts");
   };
 
   const handleDownloadBook = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     console.log('📥 Free book download clicked');
-    createTimePortalEffect("https://docs.google.com/document/d/18LHLsPXIjjtZgIAaXry5IktOGm9lacTq/edit?usp=sharing&ouid=116187507271950139405&rtpof=true&sd=true", "Free Gospel of Deployable Robots Download");
+    createTimePortalEffect("https://docs.google.com/document/d/18LHLsPXIjjtZgIAaXry5IktOGm9lacTq/edit?usp=sharing&ouid=116187507271950139405&rtpof=true&sd=true", "Free The Book Of Deployable Robot Prompts Download");
   };
 
   return (
@@ -35,7 +35,7 @@ const BookPromotionCard = () => {
                       className="absolute inset-0 w-full h-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
-                      title="The Gospel of Deployable Robots"
+                      title="The Book Of Deployable Robot Prompts"
                     />
                   </div>
                   <div className="absolute -inset-2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg blur-xl -z-10"></div>
@@ -62,7 +62,7 @@ const BookPromotionCard = () => {
                 <div className="text-center lg:text-left">
                   <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-                      The Gospel of Deployable Robots
+                      The Book Of Deployable Robot Prompts
                     </span>
                   </h2>
                   
@@ -120,14 +120,14 @@ const BookPromotionCard = () => {
                       </DialogTrigger>
                       <DialogContent className="max-w-4xl h-[80vh]">
                         <DialogHeader>
-                          <DialogTitle>Gospel of Deployable Robots - Preview</DialogTitle>
+                          <DialogTitle>The Book Of Deployable Robot Prompts - Preview</DialogTitle>
                         </DialogHeader>
                         <div className="w-full h-full flex flex-col items-center justify-center gap-4">
                           <iframe 
                             src="https://drive.google.com/file/d/18LHLsPXIjjtZgIAaXry5IktOGm9lacTq/preview" 
                             className="w-full flex-1 rounded-lg pointer-events-auto select-text"
                             allow="autoplay"
-                            title="Gospel of Deployable Robots Preview"
+                            title="The Book Of Deployable Robot Prompts Preview"
                             style={{ userSelect: 'text' }}
                           />
                           <DialogClose asChild>
