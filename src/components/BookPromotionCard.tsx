@@ -24,9 +24,10 @@ const BookPromotionCard = () => {
         <div className="max-w-6xl mx-auto">
           <div className="bg-gradient-to-r from-purple-900/80 to-blue-900/80 backdrop-blur-sm border border-purple-500/30 rounded-2xl overflow-hidden shadow-2xl">
             <div className="flex flex-col lg:flex-row items-center">
-              {/* Book Visual - YouTube Video */}
-              <div className="lg:w-1/3 p-8 flex justify-center">
-                <div className="relative w-64">
+              {/* Book Visual - YouTube Videos */}
+              <div className="lg:w-1/2 p-8 flex justify-center gap-4">
+                {/* First Video */}
+                <div className="relative w-48 flex-shrink-0">
                   {/* 9:16 aspect ratio container */}
                   <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
                     <iframe
@@ -39,10 +40,25 @@ const BookPromotionCard = () => {
                   </div>
                   <div className="absolute -inset-2 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg blur-xl -z-10"></div>
                 </div>
+                
+                {/* Second Video */}
+                <div className="relative w-48 flex-shrink-0">
+                  {/* 9:16 aspect ratio container */}
+                  <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
+                    <iframe
+                      src="https://www.youtube.com/embed/i0zc0aeRCeI"
+                      className="absolute inset-0 w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      title="Coloring Book Generator Demo"
+                    />
+                  </div>
+                  <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-lg blur-xl -z-10"></div>
+                </div>
               </div>
 
               {/* Content */}
-              <div className="lg:w-2/3 p-8">
+              <div className="lg:w-1/2 p-8">
                 <div className="text-center lg:text-left">
                   <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
