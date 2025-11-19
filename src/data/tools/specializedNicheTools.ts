@@ -75,7 +75,7 @@ export const specializedNicheTools: Tool[] = [
     emoji: "🎨",
     color: "from-black to-red-600",
     directUrl: "https://tattoogpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=3dtGbNqXdPY",
+    videoUrl: "https://youtu.be/hB_fKF_5GOI",
     tags: ["tattoo design", "custom tattoos", "artistic guidance", "tattoo concepts", "body art"],
     category: "Specialized & Niche Tools",
     rating: 4.1,
