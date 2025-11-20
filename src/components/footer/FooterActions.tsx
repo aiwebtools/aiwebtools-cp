@@ -1,5 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Plus, Search, Download } from "lucide-react";
+import { allTools } from "@/data/toolsData";
+import { downloadToolsCSV } from "@/utils/csvExport";
+import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 
 interface FooterActionsProps {
   handleExternalLink: (url: string, e: React.MouseEvent) => void;
@@ -20,7 +23,18 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
 
   const handleDownloadAIList = (e: React.MouseEvent) => {
     e.preventDefault();
-    handleExternalLink('https://docs.google.com/document/d/e/2PACX-1vQW1HCKPrEDguchQct7UnoxPg-DW84Q6fKWFbF7IIygEPaNJnQn-N0h8yVD_FzxZg/pub', e);
+    console.log(`📥 Downloading CSV with ${allTools.length} AI tools...`);
+    
+    // Trigger confetti celebration
+    createConfettiCelebration();
+    
+    // Download CSV with all tools
+    setTimeout(() => {
+      downloadToolsCSV(
+        allTools, 
+        `AIWebTools-Complete-Directory-${allTools.length}-Tools.csv`
+      );
+    }, 300);
   };
 
   return (
@@ -35,8 +49,8 @@ const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool
           size="lg"
           className="w-full sm:w-auto sm:min-w-[240px] px-8 sm:px-10 leading-snug"
         >
-          <Download className="mr-2 h-5 w-5" />
-          DOWNLOAD 1000+ AI TOOLS (FREE)
+          <Download className="mr-2 h-5 w-5 animate-bounce" />
+          DOWNLOAD {allTools.length}+ AI TOOLS CSV (FREE)
         </Button>
         
         <Button
