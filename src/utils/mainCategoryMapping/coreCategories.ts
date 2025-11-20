@@ -1,4 +1,3 @@
-
 import { MainCategory } from "./types";
 
 export const coreCategories: MainCategory[] = [
@@ -9,6 +8,18 @@ export const coreCategories: MainCategory[] = [
     subcategories: [
       "All Categories",
       "Complete Collection"
+    ]
+  },
+  {
+    name: "AI AGENTS",
+    emoji: "🤖",
+    description: "Autonomous AI agents and intelligent systems that perform tasks independently",
+    subcategories: [
+      "AI Agents",
+      "Autonomous Agents",
+      "Intelligent Systems",
+      "Task Automation",
+      "AI Assistants"
     ]
   },
   {

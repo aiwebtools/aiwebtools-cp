@@ -298,3 +298,9 @@ export { aiMeetingAssistants } from './aiMeetingAssistants';
 
 // Export AI Note-Taking Tools
 export { aiNoteTakingTools } from './aiNoteTakingTools';
+
+// Export New Website Builders 2025
+export { newWebsiteBuilders2025 } from './newWebsiteBuilders2025';
+
+// Export New Specialized Tools 2025
+export { newSpecializedTools2025 } from './newSpecializedTools2025';

@@ -284,12 +284,12 @@ export const moreRealAITools: Tool[] = [
   },
   {
     icon: Wand2,
-    title: "Looka",
-    description: "AI logo maker and brand identity platform for creating professional logos.",
+    title: "LOOKA Ai Logo & Brand Designer",
+    description: "AI-powered platform that simplifies designing logos and building brand identities for businesses. Creates professional logos, brand kits, marketing materials, business cards, and social profiles with AI assistance.",
     emoji: "✨",
     color: "from-blue-500 to-purple-600",
-    directUrl: "https://looka.com/?via=aiwebtools",
-    tags: ["logo design", "brand identity", "AI design", "business branding", "visual identity"],
+    directUrl: "https://looka.grsm.io/aiwebtools",
+    tags: ["logo design", "brand identity", "AI design", "business branding", "brand kit", "marketing materials"],
     category: "Design Tools",
     rating: 4.4,
     totalVotes: 6789

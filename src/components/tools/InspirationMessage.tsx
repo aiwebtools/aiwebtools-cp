@@ -23,10 +23,10 @@ const InspirationMessage = () => {
         <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
           <iframe
             className="absolute top-0 left-0 w-full h-full rounded-xl border border-cyan-500/30"
-            src="https://www.youtube.com/embed/drUyFiVayaw?autoplay=1&mute=0&loop=1&playlist=drUyFiVayaw&controls=1&rel=0&modestbranding=1&hd=1&vq=hd1080&enablejsapi=1"
+            src="https://www.youtube.com/embed/drUyFiVayaw?autoplay=0&mute=0&controls=1&rel=0&modestbranding=1&hd=1&vq=hd1080&enablejsapi=1"
             title="Inspirational Video"
             frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
         </div>
