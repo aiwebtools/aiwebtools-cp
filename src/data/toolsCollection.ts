@@ -243,6 +243,10 @@ import { aiTranscriptionToolsPro } from './tools/aiTranscriptionToolsPro';
 import { aiMeetingAssistants } from './tools/aiMeetingAssistants';
 import { aiNoteTakingTools } from './tools/aiNoteTakingTools';
 
+// NEW 2025: Website Builders and Specialized Tools
+import { newWebsiteBuilders2025 } from './tools/newWebsiteBuilders2025';
+import { newSpecializedTools2025 } from './tools/newSpecializedTools2025';
+
 
 // Import AI Hardware
 import { aiHardware } from './tools/aiHardware';
@@ -490,6 +494,10 @@ export const getAllToolCategories = (): Tool[] => {
     ...aiPodcastTools,
     ...aiTranscriptionToolsPro,
     ...aiMeetingAssistants,
-    ...aiNoteTakingTools
+    ...aiNoteTakingTools,
+    
+    // NEW 2025: Website Builders and Specialized Tools
+    ...newWebsiteBuilders2025,
+    ...newSpecializedTools2025
   ];
 };

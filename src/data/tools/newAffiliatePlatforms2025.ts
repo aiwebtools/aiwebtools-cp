@@ -217,12 +217,12 @@ export const newAffiliatePlatforms2025: Tool[] = [
   },
   {
     icon: Paintbrush,
-    title: "Looka",
-    description: "AI-powered website generator and brand builder. Create professional logos, websites, and brand materials with artificial intelligence.",
+    title: "LOOKA Ai Logo & Brand Designer",
+    description: "AI-powered platform that simplifies designing logos and building brand identities for businesses. Creates professional logos, brand kits, marketing materials, business cards, and social profiles with AI assistance.",
     emoji: "🎨",
     color: "from-pink-500 to-red-600",
-    directUrl: "https://looka.partnerlinks.io/aiwebtools",
-    tags: ["logo design", "brand building", "website generator", "AI design", "branding"],
+    directUrl: "https://looka.grsm.io/aiwebtools",
+    tags: ["logo design", "brand building", "brand kit", "AI design", "branding", "marketing materials"],
     category: "Website & Design Tools",
     rating: 4.5,
     totalVotes: 3234

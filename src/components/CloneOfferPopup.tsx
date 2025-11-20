@@ -38,13 +38,14 @@ const CloneOfferPopup = () => {
     const shownCount = parseInt(sessionStorage.getItem('cloneOfferShowCount') || '0');
     setShowCount(shownCount);
 
-    // If already shown twice, don't show again
-    if (shownCount >= 2) {
+    // If already shown 4 times, don't show again
+    if (shownCount >= 4) {
       return;
     }
 
-    // Determine the delay: 3 minutes for first show, 7 minutes for second show
-    const delay = shownCount === 0 ? 180000 : 420000; // 3 min (180000ms) or 7 min (420000ms)
+    // Determine the delay: 5, 7, 12, and 20 minutes
+    const delays = [300000, 420000, 720000, 1200000]; // 5min, 7min, 12min, 20min in ms
+    const delay = delays[shownCount] || delays[delays.length - 1];
 
     const timer = setTimeout(() => {
       muteAllVideos();
@@ -147,7 +148,7 @@ const CloneOfferPopup = () => {
           <iframe
             width="100%"
             height="100%"
-            src="https://www.youtube.com/embed/S_0SSog3tNo?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+            src="https://www.youtube.com/embed/S_0SSog3tNo?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
             title="Clone This Website"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -156,9 +157,6 @@ const CloneOfferPopup = () => {
             loading="eager"
           ></iframe>
         </div>
-        <p className="text-xs text-muted-foreground text-center -mt-2 mb-2">
-          🔊 Click the video to unmute and hear the full message
-        </p>
 
         <div className="flex flex-col gap-4 py-4">
           <p className="text-sm text-muted-foreground">

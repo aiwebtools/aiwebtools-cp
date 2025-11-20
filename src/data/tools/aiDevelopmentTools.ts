@@ -106,7 +106,7 @@ export const aiDevelopmentTools: Tool[] = [
     description: "AI-powered website builder that generates a complete website with content and images in seconds. Perfect for small businesses and entrepreneurs looking to quickly establish an online presence.",
     emoji: "🌐",
     color: "from-pink-500 to-purple-600",
-    directUrl: "https://durable.ai/",
+    directUrl: "https://durable.co/ai-website-builder?via=aiwebtools",
     tags: ["website builder", "AI website", "content generation", "small business", "online presence"],
     category: "DEVELOPMENT & CODING",
     rating: 4.1,

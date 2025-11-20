@@ -1510,7 +1510,7 @@ const OurFeaturedSection = () => {
                   className="group bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-md border-2 border-cyan-400/30 hover:border-cyan-400/60 transition-all duration-300 transform hover:scale-105 h-full flex flex-col relative shadow-xl hover:shadow-cyan-500/20 cursor-pointer"
                   onClick={() => {
                     const slug = tool.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                    navigate(`/tools/${slug}`);
+                    navigate(`/${slug}`);
                   }}
                 >
                   <div className="absolute top-2 left-2 z-30">
@@ -1544,7 +1544,7 @@ const OurFeaturedSection = () => {
                           className="absolute inset-0 w-full h-full"
                           frameBorder="0"
                           loading="lazy"
-                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowFullScreen
                         />
                       </div>
@@ -1630,7 +1630,7 @@ const OurFeaturedSection = () => {
                 className="group bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 h-full flex flex-col relative cursor-pointer"
                 onClick={() => {
                   const slug = tool.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                  navigate(`/tools/${slug}`);
+                  navigate(`/${slug}`);
                 }}
               >
                 <div className="absolute top-2 left-2 z-30">
