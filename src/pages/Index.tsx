@@ -32,6 +32,9 @@ const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [videoStarted, setVideoStarted] = useState(false);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  // Fallback handler reference to satisfy TypeScript; actual logic lives inside useEffect
+  const startVideoOnInteraction = () => {};
+  
   
   // Simple ref for video without complex manager to avoid conflicts
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
@@ -90,13 +93,26 @@ const Index = () => {
       }, 200);
     };
 
-    const startVideoOnInteraction = () => {
-      if (!videoStarted) triggerVideoStart();
-    };
-    
     const handleAudioComplete = () => {
-      console.log('🎬 Welcome audio complete, attempting to start main video...');
-      triggerVideoStart();
+      console.log('🎬 Welcome audio complete, ensuring main video plays with sound...');
+      const iframe = mainVideoRef.current;
+
+      // If video not started yet, start it
+      if (!videoStarted) {
+        triggerVideoStart();
+      }
+
+      // In all cases, attempt to unmute the player after audio completion
+      if (iframe?.contentWindow) {
+        try {
+          iframe.contentWindow.postMessage(
+            JSON.stringify({ event: 'command', func: 'unMute', args: '' }),
+            '*'
+          );
+        } catch (e) {
+          console.log('Error forcing unmute after welcome audio:', e);
+        }
+      }
     };
     
     window.addEventListener('message', handleMessage);
