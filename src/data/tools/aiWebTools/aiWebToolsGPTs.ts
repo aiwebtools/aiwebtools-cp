@@ -37,9 +37,11 @@ import { governmentCivicGPTs } from "./governmentCivicGPTs";
 import { technologyInnovationGPTs } from "./technologyInnovationGPTs";
 import { newSpecializedGPTs } from "./newSpecializedGPTs";
 import { customGeminiGems } from "./customGeminiGems";
+import { videoPromptGPTs } from "./videoPromptGPTs";
 
 // Combine all AI Web Tools GPTs from organized categories - PRIORITY TOOLS FIRST
 export const aiWebToolsGPTs: Tool[] = [
+  ...videoPromptGPTs, // Meta.ai Video Prompt Generator at the top
   ...priorityFeaturedGPTs, // Put the first 10 priority tools at the very beginning
   ...secondPriorityFeaturedGPTs, // Add the second set of 13 priority tools
   ...thirdPriorityFeaturedGPTs, // Add the third set of 10 priority tools
