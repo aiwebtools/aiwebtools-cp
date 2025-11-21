@@ -166,7 +166,7 @@ const Index = () => {
         <HeroSection />
         
         {/* Featured Video Section - Above the fold, autoplay unmuted */}
-        <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
+        <section className="py-16 bg-transparent relative">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
