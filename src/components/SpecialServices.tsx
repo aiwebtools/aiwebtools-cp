@@ -1065,6 +1065,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-purple-600",
     features: ["Binary Conversion", "Text Encoding", "Data Transformation", "Computer Language"],
     directUrl: "https://binarytoconvertergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/ihRLRFojReY",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-sophisticated-and-futuristic-advertisement-.jpeg/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
     emoji: "💻"
   },
