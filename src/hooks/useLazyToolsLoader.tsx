@@ -15,8 +15,8 @@ interface ToolsLoaderState {
 }
 
 export const useLazyToolsLoader = ({ 
-  initialLoadCount = 25, 
-  batchSize = 25 
+  initialLoadCount = 12, 
+  batchSize = 12 
 }: UseLazyToolsLoaderProps = {}) => {
   const [state, setState] = useState<ToolsLoaderState>({
     tools: [],
@@ -77,7 +77,7 @@ export const useLazyToolsLoader = ({
     // Delay initial load to allow page to render first
     const timer = setTimeout(() => {
       loadToolBatch(0, initialLoadCount);
-    }, 100);
+    }, 300);
 
     return () => clearTimeout(timer);
   }, [loadToolBatch, initialLoadCount]);

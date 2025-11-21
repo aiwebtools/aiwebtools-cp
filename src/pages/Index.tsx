@@ -192,7 +192,7 @@ const Index = () => {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
-                  loading="eager"
+                  loading="lazy"
                   onLoad={() => console.log(`🎥 Video ${currentVideoIndex + 1} iframe loaded and ready`)}
                 ></iframe>
               </div>
