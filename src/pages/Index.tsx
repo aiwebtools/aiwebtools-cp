@@ -57,12 +57,18 @@ const Index = () => {
     // Listen for YouTube player state changes to auto-transition videos
     const handleMessage = (event: MessageEvent) => {
       try {
-        const data = JSON.parse(event.data);
-        // YouTube player state: 0 = ended
-        if (data.event === 'onStateChange' && data.info === 0) {
-          console.log('🎬 Video ended, transitioning to next video...');
-          if (currentVideoIndex < videoSequence.length - 1) {
-            setCurrentVideoIndex(prev => prev + 1);
+        if (typeof event.data === 'string') {
+          const data = JSON.parse(event.data);
+          // YouTube player state: 0 = ended, 1 = playing
+          if (data.event === 'onStateChange') {
+            if (data.info === 0) {
+              console.log('🎬 Video ended, transitioning to next video...');
+              if (currentVideoIndex < videoSequence.length - 1) {
+                setCurrentVideoIndex(prev => prev + 1);
+              }
+            } else if (data.info === 1) {
+              console.log('🎥 Video is playing');
+            }
           }
         }
       } catch (e) {
@@ -72,30 +78,53 @@ const Index = () => {
     
     window.addEventListener('message', handleMessage);
     
-    // Listen for welcome audio completion to trigger video
-    const handleAudioComplete = () => {
-      console.log('🎬 Welcome audio complete, starting first video unmuted at 5min mark...');
+    // Auto-start video after page loads with user interaction
+    const startVideoOnInteraction = () => {
+      const iframe = mainVideoRef.current;
+      if (!iframe || videoStarted) return;
       
+      setVideoStarted(true);
+      console.log('🎥 User interaction detected - starting video unmuted...');
+      
+      // Send play command
       setTimeout(() => {
-        const iframe = mainVideoRef.current;
-        if (!iframe || videoStarted) return;
-        
-        setVideoStarted(true);
-        console.log('🎥 Playing first video with sound at full volume...');
-        
-        // Video is already unmuted from iframe src, just play it
         try {
           iframe.contentWindow?.postMessage(JSON.stringify({
             event: 'command',
             func: 'playVideo',
             args: ''
           }), '*');
+          
+          // Ensure unmuted
+          setTimeout(() => {
+            iframe.contentWindow?.postMessage(JSON.stringify({
+              event: 'command',
+              func: 'unMute',
+              args: ''
+            }), '*');
+          }, 300);
         } catch (e) {
           console.log('Video control error:', e);
         }
-      }, 500);
+      }, 200);
+      
+      // Remove listeners after first interaction
+      document.removeEventListener('click', startVideoOnInteraction);
+      document.removeEventListener('touchstart', startVideoOnInteraction);
+      document.removeEventListener('scroll', startVideoOnInteraction);
     };
-
+    
+    // Listen for any user interaction to start video
+    document.addEventListener('click', startVideoOnInteraction, { once: true });
+    document.addEventListener('touchstart', startVideoOnInteraction, { once: true, passive: true });
+    document.addEventListener('scroll', startVideoOnInteraction, { once: true, passive: true });
+    
+    // Also listen for welcome audio completion
+    const handleAudioComplete = () => {
+      console.log('🎬 Welcome audio complete...');
+      startVideoOnInteraction();
+    };
+    
     window.addEventListener('welcomeAudioComplete', handleAudioComplete);
     
     // Load actual stats in background
@@ -109,6 +138,9 @@ const Index = () => {
       clearTimeout(statsTimer);
       window.removeEventListener('welcomeAudioComplete', handleAudioComplete);
       window.removeEventListener('message', handleMessage);
+      document.removeEventListener('click', startVideoOnInteraction);
+      document.removeEventListener('touchstart', startVideoOnInteraction);
+      document.removeEventListener('scroll', startVideoOnInteraction);
     };
   }, [videoStarted, currentVideoIndex]);
 

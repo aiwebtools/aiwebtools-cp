@@ -14,19 +14,32 @@ const CloneOfferPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showCount, setShowCount] = useState(0);
 
-  // Function to mute all videos on the page
+  // Function to mute and pause all videos on the page
   const muteAllVideos = () => {
+    console.log('🔇 Muting all videos for clone popup...');
     const videos = document.querySelectorAll('video, iframe');
     videos.forEach((video) => {
       if (video instanceof HTMLVideoElement) {
         video.muted = true;
+        video.pause();
       } else if (video instanceof HTMLIFrameElement) {
-        // For YouTube iframes, we can try to pause them
         const src = video.src;
         if (src.includes('youtube.com') || src.includes('youtu.be')) {
-          // Pause YouTube videos by modifying src
-          if (!src.includes('autoplay=0')) {
-            video.src = src.includes('?') ? `${src}&autoplay=0` : `${src}?autoplay=0`;
+          // Send mute and pause commands to YouTube iframe
+          try {
+            video.contentWindow?.postMessage(JSON.stringify({
+              event: 'command',
+              func: 'mute',
+              args: ''
+            }), '*');
+            
+            video.contentWindow?.postMessage(JSON.stringify({
+              event: 'command',
+              func: 'pauseVideo',
+              args: ''
+            }), '*');
+          } catch (e) {
+            console.log('Error muting video:', e);
           }
         }
       }

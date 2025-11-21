@@ -1552,7 +1552,7 @@ const OurFeaturedSection = () => {
                           title={`${tool.title} Demo`}
                           className="absolute inset-0 w-full h-full"
                           frameBorder="0"
-                          loading="lazy"
+                          loading="eager"
                           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowFullScreen
                         />
@@ -1563,7 +1563,7 @@ const OurFeaturedSection = () => {
                           src={tool.imageUrl}
                           alt={`${tool.title} Preview`}
                           className="w-full h-full object-cover"
-                          loading="lazy"
+                          loading="eager"
                         />
                       </div>
                     )}
@@ -1673,7 +1673,7 @@ const OurFeaturedSection = () => {
                           title={`${tool.title} Demo`}
                           className="absolute inset-0 w-full h-full"
                           frameBorder="0"
-                          loading="lazy"
+                          loading="eager"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowFullScreen
                         />
@@ -1684,29 +1684,29 @@ const OurFeaturedSection = () => {
                           src={tool.imageUrl}
                           alt={`${tool.title} Preview`}
                           className="w-full h-full object-cover"
-                          loading="lazy"
+                          loading="eager"
                           decoding="async"
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           fetchPriority="low"
                           referrerPolicy="no-referrer"
-onError={(e) => {
+                          onError={(e) => {
                             const img = e.currentTarget as HTMLImageElement;
                             try {
                               img.src = createEmojiFallbackImage(tool.title, (tool as any).emoji || '✨');
                               img.style.display = 'block';
-                            } catch {
-                              img.style.display = 'none';
+                            } catch (error) {
+                              console.error('Emoji fallback failed:', error);
                             }
                           }}
                         />
                       </div>
-) : (
+                    ) : (
                       <div className="relative w-full h-32 rounded-lg overflow-hidden">
                         <img
                           src={createEmojiFallbackImage(tool.title, (tool as any).emoji || "✨")}
                           alt={`${tool.title} Generated Preview`}
                           className="w-full h-full object-cover"
-                          loading="lazy"
+                          loading="eager"
                           decoding="async"
                         />
                       </div>
