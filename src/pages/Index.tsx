@@ -175,7 +175,7 @@ const Index = () => {
             </div>
             
             <div className="max-w-6xl mx-auto">
-              <div className="relative w-full aspect-video rounded-xl animate-pulse-glow">
+              <div className="relative w-full aspect-video rounded-xl">
                 <iframe
                   key={currentVideoIndex}
                   ref={mainVideoRef}
@@ -185,7 +185,7 @@ const Index = () => {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
-                  loading="lazy"
+                  loading="eager"
                   onLoad={() => console.log(`🎥 Video ${currentVideoIndex + 1} iframe loaded and ready`)}
                 ></iframe>
               </div>
