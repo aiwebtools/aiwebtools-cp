@@ -79,8 +79,8 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
             allowFullScreen
             className="w-full h-full rounded-xl"
-            loading="lazy"
-            style={{
+            loading="eager"
+            style={{ 
               border: 'none',
               willChange: 'transform',
               transform: 'translateZ(0)',

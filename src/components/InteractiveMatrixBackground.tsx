@@ -37,30 +37,27 @@ const InteractiveMatrixBackground = () => {
 
     const ctx = canvas.getContext('2d', { 
       alpha: true,
-      desynchronized: true,
-      powerPreference: 'high-performance',
-      willReadFrequently: false
+      desynchronized: true, // Better for animations
+      powerPreference: 'high-performance'
     });
     if (!ctx) return;
 
-    let resizeTimer: NodeJS.Timeout;
+    // Set canvas size
     const updateSize = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        const { innerWidth, innerHeight } = window;
-        canvas.width = innerWidth;
-        canvas.height = innerHeight;
-        canvas.style.width = `${innerWidth}px`;
-        canvas.style.height = `${innerHeight}px`;
-        initializeDrops();
-      }, 150);
+      const { innerWidth, innerHeight } = window;
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+      canvas.style.width = `${innerWidth}px`;
+      canvas.style.height = `${innerHeight}px`;
+
+      // Reinitialize drops when canvas size changes
+      initializeDrops();
     };
 
     updateSize();
     window.addEventListener('resize', updateSize, { passive: true });
 
     return () => {
-      clearTimeout(resizeTimer);
       window.removeEventListener('resize', updateSize);
     };
   }, []);
@@ -81,9 +78,9 @@ const InteractiveMatrixBackground = () => {
       const drop: MatrixDrop = {
         x: (i * fontSize) + (Math.random() * fontSize * 0.5),
         y: Math.random() * -canvas.height,
-        speed: (Math.random() * 2 + 1), // Slower: 1-3 instead of 2-6
+        speed: (Math.random() * 4 + 2),
         chars: [],
-        opacity: Math.random() * 0.4 + 0.1, // Lower opacity: 0.1-0.5 instead of 0.2-1.0
+        opacity: Math.random() * 0.8 + 0.2,
         length: Math.floor(Math.random() * 10) + 4
       };
 
@@ -176,7 +173,7 @@ const InteractiveMatrixBackground = () => {
 
     // Consistent canvas clearing that works better across Chromium browsers
     ctx.globalAlpha = 1;
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)'; // Faster fade for subtler trails
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const fontSize = 16;
@@ -190,13 +187,13 @@ const InteractiveMatrixBackground = () => {
       if (drop.y > canvas.height + drop.length * (fontSize * 1.4)) {
         drop.y = -drop.length * (fontSize * 1.4);
         drop.x = Math.random() * canvas.width;
-        drop.speed = (Math.random() * 2 + 1); // Slower reset speed
-        drop.opacity = Math.random() * 0.4 + 0.1; // Lower opacity reset
+        drop.speed = (Math.random() * 4 + 2);
+        drop.opacity = Math.random() * 0.8 + 0.2;
       }
 
       // Gradually return speed and opacity to normal
-      drop.speed = Math.max(drop.speed * 0.99, 0.8); // Slower minimum speed
-      drop.opacity = Math.max(drop.opacity * 0.998, 0.2); // Lower minimum opacity
+      drop.speed = Math.max(drop.speed * 0.99, 1);
+      drop.opacity = Math.max(drop.opacity * 0.998, 0.3);
 
       // Render drop with defined Matrix characters
       ctx.font = `bold ${fontSize}px 'Courier New', 'Lucida Console', monospace`;
@@ -220,15 +217,15 @@ const InteractiveMatrixBackground = () => {
           
           // Head character is bright white and dominant
           if (i === 0) {
-            ctx.globalAlpha = Math.min(alpha, 0.6); // More subtle head
+            ctx.globalAlpha = Math.min(alpha, 0.95);
             ctx.fillStyle = '#ffffff';
           } else if (i <= 2) {
             // First few characters are bright green
-            ctx.globalAlpha = Math.min(alpha * 0.7, 0.5); // Reduced brightness
+            ctx.globalAlpha = Math.min(alpha * 0.9, 0.8);
             ctx.fillStyle = '#00ff41';
           } else {
             // Body characters with defined green
-            ctx.globalAlpha = alpha * 0.5; // More subtle body
+            ctx.globalAlpha = alpha * 0.7;
             ctx.fillStyle = '#00cc33';
           }
           
@@ -282,13 +279,9 @@ const InteractiveMatrixBackground = () => {
     // Start animation
     animationFrameRef.current = requestAnimationFrame(animate);
 
-    let lastInteractionTime = 0;
-    const INTERACTION_THROTTLE = 100; // ms between interactions
-
+    // Mouse interaction
     const handleMouseMove = (e: MouseEvent) => {
-      const now = Date.now();
-      if (now - lastInteractionTime > INTERACTION_THROTTLE) {
-        lastInteractionTime = now;
+      if (Math.random() < 0.1) { // Throttle for performance
         handleInteraction(e.clientX, e.clientY);
       }
     };
@@ -297,11 +290,10 @@ const InteractiveMatrixBackground = () => {
       handleInteraction(e.clientX, e.clientY);
     };
 
+    // Touch interaction
     const handleTouchMove = (e: TouchEvent) => {
       e.preventDefault();
-      const now = Date.now();
-      if (e.touches.length > 0 && now - lastInteractionTime > INTERACTION_THROTTLE) {
-        lastInteractionTime = now;
+      if (e.touches.length > 0 && Math.random() < 0.1) { // Same throttle as desktop
         const touch = e.touches[0];
         handleInteraction(touch.clientX, touch.clientY);
       }

@@ -32,9 +32,6 @@ const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [videoStarted, setVideoStarted] = useState(false);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  // Fallback handler reference to satisfy TypeScript; actual logic lives inside useEffect
-  const startVideoOnInteraction = () => {};
-  
   
   // Simple ref for video without complex manager to avoid conflicts
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
@@ -43,7 +40,7 @@ const Index = () => {
   const videoSequence = [
     {
       id: 'SYf8ULSsVrI', // First video
-      start: 0, // Start at beginning for better loading
+      start: 300, // Start at 5 minutes (300 seconds)
       title: 'AI Web Tools - Introduction Video'
     },
     {
@@ -54,16 +51,23 @@ const Index = () => {
   ];
 
   useEffect(() => {
+    // Set loaded state immediately for faster initial render
     setIsLoaded(true);
     
+    // Listen for YouTube player state changes to auto-transition videos
     const handleMessage = (event: MessageEvent) => {
       try {
         if (typeof event.data === 'string') {
           const data = JSON.parse(event.data);
-          if (data.event === 'onStateChange' && data.info === 0) {
-            console.log('🎬 Video ended, transitioning to next video...');
-            if (currentVideoIndex < videoSequence.length - 1) {
-              setCurrentVideoIndex(prev => prev + 1);
+          // YouTube player state: 0 = ended, 1 = playing
+          if (data.event === 'onStateChange') {
+            if (data.info === 0) {
+              console.log('🎬 Video ended, transitioning to next video...');
+              if (currentVideoIndex < videoSequence.length - 1) {
+                setCurrentVideoIndex(prev => prev + 1);
+              }
+            } else if (data.info === 1) {
+              console.log('🎥 Video is playing');
             }
           }
         }
@@ -72,62 +76,75 @@ const Index = () => {
       }
     };
     
+    window.addEventListener('message', handleMessage);
+    
+    // Auto-start video after page loads with user interaction or welcome audio
     const triggerVideoStart = () => {
       if (videoStarted) return;
+
       const iframe = mainVideoRef.current;
       if (!iframe) {
+        // If iframe isn't ready yet, retry shortly
         setTimeout(triggerVideoStart, 300);
         return;
       }
+
       setVideoStarted(true);
       console.log("🎥 Starting main video playback (attempting unmuted)...");
+
+      // Send play command
       setTimeout(() => {
         try {
-          iframe.contentWindow?.postMessage(JSON.stringify({ event: "command", func: "playVideo", args: "" }), "*");
+          iframe.contentWindow?.postMessage(
+            JSON.stringify({
+              event: "command",
+              func: "playVideo",
+              args: "",
+            }),
+            "*",
+          );
+
+          // Ensure unmuted
           setTimeout(() => {
-            iframe.contentWindow?.postMessage(JSON.stringify({ event: "command", func: "unMute", args: "" }), "*");
+            iframe.contentWindow?.postMessage(
+              JSON.stringify({
+                event: "command",
+                func: "unMute",
+                args: "",
+              }),
+              "*",
+            );
           }, 300);
         } catch (e) {
           console.log("Video control error:", e);
         }
       }, 200);
+
+      // Remove listeners after first interaction
+      document.removeEventListener("click", startVideoOnInteraction);
+      document.removeEventListener("touchstart", startVideoOnInteraction);
+      document.removeEventListener("scroll", startVideoOnInteraction);
     };
 
-    const handleAudioComplete = () => {
-      console.log('🎬 Welcome audio complete, ensuring main video plays with sound...');
-      const iframe = mainVideoRef.current;
-
-      // If video not started yet, start it
-      if (!videoStarted) {
-        triggerVideoStart();
-      }
-
-      // In all cases, attempt to unmute the player after audio completion
-      if (iframe?.contentWindow) {
-        try {
-          iframe.contentWindow.postMessage(
-            JSON.stringify({ event: 'command', func: 'unMute', args: '' }),
-            '*'
-          );
-        } catch (e) {
-          console.log('Error forcing unmute after welcome audio:', e);
-        }
-      }
+    const startVideoOnInteraction = () => {
+      if (videoStarted) return;
+      triggerVideoStart();
     };
     
-    window.addEventListener('message', handleMessage);
-    document.addEventListener('click', startVideoOnInteraction, { once: true, passive: true });
+    // Listen for any user interaction to start video
+    document.addEventListener('click', startVideoOnInteraction, { once: true });
     document.addEventListener('touchstart', startVideoOnInteraction, { once: true, passive: true });
     document.addEventListener('scroll', startVideoOnInteraction, { once: true, passive: true });
-    window.addEventListener('welcomeAudioComplete', handleAudioComplete, { once: true });
-
-    // Ensure autoplay starts even if welcome audio fails
-    setTimeout(() => {
-      if (!videoStarted) {
-        triggerVideoStart();
-      }
-    }, 800);
     
+    // Also listen for welcome audio completion
+    const handleAudioComplete = () => {
+      console.log('🎬 Welcome audio complete, attempting to start main video...');
+      triggerVideoStart();
+    };
+    
+    window.addEventListener('welcomeAudioComplete', handleAudioComplete);
+    
+    // Load actual stats in background
     const statsTimer = setTimeout(() => {
       const stats = getCurrentToolCount();
       setToolStats(stats);
@@ -138,6 +155,9 @@ const Index = () => {
       clearTimeout(statsTimer);
       window.removeEventListener('welcomeAudioComplete', handleAudioComplete);
       window.removeEventListener('message', handleMessage);
+      document.removeEventListener('click', startVideoOnInteraction);
+      document.removeEventListener('touchstart', startVideoOnInteraction);
+      document.removeEventListener('scroll', startVideoOnInteraction);
     };
   }, [videoStarted, currentVideoIndex]);
 
@@ -173,7 +193,7 @@ const Index = () => {
         <HeroSection />
         
         {/* Featured Video Section - Above the fold, autoplay unmuted */}
-        <section className="py-16 bg-transparent relative">
+        <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -182,17 +202,17 @@ const Index = () => {
             </div>
             
             <div className="max-w-6xl mx-auto">
-              <div className="relative z-20 w-full aspect-video rounded-xl">
+              <div className="relative w-full aspect-video">
                 <iframe
                   key={currentVideoIndex}
                   ref={mainVideoRef}
-                  className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/50 bg-slate-800 pointer-events-auto"
-                  src={`https://www.youtube.com/embed/${videoSequence[currentVideoIndex].id}?start=${videoSequence[currentVideoIndex].start}&autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&vq=hd720&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark`}
+                  className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
+                  src={`https://www.youtube.com/embed/${videoSequence[currentVideoIndex].id}?start=${videoSequence[currentVideoIndex].start}&autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark`}
                   title={videoSequence[currentVideoIndex].title}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
-                  loading="lazy"
+                  loading="eager"
                   onLoad={() => console.log(`🎥 Video ${currentVideoIndex + 1} iframe loaded and ready`)}
                 ></iframe>
               </div>

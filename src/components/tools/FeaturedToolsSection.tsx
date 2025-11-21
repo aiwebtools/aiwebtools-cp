@@ -12,24 +12,24 @@ interface FeaturedToolsSectionProps {
 
 const FeaturedToolsSection = ({ onToolsLoaded }: FeaturedToolsSectionProps) => {
   const [showAllTools, setShowAllTools] = useState(false);
-  const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(12);
+  const [allToolsDisplayedCount, setAllToolsDisplayedCount] = useState(24);
   const [isLoading, setIsLoading] = useState(false);
 
   // Auto-show all tools after featured tools are expanded
   // This eliminates the need for multiple buttons
   const handleAutoExpansion = () => {
     setShowAllTools(true);
-    setAllToolsDisplayedCount(12);
+    setAllToolsDisplayedCount(24);
   };
 
   const handleAllToolsLoadMore = () => {
     if (isLoading || allToolsDisplayedCount >= allTools.length) return;
     
-    console.log(`🚀 Loading more tools: ${allToolsDisplayedCount} -> ${Math.min(allToolsDisplayedCount + 12, allTools.length)} of ${allTools.length}`);
+    console.log(`🚀 Loading more tools: ${allToolsDisplayedCount} -> ${Math.min(allToolsDisplayedCount + 24, allTools.length)} of ${allTools.length}`);
     
     setIsLoading(true);
     setTimeout(() => {
-      setAllToolsDisplayedCount(prev => Math.min(prev + 12, allTools.length));
+      setAllToolsDisplayedCount(prev => Math.min(prev + 24, allTools.length));
       setIsLoading(false);
     }, 300);
   };

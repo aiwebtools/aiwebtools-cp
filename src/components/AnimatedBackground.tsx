@@ -91,16 +91,16 @@ const AnimatedBackground = () => {
       }
     };
 
+    // Debounced resize handler for Matrix columns
     let resizeTimeout: NodeJS.Timeout;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
-        const container = matrixRef.current;
-        if (container && container.innerHTML) {
-          container.innerHTML = '';
+        if (matrixRef.current) {
+          matrixRef.current.innerHTML = '';
           createMatrixCode();
         }
-      }, 300);
+      }, 250);
     };
 
     createStars();
@@ -108,17 +108,15 @@ const AnimatedBackground = () => {
     createShootingStars();
     createMatrixCode();
 
-    window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('resize', handleResize);
       clearTimeout(resizeTimeout);
-      // Clear all DOM elements to prevent memory leaks
-      [starsRef, particlesRef, shootingStarsRef, matrixRef].forEach(ref => {
-        if (ref.current) {
-          ref.current.innerHTML = '';
-        }
-      });
+      if (starsRef.current) starsRef.current.innerHTML = '';
+      if (particlesRef.current) particlesRef.current.innerHTML = '';
+      if (shootingStarsRef.current) shootingStarsRef.current.innerHTML = '';
+      if (matrixRef.current) matrixRef.current.innerHTML = '';
     };
   }, []);
 

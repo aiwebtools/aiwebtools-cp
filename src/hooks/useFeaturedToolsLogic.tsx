@@ -35,7 +35,7 @@ export const useFeaturedToolsLogic = ({ onToolsLoaded }: UseFeaturedToolsLogicPr
   );
   
   // Set initial display count to minimal for instant loading
-  const initialDisplayCount = 6;
+  const initialDisplayCount = 8;
 
   // Calculate actual displayed count based on show more state
   const actualDisplayedCount = (!selectedCategory && !searchTerm && !showAllFeaturedTools) 
@@ -70,13 +70,13 @@ export const useFeaturedToolsLogic = ({ onToolsLoaded }: UseFeaturedToolsLogicPr
     setIsLoading(true);
     
     setTimeout(() => {
-      const newCount = Math.min(displayedCount + 6, filteredTools.length);
+      const newCount = Math.min(displayedCount + 8, filteredTools.length);
       setDisplayedCount(newCount);
       setIsLoading(false);
       if (onToolsLoaded) {
         onToolsLoaded(newCount);
       }
-    }, 100); // Reduced delay for faster loading
+    }, 50); // Reduced delay for faster loading
   }, [isLoading, displayedCount, setDisplayedCount, setIsLoading, onToolsLoaded, hasMoreTools, filteredTools.length]);
 
   const handleShowMoreFeaturedTools = useCallback(() => {

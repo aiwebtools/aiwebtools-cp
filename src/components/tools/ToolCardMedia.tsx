@@ -60,7 +60,7 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
             allowFullScreen
             className="w-full h-full rounded-lg"
-            loading="lazy"
+            loading="eager"
             style={{ minHeight: '200px' }}
             onLoad={() => {
               console.log(`✅ Video loaded successfully: ${tool.title}`);
@@ -89,10 +89,10 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
             src={tool.imageUrl} 
             alt={`${tool.title} screenshot`}
             className="w-full h-full object-cover"
-            loading="lazy"
+            loading="eager"
             decoding="async"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            fetchPriority="auto"
+            fetchPriority="low"
             onError={(e) => {
               console.error('Image failed to load for', tool.title, tool.imageUrl);
               // Fallback to emoji display if image fails to load
