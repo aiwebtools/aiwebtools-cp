@@ -51,23 +51,16 @@ const Index = () => {
   ];
 
   useEffect(() => {
-    // Set loaded state immediately for faster initial render
     setIsLoaded(true);
     
-    // Listen for YouTube player state changes to auto-transition videos
     const handleMessage = (event: MessageEvent) => {
       try {
         if (typeof event.data === 'string') {
           const data = JSON.parse(event.data);
-          // YouTube player state: 0 = ended, 1 = playing
-          if (data.event === 'onStateChange') {
-            if (data.info === 0) {
-              console.log('🎬 Video ended, transitioning to next video...');
-              if (currentVideoIndex < videoSequence.length - 1) {
-                setCurrentVideoIndex(prev => prev + 1);
-              }
-            } else if (data.info === 1) {
-              console.log('🎥 Video is playing');
+          if (data.event === 'onStateChange' && data.info === 0) {
+            console.log('🎬 Video ended, transitioning to next video...');
+            if (currentVideoIndex < videoSequence.length - 1) {
+              setCurrentVideoIndex(prev => prev + 1);
             }
           }
         }
@@ -76,75 +69,42 @@ const Index = () => {
       }
     };
     
-    window.addEventListener('message', handleMessage);
-    
-    // Auto-start video after page loads with user interaction or welcome audio
     const triggerVideoStart = () => {
       if (videoStarted) return;
-
       const iframe = mainVideoRef.current;
       if (!iframe) {
-        // If iframe isn't ready yet, retry shortly
         setTimeout(triggerVideoStart, 300);
         return;
       }
-
       setVideoStarted(true);
       console.log("🎥 Starting main video playback (attempting unmuted)...");
-
-      // Send play command
       setTimeout(() => {
         try {
-          iframe.contentWindow?.postMessage(
-            JSON.stringify({
-              event: "command",
-              func: "playVideo",
-              args: "",
-            }),
-            "*",
-          );
-
-          // Ensure unmuted
+          iframe.contentWindow?.postMessage(JSON.stringify({ event: "command", func: "playVideo", args: "" }), "*");
           setTimeout(() => {
-            iframe.contentWindow?.postMessage(
-              JSON.stringify({
-                event: "command",
-                func: "unMute",
-                args: "",
-              }),
-              "*",
-            );
+            iframe.contentWindow?.postMessage(JSON.stringify({ event: "command", func: "unMute", args: "" }), "*");
           }, 300);
         } catch (e) {
           console.log("Video control error:", e);
         }
       }, 200);
-
-      // Remove listeners after first interaction
-      document.removeEventListener("click", startVideoOnInteraction);
-      document.removeEventListener("touchstart", startVideoOnInteraction);
-      document.removeEventListener("scroll", startVideoOnInteraction);
     };
 
     const startVideoOnInteraction = () => {
-      if (videoStarted) return;
-      triggerVideoStart();
+      if (!videoStarted) triggerVideoStart();
     };
     
-    // Listen for any user interaction to start video
-    document.addEventListener('click', startVideoOnInteraction, { once: true });
-    document.addEventListener('touchstart', startVideoOnInteraction, { once: true, passive: true });
-    document.addEventListener('scroll', startVideoOnInteraction, { once: true, passive: true });
-    
-    // Also listen for welcome audio completion
     const handleAudioComplete = () => {
       console.log('🎬 Welcome audio complete, attempting to start main video...');
       triggerVideoStart();
     };
     
-    window.addEventListener('welcomeAudioComplete', handleAudioComplete);
+    window.addEventListener('message', handleMessage);
+    document.addEventListener('click', startVideoOnInteraction, { once: true, passive: true });
+    document.addEventListener('touchstart', startVideoOnInteraction, { once: true, passive: true });
+    document.addEventListener('scroll', startVideoOnInteraction, { once: true, passive: true });
+    window.addEventListener('welcomeAudioComplete', handleAudioComplete, { once: true });
     
-    // Load actual stats in background
     const statsTimer = setTimeout(() => {
       const stats = getCurrentToolCount();
       setToolStats(stats);
@@ -155,9 +115,6 @@ const Index = () => {
       clearTimeout(statsTimer);
       window.removeEventListener('welcomeAudioComplete', handleAudioComplete);
       window.removeEventListener('message', handleMessage);
-      document.removeEventListener('click', startVideoOnInteraction);
-      document.removeEventListener('touchstart', startVideoOnInteraction);
-      document.removeEventListener('scroll', startVideoOnInteraction);
     };
   }, [videoStarted, currentVideoIndex]);
 

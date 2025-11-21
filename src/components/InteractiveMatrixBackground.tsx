@@ -37,27 +37,30 @@ const InteractiveMatrixBackground = () => {
 
     const ctx = canvas.getContext('2d', { 
       alpha: true,
-      desynchronized: true, // Better for animations
-      powerPreference: 'high-performance'
+      desynchronized: true,
+      powerPreference: 'high-performance',
+      willReadFrequently: false
     });
     if (!ctx) return;
 
-    // Set canvas size
+    let resizeTimer: NodeJS.Timeout;
     const updateSize = () => {
-      const { innerWidth, innerHeight } = window;
-      canvas.width = innerWidth;
-      canvas.height = innerHeight;
-      canvas.style.width = `${innerWidth}px`;
-      canvas.style.height = `${innerHeight}px`;
-
-      // Reinitialize drops when canvas size changes
-      initializeDrops();
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const { innerWidth, innerHeight } = window;
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+        canvas.style.width = `${innerWidth}px`;
+        canvas.style.height = `${innerHeight}px`;
+        initializeDrops();
+      }, 150);
     };
 
     updateSize();
     window.addEventListener('resize', updateSize, { passive: true });
 
     return () => {
+      clearTimeout(resizeTimer);
       window.removeEventListener('resize', updateSize);
     };
   }, []);
@@ -279,9 +282,13 @@ const InteractiveMatrixBackground = () => {
     // Start animation
     animationFrameRef.current = requestAnimationFrame(animate);
 
-    // Mouse interaction
+    let lastInteractionTime = 0;
+    const INTERACTION_THROTTLE = 100; // ms between interactions
+
     const handleMouseMove = (e: MouseEvent) => {
-      if (Math.random() < 0.1) { // Throttle for performance
+      const now = Date.now();
+      if (now - lastInteractionTime > INTERACTION_THROTTLE) {
+        lastInteractionTime = now;
         handleInteraction(e.clientX, e.clientY);
       }
     };
@@ -290,10 +297,11 @@ const InteractiveMatrixBackground = () => {
       handleInteraction(e.clientX, e.clientY);
     };
 
-    // Touch interaction
     const handleTouchMove = (e: TouchEvent) => {
       e.preventDefault();
-      if (e.touches.length > 0 && Math.random() < 0.1) { // Same throttle as desktop
+      const now = Date.now();
+      if (e.touches.length > 0 && now - lastInteractionTime > INTERACTION_THROTTLE) {
+        lastInteractionTime = now;
         const touch = e.touches[0];
         handleInteraction(touch.clientX, touch.clientY);
       }
