@@ -51,26 +51,6 @@ const Index = () => {
   ];
 
   useEffect(() => {
-    // Preconnect to YouTube to speed up initial video load
-    try {
-      const ytOrigins = [
-        "https://www.youtube.com",
-        "https://www.google.com",
-        "https://i.ytimg.com"
-      ];
-      ytOrigins.forEach((href) => {
-        const existing = document.querySelector(`link[rel="preconnect"][href="${href}"]`);
-        if (existing) return;
-        const link = document.createElement("link");
-        link.rel = "preconnect";
-        link.href = href;
-        link.crossOrigin = "anonymous";
-        document.head.appendChild(link);
-      });
-    } catch (e) {
-      // Fail silently if document/head not available
-    }
-
     // Set loaded state immediately for faster initial render
     setIsLoaded(true);
     
