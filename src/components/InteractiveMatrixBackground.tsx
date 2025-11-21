@@ -81,9 +81,9 @@ const InteractiveMatrixBackground = () => {
       const drop: MatrixDrop = {
         x: (i * fontSize) + (Math.random() * fontSize * 0.5),
         y: Math.random() * -canvas.height,
-        speed: (Math.random() * 4 + 2),
+        speed: (Math.random() * 2 + 1), // Slower: 1-3 instead of 2-6
         chars: [],
-        opacity: Math.random() * 0.8 + 0.2,
+        opacity: Math.random() * 0.4 + 0.1, // Lower opacity: 0.1-0.5 instead of 0.2-1.0
         length: Math.floor(Math.random() * 10) + 4
       };
 
@@ -176,7 +176,7 @@ const InteractiveMatrixBackground = () => {
 
     // Consistent canvas clearing that works better across Chromium browsers
     ctx.globalAlpha = 1;
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)'; // Faster fade for subtler trails
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const fontSize = 16;
@@ -190,13 +190,13 @@ const InteractiveMatrixBackground = () => {
       if (drop.y > canvas.height + drop.length * (fontSize * 1.4)) {
         drop.y = -drop.length * (fontSize * 1.4);
         drop.x = Math.random() * canvas.width;
-        drop.speed = (Math.random() * 4 + 2);
-        drop.opacity = Math.random() * 0.8 + 0.2;
+        drop.speed = (Math.random() * 2 + 1); // Slower reset speed
+        drop.opacity = Math.random() * 0.4 + 0.1; // Lower opacity reset
       }
 
       // Gradually return speed and opacity to normal
-      drop.speed = Math.max(drop.speed * 0.99, 1);
-      drop.opacity = Math.max(drop.opacity * 0.998, 0.3);
+      drop.speed = Math.max(drop.speed * 0.99, 0.8); // Slower minimum speed
+      drop.opacity = Math.max(drop.opacity * 0.998, 0.2); // Lower minimum opacity
 
       // Render drop with defined Matrix characters
       ctx.font = `bold ${fontSize}px 'Courier New', 'Lucida Console', monospace`;
@@ -220,15 +220,15 @@ const InteractiveMatrixBackground = () => {
           
           // Head character is bright white and dominant
           if (i === 0) {
-            ctx.globalAlpha = Math.min(alpha, 0.95);
+            ctx.globalAlpha = Math.min(alpha, 0.6); // More subtle head
             ctx.fillStyle = '#ffffff';
           } else if (i <= 2) {
             // First few characters are bright green
-            ctx.globalAlpha = Math.min(alpha * 0.9, 0.8);
+            ctx.globalAlpha = Math.min(alpha * 0.7, 0.5); // Reduced brightness
             ctx.fillStyle = '#00ff41';
           } else {
             // Body characters with defined green
-            ctx.globalAlpha = alpha * 0.7;
+            ctx.globalAlpha = alpha * 0.5; // More subtle body
             ctx.fillStyle = '#00cc33';
           }
           
