@@ -31,24 +31,57 @@ const Index = () => {
   const [toolStats, setToolStats] = useState(getFastToolCount());
   const [isLoaded, setIsLoaded] = useState(false);
   const [videoStarted, setVideoStarted] = useState(false);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   
   // Simple ref for video without complex manager to avoid conflicts
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
+  
+  // Video sequence: First video starts at 5min mark, then transitions to commercial
+  const videoSequence = [
+    {
+      id: 'SYf8ULSsVrI', // First video
+      start: 300, // Start at 5 minutes (300 seconds)
+      title: 'AI Web Tools - Introduction Video'
+    },
+    {
+      id: '4zflGSSuBcA', // Commercial video
+      start: 0,
+      title: 'AI Web Tools - Commercial'
+    }
+  ];
 
   useEffect(() => {
     // Set loaded state immediately for faster initial render
     setIsLoaded(true);
     
+    // Listen for YouTube player state changes to auto-transition videos
+    const handleMessage = (event: MessageEvent) => {
+      try {
+        const data = JSON.parse(event.data);
+        // YouTube player state: 0 = ended
+        if (data.event === 'onStateChange' && data.info === 0) {
+          console.log('🎬 Video ended, transitioning to next video...');
+          if (currentVideoIndex < videoSequence.length - 1) {
+            setCurrentVideoIndex(prev => prev + 1);
+          }
+        }
+      } catch (e) {
+        // Ignore non-JSON messages
+      }
+    };
+    
+    window.addEventListener('message', handleMessage);
+    
     // Listen for welcome audio completion to trigger video
     const handleAudioComplete = () => {
-      console.log('🎬 Welcome audio complete, starting video unmuted...');
+      console.log('🎬 Welcome audio complete, starting first video unmuted at 5min mark...');
       
       setTimeout(() => {
         const iframe = mainVideoRef.current;
         if (!iframe || videoStarted) return;
         
         setVideoStarted(true);
-        console.log('🎥 Playing video with sound at full volume...');
+        console.log('🎥 Playing first video with sound at full volume...');
         
         // Video is already unmuted from iframe src, just play it
         try {
@@ -75,8 +108,9 @@ const Index = () => {
     return () => {
       clearTimeout(statsTimer);
       window.removeEventListener('welcomeAudioComplete', handleAudioComplete);
+      window.removeEventListener('message', handleMessage);
     };
-  }, [videoStarted]);
+  }, [videoStarted, currentVideoIndex]);
 
   const handleSeeMoreAITools = () => {
     // This function can be removed since FeaturedToolsSection handles it
@@ -128,15 +162,16 @@ const Index = () => {
             <div className="max-w-6xl mx-auto">
               <div className="relative w-full aspect-video">
                 <iframe
+                  key={currentVideoIndex}
                   ref={mainVideoRef}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
-                  title="AI Web Tools Featured Video - 1080p HD"
+                  src={`https://www.youtube.com/embed/${videoSequence[currentVideoIndex].id}?start=${videoSequence[currentVideoIndex].start}&autoplay=0&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark`}
+                  title={videoSequence[currentVideoIndex].title}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
                   loading="eager"
-                  onLoad={() => console.log('🎥 Video iframe loaded and ready')}
+                  onLoad={() => console.log(`🎥 Video ${currentVideoIndex + 1} iframe loaded and ready`)}
                 ></iframe>
               </div>
             </div>
