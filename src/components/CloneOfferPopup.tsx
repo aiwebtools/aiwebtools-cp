@@ -60,7 +60,7 @@ const CloneOfferPopup = () => {
 
   const handleClone = (e: React.MouseEvent) => {
     e.preventDefault();
-    const cloneUrl = "https://lovable.dev/projects/7bf28873-9bfc-4e4a-b2dd-f4eb84d9eec6?via=aiwebtools";
+    const cloneUrl = "https://lovable.dev/projects/d178ea3e-c9d3-464e-b3a6-6a5878c288be?via=aiwebtools";
     
     // Trigger confetti celebration
     createConfettiCelebration();
