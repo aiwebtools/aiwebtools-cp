@@ -31,39 +31,40 @@ const Index = () => {
   const [toolStats, setToolStats] = useState(getFastToolCount());
   const [isLoaded, setIsLoaded] = useState(false);
   const [videoStarted, setVideoStarted] = useState(false);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   
   // Simple ref for video without complex manager to avoid conflicts
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
+  
+  // Two videos: first plays from 5min mark, then transitions to commercial
+  const videoUrls = [
+    "https://www.youtube.com/embed/SYf8ULSsVrI?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&start=300&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark",
+    "https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
+  ];
 
   useEffect(() => {
     // Set loaded state immediately for faster initial render
     setIsLoaded(true);
     
-    // Listen for welcome audio completion to trigger video
-    const handleAudioComplete = () => {
-      console.log('🎬 Welcome audio complete, starting video unmuted...');
+    // Listen for YouTube player state changes to detect video end
+    const handleYouTubeMessage = (event: MessageEvent) => {
+      if (event.origin !== 'https://www.youtube.com') return;
       
-      setTimeout(() => {
-        const iframe = mainVideoRef.current;
-        if (!iframe || videoStarted) return;
-        
-        setVideoStarted(true);
-        console.log('🎥 Playing video with sound at full volume...');
-        
-        // Video is already unmuted from iframe src, just play it
-        try {
-          iframe.contentWindow?.postMessage(JSON.stringify({
-            event: 'command',
-            func: 'playVideo',
-            args: ''
-          }), '*');
-        } catch (e) {
-          console.log('Video control error:', e);
+      try {
+        const data = JSON.parse(event.data);
+        // YouTube player state: 0 = ended
+        if (data.event === 'onStateChange' && data.info === 0) {
+          console.log('🎬 First video ended, transitioning to commercial...');
+          if (currentVideoIndex === 0) {
+            setCurrentVideoIndex(1);
+          }
         }
-      }, 500);
+      } catch (e) {
+        // Ignore parse errors
+      }
     };
-
-    window.addEventListener('welcomeAudioComplete', handleAudioComplete);
+    
+    window.addEventListener('message', handleYouTubeMessage);
     
     // Load actual stats in background
     const statsTimer = setTimeout(() => {
@@ -74,9 +75,9 @@ const Index = () => {
 
     return () => {
       clearTimeout(statsTimer);
-      window.removeEventListener('welcomeAudioComplete', handleAudioComplete);
+      window.removeEventListener('message', handleYouTubeMessage);
     };
-  }, [videoStarted]);
+  }, [currentVideoIndex]);
 
   const handleSeeMoreAITools = () => {
     // This function can be removed since FeaturedToolsSection handles it
@@ -128,15 +129,16 @@ const Index = () => {
             <div className="max-w-6xl mx-auto">
               <div className="relative w-full aspect-video">
                 <iframe
+                  key={currentVideoIndex}
                   ref={mainVideoRef}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
-                  title="AI Web Tools Featured Video - 1080p HD"
+                  src={videoUrls[currentVideoIndex]}
+                  title={currentVideoIndex === 0 ? "AI Web Tools Introduction - Starting at 5min" : "AI Web Tools Featured Video - 1080p HD"}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
                   loading="eager"
-                  onLoad={() => console.log('🎥 Video iframe loaded and ready')}
+                  onLoad={() => console.log(`🎥 Video ${currentVideoIndex + 1} loaded and ready`)}
                 ></iframe>
               </div>
             </div>
