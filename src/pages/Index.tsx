@@ -120,6 +120,13 @@ const Index = () => {
     document.addEventListener('touchstart', startVideoOnInteraction, { once: true, passive: true });
     document.addEventListener('scroll', startVideoOnInteraction, { once: true, passive: true });
     window.addEventListener('welcomeAudioComplete', handleAudioComplete, { once: true });
+
+    // Ensure autoplay starts even if welcome audio fails
+    setTimeout(() => {
+      if (!videoStarted) {
+        triggerVideoStart();
+      }
+    }, 800);
     
     const statsTimer = setTimeout(() => {
       const stats = getCurrentToolCount();
