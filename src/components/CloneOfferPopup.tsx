@@ -43,8 +43,8 @@ const CloneOfferPopup = () => {
       return;
     }
 
-    // Determine the delay: 5, 7, 12, and 20 minutes
-    const delays = [300000, 420000, 720000, 1200000]; // 5min, 7min, 12min, 20min in ms
+    // Determine the delay: 7, 12, and 20 minutes (starting at 7 min)
+    const delays = [420000, 720000, 1200000, 1500000]; // 7min, 12min, 20min, 25min in ms
     const delay = delays[shownCount] || delays[delays.length - 1];
 
     const timer = setTimeout(() => {
@@ -128,7 +128,7 @@ const CloneOfferPopup = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-2xl bg-gradient-to-br from-background to-accent/5 border-primary/20">
+      <DialogContent className="sm:max-w-2xl max-w-[95vw] bg-gradient-to-br from-background to-accent/5 border-primary/20 max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-2xl">
             <Sparkles className="w-6 h-6 text-primary animate-pulse" />
