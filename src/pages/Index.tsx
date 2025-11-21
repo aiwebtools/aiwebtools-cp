@@ -78,40 +78,57 @@ const Index = () => {
     
     window.addEventListener('message', handleMessage);
     
-    // Auto-start video after page loads with user interaction
-    const startVideoOnInteraction = () => {
+    // Auto-start video after page loads with user interaction or welcome audio
+    const triggerVideoStart = () => {
+      if (videoStarted) return;
+
       const iframe = mainVideoRef.current;
-      if (!iframe || videoStarted) return;
-      
+      if (!iframe) {
+        // If iframe isn't ready yet, retry shortly
+        setTimeout(triggerVideoStart, 300);
+        return;
+      }
+
       setVideoStarted(true);
-      console.log('🎥 User interaction detected - starting video unmuted...');
-      
+      console.log("🎥 Starting main video playback (attempting unmuted)...");
+
       // Send play command
       setTimeout(() => {
         try {
-          iframe.contentWindow?.postMessage(JSON.stringify({
-            event: 'command',
-            func: 'playVideo',
-            args: ''
-          }), '*');
-          
+          iframe.contentWindow?.postMessage(
+            JSON.stringify({
+              event: "command",
+              func: "playVideo",
+              args: "",
+            }),
+            "*",
+          );
+
           // Ensure unmuted
           setTimeout(() => {
-            iframe.contentWindow?.postMessage(JSON.stringify({
-              event: 'command',
-              func: 'unMute',
-              args: ''
-            }), '*');
+            iframe.contentWindow?.postMessage(
+              JSON.stringify({
+                event: "command",
+                func: "unMute",
+                args: "",
+              }),
+              "*",
+            );
           }, 300);
         } catch (e) {
-          console.log('Video control error:', e);
+          console.log("Video control error:", e);
         }
       }, 200);
-      
+
       // Remove listeners after first interaction
-      document.removeEventListener('click', startVideoOnInteraction);
-      document.removeEventListener('touchstart', startVideoOnInteraction);
-      document.removeEventListener('scroll', startVideoOnInteraction);
+      document.removeEventListener("click", startVideoOnInteraction);
+      document.removeEventListener("touchstart", startVideoOnInteraction);
+      document.removeEventListener("scroll", startVideoOnInteraction);
+    };
+
+    const startVideoOnInteraction = () => {
+      if (videoStarted) return;
+      triggerVideoStart();
     };
     
     // Listen for any user interaction to start video
@@ -121,8 +138,8 @@ const Index = () => {
     
     // Also listen for welcome audio completion
     const handleAudioComplete = () => {
-      console.log('🎬 Welcome audio complete...');
-      startVideoOnInteraction();
+      console.log('🎬 Welcome audio complete, attempting to start main video...');
+      triggerVideoStart();
     };
     
     window.addEventListener('welcomeAudioComplete', handleAudioComplete);
