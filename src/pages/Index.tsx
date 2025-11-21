@@ -43,7 +43,7 @@ const Index = () => {
   const videoSequence = [
     {
       id: 'SYf8ULSsVrI', // First video
-      start: 300, // Start at 5 minutes (300 seconds)
+      start: 0, // Start at beginning for better loading
       title: 'AI Web Tools - Introduction Video'
     },
     {
@@ -180,7 +180,7 @@ const Index = () => {
                   key={currentVideoIndex}
                   ref={mainVideoRef}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/50 bg-slate-800"
-                  src={`https://www.youtube.com/embed/${videoSequence[currentVideoIndex].id}?start=${videoSequence[currentVideoIndex].start}&autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark`}
+                  src={`https://www.youtube.com/embed/${videoSequence[currentVideoIndex].id}?start=${videoSequence[currentVideoIndex].start}&autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd720&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark`}
                   title={videoSequence[currentVideoIndex].title}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
