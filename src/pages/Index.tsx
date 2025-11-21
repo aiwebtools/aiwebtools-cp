@@ -175,11 +175,11 @@ const Index = () => {
             </div>
             
             <div className="max-w-6xl mx-auto">
-              <div className="relative w-full aspect-video">
+              <div className="relative w-full aspect-video rounded-xl animate-pulse-glow">
                 <iframe
                   key={currentVideoIndex}
                   ref={mainVideoRef}
-                  className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
+                  className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/50 bg-slate-800"
                   src={`https://www.youtube.com/embed/${videoSequence[currentVideoIndex].id}?start=${videoSequence[currentVideoIndex].start}&autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark`}
                   title={videoSequence[currentVideoIndex].title}
                   frameBorder="0"
