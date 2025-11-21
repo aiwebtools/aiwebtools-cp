@@ -182,12 +182,12 @@ const Index = () => {
             </div>
             
             <div className="max-w-6xl mx-auto">
-              <div className="relative w-full aspect-video rounded-xl">
+              <div className="relative z-20 w-full aspect-video rounded-xl">
                 <iframe
                   key={currentVideoIndex}
                   ref={mainVideoRef}
-                  className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/50 bg-slate-800"
-                  src={`https://www.youtube.com/embed/${videoSequence[currentVideoIndex].id}?start=${videoSequence[currentVideoIndex].start}&autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd720&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark`}
+                  className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/50 bg-slate-800 pointer-events-auto"
+                  src={`https://www.youtube.com/embed/${videoSequence[currentVideoIndex].id}?start=${videoSequence[currentVideoIndex].start}&autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&vq=hd720&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark`}
                   title={videoSequence[currentVideoIndex].title}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
