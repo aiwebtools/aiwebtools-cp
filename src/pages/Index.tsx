@@ -1,6 +1,5 @@
 
-import React, { useState, useEffect } from "react";
-import { useYouTubePlayer } from "@/hooks/useYouTubePlayer";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import CategoryPageSelection from "@/components/CategoryPageSelection";
@@ -28,33 +27,100 @@ const LoadingSpinner = () => (
 );
 
 const Index = () => {
+  // Use fast cached stats initially for better performance
   const [toolStats, setToolStats] = useState(getFastToolCount());
   const [isLoaded, setIsLoaded] = useState(false);
+  const [videoStarted, setVideoStarted] = useState(false);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  // Fallback handler reference to satisfy TypeScript; actual logic lives inside useEffect
+  const startVideoOnInteraction = () => {};
+  
+  
+  // Simple ref for video without complex manager to avoid conflicts
+  const mainVideoRef = useRef<HTMLIFrameElement>(null);
   
   // Video sequence: First video starts at 5min mark, then transitions to commercial
   const videoSequence = [
     {
-      id: 'SYf8ULSsVrI',
-      start: 300,
+      id: 'SYf8ULSsVrI', // First video
+      start: 300, // Start at 5 minutes (300 seconds)
       title: 'AI Web Tools - Introduction Video'
     },
     {
-      id: '4zflGSSuBcA',
+      id: '4zflGSSuBcA', // Commercial video
       start: 0,
       title: 'AI Web Tools - Commercial'
     }
   ];
 
-  // Use YouTube player hook for all video logic
-  const { mainVideoRef, currentVideoIndex, currentVideo } = useYouTubePlayer({
-    videoSequence,
-    onVideoEnd: () => console.log('🎬 Video transition handled by hook')
-  });
-
   useEffect(() => {
     setIsLoaded(true);
     
-    // Load actual stats in background
+    const handleMessage = (event: MessageEvent) => {
+      try {
+        if (typeof event.data === 'string') {
+          const data = JSON.parse(event.data);
+          if (data.event === 'onStateChange' && data.info === 0) {
+            console.log('🎬 Video ended, transitioning to next video...');
+            if (currentVideoIndex < videoSequence.length - 1) {
+              setCurrentVideoIndex(prev => prev + 1);
+            }
+          }
+        }
+      } catch (e) {
+        // Ignore non-JSON messages
+      }
+    };
+    
+    const triggerVideoStart = () => {
+      if (videoStarted) return;
+      const iframe = mainVideoRef.current;
+      if (!iframe) {
+        setTimeout(triggerVideoStart, 300);
+        return;
+      }
+      setVideoStarted(true);
+      console.log("🎥 Starting main video playback (attempting unmuted)...");
+      setTimeout(() => {
+        try {
+          iframe.contentWindow?.postMessage(JSON.stringify({ event: "command", func: "playVideo", args: "" }), "*");
+          setTimeout(() => {
+            iframe.contentWindow?.postMessage(JSON.stringify({ event: "command", func: "unMute", args: "" }), "*");
+          }, 300);
+        } catch (e) {
+          console.log("Video control error:", e);
+        }
+      }, 200);
+    };
+
+    const handleAudioComplete = () => {
+      console.log('🎬 Welcome audio complete, ensuring main video plays with sound...');
+      const iframe = mainVideoRef.current;
+
+      // If video not started yet, start it
+      if (!videoStarted) {
+        triggerVideoStart();
+      }
+
+      // In all cases, attempt to unmute the player after audio completion
+      if (iframe?.contentWindow) {
+        try {
+          iframe.contentWindow.postMessage(
+            JSON.stringify({ event: 'command', func: 'unMute', args: '' }),
+            '*'
+          );
+        } catch (e) {
+          console.log('Error forcing unmute after welcome audio:', e);
+        }
+      }
+    };
+    
+    window.addEventListener('message', handleMessage);
+    document.addEventListener('click', startVideoOnInteraction, { once: true, passive: true });
+    document.addEventListener('touchstart', startVideoOnInteraction, { once: true, passive: true });
+    document.addEventListener('scroll', startVideoOnInteraction, { once: true, passive: true });
+    window.addEventListener('welcomeAudioComplete', handleAudioComplete, { once: true });
+    
     const statsTimer = setTimeout(() => {
       const stats = getCurrentToolCount();
       setToolStats(stats);
@@ -63,8 +129,10 @@ const Index = () => {
 
     return () => {
       clearTimeout(statsTimer);
+      window.removeEventListener('welcomeAudioComplete', handleAudioComplete);
+      window.removeEventListener('message', handleMessage);
     };
-  }, []);
+  }, [videoStarted, currentVideoIndex]);
 
   const handleSeeMoreAITools = () => {
     // This function can be removed since FeaturedToolsSection handles it
@@ -112,8 +180,8 @@ const Index = () => {
                   key={currentVideoIndex}
                   ref={mainVideoRef}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src={`https://www.youtube.com/embed/${currentVideo.id}?start=${currentVideo.start}&autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark`}
-                  title={currentVideo.title}
+                  src={`https://www.youtube.com/embed/${videoSequence[currentVideoIndex].id}?start=${videoSequence[currentVideoIndex].start}&autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark`}
+                  title={videoSequence[currentVideoIndex].title}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
