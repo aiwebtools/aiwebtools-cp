@@ -15,6 +15,15 @@ import { Tool } from "@/types/tools";
 
 const featuredGPTs = [
   {
+    title: "Meta.ai Video Prompt Generator GPT",
+    description: "Specialized AI tool for generating optimized text prompts specifically designed for Meta.ai video generation. Craft detailed, copy-paste ready prompts and storylines tailored for Meta.ai's video capabilities with quick productivity.",
+    badge: "VIDEO PROMPTS",
+    color: "from-blue-600 to-purple-600",
+    features: ["Meta.ai Prompts", "Video Storylines", "Quick Copy-Paste", "Prompt Optimization"],
+    directUrl: "https://chatgpt.com/g/g-691b5852be7c8191beda5d0429f727bd-meta-ai-video-prompt-generator",
+    emoji: "🎬"
+  },
+  {
     title: "🎭 Playwriter GPT",
     description: "Craft professional, fully structured theatrical plays from start to finish. Create original, engaging plays designed to captivate audiences with dramatic structure and character development.",
     badge: "THEATER",

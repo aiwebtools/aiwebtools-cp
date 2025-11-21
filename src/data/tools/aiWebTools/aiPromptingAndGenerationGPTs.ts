@@ -11,10 +11,24 @@ import {
   Zap,
   Star,
   Image,
-  Video
+  Video,
+  Clapperboard
 } from "lucide-react";
 
 export const aiPromptingAndGenerationGPTs: Tool[] = [
+  {
+    icon: Clapperboard,
+    title: "Meta.ai Video Prompt Generator GPT",
+    description: "Meta.ai Video Prompt Generator GPT is a specialized AI tool designed to generate optimized text prompts specifically for Meta.ai video generation. This powerful prompt generator streamlines your creative workflow by crafting detailed, copy-paste ready prompts and storylines tailored for Meta.ai's video generation capabilities. Perfect for content creators, marketers, and AI enthusiasts who need quick, professional-quality prompts that maximize Meta.ai's potential. Generate compelling video narratives, scenes, and concepts with precision-crafted prompts that deliver exceptional results every time.",
+    emoji: "🎬",
+    color: "from-blue-600 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-691b5852be7c8191beda5d0429f727bd-meta-ai-video-prompt-generator",
+    tags: ["meta.ai", "video prompts", "prompt generator", "text-to-video", "meta ai video", "storylines", "video generation", "content creation", "prompt assistant", "aiwebtools"],
+    category: "AI Prompting & Generation",
+    rating: 4.9,
+    totalVotes: 2847,
+    isFree: true
+  },
   {
     icon: Image,
     title: "\"MiddleJourney\" Midjourney Prompting Assistant",

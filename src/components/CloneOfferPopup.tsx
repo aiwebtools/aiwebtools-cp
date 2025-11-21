@@ -38,13 +38,13 @@ const CloneOfferPopup = () => {
     const shownCount = parseInt(sessionStorage.getItem('cloneOfferShowCount') || '0');
     setShowCount(shownCount);
 
-    // If already shown 4 times, don't show again
-    if (shownCount >= 4) {
+    // If already shown 1 time, don't show again
+    if (shownCount >= 1) {
       return;
     }
 
-    // Determine the delay: 5, 7, 12, and 20 minutes
-    const delays = [300000, 420000, 720000, 1200000]; // 5min, 7min, 12min, 20min in ms
+    // Determine the delay: 7 minutes (after videos complete)
+    const delays = [420000]; // 7min in ms
     const delay = delays[shownCount] || delays[delays.length - 1];
 
     const timer = setTimeout(() => {
