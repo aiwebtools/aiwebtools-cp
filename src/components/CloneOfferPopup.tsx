@@ -14,32 +14,19 @@ const CloneOfferPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showCount, setShowCount] = useState(0);
 
-  // Function to mute and pause all videos on the page
+  // Function to mute all videos on the page
   const muteAllVideos = () => {
-    console.log('🔇 Muting all videos for clone popup...');
     const videos = document.querySelectorAll('video, iframe');
     videos.forEach((video) => {
       if (video instanceof HTMLVideoElement) {
         video.muted = true;
-        video.pause();
       } else if (video instanceof HTMLIFrameElement) {
+        // For YouTube iframes, we can try to pause them
         const src = video.src;
         if (src.includes('youtube.com') || src.includes('youtu.be')) {
-          // Send mute and pause commands to YouTube iframe
-          try {
-            video.contentWindow?.postMessage(JSON.stringify({
-              event: 'command',
-              func: 'mute',
-              args: ''
-            }), '*');
-            
-            video.contentWindow?.postMessage(JSON.stringify({
-              event: 'command',
-              func: 'pauseVideo',
-              args: ''
-            }), '*');
-          } catch (e) {
-            console.log('Error muting video:', e);
+          // Pause YouTube videos by modifying src
+          if (!src.includes('autoplay=0')) {
+            video.src = src.includes('?') ? `${src}&autoplay=0` : `${src}?autoplay=0`;
           }
         }
       }
@@ -51,13 +38,13 @@ const CloneOfferPopup = () => {
     const shownCount = parseInt(sessionStorage.getItem('cloneOfferShowCount') || '0');
     setShowCount(shownCount);
 
-    // If already shown 1 time, don't show again
-    if (shownCount >= 1) {
+    // If already shown 4 times, don't show again
+    if (shownCount >= 4) {
       return;
     }
 
-    // Determine the delay: 7 minutes (after videos complete)
-    const delays = [420000]; // 7min in ms
+    // Determine the delay: 5, 7, 12, and 20 minutes
+    const delays = [300000, 420000, 720000, 1200000]; // 5min, 7min, 12min, 20min in ms
     const delay = delays[shownCount] || delays[delays.length - 1];
 
     const timer = setTimeout(() => {

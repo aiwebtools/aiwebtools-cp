@@ -31,117 +31,38 @@ const Index = () => {
   const [toolStats, setToolStats] = useState(getFastToolCount());
   const [isLoaded, setIsLoaded] = useState(false);
   const [videoStarted, setVideoStarted] = useState(false);
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   
   // Simple ref for video without complex manager to avoid conflicts
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
-  
-  // Video sequence: First video starts at 5min mark, then transitions to commercial
-  const videoSequence = [
-    {
-      id: 'SYf8ULSsVrI', // First video
-      start: 300, // Start at 5 minutes (300 seconds)
-      title: 'AI Web Tools - Introduction Video'
-    },
-    {
-      id: '4zflGSSuBcA', // Commercial video
-      start: 0,
-      title: 'AI Web Tools - Commercial'
-    }
-  ];
 
   useEffect(() => {
     // Set loaded state immediately for faster initial render
     setIsLoaded(true);
     
-    // Listen for YouTube player state changes to auto-transition videos
-    const handleMessage = (event: MessageEvent) => {
-      try {
-        if (typeof event.data === 'string') {
-          const data = JSON.parse(event.data);
-          // YouTube player state: 0 = ended, 1 = playing
-          if (data.event === 'onStateChange') {
-            if (data.info === 0) {
-              console.log('🎬 Video ended, transitioning to next video...');
-              if (currentVideoIndex < videoSequence.length - 1) {
-                setCurrentVideoIndex(prev => prev + 1);
-              }
-            } else if (data.info === 1) {
-              console.log('🎥 Video is playing');
-            }
-          }
-        }
-      } catch (e) {
-        // Ignore non-JSON messages
-      }
-    };
-    
-    window.addEventListener('message', handleMessage);
-    
-    // Auto-start video after page loads with user interaction or welcome audio
-    const triggerVideoStart = () => {
-      if (videoStarted) return;
-
-      const iframe = mainVideoRef.current;
-      if (!iframe) {
-        // If iframe isn't ready yet, retry shortly
-        setTimeout(triggerVideoStart, 300);
-        return;
-      }
-
-      setVideoStarted(true);
-      console.log("🎥 Starting main video playback (attempting unmuted)...");
-
-      // Send play command
-      setTimeout(() => {
-        try {
-          iframe.contentWindow?.postMessage(
-            JSON.stringify({
-              event: "command",
-              func: "playVideo",
-              args: "",
-            }),
-            "*",
-          );
-
-          // Ensure unmuted
-          setTimeout(() => {
-            iframe.contentWindow?.postMessage(
-              JSON.stringify({
-                event: "command",
-                func: "unMute",
-                args: "",
-              }),
-              "*",
-            );
-          }, 300);
-        } catch (e) {
-          console.log("Video control error:", e);
-        }
-      }, 200);
-
-      // Remove listeners after first interaction
-      document.removeEventListener("click", startVideoOnInteraction);
-      document.removeEventListener("touchstart", startVideoOnInteraction);
-      document.removeEventListener("scroll", startVideoOnInteraction);
-    };
-
-    const startVideoOnInteraction = () => {
-      if (videoStarted) return;
-      triggerVideoStart();
-    };
-    
-    // Listen for any user interaction to start video
-    document.addEventListener('click', startVideoOnInteraction, { once: true });
-    document.addEventListener('touchstart', startVideoOnInteraction, { once: true, passive: true });
-    document.addEventListener('scroll', startVideoOnInteraction, { once: true, passive: true });
-    
-    // Also listen for welcome audio completion
+    // Listen for welcome audio completion to trigger video
     const handleAudioComplete = () => {
-      console.log('🎬 Welcome audio complete, attempting to start main video...');
-      triggerVideoStart();
+      console.log('🎬 Welcome audio complete, starting video unmuted...');
+      
+      setTimeout(() => {
+        const iframe = mainVideoRef.current;
+        if (!iframe || videoStarted) return;
+        
+        setVideoStarted(true);
+        console.log('🎥 Playing video with sound at full volume...');
+        
+        // Video is already unmuted from iframe src, just play it
+        try {
+          iframe.contentWindow?.postMessage(JSON.stringify({
+            event: 'command',
+            func: 'playVideo',
+            args: ''
+          }), '*');
+        } catch (e) {
+          console.log('Video control error:', e);
+        }
+      }, 500);
     };
-    
+
     window.addEventListener('welcomeAudioComplete', handleAudioComplete);
     
     // Load actual stats in background
@@ -154,12 +75,8 @@ const Index = () => {
     return () => {
       clearTimeout(statsTimer);
       window.removeEventListener('welcomeAudioComplete', handleAudioComplete);
-      window.removeEventListener('message', handleMessage);
-      document.removeEventListener('click', startVideoOnInteraction);
-      document.removeEventListener('touchstart', startVideoOnInteraction);
-      document.removeEventListener('scroll', startVideoOnInteraction);
     };
-  }, [videoStarted, currentVideoIndex]);
+  }, [videoStarted]);
 
   const handleSeeMoreAITools = () => {
     // This function can be removed since FeaturedToolsSection handles it
@@ -192,7 +109,14 @@ const Index = () => {
       <div className="relative z-10">
         <HeroSection />
         
-        {/* Featured Video Section - Above the fold, autoplay unmuted */}
+        {/* SEO-optimized AI Web Tools section - Critical for "ai web tools" keyword ranking */}
+        <AIWebToolsSEOSection />
+        
+        <div id="categories-section">
+          <CategoryPageSelection />
+        </div>
+        
+        {/* Featured Video Section - Lazy loaded and deferred */}
         <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
@@ -204,44 +128,20 @@ const Index = () => {
             <div className="max-w-6xl mx-auto">
               <div className="relative w-full aspect-video">
                 <iframe
-                  key={currentVideoIndex}
                   ref={mainVideoRef}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src={`https://www.youtube.com/embed/${videoSequence[currentVideoIndex].id}?start=${videoSequence[currentVideoIndex].start}&autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark`}
-                  title={videoSequence[currentVideoIndex].title}
+                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=0&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
+                  title="AI Web Tools Featured Video - 1080p HD"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
                   loading="eager"
-                  onLoad={() => console.log(`🎥 Video ${currentVideoIndex + 1} iframe loaded and ready`)}
+                  onLoad={() => console.log('🎥 Video iframe loaded and ready')}
                 ></iframe>
-              </div>
-              
-              {/* Quick navigation buttons */}
-              <div className="flex flex-wrap justify-center gap-4 mt-6">
-                <Button
-                  onClick={() => window.location.href = '/main-category/ALL%20AI%20TOOLS'}
-                  className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-6 py-3 rounded-lg transition-all duration-300"
-                >
-                  🚀 Browse All AI Tools
-                </Button>
-                <Button
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold px-6 py-3 rounded-lg transition-all duration-300"
-                >
-                  🔍 Back to Search
-                </Button>
               </div>
             </div>
           </div>
         </section>
-        
-        {/* SEO-optimized AI Web Tools section - Critical for "ai web tools" keyword ranking */}
-        <AIWebToolsSEOSection />
-        
-        <div id="categories-section">
-          <CategoryPageSelection />
-        </div>
 
         {/* Featured Tools Section */}
         <LazyFeaturedTools onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />

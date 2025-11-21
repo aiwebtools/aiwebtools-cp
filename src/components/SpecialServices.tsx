@@ -15,15 +15,6 @@ import { Tool } from "@/types/tools";
 
 const featuredGPTs = [
   {
-    title: "Meta.ai Video Prompt Generator GPT",
-    description: "Specialized AI tool for generating optimized text prompts specifically designed for Meta.ai video generation. Craft detailed, copy-paste ready prompts and storylines tailored for Meta.ai's video capabilities with quick productivity.",
-    badge: "VIDEO PROMPTS",
-    color: "from-blue-600 to-purple-600",
-    features: ["Meta.ai Prompts", "Video Storylines", "Quick Copy-Paste", "Prompt Optimization"],
-    directUrl: "https://chatgpt.com/g/g-691b5852be7c8191beda5d0429f727bd-meta-ai-video-prompt-generator",
-    emoji: "🎬"
-  },
-  {
     title: "🎭 Playwriter GPT",
     description: "Craft professional, fully structured theatrical plays from start to finish. Create original, engaging plays designed to captivate audiences with dramatic structure and character development.",
     badge: "THEATER",
@@ -1552,7 +1543,7 @@ const OurFeaturedSection = () => {
                           title={`${tool.title} Demo`}
                           className="absolute inset-0 w-full h-full"
                           frameBorder="0"
-                          loading="eager"
+                          loading="lazy"
                           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowFullScreen
                         />
@@ -1563,7 +1554,7 @@ const OurFeaturedSection = () => {
                           src={tool.imageUrl}
                           alt={`${tool.title} Preview`}
                           className="w-full h-full object-cover"
-                          loading="eager"
+                          loading="lazy"
                         />
                       </div>
                     )}
@@ -1673,7 +1664,7 @@ const OurFeaturedSection = () => {
                           title={`${tool.title} Demo`}
                           className="absolute inset-0 w-full h-full"
                           frameBorder="0"
-                          loading="eager"
+                          loading="lazy"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowFullScreen
                         />
@@ -1684,29 +1675,29 @@ const OurFeaturedSection = () => {
                           src={tool.imageUrl}
                           alt={`${tool.title} Preview`}
                           className="w-full h-full object-cover"
-                          loading="eager"
+                          loading="lazy"
                           decoding="async"
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           fetchPriority="low"
                           referrerPolicy="no-referrer"
-                          onError={(e) => {
+onError={(e) => {
                             const img = e.currentTarget as HTMLImageElement;
                             try {
                               img.src = createEmojiFallbackImage(tool.title, (tool as any).emoji || '✨');
                               img.style.display = 'block';
-                            } catch (error) {
-                              console.error('Emoji fallback failed:', error);
+                            } catch {
+                              img.style.display = 'none';
                             }
                           }}
                         />
                       </div>
-                    ) : (
+) : (
                       <div className="relative w-full h-32 rounded-lg overflow-hidden">
                         <img
                           src={createEmojiFallbackImage(tool.title, (tool as any).emoji || "✨")}
                           alt={`${tool.title} Generated Preview`}
                           className="w-full h-full object-cover"
-                          loading="eager"
+                          loading="lazy"
                           decoding="async"
                         />
                       </div>
