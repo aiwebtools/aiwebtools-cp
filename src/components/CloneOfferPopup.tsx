@@ -14,19 +14,25 @@ const CloneOfferPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showCount, setShowCount] = useState(0);
 
-  // Function to mute all videos on the page
-  const muteAllVideos = () => {
+  // Function to pause and mute all videos on the page
+  const pauseAllVideos = () => {
     const videos = document.querySelectorAll('video, iframe');
     videos.forEach((video) => {
       if (video instanceof HTMLVideoElement) {
+        video.pause();
         video.muted = true;
       } else if (video instanceof HTMLIFrameElement) {
-        // For YouTube iframes, we can try to pause them
         const src = video.src;
         if (src.includes('youtube.com') || src.includes('youtu.be')) {
-          // Pause YouTube videos by modifying src
-          if (!src.includes('autoplay=0')) {
-            video.src = src.includes('?') ? `${src}&autoplay=0` : `${src}?autoplay=0`;
+          // Send pause command via YouTube iframe API
+          try {
+            video.contentWindow?.postMessage(JSON.stringify({
+              event: 'command',
+              func: 'pauseVideo',
+              args: ''
+            }), '*');
+          } catch (e) {
+            console.log('Could not pause video:', e);
           }
         }
       }
@@ -48,7 +54,7 @@ const CloneOfferPopup = () => {
     const delay = delays[shownCount] || delays[delays.length - 1];
 
     const timer = setTimeout(() => {
-      muteAllVideos();
+      pauseAllVideos();
       setIsOpen(true);
       const newCount = shownCount + 1;
       setShowCount(newCount);
@@ -128,7 +134,7 @@ const CloneOfferPopup = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="sm:max-w-2xl max-w-[95vw] bg-gradient-to-br from-background to-accent/5 border-primary/20 max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-2xl max-w-[95vw] bg-gradient-to-br from-background to-accent/5 border-primary/20 max-h-[90vh] overflow-y-auto z-[60]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-2xl">
             <Sparkles className="w-6 h-6 text-primary animate-pulse" />
@@ -148,10 +154,10 @@ const CloneOfferPopup = () => {
           <iframe
             width="100%"
             height="100%"
-            src="https://www.youtube.com/embed/S_0SSog3tNo?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+            src="https://www.youtube.com/embed/S_0SSog3tNo?autoplay=0&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
             title="Clone This Website"
             frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="w-full h-full"
             loading="eager"
