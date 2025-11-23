@@ -119,7 +119,7 @@ export const generateLocalBusinessStructuredData = () => {
     "founders": [
       {
         "@type": "Person",
-        "name": "Kenneth Bastian"
+        "name": "KB"
       }
     ],
     "numberOfEmployees": "10-50",
