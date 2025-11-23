@@ -54,18 +54,5 @@ export const philosophyAndLifestyleGPTs: Tool[] = [
     category: "Philosophy & Lifestyle",
     rating: 4.6,
     totalVotes: 4567
-  },
-  {
-    icon: Crown,
-    title: "Fortune Teller GPT",
-    description: "Fortune Teller GPT by AI Web Tools LLC is your advanced AI-powered predictive analytics and trend forecasting platform, utilizing sophisticated data analysis, statistical modeling, and pattern recognition to provide evidence-based predictions and insights across various domains. This cutting-edge tool revolutionizes predictive analysis by combining real-world data, historical patterns, and advanced algorithms to generate data-backed forecasts on economics, technology, market trends, and societal shifts. Whether you're making business decisions, planning investments, analyzing market opportunities, or seeking insights into future trends, this AI delivers comprehensive predictive intelligence that supports informed decision-making. The system performs web searches, statistical analysis, and Python-driven calculations to uncover likely future outcomes based on factual data, historical precedents, and predictive algorithms rather than traditional fortune-telling methods. Input your prediction interests, describe market scenarios, or request trend analysis to receive detailed forecasts, probability assessments, and evidence-based predictions. Features include economic forecasting, technology trend analysis, market prediction tools, statistical modeling capabilities, and comprehensive predictive reporting. Perfect for business leaders making strategic decisions, investors analyzing market opportunities, researchers studying future trends, and anyone seeking data-driven insights into likely future developments. Unlike traditional fortune-telling, Fortune Teller GPT relies on factual data, historical patterns, and predictive algorithms to uncover probable future outcomes.",
-    emoji: "🔮",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://fortunetellergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-fortune-teller-gpt-_kRpji.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["predictive analytics", "trend forecasting", "data analysis", "future insights", "statistical modeling"],
-    category: "Philosophy & Lifestyle",
-    rating: 4.5,
-    totalVotes: 4123
   }
 ];
