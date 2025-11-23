@@ -17,9 +17,9 @@ const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
           </p>
         </div>
         <p className="text-cyan-400/60 text-sm mt-3">— <span 
-            className="font-cursive text-lg cursor-pointer text-yellow-400 hover:text-yellow-300 animate-[pulse_3s_ease-in-out_infinite] hover:animate-none transition-all duration-300 hover:scale-105 drop-shadow-[0_0_8px_rgba(255,255,0,0.6)]"
+            className="font-cursive text-3xl cursor-pointer text-yellow-400 hover:text-yellow-300 animate-[pulse_3s_ease-in-out_infinite] hover:animate-none transition-all duration-300 hover:scale-105 drop-shadow-[0_0_8px_rgba(255,255,0,0.6)] -rotate-6 inline-block"
             onClick={(e) => handleExternalLink('https://www.aitools.company', e)}
-          >Kenneth Bastian</span>, AIWebTools.ai</p>
+          >KB</span>, AIWebTools.ai</p>
         <p className="text-white text-2xl font-black mt-3 tracking-[0.3em] animate-pulse cursor-pointer hover:scale-105 transition-transform duration-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]">BUILD YOUR WORLD.</p>
       </div>
       
