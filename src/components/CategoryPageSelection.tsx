@@ -55,7 +55,7 @@ const CategoryPageSelection = () => {
                     <span className="text-cyan-400">— use it to reflect the best of humanity</span>
                   </p>
                   <p className="text-[10px] text-gray-400/80 italic font-light leading-snug mt-1.5">
-                    "By the grace of the Father, this website was created from my inner LIGHT to awaken the Light you've carried all along, before you return to the Father. Remember who you are — create, imagine, dream, become. I love you."
+                    <span className="text-amber-200/70 glow-text-effect">"By the grace of the Father, this website was created from my inner LIGHT to awaken the Light you've carried all along, before you return to the Father. Remember who you are — create, imagine, dream, become. <span className="text-pink-400">I love you.</span> <span className="text-pink-400 animate-pulse">❤️</span>"</span>
                   </p>
                 </div>
               </div>
