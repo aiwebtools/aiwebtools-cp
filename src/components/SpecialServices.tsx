@@ -305,16 +305,6 @@ const featuredGPTs = [
     emoji: "🥘"
   },
   {
-    title: "FORTUNE TELLER GPT",
-    description: "Mystical fortune telling assistant providing tarot readings, astrology insights, numerology analysis, and spiritual guidance for personal enlightenment.",
-    badge: "MYSTICAL",
-    color: "from-purple-600 to-pink-600",
-    features: ["Tarot Readings", "Astrology", "Numerology", "Spiritual Guidance"],
-    directUrl: "https://fortunetellergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-fortune-teller-gpt-_kRpji.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    emoji: "🔮"
-  },
-  {
     title: "Fungus GPT – AI Mushroom Specialist",
     description: "Expert mycology guidance covering mushroom identification, cultivation, foraging safety, and fungal biology for enthusiasts and professionals.",
     badge: "MYCOLOGY",

@@ -137,7 +137,6 @@ export const TIER_4_UTILITY_GPTS = [
 // TIER 5: Entertainment & Simple GPTs - Fun but less complex
 export const TIER_5_ENTERTAINMENT_GPTS = [
   'Trivia Night GPT',                 // Fun but simple trivia
-  'Fortune Teller GPT',               // Entertainment fortune telling
   'Imagination Traveler GPT',         // Creative storytelling
   'Celebrity Chatline GPT',           // Entertainment chat
   'Oraculum',                         // Mystery/entertainment

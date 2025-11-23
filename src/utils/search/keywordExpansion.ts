@@ -734,7 +734,6 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
       'space explorer',
       'oraculum',
       'dream interpreter gpt',
-      'fortune teller gpt',
       'resurrection gpt',
       'talk to the gods gpt',
       'matrix gpt',
