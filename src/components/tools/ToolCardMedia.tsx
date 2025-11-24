@@ -1,4 +1,4 @@
-
+import { useState, useRef, useEffect } from "react";
 import { Tool } from "@/types/tools";
 
 interface ToolCardMediaProps {
@@ -8,6 +8,32 @@ interface ToolCardMediaProps {
 }
 
 const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) => {
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    if (!containerRef.current || !tool.videoUrl) return;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Load video when it's 300px away from viewport
+          if (entry.isIntersecting || entry.boundingClientRect.top < window.innerHeight + 300) {
+            setShouldLoadVideo(true);
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        rootMargin: '300px',
+        threshold: 0
+      }
+    );
+    
+    observer.observe(containerRef.current);
+    
+    return () => observer.disconnect();
+  }, [tool.videoUrl]);
   const hasImage = tool.imageUrl && tool.imageUrl.trim() !== '';
   const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
   const hasVideo = tool.videoUrl && tool.videoUrl.trim() !== '';
@@ -46,10 +72,11 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
   
   return (
     <div 
+      ref={containerRef}
       className={`${isFeatured ? 'mb-6' : 'mb-4'} rounded-lg overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 relative group-hover:scale-105 transition-transform duration-200`}
       style={{ aspectRatio: '16/9' }}
     >
-      {shouldShowVideo ? (
+      {shouldShowVideo && hasVideo ? (
         <>
           <iframe
             width="100%"
@@ -57,32 +84,25 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
             src={getOptimizedEmbedUrl(tool.videoUrl!)}
             title={`${tool.title} Demo`}
             frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
             allowFullScreen
             className="w-full h-full rounded-lg"
             loading="lazy"
             style={{ minHeight: '200px' }}
-            onLoad={() => {
-              console.log(`✅ Video loaded successfully: ${tool.title}`);
-            }}
-            onError={(e) => {
-              console.error(`❌ Video failed to load: ${tool.title}`);
-              // Add fallback handling for failed videos
-              const target = e.target as HTMLIFrameElement;
-              if (target) {
-                target.style.display = 'none';
-                const fallbackDiv = target.nextElementSibling as HTMLElement;
-                if (fallbackDiv) {
-                  fallbackDiv.classList.remove('hidden');
-                }
-              }
-            }}
           />
           {/* Video fallback - shown if iframe fails */}
           <div className="hidden absolute inset-0 flex items-center justify-center text-6xl opacity-50 bg-gradient-to-br from-gray-800 to-gray-900">
             {tool.emoji}
           </div>
         </>
+      ) : hasVideo && !shouldLoadVideo ? (
+        /* Video placeholder - shown before video loads */
+        <div className="flex items-center justify-center text-6xl opacity-50 w-full h-full bg-gradient-to-br from-gray-800 to-gray-900">
+          <div className="flex flex-col items-center gap-2">
+            {tool.emoji}
+            <div className="text-xs text-cyan-400/60">Loading video...</div>
+          </div>
+        </div>
       ) : shouldShowImage ? (
         <>
           <img 
