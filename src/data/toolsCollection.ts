@@ -251,131 +251,196 @@ import { newSpecializedTools2025 } from './tools/newSpecializedTools2025';
 // Import AI Hardware
 import { aiHardware } from './tools/aiHardware';
 
-// Combine all tool categories
+// Combine all tool categories - REORGANIZED FOR BETTER PRIORITY
 export const getAllToolCategories = (): Tool[] => {
   return [
-    // ... keep existing code (existing tool category imports)
-    ...spiritualityTools,
-    ...advancedAITools,
-    ...timeAndHistory,
-    ...creativeSuites,
-    ...learningAndEducation,
-    ...gameDesignAndDevelopment,
-    ...emergencyServices,
-    ...professionalServices,
-    ...legalProfessionals,
-    ...healthcareProfessionals,
-    ...creativeServices,
-    ...technicalAndUtilityTools,
-    ...aiChatPlatforms,
+    // ========================================
+    // TIER 1: MAJOR AI PLATFORMS (Most Popular & Essential)
+    // ========================================
+    ...majorAIPlatforms, // ChatGPT, Claude, Gemini, Perplexity, etc.
+    ...topImageGenerators, // Midjourney, DALL-E, Flux, Stable Diffusion, etc.
+    ...topMusicVideoTools, // Sora, Runway, ElevenLabs, Udio, etc.
+    ...topProductivityWriting, // Notion AI, Grammarly, Jasper, etc.
+    ...additionalPopularTools2025, // Kling AI, RunwayML Gen-3, etc.
+    
+    // ========================================
+    // TIER 2: POWERFUL PROFESSIONAL TOOLS
+    // ========================================
+    ...developerProductivityAI, // GitHub Copilot, Cursor, Codeium, etc.
     ...aiDevelopmentTools,
-    ...aiAgents,
-    ...localAISolutions,
-    ...aiInferencePlatforms,
-    ...imageGenerationPlatforms,
-    ...aiProductivityTools,
-    ...openSourceAIModels,
-    ...aiToolsAndDevelopment,
-    ...aiToolsAndUtilities,
-    ...aiAssistants,
-    ...aiArtTools,
+    ...aiChatPlatforms,
     ...advancedChatPlatforms,
-    ...developerAndCodingTools,
-    ...writingAndContent,
-    ...writingAndContentEnhancement,
-    ...imageAndDesign,
-    ...designAndGraphicsTools,
+    ...aiAgents,
+    ...aiAssistants,
+    
+    // ========================================
+    // TIER 3: CONTENT CREATION & DESIGN
+    // ========================================
+    ...coreImageGenerators,
+    ...imageGenerationPlatforms,
+    ...videoGenerationTools,
     ...videoTools,
-    ...videoAndContentTools,
-    ...videoEditingAndContentTools,
     ...advancedVideoTools,
+    ...aiVideoEditingTools,
+    ...videoEditingAndContentTools,
+    ...videoAndContentTools,
+    ...videoBusinessTools,
+    ...videoMarketingTools,
+    ...additionalVideoTools2025,
+    ...additionalVideoImageGenerators,
+    
     ...audioMusicTools,
     ...audioAndVoiceTools,
-    ...contentCreationTools,
-    ...contentCreationAndWritingTools,
-    ...contentDetectionTools,
-    ...documentAndResearchTools,
-    ...coreImageGenerators,
+    ...coreAudioVoiceTools,
+    ...aiVoiceSpeechTools,
+    ...aiMusicProductionTools,
+    ...additionalAudioTools2025,
+    ...businessProductivityAudio,
+    ...professionalGPTsAudio,
+    
     ...imageEditingTools,
     ...specializedImageTools,
     ...backgroundAndObjectTools,
+    ...aiImageGeneration,
+    ...ai3DModelingTools,
+    ...aiPhotographyTools,
+    ...aiAnimationTools,
+    
+    ...writingAndContent,
+    ...writingAndContentEnhancement,
+    ...contentCreationTools,
+    ...contentCreationAndWritingTools,
+    ...aiSeoContentTools,
+    ...contentDetectionTools,
+    
+    ...designAndGraphicsTools,
+    ...imageAndDesign,
+    ...creativeDesignTools,
+    ...designAssistantTools,
+    ...aiArtTools,
+    
+    // ========================================
+    // TIER 4: BUSINESS & PRODUCTIVITY
+    // ========================================
     ...businessAndProductivity,
     ...businessTools,
     ...businessAndTeamTools,
     ...businessSalesTools,
+    ...aiProductivityTools,
+    ...aiProductivitySuite,
     ...searchAndProductivityTools,
-    ...ecommerceAndMarketingTools,
-    ...platformsAndDevelopment,
-    ...resumeAndCareerTools,
-    ...emailManagementTools,
-    ...webDevelopmentTools,
-    ...meetingAndTranscriptionTools,
-    ...creativeDesignTools,
-    ...specializedAITools,
-    ...entertainmentMediaTools,
-    ...specializedAndNiche,
-    ...specializedTools,
-    ...creativeAndEntertainment,
-    ...researchAndLearning,
-    ...specializedPolicyTools,
-    ...artAndCollectibles,
-    ...financialAndTradingTools,
-    ...specializedNicheTools,
-    ...educationAndLearning,
-    ...threeDAndVisualizationTools,
-    ...dataAnalyticsTools,
-    ...automationAndWorkflowTools,
+    ...aiProjectManagementTools,
     
-    // New tool categories (100 additional tools)
-    ...socialMediaTools,
-    ...collaborationTools,
+    ...ecommerceAndMarketingTools,
     ...marketingTools,
-    ...utilitiesTools,
-    ...creativePlatforms,
+    ...newMarketingTools2025,
+    ...aiSocialMediaTools,
+    ...socialMediaTools,
+    
+    ...aiSalesCrmTools,
+    ...aiCustomerSupportTools,
+    ...aiDataAnalyticsTools,
+    ...dataAnalyticsTools,
+    ...financialAndTradingTools,
+    ...aiFinanceTools,
+    ...aiAccountingFinanceTools,
+    ...aiCryptoTradingTools,
+    
+    ...resumeAndCareerTools,
+    ...aiHrRecruitmentTools,
+    ...aiRecruitmentHRTools,
+    
+    ...meetingAndTranscriptionTools,
+    ...aiTranscriptionToolsPro,
+    ...aiMeetingAssistants,
+    ...aiNoteTakingTools,
+    
+    // ========================================
+    // TIER 5: RESEARCH & EDUCATION
+    // ========================================
+    ...aiResearchTools,
+    ...aiResearchAcademicTools,
+    ...documentAndResearchTools,
+    ...researchAndLearning,
+    
+    ...aiEducationTools,
+    ...aiEducationalTools,
+    ...educationAndLearning,
+    ...learningAndEducation,
     ...learningPlatforms,
-    ...cloudServices,
-    ...developerTools,
-    ...communicationTools,
-    ...entertainmentTools,
-    ...newsAndInformationTools,
+    
+    ...aiPresentationTools,
+    ...aiTranslationTools,
+    
+    // ========================================
+    // TIER 6: SPECIALIZED PROFESSIONAL SERVICES
+    // ========================================
+    ...professionalServices,
+    ...legalProfessionals,
+    ...aiLegalTools,
+    ...aiLegalTechTools,
+    
+    ...healthcareProfessionals,
+    ...aiHealthcareTools,
+    ...aiHealthcareDiagnosisTools,
+    ...aiMentalHealthWellnessTools,
     ...healthAndWellness,
     
-    // Robotics companies category
-    ...roboticsCompanies,
+    ...aiRealEstateTools,
+    ...aiInsuranceTools,
+    ...aiConstructionTools,
     
-    // NEW comprehensive AI tool categories to reach 1000+
-    ...aiGenerativeTools,
-    ...aiResearchTools,
-    ...aiProductivitySuite,
+    // ========================================
+    // TIER 7: DEVELOPMENT & TECHNICAL
+    // ========================================
+    ...developerAndCodingTools,
+    ...developerTools,
+    ...webDevelopmentTools,
+    ...newWebsiteBuilders2025,
+    ...platformsAndDevelopment,
+    ...aiToolsAndDevelopment,
+    ...aiToolsAndUtilities,
+    
+    ...localAISolutions,
+    ...aiInferencePlatforms,
+    ...openSourceAIModels,
+    ...aiCybersecurityTools,
     ...aiSecurityTools,
-    ...aiFinanceTools,
-    ...aiHealthcareTools,
-    ...aiEducationTools,
-    ...aiLegalTools,
+    ...technicalAndUtilityTools,
+    ...utilitiesTools,
     
-    // NEW: 50 mind-blowing AI tools for everyday users
-    ...mindBlowingAITools,
+    ...automationAndWorkflowTools,
+    ...cloudServices,
+    ...emailManagementTools,
+    ...collaborationTools,
+    ...communicationTools,
     
-    // NEW: Design assistant tools
-    ...designAssistantTools,
+    // ========================================
+    // TIER 8: CREATIVE & ENTERTAINMENT
+    // ========================================
+    ...creativeSuites,
+    ...creativePlatforms,
+    ...creativeAndEntertainment,
+    ...entertainmentMediaTools,
+    ...entertainmentTools,
+    ...gameDesignAndDevelopment,
+    ...aiGamingTools,
+    ...aiPodcastTools,
     
-    // NEW: Comprehensive AI tools collection (120+ additional tools)
-    ...comprehensiveAITools,
-    
-    // NEW: Specialized GPTs added by user request
-    ...newSpecializedGPTs,
-    
-    // CRITICAL: ALL AI Web Tools GPTs including Soul Map GPT
-    ...aiWebToolsGPTs,
-    
-    // ALL AI WEB TOOLS GPT COLLECTIONS to match toolsData.ts
+    // ========================================
+    // TIER 9: AI WEB TOOLS CUSTOM GPTs (Your Creations)
+    // ========================================
     ...priorityFeaturedGPTs,
     ...secondPriorityFeaturedGPTs,
     ...thirdPriorityFeaturedGPTs,
     ...fourthPriorityFeaturedGPTs,
+    ...aiWebToolsGPTs,
     ...advancedSpecialtyGPTs,
     ...additionalSpecializedGPTs,
     ...finalSpecializedGPTs,
+    ...newSpecializedGPTs,
+    
+    // Categorized AI Web Tools GPTs
     ...personalDevelopmentGPTs,
     ...educationAndLearningGPTs,
     ...educationalToolsGPTs,
@@ -398,31 +463,71 @@ export const getAllToolCategories = (): Tool[] => {
     ...foodAndHospitalityGPTs,
     ...investigativeAndAnalysisGPTs,
     ...appraisalAndValuationGPTs,
-    ...mysteriousAndUnusualGPTs,
-    ...spiritualAndPhilosophyGPTs,
     ...timeAndHistoryGPTs,
     ...technologyInnovationGPTs,
+    
+    // ========================================
+    // TIER 10: NICHE & SPECIALIZED TOOLS
+    // ========================================
+    ...aiFashionStyleTools,
+    ...aiFitnessNutritionTools,
+    ...aiTravelTourismTools,
+    ...aiPetCareTools,
+    ...aiDatingRelationshipTools,
+    ...aiInteriorDesignTools,
+    ...aiSportsAnalyticsTools,
+    
+    ...aiAgricultureTools,
+    ...aiAutomotiveTools,
+    ...aiLogisticsSupplyChainTools,
+    ...aiShippingLogisticsTools,
+    
+    ...aiGptStorePlatforms,
+    ...aiBotMakingPlatforms,
+    ...aiVoiceAssistantTools,
+    ...aiEcommerceTools,
+    
+    ...newSpecializedTools2025,
+    ...specializedAITools,
+    ...specializedAndNiche,
+    ...specializedTools,
+    ...specializedNicheTools,
     ...specializedNicheToolsGPTs,
     
-    // NEW: Additional real AI tools (100 more tools)
-    ...additionalRealAITools,
-    
-    // NEWEST: More real AI tools (100 additional tools)
-    ...moreRealAITools,
-    
-    // NEW 2025: Marketing and Video Multimedia Tools
-    ...newMarketingTools2025,
-    ...newVideoMultimediaTools2025,
-    
-    // ADDITIONAL 2025: Video, Audio, and Creative Tools
-    ...additionalVideoTools2025,
-    ...additionalAudioTools2025,
+    // ========================================
+    // TIER 11: UNIQUE & EXPERIMENTAL (Funky/Unknown)
+    // ========================================
+    ...mindBlowingAITools,
+    ...comprehensiveAITools,
+    ...aiGenerativeTools,
     ...creativeExperimentalTools2025,
     
-    // Historical and Cultural tools
+    ...spiritualityTools,
+    ...spiritualAndPhilosophyGPTs,
+    ...mysteriousAndUnusualGPTs,
+    
+    ...timeAndHistory,
     ...historicalAndCultural,
     
-    // WEB3 & BLOCKCHAIN TOOLS
+    ...emergencyServices,
+    ...creativeServices,
+    ...advancedAITools,
+    ...specializedPolicyTools,
+    ...artAndCollectibles,
+    
+    ...threeDAndVisualizationTools,
+    ...newsAndInformationTools,
+    ...roboticsCompanies,
+    ...aiHardware,
+    
+    // NEW 2025: Additional tools
+    ...newVideoMultimediaTools2025,
+    
+    // Additional collections
+    ...additionalRealAITools,
+    ...moreRealAITools,
+    
+    // WEB3 & BLOCKCHAIN TOOLS (Niche)
     ...web3DomainsTools,
     
     // MISSING TOOL CATEGORIES (non-duplicates only)
