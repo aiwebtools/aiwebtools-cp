@@ -40,6 +40,13 @@ const CloneOfferPopup = () => {
   };
 
   useEffect(() => {
+    // Check if device is mobile (don't show popup on mobile)
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+    
+    if (isMobile) {
+      return; // Don't show popup on mobile devices
+    }
+
     // Check how many times popup has been shown
     const shownCount = parseInt(sessionStorage.getItem('cloneOfferShowCount') || '0');
     setShowCount(shownCount);
