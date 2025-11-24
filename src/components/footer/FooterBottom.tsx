@@ -20,7 +20,25 @@ const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
             className="font-cursive text-3xl cursor-pointer text-yellow-400 hover:text-yellow-300 animate-[pulse_3s_ease-in-out_infinite] hover:animate-none transition-all duration-300 hover:scale-105 drop-shadow-[0_0_8px_rgba(255,255,0,0.6)] -rotate-6 inline-block"
             onClick={(e) => handleExternalLink('https://www.aitools.company', e)}
           >KB</span>, AIWebTools.ai</p>
-        <p className="text-white text-2xl font-black mt-3 tracking-[0.3em] animate-pulse cursor-pointer hover:scale-105 transition-transform duration-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]">BUILD YOUR WORLD.</p>
+        
+        {/* KB's Video */}
+        <div className="mt-6 max-w-2xl mx-auto">
+          <div className="relative rounded-lg overflow-hidden border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+            <iframe
+              width="100%"
+              height="360"
+              src="https://www.youtube.com/embed/AkblRFNEQWk?autoplay=0&mute=0&controls=1&rel=0&vq=hd720&enablejsapi=1&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3"
+              title="KB's Message"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+              allowFullScreen
+              className="w-full aspect-video"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        
+        <p className="text-white text-2xl font-black mt-6 tracking-[0.3em] animate-pulse cursor-pointer hover:scale-105 transition-transform duration-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]">BUILD YOUR WORLD.</p>
       </div>
       
       {/* Copyright and Links */}
