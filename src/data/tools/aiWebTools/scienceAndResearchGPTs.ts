@@ -15,7 +15,8 @@ import {
   Zap,
   Recycle,
   Mountain,
-  Clock
+  Clock,
+  Rocket
 } from "lucide-react";
 
 export const scienceAndResearchGPTs: Tool[] = [
@@ -215,5 +216,17 @@ export const scienceAndResearchGPTs: Tool[] = [
     category: "Science & Research",
     rating: 4.9,
     totalVotes: 3567
+  },
+  {
+    icon: Rocket,
+    title: "Astrodynamics GPT",
+    description: "Computes orbital mechanics with precision—lawful, exact, never guessing.",
+    emoji: "🛰️",
+    color: "from-indigo-500 via-blue-500 to-cyan-600",
+    directUrl: "https://chatgpt.com/g/g-69268e308a4c81919515ac1895e10d17-astrodynamics-gpt?via=aiwebtools",
+    tags: ["astrodynamics", "orbital mechanics", "space physics", "trajectory calculations", "satellite orbits", "space science", "physics", "aerospace", "aiwebtools"],
+    category: "Science & Research",
+    rating: 4.8,
+    totalVotes: 2789
   }
 ];
