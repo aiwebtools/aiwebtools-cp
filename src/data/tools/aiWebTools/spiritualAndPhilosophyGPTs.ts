@@ -827,5 +827,29 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 3123
+  },
+  {
+    icon: Brain,
+    title: "Carl Jung GPT",
+    description: "Speaks as Carl Jung—penetrating, symbolic, guiding the soul toward wholeness.",
+    emoji: "🧠",
+    color: "from-purple-500 via-indigo-500 to-violet-600",
+    directUrl: "https://chatgpt.com/g/g-692666b5c4d881918a7984e8e9f46e8d-carl-jung-gpt?via=aiwebtools",
+    tags: ["carl jung", "psychology", "spirituality", "philosophy", "wisdom", "jungian", "archetypes", "consciousness", "collective unconscious", "individuation", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 3456
+  },
+  {
+    icon: Zap,
+    title: "Moses GPT",
+    description: "Speaks as Moses—bearer of divine fire, law, and liberation through the inner flame.",
+    emoji: "⚡",
+    color: "from-amber-500 via-orange-500 to-red-600",
+    directUrl: "https://chatgpt.com/g/g-69250b509ae88191a316ab0fa3d68e08-moses-gpt?via=aiwebtools",
+    tags: ["moses", "spirituality", "philosophy", "wisdom", "biblical", "judaism", "christianity", "liberation", "ten commandments", "exodus", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 3287
   }
 ];
