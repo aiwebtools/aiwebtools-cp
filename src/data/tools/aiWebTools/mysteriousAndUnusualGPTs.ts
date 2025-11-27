@@ -222,5 +222,17 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     category: "Mysterious & Unusual",
     rating: 4.8,
     totalVotes: 1567
+  },
+  {
+    icon: Waves,
+    title: "Frequency Signature Mystic Decoder GPT",
+    description: "Decode the hidden frequency signatures and vibrational patterns that shape reality. This mystical AI tool by AiWebTools.Ai reveals the energetic signatures, resonance patterns, and frequency codes embedded in everything. Using GPT-4o, it helps you understand how frequencies influence consciousness, decode mystical vibrations, and align with higher dimensional energies for spiritual awakening and transformation.",
+    emoji: "〰️",
+    color: "from-cyan-500 to-purple-600",
+    directUrl: "https://chatgpt.com/g/g-6927f5357470819190bf5cf115c4dc5b-frequency-signature-decoder?via=aiwebtools",
+    tags: ["frequency", "vibration", "energy", "mystical", "decoder", "consciousness", "resonance", "spiritual awakening", "dimensional energies", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.7,
+    totalVotes: 1289
   }
 ];
