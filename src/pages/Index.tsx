@@ -19,7 +19,6 @@ import InteractiveMatrixBackground from "@/components/InteractiveMatrixBackgroun
 import AnimatedBackground from "@/components/AnimatedBackground";
 import CloneOfferPopup from "@/components/CloneOfferPopup";
 import AIWebToolsSEOSection from "@/components/seo/AIWebToolsSEOSection";
-import AncientArchivesCollection from "@/components/AncientArchivesCollection";
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-[200px]">
@@ -158,9 +157,6 @@ const Index = () => {
         
         {/* SEO-optimized AI Web Tools section - Critical for "ai web tools" keyword ranking */}
         <AIWebToolsSEOSection />
-        
-        {/* Ancient Archives Collection - Showcasing ancient wisdom and historical GPTs */}
-        <AncientArchivesCollection />
         
         <div id="categories-section">
           <CategoryPageSelection />
