@@ -5,7 +5,8 @@ import {
   Stars,
   Sparkles,
   Star,
-  Brain
+  Brain,
+  BookOpen
 } from "lucide-react";
 
 export const mysteriousAndUnusualGPTs: Tool[] = [
@@ -234,5 +235,17 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     category: "Mysterious & Unusual",
     rating: 4.7,
     totalVotes: 1289
+  },
+  {
+    icon: BookOpen,
+    title: "Intergalactic Ancient Archivist GPT",
+    description: "An ancient archivist guiding users through a mythic intergalactic cosmology. This mystical AI tool by AiWebTools.Ai serves as your cosmic librarian, revealing ancient galactic wisdom, star system mythologies, and intergalactic historical records. Using GPT-4o, it guides you through the archives of cosmic civilizations, extraterrestrial histories, and the grand tapestry of universal knowledge spanning countless worlds and dimensions.",
+    emoji: "📚",
+    color: "from-indigo-600 to-violet-700",
+    directUrl: "https://chatgpt.com/g/g-692800a13eb881918fac2a7b1b86ad98-intergalactic-ancient-archivist-gpt?via=aiwebtools",
+    tags: ["intergalactic", "ancient knowledge", "cosmic archives", "mythology", "extraterrestrial", "universal wisdom", "space civilizations", "galactic history", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.8,
+    totalVotes: 1456
   }
 ];
