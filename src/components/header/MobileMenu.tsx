@@ -166,11 +166,12 @@ const MobileMenu = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent 
             ref={dropdownRef}
-            className="w-[85vw] md:w-[380px] max-w-[380px] bg-black/98 shadow-2xl border-2 border-cyan-500/50 backdrop-blur-xl max-h-[75vh] overflow-hidden z-[110] mr-2"
-            align="end"
+            className="w-[95vw] max-w-[400px] bg-black/98 shadow-2xl border-2 border-cyan-500/50 backdrop-blur-xl max-h-[75vh] overflow-hidden z-[110]"
+            align="center"
             alignOffset={0}
-            sideOffset={6}
+            sideOffset={8}
             avoidCollisions={true}
+            collisionPadding={10}
             sticky="always"
             style={{
               scrollBehavior: 'auto',
