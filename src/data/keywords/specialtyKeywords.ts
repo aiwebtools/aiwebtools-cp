@@ -66,5 +66,14 @@ export const specialtyKeywords: Record<string, string[]> = {
   "figma": ["UI design", "interface design", "design collaboration"],
   "adobe": ["creative suite", "design software", "multimedia"],
   "blender": ["3D modeling", "animation", "open source 3D", "3D creation", "mesh modeling"],
-  "unity": ["game engine", "3D development", "interactive content"]
+  "unity": ["game engine", "3D development", "interactive content"],
+  
+  // Spiritual & Religious Tools - ENHANCED FOR BETTER DISCOVERY
+  "saints": ["saint francis", "saint teresa", "saint augustine", "religious", "spirituality", "spiritual", "catholic", "christian", "holy"],
+  "prophets": ["prophet muhammad", "moses", "jesus", "religious", "spirituality", "spiritual", "faith", "divine"],
+  "gnostic": ["mary magdalene gpt", "gnosticism", "esoteric", "mystical", "spirituality", "ancient wisdom", "sacred texts"],
+  "zen": ["buddha", "buddhism", "meditation", "spirituality", "mindfulness", "enlightenment", "spiritual practice"],
+  "vedic": ["hinduism", "yoga", "meditation", "spirituality", "sanskrit", "ancient wisdom"],
+  "taoism": ["tao", "eastern philosophy", "spirituality", "zen", "balance", "harmony"],
+  "shamanism": ["spirituality", "indigenous wisdom", "spiritual practices", "mystical", "nature spirituality"]
 };
