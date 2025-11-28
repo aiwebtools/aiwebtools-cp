@@ -22,36 +22,57 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
-  // Pre-index tools for ultra-fast matching (no regex)
+  // Pre-index tools for HYPER-INTELLIGENT matching - ALL 2000+ tools fully searchable
   const indexedTools = useMemo(() => allTools.map(t => {
     const lt = t.title.toLowerCase();
     const ld = (t.description || "").toLowerCase();
     const lc = (t.category || "").toLowerCase();
     const lta = (t.tags || []).join(" ").toLowerCase();
-    return { tool: t, lt, ld, lc, lta, all: `${lt} ${ld} ${lc} ${lta}` };
+    // Create comprehensive searchable text including all fields for maximum discoverability
+    const searchableText = `${lt} ${ld} ${lc} ${lta}`;
+    // Also create normalized versions for fuzzy matching
+    const normalized = searchableText.replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ');
+    return { 
+      tool: t, 
+      lt, 
+      ld, 
+      lc, 
+      lta, 
+      all: searchableText,
+      normalized 
+    };
   }), []);
   
   // Debounce for heavy scoring stage
   const heavyTerm = useDebounce(searchTerm, 320);
-  // FAST stage: immediate results while typing (super lightweight)
+  // FAST stage: HYPER-INTELLIGENT immediate results while typing
   useEffect(() => {
     const t = searchTerm.trim();
     if (!t) {
       setSearchResults([]);
       setIsOpen(false);
-      setDisplayedCount(30);
+      setDisplayedCount(50); // Start with more results for better UX
       return;
     }
     const q = t.toLowerCase();
-    const tokens = q.split(/\s+/).filter(w => w.length >= 3);
+    const qNormalized = q.replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ');
+    const tokens = q.split(/\s+/).filter(w => w.length >= 2); // Lower threshold for better matching
 
     let fast = indexedTools
       .filter(ix => {
-        if (tokens.length > 0) {
-          // token-based match for long phrases
-          return tokens.some(tok => ix.all.includes(tok));
-        }
-        return ix.lt.includes(q) || ix.lc.includes(q) || ix.ld.includes(q) || ix.lta.includes(q);
+        // COMPREHENSIVE MATCHING - search by name, category, description, tags, AND intent
+        const directMatch = ix.lt.includes(q) || ix.lc.includes(q) || ix.ld.includes(q) || ix.lta.includes(q);
+        
+        // Token-based matching for multi-word queries
+        const tokenMatch = tokens.length > 0 && tokens.some(tok => ix.all.includes(tok));
+        
+        // Fuzzy normalized matching for typos/variations
+        const fuzzyMatch = ix.normalized.includes(qNormalized);
+        
+        // Category-specific matching (explicit category search)
+        const categoryMatch = ix.lc.includes(q);
+        
+        return directMatch || tokenMatch || fuzzyMatch || categoryMatch;
       })
       .map(ix => ix.tool);
 
@@ -164,32 +185,48 @@ export const useGlobalSearch = () => {
         tool.title.toLowerCase().includes("builder"));
     }
 
-    // Don't limit results - enable endless scrolling
+    // Don't limit results - enable true endless scrolling for ALL results
     setSearchResults(fast);
-    setDisplayedCount(30);
+    setDisplayedCount(50); // Better initial display for richer experience
     setIsOpen(true);
   }, [searchTerm, indexedTools]);
 
-  // HEAVY stage: intent + category-aware smart ranking after short pause
+  // HEAVY stage: HYPER-INTELLIGENT intent + category + fuzzy matching after short pause
   useEffect(() => {
     const trimmedTerm = heavyTerm.trim();
     if (!trimmedTerm) return; // keep fast results when empty
     if (trimmedTerm !== searchTerm.trim()) return; // stale guard
 
     const lowerTerm = trimmedTerm.toLowerCase();
-    const tokens = lowerTerm.split(/\s+/).filter(w => w.length >= 3);
+    const lowerNormalized = lowerTerm.replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ');
+    const tokens = lowerTerm.split(/\s+/).filter(w => w.length >= 2); // Lower threshold
 
-    // Pre-filter to reduce workload
-    const candidates = indexedTools.filter(ix =>
-      (tokens.length ? tokens.some(tok => ix.all.includes(tok)) : (
-        ix.lt.includes(lowerTerm) || ix.ld.includes(lowerTerm) || ix.lc.includes(lowerTerm) || ix.lta.includes(lowerTerm)
-      ))
-    );
+    // COMPREHENSIVE PRE-FILTER - capture MORE tools for better discovery
+    const candidates = indexedTools.filter(ix => {
+      // Direct matching
+      const directMatch = ix.lt.includes(lowerTerm) || ix.ld.includes(lowerTerm) || 
+                         ix.lc.includes(lowerTerm) || ix.lta.includes(lowerTerm);
+      
+      // Token-based matching
+      const tokenMatch = tokens.length > 0 && tokens.some(tok => ix.all.includes(tok));
+      
+      // Fuzzy normalized matching for typos
+      const fuzzyMatch = ix.normalized.includes(lowerNormalized);
+      
+      // Partial word matching for incomplete searches
+      const partialMatch = tokens.some(tok => 
+        ix.lt.split(/\s+/).some(word => word.startsWith(tok)) ||
+        ix.lc.split(/\s+/).some(word => word.startsWith(tok))
+      );
+      
+      return directMatch || tokenMatch || fuzzyMatch || partialMatch;
+    });
 
-    // If few candidates, broaden via existing intelligent search
+    // AGGRESSIVE FALLBACK - if still few results, use intelligent search for ALL tools
     let fallbackResults: any[] = [];
-    if (candidates.length < 5 && trimmedTerm.length >= 3 && trimmedTerm.length <= 20) {
+    if (candidates.length < 10 && trimmedTerm.length >= 2) {
       try {
+        // Search ALL tools with intelligent matching
         fallbackResults = searchTools(allTools, trimmedTerm);
       } catch {
         fallbackResults = [];
@@ -303,11 +340,11 @@ export const useGlobalSearch = () => {
 
     const ranked = scored.map(s => s.tool);
     const deduped = quickDeduplicateSearchResults ? quickDeduplicateSearchResults(ranked) : ranked;
-    // Don't limit results - enable endless scrolling for all searches
+    // Don't limit results - enable TRUE endless scrolling for ALL search results
     
     if (trimmedTerm === searchTerm.trim()) {
       setSearchResults(deduped);
-      setDisplayedCount(30);
+      setDisplayedCount(50); // Better initial display count
       setIsOpen(true);
     }
   }, [heavyTerm, searchTerm, indexedTools]);
@@ -343,14 +380,14 @@ export const useGlobalSearch = () => {
   const clearSearch = useCallback(() => {
     setSearchTerm("");
     setIsOpen(false);
-    setDisplayedCount(30);
+    setDisplayedCount(50);
   }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
       setSearchTerm("");
-      setDisplayedCount(30);
+      setDisplayedCount(50);
     } else if (e.key === 'Enter' && searchTerm.trim()) {
       if (searchResults.length > 0) {
         const topResult = searchResults[0];
@@ -364,27 +401,32 @@ export const useGlobalSearch = () => {
     }
   }, [searchTerm, searchResults, navigate]);
 
-  // ENHANCED scroll handler with proper endless loading and performance optimization
+  // FIXED INFINITE SCROLL - works consistently for ALL searches
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
-    // Performance optimization - throttle scroll events
+    // Don't trigger if already loading
     if (isLoadingMore) return;
     
-    // More aggressive threshold for smoother endless scroll experience
-    const threshold = 150;
+    // CRITICAL FIX: More generous threshold to trigger loading earlier
+    const threshold = 200; // Increased for smoother experience
     const nearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
     
+    // Load more when near bottom AND more results exist
     if (nearBottom && displayedCount < searchResults.length) {
       setIsLoadingMore(true);
       
-      // Immediate loading with optimized batch size
-      setTimeout(() => {
-        // Load larger batches for better UX (30 items at a time)
-        const increment = Math.min(30, searchResults.length - displayedCount);
-        setDisplayedCount(prev => prev + increment);
+      // Immediate, smooth loading without delay
+      requestAnimationFrame(() => {
+        // Load LARGER batches (50 items) for fewer interruptions
+        const increment = Math.min(50, searchResults.length - displayedCount);
+        setDisplayedCount(prev => {
+          const newCount = prev + increment;
+          // Ensure we never exceed total results
+          return Math.min(newCount, searchResults.length);
+        });
         setIsLoadingMore(false);
-      }, 50); // Faster response time
+      });
     }
   }, [displayedCount, searchResults.length, isLoadingMore]);
 

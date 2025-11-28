@@ -51,8 +51,13 @@ const GlobalSearchResults = ({
       <Card 
         ref={scrollRef}
         data-scroll-container
-        className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[999] max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
+        className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[999] max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
         onScroll={onScroll}
+        style={{ 
+          overflowY: 'auto',
+          WebkitOverflowScrolling: 'touch',
+          scrollBehavior: 'smooth'
+        }}
       >
       <CardContent className="p-0" style={{ transform: 'translateZ(0)' }}>
         <div className="p-2 pt-4" style={{ transform: 'translateZ(0)' }}>
@@ -135,22 +140,36 @@ const GlobalSearchResults = ({
             );
           })}
           {(hasMoreToLoad || isLoadingMore) && (
-            <div className="text-center py-3 text-cyan-400/70 text-xs">
+            <div className="text-center py-4 text-cyan-400/70 text-sm">
               {isLoadingMore ? (
-                <div className="animate-pulse">🔄 Loading more amazing AI tools...</div>
+                <div className="animate-pulse flex items-center justify-center gap-2">
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                  <span className="ml-2">Loading more tools...</span>
+                </div>
               ) : (
-                <div className="animate-pulse">📜 Scroll down to load more tools...</div>
-              )}
-              {hasMoreToLoad && !isLoadingMore && (
-                <div className="mt-1">{searchResults.length - displayedCount} more tools in our endless collection!</div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="animate-pulse">📜 Scroll down for more amazing AI tools</div>
+                  <div className="text-xs text-cyan-300/60">
+                    {searchResults.length - displayedCount} more in this search
+                  </div>
+                </div>
               )}
             </div>
           )}
-          {!hasMoreToLoad && !isLoadingMore && searchResults.length > 50 && (
-            <div className="text-center py-4 text-cyan-300/80 text-xs">
-              <div className="text-lg mb-1">🎉</div>
-              <div>You've explored all {searchResults.length} AI tools!</div>
-              <div className="text-xs opacity-70 mt-1">Try a new search to discover more</div>
+          {!hasMoreToLoad && !isLoadingMore && searchResults.length > 30 && (
+            <div className="text-center py-4 text-cyan-300/90 text-sm border-t border-cyan-500/20 mt-2">
+              <div className="text-2xl mb-2">🎉</div>
+              <div className="font-semibold">You've viewed all {searchResults.length} results!</div>
+              <div className="text-xs text-cyan-400/60 mt-1">Try a new search to discover more tools</div>
+            </div>
+          )}
+          {searchResults.length === 0 && (
+            <div className="text-center py-8 text-cyan-400/70 text-sm">
+              <div className="text-3xl mb-3">🔍</div>
+              <div className="font-semibold mb-2">No exact matches found</div>
+              <div className="text-xs text-cyan-400/50">Try different keywords or check spelling</div>
             </div>
           )}
         </div>
