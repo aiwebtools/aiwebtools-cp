@@ -2,8 +2,41 @@ import { Tool } from "@/types/tools";
 import { TYPO_DICTIONARY } from "../typoDictionary";
 import { calculatePeopleSearchScore } from "../matching/peopleSearchMatching";
 
-// Super intelligent partial matching patterns
+// Super intelligent partial matching patterns - MASSIVELY EXPANDED
 const PARTIAL_PATTERNS: Record<string, string[]> = {
+  // Spirituality & Religion - COMPREHENSIVE
+  "spir": ["spiritual", "spirituality", "spirit"],
+  "spirit": ["spiritual", "spirituality", "spirit guide"],
+  "spiritual": ["spirituality", "spiritual guidance", "spiritual teacher"],
+  "spirituality": ["spiritual", "religion", "faith", "divine"],
+  "relig": ["religion", "religious"],
+  "religion": ["religious", "spirituality", "faith", "divine"],
+  "religious": ["religion", "spirituality", "faith"],
+  "saint": ["saints", "saint francis", "saint teresa", "saint augustine"],
+  "saints": ["saint", "catholic saints", "christian saints"],
+  "prophet": ["prophets", "spiritual teacher"],
+  "prophets": ["prophet", "religious leaders"],
+  "chr": ["christian", "christ"],
+  "christ": ["christian", "christianity", "jesus"],
+  "christian": ["christianity", "christ", "jesus"],
+  "christianity": ["christian", "christ", "religion"],
+  "buddh": ["buddha", "buddhism"],
+  "buddha": ["buddhism", "meditation", "enlightenment"],
+  "buddhism": ["buddha", "zen", "meditation"],
+  "jew": ["jewish", "judaism"],
+  "jewish": ["judaism", "torah", "kabbalah"],
+  "judaism": ["jewish", "torah", "hebrew"],
+  "musl": ["muslim", "islam"],
+  "muslim": ["islam", "islamic"],
+  "islam": ["muslim", "islamic", "quran"],
+  "meditat": ["meditation", "mindfulness"],
+  "meditation": ["mindfulness", "spiritual practice"],
+  "yog": ["yoga", "meditation"],
+  "yoga": ["meditation", "spirituality"],
+  "myst": ["mystical", "mysticism"],
+  "mystical": ["mysticism", "esoteric"],
+  "mysticism": ["mystical", "esoteric"],
+  
   "co": ["college", "course", "coding", "content", "creative", "company", "commercial"],
   "col": ["college", "coloring", "collectible", "collaboration"],
   "coll": ["college", "collectible", "collaboration"],
@@ -41,11 +74,12 @@ const PARTIAL_PATTERNS: Record<string, string[]> = {
   
   "bus": ["business"],
   "busi": ["business"],
-  "business": ["business plan", "business tools"],
+  "busin": ["business", "business plan"],
+  "business": ["business plan", "business tools", "business strategy"],
   
   "heal": ["health", "healthcare"],
   "hea": ["health", "healthcare"],
-  "health": ["healthcare", "health tools"],
+  "health": ["healthcare", "health tools", "wellness", "medical"],
   
   "med": ["medical", "medicine"],
   "medi": ["medical", "medicine"],
@@ -57,25 +91,26 @@ const PARTIAL_PATTERNS: Record<string, string[]> = {
   
   "leg": ["legal"],
   "lega": ["legal"],
-  "legal": ["legal tools", "legal gpt"],
+  "legal": ["legal tools", "legal gpt", "law", "lawyer"],
   
   "ed": ["education", "editor"],
   "edu": ["education"],
-  "educ": ["education"],
-  "education": ["education tools", "educational"],
+  "educ": ["education", "educational"],
+  "education": ["education tools", "educational", "learning", "teaching"],
   
   "cr": ["creative", "crypto"],
   "cre": ["creative"],
-  "creat": ["creative"],
-  "creative": ["creative tools", "creative design"],
+  "creat": ["creative", "creation"],
+  "creative": ["creative tools", "creative design", "creativity", "art"],
   
   "des": ["design", "designer"],
   "desi": ["design", "designer"],
-  "design": ["graphic design", "web design"],
+  "design": ["graphic design", "web design", "designer"],
   
   "fin": ["finance", "financial", "finder"],
   "fina": ["finance", "financial"],
-  "finance": ["financial tools", "finance gpt"],
+  "financ": ["finance", "financial"],
+  "finance": ["financial tools", "finance gpt", "money", "trading"],
   
   "tra": ["trading", "travel", "training"],
   "trad": ["trading"],
@@ -104,7 +139,24 @@ const PARTIAL_PATTERNS: Record<string, string[]> = {
   "finder": ["person finder", "information finder"],
   "info": ["information", "information finder"],
   "inform": ["information", "information finder"],
-  "information": ["person information finder", "information finder"]
+  "information": ["person information finder", "information finder"],
+  
+  // Additional category/tool patterns for comprehensive search
+  "cat": ["category", "cannabis"],
+  "categ": ["category"],
+  "category": ["categories", "all categories"],
+  "tech": ["technology", "technical"],
+  "technology": ["tech tools", "innovation"],
+  "market": ["marketing", "market"],
+  "marketing": ["market", "sales", "promotion"],
+  "content": ["content creation", "content tools"],
+  "data": ["data analysis", "analytics", "database"],
+  "image": ["image generation", "graphics"],
+  "writing": ["writer", "write"],
+  "develop": ["development", "developer"],
+  "automation": ["automate", "automatic"],
+  "communication": ["chat", "messaging"],
+  "productivity": ["productive", "efficiency"]
 };
 
 // Advanced fuzzy matching with Levenshtein distance
