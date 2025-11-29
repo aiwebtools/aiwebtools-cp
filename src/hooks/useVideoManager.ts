@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 class VideoManager {
   private currentVideo: HTMLIFrameElement | null = null;
   private observers: Map<HTMLIFrameElement, IntersectionObserver> = new Map();
+  private isMuted: boolean = false;
 
   registerVideo(iframe: HTMLIFrameElement, toolId: string) {
     // Prevent duplicate registrations
@@ -150,6 +151,34 @@ class VideoManager {
     } catch (error) {
       console.warn('Could not send pause command to video:', error);
     }
+  }
+
+  muteAll() {
+    this.isMuted = true;
+    this.observers.forEach((_, iframe) => {
+      try {
+        iframe.contentWindow?.postMessage(
+          '{"event":"command","func":"mute","args":""}',
+          '*'
+        );
+      } catch (error) {
+        console.warn('Could not mute video:', error);
+      }
+    });
+  }
+
+  unmuteAll() {
+    this.isMuted = false;
+    this.observers.forEach((_, iframe) => {
+      try {
+        iframe.contentWindow?.postMessage(
+          '{"event":"command","func":"unMute","args":""}',
+          '*'
+        );
+      } catch (error) {
+        console.warn('Could not unmute video:', error);
+      }
+    });
   }
 
   cleanup() {

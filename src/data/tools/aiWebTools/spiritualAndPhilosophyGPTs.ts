@@ -4,6 +4,18 @@ import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, M
 
 export const spiritualAndPhilosophyGPTs: Tool[] = [
   {
+    icon: Sun,
+    title: "GOD IS LIGHT GPT",
+    description: "Comparative-religion guide decoding Light symbolism across traditions. Explore how the divine essence of Light manifests across Christianity, Islam, Hinduism, Buddhism, Judaism, and other world religions. Discover the universal truths hidden within sacred light metaphors, illumination teachings, and divine radiance concepts that unite humanity's spiritual heritage.",
+    emoji: "💡",
+    color: "from-yellow-400 to-white",
+    directUrl: "https://chatgpt.com/g/g-692a3789904481918413ba10f9acb4a5-god-is-light-gpt/?via=aiwebtools",
+    tags: ["light symbolism", "comparative religion", "divine light", "sacred traditions", "spiritual unity", "world religions", "illumination", "divine radiance", "universal truth", "spirituality", "religion", "religious", "god", "divine", "sacred", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 1234
+  },
+  {
     icon: Star,
     title: "Paramahansa Yogananda GPT",
     description: "Connect with the wisdom of Paramahansa Yogananda, the renowned spiritual teacher and author of 'Autobiography of a Yogi'. This GPT embodies his teachings on Kriya Yoga, Self-Realization, meditation practices, and the unity of all religions. Explore profound spiritual insights, receive guidance on the path to Self-realization, and discover the scientific approach to God-realization through his timeless wisdom and practical spirituality.",
