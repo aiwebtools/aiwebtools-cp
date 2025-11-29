@@ -6,6 +6,7 @@ import CategoryPageSelection from "@/components/CategoryPageSelection";
 import SpecialServices from "@/components/SpecialServices";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ui/scroll-to-top";
+import GlobalMuteButton from "@/components/GlobalMuteButton";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
 import ConsentPopup from "@/components/ConsentPopup";
@@ -185,8 +186,9 @@ const Index = () => {
           </div>
         </section>
         
-        <ScrollToTop />
-        <Footer />
+      <ScrollToTop />
+      <GlobalMuteButton />
+      <Footer />
       </div>
       
       <ConsentPopup />
