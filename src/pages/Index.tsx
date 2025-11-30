@@ -20,6 +20,7 @@ import InteractiveMatrixBackground from "@/components/InteractiveMatrixBackgroun
 import AnimatedBackground from "@/components/AnimatedBackground";
 import CloneOfferPopup from "@/components/CloneOfferPopup";
 import AIWebToolsSEOSection from "@/components/seo/AIWebToolsSEOSection";
+import videoManager from "@/hooks/useVideoManager";
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-[200px]">
@@ -39,6 +40,11 @@ const Index = () => {
   useEffect(() => {
     // Set loaded state immediately for faster initial render
     setIsLoaded(true);
+    
+    // Register main video with global video manager for mute/unmute control
+    if (mainVideoRef.current) {
+      videoManager.registerExternalVideo(mainVideoRef.current);
+    }
     
     // Listen for welcome audio completion to trigger video
     const handleAudioComplete = () => {
@@ -76,6 +82,9 @@ const Index = () => {
     return () => {
       clearTimeout(statsTimer);
       window.removeEventListener('welcomeAudioComplete', handleAudioComplete);
+      if (mainVideoRef.current) {
+        videoManager.unregisterExternalVideo(mainVideoRef.current);
+      }
     };
   }, [videoStarted]);
 

@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 class VideoManager {
   private currentVideo: HTMLIFrameElement | null = null;
   private observers: Map<HTMLIFrameElement, IntersectionObserver> = new Map();
+  private extraVideos: Set<HTMLIFrameElement> = new Set();
   private isMuted: boolean = false;
 
   registerVideo(iframe: HTMLIFrameElement, toolId: string) {
@@ -110,6 +111,24 @@ class VideoManager {
     }
   }
 
+  // Register videos that are not managed by scroll/visibility (e.g. main hero video)
+  registerExternalVideo(iframe: HTMLIFrameElement) {
+    if (!iframe) return;
+    this.extraVideos.add(iframe);
+    if (this.isMuted) {
+      try {
+        iframe.contentWindow?.postMessage('{"event":"command","func":"mute","args":""}', '*');
+      } catch (error) {
+        console.warn('Could not mute external video:', error);
+      }
+    }
+  }
+
+  unregisterExternalVideo(iframe: HTMLIFrameElement) {
+    if (!iframe) return;
+    this.extraVideos.delete(iframe);
+  }
+
   private playVideo(iframe: HTMLIFrameElement, forceUnmute: boolean = false) {
     try {
       const userAgent = navigator.userAgent.toLowerCase();
@@ -165,7 +184,7 @@ class VideoManager {
   }
 
   muteAll() {
-    console.log('🔇 MUTING ALL VIDEOS - Total videos:', this.observers.size);
+    console.log('🔇 MUTING ALL VIDEOS - Total videos:', this.observers.size + this.extraVideos.size);
     this.isMuted = true;
     this.observers.forEach((_, iframe) => {
       try {
@@ -173,15 +192,27 @@ class VideoManager {
           '{"event":"command","func":"mute","args":""}',
           '*'
         );
-        console.log('🔇 Mute command sent to video');
+        console.log('🔇 Mute command sent to managed video');
       } catch (error) {
         console.warn('Could not mute video:', error);
+      }
+    });
+
+    this.extraVideos.forEach((iframe) => {
+      try {
+        iframe.contentWindow?.postMessage(
+          '{"event":"command","func":"mute","args":""}',
+          '*'
+        );
+        console.log('🔇 Mute command sent to external video');
+      } catch (error) {
+        console.warn('Could not mute external video:', error);
       }
     });
   }
 
   unmuteAll() {
-    console.log('🔊 UNMUTING ALL VIDEOS - Total videos:', this.observers.size);
+    console.log('🔊 UNMUTING ALL VIDEOS - Total videos:', this.observers.size + this.extraVideos.size);
     this.isMuted = false;
     this.observers.forEach((_, iframe) => {
       try {
@@ -189,9 +220,21 @@ class VideoManager {
           '{"event":"command","func":"unMute","args":""}',
           '*'
         );
-        console.log('🔊 Unmute command sent to video');
+        console.log('🔊 Unmute command sent to managed video');
       } catch (error) {
         console.warn('Could not unmute video:', error);
+      }
+    });
+
+    this.extraVideos.forEach((iframe) => {
+      try {
+        iframe.contentWindow?.postMessage(
+          '{"event":"command","func":"unMute","args":""}',
+          '*'
+        );
+        console.log('🔊 Unmute command sent to external video');
+      } catch (error) {
+        console.warn('Could not unmute external video:', error);
       }
     });
   }
