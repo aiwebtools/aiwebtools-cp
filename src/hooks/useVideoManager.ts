@@ -126,13 +126,24 @@ class VideoManager {
         '*'
       );
       
-      // Only unmute if specifically needed
-      if (forceUnmute || isRestrictiveBrowser) {
+      // If globally muted, ensure video stays muted
+      if (this.isMuted) {
+        setTimeout(() => {
+          iframe.contentWindow?.postMessage(
+            '{"event":"command","func":"mute","args":""}',
+            '*'
+          );
+          console.log('🔇 Video muted due to global mute state');
+        }, 100);
+      }
+      // Only unmute if specifically needed and not globally muted
+      else if (forceUnmute || isRestrictiveBrowser) {
         setTimeout(() => {
           iframe.contentWindow?.postMessage(
             '{"event":"command","func":"unMute","args":""}',
             '*'
           );
+          console.log('🔊 Video unmuted');
         }, 100);
       }
       
@@ -154,6 +165,7 @@ class VideoManager {
   }
 
   muteAll() {
+    console.log('🔇 MUTING ALL VIDEOS - Total videos:', this.observers.size);
     this.isMuted = true;
     this.observers.forEach((_, iframe) => {
       try {
@@ -161,6 +173,7 @@ class VideoManager {
           '{"event":"command","func":"mute","args":""}',
           '*'
         );
+        console.log('🔇 Mute command sent to video');
       } catch (error) {
         console.warn('Could not mute video:', error);
       }
@@ -168,6 +181,7 @@ class VideoManager {
   }
 
   unmuteAll() {
+    console.log('🔊 UNMUTING ALL VIDEOS - Total videos:', this.observers.size);
     this.isMuted = false;
     this.observers.forEach((_, iframe) => {
       try {
@@ -175,6 +189,7 @@ class VideoManager {
           '{"event":"command","func":"unMute","args":""}',
           '*'
         );
+        console.log('🔊 Unmute command sent to video');
       } catch (error) {
         console.warn('Could not unmute video:', error);
       }

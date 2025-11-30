@@ -10,6 +10,8 @@ const GlobalMuteButton = () => {
     const newMutedState = !isMuted;
     setIsMuted(newMutedState);
     
+    console.log('🎛️ Global mute button clicked - New state:', newMutedState ? 'MUTED' : 'UNMUTED');
+    
     if (newMutedState) {
       videoManager.muteAll();
     } else {
