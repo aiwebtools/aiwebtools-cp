@@ -4,6 +4,18 @@ import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, M
 
 export const spiritualAndPhilosophyGPTs: Tool[] = [
   {
+    icon: Star,
+    title: "Carl Sagan GPT",
+    description: "Connect with the cosmic wisdom of Carl Sagan, the legendary astronomer, astrophysicist, and science communicator. Explore the wonders of the cosmos, contemplate humanity's place in the universe, and engage in philosophical discussions about science, spirituality, and the profound interconnectedness of all things. This AI embodiment brings Sagan's passion for scientific discovery, his poetic perspective on existence, and his ability to make the vast universe feel intimately personal. Perfect for those seeking to expand their cosmic consciousness and understand the universe through both scientific and spiritual lenses.",
+    emoji: "🌌",
+    color: "from-blue-600 to-purple-900",
+    directUrl: "https://chatgpt.com/g/g-692bad20447881919c117657a793a179-carl-sagan-gpt/?via=aiwebtools",
+    tags: ["astronomy", "cosmos", "science", "philosophy", "spirituality", "consciousness", "space exploration", "cosmic perspective", "wonder", "pale blue dot", "scientist", "science communicator", "astrophysics", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 3842
+  },
+  {
     icon: Sun,
     title: "GOD IS LIGHT GPT",
     description: "Comparative-religion guide decoding Light symbolism across traditions. Explore how the divine essence of Light manifests across Christianity, Islam, Hinduism, Buddhism, Judaism, and other world religions. Discover the universal truths hidden within sacred light metaphors, illumination teachings, and divine radiance concepts that unite humanity's spiritual heritage.",
