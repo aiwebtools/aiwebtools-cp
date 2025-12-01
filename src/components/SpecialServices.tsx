@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 import { FavoritesButton } from "@/components/favorites/FavoritesButton";
 import { Tool } from "@/types/tools";
+import { useEffect, useRef } from "react";
+import videoManager from "@/hooks/useVideoManager";
 
 // =============================================================================
 // OUR FEATURED SECTION - Portfolio showcase of AI Web Tools GPTs
@@ -1430,6 +1432,33 @@ const handleAccessTool = (directUrl: string, toolName: string) => {
 
 const OurFeaturedSection = () => {
   const navigate = useNavigate();
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Register all video iframes with the global video manager
+  useEffect(() => {
+    const registerVideos = () => {
+      if (!sectionRef.current) return;
+      
+      const iframes = sectionRef.current.querySelectorAll('iframe[src*="youtube.com/embed"]');
+      const videoList: HTMLIFrameElement[] = [];
+      
+      iframes.forEach((iframe) => {
+        const videoIframe = iframe as HTMLIFrameElement;
+        videoList.push(videoIframe);
+        videoManager.registerExternalVideo(videoIframe);
+      });
+
+      return () => {
+        videoList.forEach(iframe => {
+          videoManager.unregisterExternalVideo(iframe);
+        });
+      };
+    };
+
+    // Delay registration to ensure iframes are loaded
+    const timer = setTimeout(registerVideos, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleShowCategories = () => {
     navigate('/');
@@ -1452,7 +1481,7 @@ const OurFeaturedSection = () => {
     .sort((a, b) => a.title.localeCompare(b.title));
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-900 to-purple-900">
+    <section ref={sectionRef} className="py-20 bg-gradient-to-br from-slate-900 to-purple-900">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
