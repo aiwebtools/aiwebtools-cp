@@ -55,6 +55,21 @@ const BookPromotionCard = () => {
                   </div>
                   <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-lg blur-xl -z-10"></div>
                 </div>
+
+                {/* Third Video */}
+                <div className="relative w-48 flex-shrink-0">
+                  {/* 9:16 aspect ratio container */}
+                  <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
+                    <iframe
+                      src="https://www.youtube.com/embed/i9e3pRXyP8s"
+                      className="absolute inset-0 w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      title="Book Deployable Robot Prompts Showcase"
+                    />
+                  </div>
+                  <div className="absolute -inset-2 bg-gradient-to-r from-orange-500/20 to-pink-500/20 rounded-lg blur-xl -z-10"></div>
+                </div>
               </div>
 
               {/* Content */}
