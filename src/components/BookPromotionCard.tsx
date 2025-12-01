@@ -2,8 +2,34 @@ import { BookOpen, ExternalLink, Download, Eye, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import videoManager from "@/hooks/useVideoManager";
+import { useRef, useEffect } from "react";
 
 const BookPromotionCard = () => {
+  const video1Ref = useRef<HTMLIFrameElement>(null);
+  const video2Ref = useRef<HTMLIFrameElement>(null);
+  const video3Ref = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    // Register all three book videos with the global video manager
+    const videos = [video1Ref.current, video2Ref.current, video3Ref.current];
+    
+    videos.forEach((video, index) => {
+      if (video) {
+        setTimeout(() => {
+          videoManager.registerExternalVideo(video);
+        }, 500 + (index * 100));
+      }
+    });
+
+    return () => {
+      videos.forEach(video => {
+        if (video) {
+          videoManager.unregisterExternalVideo(video);
+        }
+      });
+    };
+  }, []);
   const handleBuyBook = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -31,7 +57,8 @@ const BookPromotionCard = () => {
                   {/* 9:16 aspect ratio container */}
                   <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
                     <iframe
-                      src="https://www.youtube.com/embed/lG1rMaImBNc"
+                      ref={video1Ref}
+                      src="https://www.youtube.com/embed/lG1rMaImBNc?enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}"
                       className="absolute inset-0 w-full h-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
@@ -46,7 +73,8 @@ const BookPromotionCard = () => {
                   {/* 9:16 aspect ratio container */}
                   <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
                     <iframe
-                      src="https://www.youtube.com/embed/i0zc0aeRCeI"
+                      ref={video2Ref}
+                      src="https://www.youtube.com/embed/i0zc0aeRCeI?enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}"
                       className="absolute inset-0 w-full h-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
@@ -61,7 +89,8 @@ const BookPromotionCard = () => {
                   {/* 9:16 aspect ratio container */}
                   <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
                     <iframe
-                      src="https://www.youtube.com/embed/i9e3pRXyP8s"
+                      ref={video3Ref}
+                      src="https://www.youtube.com/embed/i9e3pRXyP8s?enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}"
                       className="absolute inset-0 w-full h-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen

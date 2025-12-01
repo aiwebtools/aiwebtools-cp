@@ -1,11 +1,32 @@
 
 import { Globe } from "lucide-react";
+import { useRef, useEffect } from "react";
+import videoManager from "@/hooks/useVideoManager";
 
 interface FooterBottomProps {
   handleExternalLink: (url: string, e: React.MouseEvent) => void;
 }
 
 const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
+  const videoRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      const timer = setTimeout(() => {
+        if (videoRef.current) {
+          videoManager.registerExternalVideo(videoRef.current);
+        }
+      }, 500);
+
+      return () => {
+        clearTimeout(timer);
+        if (videoRef.current) {
+          videoManager.unregisterExternalVideo(videoRef.current);
+        }
+      };
+    }
+  }, []);
+
   return (
     <div className="space-y-6">
       {/* Founder Quote - Cyberpunk Neon Style */}
@@ -25,9 +46,10 @@ const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
         <div className="mt-6 max-w-2xl mx-auto">
           <div className="relative rounded-lg overflow-hidden border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
             <iframe
+              ref={videoRef}
               width="100%"
               height="360"
-              src="https://www.youtube.com/embed/AkblRFNEQWk?autoplay=0&mute=0&controls=1&rel=0&vq=hd720&enablejsapi=1&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3"
+              src="https://www.youtube.com/embed/AkblRFNEQWk?autoplay=0&mute=0&controls=1&rel=0&vq=hd720&enablejsapi=1&playsinline=1&modestbranding=1&fs=1&iv_load_policy=3&origin=${encodeURIComponent(window.location.origin)}"
               title="KB's Message"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"

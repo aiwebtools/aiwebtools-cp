@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Tool } from "@/types/tools";
+import videoManager from "@/hooks/useVideoManager";
 
 interface ToolCardMediaProps {
   tool: Tool;
@@ -10,6 +11,7 @@ interface ToolCardMediaProps {
 const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) => {
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLIFrameElement>(null);
   
   useEffect(() => {
     if (!containerRef.current || !tool.videoUrl) return;
@@ -34,6 +36,22 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
     
     return () => observer.disconnect();
   }, [tool.videoUrl]);
+
+  // Register video with global video manager for mute control
+  useEffect(() => {
+    if (videoRef.current && shouldLoadVideo) {
+      const iframe = videoRef.current;
+      // Small delay to ensure iframe is loaded
+      const timer = setTimeout(() => {
+        videoManager.registerExternalVideo(iframe);
+      }, 500);
+      
+      return () => {
+        clearTimeout(timer);
+        videoManager.unregisterExternalVideo(iframe);
+      };
+    }
+  }, [shouldLoadVideo]);
   const hasImage = tool.imageUrl && tool.imageUrl.trim() !== '';
   const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
   const hasVideo = tool.videoUrl && tool.videoUrl.trim() !== '';
@@ -79,6 +97,7 @@ const ToolCardMedia = ({ tool, isFeatured, imageHeight }: ToolCardMediaProps) =>
       {shouldShowVideo && hasVideo ? (
         <>
           <iframe
+            ref={videoRef}
             width="100%"
             height="100%"
             src={getOptimizedEmbedUrl(tool.videoUrl!)}
