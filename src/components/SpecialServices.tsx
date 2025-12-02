@@ -432,14 +432,14 @@ const featuredGPTs = [
     emoji: "🛡️"
   },
   {
-    title: "Interpretis GPT",
-    description: "Historical interpreter and cultural translator providing deep insights into historical contexts, cultural meanings, and temporal interpretations.",
-    badge: "HISTORY",
-    color: "from-amber-500 to-orange-600",
-    features: ["Historical Context", "Cultural Translation", "Temporal Analysis", "Cultural Insights"],
+    title: "Interpretis 🕰️",
+    description: "Interpretis 🕰️ is a powerful tool that explores the deeper meanings behind language, history, and culture. By combining the study of word origins, symbols, and societal influences, it reveals how ideas have evolved and shaped the way we think.",
+    badge: "ETYMOLOGY",
+    color: "from-amber-500 to-brown-600",
+    features: ["Etymology", "Linguistics", "Cultural Analysis", "Word Origins"],
     directUrl: "https://interpretis.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
-    emoji: "📜"
+    emoji: "🕰️"
   },
   {
     title: "JARVIS – The Steward of Humanity GPT",
@@ -561,7 +561,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-pink-600",
     features: ["Music Lessons", "Instrument Training", "Vocal Coaching", "Song Writing"],
     directUrl: "https://musicmelodiesandlessonsgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/0_oIzDL2BB4",
+    videoUrl: "https://youtu.be/8aPpUPiDBJ4?si=4ERg7NITSKCePyHF",
     emoji: "🎵"
   },
   {
@@ -873,9 +873,9 @@ const featuredGPTs = [
     badge: "HERBAL MEDICINE",
     color: "from-green-600 to-amber-600",
     features: ["Herbal Remedies", "Historical Medicine", "Formulations", "Botanical Lore"],
-    directUrl: "https://apothecarygpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-67d839556b848191a7572b1f3e911499-historical-apothecary-gpt/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-the-ai-tool-_kLdMI.png/:/cr=t:0%25,l:7.93%25,w:84.15%25,h:100%25/rs=w:1200,cg:true",
-    emoji: "🧪"
+    emoji: "⚗️"
   },
   {
     title: "Universal Basic Income Strategist GPT",
