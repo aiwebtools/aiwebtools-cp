@@ -2,12 +2,25 @@ import { BookOpen, ExternalLink, Download, Eye, X, ChevronLeft, ChevronRight, Pl
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { createTimePortalEffect } from "@/utils/timeEffects";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
-// Lazy YouTube component for book section
-const LazyBookVideo = ({ videoId, title, gradient }: { videoId: string; title: string; gradient: string }) => {
+// Lazy YouTube component for book section with play state callback
+const LazyBookVideo = ({ 
+  videoId, 
+  title, 
+  onPlay 
+}: { 
+  videoId: string; 
+  title: string; 
+  onPlay?: () => void;
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
+  const handlePlay = () => {
+    setIsLoaded(true);
+    onPlay?.();
+  };
 
   if (isLoaded) {
     return (
@@ -22,7 +35,7 @@ const LazyBookVideo = ({ videoId, title, gradient }: { videoId: string; title: s
   }
 
   return (
-    <div className="absolute inset-0 cursor-pointer" onClick={() => setIsLoaded(true)}>
+    <div className="absolute inset-0 cursor-pointer" onClick={handlePlay}>
       <img src={thumbnailUrl} alt={title} className="w-full h-full object-cover" loading="lazy" />
       <div className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/20 transition-colors">
         <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
@@ -35,8 +48,8 @@ const LazyBookVideo = ({ videoId, title, gradient }: { videoId: string; title: s
 
 const BookPromotionCard = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  
   const [desktopIndex, setDesktopIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   
   const videos = [
     {
@@ -73,6 +86,22 @@ const BookPromotionCard = () => {
 
   const videosPerPage = 3;
   const totalDesktopPages = Math.ceil(videos.length / videosPerPage);
+
+  // Auto-cycle effect - pauses when video is playing
+  useEffect(() => {
+    if (isPaused) return;
+    
+    const interval = setInterval(() => {
+      setDesktopIndex((prev) => (prev + 1) % totalDesktopPages);
+      setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
+    }, 5000); // 5 seconds between transitions
+
+    return () => clearInterval(interval);
+  }, [isPaused, totalDesktopPages, videos.length]);
+
+  const handleVideoPlay = useCallback(() => {
+    setIsPaused(true);
+  }, []);
 
   const nextDesktopPage = () => {
     setDesktopIndex((prev) => (prev + 1) % totalDesktopPages);
@@ -151,11 +180,11 @@ const BookPromotionCard = () => {
                       <ChevronLeft size={24} />
                     </button>
 
-                    <div className="flex justify-center gap-4">
+                    <div className="flex justify-center gap-4 transition-all duration-700 ease-in-out">
                       {visibleDesktopVideos.map((video, index) => (
-                        <div key={desktopIndex * videosPerPage + index} className="relative w-48 flex-shrink-0">
+                        <div key={desktopIndex * videosPerPage + index} className="relative w-48 flex-shrink-0 transition-all duration-700 ease-in-out">
                           <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
-                            <LazyBookVideo videoId={video.id} title={video.title} gradient={video.gradient} />
+                            <LazyBookVideo videoId={video.id} title={video.title} onPlay={handleVideoPlay} />
                           </div>
                           <div className={`absolute -inset-2 bg-gradient-to-r ${video.gradient} rounded-lg blur-xl -z-10`}></div>
                         </div>
@@ -202,15 +231,15 @@ const BookPromotionCard = () => {
                       <ChevronLeft size={24} />
                     </button>
 
-                    <div className="relative w-48 flex-shrink-0 mx-auto">
+                    <div className="relative w-48 flex-shrink-0 mx-auto transition-all duration-700 ease-in-out">
                       <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
                         <LazyBookVideo 
                           videoId={videos[currentVideoIndex].id} 
                           title={videos[currentVideoIndex].title} 
-                          gradient={videos[currentVideoIndex].gradient} 
+                          onPlay={handleVideoPlay}
                         />
                       </div>
-                      <div className={`absolute -inset-2 bg-gradient-to-r ${videos[currentVideoIndex].gradient} rounded-lg blur-xl -z-10`}></div>
+                      <div className={`absolute -inset-2 bg-gradient-to-r ${videos[currentVideoIndex].gradient} rounded-lg blur-xl -z-10 transition-all duration-700`}></div>
                     </div>
 
                     <button
