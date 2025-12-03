@@ -1,12 +1,12 @@
-// Confetti celebration effect with victory sound for special moments
+// Matrix-style binary explosion effect with digital sound for special moments
 export const createConfettiCelebration = () => {
-  console.log('🎉 Creating confetti celebration effect');
+  console.log('🎉 Creating Matrix binary explosion effect');
   
   try {
-    // Create victory sound
+    // Create digital matrix sound
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     
-    const createVictorySound = () => {
+    const createMatrixSound = () => {
       const duration = 1.5;
       const sampleRate = audioContext.sampleRate;
       const numFrames = sampleRate * duration;
@@ -19,64 +19,74 @@ export const createConfettiCelebration = () => {
           const t = i / sampleRate;
           const fadeOut = Math.max(0, 1 - t / duration);
           
-          // Victory melody with rising notes
-          const note1 = Math.sin(2 * Math.PI * 523.25 * t) * Math.exp(-t * 2); // C5
-          const note2 = Math.sin(2 * Math.PI * 659.25 * (t - 0.15)) * Math.exp(-(t - 0.15) * 2); // E5
-          const note3 = Math.sin(2 * Math.PI * 783.99 * (t - 0.3)) * Math.exp(-(t - 0.3) * 2); // G5
-          const sparkle = Math.sin(2 * Math.PI * 1046.5 * t) * Math.exp(-t * 5) * 0.3; // C6
+          // Digital/Matrix-style sound - electronic beeps and sweeps
+          const sweep = Math.sin(2 * Math.PI * (200 + t * 800) * t) * Math.exp(-t * 3);
+          const digital1 = Math.sin(2 * Math.PI * 440 * t) * (Math.random() > 0.95 ? 1 : 0) * 0.3;
+          const digital2 = Math.sin(2 * Math.PI * 880 * t) * (Math.random() > 0.97 ? 1 : 0) * 0.2;
+          const bass = Math.sin(2 * Math.PI * 80 * t) * Math.exp(-t * 2) * 0.4;
           
-          channelData[i] = (note1 + note2 + note3 + sparkle) * fadeOut * 0.2;
+          channelData[i] = (sweep + digital1 + digital2 + bass) * fadeOut * 0.15;
         }
       }
       
       return buffer;
     };
 
-    // Play victory sound
-    const victoryBuffer = createVictorySound();
-    const victorySource = audioContext.createBufferSource();
-    victorySource.buffer = victoryBuffer;
-    victorySource.connect(audioContext.destination);
-    victorySource.start();
+    // Play matrix sound
+    const matrixBuffer = createMatrixSound();
+    const matrixSource = audioContext.createBufferSource();
+    matrixSource.buffer = matrixBuffer;
+    matrixSource.connect(audioContext.destination);
+    matrixSource.start();
 
-    // Create confetti particles
-    const confettiCount = 150;
-    const colors = [
-      '#FFD700', // Gold
-      '#00FFFF', // Cyan
-      '#FF69B4', // Pink
-      '#FF4500', // Orange Red
-      '#9370DB', // Purple
-      '#00FF00', // Lime
-      '#FF1493', // Deep Pink
-      '#1E90FF', // Dodger Blue
+    // Create binary string particles
+    const binaryCount = 100;
+    const matrixColors = [
+      '#00FF00', // Bright Matrix green
+      '#00DD00', // Medium green
+      '#00BB00', // Darker green
+      '#33FF33', // Light green
+      '#00FF88', // Cyan-green
+      '#88FF00', // Yellow-green
     ];
 
-    for (let i = 0; i < confettiCount; i++) {
-      const confetti = document.createElement('div');
-      const size = Math.random() * 10 + 5;
+    // Generate random binary strings
+    const generateBinaryString = () => {
+      const length = Math.floor(Math.random() * 8) + 3;
+      let binary = '';
+      for (let i = 0; i < length; i++) {
+        binary += Math.random() > 0.5 ? '1' : '0';
+      }
+      return binary;
+    };
+
+    for (let i = 0; i < binaryCount; i++) {
+      const binary = document.createElement('div');
+      const fontSize = Math.random() * 14 + 10;
       const startX = Math.random() * window.innerWidth;
       const startY = window.innerHeight / 2;
       const angle = Math.random() * 360;
-      const velocity = Math.random() * 15 + 10;
-      const rotation = Math.random() * 360;
-      const rotationSpeed = Math.random() * 720 - 360;
+      const velocity = Math.random() * 15 + 8;
+      const binaryString = generateBinaryString();
+      const color = matrixColors[Math.floor(Math.random() * matrixColors.length)];
       
-      confetti.style.cssText = `
+      binary.textContent = binaryString;
+      binary.style.cssText = `
         position: fixed;
-        width: ${size}px;
-        height: ${size}px;
-        background: ${colors[Math.floor(Math.random() * colors.length)]};
+        font-family: 'Courier New', monospace;
+        font-size: ${fontSize}px;
+        font-weight: bold;
+        color: ${color};
         left: ${startX}px;
         top: ${startY}px;
         z-index: 10000;
         pointer-events: none;
-        border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
-        transform: rotate(${rotation}deg);
-        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        text-shadow: 0 0 10px ${color}, 0 0 20px ${color}, 0 0 30px rgba(0, 255, 0, 0.5);
+        white-space: nowrap;
+        letter-spacing: 2px;
       `;
       
-      document.body.appendChild(confetti);
+      document.body.appendChild(binary);
       
       const radians = (angle * Math.PI) / 180;
       const vx = Math.cos(radians) * velocity;
@@ -85,32 +95,35 @@ export const createConfettiCelebration = () => {
       let x = startX;
       let y = startY;
       let velocityY = vy;
-      let currentRotation = rotation;
       let opacity = 1;
+      let scale = 1;
       
       const animate = () => {
-        velocityY += 0.5; // Gravity
+        velocityY += 0.3; // Lighter gravity for floatier feel
         x += vx * 0.5;
         y += velocityY;
-        currentRotation += rotationSpeed * 0.016;
-        opacity -= 0.008;
+        opacity -= 0.012;
+        scale += 0.005; // Slight growth as they fall
         
-        confetti.style.left = `${x}px`;
-        confetti.style.top = `${y}px`;
-        confetti.style.transform = `rotate(${currentRotation}deg)`;
-        confetti.style.opacity = `${opacity}`;
+        binary.style.left = `${x}px`;
+        binary.style.top = `${y}px`;
+        binary.style.opacity = `${opacity}`;
+        binary.style.transform = `scale(${scale})`;
         
         if (opacity > 0 && y < window.innerHeight + 100) {
           requestAnimationFrame(animate);
         } else {
-          confetti.remove();
+          binary.remove();
         }
       };
       
-      requestAnimationFrame(animate);
+      // Stagger the start of animations
+      setTimeout(() => {
+        requestAnimationFrame(animate);
+      }, Math.random() * 200);
     }
 
-    // Create golden burst effect
+    // Create Matrix-style burst effect (green)
     const burst = document.createElement('div');
     burst.style.cssText = `
       position: fixed;
@@ -119,25 +132,30 @@ export const createConfettiCelebration = () => {
       width: 0;
       height: 0;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 215, 0, 0.8), rgba(255, 215, 0, 0) 70%);
+      background: radial-gradient(circle, rgba(0, 255, 0, 0.6), rgba(0, 255, 0, 0) 70%);
       transform: translate(-50%, -50%);
       z-index: 9999;
       pointer-events: none;
-      animation: burst-expand 0.8s ease-out forwards;
+      animation: matrix-burst-expand 0.8s ease-out forwards;
     `;
     
     const style = document.createElement('style');
     style.textContent = `
-      @keyframes burst-expand {
+      @keyframes matrix-burst-expand {
         0% {
           width: 0;
           height: 0;
           opacity: 1;
+          box-shadow: 0 0 0 rgba(0, 255, 0, 0.8);
+        }
+        50% {
+          box-shadow: 0 0 100px rgba(0, 255, 0, 0.6);
         }
         100% {
-          width: 400px;
-          height: 400px;
+          width: 500px;
+          height: 500px;
           opacity: 0;
+          box-shadow: 0 0 0 rgba(0, 255, 0, 0);
         }
       }
     `;
@@ -149,9 +167,9 @@ export const createConfettiCelebration = () => {
       style.remove();
     }, 800);
 
-    console.log('🎊 Confetti celebration created successfully');
+    console.log('🎊 Matrix binary explosion created successfully');
     
   } catch (error) {
-    console.log('Confetti celebration creation failed:', error);
+    console.log('Matrix binary explosion creation failed:', error);
   }
 };
