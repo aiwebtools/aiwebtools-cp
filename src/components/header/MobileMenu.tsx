@@ -199,7 +199,11 @@ const MobileMenu = () => {
                 <p className="text-xs text-cyan-200/80">Quick Navigation & Search</p>
               </div>
 
-              {/* Search moved to bottom after user feedback */}
+              {/* Search Bar - At top for easy access */}
+              <div className="mb-4">
+                <div className="text-xs text-cyan-400 mb-2">🔍 Search AI Tools</div>
+                <GlobalSearchBar />
+              </div>
 
               {/* Navigation Section */}
               <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-3 rounded-lg h-12 text-sm font-medium px-3">
@@ -385,12 +389,6 @@ const MobileMenu = () => {
                 <Heart className="w-3 h-3 fill-current text-red-500" />
                 <span>Favorites ({getFavoritesCount()})</span>
               </DropdownMenuItem>
-              
-              {/* Search Bar - Moved to bottom to prevent auto-scroll */}
-              <div className="mb-4 mt-4 border-t border-cyan-500/30 pt-4">
-                <div className="text-xs text-cyan-400 mb-2">🔍 Search AI Tools</div>
-                <GlobalSearchBar />
-              </div>
               
               {/* Close Button */}
               <div className="flex justify-center pt-2">
