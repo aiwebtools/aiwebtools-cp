@@ -91,11 +91,10 @@ export const matchNewAITools = (tool: Tool, searchTerm: string): boolean => {
   }
 
   // Health and wellness tools
-  if (lowerSearchTerm.includes('myfitnesspal') || lowerSearchTerm.includes('headspace') || lowerSearchTerm.includes('calm') || lowerSearchTerm.includes('babylon health')) {
+  if (lowerSearchTerm.includes('myfitnesspal') || lowerSearchTerm.includes('headspace') || lowerSearchTerm.includes('calm')) {
     return lowerTitle.includes('myfitnesspal') || 
            lowerTitle.includes('headspace') ||
            lowerTitle.includes('calm') ||
-           lowerTitle.includes('babylon') ||
            lowerDescription.includes('fitness tracking') ||
            lowerDescription.includes('meditation') ||
            lowerDescription.includes('mental wellness');

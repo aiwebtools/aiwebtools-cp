@@ -6,7 +6,6 @@ import CategoryPageSelection from "@/components/CategoryPageSelection";
 import SpecialServices from "@/components/SpecialServices";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ui/scroll-to-top";
-import GlobalMuteButton from "@/components/GlobalMuteButton";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
 import ConsentPopup from "@/components/ConsentPopup";
@@ -20,7 +19,6 @@ import InteractiveMatrixBackground from "@/components/InteractiveMatrixBackgroun
 import AnimatedBackground from "@/components/AnimatedBackground";
 import CloneOfferPopup from "@/components/CloneOfferPopup";
 import AIWebToolsSEOSection from "@/components/seo/AIWebToolsSEOSection";
-import videoManager from "@/hooks/useVideoManager";
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-[200px]">
@@ -32,45 +30,22 @@ const Index = () => {
   // Use fast cached stats initially for better performance
   const [toolStats, setToolStats] = useState(getFastToolCount());
   const [isLoaded, setIsLoaded] = useState(false);
-  const [videoStarted, setVideoStarted] = useState(false);
+  const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
   
-  // Simple ref for video without complex manager to avoid conflicts
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     // Set loaded state immediately for faster initial render
     setIsLoaded(true);
     
-    // Register main video with global video manager for mute/unmute control
-    if (mainVideoRef.current) {
-      videoManager.registerExternalVideo(mainVideoRef.current);
+    // Check if video has already played this session
+    const videoPlayedBefore = localStorage.getItem('mainVideoPlayed');
+    if (videoPlayedBefore) {
+      setHasPlayedOnce(true);
+    } else {
+      // Mark as played for future visits
+      localStorage.setItem('mainVideoPlayed', 'true');
     }
-    
-    // Listen for welcome audio completion to trigger video
-    const handleAudioComplete = () => {
-      console.log('🎬 Welcome audio complete, starting video unmuted...');
-      
-      setTimeout(() => {
-        const iframe = mainVideoRef.current;
-        if (!iframe || videoStarted) return;
-        
-        setVideoStarted(true);
-        console.log('🎥 Playing video with sound at full volume...');
-        
-        // Video is already unmuted from iframe src, just play it
-        try {
-          iframe.contentWindow?.postMessage(JSON.stringify({
-            event: 'command',
-            func: 'playVideo',
-            args: ''
-          }), '*');
-        } catch (e) {
-          console.log('Video control error:', e);
-        }
-      }, 500);
-    };
-
-    window.addEventListener('welcomeAudioComplete', handleAudioComplete);
     
     // Load actual stats in background
     const statsTimer = setTimeout(() => {
@@ -81,16 +56,8 @@ const Index = () => {
 
     return () => {
       clearTimeout(statsTimer);
-      window.removeEventListener('welcomeAudioComplete', handleAudioComplete);
-      if (mainVideoRef.current) {
-        videoManager.unregisterExternalVideo(mainVideoRef.current);
-      }
     };
-  }, [videoStarted]);
-
-  const handleSeeMoreAITools = () => {
-    // This function can be removed since FeaturedToolsSection handles it
-  };
+  }, []);
 
   // Early return with minimal loading state if not ready
   if (!isLoaded) {
@@ -103,6 +70,11 @@ const Index = () => {
       </div>
     );
   }
+
+  // Determine video URL based on whether it's first visit
+  const videoUrl = hasPlayedOnce 
+    ? "https://www.youtube.com/embed/4zflGSSuBcA?controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
+    : "https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark";
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -119,7 +91,7 @@ const Index = () => {
       <div className="relative z-10">
         <HeroSection />
         
-        {/* Featured Video Section - Above the fold, autoplay unmuted */}
+        {/* Featured Video Section - Autoplay only on first visit */}
         <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
@@ -133,13 +105,12 @@ const Index = () => {
                 <iframe
                   ref={mainVideoRef}
                   className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src="https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
+                  src={videoUrl}
                   title="AI Web Tools Featured Video - 1080p HD"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
                   loading="eager"
-                  onLoad={() => console.log('🎥 Video iframe loaded and ready')}
                 ></iframe>
               </div>
               
@@ -196,7 +167,6 @@ const Index = () => {
         </section>
         
       <ScrollToTop />
-      <GlobalMuteButton />
       <Footer />
       </div>
       
