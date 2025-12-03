@@ -41,15 +41,16 @@ const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
       </div>
       
       {/* Copyright and Links */}
-      <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-        <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
+      <div className="flex flex-col items-center space-y-4">
+        <div className="flex flex-col items-center space-y-2">
           <button 
             onClick={(e) => handleExternalLink("https://www.aitools.company", e)}
-            className="text-cyan-300 hover:text-cyan-400 transition-colors"
+            className="text-cyan-300 hover:text-cyan-400 transition-colors text-center"
           >
-            © 2025 AI WEB TOOLS LLC All rights reserved.
+            <span className="block">© 2025 AI WEB TOOLS LLC</span>
+            <span className="block text-sm md:inline md:ml-1">All Rights Reserved</span>
           </button>
-          <div className="flex flex-wrap justify-center md:justify-start space-x-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <button 
               onClick={(e) => handleExternalLink("https://openai.com/policies/privacy-policy/", e)}
               className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm"
@@ -62,21 +63,21 @@ const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
             >
               Terms of Service
             </button>
-            <a 
-              href="/disclaimers"
-              className="text-yellow-400 hover:text-yellow-300 transition-colors text-sm font-medium"
-            >
-              📜 Full Disclaimers & User Agreement
-            </a>
           </div>
+          <a 
+            href="/disclaimers"
+            className="text-yellow-400 hover:text-yellow-300 transition-colors text-sm font-medium"
+          >
+            📜 Full Disclaimers & User Agreement
+          </a>
         </div>
-        <div className="flex items-center space-x-6 text-cyan-300">
+        <div className="flex items-center text-cyan-300">
           <button 
             onClick={(e) => handleExternalLink("https://freename.io?ref=olive-ears-obey&utm_source=clipboard", e)}
-            className="flex items-center space-x-2 hover:text-cyan-400 transition-colors cursor-pointer"
+            className="flex items-center space-x-2 hover:text-cyan-400 transition-colors cursor-pointer text-sm md:text-base"
           >
-            <Globe className="w-4 h-4" />
-            <span>Launch your next idea with .aiwebtools or .ai-tools</span>
+            <Globe className="w-4 h-4 flex-shrink-0" />
+            <span className="text-center">Launch your next idea with .aiwebtools or .ai-tools</span>
           </button>
         </div>
       </div>
