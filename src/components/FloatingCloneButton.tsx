@@ -35,7 +35,7 @@ const FloatingCloneButton = () => {
 
   return (
     <div
-      className={`fixed left-2 top-56 sm:top-64 md:top-28 z-50 transition-all duration-300 ${
+      className={`fixed left-2 top-80 sm:top-80 md:top-48 z-50 transition-all duration-300 ${
         isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'
       }`}
     >
