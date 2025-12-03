@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Copy, Code } from 'lucide-react';
+import { Copy } from 'lucide-react';
 import { createTimePortalEffect } from '@/utils/timeEffects';
 
 const FloatingCloneButton = () => {
@@ -9,16 +9,13 @@ const FloatingCloneButton = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const isMobile = window.innerWidth < 768; // md breakpoint
+      const isMobile = window.innerWidth < 768;
       
       if (isMobile && currentScrollY > lastScrollY && currentScrollY > 200) {
-        // Only hide on mobile when scrolling down and past 200px
         setIsVisible(false);
       } else if (isMobile && currentScrollY < lastScrollY) {
-        // Only show/hide logic on mobile when scrolling up
         setIsVisible(true);
       } else if (!isMobile) {
-        // Always visible on desktop
         setIsVisible(true);
       }
       
@@ -26,7 +23,7 @@ const FloatingCloneButton = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true }); // Handle resize events
+    window.addEventListener('resize', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
@@ -35,10 +32,29 @@ const FloatingCloneButton = () => {
 
   return (
     <div
-      className={`fixed left-2 top-80 sm:top-80 md:top-48 z-50 transition-all duration-300 ${
+      className={`fixed left-2 z-50 transition-all duration-300 ${
         isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'
       }`}
+      style={{
+        // Mobile: top-28 (much higher, above content)
+        // Desktop: top-48 (unchanged)
+        top: 'var(--clone-btn-top, 192px)'
+      }}
     >
+      {/* CSS custom property for responsive positioning */}
+      <style>{`
+        @media (max-width: 767px) {
+          .clone-button-container {
+            --clone-btn-top: 100px !important;
+          }
+        }
+        @media (min-width: 768px) {
+          .clone-button-container {
+            --clone-btn-top: 192px !important;
+          }
+        }
+      `}</style>
+      
       <a
         href="https://lovable.dev/projects/5454d30d-695f-4a2c-b1b2-103c20f9bed6?via=aiwebtools"
         target="_blank"
@@ -49,23 +65,25 @@ const FloatingCloneButton = () => {
           console.log('🌀 Clone Website Button clicked - triggering time warp');
           createTimePortalEffect('https://lovable.dev/projects/5454d30d-695f-4a2c-b1b2-103c20f9bed6?via=aiwebtools', 'Clone AI Web Tools');
         }}
-        className="group bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-600 hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 text-white w-20 h-20 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex flex-col items-center justify-center relative overflow-hidden animate-pulse"
+        className="clone-button-container group bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-600 hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 text-white 
+          w-14 h-14 md:w-20 md:h-20 
+          rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex flex-col items-center justify-center relative overflow-hidden"
         style={{ 
-          boxShadow: '0 12px 40px rgba(6, 182, 212, 0.5), 0 6px 24px rgba(59, 130, 246, 0.4), 0 0 60px rgba(147, 51, 234, 0.3)',
+          boxShadow: '0 8px 30px rgba(6, 182, 212, 0.4), 0 4px 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(147, 51, 234, 0.2)',
           backdropFilter: 'blur(8px)',
         }}
         title="Clone This AI Tools Website"
       >
-        {/* Animated pulsing ring */}
-        <div className="absolute inset-0 rounded-full border-4 border-cyan-400/60 animate-ping" />
+        {/* Animated pulsing ring - smaller on mobile */}
+        <div className="absolute inset-0 rounded-full border-2 md:border-4 border-cyan-400/50 animate-ping" />
         
         {/* Animated background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/30 via-blue-500/30 to-purple-600/30 animate-pulse rounded-full" />
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-600/20 animate-pulse rounded-full" />
         
-        {/* Content */}
+        {/* Content - smaller on mobile */}
         <div className="relative flex flex-col items-center justify-center text-center">
-          <Copy className="w-5 h-5 group-hover:animate-bounce mb-1" />
-          <div className="text-[9px] font-bold leading-tight tracking-wide">
+          <Copy className="w-4 h-4 md:w-5 md:h-5 group-hover:animate-bounce mb-0.5" />
+          <div className="text-[7px] md:text-[9px] font-bold leading-tight tracking-wide">
             <div>CLONE</div>
             <div>SITE</div>
             <div className="text-yellow-300">FREE</div>
