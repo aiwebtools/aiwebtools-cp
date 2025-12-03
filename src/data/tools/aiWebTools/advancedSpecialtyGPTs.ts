@@ -10,6 +10,7 @@ export const advancedSpecialtyGPTs: Tool[] = [
     emoji: "🧠",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=_e6DtLUv-2Q",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377362789097803786/image.png?ex=6838b08f&is=68375f0f&hm=f63e1ae446523dd9eff4aa0f95166aa8a5e6119c506b44ab1656322ea4ca47b7&=&format=webp&quality=lossless&width=2646&height=1392",
     tags: ["mental health", "wellness", "therapy", "emotional support", "CBT"],
     category: "Advanced Specialty",
