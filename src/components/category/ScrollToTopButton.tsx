@@ -60,7 +60,7 @@ const ScrollToTopButton = () => {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      className={`fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 active:from-purple-800 active:to-pink-800 shadow-lg shadow-purple-500/25 transition-all duration-300 transform hover:scale-110 active:scale-95 ${
+      className={`fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 active:from-purple-800 active:to-pink-800 shadow-lg shadow-purple-500/25 transition-all duration-300 transform hover:scale-110 active:scale-95 ${
         isPressed ? 'scale-95' : ''
       }`}
       size="icon"
