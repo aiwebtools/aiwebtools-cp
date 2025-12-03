@@ -662,7 +662,7 @@ const featuredGPTs = [
     color: "from-cyan-500 to-purple-600",
     features: ["Prompt Optimization", "AI Enhancement", "Perfect Prompts", "Engineering Tool"],
     directUrl: "https://perfectpromptengine.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/v8El2IdTwsE",
+    videoUrl: "https://youtu.be/M1PQHKrzKd8",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-humanoid-robot-controlli.png/:/cr=t:9.25%25,l:11.96%25,w:73.53%25,h:65.54%25/rs=w:1200,h:600,cg:true,m",
     emoji: "🎯"
   },
