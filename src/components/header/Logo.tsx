@@ -24,8 +24,9 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
   return (
     <div className={`flex items-center gap-2 md:gap-3 flex-shrink min-w-0 relative z-[110] ${compact ? 'scale-90' : ''}`}>
       <div className="text-left flex-1 min-w-0 overflow-hidden">
+        {/* Main title row */}
         <div className={`flex items-center gap-1 md:gap-2 ${compact ? 'mb-0' : 'mb-0.5 md:mb-1'}`}>
-          <div className={`font-bold ${compact ? 'text-base' : 'text-sm sm:text-lg md:text-xl'} tracking-wider letter-spacing-wide relative truncate`}>
+          <div className={`font-bold ${compact ? 'text-sm' : 'text-sm sm:text-lg md:text-xl'} tracking-wider letter-spacing-wide relative truncate`}>
             <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent logo-text-crisp">AI WEB TOOLS</span>
             <span className="relative z-10 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent logo-text-crisp hidden sm:inline"> - AITOOLS.STUDIO</span>
           </div>
@@ -35,22 +36,27 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
             </span>
           )}
         </div>
-        {!compact && (
-          <>
-            <div className="text-[10px] md:text-xs text-gray-300 -mt-0.5 md:-mt-1 hidden sm:block">
-              <span className="text-cyan-200/60 font-light tracking-wider">AN AI TOOLS COMPANY</span>
-            </div>
-            <div className="text-[10px] md:text-xs text-gray-400 mt-0 md:mt-0.5 hidden sm:block">
-              BY{" "}
-              <button 
-                onClick={(e) => handleExternalLink("https://www.aiwebtools.ai", e)}
-                className="text-cyan-400 hover:text-cyan-300 transition-all duration-200 hover:text-shadow-glow font-medium tracking-wide"
-              >
-                AIWEBTOOLS.AI
-              </button>
-            </div>
-          </>
-        )}
+        
+        {/* Mobile-visible branding info */}
+        <div className={`${compact ? 'text-[8px]' : 'text-[9px] sm:text-[10px] md:text-xs'} text-cyan-200/70 -mt-0.5`}>
+          <span className="font-light tracking-wide">AN AI TOOLS COMPANY</span>
+        </div>
+        
+        {/* AIWebTools.ai link - always visible */}
+        <div className={`${compact ? 'text-[8px]' : 'text-[9px] sm:text-[10px] md:text-xs'} text-gray-400 mt-0`}>
+          BY{" "}
+          <button 
+            onClick={(e) => handleExternalLink("https://www.aiwebtools.ai", e)}
+            className="text-cyan-400 hover:text-cyan-300 transition-all duration-200 hover:text-shadow-glow font-medium tracking-wide"
+          >
+            AIWEBTOOLS.AI
+          </button>
+        </div>
+        
+        {/* AITOOLS.STUDIO on mobile only */}
+        <div className="text-[8px] text-cyan-300/60 mt-0 sm:hidden">
+          AITOOLS.STUDIO
+        </div>
       </div>
       
       {/* Redesigned Home Button - Sleek circular design with glow */}
@@ -58,7 +64,7 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
         onClick={scrollToHome}
         className={`
           group relative flex-shrink-0 
-          ${compact ? 'w-10 h-10' : 'w-12 h-12 md:w-14 md:h-14'} 
+          ${compact ? 'w-10 h-10' : 'w-11 h-11 md:w-14 md:h-14'} 
           rounded-full 
           bg-gradient-to-br from-cyan-500/20 via-blue-600/30 to-purple-600/20
           border border-cyan-400/50
@@ -90,7 +96,7 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
         {/* Home Icon */}
         <Home 
           className={`
-            ${compact ? 'w-5 h-5' : 'w-6 h-6 md:w-7 md:h-7'} 
+            ${compact ? 'w-5 h-5' : 'w-5 h-5 md:w-7 md:h-7'} 
             text-cyan-300 
             drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]
             group-hover:text-white
