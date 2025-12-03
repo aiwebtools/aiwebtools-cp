@@ -1,26 +1,54 @@
-import { BookOpen, ExternalLink, Download, Eye, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { BookOpen, ExternalLink, Download, Eye, X, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { createTimePortalEffect } from "@/utils/timeEffects";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
+
+// Lazy YouTube component for book section
+const LazyBookVideo = ({ videoId, title, gradient }: { videoId: string; title: string; gradient: string }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
+  if (isLoaded) {
+    return (
+      <iframe
+        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1`}
+        className="absolute inset-0 w-full h-full"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        title={title}
+      />
+    );
+  }
+
+  return (
+    <div className="absolute inset-0 cursor-pointer" onClick={() => setIsLoaded(true)}>
+      <img src={thumbnailUrl} alt={title} className="w-full h-full object-cover" loading="lazy" />
+      <div className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/20 transition-colors">
+        <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+          <Play className="w-6 h-6 text-white ml-0.5" fill="white" />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const BookPromotionCard = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
   
   const videos = [
     {
-      src: "https://www.youtube.com/embed/lG1rMaImBNc",
+      id: "lG1rMaImBNc",
       title: "The Book Of Deployable Robot Prompts",
       gradient: "from-purple-500/20 to-blue-500/20"
     },
     {
-      src: "https://www.youtube.com/embed/i0zc0aeRCeI",
+      id: "i0zc0aeRCeI",
       title: "Coloring Book Generator Demo",
       gradient: "from-cyan-500/20 to-purple-500/20"
     },
     {
-      src: "https://www.youtube.com/embed/i9e3pRXyP8s",
+      id: "i9e3pRXyP8s",
       title: "Book Deployable Robot Prompts Showcase",
       gradient: "from-orange-500/20 to-pink-500/20"
     }
@@ -79,25 +107,19 @@ const BookPromotionCard = () => {
             <div className="flex flex-col lg:flex-row items-center">
               {/* Book Visual - YouTube Videos */}
               <div className="lg:w-1/2 p-8">
-                {/* Desktop: Show all three videos side by side */}
+                {/* Desktop: Show all three videos side by side with lazy loading */}
                 <div className="hidden md:flex justify-center gap-4">
                   {videos.map((video, index) => (
                     <div key={index} className="relative w-48 flex-shrink-0">
                       <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
-                        <iframe
-                          src={video.src}
-                          className="absolute inset-0 w-full h-full"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          title={video.title}
-                        />
+                        <LazyBookVideo videoId={video.id} title={video.title} gradient={video.gradient} />
                       </div>
                       <div className={`absolute -inset-2 bg-gradient-to-r ${video.gradient} rounded-lg blur-xl -z-10`}></div>
                     </div>
                   ))}
                 </div>
 
-                {/* Mobile: Carousel with swipe */}
+                {/* Mobile: Carousel with swipe and lazy loading */}
                 <div 
                   className="md:hidden relative"
                   onTouchStart={handleTouchStart}
@@ -105,7 +127,6 @@ const BookPromotionCard = () => {
                   onTouchEnd={handleTouchEnd}
                 >
                   <div className="flex justify-center items-center">
-                    {/* Previous button */}
                     <button
                       onClick={prevVideo}
                       className="absolute left-0 z-10 p-2 bg-purple-900/80 rounded-full text-white hover:bg-purple-800 transition-colors"
@@ -114,21 +135,17 @@ const BookPromotionCard = () => {
                       <ChevronLeft size={24} />
                     </button>
 
-                    {/* Current video */}
                     <div className="relative w-48 flex-shrink-0 mx-auto">
                       <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
-                        <iframe
-                          src={videos[currentVideoIndex].src}
-                          className="absolute inset-0 w-full h-full"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          title={videos[currentVideoIndex].title}
+                        <LazyBookVideo 
+                          videoId={videos[currentVideoIndex].id} 
+                          title={videos[currentVideoIndex].title} 
+                          gradient={videos[currentVideoIndex].gradient} 
                         />
                       </div>
                       <div className={`absolute -inset-2 bg-gradient-to-r ${videos[currentVideoIndex].gradient} rounded-lg blur-xl -z-10`}></div>
                     </div>
 
-                    {/* Next button */}
                     <button
                       onClick={nextVideo}
                       className="absolute right-0 z-10 p-2 bg-purple-900/80 rounded-full text-white hover:bg-purple-800 transition-colors"
@@ -138,7 +155,6 @@ const BookPromotionCard = () => {
                     </button>
                   </div>
 
-                  {/* Dots indicator */}
                   <div className="flex justify-center gap-2 mt-4">
                     {videos.map((_, index) => (
                       <button
