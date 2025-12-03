@@ -9,11 +9,15 @@ import GlobalSearchBar from "./GlobalSearchBar";
 const Header = () => {
   return (
     <header className="fixed top-0 w-full z-[100] bg-black/95 border-b border-cyan-500/30 shadow-lg backdrop-blur-sm">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between min-h-[60px]">
-          <Logo />
+      <div className="container mx-auto px-3 md:px-4 py-3 md:py-4">
+        <div className="flex items-center justify-between min-h-[50px] md:min-h-[60px] gap-2">
+          {/* Logo - smaller on mobile */}
+          <div className="flex-shrink min-w-0">
+            <Logo />
+          </div>
           
-          <div className="flex items-center gap-3">
+          {/* Menu buttons - always visible */}
+          <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
             <Navigation />
             <MobileMenu />
             <DesktopMenu />
