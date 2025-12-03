@@ -6,8 +6,68 @@ import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 import { FavoritesButton } from "@/components/favorites/FavoritesButton";
 import { Tool } from "@/types/tools";
-import { useEffect, useRef } from "react";
-import videoManager from "@/hooks/useVideoManager";
+import { useState, useRef } from "react";
+import { Play } from "lucide-react";
+
+// Lazy-loading YouTube video component - shows thumbnail until clicked
+const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string; title: string; height?: string }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  // Extract video ID
+  const getVideoId = (url: string): string | null => {
+    if (url.includes('youtube.com/watch?v=')) {
+      return url.split('v=')[1]?.split('&')[0] || null;
+    }
+    if (url.includes('youtu.be/')) {
+      return url.split('youtu.be/')[1]?.split('?')[0] || null;
+    }
+    if (url.includes('youtube.com/embed/')) {
+      return url.split('embed/')[1]?.split('?')[0] || null;
+    }
+    return null;
+  };
+  
+  const videoId = getVideoId(videoUrl);
+  if (!videoId) return null;
+  
+  const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1`;
+  
+  if (isLoaded) {
+    return (
+      <iframe
+        src={embedUrl}
+        title={`${title} Demo`}
+        className="absolute inset-0 w-full h-full"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+    );
+  }
+  
+  return (
+    <div 
+      className="absolute inset-0 cursor-pointer group/video"
+      onClick={(e) => {
+        e.stopPropagation();
+        setIsLoaded(true);
+      }}
+    >
+      <img 
+        src={thumbnailUrl} 
+        alt={`${title} thumbnail`}
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
+      <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover/video:bg-black/20 transition-colors">
+        <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center shadow-lg transform group-hover/video:scale-110 transition-transform">
+          <Play className="w-6 h-6 text-white ml-0.5" fill="white" />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // =============================================================================
 // OUR FEATURED SECTION - Portfolio showcase of AI Web Tools GPTs
@@ -1434,32 +1494,6 @@ const OurFeaturedSection = () => {
   const navigate = useNavigate();
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Register all video iframes with the global video manager
-  useEffect(() => {
-    const registerVideos = () => {
-      if (!sectionRef.current) return;
-      
-      const iframes = sectionRef.current.querySelectorAll('iframe[src*="youtube.com/embed"]');
-      const videoList: HTMLIFrameElement[] = [];
-      
-      iframes.forEach((iframe) => {
-        const videoIframe = iframe as HTMLIFrameElement;
-        videoList.push(videoIframe);
-        videoManager.registerExternalVideo(videoIframe);
-      });
-
-      return () => {
-        videoList.forEach(iframe => {
-          videoManager.unregisterExternalVideo(iframe);
-        });
-      };
-    };
-
-    // Delay registration to ensure iframes are loaded
-    const timer = setTimeout(registerVideos, 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
   const handleShowCategories = () => {
     navigate('/');
     setTimeout(() => {
@@ -1565,17 +1599,9 @@ const OurFeaturedSection = () => {
                       {tool.description}
                     </p>
 
-                    {tool.videoUrl && getOptimizedEmbedUrl(tool.videoUrl) ? (
+                    {tool.videoUrl ? (
                       <div className="relative w-full h-40 rounded-lg overflow-hidden bg-slate-800 mb-4 shadow-lg">
-                        <iframe
-                          src={getOptimizedEmbedUrl(tool.videoUrl)!}
-                          title={`${tool.title} Demo`}
-                          className="absolute inset-0 w-full h-full"
-                          frameBorder="0"
-                          loading="lazy"
-                          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          allowFullScreen
-                        />
+                        <LazyVideoEmbed videoUrl={tool.videoUrl} title={tool.title} height="h-40" />
                       </div>
                     ) : tool.imageUrl && (
                       <div className="relative w-full h-40 rounded-lg overflow-hidden mb-4">
@@ -1686,17 +1712,9 @@ const OurFeaturedSection = () => {
                   </p>
 
                   <div className="mb-4">
-                    {tool.videoUrl && getOptimizedEmbedUrl(tool.videoUrl) ? (
+                    {tool.videoUrl ? (
                       <div className="relative w-full h-32 rounded-lg overflow-hidden bg-slate-800">
-                        <iframe
-                          src={getOptimizedEmbedUrl(tool.videoUrl)!}
-                          title={`${tool.title} Demo`}
-                          className="absolute inset-0 w-full h-full"
-                          frameBorder="0"
-                          loading="lazy"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          allowFullScreen
-                        />
+                        <LazyVideoEmbed videoUrl={tool.videoUrl} title={tool.title} />
                       </div>
                     ) : tool.imageUrl ? (
                       <div className="relative w-full h-32 rounded-lg overflow-hidden">
