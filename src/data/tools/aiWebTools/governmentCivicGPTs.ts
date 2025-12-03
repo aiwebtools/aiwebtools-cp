@@ -71,7 +71,7 @@ export const governmentCivicGPTs: Tool[] = [
     emoji: "🛡️",
     color: "from-green-500 to-blue-600",
     directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/KMvrXcK46xw",
+    videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
     tags: ["social safety", "welfare", "government", "social services", "civic", "community", "aiwebtools"],
     category: "Government & Civic",
     rating: 4.4,
