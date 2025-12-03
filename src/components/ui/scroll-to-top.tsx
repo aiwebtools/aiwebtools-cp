@@ -60,7 +60,7 @@ const ScrollToTop = () => {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      className={`fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-cyan-600 hover:bg-cyan-700 active:bg-cyan-800 text-white shadow-lg shadow-cyan-500/30 transition-all duration-300 hover:scale-110 active:scale-95 ${
+      className={`fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full bg-cyan-600 hover:bg-cyan-700 active:bg-cyan-800 text-white shadow-lg shadow-cyan-500/30 transition-all duration-300 hover:scale-110 active:scale-95 ${
         isPressed ? 'scale-95 bg-cyan-800' : ''
       }`}
       size="sm"
