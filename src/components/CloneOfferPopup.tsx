@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -9,32 +9,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { Copy, Sparkles } from "lucide-react";
 import { createConfettiCelebration } from "@/utils/effects/confettiCelebration";
-import videoManager from "@/hooks/useVideoManager";
 
 const CloneOfferPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showCount, setShowCount] = useState(0);
-  const videoRef = useRef<HTMLIFrameElement>(null);
 
-  // Register video with global mute manager
-  useEffect(() => {
-    if (isOpen && videoRef.current) {
-      const timer = setTimeout(() => {
-        if (videoRef.current) {
-          videoManager.registerExternalVideo(videoRef.current);
-        }
-      }, 500);
-
-      return () => {
-        clearTimeout(timer);
-        if (videoRef.current) {
-          videoManager.unregisterExternalVideo(videoRef.current);
-        }
-      };
-    }
-  }, [isOpen]);
-
-  // Function to pause and mute all videos on the page
+  // Function to pause all videos on the page
   const pauseAllVideos = () => {
     const videos = document.querySelectorAll('video, iframe');
     videos.forEach((video) => {
@@ -179,10 +159,9 @@ const CloneOfferPopup = () => {
         {/* Video Section */}
         <div className="w-full aspect-video rounded-lg overflow-hidden mb-4 bg-black">
           <iframe
-            ref={videoRef}
             width="100%"
             height="100%"
-            src="https://www.youtube.com/embed/S_0SSog3tNo?autoplay=0&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}"
+            src="https://www.youtube.com/embed/S_0SSog3tNo?autoplay=0&mute=0&controls=1&rel=0&modestbranding=1&playsinline=1&fs=1"
             title="Clone This Website"
             frameBorder="0"
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
