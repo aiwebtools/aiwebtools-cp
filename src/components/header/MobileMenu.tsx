@@ -166,19 +166,20 @@ const MobileMenu = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent 
             ref={dropdownRef}
-            className="w-[95vw] max-w-[400px] bg-black/98 shadow-2xl border-2 border-cyan-500/50 backdrop-blur-xl max-h-[75vh] overflow-hidden z-[110]"
-            align="center"
+            className="w-[95vw] max-w-[400px] bg-black/98 shadow-2xl border-2 border-cyan-500/50 backdrop-blur-xl max-h-[70vh] overflow-hidden z-[110]"
+            align="end"
+            side="bottom"
             alignOffset={0}
-            sideOffset={8}
+            sideOffset={16}
             avoidCollisions={true}
-            collisionPadding={10}
+            collisionPadding={{ top: 80, left: 10, right: 10, bottom: 10 }}
             sticky="always"
             style={{
               scrollBehavior: 'auto',
               overscrollBehavior: 'contain'
             }}
           >
-            <div className="p-3 md:p-4 overflow-y-auto max-h-[75vh]">
+            <div className="p-3 md:p-4 overflow-y-auto max-h-[70vh]">
               {/* Header with Close Button */}
               <div className="text-center mb-4 border-b border-cyan-500/30 pb-3 relative">
                 {/* Close Button - Top Right - Optimized for touch */}
