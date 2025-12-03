@@ -864,7 +864,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-red-600",
     features: ["Recipe Creation", "Personalized Recipes", "Culinary Expertise", "Dietary Options"],
     directUrl: "https://chefgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=vJz1HOGtV0I",
+    videoUrl: "https://www.youtube.com/watch?v=89u14Jld7uA",
     emoji: "👨‍🍳"
   },
   {
