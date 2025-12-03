@@ -1006,6 +1006,7 @@ const featuredGPTs = [
     features: ["Art Valuation", "Antique Appraisal", "Historical Insights", "Market Analysis"],
     directUrl: "https://artandvintagegpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://ideogram.ai/assets/image/lossless/response/Gyn0RfDSR_SHRDWC7neQaw",
+    videoUrl: "https://www.youtube.com/watch?v=azHoiefssJw",
     emoji: "🖼️"
   },
   {

@@ -22,6 +22,7 @@ export const appraisalAndValuationGPTs: Tool[] = [
     color: "from-purple-500 to-pink-600",
     directUrl: "https://artandvintagegpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377297654509469928/artwork.webp",
+    videoUrl: "https://www.youtube.com/watch?v=azHoiefssJw",
     tags: ["artwork appraisal", "vintage items", "antiques", "collectibles", "art valuation", "market data", "aiwebtools"],
     category: "Appraisal & Valuation",
     rating: 4.7,

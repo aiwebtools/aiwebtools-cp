@@ -13,6 +13,7 @@ export const artAndCollectibles: Tool[] = [
     color: "from-purple-500 to-gold-600",
     directUrl: "https://artandvintagegpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://ideogram.ai/assets/image/lossless/response/Gyn0RfDSR_SHRDWC7neQaw",
+    videoUrl: "https://www.youtube.com/watch?v=azHoiefssJw",
     tags: ["art appraisal", "vintage items", "collectibles", "antiques", "valuation"],
     category: "Specialized & Niche",
     rating: 4.3,
