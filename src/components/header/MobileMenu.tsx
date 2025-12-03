@@ -176,27 +176,43 @@ const MobileMenu = () => {
               overscrollBehavior: 'contain'
             }}
           >
-            <div className="p-3 md:p-4 overflow-y-auto max-h-[70vh]">
-              {/* Header with Close Button */}
-              <div className="text-center mb-4 border-b border-cyan-500/30 pb-3 relative">
-                {/* Close Button - Top Right - Optimized for touch */}
+            <div className="p-4 overflow-y-auto max-h-[70vh]">
+              {/* Redesigned Header Section */}
+              <div className="relative mb-5">
+                {/* Close Button - Elegant floating design */}
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={closeMenu}
-                  className="absolute -top-1 -right-1 h-8 w-8 p-0 text-gray-400 hover:text-white hover:bg-red-500/40 border border-red-500/60 rounded-full transition-all duration-200 shadow-lg backdrop-blur-sm z-[120]"
+                  className="absolute -top-2 -right-2 h-9 w-9 p-0 text-red-400 hover:text-white bg-black/60 hover:bg-red-500/60 border border-red-500/40 hover:border-red-400 rounded-full transition-all duration-300 shadow-lg shadow-red-500/20 hover:shadow-red-500/40 backdrop-blur-sm z-[120] hover:scale-110"
                   aria-label="Close menu"
                 >
                   <X className="w-4 h-4" />
                 </Button>
                 
-                <div className="flex flex-col items-center mb-2">
+                {/* Glowing header background */}
+                <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/10 via-purple-500/5 to-transparent rounded-2xl -z-10" />
+                
+                {/* Logo and branding */}
+                <div className="flex flex-col items-center pt-2 pb-4">
                   <Logo compact={true} />
+                  
+                  {/* Animated divider line */}
+                  <div className="w-full max-w-[200px] h-px bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent my-3" />
+                  
+                  {/* Tagline with glow */}
+                  <h2 className="text-lg font-bold bg-gradient-to-r from-cyan-300 via-white to-cyan-300 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(6,182,212,0.5)]">
+                    AI Tools Navigator
+                  </h2>
+                  <p className="text-xs text-cyan-200/70 mt-1 flex items-center gap-1">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                    Discover • Create • Innovate
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                  </p>
                 </div>
-                <div className="text-base md:text-lg font-bold text-cyan-400 mb-1">
-                  Navigate our platform
-                </div>
-                <p className="text-xs text-cyan-200/80">Quick Navigation & Search</p>
+                
+                {/* Bottom border glow */}
+                <div className="h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
               </div>
 
               {/* Search Bar - At top for easy access */}
