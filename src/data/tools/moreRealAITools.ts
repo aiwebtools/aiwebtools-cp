@@ -406,19 +406,7 @@ export const moreRealAITools: Tool[] = [
     rating: 4.4,
     totalVotes: 2789
   },
-  // AI Healthcare Tools
-  {
-    icon: Heart,
-    title: "Babylon Health",
-    description: "AI-powered health assessment and consultation platform.",
-    emoji: "❤️",
-    color: "from-red-500 to-pink-600",
-    directUrl: "https://babylonhealth.com/?via=aiwebtools",
-    tags: ["health assessment", "AI diagnosis", "telemedicine", "healthcare", "medical consultation"],
-    category: "Healthcare",
-    rating: 4.2,
-    totalVotes: 3456
-  },
+  // AI Healthcare Tools - Babylon Health removed
   {
     icon: Activity,
     title: "Ada Health",

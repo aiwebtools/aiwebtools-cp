@@ -2,18 +2,7 @@ import { Tool } from "@/types/tools";
 import { Heart, Activity, Stethoscope, Pill, HeartPulse, Thermometer } from "lucide-react";
 
 export const aiHealthcareDiagnosisTools: Tool[] = [
-  {
-    icon: Stethoscope,
-    title: "Babylon Health",
-    description: "AI-powered healthcare app with symptom checker, virtual consultations, and personalized health insights. Get medical advice and connect with doctors 24/7.",
-    emoji: "🏥",
-    color: "from-blue-500 to-cyan-600",
-    directUrl: "https://www.babylonhealth.com/?via=aiwebtools",
-    tags: ["symptom checker", "telemedicine", "virtual doctor", "health AI", "medical diagnosis", "healthcare app"],
-    category: "AI Healthcare Diagnosis",
-    rating: 4.6,
-    totalVotes: 12456
-  },
+  // Babylon Health removed - not a real tool
   {
     icon: Activity,
     title: "Ada Health",

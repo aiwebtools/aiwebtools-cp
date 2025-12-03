@@ -157,18 +157,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     rating: 4.5,
     totalVotes: 8765
   },
-  {
-    icon: Plus,
-    title: "Babylon Health",
-    description: "AI-powered digital health platform that provides virtual consultations, symptom checking, and personalized health insights. Babylon combines AI technology with healthcare professionals for accessible medical care.",
-    emoji: "🏥",
-    color: "from-green-500 to-teal-600",
-    directUrl: "https://babylonhealth.com",
-    tags: ["telemedicine", "virtual consultations", "ai health", "digital healthcare", "symptom checker", "medical care"],
-    category: "Health, Wellness & Personal Lifestyle",
-    rating: 4.4,
-    totalVotes: 6543
-  },
+  // Babylon Health removed - not a real tool
   {
     icon: Activity,
     title: "FITNESS COACH AI",
