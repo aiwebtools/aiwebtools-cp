@@ -1,4 +1,4 @@
-
-// Re-export audio effects functions - removed robot voice export
+// Re-export audio effects functions
 export { createPortalSounds } from './portalSounds';
 export { createConfettiCelebration } from './confettiCelebration';
+export { playTimeWarpVoice } from './timeWarpVoice';
