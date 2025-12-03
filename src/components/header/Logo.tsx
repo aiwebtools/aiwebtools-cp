@@ -1,5 +1,5 @@
 
-import { Home } from "lucide-react";
+import { Home, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 
@@ -7,16 +7,13 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
   const navigate = useNavigate();
 
   const scrollToHome = () => {
-    // If we're already on the home page, just scroll to top instantly
     if (window.location.pathname === '/') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // Navigate to home page quickly
       navigate('/');
     }
   };
 
-  // Enhanced external link handler with time portal effect
   const handleExternalLink = (url: string, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -25,7 +22,7 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
   };
 
   return (
-    <div className={`flex items-center gap-1 md:gap-2 flex-shrink min-w-0 relative z-[110] ${compact ? 'scale-75' : ''}`}>
+    <div className={`flex items-center gap-2 md:gap-3 flex-shrink min-w-0 relative z-[110] ${compact ? 'scale-90' : ''}`}>
       <div className="text-left flex-1 min-w-0 overflow-hidden">
         <div className={`flex items-center gap-1 md:gap-2 ${compact ? 'mb-0' : 'mb-0.5 md:mb-1'}`}>
           <div className={`font-bold ${compact ? 'text-base' : 'text-sm sm:text-lg md:text-xl'} tracking-wider letter-spacing-wide relative truncate`}>
@@ -55,13 +52,58 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
           </>
         )}
       </div>
+      
+      {/* Redesigned Home Button - Sleek circular design with glow */}
       <button
         onClick={scrollToHome}
-        className={`${compact ? 'p-1.5' : 'p-2 md:p-3'} rounded-lg md:rounded-xl bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-500 hover:to-cyan-600 transition-all duration-300 shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/60 hover:scale-110 flex-shrink-0 interactive-button glow-effect relative z-10`}
+        className={`
+          group relative flex-shrink-0 
+          ${compact ? 'w-10 h-10' : 'w-12 h-12 md:w-14 md:h-14'} 
+          rounded-full 
+          bg-gradient-to-br from-cyan-500/20 via-blue-600/30 to-purple-600/20
+          border border-cyan-400/50
+          hover:border-cyan-300
+          transition-all duration-300 
+          hover:scale-110
+          flex items-center justify-center
+          overflow-hidden
+          shadow-[0_0_20px_rgba(6,182,212,0.3)]
+          hover:shadow-[0_0_30px_rgba(6,182,212,0.5),0_0_60px_rgba(6,182,212,0.2)]
+        `}
         title="Go to Home"
         aria-label="Home"
       >
-        <Home className={`${compact ? 'w-3 h-3' : 'w-4 h-4 md:w-5 md:h-5'} text-white drop-shadow-lg`} />
+        {/* Animated background ring */}
+        <div className="absolute inset-0 rounded-full border-2 border-cyan-400/30 animate-pulse" />
+        
+        {/* Inner glow effect */}
+        <div className="absolute inset-1 rounded-full bg-gradient-to-br from-cyan-500/10 to-transparent" />
+        
+        {/* Rotating accent ring (subtle) */}
+        <div 
+          className="absolute inset-0 rounded-full border border-cyan-300/20 group-hover:border-cyan-300/40 transition-colors"
+          style={{
+            background: 'conic-gradient(from 0deg, transparent, rgba(6,182,212,0.1), transparent, rgba(6,182,212,0.1), transparent)'
+          }}
+        />
+        
+        {/* Home Icon */}
+        <Home 
+          className={`
+            ${compact ? 'w-5 h-5' : 'w-6 h-6 md:w-7 md:h-7'} 
+            text-cyan-300 
+            drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]
+            group-hover:text-white
+            group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)]
+            transition-all duration-300
+            relative z-10
+          `} 
+        />
+        
+        {/* Sparkle accent on hover */}
+        <Sparkles 
+          className="absolute top-1 right-1 w-3 h-3 text-cyan-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" 
+        />
       </button>
     </div>
   );
