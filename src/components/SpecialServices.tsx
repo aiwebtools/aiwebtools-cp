@@ -218,7 +218,7 @@ const featuredGPTs = [
     color: "from-green-500 to-lime-600",
     features: ["Cultivation Guide", "Strain Information", "Medical Applications", "Legal Guidance"],
     directUrl: "https://cannabisgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://vimeo.com/1132373393",
+    videoUrl: "https://www.youtube.com/watch?v=zGGdCzxFNS4",
     emoji: "🌿"
   },
   {
