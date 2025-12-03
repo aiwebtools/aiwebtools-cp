@@ -1,11 +1,13 @@
-import { createPortalSounds, createConfettiCelebration } from './effects/audioEffects';
+import { createPortalSounds, createConfettiCelebration, playTimeWarpVoice } from './effects/audioEffects';
 import { 
   createParticles, 
   createVortexRings, 
   createSpiralTunnel,
   createEnergyWaves, 
   createLightning, 
-  createFlash 
+  createFlash,
+  createBlackHole,
+  createWarpStars
 } from './effects/visualEffects';
 import { 
   createEffectsContainer, 
@@ -207,28 +209,33 @@ const extractToolName = (destinationUrl: string, providedToolName?: string): str
 };
 
 export const createTimePortalEffect = (destinationUrl: string, toolName?: string) => {
-  console.log('🌀 Creating enhanced centered portal effect for URL:', destinationUrl);
+  console.log('🌀 Creating EPIC TIME WARP portal effect for URL:', destinationUrl);
   console.log('🌀 Tool name provided:', toolName);
   
-  // Extract tool name for logging purposes (no longer used for voice)
+  // Extract tool name for logging purposes
   const finalToolName = extractToolName(destinationUrl, toolName);
   console.log('🎯 Final detected tool name:', finalToolName);
   
   // Create container for all effects
   const effectsContainer = createEffectsContainer();
 
-  // Apply centered portal filter instead of body distortion
+  // Apply time warp filter to entire screen
   applyTimeWarpFilter();
 
-  // Execute all centered visual effects
-  createParticles(effectsContainer);
-  createVortexRings(effectsContainer);
-  createSpiralTunnel(effectsContainer);
-  createEnergyWaves(effectsContainer);
-  createLightning(effectsContainer);
-  createFlash(effectsContainer);
+  // 🎤 PLAY THE TIME WARP VOICE IMMEDIATELY
+  playTimeWarpVoice();
+
+  // Execute ALL epic visual effects in sequence for maximum impact
+  createWarpStars(effectsContainer);      // Warp speed background
+  createBlackHole(effectsContainer);       // Central black hole
+  createSpiralTunnel(effectsContainer);    // Spiral tunnel
+  createVortexRings(effectsContainer);     // Vortex rings
+  createParticles(effectsContainer);       // Particle explosion
+  createEnergyWaves(effectsContainer);     // Energy shockwaves
+  createLightning(effectsContainer);       // Lightning storm
+  createFlash(effectsContainer);           // Final dimensional rift flash
   
-  // Create portal sounds (keeping existing timing) - NO ROBOT VOICE
+  // Create enhanced portal sounds
   createPortalSounds();
   
   // Add confetti celebration for clone actions
@@ -239,9 +246,9 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   }
 
   // Log for debugging
-  console.log('🌀 Portal effect created, opening URL in:', 1750, 'ms');
+  console.log('🌀 EPIC portal effect created, opening URL in:', 2000, 'ms');
 
-  // Cleanup and open in new tab after ~1.75 seconds (faster while keeping effect/sound)
+  // Cleanup and open in new tab after effect completes
   setTimeout(() => {
     console.log('🧹 Cleaning up effects and opening in new window:', destinationUrl);
     cleanupEffects(effectsContainer);
@@ -251,5 +258,5 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
     } else {
       console.log('⚠️ No destination URL provided - portal effect only');
     }
-  }, 1750);
+  }, 2000);
 };

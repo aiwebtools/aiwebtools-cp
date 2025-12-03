@@ -1,329 +1,577 @@
 
+// EPIC TIME WARP VISUAL EFFECTS - Maximum coolness edition
+
 export const createParticles = (effectsContainer: HTMLElement) => {
-  console.log('✨ Creating elegant spiral particles');
-  const colors = ['#40E0FF', '#8000FF', '#FF4080']; // Reduced to 3 elegant colors
-  const particleCount = 24; // Reduced for cleaner effect
+  console.log('✨ Creating EPIC particle explosion');
+  const colors = ['#00FFFF', '#FF00FF', '#FFFF00', '#00FF00', '#FF4444', '#4444FF', '#FF8800'];
+  const particleCount = 80; // More particles for epic effect
   
   for (let i = 0; i < particleCount; i++) {
     const particle = document.createElement('div');
-    particle.className = 'spiral-particle';
+    particle.className = 'epic-particle';
+    const size = 3 + Math.random() * 8;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    
     particle.style.cssText = `
       position: absolute;
-      width: 4px;
-      height: 4px;
-      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      width: ${size}px;
+      height: ${size}px;
+      background: ${color};
       border-radius: 50%;
       top: 50%;
       left: 50%;
-      box-shadow: 0 0 10px currentColor;
-      animation: elegant-spiral-particle 2.5s ease-out forwards;
+      box-shadow: 0 0 ${size * 3}px ${color}, 0 0 ${size * 6}px ${color};
+      animation: epic-particle-burst 2s ease-out forwards;
       transform-origin: center;
+      z-index: 10001;
     `;
     
-    const angle = (i / particleCount) * 360;
-    const velocity = 80 + Math.random() * 60; // More controlled velocity
+    const angle = (i / particleCount) * 360 + Math.random() * 30;
+    const velocity = 150 + Math.random() * 250;
     particle.style.setProperty('--angle', `${angle}deg`);
     particle.style.setProperty('--velocity', `${velocity}px`);
+    particle.style.setProperty('--delay', `${Math.random() * 0.3}s`);
     
     effectsContainer.appendChild(particle);
   }
   
-  // Add elegant spiral particle animation
   const style = document.createElement('style');
+  style.id = 'epic-particle-style';
   style.textContent = `
-    @keyframes elegant-spiral-particle {
+    @keyframes epic-particle-burst {
       0% {
         transform: translate(-50%, -50%) rotate(var(--angle)) translateX(0) scale(1);
-        opacity: 0.8;
-      }
-      50% {
         opacity: 1;
-        transform: translate(-50%, -50%) rotate(calc(var(--angle) + 180deg)) translateX(calc(var(--velocity) * 0.6)) scale(1.1);
+        filter: brightness(3);
+      }
+      30% {
+        opacity: 1;
+        filter: brightness(5);
+        transform: translate(-50%, -50%) rotate(calc(var(--angle) + 180deg)) translateX(calc(var(--velocity) * 0.5)) scale(1.5);
+      }
+      60% {
+        opacity: 0.8;
+        filter: brightness(4);
       }
       100% {
-        transform: translate(-50%, -50%) rotate(calc(var(--angle) + 360deg)) translateX(var(--velocity)) scale(0);
+        transform: translate(-50%, -50%) rotate(calc(var(--angle) + 540deg)) translateX(var(--velocity)) scale(0);
         opacity: 0;
+        filter: brightness(2);
       }
     }
   `;
-  document.head.appendChild(style);
+  if (!document.getElementById('epic-particle-style')) {
+    document.head.appendChild(style);
+  }
 };
 
 export const createVortexRings = (effectsContainer: HTMLElement) => {
-  console.log('🌀 Creating elegant vortex rings');
+  console.log('🌀 Creating EPIC vortex portal');
   const colors = [
-    'rgba(64, 224, 255, 0.6)', 
-    'rgba(128, 0, 255, 0.6)', 
-    'rgba(255, 64, 128, 0.6)'
+    'rgba(0, 255, 255, 0.9)', 
+    'rgba(255, 0, 255, 0.8)', 
+    'rgba(255, 255, 0, 0.7)',
+    'rgba(0, 255, 128, 0.8)',
+    'rgba(255, 64, 128, 0.7)'
   ];
   
-  for (let i = 0; i < 3; i++) {
+  // Create multiple concentric rings
+  for (let i = 0; i < 8; i++) {
     const ring = document.createElement('div');
-    ring.className = 'elegant-vortex-ring';
+    ring.className = 'epic-vortex-ring';
     ring.style.cssText = `
       position: absolute;
       top: 50%;
       left: 50%;
-      border: 2px solid ${colors[i]};
+      border: ${4 + i}px solid ${colors[i % colors.length]};
       border-radius: 50%;
       transform: translate(-50%, -50%);
-      animation: elegant-vortex-spin 2.8s ease-out forwards;
-      animation-delay: ${i * 0.2}s;
-      box-shadow: 0 0 20px ${colors[i]};
+      animation: epic-vortex-spin ${2 + i * 0.3}s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      animation-delay: ${i * 0.08}s;
+      box-shadow: 
+        0 0 30px ${colors[i % colors.length]},
+        inset 0 0 30px ${colors[i % colors.length]};
+      z-index: 10000;
     `;
     effectsContainer.appendChild(ring);
   }
   
-  // Add elegant vortex animation
   const style = document.createElement('style');
+  style.id = 'epic-vortex-style';
   style.textContent = `
-    @keyframes elegant-vortex-spin {
+    @keyframes epic-vortex-spin {
       0% {
-        width: 60px;
-        height: 60px;
-        opacity: 0.8;
-        transform: translate(-50%, -50%) rotate(0deg);
-        border-width: 2px;
+        width: 20px;
+        height: 20px;
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(0deg) scale(0.5);
+        filter: brightness(2) hue-rotate(0deg);
+      }
+      20% {
+        opacity: 1;
+        filter: brightness(3) hue-rotate(72deg);
       }
       50% {
-        width: 200px;
-        height: 200px;
-        opacity: 1;
-        transform: translate(-50%, -50%) rotate(360deg);
-        border-width: 3px;
-      }
-      100% {
         width: 350px;
         height: 350px;
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(720deg) scale(1.2);
+        filter: brightness(4) hue-rotate(180deg);
+      }
+      75% {
+        opacity: 0.8;
+        filter: brightness(3) hue-rotate(270deg);
+      }
+      100% {
+        width: 600px;
+        height: 600px;
         opacity: 0;
-        transform: translate(-50%, -50%) rotate(720deg);
-        border-width: 1px;
+        transform: translate(-50%, -50%) rotate(1440deg) scale(0.8);
+        filter: brightness(2) hue-rotate(360deg);
       }
     }
   `;
-  document.head.appendChild(style);
+  if (!document.getElementById('epic-vortex-style')) {
+    document.head.appendChild(style);
+  }
 };
 
 export const createSpiralTunnel = (effectsContainer: HTMLElement) => {
-  console.log('🌪️ Creating elegant spiral tunnel');
+  console.log('🌪️ Creating EPIC spiral tunnel');
   const colors = [
-    'rgba(64, 224, 255, 0.4)', 
-    'rgba(128, 0, 255, 0.4)', 
-    'rgba(255, 64, 128, 0.4)'
+    'rgba(0, 255, 255, 0.6)', 
+    'rgba(255, 0, 255, 0.5)', 
+    'rgba(255, 255, 0, 0.4)',
+    'rgba(0, 255, 128, 0.5)',
+    'rgba(255, 128, 0, 0.4)'
   ];
   
-  for (let i = 0; i < 6; i++) {
-    const tunnel = document.createElement('div');
-    tunnel.className = 'elegant-spiral-tunnel';
-    tunnel.style.cssText = `
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      border: 1px solid ${colors[i % colors.length]};
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      animation: elegant-spiral-tunnel 3.2s ease-out forwards;
-      animation-delay: ${i * 0.1}s;
-      box-shadow: 0 0 15px ${colors[i % colors.length]};
-    `;
-    effectsContainer.appendChild(tunnel);
+  // Create spiral arms
+  for (let arm = 0; arm < 6; arm++) {
+    for (let i = 0; i < 12; i++) {
+      const segment = document.createElement('div');
+      segment.className = 'epic-spiral-segment';
+      const baseAngle = arm * 60;
+      segment.style.cssText = `
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: ${10 + i * 8}px;
+        height: ${10 + i * 8}px;
+        border: 2px solid ${colors[i % colors.length]};
+        border-radius: 50%;
+        transform: translate(-50%, -50%) rotate(${baseAngle + i * 30}deg);
+        animation: epic-spiral-expand 2.5s ease-out forwards;
+        animation-delay: ${i * 0.04 + arm * 0.02}s;
+        box-shadow: 0 0 15px ${colors[i % colors.length]};
+        z-index: 9999;
+      `;
+      effectsContainer.appendChild(segment);
+    }
   }
   
-  // Add elegant spiral animation
   const style = document.createElement('style');
+  style.id = 'epic-spiral-style';
   style.textContent = `
-    @keyframes elegant-spiral-tunnel {
+    @keyframes epic-spiral-expand {
       0% {
-        width: 40px;
-        height: 40px;
-        opacity: 0.6;
-        transform: translate(-50%, -50%) rotate(0deg);
-        border-width: 1px;
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(0deg) scale(0.1);
+        filter: brightness(2);
       }
-      25% {
-        width: 120px;
-        height: 120px;
+      30% {
+        opacity: 1;
+        filter: brightness(4);
+      }
+      60% {
         opacity: 0.8;
-        transform: translate(-50%, -50%) rotate(180deg);
-        border-width: 2px;
-      }
-      50% {
-        width: 240px;
-        height: 240px;
-        opacity: 0.9;
-        transform: translate(-50%, -50%) rotate(450deg);
-        border-width: 3px;
-      }
-      75% {
-        width: 320px;
-        height: 320px;
-        opacity: 0.6;
-        transform: translate(-50%, -50%) rotate(630deg);
-        border-width: 2px;
+        transform: translate(-50%, -50%) rotate(720deg) scale(3);
+        filter: brightness(3);
       }
       100% {
-        width: 400px;
-        height: 400px;
         opacity: 0;
-        transform: translate(-50%, -50%) rotate(900deg);
-        border-width: 1px;
+        transform: translate(-50%, -50%) rotate(1080deg) scale(5);
+        filter: brightness(1);
       }
     }
   `;
-  document.head.appendChild(style);
+  if (!document.getElementById('epic-spiral-style')) {
+    document.head.appendChild(style);
+  }
 };
 
 export const createEnergyWaves = (effectsContainer: HTMLElement) => {
-  console.log('⚡ Creating elegant energy waves');
+  console.log('⚡ Creating EPIC energy shockwaves');
   const colors = [
-    'rgba(64, 224, 255, 0.5)', 
-    'rgba(128, 0, 255, 0.5)', 
-    'rgba(255, 64, 128, 0.5)'
+    'rgba(0, 255, 255, 0.8)', 
+    'rgba(255, 0, 255, 0.7)', 
+    'rgba(255, 255, 0, 0.6)',
+    'rgba(0, 255, 0, 0.7)',
+    'rgba(255, 64, 0, 0.6)'
   ];
   
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 6; i++) {
     const wave = document.createElement('div');
-    wave.className = 'elegant-energy-wave';
+    wave.className = 'epic-energy-wave';
     wave.style.cssText = `
       position: absolute;
       top: 50%;
       left: 50%;
-      border: 2px solid ${colors[i]};
+      border: ${3 + i}px solid ${colors[i % colors.length]};
       border-radius: 50%;
       transform: translate(-50%, -50%);
-      animation: elegant-energy-pulse 2.4s ease-out forwards;
-      animation-delay: ${i * 0.3}s;
-      box-shadow: 0 0 25px ${colors[i]};
+      animation: epic-shockwave ${1.8 + i * 0.2}s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      animation-delay: ${i * 0.15}s;
+      box-shadow: 
+        0 0 40px ${colors[i % colors.length]},
+        0 0 80px ${colors[i % colors.length]},
+        inset 0 0 40px ${colors[i % colors.length]};
+      z-index: 10002;
     `;
     effectsContainer.appendChild(wave);
   }
   
-  // Add elegant energy pulse animation
   const style = document.createElement('style');
+  style.id = 'epic-wave-style';
   style.textContent = `
-    @keyframes elegant-energy-pulse {
+    @keyframes epic-shockwave {
       0% {
-        width: 30px;
-        height: 30px;
-        opacity: 0.8;
-        transform: translate(-50%, -50%) scale(1);
+        width: 10px;
+        height: 10px;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+        filter: brightness(3) blur(0px);
+      }
+      20% {
+        opacity: 1;
+        filter: brightness(5) blur(1px);
       }
       50% {
-        width: 160px;
-        height: 160px;
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.05);
+        width: 400px;
+        height: 400px;
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(1.1);
+        filter: brightness(4) blur(2px);
       }
       100% {
-        width: 280px;
-        height: 280px;
+        width: 800px;
+        height: 800px;
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.95);
+        transform: translate(-50%, -50%) scale(0.9);
+        filter: brightness(2) blur(4px);
       }
     }
   `;
-  document.head.appendChild(style);
+  if (!document.getElementById('epic-wave-style')) {
+    document.head.appendChild(style);
+  }
 };
 
 export const createLightning = (effectsContainer: HTMLElement) => {
-  console.log('⚡ Creating elegant lightning effect');
-  const colors = ['#40E0FF', '#8000FF', '#FF4080'];
+  console.log('⚡ Creating EPIC lightning storm');
+  const colors = ['#00FFFF', '#FF00FF', '#FFFF00', '#00FF00', '#FF4444', '#FFFFFF'];
   
-  for (let i = 0; i < 6; i++) {
+  // Create multiple lightning bolts radiating outward
+  for (let i = 0; i < 12; i++) {
     const bolt = document.createElement('div');
-    bolt.className = 'elegant-lightning-bolt';
+    bolt.className = 'epic-lightning-bolt';
+    const rotation = i * 30;
+    const color = colors[i % colors.length];
+    
     bolt.style.cssText = `
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 2px;
-      height: 60px;
-      background: linear-gradient(0deg, transparent, ${colors[i % colors.length]}, ${colors[i % colors.length]}, transparent);
+      width: 3px;
+      height: 120px;
+      background: linear-gradient(0deg, transparent 0%, ${color} 20%, white 50%, ${color} 80%, transparent 100%);
       transform-origin: bottom center;
-      transform: translate(-50%, -50%) rotate(${i * 60}deg);
-      animation: elegant-lightning-flash 1.8s ease-out forwards;
-      animation-delay: ${i * 0.08}s;
-      box-shadow: 0 0 10px ${colors[i % colors.length]};
+      transform: translate(-50%, -100%) rotate(${rotation}deg);
+      animation: epic-lightning-strike 1.5s ease-out forwards;
+      animation-delay: ${i * 0.05}s;
+      box-shadow: 
+        0 0 10px ${color},
+        0 0 20px ${color},
+        0 0 40px ${color};
+      z-index: 10003;
     `;
+    bolt.style.setProperty('--rotation', `${rotation}deg`);
     effectsContainer.appendChild(bolt);
   }
   
-  // Add elegant lightning animation
   const style = document.createElement('style');
+  style.id = 'epic-lightning-style';
   style.textContent = `
-    @keyframes elegant-lightning-flash {
+    @keyframes epic-lightning-strike {
       0% {
         opacity: 0;
-        transform: translate(-50%, -50%) rotate(var(--rotation, 0deg)) scaleY(0);
+        height: 0px;
+        filter: brightness(3);
+      }
+      15% {
+        opacity: 1;
+        height: 180px;
+        filter: brightness(6);
       }
       30% {
         opacity: 1;
-        transform: translate(-50%, -50%) rotate(var(--rotation, 0deg)) scaleY(1.2);
+        height: 250px;
+        filter: brightness(8);
       }
-      60% {
-        opacity: 0.8;
-        transform: translate(-50%, -50%) rotate(var(--rotation, 0deg)) scaleY(1);
+      50% {
+        opacity: 0.9;
+        height: 200px;
+        filter: brightness(5);
+      }
+      70% {
+        opacity: 0.6;
+        filter: brightness(4);
       }
       100% {
         opacity: 0;
-        transform: translate(-50%, -50%) rotate(var(--rotation, 0deg)) scaleY(0.3);
+        height: 300px;
+        filter: brightness(2);
       }
     }
   `;
-  document.head.appendChild(style);
+  if (!document.getElementById('epic-lightning-style')) {
+    document.head.appendChild(style);
+  }
 };
 
 export const createFlash = (effectsContainer: HTMLElement) => {
-  console.log('💫 Creating elegant portal flash');
+  console.log('💫 Creating EPIC dimensional rift flash');
+  
+  // Create central flash
   const flash = document.createElement('div');
+  flash.className = 'epic-flash';
   flash.style.cssText = `
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    animation: elegant-portal-flash 2.2s ease-out forwards;
-    z-index: 9999;
+    animation: epic-dimensional-rift 2s ease-out forwards;
+    z-index: 10005;
+    pointer-events: none;
   `;
   effectsContainer.appendChild(flash);
   
-  // Add elegant flash animation
+  // Create screen flash overlay
+  const screenFlash = document.createElement('div');
+  screenFlash.className = 'epic-screen-flash';
+  screenFlash.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 10010;
+    animation: epic-screen-flash 1.5s ease-out forwards;
+  `;
+  effectsContainer.appendChild(screenFlash);
+  
   const style = document.createElement('style');
+  style.id = 'epic-flash-style';
   style.textContent = `
-    @keyframes elegant-portal-flash {
+    @keyframes epic-dimensional-rift {
       0% {
-        width: 100px;
-        height: 100px;
+        width: 10px;
+        height: 10px;
         opacity: 0;
-        background: radial-gradient(circle, rgba(255,255,255,0) 0%, transparent 100%);
+        background: radial-gradient(circle, white 0%, transparent 100%);
+        filter: brightness(3);
       }
       15% {
-        width: 180px;
-        height: 180px;
-        opacity: 0.4;
-        background: radial-gradient(circle, rgba(64,224,255,0.6) 0%, rgba(128,0,255,0.4) 40%, transparent 80%);
+        width: 100px;
+        height: 100px;
+        opacity: 0.7;
+        background: radial-gradient(circle, white 0%, cyan 20%, magenta 40%, transparent 70%);
+        filter: brightness(6);
       }
       35% {
-        width: 280px;
-        height: 280px;
-        opacity: 0.8;
-        background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(64,224,255,0.5) 25%, rgba(128,0,255,0.4) 50%, transparent 85%);
+        width: 300px;
+        height: 300px;
+        opacity: 1;
+        background: radial-gradient(circle, white 0%, cyan 15%, magenta 30%, yellow 45%, lime 60%, transparent 85%);
+        filter: brightness(8);
       }
       60% {
-        width: 350px;
-        height: 350px;
-        opacity: 0.9;
-        background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,64,128,0.6) 20%, rgba(64,224,255,0.4) 45%, transparent 90%);
+        width: 500px;
+        height: 500px;
+        opacity: 0.8;
+        background: radial-gradient(circle, white 0%, magenta 20%, cyan 40%, orange 60%, transparent 90%);
+        filter: brightness(5);
       }
       100% {
-        width: 450px;
-        height: 450px;
+        width: 700px;
+        height: 700px;
         opacity: 0;
-        background: radial-gradient(circle, rgba(255,255,255,0) 0%, transparent 100%);
+        background: radial-gradient(circle, transparent 0%, transparent 100%);
+        filter: brightness(2);
+      }
+    }
+    
+    @keyframes epic-screen-flash {
+      0% {
+        background: transparent;
+        opacity: 0;
+      }
+      10% {
+        background: radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(0,255,255,0.5) 30%, rgba(255,0,255,0.3) 60%, transparent 100%);
+        opacity: 1;
+      }
+      25% {
+        background: radial-gradient(circle at center, rgba(255,255,255,1) 0%, rgba(0,255,255,0.7) 20%, rgba(255,0,255,0.5) 40%, rgba(255,255,0,0.3) 60%, transparent 100%);
+        opacity: 0.9;
+      }
+      50% {
+        background: radial-gradient(circle at center, rgba(0,255,255,0.6) 0%, rgba(255,0,255,0.4) 30%, transparent 80%);
+        opacity: 0.5;
+      }
+      100% {
+        background: transparent;
+        opacity: 0;
       }
     }
   `;
-  document.head.appendChild(style);
+  if (!document.getElementById('epic-flash-style')) {
+    document.head.appendChild(style);
+  }
+};
+
+// NEW: Create epic black hole effect
+export const createBlackHole = (effectsContainer: HTMLElement) => {
+  console.log('🕳️ Creating black hole warp effect');
+  
+  const blackHole = document.createElement('div');
+  blackHole.className = 'epic-black-hole';
+  blackHole.style.cssText = `
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, black 0%, transparent 70%);
+    box-shadow: 
+      0 0 60px 30px rgba(0,0,0,0.8),
+      0 0 100px 60px rgba(128,0,255,0.4),
+      0 0 140px 90px rgba(0,255,255,0.2);
+    animation: epic-black-hole-pulse 2s ease-in-out forwards;
+    z-index: 10004;
+  `;
+  effectsContainer.appendChild(blackHole);
+  
+  // Create accretion disk
+  for (let i = 0; i < 3; i++) {
+    const disk = document.createElement('div');
+    disk.style.cssText = `
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: ${80 + i * 40}px;
+      height: ${80 + i * 40}px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,128,0,${0.6 - i * 0.15});
+      transform: translate(-50%, -50%) rotateX(70deg);
+      animation: epic-accretion-spin ${2 - i * 0.3}s linear infinite;
+      box-shadow: 0 0 20px rgba(255,128,0,0.5);
+      z-index: 10003;
+    `;
+    effectsContainer.appendChild(disk);
+  }
+  
+  const style = document.createElement('style');
+  style.id = 'epic-blackhole-style';
+  style.textContent = `
+    @keyframes epic-black-hole-pulse {
+      0% {
+        width: 10px;
+        height: 10px;
+        box-shadow: 
+          0 0 30px 15px rgba(0,0,0,0.5),
+          0 0 60px 30px rgba(128,0,255,0.3),
+          0 0 90px 45px rgba(0,255,255,0.1);
+      }
+      50% {
+        width: 80px;
+        height: 80px;
+        box-shadow: 
+          0 0 100px 50px rgba(0,0,0,0.9),
+          0 0 160px 80px rgba(128,0,255,0.5),
+          0 0 220px 110px rgba(0,255,255,0.3);
+      }
+      100% {
+        width: 40px;
+        height: 40px;
+        box-shadow: 
+          0 0 60px 30px rgba(0,0,0,0.7),
+          0 0 100px 50px rgba(128,0,255,0.4),
+          0 0 140px 70px rgba(0,255,255,0.2);
+      }
+    }
+    
+    @keyframes epic-accretion-spin {
+      from { transform: translate(-50%, -50%) rotateX(70deg) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotateX(70deg) rotate(360deg); }
+    }
+  `;
+  if (!document.getElementById('epic-blackhole-style')) {
+    document.head.appendChild(style);
+  }
+};
+
+// NEW: Create warp speed stars effect
+export const createWarpStars = (effectsContainer: HTMLElement) => {
+  console.log('🌟 Creating warp speed stars');
+  
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement('div');
+    const angle = Math.random() * 360;
+    const delay = Math.random() * 0.5;
+    const size = 1 + Math.random() * 3;
+    
+    star.style.cssText = `
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: ${size}px;
+      height: ${size * 8}px;
+      background: linear-gradient(0deg, transparent, white, white, transparent);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) rotate(${angle}deg);
+      animation: epic-warp-star 1.5s ease-in forwards;
+      animation-delay: ${delay}s;
+      opacity: 0;
+      z-index: 9998;
+    `;
+    star.style.setProperty('--angle', `${angle}deg`);
+    effectsContainer.appendChild(star);
+  }
+  
+  const style = document.createElement('style');
+  style.id = 'epic-warpstar-style';
+  style.textContent = `
+    @keyframes epic-warp-star {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(0) scaleY(1);
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-600px) scaleY(3);
+      }
+    }
+  `;
+  if (!document.getElementById('epic-warpstar-style')) {
+    document.head.appendChild(style);
+  }
 };
