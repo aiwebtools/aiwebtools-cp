@@ -147,9 +147,44 @@ const MobileMenu = () => {
     }
   };
 
+  // Touch/swipe handling for closing menu
+  const touchStartY = useRef<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
+  
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+    touchStartX.current = e.touches[0].clientX;
+  }, []);
+  
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (touchStartY.current === null) return;
+    
+    const touchEndY = e.changedTouches[0].clientY;
+    const touchEndX = e.changedTouches[0].clientX;
+    const deltaY = touchEndY - touchStartY.current;
+    const deltaX = Math.abs(touchEndX - (touchStartX.current || 0));
+    
+    // Swipe down to close (at least 80px down, and more vertical than horizontal)
+    if (deltaY > 80 && deltaY > deltaX) {
+      closeMenu();
+    }
+    
+    touchStartY.current = null;
+    touchStartX.current = null;
+  }, [closeMenu]);
+
   return (
     <TooltipProvider>
       <div className="md:hidden">  {/* Show on mobile only */}
+        {/* Backdrop overlay - click to close */}
+        {isMenuOpen && (
+          <div 
+            className="fixed inset-0 bg-black/30 z-[100] backdrop-blur-[2px]"
+            onClick={closeMenu}
+            aria-hidden="true"
+          />
+        )}
+        
         <DropdownMenu open={isMenuOpen} onOpenChange={handleMenuToggle}>
           <DropdownMenuTrigger asChild>
             <Button 
@@ -171,6 +206,8 @@ const MobileMenu = () => {
             avoidCollisions={true}
             collisionPadding={{ top: 80, left: 10, right: 10, bottom: 10 }}
             sticky="always"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
             style={{
               scrollBehavior: 'auto',
               overscrollBehavior: 'contain'
