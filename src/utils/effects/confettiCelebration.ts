@@ -3,11 +3,11 @@ export const createConfettiCelebration = () => {
   console.log('🎉 Creating Matrix binary explosion effect');
   
   try {
-    // Create digital matrix sound (shorter)
+    // Create digital matrix sound
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     
     const createMatrixSound = () => {
-      const duration = 0.8;
+      const duration = 1.0;
       const sampleRate = audioContext.sampleRate;
       const numFrames = sampleRate * duration;
       const buffer = audioContext.createBuffer(2, numFrames, sampleRate);
@@ -19,10 +19,11 @@ export const createConfettiCelebration = () => {
           const t = i / sampleRate;
           const fadeOut = Math.max(0, 1 - t / duration);
           
-          const sweep = Math.sin(2 * Math.PI * (200 + t * 1200) * t) * Math.exp(-t * 4);
-          const bass = Math.sin(2 * Math.PI * 80 * t) * Math.exp(-t * 3) * 0.4;
+          const sweep = Math.sin(2 * Math.PI * (200 + t * 1000) * t) * Math.exp(-t * 3);
+          const digital1 = Math.sin(2 * Math.PI * 440 * t) * (Math.random() > 0.96 ? 1 : 0) * 0.2;
+          const bass = Math.sin(2 * Math.PI * 80 * t) * Math.exp(-t * 2.5) * 0.4;
           
-          channelData[i] = (sweep + bass) * fadeOut * 0.12;
+          channelData[i] = (sweep + digital1 + bass) * fadeOut * 0.15;
         }
       }
       
@@ -35,12 +36,12 @@ export const createConfettiCelebration = () => {
     matrixSource.connect(audioContext.destination);
     matrixSource.start();
 
-    // Fewer binary particles for better performance
-    const binaryCount = 50;
-    const matrixColors = ['#00FF00', '#00DD00', '#33FF33'];
+    // Binary particles
+    const binaryCount = 75;
+    const matrixColors = ['#00FF00', '#00DD00', '#00BB00', '#33FF33', '#00FF88'];
 
     const generateBinaryString = () => {
-      const length = Math.floor(Math.random() * 5) + 2;
+      const length = Math.floor(Math.random() * 6) + 3;
       let binary = '';
       for (let i = 0; i < length; i++) {
         binary += Math.random() > 0.5 ? '1' : '0';
@@ -54,14 +55,14 @@ export const createConfettiCelebration = () => {
       const startX = Math.random() * window.innerWidth;
       const startY = window.innerHeight / 2;
       const angle = Math.random() * 360;
-      const velocity = Math.random() * 12 + 8;
+      const velocity = Math.random() * 14 + 8;
       const binaryString = generateBinaryString();
       const color = matrixColors[Math.floor(Math.random() * matrixColors.length)];
       
       binary.textContent = binaryString;
       binary.style.cssText = `
         position: fixed;
-        font-family: monospace;
+        font-family: 'Courier New', monospace;
         font-size: ${fontSize}px;
         font-weight: bold;
         color: ${color};
@@ -69,8 +70,9 @@ export const createConfettiCelebration = () => {
         top: ${startY}px;
         z-index: 10000;
         pointer-events: none;
-        text-shadow: 0 0 8px ${color};
+        text-shadow: 0 0 8px ${color}, 0 0 16px ${color};
         white-space: nowrap;
+        letter-spacing: 1px;
       `;
       
       document.body.appendChild(binary);
@@ -83,26 +85,26 @@ export const createConfettiCelebration = () => {
       let opacity = 1;
       
       const animate = () => {
-        vy += 0.5;
-        x += vx * 0.6;
+        vy += 0.4;
+        x += vx * 0.5;
         y += vy;
-        opacity -= 0.025; // Faster fade
+        opacity -= 0.018;
         
         binary.style.left = `${x}px`;
         binary.style.top = `${y}px`;
         binary.style.opacity = `${opacity}`;
         
-        if (opacity > 0 && y < window.innerHeight + 50) {
+        if (opacity > 0 && y < window.innerHeight + 80) {
           requestAnimationFrame(animate);
         } else {
           binary.remove();
         }
       };
       
-      requestAnimationFrame(animate);
+      setTimeout(() => requestAnimationFrame(animate), Math.random() * 100);
     }
 
-    // Quick burst effect
+    // Burst effect
     const burst = document.createElement('div');
     burst.style.cssText = `
       position: fixed;
@@ -111,33 +113,34 @@ export const createConfettiCelebration = () => {
       width: 0;
       height: 0;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 255, 0, 0.5), transparent 70%);
+      background: radial-gradient(circle, rgba(0, 255, 0, 0.6), transparent 70%);
       transform: translate(-50%, -50%);
       z-index: 9999;
       pointer-events: none;
-      animation: matrix-burst 0.4s ease-out forwards;
+      animation: matrix-burst 0.6s ease-out forwards;
     `;
     
     const style = document.createElement('style');
     style.textContent = `
       @keyframes matrix-burst {
-        0% { width: 0; height: 0; opacity: 1; }
-        100% { width: 300px; height: 300px; opacity: 0; }
+        0% { width: 0; height: 0; opacity: 1; box-shadow: 0 0 0 rgba(0, 255, 0, 0.8); }
+        50% { box-shadow: 0 0 60px rgba(0, 255, 0, 0.5); }
+        100% { width: 400px; height: 400px; opacity: 0; }
       }
       @keyframes matrix-text-pop {
         0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-        15% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
-        25% { transform: translate(-50%, -50%) scale(1); }
-        70% { opacity: 1; }
-        100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0; }
+        20% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+        30% { transform: translate(-50%, -50%) scale(1); }
+        75% { opacity: 1; }
+        100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }
       }
     `;
     document.head.appendChild(style);
     document.body.appendChild(burst);
     
-    setTimeout(() => { burst.remove(); }, 400);
+    setTimeout(() => { burst.remove(); }, 600);
 
-    // Quick text message
+    // Text message
     const messageText = document.createElement('div');
     messageText.textContent = 'CLONING YOUR AI EMPIRE NOW MASTER';
     messageText.style.cssText = `
@@ -147,15 +150,15 @@ export const createConfettiCelebration = () => {
       transform: translate(-50%, -50%) scale(0);
       z-index: 10001;
       pointer-events: none;
-      font-family: monospace;
+      font-family: 'Courier New', monospace;
       font-size: clamp(14px, 3.5vw, 28px);
       font-weight: bold;
       color: #00FF00;
       text-align: center;
-      text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00;
+      text-shadow: 0 0 10px #00FF00, 0 0 25px #00FF00, 0 0 40px rgba(0, 255, 0, 0.4);
       letter-spacing: 3px;
       white-space: nowrap;
-      animation: matrix-text-pop 1.2s ease-out forwards;
+      animation: matrix-text-pop 1.8s ease-out forwards;
     `;
     
     document.body.appendChild(messageText);
@@ -163,7 +166,7 @@ export const createConfettiCelebration = () => {
     setTimeout(() => {
       messageText.remove();
       style.remove();
-    }, 1200);
+    }, 1800);
 
     console.log('🎊 Matrix binary explosion created successfully');
     
