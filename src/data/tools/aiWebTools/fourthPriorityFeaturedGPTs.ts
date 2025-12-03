@@ -23,7 +23,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     emoji: "🤝",
     color: "from-green-500 to-blue-600",
     directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/KMvrXcK46xw",
+    videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
     rating: 4.8,
     totalVotes: 4200,
     tags: ["social services", "community support", "assistance", "resources", "social impact", "aiwebtools"],
@@ -167,7 +167,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     color: "from-red-500 to-orange-600",
     category: "Industry-Specific Solutions",
     directUrl: "https://firefightergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/kDu2SSP9Glw",
+    videoUrl: "https://www.youtube.com/watch?v=lGsefWkYfq0",
     rating: 4.6,
     totalVotes: 3600,
     tags: ["firefighting", "wildfire management", "emergency response", "fire safety", "disaster management"]

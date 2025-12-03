@@ -74,7 +74,7 @@ export const investigativeAndAnalysisGPTs: Tool[] = [
     emoji: "🔍",
     color: "from-red-500 to-purple-600",
     directUrl: "https://criminologistgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/iQzgCq-mmtE?si=ma_Vpvvh3ZJQXPhW",
+    videoUrl: "https://youtu.be/3Ll7KPhTt3M",
     tags: ["crime scene analysis", "forensic analysis", "investigation", "crime scene", "aiwebtools"],
     category: "Investigative & Analysis",
     rating: 4.5,

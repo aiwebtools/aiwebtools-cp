@@ -270,7 +270,7 @@ const featuredGPTs = [
     color: "from-red-600 to-gray-600",
     features: ["Crime Analysis", "Evidence Review", "Investigation Support", "Forensic Insights"],
     directUrl: "https://criminologistgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/iQzgCq-mmtE?si=ma_Vpvvh3ZJQXPhW",
+    videoUrl: "https://youtu.be/3Ll7KPhTt3M",
     imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop",
     emoji: "🔍"
   },
@@ -332,7 +332,7 @@ const featuredGPTs = [
     color: "from-red-500 to-orange-600",
     features: ["Wildfire Management", "Predictive Analytics", "Fire Strategy", "Safety Guidance"],
     directUrl: "https://firefightergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/kDu2SSP9Glw",
+    videoUrl: "https://www.youtube.com/watch?v=lGsefWkYfq0",
     emoji: "🚒"
   },
   {
@@ -393,7 +393,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-gold-600",
     features: ["Ultimate AI", "Versatile Transform", "Multi-Purpose", "Power Mode"],
     directUrl: "https://godmodegpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/7U_QmnDQIyE",
+    videoUrl: "https://www.youtube.com/watch?v=or3JtZsq6Bc",
     imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop",
     emoji: "⚡"
   },
@@ -1243,7 +1243,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Memory Simulation", "Emotional Healing", "Comfort Support", "Grief Assistance"],
     directUrl: "https://resurrectiongpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/xPQMsNdD51k",
+    videoUrl: "https://www.youtube.com/watch?v=nEuxdGO-RZ4",
     imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop",
     emoji: "👼"
   },
@@ -1254,7 +1254,7 @@ const featuredGPTs = [
     color: "from-green-600 to-blue-600",
     features: ["Social Support", "Resource Access", "Community Aid", "Safety Net"],
     directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/KMvrXcK46xw",
+    videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
     imageUrl: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=200&fit=crop",
     emoji: "🤝"
   },
@@ -1360,7 +1360,7 @@ const featuredGPTs = [
     color: "from-amber-600 to-orange-600",
     features: ["Time Travel", "Historical Exploration", "Period Analysis", "Timeline Navigation"],
     directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/PC_Q_IQqNd8?si=5pWwdZ-Hg-ty1Oxq",
+    videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298793409806528/time.webp",
     emoji: "⏰"
   },
