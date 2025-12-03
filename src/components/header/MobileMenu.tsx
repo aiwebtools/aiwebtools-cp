@@ -176,20 +176,26 @@ const MobileMenu = () => {
               overscrollBehavior: 'contain'
             }}
           >
-            <div className="p-4 overflow-y-auto max-h-[70vh]">
+            {/* Sticky Close Button - Always visible while scrolling */}
+            <div className="sticky top-0 z-[130] flex justify-end p-2 pointer-events-none">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={closeMenu}
+                className="pointer-events-auto h-10 w-10 p-0 text-red-400 hover:text-white bg-black/40 hover:bg-red-500/70 border border-red-500/50 hover:border-red-400 rounded-full transition-all duration-300 shadow-lg shadow-red-500/30 hover:shadow-red-500/50 backdrop-blur-md hover:scale-110"
+                aria-label="Close menu"
+                style={{
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
+                }}
+              >
+                <X className="w-5 h-5" />
+              </Button>
+            </div>
+            
+            <div className="p-4 pt-0 overflow-y-auto max-h-[65vh]">
               {/* Redesigned Header Section */}
               <div className="relative mb-5">
-                {/* Close Button - Elegant floating design */}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={closeMenu}
-                  className="absolute -top-2 -right-2 h-9 w-9 p-0 text-red-400 hover:text-white bg-black/60 hover:bg-red-500/60 border border-red-500/40 hover:border-red-400 rounded-full transition-all duration-300 shadow-lg shadow-red-500/20 hover:shadow-red-500/40 backdrop-blur-sm z-[120] hover:scale-110"
-                  aria-label="Close menu"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-                
                 {/* Glowing header background */}
                 <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/10 via-purple-500/5 to-transparent rounded-2xl -z-10" />
                 
