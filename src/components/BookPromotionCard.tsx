@@ -36,6 +36,8 @@ const LazyBookVideo = ({ videoId, title, gradient }: { videoId: string; title: s
 const BookPromotionCard = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   
+  const [desktopIndex, setDesktopIndex] = useState(0);
+  
   const videos = [
     {
       id: "lG1rMaImBNc",
@@ -51,8 +53,39 @@ const BookPromotionCard = () => {
       id: "i9e3pRXyP8s",
       title: "Book Deployable Robot Prompts Showcase",
       gradient: "from-orange-500/20 to-pink-500/20"
+    },
+    {
+      id: "v8El2IdTwsE",
+      title: "AI Tools Demo 4",
+      gradient: "from-green-500/20 to-cyan-500/20"
+    },
+    {
+      id: "LFMtWqoKqyI",
+      title: "AI Tools Demo 5",
+      gradient: "from-yellow-500/20 to-orange-500/20"
+    },
+    {
+      id: "1y3zdPnJfQ4",
+      title: "AI Tools Demo 6",
+      gradient: "from-pink-500/20 to-purple-500/20"
     }
   ];
+
+  const videosPerPage = 3;
+  const totalDesktopPages = Math.ceil(videos.length / videosPerPage);
+
+  const nextDesktopPage = () => {
+    setDesktopIndex((prev) => (prev + 1) % totalDesktopPages);
+  };
+
+  const prevDesktopPage = () => {
+    setDesktopIndex((prev) => (prev - 1 + totalDesktopPages) % totalDesktopPages);
+  };
+
+  const visibleDesktopVideos = videos.slice(
+    desktopIndex * videosPerPage,
+    desktopIndex * videosPerPage + videosPerPage
+  );
 
   const handleBuyBook = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -107,16 +140,50 @@ const BookPromotionCard = () => {
             <div className="flex flex-col lg:flex-row items-center">
               {/* Book Visual - YouTube Videos */}
               <div className="lg:w-1/2 p-8">
-                {/* Desktop: Show all three videos side by side with lazy loading */}
-                <div className="hidden md:flex justify-center gap-4">
-                  {videos.map((video, index) => (
-                    <div key={index} className="relative w-48 flex-shrink-0">
-                      <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
-                        <LazyBookVideo videoId={video.id} title={video.title} gradient={video.gradient} />
-                      </div>
-                      <div className={`absolute -inset-2 bg-gradient-to-r ${video.gradient} rounded-lg blur-xl -z-10`}></div>
+                {/* Desktop: Carousel showing 3 videos at a time */}
+                <div className="hidden md:block relative">
+                  <div className="flex items-center justify-center gap-2">
+                    <button
+                      onClick={prevDesktopPage}
+                      className="p-2 bg-purple-900/80 rounded-full text-white hover:bg-purple-800 transition-colors z-10"
+                      aria-label="Previous videos"
+                    >
+                      <ChevronLeft size={24} />
+                    </button>
+
+                    <div className="flex justify-center gap-4">
+                      {visibleDesktopVideos.map((video, index) => (
+                        <div key={desktopIndex * videosPerPage + index} className="relative w-48 flex-shrink-0">
+                          <div className="relative rounded-xl overflow-hidden shadow-2xl" style={{ aspectRatio: '9/16' }}>
+                            <LazyBookVideo videoId={video.id} title={video.title} gradient={video.gradient} />
+                          </div>
+                          <div className={`absolute -inset-2 bg-gradient-to-r ${video.gradient} rounded-lg blur-xl -z-10`}></div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+
+                    <button
+                      onClick={nextDesktopPage}
+                      className="p-2 bg-purple-900/80 rounded-full text-white hover:bg-purple-800 transition-colors z-10"
+                      aria-label="Next videos"
+                    >
+                      <ChevronRight size={24} />
+                    </button>
+                  </div>
+
+                  {/* Desktop dot indicators */}
+                  <div className="flex justify-center gap-2 mt-4">
+                    {Array.from({ length: totalDesktopPages }).map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setDesktopIndex(index)}
+                        className={`w-2 h-2 rounded-full transition-colors ${
+                          index === desktopIndex ? 'bg-cyan-400' : 'bg-gray-500'
+                        }`}
+                        aria-label={`Go to page ${index + 1}`}
+                      />
+                    ))}
+                  </div>
                 </div>
 
                 {/* Mobile: Carousel with swipe and lazy loading */}
