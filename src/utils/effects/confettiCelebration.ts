@@ -167,6 +167,59 @@ export const createConfettiCelebration = () => {
       style.remove();
     }, 800);
 
+    // Create the "CLONING YOUR AI EMPIRE NOW MASTER" text
+    const messageText = document.createElement('div');
+    messageText.textContent = 'CLONING YOUR AI EMPIRE NOW MASTER';
+    messageText.style.cssText = `
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      z-index: 10001;
+      pointer-events: none;
+      font-family: 'Courier New', monospace;
+      font-size: clamp(16px, 4vw, 32px);
+      font-weight: bold;
+      color: #00FF00;
+      text-align: center;
+      text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 40px #00FF00, 0 0 80px rgba(0, 255, 0, 0.5);
+      letter-spacing: 4px;
+      white-space: nowrap;
+      animation: matrix-text-appear 2.5s ease-out forwards;
+    `;
+    
+    const textStyle = document.createElement('style');
+    textStyle.textContent = `
+      @keyframes matrix-text-appear {
+        0% {
+          transform: translate(-50%, -50%) scale(0);
+          opacity: 0;
+        }
+        20% {
+          transform: translate(-50%, -50%) scale(1.2);
+          opacity: 1;
+        }
+        30% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        80% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1.5);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(textStyle);
+    document.body.appendChild(messageText);
+    
+    setTimeout(() => {
+      messageText.remove();
+      textStyle.remove();
+    }, 2500);
+
     console.log('🎊 Matrix binary explosion created successfully');
     
   } catch (error) {
