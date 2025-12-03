@@ -235,8 +235,73 @@ const MobileMenu = () => {
               </DropdownMenuItem>
               
               <DropdownMenuSeparator className="border-gray-700 mb-2" />
+              
+              {/* ⚡ CLONE THIS AI TOOL EMPIRE - Flashy Gold Button */}
+              <div className="mb-4">
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleExternalLink('https://lovable.dev/projects/5454d30d-695f-4a2c-b1b2-103c20f9bed6?via=aiwebtools', e);
+                  }}
+                  className="group relative w-full overflow-hidden rounded-xl p-4 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  style={{
+                    background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FFD700 50%, #FFA500 75%, #FFD700 100%)',
+                    backgroundSize: '200% 200%',
+                    animation: 'goldShimmer 2s ease-in-out infinite',
+                    boxShadow: '0 0 30px rgba(255, 215, 0, 0.5), 0 0 60px rgba(255, 165, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.3)',
+                  }}
+                >
+                  {/* Animated flash overlay */}
+                  <div 
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12"
+                    style={{
+                      animation: 'flashSweep 2s ease-in-out infinite',
+                    }}
+                  />
+                  
+                  {/* Content */}
+                  <div className="relative flex items-center justify-center gap-3">
+                    {/* Triangle/Play icon */}
+                    <div 
+                      className="w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-l-[16px] border-l-black/80 drop-shadow-lg"
+                      style={{ filter: 'drop-shadow(0 0 4px rgba(0,0,0,0.5))' }}
+                    />
+                    
+                    <div className="text-center">
+                      <div className="text-black font-black text-sm tracking-wide drop-shadow-sm">
+                        CLONE THIS AI TOOL EMPIRE
+                      </div>
+                      <div className="text-black/70 text-[10px] font-bold tracking-wider">
+                        BUILD YOUR OWN • 100% FREE
+                      </div>
+                    </div>
+                    
+                    {/* Triangle/Play icon (right side) */}
+                    <div 
+                      className="w-0 h-0 border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent border-r-[16px] border-r-black/80 drop-shadow-lg"
+                      style={{ filter: 'drop-shadow(0 0 4px rgba(0,0,0,0.5))' }}
+                    />
+                  </div>
+                  
+                  {/* Pulsing border */}
+                  <div className="absolute inset-0 rounded-xl border-2 border-yellow-200/60 animate-pulse" />
+                </button>
                 
-              {/* WEB3 Domains Section - MOVED UP FOR PRIORITY */}
+                {/* Keyframe animations */}
+                <style>{`
+                  @keyframes goldShimmer {
+                    0%, 100% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                  }
+                  @keyframes flashSweep {
+                    0% { transform: translateX(-200%) skewX(-12deg); }
+                    50%, 100% { transform: translateX(200%) skewX(-12deg); }
+                  }
+                `}</style>
+              </div>
+                
+              {/* WEB3 Domains Section */}
               <div className="px-1 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider">
                 💰 Register WEB3 Domains
               </div>
