@@ -154,14 +154,11 @@ const MobileMenu = () => {
           <DropdownMenuTrigger asChild>
             <Button 
               variant="outline" 
-              size="default" 
-              className="border-cyan-500/30 bg-black/80 text-cyan-100 hover:bg-cyan-500/20 px-3 py-2"
-              onClick={() => {
-                console.log('Menu button clicked - current state:', isMenuOpen);
-                handleMenuToggle(!isMenuOpen);
-              }}
+              size="lg" 
+              className="border-2 border-cyan-400 bg-cyan-500/20 text-cyan-100 hover:bg-cyan-500/40 px-4 py-3 min-w-[56px] min-h-[56px] rounded-xl shadow-lg shadow-cyan-500/30"
+              aria-label="Open menu"
             >
-              <Menu className="w-5 h-5" />
+              <Menu className="w-7 h-7" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent 
