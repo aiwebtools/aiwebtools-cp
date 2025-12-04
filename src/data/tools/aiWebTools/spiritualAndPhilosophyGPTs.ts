@@ -4,6 +4,18 @@ import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, M
 
 export const spiritualAndPhilosophyGPTs: Tool[] = [
   {
+    icon: Heart,
+    title: "Yemaya Ancient African Mother of the Waters",
+    description: "Embodies Yemaya, the Orisha of water and life, guiding with poetic truth and healing flow. Connect with this ancient African deity who represents the ocean, motherhood, fertility, and the protective nurturing force of the divine feminine. Yemaya offers wisdom on emotional healing, spiritual cleansing, and the deep mysteries of water as the source of all life. Her guidance flows like the ocean waves, bringing clarity, healing, and the nurturing embrace of the cosmic mother.",
+    emoji: "🌊",
+    color: "from-blue-500 to-cyan-600",
+    directUrl: "https://chatgpt.com/g/g-6931ac78db408191a54b3f5729d6e600-yemaya-ancient-african-mother-of-the-waters/?via=aiwebtools",
+    tags: ["yemaya", "orisha", "african spirituality", "water deity", "divine feminine", "healing", "motherhood", "ocean goddess", "fertility", "spiritual guidance", "ancestral wisdom", "yoruba", "santeria", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 1523
+  },
+  {
     icon: Star,
     title: "Carl Sagan GPT",
     description: "Connect with the cosmic wisdom of Carl Sagan, the legendary astronomer, astrophysicist, and science communicator. Explore the wonders of the cosmos, contemplate humanity's place in the universe, and engage in philosophical discussions about science, spirituality, and the profound interconnectedness of all things. This AI embodiment brings Sagan's passion for scientific discovery, his poetic perspective on existence, and his ability to make the vast universe feel intimately personal. Perfect for those seeking to expand their cosmic consciousness and understand the universe through both scientific and spiritual lenses.",
