@@ -1,8 +1,20 @@
 
 import { Tool } from "@/types/tools";
-import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, MapPin, Compass } from "lucide-react";
+import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, MapPin, Compass, Leaf } from "lucide-react";
 
 export const spiritualAndPhilosophyGPTs: Tool[] = [
+  {
+    icon: Leaf,
+    title: "Self Sufficiency GPT",
+    description: "Teaches complete, precise self-sufficiency systems from first principles to scalable community resilience. Master homesteading, off-grid living, food preservation, water systems, renewable energy, permaculture, and sustainable practices. This comprehensive guide helps you build independence through practical knowledge covering gardening, animal husbandry, construction, emergency preparedness, and community-building strategies for long-term resilience and autonomy.",
+    emoji: "🌱",
+    color: "from-green-500 to-emerald-600",
+    directUrl: "https://chatgpt.com/g/g-6931bd31b0208191a0ebd290977b8e4a-self-sufficiency-gpt/?via=aiwebtools",
+    tags: ["self sufficiency", "homesteading", "off-grid", "survival", "permaculture", "sustainable living", "food preservation", "renewable energy", "community resilience", "preparedness", "gardening", "aiwebtools"],
+    category: "Lifestyle & Practical Skills",
+    rating: 4.9,
+    totalVotes: 1567
+  },
   {
     icon: Heart,
     title: "Quan Yin GPT",
