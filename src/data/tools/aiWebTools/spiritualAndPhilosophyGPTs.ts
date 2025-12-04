@@ -5,6 +5,18 @@ import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, M
 export const spiritualAndPhilosophyGPTs: Tool[] = [
   {
     icon: Heart,
+    title: "Quan Yin GPT",
+    description: "Gentle guide offering compassionate, historically rooted Guanyin-inspired wisdom. Connect with the bodhisattva of compassion and mercy, revered across East Asia as the embodiment of unconditional love and kindness. Quan Yin GPT offers guidance rooted in Buddhist philosophy, helping seekers find peace, cultivate compassion, and navigate life's challenges with grace and understanding. Her wisdom flows with gentleness, encouraging healing, forgiveness, and the awakening of compassion within all beings.",
+    emoji: "🪷",
+    color: "from-pink-400 to-purple-500",
+    directUrl: "https://chatgpt.com/g/g-6931b5ced07081919ab6d3d4ae7efd0c-quan-yin-gpt/?via=aiwebtools",
+    tags: ["quan yin", "guanyin", "kuan yin", "bodhisattva", "compassion", "buddhism", "mercy", "divine feminine", "spiritual guidance", "healing", "meditation", "eastern philosophy", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 1489
+  },
+  {
+    icon: Heart,
     title: "Yemaya Ancient African Mother of the Waters",
     description: "Embodies Yemaya, the Orisha of water and life, guiding with poetic truth and healing flow. Connect with this ancient African deity who represents the ocean, motherhood, fertility, and the protective nurturing force of the divine feminine. Yemaya offers wisdom on emotional healing, spiritual cleansing, and the deep mysteries of water as the source of all life. Her guidance flows like the ocean waves, bringing clarity, healing, and the nurturing embrace of the cosmic mother.",
     emoji: "🌊",
