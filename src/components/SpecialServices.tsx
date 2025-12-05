@@ -985,6 +985,7 @@ const featuredGPTs = [
     features: ["Article Rewriting", "SEO Optimization", "Content Enhancement", "Blog Writing"],
     directUrl: "https://rewritergpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377297452243226635/article.webp",
+    videoUrl: "https://youtu.be/5n1RHKoQ-Ds",
     emoji: "✍️"
   },
   {

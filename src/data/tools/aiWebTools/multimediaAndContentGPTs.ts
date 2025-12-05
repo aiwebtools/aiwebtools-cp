@@ -73,6 +73,7 @@ export const multimediaAndContentGPTs: Tool[] = [
     emoji: "📝",
     color: "from-green-500 to-blue-600",
     directUrl: "https://rewritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/5n1RHKoQ-Ds",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005696.jpg/:/cr=t:9.9%25,l:0%25,w:100%25,h:80.21%25/rs=w:600,h:300,cg:true/qt=q:98",
     tags: ["content rewriting", "SEO optimization", "blog writing", "article creation", "content marketing"],
     category: "Multimedia & Content",
