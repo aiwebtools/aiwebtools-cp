@@ -76,7 +76,7 @@ export const thirdPriorityFeaturedGPTs: Tool[] = [
     color: "from-red-500 to-purple-600",
     category: "Creative & Entertainment (General & Gaming)",
     directUrl: "https://playwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=KKldzg40wEI&list=TLGGGcedR_qZHHYyODA1MjAyNQ",
+    videoUrl: "https://youtu.be/_QQ-oYYSFlw",
     rating: 4.6,
     totalVotes: 3400,
     tags: ["playwriting", "theater", "drama", "scripts", "creative writing"]
