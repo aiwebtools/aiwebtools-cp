@@ -26,6 +26,18 @@ import {
 
 export const creativeAndMediaGPTs: Tool[] = [
   {
+    icon: Video,
+    title: "SORA2 Text to Video Prompt Maker GPT",
+    description: "Expert cinematic prompt maker for Sora 2 and all text-to-video platforms. Master the art of crafting compelling video generation prompts with professional guidance on scene composition, camera movements, lighting, pacing, and visual storytelling. Perfect for creators using Sora, Runway, Pika, and other AI video tools.",
+    emoji: "🎬",
+    color: "from-red-500 to-orange-600",
+    directUrl: "https://chatgpt.com/g/g-69326acb5f348191a2f85c2cdc848c4d-0ra2-text-to-video-prompt-maker/?via=aiwebtools",
+    tags: ["sora", "text to video", "video prompts", "ai video", "cinematic", "prompt engineering", "runway", "pika", "video generation", "aiwebtools"],
+    category: "Creative & Media",
+    rating: 4.9,
+    totalVotes: 2345
+  },
+  {
     icon: Brush,
     title: "Bob Ross GPT",
     description: "A serene AI art companion echoing Bob Ross's teaching, tone, and calm creative spirit. Learn painting techniques, receive encouragement, and explore artistic creativity with the gentle guidance inspired by the legendary painter.",
