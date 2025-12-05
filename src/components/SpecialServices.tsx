@@ -1011,6 +1011,16 @@ const featuredGPTs = [
     emoji: "🖼️"
   },
   {
+    title: "Sport Card Appraisal GPT",
+    description: "Expert AI sports trading card appraiser providing accurate market values, grading insights, and investment analysis for vintage baseball cards, modern basketball rookies, and rare football memorabilia.",
+    badge: "SPORTS CARDS",
+    color: "from-green-500 to-emerald-600",
+    features: ["Card Valuation", "Grading Insights", "Market Analysis", "Investment Tips"],
+    directUrl: "https://chatgpt.com/g/g-wxZQTXVx9-sport-card-appraisal?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=azHoiefssJw",
+    emoji: "🏆"
+  },
+  {
     title: "Uncovering Hidden Historical Patterns GPT",
     description: "Advanced AI tool revealing suppressed truths and hidden power structures by analyzing symbolism, financial systems, and historical contradictions connecting ancient empires to modern institutions.",
     badge: "RESEARCH",
