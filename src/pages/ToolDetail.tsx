@@ -20,6 +20,7 @@ import { useToolDetail } from "@/hooks/useToolDetail";
 import ToolNotFound from "@/components/tool-detail/ToolNotFound";
 import ToolPageHeader from "@/components/tool-detail/ToolPageHeader";
 import ToolSearch from "@/components/tool-detail/ToolSearch";
+import GlobalSearchBar from "@/components/GlobalSearchBar";
 import MoreToolsSection from "@/components/tool-detail/MoreToolsSection";
 
 const ToolDetail = () => {
@@ -116,6 +117,10 @@ const ToolDetail = () => {
         <div className="container mx-auto px-4 py-20">
           <div className="max-w-4xl mx-auto">
             <ToolPageHeader totalTools={allTools.length} />
+
+            <div className="mb-8">
+              <GlobalSearchBar />
+            </div>
 
             <Card className="overflow-hidden bg-gray-900/80 backdrop-blur-md shadow-2xl shadow-cyan-500/20 border border-cyan-500/30 neon-border">
               <CardHeader>
