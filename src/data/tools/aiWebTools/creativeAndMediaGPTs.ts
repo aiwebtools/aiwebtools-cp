@@ -31,7 +31,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     description: "Expert cinematic prompt maker for Sora 2 and all text-to-video platforms. Master the art of crafting compelling video generation prompts with professional guidance on scene composition, camera movements, lighting, pacing, and visual storytelling. Perfect for creators using Sora, Runway, Pika, and other AI video tools.",
     emoji: "🎬",
     color: "from-red-500 to-orange-600",
-    directUrl: "https://sora.chatgpt.com/explore/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-69326acb5f348191a2f85c2cdc848c4d-0ra2-text-to-video-prompt-maker?via=aiwebtools",
     tags: ["sora", "text to video", "video prompts", "ai video", "cinematic", "prompt engineering", "runway", "pika", "video generation", "aiwebtools"],
     category: "Creative & Media",
     rating: 4.9,
