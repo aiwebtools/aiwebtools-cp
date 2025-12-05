@@ -346,6 +346,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🎭",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://chatgpt.com/g/g-dFFSqWRTs-playwright-gpt/?via=aiwebtools",
+    videoUrl: "https://youtu.be/_QQ-oYYSFlw",
     tags: ["playwright", "theater", "play writing", "dramatic writing", "theatrical production", "stage plays", "scriptwriting", "drama", "aiwebtools"],
     category: "Creative & Media",
     rating: 4.7,

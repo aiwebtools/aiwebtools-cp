@@ -92,7 +92,7 @@ const featuredGPTs = [
     color: "from-red-500 to-purple-600",
     features: ["Play Writing", "Drama Structure", "Character Development", "Theatrical Formatting"],
     directUrl: "https://playwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=KKldzg40wEI&list=TLGGGcedR_qZHHYyODA1MjAyNQ",
+    videoUrl: "https://youtu.be/_QQ-oYYSFlw",
     emoji: "🎭"
   },
   {
