@@ -28,6 +28,7 @@ export type Database = {
           submitted_at: string
           submitter_email: string
           submitter_name: string | null
+          submitter_user_id: string | null
           url: string
           video_url: string | null
         }
@@ -44,6 +45,7 @@ export type Database = {
           submitted_at?: string
           submitter_email: string
           submitter_name?: string | null
+          submitter_user_id?: string | null
           url: string
           video_url?: string | null
         }
@@ -60,6 +62,7 @@ export type Database = {
           submitted_at?: string
           submitter_email?: string
           submitter_name?: string | null
+          submitter_user_id?: string | null
           url?: string
           video_url?: string | null
         }
