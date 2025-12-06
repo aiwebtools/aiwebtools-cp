@@ -11,6 +11,62 @@ import { deduplicateSearchResults, quickDeduplicateSearchResults } from "@/utils
 import { sortToolsAlphabetically, getAlphabeticalSortKey } from "@/utils/search/alphabeticalSorting";
 import { enhancedToolScoring } from "@/utils/search/enhancedKeywordMatching";
 import { matchToolByIntent } from "@/utils/search/core/intentBasedMatching";
+
+// SMART INTENT EXTRACTION - Parse natural language to find what user REALLY wants
+const extractIntent = (query: string): { intent: string; keywords: string[] } => {
+  const q = query.toLowerCase();
+  
+  // Book/writing intent
+  if (/write\s*(a\s*)?(book|novel|story)|looking\s+to\s+write|want\s+to\s+write\s*(a\s*)?(book|novel)|book\s*writ/i.test(q)) {
+    return { intent: 'book', keywords: ['book writer', 'book', 'novel', 'story', 'writing'] };
+  }
+  
+  // Movie script intent
+  if (/write\s*(a\s*)?(movie|film|script|screenplay)|movie\s*script|screenplay|film\s*script|looking\s+to\s+write.*(movie|script)/i.test(q)) {
+    return { intent: 'movie_script', keywords: ['movie script', 'screenplay', 'movie maker', 'film', 'script writer'] };
+  }
+  
+  // Movie/video making intent
+  if (/make\s*(a\s*)?(movie|film|video)|create\s*(a\s*)?(movie|film|video)|movie\s*mak|video\s*(creat|generat|mak)/i.test(q)) {
+    return { intent: 'movie_making', keywords: ['movie maker', 'video', 'film', 'text to video', 'movie scene'] };
+  }
+  
+  // Image generation intent
+  if (/make\s*(an?\s*)?(image|picture|photo|art)|create\s*(an?\s*)?(image|picture|photo|art)|generat.*image|image\s*(generat|creat|mak)|want.*image/i.test(q)) {
+    return { intent: 'image', keywords: ['image', 'art', 'picture', 'midjourney', 'dalle', 'stable diffusion', 'generate'] };
+  }
+  
+  // Music intent
+  if (/make\s*(a\s*)?(song|music|beat)|create\s*music|music\s*(generat|creat|mak)|write\s*(a\s*)?song/i.test(q)) {
+    return { intent: 'music', keywords: ['music', 'song', 'audio', 'beat', 'melody'] };
+  }
+  
+  // Website intent
+  if (/make\s*(a\s*)?(website|site|webpage)|build\s*(a\s*)?(website|site)|create\s*(a\s*)?(website|site)/i.test(q)) {
+    return { intent: 'website', keywords: ['website', 'site', 'web', 'builder', 'text to website'] };
+  }
+  
+  // App intent
+  if (/make\s*(an?\s*)?(app|application)|build\s*(an?\s*)?(app|application)|create\s*(an?\s*)?(app|application)/i.test(q)) {
+    return { intent: 'app', keywords: ['app', 'saas', 'microsaas', 'application', 'agent'] };
+  }
+  
+  // Presentation intent
+  if (/make\s*(a\s*)?(presentation|ppt|powerpoint|slides)|create\s*(a\s*)?(presentation|slides)/i.test(q)) {
+    return { intent: 'presentation', keywords: ['ppt', 'powerpoint', 'presentation', 'slides'] };
+  }
+  
+  return { intent: '', keywords: [] };
+};
+
+// FAST keyword extraction - get important words from long sentences
+const extractKeywords = (query: string): string[] => {
+  // Remove common filler words for faster matching
+  const fillers = /\b(i|am|a|an|the|to|for|of|and|or|in|on|is|it|my|me|we|us|looking|want|need|would|like|trying|help|please|can|you|how|do|make|create|get|find|some|with|that|this|have|what|where|when|just|really|very|also|too|so|but|if|as|be|been|was|were|will|would|could|should|may|might)\b/gi;
+  const cleaned = query.toLowerCase().replace(fillers, ' ').replace(/\s+/g, ' ').trim();
+  return cleaned.split(' ').filter(w => w.length >= 2);
+};
+
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -62,94 +118,93 @@ export const useGlobalSearch = () => {
       setDisplayedCount(50);
       return;
     }
+    
     const q = t.toLowerCase();
-    const qNormalized = q.replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ');
-    const tokens = q.split(/\s+/).filter(w => w.length >= 2); // Lower threshold for better matching
+    
+    // SMART: Extract intent from natural language
+    const { intent, keywords: intentKeywords } = extractIntent(t);
+    
+    // FAST: Extract only important keywords for long sentences
+    const smartKeywords = t.length > 30 ? extractKeywords(t) : [];
+    const tokens = smartKeywords.length > 0 
+      ? smartKeywords.slice(0, 5) // Limit tokens for speed
+      : q.split(/\s+/).filter(w => w.length >= 2).slice(0, 8);
 
     let fast = indexedTools
       .filter(ix => {
-        // COMPREHENSIVE MATCHING - search by name, category, description, tags, AND intent
-        const directMatch = ix.lt.includes(q) || ix.lc.includes(q) || ix.ld.includes(q) || ix.lta.includes(q);
+        // INTENT-BASED matching (highest priority for natural language)
+        if (intent && intentKeywords.length > 0) {
+          const intentMatch = intentKeywords.some(kw => 
+            ix.lt.includes(kw) || ix.lc.includes(kw) || ix.lta.includes(kw)
+          );
+          if (intentMatch) return true;
+        }
         
-        // Token-based matching for multi-word queries
-        const tokenMatch = tokens.length > 0 && tokens.some(tok => ix.all.includes(tok));
+        // Direct matching
+        const directMatch = ix.lt.includes(q) || ix.lc.includes(q);
+        if (directMatch) return true;
         
-        // Fuzzy normalized matching for typos/variations
-        const fuzzyMatch = ix.normalized.includes(qNormalized);
+        // Smart keyword matching (for long sentences)
+        if (tokens.length > 0) {
+          const keywordMatch = tokens.some(tok => ix.lt.includes(tok) || ix.lc.includes(tok) || ix.lta.includes(tok));
+          if (keywordMatch) return true;
+        }
         
-        // Category-specific matching (explicit category search)
-        const categoryMatch = ix.lc.includes(q);
-        
-        return directMatch || tokenMatch || fuzzyMatch || categoryMatch;
+        return false;
       })
       .map(ix => ix.tool);
 
+    // SMART SCORING with intent awareness
     const quickScore = (tool: any) => {
       const lt = tool.title.toLowerCase();
-      const ltNormalized = lt.replace(/\s+/g, ' ').trim(); // Normalize spaces
-      const qNormalized = q.replace(/\s+/g, ' ').trim();
-      
-      // Extract key words from search query
-      const queryWords = qNormalized.split(/\s+/).filter(w => w.length > 1);
-      const titleWords = ltNormalized.split(/\s+/);
+      const lc = (tool.category || "").toLowerCase();
+      const lta = (tool.tags || []).join(" ").toLowerCase();
       
       let s = 0;
       
-      // PERFECT EXACT match prioritization (super strong boost)
-      if (ltNormalized === qNormalized) s += 100000;
-      
-      // Check if all query words appear in title in order (high relevance)
-      let allWordsInOrder = true;
-      let lastIndex = -1;
-      for (const word of queryWords) {
-        const index = ltNormalized.indexOf(word, lastIndex + 1);
-        if (index === -1) {
-          allWordsInOrder = false;
-          break;
-        }
-        lastIndex = index;
-      }
-      if (allWordsInOrder && queryWords.length >= 2) {
-        s += 90000; // Very high score for queries like "VEO 3 Prompt" matching "VEO3 TEXT TO VIDEO PROMPT GENERATOR"
-      }
-      
-      // Title starts with query
-      if (ltNormalized.startsWith(qNormalized)) s += 80000;
-      
-      // Check for number variations (e.g., "VEO 3" vs "VEO3")
-      const qNoSpaces = qNormalized.replace(/\s+/g, '');
-      const ltNoSpaces = ltNormalized.replace(/\s+/g, '');
-      if (ltNoSpaces.includes(qNoSpaces)) s += 75000;
-      
-      // All query words match title words (exact word matches)
-      const matchedWords = queryWords.filter(qw => 
-        titleWords.some(tw => tw === qw || tw.startsWith(qw))
-      );
-      if (matchedWords.length === queryWords.length && queryWords.length >= 2) {
-        s += 70000;
+      // INTENT-BASED SCORING (strongest boost for what user actually wants)
+      if (intent === 'book') {
+        if (lt.includes("book writer")) s += 200000;
+        else if (lt.includes("book")) s += 100000;
+      } else if (intent === 'movie_script') {
+        if (lt.includes("movie script")) s += 200000;
+        else if (lt.includes("script")) s += 150000;
+        else if (lt.includes("movie maker") || lt.includes("movie scene")) s += 100000;
+      } else if (intent === 'movie_making') {
+        if (lt.includes("movie maker")) s += 200000;
+        else if (lt.includes("movie scene")) s += 180000;
+        else if (lt.includes("text to video") || lt.includes("video")) s += 150000;
+      } else if (intent === 'image') {
+        if (lt.includes("midjourney") || lt.includes("dall") || lt.includes("stable diffusion")) s += 200000;
+        else if (lt.includes("image") && (lt.includes("generat") || lt.includes("creat"))) s += 180000;
+        else if (lt.includes("art") || lt.includes("design")) s += 100000;
+      } else if (intent === 'music') {
+        if (lt.includes("music") || lt.includes("song") || lt.includes("audio")) s += 200000;
+      } else if (intent === 'website') {
+        if (lt.includes("text to website") || lt.includes("website builder")) s += 200000;
+        else if (lt.includes("website") || lt.includes("site")) s += 150000;
+      } else if (intent === 'app') {
+        if (lt.includes("microsaas")) s += 200000;
+        else if (lt.includes("app") || lt.includes("agent")) s += 150000;
+      } else if (intent === 'presentation') {
+        if (lt.includes("ppt") || lt.includes("powerpoint") || lt.includes("presentation")) s += 200000;
       }
       
-      // Title contains query
-      if (ltNormalized.includes(qNormalized)) s += 30000;
+      // Standard scoring (when no clear intent)
+      if (lt === q) s += 100000;
+      if (lt.startsWith(q)) s += 80000;
+      if (lt.includes(q)) s += 30000;
       
-      // First word exact match bonus
-      if (queryWords.length > 0 && titleWords.length > 0) {
-        if (titleWords[0] === queryWords[0] || titleWords[0].startsWith(queryWords[0])) {
-          s += 15000;
-        }
+      // Token scoring (lighter for speed)
+      for (const tok of tokens.slice(0, 4)) {
+        if (lt.includes(tok)) s += 2000;
+        if (lc.includes(tok)) s += 1000;
+        if (lta.includes(tok)) s += 500;
       }
-
-      // token-based scoring for longer sentences
-      for (const tok of tokens) {
-        if (lt === tok) s += 50000; // Exact token match in title
-        if (lt.startsWith(tok)) s += 6000;
-        if (lt.includes(tok)) s += 2400;
-      }
-
-      // Special rule: when user types MAKE, prefer "Make Automation Maker"
-      if ((q === "make" || tokens[0] === "make")) {
-        if (lt.startsWith("make ")) s += 3500;
-        if (lt.includes("make automation")) s += 6000;
+      
+      // Intent keyword bonus
+      for (const kw of intentKeywords) {
+        if (lt.includes(kw)) s += 5000;
       }
 
       return s;
@@ -157,48 +212,13 @@ export const useGlobalSearch = () => {
 
     fast.sort((a, b) => quickScore(b) - quickScore(a));
 
-    // Intent-like quick prioritization for common phrases
-    const prioritize = (predicate: (tool: any) => boolean) => {
-      const hits: any[] = [];
-      const rest: any[] = [];
-      for (const tool of fast) {
-        (predicate(tool) ? hits : rest).push(tool);
-      }
-      fast = [...hits, ...rest];
-    };
-
-    if (/write.*book|book.*write|\bbook\b/i.test(t)) {
-      prioritize(tool => tool.title.toLowerCase().includes("book writer") ||
-        tool.title.toLowerCase().includes("book") ||
-        (tool.tags || []).join(" ").toLowerCase().includes("book"));
-    }
-
-    if (/make.*movie|movie.*make|\bmovie\b|\bfilm\b/i.test(t)) {
-      prioritize(tool => tool.title.toLowerCase().includes("movie maker") ||
-        tool.title.toLowerCase().includes("movie scene") ||
-        tool.title.toLowerCase().includes("movie script") ||
-        tool.title.toLowerCase().includes("text to video"));
-    }
-
-    if (/make.*app|build.*app|\bapp\b/i.test(t)) {
-      prioritize(tool => tool.title.toLowerCase().includes("microsaas") ||
-        tool.title.toLowerCase().includes("agent") ||
-        tool.title.toLowerCase().includes("app"));
-    }
-
-    if (/website|make.*website|build.*website|\bsite\b/i.test(t)) {
-      prioritize(tool => tool.title.toLowerCase().includes("website") ||
-        tool.title.toLowerCase().includes("site") ||
-        tool.title.toLowerCase().includes("text to website") ||
-        tool.title.toLowerCase().includes("builder"));
-    }
-
-    // Don't limit results - enable true endless scrolling for ALL results
+    // Don't limit results - enable true endless scrolling
     setSearchResults(fast);
-    setDisplayedCount(50); // Better initial display for richer experience
+    setDisplayedCount(50);
     setIsOpen(true);
   }, [searchTerm, indexedTools]);
 
+  // HEAVY stage: Refined scoring after pause (but fast stage already does the heavy lifting)
   useEffect(() => {
     const currentSearchId = searchIdRef.current;
     const trimmedTerm = heavyTerm.trim();
@@ -206,131 +226,91 @@ export const useGlobalSearch = () => {
     // Exit early if empty or stale - prevents freezing on clear
     if (!trimmedTerm) return;
     if (trimmedTerm !== searchTerm.trim()) return;
+    // Skip if search was already invalidated
+    if (currentSearchId !== searchIdRef.current) return;
 
     const lowerTerm = trimmedTerm.toLowerCase();
-    const lowerNormalized = lowerTerm.replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ');
-    const tokens = lowerTerm.split(/\s+/).filter(w => w.length >= 2); // Lower threshold
+    
+    // Use same smart intent extraction
+    const { intent, keywords: intentKeywords } = extractIntent(trimmedTerm);
+    const smartKeywords = trimmedTerm.length > 30 ? extractKeywords(trimmedTerm) : [];
+    const tokens = smartKeywords.length > 0 
+      ? smartKeywords.slice(0, 5) 
+      : lowerTerm.split(/\s+/).filter(w => w.length >= 2).slice(0, 6);
 
-    // COMPREHENSIVE PRE-FILTER - capture MORE tools for better discovery
+    // FAST PRE-FILTER using intent
     const candidates = indexedTools.filter(ix => {
-      // Direct matching
-      const directMatch = ix.lt.includes(lowerTerm) || ix.ld.includes(lowerTerm) || 
-                         ix.lc.includes(lowerTerm) || ix.lta.includes(lowerTerm);
+      if (intent && intentKeywords.length > 0) {
+        const intentMatch = intentKeywords.some(kw => 
+          ix.lt.includes(kw) || ix.lc.includes(kw) || ix.lta.includes(kw)
+        );
+        if (intentMatch) return true;
+      }
       
-      // Token-based matching
-      const tokenMatch = tokens.length > 0 && tokens.some(tok => ix.all.includes(tok));
+      const directMatch = ix.lt.includes(lowerTerm) || ix.lc.includes(lowerTerm);
+      if (directMatch) return true;
       
-      // Fuzzy normalized matching for typos
-      const fuzzyMatch = ix.normalized.includes(lowerNormalized);
-      
-      // Partial word matching for incomplete searches
-      const partialMatch = tokens.some(tok => 
-        ix.lt.split(/\s+/).some(word => word.startsWith(tok)) ||
-        ix.lc.split(/\s+/).some(word => word.startsWith(tok))
-      );
-      
-      return directMatch || tokenMatch || fuzzyMatch || partialMatch;
+      const tokenMatch = tokens.some(tok => ix.lt.includes(tok) || ix.lc.includes(tok) || ix.lta.includes(tok));
+      return tokenMatch;
     });
 
-    // AGGRESSIVE FALLBACK - if still few results, use intelligent search for ALL tools
-    let fallbackResults: any[] = [];
-    if (candidates.length < 10 && trimmedTerm.length >= 2) {
-      try {
-        // Search ALL tools with intelligent matching
-        fallbackResults = searchTools(allTools, trimmedTerm);
-      } catch {
-        fallbackResults = [];
-      }
-    }
-
-    const baseList = (candidates.length ? candidates.map(ix => ix.tool) : fallbackResults);
+    const baseList = candidates.map(ix => ix.tool);
 
     const scored = baseList.map(tool => {
       const lt = tool.title.toLowerCase();
-      const ld = (tool.description || "").toLowerCase();
       const lc = (tool.category || "").toLowerCase();
       const lta = (tool.tags || []).join(" ").toLowerCase();
       
-      // Normalized versions for better matching
-      const ltNormalized = lt.replace(/\s+/g, ' ').trim();
-      const lowerTermNormalized = lowerTerm.replace(/\s+/g, ' ').trim();
-      const queryWords = lowerTermNormalized.split(/\s+/).filter(w => w.length > 1);
-      const titleWords = ltNormalized.split(/\s+/);
-      
       let score = 0;
       
-      // PERFECT exact title match
-      if (ltNormalized === lowerTermNormalized) score += 100000;
-      
-      // Check if all query words appear in title in order
-      let allWordsInOrder = true;
-      let lastIndex = -1;
-      for (const word of queryWords) {
-        const index = ltNormalized.indexOf(word, lastIndex + 1);
-        if (index === -1) {
-          allWordsInOrder = false;
-          break;
-        }
-        lastIndex = index;
-      }
-      if (allWordsInOrder && queryWords.length >= 2) {
-        score += 90000; // Very high for ordered word matches
-      }
-      
-      // Number variation matching (VEO 3 vs VEO3)
-      const lowerNoSpaces = lowerTermNormalized.replace(/\s+/g, '');
-      const ltNoSpaces = ltNormalized.replace(/\s+/g, '');
-      if (ltNoSpaces.includes(lowerNoSpaces) && lowerNoSpaces.length > 3) {
-        score += 75000;
-      }
-      
-      // All query words match title words
-      const matchedWords = queryWords.filter(qw => 
-        titleWords.some(tw => tw === qw || tw.startsWith(qw))
-      );
-      if (matchedWords.length === queryWords.length && queryWords.length >= 2) {
-        score += 70000;
+      // INTENT-BASED SCORING (highest priority)
+      if (intent === 'book') {
+        if (lt.includes("book writer")) score += 200000;
+        else if (lt.includes("book")) score += 100000;
+      } else if (intent === 'movie_script') {
+        if (lt.includes("movie script")) score += 200000;
+        else if (lt.includes("script")) score += 150000;
+        else if (lt.includes("movie maker") || lt.includes("movie scene")) score += 100000;
+      } else if (intent === 'movie_making') {
+        if (lt.includes("movie maker")) score += 200000;
+        else if (lt.includes("movie scene")) score += 180000;
+        else if (lt.includes("text to video") || lt.includes("video")) score += 150000;
+      } else if (intent === 'image') {
+        if (lt.includes("midjourney") || lt.includes("dall") || lt.includes("stable diffusion")) score += 200000;
+        else if (lt.includes("image") && (lt.includes("generat") || lt.includes("creat"))) score += 180000;
+        else if (lt.includes("art") || lt.includes("design")) score += 100000;
+      } else if (intent === 'music') {
+        if (lt.includes("music") || lt.includes("song") || lt.includes("audio")) score += 200000;
+      } else if (intent === 'website') {
+        if (lt.includes("text to website") || lt.includes("website builder")) score += 200000;
+        else if (lt.includes("website") || lt.includes("site")) score += 150000;
+      } else if (intent === 'app') {
+        if (lt.includes("microsaas")) score += 200000;
+        else if (lt.includes("app") || lt.includes("agent")) score += 150000;
+      } else if (intent === 'presentation') {
+        if (lt.includes("ppt") || lt.includes("powerpoint") || lt.includes("presentation")) score += 200000;
       }
       
       // Standard matching
-      if (lt === lowerTerm) score += 10000;
-      if (lt.startsWith(lowerTerm)) score += 1400;
-      if (lt.includes(lowerTerm)) score += 450;
-      if (ld.includes(lowerTerm)) score += 180;
-      if (lc.includes(lowerTerm)) score += 140;
-      if (lta.includes(lowerTerm)) score += 100;
+      if (lt === lowerTerm) score += 100000;
+      if (lt.startsWith(lowerTerm)) score += 80000;
+      if (lt.includes(lowerTerm)) score += 30000;
 
-      // token-based reinforcement for long sentences
-      for (const tok of tokens) {
-        if (lt === tok) score += 5200;
-        if (lt.startsWith(tok)) score += 700;
-        if (lt.includes(tok)) score += 260;
+      // Token scoring (lighter for speed)
+      for (const tok of tokens.slice(0, 4)) {
+        if (lt.includes(tok)) score += 2000;
+        if (lc.includes(tok)) score += 1000;
+        if (lta.includes(tok)) score += 500;
       }
-
-      // Manual boosters for key intents to guarantee top picks
-      if (/write.*book|book.*write|\bbook\b/i.test(trimmedTerm)) {
-        if (lt.includes("book writer")) score += 6000;
-        else if (lt.includes("book")) score += 1200;
-      }
-      if (/make.*movie|movie.*make|\bmovie\b|\bfilm\b/i.test(trimmedTerm)) {
-        if (lt.includes("movie maker")) score += 6000;
-        if (lt.includes("text to video")) score += 2800;
-        if (lt.includes("movie script") || lt.includes("movie scene")) score += 2000;
-      }
-      if (/make.*app|build.*app|\bapp\b/i.test(trimmedTerm)) {
-        if (lt.includes("microsaas")) score += 5200;
-        if (lt.includes("agent")) score += 2600;
-        if (lt.includes("app")) score += 900;
-      }
-      if (/website|make.*website|build.*website|\bsite\b/i.test(trimmedTerm)) {
-        if (lt.includes("text to website")) score += 5200;
-        if (lt.includes("website") || lt.includes("site")) score += 1500;
-        if (lt.includes("builder")) score += 1000;
+      
+      // Intent keyword bonus
+      for (const kw of intentKeywords) {
+        if (lt.includes(kw)) score += 5000;
       }
 
       try {
-        const intent = matchToolByIntent(tool, trimmedTerm);
-        if (intent?.matched) score += intent.score;
+        const intentMatch = matchToolByIntent(tool, trimmedTerm);
+        if (intentMatch?.matched) score += intentMatch.score;
       } catch {}
       
       try {
