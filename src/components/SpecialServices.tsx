@@ -1584,8 +1584,7 @@ const OurFeaturedSection = () => {
                   key={index} 
                   className="group bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-md border-2 border-cyan-400/30 hover:border-cyan-400/60 transition-all duration-300 transform hover:scale-105 h-full flex flex-col relative shadow-xl hover:shadow-cyan-500/20 cursor-pointer"
                   onClick={() => {
-                    const slug = tool.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                    navigate(`/${slug}`);
+                    handleAccessTool(tool.directUrl, tool.title);
                   }}
                 >
                   <div className="absolute top-2 left-2 z-30">
@@ -1627,9 +1626,12 @@ const OurFeaturedSection = () => {
                     )}
 
                     {(tool as any).blockchain && (
-                      <div className="mb-3">
+                      <div className="mb-3 flex flex-wrap gap-2">
                         <Badge variant="secondary" className="bg-cyan-400/20 text-cyan-300 border-cyan-400/50">
                           Blockchain: {(tool as any).blockchain}
+                        </Badge>
+                        <Badge variant="secondary" className="bg-gradient-to-r from-green-500/30 to-emerald-500/30 text-green-300 border-green-400/50 animate-pulse">
+                          🏦 NO BIO CHIP REQUIRED · WEB3 BANKING
                         </Badge>
                       </div>
                     )}
