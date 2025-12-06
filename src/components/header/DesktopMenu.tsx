@@ -244,6 +244,9 @@ const DesktopMenu = () => {
                     🔗 <span className="font-semibold text-cyan-400">Connect to Your Crypto Wallet</span><br/>
                     Own forever • Resell for profit • Minted as NFT • Trade anytime
                   </p>
+                  <p className="text-sm mt-2 font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+                    🏦 NO BIO CHIP REQUIRED • WEB3 BANKING
+                  </p>
                 </div>
                 
                 <div className="space-y-2">
