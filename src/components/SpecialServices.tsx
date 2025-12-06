@@ -1017,7 +1017,7 @@ const featuredGPTs = [
     color: "from-green-500 to-emerald-600",
     features: ["Card Valuation", "Grading Insights", "Market Analysis", "Investment Tips"],
     directUrl: "https://chatgpt.com/g/g-wxZQTXVx9-sport-card-appraisal?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=azHoiefssJw",
+    videoUrl: "https://www.youtube.com/watch?v=lPvOvWWHErM",
     emoji: "🏆"
   },
   {
