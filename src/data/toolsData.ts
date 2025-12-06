@@ -129,6 +129,14 @@ combinedTools = combinedTools.map((tool, index) => {
       description: tool.description || "Property Data Finder GPT by Ai Web Tools LLC delivers unparalleled, precise, and current information about properties. Discover everything from market value and topography to living area, year built, estimated facing direction, geocoordinates, and beyond. Unlock a wealth of property insights like never before!"
     };
   }
+  // SPECIFIC FIX: Ensure Manicheism GPT has its image
+  if (tool.title === "Manicheism GPT") {
+    return {
+      ...tool,
+      imageUrl: "/images/manicheism-gpt-hero.png",
+      isFree: true
+    };
+  }
   return tool;
 });
 

@@ -14,7 +14,8 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     tags: ["manicheism", "mani", "prophet", "light", "darkness", "dualism", "ancient religion", "gnostic", "lost knowledge", "rome", "spiritual wisdom", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
-    totalVotes: 1789
+    totalVotes: 1789,
+    isFree: true
   },
   {
     icon: Leaf,
