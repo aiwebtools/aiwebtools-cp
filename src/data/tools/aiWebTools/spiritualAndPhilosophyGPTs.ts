@@ -24,7 +24,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     color: "from-amber-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-69345518771c81919c341622d3b742e5-manicheism-gpt-some-lost-knowledge-of-the-light/?via=aiwebtools",
     imageUrl: "/images/manicheism-gpt-hero.png",
-    tags: ["manicheism", "mani", "prophet", "light", "darkness", "dualism", "ancient religion", "gnostic", "lost knowledge", "rome", "spiritual wisdom", "aiwebtools"],
+    tags: ["manicheism", "manichaeism", "mani", "prophet", "light", "darkness", "dualism", "ancient religion", "gnostic", "lost knowledge", "rome", "spiritual wisdom", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 1789,
@@ -49,7 +49,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🪷",
     color: "from-pink-400 to-purple-500",
     directUrl: "https://chatgpt.com/g/g-6931b5ced07081919ab6d3d4ae7efd0c-quan-yin-gpt/?via=aiwebtools",
-    tags: ["quan yin", "guanyin", "kuan yin", "bodhisattva", "compassion", "buddhism", "mercy", "divine feminine", "spiritual guidance", "healing", "meditation", "eastern philosophy", "aiwebtools"],
+    tags: ["quan yin", "quan", "yin", "guanyin", "guan yin", "kuan yin", "kuan", "bodhisattva", "compassion", "buddhism", "mercy", "divine feminine", "spiritual guidance", "healing", "meditation", "eastern philosophy", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 1489
@@ -61,7 +61,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🌊",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-6931ac78db408191a54b3f5729d6e600-yemaya-ancient-african-mother-of-the-waters/?via=aiwebtools",
-    tags: ["yemaya", "orisha", "african spirituality", "water deity", "divine feminine", "healing", "motherhood", "ocean goddess", "fertility", "spiritual guidance", "ancestral wisdom", "yoruba", "santeria", "aiwebtools"],
+    tags: ["yemaya", "yemoja", "yemanja", "orisha", "african spirituality", "water deity", "divine feminine", "healing", "motherhood", "ocean goddess", "fertility", "spiritual guidance", "ancestral wisdom", "yoruba", "santeria", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 1523
@@ -97,7 +97,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🕉️",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-68ae302e79b88191a52219eaaccbfcc3-paramahansa-yogananda-gpt/?via=aiwebtools",
-    tags: ["yoga", "meditation", "self-realization", "kriya yoga", "spiritual teachings", "autobiography of a yogi", "eastern philosophy", "divine wisdom", "spirituality", "religion", "religious", "spiritual teacher", "guru", "aiwebtools"],
+    tags: ["yoga", "yogananda", "paramahansa", "meditation", "self-realization", "kriya yoga", "spiritual teachings", "autobiography of a yogi", "eastern philosophy", "divine wisdom", "spirituality", "religion", "religious", "spiritual teacher", "guru", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 4521
@@ -110,7 +110,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-soul-scan-gpt-a-way-to-find-your-way-home/?via=aiwebtools",
     videoUrl: "https://youtu.be/d3uaQz7oRAs?si=erT_Mgpw4vfS5b8k",
-    tags: ["gematria", "numerology", "soul mapping", "astrology", "spiritual blueprint", "essence reading", "mystical mathematics"],
+    tags: ["gematria", "numerology", "soul mapping", "soul", "map", "astrology", "spiritual blueprint", "essence reading", "mystical mathematics"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 2847
@@ -123,7 +123,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     color: "from-purple-500 to-pink-600",
     directUrl: "https://marymagdalenegpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=7qxEnBR2BwQ",
-    tags: ["spirituality", "Gnostic wisdom", "divine secrets", "Christian mysticism", "ancient texts", "religion", "religious", "saint", "mary magdalene", "jesus", "christ", "christian"],
+    tags: ["spirituality", "Gnostic wisdom", "divine secrets", "Christian mysticism", "ancient texts", "religion", "religious", "saint", "mary magdalene", "mary", "magdalene", "jesus", "christ", "christian"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 6789
@@ -162,7 +162,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     color: "from-purple-500 to-gold-600",
     directUrl: "https://sophiaaeterna.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["ancient wisdom", "esotericism", "mysticism", "philosophy", "spiritual enlightenment", "spirituality", "religion", "religious", "wisdom", "esoteric", "mystical"],
+    tags: ["ancient wisdom", "esotericism", "mysticism", "philosophy", "spiritual enlightenment", "spirituality", "religion", "religious", "wisdom", "esoteric", "mystical", "sophia", "aeterna"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 4567
@@ -175,7 +175,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     color: "from-amber-500 to-brown-600",
     directUrl: "https://interpretis.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
-    tags: ["etymology", "linguistics", "cultural analysis", "word origins", "symbolic meaning"],
+    tags: ["etymology", "linguistics", "cultural analysis", "word origins", "symbolic meaning", "interpret", "interpretation", "language"],
     category: "Spirituality & Philosophy",
     rating: 4.6,
     totalVotes: 3456
@@ -187,7 +187,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🕊️",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68b490b403a08191b3f3f6ac126b0b77-essene-qodesh-code/?via=aiwebtools",
-    tags: ["essene wisdom", "ancient meditation", "spiritual codes", "mystical practices", "inner transformation", "sacred traditions", "aiwebtools"],
+    tags: ["essene wisdom", "essene", "qodesh", "ancient meditation", "spiritual codes", "mystical practices", "inner transformation", "sacred traditions", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 1876
@@ -199,7 +199,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "☀️",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-68b4847aa1fc81918c4a8796ed1bae00-the-breathlight-codex/?via=aiwebtools",
-    tags: ["breath work", "light activation", "christos consciousness", "spiritual awakening", "energy practices", "divine connection", "aiwebtools"],
+    tags: ["breath work", "breathlight", "breath", "light activation", "christos consciousness", "spiritual awakening", "energy practices", "divine connection", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 2234
@@ -211,7 +211,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🧭",
     color: "from-green-500 to-teal-600",
     directUrl: "https://chatgpt.com/g/g-68b48909161881918ec5fdb00f56cd75-the-harmonic-axis-protocol/?via=aiwebtools",
-    tags: ["harmonic alignment", "sacred geometry", "chakra activation", "spiritual integration", "energy alignment", "divine axis", "aiwebtools"],
+    tags: ["harmonic alignment", "harmonic", "axis", "sacred geometry", "chakra activation", "spiritual integration", "energy alignment", "divine axis", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.7,
     totalVotes: 1934
@@ -236,7 +236,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://jewish-ai.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/b8M_eGKwN7o?si=X0vJb6jHtCUHkeQW", // Kabbalah wisdom video
-    tags: ["kabbalah", "jewish mysticism", "tree of life", "sefirot", "sacred texts", "divine wisdom", "spiritual teachings", "mystical tradition", "meditation", "enlightenment", "spirituality", "religion", "religious", "judaism", "jewish", "mysticism"],
+    tags: ["kabbalah", "kabbala", "cabala", "jewish mysticism", "tree of life", "sefirot", "sacred texts", "divine wisdom", "spiritual teachings", "mystical tradition", "meditation", "enlightenment", "spirituality", "religion", "religious", "judaism", "jewish", "mysticism"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 3247
@@ -260,7 +260,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🔥",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-68e7ffc2efec8191b99ae3f867d46e69-zoroastrian-light-gpt/?via=aiwebtools",
-    tags: ["zoroastrianism", "zarathustra", "sacred fire", "divine light", "ancient wisdom", "persian spirituality", "ahura mazda", "gathas", "fire worship", "aiwebtools"],
+    tags: ["zoroastrianism", "zoroastrian", "zarathustra", "zoroaster", "sacred fire", "divine light", "ancient wisdom", "persian spirituality", "ahura mazda", "gathas", "fire worship", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 1567
@@ -382,7 +382,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "☯️",
     color: "from-slate-500 to-teal-600",
     directUrl: "https://chatgpt.com/g/g-6924a35694b4819193935419f1ced96c-lao-tzu-free-thought-liberator/?via=aiwebtools",
-    tags: ["lao tzu", "taoism", "tao te ching", "wu wei", "eastern philosophy", "ancient wisdom", "free thought", "spiritual teachings", "spirituality", "religion", "religious", "spiritual teacher", "chinese philosophy", "aiwebtools"],
+    tags: ["lao tzu", "laozi", "lao", "tzu", "taoism", "tao te ching", "wu wei", "eastern philosophy", "ancient wisdom", "free thought", "spiritual teachings", "spirituality", "religion", "religious", "spiritual teacher", "chinese philosophy", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 3287
@@ -478,7 +478,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "✨",
     color: "from-emerald-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-6924b0f7268c8191a4697c8932c86b0b-hermes-trismegistus-gpt/?via=aiwebtools",
-    tags: ["hermes trismegistus", "hermeticism", "alchemy", "emerald tablet", "ancient wisdom", "mysticism", "esoteric knowledge", "divine truth", "aiwebtools"],
+    tags: ["hermes trismegistus", "hermes", "trismegistus", "hermeticism", "hermetic", "alchemy", "emerald tablet", "ancient wisdom", "mysticism", "esoteric knowledge", "divine truth", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 3987
@@ -490,7 +490,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🔥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-6924b1d6926081919a6f0c614efa2c0a-zoroaster-free-thought-gpt/?via=aiwebtools",
-    tags: ["zoroaster", "zoroastrianism", "ancient persia", "duality", "light and darkness", "sacred fire", "divine truth", "ahura mazda", "spirituality", "religion", "religious", "prophet", "persian spirituality", "aiwebtools"],
+    tags: ["zoroaster", "zarathustra", "zoroastrianism", "ancient persia", "duality", "light and darkness", "sacred fire", "divine truth", "ahura mazda", "spirituality", "religion", "religious", "prophet", "persian spirituality", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 2987
@@ -502,7 +502,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "☀️",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-6924b341a8c481918bafaafee5ef1e0a-akhenaten/?via=aiwebtools",
-    tags: ["akhenaten", "ancient egypt", "aten", "monotheism", "pharaoh", "egyptian wisdom", "sun worship", "religious revolution", "aiwebtools"],
+    tags: ["akhenaten", "akhen", "aten", "ancient egypt", "egypt", "aten", "monotheism", "pharaoh", "egyptian wisdom", "sun worship", "religious revolution", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 2765
@@ -514,7 +514,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🎎",
     color: "from-red-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-6924b5d1cb348191ac82e74b94c5dec7-confucius-free-thought-gpt/?via=aiwebtools",
-    tags: ["confucius", "confucianism", "analects", "chinese philosophy", "ethics", "virtue", "harmony", "ancient wisdom", "spirituality", "religion", "religious", "spiritual teacher", "eastern philosophy", "aiwebtools"],
+    tags: ["confucius", "confucianism", "analects", "chinese philosophy", "ethics", "virtue", "harmony", "ancient wisdom", "spirituality", "religion", "religious", "spiritual teacher", "eastern philosophy", "kong", "kongzi", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 3654
@@ -526,7 +526,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🦅",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://chatgpt.com/g/g-6924b6a349d08191aadc6012f47b3d6f-chief-seattle-sealth-free-thought-gpt/?via=aiwebtools",
-    tags: ["chief seattle", "native american wisdom", "environmental wisdom", "indigenous philosophy", "earth stewardship", "interconnectedness", "spiritual ecology", "aiwebtools"],
+    tags: ["chief seattle", "seattle", "sealth", "native american wisdom", "environmental wisdom", "indigenous philosophy", "earth stewardship", "interconnectedness", "spiritual ecology", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 2876
@@ -550,7 +550,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🏛️",
     color: "from-amber-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-6924ba381a2c8191a93a97ef399f3823-imhotep-living-mind-of-kemet/?via=aiwebtools",
-    tags: ["imhotep", "ancient egypt", "architecture", "medicine", "wisdom", "kemet", "polymath", "sacred geometry", "aiwebtools"],
+    tags: ["imhotep", "ancient egypt", "egypt", "kemet", "architecture", "medicine", "wisdom", "polymath", "sacred geometry", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 3456
@@ -562,7 +562,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🌊",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-6924bc3c88bc8191bbf7b17641c87917-thales-of-miletus-gpt/?via=aiwebtools",
-    tags: ["thales", "presocratic philosophy", "ancient greece", "natural philosophy", "science", "mathematics", "reason", "first philosopher", "aiwebtools"],
+    tags: ["thales", "miletus", "presocratic philosophy", "ancient greece", "natural philosophy", "science", "mathematics", "reason", "first philosopher", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.7,
     totalVotes: 2345
@@ -574,7 +574,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://chatgpt.com/g/g-6924bf64965c8191bf38cedd10d208aa-plotinus-the-revealer-gpt/?via=aiwebtools",
-    tags: ["plotinus", "neoplatonism", "the one", "emanation", "mysticism", "ancient philosophy", "spiritual ascent", "unity", "aiwebtools"],
+    tags: ["plotinus", "neoplatonism", "neoplatonic", "the one", "emanation", "mysticism", "ancient philosophy", "spiritual ascent", "unity", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 2654
@@ -586,7 +586,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🔥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-6924c28032988191b8c70ebc92fd08fb-shams-of-tabriz-gpt/?via=aiwebtools",
-    tags: ["shams of tabriz", "sufism", "rumi", "divine love", "mysticism", "spiritual transformation", "persian wisdom", "cosmic fire", "aiwebtools"],
+    tags: ["shams of tabriz", "shams", "tabriz", "sufism", "rumi", "divine love", "mysticism", "spiritual transformation", "persian wisdom", "cosmic fire", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 3123
@@ -598,7 +598,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🌸",
     color: "from-green-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-6924c44afd048191b89952845444e105-hildegard-von-bingen-gpt/?via=aiwebtools",
-    tags: ["hildegard von bingen", "medieval mysticism", "visionary", "healing", "sacred music", "divine visions", "herbal medicine", "christian mystic", "aiwebtools"],
+    tags: ["hildegard von bingen", "hildegard", "bingen", "medieval mysticism", "visionary", "healing", "sacred music", "divine visions", "herbal medicine", "christian mystic", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 2987
@@ -622,7 +622,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🕊️",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-6924c5d898d481919f546bd9935c1bc6-mahatma-gandhi-reborn-gpt/?via=aiwebtools",
-    tags: ["gandhi", "nonviolence", "truth", "civil disobedience", "satyagraha", "peace", "moral courage", "spiritual activism", "spirituality", "religion", "religious", "spiritual teacher", "indian philosophy", "aiwebtools"],
+    tags: ["gandhi", "mahatma", "nonviolence", "truth", "civil disobedience", "satyagraha", "peace", "moral courage", "spiritual activism", "spirituality", "religion", "religious", "spiritual teacher", "indian philosophy", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 5234
@@ -634,7 +634,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🌌",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-6924c705812c8191a6733b6479967ae8-giordano-bruno-reborn-gpt/?via=aiwebtools",
-    tags: ["giordano bruno", "renaissance philosophy", "infinite universe", "cosmic truth", "hermeticism", "free thought", "martyrdom", "cosmology", "aiwebtools"],
+    tags: ["giordano bruno", "giordano", "bruno", "renaissance philosophy", "infinite universe", "cosmic truth", "hermeticism", "free thought", "martyrdom", "cosmology", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 2765
@@ -646,7 +646,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🌹",
     color: "from-pink-500 to-rose-600",
     directUrl: "https://chatgpt.com/g/g-6924c7f76188819186b636b2f95b7fa4-sappho-alive-once-more-gpt/?via=aiwebtools",
-    tags: ["sappho", "ancient poetry", "love", "greek lyric", "lesbian", "beauty", "passion", "ancient greece", "aiwebtools"],
+    tags: ["sappho", "ancient poetry", "love", "greek lyric", "lesbian", "lesbos", "beauty", "passion", "ancient greece", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 2876
@@ -658,7 +658,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🔥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-6924c8dbf9b48191b4874e821fff8276-heraclitus-reborn-gpt/?via=aiwebtools",
-    tags: ["heraclitus", "presocratic philosophy", "flux", "logos", "fire", "paradox", "ancient greece", "change", "aiwebtools"],
+    tags: ["heraclitus", "presocratic philosophy", "presocratic", "flux", "logos", "fire", "paradox", "ancient greece", "change", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 2654
@@ -706,7 +706,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "☀️",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-6924e98e3cb48191b734c751addb66ed-sri-aurobindo-gpt/?via=aiwebtools",
-    tags: ["sri aurobindo", "integral yoga", "spiritual evolution", "indian philosophy", "divine life", "supramental consciousness", "mysticism", "transformation", "aiwebtools"],
+    tags: ["sri aurobindo", "aurobindo", "sri", "integral yoga", "spiritual evolution", "indian philosophy", "divine life", "supramental consciousness", "mysticism", "transformation", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 3234
@@ -718,7 +718,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🧘",
     color: "from-orange-500 to-amber-600",
     directUrl: "https://chatgpt.com/g/g-6924ea968a80819195661b81efe0cd4a-ramana-maharshi-reborn-gpt/?via=aiwebtools",
-    tags: ["ramana maharshi", "self-inquiry", "advaita vedanta", "awareness", "meditation", "arunachala", "silence", "indian sage", "aiwebtools"],
+    tags: ["ramana maharshi", "ramana", "maharshi", "self-inquiry", "advaita vedanta", "awareness", "meditation", "arunachala", "silence", "indian sage", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 3987
@@ -742,7 +742,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🔥",
     color: "from-red-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-6924edc8f54c81919227604a9ca501fd-mansur-al-hallaj-gpt/?via=aiwebtools",
-    tags: ["al-hallaj", "sufism", "divine union", "mysticism", "islamic mysticism", "martyrdom", "ana al-haqq", "spiritual ecstasy", "aiwebtools"],
+    tags: ["al-hallaj", "hallaj", "mansur", "sufism", "divine union", "mysticism", "islamic mysticism", "martyrdom", "ana al-haqq", "spiritual ecstasy", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 2765
@@ -778,7 +778,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🕉️",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-6924f00609208191a1d49abe5c2d3527-paramahansa-nityananda-gpt/?via=aiwebtools",
-    tags: ["nityananda", "indian saint", "divine presence", "bliss", "silence", "kundalini", "spiritual transmission", "siddha yoga", "aiwebtools"],
+    tags: ["nityananda", "paramahansa", "indian saint", "divine presence", "bliss", "silence", "kundalini", "spiritual transmission", "siddha yoga", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 2567
@@ -790,7 +790,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "⛪",
     color: "from-amber-500 to-brown-600",
     directUrl: "https://chatgpt.com/g/g-6924f0cf77ec819184db2d7840387e37-abba-anthony-gpt/?via=aiwebtools",
-    tags: ["anthony the great", "desert fathers", "monasticism", "asceticism", "spiritual warfare", "egyptian christianity", "contemplation", "hermit", "aiwebtools"],
+    tags: ["anthony the great", "abba anthony", "abba", "anthony", "desert fathers", "monasticism", "asceticism", "spiritual warfare", "egyptian christianity", "contemplation", "hermit", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 2345
@@ -814,7 +814,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🌹",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-6924f34ef6dc8191849721e54f8f97ad-saint-therese-gpt/?via=aiwebtools",
-    tags: ["therese of lisieux", "little flower", "little way", "spiritual childhood", "carmelite", "divine love", "humble path", "french mystic", "spirituality", "religion", "religious", "saint", "catholic", "christian", "aiwebtools"],
+    tags: ["therese of lisieux", "therese", "lisieux", "little flower", "little way", "spiritual childhood", "carmelite", "divine love", "humble path", "french mystic", "spirituality", "religion", "religious", "saint", "catholic", "christian", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 3876
@@ -838,7 +838,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🌸",
     color: "from-green-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-6924f58d2f048191a3d5fb1d52fec634-saint-hildegard-of-bingen-gpt/?via=aiwebtools",
-    tags: ["hildegard of bingen", "medieval mystic", "visionary", "sacred music", "herbal medicine", "living light", "viriditas", "prophetic visions", "spirituality", "religion", "religious", "saint", "catholic", "christian", "aiwebtools"],
+    tags: ["hildegard of bingen", "hildegard", "bingen", "medieval mystic", "visionary", "sacred music", "herbal medicine", "living light", "viriditas", "prophetic visions", "spirituality", "religion", "religious", "saint", "catholic", "christian", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 3234
@@ -862,7 +862,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "✝️",
     color: "from-red-500 to-brown-600",
     directUrl: "https://chatgpt.com/g/g-6924f6f3c570819181a978f9fabe1826-saint-padre-pio-gpt/?via=aiwebtools",
-    tags: ["padre pio", "stigmata", "capuchin", "mysticism", "suffering", "intercession", "miracles", "divine wounds", "spirituality", "religion", "religious", "saint", "catholic", "christian", "aiwebtools"],
+    tags: ["padre pio", "padre", "pio", "stigmata", "capuchin", "mysticism", "suffering", "intercession", "miracles", "divine wounds", "spirituality", "religion", "religious", "saint", "catholic", "christian", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 4123
@@ -898,7 +898,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🕊️",
     color: "from-brown-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-6924f916ff208191aa8378924c3e17a0-saint-josephine-bakhita-gpt/?via=aiwebtools",
-    tags: ["josephine bakhita", "slavery", "forgiveness", "freedom", "sudanese saint", "compassion", "redemption", "african saint", "aiwebtools"],
+    tags: ["josephine bakhita", "josephine", "bakhita", "slavery", "forgiveness", "freedom", "sudanese saint", "compassion", "redemption", "african saint", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 2876
@@ -910,7 +910,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "☀️",
     color: "from-yellow-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-6924f9ba59808191af9d3d5affd3d95b-saint-seraphim-of-sarov-gpt/?via=aiwebtools",
-    tags: ["seraphim of sarov", "eastern orthodoxy", "uncreated light", "hesychasm", "russian spirituality", "transfiguration", "divine peace", "mystical theology", "aiwebtools"],
+    tags: ["seraphim of sarov", "seraphim", "sarov", "eastern orthodoxy", "orthodox", "uncreated light", "hesychasm", "russian spirituality", "transfiguration", "divine peace", "mystical theology", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 3123
