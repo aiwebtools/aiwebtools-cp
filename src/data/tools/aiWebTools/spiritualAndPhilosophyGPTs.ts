@@ -10,7 +10,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "✨",
     color: "from-amber-400 to-yellow-500",
     directUrl: "https://chatgpt.com/g/g-693466a2a48081918e33a2871f683ebf-mingjiao-prophet-of-light-gpt/?via=aiwebtools",
-    tags: ["mingjiao", "prophet", "light", "manichaean", "chinese religion", "silk road", "spiritual wisdom", "poetry", "prophecy", "illumination", "truth", "aiwebtools"],
+    tags: ["mingjiao", "ming", "jiao", "prophet", "light", "manichaean", "chinese religion", "silk road", "spiritual wisdom", "poetry", "prophecy", "illumination", "truth", "religion of light", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 1650,
