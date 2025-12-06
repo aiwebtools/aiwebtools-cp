@@ -528,7 +528,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-indigo-600",
     features: ["Course Creation", "Learning Paths", "Practice Exercises", "Educational Support"],
     directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
+    videoUrl: "https://youtu.be/pr8-IgbL46I",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298533723537600/learnanycourse.webp",
     emoji: "📚"
   },
