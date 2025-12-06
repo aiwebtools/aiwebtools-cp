@@ -16,6 +16,28 @@ export const createEffectsContainer = (): HTMLElement => {
 };
 
 export const applyTimeWarpFilter = () => {
+  // Create INTENSE screen-wide color explosion
+  const colorExplosion = document.createElement('div');
+  colorExplosion.id = 'color-explosion';
+  colorExplosion.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9997;
+    pointer-events: none;
+    animation: intense-color-explosion 2.5s ease-out forwards;
+    background: radial-gradient(circle at center, 
+      rgba(0,255,255,0.8) 0%, 
+      rgba(255,0,255,0.7) 15%, 
+      rgba(255,255,0,0.6) 30%, 
+      rgba(0,255,128,0.5) 45%, 
+      rgba(255,64,128,0.4) 60%, 
+      transparent 80%);
+  `;
+  document.body.appendChild(colorExplosion);
+
   // Create a more controlled centered portal overlay
   const portalOverlay = document.createElement('div');
   portalOverlay.id = 'portal-overlay';
@@ -23,63 +45,157 @@ export const applyTimeWarpFilter = () => {
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(64,224,255,0.4) 0%, rgba(128,0,255,0.3) 40%, rgba(255,64,128,0.2) 70%, transparent 100%);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,255,255,0.9) 20%, rgba(255,0,255,0.8) 40%, rgba(255,255,0,0.6) 60%, transparent 80%);
     z-index: 9998;
     pointer-events: none;
-    animation: elegant-portal-spin 3.5s ease-out forwards;
-    box-shadow: 0 0 40px rgba(64,224,255,0.3), 0 0 80px rgba(128,0,255,0.2);
+    animation: mega-portal-spin 2s ease-out forwards;
+    box-shadow: 
+      0 0 60px rgba(0,255,255,0.9), 
+      0 0 120px rgba(255,0,255,0.8),
+      0 0 180px rgba(255,255,0,0.6),
+      0 0 240px rgba(0,255,128,0.4);
   `;
   
   document.body.appendChild(portalOverlay);
   
-  // Add the elegant portal spin animation
+  // Add rainbow scan lines for extra intensity
+  const scanLines = document.createElement('div');
+  scanLines.id = 'scan-lines';
+  scanLines.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9996;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,255,255,0.1) 2px,
+      rgba(0,255,255,0.1) 4px
+    );
+    animation: scan-lines-move 0.3s linear infinite;
+    mix-blend-mode: screen;
+  `;
+  document.body.appendChild(scanLines);
+  
+  // Add the mega portal spin animation
   const style = document.createElement('style');
   style.textContent = `
-    @keyframes elegant-portal-spin {
+    @keyframes mega-portal-spin {
       0% {
-        width: 120px;
-        height: 120px;
-        opacity: 0.6;
+        width: 80px;
+        height: 80px;
+        opacity: 1;
         transform: translate(-50%, -50%) rotate(0deg) scale(1);
-        background: radial-gradient(circle, rgba(64,224,255,0.4) 0%, rgba(128,0,255,0.3) 40%, rgba(255,64,128,0.2) 70%, transparent 100%);
-        box-shadow: 0 0 40px rgba(64,224,255,0.3);
+        background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,255,255,0.9) 20%, rgba(255,0,255,0.8) 40%, rgba(255,255,0,0.6) 60%, transparent 80%);
+        box-shadow: 
+          0 0 100px rgba(0,255,255,1), 
+          0 0 200px rgba(255,0,255,0.9),
+          0 0 300px rgba(255,255,0,0.7);
+        filter: brightness(3) saturate(2);
       }
-      25% {
+      15% {
         width: 200px;
         height: 200px;
-        opacity: 0.8;
-        transform: translate(-50%, -50%) rotate(180deg) scale(1.1);
-        background: radial-gradient(circle, rgba(128,0,255,0.5) 0%, rgba(255,64,128,0.4) 40%, rgba(64,224,255,0.3) 70%, transparent 100%);
-        box-shadow: 0 0 60px rgba(128,0,255,0.4);
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(180deg) scale(1.3);
+        background: radial-gradient(circle, rgba(255,0,255,1) 0%, rgba(0,255,255,0.9) 25%, rgba(255,255,0,0.8) 50%, rgba(0,255,128,0.6) 75%, transparent 90%);
+        box-shadow: 
+          0 0 150px rgba(255,0,255,1), 
+          0 0 250px rgba(0,255,255,0.9);
+        filter: brightness(4) saturate(3);
       }
-      50% {
-        width: 300px;
-        height: 300px;
-        opacity: 0.9;
-        transform: translate(-50%, -50%) rotate(360deg) scale(1.3);
-        background: radial-gradient(circle, rgba(255,64,128,0.6) 0%, rgba(64,224,255,0.5) 40%, rgba(128,0,255,0.4) 70%, transparent 100%);
-        box-shadow: 0 0 80px rgba(255,64,128,0.5);
-      }
-      75% {
+      35% {
         width: 400px;
         height: 400px;
-        opacity: 0.7;
-        transform: translate(-50%, -50%) rotate(540deg) scale(1.5);
-        background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(64,224,255,0.5) 30%, rgba(128,0,255,0.3) 60%, transparent 90%);
-        box-shadow: 0 0 100px rgba(255,255,255,0.6);
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(450deg) scale(1.5);
+        background: radial-gradient(circle, rgba(255,255,0,1) 0%, rgba(255,0,255,0.9) 20%, rgba(0,255,255,0.8) 40%, rgba(255,128,0,0.6) 65%, transparent 85%);
+        box-shadow: 
+          0 0 200px rgba(255,255,0,1), 
+          0 0 350px rgba(255,0,255,0.8);
+        filter: brightness(5) saturate(4);
+      }
+      60% {
+        width: 600px;
+        height: 600px;
+        opacity: 0.9;
+        transform: translate(-50%, -50%) rotate(720deg) scale(1.8);
+        background: radial-gradient(circle, rgba(0,255,128,1) 0%, rgba(255,255,0,0.9) 20%, rgba(255,0,255,0.7) 45%, rgba(0,255,255,0.5) 70%, transparent 90%);
+        box-shadow: 
+          0 0 250px rgba(0,255,128,1), 
+          0 0 400px rgba(255,255,255,0.8);
+        filter: brightness(6) saturate(5);
+      }
+      85% {
+        width: 800px;
+        height: 800px;
+        opacity: 0.5;
+        transform: translate(-50%, -50%) rotate(1080deg) scale(2);
+        filter: brightness(7) saturate(6);
       }
       100% {
-        width: 500px;
-        height: 500px;
+        width: 1000px;
+        height: 1000px;
         opacity: 0;
-        transform: translate(-50%, -50%) rotate(720deg) scale(1.8);
-        background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 50%);
-        box-shadow: 0 0 120px rgba(255,255,255,0.8);
+        transform: translate(-50%, -50%) rotate(1440deg) scale(2.5);
+        background: radial-gradient(circle, rgba(255,255,255,1) 0%, transparent 40%);
+        box-shadow: 0 0 300px rgba(255,255,255,1);
+        filter: brightness(10) saturate(8);
       }
+    }
+    
+    @keyframes intense-color-explosion {
+      0% {
+        opacity: 0;
+        filter: brightness(1) saturate(1);
+      }
+      10% {
+        opacity: 1;
+        background: radial-gradient(circle at center, 
+          rgba(255,255,255,0.95) 0%, 
+          rgba(0,255,255,0.9) 10%, 
+          rgba(255,0,255,0.85) 25%, 
+          rgba(255,255,0,0.7) 40%, 
+          rgba(0,255,128,0.5) 60%, 
+          transparent 85%);
+        filter: brightness(3) saturate(4);
+      }
+      25% {
+        opacity: 0.9;
+        background: radial-gradient(circle at center, 
+          rgba(255,0,255,0.9) 0%, 
+          rgba(255,255,0,0.85) 15%, 
+          rgba(0,255,255,0.8) 35%, 
+          rgba(255,64,128,0.6) 55%, 
+          transparent 80%);
+        filter: brightness(4) saturate(5);
+      }
+      50% {
+        opacity: 0.7;
+        background: radial-gradient(circle at center, 
+          rgba(255,255,0,0.8) 0%, 
+          rgba(0,255,128,0.75) 20%, 
+          rgba(255,0,255,0.6) 45%, 
+          transparent 75%);
+        filter: brightness(3) saturate(4);
+      }
+      100% {
+        opacity: 0;
+        filter: brightness(1) saturate(1);
+      }
+    }
+    
+    @keyframes scan-lines-move {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(4px); }
     }
   `;
   document.head.appendChild(style);
@@ -92,10 +208,24 @@ export const cleanupEffects = (effectsContainer: HTMLElement) => {
     portalOverlay.remove();
   }
   
-  // Remove the portal animation style
+  // Remove color explosion
+  const colorExplosion = document.getElementById('color-explosion');
+  if (colorExplosion) {
+    colorExplosion.remove();
+  }
+  
+  // Remove scan lines
+  const scanLines = document.getElementById('scan-lines');
+  if (scanLines) {
+    scanLines.remove();
+  }
+  
+  // Remove the portal animation styles
   const portalStyles = document.head.querySelectorAll('style');
   portalStyles.forEach(style => {
-    if (style.textContent?.includes('@keyframes elegant-portal-spin')) {
+    if (style.textContent?.includes('@keyframes mega-portal-spin') || 
+        style.textContent?.includes('@keyframes intense-color-explosion') ||
+        style.textContent?.includes('@keyframes scan-lines-move')) {
       style.remove();
     }
   });
