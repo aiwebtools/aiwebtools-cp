@@ -2,14 +2,14 @@
 // EPIC TIME WARP VISUAL EFFECTS - Maximum coolness edition
 
 export const createParticles = (effectsContainer: HTMLElement) => {
-  console.log('✨ Creating EPIC particle explosion');
-  const colors = ['#00FFFF', '#FF00FF', '#FFFF00', '#00FF00', '#FF4444', '#4444FF', '#FF8800'];
-  const particleCount = 80; // More particles for epic effect
+  console.log('✨ Creating MEGA particle explosion');
+  const colors = ['#00FFFF', '#FF00FF', '#FFFF00', '#00FF00', '#FF4444', '#4444FF', '#FF8800', '#FFFFFF', '#FF69B4', '#00FF7F'];
+  const particleCount = 150; // WAY more particles for MEGA effect
   
   for (let i = 0; i < particleCount; i++) {
     const particle = document.createElement('div');
-    particle.className = 'epic-particle';
-    const size = 3 + Math.random() * 8;
+    particle.className = 'mega-particle';
+    const size = 4 + Math.random() * 12;
     const color = colors[Math.floor(Math.random() * colors.length)];
     
     particle.style.cssText = `
@@ -20,47 +20,55 @@ export const createParticles = (effectsContainer: HTMLElement) => {
       border-radius: 50%;
       top: 50%;
       left: 50%;
-      box-shadow: 0 0 ${size * 3}px ${color}, 0 0 ${size * 6}px ${color};
-      animation: epic-particle-burst 2s ease-out forwards;
+      box-shadow: 
+        0 0 ${size * 4}px ${color}, 
+        0 0 ${size * 8}px ${color},
+        0 0 ${size * 12}px ${color};
+      animation: mega-particle-burst 1.8s ease-out forwards;
       transform-origin: center;
       z-index: 10001;
     `;
     
     const angle = (i / particleCount) * 360 + Math.random() * 30;
-    const velocity = 150 + Math.random() * 250;
+    const velocity = 200 + Math.random() * 400;
     particle.style.setProperty('--angle', `${angle}deg`);
     particle.style.setProperty('--velocity', `${velocity}px`);
-    particle.style.setProperty('--delay', `${Math.random() * 0.3}s`);
+    particle.style.setProperty('--delay', `${Math.random() * 0.15}s`);
     
     effectsContainer.appendChild(particle);
   }
   
   const style = document.createElement('style');
-  style.id = 'epic-particle-style';
+  style.id = 'mega-particle-style';
   style.textContent = `
-    @keyframes epic-particle-burst {
+    @keyframes mega-particle-burst {
       0% {
         transform: translate(-50%, -50%) rotate(var(--angle)) translateX(0) scale(1);
         opacity: 1;
-        filter: brightness(3);
+        filter: brightness(5) saturate(3);
       }
-      30% {
+      15% {
         opacity: 1;
-        filter: brightness(5);
-        transform: translate(-50%, -50%) rotate(calc(var(--angle) + 180deg)) translateX(calc(var(--velocity) * 0.5)) scale(1.5);
+        filter: brightness(8) saturate(5);
+        transform: translate(-50%, -50%) rotate(calc(var(--angle) + 90deg)) translateX(calc(var(--velocity) * 0.3)) scale(2);
       }
-      60% {
-        opacity: 0.8;
-        filter: brightness(4);
+      40% {
+        opacity: 1;
+        filter: brightness(6) saturate(4);
+        transform: translate(-50%, -50%) rotate(calc(var(--angle) + 270deg)) translateX(calc(var(--velocity) * 0.6)) scale(1.5);
+      }
+      70% {
+        opacity: 0.7;
+        filter: brightness(4) saturate(3);
       }
       100% {
-        transform: translate(-50%, -50%) rotate(calc(var(--angle) + 540deg)) translateX(var(--velocity)) scale(0);
+        transform: translate(-50%, -50%) rotate(calc(var(--angle) + 720deg)) translateX(var(--velocity)) scale(0);
         opacity: 0;
-        filter: brightness(2);
+        filter: brightness(2) saturate(2);
       }
     }
   `;
-  if (!document.getElementById('epic-particle-style')) {
+  if (!document.getElementById('mega-particle-style')) {
     document.head.appendChild(style);
   }
 };
@@ -340,20 +348,42 @@ export const createLightning = (effectsContainer: HTMLElement) => {
 };
 
 export const createFlash = (effectsContainer: HTMLElement) => {
-  console.log('💫 Creating EPIC dimensional rift flash');
+  console.log('💫 Creating MEGA dimensional rift flash');
+  
+  // Create IMMEDIATE intense central flash for instant WOW
+  const instantFlash = document.createElement('div');
+  instantFlash.className = 'instant-wow-flash';
+  instantFlash.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, 
+      rgba(255,255,255,1) 0%, 
+      rgba(0,255,255,0.95) 15%, 
+      rgba(255,0,255,0.9) 30%, 
+      rgba(255,255,0,0.8) 50%, 
+      rgba(0,255,128,0.6) 70%, 
+      transparent 90%);
+    z-index: 10020;
+    pointer-events: none;
+    animation: instant-wow 0.4s ease-out forwards;
+  `;
+  effectsContainer.appendChild(instantFlash);
   
   // Create central flash
   const flash = document.createElement('div');
-  flash.className = 'epic-flash';
+  flash.className = 'mega-flash';
   flash.style.cssText = `
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    animation: epic-dimensional-rift 2s ease-out forwards;
+    animation: mega-dimensional-rift 2s ease-out forwards;
     z-index: 10005;
     pointer-events: none;
   `;
@@ -361,7 +391,7 @@ export const createFlash = (effectsContainer: HTMLElement) => {
   
   // Create screen flash overlay
   const screenFlash = document.createElement('div');
-  screenFlash.className = 'epic-screen-flash';
+  screenFlash.className = 'mega-screen-flash';
   screenFlash.style.cssText = `
     position: fixed;
     top: 0;
@@ -370,75 +400,102 @@ export const createFlash = (effectsContainer: HTMLElement) => {
     height: 100vh;
     pointer-events: none;
     z-index: 10010;
-    animation: epic-screen-flash 1.5s ease-out forwards;
+    animation: mega-screen-flash 1.8s ease-out forwards;
   `;
   effectsContainer.appendChild(screenFlash);
   
   const style = document.createElement('style');
-  style.id = 'epic-flash-style';
+  style.id = 'mega-flash-style';
   style.textContent = `
-    @keyframes epic-dimensional-rift {
+    @keyframes instant-wow {
       0% {
-        width: 10px;
-        height: 10px;
-        opacity: 0;
-        background: radial-gradient(circle, white 0%, transparent 100%);
-        filter: brightness(3);
-      }
-      15% {
-        width: 100px;
-        height: 100px;
-        opacity: 0.7;
-        background: radial-gradient(circle, white 0%, cyan 20%, magenta 40%, transparent 70%);
-        filter: brightness(6);
-      }
-      35% {
-        width: 300px;
-        height: 300px;
         opacity: 1;
-        background: radial-gradient(circle, white 0%, cyan 15%, magenta 30%, yellow 45%, lime 60%, transparent 85%);
-        filter: brightness(8);
+        filter: brightness(10) saturate(5);
       }
-      60% {
-        width: 500px;
-        height: 500px;
+      30% {
         opacity: 0.8;
-        background: radial-gradient(circle, white 0%, magenta 20%, cyan 40%, orange 60%, transparent 90%);
-        filter: brightness(5);
+        filter: brightness(6) saturate(4);
       }
       100% {
-        width: 700px;
-        height: 700px;
         opacity: 0;
-        background: radial-gradient(circle, transparent 0%, transparent 100%);
-        filter: brightness(2);
+        filter: brightness(1) saturate(1);
       }
     }
     
-    @keyframes epic-screen-flash {
+    @keyframes mega-dimensional-rift {
+      0% {
+        width: 20px;
+        height: 20px;
+        opacity: 1;
+        background: radial-gradient(circle, white 0%, transparent 100%);
+        filter: brightness(10) saturate(5);
+        box-shadow: 
+          0 0 50px rgba(255,255,255,1),
+          0 0 100px rgba(0,255,255,1),
+          0 0 150px rgba(255,0,255,1);
+      }
+      10% {
+        width: 150px;
+        height: 150px;
+        opacity: 1;
+        background: radial-gradient(circle, white 0%, cyan 15%, magenta 30%, yellow 50%, lime 70%, transparent 85%);
+        filter: brightness(12) saturate(6);
+        box-shadow: 
+          0 0 80px rgba(255,255,255,1),
+          0 0 160px rgba(0,255,255,1),
+          0 0 240px rgba(255,0,255,1);
+      }
+      30% {
+        width: 400px;
+        height: 400px;
+        opacity: 1;
+        background: radial-gradient(circle, white 0%, cyan 10%, magenta 25%, yellow 40%, lime 55%, orange 70%, transparent 90%);
+        filter: brightness(10) saturate(5);
+      }
+      55% {
+        width: 650px;
+        height: 650px;
+        opacity: 0.85;
+        background: radial-gradient(circle, white 0%, magenta 15%, cyan 35%, orange 55%, transparent 80%);
+        filter: brightness(7) saturate(4);
+      }
+      100% {
+        width: 900px;
+        height: 900px;
+        opacity: 0;
+        background: radial-gradient(circle, transparent 0%, transparent 100%);
+        filter: brightness(2) saturate(2);
+      }
+    }
+    
+    @keyframes mega-screen-flash {
       0% {
         background: transparent;
         opacity: 0;
       }
-      10% {
-        background: radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(0,255,255,0.5) 30%, rgba(255,0,255,0.3) 60%, transparent 100%);
+      5% {
+        background: radial-gradient(circle at center, rgba(255,255,255,1) 0%, rgba(0,255,255,0.9) 20%, rgba(255,0,255,0.8) 40%, rgba(255,255,0,0.6) 60%, transparent 85%);
         opacity: 1;
+        filter: brightness(5) saturate(4);
       }
-      25% {
-        background: radial-gradient(circle at center, rgba(255,255,255,1) 0%, rgba(0,255,255,0.7) 20%, rgba(255,0,255,0.5) 40%, rgba(255,255,0,0.3) 60%, transparent 100%);
-        opacity: 0.9;
+      20% {
+        background: radial-gradient(circle at center, rgba(255,255,255,1) 0%, rgba(0,255,255,0.85) 15%, rgba(255,0,255,0.75) 30%, rgba(255,255,0,0.6) 50%, rgba(0,255,128,0.4) 70%, transparent 95%);
+        opacity: 0.95;
+        filter: brightness(4) saturate(3);
       }
-      50% {
-        background: radial-gradient(circle at center, rgba(0,255,255,0.6) 0%, rgba(255,0,255,0.4) 30%, transparent 80%);
-        opacity: 0.5;
+      45% {
+        background: radial-gradient(circle at center, rgba(0,255,255,0.7) 0%, rgba(255,0,255,0.6) 25%, rgba(255,255,0,0.4) 50%, transparent 80%);
+        opacity: 0.6;
+        filter: brightness(3) saturate(2);
       }
       100% {
         background: transparent;
         opacity: 0;
+        filter: brightness(1) saturate(1);
       }
     }
   `;
-  if (!document.getElementById('epic-flash-style')) {
+  if (!document.getElementById('mega-flash-style')) {
     document.head.appendChild(style);
   }
 };
