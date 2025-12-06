@@ -43,15 +43,23 @@ export const useGlobalSearch = () => {
     };
   }), []);
   
-  // Debounce for heavy scoring stage
-  const heavyTerm = useDebounce(searchTerm, 320);
+  // Debounce for heavy scoring stage - reduced for snappier feel
+  const heavyTerm = useDebounce(searchTerm, 200);
+  
+  // Track current search to prevent stale updates
+  const searchIdRef = useRef(0);
+  
   // FAST stage: HYPER-INTELLIGENT immediate results while typing
   useEffect(() => {
+    // Increment search ID immediately to invalidate any pending heavy searches
+    searchIdRef.current += 1;
+    
     const t = searchTerm.trim();
     if (!t) {
+      // INSTANT clear - no delay, no freeze
       setSearchResults([]);
       setIsOpen(false);
-      setDisplayedCount(50); // Start with more results for better UX
+      setDisplayedCount(50);
       return;
     }
     const q = t.toLowerCase();
@@ -191,11 +199,13 @@ export const useGlobalSearch = () => {
     setIsOpen(true);
   }, [searchTerm, indexedTools]);
 
-  // HEAVY stage: HYPER-INTELLIGENT intent + category + fuzzy matching after short pause
   useEffect(() => {
+    const currentSearchId = searchIdRef.current;
     const trimmedTerm = heavyTerm.trim();
-    if (!trimmedTerm) return; // keep fast results when empty
-    if (trimmedTerm !== searchTerm.trim()) return; // stale guard
+    
+    // Exit early if empty or stale - prevents freezing on clear
+    if (!trimmedTerm) return;
+    if (trimmedTerm !== searchTerm.trim()) return;
 
     const lowerTerm = trimmedTerm.toLowerCase();
     const lowerNormalized = lowerTerm.replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ');
@@ -342,9 +352,10 @@ export const useGlobalSearch = () => {
     const deduped = quickDeduplicateSearchResults ? quickDeduplicateSearchResults(ranked) : ranked;
     // Don't limit results - enable TRUE endless scrolling for ALL search results
     
-    if (trimmedTerm === searchTerm.trim()) {
+    // Final stale check before updating state - prevents race conditions
+    if (currentSearchId === searchIdRef.current && trimmedTerm === searchTerm.trim()) {
       setSearchResults(deduped);
-      setDisplayedCount(50); // Better initial display count
+      setDisplayedCount(50);
       setIsOpen(true);
     }
   }, [heavyTerm, searchTerm, indexedTools]);
