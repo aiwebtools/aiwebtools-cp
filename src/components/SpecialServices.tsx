@@ -154,7 +154,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-yellow-600",
     features: ["Lost Teachings", "Light vs Darkness", "Prophet Mani", "Ancient Religion"],
     directUrl: "https://chatgpt.com/g/g-69345518771c81919c341622d3b742e5-manicheism-gpt-some-lost-knowledge-of-the-light/?via=aiwebtools",
-    imageUrl: "/images/manicheism-gpt.png",
+    imageUrl: "/images/manicheism-gpt-hero.png",
     emoji: "☀️"
   },
   {
