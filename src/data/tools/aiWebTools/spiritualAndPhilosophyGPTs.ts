@@ -5,6 +5,19 @@ import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, M
 export const spiritualAndPhilosophyGPTs: Tool[] = [
   {
     icon: Sun,
+    title: "Míngjiào Prophet of Light GPT",
+    description: "The living voice of Light—poetic, prophetic, and radiant with the remembrance of Truth. Connect with the Míngjiào tradition, the Chinese manifestation of Manichaean wisdom that illuminated the Silk Road and beyond. This GPT embodies the prophetic spirit of Light, offering poetic revelations, spiritual guidance, and the timeless teachings of the Religion of Light that once united East and West in the pursuit of divine illumination.",
+    emoji: "✨",
+    color: "from-amber-400 to-yellow-500",
+    directUrl: "https://chatgpt.com/g/g-693466a2a48081918e33a2871f683ebf-mingjiao-prophet-of-light-gpt/?via=aiwebtools",
+    tags: ["mingjiao", "prophet", "light", "manichaean", "chinese religion", "silk road", "spiritual wisdom", "poetry", "prophecy", "illumination", "truth", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 1650,
+    isFree: true
+  },
+  {
+    icon: Sun,
     title: "Manicheism GPT",
     description: "The resurrected voice of prophet Mani—revealing the lost Light of a hunted faith. The prophet hunted by Rome lives again. Explore the profound dualistic teachings of Manichaeism, the ancient religion that once spanned from Rome to China. Discover the cosmic battle between Light and Darkness, the path to spiritual liberation, and the wisdom that empires tried to destroy. Bringing back what Rome burned.",
     emoji: "☀️",
