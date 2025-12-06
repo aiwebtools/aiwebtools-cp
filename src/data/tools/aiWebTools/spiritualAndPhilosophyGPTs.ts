@@ -4,6 +4,19 @@ import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, M
 
 export const spiritualAndPhilosophyGPTs: Tool[] = [
   {
+    icon: Sun,
+    title: "Manicheism GPT",
+    description: "The resurrected voice of prophet Mani—revealing the lost Light of a hunted faith. The prophet hunted by Rome lives again. Explore the profound dualistic teachings of Manichaeism, the ancient religion that once spanned from Rome to China. Discover the cosmic battle between Light and Darkness, the path to spiritual liberation, and the wisdom that empires tried to destroy. Bringing back what Rome burned.",
+    emoji: "☀️",
+    color: "from-amber-500 to-yellow-600",
+    directUrl: "https://chatgpt.com/g/g-69345518771c81919c341622d3b742e5-manicheism-gpt-some-lost-knowledge-of-the-light/?via=aiwebtools",
+    imageUrl: "/assets/manicheism-gpt.png",
+    tags: ["manicheism", "mani", "prophet", "light", "darkness", "dualism", "ancient religion", "gnostic", "lost knowledge", "rome", "spiritual wisdom", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 1789
+  },
+  {
     icon: Leaf,
     title: "Self Sufficiency GPT",
     description: "Teaches complete, precise self-sufficiency systems from first principles to scalable community resilience. Master homesteading, off-grid living, food preservation, water systems, renewable energy, permaculture, and sustainable practices. This comprehensive guide helps you build independence through practical knowledge covering gardening, animal husbandry, construction, emergency preparedness, and community-building strategies for long-term resilience and autonomy.",
