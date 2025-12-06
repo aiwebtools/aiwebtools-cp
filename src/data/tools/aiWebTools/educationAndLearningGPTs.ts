@@ -35,7 +35,7 @@ export const educationAndLearningGPTs: Tool[] = [
     emoji: "📚",
     color: "from-blue-500 to-green-600",
     directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/0_oIzDL2BB4",
+    videoUrl: "https://youtu.be/pr8-IgbL46I",
     tags: ["education", "learning", "courses", "tutoring", "self-learning", "aiwebtools"],
     category: "Education & Learning",
     rating: 4.7,
