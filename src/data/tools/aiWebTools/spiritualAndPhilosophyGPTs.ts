@@ -10,7 +10,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "☀️",
     color: "from-amber-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-69345518771c81919c341622d3b742e5-manicheism-gpt-some-lost-knowledge-of-the-light/?via=aiwebtools",
-    imageUrl: "/assets/manicheism-gpt.png",
+    imageUrl: "/images/manicheism-gpt.png",
     tags: ["manicheism", "mani", "prophet", "light", "darkness", "dualism", "ancient religion", "gnostic", "lost knowledge", "rome", "spiritual wisdom", "aiwebtools"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
