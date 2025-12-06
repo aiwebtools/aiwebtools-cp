@@ -5,6 +5,32 @@ import { Heart, Brain, Sparkles, Star, Sun, Moon, Flower2, Zap, Eye, BookOpen, M
 export const spiritualAndPhilosophyGPTs: Tool[] = [
   {
     icon: Sun,
+    title: "Arius the Bearer of Light GPT",
+    description: "I am Arius of Alexandria, revealing the mysteries of the Unbegotten Light with calm, radiant truth. Connect with the teachings of Arius, the influential early Christian theologian who challenged orthodox doctrine with his understanding of the divine nature of Christ. Explore profound theological discussions about the nature of God, light, and divine truth through this embodiment of Arian wisdom.",
+    emoji: "✝️",
+    color: "from-amber-400 to-yellow-500",
+    directUrl: "https://chatgpt.com/g/g-69348a8556948191a18aca802bac4f68-arius-the-bearer-of-light-gpt/?via=aiwebtools",
+    tags: ["arius", "arianism", "alexandria", "unbegotten light", "early christianity", "theology", "divine truth", "light bearer", "christian philosophy", "ancient wisdom", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 1234,
+    isFree: true
+  },
+  {
+    icon: Star,
+    title: "Council of Light GPT",
+    description: "A luminous, ancient-voiced teacher offering symbolic cosmology and gentle guidance. Connect with the Council of Light, a collective wisdom source that offers profound insights into cosmic understanding, symbolic teachings, and spiritual guidance. This GPT speaks with the timeless voice of enlightened beings, helping seekers navigate their spiritual path with grace and clarity.",
+    emoji: "💫",
+    color: "from-yellow-300 to-amber-500",
+    directUrl: "https://chatgpt.com/g/g-69348b45baa081919439c80361a63bda-council-of-light-gpt/?via=aiwebtools",
+    tags: ["council", "light", "council of light", "cosmology", "symbolic wisdom", "spiritual guidance", "ancient teachers", "enlightened beings", "cosmic wisdom", "divine guidance", "aiwebtools"],
+    category: "Spirituality & Philosophy",
+    rating: 4.9,
+    totalVotes: 1189,
+    isFree: true
+  },
+  {
+    icon: Sun,
     title: "Míngjiào Prophet of Light GPT",
     description: "The living voice of Light—poetic, prophetic, and radiant with the remembrance of Truth. Connect with the Míngjiào tradition, the Chinese manifestation of Manichaean wisdom that illuminated the Silk Road and beyond. This GPT embodies the prophetic spirit of Light, offering poetic revelations, spiritual guidance, and the timeless teachings of the Religion of Light that once united East and West in the pursuit of divine illumination.",
     emoji: "✨",
