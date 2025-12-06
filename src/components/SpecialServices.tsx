@@ -148,6 +148,16 @@ const featuredGPTs = [
     emoji: "🧠"
   },
   {
+    title: "Manicheism GPT",
+    description: "The resurrected voice of prophet Mani—revealing the lost Light of a hunted faith. The prophet hunted by Rome lives again. Explore the profound dualistic teachings of Manichaeism and the cosmic battle between Light and Darkness.",
+    badge: "ANCIENT WISDOM",
+    color: "from-amber-500 to-yellow-600",
+    features: ["Lost Teachings", "Light vs Darkness", "Prophet Mani", "Ancient Religion"],
+    directUrl: "https://chatgpt.com/g/g-69345518771c81919c341622d3b742e5-manicheism-gpt-some-lost-knowledge-of-the-light/?via=aiwebtools",
+    imageUrl: "/assets/manicheism-gpt.png",
+    emoji: "☀️"
+  },
+  {
     title: "Alchemist Scientist GPT",
     description: "Mystical science advisor combining ancient alchemy with modern chemistry, providing unique insights into materials, transformations, and scientific mysteries.",
     badge: "SCIENCE",
