@@ -25,7 +25,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
-    tags: ["medical consultation", "health advice", "doctor simulation", "healthcare", "medical ai", "aiwebtools"],
+    tags: ["dr", "doctor", "personalized doctor", "medical consultation", "health advice", "doctor simulation", "healthcare", "medical ai", "aiwebtools"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 5432
@@ -51,7 +51,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298535833407488/vet.webp",
-    tags: ["veterinary care", "pet health", "animal medicine", "pet consultation", "veterinary advice", "aiwebtools"],
+    tags: ["vet", "veterinarian", "veterinary care", "pet health", "animal medicine", "pet consultation", "veterinary advice", "pets", "aiwebtools"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 4321
@@ -64,7 +64,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     color: "from-purple-500 to-pink-600",
     directUrl: "https://rxai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-professional-looking-pharmaceutical-assistan.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["pharmaceutical", "medication management", "drug information", "pharmacy", "healthcare", "aiwebtools"],
+    tags: ["pharma", "pharmaceutical", "rx", "medication management", "drug information", "pharmacy", "healthcare", "prescriptions", "aiwebtools"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
     totalVotes: 3876
@@ -78,7 +78,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=_e6DtLUv-2Q",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377362789097803786/image.png?ex=6838b08f&is=68375f0f&hm=f63e1ae446523dd9eff4aa0f95166aa8a5e6119c506b44ab1656322ea4ca47b7&=&format=webp&quality=lossless&width=2646&height=1392",
-    tags: ["mental health", "wellness", "therapy", "cbt", "emotional support", "aiwebtools"],
+    tags: ["mental", "mental health", "wellness", "therapy", "cbt", "cognitive behavioral", "emotional support", "anxiety", "depression", "aiwebtools"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.8,
     totalVotes: 6234
@@ -203,7 +203,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "🌿",
     color: "from-green-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68c9e33310148191ae3df594ec4012dd-apothecary-gpt/?via=aiwebtools",
-    tags: ["herbal medicine", "traditional healing", "natural remedies", "medicinal plants", "apothecary", "historical medicine", "wellness", "aiwebtools"],
+    tags: ["apothecary", "herbal", "herbal medicine", "traditional healing", "natural remedies", "medicinal plants", "historical medicine", "wellness", "herbalist", "aiwebtools"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 2645
@@ -228,7 +228,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-3WgfLujuW-branford-river-resort-and-spa-gpt/?via=aiwebtools",
     videoUrl: "https://vimeo.com/1131951831?share=copy&fl=sv&fe=ci",
-    tags: ["spa", "wellness", "local business", "spa services", "branford", "connecticut", "spa management", "customer service", "aiwebtools"],
+    tags: ["branford river", "spa", "wellness", "local business", "spa services", "branford", "connecticut", "spa management", "customer service", "aiwebtools"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
     totalVotes: 1234
@@ -264,7 +264,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "🧠",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68fc552d42cc81919858bcdc90eb729b-tbi-recovery-companion",
-    tags: ["traumatic brain injury", "TBI recovery", "cognitive rehabilitation", "brain injury support", "recovery companion", "healthcare", "rehabilitation", "aiwebtools"],
+    tags: ["tbi", "traumatic brain injury", "TBI recovery", "cognitive rehabilitation", "brain injury support", "recovery companion", "healthcare", "rehabilitation", "concussion", "aiwebtools"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.9,
     totalVotes: 3456
@@ -300,7 +300,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "🍽️",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-68f9057585648191aa3e700fedfbc206-pantry-ration-and-meal-planning-assistant",
-    tags: ["meal planning", "ration management", "food planning", "cooking", "recipes", "emergency preparedness", "budget cooking", "food waste reduction", "aiwebtools"],
+    tags: ["pantry", "meal planning", "ration", "ration management", "food planning", "cooking", "recipes", "emergency preparedness", "budget cooking", "food waste reduction", "aiwebtools"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 1234
@@ -313,7 +313,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-oM5YeBpRq-emdr-therapy-assistant-with-full-capabilities/?via=aiwebtools",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
-    tags: ["emdr therapy", "mental health", "trauma therapy", "psychological treatment", "therapeutic support", "bilateral stimulation", "mental wellness", "aiwebtools"],
+    tags: ["emdr", "emdr therapy", "eye movement", "mental health", "trauma therapy", "psychological treatment", "therapeutic support", "bilateral stimulation", "mental wellness", "ptsd", "aiwebtools"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.8,
     totalVotes: 2456
