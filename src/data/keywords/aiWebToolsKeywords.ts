@@ -232,13 +232,16 @@ export const aiWebToolsKeywords: Record<string, string[]> = {
   "trip": ["travel advisor", "travel", "vacation", "journey", "tour"],
   "adventure": ["imagination traveler", "travel", "exploration", "journey", "quest"],
   
-  // Spirituality & Philosophy
-  "god": ["talk to gods", "divine", "deity", "spiritual", "religious", "worship"],
-  "religion": ["talk to gods", "spiritual", "faith", "belief", "worship", "mary magdalene"],
-  "spiritual": ["sophia aeterna", "alan watts", "soul", "spirit", "consciousness", "enlightenment"],
-  "soul": ["spiritual", "spirit", "essence", "consciousness", "inner self"],
-  "wisdom": ["sophia aeterna", "philosophy", "knowledge", "insight", "enlightenment"],
-  "philosophy": ["alan watts", "sophia aeterna", "wisdom", "thinking", "philosophical"],
+  // Spirituality & Philosophy - COMPREHENSIVE CATEGORY TRIGGERS
+  "spirit": ["spiritual", "spirituality", "soul", "consciousness", "enlightenment", "divine", "religious", "talk to gods", "mary magdalene", "sophia aeterna", "alan watts", "resurrection", "oraculum", "arius", "council of light"],
+  "spirituality": ["spiritual", "spirit", "soul", "consciousness", "enlightenment", "divine", "religious", "talk to gods", "mary magdalene", "sophia aeterna", "alan watts", "resurrection", "oraculum", "arius", "council of light", "philosophy", "wisdom", "meditation", "mindfulness"],
+  "god": ["talk to gods", "divine", "deity", "spiritual", "religious", "worship", "spirituality"],
+  "religion": ["talk to gods", "spiritual", "spirituality", "faith", "belief", "worship", "mary magdalene", "religious"],
+  "religious": ["religion", "spiritual", "spirituality", "talk to gods", "mary magdalene", "faith", "belief", "divine", "deity", "worship", "arius", "council of light"],
+  "spiritual": ["sophia aeterna", "alan watts", "soul", "spirit", "consciousness", "enlightenment", "spirituality", "religious", "talk to gods", "mary magdalene", "resurrection", "oraculum", "arius", "council of light"],
+  "soul": ["spiritual", "spirit", "essence", "consciousness", "inner self", "spirituality"],
+  "wisdom": ["sophia aeterna", "philosophy", "knowledge", "insight", "enlightenment", "spiritual", "spirituality"],
+  "philosophy": ["alan watts", "sophia aeterna", "wisdom", "thinking", "philosophical", "spiritual", "spirituality"],
   
   // Science & Research
   "experiment": ["science", "research", "laboratory", "scientific", "test", "study"],
