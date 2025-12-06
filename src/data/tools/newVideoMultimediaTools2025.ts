@@ -211,18 +211,6 @@ export const newVideoMultimediaTools2025: Tool[] = [
     totalVotes: 3890
   },
   {
-    icon: Camera,
-    title: "Spirit Me",
-    description: "Video avatar service that transforms a single photo into a talking, animated video avatar.",
-    emoji: "👻",
-    color: "from-purple-500 to-indigo-500",
-    directUrl: "https://www.spiritme.tech/?via=aiwebtools",
-    tags: ["Avatar Creation", "Photo-to-Video", "Animation", "Talking Avatar"],
-    category: "VIDEO & MULTIMEDIA",
-    rating: 4.2,
-    totalVotes: 1340
-  },
-  {
     icon: Volume2,
     title: "Synthesia",
     description: "Text-to-video platform that generates professional videos with AI avatars speaking in multiple languages.",

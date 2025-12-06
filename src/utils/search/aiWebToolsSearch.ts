@@ -77,26 +77,83 @@ export const searchAIWebToolsGPTs = (tools: Tool[], searchTerm: string): Tool[] 
       }
     }
     
-    // Fuzzy matching for common variations
-    const fuzzyMatches = [
-      { search: 'learn', matches: ['learn', 'education', 'course', 'skill', 'study', 'tutorial'] },
+    // COMPREHENSIVE CATEGORY TRIGGER MATCHING
+    const categoryTriggers = [
+      // Spirituality & Religion
+      { search: 'spirit', matches: ['spiritual', 'spirituality', 'soul', 'consciousness', 'enlightenment', 'divine', 'religious', 'talk to gods', 'mary magdalene', 'sophia aeterna', 'alan watts', 'resurrection', 'oraculum', 'arius', 'council of light'] },
+      { search: 'spirituality', matches: ['spiritual', 'spirit', 'soul', 'consciousness', 'enlightenment', 'divine', 'religious', 'talk to gods', 'mary magdalene', 'sophia aeterna', 'alan watts', 'resurrection', 'oraculum', 'arius', 'council of light', 'philosophy', 'wisdom'] },
+      { search: 'spiritual', matches: ['spirituality', 'spirit', 'soul', 'consciousness', 'enlightenment', 'divine', 'religious', 'talk to gods', 'mary magdalene', 'sophia aeterna', 'alan watts', 'resurrection', 'oraculum', 'arius', 'council of light', 'philosophy', 'wisdom'] },
+      { search: 'religious', matches: ['religion', 'spiritual', 'spirituality', 'talk to gods', 'mary magdalene', 'faith', 'belief', 'divine', 'deity', 'arius', 'council of light'] },
+      { search: 'religion', matches: ['religious', 'spiritual', 'spirituality', 'talk to gods', 'mary magdalene', 'faith', 'belief', 'divine', 'deity'] },
+      
+      // Writing & Content
+      { search: 'writing', matches: ['book', 'script', 'content', 'writer', 'author', 'novel', 'literature', 'article', 'blog', 'screenplay', 'playwriter', 'manuscript', 'publish'] },
+      { search: 'writer', matches: ['book writer', 'script writer', 'content', 'author', 'writing', 'novelist', 'article rewriter', 'playwriter'] },
+      { search: 'write', matches: ['book', 'script', 'content', 'writer', 'author', 'writing', 'article', 'blog', 'manuscript'] },
+      
+      // AI Agents
+      { search: 'agent', matches: ['agents', 'autonomous', 'automation', 'bot', 'assistant', 'ai agent', 'intelligent agent', 'multi-agent'] },
+      { search: 'agents', matches: ['agent', 'autonomous', 'automation', 'bot', 'assistant', 'ai agent', 'intelligent agent', 'multi-agent'] },
+      
+      // Learning & Education
+      { search: 'learn', matches: ['learn', 'education', 'course', 'skill', 'study', 'tutorial', 'learning', 'college', 'school', 'homeschool', 'training'] },
+      { search: 'education', matches: ['learn', 'learning', 'course', 'school', 'college', 'university', 'study', 'tutorial', 'homeschool', 'training'] },
+      
+      // Health & Medical
+      { search: 'medical', matches: ['doctor', 'health', 'wellness', 'dr', 'healthcare', 'medicine', 'diagnosis', 'treatment', 'therapy', 'personalized doctor'] },
+      { search: 'health', matches: ['medical', 'doctor', 'wellness', 'mental', 'healthcare', 'medicine', 'therapy', 'personalized doctor'] },
+      { search: 'wellness', matches: ['health', 'mental wellness', 'medical', 'therapy', 'mindfulness', 'wellbeing'] },
+      
+      // Creative & Design
+      { search: 'design', matches: ['graphic', 'creative', 'designer', 'visual', 'artistic', 'art', 'illustration', 'logo', 'branding'] },
+      { search: 'art', matches: ['graphic design', 'artwork', 'sketch', 'creative', 'artistic', 'drawing', 'painting', 'illustration', 'restyle'] },
+      
+      // Business & Finance
+      { search: 'business', matches: ['startup', 'entrepreneur', 'company', 'enterprise', 'business plan', 'finance', 'investment', 'trading'] },
+      { search: 'finance', matches: ['business', 'trader', 'investment', 'money', 'banking', 'stocks', 'credit', 'taxes'] },
+      
+      // Video & Multimedia
+      { search: 'video', matches: ['movie', 'scene', 'sora', 'film', 'cinema', 'multimedia', 'animation', 'luma', 'kling'] },
+      { search: 'movie', matches: ['video', 'film', 'cinema', 'script', 'scene', 'movie maker', 'movie scene'] },
+      
+      // Theatre & Performing Arts
+      { search: 'theatre', matches: ['stage', 'performing', 'drama', 'acting', 'stagemaster', 'choreography'] },
+      { search: 'theater', matches: ['stage', 'performing', 'drama', 'acting', 'stagemaster', 'choreography'] },
+      
+      // Legacy matches
       { search: 'chatgpt', matches: ['gpt', 'chat'] },
       { search: 'openai', matches: ['gpt', 'artificial intelligence'] },
-      { search: 'ai art', matches: ['restyle', 'graphic', 'design'] },
-      { search: 'video', matches: ['movie', 'scene', 'sora'] },
-      { search: 'writing', matches: ['book', 'script', 'content'] },
-      { search: 'medical', matches: ['doctor', 'health', 'wellness', 'dr', 'gpt'] },
-      { search: 'health', matches: ['medical', 'doctor', 'wellness', 'mental', 'gpt'] },
-      { search: 'personal', matches: ['honest advice', 'life coach', 'personal development', 'self-discovery', 'guidance'] },
-      { search: 'theatre', matches: ['stage', 'performing', 'drama', 'acting', 'stagemaster', 'choreography'] },
-      { search: 'theater', matches: ['stage', 'performing', 'drama', 'acting', 'stagemaster', 'choreography'] }
+      { search: 'personal', matches: ['honest advice', 'life coach', 'personal development', 'self-discovery', 'guidance'] }
     ];
     
-    for (const fuzzy of fuzzyMatches) {
-      if (lowerSearchTerm.includes(fuzzy.search)) {
-        if (fuzzy.matches.some(match => toolText.includes(match))) {
+    for (const trigger of categoryTriggers) {
+      if (lowerSearchTerm.includes(trigger.search)) {
+        if (trigger.matches.some(match => toolText.includes(match))) {
           return true;
         }
+      }
+    }
+    
+    // Category-based matching for broader searches
+    if (lowerSearchTerm.includes('spiritual') || lowerSearchTerm.includes('spirit')) {
+      if (tool.category?.toLowerCase().includes('spirituality') || 
+          tool.tags?.some(tag => tag.toLowerCase().includes('spiritual') || tag.toLowerCase().includes('religious') || tag.toLowerCase().includes('philosophy'))) {
+        return true;
+      }
+    }
+    
+    if (lowerSearchTerm.includes('writing') || lowerSearchTerm.includes('write') || lowerSearchTerm.includes('writer')) {
+      if (tool.category?.toLowerCase().includes('writing') || 
+          tool.tags?.some(tag => tag.toLowerCase().includes('writing') || tag.toLowerCase().includes('writer') || tag.toLowerCase().includes('author'))) {
+        return true;
+      }
+    }
+    
+    if (lowerSearchTerm.includes('agent')) {
+      if (tool.title.toLowerCase().includes('agent') || 
+          tool.category?.toLowerCase().includes('agent') ||
+          tool.tags?.some(tag => tag.toLowerCase().includes('agent'))) {
+        return true;
       }
     }
     
