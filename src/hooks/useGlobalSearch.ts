@@ -16,6 +16,16 @@ import { matchToolByIntent } from "@/utils/search/core/intentBasedMatching";
 const extractIntent = (query: string): { intent: string; keywords: string[] } => {
   const q = query.toLowerCase();
   
+  // Comic book intent (check BEFORE general book intent)
+  if (/comic\s*book|make\s*(a\s*)?comic|create\s*(a\s*)?comic|comic\s*(generat|creat|mak)/i.test(q)) {
+    return { intent: 'comic', keywords: ['comic', 'comic book', 'coloring book', 'picture book', 'children', 'illustration'] };
+  }
+  
+  // Children's book intent
+  if (/children.*book|kids.*book|picture\s*book|coloring\s*book/i.test(q)) {
+    return { intent: 'children_book', keywords: ['children', 'picture book', 'coloring book', 'kids', 'comic'] };
+  }
+  
   // Book/writing intent
   if (/write\s*(a\s*)?(book|novel|story)|looking\s+to\s+write|want\s+to\s+write\s*(a\s*)?(book|novel)|book\s*writ/i.test(q)) {
     return { intent: 'book', keywords: ['book writer', 'book', 'novel', 'story', 'writing'] };
@@ -163,7 +173,17 @@ export const useGlobalSearch = () => {
       let s = 0;
       
       // INTENT-BASED SCORING (strongest boost for what user actually wants)
-      if (intent === 'book') {
+      if (intent === 'comic') {
+        if (lt.includes("comic book") || lt.includes("comic")) s += 250000;
+        else if (lt.includes("coloring book")) s += 200000;
+        else if (lt.includes("picture book") || lt.includes("children")) s += 180000;
+        else if (lt.includes("illustration") || lt.includes("graphic")) s += 150000;
+      } else if (intent === 'children_book') {
+        if (lt.includes("children") && lt.includes("book")) s += 250000;
+        else if (lt.includes("picture book")) s += 200000;
+        else if (lt.includes("coloring book")) s += 180000;
+        else if (lt.includes("comic")) s += 150000;
+      } else if (intent === 'book') {
         if (lt.includes("book writer")) s += 200000;
         else if (lt.includes("book")) s += 100000;
       } else if (intent === 'movie_script') {
@@ -264,7 +284,17 @@ export const useGlobalSearch = () => {
       let score = 0;
       
       // INTENT-BASED SCORING (highest priority)
-      if (intent === 'book') {
+      if (intent === 'comic') {
+        if (lt.includes("comic book") || lt.includes("comic")) score += 250000;
+        else if (lt.includes("coloring book")) score += 200000;
+        else if (lt.includes("picture book") || lt.includes("children")) score += 180000;
+        else if (lt.includes("illustration") || lt.includes("graphic")) score += 150000;
+      } else if (intent === 'children_book') {
+        if (lt.includes("children") && lt.includes("book")) score += 250000;
+        else if (lt.includes("picture book")) score += 200000;
+        else if (lt.includes("coloring book")) score += 180000;
+        else if (lt.includes("comic")) score += 150000;
+      } else if (intent === 'book') {
         if (lt.includes("book writer")) score += 200000;
         else if (lt.includes("book")) score += 100000;
       } else if (intent === 'movie_script') {
