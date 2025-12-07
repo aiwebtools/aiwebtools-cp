@@ -22,6 +22,10 @@ import ToolPageHeader from "@/components/tool-detail/ToolPageHeader";
 import ToolSearch from "@/components/tool-detail/ToolSearch";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 import MoreToolsSection from "@/components/tool-detail/MoreToolsSection";
+import FullSpiritualDisclaimer from "@/components/disclaimers/FullSpiritualDisclaimer";
+import FullMedicalDisclaimer from "@/components/disclaimers/FullMedicalDisclaimer";
+import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
+import { needsSpiritualDisclaimer, needsMedicalDisclaimer } from "@/utils/toolDisclaimerDetection";
 
 const ToolDetail = () => {
   const { toolId, toolSlug } = useParams();
@@ -104,6 +108,10 @@ const ToolDetail = () => {
 
   // Check if this is an AI Web Tools LLC GPT (has lovable.app in the URL)
   const isAIWebToolsGPT = tool.directUrl?.includes('lovable.app') || false;
+  
+  // Check for required disclaimers
+  const showSpiritualDisclaimer = needsSpiritualDisclaimer(tool);
+  const showMedicalDisclaimer = needsMedicalDisclaimer(tool);
 
   return (
     <div className="min-h-screen bg-black relative">
@@ -141,6 +149,23 @@ const ToolDetail = () => {
             </Card>
 
             <div className="mt-8 space-y-6">
+              {/* Show prominent disclaimer badges at top */}
+              {(showSpiritualDisclaimer || showMedicalDisclaimer) && (
+                <div className="flex justify-center">
+                  <ToolDisclaimerBadges tool={tool} size="md" showFullText={true} />
+                </div>
+              )}
+              
+              {/* Show full spiritual simulation disclaimer */}
+              {showSpiritualDisclaimer && (
+                <FullSpiritualDisclaimer tool={tool} />
+              )}
+              
+              {/* Show full medical disclaimer */}
+              {showMedicalDisclaimer && (
+                <FullMedicalDisclaimer tool={tool} />
+              )}
+              
               {/* Show AI Web Tools disclaimer for GPTs created by AI Web Tools LLC */}
               {isAIWebToolsGPT && (
                 <AIWebToolsDisclaimer tool={tool} />

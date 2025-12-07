@@ -6,6 +6,7 @@ import StarRating from "./StarRating";
 import { FavoritesButton } from "@/components/favorites/FavoritesButton";
 import { allTools } from "@/data/toolsData";
 import { Brain, Blocks } from "lucide-react";
+import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
 
 interface ToolCardHeaderProps {
   tool: Tool;
@@ -99,6 +100,9 @@ const ToolCardHeader = ({
             {tool.category}
           </Badge>
         )}
+        
+        {/* Disclaimer badges for spiritual/medical tools */}
+        <ToolDisclaimerBadges tool={tool} size="sm" className="justify-center mt-1" />
         <div className="pt-2">
           <StarRating 
             rating={boostedRating} 

@@ -13,6 +13,10 @@ import { useDebounce } from "@/hooks/useDebounce";
 import { getContextAwareSimilarTools } from "@/utils/contextAwareSimilarTools";
 import EnhancedSEOHead from "@/components/seo/EnhancedSEOHead";
 import { generateToolSlug } from "@/utils/urlGenerator";
+import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
+import FullSpiritualDisclaimer from "@/components/disclaimers/FullSpiritualDisclaimer";
+import FullMedicalDisclaimer from "@/components/disclaimers/FullMedicalDisclaimer";
+import { needsSpiritualDisclaimer, needsMedicalDisclaimer } from "@/utils/toolDisclaimerDetection";
 
 const ToolPage = () => {
   const { toolIndex } = useParams<{ toolIndex: string }>();
@@ -96,6 +100,12 @@ const ToolPage = () => {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
               {tool.title}
             </h1>
+            
+            {/* Disclaimer badges for spiritual/medical tools */}
+            <div className="flex justify-center mb-4">
+              <ToolDisclaimerBadges tool={tool} size="md" showFullText={true} />
+            </div>
+            
             <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
               {tool.description}
             </p>
@@ -107,6 +117,16 @@ const ToolPage = () => {
               <ExternalLink className="mr-2" />
               Visit Website
             </Button>
+          </div>
+          
+          {/* Full Disclaimers for spiritual/medical tools */}
+          <div className="max-w-4xl mx-auto space-y-6 mb-8">
+            {needsSpiritualDisclaimer(tool) && (
+              <FullSpiritualDisclaimer tool={tool} />
+            )}
+            {needsMedicalDisclaimer(tool) && (
+              <FullMedicalDisclaimer tool={tool} />
+            )}
           </div>
 
           {/* Tool Details */}

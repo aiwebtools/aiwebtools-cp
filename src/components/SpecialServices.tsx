@@ -8,6 +8,7 @@ import { FavoritesButton } from "@/components/favorites/FavoritesButton";
 import { Tool } from "@/types/tools";
 import { useState, useRef } from "react";
 import { Play } from "lucide-react";
+import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
 
 // Lazy-loading YouTube video component - shows thumbnail until clicked
 const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string; title: string; height?: string }) => {
@@ -1728,6 +1729,8 @@ const OurFeaturedSection = () => {
                   <CardTitle className="text-lg font-bold text-white group-hover:text-ai-cyan transition-colors leading-tight">
                     {tool.title}
                   </CardTitle>
+                  {/* Disclaimer badges for spiritual/medical tools */}
+                  <ToolDisclaimerBadges tool={toolForFavorites} size="sm" className="mt-2" />
                 </CardHeader>
                 
                 <CardContent className="flex-grow flex flex-col">
