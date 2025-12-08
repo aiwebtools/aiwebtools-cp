@@ -144,7 +144,7 @@ export const learningAndEducation: Tool[] = [
     emoji: "⏰",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
+    videoUrl: "https://youtu.be/J31nNY5_PB4",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298793409806528/time.webp",
     tags: ["time travel", "history exploration", "historical figures", "alternative realities", "educational simulation", "aiwebtools"],
     category: "Learning & Education",

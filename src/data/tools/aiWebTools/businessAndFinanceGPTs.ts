@@ -66,6 +66,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "💡",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chat.openai.com/g/g-Gt1j2GZMm-startup-idea-generator",
+    videoUrl: "https://youtu.be/P4J0ErIVXgY",
     tags: ["startup ideas", "business ventures", "market trends", "innovation"],
     category: "Business & Finance",
     rating: 4.6,

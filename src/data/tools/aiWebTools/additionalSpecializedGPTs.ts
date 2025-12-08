@@ -36,7 +36,7 @@ export const additionalSpecializedGPTs: Tool[] = [
     emoji: "🔍",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=IrKKi3SX89g",
+    videoUrl: "https://youtu.be/p3czNalrf8c",
     tags: ["AI tools", "tool discovery", "resource finder", "technology guides", "AI research"],
     category: "Additional Specialized",
     rating: 4.8,
