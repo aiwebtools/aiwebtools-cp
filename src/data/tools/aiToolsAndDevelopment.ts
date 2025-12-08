@@ -38,7 +38,7 @@ export const aiToolsAndDevelopment: Tool[] = [
     description: "Discover and find the perfect AI tools for your needs. Search through comprehensive databases of AI applications and services.",
     emoji: "🛠️",
     color: "from-blue-500 to-purple-500",
-    videoUrl: "https://www.youtube.com/watch?v=IrKKi3SX89g",
+    videoUrl: "https://youtu.be/p3czNalrf8c",
     directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
     tags: ["AI tools", "discovery", "search", "productivity", "finder", "database"],
     category: "AI Tools"

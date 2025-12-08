@@ -11,6 +11,7 @@ export const businessStrategyGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://startupvalidatorgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-named-st_4i8GY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    videoUrl: "https://youtu.be/P4J0ErIVXgY",
     tags: ["startup validation", "business analysis", "market research", "investment planning", "entrepreneurship"],
     category: "Business Strategy",
     rating: 4.8,

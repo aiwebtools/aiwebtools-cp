@@ -186,7 +186,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-yellow-600",
     features: ["Gematria Decoding", "Sacred Geometry", "Number Analysis", "Ancient Wisdom"],
     directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-ancient-gematria-scan-gpt",
-    videoUrl: "https://youtu.be/LFMtWqoKqyI",
+    videoUrl: "https://www.youtube.com/watch?v=zBlubLw-OdY",
     imageUrl: "/images/gematria-gpt.png",
     emoji: "🔢"
   },
@@ -270,7 +270,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-indigo-600",
     features: ["Degree Planning", "Course Selection", "Career Pathways", "Academic Success"],
     directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=Cd8uvD-smlM",
+    videoUrl: "https://youtu.be/VkD_dX8kPy0",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298792230944880/college.webp",
     emoji: "🎓"
   },
@@ -835,6 +835,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-purple-600",
     features: ["Market Validation", "Scalability Analysis", "Investment Insights", "Funding Strategy"],
     directUrl: "https://startupvalidatorgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/P4J0ErIVXgY",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-named-st_4i8GY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🚀"
   },
@@ -1058,7 +1059,7 @@ const featuredGPTs = [
     color: "from-cyan-500 to-blue-600",
     features: ["Tool Discovery", "AI Tool Guides", "Step-by-Step", "Tool Recommendations"],
     directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=IrKKi3SX89g",
+    videoUrl: "https://youtu.be/p3czNalrf8c",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377297452717310022/ai_tools.webp",
     emoji: "🔧"
   },
@@ -1383,7 +1384,7 @@ const featuredGPTs = [
     color: "from-amber-600 to-orange-600",
     features: ["Time Travel", "Historical Exploration", "Period Analysis", "Timeline Navigation"],
     directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
+    videoUrl: "https://youtu.be/J31nNY5_PB4",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298793409806528/time.webp",
     emoji: "⏰"
   },

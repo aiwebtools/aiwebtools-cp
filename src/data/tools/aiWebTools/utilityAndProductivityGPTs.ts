@@ -189,7 +189,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     emoji: "🔍",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=IrKKi3SX89g",
+    videoUrl: "https://youtu.be/p3czNalrf8c",
     tags: ["AI tools discovery", "tool recommendations", "step-by-step guides", "AI knowledge", "project tools", "aiwebtools", "ai tools", "tool finder"],
     category: "Utility & Productivity",
     rating: 4.6,

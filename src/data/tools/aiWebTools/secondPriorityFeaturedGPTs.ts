@@ -37,7 +37,7 @@ export const secondPriorityFeaturedGPTs: Tool[] = [
     color: "from-amber-500 to-orange-600",
     category: "Historical & Time-Based AI Tools",
     directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
+    videoUrl: "https://youtu.be/J31nNY5_PB4",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298793409806528/time.webp",
     rating: 4.8,
     totalVotes: 5000,
