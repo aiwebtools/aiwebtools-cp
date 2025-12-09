@@ -208,7 +208,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-purple-600",
     features: ["Book Writing", "Story Structure", "Character Development", "Professional Formatting"],
     directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
+    videoUrl: "https://youtu.be/nBd9Uk62UiI",
     imageUrl: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=200&fit=crop",
     emoji: "📚"
   },
