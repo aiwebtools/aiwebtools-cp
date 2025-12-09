@@ -47,7 +47,7 @@ export const writingAndContent: Tool[] = [
     emoji: "📚",
     color: "from-brown-500 to-orange-600",
     directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=xNQi8wuM3DQ",
+    videoUrl: "https://youtu.be/nBd9Uk62UiI",
     tags: ["book writing", "page-to-page continuity", "engaging dialogue", "storytelling", "professional books"],
     category: "Writing & Content",
     rating: 4.7,
