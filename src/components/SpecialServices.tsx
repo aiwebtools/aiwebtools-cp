@@ -1153,7 +1153,7 @@ const featuredGPTs = [
     features: ["Course Creation", "Educational Design", "Learning Paths", "Content Organization"],
     directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-modern-educational-platform-interface-showing.png",
-    videoUrl: "https://youtu.be/LHaPL2oBUmY?si=MMB61e-DULtBQ7ts",
+    videoUrl: "https://www.youtube.com/watch?v=SmBXfGqXfco",
     emoji: "📚"
   },
   {
