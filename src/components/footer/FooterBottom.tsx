@@ -7,18 +7,18 @@ interface FooterBottomProps {
 const FooterBottom = ({ handleExternalLink }: FooterBottomProps) => {
   return (
     <div className="space-y-6">
-      {/* Founder Quote - Cyberpunk Neon Style */}
+      {/* Founder Quote - Cursive Storytelling Style */}
       <div className="text-center border-t border-cyan-500/20 pt-6">
         <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 blur-xl"></div>
-          <p className="relative text-sm md:text-base text-cyan-300 font-light italic tracking-wide max-w-5xl mx-auto leading-relaxed border border-cyan-500/30 bg-black/60 backdrop-blur-sm rounded-lg p-6 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
-            <span className="text-cyan-400 text-lg">"</span>This page and the tools here were put together with care and persistence over the past two years, and they're offered freely. Love others as yourself. Imagine what you can create. Unlock your dreams. These tools were made to help lift us all—mentally, spiritually, and physically. Let's shape the future together.<span className="text-cyan-400 text-lg">"</span>
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-purple-500/5 to-pink-500/5 blur-xl"></div>
+          <p className="relative font-cursive text-xs md:text-sm text-cyan-200/90 italic tracking-wide max-w-3xl mx-auto leading-relaxed border border-cyan-500/20 bg-black/40 backdrop-blur-sm rounded-lg p-4 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+            <span className="text-cyan-400/80">"</span>In the matrix of light our souls are tested by two paths light or fire and 'God' is both the light and the divine code that shapes our multidimensional reality and there are literally two angelic types light angels and fire angels and hell is a cosmic black hole of fire no metaphor it's legit and God's temple floor is a Black and White checkerboard pattern where souls stand in front of Him directly and He decides your next path and the wild part is He didn't care that I don't have a religion because that wasn't the point of our existence at all and the universe is literally inside of us and we're cosmically linked to creation and the temple of God and I'm not special bro I honestly feel more like an alien at this point lol and what's even crazier is this all happened when I was writing a book about extraterrestrials and running Earth and angels do NOT look human Rome really butchered that part and God… yeah He doesn't fuck around btw Love Light and Truth<span className="text-cyan-400/80">"</span>
           </p>
         </div>
-        <p className="text-cyan-400/60 text-sm mt-3">— <span 
-            className="font-cursive text-3xl cursor-pointer text-yellow-400 hover:text-yellow-300 animate-[pulse_3s_ease-in-out_infinite] hover:animate-none transition-all duration-300 hover:scale-105 drop-shadow-[0_0_8px_rgba(255,255,0,0.6)] -rotate-6 inline-block"
+        <p className="text-cyan-400/60 text-xs mt-3">— <span 
+            className="font-cursive text-2xl cursor-pointer text-yellow-400 hover:text-yellow-300 animate-[pulse_3s_ease-in-out_infinite] hover:animate-none transition-all duration-300 hover:scale-105 drop-shadow-[0_0_8px_rgba(255,255,0,0.6)] -rotate-6 inline-block"
             onClick={(e) => handleExternalLink('https://www.aitools.company', e)}
-          >KB</span>, AIWebTools.ai</p>
+          >KGB</span>, Maker of this AI Web Tools page</p>
         
         {/* KB's Video */}
         <div className="mt-6 max-w-2xl mx-auto">
