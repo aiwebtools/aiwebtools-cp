@@ -247,5 +247,17 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     category: "Mysterious & Unusual",
     rating: 4.8,
     totalVotes: 1456
+  },
+  {
+    icon: "🏛️" as any,
+    title: "Architectural Old World Investigator GPT",
+    description: "A forensic AI that decodes architectural impossibilities and timeline contradictions in old-world structures. This specialized investigator by AiWebTools.Ai analyzes historical buildings, monuments, and architectural marvels to uncover timeline anomalies, construction impossibilities, and hidden histories. Using GPT-4o, it examines the engineering feats, design patterns, and historical records that don't add up—revealing what mainstream narratives may have overlooked about our architectural heritage.",
+    emoji: "🏛️",
+    color: "from-amber-600 to-stone-700",
+    directUrl: "https://chatgpt.com/g/g-693863184c4c8191a6e78eb6a215196f-architectural-old-world-investigator-gpt?via=aiwebtools",
+    tags: ["architecture", "old world", "forensic analysis", "timeline contradictions", "historical investigation", "ancient buildings", "construction mysteries", "architectural anomalies", "aiwebtools"],
+    category: "Mysterious & Unusual",
+    rating: 4.7,
+    totalVotes: 1234
   }
 ];
