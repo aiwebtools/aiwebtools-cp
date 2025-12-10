@@ -343,7 +343,7 @@ const featuredGPTs = [
     color: "from-red-500 to-orange-600",
     features: ["Wildfire Management", "Predictive Analytics", "Fire Strategy", "Safety Guidance"],
     directUrl: "https://firefightergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=lGsefWkYfq0",
+    videoUrl: "https://youtu.be/kDu2SSP9Glw?si=RruKDFSlbsskezHw",
     emoji: "🚒"
   },
   {
@@ -1153,7 +1153,7 @@ const featuredGPTs = [
     features: ["Course Creation", "Educational Design", "Learning Paths", "Content Organization"],
     directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-modern-educational-platform-interface-showing.png",
-    videoUrl: "https://www.youtube.com/watch?v=SmBXfGqXfco",
+    videoUrl: "https://youtu.be/pr8-IgbL46I",
     emoji: "📚"
   },
   {
@@ -1214,7 +1214,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-pink-600",
     features: ["Phenomenon Analysis", "Scientific Investigation", "Research Methods", "Event Analysis"],
     directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/k1aYXaaAkho?si=Mnn48SWC8f0vtAOD",
+    videoUrl: "https://youtu.be/faBkRli0puc?si=Q1a9V_IWa-llj_qV",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298677785428110/phenomon.webp",
     emoji: "🛸"
   },
@@ -1267,7 +1267,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Memory Simulation", "Emotional Healing", "Comfort Support", "Grief Assistance"],
     directUrl: "https://resurrectiongpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=nEuxdGO-RZ4",
+    videoUrl: "https://youtu.be/xPQMsNdD51k?si=j2Wk-J10PnGtZ7Sf",
     imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop",
     emoji: "👼"
   },
@@ -1278,7 +1278,7 @@ const featuredGPTs = [
     color: "from-green-600 to-blue-600",
     features: ["Social Support", "Resource Access", "Community Aid", "Safety Net"],
     directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
+    videoUrl: "https://youtu.be/KMvrXcK46xw?si=LbvzuqxtvwsxWDo4",
     imageUrl: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=200&fit=crop",
     emoji: "🤝"
   },
