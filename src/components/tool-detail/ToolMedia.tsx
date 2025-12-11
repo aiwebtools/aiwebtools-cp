@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Image as ImageIcon } from "lucide-react";
 import { Tool } from "@/types/tools";
 
@@ -11,6 +11,29 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Intersection observer to detect when video is in viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 } // Trigger when 30% visible
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const getOptimizedEmbedUrl = (url: string) => {
     console.log('Processing video URL:', url);
@@ -55,7 +78,8 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
       hasVideo: !!tool.videoUrl,
       videoUrl: tool.videoUrl,
       imageError,
-      videoError
+      videoError,
+      isVisible
     });
 
     // Prioritize video if available, then fallback to image
@@ -64,25 +88,34 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
       
       return (
         <div className="relative w-full overflow-hidden rounded-xl bg-gray-800" style={{ aspectRatio: '16/9' }}>
-          <iframe
-            width="100%"
-            height="100%"
-            src={embedUrl}
-            title={`${tool.title} Demo`}
-            frameBorder="0"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-            allowFullScreen
-            className="w-full h-full rounded-xl"
-            loading="eager"
-            style={{ 
-              border: 'none',
-              willChange: 'transform',
-              transform: 'translateZ(0)',
-              backfaceVisibility: 'hidden'
-            }}
-            onError={handleVideoError}
-            onLoad={() => console.log('Video loaded successfully for:', tool.title)}
-          />
+          {isVisible ? (
+            <iframe
+              width="100%"
+              height="100%"
+              src={embedUrl}
+              title={`${tool.title} Demo`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+              allowFullScreen
+              className="w-full h-full rounded-xl"
+              loading="eager"
+              style={{ 
+                border: 'none',
+                willChange: 'transform',
+                transform: 'translateZ(0)',
+                backfaceVisibility: 'hidden'
+              }}
+              onError={handleVideoError}
+              onLoad={() => console.log('Video loaded successfully for:', tool.title)}
+            />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+              <div className="text-center">
+                <span className="text-4xl sm:text-6xl glow-effect mb-4 block">{tool.emoji}</span>
+                <span className="text-gray-400 text-sm">Loading video...</span>
+              </div>
+            </div>
+          )}
         </div>
       );
     }
@@ -118,7 +151,7 @@ const ToolMedia = ({ tool, toolIndex }: ToolMediaProps) => {
   };
 
   return (
-    <div className="mb-6 sm:mb-8 px-4 sm:px-0">
+    <div ref={containerRef} className="mb-6 sm:mb-8 px-4 sm:px-0">
       <div className="shadow-lg border border-cyan-500/30 neon-border rounded-xl overflow-hidden">
         <MediaComponent />
       </div>
