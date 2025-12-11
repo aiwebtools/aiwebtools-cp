@@ -198,7 +198,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     description: "Forecasts economic trends, providing insights into potential market shifts and investment opportunities.",
     emoji: "⚖️",
     color: "from-pink-500 to-purple-600",
-    directUrl: "https://chat.openai.com/g/g-v9g0x3k1z-economic-forecaster",
+    directUrl: "https://chatgpt.com/g/g-69397aaef7348191922fa05113e3f060-economic-forecaster-gpt?via=aiwebtools",
     tags: ["economic trends", "market shifts", "investment opportunities", "forecasting"],
     category: "Business & Finance",
     rating: 4.4,
