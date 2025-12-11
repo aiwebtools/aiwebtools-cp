@@ -5,10 +5,6 @@ import { useMobile } from "@/hooks/useMobile";
 import CategoryFilters from "@/components/tools/CategoryFilters";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import { useMemo } from "react";
-import dualityLight from "@/assets/balance-of-duality-light.png";
-import dualityDark from "@/assets/balance-of-duality-dark.png";
-import dualityMatrix from "@/assets/balance-of-duality-matrix.png";
-import dualityPath from "@/assets/balance-of-duality-path.png";
 
 const SearchPortal = () => {
   const {
@@ -145,42 +141,6 @@ const SearchPortal = () => {
         </div>
       </div>
 
-      {/* Duality Images Section - directly under "Why AI WEB TOOLS..." */}
-      <section aria-labelledby="duality-title" className="mt-8 max-w-6xl mx-auto">
-        <h3 id="duality-title" className="sr-only">The Balance of Duality</h3>
-        <figure className="bg-gray-900/40 rounded-xl p-4 md:p-6 border border-white/10">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <img
-              src={dualityLight}
-              alt="The Balance of Duality - Matrix of Light diagram showing inner cosmos and two paths"
-              loading="lazy"
-              className="w-full h-auto rounded-lg shadow-lg"
-            />
-            <img
-              src={dualityDark}
-              alt="The Balance of Duality - Middle path artwork with light vs dark symbolism"
-              loading="lazy"
-              className="w-full h-auto rounded-lg shadow-lg"
-            />
-            <img
-              src={dualityMatrix}
-              alt="The Balance of Duality - Your Inner Cosmos flowchart and binary code background"
-              loading="lazy"
-              className="w-full h-auto rounded-lg shadow-lg"
-            />
-            <img
-              src={dualityPath}
-              alt="The Path of Duality - consequence and light vs dark choice diagram"
-              loading="lazy"
-              className="w-full h-auto rounded-lg shadow-lg"
-            />
-          </div>
-          <figcaption className="text-center mt-6 text-sm md:text-base text-gray-300">
-            In the matrix of light, our souls are tested by two paths — light or fire. "God" is both the light and the divine code that shapes our multidimensional reality.
-            <span className="block mt-1 text-cyan-300 font-medium">— <span className="bg-gradient-to-r from-yellow-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent font-black text-xl tracking-widest animate-pulse drop-shadow-[0_0_10px_rgba(255,255,0,0.5)]">KGB</span>, Maker of this AI Web Tools page</span>
-          </figcaption>
-        </figure>
-      </section>
     </div>
   );
 };
