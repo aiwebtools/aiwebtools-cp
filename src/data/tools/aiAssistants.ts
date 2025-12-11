@@ -107,6 +107,7 @@ export const aiAssistants: Tool[] = [
     emoji: "📚",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/wiha9HT8b4o",
     category: "AI Assistants & Search",
     tags: ["history", "historical figures", "conversations", "education", "time travel"],
     rating: 4.5,
