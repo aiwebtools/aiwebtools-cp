@@ -11,6 +11,11 @@ const FooterBottom = ({
   handleExternalLink
 }: FooterBottomProps) => {
   return <div className="space-y-6">
+      {/* BUILD YOUR WORLD - End of AI Tools Area */}
+      <div className="text-center pt-4">
+        <p className="text-white text-2xl font-black tracking-[0.3em] animate-pulse cursor-pointer hover:scale-105 transition-transform duration-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]">BUILD YOUR WORLD.</p>
+      </div>
+
       {/* Founder Quote - Cursive Storytelling Style */}
       <div className="text-center border-t border-cyan-500/20 pt-6">
         <div className="relative">
