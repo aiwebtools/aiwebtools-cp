@@ -10,7 +10,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     emoji: "🏛️",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=5t7EXS5tthQ",
+    videoUrl: "https://youtu.be/wiha9HT8b4o",
     rating: 4.7,
     totalVotes: 5432,
     tags: ["historical conversations", "historical figures", "educational tool", "history learning", "interactive history", "aiwebtools"],

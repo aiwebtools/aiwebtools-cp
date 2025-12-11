@@ -35,7 +35,7 @@ export const timeAndHistoryGPTs: Tool[] = [
     emoji: "🏛️",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=5t7EXS5tthQ",
+    videoUrl: "https://youtu.be/wiha9HT8b4o",
     tags: ["historical conversations", "historical figures", "educational tool", "history learning", "interactive history", "aiwebtools"],
     category: "Time & History",
     rating: 4.7,
