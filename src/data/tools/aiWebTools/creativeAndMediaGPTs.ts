@@ -156,6 +156,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "😂",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://memegeneratorgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/Myg8P8wg294",
     imageUrl: "https://ideogram.ai/assets/image/lossless/response/h2Lp-rLMScaWK6A-mrFZQA",
     tags: ["meme creation", "viral content", "social media", "humor", "internet culture", "content creation", "aiwebtools"],
     category: "Creative & Media",
