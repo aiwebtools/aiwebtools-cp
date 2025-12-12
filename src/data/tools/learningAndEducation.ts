@@ -131,7 +131,7 @@ export const learningAndEducation: Tool[] = [
     emoji: "🏛️",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=5t7EXS5tthQ",
+    videoUrl: "https://youtu.be/HQGNMR7oXXY",
     tags: ["historical conversations", "historical figures", "educational tool", "history learning", "interactive history", "aiwebtools"],
     category: "Learning & Education",
     rating: 4.7,

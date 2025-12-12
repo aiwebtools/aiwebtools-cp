@@ -1352,7 +1352,7 @@ const featuredGPTs = [
     color: "from-amber-600 to-orange-600",
     features: ["Historical Conversations", "Time Travel Chat", "Educational Tool", "Historical Figures"],
     directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=5t7EXS5tthQ",
+    videoUrl: "https://youtu.be/HQGNMR7oXXY",
     imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop",
     emoji: "🏛️"
   },
