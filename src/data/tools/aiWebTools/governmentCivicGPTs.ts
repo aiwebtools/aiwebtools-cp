@@ -20,7 +20,7 @@ export const governmentCivicGPTs: Tool[] = [
     color: "from-blue-600 to-red-600",
     directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/mxdJ0gLxGCI?si=Yx0rWtOSmWijtZZC",
-    tags: ["political activism", "civic engagement", "democracy", "we the people", "grassroots", "organizing", "government", "voting", "citizens", "political", "activism", "aiwebtools"],
+    tags: ["political activism", "civic engagement", "democracy", "we the people", "grassroots", "organizing", "government", "voting", "citizens", "political", "activism", "aiwebtools", "Custom GPT"],
     category: "Government & Civic",
     rating: 4.8,
     totalVotes: 2847
@@ -33,7 +33,7 @@ export const governmentCivicGPTs: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://publictestimonywriter.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
-    tags: ["public testimony", "testimony writer", "legislative testimony", "political activism", "civic engagement", "government", "policy", "democracy", "we the people", "political", "activism", "aiwebtools"],
+    tags: ["public testimony", "testimony writer", "legislative testimony", "political activism", "civic engagement", "government", "policy", "democracy", "we the people", "political", "activism", "aiwebtools", "Custom GPT"],
     category: "Government & Civic",
     rating: 4.7,
     totalVotes: 1923
@@ -46,7 +46,7 @@ export const governmentCivicGPTs: Tool[] = [
     color: "from-blue-600 to-gray-700",
     directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/mxdJ0gLxGCI?si=Yx0rWtOSmWijtZZC",
-    tags: ["legislation", "legal writing", "government", "policy", "law", "political", "civic", "aiwebtools"],
+    tags: ["legislation", "legal writing", "government", "policy", "law", "political", "civic", "aiwebtools", "Custom GPT"],
     category: "Government & Civic",
     rating: 4.6,
     totalVotes: 1547
@@ -59,7 +59,7 @@ export const governmentCivicGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://legislatorlink.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/mxdJ0gLxGCI?si=Yx0rWtOSmWijtZZC",
-    tags: ["legislator", "politician", "government", "civic engagement", "democracy", "political", "we the people", "activism", "aiwebtools"],
+    tags: ["legislator", "politician", "government", "civic engagement", "democracy", "political", "we the people", "activism", "aiwebtools", "Custom GPT"],
     category: "Government & Civic",
     rating: 4.5,
     totalVotes: 1342
@@ -72,7 +72,7 @@ export const governmentCivicGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
-    tags: ["social safety", "welfare", "government", "social services", "civic", "community", "aiwebtools"],
+    tags: ["social safety", "welfare", "government", "social services", "civic", "community", "aiwebtools", "Custom GPT"],
     category: "Government & Civic",
     rating: 4.4,
     totalVotes: 987

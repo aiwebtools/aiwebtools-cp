@@ -11,7 +11,7 @@ export const foodAndHospitalityGPTs: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://mixologistgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-modern-and-stylish-bartender-with.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["cocktails", "bartending", "drinks", "mixology", "beverage creation"],
+    tags: ["cocktails", "bartending", "drinks", "mixology", "beverage creation", "Custom GPT"],
     category: "Food & Hospitality",
     rating: 4.7,
     totalVotes: 5234
@@ -24,7 +24,7 @@ export const foodAndHospitalityGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://chefgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=89u14Jld7uA",
-    tags: ["cooking", "recipes", "culinary arts", "chef assistant", "food preparation"],
+    tags: ["cooking", "recipes", "culinary arts", "chef assistant", "food preparation", "Custom GPT"],
     category: "Food & Hospitality",
     rating: 4.8,
     totalVotes: 6789
@@ -37,7 +37,7 @@ export const foodAndHospitalityGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://restaurantmenumakergpt.lovable.app/",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-restaurant-menu-with-a-vari__Oji1.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["restaurant menus", "menu design", "food business", "restaurant marketing", "hospitality"],
+    tags: ["restaurant menus", "menu design", "food business", "restaurant marketing", "hospitality", "Custom GPT"],
     category: "Food & Hospitality",
     rating: 4.6,
     totalVotes: 4321
@@ -49,7 +49,7 @@ export const foodAndHospitalityGPTs: Tool[] = [
     emoji: "🍳",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-689239ba1cb0819197ae06454a25cee5-culinary-master-gpt",
-    tags: ["cooking", "culinary arts", "recipe assistant", "kitchen companion", "meal planning", "food preparation", "aiwebtools"],
+    tags: ["cooking", "culinary arts", "recipe assistant", "kitchen companion", "meal planning", "food preparation", "aiwebtools", "Custom GPT"],
     category: "Food & Hospitality",
     rating: 4.7,
     totalVotes: 4892

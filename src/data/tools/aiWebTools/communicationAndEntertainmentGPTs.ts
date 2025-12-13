@@ -11,7 +11,7 @@ export const communicationAndEntertainmentGPTs: Tool[] = [
     color: "from-pink-500 to-purple-600",
     directUrl: "https://celebritychatline.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-split-screen-image-of-snoop-dogg-talking-on-.png/:/cr=t:0%25,l:0.11%25,w:99.78%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["celebrity chat", "entertainment", "virtual conversations", "fan interaction", "celebrity simulation"],
+    tags: ["celebrity chat", "entertainment", "virtual conversations", "fan interaction", "celebrity simulation", "Custom GPT"],
     category: "Communication & Entertainment",
     rating: 4.5,
     totalVotes: 3876
@@ -24,7 +24,7 @@ export const communicationAndEntertainmentGPTs: Tool[] = [
     color: "from-yellow-500 to-red-600",
     directUrl: "https://trivianightgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/trivanight.jpg/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["trivia games", "entertainment", "knowledge testing", "party games", "interactive quiz"],
+    tags: ["trivia games", "entertainment", "knowledge testing", "party games", "interactive quiz", "Custom GPT"],
     category: "Communication & Entertainment",
     rating: 4.7,
     totalVotes: 5234
@@ -37,7 +37,7 @@ export const communicationAndEntertainmentGPTs: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://gamedesigngpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-floating-man-with-blue-skin-and-white-hair-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["game design", "game development", "game planning", "development tools", "interactive entertainment"],
+    tags: ["game design", "game development", "game planning", "development tools", "interactive entertainment", "Custom GPT"],
     category: "Communication & Entertainment",
     rating: 4.8,
     totalVotes: 6234
@@ -49,7 +49,7 @@ export const communicationAndEntertainmentGPTs: Tool[] = [
     emoji: "🎯",
     color: "from-cyan-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68f2d08b33cc8191b4e0fb90fa2cbcbb-gamesaas-gpt?via=aiwebtools",
-    tags: ["game prompts", "vibe coding", "game development", "prompt generator", "game design", "ai coding", "game concepts", "rapid development", "aiwebtools"],
+    tags: ["game prompts", "vibe coding", "game development", "prompt generator", "game design", "ai coding", "game concepts", "rapid development", "aiwebtools", "Custom GPT"],
     category: "Communication & Entertainment",
     rating: 4.7,
     totalVotes: 2890
@@ -62,7 +62,7 @@ export const communicationAndEntertainmentGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://mixologistgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-modern-and-stylish-bartender-with.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["cocktail recipes", "bartending", "drink mixing", "beverage creation", "hospitality"],
+    tags: ["cocktail recipes", "bartending", "drink mixing", "beverage creation", "hospitality", "Custom GPT"],
     category: "Communication & Entertainment",
     rating: 4.6,
     totalVotes: 4321
@@ -75,7 +75,7 @@ export const communicationAndEntertainmentGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://restaurantmenumakergpt.lovable.app/",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-restaurant-menu-with-a-vari__Oji1.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["menu design", "restaurant tools", "food service", "hospitality", "business tools"],
+    tags: ["menu design", "restaurant tools", "food service", "hospitality", "business tools", "Custom GPT"],
     category: "Communication & Entertainment",
     rating: 4.7,
     totalVotes: 5432
