@@ -25,7 +25,7 @@ export const businessAndProductivity: Tool[] = [
     emoji: "🧮",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools",
-    tags: ["financial calculator", "investment analysis", "financial planning", "calculations"],
+    tags: ["financial calculator", "investment analysis", "financial planning", "calculations", "Finance & Accounting"],
     category: "Business & Productivity",
     rating: 4.5,
     totalVotes: 2100
@@ -38,7 +38,7 @@ export const businessAndProductivity: Tool[] = [
     color: "from-green-500 to-emerald-600",
     directUrl: "https://grantwritergpt.lovable.app/?via=aiwebtools",
     category: "Business & Finance",
-    tags: ["grants", "funding", "writing", "nonprofit"],
+    tags: ["grants", "funding", "writing", "nonprofit", "Finance & Accounting"],
     rating: 4.7,
     totalVotes: 1876
   },
@@ -50,7 +50,7 @@ export const businessAndProductivity: Tool[] = [
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-hd9SJlkyQ-diagraph-chart-gpt",
     category: "Business & Productivity",
-    tags: ["diagrams", "charts", "visualization", "business"],
+    tags: ["diagrams", "charts", "visualization", "business", "Analytics & Reporting"],
     rating: 4.5,
     totalVotes: 2345
   },
@@ -61,7 +61,7 @@ export const businessAndProductivity: Tool[] = [
     emoji: "📝",
     color: "from-blue-500 to-purple-500",
     directUrl: "https://summarize.tech/?via=aiwebtools",
-    tags: ["summarizer", "productivity", "meeting", "ai"],
+    tags: ["summarizer", "productivity", "meeting", "ai", "Meeting & Scheduling"],
     category: "Business & Productivity",
     rating: 4.8,
     totalVotes: 456
@@ -73,7 +73,7 @@ export const businessAndProductivity: Tool[] = [
     emoji: "🎯",
     color: "from-orange-500 to-yellow-500",
     directUrl: "https://www.taskade.com/?via=aiwebtools",
-    tags: ["collaboration", "productivity", "remote teams", "ai"],
+    tags: ["collaboration", "productivity", "remote teams", "ai", "Team Collaboration", "Project Management"],
     category: "Business & Productivity",
     rating: 4.7,
     totalVotes: 345
@@ -85,7 +85,7 @@ export const businessAndProductivity: Tool[] = [
     emoji: "📊",
     color: "from-green-500 to-blue-500",
     directUrl: "https://sheetai.app/?via=aiwebtools",
-    tags: ["spreadsheets", "productivity", "content generation", "ai"],
+    tags: ["spreadsheets", "productivity", "content generation", "ai", "Analytics & Reporting"],
     category: "Business & Productivity",
     rating: 4.6,
     totalVotes: 234
@@ -97,7 +97,7 @@ export const businessAndProductivity: Tool[] = [
     emoji: "📈",
     color: "from-pink-500 to-purple-500",
     directUrl: "https://simplified.com/ai-writer/?via=aiwebtools",
-    tags: ["writer", "marketing", "sales", "ai"],
+    tags: ["writer", "marketing", "sales", "ai", "Marketing", "Sales"],
     category: "Business & Productivity",
     rating: 4.5,
     totalVotes: 123
@@ -109,7 +109,7 @@ export const businessAndProductivity: Tool[] = [
     emoji: "🗣️",
     color: "from-purple-500 to-blue-500",
     directUrl: "https://krisp.ai/?via=aiwebtools",
-    tags: ["noise cancellation", "communication", "productivity", "ai"],
+    tags: ["noise cancellation", "communication", "productivity", "ai", "Meeting & Scheduling"],
     category: "Business & Productivity",
     rating: 4.4,
     totalVotes: 567
@@ -121,7 +121,7 @@ export const businessAndProductivity: Tool[] = [
     emoji: "💼",
     color: "from-yellow-500 to-green-500",
     directUrl: "https://otter.ai/?via=aiwebtools",
-    tags: ["transcription", "collaboration", "productivity", "ai"],
+    tags: ["transcription", "collaboration", "productivity", "ai", "Meeting & Scheduling", "Team Collaboration"],
     category: "Business & Productivity",
     rating: 4.3,
     totalVotes: 678
@@ -133,7 +133,7 @@ export const businessAndProductivity: Tool[] = [
     emoji: "🥧",
     color: "from-red-500 to-orange-500",
     directUrl: "https://www.jasper.ai/?via=aiwebtools",
-    tags: ["content creation", "marketing", "productivity", "ai"],
+    tags: ["content creation", "marketing", "productivity", "ai", "Marketing"],
     category: "Business & Productivity",
     rating: 4.2,
     totalVotes: 789
@@ -145,7 +145,7 @@ export const businessAndProductivity: Tool[] = [
     emoji: "🏢",
     color: "from-green-500 to-yellow-500",
     directUrl: "https://get.murf.ai/1uvb0e8dznua",
-    tags: ["voice generator", "voiceovers", "productivity", "ai"],
+    tags: ["voice generator", "voiceovers", "productivity", "ai", "Marketing"],
     category: "Business & Productivity",
     rating: 4.1,
     totalVotes: 890
@@ -157,7 +157,7 @@ export const businessAndProductivity: Tool[] = [
     emoji: "✅",
     color: "from-blue-500 to-green-500",
     directUrl: "https://clickup.com/?via=aiwebtools",
-    tags: ["productivity", "project management", "collaboration", "ai"],
+    tags: ["productivity", "project management", "collaboration", "ai", "Project Management", "Team Collaboration"],
     category: "Business & Productivity",
     rating: 4.0,
     totalVotes: 901
@@ -169,7 +169,7 @@ export const businessAndProductivity: Tool[] = [
     emoji: "🌍",
     color: "from-purple-500 to-pink-500",
     directUrl: "https://rytr.me/?via=aiwebtools",
-    tags: ["writing assistant", "content creation", "productivity", "ai"],
+    tags: ["writing assistant", "content creation", "productivity", "ai", "Marketing"],
     category: "Business & Productivity",
     rating: 3.9,
     totalVotes: 1234
@@ -181,7 +181,7 @@ export const businessAndProductivity: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-400 to-orange-400",
     directUrl: "https://zapier.com/ via aiwebtools",
-    tags: ["automation", "productivity", "workflows", "integration"],
+    tags: ["automation", "productivity", "workflows", "integration", "Automation", "Workflow Automation"],
     category: "Business & Productivity",
     rating: 4.7,
     totalVotes: 3245
@@ -193,7 +193,7 @@ export const businessAndProductivity: Tool[] = [
     emoji: "📋",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://autoform.ai/?via=aiwebtools",
-    tags: ["data entry", "form automation", "AI agent", "document processing", "data extraction", "productivity", "automation"],
+    tags: ["data entry", "form automation", "AI agent", "document processing", "data extraction", "productivity", "automation", "Automation", "Document Management"],
     category: "Business & Productivity",
     rating: 4.5,
     totalVotes: 2200

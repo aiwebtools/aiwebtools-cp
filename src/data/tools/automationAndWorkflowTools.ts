@@ -21,7 +21,7 @@ export const automationAndWorkflowTools: Tool[] = [
     emoji: "⚡",
     color: "from-orange-500 to-red-600",
     directUrl: "https://zapier.com/",
-    tags: ["Automation Agent", "automation", "workflow", "app integration", "productivity", "no-code", "agent"],
+    tags: ["Automation Agent", "automation", "workflow", "app integration", "productivity", "no-code", "agent", "Automation", "Workflow Automation"],
     category: "Automation & Workflow Tools",
     rating: 4.8,
     totalVotes: 8567
@@ -33,7 +33,7 @@ export const automationAndWorkflowTools: Tool[] = [
     emoji: "🤖",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.make.com/",
-    tags: ["Automation Agent", "visual automation", "workflow builder", "integration", "scenarios", "advanced automation", "agent"],
+    tags: ["Automation Agent", "visual automation", "workflow builder", "integration", "scenarios", "advanced automation", "agent", "Automation", "Workflow Automation"],
     category: "Automation & Workflow Tools",
     rating: 4.7,
     totalVotes: 7456
@@ -45,7 +45,7 @@ export const automationAndWorkflowTools: Tool[] = [
     emoji: "🔗",
     color: "from-green-500 to-purple-600",
     directUrl: "https://n8n.io/",
-    tags: ["Automation Agent", "open source", "workflow automation", "self-hosted", "visual builder", "free automation", "agent"],
+    tags: ["Automation Agent", "open source", "workflow automation", "self-hosted", "visual builder", "free automation", "agent", "Automation", "Workflow Automation"],
     category: "Automation & Workflow Tools",
     rating: 4.6,
     totalVotes: 6234
@@ -57,7 +57,7 @@ export const automationAndWorkflowTools: Tool[] = [
     emoji: "⚙️",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://powerautomate.microsoft.com/",
-    tags: ["Automation Agent", "Microsoft", "business automation", "workflow", "enterprise", "process automation", "agent"],
+    tags: ["Automation Agent", "Microsoft", "business automation", "workflow", "enterprise", "process automation", "agent", "Automation", "Workflow Automation"],
     category: "Automation & Workflow Tools",
     rating: 4.4,
     totalVotes: 3789
@@ -69,7 +69,7 @@ export const automationAndWorkflowTools: Tool[] = [
     emoji: "🔀",
     color: "from-gray-500 to-blue-600",
     directUrl: "https://github.com/features/actions",
-    tags: ["Automation Agent", "CI/CD", "GitHub", "software automation", "deployment", "development workflow", "agent"],
+    tags: ["Automation Agent", "CI/CD", "GitHub", "software automation", "deployment", "development workflow", "agent", "Automation"],
     category: "Automation & Workflow Tools",
     rating: 4.7,
     totalVotes: 5234
@@ -81,7 +81,7 @@ export const automationAndWorkflowTools: Tool[] = [
     emoji: "🔗",
     color: "from-green-500 to-blue-600",
     directUrl: "https://ifttt.com/",
-    tags: ["Automation Agent", "conditional automation", "IoT", "smart home", "simple automation", "applets", "agent"],
+    tags: ["Automation Agent", "conditional automation", "IoT", "smart home", "simple automation", "applets", "agent", "Automation"],
     category: "Automation & Workflow Tools",
     rating: 4.2,
     totalVotes: 2987
@@ -93,7 +93,7 @@ export const automationAndWorkflowTools: Tool[] = [
     emoji: "🕸️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.browse.ai/?via=aiwebtools",
-    tags: ["Web Tasks Agent", "web scraping", "data extraction", "monitoring", "automation", "no-code", "bots", "agent"],
+    tags: ["Web Tasks Agent", "web scraping", "data extraction", "monitoring", "automation", "no-code", "bots", "agent", "Automation", "Analytics & Reporting"],
     category: "Automation & Workflow Tools",
     rating: 4.6,
     totalVotes: 4100
