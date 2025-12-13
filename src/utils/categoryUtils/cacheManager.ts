@@ -29,7 +29,7 @@ import { isSecurityPrivacyTool } from "./securityPrivacyDetection";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 34; // Phase 15 complete: ALL AI TOOLS returns full count, Gaming & Entertainment + Security & Privacy in filters
+let cacheVersion = 35; // Phase 15 complete: STRICT detection for Security, Gaming, all categories with accurate counts
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';
@@ -72,10 +72,10 @@ export const resetCache = () => {
   lastToolsLength = 0;
   localStorage.removeItem(CACHE_KEY);
   localStorage.removeItem(CACHE_VERSION_KEY);
-  console.log('🔄 Cache reset - will rebuild with business category filtering');
+  console.log('🔄 Cache reset - will rebuild with STRICT category detection v35');
 };
 
-// Force immediate cache reset for comprehensive category detection update (v33)
+// Force immediate cache reset for STRICT category detection update (v35)
 resetCache();
 
 // Helper function to combine subcategory and specialized tools efficiently
