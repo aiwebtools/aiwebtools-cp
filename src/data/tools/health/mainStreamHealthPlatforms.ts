@@ -18,7 +18,7 @@ export const mainStreamHealthPlatforms: Tool[] = [
     emoji: "❤️",
     color: "from-red-500 to-pink-600",
     directUrl: "https://www.fitbit.com",
-    tags: ["fitness tracking", "health monitoring", "wearables", "wellness analytics"],
+    tags: ["fitness tracking", "health monitoring", "wearables", "wellness analytics", "Fitness", "Health Tracking", "Wellness"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
     totalVotes: 4567
@@ -30,7 +30,7 @@ export const mainStreamHealthPlatforms: Tool[] = [
     emoji: "🍎",
     color: "from-blue-500 to-green-600",
     directUrl: "https://www.apple.com/health",
-    tags: ["health integration", "data analysis", "fitness tracking", "medical records"],
+    tags: ["health integration", "data analysis", "fitness tracking", "medical records", "Health Tracking", "Fitness", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 5234
@@ -42,7 +42,7 @@ export const mainStreamHealthPlatforms: Tool[] = [
     emoji: "👨‍⚕️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.teladoc.com",
-    tags: ["telemedicine", "virtual consultations", "healthcare access", "medical advice"],
+    tags: ["telemedicine", "virtual consultations", "healthcare access", "medical advice", "Medical", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.4,
     totalVotes: 3890
@@ -54,7 +54,7 @@ export const mainStreamHealthPlatforms: Tool[] = [
     emoji: "🧠",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://www.betterhelp.com",
-    tags: ["online therapy", "mental health", "counseling", "psychological support"],
+    tags: ["online therapy", "mental health", "counseling", "psychological support", "Mental Health", "Therapy"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.3,
     totalVotes: 4123
@@ -66,7 +66,7 @@ export const mainStreamHealthPlatforms: Tool[] = [
     emoji: "🎯",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.noom.com",
-    tags: ["weight management", "behavior change", "health coaching", "wellness program"],
+    tags: ["weight management", "behavior change", "health coaching", "wellness program", "Fitness", "Nutrition", "Wellness"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.2,
     totalVotes: 3567

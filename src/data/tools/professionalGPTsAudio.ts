@@ -30,7 +30,7 @@ export const professionalGPTsAudio: Tool[] = [
     emoji: "🏥",
     color: "from-blue-500 to-green-600",
     directUrl: "https://medicalbillinggpt.lovable.app/?via=aiwebtools",
-    tags: ["medical billing", "medical coding", "CPT codes", "ICD-10", "HCPCS", "insurance", "reimbursement", "healthcare", "medical professionals", "billing assistant"],
+    tags: ["medical billing", "medical coding", "CPT codes", "ICD-10", "HCPCS", "insurance", "reimbursement", "healthcare", "medical professionals", "billing assistant", "Medical Coding", "Healthcare"],
     category: "Healthcare Professionals",
     rating: 4.7,
     totalVotes: 2890
@@ -42,7 +42,7 @@ export const professionalGPTsAudio: Tool[] = [
     emoji: "🛡️",
     color: "from-green-500 to-blue-600",
     directUrl: "https://healthinsurenceclaimsgpt.lovable.app/?via=aiwebtools",
-    tags: ["health insurance", "insurance claims", "claim assessment", "cost calculation", "reimbursement", "healthcare expenses", "insurance reports", "claims processing", "medical claims"],
+    tags: ["health insurance", "insurance claims", "claim assessment", "cost calculation", "reimbursement", "healthcare expenses", "insurance reports", "claims processing", "medical claims", "Healthcare", "Medical"],
     category: "Healthcare Professionals",
     rating: 4.6,
     totalVotes: 2450
