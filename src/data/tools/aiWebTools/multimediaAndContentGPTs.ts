@@ -23,7 +23,7 @@ export const multimediaAndContentGPTs: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://podcastwritergpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-illustration-of-a-podcast-host-with-a_HnlUN.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
-    tags: ["podcast", "script writing", "audio content", "storytelling", "content creation"],
+    tags: ["podcast", "script writing", "audio content", "storytelling", "content creation", "Custom GPT", "Content Marketing"],
     category: "Multimedia & Content",
     rating: 4.7,
     totalVotes: 4567
@@ -35,7 +35,7 @@ export const multimediaAndContentGPTs: Tool[] = [
     emoji: "🎬",
     color: "from-red-500 to-purple-600",
     directUrl: "https://moviescriptwritergpt.lovable.app/?via=aiwebtools",
-    tags: ["video scripts", "content creation", "marketing videos", "social media", "video production"],
+    tags: ["video scripts", "content creation", "marketing videos", "social media", "video production", "Custom GPT", "Content Marketing", "Social Media Marketing"],
     category: "Multimedia & Content",
     rating: 4.6,
     totalVotes: 3890
@@ -75,7 +75,7 @@ export const multimediaAndContentGPTs: Tool[] = [
     directUrl: "https://rewritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/5n1RHKoQ-Ds",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005696.jpg/:/cr=t:9.9%25,l:0%25,w:100%25,h:80.21%25/rs=w:600,h:300,cg:true/qt=q:98",
-    tags: ["content rewriting", "SEO optimization", "blog writing", "article creation", "content marketing"],
+    tags: ["content rewriting", "SEO optimization", "blog writing", "article creation", "content marketing", "Custom GPT", "SEO Tools", "Content Marketing"],
     category: "Multimedia & Content",
     rating: 4.6,
     totalVotes: 4123

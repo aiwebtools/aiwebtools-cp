@@ -115,7 +115,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     emoji: "📧",
     color: "from-red-500 to-pink-600",
     directUrl: "https://chat.openai.com/g/g-m08jT4l9x-email-assistant",
-    tags: ["email drafting", "inbox management", "message prioritization", "professional emails", "Custom GPT", "Email Management"],
+    tags: ["email drafting", "inbox management", "message prioritization", "professional emails", "Custom GPT", "Email Management", "Email Marketing"],
     category: "Utility & Productivity",
     rating: 4.6,
     totalVotes: 5123
