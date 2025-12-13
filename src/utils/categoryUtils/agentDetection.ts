@@ -261,39 +261,49 @@ export const getAgentToolsBySubtype = (tools: Tool[], subtype: string): Tool[] =
 };
 
 /**
- * Enhanced agent category detection for cache building
+ * Enhanced agent category detection for cache building - EXPANDED
  */
 export const getEnhancedAgentTools = (tools: Tool[]): Tool[] => {
   const agentTools = tools.filter(tool => {
+    const title = tool.title.toLowerCase();
+    const description = (tool.description || "").toLowerCase();
+    const category = (tool.category || "").toLowerCase();
+    const tags = (tool.tags || []).map(t => t.toLowerCase());
+    const directUrl = (tool.directUrl || "").toLowerCase();
+
     // Primary: explicit agent indicators
     if (isAgentTool(tool)) return true;
 
-    // Secondary: tools that behave like agents but might not have explicit tags
-    const title = tool.title.toLowerCase();
-    const description = (tool.description || "").toLowerCase();
-    const tags = (tool.tags || []).map(t => t.toLowerCase());
-
     // Bot making platforms are agent-adjacent
-    if (tool.category?.toLowerCase().includes("bot making")) return true;
+    if (category.includes("bot making") || category.includes("chatbot")) return true;
 
     // Customer support tools with automation
-    if (tool.category?.toLowerCase().includes("customer support") && 
+    if (category.includes("customer support") && 
         (description.includes("automat") || description.includes("ai-powered"))) return true;
 
     // Automation and workflow tools
-    if (tool.category?.toLowerCase().includes("automation") || 
-        tool.category?.toLowerCase().includes("workflow")) return true;
+    if (category.includes("automation") || category.includes("workflow")) return true;
 
     // Voice assistant tools
-    if (tool.category?.toLowerCase().includes("voice assistant")) return true;
+    if (category.includes("voice assistant") || category.includes("voice ai")) return true;
 
-    // Check for strong agentic keywords
+    // Check for strong agentic keywords in description
     const agenticKeywords = [
-      "autonomous", "agentic", "self-operating", "orchestrate",
-      "execute tasks", "perform tasks", "handles tasks", "complete tasks"
+      "autonomous", "agentic", "self-operating", "orchestrate", "orchestration",
+      "execute tasks", "perform tasks", "handles tasks", "complete tasks",
+      "automate", "automated", "automation", "workflow", "pipeline",
+      "assistant", "bot", "chatbot", "ai assistant", "virtual assistant",
+      "copilot", "co-pilot", "helper", "agent", "operator"
     ];
 
-    if (agenticKeywords.some(kw => description.includes(kw))) return true;
+    if (agenticKeywords.some(kw => description.includes(kw) || title.includes(kw))) return true;
+
+    // Custom GPTs are agents
+    if (directUrl.includes('chatgpt.com/g/g-') || directUrl.includes('.lovable.app')) return true;
+
+    // Tags indicating agent behavior
+    const agentTags = ['agent', 'automation', 'bot', 'assistant', 'workflow', 'custom gpt'];
+    if (tags.some(tag => agentTags.some(at => tag.includes(at)))) return true;
 
     return false;
   });

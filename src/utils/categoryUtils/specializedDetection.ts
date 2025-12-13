@@ -71,48 +71,80 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
   );
 };
 
-// Helper function to detect PRIMARY education tools
+// Helper function to detect PRIMARY education tools - EXPANDED for comprehensive coverage
 export const isPrimaryEducationTool = (tool: Tool): boolean => {
+  const titleLower = tool.title.toLowerCase();
+  const descriptionLower = tool.description.toLowerCase();
+  const categoryLower = tool.category?.toLowerCase() || '';
+  const tagsLower = (tool.tags || []).map(t => t.toLowerCase()).join(' ');
+  
+  // COMPREHENSIVE education keywords - most AI tools have educational value
   const primaryEducationKeywords = [
+    // Direct education terms
     'quiz maker', 'course maker', 'training manual', 'children\'s book', 'homework helper',
     'essay writer', 'learn any course', 'learn any skill', 'college degree', 'home school',
     'education', 'learning', 'educational', 'academic', 'study', 'course', 'curriculum',
     'teaching', 'teacher', 'tutor', 'tutoring', 'lesson', 'homework', 'quiz', 'test',
     'training', 'university', 'college', 'school', 'degree', 'certification',
     'workshop', 'seminar', 'lecture', 'instruction', 'student', 'learner', 'classroom',
-    'insect study', 'entomology', 'species research', 'biological studies'
+    'insect study', 'entomology', 'species research', 'biological studies',
+    
+    // Knowledge & Research (educational in nature)
+    'research', 'researcher', 'knowledge', 'encyclopedia', 'wiki', 'reference',
+    'information', 'fact', 'facts', 'data analysis', 'analysis report', 'report',
+    'discover', 'discovery', 'explore', 'explorer', 'investigation', 'investigator',
+    
+    // Language & Communication learning
+    'language', 'translation', 'translator', 'grammar', 'vocabulary', 'speech',
+    'writing', 'writer', 'read', 'reader', 'literacy', 'communication',
+    
+    // Science & STEM education
+    'science', 'scientific', 'math', 'mathematics', 'physics', 'chemistry', 'biology',
+    'engineering', 'technology', 'stem', 'coding', 'programming', 'computer science',
+    'algorithm', 'data science', 'statistics', 'calculus', 'algebra', 'geometry',
+    
+    // History & Social Studies
+    'history', 'historical', 'geography', 'culture', 'cultural', 'civilization',
+    'archaeology', 'anthropology', 'sociology', 'politics', 'government', 'economics',
+    
+    // Arts & Humanities education
+    'music lesson', 'art lesson', 'creative writing', 'literature', 'poetry',
+    'philosophy', 'ethics', 'psychology', 'theology', 'religion', 'mythology',
+    
+    // Professional development & Skills
+    'skill', 'skills', 'professional development', 'career', 'job training',
+    'certification', 'competency', 'expertise', 'mastery', 'proficiency',
+    'how to', 'guide', 'tutorial', 'explain', 'teaches', 'instructor'
   ];
   
-  const titleLower = tool.title.toLowerCase();
-  const categoryLower = tool.category?.toLowerCase() || '';
+  // Educational categories
+  const educationCategories = [
+    'education', 'learning', 'academic', 'research', 'knowledge', 'tutorial',
+    'training', 'development', 'study', 'educational'
+  ];
   
   // Exclude major LLMs from being classified as primary education tools
   if (isMajorLLM(tool)) {
     return false;
   }
   
-  // CRITICAL: Force Insect Study Tool to be education
-  if (titleLower.includes('insect study')) {
-    console.log(`🎓 FORCE: Insect Study Tool detected as PRIMARY EDUCATION tool`);
-    return true;
-  }
-  
-  // Check if it's explicitly an education tool by name or category
-  const isEducationByCategory = categoryLower.includes('education') || 
-                               categoryLower.includes('learning');
-  
-  const isEducationByTitle = primaryEducationKeywords.some(keyword => 
-    titleLower.includes(keyword)
+  // Check if it's explicitly an education tool by category
+  const isEducationByCategory = educationCategories.some(cat => 
+    categoryLower.includes(cat)
   );
   
-  return isEducationByCategory || isEducationByTitle;
+  // Check by title or description
+  const haystack = `${titleLower} ${descriptionLower} ${tagsLower}`;
+  const isEducationByContent = primaryEducationKeywords.some(keyword => 
+    haystack.includes(keyword)
+  );
+  
+  return isEducationByCategory || isEducationByContent;
 };
 
 // Helper function to detect education-related tools (broader scope)
 export const isEducationRelatedTool = (tool: Tool): boolean => {
-  return isPrimaryEducationTool(tool) || 
-         (tool.category?.toLowerCase().includes('education')) ||
-         (tool.category?.toLowerCase().includes('learning'));
+  return isPrimaryEducationTool(tool);
 };
 
 // Helper function to detect content creation tools
@@ -184,28 +216,42 @@ export const isAIWebToolsGPT = (tool: Tool): boolean => {
          hasAIWebToolsUrl || hasAIWebToolsDescription || hasAIWebToolsTag || isChatGPTCustomGPT;
 };
 
-// Helper function to detect AI Chat & Assistant tools with enhanced matching
+// Helper function to detect AI Chat & Assistant tools with enhanced matching - EXPANDED
 export const isAIChatAssistantTool = (tool: Tool): boolean => {
-  const chatKeywords = [
-    'chat', 'chatbot', 'assistant', 'conversational ai', 'ai chat', 'dialogue',
-    'conversation', 'virtual assistant', 'personal ai', 'ai companion', 'smart assistant',
-    'digital assistant', 'voice assistant', 'text assistant', 'ai support', 'chatgpt',
-    'claude', 'gemini', 'bard', 'ai helper', 'task assistant', 'productivity assistant',
-    'ai bot', 'smart bot', 'intelligent assistant', 'language model', 'llm', 'gpt',
-    'ai communication', 'messaging ai', 'interactive ai', 'natural language ai',
-    'ai interaction', 'response ai', 'query ai', 'question answering', 'ai guidance',
-    'ai advisor', 'consultation ai', 'recommendation ai', 'planning ai', 'strategy ai'
-  ];
-  
   const titleLower = tool.title.toLowerCase();
   const descriptionLower = tool.description.toLowerCase();
   const tagsLower = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || '';
   const categoryLower = tool.category?.toLowerCase() || '';
+  const directUrl = (tool.directUrl || '').toLowerCase();
   
-  return chatKeywords.some(keyword => 
-    titleLower.includes(keyword) || 
-    descriptionLower.includes(keyword) || 
-    tagsLower.includes(keyword) ||
-    categoryLower.includes(keyword)
-  ) || isMajorLLM(tool); // Include major LLMs in chat category
+  // EXPANDED chat/assistant keywords
+  const chatKeywords = [
+    // Core chat terms
+    'chat', 'chatbot', 'assistant', 'conversational', 'conversation',
+    'dialogue', 'dialog', 'messaging', 'message', 'talk to', 'speak to',
+    
+    // AI assistants & platforms
+    'chatgpt', 'gpt', 'claude', 'gemini', 'bard', 'copilot', 'llm',
+    'language model', 'ai companion', 'virtual assistant', 'personal ai',
+    'digital assistant', 'smart assistant', 'ai helper', 'ai bot',
+    
+    // Functional assistants
+    'advisor', 'consultant', 'counselor', 'guide', 'mentor', 'coach',
+    'recommendation', 'suggestion', 'question answering', 'q&a',
+    'support', 'help desk', 'customer service', 'interactive',
+    
+    // Custom GPT indicators
+    'custom gpt', 'gpt store', 'gpts'
+  ];
+
+  const haystack = `${titleLower} ${descriptionLower} ${tagsLower} ${categoryLower}`;
+  
+  const hasChatKeyword = chatKeywords.some(keyword => haystack.includes(keyword));
+  
+  // Custom GPTs are chat tools
+  const isCustomGPT = directUrl.includes('chatgpt.com/g/g-') || 
+                      directUrl.includes('.lovable.app') ||
+                      directUrl.includes('gemini.google.com/gem/');
+  
+  return hasChatKeyword || isCustomGPT || isMajorLLM(tool);
 };
