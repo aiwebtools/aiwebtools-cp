@@ -17,7 +17,7 @@ export const aiInteriorDesignTools: Tool[] = [
     emoji: "🎨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.decorilla.com/?via=aiwebtools",
-    tags: ["interior design", "room design", "professional designers", "visualization", "home decor"],
+    tags: ["Interior Design", "interior design", "room design", "professional designers", "visualization", "home decor"],
     category: "AI Interior Design Tools",
     rating: 4.5,
     totalVotes: 2876
@@ -29,7 +29,7 @@ export const aiInteriorDesignTools: Tool[] = [
     emoji: "📐",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://planner5d.com/?via=aiwebtools",
-    tags: ["floor plans", "3D design", "home planning", "room design", "visualization"],
+    tags: ["Interior Design", "3D Modeling", "floor plans", "3D design", "home planning", "room design", "visualization"],
     category: "AI Interior Design Tools",
     rating: 4.4,
     totalVotes: 3456
@@ -41,7 +41,7 @@ export const aiInteriorDesignTools: Tool[] = [
     emoji: "🏡",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.homestyler.com/?via=aiwebtools",
-    tags: ["3D rendering", "furniture placement", "interior design", "room visualization", "home design"],
+    tags: ["Interior Design", "3D Modeling", "3D rendering", "furniture placement", "interior design", "room visualization", "home design"],
     category: "AI Interior Design Tools",
     rating: 4.3,
     totalVotes: 2987
@@ -53,7 +53,7 @@ export const aiInteriorDesignTools: Tool[] = [
     emoji: "📦",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.coohom.com/?via=aiwebtools",
-    tags: ["professional design", "photorealistic", "furniture library", "3D visualization", "design software"],
+    tags: ["Interior Design", "3D Modeling", "professional design", "photorealistic", "furniture library", "3D visualization", "design software"],
     category: "AI Interior Design Tools",
     rating: 4.5,
     totalVotes: 2345
@@ -65,7 +65,7 @@ export const aiInteriorDesignTools: Tool[] = [
     emoji: "✨",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://www.roomvo.com/?via=aiwebtools",
-    tags: ["room visualization", "flooring design", "paint colors", "virtual staging", "instant visualization"],
+    tags: ["Interior Design", "room visualization", "flooring design", "paint colors", "virtual staging", "instant visualization"],
     category: "AI Interior Design Tools",
     rating: 4.2,
     totalVotes: 1876
@@ -77,7 +77,7 @@ export const aiInteriorDesignTools: Tool[] = [
     emoji: "🛋️",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.modsy.com/?via=aiwebtools",
-    tags: ["3D rendering", "interior design", "furniture curation", "room redesign", "virtual design"],
+    tags: ["Interior Design", "3D Modeling", "3D rendering", "interior design", "furniture curation", "room redesign", "virtual design"],
     category: "AI Interior Design Tools",
     rating: 4.4,
     totalVotes: 2654
