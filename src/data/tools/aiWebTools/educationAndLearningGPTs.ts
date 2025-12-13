@@ -9,7 +9,7 @@ export const educationAndLearningGPTs: Tool[] = [
     emoji: "🗣️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68ae26360d448191b25842afb8d2f66b-lingua-champion-universal-speech-mastery-ai/?via=aiwebtools",
-    tags: ["language learning", "multilingual", "speech mastery", "foreign languages", "conversation practice", "fluency training", "lingua champion", "universal speech", "language education", "communication skills"],
+    tags: ["language learning", "multilingual", "speech mastery", "foreign languages", "conversation practice", "fluency training", "lingua champion", "universal speech", "language education", "communication skills", "Language Learning", "Tutoring AI"],
     category: "Education & Learning",
     rating: 4.8,
     totalVotes: 3245
@@ -23,7 +23,7 @@ export const educationAndLearningGPTs: Tool[] = [
     directUrl: "https://musicmelodiesandlessonsgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/8aPpUPiDBJ4?si=4ERg7NITSKCePyHF",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-music-melodi_LBv7r.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
-    tags: ["music education", "instrument learning", "music lessons", "personalized learning", "music theory", "vocal training", "songwriting", "musical instruments"],
+    tags: ["music education", "instrument learning", "music lessons", "personalized learning", "music theory", "vocal training", "songwriting", "musical instruments", "Music Education", "Tutoring AI", "Skill Development"],
     category: "Education & Learning",
     rating: 4.8,
     totalVotes: 4567
@@ -36,7 +36,7 @@ export const educationAndLearningGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/pr8-IgbL46I",
-    tags: ["education", "learning", "courses", "tutoring", "self-learning", "aiwebtools"],
+    tags: ["education", "learning", "courses", "tutoring", "self-learning", "aiwebtools", "Learning Platform", "Course Creator", "Tutoring AI"],
     category: "Education & Learning",
     rating: 4.7,
     totalVotes: 6789
@@ -49,7 +49,7 @@ export const educationAndLearningGPTs: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/0_oIzDL2BB4",
-    tags: ["skill learning", "education", "training", "personal development", "tutorial", "aiwebtools"],
+    tags: ["skill learning", "education", "training", "personal development", "tutorial", "aiwebtools", "Skill Development", "Tutoring AI", "Learning Platform"],
     category: "Education & Learning",
     rating: 4.6,
     totalVotes: 5432
@@ -62,7 +62,7 @@ export const educationAndLearningGPTs: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/VkD_dX8kPy0",
-    tags: ["college education", "degree programs", "university courses", "higher education", "academic learning", "aiwebtools"],
+    tags: ["college education", "degree programs", "university courses", "higher education", "academic learning", "aiwebtools", "College Prep", "Learning Platform", "Course Creator"],
     category: "Education & Learning",
     rating: 4.8,
     totalVotes: 7654
@@ -75,7 +75,7 @@ export const educationAndLearningGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://homeschoolgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-parent-teaching-their-ki-0096e43.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["homeschooling", "education", "parenting", "curriculum", "learning resources", "aiwebtools"],
+    tags: ["homeschooling", "education", "parenting", "curriculum", "learning resources", "aiwebtools", "Homeschool", "Course Creator", "Learning Platform"],
     category: "Education & Learning",
     rating: 4.5,
     totalVotes: 3876
@@ -88,7 +88,7 @@ export const educationAndLearningGPTs: Tool[] = [
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-cUahkn19i-quiz-maker-ai",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-eye-catching-advertisement-for-quiz-maker-.jpeg/:/cr=t:5.56%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
-    tags: ["quiz creation", "education", "assessment", "testing", "course integration", "teaching tools", "aiwebtools"],
+    tags: ["quiz creation", "education", "assessment", "testing", "course integration", "teaching tools", "aiwebtools", "Quiz Maker", "Study Tools"],
     category: "Education & Learning",
     rating: 4.4,
     totalVotes: 2987
@@ -101,7 +101,7 @@ export const educationAndLearningGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377336291427090462/ChatGPT_Image_May_28_2025_01_22_27_PM.png?ex=683897e1&is=68374661&hm=71f0b50e1d34249bf9ed9ca8b7a1b0e45d0d2127cb9e356e2b4c65b35518656a&=&format=webp&quality=lossless&width=2088&height=1392",
-    tags: ["course creation", "curriculum development", "education", "training", "lesson planning", "instructional design", "aiwebtools"],
+    tags: ["course creation", "curriculum development", "education", "training", "lesson planning", "instructional design", "aiwebtools", "Course Creator", "Professional Training"],
     category: "Education & Learning",
     rating: 4.7,
     totalVotes: 4321
@@ -113,7 +113,7 @@ export const educationAndLearningGPTs: Tool[] = [
     emoji: "👨‍🏫",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68bb71f1dca88191866a1a0bfdff7ca0-educational-tutor-gpt/?via=aiwebtools",
-    tags: ["tutoring", "personalized learning", "education", "learning support", "academic help", "study assistance", "aiwebtools"],
+    tags: ["tutoring", "personalized learning", "education", "learning support", "academic help", "study assistance", "aiwebtools", "Tutoring AI", "Study Tools"],
     category: "Education & Learning",
     rating: 4.8,
     totalVotes: 3456
@@ -125,7 +125,7 @@ export const educationAndLearningGPTs: Tool[] = [
     emoji: "✍️",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68cb403167a88191ae07062124d32bbb-cursive-teacher-gpt/?via=aiwebtools",
-    tags: ["cursive writing", "handwriting", "education", "penmanship", "writing skills", "learning", "teaching", "aiwebtools"],
+    tags: ["cursive writing", "handwriting", "education", "penmanship", "writing skills", "learning", "teaching", "aiwebtools", "Skill Development", "Tutoring AI"],
     category: "Education & Learning",
     rating: 4.6,
     totalVotes: 2134

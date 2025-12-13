@@ -11,7 +11,7 @@ export const educationalToolsGPTs: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/pr8-IgbL46I",
-    tags: ["online learning", "course creation", "education", "skill development", "self-learning", "Custom GPT"],
+    tags: ["online learning", "course creation", "education", "skill development", "self-learning", "Custom GPT", "Learning Platform", "Course Creator", "Tutoring AI"],
     category: "Educational Tools",
     rating: 4.8,
     totalVotes: 7234
@@ -24,7 +24,7 @@ export const educationalToolsGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=q1AY2LukHrk",
-    tags: ["skill development", "practical learning", "step-by-step guidance", "multimedia learning", "personal development", "Custom GPT"],
+    tags: ["skill development", "practical learning", "step-by-step guidance", "multimedia learning", "personal development", "Custom GPT", "Skill Development", "Tutoring AI", "Learning Platform"],
     category: "Educational Tools",
     rating: 4.7,
     totalVotes: 6543
@@ -37,7 +37,7 @@ export const educationalToolsGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://homeschoolgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-parent-teaching-their-ki-0096e43.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["homeschooling", "education planning", "curriculum design", "parent education", "learning resources", "Custom GPT"],
+    tags: ["homeschooling", "education planning", "curriculum design", "parent education", "learning resources", "Custom GPT", "Homeschool", "Course Creator", "Learning Platform"],
     category: "Educational Tools",
     rating: 4.6,
     totalVotes: 5432
@@ -50,7 +50,7 @@ export const educationalToolsGPTs: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-cUahkn19i-quiz-maker-ai",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-eye-catching-advertisement-for-quiz-maker-.jpeg/:/cr=t:5.56%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
-    tags: ["quiz creation", "educational assessment", "learning evaluation", "test generation", "academic tools", "Custom GPT"],
+    tags: ["quiz creation", "educational assessment", "learning evaluation", "test generation", "academic tools", "Custom GPT", "Quiz Maker", "Study Tools"],
     category: "Educational Tools",
     rating: 4.5,
     totalVotes: 4321
@@ -63,7 +63,7 @@ export const educationalToolsGPTs: Tool[] = [
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377336291427090462/ChatGPT_Image_May_28_2025_01_22_27_PM.png?ex=683897e1&is=68374661&hm=71f0b50e1d34249bf9ed9ca8b7a1b0e45d0d2127cb9e356e2b4c65b35518656a&=&format=webp&quality=lossless&width=2088&height=1392",
-    tags: ["course development", "curriculum design", "instructional design", "educational content", "learning programs", "Custom GPT"],
+    tags: ["course development", "curriculum design", "instructional design", "educational content", "learning programs", "Custom GPT", "Course Creator", "Professional Training"],
     category: "Educational Tools",
     rating: 4.8,
     totalVotes: 6789
@@ -77,7 +77,7 @@ export const educationalToolsGPTs: Tool[] = [
     directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=Cd8uvD-smlM&list=TLGGLsn0bAvnp3EyODA1MjAyNQ",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298792230944880/college.webp",
-    tags: ["college education", "degree programs", "higher education", "academic learning", "university courses", "Custom GPT"],
+    tags: ["college education", "degree programs", "higher education", "academic learning", "university courses", "Custom GPT", "College Prep", "Learning Platform"],
     category: "Educational Tools",
     rating: 4.9,
     totalVotes: 8765
@@ -89,7 +89,7 @@ export const educationalToolsGPTs: Tool[] = [
     emoji: "👨‍🏫",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68c049b652f8819195c722dbd4971797-college-professor-gpt",
-    tags: ["college professor", "virtual teacher", "academic instruction", "educational exploration", "university level", "personalized learning", "scholarly discussion", "Custom GPT"],
+    tags: ["college professor", "virtual teacher", "academic instruction", "educational exploration", "university level", "personalized learning", "scholarly discussion", "Custom GPT", "Tutoring AI", "College Prep"],
     category: "Educational Tools",
     rating: 4.7,
     totalVotes: 3456

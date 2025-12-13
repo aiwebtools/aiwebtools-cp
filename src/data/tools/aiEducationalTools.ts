@@ -9,7 +9,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "🎓",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.khanacademy.org/khan-labs?via=aiwebtools",
-    tags: ["AI tutor", "personalized learning", "education", "math help", "homework help", "students", "teachers", "K-12"],
+    tags: ["AI tutor", "personalized learning", "education", "math help", "homework help", "students", "teachers", "K-12", "Tutoring AI", "Learning Platform", "STEM Education"],
     category: "AI Educational Tools",
     rating: 4.9,
     totalVotes: 18234
@@ -21,7 +21,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "🧠",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://quizlet.com/?via=aiwebtools",
-    tags: ["flashcards", "study tools", "test prep", "memorization", "learning", "students", "AI study assistant"],
+    tags: ["flashcards", "study tools", "test prep", "memorization", "learning", "students", "AI study assistant", "Study Tools", "Quiz Maker"],
     category: "AI Educational Tools",
     rating: 4.8,
     totalVotes: 24567
@@ -33,7 +33,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "📱",
     color: "from-red-500 to-orange-600",
     directUrl: "https://photomath.com/?via=aiwebtools",
-    tags: ["math solver", "homework help", "step-by-step", "students", "mathematics", "AI tutor", "camera scanner"],
+    tags: ["math solver", "homework help", "step-by-step", "students", "mathematics", "AI tutor", "camera scanner", "Homework Help", "STEM Education", "Tutoring AI"],
     category: "AI Educational Tools",
     rating: 4.7,
     totalVotes: 16789
@@ -45,7 +45,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "✍️",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.grammarly.com/edu?via=aiwebtools",
-    tags: ["writing assistant", "grammar checker", "education", "essay writing", "feedback", "students", "teachers"],
+    tags: ["writing assistant", "grammar checker", "education", "essay writing", "feedback", "students", "teachers", "Academic Writing", "Study Tools"],
     category: "AI Educational Tools",
     rating: 4.8,
     totalVotes: 21234
@@ -57,7 +57,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "🦉",
     color: "from-green-400 to-teal-500",
     directUrl: "https://www.duolingo.com/?via=aiwebtools",
-    tags: ["language learning", "education", "gamified learning", "AI tutor", "multilingual", "students", "adaptive learning"],
+    tags: ["language learning", "education", "gamified learning", "AI tutor", "multilingual", "students", "adaptive learning", "Language Learning", "Learning Platform"],
     category: "AI Educational Tools",
     rating: 4.7,
     totalVotes: 32456
@@ -69,7 +69,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "🏫",
     color: "from-blue-600 to-cyan-600",
     directUrl: "https://www.coursera.org/?via=aiwebtools",
-    tags: ["online courses", "education", "university courses", "professional development", "AI learning", "certifications"],
+    tags: ["online courses", "education", "university courses", "professional development", "AI learning", "certifications", "Learning Platform", "Skill Development", "Professional Training"],
     category: "AI Educational Tools",
     rating: 4.7,
     totalVotes: 19876
@@ -81,7 +81,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "✨",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.cognii.com/?via=aiwebtools",
-    tags: ["virtual tutor", "essay grading", "K-12", "higher education", "personalized learning", "automated feedback"],
+    tags: ["virtual tutor", "essay grading", "K-12", "higher education", "personalized learning", "automated feedback", "Tutoring AI", "Academic Writing"],
     category: "AI Educational Tools",
     rating: 4.5,
     totalVotes: 5678
@@ -93,7 +93,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "🎬",
     color: "from-red-500 to-pink-600",
     directUrl: "https://edpuzzle.com/?via=aiwebtools",
-    tags: ["video lessons", "interactive learning", "teachers", "students", "assessments", "educational videos"],
+    tags: ["video lessons", "interactive learning", "teachers", "students", "assessments", "educational videos", "Learning Platform", "Study Tools"],
     category: "AI Educational Tools",
     rating: 4.6,
     totalVotes: 8234
@@ -105,7 +105,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "📄",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.turnitin.com/?via=aiwebtools",
-    tags: ["plagiarism checker", "academic integrity", "writing feedback", "teachers", "students", "essay grading"],
+    tags: ["plagiarism checker", "academic integrity", "writing feedback", "teachers", "students", "essay grading", "Academic Writing", "Study Tools"],
     category: "AI Educational Tools",
     rating: 4.4,
     totalVotes: 12456
@@ -117,7 +117,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "💡",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://socratic.org/?via=aiwebtools",
-    tags: ["homework help", "visual learning", "students", "AI tutor", "multiple subjects", "Google", "camera scanner"],
+    tags: ["homework help", "visual learning", "students", "AI tutor", "multiple subjects", "Google", "camera scanner", "Homework Help", "Tutoring AI"],
     category: "AI Educational Tools",
     rating: 4.6,
     totalVotes: 14567
@@ -129,7 +129,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "🌍",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://www.century.tech/?via=aiwebtools",
-    tags: ["personalized learning", "adaptive learning", "K-12", "learning analytics", "teachers", "students"],
+    tags: ["personalized learning", "adaptive learning", "K-12", "learning analytics", "teachers", "students", "Learning Platform", "Tutoring AI"],
     category: "AI Educational Tools",
     rating: 4.5,
     totalVotes: 6789
@@ -141,7 +141,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "📝",
     color: "from-green-600 to-emerald-700",
     directUrl: "https://www.gradescope.com/?via=aiwebtools",
-    tags: ["grading", "assessment", "teachers", "automated grading", "feedback", "education technology"],
+    tags: ["grading", "assessment", "teachers", "automated grading", "feedback", "education technology", "Quiz Maker", "Study Tools"],
     category: "AI Educational Tools",
     rating: 4.6,
     totalVotes: 9876
@@ -153,7 +153,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "🐿️",
     color: "from-orange-400 to-yellow-500",
     directUrl: "https://squirrelai.com/?via=aiwebtools",
-    tags: ["adaptive learning", "personalized education", "K-12", "AI tutor", "learning analytics", "students"],
+    tags: ["adaptive learning", "personalized education", "K-12", "AI tutor", "learning analytics", "students", "Learning Platform", "Tutoring AI"],
     category: "AI Educational Tools",
     rating: 4.5,
     totalVotes: 7234
@@ -165,7 +165,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "📚",
     color: "from-gray-700 to-gray-900",
     directUrl: "https://www.anthology.com/?via=aiwebtools",
-    tags: ["LMS", "learning management", "higher education", "predictive analytics", "institutional", "teachers"],
+    tags: ["LMS", "learning management", "higher education", "predictive analytics", "institutional", "teachers", "Learning Platform", "College Prep"],
     category: "AI Educational Tools",
     rating: 4.4,
     totalVotes: 11234
@@ -177,7 +177,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "🔢",
     color: "from-red-600 to-orange-700",
     directUrl: "https://www.wolframalpha.com/?via=aiwebtools",
-    tags: ["computational engine", "math solver", "science", "research", "students", "step-by-step solutions"],
+    tags: ["computational engine", "math solver", "science", "research", "students", "step-by-step solutions", "STEM Education", "Homework Help"],
     category: "AI Educational Tools",
     rating: 4.8,
     totalVotes: 15678
@@ -189,7 +189,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "🎮",
     color: "from-purple-600 to-indigo-700",
     directUrl: "https://www.classcraft.com/?via=aiwebtools",
-    tags: ["classroom management", "gamification", "student engagement", "teachers", "K-12", "behavioral management"],
+    tags: ["classroom management", "gamification", "student engagement", "teachers", "K-12", "behavioral management", "Learning Platform", "Study Tools"],
     category: "AI Educational Tools",
     rating: 4.5,
     totalVotes: 8567
@@ -201,7 +201,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "🏛️",
     color: "from-blue-600 to-indigo-600",
     directUrl: "https://www.edmodo.com/?via=aiwebtools",
-    tags: ["educational network", "classroom communication", "teachers", "students", "parents", "K-12", "homework"],
+    tags: ["educational network", "classroom communication", "teachers", "students", "parents", "K-12", "homework", "Learning Platform", "Study Tools"],
     category: "AI Educational Tools",
     rating: 4.3,
     totalVotes: 13456
@@ -213,7 +213,7 @@ export const aiEducationalTools: Tool[] = [
     emoji: "🤝",
     color: "from-green-500 to-teal-600",
     directUrl: "https://brainly.com/?via=aiwebtools",
-    tags: ["peer learning", "homework help", "student community", "Q&A", "collaborative learning", "all subjects"],
+    tags: ["peer learning", "homework help", "student community", "Q&A", "collaborative learning", "all subjects", "Homework Help", "Study Tools"],
     category: "AI Educational Tools",
     rating: 4.4,
     totalVotes: 18234
