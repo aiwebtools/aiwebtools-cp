@@ -25,7 +25,7 @@ export const platformsAndDevelopment: Tool[] = [
     directUrl: "http://g.co/g1referral/911Z9NTK",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/gemini_multimodal_live.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     category: "DEVELOPMENT & CODING",
-    tags: ["Google AI", "Gemini", "AI development", "multimodal AI"],
+    tags: ["Google AI", "Gemini", "AI development", "multimodal AI", "All-in-One Suite", "Multi-Tool Platform"],
     rating: 4.9,
     totalVotes: 5678
   },
@@ -38,7 +38,7 @@ export const platformsAndDevelopment: Tool[] = [
     directUrl: "http://www.nucleus.com/",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-futuristic-office-_x8S3w.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     category: "Business Communication",
-    tags: ["call center", "AI agents", "customer service", "automation"],
+    tags: ["call center", "AI agents", "customer service", "automation", "Automation Platform", "Workflow Optimization"],
     rating: 4.6,
     totalVotes: 2987
   },
@@ -51,7 +51,7 @@ export const platformsAndDevelopment: Tool[] = [
     directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
     category: "Healthcare AI",
-    tags: ["medical AI", "health advice", "diagnosis", "healthcare"],
+    tags: ["medical AI", "health advice", "diagnosis", "healthcare", "All-in-One Suite"],
     rating: 4.7,
     totalVotes: 3456
   },
@@ -64,7 +64,7 @@ export const platformsAndDevelopment: Tool[] = [
     directUrl: "https://tradergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=Izs80Fak4hQ",
     category: "Financial Trading",
-    tags: ["trading", "finance", "investment", "market analysis"],
+    tags: ["trading", "finance", "investment", "market analysis", "Task Management"],
     rating: 4.5,
     totalVotes: 2654
   },
@@ -77,7 +77,7 @@ export const platformsAndDevelopment: Tool[] = [
     directUrl: "https://solarlandgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=CEca8C2GIpY",
     category: "Renewable Energy",
-    tags: ["solar energy", "land assessment", "renewable energy", "sustainability"],
+    tags: ["solar energy", "land assessment", "renewable energy", "sustainability", "Checklist & Planning"],
     rating: 4.5,
     totalVotes: 2345
   },
@@ -90,7 +90,7 @@ export const platformsAndDevelopment: Tool[] = [
     directUrl: "https://dataanalysisandreportai.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=idxjOwUAD_I",
     category: "Data Analysis",
-    tags: ["data analysis", "research", "reporting", "statistics"],
+    tags: ["data analysis", "research", "reporting", "statistics", "Data Conversion", "Task Management"],
     rating: 4.6,
     totalVotes: 2876
   },
@@ -103,7 +103,7 @@ export const platformsAndDevelopment: Tool[] = [
     directUrl: "https://resumeandjobsgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-happy-man-with-a-job-offer-_n6N-k.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     category: "Career Development",
-    tags: ["resume", "job search", "career", "employment"],
+    tags: ["resume", "job search", "career", "employment", "All-in-One Suite", "Workflow Optimization"],
     rating: 4.7,
     totalVotes: 3287
   },
@@ -116,7 +116,7 @@ export const platformsAndDevelopment: Tool[] = [
     directUrl: "https://materialvaluationgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=tbZu4vnsY_8",
     category: "Material Science",
-    tags: ["material valuation", "assessment", "properties", "analysis"],
+    tags: ["material valuation", "assessment", "properties", "analysis", "Data Conversion"],
     rating: 4.4,
     totalVotes: 1876
   },
@@ -127,7 +127,7 @@ export const platformsAndDevelopment: Tool[] = [
     emoji: "🤗",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://huggingface.co/spaces",
-    tags: ["community platform", "AI applications", "Gradio", "Streamlit", "open source ML"],
+    tags: ["community platform", "AI applications", "Gradio", "Streamlit", "open source ML", "Multi-Tool Platform", "Team Collaboration"],
     category: "DEVELOPMENT & CODING",
     rating: 4.8,
     totalVotes: 5234
@@ -139,7 +139,7 @@ export const platformsAndDevelopment: Tool[] = [
     emoji: "📸",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://copycoder.ai/",
-    tags: ["UI screenshots", "code generation", "AI prompts", "development tools", "automation"],
+    tags: ["UI screenshots", "code generation", "AI prompts", "development tools", "automation", "Automation Platform", "Code Assistant"],
     category: "DEVELOPMENT & CODING",
     rating: 4.4,
     totalVotes: 2456
@@ -151,7 +151,7 @@ export const platformsAndDevelopment: Tool[] = [
     emoji: "🔗",
     color: "from-green-500 to-blue-600",
     directUrl: "https://n8n.io/",
-    tags: ["workflow automation", "open source", "no-code", "self-hosted", "app integration"],
+    tags: ["workflow automation", "open source", "no-code", "self-hosted", "app integration", "Automation Platform", "Workflow Optimization"],
     category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 3456
@@ -163,7 +163,7 @@ export const platformsAndDevelopment: Tool[] = [
     emoji: "🔄",
     color: "from-cyan-500 to-purple-600",
     directUrl: "https://www.gumloop.com/",
-    tags: ["no-code automation", "drag-and-drop", "data extraction", "platform integrations", "self-hosting"],
+    tags: ["no-code automation", "drag-and-drop", "data extraction", "platform integrations", "self-hosting", "Automation Platform", "Multi-Tool Platform"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 2890
