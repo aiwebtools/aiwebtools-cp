@@ -19,7 +19,7 @@ export const specializedHealthTools: Tool[] = [
     emoji: "💊",
     color: "from-blue-500 to-green-600",
     directUrl: "https://www.healthtap.com",
-    tags: ["telemedicine", "doctor consultation", "health advice", "prescriptions"],
+    tags: ["telemedicine", "doctor consultation", "health advice", "prescriptions", "Medical", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.4,
     totalVotes: 3210
@@ -31,7 +31,7 @@ export const specializedHealthTools: Tool[] = [
     emoji: "🧠",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.headspace.com",
-    tags: ["meditation", "mindfulness", "mental health", "stress relief"],
+    tags: ["meditation", "mindfulness", "mental health", "stress relief", "Mental Health", "Meditation", "Wellness"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 4567
@@ -43,7 +43,7 @@ export const specializedHealthTools: Tool[] = [
     emoji: "🏃",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.myfitnesspal.com",
-    tags: ["fitness tracking", "nutrition", "diet planning", "health monitoring"],
+    tags: ["fitness tracking", "nutrition", "diet planning", "health monitoring", "Fitness", "Nutrition", "Health Tracking"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
     totalVotes: 5234
@@ -55,7 +55,7 @@ export const specializedHealthTools: Tool[] = [
     emoji: "🩺",
     color: "from-red-500 to-pink-600",
     directUrl: "https://ada.com",
-    tags: ["symptom checker", "health assessment", "AI diagnosis", "medical insights"],
+    tags: ["symptom checker", "health assessment", "AI diagnosis", "medical insights", "Medical", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.3,
     totalVotes: 2890
@@ -67,7 +67,7 @@ export const specializedHealthTools: Tool[] = [
     emoji: "🌙",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.calm.com",
-    tags: ["sleep", "meditation", "relaxation", "mental wellness"],
+    tags: ["sleep", "meditation", "relaxation", "mental wellness", "Mental Health", "Meditation", "Sleep", "Stress Management"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 6123

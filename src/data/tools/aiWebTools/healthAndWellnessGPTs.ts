@@ -25,7 +25,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
-    tags: ["dr", "doctor", "personalized doctor", "medical consultation", "health advice", "doctor simulation", "healthcare", "medical ai", "aiwebtools", "Custom GPT"],
+    tags: ["dr", "doctor", "personalized doctor", "medical consultation", "health advice", "doctor simulation", "healthcare", "medical ai", "aiwebtools", "Custom GPT", "Medical", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 5432
@@ -37,7 +37,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "✨",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://skincaregpt.lovable.app/?via=aiwebtools",
-    tags: ["skincare", "dermatology", "beauty advice", "skin analysis", "cosmetics", "health", "wellness", "aiwebtools", "Custom GPT"],
+    tags: ["skincare", "dermatology", "beauty advice", "skin analysis", "cosmetics", "health", "wellness", "aiwebtools", "Custom GPT", "Wellness", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 4567
@@ -51,7 +51,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298535833407488/vet.webp",
-    tags: ["vet", "veterinarian", "veterinary care", "pet health", "animal medicine", "pet consultation", "veterinary advice", "pets", "aiwebtools", "Custom GPT"],
+    tags: ["vet", "veterinarian", "veterinary care", "pet health", "animal medicine", "pet consultation", "veterinary advice", "pets", "aiwebtools", "Custom GPT", "Pet Health", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 4321
@@ -64,7 +64,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     color: "from-purple-500 to-pink-600",
     directUrl: "https://rxai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-professional-looking-pharmaceutical-assistan.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["pharma", "pharmaceutical", "rx", "medication management", "drug information", "pharmacy", "healthcare", "prescriptions", "aiwebtools", "Custom GPT"],
+    tags: ["pharma", "pharmaceutical", "rx", "medication management", "drug information", "pharmacy", "healthcare", "prescriptions", "aiwebtools", "Custom GPT", "Medical", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
     totalVotes: 3876
@@ -78,7 +78,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=_e6DtLUv-2Q",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377362789097803786/image.png?ex=6838b08f&is=68375f0f&hm=f63e1ae446523dd9eff4aa0f95166aa8a5e6119c506b44ab1656322ea4ca47b7&=&format=webp&quality=lossless&width=2646&height=1392",
-    tags: ["mental", "mental health", "wellness", "therapy", "cbt", "cognitive behavioral", "emotional support", "anxiety", "depression", "aiwebtools", "Custom GPT"],
+    tags: ["mental", "mental health", "wellness", "therapy", "cbt", "cognitive behavioral", "emotional support", "anxiety", "depression", "aiwebtools", "Custom GPT", "Mental Health", "Therapy", "Stress Management"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.8,
     totalVotes: 6234
@@ -91,7 +91,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     color: "from-pink-500 to-red-600",
     directUrl: "https://marriagemendergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=3HCv5_QldrU",
-    tags: ["relationship counseling", "marriage advice", "couples therapy", "communication", "relationship support", "aiwebtools", "Custom GPT"],
+    tags: ["relationship counseling", "marriage advice", "couples therapy", "communication", "relationship support", "aiwebtools", "Custom GPT", "Therapy", "Mental Health"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 4321
@@ -104,7 +104,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-67cbcbcf3a38819183974f2d062d5d7f-dental-gpt-expert",
     videoUrl: "https://youtu.be/jwjNOKP5mf4?si=XWMe5y7XghCURksD",
-    tags: ["dental health", "oral care", "dentistry", "dental consultation", "oral hygiene", "dental procedures", "healthcare", "Custom GPT"],
+    tags: ["dental health", "oral care", "dentistry", "dental consultation", "oral hygiene", "dental procedures", "healthcare", "Custom GPT", "Medical", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
     totalVotes: 2890
@@ -116,7 +116,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "🏃",
     color: "from-blue-500 to-green-600",
     directUrl: "https://myfitnesspal.com",
-    tags: ["fitness tracking", "nutrition", "calorie counting", "health goals", "exercise", "wellness"],
+    tags: ["fitness tracking", "nutrition", "calorie counting", "health goals", "exercise", "wellness", "Fitness", "Nutrition", "Health Tracking"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.4,
     totalVotes: 12345
@@ -128,7 +128,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "🧘",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://headspace.com",
-    tags: ["meditation", "mindfulness", "mental health", "stress relief", "sleep", "wellness"],
+    tags: ["meditation", "mindfulness", "mental health", "stress relief", "sleep", "wellness", "Mental Health", "Meditation", "Stress Management", "Sleep"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 9876
@@ -140,7 +140,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "🩺",
     color: "from-red-500 to-blue-600",
     directUrl: "https://webmd.com",
-    tags: ["symptom checker", "health information", "medical guidance", "healthcare", "diagnosis assistance", "health education"],
+    tags: ["symptom checker", "health information", "medical guidance", "healthcare", "diagnosis assistance", "health education", "Medical", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.3,
     totalVotes: 15432
@@ -152,7 +152,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "😌",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://calm.com",
-    tags: ["mental wellness", "meditation", "sleep", "relaxation", "stress management", "anxiety relief"],
+    tags: ["mental wellness", "meditation", "sleep", "relaxation", "stress management", "anxiety relief", "Mental Health", "Meditation", "Sleep", "Stress Management"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
     totalVotes: 8765
@@ -166,7 +166,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-68afaae3f8e881918d8b84b7ca85a413-fitness-coach/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=eHInYKxyKm4",
-    tags: ["fitness coaching", "workout plans", "personal training", "nutrition guidance", "fitness goals", "exercise", "aiwebtools", "Custom GPT"],
+    tags: ["fitness coaching", "workout plans", "personal training", "nutrition guidance", "fitness goals", "exercise", "aiwebtools", "Custom GPT", "Fitness", "Nutrition"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 3456
@@ -179,7 +179,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://chatgpt.com/g/g-68afaae3f8e881918d8b84b7ca85a413-fitness-coach/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=eHInYKxyKm4",
-    tags: ["fitness trainer", "personal training", "workout routines", "exercise form", "strength training", "cardio", "fitness coaching", "aiwebtools", "Custom GPT"],
+    tags: ["fitness trainer", "personal training", "workout routines", "exercise form", "strength training", "cardio", "fitness coaching", "aiwebtools", "Custom GPT", "Fitness"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.8,
     totalVotes: 4512

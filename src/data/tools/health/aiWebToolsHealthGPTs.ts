@@ -20,7 +20,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     emoji: "🧠",
     color: "from-blue-500 to-green-600",
     directUrl: "https://chatgpt.com/g/g-68ae286601288191825384507ac74512-neurophysical-titan/?via=aiwebtools",
-    tags: ["mind body connection", "neurophysical health", "mental performance", "physical wellness", "holistic health", "cognitive optimization", "fitness", "stress management", "aiwebtools"],
+    tags: ["mind body connection", "neurophysical health", "mental performance", "physical wellness", "holistic health", "cognitive optimization", "fitness", "stress management", "aiwebtools", "Mental Health", "Wellness", "Fitness"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.8,
     totalVotes: 4156
@@ -34,7 +34,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/_e6DtLUv-2Q",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377362789097803786/image.png?ex=6838b08f&is=68375f0f&hm=f63e1ae446523dd9eff4aa0f95166aa8a5e6119c506b44ab1656322ea4ca47b7&=&format=webp&quality=lossless&width=2646&height=1392",
-    tags: ["mental wellness", "emotional support", "CBT principles", "stress management", "personal growth", "aiwebtools"],
+    tags: ["mental wellness", "emotional support", "CBT principles", "stress management", "personal growth", "aiwebtools", "Mental Health", "Therapy", "Stress Management"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.9,
     totalVotes: 6234
@@ -47,7 +47,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
-    tags: ["medical consultation", "health advice", "doctor simulation", "healthcare", "medical ai", "aiwebtools"],
+    tags: ["medical consultation", "health advice", "doctor simulation", "healthcare", "medical ai", "aiwebtools", "Medical", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 5432
@@ -61,7 +61,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298535833407488/vet.webp",
-    tags: ["veterinary care", "pet health", "animal medicine", "pet consultation", "veterinary advice", "aiwebtools"],
+    tags: ["veterinary care", "pet health", "animal medicine", "pet consultation", "veterinary advice", "aiwebtools", "Pet Health", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 4321
@@ -74,7 +74,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     color: "from-purple-500 to-pink-600",
     directUrl: "https://rxai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-professional-looking-pharmaceutical-assistan.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["pharmaceutical", "medication management", "drug information", "pharmacy", "healthcare", "aiwebtools"],
+    tags: ["pharmaceutical", "medication management", "drug information", "pharmacy", "healthcare", "aiwebtools", "Medical", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,
     totalVotes: 3876
@@ -87,7 +87,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://rxai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-professional-pharmaceutical-assis.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["pharmaceutical research", "clinical trials", "drug development", "regulatory compliance", "medical research", "aiwebtools"],
+    tags: ["pharmaceutical research", "clinical trials", "drug development", "regulatory compliance", "medical research", "aiwebtools", "Medical", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.8,
     totalVotes: 4567
@@ -100,7 +100,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["genetic analysis", "DNA research", "genomic data", "scientific analysis", "genetic variations", "aiwebtools"],
+    tags: ["genetic analysis", "DNA research", "genomic data", "scientific analysis", "genetic variations", "aiwebtools", "Medical", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 3789
@@ -113,7 +113,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     color: "from-pink-500 to-red-600",
     directUrl: "https://marriagemendergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=3HCv5_QldrU",
-    tags: ["relationship counseling", "marriage advice", "couples therapy", "communication", "relationship support", "aiwebtools"],
+    tags: ["relationship counseling", "marriage advice", "couples therapy", "communication", "relationship support", "aiwebtools", "Therapy", "Mental Health"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 4321
@@ -125,7 +125,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     emoji: "✨",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://skincaregpt.lovable.app/?via=aiwebtools",
-    tags: ["skincare", "dermatology", "beauty advice", "skin analysis", "cosmetics", "health", "wellness", "aiwebtools"],
+    tags: ["skincare", "dermatology", "beauty advice", "skin analysis", "cosmetics", "health", "wellness", "aiwebtools", "Wellness", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 4567
@@ -137,7 +137,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     emoji: "🧘",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-688ea843f0ac81918fb4b8d60d7dc4ef-meditation-guidance-gpt",
-    tags: ["meditation", "mindfulness", "stress relief", "mental wellness", "breathing exercises", "inner peace", "aiwebtools"],
+    tags: ["meditation", "mindfulness", "stress relief", "mental wellness", "breathing exercises", "inner peace", "aiwebtools", "Meditation", "Mental Health", "Stress Management"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 2890
@@ -149,7 +149,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     emoji: "🛡️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-68d28a4d6ad481918869ea60627624de-petro-product-screener-gpt",
-    tags: ["product safety", "chemical analysis", "health hazards", "petrochemicals", "safety screening", "product analyzer", "aiwebtools"],
+    tags: ["product safety", "chemical analysis", "health hazards", "petrochemicals", "safety screening", "product analyzer", "aiwebtools", "Healthcare", "Wellness"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 1234
@@ -161,7 +161,7 @@ export const aiWebToolsHealthGPTs: Tool[] = [
     emoji: "🤝",
     color: "from-blue-500 to-green-600",
     directUrl: "https://chatgpt.com/g/g-68cf22ea994481919206bf9eb0abccbc-patients-advocate-gpt",
-    tags: ["patient advocacy", "healthcare rights", "medical visits", "patient support", "healthcare navigation", "empowerment", "aiwebtools"],
+    tags: ["patient advocacy", "healthcare rights", "medical visits", "patient support", "healthcare navigation", "empowerment", "aiwebtools", "Healthcare", "Medical"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.8,
     totalVotes: 2156
