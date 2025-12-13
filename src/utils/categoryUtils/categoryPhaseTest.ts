@@ -16,6 +16,7 @@ import { researchAcademicSubtypes, detectResearchAcademicSubtype, isResearchAcad
 import { VIDEO_SUBTYPES, detectVideoSubtypes, isVideoMultimediaTool } from "./videoMultimediaDetection";
 import { writingContentSubtypes, detectWritingContentSubtypes, isWritingContentTool } from "./writingContentDetection";
 import { SECURITY_PRIVACY_SUBTYPES, detectSecurityPrivacySubtype, isSecurityPrivacyTool } from "./securityPrivacyDetection";
+import { GAMING_ENTERTAINMENT_SUBTYPES, detectGamingEntertainmentSubtype, isGamingEntertainmentTool } from "./gamingEntertainmentDetection";
 
 export interface PhaseTestResult {
   phase: number;
@@ -195,11 +196,18 @@ const CATEGORY_PHASES = [
     subtypes: [...SECURITY_PRIVACY_SUBTYPES],
     detect: detectSecurityPrivacySubtype,
     isCategory: isSecurityPrivacyTool
+  },
+  {
+    phase: 15,
+    name: "Gaming & Entertainment",
+    subtypes: [...GAMING_ENTERTAINMENT_SUBTYPES],
+    detect: detectGamingEntertainmentSubtype,
+    isCategory: isGamingEntertainmentTool
   }
 ];
 
 export function runCategoryPhaseTest(tools: Tool[]): CategoryPhaseTestReport {
-  console.log("🧪 CATEGORY PHASE TEST - Starting comprehensive test of all 14 phases...");
+  console.log("🧪 CATEGORY PHASE TEST - Starting comprehensive test of all 15 phases...");
   console.log(`📊 Total tools to analyze: ${tools.length}`);
   
   const phaseResults: PhaseTestResult[] = [];
