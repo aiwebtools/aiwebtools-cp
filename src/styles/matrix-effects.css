@@ -134,6 +134,27 @@
   animation: matrixPulse 2s ease-in-out infinite;
 }
 
+/* Matrix Progress Bar Animations */
+@keyframes matrixProgressPulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes matrixCharFall {
+  0% {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(400%);
+    opacity: 0.3;
+  }
+}
+
 /* Matrix-style borders and dividers */
 .matrix-border {
   border-image: linear-gradient(90deg, transparent, #00ff41, transparent) 1;
