@@ -9,7 +9,7 @@ export const aiCybersecurityTools: Tool[] = [
     emoji: "🛡️",
     color: "from-red-500 to-orange-600",
     directUrl: "https://darktrace.com/?via=aiwebtools",
-    tags: ["Security", "cybersecurity", "threat detection", "AI security", "zero-day protection", "autonomous response", "network security"],
+    tags: ["Security", "cybersecurity", "threat detection", "AI security", "zero-day protection", "autonomous response", "network security", "Cybersecurity", "Threat Detection"],
     category: "AI Cybersecurity",
     rating: 4.8,
     totalVotes: 8234
@@ -21,7 +21,7 @@ export const aiCybersecurityTools: Tool[] = [
     emoji: "🦅",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.crowdstrike.com/?via=aiwebtools",
-    tags: ["Security", "endpoint security", "threat intelligence", "EDR", "incident response", "cloud security", "AI protection"],
+    tags: ["Security", "endpoint security", "threat intelligence", "EDR", "incident response", "cloud security", "AI protection", "Endpoint Protection", "Threat Detection"],
     category: "AI Cybersecurity",
     rating: 4.9,
     totalVotes: 12456
@@ -33,7 +33,7 @@ export const aiCybersecurityTools: Tool[] = [
     emoji: "⚔️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.sentinelone.com/?via=aiwebtools",
-    tags: ["Security", "endpoint security", "autonomous protection", "cloud security", "threat prevention", "AI detection", "EDR"],
+    tags: ["Security", "endpoint security", "autonomous protection", "cloud security", "threat prevention", "AI detection", "EDR", "Endpoint Protection", "Cybersecurity"],
     category: "AI Cybersecurity",
     rating: 4.8,
     totalVotes: 9876
@@ -45,7 +45,7 @@ export const aiCybersecurityTools: Tool[] = [
     emoji: "👁️",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://www.vectra.ai/?via=aiwebtools",
-    tags: ["Security", "network security", "threat detection", "NDR", "behavioral analysis", "cloud security", "AI monitoring"],
+    tags: ["Security", "network security", "threat detection", "NDR", "behavioral analysis", "cloud security", "AI monitoring", "VPN & Network Security", "Threat Detection"],
     category: "AI Cybersecurity",
     rating: 4.7,
     totalVotes: 6789
@@ -57,7 +57,7 @@ export const aiCybersecurityTools: Tool[] = [
     emoji: "🔥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.paloaltonetworks.com/?via=aiwebtools",
-    tags: ["Security", "XDR", "threat detection", "security automation", "endpoint protection", "network security", "AI analytics"],
+    tags: ["Security", "XDR", "threat detection", "security automation", "endpoint protection", "network security", "AI analytics", "Endpoint Protection", "Threat Detection"],
     category: "AI Cybersecurity",
     rating: 4.7,
     totalVotes: 11234
@@ -69,7 +69,7 @@ export const aiCybersecurityTools: Tool[] = [
     emoji: "⚡",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.blackberry.com/us/en/products/cylance-endpoint-security?via=aiwebtools",
-    tags: ["Security", "endpoint protection", "predictive security", "threat prevention", "AI detection", "machine learning", "lightweight"],
+    tags: ["Security", "endpoint protection", "predictive security", "threat prevention", "AI detection", "machine learning", "lightweight", "Endpoint Protection", "Cybersecurity"],
     category: "AI Cybersecurity",
     rating: 4.6,
     totalVotes: 7456
