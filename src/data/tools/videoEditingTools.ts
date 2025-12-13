@@ -16,7 +16,7 @@ export const videoEditingTools: Tool[] = [
     emoji: "✂️",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.descript.com/",
-    tags: ["text-based editing", "filler word removal", "voice cloning", "audio editing", "transcription"],
+    tags: ["text-based editing", "filler word removal", "voice cloning", "audio editing", "transcription", "Video Editor"],
     category: "Video Tools",
     rating: 4.7,
     totalVotes: 4234
@@ -28,7 +28,7 @@ export const videoEditingTools: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.kapwing.com/",
-    tags: ["online editor", "auto-subtitles", "background removal", "smart cropping", "collaborative"],
+    tags: ["online editor", "auto-subtitles", "background removal", "smart cropping", "collaborative", "Video Editor"],
     category: "Video Tools",
     rating: 4.4,
     totalVotes: 2876
@@ -40,7 +40,7 @@ export const videoEditingTools: Tool[] = [
     emoji: "🎞️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://filmora.wondershare.com/",
-    tags: ["video editing", "motion tracking", "auto-reframe", "AI denoise", "professional"],
+    tags: ["video editing", "motion tracking", "auto-reframe", "AI denoise", "professional", "Video Editor", "Motion Graphics"],
     category: "Video Tools",
     rating: 4.4,
     totalVotes: 3876
@@ -52,7 +52,7 @@ export const videoEditingTools: Tool[] = [
     emoji: "✂️",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://www.opus.pro/",
-    tags: ["video clipping", "viral content", "highlights", "social media", "automation"],
+    tags: ["video clipping", "viral content", "highlights", "social media", "automation", "Video Editor", "Short Form Video"],
     category: "Video Tools",
     rating: 4.2,
     totalVotes: 2876
@@ -64,7 +64,7 @@ export const videoEditingTools: Tool[] = [
     emoji: "⏱️",
     color: "from-red-500 to-orange-600",
     directUrl: "https://vidyo.ai/",
-    tags: ["automatic clipping", "long-form to short", "social media", "podcasts", "webinars", "interviews"],
+    tags: ["automatic clipping", "long-form to short", "social media", "podcasts", "webinars", "interviews", "Video Editor", "Short Form Video"],
     category: "Video Tools",
     rating: 4.3,
     totalVotes: 3234
@@ -76,7 +76,7 @@ export const videoEditingTools: Tool[] = [
     emoji: "🍽️",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://www.getmunch.com/",
-    tags: ["video repurposing", "engaging moments", "short clips", "social optimization", "automatic"],
+    tags: ["video repurposing", "engaging moments", "short clips", "social optimization", "automatic", "Video Editor", "Short Form Video"],
     category: "Video Tools",
     rating: 4.1,
     totalVotes: 1987
@@ -88,7 +88,7 @@ export const videoEditingTools: Tool[] = [
     emoji: "🪄",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://vadoo.tv/",
-    tags: ["automatic captions", "highlights creation", "social optimization", "raw footage", "instant editing"],
+    tags: ["automatic captions", "highlights creation", "social optimization", "raw footage", "instant editing", "Video Editor"],
     category: "Video Tools",
     rating: 4.2,
     totalVotes: 2654
@@ -100,7 +100,7 @@ export const videoEditingTools: Tool[] = [
     emoji: "🎬",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://klap.app/?via=Aiwebtools",
-    tags: ["video clipping", "viral content", "social media", "automatic editing", "short clips", "highlights"],
+    tags: ["video clipping", "viral content", "social media", "automatic editing", "short clips", "highlights", "Video Editor", "Short Form Video"],
     category: "Video Tools",
     rating: 4.3,
     totalVotes: 2847

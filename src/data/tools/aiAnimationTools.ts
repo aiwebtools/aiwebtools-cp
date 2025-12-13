@@ -17,7 +17,7 @@ export const aiAnimationTools: Tool[] = [
     emoji: "🎭",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://cascadeur.com/?via=aiwebtools",
-    tags: ["3D animation", "character animation", "physics-based", "keyframe animation", "motion design"],
+    tags: ["3D animation", "character animation", "physics-based", "keyframe animation", "motion design", "Animation", "3D Animation"],
     category: "AI Animation Tools",
     rating: 4.7,
     totalVotes: 4567
@@ -29,7 +29,7 @@ export const aiAnimationTools: Tool[] = [
     emoji: "🎬",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.deepmotion.com/?via=aiwebtools",
-    tags: ["motion capture", "markerless tracking", "video-to-3D", "animation AI", "VR animation"],
+    tags: ["motion capture", "markerless tracking", "video-to-3D", "animation AI", "VR animation", "Motion Capture", "3D Animation"],
     category: "AI Animation Tools",
     rating: 4.6,
     totalVotes: 3876
@@ -41,7 +41,7 @@ export const aiAnimationTools: Tool[] = [
     emoji: "⚡",
     color: "from-green-500 to-teal-600",
     directUrl: "https://plask.ai/?via=aiwebtools",
-    tags: ["browser mocap", "video-to-animation", "character rigging", "quick animation", "web-based"],
+    tags: ["browser mocap", "video-to-animation", "character rigging", "quick animation", "web-based", "Motion Capture", "Animation"],
     category: "AI Animation Tools",
     rating: 4.5,
     totalVotes: 3234
@@ -53,7 +53,7 @@ export const aiAnimationTools: Tool[] = [
     emoji: "🎥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.movmi.ai/?via=aiwebtools",
-    tags: ["2D to 3D", "sensorless mocap", "human motion", "game animation", "quick mocap"],
+    tags: ["2D to 3D", "sensorless mocap", "human motion", "game animation", "quick mocap", "Motion Capture", "Animation"],
     category: "AI Animation Tools",
     rating: 4.4,
     totalVotes: 2987
@@ -65,7 +65,7 @@ export const aiAnimationTools: Tool[] = [
     emoji: "🎞️",
     color: "from-purple-600 to-pink-600",
     directUrl: "https://wonderdynamics.com/?via=aiwebtools",
-    tags: ["CG animation", "auto-compositing", "live-action VFX", "character animation", "automated workflow"],
+    tags: ["CG animation", "auto-compositing", "live-action VFX", "character animation", "automated workflow", "Live Action VFX", "3D Animation"],
     category: "AI Animation Tools",
     rating: 4.8,
     totalVotes: 5432
@@ -77,7 +77,7 @@ export const aiAnimationTools: Tool[] = [
     emoji: "▶️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.krikey.ai/?via=aiwebtools",
-    tags: ["text-to-animation", "3D avatars", "gesture control", "custom animations", "no-code animation"],
+    tags: ["text-to-animation", "3D avatars", "gesture control", "custom animations", "no-code animation", "Animation", "3D Animation"],
     category: "AI Animation Tools",
     rating: 4.3,
     totalVotes: 2654

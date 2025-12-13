@@ -17,7 +17,7 @@ export const videoMarketingTools: Tool[] = [
     emoji: "🌊",
     color: "from-blue-500 to-green-600",
     directUrl: "https://labs.google/fx/tools/flow/?via=aiwebtools",
-    tags: ["Google Labs", "visual editing", "experimental", "creative tools", "AI editing"],
+    tags: ["Google Labs", "visual editing", "experimental", "creative tools", "AI editing", "Video Editor", "Motion Graphics"],
     category: "Video Tools",
     rating: 4.5,
     totalVotes: 2100
@@ -29,7 +29,7 @@ export const videoMarketingTools: Tool[] = [
     emoji: "▶️",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://pictory.ai/",
-    tags: ["content repurposing", "short videos", "social media", "marketing", "long-form content"],
+    tags: ["content repurposing", "short videos", "social media", "marketing", "long-form content", "Video Editor", "Short Form Video"],
     category: "Video Tools",
     rating: 4.3,
     totalVotes: 2654
@@ -41,7 +41,7 @@ export const videoMarketingTools: Tool[] = [
     emoji: "🎵",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://fliki.ai/",
-    tags: ["text-to-speech", "realistic voices", "blog posts", "presentations", "narration"],
+    tags: ["text-to-speech", "realistic voices", "blog posts", "presentations", "narration", "Video Generator"],
     category: "Video Tools",
     rating: 4.2,
     totalVotes: 2345
@@ -53,7 +53,7 @@ export const videoMarketingTools: Tool[] = [
     emoji: "⭐",
     color: "from-green-500 to-blue-600",
     directUrl: "https://elai.io/",
-    tags: ["personalized videos", "scale", "AI presenters", "automation", "workflows"],
+    tags: ["personalized videos", "scale", "AI presenters", "automation", "workflows", "Video Generator", "Avatar Video"],
     category: "Video Tools",
     rating: 4.1,
     totalVotes: 1987
@@ -65,7 +65,7 @@ export const videoMarketingTools: Tool[] = [
     emoji: "🎨",
     color: "from-purple-500 to-cyan-600",
     directUrl: "https://animoto.com/",
-    tags: ["marketing videos", "smart templates", "automated editing", "social media", "business"],
+    tags: ["marketing videos", "smart templates", "automated editing", "social media", "business", "Video Generator", "Video Production"],
     category: "Video Tools",
     rating: 4.0,
     totalVotes: 3456
@@ -77,7 +77,7 @@ export const videoMarketingTools: Tool[] = [
     emoji: "🎬",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://wideo.co/",
-    tags: ["animated videos", "presentations", "marketing content", "drag-and-drop", "professional"],
+    tags: ["animated videos", "presentations", "marketing content", "drag-and-drop", "professional", "Animation", "Video Generator"],
     category: "Video Tools",
     rating: 4.0,
     totalVotes: 2543
@@ -89,7 +89,7 @@ export const videoMarketingTools: Tool[] = [
     emoji: "📺",
     color: "from-indigo-500 to-cyan-600",
     directUrl: "https://www.visla.us/",
-    tags: ["team collaboration", "business videos", "teleprompter", "professional content", "AI editing"],
+    tags: ["team collaboration", "business videos", "teleprompter", "professional content", "AI editing", "Video Editor", "Video Production"],
     category: "Video Tools",
     rating: 4.2,
     totalVotes: 2876

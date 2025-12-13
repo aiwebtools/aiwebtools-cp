@@ -27,7 +27,7 @@ import { getEnhancedAgentTools } from "./agentDetection";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 16; // Bumped for Data & Analytics subtypes + remaining Image tools
+let cacheVersion = 17; // Bumped for Video & Multimedia subtypes (13+ types)
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';
