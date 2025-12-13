@@ -22,12 +22,14 @@ import {
 } from "./specializedDetection";
 import { filterBusinessTools } from "./businessCategoryFiltering";
 import { getEnhancedAgentTools } from "./agentDetection";
+import { isGamingEntertainmentTool } from "./gamingEntertainmentDetection";
+import { isSecurityPrivacyTool } from "./securityPrivacyDetection";
 
 // Ultra-optimized cache with persistent storage and lazy loading
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 32; // Phase 15: Gaming & Entertainment tools with subtypes added
+let cacheVersion = 33; // Phase 15: Gaming & Entertainment as main category with proper detection
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';
@@ -239,6 +241,18 @@ export const buildToolsCache = (tools: Tool[]) => {
           ) || tool.tags?.includes("WEB3") || tool.tags?.includes("Blockchain");
         });
         console.log(`🌐 WEB3 & BLOCKCHAIN: Found ${categoryTools.length} tools`);
+        break;
+        
+      case "GAMING & ENTERTAINMENT":
+        // Use enhanced gaming detection for comprehensive coverage
+        categoryTools = tools.filter(tool => isGamingEntertainmentTool(tool));
+        console.log(`🎮 GAMING & ENTERTAINMENT: Found ${categoryTools.length} tools with enhanced detection`);
+        break;
+        
+      case "SECURITY & PRIVACY":
+        // Use security/privacy detection for comprehensive coverage
+        categoryTools = tools.filter(tool => isSecurityPrivacyTool(tool));
+        console.log(`🔒 SECURITY & PRIVACY: Found ${categoryTools.length} tools with enhanced detection`);
         break;
         
       default:

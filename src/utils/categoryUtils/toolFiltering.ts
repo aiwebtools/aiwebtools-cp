@@ -16,6 +16,8 @@ import { isAIWebToolsGPT } from "./specializedDetection";
 import { applyAIWebToolsPrioritization, getAIWebToolsPriorityScore } from "@/utils/aiWebToolsPrioritization";
 import { filterBusinessTools } from "./businessCategoryFiltering";
 import { allTools } from "@/data/toolsData";
+import { isGamingEntertainmentTool } from "./gamingEntertainmentDetection";
+import { isSecurityPrivacyTool } from "./securityPrivacyDetection";
 
 export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
   const categoryCounts: CategoryCounts = {};
@@ -155,10 +157,14 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
       const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
       toolCount = creativeTools.length;
       console.log(`🎭 FIXED ${mainCat.name}: ${toolCount} tools (corrected detection)`);
-      
-      // Additional debug for Creative & Entertainment
-      const creativeSample = creativeTools.slice(0, 15).map(t => `${t.title} (${t.category})`);
-      console.log(`🎭 CREATIVE SAMPLE TOOLS:`, creativeSample);
+    } else if (mainCat.name === "GAMING & ENTERTAINMENT") {
+      const gamingTools = tools.filter(tool => isGamingEntertainmentTool(tool));
+      toolCount = gamingTools.length;
+      console.log(`🎮 ${mainCat.name}: ${toolCount} tools (enhanced detection)`);
+    } else if (mainCat.name === "SECURITY & PRIVACY") {
+      const securityTools = tools.filter(tool => isSecurityPrivacyTool(tool));
+      toolCount = securityTools.length;
+      console.log(`🔒 ${mainCat.name}: ${toolCount} tools (enhanced detection)`);
     } else {
       // Build cache if needed and get cached results
       buildToolsCache(tools);
@@ -201,10 +207,18 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   else if (mainCategoryName === "CREATIVE & ENTERTAINMENT") {
     categoryTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
     console.log(`🎭 CORRECTED COUNT: Found ${categoryTools.length} creative & entertainment tools`);
-    
-    // Enhanced debug logging for Creative & Entertainment
-    const creativeTitles = categoryTools.slice(0, 15).map(t => `${t.title} (${t.category})`);
-    console.log(`🎭 CORRECTED Sample Creative Tools:`, creativeTitles);
+  }
+  
+  // Enhanced handling for Gaming & Entertainment
+  else if (mainCategoryName === "GAMING & ENTERTAINMENT") {
+    categoryTools = tools.filter(tool => isGamingEntertainmentTool(tool));
+    console.log(`🎮 Found ${categoryTools.length} gaming & entertainment tools`);
+  }
+  
+  // Enhanced handling for Security & Privacy
+  else if (mainCategoryName === "SECURITY & PRIVACY") {
+    categoryTools = tools.filter(tool => isSecurityPrivacyTool(tool));
+    console.log(`🔒 Found ${categoryTools.length} security & privacy tools`);
   }
   
   else {
