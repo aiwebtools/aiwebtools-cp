@@ -21,7 +21,7 @@ export const specializedImageTools: Tool[] = [
     emoji: "🎲",
     color: "from-green-500 to-teal-600",
     directUrl: "https://3dfy.ai/",
-    tags: ["Text-to-3D", "3D modeling", "text prompts", "beta version", "Discord community", "object categories"],
+    tags: ["Text-to-3D", "3D modeling", "text prompts", "beta version", "Discord community", "object categories", "3D Modeling", "Image Generator"],
     category: "Image Generation Platforms",
     rating: 4.3,
     totalVotes: 2987
@@ -33,7 +33,7 @@ export const specializedImageTools: Tool[] = [
     emoji: "👥",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.unrealengine.com/en-US/metahuman",
-    tags: ["Unreal Engine", "digital humans", "iPhone animation", "photorealistic", "MetaHuman Creator", "real-time performance"],
+    tags: ["Unreal Engine", "digital humans", "iPhone animation", "photorealistic", "MetaHuman Creator", "real-time performance", "Avatar Creator", "3D Modeling"],
     category: "Image Generation Platforms",
     rating: 4.8,
     totalVotes: 5678
@@ -45,7 +45,7 @@ export const specializedImageTools: Tool[] = [
     emoji: "🎲",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://lumalabs.ai/",
-    tags: ["NeRF technology", "3D images", "Dream Machine", "text-to-video", "Sora quality", "cinematic videos"],
+    tags: ["NeRF technology", "3D images", "Dream Machine", "text-to-video", "Sora quality", "cinematic videos", "3D Modeling", "Image Generator"],
     category: "Image Generation Platforms",
     rating: 4.8,
     totalVotes: 6234
@@ -57,7 +57,7 @@ export const specializedImageTools: Tool[] = [
     emoji: "📱",
     color: "from-pink-500 to-red-600",
     directUrl: "https://www.faceapp.com/",
-    tags: ["top app 2019", "60+ filters", "magazine-worthy", "AI technology", "selfie enhancement", "facial transformations"],
+    tags: ["top app 2019", "60+ filters", "magazine-worthy", "AI technology", "selfie enhancement", "facial transformations", "Photo Editor", "Avatar Creator"],
     category: "Image Generation Platforms",
     rating: 4.8,
     totalVotes: 6234
@@ -93,7 +93,7 @@ export const specializedImageTools: Tool[] = [
     emoji: "🖤",
     color: "from-black to-gray-600",
     directUrl: "https://blackink.ai/",
-    tags: ["tattoo design", "unique tattoos", "seconds generation", "design automation", "personalized", "quick creation"],
+    tags: ["tattoo design", "unique tattoos", "seconds generation", "design automation", "personalized", "quick creation", "Image Generator", "Graphic Design"],
     category: "Image Generation Platforms",
     rating: 4.3,
     totalVotes: 2234
@@ -105,7 +105,7 @@ export const specializedImageTools: Tool[] = [
     emoji: "😂",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://ai-meme.com/",
-    tags: ["meme generation", "humor", "text prompts", "viral content", "social media", "context understanding"],
+    tags: ["meme generation", "humor", "text prompts", "viral content", "social media", "context understanding", "Image Generator", "Graphic Design"],
     category: "Image Generation Platforms",
     rating: 4.2,
     totalVotes: 2345

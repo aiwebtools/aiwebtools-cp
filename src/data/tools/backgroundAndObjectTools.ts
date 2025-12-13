@@ -25,7 +25,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "🎯",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.aiornot.com/",
-    tags: ["AI detection", "image authenticity", "Stable Diffusion", "MidJourney", "DALL-E", "Chrome extension"],
+    tags: ["AI detection", "image authenticity", "Stable Diffusion", "MidJourney", "DALL-E", "Chrome extension", "Photo Editor"],
     category: "Image Generation Platforms",
     rating: 4.6,
     totalVotes: 3456
@@ -37,7 +37,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "✏️",
     color: "from-blue-500 to-green-600",
     directUrl: "https://www.autodraw.com/",
-    tags: ["Google Creative Lab", "machine learning", "doodle improvement", "any device", "free tool", "drawing assistance"],
+    tags: ["Google Creative Lab", "machine learning", "doodle improvement", "any device", "free tool", "drawing assistance", "Graphic Design", "AI Art"],
     category: "Image Generation Platforms",
     rating: 4.1,
     totalVotes: 2876
@@ -73,7 +73,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "✂️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.cutout.pro/?vsource=cutout_share-406567850369093",
-    tags: ["25k+ businesses", "background removal", "photo enhancer", "API integration", "visual design", "computer vision"],
+    tags: ["25k+ businesses", "background removal", "photo enhancer", "API integration", "visual design", "computer vision", "Photo Editor", "Background Remover"],
     category: "Image Generation Platforms",
     rating: 4.4,
     totalVotes: 3234
@@ -145,7 +145,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "✂️",
     color: "from-red-500 to-orange-600",
     directUrl: "https://magicstudio.com/?via=aiwebtools",
-    tags: ["drag-and-drop", "no signup", "unwanted removal", "PRO version", "bulk editing", "real estate"],
+    tags: ["drag-and-drop", "no signup", "unwanted removal", "PRO version", "bulk editing", "real estate", "Photo Editor", "Background Remover"],
     category: "Image Generation Platforms",
     rating: 4.6,
     totalVotes: 4123
@@ -157,7 +157,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "🪄",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://clickmajic.com/",
-    tags: ["background removal", "1000+ images", "API integration", "complex scenarios", "transparent backgrounds", "marketing materials"],
+    tags: ["background removal", "1000+ images", "API integration", "complex scenarios", "transparent backgrounds", "marketing materials", "Photo Editor", "Background Remover"],
     category: "Image Generation Platforms",
     rating: 4.5,
     totalVotes: 3789
@@ -181,7 +181,7 @@ export const backgroundAndObjectTools: Tool[] = [
     emoji: "🧹",
     color: "from-red-500 to-pink-600",
     directUrl: "https://objectremover.com/image-cleaner",
-    tags: ["object removal", "text removal", "watermark removal", "AI technology", "natural results", "fast processing"],
+    tags: ["object removal", "text removal", "watermark removal", "AI technology", "natural results", "fast processing", "Photo Editor"],
     category: "Image Generation Platforms",
     rating: 4.5,
     totalVotes: 3567
