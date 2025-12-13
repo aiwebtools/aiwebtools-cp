@@ -28,7 +28,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://stellaris.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=tJwhDOE3mUM",
-    tags: ["stellaris", "space exploration", "astronomy", "research simulation", "space science", "exoplanet research", "astrogation", "terraforming", "colony planning", "aiwebtools", "Custom GPT"],
+    tags: ["stellaris", "space exploration", "astronomy", "research simulation", "space science", "exoplanet research", "astrogation", "terraforming", "colony planning", "aiwebtools", "Custom GPT", "Scientific Research", "STEM Education"],
     category: "Science & Research",
     rating: 4.8,
     totalVotes: 5432
@@ -41,7 +41,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     color: "from-yellow-500 to-purple-600",
     directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=DR_3MvP7Wws",
-    tags: ["nikola", "tesla", "nikola tesla", "scientific research", "innovation", "electricity", "physics", "inventor", "electromagnetic", "aiwebtools", "Custom GPT"],
+    tags: ["nikola", "tesla", "nikola tesla", "scientific research", "innovation", "electricity", "physics", "inventor", "electromagnetic", "aiwebtools", "Custom GPT", "Scientific Research", "STEM Education"],
     category: "Science & Research",
     rating: 4.9,
     totalVotes: 6789
@@ -54,7 +54,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://alchemicalscientistgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/3JbmudJu9LM?si=lKMxbzq0a5XgKLAW",
-    tags: ["alchemist", "alchemy", "alchemical", "chemistry", "medieval science", "experiments", "historical science", "transmutation", "aiwebtools", "Custom GPT"],
+    tags: ["alchemist", "alchemy", "alchemical", "chemistry", "medieval science", "experiments", "historical science", "transmutation", "aiwebtools", "Custom GPT", "Scientific Research", "STEM Education"],
     category: "Science & Research",
     rating: 4.6,
     totalVotes: 4321
@@ -67,7 +67,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["genome", "genomic", "genetics", "dna", "dna analysis", "genomics", "scientific research", "biology", "genetic sequencing", "aiwebtools", "Custom GPT"],
+    tags: ["genome", "genomic", "genetics", "dna", "dna analysis", "genomics", "scientific research", "biology", "genetic sequencing", "aiwebtools", "Custom GPT", "Genomics Research", "Scientific Research"],
     category: "Science & Research",
     rating: 4.7,
     totalVotes: 5123
@@ -79,7 +79,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     emoji: "📊",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://consensus.app",
-    tags: ["academic search", "research", "citations", "peer review", "scientific papers", "evidence-based"],
+    tags: ["academic search", "research", "citations", "peer review", "scientific papers", "evidence-based", "Academic Search", "Evidence Analysis"],
     category: "Science & Research",
     rating: 4.6,
     totalVotes: 3421
@@ -91,7 +91,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     emoji: "🔬",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://elicit.org",
-    tags: ["research assistant", "paper discovery", "claim extraction", "research workflow", "literature review", "academic"],
+    tags: ["research assistant", "paper discovery", "claim extraction", "research workflow", "literature review", "academic", "Literature Review", "Paper Summarization"],
     category: "Science & Research",
     rating: 4.5,
     totalVotes: 2876
@@ -103,7 +103,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     emoji: "🌐",
     color: "from-teal-500 to-green-600",
     directUrl: "https://semanticscholar.org",
-    tags: ["academic search", "ai research", "paper discovery", "machine learning", "scholarly articles", "citations"],
+    tags: ["academic search", "ai research", "paper discovery", "machine learning", "scholarly articles", "citations", "Academic Search", "Research Discovery"],
     category: "Science & Research",
     rating: 4.7,
     totalVotes: 5234
@@ -115,7 +115,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     emoji: "🐰",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://researchrabbitapp.com",
-    tags: ["research discovery", "paper connections", "visualization", "collaboration", "academic network", "literature mapping"],
+    tags: ["research discovery", "paper connections", "visualization", "collaboration", "academic network", "literature mapping", "Research Discovery", "Literature Review"],
     category: "Science & Research",
     rating: 4.4,
     totalVotes: 1987
@@ -127,7 +127,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     emoji: "🔗",
     color: "from-orange-500 to-red-600",
     directUrl: "https://connectedpapers.com",
-    tags: ["paper visualization", "research mapping", "citation network", "academic discovery", "paper connections", "literature review"],
+    tags: ["paper visualization", "research mapping", "citation network", "academic discovery", "paper connections", "literature review", "Research Discovery", "Citation Management"],
     category: "Science & Research",
     rating: 4.6,
     totalVotes: 3654
@@ -139,7 +139,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     emoji: "♻️",
     color: "from-green-500 to-teal-600",
     directUrl: "https://plastolinegpt.lovable.app/?via=aiwebtools",
-    tags: ["plastoline", "plastic recycling", "waste to fuel", "environmental science", "sustainability", "green energy", "waste management", "julian brown", "pyrolysis", "aiwebtools", "Custom GPT"],
+    tags: ["plastoline", "plastic recycling", "waste to fuel", "environmental science", "sustainability", "green energy", "waste management", "julian brown", "pyrolysis", "aiwebtools", "Custom GPT", "Scientific Research", "STEM Education"],
     category: "Science & Research",
     rating: 4.5,
     totalVotes: 2156
@@ -152,7 +152,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     color: "from-amber-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-689005f62df881918961b6c93ad5b19e-geology-rock-identification-gpt",
     videoUrl: "https://youtu.be/nmRT6AOVQNg?si=bacR1az2vDwLr5H",
-    tags: ["geology", "rock identification", "minerals", "earth science", "geological formations", "field geology", "petrology", "aiwebtools", "Custom GPT"],
+    tags: ["geology", "rock identification", "minerals", "earth science", "geological formations", "field geology", "petrology", "aiwebtools", "Custom GPT", "Scientific Research", "STEM Education"],
     category: "Science & Research",
     rating: 4.6,
     totalVotes: 3245
@@ -164,7 +164,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     emoji: "🌱",
     color: "from-green-500 to-teal-600",
     directUrl: "https://chatgpt.com/g/g-68bb73007bd48191a860d2304e3665e6-garden-vision-analysis-plant-doctor-gpt/?via=aiwebtools",
-    tags: ["plant health", "garden care", "horticulture", "plant diagnosis", "gardening", "agriculture", "plant science", "aiwebtools", "Custom GPT"],
+    tags: ["plant health", "garden care", "horticulture", "plant diagnosis", "gardening", "agriculture", "plant science", "aiwebtools", "Custom GPT", "Scientific Research", "Data Analysis"],
     category: "Science & Research",
     rating: 4.7,
     totalVotes: 2187
@@ -176,7 +176,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-68f8fd43f6fc81918226efa6de613a6a-microgrid-power-safety-planning-assistant-gpt",
-    tags: ["microgrid", "micro grid", "power systems", "off-grid energy", "off grid", "renewable energy", "electrical safety", "energy independence", "backup power", "solar power", "aiwebtools", "Custom GPT"],
+    tags: ["microgrid", "micro grid", "power systems", "off-grid energy", "off grid", "renewable energy", "electrical safety", "energy independence", "backup power", "solar power", "aiwebtools", "Custom GPT", "STEM Education", "Data Analysis"],
     category: "Science & Research",
     rating: 4.6,
     totalVotes: 987
@@ -188,7 +188,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     emoji: "💧",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-68f8f667e0a081918598d64621fea153-aquila-water-safety-planning-assistant-gpt",
-    tags: ["aquila", "water safety", "water purification", "emergency preparedness", "water storage", "water planning", "off-grid water", "survival", "water security", "aiwebtools", "Custom GPT"],
+    tags: ["aquila", "water safety", "water purification", "emergency preparedness", "water storage", "water planning", "off-grid water", "survival", "water security", "aiwebtools", "Custom GPT", "Scientific Research", "Data Analysis"],
     category: "Science & Research",
     rating: 4.7,
     totalVotes: 1123
@@ -200,7 +200,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     emoji: "🌍",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68f8eda5982c8191bef047399d91a056-world-data-explorer-gpt",
-    tags: ["data analysis", "global data", "predictions", "research", "statistical analysis", "data science", "trend forecasting", "python", "aiwebtools", "Custom GPT"],
+    tags: ["data analysis", "global data", "predictions", "research", "statistical analysis", "data science", "trend forecasting", "python", "aiwebtools", "Custom GPT", "Data Analysis", "Evidence Analysis"],
     category: "Science & Research",
     rating: 4.8,
     totalVotes: 2345
@@ -212,7 +212,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     emoji: "⏰",
     color: "from-green-500 to-blue-600",
     directUrl: "https://worldresourceclock.lovable.app/?via=aiwebtools",
-    tags: ["natural resources", "sustainability", "environment", "resource tracking", "climate", "conservation", "global data", "real-time monitoring", "aiwebtools", "Custom GPT"],
+    tags: ["natural resources", "sustainability", "environment", "resource tracking", "climate", "conservation", "global data", "real-time monitoring", "aiwebtools", "Custom GPT", "Data Analysis", "Scientific Research"],
     category: "Science & Research",
     rating: 4.9,
     totalVotes: 3567
@@ -224,7 +224,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     emoji: "🛰️",
     color: "from-indigo-500 via-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-69268e308a4c81919515ac1895e10d17-astrodynamics-gpt?via=aiwebtools",
-    tags: ["astro", "astrodynamics", "orbital mechanics", "space physics", "trajectory calculations", "satellite orbits", "space science", "physics", "aerospace", "orbit", "aiwebtools", "Custom GPT"],
+    tags: ["astro", "astrodynamics", "orbital mechanics", "space physics", "trajectory calculations", "satellite orbits", "space science", "physics", "aerospace", "orbit", "aiwebtools", "Custom GPT", "Scientific Research", "STEM Education"],
     category: "Science & Research",
     rating: 4.8,
     totalVotes: 2789

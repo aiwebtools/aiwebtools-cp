@@ -27,7 +27,7 @@ export const aiResearchTools: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://dataanalysisandreportai.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=idxjOwUAD_I",
-    tags: ["Research Agent", "Data Agent", "data analysis", "statistical methods", "predictive modeling", "professional reports", "strategic insights", "Custom GPT", "agent"],
+    tags: ["Research Agent", "Data Agent", "data analysis", "statistical methods", "predictive modeling", "professional reports", "strategic insights", "Custom GPT", "agent", "Data Analysis", "Evidence Analysis"],
     category: "AI Research Tools",
     rating: 4.9,
     totalVotes: 6234
@@ -40,7 +40,7 @@ export const aiResearchTools: Tool[] = [
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://illuminous.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=Nd1Ui2-VLMU",
-    tags: ["Research Agent", "Data Agent", "global data analysis", "real-time predictions", "infographic generation", "data visualization", "insights", "Custom GPT", "agent"],
+    tags: ["Research Agent", "Data Agent", "global data analysis", "real-time predictions", "infographic generation", "data visualization", "insights", "Custom GPT", "agent", "Data Analysis", "Evidence Analysis"],
     category: "AI Research Tools",
     rating: 4.8,
     totalVotes: 5567
@@ -53,7 +53,7 @@ export const aiResearchTools: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://probabilitygpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
-    tags: ["Research Agent", "probability analysis", "truth verification", "misinformation detection", "decision support", "uncertainty analysis", "Custom GPT", "agent"],
+    tags: ["Research Agent", "probability analysis", "truth verification", "misinformation detection", "decision support", "uncertainty analysis", "Custom GPT", "agent", "Data Analysis", "Fact Checking"],
     category: "AI Research Tools",
     rating: 4.7,
     totalVotes: 4234
@@ -67,7 +67,7 @@ export const aiResearchTools: Tool[] = [
     directUrl: "https://factcheckergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/tCnwnD_Rak0?si=fQwRswX5r2quP3Hk",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-person-holding-a-sign-that-_gfexU.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["Research Agent", "fact checking", "misinformation detection", "bias analysis", "truth verification", "source validation", "Custom GPT", "agent"],
+    tags: ["Research Agent", "fact checking", "misinformation detection", "bias analysis", "truth verification", "source validation", "Custom GPT", "agent", "Fact Checking", "Evidence Analysis"],
     category: "AI Research Tools",
     rating: 4.8,
     totalVotes: 5123
@@ -80,7 +80,7 @@ export const aiResearchTools: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["Research Agent", "genetic analysis", "DNA research", "genomic data", "scientific analysis", "genetic variations", "Custom GPT", "agent"],
+    tags: ["Research Agent", "genetic analysis", "DNA research", "genomic data", "scientific analysis", "genetic variations", "Custom GPT", "agent", "Genomics Research", "Scientific Research"],
     category: "AI Research Tools",
     rating: 4.6,
     totalVotes: 3789
@@ -93,7 +93,7 @@ export const aiResearchTools: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://personfindergpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-p_gHXnM.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
-    tags: ["Research Agent", "background research", "public records", "social media search", "contact verification", "profile compilation", "Custom GPT", "agent"],
+    tags: ["Research Agent", "background research", "public records", "social media search", "contact verification", "profile compilation", "Custom GPT", "agent", "Research Discovery", "Data Analysis"],
     category: "AI Research Tools",
     rating: 4.0,
     totalVotes: 1876
@@ -105,7 +105,7 @@ export const aiResearchTools: Tool[] = [
     emoji: "📄",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://semanticscholar.org/",
-    tags: ["Research Agent", "academic search", "scientific literature", "research papers", "citations", "agent"],
+    tags: ["Research Agent", "academic search", "scientific literature", "research papers", "citations", "agent", "Academic Search", "Literature Review"],
     category: "AI Research Tools",
     rating: 4.5,
     totalVotes: 3456
@@ -117,7 +117,7 @@ export const aiResearchTools: Tool[] = [
     emoji: "📈",
     color: "from-green-500 to-blue-600",
     directUrl: "https://researchrabbit.ai/",
-    tags: ["Research Agent", "research discovery", "paper recommendations", "visualization", "academic networking", "agent"],
+    tags: ["Research Agent", "research discovery", "paper recommendations", "visualization", "academic networking", "agent", "Research Discovery", "Literature Review"],
     category: "AI Research Tools",
     rating: 4.4,
     totalVotes: 2987
@@ -129,7 +129,7 @@ export const aiResearchTools: Tool[] = [
     emoji: "🗃️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://zotero.org/",
-    tags: ["Research Agent", "reference management", "citation", "research organization", "academic writing", "agent"],
+    tags: ["Research Agent", "reference management", "citation", "research organization", "academic writing", "agent", "Citation Management", "Academic Writing"],
     category: "AI Research Tools",
     rating: 4.3,
     totalVotes: 2654
@@ -141,7 +141,7 @@ export const aiResearchTools: Tool[] = [
     emoji: "🧠",
     color: "from-cyan-500 to-purple-600",
     directUrl: "https://consensus.app/",
-    tags: ["Research Agent", "evidence-based search", "research insights", "question answering", "scientific", "agent"],
+    tags: ["Research Agent", "evidence-based search", "research insights", "question answering", "scientific", "agent", "Academic Search", "Evidence Analysis"],
     category: "AI Research Tools",
     rating: 4.3,
     totalVotes: 1987
@@ -153,7 +153,7 @@ export const aiResearchTools: Tool[] = [
     emoji: "📖",
     color: "from-blue-500 to-green-600",
     directUrl: "https://www.scholarcy.com/",
-    tags: ["Research Agent", "paper summarization", "key concepts", "research analysis", "academic", "agent"],
+    tags: ["Research Agent", "paper summarization", "key concepts", "research analysis", "academic", "agent", "Paper Summarization", "Literature Review"],
     category: "AI Research Tools",
     rating: 4.2,
     totalVotes: 1654
@@ -165,7 +165,7 @@ export const aiResearchTools: Tool[] = [
     emoji: "🔎",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://scite.ai/",
-    tags: ["Research Agent", "citation analysis", "research evaluation", "scientific articles", "context", "agent"],
+    tags: ["Research Agent", "citation analysis", "research evaluation", "scientific articles", "context", "agent", "Citation Management", "Evidence Analysis"],
     category: "AI Research Tools",
     rating: 4.1,
     totalVotes: 1432

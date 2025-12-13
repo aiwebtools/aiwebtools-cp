@@ -27,7 +27,7 @@ import { getEnhancedAgentTools } from "./agentDetection";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 25; // Bumped for Audio & Music subtypes (14+ types)
+let cacheVersion = 26; // Bumped for Research & Academic subtypes (15+ types)
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';

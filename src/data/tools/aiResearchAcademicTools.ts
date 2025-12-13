@@ -9,7 +9,7 @@ export const aiResearchAcademicTools: Tool[] = [
     emoji: "🔬",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://consensus.app/?via=aiwebtools",
-    tags: ["research", "academic", "scientific papers", "citations", "research assistant", "AI search"],
+    tags: ["research", "academic", "scientific papers", "citations", "research assistant", "AI search", "Academic Search", "Evidence Analysis"],
     category: "AI Research & Academic",
     rating: 4.8,
     totalVotes: 5234
@@ -21,7 +21,7 @@ export const aiResearchAcademicTools: Tool[] = [
     emoji: "🧠",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://elicit.com/?via=aiwebtools",
-    tags: ["research assistant", "literature review", "paper analysis", "academic", "AI research"],
+    tags: ["research assistant", "literature review", "paper analysis", "academic", "AI research", "Literature Review", "Paper Summarization"],
     category: "AI Research & Academic",
     rating: 4.7,
     totalVotes: 4567
@@ -33,7 +33,7 @@ export const aiResearchAcademicTools: Tool[] = [
     emoji: "📄",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.scholarcy.com/?via=aiwebtools",
-    tags: ["paper summarization", "research", "academic", "flashcards", "citations", "AI summarizer"],
+    tags: ["paper summarization", "research", "academic", "flashcards", "citations", "AI summarizer", "Paper Summarization", "Literature Review"],
     category: "AI Research & Academic",
     rating: 4.6,
     totalVotes: 3891
@@ -45,7 +45,7 @@ export const aiResearchAcademicTools: Tool[] = [
     emoji: "🐰",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.researchrabbit.ai/?via=aiwebtools",
-    tags: ["research discovery", "paper recommendations", "literature mapping", "academic", "research network"],
+    tags: ["research discovery", "paper recommendations", "literature mapping", "academic", "research network", "Research Discovery", "Literature Review"],
     category: "AI Research & Academic",
     rating: 4.8,
     totalVotes: 4123
@@ -57,7 +57,7 @@ export const aiResearchAcademicTools: Tool[] = [
     emoji: "🔗",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.connectedpapers.com/?via=aiwebtools",
-    tags: ["research visualization", "paper discovery", "academic", "citation network", "literature review"],
+    tags: ["research visualization", "paper discovery", "academic", "citation network", "literature review", "Research Discovery", "Citation Management"],
     category: "AI Research & Academic",
     rating: 4.7,
     totalVotes: 3765
@@ -69,7 +69,7 @@ export const aiResearchAcademicTools: Tool[] = [
     emoji: "✨",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://typeset.io/?via=aiwebtools",
-    tags: ["research assistant", "PDF chat", "paper explanation", "academic", "AI copilot", "literature review"],
+    tags: ["research assistant", "PDF chat", "paper explanation", "academic", "AI copilot", "literature review", "Paper Summarization", "Academic Search"],
     category: "AI Research & Academic",
     rating: 4.6,
     totalVotes: 4234
