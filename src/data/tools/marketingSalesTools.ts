@@ -28,7 +28,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "📧",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://mailchimp.com/",
-    tags: ["email marketing", "automation", "newsletters", "campaigns", "analytics"],
+    tags: ["email marketing", "automation", "newsletters", "campaigns", "analytics", "Email Marketing", "Marketing Automation"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.5,
     totalVotes: 4567
@@ -40,7 +40,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "🎯",
     color: "from-orange-500 to-red-600",
     directUrl: "https://hubspot.com/",
-    tags: ["CRM", "marketing automation", "lead generation", "sales", "analytics"],
+    tags: ["CRM", "marketing automation", "lead generation", "sales", "analytics", "CRM & Sales", "Lead Generation", "Marketing Automation"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.6,
     totalVotes: 5234
@@ -52,7 +52,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "📊",
     color: "from-blue-500 to-green-600",
     directUrl: "https://analytics.google.com/",
-    tags: ["web analytics", "traffic analysis", "conversion tracking", "SEO"],
+    tags: ["web analytics", "traffic analysis", "conversion tracking", "SEO", "Analytics & Tracking", "Conversion Optimization"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.7,
     totalVotes: 6789
@@ -64,7 +64,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "🌐",
     color: "from-green-500 to-blue-600",
     directUrl: "https://semrush.com/",
-    tags: ["SEO", "keyword research", "competitive analysis", "PPC", "content marketing"],
+    tags: ["SEO", "keyword research", "competitive analysis", "PPC", "content marketing", "SEO Tools", "Market Research", "Advertising & PPC"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.4,
     totalVotes: 3456
@@ -76,7 +76,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "📈",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://ahrefs.com/",
-    tags: ["SEO", "backlink analysis", "keyword research", "rank tracking"],
+    tags: ["SEO", "backlink analysis", "keyword research", "rank tracking", "SEO Tools", "Content Marketing"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.5,
     totalVotes: 3789
@@ -88,7 +88,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "📈",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://salesflow.io/referral?fp_ref=aiwebtools",
-    tags: ["LinkedIn automation", "B2B lead generation", "social selling", "personalized messaging", "outreach campaigns"],
+    tags: ["LinkedIn automation", "B2B lead generation", "social selling", "personalized messaging", "outreach campaigns", "Lead Generation", "Social Media Marketing", "Sales Enablement"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.5,
     totalVotes: 4567
@@ -100,7 +100,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "🚀",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.outranking.io/?via=aiwebtools",
-    tags: ["content optimization", "SEO analysis", "SERP data", "content strategy", "keyword clustering"],
+    tags: ["content optimization", "SEO analysis", "SERP data", "content strategy", "keyword clustering", "SEO Tools", "Content Marketing"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.6,
     totalVotes: 5234
@@ -112,7 +112,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "📊",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://scalenut.com/?fpr=aiwebtools",
-    tags: ["content marketing", "SEO platform", "Cruise Mode", "Keyword Planner", "Content Optimizer"],
+    tags: ["content marketing", "SEO platform", "Cruise Mode", "Keyword Planner", "Content Optimizer", "SEO Tools", "Content Marketing", "Marketing Automation"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.7,
     totalVotes: 6789
@@ -124,7 +124,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "🏄‍♂️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://get.surferseo.com/aiwebtools",
-    tags: ["AI writing", "SEO content", "article optimization", "keyword research", "SERP ranking"],
+    tags: ["AI writing", "SEO content", "article optimization", "keyword research", "SERP ranking", "SEO Tools", "Content Marketing"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.7,
     totalVotes: 5678
@@ -136,7 +136,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "🤝",
     color: "from-green-500 to-teal-600",
     directUrl: "https://meetalfred.com/?ref=ztg3ymv",
-    tags: ["sales automation", "multi-channel prospecting", "LinkedIn CRM", "personalized messaging", "92 countries"],
+    tags: ["sales automation", "multi-channel prospecting", "LinkedIn CRM", "personalized messaging", "92 countries", "Lead Generation", "CRM & Sales", "Marketing Automation"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.3,
     totalVotes: 4123
@@ -148,7 +148,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "🤖",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.sender.net/?ref=njq4zgn",
-    tags: ["omnichannel marketing", "email SMS marketing", "marketing automation", "180K companies", "lead conversion"],
+    tags: ["omnichannel marketing", "email SMS marketing", "marketing automation", "180K companies", "lead conversion", "Email Marketing", "Marketing Automation", "Lead Generation"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.4,
     totalVotes: 4567
@@ -160,7 +160,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "🎯",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.activecampaign.com/?_r=6QXVM1N3",
-    tags: ["email marketing", "marketing automation", "CRM tools", "personalized emails", "customer journey"],
+    tags: ["email marketing", "marketing automation", "CRM tools", "personalized emails", "customer journey", "Email Marketing", "Marketing Automation", "CRM & Sales"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.7,
     totalVotes: 5678
@@ -172,7 +172,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "📨",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.getresponse.com/?a=gnRgkfXWxx",
-    tags: ["email marketing", "contact growth", "automation", "analytics", "350K+ customers"],
+    tags: ["email marketing", "contact growth", "automation", "analytics", "350K+ customers", "Email Marketing", "Marketing Automation", "Lead Generation"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.5,
     totalVotes: 4123
@@ -184,7 +184,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "🎯",
     color: "from-orange-500 to-red-600",
     directUrl: "https://hunter.io/",
-    tags: ["email outreach", "contact finder", "email verification", "decision-makers", "trusted by Adobe"],
+    tags: ["email outreach", "contact finder", "email verification", "decision-makers", "trusted by Adobe", "Lead Generation", "Sales Enablement"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.7,
     totalVotes: 5234
@@ -196,7 +196,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "📈",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.salesforce.com/",
-    tags: ["CRM", "Einstein AI", "sales pipelines", "customer data", "enterprise"],
+    tags: ["CRM", "Einstein AI", "sales pipelines", "customer data", "enterprise", "CRM & Sales", "Sales Enablement", "Analytics & Tracking"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.6,
     totalVotes: 4567
@@ -208,7 +208,7 @@ export const marketingSalesTools: Tool[] = [
     emoji: "✨",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://www.makeinfluencer.ai/?ref=aiwebtools",
-    tags: ["AI influencers", "custom influencers", "audience engagement", "revenue generation", "social media marketing", "influencer marketing", "AI content creators"],
+    tags: ["AI influencers", "custom influencers", "audience engagement", "revenue generation", "social media marketing", "influencer marketing", "AI content creators", "Influencer Marketing", "Social Media Marketing", "Content Marketing"],
     category: "MARKETING & SALES AI TOOLS",
     rating: 4.5,
     totalVotes: 2890

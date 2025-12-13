@@ -13,7 +13,7 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "🤖",
     color: "from-blue-600 to-purple-600",
     directUrl: "https://www.kore.ai/?via=aiwebtools",
-    tags: ["AI", "Chatbots", "Enterprise", "Automation"],
+    tags: ["AI", "Chatbots", "Enterprise", "Automation", "Marketing Automation", "CRM & Sales"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.5,
     totalVotes: 2840
@@ -25,7 +25,7 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "📱",
     color: "from-pink-500 to-rose-500",
     directUrl: "https://ocoya.com/?via=aiwebtools",
-    tags: ["Social Media", "Content Creation", "Marketing", "Scheduling"],
+    tags: ["Social Media", "Content Creation", "Marketing", "Scheduling", "Social Media Marketing", "Content Marketing"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.3,
     totalVotes: 1920
@@ -37,7 +37,7 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "✍️",
     color: "from-orange-500 to-red-500",
     directUrl: "https://blog.hootsuite.com/owlywriter-ai/?via=aiwebtools",
-    tags: ["Content Writing", "Social Media", "AI Writing", "Captions"],
+    tags: ["Content Writing", "Social Media", "AI Writing", "Captions", "Social Media Marketing", "Content Marketing"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.2,
     totalVotes: 1650
@@ -49,7 +49,7 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "💬",
     color: "from-green-500 to-teal-500",
     directUrl: "https://quickchat.ai/?via=aiwebtools",
-    tags: ["Customer Support", "Chatbot", "AI", "Automation"],
+    tags: ["Customer Support", "Chatbot", "AI", "Automation", "CRM & Sales", "Marketing Automation"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.4,
     totalVotes: 2180
@@ -61,7 +61,7 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "📊",
     color: "from-indigo-500 to-blue-500",
     directUrl: "https://www.rillavoice.com/?via=aiwebtools",
-    tags: ["Sales Analytics", "Voice Analysis", "Customer Insights", "AI"],
+    tags: ["Sales Analytics", "Voice Analysis", "Customer Insights", "AI", "Analytics & Tracking", "Sales Enablement"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.6,
     totalVotes: 1340
@@ -73,7 +73,7 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-500 to-orange-500",
     directUrl: "https://roboresponse.ai/?via=aiwebtools",
-    tags: ["Customer Service", "Automation", "Support", "AI Responses"],
+    tags: ["Customer Service", "Automation", "Support", "AI Responses", "Marketing Automation", "CRM & Sales"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.1,
     totalVotes: 980
@@ -85,7 +85,7 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "🔍",
     color: "from-cyan-500 to-blue-500",
     directUrl: "https://surferseo.com/ai/?via=aiwebtools",
-    tags: ["SEO", "Content Writing", "Optimization", "Marketing"],
+    tags: ["SEO", "Content Writing", "Optimization", "Marketing", "SEO Tools", "Content Marketing"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.7,
     totalVotes: 3240
@@ -97,7 +97,7 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "🐦",
     color: "from-sky-500 to-blue-500",
     directUrl: "https://tweethunter.io/?via=aiwebtools",
-    tags: ["Twitter", "Social Media", "Content Ideas", "Growth"],
+    tags: ["Twitter", "Social Media", "Content Ideas", "Growth", "Social Media Marketing", "Content Marketing"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.4,
     totalVotes: 2150
@@ -109,7 +109,7 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "🌐",
     color: "from-purple-500 to-pink-500",
     directUrl: "https://unbounce.com/smart-copy/?via=aiwebtools",
-    tags: ["Landing Pages", "Copywriting", "Marketing", "Conversion"],
+    tags: ["Landing Pages", "Copywriting", "Marketing", "Conversion", "Conversion Optimization", "Content Marketing"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.5,
     totalVotes: 2850
@@ -121,7 +121,7 @@ export const newMarketingTools2025: Tool[] = [
     emoji: "🛍️",
     color: "from-emerald-500 to-green-500",
     directUrl: "https://www.zevi.ai/?via=aiwebtools",
-    tags: ["E-commerce", "Search", "Product Discovery", "Shopping"],
+    tags: ["E-commerce", "Search", "Product Discovery", "Shopping", "Conversion Optimization", "Analytics & Tracking"],
     category: "MARKETING & SALES SOLUTIONS",
     rating: 4.3,
     totalVotes: 1420
