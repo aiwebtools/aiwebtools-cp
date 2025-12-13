@@ -11,27 +11,82 @@ export interface HistoryEntry {
 const MAX_HISTORY = 5;
 const STORAGE_KEY = 'aitools-nav-history';
 
-// Helper to generate label from path
+// Helper to generate human-readable label from path
 const getPageLabel = (path: string): { label: string; emoji?: string } => {
-  if (path === '/') return { label: 'Home', emoji: '🏠' };
-  if (path === '/favorites') return { label: 'Favorites', emoji: '❤️' };
-  if (path === '/ai-tools-hub') return { label: 'AI Tools Hub', emoji: '🤖' };
+  // Decode URL-encoded characters first
+  const decodedPath = decodeURIComponent(path);
   
-  // Category pages
-  if (path.startsWith('/category/')) {
-    const category = path.replace('/category/', '').replace(/-/g, ' ');
-    const formatted = category.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-    return { label: formatted, emoji: '📂' };
+  if (decodedPath === '/') return { label: 'Home', emoji: '🏠' };
+  if (decodedPath === '/favorites') return { label: 'Favorites', emoji: '❤️' };
+  if (decodedPath === '/ai-tools-hub') return { label: 'AI Tools Hub', emoji: '🤖' };
+  
+  // Main category pages - /main-category/AI AGENTS, /main-category/CREATIVE & ENTERTAINMENT
+  if (decodedPath.startsWith('/main-category/')) {
+    const category = decodedPath.replace('/main-category/', '');
+    // Already human-readable from URL, just clean up
+    const cleanCategory = category.replace(/%20/g, ' ').trim();
+    return { label: cleanCategory || 'Category', emoji: '📁' };
   }
   
-  // Tool pages
-  if (path.startsWith('/tool/')) {
-    const toolSlug = path.replace('/tool/', '').replace(/-/g, ' ');
-    const formatted = toolSlug.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-    return { label: formatted.substring(0, 30) + (formatted.length > 30 ? '...' : ''), emoji: '🔧' };
+  // Category pages - /category/VIDEO & MULTIMEDIA AI TOOLS
+  if (decodedPath.startsWith('/category/')) {
+    const category = decodedPath.replace('/category/', '');
+    // Already human-readable from URL, just clean up
+    const cleanCategory = category.replace(/%20/g, ' ').trim();
+    return { label: cleanCategory || 'Category', emoji: '📂' };
   }
   
-  return { label: path.replace(/\//g, ' ').trim() || 'Page', emoji: '📄' };
+  // Tool pages - convert slug to readable name
+  // Slugs are like "ai-tools-finder-gpt" or "movie-script-writer-gpt"
+  if (decodedPath.match(/^\/[a-z0-9-]+$/i)) {
+    const toolSlug = decodedPath.replace('/', '');
+    // Convert kebab-case to Title Case
+    const formatted = toolSlug
+      .split('-')
+      .map(word => {
+        // Keep common acronyms uppercase
+        const upperWord = word.toUpperCase();
+        if (['AI', 'GPT', 'API', 'UI', 'UX', 'PDF', 'SEO', 'CRM', 'VR', 'AR', '3D', 'ML', 'NLP', 'LLM', 'RAG'].includes(upperWord)) {
+          return upperWord;
+        }
+        // Capitalize first letter
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      })
+      .join(' ');
+    
+    // Truncate if too long
+    const displayLabel = formatted.length > 35 ? formatted.substring(0, 35) + '...' : formatted;
+    return { label: displayLabel, emoji: '🔧' };
+  }
+  
+  // Tool pages with /tool/ prefix
+  if (decodedPath.startsWith('/tool/')) {
+    const toolSlug = decodedPath.replace('/tool/', '');
+    const formatted = toolSlug
+      .split('-')
+      .map(word => {
+        const upperWord = word.toUpperCase();
+        if (['AI', 'GPT', 'API', 'UI', 'UX', 'PDF', 'SEO', 'CRM', 'VR', 'AR', '3D', 'ML', 'NLP', 'LLM', 'RAG'].includes(upperWord)) {
+          return upperWord;
+        }
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      })
+      .join(' ');
+    
+    const displayLabel = formatted.length > 35 ? formatted.substring(0, 35) + '...' : formatted;
+    return { label: displayLabel, emoji: '🔧' };
+  }
+  
+  // Fallback - convert path to readable format
+  const fallbackLabel = decodedPath
+    .replace(/\//g, ' ')
+    .replace(/-/g, ' ')
+    .trim()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+  
+  return { label: fallbackLabel || 'Page', emoji: '📄' };
 };
 
 export const useNavigationHistory = () => {
