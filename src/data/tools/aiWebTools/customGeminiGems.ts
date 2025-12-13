@@ -13,7 +13,7 @@ export const customGeminiGems: Tool[] = [
     videoUrl: "https://youtu.be/nBd9Uk62UiI",
     rating: 4.7,
     totalVotes: 2156,
-    tags: ["gemini", "custom gem", "book writing", "novel creation", "storytelling", "google gemini"]
+    tags: ["gemini", "custom gem", "Gemini Gem", "book writing", "novel creation", "storytelling", "google gemini"]
   },
   {
     icon: Clock,
@@ -25,7 +25,7 @@ export const customGeminiGems: Tool[] = [
     directUrl: "https://gemini.google.com/gem/4e45b3038f6c",
     rating: 4.8,
     totalVotes: 1892,
-    tags: ["gemini", "custom gem", "time travel", "black history", "education", "history", "google gemini"]
+    tags: ["gemini", "custom gem", "Gemini Gem", "time travel", "black history", "education", "history", "google gemini"]
   },
   {
     icon: FileText,
@@ -37,7 +37,7 @@ export const customGeminiGems: Tool[] = [
     directUrl: "https://gemini.google.com/gem/52dfeb277b06",
     rating: 4.6,
     totalVotes: 1543,
-    tags: ["gemini", "custom gem", "declassified", "government files", "transparency", "research", "google gemini"]
+    tags: ["gemini", "custom gem", "Gemini Gem", "declassified", "government files", "transparency", "research", "google gemini"]
   },
   {
     icon: History,
@@ -49,7 +49,7 @@ export const customGeminiGems: Tool[] = [
     directUrl: "https://gemini.google.com/gem/8410bdacd80e",
     rating: 4.9,
     totalVotes: 2341,
-    tags: ["gemini", "custom gem", "time travel", "native american", "history", "education", "google gemini"]
+    tags: ["gemini", "custom gem", "Gemini Gem", "time travel", "native american", "history", "education", "google gemini"]
   },
   {
     icon: Globe,
@@ -61,7 +61,7 @@ export const customGeminiGems: Tool[] = [
     directUrl: "https://gemini.google.com/gem/18b868221ea1",
     rating: 4.8,
     totalVotes: 3127,
-    tags: ["gemini", "custom gem", "time travel", "history", "education", "father time", "google gemini"]
+    tags: ["gemini", "custom gem", "Gemini Gem", "time travel", "history", "education", "father time", "google gemini"]
   },
   {
     icon: Video,
@@ -73,6 +73,6 @@ export const customGeminiGems: Tool[] = [
     directUrl: "https://gemini.google.com/gem/64b77a9fe1e8",
     rating: 4.7,
     totalVotes: 1876,
-    tags: ["gemini", "custom gem", "veo3", "prompt engineering", "video generation", "ai video", "google gemini"]
+    tags: ["gemini", "custom gem", "Gemini Gem", "veo3", "prompt engineering", "video generation", "ai video", "google gemini"]
   }
 ];
