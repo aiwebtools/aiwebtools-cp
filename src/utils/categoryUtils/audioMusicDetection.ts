@@ -27,7 +27,8 @@ export const AUDIO_MUSIC_SUBTYPES = {
 const MUSIC_GENERATION_KEYWORDS = [
   "music generation", "ai music", "music generator", "ai composer", "music creation",
   "text to music", "generate music", "ai composition", "song generation", "beats generation",
-  "soundraw", "udio", "suno", "mubert", "aiva", "boomy", "riffusion", "beatbot"
+  "soundraw", "udio", "suno", "mubert", "aiva", "boomy", "riffusion", "beatbot",
+  "music maker", "beat maker", "song creator", "melody generator", "music ai"
 ];
 
 /**

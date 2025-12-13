@@ -30,7 +30,9 @@ export const IMAGE_DESIGN_SUBTYPES = {
 const IMAGE_GENERATOR_KEYWORDS = [
   "image generator", "text-to-image", "image generation", "AI image",
   "midjourney", "dall-e", "stable diffusion", "flux", "ideogram",
-  "generate images", "create images", "AI art generator", "image creator"
+  "generate images", "create images", "AI art generator", "image creator",
+  "leonardo", "playground", "recraft", "image fx", "whisk", "krea",
+  "imagen", "firefly", "ai image creation", "generate art"
 ];
 
 /**
@@ -39,7 +41,8 @@ const IMAGE_GENERATOR_KEYWORDS = [
 const PHOTO_EDITOR_KEYWORDS = [
   "photo editor", "photo editing", "image editing", "edit photos",
   "enhance photos", "photo enhancement", "retouching", "photo manipulation",
-  "fotor", "pixlr", "snapseed", "lightroom", "photoshop alternative"
+  "fotor", "pixlr", "snapseed", "lightroom", "photoshop alternative",
+  "image editor", "photo tool", "retouch", "photo fix", "image enhance"
 ];
 
 /**
@@ -47,7 +50,8 @@ const PHOTO_EDITOR_KEYWORDS = [
  */
 const LOGO_DESIGN_KEYWORDS = [
   "logo design", "logo creator", "logo generator", "logo maker",
-  "brand logo", "custom logo", "logo ai", "create logo", "branding design"
+  "brand logo", "custom logo", "logo ai", "create logo", "branding design",
+  "looka", "hatchful", "brandmark", "logojoy", "logo creation"
 ];
 
 /**
@@ -56,7 +60,8 @@ const LOGO_DESIGN_KEYWORDS = [
 const GRAPHIC_DESIGN_KEYWORDS = [
   "graphic design", "design tool", "canva", "design platform",
   "marketing design", "visual design", "creative design", "design assistant",
-  "poster design", "banner design", "social media design"
+  "poster design", "banner design", "social media design", "flyer design",
+  "presentation design", "infographic", "creative tool", "design software"
 ];
 
 /**
@@ -65,7 +70,8 @@ const GRAPHIC_DESIGN_KEYWORDS = [
 const AI_ART_KEYWORDS = [
   "AI art", "digital art", "artwork", "artistic", "creative art",
   "art generator", "art creation", "artbreeder", "nightcafe",
-  "generative art", "artistic style", "art styles"
+  "generative art", "artistic style", "art styles", "ai artwork",
+  "neural art", "creative ai", "art ai", "artistic ai"
 ];
 
 /**
@@ -81,7 +87,8 @@ const AVATAR_CREATOR_KEYWORDS = [
  */
 const BACKGROUND_REMOVAL_KEYWORDS = [
   "background removal", "remove background", "background remover",
-  "cutout", "erase background", "transparent background", "background eraser"
+  "cutout", "erase background", "transparent background", "background eraser",
+  "remove.bg", "photoroom", "slazzer", "cutout pro", "bg remove"
 ];
 
 /**
@@ -90,7 +97,7 @@ const BACKGROUND_REMOVAL_KEYWORDS = [
 const IMAGE_UPSCALER_KEYWORDS = [
   "upscale", "upscaler", "image upscaling", "enhance resolution",
   "increase resolution", "4k upscale", "8k upscale", "super resolution",
-  "letsenhance", "upscayl", "imglarger"
+  "letsenhance", "upscayl", "imglarger", "topaz", "ai upscale", "enlarge image"
 ];
 
 /**
@@ -98,7 +105,8 @@ const IMAGE_UPSCALER_KEYWORDS = [
  */
 const PHOTO_RESTORATION_KEYWORDS = [
   "photo restoration", "restore photos", "old photos", "colorize",
-  "colorization", "repair photos", "fix old photos", "restore images"
+  "colorization", "repair photos", "fix old photos", "restore images",
+  "vintage photo", "historical photo", "photo repair", "fix scratches"
 ];
 
 /**
@@ -106,7 +114,8 @@ const PHOTO_RESTORATION_KEYWORDS = [
  */
 const COLOR_GRADING_KEYWORDS = [
   "color grading", "color correction", "LUT", "color adjustment",
-  "color enhancement", "color palette", "color scheme"
+  "color enhancement", "color palette", "color scheme", "color filter",
+  "photo filter", "color preset", "cinematic color"
 ];
 
 /**
@@ -114,7 +123,8 @@ const COLOR_GRADING_KEYWORDS = [
  */
 const PRODUCT_PHOTOGRAPHY_KEYWORDS = [
   "product photography", "e-commerce photography", "product photos",
-  "product shots", "product images", "flair.ai", "photoroom"
+  "product shots", "product images", "flair.ai", "photoroom",
+  "product mockup", "commercial photography", "catalog photo"
 ];
 
 /**
@@ -122,7 +132,8 @@ const PRODUCT_PHOTOGRAPHY_KEYWORDS = [
  */
 const ILLUSTRATION_KEYWORDS = [
   "illustration", "illustrator", "sketch", "drawing", "concept art",
-  "character design", "book illustration", "children's book"
+  "character design", "book illustration", "children's book",
+  "vector art", "cartoon", "comic", "manga", "anime style"
 ];
 
 /**

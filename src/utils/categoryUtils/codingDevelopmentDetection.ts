@@ -27,7 +27,9 @@ export const CODING_DEVELOPMENT_SUBTYPES = {
 const CODE_ASSISTANT_KEYWORDS = [
   "code assistant", "coding assistant", "ai coding", "code completion",
   "copilot", "code generation", "pair programming", "code suggestions",
-  "tabnine", "codeium", "cursor", "code editor"
+  "tabnine", "codeium", "cursor", "code editor", "devin", "claude code",
+  "code review", "code analysis", "code helper", "programming assistant",
+  "ai developer", "coding ai", "code writer", "sourcegraph"
 ];
 
 /**
@@ -35,7 +37,8 @@ const CODE_ASSISTANT_KEYWORDS = [
  */
 const IDE_KEYWORDS = [
   "ide", "code editor", "visual studio", "vs code", "integrated development",
-  "development environment", "cursor", "windsurf", "replit"
+  "development environment", "cursor", "windsurf", "replit", "jetbrains",
+  "pycharm", "intellij", "webstorm", "vscode", "vim", "neovim", "emacs"
 ];
 
 /**
@@ -44,7 +47,8 @@ const IDE_KEYWORDS = [
 const DEVOPS_KEYWORDS = [
   "devops", "deployment", "infrastructure", "kubernetes", "docker",
   "ci/cd", "continuous integration", "continuous deployment", "pipeline",
-  "orchestration", "containerization"
+  "orchestration", "containerization", "terraform", "ansible", "helm",
+  "k8s", "container", "deploy", "infra", "sre", "reliability"
 ];
 
 /**
@@ -52,7 +56,8 @@ const DEVOPS_KEYWORDS = [
  */
 const API_KEYWORDS = [
   "api", "rest api", "graphql", "api gateway", "api management",
-  "endpoint", "integration", "postman", "swagger", "openapi"
+  "endpoint", "integration", "postman", "swagger", "openapi",
+  "api testing", "api documentation", "api design", "webhook"
 ];
 
 /**
@@ -60,7 +65,8 @@ const API_KEYWORDS = [
  */
 const TESTING_KEYWORDS = [
   "testing", "test automation", "unit test", "end-to-end", "e2e",
-  "qa", "quality assurance", "test coverage", "selenium", "cypress"
+  "qa", "quality assurance", "test coverage", "selenium", "cypress",
+  "playwright", "jest", "pytest", "automated testing", "test runner"
 ];
 
 /**
@@ -68,7 +74,8 @@ const TESTING_KEYWORDS = [
  */
 const DATABASE_KEYWORDS = [
   "database", "sql", "nosql", "postgresql", "mysql", "mongodb",
-  "supabase", "firebase", "data storage", "orm", "query"
+  "supabase", "firebase", "data storage", "orm", "query", "redis",
+  "elasticsearch", "db", "data model", "schema", "migration"
 ];
 
 /**
@@ -76,7 +83,8 @@ const DATABASE_KEYWORDS = [
  */
 const CLOUD_KEYWORDS = [
   "cloud platform", "aws", "azure", "google cloud", "gcp",
-  "serverless", "cloud hosting", "cloud infrastructure", "paas", "iaas"
+  "serverless", "cloud hosting", "cloud infrastructure", "paas", "iaas",
+  "lambda", "vercel", "netlify", "heroku", "digital ocean", "cloudflare"
 ];
 
 /**
@@ -84,7 +92,8 @@ const CLOUD_KEYWORDS = [
  */
 const FRONTEND_KEYWORDS = [
   "frontend", "front-end", "react", "vue", "angular", "ui development",
-  "user interface", "html", "css", "javascript", "typescript"
+  "user interface", "html", "css", "javascript", "typescript",
+  "svelte", "next.js", "nuxt", "tailwind", "web development", "web app"
 ];
 
 /**
@@ -92,7 +101,8 @@ const FRONTEND_KEYWORDS = [
  */
 const BACKEND_KEYWORDS = [
   "backend", "back-end", "server-side", "node.js", "python",
-  "java", "golang", "api development", "microservices"
+  "java", "golang", "api development", "microservices", "express",
+  "django", "fastapi", "flask", "rust", "spring", "server"
 ];
 
 /**

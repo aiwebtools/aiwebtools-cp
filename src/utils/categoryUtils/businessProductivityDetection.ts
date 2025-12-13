@@ -23,20 +23,20 @@ export type BusinessProductivitySubtype = typeof businessProductivitySubtypes[nu
 
 // Keywords associated with each business subtype
 export const businessSubtypeKeywords: Record<BusinessProductivitySubtype, string[]> = {
-  "Project Management": ["project management", "task management", "project tracking", "sprint", "agile", "kanban", "scrum", "milestone", "roadmap", "backlog"],
-  "CRM": ["crm", "customer relationship", "contact management", "lead management", "sales pipeline", "customer data", "client management"],
-  "Automation": ["automation", "workflow automation", "automate", "zapier", "integration", "automated", "no-code automation", "rpa"],
-  "Marketing": ["marketing", "campaign", "advertising", "brand", "content marketing", "digital marketing", "social media marketing", "email marketing"],
-  "Sales": ["sales", "selling", "revenue", "deal", "pipeline", "prospect", "outreach", "closing", "quota", "territory"],
-  "HR & Recruitment": ["hr", "human resources", "recruiting", "recruitment", "hiring", "talent", "onboarding", "employee", "workforce", "candidate"],
-  "Finance & Accounting": ["finance", "accounting", "financial", "invoice", "billing", "budget", "expense", "payroll", "bookkeeping", "tax"],
-  "Customer Support": ["customer support", "helpdesk", "ticketing", "support tickets", "customer service", "help desk", "customer success"],
-  "Team Collaboration": ["collaboration", "team", "teamwork", "co-working", "shared workspace", "real-time collaboration", "team communication"],
-  "Meeting & Scheduling": ["meeting", "scheduling", "calendar", "appointment", "booking", "schedule", "video conference", "conferencing"],
-  "Analytics & Reporting": ["analytics", "reporting", "dashboard", "metrics", "kpi", "data analysis", "insights", "business intelligence"],
-  "Document Management": ["document management", "documents", "file management", "knowledge base", "wiki", "documentation", "file sharing"],
-  "Workflow Automation": ["workflow", "process automation", "business process", "workflow builder", "process management", "workflow design"],
-  "Business Intelligence": ["business intelligence", "bi", "data visualization", "decision making", "strategic planning", "competitive analysis"]
+  "Project Management": ["project management", "task management", "project tracking", "sprint", "agile", "kanban", "scrum", "milestone", "roadmap", "backlog", "asana", "jira", "monday.com", "clickup", "trello", "notion", "project plan"],
+  "CRM": ["crm", "customer relationship", "contact management", "lead management", "sales pipeline", "customer data", "client management", "salesforce", "hubspot", "pipedrive", "zoho crm"],
+  "Automation": ["automation", "workflow automation", "automate", "zapier", "integration", "automated", "no-code automation", "rpa", "make.com", "integromat", "n8n", "power automate"],
+  "Marketing": ["marketing", "campaign", "advertising", "brand", "content marketing", "digital marketing", "social media marketing", "email marketing", "seo", "ppc", "adwords", "facebook ads"],
+  "Sales": ["sales", "selling", "revenue", "deal", "pipeline", "prospect", "outreach", "closing", "quota", "territory", "sales team", "sales rep", "sales tool", "sales automation"],
+  "HR & Recruitment": ["hr", "human resources", "recruiting", "recruitment", "hiring", "talent", "onboarding", "employee", "workforce", "candidate", "resume", "job posting", "applicant", "interview"],
+  "Finance & Accounting": ["finance", "accounting", "financial", "invoice", "billing", "budget", "expense", "payroll", "bookkeeping", "tax", "quickbooks", "xero", "freshbooks", "financial planning"],
+  "Customer Support": ["customer support", "helpdesk", "ticketing", "support tickets", "customer service", "help desk", "customer success", "zendesk", "intercom", "freshdesk", "live chat"],
+  "Team Collaboration": ["collaboration", "team", "teamwork", "co-working", "shared workspace", "real-time collaboration", "team communication", "slack", "microsoft teams", "discord", "team chat"],
+  "Meeting & Scheduling": ["meeting", "scheduling", "calendar", "appointment", "booking", "schedule", "video conference", "conferencing", "zoom", "google meet", "calendly", "meeting notes"],
+  "Analytics & Reporting": ["analytics", "reporting", "dashboard", "metrics", "kpi", "data analysis", "insights", "business intelligence", "google analytics", "mixpanel", "amplitude"],
+  "Document Management": ["document management", "documents", "file management", "knowledge base", "wiki", "documentation", "file sharing", "google docs", "notion", "confluence", "sharepoint"],
+  "Workflow Automation": ["workflow", "process automation", "business process", "workflow builder", "process management", "workflow design", "business automation", "process optimization"],
+  "Business Intelligence": ["business intelligence", "bi", "data visualization", "decision making", "strategic planning", "competitive analysis", "tableau", "power bi", "looker", "executive dashboard"]
 };
 
 // Detect business subtypes for a tool

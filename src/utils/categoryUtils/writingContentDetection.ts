@@ -23,20 +23,20 @@ export type WritingContentSubtype = typeof writingContentSubtypes[number];
 
 // Keywords associated with each writing subtype
 export const writingSubtypeKeywords: Record<WritingContentSubtype, string[]> = {
-  "Blog Writing": ["blog", "blogging", "blog post", "blogger", "blog article", "blog content"],
-  "Copywriting": ["copywriting", "copy", "marketing copy", "ad copy", "sales copy", "conversion copy", "landing page"],
-  "SEO Content": ["seo", "search engine", "keyword", "ranking", "organic", "serp", "search optimization", "content optimization"],
-  "Script Writing": ["script", "screenplay", "screenwriting", "movie script", "film script", "dialogue", "scene"],
-  "Book Writing": ["book", "ebook", "novel", "author", "manuscript", "chapter", "publishing", "fiction", "non-fiction"],
-  "Academic Writing": ["academic", "research paper", "essay", "thesis", "dissertation", "scholarly", "citation", "academic writing"],
-  "Technical Writing": ["technical writing", "documentation", "manual", "technical doc", "user guide", "api documentation"],
-  "Email Writing": ["email", "email marketing", "newsletter", "outreach", "cold email", "email copy"],
-  "Social Media Writing": ["social media", "social post", "twitter", "linkedin", "instagram", "facebook", "social content"],
-  "Grammar & Editing": ["grammar", "spelling", "proofreading", "editing", "punctuation", "clarity", "rewriting", "paraphrasing"],
-  "Content Strategy": ["content strategy", "content planning", "content marketing", "content calendar", "editorial"],
-  "Creative Writing": ["creative writing", "storytelling", "narrative", "fiction", "creative", "imagination"],
-  "Article Writing": ["article", "news", "journalism", "feature", "long-form", "publication"],
-  "Prompt Engineering": ["prompt", "prompt engineering", "prompt optimization", "ai prompt", "chatgpt prompt"]
+  "Blog Writing": ["blog", "blogging", "blog post", "blogger", "blog article", "blog content", "blog writer", "blog creation", "wordpress", "medium"],
+  "Copywriting": ["copywriting", "copy", "marketing copy", "ad copy", "sales copy", "conversion copy", "landing page", "advertising copy", "persuasive writing", "copy generator"],
+  "SEO Content": ["seo", "search engine", "keyword", "ranking", "organic", "serp", "search optimization", "content optimization", "seo writing", "meta description", "keyword research", "seo article"],
+  "Script Writing": ["script", "screenplay", "screenwriting", "movie script", "film script", "dialogue", "scene", "scriptwriter", "video script", "podcast script", "play", "playwriting"],
+  "Book Writing": ["book", "ebook", "novel", "author", "manuscript", "chapter", "publishing", "fiction", "non-fiction", "book writer", "write book", "storytelling", "story", "narrative"],
+  "Academic Writing": ["academic", "research paper", "essay", "thesis", "dissertation", "scholarly", "citation", "academic writing", "journal", "peer review", "college essay"],
+  "Technical Writing": ["technical writing", "documentation", "manual", "technical doc", "user guide", "api documentation", "help docs", "knowledge base", "readme", "developer docs"],
+  "Email Writing": ["email", "email marketing", "newsletter", "outreach", "cold email", "email copy", "email campaign", "email subject", "email sequence", "mailchimp", "email automation"],
+  "Social Media Writing": ["social media", "social post", "twitter", "linkedin", "instagram", "facebook", "social content", "tweet", "caption", "hashtag", "social copy", "tiktok"],
+  "Grammar & Editing": ["grammar", "spelling", "proofreading", "editing", "punctuation", "clarity", "rewriting", "paraphrasing", "grammarly", "spell check", "language check", "style guide"],
+  "Content Strategy": ["content strategy", "content planning", "content marketing", "content calendar", "editorial", "content plan", "content roadmap", "publishing schedule"],
+  "Creative Writing": ["creative writing", "storytelling", "narrative", "fiction", "creative", "imagination", "poetry", "poem", "short story", "flash fiction", "creative story"],
+  "Article Writing": ["article", "news", "journalism", "feature", "long-form", "publication", "article writer", "write article", "news article", "feature article", "op-ed"],
+  "Prompt Engineering": ["prompt", "prompt engineering", "prompt optimization", "ai prompt", "chatgpt prompt", "prompt template", "prompt generator", "prompt design", "llm prompt"]
 };
 
 // Detect writing subtypes for a tool
