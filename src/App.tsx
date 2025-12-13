@@ -10,6 +10,7 @@ import { useCrossBrowserOptimization } from "@/hooks/useCrossBrowserOptimization
 import { useChromebookOptimization } from "@/hooks/useChromebookOptimization";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import PageTransition from "@/components/navigation/PageTransition";
+import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
 import Index from "./pages/Index";
 import CategoryPage from "./pages/CategoryPage";
 import MainCategoryPage from "./pages/MainCategoryPage";
@@ -69,6 +70,7 @@ function App() {
             <TooltipProvider>
               <Toaster />
               <WelcomeVoiceSystem />
+              <MatrixCursorEffect />
               <BrowserRouter>
                 <AnimatedRoutes />
                 
