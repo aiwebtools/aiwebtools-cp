@@ -21,7 +21,7 @@ export const learningPlatforms: Tool[] = [
     emoji: "💻",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://freecodecamp.org/",
-    tags: ["coding", "programming", "web development", "free", "certifications"],
+    tags: ["coding", "programming", "web development", "free", "certifications", "Learning Platform", "Skill Development"],
     category: "Learning Platforms",
     rating: 4.9,
     totalVotes: 8765
@@ -33,7 +33,7 @@ export const learningPlatforms: Tool[] = [
     emoji: "🌍",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://coursera.org/",
-    tags: ["university courses", "certificates", "degrees", "professional development"],
+    tags: ["university courses", "certificates", "degrees", "professional development", "Learning Platform", "College Prep", "Professional Training"],
     category: "Learning Platforms",
     rating: 4.6,
     totalVotes: 5432
@@ -45,7 +45,7 @@ export const learningPlatforms: Tool[] = [
     emoji: "🦜",
     color: "from-green-500 to-yellow-600",
     directUrl: "https://duolingo.com/",
-    tags: ["language learning", "gamified", "free", "interactive", "multiple languages"],
+    tags: ["language learning", "gamified", "free", "interactive", "multiple languages", "Language Learning", "Learning Platform"],
     category: "Learning Platforms",
     rating: 4.7,
     totalVotes: 7890
@@ -57,7 +57,7 @@ export const learningPlatforms: Tool[] = [
     emoji: "🧠",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://brilliant.org/",
-    tags: ["math", "science", "computer science", "problem solving", "interactive"],
+    tags: ["math", "science", "computer science", "problem solving", "interactive", "STEM Education", "Learning Platform", "Skill Development"],
     category: "Learning Platforms",
     rating: 4.5,
     totalVotes: 4321
