@@ -227,12 +227,55 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   // 🎬 PRIORITY SORTING: Prioritize tools whose category DIRECTLY matches the main category name
   const sortedByDirectCategory = sortToolsByDirectCategoryMatch(categoryTools, mainCategoryName);
   
-  // 🚀 PRIORITY: Apply AI Web Tools GPT prioritization to all main category results
-  const prioritizedTools = applyAIWebToolsPrioritization(sortedByDirectCategory);
+  // 🎯 INTERLEAVE: Apply interleaving pattern - 2 category tools, then 1 AI Web Tools GPT
+  const interleavedTools = interleaveAIWebToolsGPTs(sortedByDirectCategory);
   
-  console.log(`🎯 Main Category "${mainCategoryName}": ${prioritizedTools.length} tools with direct category matches first`);
+  console.log(`🎯 Main Category "${mainCategoryName}": ${interleavedTools.length} tools with interleaved GPTs (2 category tools, then 1 GPT)`);
   
-  return prioritizedTools;
+  return interleavedTools;
+};
+
+// Helper function to interleave AI Web Tools GPTs after every 2 category tools
+const interleaveAIWebToolsGPTs = (tools: Tool[]): Tool[] => {
+  // Separate AI Web Tools GPTs from other tools
+  const aiWebToolsGPTs: Tool[] = [];
+  const otherTools: Tool[] = [];
+  
+  tools.forEach(tool => {
+    if (isAIWebToolsGPT(tool)) {
+      aiWebToolsGPTs.push(tool);
+    } else {
+      otherTools.push(tool);
+    }
+  });
+  
+  console.log(`🔄 Interleaving: ${otherTools.length} category tools + ${aiWebToolsGPTs.length} AI Web Tools GPTs`);
+  
+  // If no GPTs or no other tools, just return sorted tools
+  if (aiWebToolsGPTs.length === 0 || otherTools.length === 0) {
+    return [...otherTools, ...aiWebToolsGPTs];
+  }
+  
+  // Interleave: 2 category tools, then 1 GPT, repeat
+  const result: Tool[] = [];
+  let otherIndex = 0;
+  let gptIndex = 0;
+  
+  while (otherIndex < otherTools.length || gptIndex < aiWebToolsGPTs.length) {
+    // Add 2 category tools
+    for (let i = 0; i < 2 && otherIndex < otherTools.length; i++) {
+      result.push(otherTools[otherIndex]);
+      otherIndex++;
+    }
+    
+    // Add 1 GPT
+    if (gptIndex < aiWebToolsGPTs.length) {
+      result.push(aiWebToolsGPTs[gptIndex]);
+      gptIndex++;
+    }
+  }
+  
+  return result;
 };
 
 // Helper function to prioritize tools whose category directly matches the main category name
