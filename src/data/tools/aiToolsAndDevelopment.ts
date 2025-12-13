@@ -88,7 +88,7 @@ export const aiToolsAndDevelopment: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.langchain.com/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/langchain.png/:/rs=w:600,h:300,cg:true,m/qt=q:30",
-    tags: ["Language Models", "LangChain", "Development"],
+    tags: ["Multi-Agent Framework", "Language Models", "LangChain", "Development", "agent framework", "orchestration"],
     category: "AI Tools & Development",
     rating: 4.6,
     totalVotes: 2890
@@ -140,7 +140,7 @@ export const aiToolsAndDevelopment: Tool[] = [
     color: "from-red-500 to-orange-600",
     directUrl: "https://cheatlayer.com/?ref=zta2nth",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377352898715062323/image.png?ex=6838a759&is=683755d9&hm=d32c66c79d433b9835b19ebebb6c63553d1647f77c44eb10217104d200df597c&",
-    tags: ["automation", "AI swarms", "workflow", "task management", "beta"],
+    tags: ["Multi-Agent Framework", "Automation Agent", "AI swarms", "workflow", "task management", "beta", "agent"],
     category: "AI Development Tools",
     rating: 4.2,
     totalVotes: 1876

@@ -97,7 +97,7 @@ export const developerAndCodingTools: Tool[] = [
     emoji: "🤖",
     color: "from-violet-500 to-fuchsia-600",
     directUrl: "https://devin.ai/?via=aiwebtools",
-    tags: ["devin", "ai coding", "software engineer", "autonomous agent", "developer tools", "code", "programming", "build app"],
+    tags: ["Coding Agent", "devin", "ai coding", "software engineer", "autonomous agent", "developer tools", "code", "programming", "build app"],
     category: "DEVELOPMENT & CODING",
     rating: 4.7,
     totalVotes: 3120
@@ -109,7 +109,7 @@ export const developerAndCodingTools: Tool[] = [
     emoji: "🧠",
     color: "from-teal-500 to-emerald-600",
     directUrl: "https://base44.com/?via=aiwebtools",
-    tags: ["vibe coding", "AI web builder", "agent", "app builder", "no-code", "low-code", "full-stack", "development", "base44"],
+    tags: ["Coding Agent", "vibe coding", "AI web builder", "agent", "app builder", "no-code", "low-code", "full-stack", "development", "base44"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 1200
@@ -121,7 +121,7 @@ export const developerAndCodingTools: Tool[] = [
     emoji: "📱",
     color: "from-sky-500 to-blue-600",
     directUrl: "https://appchef.ai/?via=aiwebtools",
-    tags: ["vibe coding", "AI web builder", "agent", "app builder", "mobile", "iOS", "iPhone", "AppChef", "low-code", "full-stack", "development"],
+    tags: ["Coding Agent", "vibe coding", "AI web builder", "agent", "app builder", "mobile", "iOS", "iPhone", "AppChef", "low-code", "full-stack", "development"],
     category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 1800
@@ -133,7 +133,7 @@ export const developerAndCodingTools: Tool[] = [
     emoji: "🧩",
     color: "from-zinc-500 to-slate-600",
     directUrl: "https://cline.bot/?via=aiwebtools",
-    tags: ["vibe coding", "AI coding", "open source", "downloadable", "agent", "developer tools", "programming", "automation"],
+    tags: ["Coding Agent", "vibe coding", "AI coding", "open source", "downloadable", "agent", "developer tools", "programming", "automation"],
     category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 1600
@@ -145,7 +145,7 @@ export const developerAndCodingTools: Tool[] = [
     emoji: "⚡",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://usemotion.com/?via=aiwebtools",
-    tags: ["AI employees", "automation", "productivity", "task management", "project management", "workflow", "scheduler", "teams"],
+    tags: ["Automation Agent", "AI employees", "automation", "productivity", "task management", "project management", "workflow", "scheduler", "teams", "agent"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 2200

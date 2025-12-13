@@ -335,7 +335,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🤖",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.lovart.ai/",
-    tags: ["ai agent", "design agent", "image design", "3d design", "video design", "creative agent", "autonomous design", "ai creativity", "design automation", "visual agent"],
+    tags: ["Task Agent", "ai agent", "design agent", "image design", "3d design", "video design", "creative agent", "autonomous design", "ai creativity", "design automation", "visual agent"],
     category: "Creative & Media",
     rating: 4.7,
     totalVotes: 3421
