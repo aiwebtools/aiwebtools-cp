@@ -10,7 +10,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
     color: "from-green-500 to-yellow-600",
     directUrl: "https://agronomus.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=fFbtPFkRERA",
-    tags: ["farming", "agriculture", "crop management", "soil analysis", "irrigation", "pest control", "sustainable farming", "agricultural expert", "precision farming", "crop optimization"],
+    tags: ["farming", "agriculture", "crop management", "soil analysis", "irrigation", "pest control", "sustainable farming", "agricultural expert", "precision farming", "crop optimization", "Custom GPT"],
     category: "Specialized Niche Tools",
     rating: 4.8,
     totalVotes: 5678
@@ -23,7 +23,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=xkcsSVbBhf4",
-    tags: ["tax preparation", "financial planning", "tax optimization", "accounting", "business finance"],
+    tags: ["tax preparation", "financial planning", "tax optimization", "accounting", "business finance", "Custom GPT"],
     category: "Specialized Niche Tools",
     rating: 4.7,
     totalVotes: 5432
@@ -36,7 +36,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["genetics", "DNA analysis", "genomics", "scientific research", "biotechnology"],
+    tags: ["genetics", "DNA analysis", "genomics", "scientific research", "biotechnology", "Custom GPT"],
     category: "Specialized Niche Tools",
     rating: 4.8,
     totalVotes: 6234
@@ -49,7 +49,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
     color: "from-purple-500 to-red-600",
     directUrl: "https://gamedesigngpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-floating-man-with-blue-skin-and-white-hair-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["game development", "game design", "GDD creation", "Unity", "Unreal Engine"],
+    tags: ["game development", "game design", "GDD creation", "Unity", "Unreal Engine", "Custom GPT"],
     category: "Specialized Niche Tools",
     rating: 4.6,
     totalVotes: 4789
@@ -62,7 +62,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
     color: "from-green-500 to-cyan-600",
     directUrl: "https://predictivecreditscoregpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-screenshot-of-a-web-app-with-the-text-predic.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["credit scoring", "financial analysis", "risk assessment", "real estate", "lending"],
+    tags: ["credit scoring", "financial analysis", "risk assessment", "real estate", "lending", "Custom GPT"],
     category: "Specialized Niche Tools",
     rating: 4.5,
     totalVotes: 3876
@@ -75,7 +75,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://whatsmynamegpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-interface-with-a-dark-blue-_mXbL6.png/:/cr=t:10.87%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["name analysis", "numerology", "cultural research", "personality insights", "etymology"],
+    tags: ["name analysis", "numerology", "cultural research", "personality insights", "etymology", "Custom GPT"],
     category: "Specialized Niche Tools",
     rating: 4.4,
     totalVotes: 3234
@@ -88,7 +88,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://nativeamerican-timemachine.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=jVFTGCeuNSM",
-    tags: ["Native American history", "cultural education", "time travel simulation", "historical immersion", "cultural preservation"],
+    tags: ["Native American history", "cultural education", "time travel simulation", "historical immersion", "cultural preservation", "Custom GPT"],
     category: "Specialized Niche Tools",
     rating: 4.8,
     totalVotes: 6789
@@ -101,7 +101,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
     color: "from-red-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-Qvat03gmj-hacking-defender-infrastructure-protector-gpt",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-robot-with-a-large-shield-tha.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["cybersecurity", "infrastructure protection", "defense mechanisms", "security analysis", "threat mitigation"],
+    tags: ["cybersecurity", "infrastructure protection", "defense mechanisms", "security analysis", "threat mitigation", "Custom GPT"],
     category: "Specialized Niche Tools",
     rating: 4.9,
     totalVotes: 8234
@@ -114,7 +114,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://drillbabydrillaisuite.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cartoon-illustration-of-a-man-with-a-h_lmQ_X.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
-    tags: ["oil industry", "gas industry", "drilling optimization", "energy sector", "industrial tools"],
+    tags: ["oil industry", "gas industry", "drilling optimization", "energy sector", "industrial tools", "Custom GPT"],
     category: "Specialized Niche Tools",
     rating: 4.8,
     totalVotes: 6234

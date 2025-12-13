@@ -11,7 +11,7 @@ export const technologyInnovationGPTs: Tool[] = [
     color: "from-blue-500 to-yellow-600",
     directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=DR_3MvP7Wws",
-    tags: ["scientific innovation", "invention", "electrical engineering", "physics", "research"],
+    tags: ["scientific innovation", "invention", "electrical engineering", "physics", "research", "Custom GPT"],
     category: "Technology & Innovation",
     rating: 4.9,
     totalVotes: 7654
@@ -24,7 +24,7 @@ export const technologyInnovationGPTs: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://stellaris.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=tJwhDOE3mUM",
-    tags: ["space exploration", "exoplanets", "astronomy", "space colonization", "astrophysics"],
+    tags: ["space exploration", "exoplanets", "astronomy", "space colonization", "astrophysics", "Custom GPT"],
     category: "Technology & Innovation",
     rating: 4.8,
     totalVotes: 6543
@@ -37,7 +37,7 @@ export const technologyInnovationGPTs: Tool[] = [
     color: "from-gray-500 to-blue-600",
     directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=kfGyOfjBI0s",
-    tags: ["physics", "mathematics", "theoretical science", "relativity", "scientific philosophy"],
+    tags: ["physics", "mathematics", "theoretical science", "relativity", "scientific philosophy", "Custom GPT"],
     category: "Technology & Innovation",
     rating: 4.9,
     totalVotes: 8234
@@ -50,7 +50,7 @@ export const technologyInnovationGPTs: Tool[] = [
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://illuminous.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=Nd1Ui2-VLMU",
-    tags: ["data analysis", "global data", "predictions", "insights", "information visualization"],
+    tags: ["data analysis", "global data", "predictions", "insights", "information visualization", "Custom GPT"],
     category: "Technology & Innovation",
     rating: 4.7,
     totalVotes: 5678
@@ -63,7 +63,7 @@ export const technologyInnovationGPTs: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/aFuAxVNXBvg",
-    tags: ["algebraic expressions", "mathematical conversion", "operational instructions", "variable conversion", "mathematical tools"],
+    tags: ["algebraic expressions", "mathematical conversion", "operational instructions", "variable conversion", "mathematical tools", "Custom GPT"],
     category: "Technology & Innovation",
     rating: 4.5,
     totalVotes: 3456
@@ -75,7 +75,7 @@ export const technologyInnovationGPTs: Tool[] = [
     emoji: "🔐",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68fc6039822c8191a13c8ab8a66270ef-cipherencrypt-gpt",
-    tags: ["encryption", "cryptography", "morse code", "binary", "translation", "data conversion", "security", "encoding", "aiwebtools"],
+    tags: ["encryption", "cryptography", "morse code", "binary", "translation", "data conversion", "security", "encoding", "aiwebtools", "Custom GPT"],
     category: "Technology & Innovation",
     rating: 4.6,
     totalVotes: 2134
