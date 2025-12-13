@@ -24,12 +24,13 @@ import { filterBusinessTools } from "./businessCategoryFiltering";
 import { getEnhancedAgentTools } from "./agentDetection";
 import { isGamingEntertainmentTool } from "./gamingEntertainmentDetection";
 import { isSecurityPrivacyTool } from "./securityPrivacyDetection";
+import { isSpiritualityTool } from "./spiritualityDetection";
 
 // Ultra-optimized cache with persistent storage and lazy loading
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 36; // Phase 16: Added 50+ missing tools from 4 unimported GPT files
+let cacheVersion = 37; // Phase 17: Added Spirituality & Philosophy main category + detection
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';
@@ -118,12 +119,14 @@ export const buildToolsCache = (tools: Tool[]) => {
   const chatRelatedSet = new Set(tools.filter(tool => isAIChatAssistantTool(tool)).map(t => t.title));
   const healthSet = new Set(tools.filter(tool => isHealthAndWellnessTool(tool)).map(t => t.title));
   const industrySet = new Set(tools.filter(tool => isIndustrySpecificTool(tool)).map(t => t.title));
+  const spiritualitySet = new Set(tools.filter(tool => isSpiritualityTool(tool)).map(t => t.title));
   
   const toolCollections = {
     aiWebToolsGPTs: tools.filter(tool => aiWebToolsSet.has(tool.title)),
     chatRelatedTools: tools.filter(tool => chatRelatedSet.has(tool.title)),
     healthAndWellnessTools: tools.filter(tool => healthSet.has(tool.title)),
     industrySpecificTools: tools.filter(tool => industrySet.has(tool.title)),
+    spiritualityTools: tools.filter(tool => spiritualitySet.has(tool.title)),
     strictHistoricalTools: tools.filter(tool => isStrictlyHistoricalTimeRelatedTool(tool)),
     educationRelatedTools: tools.filter(tool => isEducationRelatedTool(tool)),
     videoRelatedTools: tools.filter(tool => isVideoRelatedTool(tool)),
@@ -210,6 +213,10 @@ export const buildToolsCache = (tools: Tool[]) => {
         
       case "VIDEO & MULTIMEDIA":
         categoryTools = getCombinedTools(tools, mainCat, toolCollections.videoRelatedTools);
+        break;
+      
+      case "SPIRITUALITY & PHILOSOPHY":
+        categoryTools = getCombinedTools(tools, mainCat, toolCollections.spiritualityTools);
         break;
         
       case "AUTOMATION PLATFORMS":
