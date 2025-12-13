@@ -12,7 +12,7 @@ export const contentCreationTools: Tool[] = [
     emoji: "✍️",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://jasper.ai/?via=aiwebtools",
-    tags: ["AI writing", "content marketing", "blog posts", "copywriting", "brand voice"],
+    tags: ["AI writing", "content marketing", "blog posts", "copywriting", "brand voice", "Blog Writing", "Copywriting", "Social Media Writing"],
     category: "Content Creation",
     rating: 4.5,
     totalVotes: 3456
@@ -24,7 +24,7 @@ export const contentCreationTools: Tool[] = [
     emoji: "📚",
     color: "from-green-500 to-blue-600",
     directUrl: "https://writesonic.com/?via=aiwebtools",
-    tags: ["AI writing", "SEO content", "articles", "ads", "website copy"],
+    tags: ["AI writing", "SEO content", "articles", "ads", "website copy", "SEO Content", "Article Writing", "Copywriting"],
     category: "Content Creation",
     rating: 4.4,
     totalVotes: 2654
@@ -36,7 +36,7 @@ export const contentCreationTools: Tool[] = [
     emoji: "🌳",
     color: "from-emerald-500 to-blue-600",
     directUrl: "https://www.orchard.ink/?via=aiwebtools",
-    tags: ["GPT editor", "collaborative writing", "document editing", "team collaboration", "smart text editor", "web search"],
+    tags: ["GPT editor", "collaborative writing", "document editing", "team collaboration", "smart text editor", "web search", "Grammar & Editing", "Content Strategy"],
     category: "Content Creation",
     rating: 4.3,
     totalVotes: 1247
@@ -48,7 +48,7 @@ export const contentCreationTools: Tool[] = [
     emoji: "⚡",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.flashy.ai/?via=aiwebtools",
-    tags: ["content hub", "asset management", "shoot planning", "AI editing", "social publishing", "workflow", "marketing"],
+    tags: ["content hub", "asset management", "shoot planning", "AI editing", "social publishing", "workflow", "marketing", "Social Media Writing", "Content Strategy"],
     category: "Content Creation",
     rating: 4.5,
     totalVotes: 1670
@@ -60,7 +60,7 @@ export const contentCreationTools: Tool[] = [
     emoji: "🌪️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://vortex.channel/?via=aiwebtools",
-    tags: ["viral content", "AI content creation", "social media", "viral marketing", "content monetization", "shareable content", "audience growth", "prompt to profit", "vortex", "go viral"],
+    tags: ["viral content", "AI content creation", "social media", "viral marketing", "content monetization", "shareable content", "audience growth", "prompt to profit", "vortex", "go viral", "Social Media Writing", "Copywriting"],
     category: "Content Creation",
     rating: 4.6,
     totalVotes: 2340

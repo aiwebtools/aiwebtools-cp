@@ -17,7 +17,7 @@ export const aiContentGenerators: Tool[] = [
     emoji: "🧠",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.jasper.ai/?via=aiwebtools",
-    tags: ["content generation", "marketing copy", "blog posts", "social media", "ads"],
+    tags: ["content generation", "marketing copy", "blog posts", "social media", "ads", "Blog Writing", "Copywriting", "Social Media Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.6,
     totalVotes: 4234
@@ -29,7 +29,7 @@ export const aiContentGenerators: Tool[] = [
     emoji: "📝",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://writesonic.com/?via=aiwebtools",
-    tags: ["AI writing", "articles", "ads", "product descriptions", "SEO optimization"],
+    tags: ["AI writing", "articles", "ads", "product descriptions", "SEO optimization", "SEO Content", "Article Writing", "Copywriting"],
     category: "Writing & Content Enhancement",
     rating: 4.4,
     totalVotes: 3456
@@ -41,7 +41,7 @@ export const aiContentGenerators: Tool[] = [
     emoji: "🎯",
     color: "from-orange-500 to-red-600",
     directUrl: "https://rytr.me/?via=aiwebtools",
-    tags: ["content creation", "emails", "blogs", "ads", "tone customization"],
+    tags: ["content creation", "emails", "blogs", "ads", "tone customization", "Blog Writing", "Email Writing", "Copywriting"],
     category: "Writing & Content Enhancement",
     rating: 4.3,
     totalVotes: 2987
@@ -53,7 +53,7 @@ export const aiContentGenerators: Tool[] = [
     emoji: "🤖",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chat.openai.com/?via=aiwebtools",
-    tags: ["ChatGPT", "OpenAI", "GPT-4", "conversational AI", "content creation"],
+    tags: ["ChatGPT", "OpenAI", "GPT-4", "conversational AI", "content creation", "Creative Writing", "Prompt Engineering"],
     category: "Writing & Content Enhancement",
     rating: 4.8,
     totalVotes: 9876
@@ -65,7 +65,7 @@ export const aiContentGenerators: Tool[] = [
     emoji: "👑",
     color: "from-orange-500 to-red-600",
     directUrl: "https://claude.ai/?via=aiwebtools",
-    tags: ["Claude", "Anthropic", "long-form writing", "context understanding", "advanced AI"],
+    tags: ["Claude", "Anthropic", "long-form writing", "context understanding", "advanced AI", "Creative Writing", "Book Writing", "Article Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.8,
     totalVotes: 7654
