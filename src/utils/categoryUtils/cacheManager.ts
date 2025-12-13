@@ -26,7 +26,7 @@ import { filterBusinessTools } from "./businessCategoryFiltering";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 6;
+let cacheVersion = 7;
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';
@@ -143,6 +143,30 @@ export const buildToolsCache = (tools: Tool[]) => {
       case "ALL AI TOOLS":
         categoryTools = [...tools];
         break;
+        
+      case "AI AGENTS": {
+        // Special handling for AI AGENTS: include any tool that clearly behaves like an agent
+        categoryTools = tools.filter(tool => {
+          const title = tool.title.toLowerCase();
+          const description = (tool.description || "").toLowerCase();
+          const category = (tool.category || "").toLowerCase();
+          const tags = (tool.tags || []).map(tag => tag.toLowerCase());
+
+          const hasAgentWord =
+            title.includes("agent") ||
+            description.includes("agent") ||
+            tags.some(tag => tag.includes("agent"));
+
+          const isAgentCategory =
+            isSimilarCategory(tool.category || "", "AI Agents") ||
+            isSimilarCategory(tool.category || "", "Autonomous Agents") ||
+            isSimilarCategory(tool.category || "", "Intelligent Systems") ||
+            isSimilarCategory(tool.category || "", "Task Automation");
+
+          return hasAgentWord || isAgentCategory;
+        });
+        break;
+      }
         
       case "AI CHAT & ASSISTANTS":
         const subcategoryTools = tools.filter(tool => {

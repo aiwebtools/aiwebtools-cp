@@ -169,7 +169,7 @@ export const aiChatPlatforms: Tool[] = [
     emoji: "🌟",
     color: "from-emerald-500 to-teal-600",
     directUrl: "https://www.emergent.sh/?via=aiwebtools",
-    tags: ["AI agent", "automation", "task execution", "autonomous workflows", "intelligent agent", "problem-solving"],
+    tags: ["AI agent", "Coding Agent", "automation", "task execution", "autonomous workflows", "intelligent agent", "problem-solving"],
     category: "AI CHAT & ASSISTANTS",
     rating: 4.5,
     totalVotes: 1900
