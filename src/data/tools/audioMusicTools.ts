@@ -25,7 +25,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎙️",
     color: "from-emerald-500 to-teal-600",
     directUrl: "https://udio.com/",
-    tags: ["udio", "high-fidelity audio", "natural vocals", "text to music", "original compositions", "AI instruments", "music generation"],
+    tags: ["Music Generator", "udio", "high-fidelity audio", "natural vocals", "text to music", "original compositions", "AI instruments"],
     category: "Audio & Music Tools",
     rating: 4.7,
     totalVotes: 5432
@@ -39,7 +39,7 @@ export const audioMusicTools: Tool[] = [
     directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/_vZhs4FoTco?si=oYk_LS_EynMkLliD",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-dynamic-product-advertisement-showcase_TiaF.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg=true/qt=q:98",
-    tags: ["music video creation", "AI-powered effects", "visual synchronization", "cinematic storytelling", "YouTube content", "TikTok videos", "professional editing", "music visualization"],
+    tags: ["Music Generator", "music video creation", "AI-powered effects", "visual synchronization", "cinematic storytelling", "YouTube content", "TikTok videos", "professional editing", "music visualization"],
     category: "Audio & Music Tools",
     rating: 4.9,
     totalVotes: 5847
@@ -51,7 +51,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🔊",
     color: "from-violet-500 to-purple-600",
     directUrl: "https://stableaudio.com/",
-    tags: ["Stability AI", "sound effects", "ambient audio", "variable length", "text descriptions", "high quality"],
+    tags: ["Music Generator", "Sound Effects", "Stability AI", "ambient audio", "variable length", "text descriptions", "high quality"],
     category: "Audio & Music Tools",
     rating: 4.6,
     totalVotes: 4321
@@ -63,7 +63,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎵",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://google-research.github.io/seanet/musiclm/examples/",
-    tags: ["Google Research", "high-fidelity", "text descriptions", "multiple genres", "musical styles", "research model"],
+    tags: ["Music Generator", "Google Research", "high-fidelity", "text descriptions", "multiple genres", "musical styles", "research model"],
     category: "Audio & Music Tools",
     rating: 4.5,
     totalVotes: 3876
@@ -75,7 +75,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎛️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://github.com/facebookresearch/audiocraft",
-    tags: ["Meta", "open source", "MusicGen", "AudioGen", "neural synthesis", "research toolkit"],
+    tags: ["Music Generator", "Sound Effects", "Meta", "open source", "MusicGen", "AudioGen", "neural synthesis", "research toolkit"],
     category: "Audio & Music Tools",
     rating: 4.4,
     totalVotes: 3245
@@ -87,7 +87,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎭",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.voicemod.net/",
-    tags: ["voice transformation", "celebrity voices", "character voices", "real-time", "streaming", "gaming"],
+    tags: ["Voice Synthesis", "voice transformation", "celebrity voices", "character voices", "real-time", "streaming", "gaming"],
     category: "Audio & Music Tools",
     rating: 4.3,
     totalVotes: 4567
@@ -99,7 +99,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🌊",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://www.splashmusic.com/",
-    tags: ["beats generation", "melodies", "collaborative tools", "DAW integration", "professional production", "AI composition"],
+    tags: ["Music Generator", "beats generation", "melodies", "collaborative tools", "DAW integration", "professional production", "AI composition"],
     category: "Audio & Music Tools",
     rating: 4.2,
     totalVotes: 2987
@@ -111,7 +111,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🗣️",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://coqui.ai/",
-    tags: ["open source", "voice cloning", "multilingual", "real-time synthesis", "custom voices", "TTS"],
+    tags: ["Text-to-Speech", "Voice Cloning", "open source", "multilingual", "real-time synthesis", "custom voices", "TTS"],
     category: "Audio & Music Tools",
     rating: 4.5,
     totalVotes: 3654
@@ -123,7 +123,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎼",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://soundful.com/",
-    tags: ["royalty-free", "background music", "content creators", "mood-based", "videos", "podcasts"],
+    tags: ["Music Generator", "royalty-free", "background music", "content creators", "mood-based", "videos", "podcasts"],
     category: "Audio & Music Tools",
     rating: 4.3,
     totalVotes: 2765
@@ -135,7 +135,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎬",
     color: "from-red-500 to-orange-600",
     directUrl: "https://www.respeecher.com/",
-    tags: ["professional voice cloning", "filmmakers", "dubbing", "localization", "ultra-realistic", "voice transformation"],
+    tags: ["Voice Cloning", "Voice Synthesis", "professional voice cloning", "filmmakers", "dubbing", "localization", "ultra-realistic", "voice transformation"],
     category: "Audio & Music Tools",
     rating: 4.6,
     totalVotes: 3987
@@ -147,7 +147,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎼",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.aiva.ai/",
-    tags: ["AI composer", "soundtrack music", "film scoring", "video game music", "emotional music", "classical training"],
+    tags: ["Music Generator", "AI composer", "soundtrack music", "film scoring", "video game music", "emotional music", "classical training"],
     category: "Audio & Music Tools",
     rating: 4.7,
     totalVotes: 4567
@@ -159,7 +159,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎵",
     color: "from-cyan-500 to-purple-600",
     directUrl: "https://www.ampermusic.com/",
-    tags: ["AI composition", "content creators", "mood-based music", "original music", "video music", "podcast music"],
+    tags: ["Music Generator", "AI composition", "content creators", "mood-based music", "original music", "video music", "podcast music"],
     category: "Audio & Music Tools",
     rating: 4.5,
     totalVotes: 3234
@@ -171,7 +171,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "📢",
     color: "from-blue-500 to-green-600",
     directUrl: "https://speechify.com/",
-    tags: ["text-to-speech", "audiobooks", "natural voices", "celebrity voices", "document reading", "accessibility"],
+    tags: ["Text-to-Speech", "audiobooks", "natural voices", "celebrity voices", "document reading", "accessibility"],
     category: "Audio & Music Tools",
     rating: 4.6,
     totalVotes: 5678
@@ -195,7 +195,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎭",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.descript.com/overdub",
-    tags: ["voice cloning", "ultra-realistic", "speech editing", "text-based editing", "voice synthesis", "content editing"],
+    tags: ["Voice Cloning", "Audio Editing", "ultra-realistic", "speech editing", "text-based editing", "voice synthesis", "content editing"],
     category: "Audio & Music Tools",
     rating: 4.7,
     totalVotes: 4123
@@ -219,7 +219,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎬",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://replicastudios.com/",
-    tags: ["AI voice actors", "expressive performances", "game voices", "film narration", "emotional range", "interactive media"],
+    tags: ["Voice Synthesis", "AI voice actors", "expressive performances", "game voices", "film narration", "emotional range", "interactive media"],
     category: "Audio & Music Tools",
     rating: 4.5,
     totalVotes: 3456
@@ -267,7 +267,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎤",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://get.murf.ai/1uvb0e8dznua",
-    tags: ["120+ AI voices", "20+ languages", "studio-quality", "voiceovers", "marketing", "education"],
+    tags: ["Text-to-Speech", "Voice Synthesis", "120+ AI voices", "20+ languages", "studio-quality", "voiceovers", "marketing", "education"],
     category: "Audio & Music Tools",
     rating: 4.7,
     totalVotes: 5234
@@ -279,7 +279,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎵",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.lalal.ai/?fp_ref=aiwebtools",
-    tags: ["stem separation", "vocal extraction", "instrument tracks", "batch upload", "fast processing", "high-quality audio"],
+    tags: ["Stem Separation", "Audio Editing", "vocal extraction", "instrument tracks", "batch upload", "fast processing", "high-quality audio"],
     category: "Audio & Music Tools",
     rating: 4.6,
     totalVotes: 4567
@@ -291,7 +291,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎼",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.beatoven.ai/",
-    tags: ["royalty-free music", "16 moods", "content creators", "background music", "YouTube", "podcasts"],
+    tags: ["Music Generator", "royalty-free music", "16 moods", "content creators", "background music", "YouTube", "podcasts"],
     category: "Audio & Music Tools",
     rating: 4.5,
     totalVotes: 3789
@@ -351,7 +351,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "▶️",
     color: "from-green-500 to-cyan-600",
     directUrl: "https://www.play.ht/?via=Aiwebtools",
-    tags: ["800+ AI voices", "142 languages", "ultra-realistic TTS", "commercial compliance", "video narration", "e-learning"],
+    tags: ["Text-to-Speech", "Voice Synthesis", "800+ AI voices", "142 languages", "ultra-realistic TTS", "commercial compliance", "video narration", "e-learning"],
     category: "Audio & Music Tools",
     rating: 4.7,
     totalVotes: 4789
@@ -363,7 +363,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎙️",
     color: "from-red-500 to-orange-600",
     directUrl: "https://podcast.adobe.com/enhance",
-    tags: ["enhance speech", "professional audio", "free account", "bulk uploading", "mic check", "browser-based"],
+    tags: ["Podcast Tools", "Audio Enhancement", "enhance speech", "professional audio", "free account", "bulk uploading", "mic check", "browser-based"],
     category: "Audio & Music Tools",
     rating: 4.6,
     totalVotes: 4234
@@ -375,7 +375,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://krisp.ai/",
-    tags: ["voice clarity", "meeting assistant", "noise cancellation", "productivity", "virtual meetings", "clear communication"],
+    tags: ["Audio Enhancement", "voice clarity", "meeting assistant", "noise cancellation", "productivity", "virtual meetings", "clear communication"],
     category: "Audio & Music Tools",
     rating: 4.4,
     totalVotes: 3456
@@ -387,7 +387,7 @@ export const audioMusicTools: Tool[] = [
     emoji: "🎵",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://boomy.com/",
-    tags: ["AI music generator", "no experience required", "streaming platforms", "royalties", "global community", "generative music"],
+    tags: ["Music Generator", "AI music generator", "no experience required", "streaming platforms", "royalties", "global community", "generative music"],
     category: "Audio & Music Tools",
     rating: 4.2,
     totalVotes: 2543
