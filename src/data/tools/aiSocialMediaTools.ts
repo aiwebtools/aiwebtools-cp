@@ -17,7 +17,7 @@ export const aiSocialMediaTools: Tool[] = [
     emoji: "📅",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://buffer.com/?via=aiwebtools",
-    tags: ["social media", "scheduling", "analytics", "content management", "multi-platform"],
+    tags: ["Social Media Agent", "social media", "scheduling", "analytics", "content management", "multi-platform", "automation", "agent"],
     category: "AI Social Media Management Tools",
     rating: 4.5,
     totalVotes: 4567
@@ -29,7 +29,7 @@ export const aiSocialMediaTools: Tool[] = [
     emoji: "🦉",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.hootsuite.com/?via=aiwebtools",
-    tags: ["social media", "automation", "sentiment analysis", "scheduling", "team collaboration"],
+    tags: ["Social Media Agent", "social media", "automation", "sentiment analysis", "scheduling", "team collaboration", "agent"],
     category: "AI Social Media Management Tools",
     rating: 4.4,
     totalVotes: 5123
@@ -41,7 +41,7 @@ export const aiSocialMediaTools: Tool[] = [
     emoji: "📈",
     color: "from-pink-500 to-red-600",
     directUrl: "https://later.com/?via=aiwebtools",
-    tags: ["visual planning", "Instagram", "scheduling", "analytics", "content calendar"],
+    tags: ["Social Media Agent", "visual planning", "Instagram", "scheduling", "analytics", "content calendar", "agent"],
     category: "AI Social Media Management Tools",
     rating: 4.3,
     totalVotes: 3876
@@ -53,7 +53,7 @@ export const aiSocialMediaTools: Tool[] = [
     emoji: "📊",
     color: "from-green-500 to-teal-600",
     directUrl: "https://sproutsocial.com/?via=aiwebtools",
-    tags: ["enterprise", "analytics", "social listening", "engagement", "reporting"],
+    tags: ["Social Media Agent", "enterprise", "analytics", "social listening", "engagement", "reporting", "agent"],
     category: "AI Social Media Management Tools",
     rating: 4.6,
     totalVotes: 4321
@@ -65,7 +65,7 @@ export const aiSocialMediaTools: Tool[] = [
     emoji: "💬",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://www.lately.ai/?via=aiwebtools",
-    tags: ["content generation", "brand voice", "automation", "social posts", "AI writing"],
+    tags: ["Social Media Agent", "content generation", "brand voice", "automation", "social posts", "AI writing", "agent"],
     category: "AI Social Media Management Tools",
     rating: 4.2,
     totalVotes: 2987
@@ -77,7 +77,7 @@ export const aiSocialMediaTools: Tool[] = [
     emoji: "👥",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.sendible.com/?via=aiwebtools",
-    tags: ["agency tools", "client management", "automation", "reporting", "collaboration"],
+    tags: ["Social Media Agent", "agency tools", "client management", "automation", "reporting", "collaboration", "agent"],
     category: "AI Social Media Management Tools",
     rating: 4.4,
     totalVotes: 3234

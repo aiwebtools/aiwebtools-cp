@@ -23,7 +23,7 @@ export const emailManagementTools: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://superhuman.com/",
-    tags: ["email client", "inbox zero", "productivity", "AI triage", "smart scheduling"],
+    tags: ["Email Agent", "email client", "inbox zero", "productivity", "AI triage", "smart scheduling", "agent"],
     category: "Email Management Tools",
     rating: 4.6,
     totalVotes: 3456
@@ -35,7 +35,7 @@ export const emailManagementTools: Tool[] = [
     emoji: "🐵",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://mailchimp.com/",
-    tags: ["email marketing", "automated campaigns", "predictive analytics", "smart recommendations", "engagement"],
+    tags: ["Marketing Agent", "email marketing", "automated campaigns", "predictive analytics", "smart recommendations", "engagement", "agent"],
     category: "Email Management Tools",
     rating: 4.5,
     totalVotes: 4321
@@ -47,7 +47,7 @@ export const emailManagementTools: Tool[] = [
     emoji: "🎯",
     color: "from-pink-500 to-red-600",
     directUrl: "https://convertkit.com/",
-    tags: ["creator focused", "automation", "audience building", "segmentation", "email sequences"],
+    tags: ["Marketing Agent", "creator focused", "automation", "audience building", "segmentation", "email sequences", "agent"],
     category: "Email Management Tools",
     rating: 4.4,
     totalVotes: 2987
@@ -83,7 +83,7 @@ export const emailManagementTools: Tool[] = [
     emoji: "📊",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.klaviyo.com/",
-    tags: ["email marketing", "SMS marketing", "predictive analytics", "personalization", "segmentation"],
+    tags: ["Marketing Agent", "email marketing", "SMS marketing", "predictive analytics", "personalization", "segmentation", "agent"],
     category: "Email Management Tools",
     rating: 4.5,
     totalVotes: 2876
@@ -131,7 +131,7 @@ export const emailManagementTools: Tool[] = [
     emoji: "🔔",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://mixmax.com/",
-    tags: ["sales engagement", "email sequences", "tracking", "automation", "sales workflows"],
+    tags: ["Sales Agent", "sales engagement", "email sequences", "tracking", "automation", "sales workflows", "agent"],
     category: "Email Management Tools",
     rating: 4.2,
     totalVotes: 1987
