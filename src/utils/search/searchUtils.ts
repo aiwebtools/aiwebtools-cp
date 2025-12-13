@@ -14,6 +14,7 @@ import { getAIWebToolsPriorityScore, applyAIWebToolsPrioritization } from "@/uti
 import { deduplicateSearchResults } from "./core/searchDeduplication";
 import { getAlphabeticalSortKey, sortToolsAlphabetically } from "./alphabeticalSorting";
 import { performSimpleSearch } from "./simpleSearch";
+import { applySearchInterleaving } from "./searchInterleaving";
 
 // Tools to exclude from search results
 const EXCLUDED_TOOLS = [
@@ -1747,7 +1748,11 @@ const performEnhancedSearch = (
   const deduplicatedResults = deduplicateSearchResults(results);
   console.log(`🔍 Enhanced search: ${results.length} → ${deduplicatedResults.length} (removed ${results.length - deduplicatedResults.length} duplicates)`);
   
-  return deduplicatedResults;
+  // Apply 2:1 interleaving: 2 external tools, then 1 Custom GPT/Gem
+  const interleavedResults = applySearchInterleaving(deduplicatedResults);
+  console.log(`🔄 Applied 2:1 interleaving to ${interleavedResults.length} search results`);
+  
+  return interleavedResults;
 };
 
 // Helper function to remove duplicate tools
