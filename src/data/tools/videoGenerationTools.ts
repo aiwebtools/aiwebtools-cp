@@ -10,7 +10,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "🚀",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://runwayml.com/gen2/",
-    tags: ["text-to-video", "AI generation", "video editing", "creative tools", "machine learning"],
+    tags: ["text-to-video", "AI generation", "video editing", "creative tools", "machine learning", "Video Generator", "Video Editor"],
     category: "Video Generation",
     rating: 4.8,
     totalVotes: 7234
@@ -22,7 +22,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "🌟",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://pika.art/",
-    tags: ["AI video editing", "video creation", "creative AI", "machine learning", "video effects"],
+    tags: ["AI video editing", "video creation", "creative AI", "machine learning", "video effects", "Video Generator", "Video Editor"],
     category: "Video Generation",
     rating: 4.7,
     totalVotes: 6890
@@ -34,7 +34,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://lumalabs.ai/dream-machine",
-    tags: ["text-to-video", "image-to-video", "physics simulation", "realistic motion", "AI video"],
+    tags: ["text-to-video", "image-to-video", "physics simulation", "realistic motion", "AI video", "Video Generator", "Animation"],
     category: "Video Generation",
     rating: 4.8,
     totalVotes: 7456
@@ -46,7 +46,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "✍️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.synthesia.io/",
-    tags: ["AI video generation", "text-to-video", "professional videos", "AI avatars", "video marketing"],
+    tags: ["AI video generation", "text-to-video", "professional videos", "AI avatars", "video marketing", "Video Generator", "Avatar Video"],
     category: "Video Generation",
     rating: 4.5,
     totalVotes: 3234
@@ -58,7 +58,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "🗣️",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.d-id.com/",
-    tags: ["AI presenters", "video content", "presentations", "text-to-speech", "AI avatars"],
+    tags: ["AI presenters", "video content", "presentations", "text-to-speech", "AI avatars", "Video Generator", "Avatar Video"],
     category: "Video Generation",
     rating: 4.6,
     totalVotes: 3567
@@ -70,7 +70,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "📹",
     color: "from-orange-500 to-red-600",
     directUrl: "https://app.heygen.com/guest?sid=rewardful&via=aiwebtools",
-    tags: ["AI avatars", "voice cloning", "personalized videos", "multilingual", "scale", "video generation"],
+    tags: ["AI avatars", "voice cloning", "personalized videos", "multilingual", "scale", "video generation", "Video Generator", "Avatar Video"],
     category: "Video Generation",
     rating: 4.5,
     totalVotes: 3123
@@ -82,7 +82,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "📹",
     color: "from-blue-500 to-green-600",
     directUrl: "https://clipchamp.com/",
-    tags: ["Microsoft", "auto-compose", "text-to-speech", "brand kit", "professional"],
+    tags: ["Microsoft", "auto-compose", "text-to-speech", "brand kit", "professional", "Video Editor", "Video Generator"],
     category: "Video Generation",
     rating: 4.3,
     totalVotes: 3245
@@ -94,7 +94,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "👥",
     color: "from-blue-500 to-teal-600",
     directUrl: "https://www.colossyan.com/",
-    tags: ["AI actors", "training videos", "learning", "multilingual", "virtual presenters"],
+    tags: ["AI actors", "training videos", "learning", "multilingual", "virtual presenters", "Video Generator", "Avatar Video"],
     category: "Video Generation",
     rating: 4.3,
     totalVotes: 2134
@@ -106,7 +106,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "⚡",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://invideo.io/",
-    tags: ["video templates", "text-to-video", "automated editing", "marketing", "social media"],
+    tags: ["video templates", "text-to-video", "automated editing", "marketing", "social media", "Video Generator", "Video Editor"],
     category: "Video Generation",
     rating: 4.4,
     totalVotes: 4567
@@ -118,7 +118,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "🎬",
     color: "from-red-500 to-purple-600",
     directUrl: "https://moviescriptwritergpt.lovable.app/?via=aiwebtools",
-    tags: ["video scripts", "content creation", "marketing videos", "social media", "video production"],
+    tags: ["video scripts", "content creation", "marketing videos", "social media", "video production", "Video Production", "Script Writing"],
     category: "Video Generation",
     rating: 4.6,
     totalVotes: 3890
@@ -130,7 +130,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "📝",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
-    tags: ["prompt generation", "text-to-video", "AI prompts", "video creation", "prompt optimization"],
+    tags: ["prompt generation", "text-to-video", "AI prompts", "video creation", "prompt optimization", "Video Generator", "Prompt Engineering"],
     category: "Video & Multimedia",
     rating: 4.5,
     totalVotes: 2890
@@ -142,7 +142,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "🎯",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://chatgpt.com/g/g-682faef24c608191808180e89719cb09-veo3-text-to-video-prompt-maker",
-    tags: ["VEO3", "prompt generation", "Google AI", "text-to-video", "video prompts", "AI optimization"],
+    tags: ["VEO3", "prompt generation", "Google AI", "text-to-video", "video prompts", "AI optimization", "Video Generator", "Prompt Engineering"],
     category: "Video & Multimedia",
     rating: 4.4,
     totalVotes: 2456
@@ -154,7 +154,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "📚",
     color: "from-blue-500 to-green-600",
     directUrl: "https://imagineexplainers.com/",
-    tags: ["educational videos", "visual learning", "explainer videos", "educational content", "teaching tools", "AI video creation", "learning materials"],
+    tags: ["educational videos", "visual learning", "explainer videos", "educational content", "teaching tools", "AI video creation", "learning materials", "Video Generator", "Video Production"],
     category: "Video Generation",
     rating: 4.5,
     totalVotes: 1234
@@ -166,7 +166,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "🎥",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://syllaby.io/?via=aiwebtools",
-    tags: ["faceless video", "text-to-video", "automated creation", "content strategy", "social media", "AI video"],
+    tags: ["faceless video", "text-to-video", "automated creation", "content strategy", "social media", "AI video", "Video Generator", "Video Production"],
     category: "Video Generation",
     rating: 4.4,
     totalVotes: 3234
@@ -178,7 +178,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "🌊",
     color: "from-blue-500 to-green-600",
     directUrl: "https://labs.google/fx/tools/flow",
-    tags: ["Google Labs", "video flow", "experimental", "AI video", "Google Flow"],
+    tags: ["Google Labs", "video flow", "experimental", "AI video", "Google Flow", "Video Generator", "Motion Graphics"],
     category: "Video Generation Tools",
     rating: 4.8,
     totalVotes: 2543
@@ -190,7 +190,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://klingai.com/h5-app/invitation?code=7BVDK88SKFUS",
-    tags: ["text-to-video", "video generation", "ai video", "kling", "kling ai"],
+    tags: ["text-to-video", "video generation", "ai video", "kling", "kling ai", "Video Generator"],
     category: "Video Generation",
     rating: 4.8,
     totalVotes: 6523
@@ -202,7 +202,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "🎭",
     color: "from-red-500 to-purple-600",
     directUrl: "https://hailuoai.video/?via=aiwebtools",
-    tags: ["text-to-video", "hailuo", "minimax", "video generation", "china ai"],
+    tags: ["text-to-video", "hailuo", "minimax", "video generation", "china ai", "Video Generator"],
     category: "Video Generation",
     rating: 4.7,
     totalVotes: 5234
@@ -214,7 +214,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "🤳",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://higgsfield.ai/?via=aiwebtools",
-    tags: ["selfie-to-video", "personalized", "character", "text-to-video", "mobile"],
+    tags: ["selfie-to-video", "personalized", "character", "text-to-video", "mobile", "Video Generator", "Avatar Video"],
     category: "Video Generation",
     rating: 4.6,
     totalVotes: 4123
@@ -226,7 +226,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "🎬",
     color: "from-green-500 to-blue-600",
     directUrl: "https://labs.google/fx/tools/video-fx?via=aiwebtools",
-    tags: ["text-to-video", "veo 3", "google ai", "video generation", "video fx"],
+    tags: ["text-to-video", "veo 3", "google ai", "video generation", "video fx", "Video Generator"],
     category: "Video Generation",
     rating: 4.9,
     totalVotes: 8234
@@ -239,7 +239,7 @@ export const videoGenerationTools: Tool[] = [
     color: "from-red-500 to-pink-600",
     directUrl: "https://moviemakerstudio.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E&list=TLGGyT65jYe0o6cyODA1MjAyNQ&t",
-    tags: ["movie production", "video creation", "film making", "content creation", "AI studio", "text-to-video"],
+    tags: ["movie production", "video creation", "film making", "content creation", "AI studio", "text-to-video", "Video Production", "Video Generator"],
     category: "Video Generation",
     rating: 4.9,
     totalVotes: 5678
@@ -252,7 +252,7 @@ export const videoGenerationTools: Tool[] = [
     color: "from-red-500 to-pink-600",
     directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=rBQTUrvHcR8&list=TLGGHKS5WME8OJ8yODA1MjAyNQ",
-    tags: ["music videos", "AI generation", "video effects", "content creation", "entertainment", "text-to-video", "music"],
+    tags: ["music videos", "AI generation", "video effects", "content creation", "entertainment", "text-to-video", "music", "Video Generator", "Video Production"],
     category: "Video Generation",
     rating: 4.9,
     totalVotes: 4567
@@ -264,7 +264,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "🍋",
     color: "from-yellow-500 to-green-600",
     directUrl: "https://lemonslice.com/?via=aiwebtools",
-    tags: ["photo to video", "talking videos", "storytelling", "AI animation", "photo animation", "video creation"],
+    tags: ["photo to video", "talking videos", "storytelling", "AI animation", "photo animation", "video creation", "Video Generator", "Animation"],
     category: "Video Generation",
     rating: 4.5,
     totalVotes: 2890
