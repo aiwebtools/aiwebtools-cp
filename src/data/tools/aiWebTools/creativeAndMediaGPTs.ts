@@ -32,7 +32,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🎬",
     color: "from-red-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-69326acb5f348191a2f85c2cdc848c4d-0ra2-text-to-video-prompt-maker?via=aiwebtools",
-    tags: ["sora", "text to video", "video prompts", "ai video", "cinematic", "prompt engineering", "runway", "pika", "video generation", "aiwebtools"],
+    tags: ["sora", "text to video", "video prompts", "ai video", "cinematic", "prompt engineering", "runway", "pika", "video generation", "aiwebtools", "Custom GPT"],
     category: "Creative & Media",
     rating: 4.9,
     totalVotes: 2345
@@ -44,7 +44,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🎨",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-69157380e63c819188de5c09bdf23ef7-bob-ross-gpt/?via=aiwebtools",
-    tags: ["art teaching", "painting", "creativity", "calm guidance", "Bob Ross", "aiwebtools"],
+    tags: ["art teaching", "painting", "creativity", "calm guidance", "Bob Ross", "aiwebtools", "Custom GPT"],
     category: "Creative & Media",
     rating: 4.8,
     totalVotes: 4567,
@@ -57,7 +57,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://chatgpt.com/g/g-69176b2f62e481918b21756ccdc5d396-cyber-kabbalah-light-code-translation-engine-gpt/?via=aiwebtools",
-    tags: ["symbolic translation", "light codes", "mystical symbols", "spiritual technology", "kabbalah", "aiwebtools"],
+    tags: ["symbolic translation", "light codes", "mystical symbols", "spiritual technology", "kabbalah", "aiwebtools", "Custom GPT"],
     category: "Creative & Media",
     rating: 4.6,
     totalVotes: 2890,
@@ -70,7 +70,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "📢",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-6810ea3238888191a084c4f20b40225f-ad-maker-gpt",
-    tags: ["advertisement creation", "marketing banners", "promotional graphics", "visual ads", "marketing campaigns", "advertising design"],
+    tags: ["advertisement creation", "marketing banners", "promotional graphics", "visual ads", "marketing campaigns", "advertising design", "Custom GPT"],
     category: "Creative & Media",
     rating: 4.6,
     totalVotes: 2890
@@ -83,7 +83,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     color: "from-pink-500 to-purple-600",
     directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://ideogram.ai/assets/progressive-image/balanced/response/6wSDfm1RQUeOIPIBIrERTQ",
-    tags: ["virtual try on", "fashion styling", "outfit recommendations", "virtual fashion", "style assistant", "fashion AI", "aiwebtools"],
+    tags: ["virtual try on", "fashion styling", "outfit recommendations", "virtual fashion", "style assistant", "fashion AI", "aiwebtools", "Custom GPT"],
     category: "Creative & Media",
     rating: 4.5,
     totalVotes: 3245
@@ -95,7 +95,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🛒",
     color: "from-blue-500 to-green-600",
     directUrl: "https://shoppinggpt.lovable.app/?via=aiwebtools",
-    tags: ["shopping assistant", "product recommendations", "deal finder", "price comparison", "shopping advice", "product discovery", "aiwebtools"],
+    tags: ["shopping assistant", "product recommendations", "deal finder", "price comparison", "shopping advice", "product discovery", "aiwebtools", "Custom GPT"],
     category: "Creative & Media",
     rating: 4.4,
     totalVotes: 2987
@@ -107,7 +107,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🎬",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-681a201fe69c8191b99e1636be90139e-commercial-scene-maker-gpt",
-    tags: ["commercial photography", "scene generation", "marketing visuals", "advertising imagery", "product photography", "commercial design"],
+    tags: ["commercial photography", "scene generation", "marketing visuals", "advertising imagery", "product photography", "commercial design", "Custom GPT"],
     category: "Creative & Media",
     rating: 4.7,
     totalVotes: 3456
@@ -120,7 +120,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://screenplaywritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=4e3Rkurt3-c&list=TLGGtoG6kc0vED4yODA1MjAyNQ",
-    tags: ["screenplay writing", "script development", "film writing", "character development", "dialogue creation", "script formatting", "aiwebtools"],
+    tags: ["screenplay writing", "script development", "film writing", "character development", "dialogue creation", "script formatting", "aiwebtools", "Custom GPT"],
     category: "Creative & Media",
     rating: 4.8,
     totalVotes: 4123
@@ -132,7 +132,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🎨",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://adandlogomakergpt.lovable.app/?via=aiwebtools",
-    tags: ["logo design", "advertisement creation", "branding", "marketing materials", "visual design", "brand identity", "aiwebtools"],
+    tags: ["logo design", "advertisement creation", "branding", "marketing materials", "visual design", "brand identity", "aiwebtools", "Custom GPT"],
     category: "Creative & Media",
     rating: 4.7,
     totalVotes: 3456
@@ -144,7 +144,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "📚",
     color: "from-red-500 to-blue-600",
     directUrl: "https://comicbookmakergpt.lovable.app/?via=aiwebtools",
-    tags: ["comic book creation", "graphic novels", "storytelling", "sequential art", "character design", "visual narratives", "aiwebtools"],
+    tags: ["comic book creation", "graphic novels", "storytelling", "sequential art", "character design", "visual narratives", "aiwebtools", "Custom GPT"],
     category: "Creative & Media",
     rating: 4.8,
     totalVotes: 3789
@@ -158,7 +158,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     directUrl: "https://memegeneratorgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/Myg8P8wg294",
     imageUrl: "https://ideogram.ai/assets/image/lossless/response/h2Lp-rLMScaWK6A-mrFZQA",
-    tags: ["meme creation", "viral content", "social media", "humor", "internet culture", "content creation", "aiwebtools"],
+    tags: ["meme creation", "viral content", "social media", "humor", "internet culture", "content creation", "aiwebtools", "Custom GPT"],
     category: "Creative & Media",
     rating: 4.6,
     totalVotes: 4521
@@ -171,7 +171,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://moviemakerstudio.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E&list=TLGGyT65jYe0o6cyODA1MjAyNQ&t",
-    tags: ["movie making", "film production", "video creation", "creative suite", "entertainment", "aiwebtools"],
+    tags: ["movie making", "film production", "video creation", "creative suite", "entertainment", "aiwebtools", "Custom GPT"],
     category: "Creative & Media",
     rating: 4.8,
     totalVotes: 6789

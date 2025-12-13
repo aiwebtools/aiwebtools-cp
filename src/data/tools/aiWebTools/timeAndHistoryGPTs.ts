@@ -23,7 +23,7 @@ export const timeAndHistoryGPTs: Tool[] = [
     directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/J31nNY5_PB4",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298793409806528/time.webp",
-    tags: ["time travel", "history exploration", "historical figures", "alternative realities", "time periods", "aiwebtools"],
+    tags: ["time travel", "history exploration", "historical figures", "alternative realities", "time periods", "aiwebtools", "Custom GPT"],
     category: "Time & History",
     rating: 4.8,
     totalVotes: 6789
@@ -36,7 +36,7 @@ export const timeAndHistoryGPTs: Tool[] = [
     color: "from-amber-500 to-orange-600",
     directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/HQGNMR7oXXY",
-    tags: ["historical conversations", "historical figures", "educational tool", "history learning", "interactive history", "aiwebtools"],
+    tags: ["historical conversations", "historical figures", "educational tool", "history learning", "interactive history", "aiwebtools", "Custom GPT"],
     category: "Time & History",
     rating: 4.7,
     totalVotes: 5432
@@ -49,7 +49,7 @@ export const timeAndHistoryGPTs: Tool[] = [
     color: "from-blue-500 to-gray-600",
     directUrl: "https://titanicresurrectionsgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=XlWVaz5bw08",
-    tags: ["titanic history", "historical storytelling", "survivor testimonies", "maritime history", "interactive history", "aiwebtools"],
+    tags: ["titanic history", "historical storytelling", "survivor testimonies", "maritime history", "interactive history", "aiwebtools", "Custom GPT"],
     category: "Time & History",
     rating: 4.6,
     totalVotes: 4123
@@ -63,7 +63,7 @@ export const timeAndHistoryGPTs: Tool[] = [
     directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/DgreEEJKynM",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-historical-headline_1Ll1g.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["historical news", "period journalism", "historical accuracy", "news simulation", "historical perspective", "aiwebtools"],
+    tags: ["historical news", "period journalism", "historical accuracy", "news simulation", "historical perspective", "aiwebtools", "Custom GPT"],
     category: "Time & History",
     rating: 4.5,
     totalVotes: 3876
@@ -76,7 +76,7 @@ export const timeAndHistoryGPTs: Tool[] = [
     color: "from-purple-500 to-red-600",
     directUrl: "https://historicalpatternsgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-advertisement-with-the-eye_C64dU.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
-    tags: ["historical analysis", "pattern recognition", "alternative history", "research tool", "historical investigation", "aiwebtools"],
+    tags: ["historical analysis", "pattern recognition", "alternative history", "research tool", "historical investigation", "aiwebtools", "Custom GPT"],
     category: "Time & History",
       rating: 4.7,
       totalVotes: 4567
@@ -89,7 +89,7 @@ export const timeAndHistoryGPTs: Tool[] = [
       color: "from-amber-600 to-red-600",
       directUrl: "https://blackhistorymattersgpt.lovable.app/?via=aiwebtools",
       videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
-      tags: ["Black history", "time machine", "time travel", "history exploration", "civil rights", "African American history", "historical education"],
+      tags: ["Black history", "time machine", "time travel", "history exploration", "civil rights", "African American history", "historical education", "Custom GPT"],
       category: "Time & History",
       rating: 4.7,
       totalVotes: 1280
@@ -101,7 +101,7 @@ export const timeAndHistoryGPTs: Tool[] = [
       emoji: "🕊️",
       color: "from-green-500 to-red-600",
       directUrl: "https://chatgpt.com/g/g-68ca033a29508191a8b51668f8bf8e78-palestinian-history-preserver/?via=aiwebtools",
-      tags: ["Palestinian history", "cultural preservation", "historical documentation", "Middle East history", "heritage", "education", "aiwebtools"],
+      tags: ["Palestinian history", "cultural preservation", "historical documentation", "Middle East history", "heritage", "education", "aiwebtools", "Custom GPT"],
       category: "Time & History",
       rating: 4.8,
       totalVotes: 2341
@@ -113,7 +113,7 @@ export const timeAndHistoryGPTs: Tool[] = [
       emoji: "🏛️",
       color: "from-amber-500 to-purple-600",
       directUrl: "https://chatgpt.com/g/g-68c9e5c22f608191bcdd15d802b094b0-middle-east-history-guide/?via=aiwebtools",
-      tags: ["Middle East history", "historical guide", "ancient civilizations", "regional history", "cultural studies", "education", "aiwebtools"],
+      tags: ["Middle East history", "historical guide", "ancient civilizations", "regional history", "cultural studies", "education", "aiwebtools", "Custom GPT"],
       category: "Time & History",
       rating: 4.7,
       totalVotes: 1987
