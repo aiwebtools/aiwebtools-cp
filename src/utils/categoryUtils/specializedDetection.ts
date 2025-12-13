@@ -155,12 +155,24 @@ export const isDataAnalyticsTool = (tool: Tool): boolean => {
   ) || isMajorLLM(tool); // Include major LLMs in data analytics
 };
 
-// Helper function to detect AI Web Tools GPTs
+// Helper function to detect AI Web Tools GPTs and Custom GPTs
 export const isAIWebToolsGPT = (tool: Tool): boolean => {
-  return tool.directUrl?.includes('lovable.app') || 
-         tool.directUrl?.includes('aiwebtools') ||
-         tool.description?.toLowerCase().includes('aiwebtools') ||
-         tool.tags?.some(tag => tag.toLowerCase().includes('aiwebtools'));
+  // Check for Custom GPT tag (the primary identifier after tagging initiative)
+  const hasCustomGPTTag = tool.tags?.some(tag => 
+    tag.toLowerCase() === 'custom gpt' || 
+    tag.toLowerCase().includes('custom gpt')
+  );
+  
+  // Check for AIWebTools indicators
+  const hasAIWebToolsUrl = tool.directUrl?.includes('lovable.app') || 
+                            tool.directUrl?.includes('aiwebtools');
+  const hasAIWebToolsDescription = tool.description?.toLowerCase().includes('aiwebtools');
+  const hasAIWebToolsTag = tool.tags?.some(tag => tag.toLowerCase().includes('aiwebtools'));
+  
+  // Check for ChatGPT.com GPT URLs (custom GPTs hosted on OpenAI)
+  const isChatGPTCustomGPT = tool.directUrl?.includes('chatgpt.com/g/g-');
+  
+  return hasCustomGPTTag || hasAIWebToolsUrl || hasAIWebToolsDescription || hasAIWebToolsTag || isChatGPTCustomGPT;
 };
 
 // Helper function to detect AI Chat & Assistant tools with enhanced matching
