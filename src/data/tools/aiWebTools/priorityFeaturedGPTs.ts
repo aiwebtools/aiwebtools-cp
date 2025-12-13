@@ -1,5 +1,5 @@
 import { Tool } from "@/types/tools";
-import { Bot, Brain, Clock, Microscope, Heart, Zap, Users, Crown, Sparkles, Globe, Star, Shield, Gamepad2, Car, GraduationCap, Wand2, MessageSquare, History, Search, Calculator, FileText, Music, Palette, Code, Lightbulb } from "lucide-react";
+import { Crown, Heart, GraduationCap } from "lucide-react";
 
 export const priorityFeaturedGPTs: Tool[] = [
   {
@@ -16,112 +16,16 @@ export const priorityFeaturedGPTs: Tool[] = [
     totalVotes: 6500
   },
   {
-    icon: Brain,
-    title: "AI-Driven Insights",
-    description: "Access a vast database of knowledge and get AI-powered insights, summaries, and answers to your questions.",
-    emoji: "🧠",
-    color: "from-orange-500 to-red-600",
-    directUrl: "https://aiwebtools.com/ai-insights",
-    tags: ["knowledge base", "ai insights", "summarization", "answers", "research"],
-    category: "AI Assistants & Search",
-    rating: 4.5,
-    totalVotes: 3543
-  },
-  {
-    icon: Zap,
-    title: "Automated Task Assistant",
-    description: "Automate repetitive tasks and workflows with AI. Boost your productivity and focus on what matters most.",
-    emoji: "⚡",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://aiwebtools.com/ai-automator",
-    tags: ["task automation", "workflow", "productivity", "efficiency", "ai tools"],
-    category: "AI Assistants & Search",
-    rating: 4.4,
-    totalVotes: 3210
-  },
-  {
-    icon: Star,
-    title: "Creative AI Generator",
-    description: "Unleash your creativity with AI-powered inspiration, ideas, and content generation for art, writing, and more.",
-    emoji: "✨",
-    color: "from-cyan-500 to-blue-600",
-    directUrl: "https://aiwebtools.com/ai-creative",
-    tags: ["creative ai", "inspiration", "content generation", "art", "writing"],
-    category: "AI Assistants & Search",
-    rating: 4.3,
-    totalVotes: 2876
-  },
-  {
-    icon: Sparkles,
-    title: "⚡ AI Productivity Tool",
-    description: "Maximize your productivity with AI-driven tools for time management, focus enhancement, and goal setting.",
-    emoji: "🌟",
-    color: "from-indigo-500 to-purple-600",
-    directUrl: "https://aiwebtools.com/ai-productivity",
-    tags: ["productivity tools", "time management", "focus", "goal setting", "ai assistance"],
-    category: "AI Assistants & Search",
-    rating: 4.2,
-    totalVotes: 2543
-  },
-  {
-    icon: Globe,
-    title: "🌐 AI Language Translator",
-    description: "Learn new languages with AI-powered tutoring, personalized lessons, and real-time feedback.",
-    emoji: "🌍",
-    color: "from-teal-500 to-blue-600",
-    directUrl: "https://aiwebtools.com/ai-translator",
-    tags: ["language learning", "ai tutoring", "personalized lessons", "feedback", "education"],
-    category: "AI Assistants & Search",
-    rating: 4.1,
-    totalVotes: 2210
-  },
-  {
-    icon: Search,
-    title: "🔎 AI Smart Search",
-    description: "Intelligent search engine that understands context and provides accurate, relevant results.",
-    emoji: "🔍",
-    color: "from-gray-500 to-blue-600",
-    directUrl: "https://aiwebtools.com/ai-search",
-    tags: ["smart search", "contextual search", "ai search engine", "accurate results"],
-    category: "AI Assistants & Search",
-    rating: 4.3,
-    totalVotes: 2987
-  },
-  {
     icon: Heart,
     title: "💪 AI Wellness Coach",
     description: "AI-driven wellness coach that provides personalized fitness plans, nutrition advice, and mental health support.",
     emoji: "❤️",
     color: "from-red-500 to-pink-600",
     directUrl: "https://chatgpt.com/g/g-68ae1e75dd988191b4629abab71e625f-wellness-warrior-ai-coach-mentor-gpt",
-    tags: ["wellness coach", "fitness plans", "nutrition advice", "mental health"],
+    tags: ["wellness coach", "fitness plans", "nutrition advice", "mental health", "Custom GPT"],
     category: "AI Assistants & Search",
     rating: 4.4,
     totalVotes: 3123
-  },
-  {
-    icon: Shield,
-    title: "🔒 AI Security Guardian",
-    description: "AI-powered security tool that protects your data, devices, and online privacy from threats.",
-    emoji: "🛡️",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://aiwebtools.com/ai-security",
-    tags: ["security tool", "data protection", "online privacy", "threat detection"],
-    category: "AI Assistants & Search",
-    rating: 4.5,
-    totalVotes: 3456
-  },
-  {
-    icon: Car,
-    title: "🚗 AI Driving Assistant",
-    description: "AI assistant for drivers that provides real-time traffic updates, navigation, and safety alerts.",
-    emoji: "🚗",
-    color: "from-purple-500 to-blue-600",
-    directUrl: "https://aiwebtools.com/ai-driving",
-    tags: ["driving assistant", "navigation", "traffic updates", "safety alerts"],
-    category: "AI Assistants & Search",
-    rating: 4.3,
-    totalVotes: 2789
   },
   {
     icon: GraduationCap,
@@ -130,105 +34,9 @@ export const priorityFeaturedGPTs: Tool[] = [
     emoji: "🎓",
     color: "from-blue-500 to-green-600",
     directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
-    tags: ["education platform", "personalized learning", "educational resources"],
+    tags: ["education platform", "personalized learning", "educational resources", "Custom GPT"],
     category: "AI Assistants & Search",
     rating: 4.6,
     totalVotes: 3345
-  },
-  {
-    icon: Wand2,
-    title: "🪄 AI Magic Tool",
-    description: "AI tool that performs various magical tasks, such as generating spells, predicting the future, and more.",
-    emoji: "🪄",
-    color: "from-pink-500 to-purple-600",
-    directUrl: "https://aiwebtools.com/ai-magic",
-    tags: ["magic tool", "spell generation", "future prediction"],
-    category: "AI Assistants & Search",
-    rating: 4.2,
-    totalVotes: 2456
-  },
-  {
-    icon: MessageSquare,
-    title: "💬 AI Communication Tool",
-    description: "AI tool that helps you communicate more effectively with others, such as generating emails, writing letters, and more.",
-    emoji: "✉️",
-    color: "from-orange-500 to-yellow-600",
-    directUrl: "https://aiwebtools.com/ai-communication",
-    tags: ["communication tool", "email generation", "letter writing"],
-    category: "AI Assistants & Search",
-    rating: 4.4,
-    totalVotes: 3012
-  },
-  {
-    icon: History,
-    title: "📜 AI History Expert",
-    description: "AI tool that provides you with information about historical events, figures, and more.",
-    emoji: "📜",
-    color: "from-blue-500 to-gray-600",
-    directUrl: "https://aiwebtools.com/ai-history",
-    tags: ["history expert", "historical events", "historical figures"],
-    category: "AI Assistants & Search",
-    rating: 4.5,
-    totalVotes: 3123
-  },
-  {
-    icon: Calculator,
-    title: "🧮 AI Math Solver",
-    description: "AI tool that solves math problems for you, such as algebra, calculus, and more.",
-    emoji: "🧮",
-    color: "from-green-500 to-yellow-600",
-    directUrl: "https://aiwebtools.com/ai-math",
-    tags: ["math solver", "algebra", "calculus"],
-    category: "AI Assistants & Search",
-    rating: 4.3,
-    totalVotes: 2890
-  },
-  {
-    icon: FileText,
-    title: "📄 AI Document Generator",
-    description: "AI tool that generates documents for you, such as reports, essays, and more.",
-    emoji: "📄",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://aiwebtools.com/ai-document",
-    tags: ["document generator", "reports", "essays"],
-    category: "AI Assistants & Search",
-    rating: 4.6,
-    totalVotes: 3456
-  },
-  {
-    icon: Palette,
-    title: "🎨 AI Art Generator",
-    description: "AI tool that generates art for you, such as paintings, drawings, and more.",
-    emoji: "🎨",
-    color: "from-blue-500 to-purple-600",
-    directUrl: "https://aiwebtools.com/ai-art",
-    tags: ["art generator", "paintings", "drawings"],
-    category: "AI Assistants & Search",
-    rating: 4.4,
-    totalVotes: 3123
-  },
-  {
-    icon: Code,
-    title: "💻 AI Code Generator",
-    description: "AI tool that generates code for you, such as HTML, CSS, and more.",
-    emoji: "💻",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://aiwebtools.com/ai-code",
-    tags: ["code generator", "HTML", "CSS"],
-    category: "AI Assistants & Search",
-    rating: 4.5,
-    totalVotes: 3234
-  },
-  {
-    icon: Lightbulb,
-    title: "💡 AI Idea Generator",
-    description: "AI tool that generates ideas for you, such as business ideas, product ideas, and more.",
-    emoji: "💡",
-    color: "from-yellow-500 to-orange-600",
-    directUrl: "https://aiwebtools.com/ai-idea",
-    tags: ["idea generator", "business ideas", "product ideas"],
-    category: "AI Assistants & Search",
-    rating: 4.3,
-    totalVotes: 2901
   },
 ];
