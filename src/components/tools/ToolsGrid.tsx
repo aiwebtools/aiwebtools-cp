@@ -234,13 +234,18 @@ const ToolsGrid = memo(({
     </>
   );
 }, (prevProps, nextProps) => {
-  // Custom comparison for performance
+  // Custom comparison for performance - also check first tool to detect shuffle
+  const sameFirstTool = prevProps.tools[0]?.title === nextProps.tools[0]?.title;
+  const sameFilteredCount = prevProps.filteredToolsCount === nextProps.filteredToolsCount;
+  
   return (
     prevProps.tools.length === nextProps.tools.length &&
     prevProps.displayedCount === nextProps.displayedCount &&
     prevProps.selectedCategory === nextProps.selectedCategory &&
     prevProps.searchTerm === nextProps.searchTerm &&
-    prevProps.isLoading === nextProps.isLoading
+    prevProps.isLoading === nextProps.isLoading &&
+    sameFirstTool &&
+    sameFilteredCount
   );
 });
 

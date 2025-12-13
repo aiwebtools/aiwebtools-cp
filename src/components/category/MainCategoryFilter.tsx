@@ -53,24 +53,33 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     setShuffleKey(0);
   }, [currentMainCategory]);
 
-  // Fisher-Yates shuffle algorithm
-  const shuffleArray = useCallback((array: Tool[]): Tool[] => {
+  // Fisher-Yates shuffle algorithm - creates NEW array with random order
+  const shuffleArray = useCallback((array: Tool[], seed: number): Tool[] => {
     const shuffled = [...array];
+    // Use seed to ensure different shuffle each time
+    let currentSeed = seed;
+    const random = () => {
+      currentSeed = (currentSeed * 9301 + 49297) % 233280;
+      return currentSeed / 233280;
+    };
+    
     for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
+      const j = Math.floor(random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled;
   }, []);
 
   // Memoize filtered tools - ONLY show tools from selected categories (true filtering)
-  const filteredTools = useMemo(() => {
-    // If no categories selected, use current category
+  // Use a separate state for the actual shuffled result to ensure re-renders
+  const [shuffledTools, setShuffledTools] = useState<Tool[]>([]);
+  
+  // Calculate base filtered tools (before shuffle)
+  const baseFilteredTools = useMemo(() => {
     const categoriesToUse = selectedMainCategories.length === 0 
       ? [currentMainCategory] 
       : selectedMainCategories;
     
-    // Collect tools from ALL selected categories (union)
     const selectedCategoryTools = new Map<string, Tool>();
     
     categoriesToUse.forEach(categoryName => {
@@ -82,15 +91,24 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       });
     });
     
-    let result = Array.from(selectedCategoryTools.values());
-    
-    // Apply shuffle if shuffleKey > 0
+    return Array.from(selectedCategoryTools.values());
+  }, [selectedMainCategories, currentMainCategory]);
+
+  // Apply shuffle when shuffleKey changes or base tools change
+  useEffect(() => {
     if (shuffleKey > 0) {
-      result = shuffleArray(result);
+      // Use current time + shuffleKey as seed for true randomness each click
+      const seed = Date.now() + shuffleKey * 1000;
+      const shuffled = shuffleArray(baseFilteredTools, seed);
+      console.log(`🔀 Shuffle #${shuffleKey}: Shuffled ${shuffled.length} tools (first 3: ${shuffled.slice(0, 3).map(t => t.title).join(', ')})`);
+      setShuffledTools(shuffled);
+    } else {
+      setShuffledTools(baseFilteredTools);
     }
-    
-    return result;
-  }, [selectedMainCategories, currentMainCategory, shuffleKey, shuffleArray]);
+  }, [shuffleKey, baseFilteredTools, shuffleArray]);
+
+  // The final tools to pass to parent
+  const filteredTools = shuffledTools.length > 0 ? shuffledTools : baseFilteredTools;
 
   // Update parent IMMEDIATELY when filtered tools change
   useEffect(() => {
