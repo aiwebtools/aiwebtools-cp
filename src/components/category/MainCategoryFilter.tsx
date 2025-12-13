@@ -77,14 +77,11 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     return Array.from(selectedCategoryTools.values());
   }, [selectedMainCategories, tools.length]);
 
-  // Update parent with debounced effect
+  // Update parent IMMEDIATELY when filtered tools change - no delay
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      onFilteredToolsChange(filteredTools);
-    }, 100);
-    
-    return () => clearTimeout(timeoutId);
-  }, [filteredTools]);
+    console.log(`🎯 MainCategoryFilter: Passing ${filteredTools.length} tools to parent`);
+    onFilteredToolsChange(filteredTools);
+  }, [filteredTools, onFilteredToolsChange]);
 
   const handleMainCategoryToggle = useCallback((mainCategoryName: string) => {
     setSelectedMainCategories(prev => {
