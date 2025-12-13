@@ -29,7 +29,7 @@ import { isSecurityPrivacyTool } from "./securityPrivacyDetection";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 35; // Phase 15 complete: STRICT detection for Security, Gaming, all categories with accurate counts
+let cacheVersion = 36; // Phase 16: Added 50+ missing tools from 4 unimported GPT files
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';
@@ -72,7 +72,7 @@ export const resetCache = () => {
   lastToolsLength = 0;
   localStorage.removeItem(CACHE_KEY);
   localStorage.removeItem(CACHE_VERSION_KEY);
-  console.log('🔄 Cache reset - will rebuild with STRICT category detection v35');
+  console.log('🔄 Cache reset - will rebuild with 50+ new tools included v36');
 };
 
 // Force immediate cache reset for STRICT category detection update (v35)

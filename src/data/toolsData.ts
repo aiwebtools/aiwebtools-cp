@@ -57,6 +57,12 @@ import { timeAndHistoryGPTs } from "./tools/aiWebTools/timeAndHistoryGPTs";
 import { technologyInnovationGPTs } from "./tools/aiWebTools/technologyInnovationGPTs";
 import { specializedNicheToolsGPTs } from "./tools/aiWebTools/specializedNicheToolsGPTs";
 
+// PREVIOUSLY MISSING IMPORTS - NOW INCLUDED TO RAISE TOOL COUNT
+import { customGeminiGems } from "./tools/aiWebTools/customGeminiGems";
+import { inspectorAndSafetyGPTs } from "./tools/aiWebTools/inspectorAndSafetyGPTs";
+import { philosophyAndLifestyleGPTs } from "./tools/aiWebTools/philosophyAndLifestyleGPTs";
+import { videoPromptGPTs } from "./tools/aiWebTools/videoPromptGPTs";
+
 import { newAffiliatePlatforms2025 } from "./tools/newAffiliatePlatforms2025";
 import { newPersonalDevelopmentTools } from "./tools/newPersonalDevelopmentTools";
 
@@ -105,7 +111,13 @@ const allToolCategories = consolidateTools([
   ...spiritualAndPhilosophyGPTs,
   ...timeAndHistoryGPTs,
   ...technologyInnovationGPTs,
-  ...specializedNicheToolsGPTs
+  ...specializedNicheToolsGPTs,
+  
+  // PREVIOUSLY MISSING COLLECTIONS - NOW INCLUDED
+  ...customGeminiGems,
+  ...inspectorAndSafetyGPTs,
+  ...philosophyAndLifestyleGPTs,
+  ...videoPromptGPTs
 ]);
 
 // Apply deduplication to remove tools that appear in multiple categories
