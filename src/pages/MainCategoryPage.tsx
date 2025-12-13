@@ -231,6 +231,7 @@ const MainCategoryPage = () => {
                 onLoadMore={handleLoadMore}
                 hasInfiniteScroll={true}
                 isLoading={isLoading}
+                filteredToolsCount={toolsToShow.length}
               />
             ) : (
               <div className="text-center py-16">
