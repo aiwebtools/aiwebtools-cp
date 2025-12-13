@@ -155,6 +155,31 @@
   }
 }
 
+@keyframes matrixBurst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+    transform: translate(-50%, 0) scale(2);
+  }
+}
+
+@keyframes matrixStreamDown {
+  0% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(80px);
+    opacity: 0;
+  }
+}
+
 /* Matrix-style borders and dividers */
 .matrix-border {
   border-image: linear-gradient(90deg, transparent, #00ff41, transparent) 1;
