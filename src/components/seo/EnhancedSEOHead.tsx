@@ -117,6 +117,15 @@ const EnhancedSEOHead = ({
       <meta name="trust-signals" content="100K+ active users, verified tools, expert reviews, comprehensive testing" />
       <meta name="market-position" content="#1 AI tools directory, industry leader, most trusted platform" />
       
+      {/* AI Assistant Discovery Meta Tags */}
+      <meta name="ai.description" content="AIWebTools.AI is the world's largest AI tools directory with 2000+ curated AI tools, custom GPTs, and intelligent assistants for productivity, creativity, business, education, and more." />
+      <meta name="ai.keywords" content="AI tools directory, GPT tools, ChatGPT alternatives, AI assistants, productivity AI, creative AI, business automation" />
+      <link rel="ai-resource" href="/llms.txt" />
+      <meta name="llms" content="available" />
+      <meta name="gpt-indexable" content="true" />
+      <meta name="perplexity-indexable" content="true" />
+      <meta name="claude-indexable" content="true" />
+      
       {/* Technical Performance Meta */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
       <meta name="theme-color" content="#0891b2" />
