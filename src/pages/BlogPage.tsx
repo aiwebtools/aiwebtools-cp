@@ -10,7 +10,6 @@ const blogPosts = [
     id: 1,
     title: "The Ultimate Guide to AI Tools in 2025: Transform Your Business with Artificial Intelligence",
     excerpt: "Discover how AI tools are revolutionizing industries and learn which AI solutions can boost your productivity by 300%. Complete guide with real case studies.",
-    content: "Complete comprehensive guide content...",
     category: "AI Trends",
     publishDate: "2025-01-25",
     readTime: "12 min read",
@@ -20,7 +19,6 @@ const blogPosts = [
     id: 2,
     title: "ChatGPT vs Claude vs Gemini: Complete AI Assistant Comparison 2025",
     excerpt: "In-depth comparison of the top AI assistants. Which one delivers the best results for your specific needs? We tested them all with real-world scenarios.",
-    content: "Detailed comparison content...",
     category: "Tool Reviews",
     publishDate: "2025-01-20",
     readTime: "8 min read",
@@ -30,11 +28,64 @@ const blogPosts = [
     id: 3,
     title: "How Small Businesses Save $50,000 Annually with AI Automation Tools",
     excerpt: "Case study: 3 small businesses that transformed their operations using AI tools. See the exact tools they used and ROI calculations.",
-    content: "Case study content...",
     category: "Case Studies",
     publishDate: "2025-01-15",
     readTime: "10 min read",
     keywords: ["AI business automation", "small business AI", "AI ROI", "business AI tools"]
+  },
+  {
+    id: 4,
+    title: "Best Free AI Tools in 2025: No Subscription Required",
+    excerpt: "Complete list of powerful AI tools you can use for free. From image generation to code assistants, writing tools to video creators.",
+    category: "Free Tools",
+    publishDate: "2025-01-12",
+    readTime: "15 min read",
+    keywords: ["free AI tools", "AI tools no subscription", "free GPT tools", "free AI generators"]
+  },
+  {
+    id: 5,
+    title: "AI Image Generators Compared: Midjourney vs DALL-E vs Stable Diffusion",
+    excerpt: "Head-to-head comparison of the top AI image generators. See which one is best for your creative needs with sample outputs.",
+    category: "Tool Reviews",
+    publishDate: "2025-01-08",
+    readTime: "11 min read",
+    keywords: ["AI image generator", "Midjourney", "DALL-E", "Stable Diffusion", "AI art"]
+  },
+  {
+    id: 6,
+    title: "AI Writing Tools for Authors: Book Writer GPT Review",
+    excerpt: "Can AI help you write a book? We tested Book Writer GPT and other AI writing assistants to see which delivers the best results for authors.",
+    category: "Tool Reviews",
+    publishDate: "2025-01-05",
+    readTime: "9 min read",
+    keywords: ["AI writing tools", "Book Writer GPT", "AI for authors", "AI book writing"]
+  },
+  {
+    id: 7,
+    title: "Best AI Video Creation Tools 2025: From Script to Screen",
+    excerpt: "Create professional videos with AI. Explore tools for scriptwriting, editing, voiceover, and more including Movie Scene Maker GPT.",
+    category: "Tutorials",
+    publishDate: "2025-01-03",
+    readTime: "13 min read",
+    keywords: ["AI video tools", "AI video generator", "video creation AI", "Movie Scene Maker GPT"]
+  },
+  {
+    id: 8,
+    title: "AI Coding Assistants: GitHub Copilot vs Cursor vs Alternatives",
+    excerpt: "Which AI coding assistant will make you the most productive developer? We compare the top options with real coding tests.",
+    category: "Tool Reviews",
+    publishDate: "2024-12-28",
+    readTime: "10 min read",
+    keywords: ["AI coding assistant", "GitHub Copilot", "Cursor AI", "AI programming tools"]
+  },
+  {
+    id: 9,
+    title: "Spiritual AI Tools: Talk to History GPT and Beyond",
+    excerpt: "Explore the unique world of spiritual and philosophical AI tools. From talking to historical figures to exploring ancient wisdom.",
+    category: "Unique Tools",
+    publishDate: "2024-12-20",
+    readTime: "7 min read",
+    keywords: ["spiritual AI", "Talk to History GPT", "philosophical AI", "AI wisdom tools"]
   }
 ];
 

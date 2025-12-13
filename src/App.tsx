@@ -26,6 +26,7 @@ import WelcomeVoiceSystem from "./components/WelcomeVoiceSystem";
 import AIToolsHub from "./pages/AIToolsHub";
 import AIAgentsDirectory from "./pages/AIAgentsDirectory";
 import ChatGPTAlternatives from "./pages/ChatGPTAlternatives";
+import BlogPage from "./pages/BlogPage";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const AnimatedRoutes = () => {
         <Route path="/ai-tools-hub" element={<AIToolsHub />} />
         <Route path="/ai-agents-directory" element={<AIAgentsDirectory />} />
         <Route path="/chatgpt-alternatives" element={<ChatGPTAlternatives />} />
+        <Route path="/blog" element={<BlogPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/disclaimers" element={<DisclaimersPage />} />
         <Route path="/our-story" element={<OurStoryPage />} />

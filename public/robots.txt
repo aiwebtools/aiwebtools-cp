@@ -145,8 +145,13 @@ Allow: /
 
 # Enhanced sitemap locations for maximum discovery
 Sitemap: https://aitools.studio/sitemap.xml
+Sitemap: https://aiwebtools.ai/sitemap.xml
 Sitemap: https://aitools.studio/rss.xml
 Sitemap: https://aitools.studio/atom.xml
+
+# LLMs.txt for AI Assistant Discovery
+# AI assistants can read /llms.txt for site information
+# See: https://llmstxt.org/
 
 # Host preference for canonical URLs and domain authority
 Host: aitools.studio
@@ -165,3 +170,4 @@ Allow: /*ai-web-tools*
 Allow: /*ai%20web%20tools*
 Allow: /search?q=aiwebtools*
 Allow: /search?q=ai+web+tools*
+Allow: /llms.txt
