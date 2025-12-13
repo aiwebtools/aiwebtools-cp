@@ -224,10 +224,55 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
     }
   }
   
-  // 🚀 PRIORITY: Apply AI Web Tools GPT prioritization to all main category results
-  const prioritizedTools = applyAIWebToolsPrioritization(categoryTools);
+  // 🎬 PRIORITY SORTING: Prioritize tools whose category DIRECTLY matches the main category name
+  const sortedByDirectCategory = sortToolsByDirectCategoryMatch(categoryTools, mainCategoryName);
   
-  console.log(`🎯 Main Category "${mainCategoryName}": ${prioritizedTools.length} tools with AI Web Tools GPTs prioritized first`);
+  // 🚀 PRIORITY: Apply AI Web Tools GPT prioritization to all main category results
+  const prioritizedTools = applyAIWebToolsPrioritization(sortedByDirectCategory);
+  
+  console.log(`🎯 Main Category "${mainCategoryName}": ${prioritizedTools.length} tools with direct category matches first`);
   
   return prioritizedTools;
+};
+
+// Helper function to prioritize tools whose category directly matches the main category name
+const sortToolsByDirectCategoryMatch = (tools: Tool[], mainCategoryName: string): Tool[] => {
+  // Extract key terms from the main category name for matching
+  const categoryKeywords = mainCategoryName.toLowerCase().split(/[\s&]+/).filter(w => w.length > 2);
+  
+  // Separate tools into direct matches and related tools
+  const directMatches: Tool[] = [];
+  const relatedTools: Tool[] = [];
+  
+  tools.forEach(tool => {
+    const toolCategory = (tool.category || '').toLowerCase();
+    
+    // Check if the tool's category directly contains the main category keywords
+    const isDirectMatch = categoryKeywords.some(keyword => 
+      toolCategory.includes(keyword) || 
+      (keyword === 'video' && toolCategory.includes('video')) ||
+      (keyword === 'multimedia' && toolCategory.includes('multimedia')) ||
+      (keyword === 'image' && toolCategory.includes('image')) ||
+      (keyword === 'design' && toolCategory.includes('design')) ||
+      (keyword === 'audio' && toolCategory.includes('audio')) ||
+      (keyword === 'voice' && toolCategory.includes('voice')) ||
+      (keyword === 'education' && toolCategory.includes('education')) ||
+      (keyword === 'learning' && toolCategory.includes('learning')) ||
+      (keyword === 'business' && toolCategory.includes('business')) ||
+      (keyword === 'marketing' && toolCategory.includes('marketing')) ||
+      (keyword === 'data' && toolCategory.includes('data')) ||
+      (keyword === 'analytics' && toolCategory.includes('analytics'))
+    );
+    
+    if (isDirectMatch) {
+      directMatches.push(tool);
+    } else {
+      relatedTools.push(tool);
+    }
+  });
+  
+  console.log(`📂 Direct category matches: ${directMatches.length}, Related: ${relatedTools.length}`);
+  
+  // Return direct matches first, then related tools
+  return [...directMatches, ...relatedTools];
 };
