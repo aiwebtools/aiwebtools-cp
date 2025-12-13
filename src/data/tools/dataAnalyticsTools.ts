@@ -25,7 +25,7 @@ export const dataAnalyticsTools: Tool[] = [
     emoji: "💭",
     color: "from-green-500 to-teal-600",
     directUrl: "https://chat.openai.com/",
-    tags: ["AI assistant", "data analysis", "OpenAI", "conversational AI", "trend analysis", "insights"],
+    tags: ["AI assistant", "data analysis", "OpenAI", "conversational AI", "trend analysis", "insights", "Data Analysis", "AI Analytics"],
     category: "Data & Analytics Tools",
     rating: 4.7,
     totalVotes: 15678
@@ -37,7 +37,7 @@ export const dataAnalyticsTools: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://gemini.google.com/",
-    tags: ["AI assistant", "Google", "multimodal analysis", "data insights", "research", "advanced reasoning"],
+    tags: ["AI assistant", "Google", "multimodal analysis", "data insights", "research", "advanced reasoning", "Data Analysis", "AI Analytics"],
     category: "Data & Analytics Tools",
     rating: 4.6,
     totalVotes: 9876
@@ -50,7 +50,7 @@ export const dataAnalyticsTools: Tool[] = [
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://dataanalysisandreportai.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=idxjOwUAD_I",
-    tags: ["data analysis", "research reports", "statistical analysis", "data visualization", "predictive modeling", "aiwebtools"],
+    tags: ["data analysis", "research reports", "statistical analysis", "data visualization", "predictive modeling", "aiwebtools", "Data Visualization", "Predictive Analytics", "Reporting"],
     category: "Data & Analytics Tools",
     rating: 4.9,
     totalVotes: 5432
@@ -62,7 +62,7 @@ export const dataAnalyticsTools: Tool[] = [
     emoji: "📊",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.tableau.com/",
-    tags: ["data visualization", "dashboards", "business intelligence", "analytics", "enterprise"],
+    tags: ["data visualization", "dashboards", "business intelligence", "analytics", "enterprise", "Data Visualization", "Business Intelligence", "Dashboard"],
     category: "Data & Analytics Tools",
     rating: 4.6,
     totalVotes: 4567
@@ -74,7 +74,7 @@ export const dataAnalyticsTools: Tool[] = [
     emoji: "📈",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://powerbi.microsoft.com/",
-    tags: ["business intelligence", "Microsoft", "data analysis", "reporting", "dashboards"],
+    tags: ["business intelligence", "Microsoft", "data analysis", "reporting", "dashboards", "Data Visualization", "Business Intelligence", "Reporting"],
     category: "Data & Analytics Tools",
     rating: 4.5,
     totalVotes: 3789
@@ -86,7 +86,7 @@ export const dataAnalyticsTools: Tool[] = [
     emoji: "🧠",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.datarobot.com/",
-    tags: ["automated ML", "enterprise AI", "data science", "digital transformation", "machine learning"],
+    tags: ["automated ML", "enterprise AI", "data science", "digital transformation", "machine learning", "Predictive Analytics", "Machine Learning"],
     category: "Data & Analytics Tools",
     rating: 4.4,
     totalVotes: 2987
@@ -98,7 +98,7 @@ export const dataAnalyticsTools: Tool[] = [
     emoji: "📋",
     color: "from-green-500 to-teal-600",
     directUrl: "https://looker.com/",
-    tags: ["business intelligence", "Google Cloud", "data platform", "analytics", "enterprise"],
+    tags: ["business intelligence", "Google Cloud", "data platform", "analytics", "enterprise", "Business Intelligence", "Data Visualization"],
     category: "Data & Analytics Tools",
     rating: 4.3,
     totalVotes: 3234
@@ -110,7 +110,7 @@ export const dataAnalyticsTools: Tool[] = [
     emoji: "📈",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.qlik.com/us/products/qlik-sense",
-    tags: ["self-service BI", "data discovery", "associative analytics", "dashboards", "visualization"],
+    tags: ["self-service BI", "data discovery", "associative analytics", "dashboards", "visualization", "Business Intelligence", "Data Visualization"],
     category: "Data & Analytics Tools",
     rating: 4.2,
     totalVotes: 2876
@@ -122,7 +122,7 @@ export const dataAnalyticsTools: Tool[] = [
     emoji: "⏰",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://oil-clock-now.lovable.app/?via=aiwebtools",
-    tags: ["oil reserves", "resource tracking", "energy data", "sustainability", "real-time data", "countdown", "aiwebtools"],
+    tags: ["oil reserves", "resource tracking", "energy data", "sustainability", "real-time data", "countdown", "aiwebtools", "Data Visualization", "Real-Time Analytics"],
     category: "Data & Analytics Tools",
     rating: 4.5,
     totalVotes: 1234

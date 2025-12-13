@@ -23,7 +23,7 @@ export const financialAndTradingTools: Tool[] = [
     emoji: "📊",
     color: "from-green-500 to-yellow-600",
     directUrl: "https://finchat.io/",
-    tags: ["financial AI", "stock trading", "market data", "investors", "public companies", "financial analysis"],
+    tags: ["financial AI", "stock trading", "market data", "investors", "public companies", "financial analysis", "Financial Analytics", "Trading Agent"],
     category: "Financial & Trading Tools",
     rating: 4.6,
     totalVotes: 4567
@@ -35,7 +35,7 @@ export const financialAndTradingTools: Tool[] = [
     emoji: "⛓️",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://www.chaingpt.org/",
-    tags: ["blockchain", "cryptocurrency", "smart contracts", "trading", "market analysis", "DeFi"],
+    tags: ["blockchain", "cryptocurrency", "smart contracts", "trading", "market analysis", "DeFi", "Financial Analytics", "Trading Agent"],
     category: "Financial & Trading Tools",
     rating: 4.1,
     totalVotes: 2345
@@ -47,7 +47,7 @@ export const financialAndTradingTools: Tool[] = [
     emoji: "💹",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.buyforexeaonline.com/",
-    tags: ["Forex trading", "Expert Advisors", "AI-powered", "$6T daily market", "risk management"],
+    tags: ["Forex trading", "Expert Advisors", "AI-powered", "$6T daily market", "risk management", "Automation Agent", "Trading Agent"],
     category: "Financial & Trading Tools",
     rating: 4.2,
     totalVotes: 2654
@@ -59,7 +59,7 @@ export const financialAndTradingTools: Tool[] = [
     emoji: "⚛️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.dwavesys.com/",
-    tags: ["quantum computing", "Advantage system", "Leap solver", "enterprise solutions", "quantum ROI"],
+    tags: ["quantum computing", "Advantage system", "Leap solver", "enterprise solutions", "quantum ROI", "Predictive Analytics"],
     category: "Financial & Trading Tools",
     rating: 4.4,
     totalVotes: 3456
