@@ -27,48 +27,63 @@ export const specializedCategories: MainCategory[] = [
   {
     name: "INDUSTRY SPECIFIC AI TOOLS",
     emoji: "🏭",
-    description: "Specialized AI tools designed for specific industries including healthcare, legal, education, creative arts, culinary, archaeology, graphic design, and more",
+    description: "Specialized AI tools designed for specific industries and professions - legal, medical, trades, agriculture, emergency services, and more",
     subcategories: [
-      "Health, Wellness & Personal Lifestyle",
-      "Health & Wellness",
-      "Personal Services",
-      "Lifestyle Tools",
-      "Wellness & Fitness",
+      // Legal & Professional
+      "Legal Professionals",
+      "Legal & Compliance",
+      "Professional Services",
+      
+      // Healthcare Professionals (NOT general wellness)
       "Healthcare Professionals",
       "Medical AI Tools",
-      "Health And Wellness Tools",
-      "Legal Professionals",
-      "Education & Learning",
-      "Educational & Research",
-      "Learning & Education",
-      "Learning Platforms",
-      "Research & Learning",
-      "Creative & Entertainment (General & Gaming)",
-      "Art & Collectibles",
-      "Creative Platforms",
-      "Creative Services",
-      "Creative Suites",
-      "Entertainment & Media",
-      "Entertainment Tools",
-      "Game Design & Development",
-      "Design & Graphics Tools",
-      "Creative Design",
-      "Image & Design",
-      "Design Assistant Tools",
-      "Professional Services",
+      "Veterinary Tools",
+      
+      // Emergency & Safety
       "Emergency Services",
-      "Legal & Compliance",
-      "Robotics Companies",
-      "Hardware Tools",
-      "IoT Platforms",
-      "Smart Devices",
-      "Financial & Trading Tools",
-      "Finance & Trading",
+      "Safety & Security",
+      "First Responders",
+      
+      // Trades & Labor
+      "Trade Professionals",
+      "Construction Tools",
+      "Home Improvement",
+      "Repair Services",
+      
+      // Agriculture & Farming
+      "Agriculture Tools",
+      "Farming AI",
+      "Agronomy",
+      
+      // Food Industry (professional)
+      "Culinary Professionals",
+      "Restaurant Industry",
+      "Food Service",
+      
+      // Real Estate (professional)
+      "Real Estate Professionals",
+      "Property Appraisal",
+      
+      // Financial Services (professional)
+      "Financial Professionals",
+      "Insurance Industry",
+      "Tax Professionals",
+      
+      // Specialized Niche
       "Specialized & Niche",
       "Specialized Niche Tools",
       "Specialized AI Tools",
-      "Technical & Utility Tools",
-      "Specialized Tools"
+      "Specialized Tools",
+      
+      // Science & Research (specific fields)
+      "Scientific Research",
+      "Forensic Tools",
+      "Archaeology Tools",
+      
+      // Appraisal & Valuation
+      "Appraisal Tools",
+      "Valuation Services",
+      "Art & Collectibles"
     ]
   },
   {
