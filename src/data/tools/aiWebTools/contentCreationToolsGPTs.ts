@@ -51,7 +51,7 @@ export const contentCreationToolsGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://pptmakergpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-banner-ad-for-an-ai-tool-called-ppt-pr_RY7nJ.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
-    tags: ["presentation creation", "PowerPoint", "slide design", "business presentations", "visual content"],
+    tags: ["presentation creation", "PowerPoint", "slide design", "business presentations", "visual content", "Custom GPT", "Content Marketing", "Sales Enablement"],
     category: "Content Creation Tools",
     rating: 4.8,
     totalVotes: 6789
@@ -64,7 +64,7 @@ export const contentCreationToolsGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://grantwritergpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-illustration-of-an-advertiseme_7T7dn.png/:/cr=t:10.87%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
-    tags: ["grant writing", "funding proposals", "nonprofit support", "research grants", "proposal writing"],
+    tags: ["grant writing", "funding proposals", "nonprofit support", "research grants", "proposal writing", "Custom GPT", "Content Marketing", "Lead Generation"],
     category: "Content Creation Tools",
     rating: 4.9,
     totalVotes: 8234

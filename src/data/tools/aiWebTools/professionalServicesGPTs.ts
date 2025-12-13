@@ -90,7 +90,7 @@ export const professionalServicesGPTs: Tool[] = [
     color: "from-purple-500 to-pink-600",
     directUrl: "https://tattoogpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/hB_fKF_5GOI",
-    tags: ["tattoo design", "body art", "piercing", "tattoo artist", "design", "professional services", "aiwebtools", "Custom GPT"],
+    tags: ["tattoo design", "body art", "piercing", "tattoo artist", "design", "professional services", "aiwebtools", "Custom GPT", "Brand Management"],
     category: "Professional Services",
     rating: 4.6,
     totalVotes: 3287
@@ -142,7 +142,7 @@ export const professionalServicesGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005968.jpg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
-    tags: ["training manuals", "employee training", "business documentation", "training materials", "professional services", "aiwebtools", "Custom GPT"],
+    tags: ["training manuals", "employee training", "business documentation", "training materials", "professional services", "aiwebtools", "Custom GPT", "Sales Enablement", "Content Marketing"],
     category: "Professional Services",
     rating: 4.3,
     totalVotes: 2543
@@ -238,7 +238,7 @@ export const professionalServicesGPTs: Tool[] = [
     emoji: "📉",
     color: "from-red-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-6927fd0087548191b724cf0dff94e5f4-global-supply-chain-collapse-gpt?via=aiwebtools",
-    tags: ["supply chain", "logistics", "business continuity", "risk management", "resilience", "data analysis", "crisis management", "global trade", "professional services", "aiwebtools", "Custom GPT"],
+    tags: ["supply chain", "logistics", "business continuity", "risk management", "resilience", "data analysis", "crisis management", "global trade", "professional services", "aiwebtools", "Custom GPT", "Analytics & Tracking", "Market Research"],
     category: "Professional Services",
     rating: 4.7,
     totalVotes: 1798

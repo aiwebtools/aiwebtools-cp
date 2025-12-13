@@ -12,7 +12,7 @@ export const businessStrategyGPTs: Tool[] = [
     directUrl: "https://startupvalidatorgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-named-st_4i8GY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     videoUrl: "https://youtu.be/P4J0ErIVXgY",
-    tags: ["startup validation", "business analysis", "market research", "investment planning", "entrepreneurship"],
+    tags: ["startup validation", "business analysis", "market research", "investment planning", "entrepreneurship", "Custom GPT", "Market Research", "Sales Enablement"],
     category: "Business Strategy",
     rating: 4.8,
     totalVotes: 6789
@@ -25,7 +25,7 @@ export const businessStrategyGPTs: Tool[] = [
     color: "from-green-500 to-cyan-600",
     directUrl: "https://ubigpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-the-ai-tool-ubi-str_22t4n.png/:/rs=w:600,cg:true,m/qt=q:30",
-    tags: ["universal basic income", "economic policy", "social welfare", "automation impact", "future economics"],
+    tags: ["universal basic income", "economic policy", "social welfare", "automation impact", "future economics", "Custom GPT", "Market Research", "Analytics & Tracking"],
     category: "Business Strategy",
     rating: 4.6,
     totalVotes: 4321
@@ -38,7 +38,7 @@ export const businessStrategyGPTs: Tool[] = [
     color: "from-purple-500 to-red-600",
     directUrl: "https://ifairuledtheworldgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=93M9ZyhpmFM",
-    tags: ["AI simulation", "world governance", "artificial intelligence", "scenario planning", "research tool"],
+    tags: ["AI simulation", "world governance", "artificial intelligence", "scenario planning", "research tool", "Custom GPT"],
     category: "Business Strategy",
     rating: 4.5,
     totalVotes: 3876
@@ -51,7 +51,7 @@ export const businessStrategyGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://worldpeacegpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-earth-with-a-dark-blue-atmosp_Uq9U_.png/:/rs=w:600,h:300,cg:true,m/cr=w:600,h:300/qt=q:30",
-    tags: ["peace building", "conflict resolution", "diplomacy", "international relations", "global strategy"],
+    tags: ["peace building", "conflict resolution", "diplomacy", "international relations", "global strategy", "Custom GPT", "Market Research"],
     category: "Business Strategy",
     rating: 4.9,
     totalVotes: 8234
