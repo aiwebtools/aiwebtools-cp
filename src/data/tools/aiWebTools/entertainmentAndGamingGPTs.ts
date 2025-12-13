@@ -11,7 +11,7 @@ export const entertainmentAndGamingGPTs: Tool[] = [
     color: "from-purple-500 to-pink-600",
     directUrl: "https://trivianightgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/trivanight.jpg/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["trivia games", "entertainment", "knowledge testing", "family fun", "interactive games"],
+    tags: ["trivia games", "entertainment", "knowledge testing", "family fun", "interactive games", "Custom GPT"],
     category: "Entertainment & Gaming",
     rating: 4.7,
     totalVotes: 3890
@@ -24,7 +24,7 @@ export const entertainmentAndGamingGPTs: Tool[] = [
     color: "from-purple-500 to-cyan-600",
     directUrl: "https://imaginationtravelergpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-advertisement-for-imaginati_E4k--.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["imagination", "storytelling", "alternate realities", "creative journeys", "immersive experiences"],
+    tags: ["imagination", "storytelling", "alternate realities", "creative journeys", "immersive experiences", "Custom GPT"],
     category: "Entertainment & Gaming",
     rating: 4.7,
     totalVotes: 4123
@@ -37,7 +37,7 @@ export const entertainmentAndGamingGPTs: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/aFuAxVNXBvg",
-    tags: ["operational instructions", "algebraic conversion", "process optimization", "variable mapping", "instruction translation"],
+    tags: ["operational instructions", "algebraic conversion", "process optimization", "variable mapping", "instruction translation", "Custom GPT"],
     category: "Business & Productivity",
     rating: 4.3,
     totalVotes: 2456
@@ -49,7 +49,7 @@ export const entertainmentAndGamingGPTs: Tool[] = [
     emoji: "🃏",
     color: "from-yellow-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-68cadce3e2f08191a9b8203a32fe8846-1995-illuminati-card-game-gpt/?via=aiwebtools",
-    tags: ["card game", "illuminati", "strategy game", "1995", "conspiracy", "gaming", "interactive game", "aiwebtools"],
+    tags: ["card game", "illuminati", "strategy game", "1995", "conspiracy", "gaming", "interactive game", "aiwebtools", "Custom GPT"],
     category: "Entertainment & Gaming",
     rating: 4.5,
     totalVotes: 1876
