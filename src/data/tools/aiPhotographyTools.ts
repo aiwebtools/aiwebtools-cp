@@ -17,7 +17,7 @@ export const aiPhotographyTools: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://skylum.com/luminar?via=aiwebtools",
-    tags: ["photo editing", "AI enhancement", "sky replacement", "portrait editing", "professional editing"],
+    tags: ["Photo Editor", "photo editing", "AI enhancement", "sky replacement", "portrait editing", "professional editing"],
     category: "AI Photography Tools",
     rating: 4.7,
     totalVotes: 5432
@@ -29,7 +29,7 @@ export const aiPhotographyTools: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.topazlabs.com/topaz-photo-ai?via=aiwebtools",
-    tags: ["AI enhancement", "noise reduction", "upscaling", "sharpening", "image quality"],
+    tags: ["Photo Editor", "Image Upscaler", "AI enhancement", "noise reduction", "upscaling", "sharpening", "image quality"],
     category: "AI Photography Tools",
     rating: 4.8,
     totalVotes: 6789
@@ -41,7 +41,7 @@ export const aiPhotographyTools: Tool[] = [
     emoji: "📷",
     color: "from-green-500 to-teal-600",
     directUrl: "https://skylum.com/?via=aiwebtools",
-    tags: ["creative tools", "workflow automation", "AI effects", "photo software", "professional editing"],
+    tags: ["Photo Editor", "creative tools", "workflow automation", "AI effects", "photo software", "professional editing"],
     category: "AI Photography Tools",
     rating: 4.6,
     totalVotes: 4567
@@ -53,7 +53,7 @@ export const aiPhotographyTools: Tool[] = [
     emoji: "🖼️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.on1.com/?via=aiwebtools",
-    tags: ["photo editing", "RAW processing", "AI masking", "photo organization", "non-destructive editing"],
+    tags: ["Photo Editor", "photo editing", "RAW processing", "AI masking", "photo organization", "non-destructive editing"],
     category: "AI Photography Tools",
     rating: 4.5,
     totalVotes: 3987
@@ -65,7 +65,7 @@ export const aiPhotographyTools: Tool[] = [
     emoji: "🪄",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.dxo.com/dxo-photolab/?via=aiwebtools",
-    tags: ["RAW editing", "noise reduction", "lens corrections", "color science", "professional tools"],
+    tags: ["Photo Editor", "RAW editing", "noise reduction", "lens corrections", "color science", "professional tools"],
     category: "AI Photography Tools",
     rating: 4.7,
     totalVotes: 4321
@@ -77,7 +77,7 @@ export const aiPhotographyTools: Tool[] = [
     emoji: "🎨",
     color: "from-pink-500 to-red-600",
     directUrl: "https://www.evoto.ai/?via=aiwebtools",
-    tags: ["batch editing", "portrait retouching", "one-click enhancement", "professional workflow", "AI automation"],
+    tags: ["Photo Editor", "batch editing", "portrait retouching", "one-click enhancement", "professional workflow", "AI automation"],
     category: "AI Photography Tools",
     rating: 4.4,
     totalVotes: 3234

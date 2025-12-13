@@ -19,7 +19,9 @@ export const IMAGE_DESIGN_SUBTYPES = {
   ILLUSTRATION: "Illustration",
   FASHION_DESIGN: "Fashion Design",
   INTERIOR_DESIGN: "Interior Design",
-  ARCHITECTURE: "Architecture Design"
+  ARCHITECTURE: "Architecture Design",
+  UI_UX_DESIGN: "UI/UX Design",
+  THREE_D_MODELING: "3D Modeling"
 } as const;
 
 /**

@@ -19,7 +19,7 @@ export const additionalVideoImageGenerators: Tool[] = [
     emoji: "🎬",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://runwayml.com/?via=aiwebtools",
-    tags: ["video generation", "AI editing", "text-to-video", "motion tracking", "Gen-2"],
+    tags: ["Image Generator", "video generation", "AI editing", "text-to-video", "motion tracking", "Gen-2"],
     category: "Video & Image Generators",
     rating: 4.8,
     totalVotes: 6789
@@ -31,7 +31,7 @@ export const additionalVideoImageGenerators: Tool[] = [
     emoji: "✨",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://pika.art/?via=aiwebtools",
-    tags: ["video generation", "text-to-video", "animations", "cinematic AI", "creative video"],
+    tags: ["Image Generator", "video generation", "text-to-video", "animations", "cinematic AI", "creative video"],
     category: "Video & Image Generators",
     rating: 4.7,
     totalVotes: 5432
@@ -43,7 +43,7 @@ export const additionalVideoImageGenerators: Tool[] = [
     emoji: "🎨",
     color: "from-orange-500 to-red-600",
     directUrl: "https://leonardo.ai/?via=aiwebtools",
-    tags: ["image generation", "consistent characters", "fine-tuned models", "AI art", "professional design"],
+    tags: ["Image Generator", "Illustration", "image generation", "consistent characters", "fine-tuned models", "AI art", "professional design"],
     category: "Video & Image Generators",
     rating: 4.7,
     totalVotes: 5678
@@ -55,7 +55,7 @@ export const additionalVideoImageGenerators: Tool[] = [
     emoji: "🪄",
     color: "from-green-500 to-teal-600",
     directUrl: "https://ideogram.ai/?via=aiwebtools",
-    tags: ["image generation", "text rendering", "typography AI", "logo design", "graphic design"],
+    tags: ["Image Generator", "Logo Design", "Graphic Design", "image generation", "text rendering", "typography AI", "logo design", "graphic design"],
     category: "Video & Image Generators",
     rating: 4.6,
     totalVotes: 4321
@@ -67,7 +67,7 @@ export const additionalVideoImageGenerators: Tool[] = [
     emoji: "🎥",
     color: "from-purple-600 to-pink-600",
     directUrl: "https://kaiber.ai/?via=aiwebtools",
-    tags: ["video generation", "style transfer", "music videos", "visual stories", "artistic AI"],
+    tags: ["AI Art", "video generation", "style transfer", "music videos", "visual stories", "artistic AI"],
     category: "Video & Image Generators",
     rating: 4.5,
     totalVotes: 3987
@@ -79,7 +79,7 @@ export const additionalVideoImageGenerators: Tool[] = [
     emoji: "📷",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://playground.com/?via=aiwebtools",
-    tags: ["image generation", "free credits", "art styles", "accessible AI", "creative platform"],
+    tags: ["Image Generator", "AI Art", "image generation", "free credits", "art styles", "accessible AI", "creative platform"],
     category: "Video & Image Generators",
     rating: 4.4,
     totalVotes: 4567
@@ -91,7 +91,7 @@ export const additionalVideoImageGenerators: Tool[] = [
     emoji: "🎨",
     color: "from-pink-500 to-red-600",
     directUrl: "https://www.artbreeder.com/?via=aiwebtools",
-    tags: ["image mixing", "character creation", "collaborative AI", "portrait generation", "breeding algorithm"],
+    tags: ["AI Art", "Avatar Creator", "image mixing", "character creation", "collaborative AI", "portrait generation", "breeding algorithm"],
     category: "Video & Image Generators",
     rating: 4.3,
     totalVotes: 3234
@@ -103,7 +103,7 @@ export const additionalVideoImageGenerators: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://stability.ai/stable-video?via=aiwebtools",
-    tags: ["video generation", "open source", "image-to-video", "Stability AI", "animation"],
+    tags: ["Image Generator", "video generation", "open source", "image-to-video", "Stability AI", "animation"],
     category: "Video & Image Generators",
     rating: 4.6,
     totalVotes: 4123

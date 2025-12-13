@@ -9,7 +9,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "🎨",
     color: "from-blue-400 to-purple-500",
     directUrl: "https://www.canva.com/",
-    tags: ["design", "templates", "social media", "presentations", "graphics"],
+    tags: ["Graphic Design", "design", "templates", "social media", "presentations", "graphics"],
     category: "Design & Graphics Tools",
     rating: 4.8,
     totalVotes: 4500
@@ -21,7 +21,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "🖼️",
     color: "from-green-400 to-teal-500",
     directUrl: "https://www.adobe.com/products/photoshop.html",
-    tags: ["photo editing", "graphic design", "image editing", "web design", "print design"],
+    tags: ["Photo Editor", "Graphic Design", "photo editing", "graphic design", "image editing", "web design", "print design"],
     category: "Design & Graphics Tools",
     rating: 4.7,
     totalVotes: 4200
@@ -33,7 +33,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "✒️",
     color: "from-orange-400 to-red-500",
     directUrl: "https://www.adobe.com/products/illustrator.html",
-    tags: ["vector graphics", "illustrations", "logos", "icons", "typography"],
+    tags: ["Graphic Design", "Logo Design", "Illustration", "vector graphics", "illustrations", "logos", "icons", "typography"],
     category: "Design & Graphics Tools",
     rating: 4.6,
     totalVotes: 4000
@@ -45,7 +45,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "🤝",
     color: "from-purple-400 to-indigo-500",
     directUrl: "https://www.figma.com/",
-    tags: ["collaboration", "design", "prototypes", "mockups", "user interfaces"],
+    tags: ["UI/UX Design", "Graphic Design", "collaboration", "design", "prototypes", "mockups", "user interfaces"],
     category: "Design & Graphics Tools",
     rating: 4.5,
     totalVotes: 3800
@@ -57,7 +57,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "✏️",
     color: "from-pink-400 to-purple-500",
     directUrl: "https://www.sketch.com/",
-    tags: ["user interfaces", "web design", "vector graphics", "macOS", "high-fidelity"],
+    tags: ["UI/UX Design", "Graphic Design", "user interfaces", "web design", "vector graphics", "macOS", "high-fidelity"],
     category: "Design & Graphics Tools",
     rating: 4.4,
     totalVotes: 3600
@@ -69,7 +69,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "🖌️",
     color: "from-cyan-400 to-blue-500",
     directUrl: "https://www.gimp.org/",
-    tags: ["image editing", "open-source", "free", "photo manipulation", "graphic design"],
+    tags: ["Photo Editor", "Graphic Design", "image editing", "open-source", "free", "photo manipulation", "graphic design"],
     category: "Design & Graphics Tools",
     rating: 4.3,
     totalVotes: 3400
@@ -81,7 +81,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "⭐",
     color: "from-yellow-400 to-orange-500",
     directUrl: "https://www.coreldraw.com/",
-    tags: ["vector graphics", "illustrations", "logos", "brochures", "professional design"],
+    tags: ["Graphic Design", "Logo Design", "Illustration", "vector graphics", "illustrations", "logos", "brochures", "professional design"],
     category: "Design & Graphics Tools",
     rating: 4.2,
     totalVotes: 3200
@@ -93,7 +93,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "📱",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://huggingface.co/spaces/huggingface-projects/QR-code-AI-art-generator",
-    tags: ["QR codes", "AI art", "Hugging Face", "visual design", "functional art"],
+    tags: ["AI Art", "Graphic Design", "QR codes", "AI art", "Hugging Face", "visual design", "functional art"],
     category: "Design & Graphics Tools",
     rating: 4.4,
     totalVotes: 2456
@@ -105,7 +105,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "🔗",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://computer.tldraw.com/",
-    tags: ["AI workflows", "flowchart interface", "visual design", "process automation", "infinite canvas"],
+    tags: ["UI/UX Design", "Graphic Design", "AI workflows", "flowchart interface", "visual design", "process automation", "infinite canvas"],
     category: "Design & Graphics Tools",
     rating: 4.3,
     totalVotes: 2123
@@ -117,7 +117,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "🎬",
     color: "from-gold-500 to-orange-600",
     directUrl: "https://omagic.ai/try",
-    tags: ["3D videos", "logo animation", "product visuals", "professional templates", "marketing"],
+    tags: ["3D Modeling", "Graphic Design", "3D videos", "logo animation", "product visuals", "professional templates", "marketing"],
     category: "Design & Graphics Tools",
     rating: 4.5,
     totalVotes: 2678
@@ -129,7 +129,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "🎨",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.banani.co/",
-    tags: ["UI design", "text to interface", "prototypes", "team collaboration", "15000+ users"],
+    tags: ["UI/UX Design", "UI design", "text to interface", "prototypes", "team collaboration", "15000+ users"],
     category: "Design & Graphics Tools",
     rating: 4.6,
     totalVotes: 3234
@@ -141,7 +141,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "📐",
     color: "from-cyan-500 to-purple-600",
     directUrl: "https://formia.so/",
-    tags: ["2D to 3D", "logo transformation", "SVG files", "brand enhancement", "3D design"],
+    tags: ["3D Modeling", "Logo Design", "2D to 3D", "logo transformation", "SVG files", "brand enhancement", "3D design"],
     category: "Design & Graphics Tools",
     rating: 4.4,
     totalVotes: 2345
@@ -153,7 +153,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "🌐",
     color: "from-green-500 to-blue-600",
     directUrl: "https://uiverse.io/",
-    tags: ["UI elements", "open source", "community driven", "CSS Tailwind", "5900+ components"],
+    tags: ["UI/UX Design", "UI elements", "open source", "community driven", "CSS Tailwind", "5900+ components"],
     category: "Design & Graphics Tools",
     rating: 4.5,
     totalVotes: 2789
@@ -165,7 +165,7 @@ export const designAndGraphicsTools: Tool[] = [
     emoji: "🧹",
     color: "from-red-500 to-pink-600",
     directUrl: "https://anieraser.media.io/",
-    tags: ["watermark removal", "photo editing", "video editing", "AI powered", "image integrity"],
+    tags: ["Photo Editor", "Background Removal", "watermark removal", "photo editing", "video editing", "AI powered", "image integrity"],
     category: "Design & Graphics Tools",
     rating: 4.3,
     totalVotes: 2234
