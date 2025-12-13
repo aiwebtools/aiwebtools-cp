@@ -18,7 +18,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "🤖",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://github.com/features/copilot?via=aiwebtools",
-    tags: ["GitHub Copilot", "code completion", "AI coding", "pair programming", "GPT-4", "IDE integration", "OpenAI"],
+    tags: ["Code Assistant", "GitHub Copilot", "code completion", "AI coding", "pair programming", "GPT-4", "IDE integration", "OpenAI"],
     category: "Developer Tools",
     rating: 4.8,
     totalVotes: 187000
@@ -30,7 +30,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://cursor.sh/?via=aiwebtools",
-    tags: ["Cursor", "AI code editor", "codebase chat", "multi-file editing", "GPT-4", "productivity", "intelligent IDE"],
+    tags: ["IDE", "Code Assistant", "Cursor", "AI code editor", "codebase chat", "multi-file editing", "GPT-4", "productivity", "intelligent IDE"],
     category: "Developer Tools",
     rating: 4.9,
     totalVotes: 124000
@@ -42,7 +42,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "⚡",
     color: "from-green-500 to-teal-600",
     directUrl: "https://codeium.com/?via=aiwebtools",
-    tags: ["Codeium", "free AI coding", "code completion", "70+ languages", "autocomplete", "code search", "free alternative"],
+    tags: ["Code Assistant", "Codeium", "free AI coding", "code completion", "70+ languages", "autocomplete", "code search", "free alternative"],
     category: "Developer Tools",
     rating: 4.7,
     totalVotes: 98000
@@ -54,7 +54,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "📦",
     color: "from-orange-500 to-red-600",
     directUrl: "https://replit.com/?via=aiwebtools",
-    tags: ["Replit", "cloud IDE", "AI coding", "Ghostwriter", "code generation", "debugging", "deployment", "collaboration"],
+    tags: ["IDE", "Cloud Platform", "Replit", "cloud IDE", "AI coding", "Ghostwriter", "code generation", "debugging", "deployment", "collaboration"],
     category: "Developer Tools",
     rating: 4.6,
     totalVotes: 145000
@@ -66,7 +66,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "🔧",
     color: "from-indigo-500 to-blue-600",
     directUrl: "https://www.tabnine.com/?via=aiwebtools",
-    tags: ["Tabnine", "AI assistant", "code completion", "privacy", "local AI", "enterprise", "pattern learning"],
+    tags: ["Code Assistant", "Tabnine", "AI assistant", "code completion", "privacy", "local AI", "enterprise", "pattern learning"],
     category: "Developer Tools",
     rating: 4.5,
     totalVotes: 112000
@@ -78,7 +78,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "🔐",
     color: "from-orange-600 to-yellow-600",
     directUrl: "https://aws.amazon.com/codewhisperer/?via=aiwebtools",
-    tags: ["CodeWhisperer", "AWS", "AI coding", "security scanning", "code suggestions", "free", "cloud native"],
+    tags: ["Code Assistant", "Security", "Cloud Platform", "CodeWhisperer", "AWS", "AI coding", "security scanning", "code suggestions", "free", "cloud native"],
     category: "Developer Tools",
     rating: 4.4,
     totalVotes: 87000
@@ -90,7 +90,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "🧠",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://sourcegraph.com/cody?via=aiwebtools",
-    tags: ["Cody", "Sourcegraph", "codebase understanding", "unit tests", "bug fixing", "repository analysis", "context-aware"],
+    tags: ["Code Assistant", "Testing", "Cody", "Sourcegraph", "codebase understanding", "unit tests", "bug fixing", "repository analysis", "context-aware"],
     category: "Developer Tools",
     rating: 4.6,
     totalVotes: 76000
@@ -102,7 +102,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "🌊",
     color: "from-blue-600 to-cyan-600",
     directUrl: "https://codeium.com/windsurf?via=aiwebtools",
-    tags: ["Windsurf", "AI editor", "flow state", "productivity", "code editor", "intelligent suggestions", "distraction-free"],
+    tags: ["IDE", "Code Assistant", "Windsurf", "AI editor", "flow state", "productivity", "code editor", "intelligent suggestions", "distraction-free"],
     category: "Developer Tools",
     rating: 4.7,
     totalVotes: 89000
@@ -114,7 +114,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "⚡",
     color: "from-purple-600 to-pink-600",
     directUrl: "https://v0.dev/?via=aiwebtools",
-    tags: ["v0", "Vercel", "UI generation", "React components", "shadcn/ui", "text-to-UI", "production code"],
+    tags: ["No-Code/Low-Code", "Frontend", "v0", "Vercel", "UI generation", "React components", "shadcn/ui", "text-to-UI", "production code"],
     category: "Developer Tools",
     rating: 4.8,
     totalVotes: 134000
@@ -126,7 +126,7 @@ export const developerProductivityAI: Tool[] = [
     emoji: "🚀",
     color: "from-green-600 to-emerald-600",
     directUrl: "https://www.warp.dev/?via=aiwebtools",
-    tags: ["Warp", "AI terminal", "command suggestions", "debugging", "GPT-4", "modern terminal", "developer tools"],
+    tags: ["IDE", "Code Assistant", "Warp", "AI terminal", "command suggestions", "debugging", "GPT-4", "modern terminal", "developer tools"],
     category: "Developer Tools",
     rating: 4.6,
     totalVotes: 92000

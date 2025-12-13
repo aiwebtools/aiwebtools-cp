@@ -22,7 +22,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "🔧",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://brancher.ai/?via=aiwebtools",
-    tags: ["AI builder", "no-code", "AI development", "tool creation", "platform"],
+    tags: ["No-Code/Low-Code", "AI builder", "no-code", "AI development", "tool creation", "platform"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 1234
@@ -35,7 +35,7 @@ export const aiDevelopmentTools: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://lmstudio.ai/",
     videoUrl: "https://www.youtube.com/watch?v=yBI1nPep72Q",
-    tags: ["local AI", "LLM deployment", "offline AI", "model hosting", "AI development", "desktop AI", "local models"],
+    tags: ["Backend", "local AI", "LLM deployment", "offline AI", "model hosting", "AI development", "desktop AI", "local models"],
     category: "DEVELOPMENT & CODING",
     rating: 4.7,
     totalVotes: 3789
@@ -47,7 +47,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "🤖",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://github.com/features/copilot",
-    tags: ["Coding Agent", "AI coding", "code completion", "pair programming", "developer tools", "GitHub", "agent"],
+    tags: ["Code Assistant", "Coding Agent", "AI coding", "code completion", "pair programming", "developer tools", "GitHub", "agent"],
     category: "DEVELOPMENT & CODING",
     rating: 4.9,
     totalVotes: 6234
@@ -59,7 +59,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "⌨️",
     color: "from-green-500 to-cyan-600",
     directUrl: "https://www.tabnine.com/",
-    tags: ["Coding Agent", "AI coding", "code completion", "deep learning", "IDE integration", "developer tools", "agent"],
+    tags: ["Code Assistant", "Coding Agent", "AI coding", "code completion", "deep learning", "IDE integration", "developer tools", "agent"],
     category: "DEVELOPMENT & CODING",
     rating: 4.7,
     totalVotes: 4567
@@ -71,7 +71,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "⚙️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://mutable.ai/",
-    tags: ["Coding Agent", "AI code generation", "automated testing", "code evolution", "developer tools", "AI platform", "agent"],
+    tags: ["Code Assistant", "Testing", "Coding Agent", "AI code generation", "automated testing", "code evolution", "developer tools", "AI platform", "agent"],
     category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 3890
@@ -83,7 +83,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "🔍",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://sourcegraph.com/",
-    tags: ["code search", "code intelligence", "automation", "developer tools", "CI/CD integration"],
+    tags: ["Code Assistant", "CI/CD", "code search", "code intelligence", "automation", "developer tools", "CI/CD integration"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 3456
@@ -95,7 +95,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "🛡️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.deepcode.ai/",
-    tags: ["code review", "bug detection", "vulnerability analysis", "security", "AI analysis"],
+    tags: ["Security", "Testing", "code review", "bug detection", "vulnerability analysis", "security", "AI analysis"],
     category: "DEVELOPMENT & CODING",
     rating: 4.4,
     totalVotes: 3210
@@ -107,7 +107,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "🌐",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://durable.co/ai-website-builder?via=aiwebtools",
-    tags: ["website builder", "AI website", "content generation", "small business", "online presence"],
+    tags: ["No-Code/Low-Code", "Frontend", "website builder", "AI website", "content generation", "small business", "online presence"],
     category: "DEVELOPMENT & CODING",
     rating: 4.1,
     totalVotes: 2543
@@ -119,7 +119,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "✨",
     color: "from-cyan-500 to-purple-600",
     directUrl: "https://aws.amazon.com/codewhisperer/",
-    tags: ["Coding Agent", "AI coding", "code completion", "real-time suggestions", "developer tools", "Amazon", "agent"],
+    tags: ["Code Assistant", "Cloud Platform", "Coding Agent", "AI coding", "code completion", "real-time suggestions", "developer tools", "Amazon", "agent"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 3322
@@ -133,7 +133,7 @@ export const aiDevelopmentTools: Tool[] = [
     directUrl: "https://engineeringgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/kDyI8A2xBe8?si=17__oTLSE7HbbApB",
     imageUrl: "/lovable-uploads/d96aa982-9238-415c-b8ae-c2f4b91d5392.png",
-    tags: ["engineering", "calculations", "design", "optimization", "safety protocols", "technical support"],
+    tags: ["Backend", "engineering", "calculations", "design", "optimization", "safety protocols", "technical support"],
     category: "DEVELOPMENT & CODING",
     rating: 4.8,
     totalVotes: 4200
@@ -145,7 +145,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "🌐",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://browseract.com/?via=aiwebtools",
-    tags: ["Web Tasks Agent", "web scraping", "automation", "data extraction", "browser automation", "no-code", "AI automation", "agent"],
+    tags: ["API Tools", "Web Tasks Agent", "web scraping", "automation", "data extraction", "browser automation", "no-code", "AI automation", "agent"],
     category: "DEVELOPMENT & CODING",
     rating: 4.4,
     totalVotes: 2345

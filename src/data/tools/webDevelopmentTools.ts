@@ -23,7 +23,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "⚡",
     color: "from-black to-gray-600",
     directUrl: "https://v0.dev/",
-    tags: ["React components", "AI coding", "web development", "Vercel", "code generation"],
+    tags: ["No-Code/Low-Code", "Frontend", "React components", "AI coding", "web development", "Vercel", "code generation"],
     category: "DEVELOPMENT & CODING",
     rating: 4.7,
     totalVotes: 3456
@@ -35,7 +35,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "🌐",
     color: "from-teal-500 to-blue-600",
     directUrl: "https://www.netlify.com/",
-    tags: ["web platform", "automatic deployment", "serverless", "JAMstack", "modern web"],
+    tags: ["Cloud Platform", "DevOps", "web platform", "automatic deployment", "serverless", "JAMstack", "modern web"],
     category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 4321
@@ -47,7 +47,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "🗄️",
     color: "from-green-500 to-teal-600",
     directUrl: "https://supabase.com/",
-    tags: ["backend-as-a-service", "PostgreSQL", "authentication", "real-time", "open source"],
+    tags: ["Database", "Backend", "backend-as-a-service", "PostgreSQL", "authentication", "real-time", "open source"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 3789
@@ -59,7 +59,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "☁️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.cloudflare.com/products/workers-ai/",
-    tags: ["serverless AI", "edge computing", "global deployment", "low latency", "performance"],
+    tags: ["Cloud Platform", "Backend", "serverless AI", "edge computing", "global deployment", "low latency", "performance"],
     category: "DEVELOPMENT & CODING",
     rating: 4.4,
     totalVotes: 2987
@@ -71,7 +71,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "💻",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://replit.com/",
-    tags: ["online IDE", "collaboration", "browser coding", "AI assistance", "deployment"],
+    tags: ["IDE", "Cloud Platform", "online IDE", "collaboration", "browser coding", "AI assistance", "deployment"],
     category: "DEVELOPMENT & CODING",
     rating: 4.3,
     totalVotes: 3234
@@ -83,7 +83,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "🎨",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://www.framer.com/",
-    tags: ["website builder", "design tool", "responsive", "animations", "interactive"],
+    tags: ["No-Code/Low-Code", "Frontend", "website builder", "design tool", "responsive", "animations", "interactive"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 2876
@@ -95,7 +95,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://bolt.new/",
-    tags: ["full-stack development", "natural language", "complete applications", "AI platform", "deployment"],
+    tags: ["No-Code/Low-Code", "Frontend", "Backend", "full-stack development", "natural language", "complete applications", "AI platform", "deployment"],
     category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 2654
@@ -107,7 +107,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "🖥️",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://webflow.com/",
-    tags: ["visual development", "no-code", "responsive design", "CMS", "web design"],
+    tags: ["No-Code/Low-Code", "Frontend", "visual development", "no-code", "responsive design", "CMS", "web design"],
     category: "DEVELOPMENT & CODING",
     rating: 4.4,
     totalVotes: 3456
@@ -119,7 +119,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "📱",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.builder.io/",
-    tags: ["visual development", "mobile apps", "drag-and-drop", "code generation", "cross-platform"],
+    tags: ["No-Code/Low-Code", "Mobile Development", "visual development", "mobile apps", "drag-and-drop", "code generation", "cross-platform"],
     category: "DEVELOPMENT & CODING",
     rating: 4.2,
     totalVotes: 2345
@@ -131,7 +131,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "🚂",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://railway.app/",
-    tags: ["cloud platform", "zero configuration", "automatic scaling", "infrastructure", "deployment"],
+    tags: ["Cloud Platform", "DevOps", "cloud platform", "zero configuration", "automatic scaling", "infrastructure", "deployment"],
     category: "DEVELOPMENT & CODING",
     rating: 4.3,
     totalVotes: 2123
@@ -143,7 +143,7 @@ export const webDevelopmentTools: Tool[] = [
     emoji: "🧩",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.relume.io/?via=aiwebtools",
-    tags: ["website generator", "AI site builder", "wireframe", "sitemap", "copywriting", "Webflow"],
+    tags: ["No-Code/Low-Code", "Frontend", "website generator", "AI site builder", "wireframe", "sitemap", "copywriting", "Webflow"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 1987
