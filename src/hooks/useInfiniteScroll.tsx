@@ -57,7 +57,6 @@ export const useInfiniteScroll = ({
     if (!isEndlessScroll && (displayedCount >= totalTools || isLoading)) return;
     
     let ticking = false;
-    let timeoutId: NodeJS.Timeout;
     
     const handleScroll = () => {
       // Throttle scroll events using requestAnimationFrame for smooth performance
@@ -76,12 +75,12 @@ export const useInfiniteScroll = ({
             return;
           }
           
-          // Dynamic threshold based on context - more aggressive for categories and search
-          let threshold = 800; // Default for main page
+          // INCREASED thresholds - trigger loading MUCH earlier before user reaches bottom
+          let threshold = 1500; // Default for main page - start loading 1500px before bottom
           if (searchTerm) {
-            threshold = 400; // More aggressive for search results
+            threshold = 1200; // Aggressive for search results
           } else if (selectedCategory) {
-            threshold = 600; // Medium aggressive for categories with endless scroll
+            threshold = 1800; // Very aggressive for categories - load well ahead
           }
           
           const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
@@ -92,12 +91,8 @@ export const useInfiniteScroll = ({
             
             if (shouldLoad) {
               console.log(`🎯 Auto-loading more tools - Context: ${searchTerm ? 'Search' : selectedCategory ? 'Category (Endless)' : 'Main'}, Displayed: ${displayedCountRef.current}/${totalToolsRef.current}`);
-              
-              // Small delay to prevent rapid fire requests
-              clearTimeout(timeoutId);
-              timeoutId = setTimeout(() => {
-                handleLoadMore();
-              }, 100);
+              // NO DELAY - load immediately for instant feel
+              handleLoadMore();
             }
           }
           
@@ -110,9 +105,11 @@ export const useInfiniteScroll = ({
     // Use passive listener for better scroll performance
     window.addEventListener('scroll', handleScroll, { passive: true });
     
+    // Also trigger on initial mount in case we need more content
+    setTimeout(() => handleScroll(), 50);
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timeoutId);
     };
   }, [displayedCount, handleLoadMore, isLoading, showLoadMoreButton, totalTools, searchTerm, selectedCategory, enableInfiniteScroll]);
 
