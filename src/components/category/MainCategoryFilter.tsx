@@ -54,12 +54,14 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     }
   }, [currentMainCategory, mainCategoriesWithCounts.length]); // Simplified dependencies
 
-  // Memoize filtered tools with reduced complexity
+  // Memoize filtered tools - ONLY show tools from selected categories (true filtering)
   const filteredTools = useMemo(() => {
+    // If no categories selected, show the original tools passed in
     if (selectedMainCategories.length === 0) {
       return tools;
     }
     
+    // Collect tools from ALL selected categories (union)
     const selectedCategoryTools = new Map<string, Tool>();
     
     selectedMainCategories.forEach(categoryName => {
@@ -71,11 +73,9 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       });
     });
     
-    const selectedTools = Array.from(selectedCategoryTools.values());
-    const remainingTools = allTools.filter(tool => !selectedCategoryTools.has(tool.title));
-    
-    return [...selectedTools, ...remainingTools];
-  }, [selectedMainCategories, tools.length]); // Simplified dependencies
+    // Return ONLY the tools from selected categories (true filter behavior)
+    return Array.from(selectedCategoryTools.values());
+  }, [selectedMainCategories, tools.length]);
 
   // Update parent with debounced effect
   useEffect(() => {
