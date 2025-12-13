@@ -117,13 +117,7 @@ const MainCategoryPage = () => {
     }
   }, [mainCategory, decodedCategoryName, navigate, isInitialized]);
 
-  // Initialize filtered tools ONLY on first mount - don't override filter selections
-  useEffect(() => {
-    if (categoryTools.length > 0 && !isInitialized) {
-      console.log(`🔧 Initializing with ${categoryTools.length} category tools`);
-      setFilteredToolsByCategory(categoryTools);
-    }
-  }, [categoryTools.length, isInitialized]);
+  // No longer need initialization - MainCategoryFilter handles it via selectedMainCategories default
 
   // Reset displayed count when filtered tools change
   useEffect(() => {
