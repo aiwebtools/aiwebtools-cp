@@ -196,199 +196,154 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto mb-4">
-      {/* Filter Toggle + Sort Buttons */}
-      <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
-        {/* Mix Categories Button */}
-        <Button
+    <div className="max-w-3xl mx-auto mb-4">
+      {/* Compact Sort & Filter Pills */}
+      <div className="flex flex-wrap items-center justify-center gap-1.5 mb-2">
+        {/* Mix Categories - Compact Pill */}
+        <button
           onClick={() => setIsExpanded(!isExpanded)}
-          variant="outline"
-          size="sm"
-          className="border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:text-cyan-200 bg-black/50 text-sm"
+          className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+            isExpanded || selectedMainCategories.length > 1
+              ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-400/50'
+              : 'bg-gray-800/60 text-gray-400 border border-gray-600/30 hover:border-cyan-500/40 hover:text-cyan-300'
+          }`}
         >
-          <Filter className="w-3 h-3 mr-2" />
-          Mix Categories
-          {isExpanded ? <ChevronUp className="w-3 h-3 ml-2" /> : <ChevronDown className="w-3 h-3 ml-2" />}
+          <Filter className="w-3 h-3" />
+          Mix
           {selectedMainCategories.length > 1 && (
-            <Badge variant="secondary" className="ml-2 bg-cyan-500/20 text-cyan-300 text-xs">
+            <span className="bg-cyan-500/30 text-cyan-200 px-1.5 rounded-full text-[10px]">
               {selectedMainCategories.length}
-            </Badge>
+            </span>
           )}
-        </Button>
+          {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+        </button>
         
-        {/* Sort A-Z Button */}
-        <Button
+        {/* A-Z Pill */}
+        <button
           onClick={handleSortAZ}
-          variant="outline"
-          size="sm"
-          className={`text-sm transition-all ${
-            sortMode === 'az' 
-              ? 'border-green-400 text-green-300 bg-green-500/20' 
-              : 'border-green-500/30 text-green-300 hover:border-green-400 hover:text-green-200 bg-black/50'
+          className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+            sortMode === 'az'
+              ? 'bg-green-500/20 text-green-300 border border-green-400/50'
+              : 'bg-gray-800/60 text-gray-400 border border-gray-600/30 hover:border-green-500/40 hover:text-green-300'
           }`}
-          title="Sort alphabetically A to Z"
+          title="Sort A to Z"
         >
-          <ArrowDownAZ className="w-3 h-3 mr-1" />
+          <ArrowDownAZ className="w-3 h-3" />
           A-Z
-        </Button>
+        </button>
         
-        {/* Sort Z-A Button */}
-        <Button
+        {/* Z-A Pill */}
+        <button
           onClick={handleSortZA}
-          variant="outline"
-          size="sm"
-          className={`text-sm transition-all ${
-            sortMode === 'za' 
-              ? 'border-orange-400 text-orange-300 bg-orange-500/20' 
-              : 'border-orange-500/30 text-orange-300 hover:border-orange-400 hover:text-orange-200 bg-black/50'
+          className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+            sortMode === 'za'
+              ? 'bg-orange-500/20 text-orange-300 border border-orange-400/50'
+              : 'bg-gray-800/60 text-gray-400 border border-gray-600/30 hover:border-orange-500/40 hover:text-orange-300'
           }`}
-          title="Sort alphabetically Z to A"
+          title="Sort Z to A"
         >
-          <ArrowUpZA className="w-3 h-3 mr-1" />
+          <ArrowUpZA className="w-3 h-3" />
           Z-A
-        </Button>
+        </button>
         
-        {/* Shuffle Button */}
-        <Button
+        {/* Shuffle Pill */}
+        <button
           onClick={handleShuffle}
-          variant="outline"
-          size="sm"
-          className={`text-sm transition-all ${
-            sortMode === 'shuffle' 
-              ? 'border-purple-400 text-purple-300 bg-purple-500/20' 
-              : 'border-purple-500/30 text-purple-300 hover:border-purple-400 hover:text-purple-200 bg-black/50'
+          className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+            sortMode === 'shuffle'
+              ? 'bg-purple-500/20 text-purple-300 border border-purple-400/50'
+              : 'bg-gray-800/60 text-gray-400 border border-gray-600/30 hover:border-purple-500/40 hover:text-purple-300'
           }`}
-          title="Shuffle/randomize tool order"
+          title="Shuffle randomly"
         >
-          <Shuffle className="w-3 h-3 mr-1" />
-          {sortMode === 'shuffle' && shuffleKey > 0 ? `#${shuffleKey}` : 'Shuffle'}
-        </Button>
+          <Shuffle className="w-3 h-3" />
+          {sortMode === 'shuffle' && shuffleKey > 0 ? `#${shuffleKey}` : '🎲'}
+        </button>
         
-        {/* Smart Sort (reset) - only show if not in smart mode */}
+        {/* Smart Reset - Only if not in smart mode */}
         {sortMode !== 'smart' && (
-          <Button
+          <button
             onClick={handleSmartSort}
-            variant="outline"
-            size="sm"
-            className="border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:text-cyan-200 bg-black/50 text-sm"
-            title="Reset to smart sorting (featured + category match)"
+            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-800/60 text-gray-400 border border-gray-600/30 hover:border-cyan-500/40 hover:text-cyan-300 transition-all duration-200"
+            title="Reset to smart sorting"
           >
-            ✨ Smart
-          </Button>
+            ✨ Reset
+          </button>
         )}
       </div>
 
-      {/* Active Category Mix Display */}
+      {/* Active Mix Tags - Compact */}
       {selectedMainCategories.length > 1 && (
-        <div className="flex flex-wrap gap-2 justify-center mb-3">
-          <div className="text-xs text-cyan-400 font-semibold">Mixed Categories:</div>
+        <div className="flex flex-wrap gap-1 justify-center mb-2">
           {selectedMainCategories.map(categoryName => {
             const categoryData = mainCategoriesWithCounts.find(cat => cat.name === categoryName);
             const isCurrentCategory = categoryName === currentMainCategory;
             return (
-              <Badge
+              <span
                 key={categoryName}
-                variant="secondary"
-                className={`text-xs ${
+                className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] ${
                   isCurrentCategory 
-                    ? 'bg-cyan-600/30 text-cyan-200 border-cyan-400/50' 
-                    : 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30'
+                    ? 'bg-cyan-600/30 text-cyan-200 border border-cyan-400/40' 
+                    : 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
                 }`}
               >
-                {categoryData?.emoji} {categoryName}
+                {categoryData?.emoji} {categoryName.split(' ')[0]}
                 {!isCurrentCategory && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
+                  <button
                     onClick={() => handleMainCategoryToggle(categoryName)}
-                    className="ml-1 h-3 w-3 p-0 text-cyan-400 hover:text-cyan-200"
+                    className="hover:text-white transition-colors"
                   >
-                    <X className="w-2 h-2" />
-                  </Button>
+                    <X className="w-2.5 h-2.5" />
+                  </button>
                 )}
-                {isCurrentCategory && (
-                  <span className="ml-1 text-xs opacity-70">(locked)</span>
-                )}
-              </Badge>
+              </span>
             );
           })}
-          <Button
+          <button
             onClick={clearAllFilters}
-            variant="ghost"
-            size="sm"
-            className="text-cyan-400 hover:text-cyan-200 text-xs h-6"
+            className="text-cyan-400 hover:text-cyan-200 text-[10px] underline"
           >
-            Reset to {currentMainCategory}
-          </Button>
+            Reset
+          </button>
         </div>
       )}
 
-      {/* Compact Expandable Filter Panel */}
+      {/* Expandable Category Grid - More Compact */}
       {isExpanded && (
-        <div className="bg-black/50 border border-cyan-500/30 rounded-lg p-3 backdrop-blur-sm">
-          {/* Main Categories Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 max-h-48 overflow-y-auto">
+        <div className="bg-gray-900/70 border border-cyan-500/20 rounded-xl p-2 backdrop-blur-sm animate-fade-in">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1.5 max-h-40 overflow-y-auto scrollbar-thin">
             {mainCategoriesWithCounts.map(({ name, emoji, count }) => {
               const isChecked = selectedMainCategories.includes(name);
               const isCurrentCategory = name === currentMainCategory;
               
               return (
-                <div
+                <button
                   key={name}
-                  className={`flex items-start space-x-2 p-2 hover:bg-cyan-500/10 rounded-md transition-colors min-h-[50px] ${
-                    isCurrentCategory ? 'bg-cyan-500/15 border border-cyan-500/30' : ''
-                  }`}
+                  onClick={() => handleMainCategoryToggle(name)}
+                  disabled={isCurrentCategory && isChecked}
+                  className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-left transition-all duration-200 ${
+                    isChecked
+                      ? 'bg-cyan-500/25 border border-cyan-400/50 text-cyan-200'
+                      : 'bg-gray-800/50 border border-gray-700/30 text-gray-400 hover:border-cyan-500/40 hover:text-cyan-300'
+                  } ${isCurrentCategory ? 'ring-1 ring-cyan-500/50' : ''}`}
                 >
-                  <Checkbox
-                    id={`main-category-${name}`}
-                    checked={isChecked}
-                    onCheckedChange={() => handleMainCategoryToggle(name)}
-                    className="border-cyan-500/50 data-[state=checked]:bg-cyan-500 data-[state=checked]:border-cyan-500 flex-shrink-0 mt-1"
-                    disabled={isCurrentCategory && isChecked}
-                  />
-                  <div className="flex-1 min-w-0 flex flex-col">
-                    <label
-                      htmlFor={`main-category-${name}`}
-                      className={`text-xs font-bold cursor-pointer flex items-start leading-tight ${
-                        isCurrentCategory ? 'text-cyan-200' : 'text-cyan-100'
-                      }`}
-                      title={name}
-                    >
-                      <span className="mr-1 flex-shrink-0">{emoji}</span>
-                      <span className="break-words text-xs leading-tight font-bold">{name}</span>
-                      {isCurrentCategory && <span className="ml-1 text-xs opacity-70">(current)</span>}
-                    </label>
-                    <Badge
-                      variant="secondary"
-                      className="bg-cyan-500/20 text-cyan-300 text-xs mt-1 self-start"
-                    >
-                      {count} tools
-                    </Badge>
+                  <span className="text-sm">{emoji}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-[10px] font-medium truncate leading-tight">{name}</div>
+                    <div className="text-[9px] opacity-60">{count}</div>
                   </div>
-                </div>
+                  {isChecked && <span className="text-cyan-400 text-xs">✓</span>}
+                </button>
               );
             })}
           </div>
-
-          {mainCategoriesWithCounts.length === 0 && (
-            <div className="text-center py-3 text-gray-400 text-sm">
-              No additional categories available
-            </div>
-          )}
-
-          {/* Enhanced Filter Summary */}
-          <div className="mt-3 pt-2 border-t border-cyan-500/20 text-center">
-            <div className="text-xs text-cyan-300">
-              {selectedMainCategories.length <= 1 
-                ? `Showing ${filteredTools.length} tools in ${currentMainCategory}` 
-                : `Mixing ${selectedMainCategories.length} categories (${filteredTools.length} total tools)`
-              }
-            </div>
-            {selectedMainCategories.includes(currentMainCategory) && (
-              <div className="text-xs text-cyan-400 mt-1">
-                ✓ Current category "{currentMainCategory}" is automatically included
-              </div>
-            )}
+          
+          {/* Summary */}
+          <div className="text-center text-[10px] text-cyan-400/70 mt-2 pt-1.5 border-t border-cyan-500/10">
+            {selectedMainCategories.length <= 1 
+              ? `${filteredTools.length} tools`
+              : `${selectedMainCategories.length} categories mixed (${filteredTools.length} tools)`
+            }
           </div>
         </div>
       )}

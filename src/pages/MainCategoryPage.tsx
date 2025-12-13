@@ -163,40 +163,49 @@ const MainCategoryPage = () => {
         <Header />
         
         <main className="container mx-auto px-4 py-8 pt-32 md:pt-36 lg:pt-40">
-          {/* Category Header */}
-          <div className="text-center mb-8">
-            <div className="text-6xl mb-4">{mainCategory.emoji}</div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
-              {decodedCategoryName}
-            </h1>
-            <p className="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
-              {mainCategory.description}
-            </p>
+          {/* Navigation Buttons - Sleek Oval Style */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+            {/* Previous Page Button */}
+            <button
+              onClick={() => navigate(-1)}
+              className="group flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-gray-800/80 to-gray-700/80 border border-gray-600/40 hover:border-cyan-500/50 hover:from-gray-700/80 hover:to-gray-600/80 transition-all duration-300 text-sm text-gray-300 hover:text-cyan-300 backdrop-blur-sm"
+            >
+              <span className="text-base">←</span>
+              <span className="hidden sm:inline">Previous</span>
+            </button>
             
-            {/* Breadcrumb Navigation */}
-            <nav aria-label="Breadcrumb" className="mb-6">
-              <ol className="flex items-center justify-center space-x-2 text-sm text-gray-400">
-                <li>
-                  <button 
-                    onClick={() => navigate('/')}
-                    className="hover:text-cyan-400 transition-colors duration-200 focus:outline-none focus:text-cyan-400"
-                  >
-                    Home
-                  </button>
-                </li>
-                <li>
-                  <span className="mx-2">›</span>
-                  <span className="text-cyan-400">{decodedCategoryName}</span>
-                </li>
-              </ol>
-            </nav>
+            {/* Back to Home Button */}
+            <button
+              onClick={() => navigate('/')}
+              className="group flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-900/60 to-blue-900/60 border border-cyan-500/40 hover:border-cyan-400/70 hover:from-cyan-800/60 hover:to-blue-800/60 transition-all duration-300 text-sm text-cyan-300 hover:text-cyan-200 backdrop-blur-sm shadow-lg shadow-cyan-500/10"
+            >
+              <span className="text-base">🏠</span>
+              <span>Home</span>
+            </button>
+            
+            {/* All Categories Button */}
+            <button
+              onClick={() => navigate('/main-category/ALL%20AI%20TOOLS')}
+              className="group flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-900/60 to-pink-900/60 border border-purple-500/40 hover:border-purple-400/70 hover:from-purple-800/60 hover:to-pink-800/60 transition-all duration-300 text-sm text-purple-300 hover:text-purple-200 backdrop-blur-sm shadow-lg shadow-purple-500/10"
+            >
+              <span className="text-base">🌐</span>
+              <span>All Categories</span>
+            </button>
           </div>
 
-          {/* Main Search Bar - Same as homepage */}
-          <div className="max-w-2xl mx-auto mb-8">
-            <h3 className="text-xl font-bold text-white mb-4 text-center">
-              🔍 Search All AI Tools
-            </h3>
+          {/* Category Header */}
+          <div className="text-center mb-6">
+            <div className="text-5xl mb-3">{mainCategory.emoji}</div>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 bg-clip-text text-transparent cyber-glow">
+              {decodedCategoryName}
+            </h1>
+            <p className="text-base text-gray-300 mb-4 max-w-xl mx-auto">
+              {mainCategory.description}
+            </p>
+          </div>
+
+          {/* Main Search Bar */}
+          <div className="max-w-xl mx-auto mb-6">
             <GlobalSearchBar />
           </div>
 
