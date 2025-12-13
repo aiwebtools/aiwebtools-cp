@@ -2,12 +2,17 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ChevronDown, ChevronUp, Filter, X, Shuffle } from "lucide-react";
+import { ChevronDown, ChevronUp, Filter, X, Shuffle, ArrowDownAZ, ArrowUpZA } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { getToolsByMainCategory, getMainCategoriesWithCounts } from "@/utils/categoryUtils/toolFiltering";
 import { allTools } from "@/data/toolsData";
+import { 
+  applySmartInterleavedSorting, 
+  applyAlphabeticalWithDeprioritization,
+  SortMode 
+} from "@/utils/toolSorting/smartToolSorting";
 
 interface MainCategoryFilterProps {
   tools: Tool[];
@@ -18,6 +23,7 @@ interface MainCategoryFilterProps {
 const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory }: MainCategoryFilterProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedMainCategories, setSelectedMainCategories] = useState<string[]>([currentMainCategory]);
+  const [sortMode, setSortMode] = useState<SortMode>('smart');
   const [shuffleKey, setShuffleKey] = useState(0);
 
   // Cache the categories data to prevent recalculation
@@ -50,6 +56,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   // Reset selected categories when current category changes (navigating to different category page)
   useEffect(() => {
     setSelectedMainCategories([currentMainCategory]);
+    setSortMode('smart');
     setShuffleKey(0);
   }, [currentMainCategory]);
 
@@ -90,41 +97,60 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     return Array.from(selectedCategoryTools.values());
   }, [selectedMainCategories, currentMainCategory]);
 
-  // Track the last shuffled result with a ref to avoid infinite loops
-  const lastShuffleRef = React.useRef<{ key: number; tools: Tool[] }>({ key: 0, tools: [] });
+  // Track sort state for cache
+  const lastSortRef = React.useRef<{ mode: SortMode; key: number; tools: Tool[] }>({ mode: 'smart', key: 0, tools: [] });
 
-  // Compute final tools with shuffle applied
+  // Compute final tools with sorting applied
   const filteredTools = useMemo(() => {
-    // If no shuffle, return base tools
-    if (shuffleKey === 0) {
-      lastShuffleRef.current = { key: 0, tools: baseFilteredTools };
-      return baseFilteredTools;
+    const cacheKey = `${sortMode}-${shuffleKey}`;
+    
+    // Apply appropriate sorting based on mode
+    let sortedTools: Tool[];
+    
+    switch (sortMode) {
+      case 'az':
+        sortedTools = applyAlphabeticalWithDeprioritization(baseFilteredTools, 'asc');
+        console.log(`🔤 A-Z Sort: ${sortedTools.length} tools`);
+        break;
+      case 'za':
+        sortedTools = applyAlphabeticalWithDeprioritization(baseFilteredTools, 'desc');
+        console.log(`🔤 Z-A Sort: ${sortedTools.length} tools`);
+        break;
+      case 'shuffle':
+        // Use shuffle key for randomization
+        if (lastSortRef.current.mode === 'shuffle' && lastSortRef.current.key === shuffleKey) {
+          return lastSortRef.current.tools;
+        }
+        const seed = Date.now() + shuffleKey * 12345;
+        sortedTools = shuffleArray(baseFilteredTools, seed);
+        console.log(`🔀 Shuffle #${shuffleKey}: ${sortedTools.length} tools (first 3: ${sortedTools.slice(0, 3).map(t => t.title).join(', ')})`);
+        break;
+      case 'smart':
+      default:
+        sortedTools = applySmartInterleavedSorting(baseFilteredTools, currentMainCategory);
+        console.log(`🎯 Smart Sort: ${sortedTools.length} tools with 2:1 interleaving`);
+        break;
     }
     
-    // If this is a new shuffle key, perform shuffle
-    if (lastShuffleRef.current.key !== shuffleKey) {
-      const seed = Date.now() + shuffleKey * 12345;
-      const shuffled = shuffleArray(baseFilteredTools, seed);
-      console.log(`🔀 Shuffle #${shuffleKey}: ${shuffled.length} tools (first 3: ${shuffled.slice(0, 3).map(t => t.title).join(', ')})`);
-      lastShuffleRef.current = { key: shuffleKey, tools: shuffled };
-      return shuffled;
-    }
-    
-    // Return cached shuffle result
-    return lastShuffleRef.current.tools;
-  }, [shuffleKey, baseFilteredTools, shuffleArray]);
+    lastSortRef.current = { mode: sortMode, key: shuffleKey, tools: sortedTools };
+    return sortedTools;
+  }, [sortMode, shuffleKey, baseFilteredTools, shuffleArray, currentMainCategory]);
 
-  // Track last shuffle key to detect changes
-  const lastPassedShuffleKey = React.useRef<number>(-1);
+  // Track last state to detect changes
+  const lastPassedRef = React.useRef<{ mode: SortMode; key: number }>({ mode: 'smart', key: -1 });
   
   useEffect(() => {
-    // Always pass tools when shuffle key changes or on initial load
-    if (lastPassedShuffleKey.current !== shuffleKey || lastPassedShuffleKey.current === -1) {
-      console.log(`🎯 MainCategoryFilter: Passing ${filteredTools.length} tools to parent (shuffle #${shuffleKey})`);
-      lastPassedShuffleKey.current = shuffleKey;
+    const stateChanged = 
+      lastPassedRef.current.mode !== sortMode || 
+      lastPassedRef.current.key !== shuffleKey ||
+      lastPassedRef.current.key === -1;
+    
+    if (stateChanged) {
+      console.log(`🎯 MainCategoryFilter: Passing ${filteredTools.length} tools (mode: ${sortMode}, shuffle #${shuffleKey})`);
+      lastPassedRef.current = { mode: sortMode, key: shuffleKey };
       onFilteredToolsChange(filteredTools);
     }
-  }, [filteredTools, shuffleKey, onFilteredToolsChange]);
+  }, [filteredTools, sortMode, shuffleKey, onFilteredToolsChange]);
 
   const handleMainCategoryToggle = useCallback((mainCategoryName: string) => {
     setSelectedMainCategories(prev => {
@@ -145,17 +171,35 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
 
   const clearAllFilters = useCallback(() => {
     setSelectedMainCategories([currentMainCategory]);
+    setSortMode('smart');
     setShuffleKey(0);
   }, [currentMainCategory]);
 
   const handleShuffle = useCallback(() => {
+    setSortMode('shuffle');
     setShuffleKey(prev => prev + 1);
+  }, []);
+
+  const handleSortAZ = useCallback(() => {
+    setSortMode('az');
+    setShuffleKey(0);
+  }, []);
+
+  const handleSortZA = useCallback(() => {
+    setSortMode('za');
+    setShuffleKey(0);
+  }, []);
+
+  const handleSmartSort = useCallback(() => {
+    setSortMode('smart');
+    setShuffleKey(0);
   }, []);
 
   return (
     <div className="max-w-4xl mx-auto mb-4">
-      {/* Compact Filter Toggle Button + Shuffle */}
-      <div className="flex items-center justify-center gap-2 mb-3">
+      {/* Filter Toggle + Sort Buttons */}
+      <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
+        {/* Mix Categories Button */}
         <Button
           onClick={() => setIsExpanded(!isExpanded)}
           variant="outline"
@@ -163,13 +207,45 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
           className="border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:text-cyan-200 bg-black/50 text-sm"
         >
           <Filter className="w-3 h-3 mr-2" />
-          Mix Multiple Categories
+          Mix Categories
           {isExpanded ? <ChevronUp className="w-3 h-3 ml-2" /> : <ChevronDown className="w-3 h-3 ml-2" />}
           {selectedMainCategories.length > 1 && (
             <Badge variant="secondary" className="ml-2 bg-cyan-500/20 text-cyan-300 text-xs">
-              {selectedMainCategories.length} mixed
+              {selectedMainCategories.length}
             </Badge>
           )}
+        </Button>
+        
+        {/* Sort A-Z Button */}
+        <Button
+          onClick={handleSortAZ}
+          variant="outline"
+          size="sm"
+          className={`text-sm transition-all ${
+            sortMode === 'az' 
+              ? 'border-green-400 text-green-300 bg-green-500/20' 
+              : 'border-green-500/30 text-green-300 hover:border-green-400 hover:text-green-200 bg-black/50'
+          }`}
+          title="Sort alphabetically A to Z"
+        >
+          <ArrowDownAZ className="w-3 h-3 mr-1" />
+          A-Z
+        </Button>
+        
+        {/* Sort Z-A Button */}
+        <Button
+          onClick={handleSortZA}
+          variant="outline"
+          size="sm"
+          className={`text-sm transition-all ${
+            sortMode === 'za' 
+              ? 'border-orange-400 text-orange-300 bg-orange-500/20' 
+              : 'border-orange-500/30 text-orange-300 hover:border-orange-400 hover:text-orange-200 bg-black/50'
+          }`}
+          title="Sort alphabetically Z to A"
+        >
+          <ArrowUpZA className="w-3 h-3 mr-1" />
+          Z-A
         </Button>
         
         {/* Shuffle Button */}
@@ -177,17 +253,29 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
           onClick={handleShuffle}
           variant="outline"
           size="sm"
-          className="border-purple-500/30 text-purple-300 hover:border-purple-400 hover:text-purple-200 bg-black/50 text-sm"
+          className={`text-sm transition-all ${
+            sortMode === 'shuffle' 
+              ? 'border-purple-400 text-purple-300 bg-purple-500/20' 
+              : 'border-purple-500/30 text-purple-300 hover:border-purple-400 hover:text-purple-200 bg-black/50'
+          }`}
           title="Shuffle/randomize tool order"
         >
-          <Shuffle className="w-3 h-3 mr-2" />
-          Shuffle
-          {shuffleKey > 0 && (
-            <Badge variant="secondary" className="ml-2 bg-purple-500/20 text-purple-300 text-xs">
-              #{shuffleKey}
-            </Badge>
-          )}
+          <Shuffle className="w-3 h-3 mr-1" />
+          {sortMode === 'shuffle' && shuffleKey > 0 ? `#${shuffleKey}` : 'Shuffle'}
         </Button>
+        
+        {/* Smart Sort (reset) - only show if not in smart mode */}
+        {sortMode !== 'smart' && (
+          <Button
+            onClick={handleSmartSort}
+            variant="outline"
+            size="sm"
+            className="border-cyan-500/30 text-cyan-300 hover:border-cyan-400 hover:text-cyan-200 bg-black/50 text-sm"
+            title="Reset to smart sorting (featured + category match)"
+          >
+            ✨ Smart
+          </Button>
+        )}
       </div>
 
       {/* Active Category Mix Display */}
