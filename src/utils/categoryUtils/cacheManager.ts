@@ -26,7 +26,7 @@ import { filterBusinessTools } from "./businessCategoryFiltering";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 7;
+let cacheVersion = 9;
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';

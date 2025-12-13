@@ -36,7 +36,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📞",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.bland.ai/?via=aiwebtools",
-    tags: ["phone agents", "call agents", "voice agents", "AI phone", "phone automation", "call automation", "inbound calls", "outbound calls", "conversational AI", "agent"],
+    tags: ["Voice Agent", "phone agents", "call agents", "voice agents", "AI phone", "phone automation", "call automation", "inbound calls", "outbound calls", "conversational AI", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.7,
     totalVotes: 4200
@@ -48,7 +48,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "☎️",
     color: "from-violet-500 to-purple-600",
     directUrl: "https://vapi.ai/?via=aiwebtools",
-    tags: ["phone agents", "voice agents", "call agents", "AI phone", "voice AI", "phone automation", "conversational AI", "customer support", "sales calls", "agent"],
+    tags: ["Voice Agent", "phone agents", "voice agents", "call agents", "AI phone", "voice AI", "phone automation", "conversational AI", "customer support", "sales calls", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.6,
     totalVotes: 3890
@@ -60,7 +60,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📱",
     color: "from-cyan-500 to-teal-600",
     directUrl: "https://www.retellai.com/?via=aiwebtools",
-    tags: ["phone agents", "voice agents", "call agents", "AI phone", "conversational AI", "voice AI", "phone automation", "call center", "inbound", "outbound", "agent"],
+    tags: ["Voice Agent", "phone agents", "voice agents", "call agents", "AI phone", "conversational AI", "voice AI", "phone automation", "call center", "inbound", "outbound", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.6,
     totalVotes: 3650
@@ -72,7 +72,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🤖",
     color: "from-emerald-500 to-green-600",
     directUrl: "https://www.air.ai/?via=aiwebtools",
-    tags: ["phone agents", "voice agents", "call agents", "AI phone", "autonomous agents", "sales calls", "customer service", "phone automation", "conversational AI", "agent"],
+    tags: ["Voice Agent", "Autonomous Agent", "phone agents", "voice agents", "call agents", "AI phone", "autonomous agents", "sales calls", "customer service", "phone automation", "conversational AI", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.5,
     totalVotes: 3420
@@ -84,7 +84,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📞",
     color: "from-green-500 to-blue-600",
     directUrl: "https://synthflow.ai/?via=aiwebtools",
-    tags: ["phone agents", "voice AI", "customer service", "appointment booking", "business automation", "agent"],
+    tags: ["Voice Agent", "phone agents", "voice AI", "customer service", "appointment booking", "business automation", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.6,
     totalVotes: 3456
@@ -96,7 +96,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🤖",
     color: "from-blue-600 to-indigo-600",
     directUrl: "https://www.cognigy.com/?via=aiwebtools",
-    tags: ["conversational AI", "chatbot platform", "voice agents", "customer service", "enterprise AI", "NLU", "dialog management", "agent"],
+    tags: ["Voice Agent", "conversational AI", "chatbot platform", "voice agents", "customer service", "enterprise AI", "NLU", "dialog management", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.5,
     totalVotes: 2890
@@ -108,7 +108,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "💼",
     color: "from-purple-600 to-pink-600",
     directUrl: "https://kore.ai/?via=aiwebtools",
-    tags: ["conversational AI", "virtual assistant", "chatbot", "voice agents", "enterprise AI", "multi-channel", "agent"],
+    tags: ["Voice Agent", "conversational AI", "virtual assistant", "chatbot", "voice agents", "enterprise AI", "multi-channel", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.4,
     totalVotes: 2650
@@ -120,7 +120,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎨",
     color: "from-cyan-600 to-blue-600",
     directUrl: "https://www.voiceflow.com/?via=aiwebtools",
-    tags: ["conversational AI", "voice assistant", "chatbot builder", "no-code", "conversation design", "prototyping", "agent"],
+    tags: ["Voice Agent", "conversational AI", "voice assistant", "chatbot builder", "no-code", "conversation design", "prototyping", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.6,
     totalVotes: 3200
@@ -276,7 +276,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🗣️",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.omakase.ai/?via=aiwebtools",
-    tags: ["website voice agents", "voice AI", "lead capture", "customer support", "website assistant", "conversational AI", "agent"],
+    tags: ["Voice Agent", "website voice agents", "voice AI", "lead capture", "customer support", "website assistant", "conversational AI", "agent"],
     category: "Phone & Voice Agents",
     rating: 4.5,
     totalVotes: 120

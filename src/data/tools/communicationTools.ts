@@ -22,7 +22,7 @@ export const communicationTools: Tool[] = [
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://nucleus.ai/?via=aiwebtools",
     imageUrl: "/placeholder.svg?height=180&width=320",
-    tags: ["phone agents", "call center", "inbound calls", "customer service", "ai phone system"],
+    tags: ["Voice Agent", "phone agents", "call center", "inbound calls", "customer service", "ai phone system", "agent"],
     rating: 4.7,
     totalVotes: 1890
   },
@@ -35,7 +35,7 @@ export const communicationTools: Tool[] = [
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://bland.ai/?via=aiwebtools",
     imageUrl: "/placeholder.svg?height=180&width=320",
-    tags: ["phone agents", "voice ai", "outbound calls", "appointment scheduling", "sales calls"],
+    tags: ["Voice Agent", "phone agents", "voice ai", "outbound calls", "appointment scheduling", "sales calls", "agent"],
     rating: 4.6,
     totalVotes: 1654
   },
@@ -48,7 +48,7 @@ export const communicationTools: Tool[] = [
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://vapi.ai/?via=aiwebtools",
     imageUrl: "/placeholder.svg?height=180&width=320",
-    tags: ["voice ai", "phone automation", "conversational ai", "call handling", "voice assistants"],
+    tags: ["Voice Agent", "voice ai", "phone automation", "conversational ai", "call handling", "voice assistants", "agent"],
     rating: 4.5,
     totalVotes: 1423
   },
@@ -61,7 +61,7 @@ export const communicationTools: Tool[] = [
     category: "Communication & Collaboration AI Tools",
     directUrl: "https://synthflow.ai/?via=aiwebtools",
     imageUrl: "/placeholder.svg?height=180&width=320",
-    tags: ["no-code", "voice assistants", "phone automation", "workflow builder", "voice ai"],
+    tags: ["Voice Agent", "no-code", "voice assistants", "phone automation", "workflow builder", "voice ai", "agent"],
     rating: 4.3,
     totalVotes: 1156
   },
