@@ -210,18 +210,20 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     setSelectedMainCategories(prev => {
       const isCurrentlySelected = prev.includes(mainCategoryName);
       
-      // Prevent unchecking current category
-      if (isCurrentlySelected && mainCategoryName === currentMainCategory) {
-        return prev;
-      }
-      
+      // Allow unchecking any category INCLUDING the current one for full customization
+      // Just ensure at least one category remains selected
       if (isCurrentlySelected) {
-        return prev.filter(cat => cat !== mainCategoryName);
+        const newSelection = prev.filter(cat => cat !== mainCategoryName);
+        // If unchecking would leave no categories, keep at least one
+        if (newSelection.length === 0) {
+          return prev; // Don't allow empty selection
+        }
+        return newSelection;
       } else {
         return [...prev, mainCategoryName];
       }
     });
-  }, [currentMainCategory]);
+  }, []);
 
   const clearAllFilters = useCallback(() => {
     setSelectedMainCategories([currentMainCategory]);

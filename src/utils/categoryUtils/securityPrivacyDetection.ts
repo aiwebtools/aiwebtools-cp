@@ -18,80 +18,92 @@ export const SECURITY_PRIVACY_SUBTYPES = [
 
 export type SecurityPrivacySubtype = typeof SECURITY_PRIVACY_SUBTYPES[number];
 
-// Keywords for each subtype
+// STRICT keywords - must be specific to security/privacy domain
+// Avoid generic terms like "security", "privacy", "login", "analysis" alone
+
 const CYBERSECURITY_KEYWORDS = [
   'cybersecurity', 'cyber security', 'cyber defense', 'cyber threat', 'cyberattack',
-  'hacking', 'hacker', 'security', 'infosec', 'information security', 'defense',
-  'attack', 'malware', 'ransomware', 'phishing', 'exploit', 'breach', 'intrusion'
+  'ethical hacking', 'infosec', 'information security', 'malware detection',
+  'ransomware', 'phishing detection', 'exploit detection', 'data breach',
+  'intrusion detection', 'security operations', 'soc analyst', 'threat actor'
 ];
 
 const PASSWORD_MANAGEMENT_KEYWORDS = [
-  'password', 'password manager', 'credential', 'vault', 'authentication',
-  'passkey', 'biometric', 'login', 'mfa', 'multi-factor', '2fa', 'two-factor',
-  'sso', 'single sign-on', 'identity access'
+  'password manager', 'password vault', 'credential manager', 'password generator',
+  'passkey manager', 'lastpass', '1password', 'bitwarden', 'dashlane', 'keepass',
+  'mfa authentication', 'authenticator app', 'totp', 'otp generator'
 ];
 
 const VPN_NETWORK_KEYWORDS = [
-  'vpn', 'virtual private network', 'network security', 'firewall', 'proxy',
-  'tor', 'anonymity', 'network protection', 'dns', 'secure connection',
-  'tunnel', 'encrypted connection', 'ndr', 'network detection'
+  'vpn service', 'vpn provider', 'virtual private network', 'network security tool',
+  'firewall software', 'proxy server', 'tor browser', 'anonymity network',
+  'secure tunnel', 'wireguard', 'openvpn', 'nordvpn', 'expressvpn', 'protonvpn'
 ];
 
 const ENCRYPTION_KEYWORDS = [
-  'encryption', 'encrypt', 'decrypt', 'cryptography', 'cipher', 'hash',
-  'ssl', 'tls', 'certificate', 'pgp', 'gpg', 'secure messaging',
-  'end-to-end', 'e2ee', 'cryptographic', 'aes', 'rsa'
+  'encryption tool', 'file encryption', 'disk encryption', 'message encryption',
+  'pgp encryption', 'gpg tool', 'secure messaging app', 'signal protocol',
+  'end-to-end encryption', 'e2ee messaging', 'veracrypt', 'cryptomator',
+  'encrypted storage', 'encryption software'
 ];
 
 const IDENTITY_PROTECTION_KEYWORDS = [
-  'identity protection', 'identity theft', 'fraud protection', 'personal data',
-  'data protection', 'privacy protection', 'gdpr', 'ccpa', 'pii',
-  'data breach', 'identity monitoring', 'credit monitoring', 'dark web monitoring'
+  'identity protection service', 'identity theft protection', 'fraud protection',
+  'identity monitoring', 'credit monitoring service', 'dark web monitoring',
+  'lifelock', 'identity guard', 'personal data protection'
 ];
 
 const COMPLIANCE_AUDIT_KEYWORDS = [
-  'compliance', 'audit', 'regulation', 'regulatory', 'hipaa', 'sox', 'pci',
-  'iso 27001', 'nist', 'gdpr', 'ccpa', 'security audit', 'risk assessment',
-  'governance', 'grc', 'policy', 'framework', 'standard'
+  'security compliance', 'compliance tool', 'audit tool', 'hipaa compliance',
+  'sox compliance', 'pci compliance', 'iso 27001', 'nist framework',
+  'security audit tool', 'risk assessment tool', 'grc platform', 'governance tool'
 ];
 
 const VULNERABILITY_SCANNER_KEYWORDS = [
-  'vulnerability', 'scanner', 'scan', 'vulnerability assessment', 'security scan',
-  'cve', 'exploit', 'weakness', 'flaw', 'security testing', 'shodan', 'zoomeye',
-  'reconnaissance', 'discovery', 'asset discovery'
+  'vulnerability scanner', 'security scanner', 'vulnerability assessment',
+  'cve scanner', 'nessus', 'qualys', 'rapid7', 'tenable', 'openvas',
+  'security scan tool', 'penetration scanner', 'web scanner', 'app scanner'
 ];
 
 const THREAT_DETECTION_KEYWORDS = [
-  'threat detection', 'threat hunting', 'threat intelligence', 'siem',
-  'security monitoring', 'incident detection', 'anomaly detection', 'behavioral analysis',
-  'intrusion detection', 'ids', 'ips', 'alert', 'monitoring', 'surveillance'
+  'threat detection tool', 'threat hunting', 'threat intelligence platform',
+  'siem tool', 'siem platform', 'security monitoring tool', 'incident detection',
+  'intrusion detection system', 'ids tool', 'ips tool', 'splunk security'
 ];
 
 const PRIVACY_TOOLS_KEYWORDS = [
-  'privacy', 'anonymous', 'anonymity', 'tracker blocker', 'ad blocker',
-  'anti-tracking', 'private browsing', 'data deletion', 'data removal',
-  'opt-out', 'consent', 'cookie', 'fingerprint', 'browser privacy'
+  'privacy tool', 'privacy browser', 'tracker blocker', 'ad blocker privacy',
+  'anti-tracking tool', 'private browsing', 'data deletion tool', 'data removal',
+  'browser privacy extension', 'privacy-focused', 'duckduckgo', 'brave browser'
 ];
 
 const PENTEST_KEYWORDS = [
-  'penetration testing', 'pentest', 'ethical hacking', 'red team', 'blue team',
-  'security testing', 'exploit', 'attack simulation', 'breach simulation',
-  'offensive security', 'bug bounty', 'security research'
+  'penetration testing', 'pentest tool', 'ethical hacking tool', 'red team tool',
+  'security testing tool', 'attack simulation', 'breach simulation',
+  'offensive security', 'bug bounty', 'kali linux', 'metasploit', 'burp suite'
 ];
 
 const FORENSICS_KEYWORDS = [
-  'forensics', 'forensic', 'investigation', 'incident response', 'evidence',
-  'analysis', 'recovery', 'trace', 'log analysis', 'memory forensics',
-  'disk forensics', 'network forensics', 'digital forensics', 'criminologist'
+  'digital forensics', 'forensic tool', 'incident response tool', 'evidence analysis',
+  'log analysis tool', 'memory forensics', 'disk forensics', 'network forensics',
+  'forensic investigation', 'autopsy tool', 'encase', 'ftk imager'
 ];
 
 const ENDPOINT_PROTECTION_KEYWORDS = [
-  'endpoint', 'edr', 'xdr', 'antivirus', 'anti-malware', 'endpoint protection',
-  'endpoint security', 'device security', 'workstation', 'server protection',
-  'crowdstrike', 'sentinelone', 'defender', 'falcon', 'cortex'
+  'endpoint protection', 'endpoint security', 'edr tool', 'xdr platform',
+  'antivirus software', 'anti-malware tool', 'crowdstrike', 'sentinelone',
+  'carbon black', 'endpoint defense', 'endpoint detection'
 ];
 
-// All security keywords combined
+// STRICT security tools - must have explicit security/privacy focus
+const SECURITY_SPECIFIC_CATEGORY_KEYWORDS = [
+  'security tool', 'security platform', 'security software', 'cybersecurity tool',
+  'privacy tool', 'privacy software', 'hacking tool', 'hacker tool',
+  'penetration testing', 'vulnerability', 'encryption', 'vpn', 'firewall',
+  'antivirus', 'malware', 'threat', 'intrusion', 'forensic', 'password manager'
+];
+
+// All security keywords combined - STRICT versions only
 export const SECURITY_PRIVACY_KEYWORDS = [
   ...CYBERSECURITY_KEYWORDS,
   ...PASSWORD_MANAGEMENT_KEYWORDS,
@@ -111,7 +123,7 @@ export const SECURITY_PRIVACY_KEYWORDS = [
 export const detectSecurityPrivacySubtype = (tool: Tool): SecurityPrivacySubtype | null => {
   const searchText = `${tool.title} ${tool.description} ${tool.tags?.join(' ') || ''} ${tool.category || ''}`.toLowerCase();
   
-  // Check each subtype
+  // Check each subtype with STRICT keywords
   if (ENDPOINT_PROTECTION_KEYWORDS.some(k => searchText.includes(k.toLowerCase()))) {
     return "Endpoint Protection";
   }
@@ -152,18 +164,28 @@ export const detectSecurityPrivacySubtype = (tool: Tool): SecurityPrivacySubtype
   return null;
 };
 
-// Check if a tool belongs to Security & Privacy category
+// Check if a tool belongs to Security & Privacy category - STRICT detection
 export const isSecurityPrivacyTool = (tool: Tool): boolean => {
   const searchText = `${tool.title} ${tool.description} ${tool.tags?.join(' ') || ''} ${tool.category || ''}`.toLowerCase();
   
-  // Check category
-  if (tool.category?.toLowerCase().includes('security') || 
-      tool.category?.toLowerCase().includes('cybersecurity') ||
-      tool.category?.toLowerCase().includes('privacy')) {
+  // Check explicit security/privacy category
+  const categoryLower = (tool.category || '').toLowerCase();
+  if (categoryLower.includes('cybersecurity') || 
+      categoryLower.includes('security tool') ||
+      categoryLower === 'security & privacy' ||
+      categoryLower === 'security' ||
+      categoryLower.includes('privacy tool')) {
     return true;
   }
   
-  // Check keywords
+  // Check for security-specific tags
+  const securityTags = ['cybersecurity', 'security tool', 'privacy tool', 'vpn', 'antivirus', 
+                        'password manager', 'encryption', 'firewall', 'pentest', 'forensics'];
+  if (tool.tags?.some(tag => securityTags.some(st => tag.toLowerCase().includes(st)))) {
+    return true;
+  }
+  
+  // Check STRICT keywords only - avoid false positives
   return SECURITY_PRIVACY_KEYWORDS.some(keyword => 
     searchText.includes(keyword.toLowerCase())
   );

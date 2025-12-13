@@ -18,66 +18,65 @@ export const GAMING_ENTERTAINMENT_SUBTYPES = [
 
 export type GamingEntertainmentSubtype = typeof GAMING_ENTERTAINMENT_SUBTYPES[number];
 
-// Keywords for each subtype
+// STRICT Keywords for each subtype - avoid generic terms
 const GAME_ENGINE_KEYWORDS = [
-  "game engine", "unity", "unreal", "godot", "game maker", "rpg maker",
-  "construct", "phaser", "defold", "cocos", "game studio", "cryengine"
+  "game engine", "unity game", "unreal engine", "godot engine", "game maker studio", "rpg maker",
+  "construct 3", "phaser engine", "defold", "cocos2d", "cryengine", "gamebryo"
 ];
 
 const GAME_AI_KEYWORDS = [
-  "game ai", "npc ai", "enemy ai", "pathfinding", "behavior tree",
-  "game intelligence", "ai opponent", "bot ai", "game automation"
+  "game ai", "npc ai", "enemy ai", "game pathfinding", "behavior tree game",
+  "ai opponent", "bot ai game", "game automation"
 ];
 
 const GAME_ASSET_KEYWORDS = [
-  "game asset", "sprite", "texture", "3d model", "game art", "pixel art",
-  "game graphics", "character design", "environment art", "game texture",
-  "scenario.ai", "leonardo", "game props", "game materials"
+  "game asset", "game sprite", "game texture", "3d game model", "game art generator",
+  "pixel art game", "game graphics generator", "game character design", "game environment art"
 ];
 
 const STREAMING_KEYWORDS = [
-  "stream", "twitch", "obs", "broadcast", "live stream", "streamlabs",
-  "gaming stream", "stream overlay", "stream deck", "streaming tools"
+  "stream overlay", "twitch tool", "obs plugin", "streamlabs", "streaming software",
+  "stream deck", "stream alert", "stream widget", "broadcast tool", "live streaming"
 ];
 
 const VIRTUAL_WORLDS_KEYWORDS = [
-  "virtual world", "metaverse", "second life", "vr world", "virtual reality",
-  "virtual environment", "3d world", "immersive", "virtual space", "sandbox"
+  "virtual world", "metaverse game", "vr world", "virtual reality world",
+  "virtual environment game", "3d virtual world", "immersive world", "sandbox world"
 ];
 
 const INTERACTIVE_MEDIA_KEYWORDS = [
-  "interactive", "choose your own", "branching narrative", "interactive story",
-  "interactive fiction", "visual novel", "interactive experience", "gamification"
+  "interactive story", "choose your own adventure", "branching narrative game",
+  "interactive fiction", "visual novel", "interactive game", "gamification tool"
 ];
 
 const GAME_DESIGN_KEYWORDS = [
-  "game design", "game document", "gdd", "game concept", "game mechanics",
-  "level design", "game prototype", "game ideation", "ludo.ai", "game planning"
+  "game design document", "game design tool", "game concept", "game mechanics designer",
+  "level design tool", "game prototype", "game planning", "game ideation"
 ];
 
 const NPC_CHARACTER_AI_KEYWORDS = [
-  "npc", "character ai", "inworld", "convai", "game character", "dialogue ai",
-  "conversational npc", "ai companion", "game dialogue", "character engine"
+  "npc character", "character ai game", "inworld ai", "convai", "game character ai",
+  "game dialogue ai", "ai companion game", "character engine game"
 ];
 
 const GAME_DEVELOPMENT_KEYWORDS = [
-  "game development", "game dev", "game programming", "game coding",
-  "indie game", "game builder", "rosebud", "game creation", "game maker"
+  "game development", "game dev tool", "game programming", "game coding",
+  "indie game maker", "game builder", "rosebud ai", "game creation tool"
 ];
 
 const ESPORTS_KEYWORDS = [
-  "esports", "competitive gaming", "tournament", "ranking", "leaderboard",
-  "competitive", "pro gaming", "gaming stats", "match analysis"
+  "esports", "competitive gaming", "esports tournament", "gaming ranking",
+  "gaming leaderboard", "pro gaming", "gaming stats", "match analysis esports"
 ];
 
 const VR_AR_GAMING_KEYWORDS = [
-  "vr gaming", "ar gaming", "virtual reality game", "augmented reality",
-  "oculus", "quest", "vr experience", "mixed reality", "xr gaming"
+  "vr gaming", "ar gaming", "virtual reality game", "augmented reality game",
+  "oculus game", "quest game", "vr experience game", "mixed reality game", "xr gaming"
 ];
 
 const TRIVIA_QUIZ_KEYWORDS = [
-  "trivia", "quiz", "quiz maker", "trivia night", "game show", "knowledge game",
-  "question game", "brain game", "puzzle game", "word game"
+  "trivia game", "quiz game", "trivia night", "game show", "knowledge game",
+  "brain game", "puzzle game", "word game", "party game"
 ];
 
 export function detectGamingEntertainmentSubtype(tool: Tool): GamingEntertainmentSubtype | null {
@@ -102,15 +101,33 @@ export function detectGamingEntertainmentSubtype(tool: Tool): GamingEntertainmen
 export function isGamingEntertainmentTool(tool: Tool): boolean {
   const searchText = `${tool.title} ${tool.description} ${tool.tags?.join(" ") || ""} ${tool.category || ""}`.toLowerCase();
   
-  const allKeywords = [
+  // Check explicit gaming category
+  const categoryLower = (tool.category || '').toLowerCase();
+  if (categoryLower.includes('gaming') || 
+      categoryLower.includes('game ') ||
+      categoryLower === 'game' ||
+      categoryLower.includes('esports') ||
+      categoryLower.includes('entertainment & gaming')) {
+    return true;
+  }
+  
+  // Check for gaming-specific tags
+  const gamingTags = ['gaming', 'game engine', 'game development', 'esports', 'streaming tool', 
+                      'game design', 'game ai', 'virtual world', 'trivia game'];
+  if (tool.tags?.some(tag => gamingTags.some(gt => tag.toLowerCase().includes(gt)))) {
+    return true;
+  }
+  
+  // STRICT gaming keywords - avoid generic "game" alone
+  const allGamingKeywords = [
     ...GAME_ENGINE_KEYWORDS, ...GAME_AI_KEYWORDS, ...GAME_ASSET_KEYWORDS,
     ...STREAMING_KEYWORDS, ...VIRTUAL_WORLDS_KEYWORDS, ...INTERACTIVE_MEDIA_KEYWORDS,
     ...GAME_DESIGN_KEYWORDS, ...NPC_CHARACTER_AI_KEYWORDS, ...GAME_DEVELOPMENT_KEYWORDS,
     ...ESPORTS_KEYWORDS, ...VR_AR_GAMING_KEYWORDS, ...TRIVIA_QUIZ_KEYWORDS,
-    "gaming", "game", "gamer", "gameplay", "playable", "video game"
+    "gaming platform", "video game", "gaming tool", "game maker", "gameplay"
   ];
   
-  return allKeywords.some(k => searchText.includes(k));
+  return allGamingKeywords.some(k => searchText.includes(k));
 }
 
 export function getGamingEntertainmentSubtags(tool: Tool): string[] {
