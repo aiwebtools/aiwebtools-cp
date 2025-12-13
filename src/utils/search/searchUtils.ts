@@ -86,6 +86,49 @@ const detectIntent = (searchTerm: string): string | null => {
   return null;
 };
 
+// Common compound words that users might type with spaces
+const COMPOUND_WORD_MAPPINGS: Record<string, string> = {
+  'chat gpt': 'chatgpt',
+  'chat g p t': 'chatgpt',
+  'chatg pt': 'chatgpt',
+  'open ai': 'openai',
+  'mid journey': 'midjourney',
+  'stable diffusion': 'stablediffusion',
+  'dall e': 'dalle',
+  'eleven labs': 'elevenlabs',
+  'perplexity ai': 'perplexityai',
+  'claude ai': 'claude',
+  'gemini ai': 'gemini',
+  'google ai': 'googleai',
+  'meta ai': 'metaai',
+  'ai web tools': 'aiwebtools',
+  'run way': 'runway',
+  'pi ka': 'pika',
+  'lu ma': 'luma',
+  'veo 2': 'veo2',
+  'veo 3': 'veo3',
+  'sora 2': 'sora2',
+  'gpt 4': 'gpt4',
+  'gpt 4o': 'gpt4o',
+  'gpt 5': 'gpt5',
+  'claude 3': 'claude3',
+  'claude 4': 'claude4',
+};
+
+// Normalize compound words in search term
+const normalizeCompoundWords = (term: string): string => {
+  let normalized = term.toLowerCase().trim();
+  
+  // Apply compound word mappings
+  for (const [spaced, compound] of Object.entries(COMPOUND_WORD_MAPPINGS)) {
+    if (normalized.includes(spaced)) {
+      normalized = normalized.replace(new RegExp(spaced, 'gi'), compound);
+    }
+  }
+  
+  return normalized;
+};
+
   // Optimized search function with performance safeguards
 export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   if (!searchTerm.trim()) {
@@ -96,7 +139,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
 
   // Performance guard - limit complex searches
   const trimmed = searchTerm.trim();
-  if (trimmed.length > 20 || (trimmed.length > 10 && !/^[a-zA-Z\s]{3,}/.test(trimmed))) {
+  if (trimmed.length > 25 || (trimmed.length > 15 && !/^[a-zA-Z\s]{3,}/.test(trimmed))) {
     return performSimpleSearch(tools, searchTerm);
   }
 
@@ -109,18 +152,24 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     console.log(`🔍 Suno tools found: ${sunoTools.length}`, sunoTools.map(t => t.title));
   }
 
+  // Normalize compound words (e.g., "CHAT GPT" → "chatgpt")
+  const compoundNormalized = normalizeCompoundWords(searchTerm);
+  console.log(`🔄 Compound normalization: "${searchTerm}" → "${compoundNormalized}"`);
+
   // Simplified search for better performance - only use complex matching for short, clean queries
-  const shouldUseAdvancedSearch = trimmed.length <= 10 && /^[a-zA-Z\s]{2,}$/.test(trimmed);
+  const shouldUseAdvancedSearch = trimmed.length <= 15 && /^[a-zA-Z\s]{2,}$/.test(trimmed);
   
-  const correctedSearchTerm = shouldUseAdvancedSearch ? superSmartTypoCorrection(searchTerm) : searchTerm;
-  const partialSuggestions = shouldUseAdvancedSearch ? getPartialMatchSuggestions(searchTerm) : [];
-  const advancedPartialMatches = shouldUseAdvancedSearch ? getAdvancedPartialMatches(searchTerm, tools) : [];
+  const correctedSearchTerm = shouldUseAdvancedSearch ? superSmartTypoCorrection(compoundNormalized) : compoundNormalized;
+  const partialSuggestions = shouldUseAdvancedSearch ? getPartialMatchSuggestions(compoundNormalized) : [];
+  const advancedPartialMatches = shouldUseAdvancedSearch ? getAdvancedPartialMatches(compoundNormalized, tools) : [];
 
   const normalizedSearchTerm = correctedSearchTerm.toLowerCase().trim();
+  // Also create a no-space version for matching compound words in tool titles
+  const noSpaceSearchTerm = normalizedSearchTerm.replace(/\s+/g, '');
   const searchWords = normalizedSearchTerm.split(/[\s,.-]+/).filter(word => word.length > 1);
   
   // Enhanced phonetic variations  
-  const phoneticVariations = searchTerm.length <= 8 ? phoneticMatch(normalizedSearchTerm) : [];
+  const phoneticVariations = searchTerm.length <= 10 ? phoneticMatch(normalizedSearchTerm) : [];
   
   // Enhanced intent detection
   const userIntent = detectIntent(normalizedSearchTerm);
@@ -1527,6 +1576,9 @@ const performEnhancedSearch = (
   const processedSearchTerm = superSmartTypoCorrection(searchTerm);
   const finalNormalizedTerm = processedSearchTerm.toLowerCase().trim();
   
+  // Create no-space version for compound word matching (e.g., "chat gpt" → "chatgpt")
+  const noSpaceTerm = finalNormalizedTerm.replace(/\s+/g, '');
+  
   // Detect user task intent
   const userTask = matchUserTask(finalNormalizedTerm);
   
@@ -1536,12 +1588,20 @@ const performEnhancedSearch = (
     .filter(tool => !EXCLUDED_TOOLS.includes(tool.title))
     .map(tool => {
       const lowerTitle = tool.title.toLowerCase();
+      const lowerTitleNoSpace = lowerTitle.replace(/\s+/g, ''); // For compound matching
       const lowerDescription = tool.description.toLowerCase();
       const lowerCategory = tool.category?.toLowerCase() || "";
       const lowerTags = (tool.tags || []).map(tag => tag.toLowerCase());
       
       let score = 0;
       let matched = false;
+
+      // COMPOUND WORD MATCHING: "chat gpt" should find "ChatGPT"
+      if (noSpaceTerm.length >= 4 && lowerTitleNoSpace.includes(noSpaceTerm)) {
+        matched = true;
+        score += 18000; // Very high priority for compound word matches
+        console.log(`🔗 Compound match: "${noSpaceTerm}" found in "${lowerTitle}"`);
+      }
 
       // AIWEBTOOLS PRIORITY BOOST - Special handling for our custom GPTs (with relevance checking)
       const aiWebToolsPriorityScore = getAIWebToolsPriorityScore(tool, searchTerm);
