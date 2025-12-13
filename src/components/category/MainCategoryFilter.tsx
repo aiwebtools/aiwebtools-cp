@@ -2,7 +2,7 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ChevronDown, ChevronUp, Filter, X } from "lucide-react";
+import { ChevronDown, ChevronUp, Filter, X, Shuffle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
@@ -17,7 +17,8 @@ interface MainCategoryFilterProps {
 
 const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory }: MainCategoryFilterProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [selectedMainCategories, setSelectedMainCategories] = useState<string[]>([]);
+  const [selectedMainCategories, setSelectedMainCategories] = useState<string[]>([currentMainCategory]);
+  const [shuffleKey, setShuffleKey] = useState(0);
 
   // Cache the categories data to prevent recalculation
   const mainCategoriesWithCounts = useMemo(() => {
@@ -44,27 +45,35 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
         if (b.name === "ALL AI TOOLS") return 1;
         return b.count - a.count;
       });
-  }, []); // Remove dependencies to prevent recalculation
+  }, []);
 
-  // Initialize with current category selected
+  // Reset selected categories when current category changes (navigating to different category page)
   useEffect(() => {
-    const categoryExists = mainCategoriesWithCounts.some(cat => cat.name === currentMainCategory);
-    if (categoryExists && selectedMainCategories.length === 0) {
-      setSelectedMainCategories([currentMainCategory]);
+    setSelectedMainCategories([currentMainCategory]);
+    setShuffleKey(0);
+  }, [currentMainCategory]);
+
+  // Fisher-Yates shuffle algorithm
+  const shuffleArray = useCallback((array: Tool[]): Tool[] => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-  }, [currentMainCategory, mainCategoriesWithCounts.length]); // Simplified dependencies
+    return shuffled;
+  }, []);
 
   // Memoize filtered tools - ONLY show tools from selected categories (true filtering)
   const filteredTools = useMemo(() => {
-    // If no categories selected, show the original tools passed in
-    if (selectedMainCategories.length === 0) {
-      return tools;
-    }
+    // If no categories selected, use current category
+    const categoriesToUse = selectedMainCategories.length === 0 
+      ? [currentMainCategory] 
+      : selectedMainCategories;
     
     // Collect tools from ALL selected categories (union)
     const selectedCategoryTools = new Map<string, Tool>();
     
-    selectedMainCategories.forEach(categoryName => {
+    categoriesToUse.forEach(categoryName => {
       const categoryTools = getToolsByMainCategory(allTools, categoryName);
       categoryTools.forEach(tool => {
         if (!selectedCategoryTools.has(tool.title)) {
@@ -73,13 +82,19 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       });
     });
     
-    // Return ONLY the tools from selected categories (true filter behavior)
-    return Array.from(selectedCategoryTools.values());
-  }, [selectedMainCategories, tools.length]);
+    let result = Array.from(selectedCategoryTools.values());
+    
+    // Apply shuffle if shuffleKey > 0
+    if (shuffleKey > 0) {
+      result = shuffleArray(result);
+    }
+    
+    return result;
+  }, [selectedMainCategories, currentMainCategory, shuffleKey, shuffleArray]);
 
-  // Update parent IMMEDIATELY when filtered tools change - no delay
+  // Update parent IMMEDIATELY when filtered tools change
   useEffect(() => {
-    console.log(`🎯 MainCategoryFilter: Passing ${filteredTools.length} tools to parent`);
+    console.log(`🎯 MainCategoryFilter: Passing ${filteredTools.length} tools to parent for categories: ${selectedMainCategories.join(', ')}`);
     onFilteredToolsChange(filteredTools);
   }, [filteredTools, onFilteredToolsChange]);
 
@@ -102,12 +117,17 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
 
   const clearAllFilters = useCallback(() => {
     setSelectedMainCategories([currentMainCategory]);
+    setShuffleKey(0);
   }, [currentMainCategory]);
+
+  const handleShuffle = useCallback(() => {
+    setShuffleKey(prev => prev + 1);
+  }, []);
 
   return (
     <div className="max-w-4xl mx-auto mb-4">
-      {/* Compact Filter Toggle Button */}
-      <div className="flex items-center justify-center mb-3">
+      {/* Compact Filter Toggle Button + Shuffle */}
+      <div className="flex items-center justify-center gap-2 mb-3">
         <Button
           onClick={() => setIsExpanded(!isExpanded)}
           variant="outline"
@@ -120,6 +140,23 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
           {selectedMainCategories.length > 1 && (
             <Badge variant="secondary" className="ml-2 bg-cyan-500/20 text-cyan-300 text-xs">
               {selectedMainCategories.length} mixed
+            </Badge>
+          )}
+        </Button>
+        
+        {/* Shuffle Button */}
+        <Button
+          onClick={handleShuffle}
+          variant="outline"
+          size="sm"
+          className="border-purple-500/30 text-purple-300 hover:border-purple-400 hover:text-purple-200 bg-black/50 text-sm"
+          title="Shuffle/randomize tool order"
+        >
+          <Shuffle className="w-3 h-3 mr-2" />
+          Shuffle
+          {shuffleKey > 0 && (
+            <Badge variant="secondary" className="ml-2 bg-purple-500/20 text-purple-300 text-xs">
+              #{shuffleKey}
             </Badge>
           )}
         </Button>
