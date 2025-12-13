@@ -70,10 +70,6 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     return shuffled;
   }, []);
 
-  // Memoize filtered tools - ONLY show tools from selected categories (true filtering)
-  // Use a separate state for the actual shuffled result to ensure re-renders
-  const [shuffledTools, setShuffledTools] = useState<Tool[]>([]);
-  
   // Calculate base filtered tools (before shuffle)
   const baseFilteredTools = useMemo(() => {
     const categoriesToUse = selectedMainCategories.length === 0 
@@ -94,26 +90,44 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     return Array.from(selectedCategoryTools.values());
   }, [selectedMainCategories, currentMainCategory]);
 
-  // Apply shuffle when shuffleKey changes or base tools change
-  useEffect(() => {
-    if (shuffleKey > 0) {
-      // Use current time + shuffleKey as seed for true randomness each click
-      const seed = Date.now() + shuffleKey * 1000;
-      const shuffled = shuffleArray(baseFilteredTools, seed);
-      console.log(`🔀 Shuffle #${shuffleKey}: Shuffled ${shuffled.length} tools (first 3: ${shuffled.slice(0, 3).map(t => t.title).join(', ')})`);
-      setShuffledTools(shuffled);
-    } else {
-      setShuffledTools(baseFilteredTools);
+  // Track the last shuffled result with a ref to avoid infinite loops
+  const lastShuffleRef = React.useRef<{ key: number; tools: Tool[] }>({ key: 0, tools: [] });
+
+  // Compute final tools with shuffle applied
+  const filteredTools = useMemo(() => {
+    // If no shuffle, return base tools
+    if (shuffleKey === 0) {
+      lastShuffleRef.current = { key: 0, tools: baseFilteredTools };
+      return baseFilteredTools;
     }
+    
+    // If this is a new shuffle key, perform shuffle
+    if (lastShuffleRef.current.key !== shuffleKey) {
+      const seed = Date.now() + shuffleKey * 12345;
+      const shuffled = shuffleArray(baseFilteredTools, seed);
+      console.log(`🔀 Shuffle #${shuffleKey}: ${shuffled.length} tools (first 3: ${shuffled.slice(0, 3).map(t => t.title).join(', ')})`);
+      lastShuffleRef.current = { key: shuffleKey, tools: shuffled };
+      return shuffled;
+    }
+    
+    // Return cached shuffle result
+    return lastShuffleRef.current.tools;
   }, [shuffleKey, baseFilteredTools, shuffleArray]);
 
-  // The final tools to pass to parent
-  const filteredTools = shuffledTools.length > 0 ? shuffledTools : baseFilteredTools;
-
-  // Update parent IMMEDIATELY when filtered tools change
+  // Update parent when filtered tools change - use stable reference
+  const filteredToolsRef = React.useRef<Tool[]>([]);
+  
   useEffect(() => {
-    console.log(`🎯 MainCategoryFilter: Passing ${filteredTools.length} tools to parent for categories: ${selectedMainCategories.join(', ')}`);
-    onFilteredToolsChange(filteredTools);
+    // Only update if tools actually changed (by comparing first tool title and length)
+    const toolsChanged = 
+      filteredTools.length !== filteredToolsRef.current.length ||
+      filteredTools[0]?.title !== filteredToolsRef.current[0]?.title;
+    
+    if (toolsChanged) {
+      console.log(`🎯 MainCategoryFilter: Passing ${filteredTools.length} tools to parent`);
+      filteredToolsRef.current = filteredTools;
+      onFilteredToolsChange(filteredTools);
+    }
   }, [filteredTools, onFilteredToolsChange]);
 
   const handleMainCategoryToggle = useCallback((mainCategoryName: string) => {
