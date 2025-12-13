@@ -65,65 +65,61 @@ export const isCreativeAndEntertainmentTool = (tool: Tool): boolean => {
   const title = tool.title.toLowerCase();
   const description = tool.description.toLowerCase();
   const category = tool.category?.toLowerCase() || "";
-  const tags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+  const tags = tool.tags?.map(tag => tag.toLowerCase()).join(' ') || [];
 
-  // MUCH MORE RESTRICTIVE - Only tools PRIMARILY focused on creativity/entertainment
+  // EXPANDED Creative & Entertainment keywords
   const coreCreativeKeywords = [
-    // Art & Design (specific)
-    'art generator', 'digital art', 'artwork', 'illustration', 'drawing', 'painting', 'sketch artist',
-    'graphic design', 'logo design', 'poster design', 'creative design', 'visual art',
+    // Art & Design
+    'art', 'artist', 'artwork', 'illustration', 'illustrator', 'drawing', 'painting',
+    'sketch', 'graphic design', 'logo', 'poster', 'creative design', 'visual',
+    'design', 'designer', 'creative', 'creativity', 'artistic', 'canvas',
     
-    // Entertainment & Gaming (specific)  
-    'game', 'gaming', 'entertainment', 'fun', 'play', 'trivia', 'joke', 'humor', 'meme',
-    'movie maker', 'film maker', 'animation', 'cartoon', 'character creation',
+    // Entertainment & Gaming
+    'game', 'gaming', 'gamer', 'entertainment', 'fun', 'play', 'trivia', 'quiz game',
+    'joke', 'humor', 'meme', 'comedy', 'funny', 'celebrity', 'fortune teller',
+    'character', 'avatar', 'virtual', 'interactive', 'simulation', 'sim',
     
-    // Music & Audio Creative (specific)
-    'music creation', 'music maker', 'song', 'composer', 'music video', 'audio creation',
-    'sound effects', 'music generation', 'beat maker', 'melody',
+    // Video & Film
+    'movie', 'film', 'cinema', 'animation', 'animate', 'animator', 'cartoon',
+    'video maker', 'video creator', 'trailer', 'scene maker', 'storyboard',
     
-    // Writing Creative (specific)
-    'story', 'novel', 'book writer', 'creative writing', 'script writer', 'playwright',
-    'poetry', 'children\'s book', 'coloring book', 'comic',
+    // Music & Audio Creative
+    'music', 'musical', 'song', 'composer', 'melody', 'beat', 'audio creation',
+    'sound effects', 'music video', 'band', 'musician', 'instrument',
     
-    // Performance & Theater (specific)
-    'theater', 'stage', 'performance', 'actor', 'drama', 'comedy', 'musical',
-    'performing arts', 'dance', 'choreography'
+    // Writing Creative
+    'story', 'storytelling', 'novel', 'book writer', 'creative writing', 'script',
+    'playwright', 'poetry', 'poem', 'poet', 'children\'s book', 'coloring book',
+    'comic', 'fiction', 'narrative', 'author',
+    
+    // Performance & Theater
+    'theater', 'theatre', 'stage', 'performance', 'performer', 'actor', 'actress',
+    'drama', 'musical', 'dance', 'choreography', 'performing arts', 'show',
+    
+    // Photography & Visual
+    'photo', 'photography', 'photographer', 'image', 'picture', 'portrait',
+    'landscape', 'filter', 'editing', 'enhancement', 'collage',
+    
+    // Fashion & Style
+    'fashion', 'style', 'outfit', 'wardrobe', 'clothing', 'makeup', 'beauty',
+    'tattoo', 'hair', 'restyle'
   ];
 
-  // RESTRICTIVE Creative categories - only obviously creative ones
+  // Creative categories
   const strictCreativeCategories = [
-    'creative & entertainment',
-    'creative design', 
-    'art', 'arts',
-    'entertainment',
-    'gaming', 'games',
-    'music creation',
-    'creative writing',
-    'design & graphics',
-    'multimedia & creative'
+    'creative', 'entertainment', 'art', 'design', 'gaming', 'music',
+    'video', 'multimedia', 'media', 'photo', 'image', 'graphics'
   ];
 
-  // Must have STRONG creative indicators
+  const haystack = `${title} ${description} ${category}`;
+
   const hasStrongCreativeKeywords = coreCreativeKeywords.some(keyword =>
-    title.includes(keyword) ||
-    description.includes(keyword)
+    haystack.includes(keyword)
   );
 
-  // Must be in a clearly creative category
   const isStrictlyCreativeCategory = strictCreativeCategories.some(creativeCat =>
-    category.includes(creativeCat) || category === creativeCat
+    category.includes(creativeCat)
   );
 
-  // Only count if BOTH conditions are met OR if it's obviously creative by title
-  const isObviouslyCreative = title.includes('art') || title.includes('design') || 
-    title.includes('game') || title.includes('entertainment') || title.includes('creative') ||
-    title.includes('music') || title.includes('video maker') || title.includes('animation');
-
-  const isCreativeTool = (hasStrongCreativeKeywords && isStrictlyCreativeCategory) || isObviouslyCreative;
-
-  if (isCreativeTool) {
-    console.log(`🎭 CREATIVE & ENTERTAINMENT (STRICT): ${tool.title} (${tool.category})`);
-  }
-
-  return isCreativeTool;
+  return hasStrongCreativeKeywords || isStrictlyCreativeCategory;
 };

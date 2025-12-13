@@ -33,8 +33,9 @@ export const MARKETING_SALES_PRIORITY_TOOLS = [
   "Hunter.io"
 ];
 
-// Enhanced video-related keywords for comprehensive content detection
+// Enhanced video-related keywords for comprehensive content detection - EXPANDED
 export const VIDEO_KEYWORDS = [
+  // Core video platforms & tools
   'video', 'pika', 'luma', 'dream machine', 'veo', 'runway', 'synthesia',
   'heygen', 'colossyan', 'gen-2', 'sora', 'kling', 'film', 'cinema', 'movie',
   'animation', 'visual effects', 'motion', 'editing', 'production', 'studio',
@@ -51,5 +52,13 @@ export const VIDEO_KEYWORDS = [
   'movie maker', 'film maker', 'video generator', 'video synthesis',
   'video enhancement', 'video processing', 'video automation', 'video creation',
   'video business', 'music video', 'short clips', 'video repurposing',
-  'video analytics', 'video optimization', 'video collaboration', 'video workflow'
+  'video analytics', 'video optimization', 'video collaboration', 'video workflow',
+  
+  // Additional video terms
+  'clip', 'clips', 'footage', 'recording', 'recorder', 'screen recording',
+  'webcam', 'streaming', 'broadcast', 'vlog', 'vlogger', 'youtube',
+  'tiktok', 'reels', 'shorts', 'multimedia', 'motion graphics', 'vfx',
+  'render', 'rendering', 'post-production', 'color grading', 'subtitle',
+  'caption', 'captions', 'transcript', 'scene', 'trailer', 'teaser',
+  'documentary', 'explainer', 'tutorial video', 'promo video', 'ad video'
 ];

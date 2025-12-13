@@ -22,50 +22,67 @@ export const isVideoEntertainmentTool = (tool: Tool): boolean => {
 };
 
 /**
- * Check if a tool is a core image generation tool
+ * Check if a tool is a core image generation tool - EXPANDED
  */
 export const isCoreImageTool = (tool: Tool): boolean => {
   const lowerTitle = tool.title.toLowerCase();
   const lowerDescription = tool.description.toLowerCase();
+  const lowerTags = (tool.tags || []).map(t => t.toLowerCase()).join(' ');
   
-  return lowerTitle.includes('image generator') ||
-         lowerTitle.includes('photo generator') ||
-         lowerTitle.includes('ai image') ||
-         lowerTitle.includes('picture generator') ||
-         lowerDescription.includes('image generation') ||
-         lowerDescription.includes('ai image') ||
-         lowerDescription.includes('generate images') ||
-         lowerDescription.includes('create images');
+  const imageKeywords = [
+    'image generator', 'photo generator', 'ai image', 'picture generator',
+    'image generation', 'generate images', 'create images', 'image creator',
+    'image maker', 'image editing', 'photo editing', 'image enhancement',
+    'image upscale', 'upscaler', 'background removal', 'background remover',
+    'image restoration', 'colorize', 'colorization', 'ai photo', 'ai art',
+    'text to image', 'text-to-image', 'image synthesis', 'diffusion',
+    'stable diffusion', 'midjourney', 'dall-e', 'dalle', 'leonardo',
+    'ideogram', 'flux', 'imagen', 'firefly', 'canva ai', 'adobe ai',
+    'headshot', 'portrait', 'avatar generator', 'face generator', 'face swap',
+    'qr code', 'icon generator', 'thumbnail', 'banner', 'poster maker'
+  ];
+  
+  const haystack = `${lowerTitle} ${lowerDescription} ${lowerTags}`;
+  return imageKeywords.some(kw => haystack.includes(kw));
 };
 
 /**
- * Check if a tool is a pure design tool
+ * Check if a tool is a pure design tool - EXPANDED
  */
 export const isPureDesignTool = (tool: Tool): boolean => {
   const lowerTitle = tool.title.toLowerCase();
   const lowerDescription = tool.description.toLowerCase();
+  const lowerTags = (tool.tags || []).map(t => t.toLowerCase()).join(' ');
   
-  return lowerTitle.includes('graphic design') ||
-         lowerTitle.includes('logo design') ||
-         lowerTitle.includes('sketch') ||
-         lowerTitle.includes('tattoo') ||
-         lowerTitle.includes('palette') ||
-         lowerTitle.includes('avatar') ||
-         lowerTitle.includes('meme') ||
-         (lowerTitle.includes('design') && !lowerTitle.includes('movie') && !lowerTitle.includes('music') && !lowerTitle.includes('video')) ||
-         lowerDescription.includes('graphic design') ||
-         lowerDescription.includes('logo design') ||
-         lowerDescription.includes('visual design');
+  const designKeywords = [
+    'graphic design', 'logo design', 'sketch', 'tattoo', 'palette',
+    'avatar', 'meme', 'design', 'designer', 'illustration', 'illustrator',
+    'mockup', 'wireframe', 'prototype', 'ui design', 'ux design',
+    'web design', 'brand', 'branding', 'visual identity', 'infographic',
+    'presentation design', 'slide design', 'poster', 'flyer', 'brochure',
+    'business card', 'social media design', 'template', 'layout', 'creative suite',
+    'vector', 'svg', 'icon', 'emoji', 'sticker', 'coloring book', 'art generator'
+  ];
+  
+  const haystack = `${lowerTitle} ${lowerDescription} ${lowerTags}`;
+  
+  // Exclude if it's clearly video/music focused
+  const isVideoMusic = lowerTitle.includes('movie') || lowerTitle.includes('music') || 
+                       lowerTitle.includes('video') || lowerTitle.includes('film');
+  
+  return !isVideoMusic && designKeywords.some(kw => haystack.includes(kw));
 };
 
 /**
- * Check if a tool matches image/design categories
+ * Check if a tool matches image/design categories - EXPANDED
  */
 export const isCategoryMatch = (tool: Tool): boolean => {
   const lowerCategory = tool.category?.toLowerCase() || '';
   
-  return lowerCategory.includes('image') ||
-         lowerCategory.includes('design') ||
-         lowerCategory.includes('photo') ||
-         lowerCategory.includes('graphic');
+  const imageDesignCategories = [
+    'image', 'design', 'photo', 'graphic', 'visual', 'art',
+    'illustration', 'creative design', 'ai art', 'image generation'
+  ];
+  
+  return imageDesignCategories.some(cat => lowerCategory.includes(cat));
 };
