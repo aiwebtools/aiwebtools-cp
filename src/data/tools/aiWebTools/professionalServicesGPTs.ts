@@ -25,7 +25,7 @@ export const professionalServicesGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://travelagentgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-futuristic-setting-where-a-_3Mwmg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["travel", "vacation", "trip planning", "travel agent", "travel advisor", "travel planning", "vacation advisor", "travel recommendations", "trip planning", "travel assistant", "aiwebtools"],
+    tags: ["travel", "vacation", "trip planning", "travel agent", "travel advisor", "travel planning", "vacation advisor", "travel recommendations", "trip planning", "travel assistant", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.8,
     totalVotes: 3456
@@ -38,7 +38,7 @@ export const professionalServicesGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-humanoid-robot-fixing-a-bathroom-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["home renovation", "DIY", "construction", "home improvement", "repair", "contractors", "aiwebtools"],
+    tags: ["home renovation", "DIY", "construction", "home improvement", "repair", "contractors", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.6,
     totalVotes: 2987
@@ -51,7 +51,7 @@ export const professionalServicesGPTs: Tool[] = [
     color: "from-blue-500 to-gray-600",
     directUrl: "https://automobilegpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=f_4aFnL-mk8",
-    tags: ["automotive", "car repair", "vehicle maintenance", "auto expert", "car buying", "aiwebtools"],
+    tags: ["automotive", "car repair", "vehicle maintenance", "auto expert", "car buying", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.7,
     totalVotes: 4123
@@ -64,7 +64,7 @@ export const professionalServicesGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://insuranceclaimsgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=WNPywJWOUzU",
-    tags: ["insurance", "claims management", "damage assessment", "insurance claims", "professional services", "aiwebtools"],
+    tags: ["insurance", "claims management", "damage assessment", "insurance claims", "professional services", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.5,
     totalVotes: 3654
@@ -77,7 +77,7 @@ export const professionalServicesGPTs: Tool[] = [
     color: "from-blue-500 to-teal-600",
     directUrl: "https://fishermangpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-bearded-fisherman-wearin.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["fishing", "outdoor recreation", "fishing guide", "angling", "water sports", "professional services", "aiwebtools"],
+    tags: ["fishing", "outdoor recreation", "fishing guide", "angling", "water sports", "professional services", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.4,
     totalVotes: 2876
@@ -90,7 +90,7 @@ export const professionalServicesGPTs: Tool[] = [
     color: "from-purple-500 to-pink-600",
     directUrl: "https://tattoogpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/hB_fKF_5GOI",
-    tags: ["tattoo design", "body art", "piercing", "tattoo artist", "design", "professional services", "aiwebtools"],
+    tags: ["tattoo design", "body art", "piercing", "tattoo artist", "design", "professional services", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.6,
     totalVotes: 3287
@@ -103,7 +103,7 @@ export const professionalServicesGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
-    tags: ["veterinary", "pet care", "animal health", "pet advice", "professional services", "aiwebtools"],
+    tags: ["veterinary", "pet care", "animal health", "pet advice", "professional services", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.7,
     totalVotes: 4521
@@ -116,7 +116,7 @@ export const professionalServicesGPTs: Tool[] = [
     color: "from-pink-500 to-purple-600",
     directUrl: "https://restylemegpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/ChatGPT%20Image%20Apr%2027%2C%202025%2C%2007_08_04%20PM.png/:/cr=t:12.5%25,l:0%25,w:100%25,h:75%25/rs=w:1200,h:600,cg:true",
-    tags: ["image styling", "photo transformation", "artistic effects", "image editing", "professional services", "aiwebtools"],
+    tags: ["image styling", "photo transformation", "artistic effects", "image editing", "professional services", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.5,
     totalVotes: 3198
@@ -129,7 +129,7 @@ export const professionalServicesGPTs: Tool[] = [
     color: "from-red-500 to-orange-600",
     directUrl: "https://firefightergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=lGsefWkYfq0",
-    tags: ["firefighting", "emergency response", "fire management", "safety", "professional services", "aiwebtools"],
+    tags: ["firefighting", "emergency response", "fire management", "safety", "professional services", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.8,
     totalVotes: 2765
@@ -142,7 +142,7 @@ export const professionalServicesGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005968.jpg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
-    tags: ["training manuals", "employee training", "business documentation", "training materials", "professional services", "aiwebtools"],
+    tags: ["training manuals", "employee training", "business documentation", "training materials", "professional services", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.3,
     totalVotes: 2543
@@ -154,7 +154,7 @@ export const professionalServicesGPTs: Tool[] = [
     emoji: "🔧",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-68bb792558a88191821219353c487bd6-diy-repair-gpt/?via=aiwebtools",
-    tags: ["diy repair", "home repair", "troubleshooting", "repair guide", "maintenance", "professional services", "aiwebtools"],
+    tags: ["diy repair", "home repair", "troubleshooting", "repair guide", "maintenance", "professional services", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.5,
     totalVotes: 2187
@@ -166,7 +166,7 @@ export const professionalServicesGPTs: Tool[] = [
     emoji: "👨‍👩‍👧‍👦",
     color: "from-blue-500 to-green-600",
     directUrl: "https://chatgpt.com/g/g-68bb75f48218819184ad7aa0198cb983-parent-teacher-advocate-gpt/?via=aiwebtools",
-    tags: ["education advocacy", "parent support", "school meetings", "iep support", "educational rights", "professional services", "aiwebtools"],
+    tags: ["education advocacy", "parent support", "school meetings", "iep support", "educational rights", "professional services", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.7,
     totalVotes: 1956
@@ -178,7 +178,7 @@ export const professionalServicesGPTs: Tool[] = [
     emoji: "🏛️",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68bb74c1de28819197b7cd6f944efce9-public-service-finder-gpt/?via=aiwebtools",
-    tags: ["public services", "government services", "social services", "community resources", "public assistance", "professional services", "aiwebtools"],
+    tags: ["public services", "government services", "social services", "community resources", "public assistance", "professional services", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.6,
     totalVotes: 2234
@@ -190,7 +190,7 @@ export const professionalServicesGPTs: Tool[] = [
     emoji: "🧭",
     color: "from-green-500 to-teal-600",
     directUrl: "https://chatgpt.com/g/g-68f85a4844648191ac4c82f9e1d2b3b0-trail-mapper-gpt/?via=aiwebtools",
-    tags: ["trail mapping", "navigation", "survival", "outdoor recreation", "hiking", "compass navigation", "route planning", "off-road", "aiwebtools"],
+    tags: ["trail mapping", "navigation", "survival", "outdoor recreation", "hiking", "compass navigation", "route planning", "off-road", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.7,
     totalVotes: 1654
@@ -202,7 +202,7 @@ export const professionalServicesGPTs: Tool[] = [
     emoji: "🏗️",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-Hmgy6x48R-construction-gpt/?via=aiwebtools",
-    tags: ["construction", "building", "safety", "compliance", "project management", "construction planning", "training", "professional services", "aiwebtools"],
+    tags: ["construction", "building", "safety", "compliance", "project management", "construction planning", "training", "professional services", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.8,
     totalVotes: 2187
@@ -214,7 +214,7 @@ export const professionalServicesGPTs: Tool[] = [
     emoji: "🔧",
     color: "from-red-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-oK2iR2dPf-mr-fix-it-gpt/?via=aiwebtools",
-    tags: ["repair", "troubleshooting", "fix it", "diy", "maintenance", "home repair", "appliances", "professional services", "aiwebtools"],
+    tags: ["repair", "troubleshooting", "fix it", "diy", "maintenance", "home repair", "appliances", "professional services", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.6,
     totalVotes: 1876
@@ -226,7 +226,7 @@ export const professionalServicesGPTs: Tool[] = [
     emoji: "👨‍🍳",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-2ENWV8WeM-kitchen-and-vision-assistant-gpt/?via=aiwebtools",
-    tags: ["cooking", "kitchen assistant", "recipe help", "food", "culinary", "vision ai", "cooking guidance", "professional services", "aiwebtools"],
+    tags: ["cooking", "kitchen assistant", "recipe help", "food", "culinary", "vision ai", "cooking guidance", "professional services", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.5,
     totalVotes: 1543
@@ -238,7 +238,7 @@ export const professionalServicesGPTs: Tool[] = [
     emoji: "📉",
     color: "from-red-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-6927fd0087548191b724cf0dff94e5f4-global-supply-chain-collapse-gpt?via=aiwebtools",
-    tags: ["supply chain", "logistics", "business continuity", "risk management", "resilience", "data analysis", "crisis management", "global trade", "professional services", "aiwebtools"],
+    tags: ["supply chain", "logistics", "business continuity", "risk management", "resilience", "data analysis", "crisis management", "global trade", "professional services", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.7,
     totalVotes: 1798
