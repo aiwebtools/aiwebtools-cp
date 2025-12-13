@@ -133,7 +133,7 @@ export const aiAssistants: Tool[] = [
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://apple.com/siri",
     category: "AI Voice Assistants",
-    tags: ["voice assistant", "ios", "apple", "smart home"],
+    tags: ["Voice Agent", "voice assistant", "ios", "apple", "smart home", "agent"],
     rating: 4.2,
     totalVotes: 8950
   },
@@ -145,7 +145,7 @@ export const aiAssistants: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://assistant.google.com",
     category: "AI Voice Assistants",
-    tags: ["voice assistant", "google", "smart home", "android"],
+    tags: ["Voice Agent", "voice assistant", "google", "smart home", "android", "agent"],
     rating: 4.3,
     totalVotes: 11200
   },
@@ -157,7 +157,7 @@ export const aiAssistants: Tool[] = [
     color: "from-orange-500 to-blue-600",
     directUrl: "https://alexa.amazon.com",
     category: "AI Voice Assistants",
-    tags: ["voice assistant", "amazon", "echo", "smart home"],
+    tags: ["Voice Agent", "voice assistant", "amazon", "echo", "smart home", "agent"],
     rating: 4.1,
     totalVotes: 9780
   },
@@ -169,7 +169,7 @@ export const aiAssistants: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://cortana.microsoft.com",
     category: "AI Voice Assistants",
-    tags: ["voice assistant", "microsoft", "windows", "productivity"],
+    tags: ["Voice Agent", "Productivity Agent", "voice assistant", "microsoft", "windows", "productivity", "agent"],
     rating: 3.8,
     totalVotes: 5670
   },
@@ -181,7 +181,7 @@ export const aiAssistants: Tool[] = [
     color: "from-purple-500 to-pink-600",
     directUrl: "https://otter.ai",
     category: "AI Meeting Assistants",
-    tags: ["transcription", "meetings", "notes", "collaboration"],
+    tags: ["Meeting Agent", "transcription", "meetings", "notes", "collaboration", "agent"],
     rating: 4.4,
     totalVotes: 6780
   },
@@ -193,7 +193,7 @@ export const aiAssistants: Tool[] = [
     color: "from-gray-600 to-blue-600",
     directUrl: "https://notion.so/ai",
     category: "AI Writing Assistants",
-    tags: ["writing", "productivity", "workspace", "collaboration"],
+    tags: ["Writing Agent", "Productivity Agent", "writing", "productivity", "workspace", "collaboration", "agent"],
     rating: 4.5,
     totalVotes: 7890
   },
@@ -205,7 +205,7 @@ export const aiAssistants: Tool[] = [
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://jasper.ai",
     category: "AI Writing Assistants",
-    tags: ["writing", "marketing", "content creation", "business"],
+    tags: ["Writing Agent", "Marketing Agent", "writing", "marketing", "content creation", "business", "agent"],
     rating: 4.3,
     totalVotes: 5890
   },
@@ -217,7 +217,7 @@ export const aiAssistants: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://grammarly.com",
     category: "AI Writing Assistants",
-    tags: ["grammar", "writing", "proofreading", "style"],
+    tags: ["Writing Agent", "grammar", "writing", "proofreading", "style", "agent"],
     rating: 4.6,
     totalVotes: 12340
   },
@@ -277,7 +277,7 @@ export const aiAssistants: Tool[] = [
     color: "from-gray-600 to-blue-600",
     directUrl: "https://github.com/features/copilot",
     category: "AI Coding Assistants",
-    tags: ["coding", "programming", "github", "development"],
+    tags: ["Coding Agent", "coding", "programming", "github", "development", "agent"],
     rating: 4.5,
     totalVotes: 8900
   },
@@ -289,7 +289,7 @@ export const aiAssistants: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://tabnine.com",
     category: "AI Coding Assistants",
-    tags: ["code completion", "programming", "prediction", "ide"],
+    tags: ["Coding Agent", "code completion", "programming", "prediction", "ide", "agent"],
     rating: 4.3,
     totalVotes: 6780
   },
@@ -301,7 +301,7 @@ export const aiAssistants: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://openai.com/blog/openai-codex",
     category: "AI Coding Assistants",
-    tags: ["natural language", "code generation", "programming", "openai"],
+    tags: ["Coding Agent", "natural language", "code generation", "programming", "openai", "agent"],
     rating: 4.4,
     totalVotes: 5890
   },

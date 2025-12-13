@@ -9,7 +9,7 @@ export const aiProjectManagementTools: Tool[] = [
     emoji: "✅",
     color: "from-pink-500 to-rose-600",
     directUrl: "https://asana.com/?via=aiwebtools",
-    tags: ["project management", "team collaboration", "task management", "workflow automation", "AI insights", "productivity"],
+    tags: ["Productivity Agent", "project management", "team collaboration", "task management", "workflow automation", "AI insights", "productivity", "agent"],
     category: "AI Project Management",
     rating: 4.8,
     totalVotes: 18234
@@ -21,7 +21,7 @@ export const aiProjectManagementTools: Tool[] = [
     emoji: "🎯",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://monday.com/?via=aiwebtools",
-    tags: ["work OS", "project management", "automation", "team collaboration", "workflow", "AI insights"],
+    tags: ["Productivity Agent", "work OS", "project management", "automation", "team collaboration", "workflow", "AI insights", "agent"],
     category: "AI Project Management",
     rating: 4.7,
     totalVotes: 16789
@@ -33,7 +33,7 @@ export const aiProjectManagementTools: Tool[] = [
     emoji: "🚀",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://clickup.com/?via=aiwebtools",
-    tags: ["project management", "AI writing", "task automation", "team collaboration", "productivity", "all-in-one"],
+    tags: ["Productivity Agent", "project management", "AI writing", "task automation", "team collaboration", "productivity", "all-in-one", "agent"],
     category: "AI Project Management",
     rating: 4.8,
     totalVotes: 14567
@@ -45,7 +45,7 @@ export const aiProjectManagementTools: Tool[] = [
     emoji: "📝",
     color: "from-gray-700 to-gray-900",
     directUrl: "https://www.notion.so/?via=aiwebtools",
-    tags: ["workspace", "notes", "AI writing", "documentation", "knowledge base", "collaboration", "productivity"],
+    tags: ["Productivity Agent", "workspace", "notes", "AI writing", "documentation", "knowledge base", "collaboration", "productivity", "agent"],
     category: "AI Project Management",
     rating: 4.9,
     totalVotes: 24567
@@ -57,7 +57,7 @@ export const aiProjectManagementTools: Tool[] = [
     emoji: "📅",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.usemotion.com/?via=aiwebtools",
-    tags: ["calendar", "time management", "task scheduling", "AI automation", "productivity", "time blocking"],
+    tags: ["Productivity Agent", "Scheduling Agent", "calendar", "time management", "task scheduling", "AI automation", "productivity", "time blocking", "agent"],
     category: "AI Project Management",
     rating: 4.6,
     totalVotes: 7891
@@ -69,7 +69,7 @@ export const aiProjectManagementTools: Tool[] = [
     emoji: "🎲",
     color: "from-blue-600 to-indigo-700",
     directUrl: "https://www.atlassian.com/software/jira?via=aiwebtools",
-    tags: ["agile", "project tracking", "software development", "sprint planning", "issue tracking", "AI automation"],
+    tags: ["Productivity Agent", "agile", "project tracking", "software development", "sprint planning", "issue tracking", "AI automation", "agent"],
     category: "AI Project Management",
     rating: 4.5,
     totalVotes: 19876

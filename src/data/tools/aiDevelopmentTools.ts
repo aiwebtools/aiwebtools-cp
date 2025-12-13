@@ -47,7 +47,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "🤖",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://github.com/features/copilot",
-    tags: ["AI coding", "code completion", "pair programming", "developer tools", "GitHub"],
+    tags: ["Coding Agent", "AI coding", "code completion", "pair programming", "developer tools", "GitHub", "agent"],
     category: "DEVELOPMENT & CODING",
     rating: 4.9,
     totalVotes: 6234
@@ -59,7 +59,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "⌨️",
     color: "from-green-500 to-cyan-600",
     directUrl: "https://www.tabnine.com/",
-    tags: ["AI coding", "code completion", "deep learning", "IDE integration", "developer tools"],
+    tags: ["Coding Agent", "AI coding", "code completion", "deep learning", "IDE integration", "developer tools", "agent"],
     category: "DEVELOPMENT & CODING",
     rating: 4.7,
     totalVotes: 4567
@@ -71,7 +71,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "⚙️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://mutable.ai/",
-    tags: ["AI code generation", "automated testing", "code evolution", "developer tools", "AI platform"],
+    tags: ["Coding Agent", "AI code generation", "automated testing", "code evolution", "developer tools", "AI platform", "agent"],
     category: "DEVELOPMENT & CODING",
     rating: 4.6,
     totalVotes: 3890
@@ -119,7 +119,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "✨",
     color: "from-cyan-500 to-purple-600",
     directUrl: "https://aws.amazon.com/codewhisperer/",
-    tags: ["AI coding", "code completion", "real-time suggestions", "developer tools", "Amazon"],
+    tags: ["Coding Agent", "AI coding", "code completion", "real-time suggestions", "developer tools", "Amazon", "agent"],
     category: "DEVELOPMENT & CODING",
     rating: 4.5,
     totalVotes: 3322
@@ -145,7 +145,7 @@ export const aiDevelopmentTools: Tool[] = [
     emoji: "🌐",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://browseract.com/?via=aiwebtools",
-    tags: ["web scraping", "automation", "data extraction", "browser automation", "no-code", "AI automation"],
+    tags: ["Web Tasks Agent", "web scraping", "automation", "data extraction", "browser automation", "no-code", "AI automation", "agent"],
     category: "DEVELOPMENT & CODING",
     rating: 4.4,
     totalVotes: 2345

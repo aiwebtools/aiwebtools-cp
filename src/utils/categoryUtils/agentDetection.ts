@@ -2,7 +2,7 @@
 import { Tool } from "@/types/tools";
 
 /**
- * Agent type subtags for categorization
+ * Agent type subtags for categorization - 15+ agent types
  */
 export const AGENT_SUBTYPES = {
   AUTOMATION: "Automation Agent",
@@ -16,7 +16,14 @@ export const AGENT_SUBTYPES = {
   MULTI_AGENT: "Multi-Agent Framework",
   DATA: "Data Agent",
   SALES: "Sales Agent",
-  MARKETING: "Marketing Agent"
+  MARKETING: "Marketing Agent",
+  SOCIAL_MEDIA: "Social Media Agent",
+  PRODUCTIVITY: "Productivity Agent",
+  EMAIL: "Email Agent",
+  WRITING: "Writing Agent",
+  SCHEDULING: "Scheduling Agent",
+  HR: "HR Agent",
+  MEETING: "Meeting Agent"
 } as const;
 
 /**
@@ -98,6 +105,46 @@ const MULTI_AGENT_KEYWORDS = [
 ];
 
 /**
+ * Keywords that indicate social media agent behavior
+ */
+const SOCIAL_MEDIA_KEYWORDS = [
+  "social media agent", "social media management", "buffer", "hootsuite",
+  "later", "sprout social", "sendible", "social scheduling", "social automation"
+];
+
+/**
+ * Keywords that indicate productivity agent behavior
+ */
+const PRODUCTIVITY_KEYWORDS = [
+  "productivity agent", "project management", "task management", "asana",
+  "monday.com", "clickup", "notion", "jira", "trello", "work os"
+];
+
+/**
+ * Keywords that indicate email agent behavior
+ */
+const EMAIL_KEYWORDS = [
+  "email agent", "email automation", "email marketing", "mailchimp",
+  "klaviyo", "convertkit", "superhuman", "inbox management"
+];
+
+/**
+ * Keywords that indicate writing agent behavior
+ */
+const WRITING_KEYWORDS = [
+  "writing agent", "writing assistant", "content writer", "jasper",
+  "grammarly", "writesonic", "rytr", "ai writer", "copywriting"
+];
+
+/**
+ * Keywords that indicate meeting agent behavior
+ */
+const MEETING_KEYWORDS = [
+  "meeting agent", "meeting assistant", "otter.ai", "transcription",
+  "meeting notes", "meeting summary", "calendar agent", "scheduling"
+];
+
+/**
  * Determine the agent subtype for a tool
  */
 export const getAgentSubtype = (tool: Tool): string | null => {
@@ -119,6 +166,11 @@ export const getAgentSubtype = (tool: Tool): string | null => {
   if (RESEARCH_KEYWORDS.some(kw => combined.includes(kw))) return AGENT_SUBTYPES.RESEARCH;
   if (SUPPORT_KEYWORDS.some(kw => combined.includes(kw))) return AGENT_SUBTYPES.SUPPORT;
   if (CHATBOT_KEYWORDS.some(kw => combined.includes(kw))) return AGENT_SUBTYPES.CHATBOT;
+  if (MEETING_KEYWORDS.some(kw => combined.includes(kw))) return AGENT_SUBTYPES.MEETING;
+  if (SOCIAL_MEDIA_KEYWORDS.some(kw => combined.includes(kw))) return AGENT_SUBTYPES.SOCIAL_MEDIA;
+  if (PRODUCTIVITY_KEYWORDS.some(kw => combined.includes(kw))) return AGENT_SUBTYPES.PRODUCTIVITY;
+  if (EMAIL_KEYWORDS.some(kw => combined.includes(kw))) return AGENT_SUBTYPES.EMAIL;
+  if (WRITING_KEYWORDS.some(kw => combined.includes(kw))) return AGENT_SUBTYPES.WRITING;
   if (AUTOMATION_KEYWORDS.some(kw => combined.includes(kw))) return AGENT_SUBTYPES.AUTOMATION;
 
   return null;
