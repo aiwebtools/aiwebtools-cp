@@ -140,7 +140,7 @@ export const aiAgents: Tool[] = [
     emoji: "💜",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://lovable.dev/?via=aiwebtools",
-    tags: ["Coding Agent", "vibe coding", "web builder", "full-stack agent", "no-code agent", "Lovable", "app development"],
+    tags: ["Vibe Coding Agent", "Coding Agent", "vibe coding", "web builder", "full-stack agent", "no-code agent", "Lovable", "app development"],
     category: "AI Agents",
     rating: 4.9,
     totalVotes: 7234
@@ -152,7 +152,7 @@ export const aiAgents: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://bolt.new/?via=aiwebtools",
-    tags: ["Coding Agent", "full-stack agent", "vibe coding", "web development", "Bolt", "autonomous development", "deployment agent"],
+    tags: ["Vibe Coding Agent", "Coding Agent", "full-stack agent", "vibe coding", "web development", "Bolt", "autonomous development", "deployment agent"],
     category: "AI Agents",
     rating: 4.8,
     totalVotes: 6890
@@ -164,7 +164,7 @@ export const aiAgents: Tool[] = [
     emoji: "🧠",
     color: "from-teal-500 to-emerald-600",
     directUrl: "https://base44.com/?via=aiwebtools",
-    tags: ["Coding Agent", "vibe coding", "app builder", "full-stack agent", "Base44", "development agent", "code generation"],
+    tags: ["Vibe Coding Agent", "Coding Agent", "vibe coding", "app builder", "full-stack agent", "Base44", "development agent", "code generation"],
     category: "AI Agents",
     rating: 4.7,
     totalVotes: 4456
@@ -308,7 +308,7 @@ export const aiAgents: Tool[] = [
     emoji: "🏗️",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://same.new/",
-    tags: ["Coding Agent", "full-stack", "web application", "same.new", "frontend", "backend", "complete apps"],
+    tags: ["Vibe Coding Agent", "Coding Agent", "full-stack", "web application", "same.new", "frontend", "backend", "complete apps"],
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 3200
@@ -320,7 +320,7 @@ export const aiAgents: Tool[] = [
     emoji: "🚀",
     color: "from-indigo-500 to-cyan-600",
     directUrl: "https://app.launch.today/?via=aiwebtools",
-    tags: ["Coding Agent", "vibe coding", "Launch.Today", "app builder", "full-stack", "rapid development"],
+    tags: ["Vibe Coding Agent", "Coding Agent", "vibe coding", "Launch.Today", "app builder", "full-stack", "rapid development"],
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 3450
@@ -332,7 +332,7 @@ export const aiAgents: Tool[] = [
     emoji: "🚀",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.rocket.new/?via=aiwebtools",
-    tags: ["Coding Agent", "vibe coding", "Rocket.new", "rapid prototyping", "code generation", "deployment"],
+    tags: ["Vibe Coding Agent", "Coding Agent", "vibe coding", "Rocket.new", "rapid prototyping", "code generation", "deployment"],
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 2500
@@ -344,7 +344,7 @@ export const aiAgents: Tool[] = [
     emoji: "🤖",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://mgx.dev/?via=aiwebtools",
-    tags: ["Coding Agent", "team agents", "vibe coding", "mgx.dev", "e-commerce", "collaborative agents"],
+    tags: ["Vibe Coding Agent", "Coding Agent", "Multi-Agent Framework", "team agents", "vibe coding", "mgx.dev", "e-commerce", "collaborative agents"],
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 2100
@@ -356,7 +356,7 @@ export const aiAgents: Tool[] = [
     emoji: "📱",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://rork.com/?via=AIwebtools",
-    tags: ["Coding Agent", "mobile app", "no-code", "RORK", "iOS", "Android", "app creation"],
+    tags: ["Vibe Coding Agent", "Coding Agent", "mobile app", "no-code", "RORK", "iOS", "Android", "app creation"],
     category: "AI Agents",
     rating: 4.7,
     totalVotes: 2200
@@ -384,7 +384,7 @@ export const aiAgents: Tool[] = [
     emoji: "🧠",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://claude.ai/?via=aiwebtools",
-    tags: ["Conversational Agent", "reasoning", "Anthropic", "Claude", "analysis", "writing", "problem-solving"],
+    tags: ["Conversational Agent", "reasoning", "Anthropic", "Claude", "analysis", "writing", "problem-solving", "agent"],
     category: "AI Agents",
     rating: 4.9,
     totalVotes: 9654
@@ -396,7 +396,7 @@ export const aiAgents: Tool[] = [
     emoji: "✨",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://gemini.google.com/?via=aiwebtools",
-    tags: ["Conversational Agent", "multimodal", "Google", "Gemini", "reasoning", "creative", "versatile AI"],
+    tags: ["Conversational Agent", "multimodal", "Google", "Gemini", "reasoning", "creative", "versatile AI", "agent"],
     category: "AI Agents",
     rating: 4.8,
     totalVotes: 8543
@@ -408,7 +408,7 @@ export const aiAgents: Tool[] = [
     emoji: "🔍",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://perplexity.ai/?via=aiwebtools",
-    tags: ["Research Agent", "search agent", "Perplexity", "real-time search", "web browsing", "knowledge agent"],
+    tags: ["Research Agent", "search agent", "Perplexity", "real-time search", "web browsing", "knowledge agent", "agent"],
     category: "AI Agents",
     rating: 4.8,
     totalVotes: 7678
@@ -424,7 +424,7 @@ export const aiAgents: Tool[] = [
     emoji: "👥",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.crewai.com/?via=aiwebtools",
-    tags: ["Multi-Agent Framework", "orchestration", "CrewAI", "collaborative AI", "autonomous agents", "agent framework"],
+    tags: ["Multi-Agent Framework", "orchestration", "CrewAI", "collaborative AI", "autonomous agents", "agent framework", "agent"],
     category: "AI Agents",
     rating: 4.5,
     totalVotes: 3345
@@ -436,7 +436,7 @@ export const aiAgents: Tool[] = [
     emoji: "🦸",
     color: "from-red-500 to-orange-600",
     directUrl: "https://superagi.com/?via=aiwebtools",
-    tags: ["Multi-Agent Framework", "open-source", "SuperAGI", "agent infrastructure", "production agents", "scalable agents"],
+    tags: ["Multi-Agent Framework", "open-source", "SuperAGI", "agent infrastructure", "production agents", "scalable agents", "agent"],
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 3678
@@ -448,7 +448,7 @@ export const aiAgents: Tool[] = [
     emoji: "🤖",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://github.com/Significant-Gravitas/Auto-GPT",
-    tags: ["Autonomous Agent", "Auto-GPT", "business automation", "research", "content creation", "self-improving"],
+    tags: ["Autonomous Agent", "Auto-GPT", "business automation", "research", "content creation", "self-improving", "agent"],
     category: "AI Agents",
     rating: 4.7,
     totalVotes: 4200
@@ -460,7 +460,7 @@ export const aiAgents: Tool[] = [
     emoji: "👶",
     color: "from-green-500 to-blue-600",
     directUrl: "https://babyagi.org/",
-    tags: ["Autonomous Agent", "task management", "BabyAGI", "autonomous execution", "planning", "task breakdown"],
+    tags: ["Autonomous Agent", "task management", "BabyAGI", "autonomous execution", "planning", "task breakdown", "agent"],
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 3900
@@ -472,7 +472,7 @@ export const aiAgents: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://agentgpt.reworkd.ai/",
-    tags: ["Autonomous Agent", "AgentGPT", "web deployment", "custom agents", "no-code", "task automation"],
+    tags: ["Autonomous Agent", "AgentGPT", "web deployment", "custom agents", "no-code", "task automation", "agent"],
     category: "AI Agents",
     rating: 4.5,
     totalVotes: 3700
@@ -484,7 +484,7 @@ export const aiAgents: Tool[] = [
     emoji: "🛡️",
     color: "from-red-500 to-pink-600",
     directUrl: "https://github.com/microsoft/JARVIS",
-    tags: ["Multi-Agent Framework", "Microsoft", "JARVIS", "developer tools", "enterprise", "testing"],
+    tags: ["Multi-Agent Framework", "Microsoft", "JARVIS", "developer tools", "enterprise", "testing", "agent"],
     category: "AI Agents",
     rating: 4.4,
     totalVotes: 3500
@@ -500,7 +500,7 @@ export const aiAgents: Tool[] = [
     emoji: "🎮",
     color: "from-green-500 to-teal-600",
     directUrl: "https://github.com/Unity-Technologies/ml-agents",
-    tags: ["Game Agent", "Unity", "reinforcement learning", "ML Agents", "game AI", "simulations", "NPC agent"],
+    tags: ["Game Agent", "Unity", "reinforcement learning", "ML Agents", "game AI", "simulations", "NPC agent", "agent"],
     category: "AI Agents",
     rating: 4.8,
     totalVotes: 4500
@@ -516,7 +516,7 @@ export const aiAgents: Tool[] = [
     emoji: "☁️",
     color: "from-blue-500 to-green-600",
     directUrl: "https://cloud.google.com/products/ai",
-    tags: ["Cloud Agent", "Google Cloud", "Vertex AI", "enterprise", "ML platform", "deployment"],
+    tags: ["Cloud Agent", "Google Cloud", "Vertex AI", "enterprise", "ML platform", "deployment", "agent"],
     category: "AI Agents",
     rating: 4.5,
     totalVotes: 2950
@@ -528,7 +528,7 @@ export const aiAgents: Tool[] = [
     emoji: "☁️",
     color: "from-orange-500 to-red-600",
     directUrl: "https://aws.amazon.com/machine-learning/",
-    tags: ["Cloud Agent", "AWS", "Amazon Bedrock", "SageMaker", "enterprise", "ML services"],
+    tags: ["Cloud Agent", "AWS", "Amazon Bedrock", "SageMaker", "enterprise", "ML services", "agent"],
     category: "AI Agents",
     rating: 4.5,
     totalVotes: 3020
@@ -540,7 +540,7 @@ export const aiAgents: Tool[] = [
     emoji: "☁️",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://azure.microsoft.com/en-us/services/machine-learning/",
-    tags: ["Cloud Agent", "Azure", "Microsoft", "Azure OpenAI", "enterprise", "cognitive services"],
+    tags: ["Cloud Agent", "Azure", "Microsoft", "Azure OpenAI", "enterprise", "cognitive services", "agent"],
     category: "AI Agents",
     rating: 4.4,
     totalVotes: 2800
@@ -684,7 +684,7 @@ export const aiAgents: Tool[] = [
     emoji: "🎨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://fotor.com/?via=aiwebtools",
-    tags: ["Creative Agent", "Fotor", "image editing", "photo enhancement", "background removal", "design"],
+    tags: ["Creative Agent", "Fotor", "image editing", "photo enhancement", "background removal", "design", "agent"],
     category: "AI Agents",
     rating: 4.6,
     totalVotes: 4200
@@ -696,7 +696,7 @@ export const aiAgents: Tool[] = [
     emoji: "🎬",
     color: "from-red-500 to-purple-600",
     directUrl: "https://descript.com/?via=aiwebtools",
-    tags: ["Creative Agent", "Descript", "video editing", "transcription", "voice cloning", "video automation"],
+    tags: ["Creative Agent", "Descript", "video editing", "transcription", "voice cloning", "video automation", "agent"],
     category: "AI Agents",
     rating: 4.7,
     totalVotes: 4400
@@ -708,7 +708,7 @@ export const aiAgents: Tool[] = [
     emoji: "🎥",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://hailuoai.video/agent/?via=aiwebtools",
-    tags: ["Creative Agent", "Hailuo", "video creation", "video editing", "autonomous production", "video automation"],
+    tags: ["Creative Agent", "Hailuo", "video creation", "video editing", "autonomous production", "video automation", "agent"],
     category: "AI Agents",
     rating: 4.7,
     totalVotes: 3100

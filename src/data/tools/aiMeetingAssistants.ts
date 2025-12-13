@@ -17,7 +17,7 @@ export const aiMeetingAssistants: Tool[] = [
     emoji: "🔥",
     color: "from-orange-500 to-red-600",
     directUrl: "https://fireflies.ai/?via=aiwebtools",
-    tags: ["Automation Agent", "meeting recording", "transcription", "voice analytics", "action items", "team collaboration", "agent"],
+    tags: ["Meeting Agent", "Automation Agent", "meeting recording", "transcription", "voice analytics", "action items", "team collaboration", "agent"],
     category: "AI Meeting Assistants",
     rating: 4.7,
     totalVotes: 7234
@@ -29,7 +29,7 @@ export const aiMeetingAssistants: Tool[] = [
     emoji: "🧠",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://fathom.video/?via=aiwebtools",
-    tags: ["Automation Agent", "free meeting notes", "no bot", "CRM sync", "highlights", "summaries", "agent"],
+    tags: ["Meeting Agent", "Automation Agent", "free meeting notes", "no bot", "CRM sync", "highlights", "summaries", "agent"],
     category: "AI Meeting Assistants",
     rating: 4.8,
     totalVotes: 8901
@@ -41,7 +41,7 @@ export const aiMeetingAssistants: Tool[] = [
     emoji: "💬",
     color: "from-blue-500 to-green-600",
     directUrl: "https://www.avoma.com/?via=aiwebtools",
-    tags: ["Automation Agent", "conversation intelligence", "CRM integration", "sales meetings", "customer success", "revenue optimization", "agent"],
+    tags: ["Meeting Agent", "Automation Agent", "conversation intelligence", "CRM integration", "sales meetings", "customer success", "revenue optimization", "agent"],
     category: "AI Meeting Assistants",
     rating: 4.6,
     totalVotes: 5678
@@ -53,7 +53,7 @@ export const aiMeetingAssistants: Tool[] = [
     emoji: "🎯",
     color: "from-green-500 to-teal-600",
     directUrl: "https://grain.com/?via=aiwebtools",
-    tags: ["Automation Agent", "revenue teams", "customer insights", "highlight reels", "sales enablement", "AI summaries", "agent"],
+    tags: ["Meeting Agent", "Automation Agent", "revenue teams", "customer insights", "highlight reels", "sales enablement", "AI summaries", "agent"],
     category: "AI Meeting Assistants",
     rating: 4.5,
     totalVotes: 4567
@@ -65,7 +65,7 @@ export const aiMeetingAssistants: Tool[] = [
     emoji: "📅",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.sembly.ai/?via=aiwebtools",
-    tags: ["Automation Agent", "automated attendance", "comprehensive notes", "multi-meeting insights", "follow-ups", "productivity", "agent"],
+    tags: ["Meeting Agent", "Automation Agent", "automated attendance", "comprehensive notes", "multi-meeting insights", "follow-ups", "productivity", "agent"],
     category: "AI Meeting Assistants",
     rating: 4.4,
     totalVotes: 3890
@@ -77,7 +77,7 @@ export const aiMeetingAssistants: Tool[] = [
     emoji: "👥",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://tactiq.io/?via=aiwebtools",
-    tags: ["Automation Agent", "real-time transcription", "privacy focused", "action items", "custom AI prompts", "local processing", "agent"],
+    tags: ["Meeting Agent", "Automation Agent", "real-time transcription", "privacy focused", "action items", "custom AI prompts", "local processing", "agent"],
     category: "AI Meeting Assistants",
     rating: 4.6,
     totalVotes: 6123
