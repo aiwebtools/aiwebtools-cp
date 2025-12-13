@@ -16,7 +16,7 @@ export const creativeWritingTools: Tool[] = [
     emoji: "✍️",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://rytr.me/?via=aiwebtools",
-    tags: ["writing assistant", "content creation", "blogging", "email marketing", "AI writing"],
+    tags: ["writing assistant", "content creation", "blogging", "email marketing", "AI writing", "Blog Writing", "Email Writing", "Copywriting"],
     category: "Writing & Content Enhancement",
     rating: 4.5,
     totalVotes: 3456
@@ -28,7 +28,7 @@ export const creativeWritingTools: Tool[] = [
     emoji: "🖋️",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.jasper.ai/?via=aiwebtools",
-    tags: ["content generation", "blogging", "social media", "content marketing", "AI writing"],
+    tags: ["content generation", "blogging", "social media", "content marketing", "AI writing", "Blog Writing", "Social Media Writing", "Copywriting"],
     category: "Writing & Content Enhancement",
     rating: 4.7,
     totalVotes: 4567
@@ -40,7 +40,7 @@ export const creativeWritingTools: Tool[] = [
     emoji: "📝",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://grammarly.com/?via=aiwebtools",
-    tags: ["writing assistant", "grammar check", "proofreading", "editing", "AI writing"],
+    tags: ["writing assistant", "grammar check", "proofreading", "editing", "AI writing", "Grammar & Editing"],
     category: "Writing & Content Enhancement",
     rating: 4.8,
     totalVotes: 5678
@@ -52,7 +52,7 @@ export const creativeWritingTools: Tool[] = [
     emoji: "📚",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://go2.designrr.io/wordgenie2?affiliate=aiwebtools",
-    tags: ["ebook creation", "publishing", "design", "templates", "content creation"],
+    tags: ["ebook creation", "publishing", "design", "templates", "content creation", "Book Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.3,
     totalVotes: 2876
@@ -64,7 +64,7 @@ export const creativeWritingTools: Tool[] = [
     emoji: "⌨️",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://www.scalenut.com/?via=aiwebtools",
-    tags: ["SEO", "content marketing", "content planning", "keyword research", "AI writing"],
+    tags: ["SEO", "content marketing", "content planning", "keyword research", "AI writing", "SEO Content", "Content Strategy"],
     category: "Writing & Content Enhancement",
     rating: 4.6,
     totalVotes: 3987
@@ -76,7 +76,7 @@ export const creativeWritingTools: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://simplified.com/?via=aiwebtools",
-    tags: ["AI marketing", "content creation", "brand scaling", "social media", "design"],
+    tags: ["AI marketing", "content creation", "brand scaling", "social media", "design", "Social Media Writing", "Copywriting"],
     category: "Writing & Content Enhancement",
     rating: 4.4,
     totalVotes: 3210

@@ -23,7 +23,7 @@ export const writingAndContent: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://moviescriptwritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=4e3Rkurt3-c&list=TLGGtoG6kc0vED4yODA1MjAyNQ",
-    tags: ["script writing", "movie scripts", "professional formatting", "character development", "industry standards"],
+    tags: ["script writing", "movie scripts", "professional formatting", "character development", "industry standards", "Script Writing", "Creative Writing"],
     category: "Writing & Content",
     rating: 4.8,
     totalVotes: 4567
@@ -35,7 +35,7 @@ export const writingAndContent: Tool[] = [
     emoji: "🎬",
     color: "from-red-500 to-purple-600",
     directUrl: "https://screenplaywritergpt.lovable.app/?via=aiwebtools",
-    tags: ["screenplay", "screenwriting", "film writing", "television", "script formatting", "character development", "story structure"],
+    tags: ["screenplay", "screenwriting", "film writing", "television", "script formatting", "character development", "story structure", "Script Writing", "Creative Writing"],
     category: "Writing & Content",
     rating: 4.7,
     totalVotes: 3245
@@ -48,7 +48,7 @@ export const writingAndContent: Tool[] = [
     color: "from-brown-500 to-orange-600",
     directUrl: "https://bookwritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/nBd9Uk62UiI",
-    tags: ["book writing", "page-to-page continuity", "engaging dialogue", "storytelling", "professional books"],
+    tags: ["book writing", "page-to-page continuity", "engaging dialogue", "storytelling", "professional books", "Book Writing", "Creative Writing"],
     category: "Writing & Content",
     rating: 4.7,
     totalVotes: 3892
@@ -62,7 +62,7 @@ export const writingAndContent: Tool[] = [
     directUrl: "https://perfectpromptengine.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/M1PQHKrzKd8",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-humanoid-robot-controlli.png/:/cr=t:9.25%25,l:11.96%25,w:73.53%25,h:65.54%25/rs=w:1200,h:600,cg:true,m",
-    tags: ["prompt optimization", "prompt engineering", "task execution", "productivity", "AI assistance"],
+    tags: ["prompt optimization", "prompt engineering", "task execution", "productivity", "AI assistance", "Prompt Engineering"],
     category: "Writing & Content",
     rating: 4.8,
     totalVotes: 4234
@@ -75,7 +75,7 @@ export const writingAndContent: Tool[] = [
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://clarityomni.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-scene-of-an-ai-agent-with-a-halo.jpeg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
-    tags: ["writing", "clarity", "readability", "content optimization", "omni", "analysis"],
+    tags: ["writing", "clarity", "readability", "content optimization", "omni", "analysis", "Grammar & Editing"],
     category: "Writing & Content",
     rating: 4.5,
     totalVotes: 2876

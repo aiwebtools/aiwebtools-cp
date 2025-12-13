@@ -18,7 +18,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "✅",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.grammarly.com/?via=aiwebtools",
-    tags: ["Grammarly", "writing assistant", "grammar", "spelling", "tone", "clarity", "plagiarism", "popular"],
+    tags: ["Grammarly", "writing assistant", "grammar", "spelling", "tone", "clarity", "plagiarism", "popular", "Grammar & Editing"],
     category: "AI Writing & Productivity",
     rating: 4.8,
     totalVotes: 245000
@@ -30,7 +30,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "📓",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.notion.so/product/ai?via=aiwebtools",
-    tags: ["Notion AI", "workspace AI", "note-taking", "organization", "brainstorming", "productivity", "integrated"],
+    tags: ["Notion AI", "workspace AI", "note-taking", "organization", "brainstorming", "productivity", "integrated", "Content Strategy"],
     category: "AI Writing & Productivity",
     rating: 4.7,
     totalVotes: 178000
@@ -42,7 +42,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "✨",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.jasper.ai/?via=aiwebtools",
-    tags: ["Jasper", "marketing copy", "content creation", "enterprise", "brand voice", "team collaboration", "scale"],
+    tags: ["Jasper", "marketing copy", "content creation", "enterprise", "brand voice", "team collaboration", "scale", "Blog Writing", "Copywriting", "Social Media Writing"],
     category: "AI Writing & Productivity",
     rating: 4.6,
     totalVotes: 134000
@@ -54,7 +54,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.copy.ai/?via=aiwebtools",
-    tags: ["Copy.ai", "copywriting", "marketing", "sales", "templates", "ads", "small business"],
+    tags: ["Copy.ai", "copywriting", "marketing", "sales", "templates", "ads", "small business", "Copywriting", "Email Writing", "Social Media Writing"],
     category: "AI Writing & Productivity",
     rating: 4.5,
     totalVotes: 98000
@@ -66,7 +66,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "✍️",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.wordtune.com/?via=aiwebtools",
-    tags: ["Wordtune", "rewriting", "rephrasing", "clarity", "tone", "summarization", "writing improvement"],
+    tags: ["Wordtune", "rewriting", "rephrasing", "clarity", "tone", "summarization", "writing improvement", "Grammar & Editing"],
     category: "AI Writing & Productivity",
     rating: 4.6,
     totalVotes: 87000
@@ -78,7 +78,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "🖋️",
     color: "from-green-600 to-emerald-600",
     directUrl: "https://quillbot.com/?via=aiwebtools",
-    tags: ["QuillBot", "paraphrasing", "summarization", "grammar", "plagiarism", "citations", "students"],
+    tags: ["QuillBot", "paraphrasing", "summarization", "grammar", "plagiarism", "citations", "students", "Grammar & Editing", "Academic Writing"],
     category: "AI Writing & Productivity",
     rating: 4.7,
     totalVotes: 156000
@@ -90,7 +90,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "📝",
     color: "from-pink-500 to-rose-600",
     directUrl: "https://writesonic.com/?via=aiwebtools",
-    tags: ["Writesonic", "content creation", "SEO", "articles", "landing pages", "GPT-4", "brand voice"],
+    tags: ["Writesonic", "content creation", "SEO", "articles", "landing pages", "GPT-4", "brand voice", "SEO Content", "Blog Writing", "Copywriting"],
     category: "AI Writing & Productivity",
     rating: 4.5,
     totalVotes: 92000
@@ -102,7 +102,7 @@ export const topProductivityWriting: Tool[] = [
     emoji: "🎨",
     color: "from-blue-600 to-purple-600",
     directUrl: "https://www.canva.com/ai-image-generator/?via=aiwebtools",
-    tags: ["Canva", "design AI", "Magic Write", "graphics", "presentations", "marketing", "text-to-image"],
+    tags: ["Canva", "design AI", "Magic Write", "graphics", "presentations", "marketing", "text-to-image", "Social Media Writing"],
     category: "AI Design & Productivity",
     rating: 4.8,
     totalVotes: 287000

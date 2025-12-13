@@ -21,7 +21,7 @@ export const writingAndContentEnhancement: Tool[] = [
     emoji: "✍️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://rytr.me/?via=aiwebtools",
-    tags: ["writing assistant", "content creation", "blogging", "email marketing", "copywriting"],
+    tags: ["writing assistant", "content creation", "blogging", "email marketing", "copywriting", "Blog Writing", "Email Writing", "Copywriting"],
     category: "Writing & Content Enhancement",
     rating: 4.5,
     totalVotes: 3456
@@ -33,7 +33,7 @@ export const writingAndContentEnhancement: Tool[] = [
     emoji: "🖋️",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.jasper.ai/?via=aiwebtools",
-    tags: ["content creation", "marketing", "advertising", "brand voice", "AI writing"],
+    tags: ["content creation", "marketing", "advertising", "brand voice", "AI writing", "Blog Writing", "Copywriting", "Social Media Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.7,
     totalVotes: 4567
@@ -45,7 +45,7 @@ export const writingAndContentEnhancement: Tool[] = [
     emoji: "📝",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://grammarly.com/?via=aiwebtools",
-    tags: ["grammar check", "spelling", "punctuation", "writing enhancement", "proofreading"],
+    tags: ["grammar check", "spelling", "punctuation", "writing enhancement", "proofreading", "Grammar & Editing"],
     category: "Writing & Content Enhancement",
     rating: 4.8,
     totalVotes: 5678
@@ -57,7 +57,7 @@ export const writingAndContentEnhancement: Tool[] = [
     emoji: "📚",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://go2.designrr.io/wordgenie2?affiliate=aiwebtools",
-    tags: ["ebook creation", "publishing", "design", "templates", "content creation"],
+    tags: ["ebook creation", "publishing", "design", "templates", "content creation", "Book Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.3,
     totalVotes: 2876
@@ -69,7 +69,7 @@ export const writingAndContentEnhancement: Tool[] = [
     emoji: "⌨️",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://www.scalenut.com/?via=aiwebtools",
-    tags: ["SEO", "content marketing", "content planning", "keyword research", "organic traffic"],
+    tags: ["SEO", "content marketing", "content planning", "keyword research", "organic traffic", "SEO Content", "Content Strategy"],
     category: "Writing & Content Enhancement",
     rating: 4.6,
     totalVotes: 3987
@@ -81,7 +81,7 @@ export const writingAndContentEnhancement: Tool[] = [
     emoji: "⚡",
     color: "from-red-500 to-pink-600",
     directUrl: "https://simplified.com/?via=aiwebtools",
-    tags: ["marketing platform", "content creation", "graphic design", "video editing", "workflow"],
+    tags: ["marketing platform", "content creation", "graphic design", "video editing", "workflow", "Social Media Writing", "Copywriting"],
     category: "Writing & Content Enhancement",
     rating: 4.4,
     totalVotes: 3210
@@ -93,7 +93,7 @@ export const writingAndContentEnhancement: Tool[] = [
     emoji: "📧",
     color: "from-yellow-500 to-green-600",
     directUrl: "https://anyword.com/?via=aiwebtools",
-    tags: ["marketing copy", "optimization", "engagement", "conversion", "messaging"],
+    tags: ["marketing copy", "optimization", "engagement", "conversion", "messaging", "Copywriting", "Email Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.5,
     totalVotes: 3654
@@ -105,7 +105,7 @@ export const writingAndContentEnhancement: Tool[] = [
     emoji: "📸",
     color: "from-orange-500 to-red-600",
     directUrl: "https://pictory.ai/?via=aiwebtools",
-    tags: ["video creation", "content marketing", "social media", "text to video", "AI video"],
+    tags: ["video creation", "content marketing", "social media", "text to video", "AI video", "Social Media Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.6,
     totalVotes: 3876
@@ -117,7 +117,7 @@ export const writingAndContentEnhancement: Tool[] = [
     emoji: "🎥",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.synthesia.io/?via=aiwebtools",
-    tags: ["video generation", "AI avatars", "training videos", "marketing videos", "communication"],
+    tags: ["video generation", "AI avatars", "training videos", "marketing videos", "communication", "Script Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.9,
     totalVotes: 6123
@@ -129,7 +129,7 @@ export const writingAndContentEnhancement: Tool[] = [
     emoji: "🎤",
     color: "from-green-500 to-blue-600",
     directUrl: "https://get.murf.ai/1uvb0e8dznua",
-    tags: ["voice generator", "voiceovers", "audio enhancement", "AI voice", "professional audio"],
+    tags: ["voice generator", "voiceovers", "audio enhancement", "AI voice", "professional audio", "Script Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.7,
     totalVotes: 4321

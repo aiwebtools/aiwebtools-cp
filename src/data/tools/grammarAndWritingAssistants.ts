@@ -16,7 +16,7 @@ export const grammarAndWritingAssistants: Tool[] = [
     emoji: "✅",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.grammarly.com/?via=aiwebtools",
-    tags: ["grammar check", "writing assistant", "spell check", "tone", "clarity"],
+    tags: ["grammar check", "writing assistant", "spell check", "tone", "clarity", "Grammar & Editing"],
     category: "Writing & Content Enhancement",
     rating: 4.7,
     totalVotes: 5432
@@ -28,7 +28,7 @@ export const grammarAndWritingAssistants: Tool[] = [
     emoji: "🌐",
     color: "from-blue-500 to-green-600",
     directUrl: "https://www.deepl.com/write?via=aiwebtools",
-    tags: ["writing improvement", "grammar", "clarity", "tone refinement", "DeepL"],
+    tags: ["writing improvement", "grammar", "clarity", "tone refinement", "DeepL", "Grammar & Editing"],
     category: "Writing & Content Enhancement",
     rating: 4.6,
     totalVotes: 3654
@@ -40,7 +40,7 @@ export const grammarAndWritingAssistants: Tool[] = [
     emoji: "📖",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.wordtune.com/?via=aiwebtools",
-    tags: ["sentence rewriting", "context understanding", "clarity", "tone", "style"],
+    tags: ["sentence rewriting", "context understanding", "clarity", "tone", "style", "Grammar & Editing", "Creative Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.4,
     totalVotes: 3123
@@ -52,7 +52,7 @@ export const grammarAndWritingAssistants: Tool[] = [
     emoji: "💬",
     color: "from-green-500 to-teal-600",
     directUrl: "https://quillbot.com/?via=aiwebtools",
-    tags: ["paraphrasing", "grammar check", "summarizer", "citations", "text rewriting"],
+    tags: ["paraphrasing", "grammar check", "summarizer", "citations", "text rewriting", "Grammar & Editing", "Academic Writing"],
     category: "Writing & Content Enhancement",
     rating: 4.5,
     totalVotes: 3789
@@ -64,7 +64,7 @@ export const grammarAndWritingAssistants: Tool[] = [
     emoji: "👁️",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://hemingwayapp.com/?via=aiwebtools",
-    tags: ["readability", "clear writing", "concise text", "sentence complexity", "passive voice"],
+    tags: ["readability", "clear writing", "concise text", "sentence complexity", "passive voice", "Grammar & Editing"],
     category: "Writing & Content Enhancement",
     rating: 4.3,
     totalVotes: 2654
