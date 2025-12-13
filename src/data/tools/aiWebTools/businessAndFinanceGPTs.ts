@@ -30,7 +30,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "💪",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68ae2ab2c55c8191afdc979301179fa9-poverty-crusher-economic-empowerment-ai/?via=aiwebtools",
-    tags: ["poverty reduction", "economic empowerment", "financial literacy", "wealth building", "debt elimination", "income generation", "financial freedom", "budgeting", "investment education", "aiwebtools"],
+    tags: ["poverty reduction", "economic empowerment", "financial literacy", "wealth building", "debt elimination", "income generation", "financial freedom", "budgeting", "investment education", "aiwebtools", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.9,
     totalVotes: 5823
@@ -79,7 +79,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "🏢",
     color: "from-red-500 to-pink-600",
     directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
-    tags: ["business plan", "market analysis", "financial projections", "strategy"],
+    tags: ["business plan", "market analysis", "financial projections", "strategy", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.4,
     totalVotes: 1789
@@ -199,7 +199,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "⚖️",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-69397aaef7348191922fa05113e3f060-economic-forecaster-gpt?via=aiwebtools",
-    tags: ["economic trends", "market shifts", "investment opportunities", "forecasting"],
+    tags: ["economic trends", "market shifts", "investment opportunities", "forecasting", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.4,
     totalVotes: 1723
@@ -308,7 +308,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-68b5b20784788191acd980be0388935d-fiat-to-crypto-ai-value-calculator-for-businesses/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=k0NlolajEYs",
-    tags: ["cryptocurrency", "fiat currency", "exchange calculator", "business finance", "crypto conversion", "investment analysis", "aiwebtools"],
+    tags: ["cryptocurrency", "fiat currency", "exchange calculator", "business finance", "crypto conversion", "investment analysis", "aiwebtools", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.7,
     totalVotes: 1567
@@ -320,7 +320,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "🎯",
     color: "from-red-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-68bb9109085c8191a5ffbe9ed6d339f5-competitor-comparison-gpt/?via=aiwebtools",
-    tags: ["competitor analysis", "business intelligence", "market research", "competitive strategy", "business comparison", "aiwebtools"],
+    tags: ["competitor analysis", "business intelligence", "market research", "competitive strategy", "business comparison", "aiwebtools", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.8,
     totalVotes: 2456
@@ -332,7 +332,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "💼",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://chatgpt.com/g/g-68bb8ba059ec81919253d369d0899f9c-side-hustle-microbusiness-planner-gpt/?via=aiwebtools",
-    tags: ["side hustle", "microbusiness", "entrepreneurship", "business planning", "startup strategy", "aiwebtools"],
+    tags: ["side hustle", "microbusiness", "entrepreneurship", "business planning", "startup strategy", "aiwebtools", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.7,
     totalVotes: 1987
@@ -344,7 +344,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "🧾",
     color: "from-green-500 to-teal-600",
     directUrl: "https://chatgpt.com/g/g-68bb7e4c16b881918baeff03dfe97c3a-business-expense-deduction-optimizer-gpt/?via=aiwebtools",
-    tags: ["tax deductions", "business expenses", "tax optimization", "financial planning", "expense management", "aiwebtools"],
+    tags: ["tax deductions", "business expenses", "tax optimization", "financial planning", "expense management", "aiwebtools", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.6,
     totalVotes: 2134
@@ -356,7 +356,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "🤲",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68bb7c9e5a78819184e03d06d63483f8-nonprofit-fundraising-builder-gpt/?via=aiwebtools",
-    tags: ["nonprofit", "fundraising", "grants", "charity", "nonprofit management", "aiwebtools"],
+    tags: ["nonprofit", "fundraising", "grants", "charity", "nonprofit management", "aiwebtools", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.5,
     totalVotes: 1756
@@ -368,7 +368,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "🏢",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-68bb7aa89f808191ae0bb377d00d1f13-local-business-grant-permit-gpt/?via=aiwebtools",
-    tags: ["business grants", "permits", "compliance", "local business", "business licensing", "aiwebtools"],
+    tags: ["business grants", "permits", "compliance", "local business", "business licensing", "aiwebtools", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.4,
     totalVotes: 1623
@@ -380,7 +380,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "💳",
     color: "from-teal-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68bb77efb08819185d5363cdd1a9cac-financial-aid-tax-credit-navigator-gpt/?via=aiwebtools",
-    tags: ["financial aid", "tax credits", "financial assistance", "tax planning", "financial navigation", "aiwebtools"],
+    tags: ["financial aid", "tax credits", "financial assistance", "tax planning", "financial navigation", "aiwebtools", "Custom GPT"],
     category: "Business & Finance",
     rating: 4.7,
     totalVotes: 2087

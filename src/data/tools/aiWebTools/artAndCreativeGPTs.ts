@@ -15,7 +15,7 @@ export const artAndCreativeGPTs: Tool[] = [
     color: "from-gray-500 to-blue-600",
     directUrl: "https://sketchartistgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-s_CPSIx.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    tags: ["sketch art", "drawing", "digital sketching", "art creation", "image to sketch", "creative tools", "aiwebtools"],
+    tags: ["sketch art", "drawing", "digital sketching", "art creation", "image to sketch", "creative tools", "aiwebtools", "Custom GPT"],
     category: "Art & Creative",
     rating: 4.6,
     totalVotes: 3234
@@ -29,7 +29,7 @@ export const artAndCreativeGPTs: Tool[] = [
     directUrl: "https://rewritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/5n1RHKoQ-Ds",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005696.jpg/:/cr=t:9.9%25,l:0%25,w:100%25,h:80.21%25/rs=w:600,h:300,cg:true/qt=q:98",
-    tags: ["article rewriting", "blog rewriting", "SEO optimization", "content rewriting", "content enhancement", "aiwebtools"],
+    tags: ["article rewriting", "blog rewriting", "SEO optimization", "content rewriting", "content enhancement", "aiwebtools", "Custom GPT"],
     category: "Art & Creative",
     rating: 4.5,
     totalVotes: 2987

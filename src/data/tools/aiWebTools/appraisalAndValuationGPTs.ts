@@ -23,7 +23,7 @@ export const appraisalAndValuationGPTs: Tool[] = [
     directUrl: "https://artandvintagegpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377297654509469928/artwork.webp",
     videoUrl: "https://www.youtube.com/watch?v=azHoiefssJw",
-    tags: ["artwork appraisal", "vintage items", "antiques", "collectibles", "art valuation", "market data", "aiwebtools"],
+    tags: ["artwork appraisal", "vintage items", "antiques", "collectibles", "art valuation", "market data", "aiwebtools", "Custom GPT"],
     category: "Appraisal & Valuation",
     rating: 4.7,
     totalVotes: 3456
@@ -37,7 +37,7 @@ export const appraisalAndValuationGPTs: Tool[] = [
     directUrl: "https://antiqueappraisalgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/azHoiefssJw",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-antique-and-collectibl.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["antique appraisal", "collectibles", "valuations", "rarity assessment", "market value", "aiwebtools"],
+    tags: ["antique appraisal", "collectibles", "valuations", "rarity assessment", "market value", "aiwebtools", "Custom GPT"],
     category: "Appraisal & Valuation",
     rating: 4.6,
     totalVotes: 4123
@@ -50,7 +50,7 @@ export const appraisalAndValuationGPTs: Tool[] = [
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://materialvaluationgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/vExE6rHQr84?si=yc400LfjEpdPGHZl",
-    tags: ["material valuation", "asset valuation", "precious metals", "market analysis", "wealth management", "aiwebtools"],
+    tags: ["material valuation", "asset valuation", "precious metals", "market analysis", "wealth management", "aiwebtools", "Custom GPT"],
     category: "Appraisal & Valuation",
     rating: 4.8,
     totalVotes: 5432
@@ -64,7 +64,7 @@ export const appraisalAndValuationGPTs: Tool[] = [
     directUrl: "https://chatgpt.com/g/g-wxZQTXVx9-sport-card-appraisal?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=lPvOvWWHErM",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-antique-and-collectibl.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["sports cards", "trading cards", "card appraisal", "collectibles", "market value", "grading", "baseball cards", "basketball cards", "football cards", "aiwebtools"],
+    tags: ["sports cards", "trading cards", "card appraisal", "collectibles", "market value", "grading", "baseball cards", "basketball cards", "football cards", "aiwebtools", "Custom GPT"],
     category: "Appraisal & Valuation",
     rating: 4.7,
     totalVotes: 2891
