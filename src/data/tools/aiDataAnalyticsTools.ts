@@ -9,7 +9,7 @@ export const aiDataAnalyticsTools: Tool[] = [
     emoji: "📊",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.tableau.com/?via=aiwebtools",
-    tags: ["data visualization", "business intelligence", "AI analytics", "dashboards", "data insights", "BI platform"],
+    tags: ["Data Agent", "data visualization", "business intelligence", "AI analytics", "dashboards", "data insights", "BI platform", "agent"],
     category: "AI Data Analytics & BI",
     rating: 4.8,
     totalVotes: 15234
@@ -21,7 +21,7 @@ export const aiDataAnalyticsTools: Tool[] = [
     emoji: "📈",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://powerbi.microsoft.com/?via=aiwebtools",
-    tags: ["business intelligence", "data visualization", "AI copilot", "Microsoft", "analytics", "dashboards", "data insights"],
+    tags: ["Data Agent", "business intelligence", "data visualization", "AI copilot", "Microsoft", "analytics", "dashboards", "data insights", "agent"],
     category: "AI Data Analytics & BI",
     rating: 4.9,
     totalVotes: 18567
@@ -33,7 +33,7 @@ export const aiDataAnalyticsTools: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.thoughtspot.com/?via=aiwebtools",
-    tags: ["AI analytics", "search analytics", "business intelligence", "data insights", "natural language", "self-service BI"],
+    tags: ["Data Agent", "AI analytics", "search analytics", "business intelligence", "data insights", "natural language", "self-service BI", "agent"],
     category: "AI Data Analytics & BI",
     rating: 4.7,
     totalVotes: 8234
@@ -45,7 +45,7 @@ export const aiDataAnalyticsTools: Tool[] = [
     emoji: "🔮",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.polymersearch.com/?via=aiwebtools",
-    tags: ["data analysis", "spreadsheet analytics", "no-code", "AI insights", "data visualization", "automated dashboards"],
+    tags: ["Data Agent", "data analysis", "spreadsheet analytics", "no-code", "AI insights", "data visualization", "automated dashboards", "agent"],
     category: "AI Data Analytics & BI",
     rating: 4.6,
     totalVotes: 5678
@@ -57,7 +57,7 @@ export const aiDataAnalyticsTools: Tool[] = [
     emoji: "🥧",
     color: "from-green-500 to-teal-600",
     directUrl: "https://cloud.google.com/looker?via=aiwebtools",
-    tags: ["business intelligence", "data analytics", "Google Cloud", "data modeling", "enterprise BI", "data insights"],
+    tags: ["Data Agent", "business intelligence", "data analytics", "Google Cloud", "data modeling", "enterprise BI", "data insights", "agent"],
     category: "AI Data Analytics & BI",
     rating: 4.7,
     totalVotes: 9876
@@ -69,7 +69,7 @@ export const aiDataAnalyticsTools: Tool[] = [
     emoji: "📉",
     color: "from-emerald-500 to-green-600",
     directUrl: "https://www.qlik.com/?via=aiwebtools",
-    tags: ["analytics", "business intelligence", "AI insights", "data discovery", "enterprise analytics", "data visualization"],
+    tags: ["Data Agent", "analytics", "business intelligence", "AI insights", "data discovery", "enterprise analytics", "data visualization", "agent"],
     category: "AI Data Analytics & BI",
     rating: 4.6,
     totalVotes: 7234

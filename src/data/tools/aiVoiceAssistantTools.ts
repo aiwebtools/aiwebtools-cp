@@ -17,7 +17,7 @@ export const aiVoiceAssistantTools: Tool[] = [
     emoji: "🔊",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://developer.amazon.com/alexa?via=aiwebtools",
-    tags: ["voice assistant", "smart home", "skills platform", "Echo devices", "natural language"],
+    tags: ["Voice Agent", "voice assistant", "smart home", "skills platform", "Echo devices", "natural language", "agent"],
     category: "AI Voice Assistant Tools",
     rating: 4.5,
     totalVotes: 8765
@@ -29,7 +29,7 @@ export const aiVoiceAssistantTools: Tool[] = [
     emoji: "💬",
     color: "from-green-500 to-teal-600",
     directUrl: "https://assistant.google.com/?via=aiwebtools",
-    tags: ["conversational AI", "Google integration", "smart home", "contextual understanding", "multi-device"],
+    tags: ["Voice Agent", "Conversational Agent", "conversational AI", "Google integration", "smart home", "contextual understanding", "multi-device", "agent"],
     category: "AI Voice Assistant Tools",
     rating: 4.6,
     totalVotes: 9876
@@ -41,7 +41,7 @@ export const aiVoiceAssistantTools: Tool[] = [
     emoji: "📱",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.apple.com/siri/?via=aiwebtools",
-    tags: ["Apple assistant", "on-device AI", "shortcuts", "iOS integration", "privacy-focused"],
+    tags: ["Voice Agent", "Apple assistant", "on-device AI", "shortcuts", "iOS integration", "privacy-focused", "agent"],
     category: "AI Voice Assistant Tools",
     rating: 4.4,
     totalVotes: 7654
@@ -53,7 +53,7 @@ export const aiVoiceAssistantTools: Tool[] = [
     emoji: "🤖",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.voiceflow.com/?via=aiwebtools",
-    tags: ["custom assistants", "chatbot builder", "visual design", "integrations", "deployment platform"],
+    tags: ["Voice Agent", "Chatbot Agent", "custom assistants", "chatbot builder", "visual design", "integrations", "deployment platform", "agent"],
     category: "AI Voice Assistant Tools",
     rating: 4.5,
     totalVotes: 3456
@@ -65,7 +65,7 @@ export const aiVoiceAssistantTools: Tool[] = [
     emoji: "🎤",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://cloud.google.com/dialogflow?via=aiwebtools",
-    tags: ["conversational AI", "NLU", "chatbot platform", "voice interfaces", "Google Cloud"],
+    tags: ["Voice Agent", "Conversational Agent", "conversational AI", "NLU", "chatbot platform", "voice interfaces", "Google Cloud", "agent"],
     category: "AI Voice Assistant Tools",
     rating: 4.6,
     totalVotes: 4567
@@ -77,7 +77,7 @@ export const aiVoiceAssistantTools: Tool[] = [
     emoji: "🏠",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://mycroft.ai/?via=aiwebtools",
-    tags: ["open source", "privacy-focused", "customizable", "developer platform", "voice AI"],
+    tags: ["Voice Agent", "open source", "privacy-focused", "customizable", "developer platform", "voice AI", "agent"],
     category: "AI Voice Assistant Tools",
     rating: 4.3,
     totalVotes: 2345

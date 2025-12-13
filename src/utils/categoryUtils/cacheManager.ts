@@ -21,12 +21,13 @@ import {
   isDataAnalyticsTool
 } from "./specializedDetection";
 import { filterBusinessTools } from "./businessCategoryFiltering";
+import { getEnhancedAgentTools } from "./agentDetection";
 
 // Ultra-optimized cache with persistent storage and lazy loading
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 12;
+let cacheVersion = 13; // Bumped for agent detection improvements
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';
@@ -145,26 +146,9 @@ export const buildToolsCache = (tools: Tool[]) => {
         break;
         
       case "AI AGENTS": {
-        // Special handling for AI AGENTS: include any tool that clearly behaves like an agent
-        categoryTools = tools.filter(tool => {
-          const title = tool.title.toLowerCase();
-          const description = (tool.description || "").toLowerCase();
-          const category = (tool.category || "").toLowerCase();
-          const tags = (tool.tags || []).map(tag => tag.toLowerCase());
-
-          const hasAgentWord =
-            title.includes("agent") ||
-            description.includes("agent") ||
-            tags.some(tag => tag.includes("agent"));
-
-          const isAgentCategory =
-            isSimilarCategory(tool.category || "", "AI Agents") ||
-            isSimilarCategory(tool.category || "", "Autonomous Agents") ||
-            isSimilarCategory(tool.category || "", "Intelligent Systems") ||
-            isSimilarCategory(tool.category || "", "Task Automation");
-
-          return hasAgentWord || isAgentCategory;
-        });
+        // Use enhanced agent detection for comprehensive coverage
+        categoryTools = getEnhancedAgentTools(tools);
+        console.log(`🤖 AI AGENTS: Found ${categoryTools.length} tools with enhanced detection`);
         break;
       }
         
