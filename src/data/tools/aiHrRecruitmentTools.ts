@@ -9,7 +9,7 @@ export const aiHrRecruitmentTools: Tool[] = [
     emoji: "🎥",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.hirevue.com/?via=aiwebtools",
-    tags: ["video interviews", "candidate assessment", "AI hiring", "recruitment", "talent acquisition", "interview analysis"],
+    tags: ["Automation Agent", "video interviews", "candidate assessment", "AI hiring", "recruitment", "talent acquisition", "interview analysis", "agent"],
     category: "AI HR & Recruitment",
     rating: 4.6,
     totalVotes: 5678
@@ -21,7 +21,7 @@ export const aiHrRecruitmentTools: Tool[] = [
     emoji: "🧠",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.pymetrics.ai/?via=aiwebtools",
-    tags: ["talent matching", "behavioral assessment", "AI recruitment", "candidate evaluation", "skills assessment", "neuroscience"],
+    tags: ["Automation Agent", "talent matching", "behavioral assessment", "AI recruitment", "candidate evaluation", "skills assessment", "neuroscience", "agent"],
     category: "AI HR & Recruitment",
     rating: 4.5,
     totalVotes: 4234
@@ -33,7 +33,7 @@ export const aiHrRecruitmentTools: Tool[] = [
     emoji: "🎯",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://eightfold.ai/?via=aiwebtools",
-    tags: ["talent intelligence", "workforce planning", "AI recruitment", "career pathing", "retention", "skills matching"],
+    tags: ["Automation Agent", "talent intelligence", "workforce planning", "AI recruitment", "career pathing", "retention", "skills matching", "agent"],
     category: "AI HR & Recruitment",
     rating: 4.7,
     totalVotes: 6789
@@ -45,7 +45,7 @@ export const aiHrRecruitmentTools: Tool[] = [
     emoji: "🤖",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.paradox.ai/?via=aiwebtools",
-    tags: ["AI chatbot", "candidate screening", "interview scheduling", "recruitment automation", "conversational AI", "hiring assistant"],
+    tags: ["Chatbot Agent", "Automation Agent", "AI chatbot", "candidate screening", "interview scheduling", "recruitment automation", "conversational AI", "hiring assistant", "agent"],
     category: "AI HR & Recruitment",
     rating: 4.6,
     totalVotes: 5432
@@ -57,7 +57,7 @@ export const aiHrRecruitmentTools: Tool[] = [
     emoji: "🔍",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://www.seekout.com/?via=aiwebtools",
-    tags: ["talent sourcing", "candidate search", "diversity hiring", "recruitment", "talent pipeline", "AI search"],
+    tags: ["Research Agent", "talent sourcing", "candidate search", "diversity hiring", "recruitment", "talent pipeline", "AI search", "agent"],
     category: "AI HR & Recruitment",
     rating: 4.5,
     totalVotes: 4567
@@ -69,7 +69,7 @@ export const aiHrRecruitmentTools: Tool[] = [
     emoji: "💼",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.workday.com/en-us/products/human-capital-management/recruiting.html?via=aiwebtools",
-    tags: ["ATS", "talent management", "workforce planning", "recruitment", "enterprise HR", "predictive analytics"],
+    tags: ["Automation Agent", "ATS", "talent management", "workforce planning", "recruitment", "enterprise HR", "predictive analytics", "agent"],
     category: "AI HR & Recruitment",
     rating: 4.6,
     totalVotes: 7891
