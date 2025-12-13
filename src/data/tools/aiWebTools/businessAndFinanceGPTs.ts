@@ -30,7 +30,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "💪",
     color: "from-green-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68ae2ab2c55c8191afdc979301179fa9-poverty-crusher-economic-empowerment-ai/?via=aiwebtools",
-    tags: ["poverty reduction", "economic empowerment", "financial literacy", "wealth building", "debt elimination", "income generation", "financial freedom", "budgeting", "investment education", "aiwebtools", "Custom GPT"],
+    tags: ["poverty reduction", "economic empowerment", "financial literacy", "wealth building", "debt elimination", "income generation", "financial freedom", "budgeting", "investment education", "aiwebtools", "Custom GPT", "Sales Enablement"],
     category: "Business & Finance",
     rating: 4.9,
     totalVotes: 5823
@@ -91,7 +91,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "🎯",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://chat.openai.com/g/g-VFFjF1czX-market-research-analyst",
-    tags: ["market research", "target audience", "competitive analysis", "business intelligence"],
+    tags: ["market research", "target audience", "competitive analysis", "business intelligence", "Market Research", "Analytics & Tracking"],
     category: "Business & Finance",
     rating: 4.5,
     totalVotes: 2012
@@ -259,7 +259,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "✍️",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://jasper.ai",
-    tags: ["content creation", "marketing", "copywriting", "ai writing", "brand voice", "seo"],
+    tags: ["content creation", "marketing", "copywriting", "ai writing", "brand voice", "seo", "Content Marketing", "SEO Tools", "Brand Management"],
     category: "Business & Finance",
     rating: 4.6,
     totalVotes: 5678
@@ -271,7 +271,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "🔗",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://zapier.com",
-    tags: ["automation", "workflow", "integration", "productivity", "business tools", "app connections"],
+    tags: ["automation", "workflow", "integration", "productivity", "business tools", "app connections", "Marketing Automation"],
     category: "Business & Finance",
     rating: 4.7,
     totalVotes: 8901
@@ -320,7 +320,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "🎯",
     color: "from-red-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-68bb9109085c8191a5ffbe9ed6d339f5-competitor-comparison-gpt/?via=aiwebtools",
-    tags: ["competitor analysis", "business intelligence", "market research", "competitive strategy", "business comparison", "aiwebtools", "Custom GPT"],
+    tags: ["competitor analysis", "business intelligence", "market research", "competitive strategy", "business comparison", "aiwebtools", "Custom GPT", "Market Research", "Analytics & Tracking"],
     category: "Business & Finance",
     rating: 4.8,
     totalVotes: 2456
@@ -332,7 +332,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "💼",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://chatgpt.com/g/g-68bb8ba059ec81919253d369d0899f9c-side-hustle-microbusiness-planner-gpt/?via=aiwebtools",
-    tags: ["side hustle", "microbusiness", "entrepreneurship", "business planning", "startup strategy", "aiwebtools", "Custom GPT"],
+    tags: ["side hustle", "microbusiness", "entrepreneurship", "business planning", "startup strategy", "aiwebtools", "Custom GPT", "Sales Enablement"],
     category: "Business & Finance",
     rating: 4.7,
     totalVotes: 1987
@@ -392,7 +392,7 @@ export const businessAndFinanceGPTs: Tool[] = [
     emoji: "📊",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-RX28YIt32-competitive-price-analysis-assistant/?via=aiwebtools",
-    tags: ["price analysis", "competitor analysis", "market research", "pricing strategy", "business intelligence", "competitive analysis", "data analysis", "aiwebtools"],
+    tags: ["price analysis", "competitor analysis", "market research", "pricing strategy", "business intelligence", "competitive analysis", "data analysis", "aiwebtools", "Market Research", "Analytics & Tracking", "Sales Enablement"],
     category: "Business & Finance",
     rating: 4.6,
     totalVotes: 1876

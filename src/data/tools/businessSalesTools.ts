@@ -22,7 +22,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "🏢",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.hubspot.com/?via=aiwebtools",
-    tags: ["CRM", "sales automation", "marketing", "customer service", "workflows", "CRM", "Marketing", "Sales"],
+    tags: ["CRM", "sales automation", "marketing", "customer service", "workflows", "CRM", "Marketing", "Sales", "CRM & Sales", "Marketing Automation", "Lead Generation"],
     category: "Business & Sales Tools",
     rating: 4.7,
     totalVotes: 5432
@@ -34,7 +34,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "📈",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.salesforce.com/?via=aiwebtools",
-    tags: ["CRM", "Einstein AI", "sales pipelines", "customer data", "enterprise", "CRM", "Sales", "Analytics & Reporting"],
+    tags: ["CRM", "Einstein AI", "sales pipelines", "customer data", "enterprise", "CRM", "Sales", "Analytics & Reporting", "CRM & Sales", "Sales Enablement", "Analytics & Tracking"],
     category: "Business & Sales Tools",
     rating: 4.6,
     totalVotes: 4567
@@ -46,7 +46,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "🎯",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.pipedrive.com/?via=aiwebtools",
-    tags: ["sales CRM", "pipeline management", "SMB", "AI insights", "automation", "CRM", "Sales"],
+    tags: ["sales CRM", "pipeline management", "SMB", "AI insights", "automation", "CRM", "Sales", "CRM & Sales", "Sales Enablement"],
     category: "Business & Sales Tools",
     rating: 4.5,
     totalVotes: 3456
@@ -58,7 +58,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "💬",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.intercom.com/?via=aiwebtools",
-    tags: ["customer messaging", "AI chatbots", "support automation", "customer engagement", "lifecycle", "Customer Support", "Sales"],
+    tags: ["customer messaging", "AI chatbots", "support automation", "customer engagement", "lifecycle", "Customer Support", "Sales", "CRM & Sales", "Marketing Automation"],
     category: "Business & Sales Tools",
     rating: 4.4,
     totalVotes: 3234
@@ -70,7 +70,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "📞",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.gong.io/?via=aiwebtools",
-    tags: ["revenue intelligence", "sales conversations", "AI insights", "deal outcomes", "team performance", "Sales", "Analytics & Reporting"],
+    tags: ["revenue intelligence", "sales conversations", "AI insights", "deal outcomes", "team performance", "Sales", "Analytics & Reporting", "Analytics & Tracking", "Sales Enablement"],
     category: "Business & Sales Tools",
     rating: 4.6,
     totalVotes: 2987
@@ -82,7 +82,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "📧",
     color: "from-red-500 to-pink-600",
     directUrl: "https://www.outreach.io/?via=aiwebtools",
-    tags: ["sales engagement", "prospect engagement", "sequence optimization", "AI-powered", "efficiency", "Sales", "Automation"],
+    tags: ["sales engagement", "prospect engagement", "sequence optimization", "AI-powered", "efficiency", "Sales", "Automation", "Lead Generation", "Marketing Automation", "Sales Enablement"],
     category: "Business & Sales Tools",
     rating: 4.3,
     totalVotes: 2654
@@ -94,7 +94,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "📅",
     color: "from-blue-500 to-green-600",
     directUrl: "https://calendly.com/?via=aiwebtools",
-    tags: ["automated scheduling", "meeting scheduling", "workflow automation", "integrations", "efficiency", "Meeting & Scheduling", "Automation"],
+    tags: ["automated scheduling", "meeting scheduling", "workflow automation", "integrations", "efficiency", "Meeting & Scheduling", "Automation", "Sales Enablement"],
     category: "Business & Sales Tools",
     rating: 4.5,
     totalVotes: 3789
@@ -106,7 +106,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "📊",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.zoominfo.com/?via=aiwebtools",
-    tags: ["B2B database", "sales intelligence", "prospect finding", "contact data", "company data", "Sales", "Business Intelligence"],
+    tags: ["B2B database", "sales intelligence", "prospect finding", "contact data", "company data", "Sales", "Business Intelligence", "Lead Generation", "Market Research", "Sales Enablement"],
     category: "Business & Sales Tools",
     rating: 4.4,
     totalVotes: 2876
@@ -118,7 +118,7 @@ export const businessSalesTools: Tool[] = [
     emoji: "🏗️",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://monday.com/?via=aiwebtools",
-    tags: ["work OS", "project management", "CRM", "team collaboration", "workflow automation", "Project Management", "Team Collaboration", "CRM"],
+    tags: ["work OS", "project management", "CRM", "team collaboration", "workflow automation", "Project Management", "Team Collaboration", "CRM", "CRM & Sales", "Marketing Automation"],
     category: "Business & Sales Tools",
     rating: 4.3,
     totalVotes: 3456

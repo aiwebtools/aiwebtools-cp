@@ -9,7 +9,7 @@ export const aiSeoContentTools: Tool[] = [
     emoji: "🏄",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://surferseo.com/?via=aiwebtools",
-    tags: ["SEO", "content optimization", "keyword research", "SERP analysis", "content marketing", "AI SEO", "SEO Content", "Content Strategy"],
+    tags: ["SEO", "content optimization", "keyword research", "SERP analysis", "content marketing", "AI SEO", "SEO Content", "Content Strategy", "SEO Tools", "Content Marketing"],
     category: "AI SEO & Content Marketing",
     rating: 4.8,
     totalVotes: 8234
@@ -21,7 +21,7 @@ export const aiSeoContentTools: Tool[] = [
     emoji: "📈",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.frase.io/?via=aiwebtools",
-    tags: ["SEO", "content briefs", "AI writing", "competitor analysis", "content optimization", "keyword research", "SEO Content", "Content Strategy", "Article Writing"],
+    tags: ["SEO", "content briefs", "AI writing", "competitor analysis", "content optimization", "keyword research", "SEO Content", "Content Strategy", "Article Writing", "SEO Tools", "Market Research"],
     category: "AI SEO & Content Marketing",
     rating: 4.7,
     totalVotes: 7456
@@ -33,7 +33,7 @@ export const aiSeoContentTools: Tool[] = [
     emoji: "🎯",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://www.marketmuse.com/?via=aiwebtools",
-    tags: ["content strategy", "SEO", "content planning", "competitive analysis", "AI insights", "content optimization", "SEO Content", "Content Strategy"],
+    tags: ["content strategy", "SEO", "content planning", "competitive analysis", "AI insights", "content optimization", "SEO Content", "Content Strategy", "SEO Tools", "Content Marketing", "Market Research"],
     category: "AI SEO & Content Marketing",
     rating: 4.6,
     totalVotes: 5891
@@ -45,7 +45,7 @@ export const aiSeoContentTools: Tool[] = [
     emoji: "📊",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.clearscope.io/?via=aiwebtools",
-    tags: ["SEO", "content optimization", "keyword research", "content grading", "search rankings", "AI analysis", "SEO Content"],
+    tags: ["SEO", "content optimization", "keyword research", "content grading", "search rankings", "AI analysis", "SEO Content", "SEO Tools", "Content Marketing"],
     category: "AI SEO & Content Marketing",
     rating: 4.7,
     totalVotes: 6234
@@ -57,7 +57,7 @@ export const aiSeoContentTools: Tool[] = [
     emoji: "🧠",
     color: "from-pink-500 to-rose-600",
     directUrl: "https://www.neuronwriter.com/?via=aiwebtools",
-    tags: ["SEO", "content editor", "NLP", "search intent", "content optimization", "AI writing", "competitor analysis", "SEO Content", "Article Writing"],
+    tags: ["SEO", "content editor", "NLP", "search intent", "content optimization", "AI writing", "competitor analysis", "SEO Content", "Article Writing", "SEO Tools", "Content Marketing"],
     category: "AI SEO & Content Marketing",
     rating: 4.6,
     totalVotes: 5567
