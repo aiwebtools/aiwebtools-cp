@@ -9,7 +9,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "🤖",
     color: "from-emerald-500 to-blue-600",
     directUrl: "https://graphicdesigngpt.lovable.app/?via=aiwebtools",
-    tags: ["GPT-4o", "OpenAI", "image generation", "text-to-image", "AI art", "advanced model"],
+    tags: ["Image Generator", "GPT-4o", "OpenAI", "image generation", "text-to-image", "AI art", "advanced model"],
     category: "Core Image Generators",
     rating: 4.9,
     totalVotes: 7890
@@ -21,7 +21,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "🎨",
     color: "from-blue-500 to-green-600",
     directUrl: "https://labs.google/fx/tools/whisk",
-    tags: ["image prompts", "Google Labs", "Imagen 3", "visual exploration", "creative"],
+    tags: ["Image Generator", "image prompts", "Google Labs", "Imagen 3", "visual exploration", "creative"],
     category: "Core Image Generators",
     rating: 4.8,
     totalVotes: 3456
@@ -33,7 +33,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "🖼️",
     color: "from-red-500 to-pink-600",
     directUrl: "https://labs.google/fx/tools/image-fx",
-    tags: ["Google Labs", "text-to-image", "AI models", "creative tools", "image generation"],
+    tags: ["Image Generator", "Google Labs", "text-to-image", "AI models", "creative tools", "image generation"],
     category: "Core Image Generators",
     rating: 4.7,
     totalVotes: 3234
@@ -45,7 +45,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "✨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.krea.ai/",
-    tags: ["image generation", "video AI", "upscaling", "free platform", "creative tools"],
+    tags: ["Image Generator", "Image Upscaler", "image generation", "video AI", "upscaling", "free platform", "creative tools"],
     category: "Core Image Generators",
     rating: 4.6,
     totalVotes: 2890
@@ -57,7 +57,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "🎪",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://playground.com/design",
-    tags: ["design templates", "AI design", "customizable", "logos", "social media"],
+    tags: ["Graphic Design", "Logo Design", "design templates", "AI design", "customizable", "logos", "social media"],
     category: "Core Image Generators",
     rating: 4.5,
     totalVotes: 2567
@@ -69,7 +69,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "📸",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://flair.ai/",
-    tags: ["product photography", "AI staging", "fashion models", "collaboration", "e-commerce"],
+    tags: ["Product Photography", "Image Generator", "product photography", "AI staging", "fashion models", "collaboration", "e-commerce"],
     category: "Core Image Generators",
     rating: 4.7,
     totalVotes: 3123
@@ -81,7 +81,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "🖌️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://exactly.ai/",
-    tags: ["custom models", "art style", "training", "consistent generation", "artistic"],
+    tags: ["AI Art", "Image Generator", "custom models", "art style", "training", "consistent generation", "artistic"],
     category: "Core Image Generators",
     rating: 4.4,
     totalVotes: 2234
@@ -93,7 +93,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "🔧",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.recraft.ai/",
-    tags: ["text-to-image", "advertisements", "collaborative", "high-quality", "versatile"],
+    tags: ["Image Generator", "Graphic Design", "text-to-image", "advertisements", "collaborative", "high-quality", "versatile"],
     category: "Core Image Generators",
     rating: 4.6,
     totalVotes: 2890
@@ -105,7 +105,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "👁️",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://www.seelab.ai/en",
-    tags: ["brand visuals", "fine-tuning", "product images", "marketing", "visual editor"],
+    tags: ["Image Generator", "Avatar Creator", "brand visuals", "fine-tuning", "product images", "marketing", "visual editor"],
     category: "Core Image Generators",
     rating: 4.5,
     totalVotes: 2456
@@ -117,7 +117,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "⭐",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.midjourney.com/",
-    tags: ["AI art", "artistic style", "premium quality", "community", "text-to-image"],
+    tags: ["Image Generator", "AI Art", "AI art", "artistic style", "premium quality", "community", "text-to-image"],
     category: "Core Image Generators",
     rating: 4.9,
     totalVotes: 6789
@@ -129,7 +129,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "👑",
     color: "from-gold-500 to-orange-600",
     directUrl: "https://openai.com/dall-e-3",
-    tags: ["OpenAI", "advanced model", "prompt adherence", "detailed images", "safety"],
+    tags: ["Image Generator", "OpenAI", "advanced model", "prompt adherence", "detailed images", "safety"],
     category: "Core Image Generators",
     rating: 4.8,
     totalVotes: 5432
@@ -141,7 +141,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://stability.ai/stablediffusion",
-    tags: ["open source", "local deployment", "customizable", "community", "free"],
+    tags: ["Image Generator", "AI Art", "open source", "local deployment", "customizable", "community", "free"],
     category: "Core Image Generators",
     rating: 4.7,
     totalVotes: 4321
@@ -153,7 +153,7 @@ export const coreImageGenerators: Tool[] = [
     emoji: "🎨",
     color: "from-red-500 to-purple-600",
     directUrl: "https://leonardo.ai/",
-    tags: ["game assets", "concept art", "multiple models", "artistic styles", "creative"],
+    tags: ["Image Generator", "Illustration", "game assets", "concept art", "multiple models", "artistic styles", "creative"],
     category: "Core Image Generators",
     rating: 4.6,
     totalVotes: 3876

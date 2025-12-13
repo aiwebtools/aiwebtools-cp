@@ -30,7 +30,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🍌",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://ainanobanana.ai/?via=aiwebtools",
-    tags: ["image editing", "AI enhancement", "creative editing", "professional tools", "image manipulation", "editing suite"],
+    tags: ["Photo Editor", "image editing", "AI enhancement", "creative editing", "professional tools", "image manipulation", "editing suite"],
     category: "Image Generation Platforms",
     rating: 4.5,
     totalVotes: 3456
@@ -42,7 +42,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "⬆️",
     color: "from-green-500 to-blue-600",
     directUrl: "https://letsenhance.io/",
-    tags: ["image enhancement", "upscaling", "one click", "AI art generation", "API access", "high quality"],
+    tags: ["Image Upscaler", "Photo Editor", "image enhancement", "upscaling", "one click", "AI art generation", "API access", "high quality"],
     category: "Image Generation Platforms",
     rating: 4.6,
     totalVotes: 4234
@@ -54,7 +54,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "📸",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.fotor.com/",
-    tags: ["photo editor", "AI-powered", "batch editing", "background removal", "collages", "professional touch"],
+    tags: ["Photo Editor", "photo editor", "AI-powered", "batch editing", "background removal", "collages", "professional touch"],
     category: "Image Generation Platforms",
     rating: 4.4,
     totalVotes: 3567
@@ -66,7 +66,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🎨",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://pixlr.com/",
-    tags: ["AI image generator", "Photomash Studio", "one-click creation", "animations", "filters", "premium access"],
+    tags: ["Photo Editor", "Image Generator", "AI image generator", "Photomash Studio", "one-click creation", "animations", "filters", "premium access"],
     category: "Image Generation Platforms",
     rating: 4.6,
     totalVotes: 4234
@@ -78,7 +78,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🌟",
     color: "from-green-500 to-teal-600",
     directUrl: "https://picwish.com/",
-    tags: ["background removal", "image unblur", "text extraction", "AI art generation", "developer APIs", "productivity boost"],
+    tags: ["Background Removal", "Photo Editor", "background removal", "image unblur", "text extraction", "AI art generation", "developer APIs", "productivity boost"],
     category: "Image Generation Platforms",
     rating: 4.5,
     totalVotes: 3789
@@ -90,7 +90,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "📈",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://shareasale.com/r.cfm?b=1434994&u=3604681&m=92386&urllink=&afftrack=",
-    tags: ["8k resolution", "automatic processing", "data security", "photo enhancement", "high-quality printing", "artifact removal"],
+    tags: ["Image Upscaler", "8k resolution", "automatic processing", "data security", "photo enhancement", "high-quality printing", "artifact removal"],
     category: "Image Generation Platforms",
     rating: 4.5,
     totalVotes: 3789
@@ -102,7 +102,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🎨",
     color: "from-green-500 to-teal-600",
     directUrl: "https://deep-image.ai/",
-    tags: ["image enhancement", "upscaling", "color correction", "print quality", "e-commerce", "real estate"],
+    tags: ["Image Upscaler", "Photo Editor", "image enhancement", "upscaling", "color correction", "print quality", "e-commerce", "real estate"],
     category: "Image Generation Platforms",
     rating: 4.5,
     totalVotes: 3567
@@ -114,7 +114,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "✂️",
     color: "from-red-500 to-orange-600",
     directUrl: "https://magicstudio.com/?via=aiwebtools",
-    tags: ["drag-and-drop", "no signup", "unwanted removal", "PRO version", "bulk editing", "real estate"],
+    tags: ["Background Removal", "Photo Editor", "drag-and-drop", "no signup", "unwanted removal", "PRO version", "bulk editing", "real estate"],
     category: "Image Generation Platforms",
     rating: 4.6,
     totalVotes: 4123
@@ -126,7 +126,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🐝",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://diffusionbee.com/",
-    tags: ["Stable Diffusion", "local processing", "unlimited use", "privacy-focused", "text-to-image", "Discord community"],
+    tags: ["AI Art", "Image Generator", "Stable Diffusion", "local processing", "unlimited use", "privacy-focused", "text-to-image", "Discord community"],
     category: "Image Generation Platforms",
     rating: 4.7,
     totalVotes: 4789
@@ -138,7 +138,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "📱",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://prisma-ai.com/lensa",
-    tags: ["Magic Correction", "facial retouching", "background blur", "unique filters", "special effects", "photo elevation"],
+    tags: ["Photo Editor", "Avatar Creator", "Magic Correction", "facial retouching", "background blur", "unique filters", "special effects", "photo elevation"],
     category: "Image Generation Platforms",
     rating: 4.6,
     totalVotes: 4234
@@ -150,7 +150,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "✂️",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://www.cutout.pro/?vsource=cutout_share-406567850369093",
-    tags: ["25k businesses", "API integration", "Image Background Removal", "Photo Enhancer", "secure", "reliable"],
+    tags: ["Background Removal", "Photo Editor", "25k businesses", "API integration", "Image Background Removal", "Photo Enhancer", "secure", "reliable"],
     category: "Image Generation Platforms",
     rating: 4.6,
     totalVotes: 4567
@@ -162,7 +162,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🎬",
     color: "from-purple-500 to-cyan-600",
     directUrl: "https://fylm.ai/",
-    tags: ["color grading", "LUT creation", "NeuralToneAI", "90% time saving", "cinematic frames", "deep learning"],
+    tags: ["Color Grading", "Photo Editor", "color grading", "LUT creation", "NeuralToneAI", "90% time saving", "cinematic frames", "deep learning"],
     category: "Image Generation Platforms",
     rating: 4.7,
     totalVotes: 4789
@@ -174,7 +174,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🎭",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.media.io/",
-    tags: ["media enhancement", "video editing", "audio editing", "image editing", "free tools", "AI-powered"],
+    tags: ["Photo Editor", "media enhancement", "video editing", "audio editing", "image editing", "free tools", "AI-powered"],
     category: "Image Generation Platforms",
     rating: 4.5,
     totalVotes: 3789
@@ -186,7 +186,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "⬆️",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.upscayl.org/",
-    tags: ["AI upscaling", "5x faster", "no hardware constraints", "quality enhancement", "commercial usage", "cloud-based"],
+    tags: ["Image Upscaler", "AI upscaling", "5x faster", "no hardware constraints", "quality enhancement", "commercial usage", "cloud-based"],
     category: "Image Generation Platforms",
     rating: 4.6,
     totalVotes: 4234
@@ -198,7 +198,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🚀",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://vanceai.com/",
-    tags: ["photo enhancement", "one-click access", "DCNN", "upscaling", "denoising", "professional quality"],
+    tags: ["Photo Editor", "Image Upscaler", "photo enhancement", "one-click access", "DCNN", "upscaling", "denoising", "professional quality"],
     category: "Image Generation Platforms",
     rating: 4.7,
     totalVotes: 5234
@@ -210,7 +210,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🌈",
     color: "from-rainbow-500 to-purple-600",
     directUrl: "https://imagecolorizer.com/",
-    tags: ["photo restoration", "colorization", "family photos", "face restoration", "damage repair", "AI technology"],
+    tags: ["Photo Restoration", "photo restoration", "colorization", "family photos", "face restoration", "damage repair", "AI technology"],
     category: "Image Generation Platforms",
     rating: 4.5,
     totalVotes: 3567
@@ -222,7 +222,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🎨",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://palette.fm/?via=aiwebtools",
-    tags: ["AI colorization", "professional colorists", "dynamic skin tones", "vibrant colors", "25 megapixels", "Chrome Safari"],
+    tags: ["Photo Restoration", "AI colorization", "professional colorists", "dynamic skin tones", "vibrant colors", "25 megapixels", "Chrome Safari"],
     category: "Image Generation Platforms",
     rating: 4.6,
     totalVotes: 4123
@@ -234,7 +234,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "📷",
     color: "from-sepia-500 to-brown-600",
     directUrl: "https://www.restorephotos.io/",
-    tags: ["photo restoration", "old photos", "blurry photos", "family memories", "historical images", "genealogy research"],
+    tags: ["Photo Restoration", "photo restoration", "old photos", "blurry photos", "family memories", "historical images", "genealogy research"],
     category: "Image Generation Platforms",
     rating: 4.4,
     totalVotes: 3234
@@ -270,7 +270,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🎭",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://leonardo.ai/",
-    tags: ["AI art generation", "fine-tuned models", "real-time canvas", "concept design", "professional grade", "illustrations"],
+    tags: ["Image Generator", "Illustration", "AI art generation", "fine-tuned models", "real-time canvas", "concept design", "professional grade", "illustrations"],
     category: "Image Generation Platforms",
     rating: 4.7,
     totalVotes: 5234
@@ -282,7 +282,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "💡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://ideogram.ai/",
-    tags: ["text rendering", "logo creation", "marketing materials", "typography", "posters", "crystal clear"],
+    tags: ["Image Generator", "Logo Design", "text rendering", "logo creation", "marketing materials", "typography", "posters", "crystal clear"],
     category: "Image Generation Platforms",
     rating: 4.6,
     totalVotes: 4567
@@ -294,7 +294,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://flux1.ai/",
-    tags: ["photorealistic", "prompt adherence", "open-source", "multiple variants", "state-of-the-art", "quality levels"],
+    tags: ["Image Generator", "photorealistic", "prompt adherence", "open-source", "multiple variants", "state-of-the-art", "quality levels"],
     category: "Image Generation Platforms",
     rating: 4.8,
     totalVotes: 6789
@@ -306,7 +306,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🖼️",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.freepik.com/ai/image-generator",
-    tags: ["stock integration", "custom images", "photo editing", "premium resources", "library access", "one platform"],
+    tags: ["Image Generator", "Graphic Design", "stock integration", "custom images", "photo editing", "premium resources", "library access", "one platform"],
     category: "Image Generation Platforms",
     rating: 4.5,
     totalVotes: 4234
@@ -318,7 +318,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "📱",
     color: "from-pink-500 to-purple-600",
     directUrl: "https://www.photoroom.com/",
-    tags: ["e-commerce", "product photos", "background removal", "marketing visuals", "studio quality", "content creation"],
+    tags: ["Product Photography", "Background Removal", "e-commerce", "product photos", "background removal", "marketing visuals", "studio quality", "content creation"],
     category: "Image Generation Platforms",
     rating: 4.6,
     totalVotes: 4567
@@ -330,7 +330,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🎨",
     color: "from-orange-500 to-red-600",
     directUrl: "https://github.com/Acly/krita-ai-diffusion",
-    tags: ["Krita plugin", "Stable Diffusion", "digital art", "artist workflow", "creative process", "professional tools"],
+    tags: ["AI Art", "Image Generator", "Krita plugin", "Stable Diffusion", "digital art", "artist workflow", "creative process", "professional tools"],
     category: "Image Generation Platforms",
     rating: 4.7,
     totalVotes: 3456
@@ -342,7 +342,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🎪",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://playgroundai.com/",
-    tags: ["creative expression", "artistic styles", "multiple models", "style presets", "collaborative", "user-friendly"],
+    tags: ["AI Art", "Image Generator", "creative expression", "artistic styles", "multiple models", "style presets", "collaborative", "user-friendly"],
     category: "Image Generation Platforms",
     rating: 4.5,
     totalVotes: 3789
@@ -354,7 +354,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "✨",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://getimg.ai/",
-    tags: ["inpainting", "outpainting", "custom models", "professional creation", "image manipulation", "comprehensive suite"],
+    tags: ["Image Generator", "Photo Editor", "inpainting", "outpainting", "custom models", "professional creation", "image manipulation", "comprehensive suite"],
     category: "Image Generation Platforms",
     rating: 4.6,
     totalVotes: 4123
@@ -366,7 +366,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🌙",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://nightcafe.studio/",
-    tags: ["art community", "daily challenges", "community galleries", "beginner friendly", "advanced tools", "artistic styles"],
+    tags: ["AI Art", "art community", "daily challenges", "community galleries", "beginner friendly", "advanced tools", "artistic styles"],
     category: "Image Generation Platforms",
     rating: 4.4,
     totalVotes: 3567
@@ -378,7 +378,7 @@ export const imageEditingTools: Tool[] = [
     emoji: "🧬",
     color: "from-green-500 to-teal-600",
     directUrl: "https://www.artbreeder.com/",
-    tags: ["genetic algorithms", "image breeding", "collaborative art", "portraits", "landscapes", "abstract art"],
+    tags: ["AI Art", "Avatar Creator", "genetic algorithms", "image breeding", "collaborative art", "portraits", "landscapes", "abstract art"],
     category: "Image Generation Platforms",
     rating: 4.3,
     totalVotes: 2987
