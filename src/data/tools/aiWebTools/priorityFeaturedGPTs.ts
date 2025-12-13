@@ -16,18 +16,6 @@ export const priorityFeaturedGPTs: Tool[] = [
     totalVotes: 6500
   },
   {
-    icon: Bot,
-    title: "🤖 AI Chatbot",
-    description: "Engage in natural language conversations with an AI. Get answers, advice, and companionship anytime you need it.",
-    emoji: "💬",
-    color: "from-green-500 to-blue-600",
-    directUrl: "https://aiwebtools.com/ai-chatbot",
-    tags: ["chatbot", "conversational ai", "natural language", "advice", "companionship"],
-    category: "AI Assistants & Search",
-    rating: 4.6,
-    totalVotes: 3876
-  },
-  {
     icon: Brain,
     title: "AI-Driven Insights",
     description: "Access a vast database of knowledge and get AI-powered insights, summaries, and answers to your questions.",

@@ -9,7 +9,7 @@ export const aiBotMakingPlatforms: Tool[] = [
     emoji: "🤖",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://www.chatbase.co/?via=aiwebtools",
-    tags: ["chatbot builder", "custom AI", "no-code", "customer support", "lead generation", "ChatGPT", "AI training"],
+    tags: ["chatbot builder", "custom AI", "no-code", "customer support", "lead generation", "ChatGPT", "AI training", "Chatbot Agent", "agent"],
     category: "AI Bot Making Platforms",
     rating: 4.7,
     totalVotes: 14567
@@ -21,7 +21,7 @@ export const aiBotMakingPlatforms: Tool[] = [
     emoji: "⛏️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.pickaxeproject.com/?via=aiwebtools",
-    tags: ["no-code AI", "AI builder", "custom chatbots", "AI tools", "monetization", "AI apps", "bot creation"],
+    tags: ["no-code AI", "AI builder", "custom chatbots", "AI tools", "monetization", "AI apps", "bot creation", "Chatbot Agent", "agent"],
     category: "AI Bot Making Platforms",
     rating: 4.6,
     totalVotes: 9876
@@ -33,7 +33,7 @@ export const aiBotMakingPlatforms: Tool[] = [
     emoji: "💬",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://botpress.com/?via=aiwebtools",
-    tags: ["conversational AI", "open-source", "chatbot platform", "NLU", "bot development", "workflow automation"],
+    tags: ["conversational AI", "open-source", "chatbot platform", "NLU", "bot development", "workflow automation", "Chatbot Agent", "agent"],
     category: "AI Bot Making Platforms",
     rating: 4.7,
     totalVotes: 16789
@@ -45,7 +45,7 @@ export const aiBotMakingPlatforms: Tool[] = [
     emoji: "✨",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://www.voiceflow.com/?via=aiwebtools",
-    tags: ["conversational AI", "chatbot design", "voice assistants", "visual builder", "collaboration", "prototyping"],
+    tags: ["conversational AI", "chatbot design", "voice assistants", "visual builder", "collaboration", "prototyping", "Voice Agent", "Chatbot Agent", "agent"],
     category: "AI Bot Making Platforms",
     rating: 4.8,
     totalVotes: 18234
@@ -57,7 +57,7 @@ export const aiBotMakingPlatforms: Tool[] = [
     emoji: "👥",
     color: "from-pink-500 to-rose-600",
     directUrl: "https://manychat.com/?via=aiwebtools",
-    tags: ["chat marketing", "social media bots", "Instagram", "Facebook Messenger", "WhatsApp", "marketing automation"],
+    tags: ["chat marketing", "social media bots", "Instagram", "Facebook Messenger", "WhatsApp", "marketing automation", "Chatbot Agent", "agent"],
     category: "AI Bot Making Platforms",
     rating: 4.6,
     totalVotes: 21234
@@ -69,7 +69,7 @@ export const aiBotMakingPlatforms: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://landbot.io/?via=aiwebtools",
-    tags: ["no-code chatbot", "conversational landing pages", "WhatsApp bots", "website chatbots", "drag-and-drop", "lead generation"],
+    tags: ["no-code chatbot", "conversational landing pages", "WhatsApp bots", "website chatbots", "drag-and-drop", "lead generation", "Chatbot Agent", "agent"],
     category: "AI Bot Making Platforms",
     rating: 4.5,
     totalVotes: 11234

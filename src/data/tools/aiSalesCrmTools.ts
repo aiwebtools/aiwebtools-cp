@@ -9,7 +9,7 @@ export const aiSalesCrmTools: Tool[] = [
     emoji: "☁️",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.salesforce.com/einstein/?via=aiwebtools",
-    tags: ["CRM", "sales automation", "predictive analytics", "customer insights", "AI forecasting", "enterprise"],
+    tags: ["CRM", "sales automation", "predictive analytics", "customer insights", "AI forecasting", "enterprise", "Sales Agent", "agent"],
     category: "AI Sales & CRM",
     rating: 4.8,
     totalVotes: 18234
@@ -21,7 +21,7 @@ export const aiSalesCrmTools: Tool[] = [
     emoji: "🧲",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.hubspot.com/?via=aiwebtools",
-    tags: ["CRM", "marketing automation", "sales automation", "lead scoring", "inbound marketing", "AI insights"],
+    tags: ["CRM", "marketing automation", "sales automation", "lead scoring", "inbound marketing", "AI insights", "Sales Agent", "agent"],
     category: "AI Sales & CRM",
     rating: 4.7,
     totalVotes: 16789
@@ -33,7 +33,7 @@ export const aiSalesCrmTools: Tool[] = [
     emoji: "🎯",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://www.gong.io/?via=aiwebtools",
-    tags: ["conversation intelligence", "revenue intelligence", "sales coaching", "call analysis", "deal insights", "AI analytics"],
+    tags: ["conversation intelligence", "revenue intelligence", "sales coaching", "call analysis", "deal insights", "AI analytics", "Sales Agent", "agent"],
     category: "AI Sales & CRM",
     rating: 4.8,
     totalVotes: 9876
@@ -45,7 +45,7 @@ export const aiSalesCrmTools: Tool[] = [
     emoji: "💬",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://www.chorus.ai/?via=aiwebtools",
-    tags: ["conversation intelligence", "call recording", "sales coaching", "transcription", "deal insights", "ZoomInfo"],
+    tags: ["conversation intelligence", "call recording", "sales coaching", "transcription", "deal insights", "ZoomInfo", "Sales Agent", "agent"],
     category: "AI Sales & CRM",
     rating: 4.7,
     totalVotes: 7234
@@ -57,7 +57,7 @@ export const aiSalesCrmTools: Tool[] = [
     emoji: "📧",
     color: "from-blue-600 to-indigo-700",
     directUrl: "https://www.outreach.io/?via=aiwebtools",
-    tags: ["sales engagement", "email automation", "sales sequencing", "pipeline management", "AI optimization", "outbound sales"],
+    tags: ["sales engagement", "email automation", "sales sequencing", "pipeline management", "AI optimization", "outbound sales", "Sales Agent", "agent"],
     category: "AI Sales & CRM",
     rating: 4.6,
     totalVotes: 8567
@@ -69,7 +69,7 @@ export const aiSalesCrmTools: Tool[] = [
     emoji: "📊",
     color: "from-teal-500 to-cyan-600",
     directUrl: "https://www.clari.com/?via=aiwebtools",
-    tags: ["revenue operations", "sales forecasting", "pipeline management", "deal tracking", "AI predictions", "sales analytics"],
+    tags: ["revenue operations", "sales forecasting", "pipeline management", "deal tracking", "AI predictions", "sales analytics", "Sales Agent", "agent"],
     category: "AI Sales & CRM",
     rating: 4.7,
     totalVotes: 6789
@@ -81,7 +81,7 @@ export const aiSalesCrmTools: Tool[] = [
     emoji: "🔄",
     color: "from-green-600 to-teal-700",
     directUrl: "https://www.pipedrive.com/?via=aiwebtools",
-    tags: ["CRM", "pipeline management", "sales automation", "AI assistant", "contact management", "visual sales"],
+    tags: ["CRM", "pipeline management", "sales automation", "AI assistant", "contact management", "visual sales", "Sales Agent", "agent"],
     category: "AI Sales & CRM",
     rating: 4.6,
     totalVotes: 11234
