@@ -11,7 +11,7 @@ export const additionalSpecializedGPTs: Tool[] = [
     color: "from-purple-500 to-pink-600",
     directUrl: "https://dreaminterpreter.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-ad-for-an-ai-tool-called-dream-interp_5LG7D.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
-    tags: ["dream analysis", "psychology", "personal growth", "subconscious", "symbolism"],
+    tags: ["dream analysis", "psychology", "personal growth", "subconscious", "symbolism", "Custom GPT"],
     category: "Additional Specialized",
     rating: 4.6,
     totalVotes: 4321
@@ -24,7 +24,7 @@ export const additionalSpecializedGPTs: Tool[] = [
     color: "from-gray-500 to-blue-600",
     directUrl: "https://sketchartistgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-s_CPSIx.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    tags: ["sketch art", "digital art", "image conversion", "artistic tools", "creative design"],
+    tags: ["sketch art", "digital art", "image conversion", "artistic tools", "creative design", "Custom GPT"],
     category: "Additional Specialized",
     rating: 4.7,
     totalVotes: 5234
@@ -37,7 +37,7 @@ export const additionalSpecializedGPTs: Tool[] = [
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://aitoolfinder.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/p3czNalrf8c",
-    tags: ["AI tools", "tool discovery", "resource finder", "technology guides", "AI research"],
+    tags: ["AI tools", "tool discovery", "resource finder", "technology guides", "AI research", "Custom GPT"],
     category: "Additional Specialized",
     rating: 4.8,
     totalVotes: 6789
@@ -51,7 +51,7 @@ export const additionalSpecializedGPTs: Tool[] = [
     directUrl: "https://rewritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/5n1RHKoQ-Ds",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005696.jpg/:/cr=t:9.9%25,l:0%25,w:100%25,h:80.21%25/rs=w:600,h:300,cg:true/qt=q:98",
-    tags: ["content rewriting", "SEO optimization", "blog writing", "article creation", "content marketing"],
+    tags: ["content rewriting", "SEO optimization", "blog writing", "article creation", "content marketing", "Custom GPT"],
     category: "Additional Specialized",
     rating: 4.6,
     totalVotes: 4321
@@ -64,7 +64,7 @@ export const additionalSpecializedGPTs: Tool[] = [
     color: "from-red-500 to-purple-600",
     directUrl: "https://videoanalysisgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-banner-ad-with-the-text-video-second-b_764zv.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    tags: ["video analysis", "frame extraction", "visual analytics", "research tools", "content analysis"],
+    tags: ["video analysis", "frame extraction", "visual analytics", "research tools", "content analysis", "Custom GPT"],
     category: "Additional Specialized",
     rating: 4.7,
     totalVotes: 5432
@@ -77,7 +77,7 @@ export const additionalSpecializedGPTs: Tool[] = [
     color: "from-pink-500 to-purple-600",
     directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-visually-captivating-advertisement-for-the-.jpeg/:/cr=t:0.11%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:300,cg:true/qt=q:98",
-    tags: ["Midjourney", "prompt optimization", "AI art", "image generation", "creative tools"],
+    tags: ["Midjourney", "prompt optimization", "AI art", "image generation", "creative tools", "Custom GPT"],
     category: "Additional Specialized",
     rating: 4.8,
     totalVotes: 6234
@@ -90,7 +90,7 @@ export const additionalSpecializedGPTs: Tool[] = [
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://marymagdalenegpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=7qxEnBR2BwQ",
-    tags: ["spirituality", "gnostic teachings", "religious studies", "historical texts", "divine wisdom"],
+    tags: ["spirituality", "gnostic teachings", "religious studies", "historical texts", "divine wisdom", "Custom GPT"],
     category: "Additional Specialized",
     rating: 4.9,
     totalVotes: 7234
@@ -103,7 +103,7 @@ export const additionalSpecializedGPTs: Tool[] = [
     color: "from-green-500 to-purple-600",
     directUrl: "https://snoopimageai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-snoop-image-ai-presented-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
-    tags: ["image detection", "AI verification", "authenticity check", "digital forensics", "image analysis"],
+    tags: ["image detection", "AI verification", "authenticity check", "digital forensics", "image analysis", "Custom GPT"],
     category: "Additional Specialized",
     rating: 4.5,
     totalVotes: 3876
@@ -116,7 +116,7 @@ export const additionalSpecializedGPTs: Tool[] = [
     color: "from-blue-500 to-gray-600",
     directUrl: "https://publicdefendergpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-humanoid-robot-dressed-like-a.png/:/cr=t:12.29%25,l:9.16%25,w:89.29%25,h:79.58%25/rs=w:600,h:300,cg:true,m/qt=q:98",
-    tags: ["legal documents", "contract drafting", "legal writing", "document creation", "legal assistance"],
+    tags: ["legal documents", "contract drafting", "legal writing", "document creation", "legal assistance", "Custom GPT"],
     category: "Additional Specialized",
     rating: 4.6,
     totalVotes: 4321
@@ -129,7 +129,7 @@ export const additionalSpecializedGPTs: Tool[] = [
     color: "from-yellow-500 to-red-600",
     directUrl: "https://customgptmaker.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000002880.jpg/:/cr=t:22.21%25,l:0%25,w:100%25,h:55.58%25/rs=w:600,h:451,cg:true/qt=q:98",
-    tags: ["brainstorming", "idea generation", "GPT creation", "AI development", "creative assistance"],
+    tags: ["brainstorming", "idea generation", "GPT creation", "AI development", "creative assistance", "Custom GPT"],
     category: "Additional Specialized",
     rating: 4.7,
     totalVotes: 5432

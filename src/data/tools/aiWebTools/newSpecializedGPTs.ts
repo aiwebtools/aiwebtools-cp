@@ -40,7 +40,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-green-500 to-emerald-600",
     directUrl: "https://grantwritergpt.lovable.app/?via=aiwebtools",
     category: "Business & Finance",
-    tags: ["grants", "funding", "writing", "nonprofit"],
+    tags: ["grants", "funding", "writing", "nonprofit", "Custom GPT"],
     rating: 4.7,
     totalVotes: 1876
   },
@@ -52,7 +52,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-67c1d3a4cb548191ad917dc301a69db0-newsletter-writer-gpt",
     category: "Content Creation",
-    tags: ["newsletters", "email marketing", "content", "writing"],
+    tags: ["newsletters", "email marketing", "content", "writing", "Custom GPT"],
     rating: 4.5,
     totalVotes: 2134
   },
@@ -65,7 +65,7 @@ export const newSpecializedGPTs: Tool[] = [
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/aFuAxVNXBvg",
     category: "Education & Learning",
-    tags: ["mathematics", "algebra", "equations", "problem solving"],
+    tags: ["mathematics", "algebra", "equations", "problem solving", "Custom GPT"],
     rating: 4.8,
     totalVotes: 3456
   },
@@ -77,7 +77,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-pink-500 to-red-600",
     directUrl: "https://celebritychatline.lovable.app/?via=aiwebtools",
     category: "Entertainment",
-    tags: ["celebrity", "chat", "simulation", "entertainment"],
+    tags: ["celebrity", "chat", "simulation", "entertainment", "Custom GPT"],
     rating: 4.3,
     totalVotes: 2876
   },
@@ -89,7 +89,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-blue-600 to-indigo-700",
     directUrl: "https://chatgpt.com/g/g-T3E00Qjv0-educator-pro",
     category: "Education & Learning",
-    tags: ["education", "teaching", "lesson plans", "assessment"],
+    tags: ["education", "teaching", "lesson plans", "assessment", "Custom GPT"],
     rating: 4.6,
     totalVotes: 1987
   },
@@ -101,7 +101,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-purple-600 to-pink-700",
     directUrl: "https://roleplaygpt.lovable.app/?via=aiwebtools",
     category: "Entertainment",
-    tags: ["roleplay", "storytelling", "characters", "creative"],
+    tags: ["roleplay", "storytelling", "characters", "creative", "Custom GPT"],
     rating: 4.4,
     totalVotes: 2345
   },
@@ -113,7 +113,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-cyan-600 to-purple-700",
     directUrl: "https://chatgpt.com/g/g-QPgSTQ0Yy-autochatgpt",
     category: "AI Tools & Development",
-    tags: ["teamwork", "collaboration", "AI simulation", "problem solving"],
+    tags: ["teamwork", "collaboration", "AI simulation", "problem solving", "Custom GPT"],
     rating: 4.5,
     totalVotes: 1765
   },
@@ -125,7 +125,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-67852089291481919b1b8e94152ebb3d-interpretis",
     category: "Education & Learning",
-    tags: ["etymology", "linguistics", "word origins", "language"],
+    tags: ["etymology", "linguistics", "word origins", "language", "Custom GPT"],
     rating: 4.7,
     totalVotes: 2876
   },
@@ -138,7 +138,7 @@ export const newSpecializedGPTs: Tool[] = [
     directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/aFuAxVNXBvg",
     category: "Education & Learning",
-    tags: ["methodology", "problem solving", "mathematics", "innovation"],
+    tags: ["methodology", "problem solving", "mathematics", "innovation", "Custom GPT"],
     rating: 4.4,
     totalVotes: 1456
   },
@@ -150,7 +150,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-green-500 to-teal-600",
     directUrl: "https://chatgpt.com/g/g-AmX2EGl1T-image-cloner-gpt",
     category: "Image & Design",
-    tags: ["image cloning", "visual analysis", "replication", "design"],
+    tags: ["image cloning", "visual analysis", "replication", "design", "Custom GPT"],
     rating: 4.5,
     totalVotes: 2234
   },
@@ -162,7 +162,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://childrensbookmaker.lovable.app/?via=aiwebtools",
     category: "Creative & Media",
-    tags: ["children's books", "storytelling", "illustrations", "education"],
+    tags: ["children's books", "storytelling", "illustrations", "education", "Custom GPT"],
     rating: 4.8,
     totalVotes: 3456
   },
@@ -174,7 +174,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-pink-500 to-purple-600",
     directUrl: "https://postcardmakergpt.lovable.app/?via=aiwebtools",
     category: "Design & Graphics",
-    tags: ["postcards", "design", "graphics", "personalization"],
+    tags: ["postcards", "design", "graphics", "personalization", "Custom GPT"],
     rating: 4.4,
     totalVotes: 1876
   },
@@ -186,7 +186,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-red-500 to-pink-600",
     directUrl: "https://moviescenemakergpt.lovable.app/?via=aiwebtools",
     category: "Entertainment",
-    tags: ["movies", "cinema", "entertainment", "personalization"],
+    tags: ["movies", "cinema", "entertainment", "personalization", "Custom GPT"],
     rating: 4.6,
     totalVotes: 2987
   },
@@ -198,7 +198,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-hd9SJlkyQ-diagraph-chart-gpt",
     category: "Business & Productivity",
-    tags: ["diagrams", "charts", "visualization", "business"],
+    tags: ["diagrams", "charts", "visualization", "business", "Custom GPT"],
     rating: 4.5,
     totalVotes: 2345
   },
@@ -210,7 +210,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://illuminous.lovable.app/?via=aiwebtools",
     category: "Research & Analytics",
-    tags: ["world data", "statistics", "global insights", "research"],
+    tags: ["world data", "statistics", "global insights", "research", "Custom GPT"],
     rating: 4.7,
     totalVotes: 3234
   },
@@ -223,7 +223,7 @@ export const newSpecializedGPTs: Tool[] = [
     directUrl: "https://sustainablefuturesgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/aPg82f-RCO8?si=IJIJ1aLCaJ_P7b-Y",
     category: "Environmental & Sustainability",
-    tags: ["sustainability", "environment", "green technology", "future"],
+    tags: ["sustainability", "environment", "green technology", "future", "Custom GPT"],
     rating: 4.6,
     totalVotes: 2876
   },
@@ -235,7 +235,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-purple-600 to-blue-700",
     directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
     category: "Science & Research",
-    tags: ["genetics", "DNA", "genomics", "research"],
+    tags: ["genetics", "DNA", "genomics", "research", "Custom GPT"],
     rating: 4.8,
     totalVotes: 3456
   },
@@ -247,7 +247,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://snoopimageai.lovable.app/?via=aiwebtools",
     category: "AI Tools & Development",
-    tags: ["image detection", "AI analysis", "authenticity", "verification"],
+    tags: ["image detection", "AI analysis", "authenticity", "verification", "Custom GPT"],
     rating: 4.5,
     totalVotes: 2234
   },
@@ -259,7 +259,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-blue-600 to-green-700",
     directUrl: "https://propertydatafindergpt.lovable.app/?via=aiwebtools",
     category: "Real Estate & Property",
-    tags: ["property", "real estate", "data analysis", "investment"],
+    tags: ["property", "real estate", "data analysis", "investment", "Custom GPT"],
     rating: 4.4,
     totalVotes: 1987
   },
@@ -271,7 +271,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-cyan-600 to-blue-700",
     directUrl: "https://rxai.lovable.app/?via=aiwebtools",
     category: "Healthcare & Medical",
-    tags: ["pharmaceutical", "research", "drug discovery", "medical"],
+    tags: ["pharmaceutical", "research", "drug discovery", "medical", "Custom GPT"],
     rating: 4.7,
     totalVotes: 2876
   },
@@ -283,7 +283,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-brown-600 to-amber-700",
     directUrl: "https://indianaarchaeologygpt.lovable.app/?via=aiwebtools",
     category: "Historical & Cultural",
-    tags: ["archaeology", "history", "artifacts", "exploration"],
+    tags: ["archaeology", "history", "artifacts", "exploration", "Custom GPT"],
     rating: 4.6,
     totalVotes: 2345
   },
@@ -295,7 +295,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-green-500 to-emerald-600",
     directUrl: "https://chatgpt.com/g/g-eRRLGgizA-masscanna-industry-analyst-ai",
     category: "Industry Analysis",
-    tags: ["cannabis", "Massachusetts", "industry data", "compliance"],
+    tags: ["cannabis", "Massachusetts", "industry data", "compliance", "Custom GPT"],
     rating: 4.3,
     totalVotes: 1456
   },
@@ -307,7 +307,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://chatgpt.com/g/g-TcVPWLPF4-ct-mmp-data-analyst",
     category: "Healthcare & Medical",
-    tags: ["Connecticut", "medical marijuana", "healthcare", "data analysis"],
+    tags: ["Connecticut", "medical marijuana", "healthcare", "data analysis", "Custom GPT"],
     rating: 4.4,
     totalVotes: 1234
   },
@@ -319,7 +319,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://ubigpt.lovable.app/?via=aiwebtools",
     category: "Economic & Policy",
-    tags: ["UBI", "economics", "policy", "social programs"],
+    tags: ["UBI", "economics", "policy", "social programs", "Custom GPT"],
     rating: 4.5,
     totalVotes: 1876
   },
@@ -331,7 +331,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-gray-600 to-purple-700",
     directUrl: "https://historicalpatternsgpt.lovable.app/?via=aiwebtools",
     category: "Historical & Cultural",
-    tags: ["hidden history", "patterns", "alternative history", "research"],
+    tags: ["hidden history", "patterns", "alternative history", "research", "Custom GPT"],
     rating: 4.6,
     totalVotes: 2234
   },
@@ -343,7 +343,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-red-500 to-purple-600",
     directUrl: "https://videoanalysisgpt.lovable.app/?via=aiwebtools",
     category: "Video & Content",
-    tags: ["video analysis", "content analysis", "pattern recognition", "visual"],
+    tags: ["video analysis", "content analysis", "pattern recognition", "visual", "Custom GPT"],
     rating: 4.7,
     totalVotes: 2876
   },
@@ -355,7 +355,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-blue-600 to-purple-700",
     directUrl: "https://legislatorlink.lovable.app/?via=aiwebtools",
     category: "Government & Civic",
-    tags: ["politics", "outreach", "legislators", "civic engagement"],
+    tags: ["politics", "outreach", "legislators", "civic engagement", "Custom GPT"],
     rating: 4.4,
     totalVotes: 1987
   },
@@ -367,7 +367,7 @@ export const newSpecializedGPTs: Tool[] = [
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://chatgpt.com/g/g-ZBxpecvze-ct-legi-contact-finder-and-email-drafter-by-ccsba",
     category: "Government & Civic",
-    tags: ["Connecticut", "legislators", "government", "contact info"],
+    tags: ["Connecticut", "legislators", "government", "contact info", "Custom GPT"],
     rating: 4.3,
     totalVotes: 1234
   },

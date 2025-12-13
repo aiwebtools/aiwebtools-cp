@@ -12,7 +12,7 @@ export const advancedSpecialtyGPTs: Tool[] = [
     directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=_e6DtLUv-2Q",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377362789097803786/image.png?ex=6838b08f&is=68375f0f&hm=f63e1ae446523dd9eff4aa0f95166aa8a5e6119c506b44ab1656322ea4ca47b7&=&format=webp&quality=lossless&width=2646&height=1392",
-    tags: ["mental health", "wellness", "therapy", "emotional support", "CBT"],
+    tags: ["mental health", "wellness", "therapy", "emotional support", "CBT", "Custom GPT"],
     category: "Advanced Specialty",
     rating: 4.8,
     totalVotes: 6789
@@ -25,7 +25,7 @@ export const advancedSpecialtyGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["genetics", "genomics", "DNA analysis", "biotechnology", "research"],
+    tags: ["genetics", "genomics", "DNA analysis", "biotechnology", "research", "Custom GPT"],
     category: "Advanced Specialty",
     rating: 4.9,
     totalVotes: 7234
@@ -38,7 +38,7 @@ export const advancedSpecialtyGPTs: Tool[] = [
     color: "from-blue-500 to-white",
     directUrl: "https://worldpeacegpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-earth-with-a-dark-blue-atmosp_Uq9U_.png/:/rs=w:600,h:300,cg:true,m/cr=w:600,h:300/qt=q:30",
-    tags: ["peace building", "diplomacy", "conflict resolution", "international relations", "global affairs"],
+    tags: ["peace building", "diplomacy", "conflict resolution", "international relations", "global affairs", "Custom GPT"],
     category: "Advanced Specialty",
     rating: 4.9,
     totalVotes: 8234
@@ -51,7 +51,7 @@ export const advancedSpecialtyGPTs: Tool[] = [
     color: "from-red-500 to-black",
     directUrl: "https://chatgpt.com/g/g-Qvat03gmj-hacking-defender-infrastructure-protector-gpt",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-robot-with-a-large-shield-tha.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["cybersecurity", "infrastructure protection", "threat defense", "security analysis", "hacking defense"],
+    tags: ["cybersecurity", "infrastructure protection", "threat defense", "security analysis", "hacking defense", "Custom GPT"],
     category: "Advanced Specialty",
     rating: 4.8,
     totalVotes: 6543
@@ -64,7 +64,7 @@ export const advancedSpecialtyGPTs: Tool[] = [
     color: "from-green-500 to-black",
     directUrl: "https://neomatrixgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/qMLF5L_h2xo",
-    tags: ["matrix simulation", "philosophy", "reality exploration", "entertainment", "simulation theory"],
+    tags: ["matrix simulation", "philosophy", "reality exploration", "entertainment", "simulation theory", "Custom GPT"],
     category: "Advanced Specialty",
     rating: 4.7,
     totalVotes: 5987
@@ -77,7 +77,7 @@ export const advancedSpecialtyGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://ubigpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-the-ai-tool-ubi-str_22t4n.png/:/rs=w:600,cg:true,m/qt=q:30",
-    tags: ["universal basic income", "policy strategy", "economic planning", "future economics", "social policy"],
+    tags: ["universal basic income", "policy strategy", "economic planning", "future economics", "social policy", "Custom GPT"],
     category: "Advanced Specialty",
     rating: 4.6,
     totalVotes: 4321
