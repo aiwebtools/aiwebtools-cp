@@ -14,7 +14,7 @@ export const cloudServices: Tool[] = [
     emoji: "🔥",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://firebase.google.com/",
-    tags: ["backend", "real-time database", "authentication", "hosting", "Google"],
+    tags: ["Database", "Backend", "Cloud Platform", "backend", "real-time database", "authentication", "hosting", "Google"],
     category: "Cloud & Infrastructure",
     rating: 4.6,
     totalVotes: 5432
@@ -26,7 +26,7 @@ export const cloudServices: Tool[] = [
     emoji: "☁️",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://heroku.com/",
-    tags: ["cloud hosting", "deployment", "scaling", "multiple languages", "PaaS"],
+    tags: ["Cloud Platform", "DevOps", "cloud hosting", "deployment", "scaling", "multiple languages", "PaaS"],
     category: "Cloud & Infrastructure",
     rating: 4.4,
     totalVotes: 4567
@@ -38,7 +38,7 @@ export const cloudServices: Tool[] = [
     emoji: "🌐",
     color: "from-orange-500 to-red-600",
     directUrl: "https://cloudflare.com/",
-    tags: ["CDN", "security", "DNS", "DDoS protection", "performance"],
+    tags: ["Security", "Cloud Platform", "CDN", "security", "DNS", "DDoS protection", "performance"],
     category: "Cloud & Infrastructure",
     rating: 4.7,
     totalVotes: 6789
