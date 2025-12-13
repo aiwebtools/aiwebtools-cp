@@ -7,12 +7,24 @@ import { sortGPTsByPowerRanking } from "./gptPowerRanking";
  * Now enhanced with power ranking system
  */
 
-// Check if tool is an AI Web Tools GPT
+// Check if tool is an AI Web Tools GPT or Custom GPT
 export const isAIWebToolsGPT = (tool: Tool): boolean => {
-  return tool.directUrl?.includes('lovable.app') || 
-         tool.directUrl?.includes('aiwebtools') ||
-         tool.description?.toLowerCase().includes('aiwebtools') ||
-         tool.tags?.some(tag => tag.toLowerCase().includes('aiwebtools'));
+  // Check for Custom GPT tag (the primary identifier after tagging initiative)
+  const hasCustomGPTTag = tool.tags?.some(tag => 
+    tag.toLowerCase() === 'custom gpt' || 
+    tag.toLowerCase().includes('custom gpt')
+  );
+  
+  // Check for AIWebTools indicators
+  const hasAIWebToolsUrl = tool.directUrl?.includes('lovable.app') || 
+                            tool.directUrl?.includes('aiwebtools');
+  const hasAIWebToolsDescription = tool.description?.toLowerCase().includes('aiwebtools');
+  const hasAIWebToolsTag = tool.tags?.some(tag => tag.toLowerCase().includes('aiwebtools'));
+  
+  // Check for ChatGPT.com GPT URLs (custom GPTs hosted on OpenAI)
+  const isChatGPTCustomGPT = tool.directUrl?.includes('chatgpt.com/g/g-');
+  
+  return hasCustomGPTTag || hasAIWebToolsUrl || hasAIWebToolsDescription || hasAIWebToolsTag || isChatGPTCustomGPT;
 };
 
 // Check if tool has video or image media
