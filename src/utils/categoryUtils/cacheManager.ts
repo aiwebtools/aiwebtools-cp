@@ -27,7 +27,7 @@ import { getEnhancedAgentTools } from "./agentDetection";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 28; // Bumped for Marketing & Sales subtypes (15+ types)
+let cacheVersion = 30; // Enhanced detection keywords across all 13 category phases for improved coverage
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';

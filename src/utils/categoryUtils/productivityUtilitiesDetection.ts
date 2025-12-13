@@ -214,12 +214,15 @@ export const isProductivityUtilitiesTool = (tool: Tool): boolean => {
   const tags = tool.tags?.map(t => t.toLowerCase()) || [];
   
   const productivityCategories = [
-    "productivity", "utility", "utilities", "automation", "workflow", "business tools"
+    "productivity", "utility", "utilities", "automation", "workflow", "business tools",
+    "all-in-one", "multi-tool", "platform", "suite"
   ];
   
   const productivityKeywords = [
     "productivity", "automation", "workflow", "task", "organize", "schedule",
-    "calendar", "email", "checklist", "collaborate", "efficiency", "optimize"
+    "calendar", "email", "checklist", "collaborate", "efficiency", "optimize",
+    "note", "document", "file", "translate", "convert", "manage", "track",
+    "plan", "time", "reminder", "to-do", "todo", "goal", "habit", "focus"
   ];
   
   return productivityCategories.some(cat => category.includes(cat)) ||
