@@ -96,5 +96,24 @@ export const specializedCategories: MainCategory[] = [
       "IoT Platforms",
       "Smart Devices"
     ]
+  },
+  {
+    name: "SECURITY & PRIVACY",
+    emoji: "🔒",
+    description: "AI-powered security tools, privacy protection, VPNs, password management, and cybersecurity solutions",
+    subcategories: [
+      "Security & Privacy",
+      "Cybersecurity",
+      "Password Management",
+      "VPN & Network Security",
+      "Encryption Tools",
+      "Identity Protection",
+      "Compliance Tools",
+      "Threat Detection",
+      "Data Privacy",
+      "Security Monitoring",
+      "Access Control",
+      "Security Automation"
+    ]
   }
 ];

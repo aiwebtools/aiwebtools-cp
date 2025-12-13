@@ -137,5 +137,28 @@ export const creativeCategories: MainCategory[] = [
       "Interactive Media",
       "Digital Entertainment"
     ]
+  },
+  {
+    name: "GAMING & ENTERTAINMENT",
+    emoji: "🎮",
+    description: "AI-powered tools for game development, streaming, virtual worlds, and interactive entertainment",
+    subcategories: [
+      "Gaming & Entertainment",
+      "Game Engine",
+      "Game AI",
+      "Game Asset Generator",
+      "Streaming Tools",
+      "Virtual Worlds",
+      "Interactive Media",
+      "Game Design",
+      "NPC & Character AI",
+      "Game Development",
+      "Esports & Competitive",
+      "VR/AR Gaming",
+      "Trivia & Quiz Games",
+      "Gaming Tools",
+      "Game Creation",
+      "Gaming Platforms"
+    ]
   }
 ];
