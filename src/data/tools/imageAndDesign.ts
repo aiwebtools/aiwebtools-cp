@@ -29,7 +29,7 @@ export const imageAndDesign: Tool[] = [
     emoji: "🎨",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://www.freepik.com/?via=aiwebtools",
-    tags: ["image creation", "video creation", "design platform", "templates", "vectors", "AI design", "creative resources", "all-in-one", "visual content"],
+    tags: ["Image Generator", "Graphic Design", "image creation", "video creation", "design platform", "templates", "vectors", "AI design", "creative resources", "all-in-one", "visual content"],
     category: "Image & Design",
     rating: 4.7,
     totalVotes: 4567
@@ -41,7 +41,7 @@ export const imageAndDesign: Tool[] = [
     emoji: "📸",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://productphotographygpt.lovable.app/?via=aiwebtools",
-    tags: ["product photography", "e-commerce photography", "product design", "AI photography", "professional photography", "aiwebtools"],
+    tags: ["Product Photography", "product photography", "e-commerce photography", "product design", "AI photography", "professional photography", "aiwebtools"],
     category: "Image & Design",
     rating: 4.6,
     totalVotes: 3456
@@ -54,7 +54,7 @@ export const imageAndDesign: Tool[] = [
     color: "from-pink-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-683ba2dcdd048191a761aaa76b823379-color-palette-generator-gpt",
     videoUrl: "https://www.youtube.com/watch?v=AI40uJvvjKE",
-    tags: ["color palettes", "design", "color combinations", "AI"],
+    tags: ["Color Grading", "Graphic Design", "color palettes", "design", "color combinations", "AI"],
     category: "Image & Design",
     rating: 4.5,
     totalVotes: 3456
@@ -67,7 +67,7 @@ export const imageAndDesign: Tool[] = [
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-683ba16df6148191b0cf7664c68fe500-ai-image-upscaler-gpt",
     imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    tags: ["image upscaling", "resolution enhancement", "AI", "visuals"],
+    tags: ["Image Upscaler", "Photo Editor", "image upscaling", "resolution enhancement", "AI", "visuals"],
     category: "Image & Design",
     rating: 4.4,
     totalVotes: 2987
@@ -79,7 +79,7 @@ export const imageAndDesign: Tool[] = [
     emoji: "🎨",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-ICcKk0tgw-creative-logo-generator-and-assistant",
-    tags: ["logo design", "branding", "creative design", "professional logos", "brand identity", "AI design"],
+    tags: ["Logo Design", "Graphic Design", "logo design", "branding", "creative design", "professional logos", "brand identity", "AI design"],
     category: "Image & Design",
     rating: 4.7,
     totalVotes: 3245
@@ -92,7 +92,7 @@ export const imageAndDesign: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-ICcKk0tgw-creative-logo-generator-and-assistant",
     videoUrl: "https://www.youtube.com/watch?v=jB-Wj3J0m8I",
-    tags: ["logo design", "branding", "AI", "customization"],
+    tags: ["Logo Design", "logo design", "branding", "AI", "customization"],
     category: "Image & Design",
     rating: 4.6,
     totalVotes: 3245
@@ -106,7 +106,7 @@ export const imageAndDesign: Tool[] = [
     directUrl: "https://mememachinegpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/Myg8P8wg294",
     imageUrl: "https://ideogram.ai/assets/image/lossless/response/h2Lp-rLMScaWK6A-mrFZQA",
-    tags: ["meme generation", "social media", "AI", "content creation"],
+    tags: ["Image Generator", "Graphic Design", "meme generation", "social media", "AI", "content creation"],
     category: "Image & Design",
     rating: 4.3,
     totalVotes: 2567
@@ -119,7 +119,7 @@ export const imageAndDesign: Tool[] = [
     color: "from-red-500 to-pink-600",
     directUrl: "https://tattoogpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/hB_fKF_5GOI",
-    tags: ["tattoo design", "body art", "AI", "custom artwork"],
+    tags: ["Illustration", "AI Art", "tattoo design", "body art", "AI", "custom artwork"],
     category: "Image & Design",
     rating: 4.7,
     totalVotes: 3876
@@ -132,7 +132,7 @@ export const imageAndDesign: Tool[] = [
     color: "from-pink-500 to-purple-600",
     directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=aKyJ-i74oH8",
-    tags: ["fashion design", "style recommendations", "AI", "clothing designs"],
+    tags: ["Fashion Design", "Graphic Design", "fashion design", "style recommendations", "AI", "clothing designs"],
     category: "Image & Design",
     rating: 4.4,
     totalVotes: 3123
@@ -145,7 +145,7 @@ export const imageAndDesign: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=UxzwjJztjtw",
-    tags: ["interior design", "room planning", "AI", "home decor"],
+    tags: ["Interior Design", "interior design", "room planning", "AI", "home decor"],
     category: "Image & Design",
     rating: 4.3,
     totalVotes: 2987
@@ -158,7 +158,7 @@ export const imageAndDesign: Tool[] = [
     color: "from-gray-500 to-blue-600",
     directUrl: "https://realestategpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=439jSjCQt7w",
-    tags: ["architectural design", "building plans", "AI", "property development"],
+    tags: ["Architecture Design", "architectural design", "building plans", "AI", "property development"],
     category: "Image & Design",
     rating: 4.6,
     totalVotes: 3345
@@ -171,7 +171,7 @@ export const imageAndDesign: Tool[] = [
     color: "from-pink-500 to-purple-600",
     directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-woman-with-a-futuristic-outfi.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["AI fashion models", "virtual photoshoots", "style showcases", "AI"],
+    tags: ["Avatar Creator", "Fashion Design", "AI fashion models", "virtual photoshoots", "style showcases", "AI"],
     category: "Image & Design",
     rating: 4.1,
     totalVotes: 2890
@@ -184,7 +184,7 @@ export const imageAndDesign: Tool[] = [
     color: "from-pink-500 to-purple-600",
     directUrl: "https://graphicdesigngpt.lovable.app/?via=aiwebtools",
     imageUrl: "/lovable-uploads/e6d2f727-a376-43a3-850b-fd2606230975.png",
-    tags: ["graphic design", "cover design", "branding", "visual design"],
+    tags: ["Graphic Design", "Logo Design", "graphic design", "cover design", "branding", "visual design"],
     category: "Image & Design",
     rating: 4.5,
     totalVotes: 2987
@@ -196,7 +196,7 @@ export const imageAndDesign: Tool[] = [
     emoji: "📖",
     color: "from-yellow-500 to-pink-600",
     directUrl: "https://childrensbookmaker.lovable.app/?via=aiwebtools",
-    tags: ["children's books", "picture books", "illustrations", "education", "creative design"],
+    tags: ["Illustration", "Image Generator", "children's books", "picture books", "illustrations", "education", "creative design"],
     category: "Image & Design",
     rating: 4.6,
     totalVotes: 3245

@@ -16,7 +16,7 @@ export const topImageGenerators: Tool[] = [
     emoji: "🎨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.midjourney.com/?via=aiwebtools",
-    tags: ["Midjourney", "AI art", "image generation", "artistic", "creative", "digital art", "text-to-image"],
+    tags: ["Image Generator", "AI Art", "Midjourney", "AI art", "image generation", "artistic", "creative", "digital art", "text-to-image"],
     category: "AI Image Generation",
     rating: 4.9,
     totalVotes: 156000
@@ -28,7 +28,7 @@ export const topImageGenerators: Tool[] = [
     emoji: "🖼️",
     color: "from-green-500 to-teal-600",
     directUrl: "https://openai.com/dall-e-3?via=aiwebtools",
-    tags: ["DALL-E", "OpenAI", "image generation", "photorealistic", "ChatGPT", "text-to-image", "AI art"],
+    tags: ["Image Generator", "DALL-E", "OpenAI", "image generation", "photorealistic", "ChatGPT", "text-to-image", "AI art"],
     category: "AI Image Generation",
     rating: 4.8,
     totalVotes: 134000
@@ -40,7 +40,7 @@ export const topImageGenerators: Tool[] = [
     emoji: "⚡",
     color: "from-orange-500 to-red-600",
     directUrl: "https://flux1.ai/?via=aiwebtools",
-    tags: ["Flux", "AI image", "Black Forest Labs", "high quality", "text-to-image", "artistic styles"],
+    tags: ["Image Generator", "Flux", "AI image", "Black Forest Labs", "high quality", "text-to-image", "artistic styles"],
     category: "AI Image Generation",
     rating: 4.8,
     totalVotes: 89000
@@ -52,7 +52,7 @@ export const topImageGenerators: Tool[] = [
     emoji: "✨",
     color: "from-blue-500 to-indigo-600",
     directUrl: "https://ideogram.ai/?via=aiwebtools",
-    tags: ["Ideogram", "text in images", "logo design", "posters", "AI image", "text rendering", "design"],
+    tags: ["Image Generator", "Logo Design", "Ideogram", "text in images", "logo design", "posters", "AI image", "text rendering", "design"],
     category: "AI Image Generation",
     rating: 4.7,
     totalVotes: 67000
@@ -64,7 +64,7 @@ export const topImageGenerators: Tool[] = [
     emoji: "🔓",
     color: "from-purple-600 to-blue-600",
     directUrl: "https://stability.ai/?via=aiwebtools",
-    tags: ["Stable Diffusion", "open source", "SDXL", "customizable", "local AI", "community", "free"],
+    tags: ["Image Generator", "AI Art", "Stable Diffusion", "open source", "SDXL", "customizable", "local AI", "community", "free"],
     category: "AI Image Generation",
     rating: 4.8,
     totalVotes: 178000
@@ -76,7 +76,7 @@ export const topImageGenerators: Tool[] = [
     emoji: "🔥",
     color: "from-red-500 to-orange-600",
     directUrl: "https://firefly.adobe.com/?via=aiwebtools",
-    tags: ["Adobe Firefly", "enterprise AI", "Creative Cloud", "commercial safe", "Photoshop", "licensed", "design"],
+    tags: ["Image Generator", "Photo Editor", "Adobe Firefly", "enterprise AI", "Creative Cloud", "commercial safe", "Photoshop", "licensed", "design"],
     category: "AI Image Generation",
     rating: 4.6,
     totalVotes: 92000
@@ -88,7 +88,7 @@ export const topImageGenerators: Tool[] = [
     emoji: "🎮",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://leonardo.ai/?via=aiwebtools",
-    tags: ["Leonardo AI", "game art", "character design", "game assets", "consistent style", "custom models"],
+    tags: ["Image Generator", "Illustration", "Leonardo AI", "game art", "character design", "game assets", "consistent style", "custom models"],
     category: "AI Image Generation",
     rating: 4.7,
     totalVotes: 84000
