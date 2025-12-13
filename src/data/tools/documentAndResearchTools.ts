@@ -21,7 +21,7 @@ export const documentAndResearchTools: Tool[] = [
     emoji: "📄",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://chatdoc.com/",
-    tags: ["ChatGPT powered", "multiple formats", "PDF", "Word", "cited sources", "document processing"],
+    tags: ["ChatGPT powered", "multiple formats", "PDF", "Word", "cited sources", "document processing", "Paper Summarization", "Data Analysis"],
     category: "Document & Research Tools",
     rating: 4.6,
     totalVotes: 4567
@@ -33,7 +33,7 @@ export const documentAndResearchTools: Tool[] = [
     emoji: "📝",
     color: "from-green-500 to-blue-600",
     directUrl: "https://www.citationmachine.net/",
-    tags: ["citations", "plagiarism check", "grammar", "ATS-friendly", "250+ checks", "educational"],
+    tags: ["citations", "plagiarism check", "grammar", "ATS-friendly", "250+ checks", "educational", "Citation Management", "Academic Writing"],
     category: "Document & Research Tools",
     rating: 4.5,
     totalVotes: 3789
@@ -45,7 +45,7 @@ export const documentAndResearchTools: Tool[] = [
     emoji: "🧠",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://doclime.com/",
-    tags: ["document analysis", "lightning-fast", "universities", "corporations", "citations", "research"],
+    tags: ["document analysis", "lightning-fast", "universities", "corporations", "citations", "research", "Data Analysis", "Citation Management"],
     category: "Document & Research Tools",
     rating: 4.7,
     totalVotes: 4234
@@ -57,7 +57,7 @@ export const documentAndResearchTools: Tool[] = [
     emoji: "🔍",
     color: "from-red-500 to-pink-600",
     directUrl: "https://www.duplichecker.com/",
-    tags: ["plagiarism checker", "grammar", "paraphrasing", "reverse image", "multiple languages", "SEO"],
+    tags: ["plagiarism checker", "grammar", "paraphrasing", "reverse image", "multiple languages", "SEO", "Fact Checking", "Academic Writing"],
     category: "Document & Research Tools",
     rating: 4.3,
     totalVotes: 3456
@@ -69,7 +69,7 @@ export const documentAndResearchTools: Tool[] = [
     emoji: "🔬",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://elicit.com/",
-    tags: ["research automation", "200M papers", "summarization", "data extraction", "theme synthesis"],
+    tags: ["research automation", "200M papers", "summarization", "data extraction", "theme synthesis", "Literature Review", "Paper Summarization", "Academic Search"],
     category: "Document & Research Tools",
     rating: 4.8,
     totalVotes: 5234
@@ -81,7 +81,7 @@ export const documentAndResearchTools: Tool[] = [
     emoji: "🏆",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://enhancv.com/",
-    tags: ["resume builder", "Tesla", "Google", "Facebook", "ATS-friendly", "250+ checks"],
+    tags: ["resume builder", "Tesla", "Google", "Facebook", "ATS-friendly", "250+ checks", "Academic Writing"],
     category: "Document & Research Tools",
     rating: 4.6,
     totalVotes: 4123
@@ -93,7 +93,7 @@ export const documentAndResearchTools: Tool[] = [
     emoji: "📚",
     color: "from-green-500 to-teal-600",
     directUrl: "https://booksai.app/",
-    tags: ["40M summaries", "9 languages", "celebrity lists", "digital reading", "recommendations"],
+    tags: ["40M summaries", "9 languages", "celebrity lists", "digital reading", "recommendations", "Paper Summarization", "Learning Platform"],
     category: "Document & Research Tools",
     rating: 4.4,
     totalVotes: 3567
@@ -105,7 +105,7 @@ export const documentAndResearchTools: Tool[] = [
     emoji: "🐓",
     color: "from-orange-500 to-red-600",
     directUrl: "https://justcluck.com/business-tools/",
-    tags: ["business tools", "social media", "SEO tools", "blog tools", "personal development", "e-commerce"],
+    tags: ["business tools", "social media", "SEO tools", "blog tools", "personal development", "e-commerce", "Data Analysis"],
     category: "Document & Research Tools",
     rating: 4.2,
     totalVotes: 2876

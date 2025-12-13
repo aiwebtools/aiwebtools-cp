@@ -21,7 +21,7 @@ export const learningPlatforms: Tool[] = [
     emoji: "💻",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://freecodecamp.org/",
-    tags: ["coding", "programming", "web development", "free", "certifications", "Learning Platform", "Skill Development"],
+    tags: ["coding", "programming", "web development", "free", "certifications", "Learning Platform", "Skill Development", "STEM Education"],
     category: "Learning Platforms",
     rating: 4.9,
     totalVotes: 8765
@@ -33,7 +33,7 @@ export const learningPlatforms: Tool[] = [
     emoji: "🌍",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://coursera.org/",
-    tags: ["university courses", "certificates", "degrees", "professional development", "Learning Platform", "College Prep", "Professional Training"],
+    tags: ["university courses", "certificates", "degrees", "professional development", "Learning Platform", "College Prep", "Professional Training", "Academic Writing"],
     category: "Learning Platforms",
     rating: 4.6,
     totalVotes: 5432

@@ -11,7 +11,7 @@ export const researchAndPharmaceuticalGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://rxai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-professional-pharmaceutical-assis.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["pharmaceutical research", "clinical trials", "drug development", "medical research", "healthcare innovation"],
+    tags: ["pharmaceutical research", "clinical trials", "drug development", "medical research", "healthcare innovation", "Pharmaceutical Research", "Data Analysis", "Literature Review"],
     category: "Research & Pharmaceutical",
     rating: 4.8,
     totalVotes: 6234
@@ -24,7 +24,7 @@ export const researchAndPharmaceuticalGPTs: Tool[] = [
     color: "from-blue-500 to-green-600",
     directUrl: "https://rxai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-professional-looking-pharmaceutical-assistan.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["pharmacy support", "medication management", "drug interactions", "pharmaceutical care", "patient safety"],
+    tags: ["pharmacy support", "medication management", "drug interactions", "pharmaceutical care", "patient safety", "Pharmaceutical Research", "Evidence Analysis"],
     category: "Research & Pharmaceutical",
     rating: 4.7,
     totalVotes: 5678
