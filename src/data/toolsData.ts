@@ -7,6 +7,7 @@ import { consolidateTools } from '@/utils/categoryConsolidation';
 import { deduplicateTools } from '@/utils/toolDeduplication';
 import { forceWEB3Reset } from '@/utils/forceWEB3CacheReset';
 import { markFreeTools } from '@/utils/toolUtils';
+import { runCategoryPhaseTest } from '@/utils/categoryUtils/categoryPhaseTest';
 
 // Force WEB3 cache reset to ensure .transfermoney appears
 forceWEB3Reset();
@@ -282,4 +283,9 @@ preservationReport.integrityScore >= 85 ?
 // Initialize the analysis asynchronously to avoid blocking
 setTimeout(() => {
   getToolCountAnalysis();
+  
+  // Run category phase test to verify all 13 phases are working
+  console.log('\n🧪 Running Category Phase Test...');
+  const phaseTestReport = runCategoryPhaseTest(filteredTools);
+  console.log('📋 Phase Test Report:', phaseTestReport);
 }, 0);
