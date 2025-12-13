@@ -210,7 +210,13 @@ const MainCategoryPage = () => {
           {/* Tools Count Display - Shows actual filtered count */}
           <div className="text-center mb-8">
             <div className="text-cyan-400 font-semibold">
-              Showing {Math.min(displayedCount, finalFilteredTools.length)} of {toolsToShow.length} filtered tools — scroll for more
+              {toolsToShow.length > 0 ? (
+                displayedCount >= toolsToShow.length 
+                  ? `Showing all ${toolsToShow.length} filtered tools + recommendations`
+                  : `Showing ${Math.min(displayedCount, toolsToShow.length)} of ${toolsToShow.length} filtered tools — scroll for more`
+              ) : (
+                "Loading tools..."
+              )}
             </div>
           </div>
 
