@@ -7,13 +7,21 @@ import { sortGPTsByPowerRanking } from "./gptPowerRanking";
  * Now enhanced with power ranking system
  */
 
-// Check if tool is an AI Web Tools GPT or Custom GPT
+// Check if tool is an AI Web Tools GPT, Custom GPT, or Custom Gemini Gem
 export const isAIWebToolsGPT = (tool: Tool): boolean => {
   // Check for Custom GPT tag (the primary identifier after tagging initiative)
   const hasCustomGPTTag = tool.tags?.some(tag => 
     tag.toLowerCase() === 'custom gpt' || 
     tag.toLowerCase().includes('custom gpt')
   );
+  
+  // Check for Gemini Gem indicators
+  const hasGeminiGemTag = tool.tags?.some(tag => 
+    tag.toLowerCase().includes('gemini gem') || 
+    tag.toLowerCase().includes('custom gem')
+  );
+  const isGeminiGemUrl = tool.directUrl?.includes('gemini.google.com/gem/');
+  const isGeminiGemCategory = tool.category?.toLowerCase().includes('gemini gem');
   
   // Check for AIWebTools indicators
   const hasAIWebToolsUrl = tool.directUrl?.includes('lovable.app') || 
@@ -24,7 +32,8 @@ export const isAIWebToolsGPT = (tool: Tool): boolean => {
   // Check for ChatGPT.com GPT URLs (custom GPTs hosted on OpenAI)
   const isChatGPTCustomGPT = tool.directUrl?.includes('chatgpt.com/g/g-');
   
-  return hasCustomGPTTag || hasAIWebToolsUrl || hasAIWebToolsDescription || hasAIWebToolsTag || isChatGPTCustomGPT;
+  return hasCustomGPTTag || hasGeminiGemTag || isGeminiGemUrl || isGeminiGemCategory || 
+         hasAIWebToolsUrl || hasAIWebToolsDescription || hasAIWebToolsTag || isChatGPTCustomGPT;
 };
 
 // Check if tool has video or image media
