@@ -70,7 +70,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "📢",
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-6810ea3238888191a084c4f20b40225f-ad-maker-gpt",
-    tags: ["advertisement creation", "marketing banners", "promotional graphics", "visual ads", "marketing campaigns", "advertising design", "Custom GPT"],
+    tags: ["advertisement creation", "marketing banners", "promotional graphics", "visual ads", "marketing campaigns", "advertising design", "Custom GPT", "Advertising & PPC", "Content Marketing", "Brand Management"],
     category: "Creative & Media",
     rating: 4.6,
     totalVotes: 2890
@@ -95,7 +95,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🛒",
     color: "from-blue-500 to-green-600",
     directUrl: "https://shoppinggpt.lovable.app/?via=aiwebtools",
-    tags: ["shopping assistant", "product recommendations", "deal finder", "price comparison", "shopping advice", "product discovery", "aiwebtools", "Custom GPT"],
+    tags: ["shopping assistant", "product recommendations", "deal finder", "price comparison", "shopping advice", "product discovery", "aiwebtools", "Custom GPT", "Conversion Optimization", "Lead Generation"],
     category: "Creative & Media",
     rating: 4.4,
     totalVotes: 2987
@@ -107,7 +107,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🎬",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-681a201fe69c8191b99e1636be90139e-commercial-scene-maker-gpt",
-    tags: ["commercial photography", "scene generation", "marketing visuals", "advertising imagery", "product photography", "commercial design", "Custom GPT"],
+    tags: ["commercial photography", "scene generation", "marketing visuals", "advertising imagery", "product photography", "commercial design", "Custom GPT", "Advertising & PPC", "Content Marketing", "Brand Management"],
     category: "Creative & Media",
     rating: 4.7,
     totalVotes: 3456
@@ -132,7 +132,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     emoji: "🎨",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://adandlogomakergpt.lovable.app/?via=aiwebtools",
-    tags: ["logo design", "advertisement creation", "branding", "marketing materials", "visual design", "brand identity", "aiwebtools", "Custom GPT"],
+    tags: ["logo design", "advertisement creation", "branding", "marketing materials", "visual design", "brand identity", "aiwebtools", "Custom GPT", "Brand Management", "Advertising & PPC", "Content Marketing"],
     category: "Creative & Media",
     rating: 4.7,
     totalVotes: 3456
@@ -158,7 +158,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     directUrl: "https://memegeneratorgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/Myg8P8wg294",
     imageUrl: "https://ideogram.ai/assets/image/lossless/response/h2Lp-rLMScaWK6A-mrFZQA",
-    tags: ["meme creation", "viral content", "social media", "humor", "internet culture", "content creation", "aiwebtools", "Custom GPT"],
+    tags: ["meme creation", "viral content", "social media", "humor", "internet culture", "content creation", "aiwebtools", "Custom GPT", "Social Media Marketing", "Content Marketing"],
     category: "Creative & Media",
     rating: 4.6,
     totalVotes: 4521
@@ -197,7 +197,7 @@ export const creativeAndMediaGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://graphicdesigngpt.lovable.app/?via=aiwebtools",
     imageUrl: "/lovable-uploads/e6d2f727-a376-43a3-850b-fd2606230975.png",
-    tags: ["graphic design", "cover design", "marketing materials", "visual design", "branding", "aiwebtools"],
+    tags: ["graphic design", "cover design", "marketing materials", "visual design", "branding", "aiwebtools", "Custom GPT", "Brand Management", "Content Marketing"],
     category: "Creative & Media",
     rating: 4.6,
     totalVotes: 4321
