@@ -2,7 +2,7 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ChevronDown, ChevronUp, Filter, X, Shuffle, ArrowDownAZ, ArrowUpZA } from "lucide-react";
+import { ChevronDown, ChevronUp, Filter, X, Shuffle, ArrowDownAZ, ArrowUpZA, Bot } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
@@ -13,6 +13,18 @@ import {
   applyAlphabeticalWithDeprioritization,
   SortMode 
 } from "@/utils/toolSorting/smartToolSorting";
+
+// Agent sub-type definitions with emoji and keywords for filtering
+const AGENT_SUBTYPES = [
+  { id: 'all', label: 'All Agents', emoji: '🤖', keywords: [] },
+  { id: 'coding', label: 'Coding Agents', emoji: '💻', keywords: ['coding agent', 'code', 'developer', 'programming', 'software'] },
+  { id: 'automation', label: 'Automation Agents', emoji: '⚙️', keywords: ['automation agent', 'workflow', 'automate', 'zapier', 'make.com', 'n8n'] },
+  { id: 'web-tasks', label: 'Web Task Agents', emoji: '🌐', keywords: ['web tasks agent', 'browser', 'computer use', 'web automation'] },
+  { id: 'voice', label: 'Voice Agents', emoji: '🎙️', keywords: ['voice agent', 'speech', 'voice ai', 'conversational'] },
+  { id: 'multi-agent', label: 'Multi-Agent', emoji: '🔗', keywords: ['multi-agent', 'framework', 'orchestration', 'swarm'] },
+  { id: 'research', label: 'Research Agents', emoji: '🔬', keywords: ['research agent', 'analysis', 'data', 'investigation'] },
+  { id: 'task', label: 'Task Agents', emoji: '✅', keywords: ['task agent', 'assistant', 'productivity', 'execution'] },
+];
 
 interface MainCategoryFilterProps {
   tools: Tool[];
@@ -25,6 +37,10 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   const [selectedMainCategories, setSelectedMainCategories] = useState<string[]>([currentMainCategory]);
   const [sortMode, setSortMode] = useState<SortMode>('smart');
   const [shuffleKey, setShuffleKey] = useState(0);
+  const [selectedAgentType, setSelectedAgentType] = useState<string>('all');
+  
+  // Check if we're on the AI AGENTS page
+  const isAgentsPage = currentMainCategory === "AI AGENTS";
 
   // Cache the categories data to prevent recalculation
   const mainCategoriesWithCounts = useMemo(() => {
@@ -58,6 +74,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     setSelectedMainCategories([currentMainCategory]);
     setSortMode('smart');
     setShuffleKey(0);
+    setSelectedAgentType('all'); // Reset agent type filter
   }, [currentMainCategory]);
 
   // Fisher-Yates shuffle algorithm - creates NEW array with random order
@@ -77,7 +94,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     return shuffled;
   }, []);
 
-  // Calculate base filtered tools (before shuffle)
+  // Calculate base filtered tools (before shuffle) - now includes agent type filtering
   const baseFilteredTools = useMemo(() => {
     const categoriesToUse = selectedMainCategories.length === 0 
       ? [currentMainCategory] 
@@ -94,8 +111,31 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       });
     });
     
-    return Array.from(selectedCategoryTools.values());
-  }, [selectedMainCategories, currentMainCategory]);
+    let toolsArray = Array.from(selectedCategoryTools.values());
+    
+    // Apply agent sub-type filter if on AI AGENTS page and a specific type is selected
+    if (isAgentsPage && selectedAgentType !== 'all') {
+      const agentSubtype = AGENT_SUBTYPES.find(t => t.id === selectedAgentType);
+      if (agentSubtype && agentSubtype.keywords.length > 0) {
+        toolsArray = toolsArray.filter(tool => {
+          const title = tool.title.toLowerCase();
+          const description = (tool.description || '').toLowerCase();
+          const tags = (tool.tags || []).map(t => t.toLowerCase());
+          
+          // Check if tool matches any of the agent subtype keywords
+          return agentSubtype.keywords.some(keyword => {
+            const kw = keyword.toLowerCase();
+            return title.includes(kw) || 
+                   description.includes(kw) || 
+                   tags.some(tag => tag.includes(kw));
+          });
+        });
+        console.log(`🤖 Agent filter "${agentSubtype.label}": ${toolsArray.length} tools`);
+      }
+    }
+    
+    return toolsArray;
+  }, [selectedMainCategories, currentMainCategory, isAgentsPage, selectedAgentType]);
 
   // Track sort state for cache
   const lastSortRef = React.useRef<{ mode: SortMode; key: number; tools: Tool[] }>({ mode: 'smart', key: 0, tools: [] });
@@ -173,6 +213,7 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     setSelectedMainCategories([currentMainCategory]);
     setSortMode('smart');
     setShuffleKey(0);
+    setSelectedAgentType('all'); // Reset agent type filter
   }, [currentMainCategory]);
 
   const handleShuffle = useCallback(() => {
@@ -197,6 +238,30 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
 
   return (
     <div className="max-w-3xl mx-auto mb-4">
+      {/* Agent Sub-Type Filter Pills - Only shown on AI AGENTS page */}
+      {isAgentsPage && (
+        <div className="mb-4">
+          <div className="text-center mb-2">
+            <span className="text-xs text-cyan-400/70 font-medium">🤖 Filter by Agent Type</span>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-1.5">
+            {AGENT_SUBTYPES.map((subtype) => (
+              <button
+                key={subtype.id}
+                onClick={() => setSelectedAgentType(subtype.id)}
+                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                  selectedAgentType === subtype.id
+                    ? 'bg-gradient-to-r from-cyan-500/30 to-purple-500/30 text-cyan-200 border border-cyan-400/60 shadow-lg shadow-cyan-500/20'
+                    : 'bg-gray-800/60 text-gray-400 border border-gray-600/30 hover:border-cyan-500/40 hover:text-cyan-300'
+                }`}
+              >
+                <span>{subtype.emoji}</span>
+                <span>{subtype.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
       {/* Compact Sort & Filter Pills */}
       <div className="flex flex-wrap items-center justify-center gap-1.5 mb-2">
         {/* Mix Categories - Compact Pill */}
