@@ -10,6 +10,7 @@ import SEOHead from "@/components/SEOHead";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 import MainCategoryFilter from "@/components/category/MainCategoryFilter";
+import BreadcrumbNav from "@/components/navigation/BreadcrumbNav";
 import { Button } from "@/components/ui/button";
 import { allTools } from "@/data/toolsData";
 import { getToolsByMainCategory } from "@/utils/categoryUtils";
@@ -163,33 +164,30 @@ const MainCategoryPage = () => {
         <Header />
         
         <main className="container mx-auto px-4 py-8 pt-32 md:pt-36 lg:pt-40">
-          {/* Navigation Buttons - Sleek Oval Style */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
-            {/* Previous Page Button */}
+          {/* Breadcrumb Navigation Trail */}
+          <BreadcrumbNav
+            items={[
+              { 
+                label: decodedCategoryName, 
+                emoji: mainCategory.emoji 
+              }
+            ]}
+            className="mb-4"
+          />
+
+          {/* Quick Navigation Buttons */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
             <button
               onClick={() => navigate(-1)}
-              className="group flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-gray-800/80 to-gray-700/80 border border-gray-600/40 hover:border-cyan-500/50 hover:from-gray-700/80 hover:to-gray-600/80 transition-all duration-300 text-sm text-gray-300 hover:text-cyan-300 backdrop-blur-sm"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-gray-800/60 text-gray-400 border border-gray-600/30 hover:border-cyan-500/50 hover:text-cyan-300 transition-all duration-200"
             >
-              <span className="text-base">←</span>
-              <span className="hidden sm:inline">Previous</span>
+              ← Back
             </button>
-            
-            {/* Back to Home Button */}
-            <button
-              onClick={() => navigate('/')}
-              className="group flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-900/60 to-blue-900/60 border border-cyan-500/40 hover:border-cyan-400/70 hover:from-cyan-800/60 hover:to-blue-800/60 transition-all duration-300 text-sm text-cyan-300 hover:text-cyan-200 backdrop-blur-sm shadow-lg shadow-cyan-500/10"
-            >
-              <span className="text-base">🏠</span>
-              <span>Home</span>
-            </button>
-            
-            {/* All Categories Button */}
             <button
               onClick={() => navigate('/main-category/ALL%20AI%20TOOLS')}
-              className="group flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-900/60 to-pink-900/60 border border-purple-500/40 hover:border-purple-400/70 hover:from-purple-800/60 hover:to-pink-800/60 transition-all duration-300 text-sm text-purple-300 hover:text-purple-200 backdrop-blur-sm shadow-lg shadow-purple-500/10"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-purple-900/40 text-purple-300 border border-purple-500/30 hover:border-purple-400/60 hover:text-purple-200 transition-all duration-200"
             >
-              <span className="text-base">🌐</span>
-              <span>All Categories</span>
+              🌐 All Tools
             </button>
           </div>
 

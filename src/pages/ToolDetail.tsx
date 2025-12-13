@@ -15,6 +15,7 @@ import ToolTags from "@/components/tool-detail/ToolTags";
 import ToolActions from "@/components/tool-detail/ToolActions";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import BreadcrumbSEO from "@/components/BreadcrumbSEO";
+import BreadcrumbNav from "@/components/navigation/BreadcrumbNav";
 import { generateStructuredData } from "@/utils/seo";
 import { useToolDetail } from "@/hooks/useToolDetail";
 import ToolNotFound from "@/components/tool-detail/ToolNotFound";
@@ -26,6 +27,7 @@ import FullSpiritualDisclaimer from "@/components/disclaimers/FullSpiritualDiscl
 import FullMedicalDisclaimer from "@/components/disclaimers/FullMedicalDisclaimer";
 import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
 import { needsSpiritualDisclaimer, needsMedicalDisclaimer } from "@/utils/toolDisclaimerDetection";
+import { mainCategories } from "@/utils/mainCategoryMapping";
 
 const ToolDetail = () => {
   const { toolId, toolSlug } = useParams();
@@ -113,6 +115,23 @@ const ToolDetail = () => {
   const showSpiritualDisclaimer = needsSpiritualDisclaimer(tool);
   const showMedicalDisclaimer = needsMedicalDisclaimer(tool);
 
+  // Find the main category for this tool
+  const toolMainCategory = mainCategories.find(cat => 
+    cat.subcategories.some(sub => 
+      sub.toLowerCase() === tool.category?.toLowerCase()
+    )
+  );
+
+  // Build visual breadcrumb items
+  const visualBreadcrumbItems = [
+    ...(toolMainCategory ? [{
+      label: toolMainCategory.name,
+      path: `/main-category/${encodeURIComponent(toolMainCategory.name)}`,
+      emoji: toolMainCategory.emoji
+    }] : []),
+    { label: tool.title }
+  ];
+
   return (
     <div className="min-h-screen bg-black relative">
       <ImprovedSEOHead pageType="tool" tool={tool} />
@@ -124,9 +143,12 @@ const ToolDetail = () => {
         
         <div className="container mx-auto px-4 py-20">
           <div className="max-w-4xl mx-auto">
+            {/* Visual Breadcrumb Trail */}
+            <BreadcrumbNav items={visualBreadcrumbItems} className="mb-4" />
+            
             <ToolPageHeader totalTools={allTools.length} />
 
-            <div className="mb-8">
+            <div className="mb-6">
               <GlobalSearchBar />
             </div>
 
