@@ -9,7 +9,7 @@ export const aiVoiceSpeechTools: Tool[] = [
     emoji: "🎤",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://www.resemble.ai/?via=aiwebtools",
-    tags: ["voice cloning", "text-to-speech", "AI voices", "custom voices", "speech synthesis", "real-time voice"],
+    tags: ["Voice Cloning", "Text-to-Speech", "voice cloning", "AI voices", "custom voices", "speech synthesis", "real-time voice"],
     category: "AI Voice & Speech",
     rating: 4.7,
     totalVotes: 12456
@@ -21,7 +21,7 @@ export const aiVoiceSpeechTools: Tool[] = [
     emoji: "🔊",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://wellsaidlabs.com/?via=aiwebtools",
-    tags: ["AI voices", "voice over", "text-to-speech", "narration", "professional voices", "studio quality"],
+    tags: ["Text-to-Speech", "Voice Synthesis", "AI voices", "voice over", "narration", "professional voices", "studio quality"],
     category: "AI Voice & Speech",
     rating: 4.8,
     totalVotes: 15678
@@ -33,7 +33,7 @@ export const aiVoiceSpeechTools: Tool[] = [
     emoji: "📻",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://murf.ai/?via=aiwebtools",
-    tags: ["text-to-speech", "AI voices", "voice over", "video narration", "realistic voices", "voice generator"],
+    tags: ["Text-to-Speech", "Voice Synthesis", "AI voices", "voice over", "video narration", "realistic voices", "voice generator"],
     category: "AI Voice & Speech",
     rating: 4.7,
     totalVotes: 18234
@@ -45,7 +45,7 @@ export const aiVoiceSpeechTools: Tool[] = [
     emoji: "🎧",
     color: "from-pink-500 to-rose-600",
     directUrl: "https://www.lovo.ai/?via=aiwebtools",
-    tags: ["AI voices", "text-to-speech", "multilingual", "voice generation", "audiobooks", "emotion control"],
+    tags: ["Text-to-Speech", "Voice Synthesis", "AI voices", "multilingual", "voice generation", "audiobooks", "emotion control"],
     category: "AI Voice & Speech",
     rating: 4.6,
     totalVotes: 14567
@@ -57,7 +57,7 @@ export const aiVoiceSpeechTools: Tool[] = [
     emoji: "✨",
     color: "from-orange-500 to-red-600",
     directUrl: "https://play.ht/?via=aiwebtools",
-    tags: ["voice cloning", "text-to-speech", "AI voices", "realistic speech", "multilingual", "voice generation"],
+    tags: ["Voice Cloning", "Text-to-Speech", "AI voices", "realistic speech", "multilingual", "voice generation"],
     category: "AI Voice & Speech",
     rating: 4.7,
     totalVotes: 13456
@@ -69,7 +69,7 @@ export const aiVoiceSpeechTools: Tool[] = [
     emoji: "🌊",
     color: "from-blue-600 to-indigo-700",
     directUrl: "https://speechify.com/?via=aiwebtools",
-    tags: ["text-to-speech", "audiobooks", "document reader", "listening app", "AI voices", "natural speech"],
+    tags: ["Text-to-Speech", "audiobooks", "document reader", "listening app", "AI voices", "natural speech"],
     category: "AI Voice & Speech",
     rating: 4.8,
     totalVotes: 28934

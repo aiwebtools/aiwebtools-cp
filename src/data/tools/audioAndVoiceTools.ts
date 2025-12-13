@@ -24,7 +24,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎙️",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://try.elevenlabs.io/aiwebtools",
-    tags: ["voice generation", "text-to-speech", "voice cloning", "AI voices", "audio production"],
+    tags: ["Voice Cloning", "Text-to-Speech", "voice generation", "voice cloning", "AI voices", "audio production"],
     category: "Audio & Voice",
     rating: 4.8,
     totalVotes: 5432
@@ -168,7 +168,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🔊",
     color: "from-orange-500 to-red-600",
     directUrl: "https://get.murf.ai/1uvb0e8dznua",
-    tags: ["voiceover", "text-to-speech", "podcast", "audio content", "voice synthesis"],
+    tags: ["Text-to-Speech", "Voice Synthesis", "voiceover", "podcast", "audio content", "voice synthesis"],
     category: "Audio & Voice",
     rating: 4.5,
     totalVotes: 4321
@@ -180,7 +180,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "💬",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://speechify.com/",
-    tags: ["text-to-speech", "accessibility", "reading", "productivity", "audio conversion"],
+    tags: ["Text-to-Speech", "accessibility", "reading", "productivity", "audio conversion"],
     category: "Audio & Voice",
     rating: 4.4,
     totalVotes: 6789
@@ -192,7 +192,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎧",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.descript.com/",
-    tags: ["audio editing", "video editing", "transcription", "podcasting", "screen recording"],
+    tags: ["Audio Editing", "Podcast Tools", "video editing", "transcription", "podcasting", "screen recording"],
     category: "Audio & Voice",
     rating: 4.7,
     totalVotes: 3987
@@ -204,7 +204,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎵",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.aiva.ai/",
-    tags: ["AI music", "composition", "soundtrack", "background music", "creative AI"],
+    tags: ["Music Generator", "AI composition", "soundtrack", "background music", "creative AI"],
     category: "Audio & Voice",
     rating: 4.3,
     totalVotes: 2654
@@ -216,7 +216,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📻",
     color: "from-red-500 to-orange-600",
     directUrl: "https://www.resemble.ai/",
-    tags: ["voice cloning", "speech synthesis", "custom voices", "emotional AI", "real-time"],
+    tags: ["Voice Cloning", "Voice Synthesis", "speech synthesis", "custom voices", "emotional AI", "real-time"],
     category: "Audio & Voice",
     rating: 4.2,
     totalVotes: 1987
@@ -228,7 +228,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🔈",
     color: "from-teal-500 to-green-600",
     directUrl: "https://replicastudios.com/",
-    tags: ["voice acting", "game audio", "film audio", "digital voices", "media production"],
+    tags: ["Voice Synthesis", "voice acting", "game audio", "film audio", "digital voices", "media production"],
     category: "Audio & Voice",
     rating: 4.1,
     totalVotes: 1543
@@ -240,7 +240,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "💽",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://www.audiogen.co/",
-    tags: ["sound effects", "ambient audio", "AI audio", "music generation", "audio production"],
+    tags: ["Sound Effects", "Music Generator", "ambient audio", "AI audio", "music generation", "audio production"],
     category: "Audio & Voice",
     rating: 4.0,
     totalVotes: 1234
@@ -252,7 +252,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🧹",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://cleanvoice.ai/",
-    tags: ["audio cleaning", "noise removal", "filler words", "podcast editing", "audio enhancement"],
+    tags: ["Audio Enhancement", "Podcast Tools", "noise removal", "filler words", "podcast editing", "audio cleanup"],
     category: "Audio & Voice",
     rating: 4.4,
     totalVotes: 2876
@@ -264,7 +264,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎭",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.hume.ai/",
-    tags: ["emotional AI", "lifelike voice", "conversational AI", "voice interaction", "emotion recognition", "natural speech"],
+    tags: ["Voice Synthesis", "emotional AI", "lifelike voice", "conversational AI", "voice interaction", "emotion recognition", "natural speech"],
     category: "Audio & Voice",
     rating: 4.6,
     totalVotes: 2100
@@ -288,7 +288,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🎤",
     color: "from-blue-600 to-indigo-600",
     directUrl: "https://www.assemblyai.com/?via=aiwebtools",
-    tags: ["speech-to-text", "transcription API", "real-time", "speaker diarization", "sentiment analysis", "developer tools"],
+    tags: ["Speech-to-Text", "Transcription", "transcription API", "real-time", "speaker diarization", "sentiment analysis", "developer tools"],
     category: "Audio & Voice",
     rating: 4.8,
     totalVotes: 5240
@@ -300,7 +300,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "⚡",
     color: "from-cyan-600 to-blue-600",
     directUrl: "https://deepgram.com/?via=aiwebtools",
-    tags: ["speech recognition", "transcription API", "real-time transcription", "enterprise AI", "custom models", "voice AI"],
+    tags: ["Speech-to-Text", "Transcription", "speech recognition", "transcription API", "real-time transcription", "enterprise AI", "custom models", "voice AI"],
     category: "Audio & Voice",
     rating: 4.7,
     totalVotes: 4560
@@ -312,7 +312,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🌐",
     color: "from-purple-600 to-pink-600",
     directUrl: "https://openai.com/research/whisper",
-    tags: ["speech recognition", "open source", "multilingual", "transcription", "translation", "99 languages"],
+    tags: ["Speech-to-Text", "Transcription", "open source", "multilingual", "transcription", "translation", "99 languages"],
     category: "Audio & Voice",
     rating: 4.9,
     totalVotes: 8920
@@ -324,7 +324,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "🔴",
     color: "from-red-600 to-orange-600",
     directUrl: "https://www.rev.ai/?via=aiwebtools",
-    tags: ["transcription API", "speech-to-text", "streaming transcription", "custom vocabulary", "developer API", "accurate"],
+    tags: ["Speech-to-Text", "Transcription", "transcription API", "streaming transcription", "custom vocabulary", "developer API", "accurate"],
     category: "Audio & Voice",
     rating: 4.6,
     totalVotes: 3780
@@ -336,7 +336,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📝",
     color: "from-green-600 to-teal-600",
     directUrl: "https://sonix.ai/?via=aiwebtools",
-    tags: ["automated transcription", "40+ languages", "subtitle generation", "translation", "editing tools", "fast"],
+    tags: ["Transcription", "Speech-to-Text", "40+ languages", "subtitle generation", "translation", "editing tools", "fast"],
     category: "Audio & Voice",
     rating: 4.5,
     totalVotes: 4120
@@ -348,7 +348,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "✍️",
     color: "from-yellow-600 to-orange-600",
     directUrl: "https://www.happyscribe.com/?via=aiwebtools",
-    tags: ["transcription", "subtitling", "120+ languages", "human + AI", "accurate", "multilingual"],
+    tags: ["Transcription", "Speech-to-Text", "subtitling", "120+ languages", "human + AI", "accurate", "multilingual"],
     category: "Audio & Voice",
     rating: 4.7,
     totalVotes: 5340
@@ -360,7 +360,7 @@ export const audioAndVoiceTools: Tool[] = [
     emoji: "📰",
     color: "from-indigo-600 to-purple-600",
     directUrl: "https://trint.com/?via=aiwebtools",
-    tags: ["journalist tools", "professional transcription", "collaboration", "editing", "AI transcription", "workflow"],
+    tags: ["Transcription", "Speech-to-Text", "journalist tools", "professional transcription", "collaboration", "editing", "workflow"],
     category: "Audio & Voice",
     rating: 4.6,
     totalVotes: 4890

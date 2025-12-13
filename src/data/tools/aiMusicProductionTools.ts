@@ -17,7 +17,7 @@ export const aiMusicProductionTools: Tool[] = [
     emoji: "🎵",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://www.landr.com/?via=aiwebtools",
-    tags: ["mastering", "distribution", "AI audio", "music production", "collaboration"],
+    tags: ["Music Mastering", "Audio Editing", "mastering", "distribution", "AI audio", "music production", "collaboration"],
     category: "AI Music Production Tools",
     rating: 4.5,
     totalVotes: 4123
@@ -29,7 +29,7 @@ export const aiMusicProductionTools: Tool[] = [
     emoji: "🎧",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://splice.com/?via=aiwebtools",
-    tags: ["samples", "sound library", "music creation", "royalty-free", "AI recommendations"],
+    tags: ["Music Generator", "Sound Effects", "samples", "sound library", "music creation", "royalty-free", "AI recommendations"],
     category: "AI Music Production Tools",
     rating: 4.6,
     totalVotes: 5432
@@ -41,7 +41,7 @@ export const aiMusicProductionTools: Tool[] = [
     emoji: "🎤",
     color: "from-orange-500 to-red-600",
     directUrl: "https://www.udio.com/?via=aiwebtools",
-    tags: ["AI music generation", "text-to-music", "vocals", "full songs", "AI composition"],
+    tags: ["Music Generator", "AI music generation", "text-to-music", "vocals", "full songs", "AI composition"],
     category: "AI Music Production Tools",
     rating: 4.7,
     totalVotes: 6789
@@ -53,7 +53,7 @@ export const aiMusicProductionTools: Tool[] = [
     emoji: "📻",
     color: "from-green-500 to-teal-600",
     directUrl: "https://soundraw.io/?via=aiwebtools",
-    tags: ["AI music", "royalty-free", "background music", "customizable", "commercial use"],
+    tags: ["Music Generator", "AI music", "royalty-free", "background music", "customizable", "commercial use"],
     category: "AI Music Production Tools",
     rating: 4.4,
     totalVotes: 3876
@@ -65,7 +65,7 @@ export const aiMusicProductionTools: Tool[] = [
     emoji: "🔊",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://boomy.com/?via=aiwebtools",
-    tags: ["instant music", "song creation", "monetization", "streaming", "AI composition"],
+    tags: ["Music Generator", "instant music", "song creation", "monetization", "streaming", "AI composition"],
     category: "AI Music Production Tools",
     rating: 4.2,
     totalVotes: 4321
@@ -77,7 +77,7 @@ export const aiMusicProductionTools: Tool[] = [
     emoji: "💿",
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://www.shutterstock.com/discover/ampermusic?via=aiwebtools",
-    tags: ["soundtracks", "adaptive music", "composition", "custom music", "AI composer"],
+    tags: ["Music Generator", "soundtracks", "adaptive music", "composition", "custom music", "AI composer"],
     category: "AI Music Production Tools",
     rating: 4.3,
     totalVotes: 2987
