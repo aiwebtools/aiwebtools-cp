@@ -42,8 +42,8 @@ const MainCategoryPage = () => {
     return tools;
   }, [decodedCategoryName]);
 
-  // Use filtered tools from category filter, fallback to original category tools
-  const toolsToShow = filteredToolsByCategory.length > 0 ? filteredToolsByCategory : categoryTools;
+  // Use filtered tools from category filter - this is the SOURCE OF TRUTH when filter is active
+  const toolsToShow = filteredToolsByCategory;
   
   // Create endless tools list with better performance
   const finalFilteredTools = useMemo(() => {
@@ -96,6 +96,7 @@ const MainCategoryPage = () => {
   }, [isLoading]);
 
   const handleFilteredToolsChange = useCallback((filtered: Tool[]) => {
+    console.log(`📊 MainCategoryPage received ${filtered.length} filtered tools`);
     setFilteredToolsByCategory(filtered);
   }, []);
 
@@ -116,12 +117,13 @@ const MainCategoryPage = () => {
     }
   }, [mainCategory, decodedCategoryName, navigate, isInitialized]);
 
-  // Initialize filtered tools by category once
+  // Initialize filtered tools ONLY on first mount - don't override filter selections
   useEffect(() => {
-    if (categoryTools.length > 0 && filteredToolsByCategory.length === 0) {
+    if (categoryTools.length > 0 && !isInitialized) {
+      console.log(`🔧 Initializing with ${categoryTools.length} category tools`);
       setFilteredToolsByCategory(categoryTools);
     }
-  }, [categoryTools, filteredToolsByCategory.length]);
+  }, [categoryTools.length, isInitialized]);
 
   // Reset displayed count when filtered tools change
   useEffect(() => {
@@ -211,10 +213,10 @@ const MainCategoryPage = () => {
             currentMainCategory={decodedCategoryName}
           />
 
-          {/* Tools Count Display - Real counter format */}
+          {/* Tools Count Display - Shows actual filtered count */}
           <div className="text-center mb-8">
             <div className="text-cyan-400 font-semibold">
-              {Math.min(displayedCount, finalFilteredTools.length)} tools shown — endless recommendations continue as you scroll
+              Showing {Math.min(displayedCount, finalFilteredTools.length)} of {toolsToShow.length} filtered tools — scroll for more
             </div>
           </div>
 
