@@ -72,7 +72,7 @@ const ToolsGrid = memo(({
     enableInfiniteScroll: hasInfiniteScroll
   });
 
-  // IntersectionObserver sentinel as a robust fallback to trigger loading
+  // IntersectionObserver sentinel as a robust fallback to trigger loading EARLY
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     if (!hasInfiniteScroll) return;
@@ -81,7 +81,7 @@ const ToolsGrid = memo(({
       if (entry?.isIntersecting && !isLoading) {
         onLoadMore();
       }
-    }, { root: null, rootMargin: '300px', threshold: 0.01 });
+    }, { root: null, rootMargin: '1500px', threshold: 0 }); // Trigger 1500px before visible
     const el = sentinelRef.current;
     if (el) observer.observe(el);
     return () => observer.disconnect();
