@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
+import NavigationHistoryDropdown from './NavigationHistoryDropdown';
 
 export interface BreadcrumbItem {
   label: string;
@@ -28,6 +29,9 @@ const BreadcrumbNav = ({ items, className = '' }: BreadcrumbNavProps) => {
         <Home className="w-3 h-3" />
         <span className="hidden sm:inline">Home</span>
       </button>
+
+      {/* History dropdown */}
+      <NavigationHistoryDropdown />
 
       {items.map((item, index) => (
         <div key={index} className="flex items-center gap-1">
