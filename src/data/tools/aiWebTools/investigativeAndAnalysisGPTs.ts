@@ -22,7 +22,7 @@ export const investigativeAndAnalysisGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://snoopimageai.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-snoop-image-ai-presented-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
-    tags: ["image detection", "ai detection", "authenticity", "forensics", "snoop dogg", "experimental", "image analysis", "aiwebtools"],
+    tags: ["image detection", "ai detection", "authenticity", "forensics", "snoop dogg", "experimental", "image analysis", "aiwebtools", "Custom GPT"],
     category: "Investigative & Analysis",
     rating: 4.6,
     totalVotes: 3456
@@ -35,7 +35,7 @@ export const investigativeAndAnalysisGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://historicalpatternsgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-advertisement-with-the-eye_C64dU.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
-    tags: ["historical patterns", "hidden truths", "pattern recognition", "alternative history", "research", "truth seeking", "aiwebtools"],
+    tags: ["historical patterns", "hidden truths", "pattern recognition", "alternative history", "research", "truth seeking", "aiwebtools", "Custom GPT"],
     category: "Investigative & Analysis",
     rating: 4.5,
     totalVotes: 2987
@@ -48,7 +48,7 @@ export const investigativeAndAnalysisGPTs: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://videoanalysisgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-banner-ad-with-the-text-video-second-b_764zv.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
-    tags: ["video analysis", "frame analysis", "visual inspection", "content analysis", "video processing", "aiwebtools"],
+    tags: ["video analysis", "frame analysis", "visual inspection", "content analysis", "video processing", "aiwebtools", "Custom GPT"],
     category: "Investigative & Analysis",
     rating: 4.7,
     totalVotes: 3789
@@ -62,7 +62,7 @@ export const investigativeAndAnalysisGPTs: Tool[] = [
     directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/faBkRli0puc?si=Sao0KIfV2iGWLGB-",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-ufo-hovering-in-the-sky-wit_w8l4l.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["paranormal investigation", "cryptozoology", "supernatural", "ufo research", "ghost hunting", "phenomena analysis", "mystery investigation", "aiwebtools"],
+    tags: ["paranormal investigation", "cryptozoology", "supernatural", "ufo research", "ghost hunting", "phenomena analysis", "mystery investigation", "aiwebtools", "Custom GPT"],
     category: "Investigative & Analysis",
     rating: 4.2,
     totalVotes: 2156
@@ -75,7 +75,7 @@ export const investigativeAndAnalysisGPTs: Tool[] = [
     color: "from-red-500 to-purple-600",
     directUrl: "https://criminologistgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/3Ll7KPhTt3M",
-    tags: ["crime scene analysis", "forensic analysis", "investigation", "crime scene", "aiwebtools"],
+    tags: ["crime scene analysis", "forensic analysis", "investigation", "crime scene", "aiwebtools", "Custom GPT"],
     category: "Investigative & Analysis",
     rating: 4.5,
     totalVotes: 2987
@@ -88,7 +88,7 @@ export const investigativeAndAnalysisGPTs: Tool[] = [
     color: "from-slate-500 to-gray-700",
     directUrl: "https://chatgpt.com/g/g-68eeaf21bd1481919a34936a27d917a3-declassified-files-explorer-gpt?via=aiwebtools",
     videoUrl: "https://youtu.be/kqMPocOgEZ8?si=UlxkH6weSVM1fp-I",
-    tags: ["declassified files", "government documents", "research", "historical records", "transparency", "intelligence reports", "document analysis", "aiwebtools"],
+    tags: ["declassified files", "government documents", "research", "historical records", "transparency", "intelligence reports", "document analysis", "aiwebtools", "Custom GPT"],
     category: "Investigative & Analysis",
     rating: 4.6,
     totalVotes: 2543

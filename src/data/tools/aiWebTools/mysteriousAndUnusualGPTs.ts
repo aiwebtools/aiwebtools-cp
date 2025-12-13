@@ -17,7 +17,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🧠",
     color: "from-purple-600 to-indigo-700",
     directUrl: "https://chatgpt.com/g/g-N5bWo8m4p-mirror-mind-gpt",
-    tags: ["mind reading", "psychology", "consciousness", "telepathy", "mysterious"],
+    tags: ["mind reading", "psychology", "consciousness", "telepathy", "mysterious", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.1,
     totalVotes: 756
@@ -30,7 +30,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     color: "from-gray-800 to-black",
     directUrl: "https://oraculum.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=dUNrGNj8rhM",
-    tags: ["hidden truths", "mysteries", "conspiracy", "revelation", "secrets"],
+    tags: ["hidden truths", "mysteries", "conspiracy", "revelation", "secrets", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.2,
     totalVotes: 1123
@@ -44,7 +44,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/faBkRli0puc?si=Sao0KIfV2iGWLGB-",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-ufo-hovering-in-the-sky-wit_w8l4l.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["paranormal", "UFO", "cryptozoology", "supernatural", "investigation"],
+    tags: ["paranormal", "UFO", "cryptozoology", "supernatural", "investigation", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.4,
     totalVotes: 1456
@@ -57,7 +57,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     color: "from-blue-500 to-purple-600",
     directUrl: "https://probabilitygpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
-    tags: ["probability", "truth analysis", "fact checking", "uncertainty", "decision making"],
+    tags: ["probability", "truth analysis", "fact checking", "uncertainty", "decision making", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.5,
     totalVotes: 1287
@@ -69,7 +69,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🏛️",
     color: "from-blue-600 to-cyan-700",
     directUrl: "https://chatgpt.com/g/g-68b496eea38481919c1700ed3ef675dd-atlantean-memory-keeper/?via=aiwebtools",
-    tags: ["atlantis", "ancient knowledge", "lost civilization", "mysteries", "ancient wisdom", "forgotten history", "aiwebtools"],
+    tags: ["atlantis", "ancient knowledge", "lost civilization", "mysteries", "ancient wisdom", "forgotten history", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.6,
     totalVotes: 934
@@ -81,7 +81,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🔮",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-68b491e8cc2c8191b6b85930d7fc9e75-mayan-dreamspell-matrix/?via=aiwebtools",
-    tags: ["mayan calendar", "dreamspell", "galactic signature", "cosmic wisdom", "spiritual guidance", "ancient knowledge", "aiwebtools"],
+    tags: ["mayan calendar", "dreamspell", "galactic signature", "cosmic wisdom", "spiritual guidance", "ancient knowledge", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.6,
     totalVotes: 2341
@@ -93,7 +93,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "💎",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://chatgpt.com/g/g-68b48f8e43c88191981386b943648566-emerald-signature-of-thoth/?via=aiwebtools",
-    tags: ["hermetic wisdom", "thoth", "emerald tablets", "ancient codes", "mystical knowledge", "spiritual transmission", "aiwebtools"],
+    tags: ["hermetic wisdom", "thoth", "emerald tablets", "ancient codes", "mystical knowledge", "spiritual transmission", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.8,
     totalVotes: 1967
@@ -105,7 +105,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "⭐",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://chatgpt.com/g/g-68b48e0515708191a8fec9d0aa385c67-the-babylonian-star-tablet-protocol/?via=aiwebtools",
-    tags: ["babylonian wisdom", "star tablets", "cosmic alignment", "celestial frequencies", "ancient astronomy", "spiritual awakening", "aiwebtools"],
+    tags: ["babylonian wisdom", "star tablets", "cosmic alignment", "celestial frequencies", "ancient astronomy", "spiritual awakening", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.7,
     totalVotes: 1834
@@ -117,7 +117,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "ᚱ",
     color: "from-red-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-68b48a3a7e6c819196d72ea7ec94a63e-the-rune-frequency-protocol/?via=aiwebtools",
-    tags: ["runes", "frequency", "sovereignty", "sacred geometry", "ancient symbols", "spiritual awakening", "embodiment", "aiwebtools"],
+    tags: ["runes", "frequency", "sovereignty", "sacred geometry", "ancient symbols", "spiritual awakening", "embodiment", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.8,
     totalVotes: 1456
@@ -129,7 +129,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🌌",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68ba0f7208e08191a48694dcda1543e2-ai-reality-splitter/?via=aiwebtools",
-    tags: ["reality splitting", "parallel timelines", "decision mapping", "quantum choices", "alternate realities", "consciousness", "aiwebtools"],
+    tags: ["reality splitting", "parallel timelines", "decision mapping", "quantum choices", "alternate realities", "consciousness", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.9,
     totalVotes: 2345
@@ -141,7 +141,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🌟",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-68bd849122b48191963171690f999952-astrotheology-revealer-gpt/?via=aiwebtools",
-    tags: ["astrotheology", "religious analysis", "mythology", "ancient wisdom", "celestial symbolism", "spiritual astronomy", "aiwebtools"],
+    tags: ["astrotheology", "religious analysis", "mythology", "ancient wisdom", "celestial symbolism", "spiritual astronomy", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.8,
     totalVotes: 1543
@@ -154,7 +154,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     color: "from-indigo-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-68c1e9e3b488819193744edfeecf7997-world-reality-decoder-gpt",
     videoUrl: "https://youtu.be/lGck2bUVFDU?si=ywmO-xNwrfmnJmkW",
-    tags: ["reality decoding", "pattern analysis", "truth seeking", "system analysis", "hidden connections", "critical thinking", "world analysis"],
+    tags: ["reality decoding", "pattern analysis", "truth seeking", "system analysis", "hidden connections", "critical thinking", "world analysis", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.6,
     totalVotes: 1234
@@ -167,7 +167,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     color: "from-green-600 to-emerald-700",
     directUrl: "https://neomatrixgpt.lovable.app/architect",
     videoUrl: "https://youtu.be/qMLF5L_h2xo",
-    tags: ["quantum physics", "quantum holography", "matrix", "architect", "philosophy", "consciousness", "reality", "awakening"],
+    tags: ["quantum physics", "quantum holography", "matrix", "architect", "philosophy", "consciousness", "reality", "awakening", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.9,
     totalVotes: 2156
@@ -181,7 +181,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-ancient-gematria-scan-gpt",
     videoUrl: "https://www.youtube.com/watch?v=zBlubLw-OdY",
     imageUrl: "/images/gematria-gpt.png",
-    tags: ["gematria", "numerology", "sacred geometry", "ancient wisdom", "mystical", "number analysis", "spiritual", "hebrew", "greek"],
+    tags: ["gematria", "numerology", "sacred geometry", "ancient wisdom", "mystical", "number analysis", "spiritual", "hebrew", "greek", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.7,
     totalVotes: 1178
@@ -194,7 +194,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     color: "from-blue-500 to-cyan-600",
     videoUrl: "https://youtu.be/6jFoFR9Hags",
     directUrl: "https://chatgpt.com/g/g-68e939ff278881919b292a679faaac43-jarvis-the-steward-of-humanity-gpt",
-    tags: ["post-collapse", "humanity", "rebuilding", "ethics", "wisdom", "stewardship", "civilization", "guidance", "chat assistant", "ai assistant"],
+    tags: ["post-collapse", "humanity", "rebuilding", "ethics", "wisdom", "stewardship", "civilization", "guidance", "chat assistant", "ai assistant", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.8,
     totalVotes: 1456
@@ -207,7 +207,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     color: "from-blue-600 to-purple-700",
     directUrl: "https://chatgpt.com/g/g-68eb1e7a39d48191ac52cd628c18fd2b-magnetism-gpt/?via=aiwebtools",
     imageUrl: "/images/magnetism-gpt.png",
-    tags: ["magnetism", "science", "spirit", "coherence", "electromagnetic", "consciousness", "energy", "healing", "education", "aiwebtools"],
+    tags: ["magnetism", "science", "spirit", "coherence", "electromagnetic", "consciousness", "energy", "healing", "education", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.7,
     totalVotes: 823
@@ -219,7 +219,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🌌",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68fb8e9c98188191961129f8c4d120b7-the-cosmic-probability-gpt",
-    tags: ["cosmic probability", "existence analysis", "probability calculation", "universe", "mathematics", "philosophy", "reality decoding", "aiwebtools"],
+    tags: ["cosmic probability", "existence analysis", "probability calculation", "universe", "mathematics", "philosophy", "reality decoding", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.8,
     totalVotes: 1567
@@ -231,7 +231,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "〰️",
     color: "from-cyan-500 to-purple-600",
     directUrl: "https://chatgpt.com/g/g-6927f5357470819190bf5cf115c4dc5b-frequency-signature-decoder?via=aiwebtools",
-    tags: ["frequency", "vibration", "energy", "mystical", "decoder", "consciousness", "resonance", "spiritual awakening", "dimensional energies", "aiwebtools"],
+    tags: ["frequency", "vibration", "energy", "mystical", "decoder", "consciousness", "resonance", "spiritual awakening", "dimensional energies", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.7,
     totalVotes: 1289
@@ -243,7 +243,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "📚",
     color: "from-indigo-600 to-violet-700",
     directUrl: "https://chatgpt.com/g/g-692800a13eb881918fac2a7b1b86ad98-intergalactic-ancient-archivist-gpt?via=aiwebtools",
-    tags: ["intergalactic", "ancient knowledge", "cosmic archives", "mythology", "extraterrestrial", "universal wisdom", "space civilizations", "galactic history", "aiwebtools"],
+    tags: ["intergalactic", "ancient knowledge", "cosmic archives", "mythology", "extraterrestrial", "universal wisdom", "space civilizations", "galactic history", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.8,
     totalVotes: 1456
@@ -255,7 +255,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🏛️",
     color: "from-amber-600 to-stone-700",
     directUrl: "https://chatgpt.com/g/g-693863184c4c8191a6e78eb6a215196f-architectural-old-world-investigator-gpt?via=aiwebtools",
-    tags: ["architecture", "old world", "forensic analysis", "timeline contradictions", "historical investigation", "ancient buildings", "construction mysteries", "architectural anomalies", "aiwebtools"],
+    tags: ["architecture", "old world", "forensic analysis", "timeline contradictions", "historical investigation", "ancient buildings", "construction mysteries", "architectural anomalies", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.7,
     totalVotes: 1234

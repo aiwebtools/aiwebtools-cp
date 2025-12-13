@@ -35,7 +35,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "🔮",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://whatsmynamegpt.lovable.app/?via=aiwebtools",
-    tags: ["name analysis", "personality insights", "numerology", "cultural significance", "personal discovery", "name meaning", "identity", "name research", "name predictor", "name insight"],
+    tags: ["name analysis", "personality insights", "numerology", "cultural significance", "personal discovery", "name meaning", "identity", "name research", "name predictor", "name insight", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 4.7,
     totalVotes: 2890
@@ -47,7 +47,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "💬",
     color: "from-blue-500 to-teal-500",
     directUrl: "https://chat.openai.com/g/g-8YSiwFFr8",
-    tags: ["honest advice", "personal guidance", "life coaching", "relationship advice", "career guidance", "decision making", "straightforward", "practical advice", "personal development", "life decisions"],
+    tags: ["honest advice", "personal guidance", "life coaching", "relationship advice", "career guidance", "decision making", "straightforward", "practical advice", "personal development", "life decisions", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 4.8,
     totalVotes: 2100
@@ -59,7 +59,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "🐦",
     color: "from-green-500 to-blue-500",
     directUrl: "https://chat.openai.com/g/g-hI9vzWGHx",
-    tags: ["bird watching", "ornithology", "bird identification", "nature", "wildlife", "birding", "bird species", "nature observation", "outdoor activities", "hobby"],
+    tags: ["bird watching", "ornithology", "bird identification", "nature", "wildlife", "birding", "bird species", "nature observation", "outdoor activities", "hobby", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 4.6,
     totalVotes: 1850
@@ -71,7 +71,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "🌟",
     color: "from-yellow-400 to-orange-500",
     directUrl: "https://chat.openai.com/g/g-j8J2j3g6L-clarity-coach",
-    tags: ["clarity", "personal growth", "goal setting", "decision making", "self-discovery"],
+    tags: ["clarity", "personal growth", "goal setting", "decision making", "self-discovery", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 4.8,
     totalVotes: 3200
@@ -83,7 +83,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "🏛️",
     color: "from-gray-600 to-gray-700",
     directUrl: "https://chat.openai.com/g/g-68afa48b90c88191b2dbb03b479efdd7-stoic-guide-gpt",
-    tags: ["stoicism", "philosophy", "resilience", "emotional management", "virtue"],
+    tags: ["stoicism", "philosophy", "resilience", "emotional management", "virtue", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 4.7,
     totalVotes: 2900
@@ -95,7 +95,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "✨",
     color: "from-pink-400 to-purple-500",
     directUrl: "https://chat.openai.com/g/g-68afa9073e0081919c1ef87d9fdcf00d-yogi-manifestation-mentor",
-    tags: ["manifestation", "law of attraction", "visualization", "affirmations", "positive thinking"],
+    tags: ["manifestation", "law of attraction", "visualization", "affirmations", "positive thinking", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 4.6,
     totalVotes: 2700
@@ -107,7 +107,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "🎯",
     color: "from-green-400 to-blue-500",
     directUrl: "https://chat.openai.com/g/g-yYq97Gt93-goal-setter",
-    tags: ["goal setting", "planning", "motivation", "success", "achievement"],
+    tags: ["goal setting", "planning", "motivation", "success", "achievement", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 4.5,
     totalVotes: 2500
@@ -119,7 +119,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "💡",
     color: "from-orange-400 to-yellow-500",
     directUrl: "https://chat.openai.com/g/g-68afa6ce4ae88191ae0166741c7b760f-creative-spark-gpt",
-    tags: ["creativity", "inspiration", "art", "imagination", "expression"],
+    tags: ["creativity", "inspiration", "art", "imagination", "expression", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 4.4,
     totalVotes: 2300
@@ -131,7 +131,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "📖",
     color: "from-blue-400 to-purple-500",
     directUrl: "https://chatgpt.com/g/g-683f4621e2308191a5e9c023254acaad-personal-life-coach-gpt",
-    tags: ["life coaching", "personal transformation", "confidence", "fulfillment", "guidance"],
+    tags: ["life coaching", "personal transformation", "confidence", "fulfillment", "guidance", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 4.3,
     totalVotes: 2100
@@ -143,7 +143,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "🫂",
     color: "from-pink-400 to-red-500",
     directUrl: "https://chat.openai.com/g/g-H4C9V8z8P-relationship-advisor",
-    tags: ["relationships", "communication", "advice", "intimacy", "love"],
+    tags: ["relationships", "communication", "advice", "intimacy", "love", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 4.2,
     totalVotes: 1900
@@ -155,7 +155,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "⭐",
     color: "from-yellow-400 to-green-500",
     directUrl: "https://chat.openai.com/g/g-68afa7de4eb481919e890a26b4655b49-self-esteem-booster",
-    tags: ["self-esteem", "confidence", "affirmations", "positive feedback", "self-worth"],
+    tags: ["self-esteem", "confidence", "affirmations", "positive feedback", "self-worth", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 4.1,
     totalVotes: 1700
@@ -167,7 +167,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "🧭",
     color: "from-blue-400 to-orange-500",
     directUrl: "https://chat.openai.com/g/g-68afa2aea7a88191ae30470b2547b176-purpose-finder-gpt",
-    tags: ["purpose", "values", "passions", "talents", "meaning"],
+    tags: ["purpose", "values", "passions", "talents", "meaning", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 4.0,
     totalVotes: 1500
@@ -179,7 +179,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "🛡️",
     color: "from-green-400 to-gray-500",
     directUrl: "https://chat.openai.com/g/g-68afa584de708191855d6b9dc660e169-stress-relief-coach",
-    tags: ["stress relief", "anxiety management", "relaxation", "mindfulness", "coping strategies"],
+    tags: ["stress relief", "anxiety management", "relaxation", "mindfulness", "coping strategies", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 3.9,
     totalVotes: 1300
@@ -191,7 +191,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "⚡",
     color: "from-yellow-400 to-blue-500",
     directUrl: "https://chat.openai.com/g/g-68afa1c541cc8191be3360351f28eeda-habit-builder-gpt",
-    tags: ["habit building", "goal setting", "motivation", "progress tracking", "routines"],
+    tags: ["habit building", "goal setting", "motivation", "progress tracking", "routines", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 3.8,
     totalVotes: 1100
@@ -203,7 +203,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "👑",
     color: "from-purple-400 to-green-500",
     directUrl: "https://chatgpt.com/g/g-68aed1eb015c8191bc8e2887bd4786b9-leadership-mentor-gpt",
-    tags: ["leadership", "mentoring", "inspiration", "motivation", "empowerment"],
+    tags: ["leadership", "mentoring", "inspiration", "motivation", "empowerment", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 3.7,
     totalVotes: 900
@@ -215,7 +215,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "🔥",
     color: "from-red-400 to-orange-500",
     directUrl: "https://chat.openai.com/g/g-68af9fd685a88191bbf7cc964509beef-passion-igniter",
-    tags: ["passion", "interests", "strengths", "joy", "fulfillment"],
+    tags: ["passion", "interests", "strengths", "joy", "fulfillment", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 3.5,
     totalVotes: 500
@@ -227,7 +227,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "☀️",
     color: "from-yellow-400 to-green-500",
     directUrl: "https://chat.openai.com/g/g-68af9eecd0048191a7ce93eddfd47559-gratitude-guide-gpt",
-    tags: ["gratitude", "appreciation", "positive emotions", "well-being", "perspective"],
+    tags: ["gratitude", "appreciation", "positive emotions", "well-being", "perspective", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 3.4,
     totalVotes: 300
@@ -239,7 +239,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "🌙",
     color: "from-blue-400 to-gray-500",
     directUrl: "https://chat.openai.com/g/g-68af9dc3d0688191830cd5a3d71e39df-mindfulness-mentor-gpt",
-    tags: ["mindfulness", "meditation", "breathing exercises", "stress reduction", "inner peace"],
+    tags: ["mindfulness", "meditation", "breathing exercises", "stress reduction", "inner peace", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 3.3,
     totalVotes: 100
