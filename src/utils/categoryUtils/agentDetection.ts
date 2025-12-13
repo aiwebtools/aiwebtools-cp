@@ -7,6 +7,7 @@ import { Tool } from "@/types/tools";
 export const AGENT_SUBTYPES = {
   AUTOMATION: "Automation Agent",
   CODING: "Coding Agent",
+  VIBE_CODING: "Vibe Coding Agent",
   VOICE: "Voice Agent",
   WEB_TASKS: "Web Tasks Agent",
   RESEARCH: "Research Agent",
@@ -23,7 +24,11 @@ export const AGENT_SUBTYPES = {
   WRITING: "Writing Agent",
   SCHEDULING: "Scheduling Agent",
   HR: "HR Agent",
-  MEETING: "Meeting Agent"
+  MEETING: "Meeting Agent",
+  CREATIVE: "Creative Agent",
+  GAME: "Game Agent",
+  CLOUD: "Cloud Agent",
+  AUTONOMOUS: "Autonomous Agent"
 } as const;
 
 /**
@@ -40,11 +45,21 @@ const AUTOMATION_KEYWORDS = [
  * Keywords that indicate coding agent behavior
  */
 const CODING_KEYWORDS = [
-  "coding agent", "code generation", "vibe coding", "full-stack", "ai coder",
+  "coding agent", "code generation", "full-stack", "ai coder",
   "code completion", "autonomous coding", "software engineer", "devin",
-  "cursor", "copilot", "bolt.new", "lovable", "replit agent", "codeium",
+  "cursor", "copilot", "bolt.new", "replit agent", "codeium",
   "tabnine", "windsurf", "codex", "pair programming", "ide agent",
-  "app builder", "web builder", "autonomous development", "agentic coding"
+  "autonomous development", "agentic coding"
+];
+
+/**
+ * Keywords that indicate vibe coding agent behavior
+ */
+const VIBE_CODING_KEYWORDS = [
+  "vibe coding", "vibe coder", "vibe coding agent", "lovable", "bolt.new",
+  "base44", "launch.today", "rocket.new", "mgx.dev", "same.new", "rork",
+  "app builder", "web builder", "no-code builder", "full-stack builder",
+  "idea to app", "natural language coding", "conversational coding"
 ];
 
 /**
@@ -160,6 +175,7 @@ export const getAgentSubtype = (tool: Tool): string | null => {
 
   // Priority order: more specific types first
   if (MULTI_AGENT_KEYWORDS.some(kw => combined.includes(kw))) return AGENT_SUBTYPES.MULTI_AGENT;
+  if (VIBE_CODING_KEYWORDS.some(kw => combined.includes(kw))) return AGENT_SUBTYPES.VIBE_CODING;
   if (CODING_KEYWORDS.some(kw => combined.includes(kw))) return AGENT_SUBTYPES.CODING;
   if (VOICE_KEYWORDS.some(kw => combined.includes(kw))) return AGENT_SUBTYPES.VOICE;
   if (WEB_TASKS_KEYWORDS.some(kw => combined.includes(kw))) return AGENT_SUBTYPES.WEB_TASKS;
