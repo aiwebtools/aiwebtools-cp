@@ -15,6 +15,7 @@ import { productivityUtilitiesSubtypes, detectProductivityUtilitiesSubtype, isPr
 import { researchAcademicSubtypes, detectResearchAcademicSubtype, isResearchAcademicTool } from "./researchAcademicDetection";
 import { VIDEO_SUBTYPES, detectVideoSubtypes, isVideoMultimediaTool } from "./videoMultimediaDetection";
 import { writingContentSubtypes, detectWritingContentSubtypes, isWritingContentTool } from "./writingContentDetection";
+import { SECURITY_PRIVACY_SUBTYPES, detectSecurityPrivacySubtype, isSecurityPrivacyTool } from "./securityPrivacyDetection";
 
 export interface PhaseTestResult {
   phase: number;
@@ -187,11 +188,18 @@ const CATEGORY_PHASES = [
     subtypes: Object.values(MARKETING_SALES_SUBTYPES),
     detect: detectMarketingSalesSubtypes,
     isCategory: isMarketingSalesTool
+  },
+  {
+    phase: 14,
+    name: "Security & Privacy",
+    subtypes: [...SECURITY_PRIVACY_SUBTYPES],
+    detect: detectSecurityPrivacySubtype,
+    isCategory: isSecurityPrivacyTool
   }
 ];
 
 export function runCategoryPhaseTest(tools: Tool[]): CategoryPhaseTestReport {
-  console.log("🧪 CATEGORY PHASE TEST - Starting comprehensive test of all 13 phases...");
+  console.log("🧪 CATEGORY PHASE TEST - Starting comprehensive test of all 14 phases...");
   console.log(`📊 Total tools to analyze: ${tools.length}`);
   
   const phaseResults: PhaseTestResult[] = [];
