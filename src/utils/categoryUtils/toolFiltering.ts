@@ -12,12 +12,14 @@ import {
 } from "./categoryMatching";
 import { CategoryCounts, MainCategoryCounts } from "./types";
 import { buildToolsCache, getToolsCacheByMainCategory, isCacheBuilt } from "./cacheManager";
-import { isAIWebToolsGPT } from "./specializedDetection";
+import { isAIWebToolsGPT, isEducationRelatedTool } from "./specializedDetection";
 import { applyAIWebToolsPrioritization, getAIWebToolsPriorityScore } from "@/utils/aiWebToolsPrioritization";
 import { filterBusinessTools } from "./businessCategoryFiltering";
 import { allTools } from "@/data/toolsData";
 import { isGamingEntertainmentTool } from "./gamingEntertainmentDetection";
 import { isSecurityPrivacyTool } from "./securityPrivacyDetection";
+import { isIndustrySpecificTool } from "./industryDetection";
+import { isSpiritualityTool } from "./spiritualityDetection";
 
 export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
   const categoryCounts: CategoryCounts = {};
@@ -149,33 +151,63 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
   mainCategories.forEach(mainCat => {
     let toolCount = 0;
     
-    // ALL AI TOOLS should return the total count
-    if (mainCat.name === "ALL AI TOOLS") {
-      toolCount = tools.length;
-      console.log(`🌍 ${mainCat.name}: ${toolCount} tools (all tools)`);
-    } else if (mainCat.name === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
-      const healthTools = tools.filter(tool => isHealthAndWellnessTool(tool));
-      toolCount = healthTools.length;
-      console.log(`🏥 ${mainCat.name}: ${toolCount} tools (enhanced detection)`);
-    } else if (mainCat.name === "CREATIVE & ENTERTAINMENT") {
-      const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
-      toolCount = creativeTools.length;
-      console.log(`🎭 FIXED ${mainCat.name}: ${toolCount} tools (corrected detection)`);
-    } else if (mainCat.name === "GAMING & ENTERTAINMENT") {
-      const gamingTools = tools.filter(tool => isGamingEntertainmentTool(tool));
-      toolCount = gamingTools.length;
-      console.log(`🎮 ${mainCat.name}: ${toolCount} tools (enhanced detection)`);
-    } else if (mainCat.name === "SECURITY & PRIVACY") {
-      const securityTools = tools.filter(tool => isSecurityPrivacyTool(tool));
-      toolCount = securityTools.length;
-      console.log(`🔒 ${mainCat.name}: ${toolCount} tools (enhanced detection)`);
-    } else {
-      // Build cache if needed and get cached results
-      buildToolsCache(tools);
-      const toolsCacheByMainCategory = getToolsCacheByMainCategory();
-      const cachedTools = toolsCacheByMainCategory.get(mainCat.name);
-      toolCount = cachedTools ? cachedTools.length : 0;
-      console.log(`📊 ${mainCat.name}: ${toolCount} tools (cached)`);
+    switch (mainCat.name) {
+      case "ALL AI TOOLS": {
+        toolCount = tools.length;
+        console.log(`🌍 ${mainCat.name}: ${toolCount} tools (all tools)`);
+        break;
+      }
+      case "HEALTH, WELLNESS & PERSONAL LIFESTYLE": {
+        const healthTools = tools.filter(tool => isHealthAndWellnessTool(tool));
+        toolCount = healthTools.length;
+        console.log(`🏥 ${mainCat.name}: ${toolCount} tools (enhanced detection)`);
+        break;
+      }
+      case "CREATIVE & ENTERTAINMENT": {
+        const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
+        toolCount = creativeTools.length;
+        console.log(`🎭 FIXED ${mainCat.name}: ${toolCount} tools (corrected detection)`);
+        break;
+      }
+      case "GAMING & ENTERTAINMENT": {
+        const gamingTools = tools.filter(tool => isGamingEntertainmentTool(tool));
+        toolCount = gamingTools.length;
+        console.log(`🎮 ${mainCat.name}: ${toolCount} tools (enhanced detection)`);
+        break;
+      }
+      case "SECURITY & PRIVACY": {
+        const securityTools = tools.filter(tool => isSecurityPrivacyTool(tool));
+        toolCount = securityTools.length;
+        console.log(`🔒 ${mainCat.name}: ${toolCount} tools (enhanced detection)`);
+        break;
+      }
+      case "EDUCATION & LEARNING": {
+        const educationTools = tools.filter(tool => isEducationRelatedTool(tool));
+        toolCount = educationTools.length;
+        console.log(`🎓 ${mainCat.name}: ${toolCount} tools (education detection)`);
+        break;
+      }
+      case "INDUSTRY SPECIFIC AI TOOLS": {
+        const industryTools = tools.filter(tool => isIndustrySpecificTool(tool));
+        toolCount = industryTools.length;
+        console.log(`🏭 ${mainCat.name}: ${toolCount} tools (industry detection)`);
+        break;
+      }
+      case "SPIRITUALITY & PHILOSOPHY": {
+        const spiritualTools = tools.filter(tool => isSpiritualityTool(tool));
+        toolCount = spiritualTools.length;
+        console.log(`🕊️ ${mainCat.name}: ${toolCount} tools (spirituality detection)`);
+        break;
+      }
+      default: {
+        // Build cache if needed and get cached results
+        buildToolsCache(tools);
+        const toolsCacheByMainCategory = getToolsCacheByMainCategory();
+        const cachedTools = toolsCacheByMainCategory.get(mainCat.name);
+        toolCount = cachedTools ? cachedTools.length : 0;
+        console.log(`📊 ${mainCat.name}: ${toolCount} tools (cached)`);
+        break;
+      }
     }
     
     mainCategoryCounts[mainCat.name] = toolCount;
@@ -188,10 +220,12 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
   // Enhanced logging for the problematic categories
   const creativeCount = mainCategoryCounts["CREATIVE & ENTERTAINMENT"] || 0;
   const healthCount = mainCategoryCounts["HEALTH, WELLNESS & PERSONAL LIFESTYLE"] || 0;
+  const educationCount = mainCategoryCounts["EDUCATION & LEARNING"] || 0;
   console.log(`🔍 CORRECTED COUNTS:`);
   console.log(`   Creative & Entertainment: ${creativeCount} tools`);
   console.log(`   Health, Wellness & Personal Lifestyle: ${healthCount} tools`);
-  console.log(`   Combined: ${creativeCount + healthCount} tools`);
+  console.log(`   Education & Learning: ${educationCount} tools`);
+  console.log(`   Combined (C+H+E): ${creativeCount + healthCount + educationCount} tools`);
   
   return mainCategoryCounts;
 };

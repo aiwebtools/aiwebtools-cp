@@ -115,5 +115,20 @@ export const specializedCategories: MainCategory[] = [
       "Access Control",
       "Security Automation"
     ]
+  },
+  {
+    name: "SPIRITUALITY & PHILOSOPHY",
+    emoji: "🕊️",
+    description: "Spiritual, religious, and philosophical AI tools for wisdom exploration and inner growth",
+    subcategories: [
+      "Spirituality & Philosophy",
+      "Spiritual & Religious Tools",
+      "Historical & Mystical",
+      "Esoteric & Occult",
+      "Wisdom Teachers",
+      "Meditation & Contemplation",
+      "Spiritual Simulation",
+      "Philosophy & Lifestyle"
+    ]
   }
 ];
