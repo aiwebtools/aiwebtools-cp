@@ -29,7 +29,7 @@ import { isSecurityPrivacyTool } from "./securityPrivacyDetection";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 33; // Phase 15: Gaming & Entertainment as main category with proper detection
+let cacheVersion = 34; // Phase 15 complete: ALL AI TOOLS returns full count, Gaming & Entertainment + Security & Privacy in filters
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';
@@ -75,7 +75,7 @@ export const resetCache = () => {
   console.log('🔄 Cache reset - will rebuild with business category filtering');
 };
 
-// Force immediate cache reset for business filtering update
+// Force immediate cache reset for comprehensive category detection update (v33)
 resetCache();
 
 // Helper function to combine subcategory and specialized tools efficiently

@@ -149,7 +149,11 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
   mainCategories.forEach(mainCat => {
     let toolCount = 0;
     
-    if (mainCat.name === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
+    // ALL AI TOOLS should return the total count
+    if (mainCat.name === "ALL AI TOOLS") {
+      toolCount = tools.length;
+      console.log(`🌍 ${mainCat.name}: ${toolCount} tools (all tools)`);
+    } else if (mainCat.name === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
       const healthTools = tools.filter(tool => isHealthAndWellnessTool(tool));
       toolCount = healthTools.length;
       console.log(`🏥 ${mainCat.name}: ${toolCount} tools (enhanced detection)`);
@@ -219,6 +223,12 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   else if (mainCategoryName === "SECURITY & PRIVACY") {
     categoryTools = tools.filter(tool => isSecurityPrivacyTool(tool));
     console.log(`🔒 Found ${categoryTools.length} security & privacy tools`);
+  }
+  
+  // ALL AI TOOLS - return everything
+  else if (mainCategoryName === "ALL AI TOOLS") {
+    categoryTools = [...tools];
+    console.log(`🌍 ALL AI TOOLS: Returning all ${categoryTools.length} tools`);
   }
   
   else {
