@@ -27,6 +27,7 @@ import AIToolsHub from "./pages/AIToolsHub";
 import AIAgentsDirectory from "./pages/AIAgentsDirectory";
 import ChatGPTAlternatives from "./pages/ChatGPTAlternatives";
 import BlogPage from "./pages/BlogPage";
+import GamingEntertainmentPage from "./pages/GamingEntertainmentPage";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const AnimatedRoutes = () => {
         <Route path="/ai-agents-directory" element={<AIAgentsDirectory />} />
         <Route path="/chatgpt-alternatives" element={<ChatGPTAlternatives />} />
         <Route path="/blog" element={<BlogPage />} />
+        <Route path="/gaming-entertainment" element={<GamingEntertainmentPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/disclaimers" element={<DisclaimersPage />} />
         <Route path="/our-story" element={<OurStoryPage />} />
