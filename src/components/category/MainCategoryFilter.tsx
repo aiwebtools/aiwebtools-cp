@@ -17,6 +17,8 @@ import {
 // Agent sub-type definitions with emoji and keywords for filtering
 const AGENT_SUBTYPES = [
   { id: 'all', label: 'All Agents', emoji: '🤖', keywords: [] },
+  { id: 'chatbot', label: 'Chatbot Agents', emoji: '💬', keywords: ['chatbot agent', 'chatbot', 'conversational', 'chat', 'messaging', 'support agent'] },
+  { id: 'custom-gpt', label: 'Custom GPTs & Gems', emoji: '✨', keywords: ['custom gpt', 'gpt', 'gem', 'chatgpt.com/g/', 'lovable.app'] },
   { id: 'coding', label: 'Coding Agents', emoji: '💻', keywords: ['coding agent', 'code', 'developer', 'programming', 'software'] },
   { id: 'automation', label: 'Automation Agents', emoji: '⚙️', keywords: ['automation agent', 'workflow', 'automate', 'zapier', 'make.com', 'n8n'] },
   { id: 'web-tasks', label: 'Web Task Agents', emoji: '🌐', keywords: ['web tasks agent', 'browser', 'computer use', 'web automation'] },
@@ -24,6 +26,8 @@ const AGENT_SUBTYPES = [
   { id: 'multi-agent', label: 'Multi-Agent', emoji: '🔗', keywords: ['multi-agent', 'framework', 'orchestration', 'swarm'] },
   { id: 'research', label: 'Research Agents', emoji: '🔬', keywords: ['research agent', 'analysis', 'data', 'investigation'] },
   { id: 'task', label: 'Task Agents', emoji: '✅', keywords: ['task agent', 'assistant', 'productivity', 'execution'] },
+  { id: 'sales', label: 'Sales Agents', emoji: '💼', keywords: ['sales agent', 'crm', 'revenue', 'lead'] },
+  { id: 'support', label: 'Support Agents', emoji: '🎧', keywords: ['support agent', 'customer support', 'helpdesk', 'ticket'] },
 ];
 
 interface MainCategoryFilterProps {
@@ -121,6 +125,15 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
           const title = tool.title.toLowerCase();
           const description = (tool.description || '').toLowerCase();
           const tags = (tool.tags || []).map(t => t.toLowerCase());
+          const directUrl = (tool.directUrl || '').toLowerCase();
+          
+          // Special handling for Custom GPTs & Gems - check URL patterns
+          if (selectedAgentType === 'custom-gpt') {
+            const isCustomGPT = directUrl.includes('chatgpt.com/g/') || 
+                               directUrl.includes('.lovable.app') ||
+                               tags.some(tag => tag.includes('custom gpt') || tag.includes('gpt') || tag.includes('gem'));
+            return isCustomGPT;
+          }
           
           // Check if tool matches any of the agent subtype keywords
           return agentSubtype.keywords.some(keyword => {
