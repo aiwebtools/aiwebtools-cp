@@ -237,53 +237,36 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
 };
 
 // Helper function to interleave AI Web Tools GPTs after every 2 category tools
-// Injects GPTs from the FULL collection, not just from within category tools
+// ONLY injects GPTs that are already matched to this category - no random GPT injection
 const interleaveAIWebToolsGPTs = (categoryTools: Tool[]): Tool[] => {
-  // Get category tool titles to avoid duplicates
-  const categoryToolTitles = new Set(categoryTools.map(t => t.title));
-  
-  // Get ALL AI Web Tools GPTs that are NOT already in the category
-  const allAIWebToolsGPTs = allTools.filter(tool => 
-    isAIWebToolsGPT(tool) && !categoryToolTitles.has(tool.title)
-  );
-  
-  // Also separate any GPTs that ARE in the category tools
-  const gptsinCategory: Tool[] = [];
+  // Separate GPTs that are IN THIS CATEGORY from other category tools
+  const gptsInCategory: Tool[] = [];
   const nonGPTsInCategory: Tool[] = [];
   
   categoryTools.forEach(tool => {
     if (isAIWebToolsGPT(tool)) {
-      gptsinCategory.push(tool);
+      gptsInCategory.push(tool);
     } else {
       nonGPTsInCategory.push(tool);
     }
   });
   
-  // Combine: GPTs from category + GPTs from all tools (for injection)
-  const allGPTsToInterleave = [...gptsinCategory, ...allAIWebToolsGPTs];
+  console.log(`🔄 Interleaving: ${nonGPTsInCategory.length} category tools + ${gptsInCategory.length} AI Web Tools GPTs available for injection`);
   
-  console.log(`🔄 Interleaving: ${nonGPTsInCategory.length} category tools + ${allGPTsToInterleave.length} AI Web Tools GPTs available for injection`);
-  
-  // If no GPTs available, just return category tools
-  if (allGPTsToInterleave.length === 0) {
+  // If no GPTs in this category, just return category tools as-is
+  if (gptsInCategory.length === 0) {
     return categoryTools;
   }
   
-  // If no non-GPT tools, return the category tools as-is (which may include some GPTs)
+  // If no non-GPT tools, return the category tools as-is
   if (nonGPTsInCategory.length === 0) {
     return categoryTools;
   }
   
-  // Interleave: 2 category tools, then 1 GPT, repeat
+  // Interleave: 2 category tools, then 1 GPT from THIS category, repeat
   const result: Tool[] = [];
   let categoryIndex = 0;
   let gptIndex = 0;
-  
-  // We want to show GPTs throughout the scroll, so limit how many we inject
-  const maxGPTsToInject = Math.min(
-    Math.ceil(nonGPTsInCategory.length / 2), // 1 GPT for every 2 category tools
-    allGPTsToInterleave.length
-  );
   
   while (categoryIndex < nonGPTsInCategory.length) {
     // Add 2 category tools
@@ -292,11 +275,17 @@ const interleaveAIWebToolsGPTs = (categoryTools: Tool[]): Tool[] => {
       categoryIndex++;
     }
     
-    // Add 1 GPT (if we haven't used all our allocated GPTs)
-    if (gptIndex < maxGPTsToInject) {
-      result.push(allGPTsToInterleave[gptIndex]);
+    // Add 1 GPT from this category (if available)
+    if (gptIndex < gptsInCategory.length) {
+      result.push(gptsInCategory[gptIndex]);
       gptIndex++;
     }
+  }
+  
+  // Add any remaining GPTs at the end
+  while (gptIndex < gptsInCategory.length) {
+    result.push(gptsInCategory[gptIndex]);
+    gptIndex++;
   }
   
   console.log(`✅ Interleaved result: ${result.length} tools (${gptIndex} GPTs injected)`);
