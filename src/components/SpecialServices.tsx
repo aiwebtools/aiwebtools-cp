@@ -1066,7 +1066,7 @@ const featuredGPTsUnsorted = [
     color: "from-purple-500 to-blue-600",
     features: ["Memorial", "Comfort", "Healing", "Connection"],
     directUrl: "https://resurrectiongpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=nEuxdGO-RZ4&t=4s",
+    videoUrl: "https://www.youtube.com/watch?v=nEuxdGO-RZ4",
     emoji: "🕊️"
   },
   {
