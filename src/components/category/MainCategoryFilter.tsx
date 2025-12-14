@@ -190,21 +190,32 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
     return sortedTools;
   }, [sortMode, shuffleKey, baseFilteredTools, shuffleArray, currentMainCategory]);
 
-  // Track last state to detect changes
-  const lastPassedRef = React.useRef<{ mode: SortMode; key: number }>({ mode: 'smart', key: -1 });
+  // Track last state to detect changes - include agent type for proper filtering
+  const lastPassedRef = React.useRef<{ mode: SortMode; key: number; agentType: string; categories: string[] }>({ 
+    mode: 'smart', 
+    key: -1, 
+    agentType: 'all',
+    categories: [] 
+  });
   
+  // CRITICAL: This effect MUST run when ANY filter changes - including agent type and categories
   useEffect(() => {
     const stateChanged = 
       lastPassedRef.current.mode !== sortMode || 
       lastPassedRef.current.key !== shuffleKey ||
+      lastPassedRef.current.agentType !== selectedAgentType ||
+      JSON.stringify(lastPassedRef.current.categories) !== JSON.stringify(selectedMainCategories) ||
       lastPassedRef.current.key === -1;
     
-    if (stateChanged) {
-      console.log(`🎯 MainCategoryFilter: Passing ${filteredTools.length} tools (mode: ${sortMode}, shuffle #${shuffleKey})`);
-      lastPassedRef.current = { mode: sortMode, key: shuffleKey };
-      onFilteredToolsChange(filteredTools);
+    if (stateChanged || filteredTools.length > 0) {
+      console.log(`🎯 MainCategoryFilter: Passing ${filteredTools.length} tools (mode: ${sortMode}, shuffle #${shuffleKey}, agentType: ${selectedAgentType}, categories: ${selectedMainCategories.length})`);
+      lastPassedRef.current = { mode: sortMode, key: shuffleKey, agentType: selectedAgentType, categories: [...selectedMainCategories] };
+      // Use requestAnimationFrame for smoother mobile updates
+      requestAnimationFrame(() => {
+        onFilteredToolsChange(filteredTools);
+      });
     }
-  }, [filteredTools, sortMode, shuffleKey, onFilteredToolsChange]);
+  }, [filteredTools, sortMode, shuffleKey, selectedAgentType, selectedMainCategories, onFilteredToolsChange]);
 
   const handleMainCategoryToggle = useCallback((mainCategoryName: string) => {
     setSelectedMainCategories(prev => {
@@ -264,12 +275,16 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
             {AGENT_SUBTYPES.map((subtype) => (
               <button
                 key={subtype.id}
-                onClick={() => setSelectedAgentType(subtype.id)}
-                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                onClick={() => {
+                  console.log(`🤖 Agent type selected: ${subtype.id}`);
+                  setSelectedAgentType(subtype.id);
+                }}
+                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                   selectedAgentType === subtype.id
                     ? 'bg-gradient-to-r from-cyan-500/30 to-purple-500/30 text-cyan-200 border border-cyan-400/60 shadow-lg shadow-cyan-500/20'
                     : 'bg-gray-800/60 text-gray-400 border border-gray-600/30 hover:border-cyan-500/40 hover:text-cyan-300'
                 }`}
+                style={{ touchAction: 'manipulation' }}
               >
                 <span>{subtype.emoji}</span>
                 <span>{subtype.label}</span>

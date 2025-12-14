@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState, useRef } from 'react';
+import { ReactNode, useEffect, useState, useRef, useCallback, memo } from 'react';
 import { useLocation } from 'react-router-dom';
 import MatrixProgressBar from './MatrixProgressBar';
 
@@ -6,34 +6,33 @@ interface PageTransitionProps {
   children: ReactNode;
 }
 
-const PageTransition = ({ children }: PageTransitionProps) => {
+const PageTransition = memo(({ children }: PageTransitionProps) => {
   const location = useLocation();
   const [isVisible, setIsVisible] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [displayedChildren, setDisplayedChildren] = useState(children);
   const previousPathRef = useRef(location.pathname);
   const isFirstMount = useRef(true);
+  const transitionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Detect if navigating to a tool detail page (single slug route like /tool-name)
-  const isToolPage = (path: string) => {
-    // Tool pages are direct slug routes that don't match other patterns
+  // Detect if navigating to a tool detail page
+  const isToolPage = useCallback((path: string) => {
     const nonToolPatterns = [
-      /^\/$/,                           // Home
-      /^\/category\//,                  // Category pages
-      /^\/main-category\//,             // Main category pages
-      /^\/tool\//,                      // Old tool format
-      /^\/similar-tools\//,             // Similar tools
-      /^\/ai-tools-hub/,                // AI tools hub
-      /^\/ai-agents-directory/,         // AI agents
-      /^\/chatgpt-alternatives/,        // ChatGPT alternatives
-      /^\/favorites/,                   // Favorites
-      /^\/disclaimers/,                 // Disclaimers
-      /^\/our-story/,                   // Our story
-      /^\/submit-tool/,                 // Submit tool
+      /^\/$/,
+      /^\/category\//,
+      /^\/main-category\//,
+      /^\/tool\//,
+      /^\/similar-tools\//,
+      /^\/ai-tools-hub/,
+      /^\/ai-agents-directory/,
+      /^\/chatgpt-alternatives/,
+      /^\/favorites/,
+      /^\/disclaimers/,
+      /^\/our-story/,
+      /^\/submit-tool/,
     ];
-    
     return !nonToolPatterns.some(pattern => pattern.test(path));
-  };
+  }, []);
 
   const navigatingToToolPage = isToolPage(location.pathname);
 
@@ -50,24 +49,33 @@ const PageTransition = ({ children }: PageTransitionProps) => {
       return;
     }
 
+    // Clear any pending timeout
+    if (transitionTimeoutRef.current) {
+      clearTimeout(transitionTimeoutRef.current);
+    }
+
     previousPathRef.current = location.pathname;
     
-    // Determine transition duration based on page type
-    const transitionDuration = navigatingToToolPage ? 200 : 150;
+    // FAST transition - minimal delay for snappy navigation
+    const transitionDuration = 100;
     
     // Start loading and fade out
     setIsLoading(true);
     setIsVisible(false);
     
-    // After fade out, update content and fade in
-    const timeout = setTimeout(() => {
+    // After QUICK fade out, update content and fade in
+    transitionTimeoutRef.current = setTimeout(() => {
       setDisplayedChildren(children);
       setIsVisible(true);
       setIsLoading(false);
     }, transitionDuration);
 
-    return () => clearTimeout(timeout);
-  }, [location.pathname, navigatingToToolPage]);
+    return () => {
+      if (transitionTimeoutRef.current) {
+        clearTimeout(transitionTimeoutRef.current);
+      }
+    };
+  }, [location.pathname, navigatingToToolPage, children]);
 
   // Update children immediately if they change without route change
   useEffect(() => {
@@ -80,22 +88,25 @@ const PageTransition = ({ children }: PageTransitionProps) => {
     <>
       <MatrixProgressBar 
         isLoading={isLoading} 
-        duration={navigatingToToolPage ? 200 : 150}
+        duration={100}
         isToolPage={navigatingToToolPage}
       />
       <div
-        className={`transition-all ease-out ${
-          navigatingToToolPage ? 'duration-250' : 'duration-200'
-        } ${
-          isVisible 
-            ? 'opacity-100 translate-y-0' 
-            : 'opacity-0 translate-y-2'
+        className={`transition-opacity duration-100 ease-out ${
+          isVisible ? 'opacity-100' : 'opacity-0'
         }`}
+        style={{
+          // Hardware acceleration for smoother transitions
+          transform: 'translateZ(0)',
+          willChange: isLoading ? 'opacity' : 'auto',
+        }}
       >
         {displayedChildren}
       </div>
     </>
   );
-};
+});
+
+PageTransition.displayName = 'PageTransition';
 
 export default PageTransition;

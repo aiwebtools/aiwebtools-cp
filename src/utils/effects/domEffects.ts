@@ -1,4 +1,7 @@
 
+// Detect mobile for performance optimization
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
 export const createEffectsContainer = (): HTMLElement => {
   const effectsContainer = document.createElement('div');
   effectsContainer.style.cssText = `
@@ -10,12 +13,43 @@ export const createEffectsContainer = (): HTMLElement => {
     pointer-events: none;
     z-index: 9999;
     overflow: hidden;
+    contain: layout style paint;
   `;
   document.body.appendChild(effectsContainer);
   return effectsContainer;
 };
 
 export const applyTimeWarpFilter = () => {
+  // MOBILE: Use simplified, faster effect
+  if (isMobile) {
+    const simpleFlash = document.createElement('div');
+    simpleFlash.id = 'color-explosion';
+    simpleFlash.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9997;
+      pointer-events: none;
+      background: radial-gradient(circle at center, rgba(0,255,255,0.8) 0%, rgba(255,0,255,0.6) 30%, transparent 70%);
+      animation: simple-flash 1s ease-out forwards;
+    `;
+    
+    const mobileStyle = document.createElement('style');
+    mobileStyle.textContent = `
+      @keyframes simple-flash {
+        0% { opacity: 0; transform: scale(0.8); }
+        20% { opacity: 1; transform: scale(1.1); }
+        100% { opacity: 0; transform: scale(1.5); }
+      }
+    `;
+    document.head.appendChild(mobileStyle);
+    document.body.appendChild(simpleFlash);
+    return;
+  }
+
+  // DESKTOP: Full effect
   // Create INTENSE screen-wide color explosion
   const colorExplosion = document.createElement('div');
   colorExplosion.id = 'color-explosion';
@@ -27,7 +61,7 @@ export const applyTimeWarpFilter = () => {
     height: 100vh;
     z-index: 9997;
     pointer-events: none;
-    animation: intense-color-explosion 2.5s ease-out forwards;
+    animation: intense-color-explosion 2s ease-out forwards;
     background: radial-gradient(circle at center, 
       rgba(0,255,255,0.8) 0%, 
       rgba(255,0,255,0.7) 15%, 
