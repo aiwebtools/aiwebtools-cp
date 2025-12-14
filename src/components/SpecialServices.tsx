@@ -3935,6 +3935,150 @@ const featuredGPTs = [
     directUrl: "https://legislatorlink.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
     emoji: "🏛️"
+  },
+  // ============================================================================
+  // ADDITIONAL CUSTOM KNOWLEDGE GPTs - REAL GPTs FROM OUR COMPANY
+  // ============================================================================
+  {
+    title: "Contract Review Bot",
+    description: "Advanced AI assistant designed to simplify and streamline the contract review process by breaking down complex legal language into clear, easy-to-understand terms. Identifies risks, ensures fairness, and provides insights to protect your interests.",
+    badge: "LEGAL",
+    color: "from-blue-500 to-gray-600",
+    features: ["Contract Review", "Legal Analysis", "Risk Identification", "Fair Terms"],
+    directUrl: "https://chatgpt.com/g/g-Y8u3YrS1p-contract-review-bot",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-humanoid-robot-with-a-sleek-desig.png/:/cr=t:2.6%25,l:5.36%25,w:89.29%25,h:79.58%25/rs=w:1200,h:600,cg:true,m",
+    emoji: "📄"
+  },
+  {
+    title: "King Blueberry GPT",
+    description: "Reimagine your operational instructions by converting English to algebraic variables. Revolutionary tool for mathematical and logical transformations of language.",
+    badge: "MATHEMATICS",
+    color: "from-blue-600 to-purple-600",
+    features: ["Algebraic Conversion", "Language to Math", "Logical Transformation", "Variable Systems"],
+    directUrl: "https://algebraicexpressioninventor.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=U8TLg15RTg8",
+    emoji: "🫐"
+  },
+  {
+    title: "Coloring Book Generator GPT",
+    description: "Creates full coloring books from your imagination. Perfect for children's educational content, therapeutic art resources, and creative projects with professional-quality outlines.",
+    badge: "CREATIVE",
+    color: "from-yellow-500 to-pink-500",
+    features: ["Coloring Books", "Children's Content", "Art Generation", "Educational Tools"],
+    directUrl: "https://coloringbookmaker.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-coloring-page-of-a-robot-with-a-human-like-b.png/:/cr=t:4.3%25,l:0.78%25,w:94.34%25,h:84.09%25/rs=w:1200,h:600,cg:true,m",
+    emoji: "🖍️"
+  },
+  {
+    title: "PPTx Powerpoint Maker GPT",
+    description: "All-in-one AI assistant for creating beautiful, detailed PowerPoint presentations with zero hassle. Generate polished content, custom DALLE visuals, and ready-to-download PPTX slides in real time.",
+    badge: "PRESENTATIONS",
+    color: "from-orange-500 to-red-600",
+    features: ["PowerPoint Creation", "PPTX Export", "Visual Design", "Business Presentations"],
+    directUrl: "https://pptmakergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-banner-ad-for-an-ai-tool-called-ppt-pr_RY7nJ.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
+    emoji: "📊"
+  },
+  {
+    title: "Person Information Finder GPT",
+    description: "AI tool specializing in uncovering detailed public information about individuals by searching the web, social media, news, and public records. Perfect for reconnecting, research, or verification.",
+    badge: "RESEARCH",
+    color: "from-cyan-500 to-blue-600",
+    features: ["People Search", "Public Records", "Social Media", "Background Research"],
+    directUrl: "https://personfindergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-p_gHXnM.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    emoji: "🔍"
+  },
+  {
+    title: "Podcast Script Writer GPT",
+    description: "Specializes in crafting engaging, structured, and professionally formatted podcast scripts and episode outlines. Transform ideas into compelling narratives optimized specifically for audio storytelling.",
+    badge: "PODCASTING",
+    color: "from-purple-500 to-pink-600",
+    features: ["Podcast Scripts", "Episode Outlines", "Audio Storytelling", "Content Structure"],
+    directUrl: "https://podcastwritergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-illustration-of-a-podcast-host-with-a_HnlUN.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
+    emoji: "🎙️"
+  },
+  {
+    title: "Firearms Safety Instructor GPT",
+    description: "Your personal all-in-one AI firearms instructor for safety, legal guidance, and skills improvement. Comprehensive education covering responsible ownership and best practices.",
+    badge: "SAFETY",
+    color: "from-gray-600 to-amber-600",
+    features: ["Firearms Safety", "Legal Guidance", "Skills Training", "Responsible Ownership"],
+    directUrl: "https://firearmsafetyeducationgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-humanoid-shooting-a-gun-at-a-targ.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    emoji: "🎯"
+  },
+  {
+    title: "Legal Draftsmith GPT",
+    description: "Specializes in the precise drafting of legal documents. Expert assistance for creating contracts, agreements, and legal documentation with professional accuracy.",
+    badge: "LEGAL",
+    color: "from-blue-600 to-purple-600",
+    features: ["Legal Drafting", "Contracts", "Agreements", "Documentation"],
+    directUrl: "https://publicdefendergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-humanoid-robot-dressed-like-a.png/:/cr=t:12.29%25,l:9.16%25,w:89.29%25,h:79.58%25/rs=w:600,h:300,cg:true,m/qt=q:98",
+    emoji: "⚖️"
+  },
+  {
+    title: "Custom GPT Ideas & Brainstorming Assistant",
+    description: "GPT Ideas and Instructions Assistant for generating creative AI tool concepts and deployment-ready instructions. Perfect for entrepreneurs and developers looking to create their own GPTs.",
+    badge: "AI DEVELOPMENT",
+    color: "from-cyan-500 to-purple-600",
+    features: ["GPT Ideas", "AI Brainstorming", "Tool Concepts", "Instructions Generator"],
+    directUrl: "https://customgptmaker.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000002880.jpg/:/cr=t:22.21%25,l:0%25,w:100%25,h:55.58%25/rs=w:600,h:451,cg:true/qt=q:98",
+    emoji: "💡"
+  },
+  {
+    title: "Public Defender GPT",
+    description: "Dedicated Public Defender AI designed to support you in all aspects of your defense, including legal research, document drafting, evidence analysis, and trial strategy simulation.",
+    badge: "LEGAL DEFENSE",
+    color: "from-blue-600 to-gray-700",
+    features: ["Legal Research", "Document Drafting", "Evidence Analysis", "Defense Support"],
+    directUrl: "https://publicdefendergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=cQR5eFjsPWw",
+    emoji: "⚖️"
+  },
+  {
+    title: "Music Video Maker AI Studio",
+    description: "Full-blown Music Video & Music Production Creative Suite. Transform yourself into the star of cinematic-quality music videos with our cutting-edge AI director featuring scene-by-scene visuals.",
+    badge: "MUSIC VIDEO",
+    color: "from-purple-600 to-pink-600",
+    features: ["Music Videos", "Scene Creation", "Video Production", "Creative Suite"],
+    directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=rBQTUrvHcR8",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-dynamic-product-advertisement-showcase_TiaF.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
+    emoji: "🎵"
+  },
+  {
+    title: "Antique and Collectible Appraisal GPT",
+    description: "Powerful AI tool for expert appraisals and valuations of antiques, collectibles, and coins. Analyzes images, engravings, and condition to deliver precise insights into history, rarity, and market value.",
+    badge: "APPRAISAL",
+    color: "from-amber-600 to-brown-600",
+    features: ["Antique Valuation", "Coin Appraisal", "Collectibles", "Market Value"],
+    directUrl: "https://antiqueappraisalgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-antique-and-collectibl.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    emoji: "🏺"
+  },
+  {
+    title: "TRIVIA NIGHT GPT",
+    description: "The ultimate AI-powered trivia showdown! Gather your friends and family, put your knowledge to the test, and dive into an electrifying game featuring history, science, pop culture, and more!",
+    badge: "ENTERTAINMENT",
+    color: "from-purple-500 to-yellow-500",
+    features: ["Trivia Games", "Quiz Hosting", "Entertainment", "Team Games"],
+    directUrl: "https://trivianightgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/trivanight.jpg/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    emoji: "🎯"
+  },
+  {
+    title: "Game Design Document Developer GPT",
+    description: "Bring your video game ideas to life! The ultimate assistant for game development, guiding you from concept to completion. Create the perfect Game Design Document for Unity, Unreal Engine, or any platform.",
+    badge: "GAME DEV",
+    color: "from-indigo-600 to-purple-600",
+    features: ["Game Design", "GDD Creation", "Game Development", "Project Planning"],
+    directUrl: "https://gamedesigngpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-floating-man-with-blue-skin-and-white-hair-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    emoji: "🎮"
   }
 ];
 
