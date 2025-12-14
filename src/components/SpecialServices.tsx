@@ -186,7 +186,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-yellow-600",
     features: ["Gematria Decoding", "Sacred Geometry", "Number Analysis", "Ancient Wisdom"],
     directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-ancient-gematria-scan-gpt",
-    videoUrl: "https://www.youtube.com/watch?v=zBlubLw-OdY",
+    videoUrl: "https://youtu.be/zBlubLw-OdY",
     emoji: "🔢"
   },
   {
@@ -267,7 +267,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-indigo-600",
     features: ["Degree Planning", "Course Selection", "Career Pathways", "Academic Success"],
     directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=Cd8uvD-smlM",
+    videoUrl: "https://youtu.be/VkD_dX8kPy0",
     emoji: "🎓"
   },
   {
@@ -427,8 +427,7 @@ const featuredGPTs = [
     color: "from-amber-600 to-red-600",
     features: ["Historical Headlines", "Period Reporting", "News Archives", "Historical Context"],
     directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/DgreEEJKynM",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-historical-headline_1Ll1g.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    imageUrl: "/src/assets/historical-headlines-gpt-hero.jpg",
     emoji: "📰"
   },
   {
@@ -528,7 +527,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-indigo-600",
     features: ["Course Creation", "Learning Paths", "Practice Exercises", "Educational Support"],
     directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
+    videoUrl: "https://youtu.be/pr8-IgbL46I",
     emoji: "📚"
   },
   {
@@ -918,7 +917,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-blue-600",
     features: ["Hidden Truths", "Symbolic Wisdom", "Historical Insight", "Pattern Recognition"],
     directUrl: "https://oraculum.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=dUNrGNj8rhM",
+    videoUrl: "https://youtu.be/Twl5-MsgmoI",
     emoji: "🔮"
   },
   {
@@ -1658,8 +1657,7 @@ const featuredGPTs = [
     color: "from-green-500 to-black",
     features: ["Matrix", "Simulation Theory", "Quantum Reality", "Awakening"],
     directUrl: "https://neomatrixgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=BkPCpeu_nSs",
-    imageUrl: "/src/assets/enter-the-matrix-hero.jpg",
+    videoUrl: "https://youtu.be/qMLF5L_h2xo",
     emoji: "🐇"
   },
   {
@@ -1869,7 +1867,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-red-600",
     features: ["Curriculum Design", "Lesson Planning", "Interactive Elements", "Structured Learning"],
     directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
-    imageUrl: "/src/assets/course-maker-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/pr8-IgbL46I",
     emoji: "🏆"
   },
   {
@@ -2020,7 +2018,7 @@ const featuredGPTs = [
     color: "from-gray-600 to-blue-600",
     features: ["Binary Conversion", "Text Encoding", "Computer Language", "Utility Tool"],
     directUrl: "https://binarytoconvertergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-sophisticated-and-futuristic-advertisement-.jpeg/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
+    videoUrl: "https://youtu.be/ihRLRFojReY",
     emoji: "💻"
   },
   {
