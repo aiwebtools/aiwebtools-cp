@@ -36,7 +36,6 @@ const GamingEntertainmentPage = lazy(() => import("./pages/GamingEntertainmentPa
 // Lazy load non-critical components
 const FloatingCloneButton = lazy(() => import("./components/FloatingCloneButton"));
 const WelcomeVoiceSystem = lazy(() => import("./components/WelcomeVoiceSystem"));
-const DisclaimerPopup = lazy(() => import("./components/DisclaimerPopup"));
 const ConsentPopup = lazy(() => import("./components/ConsentPopup"));
 
 // Pre-initialize category cache for instant category page loads
@@ -110,7 +109,6 @@ function App() {
               <Suspense fallback={null}>
                 <WelcomeVoiceSystem />
                 <ConsentPopup />
-                <DisclaimerPopup />
               </Suspense>
               <MatrixCursorEffect />
               <BrowserRouter>
