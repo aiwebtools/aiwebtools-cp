@@ -9,6 +9,7 @@ import { Tool } from "@/types/tools";
 import { useState, useRef } from "react";
 import { Play } from "lucide-react";
 import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
+import { generateToolSlug } from "@/utils/urlGenerator";
 
 // Lazy-loading YouTube video component - shows thumbnail until clicked
 const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string; title: string; height?: string }) => {
@@ -2461,8 +2462,14 @@ const SpecialServices = () => {
   const navigate = useNavigate();
   const containerRef = useRef<HTMLDivElement>(null);
   
-  const handleGPTClick = (directUrl: string, title: string) => {
+  const handleLaunchGPT = (directUrl: string, title: string, e: React.MouseEvent) => {
+    e.stopPropagation();
     createTimePortalEffect(directUrl, title);
+  };
+
+  const handleCardClick = (title: string) => {
+    const slug = generateToolSlug(title);
+    navigate(`/${slug}`);
   };
 
   const createToolObject = (gpt: typeof featuredGPTs[0]): Tool => ({
@@ -2498,7 +2505,7 @@ const SpecialServices = () => {
             <Card 
               key={`${gpt.title}-${index}`}
               className="group relative overflow-hidden border-0 bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-md hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-1 cursor-pointer"
-              onClick={() => handleGPTClick(gpt.directUrl, gpt.title)}
+              onClick={() => handleCardClick(gpt.title)}
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${gpt.color} opacity-5 group-hover:opacity-15 transition-opacity duration-500`} />
               
@@ -2567,12 +2574,9 @@ const SpecialServices = () => {
                 <Button 
                   size="sm"
                   className={`w-full bg-gradient-to-r ${gpt.color} hover:opacity-90 text-white text-[10px] md:text-xs py-1.5 font-medium transition-all duration-300 group-hover:shadow-lg`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleGPTClick(gpt.directUrl, gpt.title);
-                  }}
+                  onClick={(e) => handleLaunchGPT(gpt.directUrl, gpt.title, e)}
                 >
-                  Launch GPT →
+                  🚀 Launch GPT →
                 </Button>
               </CardContent>
             </Card>
