@@ -78,6 +78,16 @@ const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string
 
 const featuredGPTs = [
   {
+    title: "Meme Generator GPT",
+    description: "Create hilarious, viral-worthy memes with AI-powered creativity. Generate custom memes for any topic with perfect captions and trending formats.",
+    badge: "CREATIVE",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Meme Creation", "Viral Content", "Custom Captions", "Trending Formats"],
+    directUrl: "https://memegeneratorgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/Myg8P8wg294",
+    emoji: "😂"
+  },
+  {
     title: "Meta.ai Video Prompt Generator GPT",
     description: "Generate expertly crafted text prompts for Meta.ai video generation. Creates detailed, optimized prompts and storylines specifically designed for Meta.ai's video capabilities.",
     badge: "VIDEO AI",
