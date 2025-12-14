@@ -16,16 +16,10 @@ const ConsentPopup = () => {
     
     checkMobile();
     
-    // Check consent for all devices, but only show popup on desktop
+    // Check consent for all devices - show popup on all devices
     const hasSeenConsent = localStorage.getItem('aitools-consent-seen');
     if (!hasSeenConsent) {
-      if (!isMobile) {
-        // Only show popup on desktop
-        setShowConsent(true);
-      } else {
-        // For mobile, just mark consent as seen without showing popup
-        localStorage.setItem('aitools-consent-seen', 'true');
-      }
+      setShowConsent(true);
     }
 
     const handleResize = () => checkMobile();
@@ -56,9 +50,9 @@ const ConsentPopup = () => {
     }, 400);
   };
 
-  if (!showConsent || isMobile) return null;
+  if (!showConsent) return null;
 
-  // Desktop version only
+  // Works on all devices
   return (
     <div 
       className={`fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-4 md:p-6 transition-opacity duration-400 ${
