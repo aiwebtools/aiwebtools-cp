@@ -42,8 +42,9 @@ const ConsentPopup = () => {
   }
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80">
-      <div className="bg-gray-900 border-2 border-cyan-500 rounded-xl p-6 w-full max-w-md shadow-2xl shadow-cyan-500/30">
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 pointer-events-none">
+        <div className="pointer-events-auto bg-gray-900 border-2 border-cyan-500 rounded-xl p-6 w-full max-w-md shadow-2xl shadow-cyan-500/30">
+        
         
         {/* Header */}
         <div className="text-center mb-6">
