@@ -88,6 +88,9 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
+  // Debounce the search term for fast stage (150ms for snappy feel without excessive rerenders)
+  const debouncedSearchTerm = useDebounce(searchTerm, 150);
+  
   // Pre-index tools for HYPER-INTELLIGENT matching - ALL 2000+ tools fully searchable
   const indexedTools = useMemo(() => allTools.map(t => {
     const lt = t.title.toLowerCase();
@@ -115,12 +118,12 @@ export const useGlobalSearch = () => {
   // Track current search to prevent stale updates
   const searchIdRef = useRef(0);
   
-  // FAST stage: HYPER-INTELLIGENT immediate results while typing
+  // FAST stage: HYPER-INTELLIGENT results with light debounce
   useEffect(() => {
     // Increment search ID immediately to invalidate any pending heavy searches
     searchIdRef.current += 1;
     
-    const t = searchTerm.trim();
+    const t = debouncedSearchTerm.trim();
     if (!t) {
       // INSTANT clear - no delay, no freeze
       setSearchResults([]);
@@ -236,7 +239,7 @@ export const useGlobalSearch = () => {
     setSearchResults(fast);
     setDisplayedCount(50);
     setIsOpen(true);
-  }, [searchTerm, indexedTools]);
+  }, [debouncedSearchTerm, indexedTools]);
 
   // HEAVY stage: Refined scoring after pause (but fast stage already does the heavy lifting)
   useEffect(() => {
