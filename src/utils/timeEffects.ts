@@ -212,14 +212,27 @@ const extractToolName = (destinationUrl: string, providedToolName?: string): str
 export const createTimePortalEffect = (destinationUrl: string, toolName?: string) => {
   console.log('🌀 Creating TIME WARP portal effect for URL:', destinationUrl);
   
-  // Effect duration - long enough for full epic color time warp matrix explosion
+  // SYNCHRONIZED TIMING - Voice clip is ~2.2 seconds
+  // Desktop: longer effects, URL opens as voice ends
+  // Mobile: faster effects, URL opens slightly earlier
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const effectDuration = isMobile ? 2800 : 3500; // Extended for full epic effect
-  const urlOpenDelay = isMobile ? 2000 : 2500; // Open URL after seeing the full effect
+  
+  // Voice duration is ~2.2 seconds - sync everything to this
+  const voiceDuration = 2200;
+  
+  // Effect duration - enough time for animations to complete after URL opens
+  const effectDuration = isMobile ? 3200 : 3800;
+  
+  // URL opens right as voice finishes (peak impact moment)
+  const urlOpenDelay = isMobile ? voiceDuration - 200 : voiceDuration;
+  
+  // Visual effects start immediately with voice
+  const visualDelay = 0;
   
   // Extract tool name for logging purposes
   const finalToolName = extractToolName(destinationUrl, toolName);
   console.log('🎯 Final detected tool name:', finalToolName);
+  console.log(`⏱️ Timing: voice=${voiceDuration}ms, urlOpen=${urlOpenDelay}ms, effectCleanup=${effectDuration}ms`);
   
   // Create container for all effects
   const effectsContainer = createEffectsContainer();
@@ -227,35 +240,39 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   // Apply time warp filter to entire screen
   applyTimeWarpFilter();
 
-  // 🎤 PLAY THE TIME WARP VOICE IMMEDIATELY
+  // 🎤 PLAY THE TIME WARP VOICE IMMEDIATELY - everything syncs to this
   playTimeWarpVoice();
 
-  // Execute FULL EPIC visual effects - COLOR TIME WARP MATRIX CONFETTI EXPLOSION
-  createMatrixCodeExplosion(effectsContainer);
-  createVortexRings(effectsContainer);
-  createEnergyWaves(effectsContainer);
-  createParticles(effectsContainer);
-  createFlash(effectsContainer);
-  
-  // Create enhanced portal sounds
-  createPortalSounds();
+  // Execute FULL EPIC visual effects simultaneously with voice
+  setTimeout(() => {
+    createMatrixCodeExplosion(effectsContainer);
+    createVortexRings(effectsContainer);
+    createEnergyWaves(effectsContainer);
+    createParticles(effectsContainer);
+    createFlash(effectsContainer);
+    
+    // Create enhanced portal sounds (layered on top of voice)
+    createPortalSounds();
+  }, visualDelay);
   
   // Add confetti celebration for clone actions
   if (destinationUrl.includes('lovable.dev/projects') || destinationUrl.includes('clone')) {
     setTimeout(() => {
       createConfettiCelebration();
-    }, 200);
+    }, 400);
   }
 
-  // OPEN URL AFTER seeing the effect and hearing the voice
+  // OPEN URL as voice finishes - perfect sync moment
   setTimeout(() => {
+    console.log('🚀 Opening destination URL now (synced with voice end)');
     if (destinationUrl && destinationUrl.trim()) {
       openDestinationUrl(destinationUrl);
     }
   }, urlOpenDelay);
 
-  // Cleanup effects after animation
+  // Cleanup effects after animations complete (after URL already opened)
   setTimeout(() => {
+    console.log('🧹 Cleaning up time warp effects');
     cleanupEffects(effectsContainer);
   }, effectDuration);
 };
