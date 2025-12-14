@@ -30,8 +30,11 @@ const CategoryFilters = ({
   const [isExpanded, setIsExpanded] = useState(true);
   const [selectedMainCategory, setSelectedMainCategory] = useState<string | null>(null);
 
-  // Get accurate main category counts from the global cache
-  const mainCategoriesWithCounts = getMainCategoriesWithCounts(allTools);
+  // Precompute main category counts once to avoid expensive recalculation on every render
+  const staticMainCategoriesWithCounts = React.useMemo(
+    () => getMainCategoriesWithCounts(allTools),
+    []
+  );
 
   const totalTools = Object.values(categoriesWithCounts).reduce((sum, count) => sum + count, 0);
 
@@ -89,7 +92,7 @@ const CategoryFilters = ({
           <div className="space-y-4">
             {viewMode === 'main' ? (
               <MainCategoriesView
-                mainCategoryCounts={mainCategoriesWithCounts}
+                mainCategoryCounts={staticMainCategoriesWithCounts}
                 onMainCategoryClick={handleCategorySelect}
               />
             ) : (
