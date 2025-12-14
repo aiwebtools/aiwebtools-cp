@@ -14,16 +14,12 @@ export const playTimeWarpVoice = () => {
     // Each pair is ~300ms apart, pairs are ~400ms apart
     
     // First heartbeat pair
-    setTimeout(() => createHeartbeatBoom(0.9, 'lub'), 500);
-    setTimeout(() => createHeartbeatBoom(1.0, 'dub'), 650);
+    setTimeout(() => createHeartbeatBoom(0.9, 'lub'), 400);
+    setTimeout(() => createHeartbeatBoom(1.0, 'dub'), 550);
     
-    // Second heartbeat pair
-    setTimeout(() => createHeartbeatBoom(1.0, 'lub'), 1050);
-    setTimeout(() => createHeartbeatBoom(1.1, 'dub'), 1200);
-    
-    // Third heartbeat pair (loudest, right before URL opens)
-    setTimeout(() => createHeartbeatBoom(1.2, 'lub'), 1400);
-    setTimeout(() => createHeartbeatBoom(1.3, 'dub'), 1550);
+    // Second heartbeat pair (loudest, right before URL opens)
+    setTimeout(() => createHeartbeatBoom(1.2, 'lub'), 850);
+    setTimeout(() => createHeartbeatBoom(1.3, 'dub'), 1000);
     
     if (playPromise) {
       playPromise.catch((error) => {
