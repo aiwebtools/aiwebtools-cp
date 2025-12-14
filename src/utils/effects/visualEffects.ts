@@ -731,6 +731,67 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     effectsContainer.appendChild(column);
   }
   
+  // === NEW: PULSATING BINARY CONFETTI STRINGS ===
+  const confettiStringCount = 24;
+  for (let s = 0; s < confettiStringCount; s++) {
+    const confettiString = document.createElement('div');
+    confettiString.className = 'matrix-confetti-string';
+    const angle = (s / confettiStringCount) * 360;
+    const binaryChars = Array.from({ length: 12 }, () => Math.random() > 0.5 ? '1' : '0').join(' ');
+    confettiString.textContent = binaryChars;
+    const delay = Math.random() * 0.2;
+    confettiString.style.cssText = `
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-family: 'Courier New', monospace;
+      font-size: 18px;
+      font-weight: bold;
+      color: #00FF00;
+      text-shadow: 
+        0 0 8px #00FF00,
+        0 0 16px #00FF00,
+        0 0 32px #00FF00;
+      white-space: nowrap;
+      transform-origin: left center;
+      transform: translate(0, -50%) rotate(${angle}deg);
+      animation: confetti-string-pulse 2.6s ease-out forwards;
+      animation-delay: ${delay}s;
+      z-index: 100002;
+      pointer-events: none;
+      opacity: 0;
+    `;
+    effectsContainer.appendChild(confettiString);
+  }
+
+  // === NEW: CIRCULAR BINARY RINGS that expand outward ===
+  const ringCount = 5;
+  for (let r = 0; r < ringCount; r++) {
+    const ring = document.createElement('div');
+    ring.className = 'matrix-binary-ring';
+    const ringDelay = r * 0.15;
+    ring.style.cssText = `
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60px;
+      height: 60px;
+      border: 3px solid #00FF00;
+      border-radius: 50%;
+      box-shadow: 
+        0 0 20px #00FF00,
+        0 0 40px #00FF00,
+        inset 0 0 15px #00FF00;
+      transform: translate(-50%, -50%);
+      animation: binary-ring-expand 2.4s ease-out forwards;
+      animation-delay: ${ringDelay}s;
+      z-index: 99997;
+      pointer-events: none;
+      opacity: 0;
+    `;
+    effectsContainer.appendChild(ring);
+  }
+  
   // Create central matrix orb - BIGGER and BRIGHTER
   const matrixOrb = document.createElement('div');
   matrixOrb.className = 'matrix-orb';
@@ -738,18 +799,18 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     background: radial-gradient(circle, #00FF00 0%, #00FF00 20%, #008800 50%, transparent 70%);
     box-shadow: 
-      0 0 60px #00FF00,
-      0 0 120px #00FF00,
-      0 0 180px #00FF00,
+      0 0 80px #00FF00,
+      0 0 160px #00FF00,
       0 0 240px #00FF00,
-      inset 0 0 40px #00FF00;
+      0 0 320px #00FF00,
+      inset 0 0 60px #00FF00;
     transform: translate(-50%, -50%);
-    animation: matrix-orb-pulse 2.5s ease-out forwards;
+    animation: matrix-orb-pulse 2.8s ease-out forwards;
     z-index: 100001;
   `;
   effectsContainer.appendChild(matrixOrb);
@@ -815,6 +876,64 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
       100% {
         transform: translate(-50%, -50%) scale(6);
         opacity: 0;
+        filter: brightness(2);
+      }
+    }
+    
+    @keyframes confetti-string-pulse {
+      0% {
+        opacity: 0;
+        transform: translate(0, -50%) rotate(var(--angle, 0deg)) scaleX(0);
+        filter: brightness(10);
+      }
+      15% {
+        opacity: 1;
+        transform: translate(0, -50%) rotate(var(--angle, 0deg)) scaleX(1);
+        filter: brightness(6);
+      }
+      30% {
+        opacity: 1;
+        transform: translate(80px, -50%) rotate(var(--angle, 0deg)) scaleX(1.2);
+        filter: brightness(8);
+      }
+      50% {
+        opacity: 0.9;
+        transform: translate(200px, -50%) rotate(var(--angle, 0deg)) scaleX(1.4);
+        filter: brightness(5);
+      }
+      70% {
+        opacity: 0.6;
+        transform: translate(350px, -50%) rotate(var(--angle, 0deg)) scaleX(1.1);
+        filter: brightness(4);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(550px, -50%) rotate(var(--angle, 0deg)) scaleX(0.8);
+        filter: brightness(2);
+      }
+    }
+    
+    @keyframes binary-ring-expand {
+      0% {
+        width: 60px;
+        height: 60px;
+        opacity: 0;
+        border-width: 4px;
+        filter: brightness(10);
+      }
+      20% {
+        opacity: 1;
+        filter: brightness(6);
+      }
+      50% {
+        opacity: 0.8;
+        border-width: 3px;
+      }
+      100% {
+        width: 900px;
+        height: 900px;
+        opacity: 0;
+        border-width: 1px;
         filter: brightness(2);
       }
     }
