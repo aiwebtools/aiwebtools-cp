@@ -803,6 +803,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-purple-600",
     features: ["AI Detection", "Image Analysis", "Authenticity Check", "Metadata Screening"],
     directUrl: "https://snoopimageai.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-snoop-image-ai-presented-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "🔍"
   },
   {
@@ -1132,6 +1133,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-cyan-600",
     features: ["Travel Planning", "Personalized Recommendations", "Budget Planning", "Dream Vacations"],
     directUrl: "https://travelagentgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-futuristic-setting-where-a-_3Mwmg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "✈️"
   },
   {
@@ -1141,6 +1143,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-pink-600",
     features: ["Custom Quizzes", "Trivia Hosting", "Knowledge Categories", "Game Management"],
     directUrl: "https://trivianightgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/trivanight.jpg/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "🧠"
   },
   {
@@ -1306,6 +1309,7 @@ const featuredGPTs = [
     color: "from-green-500 to-emerald-600",
     features: ["Off-Grid Living", "Sustainability", "Permaculture", "Resilience"],
     directUrl: "https://chatgpt.com/g/g-6931bd31b0208191a0ebd290977b8e4a-self-sufficiency-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-future-city-with-vertical-gardens.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "🌱"
   },
   {
@@ -1315,6 +1319,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Plastic Recycling", "Fuel Conversion", "Sustainability", "Green Tech"],
     directUrl: "https://chatgpt.com/g/g-68c9df9d4e3881919f8afbc00e6d07c2-plastoline-gpt-plastic-to-fuel/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-future-city-with-vertical-gardens.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "♻️"
   },
   {
@@ -1324,6 +1329,7 @@ const featuredGPTs = [
     color: "from-amber-600 to-brown-600",
     features: ["Lakota Wisdom", "Sacred Traditions", "Balance", "Truth"],
     directUrl: "https://chatgpt.com/g/g-6924c51b2ddc8191a3f946de88c1cdee-sitting-bull-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-advertisement-with-the-eye_C64dU.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
     emoji: "🦅"
   },
   {
@@ -1333,6 +1339,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-yellow-600",
     features: ["Nonviolence", "Truth", "Satyagraha", "Moral Courage"],
     directUrl: "https://chatgpt.com/g/g-6924c5d898d481919f546bd9935c1bc6-mahatma-gandhi-reborn-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
     emoji: "🕊️"
   },
   {
@@ -1342,6 +1349,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Infinite Universe", "Cosmic Truth", "Hermeticism", "Free Thought"],
     directUrl: "https://chatgpt.com/g/g-6924c705812c8191a6733b6479967ae8-giordano-bruno-reborn-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
     emoji: "🌌"
   },
   {
@@ -1351,6 +1359,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-red-600",
     features: ["Flux", "Logos", "Fire", "Paradox"],
     directUrl: "https://chatgpt.com/g/g-6924c8dbf9b48191b4874e821fff8276-heraclitus-reborn-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "🔥"
   },
   {
@@ -1360,6 +1369,7 @@ const featuredGPTs = [
     color: "from-green-500 to-brown-600",
     features: ["Animals", "Nature", "Humility", "Compassion"],
     directUrl: "https://chatgpt.com/g/g-6924cce6e5b081919c7469f08d42dbb5-st-francis-of-assisi-reborn-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-future-city-with-vertical-gardens.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "🕊️"
   },
   {
@@ -1369,6 +1379,7 @@ const featuredGPTs = [
     color: "from-red-500 to-brown-600",
     features: ["Warrior Spirit", "Prophecy", "Indigenous Wisdom", "Vision"],
     directUrl: "https://chatgpt.com/g/g-6924cd74aecc8191b2f2d0ca6ed71dd4-chief-crazy-horse-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-advertisement-with-the-eye_C64dU.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
     emoji: "🦅"
   },
   {
@@ -1378,6 +1389,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Aten", "Monotheism", "Egyptian Wisdom", "Sun Worship"],
     directUrl: "https://chatgpt.com/g/g-6924b341a8c481918bafaafee5ef1e0a-akhenaten/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
     emoji: "☀️"
   },
   {
@@ -1387,6 +1399,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-yellow-600",
     features: ["Architecture", "Medicine", "Sacred Geometry", "Wisdom"],
     directUrl: "https://chatgpt.com/g/g-6924ba381a2c8191a93a97ef399f3823-imhotep-living-mind-of-kemet/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
     emoji: "🏛️"
   },
   {
@@ -1396,6 +1409,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-cyan-600",
     features: ["Natural Philosophy", "Science", "Mathematics", "Reason"],
     directUrl: "https://chatgpt.com/g/g-6924bc3c88bc8191bbf7b17641c87917-thales-of-miletus-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
     emoji: "🌊"
   },
   {
@@ -1405,6 +1419,7 @@ const featuredGPTs = [
     color: "from-green-500 to-emerald-600",
     features: ["Earth Wisdom", "Interconnectedness", "Environmental Wisdom", "Stewardship"],
     directUrl: "https://chatgpt.com/g/g-6924b6a349d08191aadc6012f47b3d6f-chief-seattle-sealth-free-thought-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-advertisement-with-the-eye_C64dU.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
     emoji: "🦅"
   },
   {
@@ -1414,6 +1429,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Integral Yoga", "Spiritual Evolution", "Divine Life", "Consciousness"],
     directUrl: "https://chatgpt.com/g/g-6924e98e3cb48191b734c751addb66ed-sri-aurobindo-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "☀️"
   },
   {
@@ -1423,6 +1439,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-amber-600",
     features: ["Self-Inquiry", "Advaita", "Awareness", "Meditation"],
     directUrl: "https://chatgpt.com/g/g-6924ea968a80819195661b81efe0cd4a-ramana-maharshi-reborn-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "🧘"
   },
   {
@@ -1432,6 +1449,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-purple-600",
     features: ["Vision Quest", "Sacred Hoop", "Indigenous Wisdom", "Prayer"],
     directUrl: "https://chatgpt.com/g/g-6924ebe2ae108191ac310184bbb1aa61-black-elk-vision-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-advertisement-with-the-eye_C64dU.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
     emoji: "🦅"
   },
   {
@@ -1441,6 +1459,7 @@ const featuredGPTs = [
     color: "from-red-500 to-orange-600",
     features: ["Divine Union", "Ana al-Haqq", "Mysticism", "Spiritual Ecstasy"],
     directUrl: "https://chatgpt.com/g/g-6924edc8f54c81919227604a9ca501fd-mansur-al-hallaj-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "🔥"
   },
   {
@@ -1450,6 +1469,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-pink-600",
     features: ["Interior Castle", "Contemplative Prayer", "Divine Union", "Carmelite"],
     directUrl: "https://chatgpt.com/g/g-6924eee640048191af450da5d2cb57fc-saint-teresa-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "🏰"
   },
   {
@@ -1459,6 +1479,7 @@ const featuredGPTs = [
     color: "from-cyan-500 to-blue-600",
     features: ["Awareness", "Self-Inquiry", "Presence", "Non-Duality"],
     directUrl: "https://chatgpt.com/g/g-6924ecc4318481919554b12bf3d9f34d-mooji-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "🧘"
   },
   {
@@ -1468,6 +1489,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-brown-600",
     features: ["Confessions", "City of God", "Grace", "Conversion"],
     directUrl: "https://chatgpt.com/g/g-6924f85e53448191bf0eca62731d3e50-saint-augustine-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
     emoji: "📚"
   },
   {
@@ -1477,6 +1499,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-cyan-600",
     features: ["Uncreated Light", "Hesychasm", "Divine Peace", "Transfiguration"],
     directUrl: "https://chatgpt.com/g/g-6924f9ba59808191af9d3d5affd3d95b-saint-seraphim-of-sarov-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "☀️"
   },
   {
@@ -1486,6 +1509,7 @@ const featuredGPTs = [
     color: "from-red-500 to-brown-600",
     features: ["Stigmata", "Mysticism", "Intercession", "Miracles"],
     directUrl: "https://chatgpt.com/g/g-6924f6f3c570819181a978f9fabe1826-saint-padre-pio-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "✝️"
   },
   {
@@ -1495,6 +1519,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-red-600",
     features: ["Divine Dialogue", "Church Reform", "Mysticism", "Dominican"],
     directUrl: "https://chatgpt.com/g/g-6924f7cdc6c88191adca2a902655cf70-saint-catherine-of-siena-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "🔥"
   },
   {
@@ -1504,6 +1529,7 @@ const featuredGPTs = [
     color: "from-indigo-500 to-purple-600",
     features: ["Dark Night", "Mystical Poetry", "Contemplation", "Carmelite"],
     directUrl: "https://chatgpt.com/g/g-6924f40f2fd88191bbe2b27996987744-saint-john-of-the-cross-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "🌙"
   },
   {
@@ -1513,6 +1539,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-violet-600",
     features: ["Archetypes", "Collective Unconscious", "Individuation", "Symbolism"],
     directUrl: "https://chatgpt.com/g/g-692666b5c4d881918a7984e8e9f46e8d-carl-jung-gpt?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
     emoji: "🧠"
   },
   {
@@ -1522,6 +1549,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-red-600",
     features: ["Liberation", "Ten Commandments", "Divine Fire", "Exodus"],
     directUrl: "https://chatgpt.com/g/g-69250b509ae88191a316ab0fa3d68e08-moses-gpt?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
     emoji: "⛰️"
   },
   {
@@ -1531,6 +1559,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Essene Wisdom", "Meditation", "Sacred Codes", "Inner Transformation"],
     directUrl: "https://chatgpt.com/g/g-68b490b403a08191b3f3f6ac126b0b77-essene-qodesh-code/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "🕊️"
   },
   {
@@ -1614,6 +1643,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Dream Analysis", "Symbolism", "Psychology", "Subconscious Patterns"],
     directUrl: "https://dreaminterpreter.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-ad-for-an-ai-tool-called-dream-interp_5LG7D.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
     emoji: "💭"
   },
   {
@@ -1623,6 +1653,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-pink-600",
     features: ["Trend Prediction", "Data Analysis", "Statistical Modeling", "Forecasting"],
     directUrl: "https://fortunetellergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-fortune-teller-gpt-_kRpji.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🔮"
   },
   {
@@ -1632,6 +1663,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Genomic Analysis", "Genetic Patterns", "Research Support", "DNA Insights"],
     directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "🧬"
   },
   {
@@ -1641,6 +1673,7 @@ const featuredGPTs = [
     color: "from-red-500 to-orange-600",
     features: ["Sora 2 Prompts", "Cinematic Scenes", "Camera Movements", "Visual Storytelling"],
     directUrl: "https://chatgpt.com/g/g-69326acb5f348191a2f85c2cdc848c4d-0ra2-text-to-video-prompt-maker?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-city-with-tall-buildings-th_JdXy-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🎬"
   },
   {
@@ -1650,6 +1683,7 @@ const featuredGPTs = [
     color: "from-green-500 to-emerald-600",
     features: ["VEO3 Optimization", "Google AI", "Video Prompts", "AI Optimization"],
     directUrl: "https://chatgpt.com/g/g-682faef24c608191808180e89719cb09-veo3-text-to-video-prompt-maker",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-city-with-tall-buildings-th_JdXy-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🎯"
   },
   {
@@ -1659,6 +1693,7 @@ const featuredGPTs = [
     color: "from-violet-500 to-purple-600",
     features: ["Luma AI Prompts", "Dream Machine", "Video Creation", "Film Vision"],
     directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-neon-lit-advertisement-for-the-l.jpeg/:/cr=t:50%25,l:0%25,w:100%25,h:50%25/rs=w:1240,h:620,cg:true",
     emoji: "✨"
   },
   {
@@ -2569,13 +2604,13 @@ const SpecialServices = () => {
               
               <CardContent className="pt-0 pb-3 relative z-10">
                 {gpt.videoUrl && (
-                  <div className="mb-2 rounded-lg overflow-hidden relative h-24 md:h-28 bg-black/20">
+                  <div className="mb-2 rounded-lg overflow-hidden relative aspect-video bg-black/20">
                     <LazyVideoEmbed videoUrl={gpt.videoUrl} title={gpt.title} />
                   </div>
                 )}
                 
                 {!gpt.videoUrl && gpt.imageUrl && (
-                  <div className="mb-2 rounded-lg overflow-hidden relative h-24 md:h-28 bg-black/20">
+                  <div className="mb-2 rounded-lg overflow-hidden relative aspect-video bg-black/20">
                     <img 
                       src={gpt.imageUrl} 
                       alt={gpt.title}
