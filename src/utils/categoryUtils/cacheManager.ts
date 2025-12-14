@@ -30,7 +30,7 @@ import { isSpiritualityTool } from "./spiritualityDetection";
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 38; // Phase 18: EXPANDED detection for Education, Creative, Spirituality, Video, Agents
+let cacheVersion = 39; // Phase 19: Added Gravestone Decoder GPT, fixed filter toggle
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';
