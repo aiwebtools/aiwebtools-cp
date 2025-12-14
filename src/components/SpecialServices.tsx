@@ -3080,6 +3080,81 @@ const featuredGPTs = [
     directUrl: "https://gemini.google.com/gem/18b868221ea1",
     imageUrl: "/src/assets/og-time-machine-hero.jpg",
     emoji: "🌍"
+  },
+  {
+    title: "Book Writer Gemini (Custom Gem)",
+    description: "Custom Gemini gem version of Book Writer GPT for creating professional, well-structured books with seamless page-to-page continuity.",
+    badge: "GEMINI GEM",
+    color: "from-blue-500 to-green-600",
+    features: ["Book Writing", "Novel Creation", "Storytelling", "Google Gemini"],
+    directUrl: "https://gemini.google.com/gem/ac3de7972849",
+    videoUrl: "https://youtu.be/nBd9Uk62UiI",
+    imageUrl: "/src/assets/book-writer-gemini-hero.jpg",
+    emoji: "📚"
+  },
+  {
+    title: "Native American History Time Machine - GEMINI",
+    description: "Step into the sacred currents of time—where every query unveils the buried truths of Native America, one soul-stirring journey at a time.",
+    badge: "GEMINI GEM",
+    color: "from-orange-500 to-red-600",
+    features: ["Time Travel", "Native American", "History", "Education"],
+    directUrl: "https://gemini.google.com/gem/8410bdacd80e",
+    imageUrl: "/src/assets/native-american-gemini-hero.jpg",
+    emoji: "🪶"
+  },
+  {
+    title: "Newsletter Writer GPT",
+    description: "Create engaging newsletters with compelling content, subject lines, and formatting for maximum reader engagement.",
+    badge: "CONTENT",
+    color: "from-cyan-500 to-blue-600",
+    features: ["Newsletter", "Email Marketing", "Content", "Writing"],
+    directUrl: "https://chatgpt.com/g/g-67c1d3a4cb548191ad917dc301a69db0-newsletter-writer-gpt",
+    emoji: "📧"
+  },
+  {
+    title: "Educator Pro GPT",
+    description: "Comprehensive educational assistant for teachers and educators to create lesson plans, assessments, and learning materials.",
+    badge: "EDUCATION",
+    color: "from-blue-600 to-indigo-700",
+    features: ["Education", "Teaching", "Lesson Plans", "Assessment"],
+    directUrl: "https://chatgpt.com/g/g-T3E00Qjv0-educator-pro",
+    emoji: "👨‍🏫"
+  },
+  {
+    title: "Mining & Quarry Safety Inspector GPT",
+    description: "Virtual mine site inspector for hazard detection and compliance. Professional mining safety inspection services.",
+    badge: "INSPECTOR",
+    color: "from-amber-500 to-stone-600",
+    features: ["Mining Safety", "Quarry Inspection", "Hazard Detection", "Compliance"],
+    directUrl: "https://chatgpt.com/g/g-68bb3e9e3d648191b73faa9f96b3cca5-mining-quarry-safety-inspector-gpt/?via=aiwebtools",
+    emoji: "⛏️"
+  },
+  {
+    title: "Tunnel Safety Inspector GPT",
+    description: "Virtual tunnel inspector for safety, compliance, and structural auditing. Professional tunnel inspection services.",
+    badge: "INSPECTOR",
+    color: "from-gray-500 to-black",
+    features: ["Tunnel Safety", "Structural Audit", "Compliance", "Underground"],
+    directUrl: "https://chatgpt.com/g/g-68bb406563d081919af937725adec08f-tunnel-safety-inspector-gpt/?via=aiwebtools",
+    emoji: "🚇"
+  },
+  {
+    title: "Port & Ship Cargo Inspector GPT",
+    description: "Virtual maritime cargo and container inspector powered by vision, Python, and web intelligence. Expert cargo inspection services.",
+    badge: "INSPECTOR",
+    color: "from-blue-500 to-teal-600",
+    features: ["Cargo Inspection", "Ship Inspection", "Maritime Safety", "Port Safety"],
+    directUrl: "https://chatgpt.com/g/g-68bb3e28ce348191a90afcca6f20d8d2-ai-port-ship-cargo-inspector/?via=aiwebtools",
+    emoji: "🚢"
+  },
+  {
+    title: "Airline Maintenance Inspector GPT",
+    description: "Virtual aviation maintenance inspector for aircraft inspections with vision, Python, and live data. Expert aviation maintenance inspection.",
+    badge: "INSPECTOR",
+    color: "from-sky-500 to-blue-600",
+    features: ["Aircraft Maintenance", "Aviation Inspection", "Airline Safety", "Compliance"],
+    directUrl: "https://chatgpt.com/g/g-68bb3a729c24819189bdc498b1d835e4-ai-airline-maintenance-inspector/?via=aiwebtools",
+    emoji: "✈️"
   }
 ];
 
