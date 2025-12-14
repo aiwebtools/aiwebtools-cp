@@ -3010,6 +3010,69 @@ const featuredGPTs = [
     emoji: "👨‍👩‍👧‍👦"
   },
   {
+    title: "Parent Teacher Advocate GPT",
+    description: "Meeting planner and advocacy partner for parent-teacher conferences, IEP/504 meetings, and school reviews. Expert support for educational advocacy.",
+    badge: "EDUCATION ADVOCACY",
+    color: "from-blue-500 to-green-600",
+    features: ["IEP Support", "Parent Advocacy", "School Meetings", "Educational Rights"],
+    directUrl: "https://chatgpt.com/g/g-68bb75f48218819184ad7aa0198cb983-parent-teacher-advocate-gpt/?via=aiwebtools",
+    emoji: "👨‍👩‍👧‍👦"
+  },
+  {
+    title: "Public Service Finder GPT",
+    description: "Virtual navigator for free and low-cost public services with verified, step-by-step access. Comprehensive public service navigation for community resources.",
+    badge: "PUBLIC SERVICES",
+    color: "from-purple-500 to-blue-600",
+    features: ["Public Services", "Government Resources", "Social Services", "Community Help"],
+    directUrl: "https://chatgpt.com/g/g-68bb74c1de28819197b7cd6f944efce9-public-service-finder-gpt/?via=aiwebtools",
+    emoji: "🏛️"
+  },
+  {
+    title: "Trail Mapper GPT",
+    description: "Expert trail and survival route planner using compass-based navigation and off-road mapping. GPT-5 Thinking model for advanced route optimization.",
+    badge: "OUTDOOR NAVIGATION",
+    color: "from-green-500 to-teal-600",
+    features: ["Trail Mapping", "Survival Routes", "Compass Navigation", "Route Planning"],
+    directUrl: "https://chatgpt.com/g/g-68f85a4844648191ac4c82f9e1d2b3b0-trail-mapper-gpt/?via=aiwebtools",
+    emoji: "🧭"
+  },
+  {
+    title: "Construction GPT",
+    description: "Comprehensive assistant for construction planning, safety, training, and compliance. Expert guidance for construction professionals from planning to completion.",
+    badge: "CONSTRUCTION",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Construction Planning", "Safety Compliance", "Project Management", "Building Codes"],
+    directUrl: "https://chatgpt.com/g/g-Hmgy6x48R-construction-gpt/?via=aiwebtools",
+    emoji: "🏗️"
+  },
+  {
+    title: "MR. FIX IT GPT",
+    description: "Your go-to AI for fixing everything with a friendly approach. Expert troubleshooting and repair guidance for household items, appliances, and vehicles.",
+    badge: "REPAIR",
+    color: "from-red-500 to-orange-600",
+    features: ["Home Repair", "Troubleshooting", "DIY Fixes", "Maintenance Tips"],
+    directUrl: "https://chatgpt.com/g/g-oK2iR2dPf-mr-fix-it-gpt/?via=aiwebtools",
+    emoji: "🔧"
+  },
+  {
+    title: "Kitchen and Vision Assistant GPT",
+    description: "Polite, engaging assistant for kitchen and vision needs. Multimodal AI helps with cooking guidance, recipe assistance, and visual analysis of food.",
+    badge: "COOKING",
+    color: "from-green-500 to-blue-600",
+    features: ["Cooking Help", "Recipe Assistance", "Food Analysis", "Kitchen Tips"],
+    directUrl: "https://chatgpt.com/g/g-2ENWV8WeM-kitchen-and-vision-assistant-gpt/?via=aiwebtools",
+    emoji: "👨‍🍳"
+  },
+  {
+    title: "DIY REPAIR GPT",
+    description: "Virtual repair advisor, part matcher, and step-by-step DIY guide builder with embedded tutorials. Expert guidance for home and equipment repairs.",
+    badge: "DIY",
+    color: "from-orange-500 to-red-600",
+    features: ["DIY Guides", "Part Matching", "Repair Tutorials", "Home Maintenance"],
+    directUrl: "https://chatgpt.com/g/g-68bb792558a88191821219353c487bd6-diy-repair-gpt/?via=aiwebtools",
+    emoji: "🔧"
+  },
+  {
     title: "POVERTY CRUSHER - Economic Empowerment GPT",
     description: "Financial empowerment assistant helping break the cycle of poverty through practical strategies and economic education.",
     badge: "FINANCE",
