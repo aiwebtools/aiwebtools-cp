@@ -84,6 +84,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-purple-600",
     features: ["Meta.ai Prompts", "Video Storylines", "Quick Copy-Paste", "Productivity"],
     directUrl: "https://chatgpt.com/g/g-691b5852be7c8191beda5d0429f727bd-meta-ai-video-prompt-generator",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-city-with-tall-buildings-th_JdXy-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🎬"
   },
   {
@@ -215,6 +216,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-purple-600",
     features: ["Business Planning", "Financial Modeling", "Market Analysis", "Strategic Planning"],
     directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-logo-design-with-the-text-business-plan-gene.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
     emoji: "💼"
   },
   {
@@ -244,6 +246,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-indigo-600",
     features: ["Text Clarity", "Meaning Preservation", "Content Refinement", "Writing Enhancement"],
     directUrl: "https://clarityomni.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-scene-of-an-ai-agent-with-a-halo.jpeg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
     emoji: "🔮"
   },
   {
@@ -303,6 +306,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-black",
     features: ["Oil & Gas Operations", "Drilling Optimization", "Safety Compliance", "Energy Management"],
     directUrl: "https://drillbabydrillaisuite.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cartoon-illustration-of-a-man-with-a-h_lmQ_X.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
     emoji: "🛢️"
   },
   {
@@ -342,6 +346,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-cyan-600",
     features: ["Fishing Techniques", "Equipment Guide", "Location Finder", "Weather Analysis"],
     directUrl: "https://fishermangpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-bearded-fisherman-wearin.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "🎣"
   },
   {
@@ -401,6 +406,7 @@ const featuredGPTs = [
     color: "from-pink-500 to-purple-600",
     features: ["Cover Design", "Logo Creation", "Marketing Materials", "Visual Content"],
     directUrl: "https://graphicdesigngpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/2e70f2ce-b17e-4b0f-b5d3-f36c9c22a2e3.png/:/cr=t:12.5%25,l:0%25,w:100%25,h:75%25/rs=w:1200,h:600,cg:true",
     emoji: "🎨"
   },
   {
@@ -410,6 +416,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Grant Writing Help", "Funding Proposal Help", "Nonprofit Support", "Research Grant Ideas"],
     directUrl: "https://grantwritergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-illustration-of-an-advertiseme_7T7dn.png/:/cr=t:10.87%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "💰"
   },
   {
@@ -429,6 +436,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Project Planning", "Material Selection", "Cost Estimation", "DIY Tips"],
     directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-humanoid-robot-fixing-a-bathroom-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🔧"
   },
   {
@@ -448,6 +456,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-pink-600",
     features: ["World Building", "Creative Stories", "Fictional Universes", "Imagination Enhancement"],
     directUrl: "https://imaginationtravelergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-advertisement-for-imaginati_E4k--.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "🚀"
   },
   {
@@ -487,6 +496,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-brown-600",
     features: ["Etymology", "Linguistics", "Cultural Analysis", "Word Origins"],
     directUrl: "https://interpretis.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
     emoji: "🕰️"
   },
   {
@@ -536,6 +546,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-purple-700",
     features: ["Heart Field Science", "Schumann Resonance", "Toroidal Energy", "Biofield Coherence"],
     directUrl: "https://chatgpt.com/g/g-68eb1e7a39d48191ac52cd628c18fd2b-magnetism-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
     emoji: "🧲"
   },
   {
@@ -555,6 +566,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Product Development", "Market Validation", "Monetization", "Scaling Strategies"],
     directUrl: "https://microsaasgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-mockup-advertisement-with-t_AgWMY.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "💼"
   },
   {
@@ -634,6 +646,7 @@ const featuredGPTs = [
     color: "from-red-500 to-gray-600",
     features: ["Threat Defense", "Infrastructure Protection", "Security Analysis", "Cyber Protection"],
     directUrl: "https://chatgpt.com/g/g-Qvat03gmj-hacking-defender-infrastructure-protector-gpt",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-robot-with-a-large-shield-tha.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "🛡️"
   },
   {
@@ -653,6 +666,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-pink-600",
     features: ["Name Analysis", "Numerology", "Personal Insights", "Cultural Meanings"],
     directUrl: "https://whatsmynamegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-interface-with-a-dark-blue-_mXbL6.png/:/cr=t:10.87%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "📛"
   },
   {
@@ -672,6 +686,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-purple-600",
     features: ["Training Materials", "Business Manuals", "Employee Onboarding", "Custom Content"],
     directUrl: "https://businessplanandtrainai.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000005968.jpg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
     emoji: "📋"
   },
   {
@@ -691,6 +706,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-pink-500",
     features: ["Cocktail Creation", "Custom Drinks", "Mixology", "Bartending Tips"],
     directUrl: "https://mixologistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-modern-and-stylish-bartender-with.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🍸"
   },
   {
@@ -700,6 +716,7 @@ const featuredGPTs = [
     color: "from-pink-500 to-purple-600",
     features: ["Image Styling", "Artistic Transformation", "Visual Effects", "Creative Design"],
     directUrl: "https://restylemegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/ChatGPT%20Image%20Apr%2027%2C%202025%2C%2007_08_04%20PM.png/:/cr=t:12.5%25,l:0%25,w:100%25,h:75%25/rs=w:1200,h:600,cg:true",
     emoji: "🎨"
   },
   {
@@ -709,6 +726,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-pink-600",
     features: ["Celebrity Simulation", "Interactive Chat", "Entertainment", "Fun Conversations"],
     directUrl: "https://celebritychatline.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-split-screen-image-of-snoop-dogg-talking-on-.png/:/cr=t:0%25,l:0.11%25,w:99.78%25,h:100%25/rs=w:1200,cg:true",
     emoji: "⭐"
   },
   {
@@ -718,6 +736,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-red-600",
     features: ["Menu Design", "Dish Descriptions", "Pricing Strategy", "QR Codes"],
     directUrl: "https://restaurantmenumakergpt.lovable.app/",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-restaurant-menu-with-a-vari__Oji1.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "🍽️"
   },
   {
@@ -737,6 +756,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Medication Information", "Drug Information", "Interaction Information", "Healthcare Information"],
     directUrl: "https://rxai.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-professional-looking-pharmaceutical-assistan.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "💊"
   },
   {
@@ -755,6 +775,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["UBI Models", "Economic Analysis", "Future Planning", "Policy Design"],
     directUrl: "https://ubigpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-the-ai-tool-ubi-str_22t4n.png/:/rs=w:600,cg:true,m/qt=q:30",
     emoji: "💵"
   },
   {
@@ -801,6 +822,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-blue-600",
     features: ["Frame Analysis", "Video Breakdown", "Visual Extraction", "Detailed Review"],
     directUrl: "https://videoanalysisgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-banner-ad-with-the-text-video-second-b_764zv.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
     emoji: "🎥"
   },
   {
@@ -830,6 +852,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-red-600",
     features: ["Pattern Recognition", "Historical Analysis", "Truth Seeking", "Alternative History"],
     directUrl: "https://historicalpatternsgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-advertisement-with-the-eye_C64dU.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
     emoji: "🔎"
   },
   {
@@ -839,6 +862,7 @@ const featuredGPTs = [
     color: "from-gray-600 to-purple-600",
     features: ["Sketch Generation", "Image to Sketch", "Text to Sketch", "High-Resolution Art"],
     directUrl: "https://sketchartistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-s_CPSIx.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
     emoji: "✏️"
   },
   {
@@ -878,6 +902,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-pink-600",
     features: ["Prompt Optimization", "Midjourney Expert", "Creative Guidance", "Art Generation"],
     directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-visually-captivating-advertisement-for-the-.jpeg/:/cr=t:0.11%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "🎨"
   },
   {
@@ -917,6 +942,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-red-600",
     features: ["UFO Research", "Supernatural", "Cryptozoology", "Ghost Hunting"],
     directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-ufo-hovering-in-the-sky-wit_w8l4l.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "👁️"
   },
   {
@@ -926,6 +952,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-green-600",
     features: ["Truth Seeking", "Probability Analysis", "Claim Verification", "Data-Driven"],
     directUrl: "https://probabilitygpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
     emoji: "⚖️"
   },
   {
@@ -985,6 +1012,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-gold-600",
     features: ["Timeless Wisdom", "Philosophy", "Mysticism", "Esoteric Knowledge"],
     directUrl: "https://sophiaaeterna.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "🦉"
   },
   {
@@ -1024,6 +1052,7 @@ const featuredGPTs = [
     color: "from-green-600 to-teal-600",
     features: ["Eco Solutions", "Green Technology", "Sustainability Planning", "Environmental Impact"],
     directUrl: "https://sustainablefuturesgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-future-city-with-vertical-gardens.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "🌱"
   },
   {
