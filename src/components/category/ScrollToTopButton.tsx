@@ -22,10 +22,7 @@ const ScrollToTopButton = () => {
   }, [addOptimizedScrollListener, isMobile]);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'auto' });
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {

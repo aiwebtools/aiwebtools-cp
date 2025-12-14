@@ -105,12 +105,12 @@ const Navigation = () => {
   };
 
   const scrollToHome = () => {
-    // If we're already on the home page, just scroll to top instantly
+    // INSTANT home navigation
     if (window.location.pathname === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'auto' });
     } else {
-      // Navigate to home page quickly
       navigate('/');
+      window.scrollTo({ top: 0, behavior: 'auto' });
     }
   };
 

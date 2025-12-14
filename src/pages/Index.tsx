@@ -116,7 +116,7 @@ const Index = () => {
                   🚀 Browse All AI Tools
                 </Button>
                 <Button
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
                   variant="outline"
                   className="border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-bold px-8 py-4 text-lg"
                 >

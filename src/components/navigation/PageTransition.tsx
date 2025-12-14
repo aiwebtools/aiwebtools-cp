@@ -67,7 +67,7 @@ const PageTransition = memo(({ children }: PageTransitionProps) => {
     <>
       <MatrixProgressBar 
         isLoading={isLoading} 
-        duration={100}
+        duration={50}
         isToolPage={navigatingToToolPage}
       />
       <div

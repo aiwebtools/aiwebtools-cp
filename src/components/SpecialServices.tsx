@@ -1510,12 +1510,10 @@ const OurFeaturedSection = () => {
 
   const handleShowCategories = () => {
     navigate('/');
-    setTimeout(() => {
-      const categoriesSection = document.getElementById('categories-section');
-      if (categoriesSection) {
-        categoriesSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
+    const categoriesSection = document.getElementById('categories-section');
+    if (categoriesSection) {
+      categoriesSection.scrollIntoView({ behavior: 'auto' });
+    }
   };
 
   // Separate Web3 tools

@@ -57,13 +57,11 @@ export const useToolDetail = (toolIndex: number) => {
 
   const handleSeeMoreTools = () => {
     setShowMoreTools(true);
-    // Scroll to the tools section
-    setTimeout(() => {
-      const toolsSection = document.getElementById('more-tools-section');
-      if (toolsSection) {
-        toolsSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
+    // INSTANT scroll to tools section
+    const toolsSection = document.getElementById('more-tools-section');
+    if (toolsSection) {
+      toolsSection.scrollIntoView({ behavior: 'auto' });
+    }
   };
 
   const handleToolsLoaded = (count: number) => {

@@ -13,15 +13,11 @@ const MainCategoriesView = ({ mainCategoryCounts, onMainCategoryClick }: MainCat
   const navigate = useNavigate();
 
   const handleCategoryClick = (mainCategoryName: string) => {
-    // Immediate navigation with zero delays for instant response
+    // INSTANT navigation
     const encodedName = encodeURIComponent(mainCategoryName);
     onMainCategoryClick(mainCategoryName);
     navigate(`/main-category/${encodedName}`);
-    
-    // Ensure user lands at top of the page
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 100);
+    window.scrollTo({ top: 0, behavior: 'auto' });
   };
 
   return (

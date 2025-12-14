@@ -65,7 +65,7 @@ const MatrixProgressBar = ({ isLoading, duration = 50, isToolPage = false }: Mat
       const timeout = setTimeout(() => {
         setIsVisible(false);
         setIsFadingOut(false);
-      }, isToolPage ? 300 : 200);
+      }, isToolPage ? 150 : 100);
       return () => {
         clearTimeout(timeout);
         if (animationRef.current) {
