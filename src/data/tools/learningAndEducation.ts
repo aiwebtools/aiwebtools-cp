@@ -27,7 +27,7 @@ export const learningAndEducation: Tool[] = [
     emoji: "🎓",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=Cd8uvD-smlM&list=TLGGLsn0bAvnp3EyODA1MjAyNQ",
+    videoUrl: "https://youtu.be/VkD_dX8kPy0",
     tags: ["college education", "degree planning", "academic support", "higher education", "student guidance"],
     category: "Learning & Education",
     rating: 4.8,
