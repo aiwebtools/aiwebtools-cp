@@ -25,12 +25,13 @@ import { getEnhancedAgentTools } from "./agentDetection";
 import { isGamingEntertainmentTool } from "./gamingEntertainmentDetection";
 import { isSecurityPrivacyTool } from "./securityPrivacyDetection";
 import { isSpiritualityTool } from "./spiritualityDetection";
+import { getThreeDVisualizationTools, isThreeDVisualizationTool } from "./threeDVisualizationDetection";
 
 // Ultra-optimized cache with persistent storage and lazy loading
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 39; // Phase 19: Added Gravestone Decoder GPT, fixed filter toggle
+let cacheVersion = 40; // Phase 20: Added comprehensive 3D & Visualization detection
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';
@@ -120,6 +121,7 @@ export const buildToolsCache = (tools: Tool[]) => {
   const healthSet = new Set(tools.filter(tool => isHealthAndWellnessTool(tool)).map(t => t.title));
   const industrySet = new Set(tools.filter(tool => isIndustrySpecificTool(tool)).map(t => t.title));
   const spiritualitySet = new Set(tools.filter(tool => isSpiritualityTool(tool)).map(t => t.title));
+  const threeDSet = new Set(tools.filter(tool => isThreeDVisualizationTool(tool)).map(t => t.title));
   
   const toolCollections = {
     aiWebToolsGPTs: tools.filter(tool => aiWebToolsSet.has(tool.title)),
@@ -127,6 +129,7 @@ export const buildToolsCache = (tools: Tool[]) => {
     healthAndWellnessTools: tools.filter(tool => healthSet.has(tool.title)),
     industrySpecificTools: tools.filter(tool => industrySet.has(tool.title)),
     spiritualityTools: tools.filter(tool => spiritualitySet.has(tool.title)),
+    threeDVisualizationTools: tools.filter(tool => threeDSet.has(tool.title)),
     strictHistoricalTools: tools.filter(tool => isStrictlyHistoricalTimeRelatedTool(tool)),
     educationRelatedTools: tools.filter(tool => isEducationRelatedTool(tool)),
     videoRelatedTools: tools.filter(tool => isVideoRelatedTool(tool)),
@@ -218,6 +221,13 @@ export const buildToolsCache = (tools: Tool[]) => {
       case "SPIRITUALITY & PHILOSOPHY":
         categoryTools = getCombinedTools(tools, mainCat, toolCollections.spiritualityTools);
         break;
+        
+      case "3D & VISUALIZATION": {
+        // Use comprehensive 3D detection for maximum tool coverage
+        categoryTools = getThreeDVisualizationTools(tools);
+        console.log(`🧊 3D & VISUALIZATION: Found ${categoryTools.length} tools with enhanced detection`);
+        break;
+      }
         
       case "AUTOMATION PLATFORMS":
         categoryTools = getAutomationPlatformsTools(tools, mainCat.name);

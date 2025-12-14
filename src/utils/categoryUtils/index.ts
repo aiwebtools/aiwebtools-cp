@@ -6,3 +6,4 @@ export * from "./normalization";
 export * from "./videoDetection";
 export * from "./categoryMatching";
 export * from "./toolFiltering";
+export * from "./threeDVisualizationDetection";
