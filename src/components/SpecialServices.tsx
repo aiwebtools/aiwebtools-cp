@@ -86,6 +86,9 @@ const featuredGPTsUnsorted = [
   {
     title: "Trader GPT",
     description: "Advanced AI trading assistant for day traders and investors. Get real-time market analysis, trading signals, and data-driven insights for informed trading decisions.",
+    badge: "FINANCE",
+    color: "from-green-500 to-emerald-600",
+    features: ["Market Analysis", "Trading Signals", "Portfolio Insights", "Real-time Data"],
     videoUrl: "https://www.youtube.com/watch?v=Izs80Fak4hQ",
     directUrl: "https://tradergpt.lovable.app/?via=aiwebtools",
     tags: ["trading", "stocks", "crypto", "market analysis", "investing", "day trading"],
