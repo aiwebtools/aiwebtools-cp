@@ -243,12 +243,12 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   // 🎯 PERFECT SYNC: All effects start simultaneously in same frame
   // Use requestAnimationFrame to ensure DOM is ready, then fire everything together
   requestAnimationFrame(() => {
-    // Voice and visuals start in the EXACT same frame
+    // Voice and visuals start in the EXACT same frame - ONLY the voice audio, no extra sounds
     playTimeWarpVoice();
     createMatrixCodeExplosion(effectsContainer);
     createFlash(effectsContainer);
-    createPortalSounds();
-    createConfettiCelebration();
+    // Removed: createPortalSounds() - too many sounds, just use voice
+    createConfettiCelebration(true); // true = visual only, no sound
   });
 
   // OPEN URL as voice finishes - perfect sync moment
