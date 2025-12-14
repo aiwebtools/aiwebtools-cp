@@ -327,7 +327,7 @@ const InteractiveMatrixBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-20"
+      className="fixed top-0 left-0 w-full h-full pointer-events-none -z-10"
       style={{
         background: 'radial-gradient(ellipse at center, #000000 0%, #001a00 50%, #000000 100%)',
         touchAction: 'none' // Prevent default touch behaviors
