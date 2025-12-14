@@ -37,7 +37,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     color: "from-blue-600 to-gray-700",
     category: "Legal & Government AI Tools",
     directUrl: "https://chatgpt.com/g/g-Y8u3YrS1p-contract-review-bot",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-humanoid-robot-with-a-sleek-desig.png/:/cr=t:2.6%25,l:5.36%25,w:89.29%25,h:79.58%25/rs=w:1200,h:600,cg:true,m",
+    videoUrl: "https://youtu.be/12jsM2-Yfho",
     rating: 4.6,
     totalVotes: 3400,
     tags: ["legal", "contracts", "review", "risk analysis", "legal assistant"]
@@ -63,7 +63,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     category: "Industry-Specific Solutions",
     directUrl: "https://firearmsafetyeducationgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-humanoid-shooting-a-gun-at-a-targ.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    videoUrl: "https://youtu.be/S0uJrukJsBA",
     rating: 4.5,
     totalVotes: 3200,
     tags: ["firearms safety", "gun education", "safety training", "legal compliance", "instructor"]
@@ -141,7 +141,7 @@ export const fourthPriorityFeaturedGPTs: Tool[] = [
     color: "from-purple-500 to-pink-600",
     category: "Image & Design Generation",
     directUrl: "https://restylemegpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/ChatGPT%20Image%20Apr%2027%2C%202025%2C%2007_08_04%20PM.png/:/cr=t:12.5%25,l:0%25,w:100%25,h:75%25/rs=w:1200,h:600,cg:true",
+    videoUrl: "https://youtu.be/MG0Zl2KL_Wk",
     rating: 4.7,
     totalVotes: 4000,
     tags: ["image transformation", "artistic styles", "photo editing", "ai art", "style transfer"]

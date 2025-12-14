@@ -74,7 +74,7 @@ export const educationAndLearningGPTs: Tool[] = [
     emoji: "🏠",
     color: "from-green-500 to-blue-600",
     directUrl: "https://homeschoolgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-parent-teaching-their-ki-0096e43.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    videoUrl: "https://youtu.be/dHirW5bIT34",
     tags: ["homeschooling", "education", "parenting", "curriculum", "learning resources", "aiwebtools", "Homeschool", "Course Creator", "Learning Platform"],
     category: "Education & Learning",
     rating: 4.5,

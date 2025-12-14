@@ -255,6 +255,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🏛️",
     color: "from-amber-600 to-stone-700",
     directUrl: "https://chatgpt.com/g/g-693863184c4c8191a6e78eb6a215196f-architectural-old-world-investigator-gpt?via=aiwebtools",
+    videoUrl: "https://youtu.be/2z3aO-PSpgc",
     tags: ["architecture", "old world", "forensic analysis", "timeline contradictions", "historical investigation", "ancient buildings", "construction mysteries", "architectural anomalies", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.7,
