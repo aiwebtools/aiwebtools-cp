@@ -1,9 +1,13 @@
 
-import { memo, useCallback } from "react";
+import { memo, useCallback, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { useNavigate } from "react-router-dom";
+import { getToolsByMainCategory } from "@/utils/categoryUtils/toolFiltering";
+import { allTools } from "@/data/toolsData";
+// Prefetched categories cache
+const prefetchedCategories = new Set<string>();
 
 interface MainCategoriesViewProps {
   mainCategoryCounts: Record<string, number>;
@@ -12,6 +16,7 @@ interface MainCategoriesViewProps {
 
 const MainCategoriesView = memo(({ mainCategoryCounts, onMainCategoryClick }: MainCategoriesViewProps) => {
   const navigate = useNavigate();
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleCategoryClick = useCallback((mainCategoryName: string) => {
     // INSTANT navigation
@@ -20,6 +25,24 @@ const MainCategoriesView = memo(({ mainCategoryCounts, onMainCategoryClick }: Ma
     navigate(`/main-category/${encodedName}`);
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [navigate, onMainCategoryClick]);
+
+  // Prefetch category data on hover (after 100ms delay to avoid unnecessary prefetches)
+  const handleCategoryHover = useCallback((mainCategoryName: string) => {
+    if (prefetchedCategories.has(mainCategoryName)) return;
+    
+    hoverTimeoutRef.current = setTimeout(() => {
+      // Trigger cache population by calling getToolsByMainCategory
+      getToolsByMainCategory(allTools, mainCategoryName);
+      prefetchedCategories.add(mainCategoryName);
+    }, 100);
+  }, []);
+
+  const handleCategoryLeave = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+  }, []);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
@@ -31,6 +54,8 @@ const MainCategoriesView = memo(({ mainCategoryCounts, onMainCategoryClick }: Ma
           <Button
             key={mainCat.name}
             onClick={() => handleCategoryClick(mainCat.name)}
+            onMouseEnter={() => handleCategoryHover(mainCat.name)}
+            onMouseLeave={handleCategoryLeave}
             variant="outline"
             size="sm"
             className="group relative overflow-hidden transition-all duration-150 transform hover:scale-105 text-xs border h-auto py-4 px-3 min-w-0 bg-gradient-to-br from-purple-600/20 to-blue-600/20 border-purple-500/30 text-gray-200 hover:from-purple-600/30 hover:to-blue-600/30 hover:text-white hover:shadow-md hover:border-purple-400/50"
