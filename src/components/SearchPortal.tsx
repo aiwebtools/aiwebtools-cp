@@ -12,10 +12,12 @@ const SearchPortal = () => {
     searchTerm,
     displayedCount,
     isLoading,
+    showFreeOnly,
     setDisplayedCount,
     setIsLoading,
     handleCategoryChange,
     handleSearchChange,
+    handleFreeOnlyChange,
     filteredTools,
     totalToolsCount,
     categoriesWithCounts,
@@ -66,6 +68,8 @@ const SearchPortal = () => {
         onCategoryChange={handleCategoryChange}
         onSearchChange={handleSearchChange}
         searchTerm={searchTerm}
+        showFreeOnly={showFreeOnly}
+        onFreeOnlyChange={handleFreeOnlyChange}
       />
 
       {/* Tools Count Display */}

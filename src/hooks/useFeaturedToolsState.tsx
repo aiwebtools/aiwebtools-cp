@@ -6,12 +6,14 @@ import { getToolsByCategory } from "@/utils/categoryUtils";
 import { getSortedStandardizedCategories } from "@/utils/categoryTitles";
 import { createDeduplicatedToolsList } from "@/utils/toolDeduplication";
 import { createFeaturedTools } from "@/utils/featuredTools";
+import { isFreeTool } from "@/utils/freeToolDetection";
 
 export const useFeaturedToolsState = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [displayedCount, setDisplayedCount] = useState<number>(24); // Initial display count
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showFreeOnly, setShowFreeOnly] = useState<boolean>(false);
 
   const handleCategoryChange = useCallback((category: string | null) => {
     console.log('🏷️ Category change requested:', category);
@@ -24,6 +26,12 @@ export const useFeaturedToolsState = () => {
   const handleSearchChange = useCallback((term: string) => {
     setSearchTerm(term);
     setSelectedCategory(null);
+    setDisplayedCount(24);
+    setIsLoading(false);
+  }, []);
+
+  const handleFreeOnlyChange = useCallback((freeOnly: boolean) => {
+    setShowFreeOnly(freeOnly);
     setDisplayedCount(24);
     setIsLoading(false);
   }, []);
@@ -62,8 +70,13 @@ export const useFeaturedToolsState = () => {
       tools = createFeaturedTools(allTools);
     }
 
+    // Apply FREE filter if enabled
+    if (showFreeOnly) {
+      tools = tools.filter(isFreeTool);
+    }
+
     return tools;
-  }, [selectedCategory, searchTerm]);
+  }, [selectedCategory, searchTerm, showFreeOnly]);
 
   const totalToolsCount = filteredTools.length;
   
@@ -80,10 +93,12 @@ export const useFeaturedToolsState = () => {
     searchTerm,
     displayedCount,
     isLoading,
+    showFreeOnly,
     setDisplayedCount,
     setIsLoading,
     handleCategoryChange,
     handleSearchChange,
+    handleFreeOnlyChange,
     filteredTools,
     totalToolsCount,
     categoriesWithCounts,

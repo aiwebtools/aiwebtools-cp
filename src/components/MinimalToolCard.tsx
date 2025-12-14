@@ -4,6 +4,7 @@ import { Tool } from "@/types/tools";
 import { Card, CardContent } from "@/components/ui/card";
 import { generateToolSlug } from "@/utils/urlGenerator";
 import { prefetchToolData } from "@/utils/toolPrefetcher";
+import { isFreeTool } from "@/utils/freeToolDetection";
 import FavoriteButton from "@/components/favorites/FavoriteButton";
 
 interface MinimalToolCardProps {
@@ -15,18 +16,8 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
   const navigate = useNavigate();
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
-  // Determine if this is a FREE custom GPT (lovable.app, chatgpt.com/g/, or gemini.google.com/gem/)
-  const isCustomGPT = (() => {
-    const url = tool.directUrl || '';
-    return tool.isFree || 
-           url.includes('lovable.app') || 
-           url.includes('chatgpt.com/g/') ||
-           url.includes('gemini.google.com/gem/') ||
-           tool.tags?.some(tag => 
-             tag.toLowerCase().includes('custom gpt') || 
-             tag.toLowerCase().includes('gemini gem')
-           ) || false;
-  })();
+  // Determine if this is a FREE custom GPT using centralized detection
+  const isCustomGPT = isFreeTool(tool);
   
   const isAIWebToolsOriginal = isCustomGPT;
   
