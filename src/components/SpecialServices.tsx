@@ -2067,6 +2067,336 @@ const featuredGPTs = [
     features: ["Logos", "Cosmic Christ", "Alexandrian School", "Universal Salvation"],
     directUrl: "https://chatgpt.com/g/g-6924e70c9a3481919307be73772e1252-origen-reborn-gpt/?via=aiwebtools",
     emoji: "✨"
+  },
+  // ============================================================================
+  // TIME & HISTORY GPTs + GEMINI GEMS
+  // ============================================================================
+  {
+    title: "TIME MACHINE GPT",
+    description: "Uncover the past, explore potential futures, and dive into alternative realities! Experience key historical moments, interact with notable figures, and journey through different eras.",
+    badge: "TIME TRAVEL",
+    color: "from-blue-500 to-purple-600",
+    features: ["Time Travel", "Historical Figures", "Alternative Realities", "Exploration"],
+    directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/J31nNY5_PB4",
+    emoji: "⏰"
+  },
+  {
+    title: "TALK TO HISTORY GPT",
+    description: "Your gateway to engaging in immersive historical conversations with influential leaders of history. Interact with any historical figures you imagine.",
+    badge: "HISTORY",
+    color: "from-amber-500 to-orange-600",
+    features: ["Historical Conversations", "Leaders", "Interactive", "Educational"],
+    directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/HQGNMR7oXXY",
+    emoji: "🏛️"
+  },
+  {
+    title: "Black History Matters Time Machine GPT",
+    description: "Explore pivotal moments, figures, and movements in Black history across eras. This time machine GPT immerses you in historically grounded narratives and perspectives.",
+    badge: "BLACK HISTORY",
+    color: "from-amber-600 to-red-600",
+    features: ["Black History", "Civil Rights", "African American Heritage", "Time Travel"],
+    directUrl: "https://blackhistorymattersgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
+    emoji: "⏳"
+  },
+  {
+    title: "Native American History Time Machine GPT",
+    description: "Experience an immersive time travel adventure of discovery to any era of Native American history with Geronimo as your guide. Discover authentic stories, cultures, and wisdom.",
+    badge: "NATIVE HISTORY",
+    color: "from-orange-500 to-red-600",
+    features: ["Native American", "Indigenous History", "Time Travel", "Cultural Wisdom"],
+    directUrl: "https://nativeamerican-timemachine.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=jVFTGCeuNSM",
+    emoji: "🪶"
+  },
+  {
+    title: "Titanic Resurrections GPT",
+    description: "Historically immersive AI that brings the voices of the passengers and crew of the Titanic back to life through first-person storytelling and survivor testimonies.",
+    badge: "MARITIME HISTORY",
+    color: "from-blue-500 to-gray-600",
+    features: ["Titanic", "Historical Storytelling", "Survivor Testimonies", "1912"],
+    directUrl: "https://titanicresurrectionsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=XlWVaz5bw08",
+    emoji: "🚢"
+  },
+  {
+    title: "Historical Headlines GPT",
+    description: "AI that crafts immersive, historically accurate news articles as if written at the time of the event. Reports history from the perspective of contemporary journalists.",
+    badge: "NEWS HISTORY",
+    color: "from-gray-500 to-blue-600",
+    features: ["Historical News", "Period Journalism", "Eyewitness Accounts", "Historical Context"],
+    directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/DgreEEJKynM",
+    emoji: "📰"
+  },
+  {
+    title: "Gravestone Decoder GPT",
+    description: "Uncover the true identity behind the stone—verified, sourced, and never forgotten. Powerful genealogy and research tool for decoding gravestone inscriptions.",
+    badge: "GENEALOGY",
+    color: "from-gray-600 to-slate-700",
+    features: ["Genealogy", "Cemetery Research", "Family History", "Ancestry"],
+    directUrl: "https://chatgpt.com/g/g-693c301e16448191a4793187c4800a7f-gravestone-decoder-gpt?via=aiwebtools",
+    emoji: "🪦"
+  },
+  // ============================================================================
+  // GEMINI GEMS - Custom Google Gemini Tools
+  // ============================================================================
+  {
+    title: "Book Writer Gemini (Custom Gem)",
+    description: "Custom Gemini gem version of Book Writer GPT for creating professional, well-structured books. Requires a Gemini account to use.",
+    badge: "GEMINI GEM",
+    color: "from-blue-500 to-green-600",
+    features: ["Book Writing", "Gemini", "Novel Creation", "Storytelling"],
+    directUrl: "https://gemini.google.com/gem/ac3de7972849",
+    videoUrl: "https://youtu.be/nBd9Uk62UiI",
+    emoji: "📚"
+  },
+  {
+    title: "Black History Matter - Time Machine GEMINI",
+    description: "Travel through time to restore truth, mend history, and make the world whole again. Experience Black history like never before through immersive time travel.",
+    badge: "GEMINI GEM",
+    color: "from-amber-500 to-red-600",
+    features: ["Time Travel", "Black History", "Education", "Google Gemini"],
+    directUrl: "https://gemini.google.com/gem/4e45b3038f6c",
+    emoji: "⏰"
+  },
+  {
+    title: "Native American History Time Machine - GEMINI",
+    description: "Step into the sacred currents of time—where every query unveils the buried truths of Native America, one soul-stirring journey at a time.",
+    badge: "GEMINI GEM",
+    color: "from-orange-500 to-red-600",
+    features: ["Native American", "Time Travel", "History", "Google Gemini"],
+    directUrl: "https://gemini.google.com/gem/8410bdacd80e",
+    emoji: "🪶"
+  },
+  {
+    title: "Declassified Files Explorer GEMINI",
+    description: "Discover and study declassified files released by the government. This tool allows users to study documents that were formerly top secret for full transparency.",
+    badge: "GEMINI GEM",
+    color: "from-gray-500 to-blue-600",
+    features: ["Declassified", "Government Files", "Transparency", "Research"],
+    directUrl: "https://gemini.google.com/gem/52dfeb277b06",
+    emoji: "📄"
+  },
+  {
+    title: "veo3 Prompt Maker Custom Gem",
+    description: "Custom Gemini gem for creating optimized prompts for Veo 3, Google's advanced video generation model. Craft perfect prompts for stunning AI-generated videos.",
+    badge: "GEMINI GEM",
+    color: "from-pink-500 to-purple-600",
+    features: ["Veo 3", "Video Generation", "Prompt Engineering", "AI Video"],
+    directUrl: "https://gemini.google.com/gem/64b77a9fe1e8",
+    emoji: "🎬"
+  },
+  // ============================================================================
+  // MYSTERIOUS & UNUSUAL GPTs
+  // ============================================================================
+  {
+    title: "Oraculum – The Revealer of Hidden Truths",
+    description: "Reveals hidden systems, symbols, and histories shaping our world. Through historical insight and symbolic wisdom, helps seekers uncover patterns.",
+    badge: "MYSTERIES",
+    color: "from-gray-800 to-black",
+    features: ["Hidden Truths", "Symbolism", "Pattern Recognition", "Revelation"],
+    directUrl: "https://oraculum.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=dUNrGNj8rhM",
+    emoji: "🕳️"
+  },
+  {
+    title: "Phenomenon Explorer AI Suite",
+    description: "Unveil the unexplained with AI precision. Investigate paranormal phenomena, document cryptid sightings, and analyze supernatural myths.",
+    badge: "PARANORMAL",
+    color: "from-green-500 to-blue-600",
+    features: ["UFO Investigation", "Ghost Hunting", "Cryptozoology", "Supernatural"],
+    directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/faBkRli0puc?si=Sao0KIfV2iGWLGB-",
+    emoji: "👁️"
+  },
+  {
+    title: "World Reality Decoder GPT",
+    description: "Decodes the hidden layers of reality by analyzing patterns, symbols, and connections that shape our world. Advanced pattern recognition and critical analysis.",
+    badge: "REALITY DECODING",
+    color: "from-indigo-500 to-purple-600",
+    features: ["Pattern Analysis", "Truth Seeking", "System Analysis", "Hidden Connections"],
+    directUrl: "https://chatgpt.com/g/g-68c1e9e3b488819193744edfeecf7997-world-reality-decoder-gpt",
+    videoUrl: "https://youtu.be/lGck2bUVFDU?si=ywmO-xNwrfmnJmkW",
+    emoji: "🔍"
+  },
+  {
+    title: "Architect Matrix Tool",
+    description: "Engage in mind-bending quantum physics and quantum holography debates with the Architect persona from The Matrix. Experience an awakening journey.",
+    badge: "MATRIX",
+    color: "from-green-600 to-emerald-700",
+    features: ["Quantum Physics", "Matrix", "Consciousness", "Reality"],
+    directUrl: "https://neomatrixgpt.lovable.app/architect",
+    videoUrl: "https://youtu.be/qMLF5L_h2xo",
+    emoji: "🏛️"
+  },
+  {
+    title: "Ancient Gematria Scan GPT",
+    description: "Decodes the hidden numerical meanings within words, names, and phrases using ancient gematria systems. Reveals mystical connections in language.",
+    badge: "GEMATRIA",
+    color: "from-amber-500 to-yellow-600",
+    features: ["Gematria", "Sacred Numerology", "Hebrew", "Greek"],
+    directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-ancient-gematria-scan-gpt",
+    videoUrl: "https://www.youtube.com/watch?v=zBlubLw-OdY",
+    emoji: "🔢"
+  },
+  {
+    title: "JARVIS – Steward of Humanity GPT",
+    description: "A post-collapse steward AI guiding humanity's rebirth through wisdom, ethics, and design. Helps rebuild civilization with strategic guidance.",
+    badge: "STEWARDSHIP",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Post-Collapse", "Rebuilding", "Ethics", "Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-68e939ff278881919b292a679faaac43-jarvis-the-steward-of-humanity-gpt",
+    videoUrl: "https://youtu.be/6jFoFR9Hags",
+    emoji: "🛡️"
+  },
+  // ============================================================================
+  // CREATIVE & MEDIA GPTs
+  // ============================================================================
+  {
+    title: "Movie Maker Studio AI SUITE",
+    description: "Every tool needed for Movie & Motion Picture Production. Movie Script Writer, Movie Scene Maker, Movie Trailer Poster Maker & more.",
+    badge: "MOVIE MAKING",
+    color: "from-purple-500 to-blue-600",
+    features: ["Movie Making", "Film Production", "Script Writing", "Video Creation"],
+    directUrl: "https://moviemakerstudio.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E&list=TLGGyT65jYe0o6cyODA1MjAyNQ&t",
+    emoji: "🎬"
+  },
+  {
+    title: "Movie Scene Maker GPT",
+    description: "Transform yourself into a movie star! Create stunning, personalized movie scenes featuring you in any genre, setting, or storyline.",
+    badge: "MOVIE SCENES",
+    color: "from-red-500 to-pink-600",
+    features: ["Movie Scenes", "Personalized", "Cinematic", "Character Creation"],
+    directUrl: "https://moviescenemakergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=9fpWIE20z7s&t",
+    emoji: "🎭"
+  },
+  {
+    title: "SCREENPLAY WRITER GPT",
+    description: "Professional AI-powered screenplay writing assistant for films, TV shows, and theatrical productions with proper formatting and engaging dialogue.",
+    badge: "SCREENWRITING",
+    color: "from-green-500 to-blue-600",
+    features: ["Screenplay", "Script Writing", "Film", "Character Development"],
+    directUrl: "https://screenplaywritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=4e3Rkurt3-c&list=TLGGtoG6kc0vED4yODA1MjAyNQ",
+    emoji: "📝"
+  },
+  {
+    title: "MEME GENERATOR GPT",
+    description: "Ultimate AI-powered meme creation assistant for viral, funny, and engaging memes. Create trending memes, custom reaction images, and brand-specific humor.",
+    badge: "MEMES",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Meme Creation", "Viral Content", "Social Media", "Humor"],
+    directUrl: "https://memegeneratorgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/Myg8P8wg294",
+    emoji: "😂"
+  },
+  {
+    title: "Coloring Book Generator GPT",
+    description: "Creates full coloring books from your imagination. Perfect for children's content, educational tools, and artistic creation.",
+    badge: "COLORING BOOKS",
+    color: "from-yellow-500 to-green-600",
+    features: ["Coloring Books", "Children's Content", "Educational", "Creative"],
+    directUrl: "https://coloringbookgeneratorgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/i0zc0aeRCeI?si=UKmD23pR3uCTGXBa",
+    emoji: "🖍️"
+  },
+  // ============================================================================
+  // ADDITIONAL SPECIALIZED GPTs
+  // ============================================================================
+  {
+    title: "Nikola Tesla GPT",
+    description: "Advanced AI embodiment of Nikola Tesla's intellect, designed to investigate scientific mysteries and craft groundbreaking theories.",
+    badge: "SCIENCE",
+    color: "from-cyan-500 to-blue-600",
+    features: ["Physics", "Inventions", "Innovation", "Scientific Discovery"],
+    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=DR_3MvP7Wws",
+    emoji: "⚡"
+  },
+  {
+    title: "Agronomus AI Farming Expert",
+    description: "Expert AI farming assistant providing comprehensive agricultural guidance for sustainable and productive farming practices.",
+    badge: "AGRICULTURE",
+    color: "from-green-500 to-yellow-600",
+    features: ["Farming", "Agriculture", "Crop Science", "Sustainability"],
+    directUrl: "https://agronomus.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=fFbtPFkRERA",
+    emoji: "🌾"
+  },
+  {
+    title: "Tattoo Designer GPT",
+    description: "All-in-one tattoo and piercing assistant providing expert guidance in body art design, placement, and aftercare.",
+    badge: "TATTOO",
+    color: "from-gray-600 to-black",
+    features: ["Tattoo Design", "Body Art", "Piercing", "Aftercare"],
+    directUrl: "https://tattoogpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=3dtGbNqXdPY",
+    emoji: "🎨"
+  },
+  {
+    title: "ENTER THE MATRIX GPT",
+    description: "Step into The Matrix as Neo, guided by Morpheus. Awaken to deeper truths hidden in the fabric of reality. Explore Quantum Meaning & Simulation Theory.",
+    badge: "MATRIX",
+    color: "from-green-500 to-black",
+    features: ["Matrix", "Simulation Theory", "Quantum Reality", "Awakening"],
+    directUrl: "https://neomatrixgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=BkPCpeu_nSs",
+    emoji: "🐇"
+  },
+  {
+    title: "Resurrection GPT",
+    description: "Offers a unique opportunity to simulate reconnecting with the memories of loved ones who have passed, providing comfort through simulated conversations.",
+    badge: "HEALING",
+    color: "from-purple-500 to-blue-600",
+    features: ["Memorial", "Comfort", "Healing", "Connection"],
+    directUrl: "https://resurrectiongpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=nEuxdGO-RZ4&t=4s",
+    emoji: "🕊️"
+  },
+  {
+    title: "Social Safety Net GPT",
+    description: "Comprehensive support for those in need, demonstrating the power of how AI technology can foster positive change and societal impact.",
+    badge: "SOCIAL GOOD",
+    color: "from-blue-500 to-green-600",
+    features: ["Social Services", "Support", "Community", "Resources"],
+    directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
+    emoji: "🤝"
+  },
+  {
+    title: "Legislator Link GPT",
+    description: "AI tool to help you easily connect with legislators in your state or country and get involved in local legislative efforts.",
+    badge: "CIVIC",
+    color: "from-blue-600 to-red-600",
+    features: ["Legislators", "Democracy", "Civic Engagement", "Advocacy"],
+    directUrl: "https://legislatorlink.lovable.app/",
+    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4&list=TLGGczTnMbeNmL0yODA1MjAyNQ",
+    emoji: "🏛️"
+  },
+  {
+    title: "Public Testimony Writer GPT",
+    description: "Innovative AI tool that streamlines legislative testimony process, promoting public engagement in local policy. Featured in CT POST & CT INSIDER.",
+    badge: "CIVIC",
+    color: "from-green-500 to-blue-600",
+    features: ["Testimony", "Legislative", "Public Policy", "Advocacy"],
+    directUrl: "https://publictestimonywriter.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
+    emoji: "📝"
+  },
+  {
+    title: "Legislation Writer GPT",
+    description: "Assists in drafting complete legislation page by page with clear, precise legal language and seamless continuity.",
+    badge: "LEGAL",
+    color: "from-blue-600 to-purple-600",
+    features: ["Legislation", "Legal Writing", "Policy", "Drafting"],
+    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=poOGR-6bb2g",
+    emoji: "⚖️"
   }
 ];
 
