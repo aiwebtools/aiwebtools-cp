@@ -4,6 +4,19 @@ import { Mic, Video, Image, FileText, Headphones, Camera, Music, Film, Edit, Pla
 
 export const multimediaAndContentGPTs: Tool[] = [
   {
+    icon: Mic,
+    title: "News-Channel GPT",
+    description: "I'm NewsChannel GPT, your live TV news reporter AI, bringing your Customized Live Local and World News 24/7 news tailored to you! Get personalized news coverage, breaking stories, and comprehensive reporting on topics that matter most to you. This AI delivers news in engaging broadcast style, covering local events, global affairs, politics, business, technology, sports, entertainment, and more with professional journalism standards.",
+    emoji: "📺",
+    color: "from-red-500 to-blue-600",
+    directUrl: "https://chatgpt.com/g/g-ELRe07210-news-channel-gpt?via=aiwebtools",
+    tags: ["news", "news channel", "live news", "TV news", "world news", "local news", "breaking news", "journalism", "news reporter", "Custom GPT", "aiwebtools"],
+    category: "Multimedia & Content",
+    rating: 4.8,
+    totalVotes: 3456,
+    isFree: true
+  },
+  {
     icon: Copy,
     title: "AIWEBTOOLS GPT CLONER GPT",
     description: "Think it, Dream it, Spawn it! Clone any of our GPTs and receive operational instructions ready to deploy, written in the style of the creator of AIWebTools.AI. This powerful tool allows you to replicate the functionality and style of any AI Web Tools GPT, providing you with complete operational instructions that you can deploy on your own model. Perfect for developers, AI enthusiasts, and anyone looking to create their own custom GPT based on proven templates.",

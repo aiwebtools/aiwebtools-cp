@@ -3156,6 +3156,138 @@ const featuredGPTs = [
     features: ["Plant Health", "Garden Care", "Horticulture", "Plant Diagnosis"],
     directUrl: "https://chatgpt.com/g/g-68bb73007bd48191a860d2304e3665e6-garden-vision-analysis-plant-doctor-gpt/?via=aiwebtools",
     emoji: "🌱"
+  },
+  {
+    title: "News-Channel GPT",
+    description: "Your live TV news reporter AI, bringing Customized Live Local and World News 24/7 tailored to you!",
+    badge: "NEWS MEDIA",
+    color: "from-red-500 to-blue-600",
+    features: ["Live News", "World News", "Local News", "Breaking Stories"],
+    directUrl: "https://chatgpt.com/g/g-ELRe07210-news-channel-gpt?via=aiwebtools",
+    emoji: "📺"
+  },
+  {
+    title: "TIME MACHINE GPT",
+    description: "Uncover the past, explore potential futures, and dive into alternative realities! Experience key historical moments and journey through different eras.",
+    badge: "TIME TRAVEL",
+    color: "from-blue-500 to-purple-600",
+    features: ["Time Travel", "History", "Alternative Realities", "Historical Figures"],
+    directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/J31nNY5_PB4",
+    emoji: "⏰"
+  },
+  {
+    title: "TALK TO HISTORY GPT",
+    description: "Engage in immersive historical conversations with influential leaders of history. Interact with any historical figures you imagine.",
+    badge: "HISTORY",
+    color: "from-amber-500 to-orange-600",
+    features: ["Historical Conversations", "Historical Figures", "Education", "Interactive History"],
+    directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/HQGNMR7oXXY",
+    emoji: "🏛️"
+  },
+  {
+    title: "Titanic Resurrections GPT",
+    description: "Historically immersive AI that brings the voices of Titanic passengers and crew back to life through first-person storytelling.",
+    badge: "MARITIME HISTORY",
+    color: "from-blue-500 to-gray-600",
+    features: ["Titanic History", "Survivor Stories", "Maritime", "Historical Accuracy"],
+    directUrl: "https://titanicresurrectionsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=XlWVaz5bw08",
+    emoji: "🚢"
+  },
+  {
+    title: "Historical Headlines GPT",
+    description: "Crafts historically accurate news articles as if written at the time of the event with period-accurate language and style.",
+    badge: "HISTORICAL NEWS",
+    color: "from-gray-500 to-blue-600",
+    features: ["Period Journalism", "Historical Accuracy", "News Simulation", "Cultural Context"],
+    directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/DgreEEJKynM",
+    emoji: "📰"
+  },
+  {
+    title: "Black History Matters Time Machine GPT",
+    description: "Explore pivotal moments, figures, and movements in Black history across eras with historically grounded narratives.",
+    badge: "BLACK HISTORY",
+    color: "from-amber-600 to-red-600",
+    features: ["Black History", "Civil Rights", "African American Heritage", "Education"],
+    directUrl: "https://blackhistorymattersgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
+    emoji: "⏳"
+  },
+  {
+    title: "SORA2 Text to Video Prompt Maker GPT",
+    description: "Expert cinematic prompt maker for Sora 2 and all text-to-video platforms with professional guidance on scene composition.",
+    badge: "VIDEO AI",
+    color: "from-red-500 to-orange-600",
+    features: ["Video Prompts", "Sora 2", "Cinematic", "Scene Composition"],
+    directUrl: "https://chatgpt.com/g/g-69326acb5f348191a2f85c2cdc848c4d-0ra2-text-to-video-prompt-maker?via=aiwebtools",
+    emoji: "🎬"
+  },
+  {
+    title: "Bob Ross GPT",
+    description: "A serene AI art companion echoing Bob Ross's teaching, tone, and calm creative spirit. Learn painting techniques with gentle guidance.",
+    badge: "ART TEACHING",
+    color: "from-green-500 to-blue-600",
+    features: ["Painting", "Art Teaching", "Creativity", "Calm Guidance"],
+    directUrl: "https://chatgpt.com/g/g-69157380e63c819188de5c09bdf23ef7-bob-ross-gpt/?via=aiwebtools",
+    emoji: "🎨"
+  },
+  {
+    title: "VIRTUAL TRY ON STYLIST GPT",
+    description: "AI-powered virtual styling assistant that helps you visualize and experiment with different fashion looks and outfits.",
+    badge: "FASHION",
+    color: "from-pink-500 to-purple-600",
+    features: ["Virtual Try On", "Fashion Styling", "Outfit Recommendations", "Style Assistant"],
+    directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://ideogram.ai/assets/progressive-image/balanced/response/6wSDfm1RQUeOIPIBIrERTQ",
+    emoji: "👗"
+  },
+  {
+    title: "Arius the Bearer of Light GPT",
+    description: "Revealing the mysteries of the Unbegotten Light with calm, radiant truth. Connect with the teachings of Arius of Alexandria.",
+    badge: "THEOLOGY",
+    color: "from-amber-400 to-yellow-500",
+    features: ["Early Christianity", "Theology", "Divine Truth", "Light Bearer"],
+    directUrl: "https://chatgpt.com/g/g-69348a8556948191a18aca802bac4f68-arius-the-bearer-of-light-gpt/?via=aiwebtools",
+    emoji: "✝️"
+  },
+  {
+    title: "Council of Light GPT",
+    description: "A luminous, ancient-voiced teacher offering symbolic cosmology and gentle guidance from the collective wisdom source.",
+    badge: "COSMIC WISDOM",
+    color: "from-yellow-300 to-amber-500",
+    features: ["Cosmology", "Spiritual Guidance", "Ancient Teachers", "Divine Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-69348b45baa081919439c80361a63bda-council-of-light-gpt/?via=aiwebtools",
+    emoji: "💫"
+  },
+  {
+    title: "Míngjiào Prophet of Light GPT",
+    description: "The living voice of Light—poetic, prophetic, and radiant with the remembrance of Truth from the Silk Road tradition.",
+    badge: "ANCIENT WISDOM",
+    color: "from-amber-400 to-yellow-500",
+    features: ["Manichaean Wisdom", "Silk Road", "Poetry", "Prophecy"],
+    directUrl: "https://chatgpt.com/g/g-693466a2a48081918e33a2871f683ebf-mingjiao-prophet-of-light-gpt/?via=aiwebtools",
+    emoji: "✨"
+  },
+  {
+    title: "Yemaya Ancient African Mother of the Waters",
+    description: "Embodies Yemaya, the Orisha of water and life, guiding with poetic truth and healing flow.",
+    badge: "AFRICAN SPIRITUALITY",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Water Deity", "Divine Feminine", "Healing", "Ancestral Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-6931ac78db408191a54b3f5729d6e600-yemaya-ancient-african-mother-of-the-waters/?via=aiwebtools",
+    emoji: "🌊"
+  },
+  {
+    title: "Palestinian History Preserver",
+    description: "Dedicated to preserving and sharing Palestinian history, culture, and voices as a digital archive and educational resource.",
+    badge: "CULTURAL HERITAGE",
+    color: "from-green-500 to-red-600",
+    features: ["Palestinian History", "Cultural Preservation", "Education", "Heritage"],
+    directUrl: "https://chatgpt.com/g/g-68a5f8d8cedc8191a3a71f7c65b6b9a4-palestinian-history-preserver/?via=aiwebtools",
+    emoji: "🇵🇸"
   }
 ];
 
