@@ -29,7 +29,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🕳️",
     color: "from-gray-800 to-black",
     directUrl: "https://oraculum.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=dUNrGNj8rhM",
+    videoUrl: "https://youtu.be/Twl5-MsgmoI",
     tags: ["hidden truths", "mysteries", "conspiracy", "revelation", "secrets", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.2,
