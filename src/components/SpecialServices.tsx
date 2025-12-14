@@ -367,7 +367,6 @@ const featuredGPTs = [
     features: ["Food Safety", "Quality Control", "Inspection Procedures", "Regulatory Compliance"],
     directUrl: "https://foodqualitygpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/rHJR4V8iYZI?si=nkXT-PNl8abQDHWE",
-    imageUrl: "/src/assets/food-quality-inspector-gpt-hero.jpg",
     emoji: "🥘"
   },
   {
@@ -378,7 +377,6 @@ const featuredGPTs = [
     features: ["Mushroom ID", "Cultivation", "Foraging Safety", "Fungal Biology"],
     directUrl: "https://fungusgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/qzndRzBtrEU",
-    imageUrl: "/src/assets/fungus-gpt-hero.jpg",
     emoji: "🍄"
   },
   {
@@ -389,7 +387,6 @@ const featuredGPTs = [
     features: ["Rock Identification", "Mineral Analysis", "Geological Formations", "Field Guide"],
     directUrl: "https://chatgpt.com/g/g-689005f62df881918961b6c93ad5b19e-geology-rock-identification-gpt",
     videoUrl: "https://youtu.be/nmRT6AOVQNg?si=bacR1az2vDwLr5H",
-    imageUrl: "/src/assets/geology-rock-gpt-hero.jpg",
     emoji: "🪨"
   },
   {
@@ -400,7 +397,6 @@ const featuredGPTs = [
     features: ["Ultimate AI", "Versatile Transform", "Multi-Purpose", "Power Mode"],
     directUrl: "https://godmodegpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=or3JtZsq6Bc",
-    imageUrl: "/src/assets/godmode-gpt-hero.jpg",
     emoji: "⚡"
   },
   {
@@ -431,7 +427,6 @@ const featuredGPTs = [
     features: ["Historical Headlines", "Period Reporting", "News Archives", "Historical Context"],
     directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/1y3zdPnJfQ4",
-    imageUrl: "/src/assets/historical-headlines-gpt-hero.jpg",
     emoji: "📰"
   },
   {
@@ -452,7 +447,6 @@ const featuredGPTs = [
     features: ["Data Analysis", "Global Predictions", "Infographics", "Real-time Data"],
     directUrl: "https://illuminous.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=Nd1Ui2-VLMU",
-    imageUrl: "/src/assets/illuminous-data-gpt-hero.jpg",
     emoji: "💡"
   },
   {
@@ -473,7 +467,6 @@ const featuredGPTs = [
     features: ["Voice Cloning", "Personality AI", "Memory Integration", "Real-time Conversations"],
     directUrl: "https://immortalizeme.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=JXLqPMfw49Y",
-    imageUrl: "/src/assets/immortalize-me-gpt-hero.jpg",
     emoji: "♾️"
   },
   {
@@ -484,7 +477,6 @@ const featuredGPTs = [
     features: ["Ancient Texts", "Historical Research", "Archaeological Analysis", "Exploration"],
     directUrl: "https://indianaarchaeologygpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=uf2i_DdaJ7M",
-    imageUrl: "/src/assets/indiana-archaeologist-gpt-hero.jpg",
     emoji: "🏛️"
   },
   {
@@ -495,7 +487,6 @@ const featuredGPTs = [
     features: ["Claims Information Help", "Policy Information", "Documentation Assistance", "Dispute Information"],
     directUrl: "https://insuranceclaimsgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=WNPywJWOUzU",
-    imageUrl: "/src/assets/insurance-claims-gpt-hero.jpg",
     emoji: "🛡️"
   },
   {
@@ -516,7 +507,6 @@ const featuredGPTs = [
     features: ["Civilization Rebuilding", "Ethical Guidance", "Strategic Planning", "Community Support"],
     directUrl: "https://chatgpt.com/g/g-68e939ff278881919b292a679faaac43-jarvis-the-steward-of-humanity-gpt",
     videoUrl: "https://youtu.be/6jFoFR9Hags",
-    imageUrl: "/src/assets/jarvis-steward-gpt-hero.jpg",
     emoji: "🛡️"
   },
   {
@@ -527,7 +517,6 @@ const featuredGPTs = [
     features: ["Crop Management", "Soil Analysis", "Sustainable Farming", "Agricultural Optimization"],
     directUrl: "https://agronomus.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=fFbtPFkRERA",
-    imageUrl: "/src/assets/agronomus-farming-gpt-hero.jpg",
     emoji: "🌾"
   },
   {
@@ -538,7 +527,6 @@ const featuredGPTs = [
     features: ["Course Creation", "Learning Paths", "Practice Exercises", "Educational Support"],
     directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/pr8-IgbL46I",
-    imageUrl: "/src/assets/learn-any-course-gpt-hero.jpg",
     emoji: "📚"
   },
   {
@@ -549,7 +537,6 @@ const featuredGPTs = [
     features: ["Skill Mastery", "Learning Paths", "Practice Exercises", "Expert Guidance"],
     directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/0_oIzDL2BB4",
-    imageUrl: "/src/assets/learn-any-skill-gpt-hero.jpg",
     emoji: "🧠"
   },
   {
@@ -570,7 +557,6 @@ const featuredGPTs = [
     features: ["Relationship Chat Support", "Communication Ideas", "Relationship Insights", "Conversation Support"],
     directUrl: "https://marriagemendergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=3HCv5_QldrU",
-    imageUrl: "/src/assets/marriage-mender-gpt-hero.jpg",
     emoji: "💕"
   },
   {
@@ -591,7 +577,6 @@ const featuredGPTs = [
     features: ["Movie Script Writer", "Scene Maker", "Trailer Creator", "Poster Designer"],
     directUrl: "https://moviemakerstudio.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=Zdthelofv_E",
-    imageUrl: "/src/assets/movie-maker-studio-gpt-hero.jpg",
     emoji: "🎬"
   },
   {
@@ -602,7 +587,6 @@ const featuredGPTs = [
     features: ["Movie Scenes", "Personalized Content", "Cinematic Creation", "Character Starring"],
     directUrl: "https://moviescenemakergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=9fpWIE20z7s&t",
-    imageUrl: "/src/assets/movie-scene-maker-gpt-hero.jpg",
     emoji: "🎬"
   },
   {
@@ -613,7 +597,6 @@ const featuredGPTs = [
     features: ["Script Writing", "Scene Development", "Dialogue Creation", "Industry Standards"],
     directUrl: "https://moviescriptwritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=4e3Rkurt3-c",
-    imageUrl: "/src/assets/movie-script-writer-gpt-hero.jpg",
     emoji: "🎭"
   },
   {
@@ -624,7 +607,6 @@ const featuredGPTs = [
     features: ["Multi-Task", "Parallel Processing", "Efficiency", "Time Saving"],
     directUrl: "https://multitaskergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=y-YZCOzIuDg",
-    imageUrl: "/src/assets/multitasker-gpt-hero.jpg",
     emoji: "🎯"
   },
   {
@@ -635,7 +617,6 @@ const featuredGPTs = [
     features: ["Music Videos", "Scene Creation", "Video Production", "Creative Suite"],
     directUrl: "https://musicvideomakergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=rBQTUrvHcR8",
-    imageUrl: "/src/assets/music-video-maker-gpt-hero.jpg",
     emoji: "🎵"
   },
   {
@@ -646,7 +627,6 @@ const featuredGPTs = [
     features: ["Time Travel", "Native American History", "Cultural Education", "Authentic Stories"],
     directUrl: "https://nativeamerican-timemachine.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=jVFTGCeuNSM",
-    imageUrl: "/src/assets/native-american-history-gpt-hero.jpg",
     emoji: "🪶"
   },
   {
@@ -657,7 +637,6 @@ const featuredGPTs = [
     features: ["Testimony Writing", "Legislative Support", "Public Engagement", "Policy Advocacy"],
     directUrl: "https://publictestimonywriter.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
-    imageUrl: "/src/assets/public-testimony-gpt-hero.jpg",
     emoji: "📝"
   },
   {
@@ -2057,7 +2036,6 @@ const featuredGPTs = [
     color: "from-orange-500 to-yellow-600",
     features: ["Crypto Conversion", "Exchange Rates", "Tax Implications", "Portfolio Analysis"],
     directUrl: "https://chatgpt.com/g/g-68b5b20784788191acd980be0388935d-fiat-to-crypto-ai-value-calculator-for-businesses/?via=aiwebtools",
-    imageUrl: "/src/assets/fiat-crypto-gpt-hero.jpg",
     videoUrl: "https://www.youtube.com/watch?v=k0NlolajEYs",
     emoji: "💱"
   },
