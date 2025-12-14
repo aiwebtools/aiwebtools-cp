@@ -348,9 +348,9 @@ export const createLightning = (effectsContainer: HTMLElement) => {
 };
 
 export const createFlash = (effectsContainer: HTMLElement) => {
-  console.log('💫 Creating MEGA dimensional rift flash');
+  console.log('💚 Creating MATRIX green flash');
   
-  // Create IMMEDIATE intense central flash for instant WOW
+  // Create IMMEDIATE intense MATRIX GREEN flash
   const instantFlash = document.createElement('div');
   instantFlash.className = 'instant-wow-flash';
   instantFlash.style.cssText = `
@@ -360,11 +360,11 @@ export const createFlash = (effectsContainer: HTMLElement) => {
     width: 100vw;
     height: 100vh;
     background: radial-gradient(circle at center, 
-      rgba(255,255,255,1) 0%, 
-      rgba(0,255,255,0.95) 15%, 
-      rgba(255,0,255,0.9) 30%, 
-      rgba(255,255,0,0.8) 50%, 
-      rgba(0,255,128,0.6) 70%, 
+      rgba(0,255,0,1) 0%, 
+      rgba(0,255,50,0.9) 15%, 
+      rgba(0,200,0,0.7) 30%, 
+      rgba(0,150,0,0.5) 50%, 
+      rgba(0,100,0,0.3) 70%, 
       transparent 90%);
     z-index: 10020;
     pointer-events: none;
@@ -372,7 +372,7 @@ export const createFlash = (effectsContainer: HTMLElement) => {
   `;
   effectsContainer.appendChild(instantFlash);
   
-  // Create central flash
+  // Create central MATRIX GREEN flash
   const flash = document.createElement('div');
   flash.className = 'mega-flash';
   flash.style.cssText = `
@@ -389,7 +389,7 @@ export const createFlash = (effectsContainer: HTMLElement) => {
   `;
   effectsContainer.appendChild(flash);
   
-  // Create screen flash overlay
+  // Create MATRIX GREEN screen flash overlay
   const screenFlash = document.createElement('div');
   screenFlash.className = 'mega-screen-flash';
   screenFlash.style.cssText = `
@@ -410,11 +410,11 @@ export const createFlash = (effectsContainer: HTMLElement) => {
     @keyframes instant-wow {
       0% {
         opacity: 1;
-        filter: brightness(10) saturate(5);
+        filter: brightness(10) saturate(3);
       }
       30% {
         opacity: 0.8;
-        filter: brightness(6) saturate(4);
+        filter: brightness(6) saturate(2);
       }
       100% {
         opacity: 0;
@@ -427,44 +427,44 @@ export const createFlash = (effectsContainer: HTMLElement) => {
         width: 20px;
         height: 20px;
         opacity: 1;
-        background: radial-gradient(circle, white 0%, transparent 100%);
-        filter: brightness(10) saturate(5);
+        background: radial-gradient(circle, #00FF00 0%, transparent 100%);
+        filter: brightness(10) saturate(3);
         box-shadow: 
-          0 0 50px rgba(255,255,255,1),
-          0 0 100px rgba(0,255,255,1),
-          0 0 150px rgba(255,0,255,1);
+          0 0 50px rgba(0,255,0,1),
+          0 0 100px rgba(0,255,0,0.8),
+          0 0 150px rgba(0,200,0,0.6);
       }
       10% {
         width: 150px;
         height: 150px;
         opacity: 1;
-        background: radial-gradient(circle, white 0%, cyan 15%, magenta 30%, yellow 50%, lime 70%, transparent 85%);
-        filter: brightness(12) saturate(6);
+        background: radial-gradient(circle, #00FF00 0%, #00DD00 30%, #00AA00 60%, transparent 85%);
+        filter: brightness(12) saturate(4);
         box-shadow: 
-          0 0 80px rgba(255,255,255,1),
-          0 0 160px rgba(0,255,255,1),
-          0 0 240px rgba(255,0,255,1);
+          0 0 80px rgba(0,255,0,1),
+          0 0 160px rgba(0,255,0,0.7),
+          0 0 240px rgba(0,200,0,0.5);
       }
       30% {
         width: 400px;
         height: 400px;
         opacity: 1;
-        background: radial-gradient(circle, white 0%, cyan 10%, magenta 25%, yellow 40%, lime 55%, orange 70%, transparent 90%);
-        filter: brightness(10) saturate(5);
+        background: radial-gradient(circle, #00FF00 0%, #00EE00 20%, #00CC00 40%, #00AA00 60%, transparent 90%);
+        filter: brightness(10) saturate(3);
       }
       55% {
         width: 650px;
         height: 650px;
         opacity: 0.85;
-        background: radial-gradient(circle, white 0%, magenta 15%, cyan 35%, orange 55%, transparent 80%);
-        filter: brightness(7) saturate(4);
+        background: radial-gradient(circle, #00FF00 0%, #00DD00 25%, #00BB00 50%, transparent 80%);
+        filter: brightness(7) saturate(2);
       }
       100% {
         width: 900px;
         height: 900px;
         opacity: 0;
         background: radial-gradient(circle, transparent 0%, transparent 100%);
-        filter: brightness(2) saturate(2);
+        filter: brightness(2) saturate(1);
       }
     }
     
@@ -474,19 +474,19 @@ export const createFlash = (effectsContainer: HTMLElement) => {
         opacity: 0;
       }
       5% {
-        background: radial-gradient(circle at center, rgba(255,255,255,1) 0%, rgba(0,255,255,0.9) 20%, rgba(255,0,255,0.8) 40%, rgba(255,255,0,0.6) 60%, transparent 85%);
+        background: radial-gradient(circle at center, rgba(0,255,0,0.9) 0%, rgba(0,200,0,0.7) 20%, rgba(0,150,0,0.5) 40%, rgba(0,100,0,0.3) 60%, transparent 85%);
         opacity: 1;
-        filter: brightness(5) saturate(4);
+        filter: brightness(5) saturate(2);
       }
       20% {
-        background: radial-gradient(circle at center, rgba(255,255,255,1) 0%, rgba(0,255,255,0.85) 15%, rgba(255,0,255,0.75) 30%, rgba(255,255,0,0.6) 50%, rgba(0,255,128,0.4) 70%, transparent 95%);
+        background: radial-gradient(circle at center, rgba(0,255,0,0.8) 0%, rgba(0,220,0,0.6) 15%, rgba(0,180,0,0.4) 30%, rgba(0,140,0,0.3) 50%, transparent 95%);
         opacity: 0.95;
-        filter: brightness(4) saturate(3);
+        filter: brightness(4) saturate(2);
       }
       45% {
-        background: radial-gradient(circle at center, rgba(0,255,255,0.7) 0%, rgba(255,0,255,0.6) 25%, rgba(255,255,0,0.4) 50%, transparent 80%);
+        background: radial-gradient(circle at center, rgba(0,255,0,0.5) 0%, rgba(0,200,0,0.4) 25%, rgba(0,150,0,0.2) 50%, transparent 80%);
         opacity: 0.6;
-        filter: brightness(3) saturate(2);
+        filter: brightness(3) saturate(1.5);
       }
       100% {
         background: transparent;

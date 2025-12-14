@@ -243,13 +243,11 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   // 🎤 PLAY THE TIME WARP VOICE IMMEDIATELY - everything syncs to this
   playTimeWarpVoice();
 
-  // Execute FULL EPIC visual effects simultaneously with voice
+  // Execute PURE MATRIX visual effects - no colored rings, just green binary code
   setTimeout(() => {
     createMatrixCodeExplosion(effectsContainer);
-    createVortexRings(effectsContainer);
-    createEnergyWaves(effectsContainer);
-    createParticles(effectsContainer);
-    createFlash(effectsContainer);
+    // Removed: createVortexRings, createEnergyWaves, createParticles - too colorful
+    createFlash(effectsContainer); // Keep the flash but we'll make it green
     
     // Create enhanced portal sounds (layered on top of voice)
     createPortalSounds();
