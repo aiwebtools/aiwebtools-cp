@@ -251,14 +251,10 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
     
     // Create enhanced portal sounds (layered on top of voice)
     createPortalSounds();
+    
+    // Matrix confetti explosion for ALL time warp effects
+    createConfettiCelebration();
   }, visualDelay);
-  
-  // Add confetti celebration for clone actions
-  if (destinationUrl.includes('lovable.dev/projects') || destinationUrl.includes('clone')) {
-    setTimeout(() => {
-      createConfettiCelebration();
-    }, 400);
-  }
 
   // OPEN URL as voice finishes - perfect sync moment
   setTimeout(() => {
