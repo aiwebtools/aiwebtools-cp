@@ -20,6 +20,7 @@ import { isGamingEntertainmentTool } from "./gamingEntertainmentDetection";
 import { isSecurityPrivacyTool } from "./securityPrivacyDetection";
 import { isIndustrySpecificTool } from "./industryDetection";
 import { isSpiritualityTool } from "./spiritualityDetection";
+import { isThreeDVisualizationTool, getThreeDVisualizationTools } from "./threeDVisualizationDetection";
 
 export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
   const categoryCounts: CategoryCounts = {};
@@ -199,6 +200,12 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
         console.log(`🕊️ ${mainCat.name}: ${toolCount} tools (spirituality detection)`);
         break;
       }
+      case "3D & VISUALIZATION": {
+        const threeDTools = getThreeDVisualizationTools(tools);
+        toolCount = threeDTools.length;
+        console.log(`🧊 ${mainCat.name}: ${toolCount} tools (3D visualization detection)`);
+        break;
+      }
       default: {
         // Build cache if needed and get cached results
         buildToolsCache(tools);
@@ -257,6 +264,12 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   else if (mainCategoryName === "SECURITY & PRIVACY") {
     categoryTools = tools.filter(tool => isSecurityPrivacyTool(tool));
     console.log(`🔒 Found ${categoryTools.length} security & privacy tools`);
+  }
+  
+  // Enhanced handling for 3D & Visualization
+  else if (mainCategoryName === "3D & VISUALIZATION") {
+    categoryTools = getThreeDVisualizationTools(tools);
+    console.log(`🧊 Found ${categoryTools.length} 3D & Visualization tools`);
   }
   
   // ALL AI TOOLS - return everything

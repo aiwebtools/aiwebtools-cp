@@ -17,8 +17,8 @@ export const ai3DModelingTools: Tool[] = [
     emoji: "📦",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://spline.design/?via=aiwebtools",
-    tags: ["3D design", "web 3D", "interactive design", "animations", "browser-based"],
-    category: "AI 3D Modeling Tools",
+    tags: ["3D design", "web 3D", "interactive design", "3D animations", "browser-based", "3D modeling"],
+    category: "3D & VISUALIZATION",
     rating: 4.6,
     totalVotes: 4567
   },
@@ -29,8 +29,8 @@ export const ai3DModelingTools: Tool[] = [
     emoji: "🧊",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://www.vectary.com/?via=aiwebtools",
-    tags: ["3D design", "AR design", "product mockups", "interactive 3D", "web platform"],
-    category: "AI 3D Modeling Tools",
+    tags: ["3D design", "AR design", "product mockups", "interactive 3D", "web platform", "3D modeling"],
+    category: "3D & VISUALIZATION",
     rating: 4.5,
     totalVotes: 3876
   },
@@ -41,8 +41,8 @@ export const ai3DModelingTools: Tool[] = [
     emoji: "🔍",
     color: "from-green-500 to-teal-600",
     directUrl: "https://meshcapade.com/?via=aiwebtools",
-    tags: ["digital humans", "3D avatars", "body modeling", "realistic models", "photo-to-3D"],
-    category: "AI 3D Modeling Tools",
+    tags: ["digital humans", "3D avatars", "body modeling", "realistic models", "photo-to-3D", "3D generation"],
+    category: "3D & VISUALIZATION",
     rating: 4.7,
     totalVotes: 3234
   },
@@ -53,8 +53,8 @@ export const ai3DModelingTools: Tool[] = [
     emoji: "📸",
     color: "from-orange-500 to-red-600",
     directUrl: "https://poly.cam/?via=aiwebtools",
-    tags: ["3D scanning", "LiDAR", "photogrammetry", "mobile scanning", "reality capture"],
-    category: "AI 3D Modeling Tools",
+    tags: ["3D scanning", "LiDAR", "photogrammetry", "mobile scanning", "reality capture", "3D capture"],
+    category: "3D & VISUALIZATION",
     rating: 4.6,
     totalVotes: 4321
   },
@@ -65,8 +65,8 @@ export const ai3DModelingTools: Tool[] = [
     emoji: "🎨",
     color: "from-purple-600 to-pink-600",
     directUrl: "https://www.kaedim3d.com/?via=aiwebtools",
-    tags: ["2D to 3D", "image to model", "game assets", "automatic conversion", "AI modeling"],
-    category: "AI 3D Modeling Tools",
+    tags: ["2D to 3D", "image to model", "game assets", "automatic conversion", "AI 3D modeling", "3D generation"],
+    category: "3D & VISUALIZATION",
     rating: 4.4,
     totalVotes: 2987
   },
@@ -77,8 +77,8 @@ export const ai3DModelingTools: Tool[] = [
     emoji: "🎭",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://masterpiecestudio.com/?via=aiwebtools",
-    tags: ["AI 3D generation", "game development", "natural language", "3D editing", "creative suite"],
-    category: "AI 3D Modeling Tools",
+    tags: ["AI 3D generation", "game development", "natural language", "3D editing", "creative suite", "text-to-3D"],
+    category: "3D & VISUALIZATION",
     rating: 4.5,
     totalVotes: 3456
   }
