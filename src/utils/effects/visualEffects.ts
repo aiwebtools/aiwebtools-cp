@@ -654,14 +654,14 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
   document.body.appendChild(matrixBackdrop);
   
   // === GIANT BINARY CODE STREAMS shooting outward ===
-  const streamCount = 32;
+  const streamCount = 48; // more massive binary beams
   for (let i = 0; i < streamCount; i++) {
     const stream = document.createElement('div');
     stream.className = 'matrix-code-stream';
     const angle = (i / streamCount) * 360;
-    const binaryCode = Array.from({ length: 20 }, () => Math.random() > 0.5 ? '1' : '0').join('');
+    const binaryCode = Array.from({ length: 32 }, () => Math.random() > 0.5 ? '1' : '0').join(''); // longer streams
     stream.textContent = binaryCode;
-    const delay = i * 0.02;
+    const delay = i * 0.018;
     const hue = 120 + Math.random() * 40; // Green to cyan variations
     
     stream.style.cssText = `
@@ -669,7 +669,7 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
       top: 50%;
       left: 50%;
       font-family: 'Courier New', monospace;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: bold;
       color: hsl(${hue}, 100%, 50%);
       text-shadow: 
@@ -680,7 +680,7 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
       white-space: nowrap;
       transform-origin: left center;
       transform: translate(0, -50%) rotate(${angle}deg);
-      animation: code-stream-shoot 2.5s ease-out forwards;
+      animation: code-stream-shoot 2.7s ease-out forwards;
       animation-delay: ${delay}s;
       z-index: 100010;
       pointer-events: none;
@@ -692,7 +692,7 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
   
   // === EXPLODING BINARY CHARACTERS - Big and visible ===
   const matrixChars = '01';
-  const explosionCount = 200;
+  const explosionCount = 260;
   
   for (let i = 0; i < explosionCount; i++) {
     const matrixChar = document.createElement('div');
@@ -729,13 +729,13 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
   }
   
   // === VERTICAL RAIN COLUMNS - Classic Matrix style ===
-  const rainColumns = 50;
+  const rainColumns = 80; // denser rain
   for (let col = 0; col < rainColumns; col++) {
     const column = document.createElement('div');
     column.className = 'matrix-rain-column';
     const leftPos = (col / rainColumns) * 100;
-    const delay = Math.random() * 0.5;
-    const chars = Array.from({length: 30}, () => 
+    const delay = Math.random() * 0.8;
+    const chars = Array.from({length: 40}, () => 
       Math.random() > 0.5 ? '1' : '0'
     ).join('\n');
     const hue = 110 + Math.random() * 30;
@@ -743,7 +743,7 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     column.textContent = chars;
     column.style.cssText = `
       position: fixed;
-      top: -600px;
+      top: -800px;
       left: ${leftPos}%;
       font-family: 'Courier New', monospace;
       font-size: 24px;
@@ -753,7 +753,7 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
         0 0 10px hsl(${hue}, 100%, 50%),
         0 0 20px hsl(${hue}, 100%, 50%);
       line-height: 1.2;
-      animation: rain-fall-down 2s ease-in forwards;
+      animation: rain-fall-down 2.4s ease-in forwards;
       animation-delay: ${delay}s;
       z-index: 100003;
       opacity: 0;
@@ -839,12 +839,12 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
   effectsContainer.appendChild(matrixOrb);
   
   // === BINARY CONFETTI STREAMERS ===
-  const streamerCount = 40;
+  const streamerCount = 70; // more binary confetti
   for (let s = 0; s < streamerCount; s++) {
     const streamer = document.createElement('div');
     const angle = (s / streamerCount) * 360;
-    const binary = Array.from({ length: 8 }, () => Math.random() > 0.5 ? '1' : '0').join(' ');
-    const delay = Math.random() * 0.15;
+    const binary = Array.from({ length: 12 }, () => Math.random() > 0.5 ? '1' : '0').join(' ');
+    const delay = Math.random() * 0.25;
     const hue = 100 + Math.random() * 60;
     
     streamer.textContent = binary;
@@ -853,7 +853,7 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
       top: 50%;
       left: 50%;
       font-family: 'Courier New', monospace;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: bold;
       color: hsl(${hue}, 100%, 60%);
       text-shadow: 
@@ -862,7 +862,7 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
       white-space: nowrap;
       transform-origin: left center;
       transform: translate(0, -50%) rotate(${angle}deg);
-      animation: streamer-fly-out 2.4s ease-out forwards;
+      animation: streamer-fly-out 2.6s ease-out forwards;
       animation-delay: ${delay}s;
       z-index: 100008;
       pointer-events: none;
@@ -1034,9 +1034,26 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
   if (oldStyle) oldStyle.remove();
   document.head.appendChild(style);
   
-  // Cleanup glitch overlay after effect
+  // Cleanup all Matrix elements after effect so site is fully usable again
   setTimeout(() => {
-    glitchOverlay.remove();
-    matrixBackdrop.remove();
-  }, 3000);
+    try {
+      glitchOverlay.remove();
+    } catch (e) {}
+    try {
+      matrixBackdrop.remove();
+    } catch (e) {}
+
+    // Remove any remaining Matrix nodes from the effects container
+    const selectors = [
+      '.matrix-code-stream',
+      '.matrix-explosion-char',
+      '.matrix-rain-column',
+      '.matrix-binary-ring',
+      '.matrix-orb',
+      '.matrix-confetti-string'
+    ];
+    selectors.forEach((selector) => {
+      effectsContainer.querySelectorAll(selector).forEach((el) => el.remove());
+    });
+  }, 3100);
 };
