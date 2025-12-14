@@ -9,7 +9,7 @@ const DisclaimerGate: React.FC = () => {
 
   // If already accepted, skip this page
   useEffect(() => {
-    const hasAccepted = localStorage.getItem("aitools-consent-seen");
+    const hasAccepted = localStorage.getItem("aitools-consent-v2");
     if (hasAccepted) {
       navigate("/", { replace: true });
     }
@@ -17,7 +17,7 @@ const DisclaimerGate: React.FC = () => {
 
   const handleAccept = async () => {
     // Store acceptance
-    localStorage.setItem("aitools-consent-seen", "true");
+    localStorage.setItem("aitools-consent-v2", "true");
 
     // Play welcome audio on explicit user click
     try {
