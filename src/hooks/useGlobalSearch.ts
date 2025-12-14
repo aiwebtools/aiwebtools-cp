@@ -77,6 +77,44 @@ const extractKeywords = (query: string): string[] => {
   return cleaned.split(' ').filter(w => w.length >= 2);
 };
 
+// Global, cached index of ALL tools so we only pay the indexing cost once
+// instead of recalculating on every route change / hook mount.
+let cachedIndexedTools: {
+  tool: any;
+  lt: string;
+  ld: string;
+  lc: string;
+  lta: string;
+  all: string;
+  normalized: string;
+}[] | null = null;
+
+const getIndexedTools = () => {
+  if (cachedIndexedTools) return cachedIndexedTools;
+
+  cachedIndexedTools = allTools.map(t => {
+    const lt = t.title.toLowerCase();
+    const ld = (t.description || "").toLowerCase();
+    const lc = (t.category || "").toLowerCase();
+    const lta = (t.tags || []).join(" ").toLowerCase();
+    // Create comprehensive searchable text including all fields for maximum discoverability
+    const searchableText = `${lt} ${ld} ${lc} ${lta}`;
+    // Also create normalized versions for fuzzy matching
+    const normalized = searchableText.replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ');
+    return {
+      tool: t,
+      lt,
+      ld,
+      lc,
+      lta,
+      all: searchableText,
+      normalized,
+    };
+  });
+
+  return cachedIndexedTools;
+};
+
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -92,25 +130,7 @@ export const useGlobalSearch = () => {
   const debouncedSearchTerm = useDebounce(searchTerm, 150);
   
   // Pre-index tools for HYPER-INTELLIGENT matching - ALL 2000+ tools fully searchable
-  const indexedTools = useMemo(() => allTools.map(t => {
-    const lt = t.title.toLowerCase();
-    const ld = (t.description || "").toLowerCase();
-    const lc = (t.category || "").toLowerCase();
-    const lta = (t.tags || []).join(" ").toLowerCase();
-    // Create comprehensive searchable text including all fields for maximum discoverability
-    const searchableText = `${lt} ${ld} ${lc} ${lta}`;
-    // Also create normalized versions for fuzzy matching
-    const normalized = searchableText.replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ');
-    return { 
-      tool: t, 
-      lt, 
-      ld, 
-      lc, 
-      lta, 
-      all: searchableText,
-      normalized 
-    };
-  }), []);
+  const indexedTools = useMemo(() => getIndexedTools(), []);
   
   // Debounce for heavy scoring stage - reduced for snappier feel
   const heavyTerm = useDebounce(searchTerm, 200);
