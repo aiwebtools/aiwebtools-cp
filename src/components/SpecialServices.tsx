@@ -1987,13 +1987,11 @@ const SpecialServices = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   
   const handleGPTClick = (directUrl: string, title: string) => {
-    createTimePortalEffect(() => {
-      window.open(directUrl, '_blank');
-    }, title);
+    createTimePortalEffect(directUrl, title);
   };
 
   const createToolObject = (gpt: typeof featuredGPTs[0]): Tool => ({
-    icon: () => null,
+    icon: Play,
     title: gpt.title,
     description: gpt.description,
     tags: gpt.features,
@@ -2001,7 +1999,8 @@ const SpecialServices = () => {
     directUrl: gpt.directUrl,
     category: gpt.badge,
     rating: 4.8,
-    totalVotes: 150
+    totalVotes: 150,
+    emoji: gpt.emoji ?? "✨"
   });
 
   return (
@@ -2051,10 +2050,8 @@ const SpecialServices = () => {
                     FREE
                   </Badge>
                   <ToolDisclaimerBadges 
-                    title={gpt.title} 
-                    description={gpt.description}
-                    directUrl={gpt.directUrl}
-                    compact={true}
+                    tool={createToolObject(gpt)}
+                    size="sm"
                   />
                 </div>
               </CardHeader>
