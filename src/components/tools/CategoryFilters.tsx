@@ -62,6 +62,12 @@ const CategoryFilters = memo(({
     onCategoryChange(category);
   };
 
+  const handleMainCategoryNavigate = (category: string | null) => {
+    // For main category grid, we navigate to dedicated main-category pages.
+    // Avoid triggering heavy homepage filtering here to keep navigation INSTANT.
+    console.log('📂 Main category selected for navigation:', category);
+  };
+
   const handleBackToMain = () => {
     setSelectedMainCategory(null);
     setViewMode('main');
@@ -113,7 +119,7 @@ const CategoryFilters = memo(({
             {viewMode === 'main' ? (
               <MainCategoriesView
                 mainCategoryCounts={staticMainCategoriesWithCounts}
-                onMainCategoryClick={handleCategorySelect}
+                onMainCategoryClick={handleMainCategoryNavigate}
               />
             ) : (
               <SubcategoriesView
