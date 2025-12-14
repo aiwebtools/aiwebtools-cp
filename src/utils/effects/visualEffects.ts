@@ -1038,7 +1038,7 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
   if (oldStyle) oldStyle.remove();
   document.head.appendChild(style);
   
-  // Cleanup all Matrix elements after effect so site is fully usable again
+  // Cleanup all Matrix elements after effect - FAST cleanup at 1000ms
   setTimeout(() => {
     try {
       matrixBackdrop.remove();
@@ -1055,10 +1055,11 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
       '.matrix-waterfall-wave2',
       '.matrix-binary-ring',
       '.matrix-orb',
-      '.code-tunnel-layer'
+      '.code-tunnel-layer',
+      '.matrix-confetti-streamer'
     ];
     selectors.forEach((selector) => {
       effectsContainer.querySelectorAll(selector).forEach((el) => el.remove());
     });
-  }, 3800);
+  }, 1000);
 };
