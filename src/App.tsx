@@ -14,8 +14,9 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import PageTransition from "@/components/navigation/PageTransition";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
 
-// Eager load - critical path (home page)
+// Eager load - critical path (home page AND disclaimer gate for instant first load)
 import Index from "./pages/Index";
+import DisclaimerGate from "./pages/DisclaimerGate";
 
 // Lazy load - secondary pages for faster initial load
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
@@ -32,7 +33,6 @@ const AIAgentsDirectory = lazy(() => import("./pages/AIAgentsDirectory"));
 const ChatGPTAlternatives = lazy(() => import("./pages/ChatGPTAlternatives"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const GamingEntertainmentPage = lazy(() => import("./pages/GamingEntertainmentPage"));
-const DisclaimerGate = lazy(() => import("./pages/DisclaimerGate"));
 
 // Lazy load non-critical components
 const FloatingCloneButton = lazy(() => import("./components/FloatingCloneButton"));
