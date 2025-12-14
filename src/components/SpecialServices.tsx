@@ -1596,6 +1596,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Logos", "Cosmic Christ", "Alexandrian School", "Universal Salvation"],
     directUrl: "https://chatgpt.com/g/g-6924e70c9a3481919307be73772e1252-origen-reborn-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/origen-reborn-gpt-hero.jpg",
     emoji: "✨"
   },
   {
@@ -1615,6 +1616,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-orange-600",
     features: ["Logic", "Ethics", "Metaphysics", "Natural Philosophy"],
     directUrl: "https://chatgpt.com/g/g-6924aec892ec8191b86d694563ac38e1-aristotle-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/aristotle-reborn-gpt-hero.jpg",
     emoji: "📚"
   },
   {
@@ -1624,6 +1626,7 @@ const featuredGPTs = [
     color: "from-cyan-500 to-blue-600",
     features: ["Philosophy", "Mathematics", "Neoplatonism", "Free Thought"],
     directUrl: "https://chatgpt.com/g/g-6924aa01a7b081918a13a5ad6c3f6ad9-hypatia-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/hypatia-reborn-gpt-hero.jpg",
     emoji: "📐"
   },
   {
@@ -1633,6 +1636,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-indigo-600",
     features: ["Christian Mysticism", "Divine Union", "Contemplation", "Inner Stillness"],
     directUrl: "https://chatgpt.com/g/g-6924b016d88c8191a7e3e6f440a0d16d-meister-eckhart-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/meister-eckhart-reborn-gpt-hero.jpg",
     emoji: "✨"
   },
   {
@@ -2020,6 +2024,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Financial Literacy", "Wealth Building", "Debt Elimination", "Income Generation"],
     directUrl: "https://chatgpt.com/g/g-68ae2ab2c55c8191afdc979301179fa9-poverty-crusher-economic-empowerment-ai/?via=aiwebtools",
+    imageUrl: "/src/assets/poverty-crusher-gpt-hero.jpg",
     emoji: "💪"
   },
   {
@@ -2029,6 +2034,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-yellow-600",
     features: ["Crypto Conversion", "Exchange Rates", "Tax Implications", "Portfolio Analysis"],
     directUrl: "https://chatgpt.com/g/g-68b5b20784788191acd980be0388935d-fiat-to-crypto-ai-value-calculator-for-businesses/?via=aiwebtools",
+    imageUrl: "/src/assets/fiat-crypto-gpt-hero.jpg",
     videoUrl: "https://www.youtube.com/watch?v=k0NlolajEYs",
     emoji: "💱"
   },
@@ -2139,6 +2145,7 @@ const featuredGPTs = [
     color: "from-red-500 to-brown-600",
     features: ["Lakota Wisdom", "Prophecy", "Warrior Spirit", "Indigenous Philosophy"],
     directUrl: "https://chatgpt.com/g/g-6924cd74aecc8191b2f2d0ca6ed71dd4-chief-crazy-horse-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/crazy-horse-reborn-gpt-hero.jpg",
     emoji: "🦅"
   },
   {
@@ -2238,6 +2245,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Parallel Timelines", "Decision Mapping", "Quantum Choices", "Consciousness"],
     directUrl: "https://chatgpt.com/g/g-68ba0f7208e08191a48694dcda1543e2-ai-reality-splitter/?via=aiwebtools",
+    imageUrl: "/src/assets/reality-splitter-reborn-gpt-hero.jpg",
     emoji: "🌌"
   },
   {
@@ -2257,6 +2265,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Cosmic Probability", "Existence Analysis", "Philosophy", "Mathematics"],
     directUrl: "https://chatgpt.com/g/g-68fb8e9c98188191961129f8c4d120b7-the-cosmic-probability-gpt",
+    imageUrl: "/src/assets/cosmic-probability-reborn-gpt-hero.jpg",
     emoji: "🌌"
   },
   {
@@ -2266,6 +2275,7 @@ const featuredGPTs = [
     color: "from-cyan-500 to-purple-600",
     features: ["Frequency", "Vibration", "Consciousness", "Spiritual Awakening"],
     directUrl: "https://chatgpt.com/g/g-6927f5357470819190bf5cf115c4dc5b-frequency-signature-decoder?via=aiwebtools",
+    imageUrl: "/src/assets/frequency-decoder-reborn-gpt-hero.jpg",
     emoji: "〰️"
   },
   {
@@ -2275,6 +2285,7 @@ const featuredGPTs = [
     color: "from-indigo-600 to-violet-700",
     features: ["Intergalactic", "Ancient Knowledge", "Cosmic Archives", "Mythology"],
     directUrl: "https://chatgpt.com/g/g-692800a13eb881918fac2a7b1b86ad98-intergalactic-ancient-archivist-gpt?via=aiwebtools",
+    imageUrl: "/src/assets/intergalactic-archivist-hero2.jpg",
     emoji: "📚"
   },
   {
