@@ -6,6 +6,7 @@ import { useMobile } from "@/hooks/useMobile";
 import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { prefetchToolData } from "@/utils/toolPrefetcher";
+import { isFreeTool } from "@/utils/freeToolDetection";
 import ToolCardHeader from "./ToolCardHeader";
 import ToolCardContent from "./ToolCardContent";
 import FavoriteButton from "@/components/favorites/FavoriteButton";
@@ -21,18 +22,8 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
   const { enableReducedMotion, getOptimizedStyles } = usePerformanceOptimization();
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
-  // Determine if this is a FREE custom GPT (lovable.app, chatgpt.com/g/, or gemini.google.com/gem/)
-  const isCustomGPT = useMemo(() => {
-    const url = tool.directUrl || '';
-    return tool.isFree || 
-           url.includes('lovable.app') || 
-           url.includes('chatgpt.com/g/') ||
-           url.includes('gemini.google.com/gem/') ||
-           tool.tags?.some(tag => 
-             tag.toLowerCase().includes('custom gpt') || 
-             tag.toLowerCase().includes('gemini gem')
-           ) || false;
-  }, [tool.directUrl, tool.isFree, tool.tags]);
+  // Determine if this is a FREE custom GPT using centralized detection
+  const isCustomGPT = useMemo(() => isFreeTool(tool), [tool]);
   
   const isAIWebToolsOriginal = isCustomGPT;
   

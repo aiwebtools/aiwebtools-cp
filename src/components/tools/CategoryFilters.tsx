@@ -20,6 +20,8 @@ interface CategoryFiltersProps {
   onCategoryChange: (category: string | null) => void;
   onSearchChange: (searchTerm: string) => void;
   searchTerm: string;
+  showFreeOnly?: boolean;
+  onFreeOnlyChange?: (freeOnly: boolean) => void;
 }
 
 // Pre-compute counts ONCE at module level - no heavy computation on render
@@ -47,7 +49,9 @@ const CategoryFilters = memo(({
   selectedCategory,
   onCategoryChange,
   onSearchChange,
-  searchTerm
+  searchTerm,
+  showFreeOnly = false,
+  onFreeOnlyChange
 }: CategoryFiltersProps) => {
   const [viewMode, setViewMode] = useState<'main' | 'sub'>('main');
   const [isExpanded, setIsExpanded] = useState(true);
@@ -87,6 +91,24 @@ const CategoryFilters = memo(({
           preventAutoNavigation={true}
         />
       </div>
+
+      {/* FREE Tools Toggle */}
+      {onFreeOnlyChange && (
+        <div className="flex justify-center mb-4">
+          <Button
+            onClick={() => onFreeOnlyChange(!showFreeOnly)}
+            variant={showFreeOnly ? "default" : "outline"}
+            className={`${
+              showFreeOnly 
+                ? "bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold hover:from-yellow-500 hover:to-yellow-700" 
+                : "border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/20"
+            } transition-all duration-200`}
+          >
+            <span className="mr-2">🆓</span>
+            {showFreeOnly ? "Showing FREE Tools Only" : "Show FREE Tools Only"}
+          </Button>
+        </div>
+      )}
 
       {/* View Toggle */}
       <CategoryViewToggle 

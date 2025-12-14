@@ -24,10 +24,12 @@ const HomePage = () => {
     searchTerm,
     displayedCount,
     isLoading,
+    showFreeOnly,
     setDisplayedCount,
     setIsLoading,
     handleCategoryChange,
     handleSearchChange,
+    handleFreeOnlyChange,
     filteredTools,
     totalToolsCount,
     categoriesWithCounts,
@@ -117,6 +119,8 @@ const HomePage = () => {
         onCategoryChange={handleCategoryChange}
         onSearchChange={handleSearchChange}
         searchTerm={searchTerm}
+        showFreeOnly={showFreeOnly}
+        onFreeOnlyChange={handleFreeOnlyChange}
       />
 
       {/* Tools Count Display */}

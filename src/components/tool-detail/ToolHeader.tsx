@@ -6,6 +6,7 @@ import { Tool } from "@/types/tools";
 import StarRating from "@/components/tools/StarRating";
 import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { isFreeTool } from "@/utils/freeToolDetection";
 
 interface ToolHeaderProps {
   tool: Tool;
@@ -47,13 +48,16 @@ Thank you!`);
     window.location.href = mailtoUrl;
   };
 
-  // Check if this is an AI Web Tools LLC original tool (has lovable.app in the URL)
+  // Check if this is a FREE custom GPT (lovable.app, chatgpt.com/g/, gemini.google.com/gem/, or tagged as custom GPT)
+  const isFreeCustomGPT = isFreeTool(tool);
+  
+  // Check if this is an AI Web Tools LLC original tool (has lovable.app in the URL) for feedback button
   const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
 
   return (
     <div className="text-center pb-6 bg-gradient-to-r from-gray-900/50 to-gray-800/30 relative">
-      {/* FREE Badge for AI Web Tools original tools */}
-      {isAIWebToolsOriginal && (
+      {/* FREE Badge for custom GPTs */}
+      {isFreeCustomGPT && (
         <div className="absolute top-4 right-4 z-20">
           <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-4 py-2 rounded-full text-sm font-bold shadow-lg transform rotate-12 animate-pulse">
             FREE

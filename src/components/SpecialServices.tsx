@@ -1702,6 +1702,13 @@ const OurFeaturedSection = () => {
                   navigate(`/${slug}`);
                 }}
               >
+                {/* FREE Badge for all featured GPTs */}
+                <div className="absolute top-0 right-0 z-20">
+                  <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-2 py-1 rounded-bl-lg rounded-tr-lg text-xs font-bold shadow-lg">
+                    FREE
+                  </div>
+                </div>
+                
                 <div className="absolute top-2 left-2 z-30">
                   <FavoritesButton tool={toolForFavorites} size="sm" />
                 </div>
