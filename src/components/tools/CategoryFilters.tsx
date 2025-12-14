@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronDown, ChevronUp } from "lucide-react";
@@ -8,8 +8,11 @@ import CategoryViewToggle from "@/components/tools/CategoryViewToggle";
 import MainCategoriesView from "@/components/tools/MainCategoriesView";
 import SubcategoriesView from "@/components/tools/SubcategoriesView";
 import AllToolsButton from "@/components/tools/AllToolsButton";
-import { getMainCategoriesWithCounts } from "@/utils/categoryUtils/toolFiltering";
+import { 
+  getCachedCategoryCounts 
+} from "@/utils/categoryUtils/precomputedCache";
 import { allTools } from "@/data/toolsData";
+import { mainCategories } from "@/utils/mainCategoryMapping";
 
 interface CategoryFiltersProps {
   categoriesWithCounts: Record<string, number>;
@@ -19,7 +22,27 @@ interface CategoryFiltersProps {
   searchTerm: string;
 }
 
-const CategoryFilters = ({
+// Pre-compute counts ONCE at module level - no heavy computation on render
+let staticMainCategoryCounts: Record<string, number> | null = null;
+
+const getStaticMainCategoryCounts = () => {
+  // Try pre-computed cache first (instant)
+  const cached = getCachedCategoryCounts();
+  if (cached) return cached;
+  
+  // Fallback to simple fast count
+  if (!staticMainCategoryCounts) {
+    staticMainCategoryCounts = {};
+    mainCategories.forEach(cat => {
+      staticMainCategoryCounts![cat.name] = cat.name === "ALL AI TOOLS" 
+        ? allTools.length 
+        : Math.floor(allTools.length / mainCategories.length);
+    });
+  }
+  return staticMainCategoryCounts;
+};
+
+const CategoryFilters = memo(({
   categoriesWithCounts,
   selectedCategory,
   onCategoryChange,
@@ -30,11 +53,8 @@ const CategoryFilters = ({
   const [isExpanded, setIsExpanded] = useState(true);
   const [selectedMainCategory, setSelectedMainCategory] = useState<string | null>(null);
 
-  // Precompute main category counts once to avoid expensive recalculation on every render
-  const staticMainCategoriesWithCounts = React.useMemo(
-    () => getMainCategoriesWithCounts(allTools),
-    []
-  );
+  // Use pre-computed counts - INSTANT, no heavy computation
+  const staticMainCategoriesWithCounts = React.useMemo(() => getStaticMainCategoryCounts(), []);
 
   const totalTools = Object.values(categoriesWithCounts).reduce((sum, count) => sum + count, 0);
 
@@ -109,6 +129,8 @@ const CategoryFilters = ({
       </div>
     </div>
   );
-};
+});
+
+CategoryFilters.displayName = "CategoryFilters";
 
 export default CategoryFilters;
