@@ -1,40 +1,42 @@
-// Matrix-style binary explosion effect with digital sound for special moments
-export const createConfettiCelebration = () => {
-  console.log('🎉 Creating Matrix binary explosion effect');
+// Matrix-style binary explosion effect with optional digital sound
+export const createConfettiCelebration = (visualOnly: boolean = false) => {
+  console.log('🎉 Creating Matrix binary explosion effect', visualOnly ? '(visual only)' : '(with sound)');
   
   try {
-    // Create digital matrix sound
-    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-    
-    const createMatrixSound = () => {
-      const duration = 1.0;
-      const sampleRate = audioContext.sampleRate;
-      const numFrames = sampleRate * duration;
-      const buffer = audioContext.createBuffer(2, numFrames, sampleRate);
+    // Only play sound if not visual-only mode
+    if (!visualOnly) {
+      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
       
-      for (let channel = 0; channel < 2; channel++) {
-        const channelData = buffer.getChannelData(channel);
+      const createMatrixSound = () => {
+        const duration = 1.0;
+        const sampleRate = audioContext.sampleRate;
+        const numFrames = sampleRate * duration;
+        const buffer = audioContext.createBuffer(2, numFrames, sampleRate);
         
-        for (let i = 0; i < numFrames; i++) {
-          const t = i / sampleRate;
-          const fadeOut = Math.max(0, 1 - t / duration);
+        for (let channel = 0; channel < 2; channel++) {
+          const channelData = buffer.getChannelData(channel);
           
-          const sweep = Math.sin(2 * Math.PI * (200 + t * 1000) * t) * Math.exp(-t * 3);
-          const digital1 = Math.sin(2 * Math.PI * 440 * t) * (Math.random() > 0.96 ? 1 : 0) * 0.2;
-          const bass = Math.sin(2 * Math.PI * 80 * t) * Math.exp(-t * 2.5) * 0.4;
-          
-          channelData[i] = (sweep + digital1 + bass) * fadeOut * 0.15;
+          for (let i = 0; i < numFrames; i++) {
+            const t = i / sampleRate;
+            const fadeOut = Math.max(0, 1 - t / duration);
+            
+            const sweep = Math.sin(2 * Math.PI * (200 + t * 1000) * t) * Math.exp(-t * 3);
+            const digital1 = Math.sin(2 * Math.PI * 440 * t) * (Math.random() > 0.96 ? 1 : 0) * 0.2;
+            const bass = Math.sin(2 * Math.PI * 80 * t) * Math.exp(-t * 2.5) * 0.4;
+            
+            channelData[i] = (sweep + digital1 + bass) * fadeOut * 0.15;
+          }
         }
-      }
-      
-      return buffer;
-    };
+        
+        return buffer;
+      };
 
-    const matrixBuffer = createMatrixSound();
-    const matrixSource = audioContext.createBufferSource();
-    matrixSource.buffer = matrixBuffer;
-    matrixSource.connect(audioContext.destination);
-    matrixSource.start();
+      const matrixBuffer = createMatrixSound();
+      const matrixSource = audioContext.createBufferSource();
+      matrixSource.buffer = matrixBuffer;
+      matrixSource.connect(audioContext.destination);
+      matrixSource.start();
+    }
 
     // Binary particles
     const binaryCount = 75;
