@@ -1657,7 +1657,18 @@ const featuredGPTs = [
     features: ["Matrix", "Simulation Theory", "Quantum Reality", "Awakening"],
     directUrl: "https://neomatrixgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=BkPCpeu_nSs",
+    imageUrl: "/src/assets/enter-the-matrix-hero.jpg",
     emoji: "🐇"
+  },
+  {
+    title: "WATTS OF QUANTUM LIGHT HARMONIZER GPT",
+    description: "Fused wisdom of Alan Watts & The Architect, guiding Neo through quantum truth & metaphysical liberation.",
+    badge: "QUANTUM WISDOM",
+    color: "from-purple-500 to-cyan-600",
+    features: ["Alan Watts", "Quantum Consciousness", "Matrix Philosophy", "Spiritual Awakening"],
+    directUrl: "https://chatgpt.com/g/g-n7yvUUmoT-the-architect-watts-entity-free-thought-magic/?via=aiwebtools",
+    imageUrl: "/src/assets/watts-quantum-light-hero.jpg",
+    emoji: "⚡"
   },
   {
     title: "Dream Interpreter GPT",
@@ -2056,7 +2067,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-cyan-600",
     features: ["Quantum Wisdom", "Alan Watts", "Metaphysical", "Consciousness"],
     directUrl: "https://chatgpt.com/g/g-6904258cf6a0819197b10755d4cc3632-i-am-q-i-am-you/?via=aiwebtools",
-    imageUrl: "/src/assets/i-am-q-gpt-hero.jpg",
+    imageUrl: "/src/assets/i-am-q-hero.jpg",
     emoji: "✨"
   },
   {
@@ -2166,7 +2177,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Mayan Calendar", "Galactic Signature", "Cosmic Blueprint", "Spiritual Guidance"],
     directUrl: "https://chatgpt.com/g/g-68b491e8cc2c8191b6b85930d7fc9e75-mayan-dreamspell-matrix/?via=aiwebtools",
-    imageUrl: "/src/assets/mayan-gpt-hero.jpg",
+    imageUrl: "/src/assets/mayan-dreamspell-matrix-hero.jpg",
     emoji: "🔮"
   },
   {
@@ -2977,6 +2988,7 @@ const featuredGPTs = [
     features: ["Quantum Physics", "Holography", "Philosophy", "Consciousness"],
     directUrl: "https://neomatrixgpt.lovable.app/architect",
     videoUrl: "https://youtu.be/qMLF5L_h2xo",
+    imageUrl: "/src/assets/architect-matrix-hero.jpg",
     emoji: "🏛️"
   },
   {
@@ -2996,7 +3008,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-amber-600",
     features: ["Card Valuation", "Grading Help", "Market Analysis", "Collection"],
     directUrl: "https://sportcardappraisalgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "/src/assets/sport-card-appraisal-gpt-hero.jpg",
+    imageUrl: "/src/assets/sport-card-appraisal-hero.jpg",
     emoji: "🏈"
   },
   {
@@ -3006,7 +3018,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Aether Energy", "Alternative Science", "Physics", "Ether Theory"],
     directUrl: "https://chatgpt.com/g/g-68d044de35b48191a53196a394cff061-aether-guide",
-    imageUrl: "/src/assets/aether-guide-gpt-hero.jpg",
+    imageUrl: "/src/assets/aether-guide-hero.jpg",
     emoji: "⚡"
   },
   {
@@ -3016,7 +3028,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-cyan-600",
     features: ["Hydroelectric", "Renewable Energy", "Engineering", "Sustainability"],
     directUrl: "https://chatgpt.com/g/g-690a473d14dc8191baced00e65f906b7-hydroelectric-reclamation-gpt",
-    imageUrl: "/src/assets/hydroelectric-gpt-hero.jpg",
+    imageUrl: "/src/assets/hydroelectric-reclamation-hero.jpg",
     emoji: "💧"
   },
   {
@@ -3026,7 +3038,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-purple-600",
     features: ["Image to Code", "Web Development", "Code Generation", "Design Conversion"],
     directUrl: "https://chatgpt.com/g/g-30Z7JKMBW-i-convert-image-to-code-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/image-to-code-gpt-hero.jpg",
+    imageUrl: "/src/assets/image-to-code-hero.jpg",
     emoji: "🖼️"
   },
   {
@@ -3046,7 +3058,7 @@ const featuredGPTs = [
     color: "from-pink-500 to-purple-600",
     features: ["Veo3", "Prompt Engineering", "Video Generation", "AI Video"],
     directUrl: "https://gemini.google.com/gem/64b77a9fe1e8",
-    imageUrl: "/src/assets/veo3-gem-hero.jpg",
+    imageUrl: "/src/assets/veo3-prompt-maker-hero.jpg",
     emoji: "🎬"
   },
   {
@@ -3056,7 +3068,7 @@ const featuredGPTs = [
     color: "from-gray-500 to-blue-600",
     features: ["Declassified", "Government Files", "Transparency", "Research"],
     directUrl: "https://gemini.google.com/gem/52dfeb277b06",
-    imageUrl: "/src/assets/declassified-gem-hero.jpg",
+    imageUrl: "/src/assets/declassified-files-hero.jpg",
     emoji: "📄"
   },
   {
@@ -3066,7 +3078,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Time Travel", "History", "Education", "Father Time"],
     directUrl: "https://gemini.google.com/gem/18b868221ea1",
-    imageUrl: "/src/assets/og-time-machine-gem-hero.jpg",
+    imageUrl: "/src/assets/og-time-machine-hero.jpg",
     emoji: "🌍"
   }
 ];
