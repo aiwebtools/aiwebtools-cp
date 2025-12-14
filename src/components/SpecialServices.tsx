@@ -1945,6 +1945,53 @@ const featuredGPTs = [
     features: ["Quantum Wisdom", "Alan Watts", "Metaphysical", "Consciousness"],
     directUrl: "https://chatgpt.com/g/g-6904258cf6a0819197b10755d4cc3632-i-am-q-i-am-you/?via=aiwebtools",
     emoji: "✨"
+  },
+  {
+    title: "Shopping GPT",
+    description: "AI shopping assistant with tailored recommendations and personalized product suggestions. Get smart shopping advice, compare products, and find the best deals.",
+    badge: "SHOPPING",
+    color: "from-green-500 to-blue-600",
+    features: ["Product Recommendations", "Deal Finder", "Product Comparison", "Smart Shopping"],
+    directUrl: "https://shoppinggpt.lovable.app/?via=aiwebtools",
+    emoji: "🛒"
+  },
+  {
+    title: "VIRTUAL STYLIST - VIRTUAL TRY-ON GPT",
+    description: "Experience Yourself in the Future of Fashion. Try on outfits, visualize new hairstyles, and transform your look virtually with our advanced AI stylist.",
+    badge: "FASHION",
+    color: "from-pink-500 to-purple-600",
+    features: ["Virtual Try-On", "Outfit Visualization", "Hairstyle Simulation", "Style Transformation"],
+    directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
+    emoji: "👗"
+  },
+  {
+    title: "Black History Matters Time Machine GPT",
+    description: "Explore pivotal moments, figures, and movements in Black history across eras. Immerse yourself in historically grounded narratives and perspectives.",
+    badge: "HISTORY",
+    color: "from-amber-600 to-red-600",
+    features: ["Black History", "Time Travel", "Civil Rights", "Historical Education"],
+    directUrl: "https://blackhistorymattersgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=rXXScpdUWQo",
+    emoji: "⏳"
+  },
+  {
+    title: "College Professor GPT",
+    description: "Personal AI virtual educational college-level teacher providing university-level instruction across diverse academic disciplines with scholarly insights.",
+    badge: "EDUCATION",
+    color: "from-indigo-500 to-purple-600",
+    features: ["University Level", "Academic Instruction", "Scholarly Discussion", "Personalized Learning"],
+    directUrl: "https://chatgpt.com/g/g-68c049b652f8819195c722dbd4971797-college-professor-gpt",
+    emoji: "👨‍🏫"
+  },
+  {
+    title: "Agronomus AI Farming Expert",
+    description: "Comprehensive AI-powered farming and agricultural expert providing advanced guidance on crop management, soil analysis, irrigation, and sustainable farming.",
+    badge: "AGRICULTURE",
+    color: "from-green-500 to-yellow-600",
+    features: ["Crop Management", "Soil Analysis", "Sustainable Farming", "Agricultural Expert"],
+    directUrl: "https://agronomus.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=fFbtPFkRERA",
+    emoji: "🌾"
   }
 ];
 
