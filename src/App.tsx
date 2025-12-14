@@ -28,6 +28,8 @@ import AIAgentsDirectory from "./pages/AIAgentsDirectory";
 import ChatGPTAlternatives from "./pages/ChatGPTAlternatives";
 import BlogPage from "./pages/BlogPage";
 import GamingEntertainmentPage from "./pages/GamingEntertainmentPage";
+import DisclaimerPopup from "./components/DisclaimerPopup";
+import ConsentPopup from "./components/ConsentPopup";
 
 const queryClient = new QueryClient();
 
@@ -75,9 +77,10 @@ function App() {
               <Toaster />
               <WelcomeVoiceSystem />
               <MatrixCursorEffect />
+              <ConsentPopup />
+              <DisclaimerPopup />
               <BrowserRouter>
                 <AnimatedRoutes />
-                
                 {/* Tiny floating clone button - hides on scroll */}
                 <FloatingCloneButton />
               </BrowserRouter>
