@@ -95,7 +95,9 @@ const RouteGuard: React.FC = () => {
   const location = useLocation();
   const hasAccepted =
     typeof window !== "undefined" &&
-    window.localStorage.getItem("aitools-consent-v2");
+    window.localStorage.getItem("aitools-consent-v3");
+
+  console.log("🔐 RouteGuard check - hasAccepted v3:", hasAccepted, "path:", location.pathname);
 
   // If user has NOT accepted and is not already on /welcome, force them there
   if (!hasAccepted && location.pathname !== "/welcome") {
