@@ -5,6 +5,7 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const ConsentPopup = () => {
   const [showConsent, setShowConsent] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -35,8 +36,8 @@ const ConsentPopup = () => {
   const handleAccept = () => {
     console.log('🌀 User accepting consent - initiating time warp entry...');
     
-    // Close popup immediately so user can interact with site
-    setShowConsent(false);
+    // Start fade-out animation
+    setIsClosing(true);
     localStorage.setItem('aitools-consent-seen', 'true');
     
     // Play welcome audio (continues in background)
@@ -48,14 +49,30 @@ const ConsentPopup = () => {
     if (!isMobile) {
       createTimePortalEffect('', 'AI Tools Consent Portal');
     }
+    
+    // Remove popup after animation completes
+    setTimeout(() => {
+      setShowConsent(false);
+    }, 400);
   };
 
   if (!showConsent || isMobile) return null;
 
   // Desktop version only
   return (
-    <div className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-4 md:p-6">
-      <div className="bg-gradient-to-br from-slate-800 via-gray-800 to-black border-2 border-cyan-400/80 rounded-xl p-4 md:p-6 w-full max-w-sm md:max-w-lg shadow-2xl shadow-cyan-400/50 animate-scale-in relative overflow-hidden backdrop-blur-sm max-h-[90vh] overflow-y-auto">
+    <div 
+      className={`fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-4 md:p-6 transition-opacity duration-400 ${
+        isClosing ? 'opacity-0' : 'opacity-100'
+      }`}
+      style={{ pointerEvents: isClosing ? 'none' : 'auto' }}
+    >
+      <div 
+        className={`bg-gradient-to-br from-slate-800 via-gray-800 to-black border-2 border-cyan-400/80 rounded-xl p-4 md:p-6 w-full max-w-sm md:max-w-lg shadow-2xl shadow-cyan-400/50 relative overflow-hidden backdrop-blur-sm max-h-[90vh] overflow-y-auto transition-all duration-400 ${
+          isClosing 
+            ? 'opacity-0 scale-95 translate-y-4' 
+            : 'opacity-100 scale-100 translate-y-0 animate-scale-in'
+        }`}
+      >
         
         {/* Enhanced animated background pattern for mobile visibility */}
         <div className="absolute inset-0 opacity-20">
