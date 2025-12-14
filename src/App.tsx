@@ -14,8 +14,9 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import PageTransition from "@/components/navigation/PageTransition";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
 
-// Eager load - critical path (home page)
+// Eager load - critical path (home page + consent)
 import Index from "./pages/Index";
+import ConsentPopup from "./components/ConsentPopup";
 
 // Lazy load - secondary pages for faster initial load
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
@@ -36,7 +37,6 @@ const GamingEntertainmentPage = lazy(() => import("./pages/GamingEntertainmentPa
 // Lazy load non-critical components
 const FloatingCloneButton = lazy(() => import("./components/FloatingCloneButton"));
 const WelcomeVoiceSystem = lazy(() => import("./components/WelcomeVoiceSystem"));
-const ConsentPopup = lazy(() => import("./components/ConsentPopup"));
 
 // Pre-initialize category cache for instant category page loads
 import "@/utils/categoryUtils/precomputedCache";
@@ -108,8 +108,8 @@ function App() {
               <Toaster />
               <Suspense fallback={null}>
                 <WelcomeVoiceSystem />
-                <ConsentPopup />
               </Suspense>
+              <ConsentPopup />
               <MatrixCursorEffect />
               <BrowserRouter>
                 <AnimatedRoutes />
