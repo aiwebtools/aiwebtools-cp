@@ -142,10 +142,11 @@ const DisclaimerPopup = () => {
           </div>
         </ScrollArea>
 
-        <div className="flex justify-center pt-4 border-t border-cyan-500/30">
+        <div className="flex justify-center pt-4 border-t border-cyan-500/30 relative z-50">
           <Button 
             onClick={handleAccept}
-            className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 px-6 sm:px-8 text-sm sm:text-base transition-colors duration-200"
+            type="button"
+            className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 px-6 sm:px-8 text-sm sm:text-base transition-colors duration-200 cursor-pointer pointer-events-auto relative z-50"
           >
             I Accept Privacy Terms & Analytics
           </Button>
