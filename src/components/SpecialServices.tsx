@@ -2140,16 +2140,6 @@ const featuredGPTs = [
     emoji: "🎎"
   },
   {
-    title: "Chief Crazy Horse GPT",
-    description: "The eternal rider speaking prophecy through time, awakening memory beneath empire's dream. Legendary Lakota war leader and visionary.",
-    badge: "NATIVE WISDOM",
-    color: "from-red-500 to-brown-600",
-    features: ["Lakota Wisdom", "Prophecy", "Warrior Spirit", "Indigenous Philosophy"],
-    directUrl: "https://chatgpt.com/g/g-6924cd74aecc8191b2f2d0ca6ed71dd4-chief-crazy-horse-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/crazy-horse-reborn-gpt-hero.jpg",
-    emoji: "🦅"
-  },
-  {
     title: "Joan of Arc GPT",
     description: "Speaks as Joan of Arc, a divine voice of courage, purpose, and unwavering truth. The Maid of Orleans who changed history.",
     badge: "COURAGE",
@@ -2158,16 +2148,6 @@ const featuredGPTs = [
     directUrl: "https://chatgpt.com/g/g-6924b8b8ce3c8191a422fafcb56e22d4-joan-of-arc-gpt/?via=aiwebtools",
     imageUrl: "/src/assets/joan-of-arc-gpt-hero.jpg",
     emoji: "⚔️"
-  },
-  {
-    title: "St. Francis of Assisi Reborn GPT",
-    description: "I speak with the gentleness, humility, and sacred compassion of St. Francis of Assisi. Patron saint of animals and nature.",
-    badge: "COMPASSION",
-    color: "from-green-500 to-brown-600",
-    features: ["Animals", "Nature", "Humility", "Christian Mysticism"],
-    directUrl: "https://chatgpt.com/g/g-6924cce6e5b081919c7469f08d42dbb5-st-francis-of-assisi-reborn-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/st-francis-gpt-hero.jpg",
-    emoji: "🕊️"
   },
   {
     title: "Imhotep Living Mind of Kemet",
@@ -2278,16 +2258,6 @@ const featuredGPTs = [
     directUrl: "https://chatgpt.com/g/g-6927f5357470819190bf5cf115c4dc5b-frequency-signature-decoder?via=aiwebtools",
     imageUrl: "/src/assets/frequency-decoder-reborn-gpt-hero.jpg",
     emoji: "〰️"
-  },
-  {
-    title: "Intergalactic Ancient Archivist GPT",
-    description: "An ancient archivist guiding users through mythic intergalactic cosmology. Your cosmic librarian revealing galactic wisdom.",
-    badge: "COSMIC ARCHIVES",
-    color: "from-indigo-600 to-violet-700",
-    features: ["Intergalactic", "Ancient Knowledge", "Cosmic Archives", "Mythology"],
-    directUrl: "https://chatgpt.com/g/g-692800a13eb881918fac2a7b1b86ad98-intergalactic-ancient-archivist-gpt?via=aiwebtools",
-    imageUrl: "/src/assets/intergalactic-archivist-hero2.jpg",
-    emoji: "📚"
   },
   {
     title: "AI Hospital Facility Safety Inspector",
@@ -2548,16 +2518,6 @@ const featuredGPTs = [
     directUrl: "https://chatgpt.com/g/g-N5bWo8m4p-mirror-mind-gpt",
     imageUrl: "/src/assets/mind-reader-gpt-hero.jpg",
     emoji: "🧠"
-  },
-  {
-    title: "Probability GPT",
-    description: "Discover the truth behind any claim with precise probability scores and unbiased truth. The ultimate AI Truth Seeker.",
-    badge: "ANALYSIS",
-    color: "from-blue-500 to-purple-600",
-    features: ["Probability Analysis", "Truth Seeking", "Fact Checking", "Uncertainty"],
-    directUrl: "https://probabilitygpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
-    emoji: "⚖️"
   },
   {
     title: "1995 Illuminati Card Game GPT",
@@ -2830,26 +2790,6 @@ const featuredGPTs = [
     emoji: "🗣️"
   },
   {
-    title: "LEARN ANY COURSE GPT",
-    description: "AI-powered tutor guiding you through comprehensive, step-by-step courses on any subject with personalized classroom-style experience.",
-    badge: "EDUCATION",
-    color: "from-blue-500 to-green-600",
-    features: ["Education", "Courses", "Tutoring", "Self-Learning"],
-    directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/pr8-IgbL46I",
-    emoji: "📚"
-  },
-  {
-    title: "LEARN ANY SKILL GPT",
-    description: "Dynamic AI educational assistant guiding users through learning any skill from beginner to expert with multimedia experiences.",
-    badge: "SKILLS",
-    color: "from-purple-500 to-blue-600",
-    features: ["Skill Learning", "Training", "Personal Development", "Tutorial"],
-    directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/0_oIzDL2BB4",
-    emoji: "🧠"
-  },
-  {
     title: "EDUCATIONAL TUTOR GPT",
     description: "Patient AI tutor that explains step by step and adapts to your learning style. Personalized educational support for all levels.",
     badge: "TUTORING",
@@ -2858,26 +2798,6 @@ const featuredGPTs = [
     directUrl: "https://chatgpt.com/g/g-68bb71f1dca88191866a1a0bfdff7ca0-educational-tutor-gpt/?via=aiwebtools",
     imageUrl: "/src/assets/educational-tutor-gpt-hero.jpg",
     emoji: "👨‍🏫"
-  },
-  {
-    title: "Trivia Night GPT",
-    description: "Ultimate AI-powered trivia showdown! Test your knowledge with electrifying games featuring history, science, pop culture and more!",
-    badge: "TRIVIA",
-    color: "from-purple-500 to-pink-600",
-    features: ["Trivia Games", "Entertainment", "Knowledge Testing", "Family Fun"],
-    directUrl: "https://trivianightgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/trivanight.jpg/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    emoji: "🎯"
-  },
-  {
-    title: "Imagination Traveler GPT",
-    description: "Cosmic guide unlocking immersive journeys through alternate histories, possible futures, and realities beyond comprehension.",
-    badge: "IMAGINATION",
-    color: "from-purple-500 to-cyan-600",
-    features: ["Imagination", "Storytelling", "Alternate Realities", "Creative Journeys"],
-    directUrl: "https://imaginationtravelergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-advertisement-for-imaginati_E4k--.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    emoji: "🌌"
   },
   {
     title: "SKIN CARE GPT",
@@ -2908,16 +2828,6 @@ const featuredGPTs = [
     directUrl: "https://chatgpt.com/g/g-68bb80c2c41c8191b3d6e3dda92b6ffb-ai-home-cleanliness-declutter-coach-gpt/?via=aiwebtools",
     imageUrl: "/src/assets/home-cleanliness-gpt-hero.jpg",
     emoji: "🏠"
-  },
-  {
-    title: "Apothecary GPT",
-    description: "Historical apothecary sharing authentic herbal and traditional medicine knowledge, medicinal plants and preparation methods.",
-    badge: "HERBAL",
-    color: "from-green-500 to-purple-600",
-    features: ["Herbal Medicine", "Traditional Healing", "Natural Remedies", "Herbalist"],
-    directUrl: "https://chatgpt.com/g/g-68c9e33310148191ae3df594ec4012dd-apothecary-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/apothecary-gpt-hero.jpg",
-    emoji: "🌿"
   },
   {
     title: "Patient Advocate GPT",
@@ -3110,16 +3020,6 @@ const featuredGPTs = [
     emoji: "📺"
   },
   {
-    title: "Historical Headlines GPT",
-    description: "Crafts historically accurate news articles as if written at the time of the event with period-accurate language and style.",
-    badge: "HISTORICAL NEWS",
-    color: "from-gray-500 to-blue-600",
-    features: ["Period Journalism", "Historical Accuracy", "News Simulation", "Cultural Context"],
-    directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/DgreEEJKynM",
-    emoji: "📰"
-  },
-  {
     title: "Bob Ross GPT",
     description: "A serene AI art companion echoing Bob Ross's teaching, tone, and calm creative spirit. Learn painting techniques with gentle guidance.",
     badge: "ART TEACHING",
@@ -3150,67 +3050,6 @@ const featuredGPTs = [
     emoji: "🇵🇸"
   },
   {
-    title: "Criminologist GPT",
-    description: "Specialized AI-powered criminological analysis and investigation training platform for evidence analysis and criminal behavior assessment.",
-    badge: "CRIMINOLOGY",
-    color: "from-blue-500 to-gray-600",
-    features: ["Crime Analysis", "Forensics", "Investigation", "Behavioral Profiling"],
-    directUrl: "https://criminologistgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=jgvqpqmRJi8",
-    emoji: "🔍"
-  },
-  {
-    title: "Public Defender GPT",
-    description: "Your dedicated AI-powered legal defense assistant for criminal defense, legal research, and trial strategy development.",
-    badge: "LEGAL DEFENSE",
-    color: "from-blue-500 to-purple-600",
-    features: ["Legal Research", "Trial Strategy", "Document Drafting", "Evidence Analysis"],
-    directUrl: "https://publicdefendergpt.lovable.app/",
-    videoUrl: "https://youtu.be/IYi4mYtDIVA?si=J2aT8BTetKRU-Z6q",
-    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298533241065532/public_defender.webp",
-    emoji: "⚖️"
-  },
-  {
-    title: "Legislation Writer GPT",
-    description: "Expert AI legislative drafting assistant for creating complete legislation with clear, precise legal language.",
-    badge: "LEGISLATION",
-    color: "from-gray-500 to-blue-600",
-    features: ["Legal Drafting", "Policy Writing", "Legislative Formatting", "Bill Creation"],
-    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/mxdJ0gLxGCI?si=Yx0rWtOSmWijtZZC",
-    emoji: "📜"
-  },
-  {
-    title: "Social Safety Net GPT",
-    description: "Comprehensive AI social services and community support platform connecting people with vital resources and support services.",
-    badge: "SOCIAL SERVICES",
-    color: "from-green-500 to-blue-600",
-    features: ["Benefits Eligibility", "Resource Navigation", "Crisis Support", "Community Aid"],
-    directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
-    emoji: "🤝"
-  },
-  {
-    title: "Public Testimony Writer GPT",
-    description: "Innovative AI legislative testimony platform streamlining civic engagement and public participation in local policy.",
-    badge: "CIVIC ENGAGEMENT",
-    color: "from-purple-500 to-blue-600",
-    features: ["Testimony Writing", "Policy Advocacy", "Civic Participation", "Government Outreach"],
-    directUrl: "https://publictestimonywriter.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
-    emoji: "🗣️"
-  },
-  {
-    title: "Legislator Link GPT",
-    description: "AI civic engagement platform helping citizens connect with legislators and participate in local legislative efforts.",
-    badge: "DEMOCRACY",
-    color: "from-red-500 to-blue-600",
-    features: ["Legislator Contact", "Political Advocacy", "Democratic Participation", "Government Outreach"],
-    directUrl: "https://legislatorlink.lovable.app/",
-    videoUrl: "https://youtu.be/mxdJ0gLxGCI?si=Yx0rWtOSmWijtZZC",
-    emoji: "🏛️"
-  },
-  {
     title: "Legal Draftsmith GPT",
     description: "Specializes in precise drafting of legal documents, contracts, and legal writing with professional accuracy.",
     badge: "LEGAL DRAFTING",
@@ -3218,37 +3057,6 @@ const featuredGPTs = [
     features: ["Document Drafting", "Contracts", "Legal Writing", "Precision"],
     directUrl: "https://publicdefendergpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-humanoid-robot-dressed-like-a.png/:/cr=t:12.29%25,l:9.16%25,w:89.29%25,h:79.58%25/rs=w:600,h:300,cg:true,m/qt=q:98",
-    emoji: "⚖️"
-  },
-  {
-    title: "Oraculum – The Revealer of Hidden Truths",
-    description: "Reveals hidden systems, symbols, and histories shaping our world through historical insight and symbolic wisdom.",
-    badge: "MYSTERIES",
-    color: "from-gray-800 to-black",
-    features: ["Hidden Truths", "Pattern Recognition", "Critical Thinking", "Symbolic Wisdom"],
-    directUrl: "https://oraculum.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=dUNrGNj8rhM",
-    emoji: "🕳️"
-  },
-  {
-    title: "Phenomenon Explorer AI Suite",
-    description: "Investigate paranormal phenomena, document cryptid sightings, and conduct ghost hunts with scientific accuracy.",
-    badge: "PARANORMAL",
-    color: "from-green-500 to-blue-600",
-    features: ["UFO Investigation", "Cryptozoology", "Ghost Hunting", "Supernatural Myths"],
-    directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/faBkRli0puc?si=Sao0KIfV2iGWLGB-",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-ufo-hovering-in-the-sky-wit_w8l4l.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    emoji: "👁️"
-  },
-  {
-    title: "Probability GPT",
-    description: "The ultimate AI Truth Seeker with precise probability scores, guiding you through uncertainty with clear, definitive answers.",
-    badge: "TRUTH ANALYSIS",
-    color: "from-blue-500 to-purple-600",
-    features: ["Probability Analysis", "Fact Checking", "Decision Making", "Truth Seeking"],
-    directUrl: "https://probabilitygpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
     emoji: "⚖️"
   },
   {
