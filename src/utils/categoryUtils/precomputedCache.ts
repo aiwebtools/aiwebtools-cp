@@ -183,16 +183,34 @@ export function isCategoryCacheReady(): boolean {
   return cacheInitialized;
 }
 
-// Start pre-computation immediately on module load
+/**
+ * Explicitly prefetch a specific main category into the cache.
+ * Useful for hover-based preloading before navigation.
+ */
+export async function prefetchCategory(categoryName: string): Promise<void> {
+  if (typeof window === 'undefined') return;
+  await initializeCategoryCache();
+  // Touch the cache entry so its ready when navigating
+  if (categoryToolsCache && !categoryToolsCache.has(categoryName)) {
+    // For ALL AI TOOLS we can cheaply seed from allTools without extra detection
+    if (categoryName === "ALL AI TOOLS") {
+      categoryToolsCache.set(categoryName, [...allTools]);
+      categoryCounts && (categoryCounts[categoryName] = allTools.length);
+    }
+  }
+}
+
+// Start pre-computation immediately on module load with higher priority
 if (typeof window !== 'undefined') {
-  // Use requestIdleCallback if available for non-blocking init
   if ('requestIdleCallback' in window) {
+    // Still use requestIdleCallback but with a shorter timeout for earlier execution
     (window as any).requestIdleCallback(() => {
       initializeCategoryCache();
-    }, { timeout: 500 });
+    }, { timeout: 100 });
   } else {
+    // Fallback: run as soon as possible after first paint
     setTimeout(() => {
       initializeCategoryCache();
-    }, 100);
+    }, 0);
   }
 }
