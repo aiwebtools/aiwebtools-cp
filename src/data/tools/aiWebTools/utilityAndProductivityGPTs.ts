@@ -42,7 +42,7 @@ export const utilityAndProductivityGPTs: Tool[] = [
     emoji: "🌐",
     color: "from-blue-500 to-green-600",
     directUrl: "https://chatgpt.com/g/g-683cd0e910bc819195cf96b2b252c7c5-ai-language-translator-gpt",
-    imageUrl: "https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-2970-622f-ba38-872803506c8e/raw?se=2025-06-01T23%3A34%3A12Z&sp=r&sv=2024-08-04&sr=b&scid=7700c98c-3eb1-5874-bd2a-2fc28a83de55&skoid=add8ee7d-5fc7-451e-b06e-a82b2276cf62&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-01T05%3A00%3A26Z&ske=2025-06-02T05%3A00%3A26Z&sks=b&skv=2024-08-04&sig=qGr9UZFFfE30df182WTLyNY/3EtgY%2BBUj/mYe9pYGLI%3D",
+    videoUrl: "https://youtu.be/mko9NgC1vrU",
     tags: ["language translation", "multilingual", "real-time translation", "cultural context", "international communication", "aiwebtools", "translator", "language", "translate", "Custom GPT", "Translation & Language"],
     category: "Utility & Productivity",
     rating: 4.8,

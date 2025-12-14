@@ -74,7 +74,7 @@ export const timeAndHistoryGPTs: Tool[] = [
     emoji: "🔍",
     color: "from-purple-500 to-red-600",
     directUrl: "https://historicalpatternsgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-advertisement-with-the-eye_C64dU.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    videoUrl: "https://youtu.be/_yonhGRCS3Y",
     tags: ["historical analysis", "pattern recognition", "alternative history", "research tool", "historical investigation", "aiwebtools", "Custom GPT"],
     category: "Time & History",
       rating: 4.7,

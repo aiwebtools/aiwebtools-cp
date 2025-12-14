@@ -142,6 +142,7 @@ export const videoGenerationTools: Tool[] = [
     emoji: "🎯",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://chatgpt.com/g/g-682faef24c608191808180e89719cb09-veo3-text-to-video-prompt-maker",
+    videoUrl: "https://youtu.be/b3Zz2qsmRts",
     tags: ["VEO3", "prompt generation", "Google AI", "text-to-video", "video prompts", "AI optimization", "Video Generator", "Prompt Engineering"],
     category: "Video & Multimedia",
     rating: 4.4,
