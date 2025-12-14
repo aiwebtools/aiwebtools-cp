@@ -16,8 +16,13 @@ const CategoryHeader = ({ categoryName, toolCount, onFilterSearch }: CategoryHea
   const navigate = useNavigate();
 
   const goBack = () => {
-    // Instant navigation home
-    window.location.pathname === '/' ? window.scrollTo({ top: 0, behavior: 'auto' }) : (window.location.href = '/');
+    // Instant SPA navigation back home
+    if (window.location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    } else {
+      navigate('/');
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
   };
 
   return (
