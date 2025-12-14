@@ -33,7 +33,7 @@ export const applyTimeWarpFilter = () => {
     height: 100vh;
     z-index: 99990;
     pointer-events: none;
-    animation: intense-color-explosion 2.5s ease-out forwards;
+    animation: intense-color-explosion 1s ease-out forwards;
     background: radial-gradient(circle at center, 
       rgba(0,255,255,0.9) 0%, 
       rgba(255,0,255,0.8) 15%, 
@@ -58,7 +58,7 @@ export const applyTimeWarpFilter = () => {
     background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,255,255,0.9) 20%, rgba(255,0,255,0.8) 40%, rgba(255,255,0,0.6) 60%, transparent 80%);
     z-index: 99995;
     pointer-events: none;
-    animation: mega-portal-spin 2.5s ease-out forwards;
+    animation: mega-portal-spin 1s ease-out forwards;
     box-shadow: 
       0 0 60px rgba(0,255,255,0.9), 
       0 0 120px rgba(255,0,255,0.8),
