@@ -45,15 +45,6 @@ const Index = () => {
   }, [navigate]);
 
   useEffect(() => {
-    // Check if video has already played this session
-    const videoPlayedBefore = localStorage.getItem('mainVideoPlayed');
-    if (videoPlayedBefore) {
-      setHasPlayedOnce(true);
-    } else {
-      // Mark as played for future visits
-      localStorage.setItem('mainVideoPlayed', 'true');
-    }
-    
     // Load actual stats in background
     const statsTimer = setTimeout(() => {
       const stats = getCurrentToolCount();
