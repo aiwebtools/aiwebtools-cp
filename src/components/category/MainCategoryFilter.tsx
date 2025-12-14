@@ -218,23 +218,26 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   }, [filteredTools, sortMode, shuffleKey, selectedAgentType, selectedMainCategories, onFilteredToolsChange]);
 
   const handleMainCategoryToggle = useCallback((mainCategoryName: string) => {
+    console.log(`🔄 Toggling category: ${mainCategoryName}`);
     setSelectedMainCategories(prev => {
       const isCurrentlySelected = prev.includes(mainCategoryName);
       
-      // Allow unchecking any category INCLUDING the current one for full customization
-      // Just ensure at least one category remains selected
       if (isCurrentlySelected) {
+        // Allow deselecting - if it's the only one, reset to current page category
         const newSelection = prev.filter(cat => cat !== mainCategoryName);
-        // If unchecking would leave no categories, keep at least one
         if (newSelection.length === 0) {
-          return prev; // Don't allow empty selection
+          // Reset to current category instead of preventing deselection
+          console.log(`🔄 Reset to current category: ${currentMainCategory}`);
+          return [currentMainCategory];
         }
+        console.log(`🔄 Deselected ${mainCategoryName}, remaining: ${newSelection.join(', ')}`);
         return newSelection;
       } else {
+        console.log(`🔄 Selected ${mainCategoryName}`);
         return [...prev, mainCategoryName];
       }
     });
-  }, []);
+  }, [currentMainCategory]);
 
   const clearAllFilters = useCallback(() => {
     setSelectedMainCategories([currentMainCategory]);
@@ -416,12 +419,12 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
                 <button
                   key={name}
                   onClick={() => handleMainCategoryToggle(name)}
-                  disabled={isCurrentCategory && isChecked}
-                  className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-left transition-all duration-200 ${
+                  className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-left transition-colors ${
                     isChecked
                       ? 'bg-cyan-500/25 border border-cyan-400/50 text-cyan-200'
                       : 'bg-gray-800/50 border border-gray-700/30 text-gray-400 hover:border-cyan-500/40 hover:text-cyan-300'
                   } ${isCurrentCategory ? 'ring-1 ring-cyan-500/50' : ''}`}
+                  style={{ touchAction: 'manipulation' }}
                 >
                   <span className="text-sm">{emoji}</span>
                   <div className="flex-1 min-w-0">

@@ -24,7 +24,9 @@ export const toolNameMatches = {
   "peace": ["peace", "meditation", "calm", "zen", "tranquil"],
   "automotive": ["automotive", "car", "automobile", "vehicle", "auto"],
   "food": ["food", "nutrition", "recipe", "cooking", "meal", "diet"],
-  "quality": ["quality", "standard", "grade", "assessment", "rating"]
+  "quality": ["quality", "standard", "grade", "assessment", "rating"],
+  "gravestone": ["gravestone", "grave", "cemetery", "tombstone", "headstone", "burial", "memorial", "graveyard"],
+  "genealogy": ["genealogy", "ancestry", "family tree", "lineage", "heritage", "ancestors", "roots"]
 };
 
 export const semanticGroups = {

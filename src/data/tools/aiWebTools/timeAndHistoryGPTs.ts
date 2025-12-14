@@ -117,5 +117,18 @@ export const timeAndHistoryGPTs: Tool[] = [
       category: "Time & History",
       rating: 4.7,
       totalVotes: 1987
+    },
+    {
+      icon: Search,
+      title: "Gravestone Decoder GPT",
+      description: "Uncover the true identity behind the stone—verified, sourced, and never forgotten. Uncover information about any grave powered by AI. Learn their story! This powerful genealogy and research tool helps you decode gravestone inscriptions, research family history, and discover the stories of those who came before us.",
+      emoji: "🪦",
+      color: "from-gray-600 to-slate-700",
+      directUrl: "https://chatgpt.com/g/g-693c301e16448191a4793187c4800a7f-gravestone-decoder-gpt?via=aiwebtools",
+      tags: ["gravestone", "decoder", "genealogy", "cemetery", "ancestry", "family history", "research", "grave", "memorial", "historical research", "aiwebtools", "Custom GPT", "grave decoder", "stone"],
+      category: "Time & History",
+      rating: 4.8,
+      totalVotes: 1543,
+      isFree: true
     }
 ];

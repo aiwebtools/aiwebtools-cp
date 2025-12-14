@@ -33,7 +33,7 @@ export const isStrictlyHistoricalTimeRelatedTool = (tool: Tool): boolean => {
     'historical literature', 'oraculum', 'interpretis', 'phenomenon explorer', 'hidden histories',
     'archaeological', 'artifact', 'heritage', 'medieval', 'renaissance', 'antiquity',
     'museum', 'archive', 'chronicle', 'manuscript', 'relic', 'fossil',
-    'genealogy', 'ancestry', 'lineage', 'dynasty', 'monarchy', 'empire', 'kingdom',
+    'genealogy', 'ancestry', 'lineage', 'dynasty', 'monarchy', 'empire', 'kingdom', 'gravestone', 'cemetery', 'grave decoder', 'memorial',
     'revolution', 'war', 'battle', 'conquest', 'discovery', 'exploration', 'expedition',
     'prehistoric', 'paleolithic', 'neolithic', 'bronze age', 'iron age', 'stone age',
     'mystical', 'esoteric', 'occult', 'temporal', 'chronological', 'anachronism'
