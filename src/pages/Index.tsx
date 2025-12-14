@@ -127,12 +127,12 @@ const Index = () => {
           </div>
         </section>
         
-        {/* SEO-optimized AI Web Tools section - Critical for "ai web tools" keyword ranking */}
-        <AIWebToolsSEOSection />
-        
         <div id="categories-section">
           <CategoryPageSelection />
         </div>
+        
+        {/* SEO-optimized AI Web Tools section - Compact version for SEO only */}
+        <AIWebToolsSEOSection />
 
         {/* Featured Tools Section */}
         <LazyFeaturedTools onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
