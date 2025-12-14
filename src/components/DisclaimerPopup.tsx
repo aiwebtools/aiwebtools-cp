@@ -30,7 +30,12 @@ const DisclaimerPopup = () => {
   }, []);
 
   const handleAccept = () => {
-    console.log('🌀 User agreeing to disclaimer - initiating portal entry...');
+    console.log('🌀 User agreeing to disclaimer - playing welcome message...');
+    
+    // Play welcome audio
+    const welcomeAudio = new Audio('/welcome-disclaimer.mp3');
+    welcomeAudio.volume = 1.0;
+    welcomeAudio.play().catch(err => console.log('Welcome audio play failed:', err));
     
     // Create the time portal effect without a destination URL
     createTimePortalEffect('');
