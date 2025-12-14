@@ -136,32 +136,42 @@ const Index = () => {
         
         {/* SEO-optimized AI Web Tools section - Compact version for SEO only */}
         <AIWebToolsSEOSection />
-
-        {/* Featured Tools Section */}
-        <LazyFeaturedTools onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
+ 
+        {/* Heavy sections are deferred so Home appears INSTANTLY on navigation */}
+        <DeferredMount delay={120} fallback={<LoadingSpinner />}>
+          {/* Featured Tools Section */}
+          <LazyFeaturedTools onToolsLoaded={(count) => console.log(`Featured tools loaded: ${count}`)} />
+        </DeferredMount>
         
-        <BookPromotionCard />
-        <SpecialServices />
+        <DeferredMount delay={180} fallback={null}>
+          <BookPromotionCard />
+        </DeferredMount>
+        
+        <DeferredMount delay={220} fallback={null}>
+          <SpecialServices />
+        </DeferredMount>
         
         {/* Bottom Search Portal - positioned below all featured tools */}
-        <section className="py-16 bg-gradient-to-br from-gray-900 to-black relative">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                <span className="text-cyan-400">🔍 SEARCH ALL AI TOOLS</span>
-              </h2>
-              <p className="text-xl text-cyan-200 max-w-3xl mx-auto mb-4">
-                Explore our complete database of AI tools with advanced search and filtering
-              </p>
+        <DeferredMount delay={260} fallback={null}>
+          <section className="py-16 bg-gradient-to-br from-gray-900 to-black relative">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                  <span className="text-cyan-400">🔍 SEARCH ALL AI TOOLS</span>
+                </h2>
+                <p className="text-xl text-cyan-200 max-w-3xl mx-auto mb-4">
+                  Explore our complete database of AI tools with advanced search and filtering
+                </p>
+              </div>
+              
+              {/* Search Portal Component */}
+              <LazySearchPortal />
             </div>
-            
-            {/* Search Portal Component */}
-            <LazySearchPortal />
-          </div>
-        </section>
+          </section>
+        </DeferredMount>
         
-      <ScrollToTop />
-      <Footer />
+        <ScrollToTop />
+        <Footer />
       </div>
       
       <ConsentPopup />
