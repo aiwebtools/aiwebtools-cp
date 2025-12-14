@@ -49,7 +49,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "🐾",
     color: "from-green-500 to-blue-600",
     directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/jwjNOKP5mf4",
+    videoUrl: "https://www.youtube.com/watch?v=ElAfvB0yLEI",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298535833407488/vet.webp",
     tags: ["vet", "veterinarian", "veterinary care", "pet health", "animal medicine", "pet consultation", "veterinary advice", "pets", "aiwebtools", "Custom GPT", "Pet Health", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
