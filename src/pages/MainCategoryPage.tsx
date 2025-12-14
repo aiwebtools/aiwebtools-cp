@@ -133,6 +133,7 @@ const MainCategoryPage = () => {
   if (!isInitialized) {
     return (
       <div className="min-h-screen bg-black relative overflow-x-hidden">
+        <AnimatedBackground />
         <div className="relative z-10 cyber-grid">
           <Header />
           <main className="container mx-auto px-4 py-8 pt-32 md:pt-36 lg:pt-40">
