@@ -1,10 +1,11 @@
 
-import React, { memo, useMemo } from "react";
+import React, { memo, useMemo, useCallback, useRef } from "react";
 import { Tool } from "@/types/tools";
 import { Card } from "@/components/ui/card";
 import { useMobile } from "@/hooks/useMobile";
 import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
 import { createTimePortalEffect } from "@/utils/timeEffects";
+import { prefetchToolData } from "@/utils/toolPrefetcher";
 import ToolCardHeader from "./ToolCardHeader";
 import ToolCardContent from "./ToolCardContent";
 import FavoriteButton from "@/components/favorites/FavoriteButton";
@@ -18,9 +19,24 @@ interface ToolCardProps {
 const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
   const { isMobile, isTouch } = useMobile();
   const { enableReducedMotion, getOptimizedStyles } = usePerformanceOptimization();
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   // Determine if this is an AIWebTools original or marked as free
   const isAIWebToolsOriginal = tool.isFree || tool.directUrl?.includes('lovable.app') || false;
+  
+  // Prefetch tool detail page on hover (100ms delay to avoid unnecessary prefetches)
+  const handleMouseEnter = useCallback(() => {
+    hoverTimeoutRef.current = setTimeout(() => {
+      prefetchToolData(tool.title);
+    }, 100);
+  }, [tool.title]);
+
+  const handleMouseLeave = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+  }, []);
   
   // Handle card click - trigger time warp effect for external tools
   const handleCardClick = (e: React.MouseEvent) => {
@@ -108,6 +124,8 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
       role="article"
       aria-label={`AI Tool: ${tool.title}`}
       onClick={handleCardClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <ToolCardHeader 
         tool={tool}

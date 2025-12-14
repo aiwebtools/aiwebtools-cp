@@ -1,8 +1,9 @@
-import React, { memo } from "react";
+import React, { memo, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tool } from "@/types/tools";
 import { Card, CardContent } from "@/components/ui/card";
 import { generateToolSlug } from "@/utils/urlGenerator";
+import { prefetchToolData } from "@/utils/toolPrefetcher";
 import FavoriteButton from "@/components/favorites/FavoriteButton";
 
 interface MinimalToolCardProps {
@@ -12,9 +13,24 @@ interface MinimalToolCardProps {
 
 const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
   const navigate = useNavigate();
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   // Determine if this is an AIWebTools original or marked as free
   const isAIWebToolsOriginal = tool.isFree || tool.directUrl?.includes('lovable.app') || false;
+  
+  // Prefetch tool detail page on hover
+  const handleMouseEnter = useCallback(() => {
+    hoverTimeoutRef.current = setTimeout(() => {
+      prefetchToolData(tool.title);
+    }, 100);
+  }, [tool.title]);
+
+  const handleMouseLeave = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+  }, []);
   
   const handleClick = (e: React.MouseEvent) => {
     // Don't trigger if clicking on buttons or interactive elements
@@ -33,6 +49,8 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
     <Card 
       className="group cursor-pointer hover:shadow-lg transition-all duration-200 border-gray-800 bg-gray-900/50 hover:bg-gray-800/70 relative"
       onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {/* Favorite Button */}
       <FavoriteButton tool={tool} size="sm" className="top-2 right-2 z-30" />
