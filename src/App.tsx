@@ -8,6 +8,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { FavoritesProvider } from "@/hooks/useFavorites";
 import { useCrossBrowserOptimization } from "@/hooks/useCrossBrowserOptimization";
 import { useChromebookOptimization } from "@/hooks/useChromebookOptimization";
+import { usePrefetchRoutes } from "@/hooks/usePrefetch";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import PageTransition from "@/components/navigation/PageTransition";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
@@ -67,6 +68,9 @@ function App() {
   
   // Initialize Chromebook-specific optimizations
   useChromebookOptimization();
+  
+  // Prefetch common routes for instant navigation
+  usePrefetchRoutes();
 
   return (
     <ErrorBoundary>
