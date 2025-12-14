@@ -446,7 +446,7 @@ const featuredGPTsUnsorted = [
     color: "from-blue-500 to-cyan-600",
     features: ["Fishing Techniques", "Equipment Guide", "Location Finder", "Weather Analysis"],
     directUrl: "https://fishermangpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-bearded-fisherman-wearin.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    videoUrl: "https://youtu.be/pJO0nmwLm24",
     emoji: "🎣"
   },
   {
@@ -536,7 +536,7 @@ const featuredGPTsUnsorted = [
     color: "from-yellow-500 to-orange-600",
     features: ["Project Planning", "Material Selection", "Cost Estimation", "DIY Tips"],
     directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-humanoid-robot-fixing-a-bathroom-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    videoUrl: "https://youtu.be/fzmhFNPwQ7A",
     emoji: "🔧"
   },
   {
@@ -1276,7 +1276,7 @@ const featuredGPTsUnsorted = [
     color: "from-orange-500 to-yellow-600",
     features: ["Sacred Fire", "Divine Light", "Ancient Persia", "Spiritual Wisdom"],
     directUrl: "https://chatgpt.com/g/g-68e7ffc2efec8191b99ae3f867d46e69-zoroastrian-light-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/zoroastrian-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/nCLGlm8sUjo",
     emoji: "🔥"
   },
   {
@@ -1696,7 +1696,7 @@ const featuredGPTsUnsorted = [
     color: "from-cyan-500 to-blue-600",
     features: ["Philosophy", "Mathematics", "Neoplatonism", "Free Thought"],
     directUrl: "https://chatgpt.com/g/g-6924aa01a7b081918a13a5ad6c3f6ad9-hypatia-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/hypatia-reborn-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/o2NP8bwNWoY",
     emoji: "📐"
   },
   {
@@ -1896,7 +1896,7 @@ const featuredGPTsUnsorted = [
     color: "from-purple-500 to-blue-600",
     features: ["Spiritual Game", "Consciousness Quiz", "Metaphysical Wisdom", "Interactive"],
     directUrl: "https://chatgpt.com/g/g-6907af60440c8191bba8d514b749562a-awakening-jeopardy-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/awakening-jeopardy-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/2vH1spTrPJQ",
     emoji: "🎮"
   },
   {
@@ -1916,7 +1916,7 @@ const featuredGPTsUnsorted = [
     color: "from-green-500 to-blue-600",
     features: ["Homeschooling", "Legal Guidance", "Curriculum", "Educational Resources"],
     directUrl: "https://homeschoolgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-parent-teaching-their-ki-0096e43.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    videoUrl: "https://youtu.be/dHirW5bIT34",
     emoji: "🏠"
   },
   {
@@ -1956,8 +1956,7 @@ const featuredGPTsUnsorted = [
     color: "from-yellow-500 to-pink-500",
     features: ["Coloring Books", "Children's Content", "Art Generation", "Educational Tools"],
     directUrl: "https://coloringbookgeneratorgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/i0zc0aeRCeI?si=UKmD23pR3uCTGXBa",
-    imageUrl: "https://ideogram.ai/assets/progressive-image/balanced/response/1nn1k06fRwWk3OQIbu7sTw",
+    videoUrl: "https://youtu.be/nmd3LbhbV4E",
     emoji: "🖍️"
   },
   {
@@ -1967,7 +1966,7 @@ const featuredGPTsUnsorted = [
     color: "from-blue-500 to-gray-600",
     features: ["Contract Review", "Legal Analysis", "Risk Identification", "Fair Terms"],
     directUrl: "https://chatgpt.com/g/g-Y8u3YrS1p-contract-review-bot",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-humanoid-robot-with-a-sleek-desig.png/:/cr=t:2.6%25,l:5.36%25,w:89.29%25,h:79.58%25/rs=w:1200,h:600,cg:true,m",
+    videoUrl: "https://youtu.be/12jsM2-Yfho",
     emoji: "📄"
   },
   {
@@ -2017,7 +2016,7 @@ const featuredGPTsUnsorted = [
     color: "from-gray-600 to-amber-600",
     features: ["Firearms Safety", "Legal Guidance", "Skills Training", "Responsible Ownership"],
     directUrl: "https://firearmsafetyeducationgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-humanoid-shooting-a-gun-at-a-targ.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    videoUrl: "https://youtu.be/S0uJrukJsBA",
     emoji: "🎯"
   },
   {
@@ -2137,7 +2136,7 @@ const featuredGPTsUnsorted = [
     color: "from-purple-500 to-cyan-600",
     features: ["Quantum Wisdom", "Alan Watts", "Metaphysical", "Consciousness"],
     directUrl: "https://chatgpt.com/g/g-6904258cf6a0819197b10755d4cc3632-i-am-q-i-am-you/?via=aiwebtools",
-    imageUrl: "/src/assets/i-am-q-hero.jpg",
+    videoUrl: "https://youtu.be/tfMSLqU9IJk",
     emoji: "✨"
   },
   {
@@ -2157,7 +2156,7 @@ const featuredGPTsUnsorted = [
     color: "from-pink-500 to-purple-600",
     features: ["Virtual Try-On", "Outfit Visualization", "Hairstyle Simulation", "Style Transformation"],
     directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/ChatGPT%20Image%20Apr%2027%2C%202025%2C%2007_08_04%20PM.png/:/cr=t:12.5%25,l:0%25,w:100%25,h:75%25/rs=w:1200,h:600,cg:true",
+    videoUrl: "https://youtu.be/xwf2rQl6gCw",
     emoji: "👗"
   },
   {
@@ -2187,7 +2186,7 @@ const featuredGPTsUnsorted = [
     color: "from-amber-500 to-brown-600",
     features: ["Historical Criticism", "Textual Analysis", "Religious Studies", "Theology"],
     directUrl: "https://chatgpt.com/g/g-68efd95b115481919faf1e8156ba83a5-bible-studies-gpt?via=aiwebtools",
-    imageUrl: "/src/assets/bible-studies-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/qCT4q3Mnu1c",
     emoji: "📖"
   },
   {
@@ -2197,7 +2196,7 @@ const featuredGPTsUnsorted = [
     color: "from-blue-600 to-purple-600",
     features: ["Ancient Greek", "Original Text", "Theology", "Biblical Studies"],
     directUrl: "https://chatgpt.com/g/g-68d7490469d881919f4df9bc9c63aa90-the-greek-new-testament-gpt-the-original-version",
-    imageUrl: "/src/assets/greek-new-testament-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/AZrQa96LkCo",
     emoji: "📜"
   },
   {
@@ -2357,7 +2356,7 @@ const featuredGPTsUnsorted = [
     color: "from-green-500 to-blue-600",
     features: ["Resource Tracking", "Sustainability", "Environment", "Real-Time Data"],
     directUrl: "https://worldresourceclock.lovable.app/?via=aiwebtools",
-    imageUrl: "/src/assets/world-resource-clock-hero.jpg",
+    videoUrl: "https://youtu.be/_TbFi0_gITQ",
     emoji: "⏰"
   },
   {
@@ -2607,7 +2606,7 @@ const featuredGPTsUnsorted = [
     color: "from-amber-600 to-stone-700",
     features: ["Architecture Analysis", "Timeline Anomalies", "Hidden History", "Forensic Investigation"],
     directUrl: "https://chatgpt.com/g/g-693863184c4c8191a6e78eb6a215196f-architectural-old-world-investigator-gpt?via=aiwebtools",
-    imageUrl: "/src/assets/old-world-investigator-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/2z3aO-PSpgc",
     emoji: "🏛️"
   },
   {
@@ -2627,7 +2626,7 @@ const featuredGPTsUnsorted = [
     color: "from-blue-500 to-teal-500",
     features: ["Honest Advice", "Life Coaching", "Relationships", "Career"],
     directUrl: "https://chat.openai.com/g/g-8YSiwFFr8",
-    imageUrl: "/src/assets/honest-advice-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/OPDgnBkgCOc",
     emoji: "💬"
   },
   {
@@ -2637,7 +2636,7 @@ const featuredGPTsUnsorted = [
     color: "from-green-500 to-blue-500",
     features: ["Bird Watching", "Species ID", "Nature", "Ornithology"],
     directUrl: "https://chat.openai.com/g/g-hI9vzWGHx",
-    imageUrl: "/src/assets/birdwatching-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/pqjJc5WsyHA",
     emoji: "🐦"
   },
   {
@@ -2747,7 +2746,7 @@ const featuredGPTsUnsorted = [
     color: "from-yellow-400 to-blue-500",
     features: ["Habit Building", "Goal Setting", "Progress Tracking", "Routines"],
     directUrl: "https://chat.openai.com/g/g-68afa1c541cc8191be3360351f28eeda-habit-builder-gpt",
-    imageUrl: "/src/assets/habit-builder-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/PbSdEDZhQgk",
     emoji: "⚡"
   },
   {
@@ -3038,7 +3037,7 @@ const featuredGPTsUnsorted = [
     color: "from-blue-500 to-cyan-600",
     features: ["Hydroelectric", "Renewable Energy", "Engineering", "Sustainability"],
     directUrl: "https://chatgpt.com/g/g-690a473d14dc8191baced00e65f906b7-hydroelectric-reclamation-gpt",
-    imageUrl: "/src/assets/hydroelectric-reclamation-hero.jpg",
+    videoUrl: "https://youtu.be/OMPlhErqv9k",
     emoji: "💧"
   },
   {
