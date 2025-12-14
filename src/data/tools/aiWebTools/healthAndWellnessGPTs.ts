@@ -103,7 +103,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "🦷",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-67cbcbcf3a38819183974f2d062d5d7f-dental-gpt-expert",
-    videoUrl: "https://youtu.be/jwjNOKP5mf4?si=XWMe5y7XghCURksD",
+    videoUrl: "https://youtu.be/FADzzKMJSr4",
     tags: ["dental health", "oral care", "dentistry", "dental consultation", "oral hygiene", "dental procedures", "healthcare", "Custom GPT", "Medical", "Healthcare"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.5,

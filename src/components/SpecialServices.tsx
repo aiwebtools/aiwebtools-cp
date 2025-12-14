@@ -2826,7 +2826,7 @@ const featuredGPTsUnsorted = [
     color: "from-blue-500 to-cyan-600",
     features: ["Dental Health", "Oral Care", "Dentistry", "Dental Guidance"],
     directUrl: "https://chatgpt.com/g/g-67cbcbcf3a38819183974f2d062d5d7f-dental-gpt-expert",
-    videoUrl: "https://youtu.be/jwjNOKP5mf4?si=XWMe5y7XghCURksD",
+    videoUrl: "https://youtu.be/FADzzKMJSr4",
     emoji: "🦷"
   },
   {
