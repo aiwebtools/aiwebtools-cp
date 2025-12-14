@@ -632,3 +632,178 @@ export const createWarpStars = (effectsContainer: HTMLElement) => {
     document.head.appendChild(style);
   }
 };
+
+// EPIC MATRIX CODE EXPLOSION - Green binary rain that explodes outward
+export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
+  console.log('💚 Creating EPIC Matrix code explosion');
+  
+  const matrixChars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+  const explosionCount = 80; // Lots of matrix symbols
+  
+  for (let i = 0; i < explosionCount; i++) {
+    const matrixChar = document.createElement('div');
+    matrixChar.className = 'matrix-explosion-char';
+    const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+    const fontSize = 12 + Math.random() * 24;
+    const angle = (i / explosionCount) * 360 + Math.random() * 20;
+    const velocity = 150 + Math.random() * 350;
+    const delay = Math.random() * 0.2;
+    
+    // Some characters are binary (0/1), some are katakana for matrix style
+    const isBinary = Math.random() > 0.4;
+    const displayChar = isBinary ? (Math.random() > 0.5 ? '0' : '1') : char;
+    
+    matrixChar.textContent = displayChar;
+    matrixChar.style.cssText = `
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-family: 'Courier New', monospace;
+      font-size: ${fontSize}px;
+      font-weight: bold;
+      color: #00FF00;
+      text-shadow: 
+        0 0 10px #00FF00,
+        0 0 20px #00FF00,
+        0 0 30px #00FF00,
+        0 0 40px #00FF00;
+      transform: translate(-50%, -50%);
+      animation: matrix-char-explode 2s ease-out forwards;
+      animation-delay: ${delay}s;
+      z-index: 10020;
+      pointer-events: none;
+      --angle: ${angle}deg;
+      --velocity: ${velocity}px;
+    `;
+    
+    effectsContainer.appendChild(matrixChar);
+  }
+  
+  // Create cascading matrix rain columns
+  const rainColumns = 20;
+  for (let col = 0; col < rainColumns; col++) {
+    const column = document.createElement('div');
+    column.className = 'matrix-rain-column';
+    const leftPos = (col / rainColumns) * 100;
+    const delay = Math.random() * 0.5;
+    const chars = Array.from({length: 15}, () => 
+      matrixChars[Math.floor(Math.random() * matrixChars.length)]
+    ).join('');
+    
+    column.textContent = chars;
+    column.style.cssText = `
+      position: absolute;
+      top: -200px;
+      left: ${leftPos}%;
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      font-weight: bold;
+      color: #00FF00;
+      text-shadow: 
+        0 0 5px #00FF00,
+        0 0 10px #00FF00,
+        0 0 20px #00FF00;
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      letter-spacing: 5px;
+      animation: matrix-rain-fall 1.5s ease-in forwards;
+      animation-delay: ${delay}s;
+      z-index: 10015;
+      opacity: 0;
+      pointer-events: none;
+    `;
+    
+    effectsContainer.appendChild(column);
+  }
+  
+  // Create central matrix orb
+  const matrixOrb = document.createElement('div');
+  matrixOrb.className = 'matrix-orb';
+  matrixOrb.style.cssText = `
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #00FF00 0%, #008800 40%, transparent 70%);
+    box-shadow: 
+      0 0 40px #00FF00,
+      0 0 80px #00FF00,
+      0 0 120px #00FF00,
+      inset 0 0 30px #00FF00;
+    transform: translate(-50%, -50%);
+    animation: matrix-orb-pulse 1.8s ease-out forwards;
+    z-index: 10025;
+  `;
+  effectsContainer.appendChild(matrixOrb);
+  
+  const style = document.createElement('style');
+  style.id = 'matrix-explosion-style';
+  style.textContent = `
+    @keyframes matrix-char-explode {
+      0% {
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateX(0) scale(0.5);
+        opacity: 0;
+        filter: brightness(5);
+      }
+      10% {
+        opacity: 1;
+        filter: brightness(8);
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateX(20px) scale(1.5);
+      }
+      30% {
+        opacity: 1;
+        filter: brightness(6);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--velocity)) scale(0.3);
+        opacity: 0;
+        filter: brightness(2);
+      }
+    }
+    
+    @keyframes matrix-rain-fall {
+      0% {
+        transform: translateY(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      80% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(calc(100vh + 200px));
+        opacity: 0;
+      }
+    }
+    
+    @keyframes matrix-orb-pulse {
+      0% {
+        transform: translate(-50%, -50%) scale(0.2);
+        opacity: 0;
+        filter: brightness(10);
+      }
+      15% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 1;
+        filter: brightness(8);
+      }
+      40% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0.9;
+        filter: brightness(6);
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(6);
+        opacity: 0;
+        filter: brightness(2);
+      }
+    }
+  `;
+  if (!document.getElementById('matrix-explosion-style')) {
+    document.head.appendChild(style);
+  }
+};

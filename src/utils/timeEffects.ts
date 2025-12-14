@@ -7,7 +7,8 @@ import {
   createLightning, 
   createFlash,
   createBlackHole,
-  createWarpStars
+  createWarpStars,
+  createMatrixCodeExplosion
 } from './effects/visualEffects';
 import { 
   createEffectsContainer, 
@@ -232,9 +233,11 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   if (isMobile) {
     // Mobile: Only essential effects for speed
     createParticles(effectsContainer);
+    createMatrixCodeExplosion(effectsContainer); // Matrix explosion on mobile too!
     createFlash(effectsContainer);
   } else {
-    // Desktop: Full epic effects
+    // Desktop: Full epic effects including MATRIX CODE EXPLOSION
+    createMatrixCodeExplosion(effectsContainer); // THE MATRIX EFFECT!
     createWarpStars(effectsContainer);
     createBlackHole(effectsContainer);
     createSpiralTunnel(effectsContainer);
