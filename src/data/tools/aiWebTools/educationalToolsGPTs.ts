@@ -62,7 +62,7 @@ export const educationalToolsGPTs: Tool[] = [
     emoji: "📚",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377336291427090462/ChatGPT_Image_May_28_2025_01_22_27_PM.png?ex=683897e1&is=68374661&hm=71f0b50e1d34249bf9ed9ca8b7a1b0e45d0d2127cb9e356e2b4c65b35518656a&=&format=webp&quality=lossless&width=2088&height=1392",
+    imageUrl: "/src/assets/course-maker-gpt-hero.jpg",
     tags: ["course development", "curriculum design", "instructional design", "educational content", "learning programs", "Custom GPT", "Course Creator", "Professional Training"],
     category: "Educational Tools",
     rating: 4.8,

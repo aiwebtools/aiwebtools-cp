@@ -261,7 +261,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🔯",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://jewish-ai.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/b8M_eGKwN7o?si=X0vJb6jHtCUHkeQW", // Kabbalah wisdom video
+    imageUrl: "/src/assets/kabbalah-gpt-hero.jpg",
     tags: ["kabbalah", "kabbala", "cabala", "jewish mysticism", "tree of life", "sefirot", "sacred texts", "divine wisdom", "spiritual teachings", "mystical tradition", "meditation", "enlightenment", "spirituality", "religion", "religious", "judaism", "jewish", "mysticism"],
     category: "Spirituality & Philosophy",
     rating: 4.8,

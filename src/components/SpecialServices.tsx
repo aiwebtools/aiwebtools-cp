@@ -426,7 +426,7 @@ const featuredGPTs = [
     color: "from-amber-600 to-red-600",
     features: ["Historical Headlines", "Period Reporting", "News Archives", "Historical Context"],
     directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/1y3zdPnJfQ4",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-historical-headline_1Ll1g.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "📰"
   },
   {
@@ -1196,7 +1196,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-indigo-600",
     features: ["Tree of Life", "Sefirot", "Jewish Mysticism", "Divine Wisdom"],
     directUrl: "https://jewish-ai.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/b8M_eGKwN7o?si=X0vJb6jHtCUHkeQW",
+    imageUrl: "/src/assets/kabbalah-gpt-hero.jpg",
     emoji: "🔯"
   },
   {
@@ -1856,7 +1856,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-red-600",
     features: ["Curriculum Design", "Lesson Planning", "Interactive Elements", "Structured Learning"],
     directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377336291427090462/ChatGPT_Image_May_28_2025_01_22_27_PM.png?ex=683897e1&is=68374661&hm=71f0b50e1d34249bf9ed9ca8b7a1b0e45d0d2127cb9e356e2b4c65b35518656a&=&format=webp&quality=lossless&width=2088&height=1392",
+    imageUrl: "/src/assets/course-maker-gpt-hero.jpg",
     emoji: "🏆"
   },
   {
