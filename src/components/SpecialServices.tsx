@@ -1346,6 +1346,7 @@ const featuredGPTs = [
     color: "from-amber-600 to-brown-600",
     features: ["Lakota Wisdom", "Sacred Traditions", "Balance", "Truth"],
     directUrl: "https://chatgpt.com/g/g-6924c51b2ddc8191a3f946de88c1cdee-sitting-bull-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/sitting-bull-gpt-hero.jpg",
     emoji: "🦅"
   },
   {
@@ -1355,6 +1356,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-yellow-600",
     features: ["Nonviolence", "Truth", "Satyagraha", "Moral Courage"],
     directUrl: "https://chatgpt.com/g/g-6924c5d898d481919f546bd9935c1bc6-mahatma-gandhi-reborn-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/gandhi-gpt-hero.jpg",
     emoji: "🕊️"
   },
   {
@@ -1364,6 +1366,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Infinite Universe", "Cosmic Truth", "Hermeticism", "Free Thought"],
     directUrl: "https://chatgpt.com/g/g-6924c705812c8191a6733b6479967ae8-giordano-bruno-reborn-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/giordano-bruno-gpt-hero.jpg",
     emoji: "🌌"
   },
   {
@@ -1373,6 +1376,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-red-600",
     features: ["Flux", "Logos", "Fire", "Paradox"],
     directUrl: "https://chatgpt.com/g/g-6924c8dbf9b48191b4874e821fff8276-heraclitus-reborn-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/heraclitus-gpt-hero.jpg",
     emoji: "🔥"
   },
   {
@@ -1382,6 +1386,7 @@ const featuredGPTs = [
     color: "from-green-500 to-brown-600",
     features: ["Animals", "Nature", "Humility", "Compassion"],
     directUrl: "https://chatgpt.com/g/g-6924cce6e5b081919c7469f08d42dbb5-st-francis-of-assisi-reborn-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/st-francis-gpt-hero.jpg",
     emoji: "🕊️"
   },
   {
@@ -1391,6 +1396,7 @@ const featuredGPTs = [
     color: "from-red-500 to-brown-600",
     features: ["Warrior Spirit", "Prophecy", "Indigenous Wisdom", "Vision"],
     directUrl: "https://chatgpt.com/g/g-6924cd74aecc8191b2f2d0ca6ed71dd4-chief-crazy-horse-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/crazy-horse-gpt-hero.jpg",
     emoji: "🦅"
   },
   {
@@ -1400,6 +1406,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Aten", "Monotheism", "Egyptian Wisdom", "Sun Worship"],
     directUrl: "https://chatgpt.com/g/g-6924b341a8c481918bafaafee5ef1e0a-akhenaten/?via=aiwebtools",
+    imageUrl: "/src/assets/akhenaten-gpt-hero.jpg",
     emoji: "☀️"
   },
   {
@@ -1409,6 +1416,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-yellow-600",
     features: ["Architecture", "Medicine", "Sacred Geometry", "Wisdom"],
     directUrl: "https://chatgpt.com/g/g-6924ba381a2c8191a93a97ef399f3823-imhotep-living-mind-of-kemet/?via=aiwebtools",
+    imageUrl: "/src/assets/imhotep-gpt-hero.jpg",
     emoji: "🏛️"
   },
   {
@@ -1418,6 +1426,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-cyan-600",
     features: ["Natural Philosophy", "Science", "Mathematics", "Reason"],
     directUrl: "https://chatgpt.com/g/g-6924bc3c88bc8191bbf7b17641c87917-thales-of-miletus-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/thales-gpt-hero.jpg",
     emoji: "🌊"
   },
   {
@@ -1427,6 +1436,7 @@ const featuredGPTs = [
     color: "from-green-500 to-emerald-600",
     features: ["Earth Wisdom", "Interconnectedness", "Environmental Wisdom", "Stewardship"],
     directUrl: "https://chatgpt.com/g/g-6924b6a349d08191aadc6012f47b3d6f-chief-seattle-sealth-free-thought-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/chief-seattle-gpt-hero.jpg",
     emoji: "🦅"
   },
   {
@@ -1436,6 +1446,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Integral Yoga", "Spiritual Evolution", "Divine Life", "Consciousness"],
     directUrl: "https://chatgpt.com/g/g-6924e98e3cb48191b734c751addb66ed-sri-aurobindo-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/sri-aurobindo-gpt-hero.jpg",
     emoji: "☀️"
   },
   {
@@ -1445,6 +1456,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-amber-600",
     features: ["Self-Inquiry", "Advaita", "Awareness", "Meditation"],
     directUrl: "https://chatgpt.com/g/g-6924ea968a80819195661b81efe0cd4a-ramana-maharshi-reborn-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/ramana-gpt-hero.jpg",
     emoji: "🧘"
   },
   {
@@ -1454,6 +1466,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-purple-600",
     features: ["Vision Quest", "Sacred Hoop", "Indigenous Wisdom", "Prayer"],
     directUrl: "https://chatgpt.com/g/g-6924ebe2ae108191ac310184bbb1aa61-black-elk-vision-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/black-elk-gpt-hero.jpg",
     emoji: "🦅"
   },
   {
@@ -1463,6 +1476,7 @@ const featuredGPTs = [
     color: "from-red-500 to-orange-600",
     features: ["Divine Union", "Ana al-Haqq", "Mysticism", "Spiritual Ecstasy"],
     directUrl: "https://chatgpt.com/g/g-6924edc8f54c81919227604a9ca501fd-mansur-al-hallaj-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/al-hallaj-gpt-hero.jpg",
     emoji: "🔥"
   },
   {
@@ -1472,6 +1486,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-pink-600",
     features: ["Interior Castle", "Contemplative Prayer", "Divine Union", "Carmelite"],
     directUrl: "https://chatgpt.com/g/g-6924eee640048191af450da5d2cb57fc-saint-teresa-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/saint-teresa-gpt-hero.jpg",
     emoji: "🏰"
   },
   {
@@ -1481,6 +1496,7 @@ const featuredGPTs = [
     color: "from-cyan-500 to-blue-600",
     features: ["Awareness", "Self-Inquiry", "Presence", "Non-Duality"],
     directUrl: "https://chatgpt.com/g/g-6924ecc4318481919554b12bf3d9f34d-mooji-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/mooji-gpt-hero.jpg",
     emoji: "🧘"
   },
   {
@@ -1490,6 +1506,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-brown-600",
     features: ["Confessions", "City of God", "Grace", "Conversion"],
     directUrl: "https://chatgpt.com/g/g-6924f85e53448191bf0eca62731d3e50-saint-augustine-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/saint-augustine-gpt-hero.jpg",
     emoji: "📚"
   },
   {
@@ -1499,6 +1516,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-cyan-600",
     features: ["Uncreated Light", "Hesychasm", "Divine Peace", "Transfiguration"],
     directUrl: "https://chatgpt.com/g/g-6924f9ba59808191af9d3d5affd3d95b-saint-seraphim-of-sarov-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/saint-seraphim-gpt-hero.jpg",
     emoji: "☀️"
   },
   {
@@ -1508,6 +1526,7 @@ const featuredGPTs = [
     color: "from-red-500 to-brown-600",
     features: ["Stigmata", "Mysticism", "Intercession", "Miracles"],
     directUrl: "https://chatgpt.com/g/g-6924f6f3c570819181a978f9fabe1826-saint-padre-pio-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/padre-pio-gpt-hero.jpg",
     emoji: "✝️"
   },
   {
@@ -1517,6 +1536,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-red-600",
     features: ["Divine Dialogue", "Church Reform", "Mysticism", "Dominican"],
     directUrl: "https://chatgpt.com/g/g-6924f7cdc6c88191adca2a902655cf70-saint-catherine-of-siena-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/saint-catherine-gpt-hero.jpg",
     emoji: "🔥"
   },
   {
@@ -1526,6 +1546,7 @@ const featuredGPTs = [
     color: "from-indigo-500 to-purple-600",
     features: ["Dark Night", "Mystical Poetry", "Contemplation", "Carmelite"],
     directUrl: "https://chatgpt.com/g/g-6924f40f2fd88191bbe2b27996987744-saint-john-of-the-cross-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/saint-john-cross-gpt-hero.jpg",
     emoji: "🌙"
   },
   {
@@ -1535,6 +1556,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-violet-600",
     features: ["Archetypes", "Collective Unconscious", "Individuation", "Symbolism"],
     directUrl: "https://chatgpt.com/g/g-692666b5c4d881918a7984e8e9f46e8d-carl-jung-gpt?via=aiwebtools",
+    imageUrl: "/src/assets/carl-jung-gpt-hero.jpg",
     emoji: "🧠"
   },
   {
@@ -1544,6 +1566,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-red-600",
     features: ["Liberation", "Ten Commandments", "Divine Fire", "Exodus"],
     directUrl: "https://chatgpt.com/g/g-69250b509ae88191a316ab0fa3d68e08-moses-gpt?via=aiwebtools",
+    imageUrl: "/src/assets/moses-gpt-hero.jpg",
     emoji: "⛰️"
   },
   {
@@ -1553,6 +1576,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Essene Wisdom", "Meditation", "Sacred Codes", "Inner Transformation"],
     directUrl: "https://chatgpt.com/g/g-68b490b403a08191b3f3f6ac126b0b77-essene-qodesh-code/?via=aiwebtools",
+    imageUrl: "/src/assets/essene-gpt-hero.jpg",
     emoji: "🕊️"
   },
   {
@@ -1562,6 +1586,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Breath Work", "Light Activation", "Christos Consciousness", "Awakening"],
     directUrl: "https://chatgpt.com/g/g-68b4847aa1fc81918c4a8796ed1bae00-the-breathlight-codex/?via=aiwebtools",
+    imageUrl: "/src/assets/breathlight-gpt-hero.jpg",
     emoji: "☀️"
   },
   {
@@ -1580,6 +1605,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-purple-600",
     features: ["Dialectic Reason", "Forms", "Allegory of the Cave", "Logic"],
     directUrl: "https://chatgpt.com/g/g-6924ade8d47481918016cd9f90d32e56-plato-reborn-free-thought-liberator/?via=aiwebtools",
+    imageUrl: "/src/assets/plato-gpt-hero.jpg",
     emoji: "🏛️"
   },
   {
@@ -2122,6 +2148,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-purple-600",
     features: ["Divine Calling", "Courage", "Faith", "Medieval History"],
     directUrl: "https://chatgpt.com/g/g-6924b8b8ce3c8191a422fafcb56e22d4-joan-of-arc-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/joan-of-arc-gpt-hero.jpg",
     emoji: "⚔️"
   },
   {
@@ -2131,6 +2158,7 @@ const featuredGPTs = [
     color: "from-green-500 to-brown-600",
     features: ["Animals", "Nature", "Humility", "Christian Mysticism"],
     directUrl: "https://chatgpt.com/g/g-6924cce6e5b081919c7469f08d42dbb5-st-francis-of-assisi-reborn-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/st-francis-gpt-hero.jpg",
     emoji: "🕊️"
   },
   {
@@ -2140,6 +2168,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-yellow-600",
     features: ["Architecture", "Medicine", "Wisdom", "Sacred Geometry"],
     directUrl: "https://chatgpt.com/g/g-6924ba381a2c8191a93a97ef399f3823-imhotep-living-mind-of-kemet/?via=aiwebtools",
+    imageUrl: "/src/assets/imhotep-gpt-hero.jpg",
     emoji: "🏛️"
   },
   {
@@ -2149,6 +2178,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Sun Worship", "Monotheism", "Egyptian Wisdom", "Aten"],
     directUrl: "https://chatgpt.com/g/g-6924b341a8c481918bafaafee5ef1e0a-akhenaten/?via=aiwebtools",
+    imageUrl: "/src/assets/akhenaten-gpt-hero.jpg",
     emoji: "☀️"
   },
   {
@@ -2158,6 +2188,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Integral Yoga", "Spiritual Evolution", "Divine Life", "Supramental"],
     directUrl: "https://chatgpt.com/g/g-6924e98e3cb48191b734c751addb66ed-sri-aurobindo-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/sri-aurobindo-gpt-hero.jpg",
     emoji: "☀️"
   },
   {
@@ -2167,6 +2198,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-amber-600",
     features: ["Self-Inquiry", "Advaita Vedanta", "Awareness", "Meditation"],
     directUrl: "https://chatgpt.com/g/g-6924ea968a80819195661b81efe0cd4a-ramana-maharshi-reborn-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/ramana-gpt-hero.jpg",
     emoji: "🧘"
   },
   {
@@ -2176,6 +2208,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-cyan-700",
     features: ["Atlantis", "Ancient Knowledge", "Lost Civilization", "Hidden Truths"],
     directUrl: "https://chatgpt.com/g/g-68b496eea38481919c1700ed3ef675dd-atlantean-memory-keeper/?via=aiwebtools",
+    imageUrl: "/src/assets/atlantean-gpt-hero.jpg",
     emoji: "🏛️"
   },
   {
@@ -2185,6 +2218,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Mayan Calendar", "Galactic Signature", "Cosmic Blueprint", "Spiritual Guidance"],
     directUrl: "https://chatgpt.com/g/g-68b491e8cc2c8191b6b85930d7fc9e75-mayan-dreamspell-matrix/?via=aiwebtools",
+    imageUrl: "/src/assets/mayan-gpt-hero.jpg",
     emoji: "🔮"
   },
   {
@@ -2194,6 +2228,7 @@ const featuredGPTs = [
     color: "from-green-500 to-emerald-600",
     features: ["Emerald Tablets", "Thoth", "Ancient Codes", "Mystical Knowledge"],
     directUrl: "https://chatgpt.com/g/g-68b48f8e43c88191981386b943648566-emerald-signature-of-thoth/?via=aiwebtools",
+    imageUrl: "/src/assets/emerald-thoth-gpt-hero.jpg",
     emoji: "💎"
   },
   {
