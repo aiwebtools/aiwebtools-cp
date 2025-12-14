@@ -208,51 +208,55 @@ export const applyTimeWarpFilter = () => {
 };
 
 export const cleanupEffects = (effectsContainer: HTMLElement) => {
-  // Remove the portal overlay
-  const portalOverlay = document.getElementById('portal-overlay');
-  if (portalOverlay) {
-    portalOverlay.remove();
-  }
+  // AGGRESSIVE cleanup - remove ALL portal and matrix effects immediately
   
-  // Remove color explosion
-  const colorExplosion = document.getElementById('color-explosion');
-  if (colorExplosion) {
-    colorExplosion.remove();
-  }
+  // Remove all known portal/matrix element IDs
+  const elementIds = [
+    'portal-overlay',
+    'color-explosion', 
+    'scan-lines',
+    'crt-scanlines',
+    'matrix-backdrop',
+    'time-warp-effects-container'
+  ];
   
-  // Remove scan lines
-  const scanLines = document.getElementById('scan-lines');
-  if (scanLines) {
-    scanLines.remove();
-  }
+  elementIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  });
   
-  // Remove CRT scanlines from Matrix effect
-  const crtScanlines = document.getElementById('crt-scanlines');
-  if (crtScanlines) {
-    crtScanlines.remove();
-  }
+  // Remove ALL Matrix explosion elements by class - comprehensive list
+  const classSelectors = [
+    '.matrix-code-stream',
+    '.matrix-explosion-char', 
+    '.matrix-waterfall',
+    '.matrix-waterfall-wave2',
+    '.matrix-binary-ring',
+    '.matrix-orb',
+    '.code-tunnel-layer',
+    '.matrix-confetti-streamer'
+  ];
   
-  // Remove Matrix backdrop
-  const matrixBackdrop = document.getElementById('matrix-backdrop');
-  if (matrixBackdrop) {
-    matrixBackdrop.remove();
-  }
+  document.querySelectorAll(classSelectors.join(', ')).forEach(el => el.remove());
   
-  // Remove all Matrix explosion elements by class
-  document.querySelectorAll('.matrix-code-stream, .matrix-explosion-char, .matrix-waterfall, .matrix-binary-ring, .matrix-orb').forEach(el => el.remove());
-  
-  // Remove the portal animation styles
-  const portalStyles = document.head.querySelectorAll('style');
-  portalStyles.forEach(style => {
+  // Remove ALL portal/matrix animation styles from head
+  document.querySelectorAll('style').forEach(style => {
     if (style.textContent?.includes('@keyframes mega-portal-spin') || 
         style.textContent?.includes('@keyframes intense-color-explosion') ||
         style.textContent?.includes('@keyframes scan-lines-move') ||
-        style.id === 'matrix-explosion-style') {
+        style.textContent?.includes('@keyframes code-stream-explode') ||
+        style.textContent?.includes('@keyframes char-mega-explode') ||
+        style.textContent?.includes('@keyframes backdrop-pulse') ||
+        style.id === 'matrix-explosion-style' ||
+        style.id === 'matrix-code-style') {
       style.remove();
     }
   });
   
-  effectsContainer.remove();
+  // Remove container if still exists
+  try {
+    effectsContainer.remove();
+  } catch (e) {}
 };
 
 export const openDestinationUrl = (destinationUrl: string) => {
