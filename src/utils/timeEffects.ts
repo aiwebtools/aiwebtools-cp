@@ -240,21 +240,16 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   // Apply time warp filter to entire screen
   applyTimeWarpFilter();
 
-  // 🎤 PLAY THE TIME WARP VOICE IMMEDIATELY - everything syncs to this
-  playTimeWarpVoice();
-
-  // Execute PURE MATRIX visual effects - no colored rings, just green binary code
-  setTimeout(() => {
+  // 🎯 PERFECT SYNC: All effects start simultaneously in same frame
+  // Use requestAnimationFrame to ensure DOM is ready, then fire everything together
+  requestAnimationFrame(() => {
+    // Voice and visuals start in the EXACT same frame
+    playTimeWarpVoice();
     createMatrixCodeExplosion(effectsContainer);
-    // Removed: createVortexRings, createEnergyWaves, createParticles - too colorful
-    createFlash(effectsContainer); // Keep the flash but we'll make it green
-    
-    // Create enhanced portal sounds (layered on top of voice)
+    createFlash(effectsContainer);
     createPortalSounds();
-    
-    // Matrix confetti explosion for ALL time warp effects
     createConfettiCelebration();
-  }, visualDelay);
+  });
 
   // OPEN URL as voice finishes - perfect sync moment
   setTimeout(() => {
