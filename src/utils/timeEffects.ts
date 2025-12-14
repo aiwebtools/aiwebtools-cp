@@ -234,8 +234,8 @@ export const createTimePortalEffect = (
   createFlash(effectsContainer);
   createConfettiCelebration(true);
 
-  // ⚡ SAME TIMING ON ALL DEVICES - desktop experience everywhere
-  const urlOpenDelay = 1600;
+  // ⚡ FAST timing - URL opens quickly
+  const urlOpenDelay = 1200;
   
   setTimeout(() => {
     console.log('🚀 Opening destination URL NOW');
@@ -244,8 +244,8 @@ export const createTimePortalEffect = (
     }
   }, urlOpenDelay);
 
-  // Cleanup after effect completes - same timing for all
+  // FAST cleanup so navigation isn't blocked - effects disappear quickly
   setTimeout(() => {
     cleanupEffects(effectsContainer);
-  }, 2200);
+  }, 1400);
 };

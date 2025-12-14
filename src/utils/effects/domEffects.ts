@@ -226,12 +226,28 @@ export const cleanupEffects = (effectsContainer: HTMLElement) => {
     scanLines.remove();
   }
   
+  // Remove CRT scanlines from Matrix effect
+  const crtScanlines = document.getElementById('crt-scanlines');
+  if (crtScanlines) {
+    crtScanlines.remove();
+  }
+  
+  // Remove Matrix backdrop
+  const matrixBackdrop = document.getElementById('matrix-backdrop');
+  if (matrixBackdrop) {
+    matrixBackdrop.remove();
+  }
+  
+  // Remove all Matrix explosion elements by class
+  document.querySelectorAll('.matrix-code-stream, .matrix-explosion-char, .matrix-waterfall, .matrix-binary-ring, .matrix-orb').forEach(el => el.remove());
+  
   // Remove the portal animation styles
   const portalStyles = document.head.querySelectorAll('style');
   portalStyles.forEach(style => {
     if (style.textContent?.includes('@keyframes mega-portal-spin') || 
         style.textContent?.includes('@keyframes intense-color-explosion') ||
-        style.textContent?.includes('@keyframes scan-lines-move')) {
+        style.textContent?.includes('@keyframes scan-lines-move') ||
+        style.id === 'matrix-explosion-style') {
       style.remove();
     }
   });
