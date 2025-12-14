@@ -3547,6 +3547,159 @@ const featuredGPTs = [
     features: ["Electrical Safety", "Power Grid", "Substation Compliance", "Grid Analysis"],
     directUrl: "https://chatgpt.com/g/g-68bb51b15dc48191aca3892c33724bc3-electrical-grid-substation-inspector-gpt/?via=aiwebtools",
     emoji: "⚡"
+  },
+  {
+    title: "The Negotiator GPT",
+    description: "AI-powered negotiation coach helping users prepare for and conduct successful negotiations in business and personal contexts.",
+    badge: "NEGOTIATION",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Negotiation Skills", "Strategy", "Business Deals", "Coaching"],
+    directUrl: "https://chat.openai.com/g/g-yNFhSm7iL-the-negotiator",
+    emoji: "🤝"
+  },
+  {
+    title: "HR & Employee Relations Advisor GPT",
+    description: "Expert guidance on human resources and employee relations, helping businesses manage their workforce effectively and legally.",
+    badge: "HR",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Human Resources", "Employee Relations", "Workforce Management", "Legal Compliance"],
+    directUrl: "https://chat.openai.com/g/g-JvoJ9KZZ3-hr-employee-relations-advisor",
+    emoji: "💼"
+  },
+  {
+    title: "Tax Filing Assistant GPT",
+    description: "Assists with tax preparation and filing, providing up-to-date information on tax laws and deductions to minimize liabilities.",
+    badge: "TAXES",
+    color: "from-cyan-500 to-teal-600",
+    features: ["Tax Preparation", "Tax Filing", "Deductions", "Tax Laws"],
+    directUrl: "https://chat.openai.com/g/g-jT9Gz5z7w-tax-filing-assistant",
+    emoji: "🧾"
+  },
+  {
+    title: "Accounting & Bookkeeping Assistant GPT",
+    description: "Helps with accounting and bookkeeping tasks, ensuring accurate financial records and compliance with accounting standards.",
+    badge: "ACCOUNTING",
+    color: "from-green-500 to-lime-600",
+    features: ["Accounting", "Bookkeeping", "Financial Records", "Compliance"],
+    directUrl: "https://chat.openai.com/g/g-jKtV3wspL-accounting-bookkeeping-assistant",
+    emoji: "📒"
+  },
+  {
+    title: "Risk Management Advisor GPT",
+    description: "Advises on risk management strategies, helping businesses identify and mitigate potential financial and operational risks.",
+    badge: "RISK MANAGEMENT",
+    color: "from-lime-500 to-yellow-600",
+    features: ["Risk Management", "Financial Risk", "Operational Risk", "Mitigation"],
+    directUrl: "https://chat.openai.com/g/g-t0Mhgc93b-risk-management-advisor",
+    emoji: "⚠️"
+  },
+  {
+    title: "Venture Capital Analyst GPT",
+    description: "Analyzes venture capital opportunities, providing insights into potential investments and market trends for startups.",
+    badge: "VENTURE CAPITAL",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Venture Capital", "Investment Analysis", "Market Trends", "Startups"],
+    directUrl: "https://chat.openai.com/g/g-6zgcjfj7z-venture-capital-analyst",
+    emoji: "💸"
+  },
+  {
+    title: "Personal Budgeting Assistant GPT",
+    description: "Assists with personal budgeting, offering tools and advice to manage expenses and achieve financial goals.",
+    badge: "BUDGETING",
+    color: "from-orange-500 to-red-600",
+    features: ["Personal Budgeting", "Expense Management", "Financial Goals", "Money Management"],
+    directUrl: "https://chat.openai.com/g/g-kuy8j9z9p-personal-budgeting-assistant",
+    emoji: "👛"
+  },
+  {
+    title: "Contract Law Advisor GPT",
+    description: "Provides advice on contract law, helping businesses draft, review, and understand legal agreements.",
+    badge: "CONTRACT LAW",
+    color: "from-red-500 to-pink-600",
+    features: ["Contract Law", "Legal Agreements", "Drafting", "Review"],
+    directUrl: "https://chat.openai.com/g/g-vXj9x0v9z-contract-law-advisor",
+    emoji: "📜"
+  },
+  {
+    title: "Economic Forecaster GPT",
+    description: "Forecasts economic trends, providing insights into potential market shifts and investment opportunities.",
+    badge: "ECONOMICS",
+    color: "from-pink-500 to-purple-600",
+    features: ["Economic Trends", "Market Shifts", "Investment Opportunities", "Forecasting"],
+    directUrl: "https://chatgpt.com/g/g-69397aaef7348191922fa05113e3f060-economic-forecaster-gpt?via=aiwebtools",
+    emoji: "⚖️"
+  },
+  {
+    title: "Global Trade Consultant GPT",
+    description: "Consults on global trade, providing insights into international markets and trade regulations.",
+    badge: "GLOBAL TRADE",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Global Trade", "International Markets", "Trade Regulations", "Consulting"],
+    directUrl: "https://chat.openai.com/g/g-4y9w8x7z2-global-trade-consultant",
+    emoji: "🌍"
+  },
+  {
+    title: "Innovation Strategy Advisor GPT",
+    description: "Advises on innovation strategies, helping businesses foster creativity and develop new products and services.",
+    badge: "INNOVATION",
+    color: "from-cyan-500 to-teal-600",
+    features: ["Innovation Strategies", "Creativity", "Product Development", "New Services"],
+    directUrl: "https://chat.openai.com/g/g-7z8w3x9y1-innovation-strategy-advisor",
+    emoji: "💡"
+  },
+  {
+    title: "Efficiency Expert GPT",
+    description: "Analyzes business processes to identify inefficiencies and recommend improvements for increased productivity.",
+    badge: "EFFICIENCY",
+    color: "from-teal-500 to-green-600",
+    features: ["Business Processes", "Inefficiencies", "Productivity", "Improvements"],
+    directUrl: "https://chat.openai.com/g/g-1a2b3c4d5-efficiency-expert",
+    emoji: "⚡"
+  },
+  {
+    title: "Personal Finance AI GPT",
+    description: "AI-powered personal finance assistant helping you manage money, create budgets, track expenses, and make informed financial decisions.",
+    badge: "PERSONAL FINANCE",
+    color: "from-green-500 to-teal-600",
+    features: ["Personal Finance", "Budgeting", "Expense Tracking", "Money Management"],
+    directUrl: "https://chat.openai.com/g/g-f0s3qjB7I",
+    emoji: "💰"
+  },
+  {
+    title: "Business Expense Deduction Optimizer GPT",
+    description: "Maximizes business expense deductions and generates audit-proof reports. Expert tax optimization for business expenses.",
+    badge: "TAX OPTIMIZATION",
+    color: "from-green-500 to-teal-600",
+    features: ["Tax Deductions", "Business Expenses", "Tax Optimization", "Audit Reports"],
+    directUrl: "https://chatgpt.com/g/g-68bb7e4c16b881918baeff03dfe97c3a-business-expense-deduction-optimizer-gpt/?via=aiwebtools",
+    emoji: "🧾"
+  },
+  {
+    title: "Local Business Grant & Permit GPT",
+    description: "Virtual advisor for business grants, permits, and compliance in the U.S. Expert guidance for business licensing and funding.",
+    badge: "GRANTS & PERMITS",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Business Grants", "Permits", "Compliance", "Licensing"],
+    directUrl: "https://chatgpt.com/g/g-68bb7aa89f808191ae0bb377d00d1f13-local-business-grant-permit-gpt/?via=aiwebtools",
+    emoji: "🏢"
+  },
+  {
+    title: "Financial Aid & Tax Credit Navigator GPT",
+    description: "Expert AI for tax credit, deduction, and financial aid discovery and planning. Comprehensive financial assistance navigation.",
+    badge: "FINANCIAL AID",
+    color: "from-teal-500 to-blue-600",
+    features: ["Financial Aid", "Tax Credits", "Financial Assistance", "Tax Planning"],
+    directUrl: "https://chatgpt.com/g/g-68bb77efb08819185d5363cdd1a9cac-financial-aid-tax-credit-navigator-gpt/?via=aiwebtools",
+    emoji: "💳"
+  },
+  {
+    title: "Market Research Analyst GPT",
+    description: "Provides in-depth market research and analysis, helping businesses understand their target audience and competitive landscape.",
+    badge: "MARKET RESEARCH",
+    color: "from-pink-500 to-purple-600",
+    features: ["Market Research", "Target Audience", "Competitive Analysis", "Business Intel"],
+    directUrl: "https://chat.openai.com/g/g-VFFjF1czX-market-research-analyst",
+    emoji: "🎯"
   }
 ];
 
