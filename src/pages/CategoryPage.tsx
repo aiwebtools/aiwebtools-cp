@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import DeferredMount from "@/components/DeferredMount";
 import CategoryHeader from "@/components/category/CategoryHeader";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import ScrollToTopButton from "@/components/category/ScrollToTopButton";
@@ -113,7 +114,7 @@ const CategoryPage = () => {
           description="The requested category could not be found. Browse our collection of AI tool categories."
           noIndex={true}
         />
-        <AnimatedBackground />
+        <DeferredMount delay={50}><AnimatedBackground /></DeferredMount>
         <div className="relative z-10 min-h-screen flex items-center justify-center">
           <div className="text-center p-8">
             <h1 className="text-3xl font-bold text-cyan-100 mb-4">Category Not Found</h1>
@@ -153,7 +154,7 @@ const CategoryPage = () => {
       
       <BreadcrumbSEO items={breadcrumbItems} />
       
-      <AnimatedBackground />
+      <DeferredMount delay={50}><AnimatedBackground /></DeferredMount>
       <div className="relative z-10 cyber-grid">
         <Header />
         

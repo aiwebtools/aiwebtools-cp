@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SimilarTools from "@/components/SimilarTools";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import DeferredMount from "@/components/DeferredMount";
 import ToolDisclaimer from "@/components/ToolDisclaimer";
 import AIWebToolsDisclaimer from "@/components/AIWebToolsDisclaimer";
 import ToolHeader from "@/components/tool-detail/ToolHeader";
@@ -137,7 +138,9 @@ const ToolDetail = () => {
       <ImprovedSEOHead pageType="tool" tool={tool} />
       <BreadcrumbSEO items={breadcrumbItems} />
       
-      <AnimatedBackground />
+      <DeferredMount delay={50}>
+        <AnimatedBackground />
+      </DeferredMount>
       <div className="relative z-10 cyber-grid">
         <Header />
         

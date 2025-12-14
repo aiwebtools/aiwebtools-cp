@@ -4,6 +4,7 @@ import { Shield, AlertTriangle, Scale, FileText, ExternalLink } from "lucide-rea
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import DeferredMount from "@/components/DeferredMount";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { createTimePortalEffect } from "@/utils/timeEffects";
@@ -96,7 +97,7 @@ const DisclaimersPage = () => {
         type="article"
       />
       
-      <AnimatedBackground />
+      <DeferredMount delay={50}><AnimatedBackground /></DeferredMount>
       <div className="relative z-10 cyber-grid">
         <Header />
         

@@ -19,6 +19,7 @@ import InteractiveMatrixBackground from "@/components/InteractiveMatrixBackgroun
 import AnimatedBackground from "@/components/AnimatedBackground";
 import CloneOfferPopup from "@/components/CloneOfferPopup";
 import AIWebToolsSEOSection from "@/components/seo/AIWebToolsSEOSection";
+import DeferredMount from "@/components/DeferredMount";
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-[200px]">
@@ -81,9 +82,11 @@ const Index = () => {
       <ImprovedSEOHead pageType="homepage" />
       <GoogleRankingBooster pageType="homepage" />
       
-      {/* Background effects */}
-      <InteractiveMatrixBackground />
-      <AnimatedBackground />
+      {/* Background effects - deferred to improve initial paint */}
+      <DeferredMount delay={50}>
+        <InteractiveMatrixBackground />
+        <AnimatedBackground />
+      </DeferredMount>
       
       {/* Fixed Header - outside of relative container */}
       <Header />

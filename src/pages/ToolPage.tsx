@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import DeferredMount from "@/components/DeferredMount";
 import { allTools } from "@/data/toolsData";
 import { Tool } from "@/types/tools";
 import { Button } from "@/components/ui/button";
@@ -88,7 +89,7 @@ const ToolPage = () => {
         pageType="tool"
       />
       
-      <AnimatedBackground />
+      <DeferredMount delay={50}><AnimatedBackground /></DeferredMount>
       
       <div className="relative z-10 cyber-grid">
         <Header />

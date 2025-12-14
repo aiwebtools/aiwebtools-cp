@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Home } from "lucide-react";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import DeferredMount from "@/components/DeferredMount";
 
 const NotFound = () => {
   const location = useLocation();
@@ -17,7 +18,7 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen bg-black relative">
-      <AnimatedBackground />
+      <DeferredMount delay={50}><AnimatedBackground /></DeferredMount>
       <div className="relative z-10 min-h-screen flex items-center justify-center cyber-grid">
         <div className="text-center p-8 bg-gray-900/80 backdrop-blur-md rounded-xl border border-purple-500/30 shadow-2xl shadow-purple-500/20 max-w-md mx-4">
           <div className="text-8xl mb-6 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent font-bold cyber-glow">

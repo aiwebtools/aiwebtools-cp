@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import DeferredMount from "@/components/DeferredMount";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import { ToolGridSkeleton } from "@/components/ui/loading-skeleton";
 import SEOHead from "@/components/SEOHead";
@@ -132,7 +133,7 @@ const MainCategoryPage = () => {
   if (!isInitialized) {
     return (
       <div className="min-h-screen bg-black relative overflow-x-hidden">
-        <AnimatedBackground />
+        <DeferredMount delay={50}><AnimatedBackground /></DeferredMount>
         <div className="relative z-10 cyber-grid">
           <Header />
           <main className="container mx-auto px-4 py-8 pt-32 md:pt-36 lg:pt-40">
@@ -161,7 +162,7 @@ const MainCategoryPage = () => {
         keywords={[decodedCategoryName.toLowerCase(), "ai tools", "artificial intelligence"]}
       />
       
-      <AnimatedBackground />
+      <DeferredMount delay={50}><AnimatedBackground /></DeferredMount>
       
       <div className="relative z-10 cyber-grid">
         <Header />
