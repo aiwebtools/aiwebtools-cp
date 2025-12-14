@@ -220,8 +220,8 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   // Voice duration is ~2.2 seconds - sync everything to this
   const voiceDuration = 2200;
   
-  // Effect duration - longer for full code explosion and waterfall persistence
-  const effectDuration = isMobile ? 4000 : 4500;
+  // Effect duration - cleaner effect, faster cleanup
+  const effectDuration = isMobile ? 2800 : 3200;
   
   // URL opens right as voice finishes (peak impact moment)
   const urlOpenDelay = isMobile ? voiceDuration - 100 : voiceDuration + 200;
