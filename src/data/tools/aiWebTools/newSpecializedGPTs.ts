@@ -477,6 +477,7 @@ export const newSpecializedGPTs: Tool[] = [
     emoji: "⚡",
     color: "from-blue-500 to-cyan-600",
     directUrl: "https://chatgpt.com/g/g-690a473d14dc8191baced00e65f906b7-hydroelectric-reclamation-gpt",
+    videoUrl: "https://youtu.be/OMPlhErqv9k",
     category: "Environmental & Sustainability",
     tags: ["hydroelectric", "renewable energy", "engineering", "sustainability", "water power", "green energy", "aiwebtools"],
     rating: 4.7,

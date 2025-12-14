@@ -212,6 +212,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     emoji: "⏰",
     color: "from-green-500 to-blue-600",
     directUrl: "https://worldresourceclock.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/_TbFi0_gITQ",
     tags: ["natural resources", "sustainability", "environment", "resource tracking", "climate", "conservation", "global data", "real-time monitoring", "aiwebtools", "Custom GPT", "Data Analysis", "Scientific Research"],
     category: "Science & Research",
     rating: 4.9,
