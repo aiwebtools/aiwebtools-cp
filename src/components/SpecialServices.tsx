@@ -2971,16 +2971,6 @@ const featuredGPTsUnsorted = [
     emoji: "📈"
   },
   {
-    title: "Startup Idea Generator",
-    description: "Generates innovative startup ideas based on user interests and market trends, providing a foundation for new ventures.",
-    badge: "STARTUP",
-    color: "from-orange-500 to-red-600",
-    features: ["Startup Ideas", "Business Ventures", "Market Trends", "Innovation"],
-    directUrl: "https://chat.openai.com/g/g-Gt1j2GZMm-startup-idea-generator",
-    videoUrl: "https://youtu.be/P4J0ErIVXgY",
-    emoji: "💡"
-  },
-  {
     title: "Financial Modeling Expert",
     description: "Creates complex financial models for forecasting, valuation, and investment analysis, aiding in strategic financial decisions.",
     badge: "FINANCE",
