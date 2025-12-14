@@ -1,4 +1,5 @@
 import { Globe } from "lucide-react";
+import { Link } from "react-router-dom";
 import dualityLight from "@/assets/balance-of-duality-light.png";
 import dualityDark from "@/assets/balance-of-duality-dark.png";
 import dualityMatrix from "@/assets/balance-of-duality-matrix.png";
@@ -88,9 +89,18 @@ const FooterBottom = ({
               Terms of Service
             </button>
           </div>
-          <a href="/disclaimers" className="text-yellow-400 hover:text-yellow-300 transition-colors text-sm font-medium">
+          <Link
+            to="/disclaimers"
+            className="text-yellow-400 hover:text-yellow-300 transition-colors text-sm font-medium"
+          >
             📜 Full Disclaimers & User Agreement
-          </a>
+          </Link>
+          <button 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+            className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm font-medium"
+          >
+            ⬆️ TOP OF PAGE
+          </button>
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
             className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm font-medium"
