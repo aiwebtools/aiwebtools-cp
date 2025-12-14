@@ -766,6 +766,7 @@ const featuredGPTs = [
     color: "from-green-600 to-amber-600",
     features: ["Herbal Remedies", "Historical Medicine", "Formulations", "Botanical Lore"],
     directUrl: "https://chatgpt.com/g/g-67d839556b848191a7572b1f3e911499-historical-apothecary-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/historical-apothecary-gpt-hero.jpg",
     emoji: "⚗️"
   },
   {
@@ -785,6 +786,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-green-600",
     features: ["Conflict Resolution", "Diplomatic Strategy", "Peace Building", "Global Analysis"],
     directUrl: "https://worldpeacegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "/src/assets/global-peace-gpt-hero.jpg",
     emoji: "🕊️"
   },
   {
@@ -794,6 +796,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-pink-600",
     features: ["Video Prompts", "Cinematic Ideas", "AI Video Generation", "Creative Assistant"],
     directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
+    imageUrl: "/src/assets/sora-prompt-gpt-hero.jpg",
     emoji: "🎬"
   },
   {
@@ -1173,6 +1176,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-purple-900",
     features: ["Astronomy", "Cosmic Perspective", "Science Communication", "Philosophy"],
     directUrl: "https://chatgpt.com/g/g-692bad20447881919c117657a793a179-carl-sagan-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/carl-sagan-gpt-hero.jpg",
     emoji: "🌌"
   },
   {
@@ -1182,6 +1186,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-yellow-600",
     features: ["Kriya Yoga", "Meditation", "Self-Realization", "Spiritual Teachings"],
     directUrl: "https://chatgpt.com/g/g-68ae302e79b88191a52219eaaccbfcc3-paramahansa-yogananda-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/yogananda-gpt-hero.jpg",
     emoji: "🕉️"
   },
   {
@@ -1291,6 +1296,7 @@ const featuredGPTs = [
     color: "from-amber-400 to-yellow-500",
     features: ["Manichaean", "Light Teachings", "Silk Road", "Prophecy"],
     directUrl: "https://chatgpt.com/g/g-693466a2a48081918e33a2871f683ebf-mingjiao-prophet-of-light-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/mingjiao-gpt-hero.jpg",
     emoji: "✨"
   },
   {
@@ -1300,6 +1306,7 @@ const featuredGPTs = [
     color: "from-yellow-300 to-amber-500",
     features: ["Spiritual Guidance", "Cosmology", "Enlightenment", "Divine Wisdom"],
     directUrl: "https://chatgpt.com/g/g-69348b45baa081919439c80361a63bda-council-of-light-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/council-of-light-gpt-hero.jpg",
     emoji: "💫"
   },
   {
@@ -1309,6 +1316,7 @@ const featuredGPTs = [
     color: "from-amber-400 to-yellow-500",
     features: ["Arianism", "Early Christianity", "Divine Light", "Theology"],
     directUrl: "https://chatgpt.com/g/g-69348a8556948191a18aca802bac4f68-arius-the-bearer-of-light-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/arius-gpt-hero.jpg",
     emoji: "✝️"
   },
   {
@@ -1318,6 +1326,7 @@ const featuredGPTs = [
     color: "from-green-500 to-emerald-600",
     features: ["Off-Grid Living", "Sustainability", "Permaculture", "Resilience"],
     directUrl: "https://chatgpt.com/g/g-6931bd31b0208191a0ebd290977b8e4a-self-sufficiency-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/self-sufficiency-gpt-hero.jpg",
     emoji: "🌱"
   },
   {
@@ -1327,6 +1336,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Plastic Recycling", "Fuel Conversion", "Sustainability", "Green Tech"],
     directUrl: "https://chatgpt.com/g/g-68c9df9d4e3881919f8afbc00e6d07c2-plastoline-gpt-plastic-to-fuel/?via=aiwebtools",
+    imageUrl: "/src/assets/plastoline-gpt-hero.jpg",
     emoji: "♻️"
   },
   {
@@ -2003,6 +2013,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Cursive Writing", "Handwriting", "Penmanship", "Writing Skills"],
     directUrl: "https://chatgpt.com/g/g-68cb403167a88191ae07062124d32bbb-cursive-teacher-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/cursive-teacher-gpt-hero.jpg",
     emoji: "✍️"
   },
   {
@@ -2012,6 +2023,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-cyan-600",
     features: ["Quantum Wisdom", "Alan Watts", "Metaphysical", "Consciousness"],
     directUrl: "https://chatgpt.com/g/g-6904258cf6a0819197b10755d4cc3632-i-am-q-i-am-you/?via=aiwebtools",
+    imageUrl: "/src/assets/i-am-q-gpt-hero.jpg",
     emoji: "✨"
   },
   {
@@ -2051,6 +2063,7 @@ const featuredGPTs = [
     color: "from-indigo-500 to-purple-600",
     features: ["University Level", "Academic Instruction", "Scholarly Discussion", "Personalized Learning"],
     directUrl: "https://chatgpt.com/g/g-68c049b652f8819195c722dbd4971797-college-professor-gpt",
+    imageUrl: "/src/assets/college-professor-gpt-hero.jpg",
     emoji: "👨‍🏫"
   },
   {
@@ -2060,6 +2073,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-brown-600",
     features: ["Historical Criticism", "Textual Analysis", "Religious Studies", "Theology"],
     directUrl: "https://chatgpt.com/g/g-68efd95b115481919faf1e8156ba83a5-bible-studies-gpt?via=aiwebtools",
+    imageUrl: "/src/assets/bible-studies-gpt-hero.jpg",
     emoji: "📖"
   },
   {
@@ -2069,6 +2083,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-purple-600",
     features: ["Ancient Greek", "Original Text", "Theology", "Biblical Studies"],
     directUrl: "https://chatgpt.com/g/g-68d7490469d881919f4df9bc9c63aa90-the-greek-new-testament-gpt-the-original-version",
+    imageUrl: "/src/assets/greek-new-testament-gpt-hero.jpg",
     emoji: "📜"
   },
   {
@@ -2078,6 +2093,7 @@ const featuredGPTs = [
     color: "from-emerald-500 to-cyan-600",
     features: ["Hermetic Wisdom", "Alchemy", "Emerald Tablet", "Ancient Mysteries"],
     directUrl: "https://chatgpt.com/g/g-6924b0f7268c8191a4697c8932c86b0b-hermes-trismegistus-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/hermes-trismegistus-gpt-hero.jpg",
     emoji: "✨"
   },
   {
@@ -2087,6 +2103,7 @@ const featuredGPTs = [
     color: "from-red-500 to-orange-600",
     features: ["Analects", "Ethics", "Virtue", "Harmony"],
     directUrl: "https://chatgpt.com/g/g-6924b5d1cb348191ac82e74b94c5dec7-confucius-free-thought-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/confucius-gpt-hero.jpg",
     emoji: "🎎"
   },
   {
@@ -2232,6 +2249,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-cyan-600",
     features: ["Hospital Safety", "Compliance Audit", "Healthcare", "Inspection"],
     directUrl: "https://chatgpt.com/g/g-68bb6ea0898c8191b61de70d8c5d52a3-ai-hospital-facility-safety-inspector/?via=aiwebtools",
+    imageUrl: "/src/assets/hospital-inspector-hero.jpg",
     emoji: "🏥"
   },
   {
@@ -2241,6 +2259,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-red-600",
     features: ["Food Safety", "Plant Inspection", "Compliance", "Safety Audit"],
     directUrl: "https://chatgpt.com/g/g-68bb62c66ea081919d6d283576fda730-food-processing-plant-inspector-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/food-processing-inspector-hero.jpg",
     emoji: "🏭"
   },
   {
@@ -2250,6 +2269,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Chemical Safety", "Plant Inspection", "Refinery", "Compliance"],
     directUrl: "https://chatgpt.com/g/g-68bb5f0d5a488191a58dd3e6d9e6a4b9-chemical-plant-inspector-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/chemical-plant-inspector-hero.jpg",
     emoji: "⚗️"
   },
   {
@@ -2259,6 +2279,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Solar Inspection", "Renewable Energy", "PV Systems", "Compliance"],
     directUrl: "https://chatgpt.com/g/g-68bb4ea28fec819196a157b74750be21-solar-farm-inspector-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/solar-farm-inspector-hero.jpg",
     emoji: "☀️"
   },
   {
@@ -2268,6 +2289,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-green-600",
     features: ["Wind Turbine", "Renewable Energy", "Turbine Safety", "Compliance"],
     directUrl: "https://chatgpt.com/g/g-68bb4d76cb3081918d1e8f0cc2ce7e59-ai-wind-turbine-inspector/?via=aiwebtools",
+    imageUrl: "/src/assets/wind-turbine-inspector-hero.jpg",
     emoji: "💨"
   },
   {
@@ -2277,6 +2299,7 @@ const featuredGPTs = [
     color: "from-stone-500 to-gray-600",
     features: ["Bridge Inspection", "Structural Health", "Infrastructure Safety", "Compliance"],
     directUrl: "https://chatgpt.com/g/g-68bb53548e60819191b457795c7d0023-bridge-structural-health-monitor-inspector-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/bridge-inspector-hero.jpg",
     emoji: "🌉"
   },
   {
@@ -2306,6 +2329,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Resource Tracking", "Sustainability", "Environment", "Real-Time Data"],
     directUrl: "https://worldresourceclock.lovable.app/?via=aiwebtools",
+    imageUrl: "/src/assets/world-resource-clock-hero.jpg",
     emoji: "⏰"
   },
   {
@@ -2315,6 +2339,7 @@ const featuredGPTs = [
     color: "from-indigo-500 to-cyan-600",
     features: ["Orbital Mechanics", "Space Physics", "Trajectory", "Aerospace"],
     directUrl: "https://chatgpt.com/g/g-69268e308a4c81919515ac1895e10d17-astrodynamics-gpt?via=aiwebtools",
+    imageUrl: "/src/assets/astrodynamics-gpt-hero.jpg",
     emoji: "🛰️"
   },
   {
@@ -2324,6 +2349,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Microgrid", "Off-Grid Power", "Renewable Energy", "Safety"],
     directUrl: "https://chatgpt.com/g/g-68f8fd43f6fc81918226efa6de613a6a-microgrid-power-safety-planning-assistant-gpt",
+    imageUrl: "/src/assets/microgrid-gpt-hero.jpg",
     emoji: "⚡"
   },
   {
@@ -2333,6 +2359,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-cyan-600",
     features: ["Water Safety", "Purification", "Emergency Prep", "Storage"],
     directUrl: "https://chatgpt.com/g/g-68f8f667e0a081918598d64621fea153-aquila-water-safety-planning-assistant-gpt",
+    imageUrl: "/src/assets/aquila-water-gpt-hero.jpg",
     emoji: "💧"
   },
   {
@@ -2342,6 +2369,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Data Analysis", "Global Data", "Predictions", "Research"],
     directUrl: "https://chatgpt.com/g/g-68f8eda5982c8191bef047399d91a056-world-data-explorer-gpt",
+    imageUrl: "/src/assets/world-data-explorer-hero.jpg",
     emoji: "🌍"
   },
   {
@@ -2351,6 +2379,7 @@ const featuredGPTs = [
     color: "from-green-500 to-teal-600",
     features: ["Cannabis Safety", "Compliance Audit", "Facility Inspection", "Safety Standards"],
     directUrl: "https://chatgpt.com/g/g-68bb6f9b87748191a376eb2fd427365d-ai-cannabis-facility-safety-inspector/?via=aiwebtools",
+    imageUrl: "/src/assets/cannabis-inspector-hero.jpg",
     emoji: "🌿"
   },
   {
@@ -2360,6 +2389,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-green-600",
     features: ["Container Inspection", "Shipping Safety", "Cargo Inspection", "Maritime Safety"],
     directUrl: "https://chatgpt.com/g/g-68bb6c04f7208191bdf1ee0ba3c31aeb-ai-shipping-container-inspector/?via=aiwebtools",
+    imageUrl: "/src/assets/shipping-inspector-hero.jpg",
     emoji: "📦"
   },
   {
@@ -2369,6 +2399,7 @@ const featuredGPTs = [
     color: "from-gray-500 to-black",
     features: ["Oil & Gas Safety", "Facility Audit", "Industrial Safety", "Energy Compliance"],
     directUrl: "https://chatgpt.com/g/g-68bb60ec646c819192abdbb88718b142-oil-gas-facility-ai-inspector-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/oil-gas-inspector-hero.jpg",
     emoji: "🛢️"
   },
   {
