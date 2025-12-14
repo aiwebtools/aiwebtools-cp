@@ -9,7 +9,6 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import ImprovedSEOHead from "@/components/ImprovedSEOHead";
 import GoogleRankingBooster from "@/components/seo/GoogleRankingBooster";
-import ConsentPopup from "@/components/ConsentPopup";
 import { Button } from "@/components/ui/button";
 import { getFastToolCount, updateCachedStats } from "@/utils/fastToolCounter";
 import { getCurrentToolCount } from "@/utils/toolCounter";
@@ -37,6 +36,14 @@ const Index = () => {
   const [videoSrc, setVideoSrc] = useState("https://www.youtube.com/embed/4zflGSSuBcA?controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark");
   
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
+
+  // If disclaimer not accepted, send user to gate page first
+  useEffect(() => {
+    const hasAccepted = localStorage.getItem("aitools-consent-seen");
+    if (!hasAccepted) {
+      navigate("/welcome", { replace: true });
+    }
+  }, [navigate]);
 
   useEffect(() => {
     // Check if video has already played this session
@@ -195,7 +202,6 @@ const Index = () => {
         <Footer />
       </div>
       
-      <ConsentPopup />
       <CloneOfferPopup />
     </div>
   );

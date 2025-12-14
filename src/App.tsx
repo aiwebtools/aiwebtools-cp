@@ -14,9 +14,8 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import PageTransition from "@/components/navigation/PageTransition";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
 
-// Eager load - critical path (home page + consent)
+// Eager load - critical path (home page)
 import Index from "./pages/Index";
-import ConsentPopup from "./components/ConsentPopup";
 
 // Lazy load - secondary pages for faster initial load
 const CategoryPage = lazy(() => import("./pages/CategoryPage"));
@@ -33,6 +32,7 @@ const AIAgentsDirectory = lazy(() => import("./pages/AIAgentsDirectory"));
 const ChatGPTAlternatives = lazy(() => import("./pages/ChatGPTAlternatives"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const GamingEntertainmentPage = lazy(() => import("./pages/GamingEntertainmentPage"));
+const DisclaimerGate = lazy(() => import("./pages/DisclaimerGate"));
 
 // Lazy load non-critical components
 const FloatingCloneButton = lazy(() => import("./components/FloatingCloneButton"));
@@ -67,6 +67,7 @@ const AnimatedRoutes = () => {
     <Suspense fallback={<PageLoader />}>
       <PageTransition key={location.pathname}>
         <Routes location={location}>
+          <Route path="/welcome" element={<DisclaimerGate />} />
           <Route path="/" element={<Index />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="/main-category/:mainCategoryName" element={<MainCategoryPage />} />
@@ -109,7 +110,6 @@ function App() {
               <Suspense fallback={null}>
                 <WelcomeVoiceSystem />
               </Suspense>
-              <ConsentPopup />
               <MatrixCursorEffect />
               <BrowserRouter>
                 <AnimatedRoutes />
