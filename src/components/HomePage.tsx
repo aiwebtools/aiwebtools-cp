@@ -41,11 +41,33 @@ const HomePage = () => {
     measurePerformance 
   } = usePerformanceOptimization();
 
-  // Run tool verification on homepage load for SEO optimization
+  // Run tool verification lazily in the background ONLY once per session for SEO
   useEffect(() => {
-    measurePerformance('tool-verification', () => {
-      runFullToolVerification(searchTools);
-    });
+    let idleId: number | null = null;
+
+    const runVerification = () => {
+      try {
+        measurePerformance("tool-verification", () => {
+          runFullToolVerification(searchTools);
+        });
+      } catch (e) {
+        console.error("Tool verification failed", e);
+      }
+    };
+
+    // Defer to idle time so it NEVER blocks initial render/navigation
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      idleId = (window as any).requestIdleCallback(runVerification, { timeout: 10000 });
+    } else {
+      // Fallback: run once after a delay without blocking initial paint
+      setTimeout(runVerification, 10000);
+    }
+
+    return () => {
+      if (idleId !== null && typeof window !== "undefined" && "cancelIdleCallback" in window) {
+        (window as any).cancelIdleCallback(idleId);
+      }
+    };
   }, [measurePerformance]);
 
   // Optimized load more with performance considerations
