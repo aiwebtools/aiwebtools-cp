@@ -212,9 +212,14 @@ const extractToolName = (destinationUrl: string, providedToolName?: string): str
 export const createTimePortalEffect = (destinationUrl: string, toolName?: string) => {
   console.log('🌀 Creating TIME WARP portal effect for URL:', destinationUrl);
   
+  // OPEN URL IMMEDIATELY - no waiting!
+  if (destinationUrl && destinationUrl.trim()) {
+    openDestinationUrl(destinationUrl);
+  }
+  
   // Detect mobile for faster effect
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const effectDuration = isMobile ? 1000 : 1800; // Faster on mobile
+  const effectDuration = isMobile ? 600 : 1000; // Much faster cleanup
   
   // Extract tool name for logging purposes
   const finalToolName = extractToolName(destinationUrl, toolName);
@@ -233,18 +238,11 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   if (isMobile) {
     // Mobile: Only essential effects for speed
     createParticles(effectsContainer);
-    createMatrixCodeExplosion(effectsContainer); // Matrix explosion on mobile too!
     createFlash(effectsContainer);
   } else {
     // Desktop: Full epic effects including MATRIX CODE EXPLOSION
-    createMatrixCodeExplosion(effectsContainer); // THE MATRIX EFFECT!
-    createWarpStars(effectsContainer);
-    createBlackHole(effectsContainer);
-    createSpiralTunnel(effectsContainer);
-    createVortexRings(effectsContainer);
+    createMatrixCodeExplosion(effectsContainer);
     createParticles(effectsContainer);
-    createEnergyWaves(effectsContainer);
-    createLightning(effectsContainer);
     createFlash(effectsContainer);
   }
   
@@ -255,17 +253,11 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   if (destinationUrl.includes('lovable.dev/projects') || destinationUrl.includes('clone')) {
     setTimeout(() => {
       createConfettiCelebration();
-    }, 300);
+    }, 200);
   }
 
-  console.log(`🌀 Portal effect created, opening URL in: ${effectDuration}ms`);
-
-  // Cleanup and open in new tab after effect completes - FASTER on mobile
+  // Cleanup effects after animation
   setTimeout(() => {
-    console.log('🧹 Cleaning up effects and opening:', destinationUrl);
     cleanupEffects(effectsContainer);
-    if (destinationUrl && destinationUrl.trim()) {
-      openDestinationUrl(destinationUrl);
-    }
   }, effectDuration);
 };

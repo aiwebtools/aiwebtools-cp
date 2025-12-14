@@ -6,7 +6,7 @@ interface MatrixProgressBarProps {
   isToolPage?: boolean;
 }
 
-const MatrixProgressBar = ({ isLoading, duration = 150, isToolPage = false }: MatrixProgressBarProps) => {
+const MatrixProgressBar = ({ isLoading, duration = 50, isToolPage = false }: MatrixProgressBarProps) => {
   const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);

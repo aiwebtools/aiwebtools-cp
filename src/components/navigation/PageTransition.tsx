@@ -50,11 +50,11 @@ const PageTransition = memo(({ children }: PageTransitionProps) => {
       clearTimeout(transitionTimeoutRef.current);
     }
 
-    // Trigger a very short loading state for the MatrixProgressBar only
+    // Trigger a very short loading state - almost instant
     setIsLoading(true);
     transitionTimeoutRef.current = setTimeout(() => {
       setIsLoading(false);
-    }, 100);
+    }, 50);
 
     return () => {
       if (transitionTimeoutRef.current) {
