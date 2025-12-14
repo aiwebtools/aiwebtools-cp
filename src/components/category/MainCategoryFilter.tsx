@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useEffect, useCallback, memo } from 'react';
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ChevronDown, ChevronUp, Filter, X, Shuffle, ArrowDownAZ, ArrowUpZA, Bot } from "lucide-react";
@@ -15,7 +15,7 @@ import {
 } from "@/utils/toolSorting/smartToolSorting";
 
 // Agent sub-type definitions with emoji and keywords for filtering
-const AGENT_SUBTYPES = [
+const AGENT_SUBTYPES: Array<{ id: string; label: string; emoji: string; keywords: string[] }> = [
   { id: 'all', label: 'All Agents', emoji: '🤖', keywords: [] },
   { id: 'custom-gpt', label: 'Custom GPTs & Gems', emoji: '✨', keywords: ['custom gpt', 'gpt', 'gem', 'gemini gem'] },
   { id: 'chatbot', label: 'Chatbot Agents', emoji: '💬', keywords: ['chatbot agent', 'chatbot', 'conversational', 'chat bot', 'support agent'] },
@@ -30,13 +30,22 @@ const AGENT_SUBTYPES = [
   { id: 'support', label: 'Support Agents', emoji: '🎧', keywords: ['support agent', 'customer support', 'helpdesk', 'ticket'] },
 ];
 
+// Pre-compute global category counts once at module level
+let cachedGlobalCounts: Record<string, number> | null = null;
+const getGlobalCategoryCounts = () => {
+  if (!cachedGlobalCounts) {
+    cachedGlobalCounts = getMainCategoriesWithCounts(allTools);
+  }
+  return cachedGlobalCounts;
+};
+
 interface MainCategoryFilterProps {
   tools: Tool[];
   onFilteredToolsChange: (filteredTools: Tool[]) => void;
   currentMainCategory: string;
 }
 
-const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory }: MainCategoryFilterProps) => {
+const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCategory }: MainCategoryFilterProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedMainCategories, setSelectedMainCategories] = useState<string[]>([currentMainCategory]);
   const [sortMode, setSortMode] = useState<SortMode>('smart');
@@ -46,9 +55,9 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
   // Check if we're on the AI AGENTS page
   const isAgentsPage = currentMainCategory === "AI AGENTS";
 
-  // Cache the categories data to prevent recalculation
+  // Cache the categories data using pre-computed global counts
   const mainCategoriesWithCounts = useMemo(() => {
-    const globalCounts = getMainCategoriesWithCounts(allTools);
+    const globalCounts = getGlobalCategoryCounts();
     
     const uniqueCategoriesMap = new Map<string, { name: string; emoji: string; count: number }>();
     
@@ -448,6 +457,8 @@ const MainCategoryFilter = ({ tools, onFilteredToolsChange, currentMainCategory 
       )}
     </div>
   );
-};
+});
+
+MainCategoryFilter.displayName = 'MainCategoryFilter';
 
 export default MainCategoryFilter;
