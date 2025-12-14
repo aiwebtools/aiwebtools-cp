@@ -16,17 +16,19 @@ import {
 
 // Agent sub-type definitions with emoji and keywords for filtering
 const AGENT_SUBTYPES: Array<{ id: string; label: string; emoji: string; keywords: string[] }> = [
-  { id: 'all', label: 'All Agents', emoji: '🤖', keywords: [] },
   { id: 'custom-gpt', label: 'Custom GPTs & Gems', emoji: '✨', keywords: ['custom gpt', 'gpt', 'gem', 'gemini gem'] },
-  { id: 'chatbot', label: 'Chatbot Agents', emoji: '💬', keywords: ['chatbot agent', 'chatbot', 'conversational', 'chat bot', 'support agent'] },
-  { id: 'coding', label: 'Coding Agents', emoji: '💻', keywords: ['coding agent', 'code', 'developer', 'programming', 'software'] },
+  { id: 'chatbot', label: 'Chatbot Agents', emoji: '💬', keywords: ['chatbot agent', 'chatbot', 'conversational', 'chat bot'] },
+  { id: 'coding', label: 'Coding Agents', emoji: '💻', keywords: ['coding agent', 'code', 'developer', 'programming', 'software', 'replit', 'cursor'] },
+  { id: 'vibe-coding', label: 'Vibe Coding Agents', emoji: '🎨', keywords: ['vibe coding', 'vibe', 'lovable', 'bolt', 'v0', 'cursor', 'no-code', 'low-code'] },
+  { id: 'app-building', label: 'App Building Agents', emoji: '📱', keywords: ['app building', 'app builder', 'application', 'mobile app', 'web app', 'builder'] },
+  { id: 'website', label: 'Website Agents', emoji: '🌐', keywords: ['website agent', 'website builder', 'web design', 'landing page', 'site builder', 'wix', 'webflow'] },
   { id: 'automation', label: 'Automation Agents', emoji: '⚙️', keywords: ['automation agent', 'workflow', 'automate', 'zapier', 'make.com', 'n8n'] },
-  { id: 'web-tasks', label: 'Web Task Agents', emoji: '🌐', keywords: ['web tasks agent', 'browser', 'computer use', 'web automation'] },
-  { id: 'voice', label: 'Voice Agents', emoji: '🎙️', keywords: ['voice agent', 'speech', 'voice ai'] },
-  { id: 'multi-agent', label: 'Multi-Agent', emoji: '🔗', keywords: ['multi-agent', 'framework', 'orchestration', 'swarm'] },
-  { id: 'research', label: 'Research Agents', emoji: '🔬', keywords: ['research agent', 'analysis', 'investigation'] },
-  { id: 'task', label: 'Task Agents', emoji: '✅', keywords: ['task agent', 'assistant', 'execution'] },
-  { id: 'sales', label: 'Sales Agents', emoji: '💼', keywords: ['sales agent', 'crm', 'revenue', 'lead'] },
+  { id: 'web-tasks', label: 'Web Task Agents', emoji: '🔍', keywords: ['web tasks agent', 'browser', 'computer use', 'web automation', 'scraping'] },
+  { id: 'voice', label: 'Voice Agents', emoji: '🎙️', keywords: ['voice agent', 'speech', 'voice ai', 'elevenlabs'] },
+  { id: 'multi-agent', label: 'Multi-Agent', emoji: '🔗', keywords: ['multi-agent', 'framework', 'orchestration', 'swarm', 'crew'] },
+  { id: 'research', label: 'Research Agents', emoji: '🔬', keywords: ['research agent', 'analysis', 'investigation', 'perplexity'] },
+  { id: 'task', label: 'Task Agents', emoji: '✅', keywords: ['task agent', 'assistant', 'execution', 'personal assistant'] },
+  { id: 'sales', label: 'Sales Agents', emoji: '💼', keywords: ['sales agent', 'crm', 'revenue', 'lead', 'outreach'] },
   { id: 'support', label: 'Support Agents', emoji: '🎧', keywords: ['support agent', 'customer support', 'helpdesk', 'ticket'] },
 ];
 
@@ -50,7 +52,7 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
   const [selectedMainCategories, setSelectedMainCategories] = useState<string[]>([currentMainCategory]);
   const [sortMode, setSortMode] = useState<SortMode>('smart');
   const [shuffleKey, setShuffleKey] = useState(0);
-  const [selectedAgentType, setSelectedAgentType] = useState<string>('all');
+  const [selectedAgentTypes, setSelectedAgentTypes] = useState<string[]>([]);
   
   // Check if we're on the AI AGENTS page
   const isAgentsPage = currentMainCategory === "AI AGENTS";
@@ -87,7 +89,7 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
     setSelectedMainCategories([currentMainCategory]);
     setSortMode('smart');
     setShuffleKey(0);
-    setSelectedAgentType('all'); // Reset agent type filter
+    setSelectedAgentTypes([]); // Reset agent type filter
   }, [currentMainCategory]);
 
   // Fisher-Yates shuffle algorithm - creates NEW array with random order
@@ -126,23 +128,25 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
     
     let toolsArray = Array.from(selectedCategoryTools.values());
     
-    // Apply agent sub-type filter if on AI AGENTS page and a specific type is selected
-    if (isAgentsPage && selectedAgentType !== 'all') {
-      const agentSubtype = AGENT_SUBTYPES.find(t => t.id === selectedAgentType);
-      if (agentSubtype && agentSubtype.keywords.length > 0) {
-        toolsArray = toolsArray.filter(tool => {
-          const title = tool.title.toLowerCase();
-          const description = (tool.description || '').toLowerCase();
-          const tags = (tool.tags || []).map(t => t.toLowerCase());
-          const directUrl = (tool.directUrl || '').toLowerCase();
+    // Apply agent sub-type filter if on AI AGENTS page and specific types are selected
+    if (isAgentsPage && selectedAgentTypes.length > 0) {
+      toolsArray = toolsArray.filter(tool => {
+        const title = tool.title.toLowerCase();
+        const description = (tool.description || '').toLowerCase();
+        const tags = (tool.tags || []).map(t => t.toLowerCase());
+        const directUrl = (tool.directUrl || '').toLowerCase();
+        
+        // Check if tool matches ANY of the selected agent types
+        return selectedAgentTypes.some(agentTypeId => {
+          const agentSubtype = AGENT_SUBTYPES.find(t => t.id === agentTypeId);
+          if (!agentSubtype) return false;
           
           // Special handling for Custom GPTs & Gems - check URL patterns
-          if (selectedAgentType === 'custom-gpt') {
-            const isCustomGPT = directUrl.includes('chatgpt.com/g/') || 
-                               directUrl.includes('.lovable.app') ||
-                               directUrl.includes('gemini.google.com/gem/') ||
-                               tags.some(tag => tag.includes('custom gpt') || tag.includes('gemini gem') || tag.includes('custom gem'));
-            return isCustomGPT;
+          if (agentTypeId === 'custom-gpt') {
+            return directUrl.includes('chatgpt.com/g/') || 
+                   directUrl.includes('.lovable.app') ||
+                   directUrl.includes('gemini.google.com/gem/') ||
+                   tags.some(tag => tag.includes('custom gpt') || tag.includes('gemini gem') || tag.includes('custom gem'));
           }
           
           // Check if tool matches any of the agent subtype keywords
@@ -153,12 +157,12 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
                    tags.some(tag => tag.includes(kw));
           });
         });
-        console.log(`🤖 Agent filter "${agentSubtype.label}": ${toolsArray.length} tools`);
-      }
+      });
+      console.log(`🤖 Agent filter [${selectedAgentTypes.join(', ')}]: ${toolsArray.length} tools`);
     }
     
     return toolsArray;
-  }, [selectedMainCategories, currentMainCategory, isAgentsPage, selectedAgentType]);
+  }, [selectedMainCategories, currentMainCategory, isAgentsPage, selectedAgentTypes]);
 
   // Track sort state for cache
   const lastSortRef = React.useRef<{ mode: SortMode; key: number; tools: Tool[] }>({ mode: 'smart', key: 0, tools: [] });
@@ -199,32 +203,32 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
     return sortedTools;
   }, [sortMode, shuffleKey, baseFilteredTools, shuffleArray, currentMainCategory]);
 
-  // Track last state to detect changes - include agent type for proper filtering
-  const lastPassedRef = React.useRef<{ mode: SortMode; key: number; agentType: string; categories: string[] }>({ 
+  // Track last state to detect changes - include agent types for proper filtering
+  const lastPassedRef = React.useRef<{ mode: SortMode; key: number; agentTypes: string[]; categories: string[] }>({ 
     mode: 'smart', 
     key: -1, 
-    agentType: 'all',
+    agentTypes: [],
     categories: [] 
   });
   
-  // CRITICAL: This effect MUST run when ANY filter changes - including agent type and categories
+  // CRITICAL: This effect MUST run when ANY filter changes - including agent types and categories
   useEffect(() => {
     const stateChanged = 
       lastPassedRef.current.mode !== sortMode || 
       lastPassedRef.current.key !== shuffleKey ||
-      lastPassedRef.current.agentType !== selectedAgentType ||
+      JSON.stringify(lastPassedRef.current.agentTypes) !== JSON.stringify(selectedAgentTypes) ||
       JSON.stringify(lastPassedRef.current.categories) !== JSON.stringify(selectedMainCategories) ||
       lastPassedRef.current.key === -1;
     
     if (stateChanged || filteredTools.length > 0) {
-      console.log(`🎯 MainCategoryFilter: Passing ${filteredTools.length} tools (mode: ${sortMode}, shuffle #${shuffleKey}, agentType: ${selectedAgentType}, categories: ${selectedMainCategories.length})`);
-      lastPassedRef.current = { mode: sortMode, key: shuffleKey, agentType: selectedAgentType, categories: [...selectedMainCategories] };
+      console.log(`🎯 MainCategoryFilter: Passing ${filteredTools.length} tools (mode: ${sortMode}, shuffle #${shuffleKey}, agentTypes: ${selectedAgentTypes.length}, categories: ${selectedMainCategories.length})`);
+      lastPassedRef.current = { mode: sortMode, key: shuffleKey, agentTypes: [...selectedAgentTypes], categories: [...selectedMainCategories] };
       // Use requestAnimationFrame for smoother mobile updates
       requestAnimationFrame(() => {
         onFilteredToolsChange(filteredTools);
       });
     }
-  }, [filteredTools, sortMode, shuffleKey, selectedAgentType, selectedMainCategories, onFilteredToolsChange]);
+  }, [filteredTools, sortMode, shuffleKey, selectedAgentTypes, selectedMainCategories, onFilteredToolsChange]);
 
   const handleMainCategoryToggle = useCallback((mainCategoryName: string) => {
     console.log(`🔄 Toggling category: ${mainCategoryName}`);
@@ -252,7 +256,7 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
     setSelectedMainCategories([currentMainCategory]);
     setSortMode('smart');
     setShuffleKey(0);
-    setSelectedAgentType('all'); // Reset agent type filter
+    setSelectedAgentTypes([]); // Reset agent type filter
   }, [currentMainCategory]);
 
   const handleShuffle = useCallback(() => {
@@ -281,27 +285,46 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
       {isAgentsPage && (
         <div className="mb-4">
           <div className="text-center mb-2">
-            <span className="text-xs text-cyan-400/70 font-medium">🤖 Filter by Agent Type</span>
+            <span className="text-xs text-cyan-400/70 font-medium">🤖 Filter by Agent Type {selectedAgentTypes.length > 0 && `(${selectedAgentTypes.length} selected)`}</span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-1.5">
-            {AGENT_SUBTYPES.map((subtype) => (
+            {/* Clear All button when filters active */}
+            {selectedAgentTypes.length > 0 && (
               <button
-                key={subtype.id}
-                onClick={() => {
-                  console.log(`🤖 Agent type selected: ${subtype.id}`);
-                  setSelectedAgentType(subtype.id);
-                }}
-                className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
-                  selectedAgentType === subtype.id
-                    ? 'bg-gradient-to-r from-cyan-500/30 to-purple-500/30 text-cyan-200 border border-cyan-400/60 shadow-lg shadow-cyan-500/20'
-                    : 'bg-gray-800/60 text-gray-400 border border-gray-600/30 hover:border-cyan-500/40 hover:text-cyan-300'
-                }`}
+                onClick={() => setSelectedAgentTypes([])}
+                className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium bg-red-500/20 text-red-300 border border-red-400/50 hover:bg-red-500/30 transition-colors"
                 style={{ touchAction: 'manipulation' }}
               >
-                <span>{subtype.emoji}</span>
-                <span>{subtype.label}</span>
+                ✕ Clear
               </button>
-            ))}
+            )}
+            {AGENT_SUBTYPES.map((subtype) => {
+              const isSelected = selectedAgentTypes.includes(subtype.id);
+              return (
+                <button
+                  key={subtype.id}
+                  onClick={() => {
+                    console.log(`🤖 Agent type toggled: ${subtype.id}`);
+                    setSelectedAgentTypes(prev => {
+                      if (prev.includes(subtype.id)) {
+                        return prev.filter(t => t !== subtype.id);
+                      } else {
+                        return [...prev, subtype.id];
+                      }
+                    });
+                  }}
+                  className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                    isSelected
+                      ? 'bg-gradient-to-r from-cyan-500/30 to-purple-500/30 text-cyan-200 border border-cyan-400/60 shadow-lg shadow-cyan-500/20'
+                      : 'bg-gray-800/60 text-gray-400 border border-gray-600/30 hover:border-cyan-500/40 hover:text-cyan-300'
+                  }`}
+                  style={{ touchAction: 'manipulation' }}
+                >
+                  <span>{subtype.emoji}</span>
+                  <span>{subtype.label}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
       )}
