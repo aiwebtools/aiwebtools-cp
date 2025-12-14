@@ -3001,16 +3001,6 @@ const featuredGPTs = [
     emoji: "🛡️"
   },
   {
-    title: "Branford River Spa GPT",
-    description: "Prototype design for local spa in Branford Connecticut providing services information and wellness guidance.",
-    badge: "SPA",
-    color: "from-cyan-500 to-blue-600",
-    features: ["Spa Services", "Wellness", "Local Business", "Customer Service"],
-    directUrl: "https://chatgpt.com/g/g-3WgfLujuW-branford-river-resort-and-spa-gpt/?via=aiwebtools",
-    videoUrl: "https://vimeo.com/1131951831?share=copy&fl=sv&fe=ci",
-    emoji: "🧖"
-  },
-  {
     title: "Parenting Guide GPT",
     description: "Wise, warm parenting advice rooted in psychology, emotional intelligence, and lived compassion for all parenting stages.",
     badge: "PARENTING",
@@ -3018,6 +3008,154 @@ const featuredGPTs = [
     features: ["Parenting", "Child Development", "Family Guidance", "Psychology"],
     directUrl: "https://chatgpt.com/g/g-68d4c45f3bc48191ba4a330a3b48bc87-parenting-guide-gpt/?via=aiwebtools",
     emoji: "👨‍👩‍👧‍👦"
+  },
+  {
+    title: "POVERTY CRUSHER - Economic Empowerment GPT",
+    description: "Financial empowerment assistant helping break the cycle of poverty through practical strategies and economic education.",
+    badge: "FINANCE",
+    color: "from-green-500 to-blue-600",
+    features: ["Financial Literacy", "Wealth Building", "Budgeting", "Debt Elimination"],
+    directUrl: "https://chatgpt.com/g/g-68ae2ab2c55c8191afdc979301179fa9-poverty-crusher-economic-empowerment-ai/?via=aiwebtools",
+    emoji: "💪"
+  },
+  {
+    title: "Bull or Bear AI",
+    description: "Analyzes news sentiment to predict stock trends, providing insights into whether market sentiment is bullish or bearish.",
+    badge: "TRADING",
+    color: "from-green-500 to-yellow-600",
+    features: ["Stock Trends", "Market Sentiment", "News Analysis", "Investment"],
+    directUrl: "https://chat.openai.com/g/g-jNwXw8RaR-bull-or-bear-ai",
+    emoji: "📈"
+  },
+  {
+    title: "Startup Idea Generator",
+    description: "Generates innovative startup ideas based on user interests and market trends, providing a foundation for new ventures.",
+    badge: "STARTUP",
+    color: "from-orange-500 to-red-600",
+    features: ["Startup Ideas", "Business Ventures", "Market Trends", "Innovation"],
+    directUrl: "https://chat.openai.com/g/g-Gt1j2GZMm-startup-idea-generator",
+    videoUrl: "https://youtu.be/P4J0ErIVXgY",
+    emoji: "💡"
+  },
+  {
+    title: "Financial Modeling Expert",
+    description: "Creates complex financial models for forecasting, valuation, and investment analysis, aiding in strategic financial decisions.",
+    badge: "FINANCE",
+    color: "from-purple-500 to-blue-600",
+    features: ["Financial Modeling", "Forecasting", "Valuation", "Investment"],
+    directUrl: "https://chat.openai.com/g/g-vjbkX4BwW-financial-modeling-expert",
+    emoji: "💹"
+  },
+  {
+    title: "FIAT TO CRYPTO AI VALUE CALCULATOR",
+    description: "Advanced AI calculator for converting fiat currencies to cryptocurrency values with real-time exchange rates and tax implications.",
+    badge: "CRYPTO",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Cryptocurrency", "Exchange Calculator", "Tax Analysis", "Investment"],
+    directUrl: "https://chatgpt.com/g/g-68b5b20784788191acd980be0388935d-fiat-to-crypto-ai-value-calculator-for-businesses/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=k0NlolajEYs",
+    emoji: "💱"
+  },
+  {
+    title: "Competitor Comparison GPT",
+    description: "Aggressive, real-time competitor analysis assistant for business intelligence and strategic market positioning.",
+    badge: "BUSINESS INTEL",
+    color: "from-red-500 to-orange-600",
+    features: ["Competitor Analysis", "Market Research", "Business Intelligence", "Strategy"],
+    directUrl: "https://chatgpt.com/g/g-68bb9109085c8191a5ffbe9ed6d339f5-competitor-comparison-gpt/?via=aiwebtools",
+    emoji: "🎯"
+  },
+  {
+    title: "Side Hustle & Microbusiness Planner GPT",
+    description: "Aggressive strategist for side hustles and microbusiness launches with expert guidance for scaling small ventures.",
+    badge: "ENTREPRENEUR",
+    color: "from-purple-500 to-pink-600",
+    features: ["Side Hustle", "Microbusiness", "Startup Strategy", "Planning"],
+    directUrl: "https://chatgpt.com/g/g-68bb8ba059ec81919253d369d0899f9c-side-hustle-microbusiness-planner-gpt/?via=aiwebtools",
+    emoji: "💼"
+  },
+  {
+    title: "Nonprofit Fundraising Builder GPT",
+    description: "Specialized AI strategist for nonprofit fundraising and grants. Expert assistance for nonprofit organizations seeking funding.",
+    badge: "NONPROFIT",
+    color: "from-blue-500 to-purple-600",
+    features: ["Nonprofit", "Fundraising", "Grants", "Charity"],
+    directUrl: "https://chatgpt.com/g/g-68bb7c9e5a78819184e03d06d63483f8-nonprofit-fundraising-builder-gpt/?via=aiwebtools",
+    emoji: "🤲"
+  },
+  {
+    title: "Genome GPT",
+    description: "Cutting-edge AI for genetic analysis, genomic data interpretation, and comprehensive insights into genetic sequences and patterns.",
+    badge: "GENETICS",
+    color: "from-green-500 to-blue-600",
+    features: ["Genetics", "DNA Analysis", "Genomics", "Scientific Research"],
+    directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-conceptual-image-of-a-dna-double-helix-with-.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    emoji: "🧬"
+  },
+  {
+    title: "Plastoline GPT - Inspired by Julian Brown",
+    description: "Innovative AI teaching how to convert plastic waste into usable fuel through pyrolysis and sustainable energy practices.",
+    badge: "SUSTAINABILITY",
+    color: "from-green-500 to-teal-600",
+    features: ["Plastic Recycling", "Waste to Fuel", "Green Energy", "Sustainability"],
+    directUrl: "https://plastolinegpt.lovable.app/?via=aiwebtools",
+    emoji: "♻️"
+  },
+  {
+    title: "Geology & Rock Identification GPT",
+    description: "Expert AI for geological exploration and rock identification with detailed analysis of minerals and formations.",
+    badge: "GEOLOGY",
+    color: "from-amber-500 to-orange-600",
+    features: ["Geology", "Rock Identification", "Minerals", "Earth Science"],
+    directUrl: "https://chatgpt.com/g/g-689005f62df881918961b6c93ad5b19e-geology-rock-identification-gpt",
+    videoUrl: "https://youtu.be/nmRT6AOVQNg?si=bacR1az2vDwLr5H",
+    emoji: "🪨"
+  },
+  {
+    title: "AQUILA — Water Safety Planning Assistant GPT",
+    description: "Comprehensive water safety, purification methods, storage solutions, and emergency water planning guidance.",
+    badge: "WATER SAFETY",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Water Safety", "Purification", "Emergency Prep", "Water Storage"],
+    directUrl: "https://chatgpt.com/g/g-68f8f667e0a081918598d64621fea153-aquila-water-safety-planning-assistant-gpt",
+    emoji: "💧"
+  },
+  {
+    title: "World Resource Clock",
+    description: "Track global resource consumption, depletion rates, and sustainability metrics in real-time with predictive analytics.",
+    badge: "RESOURCES",
+    color: "from-green-500 to-blue-600",
+    features: ["Natural Resources", "Sustainability", "Real-time Monitoring", "Conservation"],
+    directUrl: "https://worldresourceclock.lovable.app/?via=aiwebtools",
+    emoji: "⏰"
+  },
+  {
+    title: "Astrodynamics GPT",
+    description: "Computes orbital mechanics with precision—lawful, exact, never guessing. Satellite orbits and trajectory calculations.",
+    badge: "AEROSPACE",
+    color: "from-indigo-500 to-cyan-600",
+    features: ["Orbital Mechanics", "Space Physics", "Trajectory", "Satellite Orbits"],
+    directUrl: "https://chatgpt.com/g/g-69268e308a4c81919515ac1895e10d17-astrodynamics-gpt?via=aiwebtools",
+    emoji: "🛰️"
+  },
+  {
+    title: "Microgrid & Power Safety Planning GPT",
+    description: "Advisory microgrid planner for off-grid power, renewable energy integration, and electrical safety protocols.",
+    badge: "ENERGY",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Microgrid", "Off-Grid Energy", "Renewable Energy", "Power Safety"],
+    directUrl: "https://chatgpt.com/g/g-68f8fd43f6fc81918226efa6de613a6a-microgrid-power-safety-planning-assistant-gpt",
+    emoji: "⚡"
+  },
+  {
+    title: "Garden & Plant Doctor GPT",
+    description: "Expert plant health analyst and garden care planner with visual analysis and professional horticulture tips.",
+    badge: "GARDENING",
+    color: "from-green-500 to-teal-600",
+    features: ["Plant Health", "Garden Care", "Horticulture", "Plant Diagnosis"],
+    directUrl: "https://chatgpt.com/g/g-68bb73007bd48191a860d2304e3665e6-garden-vision-analysis-plant-doctor-gpt/?via=aiwebtools",
+    emoji: "🌱"
   }
 ];
 
