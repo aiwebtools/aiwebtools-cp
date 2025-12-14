@@ -2320,16 +2320,6 @@ const featuredGPTs = [
     emoji: "🌉"
   },
   {
-    title: "JARVIS – The Steward of Humanity GPT",
-    description: "A post-collapse steward AI guiding humanity's rebirth through wisdom, ethics, and design.",
-    badge: "CIVILIZATION",
-    color: "from-blue-500 to-cyan-600",
-    features: ["Rebuilding", "Ethics", "Wisdom", "Stewardship"],
-    directUrl: "https://chatgpt.com/g/g-68e939ff278881919b292a679faaac43-jarvis-the-steward-of-humanity-gpt",
-    videoUrl: "https://youtu.be/6jFoFR9Hags",
-    emoji: "🛡️"
-  },
-  {
     title: "Geology & Rock Identification GPT",
     description: "Expert AI companion for geological exploration and rock identification. Identify minerals, rocks, and geological formations.",
     badge: "EARTH SCIENCE",
@@ -2920,16 +2910,6 @@ const featuredGPTs = [
     emoji: "🔧"
   },
   {
-    title: "POVERTY CRUSHER - Economic Empowerment GPT",
-    description: "Financial empowerment assistant helping break the cycle of poverty through practical strategies and economic education.",
-    badge: "FINANCE",
-    color: "from-green-500 to-blue-600",
-    features: ["Financial Literacy", "Wealth Building", "Budgeting", "Debt Elimination"],
-    directUrl: "https://chatgpt.com/g/g-68ae2ab2c55c8191afdc979301179fa9-poverty-crusher-economic-empowerment-ai/?via=aiwebtools",
-    imageUrl: "/src/assets/poverty-crusher-gpt-hero.jpg",
-    emoji: "💪"
-  },
-  {
     title: "Bull or Bear AI",
     description: "Analyzes news sentiment to predict stock trends, providing insights into whether market sentiment is bullish or bearish.",
     badge: "TRADING",
@@ -2958,16 +2938,6 @@ const featuredGPTs = [
     directUrl: "https://chat.openai.com/g/g-vjbkX4BwW-financial-modeling-expert",
     imageUrl: "/src/assets/financial-modeling-gpt-hero.jpg",
     emoji: "💹"
-  },
-  {
-    title: "FIAT TO CRYPTO AI VALUE CALCULATOR",
-    description: "Advanced AI calculator for converting fiat currencies to cryptocurrency values with real-time exchange rates and tax implications.",
-    badge: "CRYPTO",
-    color: "from-orange-500 to-yellow-600",
-    features: ["Cryptocurrency", "Exchange Calculator", "Tax Analysis", "Investment"],
-    directUrl: "https://chatgpt.com/g/g-68b5b20784788191acd980be0388935d-fiat-to-crypto-ai-value-calculator-for-businesses/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=k0NlolajEYs",
-    emoji: "💱"
   },
   {
     title: "Competitor Comparison GPT",
@@ -3020,26 +2990,6 @@ const featuredGPTs = [
     emoji: "📺"
   },
   {
-    title: "Bob Ross GPT",
-    description: "A serene AI art companion echoing Bob Ross's teaching, tone, and calm creative spirit. Learn painting techniques with gentle guidance.",
-    badge: "ART TEACHING",
-    color: "from-green-500 to-blue-600",
-    features: ["Painting", "Art Teaching", "Creativity", "Calm Guidance"],
-    directUrl: "https://chatgpt.com/g/g-69157380e63c819188de5c09bdf23ef7-bob-ross-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/bob-ross-gpt-hero.jpg",
-    emoji: "🎨"
-  },
-  {
-    title: "VIRTUAL TRY ON STYLIST GPT",
-    description: "AI-powered virtual styling assistant that helps you visualize and experiment with different fashion looks and outfits.",
-    badge: "FASHION",
-    color: "from-pink-500 to-purple-600",
-    features: ["Virtual Try On", "Fashion Styling", "Outfit Recommendations", "Style Assistant"],
-    directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://ideogram.ai/assets/progressive-image/balanced/response/6wSDfm1RQUeOIPIBIrERTQ",
-    emoji: "👗"
-  },
-  {
     title: "Palestinian History Preserver",
     description: "Dedicated to preserving and sharing Palestinian history, culture, and voices as a digital archive and educational resource.",
     badge: "CULTURAL HERITAGE",
@@ -3050,24 +3000,14 @@ const featuredGPTs = [
     emoji: "🇵🇸"
   },
   {
-    title: "Legal Draftsmith GPT",
-    description: "Specializes in precise drafting of legal documents, contracts, and legal writing with professional accuracy.",
-    badge: "LEGAL DRAFTING",
-    color: "from-blue-500 to-gray-600",
-    features: ["Document Drafting", "Contracts", "Legal Writing", "Precision"],
-    directUrl: "https://publicdefendergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-humanoid-robot-dressed-like-a.png/:/cr=t:12.29%25,l:9.16%25,w:89.29%25,h:79.58%25/rs=w:600,h:300,cg:true,m/qt=q:98",
-    emoji: "⚖️"
-  },
-  {
-    title: "World Reality Decoder GPT",
-    description: "Decodes the hidden layers of reality by analyzing patterns, symbols, and connections that shape our world.",
-    badge: "REALITY ANALYSIS",
-    color: "from-indigo-500 to-purple-600",
-    features: ["Pattern Analysis", "System Decoding", "Hidden Connections", "Critical Thinking"],
-    directUrl: "https://chatgpt.com/g/g-68c1e9e3b488819193744edfeecf7997-world-reality-decoder-gpt",
-    videoUrl: "https://youtu.be/lGck2bUVFDU?si=ywmO-xNwrfmnJmkW",
-    emoji: "🔍"
+    title: "The Resume & Job Finder AI Suite",
+    description: "Complete job search toolkit combining Job Finder GPT, Resume Enhancer GPT, and Resume Specialist GPT for career success.",
+    badge: "CAREER",
+    color: "from-orange-500 to-red-600",
+    features: ["Resume Optimization", "Job Search", "Career Guidance", "Interview Prep"],
+    directUrl: "https://resumeandjobsgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-happy-man-with-a-job-offer-_n6N-k.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    emoji: "💼"
   },
   {
     title: "Architect Matrix Tool",
@@ -3078,76 +3018,6 @@ const featuredGPTs = [
     directUrl: "https://neomatrixgpt.lovable.app/architect",
     videoUrl: "https://youtu.be/qMLF5L_h2xo",
     emoji: "🏛️"
-  },
-  {
-    title: "Ancient Gematria Scan GPT",
-    description: "Decodes hidden numerical meanings within words, names, and phrases using ancient gematria systems.",
-    badge: "SACRED NUMEROLOGY",
-    color: "from-amber-500 to-yellow-600",
-    features: ["Gematria Decoding", "Sacred Geometry", "Number Analysis", "Hebrew & Greek"],
-    directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-ancient-gematria-scan-gpt",
-    videoUrl: "https://www.youtube.com/watch?v=zBlubLw-OdY",
-    emoji: "🔢"
-  },
-  {
-    title: "Fire Hazard Inspector GPT",
-    description: "Virtual fire hazard inspector using vision, Python, and web to flag and explain code violations.",
-    badge: "FIRE SAFETY",
-    color: "from-red-500 to-orange-600",
-    features: ["Fire Safety", "Code Violations", "Hazard Detection", "Compliance"],
-    directUrl: "https://chatgpt.com/g/g-68bb3827c47c8191ae66c9e92db564fd-ai-fire-hazard-inspector/?via=aiwebtools",
-    imageUrl: "/src/assets/fire-hazard-inspector-hero.jpg",
-    emoji: "🔥"
-  },
-  {
-    title: "AI Airport & Runway Systems Inspector",
-    description: "Inspects airport runways, taxiways, and systems with certified precision and compliance focus.",
-    badge: "AVIATION SAFETY",
-    color: "from-sky-500 to-blue-600",
-    features: ["Runway Safety", "Aviation Compliance", "Airport Systems", "Precision Inspection"],
-    directUrl: "https://chatgpt.com/g/g-68bb55e079a48191ba27ca02b8c13de4-ai-airport-runway-systems-inspector/?via=aiwebtools",
-    imageUrl: "/src/assets/airport-runway-inspector-hero.jpg",
-    emoji: "✈️"
-  },
-  {
-    title: "AI Hospital Facility Safety Inspector",
-    description: "Healthcare facility inspector for hazard detection and compliance auditing with professional standards.",
-    badge: "HEALTHCARE SAFETY",
-    color: "from-blue-500 to-cyan-600",
-    features: ["Hospital Safety", "Healthcare Compliance", "Hazard Detection", "Medical Facility"],
-    directUrl: "https://chatgpt.com/g/g-68bb6ea0898c8191b61de70d8c5d52a3-ai-hospital-facility-safety-inspector/?via=aiwebtools",
-    imageUrl: "/src/assets/hospital-safety-inspector-hero.jpg",
-    emoji: "🏥"
-  },
-  {
-    title: "Chemical Plant Inspector GPT",
-    description: "Virtual inspector for chemical plants & refineries with compliance auditing and safety analysis.",
-    badge: "CHEMICAL SAFETY",
-    color: "from-yellow-500 to-orange-600",
-    features: ["Chemical Safety", "Plant Compliance", "Refinery Inspection", "Industrial Safety"],
-    directUrl: "https://chatgpt.com/g/g-68bb5f0d5a488191a58dd3e6d9e6a4b9-chemical-plant-inspector-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/chemical-plant-inspector-hero.jpg",
-    emoji: "⚗️"
-  },
-  {
-    title: "Solar Farm Inspector GPT",
-    description: "Virtual inspection & compliance auditing system for utility-scale & distributed solar PV plants.",
-    badge: "RENEWABLE ENERGY",
-    color: "from-yellow-500 to-orange-600",
-    features: ["Solar Inspection", "PV Plants", "Green Energy", "Compliance Audit"],
-    directUrl: "https://chatgpt.com/g/g-68bb4ea28fec819196a157b74750be21-solar-farm-inspector-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/solar-farm-inspector-hero.jpg",
-    emoji: "☀️"
-  },
-  {
-    title: "Electrical Grid & Substation Inspector GPT",
-    description: "Virtual inspector for substations, power lines, and grid compliance with precision analysis.",
-    badge: "POWER GRID",
-    color: "from-yellow-500 to-orange-600",
-    features: ["Electrical Safety", "Power Grid", "Substation Compliance", "Grid Analysis"],
-    directUrl: "https://chatgpt.com/g/g-68bb51b15dc48191aca3892c33724bc3-electrical-grid-substation-inspector-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/electrical-grid-inspector-hero.jpg",
-    emoji: "⚡"
   }
 ];
 
