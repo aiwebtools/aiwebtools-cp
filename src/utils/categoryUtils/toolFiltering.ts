@@ -2,6 +2,7 @@ import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
 import { isVideoRelatedTool } from "./videoDetection";
+import { isVideoMultimediaTool, getVideoMultimediaTools } from "./videoMultimediaDetection";
 import { isHealthAndWellnessTool, isCreativeAndEntertainmentTool } from "./healthDetection";
 import { 
   getDataAnalyticsTools, 
@@ -21,6 +22,11 @@ import { isSecurityPrivacyTool } from "./securityPrivacyDetection";
 import { isIndustrySpecificTool } from "./industryDetection";
 import { isSpiritualityTool } from "./spiritualityDetection";
 import { isThreeDVisualizationTool, getThreeDVisualizationTools } from "./threeDVisualizationDetection";
+import { isAudioMusicTool, getAudioMusicTools } from "./audioMusicDetection";
+import { isImageDesignTool, getEnhancedImageDesignTools } from "./imageDesignDetection";
+import { isWritingContentTool } from "./writingContentDetection";
+import { isCodingDevelopmentTool, getCodingDevelopmentTools } from "./codingDevelopmentDetection";
+import { isMarketingSalesTool, getMarketingSalesTools as getMarketingSalesToolsDirect } from "./marketingSalesDetection";
 
 export const getCategoriesWithCounts = (tools: Tool[]): CategoryCounts => {
   const categoryCounts: CategoryCounts = {};
@@ -158,7 +164,8 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
         console.log(`🌍 ${mainCat.name}: ${toolCount} tools (all tools)`);
         break;
       }
-      case "HEALTH, WELLNESS & PERSONAL LIFESTYLE": {
+      case "HEALTH, WELLNESS & PERSONAL LIFESTYLE":
+      case "HEALTH & WELLNESS": {
         const healthTools = tools.filter(tool => isHealthAndWellnessTool(tool));
         toolCount = healthTools.length;
         console.log(`🏥 ${mainCat.name}: ${toolCount} tools (enhanced detection)`);
@@ -167,7 +174,7 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
       case "CREATIVE & ENTERTAINMENT": {
         const creativeTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
         toolCount = creativeTools.length;
-        console.log(`🎭 FIXED ${mainCat.name}: ${toolCount} tools (corrected detection)`);
+        console.log(`🎭 ${mainCat.name}: ${toolCount} tools (corrected detection)`);
         break;
       }
       case "GAMING & ENTERTAINMENT": {
@@ -204,6 +211,43 @@ export const getMainCategoriesWithCounts = (tools: Tool[]): MainCategoryCounts =
         const threeDTools = getThreeDVisualizationTools(tools);
         toolCount = threeDTools.length;
         console.log(`🧊 ${mainCat.name}: ${toolCount} tools (3D visualization detection)`);
+        break;
+      }
+      case "AUDIO & VOICE TOOLS": {
+        const audioTools = getAudioMusicTools(tools);
+        toolCount = audioTools.length;
+        console.log(`🎵 ${mainCat.name}: ${toolCount} tools (audio/music detection)`);
+        break;
+      }
+      case "VIDEO & MULTIMEDIA": {
+        const videoTools = getVideoMultimediaTools(tools);
+        toolCount = videoTools.length;
+        console.log(`🎬 ${mainCat.name}: ${toolCount} tools (video/multimedia detection)`);
+        break;
+      }
+      case "IMAGE & DESIGN AI TOOLS": {
+        const imageTools = getEnhancedImageDesignTools(tools);
+        toolCount = imageTools.length;
+        console.log(`🎨 ${mainCat.name}: ${toolCount} tools (image/design detection)`);
+        break;
+      }
+      case "CONTENT CREATION & WRITING": {
+        const writingTools = tools.filter(tool => isWritingContentTool(tool));
+        toolCount = writingTools.length;
+        console.log(`✍️ ${mainCat.name}: ${toolCount} tools (writing/content detection)`);
+        break;
+      }
+      case "CODING & DEVELOPMENT":
+      case "AI DEVELOPMENT & CODING": {
+        const codingTools = getCodingDevelopmentTools(tools);
+        toolCount = codingTools.length;
+        console.log(`💻 ${mainCat.name}: ${toolCount} tools (coding/development detection)`);
+        break;
+      }
+      case "MARKETING & SALES SOLUTIONS": {
+        const marketingTools = getMarketingSalesToolsDirect(tools);
+        toolCount = marketingTools.length;
+        console.log(`📈 ${mainCat.name}: ${toolCount} tools (marketing/sales detection)`);
         break;
       }
       default: {
@@ -243,15 +287,15 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   let categoryTools: Tool[] = [];
   
   // CORRECTED handling for Health, Wellness & Personal Lifestyle
-  if (mainCategoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE") {
+  if (mainCategoryName === "HEALTH, WELLNESS & PERSONAL LIFESTYLE" || mainCategoryName === "HEALTH & WELLNESS") {
     categoryTools = tools.filter(tool => isHealthAndWellnessTool(tool));
-    console.log(`🏥 CORRECTED COUNT: Found ${categoryTools.length} health & wellness tools`);
+    console.log(`🏥 Found ${categoryTools.length} health & wellness tools`);
   }
   
   // CORRECTED handling for Creative & Entertainment
   else if (mainCategoryName === "CREATIVE & ENTERTAINMENT") {
     categoryTools = tools.filter(tool => isCreativeAndEntertainmentTool(tool));
-    console.log(`🎭 CORRECTED COUNT: Found ${categoryTools.length} creative & entertainment tools`);
+    console.log(`🎭 Found ${categoryTools.length} creative & entertainment tools`);
   }
   
   // Enhanced handling for Gaming & Entertainment
@@ -270,6 +314,60 @@ export const getToolsByMainCategory = (tools: Tool[], mainCategoryName: string):
   else if (mainCategoryName === "3D & VISUALIZATION") {
     categoryTools = getThreeDVisualizationTools(tools);
     console.log(`🧊 Found ${categoryTools.length} 3D & Visualization tools`);
+  }
+  
+  // Enhanced handling for Audio & Voice Tools
+  else if (mainCategoryName === "AUDIO & VOICE TOOLS") {
+    categoryTools = getAudioMusicTools(tools);
+    console.log(`🎵 Found ${categoryTools.length} Audio & Voice tools`);
+  }
+  
+  // Enhanced handling for Video & Multimedia
+  else if (mainCategoryName === "VIDEO & MULTIMEDIA") {
+    categoryTools = getVideoMultimediaTools(tools);
+    console.log(`🎬 Found ${categoryTools.length} Video & Multimedia tools`);
+  }
+  
+  // Enhanced handling for Image & Design
+  else if (mainCategoryName === "IMAGE & DESIGN AI TOOLS") {
+    categoryTools = getEnhancedImageDesignTools(tools);
+    console.log(`🎨 Found ${categoryTools.length} Image & Design tools`);
+  }
+  
+  // Enhanced handling for Content Creation & Writing
+  else if (mainCategoryName === "CONTENT CREATION & WRITING") {
+    categoryTools = tools.filter(tool => isWritingContentTool(tool));
+    console.log(`✍️ Found ${categoryTools.length} Content Creation & Writing tools`);
+  }
+  
+  // Enhanced handling for Coding & Development
+  else if (mainCategoryName === "CODING & DEVELOPMENT" || mainCategoryName === "AI DEVELOPMENT & CODING") {
+    categoryTools = getCodingDevelopmentTools(tools);
+    console.log(`💻 Found ${categoryTools.length} Coding & Development tools`);
+  }
+  
+  // Enhanced handling for Marketing & Sales
+  else if (mainCategoryName === "MARKETING & SALES SOLUTIONS") {
+    categoryTools = getMarketingSalesToolsDirect(tools);
+    console.log(`📈 Found ${categoryTools.length} Marketing & Sales tools`);
+  }
+  
+  // Enhanced handling for Education & Learning
+  else if (mainCategoryName === "EDUCATION & LEARNING") {
+    categoryTools = tools.filter(tool => isEducationRelatedTool(tool));
+    console.log(`🎓 Found ${categoryTools.length} Education & Learning tools`);
+  }
+  
+  // Enhanced handling for Spirituality & Philosophy
+  else if (mainCategoryName === "SPIRITUALITY & PHILOSOPHY") {
+    categoryTools = tools.filter(tool => isSpiritualityTool(tool));
+    console.log(`🕊️ Found ${categoryTools.length} Spirituality & Philosophy tools`);
+  }
+  
+  // Enhanced handling for Industry Specific
+  else if (mainCategoryName === "INDUSTRY SPECIFIC AI TOOLS") {
+    categoryTools = tools.filter(tool => isIndustrySpecificTool(tool));
+    console.log(`🏭 Found ${categoryTools.length} Industry Specific tools`);
   }
   
   // ALL AI TOOLS - return everything
