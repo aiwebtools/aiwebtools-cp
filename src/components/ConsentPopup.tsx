@@ -35,6 +35,11 @@ const ConsentPopup = () => {
   const handleAccept = () => {
     console.log('🌀 User accepting consent - initiating time warp entry...');
     
+    // Play welcome audio
+    const welcomeAudio = new Audio('/welcome-disclaimer.mp3');
+    welcomeAudio.volume = 1.0;
+    welcomeAudio.play().catch(err => console.log('Welcome audio play failed:', err));
+    
     // Simple acceptance
     localStorage.setItem('aitools-consent-seen', 'true');
     
