@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo, useEffect, useCallback, memo } from 'react';
+import React, { useState, useMemo, useEffect, useCallback, memo, startTransition } from 'react';
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ChevronDown, ChevronUp, Filter, X, Shuffle, ArrowDownAZ, ArrowUpZA, Bot } from "lucide-react";
@@ -13,6 +13,11 @@ import {
   applyAlphabeticalWithDeprioritization,
   SortMode 
 } from "@/utils/toolSorting/smartToolSorting";
+import { 
+  getCachedToolsByMainCategory, 
+  getCachedCategoryCounts,
+  isCategoryCacheReady 
+} from "@/utils/categoryUtils/precomputedCache";
 
 // Agent sub-type definitions with emoji and keywords for filtering
 const AGENT_SUBTYPES: Array<{ id: string; label: string; emoji: string; keywords: string[] }> = [
@@ -32,9 +37,14 @@ const AGENT_SUBTYPES: Array<{ id: string; label: string; emoji: string; keywords
   { id: 'support', label: 'Support Agents', emoji: '🎧', keywords: ['support agent', 'customer support', 'helpdesk', 'ticket'] },
 ];
 
-// Pre-compute global category counts once at module level
+// Pre-compute global category counts once at module level - use cache if available
 let cachedGlobalCounts: Record<string, number> | null = null;
 const getGlobalCategoryCounts = () => {
+  // Try pre-computed cache first (instant)
+  const precomputed = getCachedCategoryCounts();
+  if (precomputed) return precomputed;
+  
+  // Fallback to synchronous computation
   if (!cachedGlobalCounts) {
     cachedGlobalCounts = getMainCategoriesWithCounts(allTools);
   }
@@ -109,7 +119,7 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
     return shuffled;
   }, []);
 
-  // Calculate base filtered tools (before shuffle) - now includes agent type filtering
+  // Calculate base filtered tools (before shuffle) - uses pre-computed cache for speed
   const baseFilteredTools = useMemo(() => {
     const categoriesToUse = selectedMainCategories.length === 0 
       ? [currentMainCategory] 
@@ -118,7 +128,14 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
     const selectedCategoryTools = new Map<string, Tool>();
     
     categoriesToUse.forEach(categoryName => {
-      const categoryTools = getToolsByMainCategory(allTools, categoryName);
+      // Try pre-computed cache first (instant lookup)
+      let categoryTools = getCachedToolsByMainCategory(categoryName);
+      
+      // Fallback to synchronous computation if cache not ready
+      if (!categoryTools) {
+        categoryTools = getToolsByMainCategory(allTools, categoryName);
+      }
+      
       categoryTools.forEach(tool => {
         if (!selectedCategoryTools.has(tool.title)) {
           selectedCategoryTools.set(tool.title, tool);
@@ -211,7 +228,7 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
     categories: [] 
   });
   
-  // CRITICAL: This effect MUST run when ANY filter changes - including agent types and categories
+  // CRITICAL: This effect MUST run when ANY filter changes - using startTransition for smooth updates
   useEffect(() => {
     const stateChanged = 
       lastPassedRef.current.mode !== sortMode || 
@@ -223,8 +240,8 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
     if (stateChanged || filteredTools.length > 0) {
       console.log(`🎯 MainCategoryFilter: Passing ${filteredTools.length} tools (mode: ${sortMode}, shuffle #${shuffleKey}, agentTypes: ${selectedAgentTypes.length}, categories: ${selectedMainCategories.length})`);
       lastPassedRef.current = { mode: sortMode, key: shuffleKey, agentTypes: [...selectedAgentTypes], categories: [...selectedMainCategories] };
-      // Use requestAnimationFrame for smoother mobile updates
-      requestAnimationFrame(() => {
+      // Use startTransition for non-blocking updates
+      startTransition(() => {
         onFilteredToolsChange(filteredTools);
       });
     }
@@ -232,23 +249,26 @@ const MainCategoryFilter = memo(({ tools, onFilteredToolsChange, currentMainCate
 
   const handleMainCategoryToggle = useCallback((mainCategoryName: string) => {
     console.log(`🔄 Toggling category: ${mainCategoryName}`);
-    setSelectedMainCategories(prev => {
-      const isCurrentlySelected = prev.includes(mainCategoryName);
-      
-      if (isCurrentlySelected) {
-        // Allow deselecting - if it's the only one, reset to current page category
-        const newSelection = prev.filter(cat => cat !== mainCategoryName);
-        if (newSelection.length === 0) {
-          // Reset to current category instead of preventing deselection
-          console.log(`🔄 Reset to current category: ${currentMainCategory}`);
-          return [currentMainCategory];
+    // Use startTransition for non-blocking category updates
+    startTransition(() => {
+      setSelectedMainCategories(prev => {
+        const isCurrentlySelected = prev.includes(mainCategoryName);
+        
+        if (isCurrentlySelected) {
+          // Allow deselecting - if it's the only one, reset to current page category
+          const newSelection = prev.filter(cat => cat !== mainCategoryName);
+          if (newSelection.length === 0) {
+            // Reset to current category instead of preventing deselection
+            console.log(`🔄 Reset to current category: ${currentMainCategory}`);
+            return [currentMainCategory];
+          }
+          console.log(`🔄 Deselected ${mainCategoryName}, remaining: ${newSelection.join(', ')}`);
+          return newSelection;
+        } else {
+          console.log(`🔄 Selected ${mainCategoryName}`);
+          return [...prev, mainCategoryName];
         }
-        console.log(`🔄 Deselected ${mainCategoryName}, remaining: ${newSelection.join(', ')}`);
-        return newSelection;
-      } else {
-        console.log(`🔄 Selected ${mainCategoryName}`);
-        return [...prev, mainCategoryName];
-      }
+      });
     });
   }, [currentMainCategory]);
 

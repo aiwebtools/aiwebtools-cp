@@ -31,6 +31,8 @@ import BlogPage from "./pages/BlogPage";
 import GamingEntertainmentPage from "./pages/GamingEntertainmentPage";
 import DisclaimerPopup from "./components/DisclaimerPopup";
 import ConsentPopup from "./components/ConsentPopup";
+// Pre-initialize category cache for instant category page loads
+import "@/utils/categoryUtils/precomputedCache";
 
 const queryClient = new QueryClient();
 
