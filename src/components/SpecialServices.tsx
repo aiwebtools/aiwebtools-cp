@@ -266,7 +266,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-indigo-600",
     features: ["Degree Planning", "Course Selection", "Career Pathways", "Academic Success"],
     directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/VkD_dX8kPy0",
+    videoUrl: "https://www.youtube.com/watch?v=Cd8uvD-smlM",
     emoji: "🎓"
   },
   {
@@ -526,7 +526,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-indigo-600",
     features: ["Course Creation", "Learning Paths", "Practice Exercises", "Educational Support"],
     directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/pr8-IgbL46I",
+    videoUrl: "https://www.youtube.com/watch?v=98fLvWZy9wI",
     emoji: "📚"
   },
   {
@@ -536,7 +536,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Skill Mastery", "Learning Paths", "Practice Exercises", "Expert Guidance"],
     directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/0_oIzDL2BB4",
+    videoUrl: "https://www.youtube.com/watch?v=q1AY2LukHrk",
     emoji: "🧠"
   },
   {
