@@ -213,18 +213,18 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   console.log('🌀 Creating TIME WARP portal effect for URL:', destinationUrl);
   
   // SYNCHRONIZED TIMING - Voice clip is ~2.2 seconds
-  // Desktop: longer effects, URL opens as voice ends
-  // Mobile: faster effects, URL opens slightly earlier
+  // Desktop: longer effects for full code explosion experience
+  // Mobile: slightly faster but still epic
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   
   // Voice duration is ~2.2 seconds - sync everything to this
   const voiceDuration = 2200;
   
-  // Effect duration - enough time for animations to complete after URL opens
-  const effectDuration = isMobile ? 3200 : 3800;
+  // Effect duration - longer for full code explosion and waterfall persistence
+  const effectDuration = isMobile ? 4000 : 4500;
   
   // URL opens right as voice finishes (peak impact moment)
-  const urlOpenDelay = isMobile ? voiceDuration - 200 : voiceDuration;
+  const urlOpenDelay = isMobile ? voiceDuration - 100 : voiceDuration + 200;
   
   // Visual effects start immediately with voice
   const visualDelay = 0;

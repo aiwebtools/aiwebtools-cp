@@ -633,9 +633,9 @@ export const createWarpStars = (effectsContainer: HTMLElement) => {
   }
 };
 
-// ULTRA EPIC MATRIX CODE EXPLOSION - Visible binary code streams with glitch effects
+// ULTRA EPIC MATRIX CODE EXPLOSION - User is PROPELLED through the code warp
 export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
-  console.log('💚 Creating ULTRA EPIC Matrix code explosion');
+  console.log('💚 Creating MASSIVE Matrix code explosion - PROPELLING USER THROUGH CODE');
   
   // DARK BACKDROP - Makes all the green code POP against black
   const matrixBackdrop = document.createElement('div');
@@ -646,63 +646,123 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.95);
+    background: rgba(0,0,0,0.98);
     z-index: 99991;
     pointer-events: none;
-    animation: backdrop-pulse 3s ease-out forwards;
+    animation: backdrop-pulse 3.5s ease-out forwards;
   `;
   document.body.appendChild(matrixBackdrop);
   
-  // === GIANT BINARY CODE STREAMS shooting outward ===
-  const streamCount = 48; // more massive binary beams
+  // === CRT SCANLINES OVERLAY - Authentic terminal look ===
+  const scanlines = document.createElement('div');
+  scanlines.id = 'crt-scanlines';
+  scanlines.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 1px,
+      rgba(0, 0, 0, 0.3) 1px,
+      rgba(0, 0, 0, 0.3) 2px
+    );
+    z-index: 100050;
+    pointer-events: none;
+    animation: scanline-flicker 0.05s infinite;
+  `;
+  document.body.appendChild(scanlines);
+  
+  // === CODE TUNNEL - User propelled through binary ===
+  const tunnelLayers = 12;
+  for (let layer = 0; layer < tunnelLayers; layer++) {
+    const tunnel = document.createElement('div');
+    tunnel.className = 'code-tunnel-layer';
+    const scale = 0.3 + (layer * 0.15);
+    const delay = layer * 0.08;
+    const binaryRing = Array.from({ length: 60 }, () => Math.random() > 0.5 ? '1' : '0').join(' ');
+    
+    tunnel.textContent = binaryRing;
+    tunnel.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 200vw;
+      height: 200vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Courier New', monospace;
+      font-size: ${20 + layer * 4}px;
+      font-weight: bold;
+      color: hsl(${120 + layer * 3}, 100%, ${40 + layer * 4}%);
+      text-shadow: 
+        0 0 20px #00FF00,
+        0 0 40px #00FF00;
+      transform: translate(-50%, -50%) scale(${scale}) perspective(1000px) rotateX(${layer * 5}deg);
+      animation: tunnel-zoom-through 2.8s ease-in forwards;
+      animation-delay: ${delay}s;
+      z-index: ${100025 + layer};
+      pointer-events: none;
+      opacity: 0;
+      white-space: nowrap;
+      letter-spacing: 8px;
+    `;
+    effectsContainer.appendChild(tunnel);
+  }
+  
+  // === MASSIVE CODE STREAMS shooting outward - EXPLOSION ===
+  const streamCount = 64;
   for (let i = 0; i < streamCount; i++) {
     const stream = document.createElement('div');
     stream.className = 'matrix-code-stream';
     const angle = (i / streamCount) * 360;
-    const binaryCode = Array.from({ length: 32 }, () => Math.random() > 0.5 ? '1' : '0').join(''); // longer streams
+    const binaryCode = Array.from({ length: 48 }, () => Math.random() > 0.5 ? '1' : '0').join('');
     stream.textContent = binaryCode;
-    const delay = i * 0.018;
-    const hue = 120 + Math.random() * 40; // Green to cyan variations
+    const delay = i * 0.012;
+    const hue = 115 + Math.random() * 30;
     
     stream.style.cssText = `
       position: absolute;
       top: 50%;
       left: 50%;
       font-family: 'Courier New', monospace;
-      font-size: 30px;
+      font-size: 32px;
       font-weight: bold;
-      color: hsl(${hue}, 100%, 50%);
+      color: hsl(${hue}, 100%, 55%);
       text-shadow: 
-        0 0 10px hsl(${hue}, 100%, 50%),
-        0 0 20px hsl(${hue}, 100%, 50%),
-        0 0 40px hsl(${hue}, 100%, 50%),
-        0 0 80px hsl(${hue}, 100%, 50%);
+        0 0 15px hsl(${hue}, 100%, 55%),
+        0 0 30px hsl(${hue}, 100%, 55%),
+        0 0 60px hsl(${hue}, 100%, 55%),
+        0 0 100px hsl(${hue}, 100%, 55%);
       white-space: nowrap;
       transform-origin: left center;
       transform: translate(0, -50%) rotate(${angle}deg);
-      animation: code-stream-shoot 2.7s ease-out forwards;
+      animation: code-stream-explode 3.2s ease-out forwards;
       animation-delay: ${delay}s;
       z-index: 100010;
       pointer-events: none;
-      letter-spacing: 4px;
+      letter-spacing: 3px;
       --stream-angle: ${angle}deg;
     `;
     effectsContainer.appendChild(stream);
   }
   
-  // === EXPLODING BINARY CHARACTERS - Big and visible ===
+  // === MASSIVE EXPLODING BINARY CHARACTERS ===
   const matrixChars = '01';
-  const explosionCount = 260;
+  const explosionCount = 400;
   
   for (let i = 0; i < explosionCount; i++) {
     const matrixChar = document.createElement('div');
     matrixChar.className = 'matrix-explosion-char';
     const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-    const fontSize = 30 + Math.random() * 50;
+    const fontSize = 24 + Math.random() * 80;
     const angle = Math.random() * 360;
-    const velocity = 150 + Math.random() * 600;
-    const delay = Math.random() * 0.3;
-    const hue = 100 + Math.random() * 60; // Green to cyan
+    const velocity = 200 + Math.random() * 900;
+    const delay = Math.random() * 0.5;
+    const hue = 100 + Math.random() * 50;
     
     matrixChar.textContent = char;
     matrixChar.style.cssText = `
@@ -712,13 +772,13 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
       font-family: 'Courier New', monospace;
       font-size: ${fontSize}px;
       font-weight: bold;
-      color: hsl(${hue}, 100%, 55%);
+      color: hsl(${hue}, 100%, 60%);
       text-shadow: 
-        0 0 15px hsl(${hue}, 100%, 55%),
-        0 0 30px hsl(${hue}, 100%, 55%),
-        0 0 60px hsl(${hue}, 100%, 55%);
+        0 0 20px hsl(${hue}, 100%, 60%),
+        0 0 40px hsl(${hue}, 100%, 60%),
+        0 0 80px hsl(${hue}, 100%, 60%);
       transform: translate(-50%, -50%);
-      animation: char-explode-out 2.8s ease-out forwards;
+      animation: char-mega-explode 3.5s ease-out forwards;
       animation-delay: ${delay}s;
       z-index: 100005;
       pointer-events: none;
@@ -728,32 +788,34 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     effectsContainer.appendChild(matrixChar);
   }
   
-  // === VERTICAL RAIN COLUMNS - Classic Matrix style ===
-  const rainColumns = 80; // denser rain
-  for (let col = 0; col < rainColumns; col++) {
+  // === CASCADING BINARY WATERFALLS - Persistent rain ===
+  const waterfallCount = 120;
+  for (let col = 0; col < waterfallCount; col++) {
     const column = document.createElement('div');
-    column.className = 'matrix-rain-column';
-    const leftPos = (col / rainColumns) * 100;
-    const delay = Math.random() * 0.8;
-    const chars = Array.from({length: 40}, () => 
+    column.className = 'matrix-waterfall';
+    const leftPos = (col / waterfallCount) * 100;
+    const delay = Math.random() * 1.2;
+    const speed = 2.5 + Math.random() * 2;
+    const chars = Array.from({length: 60}, () => 
       Math.random() > 0.5 ? '1' : '0'
     ).join('\n');
     const hue = 110 + Math.random() * 30;
+    const fontSize = 16 + Math.random() * 12;
     
     column.textContent = chars;
     column.style.cssText = `
       position: fixed;
-      top: -800px;
+      top: -1200px;
       left: ${leftPos}%;
       font-family: 'Courier New', monospace;
-      font-size: 24px;
+      font-size: ${fontSize}px;
       font-weight: bold;
-      color: hsl(${hue}, 100%, 50%);
+      color: hsl(${hue}, 100%, 55%);
       text-shadow: 
-        0 0 10px hsl(${hue}, 100%, 50%),
-        0 0 20px hsl(${hue}, 100%, 50%);
-      line-height: 1.2;
-      animation: rain-fall-down 2.4s ease-in forwards;
+        0 0 15px hsl(${hue}, 100%, 55%),
+        0 0 30px hsl(${hue}, 100%, 55%);
+      line-height: 1.1;
+      animation: waterfall-cascade ${speed}s linear forwards;
       animation-delay: ${delay}s;
       z-index: 100003;
       opacity: 0;
@@ -762,28 +824,63 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     effectsContainer.appendChild(column);
   }
   
-  // === PULSATING BINARY RINGS expanding outward ===
-  const ringCount = 8;
+  // === SECONDARY WAVE - More code rain after initial explosion ===
+  setTimeout(() => {
+    for (let col = 0; col < 60; col++) {
+      const column = document.createElement('div');
+      column.className = 'matrix-waterfall-wave2';
+      const leftPos = (col / 60) * 100 + Math.random() * 2;
+      const delay = Math.random() * 0.5;
+      const chars = Array.from({length: 45}, () => 
+        Math.random() > 0.5 ? '1' : '0'
+      ).join('\n');
+      const hue = 115 + Math.random() * 25;
+      
+      column.textContent = chars;
+      column.style.cssText = `
+        position: fixed;
+        top: -900px;
+        left: ${leftPos}%;
+        font-family: 'Courier New', monospace;
+        font-size: 20px;
+        font-weight: bold;
+        color: hsl(${hue}, 100%, 50%);
+        text-shadow: 
+          0 0 12px hsl(${hue}, 100%, 50%),
+          0 0 24px hsl(${hue}, 100%, 50%);
+        line-height: 1.15;
+        animation: waterfall-cascade 2s linear forwards;
+        animation-delay: ${delay}s;
+        z-index: 100004;
+        opacity: 0;
+        pointer-events: none;
+      `;
+      effectsContainer.appendChild(column);
+    }
+  }, 800);
+  
+  // === BINARY RINGS expanding outward ===
+  const ringCount = 10;
   for (let r = 0; r < ringCount; r++) {
     const ring = document.createElement('div');
     ring.className = 'matrix-binary-ring';
-    const ringDelay = r * 0.12;
-    const hue = 120 + r * 5;
+    const ringDelay = r * 0.1;
+    const hue = 120 + r * 4;
     
     ring.style.cssText = `
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 40px;
-      height: 40px;
-      border: 4px solid hsl(${hue}, 100%, 50%);
+      width: 50px;
+      height: 50px;
+      border: 5px solid hsl(${hue}, 100%, 55%);
       border-radius: 50%;
       box-shadow: 
-        0 0 30px hsl(${hue}, 100%, 50%),
-        0 0 60px hsl(${hue}, 100%, 50%),
-        inset 0 0 20px hsl(${hue}, 100%, 50%);
+        0 0 40px hsl(${hue}, 100%, 55%),
+        0 0 80px hsl(${hue}, 100%, 55%),
+        inset 0 0 30px hsl(${hue}, 100%, 55%);
       transform: translate(-50%, -50%);
-      animation: ring-pulse-expand 2.2s ease-out forwards;
+      animation: ring-mega-expand 2.8s ease-out forwards;
       animation-delay: ${ringDelay}s;
       z-index: 100002;
       pointer-events: none;
@@ -792,7 +889,7 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     effectsContainer.appendChild(ring);
   }
   
-  // === GLITCH OVERLAY - Digital corruption effect ===
+  // === GLITCH OVERLAY - Digital corruption ===
   const glitchOverlay = document.createElement('div');
   glitchOverlay.id = 'glitch-overlay';
   glitchOverlay.style.cssText = `
@@ -804,48 +901,48 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     background: repeating-linear-gradient(
       0deg,
       transparent 0px,
-      transparent 2px,
-      rgba(0, 255, 0, 0.03) 2px,
-      rgba(0, 255, 0, 0.03) 4px
+      transparent 3px,
+      rgba(0, 255, 0, 0.04) 3px,
+      rgba(0, 255, 0, 0.04) 6px
     );
-    z-index: 100015;
+    z-index: 100045;
     pointer-events: none;
-    animation: glitch-flicker 0.1s infinite;
+    animation: glitch-flicker 0.08s infinite;
     mix-blend-mode: screen;
   `;
   document.body.appendChild(glitchOverlay);
   
-  // === CENTRAL MATRIX ORB - Bright core ===
+  // === CENTRAL EXPLOSION ORB ===
   const matrixOrb = document.createElement('div');
   matrixOrb.className = 'matrix-orb';
   matrixOrb.style.cssText = `
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    background: radial-gradient(circle, #00FF00 0%, #00FF00 30%, #00AA00 60%, transparent 80%);
+    background: radial-gradient(circle, #00FF00 0%, #00FF00 20%, #00DD00 40%, #00AA00 60%, transparent 80%);
     box-shadow: 
-      0 0 100px #00FF00,
-      0 0 200px #00FF00,
+      0 0 150px #00FF00,
       0 0 300px #00FF00,
-      0 0 400px #00FF00,
-      inset 0 0 80px #00FF00;
+      0 0 450px #00FF00,
+      0 0 600px #00FF00,
+      inset 0 0 100px #00FF00;
     transform: translate(-50%, -50%);
-    animation: orb-mega-pulse 2.5s ease-out forwards;
-    z-index: 100020;
+    animation: orb-mega-burst 3s ease-out forwards;
+    z-index: 100030;
   `;
   effectsContainer.appendChild(matrixOrb);
   
-  // === BINARY CONFETTI STREAMERS ===
-  const streamerCount = 70; // more binary confetti
+  // === BINARY CONFETTI EXPLOSION ===
+  const streamerCount = 100;
   for (let s = 0; s < streamerCount; s++) {
     const streamer = document.createElement('div');
     const angle = (s / streamerCount) * 360;
-    const binary = Array.from({ length: 12 }, () => Math.random() > 0.5 ? '1' : '0').join(' ');
-    const delay = Math.random() * 0.25;
-    const hue = 100 + Math.random() * 60;
+    const binary = Array.from({ length: 16 }, () => Math.random() > 0.5 ? '1' : '0').join(' ');
+    const delay = Math.random() * 0.4;
+    const hue = 100 + Math.random() * 50;
     
     streamer.textContent = binary;
     streamer.style.cssText = `
@@ -853,16 +950,16 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
       top: 50%;
       left: 50%;
       font-family: 'Courier New', monospace;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
-      color: hsl(${hue}, 100%, 60%);
+      color: hsl(${hue}, 100%, 65%);
       text-shadow: 
-        0 0 8px hsl(${hue}, 100%, 60%),
-        0 0 16px hsl(${hue}, 100%, 60%);
+        0 0 12px hsl(${hue}, 100%, 65%),
+        0 0 24px hsl(${hue}, 100%, 65%);
       white-space: nowrap;
       transform-origin: left center;
       transform: translate(0, -50%) rotate(${angle}deg);
-      animation: streamer-fly-out 2.6s ease-out forwards;
+      animation: streamer-mega-fly 3.2s ease-out forwards;
       animation-delay: ${delay}s;
       z-index: 100008;
       pointer-events: none;
@@ -878,92 +975,137 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
   style.textContent = `
     @keyframes backdrop-pulse {
       0% { opacity: 0; }
-      10% { opacity: 0.98; }
-      70% { opacity: 0.95; }
+      5% { opacity: 0.99; }
+      75% { opacity: 0.97; }
       100% { opacity: 0; }
     }
     
-    @keyframes code-stream-shoot {
-      0% {
-        opacity: 0;
-        transform: translate(0, -50%) rotate(var(--stream-angle)) scaleX(0);
-        filter: brightness(15);
-      }
-      10% {
-        opacity: 1;
-        transform: translate(0, -50%) rotate(var(--stream-angle)) scaleX(0.5);
-        filter: brightness(10);
-      }
-      40% {
-        opacity: 1;
-        transform: translate(150px, -50%) rotate(var(--stream-angle)) scaleX(1);
-        filter: brightness(6);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(700px, -50%) rotate(var(--stream-angle)) scaleX(1.5);
-        filter: brightness(2);
-      }
+    @keyframes scanline-flicker {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.6; }
     }
     
-    @keyframes char-explode-out {
+    @keyframes tunnel-zoom-through {
       0% {
         opacity: 0;
-        transform: translate(-50%, -50%) rotate(var(--char-angle)) translateX(0) scale(0.3);
-        filter: brightness(15);
+        transform: translate(-50%, -50%) scale(0.1) perspective(1000px) rotateX(0deg);
+        filter: brightness(20);
       }
-      15% {
+      20% {
         opacity: 1;
-        transform: translate(-50%, -50%) rotate(var(--char-angle)) translateX(30px) scale(1.8);
+        transform: translate(-50%, -50%) scale(0.5) perspective(1000px) rotateX(10deg);
         filter: brightness(10);
       }
       50% {
         opacity: 1;
-        filter: brightness(5);
+        transform: translate(-50%, -50%) scale(2) perspective(1000px) rotateX(15deg);
+        filter: brightness(6);
+      }
+      80% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(5) perspective(1000px) rotateX(20deg);
+        filter: brightness(4);
       }
       100% {
         opacity: 0;
-        transform: translate(-50%, -50%) rotate(var(--char-angle)) translateX(var(--char-velocity)) scale(0.5);
+        transform: translate(-50%, -50%) scale(12) perspective(1000px) rotateX(25deg);
         filter: brightness(2);
       }
     }
     
-    @keyframes rain-fall-down {
+    @keyframes code-stream-explode {
+      0% {
+        opacity: 0;
+        transform: translate(0, -50%) rotate(var(--stream-angle)) scaleX(0);
+        filter: brightness(20);
+      }
+      8% {
+        opacity: 1;
+        transform: translate(0, -50%) rotate(var(--stream-angle)) scaleX(0.3);
+        filter: brightness(15);
+      }
+      25% {
+        opacity: 1;
+        transform: translate(100px, -50%) rotate(var(--stream-angle)) scaleX(1);
+        filter: brightness(10);
+      }
+      60% {
+        opacity: 1;
+        transform: translate(400px, -50%) rotate(var(--stream-angle)) scaleX(1.2);
+        filter: brightness(5);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(1200px, -50%) rotate(var(--stream-angle)) scaleX(1.5);
+        filter: brightness(2);
+      }
+    }
+    
+    @keyframes char-mega-explode {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(var(--char-angle)) translateX(0) scale(0.2);
+        filter: brightness(25);
+      }
+      10% {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(var(--char-angle)) translateX(20px) scale(2);
+        filter: brightness(15);
+      }
+      30% {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(var(--char-angle)) translateX(100px) scale(1.5);
+        filter: brightness(8);
+      }
+      60% {
+        opacity: 0.9;
+        transform: translate(-50%, -50%) rotate(var(--char-angle)) translateX(calc(var(--char-velocity) * 0.6)) scale(1);
+        filter: brightness(5);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(var(--char-angle)) translateX(var(--char-velocity)) scale(0.3);
+        filter: brightness(2);
+      }
+    }
+    
+    @keyframes waterfall-cascade {
       0% {
         transform: translateY(0);
         opacity: 0;
       }
-      10% {
+      5% {
         opacity: 1;
       }
-      80% {
-        opacity: 0.9;
+      85% {
+        opacity: 0.95;
       }
       100% {
-        transform: translateY(calc(100vh + 700px));
+        transform: translateY(calc(100vh + 1400px));
         opacity: 0;
       }
     }
     
-    @keyframes ring-pulse-expand {
+    @keyframes ring-mega-expand {
       0% {
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
         opacity: 0;
-        border-width: 6px;
-        filter: brightness(15);
+        border-width: 8px;
+        filter: brightness(20);
       }
-      20% {
+      15% {
         opacity: 1;
-        filter: brightness(8);
+        filter: brightness(12);
       }
-      60% {
-        opacity: 0.7;
-        border-width: 3px;
+      50% {
+        opacity: 0.9;
+        border-width: 4px;
+        filter: brightness(6);
       }
       100% {
-        width: 1200px;
-        height: 1200px;
+        width: 1600px;
+        height: 1600px;
         opacity: 0;
         border-width: 1px;
         filter: brightness(2);
@@ -972,58 +1114,69 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     
     @keyframes glitch-flicker {
       0%, 100% { opacity: 0.5; transform: translateX(0); }
-      25% { opacity: 0.8; transform: translateX(-2px); }
-      50% { opacity: 0.3; transform: translateX(2px); }
-      75% { opacity: 0.7; transform: translateX(-1px); }
+      20% { opacity: 0.9; transform: translateX(-3px); }
+      40% { opacity: 0.3; transform: translateX(3px); }
+      60% { opacity: 0.8; transform: translateX(-2px); }
+      80% { opacity: 0.4; transform: translateX(1px); }
     }
     
-    @keyframes orb-mega-pulse {
+    @keyframes orb-mega-burst {
       0% {
-        transform: translate(-50%, -50%) scale(0.1);
+        transform: translate(-50%, -50%) scale(0.05);
         opacity: 0;
+        filter: brightness(30);
+      }
+      10% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 1;
         filter: brightness(20);
       }
-      15% {
-        transform: translate(-50%, -50%) scale(2.5);
+      30% {
+        transform: translate(-50%, -50%) scale(5);
         opacity: 1;
         filter: brightness(12);
       }
-      40% {
-        transform: translate(-50%, -50%) scale(4);
-        opacity: 0.9;
-        filter: brightness(8);
+      55% {
+        transform: translate(-50%, -50%) scale(8);
+        opacity: 0.8;
+        filter: brightness(7);
       }
-      70% {
-        transform: translate(-50%, -50%) scale(6);
-        opacity: 0.5;
-        filter: brightness(5);
+      80% {
+        transform: translate(-50%, -50%) scale(12);
+        opacity: 0.4;
+        filter: brightness(4);
       }
       100% {
-        transform: translate(-50%, -50%) scale(10);
+        transform: translate(-50%, -50%) scale(18);
         opacity: 0;
         filter: brightness(2);
       }
     }
     
-    @keyframes streamer-fly-out {
+    @keyframes streamer-mega-fly {
       0% {
         opacity: 0;
         transform: translate(0, -50%) rotate(var(--streamer-angle)) scaleX(0);
-        filter: brightness(12);
+        filter: brightness(15);
       }
-      20% {
+      15% {
         opacity: 1;
-        transform: translate(50px, -50%) rotate(var(--streamer-angle)) scaleX(1);
-        filter: brightness(8);
+        transform: translate(30px, -50%) rotate(var(--streamer-angle)) scaleX(1);
+        filter: brightness(10);
       }
-      60% {
+      40% {
+        opacity: 1;
+        transform: translate(200px, -50%) rotate(var(--streamer-angle)) scaleX(1.3);
+        filter: brightness(6);
+      }
+      70% {
         opacity: 0.8;
-        transform: translate(300px, -50%) rotate(var(--streamer-angle)) scaleX(1.2);
-        filter: brightness(5);
+        transform: translate(500px, -50%) rotate(var(--streamer-angle)) scaleX(1.1);
+        filter: brightness(4);
       }
       100% {
         opacity: 0;
-        transform: translate(600px, -50%) rotate(var(--streamer-angle)) scaleX(0.8);
+        transform: translate(900px, -50%) rotate(var(--streamer-angle)) scaleX(0.7);
         filter: brightness(2);
       }
     }
@@ -1042,18 +1195,22 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     try {
       matrixBackdrop.remove();
     } catch (e) {}
+    try {
+      scanlines.remove();
+    } catch (e) {}
 
     // Remove any remaining Matrix nodes from the effects container
     const selectors = [
       '.matrix-code-stream',
       '.matrix-explosion-char',
-      '.matrix-rain-column',
+      '.matrix-waterfall',
+      '.matrix-waterfall-wave2',
       '.matrix-binary-ring',
       '.matrix-orb',
-      '.matrix-confetti-string'
+      '.code-tunnel-layer'
     ];
     selectors.forEach((selector) => {
       effectsContainer.querySelectorAll(selector).forEach((el) => el.remove());
     });
-  }, 3100);
+  }, 3800);
 };
