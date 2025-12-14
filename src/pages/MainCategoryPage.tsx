@@ -83,29 +83,32 @@ const MainCategoryPage = () => {
     [finalFilteredTools, displayedCount]
   );
 
-  // ALL EVENT HANDLERS
+  // ALL EVENT HANDLERS - optimized for mobile
   const handleLoadMore = useCallback(() => {
     if (isLoading) return;
     
     setIsLoading(true);
     
-    // Faster loading with better user feedback
-    setTimeout(() => {
+    // INSTANT loading - no artificial delay needed
+    requestAnimationFrame(() => {
       setDisplayedCount(prev => prev + 48);
       setIsLoading(false);
-    }, 100);
+    });
   }, [isLoading]);
 
+  // INSTANT filter updates - no debouncing for snappy feel
   const handleFilteredToolsChange = useCallback((filtered: Tool[]) => {
     console.log(`📊 MainCategoryPage received ${filtered.length} filtered tools`);
-    setFilteredToolsByCategory(filtered);
+    // Use requestAnimationFrame for smoother state updates
+    requestAnimationFrame(() => {
+      setFilteredToolsByCategory(filtered);
+    });
   }, []);
 
   // ALL EFFECTS AT THE END
-  // Scroll to top immediately and initialize
+  // Scroll to top immediately and initialize - FAST
   useEffect(() => {
-    console.log('🏠 MainCategoryPage mounted for:', decodedCategoryName);
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
     setIsInitialized(true);
   }, [decodedCategoryName]);
   

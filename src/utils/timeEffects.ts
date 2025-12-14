@@ -209,8 +209,11 @@ const extractToolName = (destinationUrl: string, providedToolName?: string): str
 };
 
 export const createTimePortalEffect = (destinationUrl: string, toolName?: string) => {
-  console.log('🌀 Creating EPIC TIME WARP portal effect for URL:', destinationUrl);
-  console.log('🌀 Tool name provided:', toolName);
+  console.log('🌀 Creating TIME WARP portal effect for URL:', destinationUrl);
+  
+  // Detect mobile for faster effect
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const effectDuration = isMobile ? 1000 : 1800; // Faster on mobile
   
   // Extract tool name for logging purposes
   const finalToolName = extractToolName(destinationUrl, toolName);
@@ -225,15 +228,22 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   // 🎤 PLAY THE TIME WARP VOICE IMMEDIATELY
   playTimeWarpVoice();
 
-  // Execute ALL epic visual effects in sequence for maximum impact
-  createWarpStars(effectsContainer);      // Warp speed background
-  createBlackHole(effectsContainer);       // Central black hole
-  createSpiralTunnel(effectsContainer);    // Spiral tunnel
-  createVortexRings(effectsContainer);     // Vortex rings
-  createParticles(effectsContainer);       // Particle explosion
-  createEnergyWaves(effectsContainer);     // Energy shockwaves
-  createLightning(effectsContainer);       // Lightning storm
-  createFlash(effectsContainer);           // Final dimensional rift flash
+  // Execute visual effects - REDUCED on mobile for performance
+  if (isMobile) {
+    // Mobile: Only essential effects for speed
+    createParticles(effectsContainer);
+    createFlash(effectsContainer);
+  } else {
+    // Desktop: Full epic effects
+    createWarpStars(effectsContainer);
+    createBlackHole(effectsContainer);
+    createSpiralTunnel(effectsContainer);
+    createVortexRings(effectsContainer);
+    createParticles(effectsContainer);
+    createEnergyWaves(effectsContainer);
+    createLightning(effectsContainer);
+    createFlash(effectsContainer);
+  }
   
   // Create enhanced portal sounds
   createPortalSounds();
@@ -242,21 +252,17 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   if (destinationUrl.includes('lovable.dev/projects') || destinationUrl.includes('clone')) {
     setTimeout(() => {
       createConfettiCelebration();
-    }, 500);
+    }, 300);
   }
 
-  // Log for debugging
-  console.log('🌀 EPIC portal effect created, opening URL in:', 2000, 'ms');
+  console.log(`🌀 Portal effect created, opening URL in: ${effectDuration}ms`);
 
-  // Cleanup and open in new tab after effect completes
+  // Cleanup and open in new tab after effect completes - FASTER on mobile
   setTimeout(() => {
-    console.log('🧹 Cleaning up effects and opening in new window:', destinationUrl);
+    console.log('🧹 Cleaning up effects and opening:', destinationUrl);
     cleanupEffects(effectsContainer);
-    // Ensure it always opens in new window to keep users on our website
     if (destinationUrl && destinationUrl.trim()) {
       openDestinationUrl(destinationUrl);
-    } else {
-      console.log('⚠️ No destination URL provided - portal effect only');
     }
-  }, 2000);
+  }, effectDuration);
 };
