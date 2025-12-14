@@ -1,16 +1,48 @@
 
+import { memo, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { mainCategories } from "@/utils/mainCategoryMapping";
-import { getMainCategoriesWithCounts } from "@/utils/categoryUtils/toolFiltering";
 import { allTools } from "@/data/toolsData";
+import { 
+  getCachedCategoryCounts, 
+  isCategoryCacheReady 
+} from "@/utils/categoryUtils/precomputedCache";
 
-const CategoryPageSelection = () => {
+// Pre-compute counts ONCE at module level for instant access
+let staticCategoryCounts: Record<string, number> | null = null;
+
+const getStaticCounts = () => {
+  // Try pre-computed cache first (instant)
+  const cached = getCachedCategoryCounts();
+  if (cached) return cached;
+  
+  // If no cache, use a simple fast count (just category matching, no detection)
+  if (!staticCategoryCounts) {
+    staticCategoryCounts = {};
+    mainCategories.forEach(cat => {
+      if (cat.name === "ALL AI TOOLS") {
+        staticCategoryCounts![cat.name] = allTools.length;
+      } else {
+        // Fast approximate count based on category string matching
+        const count = allTools.filter(tool => {
+          const category = (tool.category || '').toLowerCase();
+          const catName = cat.name.toLowerCase();
+          return category.includes(catName) || catName.includes(category.split(' ')[0]);
+        }).length;
+        staticCategoryCounts![cat.name] = count || Math.floor(allTools.length / mainCategories.length);
+      }
+    });
+  }
+  return staticCategoryCounts;
+};
+
+const CategoryPageSelection = memo(() => {
   const navigate = useNavigate();
   
-  // Get main category counts using the EXACT same logic as MainCategoryFilter
-  const mainCategoryCounts = getMainCategoriesWithCounts(allTools);
+  // Use pre-computed counts - INSTANT, no heavy computation
+  const mainCategoryCounts = useMemo(() => getStaticCounts(), []);
 
   const handleMainCategoryClick = (mainCategoryName: string) => {
     // INSTANT navigation - no delays
@@ -18,8 +50,6 @@ const CategoryPageSelection = () => {
     navigate(`/main-category/${encodedName}`);
     window.scrollTo({ top: 0, behavior: 'auto' });
   };
-
-  console.log('📊 CategoryPageSelection: Main category counts:', mainCategoryCounts);
 
   return (
     <section className="py-16 px-4 relative">
@@ -71,8 +101,6 @@ const CategoryPageSelection = () => {
             // Use EXACT same logic: ALL AI TOOLS gets total count, others get from globalCounts
             const count = mainCat.name === "ALL AI TOOLS" ? allTools.length : (mainCategoryCounts[mainCat.name] || 0);
             
-            console.log(`📊 CategoryPageSelection ${mainCat.name}: ${count} tools (${mainCat.name === "ALL AI TOOLS" ? 'total tools' : 'from global counts'})`);
-            
             if (count === 0 && mainCat.name !== "ALL AI TOOLS") return null;
             
             return (
@@ -107,6 +135,8 @@ const CategoryPageSelection = () => {
       </div>
     </section>
   );
-};
+});
+
+CategoryPageSelection.displayName = "CategoryPageSelection";
 
 export default CategoryPageSelection;

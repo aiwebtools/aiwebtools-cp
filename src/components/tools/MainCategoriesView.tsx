@@ -1,4 +1,5 @@
 
+import { memo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { mainCategories } from "@/utils/mainCategoryMapping";
@@ -9,16 +10,16 @@ interface MainCategoriesViewProps {
   onMainCategoryClick: (mainCategoryName: string) => void;
 }
 
-const MainCategoriesView = ({ mainCategoryCounts, onMainCategoryClick }: MainCategoriesViewProps) => {
+const MainCategoriesView = memo(({ mainCategoryCounts, onMainCategoryClick }: MainCategoriesViewProps) => {
   const navigate = useNavigate();
 
-  const handleCategoryClick = (mainCategoryName: string) => {
+  const handleCategoryClick = useCallback((mainCategoryName: string) => {
     // INSTANT navigation
     const encodedName = encodeURIComponent(mainCategoryName);
     onMainCategoryClick(mainCategoryName);
     navigate(`/main-category/${encodedName}`);
     window.scrollTo({ top: 0, behavior: 'auto' });
-  };
+  }, [navigate, onMainCategoryClick]);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
@@ -49,6 +50,8 @@ const MainCategoriesView = ({ mainCategoryCounts, onMainCategoryClick }: MainCat
       })}
     </div>
   );
-};
+});
+
+MainCategoriesView.displayName = "MainCategoriesView";
 
 export default MainCategoriesView;
