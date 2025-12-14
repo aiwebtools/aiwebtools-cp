@@ -3155,6 +3155,153 @@ const featuredGPTs = [
     features: ["Aircraft Maintenance", "Aviation Inspection", "Airline Safety", "Compliance"],
     directUrl: "https://chatgpt.com/g/g-68bb3a729c24819189bdc498b1d835e4-ai-airline-maintenance-inspector/?via=aiwebtools",
     emoji: "✈️"
+  },
+  {
+    title: "Real Estate Property Condition Inspector GPT",
+    description: "Performs precise property inspections via vision, Python, and live data. Professional property inspection services.",
+    badge: "INSPECTOR",
+    color: "from-green-500 to-blue-600",
+    features: ["Property Inspection", "Real Estate", "Home Inspection", "Property Assessment"],
+    directUrl: "https://chatgpt.com/g/g-68bb32b6f1888191abfba2549ab3088b-ai-real-estate-property-condition-inspector/?via=aiwebtools",
+    imageUrl: "/src/assets/real-estate-inspector-hero.jpg",
+    emoji: "🏠"
+  },
+  {
+    title: "Vehicle Accident Damage Appraiser",
+    description: "Certified-grade vehicle damage inspector and cost estimator for accident analysis. Professional vehicle damage assessment.",
+    badge: "INSPECTOR",
+    color: "from-red-500 to-orange-600",
+    features: ["Vehicle Damage", "Accident Assessment", "Damage Appraisal", "Auto Insurance"],
+    directUrl: "https://chatgpt.com/g/g-68bb3097f148819197c06d9dd2de35cd-ai-vehicle-accident-damage-appraiser/?via=aiwebtools",
+    imageUrl: "/src/assets/vehicle-damage-appraiser-hero.jpg",
+    emoji: "🚗"
+  },
+  {
+    title: "Disaster Damage Estimator GPT",
+    description: "Performs detailed disaster damage inspections and cost estimates with verified analysis. Professional disaster assessment services.",
+    badge: "INSPECTOR",
+    color: "from-red-500 to-gray-600",
+    features: ["Disaster Assessment", "Damage Estimation", "Disaster Recovery", "Insurance Claims"],
+    directUrl: "https://chatgpt.com/g/g-68bb2b0a345081918f4b78348c835906-ai-disaster-damage-estimator/?via=aiwebtools",
+    imageUrl: "/src/assets/disaster-damage-hero.jpg",
+    emoji: "⛈️"
+  },
+  {
+    title: "Energy Efficiency Mapper GPT",
+    description: "Virtual building inspector and energy efficiency analyst for professional-grade diagnostics. Expert energy efficiency assessment.",
+    badge: "GREEN ENERGY",
+    color: "from-green-500 to-blue-600",
+    features: ["Energy Efficiency", "Building Inspection", "Energy Audit", "Sustainability"],
+    directUrl: "https://chatgpt.com/g/g-68bb27b70884819195c2ba705b4d9a17-energy-efficiency-mapper/?via=aiwebtools",
+    imageUrl: "/src/assets/energy-efficiency-hero.jpg",
+    emoji: "⚡"
+  },
+  {
+    title: "Food Plate Nutrition Analyzer",
+    description: "Performs clinical-grade nutrition analysis from images using vision, Python, and trusted sources. Professional nutrition analysis services.",
+    badge: "HEALTH",
+    color: "from-orange-500 to-red-600",
+    features: ["Nutrition Analysis", "Food Inspection", "Dietary Assessment", "Health Analysis"],
+    directUrl: "https://chatgpt.com/g/g-68bb2444a9b08191a01c7b91216a7293-ai-food-plate-nutrition-analyzer/?via=aiwebtools",
+    imageUrl: "/src/assets/food-nutrition-analyzer-hero.jpg",
+    emoji: "🍽️"
+  },
+  {
+    title: "Retail Shelf Optimizer GPT",
+    description: "Certified AI retail shelf inspector with competitor intelligence. Professional retail inspection and optimization services.",
+    badge: "RETAIL",
+    color: "from-blue-500 to-purple-600",
+    features: ["Retail Inspection", "Shelf Optimization", "Retail Analysis", "Merchandising"],
+    directUrl: "https://chatgpt.com/g/g-68bb210f77f8819190c253705c0ff8ba-ai-retail-shelf-optimizer/?via=aiwebtools",
+    imageUrl: "/src/assets/retail-shelf-optimizer-hero.jpg",
+    emoji: "🛒"
+  },
+  {
+    title: "Manufacturing Defect Detector GPT",
+    description: "Precision-grade virtual QC inspector for manufacturing defect detection. Professional quality control inspection services.",
+    badge: "QUALITY",
+    color: "from-red-500 to-orange-600",
+    features: ["Manufacturing Inspection", "Defect Detection", "Quality Control", "Production"],
+    directUrl: "https://chatgpt.com/g/g-68bb1e8323d481918bcfe3dd7e737f18-ai-manufacturing-defect-detector/?via=aiwebtools",
+    imageUrl: "/src/assets/manufacturing-defect-hero.jpg",
+    emoji: "🔍"
+  },
+  {
+    title: "Farm & Crop Health Scanner GPT",
+    description: "Virtual agricultural inspector delivering precision crop diagnostics and formal farm health reports. Professional agricultural inspection services.",
+    badge: "AGRICULTURE",
+    color: "from-green-500 to-yellow-600",
+    features: ["Farm Inspection", "Crop Health", "Agricultural Inspector", "Crop Diagnostics"],
+    directUrl: "https://chatgpt.com/g/g-68bb1c74f7b88191bbb1887cf9928893-ai-farm-crop-health-scanner/?via=aiwebtools",
+    imageUrl: "/src/assets/farm-crop-scanner-hero.jpg",
+    emoji: "🌾"
+  },
+  {
+    title: "Construction Site Safety Analyzer GPT",
+    description: "Virtual safety inspector for construction sites. Detects hazards, analyzes images, enforces standards. Professional construction safety inspection.",
+    badge: "SAFETY",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Construction Safety", "Site Inspection", "Safety Analysis", "Workplace Safety"],
+    directUrl: "https://chatgpt.com/g/g-68bb19910f2881918ce15096550d2d52-ai-construction-site-safety-analyzer/?via=aiwebtools",
+    imageUrl: "/src/assets/construction-safety-hero.jpg",
+    emoji: "🚧"
+  },
+  {
+    title: "Dam & Levee Inspector GPT",
+    description: "Virtual dam and levee inspector with engineering-grade analysis. Expert dam and levee inspection services.",
+    badge: "INFRASTRUCTURE",
+    color: "from-blue-500 to-green-600",
+    features: ["Dam Inspection", "Levee Safety", "Water Infrastructure", "Flood Control"],
+    directUrl: "https://chatgpt.com/g/g-68bb422e07a081919953658b4bc9acb0-dam-levee-inspector-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/dam-levee-inspector-hero.jpg",
+    emoji: "🏔️"
+  },
+  {
+    title: "Railway Track & Rolling Stock Inspector GPT",
+    description: "Virtual inspector for railway track and rolling stock safety analysis. Professional railway inspection services.",
+    badge: "INFRASTRUCTURE",
+    color: "from-blue-500 to-gray-600",
+    features: ["Railway Inspection", "Track Safety", "Train Safety", "Rail Inspection"],
+    directUrl: "https://chatgpt.com/g/g-68bb437ee1008191a2d7f7a697b5426f-railway-track-rolling-stock-inspector-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/railway-inspector-hero.jpg",
+    emoji: "🚂"
+  },
+  {
+    title: "Power Plant Systems Inspector GPT",
+    description: "Virtual power plant inspector for safety, reliability, and compliance audits. Expert power plant inspection services.",
+    badge: "ENERGY",
+    color: "from-red-500 to-orange-600",
+    features: ["Power Plant", "Energy Inspection", "Plant Safety", "Power Generation"],
+    directUrl: "https://chatgpt.com/g/g-68bb4b0bb8848191b13199effbb0b89f-power-plant-systems-inspector-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/power-plant-inspector-hero.jpg",
+    emoji: "🏭"
+  },
+  {
+    title: "Road & Pavement Inspector GPT",
+    description: "Specialized virtual inspector for roadway and runway surface and structural assessments. Expert road inspection services.",
+    badge: "INFRASTRUCTURE",
+    color: "from-stone-500 to-gray-600",
+    features: ["Road Inspection", "Pavement Assessment", "Road Safety", "Infrastructure"],
+    directUrl: "https://chatgpt.com/g/g-68bb469b40ec81919fd73b5dbb7562db-ai-road-pavement-inspector/?via=aiwebtools",
+    emoji: "🛣️"
+  },
+  {
+    title: "AI Pipeline Integrity Inspector",
+    description: "Virtual inspector for pipeline integrity, safety, & regulatory compliance. Professional pipeline inspection services.",
+    badge: "INFRASTRUCTURE",
+    color: "from-gray-500 to-blue-600",
+    features: ["Pipeline Inspection", "Pipeline Integrity", "Oil Gas Pipeline", "Pipeline Safety"],
+    directUrl: "https://chatgpt.com/g/g-68bb492f149c81918aaa62cab75ee4f8-ai-pipeline-integrity-inspector/?via=aiwebtools",
+    emoji: "🔧"
+  },
+  {
+    title: "Bridge & Infrastructure Inspector GPT",
+    description: "Virtual structural inspector for bridges and critical infrastructure. Expert infrastructure inspection services.",
+    badge: "INFRASTRUCTURE",
+    color: "from-stone-500 to-gray-600",
+    features: ["Bridge Inspection", "Infrastructure Safety", "Structural Inspection", "Civil Engineering"],
+    directUrl: "https://chatgpt.com/g/g-68bb35336fc88191961a10a19a09bdcb-ai-bridge-infrastructure-inspector/?via=aiwebtools",
+    emoji: "🌉"
   }
 ];
 
