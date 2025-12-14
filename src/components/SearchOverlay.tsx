@@ -63,7 +63,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-start justify-center pt-20">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 backdrop-blur-sm">
       <div className="w-full max-w-4xl mx-4">
         <Card className="bg-gray-900/95 border border-cyan-500/30 shadow-2xl">
           <CardContent className="p-6">
