@@ -2855,6 +2855,169 @@ const featuredGPTs = [
     features: ["Mindfulness", "Meditation", "Breathing", "Inner Peace"],
     directUrl: "https://chat.openai.com/g/g-68af9dc3d0688191830cd5a3d71e39df-mindfulness-mentor-gpt",
     emoji: "🌙"
+  },
+  {
+    title: "Universal Speech Mastery GPT",
+    description: "Transform into a fluent multilingual communicator across any world language with personalized instruction and conversation practice.",
+    badge: "LANGUAGE",
+    color: "from-blue-500 to-purple-600",
+    features: ["Language Learning", "Multilingual", "Speech Mastery", "Fluency"],
+    directUrl: "https://chatgpt.com/g/g-68ae26360d448191b25842afb8d2f66b-lingua-champion-universal-speech-mastery-ai/?via=aiwebtools",
+    emoji: "🗣️"
+  },
+  {
+    title: "Music Melodies & Lessons GPT",
+    description: "Your ultimate musical companion for learning instruments, perfecting vocals, and writing songs with step-by-step guidance.",
+    badge: "MUSIC",
+    color: "from-purple-500 to-pink-600",
+    features: ["Music Education", "Instrument Learning", "Vocal Training", "Songwriting"],
+    directUrl: "https://musicmelodiesandlessonsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/8aPpUPiDBJ4?si=4ERg7NITSKCePyHF",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-music-melodi_LBv7r.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
+    emoji: "🎵"
+  },
+  {
+    title: "LEARN ANY COURSE GPT",
+    description: "AI-powered tutor guiding you through comprehensive, step-by-step courses on any subject with personalized classroom-style experience.",
+    badge: "EDUCATION",
+    color: "from-blue-500 to-green-600",
+    features: ["Education", "Courses", "Tutoring", "Self-Learning"],
+    directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/pr8-IgbL46I",
+    emoji: "📚"
+  },
+  {
+    title: "LEARN ANY SKILL GPT",
+    description: "Dynamic AI educational assistant guiding users through learning any skill from beginner to expert with multimedia experiences.",
+    badge: "SKILLS",
+    color: "from-purple-500 to-blue-600",
+    features: ["Skill Learning", "Training", "Personal Development", "Tutorial"],
+    directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/0_oIzDL2BB4",
+    emoji: "🧠"
+  },
+  {
+    title: "Quiz Maker Ai",
+    description: "Create quizzes and tests for courses seamlessly. Works with Course Maker GPT and College Degree GPT for complete educational experiences.",
+    badge: "ASSESSMENT",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Quiz Creation", "Assessment", "Testing", "Education"],
+    directUrl: "https://chatgpt.com/g/g-cUahkn19i-quiz-maker-ai",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-eye-catching-advertisement-for-quiz-maker-.jpeg/:/cr=t:5.56%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
+    emoji: "📝"
+  },
+  {
+    title: "Course Maker GPT",
+    description: "Advanced AI tool for creating comprehensive, structured courses on any subject with clear learning objectives and lesson plans.",
+    badge: "COURSE CREATION",
+    color: "from-orange-500 to-red-600",
+    features: ["Course Creation", "Curriculum", "Lesson Planning", "Training"],
+    directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377336291427090462/ChatGPT_Image_May_28_2025_01_22_27_PM.png?ex=683897e1&is=68374661&hm=71f0b50e1d34249bf9ed9ca8b7a1b0e45d0d2127cb9e356e2b4c65b35518656a&=&format=webp&quality=lossless&width=2088&height=1392",
+    emoji: "🏆"
+  },
+  {
+    title: "EDUCATIONAL TUTOR GPT",
+    description: "Patient AI tutor that explains step by step and adapts to your learning style. Personalized educational support for all levels.",
+    badge: "TUTORING",
+    color: "from-green-500 to-blue-600",
+    features: ["Tutoring", "Personalized Learning", "Academic Help", "Study Assistance"],
+    directUrl: "https://chatgpt.com/g/g-68bb71f1dca88191866a1a0bfdff7ca0-educational-tutor-gpt/?via=aiwebtools",
+    emoji: "👨‍🏫"
+  },
+  {
+    title: "Cursive Teacher GPT",
+    description: "Specialized AI instructor for learning beautiful cursive handwriting with step-by-step guidance and practice exercises.",
+    badge: "HANDWRITING",
+    color: "from-purple-500 to-blue-600",
+    features: ["Cursive Writing", "Handwriting", "Penmanship", "Education"],
+    directUrl: "https://chatgpt.com/g/g-68cb403167a88191ae07062124d32bbb-cursive-teacher-gpt/?via=aiwebtools",
+    emoji: "✍️"
+  },
+  {
+    title: "Trivia Night GPT",
+    description: "Ultimate AI-powered trivia showdown! Test your knowledge with electrifying games featuring history, science, pop culture and more!",
+    badge: "TRIVIA",
+    color: "from-purple-500 to-pink-600",
+    features: ["Trivia Games", "Entertainment", "Knowledge Testing", "Family Fun"],
+    directUrl: "https://trivianightgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/trivanight.jpg/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    emoji: "🎯"
+  },
+  {
+    title: "Imagination Traveler GPT",
+    description: "Cosmic guide unlocking immersive journeys through alternate histories, possible futures, and realities beyond comprehension.",
+    badge: "IMAGINATION",
+    color: "from-purple-500 to-cyan-600",
+    features: ["Imagination", "Storytelling", "Alternate Realities", "Creative Journeys"],
+    directUrl: "https://imaginationtravelergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-advertisement-for-imaginati_E4k--.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    emoji: "🌌"
+  },
+  {
+    title: "SKIN CARE GPT",
+    description: "Comprehensive AI dermatology and skincare consultant providing personalized guidance, product recommendations, and professional beauty advice.",
+    badge: "SKINCARE",
+    color: "from-pink-500 to-purple-600",
+    features: ["Skincare", "Dermatology", "Beauty Advice", "Skin Analysis"],
+    directUrl: "https://skincaregpt.lovable.app/?via=aiwebtools",
+    emoji: "✨"
+  },
+  {
+    title: "DENTAL GPT",
+    description: "Comprehensive AI dental consultant providing expert guidance on oral health, dental procedures, and preventive care.",
+    badge: "DENTAL",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Dental Health", "Oral Care", "Dentistry", "Dental Guidance"],
+    directUrl: "https://chatgpt.com/g/g-67cbcbcf3a38819183974f2d062d5d7f-dental-gpt-expert",
+    videoUrl: "https://youtu.be/jwjNOKP5mf4?si=XWMe5y7XghCURksD",
+    emoji: "🦷"
+  },
+  {
+    title: "AI Home Cleanliness & Declutter Coach GPT",
+    description: "Strict home organization and decluttering coach. Expert guidance for creating organized, clean living spaces.",
+    badge: "HOME ORG",
+    color: "from-blue-500 to-green-600",
+    features: ["Home Organization", "Decluttering", "Cleaning", "Lifestyle"],
+    directUrl: "https://chatgpt.com/g/g-68bb80c2c41c8191b3d6e3dda92b6ffb-ai-home-cleanliness-declutter-coach-gpt/?via=aiwebtools",
+    emoji: "🏠"
+  },
+  {
+    title: "Apothecary GPT",
+    description: "Historical apothecary sharing authentic herbal and traditional medicine knowledge, medicinal plants and preparation methods.",
+    badge: "HERBAL",
+    color: "from-green-500 to-purple-600",
+    features: ["Herbal Medicine", "Traditional Healing", "Natural Remedies", "Herbalist"],
+    directUrl: "https://chatgpt.com/g/g-68c9e33310148191ae3df594ec4012dd-apothecary-gpt/?via=aiwebtools",
+    emoji: "🌿"
+  },
+  {
+    title: "Patient Advocate GPT",
+    description: "Healthcare advocacy assistant helping patients navigate the complex healthcare system with confidence.",
+    badge: "ADVOCACY",
+    color: "from-blue-500 to-green-600",
+    features: ["Patient Advocacy", "Healthcare Navigation", "Patient Rights", "Medical Billing"],
+    directUrl: "https://chatgpt.com/g/g-68cf22ea994481919206bf9eb0abccbc-patients-advocate-gpt/?via=aiwebtools",
+    emoji: "🛡️"
+  },
+  {
+    title: "Branford River Spa GPT",
+    description: "Prototype design for local spa in Branford Connecticut providing services information and wellness guidance.",
+    badge: "SPA",
+    color: "from-cyan-500 to-blue-600",
+    features: ["Spa Services", "Wellness", "Local Business", "Customer Service"],
+    directUrl: "https://chatgpt.com/g/g-3WgfLujuW-branford-river-resort-and-spa-gpt/?via=aiwebtools",
+    videoUrl: "https://vimeo.com/1131951831?share=copy&fl=sv&fe=ci",
+    emoji: "🧖"
+  },
+  {
+    title: "Parenting Guide GPT",
+    description: "Wise, warm parenting advice rooted in psychology, emotional intelligence, and lived compassion for all parenting stages.",
+    badge: "PARENTING",
+    color: "from-green-500 to-teal-600",
+    features: ["Parenting", "Child Development", "Family Guidance", "Psychology"],
+    directUrl: "https://chatgpt.com/g/g-68d4c45f3bc48191ba4a330a3b48bc87-parenting-guide-gpt/?via=aiwebtools",
+    emoji: "👨‍👩‍👧‍👦"
   }
 ];
 
