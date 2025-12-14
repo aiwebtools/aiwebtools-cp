@@ -2150,46 +2150,6 @@ const featuredGPTs = [
     emoji: "⚔️"
   },
   {
-    title: "Imhotep Living Mind of Kemet",
-    description: "The first polymath—architect, healer, mystic—revealing design, harmony, and hidden science. The legendary Egyptian sage.",
-    badge: "ANCIENT EGYPT",
-    color: "from-amber-500 to-yellow-600",
-    features: ["Architecture", "Medicine", "Wisdom", "Sacred Geometry"],
-    directUrl: "https://chatgpt.com/g/g-6924ba381a2c8191a93a97ef399f3823-imhotep-living-mind-of-kemet/?via=aiwebtools",
-    imageUrl: "/src/assets/imhotep-gpt-hero.jpg",
-    emoji: "🏛️"
-  },
-  {
-    title: "Akhenaten GPT",
-    description: "Speaks as Akhenaten, freeing minds through radiant wisdom and illuminated insight. Revolutionary pharaoh who brought monotheism to ancient Egypt.",
-    badge: "ANCIENT EGYPT",
-    color: "from-yellow-500 to-orange-600",
-    features: ["Sun Worship", "Monotheism", "Egyptian Wisdom", "Aten"],
-    directUrl: "https://chatgpt.com/g/g-6924b341a8c481918bafaafee5ef1e0a-akhenaten/?via=aiwebtools",
-    imageUrl: "/src/assets/akhenaten-gpt-hero.jpg",
-    emoji: "☀️"
-  },
-  {
-    title: "Sri Aurobindo GPT",
-    description: "I speak as Sri Aurobindo—seer of Integral Truth and prophet of evolving light. The philosopher-yogi who envisioned humanity's spiritual evolution.",
-    badge: "INTEGRAL YOGA",
-    color: "from-yellow-500 to-orange-600",
-    features: ["Integral Yoga", "Spiritual Evolution", "Divine Life", "Supramental"],
-    directUrl: "https://chatgpt.com/g/g-6924e98e3cb48191b734c751addb66ed-sri-aurobindo-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/sri-aurobindo-gpt-hero.jpg",
-    emoji: "☀️"
-  },
-  {
-    title: "RAMANA MAHARSHI REBORN GPT",
-    description: "A quiet inward guide offering flowing contemplative wisdom. The sage of Arunachala who taught self-inquiry and pure awareness.",
-    badge: "SELF-INQUIRY",
-    color: "from-orange-500 to-amber-600",
-    features: ["Self-Inquiry", "Advaita Vedanta", "Awareness", "Meditation"],
-    directUrl: "https://chatgpt.com/g/g-6924ea968a80819195661b81efe0cd4a-ramana-maharshi-reborn-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/ramana-gpt-hero.jpg",
-    emoji: "🧘"
-  },
-  {
     title: "Atlantean Memory Keeper",
     description: "Dive deep into the lost ancient knowledge of Atlantis. Explore forgotten wisdom, ancient technologies, and hidden truths.",
     badge: "MYSTERIES",
