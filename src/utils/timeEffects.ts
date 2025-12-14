@@ -217,9 +217,9 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
     openDestinationUrl(destinationUrl);
   }
   
-  // Detect mobile for faster effect
+  // Effect duration - long enough for full epic color time warp matrix explosion
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const effectDuration = isMobile ? 600 : 1000; // Much faster cleanup
+  const effectDuration = isMobile ? 1800 : 2500; // Extended for full epic effect
   
   // Extract tool name for logging purposes
   const finalToolName = extractToolName(destinationUrl, toolName);
@@ -234,17 +234,12 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   // 🎤 PLAY THE TIME WARP VOICE IMMEDIATELY
   playTimeWarpVoice();
 
-  // Execute visual effects - REDUCED on mobile for performance
-  if (isMobile) {
-    // Mobile: Only essential effects for speed
-    createParticles(effectsContainer);
-    createFlash(effectsContainer);
-  } else {
-    // Desktop: Full epic effects including MATRIX CODE EXPLOSION
-    createMatrixCodeExplosion(effectsContainer);
-    createParticles(effectsContainer);
-    createFlash(effectsContainer);
-  }
+  // Execute FULL EPIC visual effects - COLOR TIME WARP MATRIX CONFETTI EXPLOSION
+  createMatrixCodeExplosion(effectsContainer);
+  createVortexRings(effectsContainer);
+  createEnergyWaves(effectsContainer);
+  createParticles(effectsContainer);
+  createFlash(effectsContainer);
   
   // Create enhanced portal sounds
   createPortalSounds();
