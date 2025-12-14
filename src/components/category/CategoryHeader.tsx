@@ -16,7 +16,8 @@ const CategoryHeader = ({ categoryName, toolCount, onFilterSearch }: CategoryHea
   const navigate = useNavigate();
 
   const goBack = () => {
-    navigate('/');
+    // Instant navigation home
+    window.location.pathname === '/' ? window.scrollTo({ top: 0, behavior: 'auto' }) : (window.location.href = '/');
   };
 
   return (
