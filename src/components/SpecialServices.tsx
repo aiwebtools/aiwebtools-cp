@@ -2866,17 +2866,6 @@ const featuredGPTs = [
     emoji: "🗣️"
   },
   {
-    title: "Music Melodies & Lessons GPT",
-    description: "Your ultimate musical companion for learning instruments, perfecting vocals, and writing songs with step-by-step guidance.",
-    badge: "MUSIC",
-    color: "from-purple-500 to-pink-600",
-    features: ["Music Education", "Instrument Learning", "Vocal Training", "Songwriting"],
-    directUrl: "https://musicmelodiesandlessonsgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/8aPpUPiDBJ4?si=4ERg7NITSKCePyHF",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-digital-advertisement-for-music-melodi_LBv7r.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
-    emoji: "🎵"
-  },
-  {
     title: "LEARN ANY COURSE GPT",
     description: "AI-powered tutor guiding you through comprehensive, step-by-step courses on any subject with personalized classroom-style experience.",
     badge: "EDUCATION",
@@ -2897,26 +2886,6 @@ const featuredGPTs = [
     emoji: "🧠"
   },
   {
-    title: "Quiz Maker Ai",
-    description: "Create quizzes and tests for courses seamlessly. Works with Course Maker GPT and College Degree GPT for complete educational experiences.",
-    badge: "ASSESSMENT",
-    color: "from-yellow-500 to-orange-600",
-    features: ["Quiz Creation", "Assessment", "Testing", "Education"],
-    directUrl: "https://chatgpt.com/g/g-cUahkn19i-quiz-maker-ai",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-eye-catching-advertisement-for-quiz-maker-.jpeg/:/cr=t:5.56%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
-    emoji: "📝"
-  },
-  {
-    title: "Course Maker GPT",
-    description: "Advanced AI tool for creating comprehensive, structured courses on any subject with clear learning objectives and lesson plans.",
-    badge: "COURSE CREATION",
-    color: "from-orange-500 to-red-600",
-    features: ["Course Creation", "Curriculum", "Lesson Planning", "Training"],
-    directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
-    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377336291427090462/ChatGPT_Image_May_28_2025_01_22_27_PM.png?ex=683897e1&is=68374661&hm=71f0b50e1d34249bf9ed9ca8b7a1b0e45d0d2127cb9e356e2b4c65b35518656a&=&format=webp&quality=lossless&width=2088&height=1392",
-    emoji: "🏆"
-  },
-  {
     title: "EDUCATIONAL TUTOR GPT",
     description: "Patient AI tutor that explains step by step and adapts to your learning style. Personalized educational support for all levels.",
     badge: "TUTORING",
@@ -2924,15 +2893,6 @@ const featuredGPTs = [
     features: ["Tutoring", "Personalized Learning", "Academic Help", "Study Assistance"],
     directUrl: "https://chatgpt.com/g/g-68bb71f1dca88191866a1a0bfdff7ca0-educational-tutor-gpt/?via=aiwebtools",
     emoji: "👨‍🏫"
-  },
-  {
-    title: "Cursive Teacher GPT",
-    description: "Specialized AI instructor for learning beautiful cursive handwriting with step-by-step guidance and practice exercises.",
-    badge: "HANDWRITING",
-    color: "from-purple-500 to-blue-600",
-    features: ["Cursive Writing", "Handwriting", "Penmanship", "Education"],
-    directUrl: "https://chatgpt.com/g/g-68cb403167a88191ae07062124d32bbb-cursive-teacher-gpt/?via=aiwebtools",
-    emoji: "✍️"
   },
   {
     title: "Trivia Night GPT",
