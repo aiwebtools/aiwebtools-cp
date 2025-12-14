@@ -19,6 +19,7 @@ import { getToolsByMainCategory } from "@/utils/categoryUtils";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { Tool } from "@/types/tools";
 import { getContextAwareAdditionalTools } from "@/utils/contextAwareSimilarTools";
+import { getCachedToolsByMainCategory } from "@/utils/categoryUtils/precomputedCache";
 
 const MainCategoryPage = () => {
   const { mainCategoryName } = useParams<{ mainCategoryName: string }>();
@@ -39,22 +40,32 @@ const MainCategoryPage = () => {
     [decodedCategoryName]
   );
 
-  // Load category tools async to prevent blocking render
+  // Load category tools using precomputed cache first for INSTANT data
   useEffect(() => {
     if (!decodedCategoryName) return;
-    
+
     // Reset state immediately - page renders instantly
     setIsToolsReady(false);
     setCategoryTools([]);
     setFilteredToolsByCategory([]);
     setDisplayedCount(48);
-    
-    // Load tools in next frame to allow page to render first
+
+    // Try to use precomputed cached tools (non-blocking, already computed at startup)
+    const cachedTools = getCachedToolsByMainCategory(decodedCategoryName);
+    if (cachedTools && cachedTools.length > 0) {
+      setCategoryTools(cachedTools);
+      setFilteredToolsByCategory(cachedTools);
+      setIsToolsReady(true);
+      return; // Skip heavier fallback path
+    }
+
+    // Fallback: load tools in next frame to allow page to render first
     requestAnimationFrame(() => {
       startTransition(() => {
         const tools = getToolsByMainCategory(allTools, decodedCategoryName);
         console.log(`📂 Loaded ${tools.length} tools for category: ${decodedCategoryName}`);
         setCategoryTools(tools);
+        setFilteredToolsByCategory(tools);
         setIsToolsReady(true);
       });
     });
