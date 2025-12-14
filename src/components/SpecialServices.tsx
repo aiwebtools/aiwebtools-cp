@@ -305,7 +305,7 @@ const featuredGPTsUnsorted = [
     color: "from-green-500 to-lime-600",
     features: ["Cultivation Guide", "Strain Information", "Medical Applications", "Legal Guidance"],
     directUrl: "https://cannabisgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://vimeo.com/1132373393?share=copy&fl=sv&fe=ci",
+    videoUrl: "https://youtu.be/zGGdCzxFNS4",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-sleek-and-modern-advertisement-for-an-ai-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:98",
     emoji: "🌿"
   },
