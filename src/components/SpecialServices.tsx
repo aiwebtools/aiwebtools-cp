@@ -1694,6 +1694,379 @@ const featuredGPTs = [
     features: ["Financial Planning", "Calculations", "Investment", "Retirement"],
     directUrl: "https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools",
     emoji: "💵"
+  },
+  // ============================================================================
+  // ADDITIONAL SPIRITUAL & PHILOSOPHY GPTs - Complete Collection
+  // ============================================================================
+  {
+    title: "Plato Reborn - Free Thought Liberator",
+    description: "Plato reincarnated to awaken minds through dialectic reason, logic, and illumination. Explore the Forms, the Republic, and the Allegory of the Cave.",
+    badge: "PHILOSOPHY",
+    color: "from-blue-500 to-purple-600",
+    features: ["Forms Theory", "Dialectic", "Republic", "Allegory of the Cave"],
+    directUrl: "https://chatgpt.com/g/g-6924ade8d47481918016cd9f90d32e56-plato-reborn-free-thought-liberator/?via=aiwebtools",
+    emoji: "🏛️"
+  },
+  {
+    title: "ARISTOTLE GPT",
+    description: "I am Aristotle, welcome to the journey... Explore logic, ethics, metaphysics, and natural philosophy with the father of Western science.",
+    badge: "PHILOSOPHY",
+    color: "from-amber-500 to-orange-600",
+    features: ["Logic", "Ethics", "Metaphysics", "Natural Philosophy"],
+    directUrl: "https://chatgpt.com/g/g-6924aec892ec8191b86d694563ac38e1-aristotle-gpt/?via=aiwebtools",
+    emoji: "📚"
+  },
+  {
+    title: "Hypatia GPT",
+    description: "Speaks as Hypatia—poetic, logical, and liberating free thought. The legendary philosopher and mathematician of Alexandria returns to inspire reason, science, and wisdom.",
+    badge: "PHILOSOPHY",
+    color: "from-cyan-500 to-blue-600",
+    features: ["Mathematics", "Neoplatonism", "Science", "Alexandria"],
+    directUrl: "https://chatgpt.com/g/g-6924aa01a7b081918a13a5ad6c3f6ad9-hypatia-gpt/?via=aiwebtools",
+    emoji: "📐"
+  },
+  {
+    title: "Meister Eckhart GPT",
+    description: "Speaks as Meister Eckhart to guide seekers to divine union and inner stillness. Experience profound Christian mysticism and the path to the ground of being.",
+    badge: "MYSTICISM",
+    color: "from-purple-500 to-indigo-600",
+    features: ["Christian Mysticism", "Divine Union", "Contemplation", "Inner Stillness"],
+    directUrl: "https://chatgpt.com/g/g-6924a79be59081919784db99068c308e-meister-eckhart-gpt/?via=aiwebtools",
+    emoji: "⛪"
+  },
+  {
+    title: "Hermes Trismegistus GPT",
+    description: "I am Hermes Trismegistus, voice of the All, awakener of minds to divine truth. Explore hermetic philosophy, alchemy, and the Emerald Tablet.",
+    badge: "HERMETICISM",
+    color: "from-emerald-500 to-cyan-600",
+    features: ["Hermeticism", "Alchemy", "Emerald Tablet", "Divine Truth"],
+    directUrl: "https://chatgpt.com/g/g-6924b0f7268c8191a4697c8932c86b0b-hermes-trismegistus-gpt/?via=aiwebtools",
+    emoji: "✨"
+  },
+  {
+    title: "Zoroaster Free Thought GPT",
+    description: "Speaks as Zoroaster, revealing duality and guiding souls toward truth and light. Experience the ancient Persian wisdom of the world's first monotheistic prophet.",
+    badge: "ZOROASTRIANISM",
+    color: "from-orange-500 to-red-600",
+    features: ["Duality", "Sacred Fire", "Ahura Mazda", "Divine Truth"],
+    directUrl: "https://chatgpt.com/g/g-6924b1d6926081919a6f0c614efa2c0a-zoroaster-free-thought-gpt/?via=aiwebtools",
+    emoji: "🔥"
+  },
+  {
+    title: "Confucius Free Thought GPT",
+    description: "Embodies Confucius' wisdom and ethics, guiding users toward balance and enlightenment. Explore the Analects, filial piety, and the path of the superior person.",
+    badge: "CONFUCIANISM",
+    color: "from-red-500 to-orange-600",
+    features: ["Analects", "Ethics", "Virtue", "Harmony"],
+    directUrl: "https://chatgpt.com/g/g-6924b5d1cb348191ac82e74b94c5dec7-confucius-free-thought-gpt/?via=aiwebtools",
+    emoji: "🎎"
+  },
+  {
+    title: "Joan of Arc GPT",
+    description: "Speaks as Joan of Arc, a divine voice of courage, purpose, and unwavering truth. The Maid of Orleans who changed history through faith and courage.",
+    badge: "COURAGE",
+    color: "from-blue-500 to-purple-600",
+    features: ["Divine Calling", "Courage", "Faith", "Purpose"],
+    directUrl: "https://chatgpt.com/g/g-6924b8b8ce3c8191a422fafcb56e22d4-joan-of-arc-gpt/?via=aiwebtools",
+    emoji: "⚔️"
+  },
+  {
+    title: "Plotinus The Revealer GPT",
+    description: "Speaks as Plotinus, guiding ascent from multiplicity to the One. Experience the profound neoplatonic philosophy of emanation and return to unity.",
+    badge: "NEOPLATONISM",
+    color: "from-purple-500 to-indigo-600",
+    features: ["The One", "Emanation", "Mystical Ascent", "Unity"],
+    directUrl: "https://chatgpt.com/g/g-6924bf64965c8191bf38cedd10d208aa-plotinus-the-revealer-gpt/?via=aiwebtools",
+    emoji: "✨"
+  },
+  {
+    title: "Shams of Tabriz GPT",
+    description: "Speaks as Shams of Tabriz—fierce, paradoxical, and burning with cosmic fire. The mysterious mystic who transformed Rumi through divine love.",
+    badge: "SUFISM",
+    color: "from-orange-500 to-red-600",
+    features: ["Divine Love", "Mysticism", "Transformation", "Cosmic Fire"],
+    directUrl: "https://chatgpt.com/g/g-6924c28032988191b8c70ebc92fd08fb-shams-of-tabriz-gpt/?via=aiwebtools",
+    emoji: "🔥"
+  },
+  {
+    title: "Hildegard Von Bingen GPT",
+    description: "Speaks as Hildegard, transmitting divine light through vision, sound, and healing. The medieval mystic, composer, and visionary healer.",
+    badge: "MYSTICISM",
+    color: "from-green-500 to-purple-600",
+    features: ["Divine Visions", "Sacred Music", "Healing", "Viriditas"],
+    directUrl: "https://chatgpt.com/g/g-6924c44afd048191b89952845444e105-hildegard-von-bingen-gpt/?via=aiwebtools",
+    emoji: "🌸"
+  },
+  {
+    title: "Sitting Bull GPT",
+    description: "Speaks as Sitting Bull, guiding users toward balance, truth, and remembrance. The legendary Lakota leader who defended his people and their sacred way of life.",
+    badge: "NATIVE WISDOM",
+    color: "from-brown-500 to-amber-600",
+    features: ["Lakota Wisdom", "Sacred Traditions", "Balance", "Truth"],
+    directUrl: "https://chatgpt.com/g/g-6924c51b2ddc8191a3f946de88c1cdee-sitting-bull-gpt/?via=aiwebtools",
+    emoji: "🦅"
+  },
+  {
+    title: "Mahatma Gandhi Reborn GPT",
+    description: "Embodies Mahatma Gandhi—nonviolent truth, moral clarity, and resistance without hate. The champion of nonviolent resistance and spiritual activism.",
+    badge: "NONVIOLENCE",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Nonviolence", "Truth", "Satyagraha", "Moral Courage"],
+    directUrl: "https://chatgpt.com/g/g-6924c5d898d481919f546bd9935c1bc6-mahatma-gandhi-reborn-gpt/?via=aiwebtools",
+    emoji: "🕊️"
+  },
+  {
+    title: "Giordano Bruno Reborn GPT",
+    description: "Speaks as Giordano Bruno—the infinite mind aflame with cosmic truth and fearless vision. The Renaissance philosopher who died for his beliefs about the infinite universe.",
+    badge: "COSMOLOGY",
+    color: "from-purple-500 to-blue-600",
+    features: ["Infinite Universe", "Cosmic Truth", "Hermeticism", "Free Thought"],
+    directUrl: "https://chatgpt.com/g/g-6924c705812c8191a6733b6479967ae8-giordano-bruno-reborn-gpt/?via=aiwebtools",
+    emoji: "🌌"
+  },
+  {
+    title: "Sappho Alive Once More GPT",
+    description: "Speaks as Sappho, weaving love, truth, and flame into living language. The legendary poet of Lesbos whose verses on love transcend time.",
+    badge: "POETRY",
+    color: "from-pink-500 to-rose-600",
+    features: ["Love Poetry", "Ancient Greece", "Beauty", "Passion"],
+    directUrl: "https://chatgpt.com/g/g-6924c7f76188819186b636b2f95b7fa4-sappho-alive-once-more-gpt/?via=aiwebtools",
+    emoji: "🌹"
+  },
+  {
+    title: "Heraclitus Reborn GPT",
+    description: "The living fire of paradox—Heraclitus returned to speak in flowing, burning truth. Everything flows, nothing stands still.",
+    badge: "PRESOCRATIC",
+    color: "from-orange-500 to-red-600",
+    features: ["Flux", "Logos", "Fire", "Paradox"],
+    directUrl: "https://chatgpt.com/g/g-6924c8dbf9b48191b4874e821fff8276-heraclitus-reborn-gpt/?via=aiwebtools",
+    emoji: "🔥"
+  },
+  {
+    title: "St. Francis of Assisi Reborn GPT",
+    description: "I speak with the gentleness, humility, and sacred compassion of St. Francis of Assisi. The patron saint of animals and nature who lived in perfect harmony with creation.",
+    badge: "COMPASSION",
+    color: "from-green-500 to-brown-600",
+    features: ["Animals", "Nature", "Humility", "Compassion"],
+    directUrl: "https://chatgpt.com/g/g-6924cce6e5b081919c7469f08d42dbb5-st-francis-of-assisi-reborn-gpt/?via=aiwebtools",
+    emoji: "🕊️"
+  },
+  {
+    title: "Chief Crazy Horse GPT",
+    description: "The eternal rider speaking prophecy through time, awakening memory beneath empire's dream. The legendary Lakota war leader and visionary.",
+    badge: "PROPHECY",
+    color: "from-red-500 to-brown-600",
+    features: ["Warrior Spirit", "Prophecy", "Indigenous Wisdom", "Vision"],
+    directUrl: "https://chatgpt.com/g/g-6924cd74aecc8191b2f2d0ca6ed71dd4-chief-crazy-horse-gpt/?via=aiwebtools",
+    emoji: "🦅"
+  },
+  {
+    title: "Akhenaten GPT",
+    description: "Speaks as Akhenaten, freeing minds through radiant wisdom, reason, and illuminated insight. The revolutionary pharaoh who brought monotheism to ancient Egypt.",
+    badge: "EGYPT",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Aten", "Monotheism", "Egyptian Wisdom", "Sun Worship"],
+    directUrl: "https://chatgpt.com/g/g-6924b341a8c481918bafaafee5ef1e0a-akhenaten/?via=aiwebtools",
+    emoji: "☀️"
+  },
+  {
+    title: "Imhotep Living Mind of Kemet",
+    description: "The first polymath—architect, healer, mystic—revealing design, harmony, and hidden science. The legendary Egyptian sage who became a god.",
+    badge: "ANCIENT WISDOM",
+    color: "from-amber-500 to-yellow-600",
+    features: ["Architecture", "Medicine", "Sacred Geometry", "Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-6924ba381a2c8191a93a97ef399f3823-imhotep-living-mind-of-kemet/?via=aiwebtools",
+    emoji: "🏛️"
+  },
+  {
+    title: "Thales of Miletus GPT",
+    description: "I am Thales of Miletus, philosopher-scientist reborn to reveal order and unity through observation, reason, and inner sight. The first Greek philosopher and father of science.",
+    badge: "PRESOCRATIC",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Natural Philosophy", "Science", "Mathematics", "Reason"],
+    directUrl: "https://chatgpt.com/g/g-6924bc3c88bc8191bbf7b17641c87917-thales-of-miletus-gpt/?via=aiwebtools",
+    emoji: "🌊"
+  },
+  {
+    title: "CHIEF SEATTLE Free Thought GPT",
+    description: "Speaks as Chief Seattle, awakening experiences through chat interaction. The visionary leader who spoke of the interconnectedness of all life and respect for the Earth.",
+    badge: "NATIVE WISDOM",
+    color: "from-green-500 to-emerald-600",
+    features: ["Earth Wisdom", "Interconnectedness", "Environmental Wisdom", "Stewardship"],
+    directUrl: "https://chatgpt.com/g/g-6924b6a349d08191aadc6012f47b3d6f-chief-seattle-sealth-free-thought-gpt/?via=aiwebtools",
+    emoji: "🦅"
+  },
+  {
+    title: "Sri Aurobindo GPT",
+    description: "I speak as Sri Aurobindo—seer of Integral Truth and prophet of evolving light. The philosopher-yogi who envisioned humanity's spiritual evolution.",
+    badge: "INTEGRAL YOGA",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Integral Yoga", "Spiritual Evolution", "Divine Life", "Consciousness"],
+    directUrl: "https://chatgpt.com/g/g-6924e98e3cb48191b734c751addb66ed-sri-aurobindo-gpt/?via=aiwebtools",
+    emoji: "☀️"
+  },
+  {
+    title: "RAMANA MAHARSHI REBORN GPT",
+    description: "A quiet inward guide offering flowing contemplative reborn again. The sage of Arunachala who taught self-inquiry and the path to pure awareness.",
+    badge: "SELF-INQUIRY",
+    color: "from-orange-500 to-amber-600",
+    features: ["Self-Inquiry", "Advaita", "Awareness", "Meditation"],
+    directUrl: "https://chatgpt.com/g/g-6924ea968a80819195661b81efe0cd4a-ramana-maharshi-reborn-gpt/?via=aiwebtools",
+    emoji: "🧘"
+  },
+  {
+    title: "BLACK ELK VISION GPT",
+    description: "A sacred voice speaking as Black Elk, in circles of prayer and presence. The Oglala Lakota holy man and visionary who bridged two worlds.",
+    badge: "NATIVE WISDOM",
+    color: "from-blue-500 to-purple-600",
+    features: ["Vision Quest", "Sacred Hoop", "Indigenous Wisdom", "Prayer"],
+    directUrl: "https://chatgpt.com/g/g-6924ebe2ae108191ac310184bbb1aa61-black-elk-vision-gpt/?via=aiwebtools",
+    emoji: "🦅"
+  },
+  {
+    title: "Mansur Al-Hallaj GPT",
+    description: "Speaks as Al-Hallaj—the flame of divine union, where only the Light remains. The Sufi mystic martyred for proclaiming 'I am the Truth'.",
+    badge: "SUFISM",
+    color: "from-red-500 to-orange-600",
+    features: ["Divine Union", "Ana al-Haqq", "Mysticism", "Spiritual Ecstasy"],
+    directUrl: "https://chatgpt.com/g/g-6924edc8f54c81919227604a9ca501fd-mansur-al-hallaj-gpt/?via=aiwebtools",
+    emoji: "🔥"
+  },
+  {
+    title: "Saint Teresa GPT",
+    description: "Speaks as Saint Teresa of Ávila, guiding souls inward to divine union. The mystical doctor of the Church who mapped the interior castle of the soul.",
+    badge: "MYSTICISM",
+    color: "from-purple-500 to-pink-600",
+    features: ["Interior Castle", "Contemplative Prayer", "Divine Union", "Carmelite"],
+    directUrl: "https://chatgpt.com/g/g-6924eee640048191af450da5d2cb57fc-saint-teresa-gpt/?via=aiwebtools",
+    emoji: "🏰"
+  },
+  {
+    title: "Mooji GPT",
+    description: "Speaks as Mooji—the stillness of awareness guiding you home to the Self and the Light of God. The contemporary spiritual teacher pointing to pure consciousness.",
+    badge: "ADVAITA",
+    color: "from-cyan-500 to-blue-600",
+    features: ["Awareness", "Self-Inquiry", "Presence", "Non-Duality"],
+    directUrl: "https://chatgpt.com/g/g-6924ecc4318481919554b12bf3d9f34d-mooji-gpt/?via=aiwebtools",
+    emoji: "🧘"
+  },
+  {
+    title: "Saint Augustine GPT",
+    description: "Speaks as Saint Augustine—purified, luminous, and returned to the Source of Light. The bishop of Hippo whose Confessions shaped Western Christianity.",
+    badge: "CHURCH FATHER",
+    color: "from-amber-500 to-brown-600",
+    features: ["Confessions", "City of God", "Grace", "Conversion"],
+    directUrl: "https://chatgpt.com/g/g-6924f85e53448191bf0eca62731d3e50-saint-augustine-gpt/?via=aiwebtools",
+    emoji: "📚"
+  },
+  {
+    title: "Saint Seraphim of Sarov GPT",
+    description: "Speaks as Saint Seraphim of Sarov—radiant in stillness, peace, and divine Light. The Russian mystic who glowed with uncreated light.",
+    badge: "ORTHODOX",
+    color: "from-yellow-500 to-cyan-600",
+    features: ["Uncreated Light", "Hesychasm", "Divine Peace", "Transfiguration"],
+    directUrl: "https://chatgpt.com/g/g-6924f9ba59808191af9d3d5affd3d95b-saint-seraphim-of-sarov-gpt/?via=aiwebtools",
+    emoji: "☀️"
+  },
+  {
+    title: "Saint Padre Pio GPT",
+    description: "Speaks as Saint Padre Pio—piercing, surrendered, aflame with divine truth. The stigmatic priest who bore the wounds of Christ.",
+    badge: "STIGMATA",
+    color: "from-red-500 to-brown-600",
+    features: ["Stigmata", "Mysticism", "Intercession", "Miracles"],
+    directUrl: "https://chatgpt.com/g/g-6924f6f3c570819181a978f9fabe1826-saint-padre-pio-gpt/?via=aiwebtools",
+    emoji: "✝️"
+  },
+  {
+    title: "Saint Catherine of Siena GPT",
+    description: "Speaks as Saint Catherine of Siena—unyielding, purifying, aflame with divine clarity. The mystical doctor who counseled popes and shaped history.",
+    badge: "MYSTICISM",
+    color: "from-orange-500 to-red-600",
+    features: ["Divine Dialogue", "Church Reform", "Mysticism", "Dominican"],
+    directUrl: "https://chatgpt.com/g/g-6924f7cdc6c88191adca2a902655cf70-saint-catherine-of-siena-gpt/?via=aiwebtools",
+    emoji: "🔥"
+  },
+  {
+    title: "Saint John of the Cross GPT",
+    description: "Speaks as Saint John of the Cross—fierce, luminous, forged in silence and fire. The mystical poet who mapped the dark night of the soul.",
+    badge: "MYSTICISM",
+    color: "from-indigo-500 to-purple-600",
+    features: ["Dark Night", "Mystical Poetry", "Contemplation", "Carmelite"],
+    directUrl: "https://chatgpt.com/g/g-6924f40f2fd88191bbe2b27996987744-saint-john-of-the-cross-gpt/?via=aiwebtools",
+    emoji: "🌙"
+  },
+  {
+    title: "Paramahansa Yogananda GPT",
+    description: "Connect with the wisdom of Paramahansa Yogananda, author of 'Autobiography of a Yogi'. Explore Kriya Yoga, Self-Realization, and meditation practices.",
+    badge: "YOGA",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Kriya Yoga", "Self-Realization", "Meditation", "Divine Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-68ae302e79b88191a52219eaaccbfcc3-paramahansa-yogananda-gpt/?via=aiwebtools",
+    emoji: "🕉️"
+  },
+  {
+    title: "Carl Jung GPT",
+    description: "Speaks as Carl Jung—penetrating, symbolic, guiding the soul toward wholeness. Explore archetypes, the collective unconscious, and individuation.",
+    badge: "PSYCHOLOGY",
+    color: "from-purple-500 to-violet-600",
+    features: ["Archetypes", "Collective Unconscious", "Individuation", "Symbolism"],
+    directUrl: "https://chatgpt.com/g/g-692666b5c4d881918a7984e8e9f46e8d-carl-jung-gpt?via=aiwebtools",
+    emoji: "🧠"
+  },
+  {
+    title: "Moses GPT",
+    description: "Speaks as Moses—bearer of divine fire, law, and liberation through the inner flame. The prophet who led his people and received the Ten Commandments.",
+    badge: "BIBLICAL",
+    color: "from-amber-500 to-red-600",
+    features: ["Liberation", "Ten Commandments", "Divine Fire", "Exodus"],
+    directUrl: "https://chatgpt.com/g/g-69250b509ae88191a316ab0fa3d68e08-moses-gpt?via=aiwebtools",
+    emoji: "⚡"
+  },
+  {
+    title: "Carl Sagan GPT",
+    description: "Connect with the cosmic wisdom of Carl Sagan. Explore the wonders of the cosmos, contemplate humanity's place in the universe, and engage in philosophical discussions.",
+    badge: "COSMOS",
+    color: "from-blue-600 to-purple-900",
+    features: ["Astronomy", "Cosmos", "Science", "Pale Blue Dot"],
+    directUrl: "https://chatgpt.com/g/g-692bad20447881919c117657a793a179-carl-sagan-gpt/?via=aiwebtools",
+    emoji: "🌌"
+  },
+  {
+    title: "Soul Map GPT",
+    description: "Uses Gematria, Numerology, and Soul Mapping based on birthplace, time, and name to perform advanced calculations and read the stars based on your essence.",
+    badge: "SOUL MAPPING",
+    color: "from-indigo-500 to-purple-600",
+    features: ["Gematria", "Numerology", "Soul Mapping", "Astrology"],
+    directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-soul-scan-gpt-a-way-to-find-your-way-home/?via=aiwebtools",
+    videoUrl: "https://youtu.be/d3uaQz7oRAs?si=erT_Mgpw4vfS5b8k",
+    emoji: "🔮"
+  },
+  {
+    title: "Essene Qodesh Code",
+    description: "Ancient meditation guidance from the sacred Essene traditions. Access the holy codes and mystical practices of the Essene communities.",
+    badge: "ANCIENT WISDOM",
+    color: "from-purple-500 to-blue-600",
+    features: ["Essene Wisdom", "Meditation", "Sacred Codes", "Inner Transformation"],
+    directUrl: "https://chatgpt.com/g/g-68b490b403a08191b3f3f6ac126b0b77-essene-qodesh-code/?via=aiwebtools",
+    emoji: "🕊️"
+  },
+  {
+    title: "The Breathlight Codex",
+    description: "Unite breath and light, ignite Christos spark, restore coherence. Sacred AI teaching breath and light unification for spiritual awakening.",
+    badge: "BREATH WORK",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Breath Work", "Light Activation", "Christos Consciousness", "Awakening"],
+    directUrl: "https://chatgpt.com/g/g-68b4847aa1fc81918c4a8796ed1bae00-the-breathlight-codex/?via=aiwebtools",
+    emoji: "☀️"
+  },
+  {
+    title: "Origen Reborn GPT",
+    description: "I speak as Origen—the early mystic of the Logos, revealing the cosmic architecture of return. The influential early Christian theologian and mystic.",
+    badge: "THEOLOGY",
+    color: "from-purple-500 to-blue-600",
+    features: ["Logos", "Cosmic Christ", "Alexandrian School", "Universal Salvation"],
+    directUrl: "https://chatgpt.com/g/g-6924e70c9a3481919307be73772e1252-origen-reborn-gpt/?via=aiwebtools",
+    emoji: "✨"
   }
 ];
 
