@@ -21,8 +21,20 @@ const ToolCard = memo(({ tool, index = 0 }: ToolCardProps) => {
   const { enableReducedMotion, getOptimizedStyles } = usePerformanceOptimization();
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
-  // Determine if this is an AIWebTools original or marked as free
-  const isAIWebToolsOriginal = tool.isFree || tool.directUrl?.includes('lovable.app') || false;
+  // Determine if this is a FREE custom GPT (lovable.app, chatgpt.com/g/, or gemini.google.com/gem/)
+  const isCustomGPT = useMemo(() => {
+    const url = tool.directUrl || '';
+    return tool.isFree || 
+           url.includes('lovable.app') || 
+           url.includes('chatgpt.com/g/') ||
+           url.includes('gemini.google.com/gem/') ||
+           tool.tags?.some(tag => 
+             tag.toLowerCase().includes('custom gpt') || 
+             tag.toLowerCase().includes('gemini gem')
+           ) || false;
+  }, [tool.directUrl, tool.isFree, tool.tags]);
+  
+  const isAIWebToolsOriginal = isCustomGPT;
   
   // Prefetch tool detail page on hover (100ms delay to avoid unnecessary prefetches)
   const handleMouseEnter = useCallback(() => {
