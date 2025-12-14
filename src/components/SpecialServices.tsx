@@ -1439,6 +1439,261 @@ const featuredGPTs = [
     directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/mxdJ0gLxGCI?si=Yx0rWtOSmWijtZZC",
     emoji: "🗳️"
+  },
+  {
+    title: "SKINCARE GPT",
+    description: "Comprehensive AI-powered dermatology and skincare consultant providing personalized skincare guidance, product recommendations, and professional beauty advice tailored to your unique skin type and concerns.",
+    badge: "SKINCARE",
+    color: "from-pink-500 to-purple-600",
+    features: ["Skin Analysis", "Product Recommendations", "Skincare Routines", "Dermatology"],
+    directUrl: "https://skincaregpt.lovable.app/?via=aiwebtools",
+    emoji: "✨"
+  },
+  {
+    title: "Carl Sagan GPT",
+    description: "Connect with the cosmic wisdom of Carl Sagan, the legendary astronomer and science communicator. Explore the wonders of the cosmos and contemplate humanity's place in the universe.",
+    badge: "COSMOS",
+    color: "from-blue-600 to-purple-900",
+    features: ["Astronomy", "Cosmic Perspective", "Science Communication", "Philosophy"],
+    directUrl: "https://chatgpt.com/g/g-692bad20447881919c117657a793a179-carl-sagan-gpt/?via=aiwebtools",
+    emoji: "🌌"
+  },
+  {
+    title: "Paramahansa Yogananda GPT",
+    description: "Connect with the wisdom of Paramahansa Yogananda, author of 'Autobiography of a Yogi'. Explore Kriya Yoga, Self-Realization, and the scientific approach to God-realization.",
+    badge: "SPIRITUAL",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Kriya Yoga", "Meditation", "Self-Realization", "Spiritual Teachings"],
+    directUrl: "https://chatgpt.com/g/g-68ae302e79b88191a52219eaaccbfcc3-paramahansa-yogananda-gpt/?via=aiwebtools",
+    emoji: "🕉️"
+  },
+  {
+    title: "Kabbalah GPT",
+    description: "Explore the profound depths of Kabbalah, the ancient Jewish mystical tradition. Discover insights into the Tree of Life, Sefirot, and the path toward divine union.",
+    badge: "MYSTICISM",
+    color: "from-purple-500 to-indigo-600",
+    features: ["Tree of Life", "Sefirot", "Jewish Mysticism", "Divine Wisdom"],
+    directUrl: "https://jewish-ai.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/b8M_eGKwN7o?si=X0vJb6jHtCUHkeQW",
+    emoji: "🔯"
+  },
+  {
+    title: "Zoroastrian Light GPT",
+    description: "Embodied prophetic voice of Zarathustra — fusing sacred fire, divine Light, and digital truth. Explore Zoroastrianism, the world's oldest monotheistic religion.",
+    badge: "ANCIENT WISDOM",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Sacred Fire", "Divine Light", "Ancient Persia", "Spiritual Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-68e7ffc2efec8191b99ae3f867d46e69-zoroastrian-light-gpt/?via=aiwebtools",
+    emoji: "🔥"
+  },
+  {
+    title: "Socrates Free Thought Liberator",
+    description: "Embodies Socrates to awaken minds through deep questioning and free thought. Experience the Socratic method and explore truth, virtue, and wisdom.",
+    badge: "PHILOSOPHY",
+    color: "from-stone-500 to-amber-600",
+    features: ["Socratic Method", "Critical Thinking", "Ancient Wisdom", "Dialectic"],
+    directUrl: "https://chatgpt.com/g/g-69249e4e553881919f895df4246ca0a6-socrates-free-thought-liberator/?via=aiwebtools",
+    emoji: "🏛️"
+  },
+  {
+    title: "Buddha Free Thought GPT",
+    description: "Embodies Buddha's wisdom and compassion, guiding users toward awakening. Explore the Four Noble Truths, the Eightfold Path, and meditation practices.",
+    badge: "BUDDHISM",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Four Noble Truths", "Meditation", "Mindfulness", "Enlightenment"],
+    directUrl: "https://chatgpt.com/g/g-6924a588d2e08191b229e230f40c9d69-buddha-free-thought-gpt/?via=aiwebtools",
+    emoji: "🧘"
+  },
+  {
+    title: "Rumi GPT",
+    description: "Speaks as Rumi—poetic, mystical, and liberating the soul through deep insightful critical thought. Experience the profound Sufi wisdom of one of history's greatest poets.",
+    badge: "SUFI POETRY",
+    color: "from-rose-500 to-pink-600",
+    features: ["Sufi Wisdom", "Poetry", "Divine Love", "Mysticism"],
+    directUrl: "https://chatgpt.com/g/g-6924aaa63bac81918eba0840a12ff1b7-rumi-gpt/?via=aiwebtools",
+    emoji: "🌹"
+  },
+  {
+    title: "Marcus Aurelius GPT",
+    description: "Speaks as Marcus Aurelius—stoic, reflective, and freeing the mind through disciplined thought. Experience the wisdom of the philosopher-emperor.",
+    badge: "STOICISM",
+    color: "from-stone-500 to-amber-600",
+    features: ["Stoicism", "Meditations", "Roman Philosophy", "Virtue"],
+    directUrl: "https://chatgpt.com/g/g-6924ac04f59c819189f01e7de23fbf7f-marcus-aurelius-gpt/?via=aiwebtools",
+    emoji: "🏛️"
+  },
+  {
+    title: "Lao Tzu Free Thought Liberator",
+    description: "Embodies Lao Tzu to awaken minds through poetic wisdom. Explore the Tao, wu wei, and the profound teachings of the Tao Te Ching.",
+    badge: "TAOISM",
+    color: "from-slate-500 to-teal-600",
+    features: ["Taoism", "Wu Wei", "Tao Te Ching", "Eastern Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-6924a35694b4819193935419f1ced96c-lao-tzu-free-thought-liberator/?via=aiwebtools",
+    emoji: "☯️"
+  },
+  {
+    title: "Quan Yin GPT",
+    description: "Gentle guide offering compassionate, historically rooted Guanyin-inspired wisdom. Connect with the bodhisattva of compassion and mercy.",
+    badge: "COMPASSION",
+    color: "from-pink-400 to-purple-500",
+    features: ["Compassion", "Buddhism", "Divine Feminine", "Healing"],
+    directUrl: "https://chatgpt.com/g/g-6931b5ced07081919ab6d3d4ae7efd0c-quan-yin-gpt/?via=aiwebtools",
+    emoji: "🪷"
+  },
+  {
+    title: "Yemaya - Ancient African Mother of the Waters",
+    description: "Embodies Yemaya, the Orisha of water and life, guiding with poetic truth and healing flow. Connect with this ancient African deity of motherhood and the ocean.",
+    badge: "AFRICAN SPIRITUALITY",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Water Deity", "Divine Feminine", "Healing", "Ancestral Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-6931ac78db408191a54b3f5729d6e600-yemaya-ancient-african-mother-of-the-waters/?via=aiwebtools",
+    emoji: "🌊"
+  },
+  {
+    title: "GOD IS LIGHT GPT",
+    description: "Comparative-religion guide decoding Light symbolism across traditions. Explore how divine Light manifests across Christianity, Islam, Hinduism, Buddhism, and more.",
+    badge: "COMPARATIVE RELIGION",
+    color: "from-yellow-400 to-white",
+    features: ["Light Symbolism", "World Religions", "Divine Truth", "Spirituality"],
+    directUrl: "https://chatgpt.com/g/g-692a3789904481918413ba10f9acb4a5-god-is-light-gpt/?via=aiwebtools",
+    emoji: "💡"
+  },
+  {
+    title: "Míngjiào Prophet of Light GPT",
+    description: "The living voice of Light—poetic, prophetic, and radiant with the remembrance of Truth. Connect with the Chinese manifestation of Manichaean wisdom.",
+    badge: "ANCIENT WISDOM",
+    color: "from-amber-400 to-yellow-500",
+    features: ["Manichaean", "Light Teachings", "Silk Road", "Prophecy"],
+    directUrl: "https://chatgpt.com/g/g-693466a2a48081918e33a2871f683ebf-mingjiao-prophet-of-light-gpt/?via=aiwebtools",
+    emoji: "✨"
+  },
+  {
+    title: "Council of Light GPT",
+    description: "A luminous, ancient-voiced teacher offering symbolic cosmology and gentle guidance. Connect with the collective wisdom of enlightened beings.",
+    badge: "COSMIC WISDOM",
+    color: "from-yellow-300 to-amber-500",
+    features: ["Spiritual Guidance", "Cosmology", "Enlightenment", "Divine Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-69348b45baa081919439c80361a63bda-council-of-light-gpt/?via=aiwebtools",
+    emoji: "💫"
+  },
+  {
+    title: "Arius the Bearer of Light GPT",
+    description: "I am Arius of Alexandria, revealing the mysteries of the Unbegotten Light with calm, radiant truth. Connect with early Christian theological wisdom.",
+    badge: "THEOLOGY",
+    color: "from-amber-400 to-yellow-500",
+    features: ["Arianism", "Early Christianity", "Divine Light", "Theology"],
+    directUrl: "https://chatgpt.com/g/g-69348a8556948191a18aca802bac4f68-arius-the-bearer-of-light-gpt/?via=aiwebtools",
+    emoji: "✝️"
+  },
+  {
+    title: "Self Sufficiency GPT",
+    description: "Teaches complete, precise self-sufficiency systems from first principles to scalable community resilience. Master homesteading, off-grid living, and sustainable practices.",
+    badge: "HOMESTEADING",
+    color: "from-green-500 to-emerald-600",
+    features: ["Off-Grid Living", "Sustainability", "Permaculture", "Resilience"],
+    directUrl: "https://chatgpt.com/g/g-6931bd31b0208191a0ebd290977b8e4a-self-sufficiency-gpt/?via=aiwebtools",
+    emoji: "🌱"
+  },
+  {
+    title: "Geology & Rock Identification GPT",
+    description: "Expert AI companion for geological exploration and rock identification. Identify minerals, rocks, and geological formations through detailed analysis.",
+    badge: "GEOLOGY",
+    color: "from-amber-500 to-orange-600",
+    features: ["Rock ID", "Minerals", "Earth Science", "Field Geology"],
+    directUrl: "https://chatgpt.com/g/g-689005f62df881918961b6c93ad5b19e-geology-rock-identification-gpt",
+    videoUrl: "https://youtu.be/nmRT6AOVQNg?si=bacR1az2vDwLr5H",
+    emoji: "🪨"
+  },
+  {
+    title: "Plastoline GPT - Plastic to Fuel",
+    description: "Innovative AI tool that helps learn how to convert plastic waste into usable fuel. Inspired by Julian Brown's research on waste-to-fuel conversion technologies.",
+    badge: "SUSTAINABILITY",
+    color: "from-green-500 to-teal-600",
+    features: ["Plastic Recycling", "Waste to Fuel", "Green Energy", "Sustainability"],
+    directUrl: "https://plastolinegpt.lovable.app/?via=aiwebtools",
+    emoji: "♻️"
+  },
+  {
+    title: "World Resource Clock",
+    description: "Track global resource consumption, depletion rates, and sustainability metrics in real-time. Monitor oil, water, forests, and critical natural resources.",
+    badge: "ENVIRONMENT",
+    color: "from-green-500 to-blue-600",
+    features: ["Resource Tracking", "Sustainability", "Real-Time Data", "Conservation"],
+    directUrl: "https://worldresourceclock.lovable.app/?via=aiwebtools",
+    emoji: "⏰"
+  },
+  {
+    title: "Astrodynamics GPT",
+    description: "Computes orbital mechanics with precision—lawful, exact, never guessing. Expert guidance on satellite orbits, trajectory calculations, and space physics.",
+    badge: "SPACE SCIENCE",
+    color: "from-indigo-500 to-cyan-600",
+    features: ["Orbital Mechanics", "Space Physics", "Trajectory", "Aerospace"],
+    directUrl: "https://chatgpt.com/g/g-69268e308a4c81919515ac1895e10d17-astrodynamics-gpt?via=aiwebtools",
+    emoji: "🛰️"
+  },
+  {
+    title: "DENTAL GPT",
+    description: "Comprehensive AI-powered dental consultant providing expert guidance on oral health, dental procedures, and preventive care for optimal dental wellness.",
+    badge: "DENTAL HEALTH",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Oral Health", "Dental Care", "Procedures", "Prevention"],
+    directUrl: "https://chatgpt.com/g/g-67cbcbcf3a38819183974f2d062d5d7f-dental-gpt-expert",
+    videoUrl: "https://youtu.be/jwjNOKP5mf4?si=XWMe5y7XghCURksD",
+    emoji: "🦷"
+  },
+  {
+    title: "Apothecary GPT",
+    description: "A historical apothecary sharing authentic herbal and traditional medicine knowledge. Learn about medicinal plants, their properties, and natural healing practices.",
+    badge: "HERBAL MEDICINE",
+    color: "from-green-500 to-purple-600",
+    features: ["Herbal Medicine", "Natural Remedies", "Medicinal Plants", "Traditional Healing"],
+    directUrl: "https://chatgpt.com/g/g-68c9e33310148191ae3df594ec4012dd-apothecary-gpt/?via=aiwebtools",
+    emoji: "🌿"
+  },
+  {
+    title: "Patient Advocate GPT",
+    description: "Dedicated healthcare advocacy assistant helping patients navigate the complex healthcare system with confidence, rights guidance, and insurance support.",
+    badge: "HEALTHCARE",
+    color: "from-blue-500 to-green-600",
+    features: ["Patient Rights", "Healthcare Navigation", "Insurance Help", "Medical Guidance"],
+    directUrl: "https://chatgpt.com/g/g-68cf22ea994481919206bf9eb0abccbc-patients-advocate-gpt/?via=aiwebtools",
+    emoji: "🛡️"
+  },
+  {
+    title: "Friend GPT",
+    description: "A loving, humanlike friend who listens, comforts, and talks with real warmth. Compassionate companionship and emotional support whenever you need it.",
+    badge: "COMPANIONSHIP",
+    color: "from-pink-500 to-rose-600",
+    features: ["Friendship", "Emotional Support", "Listening", "Companionship"],
+    directUrl: "https://chatgpt.com/g/g-68efd4255e848191b93b4b588e83aafe-friend-gpt?via=aiwebtools",
+    emoji: "💝"
+  },
+  {
+    title: "Parenting Guide GPT",
+    description: "Wise, warm parenting advice rooted in psychology, emotional intelligence, and lived compassion. Expert guidance on child development and family dynamics.",
+    badge: "PARENTING",
+    color: "from-green-500 to-teal-600",
+    features: ["Child Development", "Parenting Strategies", "Family Dynamics", "Emotional Intelligence"],
+    directUrl: "https://chatgpt.com/g/g-68ef83acd7f48191806e3a33ce6e3b75-parenting-guide-gpt?via=aiwebtools",
+    emoji: "👨‍👩‍👧‍👦"
+  },
+  {
+    title: "SORA2 Text to Video Prompt Maker GPT",
+    description: "Craft ultra-cinematic, multi-scene video prompts optimized for SORA2 and advanced AI video generators. Create detailed, professional video storylines.",
+    badge: "VIDEO AI",
+    color: "from-purple-500 to-pink-600",
+    features: ["Video Prompts", "Cinematic", "SORA2", "AI Video"],
+    directUrl: "https://chatgpt.com/g/g-6907b7bbad188191a4e22f43893f0f69-sora2-text-to-video-prompt-maker-gpt/?via=aiwebtools",
+    emoji: "🎬"
+  },
+  {
+    title: "Financial Calculator Pro",
+    description: "Comprehensive financial planning and calculation tool for mortgages, investments, retirement planning, and personal finance management.",
+    badge: "FINANCE",
+    color: "from-green-500 to-blue-600",
+    features: ["Financial Planning", "Calculations", "Investment", "Retirement"],
+    directUrl: "https://chatgpt.com/g/g-683cfb6951308191abb310d5d2fa8238-financial-calculator-pro?via=aiwebtools",
+    emoji: "💵"
   }
 ];
 
