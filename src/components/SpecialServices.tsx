@@ -1986,6 +1986,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-pink-600",
     features: ["Light Codes", "Symbolic Translation", "Mystical Decoding", "Ancient Technology"],
     directUrl: "https://chatgpt.com/g/g-69176b2f62e481918b21756ccdc5d396-cyber-kabbalah-light-code-translation-engine-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/cyber-kabbalah-gpt-hero.jpg",
     emoji: "✨"
   },
   {
@@ -1995,6 +1996,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-red-600",
     features: ["Ad Creation", "Marketing Banners", "Visual Ads", "Campaign Graphics"],
     directUrl: "https://chatgpt.com/g/g-6810ea3238888191a084c4f20b40225f-ad-maker-gpt",
+    imageUrl: "/src/assets/ad-maker-gpt-hero.jpg",
     emoji: "📢"
   },
   {
@@ -2675,6 +2677,7 @@ const featuredGPTs = [
     color: "from-yellow-400 to-orange-500",
     features: ["Clarity", "Goal Setting", "Self-Discovery", "Decision Making"],
     directUrl: "https://chat.openai.com/g/g-j8J2j3g6L-clarity-coach",
+    imageUrl: "/src/assets/clarity-coach-gpt-hero.jpg",
     emoji: "🌟"
   },
   {
@@ -2684,6 +2687,7 @@ const featuredGPTs = [
     color: "from-gray-600 to-gray-700",
     features: ["Stoicism", "Philosophy", "Resilience", "Wisdom"],
     directUrl: "https://chat.openai.com/g/g-68afa48b90c88191b2dbb03b479efdd7-stoic-guide-gpt",
+    imageUrl: "/src/assets/stoic-guide-gpt-hero.jpg",
     emoji: "🏛️"
   },
   {
@@ -2693,6 +2697,7 @@ const featuredGPTs = [
     color: "from-pink-400 to-purple-500",
     features: ["Manifestation", "Visualization", "Affirmations", "Law of Attraction"],
     directUrl: "https://chat.openai.com/g/g-68afa9073e0081919c1ef87d9fdcf00d-yogi-manifestation-mentor",
+    imageUrl: "/src/assets/manifestation-mentor-gpt-hero.jpg",
     emoji: "✨"
   },
   {
@@ -2702,6 +2707,7 @@ const featuredGPTs = [
     color: "from-green-400 to-blue-500",
     features: ["Goal Setting", "Planning", "Motivation", "Success"],
     directUrl: "https://chat.openai.com/g/g-yYq97Gt93-goal-setter",
+    imageUrl: "/src/assets/goal-setter-gpt-hero.jpg",
     emoji: "🎯"
   },
   {
@@ -2711,6 +2717,7 @@ const featuredGPTs = [
     color: "from-orange-400 to-yellow-500",
     features: ["Creativity", "Inspiration", "Art", "Imagination"],
     directUrl: "https://chat.openai.com/g/g-68afa6ce4ae88191ae0166741c7b760f-creative-spark-gpt",
+    imageUrl: "/src/assets/creative-spark-gpt-hero.jpg",
     emoji: "💡"
   },
   {
@@ -2720,6 +2727,7 @@ const featuredGPTs = [
     color: "from-blue-400 to-purple-500",
     features: ["Life Coaching", "Confidence", "Transformation", "Guidance"],
     directUrl: "https://chatgpt.com/g/g-683f4621e2308191a5e9c023254acaad-personal-life-coach-gpt",
+    imageUrl: "/src/assets/personal-life-coach-gpt-hero.jpg",
     emoji: "📖"
   },
   {
@@ -2729,6 +2737,7 @@ const featuredGPTs = [
     color: "from-pink-400 to-red-500",
     features: ["Relationships", "Communication", "Love", "Intimacy"],
     directUrl: "https://chat.openai.com/g/g-H4C9V8z8P-relationship-advisor",
+    imageUrl: "/src/assets/relationship-advisor-gpt-hero.jpg",
     emoji: "🫂"
   },
   {
@@ -2738,6 +2747,7 @@ const featuredGPTs = [
     color: "from-yellow-400 to-green-500",
     features: ["Self-Esteem", "Confidence", "Affirmations", "Self-Worth"],
     directUrl: "https://chat.openai.com/g/g-68afa7de4eb481919e890a26b4655b49-self-esteem-booster",
+    imageUrl: "/src/assets/self-esteem-booster-gpt-hero.jpg",
     emoji: "⭐"
   },
   {
@@ -2747,6 +2757,7 @@ const featuredGPTs = [
     color: "from-blue-400 to-orange-500",
     features: ["Purpose", "Values", "Passions", "Meaning"],
     directUrl: "https://chat.openai.com/g/g-68afa2aea7a88191ae30470b2547b176-purpose-finder-gpt",
+    imageUrl: "/src/assets/purpose-finder-gpt-hero.jpg",
     emoji: "🧭"
   },
   {
@@ -2756,6 +2767,7 @@ const featuredGPTs = [
     color: "from-green-400 to-gray-500",
     features: ["Stress Relief", "Mindfulness", "Relaxation", "Coping"],
     directUrl: "https://chat.openai.com/g/g-68afa584de708191855d6b9dc660e169-stress-relief-coach",
+    imageUrl: "/src/assets/stress-relief-coach-gpt-hero.jpg",
     emoji: "🛡️"
   },
   {
@@ -2765,6 +2777,7 @@ const featuredGPTs = [
     color: "from-yellow-400 to-blue-500",
     features: ["Habit Building", "Goal Setting", "Progress Tracking", "Routines"],
     directUrl: "https://chat.openai.com/g/g-68afa1c541cc8191be3360351f28eeda-habit-builder-gpt",
+    imageUrl: "/src/assets/habit-builder-gpt-hero.jpg",
     emoji: "⚡"
   },
   {
@@ -2774,6 +2787,7 @@ const featuredGPTs = [
     color: "from-purple-400 to-green-500",
     features: ["Leadership", "Mentoring", "Inspiration", "Empowerment"],
     directUrl: "https://chatgpt.com/g/g-68aed1eb015c8191bc8e2887bd4786b9-leadership-mentor-gpt",
+    imageUrl: "/src/assets/leadership-mentor-gpt-hero.jpg",
     emoji: "👑"
   },
   {
@@ -2783,6 +2797,7 @@ const featuredGPTs = [
     color: "from-red-400 to-orange-500",
     features: ["Passion", "Interests", "Strengths", "Joy"],
     directUrl: "https://chat.openai.com/g/g-68af9fd685a88191bbf7cc964509beef-passion-igniter",
+    imageUrl: "/src/assets/passion-igniter-gpt-hero.jpg",
     emoji: "🔥"
   },
   {
@@ -2792,6 +2807,7 @@ const featuredGPTs = [
     color: "from-yellow-400 to-green-500",
     features: ["Gratitude", "Appreciation", "Positivity", "Well-being"],
     directUrl: "https://chat.openai.com/g/g-68af9eecd0048191a7ce93eddfd47559-gratitude-guide-gpt",
+    imageUrl: "/src/assets/gratitude-guide-gpt-hero.jpg",
     emoji: "☀️"
   },
   {
@@ -2801,6 +2817,7 @@ const featuredGPTs = [
     color: "from-blue-400 to-gray-500",
     features: ["Mindfulness", "Meditation", "Breathing", "Inner Peace"],
     directUrl: "https://chat.openai.com/g/g-68af9dc3d0688191830cd5a3d71e39df-mindfulness-mentor-gpt",
+    imageUrl: "/src/assets/mindfulness-mentor-gpt-hero.jpg",
     emoji: "🌙"
   },
   {
@@ -2810,6 +2827,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-purple-600",
     features: ["Language Learning", "Multilingual", "Speech Mastery", "Fluency"],
     directUrl: "https://chatgpt.com/g/g-68ae26360d448191b25842afb8d2f66b-lingua-champion-universal-speech-mastery-ai/?via=aiwebtools",
+    imageUrl: "/src/assets/universal-speech-gpt-hero.jpg",
     emoji: "🗣️"
   },
   {
@@ -2839,6 +2857,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Tutoring", "Personalized Learning", "Academic Help", "Study Assistance"],
     directUrl: "https://chatgpt.com/g/g-68bb71f1dca88191866a1a0bfdff7ca0-educational-tutor-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/educational-tutor-gpt-hero.jpg",
     emoji: "👨‍🏫"
   },
   {
@@ -2868,6 +2887,7 @@ const featuredGPTs = [
     color: "from-pink-500 to-purple-600",
     features: ["Skincare", "Dermatology", "Beauty Advice", "Skin Analysis"],
     directUrl: "https://skincaregpt.lovable.app/?via=aiwebtools",
+    imageUrl: "/src/assets/skin-care-gpt-hero.jpg",
     emoji: "✨"
   },
   {
@@ -2887,6 +2907,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-green-600",
     features: ["Home Organization", "Decluttering", "Cleaning", "Lifestyle"],
     directUrl: "https://chatgpt.com/g/g-68bb80c2c41c8191b3d6e3dda92b6ffb-ai-home-cleanliness-declutter-coach-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/home-cleanliness-gpt-hero.jpg",
     emoji: "🏠"
   },
   {
@@ -2896,6 +2917,7 @@ const featuredGPTs = [
     color: "from-green-500 to-purple-600",
     features: ["Herbal Medicine", "Traditional Healing", "Natural Remedies", "Herbalist"],
     directUrl: "https://chatgpt.com/g/g-68c9e33310148191ae3df594ec4012dd-apothecary-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/apothecary-gpt-hero.jpg",
     emoji: "🌿"
   },
   {
@@ -2905,6 +2927,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-green-600",
     features: ["Patient Advocacy", "Healthcare Navigation", "Patient Rights", "Medical Billing"],
     directUrl: "https://chatgpt.com/g/g-68cf22ea994481919206bf9eb0abccbc-patients-advocate-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/patient-advocate-gpt-hero.jpg",
     emoji: "🛡️"
   },
   {
@@ -2914,6 +2937,7 @@ const featuredGPTs = [
     color: "from-green-500 to-teal-600",
     features: ["Parenting", "Child Development", "Family Guidance", "Psychology"],
     directUrl: "https://chatgpt.com/g/g-68d4c45f3bc48191ba4a330a3b48bc87-parenting-guide-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/parenting-guide-gpt-hero.jpg",
     emoji: "👨‍👩‍👧‍👦"
   },
   {
@@ -2923,6 +2947,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-green-600",
     features: ["IEP Support", "Parent Advocacy", "School Meetings", "Educational Rights"],
     directUrl: "https://chatgpt.com/g/g-68bb75f48218819184ad7aa0198cb983-parent-teacher-advocate-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/parent-teacher-advocate-gpt-hero.jpg",
     emoji: "👨‍👩‍👧‍👦"
   },
   {
@@ -2932,6 +2957,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Public Services", "Government Resources", "Social Services", "Community Help"],
     directUrl: "https://chatgpt.com/g/g-68bb74c1de28819197b7cd6f944efce9-public-service-finder-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/public-service-finder-gpt-hero.jpg",
     emoji: "🏛️"
   },
   {
@@ -2941,6 +2967,7 @@ const featuredGPTs = [
     color: "from-green-500 to-teal-600",
     features: ["Trail Mapping", "Survival Routes", "Compass Navigation", "Route Planning"],
     directUrl: "https://chatgpt.com/g/g-68f85a4844648191ac4c82f9e1d2b3b0-trail-mapper-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/trail-mapper-gpt-hero.jpg",
     emoji: "🧭"
   },
   {
