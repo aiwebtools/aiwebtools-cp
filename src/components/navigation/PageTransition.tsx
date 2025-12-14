@@ -44,41 +44,19 @@ const PageTransition = memo(({ children }: PageTransitionProps) => {
       return;
     }
 
+    // Just track the path change for potential future use; no loading state
     previousPathRef.current = location.pathname;
-
-    if (transitionTimeoutRef.current) {
-      clearTimeout(transitionTimeoutRef.current);
-    }
-
-    // Trigger a very short loading state - almost instant
-    setIsLoading(true);
-    transitionTimeoutRef.current = setTimeout(() => {
-      setIsLoading(false);
-    }, 50);
-
-    return () => {
-      if (transitionTimeoutRef.current) {
-        clearTimeout(transitionTimeoutRef.current);
-      }
-    };
   }, [location.pathname]);
 
   return (
-    <>
-      <MatrixProgressBar 
-        isLoading={isLoading} 
-        duration={50}
-        isToolPage={navigatingToToolPage}
-      />
-      <div
-        style={{
-          transform: 'translateZ(0)',
-          willChange: 'auto',
-        }}
-      >
-        {children}
-      </div>
-    </>
+    <div
+      style={{
+        transform: 'translateZ(0)',
+        willChange: 'auto',
+      }}
+    >
+      {children}
+    </div>
   );
 });
 
