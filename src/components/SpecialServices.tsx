@@ -456,7 +456,7 @@ const featuredGPTsUnsorted = [
     color: "from-blue-500 to-green-600",
     features: ["Workout Routines", "Exercise Form", "Strength Training", "Fitness Coaching"],
     directUrl: "https://chatgpt.com/g/g-68afaae3f8e881918d8b84b7ca85a413-fitness-coach/?via=aiwebtools",
-    imageUrl: "/src/assets/fitness-trainer-gpt-hero.jpg",
+    videoUrl: "https://www.youtube.com/watch?v=eHInYKxyKm4",
     emoji: "🏋️"
   },
   {
