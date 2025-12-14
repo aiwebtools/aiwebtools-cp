@@ -1,5 +1,6 @@
 import { keywordMapping, searchSynonyms, categoryKeywords } from "@/data/keywords";
 import { phoneticMatch } from "./core/fuzzyMatching";
+import { getSemanticExpansions } from "@/data/keywords/semanticKeywords";
 import { 
   PRESERVED_TIME_KEYWORDS, 
   PRESERVED_EMERGENCY_KEYWORDS, 
@@ -282,6 +283,13 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   expandedKeywords.add(searchTerm.toLowerCase().trim());
   expandedKeywords.add(lowerSearchTerm);
   phoneticMatches.forEach(match => expandedKeywords.add(match));
+  
+  // 🧠 SEMANTIC EXPANSION - Handle abstract concepts like "death", "sadness", etc.
+  const semanticExpansions = getSemanticExpansions(lowerSearchTerm);
+  if (semanticExpansions.length > 0) {
+    console.log(`🧠 SEMANTIC EXPANSION for "${lowerSearchTerm}":`, semanticExpansions.slice(0, 8));
+    semanticExpansions.forEach(keyword => expandedKeywords.add(keyword));
+  }
 
   // DEEPFAKE AND VOICE CLONING SEARCH EXPANSION - HIGH PRIORITY
   const isDeepfakeOrClone = 

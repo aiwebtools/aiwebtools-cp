@@ -714,22 +714,23 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
   }
   
   // === MASSIVE CODE STREAMS shooting outward - EXPLOSION ===
-  const streamCount = 64;
+  const streamCount = 96; // EVEN MORE code streams
   for (let i = 0; i < streamCount; i++) {
     const stream = document.createElement('div');
     stream.className = 'matrix-code-stream';
     const angle = (i / streamCount) * 360;
-    const binaryCode = Array.from({ length: 48 }, () => Math.random() > 0.5 ? '1' : '0').join('');
+    const binaryCode = Array.from({ length: 64 }, () => Math.random() > 0.5 ? '1' : '0').join(''); // LONGER streams
     stream.textContent = binaryCode;
-    const delay = i * 0.012;
+    const delay = i * 0.008;
     const hue = 115 + Math.random() * 30;
+    const fontSize = 24 + Math.random() * 16;
     
     stream.style.cssText = `
       position: absolute;
       top: 50%;
       left: 50%;
       font-family: 'Courier New', monospace;
-      font-size: 32px;
+      font-size: ${fontSize}px;
       font-weight: bold;
       color: hsl(${hue}, 100%, 55%);
       text-shadow: 
@@ -740,15 +741,50 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
       white-space: nowrap;
       transform-origin: left center;
       transform: translate(0, -50%) rotate(${angle}deg);
-      animation: code-stream-explode 3.2s ease-out forwards;
+      animation: code-stream-explode 3.5s ease-out forwards;
       animation-delay: ${delay}s;
       z-index: 100010;
       pointer-events: none;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       --stream-angle: ${angle}deg;
     `;
     effectsContainer.appendChild(stream);
   }
+  
+  // === SECONDARY WAVE of code streams for DENSER effect ===
+  setTimeout(() => {
+    for (let i = 0; i < 48; i++) {
+      const stream = document.createElement('div');
+      stream.className = 'matrix-code-stream';
+      const angle = (i / 48) * 360 + 3.75; // Offset from first wave
+      const binaryCode = Array.from({ length: 40 }, () => Math.random() > 0.5 ? '1' : '0').join('');
+      stream.textContent = binaryCode;
+      const hue = 110 + Math.random() * 40;
+      
+      stream.style.cssText = `
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-family: 'Courier New', monospace;
+        font-size: 28px;
+        font-weight: bold;
+        color: hsl(${hue}, 100%, 50%);
+        text-shadow: 
+          0 0 12px hsl(${hue}, 100%, 50%),
+          0 0 24px hsl(${hue}, 100%, 50%),
+          0 0 48px hsl(${hue}, 100%, 50%);
+        white-space: nowrap;
+        transform-origin: left center;
+        transform: translate(0, -50%) rotate(${angle}deg);
+        animation: code-stream-explode 3s ease-out forwards;
+        z-index: 100009;
+        pointer-events: none;
+        letter-spacing: 3px;
+        --stream-angle: ${angle}deg;
+      `;
+      effectsContainer.appendChild(stream);
+    }
+  }, 200);
   
   // === MASSIVE EXPLODING BINARY CHARACTERS ===
   const matrixChars = '01';
