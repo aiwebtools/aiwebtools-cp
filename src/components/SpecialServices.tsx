@@ -3173,14 +3173,14 @@ const featuredGPTsUnsorted = [
     emoji: "✈️"
   },
   {
-    title: "Real Estate Property Condition Inspector GPT",
-    description: "Performs precise property inspections via vision, Python, and live data. Professional property inspection services.",
-    badge: "INSPECTOR",
-    color: "from-green-500 to-blue-600",
-    features: ["Property Inspection", "Real Estate", "Home Inspection", "Property Assessment"],
+    title: "Real Estate GPT Suite",
+    description: "Intelligent Real Estate Analysis & Insights. Property intelligence for valuation, mortgage analysis, rental management, and commercial investments.",
+    badge: "REAL ESTATE",
+    color: "from-blue-500 to-slate-600",
+    features: ["Property Valuation", "Mortgage Analysis", "Rental Management", "Investment Analysis"],
     directUrl: "https://realestategpt.lovable.app/?via=aiwebtools",
     imageUrl: "/src/assets/real-estate-inspector-hero.jpg",
-    emoji: "🏠"
+    emoji: "🏘️"
   },
   {
     title: "Vehicle Accident Damage Appraiser",
