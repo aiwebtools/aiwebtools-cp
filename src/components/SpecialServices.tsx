@@ -76,7 +76,13 @@ const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string
 // CLEANED VERSION - NO DUPLICATES, NO FAKE TOOLS
 // =============================================================================
 
-const featuredGPTs = [
+// Sort featuredGPTs alphabetically by title (ignoring emojis and special characters at start)
+const sortByTitle = (a: typeof featuredGPTsUnsorted[0], b: typeof featuredGPTsUnsorted[0]) => {
+  const cleanTitle = (title: string) => title.replace(/^[^\w\s]+\s*/, '').toLowerCase();
+  return cleanTitle(a.title).localeCompare(cleanTitle(b.title));
+};
+
+const featuredGPTsUnsorted = [
   {
     title: "Meme Generator GPT",
     description: "Create hilarious, viral-worthy memes with AI-powered creativity. Generate custom memes for any topic with perfect captions and trending formats.",
@@ -3324,6 +3330,9 @@ const featuredGPTs = [
     emoji: "🌉"
   },
 ];
+
+// Sort alphabetically by title (ignoring emojis/special chars)
+const featuredGPTs = [...featuredGPTsUnsorted].sort(sortByTitle);
 
 const getVideoId = (url: string) => {
   if (!url) return null;
