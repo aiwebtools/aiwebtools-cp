@@ -2351,16 +2351,6 @@ const featuredGPTsUnsorted = [
     emoji: "💨"
   },
   {
-    title: "Geology & Rock Identification GPT",
-    description: "Expert AI companion for geological exploration and rock identification. Identify minerals, rocks, and geological formations.",
-    badge: "EARTH SCIENCE",
-    color: "from-amber-500 to-orange-600",
-    features: ["Rock Identification", "Minerals", "Earth Science", "Field Geology"],
-    directUrl: "https://chatgpt.com/g/g-689005f62df881918961b6c93ad5b19e-geology-rock-identification-gpt",
-    videoUrl: "https://youtu.be/nmRT6AOVQNg",
-    emoji: "🪨"
-  },
-  {
     title: "World Resource Clock",
     description: "Track global resource consumption, depletion rates, and sustainability metrics in real-time. Monitor oil, water, forests, and minerals.",
     badge: "GLOBAL DATA",
