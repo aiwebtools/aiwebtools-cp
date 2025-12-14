@@ -78,65 +78,11 @@ const CloneOfferPopup = () => {
     // Trigger confetti celebration
     createConfettiCelebration();
     
-    // Create time portal effect (same as FloatingCloneButton)
-    const createTimePortalEffect = (targetUrl: string, title: string) => {
-      const overlay = document.createElement('div');
-      overlay.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: radial-gradient(circle at center, 
-          rgba(0, 255, 0, 0.1) 0%, 
-          rgba(0, 0, 0, 0.95) 100%);
-        z-index: 99999;
-        pointer-events: none;
-        animation: matrixPortal 2s ease-in-out;
-      `;
-
-      const style = document.createElement('style');
-      style.textContent = `
-        @keyframes matrixPortal {
-          0% { opacity: 0; transform: scale(0.8); }
-          50% { opacity: 1; transform: scale(1.1); }
-          100% { opacity: 0; transform: scale(1.5); }
-        }
-      `;
-      document.head.appendChild(style);
-
-      const centerText = document.createElement('div');
-      centerText.style.cssText = `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: #00ff00;
-        font-size: 2rem;
-        font-weight: bold;
-        text-align: center;
-        z-index: 100000;
-        text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
-        animation: pulse 1s ease-in-out;
-        font-family: 'Courier New', monospace;
-      `;
-      centerText.textContent = title;
-
-      document.body.appendChild(overlay);
-      document.body.appendChild(centerText);
-
-      setTimeout(() => {
-        window.open(targetUrl, '_blank');
-        setTimeout(() => {
-          document.body.removeChild(overlay);
-          document.body.removeChild(centerText);
-          document.head.removeChild(style);
-        }, 500);
-      }, 1500);
-    };
-
-    createTimePortalEffect(cloneUrl, "🌀 CLONING YOUR AI EMPIRE 🌀");
+    // Close popup immediately
     setIsOpen(false);
+    
+    // Open the clone URL directly (no overlay effects that can cause blackout)
+    window.open(cloneUrl, '_blank');
   };
 
   return (
