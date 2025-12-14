@@ -3112,6 +3112,7 @@ const featuredGPTs = [
     color: "from-cyan-500 to-blue-600",
     features: ["Newsletter", "Email Marketing", "Content", "Writing"],
     directUrl: "https://chatgpt.com/g/g-67c1d3a4cb548191ad917dc301a69db0-newsletter-writer-gpt",
+    imageUrl: "/src/assets/newsletter-gpt-hero.jpg",
     emoji: "📧"
   },
   {
@@ -3121,6 +3122,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-indigo-700",
     features: ["Education", "Teaching", "Lesson Plans", "Assessment"],
     directUrl: "https://chatgpt.com/g/g-T3E00Qjv0-educator-pro",
+    imageUrl: "/src/assets/educator-pro-gpt-hero.jpg",
     emoji: "👨‍🏫"
   },
   {
@@ -3130,6 +3132,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-stone-600",
     features: ["Mining Safety", "Quarry Inspection", "Hazard Detection", "Compliance"],
     directUrl: "https://chatgpt.com/g/g-68bb3e9e3d648191b73faa9f96b3cca5-mining-quarry-safety-inspector-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/mining-quarry-safety-inspector-gpt-hero.jpg",
     emoji: "⛏️"
   },
   {
@@ -3139,6 +3142,7 @@ const featuredGPTs = [
     color: "from-gray-500 to-black",
     features: ["Tunnel Safety", "Structural Audit", "Compliance", "Underground"],
     directUrl: "https://chatgpt.com/g/g-68bb406563d081919af937725adec08f-tunnel-safety-inspector-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/tunnel-safety-inspector-gpt-hero.jpg",
     emoji: "🚇"
   },
   {
@@ -3148,6 +3152,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-teal-600",
     features: ["Cargo Inspection", "Ship Inspection", "Maritime Safety", "Port Safety"],
     directUrl: "https://chatgpt.com/g/g-68bb3e28ce348191a90afcca6f20d8d2-ai-port-ship-cargo-inspector/?via=aiwebtools",
+    imageUrl: "/src/assets/port-ship-cargo-inspector-gpt-hero.jpg",
     emoji: "🚢"
   },
   {
@@ -3157,6 +3162,7 @@ const featuredGPTs = [
     color: "from-sky-500 to-blue-600",
     features: ["Aircraft Maintenance", "Aviation Inspection", "Airline Safety", "Compliance"],
     directUrl: "https://chatgpt.com/g/g-68bb3a729c24819189bdc498b1d835e4-ai-airline-maintenance-inspector/?via=aiwebtools",
+    imageUrl: "/src/assets/airline-maintenance-inspector-gpt-hero.jpg",
     emoji: "✈️"
   },
   {
@@ -3286,6 +3292,7 @@ const featuredGPTs = [
     color: "from-stone-500 to-gray-600",
     features: ["Road Inspection", "Pavement Assessment", "Road Safety", "Infrastructure"],
     directUrl: "https://chatgpt.com/g/g-68bb469b40ec81919fd73b5dbb7562db-ai-road-pavement-inspector/?via=aiwebtools",
+    imageUrl: "/src/assets/road-pavement-inspector-gpt-hero.jpg",
     emoji: "🛣️"
   },
   {
@@ -3295,6 +3302,7 @@ const featuredGPTs = [
     color: "from-gray-500 to-blue-600",
     features: ["Pipeline Inspection", "Pipeline Integrity", "Oil Gas Pipeline", "Pipeline Safety"],
     directUrl: "https://chatgpt.com/g/g-68bb492f149c81918aaa62cab75ee4f8-ai-pipeline-integrity-inspector/?via=aiwebtools",
+    imageUrl: "/src/assets/pipeline-integrity-inspector-gpt-hero.jpg",
     emoji: "🔧"
   },
   {
@@ -3304,6 +3312,7 @@ const featuredGPTs = [
     color: "from-stone-500 to-gray-600",
     features: ["Bridge Inspection", "Infrastructure Safety", "Structural Inspection", "Civil Engineering"],
     directUrl: "https://chatgpt.com/g/g-68bb35336fc88191961a10a19a09bdcb-ai-bridge-infrastructure-inspector/?via=aiwebtools",
+    imageUrl: "/src/assets/bridge-infrastructure-inspector-gpt-hero.jpg",
     emoji: "🌉"
   },
 ];
@@ -3433,9 +3442,12 @@ const SpecialServices = () => {
                   <div className="mb-2 rounded-lg overflow-hidden relative aspect-video bg-black/20">
                     <img 
                       src={gpt.imageUrl} 
-                      alt={gpt.title}
+                      alt={`${gpt.title} - ${gpt.description.slice(0, 100)}...`}
+                      title={`${gpt.title} AI Tool - ${gpt.badge}`}
                       className="w-full h-full object-cover"
                       loading="lazy"
+                      decoding="async"
+                      itemProp="image"
                     />
                   </div>
                 )}
