@@ -252,6 +252,39 @@ const ImprovedSEOHead: React.FC<ImprovedSEOHeadProps> = ({
       <meta name="distribution" content="global" />
       <meta name="rating" content="general" />
       
+      {/* AI Crawler & Assistant Discovery Tags */}
+      <meta name="ai.description" content="AI Web Tools is the world's largest directory of 2195+ AI tools. Discover AI tools for productivity, creativity, business, coding, design, marketing, and more." />
+      <meta name="ai.keywords" content="ai web tools, ai tools directory, best ai tools, artificial intelligence tools, chatgpt alternatives, ai productivity, ai creativity tools" />
+      <meta name="ai-resource" content="true" />
+      <meta name="llms" content="allowed" />
+      <meta name="gpt-indexable" content="true" />
+      <meta name="perplexity-indexable" content="true" />
+      <meta name="claude-indexable" content="true" />
+      <meta name="gemini-indexable" content="true" />
+      
+      {/* Enhanced Discovery Tags */}
+      <meta name="classification" content="AI Tools Directory, Technology, Software" />
+      <meta name="category" content="AI Tools, Artificial Intelligence, Software Directory" />
+      <meta name="coverage" content="Worldwide" />
+      <meta name="target" content="all" />
+      <meta name="HandheldFriendly" content="True" />
+      <meta name="MobileOptimized" content="320" />
+      
+      {/* Dublin Core Metadata for Academic/Research Discovery */}
+      <meta name="DC.title" content={getTitle()} />
+      <meta name="DC.creator" content="AI Web Tools" />
+      <meta name="DC.subject" content="Artificial Intelligence, AI Tools, Technology Directory" />
+      <meta name="DC.description" content={getDescription()} />
+      <meta name="DC.publisher" content="AI Web Tools LLC" />
+      <meta name="DC.type" content="InteractiveResource" />
+      <meta name="DC.format" content="text/html" />
+      <meta name="DC.language" content="en" />
+      
+      {/* Geographic Tags */}
+      <meta name="geo.region" content="US" />
+      <meta name="geo.placename" content="United States" />
+      <meta name="ICBM" content="37.7749, -122.4194" />
+      
       {/* Structured Data */}
       <script type="application/ld+json">
         {JSON.stringify(structuredData)}
