@@ -1,18 +1,18 @@
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, useTransition } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import DeferredMount from "@/components/DeferredMount";
 import ScrollToTop from "@/components/ui/scroll-to-top";
-import CategorySkeleton from "@/components/ui/CategorySkeleton";
 import SEOHead from "@/components/SEOHead";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 import MainCategoryFilter from "@/components/category/MainCategoryFilter";
 import BreadcrumbNav from "@/components/navigation/BreadcrumbNav";
 import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 import { allTools } from "@/data/toolsData";
 import { getToolsByMainCategory } from "@/utils/categoryUtils";
 import { mainCategories } from "@/utils/mainCategoryMapping";
@@ -27,7 +27,9 @@ const MainCategoryPage = () => {
   const [displayedCount, setDisplayedCount] = useState(48);
   const [filteredToolsByCategory, setFilteredToolsByCategory] = useState<Tool[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const [isToolsReady, setIsToolsReady] = useState(false);
+  const [categoryTools, setCategoryTools] = useState<Tool[]>([]);
+  const [isPending, startTransition] = useTransition();
 
   const decodedCategoryName = mainCategoryName ? decodeURIComponent(mainCategoryName) : "";
   
@@ -36,12 +38,25 @@ const MainCategoryPage = () => {
     [decodedCategoryName]
   );
 
-  // Cache category tools with better memoization
-  const categoryTools = useMemo(() => {
-    if (!decodedCategoryName) return [];
-    const tools = getToolsByMainCategory(allTools, decodedCategoryName);
-    console.log(`📂 Loaded ${tools.length} tools for category: ${decodedCategoryName}`);
-    return tools;
+  // Load category tools async to prevent blocking render
+  useEffect(() => {
+    if (!decodedCategoryName) return;
+    
+    // Reset state immediately - page renders instantly
+    setIsToolsReady(false);
+    setCategoryTools([]);
+    setFilteredToolsByCategory([]);
+    setDisplayedCount(48);
+    
+    // Load tools in next frame to allow page to render first
+    requestAnimationFrame(() => {
+      startTransition(() => {
+        const tools = getToolsByMainCategory(allTools, decodedCategoryName);
+        console.log(`📂 Loaded ${tools.length} tools for category: ${decodedCategoryName}`);
+        setCategoryTools(tools);
+        setIsToolsReady(true);
+      });
+    });
   }, [decodedCategoryName]);
 
   // Use filtered tools from category filter - this is the SOURCE OF TRUTH when filter is active
@@ -106,47 +121,31 @@ const MainCategoryPage = () => {
     });
   }, []);
 
-  // ALL EFFECTS AT THE END
-  // Scroll to top immediately and initialize - FAST
+  // Scroll to top immediately
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
-    setIsInitialized(true);
   }, [decodedCategoryName]);
   
-  // Handle invalid category - prevent request form opening
+  // Handle invalid category - redirect to homepage
   useEffect(() => {
-    if (isInitialized && !mainCategory && decodedCategoryName) {
+    if (!mainCategory && decodedCategoryName) {
       console.log('❌ Invalid category detected:', decodedCategoryName);
-      console.log('🔄 Redirecting to homepage to prevent errors');
       navigate('/', { replace: true });
     }
-  }, [mainCategory, decodedCategoryName, navigate, isInitialized]);
-
-  // No longer need initialization - MainCategoryFilter handles it via selectedMainCategories default
+  }, [mainCategory, decodedCategoryName, navigate]);
 
   // Reset displayed count when filtered tools change
   useEffect(() => {
     setDisplayedCount(48);
   }, [toolsToShow.length]);
 
-  // CONDITIONAL RENDERING ONLY AFTER ALL HOOKS
-  if (!isInitialized) {
-    return (
-      <div className="min-h-screen bg-black relative overflow-x-hidden">
-        <AnimatedBackground />
-        <div className="relative z-10 cyber-grid">
-          <Header />
-          <main className="container mx-auto px-4 py-8 pt-32 md:pt-36 lg:pt-40">
-            <CategorySkeleton />
-          </main>
-        </div>
-      </div>
-    );
+  // If invalid category, show nothing (will redirect)
+  if (!mainCategory) {
+    return null;
   }
 
-  if (!mainCategory) {
-    return null; // Will redirect in useEffect
-  }
+  // Loading state shown inline in the filter area
+  const showToolsLoading = !isToolsReady || isPending;
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -205,56 +204,68 @@ const MainCategoryPage = () => {
             <GlobalSearchBar />
           </div>
 
-          {/* Category Filter Component */}
-          <MainCategoryFilter
-            tools={categoryTools}
-            onFilteredToolsChange={handleFilteredToolsChange}
-            currentMainCategory={decodedCategoryName}
-          />
-
-          {/* Tools Count Display - Shows actual filtered count */}
-          <div className="text-center mb-8">
-            <div className="text-cyan-400 font-semibold">
-              {toolsToShow.length > 0 ? (
-                displayedCount >= toolsToShow.length 
-                  ? `Showing all ${toolsToShow.length} filtered tools + recommendations`
-                  : `Showing ${Math.min(displayedCount, toolsToShow.length)} of ${toolsToShow.length} filtered tools — scroll for more`
-              ) : (
-                "Loading tools..."
-              )}
+          {/* Loading Spinner - appears while tools load */}
+          {showToolsLoading ? (
+            <div className="flex flex-col items-center justify-center py-12 gap-4">
+              <Loader2 className="w-10 h-10 text-cyan-400 animate-spin" />
+              <p className="text-cyan-400 text-sm font-medium animate-pulse">
+                Loading AI Tools...
+              </p>
             </div>
-          </div>
-
-          {/* Tools Grid with Infinite Scroll */}
-          <div id="tools-section">
-            {displayedTools.length > 0 ? (
-              <ToolsGrid
-                tools={finalFilteredTools}
-                displayedCount={displayedCount}
-                selectedCategory={decodedCategoryName}
-                searchTerm=""
-                onLoadMore={handleLoadMore}
-                hasInfiniteScroll={true}
-                isLoading={isLoading}
-                filteredToolsCount={toolsToShow.length}
+          ) : (
+            <>
+              {/* Category Filter Component */}
+              <MainCategoryFilter
+                tools={categoryTools}
+                onFilteredToolsChange={handleFilteredToolsChange}
+                currentMainCategory={decodedCategoryName}
               />
-            ) : (
-              <div className="text-center py-16">
-                <div className="text-4xl mb-4">🔍</div>
-                <h3 className="text-2xl font-bold text-cyan-100 mb-4">No tools found</h3>
-                <p className="text-gray-300 mb-8">
-                  No tools available with the selected filters in {decodedCategoryName}.
-                </p>
-                <Button
-                  onClick={() => navigate('/')}
-                  size="lg"
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-                >
-                  Explore Other Categories
-                </Button>
+
+              {/* Tools Count Display - Shows actual filtered count */}
+              <div className="text-center mb-8">
+                <div className="text-cyan-400 font-semibold">
+                  {toolsToShow.length > 0 ? (
+                    displayedCount >= toolsToShow.length 
+                      ? `Showing all ${toolsToShow.length} filtered tools + recommendations`
+                      : `Showing ${Math.min(displayedCount, toolsToShow.length)} of ${toolsToShow.length} filtered tools — scroll for more`
+                  ) : (
+                    "No tools found"
+                  )}
+                </div>
               </div>
-            )}
-          </div>
+
+              {/* Tools Grid with Infinite Scroll */}
+              <div id="tools-section">
+                {displayedTools.length > 0 ? (
+                  <ToolsGrid
+                    tools={finalFilteredTools}
+                    displayedCount={displayedCount}
+                    selectedCategory={decodedCategoryName}
+                    searchTerm=""
+                    onLoadMore={handleLoadMore}
+                    hasInfiniteScroll={true}
+                    isLoading={isLoading}
+                    filteredToolsCount={toolsToShow.length}
+                  />
+                ) : (
+                  <div className="text-center py-16">
+                    <div className="text-4xl mb-4">🔍</div>
+                    <h3 className="text-2xl font-bold text-cyan-100 mb-4">No tools found</h3>
+                    <p className="text-gray-300 mb-8">
+                      No tools available with the selected filters in {decodedCategoryName}.
+                    </p>
+                    <Button
+                      onClick={() => navigate('/')}
+                      size="lg"
+                      className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                    >
+                      Explore Other Categories
+                    </Button>
+                  </div>
+                )}
+              </div>
+            </>
+          )}
         </main>
         
         <ScrollToTop />
