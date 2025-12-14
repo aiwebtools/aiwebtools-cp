@@ -240,14 +240,46 @@ const GoogleRankingBooster = ({ pageType = 'homepage', toolData, category }: Goo
       <meta name="accessibility-compliant" content="WCAG-2.1-AA" />
       <meta name="security-verified" content="SSL-HTTPS" />
       
+      {/* Semantic Web & Knowledge Graph */}
+      <meta name="subject" content="AI Tools Directory, Artificial Intelligence Software, AI Web Applications" />
+      <meta name="abstract" content="Comprehensive AI tools directory featuring 2195+ verified AI web tools for productivity, creativity, business, and development." />
+      <meta name="topic" content="Artificial Intelligence, AI Tools, Technology, Software Directory" />
+      <meta name="summary" content="AI Web Tools - The #1 AI tools directory with 2195+ tools. Find ChatGPT alternatives, image generators, coding assistants, and more." />
+      
+      {/* Rich Snippet Hints */}
+      <meta name="itemtype" content="https://schema.org/WebSite" />
+      <meta name="itemscope" content="itemscope" />
+      
+      {/* Pinterest Verification */}
+      <meta name="p:domain_verify" content="aiwebtools-pinterest-verify" />
+      
+      {/* Yandex & International SEO */}
+      <meta name="yandex-verification" content="aiwebtools-yandex-verify" />
+      <meta name="msvalidate.01" content="aiwebtools-bing-verify" />
+      <meta name="baidu-site-verification" content="aiwebtools-baidu-verify" />
+      
+      {/* Content Freshness Signals */}
+      <meta name="last-modified" content={new Date().toISOString()} />
+      <meta name="date" content={new Date().toISOString().split('T')[0]} />
+      <meta name="news_keywords" content="AI tools 2025, best AI software, artificial intelligence directory, ChatGPT, Claude, Gemini, AI productivity" />
+      
       {/* Additional Resource Hints for Speed */}
       <link rel="dns-prefetch" href="//www.google-analytics.com" />
       <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+      <link rel="dns-prefetch" href="//www.youtube.com" />
+      <link rel="dns-prefetch" href="//i.ytimg.com" />
       <link rel="preconnect" href="https://api.aitools.studio" />
       
       {/* Competitive Advantage Links */}
       <link rel="alternate" type="application/json" title="AI Tools API" href="https://aitools.studio/api/tools" />
+      <link rel="alternate" type="application/rss+xml" title="AI Web Tools Feed" href="https://aitools.studio/feed.xml" />
+      <link rel="sitemap" type="application/xml" href="https://aitools.studio/sitemap.xml" />
       <link rel="manifest" href="/manifest.json" />
+      
+      {/* Author & Publisher Links */}
+      <link rel="author" href="https://aitools.studio/about" />
+      <link rel="publisher" href="https://aitools.studio" />
+      <link rel="me" href="https://twitter.com/aiwebtools" />
     </Helmet>
   );
 };
