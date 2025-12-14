@@ -171,9 +171,9 @@ const InteractiveMatrixBackground = () => {
 
     lastTimeRef.current = currentTime;
 
-    // Consistent canvas clearing that works better across Chromium browsers
+    // Solid black background clear
     ctx.globalAlpha = 1;
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+    ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const fontSize = 16;
@@ -215,24 +215,18 @@ const InteractiveMatrixBackground = () => {
           // Skip very faint characters
           if (alpha < 0.2) continue;
           
-          // Head character is bright white and dominant
+          // Head character is bright white
           if (i === 0) {
             ctx.globalAlpha = Math.min(alpha, 1);
             ctx.fillStyle = '#ffffff';
-            ctx.shadowBlur = 8;
-            ctx.shadowColor = '#00ff41';
           } else if (i <= 3) {
-            // First few characters are bright green with glow
+            // First few characters are bright green
             ctx.globalAlpha = Math.min(alpha * 0.95, 0.9);
             ctx.fillStyle = '#00ff41';
-            ctx.shadowBlur = 6;
-            ctx.shadowColor = '#00ff41';
           } else {
             // Body characters with defined green
             ctx.globalAlpha = alpha * 0.8;
             ctx.fillStyle = '#00cc33';
-            ctx.shadowBlur = 3;
-            ctx.shadowColor = '#00ff41';
           }
           
           // Render defined characters with pixel-perfect positioning
@@ -335,8 +329,8 @@ const InteractiveMatrixBackground = () => {
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
       style={{
-        background: 'radial-gradient(ellipse at center, #000000 0%, #001a00 50%, #000000 100%)',
-        touchAction: 'none' // Prevent default touch behaviors
+        background: '#000000',
+        touchAction: 'none'
       }}
     />
   );
