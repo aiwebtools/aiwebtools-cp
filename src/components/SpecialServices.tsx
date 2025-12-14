@@ -427,6 +427,7 @@ const featuredGPTs = [
     color: "from-amber-600 to-red-600",
     features: ["Historical Headlines", "Period Reporting", "News Archives", "Historical Context"],
     directUrl: "https://historical-headlines-time-traveler.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/DgreEEJKynM",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-historical-headline_1Ll1g.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "📰"
   },
@@ -1097,7 +1098,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-pink-600",
     features: ["Tattoo Design", "Body Art", "Creative Design", "Business Planning"],
     directUrl: "https://tattoogpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=3dtGbNqXdPY",
+    videoUrl: "https://youtu.be/hB_fKF_5GOI",
     emoji: "🎨"
   },
   {
@@ -1887,8 +1888,9 @@ const featuredGPTs = [
     badge: "CREATIVE",
     color: "from-yellow-500 to-pink-500",
     features: ["Coloring Books", "Children's Content", "Art Generation", "Educational Tools"],
-    directUrl: "https://coloringbookmaker.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-coloring-page-of-a-robot-with-a-human-like-b.png/:/cr=t:4.3%25,l:0.78%25,w:94.34%25,h:84.09%25/rs=w:1200,h:600,cg:true,m",
+    directUrl: "https://coloringbookgeneratorgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/i0zc0aeRCeI?si=UKmD23pR3uCTGXBa",
+    imageUrl: "https://ideogram.ai/assets/progressive-image/balanced/response/1nn1k06fRwWk3OQIbu7sTw",
     emoji: "🖍️"
   },
   {
