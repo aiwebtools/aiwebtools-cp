@@ -190,6 +190,7 @@ export const professionalServicesGPTs: Tool[] = [
     emoji: "🧭",
     color: "from-green-500 to-teal-600",
     directUrl: "https://chatgpt.com/g/g-68f85a4844648191ac4c82f9e1d2b3b0-trail-mapper-gpt/?via=aiwebtools",
+    videoUrl: "https://youtu.be/f2Raf479gZE",
     tags: ["trail mapping", "navigation", "survival", "outdoor recreation", "hiking", "compass navigation", "route planning", "off-road", "aiwebtools", "Custom GPT"],
     category: "Professional Services",
     rating: 4.7,

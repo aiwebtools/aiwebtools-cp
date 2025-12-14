@@ -240,6 +240,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "💝",
     color: "from-pink-500 to-rose-600",
     directUrl: "https://chatgpt.com/g/g-68efd4255e848191b93b4b588e83aafe-friend-gpt?via=aiwebtools",
+    videoUrl: "https://youtu.be/LovdXeBlddQ",
     tags: ["friendship", "companionship", "emotional support", "conversation", "mental wellness", "listening", "comfort", "empathy", "aiwebtools", "Custom GPT"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.8,

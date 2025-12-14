@@ -956,7 +956,7 @@ const featuredGPTsUnsorted = [
     color: "from-purple-600 to-red-600",
     features: ["Pattern Recognition", "Historical Analysis", "Truth Seeking", "Alternative History"],
     directUrl: "https://historicalpatternsgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-an-advertisement-with-the-eye_C64dU.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
+    videoUrl: "https://youtu.be/_yonhGRCS3Y",
     emoji: "🔎"
   },
   {
@@ -1756,7 +1756,7 @@ const featuredGPTsUnsorted = [
     color: "from-purple-500 to-pink-600",
     features: ["Trend Prediction", "Data Analysis", "Statistical Modeling", "Forecasting"],
     directUrl: "https://fortunetellergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-fortune-teller-gpt-_kRpji.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    videoUrl: "https://youtu.be/nz-bAynJY24",
     emoji: "🔮"
   },
   {
@@ -1786,7 +1786,7 @@ const featuredGPTsUnsorted = [
     color: "from-green-500 to-emerald-600",
     features: ["VEO3 Optimization", "Google AI", "Video Prompts", "AI Optimization"],
     directUrl: "https://chatgpt.com/g/g-682faef24c608191808180e89719cb09-veo3-text-to-video-prompt-maker",
-    imageUrl: "/src/assets/veo3-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/b3Zz2qsmRts",
     emoji: "🎯"
   },
   {
@@ -1846,7 +1846,7 @@ const featuredGPTsUnsorted = [
     color: "from-pink-500 to-rose-600",
     features: ["Friendship", "Emotional Support", "Compassion", "Listening"],
     directUrl: "https://chatgpt.com/g/g-68efd4255e848191b93b4b588e83aafe-friend-gpt?via=aiwebtools",
-    imageUrl: "/src/assets/friend-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/LovdXeBlddQ",
     emoji: "💝"
   },
   {
@@ -2887,7 +2887,7 @@ const featuredGPTsUnsorted = [
     color: "from-green-500 to-teal-600",
     features: ["Trail Mapping", "Survival Routes", "Compass Navigation", "Route Planning"],
     directUrl: "https://chatgpt.com/g/g-68f85a4844648191ac4c82f9e1d2b3b0-trail-mapper-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/trail-mapper-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/f2Raf479gZE",
     emoji: "🧭"
   },
   {
@@ -3189,7 +3189,7 @@ const featuredGPTsUnsorted = [
     color: "from-red-500 to-orange-600",
     features: ["Vehicle Damage", "Accident Assessment", "Damage Appraisal", "Auto Insurance"],
     directUrl: "https://chatgpt.com/g/g-68bb3097f148819197c06d9dd2de35cd-ai-vehicle-accident-damage-appraiser/?via=aiwebtools",
-    imageUrl: "/src/assets/vehicle-damage-appraiser-hero.jpg",
+    videoUrl: "https://youtu.be/DSxAUqAZwGQ",
     emoji: "🚗"
   },
   {
@@ -3219,7 +3219,7 @@ const featuredGPTsUnsorted = [
     color: "from-orange-500 to-red-600",
     features: ["Nutrition Analysis", "Food Inspection", "Dietary Assessment", "Health Analysis"],
     directUrl: "https://chatgpt.com/g/g-68bb2444a9b08191a01c7b91216a7293-ai-food-plate-nutrition-analyzer/?via=aiwebtools",
-    imageUrl: "/src/assets/food-nutrition-analyzer-hero.jpg",
+    videoUrl: "https://youtu.be/wUqOSdOkMak",
     emoji: "🍽️"
   },
   {
