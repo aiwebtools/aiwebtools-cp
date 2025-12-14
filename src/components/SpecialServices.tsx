@@ -1200,16 +1200,6 @@ const featuredGPTsUnsorted = [
     emoji: "⏰"
   },
   {
-    title: "Trader GPT",
-    description: "Advanced trading assistant for financial markets, investment strategies, and trading education.",
-    badge: "FINANCE",
-    color: "from-green-500 to-yellow-600",
-    features: ["Trading Information", "Market Analysis", "Investment Insights", "Financial Education"],
-    directUrl: "https://tradergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=Izs80Fak4hQ",
-    emoji: "📈"
-  },
-  {
     title: "Travel Advisor GPT",
     description: "Plan your next vacation with your personal AI travel advisor with tailored recommendations.",
     badge: "TRAVEL",
@@ -2949,16 +2939,6 @@ const featuredGPTsUnsorted = [
     directUrl: "https://chatgpt.com/g/g-68bb792558a88191821219353c487bd6-diy-repair-gpt/?via=aiwebtools",
     imageUrl: "/src/assets/diy-repair-gpt-hero.jpg",
     emoji: "🔧"
-  },
-  {
-    title: "Trader GPT",
-    description: "Advanced AI tool designed to assist day traders and investors by providing real-time market analysis and trading signals with comprehensive technical analysis.",
-    badge: "TRADING",
-    color: "from-green-500 to-yellow-600",
-    features: ["Market Analysis", "Trading Signals", "Technical Analysis", "Day Trading"],
-    directUrl: "https://tradergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=Izs80Fak4hQ",
-    emoji: "📈"
   },
   {
     title: "Financial Modeling Expert",
