@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { Check, Sparkles, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const ConsentPopup = () => {
   const [showConsent, setShowConsent] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -32,7 +30,6 @@ const ConsentPopup = () => {
     
     // Immediately hide popup so site is fully usable
     setShowConsent(false);
-    setIsClosing(false);
     localStorage.setItem('aitools-consent-seen', 'true');
     
     // Play welcome audio only (no visual overlays)
@@ -46,17 +43,10 @@ const ConsentPopup = () => {
   // Works on all devices
   return (
     <div 
-      className={`fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center p-4 md:p-6 transition-opacity duration-400 ${
-        isClosing ? 'opacity-0' : 'opacity-100'
-      }`}
-      style={{ pointerEvents: isClosing ? 'none' : 'auto' }}
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-6"
     >
       <div 
-        className={`bg-gradient-to-br from-slate-800 via-gray-800 to-black border-2 border-cyan-400/80 rounded-xl p-4 md:p-6 w-full max-w-sm md:max-w-lg shadow-2xl shadow-cyan-400/50 relative overflow-hidden backdrop-blur-sm max-h-[90vh] overflow-y-auto transition-all duration-400 ${
-          isClosing 
-            ? 'opacity-0 scale-95 translate-y-4' 
-            : 'opacity-100 scale-100 translate-y-0 animate-scale-in'
-        }`}
+        className="bg-gradient-to-br from-slate-800 via-gray-800 to-black border-2 border-cyan-400/80 rounded-xl p-4 md:p-6 w-full max-w-sm md:max-w-lg shadow-2xl shadow-cyan-400/50 relative overflow-hidden backdrop-blur-sm max-h-[90vh] overflow-y-auto"
       >
         
         {/* Enhanced animated background pattern for mobile visibility */}
