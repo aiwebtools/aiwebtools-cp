@@ -2884,13 +2884,13 @@ const featuredGPTs = [
     emoji: "🔧"
   },
   {
-    title: "Bull or Bear AI",
-    description: "Analyzes news sentiment to predict stock trends, providing insights into whether market sentiment is bullish or bearish.",
+    title: "Trader GPT",
+    description: "Advanced AI tool designed to assist day traders and investors by providing real-time market analysis and trading signals with comprehensive technical analysis.",
     badge: "TRADING",
     color: "from-green-500 to-yellow-600",
-    features: ["Stock Trends", "Market Sentiment", "News Analysis", "Investment"],
-    directUrl: "https://chat.openai.com/g/g-jNwXw8RaR-bull-or-bear-ai",
-    imageUrl: "/src/assets/bull-bear-gpt-hero.jpg",
+    features: ["Market Analysis", "Trading Signals", "Technical Analysis", "Day Trading"],
+    directUrl: "https://tradergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=Izs80Fak4hQ",
     emoji: "📈"
   },
   {
@@ -3011,7 +3011,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-amber-600",
     features: ["Card Valuation", "Grading Help", "Market Analysis", "Collection"],
     directUrl: "https://sportcardappraisalgpt.lovable.app/?via=aiwebtools",
-    imageUrl: "/src/assets/sport-card-appraisal-hero.jpg",
+    videoUrl: "https://www.youtube.com/watch?v=lPvOvWWHErM",
     emoji: "🏈"
   },
   {
