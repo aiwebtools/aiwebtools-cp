@@ -54,7 +54,7 @@ const DisclaimerPopup = () => {
 
   return (
     <Dialog open={isOpen} onOpenChange={() => {}}>
-      <DialogContent className="max-w-[90vw] sm:max-w-lg max-h-[85vh] bg-gray-900 border-cyan-500/30 text-white p-4 sm:p-6 will-change-auto">
+      <DialogContent className="max-w-[90vw] sm:max-w-lg max-h-[85vh] bg-gray-900 border-cyan-500/30 text-white p-4 sm:p-6 will-change-auto z-[9999] pointer-events-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-lg sm:text-xl text-cyan-400">
             <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
