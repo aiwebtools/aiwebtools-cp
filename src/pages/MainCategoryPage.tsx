@@ -59,8 +59,22 @@ const MainCategoryPage = () => {
       return; // Skip heavier fallback path
     }
 
-    // Fallback: load tools in next frame to allow page to render first
-    requestAnimationFrame(() => {
+    // Special fast path for "ALL AI TOOLS" - just use allTools directly (no filtering needed)
+    if (decodedCategoryName === "ALL AI TOOLS") {
+      // Use setTimeout(0) to truly defer and avoid blocking navigation
+      setTimeout(() => {
+        startTransition(() => {
+          setCategoryTools(allTools);
+          setFilteredToolsByCategory(allTools);
+          setIsToolsReady(true);
+          console.log(`📂 Loaded ${allTools.length} tools for ALL AI TOOLS`);
+        });
+      }, 0);
+      return;
+    }
+
+    // Fallback for other categories: use setTimeout(0) for true async deferral
+    setTimeout(() => {
       startTransition(() => {
         const tools = getToolsByMainCategory(allTools, decodedCategoryName);
         console.log(`📂 Loaded ${tools.length} tools for category: ${decodedCategoryName}`);
@@ -68,7 +82,7 @@ const MainCategoryPage = () => {
         setFilteredToolsByCategory(tools);
         setIsToolsReady(true);
       });
-    });
+    }, 0);
   }, [decodedCategoryName]);
 
   // Use filtered tools from category filter - this is the SOURCE OF TRUTH when filter is active
