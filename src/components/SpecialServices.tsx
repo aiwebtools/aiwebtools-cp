@@ -356,7 +356,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-green-600",
     features: ["Workout Routines", "Exercise Form", "Strength Training", "Fitness Coaching"],
     directUrl: "https://chatgpt.com/g/g-68afaae3f8e881918d8b84b7ca85a413-fitness-coach/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=eHInYKxyKm4",
+    imageUrl: "/src/assets/fitness-trainer-gpt-hero.jpg",
     emoji: "🏋️"
   },
   {
@@ -1201,6 +1201,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-yellow-600",
     features: ["Sacred Fire", "Divine Light", "Ancient Persia", "Spiritual Wisdom"],
     directUrl: "https://chatgpt.com/g/g-68e7ffc2efec8191b99ae3f867d46e69-zoroastrian-light-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/zoroastrian-gpt-hero.jpg",
     emoji: "🔥"
   },
   {
@@ -1210,6 +1211,7 @@ const featuredGPTs = [
     color: "from-stone-500 to-amber-600",
     features: ["Socratic Method", "Critical Thinking", "Ancient Wisdom", "Dialectic"],
     directUrl: "https://chatgpt.com/g/g-69249e4e553881919f895df4246ca0a6-socrates-free-thought-liberator/?via=aiwebtools",
+    imageUrl: "/src/assets/socrates-gpt-hero.jpg",
     emoji: "🏛️"
   },
   {
@@ -1219,6 +1221,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-yellow-600",
     features: ["Four Noble Truths", "Meditation", "Mindfulness", "Enlightenment"],
     directUrl: "https://chatgpt.com/g/g-6924a588d2e08191b229e230f40c9d69-buddha-free-thought-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/buddha-gpt-hero.jpg",
     emoji: "🧘"
   },
   {
@@ -1228,6 +1231,7 @@ const featuredGPTs = [
     color: "from-rose-500 to-pink-600",
     features: ["Sufi Wisdom", "Poetry", "Divine Love", "Mysticism"],
     directUrl: "https://chatgpt.com/g/g-6924aaa63bac81918eba0840a12ff1b7-rumi-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/rumi-gpt-hero.jpg",
     emoji: "🌹"
   },
   {
@@ -1237,6 +1241,7 @@ const featuredGPTs = [
     color: "from-stone-500 to-amber-600",
     features: ["Stoicism", "Meditations", "Roman Philosophy", "Virtue"],
     directUrl: "https://chatgpt.com/g/g-6924ac04f59c819189f01e7de23fbf7f-marcus-aurelius-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/marcus-aurelius-gpt-hero.jpg",
     emoji: "🏛️"
   },
   {
@@ -1246,6 +1251,7 @@ const featuredGPTs = [
     color: "from-slate-500 to-teal-600",
     features: ["Taoism", "Wu Wei", "Tao Te Ching", "Eastern Wisdom"],
     directUrl: "https://chatgpt.com/g/g-6924a35694b4819193935419f1ced96c-lao-tzu-free-thought-liberator/?via=aiwebtools",
+    imageUrl: "/src/assets/lao-tzu-gpt-hero.jpg",
     emoji: "☯️"
   },
   {
@@ -1255,6 +1261,7 @@ const featuredGPTs = [
     color: "from-pink-400 to-purple-500",
     features: ["Compassion", "Buddhism", "Divine Feminine", "Healing"],
     directUrl: "https://chatgpt.com/g/g-6931b5ced07081919ab6d3d4ae7efd0c-quan-yin-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/quan-yin-gpt-hero.jpg",
     emoji: "🪷"
   },
   {
@@ -1264,6 +1271,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-cyan-600",
     features: ["Water Deity", "Divine Feminine", "Healing", "Ancestral Wisdom"],
     directUrl: "https://chatgpt.com/g/g-6931ac78db408191a54b3f5729d6e600-yemaya-ancient-african-mother-of-the-waters/?via=aiwebtools",
+    imageUrl: "/src/assets/yemaya-gpt-hero.jpg",
     emoji: "🌊"
   },
   {
@@ -1273,6 +1281,7 @@ const featuredGPTs = [
     color: "from-yellow-400 to-white",
     features: ["Light Symbolism", "World Religions", "Divine Truth", "Spirituality"],
     directUrl: "https://chatgpt.com/g/g-692a3789904481918413ba10f9acb4a5-god-is-light-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/god-is-light-gpt-hero.jpg",
     emoji: "💡"
   },
   {
@@ -1647,6 +1656,7 @@ const featuredGPTs = [
     color: "from-red-500 to-orange-600",
     features: ["Sora 2 Prompts", "Cinematic Scenes", "Camera Movements", "Visual Storytelling"],
     directUrl: "https://chatgpt.com/g/g-69326acb5f348191a2f85c2cdc848c4d-0ra2-text-to-video-prompt-maker?via=aiwebtools",
+    imageUrl: "/src/assets/sora2-gpt-hero.jpg",
     emoji: "🎬"
   },
   {
@@ -1656,6 +1666,7 @@ const featuredGPTs = [
     color: "from-green-500 to-emerald-600",
     features: ["VEO3 Optimization", "Google AI", "Video Prompts", "AI Optimization"],
     directUrl: "https://chatgpt.com/g/g-682faef24c608191808180e89719cb09-veo3-text-to-video-prompt-maker",
+    imageUrl: "/src/assets/veo3-gpt-hero.jpg",
     emoji: "🎯"
   },
   {
@@ -1715,6 +1726,7 @@ const featuredGPTs = [
     color: "from-pink-500 to-rose-600",
     features: ["Friendship", "Emotional Support", "Compassion", "Listening"],
     directUrl: "https://chatgpt.com/g/g-68efd4255e848191b93b4b588e83aafe-friend-gpt?via=aiwebtools",
+    imageUrl: "/src/assets/friend-gpt-hero.jpg",
     emoji: "💝"
   },
   {
@@ -1754,6 +1766,7 @@ const featuredGPTs = [
     color: "from-indigo-600 to-purple-600",
     features: ["Ancient Knowledge", "Cosmic Archives", "Ancient Civilizations", "Mysteries"],
     directUrl: "https://chatgpt.com/g/g-692800a13eb881918fac2a7b1b86ad98-intergalactic-ancient-archivist-gpt?via=aiwebtools",
+    imageUrl: "/src/assets/intergalactic-archivist-gpt-hero.jpg",
     emoji: "🌌"
   },
   {
@@ -1763,6 +1776,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Spiritual Game", "Consciousness Quiz", "Metaphysical Wisdom", "Interactive"],
     directUrl: "https://chatgpt.com/g/g-6907af60440c8191bba8d514b749562a-awakening-jeopardy-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/awakening-jeopardy-gpt-hero.jpg",
     emoji: "🎮"
   },
   {
@@ -1772,6 +1786,7 @@ const featuredGPTs = [
     color: "from-red-500 to-orange-600",
     features: ["Supply Chain", "Risk Analysis", "Economic Resilience", "Strategic Planning"],
     directUrl: "https://supplychaingpt.lovable.app/?via=aiwebtools",
+    imageUrl: "/src/assets/supply-chain-gpt-hero.jpg",
     emoji: "🔗"
   },
   {
@@ -1921,6 +1936,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Painting Techniques", "Calm Guidance", "Artistic Creativity", "Happy Little Trees"],
     directUrl: "https://chatgpt.com/g/g-69157380e63c819188de5c09bdf23ef7-bob-ross-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/bob-ross-gpt-hero.jpg",
     emoji: "🎨"
   },
   {
