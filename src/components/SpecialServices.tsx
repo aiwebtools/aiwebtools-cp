@@ -2978,6 +2978,96 @@ const featuredGPTs = [
     directUrl: "https://neomatrixgpt.lovable.app/architect",
     videoUrl: "https://youtu.be/qMLF5L_h2xo",
     emoji: "🏛️"
+  },
+  {
+    title: "WE THE PEOPLE AI",
+    description: "Empowering citizens with AI-driven tools for political activism, civic engagement, and grassroots organizing. Connect with representatives and make your voice heard.",
+    badge: "CIVIC",
+    color: "from-blue-600 to-red-600",
+    features: ["Political Activism", "Civic Engagement", "Democracy", "Grassroots"],
+    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/mxdJ0gLxGCI?si=Yx0rWtOSmWijtZZC",
+    emoji: "🗳️"
+  },
+  {
+    title: "Sport Card Appraisal GPT",
+    description: "Professional AI-powered sports card valuation and grading assistance. Get accurate market valuations and condition assessments for your collection.",
+    badge: "APPRAISAL",
+    color: "from-orange-500 to-amber-600",
+    features: ["Card Valuation", "Grading Help", "Market Analysis", "Collection"],
+    directUrl: "https://sportcardappraisalgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "/src/assets/sport-card-appraisal-gpt-hero.jpg",
+    emoji: "🏈"
+  },
+  {
+    title: "Aether Guide",
+    description: "Explore theories, history, and speculation about aether energy. From classical ether theory to modern interpretations and fringe science theories.",
+    badge: "MYSTERIES",
+    color: "from-purple-500 to-blue-600",
+    features: ["Aether Energy", "Alternative Science", "Physics", "Ether Theory"],
+    directUrl: "https://chatgpt.com/g/g-68d044de35b48191a53196a394cff061-aether-guide",
+    imageUrl: "/src/assets/aether-guide-gpt-hero.jpg",
+    emoji: "⚡"
+  },
+  {
+    title: "HydroElectric Reclamation GPT",
+    description: "Hydro-electric instructor & design companion uniting technical mastery with natural reverence for sustainable water power solutions.",
+    badge: "GREEN ENERGY",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Hydroelectric", "Renewable Energy", "Engineering", "Sustainability"],
+    directUrl: "https://chatgpt.com/g/g-690a473d14dc8191baced00e65f906b7-hydroelectric-reclamation-gpt",
+    imageUrl: "/src/assets/hydroelectric-gpt-hero.jpg",
+    emoji: "💧"
+  },
+  {
+    title: "I-convert Image to Code GPT",
+    description: "Transform design images into web development code with user-guided specifications. Analyze mockups to generate clean HTML, CSS, and JavaScript.",
+    badge: "DEVELOPMENT",
+    color: "from-blue-500 to-purple-600",
+    features: ["Image to Code", "Web Development", "Code Generation", "Design Conversion"],
+    directUrl: "https://chatgpt.com/g/g-30Z7JKMBW-i-convert-image-to-code-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/image-to-code-gpt-hero.jpg",
+    emoji: "🖼️"
+  },
+  {
+    title: "Deployable Custom GPT Maker",
+    description: "Create and deploy custom GPT models with ease. Build tailored AI assistants for specific use cases with our comprehensive cloning and customization tool.",
+    badge: "AI DEVELOPMENT",
+    color: "from-blue-500 to-purple-600",
+    features: ["GPT Cloning", "Custom AI", "AI Development", "Chatbot Creation"],
+    directUrl: "https://chatgpt.com/g/g-6904e17b11c481918dbec234180bff54-deployable-robots-custom-gpt-cloner/?via=aiwebtools",
+    videoUrl: "https://youtu.be/lG1rMaImBNc",
+    emoji: "🤖"
+  },
+  {
+    title: "veo3 prompt maker custom Gem",
+    description: "Custom Gemini gem for creating optimized prompts for Veo 3, Google's advanced video generation model. Craft perfect prompts for stunning AI-generated videos.",
+    badge: "GEMINI GEM",
+    color: "from-pink-500 to-purple-600",
+    features: ["Veo3", "Prompt Engineering", "Video Generation", "AI Video"],
+    directUrl: "https://gemini.google.com/gem/64b77a9fe1e8",
+    imageUrl: "/src/assets/veo3-gem-hero.jpg",
+    emoji: "🎬"
+  },
+  {
+    title: "Declassified Files Explorer GEMINI",
+    description: "Discover and study declassified files released by the government. Study formerly top secret documents with full transparency.",
+    badge: "GEMINI GEM",
+    color: "from-gray-500 to-blue-600",
+    features: ["Declassified", "Government Files", "Transparency", "Research"],
+    directUrl: "https://gemini.google.com/gem/52dfeb277b06",
+    imageUrl: "/src/assets/declassified-gem-hero.jpg",
+    emoji: "📄"
+  },
+  {
+    title: "OG TIME MACHINE HISTORY EDUCATION (GEM)",
+    description: "Father Time Travel Through Time - Experience History Like Never Before in this immersive Time Traveling Journey with Google Gemini.",
+    badge: "GEMINI GEM",
+    color: "from-purple-500 to-blue-600",
+    features: ["Time Travel", "History", "Education", "Father Time"],
+    directUrl: "https://gemini.google.com/gem/18b868221ea1",
+    imageUrl: "/src/assets/og-time-machine-gem-hero.jpg",
+    emoji: "🌍"
   }
 ];
 
