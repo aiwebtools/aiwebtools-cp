@@ -2977,6 +2977,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-yellow-600",
     features: ["Construction Planning", "Safety Compliance", "Project Management", "Building Codes"],
     directUrl: "https://chatgpt.com/g/g-Hmgy6x48R-construction-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/construction-gpt-hero.jpg",
     emoji: "🏗️"
   },
   {
@@ -2986,6 +2987,7 @@ const featuredGPTs = [
     color: "from-red-500 to-orange-600",
     features: ["Home Repair", "Troubleshooting", "DIY Fixes", "Maintenance Tips"],
     directUrl: "https://chatgpt.com/g/g-oK2iR2dPf-mr-fix-it-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/mr-fix-it-gpt-hero.jpg",
     emoji: "🔧"
   },
   {
@@ -2995,6 +2997,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Cooking Help", "Recipe Assistance", "Food Analysis", "Kitchen Tips"],
     directUrl: "https://chatgpt.com/g/g-2ENWV8WeM-kitchen-and-vision-assistant-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/kitchen-vision-gpt-hero.jpg",
     emoji: "👨‍🍳"
   },
   {
@@ -3004,6 +3007,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-red-600",
     features: ["DIY Guides", "Part Matching", "Repair Tutorials", "Home Maintenance"],
     directUrl: "https://chatgpt.com/g/g-68bb792558a88191821219353c487bd6-diy-repair-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/diy-repair-gpt-hero.jpg",
     emoji: "🔧"
   },
   {
@@ -3013,6 +3017,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Financial Literacy", "Wealth Building", "Budgeting", "Debt Elimination"],
     directUrl: "https://chatgpt.com/g/g-68ae2ab2c55c8191afdc979301179fa9-poverty-crusher-economic-empowerment-ai/?via=aiwebtools",
+    imageUrl: "/src/assets/poverty-crusher-gpt-hero.jpg",
     emoji: "💪"
   },
   {
@@ -3022,6 +3027,7 @@ const featuredGPTs = [
     color: "from-green-500 to-yellow-600",
     features: ["Stock Trends", "Market Sentiment", "News Analysis", "Investment"],
     directUrl: "https://chat.openai.com/g/g-jNwXw8RaR-bull-or-bear-ai",
+    imageUrl: "/src/assets/bull-bear-gpt-hero.jpg",
     emoji: "📈"
   },
   {
@@ -3041,6 +3047,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Financial Modeling", "Forecasting", "Valuation", "Investment"],
     directUrl: "https://chat.openai.com/g/g-vjbkX4BwW-financial-modeling-expert",
+    imageUrl: "/src/assets/financial-modeling-gpt-hero.jpg",
     emoji: "💹"
   },
   {
@@ -3060,6 +3067,7 @@ const featuredGPTs = [
     color: "from-red-500 to-orange-600",
     features: ["Competitor Analysis", "Market Research", "Business Intelligence", "Strategy"],
     directUrl: "https://chatgpt.com/g/g-68bb9109085c8191a5ffbe9ed6d339f5-competitor-comparison-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/competitor-comparison-gpt-hero.jpg",
     emoji: "🎯"
   },
   {
@@ -3069,6 +3077,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-pink-600",
     features: ["Side Hustle", "Microbusiness", "Startup Strategy", "Planning"],
     directUrl: "https://chatgpt.com/g/g-68bb8ba059ec81919253d369d0899f9c-side-hustle-microbusiness-planner-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/side-hustle-gpt-hero.jpg",
     emoji: "💼"
   },
   {
@@ -3078,6 +3087,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-purple-600",
     features: ["Nonprofit", "Fundraising", "Grants", "Charity"],
     directUrl: "https://chatgpt.com/g/g-68bb7c9e5a78819184e03d06d63483f8-nonprofit-fundraising-builder-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/nonprofit-fundraising-gpt-hero.jpg",
     emoji: "🤲"
   },
   {
@@ -3087,6 +3097,7 @@ const featuredGPTs = [
     color: "from-green-500 to-teal-600",
     features: ["Plant Health", "Garden Care", "Horticulture", "Plant Diagnosis"],
     directUrl: "https://chatgpt.com/g/g-68bb73007bd48191a860d2304e3665e6-garden-vision-analysis-plant-doctor-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/garden-plant-gpt-hero.jpg",
     emoji: "🌱"
   },
   {
@@ -3096,6 +3107,7 @@ const featuredGPTs = [
     color: "from-red-500 to-blue-600",
     features: ["Live News", "World News", "Local News", "Breaking Stories"],
     directUrl: "https://chatgpt.com/g/g-ELRe07210-news-channel-gpt?via=aiwebtools",
+    imageUrl: "/src/assets/news-channel-gpt-hero.jpg",
     emoji: "📺"
   },
   {
@@ -3115,6 +3127,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Painting", "Art Teaching", "Creativity", "Calm Guidance"],
     directUrl: "https://chatgpt.com/g/g-69157380e63c819188de5c09bdf23ef7-bob-ross-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/bob-ross-gpt-hero.jpg",
     emoji: "🎨"
   },
   {
@@ -3134,6 +3147,7 @@ const featuredGPTs = [
     color: "from-green-500 to-red-600",
     features: ["Palestinian History", "Cultural Preservation", "Education", "Heritage"],
     directUrl: "https://chatgpt.com/g/g-68a5f8d8cedc8191a3a71f7c65b6b9a4-palestinian-history-preserver/?via=aiwebtools",
+    imageUrl: "/src/assets/palestinian-history-gpt-hero.jpg",
     emoji: "🇵🇸"
   },
   {
@@ -3275,6 +3289,7 @@ const featuredGPTs = [
     color: "from-red-500 to-orange-600",
     features: ["Fire Safety", "Code Violations", "Hazard Detection", "Compliance"],
     directUrl: "https://chatgpt.com/g/g-68bb3827c47c8191ae66c9e92db564fd-ai-fire-hazard-inspector/?via=aiwebtools",
+    imageUrl: "/src/assets/fire-hazard-inspector-hero.jpg",
     emoji: "🔥"
   },
   {
@@ -3284,6 +3299,7 @@ const featuredGPTs = [
     color: "from-sky-500 to-blue-600",
     features: ["Runway Safety", "Aviation Compliance", "Airport Systems", "Precision Inspection"],
     directUrl: "https://chatgpt.com/g/g-68bb55e079a48191ba27ca02b8c13de4-ai-airport-runway-systems-inspector/?via=aiwebtools",
+    imageUrl: "/src/assets/airport-runway-inspector-hero.jpg",
     emoji: "✈️"
   },
   {
@@ -3293,6 +3309,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-cyan-600",
     features: ["Hospital Safety", "Healthcare Compliance", "Hazard Detection", "Medical Facility"],
     directUrl: "https://chatgpt.com/g/g-68bb6ea0898c8191b61de70d8c5d52a3-ai-hospital-facility-safety-inspector/?via=aiwebtools",
+    imageUrl: "/src/assets/hospital-safety-inspector-hero.jpg",
     emoji: "🏥"
   },
   {
@@ -3302,6 +3319,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Chemical Safety", "Plant Compliance", "Refinery Inspection", "Industrial Safety"],
     directUrl: "https://chatgpt.com/g/g-68bb5f0d5a488191a58dd3e6d9e6a4b9-chemical-plant-inspector-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/chemical-plant-inspector-hero.jpg",
     emoji: "⚗️"
   },
   {
@@ -3311,6 +3329,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Solar Inspection", "PV Plants", "Green Energy", "Compliance Audit"],
     directUrl: "https://chatgpt.com/g/g-68bb4ea28fec819196a157b74750be21-solar-farm-inspector-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/solar-farm-inspector-hero.jpg",
     emoji: "☀️"
   },
   {
@@ -3320,6 +3339,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Electrical Safety", "Power Grid", "Substation Compliance", "Grid Analysis"],
     directUrl: "https://chatgpt.com/g/g-68bb51b15dc48191aca3892c33724bc3-electrical-grid-substation-inspector-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/electrical-grid-inspector-hero.jpg",
     emoji: "⚡"
   }
 ];
