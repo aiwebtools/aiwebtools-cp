@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Plus, Search, Download } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { allTools } from "@/data/toolsData";
 import { downloadToolsCSV } from "@/utils/csvExport";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
@@ -11,9 +12,11 @@ interface FooterActionsProps {
 }
 
 const FooterActions = ({ handleExternalLink, handleSubmitTool, handleRequestTool }: FooterActionsProps) => {
+  const navigate = useNavigate();
+  
   const handleViewAllTools = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.location.href = '/main-category/ALL%20AI%20TOOLS';
+    navigate('/main-category/ALL%20AI%20TOOLS');
   };
 
   const handleViewPortfolio = (e: React.MouseEvent) => {
