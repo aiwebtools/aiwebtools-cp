@@ -216,9 +216,6 @@ export const createTimePortalEffect = (
 ) => {
   console.log('🌀 Creating TIME WARP portal effect for URL:', destinationUrl);
   
-  // ⚡ INSTANT EXECUTION - No delays, everything fires NOW
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  
   // Extract tool name for logging
   const finalToolName = extractToolName(destinationUrl, toolName);
   console.log('🎯 Final detected tool name:', finalToolName);
@@ -231,15 +228,14 @@ export const createTimePortalEffect = (
     applyTimeWarpFilter();
   }
 
-  // 🔥 INSTANT FIRE - Everything starts NOW, no requestAnimationFrame delay
+  // 🔥 INSTANT FIRE - Everything starts NOW, same on ALL devices
   playTimeWarpVoice();
   createMatrixCodeExplosion(effectsContainer);
   createFlash(effectsContainer);
   createConfettiCelebration(true);
 
-  // ⚡ ULTRA FAST - URL opens after just enough time to see/hear the effect
-  // Voice is ~2.2s but we want to WOW then GO - open at 1.6s (hear "initializing" + bass hit)
-  const urlOpenDelay = isMobile ? 1400 : 1600;
+  // ⚡ SAME TIMING ON ALL DEVICES - desktop experience everywhere
+  const urlOpenDelay = 1600;
   
   setTimeout(() => {
     console.log('🚀 Opening destination URL NOW');
@@ -248,8 +244,8 @@ export const createTimePortalEffect = (
     }
   }, urlOpenDelay);
 
-  // Cleanup shortly after URL opens
+  // Cleanup after effect completes - same timing for all
   setTimeout(() => {
     cleanupEffects(effectsContainer);
-  }, isMobile ? 2000 : 2200);
+  }, 2200);
 };

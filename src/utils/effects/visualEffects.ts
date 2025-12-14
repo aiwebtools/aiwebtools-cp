@@ -633,9 +633,13 @@ export const createWarpStars = (effectsContainer: HTMLElement) => {
   }
 };
 
-// CLEAN MATRIX CODE EXPLOSION - Focused and impactful
+// CLEAN MATRIX CODE EXPLOSION - Same effect on ALL devices
 export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
-  console.log('💚 Creating clean Matrix code explosion');
+  console.log('💚 Creating clean Matrix code explosion (same on all devices)');
+  
+  // Viewport-aware sizing for consistent experience
+  const vw = Math.min(window.innerWidth, window.innerHeight);
+  const scaleFactor = vw / 1000; // Scale based on viewport
   
   // DARK BACKDROP
   const matrixBackdrop = document.createElement('div');
@@ -683,12 +687,13 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     const binaryCode = Array.from({ length: 30 }, () => Math.random() > 0.5 ? '1' : '0').join('');
     stream.textContent = binaryCode;
     
+    const fontSize = Math.max(12, 18 * scaleFactor);
     stream.style.cssText = `
       position: absolute;
       top: 50%;
       left: 50%;
       font-family: 'Courier New', monospace;
-      font-size: 18px;
+      font-size: ${fontSize}px;
       font-weight: bold;
       color: #00FF00;
       text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00;
@@ -709,9 +714,10 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     const matrixChar = document.createElement('div');
     matrixChar.className = 'matrix-explosion-char';
     const char = Math.random() > 0.5 ? '1' : '0';
-    const fontSize = 30 + Math.random() * 50;
+    const baseFontSize = 30 + Math.random() * 50;
+    const fontSize = Math.max(20, baseFontSize * scaleFactor);
     const angle = Math.random() * 360;
-    const velocity = 150 + Math.random() * 400;
+    const velocity = Math.max(100, (150 + Math.random() * 400) * scaleFactor);
     const delay = Math.random() * 0.2;
     
     matrixChar.textContent = char;
@@ -747,13 +753,14 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
       Math.random() > 0.5 ? '1' : '0'
     ).join('\n');
     
+    const fontSize = Math.max(10, 16 * scaleFactor);
     column.textContent = chars;
     column.style.cssText = `
       position: fixed;
       top: -600px;
       left: ${leftPos}%;
       font-family: 'Courier New', monospace;
-      font-size: 16px;
+      font-size: ${fontSize}px;
       font-weight: bold;
       color: #00FF00;
       text-shadow: 0 0 8px #00FF00;
@@ -792,15 +799,16 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     effectsContainer.appendChild(ring);
   }
   
-  // === CENTRAL ORB ===
+  // === CENTRAL ORB - viewport-aware sizing ===
+  const orbSize = Math.max(60, 100 * scaleFactor);
   const matrixOrb = document.createElement('div');
   matrixOrb.className = 'matrix-orb';
   matrixOrb.style.cssText = `
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100px;
-    height: 100px;
+    width: ${orbSize}px;
+    height: ${orbSize}px;
     border-radius: 50%;
     background: radial-gradient(circle, #00FF00 0%, #00AA00 40%, transparent 70%);
     box-shadow: 0 0 80px #00FF00, 0 0 160px #00FF00;
