@@ -309,6 +309,16 @@ export const sortToolsZA = (tools: Tool[]): Tool[] => {
   return [...tools].sort((a, b) => b.title.localeCompare(a.title));
 };
 
+// Cache for smart sorted results - keyed by category + tools hash
+let smartSortCache: Map<string, Tool[]> = new Map();
+const MAX_CACHE_SIZE = 20;
+
+const getToolsHash = (tools: Tool[]): string => {
+  // Fast hash: use length + first/last titles
+  if (tools.length === 0) return 'empty';
+  return `${tools.length}-${tools[0]?.title || ''}-${tools[tools.length - 1]?.title || ''}`;
+};
+
 /**
  * Smart interleaved sorting with per-category prioritization:
  * 1. Prioritizes tools matching category-specific priority keywords (shown FIRST)
@@ -316,6 +326,8 @@ export const sortToolsZA = (tools: Tool[]): Tool[] => {
  * 3. Always deprioritizes common default assistants (Siri, Alexa, etc.)
  * 4. Interleaves AIWebTools GPTs after every 2 external tools
  * 5. Ensures AIWebTools GPTs shown are relevant to the category
+ * 
+ * Results are cached for instant subsequent lookups.
  */
 export const applySmartInterleavedSorting = (
   tools: Tool[],
@@ -323,6 +335,11 @@ export const applySmartInterleavedSorting = (
 ): Tool[] => {
   if (!tools || tools.length === 0) return tools;
   
+  // Check cache first
+  const cacheKey = `${categoryContext || 'none'}-${getToolsHash(tools)}`;
+  const cached = smartSortCache.get(cacheKey);
+  if (cached) return cached;
+
   const config = categoryContext ? getCategoryConfig(categoryContext) : null;
   
   // Separate tools into groups
@@ -363,8 +380,6 @@ export const applySmartInterleavedSorting = (
     }
   });
   
-  console.log(`🎯 Smart Sort [${categoryContext || 'none'}]: ${prioritized.length} prioritized, ${externalTools.length} external, ${aiWebToolsGPTs.length} AIWebTools GPTs, ${deprioritized.length} deprioritized`);
-  
   // If we have a category context, sort AIWebTools GPTs by relevance to category
   const sortedAIWebToolsGPTs = categoryContext 
     ? sortByRelevanceToCategory(aiWebToolsGPTs, categoryContext)
@@ -402,7 +417,17 @@ export const applySmartInterleavedSorting = (
   }
   
   // Final order: prioritized first, then interleaved, then deprioritized
-  return [...sortedPrioritized, ...interleaved, ...deprioritized];
+  const result = [...sortedPrioritized, ...interleaved, ...deprioritized];
+  
+  // Cache result (with size limit)
+  if (smartSortCache.size >= MAX_CACHE_SIZE) {
+    // Remove oldest entry
+    const firstKey = smartSortCache.keys().next().value;
+    if (firstKey) smartSortCache.delete(firstKey);
+  }
+  smartSortCache.set(cacheKey, result);
+  
+  return result;
 };
 
 // Sort tools by relevance to a category
