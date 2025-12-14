@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AnimatedBackground from '@/components/AnimatedBackground';
+import DeferredMount from '@/components/DeferredMount';
 import ScrollToTop from '@/components/ui/scroll-to-top';
 import SEOHead from '@/components/SEOHead';
 import ToolCard from '@/components/tools/ToolCard';
@@ -28,7 +29,7 @@ const FavoritesPage = () => {
         keywords={["favorite ai tools", "saved ai tools", "ai bookmarks", "ai tools collection"]}
       />
       
-      <AnimatedBackground />
+      <DeferredMount delay={50}><AnimatedBackground /></DeferredMount>
       
       <div className="relative z-10 cyber-grid">
         <Header />

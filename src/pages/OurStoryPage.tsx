@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import DeferredMount from "@/components/DeferredMount";
 import SEOHead from "@/components/SEOHead";
 
 const OurStoryPage = () => {
@@ -50,7 +51,7 @@ Best regards,
         keywords={["AI Web Tools story", "free AI tools", "AI directory", "AI tools collection", "AI resources"]}
       />
       
-      <AnimatedBackground />
+      <DeferredMount delay={50}><AnimatedBackground /></DeferredMount>
       <Header />
       
       <div className="min-h-screen bg-black text-white pt-20 relative overflow-hidden">

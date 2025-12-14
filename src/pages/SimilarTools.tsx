@@ -10,6 +10,7 @@ import ToolCard from "@/components/tools/ToolCard";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import DeferredMount from "@/components/DeferredMount";
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import SEOHead from "@/components/SEOHead";
 import { generateToolSlug } from "@/utils/urlGenerator";
@@ -127,7 +128,7 @@ const SimilarTools = () => {
   if (!baseTool) {
     return (
       <div className="min-h-screen bg-black relative flex items-center justify-center">
-        <AnimatedBackground />
+        <DeferredMount delay={50}><AnimatedBackground /></DeferredMount>
         <div className="text-center text-white">
           <h1 className="text-2xl font-bold mb-4">Tool Not Found</h1>
           <Button onClick={() => navigate('/')}>
@@ -154,7 +155,7 @@ const SimilarTools = () => {
         url={`/similar/${toolIndex}`}
       />
       
-      <AnimatedBackground />
+      <DeferredMount delay={50}><AnimatedBackground /></DeferredMount>
       <div className="relative z-10 cyber-grid">
         <Header />
         
