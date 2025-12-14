@@ -96,13 +96,13 @@ const FooterBottom = ({
             📜 Full Disclaimers & User Agreement
           </Link>
           <button 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })} 
             className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm font-medium"
           >
             ⬆️ TOP OF PAGE
           </button>
           <button 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })} 
             className="text-cyan-300 hover:text-cyan-400 transition-colors text-sm font-medium"
           >
             ⬆️ TOP OF PAGE
