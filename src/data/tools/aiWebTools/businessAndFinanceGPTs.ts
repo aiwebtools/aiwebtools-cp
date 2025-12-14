@@ -37,15 +37,16 @@ export const businessAndFinanceGPTs: Tool[] = [
   },
   {
     icon: TrendingUp,
-    title: "Bull or Bear AI",
-    description: "Analyzes news sentiment to predict stock trends, providing insights into whether market sentiment is bullish or bearish.",
+    title: "Trader GPT",
+    description: "Trader GPT is an advanced AI tool designed to assist day traders and investors by providing real-time market analysis and trading signals. It leverages the latest market data to perform comprehensive technical analysis, offering actionable insights for informed trading decisions.",
     emoji: "📈",
     color: "from-green-500 to-yellow-600",
-    directUrl: "https://chat.openai.com/g/g-jNwXw8RaR-bull-or-bear-ai",
-    tags: ["stock trends", "market sentiment", "news analysis", "investment"],
+    directUrl: "https://tradergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=Izs80Fak4hQ",
+    tags: ["day trading", "market analysis", "trading signals", "technical analysis", "investing", "stocks", "aiwebtools", "Custom GPT"],
     category: "Business & Finance",
-    rating: 4.5,
-    totalVotes: 1953
+    rating: 4.7,
+    totalVotes: 3456
   },
   {
     icon: DollarSign,
