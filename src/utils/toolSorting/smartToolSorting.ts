@@ -8,6 +8,11 @@ const DEPRIORITIZED_TOOLS = [
   'microsoft cortana', 'hey google', 'ok google'
 ];
 
+// Tools that should be pushed down specifically on EDUCATION & LEARNING pages
+const EDUCATION_DEPRIORITIZED_TITLES = [
+  'lm studio',
+];
+
 // Cache for deprioritization checks to avoid repeated string operations
 const deprioritizedCache = new WeakMap<Tool, boolean>();
 
@@ -49,11 +54,25 @@ export const applySmartInterleavedSorting = (
   const deprioritized: Tool[] = [];
   const aiWebToolsGPTs: Tool[] = [];
   const externalTools: Tool[] = [];
+
+  const isEducationContext = !!categoryContext && categoryContext.toLowerCase().includes("education");
   
   tools.forEach(tool => {
+    const titleLower = tool.title.toLowerCase();
+
+    // Global deprioritized (phone assistants)
     if (isDeprioritizedTool(tool)) {
       deprioritized.push(tool);
-    } else if (isAIWebToolsGPT(tool)) {
+      return;
+    }
+
+    // Extra deprioritization ONLY on Education & Learning pages (e.g., LM Studio)
+    if (isEducationContext && EDUCATION_DEPRIORITIZED_TITLES.some(name => titleLower.includes(name))) {
+      deprioritized.push(tool);
+      return;
+    }
+
+    if (isAIWebToolsGPT(tool)) {
       aiWebToolsGPTs.push(tool);
     } else {
       externalTools.push(tool);
