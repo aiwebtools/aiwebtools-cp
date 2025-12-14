@@ -3082,16 +3082,6 @@ const featuredGPTsUnsorted = [
     emoji: "🗳️"
   },
   {
-    title: "Sport Card Appraisal GPT",
-    description: "Professional AI-powered sports card valuation and grading assistance. Get accurate market valuations and condition assessments for your collection.",
-    badge: "APPRAISAL",
-    color: "from-orange-500 to-amber-600",
-    features: ["Card Valuation", "Grading Help", "Market Analysis", "Collection"],
-    directUrl: "https://sportcardappraisalgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=lPvOvWWHErM",
-    emoji: "🏈"
-  },
-  {
     title: "Aether Guide",
     description: "Explore theories, history, and speculation about aether energy. From classical ether theory to modern interpretations and fringe science theories.",
     badge: "MYSTERIES",
