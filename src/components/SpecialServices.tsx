@@ -1647,7 +1647,6 @@ const featuredGPTs = [
     color: "from-red-500 to-orange-600",
     features: ["Sora 2 Prompts", "Cinematic Scenes", "Camera Movements", "Visual Storytelling"],
     directUrl: "https://chatgpt.com/g/g-69326acb5f348191a2f85c2cdc848c4d-0ra2-text-to-video-prompt-maker?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-city-with-tall-buildings-th_JdXy-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🎬"
   },
   {
@@ -1657,7 +1656,6 @@ const featuredGPTs = [
     color: "from-green-500 to-emerald-600",
     features: ["VEO3 Optimization", "Google AI", "Video Prompts", "AI Optimization"],
     directUrl: "https://chatgpt.com/g/g-682faef24c608191808180e89719cb09-veo3-text-to-video-prompt-maker",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-city-with-tall-buildings-th_JdXy-.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🎯"
   },
   {
@@ -1717,7 +1715,6 @@ const featuredGPTs = [
     color: "from-pink-500 to-rose-600",
     features: ["Friendship", "Emotional Support", "Compassion", "Listening"],
     directUrl: "https://chatgpt.com/g/g-68efd4255e848191b93b4b588e83aafe-friend-gpt?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-scene-of-an-ai-agent-with-a-halo.jpeg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
     emoji: "💝"
   },
   {
@@ -1737,7 +1734,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-gold-600",
     features: ["Torah", "Hebrew Scripture", "Jewish Wisdom", "PaRDeS Study"],
     directUrl: "https://jewish-ai.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
+    imageUrl: "/images/torah-gpt.png",
     emoji: "📜"
   },
   {
