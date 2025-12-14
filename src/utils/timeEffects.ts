@@ -214,8 +214,8 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   
   // Effect duration - long enough for full epic color time warp matrix explosion
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const effectDuration = isMobile ? 1800 : 2500; // Extended for full epic effect
-  const urlOpenDelay = isMobile ? 1200 : 1800; // Open URL after seeing the effect
+  const effectDuration = isMobile ? 2800 : 3500; // Extended for full epic effect
+  const urlOpenDelay = isMobile ? 2000 : 2500; // Open URL after seeing the full effect
   
   // Extract tool name for logging purposes
   const finalToolName = extractToolName(destinationUrl, toolName);

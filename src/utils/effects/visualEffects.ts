@@ -638,16 +638,16 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
   console.log('💚 Creating EPIC Matrix code explosion');
   
   const matrixChars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-  const explosionCount = 80; // Lots of matrix symbols
+  const explosionCount = 120; // MORE matrix symbols for bigger effect
   
   for (let i = 0; i < explosionCount; i++) {
     const matrixChar = document.createElement('div');
     matrixChar.className = 'matrix-explosion-char';
     const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-    const fontSize = 12 + Math.random() * 24;
+    const fontSize = 16 + Math.random() * 32; // Bigger font
     const angle = (i / explosionCount) * 360 + Math.random() * 20;
-    const velocity = 150 + Math.random() * 350;
-    const delay = Math.random() * 0.2;
+    const velocity = 200 + Math.random() * 500; // Faster velocity
+    const delay = Math.random() * 0.15; // Slightly faster start
     
     // Some characters are binary (0/1), some are katakana for matrix style
     const isBinary = Math.random() > 0.4;
@@ -663,14 +663,14 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
       font-weight: bold;
       color: #00FF00;
       text-shadow: 
-        0 0 10px #00FF00,
-        0 0 20px #00FF00,
+        0 0 15px #00FF00,
         0 0 30px #00FF00,
-        0 0 40px #00FF00;
+        0 0 45px #00FF00,
+        0 0 60px #00FF00;
       transform: translate(-50%, -50%);
-      animation: matrix-char-explode 2s ease-out forwards;
+      animation: matrix-char-explode 2.5s ease-out forwards;
       animation-delay: ${delay}s;
-      z-index: 10020;
+      z-index: 100000;
       pointer-events: none;
       --angle: ${angle}deg;
       --velocity: ${velocity}px;
@@ -680,35 +680,35 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
   }
   
   // Create cascading matrix rain columns
-  const rainColumns = 20;
+  const rainColumns = 30; // More columns
   for (let col = 0; col < rainColumns; col++) {
     const column = document.createElement('div');
     column.className = 'matrix-rain-column';
     const leftPos = (col / rainColumns) * 100;
-    const delay = Math.random() * 0.5;
-    const chars = Array.from({length: 15}, () => 
+    const delay = Math.random() * 0.3;
+    const chars = Array.from({length: 20}, () => 
       matrixChars[Math.floor(Math.random() * matrixChars.length)]
     ).join('');
     
     column.textContent = chars;
     column.style.cssText = `
       position: absolute;
-      top: -200px;
+      top: -300px;
       left: ${leftPos}%;
       font-family: 'Courier New', monospace;
-      font-size: 16px;
+      font-size: 20px;
       font-weight: bold;
       color: #00FF00;
       text-shadow: 
-        0 0 5px #00FF00,
         0 0 10px #00FF00,
-        0 0 20px #00FF00;
+        0 0 20px #00FF00,
+        0 0 30px #00FF00;
       writing-mode: vertical-rl;
       text-orientation: upright;
-      letter-spacing: 5px;
-      animation: matrix-rain-fall 1.5s ease-in forwards;
+      letter-spacing: 3px;
+      animation: matrix-rain-fall 2s ease-in forwards;
       animation-delay: ${delay}s;
-      z-index: 10015;
+      z-index: 99998;
       opacity: 0;
       pointer-events: none;
     `;
@@ -716,25 +716,26 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     effectsContainer.appendChild(column);
   }
   
-  // Create central matrix orb
+  // Create central matrix orb - BIGGER and BRIGHTER
   const matrixOrb = document.createElement('div');
   matrixOrb.className = 'matrix-orb';
   matrixOrb.style.cssText = `
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    background: radial-gradient(circle, #00FF00 0%, #008800 40%, transparent 70%);
+    background: radial-gradient(circle, #00FF00 0%, #00FF00 20%, #008800 50%, transparent 70%);
     box-shadow: 
-      0 0 40px #00FF00,
-      0 0 80px #00FF00,
+      0 0 60px #00FF00,
       0 0 120px #00FF00,
-      inset 0 0 30px #00FF00;
+      0 0 180px #00FF00,
+      0 0 240px #00FF00,
+      inset 0 0 40px #00FF00;
     transform: translate(-50%, -50%);
-    animation: matrix-orb-pulse 1.8s ease-out forwards;
-    z-index: 10025;
+    animation: matrix-orb-pulse 2.5s ease-out forwards;
+    z-index: 100001;
   `;
   effectsContainer.appendChild(matrixOrb);
   
