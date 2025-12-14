@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import CategoryPageSelection from "@/components/CategoryPageSelection";
@@ -28,6 +29,8 @@ const LoadingSpinner = () => (
 );
 
 const Index = () => {
+  const navigate = useNavigate();
+  
   // Use fast cached stats initially for better performance
   const [toolStats, setToolStats] = useState(getFastToolCount());
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
@@ -107,9 +110,7 @@ const Index = () => {
               {/* Quick Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                 <Button
-                  onClick={() => {
-                    window.location.href = '/main-category/ALL%20AI%20TOOLS';
-                  }}
+                  onClick={() => navigate('/main-category/ALL%20AI%20TOOLS')}
                   className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 text-lg"
                 >
                   🚀 Browse All AI Tools
