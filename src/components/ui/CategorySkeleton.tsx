@@ -1,18 +1,25 @@
 import { memo } from 'react';
+import { Loader2 } from 'lucide-react';
 
 const shimmer = "animate-pulse bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-[length:200%_100%]";
 
 const CategorySkeleton = memo(() => {
   return (
     <div className="w-full">
+      {/* Spinning loader indicator */}
+      <div className="flex items-center justify-center gap-3 mb-6">
+        <Loader2 className="w-6 h-6 text-cyan-400 animate-spin" />
+        <span className="text-cyan-300 text-sm font-medium">Loading AI Tools...</span>
+      </div>
+      
       {/* Header skeleton */}
-      <div className="mb-6">
+      <div className="mb-6 flex flex-col items-center">
         <div className={`h-8 w-48 rounded-lg ${shimmer} mb-3`} />
         <div className={`h-4 w-72 rounded ${shimmer}`} />
       </div>
       
       {/* Filter bar skeleton */}
-      <div className="flex gap-3 mb-6 flex-wrap">
+      <div className="flex gap-3 mb-6 flex-wrap justify-center">
         {[1, 2, 3, 4].map((i) => (
           <div key={i} className={`h-9 w-24 rounded-full ${shimmer}`} />
         ))}
