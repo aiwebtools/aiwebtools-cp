@@ -212,56 +212,38 @@ const extractToolName = (destinationUrl: string, providedToolName?: string): str
 export const createTimePortalEffect = (destinationUrl: string, toolName?: string) => {
   console.log('🌀 Creating TIME WARP portal effect for URL:', destinationUrl);
   
-  // SYNCHRONIZED TIMING - Voice clip is ~2.2 seconds
-  // Desktop: longer effects for full code explosion experience
-  // Mobile: slightly faster but still epic
+  // ⚡ INSTANT EXECUTION - No delays, everything fires NOW
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   
-  // Voice duration is ~2.2 seconds - sync everything to this
-  const voiceDuration = 2200;
-  
-  // Effect duration - cleaner effect, faster cleanup
-  const effectDuration = isMobile ? 2800 : 3200;
-  
-  // URL opens right as voice finishes (peak impact moment)
-  const urlOpenDelay = isMobile ? voiceDuration - 100 : voiceDuration + 200;
-  
-  // Visual effects start immediately with voice
-  const visualDelay = 0;
-  
-  // Extract tool name for logging purposes
+  // Extract tool name for logging
   const finalToolName = extractToolName(destinationUrl, toolName);
   console.log('🎯 Final detected tool name:', finalToolName);
-  console.log(`⏱️ Timing: voice=${voiceDuration}ms, urlOpen=${urlOpenDelay}ms, effectCleanup=${effectDuration}ms`);
   
-  // Create container for all effects
+  // Create container for all effects - INSTANT
   const effectsContainer = createEffectsContainer();
 
-  // Apply time warp filter to entire screen
+  // Apply time warp filter - INSTANT
   applyTimeWarpFilter();
 
-  // 🎯 PERFECT SYNC: All effects start simultaneously in same frame
-  // Use requestAnimationFrame to ensure DOM is ready, then fire everything together
-  requestAnimationFrame(() => {
-    // Voice and visuals start in the EXACT same frame - ONLY the voice audio, no extra sounds
-    playTimeWarpVoice();
-    createMatrixCodeExplosion(effectsContainer);
-    createFlash(effectsContainer);
-    // Removed: createPortalSounds() - too many sounds, just use voice
-    createConfettiCelebration(true); // true = visual only, no sound
-  });
+  // 🔥 INSTANT FIRE - Everything starts NOW, no requestAnimationFrame delay
+  playTimeWarpVoice();
+  createMatrixCodeExplosion(effectsContainer);
+  createFlash(effectsContainer);
+  createConfettiCelebration(true);
 
-  // OPEN URL as voice finishes - perfect sync moment
+  // ⚡ ULTRA FAST - URL opens after just enough time to see/hear the effect
+  // Voice is ~2.2s but we want to WOW then GO - open at 1.6s (hear "initializing" + bass hit)
+  const urlOpenDelay = isMobile ? 1400 : 1600;
+  
   setTimeout(() => {
-    console.log('🚀 Opening destination URL now (synced with voice end)');
+    console.log('🚀 Opening destination URL NOW');
     if (destinationUrl && destinationUrl.trim()) {
       openDestinationUrl(destinationUrl);
     }
   }, urlOpenDelay);
 
-  // Cleanup effects after animations complete (after URL already opened)
+  // Cleanup shortly after URL opens
   setTimeout(() => {
-    console.log('🧹 Cleaning up time warp effects');
     cleanupEffects(effectsContainer);
-  }, effectDuration);
+  }, isMobile ? 2000 : 2200);
 };
