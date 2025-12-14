@@ -35,23 +35,19 @@ const ConsentPopup = () => {
   const handleAccept = () => {
     console.log('🌀 User accepting consent - initiating time warp entry...');
     
-    // Play welcome audio
+    // Close popup immediately so user can interact with site
+    setShowConsent(false);
+    localStorage.setItem('aitools-consent-seen', 'true');
+    
+    // Play welcome audio (continues in background)
     const welcomeAudio = new Audio('/welcome-disclaimer.mp3');
     welcomeAudio.volume = 1.0;
     welcomeAudio.play().catch(err => console.log('Welcome audio play failed:', err));
     
-    // Simple acceptance
-    localStorage.setItem('aitools-consent-seen', 'true');
-    
-    // Create time portal effect for desktop only
+    // Create time portal effect for desktop only (plays in background)
     if (!isMobile) {
       createTimePortalEffect('', 'AI Tools Consent Portal');
     }
-    
-    // Adaptive delay based on device
-    setTimeout(() => {
-      setShowConsent(false);
-    }, isMobile ? 200 : 800);
   };
 
   if (!showConsent || isMobile) return null;
