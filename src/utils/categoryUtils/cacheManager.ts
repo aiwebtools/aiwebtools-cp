@@ -3,6 +3,7 @@ import { Tool } from "@/types/tools";
 import { mainCategories } from "@/utils/mainCategoryMapping";
 import { isSimilarCategory } from "./normalization";
 import { isVideoRelatedTool } from "./videoDetection";
+import { isVideoMultimediaTool, getVideoMultimediaTools } from "./videoMultimediaDetection";
 import { 
   getDataAnalyticsTools, 
   getMarketingSalesTools, 
@@ -26,12 +27,17 @@ import { isGamingEntertainmentTool } from "./gamingEntertainmentDetection";
 import { isSecurityPrivacyTool } from "./securityPrivacyDetection";
 import { isSpiritualityTool } from "./spiritualityDetection";
 import { getThreeDVisualizationTools, isThreeDVisualizationTool } from "./threeDVisualizationDetection";
+import { isAudioMusicTool, getAudioMusicTools } from "./audioMusicDetection";
+import { isImageDesignTool, getEnhancedImageDesignTools } from "./imageDesignDetection";
+import { isWritingContentTool } from "./writingContentDetection";
+import { isCodingDevelopmentTool, getCodingDevelopmentTools } from "./codingDevelopmentDetection";
+import { isMarketingSalesTool } from "./marketingSalesDetection";
 
 // Ultra-optimized cache with persistent storage and lazy loading
 let toolsCacheByMainCategory: Map<string, Tool[]> = new Map();
 let cacheBuilt = false;
 let lastToolsLength = 0;
-let cacheVersion = 40; // Phase 20: Added comprehensive 3D & Visualization detection
+let cacheVersion = 41; // Phase 21: Added comprehensive detection for ALL main categories
 
 // Persistent cache storage for instant loads
 const CACHE_KEY = 'aitools_category_cache_v2';
@@ -122,6 +128,12 @@ export const buildToolsCache = (tools: Tool[]) => {
   const industrySet = new Set(tools.filter(tool => isIndustrySpecificTool(tool)).map(t => t.title));
   const spiritualitySet = new Set(tools.filter(tool => isSpiritualityTool(tool)).map(t => t.title));
   const threeDSet = new Set(tools.filter(tool => isThreeDVisualizationTool(tool)).map(t => t.title));
+  const audioMusicSet = new Set(tools.filter(tool => isAudioMusicTool(tool)).map(t => t.title));
+  const imageDesignSet = new Set(tools.filter(tool => isImageDesignTool(tool)).map(t => t.title));
+  const writingContentSet = new Set(tools.filter(tool => isWritingContentTool(tool)).map(t => t.title));
+  const codingDevSet = new Set(tools.filter(tool => isCodingDevelopmentTool(tool)).map(t => t.title));
+  const videoMultimediaSet = new Set(tools.filter(tool => isVideoMultimediaTool(tool)).map(t => t.title));
+  const marketingSalesSet = new Set(tools.filter(tool => isMarketingSalesTool(tool)).map(t => t.title));
   
   const toolCollections = {
     aiWebToolsGPTs: tools.filter(tool => aiWebToolsSet.has(tool.title)),
@@ -130,6 +142,12 @@ export const buildToolsCache = (tools: Tool[]) => {
     industrySpecificTools: tools.filter(tool => industrySet.has(tool.title)),
     spiritualityTools: tools.filter(tool => spiritualitySet.has(tool.title)),
     threeDVisualizationTools: tools.filter(tool => threeDSet.has(tool.title)),
+    audioMusicTools: tools.filter(tool => audioMusicSet.has(tool.title)),
+    imageDesignTools: tools.filter(tool => imageDesignSet.has(tool.title)),
+    writingContentTools: tools.filter(tool => writingContentSet.has(tool.title)),
+    codingDevTools: tools.filter(tool => codingDevSet.has(tool.title)),
+    videoMultimediaTools: tools.filter(tool => videoMultimediaSet.has(tool.title)),
+    marketingSalesTools: tools.filter(tool => marketingSalesSet.has(tool.title)),
     strictHistoricalTools: tools.filter(tool => isStrictlyHistoricalTimeRelatedTool(tool)),
     educationRelatedTools: tools.filter(tool => isEducationRelatedTool(tool)),
     videoRelatedTools: tools.filter(tool => isVideoRelatedTool(tool)),
@@ -178,9 +196,13 @@ export const buildToolsCache = (tools: Tool[]) => {
         );
         break;
         
-      case "CONTENT CREATION & WRITING":
-        categoryTools = getCombinedTools(tools, mainCat, toolCollections.contentCreationTools);
+      case "CONTENT CREATION & WRITING": {
+        // Use enhanced writing/content detection for comprehensive coverage
+        const writingTools = [...toolCollections.writingContentTools, ...toolCollections.contentCreationTools];
+        categoryTools = getCombinedTools(tools, mainCat, writingTools);
+        console.log(`✍️ CONTENT CREATION & WRITING: Found ${categoryTools.length} tools with enhanced detection`);
         break;
+      }
         
       case "DATA & ANALYTICS AI TOOLS":
         const enhancedDataTools = getDataAnalyticsTools(tools, mainCat.name);
@@ -190,20 +212,27 @@ export const buildToolsCache = (tools: Tool[]) => {
         ]);
         break;
         
-      case "EDUCATION & LEARNING":
-        const educationalHistoricalTools = tools.filter(tool => 
-          isEducationRelatedTool(tool) && 
-          (tool.description.toLowerCase().includes('historical') || 
-           tool.description.toLowerCase().includes('history'))
+      case "EDUCATION & LEARNING": {
+        // Use comprehensive education detection
+        categoryTools = [...toolCollections.educationRelatedTools];
+        // Add subcategory-matched tools
+        const subcatTools = tools.filter(tool => {
+          if (!tool.category) return false;
+          return mainCat.subcategories.some((subcat: string) => 
+            isSimilarCategory(tool.category, subcat)
+          );
+        });
+        categoryTools = [...new Set([...categoryTools, ...subcatTools])].filter((tool, index, self) => 
+          index === self.findIndex(t => t.title === tool.title)
         );
-        categoryTools = getCombinedTools(tools, mainCat, [
-          ...toolCollections.educationRelatedTools, 
-          ...educationalHistoricalTools
-        ]);
+        console.log(`🎓 EDUCATION & LEARNING: Found ${categoryTools.length} tools with enhanced detection`);
         break;
+      }
         
       case "HEALTH & WELLNESS":
+      case "HEALTH, WELLNESS & PERSONAL LIFESTYLE":
         categoryTools = getCombinedTools(tools, mainCat, toolCollections.healthAndWellnessTools);
+        console.log(`🏥 HEALTH & WELLNESS: Found ${categoryTools.length} tools`);
         break;
         
       case "INDUSTRY SPECIFIC AI TOOLS":
@@ -214,9 +243,72 @@ export const buildToolsCache = (tools: Tool[]) => {
         categoryTools = getCombinedTools(tools, mainCat, toolCollections.strictHistoricalTools);
         break;
         
-      case "VIDEO & MULTIMEDIA":
-        categoryTools = getCombinedTools(tools, mainCat, toolCollections.videoRelatedTools);
+      case "VIDEO & MULTIMEDIA": {
+        // Use comprehensive video/multimedia detection
+        const allVideoTools = [...toolCollections.videoMultimediaTools, ...toolCollections.videoRelatedTools];
+        categoryTools = getCombinedTools(tools, mainCat, allVideoTools);
+        console.log(`🎬 VIDEO & MULTIMEDIA: Found ${categoryTools.length} tools with enhanced detection`);
         break;
+      }
+      
+      case "AUDIO & VOICE TOOLS": {
+        // Use comprehensive audio/music detection
+        categoryTools = [...toolCollections.audioMusicTools];
+        // Add subcategory-matched tools
+        const audioSubcatTools = tools.filter(tool => {
+          if (!tool.category) return false;
+          return mainCat.subcategories.some((subcat: string) => 
+            isSimilarCategory(tool.category, subcat)
+          );
+        });
+        categoryTools = [...new Set([...categoryTools, ...audioSubcatTools])].filter((tool, index, self) => 
+          index === self.findIndex(t => t.title === tool.title)
+        );
+        console.log(`🎵 AUDIO & VOICE TOOLS: Found ${categoryTools.length} tools with enhanced detection`);
+        break;
+      }
+      
+      case "IMAGE & DESIGN AI TOOLS": {
+        // Use comprehensive image/design detection
+        const enhancedImageTools = getEnhancedImageDesignTools(tools);
+        categoryTools = getCombinedTools(tools, mainCat, [...toolCollections.imageDesignTools, ...enhancedImageTools]);
+        console.log(`🎨 IMAGE & DESIGN AI TOOLS: Found ${categoryTools.length} tools with enhanced detection`);
+        break;
+      }
+      
+      case "MARKETING & SALES SOLUTIONS": {
+        // Use comprehensive marketing/sales detection
+        const enhancedMarketingTools = getMarketingSalesTools(tools, mainCat.name);
+        categoryTools = getCombinedTools(tools, mainCat, [...toolCollections.marketingSalesTools, ...enhancedMarketingTools]);
+        console.log(`📈 MARKETING & SALES SOLUTIONS: Found ${categoryTools.length} tools with enhanced detection`);
+        break;
+      }
+      
+      case "CODING & DEVELOPMENT":
+      case "AI DEVELOPMENT & CODING": {
+        // Use comprehensive coding/development detection
+        categoryTools = getCodingDevelopmentTools(tools);
+        console.log(`💻 CODING & DEVELOPMENT: Found ${categoryTools.length} tools with enhanced detection`);
+        break;
+      }
+      
+      case "CREATIVE & ENTERTAINMENT": {
+        // Use combined creative + gaming + entertainment detection
+        const creativeTools = tools.filter(tool => {
+          const category = (tool.category || '').toLowerCase();
+          const tags = (tool.tags || []).map(t => t.toLowerCase());
+          const description = (tool.description || '').toLowerCase();
+          const title = tool.title.toLowerCase();
+          
+          const creativeKeywords = ['creative', 'entertainment', 'fun', 'game', 'play', 'trivia', 'quiz', 'story', 'interactive'];
+          return creativeKeywords.some(kw => 
+            category.includes(kw) || title.includes(kw) || description.includes(kw) || tags.some(t => t.includes(kw))
+          );
+        });
+        categoryTools = getCombinedTools(tools, mainCat, creativeTools);
+        console.log(`🎭 CREATIVE & ENTERTAINMENT: Found ${categoryTools.length} tools with enhanced detection`);
+        break;
+      }
       
       case "SPIRITUALITY & PHILOSOPHY":
         categoryTools = getCombinedTools(tools, mainCat, toolCollections.spiritualityTools);
