@@ -1,5 +1,6 @@
 
 import * as React from 'react'
+import { Suspense, lazy } from 'react';
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -12,55 +13,80 @@ import { usePrefetchRoutes } from "@/hooks/usePrefetch";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import PageTransition from "@/components/navigation/PageTransition";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
+
+// Eager load - critical path (home page)
 import Index from "./pages/Index";
-import CategoryPage from "./pages/CategoryPage";
-import MainCategoryPage from "./pages/MainCategoryPage";
-import ToolDetail from "./pages/ToolDetail";
-import SimilarToolsPage from "./pages/SimilarTools";
-import FavoritesPage from "./pages/FavoritesPage";
-import ToolSubmission from "./pages/ToolSubmission";
-import NotFound from "./pages/NotFound";
-import DisclaimersPage from "./pages/DisclaimersPage";
-import OurStoryPage from "./pages/OurStoryPage";
-import FloatingCloneButton from "./components/FloatingCloneButton";
-import WelcomeVoiceSystem from "./components/WelcomeVoiceSystem";
-import AIToolsHub from "./pages/AIToolsHub";
-import AIAgentsDirectory from "./pages/AIAgentsDirectory";
-import ChatGPTAlternatives from "./pages/ChatGPTAlternatives";
-import BlogPage from "./pages/BlogPage";
-import GamingEntertainmentPage from "./pages/GamingEntertainmentPage";
-import DisclaimerPopup from "./components/DisclaimerPopup";
-import ConsentPopup from "./components/ConsentPopup";
+
+// Lazy load - secondary pages for faster initial load
+const CategoryPage = lazy(() => import("./pages/CategoryPage"));
+const MainCategoryPage = lazy(() => import("./pages/MainCategoryPage"));
+const ToolDetail = lazy(() => import("./pages/ToolDetail"));
+const SimilarToolsPage = lazy(() => import("./pages/SimilarTools"));
+const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
+const ToolSubmission = lazy(() => import("./pages/ToolSubmission"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const DisclaimersPage = lazy(() => import("./pages/DisclaimersPage"));
+const OurStoryPage = lazy(() => import("./pages/OurStoryPage"));
+const AIToolsHub = lazy(() => import("./pages/AIToolsHub"));
+const AIAgentsDirectory = lazy(() => import("./pages/AIAgentsDirectory"));
+const ChatGPTAlternatives = lazy(() => import("./pages/ChatGPTAlternatives"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const GamingEntertainmentPage = lazy(() => import("./pages/GamingEntertainmentPage"));
+
+// Lazy load non-critical components
+const FloatingCloneButton = lazy(() => import("./components/FloatingCloneButton"));
+const WelcomeVoiceSystem = lazy(() => import("./components/WelcomeVoiceSystem"));
+const DisclaimerPopup = lazy(() => import("./components/DisclaimerPopup"));
+const ConsentPopup = lazy(() => import("./components/ConsentPopup"));
+
 // Pre-initialize category cache for instant category page loads
 import "@/utils/categoryUtils/precomputedCache";
 
-const queryClient = new QueryClient();
+// Minimal loading fallback - ultra lightweight
+const PageLoader = () => (
+  <div className="min-h-screen bg-gray-950 flex items-center justify-center">
+    <div className="w-8 h-8 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
-// Animated routes wrapper
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      gcTime: 1000 * 60 * 30, // 30 minutes (formerly cacheTime)
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
+
+// Animated routes wrapper with Suspense for lazy loaded pages
 const AnimatedRoutes = () => {
   const location = useLocation();
   
   return (
-    <PageTransition key={location.pathname}>
-      <Routes location={location}>
-        <Route path="/" element={<Index />} />
-        <Route path="/category/:categoryName" element={<CategoryPage />} />
-        <Route path="/main-category/:mainCategoryName" element={<MainCategoryPage />} />
-        <Route path="/tool/:toolId" element={<ToolDetail />} />
-        <Route path="/:toolSlug" element={<ToolDetail />} />
-        <Route path="/similar-tools/:toolId" element={<SimilarToolsPage />} />
-        <Route path="/ai-tools-hub" element={<AIToolsHub />} />
-        <Route path="/ai-agents-directory" element={<AIAgentsDirectory />} />
-        <Route path="/chatgpt-alternatives" element={<ChatGPTAlternatives />} />
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/gaming-entertainment" element={<GamingEntertainmentPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
-        <Route path="/disclaimers" element={<DisclaimersPage />} />
-        <Route path="/our-story" element={<OurStoryPage />} />
-        <Route path="/submit-tool" element={<ToolSubmission />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </PageTransition>
+    <Suspense fallback={<PageLoader />}>
+      <PageTransition key={location.pathname}>
+        <Routes location={location}>
+          <Route path="/" element={<Index />} />
+          <Route path="/category/:categoryName" element={<CategoryPage />} />
+          <Route path="/main-category/:mainCategoryName" element={<MainCategoryPage />} />
+          <Route path="/tool/:toolId" element={<ToolDetail />} />
+          <Route path="/:toolSlug" element={<ToolDetail />} />
+          <Route path="/similar-tools/:toolId" element={<SimilarToolsPage />} />
+          <Route path="/ai-tools-hub" element={<AIToolsHub />} />
+          <Route path="/ai-agents-directory" element={<AIAgentsDirectory />} />
+          <Route path="/chatgpt-alternatives" element={<ChatGPTAlternatives />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/gaming-entertainment" element={<GamingEntertainmentPage />} />
+          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="/disclaimers" element={<DisclaimersPage />} />
+          <Route path="/our-story" element={<OurStoryPage />} />
+          <Route path="/submit-tool" element={<ToolSubmission />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </PageTransition>
+    </Suspense>
   );
 };
 
@@ -81,14 +107,18 @@ function App() {
           <FavoritesProvider>
             <TooltipProvider>
               <Toaster />
-              <WelcomeVoiceSystem />
+              <Suspense fallback={null}>
+                <WelcomeVoiceSystem />
+                <ConsentPopup />
+                <DisclaimerPopup />
+              </Suspense>
               <MatrixCursorEffect />
-              <ConsentPopup />
-              <DisclaimerPopup />
               <BrowserRouter>
                 <AnimatedRoutes />
                 {/* Tiny floating clone button - hides on scroll */}
-                <FloatingCloneButton />
+                <Suspense fallback={null}>
+                  <FloatingCloneButton />
+                </Suspense>
               </BrowserRouter>
             </TooltipProvider>
           </FavoritesProvider>

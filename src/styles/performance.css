@@ -1,0 +1,146 @@
+/* Performance Optimizations CSS */
+
+/* GPU acceleration for smooth scrolling */
+html {
+  scroll-behavior: auto; /* Instant scroll for navigation, smooth optional via JS */
+}
+
+/* Optimize rendering performance */
+* {
+  /* Disable subpixel antialiasing on low-end devices for better performance */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Content visibility for offscreen elements */
+.efficient-grid > * {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px 400px;
+}
+
+/* Reduce repaints on interactive elements */
+button, a, [role="button"] {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Optimize cards for scroll performance */
+[data-card], .tool-card, [role="article"] {
+  contain: layout style paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 280px 380px;
+}
+
+/* Reduce layout thrashing on scroll */
+.scroll-container {
+  overflow-anchor: auto;
+  overscroll-behavior: contain;
+}
+
+/* GPU-accelerated transforms */
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Instant hover feedback */
+.instant-hover {
+  transition: transform 50ms ease-out, box-shadow 50ms ease-out;
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimize images */
+img {
+  image-rendering: auto;
+  /* Prevent layout shift */
+  height: auto;
+}
+
+/* Lazy image placeholders */
+img[loading="lazy"] {
+  background: linear-gradient(135deg, hsl(220 20% 10%), hsl(220 20% 15%));
+}
+
+/* Fast text rendering */
+body {
+  text-rendering: optimizeSpeed;
+}
+
+/* Headings can have better rendering */
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizeLegibility;
+}
+
+/* Optimize form inputs */
+input, textarea, select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Prevent Flash of Invisible Text (FOIT) */
+.font-loading body {
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Fast pointer events */
+.pointer-events-auto {
+  touch-action: manipulation;
+}
+
+/* Optimize transitions for 60fps */
+.smooth-transition {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Hardware-accelerated opacity transitions */
+.fade-transition {
+  transition: opacity 100ms ease-out;
+  will-change: opacity;
+}
+
+/* Prevent content shifting during load */
+.stable-layout {
+  contain: layout;
+}
+
+/* Fast hover states */
+@media (hover: hover) {
+  .fast-hover:hover {
+    transition-duration: 50ms;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover effects on touch devices */
+  .hover-only:hover {
+    transform: none;
+  }
+  
+  /* Larger tap targets */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Optimize grid layouts */
+.grid {
+  contain: layout style;
+}
+
+/* Prevent reflow on dynamic content */
+[data-dynamic] {
+  min-height: 1px;
+}
