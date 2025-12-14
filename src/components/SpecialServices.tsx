@@ -1743,6 +1743,7 @@ const featuredGPTs = [
     color: "from-pink-500 to-rose-600",
     features: ["Friendship", "Emotional Support", "Compassion", "Listening"],
     directUrl: "https://chatgpt.com/g/g-68efd4255e848191b93b4b588e83aafe-friend-gpt?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-scene-of-an-ai-agent-with-a-halo.jpeg/:/cr=t:2.83%25,l:2.83%25,w:94.34%25,h:94.34%25/rs=w:1200,cg:true,m",
     emoji: "💝"
   },
   {
@@ -1762,6 +1763,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-gold-600",
     features: ["Torah", "Hebrew Scripture", "Jewish Wisdom", "PaRDeS Study"],
     directUrl: "https://jewish-ai.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
     emoji: "📜"
   },
   {
@@ -1808,6 +1810,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Homeschooling", "Legal Guidance", "Curriculum", "Educational Resources"],
     directUrl: "https://homeschoolgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-parent-teaching-their-ki-0096e43.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🏠"
   },
   {
@@ -1817,6 +1820,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-orange-600",
     features: ["Quiz Creation", "Testing", "Course Integration", "Assessment"],
     directUrl: "https://chatgpt.com/g/g-cUahkn19i-quiz-maker-ai",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-eye-catching-advertisement-for-quiz-maker-.jpeg/:/cr=t:5.56%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
     emoji: "📝"
   },
   {
@@ -1826,6 +1830,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-red-600",
     features: ["Curriculum Design", "Lesson Planning", "Interactive Elements", "Structured Learning"],
     directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
+    imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377336291427090462/ChatGPT_Image_May_28_2025_01_22_27_PM.png?ex=683897e1&is=68374661&hm=71f0b50e1d34249bf9ed9ca8b7a1b0e45d0d2127cb9e356e2b4c65b35518656a&=&format=webp&quality=lossless&width=2088&height=1392",
     emoji: "🏆"
   },
   {
@@ -1845,6 +1850,7 @@ const featuredGPTs = [
     color: "from-yellow-500 to-pink-500",
     features: ["Coloring Books", "Children's Content", "Art Generation", "Educational Tools"],
     directUrl: "https://coloringbookmaker.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-coloring-page-of-a-robot-with-a-human-like-b.png/:/cr=t:4.3%25,l:0.78%25,w:94.34%25,h:84.09%25/rs=w:1200,h:600,cg:true,m",
     emoji: "🖍️"
   },
   {
@@ -1854,6 +1860,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-gray-600",
     features: ["Contract Review", "Legal Analysis", "Risk Identification", "Fair Terms"],
     directUrl: "https://chatgpt.com/g/g-Y8u3YrS1p-contract-review-bot",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-futuristic-humanoid-robot-with-a-sleek-desig.png/:/cr=t:2.6%25,l:5.36%25,w:89.29%25,h:79.58%25/rs=w:1200,h:600,cg:true,m",
     emoji: "📄"
   },
   {
@@ -1873,6 +1880,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-red-600",
     features: ["PowerPoint Creation", "PPTX Export", "Visual Design", "Business Presentations"],
     directUrl: "https://pptmakergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-banner-ad-for-an-ai-tool-called-ppt-pr_RY7nJ.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
     emoji: "📊"
   },
   {
@@ -1882,6 +1890,7 @@ const featuredGPTs = [
     color: "from-cyan-500 to-blue-600",
     features: ["People Search", "Public Records", "Social Media", "Background Research"],
     directUrl: "https://personfindergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-an-ai-tool-called-p_gHXnM.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,cg:true/qt=q:30",
     emoji: "🔍"
   },
   {
@@ -1891,6 +1900,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-pink-600",
     features: ["Podcast Scripts", "Episode Outlines", "Audio Storytelling", "Content Structure"],
     directUrl: "https://podcastwritergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-illustration-of-a-podcast-host-with-a_HnlUN.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
     emoji: "🎙️"
   },
   {
@@ -1900,6 +1910,7 @@ const featuredGPTs = [
     color: "from-gray-600 to-amber-600",
     features: ["Firearms Safety", "Legal Guidance", "Skills Training", "Responsible Ownership"],
     directUrl: "https://firearmsafetyeducationgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-humanoid-shooting-a-gun-at-a-targ.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
     emoji: "🎯"
   },
   {
@@ -1909,6 +1920,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-purple-600",
     features: ["Legal Drafting", "Contracts", "Agreements", "Documentation"],
     directUrl: "https://publicdefendergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-humanoid-robot-dressed-like-a.png/:/cr=t:12.29%25,l:9.16%25,w:89.29%25,h:79.58%25/rs=w:600,h:300,cg:true,m/qt=q:98",
     emoji: "⚖️"
   },
   {
@@ -1918,6 +1930,7 @@ const featuredGPTs = [
     color: "from-cyan-500 to-purple-600",
     features: ["GPT Ideas", "AI Brainstorming", "Tool Concepts", "Instructions Generator"],
     directUrl: "https://customgptmaker.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000002880.jpg/:/cr=t:22.21%25,l:0%25,w:100%25,h:55.58%25/rs=w:600,h:451,cg:true/qt=q:98",
     emoji: "💡"
   },
   {
@@ -1927,6 +1940,7 @@ const featuredGPTs = [
     color: "from-indigo-600 to-purple-600",
     features: ["Game Design", "GDD Creation", "Game Development", "Project Planning"],
     directUrl: "https://gamedesigngpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-floating-man-with-blue-skin-and-white-hair-.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🎮"
   },
   {
@@ -1963,6 +1977,7 @@ const featuredGPTs = [
     color: "from-gray-600 to-blue-600",
     features: ["Binary Conversion", "Text Encoding", "Computer Language", "Utility Tool"],
     directUrl: "https://binarytoconvertergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-sophisticated-and-futuristic-advertisement-.jpeg/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
     emoji: "💻"
   },
   {
@@ -1972,6 +1987,7 @@ const featuredGPTs = [
     color: "from-blue-500 to-green-600",
     features: ["Credit Scoring", "Risk Assessment", "Financial Analysis", "Lending"],
     directUrl: "https://predictivecreditscoregpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-screenshot-of-a-web-app-with-the-text-predic.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "📊"
   },
   {
@@ -2000,6 +2016,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-blue-600",
     features: ["Cursive Writing", "Handwriting", "Penmanship", "Writing Skills"],
     directUrl: "https://chatgpt.com/g/g-68cb403167a88191ae07062124d32bbb-cursive-teacher-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "✍️"
   },
   {
@@ -2009,6 +2026,7 @@ const featuredGPTs = [
     color: "from-purple-500 to-cyan-600",
     features: ["Quantum Wisdom", "Alan Watts", "Metaphysical", "Consciousness"],
     directUrl: "https://chatgpt.com/g/g-6904258cf6a0819197b10755d4cc3632-i-am-q-i-am-you/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
     emoji: "✨"
   },
   {
@@ -2018,6 +2036,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Product Recommendations", "Deal Finder", "Product Comparison", "Smart Shopping"],
     directUrl: "https://shoppinggpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-futuristic-setting-where-a-_3Mwmg.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
     emoji: "🛒"
   },
   {
@@ -2027,6 +2046,7 @@ const featuredGPTs = [
     color: "from-pink-500 to-purple-600",
     features: ["Virtual Try-On", "Outfit Visualization", "Hairstyle Simulation", "Style Transformation"],
     directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/ChatGPT%20Image%20Apr%2027%2C%202025%2C%2007_08_04%20PM.png/:/cr=t:12.5%25,l:0%25,w:100%25,h:75%25/rs=w:1200,h:600,cg:true",
     emoji: "👗"
   },
   {
@@ -2046,6 +2066,7 @@ const featuredGPTs = [
     color: "from-indigo-500 to-purple-600",
     features: ["University Level", "Academic Instruction", "Scholarly Discussion", "Personalized Learning"],
     directUrl: "https://chatgpt.com/g/g-68c049b652f8819195c722dbd4971797-college-professor-gpt",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "👨‍🏫"
   },
   {
@@ -2075,6 +2096,7 @@ const featuredGPTs = [
     color: "from-orange-500 to-yellow-600",
     features: ["Sacred Fire", "Divine Light", "Ancient Persia", "Ahura Mazda"],
     directUrl: "https://chatgpt.com/g/g-68e7ffc2efec8191b99ae3f867d46e69-zoroastrian-light-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "🔥"
   },
   {
@@ -2084,6 +2106,7 @@ const featuredGPTs = [
     color: "from-amber-500 to-brown-600",
     features: ["Historical Criticism", "Textual Analysis", "Religious Studies", "Theology"],
     directUrl: "https://chatgpt.com/g/g-68efd95b115481919faf1e8156ba83a5-bible-studies-gpt?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
     emoji: "📖"
   },
   {
@@ -2093,6 +2116,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-purple-600",
     features: ["Torah Study", "PaRDeS", "Jewish Law", "Sacred Texts"],
     directUrl: "https://jewish-ai.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
     emoji: "📜"
   },
   {
@@ -2112,6 +2136,7 @@ const featuredGPTs = [
     color: "from-blue-600 to-purple-600",
     features: ["Ancient Greek", "Original Text", "Theology", "Biblical Studies"],
     directUrl: "https://chatgpt.com/g/g-68d7490469d881919f4df9bc9c63aa90-the-greek-new-testament-gpt-the-original-version",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-historical-style-advertisement-for-the_JUvQJ.png/:/cr=t:0%25,l:18.29%25,w:56.1%25,h:100%25/rs=w:1200,h:1200,cg:true",
     emoji: "📜"
   },
   {
@@ -2121,6 +2146,7 @@ const featuredGPTs = [
     color: "from-emerald-500 to-cyan-600",
     features: ["Hermetic Wisdom", "Alchemy", "Emerald Tablet", "Ancient Mysteries"],
     directUrl: "https://chatgpt.com/g/g-6924b0f7268c8191a4697c8932c86b0b-hermes-trismegistus-gpt/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:98",
     emoji: "✨"
   },
   {
