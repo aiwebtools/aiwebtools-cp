@@ -66,7 +66,8 @@ const Index = () => {
     };
   }, []);
   
-  // Autoplay video (unmuted) only when user scrolls to it on first visit
+  // Autoplay video when user scrolls to it on first visit
+  // Browser policy: must start muted, then unmute via API after user interaction
   useEffect(() => {
     const iframe = mainVideoRef.current;
     if (!iframe || hasPlayedOnce) return;
@@ -75,13 +76,24 @@ const Index = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasPlayedOnce) {
-            setVideoSrc("https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark");
+            // Start with muted autoplay (browser allows this)
+            setVideoSrc("https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark");
             setHasPlayedOnce(true);
             localStorage.setItem('mainVideoPlayed', 'true');
+            
+            // Attempt to unmute after a short delay via YouTube API
+            setTimeout(() => {
+              try {
+                iframe.contentWindow?.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                iframe.contentWindow?.postMessage('{"event":"command","func":"setVolume","args":[100]}', '*');
+              } catch {
+                // Ignore errors - user can manually unmute
+              }
+            }, 1500);
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
 
     observer.observe(iframe);
