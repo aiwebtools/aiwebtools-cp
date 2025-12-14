@@ -85,47 +85,50 @@ const Index = () => {
         <HeroSection />
         
         {/* Featured Video Section - Autoplay only on first visit */}
-        <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                <span className="text-cyan-400">AI TOOLS THAT BEND THE FABRIC OF TIME...LITERALLY</span>
-              </h2>
-            </div>
-            
-            <div className="max-w-6xl mx-auto">
-              <div className="relative w-full aspect-video">
-                <iframe
-                  ref={mainVideoRef}
-                  className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                  src={videoUrl}
-                  title="AI Web Tools Featured Video - 1080p HD"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-                  allowFullScreen
-                  loading="eager"
-                ></iframe>
+        {/* Featured Video Section - Autoplay only on first visit (lazy-mounted for speed) */}
+        <DeferredMount delay={200} fallback={null}>
+          <section className="py-16 bg-gradient-to-br from-slate-900 to-purple-900">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  <span className="text-cyan-400">AI TOOLS THAT BEND THE FABRIC OF TIME...LITERALLY</span>
+                </h2>
               </div>
               
-              {/* Quick Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-                <Button
-                  onClick={() => navigate('/main-category/ALL%20AI%20TOOLS')}
-                  className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 text-lg"
-                >
-                  🚀 Browse All AI Tools
-                </Button>
-                <Button
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
-                  variant="outline"
-                  className="border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-bold px-8 py-4 text-lg"
-                >
-                  🔍 Back to Search
-                </Button>
+              <div className="max-w-6xl mx-auto">
+                <div className="relative w-full aspect-video">
+                  <iframe
+                    ref={mainVideoRef}
+                    className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
+                    src={videoUrl}
+                    title="AI Web Tools Featured Video - 1080p HD"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                    allowFullScreen
+                    loading="lazy"
+                  ></iframe>
+                </div>
+                
+                {/* Quick Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                  <Button
+                    onClick={() => navigate('/main-category/ALL%20AI%20TOOLS')}
+                    className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold px-8 py-4 text-lg"
+                  >
+                    🚀 Browse All AI Tools
+                  </Button>
+                  <Button
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'auto' })}
+                    variant="outline"
+                    className="border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 font-bold px-8 py-4 text-lg"
+                  >
+                    🔍 Back to Search
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </DeferredMount>
         
         <div id="categories-section">
           <CategoryPageSelection />
