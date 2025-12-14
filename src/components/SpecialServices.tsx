@@ -84,6 +84,14 @@ const sortByTitle = (a: typeof featuredGPTsUnsorted[0], b: typeof featuredGPTsUn
 
 const featuredGPTsUnsorted = [
   {
+    title: "Trader GPT",
+    description: "Advanced AI trading assistant for day traders and investors. Get real-time market analysis, trading signals, and data-driven insights for informed trading decisions.",
+    videoUrl: "https://www.youtube.com/watch?v=Izs80Fak4hQ",
+    directUrl: "https://tradergpt.lovable.app/?via=aiwebtools",
+    tags: ["trading", "stocks", "crypto", "market analysis", "investing", "day trading"],
+    emoji: "📈"
+  },
+  {
     title: "Meme Generator GPT",
     description: "Create hilarious, viral-worthy memes with AI-powered creativity. Generate custom memes for any topic with perfect captions and trending formats.",
     badge: "CREATIVE",
