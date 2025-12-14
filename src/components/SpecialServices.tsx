@@ -3682,7 +3682,7 @@ const SpecialServices = () => {
                   </div>
                 )}
                 
-                <p className="text-[10px] md:text-xs text-muted-foreground mb-2 line-clamp-2 leading-relaxed">
+                <p className="text-[10px] md:text-xs text-muted-foreground mb-2 line-clamp-4 leading-relaxed">
                   {gpt.description}
                 </p>
                 
