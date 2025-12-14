@@ -75,7 +75,7 @@ export const educationalToolsGPTs: Tool[] = [
     emoji: "🎓",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://college-degree-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=Cd8uvD-smlM&list=TLGGLsn0bAvnp3EyODA1MjAyNQ",
+    videoUrl: "https://youtu.be/VkD_dX8kPy0",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298792230944880/college.webp",
     tags: ["college education", "degree programs", "higher education", "academic learning", "university courses", "Custom GPT", "College Prep", "Learning Platform"],
     category: "Educational Tools",
