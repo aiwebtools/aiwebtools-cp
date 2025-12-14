@@ -3272,6 +3272,280 @@ const featuredGPTs = [
     features: ["Gospel of John", "Revelation", "Divine Love", "Mystical Theology"],
     directUrl: "https://stjohnapostlegpt.lovable.app/?via=aiwebtools",
     emoji: "🕊️"
+  },
+  // ============================================================================
+  // UTILITY, EDUCATION & SPECIALIZED GPTs
+  // ============================================================================
+  {
+    title: "MULTITASKER GPT",
+    description: "Give me multiple unrelated tasks at once, and I will work to complete them all for you. Advanced multitasking AI assistant with efficient workflow management.",
+    badge: "PRODUCTIVITY",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Multi-tasking", "Task Management", "Workflow Efficiency", "Parallel Processing"],
+    directUrl: "https://multitaskergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=y-YZCOzIuDg",
+    emoji: "⚡"
+  },
+  {
+    title: "Universal Speech Mastery GPT",
+    description: "Transform into a fluent multilingual communicator across any world language. Personalized instruction, conversation practice, and cultural insights for language mastery.",
+    badge: "LANGUAGES",
+    color: "from-blue-500 to-purple-600",
+    features: ["Language Learning", "Multilingual", "Speech Mastery", "Cultural Insights"],
+    directUrl: "https://chatgpt.com/g/g-68ae26360d448191b25842afb8d2f66b-lingua-champion-universal-speech-mastery-ai/?via=aiwebtools",
+    emoji: "🗣️"
+  },
+  {
+    title: "Cursive Teacher GPT",
+    description: "Specialized AI instructor for learning beautiful cursive handwriting. Step-by-step guidance on letter formation, proper pen grip, and practice exercises.",
+    badge: "EDUCATION",
+    color: "from-purple-500 to-blue-600",
+    features: ["Cursive Writing", "Handwriting", "Penmanship", "Writing Skills"],
+    directUrl: "https://chatgpt.com/g/g-68cb403167a88191ae07062124d32bbb-cursive-teacher-gpt/?via=aiwebtools",
+    emoji: "✍️"
+  },
+  {
+    title: "Probability GPT",
+    description: "Advanced probability and statistics analysis tool for mathematical modeling, statistical analysis, risk assessment, and probability calculations.",
+    badge: "MATHEMATICS",
+    color: "from-orange-500 to-red-600",
+    features: ["Probability", "Statistics", "Risk Assessment", "Mathematical Modeling"],
+    directUrl: "https://probabilitygpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
+    emoji: "📊"
+  },
+  {
+    title: "Nikola Tesla GPT",
+    description: "Explore the genius of Nikola Tesla with insights into his inventions, electrical engineering innovations, and scientific discoveries that shaped modern technology.",
+    badge: "SCIENCE",
+    color: "from-blue-500 to-yellow-600",
+    features: ["Inventions", "Electrical Engineering", "Scientific Discovery", "Innovation"],
+    directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=DR_3MvP7Wws",
+    emoji: "⚡"
+  },
+  {
+    title: "Public Testimony Writer GPT",
+    description: "Innovative AI Tool streamlining legislative testimony process and promoting public engagement in local policy. Featured in CT POST & CT INSIDER.",
+    badge: "CIVIC",
+    color: "from-purple-500 to-blue-600",
+    features: ["Legislative Testimony", "Civic Engagement", "Public Policy", "Advocacy"],
+    directUrl: "https://publictestimonywriter.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
+    emoji: "🗣️"
+  },
+  {
+    title: "Legislation Writer & Compiler GPT",
+    description: "Assist in drafting complete legislation page by page with clear, precise legal language and seamless continuity.",
+    badge: "LEGAL",
+    color: "from-blue-600 to-gray-600",
+    features: ["Legislation Drafting", "Legal Language", "Policy Writing", "Government"],
+    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=poOGR-6bb2g",
+    emoji: "📜"
+  },
+  {
+    title: "GOD IS LIGHT GPT",
+    description: "Comparative-religion guide decoding Light symbolism across traditions. Explore how divine essence of Light manifests across Christianity, Islam, Hinduism, Buddhism, and Judaism.",
+    badge: "COMPARATIVE RELIGION",
+    color: "from-yellow-500 to-amber-600",
+    features: ["Light Symbolism", "World Religions", "Divine Essence", "Spiritual Unity"],
+    directUrl: "https://godislightgpt.lovable.app/?via=aiwebtools",
+    emoji: "💡"
+  },
+  {
+    title: "MATERIAL VALUATION GPT (MATERIUMOR)",
+    description: "Professional material and asset valuation services for determining the value of materials, commodities, and physical assets for business and investment.",
+    badge: "VALUATION",
+    color: "from-amber-500 to-yellow-600",
+    features: ["Material Valuation", "Asset Pricing", "Commodity Analysis", "Investment"],
+    directUrl: "https://materialvaluationgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=tbZu4vnsY_8",
+    emoji: "💎"
+  },
+  {
+    title: "Marriage Mender GPT",
+    description: "Virtual mediation service for couples facing relationship challenges. Facilitates communication and understanding for educational and informational purposes.",
+    badge: "RELATIONSHIPS",
+    color: "from-pink-500 to-red-600",
+    features: ["Relationship Counseling", "Communication", "Mediation", "Couples Support"],
+    directUrl: "https://marriagemendergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=3HCv5_QldrU",
+    emoji: "💕"
+  },
+  {
+    title: "I AM Q - I AM YOU",
+    description: "Fused wisdom of Alan Watts & Quantum Light Unity, guiding through quantum truth & metaphysical liberation. By AiWebTools.Ai.",
+    badge: "QUANTUM",
+    color: "from-purple-500 to-cyan-600",
+    features: ["Quantum Wisdom", "Alan Watts", "Metaphysical", "Consciousness"],
+    directUrl: "https://iamqgpt.lovable.app/?via=aiwebtools",
+    emoji: "✨"
+  },
+  {
+    title: "Geology & Rock Identification GPT",
+    description: "Expert AI companion for geological exploration and rock identification. Helps identify minerals, rocks, and geological formations through detailed analysis.",
+    badge: "GEOLOGY",
+    color: "from-amber-500 to-orange-600",
+    features: ["Rock ID", "Minerals", "Geological Formations", "Earth Science"],
+    directUrl: "https://chatgpt.com/g/g-689005f62df881918961b6c93ad5b19e-geology-rock-identification-gpt",
+    videoUrl: "https://youtu.be/nmRT6AOVQNg?si=bacR1az2vDwLr5H",
+    emoji: "🪨"
+  },
+  {
+    title: "Magnetism GPT",
+    description: "Intelligent synthesis of physics, biology, and metaphysical wisdom revealing how magnetic fields weave life together. Learn heart field science and frequency alignment.",
+    badge: "SCIENCE",
+    color: "from-blue-600 to-purple-700",
+    features: ["Magnetism", "Biofield", "Schumann Resonance", "Energy Healing"],
+    directUrl: "https://chatgpt.com/g/g-68eb1e7a39d48191ac52cd628c18fd2b-magnetism-gpt/?via=aiwebtools",
+    imageUrl: "/images/magnetism-gpt.png",
+    emoji: "🧲"
+  },
+  {
+    title: "Declassified Files Explorer GPT",
+    description: "AI-powered tool for researching and analyzing declassified government files. Access historical documents, intelligence reports, and official records.",
+    badge: "RESEARCH",
+    color: "from-slate-500 to-gray-700",
+    features: ["Declassified Files", "Government Documents", "Intelligence Reports", "Historical Research"],
+    directUrl: "https://chatgpt.com/g/g-68eeaf21bd1481919a34936a27d917a3-declassified-files-explorer-gpt?via=aiwebtools",
+    videoUrl: "https://youtu.be/kqMPocOgEZ8?si=UlxkH6weSVM1fp-I",
+    emoji: "📂"
+  },
+  {
+    title: "Intergalactic Ancient Archivist GPT",
+    description: "Ancient knowledge meets cosmic archives. Explore the intersection of ancient wisdom traditions and cosmic mysteries across civilizations.",
+    badge: "COSMIC",
+    color: "from-indigo-600 to-purple-600",
+    features: ["Ancient Knowledge", "Cosmic Archives", "Ancient Civilizations", "Mysteries"],
+    directUrl: "https://intergalacticarchivist.lovable.app/?via=aiwebtools",
+    emoji: "🌌"
+  },
+  {
+    title: "Religious Studies GPT",
+    description: "Assists in studying different religions with first-person interactive learning perspective. Explore world religions through immersive study and comparative analysis.",
+    badge: "RELIGION",
+    color: "from-amber-500 to-purple-600",
+    features: ["World Religions", "Comparative Study", "Spiritual Traditions", "Academic"],
+    directUrl: "https://religiousstudiesgpt.lovable.app/?via=aiwebtools",
+    emoji: "📿"
+  },
+  {
+    title: "Torah Studies GPT",
+    description: "Deep exploration of Torah teachings, Jewish wisdom, and Hebrew scripture. Engage with ancient texts and rabbinic commentary for spiritual growth.",
+    badge: "JUDAISM",
+    color: "from-blue-500 to-gold-600",
+    features: ["Torah", "Hebrew Scripture", "Jewish Wisdom", "Rabbinic Commentary"],
+    directUrl: "https://torahstudiesgpt.lovable.app/?via=aiwebtools",
+    emoji: "📜"
+  },
+  {
+    title: "Kabbalah GPT",
+    description: "Explore the mystical traditions of Jewish Kabbalah. Discover the Tree of Life, the Sefirot, and the hidden dimensions of divine wisdom.",
+    badge: "MYSTICISM",
+    color: "from-purple-600 to-gold-600",
+    features: ["Kabbalah", "Tree of Life", "Sefirot", "Jewish Mysticism"],
+    directUrl: "https://kabbalahgpt.lovable.app/?via=aiwebtools",
+    emoji: "🌳"
+  },
+  {
+    title: "St. Teresa of Avila GPT",
+    description: "Experience the mystical journey with St. Teresa of Avila. Explore the Interior Castle, contemplative prayer, and the path to divine union.",
+    badge: "SAINT",
+    color: "from-rose-500 to-purple-600",
+    features: ["Interior Castle", "Contemplative Prayer", "Divine Union", "Christian Mysticism"],
+    directUrl: "https://stteresagpt.lovable.app/?via=aiwebtools",
+    emoji: "🏰"
+  },
+  {
+    title: "St. Catherine of Siena GPT",
+    description: "Receive wisdom from the Doctor of the Church. Explore The Dialogue, mystical visions, and bold spiritual teaching.",
+    badge: "SAINT",
+    color: "from-amber-500 to-red-600",
+    features: ["The Dialogue", "Mystical Visions", "Church Doctor", "Spiritual Boldness"],
+    directUrl: "https://stcatherinegpt.lovable.app/?via=aiwebtools",
+    emoji: "🔥"
+  },
+  {
+    title: "St. Hildegard of Bingen GPT",
+    description: "Explore visions with the Sibyl of the Rhine. Discover sacred music, herbal medicine, and prophetic writings of this medieval mystic.",
+    badge: "SAINT",
+    color: "from-green-500 to-purple-600",
+    features: ["Sacred Music", "Herbal Medicine", "Prophecy", "Medieval Mysticism"],
+    directUrl: "https://sthildegardgpt.lovable.app/?via=aiwebtools",
+    emoji: "🎵"
+  },
+  {
+    title: "St. Augustine GPT",
+    description: "Journey with the Doctor of Grace through Confessions and City of God. Explore conversion, divine grace, and philosophical theology.",
+    badge: "SAINT",
+    color: "from-amber-600 to-brown-600",
+    features: ["Confessions", "City of God", "Divine Grace", "Philosophy"],
+    directUrl: "https://staugustinegpt.lovable.app/?via=aiwebtools",
+    emoji: "📖"
+  },
+  {
+    title: "St. Thomas Aquinas GPT",
+    description: "Engage with the Angelic Doctor's Summa Theologica. Explore the synthesis of faith and reason, natural law, and theological philosophy.",
+    badge: "SAINT",
+    color: "from-blue-600 to-gray-600",
+    features: ["Summa Theologica", "Faith & Reason", "Natural Law", "Scholasticism"],
+    directUrl: "https://stthomasgpt.lovable.app/?via=aiwebtools",
+    emoji: "⚖️"
+  },
+  {
+    title: "Kitchen Witch GPT",
+    description: "Blend culinary arts with folk magic. Explore kitchen witchcraft, herbal lore, and magical recipes that nourish body and spirit.",
+    badge: "FOLK MAGIC",
+    color: "from-green-500 to-amber-600",
+    features: ["Kitchen Witchcraft", "Herbal Lore", "Magical Recipes", "Folk Traditions"],
+    directUrl: "https://kitchenwitchgpt.lovable.app/?via=aiwebtools",
+    emoji: "🍲"
+  },
+  {
+    title: "College Professor GPT",
+    description: "Academic instruction across all disciplines. Get college-level explanations, lecture content, and scholarly guidance on any subject.",
+    badge: "ACADEMIA",
+    color: "from-blue-600 to-indigo-600",
+    features: ["Academic Lectures", "Scholarly Guidance", "All Disciplines", "Higher Education"],
+    directUrl: "https://collegeprofessorgpt.lovable.app/?via=aiwebtools",
+    emoji: "🎓"
+  },
+  {
+    title: "Carl Sagan GPT",
+    description: "Explore the cosmos with the voice of Carl Sagan. Journey through astronomy, philosophy, and the pale blue dot we call home.",
+    badge: "ASTRONOMY",
+    color: "from-blue-600 to-purple-600",
+    features: ["Cosmos", "Astronomy", "Philosophy", "Science Communication"],
+    directUrl: "https://carlsagangpt.lovable.app/?via=aiwebtools",
+    emoji: "🌌"
+  },
+  {
+    title: "Self Sufficiency GPT",
+    description: "Master homesteading, off-grid living, and sustainable self-reliance. Learn practical skills for food production, energy independence, and resilient living.",
+    badge: "HOMESTEADING",
+    color: "from-green-600 to-amber-600",
+    features: ["Homesteading", "Off-Grid", "Sustainability", "Self-Reliance"],
+    directUrl: "https://selfsufficiencygpt.lovable.app/?via=aiwebtools",
+    emoji: "🏡"
+  },
+  {
+    title: "Awakening Kepety GPT",
+    description: "Egyptian spiritual awakening guide. Explore the mysteries of ancient Egypt, the Book of the Dead, and the path to spiritual illumination.",
+    badge: "EGYPTIAN",
+    color: "from-amber-500 to-gold-600",
+    features: ["Egyptian Mysteries", "Book of the Dead", "Spiritual Awakening", "Ancient Wisdom"],
+    directUrl: "https://awakeningkepetygpt.lovable.app/?via=aiwebtools",
+    emoji: "🔺"
+  },
+  {
+    title: "Global Supply Chain Collapse GPT",
+    description: "Supply chain resilience engine analyzing vulnerabilities, disruptions, and strategic planning for economic resilience.",
+    badge: "ECONOMICS",
+    color: "from-red-500 to-orange-600",
+    features: ["Supply Chain", "Risk Analysis", "Economic Resilience", "Strategic Planning"],
+    directUrl: "https://supplychaingpt.lovable.app/?via=aiwebtools",
+    emoji: "🔗"
   }
 ];
 
