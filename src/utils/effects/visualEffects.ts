@@ -637,20 +637,35 @@ export const createWarpStars = (effectsContainer: HTMLElement) => {
 export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
   console.log('💚 Creating EPIC Matrix code explosion');
   
+  // Darken the scene slightly so the green binary code is ALWAYS visible above the color flash
+  const matrixBackdrop = document.createElement('div');
+  matrixBackdrop.id = 'matrix-backdrop';
+  matrixBackdrop.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.8) 70%, transparent 90%);
+    z-index: 99992;
+    pointer-events: none;
+  `;
+  document.body.appendChild(matrixBackdrop);
+  
   const matrixChars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-  const explosionCount = 120; // MORE matrix symbols for bigger effect
+  const explosionCount = 140; // MORE matrix symbols for bigger effect
   
   for (let i = 0; i < explosionCount; i++) {
     const matrixChar = document.createElement('div');
     matrixChar.className = 'matrix-explosion-char';
     const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-    const fontSize = 16 + Math.random() * 32; // Bigger font
+    const fontSize = 20 + Math.random() * 36; // Bigger font
     const angle = (i / explosionCount) * 360 + Math.random() * 20;
-    const velocity = 200 + Math.random() * 500; // Faster velocity
-    const delay = Math.random() * 0.15; // Slightly faster start
+    const velocity = 260 + Math.random() * 520; // Faster velocity
+    const delay = Math.random() * 0.1; // Start even sooner
     
     // Some characters are binary (0/1), some are katakana for matrix style
-    const isBinary = Math.random() > 0.4;
+    const isBinary = Math.random() > 0.3;
     const displayChar = isBinary ? (Math.random() > 0.5 ? '0' : '1') : char;
     
     matrixChar.textContent = displayChar;
@@ -663,12 +678,12 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
       font-weight: bold;
       color: #00FF00;
       text-shadow: 
-        0 0 15px #00FF00,
-        0 0 30px #00FF00,
-        0 0 45px #00FF00,
-        0 0 60px #00FF00;
+        0 0 18px #00FF00,
+        0 0 36px #00FF00,
+        0 0 54px #00FF00,
+        0 0 72px #00FF00;
       transform: translate(-50%, -50%);
-      animation: matrix-char-explode 2.5s ease-out forwards;
+      animation: matrix-char-explode 2.8s ease-out forwards;
       animation-delay: ${delay}s;
       z-index: 100000;
       pointer-events: none;
@@ -680,33 +695,33 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
   }
   
   // Create cascading matrix rain columns
-  const rainColumns = 30; // More columns
+  const rainColumns = 36; // More columns
   for (let col = 0; col < rainColumns; col++) {
     const column = document.createElement('div');
     column.className = 'matrix-rain-column';
     const leftPos = (col / rainColumns) * 100;
-    const delay = Math.random() * 0.3;
-    const chars = Array.from({length: 20}, () => 
+    const delay = Math.random() * 0.25;
+    const chars = Array.from({length: 22}, () => 
       matrixChars[Math.floor(Math.random() * matrixChars.length)]
     ).join('');
     
     column.textContent = chars;
     column.style.cssText = `
       position: absolute;
-      top: -300px;
+      top: -320px;
       left: ${leftPos}%;
       font-family: 'Courier New', monospace;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
       color: #00FF00;
       text-shadow: 
-        0 0 10px #00FF00,
-        0 0 20px #00FF00,
-        0 0 30px #00FF00;
+        0 0 12px #00FF00,
+        0 0 24px #00FF00,
+        0 0 36px #00FF00;
       writing-mode: vertical-rl;
       text-orientation: upright;
       letter-spacing: 3px;
-      animation: matrix-rain-fall 2s ease-in forwards;
+      animation: matrix-rain-fall 2.3s ease-in forwards;
       animation-delay: ${delay}s;
       z-index: 99998;
       opacity: 0;
