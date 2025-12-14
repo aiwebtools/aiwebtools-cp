@@ -3178,7 +3178,7 @@ const featuredGPTsUnsorted = [
     badge: "INSPECTOR",
     color: "from-green-500 to-blue-600",
     features: ["Property Inspection", "Real Estate", "Home Inspection", "Property Assessment"],
-    directUrl: "https://chatgpt.com/g/g-68bb32b6f1888191abfba2549ab3088b-ai-real-estate-property-condition-inspector/?via=aiwebtools",
+    directUrl: "https://realestategpt.lovable.app/?via=aiwebtools",
     imageUrl: "/src/assets/real-estate-inspector-hero.jpg",
     emoji: "🏠"
   },
