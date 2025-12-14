@@ -7,10 +7,15 @@ const Logo = ({ compact = false }: { compact?: boolean }) => {
   const navigate = useNavigate();
 
   const scrollToHome = () => {
+    // Make Home feel INSTANT: no slow smooth scroll
     if (window.location.pathname === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'auto' });
     } else {
       navigate('/');
+      // Ensure we jump to top right after navigation
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }, 0);
     }
   };
 
