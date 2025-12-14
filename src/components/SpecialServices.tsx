@@ -1158,7 +1158,7 @@ const featuredGPTs = [
     color: "from-green-500 to-blue-600",
     features: ["Pet Health Information", "Health Information", "Care Information", "Emergency Information"],
     directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=ElAfvB0yLEI",
+    videoUrl: "https://youtu.be/jwjNOKP5mf4",
     emoji: "🐾"
   },
   {
