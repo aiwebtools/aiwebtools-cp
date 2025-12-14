@@ -2361,16 +2361,6 @@ const featuredGPTsUnsorted = [
     emoji: "💨"
   },
   {
-    title: "Bridge & Structural Health Monitor Inspector GPT",
-    description: "Virtual bridge inspector AI for structural health monitoring data, audits, and compliance analysis.",
-    badge: "INFRASTRUCTURE",
-    color: "from-stone-500 to-gray-600",
-    features: ["Bridge Inspection", "Structural Health", "Infrastructure Safety", "Compliance"],
-    directUrl: "https://chatgpt.com/g/g-68bb53548e60819191b457795c7d0023-bridge-structural-health-monitor-inspector-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/bridge-inspector-hero.jpg",
-    emoji: "🌉"
-  },
-  {
     title: "Geology & Rock Identification GPT",
     description: "Expert AI companion for geological exploration and rock identification. Identify minerals, rocks, and geological formations.",
     badge: "EARTH SCIENCE",
@@ -3361,16 +3351,6 @@ const featuredGPTsUnsorted = [
     directUrl: "https://chatgpt.com/g/g-68bb492f149c81918aaa62cab75ee4f8-ai-pipeline-integrity-inspector/?via=aiwebtools",
     imageUrl: "/src/assets/pipeline-integrity-inspector-gpt-hero.jpg",
     emoji: "🔧"
-  },
-  {
-    title: "Bridge & Infrastructure Inspector GPT",
-    description: "Virtual structural inspector for bridges and critical infrastructure. Expert infrastructure inspection services.",
-    badge: "INFRASTRUCTURE",
-    color: "from-stone-500 to-gray-600",
-    features: ["Bridge Inspection", "Infrastructure Safety", "Structural Inspection", "Civil Engineering"],
-    directUrl: "https://chatgpt.com/g/g-68bb35336fc88191961a10a19a09bdcb-ai-bridge-infrastructure-inspector/?via=aiwebtools",
-    imageUrl: "/src/assets/bridge-infrastructure-inspector-gpt-hero.jpg",
-    emoji: "🌉"
   },
 ];
 
