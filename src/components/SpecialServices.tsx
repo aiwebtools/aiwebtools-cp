@@ -946,7 +946,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-red-600",
     features: ["UFO Research", "Supernatural", "Cryptozoology", "Ghost Hunting"],
     directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-ufo-hovering-in-the-sky-wit_w8l4l.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    videoUrl: "https://youtu.be/faBkRli0puc?si=Sao0KIfV2iGWLGB-",
     emoji: "👁️"
   },
   {
@@ -1036,7 +1036,7 @@ const featuredGPTs = [
     color: "from-purple-600 to-blue-600",
     features: ["Space Exploration", "Colony Planning", "Terraforming", "Astrogation"],
     directUrl: "https://stellaris.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=SV4VVRcLX5c",
+    videoUrl: "https://www.youtube.com/watch?v=tJwhDOE3mUM",
     emoji: "🚀"
   },
   {
