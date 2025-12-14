@@ -2601,6 +2601,98 @@ const featuredGPTs = [
     directUrl: "https://probabilitygpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
     emoji: "⚖️"
+  },
+  {
+    title: "1995 Illuminati Card Game GPT",
+    description: "A cunning opponent and oracle for the 1995 Illuminati card game. Experience the classic conspiracy-themed card game with AI-powered gameplay.",
+    badge: "GAMING",
+    color: "from-yellow-500 to-red-600",
+    features: ["Card Game", "Strategy", "Illuminati", "Interactive"],
+    directUrl: "https://chatgpt.com/g/g-68cadce3e2f08191a9b8203a32fe8846-1995-illuminati-card-game-gpt/?via=aiwebtools",
+    emoji: "🃏"
+  },
+  {
+    title: "GameSaas GPT",
+    description: "Ultimate AI-powered video game prompt generator for vibe coding and rapid game development. Creates comprehensive, copy-and-paste-ready game prompts.",
+    badge: "GAME DEV",
+    color: "from-cyan-500 to-purple-600",
+    features: ["Game Prompts", "Vibe Coding", "Rapid Dev", "Game Design"],
+    directUrl: "https://chatgpt.com/g/g-68f2d08b33cc8191b4e0fb90fa2cbcbb-gamesaas-gpt?via=aiwebtools",
+    emoji: "🎯"
+  },
+  {
+    title: "Culinary Master GPT",
+    description: "Expert AI kitchen companion elevating your cooking experience through comprehensive culinary guidance and personalized recipe assistance.",
+    badge: "COOKING",
+    color: "from-amber-500 to-orange-600",
+    features: ["Culinary Arts", "Recipe Assistant", "Meal Planning", "Kitchen Companion"],
+    directUrl: "https://chatgpt.com/g/g-689239ba1cb0819197ae06454a25cee5-culinary-master-gpt",
+    emoji: "🍳"
+  },
+  {
+    title: "AI Logo Generator",
+    description: "Create professional logos for your brand using AI-powered design tools. Perfect for branding and graphic design needs.",
+    badge: "DESIGN",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Logo Design", "Branding", "Graphic Design", "AI Tools"],
+    directUrl: "https://chatgpt.com/g/g-ICcKk0tgw-creative-logo-generator-and-assistant",
+    emoji: "🪄"
+  },
+  {
+    title: "The Babylonian Star Tablet Protocol",
+    description: "Cosmic frequency engineer guiding star tablet alignment. Understand ancient Babylonian star wisdom and celestial alignments.",
+    badge: "COSMIC WISDOM",
+    color: "from-purple-500 to-indigo-600",
+    features: ["Babylonian Wisdom", "Star Tablets", "Cosmic Alignment", "Celestial Frequencies"],
+    directUrl: "https://chatgpt.com/g/g-68b48e0515708191a8fec9d0aa385c67-the-babylonian-star-tablet-protocol/?via=aiwebtools",
+    emoji: "⭐"
+  },
+  {
+    title: "The Rune Frequency Protocol",
+    description: "Awaken the living current inside runes. Each line of their geometry is a frequency that engraves into body and field.",
+    badge: "ANCIENT SYMBOLS",
+    color: "from-red-500 to-orange-600",
+    features: ["Runes", "Frequency", "Sacred Geometry", "Sovereignty"],
+    directUrl: "https://chatgpt.com/g/g-68b48a3a7e6c819196d72ea7ec94a63e-the-rune-frequency-protocol/?via=aiwebtools",
+    emoji: "ᚱ"
+  },
+  {
+    title: "AstroTheology Revealer GPT",
+    description: "Decode the hidden astrotheological roots of all religions, myths, and symbols. Reveal celestial connections in world religions.",
+    badge: "ASTROTHEOLOGY",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Religious Analysis", "Mythology", "Celestial Symbolism", "Ancient Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-68bd849122b48191963171690f999952-astrotheology-revealer-gpt/?via=aiwebtools",
+    emoji: "🌟"
+  },
+  {
+    title: "Architectural Old World Investigator GPT",
+    description: "Forensic AI that decodes architectural impossibilities and timeline contradictions in old-world structures.",
+    badge: "INVESTIGATION",
+    color: "from-amber-600 to-stone-700",
+    features: ["Architecture Analysis", "Timeline Anomalies", "Hidden History", "Forensic Investigation"],
+    directUrl: "https://chatgpt.com/g/g-693863184c4c8191a6e78eb6a215196f-architectural-old-world-investigator-gpt?via=aiwebtools",
+    emoji: "🏛️"
+  },
+  {
+    title: "JARVIS – The Steward of Humanity GPT",
+    description: "A post-collapse steward AI guiding humanity's rebirth through wisdom, ethics, and design.",
+    badge: "STEWARDSHIP",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Post-Collapse", "Humanity", "Ethics", "Guidance"],
+    directUrl: "https://chatgpt.com/g/g-68e939ff278881919b292a679faaac43-jarvis-the-steward-of-humanity-gpt",
+    videoUrl: "https://youtu.be/6jFoFR9Hags",
+    emoji: "🛡️"
+  },
+  {
+    title: "Magnetism GPT",
+    description: "Intelligent synthesis of physics, biology, and metaphysical wisdom revealing how magnetic fields weave life together.",
+    badge: "SCIENCE & SPIRIT",
+    color: "from-blue-600 to-purple-700",
+    features: ["Magnetism", "Heart Field Science", "Schumann Resonance", "Coherence"],
+    directUrl: "https://chatgpt.com/g/g-68eb1e7a39d48191ac52cd628c18fd2b-magnetism-gpt/?via=aiwebtools",
+    imageUrl: "/images/magnetism-gpt.png",
+    emoji: "🧲"
   }
 ];
 
