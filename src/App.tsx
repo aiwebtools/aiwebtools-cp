@@ -90,6 +90,20 @@ const AnimatedRoutes = () => {
   );
 };
 
+// Global route guard to enforce disclaimer gate BEFORE any page
+const RouteGuard: React.FC = () => {
+  const location = useLocation();
+  const hasAccepted =
+    typeof window !== "undefined" &&
+    window.localStorage.getItem("aitools-consent-seen");
+
+  // If user has NOT accepted and is not already on /welcome, force them there
+  if (!hasAccepted && location.pathname !== "/welcome") {
+    return <PageTransition key="welcome-redirect"><Routes><Route path="*" element={<DisclaimerGate />} /></Routes></PageTransition>;
+  }
+
+  return <AnimatedRoutes />;
+};
 function App() {
   // Initialize cross-browser optimizations
   useCrossBrowserOptimization();
@@ -112,12 +126,12 @@ function App() {
               </Suspense>
               <MatrixCursorEffect />
               <BrowserRouter>
-                <AnimatedRoutes />
-                {/* Tiny floating clone button - hides on scroll */}
-                <Suspense fallback={null}>
-                  <FloatingCloneButton />
-                </Suspense>
-              </BrowserRouter>
+-                <AnimatedRoutes />
+-                {/* Tiny floating clone button - hides on scroll */}
+-                <Suspense fallback={null}>
+-                  <FloatingCloneButton />
+-                </Suspense>
+-              </BrowserRouter>
             </TooltipProvider>
           </FavoritesProvider>
         </HelmetProvider>
