@@ -38,7 +38,7 @@ const Index = () => {
 
   // If disclaimer not accepted, send user to gate page first
   useEffect(() => {
-    const hasAccepted = localStorage.getItem("aitools-consent-v2");
+    const hasAccepted = localStorage.getItem("aitools-consent-v3");
     if (!hasAccepted) {
       navigate("/welcome", { replace: true });
     }
