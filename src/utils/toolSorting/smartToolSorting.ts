@@ -8,10 +8,18 @@ const DEPRIORITIZED_TOOLS = [
   'microsoft cortana', 'hey google', 'ok google'
 ];
 
+// Cache for deprioritization checks to avoid repeated string operations
+const deprioritizedCache = new WeakMap<Tool, boolean>();
+
 // Check if a tool is a common default assistant
 export const isDeprioritizedTool = (tool: Tool): boolean => {
+  if (deprioritizedCache.has(tool)) {
+    return deprioritizedCache.get(tool)!;
+  }
   const titleLower = tool.title.toLowerCase();
-  return DEPRIORITIZED_TOOLS.some(name => titleLower.includes(name));
+  const result = DEPRIORITIZED_TOOLS.some(name => titleLower.includes(name));
+  deprioritizedCache.set(tool, result);
+  return result;
 };
 
 // Sort A-Z by title
