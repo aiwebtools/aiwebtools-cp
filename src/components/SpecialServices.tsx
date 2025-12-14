@@ -71,6 +71,58 @@ const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string
   );
 };
 
+// Hero image component with proper Vite asset handling and fallback
+const HeroImage = ({ 
+  imageUrl, 
+  title, 
+  description, 
+  badge, 
+  emoji, 
+  color 
+}: { 
+  imageUrl: string; 
+  title: string; 
+  description: string; 
+  badge: string; 
+  emoji: string; 
+  color: string; 
+}) => {
+  const [hasError, setHasError] = useState(false);
+  
+  // Convert /src/assets/ path to proper import URL for Vite
+  const getResolvedImageUrl = (url: string): string => {
+    if (url.startsWith('/src/assets/')) {
+      // For Vite, we need to use the assets directly from the build
+      // Convert to relative path that Vite can resolve
+      const filename = url.replace('/src/assets/', '');
+      return new URL(`../assets/${filename}`, import.meta.url).href;
+    }
+    return url;
+  };
+  
+  if (hasError) {
+    // Fallback to emoji display
+    return (
+      <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${color} text-5xl md:text-6xl`}>
+        {emoji}
+      </div>
+    );
+  }
+  
+  return (
+    <img 
+      src={getResolvedImageUrl(imageUrl)} 
+      alt={`${title} - ${description?.slice(0, 100) || 'AI Tool'}...`}
+      title={`${title} AI Tool - ${badge}`}
+      className="w-full h-full object-cover"
+      loading="lazy"
+      decoding="async"
+      itemProp="image"
+      onError={() => setHasError(true)}
+    />
+  );
+};
+
 // =============================================================================
 // OUR FEATURED SECTION - Portfolio showcase of AI Web Tools GPTs
 // CLEANED VERSION - NO DUPLICATES, NO FAKE TOOLS
@@ -3467,15 +3519,14 @@ const SpecialServices = () => {
                 )}
                 
                 {!gpt.videoUrl && gpt.imageUrl && (
-                  <div className="mb-2 rounded-lg overflow-hidden relative aspect-video bg-black/20">
-                    <img 
-                      src={gpt.imageUrl} 
-                      alt={`${gpt.title} - ${gpt.description.slice(0, 100)}...`}
-                      title={`${gpt.title} AI Tool - ${gpt.badge}`}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      itemProp="image"
+                  <div className="mb-2 rounded-lg overflow-hidden relative aspect-video bg-gradient-to-br from-card/50 to-card/30">
+                    <HeroImage 
+                      imageUrl={gpt.imageUrl}
+                      title={gpt.title}
+                      description={gpt.description}
+                      badge={gpt.badge}
+                      emoji={gpt.emoji}
+                      color={gpt.color}
                     />
                   </div>
                 )}
