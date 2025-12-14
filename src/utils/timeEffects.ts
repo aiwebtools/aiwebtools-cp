@@ -212,14 +212,10 @@ const extractToolName = (destinationUrl: string, providedToolName?: string): str
 export const createTimePortalEffect = (destinationUrl: string, toolName?: string) => {
   console.log('🌀 Creating TIME WARP portal effect for URL:', destinationUrl);
   
-  // OPEN URL IMMEDIATELY - no waiting!
-  if (destinationUrl && destinationUrl.trim()) {
-    openDestinationUrl(destinationUrl);
-  }
-  
   // Effect duration - long enough for full epic color time warp matrix explosion
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   const effectDuration = isMobile ? 1800 : 2500; // Extended for full epic effect
+  const urlOpenDelay = isMobile ? 1200 : 1800; // Open URL after seeing the effect
   
   // Extract tool name for logging purposes
   const finalToolName = extractToolName(destinationUrl, toolName);
@@ -250,6 +246,13 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
       createConfettiCelebration();
     }, 200);
   }
+
+  // OPEN URL AFTER seeing the effect and hearing the voice
+  setTimeout(() => {
+    if (destinationUrl && destinationUrl.trim()) {
+      openDestinationUrl(destinationUrl);
+    }
+  }, urlOpenDelay);
 
   // Cleanup effects after animation
   setTimeout(() => {
