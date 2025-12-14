@@ -30,15 +30,11 @@ const LoadingSpinner = () => (
 const Index = () => {
   // Use fast cached stats initially for better performance
   const [toolStats, setToolStats] = useState(getFastToolCount());
-  const [isLoaded, setIsLoaded] = useState(false);
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
   
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    // Set loaded state immediately for faster initial render
-    setIsLoaded(true);
-    
     // Check if video has already played this session
     const videoPlayedBefore = localStorage.getItem('mainVideoPlayed');
     if (videoPlayedBefore) {
@@ -59,19 +55,7 @@ const Index = () => {
       clearTimeout(statsTimer);
     };
   }, []);
-
-  // Early return with minimal loading state if not ready
-  if (!isLoaded) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-400 mx-auto mb-3"></div>
-          <p className="text-cyan-400 text-sm">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
+  
   // Determine video URL based on whether it's first visit
   const videoUrl = hasPlayedOnce 
     ? "https://www.youtube.com/embed/4zflGSSuBcA?controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
