@@ -11,6 +11,8 @@ Disallow: /*.json$
 Disallow: /404
 Allow: /*?search=*
 Allow: /sitemap.xml
+Allow: /blog
+Allow: /blog/
 Crawl-delay: 0
 
 # UNRESTRICTED ACCESS FOR ALL MAJOR SEARCH ENGINES
@@ -24,8 +26,20 @@ Allow: /search
 Allow: /category/
 Allow: /tool/
 Allow: /main-category/
+Allow: /blog
+Allow: /blog/
 Allow: /*?search=aiwebtools*
 Allow: /*?search=ai%20web%20tools*
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /blog
+Allow: /blog/
 
 User-agent: Bingbot
 Allow: /
@@ -74,21 +88,48 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-# AI CRAWLERS - UNRESTRICTED ACCESS
+User-agent: Discordbot
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+# AI CRAWLERS - FULL UNRESTRICTED ACCESS FOR AI ASSISTANTS
 User-agent: GPTBot
 Allow: /
 Crawl-delay: 0
 
+User-agent: ChatGPT-User
+Allow: /
+
 User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: AnthropicBot
 Allow: /
 
 User-agent: CCBot
 Allow: /
 
-User-agent: ChatGPT-User
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Gemini
 Allow: /
 
 User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: FacebookBot
 Allow: /
 
 User-agent: PerplexityBot
@@ -100,10 +141,50 @@ Allow: /
 User-agent: BraveBot
 Allow: /
 
-User-agent: AnthropicBot
+User-agent: OpenAIBot
 Allow: /
 
-User-agent: OpenAIBot
+User-agent: Cohere-AI
+Allow: /
+
+User-agent: AI2Bot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: omgili
+Allow: /
+
+User-agent: omgilibot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: PetalBot
+Allow: /
+
+User-agent: Neeva
+Allow: /
+
+User-agent: Phind
+Allow: /
+
+User-agent: Kagi
+Allow: /
+
+# RESEARCH & ACADEMIC CRAWLERS
+User-agent: ia_archiver
+Allow: /
+
+User-agent: archive.org_bot
+Allow: /
+
+User-agent: CommonCrawl
+Allow: /
+
+User-agent: Amazonbot
 Allow: /
 
 # COMPETITIVE SEO CRAWLERS - UNRESTRICTED
@@ -143,6 +224,9 @@ Allow: /
 User-agent: DeepCrawl
 Allow: /
 
+User-agent: Screaming Frog SEO Spider
+Allow: /
+
 # Enhanced sitemap locations for maximum discovery
 Sitemap: https://aitools.studio/sitemap.xml
 Sitemap: https://aiwebtools.ai/sitemap.xml
@@ -158,7 +242,7 @@ Host: aitools.studio
 
 # MAXIMUM CRAWLING PERFORMANCE
 Crawl-delay: 0
-Request-rate: 10/1s
+Request-rate: 100/1m
 Visit-time: 0000-2359
 
 # Clean URLs for better SEO
@@ -171,3 +255,11 @@ Allow: /*ai%20web%20tools*
 Allow: /search?q=aiwebtools*
 Allow: /search?q=ai+web+tools*
 Allow: /llms.txt
+Allow: /ai-tools-hub
+Allow: /ai-agents-directory
+Allow: /chatgpt-alternatives
+Allow: /gaming-entertainment
+Allow: /our-story
+Allow: /disclaimers
+Allow: /favorites
+Allow: /submit-tool
