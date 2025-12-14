@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Copy, Sparkles } from "lucide-react";
-import { createConfettiCelebration } from "@/utils/effects/confettiCelebration";
+import { createTimePortalEffect } from "@/utils/timeEffects";
 
 const CloneOfferPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,14 +75,11 @@ const CloneOfferPopup = () => {
     e.preventDefault();
     const cloneUrl = "https://lovable.dev/projects/5e87b64a-e68f-441a-a077-429e9cee45c6?via=aiwebtools";
     
-    // Trigger confetti celebration
-    createConfettiCelebration();
-    
     // Close popup immediately
     setIsOpen(false);
     
-    // Open the clone URL directly (no overlay effects that can cause blackout)
-    window.open(cloneUrl, '_blank');
+    // Trigger time warp effect with sound - this will open the URL after the effect
+    createTimePortalEffect(cloneUrl, "Clone AI Empire");
   };
 
   return (
