@@ -34,6 +34,7 @@ const Index = () => {
   // Use fast cached stats initially for better performance
   const [toolStats, setToolStats] = useState(getFastToolCount());
   const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
+  const [videoSrc, setVideoSrc] = useState("https://www.youtube.com/embed/4zflGSSuBcA?controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark");
   
   const mainVideoRef = useRef<HTMLIFrameElement>(null);
 
@@ -59,10 +60,30 @@ const Index = () => {
     };
   }, []);
   
-  // Determine video URL based on whether it's first visit
-  const videoUrl = hasPlayedOnce 
-    ? "https://www.youtube.com/embed/4zflGSSuBcA?controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark"
-    : "https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark";
+  // Autoplay video (unmuted) only when user scrolls to it on first visit
+  useEffect(() => {
+    const iframe = mainVideoRef.current;
+    if (!iframe || hasPlayedOnce) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasPlayedOnce) {
+            setVideoSrc("https://www.youtube.com/embed/4zflGSSuBcA?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&vq=hd1080&loop=0&iv_load_policy=3&cc_load_policy=0&fs=1&color=red&theme=dark");
+            setHasPlayedOnce(true);
+            localStorage.setItem('mainVideoPlayed', 'true');
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(iframe);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasPlayedOnce]);
 
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
@@ -100,7 +121,7 @@ const Index = () => {
                   <iframe
                     ref={mainVideoRef}
                     className="absolute inset-0 w-full h-full rounded-xl border border-cyan-500/30 bg-slate-800"
-                    src={videoUrl}
+                    src={videoSrc}
                     title="AI Web Tools Featured Video - 1080p HD"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
