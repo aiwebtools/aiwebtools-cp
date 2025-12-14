@@ -64,7 +64,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-black relative overflow-x-hidden">
       <ImprovedSEOHead pageType="homepage" />
-      <GoogleRankingBooster pageType="homepage" />
+      {/* Defer heavy SEO booster until after first paint */}
+      <DeferredMount delay={150}>
+        <GoogleRankingBooster pageType="homepage" />
+      </DeferredMount>
       
       {/* Background effects - deferred to improve initial paint */}
       <DeferredMount delay={50}>
