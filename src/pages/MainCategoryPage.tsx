@@ -8,6 +8,7 @@ import DeferredMount from "@/components/DeferredMount";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import SEOHead from "@/components/SEOHead";
 import ToolsGrid from "@/components/tools/ToolsGrid";
+import ToolsGridSkeleton from "@/components/tools/ToolsGridSkeleton";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 import MainCategoryFilter from "@/components/category/MainCategoryFilter";
 import BreadcrumbNav from "@/components/navigation/BreadcrumbNav";
@@ -204,14 +205,9 @@ const MainCategoryPage = () => {
             <GlobalSearchBar />
           </div>
 
-          {/* Loading Spinner - appears while tools load */}
+          {/* Skeleton Grid - appears instantly while tools load */}
           {showToolsLoading ? (
-            <div className="flex flex-col items-center justify-center py-12 gap-4">
-              <Loader2 className="w-10 h-10 text-cyan-400 animate-spin" />
-              <p className="text-cyan-400 text-sm font-medium animate-pulse">
-                Loading AI Tools...
-              </p>
-            </div>
+            <ToolsGridSkeleton count={12} />
           ) : (
             <>
               {/* Category Filter Component */}
