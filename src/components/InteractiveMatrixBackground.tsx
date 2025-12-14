@@ -68,20 +68,20 @@ const InteractiveMatrixBackground = () => {
 
     const fontSize = 16;
     const columns = Math.floor(canvas.width / fontSize);
-    const maxDrops = performanceTier === 'high' ? columns * 1.5 : 
-                     performanceTier === 'medium' ? columns : 
-                     Math.min(columns * 0.8, 60);
+    const maxDrops = performanceTier === 'high' ? columns * 2 : 
+                     performanceTier === 'medium' ? columns * 1.5 : 
+                     Math.min(columns, 80);
 
     dropsRef.current = [];
 
     for (let i = 0; i < maxDrops; i++) {
       const drop: MatrixDrop = {
-        x: (i * fontSize) + (Math.random() * fontSize * 0.5),
+        x: (i * fontSize * 0.7) + (Math.random() * fontSize * 0.5),
         y: Math.random() * -canvas.height,
-        speed: (Math.random() * 4 + 2),
+        speed: (Math.random() * 5 + 3),
         chars: [],
-        opacity: Math.random() * 0.8 + 0.2,
-        length: Math.floor(Math.random() * 10) + 4
+        opacity: Math.random() * 0.5 + 0.5,
+        length: Math.floor(Math.random() * 14) + 6
       };
 
       // Generate random characters for this drop
@@ -217,16 +217,22 @@ const InteractiveMatrixBackground = () => {
           
           // Head character is bright white and dominant
           if (i === 0) {
-            ctx.globalAlpha = Math.min(alpha, 0.95);
+            ctx.globalAlpha = Math.min(alpha, 1);
             ctx.fillStyle = '#ffffff';
-          } else if (i <= 2) {
-            // First few characters are bright green
-            ctx.globalAlpha = Math.min(alpha * 0.9, 0.8);
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = '#00ff41';
+          } else if (i <= 3) {
+            // First few characters are bright green with glow
+            ctx.globalAlpha = Math.min(alpha * 0.95, 0.9);
             ctx.fillStyle = '#00ff41';
+            ctx.shadowBlur = 6;
+            ctx.shadowColor = '#00ff41';
           } else {
             // Body characters with defined green
-            ctx.globalAlpha = alpha * 0.7;
+            ctx.globalAlpha = alpha * 0.8;
             ctx.fillStyle = '#00cc33';
+            ctx.shadowBlur = 3;
+            ctx.shadowColor = '#00ff41';
           }
           
           // Render defined characters with pixel-perfect positioning
@@ -261,7 +267,7 @@ const InteractiveMatrixBackground = () => {
     ctx.globalAlpha = 1; // Reset alpha
 
     // Clean up excess drops for performance but allow more streaks
-    const maxActiveDrops = performanceTier === 'high' ? 150 : performanceTier === 'medium' ? 100 : 80;
+    const maxActiveDrops = performanceTier === 'high' ? 200 : performanceTier === 'medium' ? 140 : 100;
     if (dropsRef.current.length > maxActiveDrops) {
       dropsRef.current = dropsRef.current.slice(0, maxActiveDrops);
     }
