@@ -1,40 +1,10 @@
-import { useState, useEffect } from 'react';
 import { Copy } from 'lucide-react';
 import { createTimePortalEffect } from '@/utils/timeEffects';
 
 const FloatingCloneButton = () => {
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const isMobile = window.innerWidth < 768;
-      
-      if (isMobile && currentScrollY > lastScrollY && currentScrollY > 200) {
-        setIsVisible(false);
-      } else if (isMobile && currentScrollY < lastScrollY) {
-        setIsVisible(true);
-      } else if (!isMobile) {
-        setIsVisible(true);
-      }
-      
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
-  }, [lastScrollY]);
-
   return (
     <div
-      className={`fixed left-2 z-50 transition-all duration-300 ${
-        isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'
-      }`}
+      className="fixed left-2 z-50"
       style={{
         // Mobile: top-28 (much higher, above content)
         // Desktop: top-48 (unchanged)
