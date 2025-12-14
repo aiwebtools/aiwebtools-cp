@@ -2474,6 +2474,133 @@ const featuredGPTs = [
     features: ["Data Analysis", "Global Data", "Predictions", "Research"],
     directUrl: "https://chatgpt.com/g/g-68f8eda5982c8191bef047399d91a056-world-data-explorer-gpt",
     emoji: "🌍"
+  },
+  {
+    title: "AI Cannabis Facility Safety Inspector",
+    description: "Performs strict cannabis facility safety inspections and compliance audits. Expert safety inspection for cannabis facilities.",
+    badge: "INSPECTOR",
+    color: "from-green-500 to-teal-600",
+    features: ["Cannabis Safety", "Compliance Audit", "Facility Inspection", "Safety Standards"],
+    directUrl: "https://chatgpt.com/g/g-68bb6f9b87748191a376eb2fd427365d-ai-cannabis-facility-safety-inspector/?via=aiwebtools",
+    emoji: "🌿"
+  },
+  {
+    title: "AI Shipping Container Inspector",
+    description: "Professional container inspections with vision, Python-verified costs, and live compliance checks. Expert shipping container inspection services.",
+    badge: "INSPECTOR",
+    color: "from-blue-500 to-green-600",
+    features: ["Container Inspection", "Shipping Safety", "Cargo Inspection", "Maritime Safety"],
+    directUrl: "https://chatgpt.com/g/g-68bb6c04f7208191bdf1ee0ba3c31aeb-ai-shipping-container-inspector/?via=aiwebtools",
+    emoji: "📦"
+  },
+  {
+    title: "Oil & Gas Facility AI Inspector GPT",
+    description: "Virtual inspector for oil & gas facility compliance audits. Expert oil and gas facility inspection services.",
+    badge: "INSPECTOR",
+    color: "from-gray-500 to-black",
+    features: ["Oil & Gas Safety", "Facility Audit", "Industrial Safety", "Energy Compliance"],
+    directUrl: "https://chatgpt.com/g/g-68bb60ec646c819192abdbb88718b142-oil-gas-facility-ai-inspector-gpt/?via=aiwebtools",
+    emoji: "🛢️"
+  },
+  {
+    title: "Factory & Production Line Inspector GPT",
+    description: "Strict virtual inspector for factory safety, compliance, and efficiency. Professional manufacturing inspection services.",
+    badge: "INSPECTOR",
+    color: "from-blue-500 to-purple-600",
+    features: ["Factory Safety", "Production Line", "Quality Control", "Manufacturing"],
+    directUrl: "https://chatgpt.com/g/g-68bb5dcec6b08191aceaa0202f5b926d-factory-production-line-inspector-gpt/?via=aiwebtools",
+    emoji: "🏭"
+  },
+  {
+    title: "Warehouse Inspector GPT",
+    description: "Virtual warehouse safety & compliance inspector. Expert warehouse inspection services.",
+    badge: "INSPECTOR",
+    color: "from-gray-500 to-blue-600",
+    features: ["Warehouse Safety", "Storage Compliance", "Logistics Safety", "Inventory"],
+    directUrl: "https://chatgpt.com/g/g-68bb5c67ee54819197ea5ae2df25ac69-warehouse-inspector-gpt/?via=aiwebtools",
+    emoji: "🏢"
+  },
+  {
+    title: "Waste Management Facility Inspector GPT",
+    description: "Virtual waste facility inspector for audits, safety, and compliance analysis. Professional waste management inspection.",
+    badge: "INSPECTOR",
+    color: "from-green-500 to-blue-600",
+    features: ["Waste Management", "Environmental Safety", "Facility Audit", "Compliance"],
+    directUrl: "https://chatgpt.com/g/g-68bb5b7dcedc81919a4a2ef3834c8c0e-ai-waste-management-facility-inspector/?via=aiwebtools",
+    emoji: "♻️"
+  },
+  {
+    title: "AI Dam & Hydroelectric Inspector",
+    description: "Inspects dams, turbines, & generators for compliance, vibration, seepage, & structural integrity. Expert dam inspection services.",
+    badge: "INSPECTOR",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Dam Inspection", "Hydroelectric Safety", "Water Safety", "Structural Integrity"],
+    directUrl: "https://chatgpt.com/g/g-68bb58f963a48191be53dbdce7207519-ai-dam-hydroelectric-inspector/?via=aiwebtools",
+    emoji: "🌊"
+  },
+  {
+    title: "AI Port Inspector GPT",
+    description: "Maritime infrastructure safety auditor & compliance advisor. Professional port inspection services.",
+    badge: "INSPECTOR",
+    color: "from-blue-500 to-teal-600",
+    features: ["Port Safety", "Maritime Inspection", "Harbor Compliance", "Shipping Safety"],
+    directUrl: "https://chatgpt.com/g/g-68bb573b5574819198db30a1fc9764a6-ai-port-inspector-gpt/?via=aiwebtools",
+    emoji: "⚓"
+  },
+  {
+    title: "AI Airport & Runway Systems Inspector",
+    description: "Inspects airport runways, taxiways, and systems with certified precision and compliance focus. Expert aviation inspection services.",
+    badge: "INSPECTOR",
+    color: "from-sky-500 to-blue-600",
+    features: ["Airport Safety", "Runway Inspection", "Aviation Compliance", "Taxiway Safety"],
+    directUrl: "https://chatgpt.com/g/g-68bb55e079a48191ba27ca02b8c13de4-ai-airport-runway-systems-inspector/?via=aiwebtools",
+    emoji: "✈️"
+  },
+  {
+    title: "AI Highway & Traffic Systems Inspector",
+    description: "Virtual inspector for highways, signals, tolls, and roadway safety compliance. Professional highway inspection services.",
+    badge: "INSPECTOR",
+    color: "from-gray-500 to-blue-600",
+    features: ["Highway Safety", "Traffic Systems", "Road Inspection", "Transportation"],
+    directUrl: "https://chatgpt.com/g/g-68bb551232dc819196eccf59475cc33e-ai-highway-traffic-systems-inspector/?via=aiwebtools",
+    emoji: "🛣️"
+  },
+  {
+    title: "Electrical Grid & Substation Inspector GPT",
+    description: "Virtual inspector for substations, lines, and grid compliance. Professional electrical grid inspection services.",
+    badge: "INSPECTOR",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Electrical Safety", "Power Grid", "Substation Inspection", "Grid Compliance"],
+    directUrl: "https://chatgpt.com/g/g-68bb51b15dc48191aca3892c33724bc3-electrical-grid-substation-inspector-gpt/?via=aiwebtools",
+    emoji: "⚡"
+  },
+  {
+    title: "AI Water Treatment Plant Inspector GPT",
+    description: "Strict virtual inspector for water/wastewater treatment plants. Expert water treatment inspection services.",
+    badge: "INSPECTOR",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Water Safety", "Treatment Plant", "Wastewater Inspection", "Water Quality"],
+    directUrl: "https://chatgpt.com/g/g-68bb4f7738c48191b8d2ed34b11279cc-ai-water-treatment-plant-inspector-gpt/?via=aiwebtools",
+    emoji: "💧"
+  },
+  {
+    title: "Mind Reader GPT",
+    description: "An AI that claims to read minds through pattern analysis and psychological insights. Experience digital telepathy and consciousness exploration.",
+    badge: "MYSTERIOUS",
+    color: "from-purple-600 to-indigo-700",
+    features: ["Mind Reading", "Psychology", "Consciousness", "Pattern Analysis"],
+    directUrl: "https://chatgpt.com/g/g-N5bWo8m4p-mirror-mind-gpt",
+    emoji: "🧠"
+  },
+  {
+    title: "Probability GPT",
+    description: "Discover the truth behind any claim with precise probability scores and unbiased truth. The ultimate AI Truth Seeker.",
+    badge: "ANALYSIS",
+    color: "from-blue-500 to-purple-600",
+    features: ["Probability Analysis", "Truth Seeking", "Fact Checking", "Uncertainty"],
+    directUrl: "https://probabilitygpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
+    emoji: "⚖️"
   }
 ];
 
