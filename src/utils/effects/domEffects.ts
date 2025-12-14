@@ -1,9 +1,10 @@
 
-// Detect mobile for performance optimization
-const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+// Dynamic mobile detection - check at runtime, not module load
+const checkIsMobile = () => typeof window !== 'undefined' && window.innerWidth < 768;
 
 export const createEffectsContainer = (): HTMLElement => {
   const effectsContainer = document.createElement('div');
+  effectsContainer.id = 'time-warp-effects-container';
   effectsContainer.style.cssText = `
     position: fixed;
     top: 0;
@@ -11,45 +12,16 @@ export const createEffectsContainer = (): HTMLElement => {
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    z-index: 9999;
-    overflow: hidden;
-    contain: layout style paint;
+    z-index: 99999;
+    overflow: visible;
   `;
   document.body.appendChild(effectsContainer);
   return effectsContainer;
 };
 
 export const applyTimeWarpFilter = () => {
-  // MOBILE: Use simplified, faster effect
-  if (isMobile) {
-    const simpleFlash = document.createElement('div');
-    simpleFlash.id = 'color-explosion';
-    simpleFlash.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 9997;
-      pointer-events: none;
-      background: radial-gradient(circle at center, rgba(0,255,255,0.8) 0%, rgba(255,0,255,0.6) 30%, transparent 70%);
-      animation: simple-flash 1s ease-out forwards;
-    `;
-    
-    const mobileStyle = document.createElement('style');
-    mobileStyle.textContent = `
-      @keyframes simple-flash {
-        0% { opacity: 0; transform: scale(0.8); }
-        20% { opacity: 1; transform: scale(1.1); }
-        100% { opacity: 0; transform: scale(1.5); }
-      }
-    `;
-    document.head.appendChild(mobileStyle);
-    document.body.appendChild(simpleFlash);
-    return;
-  }
-
-  // DESKTOP: Full effect
+  // FULL EPIC EFFECT ON ALL DEVICES - no more simplified mobile version
+  
   // Create INTENSE screen-wide color explosion
   const colorExplosion = document.createElement('div');
   colorExplosion.id = 'color-explosion';
@@ -59,15 +31,15 @@ export const applyTimeWarpFilter = () => {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 9997;
+    z-index: 99990;
     pointer-events: none;
-    animation: intense-color-explosion 2s ease-out forwards;
+    animation: intense-color-explosion 2.5s ease-out forwards;
     background: radial-gradient(circle at center, 
-      rgba(0,255,255,0.8) 0%, 
-      rgba(255,0,255,0.7) 15%, 
-      rgba(255,255,0,0.6) 30%, 
-      rgba(0,255,128,0.5) 45%, 
-      rgba(255,64,128,0.4) 60%, 
+      rgba(0,255,255,0.9) 0%, 
+      rgba(255,0,255,0.8) 15%, 
+      rgba(255,255,0,0.7) 30%, 
+      rgba(0,255,128,0.6) 45%, 
+      rgba(255,64,128,0.5) 60%, 
       transparent 80%);
   `;
   document.body.appendChild(colorExplosion);
@@ -84,9 +56,9 @@ export const applyTimeWarpFilter = () => {
     transform: translate(-50%, -50%);
     border-radius: 50%;
     background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,255,255,0.9) 20%, rgba(255,0,255,0.8) 40%, rgba(255,255,0,0.6) 60%, transparent 80%);
-    z-index: 9998;
+    z-index: 99995;
     pointer-events: none;
-    animation: mega-portal-spin 2s ease-out forwards;
+    animation: mega-portal-spin 2.5s ease-out forwards;
     box-shadow: 
       0 0 60px rgba(0,255,255,0.9), 
       0 0 120px rgba(255,0,255,0.8),
@@ -105,16 +77,16 @@ export const applyTimeWarpFilter = () => {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 9996;
+    z-index: 99985;
     pointer-events: none;
     background: repeating-linear-gradient(
       0deg,
       transparent,
       transparent 2px,
-      rgba(0,255,255,0.1) 2px,
-      rgba(0,255,255,0.1) 4px
+      rgba(0,255,0,0.15) 2px,
+      rgba(0,255,0,0.15) 4px
     );
-    animation: scan-lines-move 0.3s linear infinite;
+    animation: scan-lines-move 0.2s linear infinite;
     mix-blend-mode: screen;
   `;
   document.body.appendChild(scanLines);
