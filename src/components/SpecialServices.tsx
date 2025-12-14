@@ -2693,6 +2693,168 @@ const featuredGPTs = [
     directUrl: "https://chatgpt.com/g/g-68eb1e7a39d48191ac52cd628c18fd2b-magnetism-gpt/?via=aiwebtools",
     imageUrl: "/images/magnetism-gpt.png",
     emoji: "🧲"
+  },
+  {
+    title: "CipherEncrypt GPT",
+    description: "Sophisticated AI-powered encryption and translation engine that converts between natural language, Morse code, binary, audio signals, and image data with perfect fidelity.",
+    badge: "ENCRYPTION",
+    color: "from-indigo-500 to-purple-600",
+    features: ["Encryption", "Morse Code", "Binary", "Cryptography"],
+    directUrl: "https://chatgpt.com/g/g-68fc6039822c8191a13c8ab8a66270ef-cipherencrypt-gpt",
+    emoji: "🔐"
+  },
+  {
+    title: "Honest Advice GPT",
+    description: "Get straightforward, honest advice without sugar-coating. Direct, practical guidance on personal matters, relationships, career decisions, and life challenges.",
+    badge: "LIFE COACHING",
+    color: "from-blue-500 to-teal-500",
+    features: ["Honest Advice", "Life Coaching", "Relationships", "Career"],
+    directUrl: "https://chat.openai.com/g/g-8YSiwFFr8",
+    emoji: "💬"
+  },
+  {
+    title: "BirdWatching GPT",
+    description: "Your ultimate AI companion for bird watching and ornithology. Identify bird species, learn behaviors, discover birding locations, and track sightings.",
+    badge: "NATURE",
+    color: "from-green-500 to-blue-500",
+    features: ["Bird Watching", "Species ID", "Nature", "Ornithology"],
+    directUrl: "https://chat.openai.com/g/g-hI9vzWGHx",
+    emoji: "🐦"
+  },
+  {
+    title: "Clarity Coach GPT",
+    description: "Achieve clarity in your life with insights, goal-setting, and decision-making aligned with your true self. Perfect for seeking direction and purpose.",
+    badge: "COACHING",
+    color: "from-yellow-400 to-orange-500",
+    features: ["Clarity", "Goal Setting", "Self-Discovery", "Decision Making"],
+    directUrl: "https://chat.openai.com/g/g-j8J2j3g6L-clarity-coach",
+    emoji: "🌟"
+  },
+  {
+    title: "Stoic Guide GPT",
+    description: "Navigate life's challenges with the wisdom of Stoicism. Insights and exercises to cultivate resilience, manage emotions, and live virtuously.",
+    badge: "PHILOSOPHY",
+    color: "from-gray-600 to-gray-700",
+    features: ["Stoicism", "Philosophy", "Resilience", "Wisdom"],
+    directUrl: "https://chat.openai.com/g/g-68afa48b90c88191b2dbb03b479efdd7-stoic-guide-gpt",
+    emoji: "🏛️"
+  },
+  {
+    title: "Manifestation Mentor GPT",
+    description: "Unlock your potential and manifest your dreams with visualization techniques, affirmations, and law of attraction guidance.",
+    badge: "MANIFESTATION",
+    color: "from-pink-400 to-purple-500",
+    features: ["Manifestation", "Visualization", "Affirmations", "Law of Attraction"],
+    directUrl: "https://chat.openai.com/g/g-68afa9073e0081919c1ef87d9fdcf00d-yogi-manifestation-mentor",
+    emoji: "✨"
+  },
+  {
+    title: "Goal Setter GPT",
+    description: "Achieve your ambitions with clear, actionable goals, effective plans, and motivation strategies on your journey to success.",
+    badge: "PRODUCTIVITY",
+    color: "from-green-400 to-blue-500",
+    features: ["Goal Setting", "Planning", "Motivation", "Success"],
+    directUrl: "https://chat.openai.com/g/g-yYq97Gt93-goal-setter",
+    emoji: "🎯"
+  },
+  {
+    title: "Creative Spark GPT",
+    description: "Ignite your creativity with prompts, exercises, and inspiration to overcome creative blocks and express your unique vision.",
+    badge: "CREATIVITY",
+    color: "from-orange-400 to-yellow-500",
+    features: ["Creativity", "Inspiration", "Art", "Imagination"],
+    directUrl: "https://chat.openai.com/g/g-68afa6ce4ae88191ae0166741c7b760f-creative-spark-gpt",
+    emoji: "💡"
+  },
+  {
+    title: "Personal Life Coach GPT",
+    description: "Transform your life with personalized guidance, support, and strategies to overcome challenges, build confidence, and create fulfillment.",
+    badge: "LIFE COACHING",
+    color: "from-blue-400 to-purple-500",
+    features: ["Life Coaching", "Confidence", "Transformation", "Guidance"],
+    directUrl: "https://chatgpt.com/g/g-683f4621e2308191a5e9c023254acaad-personal-life-coach-gpt",
+    emoji: "📖"
+  },
+  {
+    title: "Relationship Advisor GPT",
+    description: "Navigate the complexities of relationships with insights, advice, and communication strategies for stronger, healthier connections.",
+    badge: "RELATIONSHIPS",
+    color: "from-pink-400 to-red-500",
+    features: ["Relationships", "Communication", "Love", "Intimacy"],
+    directUrl: "https://chat.openai.com/g/g-H4C9V8z8P-relationship-advisor",
+    emoji: "🫂"
+  },
+  {
+    title: "Self-Esteem Booster GPT",
+    description: "Boost your self-esteem with affirmations, exercises, and positive feedback to build confidence and embrace your unique worth.",
+    badge: "SELF-ESTEEM",
+    color: "from-yellow-400 to-green-500",
+    features: ["Self-Esteem", "Confidence", "Affirmations", "Self-Worth"],
+    directUrl: "https://chat.openai.com/g/g-68afa7de4eb481919e890a26b4655b49-self-esteem-booster",
+    emoji: "⭐"
+  },
+  {
+    title: "Purpose Finder GPT",
+    description: "Discover your true purpose by exploring values, passions, and talents to identify a meaningful direction for your life.",
+    badge: "LIFE PURPOSE",
+    color: "from-blue-400 to-orange-500",
+    features: ["Purpose", "Values", "Passions", "Meaning"],
+    directUrl: "https://chat.openai.com/g/g-68afa2aea7a88191ae30470b2547b176-purpose-finder-gpt",
+    emoji: "🧭"
+  },
+  {
+    title: "Stress Relief Coach GPT",
+    description: "Manage stress and anxiety with relaxation techniques, mindfulness exercises, and coping strategies to stay calm and focused.",
+    badge: "WELLNESS",
+    color: "from-green-400 to-gray-500",
+    features: ["Stress Relief", "Mindfulness", "Relaxation", "Coping"],
+    directUrl: "https://chat.openai.com/g/g-68afa584de708191855d6b9dc660e169-stress-relief-coach",
+    emoji: "🛡️"
+  },
+  {
+    title: "Habit Builder GPT",
+    description: "Build positive habits with realistic goals, progress tracking, and motivation to create lasting changes and reach your potential.",
+    badge: "HABITS",
+    color: "from-yellow-400 to-blue-500",
+    features: ["Habit Building", "Goal Setting", "Progress Tracking", "Routines"],
+    directUrl: "https://chat.openai.com/g/g-68afa1c541cc8191be3360351f28eeda-habit-builder-gpt",
+    emoji: "⚡"
+  },
+  {
+    title: "Leadership Mentor GPT",
+    description: "Develop leadership skills with guidance, insights, and strategies to inspire, motivate, and empower others effectively.",
+    badge: "LEADERSHIP",
+    color: "from-purple-400 to-green-500",
+    features: ["Leadership", "Mentoring", "Inspiration", "Empowerment"],
+    directUrl: "https://chatgpt.com/g/g-68aed1eb015c8191bc8e2887bd4786b9-leadership-mentor-gpt",
+    emoji: "👑"
+  },
+  {
+    title: "Passion Igniter GPT",
+    description: "Ignite your passions by exploring interests, identifying strengths, and discovering activities that bring joy and fulfillment.",
+    badge: "PASSION",
+    color: "from-red-400 to-orange-500",
+    features: ["Passion", "Interests", "Strengths", "Joy"],
+    directUrl: "https://chat.openai.com/g/g-68af9fd685a88191bbf7cc964509beef-passion-igniter",
+    emoji: "🔥"
+  },
+  {
+    title: "Gratitude Guide GPT",
+    description: "Cultivate gratitude with prompts, exercises, and reflections to appreciate the good things in life and foster positive emotions.",
+    badge: "GRATITUDE",
+    color: "from-yellow-400 to-green-500",
+    features: ["Gratitude", "Appreciation", "Positivity", "Well-being"],
+    directUrl: "https://chat.openai.com/g/g-68af9eecd0048191a7ce93eddfd47559-gratitude-guide-gpt",
+    emoji: "☀️"
+  },
+  {
+    title: "Mindfulness Mentor GPT",
+    description: "Practice mindfulness with guided meditations, breathing exercises, and techniques to stay present and cultivate inner peace.",
+    badge: "MINDFULNESS",
+    color: "from-blue-400 to-gray-500",
+    features: ["Mindfulness", "Meditation", "Breathing", "Inner Peace"],
+    directUrl: "https://chat.openai.com/g/g-68af9dc3d0688191830cd5a3d71e39df-mindfulness-mentor-gpt",
+    emoji: "🌙"
   }
 ];
 
