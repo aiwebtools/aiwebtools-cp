@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import { useFavorites } from "@/hooks/useFavorites";
+import { prefetchNow } from "@/hooks/usePrefetch";
 import { allTools } from "@/data/toolsData";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
@@ -129,6 +130,7 @@ const Navigation = () => {
     <nav className="hidden md:flex items-center space-x-1 min-w-0">
       <button 
         onClick={() => navigate('/favorites')}
+        onMouseEnter={() => prefetchNow('/favorites')}
         className="text-cyan-100 hover:text-pink-400 transition-colors whitespace-nowrap cursor-pointer flex items-center space-x-1 px-2 py-1 rounded text-xs font-medium"
         title={`My Favorites (${getFavoritesCount()})`}
       >
@@ -143,6 +145,7 @@ const Navigation = () => {
       
       <button 
         onClick={handleBrowseAITools}
+        onMouseEnter={() => prefetchNow('/main-category/ALL%20AI%20TOOLS')}
         className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer px-2 py-1 rounded text-xs font-medium"
       >
         🎯 Browse Tools
@@ -150,6 +153,7 @@ const Navigation = () => {
 
       <button 
         onClick={() => navigate('/submit-tool')}
+        onMouseEnter={() => prefetchNow('/submit-tool')}
         className="text-cyan-100 hover:text-cyan-400 transition-colors whitespace-nowrap cursor-pointer px-2 py-1 rounded text-xs font-medium"
       >
         ➕ Submit Tool
