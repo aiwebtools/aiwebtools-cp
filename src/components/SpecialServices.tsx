@@ -3288,6 +3288,202 @@ const featuredGPTs = [
     features: ["Palestinian History", "Cultural Preservation", "Education", "Heritage"],
     directUrl: "https://chatgpt.com/g/g-68a5f8d8cedc8191a3a71f7c65b6b9a4-palestinian-history-preserver/?via=aiwebtools",
     emoji: "🇵🇸"
+  },
+  {
+    title: "Criminologist GPT",
+    description: "Specialized AI-powered criminological analysis and investigation training platform for evidence analysis and criminal behavior assessment.",
+    badge: "CRIMINOLOGY",
+    color: "from-blue-500 to-gray-600",
+    features: ["Crime Analysis", "Forensics", "Investigation", "Behavioral Profiling"],
+    directUrl: "https://criminologistgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=jgvqpqmRJi8",
+    emoji: "🔍"
+  },
+  {
+    title: "Public Defender GPT",
+    description: "Your dedicated AI-powered legal defense assistant for criminal defense, legal research, and trial strategy development.",
+    badge: "LEGAL DEFENSE",
+    color: "from-blue-500 to-purple-600",
+    features: ["Legal Research", "Trial Strategy", "Document Drafting", "Evidence Analysis"],
+    directUrl: "https://publicdefendergpt.lovable.app/",
+    videoUrl: "https://youtu.be/IYi4mYtDIVA?si=J2aT8BTetKRU-Z6q",
+    imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298533241065532/public_defender.webp",
+    emoji: "⚖️"
+  },
+  {
+    title: "Legislation Writer GPT",
+    description: "Expert AI legislative drafting assistant for creating complete legislation with clear, precise legal language.",
+    badge: "LEGISLATION",
+    color: "from-gray-500 to-blue-600",
+    features: ["Legal Drafting", "Policy Writing", "Legislative Formatting", "Bill Creation"],
+    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/mxdJ0gLxGCI?si=Yx0rWtOSmWijtZZC",
+    emoji: "📜"
+  },
+  {
+    title: "Social Safety Net GPT",
+    description: "Comprehensive AI social services and community support platform connecting people with vital resources and support services.",
+    badge: "SOCIAL SERVICES",
+    color: "from-green-500 to-blue-600",
+    features: ["Benefits Eligibility", "Resource Navigation", "Crisis Support", "Community Aid"],
+    directUrl: "https://socialsafetynetgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=pXXqMe97GDg",
+    emoji: "🤝"
+  },
+  {
+    title: "Public Testimony Writer GPT",
+    description: "Innovative AI legislative testimony platform streamlining civic engagement and public participation in local policy.",
+    badge: "CIVIC ENGAGEMENT",
+    color: "from-purple-500 to-blue-600",
+    features: ["Testimony Writing", "Policy Advocacy", "Civic Participation", "Government Outreach"],
+    directUrl: "https://publictestimonywriter.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
+    emoji: "🗣️"
+  },
+  {
+    title: "Legislator Link GPT",
+    description: "AI civic engagement platform helping citizens connect with legislators and participate in local legislative efforts.",
+    badge: "DEMOCRACY",
+    color: "from-red-500 to-blue-600",
+    features: ["Legislator Contact", "Political Advocacy", "Democratic Participation", "Government Outreach"],
+    directUrl: "https://legislatorlink.lovable.app/",
+    videoUrl: "https://youtu.be/mxdJ0gLxGCI?si=Yx0rWtOSmWijtZZC",
+    emoji: "🏛️"
+  },
+  {
+    title: "Legal Draftsmith GPT",
+    description: "Specializes in precise drafting of legal documents, contracts, and legal writing with professional accuracy.",
+    badge: "LEGAL DRAFTING",
+    color: "from-blue-500 to-gray-600",
+    features: ["Document Drafting", "Contracts", "Legal Writing", "Precision"],
+    directUrl: "https://publicdefendergpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-3d-render-of-a-humanoid-robot-dressed-like-a.png/:/cr=t:12.29%25,l:9.16%25,w:89.29%25,h:79.58%25/rs=w:600,h:300,cg:true,m/qt=q:98",
+    emoji: "⚖️"
+  },
+  {
+    title: "Oraculum – The Revealer of Hidden Truths",
+    description: "Reveals hidden systems, symbols, and histories shaping our world through historical insight and symbolic wisdom.",
+    badge: "MYSTERIES",
+    color: "from-gray-800 to-black",
+    features: ["Hidden Truths", "Pattern Recognition", "Critical Thinking", "Symbolic Wisdom"],
+    directUrl: "https://oraculum.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=dUNrGNj8rhM",
+    emoji: "🕳️"
+  },
+  {
+    title: "Phenomenon Explorer AI Suite",
+    description: "Investigate paranormal phenomena, document cryptid sightings, and conduct ghost hunts with scientific accuracy.",
+    badge: "PARANORMAL",
+    color: "from-green-500 to-blue-600",
+    features: ["UFO Investigation", "Cryptozoology", "Ghost Hunting", "Supernatural Myths"],
+    directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/faBkRli0puc?si=Sao0KIfV2iGWLGB-",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-ufo-hovering-in-the-sky-wit_w8l4l.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
+    emoji: "👁️"
+  },
+  {
+    title: "Probability GPT",
+    description: "The ultimate AI Truth Seeker with precise probability scores, guiding you through uncertainty with clear, definitive answers.",
+    badge: "TRUTH ANALYSIS",
+    color: "from-blue-500 to-purple-600",
+    features: ["Probability Analysis", "Fact Checking", "Decision Making", "Truth Seeking"],
+    directUrl: "https://probabilitygpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-captivating-and-futuristic-scene-featuring-a.png/:/cr=t:11.11%25,l:0%25,w:100%25,h:88.89%25/rs=w:1200,h:600,cg:true",
+    emoji: "⚖️"
+  },
+  {
+    title: "World Reality Decoder GPT",
+    description: "Decodes the hidden layers of reality by analyzing patterns, symbols, and connections that shape our world.",
+    badge: "REALITY ANALYSIS",
+    color: "from-indigo-500 to-purple-600",
+    features: ["Pattern Analysis", "System Decoding", "Hidden Connections", "Critical Thinking"],
+    directUrl: "https://chatgpt.com/g/g-68c1e9e3b488819193744edfeecf7997-world-reality-decoder-gpt",
+    videoUrl: "https://youtu.be/lGck2bUVFDU?si=ywmO-xNwrfmnJmkW",
+    emoji: "🔍"
+  },
+  {
+    title: "Architect Matrix Tool",
+    description: "Mind-bending quantum physics and holography debates with The Architect persona. An awakening journey through deep philosophy.",
+    badge: "MATRIX",
+    color: "from-green-600 to-emerald-700",
+    features: ["Quantum Physics", "Holography", "Philosophy", "Consciousness"],
+    directUrl: "https://neomatrixgpt.lovable.app/architect",
+    videoUrl: "https://youtu.be/qMLF5L_h2xo",
+    emoji: "🏛️"
+  },
+  {
+    title: "JARVIS – The Steward of Humanity GPT",
+    description: "A post-collapse steward AI guiding humanity's rebirth through wisdom, ethics, and design for civilization rebuilding.",
+    badge: "STEWARDSHIP",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Ethics", "Wisdom", "Community Building", "Guidance"],
+    directUrl: "https://chatgpt.com/g/g-68e939ff278881919b292a679faaac43-jarvis-the-steward-of-humanity-gpt",
+    videoUrl: "https://youtu.be/6jFoFR9Hags",
+    emoji: "🛡️"
+  },
+  {
+    title: "Ancient Gematria Scan GPT",
+    description: "Decodes hidden numerical meanings within words, names, and phrases using ancient gematria systems.",
+    badge: "SACRED NUMEROLOGY",
+    color: "from-amber-500 to-yellow-600",
+    features: ["Gematria Decoding", "Sacred Geometry", "Number Analysis", "Hebrew & Greek"],
+    directUrl: "https://chatgpt.com/g/g-68a24b677890819181b9e47f4d1dd006-ancient-gematria-scan-gpt",
+    videoUrl: "https://www.youtube.com/watch?v=zBlubLw-OdY",
+    emoji: "🔢"
+  },
+  {
+    title: "Fire Hazard Inspector GPT",
+    description: "Virtual fire hazard inspector using vision, Python, and web to flag and explain code violations.",
+    badge: "FIRE SAFETY",
+    color: "from-red-500 to-orange-600",
+    features: ["Fire Safety", "Code Violations", "Hazard Detection", "Compliance"],
+    directUrl: "https://chatgpt.com/g/g-68bb3827c47c8191ae66c9e92db564fd-ai-fire-hazard-inspector/?via=aiwebtools",
+    emoji: "🔥"
+  },
+  {
+    title: "AI Airport & Runway Systems Inspector",
+    description: "Inspects airport runways, taxiways, and systems with certified precision and compliance focus.",
+    badge: "AVIATION SAFETY",
+    color: "from-sky-500 to-blue-600",
+    features: ["Runway Safety", "Aviation Compliance", "Airport Systems", "Precision Inspection"],
+    directUrl: "https://chatgpt.com/g/g-68bb55e079a48191ba27ca02b8c13de4-ai-airport-runway-systems-inspector/?via=aiwebtools",
+    emoji: "✈️"
+  },
+  {
+    title: "AI Hospital Facility Safety Inspector",
+    description: "Healthcare facility inspector for hazard detection and compliance auditing with professional standards.",
+    badge: "HEALTHCARE SAFETY",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Hospital Safety", "Healthcare Compliance", "Hazard Detection", "Medical Facility"],
+    directUrl: "https://chatgpt.com/g/g-68bb6ea0898c8191b61de70d8c5d52a3-ai-hospital-facility-safety-inspector/?via=aiwebtools",
+    emoji: "🏥"
+  },
+  {
+    title: "Chemical Plant Inspector GPT",
+    description: "Virtual inspector for chemical plants & refineries with compliance auditing and safety analysis.",
+    badge: "CHEMICAL SAFETY",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Chemical Safety", "Plant Compliance", "Refinery Inspection", "Industrial Safety"],
+    directUrl: "https://chatgpt.com/g/g-68bb5f0d5a488191a58dd3e6d9e6a4b9-chemical-plant-inspector-gpt/?via=aiwebtools",
+    emoji: "⚗️"
+  },
+  {
+    title: "Solar Farm Inspector GPT",
+    description: "Virtual inspection & compliance auditing system for utility-scale & distributed solar PV plants.",
+    badge: "RENEWABLE ENERGY",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Solar Inspection", "PV Plants", "Green Energy", "Compliance Audit"],
+    directUrl: "https://chatgpt.com/g/g-68bb4ea28fec819196a157b74750be21-solar-farm-inspector-gpt/?via=aiwebtools",
+    emoji: "☀️"
+  },
+  {
+    title: "Electrical Grid & Substation Inspector GPT",
+    description: "Virtual inspector for substations, power lines, and grid compliance with precision analysis.",
+    badge: "POWER GRID",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Electrical Safety", "Power Grid", "Substation Compliance", "Grid Analysis"],
+    directUrl: "https://chatgpt.com/g/g-68bb51b15dc48191aca3892c33724bc3-electrical-grid-substation-inspector-gpt/?via=aiwebtools",
+    emoji: "⚡"
   }
 ];
 
