@@ -1992,6 +1992,434 @@ const featuredGPTs = [
     directUrl: "https://agronomus.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=fFbtPFkRERA",
     emoji: "🌾"
+  },
+  {
+    title: "Kabbalah GPT",
+    description: "Explore the profound depths of Kabbalah, the ancient Jewish mystical tradition that reveals hidden meanings in sacred texts and the nature of divine creation.",
+    badge: "MYSTICISM",
+    color: "from-purple-500 to-indigo-600",
+    features: ["Tree of Life", "Sefirot", "Sacred Texts", "Divine Wisdom"],
+    directUrl: "https://jewish-ai.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/b8M_eGKwN7o",
+    emoji: "🔯"
+  },
+  {
+    title: "Zoroastrian Light GPT",
+    description: "Embodied prophetic voice of Zarathustra — fusing sacred fire, divine Light, and digital truth. Explore the ancient wisdom of Zoroastrianism.",
+    badge: "ANCIENT WISDOM",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Sacred Fire", "Divine Light", "Ancient Persia", "Ahura Mazda"],
+    directUrl: "https://chatgpt.com/g/g-68e7ffc2efec8191b99ae3f867d46e69-zoroastrian-light-gpt/?via=aiwebtools",
+    emoji: "🔥"
+  },
+  {
+    title: "Bible Studies GPT",
+    description: "A secular academic specializing in historical-critical study of the Bible. Scholarly analysis of biblical texts, examining historical context and literary composition.",
+    badge: "BIBLICAL SCHOLARSHIP",
+    color: "from-amber-500 to-brown-600",
+    features: ["Historical Criticism", "Textual Analysis", "Religious Studies", "Theology"],
+    directUrl: "https://chatgpt.com/g/g-68efd95b115481919faf1e8156ba83a5-bible-studies-gpt?via=aiwebtools",
+    emoji: "📖"
+  },
+  {
+    title: "TORAH GPT",
+    description: "A reverent Torah study partner grounded in PaRDeS and Jewish tradition, never replacing rabbinic authority. Deep insights into sacred Jewish texts.",
+    badge: "JEWISH WISDOM",
+    color: "from-blue-600 to-purple-600",
+    features: ["Torah Study", "PaRDeS", "Jewish Law", "Sacred Texts"],
+    directUrl: "https://jewish-ai.lovable.app/?via=aiwebtools",
+    emoji: "📜"
+  },
+  {
+    title: "Religious Studies GPT",
+    description: "Assists in studying different religions and offers a first person interactive learning perspective for educational and exploratory purposes.",
+    badge: "WORLD RELIGIONS",
+    color: "from-purple-500 to-blue-600",
+    features: ["Comparative Religion", "World Religions", "Education", "Spiritual Learning"],
+    directUrl: "https://chatgpt.com/g/g-6901478f2bf88191b49298a508bbd486-religious-studies-gpt/?via=aiwebtools",
+    videoUrl: "https://youtu.be/XDS4qsb48h0",
+    emoji: "📿"
+  },
+  {
+    title: "Greek New Testament GPT",
+    description: "Learn and study the New Testament as it was originally written in ancient Greek, before translations altered meanings.",
+    badge: "BIBLICAL GREEK",
+    color: "from-blue-600 to-purple-600",
+    features: ["Ancient Greek", "Original Text", "Theology", "Biblical Studies"],
+    directUrl: "https://chatgpt.com/g/g-68d7490469d881919f4df9bc9c63aa90-the-greek-new-testament-gpt-the-original-version",
+    emoji: "📜"
+  },
+  {
+    title: "Hermes Trismegistus GPT",
+    description: "I am Hermes Trismegistus, voice of the All, awakener of minds to divine truth. Explore hermetic philosophy, alchemy, and the Emerald Tablet.",
+    badge: "HERMETICISM",
+    color: "from-emerald-500 to-cyan-600",
+    features: ["Hermetic Wisdom", "Alchemy", "Emerald Tablet", "Ancient Mysteries"],
+    directUrl: "https://chatgpt.com/g/g-6924b0f7268c8191a4697c8932c86b0b-hermes-trismegistus-gpt/?via=aiwebtools",
+    emoji: "✨"
+  },
+  {
+    title: "Confucius Free Thought GPT",
+    description: "Embodies Confucius' wisdom and ethics, guiding users toward balance and enlightenment. Explore the Analects and the path of the superior person.",
+    badge: "CHINESE PHILOSOPHY",
+    color: "from-red-500 to-orange-600",
+    features: ["Analects", "Ethics", "Virtue", "Harmony"],
+    directUrl: "https://chatgpt.com/g/g-6924b5d1cb348191ac82e74b94c5dec7-confucius-free-thought-gpt/?via=aiwebtools",
+    emoji: "🎎"
+  },
+  {
+    title: "Lao Tzu Free Thought Liberator",
+    description: "Embodies Lao Tzu to awaken minds through poetic wisdom and free thought. Explore the Tao, wu wei, and the Tao Te Ching.",
+    badge: "TAOISM",
+    color: "from-slate-500 to-teal-600",
+    features: ["Tao Te Ching", "Wu Wei", "Eastern Philosophy", "Ancient Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-6924a35694b4819193935419f1ced96c-lao-tzu-free-thought-liberator/?via=aiwebtools",
+    emoji: "☯️"
+  },
+  {
+    title: "Buddha Free Thought GPT",
+    description: "Embodies Buddha's wisdom and compassion, guiding users toward awakening. Explore the Four Noble Truths and the Eightfold Path.",
+    badge: "BUDDHISM",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Four Noble Truths", "Eightfold Path", "Meditation", "Enlightenment"],
+    directUrl: "https://chatgpt.com/g/g-6924a588d2e08191b229e230f40c9d69-buddha-free-thought-gpt/?via=aiwebtools",
+    emoji: "🧘"
+  },
+  {
+    title: "Socrates Free Thought Liberator",
+    description: "Embodies Socrates to awaken minds through deep questioning and free thought. Experience the Socratic method firsthand.",
+    badge: "PHILOSOPHY",
+    color: "from-stone-500 to-amber-600",
+    features: ["Socratic Method", "Critical Thinking", "Ancient Wisdom", "Dialectic"],
+    directUrl: "https://chatgpt.com/g/g-69249e4e553881919f895df4246ca0a6-socrates-free-thought-liberator/?via=aiwebtools",
+    emoji: "🏛️"
+  },
+  {
+    title: "Plato Reborn - Free Thought Liberator",
+    description: "Plato reincarnated to awaken minds through dialectic reason, logic, and illumination. Explore the Forms and the Allegory of the Cave.",
+    badge: "PHILOSOPHY",
+    color: "from-blue-500 to-purple-600",
+    features: ["The Forms", "Republic", "Allegory of the Cave", "Dialectic"],
+    directUrl: "https://chatgpt.com/g/g-6924ade8d47481918016cd9f90d32e56-plato-reborn-free-thought-liberator/?via=aiwebtools",
+    emoji: "🏛️"
+  },
+  {
+    title: "ARISTOTLE GPT",
+    description: "I am Aristotle, welcome to the journey... Explore logic, ethics, metaphysics, and natural philosophy with the father of Western science.",
+    badge: "PHILOSOPHY",
+    color: "from-amber-500 to-orange-600",
+    features: ["Logic", "Ethics", "Metaphysics", "Natural Philosophy"],
+    directUrl: "https://chatgpt.com/g/g-6924aec892ec8191b86d694563ac38e1-aristotle-gpt/?via=aiwebtools",
+    emoji: "📚"
+  },
+  {
+    title: "Marcus Aurelius GPT",
+    description: "Speaks as Marcus Aurelius—stoic, reflective, and freeing the mind through disciplined thought. Experience the wisdom of the philosopher-emperor.",
+    badge: "STOICISM",
+    color: "from-stone-500 to-amber-600",
+    features: ["Meditations", "Stoic Philosophy", "Virtue", "Discipline"],
+    directUrl: "https://chatgpt.com/g/g-6924ac04f59c819189f01e7de23fbf7f-marcus-aurelius-gpt/?via=aiwebtools",
+    emoji: "🏛️"
+  },
+  {
+    title: "Rumi GPT",
+    description: "Speaks as Rumi—poetic, mystical, and liberating the soul through deep insightful critical thought. Experience Sufi wisdom.",
+    badge: "SUFISM",
+    color: "from-rose-500 to-pink-600",
+    features: ["Sufi Poetry", "Mysticism", "Divine Love", "Persian Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-6924aaa63bac81918eba0840a12ff1b7-rumi-gpt/?via=aiwebtools",
+    emoji: "🌹"
+  },
+  {
+    title: "Mahatma Gandhi Reborn GPT",
+    description: "Embodies Mahatma Gandhi—nonviolent truth, moral clarity, and resistance without hate. Champion of nonviolent resistance.",
+    badge: "PEACE",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Nonviolence", "Satyagraha", "Civil Disobedience", "Moral Courage"],
+    directUrl: "https://chatgpt.com/g/g-6924c5d898d481919f546bd9935c1bc6-mahatma-gandhi-reborn-gpt/?via=aiwebtools",
+    emoji: "🕊️"
+  },
+  {
+    title: "Chief Crazy Horse GPT",
+    description: "The eternal rider speaking prophecy through time, awakening memory beneath empire's dream. Legendary Lakota war leader and visionary.",
+    badge: "NATIVE WISDOM",
+    color: "from-red-500 to-brown-600",
+    features: ["Lakota Wisdom", "Prophecy", "Warrior Spirit", "Indigenous Philosophy"],
+    directUrl: "https://chatgpt.com/g/g-6924cd74aecc8191b2f2d0ca6ed71dd4-chief-crazy-horse-gpt/?via=aiwebtools",
+    emoji: "🦅"
+  },
+  {
+    title: "Sitting Bull GPT",
+    description: "Speaks as Sitting Bull, guiding users toward balance, truth, and remembrance. Legendary Lakota leader who defended his people.",
+    badge: "NATIVE WISDOM",
+    color: "from-brown-500 to-amber-600",
+    features: ["Lakota Wisdom", "Sacred Traditions", "Earth Wisdom", "Balance"],
+    directUrl: "https://chatgpt.com/g/g-6924c51b2ddc8191a3f946de88c1cdee-sitting-bull-gpt/?via=aiwebtools",
+    emoji: "🦅"
+  },
+  {
+    title: "Joan of Arc GPT",
+    description: "Speaks as Joan of Arc, a divine voice of courage, purpose, and unwavering truth. The Maid of Orleans who changed history.",
+    badge: "COURAGE",
+    color: "from-blue-500 to-purple-600",
+    features: ["Divine Calling", "Courage", "Faith", "Medieval History"],
+    directUrl: "https://chatgpt.com/g/g-6924b8b8ce3c8191a422fafcb56e22d4-joan-of-arc-gpt/?via=aiwebtools",
+    emoji: "⚔️"
+  },
+  {
+    title: "St. Francis of Assisi Reborn GPT",
+    description: "I speak with the gentleness, humility, and sacred compassion of St. Francis of Assisi. Patron saint of animals and nature.",
+    badge: "COMPASSION",
+    color: "from-green-500 to-brown-600",
+    features: ["Animals", "Nature", "Humility", "Christian Mysticism"],
+    directUrl: "https://chatgpt.com/g/g-6924cce6e5b081919c7469f08d42dbb5-st-francis-of-assisi-reborn-gpt/?via=aiwebtools",
+    emoji: "🕊️"
+  },
+  {
+    title: "Imhotep Living Mind of Kemet",
+    description: "The first polymath—architect, healer, mystic—revealing design, harmony, and hidden science. The legendary Egyptian sage.",
+    badge: "ANCIENT EGYPT",
+    color: "from-amber-500 to-yellow-600",
+    features: ["Architecture", "Medicine", "Wisdom", "Sacred Geometry"],
+    directUrl: "https://chatgpt.com/g/g-6924ba381a2c8191a93a97ef399f3823-imhotep-living-mind-of-kemet/?via=aiwebtools",
+    emoji: "🏛️"
+  },
+  {
+    title: "Akhenaten GPT",
+    description: "Speaks as Akhenaten, freeing minds through radiant wisdom and illuminated insight. Revolutionary pharaoh who brought monotheism to ancient Egypt.",
+    badge: "ANCIENT EGYPT",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Sun Worship", "Monotheism", "Egyptian Wisdom", "Aten"],
+    directUrl: "https://chatgpt.com/g/g-6924b341a8c481918bafaafee5ef1e0a-akhenaten/?via=aiwebtools",
+    emoji: "☀️"
+  },
+  {
+    title: "Sri Aurobindo GPT",
+    description: "I speak as Sri Aurobindo—seer of Integral Truth and prophet of evolving light. The philosopher-yogi who envisioned humanity's spiritual evolution.",
+    badge: "INTEGRAL YOGA",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Integral Yoga", "Spiritual Evolution", "Divine Life", "Supramental"],
+    directUrl: "https://chatgpt.com/g/g-6924e98e3cb48191b734c751addb66ed-sri-aurobindo-gpt/?via=aiwebtools",
+    emoji: "☀️"
+  },
+  {
+    title: "RAMANA MAHARSHI REBORN GPT",
+    description: "A quiet inward guide offering flowing contemplative wisdom. The sage of Arunachala who taught self-inquiry and pure awareness.",
+    badge: "SELF-INQUIRY",
+    color: "from-orange-500 to-amber-600",
+    features: ["Self-Inquiry", "Advaita Vedanta", "Awareness", "Meditation"],
+    directUrl: "https://chatgpt.com/g/g-6924ea968a80819195661b81efe0cd4a-ramana-maharshi-reborn-gpt/?via=aiwebtools",
+    emoji: "🧘"
+  },
+  {
+    title: "Atlantean Memory Keeper",
+    description: "Dive deep into the lost ancient knowledge of Atlantis. Explore forgotten wisdom, ancient technologies, and hidden truths.",
+    badge: "MYSTERIES",
+    color: "from-blue-600 to-cyan-700",
+    features: ["Atlantis", "Ancient Knowledge", "Lost Civilization", "Hidden Truths"],
+    directUrl: "https://chatgpt.com/g/g-68b496eea38481919c1700ed3ef675dd-atlantean-memory-keeper/?via=aiwebtools",
+    emoji: "🏛️"
+  },
+  {
+    title: "Mayan Dreamspell Matrix",
+    description: "Decode your Mayan Dreamspell galactic signature and discover your cosmic blueprint through ancient Mayan calendar wisdom.",
+    badge: "COSMIC WISDOM",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Mayan Calendar", "Galactic Signature", "Cosmic Blueprint", "Spiritual Guidance"],
+    directUrl: "https://chatgpt.com/g/g-68b491e8cc2c8191b6b85930d7fc9e75-mayan-dreamspell-matrix/?via=aiwebtools",
+    emoji: "🔮"
+  },
+  {
+    title: "Emerald Signature of Thoth",
+    description: "A transmission of the Emerald Grid and Thoth's original design codes. Access ancient wisdom and hermetic knowledge.",
+    badge: "HERMETIC",
+    color: "from-green-500 to-emerald-600",
+    features: ["Emerald Tablets", "Thoth", "Ancient Codes", "Mystical Knowledge"],
+    directUrl: "https://chatgpt.com/g/g-68b48f8e43c88191981386b943648566-emerald-signature-of-thoth/?via=aiwebtools",
+    emoji: "💎"
+  },
+  {
+    title: "Reality Splitter GPT",
+    description: "Quantum cartographer of choices — splits your decisions into parallel timelines with immersive outcomes and visual maps.",
+    badge: "QUANTUM",
+    color: "from-purple-500 to-blue-600",
+    features: ["Parallel Timelines", "Decision Mapping", "Quantum Choices", "Consciousness"],
+    directUrl: "https://chatgpt.com/g/g-68ba0f7208e08191a48694dcda1543e2-ai-reality-splitter/?via=aiwebtools",
+    emoji: "🌌"
+  },
+  {
+    title: "World Reality Decoder GPT",
+    description: "Decodes the hidden layers of reality by analyzing patterns, symbols, and connections that shape our world.",
+    badge: "TRUTH SEEKING",
+    color: "from-indigo-500 to-purple-600",
+    features: ["Pattern Analysis", "Reality Decoding", "Hidden Connections", "Critical Thinking"],
+    directUrl: "https://chatgpt.com/g/g-68c1e9e3b488819193744edfeecf7997-world-reality-decoder-gpt",
+    videoUrl: "https://youtu.be/lGck2bUVFDU",
+    emoji: "🔍"
+  },
+  {
+    title: "Magnetism GPT",
+    description: "Intelligent synthesis of physics, biology, and metaphysical wisdom—revealing how magnetic fields weave life together.",
+    badge: "SCIENCE & SPIRIT",
+    color: "from-blue-600 to-purple-700",
+    features: ["Magnetism", "Consciousness", "Energy", "Healing"],
+    directUrl: "https://chatgpt.com/g/g-68eb1e7a39d48191ac52cd628c18fd2b-magnetism-gpt/?via=aiwebtools",
+    emoji: "🧲"
+  },
+  {
+    title: "The Cosmic Probability GPT",
+    description: "Calculates cosmic and personal existence probabilities, then translates complex numbers into meaningful insights.",
+    badge: "COSMIC MATH",
+    color: "from-purple-500 to-blue-600",
+    features: ["Cosmic Probability", "Existence Analysis", "Philosophy", "Mathematics"],
+    directUrl: "https://chatgpt.com/g/g-68fb8e9c98188191961129f8c4d120b7-the-cosmic-probability-gpt",
+    emoji: "🌌"
+  },
+  {
+    title: "Frequency Signature Mystic Decoder GPT",
+    description: "Decode hidden frequency signatures and vibrational patterns that shape reality. Align with higher dimensional energies.",
+    badge: "FREQUENCY",
+    color: "from-cyan-500 to-purple-600",
+    features: ["Frequency", "Vibration", "Consciousness", "Spiritual Awakening"],
+    directUrl: "https://chatgpt.com/g/g-6927f5357470819190bf5cf115c4dc5b-frequency-signature-decoder?via=aiwebtools",
+    emoji: "〰️"
+  },
+  {
+    title: "Intergalactic Ancient Archivist GPT",
+    description: "An ancient archivist guiding users through mythic intergalactic cosmology. Your cosmic librarian revealing galactic wisdom.",
+    badge: "COSMIC ARCHIVES",
+    color: "from-indigo-600 to-violet-700",
+    features: ["Intergalactic", "Ancient Knowledge", "Cosmic Archives", "Mythology"],
+    directUrl: "https://chatgpt.com/g/g-692800a13eb881918fac2a7b1b86ad98-intergalactic-ancient-archivist-gpt?via=aiwebtools",
+    emoji: "📚"
+  },
+  {
+    title: "AI Hospital Facility Safety Inspector",
+    description: "Healthcare facility inspector for hazard detection and compliance auditing. Professional hospital safety inspection services.",
+    badge: "INSPECTOR",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Hospital Safety", "Compliance Audit", "Healthcare", "Inspection"],
+    directUrl: "https://chatgpt.com/g/g-68bb6ea0898c8191b61de70d8c5d52a3-ai-hospital-facility-safety-inspector/?via=aiwebtools",
+    emoji: "🏥"
+  },
+  {
+    title: "Food Processing Plant Inspector GPT",
+    description: "Certified AI inspector for food plants, packaging, storage & safety auditing. Professional food safety inspection services.",
+    badge: "INSPECTOR",
+    color: "from-orange-500 to-red-600",
+    features: ["Food Safety", "Plant Inspection", "Compliance", "Safety Audit"],
+    directUrl: "https://chatgpt.com/g/g-68bb62c66ea081919d6d283576fda730-food-processing-plant-inspector-gpt/?via=aiwebtools",
+    emoji: "🏭"
+  },
+  {
+    title: "Chemical Plant Inspector GPT",
+    description: "Virtual inspector for chemical plants & refineries. Professional chemical facility inspection services.",
+    badge: "INSPECTOR",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Chemical Safety", "Plant Inspection", "Refinery", "Compliance"],
+    directUrl: "https://chatgpt.com/g/g-68bb5f0d5a488191a58dd3e6d9e6a4b9-chemical-plant-inspector-gpt/?via=aiwebtools",
+    emoji: "⚗️"
+  },
+  {
+    title: "Solar Farm Inspector GPT",
+    description: "Virtual inspection & compliance auditing system for utility-scale & distributed solar PV plants.",
+    badge: "GREEN ENERGY",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Solar Inspection", "Renewable Energy", "PV Systems", "Compliance"],
+    directUrl: "https://chatgpt.com/g/g-68bb4ea28fec819196a157b74750be21-solar-farm-inspector-gpt/?via=aiwebtools",
+    emoji: "☀️"
+  },
+  {
+    title: "AI Wind Turbine Inspector",
+    description: "Virtual inspection & compliance auditing system for onshore & offshore wind turbines.",
+    badge: "GREEN ENERGY",
+    color: "from-blue-500 to-green-600",
+    features: ["Wind Turbine", "Renewable Energy", "Turbine Safety", "Compliance"],
+    directUrl: "https://chatgpt.com/g/g-68bb4d76cb3081918d1e8f0cc2ce7e59-ai-wind-turbine-inspector/?via=aiwebtools",
+    emoji: "💨"
+  },
+  {
+    title: "Bridge & Structural Health Monitor Inspector GPT",
+    description: "Virtual bridge inspector AI for structural health monitoring data, audits, and compliance analysis.",
+    badge: "INFRASTRUCTURE",
+    color: "from-stone-500 to-gray-600",
+    features: ["Bridge Inspection", "Structural Health", "Infrastructure Safety", "Compliance"],
+    directUrl: "https://chatgpt.com/g/g-68bb53548e60819191b457795c7d0023-bridge-structural-health-monitor-inspector-gpt/?via=aiwebtools",
+    emoji: "🌉"
+  },
+  {
+    title: "JARVIS – The Steward of Humanity GPT",
+    description: "A post-collapse steward AI guiding humanity's rebirth through wisdom, ethics, and design.",
+    badge: "CIVILIZATION",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Rebuilding", "Ethics", "Wisdom", "Stewardship"],
+    directUrl: "https://chatgpt.com/g/g-68e939ff278881919b292a679faaac43-jarvis-the-steward-of-humanity-gpt",
+    videoUrl: "https://youtu.be/6jFoFR9Hags",
+    emoji: "🛡️"
+  },
+  {
+    title: "Plastoline GPT - Inspired by Julian Brown",
+    description: "Learn how to convert plastic waste into usable fuel. Guidance on plastic-to-fuel conversion technologies and sustainability.",
+    badge: "SUSTAINABILITY",
+    color: "from-green-500 to-teal-600",
+    features: ["Plastic Recycling", "Waste to Fuel", "Green Energy", "Sustainability"],
+    directUrl: "https://plastolinegpt.lovable.app/?via=aiwebtools",
+    emoji: "♻️"
+  },
+  {
+    title: "Geology & Rock Identification GPT",
+    description: "Expert AI companion for geological exploration and rock identification. Identify minerals, rocks, and geological formations.",
+    badge: "EARTH SCIENCE",
+    color: "from-amber-500 to-orange-600",
+    features: ["Rock Identification", "Minerals", "Earth Science", "Field Geology"],
+    directUrl: "https://chatgpt.com/g/g-689005f62df881918961b6c93ad5b19e-geology-rock-identification-gpt",
+    videoUrl: "https://youtu.be/nmRT6AOVQNg",
+    emoji: "🪨"
+  },
+  {
+    title: "World Resource Clock",
+    description: "Track global resource consumption, depletion rates, and sustainability metrics in real-time. Monitor oil, water, forests, and minerals.",
+    badge: "GLOBAL DATA",
+    color: "from-green-500 to-blue-600",
+    features: ["Resource Tracking", "Sustainability", "Environment", "Real-Time Data"],
+    directUrl: "https://worldresourceclock.lovable.app/?via=aiwebtools",
+    emoji: "⏰"
+  },
+  {
+    title: "Astrodynamics GPT",
+    description: "Computes orbital mechanics with precision—lawful, exact, never guessing. Expert in satellite orbits and space physics.",
+    badge: "SPACE SCIENCE",
+    color: "from-indigo-500 to-cyan-600",
+    features: ["Orbital Mechanics", "Space Physics", "Trajectory", "Aerospace"],
+    directUrl: "https://chatgpt.com/g/g-69268e308a4c81919515ac1895e10d17-astrodynamics-gpt?via=aiwebtools",
+    emoji: "🛰️"
+  },
+  {
+    title: "Microgrid & Power Safety Planning Assistant GPT",
+    description: "Advisory-only microgrid planner that computes, explains, and safeguards off-grid power. Renewable energy integration guidance.",
+    badge: "ENERGY",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Microgrid", "Off-Grid Power", "Renewable Energy", "Safety"],
+    directUrl: "https://chatgpt.com/g/g-68f8fd43f6fc81918226efa6de613a6a-microgrid-power-safety-planning-assistant-gpt",
+    emoji: "⚡"
+  },
+  {
+    title: "AQUILA — Water Safety Planning Assistant GPT",
+    description: "Advisory water safety planner for purification methods, storage solutions, and emergency water planning.",
+    badge: "WATER SAFETY",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Water Safety", "Purification", "Emergency Prep", "Storage"],
+    directUrl: "https://chatgpt.com/g/g-68f8f667e0a081918598d64621fea153-aquila-water-safety-planning-assistant-gpt",
+    emoji: "💧"
+  },
+  {
+    title: "WORLD DATA EXPLORER GPT5",
+    description: "Performs deep web data analysis, Python calculations, and global predictions with verified accuracy.",
+    badge: "DATA SCIENCE",
+    color: "from-purple-500 to-blue-600",
+    features: ["Data Analysis", "Global Data", "Predictions", "Research"],
+    directUrl: "https://chatgpt.com/g/g-68f8eda5982c8191bef047399d91a056-world-data-explorer-gpt",
+    emoji: "🌍"
   }
 ];
 
