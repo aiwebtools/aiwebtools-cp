@@ -2926,6 +2926,352 @@ const featuredGPTs = [
     features: ["Genomic Analysis", "Genetic Patterns", "Research Support", "DNA Insights"],
     directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
     emoji: "🧬"
+  },
+  // ============================================================================
+  // VIDEO PROMPT MAKERS & AI PROMPT TOOLS
+  // ============================================================================
+  {
+    title: "SORA2 Text to Video Prompt Maker GPT",
+    description: "Expert cinematic prompt maker for Sora 2 and all text-to-video platforms. Master crafting compelling video generation prompts with professional guidance on scene composition, camera movements, lighting, pacing, and visual storytelling.",
+    badge: "VIDEO PROMPTS",
+    color: "from-red-500 to-orange-600",
+    features: ["Sora 2 Prompts", "Cinematic Scenes", "Camera Movements", "Visual Storytelling"],
+    directUrl: "https://chatgpt.com/g/g-69326acb5f348191a2f85c2cdc848c4d-0ra2-text-to-video-prompt-maker?via=aiwebtools",
+    emoji: "🎬"
+  },
+  {
+    title: "VEO3 Text to Video Prompt Generator",
+    description: "Advanced prompt generator specifically optimized for Google's VEO3 text-to-video AI model. Generate professional-quality prompts that maximize video output quality and creativity.",
+    badge: "VEO3 PROMPTS",
+    color: "from-green-500 to-emerald-600",
+    features: ["VEO3 Optimization", "Google AI", "Video Prompts", "AI Optimization"],
+    directUrl: "https://chatgpt.com/g/g-682faef24c608191808180e89719cb09-veo3-text-to-video-prompt-maker",
+    emoji: "🎯"
+  },
+  {
+    title: "Luma Dream Machine Prompt Assistant",
+    description: "Luma Dream Machine is a text-to-video engine designed to bring your ideas to life. Our prompt assistant helps you create epic prompts to use with this engine, turning your envisioned films into reality.",
+    badge: "LUMA PROMPTS",
+    color: "from-violet-500 to-purple-600",
+    features: ["Luma AI Prompts", "Dream Machine", "Video Creation", "Film Vision"],
+    directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
+    emoji: "✨"
+  },
+  {
+    title: "Sora Prompt Assistant",
+    description: "Unleash your creativity with the SORA Prompt Assistant, your ultimate assistant for crafting epic video prompts and bringing cinematic ideas to life! From brainstorming to execution, turn your visions into stunning video realities.",
+    badge: "SORA PROMPTS",
+    color: "from-green-500 to-teal-600",
+    features: ["Sora Prompts", "Cinematic Ideas", "Video Creativity", "Prompt Crafting"],
+    directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
+    emoji: "🎥"
+  },
+  {
+    title: "\"MiddleJourney\" Midjourney Prompting Assistant",
+    description: "The ultimate AI expert for all things Midjourney. Optimize prompts, get answers about Midjourney, and craft new prompts to enhance your experience with precision and efficiency.",
+    badge: "IMAGE PROMPTS",
+    color: "from-purple-500 to-pink-600",
+    features: ["Midjourney Expert", "Prompt Optimization", "Image Generation", "Creative Guidance"],
+    directUrl: "https://texttovideoprompter.lovable.app/?via=aiwebtools",
+    emoji: "🎨"
+  },
+  {
+    title: "PERFECT PROMPT ENGINE",
+    description: "The Prompt Perfect Engine effortlessly optimizes all your chat prompts. Crafted by prompt engineers for maximizing your potential. Your #1 personal prompt engineer.",
+    badge: "PROMPT ENGINEERING",
+    color: "from-cyan-500 to-blue-600",
+    features: ["Prompt Optimization", "Chat Enhancement", "AI Efficiency", "Perfect Prompts"],
+    directUrl: "https://perfectpromptengine.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/M1PQHKrzKd8",
+    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-cinematic-shot-of-a-humanoid-robot-controlli.png/:/cr=t:9.25%25,l:11.96%25,w:73.53%25,h:65.54%25/rs=w:1200,h:600,cg:true,m",
+    emoji: "⚡"
+  },
+  // ============================================================================
+  // ADDITIONAL MISSING GPTs - Moses, Black History, More Spiritual
+  // ============================================================================
+  {
+    title: "Moses GPT",
+    description: "Engage with the wisdom and teachings of Moses, the great prophet and lawgiver. Explore the Exodus narrative, the Ten Commandments, and the foundational principles of monotheism.",
+    badge: "PROPHET",
+    color: "from-amber-500 to-yellow-600",
+    features: ["Biblical Wisdom", "Torah Teachings", "Exodus Narrative", "Divine Law"],
+    directUrl: "https://mosesgpt.lovable.app/?via=aiwebtools",
+    emoji: "⛰️"
+  },
+  {
+    title: "Black History Matters Time Machine GPT",
+    description: "Travel through the rich tapestry of African American history. Explore pivotal moments, meet legendary figures, and understand the struggles and triumphs that shaped America.",
+    badge: "BLACK HISTORY",
+    color: "from-green-600 to-red-600",
+    features: ["African American History", "Civil Rights", "Cultural Heritage", "Historical Education"],
+    directUrl: "https://blackhistorymatters.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/9K77k34xb0c",
+    emoji: "✊"
+  },
+  {
+    title: "Black History Matter - Time Machine GEMINI",
+    description: "Google Gemini-powered journey through African American history. Experience the full scope of Black history from ancient Africa to modern achievements.",
+    badge: "GEMINI GEM",
+    color: "from-green-500 to-amber-600",
+    features: ["Gemini Powered", "Black History", "Cultural Journey", "Heritage Education"],
+    directUrl: "https://gemini.google.com/gem/blackhistorymatters?via=aiwebtools",
+    emoji: "💎"
+  },
+  {
+    title: "King Solomon GPT",
+    description: "Seek wisdom from the wisest king who ever lived. Explore the proverbs, the Song of Songs, and the profound teachings on justice, wealth, and divine wisdom.",
+    badge: "WISDOM",
+    color: "from-amber-500 to-yellow-600",
+    features: ["Proverbs", "Divine Wisdom", "Justice", "Ancient Knowledge"],
+    directUrl: "https://kingsolomongpt.lovable.app/?via=aiwebtools",
+    emoji: "👑"
+  },
+  {
+    title: "King David GPT",
+    description: "Experience the life and psalms of King David, the shepherd who became Israel's greatest king. Explore poetry, warfare, faith, and the heart of a man after God's own heart.",
+    badge: "PSALMS",
+    color: "from-purple-500 to-blue-600",
+    features: ["Psalms", "Biblical Poetry", "Faith Journey", "Leadership"],
+    directUrl: "https://kingdavidgpt.lovable.app/?via=aiwebtools",
+    emoji: "🎶"
+  },
+  {
+    title: "Elijah the Prophet GPT",
+    description: "Encounter the fire and power of Elijah, one of the greatest prophets. Explore the confrontation with Baal, the still small voice, and prophetic truth.",
+    badge: "PROPHET",
+    color: "from-orange-500 to-red-600",
+    features: ["Prophetic Power", "Divine Fire", "Confrontation", "Spiritual Truth"],
+    directUrl: "https://elijahgpt.lovable.app/?via=aiwebtools",
+    emoji: "🔥"
+  },
+  {
+    title: "Abraham GPT",
+    description: "Journey with the Father of Faith. Explore the covenant promises, the test of Isaac, and the foundational story of monotheism that changed the world.",
+    badge: "PATRIARCH",
+    color: "from-amber-600 to-brown-600",
+    features: ["Covenant Faith", "Patriarchal Story", "Divine Promise", "Foundation of Faith"],
+    directUrl: "https://abrahamgpt.lovable.app/?via=aiwebtools",
+    emoji: "⭐"
+  },
+  {
+    title: "Isaiah GPT",
+    description: "Receive the prophetic visions of Isaiah, the prophet of consolation. Explore messianic prophecies, divine judgment, and the promise of restoration.",
+    badge: "PROPHET",
+    color: "from-blue-500 to-purple-600",
+    features: ["Messianic Prophecy", "Divine Vision", "Restoration", "Holy Words"],
+    directUrl: "https://isaiahgpt.lovable.app/?via=aiwebtools",
+    emoji: "📜"
+  },
+  {
+    title: "Apostle Paul GPT",
+    description: "Engage with the apostle who shaped Christianity. Explore the epistles, theological foundations, and the missionary journeys that spread the faith across the Roman world.",
+    badge: "APOSTLE",
+    color: "from-red-500 to-purple-600",
+    features: ["Epistles", "Theology", "Missionary Journey", "Christian Foundations"],
+    directUrl: "https://apostlepaulgpt.lovable.app/?via=aiwebtools",
+    emoji: "✝️"
+  },
+  {
+    title: "St. Peter GPT",
+    description: "Walk with the Rock upon which the church was built. Explore Peter's journey from fisherman to apostle, his letters, and his foundational role in Christianity.",
+    badge: "APOSTLE",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Apostolic Leadership", "Faith Journey", "Church Foundation", "Christian Teaching"],
+    directUrl: "https://stpetergpt.lovable.app/?via=aiwebtools",
+    emoji: "🪨"
+  },
+  {
+    title: "Bob Ross GPT",
+    description: "A serene AI art companion echoing Bob Ross's teaching, tone, and calm creative spirit. Learn painting techniques, receive encouragement, and explore artistic creativity.",
+    badge: "ART",
+    color: "from-green-500 to-blue-600",
+    features: ["Painting Techniques", "Calm Guidance", "Artistic Creativity", "Happy Little Trees"],
+    directUrl: "https://chatgpt.com/g/g-69157380e63c819188de5c09bdf23ef7-bob-ross-gpt/?via=aiwebtools",
+    emoji: "🎨"
+  },
+  {
+    title: "Cyber-Kabbalah Light Code Translation Engine GPT",
+    description: "A symbolic-linguistic engine translating language and images into Cyber-Kabbalah Light Codes. Decode mystical symbols and explore the intersection of ancient wisdom and technology.",
+    badge: "MYSTICISM",
+    color: "from-purple-500 to-pink-600",
+    features: ["Light Codes", "Symbolic Translation", "Mystical Decoding", "Ancient Technology"],
+    directUrl: "https://chatgpt.com/g/g-69176b2f62e481918b21756ccdc5d396-cyber-kabbalah-light-code-translation-engine-gpt/?via=aiwebtools",
+    emoji: "✨"
+  },
+  {
+    title: "AD Maker GPT4o Image GPT",
+    description: "Professional AI-powered advertisement creator generating stunning visual ads, marketing banners, and promotional graphics for various platforms.",
+    badge: "ADVERTISING",
+    color: "from-orange-500 to-red-600",
+    features: ["Ad Creation", "Marketing Banners", "Visual Ads", "Campaign Graphics"],
+    directUrl: "https://chatgpt.com/g/g-6810ea3238888191a084c4f20b40225f-ad-maker-gpt",
+    emoji: "📢"
+  },
+  {
+    title: "VIRTUAL TRY ON STYLIST GPT",
+    description: "AI-powered virtual styling assistant helping you visualize different fashion looks, outfits, and styles with personalized recommendations.",
+    badge: "FASHION",
+    color: "from-pink-500 to-purple-600",
+    features: ["Virtual Try On", "Fashion Styling", "Outfit Ideas", "Style Recommendations"],
+    directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "https://ideogram.ai/assets/progressive-image/balanced/response/6wSDfm1RQUeOIPIBIrERTQ",
+    emoji: "👗"
+  },
+  {
+    title: "SHOPPING GPT",
+    description: "AI-powered shopping assistant helping you find the best deals, compare products, and make informed purchasing decisions.",
+    badge: "SHOPPING",
+    color: "from-blue-500 to-green-600",
+    features: ["Deal Finder", "Product Comparison", "Shopping Advice", "Price Tracking"],
+    directUrl: "https://shoppinggpt.lovable.app/?via=aiwebtools",
+    emoji: "🛒"
+  },
+  {
+    title: "COMMERCIAL SCENE IMAGE GENERATOR GPT",
+    description: "Professional commercial scene image generator creating stunning visuals for advertising, marketing campaigns, and commercial projects.",
+    badge: "COMMERCIAL",
+    color: "from-purple-500 to-blue-600",
+    features: ["Commercial Photography", "Scene Generation", "Marketing Visuals", "Product Scenes"],
+    directUrl: "https://chatgpt.com/g/g-681a201fe69c8191b99e1636be90139e-commercial-scene-maker-gpt",
+    emoji: "🎬"
+  },
+  {
+    title: "SCREENPLAY WRITER GPT",
+    description: "Professional screenplay writing assistant helping craft compelling scripts for films, TV shows, and theatrical productions with industry-standard formatting.",
+    badge: "SCREENWRITING",
+    color: "from-green-500 to-blue-600",
+    features: ["Script Writing", "Film Format", "Dialogue Creation", "Character Development"],
+    directUrl: "https://screenplaywritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=4e3Rkurt3-c&list=TLGGtoG6kc0vED4yODA1MjAyNQ",
+    emoji: "📝"
+  },
+  {
+    title: "LOGO AND AD GENERATOR GPT",
+    description: "Professional logo and advertisement generator creating stunning visual branding materials for businesses with intelligent design suggestions.",
+    badge: "BRANDING",
+    color: "from-blue-500 to-purple-600",
+    features: ["Logo Design", "Ad Creation", "Brand Identity", "Marketing Materials"],
+    directUrl: "https://adandlogomakergpt.lovable.app/?via=aiwebtools",
+    emoji: "🎨"
+  },
+  {
+    title: "MEME GENERATOR GPT",
+    description: "AI-powered meme creation assistant for viral, funny, and engaging memes for social media, marketing, and entertainment.",
+    badge: "MEMES",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Meme Creation", "Viral Content", "Social Media", "Humor"],
+    directUrl: "https://memegeneratorgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/Myg8P8wg294",
+    imageUrl: "https://ideogram.ai/assets/image/lossless/response/h2Lp-rLMScaWK6A-mrFZQA",
+    emoji: "😂"
+  },
+  {
+    title: "Confucius GPT",
+    description: "Engage with the wisdom of Confucius, the great Chinese philosopher. Explore the Analects, principles of virtue, social harmony, and the foundations of Eastern philosophy.",
+    badge: "PHILOSOPHY",
+    color: "from-red-500 to-amber-600",
+    features: ["Analects", "Virtue Ethics", "Social Harmony", "Eastern Wisdom"],
+    directUrl: "https://confuciusgpt.lovable.app/?via=aiwebtools",
+    emoji: "🏯"
+  },
+  {
+    title: "Sun Tzu GPT",
+    description: "Master the art of strategy with Sun Tzu. Explore The Art of War, military tactics, and timeless principles applicable to business and life.",
+    badge: "STRATEGY",
+    color: "from-gray-600 to-red-600",
+    features: ["Art of War", "Strategic Thinking", "Military Wisdom", "Leadership"],
+    directUrl: "https://suntzugpt.lovable.app/?via=aiwebtools",
+    emoji: "⚔️"
+  },
+  {
+    title: "Lao Tzu GPT",
+    description: "Walk the path of the Tao with Lao Tzu. Explore the Tao Te Ching, principles of wu wei, and the profound simplicity of Taoist philosophy.",
+    badge: "TAOISM",
+    color: "from-green-500 to-teal-600",
+    features: ["Tao Te Ching", "Wu Wei", "Natural Harmony", "Taoist Wisdom"],
+    directUrl: "https://laotzugpt.lovable.app/?via=aiwebtools",
+    emoji: "☯️"
+  },
+  {
+    title: "Zoroaster GPT",
+    description: "Explore the teachings of Zoroaster, the ancient Persian prophet. Discover the cosmic battle between good and evil, fire worship, and the foundations of monotheism.",
+    badge: "ANCIENT PROPHET",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Zoroastrianism", "Good vs Evil", "Fire Wisdom", "Persian Religion"],
+    directUrl: "https://zoroastergpt.lovable.app/?via=aiwebtools",
+    emoji: "🔥"
+  },
+  {
+    title: "Hermes Trismegistus GPT",
+    description: "Unlock the secrets of the Hermetic tradition with Thoth/Hermes. Explore alchemy, astrology, and the foundational texts of Western esotericism.",
+    badge: "HERMETICISM",
+    color: "from-purple-600 to-gold-600",
+    features: ["Hermetic Wisdom", "Alchemy", "Astrology", "Esoteric Knowledge"],
+    directUrl: "https://hermestrismegistusgpt.lovable.app/?via=aiwebtools",
+    emoji: "⚗️"
+  },
+  {
+    title: "Enoch GPT",
+    description: "Journey with the prophet Enoch through heavenly realms. Explore the Book of Enoch, angelic encounters, and apocalyptic visions.",
+    badge: "PROPHET",
+    color: "from-blue-600 to-purple-600",
+    features: ["Book of Enoch", "Angelic Wisdom", "Heavenly Visions", "Apocalyptic"],
+    directUrl: "https://enochgpt.lovable.app/?via=aiwebtools",
+    emoji: "👼"
+  },
+  {
+    title: "Job GPT",
+    description: "Wrestle with the profound questions of suffering and faith with Job. Explore theodicy, divine justice, and the mystery of human suffering.",
+    badge: "WISDOM",
+    color: "from-gray-500 to-blue-600",
+    features: ["Book of Job", "Theodicy", "Faith in Suffering", "Divine Mystery"],
+    directUrl: "https://jobgpt.lovable.app/?via=aiwebtools",
+    emoji: "🙏"
+  },
+  {
+    title: "Ezekiel GPT",
+    description: "Witness the visions of Ezekiel, the prophet of exile. Explore the throne chariot, the valley of dry bones, and prophecies of restoration.",
+    badge: "PROPHET",
+    color: "from-blue-500 to-amber-600",
+    features: ["Prophetic Visions", "Merkabah", "Dry Bones", "Restoration"],
+    directUrl: "https://ezekielgpt.lovable.app/?via=aiwebtools",
+    emoji: "🛞"
+  },
+  {
+    title: "Daniel GPT",
+    description: "Explore apocalyptic visions with Daniel the prophet. Discover interpretations of dreams, the lion's den, and prophecies of kingdoms.",
+    badge: "PROPHET",
+    color: "from-amber-500 to-purple-600",
+    features: ["Dream Interpretation", "Apocalyptic Vision", "Kingdom Prophecy", "Faith"],
+    directUrl: "https://danielgpt.lovable.app/?via=aiwebtools",
+    emoji: "🦁"
+  },
+  {
+    title: "Jeremiah GPT",
+    description: "Hear the words of the weeping prophet Jeremiah. Explore warnings, lamentations, and the promise of a new covenant written on hearts.",
+    badge: "PROPHET",
+    color: "from-blue-600 to-gray-600",
+    features: ["Prophetic Warning", "Lamentations", "New Covenant", "Divine Message"],
+    directUrl: "https://jeremiahgpt.lovable.app/?via=aiwebtools",
+    emoji: "💧"
+  },
+  {
+    title: "John the Baptist GPT",
+    description: "Prepare the way with John the Baptist, the voice crying in the wilderness. Explore baptism, repentance, and prophetic preparation.",
+    badge: "PROPHET",
+    color: "from-brown-500 to-amber-600",
+    features: ["Baptism", "Repentance", "Wilderness Prophet", "Preparation"],
+    directUrl: "https://johnthebaptistgpt.lovable.app/?via=aiwebtools",
+    emoji: "🏜️"
+  },
+  {
+    title: "St. John the Apostle GPT",
+    description: "Experience divine love with the beloved disciple. Explore the Gospel of John, Revelation, and the profound theology of love and light.",
+    badge: "APOSTLE",
+    color: "from-white to-gold-600",
+    features: ["Gospel of John", "Revelation", "Divine Love", "Mystical Theology"],
+    directUrl: "https://stjohnapostlegpt.lovable.app/?via=aiwebtools",
+    emoji: "🕊️"
   }
 ];
 
