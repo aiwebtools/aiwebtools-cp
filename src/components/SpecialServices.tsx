@@ -3302,6 +3302,188 @@ const featuredGPTs = [
     features: ["Bridge Inspection", "Infrastructure Safety", "Structural Inspection", "Civil Engineering"],
     directUrl: "https://chatgpt.com/g/g-68bb35336fc88191961a10a19a09bdcb-ai-bridge-infrastructure-inspector/?via=aiwebtools",
     emoji: "🌉"
+  },
+  {
+    title: "Phenomenon Explorer AI Suite",
+    description: "Unveil the unexplained with AI precision. Investigate paranormal phenomena, document cryptid sightings, analyze supernatural myths, and conduct ghost hunts with scientific accuracy.",
+    badge: "PARANORMAL",
+    color: "from-purple-500 to-indigo-600",
+    features: ["UFO Research", "Ghost Hunting", "Cryptozoology", "Phenomena Analysis"],
+    directUrl: "https://phenomenonexplorer.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/faBkRli0puc?si=Sao0KIfV2iGWLGB-",
+    imageUrl: "/src/assets/phenomenon-explorer-hero.jpg",
+    emoji: "👽"
+  },
+  {
+    title: "Insurance Claims GPT",
+    description: "AI tool revolutionizing claims management and estimation. Guides users through every step of the claims process with unparalleled accuracy and efficiency.",
+    badge: "INSURANCE",
+    color: "from-blue-500 to-green-600",
+    features: ["Claims Processing", "Damage Analysis", "Insurance Assistance", "Fair Settlements"],
+    directUrl: "https://insuranceclaimsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=WNPywJWOUzU",
+    imageUrl: "/src/assets/insurance-claims-hero.jpg",
+    emoji: "🔒"
+  },
+  {
+    title: "Music Melodies & Lessons GPT",
+    description: "Your ultimate musical companion for learning instruments, perfecting vocals, or writing songs with step-by-step guidance and personalized lessons.",
+    badge: "MUSIC EDUCATION",
+    color: "from-purple-500 to-pink-600",
+    features: ["Music Lessons", "Instruments", "Songwriting", "Music Theory"],
+    directUrl: "https://musicmelodiesandlessonsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/8aPpUPiDBJ4?si=4ERg7NITSKCePyHF",
+    imageUrl: "/src/assets/music-melodies-hero.jpg",
+    emoji: "🎵"
+  },
+  {
+    title: "Cursive Teacher GPT",
+    description: "Specialized AI instructor for learning beautiful cursive handwriting with step-by-step guidance on letter formation, pen grip, and techniques.",
+    badge: "EDUCATION",
+    color: "from-purple-500 to-blue-600",
+    features: ["Cursive Writing", "Handwriting", "Penmanship", "Education"],
+    directUrl: "https://chatgpt.com/g/g-68cb403167a88191ae07062124d32bbb-cursive-teacher-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/cursive-teacher-hero.jpg",
+    emoji: "✍️"
+  },
+  {
+    title: "Fiat to Crypto AI Value Calculator GPT",
+    description: "Cryptocurrency exchange calculator for businesses analyzing crypto conversion, fiat currency values, and investment analysis.",
+    badge: "CRYPTO",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Crypto Conversion", "Exchange Calculator", "Business Finance", "Investment"],
+    directUrl: "https://chatgpt.com/g/g-68b5b20784788191acd980be0388935d-fiat-to-crypto-ai-value-calculator-for-businesses/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=k0NlolajEYs",
+    imageUrl: "/src/assets/fiat-to-crypto-hero.jpg",
+    emoji: "💰"
+  },
+  {
+    title: "Meme Generator GPT",
+    description: "AI-powered meme creation assistant for creating viral, funny, and engaging memes for social media and marketing campaigns.",
+    badge: "SOCIAL MEDIA",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Meme Creation", "Viral Content", "Social Media", "Marketing"],
+    directUrl: "https://memegeneratorgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/Myg8P8wg294",
+    imageUrl: "/src/assets/meme-generator-hero.jpg",
+    emoji: "😂"
+  },
+  {
+    title: "Coloring Book Generator GPT",
+    description: "Create full coloring books from your imagination with AI-powered generation. Perfect for children's content and creative activities.",
+    badge: "CREATIVE",
+    color: "from-yellow-500 to-green-600",
+    features: ["Coloring Books", "Creative Content", "Children's Art", "Educational"],
+    directUrl: "https://coloringbookgeneratorgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/i0zc0aeRCeI?si=UKmD23pR3uCTGXBa",
+    emoji: "🖍️"
+  },
+  {
+    title: "Fitness Coach AI",
+    description: "Comprehensive AI-powered fitness coach providing personalized workout plans, nutrition guidance, and fitness goal tracking.",
+    badge: "FITNESS",
+    color: "from-orange-500 to-red-600",
+    features: ["Workout Plans", "Nutrition Guide", "Fitness Goals", "Exercise"],
+    directUrl: "https://chatgpt.com/g/g-68afaae3f8e881918d8b84b7ca85a413-fitness-coach/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=eHInYKxyKm4",
+    emoji: "💪"
+  },
+  {
+    title: "Religious Studies GPT",
+    description: "Study different religions with first-person interactive learning perspective. Compare world religions and spiritual traditions.",
+    badge: "RELIGION",
+    color: "from-amber-500 to-purple-600",
+    features: ["World Religions", "Comparative Study", "Spiritual Traditions", "Academic"],
+    directUrl: "https://chatgpt.com/g/g-6901478f2bf88191b49298a508bbd486-religious-studies-gpt/?via=aiwebtools",
+    videoUrl: "https://youtu.be/XDS4qsb48h0?si=itA17CrdVOfiKTTB",
+    emoji: "📿"
+  },
+  {
+    title: "Apothecary GPT",
+    description: "Historical apothecary sharing authentic herbal and traditional medicine knowledge, medicinal plants, and healing methods.",
+    badge: "HERBAL MEDICINE",
+    color: "from-green-500 to-purple-600",
+    features: ["Herbal Medicine", "Natural Remedies", "Traditional Healing", "Medicinal Plants"],
+    directUrl: "https://chatgpt.com/g/g-68c9e33310148191ae3df594ec4012dd-apothecary-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/apothecary-gpt-hero.jpg",
+    emoji: "🌿"
+  },
+  {
+    title: "POVERTY CRUSHER - Economic Empowerment GPT",
+    description: "Break the cycle of poverty through practical financial strategies, wealth-building techniques, and economic education.",
+    badge: "FINANCIAL",
+    color: "from-green-500 to-blue-600",
+    features: ["Financial Literacy", "Wealth Building", "Debt Elimination", "Economic Freedom"],
+    directUrl: "https://chatgpt.com/g/g-68ae2ab2c55c8191afdc979301179fa9-poverty-crusher-economic-empowerment-ai/?via=aiwebtools",
+    imageUrl: "/src/assets/poverty-crusher-hero.jpg",
+    emoji: "💪"
+  },
+  {
+    title: "AD Maker GPT4o Image GPT",
+    description: "Professional AI-powered advertisement creator generating stunning visual ads, marketing banners, and promotional graphics.",
+    badge: "MARKETING",
+    color: "from-orange-500 to-red-600",
+    features: ["Ad Creation", "Marketing Banners", "Promotional Graphics", "Visual Ads"],
+    directUrl: "https://chatgpt.com/g/g-6810ea3238888191a084c4f20b40225f-ad-maker-gpt",
+    imageUrl: "/src/assets/ad-maker-gpt-hero.jpg",
+    emoji: "📢"
+  },
+  {
+    title: "VIRTUAL TRY ON STYLIST GPT",
+    description: "AI-powered virtual styling assistant helping you visualize different fashion looks, outfits, and personalized style recommendations.",
+    badge: "FASHION",
+    color: "from-pink-500 to-purple-600",
+    features: ["Virtual Try On", "Fashion Styling", "Outfit Recommendations", "Style AI"],
+    directUrl: "https://virtualstylistgpt.lovable.app/?via=aiwebtools",
+    imageUrl: "/src/assets/virtual-stylist-hero.jpg",
+    emoji: "👗"
+  },
+  {
+    title: "SHOPPING GPT",
+    description: "AI-powered shopping assistant finding best deals, comparing products, and providing personalized product recommendations.",
+    badge: "SHOPPING",
+    color: "from-blue-500 to-green-600",
+    features: ["Deal Finder", "Product Comparison", "Shopping Advice", "Recommendations"],
+    directUrl: "https://shoppinggpt.lovable.app/?via=aiwebtools",
+    imageUrl: "/src/assets/shopping-gpt-hero.jpg",
+    emoji: "🛒"
+  },
+  {
+    title: "COMMERCIAL SCENE IMAGE GENERATOR GPT",
+    description: "Professional AI commercial scene image generator creating stunning visual scenes for advertising and marketing campaigns.",
+    badge: "COMMERCIAL",
+    color: "from-purple-500 to-blue-600",
+    features: ["Commercial Photography", "Scene Generation", "Marketing Visuals", "Product Photography"],
+    directUrl: "https://chatgpt.com/g/g-681a201fe69c8191b99e1636be90139e-commercial-scene-maker-gpt",
+    imageUrl: "/src/assets/commercial-scene-hero.jpg",
+    emoji: "🎬"
+  },
+  {
+    title: "Bob Ross GPT",
+    description: "A serene AI art companion echoing Bob Ross's teaching, tone, and calm creative spirit. Learn painting with gentle guidance.",
+    badge: "ART",
+    color: "from-green-500 to-blue-600",
+    features: ["Art Teaching", "Painting", "Creativity", "Calm Guidance"],
+    directUrl: "https://chatgpt.com/g/g-69157380e63c819188de5c09bdf23ef7-bob-ross-gpt/?via=aiwebtools",
+    emoji: "🎨"
+  },
+  {
+    title: "Cyber-Kabbalah Light Code Translation Engine GPT",
+    description: "Symbolic-linguistic engine translating language and images into Cyber-Kabbalah Light Codes and mystical symbols.",
+    badge: "MYSTICAL",
+    color: "from-purple-500 to-pink-600",
+    features: ["Light Codes", "Symbolic Translation", "Mystical Symbols", "Spiritual Technology"],
+    directUrl: "https://chatgpt.com/g/g-69176b2f62e481918b21756ccdc5d396-cyber-kabbalah-light-code-translation-engine-gpt/?via=aiwebtools",
+    emoji: "✨"
+  },
+  {
+    title: "Universal Speech Mastery GPT",
+    description: "Transform into a fluent multilingual communicator across any world language with personalized instruction and conversation practice.",
+    badge: "LANGUAGE",
+    color: "from-blue-500 to-purple-600",
+    features: ["Language Learning", "Multilingual", "Speech Mastery", "Fluency Training"],
+    directUrl: "https://chatgpt.com/g/g-68ae26360d448191b25842afb8d2f66b-lingua-champion-universal-speech-mastery-ai/?via=aiwebtools",
+    emoji: "🗣️"
   }
 ];
 
