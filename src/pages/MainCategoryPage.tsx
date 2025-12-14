@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import DeferredMount from "@/components/DeferredMount";
 import ScrollToTop from "@/components/ui/scroll-to-top";
-import { ToolGridSkeleton } from "@/components/ui/loading-skeleton";
+import CategorySkeleton from "@/components/ui/CategorySkeleton";
 import SEOHead from "@/components/SEOHead";
 import ToolsGrid from "@/components/tools/ToolsGrid";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
@@ -133,18 +133,11 @@ const MainCategoryPage = () => {
   if (!isInitialized) {
     return (
       <div className="min-h-screen bg-black relative overflow-x-hidden">
-        <DeferredMount delay={50}><AnimatedBackground /></DeferredMount>
         <div className="relative z-10 cyber-grid">
           <Header />
           <main className="container mx-auto px-4 py-8 pt-32 md:pt-36 lg:pt-40">
-            <div className="text-center mb-8">
-              <div className="text-6xl mb-4 animate-pulse">⏳</div>
-              <h1 className="text-2xl font-bold text-cyan-100 mb-4">Loading AI Tools...</h1>
-              <p className="text-gray-400">Preparing your ultimate AI experience</p>
-            </div>
-            <ToolGridSkeleton count={8} />
+            <CategorySkeleton />
           </main>
-          <Footer />
         </div>
       </div>
     );
