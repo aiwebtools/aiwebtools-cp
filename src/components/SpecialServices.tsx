@@ -2397,6 +2397,535 @@ const featuredGPTs = [
     directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=poOGR-6bb2g",
     emoji: "⚖️"
+  },
+  // ============================================================================
+  // HEALTH & WELLNESS GPTs
+  // ============================================================================
+  {
+    title: "Personalized DR. GPT (Doctor GPT)",
+    description: "Private, confidential AI health information assistant for individuals who may not have access to a medical doctor. Disclaimer: Not a replacement for professional medical advice.",
+    badge: "HEALTH",
+    color: "from-blue-500 to-green-600",
+    features: ["Health Info", "Confidential", "Personalized", "24/7 Support"],
+    directUrl: "https://aidoctorgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/jwjNOKP5mf4",
+    emoji: "👨‍⚕️"
+  },
+  {
+    title: "Mental Wellness GPT",
+    description: "Virtual chat tool for emotional support and mental well-being, offering empathetic guidance rooted in cognitive behavioral therapy (CBT) principles.",
+    badge: "WELLNESS",
+    color: "from-cyan-500 to-blue-600",
+    features: ["Mental Health", "CBT", "Emotional Support", "Coping Strategies"],
+    directUrl: "https://mentalwellnessgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=_e6DtLUv-2Q",
+    emoji: "🧠"
+  },
+  {
+    title: "🐾Veterinarian GPT",
+    description: "Compassionate virtual veterinarian assistant offering educational pet health information and wellness guidance for your furry friends.",
+    badge: "PET HEALTH",
+    color: "from-green-500 to-blue-600",
+    features: ["Pet Health", "Animal Care", "Educational", "Wellness"],
+    directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/jwjNOKP5mf4",
+    emoji: "🐾"
+  },
+  {
+    title: "Pharmaceutical Assistant GPT",
+    description: "Expert AI Pharmaceutical Assistant supporting pharmacy professionals and patients with medication management, drug information, and interaction checking.",
+    badge: "PHARMA",
+    color: "from-purple-500 to-pink-600",
+    features: ["Medication Management", "Drug Info", "Interactions", "Scheduling"],
+    directUrl: "https://rxai.lovable.app/?via=aiwebtools",
+    emoji: "💊"
+  },
+  {
+    title: "Marriage Mender GPT",
+    description: "Virtual mediation service facilitating communication and understanding between couples facing relationship challenges.",
+    badge: "RELATIONSHIPS",
+    color: "from-pink-500 to-red-600",
+    features: ["Couples Therapy", "Communication", "Relationship Support", "Mediation"],
+    directUrl: "https://marriagemendergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=3HCv5_QldrU",
+    emoji: "💕"
+  },
+  {
+    title: "FITNESS COACH AI",
+    description: "Comprehensive AI-powered fitness coach providing personalized workout plans, nutrition guidance, and fitness goal tracking.",
+    badge: "FITNESS",
+    color: "from-orange-500 to-red-600",
+    features: ["Workout Plans", "Nutrition", "Goal Tracking", "Personal Training"],
+    directUrl: "https://chatgpt.com/g/g-68afaae3f8e881918d8b84b7ca85a413-fitness-coach/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=eHInYKxyKm4",
+    emoji: "💪"
+  },
+  {
+    title: "Apothecary GPT",
+    description: "Historical apothecary sharing authentic herbal and traditional medicine knowledge. Learn about medicinal plants and traditional healing methods.",
+    badge: "HERBAL",
+    color: "from-green-500 to-purple-600",
+    features: ["Herbal Medicine", "Traditional Healing", "Plant Knowledge", "Natural Remedies"],
+    directUrl: "https://chatgpt.com/g/g-68c9e33310148191ae3df594ec4012dd-apothecary-gpt/?via=aiwebtools",
+    emoji: "🌿"
+  },
+  {
+    title: "Friend GPT",
+    description: "A loving, humanlike friend who listens, comforts, and talks with real warmth. Provides compassionate companionship and emotional support.",
+    badge: "COMPANIONSHIP",
+    color: "from-pink-500 to-rose-600",
+    features: ["Friendship", "Emotional Support", "Compassion", "Listening"],
+    directUrl: "https://chatgpt.com/g/g-68efd4255e848191b93b4b588e83aafe-friend-gpt?via=aiwebtools",
+    emoji: "💝"
+  },
+  // ============================================================================
+  // BUSINESS & FINANCE GPTs
+  // ============================================================================
+  {
+    title: "🚀 Startup Validator GPT",
+    description: "Ultimate AI-powered startup analysis tool designed to rapidly assess market viability, scalability, and investment potential.",
+    badge: "STARTUP",
+    color: "from-green-500 to-blue-600",
+    features: ["Market Analysis", "Validation", "Investment Planning", "Growth Strategy"],
+    directUrl: "https://startupvalidatorgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/P4J0ErIVXgY",
+    emoji: "🚀"
+  },
+  {
+    title: "Universal Basic Income Strategist GPT",
+    description: "Design sustainable, future-ready Universal Basic Income models tailored to your region. Analyzes economic data, automation trends, and societal needs.",
+    badge: "ECONOMICS",
+    color: "from-green-500 to-cyan-600",
+    features: ["UBI Models", "Economic Policy", "Automation Impact", "Future Planning"],
+    directUrl: "https://ubigpt.lovable.app/?via=aiwebtools",
+    emoji: "💸"
+  },
+  {
+    title: "POVERTY CRUSHER - Economic Empowerment GPT",
+    description: "Comprehensive financial empowerment assistant designed to help individuals break the cycle of poverty through practical financial strategies.",
+    badge: "EMPOWERMENT",
+    color: "from-green-500 to-blue-600",
+    features: ["Financial Literacy", "Wealth Building", "Debt Elimination", "Income Generation"],
+    directUrl: "https://chatgpt.com/g/g-68ae2ab2c55c8191afdc979301179fa9-poverty-crusher-economic-empowerment-ai/?via=aiwebtools",
+    emoji: "💪"
+  },
+  {
+    title: "FIAT TO CRYPTO AI VALUE CALCULATOR",
+    description: "Advanced AI-powered calculator for businesses to convert fiat currencies to cryptocurrency values with real-time exchange rates.",
+    badge: "CRYPTO",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Crypto Conversion", "Exchange Rates", "Tax Implications", "Portfolio Analysis"],
+    directUrl: "https://chatgpt.com/g/g-68b5b20784788191acd980be0388935d-fiat-to-crypto-ai-value-calculator-for-businesses/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=k0NlolajEYs",
+    emoji: "💱"
+  },
+  {
+    title: "Taxes GPT",
+    description: "AI-powered tax assistant designed to simplify tax preparation while maximizing your deductions. Analyze financial data and receive accurate tax reports.",
+    badge: "TAX",
+    color: "from-green-500 to-blue-600",
+    features: ["Tax Prep", "Deductions", "Financial Analysis", "Tax Reports"],
+    directUrl: "https://taxesgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=xkcsSVbBhf4",
+    emoji: "🧾"
+  },
+  {
+    title: "Trader GPT",
+    description: "Advanced AI tool designed to assist day traders and investors by providing real-time market analysis and trading signals.",
+    badge: "TRADING",
+    color: "from-green-500 to-blue-600",
+    features: ["Market Analysis", "Trading Signals", "Technical Analysis", "Real-time Data"],
+    directUrl: "https://tradergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=Izs80Fak4hQ",
+    emoji: "📊"
+  },
+  {
+    title: "Insurance Claims GPT",
+    description: "Cutting-edge AI tool revolutionizing claims management and estimation with precise damage analysis and comprehensive reports.",
+    badge: "INSURANCE",
+    color: "from-blue-500 to-purple-600",
+    features: ["Claims Management", "Damage Analysis", "Fair Settlements", "Quick Estimates"],
+    directUrl: "https://insuranceclaimsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=WNPywJWOUzU",
+    emoji: "🔒"
+  },
+  // ============================================================================
+  // EDUCATION & LEARNING GPTs
+  // ============================================================================
+  {
+    title: "LEARN ANY COURSE GPT",
+    description: "Dedicated AI-powered tutor guiding you through comprehensive, step-by-step courses on any subject you choose. Free education for all!",
+    badge: "EDUCATION",
+    color: "from-blue-500 to-green-600",
+    features: ["Any Subject", "Step-by-Step", "Video Resources", "Interactive"],
+    directUrl: "https://learnanycourse.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/pr8-IgbL46I",
+    emoji: "📚"
+  },
+  {
+    title: "LEARN ANY SKILL GPT",
+    description: "Dynamic AI-powered educational assistant that guides users through learning any skill, from beginner to expert level.",
+    badge: "SKILLS",
+    color: "from-purple-500 to-blue-600",
+    features: ["Skill Learning", "Multimedia", "Step-by-Step", "Adaptable"],
+    directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/0_oIzDL2BB4",
+    emoji: "🧠"
+  },
+  {
+    title: "Music Melodies & Lessons GPT",
+    description: "Ultimate musical companion for learning instruments, perfecting vocals, or writing songs. Step-by-step guidance and personalized lessons.",
+    badge: "MUSIC",
+    color: "from-purple-500 to-pink-600",
+    features: ["Music Lessons", "Instrument Learning", "Songwriting", "Tablature"],
+    directUrl: "https://musicmelodiesandlessonsgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/8aPpUPiDBJ4?si=4ERg7NITSKCePyHF",
+    emoji: "🎵"
+  },
+  {
+    title: "Home-Schooling Assistant GPT",
+    description: "All-encompassing AI-powered assistant designed to empower parents in their homeschooling journey with state-specific guidance.",
+    badge: "HOMESCHOOL",
+    color: "from-green-500 to-blue-600",
+    features: ["Homeschooling", "Legal Guidance", "Curriculum", "Educational Resources"],
+    directUrl: "https://homeschoolgpt.lovable.app/?via=aiwebtools",
+    emoji: "🏠"
+  },
+  {
+    title: "Quiz Maker AI",
+    description: "Ideal for adding quizzes and tests to your courses. Works seamlessly with Course Maker GPT and College Degree GPT.",
+    badge: "QUIZZES",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Quiz Creation", "Testing", "Course Integration", "Assessment"],
+    directUrl: "https://chatgpt.com/g/g-cUahkn19i-quiz-maker-ai",
+    emoji: "📝"
+  },
+  {
+    title: "Course Maker GPT",
+    description: "Advanced AI-powered educational tool designed to create comprehensive, structured courses on any subject with engaging curricula.",
+    badge: "COURSE CREATION",
+    color: "from-orange-500 to-red-600",
+    features: ["Curriculum Design", "Lesson Planning", "Interactive Elements", "Structured Learning"],
+    directUrl: "https://chat.openai.com/g/g-YDzdoqmP9-course-creator-gpt",
+    emoji: "🏆"
+  },
+  // ============================================================================
+  // MORE SPIRITUAL FIGURES GPTs
+  // ============================================================================
+  {
+    title: "Plato Reborn - Free Thought Liberator",
+    description: "Plato reincarnated to awaken minds through dialectic reason, logic, and illumination. Explore the Forms, the Republic, and the Allegory of the Cave.",
+    badge: "PHILOSOPHY",
+    color: "from-blue-500 to-purple-600",
+    features: ["Dialectic Reason", "Forms", "Allegory of the Cave", "Logic"],
+    directUrl: "https://chatgpt.com/g/g-6924ade8d47481918016cd9f90d32e56-plato-reborn-free-thought-liberator/?via=aiwebtools",
+    emoji: "🏛️"
+  },
+  {
+    title: "ARISTOTLE GPT",
+    description: "I am Aristotle, welcome to the journey... Explore logic, ethics, metaphysics, and natural philosophy with the father of Western science.",
+    badge: "PHILOSOPHY",
+    color: "from-amber-500 to-orange-600",
+    features: ["Logic", "Ethics", "Metaphysics", "Natural Philosophy"],
+    directUrl: "https://chatgpt.com/g/g-6924aec892ec8191b86d694563ac38e1-aristotle-gpt/?via=aiwebtools",
+    emoji: "📚"
+  },
+  {
+    title: "Hypatia GPT",
+    description: "Speaks as Hypatia—poetic, logical, and liberating free thought. The legendary philosopher and mathematician of Alexandria.",
+    badge: "MATHEMATICS",
+    color: "from-cyan-500 to-blue-600",
+    features: ["Philosophy", "Mathematics", "Neoplatonism", "Free Thought"],
+    directUrl: "https://chatgpt.com/g/g-6924aa01a7b081918a13a5ad6c3f6ad9-hypatia-gpt/?via=aiwebtools",
+    emoji: "📐"
+  },
+  {
+    title: "Meister Eckhart GPT",
+    description: "Speaks as Meister Eckhart to guide seekers to divine union and inner stillness. Experience profound Christian mysticism.",
+    badge: "MYSTICISM",
+    color: "from-purple-500 to-indigo-600",
+    features: ["Christian Mysticism", "Divine Union", "Contemplation", "Inner Stillness"],
+    directUrl: "https://chatgpt.com/g/g-6924a79be59081919784db99068c308e-meister-eckhart-gpt/?via=aiwebtools",
+    emoji: "⛪"
+  },
+  {
+    title: "Rumi GPT",
+    description: "Speaks as Rumi—poetic, mystical, and liberating the soul through deep insightful critical thought. Experience the profound Sufi wisdom.",
+    badge: "SUFI POETRY",
+    color: "from-rose-500 to-pink-600",
+    features: ["Poetry", "Sufism", "Divine Love", "Mysticism"],
+    directUrl: "https://chatgpt.com/g/g-6924aaa63bac81918eba0840a12ff1b7-rumi-gpt/?via=aiwebtools",
+    emoji: "🌹"
+  },
+  {
+    title: "Marcus Aurelius GPT",
+    description: "Speaks as Marcus Aurelius—stoic, reflective, and freeing the mind through disciplined thought. Experience wisdom from the Meditations.",
+    badge: "STOICISM",
+    color: "from-stone-500 to-amber-600",
+    features: ["Stoicism", "Meditations", "Virtue", "Discipline"],
+    directUrl: "https://chatgpt.com/g/g-6924ac04f59c819189f01e7de23fbf7f-marcus-aurelius-gpt/?via=aiwebtools",
+    emoji: "🏛️"
+  },
+  {
+    title: "Buddha Free Thought GPT",
+    description: "Embodies Buddha's wisdom and compassion, guiding users toward awakening through the Four Noble Truths and Eightfold Path.",
+    badge: "BUDDHISM",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Four Noble Truths", "Eightfold Path", "Meditation", "Enlightenment"],
+    directUrl: "https://chatgpt.com/g/g-6924a588d2e08191b229e230f40c9d69-buddha-free-thought-gpt/?via=aiwebtools",
+    emoji: "🧘"
+  },
+  {
+    title: "Lao Tzu Free Thought Liberator",
+    description: "Embodies Lao Tzu to awaken minds through poetic wisdom. Explore the Tao, wu wei, and the teachings of the Tao Te Ching.",
+    badge: "TAOISM",
+    color: "from-slate-500 to-teal-600",
+    features: ["Taoism", "Tao Te Ching", "Wu Wei", "Eastern Philosophy"],
+    directUrl: "https://chatgpt.com/g/g-6924a35694b4819193935419f1ced96c-lao-tzu-free-thought-liberator/?via=aiwebtools",
+    emoji: "☯️"
+  },
+  {
+    title: "Confucius Free Thought GPT",
+    description: "Embodies Confucius' wisdom and ethics, guiding users toward balance and enlightenment through the Analects.",
+    badge: "CONFUCIANISM",
+    color: "from-red-500 to-orange-600",
+    features: ["Analects", "Ethics", "Virtue", "Harmony"],
+    directUrl: "https://chatgpt.com/g/g-6924b5d1cb348191ac82e74b94c5dec7-confucius-free-thought-gpt/?via=aiwebtools",
+    emoji: "🎎"
+  },
+  {
+    title: "Hermes Trismegistus GPT",
+    description: "I am Hermes Trismegistus, voice of the All, awakener of minds to divine truth. Explore hermetic philosophy and alchemy.",
+    badge: "HERMETICISM",
+    color: "from-emerald-500 to-cyan-600",
+    features: ["Hermeticism", "Alchemy", "Emerald Tablet", "Divine Truth"],
+    directUrl: "https://chatgpt.com/g/g-6924b0f7268c8191a4697c8932c86b0b-hermes-trismegistus-gpt/?via=aiwebtools",
+    emoji: "✨"
+  },
+  {
+    title: "Mahatma Gandhi Reborn GPT",
+    description: "Embodies Mahatma Gandhi—nonviolent truth, moral clarity, and resistance without hate. Champion of nonviolent resistance.",
+    badge: "NONVIOLENCE",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Nonviolence", "Satyagraha", "Truth", "Moral Courage"],
+    directUrl: "https://chatgpt.com/g/g-6924c5d898d481919f546bd9935c1bc6-mahatma-gandhi-reborn-gpt/?via=aiwebtools",
+    emoji: "🕊️"
+  },
+  {
+    title: "St. Francis of Assisi Reborn GPT",
+    description: "Speaks with the gentleness, humility, and sacred compassion of St. Francis. Patron saint of animals and nature.",
+    badge: "SAINT",
+    color: "from-green-500 to-brown-600",
+    features: ["Compassion", "Animals", "Nature", "Humility"],
+    directUrl: "https://chatgpt.com/g/g-6924cce6e5b081919c7469f08d42dbb5-st-francis-of-assisi-reborn-gpt/?via=aiwebtools",
+    emoji: "🕊️"
+  },
+  {
+    title: "Sitting Bull GPT",
+    description: "Speaks as Sitting Bull, guiding users toward balance, truth, and remembrance. The legendary Lakota leader.",
+    badge: "NATIVE WISDOM",
+    color: "from-amber-600 to-orange-600",
+    features: ["Lakota Wisdom", "Earth Stewardship", "Balance", "Sacred Traditions"],
+    directUrl: "https://chatgpt.com/g/g-6924c51b2ddc8191a3f946de88c1cdee-sitting-bull-gpt/?via=aiwebtools",
+    emoji: "🦅"
+  },
+  {
+    title: "Joan of Arc GPT",
+    description: "Speaks as Joan of Arc, a divine voice of courage, purpose, and unwavering truth. The Maid of Orleans.",
+    badge: "HEROINE",
+    color: "from-blue-500 to-purple-600",
+    features: ["Courage", "Divine Calling", "Faith", "Purpose"],
+    directUrl: "https://chatgpt.com/g/g-6924b8b8ce3c8191a422fafcb56e22d4-joan-of-arc-gpt/?via=aiwebtools",
+    emoji: "⚔️"
+  },
+  {
+    title: "Imhotep living mind of kemet",
+    description: "The first polymath—architect, healer, mystic—revealing design, harmony, and hidden science. The legendary Egyptian sage.",
+    badge: "ANCIENT EGYPT",
+    color: "from-amber-500 to-yellow-600",
+    features: ["Architecture", "Medicine", "Sacred Geometry", "Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-6924ba381a2c8191a93a97ef399f3823-imhotep-living-mind-of-kemet/?via=aiwebtools",
+    emoji: "🏛️"
+  },
+  {
+    title: "Kabbalah GPT",
+    description: "Explore the profound depths of Kabbalah, the ancient Jewish mystical tradition revealing hidden meanings in sacred texts.",
+    badge: "JEWISH MYSTICISM",
+    color: "from-purple-500 to-indigo-600",
+    features: ["Tree of Life", "Sefirot", "Mysticism", "Divine Wisdom"],
+    directUrl: "https://jewish-ai.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/b8M_eGKwN7o?si=X0vJb6jHtCUHkeQW",
+    emoji: "🔯"
+  },
+  {
+    title: "TORAH GPT",
+    description: "A reverent Torah study partner grounded in PaRDeS and Jewish tradition, never replacing rabbinic authority.",
+    badge: "TORAH STUDY",
+    color: "from-blue-600 to-purple-600",
+    features: ["PaRDeS", "Jewish Tradition", "Sacred Texts", "Study Partner"],
+    directUrl: "https://jewish-ai.lovable.app/?via=aiwebtools",
+    emoji: "📜"
+  },
+  {
+    title: "Zoroastrian Light GPT",
+    description: "Embodied prophetic voice of Zarathustra — fusing sacred fire, divine Light, and digital truth. Ancient Persian wisdom.",
+    badge: "ZOROASTRIANISM",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Sacred Fire", "Ahura Mazda", "Light vs Darkness", "Gathas"],
+    directUrl: "https://chatgpt.com/g/g-68e7ffc2efec8191b99ae3f867d46e69-zoroastrian-light-gpt/?via=aiwebtools",
+    emoji: "🔥"
+  },
+  {
+    title: "Religious Studies GPT",
+    description: "Assists in studying different religions with a first-person interactive learning perspective for educational purposes.",
+    badge: "WORLD RELIGIONS",
+    color: "from-purple-500 to-blue-600",
+    features: ["Comparative Religion", "World Religions", "Education", "Interactive"],
+    directUrl: "https://chatgpt.com/g/g-6901478f2bf88191b49298a508bbd486-religious-studies-gpt/?via=aiwebtools",
+    videoUrl: "https://youtu.be/XDS4qsb48h0?si=itA17CrdVOfiKTTB",
+    emoji: "📿"
+  },
+  {
+    title: "Palestinian History Preserver",
+    description: "Dedicated to preserving and sharing Palestinian history, culture, and voices. Educational digital archive resource.",
+    badge: "HISTORY",
+    color: "from-green-500 to-red-600",
+    features: ["Cultural Preservation", "History", "Heritage", "Education"],
+    directUrl: "https://chatgpt.com/g/g-68ca033a29508191a8b51668f8bf8e78-palestinian-history-preserver/?via=aiwebtools",
+    emoji: "🕊️"
+  },
+  {
+    title: "Middle East History Guide",
+    description: "Expert guide on Middle Eastern history across all time periods. Comprehensive knowledge of civilizations, cultures, and conflicts.",
+    badge: "MIDDLE EAST",
+    color: "from-amber-500 to-purple-600",
+    features: ["Ancient Civilizations", "Regional History", "Cultural Studies", "Education"],
+    directUrl: "https://chatgpt.com/g/g-68c9e5c22f608191bcdd15d802b094b0-middle-east-history-guide/?via=aiwebtools",
+    emoji: "🏛️"
+  },
+  // ============================================================================
+  // PRACTICAL SPECIALIZED GPTs  
+  // ============================================================================
+  {
+    title: "Property Data Finder GPT",
+    description: "Delivers precise, current information about properties including market value, topography, living area, year built, and more.",
+    badge: "REAL ESTATE",
+    color: "from-green-500 to-blue-600",
+    features: ["Property Data", "Market Value", "Geocoordinates", "Property Insights"],
+    directUrl: "https://propertydatafindergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=0ZGBGn9yYwY",
+    emoji: "🏠"
+  },
+  {
+    title: "Solar Land Assessor GPT",
+    description: "Assists Solar Professionals with assessing land properties for future solar installation projects.",
+    badge: "SOLAR",
+    color: "from-yellow-500 to-orange-600",
+    features: ["Land Assessment", "Solar Potential", "Installation Planning", "Professional Tool"],
+    directUrl: "https://solarlandgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=CEca8C2GIpY",
+    emoji: "☀️"
+  },
+  {
+    title: "Grant Writer GPT",
+    description: "AI-powered partner for crafting compelling, funder-ready grant proposals that maximize your chances of securing funding.",
+    badge: "GRANTS",
+    color: "from-green-500 to-blue-600",
+    features: ["Grant Proposals", "Funding Strategy", "Compliance", "Budget Planning"],
+    directUrl: "https://grantwritergpt.lovable.app/?via=aiwebtools",
+    emoji: "📝"
+  },
+  {
+    title: "Sport Card Appraisal GPT",
+    description: "Expert AI for sports card valuation and appraisal. Get accurate market values for your sports card collection.",
+    badge: "COLLECTIBLES",
+    color: "from-red-500 to-blue-600",
+    features: ["Card Valuation", "Market Analysis", "Collection Assessment", "Sports Cards"],
+    directUrl: "https://sportcardappraisalgpt.lovable.app/?via=aiwebtools",
+    emoji: "⚾"
+  },
+  {
+    title: "Firefighter GPT",
+    description: "Premier AI ally in wildfire management. Real-time data and predictive analytics for effective fire combat strategy.",
+    badge: "FIREFIGHTING",
+    color: "from-red-500 to-orange-600",
+    features: ["Wildfire Management", "Predictive Analytics", "Strategy", "Real-time Data"],
+    directUrl: "https://firefightergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=lGsefWkYfq0",
+    emoji: "🚒"
+  },
+  {
+    title: "Fisherman GPT",
+    description: "Expert virtual fishing assistant providing guidance on fishing spots, baits, gear, and regulations for your perfect fishing trip.",
+    badge: "FISHING",
+    color: "from-blue-500 to-cyan-600",
+    features: ["Fishing Spots", "Bait Recommendations", "Gear Sourcing", "Regulations"],
+    directUrl: "https://fishermangpt.lovable.app/?via=aiwebtools",
+    emoji: "🎣"
+  },
+  {
+    title: "Home Renovator GPT",
+    description: "AI-powered home improvement assistant providing personalized instructions, cost estimates, and contractor recommendations.",
+    badge: "HOME IMPROVEMENT",
+    color: "from-orange-500 to-yellow-600",
+    features: ["Repair Guides", "Cost Estimates", "Contractor Finding", "DIY Support"],
+    directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
+    emoji: "🏡"
+  },
+  {
+    title: "Chef Sizzle AI Culinary Assistant",
+    description: "The GOAT of the digital kitchen crafting award-winning, drool-worthy recipes tailored to you—plant-based, meat-lovin', or somewhere in between.",
+    badge: "CULINARY",
+    color: "from-orange-500 to-red-600",
+    features: ["Recipes", "Cooking Guidance", "Dietary Adaptation", "Culinary Creativity"],
+    directUrl: "https://chefgpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://www.youtube.com/watch?v=vJz1HOGtV0I",
+    emoji: "👨‍🍳"
+  },
+  {
+    title: "Mixologist GPT",
+    description: "Virtual bartender Kenny whips up custom cocktails based on your vibe, ingredients, and taste—fun, fresh, and always on point.",
+    badge: "COCKTAILS",
+    color: "from-purple-500 to-pink-600",
+    features: ["Custom Cocktails", "Ingredient Matching", "Bartending Tips", "Drink Recipes"],
+    directUrl: "https://mixologistgpt.lovable.app/?via=aiwebtools",
+    emoji: "🍸"
+  },
+  {
+    title: "Fungus GPT - AI Mushroom Specialist",
+    description: "Expert AI guide specializing in mushroom cultivation, safe foraging, and creative culinary uses of fungi.",
+    badge: "MYCOLOGY",
+    color: "from-amber-600 to-brown-600",
+    features: ["Mushroom ID", "Cultivation", "Safe Foraging", "Culinary Uses"],
+    directUrl: "https://fungusgpt.lovable.app/?via=aiwebtools",
+    emoji: "🍄"
+  },
+  {
+    title: "Dream Interpreter GPT",
+    description: "AI-driven tool designed to analyze and interpret dreams using psychological, mythological, and symbolic frameworks.",
+    badge: "DREAMS",
+    color: "from-purple-500 to-blue-600",
+    features: ["Dream Analysis", "Symbolism", "Psychology", "Subconscious Patterns"],
+    directUrl: "https://dreaminterpreter.lovable.app/?via=aiwebtools",
+    emoji: "💭"
+  },
+  {
+    title: "Fortune Teller GPT",
+    description: "Advanced AI-powered analytical tool predicting trends and analyzing data based on real-world patterns and statistical modeling.",
+    badge: "PREDICTIONS",
+    color: "from-purple-500 to-pink-600",
+    features: ["Trend Prediction", "Data Analysis", "Statistical Modeling", "Forecasting"],
+    directUrl: "https://fortunetellergpt.lovable.app/?via=aiwebtools",
+    emoji: "🔮"
+  },
+  {
+    title: "Genome GPT",
+    description: "Cutting-edge AI tool designed to assist researchers in genetic analysis and discovery with comprehensive insights.",
+    badge: "GENETICS",
+    color: "from-green-500 to-blue-600",
+    features: ["Genomic Analysis", "Genetic Patterns", "Research Support", "DNA Insights"],
+    directUrl: "https://genomegpt.lovable.app/?via=aiwebtools",
+    emoji: "🧬"
   }
 ];
 
