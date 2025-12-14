@@ -27,30 +27,45 @@ export const playTimeWarpVoice = () => {
   }
 };
 
-// Deep bass impact for dramatic emphasis
+// Deep bass impact for dramatic emphasis - audible on all speakers
 const createBassImpact = () => {
   try {
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     
-    // Create a powerful sub-bass hit
+    // Create a punchy bass hit with harmonics (audible on laptop/phone speakers)
     const oscillator = audioContext.createOscillator();
+    const oscillator2 = audioContext.createOscillator(); // Harmonic for speaker audibility
     const gainNode = audioContext.createGain();
+    const gainNode2 = audioContext.createGain();
     
     oscillator.connect(gainNode);
+    oscillator2.connect(gainNode2);
     gainNode.connect(audioContext.destination);
+    gainNode2.connect(audioContext.destination);
     
-    // Sub-bass frequency (around 40-60Hz for that chest-thumping feel)
-    oscillator.frequency.setValueAtTime(50, audioContext.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(25, audioContext.currentTime + 0.3);
+    // Main bass (100Hz - audible on most speakers)
+    oscillator.frequency.setValueAtTime(100, audioContext.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(60, audioContext.currentTime + 0.15);
     oscillator.type = 'sine';
+    
+    // Harmonic layer (200Hz - definitely audible)
+    oscillator2.frequency.setValueAtTime(200, audioContext.currentTime);
+    oscillator2.frequency.exponentialRampToValueAtTime(120, audioContext.currentTime + 0.15);
+    oscillator2.type = 'sine';
     
     // Punchy attack, quick decay
     gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-    gainNode.gain.linearRampToValueAtTime(0.6, audioContext.currentTime + 0.02); // Fast attack
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.4); // Decay
+    gainNode.gain.linearRampToValueAtTime(0.7, audioContext.currentTime + 0.01); // VERY fast attack
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.25); // Quick decay
+    
+    gainNode2.gain.setValueAtTime(0, audioContext.currentTime);
+    gainNode2.gain.linearRampToValueAtTime(0.4, audioContext.currentTime + 0.01);
+    gainNode2.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
     
     oscillator.start(audioContext.currentTime);
-    oscillator.stop(audioContext.currentTime + 0.5);
+    oscillator.stop(audioContext.currentTime + 0.3);
+    oscillator2.start(audioContext.currentTime);
+    oscillator2.stop(audioContext.currentTime + 0.25);
     
     console.log('🔊 Bass impact triggered');
   } catch (error) {
