@@ -28,26 +28,17 @@ const ConsentPopup = () => {
   }, []);
 
   const handleAccept = () => {
-    console.log('🌀 User accepting consent - initiating time warp entry...');
+    console.log('🌀 User accepting consent - closing consent popup...');
     
-    // Start fade-out animation
-    setIsClosing(true);
+    // Immediately hide popup so site is fully usable
+    setShowConsent(false);
+    setIsClosing(false);
     localStorage.setItem('aitools-consent-seen', 'true');
     
-    // Play welcome audio (continues in background)
+    // Play welcome audio only (no visual overlays)
     const welcomeAudio = new Audio('/welcome-disclaimer.mp3');
     welcomeAudio.volume = 1.0;
     welcomeAudio.play().catch(err => console.log('Welcome audio play failed:', err));
-    
-    // Create time portal effect (no screen darkening)
-    if (!isMobile) {
-      createTimePortalEffect('', 'AI Tools Consent Portal', { skipScreenOverlay: true });
-    }
-    
-    // Remove popup after animation completes
-    setTimeout(() => {
-      setShowConsent(false);
-    }, 400);
   };
 
   if (!showConsent) return null;
