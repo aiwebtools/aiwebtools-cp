@@ -39,9 +39,9 @@ const ConsentPopup = () => {
     welcomeAudio.volume = 1.0;
     welcomeAudio.play().catch(err => console.log('Welcome audio play failed:', err));
     
-    // Create time portal effect for desktop only (plays in background)
+    // Create time portal effect (no screen darkening)
     if (!isMobile) {
-      createTimePortalEffect('', 'AI Tools Consent Portal');
+      createTimePortalEffect('', 'AI Tools Consent Portal', { skipScreenOverlay: true });
     }
     
     // Remove popup after animation completes

@@ -209,7 +209,11 @@ const extractToolName = (destinationUrl: string, providedToolName?: string): str
   return 'AI Tool';
 };
 
-export const createTimePortalEffect = (destinationUrl: string, toolName?: string) => {
+export const createTimePortalEffect = (
+  destinationUrl: string, 
+  toolName?: string,
+  options?: { skipScreenOverlay?: boolean }
+) => {
   console.log('🌀 Creating TIME WARP portal effect for URL:', destinationUrl);
   
   // ⚡ INSTANT EXECUTION - No delays, everything fires NOW
@@ -222,8 +226,10 @@ export const createTimePortalEffect = (destinationUrl: string, toolName?: string
   // Create container for all effects - INSTANT
   const effectsContainer = createEffectsContainer();
 
-  // Apply time warp filter - INSTANT
-  applyTimeWarpFilter();
+  // Optionally apply screen-wide overlay filter
+  if (!options?.skipScreenOverlay) {
+    applyTimeWarpFilter();
+  }
 
   // 🔥 INSTANT FIRE - Everything starts NOW, no requestAnimationFrame delay
   playTimeWarpVoice();
