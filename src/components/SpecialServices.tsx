@@ -616,7 +616,7 @@ const featuredGPTsUnsorted = [
     color: "from-green-500 to-blue-600",
     features: ["Skill Mastery", "Learning Paths", "Practice Exercises", "Expert Guidance"],
     directUrl: "https://learnanyskillgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=q1AY2LukHrk",
+    videoUrl: "https://youtu.be/0_oIzDL2BB4",
     emoji: "🧠"
   },
   {
