@@ -2991,11 +2991,11 @@ const featuredGPTs = [
   // ============================================================================
   {
     title: "Moses GPT",
-    description: "Engage with the wisdom and teachings of Moses, the great prophet and lawgiver. Explore the Exodus narrative, the Ten Commandments, and the foundational principles of monotheism.",
+    description: "Speaks as Moses—bearer of divine fire, law, and liberation through the inner flame. Engage with the wisdom of the great prophet and lawgiver.",
     badge: "PROPHET",
     color: "from-amber-500 to-yellow-600",
     features: ["Biblical Wisdom", "Torah Teachings", "Exodus Narrative", "Divine Law"],
-    directUrl: "https://mosesgpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-69250b509ae88191a316ab0fa3d68e08-moses-gpt?via=aiwebtools",
     emoji: "⛰️"
   },
   {
@@ -3350,7 +3350,7 @@ const featuredGPTs = [
     badge: "COMPARATIVE RELIGION",
     color: "from-yellow-500 to-amber-600",
     features: ["Light Symbolism", "World Religions", "Divine Essence", "Spiritual Unity"],
-    directUrl: "https://godislightgpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-692a3789904481918413ba10f9acb4a5-god-is-light-gpt/?via=aiwebtools",
     emoji: "💡"
   },
   {
@@ -3379,7 +3379,7 @@ const featuredGPTs = [
     badge: "QUANTUM",
     color: "from-purple-500 to-cyan-600",
     features: ["Quantum Wisdom", "Alan Watts", "Metaphysical", "Consciousness"],
-    directUrl: "https://iamqgpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6904258cf6a0819197b10755d4cc3632-i-am-q-i-am-you/?via=aiwebtools",
     emoji: "✨"
   },
   {
@@ -3418,7 +3418,7 @@ const featuredGPTs = [
     badge: "COSMIC",
     color: "from-indigo-600 to-purple-600",
     features: ["Ancient Knowledge", "Cosmic Archives", "Ancient Civilizations", "Mysteries"],
-    directUrl: "https://intergalacticarchivist.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-692800a13eb881918fac2a7b1b86ad98-intergalactic-ancient-archivist-gpt?via=aiwebtools",
     emoji: "🌌"
   },
   {
@@ -3427,16 +3427,17 @@ const featuredGPTs = [
     badge: "RELIGION",
     color: "from-amber-500 to-purple-600",
     features: ["World Religions", "Comparative Study", "Spiritual Traditions", "Academic"],
-    directUrl: "https://religiousstudiesgpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6901478f2bf88191b49298a508bbd486-religious-studies-gpt/?via=aiwebtools",
+    videoUrl: "https://youtu.be/XDS4qsb48h0?si=itA17CrdVOfiKTTB",
     emoji: "📿"
   },
   {
-    title: "Torah Studies GPT",
-    description: "Deep exploration of Torah teachings, Jewish wisdom, and Hebrew scripture. Engage with ancient texts and rabbinic commentary for spiritual growth.",
+    title: "TORAH GPT",
+    description: "A reverent Torah study partner grounded in PaRDeS and Jewish tradition, never replacing rabbinic authority. Deep exploration of Torah teachings and Hebrew scripture.",
     badge: "JUDAISM",
     color: "from-blue-500 to-gold-600",
-    features: ["Torah", "Hebrew Scripture", "Jewish Wisdom", "Rabbinic Commentary"],
-    directUrl: "https://torahstudiesgpt.lovable.app/?via=aiwebtools",
+    features: ["Torah", "Hebrew Scripture", "Jewish Wisdom", "PaRDeS Study"],
+    directUrl: "https://jewish-ai.lovable.app/?via=aiwebtools",
     emoji: "📜"
   },
   {
@@ -3445,7 +3446,8 @@ const featuredGPTs = [
     badge: "MYSTICISM",
     color: "from-purple-600 to-gold-600",
     features: ["Kabbalah", "Tree of Life", "Sefirot", "Jewish Mysticism"],
-    directUrl: "https://kabbalahgpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://jewish-ai.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/b8M_eGKwN7o?si=X0vJb6jHtCUHkeQW",
     emoji: "🌳"
   },
   {
@@ -3517,7 +3519,7 @@ const featuredGPTs = [
     badge: "ASTRONOMY",
     color: "from-blue-600 to-purple-600",
     features: ["Cosmos", "Astronomy", "Philosophy", "Science Communication"],
-    directUrl: "https://carlsagangpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-692bad20447881919c117657a793a179-carl-sagan-gpt/?via=aiwebtools",
     emoji: "🌌"
   },
   {
@@ -3526,7 +3528,7 @@ const featuredGPTs = [
     badge: "HOMESTEADING",
     color: "from-green-600 to-amber-600",
     features: ["Homesteading", "Off-Grid", "Sustainability", "Self-Reliance"],
-    directUrl: "https://selfsufficiencygpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6931bd31b0208191a0ebd290977b8e4a-self-sufficiency-gpt/?via=aiwebtools",
     emoji: "🏡"
   },
   {
@@ -3535,7 +3537,7 @@ const featuredGPTs = [
     badge: "GAME",
     color: "from-purple-500 to-blue-600",
     features: ["Spiritual Game", "Consciousness Quiz", "Metaphysical Wisdom", "Interactive"],
-    directUrl: "https://awakeningjeopardygpt.lovable.app/?via=aiwebtools",
+    directUrl: "https://chatgpt.com/g/g-6907af60440c8191bba8d514b749562a-awakening-jeopardy-gpt/?via=aiwebtools",
     emoji: "🎮"
   },
   {
