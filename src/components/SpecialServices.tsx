@@ -136,6 +136,26 @@ const sortByTitle = (a: typeof featuredGPTsUnsorted[0], b: typeof featuredGPTsUn
 
 const featuredGPTsUnsorted = [
   {
+    title: "WE THE PEOPLE AI",
+    description: "Empowering citizens with AI-driven tools for political activism, civic engagement, and grassroots organizing. Connect with representatives and make your voice heard.",
+    badge: "CIVIC ENGAGEMENT",
+    color: "from-blue-600 to-red-600",
+    features: ["Political Activism", "Civic Engagement", "Democracy Tools", "Grassroots Organizing"],
+    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/mxdJ0gLxGCI?si=Yx0rWtOSmWijtZZC",
+    emoji: "🗳️"
+  },
+  {
+    title: "TIME MACHINE GPT",
+    description: "Uncover the past, explore potential futures, and dive into alternative realities! Journey through different eras.",
+    badge: "TIME TRAVEL",
+    color: "from-amber-600 to-orange-600",
+    features: ["Time Travel", "Historical Exploration", "Period Analysis", "Timeline Navigation"],
+    directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/J31nNY5_PB4",
+    emoji: "⏰"
+  },
+  {
     title: "Trader GPT",
     description: "Advanced AI trading assistant for day traders and investors. Get real-time market analysis, trading signals, and data-driven insights for informed trading decisions.",
     badge: "FINANCE",
@@ -1190,16 +1210,6 @@ const featuredGPTsUnsorted = [
     emoji: "💰"
   },
   {
-    title: "TIME MACHINE GPT",
-    description: "Uncover the past, explore potential futures, and dive into alternative realities! Journey through different eras.",
-    badge: "TIME TRAVEL",
-    color: "from-amber-600 to-orange-600",
-    features: ["Time Travel", "Historical Exploration", "Period Analysis", "Timeline Navigation"],
-    directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/J31nNY5_PB4",
-    emoji: "⏰"
-  },
-  {
     title: "Travel Advisor GPT",
     description: "Plan your next vacation with your personal AI travel advisor with tailored recommendations.",
     badge: "TRAVEL",
@@ -1228,16 +1238,6 @@ const featuredGPTsUnsorted = [
     directUrl: "https://petcaregpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/jwjNOKP5mf4",
     emoji: "🐾"
-  },
-  {
-    title: "WE THE PEOPLE AI",
-    description: "Empowering citizens with AI-driven tools for political activism, civic engagement, and grassroots organizing.",
-    badge: "CIVIC ENGAGEMENT",
-    color: "from-blue-600 to-red-600",
-    features: ["Political Activism", "Civic Engagement", "Democracy Tools", "Grassroots Organizing"],
-    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/mxdJ0gLxGCI?si=Yx0rWtOSmWijtZZC",
-    emoji: "🗳️"
   },
   {
     title: "Carl Sagan GPT",
@@ -3030,16 +3030,6 @@ const featuredGPTsUnsorted = [
     videoUrl: "https://youtu.be/qMLF5L_h2xo",
     imageUrl: "/src/assets/architect-matrix-hero.jpg",
     emoji: "🏛️"
-  },
-  {
-    title: "WE THE PEOPLE AI",
-    description: "Empowering citizens with AI-driven tools for political activism, civic engagement, and grassroots organizing. Connect with representatives and make your voice heard.",
-    badge: "CIVIC",
-    color: "from-blue-600 to-red-600",
-    features: ["Political Activism", "Civic Engagement", "Democracy", "Grassroots"],
-    directUrl: "https://legislationwritergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/mxdJ0gLxGCI?si=Yx0rWtOSmWijtZZC",
-    emoji: "🗳️"
   },
   {
     title: "Aether Guide",
