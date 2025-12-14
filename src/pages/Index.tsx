@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -39,7 +38,7 @@ const Index = () => {
 
   // If disclaimer not accepted, send user to gate page first
   useEffect(() => {
-    const hasAccepted = localStorage.getItem("aitools-consent-seen");
+    const hasAccepted = localStorage.getItem("aitools-consent-v2");
     if (!hasAccepted) {
       navigate("/welcome", { replace: true });
     }
@@ -164,7 +163,7 @@ const Index = () => {
         
         {/* SEO-optimized AI Web Tools section - Compact version for SEO only */}
         <AIWebToolsSEOSection />
- 
+   
         {/* Heavy sections are deferred so Home appears INSTANTLY on navigation */}
         <DeferredMount delay={120} fallback={<LoadingSpinner />}>
           {/* Featured Tools Section */}
