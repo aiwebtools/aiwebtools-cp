@@ -105,8 +105,19 @@
     <link rel="preconnect" href="https://lovable.app" crossorigin>
     <link rel="preconnect" href="https://chatgpt.com" crossorigin>
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Preload critical fonts for faster text rendering -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Critical CSS for instant first paint -->
+    <style>
+      /* Minimal critical styles for instant first paint */
+      body { margin: 0; background: #030712; color: #fff; font-family: system-ui, -apple-system, sans-serif; }
+      #root { min-height: 100vh; }
+      .loading-spinner { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+      .loading-spinner::after { content: ''; width: 32px; height: 32px; border: 2px solid #06b6d4; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
     
     <!-- Enhanced Structured Data -->
     <script type="application/ld+json">

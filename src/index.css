@@ -10,6 +10,7 @@
 @import url("./styles/cross-browser.css");
 @import url("./styles/matrix-effects.css");
 @import url("./styles/chromebook-optimizations.css");
+@import url("./styles/performance.css");
 
 @tailwind base;
 @tailwind components;
