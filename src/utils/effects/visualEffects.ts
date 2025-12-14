@@ -687,7 +687,8 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     const binaryCode = Array.from({ length: 30 }, () => Math.random() > 0.5 ? '1' : '0').join('');
     stream.textContent = binaryCode;
     
-    const fontSize = Math.max(12, 18 * scaleFactor);
+    // Fixed font size so 0/1 characters are clearly visible on MOBILE and desktop
+    const fontSize = 18;
     stream.style.cssText = `
       position: absolute;
       top: 50%;
@@ -714,10 +715,10 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     const matrixChar = document.createElement('div');
     matrixChar.className = 'matrix-explosion-char';
     const char = Math.random() > 0.5 ? '1' : '0';
-    const baseFontSize = 30 + Math.random() * 50;
-    const fontSize = Math.max(20, baseFontSize * scaleFactor);
+    // Fixed size so the 0/1 characters POP on mobile and desktop
+    const fontSize = 48;
     const angle = Math.random() * 360;
-    const velocity = Math.max(100, (150 + Math.random() * 400) * scaleFactor);
+    const velocity = 250 + Math.random() * 300;
     const delay = Math.random() * 0.2;
     
     matrixChar.textContent = char;
@@ -753,7 +754,8 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
       Math.random() > 0.5 ? '1' : '0'
     ).join('\n');
     
-    const fontSize = Math.max(10, 16 * scaleFactor);
+    // Fixed size so binary rain is clearly visible on MOBILE and desktop
+    const fontSize = 16;
     column.textContent = chars;
     column.style.cssText = `
       position: fixed;
