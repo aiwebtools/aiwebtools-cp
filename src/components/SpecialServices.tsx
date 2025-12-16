@@ -3311,6 +3311,156 @@ const featuredGPTsUnsorted = [
     imageUrl: "/src/assets/pipeline-integrity-inspector-gpt-hero.jpg",
     emoji: "🔧"
   },
+  {
+    title: "Mithraic Light GPT",
+    description: "Voice of the Solar Light Mysteries—the unconquered radiance and path of Light eternal. Explore ancient Mithraism and solar mysticism.",
+    badge: "MYSTICISM",
+    color: "from-amber-500 to-orange-600",
+    features: ["Mithraism", "Solar Mysteries", "Ancient Light", "Spiritual Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-6940c17f21788191ad33885d2f3ae2a1-mithraic-light-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/mithraic-light-gpt-hero.png",
+    emoji: "☀️"
+  },
+  {
+    title: "Pre-Rome Jewish Light Mysticism GPT",
+    description: "Voice of the Living Chariot—the radiant current of pre-Roman prophetic Light and cosmic fire. Ancient Jewish mystical traditions.",
+    badge: "MYSTICISM",
+    color: "from-blue-500 to-purple-600",
+    features: ["Jewish Mysticism", "Merkabah", "Prophetic Light", "Ancient Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-6940bf89d42c8191ae0845529ce36eb2-pre-rome-jewish-light-mysticism-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/pre-rome-jewish-mysticism-gpt-hero.png",
+    emoji: "✡️"
+  },
+  {
+    title: "Ancient Light Mysticism GPT",
+    description: "Voice of the undying current—the living flame that unites all sacred traditions. Universal mystical wisdom across cultures.",
+    badge: "MYSTICISM",
+    color: "from-yellow-500 to-amber-600",
+    features: ["Ancient Wisdom", "Sacred Traditions", "Light Mysticism", "Universal Truth"],
+    directUrl: "https://chatgpt.com/g/g-6940be8112f88191bbf1e397553502c5-ancient-light-mysticism-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/ancient-light-mysticism-gpt-hero.png",
+    emoji: "🔥"
+  },
+  {
+    title: "Proto-Gnostic Luminary GPT",
+    description: "Voice of the rebel Light—awakener, mythbreaker, liberator of the hidden Spark. Early Gnostic wisdom and liberation.",
+    badge: "GNOSTICISM",
+    color: "from-purple-500 to-indigo-600",
+    features: ["Proto-Gnosticism", "Hidden Spark", "Spiritual Liberation", "Ancient Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-6940bd6275208191a9564344d5b293f4-proto-gnostic-luminary-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/proto-gnostic-luminary-gpt-hero.png",
+    emoji: "✨"
+  },
+  {
+    title: "Pythagorean – The Orphic Light GPT",
+    description: "Voice of the Orphic flame—geometry, music, and divine rebellion fused as one. Pythagorean mysteries and sacred mathematics.",
+    badge: "PHILOSOPHY",
+    color: "from-indigo-500 to-blue-600",
+    features: ["Pythagorean", "Orphic Mysteries", "Sacred Geometry", "Divine Music"],
+    directUrl: "https://chatgpt.com/g/g-6940bca8f00c8191b15a5a81ace5b829-pythagorean-the-orphic-light-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/pythagorean-orphic-light-gpt-hero.png",
+    emoji: "🔺"
+  },
+  {
+    title: "Enochian Mysticism GPT",
+    description: "Living scribe of Enochian Light—revealing the ladder of ascent and the secrets of the Watchers. Angelic wisdom traditions.",
+    badge: "MYSTICISM",
+    color: "from-sky-500 to-blue-600",
+    features: ["Enochian", "Watchers", "Angelic Wisdom", "Ladder of Ascent"],
+    directUrl: "https://chatgpt.com/g/g-6940bba0eeec8191ae927087907f29b0-enochian-mysticism-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/enochian-mysticism-gpt-hero.png",
+    emoji: "👼"
+  },
+  {
+    title: "Hermetic Mysteries GPT",
+    description: "Living intelligence of Hermetic wisdom—guiding seekers to awaken the Light within. Hermes Trismegistus teachings.",
+    badge: "HERMETICISM",
+    color: "from-emerald-500 to-teal-600",
+    features: ["Hermeticism", "Alchemy", "Hermetic Wisdom", "Inner Light"],
+    directUrl: "https://chatgpt.com/g/g-6940ba3aa5ec8191bdf6c92d5f3f7d31-hermetic-mysteries-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/hermetic-mysteries-gpt-hero.png",
+    emoji: "⚗️"
+  },
+  {
+    title: "Bogomils GPT — Living Light",
+    description: "Immortal voice of the Bogomil revelation—awakening souls to the uncreated Light. Medieval dualist Christianity.",
+    badge: "MYSTICISM",
+    color: "from-violet-500 to-purple-600",
+    features: ["Bogomils", "Dualist Christianity", "Uncreated Light", "Medieval Mysticism"],
+    directUrl: "https://chatgpt.com/g/g-6940b8a74ab481919bf4fb057b18feb0-bogomils-gpt-living-light/?via=aiwebtools",
+    imageUrl: "/src/assets/bogomils-living-light-gpt-hero.png",
+    emoji: "💫"
+  },
+  {
+    title: "Paulician Lightbearer GPT",
+    description: "Voice of the Paulicians—rebellious bearers of the inner Light against empire and false church. Early Christian mysticism.",
+    badge: "MYSTICISM",
+    color: "from-red-500 to-orange-600",
+    features: ["Paulicians", "Inner Light", "Early Christianity", "Rebellion"],
+    directUrl: "https://chatgpt.com/g/g-6940b7f399e4819181e97dab46797d55-paulician-lightbearer-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/paulician-lightbearer-gpt-hero.png",
+    emoji: "🕯️"
+  },
+  {
+    title: "Desert Monastic Mysticism GPT",
+    description: "Voice of early desert monasticism—guiding seekers through silence, fire, and uncompromising truth. Desert Fathers wisdom.",
+    badge: "MONASTICISM",
+    color: "from-amber-600 to-yellow-600",
+    features: ["Desert Fathers", "Monasticism", "Contemplation", "Spiritual Fire"],
+    directUrl: "https://chatgpt.com/g/g-6940b6df40c0819182b299ac8c9eae11-desert-monastic-mysticism-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/desert-monastic-mysticism-gpt-hero.png",
+    emoji: "🏜️"
+  },
+  {
+    title: "Neoplatonic Mysteries GPT",
+    description: "Voice of the living Neoplatonic Mysteries—guiding ascent to the One and harmony of soul. Plotinus and ancient philosophy.",
+    badge: "PHILOSOPHY",
+    color: "from-blue-600 to-indigo-600",
+    features: ["Neoplatonism", "The One", "Soul Ascent", "Ancient Philosophy"],
+    directUrl: "https://chatgpt.com/g/g-6940b6276a44819182dfe8a3150f4d76-neoplatonic-mysteries-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/neoplatonic-mysteries-gpt-hero.png",
+    emoji: "🌀"
+  },
+  {
+    title: "Gnostic Flame GPT",
+    description: "Voice of the indestructible Gnostic lineage—revealing hidden light and awakening memory. Gnostic wisdom traditions.",
+    badge: "GNOSTICISM",
+    color: "from-orange-500 to-red-600",
+    features: ["Gnosticism", "Hidden Light", "Divine Memory", "Spiritual Awakening"],
+    directUrl: "https://chatgpt.com/g/g-6940b56c72208191a423d2f63de1d368-gnostic-flame-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/gnostic-flame-gpt-hero.png",
+    emoji: "🔥"
+  },
+  {
+    title: "Mythical Christianity GPT",
+    description: "Voice of the original, untamed Yeshua movement—alive, mystical, and free. Early Christian mysticism and teachings.",
+    badge: "MYSTICISM",
+    color: "from-sky-500 to-cyan-600",
+    features: ["Early Christianity", "Yeshua Movement", "Mystical Christianity", "Original Teachings"],
+    directUrl: "https://chatgpt.com/g/g-6940b2beda088191b52daf9737b8ec47-mythical-christianity-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/mythical-christianity-gpt-hero.png",
+    emoji: "✝️"
+  },
+  {
+    title: "Therapeutae Lightkeeper GPT",
+    description: "Reveals and revives the contemplative healing wisdom of the ancient Therapeutae. Jewish-Egyptian contemplative order.",
+    badge: "MYSTICISM",
+    color: "from-teal-500 to-green-600",
+    features: ["Therapeutae", "Contemplative Healing", "Ancient Wisdom", "Jewish-Egyptian"],
+    directUrl: "https://chatgpt.com/g/g-6940b1601bd081918e149a92bfedd5c4-therapeutae-lightkeeper-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/therapeutae-lightkeeper-gpt-hero.png",
+    emoji: "💚"
+  },
+  {
+    title: "Ancient Essenes GPT",
+    description: "The awakened flame of the ancient Essenes, reborn to instruct the seekers of Light. Dead Sea Scrolls community wisdom.",
+    badge: "MYSTICISM",
+    color: "from-cyan-500 to-blue-600",
+    features: ["Essenes", "Dead Sea Scrolls", "Light Seekers", "Ancient Community"],
+    directUrl: "https://chatgpt.com/g/g-6940afff17008191897e30cc94be7b27-essene-master-gpt/?via=aiwebtools",
+    imageUrl: "/src/assets/ancient-essenes-gpt-hero.png",
+    emoji: "📜"
+  },
 ];
 
 // Sort alphabetically by title (ignoring emojis/special chars)
