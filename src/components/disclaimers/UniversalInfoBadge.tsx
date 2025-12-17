@@ -20,10 +20,13 @@ const UniversalInfoBadge = ({ size = "xs", className = "" }: UniversalInfoBadgeP
 
   return (
     <span 
-      className={`inline-flex items-center ${sizeClasses[size]} bg-black/40 text-white/60 rounded-full font-medium border border-white/10 backdrop-blur-sm ${className}`}
+      className={`inline-flex items-center ${sizeClasses[size]} bg-green-950/60 text-green-400 rounded-full font-medium border border-green-500/30 backdrop-blur-sm animate-pulse ${className}`}
       title="For informational, educational & self-empowerment purposes only"
+      style={{
+        textShadow: '0 0 8px rgba(34, 197, 94, 0.5)'
+      }}
     >
-      <Info className={`${iconSizes[size]} flex-shrink-0`} />
+      <Info className={`${iconSizes[size]} flex-shrink-0 text-green-400`} />
       <span className="whitespace-nowrap">Info • Education • Empowerment Only</span>
     </span>
   );
