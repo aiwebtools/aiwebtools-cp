@@ -4,7 +4,7 @@ import { Suspense, lazy } from 'react';
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { FavoritesProvider } from "@/hooks/useFavorites";
 import { VideoManagerProvider } from "@/hooks/useGlobalVideoManager";
@@ -136,17 +136,9 @@ const RouteGuard: React.FC = () => {
     typeof window !== "undefined" &&
     window.localStorage.getItem("aitools-consent-v3");
 
-  console.log("🔐 RouteGuard check - hasAccepted v3:", hasAccepted, "path:", location.pathname);
-
-  // If user has NOT accepted and is not already on /welcome, force them there
+  // If user has NOT accepted and is not already on /welcome, redirect there
   if (!hasAccepted && location.pathname !== "/welcome") {
-    return (
-      <PageTransition key="welcome-redirect">
-        <Routes>
-          <Route path="*" element={<DisclaimerGate />} />
-        </Routes>
-      </PageTransition>
-    );
+    return <Navigate to="/welcome" replace />;
   }
 
   return <AnimatedRoutes />;

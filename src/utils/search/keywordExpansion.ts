@@ -1213,8 +1213,5 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   
   // Convert back to array and remove empty strings
   const result = Array.from(expandedKeywords).filter(keyword => keyword.length > 0);
-  
-  console.log(`🔍 Expanded keywords for "${searchTerm}":`, result);
-  
   return result;
 };

@@ -72,17 +72,23 @@ const INTENT_PATTERNS = {
   }
 };
 
+// Disable noisy logging by default (console logging on every keystroke causes lag)
+const SEARCH_DEBUG = false;
+const debugLog = (...args: any[]) => {
+  if (SEARCH_DEBUG) console.log(...args);
+};
+
 // Detect user intent based on search term
 const detectIntent = (searchTerm: string): string | null => {
   const lowerTerm = searchTerm.toLowerCase();
-  
+
   for (const [intent, config] of Object.entries(INTENT_PATTERNS)) {
     if (config.triggers.some(trigger => lowerTerm.includes(trigger))) {
-      console.log(`🎯 Detected intent: ${intent} for search: ${searchTerm}`);
+      debugLog(`🎯 Detected intent: ${intent} for search: ${searchTerm}`);
       return intent;
     }
   }
-  
+
   return null;
 };
 
@@ -167,7 +173,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   
   // VIDEO SEARCH PRIORITY - Strict video tool filtering
   if (normalizedSearchTerm === 'video' || normalizedSearchTerm.includes('video')) {
-    console.log('🎬 VIDEO SEARCH DETECTED - Filtering for video tools only');
+    debugLog('🎬 VIDEO SEARCH DETECTED - Filtering for video tools only');
     
     // First, find all tools with "video" in title, description, category, or tags
     const videoTools = tools.filter(tool => {
@@ -182,7 +188,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
              lowerTags.some(tag => tag.includes('video'));
     });
     
-    console.log(`🎬 Found ${videoTools.length} video tools:`, videoTools.slice(0, 5).map(t => t.title));
+    debugLog(`🎬 Found ${videoTools.length} video tools:`, videoTools.slice(0, 5).map(t => t.title));
     
     // Sort video tools by relevance - exact title matches first
     const sortedVideoTools = videoTools.sort((a, b) => {
@@ -263,7 +269,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       normalizedSearchTerm === 'learn' || normalizedSearchTerm.includes('learn') ||
       normalizedSearchTerm === 'course' || normalizedSearchTerm.includes('course') ||
       normalizedSearchTerm === 'school' || normalizedSearchTerm.includes('school')) {
-    console.log('🎓 EDUCATION SEARCH DETECTED - Filtering for education tools only');
+    debugLog('🎓 EDUCATION SEARCH DETECTED - Filtering for education tools only');
     
     const educationTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
@@ -282,7 +288,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
                                   tag.includes('course') || tag.includes('skill'));
     });
     
-    console.log(`🎓 Found ${educationTools.length} education tools:`, educationTools.slice(0, 5).map(t => t.title));
+    debugLog(`🎓 Found ${educationTools.length} education tools:`, educationTools.slice(0, 5).map(t => t.title));
     
     const sortedEducationTools = educationTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
@@ -651,7 +657,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   // WRITING TOOL PRIORITY - Enhanced detection
   if (normalizedSearchTerm === 'writing' || normalizedSearchTerm.includes('writing') ||
       normalizedSearchTerm.includes('write') || normalizedSearchTerm.includes('content')) {
-    console.log('✍️ WRITING SEARCH DETECTED - Filtering for writing tools only');
+    debugLog('✍️ WRITING SEARCH DETECTED - Filtering for writing tools only');
     
     const writingTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
@@ -668,7 +674,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
              lowerTags.some(tag => tag.includes('writing') || tag.includes('content'));
     });
     
-    console.log(`✍️ Found ${writingTools.length} writing tools:`, writingTools.slice(0, 5).map(t => t.title));
+    debugLog(`✍️ Found ${writingTools.length} writing tools:`, writingTools.slice(0, 5).map(t => t.title));
     
     const sortedWritingTools = writingTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
@@ -1796,13 +1802,44 @@ const performEnhancedSearch = (
 
   // Apply deduplication to enhance search results and avoid showing duplicate tools
   const deduplicatedResults = deduplicateSearchResults(results);
-  console.log(`🔍 Enhanced search: ${results.length} → ${deduplicatedResults.length} (removed ${results.length - deduplicatedResults.length} duplicates)`);
-  
-  // Apply 2:1 interleaving: 2 external tools, then 1 Custom GPT/Gem
-  const interleavedResults = applySearchInterleaving(deduplicatedResults);
-  console.log(`🔄 Applied 2:1 interleaving to ${interleavedResults.length} search results`);
-  
-  return interleavedResults;
+  debugLog(`🔍 Enhanced search: ${results.length} → ${deduplicatedResults.length} (removed ${results.length - deduplicatedResults.length} duplicates)`);
+
+  // PINNED PRIORITIES: Certain intents must ALWAYS show the right tool first.
+  // This bypasses 2:1 interleaving only for the pinned head items.
+  const lowerTerm = searchTerm.toLowerCase();
+  const pinnedTitles: string[] = [];
+
+  // Book writing intent (natural language)
+  if ((lowerTerm.includes("write") && lowerTerm.includes("book")) || lowerTerm.includes("book writing") || lowerTerm.includes("book writer")) {
+    pinnedTitles.push("BOOK WRITER GPT");
+  }
+
+  // Movie making intent (natural language)
+  if ((lowerTerm.includes("make") || lowerTerm.includes("create")) && (lowerTerm.includes("movie") || lowerTerm.includes("film") || lowerTerm.includes("video"))) {
+    pinnedTitles.push("Movie Maker Studio AI SUITE", "Movie Script Writer GPT", "Sora Prompt Assistant", "Luma Dream Machine Prompt Assistant");
+  }
+
+  const pinned: Tool[] = [];
+  if (pinnedTitles.length) {
+    const set = new Set<string>();
+    for (const title of pinnedTitles) {
+      const found = deduplicatedResults.find(t => t.title.toLowerCase() === title.toLowerCase());
+      if (found && !set.has(found.title)) {
+        set.add(found.title);
+        pinned.push(found);
+      }
+    }
+  }
+
+  const remaining = pinned.length
+    ? deduplicatedResults.filter(t => !pinned.some(p => p.title === t.title))
+    : deduplicatedResults;
+
+  // Apply 2:1 interleaving: 2 external tools, then 1 Custom GPT/Gem (for the remaining results)
+  const interleavedResults = applySearchInterleaving(remaining);
+  debugLog(`🔄 Applied 2:1 interleaving to ${interleavedResults.length} search results`);
+
+  return pinned.length ? [...pinned, ...interleavedResults] : interleavedResults;
 };
 
 // Helper function to remove duplicate tools
