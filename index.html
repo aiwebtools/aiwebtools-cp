@@ -105,70 +105,23 @@
     <link rel="preconnect" href="https://lovable.app" crossorigin>
     <link rel="preconnect" href="https://chatgpt.com" crossorigin>
     
-    <!-- Preload critical fonts for faster text rendering -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet"></noscript>
+    <!-- Preload critical resources for fastest load -->
+    <link rel="modulepreload" href="/src/main.tsx">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"></noscript>
     
-    <!-- Critical CSS for instant first paint -->
+    <!-- Minimal loading CSS - no JS overhead -->
     <style>
-      body { margin: 0; background: #030712; color: #fff; font-family: system-ui, -apple-system, sans-serif; }
+      body { margin: 0; background: #030712; }
       #root { min-height: 100vh; }
-      .loading-spinner { 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        min-height: 100vh; 
-        position: relative;
-        overflow: hidden;
-        background: #030712;
-      }
-      .matrix-rain { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
-      .m { position: absolute; top: -20%; font: 10px monospace; color: #00ff41; writing-mode: vertical-rl; animation: f linear infinite; will-change: transform; text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 40px rgba(0,255,65,0.5); }
-      @keyframes f { 0% { transform: translateY(0); } 100% { transform: translateY(130vh); } }
-      .loading-text {
-        position: relative;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        font-family: 'Courier New', monospace;
-        font-size: 16px;
-        color: #00ff41;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
-      }
-      .dots { display: flex; margin-left: 4px; }
-      .dot { opacity: 0; animation: blink 1.6s infinite; }
-      .dot:nth-child(1) { animation-delay: 0s; }
-      .dot:nth-child(2) { animation-delay: 0.3s; }
-      .dot:nth-child(3) { animation-delay: 0.6s; }
-      .dot:nth-child(4) { animation-delay: 0.9s; }
-      .dot:nth-child(5) { animation-delay: 1.2s; }
-      @keyframes blink { 0%, 20% { opacity: 0; } 40%, 100% { opacity: 1; } }
+      .ld { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #030712; }
+      .lt { font: 14px 'Courier New', monospace; color: #00ff41; text-shadow: 0 0 10px #00ff41; letter-spacing: 2px; }
+      .dt { animation: b 1.4s steps(1) infinite; }
+      .dt:nth-child(2) { animation-delay: .3s; }
+      .dt:nth-child(3) { animation-delay: .6s; }
+      .dt:nth-child(4) { animation-delay: .9s; }
+      @keyframes b { 0%,50% { opacity: 0; } 51%,100% { opacity: 1; } }
     </style>
-    <script>
-      // Scramble Matrix characters continuously until React loads
-      const chars = '01アイウエオカキクケコサシスセソ';
-      const scrambleInterval = setInterval(() => {
-        const elements = document.querySelectorAll('.m');
-        if (elements.length === 0) {
-          clearInterval(scrambleInterval); // Stop when React replaces content
-          return;
-        }
-        elements.forEach(el => {
-          let s = '';
-          for (let i = 0; i < 5; i++) s += chars[Math.floor(Math.random() * chars.length)];
-          el.textContent = s;
-        });
-      }, 80);
-      
-      // Prefetch tools data in background during loading animation
-      // This warms up the module cache so search is instant when app loads
-      setTimeout(() => {
-        import('/src/data/toolsData.ts').catch(() => {});
-        import('/src/utils/searchUtils.ts').catch(() => {});
-      }, 100);
-    </script>
     
     <!-- Enhanced Structured Data -->
     <script type="application/ld+json">
@@ -233,50 +186,8 @@
 </head>
   <body>
     <div id="root">
-      <div class="loading-spinner">
-        <div class="matrix-rain">
-          <span class="m" style="left:2%;animation-duration:2.5s;opacity:.3">01010</span>
-          <span class="m" style="left:5%;animation-duration:3.2s;animation-delay:.2s;opacity:.4">10110</span>
-          <span class="m" style="left:8%;animation-duration:2.8s;animation-delay:.5s;opacity:.35">01101</span>
-          <span class="m" style="left:11%;animation-duration:3.5s;animation-delay:.1s;opacity:.25">11010</span>
-          <span class="m" style="left:14%;animation-duration:2.9s;animation-delay:.7s;opacity:.4">00101</span>
-          <span class="m" style="left:17%;animation-duration:3.1s;animation-delay:.3s;opacity:.3">10011</span>
-          <span class="m" style="left:20%;animation-duration:2.6s;animation-delay:.6s;opacity:.45">01110</span>
-          <span class="m" style="left:23%;animation-duration:3.3s;animation-delay:.15s;opacity:.35">11001</span>
-          <span class="m" style="left:26%;animation-duration:2.7s;animation-delay:.8s;opacity:.3">00110</span>
-          <span class="m" style="left:29%;animation-duration:3.4s;animation-delay:.4s;opacity:.4">10101</span>
-          <span class="m" style="left:32%;animation-duration:2.5s;animation-delay:.25s;opacity:.35">01011</span>
-          <span class="m" style="left:35%;animation-duration:3s;animation-delay:.55s;opacity:.3">11100</span>
-          <span class="m" style="left:38%;animation-duration:2.8s;animation-delay:.1s;opacity:.45">00011</span>
-          <span class="m" style="left:41%;animation-duration:3.2s;animation-delay:.65s;opacity:.35">10010</span>
-          <span class="m" style="left:44%;animation-duration:2.6s;animation-delay:.35s;opacity:.4">01001</span>
-          <span class="m" style="left:47%;animation-duration:3.1s;animation-delay:.75s;opacity:.3">11011</span>
-          <span class="m" style="left:50%;animation-duration:2.9s;animation-delay:.2s;opacity:.45">00100</span>
-          <span class="m" style="left:53%;animation-duration:3.3s;animation-delay:.5s;opacity:.35">10111</span>
-          <span class="m" style="left:56%;animation-duration:2.7s;animation-delay:.15s;opacity:.4">01100</span>
-          <span class="m" style="left:59%;animation-duration:3.4s;animation-delay:.6s;opacity:.3">11110</span>
-          <span class="m" style="left:62%;animation-duration:2.5s;animation-delay:.45s;opacity:.4">00001</span>
-          <span class="m" style="left:65%;animation-duration:3s;animation-delay:.8s;opacity:.35">10100</span>
-          <span class="m" style="left:68%;animation-duration:2.8s;animation-delay:.3s;opacity:.45">01111</span>
-          <span class="m" style="left:71%;animation-duration:3.2s;animation-delay:.7s;opacity:.3">11101</span>
-          <span class="m" style="left:74%;animation-duration:2.6s;animation-delay:.4s;opacity:.4">00010</span>
-          <span class="m" style="left:77%;animation-duration:3.1s;animation-delay:.9s;opacity:.35">10001</span>
-          <span class="m" style="left:80%;animation-duration:2.9s;animation-delay:.55s;opacity:.3">01010</span>
-          <span class="m" style="left:83%;animation-duration:3.3s;animation-delay:.25s;opacity:.45">11000</span>
-          <span class="m" style="left:86%;animation-duration:2.7s;animation-delay:.65s;opacity:.35">00111</span>
-          <span class="m" style="left:89%;animation-duration:3.4s;animation-delay:.1s;opacity:.4">10110</span>
-          <span class="m" style="left:92%;animation-duration:2.5s;animation-delay:.85s;opacity:.3">01101</span>
-          <span class="m" style="left:95%;animation-duration:3s;animation-delay:.35s;opacity:.4">11010</span>
-          <span class="m" style="left:98%;animation-duration:2.8s;animation-delay:.6s;opacity:.35">00101</span>
-          <span class="m" style="left:3.5%;animation-duration:3.2s;animation-delay:.75s;opacity:.25">10011</span>
-          <span class="m" style="left:6.5%;animation-duration:2.6s;animation-delay:.45s;opacity:.4">01110</span>
-          <span class="m" style="left:9.5%;animation-duration:3.1s;animation-delay:.2s;opacity:.35">11001</span>
-          <span class="m" style="left:12.5%;animation-duration:2.9s;animation-delay:.9s;opacity:.3">00110</span>
-          <span class="m" style="left:15.5%;animation-duration:3.3s;animation-delay:.5s;opacity:.45">10101</span>
-          <span class="m" style="left:18.5%;animation-duration:2.7s;animation-delay:.15s;opacity:.35">01011</span>
-          <span class="m" style="left:21.5%;animation-duration:3.4s;animation-delay:.7s;opacity:.4">11100</span>
-        </div>
-        <div class="loading-text">LOADING YOUR AI TOOL EMPIRE<span class="dots"><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></span></div>
+      <div class="ld">
+        <div class="lt">LOADING YOUR AI TOOL EMPIRE<span class="dt">.</span><span class="dt">.</span><span class="dt">.</span><span class="dt">.</span></div>
       </div>
     </div>
     
