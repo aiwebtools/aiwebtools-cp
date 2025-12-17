@@ -1,6 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, HelpCircle, Search, Star, Zap, Shield, Users } from 'lucide-react';
+import { HelpCircle, Search, Star, Zap, Users, Grid3X3, Copy, BookOpen, Home } from 'lucide-react';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import GlobalSearchBar from '@/components/GlobalSearchBar';
+import { Button } from '@/components/ui/button';
 
 const FAQPage = () => {
   const faqs = [
@@ -108,23 +112,12 @@ const FAQPage = () => {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-b from-black via-gray-950 to-black text-white">
-        {/* Header */}
-        <div className="sticky top-0 z-50 bg-black/80 backdrop-blur-xl border-b border-green-500/20">
-          <div className="container mx-auto px-4 py-4">
-            <Link 
-              to="/" 
-              className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5" />
-              <span>Back to AI Tools Directory</span>
-            </Link>
-          </div>
-        </div>
+      <Header />
 
+      <div className="min-h-screen bg-gradient-to-b from-black via-gray-950 to-black text-white pt-20">
         {/* Hero */}
         <div className="container mx-auto px-4 py-12">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/30 rounded-full mb-6">
               <HelpCircle className="w-5 h-5 text-green-400" />
               <span className="text-green-400 text-sm font-medium">Frequently Asked Questions</span>
@@ -132,13 +125,52 @@ const FAQPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 via-emerald-300 to-cyan-400 bg-clip-text text-transparent">
               Best AI Tools Directory FAQ
             </h1>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
               Everything you need to know about finding the best AI tools in our comprehensive directory of 2000+ curated tools.
             </p>
+
+            {/* Navigation Buttons */}
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
+              <Button asChild className="bg-green-600/20 hover:bg-green-600/30 border border-green-500/30 text-green-300">
+                <Link to="/">
+                  <Home className="w-4 h-4 mr-2" />
+                  Home
+                </Link>
+              </Button>
+              <Button asChild className="bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/30 text-cyan-300">
+                <Link to="/main-category/ALL%20AI%20TOOLS">
+                  <Grid3X3 className="w-4 h-4 mr-2" />
+                  Browse All Tools
+                </Link>
+              </Button>
+              <Button asChild className="bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-purple-300">
+                <a href="https://lovable.dev/projects/e2ddf9b0-bb19-44f8-ae1a-05e469735dad?via=aiwebtools" target="_blank" rel="noopener noreferrer">
+                  <Copy className="w-4 h-4 mr-2" />
+                  Clone AI Database
+                </a>
+              </Button>
+              <Button asChild className="bg-yellow-600/20 hover:bg-yellow-600/30 border border-yellow-500/30 text-yellow-300">
+                <Link to="/our-story">
+                  <BookOpen className="w-4 h-4 mr-2" />
+                  Our Story
+                </Link>
+              </Button>
+              <Button asChild className="bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 text-blue-300">
+                <Link to="/blog">
+                  <Star className="w-4 h-4 mr-2" />
+                  Blog
+                </Link>
+              </Button>
+            </div>
+
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto mb-12">
+              <GlobalSearchBar />
+            </div>
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-4xl mx-auto">
             {[
               { icon: Search, label: "AI Tools", value: "2000+" },
               { icon: Star, label: "Average Rating", value: "4.9★" },
@@ -174,24 +206,32 @@ const FAQPage = () => {
           </div>
 
           {/* CTA */}
-          <div className="text-center mt-12 p-8 bg-gradient-to-r from-green-500/10 via-emerald-500/10 to-cyan-500/10 border border-green-500/30 rounded-2xl">
+          <div className="text-center mt-12 p-8 bg-gradient-to-r from-green-500/10 via-emerald-500/10 to-cyan-500/10 border border-green-500/30 rounded-2xl max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold text-white mb-4">Ready to Find Your Perfect AI Tools?</h2>
             <p className="text-gray-400 mb-6">Explore our directory of 2000+ best AI tools and discover tools that will transform your workflow.</p>
-            <Link 
-              to="/"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-black font-bold rounded-full hover:from-green-400 hover:to-emerald-400 transition-all"
-            >
-              <Search className="w-5 h-5" />
-              Browse Best AI Tools
-            </Link>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link 
+                to="/"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-black font-bold rounded-full hover:from-green-400 hover:to-emerald-400 transition-all"
+              >
+                <Search className="w-5 h-5" />
+                Browse Best AI Tools
+              </Link>
+              <a 
+                href="https://lovable.dev/projects/e2ddf9b0-bb19-44f8-ae1a-05e469735dad?via=aiwebtools"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-full hover:from-purple-400 hover:to-pink-400 transition-all"
+              >
+                <Copy className="w-5 h-5" />
+                Clone This AI Database
+              </a>
+            </div>
           </div>
         </div>
-
-        {/* Footer Note */}
-        <div className="container mx-auto px-4 py-8 text-center text-gray-600 text-sm">
-          <p>AI WEB TOOLS - The Best AI Tools Directory | © 2025 AI WEB TOOLS LLC</p>
-        </div>
       </div>
+
+      <Footer />
     </>
   );
 };

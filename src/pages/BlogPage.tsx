@@ -2,10 +2,11 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import GlobalSearchBar from '@/components/GlobalSearchBar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, ArrowRight, TrendingUp, Users, Sparkles } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, TrendingUp, Users, Sparkles, Grid3X3, Copy, BookOpen, Home, HelpCircle } from 'lucide-react';
 
 const blogPosts = [
   {
@@ -247,15 +248,46 @@ export default function BlogPage() {
               <span className="text-cyan-400">AI Tools</span> Blog & Tutorials
             </h1>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto mb-6">
-              Expert insights, reviews, and guides on 2195+ AI tools. Stay ahead with the latest AI trends.
+              Expert insights, reviews, and guides on 2000+ AI tools. Stay ahead with the latest AI trends including GPT-5, Claude 4, and more.
             </p>
-            <div className="flex justify-center gap-4 flex-wrap">
-              <Button asChild className="bg-cyan-600 hover:bg-cyan-700">
+
+            {/* Navigation Buttons */}
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
+              <Button asChild className="bg-green-600/20 hover:bg-green-600/30 border border-green-500/30 text-green-300">
+                <Link to="/">
+                  <Home className="w-4 h-4 mr-2" />
+                  Home
+                </Link>
+              </Button>
+              <Button asChild className="bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/30 text-cyan-300">
                 <Link to="/main-category/ALL%20AI%20TOOLS">
-                  <Sparkles className="w-4 h-4 mr-2" />
+                  <Grid3X3 className="w-4 h-4 mr-2" />
                   Browse All Tools
                 </Link>
               </Button>
+              <Button asChild className="bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-purple-300">
+                <a href="https://lovable.dev/projects/e2ddf9b0-bb19-44f8-ae1a-05e469735dad?via=aiwebtools" target="_blank" rel="noopener noreferrer">
+                  <Copy className="w-4 h-4 mr-2" />
+                  Clone AI Database
+                </a>
+              </Button>
+              <Button asChild className="bg-yellow-600/20 hover:bg-yellow-600/30 border border-yellow-500/30 text-yellow-300">
+                <Link to="/our-story">
+                  <BookOpen className="w-4 h-4 mr-2" />
+                  Our Story
+                </Link>
+              </Button>
+              <Button asChild className="bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 text-blue-300">
+                <Link to="/faq">
+                  <HelpCircle className="w-4 h-4 mr-2" />
+                  FAQ
+                </Link>
+              </Button>
+            </div>
+
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto mb-8">
+              <GlobalSearchBar />
             </div>
           </div>
 
