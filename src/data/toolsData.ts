@@ -8,6 +8,7 @@ import { deduplicateTools } from '@/utils/toolDeduplication';
 import { forceWEB3Reset } from '@/utils/forceWEB3CacheReset';
 import { markFreeTools } from '@/utils/toolUtils';
 import { runCategoryPhaseTest } from '@/utils/categoryUtils/categoryPhaseTest';
+import { applySpirtualTags } from '@/utils/spiritualTagging';
 
 // Force WEB3 cache reset to ensure .transfermoney appears
 forceWEB3Reset();
@@ -168,21 +169,22 @@ console.log(`   📊 Combined tools: ${combinedTools.length}`);
 console.log(`   📊 After filtering: ${filteredTools.length}`);
 console.log(`   📊 Tools removed by filtering: ${combinedTools.length - filteredTools.length}`);
 
-// Mark all AI Web Tools GPTs as free
+// Mark all AI Web Tools GPTs as free and apply spiritual/simulation tags
 const toolsWithFreeFlags = markFreeTools(filteredTools);
-const freeToolsCount = toolsWithFreeFlags.filter(t => t.isFree).length;
+const toolsWithTags = applySpirtualTags(toolsWithFreeFlags);
+const freeToolsCount = toolsWithTags.filter(t => t.isFree).length;
 console.log(`   📊 Free AI Web Tools GPTs: ${freeToolsCount}`);
 
 // DEBUG: Check if ElevenLabs and Suno tools are in the final collection
-const elevenLabsInFinal = toolsWithFreeFlags.filter(tool => tool.title.toLowerCase().includes('eleven'));
-const sunoInFinal = toolsWithFreeFlags.filter(tool => tool.title.toLowerCase().includes('suno'));
+const elevenLabsInFinal = toolsWithTags.filter(tool => tool.title.toLowerCase().includes('eleven'));
+const sunoInFinal = toolsWithTags.filter(tool => tool.title.toLowerCase().includes('suno'));
 
 console.log(`🔍 FINAL TOOLS DEBUG:`);
-console.log(`   Total tools in final collection: ${toolsWithFreeFlags.length}`);
+console.log(`   Total tools in final collection: ${toolsWithTags.length}`);
 console.log(`   ElevenLabs tools found: ${elevenLabsInFinal.length}`, elevenLabsInFinal.map(t => t.title));
 console.log(`   Suno tools found: ${sunoInFinal.length}`, sunoInFinal.map(t => t.title));
 
-export const allTools: Tool[] = toolsWithFreeFlags;
+export const allTools: Tool[] = toolsWithTags;
 
 // DEBUG: Find Property Data Finder GPT and log its details
 const propertyToolIndex = allTools.findIndex(tool => tool.title === "Property Data Finder GPT");
