@@ -33,6 +33,7 @@ const AIAgentsDirectory = lazy(() => import("./pages/AIAgentsDirectory"));
 const ChatGPTAlternatives = lazy(() => import("./pages/ChatGPTAlternatives"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const GamingEntertainmentPage = lazy(() => import("./pages/GamingEntertainmentPage"));
+const FAQPage = lazy(() => import("./pages/FAQPage"));
 
 // Lazy load non-critical components
 const FloatingCloneButton = lazy(() => import("./components/FloatingCloneButton"));
@@ -114,6 +115,7 @@ const AnimatedRoutes = () => {
         <Route path="/chatgpt-alternatives" element={<ChatGPTAlternatives />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/gaming-entertainment" element={<GamingEntertainmentPage />} />
+        <Route path="/faq" element={<FAQPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/disclaimers" element={<DisclaimersPage />} />
         <Route path="/our-story" element={<OurStoryPage />} />
