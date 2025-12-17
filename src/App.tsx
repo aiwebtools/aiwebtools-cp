@@ -69,41 +69,10 @@ const WelcomeNeoVoice = () => {
 // Pre-initialize category cache for instant category page loads
 import "@/utils/categoryUtils/precomputedCache";
 
-// Loading fallback with Matrix rain effect
+// Minimal loading fallback - only shows briefly for lazy routes
 const PageLoader = () => (
-  <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
-    {/* Matrix rain columns - using global CSS keyframes */}
-    <div className="absolute inset-0 pointer-events-none">
-      {Array.from({ length: 25 }).map((_, i) => (
-        <div
-          key={i}
-          className="absolute top-0 text-green-500 text-sm font-mono matrix-rain-column"
-          style={{
-            left: `${(i / 25) * 100}%`,
-            animationDuration: `${2 + (i % 3)}s`,
-            animationDelay: `${(i % 5) * 0.3}s`,
-          }}
-        >
-          {Array.from({ length: 20 }).map((_, j) => (
-            <div 
-              key={j} 
-              className="text-green-400"
-              style={{ 
-                opacity: 1 - j * 0.04,
-                textShadow: '0 0 10px #00ff00, 0 0 20px #00ff00'
-              }}
-            >
-              {j % 2 === 0 ? '1' : '0'}
-            </div>
-          ))}
-        </div>
-      ))}
-    </div>
-    {/* Center spinner */}
-    <div className="z-10 flex flex-col items-center gap-4">
-      <div className="w-12 h-12 border-4 border-green-500 border-t-transparent rounded-full animate-spin" style={{ boxShadow: '0 0 20px #00ff00' }} />
-      <div className="text-green-400 text-lg font-mono animate-pulse" style={{ textShadow: '0 0 10px #00ff00' }}>Loading...</div>
-    </div>
+  <div className="min-h-screen bg-black flex items-center justify-center">
+    <div className="w-8 h-8 border-2 border-green-500 border-t-transparent rounded-full animate-spin" />
   </div>
 );
 
