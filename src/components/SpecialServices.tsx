@@ -157,6 +157,16 @@ const featuredGPTsUnsorted = [
     emoji: "⏰"
   },
   {
+    title: "Time Machine of Unwritten History GPT",
+    description: "An unfiltered cosmic historian revealing lost truths through immersive time travel. Unveil hidden civilizations and forgotten knowledge.",
+    badge: "HIDDEN HISTORY",
+    color: "from-purple-600 to-amber-500",
+    features: ["Lost Civilizations", "Hidden History", "Alternative Narratives", "Cosmic Exploration"],
+    directUrl: "https://chatgpt.com/g/g-6942c94dcb08819191863b6d35161f09-time-machine-of-unwritten-history-gpt?via=aiwebtools",
+    imageUrl: "/src/assets/time-machine-unwritten-history.png",
+    emoji: "🌌"
+  },
+  {
     title: "Trader GPT",
     description: "Advanced AI trading assistant for day traders and investors. Get real-time market analysis, trading signals, and data-driven insights for informed trading decisions.",
     badge: "FINANCE",
