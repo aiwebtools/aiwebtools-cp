@@ -7,9 +7,9 @@ interface UniversalInfoBadgeProps {
 
 const UniversalInfoBadge = ({ size = "xs", className = "" }: UniversalInfoBadgeProps) => {
   const sizeClasses = {
-    xs: "text-[8px] px-1 py-0.5 gap-0.5",
-    sm: "text-[9px] px-1.5 py-0.5 gap-1",
-    md: "text-xs px-2 py-1 gap-1"
+    xs: "text-[7px] px-1.5 py-0.5 gap-1",
+    sm: "text-[8px] px-2 py-0.5 gap-1",
+    md: "text-[10px] px-2 py-1 gap-1.5"
   };
 
   const iconSizes = {
@@ -19,29 +19,13 @@ const UniversalInfoBadge = ({ size = "xs", className = "" }: UniversalInfoBadgeP
   };
 
   return (
-    <div className={`flex flex-wrap gap-0.5 ${className}`}>
-      <span 
-        className={`inline-flex items-center ${sizeClasses[size]} bg-muted/50 text-muted-foreground/70 rounded font-medium`}
-        title="For informational purposes only"
-      >
-        <Info className={iconSizes[size]} />
-        <span>Information purposes only</span>
-      </span>
-      <span 
-        className={`inline-flex items-center ${sizeClasses[size]} bg-muted/50 text-muted-foreground/70 rounded font-medium`}
-        title="For educational purposes only"
-      >
-        <Info className={iconSizes[size]} />
-        <span>Educational purposes only</span>
-      </span>
-      <span 
-        className={`inline-flex items-center ${sizeClasses[size]} bg-muted/50 text-muted-foreground/70 rounded font-medium`}
-        title="For self-empowerment purposes only"
-      >
-        <Info className={iconSizes[size]} />
-        <span>Self empowerment purposes only</span>
-      </span>
-    </div>
+    <span 
+      className={`inline-flex items-center ${sizeClasses[size]} bg-black/40 text-white/60 rounded-full font-medium border border-white/10 backdrop-blur-sm ${className}`}
+      title="For informational, educational & self-empowerment purposes only"
+    >
+      <Info className={`${iconSizes[size]} flex-shrink-0`} />
+      <span className="whitespace-nowrap">Info • Education • Empowerment Only</span>
+    </span>
   );
 };
 
