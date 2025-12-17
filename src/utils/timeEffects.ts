@@ -219,39 +219,13 @@ export const createTimePortalEffect = (
   // Extract tool name for logging
   const finalToolName = extractToolName(destinationUrl, toolName);
   console.log('🎯 Final detected tool name:', finalToolName);
-  
-  // Create container for all effects - INSTANT
-  const effectsContainer = createEffectsContainer();
 
-  // Optionally apply screen-wide overlay filter
-  if (!options?.skipScreenOverlay) {
-    applyTimeWarpFilter();
-  }
-
-  // 🔥 INSTANT FIRE - Everything starts NOW, same on ALL devices
+  // Play voice immediately (preloaded)
   playTimeWarpVoice();
-  createMatrixCodeExplosion(effectsContainer);
-  createFlash(effectsContainer);
-  createConfettiCelebration(true);
 
-  // ⚡ FAST but VISIBLE timing - effect shows briefly then cleans up
-  const cleanupNow = () => cleanupEffects(effectsContainer);
-
-  // URL opens quickly (200ms)
-  setTimeout(() => {
-    console.log('🚀 Opening destination URL NOW');
-    if (destinationUrl && destinationUrl.trim()) {
-      openDestinationUrl(destinationUrl);
-    }
-  }, 200);
-
-  // Cleanup at 300ms - quick flash, doesn't linger
-  setTimeout(cleanupNow, 300);
-
-  // Also cleanup on ANY visibility change (when tab switches)
-  const handleVisibilityChange = () => {
-    cleanupNow();
-    document.removeEventListener('visibilitychange', handleVisibilityChange);
-  };
-  document.addEventListener('visibilitychange', handleVisibilityChange);
+  // Open URL immediately - no visual effects that linger
+  console.log('🚀 Opening destination URL NOW');
+  if (destinationUrl && destinationUrl.trim()) {
+    openDestinationUrl(destinationUrl);
+  }
 };
