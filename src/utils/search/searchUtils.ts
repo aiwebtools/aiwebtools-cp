@@ -2012,8 +2012,14 @@ const performEnhancedSearch = (
         "gptpastvoices-resurrection gpt",
         "gptpastvoices",
         "past voices",
+        // 4 clearly non-spiritual tools to demote
         "cyber-kabbalah light code translation engine gpt",
         "time machine of unwritten history gpt",
+        "self sufficiency gpt",
+        "jarvis – the steward of humanity gpt",
+        "jarvis - the steward of humanity gpt",
+        "jarvis",
+        // Image/design tools
         "galileo gpt",
         "pixlr",
         "canva",
