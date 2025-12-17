@@ -1909,6 +1909,38 @@ const performEnhancedSearch = (
   const lowerTerm = searchTerm.toLowerCase();
   const pinnedTitles: string[] = [];
 
+  // Spirit queries: demote known weak/irrelevant matches so the best spiritual tools surface first
+  // (Keeps the tool searchable, just not ranked #1-#3.)
+  const isSpiritQuery = lowerTerm.startsWith("spirit") || lowerTerm.includes("spiritual") || (lowerTerm.includes("spirit") && lowerTerm.length <= 12);
+  const demoteTitles = isSpiritQuery
+    ? new Set<string>([
+        "gptpastvoices - resurrection gpt",
+        "gptpastvoices-resurrection gpt",
+        "gptpastvoices",
+        "past voices",
+      ])
+    : null;
+
+  const maybeDemote = (list: Tool[]) => {
+    if (!demoteTitles) return list;
+    const demoted: Tool[] = [];
+    const kept: Tool[] = [];
+
+    for (const t of list) {
+      const title = (t?.title || "").toLowerCase();
+      if (demoteTitles.has(title) || title.includes("pastvoices")) demoted.push(t);
+      else kept.push(t);
+    }
+
+    if (!demoted.length) return list;
+
+    // Insert demoted items around position 20 (or end if list is shorter)
+    const insertAt = Math.min(20, kept.length);
+    return [...kept.slice(0, insertAt), ...demoted, ...kept.slice(insertAt)];
+  };
+
+  const demotionAdjustedResults = maybeDemote(deduplicatedResults);
+
   // Book writing intent (natural language)
   if ((lowerTerm.includes("write") && lowerTerm.includes("book")) || lowerTerm.includes("book writing") || lowerTerm.includes("book writer")) {
     pinnedTitles.push("BOOK WRITER GPT");
@@ -1919,19 +1951,19 @@ const performEnhancedSearch = (
     pinnedTitles.push("Movie Maker Studio AI SUITE", "Movie Script Writer GPT", "Sora Prompt Assistant", "Luma Dream Machine Prompt Assistant");
   }
 
-  // Spiritual/Spirit GPT intent - prioritize best spiritual tools
-  if ((lowerTerm.includes("spirit") && lowerTerm.includes("gpt")) || lowerTerm === "spirit" || lowerTerm === "spiritual" || lowerTerm === "spirituality") {
+  // Spiritual/Spirit intent - prioritize best spiritual tools
+  if (isSpiritQuery || (lowerTerm.includes("spirit") && lowerTerm.includes("gpt"))) {
     pinnedTitles.push(
       "TALK TO THE GODS GPT",
-      "Sophia Aeterna AI", 
+      "Sophia Aeterna AI",
       "God Is Light GPT",
-      "Buddha GPT",
       "Resurrection GPT",
       "Oraculum – The Revealer of Hidden \"Truths\"",
       "Dream Interpreter GPT",
       "Mary Magdalene GPT",
-      "Carl Sagan GPT",
-      "Alan Watts GPT"
+      "ALAN WATTS GPT",
+      "TIME MACHINE GPT",
+      "TALK TO HISTORY GPT"
     );
   }
 
@@ -1939,7 +1971,7 @@ const performEnhancedSearch = (
   if (pinnedTitles.length) {
     const set = new Set<string>();
     for (const title of pinnedTitles) {
-      const found = deduplicatedResults.find(t => t.title.toLowerCase() === title.toLowerCase());
+      const found = demotionAdjustedResults.find(t => t.title.toLowerCase() === title.toLowerCase());
       if (found && !set.has(found.title)) {
         set.add(found.title);
         pinned.push(found);
@@ -1948,8 +1980,8 @@ const performEnhancedSearch = (
   }
 
   const remaining = pinned.length
-    ? deduplicatedResults.filter(t => !pinned.some(p => p.title === t.title))
-    : deduplicatedResults;
+    ? demotionAdjustedResults.filter(t => !pinned.some(p => p.title === t.title))
+    : demotionAdjustedResults;
 
   // Apply 2:1 interleaving: 2 external tools, then 1 Custom GPT/Gem (for the remaining results)
   const interleavedResults = applySearchInterleaving(remaining);
