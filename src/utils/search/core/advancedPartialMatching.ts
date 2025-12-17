@@ -244,28 +244,31 @@ export const getAdvancedPartialMatches = (searchTerm: string, tools: Tool[]): To
     predictions.push(...Array.from(extractedPredictions).slice(0, 5));
   }
   
-  console.log(`🎯 Advanced partial matching for "${searchTerm}": predictions =`, predictions);
-  
+  const DEBUG_PARTIAL = false;
+  if (DEBUG_PARTIAL) {
+    console.log(`🎯 Advanced partial matching for "${searchTerm}": predictions =`, predictions);
+  }
+
   // Filter tools based on predictions and original search
   return tools.filter(tool => {
     const lowerTitle = tool.title.toLowerCase();
     const lowerDescription = tool.description.toLowerCase();
     const lowerTags = tool.tags?.join(" ").toLowerCase() || "";
     const searchableText = `${lowerTitle} ${lowerDescription} ${lowerTags}`;
-    
+
     // Direct match
     if (searchableText.includes(lowerTerm)) {
       return true;
     }
-    
+
     // Prediction-based matching
     for (const prediction of predictions) {
       if (searchableText.includes(prediction)) {
-        console.log(`🎯 Prediction "${prediction}" matched tool: ${tool.title}`);
+        if (DEBUG_PARTIAL) console.log(`🎯 Prediction "${prediction}" matched tool: ${tool.title}`);
         return true;
       }
     }
-    
+
     return false;
   });
 };
@@ -286,13 +289,14 @@ export const scoreAdvancedPartialMatch = (tool: Tool, searchTerm: string, predic
   else if (lowerTags.includes(lowerTerm)) score += 1000;
   
   // Prediction-based scoring
+  const DEBUG_PARTIAL_SCORE = false;
   for (const prediction of predictions) {
     if (lowerTitle.includes(prediction)) {
       score += 3000;
-      console.log(`🎯 Prediction boost: "${prediction}" in title of ${tool.title} (+3000)`);
+      if (DEBUG_PARTIAL_SCORE) console.log(`🎯 Prediction boost: "${prediction}" in title of ${tool.title} (+3000)`);
     } else if (lowerDescription.includes(prediction)) {
       score += 1500;
-      console.log(`🎯 Prediction boost: "${prediction}" in description of ${tool.title} (+1500)`);
+      if (DEBUG_PARTIAL_SCORE) console.log(`🎯 Prediction boost: "${prediction}" in description of ${tool.title} (+1500)`);
     } else if (lowerTags.includes(prediction)) {
       score += 800;
     }
