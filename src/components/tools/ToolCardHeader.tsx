@@ -7,6 +7,7 @@ import { FavoritesButton } from "@/components/favorites/FavoritesButton";
 import { allTools } from "@/data/toolsData";
 import { Brain, Blocks } from "lucide-react";
 import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
+import AutoScaleTitle from "@/components/ui/auto-scale-title";
 
 interface ToolCardHeaderProps {
   tool: Tool;
@@ -65,7 +66,7 @@ const ToolCardHeader = ({
       </div>
       <div className="space-y-2">
         <CardTitle 
-          className="text-base sm:text-lg lg:text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 group-hover:from-cyan-200 group-hover:via-yellow-200 group-hover:to-cyan-200 transition-all duration-300 leading-tight tracking-wide uppercase break-words hyphens-auto min-h-[2.5rem]"
+          className="font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 group-hover:from-cyan-200 group-hover:via-yellow-200 group-hover:to-cyan-200 transition-all duration-300 tracking-wide uppercase break-words hyphens-auto min-h-[2.5rem]"
           style={{
             fontFamily: "'Orbitron', sans-serif",
             textShadow: '0 0 20px rgba(34, 211, 238, 0.6), 0 0 40px rgba(34, 211, 238, 0.3)',
@@ -73,7 +74,7 @@ const ToolCardHeader = ({
             wordBreak: 'break-word'
           }}
         >
-          {tool.title}
+          <AutoScaleTitle title={tool.title} baseSize="lg" />
         </CardTitle>
         
         {/* Tool Type Badge */}
