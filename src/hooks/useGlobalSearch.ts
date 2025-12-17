@@ -24,50 +24,67 @@ export const useGlobalSearch = () => {
       t: tool.title?.toLowerCase() || "",
       d: tool.description?.toLowerCase() || "",
       c: tool.category?.toLowerCase() || "",
+      tags: tool.tags?.map(tag => tag.toLowerCase()) || [],
     }));
   }, []);
 
+  // INSTANT prefix-based autocomplete search - type "R" = all R tools, "RU" = Runway etc.
   const quickSearch = useCallback((term: string) => {
     const q = term.toLowerCase().trim();
-    const words = q.split(/[\s,.-]+/).filter((w) => w.length > 1);
+    if (!q) return [];
 
-    // Fast path: prefer title matches first
-    const starts: any[] = [];
-    const includes: any[] = [];
+    // Tier 1: Exact title prefix matches (highest priority - "R" finds "Runway", "Restyle ME GPT")
+    const prefixMatches: any[] = [];
+    // Tier 2: Title contains the query
+    const titleContains: any[] = [];
+    // Tier 3: Word in title starts with query (e.g., "writ" matches "Book Writer GPT")  
+    const wordPrefixMatches: any[] = [];
+    // Tier 4: Tag/category matches
+    const tagMatches: any[] = [];
 
     for (let i = 0; i < quickIndex.length; i++) {
       const it = quickIndex[i];
       if (!it.t) continue;
 
-      // Title startsWith gets top priority
+      // TIER 1: Title starts with query - highest priority
       if (it.t.startsWith(q)) {
-        starts.push(it.tool);
+        prefixMatches.push(it.tool);
         continue;
       }
 
-      // Title includes
-      if (it.t.includes(q)) {
-        includes.push(it.tool);
-        continue;
-      }
-
-      // For 3+ chars, allow description/category word hits
-      if (q.length >= 3 && words.length) {
-        let hit = false;
-        for (const w of words) {
-          if (it.t.includes(w) || it.c.includes(w) || it.d.includes(w)) {
-            hit = true;
-            break;
-          }
+      // TIER 2: Any word in title starts with query
+      const titleWords = it.t.split(/[\s\-_&,.:]+/);
+      let wordMatch = false;
+      for (const word of titleWords) {
+        if (word.startsWith(q)) {
+          wordPrefixMatches.push(it.tool);
+          wordMatch = true;
+          break;
         }
-        if (hit) includes.push(it.tool);
+      }
+      if (wordMatch) continue;
+
+      // TIER 3: Title contains query anywhere
+      if (it.t.includes(q)) {
+        titleContains.push(it.tool);
+        continue;
       }
 
-      // Keep this ultra-fast: stop scanning once we have enough
-      if (starts.length + includes.length >= 80) break;
+      // TIER 4: Tags or category match (for 2+ char queries)
+      if (q.length >= 2) {
+        const tagMatch = it.tags.some(tag => tag.startsWith(q) || tag.includes(q));
+        const catMatch = it.c.startsWith(q) || it.c.includes(q);
+        if (tagMatch || catMatch) {
+          tagMatches.push(it.tool);
+        }
+      }
+
+      // Performance cap - we have plenty of results
+      if (prefixMatches.length + wordPrefixMatches.length + titleContains.length + tagMatches.length >= 100) break;
     }
 
-    return [...starts, ...includes].slice(0, 80);
+    // Return in priority order: prefix > word prefix > contains > tags
+    return [...prefixMatches, ...wordPrefixMatches, ...titleContains, ...tagMatches].slice(0, 100);
   }, [quickIndex]);
 
   // Track current search to prevent stale updates
@@ -87,7 +104,7 @@ export const useGlobalSearch = () => {
     }
 
     const t = value.trim();
-    if (!t || t.length < 2) {
+    if (!t) {
       setSearchResults([]);
       setIsOpen(false);
       setDisplayedCount(50);
@@ -96,30 +113,32 @@ export const useGlobalSearch = () => {
 
     setIsOpen(true);
 
-    // 1) Immediate suggestions (no heavy intelligence yet)
+    // 1) INSTANT suggestions - prefix matching runs synchronously (no delay!)
     const fast = quickSearch(t);
     setSearchResults(fast);
     setDisplayedCount(50);
 
-    // 2) Full hyper-intelligent ranking (runs when the browser has time)
-    const runFull = () => {
-      const currentId = ++searchIdRef.current;
-      const results = searchTools(allTools, t);
-      if (currentId === searchIdRef.current) {
-        setSearchResults(results);
-        setDisplayedCount(50);
+    // 2) Full intelligent ranking only for 2+ chars (runs when browser has time)
+    if (t.length >= 2) {
+      const runFull = () => {
+        const currentId = ++searchIdRef.current;
+        const results = searchTools(allTools, t);
+        if (currentId === searchIdRef.current) {
+          setSearchResults(results);
+          setDisplayedCount(50);
+        }
+      };
+
+      // Prefer requestIdleCallback to avoid blocking typing
+      if ("requestIdleCallback" in window) {
+        // @ts-ignore
+        idleRef.current = window.requestIdleCallback(runFull, { timeout: 200 });
+        return;
       }
-    };
 
-    // Prefer requestIdleCallback to avoid blocking typing
-    if ("requestIdleCallback" in window) {
-      // @ts-ignore
-      idleRef.current = window.requestIdleCallback(runFull, { timeout: 250 });
-      return;
+      // Fallback - very short delay
+      debounceRef.current = setTimeout(runFull, 40);
     }
-
-    // Fallback
-    debounceRef.current = setTimeout(runFull, 60);
   }, [quickSearch]);
   
   // Cleanup on unmount
