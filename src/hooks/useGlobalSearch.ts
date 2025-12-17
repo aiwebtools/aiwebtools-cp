@@ -6,6 +6,48 @@ import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 
+// ==================== LRU CACHE FOR SEARCH RESULTS ====================
+// Caches the last 50 search queries to avoid recomputation on repeated searches
+
+class LRUCache<K, V> {
+  private maxSize: number;
+  private cache: Map<K, V>;
+  
+  constructor(maxSize: number = 50) {
+    this.maxSize = maxSize;
+    this.cache = new Map();
+  }
+  
+  get(key: K): V | undefined {
+    if (!this.cache.has(key)) return undefined;
+    
+    // Move to end (most recently used)
+    const value = this.cache.get(key)!;
+    this.cache.delete(key);
+    this.cache.set(key, value);
+    return value;
+  }
+  
+  set(key: K, value: V): void {
+    // Remove oldest if at capacity
+    if (this.cache.size >= this.maxSize) {
+      const firstKey = this.cache.keys().next().value;
+      if (firstKey !== undefined) this.cache.delete(firstKey);
+    }
+    
+    // Remove existing to update position
+    this.cache.delete(key);
+    this.cache.set(key, value);
+  }
+  
+  clear(): void {
+    this.cache.clear();
+  }
+}
+
+// Global search cache (persists across component re-renders)
+const searchCache = new LRUCache<string, any[]>(50);
+
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
 
 // 1. COMMON MISSPELLINGS → correct spelling
@@ -113,12 +155,13 @@ const ABBREV_MAP: Record<string, string[]> = {
   "pdf": ["document", "pdf"],
 };
 
-// 3. SYNONYMS → related terms
+// 3. SYNONYMS → related terms (expanded for movie/video intelligence)
 const SYNONYM_MAP: Record<string, string[]> = {
   "picture": ["image", "photo", "visual"],
   "photo": ["image", "picture", "photography"],
-  "film": ["video", "movie", "cinema"],
-  "movie": ["film", "video", "cinema"],
+  "film": ["video", "movie", "cinema", "sora", "runway", "veo", "pika", "luma"],
+  "movie": ["film", "video", "cinema", "sora", "runway", "veo", "pika", "luma", "text to video", "video generation"],
+  "cinema": ["movie", "film", "video"],
   "song": ["music", "audio", "melody"],
   "voice": ["audio", "speech", "tts"],
   "write": ["writing", "writer", "content", "text"],
@@ -139,6 +182,7 @@ const SYNONYM_MAP: Record<string, string[]> = {
   "exercise": ["fitness", "workout", "running", "gym"],
   "run": ["runway", "running", "execute"],
   "game": ["gaming", "video game", "game design"],
+  "video": ["movie", "film", "sora", "runway", "veo", "pika", "luma"],
 };
 
 // 4. MAJOR PLATFORM ALIASES
@@ -176,12 +220,17 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "get a degree": ["COLLEGE DEGREE GPT"],
   "study": ["LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT"],
   
-  // Video/movie intents
-  "make a video": ["Movie Maker Studio AI SUITE", "Music Video Maker AI Studio", "Sora", "Runway"],
-  "create a video": ["Movie Maker Studio AI SUITE", "Music Video Maker AI Studio", "Sora", "Runway"],
-  "make a movie": ["Movie Maker Studio AI SUITE", "Movie Script Writer GPT"],
-  "i want to make a movie": ["Movie Maker Studio AI SUITE", "Movie Script Writer GPT"],
-  "create a movie": ["Movie Maker Studio AI SUITE", "Movie Script Writer GPT"],
+  // Video/movie intents (EXPANDED for all video production tools)
+  "make a video": ["Movie Maker Studio AI SUITE", "Music Video Maker AI Studio", "Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine"],
+  "create a video": ["Movie Maker Studio AI SUITE", "Music Video Maker AI Studio", "Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine"],
+  "make a movie": ["Movie Maker Studio AI SUITE", "Movie Script Writer GPT", "Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine"],
+  "i want to make a movie": ["Movie Maker Studio AI SUITE", "Movie Script Writer GPT", "Sora", "Sora 2", "Veo 3", "Runway"],
+  "create a movie": ["Movie Maker Studio AI SUITE", "Movie Script Writer GPT", "Sora", "Sora 2", "Veo 3", "Runway"],
+  "movie": ["Movie Maker Studio AI SUITE", "Movie Script Writer GPT", "Movie Scene Maker GPT", "Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine", "SORA2 Text to Video Prompt Maker GPT", "Luma Dream Machine Prompt Assistant"],
+  "film": ["Movie Maker Studio AI SUITE", "Movie Script Writer GPT", "Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine"],
+  "video production": ["Movie Maker Studio AI SUITE", "Music Video Maker AI Studio", "Sora", "Sora 2", "Veo 3", "Runway", "Pika"],
+  "text to video": ["Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine", "SORA2 Text to Video Prompt Maker GPT", "Luma Dream Machine Prompt Assistant"],
+  "video generator": ["Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine", "HeyGen", "Synthesia"],
   "make a music video": ["Music Video Maker AI Studio"],
   
   // Image intents
@@ -383,10 +432,14 @@ export const useGlobalSearch = () => {
     });
   }, []);
 
-  // HYPER-INTELLIGENT instant search
+  // HYPER-INTELLIGENT instant search with LRU cache
   const quickSearch = useCallback((term: string) => {
     let qRaw = term.toLowerCase().trim();
     if (!qRaw) return [];
+
+    // === CHECK CACHE FIRST (instant return for repeated searches) ===
+    const cached = searchCache.get(qRaw);
+    if (cached) return cached;
 
     // === STEP 0: INSTANT PHRASE MATCHING (bypasses all heavy computation) ===
     // Check for exact phrase matches first - this is O(1) lookup
@@ -415,7 +468,9 @@ export const useGlobalSearch = () => {
         return aIdx - bIdx;
       });
       
-      return [...matched, ...remaining.slice(0, 50)];
+      const results = [...matched, ...remaining.slice(0, 50)];
+      searchCache.set(qRaw, results);
+      return results;
     }
     
     // Also check partial phrase matches (e.g., "i want to write" matches "i want to write a book")
@@ -434,7 +489,9 @@ export const useGlobalSearch = () => {
             .filter(it => !matchedTitles.has(it.tool.title))
             .slice(0, 30)
             .map(it => it.tool);
-          return [...matched, ...rest];
+          const results = [...matched, ...rest];
+          searchCache.set(qRaw, results);
+          return results;
         }
       }
     }
@@ -623,7 +680,12 @@ export const useGlobalSearch = () => {
       return at.localeCompare(bt);
     });
 
-    return scored.map(s => s.tool).slice(0, 120);
+    const results = scored.map(s => s.tool).slice(0, 120);
+    
+    // === CACHE RESULTS for instant repeated searches ===
+    searchCache.set(qRaw, results);
+    
+    return results;
   }, [quickIndex]);
 
   // Track current search to prevent stale updates
@@ -664,6 +726,15 @@ export const useGlobalSearch = () => {
 
       // 4) Full intelligent ranking for 3+ chars (runs when browser is idle)
       if (t.length >= 3) {
+        // Check cache for full search results first
+        const fullCacheKey = `full:${t.toLowerCase().trim()}`;
+        const cachedFull = searchCache.get(fullCacheKey);
+        if (cachedFull) {
+          setSearchResults(cachedFull);
+          setDisplayedCount(50);
+          return;
+        }
+        
         const runFull = () => {
           if (currentId !== searchIdRef.current) return;
           const results = searchTools(allTools, t);
@@ -690,6 +761,9 @@ export const useGlobalSearch = () => {
             })
             .map((x) => x.tool);
 
+          // Cache full search results
+          searchCache.set(fullCacheKey, reranked);
+          
           setSearchResults(reranked);
           setDisplayedCount(50);
         };
