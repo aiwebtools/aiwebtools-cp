@@ -175,6 +175,54 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
   const userIntent = detectIntent(normalizedSearchTerm);
   const intentConfig = userIntent ? INTENT_PATTERNS[userIntent as keyof typeof INTENT_PATTERNS] : null;
   
+  // TIME MACHINE SEARCH PRIORITY - Exact phrase matching for all time machine variants
+  if (normalizedSearchTerm.includes('time machine') || normalizedSearchTerm.includes('timemachine') ||
+      (normalizedSearchTerm.includes('time') && normalizedSearchTerm.includes('machine'))) {
+    debugLog('⏰ TIME MACHINE SEARCH DETECTED - Finding all time machine tools');
+    
+    const timeMachineTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      
+      return lowerTitle.includes('time machine') || 
+             lowerTitle.includes('time travel') ||
+             lowerDescription.includes('time machine') ||
+             lowerDescription.includes('time travel') ||
+             lowerTags.some(tag => tag.includes('time machine') || tag.includes('time travel'));
+    });
+    
+    debugLog(`⏰ Found ${timeMachineTools.length} time machine tools:`, timeMachineTools.map(t => t.title));
+    
+    // Sort time machine tools - exact "time machine" in title first
+    const sortedTimeMachineTools = timeMachineTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      const titleA = a.title.toLowerCase();
+      const titleB = b.title.toLowerCase();
+      
+      // HIGHEST: Exact "time machine gpt" at the start
+      if (titleA.startsWith('time machine gpt')) scoreA += 50000;
+      if (titleB.startsWith('time machine gpt')) scoreB += 50000;
+      
+      // HIGH: Contains "time machine" in title
+      if (titleA.includes('time machine')) scoreA += 30000;
+      if (titleB.includes('time machine')) scoreB += 30000;
+      
+      // MEDIUM: Contains "time travel" in title  
+      if (titleA.includes('time travel')) scoreA += 20000;
+      if (titleB.includes('time travel')) scoreB += 20000;
+      
+      // All AI Web Tools GPTs get priority
+      if (a.directUrl?.includes('lovable.app') || a.directUrl?.includes('aiwebtools')) scoreA += 10000;
+      if (b.directUrl?.includes('lovable.app') || b.directUrl?.includes('aiwebtools')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonTimeMachineTools = tools.filter(tool => !timeMachineTools.includes(tool));
+    return [...sortedTimeMachineTools, ...nonTimeMachineTools];
+  }
+
   // VIDEO SEARCH PRIORITY - Strict video tool filtering
   if (normalizedSearchTerm === 'video' || normalizedSearchTerm.includes('video')) {
     debugLog('🎬 VIDEO SEARCH DETECTED - Filtering for video tools only');

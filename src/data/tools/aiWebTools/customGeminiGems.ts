@@ -25,7 +25,7 @@ export const customGeminiGems: Tool[] = [
     directUrl: "https://gemini.google.com/gem/4e45b3038f6c",
     rating: 4.8,
     totalVotes: 1892,
-    tags: ["gemini", "custom gem", "Gemini Gem", "time travel", "black history", "education", "history", "google gemini"]
+    tags: ["gemini", "custom gem", "Gemini Gem", "time travel", "time machine", "black history", "education", "history", "google gemini"]
   },
   {
     icon: FileText,
@@ -50,7 +50,7 @@ export const customGeminiGems: Tool[] = [
     directUrl: "https://gemini.google.com/gem/8410bdacd80e",
     rating: 4.9,
     totalVotes: 2341,
-    tags: ["gemini", "custom gem", "Gemini Gem", "time travel", "native american", "history", "education", "google gemini"]
+    tags: ["gemini", "custom gem", "Gemini Gem", "time travel", "time machine", "native american", "history", "education", "google gemini"]
   },
   {
     icon: Globe,
