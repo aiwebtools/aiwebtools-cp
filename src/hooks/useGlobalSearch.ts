@@ -468,6 +468,37 @@ export const useGlobalSearch = () => {
     }
   }, [displayedCount, searchResults.length, isLoadingMore]);
 
+  // Generate prediction based on top result
+  const prediction = useMemo(() => {
+    if (!searchTerm.trim() || searchResults.length === 0) return "";
+    
+    const topResult = searchResults[0];
+    if (!topResult?.title) return "";
+    
+    const topTitle = topResult.title.toLowerCase();
+    const query = searchTerm.toLowerCase().trim();
+    
+    // Only predict if the top result starts with what user typed
+    if (topTitle.startsWith(query)) {
+      // Return the first word or two for cleaner predictions
+      const words = topResult.title.split(/\s+/);
+      if (words.length >= 2) {
+        // Return first 2-3 words for multi-word predictions
+        return words.slice(0, Math.min(3, words.length)).join(" ");
+      }
+      return topResult.title;
+    }
+    
+    return "";
+  }, [searchTerm, searchResults]);
+
+  // Accept prediction (Tab key)
+  const acceptPrediction = useCallback(() => {
+    if (prediction) {
+      setSearchTerm(prediction);
+    }
+  }, [prediction, setSearchTerm]);
+
   return {
     searchTerm,
     setSearchTerm,
@@ -477,10 +508,12 @@ export const useGlobalSearch = () => {
     isLoadingMore,
     toolStats,
     searchRef,
+    prediction,
     handleToolClick,
     handleDirectAccess,
     clearSearch,
     handleKeyDown,
     handleScroll,
+    acceptPrediction,
   };
 };
