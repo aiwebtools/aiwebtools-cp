@@ -206,125 +206,40 @@ export const useGlobalSearch = () => {
       
       const q = t.toLowerCase();
       const { intent, keywords: intentKeywords } = extractIntent(t);
-      const smartKeywords = t.length > 30 ? extractKeywords(t) : [];
-      const tokens = smartKeywords.length > 0 
-        ? smartKeywords.slice(0, 5)
-        : q.split(/\s+/).filter(w => w.length >= 2).slice(0, 8);
+
+      // Always extract keywords (removes filler words like "to", "want", etc.)
+      // This is critical to keep intent-based search precise.
+      const keywords = extractKeywords(t);
+
+      // For fallback token matching, avoid super-common short tokens that match everything.
+      const tokens = (keywords.length > 0 ? keywords : q.split(/\s+/))
+        .map(w => w.trim())
+        .filter(w => w.length >= 3)
+        .slice(0, 8);
 
       // Choose smallest possible candidate set
       const baseCandidates = (lastCandidatesRef.current && q.startsWith(lastQueryRef.current))
         ? lastCandidatesRef.current
         : indexedTools;
 
-      const matchedIndexed = baseCandidates.filter(ix => {
-        // Intent-based matching (check title, category, tags, AND description)
-        if (intent && intentKeywords.length > 0) {
-          const intentMatch = intentKeywords.some(kw => 
-            ix.lt.includes(kw) || ix.lc.includes(kw) || ix.lta.includes(kw) || ix.ld.includes(kw)
-          );
-          if (intentMatch) return true;
-        }
-        // Direct matching (include description for broader results)
-        const directMatch = ix.lt.includes(q) || ix.lc.includes(q) || ix.ld.includes(q);
-        if (directMatch) return true;
-        // Token matching (check all fields)
-        if (tokens.length > 0) {
-          const keywordMatch = tokens.some(tok => 
-            ix.lt.includes(tok) || ix.lc.includes(tok) || ix.lta.includes(tok) || ix.ld.includes(tok)
-          );
-          if (keywordMatch) return true;
-        }
-        return false;
-      });
+      // First pass: cheap candidate narrowing (uses tokens WITHOUT stopwords)
+      const narrowedIndexed = tokens.length
+        ? baseCandidates.filter(ix => tokens.some(tok => ix.all.includes(tok) || ix.normalized.includes(tok)))
+        : baseCandidates;
 
       // Update progressive cache
       lastQueryRef.current = q;
-      lastCandidatesRef.current = matchedIndexed;
+      lastCandidatesRef.current = narrowedIndexed;
 
-      const fast = matchedIndexed.map(ix => ix.tool);
+      const candidateTools = narrowedIndexed.map(ix => ix.tool);
 
-      // Quick scoring
-      const quickScore = (tool: any) => {
-        const lt = tool.title.toLowerCase();
-        const lc = (tool.category || "").toLowerCase();
-        const lta = (tool.tags || []).join(" ").toLowerCase();
-        let s = 0;
-        
-        if (intent === 'comic') {
-          if (lt.includes("comic book") || lt.includes("comic")) s += 250000;
-          else if (lt.includes("coloring book")) s += 200000;
-          else if (lt.includes("picture book") || lt.includes("children")) s += 180000;
-          else if (lt.includes("illustration") || lt.includes("graphic")) s += 150000;
-        } else if (intent === 'children_book') {
-          if (lt.includes("children") && lt.includes("book")) s += 250000;
-          else if (lt.includes("picture book")) s += 200000;
-          else if (lt.includes("coloring book")) s += 180000;
-          else if (lt.includes("comic")) s += 150000;
-        } else if (intent === 'book') {
-          if (lt.includes("book writer")) s += 200000;
-          else if (lt.includes("book")) s += 100000;
-        } else if (intent === 'movie_script') {
-          if (lt.includes("movie script")) s += 200000;
-          else if (lt.includes("script")) s += 150000;
-          else if (lt.includes("movie maker") || lt.includes("movie scene")) s += 100000;
-        } else if (intent === 'movie_making') {
-          if (lt.includes("movie maker")) s += 200000;
-          else if (lt.includes("movie scene")) s += 180000;
-          else if (lt.includes("text to video") || lt.includes("video")) s += 150000;
-        } else if (intent === 'image') {
-          if (lt.includes("midjourney") || lt.includes("dall") || lt.includes("stable diffusion")) s += 200000;
-          else if (lt.includes("image") && (lt.includes("generat") || lt.includes("creat"))) s += 180000;
-          else if (lt.includes("art") || lt.includes("design")) s += 100000;
-        } else if (intent === 'music') {
-          if (lt.includes("music") || lt.includes("song") || lt.includes("audio")) s += 200000;
-        } else if (intent === 'website') {
-          if (lt.includes("text to website") || lt.includes("website builder")) s += 200000;
-          else if (lt.includes("website") || lt.includes("site")) s += 150000;
-        } else if (intent === 'app') {
-          if (lt.includes("microsaas")) s += 200000;
-          else if (lt.includes("app") || lt.includes("agent")) s += 150000;
-        } else if (intent === 'presentation') {
-          if (lt.includes("ppt") || lt.includes("powerpoint") || lt.includes("presentation")) s += 200000;
-        } else if (intent === 'learning') {
-          if (lt.includes("learn") || lt.includes("course") || lt.includes("lesson")) s += 250000;
-          else if (lt.includes("education") || lt.includes("school") || lt.includes("degree")) s += 200000;
-          else if (lt.includes("tutor") || lt.includes("training") || lt.includes("skill")) s += 180000;
-          else if (lc.includes("education") || lta.includes("learn") || lta.includes("education")) s += 150000;
-        } else if (intent === 'research') {
-          if (lt.includes("research") || lt.includes("analysis") || lt.includes("data")) s += 200000;
-          else if (lc.includes("research") || lta.includes("research")) s += 150000;
-        } else if (intent === 'health') {
-          if (lt.includes("health") || lt.includes("medical") || lt.includes("doctor")) s += 200000;
-          else if (lt.includes("wellness") || lt.includes("fitness") || lt.includes("mental")) s += 180000;
-          else if (lc.includes("health") || lta.includes("health")) s += 150000;
-        } else if (intent === 'business') {
-          if (lt.includes("business") || lt.includes("startup") || lt.includes("marketing")) s += 200000;
-          else if (lt.includes("sales") || lt.includes("entrepreneur")) s += 180000;
-          else if (lc.includes("business") || lta.includes("business")) s += 150000;
-        }
-        
-        if (lt === q) s += 100000;
-        if (lt.startsWith(q)) s += 80000;
-        if (lt.includes(q)) s += 30000;
-        
-        for (const tok of tokens.slice(0, 4)) {
-          if (lt.includes(tok)) s += 2000;
-          if (lc.includes(tok)) s += 1000;
-          if (lta.includes(tok)) s += 500;
-        }
-        
-        for (const kw of intentKeywords) {
-          if (lt.includes(kw)) s += 5000;
-        }
-
-        return s;
-      };
-
-      fast.sort((a, b) => quickScore(b) - quickScore(a));
+      // Second pass: run the full hyper-intelligent search pipeline on the smaller candidate set
+      // (intent matching, fuzzy matching, category aggregation, etc.)
+      const results = searchTools(candidateTools, t);
 
       // Only update if this is still the current search
       if (currentId === searchIdRef.current) {
-        setSearchResults(fast);
+        setSearchResults(results);
         setDisplayedCount(50);
         setIsOpen(true);
       }
