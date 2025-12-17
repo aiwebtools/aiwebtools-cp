@@ -877,7 +877,7 @@ const featuredGPTsUnsorted = [
     color: "from-green-500 to-blue-600",
     features: ["UBI Models", "Economic Analysis", "Future Planning", "Policy Design"],
     directUrl: "https://ubigpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-advertisement-for-the-ai-tool-ubi-str_22t4n.png/:/rs=w:600,cg:true,m/qt=q:30",
+    videoUrl: "https://youtu.be/3XkLAnd1gjk",
     emoji: "💵"
   },
   {
@@ -2037,7 +2037,7 @@ const featuredGPTsUnsorted = [
     color: "from-cyan-500 to-purple-600",
     features: ["GPT Ideas", "AI Brainstorming", "Tool Concepts", "Instructions Generator"],
     directUrl: "https://customgptmaker.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000002880.jpg/:/cr=t:22.21%25,l:0%25,w:100%25,h:55.58%25/rs=w:600,h:451,cg:true/qt=q:98",
+    videoUrl: "https://youtu.be/XSZM8ePQOzY",
     emoji: "💡"
   },
   {
@@ -2847,7 +2847,7 @@ const featuredGPTsUnsorted = [
     color: "from-blue-500 to-green-600",
     features: ["Patient Advocacy", "Healthcare Navigation", "Patient Rights", "Medical Billing"],
     directUrl: "https://chatgpt.com/g/g-68cf22ea994481919206bf9eb0abccbc-patients-advocate-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/patient-advocate-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/S51kPQl19kA",
     emoji: "🛡️"
   },
   {
@@ -2857,7 +2857,7 @@ const featuredGPTsUnsorted = [
     color: "from-green-500 to-teal-600",
     features: ["Parenting", "Child Development", "Family Guidance", "Psychology"],
     directUrl: "https://chatgpt.com/g/g-68d4c45f3bc48191ba4a330a3b48bc87-parenting-guide-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/parenting-guide-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/HfT-9XqDNeU",
     emoji: "👨‍👩‍👧‍👦"
   },
   {
@@ -2867,7 +2867,7 @@ const featuredGPTsUnsorted = [
     color: "from-blue-500 to-green-600",
     features: ["IEP Support", "Parent Advocacy", "School Meetings", "Educational Rights"],
     directUrl: "https://chatgpt.com/g/g-68bb75f48218819184ad7aa0198cb983-parent-teacher-advocate-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/parent-teacher-advocate-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/vUreBwGa1w4",
     emoji: "👨‍👩‍👧‍👦"
   },
   {
@@ -2877,7 +2877,7 @@ const featuredGPTsUnsorted = [
     color: "from-purple-500 to-blue-600",
     features: ["Public Services", "Government Resources", "Social Services", "Community Help"],
     directUrl: "https://chatgpt.com/g/g-68bb74c1de28819197b7cd6f944efce9-public-service-finder-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/public-service-finder-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/x4uk_awDYS4",
     emoji: "🏛️"
   },
   {
@@ -3098,8 +3098,7 @@ const featuredGPTsUnsorted = [
     color: "from-blue-500 to-green-600",
     features: ["Book Writing", "Novel Creation", "Storytelling", "Google Gemini"],
     directUrl: "https://gemini.google.com/gem/ac3de7972849",
-    videoUrl: "https://youtu.be/nBd9Uk62UiI",
-    imageUrl: "/src/assets/book-writer-gemini-hero.jpg",
+    videoUrl: "https://youtu.be/xNQi8wuM3DQ",
     emoji: "📚"
   },
   {
