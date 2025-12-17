@@ -324,20 +324,20 @@ export const useGlobalSearch = () => {
 
   // Track current search to prevent stale updates
   const searchIdRef = useRef(0);
-  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const idleRef = useRef<number | null>(null);
+  const quickRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const fullRef = useRef<number | null>(null);
 
-  // INSTANT typing - show quick results immediately, refine when browser is idle
+  // INSTANT typing - defer ALL search work so input never blocks
   const setSearchTerm = useCallback((value: string) => {
-    // Update state IMMEDIATELY - no blocking
+    // 1) Update input state IMMEDIATELY - zero blocking
     setSearchTermInternal(value);
 
-    // Cancel any pending operations
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    if (idleRef.current && "cancelIdleCallback" in window) {
+    // 2) Cancel any pending search operations
+    if (quickRef.current) clearTimeout(quickRef.current);
+    if (fullRef.current && "cancelIdleCallback" in window) {
       // @ts-ignore
-      window.cancelIdleCallback(idleRef.current);
-      idleRef.current = null;
+      window.cancelIdleCallback(fullRef.current);
+      fullRef.current = null;
     }
 
     const t = value.trim();
@@ -349,40 +349,39 @@ export const useGlobalSearch = () => {
     }
 
     setIsOpen(true);
+    const currentId = ++searchIdRef.current;
 
-    // 1) INSTANT suggestions - runs synchronously (no delay!)
-    const fast = quickSearch(t);
-    setSearchResults(fast);
-    setDisplayedCount(50);
+    // 3) Run quick search after a TINY delay (lets input paint first)
+    quickRef.current = setTimeout(() => {
+      if (currentId !== searchIdRef.current) return;
+      const fast = quickSearch(t);
+      setSearchResults(fast);
+      setDisplayedCount(50);
 
-    // 2) Full intelligent ranking only for 3+ chars (runs when browser has time)
-    if (t.length >= 3) {
-      const runFull = () => {
-        const currentId = ++searchIdRef.current;
-        const results = searchTools(allTools, t);
-        if (currentId === searchIdRef.current) {
+      // 4) Full intelligent ranking for 3+ chars (runs when browser is idle)
+      if (t.length >= 3) {
+        const runFull = () => {
+          if (currentId !== searchIdRef.current) return;
+          const results = searchTools(allTools, t);
           setSearchResults(results);
           setDisplayedCount(50);
+        };
+
+        if ("requestIdleCallback" in window) {
+          // @ts-ignore
+          fullRef.current = window.requestIdleCallback(runFull, { timeout: 150 });
+        } else {
+          setTimeout(runFull, 50);
         }
-      };
-
-      // Prefer requestIdleCallback to avoid blocking typing
-      if ("requestIdleCallback" in window) {
-        // @ts-ignore
-        idleRef.current = window.requestIdleCallback(runFull, { timeout: 150 });
-        return;
       }
-
-      // Fallback - very short delay
-      debounceRef.current = setTimeout(runFull, 30);
-    }
+    }, 8); // 8ms = 1 frame, lets the keystroke paint first
   }, [quickSearch]);
   
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      if (debounceRef.current) {
-        clearTimeout(debounceRef.current);
+      if (quickRef.current) {
+        clearTimeout(quickRef.current);
       }
     };
   }, []);
