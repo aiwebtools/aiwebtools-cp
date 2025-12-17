@@ -46,6 +46,8 @@ class LRUCache<K, V> {
 }
 
 // Global search cache (persists across component re-renders)
+// NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
+const SEARCH_CACHE_VERSION = "v3";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -843,7 +845,8 @@ export const useGlobalSearch = () => {
     if (!qRaw) return [];
 
     // === CHECK CACHE FIRST (instant return for repeated searches) ===
-    const cached = searchCache.get(qRaw);
+    const cacheKey = `${SEARCH_CACHE_VERSION}:${qRaw}`;
+    const cached = searchCache.get(cacheKey);
     if (cached) return cached;
 
     // === STEP 0: INSTANT PHRASE MATCHING (bypasses all heavy computation) ===
@@ -874,7 +877,7 @@ export const useGlobalSearch = () => {
       });
       
       const results = [...matched, ...remaining.slice(0, 50)];
-      searchCache.set(qRaw, results);
+      searchCache.set(cacheKey, results);
       return results;
     }
     
@@ -895,7 +898,7 @@ export const useGlobalSearch = () => {
             .slice(0, 30)
             .map(it => it.tool);
           const results = [...matched, ...rest];
-          searchCache.set(qRaw, results);
+          searchCache.set(cacheKey, results);
           return results;
         }
       }
@@ -1157,7 +1160,7 @@ export const useGlobalSearch = () => {
     const results = scored.map(s => s.tool).slice(0, 120);
     
     // === CACHE RESULTS for instant repeated searches ===
-    searchCache.set(qRaw, results);
+    searchCache.set(cacheKey, results);
     
     return results;
   }, [quickIndex]);
@@ -1201,7 +1204,7 @@ export const useGlobalSearch = () => {
       // 4) Full intelligent ranking for 3+ chars (runs when browser is idle)
       if (t.length >= 3) {
         // Check cache for full search results first
-        const fullCacheKey = `full:${t.toLowerCase().trim()}`;
+        const fullCacheKey = `${SEARCH_CACHE_VERSION}:full:${t.toLowerCase().trim()}`;
         const cachedFull = searchCache.get(fullCacheKey);
         if (cachedFull) {
           setSearchResults(cachedFull);
