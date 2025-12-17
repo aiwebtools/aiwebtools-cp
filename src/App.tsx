@@ -41,10 +41,41 @@ const WelcomeVoiceSystem = lazy(() => import("./components/WelcomeVoiceSystem"))
 // Pre-initialize category cache for instant category page loads
 import "@/utils/categoryUtils/precomputedCache";
 
-// Minimal loading fallback - ultra lightweight
+// Loading fallback with Matrix rain effect
 const PageLoader = () => (
-  <div className="min-h-screen bg-gray-950 flex items-center justify-center">
-    <div className="w-8 h-8 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+  <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
+    {/* Matrix rain columns */}
+    <div className="absolute inset-0 pointer-events-none">
+      {Array.from({ length: 30 }).map((_, i) => (
+        <div
+          key={i}
+          className="absolute top-0 text-green-500 text-sm font-mono opacity-70 animate-pulse"
+          style={{
+            left: `${(i / 30) * 100}%`,
+            animation: `matrixFall ${2 + Math.random() * 3}s linear infinite`,
+            animationDelay: `${Math.random() * 2}s`,
+          }}
+        >
+          {Array.from({ length: 15 }).map((_, j) => (
+            <div key={j} style={{ opacity: 1 - j * 0.06 }}>
+              {Math.random() > 0.5 ? '1' : '0'}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+    {/* Center spinner */}
+    <div className="z-10 flex flex-col items-center gap-4">
+      <div className="w-10 h-10 border-2 border-green-500 border-t-transparent rounded-full animate-spin" />
+      <div className="text-green-400 text-sm font-mono animate-pulse">Loading...</div>
+    </div>
+    {/* Keyframe for matrix fall animation */}
+    <style>{`
+      @keyframes matrixFall {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(100vh); }
+      }
+    `}</style>
   </div>
 );
 
