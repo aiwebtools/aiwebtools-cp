@@ -3378,7 +3378,7 @@ const featuredGPTsUnsorted = [
     color: "from-sky-500 to-blue-600",
     features: ["Enochian", "Watchers", "Angelic Wisdom", "Ladder of Ascent"],
     directUrl: "https://chatgpt.com/g/g-6940bba0eeec8191ae927087907f29b0-enochian-mysticism-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/enochian-mysticism-gpt-hero.png",
+    videoUrl: "https://www.youtube.com/watch?v=gLH2adlUs70",
     emoji: "👼"
   },
   {
@@ -3398,7 +3398,7 @@ const featuredGPTsUnsorted = [
     color: "from-violet-500 to-purple-600",
     features: ["Bogomils", "Dualist Christianity", "Uncreated Light", "Medieval Mysticism"],
     directUrl: "https://chatgpt.com/g/g-6940b8a74ab481919bf4fb057b18feb0-bogomils-gpt-living-light/?via=aiwebtools",
-    imageUrl: "/src/assets/bogomils-living-light-gpt-hero.png",
+    videoUrl: "https://youtu.be/ermOlQWxmvs",
     emoji: "💫"
   },
   {
@@ -3408,7 +3408,7 @@ const featuredGPTsUnsorted = [
     color: "from-red-500 to-orange-600",
     features: ["Paulicians", "Inner Light", "Early Christianity", "Rebellion"],
     directUrl: "https://chatgpt.com/g/g-6940b7f399e4819181e97dab46797d55-paulician-lightbearer-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/paulician-lightbearer-gpt-hero.png",
+    videoUrl: "https://youtu.be/dWKswfcKOu4",
     emoji: "🕯️"
   },
   {
@@ -3418,7 +3418,7 @@ const featuredGPTsUnsorted = [
     color: "from-amber-600 to-yellow-600",
     features: ["Desert Fathers", "Monasticism", "Contemplation", "Spiritual Fire"],
     directUrl: "https://chatgpt.com/g/g-6940b6df40c0819182b299ac8c9eae11-desert-monastic-mysticism-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/desert-monastic-mysticism-gpt-hero.png",
+    videoUrl: "https://youtu.be/k1S-Fa7xTLI",
     emoji: "🏜️"
   },
   {
@@ -3428,7 +3428,7 @@ const featuredGPTsUnsorted = [
     color: "from-blue-600 to-indigo-600",
     features: ["Neoplatonism", "The One", "Soul Ascent", "Ancient Philosophy"],
     directUrl: "https://chatgpt.com/g/g-6940b6276a44819182dfe8a3150f4d76-neoplatonic-mysteries-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/neoplatonic-mysteries-gpt-hero.png",
+    videoUrl: "https://youtu.be/tgBjcTXoCX4",
     emoji: "🌀"
   },
   {
@@ -3438,7 +3438,7 @@ const featuredGPTsUnsorted = [
     color: "from-orange-500 to-red-600",
     features: ["Gnosticism", "Hidden Light", "Divine Memory", "Spiritual Awakening"],
     directUrl: "https://chatgpt.com/g/g-6940b56c72208191a423d2f63de1d368-gnostic-flame-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/gnostic-flame-gpt-hero.png",
+    videoUrl: "https://youtu.be/-myCequuxtY",
     emoji: "🔥"
   },
   {
@@ -3448,7 +3448,7 @@ const featuredGPTsUnsorted = [
     color: "from-sky-500 to-cyan-600",
     features: ["Early Christianity", "Yeshua Movement", "Mystical Christianity", "Original Teachings"],
     directUrl: "https://chatgpt.com/g/g-6940b2beda088191b52daf9737b8ec47-mythical-christianity-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/mythical-christianity-gpt-hero.png",
+    videoUrl: "https://youtu.be/9fPhlJsIdd4",
     emoji: "✝️"
   },
   {
@@ -3468,7 +3468,7 @@ const featuredGPTsUnsorted = [
     color: "from-cyan-500 to-blue-600",
     features: ["Essenes", "Dead Sea Scrolls", "Light Seekers", "Ancient Community"],
     directUrl: "https://chatgpt.com/g/g-6940afff17008191897e30cc94be7b27-essene-master-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/ancient-essenes-gpt-hero.png",
+    videoUrl: "https://youtu.be/Kyve-l7OA_M",
     emoji: "📜"
   },
 ];
