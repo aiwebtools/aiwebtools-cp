@@ -129,17 +129,14 @@ function App() {
           <FavoritesProvider>
             <TooltipProvider>
               <Toaster />
-              <Suspense fallback={null}>
-                <WelcomeVoiceSystem />
-              </Suspense>
               <MatrixCursorEffect />
               <BrowserRouter>
--                <AnimatedRoutes />
--                {/* Tiny floating clone button - hides on scroll */}
--                <Suspense fallback={null}>
--                  <FloatingCloneButton />
--                </Suspense>
--              </BrowserRouter>
+                <ConditionalWelcomeVoice />
+                <RouteGuard />
+                <Suspense fallback={null}>
+                  <FloatingCloneButton />
+                </Suspense>
+              </BrowserRouter>
             </TooltipProvider>
           </FavoritesProvider>
         </HelmetProvider>
@@ -147,5 +144,18 @@ function App() {
     </ErrorBoundary>
   );
 }
+
+// Only play welcome voice AFTER disclaimer is accepted
+const ConditionalWelcomeVoice = () => {
+  const hasAccepted = typeof window !== "undefined" && window.localStorage.getItem("aitools-consent-v3");
+  
+  if (!hasAccepted) return null;
+  
+  return (
+    <Suspense fallback={null}>
+      <WelcomeVoiceSystem />
+    </Suspense>
+  );
+};
 
 export default App;
