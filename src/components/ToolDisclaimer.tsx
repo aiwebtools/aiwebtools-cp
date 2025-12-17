@@ -38,6 +38,12 @@ const ToolDisclaimer = ({ tool }: ToolDisclaimerProps) => {
           
           <div className="space-y-3 text-sm text-gray-300">
             <p>
+              <strong className="text-yellow-400">For Informational, Educational & Self-Empowerment Purposes Only:</strong> This tool 
+              is provided to support your learning, research, and personal growth journey. It is not intended to replace 
+              professional advice, services, or judgment in any field.
+            </p>
+
+            <p>
               <strong className="text-yellow-400">Independent Service:</strong> {tool.title} is an independent AI tool. 
               AI Web Tools LLC does not own, operate, or control this external service.
             </p>
@@ -45,7 +51,7 @@ const ToolDisclaimer = ({ tool }: ToolDisclaimerProps) => {
             <p>
               <strong className="text-yellow-400">Use at Your Own Risk:</strong> When you access this tool, 
               you'll be redirected to an external website. Please review their terms and privacy policies 
-              before use.
+              before use. Consult qualified professionals for specific needs.
             </p>
 
             <p>
