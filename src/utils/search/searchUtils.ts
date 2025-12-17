@@ -150,11 +150,45 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return performSimpleSearch(tools, searchTerm);
   }
 
+  // SINGLE LETTER SEARCH - Show all tools starting with that letter alphabetically
+  if (trimmed.length === 1 && /^[a-zA-Z]$/.test(trimmed)) {
+    const letter = trimmed.toLowerCase();
+    debugLog(`🔤 SINGLE LETTER SEARCH: "${letter}" - Finding all tools starting with this letter`);
+    
+    const matchingTools = tools.filter(tool => {
+      if (EXCLUDED_TOOLS.includes(tool.title)) return false;
+      
+      // Get the alphabetical sort key (strips emojis) and check first letter
+      const sortKey = getAlphabeticalSortKey(tool.title);
+      return sortKey.startsWith(letter);
+    });
+    
+    // Sort alphabetically
+    const sortedTools = matchingTools.sort((a, b) => {
+      const keyA = getAlphabeticalSortKey(a.title);
+      const keyB = getAlphabeticalSortKey(b.title);
+      return keyA.localeCompare(keyB);
+    });
+    
+    debugLog(`🔤 Found ${sortedTools.length} tools starting with "${letter}"`);
+    
+    // Return matching tools first, then remaining tools (also alphabetically for consistency)
+    const remainingTools = tools.filter(tool => 
+      !EXCLUDED_TOOLS.includes(tool.title) && !matchingTools.includes(tool)
+    ).sort((a, b) => {
+      const keyA = getAlphabeticalSortKey(a.title);
+      const keyB = getAlphabeticalSortKey(b.title);
+      return keyA.localeCompare(keyB);
+    });
+    
+    return deduplicateSearchResults([...sortedTools, ...remainingTools]);
+  }
+
   // Normalize compound words (e.g., "CHAT GPT" → "chatgpt")
   const compoundNormalized = normalizeCompoundWords(searchTerm);
 
   // Use advanced search for most queries - intent matching needs this!
-  const shouldUseAdvancedSearch = trimmed.length <= 30 && /^[a-zA-Z\s]{2,}$/.test(trimmed);
+  const shouldUseAdvancedSearch = trimmed.length <= 30 && /^[a-zA-Z\s]{1,}$/.test(trimmed);
 
   // CRITICAL: Never typo-correct very short prefixes (e.g., "lea" → "health")
   // Short prefixes must behave as literal partial matching.
