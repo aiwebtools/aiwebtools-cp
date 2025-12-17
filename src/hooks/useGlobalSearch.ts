@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v6";
+const SEARCH_CACHE_VERSION = "v7";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -91,6 +91,9 @@ const TYPO_MAP: Record<string, string> = {
   "educaton": "education", "eductaion": "education", "educaiton": "education", "edcuation": "education",
   "tutoiral": "tutorial", "tutoral": "tutorial", "tutorail": "tutorial",
   "trainng": "training", "traning": "training", "trainging": "training",
+
+  // Spiritual / Religion
+  "spirtual": "spiritual", "spirtuality": "spirituality", "spirutal": "spiritual", "spiritul": "spiritual",
   // Media / Creative
   "viedo": "video", "vidoe": "video", "vedio": "video", "vido": "video", "vdieo": "video",
   "immage": "image", "imge": "image", "iamge": "image", "imag": "image",

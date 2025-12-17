@@ -1,4 +1,5 @@
 import { Tool } from "@/types/tools";
+import { isSpiritualityTool } from "@/utils/categoryUtils/spiritualityDetection";
 import { searchAIWebToolsGPTs, scoreAIWebToolsGPT } from "./aiWebToolsSearch";
 import { fuzzyMatchTool, phoneticMatch } from "./core/fuzzyMatching";
 import { matchVibeCoding, scoreVibeCoding } from "./matching/vibeCodingMatching";
@@ -549,31 +550,15 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       normalizedSearchTerm.includes('soul') || normalizedSearchTerm.includes('meditation') ||
       normalizedSearchTerm.includes('philosophy') || normalizedSearchTerm.includes('enlighten')) {
     console.log('🕉️ SPIRITUALITY SEARCH DETECTED - Filtering for spiritual/religious tools');
-    
-    const spiritualTools = tools.filter(tool => {
-      const lowerTitle = tool.title.toLowerCase();
-      const lowerDescription = tool.description.toLowerCase();
-      const lowerCategory = tool.category?.toLowerCase() || '';
-      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
-      
-      return lowerTitle.includes('spiritual') || lowerTitle.includes('soul') ||
-             lowerTitle.includes('divine') || lowerTitle.includes('mystical') ||
-             lowerTitle.includes('ancient') || lowerTitle.includes('wisdom') ||
-             lowerTitle.includes('meditation') || lowerTitle.includes('philosophy') ||
-             lowerTitle.includes('religion') || lowerTitle.includes('god') ||
-             lowerTitle.includes('enlighten') || lowerTitle.includes('cosmic') ||
-             lowerDescription.includes('spiritual') || lowerDescription.includes('soul') ||
-             lowerDescription.includes('divine') || lowerDescription.includes('mystical') ||
-             lowerCategory.includes('spiritual') || lowerCategory.includes('philosophy') ||
-             lowerTags.some(tag => tag.includes('spiritual') || tag.includes('soul') ||
-                                  tag.includes('philosophy') || tag.includes('wisdom'));
-    });
-    
+
+    // Use the centralized detector so we catch: religion, God, light, deities, scripture, philosophy, etc.
+    const spiritualTools = tools.filter(isSpiritualityTool);
+
     console.log(`🕉️ Found ${spiritualTools.length} spiritual tools:`, spiritualTools.slice(0, 5).map(t => t.title));
-    
+
     const sortedSpiritualTools = spiritualTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
-      
+
       // Priority for AI Web Tools spiritual GPTs
       if (a.title.toLowerCase().includes('soul map gpt')) scoreA += 15000;
       if (b.title.toLowerCase().includes('soul map gpt')) scoreB += 15000;
@@ -585,17 +570,22 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       if (b.title.toLowerCase().includes('talk to the gods gpt')) scoreB += 10000;
       if (a.title.toLowerCase().includes('sophia aeterna')) scoreA += 9000;
       if (b.title.toLowerCase().includes('sophia aeterna')) scoreB += 9000;
-      
+
       // Exact matches get high priority
       if (normalizedSearchTerm.includes('spiritual') && a.title.toLowerCase().includes('spiritual')) scoreA += 8000;
       if (normalizedSearchTerm.includes('spiritual') && b.title.toLowerCase().includes('spiritual')) scoreB += 8000;
-      
+
       return scoreB - scoreA;
     });
-    
-    const nonSpiritualTools = tools.filter(tool => !spiritualTools.includes(tool));
-    const finalSpiritualResults = [...sortedSpiritualTools, ...nonSpiritualTools];
-    return performEnhancedSearch(finalSpiritualResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+
+    // Run normal relevance search first, then HARD-pin spiritual tools to the top.
+    const baseResults = performEnhancedSearch(tools, searchTerm, searchWords, phoneticVariations, intentConfig);
+    const spiritualSet = new Set(spiritualTools);
+
+    const pinnedSpiritual = sortedSpiritualTools.filter(t => baseResults.includes(t));
+    const remainder = baseResults.filter(t => !spiritualSet.has(t));
+
+    return [...pinnedSpiritual, ...remainder];
   }
 
   // SCHOOL TOOL PRIORITY - Enhanced detection
