@@ -1918,6 +1918,7 @@ const performEnhancedSearch = (
         "gptpastvoices-resurrection gpt",
         "gptpastvoices",
         "past voices",
+        "cyber-kabbalah light code translation engine gpt", // This is encryption tool, not spiritual
       ])
     : null;
 

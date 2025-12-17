@@ -53,12 +53,12 @@ export const creativeAndMediaGPTs: Tool[] = [
   {
     icon: Sparkles,
     title: "Cyber-Kabbalah Light Code Translation Engine GPT",
-    description: "A symbolic-linguistic engine translating language and images into Cyber-Kabbalah Light Codes. Decode mystical symbols, translate spiritual concepts, and explore the intersection of ancient wisdom and modern technology through unique light code translations.",
+    description: "A symbolic-linguistic engine for encoding and decoding secret communications using unique light code cipher systems. Transform text and images into encrypted visual codes, create hidden messages, and explore cryptographic symbolic translation for secure private communications.",
     emoji: "✨",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://chatgpt.com/g/g-69176b2f62e481918b21756ccdc5d396-cyber-kabbalah-light-code-translation-engine-gpt/?via=aiwebtools",
-    tags: ["symbolic translation", "light codes", "mystical symbols", "spiritual technology", "kabbalah", "aiwebtools", "Custom GPT"],
-    category: "Creative & Media",
+    tags: ["encryption", "cipher", "secret communication", "encoding", "cryptography", "light codes", "aiwebtools", "Custom GPT"],
+    category: "Security & Privacy",
     rating: 4.6,
     totalVotes: 2890,
     isFree: true
