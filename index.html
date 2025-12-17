@@ -176,6 +176,22 @@
         color: rgba(0, 255, 65, 0.7);
         letter-spacing: 2px;
       }
+      .stage-label {
+        font-family: 'Courier New', monospace;
+        font-size: 12px;
+        color: #00ff41;
+        letter-spacing: 1px;
+        opacity: 0.9;
+        text-shadow: 0 0 8px #00ff41;
+        min-height: 18px;
+        transition: opacity 0.2s ease;
+      }
+      .stage-label.fade { opacity: 0; }
+      .rabbit { 
+        display: inline-block; 
+        animation: hop 0.5s ease-in-out infinite;
+      }
+      @keyframes hop { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
       .loading-spinner.fade-out { 
         opacity: 0; 
         transition: opacity 0.3s ease-out;
@@ -183,17 +199,49 @@
       }
     </style>
     <script>
-      // Progress tracking with actual resource loading
+      // Matrix-themed stage messages
+      const stageMessages = [
+        { threshold: 0, msg: 'Wake up, Neo...' },
+        { threshold: 10, msg: 'The Matrix has you...' },
+        { threshold: 20, msg: 'Follow the white rabbit 🐇' },
+        { threshold: 35, msg: 'Knock, knock, Neo.' },
+        { threshold: 50, msg: 'You take the red pill...' },
+        { threshold: 65, msg: 'Free your mind.' },
+        { threshold: 75, msg: 'There is no spoon.' },
+        { threshold: 85, msg: 'I know kung fu.' },
+        { threshold: 95, msg: 'Welcome to the real world.' },
+        { threshold: 100, msg: '🚀 ENTERING THE MATRIX...' }
+      ];
+
       let progress = 0;
+      let currentStage = -1;
       const progressBar = () => document.getElementById('progress-bar');
       const progressText = () => document.getElementById('progress-text');
+      const stageLabel = () => document.getElementById('stage-label');
       
       const updateProgress = (value) => {
         progress = Math.min(value, 100);
         const bar = progressBar();
         const text = progressText();
+        const stage = stageLabel();
+        
         if (bar) bar.style.width = progress + '%';
         if (text) text.textContent = Math.round(progress) + '%';
+        
+        // Update stage message with fade effect
+        if (stage) {
+          const newStage = stageMessages.findIndex((s, i) => 
+            progress >= s.threshold && (i === stageMessages.length - 1 || progress < stageMessages[i + 1].threshold)
+          );
+          if (newStage !== currentStage && newStage >= 0) {
+            currentStage = newStage;
+            stage.classList.add('fade');
+            setTimeout(() => {
+              stage.innerHTML = stageMessages[newStage].msg;
+              stage.classList.remove('fade');
+            }, 150);
+          }
+        }
       };
 
       // Simulate initial progress quickly
@@ -417,6 +465,7 @@
         </div>
         <div class="loading-content">
           <div class="loading-text">LOADING YOUR AI TOOL EMPIRE<span class="dots"><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></span></div>
+          <div class="stage-label" id="stage-label">Wake up, Neo...</div>
           <div class="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
           </div>
