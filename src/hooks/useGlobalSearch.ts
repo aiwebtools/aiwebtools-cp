@@ -174,6 +174,14 @@ export const useGlobalSearch = () => {
       setDisplayedCount(50);
       return;
     }
+
+    // Avoid huge match sets on 1-character queries (causes lag). Start searching at 2+ chars.
+    if (t.length < 2) {
+      setSearchResults([]);
+      setIsOpen(false);
+      setDisplayedCount(50);
+      return;
+    }
     
     const q = t.toLowerCase();
     

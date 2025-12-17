@@ -20,6 +20,7 @@ import { getCurrentToolCount } from "@/utils/toolCounter";
 import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
 import Logo from "./Logo";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
+import DeferredMount from "@/components/DeferredMount";
 
 const MobileMenu = () => {
   const navigate = useNavigate();
@@ -264,6 +265,7 @@ const MobileMenu = () => {
                 <GlobalSearchBar />
               </div>
 
+              <DeferredMount delay={80}>
               {/* Navigation Section */}
               <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 mb-3 rounded-lg h-12 text-sm font-medium px-3">
                 <span className="mr-3 text-lg">🏠</span> Home
@@ -528,6 +530,7 @@ const MobileMenu = () => {
                   <X className="w-4 h-4" />
                 </Button>
               </div>
+              </DeferredMount>
             </div>
           </DropdownMenuContent>
         </DropdownMenu>
