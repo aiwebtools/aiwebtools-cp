@@ -1910,7 +1910,7 @@ const performEnhancedSearch = (
   const pinnedTitles: string[] = [];
 
   // Spirit queries: demote known weak/irrelevant matches so the best spiritual tools surface first
-  // (Keeps the tool searchable, just not ranked #1-#3.)
+  // These are NOT spiritual tools - they just have words like "light" or "cosmic" that ping falsely
   const isSpiritQuery = lowerTerm.startsWith("spirit") || lowerTerm.includes("spiritual") || (lowerTerm.includes("spirit") && lowerTerm.length <= 12);
   const demoteTitles = isSpiritQuery
     ? new Set<string>([
@@ -1918,7 +1918,8 @@ const performEnhancedSearch = (
         "gptpastvoices-resurrection gpt",
         "gptpastvoices",
         "past voices",
-        "cyber-kabbalah light code translation engine gpt", // This is encryption tool, not spiritual
+        "cyber-kabbalah light code translation engine gpt", // Encryption tool, not spiritual
+        "time machine of unwritten history gpt", // History tool, not spiritual
       ])
     : null;
 
