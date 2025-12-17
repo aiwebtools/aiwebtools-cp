@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v5";
+const SEARCH_CACHE_VERSION = "v6";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -1233,37 +1233,64 @@ export const useGlobalSearch = () => {
           if (currentId !== searchIdRef.current) return;
           const results = searchTools(allTools, t);
 
-           // Keep full intelligence, but ensure literal prefix matches never get buried
-           const q = t.toLowerCase().trim();
-           const qFirst = q.split(/\s+/)[0] || "";
-           const reranked = results
-             .map((tool, idx) => {
-               const title = (tool?.title || "").toLowerCase();
-               const words = title.split(/\s+/).filter(Boolean);
-               const firstWord = words[0] || "";
-               let boost = 0;
+          // Keep full intelligence, but ensure literal prefix matches never get buried
+          const q = t.toLowerCase().trim();
+          const qFirst = q.split(/\s+/)[0] || "";
+          const reranked = results
+            .map((tool, idx) => {
+              const title = (tool?.title || "").toLowerCase();
+              const words = title.split(/\s+/).filter(Boolean);
+              const firstWord = words[0] || "";
+              let boost = 0;
 
-               // Exact / prefix boosts
-               if (title === q) boost = 400000;
-               else if (firstWord === q) boost = 300000;
-               else if (title.startsWith(q)) boost = 200000;
-               else if (words.some((w) => w.startsWith(q))) boost = 120000;
+              // Exact / prefix boosts
+              if (title === q) boost = 400000;
+              else if (firstWord === q) boost = 300000;
+              else if (title.startsWith(q)) boost = 200000;
+              else if (words.some((w) => w.startsWith(q))) boost = 120000;
 
-               // Head-intent boosts (e.g., "learn everything" should still prioritize LEARN tools)
-               if (!boost && qFirst && firstWord === qFirst) boost = 180000;
+              // Head-intent boosts (e.g., "learn everything" should still prioritize LEARN tools)
+              if (!boost && qFirst && firstWord === qFirst) boost = 180000;
 
-               return { tool, idx, boost };
-             })
-             .sort((a, b) => {
-               if (b.boost !== a.boost) return b.boost - a.boost;
-               return a.idx - b.idx; // stable fallback (preserve searchTools ordering)
-             })
-             .map((x) => x.tool);
+              return { tool, idx, boost };
+            })
+            .sort((a, b) => {
+              if (b.boost !== a.boost) return b.boost - a.boost;
+              return a.idx - b.idx; // stable fallback (preserve searchTools ordering)
+            })
+            .map((x) => x.tool);
+
+          // CRITICAL: merge in quickSearch “must-have” prefix hits so nothing disappears after full search
+          // (Fixes cases where a tool shows in quick results but vanishes/reorders out of view after full ranking.)
+          const quick = quickSearch(t);
+          const mustHave = quick.filter((tool) => {
+            const title = (tool?.title || "").toLowerCase();
+            const firstWord = title.split(/\s+/)[0] || "";
+            // Always keep LEARN ANY SKILL GPT surfaced for learn/le/skill queries
+            if (q.includes("learn") || q.startsWith("le") || q.includes("skill")) {
+              if (title.includes("learn any skill gpt")) return true;
+            }
+            // Generic safety: keep strong literal prefix matches
+            if (title.startsWith(q) || firstWord.startsWith(q)) return true;
+            return false;
+          });
+
+          const seen = new Set<string>();
+          const merged: any[] = [];
+          const push = (tool: any) => {
+            const key = `${(tool?.title || "").toLowerCase()}|||${(tool?.directUrl || "").toLowerCase()}`;
+            if (seen.has(key)) return;
+            seen.add(key);
+            merged.push(tool);
+          };
+
+          mustHave.forEach(push);
+          reranked.forEach(push);
 
           // Cache full search results
-          searchCache.set(fullCacheKey, reranked);
-          
-          setSearchResults(reranked);
+          searchCache.set(fullCacheKey, merged);
+
+          setSearchResults(merged);
           setDisplayedCount(50);
         };
 
