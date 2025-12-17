@@ -417,6 +417,47 @@ const DesktopMenu = () => {
                       📊 Download ALL {toolStats.marketing} AI Tools (CSV)
                     </DropdownMenuItem>
                     <DropdownMenuItem 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        // Download source code as info - redirect to GitHub or provide instructions
+                        createConfettiCelebration();
+                        const codeInfo = `# AI Web Tools - Source Code Download Info
+                        
+To download the complete source code of AI Web Tools:
+
+1. Visit: https://lovable.dev/projects/6bc45a49-a34b-46a4-9b9d-c50f06b2d957?via=aiwebtools
+2. Click "Clone" to create your own copy
+3. Connect to GitHub to export all code
+4. Download as ZIP from your GitHub repository
+
+Website: https://aiwebtools.ai
+Contact: contact@ai-webtools.com
+
+This is a React + Vite + TypeScript project.
+No API keys or personal data are included in the source code.`;
+                        
+                        const blob = new Blob([codeInfo], { type: 'text/plain' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'AIWebTools-Source-Code-Download-Instructions.txt';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                        
+                        // Also open the clone page
+                        setTimeout(() => {
+                          window.open("https://lovable.dev/projects/6bc45a49-a34b-46a4-9b9d-c50f06b2d957?via=aiwebtools", '_blank');
+                        }, 300);
+                        setIsMenuOpen(false);
+                      }}
+                      className="text-green-100 hover:bg-green-500/20 rounded text-base px-3 py-2 bg-green-600/10 border border-green-500/30"
+                    >
+                      <FileText className="w-4 h-4 mr-2" />
+                      💾 Download Website Source Code
+                    </DropdownMenuItem>
+                    <DropdownMenuItem 
                       onClick={(e) => { 
                         e.preventDefault();
                         handleExternalLink("https://lovable.dev/projects/6bc45a49-a34b-46a4-9b9d-c50f06b2d957?via=aiwebtools", e);
