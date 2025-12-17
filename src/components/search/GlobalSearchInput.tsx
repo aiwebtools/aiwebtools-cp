@@ -2,7 +2,7 @@
 import { Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { memo, useCallback } from "react";
+import { memo, useCallback, useRef } from "react";
 
 interface GlobalSearchInputProps {
   searchTerm: string;
@@ -23,6 +23,8 @@ const GlobalSearchInput = memo(({
   onClear,
   onAcceptPrediction,
 }: GlobalSearchInputProps) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   // Direct onChange handler for maximum speed
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     onSearchChange(e.target.value);
@@ -43,8 +45,16 @@ const GlobalSearchInput = memo(({
     ? prediction.slice(searchTerm.length)
     : null;
 
+  // Instant focus when clicking anywhere on the container
+  const handleContainerClick = useCallback(() => {
+    inputRef.current?.focus();
+  }, []);
+
   return (
-    <div className="relative rounded-lg border border-border">
+    <div 
+      className="relative rounded-lg border border-border cursor-text"
+      onClick={handleContainerClick}
+    >
       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 w-4 h-4 pointer-events-none z-10" />
       
       {/* Ghost text prediction layer */}
@@ -57,12 +67,13 @@ const GlobalSearchInput = memo(({
       )}
       
       <Input
+        ref={inputRef}
         type="text"
         placeholder={`Search ${toolStats.marketing} AI tools...`}
         value={searchTerm}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
-        className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg backdrop-blur-sm focus:bg-black/80 relative z-[1] bg-transparent"
+        className="pl-10 pr-10 bg-black/60 border-0 text-white placeholder-gray-300 focus:ring-0 focus:outline-none rounded-lg backdrop-blur-sm focus:bg-black/80 relative z-[1] bg-transparent cursor-text"
         autoComplete="off"
         spellCheck={false}
         inputMode="search"
@@ -80,7 +91,10 @@ const GlobalSearchInput = memo(({
         <Button
           variant="ghost"
           size="sm"
-          onClick={onClear}
+          onClick={(e) => {
+            e.stopPropagation();
+            onClear();
+          }}
           className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0 text-gray-300 hover:text-white hover:bg-white/10 z-10"
           aria-label="Clear search"
         >

@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v3";
+const SEARCH_CACHE_VERSION = "v4";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
