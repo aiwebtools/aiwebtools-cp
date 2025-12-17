@@ -11,7 +11,7 @@ export const foodAndHospitalityGPTs: Tool[] = [
     color: "from-purple-500 to-blue-600",
     directUrl: "https://mixologistgpt.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-modern-and-stylish-bartender-with.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
-    tags: ["cocktails", "bartending", "drinks", "mixology", "beverage creation", "Custom GPT"],
+    tags: ["cocktails", "bartending", "drinks", "mixology", "beverage creation", "cooking", "food", "recipe", "Custom GPT"],
     category: "Food & Hospitality",
     rating: 4.7,
     totalVotes: 5234
@@ -37,7 +37,7 @@ export const foodAndHospitalityGPTs: Tool[] = [
     color: "from-green-500 to-blue-600",
     directUrl: "https://restaurantmenumakergpt.lovable.app/",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-photo-of-a-restaurant-menu-with-a-vari__Oji1.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["restaurant menus", "menu design", "food business", "restaurant marketing", "hospitality", "Custom GPT"],
+    tags: ["restaurant menus", "menu design", "food business", "restaurant marketing", "hospitality", "cooking", "food", "recipe", "Custom GPT"],
     category: "Food & Hospitality",
     rating: 4.6,
     totalVotes: 4321
