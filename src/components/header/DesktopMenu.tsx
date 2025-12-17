@@ -141,7 +141,7 @@ const DesktopMenu = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent 
-            className="w-[480px] bg-black/98 shadow-2xl border border-cyan-500/40 backdrop-blur-xl max-h-[85vh] overflow-y-auto z-[110]"
+            className="w-[480px] bg-black shadow-2xl border border-cyan-500/40 max-h-[85vh] overflow-y-auto z-[110]"
             align="end"
             alignOffset={0}
             sideOffset={8}
