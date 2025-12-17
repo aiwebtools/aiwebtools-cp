@@ -167,37 +167,44 @@ const MobileMenu = () => {
 
   return (
     <>
-      <div className="md:hidden relative">  {/* Show on mobile only */}
-        {/* Backdrop overlay - always rendered, visibility toggled */}
-        <div 
-          className={`fixed inset-0 bg-black/30 z-[100] backdrop-blur-[2px] transition-opacity duration-75 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-          onClick={closeMenu}
-          aria-hidden="true"
-        />
+      <div className="md:hidden">  {/* Show on mobile only */}
+        {/* Backdrop overlay - click to close */}
+        {isMenuOpen && (
+          <div 
+            className="fixed inset-0 bg-black/30 z-[100] backdrop-blur-[2px]"
+            onClick={closeMenu}
+            aria-hidden="true"
+          />
+        )}
         
-        {/* Trigger Button */}
-        <Button 
-          variant="outline" 
-          size="lg" 
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="border-2 border-cyan-400 bg-cyan-500/20 text-cyan-100 hover:bg-cyan-500/40 px-4 py-3 min-w-[56px] min-h-[56px] rounded-xl shadow-lg shadow-cyan-500/30"
-          aria-label="Open menu"
-        >
-          <Menu className="w-7 h-7" />
-        </Button>
-        
-        {/* Pre-rendered Menu Content - always in DOM, visibility toggled */}
-        <div 
-          ref={dropdownRef}
-          className={`fixed right-2 top-20 w-[95vw] max-w-[400px] bg-black/98 shadow-2xl border-2 border-cyan-500/50 backdrop-blur-xl max-h-[70vh] overflow-hidden z-[110] rounded-md transition-opacity duration-75 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          style={{
-            scrollBehavior: 'auto',
-            overscrollBehavior: 'contain',
-            visibility: isMenuOpen ? 'visible' : 'hidden'
-          }}
-        >
+        <DropdownMenu open={isMenuOpen} onOpenChange={handleMenuToggle}>
+          <DropdownMenuTrigger asChild>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-2 border-cyan-400 bg-cyan-500/20 text-cyan-100 hover:bg-cyan-500/40 px-4 py-3 min-w-[56px] min-h-[56px] rounded-xl shadow-lg shadow-cyan-500/30"
+              aria-label="Open menu"
+            >
+              <Menu className="w-7 h-7" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent 
+            ref={dropdownRef}
+            className="w-[95vw] max-w-[400px] bg-black/98 shadow-2xl border-2 border-cyan-500/50 backdrop-blur-xl max-h-[70vh] overflow-hidden z-[110]"
+            align="end"
+            side="bottom"
+            alignOffset={0}
+            sideOffset={16}
+            avoidCollisions={true}
+            collisionPadding={{ top: 80, left: 10, right: 10, bottom: 10 }}
+            sticky="always"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            style={{
+              scrollBehavior: 'auto',
+              overscrollBehavior: 'contain'
+            }}
+          >
             {/* Sticky Close Button - Always visible while scrolling */}
             <div className="sticky top-0 z-[130] flex justify-end p-2 pointer-events-none">
               <Button
@@ -538,7 +545,8 @@ const MobileMenu = () => {
               </div>
               </>
             </div>
-        </div>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </>
   );
