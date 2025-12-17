@@ -41,7 +41,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     color: "from-yellow-500 to-purple-600",
     directUrl: "https://teslaeinsteingpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=DR_3MvP7Wws",
-    tags: ["nikola", "tesla", "nikola tesla", "scientific research", "innovation", "electricity", "physics", "inventor", "electromagnetic", "aiwebtools", "Custom GPT", "Scientific Research", "STEM Education"],
+    tags: ["nikola", "tesla", "nikola tesla", "scientific research", "innovation", "electricity", "physics", "inventor", "electromagnetic", "historical figure", "history", "aiwebtools", "Custom GPT", "Scientific Research", "STEM Education"],
     category: "Science & Research",
     rating: 4.9,
     totalVotes: 6789
@@ -54,7 +54,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://alchemicalscientistgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/3JbmudJu9LM?si=lKMxbzq0a5XgKLAW",
-    tags: ["alchemist", "alchemy", "alchemical", "chemistry", "medieval science", "experiments", "historical science", "transmutation", "aiwebtools", "Custom GPT", "Scientific Research", "STEM Education"],
+    tags: ["alchemist", "alchemy", "alchemical", "chemistry", "medieval science", "experiments", "historical science", "history", "ancient", "transmutation", "aiwebtools", "Custom GPT", "Scientific Research", "STEM Education"],
     category: "Science & Research",
     rating: 4.6,
     totalVotes: 4321

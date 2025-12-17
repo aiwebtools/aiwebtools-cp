@@ -70,7 +70,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     color: "from-blue-600 to-cyan-700",
     directUrl: "https://chatgpt.com/g/g-68b496eea38481919c1700ed3ef675dd-atlantean-memory-keeper/?via=aiwebtools",
     videoUrl: "https://youtu.be/vBm6l_6JqEg",
-    tags: ["atlantis", "ancient knowledge", "lost civilization", "mysteries", "ancient wisdom", "forgotten history", "aiwebtools", "Custom GPT"],
+    tags: ["atlantis", "ancient knowledge", "lost civilization", "mysteries", "ancient wisdom", "forgotten history", "history", "historical", "ancient civilization", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.6,
     totalVotes: 934
@@ -82,7 +82,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "🔮",
     color: "from-yellow-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-68b491e8cc2c8191b6b85930d7fc9e75-mayan-dreamspell-matrix/?via=aiwebtools",
-    tags: ["mayan calendar", "dreamspell", "galactic signature", "cosmic wisdom", "spiritual guidance", "ancient knowledge", "aiwebtools", "Custom GPT"],
+    tags: ["mayan calendar", "dreamspell", "galactic signature", "cosmic wisdom", "spiritual guidance", "ancient knowledge", "history", "historical", "ancient civilization", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.6,
     totalVotes: 2341
@@ -94,7 +94,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "💎",
     color: "from-green-500 to-emerald-600",
     directUrl: "https://chatgpt.com/g/g-68b48f8e43c88191981386b943648566-emerald-signature-of-thoth/?via=aiwebtools",
-    tags: ["hermetic wisdom", "thoth", "emerald tablets", "ancient codes", "mystical knowledge", "spiritual transmission", "aiwebtools", "Custom GPT"],
+    tags: ["hermetic wisdom", "thoth", "emerald tablets", "ancient codes", "mystical knowledge", "spiritual transmission", "history", "historical", "ancient egypt", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.8,
     totalVotes: 1967
@@ -106,7 +106,7 @@ export const mysteriousAndUnusualGPTs: Tool[] = [
     emoji: "⭐",
     color: "from-purple-500 to-indigo-600",
     directUrl: "https://chatgpt.com/g/g-68b48e0515708191a8fec9d0aa385c67-the-babylonian-star-tablet-protocol/?via=aiwebtools",
-    tags: ["babylonian wisdom", "star tablets", "cosmic alignment", "celestial frequencies", "ancient astronomy", "spiritual awakening", "aiwebtools", "Custom GPT"],
+    tags: ["babylonian wisdom", "babylon", "star tablets", "cosmic alignment", "celestial frequencies", "ancient astronomy", "spiritual awakening", "history", "historical", "ancient civilization", "aiwebtools", "Custom GPT"],
     category: "Mysterious & Unusual",
     rating: 4.7,
     totalVotes: 1834

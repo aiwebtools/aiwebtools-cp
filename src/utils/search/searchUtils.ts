@@ -194,7 +194,7 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     
     debugLog(`⏰ Found ${timeMachineTools.length} time machine tools:`, timeMachineTools.map(t => t.title));
     
-    // Sort time machine tools - exact "time machine" in title first
+    // Sort time machine tools - exact "time machine" in title first, NO auto GPT priority
     const sortedTimeMachineTools = timeMachineTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
       const titleA = a.title.toLowerCase();
@@ -212,15 +212,102 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       if (titleA.includes('time travel')) scoreA += 20000;
       if (titleB.includes('time travel')) scoreB += 20000;
       
-      // All AI Web Tools GPTs get priority
-      if (a.directUrl?.includes('lovable.app') || a.directUrl?.includes('aiwebtools')) scoreA += 10000;
-      if (b.directUrl?.includes('lovable.app') || b.directUrl?.includes('aiwebtools')) scoreB += 10000;
-      
       return scoreB - scoreA;
     });
     
     const nonTimeMachineTools = tools.filter(tool => !timeMachineTools.includes(tool));
     return [...sortedTimeMachineTools, ...nonTimeMachineTools];
+  }
+
+  // HISTORY SEARCH PRIORITY - Comprehensive historical tools detection
+  if (normalizedSearchTerm === 'history' || normalizedSearchTerm.includes('history') ||
+      normalizedSearchTerm.includes('historical') || normalizedSearchTerm.includes('ancient')) {
+    debugLog('📜 HISTORY SEARCH DETECTED - Finding all history-related tools');
+    
+    // Historical figures, spiritual gurus, ancient civilizations
+    const HISTORICAL_KEYWORDS = [
+      // Core history terms
+      'history', 'historical', 'ancient', 'medieval', 'renaissance', 'era', 'century', 'past',
+      // Time travel/exploration
+      'time machine', 'time travel', 'time traveler',
+      // Ancient civilizations
+      'atlantis', 'babylon', 'egypt', 'egyptian', 'rome', 'roman', 'greek', 'greece', 'mesopotamia', 
+      'sumerian', 'aztec', 'mayan', 'inca', 'viking', 'celtic', 'persian', 'ottoman', 'byzantine',
+      // Historical figures (spiritual gurus, philosophers, leaders)
+      'buddha', 'confucius', 'socrates', 'plato', 'aristotle', 'marcus aurelius', 'seneca',
+      'jesus', 'mary magdalene', 'moses', 'muhammad', 'krishna', 'shiva', 'vishnu',
+      'alan watts', 'rumi', 'hafiz', 'lao tzu', 'laozi', 'zhuangzi',
+      'nikola tesla', 'albert einstein', 'leonardo da vinci', 'newton', 'galileo',
+      'cleopatra', 'caesar', 'alexander', 'napoleon', 'genghis khan',
+      'geronimo', 'crazy horse', 'sitting bull', 'native american',
+      'titanic', 'resurrection', 'resurrections',
+      // Religious/spiritual history
+      'prophet', 'saint', 'apostle', 'disciple', 'biblical', 'scripture',
+      'gnostic', 'manichae', 'zoroastr', 'vedic', 'sufi',
+      // Historical roles/concepts
+      'apothecary', 'alchemist', 'alchemy', 'oracle', 'sage', 'philosopher',
+      'archaeolog', 'indiana', 'artifact', 'heritage', 'civilization',
+      'headline', 'pattern', 'hidden', 'interpret', 'archiv'
+    ];
+    
+    const historyTools = tools.filter(tool => {
+      const lowerTitle = tool.title.toLowerCase();
+      const lowerDescription = tool.description.toLowerCase();
+      const lowerCategory = tool.category?.toLowerCase() || '';
+      const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      const allText = `${lowerTitle} ${lowerDescription} ${lowerCategory} ${lowerTags.join(' ')}`;
+      
+      // Check for any historical keywords
+      return HISTORICAL_KEYWORDS.some(keyword => allText.includes(keyword)) ||
+             lowerCategory.includes('time') ||
+             lowerCategory.includes('spiritual') ||
+             lowerCategory.includes('philosophy');
+    });
+    
+    debugLog(`📜 Found ${historyTools.length} history tools:`, historyTools.slice(0, 20).map(t => t.title));
+    
+    // Sort history tools by relevance - NO auto GPT priority, pure relevance-based
+    const sortedHistoryTools = historyTools.sort((a, b) => {
+      let scoreA = 0, scoreB = 0;
+      const titleA = a.title.toLowerCase();
+      const titleB = b.title.toLowerCase();
+      const descA = a.description.toLowerCase();
+      const descB = b.description.toLowerCase();
+      
+      // HIGHEST: Exact "history" in title
+      if (titleA.includes('history')) scoreA += 50000;
+      if (titleB.includes('history')) scoreB += 50000;
+      
+      // HIGH: "historical" in title
+      if (titleA.includes('historical')) scoreA += 40000;
+      if (titleB.includes('historical')) scoreB += 40000;
+      
+      // HIGH: Time travel/machine tools
+      if (titleA.includes('time machine') || titleA.includes('time travel')) scoreA += 35000;
+      if (titleB.includes('time machine') || titleB.includes('time travel')) scoreB += 35000;
+      
+      // MEDIUM-HIGH: Ancient civilizations in title
+      if (titleA.includes('atlantis') || titleA.includes('babylon') || titleA.includes('egypt')) scoreA += 30000;
+      if (titleB.includes('atlantis') || titleB.includes('babylon') || titleB.includes('egypt')) scoreB += 30000;
+      
+      // MEDIUM: Historical figures in title
+      const figureKeywords = ['tesla', 'einstein', 'buddha', 'socrates', 'alan watts', 'rumi', 'mary magdalene', 'titanic'];
+      if (figureKeywords.some(k => titleA.includes(k))) scoreA += 25000;
+      if (figureKeywords.some(k => titleB.includes(k))) scoreB += 25000;
+      
+      // MEDIUM: Archaeology, apothecary, alchemy
+      if (titleA.includes('archaeolog') || titleA.includes('indiana') || titleA.includes('apothecary') || titleA.includes('alchemist')) scoreA += 20000;
+      if (titleB.includes('archaeolog') || titleB.includes('indiana') || titleB.includes('apothecary') || titleB.includes('alchemist')) scoreB += 20000;
+      
+      // LOWER: History in description only
+      if (descA.includes('history') || descA.includes('historical')) scoreA += 10000;
+      if (descB.includes('history') || descB.includes('historical')) scoreB += 10000;
+      
+      return scoreB - scoreA;
+    });
+    
+    const nonHistoryTools = tools.filter(tool => !historyTools.includes(tool));
+    return [...sortedHistoryTools, ...nonHistoryTools];
   }
 
   // VIDEO SEARCH PRIORITY - Strict video tool filtering
