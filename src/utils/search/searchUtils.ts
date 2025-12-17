@@ -314,6 +314,34 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     
     const nonEducationTools = tools.filter(tool => !educationTools.includes(tool));
     const rankedEducation = performEnhancedSearch(sortedEducationTools, searchTerm, searchWords, phoneticVariations, intentConfig);
+
+    // CRITICAL: For "learn any"-style queries, hard-pin our matching tools at the top (stable for all devices)
+    const q = normalizedSearchTerm;
+    const shouldPinLearnAny = q.startsWith('learn any') || q.includes('learn any ');
+    if (shouldPinLearnAny) {
+      const pinnedOrder = [
+        'learn any course gpt',
+        'learn any skill gpt',
+        'college degree gpt',
+      ];
+
+      const pinned: Tool[] = [];
+      const rest: Tool[] = [];
+      for (const t of rankedEducation) {
+        const title = t.title.toLowerCase();
+        if (pinnedOrder.some(p => title.includes(p))) pinned.push(t);
+        else rest.push(t);
+      }
+
+      pinned.sort((a, b) => {
+        const at = a.title.toLowerCase();
+        const bt = b.title.toLowerCase();
+        return pinnedOrder.findIndex(p => at.includes(p)) - pinnedOrder.findIndex(p => bt.includes(p));
+      });
+
+      return [...pinned, ...rest, ...nonEducationTools];
+    }
+
     return [...rankedEducation, ...nonEducationTools];
   }
 
