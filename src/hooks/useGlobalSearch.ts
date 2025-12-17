@@ -139,7 +139,7 @@ if (typeof window !== "undefined") {
 }
 
 export const useGlobalSearch = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTermInternal] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [displayedCount, setDisplayedCount] = useState(30);
   const [isOpen, setIsOpen] = useState(false);
@@ -149,148 +149,133 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
-  // ULTRA-FAST: Minimal debounce for instant feedback (50ms just to batch rapid keystrokes)
-  const debouncedSearchTerm = useDebounce(searchTerm, 50);
-  
   // Pre-index tools for HYPER-INTELLIGENT matching - ALL 2000+ tools fully searchable
   const indexedTools = useMemo(() => getIndexedTools(), []);
   
   // Track current search to prevent stale updates
   const searchIdRef = useRef(0);
+  const searchTimeoutRef = useRef<number | null>(null);
   
-  // FAST stage: HYPER-INTELLIGENT results with light debounce
-  useEffect(() => {
-    // Increment search ID immediately to invalidate any pending heavy searches
-    searchIdRef.current += 1;
+  // INSTANT input - no debounce on display, only on computation
+  const setSearchTerm = useCallback((value: string) => {
+    // Update input immediately for instant feedback
+    setSearchTermInternal(value);
     
-    const t = debouncedSearchTerm.trim();
-    if (!t) {
-      // INSTANT clear - no delay, no freeze
+    // Cancel previous search computation
+    if (searchTimeoutRef.current) {
+      cancelAnimationFrame(searchTimeoutRef.current);
+    }
+    
+    const t = value.trim();
+    if (!t || t.length < 2) {
       setSearchResults([]);
       setIsOpen(false);
       setDisplayedCount(50);
       return;
     }
+    
+    // Defer search computation to next frame for instant typing
+    searchTimeoutRef.current = requestAnimationFrame(() => {
+      const currentId = ++searchIdRef.current;
+      
+      const q = t.toLowerCase();
+      const { intent, keywords: intentKeywords } = extractIntent(t);
+      const smartKeywords = t.length > 30 ? extractKeywords(t) : [];
+      const tokens = smartKeywords.length > 0 
+        ? smartKeywords.slice(0, 5)
+        : q.split(/\s+/).filter(w => w.length >= 2).slice(0, 8);
 
-    // Avoid huge match sets on 1-character queries (causes lag). Start searching at 2+ chars.
-    if (t.length < 2) {
-      setSearchResults([]);
-      setIsOpen(false);
-      setDisplayedCount(50);
-      return;
-    }
-    
-    const q = t.toLowerCase();
-    
-    // SMART: Extract intent from natural language
-    const { intent, keywords: intentKeywords } = extractIntent(t);
-    
-    // FAST: Extract only important keywords for long sentences
-    const smartKeywords = t.length > 30 ? extractKeywords(t) : [];
-    const tokens = smartKeywords.length > 0 
-      ? smartKeywords.slice(0, 5) // Limit tokens for speed
-      : q.split(/\s+/).filter(w => w.length >= 2).slice(0, 8);
+      const fast = indexedTools
+        .filter(ix => {
+          if (intent && intentKeywords.length > 0) {
+            const intentMatch = intentKeywords.some(kw => 
+              ix.lt.includes(kw) || ix.lc.includes(kw) || ix.lta.includes(kw)
+            );
+            if (intentMatch) return true;
+          }
+          const directMatch = ix.lt.includes(q) || ix.lc.includes(q);
+          if (directMatch) return true;
+          if (tokens.length > 0) {
+            const keywordMatch = tokens.some(tok => ix.lt.includes(tok) || ix.lc.includes(tok) || ix.lta.includes(tok));
+            if (keywordMatch) return true;
+          }
+          return false;
+        })
+        .map(ix => ix.tool);
 
-    let fast = indexedTools
-      .filter(ix => {
-        // INTENT-BASED matching (highest priority for natural language)
-        if (intent && intentKeywords.length > 0) {
-          const intentMatch = intentKeywords.some(kw => 
-            ix.lt.includes(kw) || ix.lc.includes(kw) || ix.lta.includes(kw)
-          );
-          if (intentMatch) return true;
+      // Quick scoring
+      const quickScore = (tool: any) => {
+        const lt = tool.title.toLowerCase();
+        const lc = (tool.category || "").toLowerCase();
+        const lta = (tool.tags || []).join(" ").toLowerCase();
+        let s = 0;
+        
+        if (intent === 'comic') {
+          if (lt.includes("comic book") || lt.includes("comic")) s += 250000;
+          else if (lt.includes("coloring book")) s += 200000;
+          else if (lt.includes("picture book") || lt.includes("children")) s += 180000;
+          else if (lt.includes("illustration") || lt.includes("graphic")) s += 150000;
+        } else if (intent === 'children_book') {
+          if (lt.includes("children") && lt.includes("book")) s += 250000;
+          else if (lt.includes("picture book")) s += 200000;
+          else if (lt.includes("coloring book")) s += 180000;
+          else if (lt.includes("comic")) s += 150000;
+        } else if (intent === 'book') {
+          if (lt.includes("book writer")) s += 200000;
+          else if (lt.includes("book")) s += 100000;
+        } else if (intent === 'movie_script') {
+          if (lt.includes("movie script")) s += 200000;
+          else if (lt.includes("script")) s += 150000;
+          else if (lt.includes("movie maker") || lt.includes("movie scene")) s += 100000;
+        } else if (intent === 'movie_making') {
+          if (lt.includes("movie maker")) s += 200000;
+          else if (lt.includes("movie scene")) s += 180000;
+          else if (lt.includes("text to video") || lt.includes("video")) s += 150000;
+        } else if (intent === 'image') {
+          if (lt.includes("midjourney") || lt.includes("dall") || lt.includes("stable diffusion")) s += 200000;
+          else if (lt.includes("image") && (lt.includes("generat") || lt.includes("creat"))) s += 180000;
+          else if (lt.includes("art") || lt.includes("design")) s += 100000;
+        } else if (intent === 'music') {
+          if (lt.includes("music") || lt.includes("song") || lt.includes("audio")) s += 200000;
+        } else if (intent === 'website') {
+          if (lt.includes("text to website") || lt.includes("website builder")) s += 200000;
+          else if (lt.includes("website") || lt.includes("site")) s += 150000;
+        } else if (intent === 'app') {
+          if (lt.includes("microsaas")) s += 200000;
+          else if (lt.includes("app") || lt.includes("agent")) s += 150000;
+        } else if (intent === 'presentation') {
+          if (lt.includes("ppt") || lt.includes("powerpoint") || lt.includes("presentation")) s += 200000;
         }
         
-        // Direct matching
-        const directMatch = ix.lt.includes(q) || ix.lc.includes(q);
-        if (directMatch) return true;
+        if (lt === q) s += 100000;
+        if (lt.startsWith(q)) s += 80000;
+        if (lt.includes(q)) s += 30000;
         
-        // Smart keyword matching (for long sentences)
-        if (tokens.length > 0) {
-          const keywordMatch = tokens.some(tok => ix.lt.includes(tok) || ix.lc.includes(tok) || ix.lta.includes(tok));
-          if (keywordMatch) return true;
+        for (const tok of tokens.slice(0, 4)) {
+          if (lt.includes(tok)) s += 2000;
+          if (lc.includes(tok)) s += 1000;
+          if (lta.includes(tok)) s += 500;
         }
         
-        return false;
-      })
-      .map(ix => ix.tool);
+        for (const kw of intentKeywords) {
+          if (lt.includes(kw)) s += 5000;
+        }
 
-    // SMART SCORING with intent awareness
-    const quickScore = (tool: any) => {
-      const lt = tool.title.toLowerCase();
-      const lc = (tool.category || "").toLowerCase();
-      const lta = (tool.tags || []).join(" ").toLowerCase();
-      
-      let s = 0;
-      
-      // INTENT-BASED SCORING (strongest boost for what user actually wants)
-      if (intent === 'comic') {
-        if (lt.includes("comic book") || lt.includes("comic")) s += 250000;
-        else if (lt.includes("coloring book")) s += 200000;
-        else if (lt.includes("picture book") || lt.includes("children")) s += 180000;
-        else if (lt.includes("illustration") || lt.includes("graphic")) s += 150000;
-      } else if (intent === 'children_book') {
-        if (lt.includes("children") && lt.includes("book")) s += 250000;
-        else if (lt.includes("picture book")) s += 200000;
-        else if (lt.includes("coloring book")) s += 180000;
-        else if (lt.includes("comic")) s += 150000;
-      } else if (intent === 'book') {
-        if (lt.includes("book writer")) s += 200000;
-        else if (lt.includes("book")) s += 100000;
-      } else if (intent === 'movie_script') {
-        if (lt.includes("movie script")) s += 200000;
-        else if (lt.includes("script")) s += 150000;
-        else if (lt.includes("movie maker") || lt.includes("movie scene")) s += 100000;
-      } else if (intent === 'movie_making') {
-        if (lt.includes("movie maker")) s += 200000;
-        else if (lt.includes("movie scene")) s += 180000;
-        else if (lt.includes("text to video") || lt.includes("video")) s += 150000;
-      } else if (intent === 'image') {
-        if (lt.includes("midjourney") || lt.includes("dall") || lt.includes("stable diffusion")) s += 200000;
-        else if (lt.includes("image") && (lt.includes("generat") || lt.includes("creat"))) s += 180000;
-        else if (lt.includes("art") || lt.includes("design")) s += 100000;
-      } else if (intent === 'music') {
-        if (lt.includes("music") || lt.includes("song") || lt.includes("audio")) s += 200000;
-      } else if (intent === 'website') {
-        if (lt.includes("text to website") || lt.includes("website builder")) s += 200000;
-        else if (lt.includes("website") || lt.includes("site")) s += 150000;
-      } else if (intent === 'app') {
-        if (lt.includes("microsaas")) s += 200000;
-        else if (lt.includes("app") || lt.includes("agent")) s += 150000;
-      } else if (intent === 'presentation') {
-        if (lt.includes("ppt") || lt.includes("powerpoint") || lt.includes("presentation")) s += 200000;
+        return s;
+      };
+
+      fast.sort((a, b) => quickScore(b) - quickScore(a));
+
+      // Only update if this is still the current search
+      if (currentId === searchIdRef.current) {
+        setSearchResults(fast);
+        setDisplayedCount(50);
+        setIsOpen(true);
       }
-      
-      // Standard scoring (when no clear intent)
-      if (lt === q) s += 100000;
-      if (lt.startsWith(q)) s += 80000;
-      if (lt.includes(q)) s += 30000;
-      
-      // Token scoring (lighter for speed)
-      for (const tok of tokens.slice(0, 4)) {
-        if (lt.includes(tok)) s += 2000;
-        if (lc.includes(tok)) s += 1000;
-        if (lta.includes(tok)) s += 500;
-      }
-      
-      // Intent keyword bonus
-      for (const kw of intentKeywords) {
-        if (lt.includes(kw)) s += 5000;
-      }
-
-      return s;
-    };
-
-    fast.sort((a, b) => quickScore(b) - quickScore(a));
-
-    // Don't limit results - enable true endless scrolling
-    setSearchResults(fast);
-    setDisplayedCount(50);
-    setIsOpen(true);
-  }, [debouncedSearchTerm, indexedTools]);
-
-  // REMOVED: Heavy stage eliminated for instant performance
-  // The fast stage above already provides intelligent scoring
+    });
+  }, [indexedTools]);
+  
+  // Search logic moved to setSearchTerm callback for instant typing
 
   useEffect(() => {
     const handleClickOutside = (event) => {
