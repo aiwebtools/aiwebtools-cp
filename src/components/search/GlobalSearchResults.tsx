@@ -123,10 +123,10 @@ const GlobalSearchResults = ({
                     <div className="text-center">
                       <div className="text-xl mb-2">✨</div>
                       <div className="text-cyan-300 font-semibold text-sm">
-                        End of {directMatchCount} matching results
+                        End of {directMatchCount} <span className="text-cyan-100">DIRECT</span> matching results
                       </div>
                       <div className="text-cyan-400/70 text-xs mt-1">
-                        🚀 Discover more AI tools below
+                        🚀 Discover more indirect matching AI tool suggestions below
                       </div>
                     </div>
                   </div>
