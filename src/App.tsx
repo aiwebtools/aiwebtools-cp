@@ -36,7 +36,35 @@ const GamingEntertainmentPage = lazy(() => import("./pages/GamingEntertainmentPa
 
 // Lazy load non-critical components
 const FloatingCloneButton = lazy(() => import("./components/FloatingCloneButton"));
-const WelcomeVoiceSystem = lazy(() => import("./components/WelcomeVoiceSystem"));
+
+// Welcome Neo voice - plays only on main site after disclaimer accepted
+const WelcomeNeoVoice = () => {
+  const location = (window as any).__REACT_ROUTER_LOCATION__;
+  const hasAccepted = typeof window !== "undefined" && window.localStorage.getItem("aitools-consent-v3");
+  const hasPlayedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    // Only play on main site, not on /welcome, and only once per session
+    if (hasAccepted && !hasPlayedRef.current) {
+      hasPlayedRef.current = true;
+      
+      const playWelcome = () => {
+        const audio = new Audio('/welcome-neo.mp3');
+        audio.volume = 0.7;
+        audio.play().then(() => {
+          console.log('🎵 Playing Welcome Neo audio...');
+        }).catch(() => {
+          console.log('⏳ Audio requires user interaction');
+        });
+      };
+
+      // Small delay to let page settle
+      setTimeout(playWelcome, 500);
+    }
+  }, [hasAccepted]);
+
+  return null;
+};
 
 // Pre-initialize category cache for instant category page loads
 import "@/utils/categoryUtils/precomputedCache";
@@ -160,17 +188,16 @@ function App() {
           <FavoritesProvider>
             <TooltipProvider>
               <Toaster />
-              <Suspense fallback={null}>
-                <WelcomeVoiceSystem />
-              </Suspense>
               <MatrixCursorEffect />
               <BrowserRouter>
--                <AnimatedRoutes />
--                {/* Tiny floating clone button - hides on scroll */}
--                <Suspense fallback={null}>
--                  <FloatingCloneButton />
--                </Suspense>
--              </BrowserRouter>
+                <RouteGuard />
+                {/* Welcome Neo voice - only plays after disclaimer accepted */}
+                <WelcomeNeoVoice />
+                {/* Tiny floating clone button - hides on scroll */}
+                <Suspense fallback={null}>
+                  <FloatingCloneButton />
+                </Suspense>
+              </BrowserRouter>
             </TooltipProvider>
           </FavoritesProvider>
         </HelmetProvider>
