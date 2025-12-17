@@ -290,9 +290,9 @@ const InteractiveMatrixBackground = () => {
       handleInteraction(e.clientX, e.clientY);
     };
 
-    // Touch interaction
+    // Touch interaction - don't prevent default to allow scrolling
     const handleTouchMove = (e: TouchEvent) => {
-      e.preventDefault();
+      // Don't prevent default - allow normal scrolling
       if (e.touches.length > 0 && Math.random() < 0.1) { // Same throttle as desktop
         const touch = e.touches[0];
         handleInteraction(touch.clientX, touch.clientY);
@@ -300,18 +300,18 @@ const InteractiveMatrixBackground = () => {
     };
 
     const handleTouchStart = (e: TouchEvent) => {
-      e.preventDefault();
+      // Don't prevent default - allow normal scrolling
       if (e.touches.length > 0) {
         const touch = e.touches[0];
         handleInteraction(touch.clientX, touch.clientY);
       }
     };
 
-    // Add event listeners with optimization
+    // Add event listeners with optimization - use passive for touch events to allow scrolling
     const removeMouseMove = addOptimizedEventListener(canvas, 'mousemove', handleMouseMove);
     const removeClick = addOptimizedEventListener(canvas, 'click', handleClick);
-    const removeTouchMove = addOptimizedEventListener(canvas, 'touchmove', handleTouchMove);
-    const removeTouchStart = addOptimizedEventListener(canvas, 'touchstart', handleTouchStart);
+    canvas.addEventListener('touchmove', handleTouchMove, { passive: true });
+    canvas.addEventListener('touchstart', handleTouchStart, { passive: true });
 
     return () => {
       if (animationFrameRef.current) {
@@ -319,8 +319,8 @@ const InteractiveMatrixBackground = () => {
       }
       removeMouseMove?.();
       removeClick?.();
-      removeTouchMove?.();
-      removeTouchStart?.();
+      canvas.removeEventListener('touchmove', handleTouchMove);
+      canvas.removeEventListener('touchstart', handleTouchStart);
     };
   }, [initializeCanvas, initializeDrops, animate, handleInteraction, addOptimizedEventListener]);
 
@@ -330,7 +330,7 @@ const InteractiveMatrixBackground = () => {
       className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
       style={{
         background: '#000000',
-        touchAction: 'none'
+        touchAction: 'auto' // Allow normal touch scrolling
       }}
     />
   );
