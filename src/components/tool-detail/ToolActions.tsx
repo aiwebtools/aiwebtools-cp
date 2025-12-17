@@ -37,7 +37,7 @@ Thank you!`);
   const isAIWebToolsOriginal = tool.directUrl?.includes('lovable.app') || false;
 
   return (
-    <div className="text-center pt-6 border-t border-cyan-500/30">
+    <div className="text-center pb-6 mb-6 border-b border-cyan-500/30">
       <div className="space-y-4 px-4">
         <Button 
           size="lg"
