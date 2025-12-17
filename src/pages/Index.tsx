@@ -93,8 +93,8 @@ const Index = () => {
         <GoogleRankingBooster pageType="homepage" />
       </DeferredMount>
       
-      {/* Background effects - deferred until page is mostly loaded */}
-      <DeferredMount delay={800}>
+      {/* Background effects - deferred to improve initial paint */}
+      <DeferredMount delay={50}>
         <InteractiveMatrixBackground />
         <AnimatedBackground />
       </DeferredMount>
