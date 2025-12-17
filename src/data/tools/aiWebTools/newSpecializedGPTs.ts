@@ -260,6 +260,7 @@ export const newSpecializedGPTs: Tool[] = [
     emoji: "🏠",
     color: "from-blue-600 to-green-700",
     directUrl: "https://propertydatafindergpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/J4497wCueJY",
     category: "Real Estate & Property",
     tags: ["property", "real estate", "data analysis", "investment", "Custom GPT"],
     rating: 4.4,

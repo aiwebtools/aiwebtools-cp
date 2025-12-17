@@ -35,7 +35,7 @@ export const multimediaAndContentGPTs: Tool[] = [
     emoji: "🎙️",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://podcastwritergpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/an-illustration-of-a-podcast-host-with-a_HnlUN.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:600,h:300,cg:true/qt=q:30",
+    videoUrl: "https://youtu.be/NRAvHxHIj-U",
     tags: ["podcast", "script writing", "audio content", "storytelling", "content creation", "Custom GPT", "Content Marketing"],
     category: "Multimedia & Content",
     rating: 4.7,
