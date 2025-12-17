@@ -234,7 +234,8 @@ export const cleanupEffects = (effectsContainer: HTMLElement) => {
     '.matrix-binary-ring',
     '.matrix-orb',
     '.code-tunnel-layer',
-    '.matrix-confetti-streamer'
+    '.matrix-confetti-streamer',
+    '.time-warp-ephemeral'
   ];
   
   document.querySelectorAll(classSelectors.join(', ')).forEach(el => el.remove());

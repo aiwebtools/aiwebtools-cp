@@ -1,33 +1,37 @@
 // Matrix-style binary explosion effect with optional digital sound
 export const createConfettiCelebration = (visualOnly: boolean = false) => {
   console.log('🎉 Creating Matrix binary explosion effect', visualOnly ? '(visual only)' : '(with sound)');
-  
+
+  // For time-warp usage we need ultra-fast cleanup so it never blocks UI
+  const maxLifetimeMs = visualOnly ? 300 : 1800;
+  const binaryCount = visualOnly ? 18 : 75;
+
   try {
     // Only play sound if not visual-only mode
     if (!visualOnly) {
       const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-      
+
       const createMatrixSound = () => {
         const duration = 1.0;
         const sampleRate = audioContext.sampleRate;
         const numFrames = sampleRate * duration;
         const buffer = audioContext.createBuffer(2, numFrames, sampleRate);
-        
+
         for (let channel = 0; channel < 2; channel++) {
           const channelData = buffer.getChannelData(channel);
-          
+
           for (let i = 0; i < numFrames; i++) {
             const t = i / sampleRate;
             const fadeOut = Math.max(0, 1 - t / duration);
-            
+
             const sweep = Math.sin(2 * Math.PI * (200 + t * 1000) * t) * Math.exp(-t * 3);
             const digital1 = Math.sin(2 * Math.PI * 440 * t) * (Math.random() > 0.96 ? 1 : 0) * 0.2;
             const bass = Math.sin(2 * Math.PI * 80 * t) * Math.exp(-t * 2.5) * 0.4;
-            
+
             channelData[i] = (sweep + digital1 + bass) * fadeOut * 0.15;
           }
         }
-        
+
         return buffer;
       };
 
@@ -39,7 +43,6 @@ export const createConfettiCelebration = (visualOnly: boolean = false) => {
     }
 
     // Binary particles
-    const binaryCount = 75;
     const matrixColors = ['#00FF00', '#00DD00', '#00BB00', '#33FF33', '#00FF88'];
 
     const generateBinaryString = () => {
@@ -53,6 +56,8 @@ export const createConfettiCelebration = (visualOnly: boolean = false) => {
 
     for (let i = 0; i < binaryCount; i++) {
       const binary = document.createElement('div');
+      binary.className = 'time-warp-ephemeral';
+
       const fontSize = Math.random() * 12 + 10;
       const startX = Math.random() * window.innerWidth;
       const startY = window.innerHeight / 2;
@@ -60,7 +65,7 @@ export const createConfettiCelebration = (visualOnly: boolean = false) => {
       const velocity = Math.random() * 14 + 8;
       const binaryString = generateBinaryString();
       const color = matrixColors[Math.floor(Math.random() * matrixColors.length)];
-      
+
       binary.textContent = binaryString;
       binary.style.cssText = `
         position: fixed;
@@ -76,38 +81,47 @@ export const createConfettiCelebration = (visualOnly: boolean = false) => {
         white-space: nowrap;
         letter-spacing: 1px;
       `;
-      
+
       document.body.appendChild(binary);
-      
+
       const radians = (angle * Math.PI) / 180;
       const vx = Math.cos(radians) * velocity;
       let vy = Math.sin(radians) * velocity - Math.random() * 5;
       let x = startX;
       let y = startY;
       let opacity = 1;
-      
+
+      const fadeStep = visualOnly ? 0.08 : 0.018;
+      const gravity = visualOnly ? 0.8 : 0.4;
+
       const animate = () => {
-        vy += 0.4;
+        vy += gravity;
         x += vx * 0.5;
         y += vy;
-        opacity -= 0.018;
-        
+        opacity -= fadeStep;
+
         binary.style.left = `${x}px`;
         binary.style.top = `${y}px`;
         binary.style.opacity = `${opacity}`;
-        
+
         if (opacity > 0 && y < window.innerHeight + 80) {
           requestAnimationFrame(animate);
         } else {
           binary.remove();
         }
       };
-      
-      setTimeout(() => requestAnimationFrame(animate), Math.random() * 100);
+
+      setTimeout(() => requestAnimationFrame(animate), Math.random() * 80);
+
+      // Hard-stop cleanup for time-warp usage
+      if (visualOnly) {
+        setTimeout(() => binary.remove(), maxLifetimeMs);
+      }
     }
 
     // Burst effect
     const burst = document.createElement('div');
+    burst.className = 'time-warp-ephemeral';
     burst.style.cssText = `
       position: fixed;
       left: 50%;
@@ -121,8 +135,9 @@ export const createConfettiCelebration = (visualOnly: boolean = false) => {
       pointer-events: none;
       animation: matrix-burst 0.6s ease-out forwards;
     `;
-    
+
     const style = document.createElement('style');
+    style.className = 'time-warp-ephemeral';
     style.textContent = `
       @keyframes matrix-burst {
         0% { width: 0; height: 0; opacity: 1; box-shadow: 0 0 0 rgba(0, 255, 0, 0.8); }
@@ -139,12 +154,16 @@ export const createConfettiCelebration = (visualOnly: boolean = false) => {
     `;
     document.head.appendChild(style);
     document.body.appendChild(burst);
-    
-    setTimeout(() => { burst.remove(); }, 600);
+
+    setTimeout(() => {
+      burst.remove();
+    }, visualOnly ? 250 : 600);
 
     // Text message
     const messageText = document.createElement('div');
+    messageText.className = 'time-warp-ephemeral';
     messageText.textContent = 'CLONING YOUR AI EMPIRE NOW MASTER';
+
     messageText.style.cssText = `
       position: fixed;
       left: 50%;
@@ -160,18 +179,17 @@ export const createConfettiCelebration = (visualOnly: boolean = false) => {
       text-shadow: 0 0 10px #00FF00, 0 0 25px #00FF00, 0 0 40px rgba(0, 255, 0, 0.4);
       letter-spacing: 3px;
       white-space: nowrap;
-      animation: matrix-text-pop 1.8s ease-out forwards;
+      animation: matrix-text-pop ${visualOnly ? '0.25s' : '1.8s'} ease-out forwards;
     `;
-    
+
     document.body.appendChild(messageText);
-    
+
     setTimeout(() => {
       messageText.remove();
       style.remove();
-    }, 1800);
+    }, maxLifetimeMs);
 
     console.log('🎊 Matrix binary explosion created successfully');
-    
   } catch (error) {
     console.log('Matrix binary explosion creation failed:', error);
   }
