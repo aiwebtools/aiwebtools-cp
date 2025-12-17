@@ -504,7 +504,13 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "writing": ["BOOK WRITER GPT", "Article and Blog Rewriter GPT", "Movie Script Writer GPT", "Playwriter GPT", "Grammarly", "Jasper AI"],
   "writing tools": ["BOOK WRITER GPT", "Article and Blog Rewriter GPT", "Grammarly", "Jasper AI", "Writesonic"],
   
-  // Learning intents
+  // Learning intents - EXACT TOOL NAMES FIRST
+  "learn any skill": ["LEARN ANY SKILL GPT"],
+  "learn any skill gpt": ["LEARN ANY SKILL GPT"],
+  "learn any course": ["LEARN ANY COURSE GPT"],
+  "learn any course gpt": ["LEARN ANY COURSE GPT"],
+  "college degree": ["COLLEGE DEGREE GPT"],
+  "college degree gpt": ["COLLEGE DEGREE GPT"],
   "learn a skill": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT"],
   "want to learn": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT"],
   "i want to learn": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT"],
@@ -512,8 +518,11 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "go to college": ["COLLEGE DEGREE GPT"],
   "get a degree": ["COLLEGE DEGREE GPT"],
   "study": ["LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT"],
+  "skill": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT"],
+  "skills": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT"],
   "education": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT", "Home-Schooling Assistant GPT", "Course Maker GPT"],
   "education tools": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT", "Home-Schooling Assistant GPT"],
+  "learning": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT"],
   
   // Video/movie intents (EXPANDED for all video production tools)
   "make a video": ["Movie Maker Studio AI SUITE", "Music Video Maker AI Studio", "Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine"],
@@ -957,13 +966,30 @@ export const useGlobalSearch = () => {
         score = 100000;
         if (isAIWebToolsGPT) score += 10000;
       }
+      // TIER 1.5: ALL QUERY WORDS MATCH TITLE WORDS (e.g., "learn any skill" → "LEARN ANY SKILL GPT")
+      else if (q.includes(' ')) {
+        const queryWords = q.split(/\s+/).filter(w => w.length >= 2);
+        if (queryWords.length >= 2) {
+          const allMatch = queryWords.every(qw => it.words.some(tw => tw === qw || tw.startsWith(qw)));
+          if (allMatch) {
+            // Check if consecutive in title (exact phrase match)
+            if (it.t.includes(q)) {
+              score = 95000; // Almost as good as exact match
+              if (isAIWebToolsGPT) score += 9500;
+            } else {
+              score = 85000; // All words match but not consecutive
+              if (isAIWebToolsGPT) score += 8500;
+            }
+          }
+        }
+      }
       // TIER 2: First word of title IS the query exactly (e.g., "learn" → "LEARN ANY COURSE GPT")
-      else if (it.words[0] === q) {
+      if (!score && it.words[0] === q) {
         score = 80000;
         if (isAIWebToolsGPT) score += 8000;
       }
       // TIER 3: Title starts with query (e.g., "le" → "LEARN ANY SKILL GPT")
-      else if (it.t.startsWith(q) || it.tNoSpace.startsWith(qNoSpace)) {
+      else if (!score && (it.t.startsWith(q) || it.tNoSpace.startsWith(qNoSpace))) {
         score = 60000;
         if (isAIWebToolsGPT) score += 6000;
         // Boost for complete word match at start
@@ -975,9 +1001,9 @@ export const useGlobalSearch = () => {
         score += Math.floor(matchRatio * 10000);
       }
       // TIER 4: Any word in title starts with query
-      else {
+      if (!score) {
         for (const word of it.words) {
-          if (word.startsWith(q)) {
+          if (word.startsWith(q) || word.startsWith(qSingular)) {
             score = 30000;
             if (isAIWebToolsGPT) score += 3000;
             score += Math.max(0, 1000 - word.length * 50);
