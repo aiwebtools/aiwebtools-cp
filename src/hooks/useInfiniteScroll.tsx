@@ -49,12 +49,12 @@ export const useInfiniteScroll = ({
     // Don't enable infinite scroll if explicitly disabled or if load more button is preferred
     if (!enableInfiniteScroll || showLoadMoreButton) return;
     
-    // For search results, only enable if there are more tools to load
-    if (searchTerm && displayedCount >= totalTools) return;
-    
-    // For endless scroll (categories), always enable
+    // For endless scroll (categories or main page), always enable
     const isEndlessScroll = selectedCategory && !searchTerm;
-    if (!isEndlessScroll && (displayedCount >= totalTools || isLoading)) return;
+    const hasMoreToLoad = displayedCount < totalTools || isEndlessScroll;
+    
+    // For search results, only enable if there are more tools to load
+    if (!hasMoreToLoad && !isEndlessScroll) return;
     
     let ticking = false;
     
@@ -86,11 +86,12 @@ export const useInfiniteScroll = ({
           const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
           
           if (nearBottom && !isLoadingRef.current) {
-            const isEndlessScrollCheck = selectedCategory && !searchTerm && totalToolsRef.current === Number.MAX_SAFE_INTEGER;
-            const shouldLoad = isEndlessScrollCheck || displayedCountRef.current < totalToolsRef.current;
+            const isEndlessScrollCheck = (selectedCategory && !searchTerm) || totalToolsRef.current === Number.MAX_SAFE_INTEGER;
+            const hasMoreToShow = displayedCountRef.current < totalToolsRef.current;
+            const shouldLoad = isEndlessScrollCheck || hasMoreToShow;
             
             if (shouldLoad) {
-              console.log(`🎯 Auto-loading more tools - Context: ${searchTerm ? 'Search' : selectedCategory ? 'Category (Endless)' : 'Main'}, Displayed: ${displayedCountRef.current}/${totalToolsRef.current}`);
+              console.log(`🎯 Auto-loading more tools - Context: ${searchTerm ? 'Search' : selectedCategory ? 'Category (Endless)' : 'Main'}, Displayed: ${displayedCountRef.current}/${totalToolsRef.current}, Endless: ${isEndlessScrollCheck}`);
               // NO DELAY - load immediately for instant feel
               handleLoadMore();
             }
