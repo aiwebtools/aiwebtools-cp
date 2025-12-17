@@ -72,21 +72,28 @@ import "@/utils/categoryUtils/precomputedCache";
 // Loading fallback with Matrix rain effect
 const PageLoader = () => (
   <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
-    {/* Matrix rain columns */}
+    {/* Matrix rain columns - using global CSS keyframes */}
     <div className="absolute inset-0 pointer-events-none">
       {Array.from({ length: 25 }).map((_, i) => (
         <div
           key={i}
-          className="absolute top-0 text-green-500 text-sm font-mono opacity-70 animate-pulse"
+          className="absolute top-0 text-green-500 text-sm font-mono matrix-rain-column"
           style={{
             left: `${(i / 25) * 100}%`,
-            animation: `matrixFall ${2 + Math.random() * 3}s linear infinite`,
-            animationDelay: `${Math.random() * 2}s`,
+            animationDuration: `${2 + (i % 3)}s`,
+            animationDelay: `${(i % 5) * 0.3}s`,
           }}
         >
-          {Array.from({ length: 15 }).map((_, j) => (
-            <div key={j} style={{ opacity: 1 - j * 0.06 }}>
-              {Math.random() > 0.5 ? '1' : '0'}
+          {Array.from({ length: 20 }).map((_, j) => (
+            <div 
+              key={j} 
+              className="text-green-400"
+              style={{ 
+                opacity: 1 - j * 0.04,
+                textShadow: '0 0 10px #00ff00, 0 0 20px #00ff00'
+              }}
+            >
+              {j % 2 === 0 ? '1' : '0'}
             </div>
           ))}
         </div>
@@ -94,16 +101,9 @@ const PageLoader = () => (
     </div>
     {/* Center spinner */}
     <div className="z-10 flex flex-col items-center gap-4">
-      <div className="w-10 h-10 border-2 border-green-500 border-t-transparent rounded-full animate-spin" />
-      <div className="text-green-400 text-sm font-mono animate-pulse">Loading...</div>
+      <div className="w-12 h-12 border-4 border-green-500 border-t-transparent rounded-full animate-spin" style={{ boxShadow: '0 0 20px #00ff00' }} />
+      <div className="text-green-400 text-lg font-mono animate-pulse" style={{ textShadow: '0 0 10px #00ff00' }}>Loading...</div>
     </div>
-    {/* Keyframe for matrix fall animation */}
-    <style>{`
-      @keyframes matrixFall {
-        0% { transform: translateY(-100%); }
-        100% { transform: translateY(100vh); }
-      }
-    `}</style>
   </div>
 );
 
