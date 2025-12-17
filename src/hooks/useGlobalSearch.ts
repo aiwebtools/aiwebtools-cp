@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v7";
+const SEARCH_CACHE_VERSION = "v8";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -92,8 +92,24 @@ const TYPO_MAP: Record<string, string> = {
   "tutoiral": "tutorial", "tutoral": "tutorial", "tutorail": "tutorial",
   "trainng": "training", "traning": "training", "trainging": "training",
 
-  // Spiritual / Religion
+  // Spiritual / Religion - COMPREHENSIVE typo coverage
   "spirtual": "spiritual", "spirtuality": "spirituality", "spirutal": "spiritual", "spiritul": "spiritual",
+  "spiritualty": "spirituality", "spirtualism": "spiritualism", "spirutual": "spiritual",
+  "relgion": "religion", "religon": "religion", "religous": "religious", "relgious": "religious",
+  "relgiion": "religion", "religoin": "religion", "religeon": "religion",
+  "bibile": "bible", "bilbe": "bible", "bibl": "bible", "bibel": "bible",
+  "testiment": "testament", "testement": "testament", "testamnt": "testament",
+  "quaran": "quran", "qoran": "quran", "koran": "quran", "quoran": "quran",
+  "torah": "torah", "torath": "torah",
+  "meditatoin": "meditation", "mediation": "meditation", "meditaiton": "meditation",
+  "philsophy": "philosophy", "philosphy": "philosophy", "philosopy": "philosophy", "philoshopy": "philosophy",
+  "buddah": "buddha", "budda": "buddha", "bhudda": "buddha", "buhdda": "buddha",
+  "zues": "zeus", "zuess": "zeus", "zeuss": "zeus",
+  "jessu": "jesus", "jessus": "jesus", "jeus": "jesus", "jeasus": "jesus",
+  "muhammed": "muhammad", "mohamad": "muhammad", "mohhamed": "muhammad",
+  "krishna": "krishna", "krisna": "krishna",
+  "mysticsm": "mysticism", "mysticim": "mysticism", "mysticsim": "mysticism",
+  "enligthenment": "enlightenment", "enlightment": "enlightenment", "enlightenmet": "enlightenment",
   // Media / Creative
   "viedo": "video", "vidoe": "video", "vedio": "video", "vido": "video", "vdieo": "video",
   "immage": "image", "imge": "image", "iamge": "image", "imag": "image",

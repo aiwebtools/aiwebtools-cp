@@ -543,12 +543,34 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return performEnhancedSearch(finalGPTResults, searchTerm, searchWords, phoneticVariations, intentConfig);
   }
 
-  // SPIRITUALITY/RELIGION TOOL PRIORITY - Enhanced detection
-  if (normalizedSearchTerm.includes('spiritual') || normalizedSearchTerm.includes('religion') ||
-      normalizedSearchTerm.includes('ancient') || normalizedSearchTerm.includes('wisdom') ||
-      normalizedSearchTerm.includes('mystical') || normalizedSearchTerm.includes('divine') ||
-      normalizedSearchTerm.includes('soul') || normalizedSearchTerm.includes('meditation') ||
-      normalizedSearchTerm.includes('philosophy') || normalizedSearchTerm.includes('enlighten')) {
+  // SPIRITUALITY/RELIGION TOOL PRIORITY - COMPREHENSIVE keyword detection
+  const SPIRITUAL_TRIGGERS = [
+    // Core spiritual terms
+    'spiritual', 'spirituality', 'religion', 'religious', 'faith',
+    // Deities & figures
+    'god', 'gods', 'deity', 'divine', 'jesus', 'christ', 'buddha', 'allah', 
+    'krishna', 'shiva', 'vishnu', 'zeus', 'apollo', 'athena', 'odin', 'thor',
+    'muhammad', 'prophet', 'saint', 'apostle', 'angel', 'archangel',
+    // Scriptures & texts
+    'bible', 'quran', 'torah', 'gospel', 'scripture', 'testament', 'vedas', 'gita',
+    // Traditions & practices
+    'meditation', 'prayer', 'worship', 'mantra', 'enlightenment', 'awakening',
+    'mystical', 'mystic', 'mysticism', 'esoteric', 'occult', 'metaphysical',
+    // Philosophy & wisdom
+    'philosophy', 'philosophical', 'wisdom', 'ancient wisdom', 'enlighten',
+    'soul', 'spirit', 'cosmic', 'consciousness', 'transcend', 'sacred', 'holy',
+    // World religions
+    'christian', 'christianity', 'islam', 'islamic', 'hindu', 'hinduism',
+    'buddhist', 'buddhism', 'jewish', 'judaism', 'taoist', 'taoism',
+    'pagan', 'wicca', 'shamanic', 'gnostic', 'sufi', 'zen',
+    // Light/dark spiritual
+    'light', 'darkness', 'heaven', 'hell', 'afterlife', 'resurrection',
+    'reincarnation', 'karma', 'dharma', 'chakra', 'kundalini', 'aura'
+  ];
+  
+  const isSpiritualSearch = SPIRITUAL_TRIGGERS.some(trigger => normalizedSearchTerm.includes(trigger));
+  
+  if (isSpiritualSearch) {
     console.log('🕉️ SPIRITUALITY SEARCH DETECTED - Filtering for spiritual/religious tools');
 
     // Use the centralized detector so we catch: religion, God, light, deities, scripture, philosophy, etc.
