@@ -563,18 +563,6 @@ export const aiAgents: Tool[] = [
   },
   {
     icon: Bot,
-    title: "AI Town Social Agents",
-    description: "Virtual town where AI agents live, chat and socialize. Create your own AI town and customize the agents that live there for simulation and entertainment.",
-    emoji: "🏘️",
-    color: "from-purple-500 to-pink-600",
-    directUrl: "https://www.aitown.ai/",
-    tags: ["Social Agent", "AI Town", "virtual world", "simulation", "socializing", "entertainment"],
-    category: "AI Agents",
-    rating: 4.5,
-    totalVotes: 2700
-  },
-  {
-    icon: Bot,
     title: "AI Legion Agent Platform",
     description: "Powerful AI agent platform that can perform various tasks. Create and manage AI agents for specific purposes with advanced customization and automation capabilities.",
     emoji: "🤖",
