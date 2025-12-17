@@ -111,7 +111,6 @@
     
     <!-- Critical CSS for instant first paint -->
     <style>
-      /* Lightweight Matrix loading - pure CSS, no JS overhead */
       body { margin: 0; background: #030712; color: #fff; font-family: system-ui, -apple-system, sans-serif; }
       #root { min-height: 100vh; }
       .loading-spinner { 
@@ -123,32 +122,9 @@
         overflow: hidden;
         background: #030712;
       }
-      .loading-spinner::before {
-        content: '010110100101';
-        position: absolute;
-        top: -20%;
-        left: 10%;
-        font-family: monospace;
-        font-size: 12px;
-        color: #00ff41;
-        opacity: 0.3;
-        writing-mode: vertical-rl;
-        animation: fall1 3s linear infinite;
-      }
-      .loading-spinner::after {
-        content: '101001011010';
-        position: absolute;
-        top: -20%;
-        right: 20%;
-        font-family: monospace;
-        font-size: 12px;
-        color: #00ff41;
-        opacity: 0.4;
-        writing-mode: vertical-rl;
-        animation: fall2 4s linear infinite;
-      }
-      @keyframes fall1 { 0% { transform: translateY(0); } 100% { transform: translateY(140vh); } }
-      @keyframes fall2 { 0% { transform: translateY(0); } 100% { transform: translateY(140vh); } }
+      .matrix-rain { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+      .m { position: absolute; top: -100%; font: 10px monospace; color: #00ff41; writing-mode: vertical-rl; animation: f linear infinite; will-change: transform; }
+      @keyframes f { to { transform: translateY(220vh); } }
       .loading-text {
         position: relative;
         z-index: 10;
@@ -227,6 +203,48 @@
   <body>
     <div id="root">
       <div class="loading-spinner">
+        <div class="matrix-rain">
+          <span class="m" style="left:2%;animation-duration:2.5s;opacity:.3">01010</span>
+          <span class="m" style="left:5%;animation-duration:3.2s;animation-delay:.2s;opacity:.4">10110</span>
+          <span class="m" style="left:8%;animation-duration:2.8s;animation-delay:.5s;opacity:.35">01101</span>
+          <span class="m" style="left:11%;animation-duration:3.5s;animation-delay:.1s;opacity:.25">11010</span>
+          <span class="m" style="left:14%;animation-duration:2.9s;animation-delay:.7s;opacity:.4">00101</span>
+          <span class="m" style="left:17%;animation-duration:3.1s;animation-delay:.3s;opacity:.3">10011</span>
+          <span class="m" style="left:20%;animation-duration:2.6s;animation-delay:.6s;opacity:.45">01110</span>
+          <span class="m" style="left:23%;animation-duration:3.3s;animation-delay:.15s;opacity:.35">11001</span>
+          <span class="m" style="left:26%;animation-duration:2.7s;animation-delay:.8s;opacity:.3">00110</span>
+          <span class="m" style="left:29%;animation-duration:3.4s;animation-delay:.4s;opacity:.4">10101</span>
+          <span class="m" style="left:32%;animation-duration:2.5s;animation-delay:.25s;opacity:.35">01011</span>
+          <span class="m" style="left:35%;animation-duration:3s;animation-delay:.55s;opacity:.3">11100</span>
+          <span class="m" style="left:38%;animation-duration:2.8s;animation-delay:.1s;opacity:.45">00011</span>
+          <span class="m" style="left:41%;animation-duration:3.2s;animation-delay:.65s;opacity:.35">10010</span>
+          <span class="m" style="left:44%;animation-duration:2.6s;animation-delay:.35s;opacity:.4">01001</span>
+          <span class="m" style="left:47%;animation-duration:3.1s;animation-delay:.75s;opacity:.3">11011</span>
+          <span class="m" style="left:50%;animation-duration:2.9s;animation-delay:.2s;opacity:.45">00100</span>
+          <span class="m" style="left:53%;animation-duration:3.3s;animation-delay:.5s;opacity:.35">10111</span>
+          <span class="m" style="left:56%;animation-duration:2.7s;animation-delay:.15s;opacity:.4">01100</span>
+          <span class="m" style="left:59%;animation-duration:3.4s;animation-delay:.6s;opacity:.3">11110</span>
+          <span class="m" style="left:62%;animation-duration:2.5s;animation-delay:.45s;opacity:.4">00001</span>
+          <span class="m" style="left:65%;animation-duration:3s;animation-delay:.8s;opacity:.35">10100</span>
+          <span class="m" style="left:68%;animation-duration:2.8s;animation-delay:.3s;opacity:.45">01111</span>
+          <span class="m" style="left:71%;animation-duration:3.2s;animation-delay:.7s;opacity:.3">11101</span>
+          <span class="m" style="left:74%;animation-duration:2.6s;animation-delay:.4s;opacity:.4">00010</span>
+          <span class="m" style="left:77%;animation-duration:3.1s;animation-delay:.9s;opacity:.35">10001</span>
+          <span class="m" style="left:80%;animation-duration:2.9s;animation-delay:.55s;opacity:.3">01010</span>
+          <span class="m" style="left:83%;animation-duration:3.3s;animation-delay:.25s;opacity:.45">11000</span>
+          <span class="m" style="left:86%;animation-duration:2.7s;animation-delay:.65s;opacity:.35">00111</span>
+          <span class="m" style="left:89%;animation-duration:3.4s;animation-delay:.1s;opacity:.4">10110</span>
+          <span class="m" style="left:92%;animation-duration:2.5s;animation-delay:.85s;opacity:.3">01101</span>
+          <span class="m" style="left:95%;animation-duration:3s;animation-delay:.35s;opacity:.4">11010</span>
+          <span class="m" style="left:98%;animation-duration:2.8s;animation-delay:.6s;opacity:.35">00101</span>
+          <span class="m" style="left:3.5%;animation-duration:3.2s;animation-delay:.75s;opacity:.25">10011</span>
+          <span class="m" style="left:6.5%;animation-duration:2.6s;animation-delay:.45s;opacity:.4">01110</span>
+          <span class="m" style="left:9.5%;animation-duration:3.1s;animation-delay:.2s;opacity:.35">11001</span>
+          <span class="m" style="left:12.5%;animation-duration:2.9s;animation-delay:.9s;opacity:.3">00110</span>
+          <span class="m" style="left:15.5%;animation-duration:3.3s;animation-delay:.5s;opacity:.45">10101</span>
+          <span class="m" style="left:18.5%;animation-duration:2.7s;animation-delay:.15s;opacity:.35">01011</span>
+          <span class="m" style="left:21.5%;animation-duration:3.4s;animation-delay:.7s;opacity:.4">11100</span>
+        </div>
         <div class="loading-text">LOADING YOUR AI TOOL EMPIRE...</div>
       </div>
     </div>
