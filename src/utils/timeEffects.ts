@@ -234,8 +234,8 @@ export const createTimePortalEffect = (
   createFlash(effectsContainer);
   createConfettiCelebration(true);
 
-  // ⚡ FAST timing - URL opens quickly (800ms)
-  const urlOpenDelay = 800;
+  // ⚡ ULTRA FAST timing - URL opens immediately (200ms)
+  const urlOpenDelay = 200;
   
   setTimeout(() => {
     console.log('🚀 Opening destination URL NOW');
@@ -244,10 +244,10 @@ export const createTimePortalEffect = (
     }
   }, urlOpenDelay);
 
-  // FAST cleanup - effects gone by 1.2s max, never lingers
+  // INSTANT cleanup - effects gone by 300ms max, never lingers
   setTimeout(() => {
     cleanupEffects(effectsContainer);
-  }, 1200);
+  }, 300);
 
   // Also cleanup immediately when user returns to page (visibility change)
   const handleVisibilityChange = () => {

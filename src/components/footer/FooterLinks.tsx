@@ -33,12 +33,6 @@ const FooterLinks = () => {
           >
             🤖 Custom AI Development Request Form
           </button>
-          <button
-            onClick={(e) => handleExternalLink("https://aitools.company/about", e)}
-            className="block text-cyan-200 hover:text-cyan-400 transition-colors text-left"
-          >
-            📋 About Us
-          </button>
         </div>
         <div className="space-y-3">
           <a
