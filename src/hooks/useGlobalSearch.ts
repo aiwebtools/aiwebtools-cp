@@ -149,14 +149,11 @@ export const useGlobalSearch = () => {
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
   
-  // Debounce the search term for fast stage (150ms for snappy feel without excessive rerenders)
-  const debouncedSearchTerm = useDebounce(searchTerm, 150);
+  // ULTRA-FAST: Minimal debounce for instant feedback (50ms just to batch rapid keystrokes)
+  const debouncedSearchTerm = useDebounce(searchTerm, 50);
   
   // Pre-index tools for HYPER-INTELLIGENT matching - ALL 2000+ tools fully searchable
   const indexedTools = useMemo(() => getIndexedTools(), []);
-  
-  // Debounce for heavy scoring stage - reduced for snappier feel
-  const heavyTerm = useDebounce(searchTerm, 200);
   
   // Track current search to prevent stale updates
   const searchIdRef = useRef(0);
@@ -292,137 +289,8 @@ export const useGlobalSearch = () => {
     setIsOpen(true);
   }, [debouncedSearchTerm, indexedTools]);
 
-  // HEAVY stage: Refined scoring after pause (but fast stage already does the heavy lifting)
-  useEffect(() => {
-    const currentSearchId = searchIdRef.current;
-    const trimmedTerm = heavyTerm.trim();
-    
-    // Exit early if empty or stale - prevents freezing on clear
-    if (!trimmedTerm) return;
-    if (trimmedTerm !== searchTerm.trim()) return;
-    // Skip if search was already invalidated
-    if (currentSearchId !== searchIdRef.current) return;
-
-    const lowerTerm = trimmedTerm.toLowerCase();
-    
-    // Use same smart intent extraction
-    const { intent, keywords: intentKeywords } = extractIntent(trimmedTerm);
-    const smartKeywords = trimmedTerm.length > 30 ? extractKeywords(trimmedTerm) : [];
-    const tokens = smartKeywords.length > 0 
-      ? smartKeywords.slice(0, 5) 
-      : lowerTerm.split(/\s+/).filter(w => w.length >= 2).slice(0, 6);
-
-    // FAST PRE-FILTER using intent
-    const candidates = indexedTools.filter(ix => {
-      if (intent && intentKeywords.length > 0) {
-        const intentMatch = intentKeywords.some(kw => 
-          ix.lt.includes(kw) || ix.lc.includes(kw) || ix.lta.includes(kw)
-        );
-        if (intentMatch) return true;
-      }
-      
-      const directMatch = ix.lt.includes(lowerTerm) || ix.lc.includes(lowerTerm);
-      if (directMatch) return true;
-      
-      const tokenMatch = tokens.some(tok => ix.lt.includes(tok) || ix.lc.includes(tok) || ix.lta.includes(tok));
-      return tokenMatch;
-    });
-
-    const baseList = candidates.map(ix => ix.tool);
-
-    const scored = baseList.map(tool => {
-      const lt = tool.title.toLowerCase();
-      const lc = (tool.category || "").toLowerCase();
-      const lta = (tool.tags || []).join(" ").toLowerCase();
-      
-      let score = 0;
-      
-      // INTENT-BASED SCORING (highest priority)
-      if (intent === 'comic') {
-        if (lt.includes("comic book") || lt.includes("comic")) score += 250000;
-        else if (lt.includes("coloring book")) score += 200000;
-        else if (lt.includes("picture book") || lt.includes("children")) score += 180000;
-        else if (lt.includes("illustration") || lt.includes("graphic")) score += 150000;
-      } else if (intent === 'children_book') {
-        if (lt.includes("children") && lt.includes("book")) score += 250000;
-        else if (lt.includes("picture book")) score += 200000;
-        else if (lt.includes("coloring book")) score += 180000;
-        else if (lt.includes("comic")) score += 150000;
-      } else if (intent === 'book') {
-        if (lt.includes("book writer")) score += 200000;
-        else if (lt.includes("book")) score += 100000;
-      } else if (intent === 'movie_script') {
-        if (lt.includes("movie script")) score += 200000;
-        else if (lt.includes("script")) score += 150000;
-        else if (lt.includes("movie maker") || lt.includes("movie scene")) score += 100000;
-      } else if (intent === 'movie_making') {
-        if (lt.includes("movie maker")) score += 200000;
-        else if (lt.includes("movie scene")) score += 180000;
-        else if (lt.includes("text to video") || lt.includes("video")) score += 150000;
-      } else if (intent === 'image') {
-        if (lt.includes("midjourney") || lt.includes("dall") || lt.includes("stable diffusion")) score += 200000;
-        else if (lt.includes("image") && (lt.includes("generat") || lt.includes("creat"))) score += 180000;
-        else if (lt.includes("art") || lt.includes("design")) score += 100000;
-      } else if (intent === 'music') {
-        if (lt.includes("music") || lt.includes("song") || lt.includes("audio")) score += 200000;
-      } else if (intent === 'website') {
-        if (lt.includes("text to website") || lt.includes("website builder")) score += 200000;
-        else if (lt.includes("website") || lt.includes("site")) score += 150000;
-      } else if (intent === 'app') {
-        if (lt.includes("microsaas")) score += 200000;
-        else if (lt.includes("app") || lt.includes("agent")) score += 150000;
-      } else if (intent === 'presentation') {
-        if (lt.includes("ppt") || lt.includes("powerpoint") || lt.includes("presentation")) score += 200000;
-      }
-      
-      // Standard matching
-      if (lt === lowerTerm) score += 100000;
-      if (lt.startsWith(lowerTerm)) score += 80000;
-      if (lt.includes(lowerTerm)) score += 30000;
-
-      // Token scoring (lighter for speed)
-      for (const tok of tokens.slice(0, 4)) {
-        if (lt.includes(tok)) score += 2000;
-        if (lc.includes(tok)) score += 1000;
-        if (lta.includes(tok)) score += 500;
-      }
-      
-      // Intent keyword bonus
-      for (const kw of intentKeywords) {
-        if (lt.includes(kw)) score += 5000;
-      }
-
-      try {
-        const intentMatch = matchToolByIntent(tool, trimmedTerm);
-        if (intentMatch?.matched) score += intentMatch.score;
-      } catch {}
-      
-      try {
-        score += enhancedToolScoring(tool, trimmedTerm) || 0;
-      } catch {}
-
-      return { tool, score };
-    });
-
-    scored.sort((a, b) => {
-      if (b.score !== a.score) return b.score - a.score;
-      const aExact = a.tool.title.toLowerCase() === lowerTerm ? 1 : 0;
-      const bExact = b.tool.title.toLowerCase() === lowerTerm ? 1 : 0;
-      if (bExact !== aExact) return bExact - aExact;
-      return a.tool.title.localeCompare(b.tool.title);
-    });
-
-    const ranked = scored.map(s => s.tool);
-    const deduped = quickDeduplicateSearchResults ? quickDeduplicateSearchResults(ranked) : ranked;
-    // Don't limit results - enable TRUE endless scrolling for ALL search results
-    
-    // Final stale check before updating state - prevents race conditions
-    if (currentSearchId === searchIdRef.current && trimmedTerm === searchTerm.trim()) {
-      setSearchResults(deduped);
-      setDisplayedCount(50);
-      setIsOpen(true);
-    }
-  }, [heavyTerm, searchTerm, indexedTools]);
+  // REMOVED: Heavy stage eliminated for instant performance
+  // The fast stage above already provides intelligent scoring
 
   useEffect(() => {
     const handleClickOutside = (event) => {
