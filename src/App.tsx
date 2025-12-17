@@ -87,33 +87,40 @@ const queryClient = new QueryClient({
   },
 });
 
-// Animated routes wrapper with Suspense for lazy loaded pages
+// Routes wrapper - eager pages render instantly, lazy pages show loader
 const AnimatedRoutes = () => {
   const location = useLocation();
   
+  // Critical paths render without Suspense for instant load
+  if (location.pathname === '/' || location.pathname === '/welcome') {
+    return (
+      <Routes location={location}>
+        <Route path="/welcome" element={<DisclaimerGate />} />
+        <Route path="/" element={<Index />} />
+      </Routes>
+    );
+  }
+  
+  // Secondary pages use Suspense for lazy loading
   return (
     <Suspense fallback={<PageLoader />}>
-      <PageTransition key={location.pathname}>
-        <Routes location={location}>
-          <Route path="/welcome" element={<DisclaimerGate />} />
-          <Route path="/" element={<Index />} />
-          <Route path="/category/:categoryName" element={<CategoryPage />} />
-          <Route path="/main-category/:mainCategoryName" element={<MainCategoryPage />} />
-          <Route path="/tool/:toolId" element={<ToolDetail />} />
-          <Route path="/:toolSlug" element={<ToolDetail />} />
-          <Route path="/similar-tools/:toolId" element={<SimilarToolsPage />} />
-          <Route path="/ai-tools-hub" element={<AIToolsHub />} />
-          <Route path="/ai-agents-directory" element={<AIAgentsDirectory />} />
-          <Route path="/chatgpt-alternatives" element={<ChatGPTAlternatives />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/gaming-entertainment" element={<GamingEntertainmentPage />} />
-          <Route path="/favorites" element={<FavoritesPage />} />
-          <Route path="/disclaimers" element={<DisclaimersPage />} />
-          <Route path="/our-story" element={<OurStoryPage />} />
-          <Route path="/submit-tool" element={<ToolSubmission />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </PageTransition>
+      <Routes location={location}>
+        <Route path="/category/:categoryName" element={<CategoryPage />} />
+        <Route path="/main-category/:mainCategoryName" element={<MainCategoryPage />} />
+        <Route path="/tool/:toolId" element={<ToolDetail />} />
+        <Route path="/:toolSlug" element={<ToolDetail />} />
+        <Route path="/similar-tools/:toolId" element={<SimilarToolsPage />} />
+        <Route path="/ai-tools-hub" element={<AIToolsHub />} />
+        <Route path="/ai-agents-directory" element={<AIAgentsDirectory />} />
+        <Route path="/chatgpt-alternatives" element={<ChatGPTAlternatives />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/gaming-entertainment" element={<GamingEntertainmentPage />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/disclaimers" element={<DisclaimersPage />} />
+        <Route path="/our-story" element={<OurStoryPage />} />
+        <Route path="/submit-tool" element={<ToolSubmission />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </Suspense>
   );
 };
