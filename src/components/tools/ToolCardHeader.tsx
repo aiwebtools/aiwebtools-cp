@@ -64,7 +64,14 @@ const ToolCardHeader = ({
         {tool.emoji}
       </div>
       <div className="space-y-2">
-        <CardTitle className={`${titleSize} font-bold text-cyan-200 group-hover:text-cyan-100 transition-colors leading-tight drop-shadow-lg`}>
+        <CardTitle 
+          className="text-lg sm:text-xl lg:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 group-hover:from-cyan-200 group-hover:via-yellow-200 group-hover:to-cyan-200 transition-all duration-300 leading-tight tracking-wide uppercase"
+          style={{
+            fontFamily: "'Orbitron', sans-serif",
+            textShadow: '0 0 20px rgba(34, 211, 238, 0.6), 0 0 40px rgba(34, 211, 238, 0.3)',
+            letterSpacing: '0.05em'
+          }}
+        >
           {tool.title}
         </CardTitle>
         
