@@ -137,27 +137,17 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return deduplicateSearchResults(prioritized);
   }
 
-  // Performance guard - limit complex searches
+  // Performance guard - only fall back to simple search for very long gibberish
   const trimmed = searchTerm.trim();
-  if (trimmed.length > 25 || (trimmed.length > 15 && !/^[a-zA-Z\s]{3,}/.test(trimmed))) {
+  if (trimmed.length > 50 || (trimmed.length > 30 && !/^[a-zA-Z\s]{3,}/.test(trimmed))) {
     return performSimpleSearch(tools, searchTerm);
-  }
-
-  // DEBUG: Check if ElevenLabs and Suno are in the tools array when searching for them
-  if (searchTerm.toLowerCase().includes('eleven') || searchTerm.toLowerCase().includes('suno')) {
-    const elevenLabsTools = tools.filter(tool => tool.title.toLowerCase().includes('eleven'));
-    const sunoTools = tools.filter(tool => tool.title.toLowerCase().includes('suno'));
-    console.log(`🔍 SEARCH DEBUG for "${searchTerm}": Total tools: ${tools.length}`);
-    console.log(`🔍 ElevenLabs tools found: ${elevenLabsTools.length}`, elevenLabsTools.map(t => t.title));
-    console.log(`🔍 Suno tools found: ${sunoTools.length}`, sunoTools.map(t => t.title));
   }
 
   // Normalize compound words (e.g., "CHAT GPT" → "chatgpt")
   const compoundNormalized = normalizeCompoundWords(searchTerm);
-  console.log(`🔄 Compound normalization: "${searchTerm}" → "${compoundNormalized}"`);
 
-  // Simplified search for better performance - only use complex matching for short, clean queries
-  const shouldUseAdvancedSearch = trimmed.length <= 15 && /^[a-zA-Z\s]{2,}$/.test(trimmed);
+  // Use advanced search for most queries - intent matching needs this!
+  const shouldUseAdvancedSearch = trimmed.length <= 30 && /^[a-zA-Z\s]{2,}$/.test(trimmed);
   
   const correctedSearchTerm = shouldUseAdvancedSearch ? superSmartTypoCorrection(compoundNormalized) : compoundNormalized;
   const partialSuggestions = shouldUseAdvancedSearch ? getPartialMatchSuggestions(compoundNormalized) : [];
