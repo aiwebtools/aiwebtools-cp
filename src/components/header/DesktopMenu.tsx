@@ -18,6 +18,7 @@ import { createTimePortalEffect } from "@/utils/timeEffects";
 import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
+import { downloadToolsCSV } from "@/utils/csvExport";
 import Logo from "./Logo";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 
@@ -66,7 +67,7 @@ const DesktopMenu = () => {
     handleMenuToggle(false);
   }, [handleMenuToggle]);
 
-  // Enhanced CSV download
+  // Enhanced CSV download - uses centralized export with all tool data
   const handleDownloadAllToolsCSV = () => {
     try {
       // Trigger confetti celebration first
@@ -74,52 +75,10 @@ const DesktopMenu = () => {
       
       console.log(`📊 Generating comprehensive CSV with ${allTools.length} tools...`);
       
-      const headers = [
-        "Title", 
-        "Category", 
-        "URL", 
-        "Description", 
-        "Emoji", 
-        "Tags", 
-        "Rating", 
-        "Total Votes",
-        "Color Scheme",
-        "Pricing"
-      ];
+      // Use centralized CSV export with all data (video URLs, image URLs, etc.)
+      downloadToolsCSV(allTools);
       
-      const rows = allTools.map((tool, index) => [
-        tool.title || "",
-        tool.category || "",
-        tool.directUrl || "",
-        tool.description || "",
-        tool.emoji || "",
-        (tool.tags || []).join("; "),
-        tool.rating?.toString() || "",
-        tool.totalVotes?.toString() || "",
-        tool.color || "",
-        (tool.tags || []).find(tag => 
-          tag.toLowerCase().includes('free') || 
-          tag.toLowerCase().includes('premium') || 
-          tag.toLowerCase().includes('freemium')
-        ) || "Not specified"
-      ]);
-      
-      const escapeCSV = (val: string) => `"${(val || "").replace(/"/g, '""')}"`;
-      const csv = [headers, ...rows]
-        .map((r) => r.map((c) => escapeCSV(String(c))).join(","))
-        .join("\n");
-
-      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `ai-tools-complete-${allTools.length}-tools-${new Date().toISOString().split('T')[0]}.csv`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      
-      console.log(`✅ CSV download complete! ${allTools.length} tools exported`);
+      console.log(`✅ CSV download complete! ${allTools.length} tools exported with video/image URLs`);
       
       // Also download the GPT Instructions ZIP file
       setTimeout(() => {
