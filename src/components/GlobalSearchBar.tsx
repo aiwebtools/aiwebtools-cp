@@ -3,7 +3,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { useGlobalSearch } from "@/hooks/useGlobalSearch";
 import GlobalSearchInput from "@/components/search/GlobalSearchInput";
 import GlobalSearchResults from "@/components/search/GlobalSearchResults";
-import KeystrokeLatencyMeter from "@/components/search/KeystrokeLatencyMeter";
 
 const GlobalSearchBar = () => {
   const {
@@ -46,7 +45,6 @@ const GlobalSearchBar = () => {
         )}
         </div>
       </div>
-      <KeystrokeLatencyMeter />
     </TooltipProvider>
   );
 };
