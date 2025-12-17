@@ -31,7 +31,11 @@ const VirtualizedToolsGrid = memo(({
       {/* Main filtered tools grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
         {filteredTools.map((tool, index) => (
-          <MinimalToolCard key={`${tool.title}-${index}`} tool={tool} index={index} />
+          <MinimalToolCard
+            key={`${tool.title}__${tool.directUrl ?? ""}`}
+            tool={tool}
+            index={index}
+          />
         ))}
       </div>
       
@@ -74,10 +78,10 @@ const VirtualizedToolsGrid = memo(({
           {/* Recommended tools grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
             {recommendedTools.map((tool, index) => (
-              <MinimalToolCard 
-                key={`rec-${tool.title}-${index}`} 
-                tool={tool} 
-                index={filteredToolsCount + index} 
+              <MinimalToolCard
+                key={`rec__${tool.title}__${tool.directUrl ?? ""}`}
+                tool={tool}
+                index={filteredToolsCount + index}
               />
             ))}
           </div>

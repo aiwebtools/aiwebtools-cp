@@ -4,8 +4,6 @@ import { allTools } from "@/data/toolsData";
 import { searchTools } from "@/utils/search/searchUtils";
 import { getToolsByCategory } from "@/utils/categoryUtils";
 import { getSortedStandardizedCategories } from "@/utils/categoryTitles";
-import { createDeduplicatedToolsList } from "@/utils/toolDeduplication";
-import { createFeaturedTools } from "@/utils/featuredTools";
 import { isFreeTool } from "@/utils/freeToolDetection";
 
 export const useFeaturedToolsState = () => {
@@ -36,24 +34,44 @@ export const useFeaturedToolsState = () => {
     setIsLoading(false);
   }, []);
 
-  // Use intelligent search function for proper intent-based ranking
+  // FAST filtering logic (must stay instant) + full-database infinite scroll
   const filteredTools = useMemo(() => {
     let tools = allTools;
 
     if (selectedCategory) {
-      console.log('🔍 Filtering by category:', selectedCategory);
+      console.log("🔍 Filtering by category:", selectedCategory);
+
+      // Category tools first, then the rest of the database as recommendations (no duplicates)
       const categoryTools = getToolsByCategory(allTools, selectedCategory);
-      tools = createDeduplicatedToolsList(categoryTools, 0);
+
+      // Cheap O(n) de-dupe by stable key to avoid repeated tools when we merge lists
+      const seen = new Set<string>();
+      const keyOf = (t: (typeof allTools)[number]) => `${t.title}__${t.directUrl ?? ""}`;
+
+      const uniqueCategoryTools = categoryTools.filter((t) => {
+        const k = keyOf(t);
+        if (seen.has(k)) return false;
+        seen.add(k);
+        return true;
+      });
+
+      const recommendationTools = allTools.filter((t) => {
+        const k = keyOf(t);
+        if (seen.has(k)) return false;
+        seen.add(k);
+        return true;
+      });
+
+      tools = [...uniqueCategoryTools, ...recommendationTools];
     } else if (searchTerm) {
       const trimmedTerm = searchTerm.trim();
-      
-      // Use the intelligent searchTools function for proper ranking
-      // This ensures intent-based matching and no repetition
       if (trimmedTerm.length >= 1) {
+        // Intelligent ranking + internal dedupe
         tools = searchTools(allTools, trimmedTerm);
       }
     } else {
-      tools = createFeaturedTools(allTools);
+      // IMPORTANT: For homepage infinite scroll, use the full database (not a small featured subset)
+      tools = allTools;
     }
 
     // Apply FREE filter if enabled
@@ -72,8 +90,8 @@ export const useFeaturedToolsState = () => {
     return categories.map(([name, count]) => ({ name, count }));
   }, []);
   
-  // Always allow more tools to load - true infinite scroll
-  const hasMoreTools = displayedCount < filteredTools.length || selectedCategory !== null;
+  // Allow loading more only while there are more unique tools to show
+  const hasMoreTools = displayedCount < filteredTools.length;
 
   return {
     selectedCategory,
