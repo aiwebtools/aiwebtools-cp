@@ -1038,7 +1038,7 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
   if (oldStyle) oldStyle.remove();
   document.head.appendChild(style);
   
-  // Cleanup all Matrix elements after effect - ULTRA FAST cleanup
+  // Cleanup all Matrix elements after effect - fast but visible
   setTimeout(() => {
     try {
       matrixBackdrop.remove();
@@ -1061,5 +1061,5 @@ export const createMatrixCodeExplosion = (effectsContainer: HTMLElement) => {
     selectors.forEach((selector) => {
       effectsContainer.querySelectorAll(selector).forEach((el) => el.remove());
     });
-  }, 120);
+  }, 400);
 };
