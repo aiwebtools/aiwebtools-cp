@@ -61,6 +61,14 @@ const GlobalSearchResults = ({
         data-scroll-container
         className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[999] max-h-[60vh] overflow-y-scroll rounded-lg scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
         onScroll={onScroll}
+        onWheelCapture={(e) => {
+          // Prevent wheel events from bubbling to the page while interacting with results
+          e.stopPropagation();
+        }}
+        onTouchMoveCapture={(e) => {
+          // Prevent touchmove from bubbling to the page while scrolling results
+          e.stopPropagation();
+        }}
         style={{ 
           overscrollBehavior: 'contain',
           WebkitOverflowScrolling: 'touch',

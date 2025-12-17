@@ -69,6 +69,12 @@
     line-height: 1.5;
     font-display: swap;
     overflow-x: hidden;
+
+    /* Ensure the page can always scroll on touch devices */
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: auto;
+
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
