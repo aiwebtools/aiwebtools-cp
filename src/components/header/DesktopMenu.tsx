@@ -40,6 +40,7 @@ const DesktopMenu = () => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
+  const [renderSearch, setRenderSearch] = useState(false);
 
   const handleMenuToggle = useCallback((open: boolean) => {
     setIsMenuOpen(open);
@@ -49,6 +50,17 @@ const DesktopMenu = () => {
     const stats = getCurrentToolCount();
     setToolStats(stats);
   }, []);
+
+  // Defer mounting the global search (heavy index on first mount) until AFTER the menu is visible.
+  useEffect(() => {
+    if (!isMenuOpen) {
+      setRenderSearch(false);
+      return;
+    }
+
+    const id = window.setTimeout(() => setRenderSearch(true), 0);
+    return () => window.clearTimeout(id);
+  }, [isMenuOpen]);
 
   const handleExternalLink = (url: string, e: React.MouseEvent) => {
     e.preventDefault();
@@ -157,7 +169,11 @@ const DesktopMenu = () => {
 
               {/* Ultra-Fast Hero Search Bar - EXACT SAME AS HERO */}
               <div className="mb-8">
-                <GlobalSearchBar />
+                {renderSearch ? (
+                  <GlobalSearchBar />
+                ) : (
+                  <div className="h-12 rounded-lg border-2 border-white/20 bg-black/40 backdrop-blur-sm" />
+                )}
               </div>
 
               {/* Navigation Grid - Desktop Layout */}
