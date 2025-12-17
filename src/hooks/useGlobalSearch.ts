@@ -211,14 +211,18 @@ export const useGlobalSearch = () => {
       if (!it.t) continue;
 
       let score = 0;
+      const isAIWebToolsGPT = it.tool.directUrl?.includes('lovable.app') || it.tool.directUrl?.includes('chatgpt.com/g/');
 
       // TIER 1: EXACT MATCH (highest priority)
       if (it.t === q || it.tNoSpace === qNoSpace) {
         score = 50000;
+        if (isAIWebToolsGPT) score += 5000; // Boost our GPTs for exact matches
       }
-      // TIER 2: Title starts with query
+      // TIER 2: Title starts with query (e.g., "learn" → "LEARN ANY SKILL GPT")
       else if (it.t.startsWith(q) || it.tNoSpace.startsWith(qNoSpace)) {
         score = 30000;
+        // MAJOR BOOST for AIWebTools GPTs that directly start with query
+        if (isAIWebToolsGPT) score += 8000;
         // Boost shorter/canonical names
         if (it.t.startsWith(`${q} `) || it.t.startsWith(`${q}-`)) score += 2000;
         score += Math.max(0, 800 - it.t.length);
@@ -228,6 +232,7 @@ export const useGlobalSearch = () => {
         for (const word of it.words) {
           if (word.startsWith(q)) {
             score = 20000;
+            if (isAIWebToolsGPT) score += 4000; // Boost our GPTs
             score += Math.max(0, 500 - word.length);
             break;
           }
@@ -237,6 +242,7 @@ export const useGlobalSearch = () => {
       // TIER 4: Title contains query
       if (!score && (it.t.includes(q) || it.tNoSpace.includes(qNoSpace))) {
         score = 12000;
+        if (isAIWebToolsGPT) score += 2000;
       }
 
       // TIER 5: Abbreviation expansion matches
@@ -244,6 +250,7 @@ export const useGlobalSearch = () => {
         for (const exp of abbrevExpansions) {
           if (it.t.includes(exp) || it.tNoSpace.includes(exp.replace(/\s/g, ""))) {
             score = 10000;
+            if (isAIWebToolsGPT) score += 1500;
             break;
           }
         }
@@ -254,6 +261,7 @@ export const useGlobalSearch = () => {
         for (const syn of synonyms) {
           if (it.t.includes(syn)) {
             score = 8000;
+            if (isAIWebToolsGPT) score += 1200;
             break;
           }
         }
