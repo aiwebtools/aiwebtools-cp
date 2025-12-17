@@ -24,7 +24,7 @@ const UniversalInfoBadge = ({ size = "xs", className = "" }: UniversalInfoBadgeP
       title="For informational, educational & self-empowerment purposes only"
     >
       <Info className={iconSizes[size]} />
-      <span>Info Only</span>
+      <span>Information purposes only</span>
     </span>
   );
 };
