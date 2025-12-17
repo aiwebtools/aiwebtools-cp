@@ -696,12 +696,12 @@ export const aiAgents: Tool[] = [
   {
     icon: Bot,
     title: "GPTPastVoices - Resurrection GPT",
-    description: "Poignant AI platform reconnecting with departed loved ones through personal stories and memories. AI technology for emotional healing and connection with the past.",
+    description: "Poignant AI platform reconnecting with departed loved ones through personal stories and memories. AI technology for emotional healing, spiritual connection, and honoring those who have passed.",
     emoji: "💫",
     color: "from-purple-500 to-pink-600",
     directUrl: "https://resurrectiongpt.lovable.app/?via=aiwebtools",
-    tags: ["Spiritual Agent", "emotional healing", "grief support", "Resurrection GPT", "memories", "connection"],
-    category: "AI Agents",
+    tags: ["grief support", "emotional healing", "memories", "connection", "afterlife", "Custom GPT"],
+    category: "Spiritual & Philosophy AI Tools",
     rating: 4.2,
     totalVotes: 2345
   },
