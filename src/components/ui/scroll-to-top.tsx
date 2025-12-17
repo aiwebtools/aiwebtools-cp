@@ -29,11 +29,9 @@ const ScrollToTop = () => {
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    e.preventDefault();
     setIsPressed(true);
     touchStartY.current = e.touches[0].clientY;
   };
-
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isPressed) return;
     
@@ -66,7 +64,7 @@ const ScrollToTop = () => {
       size="sm"
       aria-label="Scroll to top - Click or swipe up"
       style={{ 
-        touchAction: 'none',
+        touchAction: 'manipulation',
         WebkitUserSelect: 'none',
         userSelect: 'none'
       }}
