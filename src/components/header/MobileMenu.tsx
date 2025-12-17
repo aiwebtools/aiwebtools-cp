@@ -222,7 +222,7 @@ const MobileMenu = () => {
               </Button>
             </div>
             
-            <div className="p-4 pt-0 overflow-y-auto max-h-[65vh]">
+            <div className="p-4 pt-0 overflow-y-scroll max-h-[65vh]" style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', overscrollBehavior: 'contain' }}>
               {/* Redesigned Header Section */}
               <div className="relative mb-5">
                 {/* Glowing header background */}
