@@ -116,7 +116,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "🏃",
     color: "from-blue-500 to-green-600",
     directUrl: "https://myfitnesspal.com",
-    tags: ["fitness tracking", "nutrition", "calorie counting", "health goals", "exercise", "wellness", "Fitness", "Nutrition", "Health Tracking"],
+    tags: ["fitness tracking", "nutrition", "calorie counting", "health goals", "exercise", "wellness", "Fitness", "Nutrition", "Health Tracking", "food", "diet", "meal planning"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.4,
     totalVotes: 12345
@@ -166,7 +166,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://chatgpt.com/g/g-68afaae3f8e881918d8b84b7ca85a413-fitness-coach/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=eHInYKxyKm4",
-    tags: ["fitness coaching", "workout plans", "personal training", "nutrition guidance", "fitness goals", "exercise", "aiwebtools", "Custom GPT", "Fitness", "Nutrition"],
+    tags: ["fitness coaching", "workout plans", "personal training", "nutrition guidance", "fitness goals", "exercise", "aiwebtools", "Custom GPT", "Fitness", "Nutrition", "diet", "food", "meal planning"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.7,
     totalVotes: 3456
@@ -191,7 +191,7 @@ export const healthAndWellnessGPTs: Tool[] = [
     emoji: "🏠",
     color: "from-blue-500 to-green-600",
     directUrl: "https://chatgpt.com/g/g-68bb80c2c41c8191b3d6e3dda92b6ffb-ai-home-cleanliness-declutter-coach-gpt/?via=aiwebtools",
-    tags: ["home organization", "decluttering", "cleaning", "organization coach", "home improvement", "lifestyle", "aiwebtools", "Custom GPT"],
+    tags: ["home organization", "decluttering", "cleaning", "organization coach", "home improvement", "lifestyle", "aiwebtools", "Custom GPT", "household", "kitchen", "home repair"],
     category: "Health, Wellness & Personal Lifestyle",
     rating: 4.6,
     totalVotes: 1987

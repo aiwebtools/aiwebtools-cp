@@ -68,7 +68,7 @@ export const specializedAndNiche: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://homerenovationgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/fzmhFNPwQ7A",
-    tags: ["home renovation", "DIY projects", "home improvement", "construction", "repair guidance"],
+    tags: ["home renovation", "DIY projects", "home improvement", "construction", "repair guidance", "kitchen", "household", "handyman", "fix it", "home repair", "Custom GPT"],
     category: "Specialized & Niche",
     rating: 4.3,
     totalVotes: 2789
@@ -133,7 +133,7 @@ export const specializedAndNiche: Tool[] = [
     directUrl: "https://foodqualitygpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/rHJR4V8iYZI?si=nkXT-PNl8abQDHWE",
     imageUrl: "https://cdn.discordapp.com/attachments/1150636600846450729/1377298675285626880/foodquality.webp?ex=683874d9&is=68372359&hm=68b71d1ffdf0228ef2cad3d55d4e8369304444a51cc07b4cb5c8feec9235f6a0&",
-    tags: ["food safety", "quality inspection", "nutrition analysis", "grocery shopping", "health assessment", "cooking", "food", "recipe", "Custom GPT"],
+    tags: ["food safety", "quality inspection", "nutrition analysis", "grocery shopping", "health assessment", "cooking", "food", "recipe", "nutrition", "diet", "fruit", "vegetables", "Custom GPT"],
     category: "Specialized & Niche",
     rating: 4.1,
     totalVotes: 1654
