@@ -43,12 +43,9 @@ const FilterSearchBar = ({
         </span>
       </div>
       
-      <div className="relative group">
-        {/* Glowing border effect */}
-        <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-cyan-500/20 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-300"></div>
-        
+      <div className="relative">
         {/* Main search container */}
-        <div className="relative bg-gray-900/80 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+        <div className="relative bg-gray-900/80 backdrop-blur-md rounded-2xl border border-white/10 overflow-hidden">
           <div className="flex items-center">
             {/* Search icon */}
             <div className="pl-4 pr-2">
