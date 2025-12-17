@@ -30,7 +30,13 @@ const TYPO_MAP: Record<string, string> = {
   "canav": "canva", "canvaa": "canva",
   "grammrly": "grammarly", "gramamrly": "grammarly",
   "jaspr": "jasper", "jaspre": "jasper",
-  // Custom GPTs
+  // Custom GPTs - Education/Learning
+  "colege": "college", "collge": "college", "colleeg": "college", "colelge": "college", "colledge": "college",
+  "leanr": "learn", "laern": "learn", "leran": "learn", "learnr": "learn",
+  "skil": "skill", "skiil": "skill", "skll": "skill",
+  "corse": "course", "coarse": "course", "coures": "course", "coursse": "course",
+  "educaton": "education", "eductaion": "education", "educaiton": "education",
+  // Custom GPTs - Other
   "survivlist": "survivalist", "survivlaist": "survivalist",
   "crinimologist": "criminologist", "criminoligist": "criminologist",
   "vetrinarian": "veterinarian", "veternarian": "veterinarian",
@@ -45,6 +51,42 @@ const TYPO_MAP: Record<string, string> = {
   "archeologist": "archaeologist", "archeaologist": "archaeologist",
   "genone": "genome", "genoe": "genome",
   "manichaesim": "manicheism", "manichaeism": "manicheism",
+  "buisness": "business", "busines": "business", "bussiness": "business",
+  "writter": "writer", "writerr": "writer", "writr": "writer",
+  "moive": "movie", "movei": "movie", "movvie": "movie",
+  "tatto": "tattoo", "tatoo": "tattoo",
+  "docter": "doctor", "doctr": "doctor",
+  "helth": "health", "heatlh": "health", "healht": "health",
+};
+
+// Helper: Remove doubled letters (e.g., "learnn" → "learn", "anyy" → "any")
+const removeDoubledLetters = (s: string): string => s.replace(/(.)\1+/g, '$1');
+
+// Helper: Smart typo normalization
+const normalizeTypos = (q: string): string => {
+  let normalized = q.toLowerCase().trim();
+  
+  // Direct typo map lookup first
+  if (TYPO_MAP[normalized]) return TYPO_MAP[normalized];
+  
+  // Remove doubled letters and check again
+  const deduped = removeDoubledLetters(normalized);
+  if (TYPO_MAP[deduped]) return TYPO_MAP[deduped];
+  if (deduped !== normalized) normalized = deduped;
+  
+  // Handle multi-word queries (e.g., "learnn anyy skill")
+  const words = normalized.split(/\s+/);
+  if (words.length > 1) {
+    const correctedWords = words.map(w => {
+      if (TYPO_MAP[w]) return TYPO_MAP[w];
+      const dedupedWord = removeDoubledLetters(w);
+      if (TYPO_MAP[dedupedWord]) return TYPO_MAP[dedupedWord];
+      return dedupedWord;
+    });
+    return correctedWords.join(' ');
+  }
+  
+  return normalized;
 };
 
 // 2. ABBREVIATIONS → full names
@@ -122,11 +164,11 @@ const INTENT_MAP: Record<string, string[]> = {
   "create music": ["music", "audio", "suno", "udio"],
 };
 
-// Helper: fast Levenshtein for short strings (max 2 edits)
+// Helper: fast Levenshtein for strings (max 2 edits, extended length)
 const quickLevenshtein = (a: string, b: string): number => {
   if (a === b) return 0;
   if (Math.abs(a.length - b.length) > 2) return 99;
-  if (a.length > 10 || b.length > 10) return 99; // skip long strings
+  if (a.length > 15 || b.length > 15) return 99; // extended from 10 to handle longer words
   
   const m = a.length, n = b.length;
   const dp: number[][] = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
@@ -180,14 +222,17 @@ export const useGlobalSearch = () => {
 
     // === STEP 1: Normalize & expand query ===
     
-    // Fix common typos instantly
-    let q = TYPO_MAP[qRaw] || qRaw;
+    // Smart typo correction (handles doubled letters, common misspellings, multi-word)
+    let q = normalizeTypos(qRaw);
+    
+    // Also keep original for prefix matching (in case typo correction went too far)
+    const qOriginal = removeDoubledLetters(qRaw);
     
     // Expand abbreviations
     const abbrevExpansions = ABBREV_MAP[q] || [];
     
-    // Get synonyms
-    const synonyms = SYNONYM_MAP[q] || [];
+    // Get synonyms (but only for corrected single words)
+    const synonyms = (q.split(/\s+/).length === 1) ? (SYNONYM_MAP[q] || []) : [];
     
     // Normalize compound words
     q = q
@@ -201,6 +246,7 @@ export const useGlobalSearch = () => {
       .trim();
 
     const qNoSpace = q.replace(/\s+/g, "");
+    const qOriginalNoSpace = qOriginal.replace(/\s+/g, "");
 
     // === STEP 2: Score all tools ===
     type Scored = { tool: any; score: number };
@@ -286,16 +332,49 @@ export const useGlobalSearch = () => {
         }
       }
 
-      // TIER 9: Fuzzy match for short queries (typo tolerance)
-      if (!score && q.length >= 3 && q.length <= 8) {
+      // TIER 9: Fuzzy match for typos (increased tolerance)
+      if (!score && q.length >= 3) {
+        // Check first word with 2-edit tolerance
         const firstWord = it.words[0];
-        if (firstWord && quickLevenshtein(q, firstWord) <= 1) {
-          score = 2500;
+        if (firstWord && firstWord.length >= 3) {
+          const dist = quickLevenshtein(q.substring(0, Math.min(q.length, firstWord.length + 2)), firstWord);
+          if (dist <= 2) {
+            score = 2500 - dist * 500;
+            if (isAIWebToolsGPT) score += 500;
+          }
         }
-        for (const word of it.words) {
-          if (word.length >= 3 && word.length <= 12 && quickLevenshtein(q, word) <= 1) {
-            score = 2000;
-            break;
+        // Check other words
+        if (!score) {
+          for (const word of it.words) {
+            if (word.length >= 3 && word.length <= 15) {
+              const dist = quickLevenshtein(q.substring(0, Math.min(q.length, word.length + 2)), word);
+              if (dist <= 2) {
+                score = 2000 - dist * 400;
+                if (isAIWebToolsGPT) score += 400;
+                break;
+              }
+            }
+          }
+        }
+      }
+      
+      // TIER 10: Multi-word fuzzy match (e.g., "learnn anyy skill" → "learn any skill")
+      if (!score && qOriginal.includes(' ')) {
+        const queryWords = qOriginal.split(/\s+/).filter(w => w.length >= 2);
+        if (queryWords.length >= 2) {
+          let matchedWords = 0;
+          for (const qWord of queryWords) {
+            for (const tWord of it.words) {
+              if (tWord.startsWith(qWord) || quickLevenshtein(qWord, tWord) <= 1) {
+                matchedWords++;
+                break;
+              }
+            }
+          }
+          // If most query words match tool words
+          if (matchedWords >= Math.ceil(queryWords.length * 0.6)) {
+            score = 8000 + matchedWords * 1000;
+            if (isAIWebToolsGPT) score += 2000;
           }
         }
       }
