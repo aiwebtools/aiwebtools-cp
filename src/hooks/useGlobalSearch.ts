@@ -369,7 +369,30 @@ export const useGlobalSearch = () => {
         const runFull = () => {
           if (currentId !== searchIdRef.current) return;
           const results = searchTools(allTools, t);
-          setSearchResults(results);
+
+          // Keep full intelligence, but ensure literal prefix matches never get buried
+          const q = t.toLowerCase().trim();
+          const reranked = results
+            .map((tool, idx) => {
+              const title = (tool?.title || "").toLowerCase();
+              const words = title.split(/\s+/).filter(Boolean);
+              const firstWord = words[0] || "";
+              let boost = 0;
+
+              if (title === q) boost = 400000;
+              else if (firstWord === q) boost = 300000;
+              else if (title.startsWith(q)) boost = 200000;
+              else if (words.some((w) => w.startsWith(q))) boost = 120000;
+
+              return { tool, idx, boost };
+            })
+            .sort((a, b) => {
+              if (b.boost !== a.boost) return b.boost - a.boost;
+              return a.idx - b.idx; // stable fallback (preserve searchTools ordering)
+            })
+            .map((x) => x.tool);
+
+          setSearchResults(reranked);
           setDisplayedCount(50);
         };
 
