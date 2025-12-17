@@ -48,6 +48,7 @@ const ToolsGrid = memo(({
     const shouldShowSimilar = false; // Disabled for performance
     const similarTools = []; // Disabled for performance
     
+    // Always allow more loading for categories, check count for search/main
     const hasMoreTools = selectedCategory ? true : displayedCount < tools.length;
     const categoriesWithCounts = {}; // Simplified for performance
     const shouldShowCategoriesButton = false; // Disabled for performance

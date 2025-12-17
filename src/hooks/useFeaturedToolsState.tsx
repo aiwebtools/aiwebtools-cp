@@ -86,7 +86,8 @@ export const useFeaturedToolsState = () => {
     return categories.map(([name, count]) => ({ name, count }));
   }, []);
   
-  const hasMoreTools = displayedCount < filteredTools.length;
+  // Always allow more tools to load - true infinite scroll
+  const hasMoreTools = displayedCount < filteredTools.length || selectedCategory !== null;
 
   return {
     selectedCategory,
