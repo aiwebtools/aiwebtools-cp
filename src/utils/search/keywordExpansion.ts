@@ -1,15 +1,16 @@
 import { keywordMapping, searchSynonyms, categoryKeywords } from "@/data/keywords";
 import { phoneticMatch } from "./core/fuzzyMatching";
 import { getSemanticExpansions } from "@/data/keywords/semanticKeywords";
-import { 
-  PRESERVED_TIME_KEYWORDS, 
-  PRESERVED_EMERGENCY_KEYWORDS, 
-  PRESERVED_MONEY_KEYWORDS, 
+import { searchDebugLog } from "@/utils/debug/searchDebug";
+import {
+  PRESERVED_TIME_KEYWORDS,
+  PRESERVED_EMERGENCY_KEYWORDS,
+  PRESERVED_MONEY_KEYWORDS,
   PRESERVED_VALUE_KEYWORDS,
   TIME_TRAVEL_PRIORITY_TOOLS,
   EMERGENCY_PRIORITY_TOOLS,
   MONEY_PRIORITY_TOOLS,
-  VALUE_PRIORITY_TOOLS
+  VALUE_PRIORITY_TOOLS,
 } from "@/data/keywords/preservedKeywords";
 
 // MASSIVELY expanded typo correction mapping for better intelligence
@@ -273,21 +274,21 @@ export const getExpandedKeywords = (searchTerm: string): string[] => {
   
   // Apply direct typo correction
   if (typoCorrection[lowerSearchTerm]) {
-    console.log(`🔄 Typo correction: "${lowerSearchTerm}" -> "${typoCorrection[lowerSearchTerm]}"`);
+    searchDebugLog(`🔄 Typo correction: "${lowerSearchTerm}" -> "${typoCorrection[lowerSearchTerm]}"`);
     lowerSearchTerm = typoCorrection[lowerSearchTerm];
   }
-  
+
   const expandedKeywords = new Set<string>();
-  
+
   // Add the original search term, corrected term, and phonetic matches
   expandedKeywords.add(searchTerm.toLowerCase().trim());
   expandedKeywords.add(lowerSearchTerm);
   phoneticMatches.forEach(match => expandedKeywords.add(match));
-  
+
   // 🧠 SEMANTIC EXPANSION - Handle abstract concepts like "death", "sadness", etc.
   const semanticExpansions = getSemanticExpansions(lowerSearchTerm);
   if (semanticExpansions.length > 0) {
-    console.log(`🧠 SEMANTIC EXPANSION for "${lowerSearchTerm}":`, semanticExpansions.slice(0, 8));
+    searchDebugLog(`🧠 SEMANTIC EXPANSION for "${lowerSearchTerm}":`, semanticExpansions.slice(0, 8));
     semanticExpansions.forEach(keyword => expandedKeywords.add(keyword));
   }
 

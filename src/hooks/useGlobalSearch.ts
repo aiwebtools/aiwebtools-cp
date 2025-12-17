@@ -16,21 +16,76 @@ export const useGlobalSearch = () => {
   const navigate = useNavigate();
   
   const toolStats = useMemo(() => getCurrentToolCount(), []);
-  
+
+  // Precompute lowercase fields once (keeps search snappy)
+  const quickIndex = useMemo(() => {
+    return allTools.map((tool) => ({
+      tool,
+      t: tool.title?.toLowerCase() || "",
+      d: tool.description?.toLowerCase() || "",
+      c: tool.category?.toLowerCase() || "",
+    }));
+  }, []);
+
+  const quickSearch = useCallback((term: string) => {
+    const q = term.toLowerCase().trim();
+    const words = q.split(/[\s,.-]+/).filter((w) => w.length > 1);
+
+    // Fast path: prefer title matches first
+    const starts: any[] = [];
+    const includes: any[] = [];
+
+    for (let i = 0; i < quickIndex.length; i++) {
+      const it = quickIndex[i];
+      if (!it.t) continue;
+
+      // Title startsWith gets top priority
+      if (it.t.startsWith(q)) {
+        starts.push(it.tool);
+        continue;
+      }
+
+      // Title includes
+      if (it.t.includes(q)) {
+        includes.push(it.tool);
+        continue;
+      }
+
+      // For 3+ chars, allow description/category word hits
+      if (q.length >= 3 && words.length) {
+        let hit = false;
+        for (const w of words) {
+          if (it.t.includes(w) || it.c.includes(w) || it.d.includes(w)) {
+            hit = true;
+            break;
+          }
+        }
+        if (hit) includes.push(it.tool);
+      }
+
+      // Keep this ultra-fast: stop scanning once we have enough
+      if (starts.length + includes.length >= 80) break;
+    }
+
+    return [...starts, ...includes].slice(0, 80);
+  }, [quickIndex]);
+
   // Track current search to prevent stale updates
   const searchIdRef = useRef(0);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  
-  // INSTANT typing - search computation is debounced separately
+  const idleRef = useRef<number | null>(null);
+
+  // INSTANT typing - show quick results immediately, refine when browser is idle
   const setSearchTerm = useCallback((value: string) => {
-    // Update input IMMEDIATELY for instant typing feedback
     setSearchTermInternal(value);
-    
-    // Cancel any pending search
-    if (debounceRef.current) {
-      clearTimeout(debounceRef.current);
+
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    if (idleRef.current && "cancelIdleCallback" in window) {
+      // @ts-ignore
+      window.cancelIdleCallback(idleRef.current);
+      idleRef.current = null;
     }
-    
+
     const t = value.trim();
     if (!t || t.length < 2) {
       setSearchResults([]);
@@ -38,30 +93,34 @@ export const useGlobalSearch = () => {
       setDisplayedCount(50);
       return;
     }
-    
-    // Open results immediately to show loading state
+
     setIsOpen(true);
-    
-    // VERY short debounce - just enough to batch rapid keystrokes
-    debounceRef.current = setTimeout(() => {
+
+    // 1) Immediate suggestions (no heavy intelligence yet)
+    const fast = quickSearch(t);
+    setSearchResults(fast);
+    setDisplayedCount(50);
+
+    // 2) Full hyper-intelligent ranking (runs when the browser has time)
+    const runFull = () => {
       const currentId = ++searchIdRef.current;
-      
-      // Run the FULL hyper-intelligent search on ALL tools
-      // searchTools has its own optimizations and handles everything:
-      // - Intent matching ("i want to write a book" -> Book Writer GPT)
-      // - Fuzzy matching / typo correction
-      // - Category aggregation
-      // - AIWebTools GPT prioritization
-      // - Video/audio/education/etc. special handling
       const results = searchTools(allTools, t);
-      
-      // Only update if this is still the current search
       if (currentId === searchIdRef.current) {
         setSearchResults(results);
         setDisplayedCount(50);
       }
-    }, 30); // 30ms debounce - fast enough to feel instant, batches rapid typing
-  }, []);
+    };
+
+    // Prefer requestIdleCallback to avoid blocking typing
+    if ("requestIdleCallback" in window) {
+      // @ts-ignore
+      idleRef.current = window.requestIdleCallback(runFull, { timeout: 250 });
+      return;
+    }
+
+    // Fallback
+    debounceRef.current = setTimeout(runFull, 60);
+  }, [quickSearch]);
   
   // Cleanup on unmount
   useEffect(() => {
