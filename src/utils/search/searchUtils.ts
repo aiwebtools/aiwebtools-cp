@@ -576,26 +576,71 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     // Use the centralized detector so we catch: religion, God, light, deities, scripture, philosophy, etc.
     const spiritualTools = tools.filter(isSpiritualityTool);
 
-    console.log(`🕉️ Found ${spiritualTools.length} spiritual tools:`, spiritualTools.slice(0, 5).map(t => t.title));
+    console.log(`🕉️ Found ${spiritualTools.length} spiritual tools`);
 
     const sortedSpiritualTools = spiritualTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
+      const titleA = a.title.toLowerCase();
+      const titleB = b.title.toLowerCase();
 
-      // Priority for AI Web Tools spiritual GPTs
-      if (a.title.toLowerCase().includes('soul map gpt')) scoreA += 15000;
-      if (b.title.toLowerCase().includes('soul map gpt')) scoreB += 15000;
-      if (a.title.toLowerCase().includes('alan watts gpt')) scoreA += 12000;
-      if (b.title.toLowerCase().includes('alan watts gpt')) scoreB += 12000;
-      if (a.title.toLowerCase().includes('mary magdalene gpt')) scoreA += 11000;
-      if (b.title.toLowerCase().includes('mary magdalene gpt')) scoreB += 11000;
-      if (a.title.toLowerCase().includes('talk to the gods gpt')) scoreA += 10000;
-      if (b.title.toLowerCase().includes('talk to the gods gpt')) scoreB += 10000;
-      if (a.title.toLowerCase().includes('sophia aeterna')) scoreA += 9000;
-      if (b.title.toLowerCase().includes('sophia aeterna')) scoreB += 9000;
+      // TIER 1: EXACT SPELLING MATCH IN TITLE (HIGHEST PRIORITY)
+      // If user types "religion", tools with "religion" in name come first
+      if (titleA.includes(normalizedSearchTerm)) scoreA += 50000;
+      if (titleB.includes(normalizedSearchTerm)) scoreB += 50000;
+      
+      // Word-by-word spelling match for multi-word searches
+      searchWords.forEach(word => {
+        if (word.length >= 3) {
+          if (titleA.includes(word)) scoreA += 20000;
+          if (titleB.includes(word)) scoreB += 20000;
+        }
+      });
 
-      // Exact matches get high priority
-      if (normalizedSearchTerm.includes('spiritual') && a.title.toLowerCase().includes('spiritual')) scoreA += 8000;
-      if (normalizedSearchTerm.includes('spiritual') && b.title.toLowerCase().includes('spiritual')) scoreB += 8000;
+      // TIER 2: Best religion-specific tools (when searching religion/religious)
+      if (normalizedSearchTerm.includes('religion') || normalizedSearchTerm.includes('religious')) {
+        const topReligionTools = [
+          'religious studies', 'mary magdalene', 'essenes', 'god is light',
+          'i am q', 'talk to the gods', 'bible', 'kabbalah', 'jewish',
+          'alan watts', 'carl sagan', 'sophia aeterna', 'oraculum',
+          'resurrection', 'interpretis', 'mani', 'manicheism', 'prophet of light',
+          'quan yin', 'yemaya', 'buddha', 'krishna'
+        ];
+        if (topReligionTools.some(t => titleA.includes(t))) scoreA += 15000;
+        if (topReligionTools.some(t => titleB.includes(t))) scoreB += 15000;
+      }
+
+      // TIER 3: Best god-related tools
+      if (normalizedSearchTerm.includes('god') || normalizedSearchTerm.includes('gods') || 
+          normalizedSearchTerm.includes('deity') || normalizedSearchTerm.includes('divine')) {
+        const topGodTools = [
+          'talk to the gods', 'god is light', 'godmode', 'mary magdalene',
+          'resurrection', 'sophia aeterna', 'quan yin', 'yemaya', 'i am q'
+        ];
+        if (topGodTools.some(t => titleA.includes(t))) scoreA += 15000;
+        if (topGodTools.some(t => titleB.includes(t))) scoreB += 15000;
+      }
+
+      // TIER 4: Best bible/scripture tools
+      if (normalizedSearchTerm.includes('bible') || normalizedSearchTerm.includes('scripture') ||
+          normalizedSearchTerm.includes('testament') || normalizedSearchTerm.includes('gospel')) {
+        const topBibleTools = [
+          'bible', 'mary magdalene', 'essenes', 'religious studies',
+          'god is light', 'resurrection', 'interpretis'
+        ];
+        if (topBibleTools.some(t => titleA.includes(t))) scoreA += 15000;
+        if (topBibleTools.some(t => titleB.includes(t))) scoreB += 15000;
+      }
+
+      // TIER 5: Premium spiritual tools general boost
+      const premiumSpiritualTools = [
+        'talk to the gods', 'mary magdalene', 'alan watts', 'carl sagan',
+        'sophia aeterna', 'oraculum', 'god is light', 'resurrection',
+        'time machine', 'talk to history', 'kabbalah', 'interpretis',
+        'mani', 'manicheism', 'quan yin', 'yemaya', 'self sufficiency',
+        'soul map', 'i am q', 'essenes', 'buddha', 'krishna'
+      ];
+      if (premiumSpiritualTools.some(t => titleA.includes(t))) scoreA += 5000;
+      if (premiumSpiritualTools.some(t => titleB.includes(t))) scoreB += 5000;
 
       return scoreB - scoreA;
     });
