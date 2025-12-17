@@ -154,11 +154,14 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
 
   // Use advanced search for most queries - intent matching needs this!
   const shouldUseAdvancedSearch = trimmed.length <= 30 && /^[a-zA-Z\s]{2,}$/.test(trimmed);
-  
-  const correctedSearchTerm = shouldUseAdvancedSearch ? superSmartTypoCorrection(compoundNormalized) : compoundNormalized;
+
+  // CRITICAL: Never typo-correct very short prefixes (e.g., "lea" → "health")
+  // Short prefixes must behave as literal partial matching.
+  const canTypoCorrect = shouldUseAdvancedSearch && compoundNormalized.trim().length >= 4;
+
+  const correctedSearchTerm = canTypoCorrect ? superSmartTypoCorrection(compoundNormalized) : compoundNormalized;
   const partialSuggestions = shouldUseAdvancedSearch ? getPartialMatchSuggestions(compoundNormalized) : [];
   const advancedPartialMatches = shouldUseAdvancedSearch ? getAdvancedPartialMatches(compoundNormalized, tools) : [];
-
   const normalizedSearchTerm = correctedSearchTerm.toLowerCase().trim();
   // Also create a no-space version for matching compound words in tool titles
   const noSpaceSearchTerm = normalizedSearchTerm.replace(/\s+/g, '');
