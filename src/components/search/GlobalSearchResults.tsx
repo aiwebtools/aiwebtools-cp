@@ -1,5 +1,4 @@
 import { useRef, useEffect, useMemo } from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ChevronUp, ChevronDown } from "lucide-react";
@@ -57,18 +56,18 @@ const GlobalSearchResults = ({
 
   return (
     <div className="relative">
-      <Card 
+      <div 
         ref={scrollRef}
         data-scroll-container
-        className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[999] max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
+        className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[999] max-h-[60vh] overflow-y-scroll rounded-lg scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
         onScroll={onScroll}
         style={{ 
-          overflowY: 'auto',
+          overscrollBehavior: 'contain',
           WebkitOverflowScrolling: 'touch',
-          scrollBehavior: 'smooth'
+          touchAction: 'pan-y'
         }}
       >
-      <CardContent className="p-0" style={{ transform: 'translateZ(0)' }}>
+        <div className="p-0" style={{ transform: 'translateZ(0)' }}>
         <div className="p-2 pt-4" style={{ transform: 'translateZ(0)' }}>
           {displayedResults.map((tool, index) => {
             const toolIndex = toolIndexByTitle.get(tool.title) ?? -1;
@@ -182,8 +181,8 @@ const GlobalSearchResults = ({
             </div>
           )}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
 
     {/* Arrow Scroller Buttons - Hidden on mobile, only show on desktop */}
     {searchResults.length > 5 && (
