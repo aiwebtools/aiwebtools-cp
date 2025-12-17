@@ -16,6 +16,7 @@ import {
   cleanupEffects, 
   openDestinationUrl 
 } from './effects/domEffects';
+import { trackToolVisit } from '@/hooks/useRecentlyVisitedTools';
 
 // Enhanced tool name extraction that works with all tool types and categories
 const extractToolName = (destinationUrl: string, providedToolName?: string): string => {
@@ -212,13 +213,17 @@ const extractToolName = (destinationUrl: string, providedToolName?: string): str
 export const createTimePortalEffect = (
   destinationUrl: string, 
   toolName?: string,
-  options?: { skipScreenOverlay?: boolean }
+  options?: { skipScreenOverlay?: boolean; emoji?: string }
 ) => {
   console.log('🌀 Creating TIME WARP portal effect for URL:', destinationUrl);
   
   // Extract tool name for logging
   const finalToolName = extractToolName(destinationUrl, toolName);
   console.log('🎯 Final detected tool name:', finalToolName);
+
+  // Track this tool visit for "Recently Visited" feature
+  const emoji = options?.emoji || '🔧';
+  trackToolVisit(finalToolName, emoji, destinationUrl);
 
   // Play voice immediately (preloaded)
   playTimeWarpVoice();

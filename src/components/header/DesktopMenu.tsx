@@ -1,4 +1,4 @@
-import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Gift } from "lucide-react";
+import { Menu, Phone, Search, X, FileText, Globe, ChevronDown, Download, Trees, Clapperboard, Heart, Copy, Gift, Clock } from "lucide-react";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -22,6 +22,7 @@ import { downloadToolsCSV } from "@/utils/csvExport";
 import Logo from "./Logo";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 import DeferredMount from "@/components/DeferredMount";
+import { useRecentlyVisitedTools } from "@/hooks/useRecentlyVisitedTools";
 
 const DesktopMenu = () => {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ const DesktopMenu = () => {
   const [isToolsOpen, setIsToolsOpen] = useState(false);
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   const [renderSearch, setRenderSearch] = useState(false);
+  const { recentTools } = useRecentlyVisitedTools();
 
   const handleMenuToggle = useCallback((open: boolean) => {
     setIsMenuOpen(open);
@@ -402,6 +404,28 @@ const DesktopMenu = () => {
                   </div>
                 </CollapsibleContent>
               </Collapsible>
+
+              {/* Recently Visited Tools */}
+              {recentTools.length > 0 && (
+                <div className="mb-4">
+                  <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                    <Clock className="w-3 h-3" />
+                    Recently Visited
+                  </div>
+                  <div className="bg-gray-900/50 rounded-lg border border-white/5 p-2 space-y-1">
+                    {recentTools.map((tool, index) => (
+                      <button
+                        key={`${tool.url}-${index}`}
+                        onClick={(e) => handleExternalLink(tool.url, e)}
+                        className="w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm text-cyan-100 hover:bg-cyan-500/20 transition-colors text-left"
+                      >
+                        <span>{tool.emoji}</span>
+                        <span className="truncate flex-1">{tool.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Favorites */}
               <DropdownMenuItem onClick={() => { navigate('/favorites'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded flex items-center space-x-2 text-sm font-medium px-3 py-2 border border-white/10 mb-2">
