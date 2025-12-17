@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v10";
+const SEARCH_CACHE_VERSION = "v11";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -955,6 +955,48 @@ export const useGlobalSearch = () => {
     const cacheKey = `${SEARCH_CACHE_VERSION}:${qRaw}`;
     const cached = searchCache.get(cacheKey);
     if (cached) return cached;
+
+    // === SINGLE LETTER SEARCH - Show all tools starting with that letter alphabetically ===
+    if (qRaw.length === 1 && /^[a-z]$/.test(qRaw)) {
+      const letter = qRaw;
+      
+      // Get all tools starting with this letter (strip emojis first)
+      const getCleanFirstChar = (title: string): string => {
+        // Remove leading emojis/symbols and get first letter
+        const cleaned = title.replace(/^[^\w\s]+\s*/g, '').trim().toLowerCase();
+        return cleaned.charAt(0);
+      };
+      
+      const matchingTools: any[] = [];
+      const otherTools: any[] = [];
+      
+      for (const it of quickIndex) {
+        const firstChar = getCleanFirstChar(it.tool.title);
+        if (firstChar === letter) {
+          matchingTools.push(it.tool);
+        } else {
+          otherTools.push(it.tool);
+        }
+      }
+      
+      // Sort matching tools alphabetically
+      matchingTools.sort((a, b) => {
+        const cleanA = a.title.replace(/^[^\w\s]+\s*/g, '').trim().toLowerCase();
+        const cleanB = b.title.replace(/^[^\w\s]+\s*/g, '').trim().toLowerCase();
+        return cleanA.localeCompare(cleanB);
+      });
+      
+      // Sort other tools alphabetically too
+      otherTools.sort((a, b) => {
+        const cleanA = a.title.replace(/^[^\w\s]+\s*/g, '').trim().toLowerCase();
+        const cleanB = b.title.replace(/^[^\w\s]+\s*/g, '').trim().toLowerCase();
+        return cleanA.localeCompare(cleanB);
+      });
+      
+      const results = [...matchingTools, ...otherTools];
+      searchCache.set(cacheKey, results);
+      return results;
+    }
 
     // === STEP 0: INSTANT PHRASE MATCHING (bypasses all heavy computation) ===
     // Check for exact phrase matches first - this is O(1) lookup
