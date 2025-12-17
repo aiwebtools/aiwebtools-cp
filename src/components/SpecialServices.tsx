@@ -737,7 +737,7 @@ const featuredGPTsUnsorted = [
     color: "from-blue-600 to-indigo-600",
     features: ["Testimony Writing", "Legislative Support", "Public Engagement", "Policy Advocacy"],
     directUrl: "https://publictestimonywriter.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
+    videoUrl: "https://youtu.be/SmDYlyA_DUI",
     emoji: "📝"
   },
   {
@@ -2097,7 +2097,7 @@ const featuredGPTsUnsorted = [
     color: "from-blue-500 to-green-600",
     features: ["Credit Scoring", "Risk Assessment", "Financial Analysis", "Lending"],
     directUrl: "https://predictivecreditscoregpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-screenshot-of-a-web-app-with-the-text-predic.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    videoUrl: "https://youtu.be/_cuC9HUVy4M",
     emoji: "📊"
   },
   {
@@ -2277,7 +2277,7 @@ const featuredGPTsUnsorted = [
     color: "from-indigo-500 to-purple-600",
     features: ["Pattern Analysis", "Reality Decoding", "Hidden Connections", "Critical Thinking"],
     directUrl: "https://chatgpt.com/g/g-68c1e9e3b488819193744edfeecf7997-world-reality-decoder-gpt",
-    videoUrl: "https://youtu.be/lGck2bUVFDU",
+    videoUrl: "https://youtu.be/mMs5F8TK64Y",
     emoji: "🔍"
   },
   {
