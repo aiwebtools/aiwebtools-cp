@@ -194,20 +194,16 @@
       @keyframes hop { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
       .loading-spinner.fade-out { 
         opacity: 0; 
-        transition: opacity 0.3s ease-out;
+        transition: opacity 0.15s ease-out;
         pointer-events: none;
       }
     </style>
     <script>
-      // Matrix-themed stage messages
+      // Matrix-themed stage messages - fewer for faster progression
       const stageMessages = [
         { threshold: 0, msg: 'Wake up, Neo...' },
-        { threshold: 15, msg: 'The Matrix has you...' },
-        { threshold: 30, msg: 'Follow the white rabbit 🐇' },
-        { threshold: 45, msg: 'Welcome to the desert of the real.' },
-        { threshold: 60, msg: 'There is no spoon.' },
-        { threshold: 75, msg: 'I know kung fu.' },
-        { threshold: 90, msg: '🚀 JACKING INTO THE MATRIX...' }
+        { threshold: 40, msg: 'Follow the white rabbit 🐇' },
+        { threshold: 80, msg: '🚀 JACKING IN...' }
       ];
 
       let progress = 0;
@@ -215,6 +211,14 @@
       const progressBar = () => document.getElementById('progress-bar');
       const progressText = () => document.getElementById('progress-text');
       const stageLabel = () => document.getElementById('stage-label');
+      
+      const removeSpinner = () => {
+        const spinner = document.querySelector('.loading-spinner');
+        if (spinner) {
+          spinner.classList.add('fade-out');
+          setTimeout(() => spinner.remove(), 150);
+        }
+      };
       
       const updateProgress = (value) => {
         progress = Math.min(value, 100);
@@ -225,40 +229,34 @@
         if (bar) bar.style.width = progress + '%';
         if (text) text.textContent = Math.round(progress) + '%';
         
-        // Update stage message with fade effect
+        // Update stage message
         if (stage) {
           const newStage = stageMessages.findIndex((s, i) => 
             progress >= s.threshold && (i === stageMessages.length - 1 || progress < stageMessages[i + 1].threshold)
           );
           if (newStage !== currentStage && newStage >= 0) {
             currentStage = newStage;
-            stage.classList.add('fade');
-            setTimeout(() => {
-              stage.innerHTML = stageMessages[newStage].msg;
-              stage.classList.remove('fade');
-            }, 150);
+            stage.innerHTML = stageMessages[newStage].msg;
           }
         }
       };
 
-      // Simulate initial progress quickly
+      // Fast progress simulation - complete in ~400ms
       let startTime = Date.now();
       const progressInterval = setInterval(() => {
         const elapsed = Date.now() - startTime;
-        // Quick ramp to 30% in first 200ms, then slower
-        if (progress < 30) {
-          updateProgress(Math.min(30, elapsed / 6));
-        } else if (progress < 70) {
-          updateProgress(progress + 2);
-        } else if (progress < 90) {
-          updateProgress(progress + 0.5);
+        // Very fast ramp - reach 90% in 300ms
+        if (progress < 90) {
+          updateProgress(Math.min(90, elapsed / 3.3));
         }
-      }, 30);
+      }, 16);
 
       // Track actual module loading
-      window.addEventListener('load', () => updateProgress(85));
+      window.addEventListener('load', () => {
+        updateProgress(95);
+      });
       
-      // Complete when React takes over (MutationObserver watches for React content)
+      // Complete when React takes over
       const observer = new MutationObserver((mutations) => {
         for (const mutation of mutations) {
           if (mutation.addedNodes.length && !document.querySelector('.loading-spinner')) {
@@ -267,35 +265,23 @@
             return;
           }
         }
-        // React rendered something new
+        // React rendered something
         if (document.querySelector('[data-reactroot], [data-react-helmet]') || 
             document.querySelector('#root > *:not(.loading-spinner)')) {
           updateProgress(100);
           clearInterval(progressInterval);
-          setTimeout(() => {
-            const spinner = document.querySelector('.loading-spinner');
-            if (spinner) {
-              spinner.classList.add('fade-out');
-              setTimeout(() => spinner.remove(), 300);
-            }
-          }, 150);
+          removeSpinner();
           observer.disconnect();
         }
       });
       observer.observe(document.getElementById('root'), { childList: true, subtree: true });
 
-      // Fallback: auto-complete after 2s max
+      // Fallback: auto-complete after 600ms max (quick flash)
       setTimeout(() => {
         updateProgress(100);
         clearInterval(progressInterval);
-        setTimeout(() => {
-          const spinner = document.querySelector('.loading-spinner');
-          if (spinner) {
-            spinner.classList.add('fade-out');
-            setTimeout(() => spinner.remove(), 300);
-          }
-        }, 150);
-      }, 2000);
+        removeSpinner();
+      }, 600);
     </script>
     <script>
       // Scramble Matrix characters continuously until React loads
