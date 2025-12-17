@@ -562,18 +562,6 @@ export const aiAgents: Tool[] = [
     totalVotes: 1890
   },
   {
-    icon: Bot,
-    title: "AI Legion Agent Platform",
-    description: "Powerful AI agent platform that can perform various tasks. Create and manage AI agents for specific purposes with advanced customization and automation capabilities.",
-    emoji: "🤖",
-    color: "from-green-500 to-teal-600",
-    directUrl: "https://www.ai-legion.com/",
-    tags: ["Autonomous Agent", "AI Legion", "task automation", "custom agents", "management"],
-    category: "AI Agents",
-    rating: 4.6,
-    totalVotes: 2900
-  },
-  {
     icon: Zap,
     title: "Lindy AI Automation Agent",
     description: "AI automation platform creating intelligent agents to handle repetitive workflows across Gmail, Zoom, and Twilio without coding using natural language instructions.",
