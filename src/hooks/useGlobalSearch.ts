@@ -6,6 +6,144 @@ import { searchTools } from "@/utils/searchUtils";
 import { createTimePortalEffect } from "@/utils/timeEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 
+// ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
+
+// 1. COMMON MISSPELLINGS → correct spelling
+const TYPO_MAP: Record<string, string> = {
+  // Major platforms
+  "chatgtp": "chatgpt", "chatgot": "chatgpt", "chtgpt": "chatgpt", "chatgbt": "chatgpt",
+  "cluade": "claude", "clade": "claude", "claued": "claude",
+  "midjourny": "midjourney", "midjorney": "midjourney", "midjouney": "midjourney", "midjoureny": "midjourney",
+  "perplexty": "perplexity", "perplexiy": "perplexity", "perpelxity": "perplexity",
+  "runwya": "runway", "runwa": "runway", "ruwnay": "runway", "rnuway": "runway",
+  "stabledifusion": "stable diffusion", "stablediffusion": "stable diffusion",
+  "dallE": "dalle", "dall-e": "dalle", "dali": "dalle",
+  "elevnlabs": "elevenlabs", "elevenlab": "elevenlabs", "11labs": "elevenlabs",
+  "synthsia": "synthesia", "syntehsia": "synthesia",
+  "heyegn": "heygen", "heygne": "heygen",
+  "luam": "luma", "lumaa": "luma",
+  "pikaa": "pika", "piak": "pika",
+  "soar": "sora", "soraa": "sora",
+  "gemni": "gemini", "gemnii": "gemini", "gimini": "gemini",
+  "leonadro": "leonardo", "lenoardo": "leonardo",
+  "notoin": "notion", "ntoion": "notion",
+  "canav": "canva", "canvaa": "canva",
+  "grammrly": "grammarly", "gramamrly": "grammarly",
+  "jaspr": "jasper", "jaspre": "jasper",
+  // Custom GPTs
+  "survivlist": "survivalist", "survivlaist": "survivalist",
+  "crinimologist": "criminologist", "criminoligist": "criminologist",
+  "vetrinarian": "veterinarian", "veternarian": "veterinarian",
+  "apotehcary": "apothecary", "apothecray": "apothecary",
+  "alchemsit": "alchemist", "alchemits": "alchemist",
+  "interpetis": "interpretis", "interpretsi": "interpretis",
+  "oraclum": "oraculum", "oracluum": "oraculum",
+  "resurection": "resurrection", "ressurection": "resurrection",
+  "legistlation": "legislation", "legilsation": "legislation",
+  "probabilty": "probability", "probablity": "probability",
+  "phenomeon": "phenomenon", "phenomenn": "phenomenon",
+  "archeologist": "archaeologist", "archeaologist": "archaeologist",
+  "genone": "genome", "genoe": "genome",
+  "manichaesim": "manicheism", "manichaeism": "manicheism",
+};
+
+// 2. ABBREVIATIONS → full names
+const ABBREV_MAP: Record<string, string[]> = {
+  "mj": ["midjourney"],
+  "sd": ["stable diffusion"],
+  "gpt": ["chatgpt", "gpt"],
+  "gpt4": ["chatgpt", "gpt-4"],
+  "gpt4o": ["chatgpt", "gpt-4o"],
+  "llm": ["chatgpt", "claude", "gemini", "llama"],
+  "ai": ["artificial intelligence", "ai"],
+  "ml": ["machine learning", "runway ml"],
+  "cv": ["computer vision", "resume"],
+  "nlp": ["natural language"],
+  "tts": ["text to speech", "elevenlabs"],
+  "stt": ["speech to text", "whisper"],
+  "t2v": ["text to video", "sora", "runway", "pika"],
+  "t2i": ["text to image", "midjourney", "dalle", "stable diffusion"],
+  "vid": ["video"],
+  "img": ["image"],
+  "aud": ["audio", "music"],
+  "doc": ["document", "documentation"],
+  "ppt": ["powerpoint", "presentation"],
+  "pdf": ["document", "pdf"],
+};
+
+// 3. SYNONYMS → related terms
+const SYNONYM_MAP: Record<string, string[]> = {
+  "picture": ["image", "photo", "visual"],
+  "photo": ["image", "picture", "photography"],
+  "film": ["video", "movie", "cinema"],
+  "movie": ["film", "video", "cinema"],
+  "song": ["music", "audio", "melody"],
+  "voice": ["audio", "speech", "tts"],
+  "write": ["writing", "writer", "content", "text"],
+  "code": ["coding", "programming", "developer"],
+  "learn": ["education", "course", "training", "skill"],
+  "money": ["finance", "trading", "investment", "budget"],
+  "health": ["medical", "wellness", "doctor", "fitness"],
+  "law": ["legal", "lawyer", "attorney", "contract"],
+  "spirit": ["spiritual", "soul", "meditation", "philosophy"],
+  "god": ["spiritual", "divine", "religious", "deity"],
+  "chat": ["chatbot", "conversation", "assistant"],
+  "bot": ["chatbot", "assistant", "agent"],
+  "make": ["create", "generate", "build"],
+  "create": ["make", "generate", "build", "design"],
+  "edit": ["editing", "editor", "modify"],
+  "fix": ["repair", "correct", "improve"],
+  "find": ["search", "discover", "locate", "finder"],
+  "exercise": ["fitness", "workout", "running", "gym"],
+  "run": ["runway", "running", "execute"],
+  "game": ["gaming", "video game", "game design"],
+};
+
+// 4. MAJOR PLATFORM ALIASES
+const PLATFORM_ALIASES: Record<string, string[]> = {
+  "openai": ["chatgpt", "dalle", "sora", "whisper", "gpt"],
+  "anthropic": ["claude"],
+  "google": ["gemini", "bard", "vertex"],
+  "meta": ["llama", "meta ai"],
+  "microsoft": ["copilot", "bing", "azure"],
+  "stability": ["stable diffusion", "stability ai"],
+  "adobe": ["firefly", "photoshop", "premiere"],
+};
+
+// 5. INTENT KEYWORDS → tool types
+const INTENT_MAP: Record<string, string[]> = {
+  "want to write": ["book writer", "content", "writing"],
+  "want to make video": ["video", "sora", "runway", "pika"],
+  "want to make image": ["image", "midjourney", "dalle", "stable diffusion"],
+  "want to learn": ["learn", "course", "education", "skill"],
+  "want to code": ["coding", "developer", "programming"],
+  "want to trade": ["trader", "trading", "finance"],
+  "need help": ["assistant", "gpt", "helper"],
+  "create music": ["music", "audio", "suno", "udio"],
+};
+
+// Helper: fast Levenshtein for short strings (max 2 edits)
+const quickLevenshtein = (a: string, b: string): number => {
+  if (a === b) return 0;
+  if (Math.abs(a.length - b.length) > 2) return 99;
+  if (a.length > 10 || b.length > 10) return 99; // skip long strings
+  
+  const m = a.length, n = b.length;
+  const dp: number[][] = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
+  
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      dp[i][j] = a[i-1] === b[j-1] 
+        ? dp[i-1][j-1] 
+        : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+    }
+  }
+  return dp[m][n];
+};
+
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTermInternal] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
@@ -19,26 +157,52 @@ export const useGlobalSearch = () => {
 
   // Precompute lowercase fields once (keeps search snappy)
   const quickIndex = useMemo(() => {
-    return allTools.map((tool) => ({
-      tool,
-      t: tool.title?.toLowerCase() || "",
-      d: tool.description?.toLowerCase() || "",
-      c: tool.category?.toLowerCase() || "",
-      tags: tool.tags?.map(tag => tag.toLowerCase()) || [],
-    }));
+    return allTools.map((tool) => {
+      const t = tool.title?.toLowerCase() || "";
+      const tNoSpace = t.replace(/[\s\-_]+/g, "");
+      const words = t.split(/[\s\-_\u0026,.:()]+/).filter(w => w.length > 0);
+      return {
+        tool,
+        t,
+        tNoSpace,
+        words,
+        d: tool.description?.toLowerCase() || "",
+        c: tool.category?.toLowerCase() || "",
+        tags: tool.tags?.map(tag => tag.toLowerCase()) || [],
+      };
+    });
   }, []);
 
-  // INSTANT prefix-based autocomplete search - type "R" = all R tools, "RU" = Runway etc.
+  // HYPER-INTELLIGENT instant search
   const quickSearch = useCallback((term: string) => {
-    const qRaw = term.toLowerCase().trim();
+    let qRaw = term.toLowerCase().trim();
     if (!qRaw) return [];
 
-    // Lightweight normalization for common spaced compounds (keeps instant stage smart)
-    const q = qRaw
+    // === STEP 1: Normalize & expand query ===
+    
+    // Fix common typos instantly
+    let q = TYPO_MAP[qRaw] || qRaw;
+    
+    // Expand abbreviations
+    const abbrevExpansions = ABBREV_MAP[q] || [];
+    
+    // Get synonyms
+    const synonyms = SYNONYM_MAP[q] || [];
+    
+    // Normalize compound words
+    q = q
       .replace(/\s+/g, " ")
       .replace(/\brun way\b/g, "runway")
+      .replace(/\bchat gpt\b/g, "chatgpt")
+      .replace(/\bmid journey\b/g, "midjourney")
+      .replace(/\bstable diffusion\b/g, "stablediffusion")
+      .replace(/\bdall e\b/g, "dalle")
+      .replace(/\beleven labs\b/g, "elevenlabs")
       .trim();
 
+    const qNoSpace = q.replace(/\s+/g, "");
+
+    // === STEP 2: Score all tools ===
     type Scored = { tool: any; score: number };
     const scored: Scored[] = [];
 
@@ -48,53 +212,98 @@ export const useGlobalSearch = () => {
 
       let score = 0;
 
-      // Title prefix is king ("run" => Runway*, Runpod, etc.)
-      if (it.t.startsWith(q)) {
-        score += 10000;
-
-        // Prefer exact/near-exact matches first
-        const title = it.t;
-        if (title === q) score += 3000;
-        if (title.startsWith(`${q} `) || title.startsWith(`${q}-`) || title.startsWith(`${q}:`)) score += 1500;
-
-        // Shorter titles are usually the canonical product ("Runway ML" over "RunwayML Gen-2")
-        score += Math.max(0, 600 - title.length);
+      // TIER 1: EXACT MATCH (highest priority)
+      if (it.t === q || it.tNoSpace === qNoSpace) {
+        score = 50000;
       }
-
-      // Any word in title starts with query
-      if (!score) {
-        const titleWords = it.t.split(/[\s\-_\u0026,.:]+/);
-        for (const word of titleWords) {
-          if (word && word.startsWith(q)) {
-            score += 8000;
-            score += Math.max(0, 400 - word.length);
+      // TIER 2: Title starts with query
+      else if (it.t.startsWith(q) || it.tNoSpace.startsWith(qNoSpace)) {
+        score = 30000;
+        // Boost shorter/canonical names
+        if (it.t.startsWith(`${q} `) || it.t.startsWith(`${q}-`)) score += 2000;
+        score += Math.max(0, 800 - it.t.length);
+      }
+      // TIER 3: Any word in title starts with query
+      else {
+        for (const word of it.words) {
+          if (word.startsWith(q)) {
+            score = 20000;
+            score += Math.max(0, 500 - word.length);
             break;
           }
         }
       }
 
-      // Title contains query
-      if (!score && it.t.includes(q)) {
-        score += 5000;
+      // TIER 4: Title contains query
+      if (!score && (it.t.includes(q) || it.tNoSpace.includes(qNoSpace))) {
+        score = 12000;
       }
 
-      // Tags/category help (only when user is a bit more specific)
+      // TIER 5: Abbreviation expansion matches
+      if (!score && abbrevExpansions.length > 0) {
+        for (const exp of abbrevExpansions) {
+          if (it.t.includes(exp) || it.tNoSpace.includes(exp.replace(/\s/g, ""))) {
+            score = 10000;
+            break;
+          }
+        }
+      }
+
+      // TIER 6: Synonym matches
+      if (!score && synonyms.length > 0) {
+        for (const syn of synonyms) {
+          if (it.t.includes(syn)) {
+            score = 8000;
+            break;
+          }
+        }
+      }
+
+      // TIER 7: Tag/category matches (2+ chars)
       if (!score && q.length >= 2) {
-        if (it.c && (it.c.startsWith(q) || it.c.includes(q))) score += 2500;
-        if (it.tags?.some((tag: string) => tag.startsWith(q))) score += 2400;
-        else if (it.tags?.some((tag: string) => tag.includes(q))) score += 2000;
+        if (it.c.startsWith(q) || it.c.includes(q)) {
+          score = 5000;
+        } else if (it.tags.some(tag => tag.startsWith(q))) {
+          score = 4500;
+        } else if (it.tags.some(tag => tag.includes(q))) {
+          score = 4000;
+        }
       }
 
-      // Tiny extra boost for major platforms when query is a prefix
-      if (score && (q === "run" || q === "runw" || q === "runway")) {
-        if (it.t.startsWith("runway")) score += 1200;
+      // TIER 8: Fuzzy match for short queries (typo tolerance)
+      if (!score && q.length >= 3 && q.length <= 8) {
+        // Check against first word of title
+        const firstWord = it.words[0];
+        if (firstWord && quickLevenshtein(q, firstWord) <= 1) {
+          score = 6000;
+        }
+        // Check against common platform names in title
+        for (const word of it.words) {
+          if (word.length >= 3 && word.length <= 12 && quickLevenshtein(q, word) <= 1) {
+            score = 5500;
+            break;
+          }
+        }
       }
 
-      if (score) scored.push({ tool: it.tool, score });
+      // === BOOSTS for major platforms ===
+      if (score > 0) {
+        // Boost exact platform matches
+        const majorPlatforms = ["runway", "chatgpt", "claude", "midjourney", "dalle", "sora", "pika", "luma", "gemini", "perplexity", "elevenlabs", "synthesia", "heygen"];
+        for (const platform of majorPlatforms) {
+          if (q.startsWith(platform.substring(0, Math.min(q.length, 4))) && it.t.includes(platform)) {
+            score += 3000;
+            break;
+          }
+        }
+      }
 
-      if (scored.length >= 140) break;
+      if (score > 0) {
+        scored.push({ tool: it.tool, score });
+      }
     }
 
+    // === STEP 3: Sort by score, then alphabetically ===
     scored.sort((a, b) => {
       if (b.score !== a.score) return b.score - a.score;
       const at = a.tool.title?.toLowerCase() || "";
@@ -102,7 +311,7 @@ export const useGlobalSearch = () => {
       return at.localeCompare(bt);
     });
 
-    return scored.map((s) => s.tool).slice(0, 100);
+    return scored.map(s => s.tool).slice(0, 120);
   }, [quickIndex]);
 
   // Track current search to prevent stale updates
@@ -112,8 +321,10 @@ export const useGlobalSearch = () => {
 
   // INSTANT typing - show quick results immediately, refine when browser is idle
   const setSearchTerm = useCallback((value: string) => {
+    // Update state IMMEDIATELY - no blocking
     setSearchTermInternal(value);
 
+    // Cancel any pending operations
     if (debounceRef.current) clearTimeout(debounceRef.current);
     if (idleRef.current && "cancelIdleCallback" in window) {
       // @ts-ignore
@@ -131,13 +342,13 @@ export const useGlobalSearch = () => {
 
     setIsOpen(true);
 
-    // 1) INSTANT suggestions - prefix matching runs synchronously (no delay!)
+    // 1) INSTANT suggestions - runs synchronously (no delay!)
     const fast = quickSearch(t);
     setSearchResults(fast);
     setDisplayedCount(50);
 
-    // 2) Full intelligent ranking only for 2+ chars (runs when browser has time)
-    if (t.length >= 2) {
+    // 2) Full intelligent ranking only for 3+ chars (runs when browser has time)
+    if (t.length >= 3) {
       const runFull = () => {
         const currentId = ++searchIdRef.current;
         const results = searchTools(allTools, t);
@@ -150,12 +361,12 @@ export const useGlobalSearch = () => {
       // Prefer requestIdleCallback to avoid blocking typing
       if ("requestIdleCallback" in window) {
         // @ts-ignore
-        idleRef.current = window.requestIdleCallback(runFull, { timeout: 200 });
+        idleRef.current = window.requestIdleCallback(runFull, { timeout: 150 });
         return;
       }
 
       // Fallback - very short delay
-      debounceRef.current = setTimeout(runFull, 40);
+      debounceRef.current = setTimeout(runFull, 30);
     }
   }, [quickSearch]);
   
@@ -189,7 +400,6 @@ export const useGlobalSearch = () => {
     if (tool.directUrl) {
       e.preventDefault();
       e.stopPropagation();
-      console.log('🌀 Direct access clicked in global search for:', tool.title);
       createTimePortalEffect(tool.directUrl);
       setIsOpen(false);
       setSearchTermInternal("");
