@@ -10,6 +10,7 @@ import { useState, useRef } from "react";
 import { Play } from "lucide-react";
 import ToolDisclaimerBadges from "@/components/disclaimers/ToolDisclaimerBadges";
 import { generateToolSlug } from "@/utils/urlGenerator";
+import AutoScaleTitle from "@/components/ui/auto-scale-title";
 
 // Lazy-loading YouTube video component - shows thumbnail until clicked
 const LazyVideoEmbed = ({ videoUrl, title, height = "h-32" }: { videoUrl: string; title: string; height?: string }) => {
@@ -3570,14 +3571,14 @@ const SpecialServices = () => {
                   <div className="flex items-start gap-1.5 flex-1 min-w-0">
                     <span className="text-lg md:text-xl flex-shrink-0 mt-0.5">{gpt.emoji}</span>
                     <CardTitle 
-                      className="text-xs sm:text-sm md:text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 group-hover:from-yellow-200 group-hover:via-cyan-200 group-hover:to-yellow-200 transition-all leading-tight uppercase tracking-wide break-words hyphens-auto"
+                      className="font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 group-hover:from-yellow-200 group-hover:via-cyan-200 group-hover:to-yellow-200 transition-all uppercase tracking-wide break-words hyphens-auto"
                       style={{
                         fontFamily: "'Orbitron', sans-serif",
                         textShadow: '0 0 15px rgba(34, 211, 238, 0.5), 0 0 30px rgba(34, 211, 238, 0.2)',
                         wordBreak: 'break-word'
                       }}
                     >
-                      {gpt.title}
+                      <AutoScaleTitle title={gpt.title} baseSize="md" />
                     </CardTitle>
                   </div>
                   <div className="flex items-center gap-1 flex-shrink-0 ml-1">

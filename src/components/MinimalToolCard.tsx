@@ -6,6 +6,7 @@ import { generateToolSlug } from "@/utils/urlGenerator";
 import { prefetchToolData } from "@/utils/toolPrefetcher";
 import { isFreeTool } from "@/utils/freeToolDetection";
 import FavoriteButton from "@/components/favorites/FavoriteButton";
+import AutoScaleTitle from "@/components/ui/auto-scale-title";
 
 interface MinimalToolCardProps {
   tool: Tool;
@@ -74,14 +75,14 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
           </div>
           <div className="flex-1 min-w-0">
             <h3 
-              className="font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 text-xs sm:text-sm leading-tight mb-1 uppercase tracking-wide break-words hyphens-auto"
+              className="font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 mb-1 uppercase tracking-wide break-words hyphens-auto"
               style={{
                 fontFamily: "'Orbitron', sans-serif",
                 textShadow: '0 0 12px rgba(34, 211, 238, 0.4)',
                 wordBreak: 'break-word'
               }}
             >
-              {tool.title}
+              <AutoScaleTitle title={tool.title} baseSize="sm" />
             </h3>
             <p className="text-xs text-gray-400 line-clamp-2">
               {tool.description}
