@@ -66,6 +66,26 @@ const extractIntent = (query: string): { intent: string; keywords: string[] } =>
     return { intent: 'presentation', keywords: ['ppt', 'powerpoint', 'presentation', 'slides'] };
   }
   
+  // Learning/Education intent
+  if (/want\s+to\s+learn|learn\s*(about|how)?|education|study|course|lesson|tutor|teach|training/i.test(q)) {
+    return { intent: 'learning', keywords: ['learn', 'course', 'education', 'lesson', 'tutor', 'training', 'study', 'skill', 'degree', 'school', 'teach'] };
+  }
+  
+  // Research intent
+  if (/research|analyze|data|study|investigate|explore/i.test(q)) {
+    return { intent: 'research', keywords: ['research', 'analysis', 'data', 'study', 'explore', 'investigate', 'report'] };
+  }
+  
+  // Health/Medical intent
+  if (/health|medical|doctor|wellness|fitness|diet|mental/i.test(q)) {
+    return { intent: 'health', keywords: ['health', 'medical', 'doctor', 'wellness', 'fitness', 'mental', 'therapy'] };
+  }
+  
+  // Business intent
+  if (/business|startup|entrepreneur|marketing|sales|money/i.test(q)) {
+    return { intent: 'business', keywords: ['business', 'startup', 'marketing', 'sales', 'plan', 'entrepreneur'] };
+  }
+  
   return { intent: '', keywords: [] };
 };
 
@@ -197,16 +217,21 @@ export const useGlobalSearch = () => {
         : indexedTools;
 
       const matchedIndexed = baseCandidates.filter(ix => {
+        // Intent-based matching (check title, category, tags, AND description)
         if (intent && intentKeywords.length > 0) {
           const intentMatch = intentKeywords.some(kw => 
-            ix.lt.includes(kw) || ix.lc.includes(kw) || ix.lta.includes(kw)
+            ix.lt.includes(kw) || ix.lc.includes(kw) || ix.lta.includes(kw) || ix.ld.includes(kw)
           );
           if (intentMatch) return true;
         }
-        const directMatch = ix.lt.includes(q) || ix.lc.includes(q);
+        // Direct matching (include description for broader results)
+        const directMatch = ix.lt.includes(q) || ix.lc.includes(q) || ix.ld.includes(q);
         if (directMatch) return true;
+        // Token matching (check all fields)
         if (tokens.length > 0) {
-          const keywordMatch = tokens.some(tok => ix.lt.includes(tok) || ix.lc.includes(tok) || ix.lta.includes(tok));
+          const keywordMatch = tokens.some(tok => 
+            ix.lt.includes(tok) || ix.lc.includes(tok) || ix.lta.includes(tok) || ix.ld.includes(tok)
+          );
           if (keywordMatch) return true;
         }
         return false;
@@ -260,6 +285,22 @@ export const useGlobalSearch = () => {
           else if (lt.includes("app") || lt.includes("agent")) s += 150000;
         } else if (intent === 'presentation') {
           if (lt.includes("ppt") || lt.includes("powerpoint") || lt.includes("presentation")) s += 200000;
+        } else if (intent === 'learning') {
+          if (lt.includes("learn") || lt.includes("course") || lt.includes("lesson")) s += 250000;
+          else if (lt.includes("education") || lt.includes("school") || lt.includes("degree")) s += 200000;
+          else if (lt.includes("tutor") || lt.includes("training") || lt.includes("skill")) s += 180000;
+          else if (lc.includes("education") || lta.includes("learn") || lta.includes("education")) s += 150000;
+        } else if (intent === 'research') {
+          if (lt.includes("research") || lt.includes("analysis") || lt.includes("data")) s += 200000;
+          else if (lc.includes("research") || lta.includes("research")) s += 150000;
+        } else if (intent === 'health') {
+          if (lt.includes("health") || lt.includes("medical") || lt.includes("doctor")) s += 200000;
+          else if (lt.includes("wellness") || lt.includes("fitness") || lt.includes("mental")) s += 180000;
+          else if (lc.includes("health") || lta.includes("health")) s += 150000;
+        } else if (intent === 'business') {
+          if (lt.includes("business") || lt.includes("startup") || lt.includes("marketing")) s += 200000;
+          else if (lt.includes("sales") || lt.includes("entrepreneur")) s += 180000;
+          else if (lc.includes("business") || lta.includes("business")) s += 150000;
         }
         
         if (lt === q) s += 100000;
