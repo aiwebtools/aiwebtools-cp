@@ -1665,6 +1665,40 @@ const performEnhancedSearch = (
   // Detect user task intent
   const userTask = matchUserTask(finalNormalizedTerm);
   
+  // PRE-COMPUTE SEARCH INTENTS (computed once, used for all tools - efficient)
+  const searchIntent = {
+    medical: finalNormalizedTerm.includes("doctor") || finalNormalizedTerm.includes("medical") || 
+             finalNormalizedTerm.includes("health") || finalNormalizedTerm.includes("nurse") ||
+             finalNormalizedTerm.includes("diagnosis") || finalNormalizedTerm.includes("symptom") ||
+             finalNormalizedTerm.includes("pharmacy") || finalNormalizedTerm.includes("wellness"),
+    legal: finalNormalizedTerm.includes("lawyer") || finalNormalizedTerm.includes("attorney") || 
+           finalNormalizedTerm.includes("legal") || finalNormalizedTerm.includes("law") ||
+           finalNormalizedTerm.includes("court") || finalNormalizedTerm.includes("contract"),
+    business: finalNormalizedTerm.includes("business") || finalNormalizedTerm.includes("entrepreneur") || 
+              finalNormalizedTerm.includes("startup") || finalNormalizedTerm.includes("marketing") ||
+              finalNormalizedTerm.includes("sales") || finalNormalizedTerm.includes("company"),
+    creative: finalNormalizedTerm.includes("art") || finalNormalizedTerm.includes("design") || 
+              finalNormalizedTerm.includes("creative") || finalNormalizedTerm.includes("draw") ||
+              finalNormalizedTerm.includes("paint") || finalNormalizedTerm.includes("sketch"),
+    tech: finalNormalizedTerm.includes("code") || finalNormalizedTerm.includes("programming") || 
+          finalNormalizedTerm.includes("developer") || finalNormalizedTerm.includes("software") ||
+          finalNormalizedTerm.includes("coding") || finalNormalizedTerm.includes("engineer"),
+    science: finalNormalizedTerm.includes("science") || finalNormalizedTerm.includes("research") || 
+             finalNormalizedTerm.includes("physics") || finalNormalizedTerm.includes("chemistry") ||
+             finalNormalizedTerm.includes("biology") || finalNormalizedTerm.includes("lab"),
+    finance: finalNormalizedTerm.includes("finance") || finalNormalizedTerm.includes("trading") || 
+             finalNormalizedTerm.includes("investment") || finalNormalizedTerm.includes("stock") ||
+             finalNormalizedTerm.includes("crypto") || finalNormalizedTerm.includes("money"),
+    writing: finalNormalizedTerm.includes("write") || finalNormalizedTerm.includes("writing") || 
+             finalNormalizedTerm.includes("blog") || finalNormalizedTerm.includes("article") ||
+             finalNormalizedTerm.includes("content") || finalNormalizedTerm.includes("copy"),
+    education: finalNormalizedTerm.includes("college") || finalNormalizedTerm.includes("university") || 
+               finalNormalizedTerm.includes("school") || finalNormalizedTerm.includes("education") ||
+               finalNormalizedTerm.includes("degree") || finalNormalizedTerm.includes("course") ||
+               finalNormalizedTerm.includes("learn") || finalNormalizedTerm.includes("tutor") ||
+               finalNormalizedTerm.includes("teach") || finalNormalizedTerm.includes("study")
+  };
+  
   // Reduced console logging for performance
   
   const results = tools
@@ -1855,7 +1889,7 @@ const performEnhancedSearch = (
       const titleWords = lowerTitle.split(/[\s\-_&]+/);
       
       for (const word of searchWords) {
-        if (word.length < 3) continue; // Skip very short words
+        if (word.length < 2) continue; // Allow 2-letter words for better matching
         
         // HIGH PRIORITY: Search word matches START of a title word
         // e.g., "babylon" matches "babylonian" in "Babylonian Star Protocol GPT"
@@ -1964,67 +1998,100 @@ const performEnhancedSearch = (
         }
       }
 
-      // EDUCATIONAL TOOL QUALITY RANKING - Boost educational tools for education-related searches
-      const isEducationSearch = finalNormalizedTerm.includes("college") || 
-        finalNormalizedTerm.includes("university") || 
-        finalNormalizedTerm.includes("school") ||
-        finalNormalizedTerm.includes("education") ||
-        finalNormalizedTerm.includes("degree") ||
-        finalNormalizedTerm.includes("course") ||
-        finalNormalizedTerm.includes("learn") ||
-        finalNormalizedTerm.includes("tutor") ||
-        finalNormalizedTerm.includes("teach") ||
-        finalNormalizedTerm.includes("class") ||
-        finalNormalizedTerm.includes("study");
-
-      if (isEducationSearch && matched) {
-        // Tier 1: Premier educational tools (+6000)
-        const tier1Education = [
-          "college degree gpt",
-          "learn any course gpt",
-          "learn any skill gpt",
-          "homeschool gpt",
-          "home-schooling assistant gpt",
-          "quiz maker",
-          "course maker gpt",
-          "course creator gpt"
-        ];
-        
-        // Tier 2: Excellent educational tools (+4000)
-        const tier2Education = [
-          "algebraic expression",
-          "math",
-          "language tutor",
-          "ppt presentation",
-          "pptx",
-          "powerpoint",
-          "training manual",
-          "book writer gpt"
-        ];
-        
-        // Non-educational keywords to demote (-3000)
-        const nonEducationKeywords = [
-          "firearm", "gun", "weapon", "marriage", "mender", "therapy",
-          "video analysis", "surveillance", "trading", "crypto", "cannabis",
-          "tattoo", "mixologist", "bartender", "chef", "cooking"
-        ];
-
-        const titleCheck = lowerTitle;
-        const descCheck = lowerDescription;
-        
-        if (tier1Education.some(t => titleCheck.includes(t))) {
-          score += 6000;
-        } else if (tier2Education.some(t => titleCheck.includes(t))) {
+      // INTENT-BASED SCORING - Pre-computed intent flags are checked here
+      // Medical/Healthcare intent
+      if (searchIntent.medical && matched) {
+        if (lowerCategory.includes("health") || lowerCategory.includes("medical") || lowerCategory.includes("wellness")) {
           score += 4000;
         }
-        
-        // Boost tools in Education category
-        if (lowerCategory.includes("education") || lowerCategory.includes("learning") || lowerCategory.includes("academic")) {
+        if (["doctor gpt", "dr. gpt", "medical", "health", "diagnosis", "symptom", "pharmacy", "rx", "veterinarian", "pet care"].some(k => lowerTitle.includes(k))) {
+          score += 5000;
+        }
+        if (["firearm", "trading", "crypto", "game", "entertainment"].some(k => lowerTitle.includes(k))) {
+          score -= 4000;
+        }
+      }
+      
+      // Legal intent
+      if (searchIntent.legal && matched) {
+        if (lowerCategory.includes("legal") || lowerTitle.includes("law") || lowerTitle.includes("attorney") || lowerTitle.includes("lawyer")) {
+          score += 5000;
+        }
+        if (["public defender", "contract", "legislation", "legal draft"].some(k => lowerTitle.includes(k))) {
+          score += 4000;
+        }
+      }
+      
+      // Business/Entrepreneur intent
+      if (searchIntent.business && matched) {
+        if (lowerCategory.includes("business") || lowerCategory.includes("marketing") || lowerCategory.includes("productivity")) {
           score += 3000;
         }
-        
-        // Demote non-educational tools
-        if (nonEducationKeywords.some(k => titleCheck.includes(k) || descCheck.includes(k))) {
+        if (["business plan", "startup", "entrepreneur", "microsaas", "marketing", "sales", "resume", "job"].some(k => lowerTitle.includes(k))) {
+          score += 5000;
+        }
+      }
+      
+      // Creative/Art intent
+      if (searchIntent.creative && matched) {
+        if (lowerCategory.includes("creative") || lowerCategory.includes("design") || lowerCategory.includes("art") || lowerCategory.includes("music")) {
+          score += 3000;
+        }
+        if (["graphic design", "tattoo", "sketch", "coloring", "art", "music", "creative"].some(k => lowerTitle.includes(k))) {
+          score += 4000;
+        }
+      }
+      
+      // Tech/Programming intent
+      if (searchIntent.tech && matched) {
+        if (lowerCategory.includes("coding") || lowerCategory.includes("development") || lowerCategory.includes("tech")) {
+          score += 4000;
+        }
+        if (["code", "developer", "programming", "github", "copilot", "cursor", "replit", "coding"].some(k => lowerTitle.includes(k))) {
+          score += 5000;
+        }
+      }
+      
+      // Science/Research intent
+      if (searchIntent.science && matched) {
+        if (lowerCategory.includes("science") || lowerCategory.includes("research") || lowerCategory.includes("academic")) {
+          score += 4000;
+        }
+        if (["research", "science", "data analysis", "genome", "physics", "chemistry", "einstein", "tesla", "galileo"].some(k => lowerTitle.includes(k))) {
+          score += 5000;
+        }
+      }
+      
+      // Finance/Trading intent  
+      if (searchIntent.finance && matched) {
+        if (lowerCategory.includes("finance") || lowerCategory.includes("trading") || lowerCategory.includes("crypto")) {
+          score += 4000;
+        }
+        if (["trader", "trading", "finance", "investment", "crypto", "stock", "credit score", "taxes"].some(k => lowerTitle.includes(k))) {
+          score += 5000;
+        }
+      }
+      
+      // Writing/Content intent
+      if (searchIntent.writing && matched) {
+        if (lowerCategory.includes("writing") || lowerCategory.includes("content")) {
+          score += 4000;
+        }
+        if (["book writer", "script", "blog", "article", "rewriter", "copywriting", "content"].some(k => lowerTitle.includes(k))) {
+          score += 5000;
+        }
+      }
+      
+      // Education intent (expanded)
+      if (searchIntent.education && matched) {
+        if (lowerCategory.includes("education") || lowerCategory.includes("learning") || lowerCategory.includes("academic")) {
+          score += 4000;
+        }
+        if (["college degree", "learn any course", "learn any skill", "homeschool", "quiz maker", "course", "tutor", "training manual"].some(k => lowerTitle.includes(k))) {
+          score += 6000;
+        }
+        // Demote clearly non-educational
+        if (["firearm", "gun", "marriage", "mender", "video analysis", "trading", "cannabis", "tattoo", "mixologist", "bartender"].some(k => lowerTitle.includes(k) || lowerDescription.includes(k))) {
           score -= 5000;
         }
       }
