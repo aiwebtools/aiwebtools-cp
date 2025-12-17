@@ -1,5 +1,5 @@
 
-import { Menu, Phone, Globe, ChevronDown, Download, Copy, Gift } from "lucide-react";
+import { Menu, Phone, Globe, ChevronDown, Download, Copy, Gift, Clock } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -18,11 +18,13 @@ import { createConfettiCelebration } from "@/utils/effects/audioEffects";
 import { getCurrentToolCount } from "@/utils/toolCounter";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 import Logo from "./Logo";
+import { useRecentlyVisitedTools } from "@/hooks/useRecentlyVisitedTools";
 
 const TabletMenu = () => {
   const navigate = useNavigate();
   const [isWeb3Open, setIsWeb3Open] = useState(false);
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
+  const { recentTools } = useRecentlyVisitedTools();
 
   useEffect(() => {
     const stats = getCurrentToolCount();
@@ -32,6 +34,12 @@ const TabletMenu = () => {
   const handleBrowseAITools = () => {
     // Navigate to ALL AI TOOLS main category page
     navigate("/main-category/ALL%20AI%20TOOLS");
+  };
+
+  const handleExternalLink = (url: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    createTimePortalEffect(url);
   };
 
   // Enhanced CSV download with all comprehensive data fields
@@ -259,6 +267,28 @@ const TabletMenu = () => {
                   <Download className="w-4 h-4 mr-2" />
                   📊 Download ALL {toolStats.marketing} AI Tools (CSV)
                 </DropdownMenuItem>
+
+                {/* Recently Visited Tools */}
+                {recentTools.length > 0 && (
+                  <div className="my-3">
+                    <div className="px-2 py-1 text-xs text-cyan-400/70 font-semibold uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                      <Clock className="w-3 h-3" />
+                      Recently Visited
+                    </div>
+                    <div className="bg-gray-900/50 rounded-lg border border-white/5 p-2 space-y-1">
+                      {recentTools.map((tool, index) => (
+                        <button
+                          key={`${tool.url}-${index}`}
+                          onClick={(e) => handleExternalLink(tool.url, e)}
+                          className="w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm text-cyan-100 hover:bg-cyan-500/20 transition-colors text-left"
+                        >
+                          <span>{tool.emoji}</span>
+                          <span className="truncate flex-1">{tool.name}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 
                 {/* Clone This Site Button with Gold Styling */}
                 <DropdownMenuItem 
