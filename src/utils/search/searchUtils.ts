@@ -1964,6 +1964,71 @@ const performEnhancedSearch = (
         }
       }
 
+      // EDUCATIONAL TOOL QUALITY RANKING - Boost educational tools for education-related searches
+      const isEducationSearch = finalNormalizedTerm.includes("college") || 
+        finalNormalizedTerm.includes("university") || 
+        finalNormalizedTerm.includes("school") ||
+        finalNormalizedTerm.includes("education") ||
+        finalNormalizedTerm.includes("degree") ||
+        finalNormalizedTerm.includes("course") ||
+        finalNormalizedTerm.includes("learn") ||
+        finalNormalizedTerm.includes("tutor") ||
+        finalNormalizedTerm.includes("teach") ||
+        finalNormalizedTerm.includes("class") ||
+        finalNormalizedTerm.includes("study");
+
+      if (isEducationSearch && matched) {
+        // Tier 1: Premier educational tools (+6000)
+        const tier1Education = [
+          "college degree gpt",
+          "learn any course gpt",
+          "learn any skill gpt",
+          "homeschool gpt",
+          "home-schooling assistant gpt",
+          "quiz maker",
+          "course maker gpt",
+          "course creator gpt"
+        ];
+        
+        // Tier 2: Excellent educational tools (+4000)
+        const tier2Education = [
+          "algebraic expression",
+          "math",
+          "language tutor",
+          "ppt presentation",
+          "pptx",
+          "powerpoint",
+          "training manual",
+          "book writer gpt"
+        ];
+        
+        // Non-educational keywords to demote (-3000)
+        const nonEducationKeywords = [
+          "firearm", "gun", "weapon", "marriage", "mender", "therapy",
+          "video analysis", "surveillance", "trading", "crypto", "cannabis",
+          "tattoo", "mixologist", "bartender", "chef", "cooking"
+        ];
+
+        const titleCheck = lowerTitle;
+        const descCheck = lowerDescription;
+        
+        if (tier1Education.some(t => titleCheck.includes(t))) {
+          score += 6000;
+        } else if (tier2Education.some(t => titleCheck.includes(t))) {
+          score += 4000;
+        }
+        
+        // Boost tools in Education category
+        if (lowerCategory.includes("education") || lowerCategory.includes("learning") || lowerCategory.includes("academic")) {
+          score += 3000;
+        }
+        
+        // Demote non-educational tools
+        if (nonEducationKeywords.some(k => titleCheck.includes(k) || descCheck.includes(k))) {
+          score -= 5000;
+        }
+      }
+
       return { tool, score, matched };
     })
     .filter(result => result.matched)
