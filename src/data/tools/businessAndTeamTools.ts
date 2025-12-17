@@ -101,7 +101,7 @@ export const businessAndTeamTools: Tool[] = [
     emoji: "💳",
     color: "from-blue-500 to-green-600",
     directUrl: "https://predictivecreditscoregpt.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-screenshot-of-a-web-app-with-the-text-predic.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1200,cg:true",
+    videoUrl: "https://youtu.be/_cuC9HUVy4M",
     tags: ["credit analysis", "credit scoring", "financial risk", "credit improvement", "financial assessment"],
     category: "Business & Team Tools",
     rating: 4.2,

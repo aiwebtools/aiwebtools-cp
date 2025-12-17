@@ -32,7 +32,7 @@ export const governmentCivicGPTs: Tool[] = [
     emoji: "📝",
     color: "from-blue-500 to-purple-600",
     directUrl: "https://publictestimonywriter.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=-q1oyZZFcI4",
+    videoUrl: "https://youtu.be/SmDYlyA_DUI",
     tags: ["public testimony", "testimony writer", "legislative testimony", "political activism", "civic engagement", "government", "policy", "democracy", "we the people", "political", "activism", "aiwebtools", "Custom GPT"],
     category: "Government & Civic",
     rating: 4.7,

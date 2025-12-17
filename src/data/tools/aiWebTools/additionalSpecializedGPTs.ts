@@ -128,7 +128,7 @@ export const additionalSpecializedGPTs: Tool[] = [
     emoji: "💡",
     color: "from-yellow-500 to-red-600",
     directUrl: "https://customgptmaker.lovable.app/?via=aiwebtools",
-    imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/1000002880.jpg/:/cr=t:22.21%25,l:0%25,w:100%25,h:55.58%25/rs=w:600,h:451,cg:true/qt=q:98",
+    videoUrl: "https://youtu.be/XSZM8ePQOzY",
     tags: ["brainstorming", "idea generation", "GPT creation", "AI development", "creative assistance", "Custom GPT"],
     category: "Additional Specialized",
     rating: 4.7,
