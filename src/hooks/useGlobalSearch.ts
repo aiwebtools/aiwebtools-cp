@@ -303,6 +303,21 @@ export const useGlobalSearch = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Prevent the page from scrolling when the search results dropdown is open.
+  // This ensures scroll gestures are captured by the results list (especially on mobile).
+  useEffect(() => {
+    const body = document.body;
+    const prevOverflow = body.style.overflow;
+
+    if (isOpen) {
+      body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      body.style.overflow = prevOverflow;
+    };
+  }, [isOpen]);
+
   const handleToolClick = useCallback((toolIndex: number) => {
     setIsOpen(false);
     setSearchTerm("");
