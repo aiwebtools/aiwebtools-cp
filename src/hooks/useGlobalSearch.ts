@@ -218,14 +218,22 @@ export const useGlobalSearch = () => {
         score = 50000;
         if (isAIWebToolsGPT) score += 5000; // Boost our GPTs for exact matches
       }
-      // TIER 2: Title starts with query (e.g., "learn" → "LEARN ANY SKILL GPT")
+      // TIER 2: Title starts with query (e.g., "le" → "LEARN ANY SKILL GPT")
       else if (it.t.startsWith(q) || it.tNoSpace.startsWith(qNoSpace)) {
         score = 30000;
         // MAJOR BOOST for AIWebTools GPTs that directly start with query
         if (isAIWebToolsGPT) score += 8000;
         // Boost shorter/canonical names
         if (it.t.startsWith(`${q} `) || it.t.startsWith(`${q}-`)) score += 2000;
-        score += Math.max(0, 800 - it.t.length);
+        
+        // IMPORTANT: Prefer tools where query matches MORE of the first word
+        // "le" matching "learn" (2/5 = 40%) beats "legislator" (2/10 = 20%)
+        const firstWord = it.words[0] || it.t;
+        const matchRatio = q.length / firstWord.length;
+        score += Math.floor(matchRatio * 3000); // Up to 3000 bonus for near-complete first word
+        
+        // Secondary: shorter first words are usually more common/canonical
+        score += Math.max(0, 400 - firstWord.length * 20);
       }
       // TIER 3: Any word in title starts with query
       else {
