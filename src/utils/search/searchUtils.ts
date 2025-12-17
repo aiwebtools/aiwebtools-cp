@@ -1850,26 +1850,39 @@ const performEnhancedSearch = (
         }
       }
 
-      // LOWER PRIORITY: Individual word matches
+      // WORD-BY-WORD MATCHING FOR LONG TOOL NAMES
+      // Split title into words for precise matching (e.g., "Babylonian Star Protocol" matches "babylon")
+      const titleWords = lowerTitle.split(/[\s\-_&]+/);
+      
       for (const word of searchWords) {
-        if (word.length < 2) continue;
+        if (word.length < 3) continue; // Skip very short words
         
-        if (lowerTitle.includes(word)) {
+        // HIGH PRIORITY: Search word matches START of a title word
+        // e.g., "babylon" matches "babylonian" in "Babylonian Star Protocol GPT"
+        const wordStartMatch = titleWords.some(tw => tw.startsWith(word));
+        if (wordStartMatch) {
           matched = true;
-          score += 2000;
+          score += 8000; // High priority for word-start matches
         }
+        // MEDIUM-HIGH: Search word is contained in title
+        else if (lowerTitle.includes(word)) {
+          matched = true;
+          score += 4000;
+        }
+        
+        // Check description and tags
         if (lowerDescription.includes(word)) {
           matched = true;
-          score += 1000;
+          score += 1500;
         }
         if (lowerCategory.includes(word)) {
           matched = true;
-          score += 500;
+          score += 800;
         }
         for (const tag of lowerTags) {
-          if (tag.includes(word)) {
+          if (tag.includes(word) || tag.startsWith(word)) {
             matched = true;
-            score += 300;
+            score += 600;
           }
         }
       }
