@@ -1,6 +1,5 @@
-
 import * as React from 'react'
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -13,6 +12,15 @@ import { usePrefetchRoutes } from "@/hooks/usePrefetch";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import PageTransition from "@/components/navigation/PageTransition";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
+
+// Fade out loading screen when React mounts
+const fadeOutLoadingScreen = () => {
+  const loader = document.querySelector('.loading-spinner');
+  if (loader) {
+    loader.classList.add('fade-out');
+    setTimeout(() => loader.remove(), 400);
+  }
+};
 
 // Eager load - critical path (home page AND disclaimer gate for instant first load)
 import Index from "./pages/Index";
@@ -113,6 +121,11 @@ const RouteGuard: React.FC = () => {
   return <AnimatedRoutes />;
 };
 function App() {
+  // Fade out the loading screen smoothly when React mounts
+  useEffect(() => {
+    fadeOutLoadingScreen();
+  }, []);
+  
   // Initialize cross-browser optimizations
   useCrossBrowserOptimization();
   
