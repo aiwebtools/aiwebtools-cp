@@ -234,9 +234,17 @@ export const createTimePortalEffect = (
   createFlash(effectsContainer);
   createConfettiCelebration(true);
 
-  // ⚡ ULTRA FAST timing - URL opens immediately (200ms)
-  const urlOpenDelay = 200;
-  
+  // ⚡ ULTRA FAST timing
+  // IMPORTANT: cleanup MUST happen before window.open, because opening a new tab can
+  // background/throttle timers and make the overlay appear to "hang".
+  const cleanupNow = () => cleanupEffects(effectsContainer);
+
+  // Clean up essentially immediately
+  requestAnimationFrame(cleanupNow);
+  setTimeout(cleanupNow, 120);
+
+  // Open destination shortly after (still feels instant)
+  const urlOpenDelay = 120;
   setTimeout(() => {
     console.log('🚀 Opening destination URL NOW');
     if (destinationUrl && destinationUrl.trim()) {
@@ -244,17 +252,10 @@ export const createTimePortalEffect = (
     }
   }, urlOpenDelay);
 
-  // INSTANT cleanup - effects gone by 300ms max, never lingers
-  setTimeout(() => {
-    cleanupEffects(effectsContainer);
-  }, 300);
-
-  // Also cleanup immediately when user returns to page (visibility change)
+  // Also cleanup immediately on ANY visibility change (hidden or visible)
   const handleVisibilityChange = () => {
-    if (document.visibilityState === 'visible') {
-      cleanupEffects(effectsContainer);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    }
+    cleanupNow();
+    document.removeEventListener('visibilitychange', handleVisibilityChange);
   };
   document.addEventListener('visibilitychange', handleVisibilityChange);
 };

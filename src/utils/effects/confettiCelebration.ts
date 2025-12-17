@@ -3,8 +3,8 @@ export const createConfettiCelebration = (visualOnly: boolean = false) => {
   console.log('🎉 Creating Matrix binary explosion effect', visualOnly ? '(visual only)' : '(with sound)');
 
   // For time-warp usage we need ultra-fast cleanup so it never blocks UI
-  const maxLifetimeMs = visualOnly ? 300 : 1800;
-  const binaryCount = visualOnly ? 18 : 75;
+  const maxLifetimeMs = visualOnly ? 120 : 1800;
+  const binaryCount = visualOnly ? 8 : 75;
 
   try {
     // Only play sound if not visual-only mode
