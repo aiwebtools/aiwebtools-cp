@@ -127,7 +127,7 @@ export const scoreWebDevelopment = (tool: Tool, searchTerm: string): number => {
     for (const toolName of webDevelopmentTools) {
       if (tool.title.toLowerCase().includes(toolName)) {
         score += 15000; // Massive boost for web dev tools
-        console.log(`💻 WEB DEV TOOL MATCH: ${tool.title} gets 15000 points`);
+        // Debug logging disabled by default for performance
         break;
       }
     }
@@ -136,24 +136,26 @@ export const scoreWebDevelopment = (tool: Tool, searchTerm: string): number => {
     for (const keyword of webDevelopmentKeywords) {
       if (tool.title.toLowerCase().includes(keyword)) {
         score += 10000;
-        console.log(`💻 WEB DEV TITLE MATCH: ${tool.title} gets 10000 points for ${keyword}`);
+        // Debug logging disabled by default for performance
         break;
       }
     }
 
     // Medium priority for development category
-    if (tool.category?.toLowerCase().includes('development') || 
-        tool.category?.toLowerCase().includes('coding') ||
-        tool.category?.toLowerCase().includes('web')) {
+    if (
+      tool.category?.toLowerCase().includes("development") ||
+      tool.category?.toLowerCase().includes("coding") ||
+      tool.category?.toLowerCase().includes("web")
+    ) {
       score += 8000;
-      console.log(`💻 WEB DEV CATEGORY MATCH: ${tool.title} gets 8000 points`);
+      // Debug logging disabled by default for performance
     }
 
     // Medium priority for web dev content in description
     for (const keyword of webDevelopmentKeywords) {
       if (tool.description.toLowerCase().includes(keyword)) {
         score += 6000;
-        console.log(`💻 WEB DEV DESC MATCH: ${tool.title} gets 6000 points for ${keyword}`);
+        // Debug logging disabled by default for performance
         break;
       }
     }

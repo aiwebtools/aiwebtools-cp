@@ -92,7 +92,7 @@ let cachedIndexedTools: {
 const getIndexedTools = () => {
   if (cachedIndexedTools) return cachedIndexedTools;
 
-  cachedIndexedTools = allTools.map(t => {
+  cachedIndexedTools = allTools.map((t) => {
     const lt = t.title.toLowerCase();
     const ld = (t.description || "").toLowerCase();
     const lc = (t.category || "").toLowerCase();
@@ -100,7 +100,7 @@ const getIndexedTools = () => {
     // Create comprehensive searchable text including all fields for maximum discoverability
     const searchableText = `${lt} ${ld} ${lc} ${lta}`;
     // Also create normalized versions for fuzzy matching
-    const normalized = searchableText.replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ');
+    const normalized = searchableText.replace(/[^a-z0-9\s]/g, "").replace(/\s+/g, " ");
     return {
       tool: t,
       lt,
@@ -114,6 +114,29 @@ const getIndexedTools = () => {
 
   return cachedIndexedTools;
 };
+
+// Pre-warm the full tool index during browser idle time so opening menus/search feels instant.
+// This avoids a big synchronous 2000+ tool map the moment a dropdown opens.
+if (typeof window !== "undefined") {
+  const w = window as unknown as { __aiwebtools_index_prewarm__?: boolean };
+  if (!w.__aiwebtools_index_prewarm__) {
+    w.__aiwebtools_index_prewarm__ = true;
+
+    const warm = () => {
+      try {
+        getIndexedTools();
+      } catch {
+        // ignore
+      }
+    };
+
+    // Prefer requestIdleCallback, fall back to a short timeout.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const ric = (window as any).requestIdleCallback as undefined | ((cb: () => void, opts?: { timeout: number }) => number);
+    if (ric) ric(warm, { timeout: 1200 });
+    else window.setTimeout(warm, 250);
+  }
+}
 
 export const useGlobalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
