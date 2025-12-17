@@ -1919,6 +1919,22 @@ const performEnhancedSearch = (
     pinnedTitles.push("Movie Maker Studio AI SUITE", "Movie Script Writer GPT", "Sora Prompt Assistant", "Luma Dream Machine Prompt Assistant");
   }
 
+  // Spiritual/Spirit GPT intent - prioritize best spiritual tools
+  if ((lowerTerm.includes("spirit") && lowerTerm.includes("gpt")) || lowerTerm === "spirit" || lowerTerm === "spiritual" || lowerTerm === "spirituality") {
+    pinnedTitles.push(
+      "TALK TO THE GODS GPT",
+      "Sophia Aeterna AI", 
+      "God Is Light GPT",
+      "Buddha GPT",
+      "Resurrection GPT",
+      "Oraculum – The Revealer of Hidden \"Truths\"",
+      "Dream Interpreter GPT",
+      "Mary Magdalene GPT",
+      "Carl Sagan GPT",
+      "Alan Watts GPT"
+    );
+  }
+
   const pinned: Tool[] = [];
   if (pinnedTitles.length) {
     const set = new Set<string>();
