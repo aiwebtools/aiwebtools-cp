@@ -10,7 +10,7 @@ export const customGeminiGems: Tool[] = [
     color: "from-blue-500 to-green-600",
     category: "Custom Gemini Gems",
     directUrl: "https://gemini.google.com/gem/ac3de7972849",
-    videoUrl: "https://youtu.be/nBd9Uk62UiI",
+    videoUrl: "https://youtu.be/xNQi8wuM3DQ",
     rating: 4.7,
     totalVotes: 2156,
     tags: ["gemini", "custom gem", "Gemini Gem", "book writing", "novel creation", "storytelling", "google gemini"]

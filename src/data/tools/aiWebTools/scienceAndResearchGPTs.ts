@@ -200,6 +200,7 @@ export const scienceAndResearchGPTs: Tool[] = [
     emoji: "🌍",
     color: "from-purple-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-68f8eda5982c8191bef047399d91a056-world-data-explorer-gpt",
+    videoUrl: "https://youtu.be/vEEhdr-SLJY",
     tags: ["data analysis", "global data", "predictions", "research", "statistical analysis", "data science", "trend forecasting", "python", "aiwebtools", "Custom GPT", "Data Analysis", "Evidence Analysis"],
     category: "Science & Research",
     rating: 4.8,

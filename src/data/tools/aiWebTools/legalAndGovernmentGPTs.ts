@@ -37,7 +37,7 @@ export const legalAndGovernmentGPTs: Tool[] = [
     emoji: "🔍",
     color: "from-blue-500 to-gray-600",
     directUrl: "https://criminologistgpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://youtu.be/3Ll7KPhTt3M",
+    videoUrl: "https://youtu.be/Rvol3zoSguM",
     tags: ["criminology", "investigation", "forensics", "law enforcement", "criminal analysis"],
     category: "Legal & Government",
     rating: 4.7,

@@ -54,6 +54,7 @@ export const professionalGPTsAudio: Tool[] = [
     emoji: "🏘️",
     color: "from-blue-500 to-slate-600",
     directUrl: "https://realestategpt.lovable.app/?via=aiwebtools",
+    videoUrl: "https://youtu.be/ULnIHexQO0w",
     tags: ["real estate", "property valuation", "mortgage analysis", "rental management", "commercial real estate", "property intelligence", "investment analysis", "real estate data", "property assessment", "market analysis"],
     category: "Professional Services",
     rating: 4.6,
