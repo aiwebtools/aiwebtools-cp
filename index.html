@@ -128,9 +128,15 @@
       .matrix-rain { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
       .m { position: absolute; top: -20%; font: 10px monospace; color: #00ff41; writing-mode: vertical-rl; animation: f linear infinite; will-change: transform; text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 40px rgba(0,255,65,0.5); }
       @keyframes f { 0% { transform: translateY(0); } 100% { transform: translateY(130vh); } }
-      .loading-text {
+      .loading-content {
         position: relative;
         z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+      .loading-text {
         display: flex;
         align-items: center;
         font-family: 'Courier New', monospace;
@@ -148,6 +154,28 @@
       .dot:nth-child(4) { animation-delay: 0.9s; }
       .dot:nth-child(5) { animation-delay: 1.2s; }
       @keyframes blink { 0%, 20% { opacity: 0; } 40%, 100% { opacity: 1; } }
+      .progress-container {
+        width: 280px;
+        height: 4px;
+        background: rgba(0, 255, 65, 0.15);
+        border-radius: 2px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+      }
+      .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #00ff41, #00ff9d);
+        border-radius: 2px;
+        transition: width 0.15s ease-out;
+        box-shadow: 0 0 8px #00ff41, 0 0 16px rgba(0, 255, 65, 0.5);
+      }
+      .progress-text {
+        font-family: 'Courier New', monospace;
+        font-size: 11px;
+        color: rgba(0, 255, 65, 0.7);
+        letter-spacing: 2px;
+      }
       .loading-spinner.fade-out { 
         opacity: 0; 
         transition: opacity 0.3s ease-out;
@@ -155,14 +183,74 @@
       }
     </style>
     <script>
-      // Auto-hide loading screen after 500ms flash
-      setTimeout(() => {
-        const spinner = document.querySelector('.loading-spinner');
-        if (spinner) {
-          spinner.classList.add('fade-out');
-          setTimeout(() => spinner.remove(), 300);
+      // Progress tracking with actual resource loading
+      let progress = 0;
+      const progressBar = () => document.getElementById('progress-bar');
+      const progressText = () => document.getElementById('progress-text');
+      
+      const updateProgress = (value) => {
+        progress = Math.min(value, 100);
+        const bar = progressBar();
+        const text = progressText();
+        if (bar) bar.style.width = progress + '%';
+        if (text) text.textContent = Math.round(progress) + '%';
+      };
+
+      // Simulate initial progress quickly
+      let startTime = Date.now();
+      const progressInterval = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        // Quick ramp to 30% in first 200ms, then slower
+        if (progress < 30) {
+          updateProgress(Math.min(30, elapsed / 6));
+        } else if (progress < 70) {
+          updateProgress(progress + 2);
+        } else if (progress < 90) {
+          updateProgress(progress + 0.5);
         }
-      }, 500);
+      }, 30);
+
+      // Track actual module loading
+      window.addEventListener('load', () => updateProgress(85));
+      
+      // Complete when React takes over (MutationObserver watches for React content)
+      const observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          if (mutation.addedNodes.length && !document.querySelector('.loading-spinner')) {
+            clearInterval(progressInterval);
+            observer.disconnect();
+            return;
+          }
+        }
+        // React rendered something new
+        if (document.querySelector('[data-reactroot], [data-react-helmet]') || 
+            document.querySelector('#root > *:not(.loading-spinner)')) {
+          updateProgress(100);
+          clearInterval(progressInterval);
+          setTimeout(() => {
+            const spinner = document.querySelector('.loading-spinner');
+            if (spinner) {
+              spinner.classList.add('fade-out');
+              setTimeout(() => spinner.remove(), 300);
+            }
+          }, 150);
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.getElementById('root'), { childList: true, subtree: true });
+
+      // Fallback: auto-complete after 2s max
+      setTimeout(() => {
+        updateProgress(100);
+        clearInterval(progressInterval);
+        setTimeout(() => {
+          const spinner = document.querySelector('.loading-spinner');
+          if (spinner) {
+            spinner.classList.add('fade-out');
+            setTimeout(() => spinner.remove(), 300);
+          }
+        }, 150);
+      }, 2000);
     </script>
     <script>
       // Scramble Matrix characters continuously until React loads
@@ -327,7 +415,13 @@
           <span class="m" style="left:58%;animation-duration:3.4s;animation-delay:.2s;opacity:.3">01111</span>
           <span class="m" style="left:60%;animation-duration:2.7s;animation-delay:.6s;opacity:.45">11101</span>
         </div>
-        <div class="loading-text">LOADING YOUR AI TOOL EMPIRE<span class="dots"><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></span></div>
+        <div class="loading-content">
+          <div class="loading-text">LOADING YOUR AI TOOL EMPIRE<span class="dots"><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></span></div>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+          </div>
+          <div class="progress-text" id="progress-text">0%</div>
+        </div>
       </div>
     </div>
     
