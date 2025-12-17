@@ -215,88 +215,86 @@ export const useGlobalSearch = () => {
 
       // TIER 1: EXACT MATCH (highest priority)
       if (it.t === q || it.tNoSpace === qNoSpace) {
-        score = 50000;
-        if (isAIWebToolsGPT) score += 5000; // Boost our GPTs for exact matches
+        score = 100000;
+        if (isAIWebToolsGPT) score += 10000;
       }
-      // TIER 2: Title starts with query (e.g., "le" → "LEARN ANY SKILL GPT")
-      else if (it.t.startsWith(q) || it.tNoSpace.startsWith(qNoSpace)) {
-        score = 30000;
-        // MAJOR BOOST for AIWebTools GPTs that directly start with query
+      // TIER 2: First word of title IS the query exactly (e.g., "learn" → "LEARN ANY COURSE GPT")
+      else if (it.words[0] === q) {
+        score = 80000;
         if (isAIWebToolsGPT) score += 8000;
-        // Boost shorter/canonical names
-        if (it.t.startsWith(`${q} `) || it.t.startsWith(`${q}-`)) score += 2000;
+      }
+      // TIER 3: Title starts with query (e.g., "le" → "LEARN ANY SKILL GPT")
+      else if (it.t.startsWith(q) || it.tNoSpace.startsWith(qNoSpace)) {
+        score = 60000;
+        if (isAIWebToolsGPT) score += 6000;
+        // Boost for complete word match at start
+        if (it.t.startsWith(`${q} `) || it.t.startsWith(`${q}-`)) score += 5000;
         
-        // IMPORTANT: Prefer tools where query matches MORE of the first word
-        // "le" matching "learn" (2/5 = 40%) beats "legislator" (2/10 = 20%)
+        // Prefer tools where query matches MORE of the first word
         const firstWord = it.words[0] || it.t;
         const matchRatio = q.length / firstWord.length;
-        score += Math.floor(matchRatio * 3000); // Up to 3000 bonus for near-complete first word
-        
-        // Secondary: shorter first words are usually more common/canonical
-        score += Math.max(0, 400 - firstWord.length * 20);
+        score += Math.floor(matchRatio * 10000);
       }
-      // TIER 3: Any word in title starts with query
+      // TIER 4: Any word in title starts with query
       else {
         for (const word of it.words) {
           if (word.startsWith(q)) {
-            score = 20000;
-            if (isAIWebToolsGPT) score += 4000; // Boost our GPTs
-            score += Math.max(0, 500 - word.length);
+            score = 30000;
+            if (isAIWebToolsGPT) score += 3000;
+            score += Math.max(0, 1000 - word.length * 50);
             break;
           }
         }
       }
 
-      // TIER 4: Title contains query
+      // TIER 5: Title contains query
       if (!score && (it.t.includes(q) || it.tNoSpace.includes(qNoSpace))) {
-        score = 12000;
-        if (isAIWebToolsGPT) score += 2000;
+        score = 15000;
+        if (isAIWebToolsGPT) score += 1500;
       }
 
-      // TIER 5: Abbreviation expansion matches
+      // TIER 6: Abbreviation expansion matches
       if (!score && abbrevExpansions.length > 0) {
         for (const exp of abbrevExpansions) {
           if (it.t.includes(exp) || it.tNoSpace.includes(exp.replace(/\s/g, ""))) {
             score = 10000;
-            if (isAIWebToolsGPT) score += 1500;
+            if (isAIWebToolsGPT) score += 1000;
             break;
           }
         }
       }
 
-      // TIER 6: Synonym matches
+      // TIER 7: Synonym matches (LOWER priority than direct matches)
       if (!score && synonyms.length > 0) {
         for (const syn of synonyms) {
           if (it.t.includes(syn)) {
-            score = 8000;
-            if (isAIWebToolsGPT) score += 1200;
+            score = 5000;  // Much lower than direct title matches
+            if (isAIWebToolsGPT) score += 500;
             break;
           }
         }
       }
 
-      // TIER 7: Tag/category matches (2+ chars)
+      // TIER 8: Tag/category matches (2+ chars)
       if (!score && q.length >= 2) {
         if (it.c.startsWith(q) || it.c.includes(q)) {
-          score = 5000;
-        } else if (it.tags.some(tag => tag.startsWith(q))) {
-          score = 4500;
-        } else if (it.tags.some(tag => tag.includes(q))) {
           score = 4000;
+        } else if (it.tags.some(tag => tag.startsWith(q))) {
+          score = 3500;
+        } else if (it.tags.some(tag => tag.includes(q))) {
+          score = 3000;
         }
       }
 
-      // TIER 8: Fuzzy match for short queries (typo tolerance)
+      // TIER 9: Fuzzy match for short queries (typo tolerance)
       if (!score && q.length >= 3 && q.length <= 8) {
-        // Check against first word of title
         const firstWord = it.words[0];
         if (firstWord && quickLevenshtein(q, firstWord) <= 1) {
-          score = 6000;
+          score = 2500;
         }
-        // Check against common platform names in title
         for (const word of it.words) {
           if (word.length >= 3 && word.length <= 12 && quickLevenshtein(q, word) <= 1) {
-            score = 5500;
+            score = 2000;
             break;
           }
         }
