@@ -8,6 +8,7 @@ interface GlobalSearchResultsProps {
   searchResults: any[];
   displayedCount: number;
   isLoadingMore: boolean;
+  directMatchCount?: number; // How many are direct matches vs recommendations
   onToolClick: (toolIndex: number) => void;
   onDirectAccess: (tool: any, e: React.MouseEvent) => void;
   onScroll: (e: React.UIEvent<HTMLDivElement>) => void;
@@ -17,13 +18,19 @@ const GlobalSearchResults = ({
   searchResults,
   displayedCount,
   isLoadingMore,
+  directMatchCount = searchResults.length,
   onToolClick,
   onDirectAccess,
   onScroll,
 }: GlobalSearchResultsProps) => {
   const displayedResults = searchResults.slice(0, displayedCount);
-  const hasMoreToLoad = displayedCount < searchResults.length;
+  const hasMoreToLoad = displayedCount < searchResults.length || isLoadingMore;
   const scrollRef = useRef<HTMLDivElement>(null);
+  
+  // Track if we've passed direct matches into recommendations
+  const showingRecommendations = displayedCount > directMatchCount;
+  const directMatchesDisplayed = Math.min(displayedCount, directMatchCount);
+  const recommendationsDisplayed = Math.max(0, displayedCount - directMatchCount);
 
   // O(1) lookup instead of repeated allTools.findIndex (huge perf win when typing)
   const toolIndexByTitle = useMemo(() => {
@@ -73,10 +80,14 @@ const GlobalSearchResults = ({
         <div className="p-2 pt-4" style={{ transform: 'translateZ(0)' }}>
           {displayedResults.map((tool, index) => {
             const toolIndex = toolIndexByTitle.get(tool.title) ?? -1;
+            const isRecommendation = index >= directMatchCount;
+            
+            // Show separator before first recommendation
+            const showSeparator = index === directMatchCount && directMatchCount > 0;
             
             const toolItem = (
               <div 
-                className="flex items-center space-x-3 p-3 rounded-lg hover:bg-cyan-500/10 cursor-pointer group transition-all duration-200 border border-transparent hover:border-cyan-500/30"
+                className={`flex items-center space-x-3 p-3 rounded-lg hover:bg-cyan-500/10 cursor-pointer group transition-all duration-200 border border-transparent hover:border-cyan-500/30 ${isRecommendation ? 'opacity-90' : ''}`}
                 onClick={() => onToolClick(toolIndex)}
               >
                 <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center text-xs sm:text-sm flex-shrink-0`}>
@@ -106,6 +117,21 @@ const GlobalSearchResults = ({
 
             return (
               <div key={`global-search-${tool.title}-${index}`}>
+                {/* Separator between direct matches and recommendations */}
+                {showSeparator && (
+                  <div className="my-4 py-4 border-t border-b border-cyan-500/30 bg-gradient-to-r from-cyan-500/5 via-cyan-500/10 to-cyan-500/5">
+                    <div className="text-center">
+                      <div className="text-xl mb-2">✨</div>
+                      <div className="text-cyan-300 font-semibold text-sm">
+                        End of {directMatchCount} matching results
+                      </div>
+                      <div className="text-cyan-400/70 text-xs mt-1">
+                        🚀 Discover more AI tools below
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
                 {/* Show tooltip only on desktop (md and above) */}
                 <div className="hidden md:block">
                   <Tooltip delayDuration={300}>
@@ -149,6 +175,8 @@ const GlobalSearchResults = ({
               </div>
             );
           })}
+          
+          {/* Loading more indicator - always show when there's more to load */}
           {(hasMoreToLoad || isLoadingMore) && (
             <div className="text-center py-4 text-cyan-400/70 text-sm">
               {isLoadingMore ? (
@@ -156,25 +184,25 @@ const GlobalSearchResults = ({
                   <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
                   <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
                   <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
-                  <span className="ml-2">Loading more tools...</span>
+                  <span className="ml-2">
+                    {showingRecommendations ? 'Loading more AI tools...' : 'Loading more matches...'}
+                  </span>
                 </div>
               ) : (
                 <div className="flex flex-col items-center gap-2">
                   <div className="animate-pulse">📜 Scroll down for more amazing AI tools</div>
                   <div className="text-xs text-cyan-300/60">
-                    {searchResults.length - displayedCount} more in this search
+                    {displayedCount < directMatchCount 
+                      ? `${directMatchCount - displayedCount} more matches in this search`
+                      : 'Explore more AI tools from our database'
+                    }
                   </div>
                 </div>
               )}
             </div>
           )}
-          {!hasMoreToLoad && !isLoadingMore && searchResults.length > 30 && (
-            <div className="text-center py-4 text-cyan-300/90 text-sm border-t border-cyan-500/20 mt-2">
-              <div className="text-2xl mb-2">🎉</div>
-              <div className="font-semibold">You've viewed all {searchResults.length} results!</div>
-              <div className="text-xs text-cyan-400/60 mt-1">Try a new search to discover more tools</div>
-            </div>
-          )}
+          
+          {/* No results message */}
           {searchResults.length === 0 && (
             <div className="text-center py-8 text-cyan-400/70 text-sm">
               <div className="text-3xl mb-3">🔍</div>
