@@ -4,7 +4,7 @@ export const createConfettiCelebration = (visualOnly: boolean = false) => {
 
   // For time-warp usage we need ultra-fast cleanup so it never blocks UI
   const maxLifetimeMs = visualOnly ? 300 : 1800;
-  const binaryCount = visualOnly ? 18 : 75;
+  const binaryCount = visualOnly ? 60 : 75;
 
   try {
     // Only play sound if not visual-only mode
