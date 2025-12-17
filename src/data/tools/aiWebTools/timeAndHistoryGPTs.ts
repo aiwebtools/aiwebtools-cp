@@ -23,7 +23,7 @@ export const timeAndHistoryGPTs: Tool[] = [
     directUrl: "https://time-machine-gpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/J31nNY5_PB4",
     imageUrl: "https://media.discordapp.net/attachments/1150636600846450729/1377298793409806528/time.webp",
-    tags: ["time travel", "history exploration", "historical figures", "alternative realities", "time periods", "aiwebtools", "Custom GPT"],
+    tags: ["time travel", "history", "history exploration", "historical figures", "alternative realities", "time periods", "aiwebtools", "Custom GPT"],
     category: "Time & History",
     rating: 4.8,
     totalVotes: 6789
@@ -36,7 +36,7 @@ export const timeAndHistoryGPTs: Tool[] = [
     color: "from-amber-500 to-orange-600",
     directUrl: "https://talk-to-history-gpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://youtu.be/HQGNMR7oXXY",
-    tags: ["historical conversations", "historical figures", "educational tool", "history learning", "interactive history", "aiwebtools", "Custom GPT"],
+    tags: ["history", "historical conversations", "historical figures", "educational tool", "history learning", "interactive history", "aiwebtools", "Custom GPT"],
     category: "Time & History",
     rating: 4.7,
     totalVotes: 5432
@@ -49,7 +49,7 @@ export const timeAndHistoryGPTs: Tool[] = [
     color: "from-blue-500 to-gray-600",
     directUrl: "https://titanicresurrectionsgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=XlWVaz5bw08",
-    tags: ["titanic history", "historical storytelling", "survivor testimonies", "maritime history", "interactive history", "aiwebtools", "Custom GPT"],
+    tags: ["history", "titanic history", "historical storytelling", "survivor testimonies", "maritime history", "interactive history", "aiwebtools", "Custom GPT"],
     category: "Time & History",
     rating: 4.6,
     totalVotes: 4123

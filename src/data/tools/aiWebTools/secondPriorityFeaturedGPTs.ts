@@ -185,6 +185,6 @@ export const secondPriorityFeaturedGPTs: Tool[] = [
     videoUrl: "https://www.youtube.com/watch?v=uf2i_DdaJ7M",
     rating: 4.7,
     totalVotes: 4100,
-    tags: ["archaeology", "indiana jones", "ancient texts", "historical research", "exploration"]
+    tags: ["archaeology", "indiana jones", "ancient texts", "historical research", "exploration", "history", "historical", "ancient", "civilizations"]
   }
 ];

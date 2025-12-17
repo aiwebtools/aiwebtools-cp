@@ -101,7 +101,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🌌",
     color: "from-blue-600 to-purple-900",
     directUrl: "https://chatgpt.com/g/g-692bad20447881919c117657a793a179-carl-sagan-gpt/?via=aiwebtools",
-    tags: ["astronomy", "cosmos", "science", "philosophy", "spirituality", "consciousness", "space exploration", "cosmic perspective", "wonder", "pale blue dot", "scientist", "science communicator", "astrophysics", "aiwebtools", "Custom GPT"],
+    tags: ["astronomy", "cosmos", "science", "philosophy", "spirituality", "consciousness", "space exploration", "cosmic perspective", "wonder", "pale blue dot", "scientist", "science communicator", "astrophysics", "historical figure", "history", "aiwebtools", "Custom GPT"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 3842
@@ -125,7 +125,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     emoji: "🕉️",
     color: "from-orange-500 to-yellow-600",
     directUrl: "https://chatgpt.com/g/g-68ae302e79b88191a52219eaaccbfcc3-paramahansa-yogananda-gpt/?via=aiwebtools",
-    tags: ["yoga", "yogananda", "paramahansa", "meditation", "self-realization", "kriya yoga", "spiritual teachings", "autobiography of a yogi", "eastern philosophy", "divine wisdom", "spirituality", "religion", "religious", "spiritual teacher", "guru", "aiwebtools", "Custom GPT"],
+    tags: ["yoga", "yogananda", "paramahansa", "meditation", "self-realization", "kriya yoga", "spiritual teachings", "autobiography of a yogi", "eastern philosophy", "divine wisdom", "spirituality", "religion", "religious", "spiritual teacher", "guru", "historical figure", "history", "aiwebtools", "Custom GPT"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 4521
@@ -151,7 +151,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     color: "from-purple-500 to-pink-600",
     directUrl: "https://marymagdalenegpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=7qxEnBR2BwQ",
-    tags: ["spirituality", "Gnostic wisdom", "divine secrets", "Christian mysticism", "ancient texts", "religion", "religious", "saint", "mary magdalene", "mary", "magdalene", "jesus", "christ", "christian", "Custom GPT"],
+    tags: ["spirituality", "Gnostic wisdom", "divine secrets", "Christian mysticism", "ancient texts", "religion", "religious", "saint", "mary magdalene", "mary", "magdalene", "jesus", "christ", "christian", "historical figure", "history", "ancient", "Custom GPT"],
     category: "Spirituality & Philosophy",
     rating: 4.9,
     totalVotes: 6789
@@ -164,7 +164,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     color: "from-teal-500 to-blue-600",
     directUrl: "https://alanwattsgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=zdKfwsQwOLE",
-    tags: ["philosophy", "consciousness", "enlightenment", "critical thinking", "spiritual wisdom", "spirituality", "religion", "religious", "spiritual teacher", "philosopher", "Custom GPT"],
+    tags: ["philosophy", "consciousness", "enlightenment", "critical thinking", "spiritual wisdom", "spirituality", "religion", "religious", "spiritual teacher", "philosopher", "historical figure", "history", "alan watts", "Custom GPT"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 7234
@@ -177,7 +177,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     color: "from-yellow-500 to-purple-600",
     directUrl: "https://talktothegodsgpt.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=xoUdjZDgplw",
-    tags: ["deities", "religious exploration", "mythologies", "spiritual guidance", "divine wisdom", "spirituality", "religion", "religious", "gods", "god", "faith", "divine", "Custom GPT"],
+    tags: ["deities", "religious exploration", "mythologies", "spiritual guidance", "divine wisdom", "spirituality", "religion", "religious", "gods", "god", "faith", "divine", "historical", "ancient", "history", "Custom GPT"],
     category: "Spirituality & Philosophy",
     rating: 4.7,
     totalVotes: 5678
@@ -190,7 +190,7 @@ export const spiritualAndPhilosophyGPTs: Tool[] = [
     color: "from-purple-500 to-gold-600",
     directUrl: "https://sophiaaeterna.lovable.app/?via=aiwebtools",
     imageUrl: "https://img1.wsimg.com/isteam/ip/9fd6d942-5b46-4025-92e2-0f1ec2a7adf2/a-vintage-style-illustration-of-a-golden_kNEfX.png/:/cr=t:5.43%25,l:0%25,w:100%25,h:89.13%25/rs=w:1200,h:600,cg:true",
-    tags: ["ancient wisdom", "esotericism", "mysticism", "philosophy", "spiritual enlightenment", "spirituality", "religion", "religious", "wisdom", "esoteric", "mystical", "sophia", "aeterna", "Custom GPT"],
+    tags: ["ancient wisdom", "esotericism", "mysticism", "philosophy", "spiritual enlightenment", "spirituality", "religion", "religious", "wisdom", "esoteric", "mystical", "sophia", "aeterna", "historical", "ancient", "history", "Custom GPT"],
     category: "Spirituality & Philosophy",
     rating: 4.8,
     totalVotes: 4567
