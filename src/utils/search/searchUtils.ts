@@ -1887,6 +1887,83 @@ const performEnhancedSearch = (
         }
       }
 
+      // SPIRITUAL TOOL QUALITY RANKING - Extra boost for known top-tier spiritual tools
+      // Only applies when search term is spiritual-related
+      const isSpiritualSearch = finalNormalizedTerm.includes("spirit") || 
+        finalNormalizedTerm.includes("god") || 
+        finalNormalizedTerm.includes("soul") ||
+        finalNormalizedTerm.includes("divine") ||
+        finalNormalizedTerm.includes("meditation") ||
+        finalNormalizedTerm.includes("buddha") ||
+        finalNormalizedTerm.includes("jesus") ||
+        finalNormalizedTerm.includes("religious") ||
+        finalNormalizedTerm.includes("mystical") ||
+        finalNormalizedTerm.includes("philosophy") ||
+        finalNormalizedTerm.includes("wisdom") ||
+        lowerCategory.includes("spiritual") ||
+        lowerCategory.includes("philosophy");
+
+      if (isSpiritualSearch && matched) {
+        // Tier 1: Premier spiritual tools (+5000)
+        const tier1Spiritual = [
+          "talk to the gods gpt",
+          "sophia aeterna ai",
+          "god is light gpt",
+          "resurrection gpt",
+          "buddha gpt",
+          "alan watts gpt",
+          "mary magdalene gpt",
+          "carl sagan gpt",
+          "oraculum",
+          "dream interpreter gpt"
+        ];
+        
+        // Tier 2: Excellent spiritual tools (+3500)
+        const tier2Spiritual = [
+          "talk to history gpt",
+          "time machine gpt",
+          "manicheism gpt",
+          "mingjiao prophet of light gpt",
+          "council of light gpt",
+          "yemaya",
+          "quan yin gpt",
+          "ancient essenes gpt",
+          "kabbalah gpt",
+          "torah gpt",
+          "jesus gpt",
+          "chief crazy horse gpt",
+          "st. francis gpt",
+          "rumi gpt",
+          "socrates gpt",
+          "marcus aurelius gpt"
+        ];
+        
+        // Tier 3: Good spiritual tools (+2000)
+        const tier3Spiritual = [
+          "fortune teller gpt",
+          "tarot",
+          "astrology",
+          "numerology",
+          "psychic",
+          "self sufficiency gpt",
+          "intergalactic ancient archivist"
+        ];
+
+        const titleCheck = lowerTitle;
+        if (tier1Spiritual.some(t => titleCheck.includes(t))) {
+          score += 5000;
+        } else if (tier2Spiritual.some(t => titleCheck.includes(t))) {
+          score += 3500;
+        } else if (tier3Spiritual.some(t => titleCheck.includes(t))) {
+          score += 2000;
+        }
+        
+        // Additional boost for tools in the actual Spiritual category
+        if (lowerCategory.includes("spiritual") || lowerCategory.includes("philosophy")) {
+          score += 1500;
+        }
+      }
+
       return { tool, score, matched };
     })
     .filter(result => result.matched)
