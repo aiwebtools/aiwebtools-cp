@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useCallback, memo } from 'react';
 
 interface Particle {
   id: number;
@@ -10,61 +10,108 @@ interface Particle {
   createdAt: number;
 }
 
-const MatrixCursorEffect = () => {
-  const [particles, setParticles] = useState<Particle[]>([]);
+// Use a simple DOM-based approach instead of React state for better perf
+const MatrixCursorEffect = memo(() => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const particlesRef = useRef<Map<number, HTMLSpanElement>>(new Map());
   const particleIdRef = useRef(0);
   const lastSpawnRef = useRef(0);
   const rafRef = useRef<number | null>(null);
+  const isVisibleRef = useRef(true);
   
   const matrixChars = ['0', '1', '⟨', '⟩', '░', '▒'];
   
   const spawnParticle = useCallback((x: number, y: number) => {
+    if (!containerRef.current || !isVisibleRef.current) return;
+    
     const now = Date.now();
-    // Throttle particle spawning to every 50ms
-    if (now - lastSpawnRef.current < 50) return;
+    // Throttle particle spawning to every 80ms (was 50ms)
+    if (now - lastSpawnRef.current < 80) return;
     lastSpawnRef.current = now;
     
-    const newParticle: Particle = {
-      id: particleIdRef.current++,
-      x: x + (Math.random() - 0.5) * 20,
-      y: y + (Math.random() - 0.5) * 20,
-      char: matrixChars[Math.floor(Math.random() * matrixChars.length)],
-      opacity: 0.8,
-      scale: 0.5 + Math.random() * 0.5,
-      createdAt: now,
-    };
+    const id = particleIdRef.current++;
+    const span = document.createElement('span');
+    span.className = 'absolute font-mono text-matrix-green select-none';
+    span.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+    const scale = 0.5 + Math.random() * 0.5;
+    span.style.cssText = `
+      left: ${x + (Math.random() - 0.5) * 20}px;
+      top: ${y + (Math.random() - 0.5) * 20}px;
+      opacity: 0.8;
+      transform: translate(-50%, -50%) scale(${scale});
+      font-size: 14px;
+      text-shadow: 0 0 8px #00ff41;
+      will-change: transform, opacity;
+    `;
+    span.dataset.createdAt = String(now);
+    span.dataset.baseY = String(y + (Math.random() - 0.5) * 20);
     
-    setParticles(prev => [...prev.slice(-15), newParticle]); // Keep max 15 particles
+    containerRef.current.appendChild(span);
+    particlesRef.current.set(id, span);
+    
+    // Limit max particles
+    if (particlesRef.current.size > 12) {
+      const firstKey = particlesRef.current.keys().next().value;
+      const firstEl = particlesRef.current.get(firstKey);
+      firstEl?.remove();
+      particlesRef.current.delete(firstKey);
+    }
   }, []);
 
   useEffect(() => {
+    // Don't render on touch devices
+    if ('ontouchstart' in window) return;
+    
     const handleMouseMove = (e: MouseEvent) => {
       spawnParticle(e.clientX, e.clientY);
     };
 
-    // Update particles (fade out and fall)
+    // Pause when tab not visible
+    const handleVisibility = () => {
+      isVisibleRef.current = document.visibilityState === 'visible';
+      if (!isVisibleRef.current && rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      } else if (isVisibleRef.current && !rafRef.current) {
+        rafRef.current = requestAnimationFrame(updateParticles);
+      }
+    };
+
+    // Update particles (fade out and fall) - direct DOM manipulation
     const updateParticles = () => {
+      if (!isVisibleRef.current) return;
+      
       const now = Date.now();
-      setParticles(prev => 
-        prev
-          .map(p => ({
-            ...p,
-            y: p.y + 0.5, // Slow fall
-            opacity: Math.max(0, 0.8 - (now - p.createdAt) / 800),
-          }))
-          .filter(p => p.opacity > 0)
-      );
+      particlesRef.current.forEach((span, id) => {
+        const createdAt = Number(span.dataset.createdAt);
+        const baseY = Number(span.dataset.baseY);
+        const age = now - createdAt;
+        const opacity = Math.max(0, 0.8 - age / 600);
+        
+        if (opacity <= 0) {
+          span.remove();
+          particlesRef.current.delete(id);
+        } else {
+          span.style.opacity = String(opacity);
+          span.style.top = `${baseY + age * 0.05}px`;
+        }
+      });
+      
       rafRef.current = requestAnimationFrame(updateParticles);
     };
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    document.addEventListener('visibilitychange', handleVisibility);
     rafRef.current = requestAnimationFrame(updateParticles);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('visibilitychange', handleVisibility);
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }
+      particlesRef.current.forEach(span => span.remove());
+      particlesRef.current.clear();
     };
   }, [spawnParticle]);
 
@@ -74,26 +121,14 @@ const MatrixCursorEffect = () => {
   }
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[9997] overflow-hidden">
-      {particles.map(particle => (
-        <span
-          key={particle.id}
-          className="absolute font-mono text-matrix-green select-none"
-          style={{
-            left: particle.x,
-            top: particle.y,
-            opacity: particle.opacity,
-            transform: `translate(-50%, -50%) scale(${particle.scale})`,
-            fontSize: '14px',
-            textShadow: '0 0 8px #00ff41, 0 0 12px #00ff41',
-            transition: 'opacity 100ms linear',
-          }}
-        >
-          {particle.char}
-        </span>
-      ))}
-    </div>
+    <div 
+      ref={containerRef}
+      className="fixed inset-0 pointer-events-none z-[9997] overflow-hidden"
+      style={{ contain: 'strict' }}
+    />
   );
-};
+});
+
+MatrixCursorEffect.displayName = 'MatrixCursorEffect';
 
 export default MatrixCursorEffect;
