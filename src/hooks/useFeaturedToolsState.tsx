@@ -1,7 +1,7 @@
 
 import { useState, useMemo, useCallback } from "react";
 import { allTools } from "@/data/toolsData";
-import { searchTools } from "@/utils/searchUtils";
+import { searchTools } from "@/utils/search/searchUtils";
 import { getToolsByCategory } from "@/utils/categoryUtils";
 import { getSortedStandardizedCategories } from "@/utils/categoryTitles";
 import { createDeduplicatedToolsList } from "@/utils/toolDeduplication";
@@ -36,7 +36,7 @@ export const useFeaturedToolsState = () => {
     setIsLoading(false);
   }, []);
 
-  // LIGHTNING FAST filtering logic - optimized for homepage speed
+  // Use intelligent search function for proper intent-based ranking
   const filteredTools = useMemo(() => {
     let tools = allTools;
 
@@ -47,24 +47,10 @@ export const useFeaturedToolsState = () => {
     } else if (searchTerm) {
       const trimmedTerm = searchTerm.trim();
       
-      // Fast matching with no artificial limits - show all results
-      if (trimmedTerm.length === 1) {
-        tools = allTools.filter(tool => 
-          tool.title.toLowerCase().startsWith(trimmedTerm.toLowerCase())
-        );
-      }
-      // Fast matching for two characters
-      else if (trimmedTerm.length === 2) {
-        tools = allTools.filter(tool => 
-          tool.title.toLowerCase().includes(trimmedTerm.toLowerCase())
-        );
-      }
-      // Search for longer terms
-      else if (trimmedTerm.length >= 3) {
-        tools = allTools.filter(tool => 
-          tool.title.toLowerCase().includes(trimmedTerm.toLowerCase()) ||
-          tool.description.toLowerCase().includes(trimmedTerm.toLowerCase())
-        );
+      // Use the intelligent searchTools function for proper ranking
+      // This ensures intent-based matching and no repetition
+      if (trimmedTerm.length >= 1) {
+        tools = searchTools(allTools, trimmedTerm);
       }
     } else {
       tools = createFeaturedTools(allTools);
