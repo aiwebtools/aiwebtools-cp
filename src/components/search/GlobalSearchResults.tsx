@@ -59,20 +59,14 @@ const GlobalSearchResults = ({
       <div 
         ref={scrollRef}
         data-scroll-container
-        className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[999] max-h-[60vh] overflow-y-scroll rounded-lg scrollbar-thin scrollbar-thumb-cyan-500/50 scrollbar-track-gray-800" 
+        className="absolute top-full left-0 right-0 mt-2 bg-black border border-cyan-500/30 shadow-2xl shadow-cyan-500/20 z-[9999] max-h-[60vh] overflow-y-auto overflow-x-hidden rounded-lg" 
         onScroll={onScroll}
-        onWheelCapture={(e) => {
-          // Prevent wheel events from bubbling to the page while interacting with results
-          e.stopPropagation();
-        }}
-        onTouchMoveCapture={(e) => {
-          // Prevent touchmove from bubbling to the page while scrolling results
-          e.stopPropagation();
-        }}
         style={{ 
           overscrollBehavior: 'contain',
           WebkitOverflowScrolling: 'touch',
-          touchAction: 'pan-y'
+          touchAction: 'pan-y',
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'rgb(6 182 212 / 0.5) rgb(31 41 55)'
         }}
       >
         <div className="p-0" style={{ transform: 'translateZ(0)' }}>
