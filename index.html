@@ -111,8 +111,8 @@
     
     <!-- Critical CSS for instant first paint -->
     <style>
-      /* Critical styles for Matrix loading screen */
-      body { margin: 0; background: #030712; color: #fff; font-family: system-ui, -apple-system, sans-serif; overflow: hidden; }
+      /* Lightweight Matrix loading - pure CSS, no JS overhead */
+      body { margin: 0; background: #030712; color: #fff; font-family: system-ui, -apple-system, sans-serif; }
       #root { min-height: 100vh; }
       .loading-spinner { 
         display: flex; 
@@ -121,71 +121,47 @@
         min-height: 100vh; 
         position: relative;
         overflow: hidden;
-        background: radial-gradient(ellipse at center, #0a1a0a 0%, #030712 100%);
+        background: #030712;
       }
-      .matrix-rain {
+      .loading-spinner::before {
+        content: '010110100101';
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        overflow: hidden;
-        z-index: 0;
-      }
-      .matrix-column {
-        position: absolute;
-        top: -100%;
-        font-family: 'Courier New', monospace;
-        font-size: 14px;
+        top: -20%;
+        left: 10%;
+        font-family: monospace;
+        font-size: 12px;
         color: #00ff41;
-        text-shadow: 0 0 8px #00ff41;
-        animation: matrix-fall linear infinite;
-        opacity: 0.8;
+        opacity: 0.3;
         writing-mode: vertical-rl;
-        text-orientation: upright;
-        letter-spacing: 4px;
+        animation: fall1 3s linear infinite;
       }
-      @keyframes matrix-fall {
-        0% { transform: translateY(0); opacity: 1; }
-        75% { opacity: 0.6; }
-        100% { transform: translateY(250vh); opacity: 0; }
+      .loading-spinner::after {
+        content: '101001011010';
+        position: absolute;
+        top: -20%;
+        right: 20%;
+        font-family: monospace;
+        font-size: 12px;
+        color: #00ff41;
+        opacity: 0.4;
+        writing-mode: vertical-rl;
+        animation: fall2 4s linear infinite;
       }
+      @keyframes fall1 { 0% { transform: translateY(0); } 100% { transform: translateY(140vh); } }
+      @keyframes fall2 { 0% { transform: translateY(0); } 100% { transform: translateY(140vh); } }
       .loading-text {
         position: relative;
         z-index: 10;
-        font-family: 'Share Tech Mono', 'Courier New', monospace;
-        font-size: 18px;
+        font-family: 'Courier New', monospace;
+        font-size: 16px;
         color: #00ff41;
         text-transform: uppercase;
-        letter-spacing: 4px;
-        text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 40px #00ff41;
-        animation: pulse-glow 1.5s ease-in-out infinite;
+        letter-spacing: 3px;
+        text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+        animation: pulse 1.5s ease-in-out infinite;
       }
-      @keyframes pulse-glow {
-        0%, 100% { opacity: 1; text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 40px #00ff41; }
-        50% { opacity: 0.8; text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41, 0 0 20px #00ff41; }
-      }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
     </style>
-    <script>
-      // Generate Matrix rain columns on load
-      document.addEventListener('DOMContentLoaded', function() {
-        const rain = document.querySelector('.matrix-rain');
-        if (!rain) return;
-        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-        for (let i = 0; i < 30; i++) {
-          const col = document.createElement('div');
-          col.className = 'matrix-column';
-          col.style.left = (i * 3.3) + '%';
-          col.style.animationDuration = (3 + Math.random() * 4) + 's';
-          col.style.animationDelay = (Math.random() * 3) + 's';
-          col.style.opacity = 0.3 + Math.random() * 0.5;
-          let text = '';
-          for (let j = 0; j < 30; j++) text += chars[Math.floor(Math.random() * chars.length)];
-          col.textContent = text;
-          rain.appendChild(col);
-        }
-      });
-    </script>
     
     <!-- Enhanced Structured Data -->
     <script type="application/ld+json">
@@ -251,7 +227,6 @@
   <body>
     <div id="root">
       <div class="loading-spinner">
-        <div class="matrix-rain"></div>
         <div class="loading-text">LOADING YOUR AI TOOL EMPIRE...</div>
       </div>
     </div>
