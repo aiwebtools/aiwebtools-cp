@@ -377,7 +377,7 @@ const DesktopMenu = () => {
                       onClick={(e) => {
                         e.preventDefault();
                         createConfettiCelebration();
-                        const codeInfo = `# AI Web Tools - Source Code Download Info\n\nVisit: https://lovable.dev/projects/6bc45a49-a34b-46a4-9b9d-c50f06b2d957?via=aiwebtools`;
+                        const codeInfo = `# AI Web Tools - Source Code Download Info\n\nVisit: https://lovable.dev/projects/e2ddf9b0-bb19-44f8-ae1a-05e469735dad?via=aiwebtools`;
                         const blob = new Blob([codeInfo], { type: 'text/plain' });
                         const url = URL.createObjectURL(blob);
                         const a = document.createElement('a');
@@ -387,7 +387,7 @@ const DesktopMenu = () => {
                         a.click();
                         document.body.removeChild(a);
                         URL.revokeObjectURL(url);
-                        setTimeout(() => window.open("https://lovable.dev/projects/6bc45a49-a34b-46a4-9b9d-c50f06b2d957?via=aiwebtools", '_blank'), 300);
+                        setTimeout(() => window.open("https://lovable.dev/projects/e2ddf9b0-bb19-44f8-ae1a-05e469735dad?via=aiwebtools", '_blank'), 300);
                         setIsMenuOpen(false);
                       }}
                       className="text-green-100 hover:bg-green-500/20 rounded text-sm px-2 py-1.5 bg-green-600/10 border border-green-500/30"
@@ -396,7 +396,7 @@ const DesktopMenu = () => {
                       💾 Source Code
                     </DropdownMenuItem>
                     <DropdownMenuItem 
-                      onClick={(e) => { e.preventDefault(); handleExternalLink("https://lovable.dev/projects/6bc45a49-a34b-46a4-9b9d-c50f06b2d957?via=aiwebtools", e); }}
+                      onClick={(e) => { e.preventDefault(); handleExternalLink("https://lovable.dev/projects/e2ddf9b0-bb19-44f8-ae1a-05e469735dad?via=aiwebtools", e); }}
                       className="text-yellow-100 hover:bg-yellow-500/20 rounded text-sm px-2 py-1.5 bg-yellow-600/10 border border-yellow-500/30"
                     >
                       <Copy className="w-3 h-3 mr-2" />
