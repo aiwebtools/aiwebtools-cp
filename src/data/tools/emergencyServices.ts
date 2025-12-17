@@ -21,7 +21,7 @@ export const emergencyServices: Tool[] = [
     emoji: "🚒",
     color: "from-red-500 to-orange-600",
     directUrl: "https://firefightergpt.lovable.app/?via=aiwebtools",
-    videoUrl: "https://www.youtube.com/watch?v=lGsefWkYfq0",
+    videoUrl: "https://youtu.be/kDu2SSP9Glw",
     tags: ["firefighting", "emergency response", "fire safety", "emergency procedures", "first responder"],
     category: "Emergency Services",
     rating: 4.8,
