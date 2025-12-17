@@ -152,7 +152,175 @@ const PLATFORM_ALIASES: Record<string, string[]> = {
   "adobe": ["firefly", "photoshop", "premiere"],
 };
 
-// 5. INTENT KEYWORDS → tool types
+// 5. INSTANT PHRASE → TOOL TITLES (bypasses heavy search for common phrases)
+const PHRASE_TO_TOOLS: Record<string, string[]> = {
+  // Writing intents
+  "write a book": ["BOOK WRITER GPT", "Article and Blog Rewriter GPT"],
+  "want to write a book": ["BOOK WRITER GPT", "Article and Blog Rewriter GPT"],
+  "i want to write a book": ["BOOK WRITER GPT", "Article and Blog Rewriter GPT"],
+  "write book": ["BOOK WRITER GPT"],
+  "book writing": ["BOOK WRITER GPT"],
+  "write a story": ["BOOK WRITER GPT", "Movie Script Writer GPT"],
+  "write a script": ["Movie Script Writer GPT", "Playwriter GPT"],
+  "write a movie": ["Movie Script Writer GPT", "Movie Maker Studio AI SUITE"],
+  "write a play": ["Playwriter GPT"],
+  "write an article": ["Article and Blog Rewriter GPT"],
+  "write a blog": ["Article and Blog Rewriter GPT"],
+  
+  // Learning intents
+  "learn a skill": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT"],
+  "want to learn": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT"],
+  "i want to learn": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT"],
+  "take a course": ["LEARN ANY COURSE GPT", "Course Maker GPT"],
+  "go to college": ["COLLEGE DEGREE GPT"],
+  "get a degree": ["COLLEGE DEGREE GPT"],
+  "study": ["LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT"],
+  
+  // Video/movie intents
+  "make a video": ["Movie Maker Studio AI SUITE", "Music Video Maker AI Studio", "Sora", "Runway"],
+  "create a video": ["Movie Maker Studio AI SUITE", "Music Video Maker AI Studio", "Sora", "Runway"],
+  "make a movie": ["Movie Maker Studio AI SUITE", "Movie Script Writer GPT"],
+  "i want to make a movie": ["Movie Maker Studio AI SUITE", "Movie Script Writer GPT"],
+  "create a movie": ["Movie Maker Studio AI SUITE", "Movie Script Writer GPT"],
+  "make a music video": ["Music Video Maker AI Studio"],
+  
+  // Image intents
+  "make an image": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI"],
+  "create an image": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI"],
+  "generate an image": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI"],
+  "make a picture": ["Midjourney", "DALL-E 3", "Stable Diffusion"],
+  "design a logo": ["Graphic & Cover Design GPT", "Canva", "Looka"],
+  "make a logo": ["Graphic & Cover Design GPT", "Canva", "Looka"],
+  
+  // Business intents
+  "start a business": ["Business Plan Generator GPT", "Startup Validator GPT", "MicroSaaS GPT"],
+  "write a business plan": ["Business Plan Generator GPT"],
+  "create a business plan": ["Business Plan Generator GPT"],
+  "find a job": ["The Resume & Job Finder Ai Suite"],
+  "get a job": ["The Resume & Job Finder Ai Suite"],
+  "write a resume": ["The Resume & Job Finder Ai Suite"],
+  "file taxes": ["Taxes GPT"],
+  "do my taxes": ["Taxes GPT"],
+  
+  // Health intents
+  "talk to a doctor": ["Personalized DR. GPT (Doctor GPT)"],
+  "medical advice": ["Personalized DR. GPT (Doctor GPT)"],
+  "health advice": ["Personalized DR. GPT (Doctor GPT)", "Mental Wellness GPT"],
+  "mental health": ["Mental Wellness GPT"],
+  "pet health": ["Veterinarian GPT"],
+  "vet advice": ["Veterinarian GPT"],
+  
+  // Spiritual/philosophy intents
+  "talk to god": ["TALK TO THE GODS GPT"],
+  "speak to god": ["TALK TO THE GODS GPT"],
+  "talk to history": ["TALK TO HISTORY GPT", "TIME MACHINE GPT"],
+  "time travel": ["TIME MACHINE GPT", "TALK TO HISTORY GPT"],
+  "fortune telling": ["Fortune Teller GPT"],
+  "read my fortune": ["Fortune Teller GPT"],
+  "interpret my dream": ["Dream Interpreter GPT"],
+  "what does my dream mean": ["Dream Interpreter GPT"],
+  
+  // Legal intents
+  "legal help": ["Public Defender GPT", "Legal Draftsmith GPT"],
+  "write a contract": ["Contract Review Bot", "Legal Draftsmith GPT"],
+  "review a contract": ["Contract Review Bot"],
+  
+  // Coding intents
+  "build an app": ["Lovable", "Bolt.new", "Replit", "Vercel v0"],
+  "make an app": ["Lovable", "Bolt.new", "Replit", "Vercel v0"],
+  "create an app": ["Lovable", "Bolt.new", "Replit", "Vercel v0"],
+  "build a website": ["Lovable", "Bolt.new", "Webflow", "Framer"],
+  "make a website": ["Lovable", "Bolt.new", "Webflow", "Framer"],
+  
+  // Music intents
+  "make music": ["Suno", "Udio", "Music Melodies & Lessons GPT"],
+  "create music": ["Suno", "Udio", "Music Melodies & Lessons GPT"],
+  "make a song": ["Suno", "Udio"],
+  "learn music": ["Music Melodies & Lessons GPT"],
+  "learn an instrument": ["Music Melodies & Lessons GPT"],
+  
+  // Fun/entertainment intents  
+  "play trivia": ["Trivia Night GPT"],
+  "trivia game": ["Trivia Night GPT"],
+  "talk to a celebrity": ["Celebrity Chatline GPT"],
+  "chat with celebrity": ["Celebrity Chatline GPT"],
+  "make a game": ["Game Design Document / Developer GPT", "Seele Video Game Generator"],
+  "create a game": ["Game Design Document / Developer GPT", "Seele Video Game Generator"],
+  
+  // Question patterns - "how do I..."
+  "how do i write a book": ["BOOK WRITER GPT"],
+  "how do i make a video": ["Movie Maker Studio AI SUITE", "Sora", "Runway"],
+  "how do i make an app": ["Lovable", "Bolt.new", "Replit"],
+  "how do i learn": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT"],
+  "how do i start a business": ["Business Plan Generator GPT", "Startup Validator GPT"],
+  "how do i cook": ["Chef \"Sizzle\" AI Culinary Assistant"],
+  "how do i trade": ["Trader GPT"],
+  "how to write a book": ["BOOK WRITER GPT"],
+  "how to make a video": ["Movie Maker Studio AI SUITE", "Sora", "Runway"],
+  "how to make music": ["Suno", "Udio", "Music Melodies & Lessons GPT"],
+  
+  // "Help me..." patterns
+  "help me write": ["BOOK WRITER GPT", "Article and Blog Rewriter GPT"],
+  "help me learn": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT"],
+  "help me code": ["Lovable", "GitHub Copilot", "Cursor"],
+  "help me design": ["Graphic & Cover Design GPT", "Canva", "Figma"],
+  "help me cook": ["Chef \"Sizzle\" AI Culinary Assistant"],
+  "help me with taxes": ["Taxes GPT"],
+  "help with resume": ["The Resume & Job Finder Ai Suite"],
+  
+  // "Best..." patterns
+  "best ai for writing": ["BOOK WRITER GPT", "ChatGPT", "Claude"],
+  "best ai for images": ["Midjourney", "DALL-E 3", "Stable Diffusion"],
+  "best ai for video": ["Sora", "Runway", "Pika"],
+  "best ai for coding": ["GitHub Copilot", "Cursor", "Lovable"],
+  
+  // Category shortcuts
+  "video tools": ["Sora", "Runway", "Pika", "Luma", "Movie Maker Studio AI SUITE"],
+  "writing tools": ["BOOK WRITER GPT", "Article and Blog Rewriter GPT", "Grammarly"],
+  "image tools": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI"],
+  "coding tools": ["GitHub Copilot", "Cursor", "Lovable", "Bolt.new", "Replit"],
+  "music tools": ["Suno", "Udio", "Music Melodies & Lessons GPT"],
+  "education tools": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT"],
+  "health tools": ["Personalized DR. GPT (Doctor GPT)", "Mental Wellness GPT", "Veterinarian GPT"],
+  "business tools": ["Business Plan Generator GPT", "Startup Validator GPT", "Taxes GPT"],
+  "legal tools": ["Public Defender GPT", "Legal Draftsmith GPT", "Contract Review Bot"],
+  "spiritual tools": ["TALK TO THE GODS GPT", "ALAN WATTS GPT", "Sophia Aeterna AI"],
+  
+  // Specific task patterns
+  "analyze data": ["Data Research Analysis Report GPT", "ChatGPT"],
+  "check facts": ["FACT CHECKER GPT"],
+  "fact check": ["FACT CHECKER GPT"],
+  "find a person": ["Person Information Finder GPT"],
+  "find property": ["Property Data Finder GPT"],
+  "appraise antiques": ["Antique and Collectible Appraisal GPT"],
+  "value antiques": ["Antique and Collectible Appraisal GPT"],
+  "appraise art": ["Artwork & Vintage Appraisal GPT"],
+  "value artwork": ["Artwork & Vintage Appraisal GPT"],
+  "fix my home": ["Home Renovator GPT"],
+  "home repair": ["Home Renovator GPT"],
+  "go fishing": ["Fisherman GPT"],
+  "fishing tips": ["Fisherman GPT"],
+  "survival tips": ["Survivalist GPT"],
+  "survive": ["Survivalist GPT"],
+  "insurance claim": ["Insurance Claims GPT"],
+  "file insurance": ["Insurance Claims GPT"],
+  "tattoo design": ["Tattoo Designer GPT"],
+  "get a tattoo": ["Tattoo Designer GPT"],
+  "make a presentation": ["PPTx Powerpoint Maker GPT"],
+  "create slides": ["PPTx Powerpoint Maker GPT"],
+  "powerpoint": ["PPTx Powerpoint Maker GPT"],
+  "write a grant": ["Grant Writer GPT"],
+  "grant application": ["Grant Writer GPT"],
+  "coloring book": ["Coloring Book Generator GPT"],
+  "kids book": ["Children's Picture Book Maker GPT"],
+  "children book": ["Children's Picture Book Maker GPT"],
+  "make a quiz": ["Quiz Maker Ai"],
+  "create a quiz": ["Quiz Maker Ai"],
+  "podcast script": ["Podcast Script Writer GPT"],
+  "write a podcast": ["Podcast Script Writer GPT"],
+};
+
+// 6. INTENT KEYWORDS → tool types (fallback for partial matches)
 const INTENT_MAP: Record<string, string[]> = {
   "want to write": ["book writer", "content", "writing"],
   "want to make video": ["video", "sora", "runway", "pika"],
@@ -219,6 +387,57 @@ export const useGlobalSearch = () => {
   const quickSearch = useCallback((term: string) => {
     let qRaw = term.toLowerCase().trim();
     if (!qRaw) return [];
+
+    // === STEP 0: INSTANT PHRASE MATCHING (bypasses all heavy computation) ===
+    // Check for exact phrase matches first - this is O(1) lookup
+    const phraseTools = PHRASE_TO_TOOLS[qRaw];
+    if (phraseTools && phraseTools.length > 0) {
+      // Find matching tools by title (case-insensitive)
+      const matched: any[] = [];
+      const remaining: any[] = [];
+      
+      for (const it of quickIndex) {
+        const titleLower = it.t;
+        const isMatch = phraseTools.some(pt => titleLower.includes(pt.toLowerCase()));
+        if (isMatch) {
+          matched.push(it.tool);
+        } else {
+          remaining.push(it.tool);
+        }
+      }
+      
+      // Sort matched tools by the order they appear in phraseTools
+      matched.sort((a, b) => {
+        const aTitle = a.title.toLowerCase();
+        const bTitle = b.title.toLowerCase();
+        const aIdx = phraseTools.findIndex(pt => aTitle.includes(pt.toLowerCase()));
+        const bIdx = phraseTools.findIndex(pt => bTitle.includes(pt.toLowerCase()));
+        return aIdx - bIdx;
+      });
+      
+      return [...matched, ...remaining.slice(0, 50)];
+    }
+    
+    // Also check partial phrase matches (e.g., "i want to write" matches "i want to write a book")
+    for (const [phrase, tools] of Object.entries(PHRASE_TO_TOOLS)) {
+      if (phrase.startsWith(qRaw) || qRaw.startsWith(phrase)) {
+        const matched: any[] = [];
+        for (const it of quickIndex) {
+          if (tools.some(pt => it.t.includes(pt.toLowerCase()))) {
+            matched.push(it.tool);
+          }
+        }
+        if (matched.length > 0) {
+          // Continue with normal search but prepend matched tools
+          const matchedTitles = new Set(matched.map(m => m.title));
+          const rest = quickIndex
+            .filter(it => !matchedTitles.has(it.tool.title))
+            .slice(0, 30)
+            .map(it => it.tool);
+          return [...matched, ...rest];
+        }
+      }
+    }
 
     // === STEP 1: Normalize & expand query ===
     
