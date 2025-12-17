@@ -35,6 +35,7 @@ export const customGeminiGems: Tool[] = [
     color: "from-gray-500 to-blue-600",
     category: "Custom Gemini Gems",
     directUrl: "https://gemini.google.com/gem/52dfeb277b06",
+    videoUrl: "https://youtu.be/1HYbBXOOd3s",
     rating: 4.6,
     totalVotes: 1543,
     tags: ["gemini", "custom gem", "Gemini Gem", "declassified", "government files", "transparency", "research", "google gemini"]

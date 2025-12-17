@@ -51,7 +51,7 @@ export const newSpecializedGPTs: Tool[] = [
     emoji: "📧",
     color: "from-cyan-500 to-blue-600",
     directUrl: "https://chatgpt.com/g/g-67c1d3a4cb548191ad917dc301a69db0-newsletter-writer-gpt",
-    imageUrl: "/src/assets/newsletter-gpt-hero.jpg",
+    videoUrl: "https://youtu.be/Nc4KRfHPZhI",
     category: "Content Creation",
     tags: ["newsletters", "email marketing", "content", "writing", "Custom GPT"],
     rating: 4.5,
