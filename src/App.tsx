@@ -37,31 +37,30 @@ const GamingEntertainmentPage = lazy(() => import("./pages/GamingEntertainmentPa
 // Lazy load non-critical components
 const FloatingCloneButton = lazy(() => import("./components/FloatingCloneButton"));
 
-// Welcome Neo voice - plays only on main site after disclaimer accepted
+// Welcome Neo voice - plays when user lands on main site after accepting disclaimer
 const WelcomeNeoVoice = () => {
-  const location = (window as any).__REACT_ROUTER_LOCATION__;
-  const hasAccepted = typeof window !== "undefined" && window.localStorage.getItem("aitools-consent-v3");
+  const location = useLocation();
   const hasPlayedRef = React.useRef(false);
 
   React.useEffect(() => {
-    // Only play on main site, not on /welcome, and only once per session
-    if (hasAccepted && !hasPlayedRef.current) {
+    const hasAccepted = localStorage.getItem("aitools-consent-v3");
+    
+    // Only play on main page ("/"), after disclaimer accepted, once per session
+    if (location.pathname === '/' && hasAccepted && !hasPlayedRef.current) {
       hasPlayedRef.current = true;
       
-      const playWelcome = () => {
+      // Small delay to let page render
+      setTimeout(() => {
         const audio = new Audio('/welcome-neo.mp3');
         audio.volume = 0.7;
         audio.play().then(() => {
           console.log('🎵 Playing Welcome Neo audio...');
-        }).catch(() => {
-          console.log('⏳ Audio requires user interaction');
+        }).catch((err) => {
+          console.log('⏳ Audio requires user interaction:', err);
         });
-      };
-
-      // Small delay to let page settle
-      setTimeout(playWelcome, 500);
+      }, 300);
     }
-  }, [hasAccepted]);
+  }, [location.pathname]);
 
   return null;
 };
