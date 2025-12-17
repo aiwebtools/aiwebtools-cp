@@ -21,6 +21,7 @@ import { web3DomainsTools } from "@/data/tools/web3DomainsTools";
 import { downloadToolsCSV } from "@/utils/csvExport";
 import Logo from "./Logo";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
+import DeferredMount from "@/components/DeferredMount";
 
 const DesktopMenu = () => {
   const navigate = useNavigate();
@@ -176,6 +177,7 @@ const DesktopMenu = () => {
                 )}
               </div>
 
+              <DeferredMount delay={80}>
               {/* Navigation Grid - Desktop Layout */}
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <DropdownMenuItem onClick={() => { navigate('/'); setIsMenuOpen(false); }} className="text-cyan-100 hover:bg-cyan-500/20 rounded-lg h-16 text-lg font-medium px-4 col-span-1">
@@ -492,6 +494,7 @@ No API keys or personal data are included in the source code.`;
                 <Heart className="w-5 h-5 fill-current text-red-500" />
                 <span>Favorites ({getFavoritesCount()})</span>
               </DropdownMenuItem>
+              </DeferredMount>
             </div>
           </DropdownMenuContent>
         </DropdownMenu>

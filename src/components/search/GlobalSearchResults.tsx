@@ -1,5 +1,4 @@
-
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -26,6 +25,16 @@ const GlobalSearchResults = ({
   const displayedResults = searchResults.slice(0, displayedCount);
   const hasMoreToLoad = displayedCount < searchResults.length;
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  // O(1) lookup instead of repeated allTools.findIndex (huge perf win when typing)
+  const toolIndexByTitle = useMemo(() => {
+    const m = new Map<string, number>();
+    for (let i = 0; i < allTools.length; i++) {
+      const t = allTools[i];
+      if (t?.title) m.set(t.title, i);
+    }
+    return m;
+  }, []);
 
   // Keep scroll at top when new search results load
   useEffect(() => {
@@ -62,7 +71,7 @@ const GlobalSearchResults = ({
       <CardContent className="p-0" style={{ transform: 'translateZ(0)' }}>
         <div className="p-2 pt-4" style={{ transform: 'translateZ(0)' }}>
           {displayedResults.map((tool, index) => {
-            const toolIndex = allTools.findIndex(t => t.title === tool.title);
+            const toolIndex = toolIndexByTitle.get(tool.title) ?? -1;
             
             const toolItem = (
               <div 
