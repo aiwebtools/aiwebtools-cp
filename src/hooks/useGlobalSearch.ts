@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v11";
+const SEARCH_CACHE_VERSION = "v12";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -725,7 +725,7 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "help me learn": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT"],
   "help me code": ["Lovable", "GitHub Copilot", "Cursor"],
   "help me design": ["Graphic & Cover Design GPT", "Canva", "Figma"],
-  "help me cook": ["Chef \"Sizzle\" AI Culinary Assistant"],
+  "help me cook": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude", "Mixologist GPT"],
   "help me with taxes": ["Taxes GPT"],
   "help with resume": ["The Resume & Job Finder Ai Suite"],
   
@@ -878,6 +878,58 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "resume": ["The Resume & Job Finder Ai Suite"],
   "article": ["Article and Blog Rewriter GPT", "ChatGPT", "Jasper AI"],
   "blog": ["Article and Blog Rewriter GPT", "ChatGPT", "Jasper AI"],
+  
+  // ==================== VISION / EYES / SIGHT / ACCESSIBILITY ====================
+  "be my eyes": ["Be My Eyes", "Be My AI", "Seeing AI", "Lookout", "TapTapSee", "Aira", "Envision AI", "Supersense", "ChatGPT", "Claude", "Gemini"],
+  "eyes": ["Be My Eyes", "Be My AI", "Seeing AI", "Lookout", "TapTapSee", "Aira", "Envision AI", "Midjourney", "DALL-E 3"],
+  "vision": ["Be My Eyes", "Be My AI", "Seeing AI", "Lookout", "ChatGPT Vision", "Claude", "Gemini", "GPT-4 Vision", "Computer Vision"],
+  "see for me": ["Be My Eyes", "Be My AI", "Seeing AI", "Aira", "Envision AI"],
+  "blind": ["Be My Eyes", "Be My AI", "Seeing AI", "Lookout", "Aira", "Envision AI", "Supersense"],
+  "sight": ["Be My Eyes", "Be My AI", "Seeing AI", "Lookout", "Aira", "Envision AI"],
+  "visually impaired": ["Be My Eyes", "Be My AI", "Seeing AI", "Aira", "Envision AI", "Supersense"],
+  "accessibility": ["Be My Eyes", "Be My AI", "Seeing AI", "Aira", "Lookout"],
+  "help me see": ["Be My Eyes", "Be My AI", "Seeing AI", "Lookout", "Aira"],
+  "can't see": ["Be My Eyes", "Be My AI", "Seeing AI", "Aira", "Envision AI"],
+  "image recognition": ["Be My Eyes", "ChatGPT", "Claude", "Gemini", "GPT-4 Vision", "Google Lens"],
+  "read text for me": ["Be My Eyes", "Seeing AI", "Envision AI", "Speechify", "NaturalReader"],
+  "describe image": ["ChatGPT", "Claude", "Gemini", "Be My Eyes", "Seeing AI", "GPT-4 Vision"],
+  "what am i looking at": ["Be My Eyes", "ChatGPT", "Claude", "Gemini", "Google Lens", "Seeing AI"],
+  "identify this": ["ChatGPT", "Claude", "Gemini", "Google Lens", "Be My Eyes", "Seeing AI"],
+  
+  // ==================== COOKING / FOOD / RECIPES / CHEF ====================
+  "cook": ["Chef \"Sizzle\" AI Culinary Assistant", "Mixologist GPT", "Food Quality Inspector GPT"],
+  "cooking": ["Chef \"Sizzle\" AI Culinary Assistant", "Mixologist GPT", "Food Quality Inspector GPT"],
+  "recipe": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude"],
+  "recipes": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude"],
+  "food": ["Chef \"Sizzle\" AI Culinary Assistant", "Food Quality Inspector GPT", "Mixologist GPT"],
+  "chef": ["Chef \"Sizzle\" AI Culinary Assistant"],
+  "meal": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude"],
+  "meals": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude"],
+  "dinner": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude"],
+  "lunch": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude"],
+  "breakfast": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude"],
+  "kitchen": ["Chef \"Sizzle\" AI Culinary Assistant", "Home Renovator GPT"],
+  "bake": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude"],
+  "baking": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude"],
+  "make food": ["Chef \"Sizzle\" AI Culinary Assistant", "Mixologist GPT"],
+  "make dinner": ["Chef \"Sizzle\" AI Culinary Assistant"],
+  "what should i cook": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude"],
+  "what to cook": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude"],
+  "i need to cook": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude"],
+  "i want to cook": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude"],
+  "need to cook": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude"],
+  "teach me to cook": ["Chef \"Sizzle\" AI Culinary Assistant", "LEARN ANY SKILL GPT"],
+  "learn to cook": ["Chef \"Sizzle\" AI Culinary Assistant", "LEARN ANY SKILL GPT"],
+  "cooking help": ["Chef \"Sizzle\" AI Culinary Assistant", "ChatGPT", "Claude"],
+  "culinary": ["Chef \"Sizzle\" AI Culinary Assistant", "Mixologist GPT"],
+  "drink": ["Mixologist GPT", "Chef \"Sizzle\" AI Culinary Assistant"],
+  "drinks": ["Mixologist GPT", "Chef \"Sizzle\" AI Culinary Assistant"],
+  "cocktail": ["Mixologist GPT"],
+  "cocktails": ["Mixologist GPT"],
+  "bar": ["Mixologist GPT"],
+  "bartender": ["Mixologist GPT"],
+  "wine": ["Mixologist GPT", "Chef \"Sizzle\" AI Culinary Assistant"],
+  "beer": ["Mixologist GPT"],
 };
 
 // 6. INTENT KEYWORDS → tool types (fallback for partial matches)
