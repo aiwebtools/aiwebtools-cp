@@ -2561,7 +2561,7 @@ const featuredGPTsUnsorted = [
     emoji: "🎯"
   },
   {
-    title: "Culinary Master GPT",
+    title: "Culinary Recipe Master GPT",
     description: "Expert AI kitchen companion elevating your cooking experience through comprehensive culinary guidance and personalized recipe assistance.",
     badge: "COOKING",
     color: "from-amber-500 to-orange-600",
