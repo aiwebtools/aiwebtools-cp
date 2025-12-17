@@ -56,8 +56,8 @@ const PageLoader = () => (
             animationDelay: `${Math.random() * 2}s`,
           }}
         >
-          {Array.from({ length: 15 }).map((_, j) => (
-            <div key={j} style={{ opacity: 1 - j * 0.06 }}>
+          {Array.from({ length: 40 }).map((_, j) => (
+            <div key={j} style={{ opacity: 1 - j * 0.02 }}>
               {Math.random() > 0.5 ? '1' : '0'}
             </div>
           ))}
