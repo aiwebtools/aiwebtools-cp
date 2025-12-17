@@ -223,18 +223,26 @@ export const createTimePortalEffect = (
   // Play voice immediately (preloaded)
   playTimeWarpVoice();
 
-  // Create ultra-brief 50ms green matrix flash
-  createInstantMatrixFlash();
+  // Create ultra-brief green matrix flash - SYNC before URL opens
+  const elements = createInstantMatrixFlash();
 
-  // Open URL immediately
-  console.log('🚀 Opening destination URL NOW');
-  if (destinationUrl && destinationUrl.trim()) {
-    openDestinationUrl(destinationUrl);
-  }
+  // Remove flash after 50ms, THEN open URL
+  setTimeout(() => {
+    // Cleanup flash elements
+    elements.forEach(el => el.remove());
+    
+    // NOW open URL after flash is gone
+    console.log('🚀 Opening destination URL NOW');
+    if (destinationUrl && destinationUrl.trim()) {
+      openDestinationUrl(destinationUrl);
+    }
+  }, 50);
 };
 
-// Ultra-brief 50ms green matrix flash - can't linger
-const createInstantMatrixFlash = () => {
+// Ultra-brief green matrix flash - returns elements for cleanup
+const createInstantMatrixFlash = (): HTMLElement[] => {
+  const elements: HTMLElement[] = [];
+
   // Green flash overlay
   const flash = document.createElement('div');
   flash.style.cssText = `
@@ -248,9 +256,9 @@ const createInstantMatrixFlash = () => {
     pointer-events: none;
   `;
   document.body.appendChild(flash);
+  elements.push(flash);
 
   // Binary explosion - 30 characters shooting out
-  const chars: HTMLDivElement[] = [];
   for (let i = 0; i < 30; i++) {
     const char = document.createElement('div');
     const binary = Math.random() > 0.5 ? '1' : '0';
@@ -275,12 +283,8 @@ const createInstantMatrixFlash = () => {
       opacity: 1;
     `;
     document.body.appendChild(char);
-    chars.push(char);
+    elements.push(char);
   }
 
-  // Remove everything after 50ms - guaranteed cleanup
-  setTimeout(() => {
-    flash.remove();
-    chars.forEach(c => c.remove());
-  }, 50);
+  return elements;
 };
