@@ -3473,8 +3473,12 @@ const featuredGPTsUnsorted = [
   },
 ];
 
-// Sort alphabetically by title (ignoring emojis/special chars)
-const featuredGPTs = [...featuredGPTsUnsorted].sort(sortByTitle);
+// Sort alphabetically by title (ignoring emojis/special chars), then move Inspector GPTs to bottom
+const sortedGPTs = [...featuredGPTsUnsorted].sort(sortByTitle);
+const isInspectorGPT = (title: string) => title.toLowerCase().includes('inspector');
+const regularGPTs = sortedGPTs.filter(gpt => !isInspectorGPT(gpt.title));
+const inspectorGPTs = sortedGPTs.filter(gpt => isInspectorGPT(gpt.title));
+const featuredGPTs = [...regularGPTs, ...inspectorGPTs];
 
 const getVideoId = (url: string) => {
   if (!url) return null;
