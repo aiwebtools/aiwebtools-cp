@@ -3,27 +3,23 @@ import { createTimePortalEffect } from '@/utils/timeEffects';
 
 const FloatingCloneButton = () => {
   return (
-    <div
-      className="fixed left-2 z-50"
-      style={{
-        // Mobile: top-28 (much higher, above content)
-        // Desktop: top-48 (unchanged)
-        top: 'var(--clone-btn-top, 192px)'
-      }}
-    >
-      {/* CSS custom property for responsive positioning */}
+    <>
+      {/* CSS for responsive positioning */}
       <style>{`
-        @media (max-width: 767px) {
-          .clone-button-container {
-            --clone-btn-top: 100px !important;
-          }
+        .floating-clone-btn {
+          position: fixed !important;
+          left: 8px;
+          z-index: 9999;
+          top: 100px;
         }
         @media (min-width: 768px) {
-          .clone-button-container {
-            --clone-btn-top: 192px !important;
+          .floating-clone-btn {
+            top: 192px;
           }
         }
       `}</style>
+      
+      <div className="floating-clone-btn">
       
       <a
         href="https://lovable.dev/projects/e2ddf9b0-bb19-44f8-ae1a-05e469735dad?via=aiwebtools"
@@ -63,7 +59,8 @@ const FloatingCloneButton = () => {
         {/* Shine effect on hover */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-full group-hover:translate-x-[-200%] transition-transform duration-700 rounded-full" />
       </a>
-    </div>
+      </div>
+    </>
   );
 };
 
