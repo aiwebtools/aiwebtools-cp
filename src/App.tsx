@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { FavoritesProvider } from "@/hooks/useFavorites";
+import { VideoManagerProvider } from "@/hooks/useGlobalVideoManager";
 import { useCrossBrowserOptimization } from "@/hooks/useCrossBrowserOptimization";
 import { useChromebookOptimization } from "@/hooks/useChromebookOptimization";
 import { usePrefetchRoutes } from "@/hooks/usePrefetch";
@@ -165,19 +166,21 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <HelmetProvider>
           <FavoritesProvider>
-            <TooltipProvider>
-              <Toaster />
-              <MatrixCursorEffect />
-              <BrowserRouter>
-                <RouteGuard />
-                {/* Welcome Neo voice - only plays after disclaimer accepted */}
-                <WelcomeNeoVoice />
-                {/* Tiny floating clone button - hides on scroll */}
-                <Suspense fallback={null}>
-                  <FloatingCloneButton />
-                </Suspense>
-              </BrowserRouter>
-            </TooltipProvider>
+            <VideoManagerProvider>
+              <TooltipProvider>
+                <Toaster />
+                <MatrixCursorEffect />
+                <BrowserRouter>
+                  <RouteGuard />
+                  {/* Welcome Neo voice - only plays after disclaimer accepted */}
+                  <WelcomeNeoVoice />
+                  {/* Tiny floating clone button - hides on scroll */}
+                  <Suspense fallback={null}>
+                    <FloatingCloneButton />
+                  </Suspense>
+                </BrowserRouter>
+              </TooltipProvider>
+            </VideoManagerProvider>
           </FavoritesProvider>
         </HelmetProvider>
       </QueryClientProvider>
