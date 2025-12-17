@@ -16,9 +16,10 @@ const SPIRITUALITY_KEYWORDS = [
   'mani', 'manicheism', 'zoroastrian', 'essene', 'gnostic'
 ];
 
-// Keywords that indicate light/philosophy tools needing simulation tag
-const LIGHT_PHILOSOPHY_KEYWORDS = [
-  'light', 'illumination', 'luminous', 'radiant', 'brightness',
+// Keywords that indicate tools needing SIMULATION tag for liability protection
+const SIMULATION_KEYWORDS = [
+  // Spiritual/Divine personas
+  'light', 'illumination', 'luminous', 'radiant',
   'philosophy', 'philosopher', 'socrates', 'plato', 'aristotle',
   'marcus aurelius', 'stoic', 'stoicism', 'epicurus', 'seneca',
   'rumi', 'lao tzu', 'confucius', 'buddha', 'jesus', 'muhammad',
@@ -26,7 +27,48 @@ const LIGHT_PHILOSOPHY_KEYWORDS = [
   'god', 'gods', 'deity', 'deities', 'divine', 'prophet', 'saint',
   'mary magdalene', 'council of light', 'breathlight', 'lightworker',
   'talk to history', 'talk to the gods', 'resurrection',
-  'carl sagan', 'hypatia', 'tesla', 'einstein'
+  'carl sagan', 'hypatia', 'tesla', 'einstein', 'nikola tesla',
+  
+  // Medical/Health - liability risk
+  'doctor', 'medical', 'diagnosis', 'treatment', 'symptom', 'disease',
+  'health', 'healthcare', 'medicine', 'prescription', 'pharmaceutical',
+  'therapy', 'therapist', 'counseling', 'mental health', 'wellness',
+  'veterinarian', 'vet', 'pet care', 'animal health',
+  'pharmacist', 'pharmacy', 'drug', 'medication',
+  'nurse', 'clinical', 'patient',
+  
+  // Legal - liability risk
+  'lawyer', 'legal', 'attorney', 'law', 'court', 'judge',
+  'contract', 'litigation', 'defense', 'prosecutor',
+  'public defender', 'legal advice', 'legal document',
+  
+  // Financial - liability risk
+  'trader', 'trading', 'invest', 'investment', 'stock', 'crypto',
+  'financial advisor', 'finance', 'portfolio', 'market analysis',
+  'credit score', 'tax', 'taxes', 'accounting',
+  'insurance', 'claims',
+  
+  // Predictions/Fortune - liability risk
+  'fortune', 'fortune teller', 'predict', 'prediction', 'prophecy',
+  'psychic', 'tarot', 'astrology', 'horoscope', 'divination',
+  'probability', 'future', 'forecast',
+  'dream interpret', 'dream analysis',
+  
+  // Historical figures - persona simulation
+  'historical', 'history', 'time machine', 'time travel',
+  'celebrity', 'famous', 'titanic',
+  
+  // Safety/Inspection - professional liability
+  'inspector', 'inspection', 'safety', 'compliance', 'audit',
+  'firefighter', 'fire safety', 'emergency',
+  
+  // Professional services - liability risk
+  'appraisal', 'valuation', 'appraiser',
+  'real estate', 'property',
+  
+  // Persona simulations
+  'gpt embodiment', 'speaks as', 'embodies', 'reborn',
+  'chatline', 'talk to', 'speak with'
 ];
 
 // Check if a tool matches spiritual keywords
@@ -41,15 +83,15 @@ const isSpiritualTool = (tool: Tool): boolean => {
   return SPIRITUALITY_KEYWORDS.some(keyword => searchText.includes(keyword.toLowerCase()));
 };
 
-// Check if a tool is a light/philosophy simulation tool
-const isLightPhilosophyTool = (tool: Tool): boolean => {
+// Check if a tool needs simulation tag for liability protection
+const needsSimulationTag = (tool: Tool): boolean => {
   const searchText = [
     tool.title,
     tool.description,
     ...(tool.tags || [])
   ].join(' ').toLowerCase();
   
-  return LIGHT_PHILOSOPHY_KEYWORDS.some(keyword => searchText.includes(keyword.toLowerCase()));
+  return SIMULATION_KEYWORDS.some(keyword => searchText.includes(keyword.toLowerCase()));
 };
 
 // Apply spiritual and simulation tags to tools
@@ -57,21 +99,21 @@ export const applySpirtualTags = (tools: Tool[]): Tool[] => {
   return tools.map(tool => {
     const tags = [...(tool.tags || [])];
     const isSpiritual = isSpiritualTool(tool);
-    const isLightPhilosophy = isLightPhilosophyTool(tool);
+    const needsSimulation = needsSimulationTag(tool);
     
     // Add Spirituality tag to spiritual tools
     if (isSpiritual && !tags.includes('Spirituality')) {
       tags.push('Spirituality');
     }
     
-    // Add Simulation and Spirituality tags to light/philosophy tools
-    if (isLightPhilosophy) {
-      if (!tags.includes('Simulation')) {
-        tags.push('Simulation');
-      }
-      if (!tags.includes('Spirituality') && !tags.includes('spirituality')) {
-        tags.push('Spirituality');
-      }
+    // Add Simulation tag to all liability-risk tools
+    if (needsSimulation && !tags.includes('Simulation')) {
+      tags.push('Simulation');
+    }
+    
+    // Spiritual simulation tools also get Spirituality tag
+    if (needsSimulation && isSpiritual && !tags.includes('Spirituality')) {
+      tags.push('Spirituality');
     }
     
     return { ...tool, tags };
