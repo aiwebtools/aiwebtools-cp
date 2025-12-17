@@ -32,6 +32,15 @@ button:hover, a:hover, [role="button"]:hover {
   contain: layout style paint;
   content-visibility: auto;
   contain-intrinsic-size: 280px 380px;
+  will-change: auto;
+  transform: translateZ(0);
+}
+
+/* Smooth scrolling container */
+.tools-scroll-container {
+  scroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
 }
 
 /* Reduce layout thrashing on scroll */
@@ -156,16 +165,29 @@ header, footer, [role="banner"], [role="contentinfo"] {
 /* Reduce blur cost on mobile */
 @media (max-width: 768px) {
   .blur-3xl {
-    filter: blur(32px); /* Reduced from 64px */
+    filter: blur(16px); /* Reduced further for performance */
   }
   .blur-2xl {
-    filter: blur(24px); /* Reduced from 40px */
+    filter: blur(12px); /* Reduced further for performance */
   }
   .backdrop-blur-sm,
   .backdrop-blur {
     backdrop-filter: none; /* Disable expensive backdrop blur on mobile */
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
   }
+}
+
+/* During scroll, reduce visual complexity */
+.is-scrolling [data-card],
+.is-scrolling .tool-card {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* GPU layer for main content */
+main, .grid {
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Optimize canvas elements */

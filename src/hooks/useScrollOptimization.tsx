@@ -17,22 +17,31 @@ export const useScrollOptimization = (options: ScrollOptimizationOptions = {}) =
     enableMomentumScrolling = isMobile
   } = options;
 
-  // Optimized scroll handler with throttling
+  // Optimized scroll handler with RAF throttling (smoother than setTimeout)
   const createOptimizedScrollHandler = useCallback((
     handler: (event: Event) => void,
     customThrottle?: number
   ) => {
+    let rafId: number | null = null;
+    let lastTime = 0;
     const throttleTime = customThrottle || throttleMs;
     
     return (event: Event) => {
-      if (throttleRef.current) {
+      const now = performance.now();
+      
+      if (now - lastTime < throttleTime) {
         return;
       }
       
-      throttleRef.current = setTimeout(() => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+      
+      rafId = requestAnimationFrame(() => {
         handler(event);
-        throttleRef.current = undefined;
-      }, throttleTime);
+        lastTime = performance.now();
+        rafId = null;
+      });
     };
   }, [throttleMs]);
 
