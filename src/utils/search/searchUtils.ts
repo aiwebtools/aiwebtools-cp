@@ -213,11 +213,10 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
       return scoreB - scoreA;
     });
     
-    // Add remaining non-video tools at the end with much lower priority
+    // Keep non-video tools available for endless browsing, but NEVER let them outrank video matches
     const nonVideoTools = tools.filter(tool => !videoTools.includes(tool));
-    const finalVideoResults = [...sortedVideoTools, ...nonVideoTools];
-    
-    return performEnhancedSearch(finalVideoResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+    const rankedVideo = performEnhancedSearch(sortedVideoTools, searchTerm, searchWords, phoneticVariations, intentConfig);
+    return [...rankedVideo, ...nonVideoTools];
   }
   
   // AUDIO/MUSIC TOOL PRIORITY - Enhanced detection
@@ -311,8 +310,8 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     });
     
     const nonEducationTools = tools.filter(tool => !educationTools.includes(tool));
-    const finalEducationResults = [...sortedEducationTools, ...nonEducationTools];
-    return performEnhancedSearch(finalEducationResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+    const rankedEducation = performEnhancedSearch(sortedEducationTools, searchTerm, searchWords, phoneticVariations, intentConfig);
+    return [...rankedEducation, ...nonEducationTools];
   }
 
   // CHAT TOOL PRIORITY - Enhanced detection
@@ -693,8 +692,8 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     });
     
     const nonWritingTools = tools.filter(tool => !writingTools.includes(tool));
-    const finalWritingResults = [...sortedWritingTools, ...nonWritingTools];
-    return performEnhancedSearch(finalWritingResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+    const rankedWriting = performEnhancedSearch(sortedWritingTools, searchTerm, searchWords, phoneticVariations, intentConfig);
+    return [...rankedWriting, ...nonWritingTools];
   }
 
   // IMAGE TOOL PRIORITY - Enhanced detection
