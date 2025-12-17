@@ -1,6 +1,5 @@
 import React from "react";
 import { useFeaturedToolsState } from "@/hooks/useFeaturedToolsState";
-import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
 import { useMobile } from "@/hooks/useMobile";
 import CategoryFilters from "@/components/tools/CategoryFilters";
 import ToolsGrid from "@/components/tools/ToolsGrid";
@@ -25,27 +24,26 @@ const SearchPortal = () => {
   } = useFeaturedToolsState();
 
   const { isMobile } = useMobile();
-  const { createThrottledScrollHandler } = usePerformanceOptimization();
 
-  // Optimized load more with performance considerations
-  const handleLoadMore = useMemo(() => 
-    createThrottledScrollHandler(() => {
+  // Load more (must set isLoading synchronously so IntersectionObserver/scroll can't spam)
+  const handleLoadMore = useMemo(
+    () => () => {
       if (isLoading || !hasMoreTools) return;
-      
+
       setIsLoading(true);
-      
+
       // Reduce batch size on mobile for smoother performance
       const batchSize = isMobile ? 30 : 60;
-      
+
       // Use shorter delay on mobile to feel more responsive
       const delay = isMobile ? 50 : 100;
-      
-      setTimeout(() => {
-        setDisplayedCount(prev => prev + batchSize);
+
+      window.setTimeout(() => {
+        setDisplayedCount((prev) => prev + batchSize);
         setIsLoading(false);
       }, delay);
-    }), 
-    [createThrottledScrollHandler, isLoading, hasMoreTools, isMobile, setIsLoading, setDisplayedCount]
+    },
+    [isLoading, hasMoreTools, isMobile, setIsLoading, setDisplayedCount]
   );
 
   const displayedTools = useMemo(() => 
