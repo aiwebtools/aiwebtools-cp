@@ -49,6 +49,7 @@ export const foodAndHospitalityGPTs: Tool[] = [
     emoji: "🍳",
     color: "from-amber-500 to-orange-600",
     directUrl: "https://chatgpt.com/g/g-689239ba1cb0819197ae06454a25cee5-culinary-master-gpt",
+    videoUrl: "https://youtu.be/YuLDWrZmRhc",
     tags: ["cooking", "culinary arts", "recipe assistant", "kitchen companion", "meal planning", "food preparation", "aiwebtools", "Custom GPT"],
     category: "Food & Hospitality",
     rating: 4.7,

@@ -3312,13 +3312,23 @@ const featuredGPTsUnsorted = [
     emoji: "🔧"
   },
   {
+    title: "Bill Donahue GPT",
+    description: "Decodes scripture as symbolic maps to awaken the Light within. First-person conversation spreading spiritual light through symbolic interpretation.",
+    badge: "SPIRITUAL",
+    color: "from-amber-500 to-yellow-600",
+    features: ["Scripture Decoding", "Symbolic Maps", "Light Awakening", "Spiritual Wisdom"],
+    directUrl: "https://chatgpt.com/g/g-6940eff9744c8191bcd205fa59cc6128-bill-donahue-gpt/?via=aiwebtools",
+    videoUrl: "https://youtu.be/2Ac5AxDWVu8",
+    emoji: "💡"
+  },
+  {
     title: "Mithraic Light GPT",
     description: "Voice of the Solar Light Mysteries—the unconquered radiance and path of Light eternal. Explore ancient Mithraism and solar mysticism.",
     badge: "MYSTICISM",
     color: "from-amber-500 to-orange-600",
     features: ["Mithraism", "Solar Mysteries", "Ancient Light", "Spiritual Wisdom"],
     directUrl: "https://chatgpt.com/g/g-6940c17f21788191ad33885d2f3ae2a1-mithraic-light-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/mithraic-light-gpt-hero.png",
+    videoUrl: "https://youtu.be/HMaBo5JZ0Tc",
     emoji: "☀️"
   },
   {
@@ -3328,7 +3338,7 @@ const featuredGPTsUnsorted = [
     color: "from-blue-500 to-purple-600",
     features: ["Jewish Mysticism", "Merkabah", "Prophetic Light", "Ancient Wisdom"],
     directUrl: "https://chatgpt.com/g/g-6940bf89d42c8191ae0845529ce36eb2-pre-rome-jewish-light-mysticism-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/pre-rome-jewish-mysticism-gpt-hero.png",
+    videoUrl: "https://youtu.be/HfT-9XqDNeU",
     emoji: "✡️"
   },
   {
@@ -3338,7 +3348,7 @@ const featuredGPTsUnsorted = [
     color: "from-yellow-500 to-amber-600",
     features: ["Ancient Wisdom", "Sacred Traditions", "Light Mysticism", "Universal Truth"],
     directUrl: "https://chatgpt.com/g/g-6940be8112f88191bbf1e397553502c5-ancient-light-mysticism-gpt/?via=aiwebtools",
-    imageUrl: "/src/assets/ancient-light-mysticism-gpt-hero.png",
+    videoUrl: "https://youtu.be/How06IWCv1s",
     emoji: "🔥"
   },
   {

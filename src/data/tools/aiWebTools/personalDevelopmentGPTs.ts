@@ -157,6 +157,7 @@ export const personalDevelopmentGPTs: Tool[] = [
     emoji: "⭐",
     color: "from-yellow-400 to-green-500",
     directUrl: "https://chat.openai.com/g/g-68afa7de4eb481919e890a26b4655b49-self-esteem-booster",
+    videoUrl: "https://youtu.be/X5TlIueFcko",
     tags: ["self-esteem", "confidence", "affirmations", "positive feedback", "self-worth", "Custom GPT"],
     category: "Personal Development & Self-Discovery",
     rating: 4.1,
