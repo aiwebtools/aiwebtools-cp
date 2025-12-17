@@ -5,6 +5,7 @@ import FooterActions from "./footer/FooterActions";
 import FooterCompanyInfo from "./footer/FooterCompanyInfo";
 import FooterLinks from "./footer/FooterLinks";
 import FooterBottom from "./footer/FooterBottom";
+import GlobalSearchBar from "./GlobalSearchBar";
 import { Download, Gift } from "lucide-react";
 
 const Footer = () => {
@@ -125,8 +126,17 @@ Best regards,
   };
 
   return (
-    <footer className="bg-black text-cyan-100 py-16 border-t border-cyan-500/30">
-      <div className="container mx-auto px-4">
+    <>
+      {/* Search bar above footer for easy navigation */}
+      <div className="bg-gradient-to-b from-black/50 to-black py-8 border-t border-cyan-500/20">
+        <div className="container mx-auto px-4">
+          <p className="text-center text-cyan-400 text-sm mb-4 font-medium">🔍 Quick Search - Find Any AI Tool Instantly</p>
+          <GlobalSearchBar />
+        </div>
+      </div>
+      
+      <footer className="bg-black text-cyan-100 py-16 border-t border-cyan-500/30">
+        <div className="container mx-auto px-4">
         <FooterActions 
           handleExternalLink={handleExternalLink}
           handleSubmitTool={handleSubmitTool}
@@ -188,8 +198,9 @@ Best regards,
         <Separator className="bg-cyan-500/30 mb-8" />
         
         <FooterBottom handleExternalLink={handleExternalLink} />
-      </div>
-    </footer>
+        </div>
+      </footer>
+    </>
   );
 };
 

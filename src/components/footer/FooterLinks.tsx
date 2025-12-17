@@ -41,6 +41,12 @@ const FooterLinks = () => {
           >
             ➕ Submit Your AI Tool
           </a>
+          <a
+            href="/blog"
+            className="block text-cyan-200 hover:text-cyan-400 transition-colors text-left"
+          >
+            📰 Blog
+          </a>
           <button
             onClick={(e) => handleExternalLink("https://aitools.company/privacy-policy", e)}
             className="block text-cyan-200 hover:text-cyan-400 transition-colors text-left"
