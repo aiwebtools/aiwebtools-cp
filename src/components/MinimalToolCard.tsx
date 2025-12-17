@@ -74,10 +74,11 @@ const MinimalToolCard = memo(({ tool, index = 0 }: MinimalToolCardProps) => {
           </div>
           <div className="flex-1 min-w-0">
             <h3 
-              className="font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 text-sm leading-tight line-clamp-2 mb-1 uppercase tracking-wide"
+              className="font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 text-xs sm:text-sm leading-tight mb-1 uppercase tracking-wide break-words hyphens-auto"
               style={{
                 fontFamily: "'Orbitron', sans-serif",
-                textShadow: '0 0 12px rgba(34, 211, 238, 0.4)'
+                textShadow: '0 0 12px rgba(34, 211, 238, 0.4)',
+                wordBreak: 'break-word'
               }}
             >
               {tool.title}

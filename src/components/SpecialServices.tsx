@@ -3566,14 +3566,15 @@ const SpecialServices = () => {
               <div className={`absolute inset-0 bg-gradient-to-br ${gpt.color} opacity-5 group-hover:opacity-15 transition-opacity duration-500`} />
               
               <CardHeader className="pb-2 relative z-10">
-                <div className="flex items-start justify-between mb-1.5">
-                  <div className="flex items-center gap-1.5 flex-1 min-w-0">
-                    <span className="text-lg md:text-xl flex-shrink-0">{gpt.emoji}</span>
+                <div className="flex items-start justify-between mb-1.5 gap-2">
+                  <div className="flex items-start gap-1.5 flex-1 min-w-0">
+                    <span className="text-lg md:text-xl flex-shrink-0 mt-0.5">{gpt.emoji}</span>
                     <CardTitle 
-                      className="text-sm md:text-base lg:text-lg font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 group-hover:from-yellow-200 group-hover:via-cyan-200 group-hover:to-yellow-200 transition-all line-clamp-2 leading-tight uppercase tracking-wide"
+                      className="text-xs sm:text-sm md:text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 group-hover:from-yellow-200 group-hover:via-cyan-200 group-hover:to-yellow-200 transition-all leading-tight uppercase tracking-wide break-words hyphens-auto"
                       style={{
                         fontFamily: "'Orbitron', sans-serif",
-                        textShadow: '0 0 15px rgba(34, 211, 238, 0.5), 0 0 30px rgba(34, 211, 238, 0.2)'
+                        textShadow: '0 0 15px rgba(34, 211, 238, 0.5), 0 0 30px rgba(34, 211, 238, 0.2)',
+                        wordBreak: 'break-word'
                       }}
                     >
                       {gpt.title}

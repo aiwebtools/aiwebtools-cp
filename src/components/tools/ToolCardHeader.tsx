@@ -65,11 +65,12 @@ const ToolCardHeader = ({
       </div>
       <div className="space-y-2">
         <CardTitle 
-          className="text-lg sm:text-xl lg:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 group-hover:from-cyan-200 group-hover:via-yellow-200 group-hover:to-cyan-200 transition-all duration-300 leading-tight tracking-wide uppercase"
+          className="text-base sm:text-lg lg:text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-cyan-300 group-hover:from-cyan-200 group-hover:via-yellow-200 group-hover:to-cyan-200 transition-all duration-300 leading-tight tracking-wide uppercase break-words hyphens-auto min-h-[2.5rem]"
           style={{
             fontFamily: "'Orbitron', sans-serif",
             textShadow: '0 0 20px rgba(34, 211, 238, 0.6), 0 0 40px rgba(34, 211, 238, 0.3)',
-            letterSpacing: '0.05em'
+            letterSpacing: '0.05em',
+            wordBreak: 'break-word'
           }}
         >
           {tool.title}
