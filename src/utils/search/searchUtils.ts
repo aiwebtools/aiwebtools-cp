@@ -310,52 +310,68 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return [...sortedHistoryTools, ...nonHistoryTools];
   }
 
-  // VIDEO SEARCH PRIORITY - Strict video tool filtering
-  if (normalizedSearchTerm === 'video' || normalizedSearchTerm.includes('video')) {
-    debugLog('🎬 VIDEO SEARCH DETECTED - Filtering for video tools only');
+  // VIDEO SEARCH PRIORITY - COMPREHENSIVE detection for 50+ tools
+  const VIDEO_TRIGGERS = [
+    'video', 'film', 'movie', 'cinema', 'animation', 'animate', 'animated',
+    'editing', 'editor', 'production', 'filmmaker', 'creator', 'content creator',
+    'youtube', 'tiktok', 'reels', 'shorts', 'streaming', 'live', 'broadcast',
+    'vlog', 'vlogger', 'documentary', 'commercial', 'ad', 'advertisement', 'trailer',
+    'sora', 'runway', 'pika', 'luma', 'kling', 'hailuo', 'veo', 'gen-2', 'gen-3',
+    'text to video', 'ai video', 'video generation', 'video generator', 'video maker',
+    'motion', 'vfx', 'visual effects', 'cgi', 'render', 'rendering', '3d animation',
+    'explainer', 'tutorial', 'screencast', 'screen recording', 'webcam', 'camera',
+    'clip', 'footage', 'stock video', 'b-roll', 'montage', 'slideshow', 'timelapse',
+    'slow motion', 'speed ramp', 'transition', 'subtitle', 'caption', 'transcript'
+  ];
+  
+  if (VIDEO_TRIGGERS.some(trigger => normalizedSearchTerm.includes(trigger))) {
+    debugLog('🎬 VIDEO SEARCH DETECTED - Filtering for video tools');
     
-    // First, find all tools with "video" in title, description, category, or tags
     const videoTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
       const lowerDescription = tool.description.toLowerCase();
       const lowerCategory = tool.category?.toLowerCase() || '';
       const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      const allText = `${lowerTitle} ${lowerDescription} ${lowerCategory} ${lowerTags.join(' ')}`;
       
-      return lowerTitle.includes('video') || 
-             lowerDescription.includes('video') ||
-             lowerCategory.includes('video') ||
-             lowerTags.some(tag => tag.includes('video'));
+      return VIDEO_TRIGGERS.some(trigger => allText.includes(trigger)) ||
+             lowerCategory.includes('video') || lowerCategory.includes('film') ||
+             lowerCategory.includes('animation');
     });
     
-    debugLog(`🎬 Found ${videoTools.length} video tools:`, videoTools.slice(0, 5).map(t => t.title));
+    debugLog(`🎬 Found ${videoTools.length} video tools`);
     
-    // Sort video tools by relevance - exact title matches first
     const sortedVideoTools = videoTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
+      const titleA = a.title.toLowerCase();
+      const titleB = b.title.toLowerCase();
       
-      // Highest priority: "video" in title
-      if (a.title.toLowerCase().includes('video')) scoreA += 10000;
-      if (b.title.toLowerCase().includes('video')) scoreB += 10000;
+      // Major video tools first
+      const majorVideoTools = ['sora', 'runway', 'pika', 'luma', 'kling', 'hailuo', 'veo', 'gen-2', 'gen-3'];
+      if (majorVideoTools.some(t => titleA.includes(t))) scoreA += 18000;
+      if (majorVideoTools.some(t => titleB.includes(t))) scoreB += 18000;
       
-      // High priority: video generation/creation tools
-      if (a.title.toLowerCase().includes('video generat') || a.title.toLowerCase().includes('video maker') || a.title.toLowerCase().includes('video creator')) scoreA += 8000;
-      if (b.title.toLowerCase().includes('video generat') || b.title.toLowerCase().includes('video maker') || b.title.toLowerCase().includes('video creator')) scoreB += 8000;
+      // Custom GPTs
+      if (titleA.includes('movie maker studio')) scoreA += 16000;
+      if (titleB.includes('movie maker studio')) scoreB += 16000;
+      if (titleA.includes('movie script writer')) scoreA += 15000;
+      if (titleB.includes('movie script writer')) scoreB += 15000;
+      if (titleA.includes('movie scene maker')) scoreA += 14000;
+      if (titleB.includes('movie scene maker')) scoreB += 14000;
+      if (titleA.includes('music video maker')) scoreA += 13000;
+      if (titleB.includes('music video maker')) scoreB += 13000;
+      if (titleA.includes('video analysis')) scoreA += 12000;
+      if (titleB.includes('video analysis')) scoreB += 12000;
       
-      // Medium priority: AI Web Tools video GPTs (only if they contain "video")
-      if (a.directUrl?.includes('lovable.app') && a.title.toLowerCase().includes('video')) scoreA += 6000;
-      if (b.directUrl?.includes('lovable.app') && b.title.toLowerCase().includes('video')) scoreB += 6000;
-      
-      // Lower priority: video in description
-      if (a.description.toLowerCase().includes('video')) scoreA += 3000;
-      if (b.description.toLowerCase().includes('video')) scoreB += 3000;
+      // Spelling match boost
+      if (titleA.includes(normalizedSearchTerm)) scoreA += 20000;
+      if (titleB.includes(normalizedSearchTerm)) scoreB += 20000;
       
       return scoreB - scoreA;
     });
     
-    // Keep non-video tools available for endless browsing, but NEVER let them outrank video matches
     const nonVideoTools = tools.filter(tool => !videoTools.includes(tool));
-    const rankedVideo = performEnhancedSearch(sortedVideoTools, searchTerm, searchWords, phoneticVariations, intentConfig);
-    return [...rankedVideo, ...nonVideoTools];
+    return [...sortedVideoTools, ...nonVideoTools];
   }
   
   // AUDIO/MUSIC TOOL PRIORITY - Enhanced detection
@@ -834,129 +850,187 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return performEnhancedSearch(finalSchoolResults, searchTerm, searchWords, phoneticVariations, intentConfig);
   }
 
-  // BUSINESS TOOL PRIORITY - Enhanced detection
-  if (normalizedSearchTerm === 'business' || normalizedSearchTerm.includes('business') ||
-      normalizedSearchTerm.includes('startup') || normalizedSearchTerm.includes('entrepreneur')) {
-    console.log('💼 BUSINESS SEARCH DETECTED - Filtering for business tools only');
+  // BUSINESS TOOL PRIORITY - COMPREHENSIVE detection for 50+ tools
+  const BUSINESS_TRIGGERS = [
+    'business', 'startup', 'entrepreneur', 'company', 'enterprise', 'corporate',
+    'finance', 'financial', 'investment', 'investor', 'trading', 'trader', 'stock',
+    'market', 'marketing', 'sales', 'revenue', 'profit', 'budget', 'accounting',
+    'tax', 'taxes', 'insurance', 'banking', 'crypto', 'cryptocurrency', 'blockchain',
+    'management', 'project', 'productivity', 'workflow', 'automation', 'crm',
+    'hr', 'hiring', 'resume', 'job', 'career', 'interview', 'salary', 'payroll',
+    'invoice', 'contract', 'proposal', 'pitch', 'presentation', 'meeting', 'schedule',
+    'analytics', 'metrics', 'kpi', 'dashboard', 'report', 'data', 'strategy',
+    'consulting', 'advisor', 'coach', 'mentor', 'networking', 'leads', 'conversion',
+    'saas', 'microsaas', 'product', 'service', 'customer', 'client', 'vendor',
+    'supply chain', 'logistics', 'operations', 'manufacturing', 'real estate',
+    'property', 'landlord', 'rent', 'mortgage', 'credit', 'loan', 'debt'
+  ];
+  
+  if (BUSINESS_TRIGGERS.some(trigger => normalizedSearchTerm.includes(trigger))) {
+    console.log('💼 BUSINESS SEARCH DETECTED - Filtering for business tools');
     
     const businessTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
       const lowerDescription = tool.description.toLowerCase();
       const lowerCategory = tool.category?.toLowerCase() || '';
       const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      const allText = `${lowerTitle} ${lowerDescription} ${lowerCategory} ${lowerTags.join(' ')}`;
       
-      return lowerTitle.includes('business') || lowerTitle.includes('startup') ||
-             lowerTitle.includes('entrepreneur') || lowerTitle.includes('company') ||
-             lowerTitle.includes('enterprise') || lowerTitle.includes('corporate') ||
-             lowerDescription.includes('business') || lowerDescription.includes('startup') ||
-             lowerCategory.includes('business') || lowerCategory.includes('productivity') ||
-             lowerTags.some(tag => tag.includes('business') || tag.includes('startup'));
+      return BUSINESS_TRIGGERS.some(trigger => allText.includes(trigger)) ||
+             lowerCategory.includes('business') || lowerCategory.includes('finance') ||
+             lowerCategory.includes('productivity') || lowerCategory.includes('marketing');
     });
     
-    console.log(`💼 Found ${businessTools.length} business tools:`, businessTools.slice(0, 5).map(t => t.title));
+    console.log(`💼 Found ${businessTools.length} business tools`);
     
     const sortedBusinessTools = businessTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
+      const titleA = a.title.toLowerCase();
+      const titleB = b.title.toLowerCase();
       
-      if (a.title.toLowerCase().includes('business plan generator gpt')) scoreA += 12000;
-      if (b.title.toLowerCase().includes('business plan generator gpt')) scoreB += 12000;
-      if (a.title.toLowerCase().includes('startup validator gpt')) scoreA += 11000;
-      if (b.title.toLowerCase().includes('startup validator gpt')) scoreB += 11000;
-      if (a.title.toLowerCase().includes('microsaas gpt')) scoreA += 10000;
-      if (b.title.toLowerCase().includes('microsaas gpt')) scoreB += 10000;
+      // Priority for custom GPTs
+      if (titleA.includes('business plan generator')) scoreA += 15000;
+      if (titleB.includes('business plan generator')) scoreB += 15000;
+      if (titleA.includes('startup validator')) scoreA += 14000;
+      if (titleB.includes('startup validator')) scoreB += 14000;
+      if (titleA.includes('trader gpt')) scoreA += 13000;
+      if (titleB.includes('trader gpt')) scoreB += 13000;
+      if (titleA.includes('taxes gpt')) scoreA += 12000;
+      if (titleB.includes('taxes gpt')) scoreB += 12000;
+      if (titleA.includes('microsaas')) scoreA += 11000;
+      if (titleB.includes('microsaas')) scoreB += 11000;
+      if (titleA.includes('resume') || titleA.includes('job finder')) scoreA += 10000;
+      if (titleB.includes('resume') || titleB.includes('job finder')) scoreB += 10000;
       
-      if (a.title.toLowerCase().includes('business')) scoreA += 9000;
-      if (b.title.toLowerCase().includes('business')) scoreB += 9000;
+      // Spelling match boost
+      if (titleA.includes(normalizedSearchTerm)) scoreA += 20000;
+      if (titleB.includes(normalizedSearchTerm)) scoreB += 20000;
       
       return scoreB - scoreA;
     });
     
     const nonBusinessTools = tools.filter(tool => !businessTools.includes(tool));
-    const finalBusinessResults = [...sortedBusinessTools, ...nonBusinessTools];
-    return performEnhancedSearch(finalBusinessResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+    return [...sortedBusinessTools, ...nonBusinessTools];
   }
 
-  // WRITING TOOL PRIORITY - Enhanced detection
-  if (normalizedSearchTerm === 'writing' || normalizedSearchTerm.includes('writing') ||
-      normalizedSearchTerm.includes('write') || normalizedSearchTerm.includes('content')) {
-    debugLog('✍️ WRITING SEARCH DETECTED - Filtering for writing tools only');
+  // WRITING TOOL PRIORITY - COMPREHENSIVE detection for 50+ tools
+  const WRITING_TRIGGERS = [
+    'writing', 'writer', 'write', 'content', 'copywriting', 'blog', 'article',
+    'book', 'novel', 'story', 'script', 'screenplay', 'playwright', 'play',
+    'essay', 'poem', 'poetry', 'manuscript', 'author', 'journalist', 'editor',
+    'text', 'copy', 'narrative', 'storytelling', 'creative writing', 'fiction',
+    'non-fiction', 'memoir', 'biography', 'documentation', 'report', 'proposal',
+    'letter', 'email', 'newsletter', 'press release', 'speech', 'presentation',
+    'grant', 'testimony', 'legislation', 'contract', 'legal document', 'rewrite',
+    'paraphrase', 'summarize', 'translate', 'proofread', 'grammar', 'seo'
+  ];
+  
+  if (WRITING_TRIGGERS.some(trigger => normalizedSearchTerm.includes(trigger))) {
+    debugLog('✍️ WRITING SEARCH DETECTED - Filtering for writing tools');
     
     const writingTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
       const lowerDescription = tool.description.toLowerCase();
       const lowerCategory = tool.category?.toLowerCase() || '';
       const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      const allText = `${lowerTitle} ${lowerDescription} ${lowerCategory} ${lowerTags.join(' ')}`;
       
-      return lowerTitle.includes('writing') || lowerTitle.includes('writer') ||
-             lowerTitle.includes('write') || lowerTitle.includes('content') ||
-             lowerTitle.includes('copywriting') || lowerTitle.includes('blog') ||
-             lowerTitle.includes('article') || lowerTitle.includes('book') ||
-             lowerDescription.includes('writing') || lowerDescription.includes('content') ||
+      return WRITING_TRIGGERS.some(trigger => allText.includes(trigger)) ||
              lowerCategory.includes('writing') || lowerCategory.includes('content') ||
-             lowerTags.some(tag => tag.includes('writing') || tag.includes('content'));
+             lowerCategory.includes('creative');
     });
     
-    debugLog(`✍️ Found ${writingTools.length} writing tools:`, writingTools.slice(0, 5).map(t => t.title));
+    debugLog(`✍️ Found ${writingTools.length} writing tools`);
     
     const sortedWritingTools = writingTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
+      const titleA = a.title.toLowerCase();
+      const titleB = b.title.toLowerCase();
       
-      if (a.title.toLowerCase().includes('book writer gpt')) scoreA += 12000;
-      if (b.title.toLowerCase().includes('book writer gpt')) scoreB += 12000;
-      if (a.title.toLowerCase().includes('article and blog rewriter gpt')) scoreA += 11000;
-      if (b.title.toLowerCase().includes('article and blog rewriter gpt')) scoreB += 11000;
+      // Priority for custom GPTs
+      if (titleA.includes('book writer gpt')) scoreA += 15000;
+      if (titleB.includes('book writer gpt')) scoreB += 15000;
+      if (titleA.includes('movie script writer')) scoreA += 14000;
+      if (titleB.includes('movie script writer')) scoreB += 14000;
+      if (titleA.includes('playwriter gpt')) scoreA += 13000;
+      if (titleB.includes('playwriter gpt')) scoreB += 13000;
+      if (titleA.includes('article') || titleA.includes('blog')) scoreA += 12000;
+      if (titleB.includes('article') || titleB.includes('blog')) scoreB += 12000;
+      if (titleA.includes('grant writer')) scoreA += 11000;
+      if (titleB.includes('grant writer')) scoreB += 11000;
+      if (titleA.includes('podcast')) scoreA += 10000;
+      if (titleB.includes('podcast')) scoreB += 10000;
       
-      if (a.title.toLowerCase().includes('writing')) scoreA += 10000;
-      if (b.title.toLowerCase().includes('writing')) scoreB += 10000;
-      if (a.title.toLowerCase().includes('writer')) scoreA += 9000;
-      if (b.title.toLowerCase().includes('writer')) scoreB += 9000;
+      // Spelling match boost
+      if (titleA.includes(normalizedSearchTerm)) scoreA += 20000;
+      if (titleB.includes(normalizedSearchTerm)) scoreB += 20000;
       
       return scoreB - scoreA;
     });
     
     const nonWritingTools = tools.filter(tool => !writingTools.includes(tool));
-    const rankedWriting = performEnhancedSearch(sortedWritingTools, searchTerm, searchWords, phoneticVariations, intentConfig);
-    return [...rankedWriting, ...nonWritingTools];
+    return [...sortedWritingTools, ...nonWritingTools];
   }
 
-  // IMAGE TOOL PRIORITY - Enhanced detection
-  if (normalizedSearchTerm === 'image' || normalizedSearchTerm.includes('image') ||
-      normalizedSearchTerm.includes('picture') || normalizedSearchTerm.includes('photo')) {
-    console.log('🖼️ IMAGE SEARCH DETECTED - Filtering for image tools only');
+  // IMAGE TOOL PRIORITY - COMPREHENSIVE detection for 50+ tools
+  const IMAGE_TRIGGERS = [
+    'image', 'photo', 'picture', 'art', 'graphic', 'visual', 'illustration',
+    'drawing', 'painting', 'sketch', 'portrait', 'design', 'creative',
+    'midjourney', 'dall-e', 'dalle', 'stable diffusion', 'leonardo', 'ideogram',
+    'flux', 'firefly', 'canva', 'photoshop', 'illustrator', 'figma',
+    'logo', 'icon', 'banner', 'poster', 'cover', 'thumbnail', 'avatar',
+    'wallpaper', 'background', 'texture', 'pattern', 'colorize', 'enhance',
+    'upscale', 'edit', 'remove background', 'face', 'style', 'restyle',
+    'generate image', 'ai art', 'digital art', 'artwork', 'comic', 'manga',
+    'anime', 'cartoon', 'realistic', '3d', 'render', 'mockup', 'tattoo'
+  ];
+  
+  if (IMAGE_TRIGGERS.some(trigger => normalizedSearchTerm.includes(trigger))) {
+    console.log('🖼️ IMAGE SEARCH DETECTED - Filtering for image tools');
     
     const imageTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
       const lowerDescription = tool.description.toLowerCase();
       const lowerCategory = tool.category?.toLowerCase() || '';
       const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      const allText = `${lowerTitle} ${lowerDescription} ${lowerCategory} ${lowerTags.join(' ')}`;
       
-      return lowerTitle.includes('image') || lowerTitle.includes('photo') ||
-             lowerTitle.includes('picture') || lowerTitle.includes('art') ||
-             lowerTitle.includes('graphic') || lowerTitle.includes('visual') ||
-             lowerDescription.includes('image') || lowerDescription.includes('photo') ||
+      return IMAGE_TRIGGERS.some(trigger => allText.includes(trigger)) ||
              lowerCategory.includes('image') || lowerCategory.includes('art') ||
-             lowerTags.some(tag => tag.includes('image') || tag.includes('art'));
+             lowerCategory.includes('design') || lowerCategory.includes('creative');
     });
     
-    console.log(`🖼️ Found ${imageTools.length} image tools:`, imageTools.slice(0, 5).map(t => t.title));
+    console.log(`🖼️ Found ${imageTools.length} image tools`);
     
     const sortedImageTools = imageTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
+      const titleA = a.title.toLowerCase();
+      const titleB = b.title.toLowerCase();
       
-      if (a.title.toLowerCase().includes('restyle me gpt')) scoreA += 12000;
-      if (b.title.toLowerCase().includes('restyle me gpt')) scoreB += 12000;
-      if (a.title.toLowerCase().includes('graphic & cover design gpt')) scoreA += 11000;
-      if (b.title.toLowerCase().includes('graphic & cover design gpt')) scoreB += 11000;
+      // Major image tools first
+      const majorImageTools = ['midjourney', 'dall-e', 'dalle', 'stable diffusion', 'leonardo', 'ideogram', 'flux', 'firefly'];
+      if (majorImageTools.some(t => titleA.includes(t))) scoreA += 18000;
+      if (majorImageTools.some(t => titleB.includes(t))) scoreB += 18000;
       
-      if (a.title.toLowerCase().includes('image')) scoreA += 10000;
-      if (b.title.toLowerCase().includes('image')) scoreB += 10000;
+      // Custom GPTs
+      if (titleA.includes('restyle me gpt')) scoreA += 15000;
+      if (titleB.includes('restyle me gpt')) scoreB += 15000;
+      if (titleA.includes('graphic') || titleA.includes('design')) scoreA += 14000;
+      if (titleB.includes('graphic') || titleB.includes('design')) scoreB += 14000;
+      if (titleA.includes('sketch artist')) scoreA += 13000;
+      if (titleB.includes('sketch artist')) scoreB += 13000;
+      if (titleA.includes('tattoo')) scoreA += 12000;
+      if (titleB.includes('tattoo')) scoreB += 12000;
+      
+      // Spelling match boost
+      if (titleA.includes(normalizedSearchTerm)) scoreA += 20000;
+      if (titleB.includes(normalizedSearchTerm)) scoreB += 20000;
       
       return scoreB - scoreA;
     });
     
     const nonImageTools = tools.filter(tool => !imageTools.includes(tool));
-    const finalImageResults = [...sortedImageTools, ...nonImageTools];
-    return performEnhancedSearch(finalImageResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+    return [...sortedImageTools, ...nonImageTools];
   }
 
   // DESIGN TOOL PRIORITY - Enhanced detection
@@ -999,44 +1073,64 @@ export const searchTools = (tools: Tool[], searchTerm: string): Tool[] => {
     return performEnhancedSearch(finalDesignResults, searchTerm, searchWords, phoneticVariations, intentConfig);
   }
 
-  // MUSIC TOOL PRIORITY - Enhanced detection
-  if (normalizedSearchTerm === 'music' || normalizedSearchTerm.includes('music') ||
-      normalizedSearchTerm.includes('sound') || normalizedSearchTerm.includes('audio')) {
-    console.log('🎵 MUSIC SEARCH DETECTED - Filtering for music tools only');
+  // MUSIC TOOL PRIORITY - COMPREHENSIVE detection for 50+ tools
+  const MUSIC_TRIGGERS = [
+    'music', 'sound', 'audio', 'voice', 'song', 'melody', 'beat', 'rhythm',
+    'instrument', 'piano', 'guitar', 'drum', 'bass', 'violin', 'singing', 'vocal',
+    'singer', 'composer', 'composition', 'producer', 'production', 'mix', 'mixing',
+    'master', 'mastering', 'dj', 'remix', 'sample', 'loop', 'track', 'album',
+    'playlist', 'podcast', 'radio', 'streaming', 'spotify', 'soundcloud',
+    'tts', 'text to speech', 'speech', 'clone', 'cloning', 'ai voice', 'voiceover',
+    'narrator', 'narration', 'audiobook', 'jingle', 'soundtrack', 'score',
+    'suno', 'udio', 'elevenlabs', 'murf', 'lovo', 'play.ht', 'speechify',
+    'synthesizer', 'synth', 'electronic', 'edm', 'hip hop', 'rock', 'jazz', 'classical',
+    'lyric', 'lyrics', 'chord', 'note', 'scale', 'tempo', 'bpm', 'key', 'tune'
+  ];
+  
+  if (MUSIC_TRIGGERS.some(trigger => normalizedSearchTerm.includes(trigger))) {
+    console.log('🎵 MUSIC SEARCH DETECTED - Filtering for music tools');
     
     const musicTools = tools.filter(tool => {
       const lowerTitle = tool.title.toLowerCase();
       const lowerDescription = tool.description.toLowerCase();
       const lowerCategory = tool.category?.toLowerCase() || '';
       const lowerTags = tool.tags?.map(tag => tag.toLowerCase()) || [];
+      const allText = `${lowerTitle} ${lowerDescription} ${lowerCategory} ${lowerTags.join(' ')}`;
       
-      return lowerTitle.includes('music') || lowerTitle.includes('sound') ||
-             lowerTitle.includes('audio') || lowerTitle.includes('voice') ||
-             lowerTitle.includes('song') || lowerTitle.includes('melody') ||
-             lowerDescription.includes('music') || lowerDescription.includes('audio') ||
+      return MUSIC_TRIGGERS.some(trigger => allText.includes(trigger)) ||
              lowerCategory.includes('music') || lowerCategory.includes('audio') ||
-             lowerTags.some(tag => tag.includes('music') || tag.includes('audio'));
+             lowerCategory.includes('voice');
     });
     
-    console.log(`🎵 Found ${musicTools.length} music tools:`, musicTools.slice(0, 5).map(t => t.title));
+    console.log(`🎵 Found ${musicTools.length} music tools`);
     
     const sortedMusicTools = musicTools.sort((a, b) => {
       let scoreA = 0, scoreB = 0;
+      const titleA = a.title.toLowerCase();
+      const titleB = b.title.toLowerCase();
       
-      if (a.title.toLowerCase().includes('music video maker ai studio')) scoreA += 12000;
-      if (b.title.toLowerCase().includes('music video maker ai studio')) scoreB += 12000;
-      if (a.title.toLowerCase().includes('music melodies & lessons gpt')) scoreA += 11000;
-      if (b.title.toLowerCase().includes('music melodies & lessons gpt')) scoreB += 11000;
+      // Major music tools first
+      const majorMusicTools = ['suno', 'udio', 'elevenlabs', 'murf', 'lovo', 'speechify'];
+      if (majorMusicTools.some(t => titleA.includes(t))) scoreA += 18000;
+      if (majorMusicTools.some(t => titleB.includes(t))) scoreB += 18000;
       
-      if (a.title.toLowerCase().includes('music')) scoreA += 10000;
-      if (b.title.toLowerCase().includes('music')) scoreB += 10000;
+      // Custom GPTs
+      if (titleA.includes('music video maker')) scoreA += 15000;
+      if (titleB.includes('music video maker')) scoreB += 15000;
+      if (titleA.includes('music melodies')) scoreA += 14000;
+      if (titleB.includes('music melodies')) scoreB += 14000;
+      if (titleA.includes('mixologist')) scoreA += 12000;
+      if (titleB.includes('mixologist')) scoreB += 12000;
+      
+      // Spelling match boost
+      if (titleA.includes(normalizedSearchTerm)) scoreA += 20000;
+      if (titleB.includes(normalizedSearchTerm)) scoreB += 20000;
       
       return scoreB - scoreA;
     });
     
     const nonMusicTools = tools.filter(tool => !musicTools.includes(tool));
-    const finalMusicResults = [...sortedMusicTools, ...nonMusicTools];
-    return performEnhancedSearch(finalMusicResults, searchTerm, searchWords, phoneticVariations, intentConfig);
+    return [...sortedMusicTools, ...nonMusicTools];
   }
 
   // CODING TOOL PRIORITY - Enhanced detection
