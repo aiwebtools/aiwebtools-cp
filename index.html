@@ -148,7 +148,22 @@
       .dot:nth-child(4) { animation-delay: 0.9s; }
       .dot:nth-child(5) { animation-delay: 1.2s; }
       @keyframes blink { 0%, 20% { opacity: 0; } 40%, 100% { opacity: 1; } }
+      .loading-spinner.fade-out { 
+        opacity: 0; 
+        transition: opacity 0.3s ease-out;
+        pointer-events: none;
+      }
     </style>
+    <script>
+      // Auto-hide loading screen after 500ms flash
+      setTimeout(() => {
+        const spinner = document.querySelector('.loading-spinner');
+        if (spinner) {
+          spinner.classList.add('fade-out');
+          setTimeout(() => spinner.remove(), 300);
+        }
+      }, 500);
+    </script>
     <script>
       // Scramble Matrix characters continuously until React loads
       const chars = '01アイウエオカキクケコサシスセソ';
