@@ -156,6 +156,10 @@ export const useGlobalSearch = () => {
   const searchIdRef = useRef(0);
   const searchTimeoutRef = useRef<number | null>(null);
   
+  // PERF: progressive narrowing so each extra letter searches a smaller candidate set
+  const lastQueryRef = useRef<string>("");
+  const lastCandidatesRef = useRef<typeof indexedTools | null>(null);
+  
   // INSTANT input - no debounce on display, only on computation
   const setSearchTerm = useCallback((value: string) => {
     // Update input immediately for instant feedback
@@ -168,6 +172,8 @@ export const useGlobalSearch = () => {
     
     const t = value.trim();
     if (!t || t.length < 2) {
+      lastQueryRef.current = "";
+      lastCandidatesRef.current = null;
       setSearchResults([]);
       setIsOpen(false);
       setDisplayedCount(50);
@@ -185,23 +191,32 @@ export const useGlobalSearch = () => {
         ? smartKeywords.slice(0, 5)
         : q.split(/\s+/).filter(w => w.length >= 2).slice(0, 8);
 
-      const fast = indexedTools
-        .filter(ix => {
-          if (intent && intentKeywords.length > 0) {
-            const intentMatch = intentKeywords.some(kw => 
-              ix.lt.includes(kw) || ix.lc.includes(kw) || ix.lta.includes(kw)
-            );
-            if (intentMatch) return true;
-          }
-          const directMatch = ix.lt.includes(q) || ix.lc.includes(q);
-          if (directMatch) return true;
-          if (tokens.length > 0) {
-            const keywordMatch = tokens.some(tok => ix.lt.includes(tok) || ix.lc.includes(tok) || ix.lta.includes(tok));
-            if (keywordMatch) return true;
-          }
-          return false;
-        })
-        .map(ix => ix.tool);
+      // Choose smallest possible candidate set
+      const baseCandidates = (lastCandidatesRef.current && q.startsWith(lastQueryRef.current))
+        ? lastCandidatesRef.current
+        : indexedTools;
+
+      const matchedIndexed = baseCandidates.filter(ix => {
+        if (intent && intentKeywords.length > 0) {
+          const intentMatch = intentKeywords.some(kw => 
+            ix.lt.includes(kw) || ix.lc.includes(kw) || ix.lta.includes(kw)
+          );
+          if (intentMatch) return true;
+        }
+        const directMatch = ix.lt.includes(q) || ix.lc.includes(q);
+        if (directMatch) return true;
+        if (tokens.length > 0) {
+          const keywordMatch = tokens.some(tok => ix.lt.includes(tok) || ix.lc.includes(tok) || ix.lta.includes(tok));
+          if (keywordMatch) return true;
+        }
+        return false;
+      });
+
+      // Update progressive cache
+      lastQueryRef.current = q;
+      lastCandidatesRef.current = matchedIndexed;
+
+      const fast = matchedIndexed.map(ix => ix.tool);
 
       // Quick scoring
       const quickScore = (tool: any) => {
