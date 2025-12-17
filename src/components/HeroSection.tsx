@@ -12,8 +12,8 @@ const HeroSection = () => {
   const [showBrandName, setShowBrandName] = useState(false);
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
   
-  // Defer heavy animations until after initial paint (faster load in Facebook browser)
-  const animationsReady = useDeferredAnimation(300);
+  // Show animations immediately
+  const animationsReady = useDeferredAnimation();
   
   const words = [
     "Find",
