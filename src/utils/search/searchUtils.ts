@@ -1989,32 +1989,87 @@ const performEnhancedSearch = (
   // Spirit queries: demote known weak/irrelevant matches so the best spiritual tools surface first
   // These are NOT spiritual tools - they just have words like "light" or "cosmic" that ping falsely
   const isSpiritQuery = lowerTerm.startsWith("spirit") || lowerTerm.includes("spiritual") || (lowerTerm.includes("spirit") && lowerTerm.length <= 12);
+  
+  // Non-spiritual tool categories/keywords to demote from spiritual searches
+  const nonSpiritualKeywords = [
+    "pixlr", "galileo", "image", "photo", "video", "editor", "design",
+    "coding", "code", "developer", "engineering", "engineer", "science",
+    "data", "analytics", "chart", "graph", "spreadsheet", "excel",
+    "marketing", "seo", "ads", "advertising", "social media",
+    "resume", "job", "career", "business", "finance", "trading", "crypto",
+    "music", "audio", "podcast", "voice", "speech",
+    "game", "gaming", "entertainment",
+    "food", "recipe", "cooking", "chef",
+    "fitness", "workout", "exercise",
+    "real estate", "property", "home", "renovation",
+    "legal", "contract", "lawyer", "insurance",
+    "cyber", "security", "hacking", "encryption", "binary"
+  ];
+  
   const demoteTitles = isSpiritQuery
     ? new Set<string>([
         "gptpastvoices - resurrection gpt",
         "gptpastvoices-resurrection gpt",
         "gptpastvoices",
         "past voices",
-        "cyber-kabbalah light code translation engine gpt", // Encryption tool, not spiritual
-        "time machine of unwritten history gpt", // History tool, not spiritual
+        "cyber-kabbalah light code translation engine gpt",
+        "time machine of unwritten history gpt",
+        "galileo gpt",
+        "pixlr",
+        "canva",
+        "dall-e",
+        "midjourney",
+        "stable diffusion",
+        "firefly",
+        "ideogram"
       ])
     : null;
+  
+  // For spiritual searches, also check if tool belongs to non-spiritual categories
+  const isNonSpiritualTool = (tool: Tool): boolean => {
+    if (!isSpiritQuery) return false;
+    const title = (tool.title || "").toLowerCase();
+    const category = (tool.category || "").toLowerCase();
+    const tags = (tool.tags || []).map(t => t.toLowerCase());
+    
+    // Allow tools in Spiritual category
+    if (category.includes("spiritual") || category.includes("philosophy") || category.includes("religion")) {
+      return false;
+    }
+    
+    // Check if tool has non-spiritual keywords
+    for (const keyword of nonSpiritualKeywords) {
+      if (title.includes(keyword) || category.includes(keyword)) {
+        return true;
+      }
+      for (const tag of tags) {
+        if (tag.includes(keyword)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
 
   const maybeDemote = (list: Tool[]) => {
-    if (!demoteTitles) return list;
+    if (!demoteTitles && !isSpiritQuery) return list;
     const demoted: Tool[] = [];
     const kept: Tool[] = [];
 
     for (const t of list) {
       const title = (t?.title || "").toLowerCase();
-      if (demoteTitles.has(title) || title.includes("pastvoices")) demoted.push(t);
-      else kept.push(t);
+      // Demote if in explicit demote list, OR if it's a non-spiritual tool during spiritual search
+      if (demoteTitles?.has(title) || title.includes("pastvoices") || isNonSpiritualTool(t)) {
+        demoted.push(t);
+      } else {
+        kept.push(t);
+      }
     }
 
     if (!demoted.length) return list;
 
-    // Insert demoted items around position 20 (or end if list is shorter)
-    const insertAt = Math.min(20, kept.length);
+    // Insert demoted items around position 30 (or end if list is shorter)
+    const insertAt = Math.min(30, kept.length);
     return [...kept.slice(0, insertAt), ...demoted, ...kept.slice(insertAt)];
   };
 
