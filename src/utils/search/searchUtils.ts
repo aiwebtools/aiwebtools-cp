@@ -1986,86 +1986,30 @@ const performEnhancedSearch = (
   const lowerTerm = searchTerm.toLowerCase();
   const pinnedTitles: string[] = [];
 
-  // Spirit queries: demote known weak/irrelevant matches so the best spiritual tools surface first
-  // These are NOT spiritual tools - they just have words like "light" or "cosmic" that ping falsely
-  const isSpiritQuery = lowerTerm.startsWith("spirit") || lowerTerm.includes("spiritual") || (lowerTerm.includes("spirit") && lowerTerm.length <= 12);
+  // Spirit queries: demote specific non-spiritual tools that falsely match
+  // ONLY applies to explicit "spirit" or "spiritual" searches - does NOT affect other searches
+  const isSpiritQuery = lowerTerm.startsWith("spirit") || lowerTerm === "spiritual" || (lowerTerm.includes("spirit") && lowerTerm.length <= 12);
   
-  // Non-spiritual tool categories/keywords to demote from spiritual searches
-  const nonSpiritualKeywords = [
-    "pixlr", "galileo", "image", "photo", "video", "editor", "design",
-    "coding", "code", "developer", "engineering", "engineer", "science",
-    "data", "analytics", "chart", "graph", "spreadsheet", "excel",
-    "marketing", "seo", "ads", "advertising", "social media",
-    "resume", "job", "career", "business", "finance", "trading", "crypto",
-    "music", "audio", "podcast", "voice", "speech",
-    "game", "gaming", "entertainment",
-    "food", "recipe", "cooking", "chef",
-    "fitness", "workout", "exercise",
-    "real estate", "property", "home", "renovation",
-    "legal", "contract", "lawyer", "insurance",
-    "cyber", "security", "hacking", "encryption", "binary"
-  ];
-  
+  // Only demote these specific tools - no broad category filtering
   const demoteTitles = isSpiritQuery
     ? new Set<string>([
-        "gptpastvoices - resurrection gpt",
-        "gptpastvoices-resurrection gpt",
-        "gptpastvoices",
-        "past voices",
-        // 4 clearly non-spiritual tools to demote
+        // 4 clearly non-spiritual tools to demote from spirit search
         "cyber-kabbalah light code translation engine gpt",
         "time machine of unwritten history gpt",
         "self sufficiency gpt",
         "jarvis – the steward of humanity gpt",
         "jarvis - the steward of humanity gpt",
-        "jarvis",
-        // Image/design tools
-        "galileo gpt",
-        "pixlr",
-        "canva",
-        "dall-e",
-        "midjourney",
-        "stable diffusion",
-        "firefly",
-        "ideogram"
       ])
     : null;
-  
-  // For spiritual searches, also check if tool belongs to non-spiritual categories
-  const isNonSpiritualTool = (tool: Tool): boolean => {
-    if (!isSpiritQuery) return false;
-    const title = (tool.title || "").toLowerCase();
-    const category = (tool.category || "").toLowerCase();
-    const tags = (tool.tags || []).map(t => t.toLowerCase());
-    
-    // Allow tools in Spiritual category
-    if (category.includes("spiritual") || category.includes("philosophy") || category.includes("religion")) {
-      return false;
-    }
-    
-    // Check if tool has non-spiritual keywords
-    for (const keyword of nonSpiritualKeywords) {
-      if (title.includes(keyword) || category.includes(keyword)) {
-        return true;
-      }
-      for (const tag of tags) {
-        if (tag.includes(keyword)) {
-          return true;
-        }
-      }
-    }
-    return false;
-  };
 
   const maybeDemote = (list: Tool[]) => {
-    if (!demoteTitles && !isSpiritQuery) return list;
+    if (!demoteTitles) return list;
     const demoted: Tool[] = [];
     const kept: Tool[] = [];
 
     for (const t of list) {
       const title = (t?.title || "").toLowerCase();
-      // Demote if in explicit demote list, OR if it's a non-spiritual tool during spiritual search
-      if (demoteTitles?.has(title) || title.includes("pastvoices") || isNonSpiritualTool(t)) {
+      if (demoteTitles.has(title)) {
         demoted.push(t);
       } else {
         kept.push(t);
