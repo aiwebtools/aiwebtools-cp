@@ -5,7 +5,13 @@ export const seoConfig = {
   description: "🏆 #1 AI Tools Directory with 1000+ verified tools. Better than Toolify, Futurepedia & competitors. Expert reviews, ratings & guides. Trusted by 100K+ professionals. Find ChatGPT alternatives & top AI tools 2025.",
   keywords: [
     "AI WEB TOOLS",
+    "best ai tools",
+    "ai tool directory",
     "best AI tools directory 2025",
+    "ai tools directory",
+    "best ai tools 2025",
+    "top ai tools",
+    "ai directory",
     "better than toolify",
     "comprehensive AI tools",
     "verified AI directory",
@@ -19,7 +25,10 @@ export const seoConfig = {
     "trusted AI platform",
     "complete AI database",
     "AI tools for business",
-    "AI directory leader"
+    "AI directory leader",
+    "free ai tools",
+    "ai tools list",
+    "ai tools finder"
   ],
   author: "AI WEB TOOLS LLC",
   twitterHandle: "@aiwebtools",

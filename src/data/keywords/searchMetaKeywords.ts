@@ -2,9 +2,10 @@
 // Enhanced search-related and meta keywords for maximum SEO impact
 export const searchMetaKeywords: Record<string, string[]> = {
   // Primary competitive keywords targeting top AI directories
-  "ai web tools": ["AI WEB TOOLS", "ai directory", "ai tools platform", "best ai tools", "comprehensive ai tools", "verified ai tools"],
-  "best ai tools": ["top ai tools 2025", "ai tools ranking", "best ai tools 2025", "recommended ai tools", "professional ai tools", "enterprise ai tools"],
-  "ai tools directory": ["ai tools list", "comprehensive ai directory", "complete ai tools", "ai tools database", "ai tools marketplace"],
+  "ai web tools": ["AI WEB TOOLS", "ai directory", "ai tools platform", "best ai tools", "comprehensive ai tools", "verified ai tools", "ai tool directory", "best ai tools 2025"],
+  "best ai tools": ["top ai tools 2025", "ai tools ranking", "best ai tools 2025", "recommended ai tools", "professional ai tools", "enterprise ai tools", "ai tool directory", "best ai tools list", "top rated ai tools", "number one ai tools"],
+  "ai tools directory": ["ai tools list", "comprehensive ai directory", "complete ai tools", "ai tools database", "ai tools marketplace", "best ai tools", "ai directory 2025", "ai tool finder"],
+  "ai tool directory": ["best ai tools", "ai tools list", "ai tools database", "comprehensive ai directory", "top ai directory", "ai tools finder", "ai tools catalog", "ai tools index"],
   "toolify alternative": ["better than toolify", "toolify competitor", "comprehensive ai directory", "verified ai tools platform"],
   "ai tools 2025": ["latest ai tools", "new ai tools", "trending ai tools", "ai innovations 2025", "modern ai tools"],
   
