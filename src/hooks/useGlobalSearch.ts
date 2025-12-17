@@ -155,7 +155,7 @@ const ABBREV_MAP: Record<string, string[]> = {
   "pdf": ["document", "pdf"],
 };
 
-// 3. SYNONYMS → related terms (expanded for movie/video intelligence)
+// 3. SYNONYMS → related terms (expanded for comprehensive intelligence)
 const SYNONYM_MAP: Record<string, string[]> = {
   "picture": ["image", "photo", "visual"],
   "photo": ["image", "picture", "photography"],
@@ -163,7 +163,7 @@ const SYNONYM_MAP: Record<string, string[]> = {
   "movie": ["film", "video", "cinema", "sora", "runway", "veo", "pika", "luma", "text to video", "video generation"],
   "cinema": ["movie", "film", "video"],
   "song": ["music", "audio", "melody"],
-  "voice": ["audio", "speech", "tts"],
+  "voice": ["audio", "speech", "tts", "sound", "elevenlabs"],
   "write": ["writing", "writer", "content", "text"],
   "code": ["coding", "programming", "developer"],
   "learn": ["education", "course", "training", "skill"],
@@ -182,7 +182,18 @@ const SYNONYM_MAP: Record<string, string[]> = {
   "exercise": ["fitness", "workout", "running", "gym"],
   "run": ["runway", "running", "execute"],
   "game": ["gaming", "video game", "game design"],
-  "video": ["movie", "film", "sora", "runway", "veo", "pika", "luma"],
+  "video": ["movie", "film", "sora", "runway", "veo", "pika", "luma", "video generation"],
+  "sound": ["audio", "voice", "music", "sfx", "speech"],
+  "sounds": ["audio", "voice", "music", "sfx", "speech"],
+  "audio": ["sound", "voice", "music", "speech", "podcast"],
+  "speech": ["voice", "audio", "tts", "text to speech"],
+  "agent": ["agents", "automation", "workflow", "agentic", "autonomous", "operator"],
+  "agents": ["agent", "automation", "workflow", "agentic", "autonomous", "operator", "lovable", "bolt", "n8n", "zapier"],
+  "website": ["web", "site", "webpage", "landing page", "web builder"],
+  "web": ["website", "site", "webpage", "internet"],
+  "business": ["enterprise", "company", "startup", "productivity", "work", "professional"],
+  "text to video": ["t2v", "video generation", "sora", "runway", "veo", "pika", "luma"],
+  "text to speech": ["tts", "voice synthesis", "elevenlabs", "play.ht", "murf"],
 };
 
 // 4. MAJOR PLATFORM ALIASES
@@ -198,6 +209,103 @@ const PLATFORM_ALIASES: Record<string, string[]> = {
 
 // 5. INSTANT PHRASE → TOOL TITLES (bypasses heavy search for common phrases)
 const PHRASE_TO_TOOLS: Record<string, string[]> = {
+  // ==================== TEXT TO VIDEO ====================
+  "text to video": ["Sora", "Sora 2", "SORA2 Text to Video Prompt Maker GPT", "Veo 3", "Google Veo 3", "Runway", "RunwayML", "Pika", "Pika Labs", "Luma Dream Machine", "Luma Dream Machine Prompt Assistant", "Kling AI", "HeyGen", "Synthesia", "Hailuo AI", "Higgsfield AI", "Movie Maker Studio AI SUITE"],
+  "text-to-video": ["Sora", "Sora 2", "SORA2 Text to Video Prompt Maker GPT", "Veo 3", "Google Veo 3", "Runway", "RunwayML", "Pika", "Pika Labs", "Luma Dream Machine", "Luma Dream Machine Prompt Assistant", "Kling AI", "HeyGen", "Synthesia", "Hailuo AI"],
+  "t2v": ["Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine", "Kling AI"],
+  "txt to video": ["Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine"],
+  "video prompt": ["SORA2 Text to Video Prompt Maker GPT", "Luma Dream Machine Prompt Assistant", "Sora Prompt Assistant"],
+  "video prompts": ["SORA2 Text to Video Prompt Maker GPT", "Luma Dream Machine Prompt Assistant", "Sora Prompt Assistant"],
+  "text to video prompt": ["SORA2 Text to Video Prompt Maker GPT", "Luma Dream Machine Prompt Assistant", "Sora Prompt Assistant"],
+  "video generator": ["Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine", "Kling AI", "HeyGen", "Synthesia"],
+  "video generators": ["Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine", "Kling AI", "HeyGen", "Synthesia"],
+  "ai video": ["Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine", "HeyGen", "Synthesia", "Movie Maker Studio AI SUITE"],
+  
+  // ==================== VIDEO GENERATION ====================
+  "video generation": ["Sora", "Sora 2", "Veo 3", "Google Veo 3", "Runway", "RunwayML", "Pika", "Pika Labs", "Luma Dream Machine", "Kling AI", "HeyGen", "Synthesia", "Hailuo AI", "Higgsfield AI", "Movie Maker Studio AI SUITE", "Music Video Maker AI Studio"],
+  "generate video": ["Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine", "Kling AI", "HeyGen"],
+  "create video": ["Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine", "Movie Maker Studio AI SUITE"],
+  "make video": ["Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine", "Movie Maker Studio AI SUITE"],
+  "video ai": ["Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine", "Kling AI", "HeyGen", "Synthesia"],
+  "video tools": ["Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine", "Kling AI", "HeyGen", "Synthesia", "Movie Maker Studio AI SUITE", "Video Second-by-Second Analysis GPT"],
+  
+  // ==================== TEXT TO SPEECH ====================
+  "text to speech": ["ElevenLabs", "Play.ht", "Murf.ai", "WellSaid Labs", "Resemble AI", "LOVO", "Speechify", "Amazon Polly", "Google Text-to-Speech"],
+  "text-to-speech": ["ElevenLabs", "Play.ht", "Murf.ai", "WellSaid Labs", "Resemble AI", "LOVO", "Speechify"],
+  "tts": ["ElevenLabs", "Play.ht", "Murf.ai", "WellSaid Labs", "Resemble AI", "LOVO", "Speechify"],
+  "voice synthesis": ["ElevenLabs", "Play.ht", "Murf.ai", "WellSaid Labs", "Resemble AI"],
+  "speech synthesis": ["ElevenLabs", "Play.ht", "Murf.ai", "WellSaid Labs"],
+  "ai voice": ["ElevenLabs", "Play.ht", "Murf.ai", "WellSaid Labs", "Resemble AI", "LOVO"],
+  "voice generator": ["ElevenLabs", "Play.ht", "Murf.ai", "WellSaid Labs", "Resemble AI"],
+  "voice over": ["ElevenLabs", "Play.ht", "Murf.ai", "WellSaid Labs", "Speechify"],
+  "voiceover": ["ElevenLabs", "Play.ht", "Murf.ai", "WellSaid Labs", "Speechify"],
+  
+  // ==================== SOUND & AUDIO ====================
+  "sound": ["ElevenLabs", "Play.ht", "Murf.ai", "Suno", "Udio", "Music Melodies & Lessons GPT", "Resemble AI", "LOVO", "Speechify", "Podcast Script Writer GPT"],
+  "sounds": ["ElevenLabs", "Play.ht", "Murf.ai", "Suno", "Udio", "Music Melodies & Lessons GPT", "Resemble AI", "LOVO", "Speechify"],
+  "audio": ["ElevenLabs", "Play.ht", "Murf.ai", "Suno", "Udio", "Music Melodies & Lessons GPT", "Resemble AI", "LOVO", "Speechify", "Descript", "Podcast Script Writer GPT"],
+  "audio tools": ["ElevenLabs", "Play.ht", "Murf.ai", "Suno", "Udio", "Music Melodies & Lessons GPT", "Descript", "Podcast Script Writer GPT"],
+  "voice": ["ElevenLabs", "Play.ht", "Murf.ai", "WellSaid Labs", "Resemble AI", "LOVO", "Speechify"],
+  "voice tools": ["ElevenLabs", "Play.ht", "Murf.ai", "WellSaid Labs", "Resemble AI", "LOVO"],
+  "phone agent": ["ElevenLabs", "Vapi", "Bland AI", "Retell AI", "Air AI"],
+  "voice agent": ["ElevenLabs", "Vapi", "Bland AI", "Retell AI", "Air AI"],
+  "call agent": ["ElevenLabs", "Vapi", "Bland AI", "Retell AI", "Air AI"],
+  
+  // ==================== AGENTS ====================
+  "agent": ["Lovable", "Bolt.new", "Replit Agent", "Emergent Agent", "n8n", "ChatGPT Operator", "Surf.new", "Manus", "Claude Computer Use", "OpenAI Agents", "Zapier", "Make.com", "Browser Use", "AgentGPT", "Auto-GPT", "BabyAGI", "MetaGPT"],
+  "agents": ["Lovable", "Bolt.new", "Replit Agent", "Emergent Agent", "n8n", "ChatGPT Operator", "Surf.new", "Manus", "Claude Computer Use", "OpenAI Agents", "Zapier", "Make.com", "Browser Use", "AgentGPT", "Auto-GPT", "BabyAGI", "MetaGPT", "Comet", "Taxy AI", "Genspark Agent"],
+  "ai agent": ["Lovable", "Bolt.new", "Replit Agent", "Emergent Agent", "n8n", "ChatGPT Operator", "Manus", "Claude Computer Use", "AgentGPT", "Auto-GPT"],
+  "ai agents": ["Lovable", "Bolt.new", "Replit Agent", "Emergent Agent", "n8n", "ChatGPT Operator", "Surf.new", "Manus", "Claude Computer Use", "OpenAI Agents", "AgentGPT", "Auto-GPT", "BabyAGI"],
+  "automation": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate", "IFTTT", "Workato", "Tray.io", "Bardeen"],
+  "automation agent": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate", "IFTTT", "Workato"],
+  "workflow": ["Zapier", "Make.com", "n8n", "Microsoft Power Automate", "IFTTT", "Workato", "Tray.io"],
+  "coding agent": ["Lovable", "Bolt.new", "Replit Agent", "Cursor", "GitHub Copilot", "Codeium", "Tabnine"],
+  "web agent": ["Claude Computer Use", "ChatGPT Operator", "Browser Use", "Surf.new", "Manus", "Comet", "Taxy AI"],
+  "browser agent": ["Claude Computer Use", "ChatGPT Operator", "Browser Use", "Surf.new", "Manus", "Taxy AI"],
+  
+  // ==================== WEBSITE BUILDERS ====================
+  "website": ["Lovable", "Bolt.new", "Webflow", "Framer", "Wix", "Squarespace", "Carrd", "Vercel v0", "Durable AI", "10Web"],
+  "build a website": ["Lovable", "Bolt.new", "Webflow", "Framer", "Wix", "Squarespace", "Carrd", "Vercel v0"],
+  "make a website": ["Lovable", "Bolt.new", "Webflow", "Framer", "Wix", "Squarespace"],
+  "create a website": ["Lovable", "Bolt.new", "Webflow", "Framer", "Wix", "Squarespace"],
+  "website builder": ["Lovable", "Bolt.new", "Webflow", "Framer", "Wix", "Squarespace", "Carrd", "Durable AI"],
+  "website generator": ["Lovable", "Bolt.new", "Webflow", "Framer", "Durable AI", "10Web", "Vercel v0"],
+  "web builder": ["Lovable", "Bolt.new", "Webflow", "Framer", "Wix", "Squarespace"],
+  "landing page": ["Lovable", "Bolt.new", "Webflow", "Framer", "Carrd", "Unbounce"],
+  "build website": ["Lovable", "Bolt.new", "Webflow", "Framer", "Wix", "Squarespace"],
+  "site builder": ["Lovable", "Bolt.new", "Webflow", "Framer", "Wix", "Squarespace"],
+  
+  // ==================== BUSINESS TOOLS ====================
+  "business": ["Business Plan Generator GPT", "Startup Validator GPT", "MicroSaaS GPT", "Taxes GPT", "The Resume & Job Finder Ai Suite", "Grant Writer GPT", "Training Manual Generator GPT", "Data Research Analysis Report GPT", "MULTITASKER GPT"],
+  "business tools": ["Business Plan Generator GPT", "Startup Validator GPT", "MicroSaaS GPT", "Taxes GPT", "The Resume & Job Finder Ai Suite", "Grant Writer GPT", "Training Manual Generator GPT", "Data Research Analysis Report GPT"],
+  "startup": ["Startup Validator GPT", "Business Plan Generator GPT", "MicroSaaS GPT"],
+  "business plan": ["Business Plan Generator GPT", "Startup Validator GPT"],
+  "start a business": ["Business Plan Generator GPT", "Startup Validator GPT", "MicroSaaS GPT"],
+  "company": ["Business Plan Generator GPT", "Startup Validator GPT", "MicroSaaS GPT", "Training Manual Generator GPT"],
+  "enterprise": ["Business Plan Generator GPT", "Data Research Analysis Report GPT", "Training Manual Generator GPT"],
+  "productivity": ["Notion", "ClickUp", "Asana", "Monday.com", "Todoist", "Trello", "MULTITASKER GPT"],
+  "productivity tools": ["Notion", "ClickUp", "Asana", "Monday.com", "Todoist", "Trello", "MULTITASKER GPT"],
+  
+  // ==================== IMAGE GENERATION ====================
+  "image": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram", "Adobe Firefly", "Graphic & Cover Design GPT"],
+  "image generation": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram", "Adobe Firefly", "Flux"],
+  "image generator": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram", "Adobe Firefly"],
+  "text to image": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram", "Adobe Firefly", "Flux"],
+  "ai image": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram", "Adobe Firefly"],
+  "generate image": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram"],
+  "make image": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram"],
+  "create image": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI", "Ideogram"],
+  
+  // ==================== MUSIC ====================
+  "music": ["Suno", "Udio", "Music Melodies & Lessons GPT", "Music Video Maker AI Studio", "AIVA", "Soundraw", "Boomy"],
+  "music generation": ["Suno", "Udio", "AIVA", "Soundraw", "Boomy", "Mubert"],
+  "music generator": ["Suno", "Udio", "AIVA", "Soundraw", "Boomy"],
+  "make music": ["Suno", "Udio", "Music Melodies & Lessons GPT", "AIVA", "Soundraw"],
+  "create music": ["Suno", "Udio", "Music Melodies & Lessons GPT", "AIVA"],
+  "ai music": ["Suno", "Udio", "AIVA", "Soundraw", "Boomy", "Mubert"],
+  "song": ["Suno", "Udio", "Music Melodies & Lessons GPT"],
+  "make a song": ["Suno", "Udio"],
+  
   // Writing intents
   "write a book": ["BOOK WRITER GPT", "Article and Blog Rewriter GPT"],
   "want to write a book": ["BOOK WRITER GPT", "Article and Blog Rewriter GPT"],
@@ -210,6 +318,8 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "write a play": ["Playwriter GPT"],
   "write an article": ["Article and Blog Rewriter GPT"],
   "write a blog": ["Article and Blog Rewriter GPT"],
+  "writing": ["BOOK WRITER GPT", "Article and Blog Rewriter GPT", "Movie Script Writer GPT", "Playwriter GPT", "Grammarly", "Jasper AI"],
+  "writing tools": ["BOOK WRITER GPT", "Article and Blog Rewriter GPT", "Grammarly", "Jasper AI", "Writesonic"],
   
   // Learning intents
   "learn a skill": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT"],
@@ -219,6 +329,8 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "go to college": ["COLLEGE DEGREE GPT"],
   "get a degree": ["COLLEGE DEGREE GPT"],
   "study": ["LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT"],
+  "education": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT", "Home-Schooling Assistant GPT", "Course Maker GPT"],
+  "education tools": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT", "Home-Schooling Assistant GPT"],
   
   // Video/movie intents (EXPANDED for all video production tools)
   "make a video": ["Movie Maker Studio AI SUITE", "Music Video Maker AI Studio", "Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine"],
@@ -229,8 +341,6 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "movie": ["Movie Maker Studio AI SUITE", "Movie Script Writer GPT", "Movie Scene Maker GPT", "Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine", "SORA2 Text to Video Prompt Maker GPT", "Luma Dream Machine Prompt Assistant"],
   "film": ["Movie Maker Studio AI SUITE", "Movie Script Writer GPT", "Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine"],
   "video production": ["Movie Maker Studio AI SUITE", "Music Video Maker AI Studio", "Sora", "Sora 2", "Veo 3", "Runway", "Pika"],
-  "text to video": ["Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine", "SORA2 Text to Video Prompt Maker GPT", "Luma Dream Machine Prompt Assistant"],
-  "video generator": ["Sora", "Sora 2", "Veo 3", "Runway", "Pika", "Luma Dream Machine", "HeyGen", "Synthesia"],
   "make a music video": ["Music Video Maker AI Studio"],
   
   // Image intents
@@ -242,7 +352,6 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "make a logo": ["Graphic & Cover Design GPT", "Canva", "Looka"],
   
   // Business intents
-  "start a business": ["Business Plan Generator GPT", "Startup Validator GPT", "MicroSaaS GPT"],
   "write a business plan": ["Business Plan Generator GPT"],
   "create a business plan": ["Business Plan Generator GPT"],
   "find a job": ["The Resume & Job Finder Ai Suite"],
@@ -258,6 +367,8 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "mental health": ["Mental Wellness GPT"],
   "pet health": ["Veterinarian GPT"],
   "vet advice": ["Veterinarian GPT"],
+  "health": ["Personalized DR. GPT (Doctor GPT)", "Mental Wellness GPT", "Veterinarian GPT", "Pharmaceutical Assistant GPT"],
+  "health tools": ["Personalized DR. GPT (Doctor GPT)", "Mental Wellness GPT", "Veterinarian GPT"],
   
   // Spiritual/philosophy intents
   "talk to god": ["TALK TO THE GODS GPT"],
@@ -268,25 +379,23 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "read my fortune": ["Fortune Teller GPT"],
   "interpret my dream": ["Dream Interpreter GPT"],
   "what does my dream mean": ["Dream Interpreter GPT"],
+  "spiritual": ["TALK TO THE GODS GPT", "ALAN WATTS GPT", "Sophia Aeterna AI", "Resurrection GPT", "Mary Magdalene GPT", "God Is Light GPT"],
+  "spiritual tools": ["TALK TO THE GODS GPT", "ALAN WATTS GPT", "Sophia Aeterna AI", "Resurrection GPT"],
   
   // Legal intents
   "legal help": ["Public Defender GPT", "Legal Draftsmith GPT"],
   "write a contract": ["Contract Review Bot", "Legal Draftsmith GPT"],
   "review a contract": ["Contract Review Bot"],
+  "legal": ["Public Defender GPT", "Legal Draftsmith GPT", "Contract Review Bot", "Legislation Writer GPT"],
+  "legal tools": ["Public Defender GPT", "Legal Draftsmith GPT", "Contract Review Bot"],
   
   // Coding intents
   "build an app": ["Lovable", "Bolt.new", "Replit", "Vercel v0"],
   "make an app": ["Lovable", "Bolt.new", "Replit", "Vercel v0"],
   "create an app": ["Lovable", "Bolt.new", "Replit", "Vercel v0"],
-  "build a website": ["Lovable", "Bolt.new", "Webflow", "Framer"],
-  "make a website": ["Lovable", "Bolt.new", "Webflow", "Framer"],
-  
-  // Music intents
-  "make music": ["Suno", "Udio", "Music Melodies & Lessons GPT"],
-  "create music": ["Suno", "Udio", "Music Melodies & Lessons GPT"],
-  "make a song": ["Suno", "Udio"],
-  "learn music": ["Music Melodies & Lessons GPT"],
-  "learn an instrument": ["Music Melodies & Lessons GPT"],
+  "coding": ["Lovable", "Bolt.new", "GitHub Copilot", "Cursor", "Replit", "Codeium", "Tabnine"],
+  "coding tools": ["GitHub Copilot", "Cursor", "Lovable", "Bolt.new", "Replit", "Codeium"],
+  "programming": ["GitHub Copilot", "Cursor", "Lovable", "Bolt.new", "Replit", "Codeium", "Tabnine"],
   
   // Fun/entertainment intents  
   "play trivia": ["Trivia Night GPT"],
@@ -295,6 +404,8 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "chat with celebrity": ["Celebrity Chatline GPT"],
   "make a game": ["Game Design Document / Developer GPT", "Seele Video Game Generator"],
   "create a game": ["Game Design Document / Developer GPT", "Seele Video Game Generator"],
+  "game": ["Game Design Document / Developer GPT", "Seele Video Game Generator", "Trivia Night GPT"],
+  "gaming": ["Game Design Document / Developer GPT", "Seele Video Game Generator"],
   
   // Question patterns - "how do I..."
   "how do i write a book": ["BOOK WRITER GPT"],
@@ -320,20 +431,8 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   // "Best..." patterns
   "best ai for writing": ["BOOK WRITER GPT", "ChatGPT", "Claude"],
   "best ai for images": ["Midjourney", "DALL-E 3", "Stable Diffusion"],
-  "best ai for video": ["Sora", "Runway", "Pika"],
+  "best ai for video": ["Sora", "Runway", "Pika", "Veo 3"],
   "best ai for coding": ["GitHub Copilot", "Cursor", "Lovable"],
-  
-  // Category shortcuts
-  "video tools": ["Sora", "Runway", "Pika", "Luma", "Movie Maker Studio AI SUITE"],
-  "writing tools": ["BOOK WRITER GPT", "Article and Blog Rewriter GPT", "Grammarly"],
-  "image tools": ["Midjourney", "DALL-E 3", "Stable Diffusion", "Leonardo AI"],
-  "coding tools": ["GitHub Copilot", "Cursor", "Lovable", "Bolt.new", "Replit"],
-  "music tools": ["Suno", "Udio", "Music Melodies & Lessons GPT"],
-  "education tools": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT"],
-  "health tools": ["Personalized DR. GPT (Doctor GPT)", "Mental Wellness GPT", "Veterinarian GPT"],
-  "business tools": ["Business Plan Generator GPT", "Startup Validator GPT", "Taxes GPT"],
-  "legal tools": ["Public Defender GPT", "Legal Draftsmith GPT", "Contract Review Bot"],
-  "spiritual tools": ["TALK TO THE GODS GPT", "ALAN WATTS GPT", "Sophia Aeterna AI"],
   
   // Specific task patterns
   "analyze data": ["Data Research Analysis Report GPT", "ChatGPT"],
@@ -367,6 +466,21 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "create a quiz": ["Quiz Maker Ai"],
   "podcast script": ["Podcast Script Writer GPT"],
   "write a podcast": ["Podcast Script Writer GPT"],
+  
+  // Chat/Assistant patterns
+  "chatbot": ["ChatGPT", "Claude", "Gemini", "Perplexity", "Character.AI"],
+  "chat": ["ChatGPT", "Claude", "Gemini", "Perplexity", "Character.AI"],
+  "assistant": ["ChatGPT", "Claude", "Gemini", "Perplexity", "MULTITASKER GPT"],
+  "ai assistant": ["ChatGPT", "Claude", "Gemini", "Perplexity", "MULTITASKER GPT"],
+  
+  // Design patterns
+  "design": ["Canva", "Figma", "Adobe Firefly", "Graphic & Cover Design GPT", "Framer"],
+  "design tools": ["Canva", "Figma", "Adobe Firefly", "Graphic & Cover Design GPT"],
+  "graphic design": ["Canva", "Figma", "Adobe Firefly", "Graphic & Cover Design GPT"],
+  
+  // Research patterns
+  "research": ["Perplexity", "ChatGPT", "Claude", "Data Research Analysis Report GPT", "FACT CHECKER GPT"],
+  "research tools": ["Perplexity", "ChatGPT", "Claude", "Data Research Analysis Report GPT"],
 };
 
 // 6. INTENT KEYWORDS → tool types (fallback for partial matches)
