@@ -4,12 +4,14 @@ import { Search, Sparkles, Zap, Brain, Rocket, Stars } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import GlobalSearchBar from "./GlobalSearchBar";
 import { getCurrentToolCount } from "@/utils/toolCounter";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const HeroSection = () => {
   const navigate = useNavigate();
   const [currentWord, setCurrentWord] = useState(0);
   const [showBrandName, setShowBrandName] = useState(false);
   const [toolStats, setToolStats] = useState({ total: 0, marketing: "0+", categories: 0 });
+  const reduceMotion = useReducedMotion();
   
   const words = [
     "Find",
@@ -25,10 +27,13 @@ const HeroSection = () => {
     const stats = getCurrentToolCount();
     setToolStats(stats);
     
+    // Skip animations if reduced motion is needed (Facebook browser, etc.)
+    if (reduceMotion) return;
+    
     // Animate between tool count and brand name
     const brandInterval = setInterval(() => {
       setShowBrandName(prev => !prev);
-    }, 4000); // Switch every 4 seconds
+    }, 4000);
     
     const wordInterval = setInterval(() => {
       setCurrentWord((prev) => (prev + 1) % words.length);
@@ -38,21 +43,22 @@ const HeroSection = () => {
       clearInterval(brandInterval);
       clearInterval(wordInterval);
     };
-  }, []);
+  }, [reduceMotion]);
 
   const handleExploreAITools = () => {
-    // Navigate to ALL AI TOOLS main category page
     navigate('/main-category/ALL%20AI%20TOOLS');
   };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden pt-32 md:pt-36 lg:pt-40">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-cyan-500/5 to-blue-500/5 rounded-full blur-3xl animate-spin-slow"></div>
-      </div>
+      {/* Animated background elements - disabled for limited browsers */}
+      {!reduceMotion && (
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-cyan-500/5 to-blue-500/5 rounded-full blur-3xl animate-spin-slow"></div>
+        </div>
+      )}
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* SEO-optimized hidden H1 for search engines */}
