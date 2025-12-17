@@ -19,13 +19,29 @@ const UniversalInfoBadge = ({ size = "xs", className = "" }: UniversalInfoBadgeP
   };
 
   return (
-    <span 
-      className={`inline-flex items-center ${sizeClasses[size]} bg-muted/50 text-muted-foreground/70 rounded font-medium ${className}`}
-      title="For informational, educational & self-empowerment purposes only"
-    >
-      <Info className={iconSizes[size]} />
-      <span>Information purposes only</span>
-    </span>
+    <div className={`flex flex-wrap gap-0.5 ${className}`}>
+      <span 
+        className={`inline-flex items-center ${sizeClasses[size]} bg-muted/50 text-muted-foreground/70 rounded font-medium`}
+        title="For informational purposes only"
+      >
+        <Info className={iconSizes[size]} />
+        <span>Information purposes only</span>
+      </span>
+      <span 
+        className={`inline-flex items-center ${sizeClasses[size]} bg-muted/50 text-muted-foreground/70 rounded font-medium`}
+        title="For educational purposes only"
+      >
+        <Info className={iconSizes[size]} />
+        <span>Educational purposes only</span>
+      </span>
+      <span 
+        className={`inline-flex items-center ${sizeClasses[size]} bg-muted/50 text-muted-foreground/70 rounded font-medium`}
+        title="For self-empowerment purposes only"
+      >
+        <Info className={iconSizes[size]} />
+        <span>Self empowerment purposes only</span>
+      </span>
+    </div>
   );
 };
 
