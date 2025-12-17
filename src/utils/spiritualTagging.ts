@@ -71,6 +71,30 @@ const SIMULATION_KEYWORDS = [
   'chatline', 'talk to', 'speak with'
 ];
 
+// Keywords that indicate 18+ adult content tools
+const ADULT_CONTENT_KEYWORDS = [
+  // Firearms/Weapons
+  'firearm', 'firearms', 'gun', 'guns', 'weapon', 'weapons', 'ammunition', 'ammo',
+  'shooting', 'rifle', 'pistol', 'handgun', 'shotgun',
+  
+  // Alcohol
+  'alcohol', 'alcoholic', 'mixology', 'mixologist', 'bartender', 'cocktail', 'cocktails',
+  'whiskey', 'vodka', 'rum', 'tequila', 'gin', 'bourbon', 'wine', 'beer', 'liquor',
+  'bar', 'drinking', 'drunk',
+  
+  // Cannabis/Drugs
+  'cannabis', 'marijuana', 'weed', 'hemp', 'cbd', 'thc', 'dispensary',
+  
+  // Gambling
+  'gambling', 'casino', 'betting', 'poker', 'blackjack', 'slots',
+  
+  // Trading/Investment (financial risk)
+  'day trading', 'forex', 'options trading', 'leverage',
+  
+  // Other adult topics
+  'tobacco', 'cigarette', 'vape', 'vaping', 'nicotine'
+];
+
 // Check if a tool matches spiritual keywords
 const isSpiritualTool = (tool: Tool): boolean => {
   const searchText = [
@@ -94,12 +118,24 @@ const needsSimulationTag = (tool: Tool): boolean => {
   return SIMULATION_KEYWORDS.some(keyword => searchText.includes(keyword.toLowerCase()));
 };
 
+// Check if a tool is 18+ adult content
+const isAdultContent = (tool: Tool): boolean => {
+  const searchText = [
+    tool.title,
+    tool.description,
+    ...(tool.tags || [])
+  ].join(' ').toLowerCase();
+  
+  return ADULT_CONTENT_KEYWORDS.some(keyword => searchText.includes(keyword.toLowerCase()));
+};
+
 // Apply spiritual and simulation tags to tools
 export const applySpirtualTags = (tools: Tool[]): Tool[] => {
   return tools.map(tool => {
     const tags = [...(tool.tags || [])];
     const isSpiritual = isSpiritualTool(tool);
     const needsSimulation = needsSimulationTag(tool);
+    const isAdult = isAdultContent(tool);
     
     // Add Spirituality tag to spiritual tools
     if (isSpiritual && !tags.includes('Spirituality')) {
@@ -109,6 +145,11 @@ export const applySpirtualTags = (tools: Tool[]): Tool[] => {
     // Add Simulation tag to all liability-risk tools
     if (needsSimulation && !tags.includes('Simulation')) {
       tags.push('Simulation');
+    }
+    
+    // Add 18+ tag to adult content tools
+    if (isAdult && !tags.includes('18+')) {
+      tags.push('18+');
     }
     
     // Spiritual simulation tools also get Spirituality tag
