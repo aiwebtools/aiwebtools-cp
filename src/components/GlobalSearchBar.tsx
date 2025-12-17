@@ -14,11 +14,13 @@ const GlobalSearchBar = () => {
     isLoadingMore,
     toolStats,
     searchRef,
+    prediction,
     handleToolClick,
     handleDirectAccess,
     clearSearch,
     handleKeyDown,
     handleScroll,
+    acceptPrediction,
   } = useGlobalSearch();
 
   return (
@@ -28,9 +30,11 @@ const GlobalSearchBar = () => {
         <GlobalSearchInput
           searchTerm={searchTerm}
           toolStats={toolStats}
+          prediction={prediction}
           onSearchChange={setSearchTerm}
           onKeyDown={handleKeyDown}
           onClear={clearSearch}
+          onAcceptPrediction={acceptPrediction}
         />
 
         {isOpen && searchResults.length > 0 && (
