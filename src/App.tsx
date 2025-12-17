@@ -1,5 +1,6 @@
+
 import * as React from 'react'
-import { Suspense, lazy, useEffect } from 'react';
+import { Suspense, lazy } from 'react';
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -12,15 +13,6 @@ import { usePrefetchRoutes } from "@/hooks/usePrefetch";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import PageTransition from "@/components/navigation/PageTransition";
 import MatrixCursorEffect from "@/components/effects/MatrixCursorEffect";
-
-// Fade out loading screen when React mounts
-const fadeOutLoadingScreen = () => {
-  const loader = document.querySelector('.loading-spinner');
-  if (loader) {
-    loader.classList.add('fade-out');
-    setTimeout(() => loader.remove(), 400);
-  }
-};
 
 // Eager load - critical path (home page AND disclaimer gate for instant first load)
 import Index from "./pages/Index";
@@ -121,11 +113,6 @@ const RouteGuard: React.FC = () => {
   return <AnimatedRoutes />;
 };
 function App() {
-  // Fade out the loading screen smoothly when React mounts
-  useEffect(() => {
-    fadeOutLoadingScreen();
-  }, []);
-  
   // Initialize cross-browser optimizations
   useCrossBrowserOptimization();
   
@@ -142,14 +129,17 @@ function App() {
           <FavoritesProvider>
             <TooltipProvider>
               <Toaster />
+              <Suspense fallback={null}>
+                <WelcomeVoiceSystem />
+              </Suspense>
               <MatrixCursorEffect />
               <BrowserRouter>
-                <ConditionalWelcomeVoice />
-                <RouteGuard />
-                <Suspense fallback={null}>
-                  <FloatingCloneButton />
-                </Suspense>
-              </BrowserRouter>
+-                <AnimatedRoutes />
+-                {/* Tiny floating clone button - hides on scroll */}
+-                <Suspense fallback={null}>
+-                  <FloatingCloneButton />
+-                </Suspense>
+-              </BrowserRouter>
             </TooltipProvider>
           </FavoritesProvider>
         </HelmetProvider>
@@ -157,18 +147,5 @@ function App() {
     </ErrorBoundary>
   );
 }
-
-// Only play welcome voice AFTER disclaimer is accepted
-const ConditionalWelcomeVoice = () => {
-  const hasAccepted = typeof window !== "undefined" && window.localStorage.getItem("aitools-consent-v3");
-  
-  if (!hasAccepted) return null;
-  
-  return (
-    <Suspense fallback={null}>
-      <WelcomeVoiceSystem />
-    </Suspense>
-  );
-};
 
 export default App;
