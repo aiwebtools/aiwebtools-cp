@@ -46,12 +46,12 @@ const PageLoader = () => (
   <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
     {/* Matrix rain columns */}
     <div className="absolute inset-0 pointer-events-none">
-      {Array.from({ length: 60 }).map((_, i) => (
+      {Array.from({ length: 25 }).map((_, i) => (
         <div
           key={i}
           className="absolute top-0 text-green-500 text-sm font-mono opacity-70 animate-pulse"
           style={{
-            left: `${(i / 60) * 100}%`,
+            left: `${(i / 25) * 100}%`,
             animation: `matrixFall ${2 + Math.random() * 3}s linear infinite`,
             animationDelay: `${Math.random() * 2}s`,
           }}
