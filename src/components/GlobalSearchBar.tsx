@@ -9,6 +9,7 @@ const GlobalSearchBar = () => {
     searchTerm,
     setSearchTerm,
     searchResults,
+    directMatchCount,
     displayedCount,
     isOpen,
     isLoadingMore,
@@ -42,6 +43,7 @@ const GlobalSearchBar = () => {
             searchResults={searchResults}
             displayedCount={displayedCount}
             isLoadingMore={isLoadingMore}
+            directMatchCount={directMatchCount}
             onToolClick={handleToolClick}
             onDirectAccess={handleDirectAccess}
             onScroll={handleScroll}

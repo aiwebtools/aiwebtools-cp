@@ -1471,27 +1471,102 @@ export const useGlobalSearch = () => {
     }
   }, [searchTerm, searchResults, navigate]);
 
+  // Track how many direct matches exist vs total shown (including recommendations)
+  const [directMatchCount, setDirectMatchCount] = useState(0);
+  const [recommendedTools, setRecommendedTools] = useState<any[]>([]);
+  const [isLoadingRecommendations, setIsLoadingRecommendations] = useState(false);
+  
+  // Update direct match count when search results change
+  useEffect(() => {
+    setDirectMatchCount(searchResults.length);
+    setRecommendedTools([]);
+  }, [searchResults]);
+
+  // Generate recommended tools when direct matches are exhausted
+  const loadMoreRecommendations = useCallback(() => {
+    if (isLoadingRecommendations) return;
+    
+    setIsLoadingRecommendations(true);
+    
+    // Get tools NOT already in search results
+    const existingTitles = new Set([
+      ...searchResults.map(t => t?.title?.toLowerCase()),
+      ...recommendedTools.map(t => t?.title?.toLowerCase())
+    ]);
+    
+    // Get category preferences from search results to find similar tools
+    const categoryBoosts = new Map<string, number>();
+    searchResults.forEach(tool => {
+      if (tool?.category) {
+        categoryBoosts.set(tool.category, (categoryBoosts.get(tool.category) || 0) + 1);
+      }
+    });
+    
+    // Filter and score remaining tools
+    const remaining = allTools.filter(t => 
+      t?.title && !existingTitles.has(t.title.toLowerCase())
+    );
+    
+    // Score by category similarity to search results
+    const scored = remaining.map(tool => {
+      let score = 0;
+      if (tool?.category && categoryBoosts.has(tool.category)) {
+        score += categoryBoosts.get(tool.category)! * 10;
+      }
+      // Add some randomization to keep it interesting
+      score += Math.random() * 5;
+      return { tool, score };
+    });
+    
+    // Sort by score and take next batch
+    scored.sort((a, b) => b.score - a.score);
+    const nextBatch = scored.slice(0, 30).map(s => s.tool);
+    
+    requestAnimationFrame(() => {
+      setRecommendedTools(prev => [...prev, ...nextBatch]);
+      setIsLoadingRecommendations(false);
+    });
+  }, [searchResults, recommendedTools, isLoadingRecommendations]);
+
+  // Combined results: direct matches + recommendations
+  const combinedResults = useMemo(() => {
+    return [...searchResults, ...recommendedTools];
+  }, [searchResults, recommendedTools]);
+
   // INFINITE SCROLL - Load more results as user scrolls
   const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     
-    // Don't trigger if already loading or no more results
-    if (isLoadingMore || displayedCount >= searchResults.length) return;
+    // Don't trigger if already loading
+    if (isLoadingMore || isLoadingRecommendations) return;
     
     // Trigger load when within 300px of bottom
     const threshold = 300;
     const nearBottom = scrollTop + clientHeight >= scrollHeight - threshold;
     
     if (nearBottom) {
-      setIsLoadingMore(true);
-      
-      // Load 50 more items
-      requestAnimationFrame(() => {
-        setDisplayedCount(prev => Math.min(prev + 50, searchResults.length));
-        setIsLoadingMore(false);
-      });
+      // If we haven't shown all direct matches yet
+      if (displayedCount < searchResults.length) {
+        setIsLoadingMore(true);
+        requestAnimationFrame(() => {
+          setDisplayedCount(prev => Math.min(prev + 50, searchResults.length));
+          setIsLoadingMore(false);
+        });
+      } 
+      // If direct matches exhausted, load recommendations
+      else if (displayedCount < combinedResults.length) {
+        setIsLoadingMore(true);
+        requestAnimationFrame(() => {
+          setDisplayedCount(prev => Math.min(prev + 30, combinedResults.length));
+          setIsLoadingMore(false);
+        });
+      }
+      // If showing all combined results, load more recommendations
+      else if (recommendedTools.length < allTools.length - searchResults.length) {
+        loadMoreRecommendations();
+      }
     }
-  }, [displayedCount, searchResults.length, isLoadingMore]);
+  }, [displayedCount, searchResults.length, combinedResults.length, recommendedTools.length, isLoadingMore, isLoadingRecommendations, loadMoreRecommendations]);
 
   // Generate prediction based on top result
   const prediction = useMemo(() => {
@@ -1527,10 +1602,11 @@ export const useGlobalSearch = () => {
   return {
     searchTerm,
     setSearchTerm,
-    searchResults,
+    searchResults: combinedResults, // Return combined results
+    directMatchCount, // How many were direct matches
     displayedCount,
     isOpen,
-    isLoadingMore,
+    isLoadingMore: isLoadingMore || isLoadingRecommendations,
     toolStats,
     searchRef,
     prediction,
