@@ -47,7 +47,7 @@ class LRUCache<K, V> {
 
 // Global search cache (persists across component re-renders)
 // NOTE: versioned to prevent "stale" cached results after search-intelligence updates.
-const SEARCH_CACHE_VERSION = "v4";
+const SEARCH_CACHE_VERSION = "v5";
 const searchCache = new LRUCache<string, any[]>(50);
 
 // ==================== INTELLIGENCE MAPS (precomputed, instant lookup) ====================
@@ -994,6 +994,13 @@ export const useGlobalSearch = () => {
       if (!score && qFirstWord === "learn" && it.words[0] === "learn") {
         score = 78000;
         if (isAIWebToolsGPT) score += 7800;
+      }
+
+      // TIER 1.75: ULTRA-PREFIX BOOST for short "le"/"lea"/"lear" queries
+      // Users expect typing "le" to instantly surface LEARN tools first.
+      if (!score && q.length <= 3 && "learn".startsWith(q) && it.words[0] === "learn") {
+        score = 90000;
+        if (isAIWebToolsGPT) score += 9000;
       }
 
       // TIER 2: First word of title IS the query exactly (e.g., "learn" → "LEARN ANY COURSE GPT")
