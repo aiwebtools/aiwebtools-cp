@@ -129,5 +129,19 @@ export const timeAndHistoryGPTs: Tool[] = [
       rating: 4.8,
       totalVotes: 1543,
       isFree: true
+    },
+    {
+      icon: Clock,
+      title: "Time Machine of Unwritten History GPT",
+      description: "An unfiltered cosmic historian revealing lost truths through immersive time travel. Explore hidden history, unveil forgotten civilizations, and journey through alternative narratives that mainstream history has overlooked. Discover the lost and suppressed knowledge of ancient worlds, erased cultures, and forgotten events through an immersive time travel adventure. By AiWebTools.Ai using GPT-4o.",
+      emoji: "🌌",
+      color: "from-purple-600 to-amber-500",
+      directUrl: "https://chatgpt.com/g/g-6942c94dcb08819191863b6d35161f09-time-machine-of-unwritten-history-gpt?via=aiwebtools",
+      imageUrl: "/src/assets/time-machine-unwritten-history.png",
+      tags: ["time travel", "hidden history", "lost civilizations", "unwritten history", "alternative history", "cosmic historian", "forgotten knowledge", "ancient secrets", "aiwebtools", "Custom GPT"],
+      category: "Time & History",
+      rating: 4.9,
+      totalVotes: 1234,
+      isFree: true
     }
 ];
