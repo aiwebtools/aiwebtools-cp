@@ -88,7 +88,7 @@ export const specializedNicheToolsGPTs: Tool[] = [
     color: "from-orange-500 to-red-600",
     directUrl: "https://nativeamerican-timemachine.lovable.app/?via=aiwebtools",
     videoUrl: "https://www.youtube.com/watch?v=jVFTGCeuNSM",
-    tags: ["Native American history", "cultural education", "time travel simulation", "historical immersion", "cultural preservation", "Custom GPT"],
+    tags: ["Native American history", "cultural education", "time travel simulation", "time machine", "historical immersion", "cultural preservation", "Custom GPT"],
     category: "Specialized Niche Tools",
     rating: 4.8,
     totalVotes: 6789
