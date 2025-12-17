@@ -141,12 +141,13 @@ const DesktopMenu = () => {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent 
-            className="w-[480px] bg-black shadow-2xl border border-cyan-500/40 max-h-[85vh] overflow-y-auto z-[110]"
+            className="w-[480px] bg-black shadow-2xl border border-cyan-500/40 max-h-[85vh] overflow-y-scroll z-[110]"
             align="end"
             alignOffset={0}
             sideOffset={8}
             avoidCollisions={true}
             sticky="always"
+            style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y', overscrollBehavior: 'contain' }}
           >
             <div className="p-4">
               {/* Compact Header with Close Button */}
