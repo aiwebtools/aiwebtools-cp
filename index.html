@@ -121,6 +121,11 @@
         position: relative;
         overflow: hidden;
         background: #030712;
+        transition: opacity 0.4s ease-out;
+      }
+      .loading-spinner.fade-out {
+        opacity: 0;
+        pointer-events: none;
       }
       .matrix-rain { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
       .m { position: absolute; top: -20%; font: 10px monospace; color: #00ff41; writing-mode: vertical-rl; animation: f linear infinite; will-change: transform; text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 40px rgba(0,255,65,0.5); }
