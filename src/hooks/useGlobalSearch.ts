@@ -507,6 +507,7 @@ const PHRASE_TO_TOOLS: Record<string, string[]> = {
   "writing tools": ["BOOK WRITER GPT", "Article and Blog Rewriter GPT", "Grammarly", "Jasper AI", "Writesonic"],
   
   // Learning intents - EXACT TOOL NAMES FIRST
+  "learn everything": ["LEARN ANY SKILL GPT", "LEARN ANY COURSE GPT", "COLLEGE DEGREE GPT"],
   "learn any skill": ["LEARN ANY SKILL GPT"],
   "learn any skill gpt": ["LEARN ANY SKILL GPT"],
   "learn any course": ["LEARN ANY COURSE GPT"],
@@ -953,6 +954,10 @@ export const useGlobalSearch = () => {
     const qSingular = q.endsWith('s') && q.length > 3 ? q.slice(0, -1) : q;
     const qPlural = !q.endsWith('s') ? q + 's' : q;
 
+    // Fast intent extraction (keeps typing smooth)
+    const qWords = q.split(/\s+/).filter(Boolean);
+    const qFirstWord = qWords[0] || "";
+
     // === STEP 2: Score all tools ===
     type Scored = { tool: any; score: number };
     const scored: Scored[] = [];
@@ -970,22 +975,27 @@ export const useGlobalSearch = () => {
         if (isAIWebToolsGPT) score += 10000;
       }
       // TIER 1.5: ALL QUERY WORDS MATCH TITLE WORDS (e.g., "learn any skill" → "LEARN ANY SKILL GPT")
-      else if (q.includes(' ')) {
-        const queryWords = q.split(/\s+/).filter(w => w.length >= 2);
-        if (queryWords.length >= 2) {
-          const allMatch = queryWords.every(qw => it.words.some(tw => tw === qw || tw.startsWith(qw)));
-          if (allMatch) {
-            // Check if consecutive in title (exact phrase match)
-            if (it.t.includes(q)) {
-              score = 95000; // Almost as good as exact match
-              if (isAIWebToolsGPT) score += 9500;
-            } else {
-              score = 85000; // All words match but not consecutive
-              if (isAIWebToolsGPT) score += 8500;
-            }
+      else if (qWords.length >= 2) {
+        const allMatch = qWords.every(qw => qw.length < 2 ? true : it.words.some(tw => tw === qw || tw.startsWith(qw)));
+        if (allMatch) {
+          // Check if consecutive in title (exact phrase match)
+          if (it.t.includes(q)) {
+            score = 95000; // Almost as good as exact match
+            if (isAIWebToolsGPT) score += 9500;
+          } else {
+            score = 85000; // All words match but not consecutive
+            if (isAIWebToolsGPT) score += 8500;
           }
         }
       }
+
+      // TIER 1.7: HEAD-INTENT MATCH ("learn anything", "learn everything")
+      // If the query starts with "learn", prioritize all "LEARN ..." tools even if the second word doesn't match.
+      if (!score && qFirstWord === "learn" && it.words[0] === "learn") {
+        score = 78000;
+        if (isAIWebToolsGPT) score += 7800;
+      }
+
       // TIER 2: First word of title IS the query exactly (e.g., "learn" → "LEARN ANY COURSE GPT")
       if (!score && it.words[0] === q) {
         score = 80000;
@@ -1216,27 +1226,32 @@ export const useGlobalSearch = () => {
           if (currentId !== searchIdRef.current) return;
           const results = searchTools(allTools, t);
 
-          // Keep full intelligence, but ensure literal prefix matches never get buried
-          const q = t.toLowerCase().trim();
-          const reranked = results
-            .map((tool, idx) => {
-              const title = (tool?.title || "").toLowerCase();
-              const words = title.split(/\s+/).filter(Boolean);
-              const firstWord = words[0] || "";
-              let boost = 0;
+           // Keep full intelligence, but ensure literal prefix matches never get buried
+           const q = t.toLowerCase().trim();
+           const qFirst = q.split(/\s+/)[0] || "";
+           const reranked = results
+             .map((tool, idx) => {
+               const title = (tool?.title || "").toLowerCase();
+               const words = title.split(/\s+/).filter(Boolean);
+               const firstWord = words[0] || "";
+               let boost = 0;
 
-              if (title === q) boost = 400000;
-              else if (firstWord === q) boost = 300000;
-              else if (title.startsWith(q)) boost = 200000;
-              else if (words.some((w) => w.startsWith(q))) boost = 120000;
+               // Exact / prefix boosts
+               if (title === q) boost = 400000;
+               else if (firstWord === q) boost = 300000;
+               else if (title.startsWith(q)) boost = 200000;
+               else if (words.some((w) => w.startsWith(q))) boost = 120000;
 
-              return { tool, idx, boost };
-            })
-            .sort((a, b) => {
-              if (b.boost !== a.boost) return b.boost - a.boost;
-              return a.idx - b.idx; // stable fallback (preserve searchTools ordering)
-            })
-            .map((x) => x.tool);
+               // Head-intent boosts (e.g., "learn everything" should still prioritize LEARN tools)
+               if (!boost && qFirst && firstWord === qFirst) boost = 180000;
+
+               return { tool, idx, boost };
+             })
+             .sort((a, b) => {
+               if (b.boost !== a.boost) return b.boost - a.boost;
+               return a.idx - b.idx; // stable fallback (preserve searchTools ordering)
+             })
+             .map((x) => x.tool);
 
           // Cache full search results
           searchCache.set(fullCacheKey, reranked);
