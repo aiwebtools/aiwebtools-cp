@@ -161,6 +161,13 @@
           el.textContent = s;
         });
       }, 80);
+      
+      // Prefetch tools data in background during loading animation
+      // This warms up the module cache so search is instant when app loads
+      setTimeout(() => {
+        import('/src/data/toolsData.ts').catch(() => {});
+        import('/src/utils/searchUtils.ts').catch(() => {});
+      }, 100);
     </script>
     
     <!-- Enhanced Structured Data -->
