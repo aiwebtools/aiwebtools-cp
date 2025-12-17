@@ -234,19 +234,19 @@ export const createTimePortalEffect = (
   createFlash(effectsContainer);
   createConfettiCelebration(true);
 
-  // ⚡ FAST but VISIBLE timing - effect shows for ~400ms, then gone
+  // ⚡ FAST but VISIBLE timing - effect shows briefly then cleans up
   const cleanupNow = () => cleanupEffects(effectsContainer);
 
-  // URL opens after brief flash (300ms)
+  // URL opens quickly (200ms)
   setTimeout(() => {
     console.log('🚀 Opening destination URL NOW');
     if (destinationUrl && destinationUrl.trim()) {
       openDestinationUrl(destinationUrl);
     }
-  }, 300);
+  }, 200);
 
-  // Cleanup at 400ms - visible flash but doesn't linger
-  setTimeout(cleanupNow, 400);
+  // Cleanup at 300ms - quick flash, doesn't linger
+  setTimeout(cleanupNow, 300);
 
   // Also cleanup on ANY visibility change (when tab switches)
   const handleVisibilityChange = () => {
